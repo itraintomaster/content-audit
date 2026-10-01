@@ -1,7 +1,67 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
+import com.learney.contentaudit.auditcli.commands.AnalyzeCmdTest.Base299;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerCorrection;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.AuditReportSummary;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
+import com.learney.contentaudit.auditdomain.auditnodeindex.DefaultAuditNodeIndexFactory;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.contextnumbers.AuditDigest;
+import com.learney.contentaudit.auditdomain.correctionengine.DefaultAnalyzerCorrectionCatalog;
+import com.learney.contentaudit.auditdomain.correctionengine.LemmaAbsenceCorrection;
+import com.learney.contentaudit.auditdomain.correctionengine.QuizInstructionCorrection;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceCorrection;
+import com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryCorrection;
+import com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsCorrection;
+import com.learney.contentaudit.auditdomain.singleanswerengine.SingleAnswerCorrection;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.auditdomain.translationsenseengine.TranslationSenseCorrection;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.refinerdomain.CorrectionContextResolver;
+import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
+import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.errortask.DefaultErrorTaskBriefer;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import org.mockito.Mockito;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,27 +81,436 @@ public class FTareaJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador pide el plan de un anális... → El plan recorre los hallazgos que cue... → El plan tiene una tarea con la identi... [Ninguna tarea marca lo mismo en ese ejercicio y su analizador tiene tipo de tarea] → Las tareas de vocabulario son las mis... → El operador pide las tareas de un tem... → success")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void path1_ningunaTareaMarcaLoMismoEnEseEjercicioYSuAnalizadorTieneTipoDeTarea_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tarea t = new Tarea();
+        t.reports.put("2026-09-30T11-54-02", new AuditReport(t.course(t.level("A1", t.topic("t-ps", "Present Simple",
+                t.vegetables(), t.otherTopicWithLength())))));
+
+        // === Node: pedir_plan ===
+        Base299.Captured plan = Base299.run(t.planCmd(), "--audit", "2026-09-30T11-54-02");
+        assertEquals(0, plan.exit(), plan.err());
+        RefinementPlan saved = t.plans.latest;
+
+        // === Node: clasificar === Gate: F-TAREA-R001, F-TAREA-R005
+        // === Node: tarea_propia === Gate: F-TAREA-R002, F-TAREA-R003, F-TAREA-R006
+        List<RefinementTask> errors = saved.getTasks().stream().filter(task -> task.getOrigin() != null).toList();
+        assertEquals(List.of("HINT_COHERENCE", "SINGLE_ANSWER", "TRANSLATION_SENSE"),
+                errors.stream().map(task -> task.getDiagnosisKind().name()).toList(),
+                "one task per finding of the vegetables, each of its analyzer's kind");
+        errors.forEach(task -> assertEquals(Tarea.VEGETABLES + "|" + task.getOrigin().getFinding().getRule(),
+                task.getNodeId() + "|" + task.getOrigin().getFinding().getRule(), "on the same exercise"));
+        assertTrue(plan.err().contains("hint-coherence"), "the tally names each analyzer: " + plan.err());
+
+        // === Node: vocabulario_igual === Gate: F-TAREA-R007
+        assertEquals(List.of("QUIZ " + Tarea.LENGTHY + " SENTENCE_LENGTH"), saved.getTasks().stream()
+                .filter(task -> task.getOrigin() == null)
+                .map(task -> task.getNodeTarget() + " " + task.getNodeId() + " " + task.getDiagnosisKind()).toList(),
+                "the vocabulary task as today, without origin");
+
+        // === Node: buscar === Gate: F-TAREA-R008, F-TAREA-R009
+        Base299.Captured listed = Base299.run(t.getCmd(), "tasks", "--knowledge", Tarea.AFIRMATIVAS, "--resolution", "panel",
+                "-f", "json", "--without-correction-context");
+        assertEquals(0, listed.exit(), listed.err());
+        JsonNode tasks = Tarea.json(listed.out()).get("tasks");
+        List<String> found = new ArrayList<>();
+        tasks.forEach(task -> found.add(task.get("diagnosis").asText() + " " + task.get("origin").get("finding").get("identity").asText()));
+        assertEquals(List.of("SINGLE_ANSWER single-answer|different-valid-answer|" + Tarea.VEGETABLES,
+                "TRANSLATION_SENSE translation-sense|same-meaning|" + Tarea.VEGETABLES), found,
+                "the panel tasks of the topic, each with its finding; the hint goes by rule");
+        String singleId = tasks.get(0).get("id").asText();
+        Base299.Captured shown = Base299.run(t.getCmd(), "task", singleId);
+        assertEquals(0, shown.exit(), shown.err());
+        assertTrue(shown.out().contains("I ___ a lot of vegetables."), "the exercise as the student sees it: " + shown.out());
+        assertTrue(shown.out().contains("eat, like, buy y want también encajan"), "its finding with its evidence");
+        assertTrue(shown.out().contains("May touch: ANSWERS, HINT, STATEMENT, STORED_SENTENCE, AUDIO"), shown.out());
+        // result: success
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador pide el plan de un anális... → El plan recorre los hallazgos que cue... → El plan declara el hallazgo cubierto ... [Una tarea que ya existe marca la misma palabra en el mismo ejercicio] → Las tareas de vocabulario son las mis... → El operador pide las tareas de un tem... → success")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void path2_unaTareaQueYaExisteMarcaLaMismaPalabraEnElMismoEjercicio_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tarea t = new Tarea();
+        t.reports.put("2026-09-30T11-54-02", new AuditReport(t.course(t.level("A2", t.topic("t-adj", "Adjectives", t.quilt())))));
+
+        // === Node: pedir_plan ===
+        Base299.Captured plan = Base299.run(t.planCmd(), "--audit", "2026-09-30T11-54-02");
+        assertEquals(0, plan.exit(), plan.err());
+
+        // === Node: clasificar === Gate: F-TAREA-R001, F-TAREA-R005
+        // === Node: cubierto === Gate: F-TAREA-R004
+        RefinementPlan saved = t.plans.latest;
+        assertEquals(List.of("QUIZ " + Tarea.QUILT + " LEMMA_ABSENCE"), saved.getTasks().stream()
+                .map(task -> task.getNodeTarget() + " " + task.getNodeId() + " " + task.getDiagnosisKind()).toList(),
+                "no task of off-level-words: the LEMMA_ABSENCE task of the exercise covers spread and quilt");
+        assertEquals(2, saved.getTasks().get(0).getOrigin().getCoveredFindings().size());
+        assertTrue(plan.err().matches("(?s).*off-level-words\\s+2 = 0 \\+ 2 \\+ 0.*"), "declared covered: " + plan.err());
+
+        // === Node: vocabulario_igual === Gate: F-TAREA-R007
+        assertEquals(1, saved.getTasks().size(), "one LEMMA_ABSENCE task per exercise, as today");
+
+        // === Node: buscar === Gate: F-TAREA-R008, F-TAREA-R009
+        Base299.Captured listed = Base299.run(t.getCmd(), "tasks", "--knowledge", Tarea.POSICION, "--resolution", "panel",
+                "-f", "json", "--without-correction-context");
+        assertEquals(0, listed.exit(), listed.err());
+        JsonNode task = Tarea.json(listed.out()).get("tasks").get(0);
+        assertEquals("LEMMA_ABSENCE", task.get("diagnosis").asText());
+        assertEquals(2, task.get("origin").get("coveredFindings").size(), "with what it covers");
+        Base299.Captured shown = Base299.run(t.getCmd(), "task", task.get("id").asText());
+        assertTrue(shown.out().contains("Covers:    2 finding(s)"), shown.out());
+        assertTrue(shown.out().contains("She spread the warm blue quilt on the bed."), shown.out());
+        // result: success
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador pide el plan de un anális... → El plan recorre los hallazgos que cue... → El plan declara el analizador, cuánto... [El analizador todavía no tiene tipo de tarea] → Las tareas de vocabulario son las mis... → El operador pide las tareas de un tem... → success")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void path3_elAnalizadorTodavaNoTieneTipoDeTarea_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tarea t = new Tarea();
+        t.reports.put("2026-09-30T11-54-02", new AuditReport(t.course(t.level("A1", t.topic("t-ps", "Present Simple",
+                t.duplicates(), t.otherTopicWithLength())))));
+
+        // === Node: pedir_plan ===
+        Base299.Captured plan = Base299.run(t.planCmd(), "--audit", "2026-09-30T11-54-02");
+        assertEquals(0, plan.exit(), plan.err());
+
+        // === Node: clasificar === Gate: F-TAREA-R001, F-TAREA-R005
+        // === Node: no_convertido === Gate: F-TAREA-R001
+        assertTrue(plan.err().matches("(?s).*exact-duplicates\\s+2 = 0 \\+ 0 \\+ 2\\s+no convertidos: su ficha no declara un tipo de tarea.*"),
+                "the analyzer, how many findings it did not convert and why: " + plan.err());
+        RefinementPlan saved = t.plans.latest;
+        assertTrue(saved.getTasks().stream().noneMatch(task -> task.getOrigin() != null), "no task for its findings");
+
+        // === Node: vocabulario_igual === Gate: F-TAREA-R007
+        assertEquals(List.of("SENTENCE_LENGTH"), saved.getTasks().stream().map(task -> task.getDiagnosisKind().name()).toList());
+
+        // === Node: buscar === Gate: F-TAREA-R008, F-TAREA-R009
+        Base299.Captured listed = Base299.run(t.getCmd(), "tasks", "--analyzer", "exact-duplicates", "-f", "json",
+                "--without-correction-context");
+        assertEquals(0, listed.exit(), listed.err());
+        assertTrue(listed.out().contains("No tasks found."), "nothing to find: its findings were not converted");
+        // result: success
+    }
+
+
+    /**
+     * FEAT-TAREA: the fixtures of the journey, shared with GetCmdTest and PlanCmdTest of the same package -- the cases
+     * of the requirement over a course built by hand, the real plan, the real brief of a task and the real CLI.
+     */
+    static final class Tarea {
+        static final String VEGETABLES = "67fab6d59930102295341ecd";
+        static final String AFIRMATIVAS = "6814dafa7d73e7209a13d389";
+        static final String QUILT = "67fab6d5993010229534484a";
+        static final String POSICION = "6814dafa7d73e7209a13d2a0";
+        static final String LENGTHY = "67fab6d59930102295341f40";
+        static final String IN_TIME = "6814dafa7d73e7209a13d37d";
+        static final String IN_TIME_TEXT = "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.";
+
+        final Map<String, AuditReport> reports = new LinkedHashMap<>();
+        final FakePlans plans = new FakePlans();
+        final AnalyzerCatalog catalog = catalog();
+        final DefaultAnalyzerCorrectionCatalog corrections = new DefaultAnalyzerCorrectionCatalog(List.of(
+                new QuizInstructionCorrection(), new LemmaAbsenceCorrection(), new OffLevelWordsCorrection(),
+                new HintCoherenceCorrection(), new TranslationSenseCorrection(), new SingleAnswerCorrection(),
+                new MiniTheoryCorrection()), catalog);
+
+        PlanCmd planCmd() {
+            return new PlanCmd(new FakeReports(reports), new DefaultRefinerEngine(catalog, corrections), plans,
+                    Mockito.mock(EphemeralPlanRenderer.class));
+        }
+
+        GetCmd getCmd() {
+            AnalyzerRegistry registry = new AnalyzerRegistry() {
+                @Override
+                public List<AnalyzerDescriptor> listAnalyzers() {
+                    return catalog.list();
+                }
+
+                @Override
+                public Optional<Map<String, Object>> getAnalyzerConfig(String analyzerName) {
+                    return Optional.empty();
+                }
+            };
+            return new GetCmd(new FakeReports(reports), plans, registry, Mockito.mock(CorrectionContextResolver.class),
+                    null, null, new DefaultCorrectionContextJsonMapper(), null, null, null, null,
+                    new DefaultErrorTaskBriefer(corrections, new DefaultAuditNodeIndexFactory(),
+                            new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())));
+        }
+
+        static JsonNode json(String out) {
+            try {
+                return new ObjectMapper().readTree(out);
+            } catch (Exception e) {
+                throw new AssertionError("not JSON: " + out, e);
+            }
+        }
+
+        // ---- the catalog: the vocabulary of today and the analyzers of errors of the cases ----
+
+        static AnalyzerCatalog catalog() {
+            List<AnalyzerProvider> providers = new ArrayList<>();
+            providers.add(provider("sentence-length", AnalyzerFamily.VOCABULARY, "SENTENCE_LENGTH"));
+            providers.add(provider("lemma-absence", AnalyzerFamily.VOCABULARY, "LEMMA_ABSENCE"));
+            providers.add(provider("off-level-words", AnalyzerFamily.ERRORS, null));
+            providers.add(provider("quiz-instruction", AnalyzerFamily.ERRORS, "QUIZ_INSTRUCTION"));
+            providers.add(provider("hint-coherence", AnalyzerFamily.ERRORS, "HINT_COHERENCE"));
+            providers.add(provider("exact-duplicates", AnalyzerFamily.ERRORS, null));
+            providers.add(provider("translation-sense", AnalyzerFamily.ERRORS, "TRANSLATION_SENSE"));
+            providers.add(provider("single-answer", AnalyzerFamily.ERRORS, "SINGLE_ANSWER"));
+            providers.add(provider("mini-theory", AnalyzerFamily.ERRORS, "MINI_THEORY"));
+            return new DefaultAnalyzerCatalog(providers);
+        }
+
+        static AnalyzerProvider provider(String name, AnalyzerFamily family, String taskKind) {
+            AnalyzerDescriptor card = new AnalyzerDescriptor(name, "Mide " + name, AuditTarget.QUIZ, "¿" + name + "?",
+                    "El ejercicio", List.of(new AnalyzerRuleCard("rule-" + name, "La regla", AnalysisCost.INSTANT)),
+                    "Ninguno", family, List.of(AuditTarget.QUIZ),
+                    List.of(FindingResolution.RULE, FindingResolution.PANEL, FindingResolution.RANK_ONLY),
+                    AnalysisCost.INSTANT, name, List.of());
+            return new AnalyzerProvider() {
+                @Override
+                public String analyzerName() {
+                    return name;
+                }
+
+                @Override
+                public AnalyzerDescriptor describe() {
+                    return card;
+                }
+
+                @Override
+                public ContentAnalyzer create(EvaluationRunPolicy policy) {
+                    throw new AssertionError("the plan never runs an analyzer");
+                }
+
+                @Override
+                public Optional<AnalyzerPlanBinding> planBinding() {
+                    return taskKind == null ? Optional.empty()
+                            : Optional.of(new AnalyzerPlanBinding(taskKind, List.of(AuditTarget.QUIZ)));
+                }
+
+                @Override
+                public Optional<SelfDescribingConfig> config() {
+                    return Optional.empty();
+                }
+            };
+        }
+
+        // ---- the course, built by hand with the cases of the requirement ----
+
+        static Finding finding(String analyzer, String rule, String nodeId, FindingSeverity severity,
+                FindingResolution resolution, AnalysisCost cost, String marker, String observation) {
+            String key = analyzer + "|" + rule + "|" + nodeId + (marker != null ? "|" + marker : "");
+            return new Finding(analyzer, rule, new FindingNodeRef(AuditTarget.QUIZ, nodeId, nodeId), severity,
+                    new FindingEvidence(List.of(new EvidencePart("Ejercicio", nodeId)), observation, List.of()),
+                    resolution, cost, new FindingIdentity(key, marker));
+        }
+
+        static SentencePartEntity text(String text) {
+            return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+        }
+
+        static SentencePartEntity gap(String... answers) {
+            return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(answers));
+        }
+
+        static Map<String, Double> scores(Object... pairs) {
+            Map<String, Double> map = new LinkedHashMap<>();
+            for (int i = 0; i < pairs.length; i += 2) {
+                map.put((String) pairs[i], ((Number) pairs[i + 1]).doubleValue());
+            }
+            return map;
+        }
+
+        AuditNode quiz(String id, String title, List<SentencePartEntity> parts, String translation, String miniTheory,
+                Map<String, Double> scores, Finding... findings) {
+            AuditNode node = new AuditNode();
+            node.setEntity(new AuditableQuiz(null, id, title, id, translation, List.of(), null, "Escribe la forma correcta.",
+                    parts, null, miniTheory, null));
+            node.setTarget(AuditTarget.QUIZ);
+            node.setScores(scores);
+            node.setFindings(new ArrayList<>(List.of(findings)));
+            node.setChildren(new ArrayList<>());
+            return node;
+        }
+
+        AuditNode knowledge(String id, String label, AuditNode... quizzes) {
+            AuditNode node = new AuditNode();
+            node.setEntity(new AuditableKnowledge(List.of(), label, null, true, id, label, id, null, null));
+            node.setTarget(AuditTarget.KNOWLEDGE);
+            return link(node, quizzes);
+        }
+
+        AuditNode topic(String id, String label, AuditNode... knowledges) {
+            AuditNode node = new AuditNode();
+            node.setEntity(entity(id, label));
+            node.setTarget(AuditTarget.TOPIC);
+            return link(node, knowledges);
+        }
+
+        AuditNode level(String cefr, AuditNode... topics) {
+            AuditNode node = new AuditNode();
+            node.setEntity(entity("m-" + cefr.toLowerCase(), cefr));
+            node.setTarget(AuditTarget.MILESTONE);
+            return link(node, topics);
+        }
+
+        AuditNode course(AuditNode... levels) {
+            AuditNode node = new AuditNode();
+            node.setTarget(AuditTarget.COURSE);
+            return link(node, levels);
+        }
+
+        private static AuditNode link(AuditNode parent, AuditNode... children) {
+            parent.setScores(new LinkedHashMap<>());
+            parent.setChildren(new ArrayList<>(List.of(children)));
+            for (AuditNode child : children) {
+                child.setParent(parent);
+            }
+            return parent;
+        }
+
+        private static AuditableEntity entity(String id, String label) {
+            return new AuditableEntity() {
+                @Override
+                public String getId() {
+                    return id;
+                }
+
+                @Override
+                public String getLabel() {
+                    return label;
+                }
+
+                @Override
+                public String getCode() {
+                    return id;
+                }
+            };
+        }
+
+        /** «I ___ a lot of vegetables.» (A1, Afirmativas regulares): the hint, a single answer and the translation. */
+        AuditNode vegetables() {
+            return knowledge(AFIRMATIVAS, "Afirmativas regulares", quiz(VEGETABLES, "Afirmativas regulares",
+                    List.of(text("I"), gap("love"), text("a lot of vegetables.")), "Me gustan mucho las verduras.",
+                    "Con he, she, it el verbo lleva $-s$.",
+                    scores("hint-coherence", 0.0, "translation-sense", 0.0, "single-answer", 0.0),
+                    finding("hint-coherence", "missing-hint", VEGETABLES, FindingSeverity.HIGH, FindingResolution.RULE,
+                            AnalysisCost.INSTANT, null, "19 de 20 ejercicios del tema llevan pista; éste no"),
+                    finding("translation-sense", "same-meaning", VEGETABLES, FindingSeverity.HIGH,
+                            FindingResolution.PANEL, AnalysisCost.PAID_MODEL, null,
+                            "«Me gustan mucho las verduras» no dice «I ___ a lot of vegetables.»"),
+                    finding("single-answer", "different-valid-answer", VEGETABLES, FindingSeverity.BLOCKING,
+                            FindingResolution.PANEL, AnalysisCost.PAID_MODEL, null,
+                            "eat, like, buy y want también encajan")));
+        }
+
+        /** A topic with an exercise whose only problem is its length: a vocabulary task as today. */
+        AuditNode otherTopicWithLength() {
+            return knowledge("6814dafa7d73e7209a13d38a", "Afirmativas con be", quiz(LENGTHY, "Afirmativas con be",
+                    List.of(text("She"), gap("is"), text("English.")), "Ella es inglesa.", null,
+                    scores("sentence-length", 0.8)));
+        }
+
+        /** «She spread the warm blue quilt on the bed.» (A2): spread and quilt, by lemma-absence and off-level-words. */
+        AuditNode quilt() {
+            return knowledge(POSICION, "Posición del adjetivo", quiz(QUILT, "Posición del adjetivo",
+                    List.of(text("She spread the warm blue quilt on the bed.")),
+                    "Ella extendió la colcha azul tibia sobre la cama.", null,
+                    scores("lemma-absence", 0.7, "off-level-words", 0.0),
+                    finding("lemma-absence", "misplaced-word", QUILT, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                            AnalysisCost.INSTANT, "spread", "spread es B2"),
+                    finding("lemma-absence", "misplaced-word", QUILT, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                            AnalysisCost.INSTANT, "quilt", "quilt es B2"),
+                    finding("off-level-words", "F-NIVFR-R002", QUILT, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                            AnalysisCost.INSTANT, "quilt|NOUN", "quilt es B2 en un ejercicio de A2"),
+                    finding("off-level-words", "F-NIVFR-R002", QUILT, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                            AnalysisCost.INSTANT, "spread|VERB", "spread es B2 en un ejercicio de A2")));
+        }
+
+        /** Two exercises of a topic that repeat each other, marked by exact-duplicates, which has no task kind here. */
+        AuditNode duplicates() {
+            return knowledge("6814dafa7d73e7209a13d390", "Repaso", quiz("67fab6d59930102295341f50", "Repaso",
+                    List.of(text("I"), gap("work"), text("here.")), "Trabajo acá.", null, scores("exact-duplicates", 0.0),
+                    finding("exact-duplicates", "exact-duplicate", "67fab6d59930102295341f50", FindingSeverity.HIGH,
+                            FindingResolution.PANEL, AnalysisCost.INSTANT, null, "repite a 67fab6d59930102295341f51")),
+                    quiz("67fab6d59930102295341f51", "Repaso", List.of(text("I"), gap("work"), text("here.")),
+                            "Trabajo acá.", null, scores("exact-duplicates", 0.0),
+                            finding("exact-duplicates", "exact-duplicate", "67fab6d59930102295341f51",
+                                    FindingSeverity.HIGH, FindingResolution.PANEL, AnalysisCost.INSTANT, null,
+                                    "repite a 67fab6d59930102295341f50")));
+        }
+
+        /** «$In time$ u $on time$» (B1): its mini theory in count exercises, each with its finding. */
+        AuditNode inTimeOnTime(int count) {
+            List<AuditNode> quizzes = new ArrayList<>();
+            for (int i = 0; i < count; i++) {
+                String id = String.format("67fab6d5993010229534%04x", 0x3d25 + i);
+                quizzes.add(quiz(id, "$In time$ u $on time$", List.of(text("The train arrived"), gap("on time"),
+                        text("(on time / in time).")), "El tren llegó puntual.", IN_TIME_TEXT, scores("mini-theory", 0.0),
+                        finding("mini-theory", "overstated-rule", id, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                                AnalysisCost.PAID_MODEL, IN_TIME_TEXT, "la miniteoría promete más de lo que enseña")));
+            }
+            return knowledge(IN_TIME, "$In time$ u $on time$", quizzes.toArray(new AuditNode[0]));
+        }
+
+        static final class FakePlans implements RefinementPlanStore {
+            final Map<String, RefinementPlan> byId = new LinkedHashMap<>();
+            RefinementPlan latest;
+
+            @Override
+            public String save(RefinementPlan plan) {
+                byId.put(plan.getId(), plan);
+                latest = plan;
+                return plan.getId();
+            }
+
+            @Override
+            public Optional<RefinementPlan> load(String id) {
+                return Optional.ofNullable(byId.get(id));
+            }
+
+            @Override
+            public Optional<RefinementPlan> loadLatest() {
+                return Optional.ofNullable(latest);
+            }
+        }
+
+        static final class FakeReports implements AuditReportStore {
+            private final Map<String, AuditReport> reports;
+
+            FakeReports(Map<String, AuditReport> reports) {
+                this.reports = reports;
+            }
+
+            @Override
+            public String save(AuditReport report) {
+                throw new AssertionError("nothing here saves an analysis");
+            }
+
+            @Override
+            public Optional<AuditReport> load(String id) {
+                return Optional.ofNullable(reports.get(id));
+            }
+
+            @Override
+            public Optional<AuditReport> loadLatest() {
+                return reports.values().stream().reduce((a, b) -> b);
+            }
+
+            @Override
+            public List<AuditReportSummary> list() {
+                return reports.keySet().stream().map(id -> new AuditReportSummary(id, java.time.Instant.EPOCH, "Curso", 0.9))
+                        .toList();
+            }
+
+            @Override
+            public Optional<AuditDigest> loadDigest(String id) {
+                return Optional.empty();
+            }
+        }
     }
 }

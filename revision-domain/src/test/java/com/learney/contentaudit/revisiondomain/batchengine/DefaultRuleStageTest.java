@@ -1,7 +1,44 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.IrregularFormsCatalog;
+import com.learney.contentaudit.auditdomain.RuleFix;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceRuleFix;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceRuleFix;
+import com.learney.contentaudit.auditdomain.rulefix.RuleFixRequest;
+import com.learney.contentaudit.auditdomain.rulefix.RuleFixResult;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchProposalRef;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory;
+import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,48 +52,230 @@ public class DefaultRuleStageTest {
     @DisplayName("should apply the rule fixes before any panel opens and without querying any model, as «(love)» for the hint of «I ___ a lot of vegetables.»")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldApplyTheRuleFixesBeforeAnyPanelOpensAndWithoutQueryingAnyModelAsLoveForTheHintOfIALotOfVegetables(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: «I ___ a lot of vegetables.» has no hint while its topic asks for one; its rule writes «(love)», drawn from
+        // the first answer. No panel and no model: the meter that measures the change for the gate gets an allowance that
+        // lets no query start -- the judges only reuse what they recorded.
+        CourseEntity course = TandaFixture.course();
+        Rules rules = new Rules(course, List.of(MesaFixture.missingHint()),
+                TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1));
+
+        CorrectionBatch batch = rules.apply("t-pista");
+
+        assertEquals(1, batch.getChanges().size());
+        BatchChange change = batch.getChanges().get(0);
+        assertEquals(BatchChangeOrigin.RULE, change.getOrigin());
+        assertEquals("hint-coherence", change.getRuleId(), "marked with its rule");
+        QuizTemplateEntity after = change.getSteps().get(0).getAfter().getQuiz();
+        assertEquals("(love) a lot of vegetables.", after.getForm().getSentenceParts().get(2).getText());
+        assertTrue(change.getSteps().get(0).getParts().contains(ExercisePart.HINT), "it touched the hint");
+        assertTrue(change.getGateVerdict().isPasses(), change.getGateVerdict().getReasons().toString());
+        assertTrue(change.getGateVerdict().getRerecords().isEmpty(), "what is heard does not move");
+        assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_RULE, BatchBook.kind(batch, "t-pista"));
+        assertFalse(rules.meter.allowances.isEmpty(), "the change was measured, before and after");
+        for (QueryAllowance allowance : rules.meter.allowances) {
+            assertFalse(allowance.tryReserve(1), "no query starts");
+            assertEquals(Optional.of(DefaultRuleStage.NO_QUERIES), allowance.tripped());
+        }
+        assertTrue(batch.getPanelDecisions().isEmpty(), "no panel opened");
+        assertEquals("a lot of vegetables.", TandaFixture.exercise(course, MesaFixture.VEGETABLES).getForm().getSentenceParts()
+                .get(2).getText(), "the copy of the course is not written");
+        assertTrue(rules.batches.saves >= 1, "the batch is saved after its rules");
     }
 
     @Test
     @DisplayName("should join in one change per analyzer and exercise every finding its rule fixes, and keep it as a pending change of the batch marked with its rule")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldJoinInOneChangePerAnalyzerAndExerciseEveryFindingItsRuleFixesAndKeepItAsAPendingChangeOfTheBatchMarkedWithItsRule(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: «She ___ (is not) very happy.» accepts «'s not/isn't», with a «/» the corrector does not split, and its tree
+        // sentence says «She is not very happy.». data-coherence fixes both in one go: one change of its rule for the
+        // exercise, with the two tasks, kept as the pending proposal of the exercise.
+        CourseEntity course = TandaFixture.course();
+        QuizTemplateEntity happy = TandaFixture.exercise(course, HAPPY);
+        happy.getForm().getSentenceParts().get(1).setOptions(new ArrayList<>(List.of("'s not/isn't")));
+        happy.setSentences(new ArrayList<>(List.of("She is not very happy.")));
+        Finding slash = MesaFixture.finding("data-coherence", "no-slash", HAPPY, FindingSeverity.BLOCKING,
+                FindingResolution.RULE, "respuesta", "la respuesta lleva «/»");
+        Finding tree = MesaFixture.finding("data-coherence", "saved-sentence", HAPPY, FindingSeverity.MEDIUM,
+                FindingResolution.RULE, "arbol", "oración guardada (árbol): «She is not very happy.»");
+        Rules rules = new Rules(course, List.of(slash, tree),
+                TandaFixture.task("t-barra", slash, MesaFixture.CONTRACCIONES, CefrLevel.A1),
+                TandaFixture.task("t-arbol", tree, MesaFixture.CONTRACCIONES, CefrLevel.A1));
+
+        CorrectionBatch batch = rules.apply("t-barra", "t-arbol");
+
+        assertEquals(1, batch.getChanges().size(), "one change per analyzer and exercise");
+        BatchChange change = batch.getChanges().get(0);
+        assertEquals("regla-data-coherence-" + HAPPY, change.getChangeId());
+        assertEquals("data-coherence", change.getRuleId());
+        assertEquals(List.of("t-barra", "t-arbol"), change.getTaskIds());
+        QuizTemplateEntity after = change.getSteps().get(0).getAfter().getQuiz();
+        assertEquals(List.of("'s not|isn't"), after.getForm().getSentenceParts().get(1).getOptions());
+        assertNotEquals(List.of("She is not very happy."), after.getSentences(), "the tree sentence built again");
+        for (String task : List.of("t-barra", "t-arbol")) {
+            BatchTaskOutcome outcome = BatchBook.outcome(batch, task).orElseThrow();
+            assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_RULE, outcome.getKind());
+            assertEquals(change.getChangeId(), outcome.getChangeId());
+        }
+        assertEquals(List.of(new BatchProposalRef(HAPPY, "tanda-a1-" + HAPPY)), batch.getQuizProposals());
+        RevisionArtifact pending = rules.artifacts.load(TandaFixture.PLAN, "tanda-a1-" + HAPPY).orElseThrow();
+        assertEquals("tanda", pending.getProposal().getReviserKind());
+        assertTrue(pending.getProposal().getRationale().contains("regla-data-coherence-" + HAPPY), "marked with its change");
     }
 
     @Test
     @DisplayName("should pass every rule change through the change gate, and send to the panel of its topic, without applying it, the tasks of a change that does not pass")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldPassEveryRuleChangeThroughTheChangeGateAndSendToThePanelOfItsTopicWithoutApplyingItTheTasksOfAChangeThatDoesNotPass(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 and F-NOEMP-R001: measured after the rule, the vegetables gain a finding of exact-duplicates they did not
+        // have; the change does not pass, is not kept, and its task goes to the panel of its topic with the reason.
+        CourseEntity course = TandaFixture.course();
+        Rules rules = new Rules(course, List.of(MesaFixture.missingHint()),
+                TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1));
+        Finding duplicate = MesaFixture.finding("exact-duplicates", "same-exercise", MesaFixture.VEGETABLES,
+                FindingSeverity.HIGH, FindingResolution.RULE, null, "queda igual a otro ejercicio del tema");
+        rules.meter.findings = topic -> withHint(topic) ? List.of(duplicate) : List.of();
+
+        CorrectionBatch batch = rules.apply("t-pista");
+
+        assertTrue(batch.getChanges().isEmpty(), "a change that does not pass is not kept");
+        assertTrue(batch.getQuizProposals().isEmpty());
+        assertTrue(rules.artifacts.saved.isEmpty(), "nor proposed");
+        BatchTaskOutcome outcome = BatchBook.outcome(batch, "t-pista").orElseThrow();
+        assertEquals(BatchTaskOutcomeKind.PENDING, outcome.getKind(), "to the panel");
+        assertTrue(outcome.getDetail().startsWith("a la mesa: la regla no pasó la compuerta: F-NOEMP-R001: error nuevo de"
+                + " exact-duplicates"), outcome.getDetail());
     }
 
     @Test
     @DisplayName("should send to the panel, declared, the findings a rule fix declines")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldSendToThePanelDeclaredTheFindingsARuleFixDeclines() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: the rule of the hint writes «(love)» for the missing hint, and declines the other finding of the hint: the
+        // fixed one is a change of its rule; the declined one goes to the panel with what the rule said.
+        CourseEntity course = TandaFixture.course();
+        Finding subject = MesaFixture.finding("hint-coherence", "hint-subject", MesaFixture.VEGETABLES, FindingSeverity.HIGH,
+                FindingResolution.RULE, "i", "la pista no dice el sujeto");
+        Rules rules = new Rules(course, List.of(MesaFixture.missingHint(), subject),
+                TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-sujeto", subject, MesaFixture.AFIRMATIVAS, CefrLevel.A1));
+        rules.fixes = List.of(new RuleFix() {
+            @Override
+            public String analyzerName() {
+                return "hint-coherence";
+            }
+
+            @Override
+            public RuleFixResult fix(RuleFixRequest request) {
+                QuizTemplateEntity quiz = BatchBook.copy(request.getQuiz());
+                quiz.getForm().getSentenceParts().get(2).setText("(love) a lot of vegetables.");
+                return new RuleFixResult(quiz, new ArrayList<>(List.of(MesaFixture.missingHint().getIdentity())),
+                        new ArrayList<>(List.of(subject.getIdentity())), "el sujeto de la pista lo decide la mesa",
+                        new ArrayList<>());
+            }
+        });
+
+        CorrectionBatch batch = rules.apply("t-pista", "t-sujeto");
+
+        assertEquals(List.of("t-pista"), batch.getChanges().get(0).getTaskIds(), "the change carries only what it fixed");
+        assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_RULE, BatchBook.kind(batch, "t-pista"));
+        BatchTaskOutcome declined = BatchBook.outcome(batch, "t-sujeto").orElseThrow();
+        assertEquals(BatchTaskOutcomeKind.PENDING, declined.getKind(), "to the panel");
+        assertEquals("a la mesa, declinada por la regla: el sujeto de la pista lo decide la mesa", declined.getDetail(),
+                "declared");
     }
 
     @Test
     @DisplayName("should keep as a change of the batch, marked with its rule, a rule fix that only asks to rerecord, passing it through the change gate with its request and listing it to rerecord")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldKeepAsAChangeOfTheBatchMarkedWithItsRuleARuleFixThatOnlyAsksToRerecordPassingItThroughTheChangeGateWithItsRequestAndListingItToRerecord(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 and F-NOEMP-R004: the audio of «I learned ___ (me / myself) to drive a car.» reads the «/». The exercise is
+        // right; its rule only asks to record it again with what it says. That is a change of its rule too: it passes the gate
+        // with its request, which is listed to record, and its task waits for the recording.
+        CourseEntity course = TandaFixture.withLearned(TandaFixture.course());
+        Finding audio = TandaFixture.audioOfLearned();
+        Rules rules = new Rules(course, List.of(audio),
+                TandaFixture.task("t-audio", audio, TandaFixture.REFLEXIVE, CefrLevel.A1));
+
+        CorrectionBatch batch = rules.apply("t-audio");
+
+        assertEquals(1, batch.getChanges().size());
+        BatchChange change = batch.getChanges().get(0);
+        assertEquals("data-coherence", change.getRuleId(), "marked with its rule");
+        assertTrue(change.getSteps().get(0).getParts().isEmpty(), "the exercise does not change");
+        assertTrue(change.getGateVerdict().isPasses(), change.getGateVerdict().getReasons().toString());
+        assertEquals(List.of(new AudioRerecordRequest(TandaFixture.LEARNED, MesaFixture.audioKey(TandaFixture.LEARNED),
+                List.of("I learned myself to drive a car."))), change.getGateVerdict().getRerecords(), "listed to record");
+        BatchTaskOutcome outcome = BatchBook.outcome(batch, "t-audio").orElseThrow();
+        assertEquals(BatchTaskOutcomeKind.PENDING_RERECORDING, outcome.getKind());
+        assertEquals(change.getChangeId(), outcome.getChangeId());
+        assertEquals("regrabar " + MesaFixture.audioKey(TandaFixture.LEARNED) + " con «I learned myself to drive a car.»",
+                outcome.getDetail());
+    }
+
+
+    private static final String HAPPY = "67fab6d59930102295343102";
+
+    /** The rule stage over the course in memory: the real fixes of the hint and of data-coherence, the real gate. */
+    private static final class Rules {
+        final TandaFixture.Meter meter = new TandaFixture.Meter();
+
+        final TandaFixture.Batches batches = new TandaFixture.Batches();
+
+        final TandaFixture.Artifacts artifacts = new TandaFixture.Artifacts();
+
+        final CourseEntity course;
+
+        final AuditReport start;
+
+        final TandaFixture.Plans plans;
+
+        List<RuleFix> fixes = List.of(new HintCoherenceRuleFix(noIrregularForms()),
+                new DataCoherenceRuleFix(DefaultQuizSentenceConverter.create()));
+
+        Rules(CourseEntity course, List<Finding> findings, RefinementTask... tasks) {
+            this.course = course;
+            this.start = TandaFixture.report(course, findings, Map.of(), MesaFixture.ANALYZERS);
+            this.plans = new TandaFixture.Plans(TandaFixture.plan(tasks));
+        }
+
+        CorrectionBatch apply(String... taskIds) {
+            DefaultBatchChangeLedger ledger = new DefaultBatchChangeLedger(artifacts, TandaFixture.locator());
+            return new DefaultRuleStage(fixes, meter, new DefaultGateFactory().changeGate(), ledger, batches)
+                    .withPlans(plans).apply(TandaFixture.batch("tanda-a1", taskIds), start, course);
+        }
+    }
+
+    /** Whether the topic, as it is measured, carries the hint the rule writes for the vegetables. */
+    private static boolean withHint(KnowledgeEntity topic) {
+        for (QuizTemplateEntity quiz : topic.getQuizTemplates()) {
+            if (MesaFixture.VEGETABLES.equals(quiz.getId())
+                    && quiz.getForm().getSentenceParts().get(2).getText().startsWith("(love)")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static IrregularFormsCatalog noIrregularForms() {
+        return new IrregularFormsCatalog() {
+            @Override
+            public Set<String> formsOf(String baseWord) {
+                return Set.of();
+            }
+
+            @Override
+            public boolean isPastParticiple(String word) {
+                return false;
+            }
+        };
     }
 }

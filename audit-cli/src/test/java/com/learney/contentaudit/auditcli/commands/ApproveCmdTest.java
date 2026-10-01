@@ -1,5 +1,15 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.revisiondomain.batch.BatchProposalRef;
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchStore;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.jupiter.api.io.TempDir;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -15,7 +25,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -381,17 +390,114 @@ public class ApproveCmdTest {
     @DisplayName("should reject 'approve proposal' of a proposal of the open batch with «La propuesta <id> es de la tanda <id>: entra al curso al publicar la tanda.» and exit non-zero, leaving the course identical")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldRejectApproveProposalOfAProposalOfTheOpenBatchWithLaPropuestaIdEsDeLaTandaIdEntraAlCursoAlPublicarLaTandaAndExitNonzeroLeavingTheCourseIdentical() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-BANDEJA-R008: a proposal of the open batch enters the course only when the batch is published: 'approve proposal'
+        // refuses it, with its message, and the course stays byte for byte.
+        Path course = course();
+        byte[] before = bytes(course);
+        ApproveCmd cmd = command(course, openBatch());
+        ByteArrayOutputStream err = new ByteArrayOutputStream();
+        PrintStream originalErr = System.err;
+        System.setErr(new PrintStream(err, true, StandardCharsets.UTF_8));
+        int exit;
+        try {
+            exit = cmd.approve("proposal", PROPOSAL, null, null);
+        } finally {
+            System.setErr(originalErr);
+        }
+
+        assertNotEquals(0, exit);
+        assertEquals("La propuesta " + PROPOSAL + " es de la tanda " + BATCH + ": entra al curso al publicar la tanda.",
+                err.toString(StandardCharsets.UTF_8).trim());
+        verify(decisionService, never()).approve(any(), any(), any(), any());
+        assertArrayEquals(before, bytes(course), "the course, identical");
     }
 
     @Test
     @DisplayName("should approve as today a proposal that belongs to no open batch")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldApproveAsTodayAProposalThatBelongsToNoOpenBatch() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-BANDEJA-R008: outside the open batch, 'approve' is as today: the decision service approves and applies.
+        Path course = course();
+        ApproveCmd cmd = command(course, openBatch());
+        when(decisionService.approve(eq("revise-1"), eq(Optional.empty()), eq(Optional.empty()), any(Path.class)))
+                .thenReturn(new ProposalDecisionOutcome(ProposalDecisionOutcomeKind.APPROVED_APPLIED, null, null));
+
+        int exit = cmd.approve("proposal", "revise-1", null, null);
+
+        assertEquals(0, exit);
+        verify(decisionService).approve(eq("revise-1"), eq(Optional.empty()), eq(Optional.empty()), any(Path.class));
+    }
+
+
+    private static final String BATCH = "tanda-A1-20261001T120000Z";
+
+    private static final String PROPOSAL = BATCH + "-67fab6d59930102295341ecd";
+
+    @TempDir
+    Path workdir;
+
+    private Path course() {
+        try {
+            Path file = workdir.resolve("english-course.json");
+            Files.writeString(file, "{\"id\":\"curso\"}", StandardCharsets.UTF_8);
+            return file;
+        } catch (java.io.IOException e) {
+            throw new java.io.UncheckedIOException(e);
+        }
+    }
+
+    private static byte[] bytes(Path file) {
+        try {
+            return Files.readAllBytes(file);
+        } catch (java.io.IOException e) {
+            throw new java.io.UncheckedIOException(e);
+        }
+    }
+
+    /** A store with the open batch of A1 and its pending proposal of the vegetables. */
+    private static BatchStore openBatch() {
+        CorrectionBatch batch = new CorrectionBatch();
+        batch.setId(BATCH);
+        batch.setStatus(BatchStatus.CLOSED);
+        batch.setQuizProposals(new ArrayList<>(List.of(new BatchProposalRef("67fab6d59930102295341ecd", PROPOSAL))));
+        return new BatchStore() {
+            @Override
+            public void save(CorrectionBatch saved) {
+            }
+
+            @Override
+            public Optional<CorrectionBatch> load(String batchId) {
+                return BATCH.equals(batchId) ? Optional.of(batch) : Optional.empty();
+            }
+
+            @Override
+            public Optional<CorrectionBatch> open() {
+                return Optional.of(batch);
+            }
+
+            @Override
+            public List<CorrectionBatch> list() {
+                return List.of(batch);
+            }
+
+            @Override
+            public Optional<CorrectionBatch> latestPublished() {
+                return Optional.empty();
+            }
+        };
+    }
+
+    private ApproveCmd command(Path course, BatchStore store) {
+        ApproveCmd cmd = new ApproveCmd(decisionService, store);
+        try {
+            Field coursePath = ApproveCmd.class.getDeclaredField("coursePath");
+            coursePath.setAccessible(true);
+            coursePath.set(cmd, course.toString());
+        } catch (ReflectiveOperationException e) {
+            throw new AssertionError(e);
+        }
+        return cmd;
     }
 }

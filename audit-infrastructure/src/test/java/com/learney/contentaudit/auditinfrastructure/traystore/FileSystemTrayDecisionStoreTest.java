@@ -1,7 +1,21 @@
 package com.learney.contentaudit.auditinfrastructure.traystore;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.revisiondomain.tray.RememberedDecision;
+import com.learney.contentaudit.revisiondomain.tray.TrayAnswer;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.io.TempDir;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +29,67 @@ public class FileSystemTrayDecisionStoreTest {
     @DisplayName("should keep José's decisions in an append-only file apart from batches and reports, so pruning analyses leaves them")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldKeepJossDecisionsInAnAppendonlyFileApartFromBatchesAndReportsSoPruningAnalysesLeavesThem(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: José's decisions go, one line each, to a file of their own, after the ones already there; the batches and the
+        // analyses live elsewhere, so deleting them -- as prune does -- leaves the decisions where they were.
+        FileSystemTrayDecisionStore store = new FileSystemTrayDecisionStore(workdir);
+        RememberedDecision notError = new RememberedDecision(TIE, null, "huella-1", TrayAnswer.NOT_ERROR,
+                "tanda-A1-20261001T120000Z", Instant.parse("2026-10-01T15:00:00Z"));
+        store.remember(notError);
+        store.remember(new RememberedDecision("sin-ganador|67fab6d59930102295341ec9|t-tea", null, "huella-2",
+                TrayAnswer.KEEP_ORIGINAL, "tanda-A1-20261001T120000Z", Instant.parse("2026-10-01T15:01:00Z")));
+        Path file = workdir.resolve(".content-audit/tray/decisions.jsonl");
+        List<String> before = lines(file);
+        assertEquals(2, before.size(), "one line each");
+
+        store.remember(new RememberedDecision(TIE, null, "huella-1", TrayAnswer.IS_ERROR, "tanda-A1-20261008T120000Z",
+                Instant.parse("2026-10-08T15:00:00Z")));
+
+        List<String> after = lines(file);
+        assertEquals(before, after.subList(0, 2), "append-only: what was there stays as it was");
+        assertEquals(TrayAnswer.IS_ERROR, store.recall(TIE, null, "huella-1").orElseThrow().getAnswer(), "the latest answer");
+        assertTrue(store.recall(TIE, null, "huella-otra").isEmpty(), "another content, another question");
+
+        mkdirs(workdir.resolve(".content-audit/batches"));
+        mkdirs(workdir.resolve(".content-audit/audits"));
+        delete(workdir.resolve(".content-audit/batches"));
+        delete(workdir.resolve(".content-audit/audits"));
+        FileSystemTrayDecisionStore reopened = new FileSystemTrayDecisionStore(workdir);
+        assertEquals(TrayAnswer.KEEP_ORIGINAL, reopened.recall("sin-ganador|67fab6d59930102295341ec9|t-tea", null, "huella-2")
+                .orElseThrow().getAnswer(), "pruning batches and analyses leaves the decisions");
+    }
+
+
+    private static final String TIE = "translation-sense|judges-disagree|67fab6d59930102295341ec8";
+
+    @TempDir
+    Path workdir;
+
+    private static List<String> lines(Path file) {
+        try {
+            return Files.readAllLines(file, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    private static void mkdirs(Path dir) {
+        try {
+            Files.createDirectories(dir);
+            Files.writeString(dir.resolve("algo.json"), "{}");
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    private static void delete(Path dir) {
+        try (Stream<Path> files = Files.walk(dir)) {
+            for (Path path : files.sorted(Comparator.reverseOrder()).toList()) {
+                Files.delete(path);
+            }
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 }

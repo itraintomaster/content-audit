@@ -1,12 +1,25 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import com.learney.contentaudit.auditdomain.ActiveAnalysisSelection;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
+import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.Baseline;
 import com.learney.contentaudit.auditdomain.BaselineStore;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
+import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
 import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBriefer;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
+import com.learney.contentaudit.revisiondomain.batch.BatchAlreadyOpenException;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
 import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
@@ -15,14 +28,55 @@ import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchReport;
 import com.learney.contentaudit.revisiondomain.batch.BatchRunRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchService;
+import com.learney.contentaudit.revisiondomain.batch.BatchSettings;
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchStore;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.NoOpenBatchException;
 import com.learney.contentaudit.revisiondomain.comparison.GoalBook;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
 import com.learney.contentaudit.revisiondomain.panel.PanelRunnerFactory;
+import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
 import java.nio.file.Path;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.TaskOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
+import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
+import com.learney.contentaudit.revisiondomain.panel.CandidateRejection;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
+import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelRunSettings;
+import com.learney.contentaudit.revisiondomain.panel.PanelRunner;
+import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import java.util.HashMap;
 import javax.annotation.processing.Generated;
 
+/**
+ * One port with the moments of a batch (FEAT-TANDA): open, estimate, run, close, adjust, report and publish. Opening
+ * reads the baseline of F's registry -- without one it does not open -- and starts from it the first time and from what
+ * the last published batch left afterwards, with the active pair moved to that analysis and its plan; only one batch is
+ * open at a time, its tasks leave the plan as «in batch», and the goals of the declaration are sealed then and only then
+ * (F-METAS-R006, R011). Running applies the rules always and opens the panels only under an explicit cap of queries;
+ * a failure of the service leaves the batch interrupted, with everything it decided, and running again resumes it.
+ * {@code adjust} is the only entry for José's decisions and for the «drop» of the command line, so all of them go
+ * through the ledger.
+ */
 @Generated(
         value = "com.sentinel.SentinelEngine",
         comments = "Generated by Sentinel"
@@ -64,6 +118,16 @@ class DefaultBatchService implements BatchService {
 
     private final GoalBook goalBook;
 
+    /** F-MESA-R010 inv. 4 and DOUBT-TEMAS-A-LA-VEZ: 4 topics and 4 queries at once unless others are asked. */
+    static final int DEFAULT_AT_ONCE = 4;
+
+    static final int DEFAULT_MAX_ATTEMPTS = 3;
+
+    static final String CAP_REACHED = "se llegó al tope";
+
+    private static final DateTimeFormatter STAMP = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'")
+            .withZone(ZoneOffset.UTC);
+
     public DefaultBatchService(BatchStore batchStore, RefinementPlanStore refinementPlanStore,
             AuditReportStore auditReportStore,
             ActiveAnalysisSelectionStore activeAnalysisSelectionStore, BaselineStore baselineStore,
@@ -94,41 +158,425 @@ class DefaultBatchService implements BatchService {
 
     @Override
     public CorrectionBatch open(BatchOpenRequest request) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Optional<CorrectionBatch> open = batchStore.open();
+        if (open.isPresent()) {
+            throw new BatchAlreadyOpenException(open.get().getId());
+        }
+        if (request == null || request.getLevel() == null) {
+            throw new IllegalArgumentException("Falta el nivel de la tanda.");
+        }
+        Baseline baseline = baselineStore != null ? baselineStore.read().orElse(null) : null;
+        if (baseline == null || baseline.getAuditId() == null) {
+            throw new IllegalStateException("No hay una línea base fijada: fijala antes de abrir la primera tanda.");
+        }
+        Optional<CorrectionBatch> published = batchStore.latestPublished();
+        String startAuditId = published.map(b -> b.getPublication().getPublishedAuditId()).orElse(baseline.getAuditId());
+        AuditReport start = auditReportStore.load(startAuditId).orElseThrow(() -> new IllegalStateException(
+                "No se encuentra el análisis " + startAuditId + " del que parte la tanda."));
+        String planId = published.map(b -> b.getPublication().getPublishedPlanId()).orElseGet(() -> planOf(startAuditId));
+        RefinementPlan plan = refinementPlanStore.load(planId).orElseThrow(() -> new IllegalStateException(
+                "No se encuentra el plan " + planId + " del análisis " + startAuditId + "."));
+
+        CorrectionBatch batch = taskSelector.select(plan, start, request.getLevel(),
+                BatchBook.list(request.getConvertToMultipleChoice()), pendingRerecords());
+        Instant now = Instant.now();
+        batch.setId("tanda-" + request.getLevel().name() + "-" + STAMP.format(now));
+        batch.setLevel(request.getLevel());
+        batch.setStatus(BatchStatus.OPEN);
+        batch.setBaselineAuditId(baseline.getAuditId());
+        batch.setStartAuditId(startAuditId);
+        batch.setPlanId(planId);
+        batch.setAnalyzers(analyzersOf(start));
+        batch.setSettings(new BatchSettings(atOnce(request.getTopicsAtOnce()), atOnce(request.getQueriesAtOnce()),
+                DEFAULT_MAX_ATTEMPTS));
+        batch.setOpenedAt(now);
+        batch.setQueriesSpent(0);
+
+        // R002: the tasks of the batch leave the plan as «in batch»; revise and revise-instructions do not see them.
+        for (RefinementTask task : BatchBook.list(plan.getTasks())) {
+            if (task != null && BatchBook.list(batch.getTaskIds()).contains(task.getId())) {
+                task.setStatus(RefinementTaskStatus.IN_BATCH);
+            }
+        }
+        refinementPlanStore.save(plan);
+        if (activeAnalysisSelectionStore != null) {
+            activeAnalysisSelectionStore.write(new ActiveAnalysisSelection(startAuditId, planId));
+        }
+        if (goalBook != null) {
+            goalBook.seal(); // F-METAS-R006 and R011: opening fixes the goals, once
+        }
+        batchStore.save(batch);
+        return batch;
     }
 
     @Override
     public Optional<CorrectionBatch> current() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return batchStore.open();
     }
 
     @Override
     public BatchEstimate estimate() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        CorrectionBatch batch = requireOpen();
+        AuditReport start = start(batch);
+        Map<String, RefinementTask> tasks = refinementPlanStore.load(batch.getPlanId()).map(BatchBook::tasksById)
+                .orElse(Map.of());
+        List<ErrorTaskBrief> briefs = new ArrayList<>();
+        for (String taskId : BatchBook.list(batch.getTaskIds())) {
+            RefinementTask task = tasks.get(taskId);
+            if (task != null && briefer != null) {
+                briefer.brief(start, task).ifPresent(briefs::add);
+            }
+        }
+        return costEstimator.estimate(batch, briefs);
     }
 
     @Override
     public BatchReport run(BatchRunRequest request) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        CorrectionBatch batch = requireOpen();
+        AuditReport start = start(batch);
+        CourseEntity course = courseRepository.load(coursePath);
+        batch.setStatus(BatchStatus.RUNNING);
+        batchStore.save(batch);
+
+        batch = ruleStage.apply(batch, start, course);
+        Integer cap = request != null ? request.getQueryCap() : null;
+        BatchStatus status = BatchStatus.OPEN;
+        if (cap == null) {
+            // R003: without a cap the rules run, since they query nothing, and the panels stay not attempted.
+            for (String taskId : BatchBook.list(batch.getTaskIds())) {
+                BatchTaskOutcomeKind kind = BatchBook.kind(batch, taskId);
+                if (kind == BatchTaskOutcomeKind.PENDING) {
+                    BatchBook.setOutcome(batch, taskId, BatchTaskOutcomeKind.NOT_ATTEMPTED, null, null,
+                            "sin tope de consultas pedido: la mesa no corrió");
+                }
+            }
+        } else {
+            batch.setQueryCap(cap);
+            BatchSettings settings = batch.getSettings();
+            QueryAllowance allowance = panelRunnerFactory.allowance(cap,
+                    settings != null && settings.getQueriesAtOnce() > 0 ? settings.getQueriesAtOnce() : DEFAULT_AT_ONCE);
+            batch = panelStage.run(batch, start, course, allowance);
+            Optional<String> tripped = allowance.tripped();
+            if (tripped.isPresent() && !tripped.get().startsWith(CAP_REACHED)) {
+                status = BatchStatus.INTERRUPTED; // a failure of the service: everything decided is kept
+            }
+        }
+        batch.setStatus(status);
+        batchStore.save(batch);
+        return reportBuilder.build(batch);
     }
 
     @Override
     public BatchClosing close() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        CorrectionBatch batch = requireOpen();
+        CourseEntity course = courseRepository.load(coursePath);
+        batch = closer.close(batch, course);
+        batchStore.save(batch);
+        List<BatchClosing> closings = BatchBook.list(batch.getClosings());
+        return closings.isEmpty() ? null : closings.get(closings.size() - 1);
     }
 
     @Override
     public CorrectionBatch adjust(BatchAdjustment adjustment) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        CorrectionBatch batch = requireOpen();
+        CourseEntity course = courseRepository.load(coursePath);
+        if (adjustment.getDecidedAt() == null) {
+            adjustment.setDecidedAt(Instant.now());
+        }
+        boolean recalculate = false;
+        switch (adjustment.getKind()) {
+            case DROP_CHANGE -> {
+                batch = changeLedger.drop(batch, adjustment.getChangeId(), adjustment.getReason(), course);
+                recalculate = true;
+            }
+            case DROP_RULE -> {
+                boolean any = false;
+                for (BatchChange change : BatchBook.copy(batch.getChanges())) {
+                    if (change != null && change.getDroppedReason() == null && change.getOrigin() == BatchChangeOrigin.RULE
+                            && Objects.equals(change.getRuleId(), adjustment.getRuleId())) {
+                        batch = changeLedger.drop(batch, change.getChangeId(), adjustment.getReason() != null
+                                ? adjustment.getReason() : "José sacó la regla " + adjustment.getRuleId(), course);
+                        any = true;
+                    }
+                }
+                if (!any) {
+                    throw new IllegalArgumentException("La tanda " + batch.getId() + " no tiene cambios de la regla "
+                            + adjustment.getRuleId() + ".");
+                }
+                recalculate = true;
+            }
+            case ACCEPT_CANDIDATE, ACCEPT_AS_EXCEPTION -> batch = accept(batch, adjustment, course,
+                    verdictOf(batch, adjustment.getQuizId(), adjustment.getCandidate()), "aceptado por José");
+            case RETURN_TO_PANEL -> {
+                if (adjustment.getCandidate() != null) {
+                    batch = assessJosesFix(batch, adjustment, course); // F-BANDEJA-R003: «escribir el arreglo»
+                } else {
+                    // F-BANDEJA-R002: the candidate does not pass -- back to the panel with one attempt less, or
+                    // without winner when none is left.
+                    int maxAttempts = batch.getSettings() != null && batch.getSettings().getMaxAttempts() > 0
+                            ? batch.getSettings().getMaxAttempts() : DEFAULT_MAX_ATTEMPTS;
+                    String why = adjustment.getReason() != null ? adjustment.getReason() : "José la devolvió a la mesa";
+                    for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
+                        int spent = BatchBook.outcome(batch, taskId).map(BatchTaskOutcome::getAttempts).orElse(0) + 1;
+                        BatchBook.setOutcome(batch, taskId, spent >= maxAttempts ? BatchTaskOutcomeKind.NO_WINNER
+                                : BatchTaskOutcomeKind.PENDING, null, spent, why);
+                    }
+                }
+            }
+            case KEEP_ORIGINAL -> {
+                for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
+                    BatchBook.setOutcome(batch, taskId, BatchTaskOutcomeKind.NO_WINNER, null, null,
+                            "José deja el original");
+                }
+            }
+            case TASK_FROM_TIE -> batch = taskFromTie(batch, adjustment, course);
+            case APPROVE_RULE_SAMPLE -> {
+                // recorded as José's decision: the changes of the rule may be published
+            }
+        }
+        List<BatchAdjustment> adjustments = BatchBook.copy(batch.getAdjustments());
+        adjustments.add(adjustment);
+        batch.setAdjustments(adjustments);
+        batchStore.save(batch);
+        if (recalculate && !BatchBook.list(batch.getClosings()).isEmpty()) {
+            batch = closer.close(batch, course); // R008: recalculated against the gate without what left
+            batchStore.save(batch);
+        }
+        return batch;
     }
 
     @Override
     public BatchReport report(String batchId) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        CorrectionBatch batch = batchId != null && !batchId.isBlank()
+                ? batchStore.load(batchId).orElseThrow(() -> new NoOpenBatchException("No hay una tanda " + batchId + "."))
+                : requireOpen();
+        return reportBuilder.build(batch);
     }
 
     @Override
     public BatchPublication publish(BatchPublishRequest request) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        CorrectionBatch batch = requireOpen();
+        CourseEntity course = courseRepository.load(coursePath);
+        batch = publisher.publish(batch, request, course);
+        batchStore.save(batch);
+        return batch.getPublication();
+    }
+
+    // -------------------------------------------------------------------------
+    // José's decisions from the tray (FEAT-BANDEJA)
+    // -------------------------------------------------------------------------
+
+    /** [ASSUMPTION] A fix José writes is judged by the judges of a new English: four queries at most. */
+    static final int QUERIES_FOR_A_FIX = 4;
+
+    /** The panel that measures and judges a fix José writes, as any candidate; the factory hands it over. */
+    private PanelRunner panelRunner;
+
+    DefaultBatchService withPanel(PanelRunner panelRunner) {
+        this.panelRunner = panelRunner;
+        return this;
+    }
+
+    /** A candidate into the batch, as José's change, with the verdict of its gate -- and its requests to record. */
+    private CorrectionBatch accept(CorrectionBatch batch, BatchAdjustment adjustment, CourseEntity course,
+            ChangeGateVerdict verdict, String detail) {
+        List<BatchChangeStep> steps = BatchBook.stepsFor(changeLedger.composedCourse(batch, course),
+                adjustment.getCandidate(), adjustment.getQuizId() != null ? List.of(adjustment.getQuizId()) : List.of(),
+                knowledgeOfQuiz(course, adjustment.getQuizId()));
+        if (steps.isEmpty()) {
+            return batch;
+        }
+        String changeId = BatchBook.freeChangeId(batch, "jose-" + adjustment.getQuizId());
+        batch = changeLedger.record(batch, new BatchChange(changeId, BatchChangeOrigin.JOSE, null,
+                knowledgeOfQuiz(course, adjustment.getQuizId()), BatchBook.copy(adjustment.getTaskIds()), steps, verdict,
+                adjustment.getKind() == BatchAdjustmentKind.ACCEPT_AS_EXCEPTION, Instant.now(), null), course);
+        for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
+            int attempts = BatchBook.outcome(batch, taskId).map(BatchTaskOutcome::getAttempts).orElse(0);
+            BatchBook.setOutcome(batch, taskId, BatchTaskOutcomeKind.RESOLVED_BY_PANEL, changeId, attempts, detail);
+        }
+        return batch;
+    }
+
+    /** The verdict of the gate the panel gave a candidate of the exercise: the accepted one, or the one José saw. */
+    private static ChangeGateVerdict verdictOf(CorrectionBatch batch, String quizId, PanelCandidate candidate) {
+        ChangeGateVerdict verdict = null;
+        for (PanelDecision decision : BatchBook.list(batch.getPanelDecisions())) {
+            if (decision == null || !BatchBook.list(decision.getQuizIds()).contains(quizId)) {
+                continue;
+            }
+            if (candidate != null && candidate.equals(decision.getAccepted())) {
+                verdict = decision.getAcceptedVerdict();
+            } else if (candidate != null && candidate.equals(decision.getBestFailing())) {
+                verdict = decision.getBestFailingVerdict();
+            }
+        }
+        return verdict;
+    }
+
+    /**
+     * F-BANDEJA-R003, «escribir el arreglo»: José's version is measured and judged as any candidate of the panel, with
+     * the tasks of the exercise. If it passes it enters the batch as his change; if not, it goes back to him with the
+     * reasons, as the best failing candidate of the exercise.
+     */
+    private CorrectionBatch assessJosesFix(CorrectionBatch batch, BatchAdjustment adjustment, CourseEntity course) {
+        if (panelRunner == null) {
+            throw new IllegalStateException("La tanda no tiene la mesa para medir y juzgar el arreglo de José.");
+        }
+        String quizId = adjustment.getQuizId();
+        Optional<BatchBook.Place> place = BatchBook.place(changeLedger.composedCourse(batch, course), quizId);
+        if (place.isEmpty() || place.get().quiz() == null) {
+            throw new IllegalArgumentException("El ejercicio " + quizId + " no está en el curso de la tanda.");
+        }
+        AuditReport start = start(batch);
+        Map<String, RefinementTask> tasks = refinementPlanStore.load(batch.getPlanId()).map(BatchBook::tasksById)
+                .orElse(Map.of());
+        List<ErrorTaskBrief> briefs = new ArrayList<>();
+        for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
+            RefinementTask task = tasks.get(taskId);
+            if (task != null && briefer != null) {
+                briefer.brief(start, task).ifPresent(briefs::add);
+            }
+        }
+        KnowledgeEntity knowledge = place.get().knowledge();
+        TopicWork work = new TopicWork(batch.getId(), batch.getLevel(), place.get().milestone().getId(),
+                place.get().topic().getId(), knowledge, knowledge.getSentenceMode(), briefs, null, null, new HashMap<>(),
+                new ArrayList<>());
+        BatchSettings settings = batch.getSettings();
+        QueryAllowance allowance = panelRunnerFactory.allowance(QUERIES_FOR_A_FIX,
+                settings != null && settings.getQueriesAtOnce() > 0 ? settings.getQueriesAtOnce() : DEFAULT_AT_ONCE);
+        PanelDecision decision = panelRunner.assessGiven(work, quizId, adjustment.getCandidate(),
+                new PanelRunSettings(settings != null ? settings.getTopicsAtOnce() : DEFAULT_AT_ONCE,
+                        settings != null ? settings.getQueriesAtOnce() : DEFAULT_AT_ONCE,
+                        settings != null ? settings.getMaxAttempts() : DEFAULT_MAX_ATTEMPTS,
+                        BatchBook.copy(batch.getAnalyzers())), allowance);
+        batch.setQueriesSpent(batch.getQueriesSpent() + (allowance != null ? allowance.spent() : 0));
+        List<PanelDecision> decisions = BatchBook.copy(batch.getPanelDecisions());
+        decisions.add(decision);
+        batch.setPanelDecisions(decisions);
+        if (decision.getOutcome() == PanelOutcomeKind.ACCEPTED) {
+            return accept(batch, adjustment, course, decision.getAcceptedVerdict(), "el arreglo de José pasó la mesa");
+        }
+        List<String> reasons = new ArrayList<>();
+        for (CandidateRejection rejection : BatchBook.list(decision.getRejections())) {
+            reasons.addAll(BatchBook.list(rejection.getReasons()));
+        }
+        BatchTaskOutcomeKind kind = decision.getOutcome() == PanelOutcomeKind.TIE ? BatchTaskOutcomeKind.TIE
+                : BatchTaskOutcomeKind.NO_WINNER;
+        for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
+            int attempts = BatchBook.outcome(batch, taskId).map(BatchTaskOutcome::getAttempts).orElse(0);
+            BatchBook.setOutcome(batch, taskId, kind, null, attempts, "el arreglo de José no pasó"
+                    + (reasons.isEmpty() ? "" : ": " + String.join("; ", reasons)));
+        }
+        return batch;
+    }
+
+    /**
+     * F-BANDEJA-R002: José says a tie on an exercise of the course is an error. Its task enters the batch -- one task of
+     * the exercise, with the tie as its finding -- and waits for the panel of its topic.
+     */
+    private CorrectionBatch taskFromTie(CorrectionBatch batch, BatchAdjustment adjustment, CourseEntity course) {
+        Finding tie = adjustment.getFinding();
+        String quizId = adjustment.getQuizId() != null ? adjustment.getQuizId()
+                : tie != null && tie.getNode() != null ? tie.getNode().getNodeId() : null;
+        Optional<BatchBook.Place> place = BatchBook.place(course, quizId);
+        if (tie == null || place.isEmpty()) {
+            throw new IllegalArgumentException("El desempate necesita su hallazgo y un ejercicio del curso.");
+        }
+        RefinementPlan plan = refinementPlanStore.load(batch.getPlanId()).orElseThrow(() -> new IllegalStateException(
+                "No se encuentra el plan " + batch.getPlanId() + " de la tanda."));
+        String taskId = "desempate-" + quizId;
+        for (int n = 2; BatchBook.tasksById(plan).containsKey(taskId); n++) {
+            taskId = "desempate-" + quizId + "-" + n;
+        }
+        DiagnosisKind kind;
+        try {
+            kind = DiagnosisKind.valueOf(tie.getAnalyzer().toUpperCase(java.util.Locale.ROOT).replace('-', '_'));
+        } catch (IllegalArgumentException | NullPointerException e) {
+            kind = null;
+        }
+        KnowledgeEntity knowledge = place.get().knowledge();
+        RefinementTask task = new RefinementTask(taskId, AuditTarget.QUIZ, quizId, quizId, kind, 1,
+                RefinementTaskStatus.IN_BATCH, new TaskOrigin(tie, batch.getLevel(), knowledge.getId(), knowledge.getLabel(),
+                        new ArrayList<>(List.of(quizId)), new ArrayList<>()));
+        List<RefinementTask> planTasks = BatchBook.copy(plan.getTasks());
+        planTasks.add(task);
+        plan.setTasks(planTasks);
+        refinementPlanStore.save(plan);
+        List<String> taskIds = BatchBook.copy(batch.getTaskIds());
+        taskIds.add(taskId);
+        batch.setTaskIds(taskIds);
+        adjustment.setTaskIds(new ArrayList<>(List.of(taskId)));
+        BatchBook.setOutcome(batch, taskId, BatchTaskOutcomeKind.PENDING, null, 0,
+                "José dijo que el desempate es un error: a la mesa de su tema");
+        return batch;
+    }
+
+    // -------------------------------------------------------------------------
+
+    private CorrectionBatch requireOpen() {
+        return batchStore.open().orElseThrow(() -> new NoOpenBatchException(
+                "No hay una tanda abierta: abrila con 'content-audit batch open <nivel>'."));
+    }
+
+    private AuditReport start(CorrectionBatch batch) {
+        return auditReportStore.load(batch.getStartAuditId()).orElseThrow(() -> new IllegalStateException(
+                "No se encuentra el análisis " + batch.getStartAuditId() + " del que partió la tanda."));
+    }
+
+    /** The plan of an analysis: the active pair's, or the latest plan made from it. */
+    private String planOf(String auditId) {
+        Optional<ActiveAnalysisSelection> active = activeAnalysisSelectionStore != null
+                ? activeAnalysisSelectionStore.read() : Optional.empty();
+        if (active.isPresent() && auditId.equals(active.get().getAuditId()) && active.get().getPlanId() != null) {
+            return active.get().getPlanId();
+        }
+        Optional<RefinementPlan> latest = refinementPlanStore.loadLatest();
+        if (latest.isPresent() && auditId.equals(latest.get().getSourceAuditId())) {
+            return latest.get().getId();
+        }
+        throw new IllegalStateException("No hay un plan del análisis " + auditId + ": armalo con 'content-audit plan'.");
+    }
+
+    /** The analyzers of the analysis the batch starts from: the recalculation runs the same ones. */
+    private static List<String> analyzersOf(AuditReport start) {
+        List<String> analyzers = new ArrayList<>();
+        if (start != null && start.getRoot() != null) {
+            for (AnalyzerMeasure measure : BatchBook.list(start.getRoot().getMeasures())) {
+                if (measure != null && measure.getAnalyzer() != null && !analyzers.contains(measure.getAnalyzer())) {
+                    analyzers.add(measure.getAnalyzer());
+                }
+            }
+        }
+        return analyzers;
+    }
+
+    /** R012: per audio, the latest re-recording the published batches left pending. */
+    private List<AudioRerecordRequest> pendingRerecords() {
+        List<CorrectionBatch> published = new ArrayList<>();
+        for (CorrectionBatch batch : BatchBook.list(batchStore.list())) {
+            if (batch != null && batch.getStatus() == BatchStatus.PUBLISHED && batch.getPublication() != null) {
+                published.add(batch);
+            }
+        }
+        published.sort(Comparator.comparing(b -> b.getPublication().getPublishedAt(),
+                Comparator.nullsFirst(Comparator.naturalOrder())));
+        Map<String, AudioRerecordRequest> latest = new LinkedHashMap<>();
+        for (CorrectionBatch batch : published) {
+            for (AudioRerecordRequest request : BatchBook.list(batch.getPublication().getRerecords())) {
+                String key = request.getAudioKey() != null && !request.getAudioKey().isBlank() ? request.getAudioKey()
+                        : request.getQuizId();
+                latest.remove(key);
+                latest.put(key, request);
+            }
+        }
+        return new ArrayList<>(latest.values());
+    }
+
+    private static int atOnce(Integer asked) {
+        return asked != null && asked > 0 ? asked : DEFAULT_AT_ONCE;
+    }
+
+    private static String knowledgeOfQuiz(CourseEntity course, String quizId) {
+        return BatchBook.place(course, quizId).map(p -> p.knowledge().getId()).orElse(null);
     }
 }

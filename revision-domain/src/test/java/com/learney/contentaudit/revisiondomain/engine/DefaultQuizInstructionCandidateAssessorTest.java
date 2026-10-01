@@ -43,7 +43,6 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -581,8 +580,23 @@ public class DefaultQuizInstructionCandidateAssessorTest {
     @DisplayName("should keep judging a faithful translation against the original outside a batch, while the panel judges the exercise as it stays")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R014")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldKeepJudgingAFaithfulTranslationAgainstTheOriginalOutsideABatchWhileThePanelJudgesTheExerciseAsItStays() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R014 and DOUBT-TRSEN-CATALOGO (A): outside a batch, assess-candidate keeps the comparative measure: the catalog
+        // gets the original next to the candidate, so the faithful translation is judged against it, as before the panel.
+        Collaborators collaborators = new Collaborators();
+        QuizInstructionCorrectionContext context = buildContext(List.of(violation("run")));
+        CourseElementSnapshot original = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, quiz(QUIZ_ID, multipleChoiceForm()),
+                null);
+        CourseElementSnapshot derived = new CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, null, null);
+        when(collaborators.deriver.derive(Mockito.eq(original), Mockito.any(LemmaAbsenceQuizCandidate.class),
+                Mockito.eq(context.getSentenceMode()))).thenReturn(derived);
+        when(collaborators.assessor.assess(Mockito.any(CandidateAssessmentInput.class))).thenReturn(placeholderAssessment());
+
+        collaborators.sut().assess(context, original, CANDIDATE_SENTENCE, CANDIDATE_TRANSLATION);
+
+        ArgumentCaptor<CandidateAssessmentInput> captor = ArgumentCaptor.forClass(CandidateAssessmentInput.class);
+        verify(collaborators.assessor).assess(captor.capture());
+        assertEquals(original, captor.getValue().getOriginal(), "the original travels with the candidate: the comparative measure");
+        assertEquals(derived, captor.getValue().getCandidate());
     }
 }

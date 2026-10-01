@@ -54,13 +54,74 @@ class DefaultCorrectionScope implements CorrectionScope {
         return Set.of();
     }
 
+    /** The permission to change what is heard: no field carries it (F-NOEMP-R004, FEAT-TAREA). */
+    static final String AUDIO_PERMISSION = "(audio)";
+
+    private static final ScopedField COMPOSITION = new ScopedField("form.sentenceParts[]", null);
+    private static final ScopedField TEXT_OF_TEXT_PARTS = new ScopedField("form.sentenceParts[].text", "TEXT");
+    private static final ScopedField ANSWERS_OF_GAPS = new ScopedField("form.sentenceParts[].options", "CLOZE");
+    private static final ScopedField MULTIPLE_CHOICE = new ScopedField("form.multipleChoice", null);
+
     /**
-     * The overload a correction declaration names by its exercise parts (FEAT-TAREA, package E):
-     * generate added it to the port but not to this implementation, whose file already had a
-     * method of the same name. Left unimplemented, like a stub, for package E to write.
+     * F-TAREA-R006: the fields a fix may change, from the parts of the exercise its tasks declare -- the one table of
+     * parts to fields, so the batch, the panel and approve read the same thing. What a part does not name stays
+     * preserved (F-RPRES-R001). The hint lives inside the text of a TEXT part, between parentheses, so at the level of
+     * the fields it shares that text with the statement; {@code AUDIO} is not a field but a permission, which
+     * {@code verifyWithin} reads from {@link #AUDIO_PERMISSION}. On a topic only its instructions can change
+     * ({@code TOPIC_INSTRUCTIONS}, the order of José, F-MESA-R015).
      */
     @Override
     public Set<ScopedField> changeableFields(Set<ExercisePart> parts, AuditTarget target) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (parts == null || parts.isEmpty() || target == null) {
+            return Set.of();
+        }
+        Set<ScopedField> fields = new java.util.LinkedHashSet<>();
+        if (target == AuditTarget.KNOWLEDGE) {
+            if (parts.contains(ExercisePart.TOPIC_INSTRUCTIONS)) {
+                fields.add(new ScopedField("instructions", null));
+            }
+            return java.util.Collections.unmodifiableSet(fields);
+        }
+        if (target != AuditTarget.QUIZ) {
+            return Set.of();
+        }
+        for (ExercisePart part : parts) {
+            switch (part) {
+                case STATEMENT -> {
+                    fields.add(COMPOSITION);
+                    fields.add(TEXT_OF_TEXT_PARTS);
+                }
+                case HINT -> fields.add(TEXT_OF_TEXT_PARTS);
+                case ANSWERS -> fields.add(ANSWERS_OF_GAPS);
+                case OPTIONS -> fields.add(MULTIPLE_CHOICE);
+                case FORM_KIND -> {
+                    fields.add(new ScopedField("kind", null));
+                    fields.add(new ScopedField("form.kind", null));
+                    fields.add(MULTIPLE_CHOICE);
+                    fields.add(ANSWERS_OF_GAPS);
+                }
+                case TRANSLATION -> fields.add(new ScopedField("translation", null));
+                case MINI_THEORY -> fields.add(new ScopedField("miniTheory", null));
+                case INSTRUCTIONS -> fields.add(new ScopedField("instructions", null));
+                case STORED_SENTENCE -> fields.add(new ScopedField("sentences", null));
+                case AUDIO -> fields.add(new ScopedField(AUDIO_PERMISSION, null));
+                case WHOLE_EXERCISE -> {
+                    fields.add(COMPOSITION);
+                    fields.add(TEXT_OF_TEXT_PARTS);
+                    fields.add(ANSWERS_OF_GAPS);
+                    fields.add(MULTIPLE_CHOICE);
+                    fields.add(new ScopedField("translation", null));
+                    fields.add(new ScopedField("instructions", null));
+                    fields.add(new ScopedField("sentences", null));
+                    fields.add(new ScopedField(AUDIO_PERMISSION, null));
+                }
+                case TOPIC_INSTRUCTIONS -> {
+                    // a part of the topic: nothing of the exercise
+                }
+                default -> {
+                }
+            }
+        }
+        return java.util.Collections.unmodifiableSet(fields);
     }
 }

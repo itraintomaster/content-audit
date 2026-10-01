@@ -1,7 +1,54 @@
 package com.learney.contentaudit.revisiondomain.trayengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.cloze;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.text;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.withParts;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchNotPublishableException;
+import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
+import com.learney.contentaudit.revisiondomain.batch.BatchReport;
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.OutcomeCount;
+import com.learney.contentaudit.revisiondomain.batchengine.TandaFixture;
+import com.learney.contentaudit.revisiondomain.blindsample.PairAnswer;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.panel.CandidateRejection;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
+import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import com.learney.contentaudit.revisiondomain.tray.RememberedDecision;
+import com.learney.contentaudit.revisiondomain.tray.Tray;
+import com.learney.contentaudit.revisiondomain.tray.TrayAnswer;
+import com.learney.contentaudit.revisiondomain.tray.TrayItem;
+import com.learney.contentaudit.revisiondomain.tray.TrayItemKind;
+import com.learney.contentaudit.revisiondomain.tray.TrayResponse;
+import com.learney.contentaudit.revisiondomain.tray.UnexpectedTrayAnswerException;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,182 +62,489 @@ public class DefaultTrayServiceTest {
     @DisplayName("should reject an answer the item does not accept, as keeping the original for a tie, naming the answers it accepts")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldRejectAnAnswerTheItemDoesNotAcceptAsKeepingTheOriginalForATieNamingTheAnswersItAccepts(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: an answer outside the ones an item takes is refused, naming the ones it takes; the batch does not move.
+        BandejaFixture.Bandeja bandeja = opened();
+
+        UnexpectedTrayAnswerException refused = assertThrows(UnexpectedTrayAnswerException.class,
+                () -> answer(bandeja, FRUIT_TIE, TrayAnswer.KEEP_ORIGINAL));
+
+        assertEquals("La respuesta KEEP_ORIGINAL no vale para " + FRUIT_TIE + ": IS_ERROR, NOT_ERROR", refused.getMessage());
+        assertTrue(bandeja.saved().getAdjustments().isEmpty(), "nothing decided");
+        assertTrue(bandeja.decisions.remembered.isEmpty());
     }
 
     @Test
     @DisplayName("should open a task of the exercise in the panel of the batch when José answers that a tie on the course is an error")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldOpenATaskOfTheExerciseInThePanelOfTheBatchWhenJosAnswersThatATieOnTheCourseIsAnError(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: José says the tie on «You ___ (eat) a lot of fruit.» is an error: its task enters the batch, pending for the
+        // panel of its topic, with the tie as its finding.
+        BandejaFixture.Bandeja bandeja = opened();
+
+        Tray tray = answer(bandeja, FRUIT_TIE, TrayAnswer.IS_ERROR);
+
+        CorrectionBatch batch = bandeja.saved();
+        String taskId = "desempate-" + BandejaFixture.FRUIT;
+        assertTrue(batch.getTaskIds().contains(taskId), batch.getTaskIds().toString());
+        BatchTaskOutcome outcome = outcome(batch, taskId);
+        assertEquals(BatchTaskOutcomeKind.PENDING, outcome.getKind(), "it waits for the panel");
+        assertEquals("José dijo que el desempate es un error: a la mesa de su tema", outcome.getDetail());
+        RefinementTask task = bandeja.plans.load(TandaFixture.PLAN).orElseThrow().getTasks().stream()
+                .filter(t -> t.getId().equals(taskId)).findFirst().orElseThrow();
+        assertEquals(BandejaFixture.courseTie().getIdentity(), task.getOrigin().getFinding().getIdentity());
+        assertEquals(RefinementTaskStatus.IN_BATCH, task.getStatus());
+        assertEquals(MesaFixture.AFIRMATIVAS, task.getOrigin().getKnowledgeId());
+        assertTrue(tray.getItems().stream().noneMatch(i -> i.getItemId().equals(FRUIT_TIE)), "answered: it does not come back");
     }
 
     @Test
     @DisplayName("should open no task and leave the exercise as it is when José answers that a tie on the course is not an error")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldOpenNoTaskAndLeaveTheExerciseAsItIsWhenJosAnswersThatATieOnTheCourseIsNotAnError(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: José says it is not an error: no task, the exercise as it is, and the question does not come back.
+        BandejaFixture.Bandeja bandeja = opened();
+        int tasks = bandeja.saved().getTaskIds().size();
+        int changes = bandeja.saved().getChanges().size();
+
+        Tray tray = answer(bandeja, FRUIT_TIE, TrayAnswer.NOT_ERROR);
+
+        CorrectionBatch batch = bandeja.saved();
+        assertEquals(tasks, batch.getTaskIds().size(), "no task");
+        assertEquals(changes, batch.getChanges().size(), "no change");
+        assertTrue(batch.getQuizProposals().stream().noneMatch(r -> r.getQuizId().equals(BandejaFixture.FRUIT)),
+                "the exercise as it is");
+        assertTrue(tray.getItems().stream().noneMatch(i -> i.getItemId().equals(FRUIT_TIE)));
     }
 
     @Test
     @DisplayName("should accept the candidate in the batch when José answers that a tie on a candidate passes")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldAcceptTheCandidateInTheBatchWhenJosAnswersThatATieOnACandidatePasses() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: the judges did not agree on «Winter ___ (come) every year.»; José says it passes: the candidate enters the batch
+        // as his change, with its request to record what it now says.
+        BandejaFixture.Bandeja bandeja = opened();
+
+        answer(bandeja, COME_TIE, TrayAnswer.PASSES);
+
+        CorrectionBatch batch = bandeja.saved();
+        BatchChange change = change(batch, "jose-" + BandejaFixture.COME);
+        assertEquals(BatchChangeOrigin.JOSE, change.getOrigin());
+        assertEquals(List.of("t-come"), change.getTaskIds());
+        assertEquals(List.of(new AudioRerecordRequest(BandejaFixture.COME, MesaFixture.audioKey(BandejaFixture.COME),
+                List.of("Winter comes every year."))), change.getGateVerdict().getRerecords(), "the audio follows the exercise");
+        assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_PANEL, outcome(batch, "t-come").getKind());
+        assertTrue(batch.getQuizProposals().stream().anyMatch(r -> r.getQuizId().equals(BandejaFixture.COME)),
+                "the pending proposal of its exercise");
     }
 
     @Test
     @DisplayName("should send the exercise back to the panel with one attempt less when José answers that the candidate does not pass, or end it without winner when no attempt is left")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldSendTheExerciseBackToThePanelWithOneAttemptLessWhenJosAnswersThatTheCandidateDoesNotPassOrEndItWithoutWinnerWhenNoAttemptIsLeft(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: José says the candidate does not pass: the exercise goes back to the panel with one attempt less. With its last
+        // attempt spent, it ends without winner.
+        BandejaFixture.Bandeja bandeja = opened();
+
+        answer(bandeja, COME_TIE, TrayAnswer.DOES_NOT_PASS);
+
+        BatchTaskOutcome back = outcome(bandeja.saved(), "t-come");
+        assertEquals(BatchTaskOutcomeKind.PENDING, back.getKind(), "back to the panel");
+        assertEquals(2, back.getAttempts(), "one attempt less: it had used one");
+        assertEquals("José: el candidato no pasa", back.getDetail());
+
+        BandejaFixture.Bandeja last = opened();
+        CorrectionBatch batch = last.saved();
+        TandaFixture.outcome(batch, "t-come", BatchTaskOutcomeKind.TIE, null, 2, null);
+        last.batches.save(batch);
+        answer(last, COME_TIE, TrayAnswer.DOES_NOT_PASS);
+        assertEquals(BatchTaskOutcomeKind.NO_WINNER, outcome(last.saved(), "t-come").getKind(), "no attempt left");
+        assertEquals(3, outcome(last.saved(), "t-come").getAttempts());
     }
 
     @Test
     @DisplayName("should leave the exercise unchanged and its tasks open when José keeps the original")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldLeaveTheExerciseUnchangedAndItsTasksOpenWhenJosKeepsTheOriginal() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: José keeps the original of the tea: nothing changes and its task stays open.
+        BandejaFixture.Bandeja bandeja = opened();
+        int changes = bandeja.saved().getChanges().size();
+
+        answer(bandeja, TEA_ITEM, TrayAnswer.KEEP_ORIGINAL);
+
+        CorrectionBatch batch = bandeja.saved();
+        assertEquals(changes, batch.getChanges().size(), "the exercise does not change");
+        BatchTaskOutcome tea = outcome(batch, "t-tea");
+        assertEquals(BatchTaskOutcomeKind.NO_WINNER, tea.getKind(), "its task stays open");
+        assertEquals("José deja el original", tea.getDetail());
+        assertEquals(BatchAdjustmentKind.KEEP_ORIGINAL, batch.getAdjustments().get(0).getKind());
     }
 
     @Test
     @DisplayName("should take the candidate into the batch as approved by José when he approves it, declaring what it did not pass as his exception for the batch gate")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldTakeTheCandidateIntoTheBatchAsApprovedByJosWhenHeApprovesItDeclaringWhatItDidNotPassAsHisExceptionForTheBatchGate(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 and F-NOEMP-R005: José approves «I ___ (drink) tea every morning.» although it duplicates an exercise of A2: it
+        // enters the batch as approved by him, and the gate of the batch lists it apart instead of returning it.
+        BandejaFixture.Bandeja bandeja = opened();
+
+        answer(bandeja, TEA_ITEM, TrayAnswer.APPROVE_CANDIDATE);
+
+        CorrectionBatch batch = bandeja.saved();
+        BatchChange change = change(batch, "jose-" + BandejaFixture.TEA);
+        assertTrue(change.isJoseException(), "José's exception");
+        assertEquals(BatchAdjustmentKind.ACCEPT_AS_EXCEPTION, batch.getAdjustments().get(0).getKind());
+        String proposal = BandejaFixture.BATCH + "-" + BandejaFixture.TEA;
+        bandeja.comparator.answer = scope -> TandaFixture.passing(scope, List.of(new ChangeOutcome(proposal, AuditTarget.QUIZ,
+                BandejaFixture.TEA, true, List.of(BandejaFixture.teaDuplicate()), List.of(BandejaFixture.teaAnswer()), List.of())));
+        BatchClosing closing = bandeja.batchService.close();
+        assertTrue(closing.getGate().isPasses(), closing.getGate().getReasons().toString());
+        assertTrue(closing.getGate().getReturned().isEmpty(), "not returned");
+        assertTrue(closing.getGate().getListedExceptions().stream().anyMatch(e -> e.startsWith("excepción de José: " + proposal)),
+                closing.getGate().getListedExceptions().toString());
     }
 
     @Test
     @DisplayName("should measure and judge the fix José writes like any candidate of the panel, and send it back to him with the reasons when it does not pass")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldMeasureAndJudgeTheFixJosWritesLikeAnyCandidateOfThePanelAndSendItBackToHimWithTheReasonsWhenItDoesNotPass(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003, «escribir el arreglo»: José writes «I ___ (drink) green tea in the morning.». The panel measures and judges it as
+        // any candidate, with the task of the exercise; it does not pass, and it comes back to him with the reasons, as the
+        // candidate of the exercise. A fix that passes enters the batch.
+        BandejaFixture.Bandeja bandeja = opened();
+        PanelCandidate fix = new PanelCandidate(PanelCandidateKind.WHOLE_EXERCISE, withParts(TandaFixture.exercise(bandeja.course,
+                BandejaFixture.TEA), text("I"), cloze("drink"), text("(drink) green tea in the morning.")), null, null,
+                "arreglo de José");
+        bandeja.panels.assess = (work, candidate) -> new PanelDecision(MesaFixture.AFIRMATIVAS, List.of(BandejaFixture.TEA),
+                List.of("t-tea"), PanelOutcomeKind.NO_WINNER, null, null, List.of(), 1, List.of(new CandidateRejection(1,
+                PanelCandidateKind.WHOLE_EXERCISE, List.of("«have» sigue encajando"))), candidate, null, List.of(), 4);
+
+        Tray tray = bandeja.tray.answer(new TrayResponse(TEA_ITEM, TrayAnswer.WRITE_FIX, null, null, null, fix, null, "José"));
+
+        assertEquals(List.of(fix), bandeja.panels.assessed, "measured and judged by the panel");
+        assertEquals(List.of("t-tea"), bandeja.panels.assessedWorks.get(0).getBriefs().stream().map(b -> b.getTask().getId())
+                .toList(), "with the task of the exercise, as any candidate");
+        BatchTaskOutcome tea = outcome(bandeja.saved(), "t-tea");
+        assertEquals(BatchTaskOutcomeKind.NO_WINNER, tea.getKind());
+        assertEquals("el arreglo de José no pasó: «have» sigue encajando", tea.getDetail());
+        TrayItem back = tray.getItems().stream().filter(i -> i.getItemId().equals(TEA_ITEM)).findFirst().orElseThrow();
+        assertTrue(back.getAfter().getStatement().contains("green tea"), "his fix, back to him");
+        assertTrue(back.getReasons().contains("intento 1: «have» sigue encajando"), back.getReasons().toString());
+
+        bandeja.panels.assess = (work, candidate) -> new PanelDecision(MesaFixture.AFIRMATIVAS, List.of(BandejaFixture.TEA),
+                List.of("t-tea"), PanelOutcomeKind.ACCEPTED, candidate, null, List.of("t-tea"), 1, List.of(), null, null,
+                List.of(), 4);
+        bandeja.tray.answer(new TrayResponse(TEA_ITEM, TrayAnswer.WRITE_FIX, null, null, null, fix, null, "José"));
+        assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_PANEL, outcome(bandeja.saved(), "t-tea").getKind(), "a fix that passes");
+        assertEquals(BatchChangeOrigin.JOSE, change(bandeja.saved(), "jose-" + BandejaFixture.TEA).getOrigin());
     }
 
     @Test
     @DisplayName("should approve the changes of a rule when José answers that its sample is fine")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldApproveTheChangesOfARuleWhenJosAnswersThatItsSampleIsFine() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: José looks at the sample of the rule of the hint and says it is fine: its changes may be published.
+        BandejaFixture.Bandeja bandeja = opened();
+
+        Tray tray = answer(bandeja, RULE_ITEM, TrayAnswer.RULE_OK);
+
+        assertEquals(BatchAdjustmentKind.APPROVE_RULE_SAMPLE, bandeja.saved().getAdjustments().get(0).getKind());
+        assertEquals(BandejaFixture.HINT_RULE, bandeja.saved().getAdjustments().get(0).getRuleId());
+        assertTrue(tray.getItems().stream().noneMatch(i -> i.getKind() == TrayItemKind.RULE_SAMPLE), "approved");
+        assertTrue(bandeja.saved().getChanges().stream().filter(c -> c.getOrigin() == BatchChangeOrigin.RULE)
+                .allMatch(c -> c.getDroppedReason() == null), "its changes stay");
     }
 
     @Test
     @DisplayName("should drop through the batch one change of the sample, or the whole rule, when José asks it")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldDropThroughTheBatchOneChangeOfTheSampleOrTheWholeRuleWhenJosAsksIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 and F-TANDA-R008: from the sample José drops the hint of «She ___ (work) in a bank.»; then the whole rule. Both go
+        // through the batch, which compares itself again.
+        BandejaFixture.Bandeja bandeja = opened();
+        int comparisons = bandeja.comparator.scopes.size();
+
+        bandeja.tray.answer(new TrayResponse(RULE_ITEM, TrayAnswer.DROP_CHANGE, null, null,
+                "regla-hint-coherence-" + BandejaFixture.WORK, null, "la pista ya tenía el sujeto", "José"));
+
+        assertEquals("la pista ya tenía el sujeto", change(bandeja.saved(), "regla-hint-coherence-" + BandejaFixture.WORK)
+                .getDroppedReason());
+        assertNull(change(bandeja.saved(), "regla-hint-coherence-" + BandejaFixture.VEGETABLES).getDroppedReason());
+        assertEquals(comparisons + 1, bandeja.comparator.scopes.size(), "compared again");
+
+        answer(bandeja, RULE_ITEM, TrayAnswer.DROP_RULE);
+
+        assertEquals("José sacó la regla hint-coherence", change(bandeja.saved(), "regla-hint-coherence-"
+                + BandejaFixture.VEGETABLES).getDroppedReason(), "the whole rule");
+        assertEquals("sale con regla-hint-coherence-" + BandejaFixture.VEGETABLES + ": tocó lo mismo en el mismo ejercicio",
+                change(bandeja.saved(), "mesa-" + BandejaFixture.VEGETABLES).getDroppedReason(),
+                "the rewrite of the panel was made over its hint: it leaves with it, named");
     }
 
     @Test
     @DisplayName("should pass each answer of the blind sample to the service of F, pair by pair, without touching the batch")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPassEachAnswerOfTheBlindSampleToTheServiceOfFPairByPairWithoutTouchingTheBatch(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: each answer of the blind sample goes to F, with its pair, and the batch does not move.
+        BandejaFixture.Bandeja bandeja = new BandejaFixture.Bandeja();
+        String before = String.valueOf(bandeja.saved().getAdjustments()) + bandeja.saved().getOutcomes()
+                + bandeja.saved().getChanges().size();
+
+        bandeja.tray.answer(new TrayResponse(BandejaFixture.BLIND_ITEM, TrayAnswer.BLIND_PAIR, 1, PairAnswer.A_BETTER, null,
+                null, null, "José"));
+        bandeja.tray.answer(new TrayResponse(BandejaFixture.BLIND_ITEM, TrayAnswer.BLIND_PAIR, 2, PairAnswer.EQUAL, null, null,
+                null, "José"));
+
+        assertEquals(List.of(BandejaFixture.SAMPLE + " 1 A_BETTER José", BandejaFixture.SAMPLE + " 2 EQUAL José"),
+                bandeja.ciega.answers, "pair by pair, to F");
+        assertFalse(bandeja.ciega.closed, "two of three");
+        assertEquals(before, String.valueOf(bandeja.saved().getAdjustments()) + bandeja.saved().getOutcomes()
+                + bandeja.saved().getChanges().size(), "the batch does not move");
     }
 
     @Test
     @DisplayName("should close the blind sample with F after its last pair, and only then show the rest of the tray")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldCloseTheBlindSampleWithFAfterItsLastPairAndOnlyThenShowTheRestOfTheTray() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and R001: the last pair closes the blind sample with F, and only then the tray shows the rest of the batch.
+        BandejaFixture.Bandeja bandeja = new BandejaFixture.Bandeja();
+        bandeja.tray.answer(new TrayResponse(BandejaFixture.BLIND_ITEM, TrayAnswer.BLIND_PAIR, 1, PairAnswer.B_BETTER, null,
+                null, null, "José"));
+        Tray stillBlind = bandeja.tray.answer(new TrayResponse(BandejaFixture.BLIND_ITEM, TrayAnswer.BLIND_PAIR, 2,
+                PairAnswer.B_BETTER, null, null, null, "José"));
+        assertEquals(1, stillBlind.getItems().size(), "only the blind sample while it is open");
+
+        Tray rest = bandeja.tray.answer(new TrayResponse(BandejaFixture.BLIND_ITEM, TrayAnswer.BLIND_PAIR, 3,
+                PairAnswer.B_BETTER, null, null, null, "José"));
+
+        assertTrue(bandeja.ciega.closed, "closed after its last pair");
+        assertFalse(rest.isBlindSampleOpen());
+        assertTrue(rest.getItems().stream().noneMatch(i -> i.getKind() == TrayItemKind.BLIND_SAMPLE));
+        assertEquals(6, rest.getItems().size(), "now the rest: " + rest.getItems().stream().map(TrayItem::getItemId).toList());
     }
 
     @Test
     @DisplayName("should remember José's answer to a tie or to an exercise without winner as soon as he gives it")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldRememberJossAnswerToATieOrToAnExerciseWithoutWinnerAsSoonAsHeGivesIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: what José answers on a tie or an exercise without winner is kept the moment he answers it.
+        BandejaFixture.Bandeja bandeja = opened();
+
+        answer(bandeja, FRUIT_TIE, TrayAnswer.NOT_ERROR);
+
+        assertEquals(1, bandeja.decisions.remembered.size());
+        RememberedDecision tie = bandeja.decisions.remembered.get(0);
+        assertEquals(BandejaFixture.courseTie().getIdentity().getKey(), tie.getIdentityKey());
+        assertEquals(TrayAnswer.NOT_ERROR, tie.getAnswer());
+        assertEquals(BandejaFixture.BATCH, tie.getBatchId());
+
+        answer(bandeja, TEA_ITEM, TrayAnswer.KEEP_ORIGINAL);
+
+        assertEquals(2, bandeja.decisions.remembered.size(), "the exercise without winner too");
+        assertEquals(TrayAnswer.KEEP_ORIGINAL, bandeja.decisions.remembered.get(1).getAnswer());
+        assertTrue(bandeja.decisions.remembered.get(1).getIdentityKey().startsWith("sin-ganador|" + BandejaFixture.TEA),
+                bandeja.decisions.remembered.get(1).getIdentityKey());
     }
 
     @Test
     @DisplayName("should publish the rest of the batch with a tie or an exercise without winner unanswered, leaving that exercise as it was, its tasks open and «sin decidir» in the report")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPublishTheRestOfTheBatchWithATieOrAnExerciseWithoutWinnerUnansweredLeavingThatExerciseAsItWasItsTasksOpenAndSinDecidirInTheReport(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: José approves the rule and publishes with the tie of «Winter…» and the tea unanswered: the rest of the batch
+        // goes in, those two exercises stay as they were, their tasks open, and the report counts them as undecided.
+        BandejaFixture.Bandeja bandeja = opened();
+        answer(bandeja, RULE_ITEM, TrayAnswer.RULE_OK);
+        bandeja.remaining = List.of(BandejaFixture.comeAnswer(), BandejaFixture.teaAnswer());
+
+        BatchPublication publication = bandeja.tray.publish("José", null);
+
+        assertEquals(1, bandeja.courses.written.size(), "the rest of the batch, published");
+        assertEquals(json(TandaFixture.exercise(bandeja.course, BandejaFixture.TEA)),
+                json(TandaFixture.exercise(bandeja.courses.written.get(0), BandejaFixture.TEA)), "the tea as it was");
+        assertEquals(json(TandaFixture.exercise(bandeja.course, BandejaFixture.COME)),
+                json(TandaFixture.exercise(bandeja.courses.written.get(0), BandejaFixture.COME)), "«He ___ (come)…» too");
+        assertTrue(publication.getReopenedTaskIds().containsAll(List.of("t-come", "t-tea")), "their tasks open");
+        assertEquals(RefinementTaskStatus.PENDING, status(bandeja, "t-tea"));
+        BatchReport report = bandeja.batchService.report(BandejaFixture.BATCH);
+        assertEquals(1, count(report, BatchTaskOutcomeKind.TIE), "undecided: the tie");
+        assertEquals(1, count(report, BatchTaskOutcomeKind.NO_WINNER), "undecided: the tea");
     }
 
     @Test
     @DisplayName("should publish without the changes of a rule whose sample is unanswered, and with the rest of the batch")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPublishWithoutTheChangesOfARuleWhoseSampleIsUnansweredAndWithTheRestOfTheBatch(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: José answers the tie of «Winter…» and leaves the sample of the hint unanswered: «Winter…» is published, the
+        // changes of the hint stay out -- and the rewrite of the vegetables, made over its hint, with them.
+        BandejaFixture.Bandeja bandeja = opened();
+        answer(bandeja, COME_TIE, TrayAnswer.PASSES);
+
+        BatchPublication publication = bandeja.tray.publish("José", null);
+
+        assertEquals(List.of(BandejaFixture.BATCH + "-" + BandejaFixture.COME), publication.getAppliedProposalIds());
+        QuizTemplateEntity come = TandaFixture.exercise(bandeja.courses.written.get(0), BandejaFixture.COME);
+        assertEquals("Winter", come.getForm().getSentenceParts().get(0).getText(), "the rest of the batch");
+        assertEquals(json(TandaFixture.exercise(bandeja.course, BandejaFixture.WORK)),
+                json(TandaFixture.exercise(bandeja.courses.written.get(0), BandejaFixture.WORK)), "without the hint");
+        assertTrue(change(bandeja.saved(), "regla-hint-coherence-" + BandejaFixture.WORK).getDroppedReason()
+                .startsWith("José sacó la regla hint-coherence al publicar"));
     }
 
     @Test
     @DisplayName("should refuse to publish while the blind sample is not closed, with the verdict «falta la muestra ciega»")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldRefuseToPublishWhileTheBlindSampleIsNotClosedWithTheVerdictFaltaLaMuestraCiega(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: the blind sample is not answered: the OK is refused, with «falta la muestra ciega», and nothing is written.
+        BandejaFixture.Bandeja bandeja = new BandejaFixture.Bandeja();
+
+        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
+                () -> bandeja.tray.publish("José", null));
+
+        assertTrue(refused.getMessage().contains("«falta la muestra ciega»"), refused.getMessage());
+        assertTrue(bandeja.courses.written.isEmpty());
+        assertEquals(BatchStatus.CLOSED, bandeja.saved().getStatus());
     }
 
     @Test
     @DisplayName("should publish the batch with José's single OK and record who, when and which proposals entered")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPublishTheBatchWithJossSingleOKAndRecordWhoWhenAndWhichProposalsEntered() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: one OK. The publication says who gave it, when, and which proposals entered.
+        BandejaFixture.Bandeja bandeja = opened();
+        answer(bandeja, RULE_ITEM, TrayAnswer.RULE_OK);
+        Instant before = Instant.now();
+
+        BatchPublication publication = bandeja.tray.publish("José", "la primera tanda de A1");
+
+        assertEquals("José", publication.getApprovedBy());
+        assertEquals("la primera tanda de A1", publication.getNote());
+        assertFalse(publication.getPublishedAt().isBefore(before));
+        assertEquals(List.of(BandejaFixture.BATCH + "-" + BandejaFixture.WORK, BandejaFixture.BATCH + "-"
+                + BandejaFixture.VEGETABLES), publication.getAppliedProposalIds());
+        assertEquals(BatchStatus.PUBLISHED, bandeja.saved().getStatus());
+        assertEquals(1, bandeja.courses.written.size(), "written once");
     }
 
     @Test
     @DisplayName("should refuse the OK when, with José's decisions incorporated, the verdict of F is not «pasa» or the gate does not pass")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldRefuseTheOKWhenWithJossDecisionsIncorporatedTheVerdictOfFIsNotPasaOrTheGateDoesNotPass(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: compared again with José's decisions in, F says «no pasa»: refused, nothing written. And a change that moved
+        // a node outside the batch stops the gate: refused too, naming it.
+        BandejaFixture.Bandeja failing = opened();
+        answer(failing, RULE_ITEM, TrayAnswer.RULE_OK);
+        failing.comparator.answer = scope -> TandaFixture.comparison(scope, List.of(), VerdictKind.FAILS);
+
+        BatchNotPublishableException byF = assertThrows(BatchNotPublishableException.class,
+                () -> failing.tray.publish("José", null));
+        assertTrue(byF.getMessage().contains("el veredicto de F es «FAILS», no «pasa»"), byF.getMessage());
+        assertTrue(failing.courses.written.isEmpty());
+
+        BandejaFixture.Bandeja outside = opened();
+        answer(outside, RULE_ITEM, TrayAnswer.RULE_OK);
+        CorrectionBatch batch = outside.saved();
+        TandaFixture.recorded(batch, outside.course, outside.artifacts, TandaFixture.change("mesa-" + TandaFixture.CHILD,
+                BatchChangeOrigin.PANEL, null, List.of(), TandaFixture.step(TandaFixture.edited(TandaFixture.exercise(
+                        outside.course, TandaFixture.CHILD), q -> q.setTranslation("¿Es un niño?")), ExercisePart.TRANSLATION)));
+        outside.batches.save(batch);
+        BatchNotPublishableException byGate = assertThrows(BatchNotPublishableException.class,
+                () -> outside.tray.publish("José", null));
+        assertTrue(byGate.getMessage().contains("la compuerta de «no empeorar» no pasa: F-NOEMP-R007: cambió fuera de la"
+                + " tanda: " + TandaFixture.CHILD), byGate.getMessage());
+        assertTrue(outside.courses.written.isEmpty());
     }
 
     @Test
     @DisplayName("should publish the batch with audios pending rerecording, which are never answered and never block the OK")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPublishTheBatchWithAudiosPendingRerecordingWhichAreNeverAnsweredAndNeverBlockTheOK(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: the audios to record are never answered and never stop the OK: the batch publishes with them pending.
+        BandejaFixture.Bandeja bandeja = opened();
+        answer(bandeja, RULE_ITEM, TrayAnswer.RULE_OK);
+        Tray tray = bandeja.tray.view();
+        assertEquals(2, tray.getItems().stream().filter(i -> i.getKind() == TrayItemKind.PENDING_RERECORDING).count());
+        assertTrue(tray.isPublishable(), tray.getBlockers().toString());
+
+        BatchPublication publication = bandeja.tray.publish("José", null);
+
+        assertEquals(List.of(BandejaFixture.vegetablesAudio()), publication.getRerecords(), "pending, for José to record");
+    }
+
+
+    private static final String FRUIT_TIE = "desempate-curso-" + BandejaFixture.FRUIT;
+
+    private static final String COME_TIE = "desempate-" + BandejaFixture.COME;
+
+    private static final String TEA_ITEM = "sin-ganador-" + BandejaFixture.TEA;
+
+    private static final String RULE_ITEM = "muestra-hint-coherence";
+
+    /** The tray with its blind sample answered and closed: the rest of the batch shows. */
+    private static BandejaFixture.Bandeja opened() {
+        BandejaFixture.Bandeja bandeja = new BandejaFixture.Bandeja();
+        bandeja.answerTheBlindSample();
+        return bandeja;
+    }
+
+    private static Tray answer(BandejaFixture.Bandeja bandeja, String itemId, TrayAnswer answer) {
+        return bandeja.tray.answer(new TrayResponse(itemId, answer, null, null, null, null, null, "José"));
+    }
+
+    private static BatchTaskOutcome outcome(CorrectionBatch batch, String taskId) {
+        return batch.getOutcomes().stream().filter(o -> o.getTaskId().equals(taskId)).findFirst()
+                .orElseThrow(() -> new AssertionError("no outcome of " + taskId));
+    }
+
+    private static BatchChange change(CorrectionBatch batch, String changeId) {
+        return batch.getChanges().stream().filter(c -> changeId.equals(c.getChangeId())).findFirst()
+                .orElseThrow(() -> new AssertionError("no change " + changeId + " in " + batch.getChanges().stream()
+                        .map(BatchChange::getChangeId).toList()));
+    }
+
+    private static RefinementTaskStatus status(BandejaFixture.Bandeja bandeja, String taskId) {
+        return bandeja.plans.load(TandaFixture.PLAN).orElseThrow().getTasks().stream()
+                .filter(t -> t.getId().equals(taskId)).findFirst().orElseThrow().getStatus();
+    }
+
+    private static int count(BatchReport report, BatchTaskOutcomeKind kind) {
+        return report.getOutcomes().stream().filter(o -> o.getKind() == kind).mapToInt(OutcomeCount::getTasks).sum();
+    }
+
+    private static String json(Object value) {
+        try {
+            return new com.fasterxml.jackson.databind.ObjectMapper().writeValueAsString(value);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            throw new AssertionError(e);
+        }
     }
 }

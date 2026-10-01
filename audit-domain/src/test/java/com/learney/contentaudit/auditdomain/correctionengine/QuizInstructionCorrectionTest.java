@@ -1,7 +1,12 @@
 package com.learney.contentaudit.auditdomain.correctionengine;
 
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +20,20 @@ public class QuizInstructionCorrectionTest {
     @DisplayName("should let only a panel fix of quiz-instruction touch the exercise, within what the instruction correction reaches today, and declare no rule fix")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldLetOnlyAPanelFixOfQuizinstructionTouchTheExerciseWithinWhatTheInstructionCorrectionReachesTodayAndDeclareNoRuleFix(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: quiz-instruction is only corrected at the panel, within what the correction of the instruction reaches today
+        // (F-QICOR-R003): the parts and gaps the violation points at, the translation that goes with the sentence, the
+        // stored sentence and, following the exercise, the audio. It declares no fix by rule.
+        QuizInstructionCorrection correction = new QuizInstructionCorrection();
+
+        Assertions.assertEquals("quiz-instruction", correction.analyzerName());
+        Assertions.assertEquals(List.of(), correction.editScope(FindingResolution.RULE), "no fix by rule");
+        Assertions.assertEquals(List.of(ExercisePart.STATEMENT, ExercisePart.HINT, ExercisePart.ANSWERS,
+                ExercisePart.TRANSLATION, ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO),
+                correction.editScope(FindingResolution.PANEL));
+        Assertions.assertFalse(correction.editScope(FindingResolution.PANEL).contains(ExercisePart.MINI_THEORY));
+        Assertions.assertFalse(correction.editScope(FindingResolution.PANEL).contains(ExercisePart.INSTRUCTIONS),
+                "the instruction it is judged against does not move");
     }
 }

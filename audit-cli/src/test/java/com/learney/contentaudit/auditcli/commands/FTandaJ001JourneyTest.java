@@ -1,7 +1,17 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import org.junit.jupiter.api.io.TempDir;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,17 +31,87 @@ public class FTandaJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: José abre la tanda de un nivel sobre ... → La tanda declara sus tareas, sus tema... → La tanda aplica las reglas sin modelo... [José pide un tope de consultas] → La tanda recalcula el curso entero co... → Con el OK de José, los cambios entran... → success")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void path1_josPideUnTopeDeConsultas_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // J001, path 1: José opens the batch of A1 on the baseline, sees its tasks and its cost, runs it with a cap of
+        // queries -- the rule of the hint without a model, the panel of its topic --, closes it against the gate and, with his
+        // OK in the tray, the changes enter the course together and the published analysis is the one of the recalculation.
+        TandaCli cli = new TandaCli(workdir);
+
+        TandaCli.Run open = cli.batch("open", "A1");
+        assertEquals(0, open.exit(), open.err());
+        assertTrue(open.out().contains("abierta en A1, sobre el análisis " + TandaCli.BASELINE), open.out());
+        assertTrue(open.out().contains("Tareas (3):\n  t-pista\n  t-come\n  t-tea\n"), open.out());
+
+        TandaCli.Run estimate = cli.batch("estimate");
+        assertEquals(0, estimate.exit(), estimate.err());
+        assertTrue(estimate.out().contains("Consultas: 10, unas "), estimate.out());
+
+        TandaCli.Run run = cli.batch("run", "--cap", "10");
+        assertEquals(0, run.exit(), run.err());
+        assertTrue(run.out().startsWith("Corrida con tope de 10 consultas."), run.out());
+        assertTrue(run.out().contains("  resueltas por regla: 1\n  resueltas por la mesa: 1\n  sin ganador: 1\n"), run.out());
+        assertEquals(List.of(TandaCli.AFIRMATIVAS), cli.panel.topics, "the panel of its topic, once");
+
+        TandaCli.Run close = cli.batch("close");
+        assertEquals(0, close.exit(), close.err());
+        assertTrue(close.out().startsWith("La compuerta de «no empeorar» pasa (1 vuelta)."), close.out());
+        assertTrue(close.out().contains("Muestra ciega: " + TandaCli.SAMPLE), close.out());
+        assertTrue(Files.isRegularFile(workdir.resolve(".content-audit/batches")
+                .resolve(cli.batches.open().orElseThrow().getId() + ".json")), "the batch on its file");
+
+        assertEquals(0, cli.tray("answer", "ciega-" + TandaCli.SAMPLE, "B", "--pair", "1").exit());
+        assertEquals(0, cli.tray("answer", "ciega-" + TandaCli.SAMPLE, "iguales", "--pair", "2").exit());
+        assertEquals(0, cli.tray("answer", "muestra-hint-coherence", "RULE_OK").exit());
+        TandaCli.Run publish = cli.tray("publish", "--note", "la primera tanda de A1");
+
+        assertEquals(0, publish.exit(), publish.err());
+        assertTrue(publish.out().startsWith("Publicada por José: entraron 2 propuestas"), publish.out());
+        assertEquals(1, cli.courses.written.size(), "together, once");
+        QuizTemplateEntity vegetables = exercise(cli, TandaCli.VEGETABLES);
+        assertEquals("(love) a lot of vegetables.", vegetables.getForm().getSentenceParts().get(2).getText(),
+                "the hint of its rule");
+        assertEquals("Winter", exercise(cli, TandaCli.COME).getForm().getSentenceParts().get(0).getText(), "the panel's");
+        assertEquals("(drink) tea in the morning.", exercise(cli, TandaCli.TEA).getForm().getSentenceParts().get(2).getText(),
+                "the tea, without winner, as it was");
+        CorrectionBatch published = cli.batches.latestPublished().orElseThrow();
+        assertEquals(BatchStatus.PUBLISHED, published.getStatus());
+        assertEquals(published.getPublication().getPublishedAuditId(), cli.active.read().orElseThrow().getAuditId(),
+                "the next batch opens from the published analysis");
+        assertEquals(published.getAnalyzers(), cli.published.get(0).getAnalyzers(), "with the analyzers of the batch");
+        assertEquals(TandaCli.BASELINE, cli.baselines.read().orElseThrow().getAuditId(), "the baseline where it was");
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: José abre la tanda de un nivel sobre ... → La tanda declara sus tareas, sus tema... → La tanda no hace ninguna consulta y s... [No hay tope pedido] → failure")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void path2_noHayTopePedido_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // J001, path 2: without a cap the batch applies its rules -- they query no model -- and no panel opens: its tasks for
+        // the panel stay not attempted, and the batch cannot be published.
+        TandaCli cli = new TandaCli(workdir);
+        assertEquals(0, cli.batch("open", "A1").exit());
+        assertEquals(0, cli.batch("estimate").exit());
+
+        TandaCli.Run run = cli.batch("run");
+
+        assertEquals(0, run.exit(), run.err());
+        assertTrue(run.out().startsWith("Sin tope de consultas: corrieron sólo las reglas, que no consultan ningún modelo; 2"
+                + " tareas de la mesa quedaron sin intentar."), run.out());
+        assertTrue(cli.panel.topics.isEmpty(), "no panel opened, no query");
+        CorrectionBatch batch = cli.batches.open().orElseThrow();
+        assertEquals(0, batch.getQueriesSpent());
+        TandaCli.Run publish = cli.tray("publish");
+        assertFalse(publish.exit() == 0, "not publishable: " + publish.out());
+        assertTrue(cli.courses.written.isEmpty());
+    }
+
+
+    @TempDir
+    Path workdir;
+
+    private static QuizTemplateEntity exercise(TandaCli cli, String quizId) {
+        return cli.courses.written.get(cli.courses.written.size() - 1).getRoot().getMilestones().get(0).getTopics().get(0)
+                .getKnowledges().get(0).getQuizTemplates().stream().filter(q -> q.getId().equals(quizId)).findFirst()
+                .orElseThrow();
     }
 }

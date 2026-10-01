@@ -1,7 +1,20 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,19 +28,51 @@ public class DataCoherenceCorrectionTest {
     @DisplayName("should let a rule fix of data-coherence touch the stored sentence and the «/» of the answers or only ask to rerecord the audio with what the exercise says today, and a panel fix also the statement and the answers, with the audio following the exercise")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldLetARuleFixOfDatacoherenceTouchTheStoredSentenceAndTheOfTheAnswersOrOnlyAskToRerecordTheAudioWithWhatTheExerciseSaysTodayAndAPanelFixAlsoTheStatementAndTheAnswersWithTheAudioFollowingTheExercise(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 (E-03, F-NOEMP-R004): a rule fix of data-coherence may rebuild the stored sentence, turn the «/» of an answer
+        // into «|» or only ask to re-record the audio with what the exercise says today -- the audio follows the exercise --;
+        // a panel fix may also change the statement and the answers, with the audio following.
+        DataCoherenceCorrection correction = new DataCoherenceCorrection();
+
+        Assertions.assertEquals("data-coherence", correction.analyzerName());
+        Assertions.assertEquals(List.of(ExercisePart.STORED_SENTENCE, ExercisePart.ANSWERS, ExercisePart.AUDIO),
+                correction.editScope(FindingResolution.RULE), "the stored sentence, the «/» of the answers, or the audio");
+        Assertions.assertEquals(List.of(ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.STORED_SENTENCE,
+                ExercisePart.AUDIO), correction.editScope(FindingResolution.PANEL));
+        Assertions.assertFalse(correction.editScope(FindingResolution.RULE).contains(ExercisePart.STATEMENT),
+                "a rule never rewrites what the exercise says");
     }
 
     @Test
     @DisplayName("should say that its findings about the audio concern the audio, the one reading the «/» or the hint, the one saying something else and the one without a known text, and those about the answers or the saved sentence do not")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R012")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldSayThatItsFindingsAboutTheAudioConcernTheAudioTheOneReadingTheOrTheHintTheOneSayingSomethingElseAndTheOneWithoutAKnownTextAndThoseAboutTheAnswersOrTheSavedSentenceDoNot(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TANDA-R012: which finding is «of the audio» says the analyzer in its declaration, never the batch. The audio that
+        // reads the «/» or the hint, the one that says something else and the ones without a known text concern the audio; the
+        // «/» of an answer and the stored sentence do not.
+        DataCoherenceCorrection correction = new DataCoherenceCorrection();
+
+        Assertions.assertTrue(correction.concernsAudio(dataFinding("no-slash", "audio")), "the audio that reads the «/» or the hint");
+        Assertions.assertTrue(correction.concernsAudio(dataFinding("audio-matches", "audio")), "the one that says something else");
+        Assertions.assertTrue(correction.concernsAudio(dataFinding("audio-known", "audio-sin-clave")), "without a key");
+        Assertions.assertTrue(correction.concernsAudio(dataFinding("audio-known", "audio-desconocido")), "without a known text");
+        Assertions.assertTrue(correction.concernsAudio(dataFinding("audio-known", "audio-compartido")), "with a shared key");
+        Assertions.assertFalse(correction.concernsAudio(dataFinding("no-slash", "respuesta")), "the «/» of an answer does not");
+        Assertions.assertFalse(correction.concernsAudio(dataFinding("saved-sentence", "arbol")), "nor the stored sentence");
+        Assertions.assertFalse(correction.concernsAudio(dataFinding("saved-sentence", "produccion")));
+    }
+
+
+    /** A finding of data-coherence on «I learned ___ me / myself to drive a car.» with the given rule and mark. */
+    private static Finding dataFinding(String rule, String marker) {
+        String quiz = "67fab6d5993010229534399b";
+        return new Finding("data-coherence", rule, new FindingNodeRef(AuditTarget.QUIZ, quiz, "¿Mismo referente?"),
+                FindingSeverity.MEDIUM, new FindingEvidence(List.of(new EvidencePart("Ejercicio",
+                        "I learned ___ me / myself to drive a car.")), "audio: lee la pista", List.of()),
+                FindingResolution.RULE, AnalysisCost.INSTANT,
+                new FindingIdentity("data-coherence|" + rule + "|" + quiz + "|" + marker, marker));
     }
 }

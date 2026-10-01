@@ -5,6 +5,25 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (construcción E) — Un informe sin hallazgos de un analizador de errores con puntaje menor
+  que 1 (guardado antes del contrato del hallazgo) conserva la tarea por nodo de antes, sin origen; un informe de hoy
+  nunca llega ahí (el colector exige el hallazgo, F-HALL-R004 inv. 1). Así siguen las pruebas de QINST, HALL y RONDA2
+  que arman puntajes sin hallazgos, sin tocarlas.
+2026-10-01 — developer (construcción E) — Orden: orden estable por puntaje; dentro de un nodo, el vocabulario en el orden
+  de sus puntajes (como hoy) y después los hallazgos de errores por identidad. La tarea del tema queda donde aparece
+  su primer ejercicio, con el menor puntaje de los que alcanza. La LEMMA_ABSENCE que cubre lleva como hallazgo propio
+  el primero de lemma-absence por identidad y en `coveredFindings` los de off-level-words.
+2026-10-01 — developer (construcción E) — Cubierto = el ejercicio tiene la tarea del analizador que nombra la declaración
+  (por nodo, no por palabra: off-level-words marca un subconjunto de lo que marca lemma-absence). Sin esa tarea, «no
+  convertido» con el motivo «ninguna tarea del ejercicio marca lo mismo (no tiene tarea LEMMA_ABSENCE)».
+2026-10-01 — developer (construcción E) — El catálogo de correcciones rompe al armarse con una declaración de un
+  analizador que no está (TECH_SPEC); Main suma las de grammar y near-duplicates sólo cuando B registre sus proveedores.
+2026-10-01 — developer (construcción E) — Partes → campos en `DefaultCorrectionScope`: la pista vive en el texto de los
+  TEXT (comparte campo con el enunciado); AUDIO es el permiso `(audio)`; `verifyWithin` marca `(audio)` si cambia «lo
+  oído» (los TEXT sin paréntesis, la primera respuesta antes de «|» o «/», la opción correcta), sin mayúsculas ni signos.
+2026-10-01 — developer (construcción E) — `plan` imprime la cuenta por analizador en stderr después del aviso de lo no
+  convertido por nodos (E-08), los dos en el mismo lugar; el JSON de un plan efímero sigue limpio en stdout.
+
 2026-10-01 — qa-tester — Lo que esperaba al apply de R006 («un tipo sin declaración nunca se intenta», en DefaultTopicPanel)
   ya no espera: F-TANDA-R005 nombra ese desenlace (orquestador, 1/10) y la prueba va en TANDA.
 

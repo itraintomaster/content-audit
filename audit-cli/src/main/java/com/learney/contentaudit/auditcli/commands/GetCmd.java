@@ -1,4 +1,11 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.auditcli.TaskFindingFilter;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.refinerdomain.TaskOrigin;
+import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
 import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBriefer;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
 import com.learney.contentaudit.auditdomain.TopicStudentViewQuery;
@@ -143,7 +150,7 @@ final class GetCmd implements GetCommand, Callable<Integer> {
     private String planId;
 
     @Option(names = {"--status"},
-            description = "For 'tasks': filter by status (pending, completed, skipped).")
+            description = "For 'tasks': filter by status (pending, completed, skipped, stale, in_batch).")
     private String status;
 
     @Option(names = {"--sort"},
@@ -162,6 +169,23 @@ final class GetCmd implements GetCommand, Callable<Integer> {
             description = "For 'tasks': filter by DiagnosisKind enum: SENTENCE_LENGTH, LEMMA_ABSENCE, COCA_BUCKETS, etc.")
     private String diagnosisArg;
 
+    // FEAT-TAREA (hook E-07, F-TAREA-R008): the tasks of errors are searched by their finding.
+    @Option(names = {"--analyzer"},
+            description = "For 'tasks': only the tasks of the findings of this analyzer (its canonical name).")
+    private String analyzerArg;
+
+    @Option(names = {"--resolution"},
+            description = "For 'tasks': only the tasks resolved by 'rule' or at the 'panel'.")
+    private String resolutionArg;
+
+    @Option(names = {"--severity"},
+            description = "For 'tasks': only the tasks whose finding has this severity: blocking, high, medium, low.")
+    private String severityArg;
+
+    @Option(names = {"--knowledge"},
+            description = "For 'tasks': only the tasks of this topic (knowledge id).")
+    private String knowledgeArg;
+
     @Option(names = {"--without-correction-context"},
             description = "For 'tasks -f json': omit correctionContext resolution from task list output.")
     private boolean withoutCorrectionContext;
@@ -171,7 +195,8 @@ final class GetCmd implements GetCommand, Callable<Integer> {
     private String partOfSpeech;
 
     @Option(names = {"--level"},
-            description = "For 'suggested-lemmas': explicit CefrLevel (e.g. A1, B2). If absent, inferred from the task.")
+            description = "For 'suggested-lemmas': explicit CefrLevel (e.g. A1, B2). If absent, inferred from the task. "
+                    + "For 'tasks': only the tasks of errors of that CEFR level.")
     private CefrLevel level;
 
     @Option(names = {"--include-exposed"},
@@ -277,13 +302,45 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
             }
         }
 
+        Optional<FindingResolution> resolutionOpt = Optional.empty();
+        if (resolutionArg != null && !resolutionArg.isBlank()) {
+            try {
+                resolutionOpt = Optional.of(FindingResolution.valueOf(resolutionArg.trim().toUpperCase(Locale.ROOT)));
+            } catch (IllegalArgumentException ex) {
+                System.err.println("Invalid value for --resolution: '" + resolutionArg + "'. Allowed: rule, panel");
+                return 2;
+            }
+            if (resolutionOpt.get() == FindingResolution.RANK_ONLY) {
+                System.err.println("Invalid value for --resolution: '" + resolutionArg
+                        + "'. Allowed: rule, panel (what only ranks has no task)");
+                return 2;
+            }
+        }
+        Optional<FindingSeverity> severityOpt = Optional.empty();
+        if (severityArg != null && !severityArg.isBlank()) {
+            try {
+                severityOpt = Optional.of(FindingSeverity.valueOf(severityArg.trim().toUpperCase(Locale.ROOT)));
+            } catch (IllegalArgumentException ex) {
+                System.err.println("Invalid value for --severity: '" + severityArg
+                        + "'. Allowed: blocking, high, medium, low");
+                return 2;
+            }
+        }
+        boolean byFinding = (analyzerArg != null && !analyzerArg.isBlank()) || resolutionOpt.isPresent()
+                || severityOpt.isPresent() || (knowledgeArg != null && !knowledgeArg.isBlank())
+                || (level != null && isTasksResource(resource));
+        TaskFindingFilter findingFilter = byFinding ? new TaskFindingFilter(
+                Optional.ofNullable(analyzerArg).filter(a -> !a.isBlank()), resolutionOpt, severityOpt,
+                isTasksResource(resource) ? Optional.ofNullable(level) : Optional.empty(),
+                Optional.ofNullable(knowledgeArg).filter(k -> !k.isBlank())) : null;
+
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.ofNullable(planId),
                 Optional.ofNullable(status),
                 "priority".equalsIgnoreCase(sort),
                 Optional.ofNullable(limit),
                 targetOpt,
-                diagnosisOpt, null
+                diagnosisOpt, findingFilter
         );
         return get(resource, name, filter);
     }
@@ -559,8 +616,23 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         // Validate --status if provided
         if (filter != null && filter.getStatus().isPresent()) {
             String statusVal = filter.getStatus().get();
-            if (!Set.of("pending", "completed", "skipped").contains(statusVal.toLowerCase())) {
-                System.err.println("Invalid value for --status: '" + statusVal + "'. Allowed: pending, completed, skipped");
+            if (!Set.of("pending", "completed", "skipped", "stale", "in_batch", "in-batch")
+                    .contains(statusVal.toLowerCase())) {
+                System.err.println("Invalid value for --status: '" + statusVal
+                        + "'. Allowed: pending, completed, skipped, stale, in_batch");
+                return 1;
+            }
+        }
+
+        // F-TAREA-R008: an analyzer outside the catalog rejects the query (F-CLIRV-R016's message).
+        TaskFindingFilter findingFilter = filter != null ? filter.getFindingFilter() : null;
+        if (findingFilter != null && findingFilter.getAnalyzer() != null && findingFilter.getAnalyzer().isPresent()) {
+            String analyzerName = findingFilter.getAnalyzer().get();
+            boolean known = analyzerRegistry != null && analyzerRegistry.listAnalyzers().stream()
+                    .anyMatch(d -> analyzerName.equals(d.getName()));
+            if (!known) {
+                System.err.println("Analyzer '" + analyzerName
+                        + "' not found. Run 'content-audit get analyzers' to see available analyzers.");
                 return 1;
             }
         }
@@ -612,12 +684,13 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
 
         // Apply filters
         if (filter != null && filter.getStatus().isPresent()) {
-            String statusVal = filter.getStatus().get().toUpperCase();
+            String statusVal = filter.getStatus().get().toUpperCase().replace('-', '_');
             RefinementTaskStatus statusEnum;
             try {
                 statusEnum = RefinementTaskStatus.valueOf(statusVal);
             } catch (IllegalArgumentException e) {
-                System.err.println("Invalid value for --status: '" + filter.getStatus().get() + "'. Allowed: pending, completed, skipped");
+                System.err.println("Invalid value for --status: '" + filter.getStatus().get()
+                        + "'. Allowed: pending, completed, skipped, stale, in_batch");
                 return 1;
             }
             tasks = tasks.stream().filter(t -> t.getStatus() == statusEnum).collect(Collectors.toList());
@@ -633,6 +706,12 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         if (filter != null && filter.getDiagnosisKind().isPresent()) {
             DiagnosisKind diagnosisFilter = filter.getDiagnosisKind().get();
             tasks = tasks.stream().filter(t -> diagnosisFilter.equals(t.getDiagnosisKind())).collect(Collectors.toList());
+        }
+
+        // F-TAREA-R008: by the finding of the task -- analyzer, resolution, severity, CEFR level and topic --,
+        // combinable among them and with the rest. A task without origin (vocabulary) has no finding to match.
+        if (findingFilter != null) {
+            tasks = tasks.stream().filter(t -> matches(t, findingFilter)).collect(Collectors.toList());
         }
 
         // Sort
@@ -670,6 +749,13 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                     targetLabel(t.getNodeTarget()),
                     truncate(t.getNodeLabel(), 23),
                     t.getDiagnosisKind());
+            if (t.getOrigin() != null && t.getOrigin().getFinding() != null) {
+                Finding f = t.getOrigin().getFinding();
+                System.out.println("            hallazgo: " + f.getAnalyzer() + " · " + f.getRule() + " · "
+                        + f.getSeverity() + " · " + f.getResolution()
+                        + (t.getOrigin().getCefrLevel() != null ? " · " + t.getOrigin().getCefrLevel() : "")
+                        + (t.getOrigin().getKnowledgeLabel() != null ? " · " + t.getOrigin().getKnowledgeLabel() : ""));
+            }
             if (needsCorrectionContext(t)) {
                 CorrectionContextResult ctx = resolveContext(plan, t);
                 System.out.println();
@@ -721,6 +807,9 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                 m.put("nodeId", t.getNodeId());
                 m.put("nodeLabel", t.getNodeLabel());
                 m.put("diagnosis", t.getDiagnosisKind() != null ? t.getDiagnosisKind().name() : null);
+                if (t.getOrigin() != null) {
+                    m.put("origin", originJson(t.getOrigin()));
+                }
                 if (!withoutCorrectionContext && needsCorrectionContext(t)) {
                     CorrectionContextResult ctx = resolveContext(plan, t);
                     addContextToJsonMap(m, ctx);
@@ -743,6 +832,9 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         System.out.println("Target:    " + targetLabel(task.getNodeTarget()));
         System.out.println("Node:      " + task.getNodeLabel() + " (id: " + task.getNodeId() + ")");
         System.out.println("Diagnosis: " + task.getDiagnosisKind());
+        if (task.getOrigin() != null) {
+            printErrorTaskBrief(task, planId);
+        }
         if (needsCorrectionContext(task)) {
             Optional<RefinementPlan> planOpt = refinementPlanStore.load(planId);
             if (planOpt.isPresent()) {
@@ -1786,6 +1878,172 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
     // -------------------------------------------------------------------------
     // Shared helpers
     // -------------------------------------------------------------------------
+
+    private static boolean isTasksResource(String resource) {
+        return resource != null && Set.of("task", "tasks").contains(resource.toLowerCase(Locale.ROOT));
+    }
+
+    /** F-TAREA-R008: whether the finding of the task passes every filter given. */
+    private static boolean matches(RefinementTask task, TaskFindingFilter filter) {
+        TaskOrigin origin = task.getOrigin();
+        if (origin == null || origin.getFinding() == null) {
+            return false;
+        }
+        Finding finding = origin.getFinding();
+        if (present(filter.getAnalyzer()) && !filter.getAnalyzer().get().equals(finding.getAnalyzer())) {
+            return false;
+        }
+        if (present(filter.getResolution()) && filter.getResolution().get() != finding.getResolution()) {
+            return false;
+        }
+        if (present(filter.getSeverity()) && filter.getSeverity().get() != finding.getSeverity()) {
+            return false;
+        }
+        if (present(filter.getLevel()) && filter.getLevel().get() != origin.getCefrLevel()) {
+            return false;
+        }
+        return !present(filter.getKnowledgeId()) || filter.getKnowledgeId().get().equals(origin.getKnowledgeId());
+    }
+
+    private static boolean present(Optional<?> value) {
+        return value != null && value.isPresent();
+    }
+
+    /** The origin of a task of errors, as get tasks -f json shows it (F-TAREA-R008). */
+    static Map<String, Object> originJson(TaskOrigin origin) {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("finding", findingJson(origin.getFinding()));
+        m.put("cefrLevel", origin.getCefrLevel() != null ? origin.getCefrLevel().name() : null);
+        m.put("knowledgeId", origin.getKnowledgeId());
+        m.put("knowledgeLabel", origin.getKnowledgeLabel());
+        m.put("reachedQuizIds", origin.getReachedQuizIds() != null ? origin.getReachedQuizIds() : List.of());
+        m.put("coveredFindings", origin.getCoveredFindings() != null
+                ? origin.getCoveredFindings().stream().map(GetCmd::findingJson).collect(Collectors.toList())
+                : List.of());
+        return m;
+    }
+
+    static Map<String, Object> findingJson(Finding finding) {
+        if (finding == null) {
+            return null;
+        }
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("analyzer", finding.getAnalyzer());
+        m.put("rule", finding.getRule());
+        m.put("identity", finding.getIdentity() != null ? finding.getIdentity().getKey() : null);
+        m.put("marker", finding.getIdentity() != null ? finding.getIdentity().getMarker() : null);
+        m.put("severity", finding.getSeverity() != null ? finding.getSeverity().name() : null);
+        m.put("resolution", finding.getResolution() != null ? finding.getResolution().name() : null);
+        m.put("cost", finding.getCost() != null ? finding.getCost().name() : null);
+        if (finding.getNode() != null) {
+            m.put("nodeTarget", finding.getNode().getTarget() != null ? finding.getNode().getTarget().name() : null);
+            m.put("nodeId", finding.getNode().getNodeId());
+        }
+        if (finding.getEvidence() != null) {
+            m.put("observation", finding.getEvidence().getObservation());
+        }
+        return m;
+    }
+
+    /**
+     * F-TAREA-R009: get task of a task of errors shows what the panel receives -- the exercise as the student sees it
+     * (or the exercises a topic task reaches), the finding with its evidence, its severity and resolution, what its
+     * fix may touch and what it covers.
+     */
+    private void printErrorTaskBrief(RefinementTask task, String planId) {
+        TaskOrigin origin = task.getOrigin();
+        Finding finding = origin.getFinding();
+        System.out.println();
+        if (finding != null) {
+            System.out.println("Finding:   " + finding.getAnalyzer() + " · " + finding.getRule()
+                    + (finding.getIdentity() != null && finding.getIdentity().getMarker() != null
+                    ? " · " + finding.getIdentity().getMarker() : ""));
+            System.out.println("Identity:  " + (finding.getIdentity() != null ? finding.getIdentity().getKey() : ""));
+            System.out.println("Severity:  " + finding.getSeverity());
+            System.out.println("Resolution: " + finding.getResolution());
+            if (finding.getEvidence() != null) {
+                if (finding.getEvidence().getExamined() != null) {
+                    for (com.learney.contentaudit.auditdomain.finding.EvidencePart part : finding.getEvidence().getExamined()) {
+                        System.out.println("  " + part.getLabel() + ": " + part.getText());
+                    }
+                }
+                System.out.println("  Evidence: " + nullToEmpty(finding.getEvidence().getObservation()));
+            }
+        }
+        System.out.println("Level:     " + (origin.getCefrLevel() != null ? origin.getCefrLevel() : "")
+                + "   Topic: " + nullToEmpty(origin.getKnowledgeLabel())
+                + (origin.getKnowledgeId() != null ? " (id: " + origin.getKnowledgeId() + ")" : ""));
+        if (origin.getCoveredFindings() != null && !origin.getCoveredFindings().isEmpty()) {
+            System.out.println("Covers:    " + origin.getCoveredFindings().size() + " finding(s)");
+            for (Finding covered : origin.getCoveredFindings()) {
+                System.out.println("  - " + (covered.getIdentity() != null ? covered.getIdentity().getKey() : covered.getRule()));
+            }
+        }
+        Optional<ErrorTaskBrief> brief = briefOf(task, planId);
+        if (brief.isEmpty()) {
+            System.out.println("May touch: (the brief of the task is not available)");
+            return;
+        }
+        ErrorTaskBrief b = brief.get();
+        System.out.println("May touch: " + (b.isScopeDeclared()
+                ? b.getEditScope().stream().map(Enum::name).collect(Collectors.joining(", "))
+                : "sin alcance declarado"));
+        if (b.getQuizView() != null) {
+            System.out.println();
+            System.out.println("Exercise as the student sees it:");
+            printStudentView(b.getQuizView());
+        }
+        if (b.getReachedQuizViews() != null && !b.getReachedQuizViews().isEmpty()) {
+            System.out.println();
+            System.out.println("Exercises it reaches (" + b.getReachedQuizViews().size() + "):");
+            int i = 0;
+            for (QuizStudentView view : b.getReachedQuizViews()) {
+                String id = origin.getReachedQuizIds() != null && i < origin.getReachedQuizIds().size()
+                        ? origin.getReachedQuizIds().get(i) : "";
+                System.out.println("  [" + id + "] " + nullToEmpty(view.getStatement()));
+                i++;
+            }
+        }
+    }
+
+    private Optional<ErrorTaskBrief> briefOf(RefinementTask task, String planId) {
+        if (errorTaskBriefer == null || auditReportStore == null) {
+            return Optional.empty();
+        }
+        Optional<RefinementPlan> plan = refinementPlanStore.load(planId);
+        String sourceAuditId = plan.map(RefinementPlan::getSourceAuditId).orElse(null);
+        if (sourceAuditId == null || sourceAuditId.isBlank()) {
+            return Optional.empty();
+        }
+        Optional<AuditReport> report = auditReportStore.load(sourceAuditId);
+        if (report.isEmpty()) {
+            return Optional.empty();
+        }
+        return errorTaskBriefer.brief(report.get(), task);
+    }
+
+    private static void printStudentView(QuizStudentView view) {
+        System.out.println("  " + nullToEmpty(view.getStatement()));
+        if (view.getGaps() != null) {
+            for (com.learney.contentaudit.auditdomain.studentview.StudentGapView gap : view.getGaps()) {
+                System.out.println("    gap " + gap.getIndex() + (gap.getHint() != null ? " " + gap.getHint() : "")
+                        + ": " + String.join(" | ", gap.getAcceptedAnswers() != null ? gap.getAcceptedAnswers() : List.of()));
+            }
+        }
+        if (view.getOptions() != null && !view.getOptions().isEmpty()) {
+            System.out.println("    options: " + view.getOptions().stream()
+                    .map(o -> o.getLabel() + (o.isCorrect() ? " (correct)" : "")).collect(Collectors.joining(", ")));
+        }
+        if (view.getTranslation() != null) {
+            System.out.println("  Translation:  " + view.getTranslation());
+        }
+        if (view.getInstructions() != null) {
+            System.out.println("  Instructions: " + view.getInstructions());
+        }
+        if (view.getMiniTheory() != null) {
+            System.out.println("  Mini theory:  " + view.getMiniTheory());
+        }
+    }
 
     private static String targetLabel(AuditTarget target) {
         return target != null ? target.name() : "UNKNOWN";

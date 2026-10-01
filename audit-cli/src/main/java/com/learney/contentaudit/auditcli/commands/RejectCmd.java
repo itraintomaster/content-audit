@@ -1,5 +1,13 @@
 package com.learney.contentaudit.auditcli.commands;
 import com.learney.contentaudit.revisiondomain.batch.BatchService;
+import java.util.List;
+import java.util.ArrayList;
+import java.time.Instant;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.BatchProposalRef;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
 
 import com.learney.contentaudit.auditcli.RejectCommand;
 import com.learney.contentaudit.revisiondomain.ProposalDecisionOutcome;
@@ -75,6 +83,15 @@ public RejectCmd(ProposalDecisionService decisionService, BatchService batchServ
             return 1;
         }
 
+        // F-BANDEJA-R008 and F-TANDA-R008: rejecting a proposal of the open batch is taking its changes out of it.
+        Optional<CorrectionBatch> open = batchService != null ? batchService.current() : Optional.empty();
+        Optional<BatchProposalRef> ref = open.flatMap(batch -> (batch.getQuizProposals() != null
+                ? batch.getQuizProposals() : List.<BatchProposalRef>of()).stream()
+                .filter(r -> r != null && proposalId.equals(r.getProposalId())).findFirst());
+        if (ref.isPresent()) {
+            return dropFromTheBatch(open.get(), proposalId, ref.get().getQuizId(), reason);
+        }
+
         ProposalDecisionOutcome outcome = decisionService.reject(
                 proposalId,
                 Optional.ofNullable(planId),
@@ -102,5 +119,27 @@ public RejectCmd(ProposalDecisionService decisionService, BatchService batchServ
                 yield 1;
             }
         };
+    }
+
+    /** Every change of the batch still in that touches the exercise of the proposal leaves through the batch. */
+    private Integer dropFromTheBatch(CorrectionBatch batch, String proposalId, String quizId, String reason) {
+        List<String> dropped = new ArrayList<>();
+        String why = reason != null && !reason.isBlank() ? reason : "José rechazó la propuesta " + proposalId;
+        while (true) {
+            CorrectionBatch current = batchService.current().orElse(batch);
+            Optional<BatchChange> next = (current.getChanges() != null ? current.getChanges() : List.<BatchChange>of())
+                    .stream().filter(c -> c != null && c.getDroppedReason() == null && c.getSteps() != null
+                            && c.getSteps().stream().anyMatch(s -> s != null && quizId.equals(s.getQuizId())))
+                    .findFirst();
+            if (next.isEmpty()) {
+                break;
+            }
+            batchService.adjust(new BatchAdjustment(BatchAdjustmentKind.DROP_CHANGE, quizId, new ArrayList<>(),
+                    next.get().getChangeId(), null, null, null, why, "José", Instant.now()));
+            dropped.add(next.get().getChangeId());
+        }
+        System.out.println("La propuesta " + proposalId + " es de la tanda " + batch.getId() + ": salieron sus cambios ("
+                + String.join(", ", dropped) + ") y sus tareas vuelven a pendiente.");
+        return 0;
     }
 }

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 /**
@@ -50,10 +51,18 @@ public class LeaveOneOutChangeAttributor implements ChangeAttributor {
         }
         if (projection != null && projection.getProjected() != null && projection.getApproved() != null) {
             AuditReport projected = projection.getProjected();
+            List<ProjectedChange> pending = DefaultBatchComparator.pendingChanges(projection);
+            // The audio follows the exercise: the copies a change left pending count in no photo -- neither in the
+            // whole projection (settled already when the comparator asks; settling again changes nothing) nor in a
+            // variant, where the other changes are still applied.
+            Set<String> startKeys = PendingCopies.keysOf(projection.getApproved());
+            if (projected != projection.getApproved()) {
+                PendingCopies.settle(startKeys, projected, pending);
+            }
             Map<String, AuditNode> projectedIndex = ReportTree.index(projected);
             Map<String, AuditNode> startIndex = ReportTree.index(projection.getApproved());
             List<String> analyzers = ReportTree.measuredAnalyzers(projected);
-            for (ProjectedChange change : DefaultBatchComparator.pendingChanges(projection)) {
+            for (ProjectedChange change : pending) {
                 AuditNode before = startIndex.get(ReportTree.key(change.getNodeTarget(), change.getNodeId()));
                 if (before == null) {
                     continue;
@@ -73,6 +82,9 @@ public class LeaveOneOutChangeAttributor implements ChangeAttributor {
                 if (without == null) {
                     continue;
                 }
+                List<ProjectedChange> others = new ArrayList<>(pending);
+                others.remove(change);
+                PendingCopies.settle(startKeys, without, others);
                 Map<String, AuditNode> withoutIndex = ReportTree.index(without);
                 for (int i = 0; i < breaches.size(); i++) {
                     ChangeAttribution attribution = effect(change, breaches.get(i), projectedIndex, withoutIndex);

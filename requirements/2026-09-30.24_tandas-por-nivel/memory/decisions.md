@@ -5,6 +5,29 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (construcción E) — Lo que se decidió construyendo la tanda:
+  - selección: una tarea de un tipo de vocabulario (SENTENCE_LENGTH, LEMMA_ABSENCE, COCA_BUCKETS, LEMMA_RECURRENCE y los
+    dos largos de tema) entra sólo si cubre un hallazgo de errores, aunque su hallazgo vaya por regla o a la mesa (R001);
+  - publicar: la preservación de cada ejercicio se mira contra un curso donde sólo cambió él (si no, con dos propuestas,
+    los cambios de una eran violaciones de la otra); sacar una regla al publicar obliga a comparar de nuevo;
+  - cerrar otra vez no sortea otra muestra ciega: una por tanda;
+  - el arreglo de José (WRITE_FIX de la bandeja) llega como RETURN_TO_PANEL con candidato: la tanda lo mide y lo juzga con
+    su mesa y las tareas del ejercicio, a lo sumo 4 consultas [ASSUMPTION]; «no pasa» de un candidato en desempate gasta un
+    intento y deja sin ganador al llegar al tope; aceptar un candidato conserva el veredicto de su compuerta (y su pedido
+    de regrabar); TASK_FROM_TIE abre la tarea del desempate en el plan y en la tanda.
+  why: lo pedían las reglas R001, R008, R009 y FEAT-BANDEJA R002/R003; la tanda es la única puerta de las decisiones.
+
+2026-10-01 — arquitecto (construcción E) — Parche de construcción, propuesto y validado contra el sentinel.yaml de
+  ronda2/impl-correccion (0 conflictos), SIN aplicar: `architectural_patch.yaml` de esta carpeta. (1) `FileSystemBatchStore`
+  y `FileSystemTrayDecisionStore` reciben `baseDir: Path`, como los otros diez almacenes (E-09 lo suponía); (2)
+  `DefaultCourseElementLocator` y `DefaultCorrectionScope` pasan a públicas dentro de revision-domain, para que
+  `DefaultBatchServiceFactory` las arme cuando el registro trae null, como las fábricas de revise, approve y la vista
+  consolidada con el localizador; (3) `CappedQueryAllowance` recibe `cap: Integer` y `queriesAtOnce: int`, sin los que
+  `PanelRunnerFactory.allowance(cap, C)` no lo puede configurar. Sin contratos nuevos.
+  why: ni Main ni batchengine pueden construir un CourseElementLocator ni un CorrectionScope (internas de engine y
+  preservationengine), y sin ruta los almacenes escribirían donde está parado el proceso, no en --workdir.
+  El TECH_SPEC no lleva la sección: `tech-spec append` exige que todas las fences de la carpeta estén en el parche nuevo.
+
 2026-10-01 — qa-tester (como arquitecto) — Lo pendiente de regrabar vive en la publicación de cada tanda
   (BatchPublication.rerecords): la siguiente los recibe al abrir (select) y no toma la tarea del audio. Sin almacén nuevo:
   un pedido deja de estar pendiente cuando data-coherence ya no marca ese audio.

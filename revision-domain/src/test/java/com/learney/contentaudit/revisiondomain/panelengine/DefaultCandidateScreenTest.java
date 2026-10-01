@@ -1,7 +1,25 @@
 package com.learney.contentaudit.revisiondomain.panelengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.coursedomain.FormKind;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,59 +33,145 @@ public class DefaultCandidateScreenTest {
     @DisplayName("should reject before measuring a candidate of a multiple choice that stops being multiple choice, has other than exactly one correct option or changes the number of options")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R011")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRejectBeforeMeasuringACandidateOfAMultipleChoiceThatStopsBeingMultipleChoiceHasOtherThanExactlyOneCorrectOptionOrChangesTheNumberOfOptions(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R011: a multiple choice comes out of the panel as a multiple choice, with one correct option among as many.
+        TopicWork work = childWork();
+        QuizTemplateEntity child = exercise(work.getKnowledge(), CHILD);
+        QuizTemplateEntity written = withParts(child, text("Is he"), cloze("a"), text("child?"));
+        written.getForm().setMultipleChoice(null);
+        written.setKind("CLOZE");
+        written.getForm().setKind("CLOZE");
+        QuizTemplateEntity twoCorrect = withItems(child, item("Is he", 1.0), item("Is it", 1.0), item("Is she", 0.0));
+        QuizTemplateEntity fewer = withItems(child, item("Is he", 1.0), item("Is it", 0.0));
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
+
+        assertTrue(screen.screen(work, CHILD, candidate(PanelCandidateKind.WHOLE_EXERCISE, written)).contains(
+                "deja de ser de opción múltiple"));
+        assertTrue(screen.screen(work, CHILD, candidate(PanelCandidateKind.WHOLE_EXERCISE, twoCorrect)).contains(
+                "tiene 2 opciones correctas y debe tener una sola"));
+        assertTrue(screen.screen(work, CHILD, candidate(PanelCandidateKind.WHOLE_EXERCISE, fewer)).contains(
+                "cambia la cantidad de opciones: 3 → 2"));
     }
 
     @Test
     @DisplayName("should let through a candidate of a multiple choice that changes the sentence or the option left over and keeps one correct option among the same number")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R011")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldLetThroughACandidateOfAMultipleChoiceThatChangesTheSentenceOrTheOptionLeftOverAndKeepsOneCorrectOptionAmongTheSameNumber(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R011: it may change the sentence, or the option left over, and keep one correct option among three.
+        TopicWork work = childWork();
+        QuizTemplateEntity child = exercise(work.getKnowledge(), CHILD);
+        QuizTemplateEntity otherSentence = withParts(child, cloze(), text("a teacher? (He)"));
+        QuizTemplateEntity otherOption = withItems(child, item("Is he", 1.0), item("Are you", 0.0), item("Is she", 0.0));
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
+
+        assertEquals(List.of(), screen.screen(work, CHILD, candidate(PanelCandidateKind.WHOLE_EXERCISE, otherSentence)));
+        assertEquals(List.of(), screen.screen(work, CHILD, candidate(PanelCandidateKind.WHOLE_EXERCISE, otherOption)));
     }
 
     @Test
     @DisplayName("should reject a mini-theory candidate that misses an exercise of the topic showing the text, or reaches one that does not show it")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R012")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRejectAMinitheoryCandidateThatMissesAnExerciseOfTheTopicShowingTheTextOrReachesOneThatDoesNotShowIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R012: the new mini theory reaches every exercise of the topic that shows the text, and no other.
+        KnowledgeEntity topic = contraste();
+        List<String> nine = stateVerbExercises();
+        List<String> eight = new ArrayList<>(nine.subList(1, 9));
+        List<String> ten = new ArrayList<>(nine);
+        ten.add(topic.getQuizTemplates().get(9).getId());
+        PanelCandidate text = new PanelCandidate(PanelCandidateKind.MINI_THEORY, null, "Los verbos de estado no van en -ing.", null, "");
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
+
+        List<String> missing = screen.screen(work(topic, List.of(topicBrief("t-mini", miniTheory(), eight))), null, text);
+        List<String> beyond = screen.screen(work(topic, List.of(topicBrief("t-mini", miniTheory(), ten))), null, text);
+        List<String> exact = screen.screen(work(topic, List.of(topicBrief("t-mini", miniTheory(), nine))), null, text);
+
+        assertEquals(List.of("la miniteoría no llega a " + nine.get(0) + ", que muestra el mismo texto"), missing);
+        assertEquals(List.of("la miniteoría llega a " + ten.get(9) + ", que no muestra ese texto"), beyond);
+        assertEquals(List.of(), exact);
     }
 
     @Test
     @DisplayName("should let through a conversion of «You ___ (do not) work at the bank.» with «don't» as the correct option, two other contractions and three options, and the same translation and mini-theory")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R015")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldLetThroughAConversionOfYouDoNotWorkAtTheBankWithDontAsTheCorrectOptionTwoOtherContractionsAndThreeOptionsAndTheSameTranslationAndMinitheory(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R015: «You ___ (do not) work at the bank.» passes to multiple choice with «don't», two other contractions and
+        // three options; the translation and the mini theory stay.
+        KnowledgeEntity topic = contracciones();
+        QuizTemplateEntity you = topic.getQuizTemplates().get(0);
+
+        List<String> violations = new DefaultCandidateScreen(corrections()).screen(converting(topic), you.getId(),
+                conversion(you, "don't", "doesn't", "aren't"));
+
+        assertEquals(List.of(), violations);
     }
 
     @Test
     @DisplayName("should reject a conversion of «She ___ (is not) very happy.» that offers «isn't» next to the correct «'s not», the same answer in another form")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R015")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRejectAConversionOfSheIsNotVeryHappyThatOffersIsntNextToTheCorrectSNotTheSameAnswerInAnotherForm(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R015 inv. 2 and F-OMVAL-R002: «isn't» next to the correct «'s not» is the same answer in another form.
+        KnowledgeEntity topic = contracciones();
+        QuizTemplateEntity she = topic.getQuizTemplates().get(1);
+
+        List<String> violations = new DefaultCandidateScreen(corrections()).screen(converting(topic), she.getId(),
+                conversion(she, "'s not", "isn't", "don't"));
+
+        assertEquals(List.of("«isn't» es la correcta «'s not» en otra forma"), violations);
     }
 
     @Test
     @DisplayName("should reject a conversion whose correct option is not the first accepted answer of today, so what is heard would change")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R015")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRejectAConversionWhoseCorrectOptionIsNotTheFirstAcceptedAnswerOfTodaySoWhatIsHeardWouldChange(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R015 inv. 1: the correct option is the first accepted answer of today, «'s not»; with «isn't» what is heard
+        // would change.
+        KnowledgeEntity topic = contracciones();
+        QuizTemplateEntity she = topic.getQuizTemplates().get(1);
+
+        List<String> violations = new DefaultCandidateScreen(corrections()).screen(converting(topic), she.getId(),
+                conversion(she, "isn't", "aren't", "don't"));
+
+        assertEquals(List.of("la opción correcta «isn't» no es la primera respuesta aceptada de hoy, «'s not»: cambiaría lo que se"
+                + " escucha"), violations);
+    }
+
+
+    private static final String CHILD = "67fab6d59930102295341e87";
+
+    /** «___ a child? (He)» with its capitals fixed, and its task of multiple-choice-validity at the panel. */
+    private static TopicWork childWork() {
+        QuizTemplateEntity child = choice(CHILD, "a child? (He)", "Is he", "Is it", "Is she");
+        KnowledgeEntity topic = topic("6814dafa7d73e7209a13d360", "Be: preguntas yes/no", new ArrayList<>(List.of(child)));
+        Finding twoValid = finding("multiple-choice-validity", "single-valid-option", CHILD, FindingSeverity.BLOCKING,
+                FindingResolution.PANEL, "is it", "«Is it» también vale");
+        return work(topic, List.of(brief("t-mc", twoValid)));
+    }
+
+    private static MultipleChoiceItemEntity item(String label, double incidence) {
+        return new MultipleChoiceItemEntity(label, incidence, label);
+    }
+
+    private static QuizTemplateEntity withItems(QuizTemplateEntity quiz, MultipleChoiceItemEntity... items) {
+        return rewritten(quiz, q -> q.getForm().setMultipleChoice(new MultipleChoiceEntity("SINGLE",
+                new ArrayList<>(List.of(items)))));
+    }
+
+    private static Finding miniTheory() {
+        return topicFinding("mini-theory", "explains-the-lesson", CONTRASTE, FindingSeverity.HIGH, null, "no explica");
+    }
+
+    private static TopicWork converting(KnowledgeEntity topic) {
+        return work(topic, List.of(), new ConversionOrder(CONTRACCIONES, FormKind.MULTIPLE_CHOICE, 3), Map.of(), List.of());
     }
 }

@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 import com.learney.contentaudit.revisiondomain.batch.BatchStore;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 
 import com.learney.contentaudit.auditcli.ReviseCommand;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
@@ -212,11 +214,31 @@ public ReviseCmd(RevisionEngine revisionEngine, RefinementPlanStore refinementPl
             return 1;
         }
 
+        // F-TANDA-R002: a task of the open batch is decided in its tray, never by 'revise'.
+        Optional<String> batchOfTask = openBatchOf(tasks, taskId);
+        if (batchOfTask.isPresent()) {
+            System.err.println("La tarea " + taskId + " es de la tanda " + batchOfTask.get()
+                    + " y se decide en su bandeja.");
+            return 1;
+        }
+
         // Invoke the revision engine (FEAT-REVBYP: bypass skeleton)
         // When resolvedOverridePayload is null, the engine uses the derived context path (F-REVCTX-R001)
         RevisionOutcome outcome = revisionEngine.revise(resolvedPlanId, taskId,
                 Path.of(resolvedCoursePath), resolvedOverridePayload);
         return handleOutcome(outcome, taskId, resolvedPlanId);
+    }
+
+    /** The open batch the task belongs to: it is marked IN_BATCH in the plan, or the open batch lists it. */
+    private Optional<String> openBatchOf(List<RefinementTask> tasks, String taskId) {
+        Optional<CorrectionBatch> open = batchStore != null ? batchStore.open() : Optional.empty();
+        boolean listed = open.isPresent() && open.get().getTaskIds() != null && open.get().getTaskIds().contains(taskId);
+        boolean marked = tasks.stream().anyMatch(t -> taskId.equals(t.getId())
+                && t.getStatus() == RefinementTaskStatus.IN_BATCH);
+        if (!listed && !marked) {
+            return Optional.empty();
+        }
+        return Optional.of(open.map(CorrectionBatch::getId).orElse("abierta"));
     }
 
     private int handleOutcome(RevisionOutcome outcome, String taskId, String planId) {

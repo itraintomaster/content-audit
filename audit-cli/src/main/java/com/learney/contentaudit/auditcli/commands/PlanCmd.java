@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.refinerdomain.PlanFindingTally;
 import com.learney.contentaudit.auditcli.PlanStorageMode;
 
 import com.learney.contentaudit.auditcli.PlanCommand;
@@ -118,21 +119,46 @@ final class PlanCmd implements PlanCommand, Callable<Integer> {
 
         AuditReport report = reportOpt.get();
         RefinementPlan plan = refinerEngine.plan(report, resolvedAuditId);
-        warnUnconverted(refinerEngine.unconvertedScores(report));
 
+        int exit;
         if (storageMode == PlanStorageMode.EPHEMERAL) {
-            return ephemeralPlanRenderer.render(plan, report, new com.learney.contentaudit.auditcli.EphemeralRenderOptions(withCorrectionContext));
+            exit = ephemeralPlanRenderer.render(plan, report, new com.learney.contentaudit.auditcli.EphemeralRenderOptions(withCorrectionContext));
+        } else {
+            String planId = refinementPlanStore.save(plan);
+
+            List<RefinementTask> tasks = plan.getTasks() != null ? plan.getTasks() : List.of();
+
+            exit = switch (formatName) {
+                case "json" -> printJson(plan, planId, tasks);
+                case "table" -> printTable(planId, plan, tasks);
+                default -> printText(planId, plan, tasks);
+            };
         }
+        // After the tasks, in one place and once (hook E-08): what could not be turned into tasks, by nodes
+        // (F-HALL-R004), and how the findings of errors add up, by analyzer (F-TAREA-R001). On stderr, so the JSON
+        // of a plan stays valid on stdout.
+        warnUnconverted(refinerEngine.unconvertedScores(report));
+        printFindingTally(refinerEngine.findingTally(report, plan));
+        return exit;
+    }
 
-        String planId = refinementPlanStore.save(plan);
-
-        List<RefinementTask> tasks = plan.getTasks() != null ? plan.getTasks() : List.of();
-
-        return switch (formatName) {
-            case "json" -> printJson(plan, planId, tasks);
-            case "table" -> printTable(planId, plan, tasks);
-            default -> printText(planId, plan, tasks);
-        };
+    /**
+     * F-TAREA-R001: per analyzer of errors, its findings that count add up to its own tasks, the findings another task
+     * covers and the unconverted ones, with their reason.
+     */
+    private static void printFindingTally(List<PlanFindingTally> tally) {
+        if (tally == null || tally.isEmpty()) {
+            return;
+        }
+        System.err.println("Hallazgos de errores del plan (que cuentan = tareas + cubiertos + no convertidos):");
+        for (PlanFindingTally row : tally) {
+            String line = String.format("  %-26s %5d = %d + %d + %d", row.getAnalyzer(), row.getCountingFindings(),
+                    row.getOwnTasks(), row.getCovered(), row.getUnconverted());
+            if (row.getUnconverted() > 0 && row.getUnconvertedReason() != null) {
+                line += "   no convertidos: " + row.getUnconvertedReason();
+            }
+            System.err.println(line);
+        }
     }
 
     private int printText(String planId, RefinementPlan plan, List<RefinementTask> tasks) {

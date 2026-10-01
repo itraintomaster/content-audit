@@ -1,7 +1,12 @@
 package com.learney.contentaudit.auditdomain.exactduplicates;
 
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +20,16 @@ public class ExactDuplicatesCorrectionTest {
     @DisplayName("should let only the panel touch a duplicate, rewriting the whole exercise with its audio and never deleting it")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldLetOnlyThePanelTouchADuplicateRewritingTheWholeExerciseWithItsAudioAndNeverDeletingIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 (E-03, F-NOEMP-R007): a duplicate is rewritten whole at the panel, with its audio; there is no fix by rule and
+        // no part that deletes it -- a batch never takes an exercise out of the course.
+        ExactDuplicatesCorrection correction = new ExactDuplicatesCorrection();
+
+        Assertions.assertEquals("exact-duplicates", correction.analyzerName());
+        Assertions.assertEquals(List.of(), correction.editScope(FindingResolution.RULE), "only the panel");
+        Assertions.assertEquals(List.of(ExercisePart.WHOLE_EXERCISE), correction.editScope(FindingResolution.PANEL),
+                "the whole exercise, rewritten, its audio included");
+        Assertions.assertFalse(correction.groupsByTopic());
     }
 }

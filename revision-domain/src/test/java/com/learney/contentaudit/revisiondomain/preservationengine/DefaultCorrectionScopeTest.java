@@ -1,5 +1,10 @@
 package com.learney.contentaudit.revisiondomain.preservationengine;
 
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceCorrection;
+import java.util.EnumSet;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,7 +15,6 @@ import com.learney.contentaudit.revisiondomain.preservation.CorrectionScope;
 import com.learney.contentaudit.revisiondomain.preservation.ScopedField;
 import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -113,17 +117,39 @@ public class DefaultCorrectionScopeTest {
     @DisplayName("should translate the hint, the answers and the audio permission of a panel fix of hint-coherence into the changeable fields of the quiz")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldTranslateTheHintTheAnswersAndTheAudioPermissionOfAPanelFixOfHintcoherenceIntoTheChangeableFieldsOfTheQuiz() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TAREA-R006: the parts a panel fix of hint-coherence declares become the fields of the quiz it may change: the
+        // hint and the statement live in the text of the TEXT parts, the answers in the options of the gaps, the stored
+        // sentence in sentences, and the audio is a permission, «(audio)», not a field.
+        CorrectionScope correctionScope = new DefaultCorrectionScope();
+        Set<ExercisePart> panel = EnumSet.copyOf(new HintCoherenceCorrection().editScope(FindingResolution.PANEL));
+
+        Set<ScopedField> changeable = correctionScope.changeableFields(panel, AuditTarget.QUIZ);
+
+        assertEquals(Set.of(
+                new ScopedField("form.sentenceParts[].text", "TEXT"),
+                new ScopedField("form.sentenceParts[]", null),
+                new ScopedField("form.sentenceParts[].options", "CLOZE"),
+                new ScopedField("sentences", null),
+                new ScopedField("(audio)", null)), changeable);
+        assertFalse(changeable.contains(new ScopedField("translation", null)), "the translation is not its part");
     }
 
     @Test
     @DisplayName("should make changeable only the union of the parts declared by the tasks of an exercise, the hint of hint-coherence and the translation of translation-sense for «I ___ a lot of vegetables.»")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldMakeChangeableOnlyTheUnionOfThePartsDeclaredByTheTasksOfAnExerciseTheHintOfHintcoherenceAndTheTranslationOfTranslationsenseForIALotOfVegetables() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TAREA-R006: what «I ___ a lot of vegetables.» may change is the union of what its tasks declare -- the hint of
+        // hint-coherence and the translation of translation-sense --, and everything else is preserved.
+        CorrectionScope correctionScope = new DefaultCorrectionScope();
+
+        Set<ScopedField> changeable = correctionScope.changeableFields(EnumSet.of(ExercisePart.HINT, ExercisePart.TRANSLATION),
+                AuditTarget.QUIZ);
+
+        assertEquals(Set.of(new ScopedField("form.sentenceParts[].text", "TEXT"), new ScopedField("translation", null)),
+                changeable, "the union, and only it");
+        assertTrue(correctionScope.changeableFields(EnumSet.of(ExercisePart.HINT, ExercisePart.TRANSLATION),
+                AuditTarget.KNOWLEDGE).isEmpty(), "nothing of the topic");
     }
 }

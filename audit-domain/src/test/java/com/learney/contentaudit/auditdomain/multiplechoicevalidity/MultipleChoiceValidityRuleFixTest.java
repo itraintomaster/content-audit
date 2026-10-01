@@ -1,7 +1,29 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.rulefix.RuleFixRequest;
+import com.learney.contentaudit.auditdomain.rulefix.RuleFixResult;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +37,48 @@ public class MultipleChoiceValidityRuleFixTest {
     @DisplayName("should capitalize every option of «___ a child? (He)», whose gap opens the question, «is he» to «Is he» and «am i» to «Am I», in all the options at once")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldCapitalizeEveryOptionOfAChildHeWhoseGapOpensTheQuestionIsHeToIsHeAndAmIToAmIInAllTheOptionsAtOnce(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TANDA-R004 and F-OMVAL-R003: the gap of «___ a child? (He)» opens the question and its six options go in lowercase,
+        // with «i» in «am i». One change writes them all with their capital at once, never one alone; the correct one is still
+        // the correct one, and the stored sentence says the same words.
+        String child = "67fab6d59930102295341e87";
+        List<MultipleChoiceItemEntity> items = new ArrayList<>();
+        for (String label : List.of("am i", "are we", "are you", "is he", "is it", "is she")) {
+            items.add(new MultipleChoiceItemEntity(label, label.equals("is he") ? 1.0 : 0.0, label));
+        }
+        FormEntity form = new FormEntity("MULTIPLE_CHOICE", 1.0, "", "", new ArrayList<>(List.of(
+                new SentencePartEntity(SentencePartKind.CLOZE, "", null),
+                new SentencePartEntity(SentencePartKind.TEXT, "a child? (He)", null))),
+                new MultipleChoiceEntity("SINGLE", items), null);
+        QuizTemplateEntity quiz = new QuizTemplateEntity(child, child, "MULTIPLE_CHOICE", "6814dafa7d73e7209a13d360",
+                "Be: preguntas yes/no", null, null, null, null, form, 0, 0, 0, null, null, null, "A1.01.03.01", null, null, null,
+                new ArrayList<>(List.of("is he a child?")), null);
+        Finding capital = capitalFinding(child, "mayuscula");
+        Finding pronoun = capitalFinding(child, "i");
+        MultipleChoiceValidityRuleFix fix = new MultipleChoiceValidityRuleFix();
+
+        RuleFixResult result = fix.fix(new RuleFixRequest(quiz, null, SentenceMode.FILL, List.of(capital, pronoun)));
+
+        assertEquals("multiple-choice-validity", fix.analyzerName());
+        assertEquals(List.of(capital.getIdentity(), pronoun.getIdentity()), result.getFixed());
+        assertTrue(result.getDeclined().isEmpty(), result.getDetail());
+        List<String> labels = new ArrayList<>();
+        for (MultipleChoiceItemEntity item : result.getQuiz().getForm().getMultipleChoice().getItems()) {
+            labels.add(item.getLabel() + (item.getIncidence() > 0.0 ? " (correcta)" : ""));
+        }
+        assertEquals(List.of("Am I", "Are we", "Are you", "Is he (correcta)", "Is it", "Is she"), labels, "all at once");
+        assertEquals(List.of("is he a child?"), result.getQuiz().getSentences(), "the same words for what is heard");
+        assertEquals("a child? (He)", result.getQuiz().getForm().getSentenceParts().get(1).getText(), "the statement stays");
+        assertEquals("am i", quiz.getForm().getMultipleChoice().getItems().get(0).getLabel(), "the received exercise stays");
+    }
+
+
+    private static Finding capitalFinding(String quizId, String marker) {
+        return new Finding("multiple-choice-validity", "sentence-start-capital",
+                new FindingNodeRef(AuditTarget.QUIZ, quizId, quizId), FindingSeverity.LOW,
+                new FindingEvidence(List.of(new EvidencePart("Ejercicio", "___ a child? (He)")), "minúscula", List.of()),
+                FindingResolution.RULE, AnalysisCost.INSTANT, new FindingIdentity(
+                        "multiple-choice-validity|sentence-start-capital|" + quizId + "|" + marker, marker));
     }
 }

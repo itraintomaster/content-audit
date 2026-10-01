@@ -1,7 +1,31 @@
 package com.learney.contentaudit.auditdomain.correctionengine;
 
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerCorrection;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessCorrection;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceCorrection;
+import com.learney.contentaudit.auditdomain.exactduplicates.ExactDuplicatesCorrection;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceCorrection;
+import com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryCorrection;
+import com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityCorrection;
+import com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsCorrection;
+import com.learney.contentaudit.auditdomain.singleanswerengine.SingleAnswerCorrection;
+import com.learney.contentaudit.auditdomain.translationsenseengine.TranslationSenseCorrection;
+import java.util.ArrayList;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +39,64 @@ public class DefaultAnalyzerCorrectionCatalogTest {
     @DisplayName("should find by its canonical name the correction declaration of every error analyzer that has a task kind, from hint-coherence to quiz-instruction")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldFindByItsCanonicalNameTheCorrectionDeclarationOfEveryErrorAnalyzerThatHasATaskKindFromHintcoherenceToQuizinstruction(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: the plan, get task, the panel and the batch look a declaration up by the canonical name of its analyzer. The
+        // catalog has the declaration of each analyzer of errors with a task kind -- quiz-instruction and the eight of round
+        // 1, from hint-coherence to mini-theory --, plus lemma-absence and off-level-words; it lists them in catalog order.
+        List<String> names = List.of("lemma-absence", "off-level-words", "quiz-instruction", "hint-coherence",
+                "answer-completeness", "multiple-choice-validity", "data-coherence", "exact-duplicates", "translation-sense",
+                "single-answer", "mini-theory");
+        List<AnalyzerCorrection> declarations = List.of(new MiniTheoryCorrection(), new SingleAnswerCorrection(),
+                new TranslationSenseCorrection(), new ExactDuplicatesCorrection(), new DataCoherenceCorrection(),
+                new MultipleChoiceValidityCorrection(), new AnswerCompletenessCorrection(), new HintCoherenceCorrection(),
+                new QuizInstructionCorrection(), new OffLevelWordsCorrection(), new LemmaAbsenceCorrection());
+
+        DefaultAnalyzerCorrectionCatalog catalog = new DefaultAnalyzerCorrectionCatalog(declarations, catalogOf(names));
+
+        for (String name : names) {
+            Assertions.assertEquals(name, catalog.find(name).orElseThrow(() -> new AssertionError("no declaration of " + name))
+                    .analyzerName(), "found by its canonical name: " + name);
+        }
+        Assertions.assertEquals(names, catalog.list().stream().map(AnalyzerCorrection::analyzerName).toList(),
+                "listed in the order of the catalog of analyzers");
+        Assertions.assertEquals(Optional.empty(), catalog.find("hint-coherense"), "a name that is not canonical finds nothing");
+    }
+
+
+    /** A catalog of analyzers with just these names, in this order. */
+    private static AnalyzerCatalog catalogOf(List<String> names) {
+        List<AnalyzerDescriptor> cards = new ArrayList<>();
+        for (String name : names) {
+            cards.add(new AnalyzerDescriptor(name, name, AuditTarget.QUIZ, "¿" + name + "?", "El ejercicio", List.of(),
+                    "-", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL),
+                    AnalysisCost.INSTANT, name, List.of()));
+        }
+        return new AnalyzerCatalog() {
+            @Override
+            public List<AnalyzerDescriptor> list() {
+                return cards;
+            }
+
+            @Override
+            public Optional<AnalyzerDescriptor> find(String analyzerName) {
+                return cards.stream().filter(c -> c.getName().equals(analyzerName)).findFirst();
+            }
+
+            @Override
+            public Optional<AnalyzerProvider> provider(String analyzerName) {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<AnalyzerPlanBinding> planBinding(String analyzerName) {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<AnalyzerMeasure> measure(String analyzerName) {
+                return Optional.empty();
+            }
+        };
     }
 }

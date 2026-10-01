@@ -1,7 +1,48 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.cloze;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.text;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.withParts;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
+import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.RevisionProposal;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
+import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.nonregression.BatchGate;
+import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
+import com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,68 +56,320 @@ public class DefaultBatchCloserTest {
     @DisplayName("should hand F a scope with the pending proposals of the batch, one per exercise, and no other, even when the plan holds a vocabulary correction pending from revise")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldHandFAScopeWithThePendingProposalsOfTheBatchOnePerExerciseAndNoOtherEvenWhenThePlanHoldsAVocabularyCorrectionPendingFromRevise(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: F compares the batch's own: its id and its pending proposals, one per exercise -- not the correction of the
+        // length of the vegetables that «revise» left pending in the same plan.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        QuizTemplateEntity vegetables = TandaFixture.exercise(closing.course, MesaFixture.VEGETABLES);
+        closing.artifacts.save(new RevisionArtifact(new RevisionProposal("revise-largo-1", "t-largo", TandaFixture.PLAN,
+                TandaFixture.BASELINE, null, AuditTarget.QUIZ, MesaFixture.VEGETABLES,
+                new CourseElementSnapshot(AuditTarget.QUIZ, MesaFixture.VEGETABLES, vegetables, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, MesaFixture.VEGETABLES, vegetables, null), "más corta", "revise",
+                Instant.parse("2026-09-30T18:00:00Z"), null, new ArrayList<>(), null), RevisionVerdict.PENDING_APPROVAL, null,
+                RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, null, null, null, null));
+
+        closing.closer().close(batch, closing.course);
+
+        assertEquals(List.of(TandaFixture.COURSE_PATH), closing.comparator.paths, "the copy of the course");
+        ProjectionScope scope = closing.comparator.scopes.get(0);
+        assertEquals("tanda-a1", scope.getScopeId());
+        assertEquals(List.of(P_VEGETABLES, P_COME), scope.getProposalIds(), "its proposals, one per exercise, and no other");
     }
 
     @Test
     @DisplayName("should drop through the ledger the change the gate returns, as «My grandmother ___ (come) every year.», recalculate without it and close when the gate passes")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDropThroughTheLedgerTheChangeTheGateReturnsAsMyGrandmotherComeEveryYearRecalculateWithoutItAndCloseWhenTheGatePasses(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 and F-NOEMP-R005: «My grandmother ___ (come) every year.» puts «grandmother», of A2, in A1. The gate returns
+        // it; it leaves through the ledger, the batch is compared again without it, and closes when the gate passes.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        closing.comparator.answer = scope -> scope.getProposalIds().contains(P_COME)
+                ? TandaFixture.comparison(scope, List.of(outcome(P_COME, MesaFixture.COME, true, List.of(grandmother()), List.of()),
+                        outcome(P_VEGETABLES, MesaFixture.VEGETABLES, false, List.of(), List.of())), VerdictKind.FAILS)
+                : TandaFixture.passing(scope, List.of(outcome(P_VEGETABLES, MesaFixture.VEGETABLES, false, List.of(),
+                        List.of())));
+
+        batch = closing.closer().close(batch, closing.course);
+
+        BatchChange come = change(batch, "mesa-" + MesaFixture.COME);
+        assertTrue(come.getDroppedReason().startsWith("la compuerta de la tanda lo devolvió: F-NOEMP-R005: " + MesaFixture.COME
+                + " gana una palabra roja de lemma-absence"), come.getDroppedReason());
+        assertNull(change(batch, "mesa-" + MesaFixture.VEGETABLES).getDroppedReason());
+        assertEquals(2, closing.comparator.scopes.size(), "compared again without it");
+        assertEquals(List.of(P_VEGETABLES), closing.comparator.scopes.get(1).getProposalIds());
+        assertEquals(BatchStatus.CLOSED, batch.getStatus());
+        BatchClosing closed = batch.getClosings().get(batch.getClosings().size() - 1);
+        assertTrue(closed.getGate().isPasses(), closed.getGate().getReasons().toString());
+        assertEquals(List.of("mesa-" + MesaFixture.COME), closed.getReturnedChangeIds());
+        assertEquals(2, closed.getRounds());
+        assertEquals(RevisionVerdict.REJECTED, closing.artifacts.load(TandaFixture.PLAN, P_COME).orElseThrow().getVerdict(),
+                "its proposal leaves with it");
     }
 
     @Test
     @DisplayName("should count a task as resolved when its finding identity and those it covers no longer appear in the recalculated course, as the LEMMA_ABSENCE task of reside only when lemma-absence and off-level-words both stop marking it")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldCountATaskAsResolvedWhenItsFindingIdentityAndThoseItCoversNoLongerAppearInTheRecalculatedCourseAsTheLEMMAABSENCETaskOfResideOnlyWhenLemmaabsenceAndOfflevelwordsBothStopMarkingIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 inv. 2: the LEMMA_ABSENCE task of reside covers the error of off-level-words. The recalculated course stops
+        // marking lemma-absence but still marks off-level-words: the task is not resolved. When both stop, it is.
+        for (boolean both : List.of(false, true)) {
+            Closing closing = new Closing();
+            CorrectionBatch batch = closing.batch("t-reside");
+            QuizTemplateEntity reside = withParts(TandaFixture.exercise(closing.course, TandaFixture.RESIDE),
+                    text("We live"), cloze("in"), text("London with our granddad."));
+            closing.record(batch, "mesa-" + TandaFixture.RESIDE, List.of("t-reside"),
+                    TandaFixture.step(reside, ExercisePart.STATEMENT));
+            BatchBook.setOutcome(batch, "t-reside", BatchTaskOutcomeKind.RESOLVED_BY_PANEL, "mesa-" + TandaFixture.RESIDE, 1,
+                    null);
+            List<Finding> fixed = both ? List.of(LEMMA, OFF_LEVEL) : List.of(LEMMA);
+            closing.comparator.answer = scope -> TandaFixture.passing(scope, List.of(outcome("tanda-a1-" + TandaFixture.RESIDE,
+                    TandaFixture.RESIDE, false, List.of(), fixed)));
+
+            batch = closing.closer().close(batch, closing.course);
+
+            BatchTaskOutcome outcome = BatchBook.outcome(batch, "t-reside").orElseThrow();
+            if (both) {
+                assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_PANEL, outcome.getKind(), "both stopped marking it");
+            } else {
+                assertEquals(BatchTaskOutcomeKind.PENDING, outcome.getKind(), "off-level-words still marks reside");
+                assertEquals("el curso recalculado todavía la marca", outcome.getDetail());
+            }
+        }
     }
 
     @Test
     @DisplayName("should hand the gate the nodes that changed outside the batch, computed when composing its course")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldHandTheGateTheNodesThatChangedOutsideTheBatchComputedWhenComposingItsCourse(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-NOEMP-R007: a change of the vegetables also moved «___ a child? (He)», which no task of the batch holds. The
+        // closer composes the course of the batch and hands the gate that node; the gate stops the batch, naming it.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batch("t-respuesta");
+        QuizTemplateEntity vegetables = withParts(TandaFixture.exercise(closing.course, MesaFixture.VEGETABLES), text("I"),
+                cloze("love"), text("vegetables."));
+        QuizTemplateEntity child = TandaFixture.edited(TandaFixture.exercise(closing.course, TandaFixture.CHILD),
+                q -> q.setTranslation("¿Él es un niño?"));
+        closing.record(batch, "mesa-" + MesaFixture.VEGETABLES, List.of("t-respuesta"),
+                TandaFixture.step(vegetables, ExercisePart.STATEMENT), TandaFixture.step(child, ExercisePart.TRANSLATION));
+
+        batch = closing.closer().close(batch, closing.course);
+
+        assertEquals(List.of(List.of(TandaFixture.CHILD)), closing.outsides, "the node outside, computed from the composition");
+        BatchClosing closed = batch.getClosings().get(0);
+        assertFalse(closed.getGate().isPasses());
+        assertEquals(List.of(TandaFixture.CHILD), closed.getGate().getChangedOutsideScope());
+        assertTrue(closed.getGate().getReasons().contains("F-NOEMP-R007: cambió fuera de la tanda: " + TandaFixture.CHILD),
+                closed.getGate().getReasons().toString());
     }
 
     @Test
     @DisplayName("should ask F for the blind sample of its scope once the gate passes, and keep its id")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldAskFForTheBlindSampleOfItsScopeOnceTheGatePassesAndKeepItsId() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: once the gate passes, F draws the blind sample of that scope and the batch keeps its id; a batch the gate
+        // stops gets none.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+
+        batch = closing.closer().close(batch, closing.course);
+
+        assertEquals(List.of(closing.comparator.scopes.get(0)), closing.samples.drawn, "the sample of the scope compared");
+        assertEquals("muestra-1", batch.getBlindSampleId());
+
+        Closing stopped = new Closing();
+        CorrectionBatch outside = stopped.batch("t-respuesta");
+        stopped.record(outside, "mesa-" + MesaFixture.VEGETABLES, List.of("t-respuesta"), TandaFixture.step(
+                TandaFixture.edited(TandaFixture.exercise(stopped.course, TandaFixture.CHILD), q -> q.setTranslation("¿Niño?")),
+                ExercisePart.TRANSLATION));
+        outside = stopped.closer().close(outside, stopped.course);
+        assertTrue(stopped.samples.drawn.isEmpty(), "no sample for a batch the gate stops");
+        assertNull(outside.getBlindSampleId());
     }
 
     @Test
     @DisplayName("should spend one attempt of each change the gate returns and send its topic back to the panel with the reason, and end as returned without attempts, for the tray, a change that has none left")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldSpendOneAttemptOfEachChangeTheGateReturnsAndSendItsTopicBackToThePanelWithTheReasonAndEndAsReturnedWithoutAttemptsForTheTrayAChangeThatHasNoneLeft(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: the gate returns both changes. The grandmother had used no attempt: it spends one and goes back to the panel
+        // with the reason. The vegetables had used two of three: with this one it has none left, and ends for the tray.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        BatchBook.setOutcome(batch, "t-respuesta", BatchTaskOutcomeKind.RESOLVED_BY_PANEL, "mesa-" + MesaFixture.VEGETABLES, 2,
+                null);
+        Finding duplicate = MesaFixture.finding("exact-duplicates", "same-exercise", MesaFixture.VEGETABLES,
+                FindingSeverity.HIGH, FindingResolution.RULE, null, "queda igual a «I love vegetables.» de B1");
+        closing.comparator.answer = scope -> scope.getProposalIds().isEmpty() ? TandaFixture.passing(scope, List.of())
+                : TandaFixture.comparison(scope, List.of(outcome(P_COME, MesaFixture.COME, true, List.of(grandmother()), List.of()),
+                        outcome(P_VEGETABLES, MesaFixture.VEGETABLES, true, List.of(duplicate), List.of())), VerdictKind.FAILS);
+
+        batch = closing.closer().close(batch, closing.course);
+
+        BatchTaskOutcome come = BatchBook.outcome(batch, "t-come").orElseThrow();
+        assertEquals(BatchTaskOutcomeKind.PENDING, come.getKind(), "back to the panel");
+        assertEquals(1, come.getAttempts(), "one attempt spent");
+        assertTrue(come.getDetail().startsWith("F-NOEMP-R005: " + MesaFixture.COME + " gana una palabra roja"), come.getDetail());
+        BatchTaskOutcome vegetables = BatchBook.outcome(batch, "t-respuesta").orElseThrow();
+        assertEquals(BatchTaskOutcomeKind.RETURNED_WITHOUT_ATTEMPTS, vegetables.getKind(), "for the tray");
+        assertEquals(3, vegetables.getAttempts());
+        assertTrue(vegetables.getDetail().startsWith("F-NOEMP-R005: " + MesaFixture.VEGETABLES + " gana un error nuevo de"
+                + " exact-duplicates"), vegetables.getDetail());
     }
 
     @Test
     @DisplayName("should end as pending rerecording, not resolved, a task of the audio whose audio the batch asked to rerecord with what the exercise says, since its finding stays until it is recorded")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldEndAsPendingRerecordingNotResolvedATaskOfTheAudioWhoseAudioTheBatchAskedToRerecordWithWhatTheExerciseSaysSinceItsFindingStaysUntilItIsRecorded(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 inv. 3 and R012: no one knew which copy of «I learned ___ (me / myself) to drive a car.» was right; the panel
+        // kept the exercise and asked to record its audio again with what it says. The finding of the audio lasts until it is
+        // recorded: its task ends pending re-recording, not resolved. A task that is not of the audio and still marks, pending.
+        Closing closing = new Closing(TandaFixture.withLearned(TandaFixture.course()));
+        CorrectionBatch batch = closing.batch("t-audio", "t-traduccion");
+        Finding audio = MesaFixture.finding("data-coherence", "audio-matches", TandaFixture.LEARNED, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, "audio", "audio: «I learned me myself to drive a car.»; hoy: «I learned myself to drive"
+                        + " a car.». No se sabe cuál copia está bien: va a la mesa.");
+        closing.plans.saved.get(TandaFixture.PLAN).getTasks().add(TandaFixture.task("t-audio", audio, TandaFixture.REFLEXIVE,
+                CefrLevel.A1));
+        QuizTemplateEntity learned = TandaFixture.edited(TandaFixture.exercise(closing.course, TandaFixture.LEARNED),
+                q -> q.setTranslation("Aprendí a manejar por mi cuenta."));
+        BatchChange change = closing.record(batch, "mesa-" + TandaFixture.LEARNED, List.of("t-audio"),
+                TandaFixture.step(learned, ExercisePart.TRANSLATION));
+        AudioRerecordRequest request = new AudioRerecordRequest(TandaFixture.LEARNED, MesaFixture.audioKey(TandaFixture.LEARNED),
+                List.of("I learned myself to drive a car."));
+        change.setGateVerdict(new ChangeGateVerdict(true, List.of(), List.of(), List.of(), List.of(request), List.of(),
+                List.of()));
+        BatchBook.setOutcome(batch, "t-audio", BatchTaskOutcomeKind.RESOLVED_BY_PANEL, change.getChangeId(), 1, null);
+        QuizTemplateEntity vegetables = TandaFixture.edited(TandaFixture.exercise(closing.course, MesaFixture.VEGETABLES),
+                q -> q.setTranslation("Amo las verduras."));
+        closing.record(batch, "mesa-" + MesaFixture.VEGETABLES, List.of("t-traduccion"),
+                TandaFixture.step(vegetables, ExercisePart.TRANSLATION));
+        BatchBook.setOutcome(batch, "t-traduccion", BatchTaskOutcomeKind.RESOLVED_BY_PANEL, "mesa-" + MesaFixture.VEGETABLES, 1,
+                null);
+        closing.comparator.answer = scope -> TandaFixture.passing(scope, List.of(
+                outcome("tanda-a1-" + TandaFixture.LEARNED, TandaFixture.LEARNED, false, List.of(), List.of()),
+                outcome(P_VEGETABLES, MesaFixture.VEGETABLES, false, List.of(), List.of())));
+
+        batch = closing.closer().close(batch, closing.course);
+
+        BatchTaskOutcome waiting = BatchBook.outcome(batch, "t-audio").orElseThrow();
+        assertEquals(BatchTaskOutcomeKind.PENDING_RERECORDING, waiting.getKind(), "not resolved: its audio is not recorded yet");
+        assertEquals("su hallazgo sigue hasta que se grabe el audio pedido", waiting.getDetail());
+        assertEquals(change.getChangeId(), waiting.getChangeId());
+        assertEquals(BatchTaskOutcomeKind.PENDING, BatchBook.kind(batch, "t-traduccion"), "still marked, not of the audio");
+    }
+
+
+    private static final String P_VEGETABLES = "tanda-a1-" + MesaFixture.VEGETABLES;
+
+    private static final String P_COME = "tanda-a1-" + MesaFixture.COME;
+
+    private static final Finding LEMMA = MesaFixture.finding("lemma-absence", "misplaced-word", TandaFixture.RESIDE,
+            FindingSeverity.MEDIUM, FindingResolution.PANEL, "reside", "«reside» no es de A1");
+
+    private static final Finding OFF_LEVEL = MesaFixture.finding("off-level-words", "far-above-level", TandaFixture.RESIDE,
+            FindingSeverity.HIGH, FindingResolution.PANEL, "reside", "«reside» es de C1");
+
+    /** The closer over the course in memory: F's comparison by hand, the real gate (watched), the real ledger. */
+    private static final class Closing {
+        final TandaFixture.Comparator comparator = new TandaFixture.Comparator();
+
+        final TandaFixture.Samples samples = new TandaFixture.Samples();
+
+        final TandaFixture.Batches batches = new TandaFixture.Batches();
+
+        final TandaFixture.Artifacts artifacts = new TandaFixture.Artifacts();
+
+        final List<List<String>> outsides = new ArrayList<>();
+
+        final CourseEntity course;
+
+        final TandaFixture.Plans plans;
+
+        Closing() {
+            this(TandaFixture.course());
+        }
+
+        Closing(CourseEntity course) {
+            this.course = course;
+            this.plans = new TandaFixture.Plans(TandaFixture.plan(
+                    TandaFixture.task("t-respuesta", MesaFixture.anotherAnswer(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                    TandaFixture.task("t-traduccion", MesaFixture.translationDiffers(), MesaFixture.AFIRMATIVAS,
+                            CefrLevel.A1),
+                    TandaFixture.task("t-come", MesaFixture.finding("single-answer", "different-valid-answer",
+                            MesaFixture.COME, FindingSeverity.BLOCKING, FindingResolution.PANEL, null,
+                            "«goes» también encaja"), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                    TandaFixture.covering("t-reside", LEMMA, List.of(OFF_LEVEL), TandaFixture.RESIDE_TOPIC)));
+        }
+
+        DefaultBatchChangeLedger ledger() {
+            return new DefaultBatchChangeLedger(artifacts, TandaFixture.locator());
+        }
+
+        DefaultBatchCloser closer() {
+            BatchGate real = new DefaultGateFactory().batchGate();
+            BatchGate watched = (comparison, outside, exceptions) -> {
+                outsides.add(new ArrayList<>(outside));
+                return real.evaluate(comparison, outside, exceptions);
+            };
+            return new DefaultBatchCloser(comparator, watched, samples, ledger(), batches, TandaFixture.COURSE_PATH)
+                    .withPlans(plans, MesaFixture.corrections());
+        }
+
+        CorrectionBatch batch(String... taskIds) {
+            CorrectionBatch batch = TandaFixture.batch("tanda-a1", taskIds);
+            batch.setStatus(BatchStatus.RUNNING);
+            return batch;
+        }
+
+        BatchChange record(CorrectionBatch batch, String changeId, List<String> taskIds, BatchChangeStep... steps) {
+            BatchChange change = TandaFixture.change(changeId, BatchChangeOrigin.PANEL, null, taskIds, steps);
+            ledger().record(batch, change, course);
+            return change;
+        }
+
+        /** The vegetables without «a lot of» and the grandmother of «My grandmother ___ (come) every year.». */
+        CorrectionBatch batchWithVegetablesAndGrandmother() {
+            CorrectionBatch batch = batch("t-respuesta", "t-come");
+            record(batch, "mesa-" + MesaFixture.VEGETABLES, List.of("t-respuesta"), TandaFixture.step(withParts(
+                    TandaFixture.exercise(course, MesaFixture.VEGETABLES), text("I"), cloze("love"), text("vegetables.")),
+                    ExercisePart.STATEMENT));
+            BatchBook.setOutcome(batch, "t-respuesta", BatchTaskOutcomeKind.RESOLVED_BY_PANEL,
+                    "mesa-" + MesaFixture.VEGETABLES, 1, null);
+            record(batch, "mesa-" + MesaFixture.COME, List.of("t-come"), TandaFixture.step(withParts(
+                    TandaFixture.exercise(course, MesaFixture.COME), text("My grandmother"), cloze("comes"),
+                    text("(come) every year.")), ExercisePart.STATEMENT));
+            BatchBook.setOutcome(batch, "t-come", BatchTaskOutcomeKind.RESOLVED_BY_PANEL, "mesa-" + MesaFixture.COME, 0,
+                    null);
+            return batch;
+        }
+    }
+
+    /** lemma-absence on «grandmother», a word of A2 in A1: a red word. */
+    private static Finding grandmother() {
+        return MesaFixture.finding("lemma-absence", "misplaced-word", MesaFixture.COME, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, "grandmother", "«grandmother» es de A2 en un ejercicio de A1");
+    }
+
+    private static ChangeOutcome outcome(String proposalId, String quizId, boolean returns, List<Finding> gained,
+            List<Finding> fixed) {
+        return new ChangeOutcome(proposalId, AuditTarget.QUIZ, quizId, returns, new ArrayList<>(gained),
+                new ArrayList<>(fixed), new ArrayList<>());
+    }
+
+    private static BatchChange change(CorrectionBatch batch, String changeId) {
+        return batch.getChanges().stream().filter(c -> c.getChangeId().equals(changeId)).findFirst().orElseThrow();
     }
 }

@@ -1,7 +1,12 @@
 package com.learney.contentaudit.revisiondomain.panelengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
+import java.util.Optional;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,17 +20,41 @@ public class CappedQueryAllowanceTest {
     @DisplayName("should refuse a reservation that would go over the cap of the batch or over the queries at once")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRefuseAReservationThatWouldGoOverTheCapOfTheBatchOrOverTheQueriesAtOnce() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R010 inv. 1 and F-TANDA-R003: with a cap of 3 for the batch and 2 queries at once, a third query in flight
+        // waits, and the fourth of the batch never starts.
+        QueryAllowance allowance = new DefaultPanelRunnerFactory().allowance(3, 2);
+
+        assertTrue(allowance.tryReserve(1));
+        assertTrue(allowance.tryReserve(1));
+        assertFalse(allowance.tryReserve(1), "a third query at once goes over C");
+        assertTrue(allowance.tripped().isEmpty(), "it waits: nothing tripped");
+        allowance.settle(1, 1);
+        allowance.settle(1, 1);
+        assertTrue(allowance.tryReserve(1), "the third of the batch");
+        assertFalse(allowance.tryReserve(1), "a fourth would go over the cap");
+        allowance.settle(1, 1);
+        assertEquals(3, allowance.spent());
+        assertFalse(allowance.tryReserve(1), "the cap is spent");
+        assertEquals(Optional.of("se llegó al tope de 3 consultas de la tanda"), allowance.tripped());
+        assertFalse(new DefaultPanelRunnerFactory().allowance(null, 2).tryReserve(3), "never more than C at once");
     }
 
     @Test
     @DisplayName("should refuse every reservation once a service failure tripped it, and say why")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRefuseEveryReservationOnceAServiceFailureTrippedItAndSayWhy() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R010 inv. 2: after a failure of the service no query starts, and the allowance says why.
+        QueryAllowance allowance = new DefaultPanelRunnerFactory().allowance(null, 4);
+        assertTrue(allowance.tryReserve(1));
+
+        allowance.trip("el servicio del modelo no responde");
+        allowance.settle(1, 1);
+        allowance.trip("otra cosa");
+
+        assertFalse(allowance.tryReserve(1), "no query starts");
+        assertEquals(Optional.of("el servicio del modelo no responde"), allowance.tripped(), "the first cause");
+        assertEquals(1, allowance.spent(), "what was in flight is still settled");
     }
 }

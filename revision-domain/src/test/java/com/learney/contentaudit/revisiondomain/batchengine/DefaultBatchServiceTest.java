@@ -1,7 +1,65 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditEngine;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.Baseline;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.IrregularFormsCatalog;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceRuleFix;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.refinerdomain.PlanFindingTally;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.refinerdomain.RefinerEngine;
+import com.learney.contentaudit.refinerdomain.UnconvertedScoreCount;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
+import com.learney.contentaudit.revisiondomain.batch.BatchAlreadyOpenException;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchNotPublishableException;
+import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
+import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchRunRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.comparison.SealedGoals;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory;
+import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelRunner;
+import com.learney.contentaudit.revisiondomain.panel.PanelRunnerConfig;
+import com.learney.contentaudit.revisiondomain.panel.PanelRunnerFactory;
+import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
+import com.learney.contentaudit.revisiondomain.panel.TopicMeter;
+import com.learney.contentaudit.revisiondomain.panelengine.DefaultPanelRunnerFactory;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationFactory;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,154 +73,530 @@ public class DefaultBatchServiceTest {
     @DisplayName("should open the first batch on the baseline fixed in the registry of F and set the active pair to that analysis and its plan")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldOpenTheFirstBatchOnTheBaselineFixedInTheRegistryOfFAndSetTheActivePairToThatAnalysisAndItsPlan(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the first batch starts from the baseline fixed in F's registry -- the analysis of 29/9 -- and its plan, and the
+        // active pair moves to them. Its tasks leave the plan «in batch».
+        Service service = new Service();
+
+        CorrectionBatch batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+
+        assertEquals(TandaFixture.BASELINE, batch.getBaselineAuditId());
+        assertEquals(TandaFixture.BASELINE, batch.getStartAuditId(), "the first batch starts from the baseline");
+        assertEquals(TandaFixture.PLAN, batch.getPlanId());
+        assertEquals(TandaFixture.BASELINE, service.active.selection.getAuditId());
+        assertEquals(TandaFixture.PLAN, service.active.selection.getPlanId());
+        assertEquals(BatchStatus.OPEN, batch.getStatus());
+        assertTrue(batch.getId().startsWith("tanda-A1-"), batch.getId());
+        assertEquals(List.of("t-pista", "t-respuesta", "t-teoria", "t-reside"), batch.getTaskIds());
+        for (RefinementTask task : service.plans.load(TandaFixture.PLAN).orElseThrow().getTasks()) {
+            assertEquals(RefinementTaskStatus.IN_BATCH, task.getStatus(), task.getId());
+        }
+        assertEquals(MesaFixture.ANALYZERS, batch.getAnalyzers(), "the analyzers of the analysis it starts from");
+        assertTrue(service.batches.saved.containsKey(batch.getId()), "saved");
     }
 
     @Test
     @DisplayName("should open each later batch on the analysis the last published batch left, keeping the same fixed baseline")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldOpenEachLaterBatchOnTheAnalysisTheLastPublishedBatchLeftKeepingTheSameFixedBaseline(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: after a publication, the next batch starts from the analysis it left and its plan; the baseline stays.
+        Service service = new Service();
+        service.reports.put("audit-publicado-1", service.reports.load(TandaFixture.BASELINE).orElseThrow());
+        RefinementPlan next = TandaFixture.plan(TandaFixture.task("t-otra", MesaFixture.translationDiffers(),
+                MesaFixture.AFIRMATIVAS, CefrLevel.A1));
+        next.setId("plan-publicado-1");
+        next.setSourceAuditId("audit-publicado-1");
+        service.plans.save(next);
+        service.batches.save(published("tanda-A1-anterior", "audit-publicado-1", "plan-publicado-1", List.of(),
+                Instant.parse("2026-10-01T10:00:00Z")));
+
+        CorrectionBatch batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+
+        assertEquals("audit-publicado-1", batch.getStartAuditId(), "from what the last published batch left");
+        assertEquals("plan-publicado-1", batch.getPlanId());
+        assertEquals(List.of("t-otra"), batch.getTaskIds());
+        assertEquals(TandaFixture.BASELINE, batch.getBaselineAuditId(), "the same fixed baseline");
+        assertEquals("audit-publicado-1", service.active.selection.getAuditId());
     }
 
     @Test
     @DisplayName("should refuse to open a batch while no baseline is fixed")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldRefuseToOpenABatchWhileNoBaselineIsFixed() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: without a fixed baseline there is nothing to measure the batches against: it does not open.
+        Service service = new Service();
+        service.baselines.baseline = null;
+
+        IllegalStateException refused = assertThrows(IllegalStateException.class,
+                () -> service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of())));
+
+        assertTrue(refused.getMessage().startsWith("No hay una línea base fijada"), refused.getMessage());
+        assertTrue(service.batches.saved.isEmpty(), "nothing opened");
+        assertNull(service.active.selection, "the active pair does not move");
     }
 
     @Test
     @DisplayName("should fix, when the batch of A1 opens, the goals of the declaration as they are, with the time of the opening, as the vocabulary floor of 0.5 points")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R011")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldFixWhenTheBatchOfA1OpensTheGoalsOfTheDeclarationAsTheyAreWithTheTimeOfTheOpeningAsTheVocabularyFloorOf05Points(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011 and F-METAS-R006: opening the batch of A1 seals the goals as the declaration has them, at that moment: the
+        // vocabulary floor of 0,5 points.
+        Service service = new Service();
+        Instant before = Instant.now();
+
+        CorrectionBatch batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+
+        assertEquals(1, service.goals.seals.size(), "sealed once");
+        SealedGoals sealed = service.goals.seals.get(0);
+        assertEquals(List.of(TandaFixture.Goals.VOCABULARY_FLOOR), sealed.getGoals().getGoals());
+        assertEquals(0.5, sealed.getGoals().getGoals().get(0).getThreshold(), 1e-9);
+        assertFalse(sealed.getSealedAt().isBefore(before), "at the opening");
+        assertFalse(sealed.getSealedAt().isAfter(batch.getOpenedAt().plusSeconds(1)));
     }
 
     @Test
     @DisplayName("should fix no goals when opening is refused, without a fixed baseline or with another batch open")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R011")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldFixNoGoalsWhenOpeningIsRefusedWithoutAFixedBaselineOrWithAnotherBatchOpen() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011: a refused opening seals nothing -- neither without a baseline nor with another batch open.
+        Service noBaseline = new Service();
+        noBaseline.baselines.baseline = null;
+        assertThrows(IllegalStateException.class,
+                () -> noBaseline.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of())));
+        assertTrue(noBaseline.goals.seals.isEmpty());
+
+        Service another = new Service();
+        another.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        assertThrows(BatchAlreadyOpenException.class,
+                () -> another.service().open(new BatchOpenRequest(CefrLevel.A2, null, null, List.of())));
+        assertEquals(1, another.goals.seals.size(), "only the opening that happened sealed");
     }
 
     @Test
     @DisplayName("should not fix the goals again when the batch is resumed or closed, so a goal changed after opening shows up as changed in its comparison")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R011")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldNotFixTheGoalsAgainWhenTheBatchIsResumedOrClosedSoAGoalChangedAfterOpeningShowsUpAsChangedInItsComparison(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011: running, resuming and closing do not seal again: the goals stay as they were at the opening, so a goal changed
+        // afterwards is a change F shows in its comparison.
+        Service service = new Service();
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+
+        service.service().run(new BatchRunRequest(null));
+        service.service().run(new BatchRunRequest(null));
+        service.service().close();
+
+        assertEquals(1, service.goals.seals.size(), "only the opening sealed");
     }
 
     @Test
     @DisplayName("should refuse to open the batch of A2 while the batch of A1 is open, naming the open batch")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldRefuseToOpenTheBatchOfA2WhileTheBatchOfA1IsOpenNamingTheOpenBatch() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: one batch open at a time.
+        Service service = new Service();
+        CorrectionBatch a1 = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+
+        BatchAlreadyOpenException refused = assertThrows(BatchAlreadyOpenException.class,
+                () -> service.service().open(new BatchOpenRequest(CefrLevel.A2, null, null, List.of())));
+
+        assertTrue(refused.getMessage().contains(a1.getId()), "naming the open batch: " + refused.getMessage());
+        assertEquals(1, service.batches.saved.size());
     }
 
     @Test
     @DisplayName("should apply the rules and make no query when the run asks no cap, leaving every panel task not attempted")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldApplyTheRulesAndMakeNoQueryWhenTheRunAsksNoCapLeavingEveryPanelTaskNotAttempted(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: without a cap the rules run -- they query nothing -- and the panel tasks stay not attempted.
+        Service service = new Service();
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+
+        service.service().run(new BatchRunRequest(null));
+
+        CorrectionBatch batch = service.batches.open().orElseThrow();
+        assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_RULE, BatchBook.kind(batch, "t-pista"), "the rule of the hint ran");
+        for (String task : List.of("t-respuesta", "t-teoria", "t-reside")) {
+            assertEquals(BatchTaskOutcomeKind.NOT_ATTEMPTED, BatchBook.kind(batch, task), task);
+            assertEquals("sin tope de consultas pedido: la mesa no corrió", BatchBook.outcome(batch, task).orElseThrow()
+                    .getDetail());
+        }
+        assertTrue(service.panels.works.isEmpty(), "no panel opened");
+        assertTrue(service.allowances.isEmpty(), "no allowance to spend");
+        assertEquals(0, batch.getQueriesSpent());
+        assertNull(batch.getQueryCap());
     }
 
     @Test
     @DisplayName("should start no query once the cap asked for the run is reached, and leave what was not decided as not attempted")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldStartNoQueryOnceTheCapAskedForTheRunIsReachedAndLeaveWhatWasNotDecidedAsNotAttempted(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: with a cap of 2 queries, two decisions get theirs; the third topic gets none and stays not attempted.
+        Service service = new Service();
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        service.panels.decide = work -> List.of(TandaFixture.decision(work.getKnowledge().getId(), null, taskIds(work),
+                PanelOutcomeKind.TIE, null, List.of(), 1));
+
+        service.service().run(new BatchRunRequest(2));
+
+        CorrectionBatch batch = service.batches.open().orElseThrow();
+        assertEquals(Integer.valueOf(2), batch.getQueryCap());
+        assertEquals(2, batch.getQueriesSpent(), "no query beyond the cap");
+        assertEquals(BatchTaskOutcomeKind.TIE, BatchBook.kind(batch, "t-respuesta"));
+        assertEquals(BatchTaskOutcomeKind.TIE, BatchBook.kind(batch, "t-teoria"));
+        assertEquals(BatchTaskOutcomeKind.NOT_ATTEMPTED, BatchBook.kind(batch, "t-reside"), "the cap was reached");
+        assertEquals(BatchStatus.OPEN, batch.getStatus(), "reaching the cap is not a failure");
     }
 
     @Test
     @DisplayName("should run the panels with the topics and queries at once asked when the batch opened, as 8 and 8")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldRunThePanelsWithTheTopicsAndQueriesAtOnceAskedWhenTheBatchOpenedAs8And8() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: José asked 8 topics and 8 queries at once when opening: the panels run with them.
+        Service service = new Service();
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, 8, 8, List.of()));
+
+        service.service().run(new BatchRunRequest(40));
+
+        assertEquals(8, service.panels.settings.get(0).getTopicsAtOnce());
+        assertEquals(8, service.panels.settings.get(0).getQueriesAtOnce());
+        assertEquals(List.of(40, 8), service.allowances.get(0), "the cap of the run and 8 queries at once");
     }
 
     @Test
     @DisplayName("should mark the batch interrupted when the service fails, keeping every outcome, verdict and accepted change")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldMarkTheBatchInterruptedWhenTheServiceFailsKeepingEveryOutcomeVerdictAndAcceptedChange(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: the service of the models fails after the first topic. The batch is interrupted, and keeps what it decided:
+        // the hint of its rule and the tie of the first topic; the rest, not attempted.
+        Service service = new Service();
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        service.panels.decide = work -> List.of(TandaFixture.decision(work.getKnowledge().getId(), null, taskIds(work),
+                PanelOutcomeKind.TIE, null, List.of(), 1));
+        service.panels.tripAfterTopics = 1;
+
+        service.service().run(new BatchRunRequest(40));
+
+        CorrectionBatch batch = service.batches.open().orElseThrow();
+        assertEquals(BatchStatus.INTERRUPTED, batch.getStatus());
+        assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_RULE, BatchBook.kind(batch, "t-pista"), "the rule change is kept");
+        assertEquals(1, batch.getChanges().size());
+        assertEquals(BatchTaskOutcomeKind.TIE, BatchBook.kind(batch, "t-respuesta"), "the decision of the first topic too");
+        assertEquals(BatchTaskOutcomeKind.NOT_ATTEMPTED, BatchBook.kind(batch, "t-teoria"));
+        assertEquals(BatchTaskOutcomeKind.NOT_ATTEMPTED, BatchBook.kind(batch, "t-reside"));
+        assertEquals(1, batch.getQueriesSpent());
     }
 
     @Test
     @DisplayName("should resume an interrupted batch where it stopped, without repeating a decided attempt nor paying a query twice")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldResumeAnInterruptedBatchWhereItStoppedWithoutRepeatingADecidedAttemptNorPayingAQueryTwice(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: running again resumes the interrupted batch: the rule is not applied again, the tie of the first topic is
+        // not repeated, and only the topics left get their queries.
+        Service service = new Service();
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        service.panels.decide = work -> List.of(TandaFixture.decision(work.getKnowledge().getId(), null, taskIds(work),
+                PanelOutcomeKind.TIE, null, List.of(), 1));
+        service.panels.tripAfterTopics = 1;
+        service.service().run(new BatchRunRequest(40));
+        int measured = service.meter.measured.size();
+        int works = service.panels.works.size();
+        service.panels.tripAfterTopics = -1;
+
+        service.service().run(new BatchRunRequest(40));
+
+        CorrectionBatch batch = service.batches.open().orElseThrow();
+        assertEquals(BatchStatus.OPEN, batch.getStatus(), "resumed and done");
+        assertEquals(measured, service.meter.measured.size(), "the rule is not measured again");
+        List<String> resumed = service.panels.works.subList(works, service.panels.works.size()).stream()
+                .map(w -> w.getKnowledge().getId()).toList();
+        assertFalse(resumed.contains(MesaFixture.AFIRMATIVAS), "the decided topic is not attempted again: " + resumed);
+        assertTrue(resumed.containsAll(List.of(MesaFixture.CONTRASTE, TandaFixture.RESIDE_TOPIC)), resumed.toString());
+        assertEquals(1, batch.getOutcomes().stream().filter(o -> o.getTaskId().equals("t-respuesta")).count());
+        assertEquals(3, batch.getQueriesSpent(), "1 before the cut and 2 after: none paid twice");
+        assertEquals(BatchTaskOutcomeKind.TIE, BatchBook.kind(batch, "t-reside"));
     }
 
     @Test
     @DisplayName("should reject the proposal of a dropped change, put its tasks back to pending and recalculate the batch against the gate")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldRejectTheProposalOfADroppedChangePutItsTasksBackToPendingAndRecalculateTheBatchAgainstTheGate(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: after the closing, José drops the change of the hint of the vegetables. Its proposal is rejected, its task
+        // goes back to pending, and the batch is compared again against the gate without it.
+        Service service = new Service();
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        service.service().run(new BatchRunRequest(null));
+        service.service().close();
+        CorrectionBatch opened = service.batches.open().orElseThrow();
+        String changeId = opened.getChanges().get(0).getChangeId();
+        String proposalId = opened.getQuizProposals().get(0).getProposalId();
+
+        CorrectionBatch batch = service.service().adjust(new BatchAdjustment(BatchAdjustmentKind.DROP_CHANGE,
+                MesaFixture.VEGETABLES, List.of(), changeId, null, null, null, "la pista va en la mesa", "José", null));
+
+        assertEquals("la pista va en la mesa", batch.getChanges().get(0).getDroppedReason());
+        assertEquals(RevisionVerdict.REJECTED, service.artifacts.load(TandaFixture.PLAN, proposalId).orElseThrow().getVerdict());
+        assertEquals(BatchTaskOutcomeKind.PENDING, BatchBook.kind(batch, "t-pista"));
+        assertEquals(2, service.comparator.scopes.size(), "compared again");
+        assertTrue(service.comparator.scopes.get(1).getProposalIds().isEmpty(), "without it");
+        assertEquals(BatchAdjustmentKind.DROP_CHANGE, batch.getAdjustments().get(0).getKind(), "José's decision, kept");
     }
 
     @Test
     @DisplayName("should drop every change of a rule at once when José drops the rule")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDropEveryChangeOfARuleAtOnceWhenJosDropsTheRule() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: José drops the rule of the hint: every change of that rule leaves at once; a change of the panel stays.
+        Service service = new Service();
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        CorrectionBatch batch = service.batches.open().orElseThrow();
+        DefaultBatchChangeLedger ledger = new DefaultBatchChangeLedger(service.artifacts, TandaFixture.locator());
+        for (String quizId : List.of(MesaFixture.VEGETABLES, FRUIT)) {
+            QuizTemplateEntity hinted = TandaFixture.edited(TandaFixture.exercise(service.courses.course, quizId),
+                    q -> q.setInstructions("Completa con el verbo entre paréntesis."));
+            ledger.record(batch, TandaFixture.change("regla-hint-coherence-" + quizId, BatchChangeOrigin.RULE,
+                    "hint-coherence", List.of("t-pista"), TandaFixture.step(hinted, ExercisePart.INSTRUCTIONS)),
+                    service.courses.course);
+        }
+        QuizTemplateEntity translated = TandaFixture.edited(TandaFixture.exercise(service.courses.course, MesaFixture.COME),
+                q -> q.setTranslation("Él viene todos los años."));
+        ledger.record(batch, TandaFixture.change("mesa-" + MesaFixture.COME, BatchChangeOrigin.PANEL, null,
+                List.of("t-respuesta"), TandaFixture.step(translated, ExercisePart.TRANSLATION)), service.courses.course);
+        service.batches.save(batch);
+
+        batch = service.service().adjust(new BatchAdjustment(BatchAdjustmentKind.DROP_RULE, null, List.of(), null,
+                "hint-coherence", null, null, null, "José", null));
+
+        assertEquals(List.of("José sacó la regla hint-coherence", "José sacó la regla hint-coherence"),
+                batch.getChanges().stream().filter(c -> c.getOrigin() == BatchChangeOrigin.RULE)
+                        .map(BatchChange::getDroppedReason).toList(), "every change of the rule, at once");
+        assertNull(batch.getChanges().get(2).getDroppedReason(), "the panel's stays");
+        assertEquals(List.of(MesaFixture.COME), batch.getQuizProposals().stream().map(r -> r.getQuizId()).toList());
     }
 
     @Test
     @DisplayName("should refuse to publish, leaving the course untouched, while the verdict of F is not «pasa», as when the blind sample is missing")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldRefuseToPublishLeavingTheCourseUntouchedWhileTheVerdictOfFIsNotPasaAsWhenTheBlindSampleIsMissing(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: F says the blind sample is missing: the batch does not publish and the course is not written.
+        Service service = new Service();
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        service.service().run(new BatchRunRequest(null));
+        service.comparator.answer = scope -> TandaFixture.comparison(scope, List.of(), VerdictKind.BLIND_SAMPLE_MISSING);
+        service.service().close();
+
+        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
+                () -> service.service().publish(new BatchPublishRequest("José", null, List.of())));
+
+        assertTrue(refused.getMessage().contains("«BLIND_SAMPLE_MISSING», no «pasa»"), refused.getMessage());
+        assertTrue(service.courses.written.isEmpty(), "the course untouched");
+        assertEquals(BatchStatus.CLOSED, service.batches.open().orElseThrow().getStatus(), "not published");
     }
 
     @Test
     @DisplayName("should hand the selector, when a batch opens, the latest rerecording that the published batches left pending for each audio")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R012")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldHandTheSelectorWhenABatchOpensTheLatestRerecordingThatThePublishedBatchesLeftPendingForEachAudio(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: two published batches asked to record the audio of the vegetables, the second one with another text; another
+        // asked «I learned myself to drive a car.». The selector gets, per audio, the latest request.
+        Service service = new Service();
+        AudioRerecordRequest first = new AudioRerecordRequest(MesaFixture.VEGETABLES, MesaFixture.audioKey(MesaFixture.VEGETABLES),
+                List.of("I love vegetables."));
+        AudioRerecordRequest second = new AudioRerecordRequest(MesaFixture.VEGETABLES,
+                MesaFixture.audioKey(MesaFixture.VEGETABLES), List.of("I really love vegetables."));
+        AudioRerecordRequest learned = new AudioRerecordRequest(TandaFixture.LEARNED, MesaFixture.audioKey(TandaFixture.LEARNED),
+                List.of("I learned myself to drive a car."));
+        service.batches.save(published("tanda-A1-primera", TandaFixture.BASELINE, TandaFixture.PLAN, List.of(first),
+                Instant.parse("2026-10-01T10:00:00Z")));
+        service.batches.save(published("tanda-A2-segunda", TandaFixture.BASELINE, TandaFixture.PLAN, List.of(second, learned),
+                Instant.parse("2026-10-01T11:00:00Z")));
+
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+
+        assertEquals(List.of(List.of(second, learned)), service.handed, "per audio, the latest");
+    }
+
+
+    private static final String FRUIT = "67fab6d59930102295341ec8";
+
+    private static final Finding LEMMA = MesaFixture.finding("lemma-absence", "misplaced-word", TandaFixture.RESIDE,
+            FindingSeverity.MEDIUM, FindingResolution.PANEL, "reside", "«reside» no es de A1");
+
+    private static final Finding OFF_LEVEL = MesaFixture.finding("off-level-words", "far-above-level", TandaFixture.RESIDE,
+            FindingSeverity.HIGH, FindingResolution.PANEL, "reside", "«reside» es de C1");
+
+    /**
+     * The service of the batch over the course in memory: the real selector, rules (with the rule of the hint), panel
+     * stage, ledger, closer and publisher; the panel, F's comparison, its blind sample and its book of goals by hand.
+     */
+    private static final class Service {
+        final TandaFixture.Batches batches = new TandaFixture.Batches();
+
+        final TandaFixture.Reports reports = new TandaFixture.Reports();
+
+        final TandaFixture.ActivePair active = new TandaFixture.ActivePair();
+
+        final TandaFixture.Baselines baselines = new TandaFixture.Baselines(new Baseline(TandaFixture.BASELINE,
+                Instant.parse("2026-09-29T08:00:00Z")));
+
+        final TandaFixture.Courses courses = new TandaFixture.Courses(TandaFixture.course());
+
+        final TandaFixture.Artifacts artifacts = new TandaFixture.Artifacts();
+
+        final TandaFixture.Goals goals = new TandaFixture.Goals();
+
+        final TandaFixture.Panels panels = new TandaFixture.Panels();
+
+        final TandaFixture.Meter meter = new TandaFixture.Meter();
+
+        final TandaFixture.Comparator comparator = new TandaFixture.Comparator();
+
+        final TandaFixture.Samples samples = new TandaFixture.Samples();
+
+        final List<List<AudioRerecordRequest>> handed = new ArrayList<>();
+
+        final List<List<Integer>> allowances = new ArrayList<>();
+
+        final TandaFixture.Plans plans;
+
+        Service() {
+            Finding theory = MesaFixture.topicFinding("mini-theory", "theory-fits", MesaFixture.CONTRASTE,
+                    FindingSeverity.HIGH, null, "la miniteoría no habla del contraste");
+            reports.put(TandaFixture.BASELINE, TandaFixture.report(courses.course, List.of(MesaFixture.missingHint(),
+                    MesaFixture.anotherAnswer(), theory, LEMMA, OFF_LEVEL), Map.of(), MesaFixture.ANALYZERS));
+            plans = new TandaFixture.Plans(TandaFixture.plan(
+                    TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                    TandaFixture.task("t-respuesta", MesaFixture.anotherAnswer(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                    TandaFixture.topicTask("t-teoria", theory, MesaFixture.CONTRASTE, MesaFixture.stateVerbExercises()),
+                    TandaFixture.covering("t-reside", LEMMA, List.of(OFF_LEVEL), TandaFixture.RESIDE_TOPIC)));
+        }
+
+        DefaultBatchService service() {
+            DefaultBatchChangeLedger ledger = new DefaultBatchChangeLedger(artifacts, TandaFixture.locator());
+            DefaultBatchTaskSelector real = new DefaultBatchTaskSelector(artifacts, MesaFixture.corrections());
+            BatchTaskSelector selector = (plan, start, level, topics, pending) -> {
+                handed.add(new ArrayList<>(pending));
+                return real.select(plan, start, level, topics, pending);
+            };
+            PanelRunnerFactory factory = new PanelRunnerFactory() {
+                @Override
+                public PanelRunner create(PanelRunnerConfig config) {
+                    throw new AssertionError("the batch gets its panel runner from the composition root");
+                }
+
+                @Override
+                public TopicMeter meter(PanelRunnerConfig config) {
+                    throw new AssertionError("the batch gets its meter from the composition root");
+                }
+
+                @Override
+                public QueryAllowance allowance(Integer cap, int queriesAtOnce) {
+                    allowances.add(java.util.Arrays.asList(cap, queriesAtOnce));
+                    return new DefaultPanelRunnerFactory().allowance(cap, queriesAtOnce);
+                }
+            };
+            DefaultRuleStage rules = new DefaultRuleStage(List.of(new HintCoherenceRuleFix(noIrregularForms())), meter,
+                    new DefaultGateFactory().changeGate(), ledger, batches).withPlans(plans);
+            DefaultPanelStage panelStage = new DefaultPanelStage(panels, TandaFixture.briefer(), MesaFixture.corrections(),
+                    null, ledger, batches).withPlans(plans);
+            DefaultBatchCloser closer = new DefaultBatchCloser(comparator, new DefaultGateFactory().batchGate(), samples,
+                    ledger, batches, TandaFixture.COURSE_PATH).withPlans(plans, MesaFixture.corrections());
+            AuditEngine engine = new AuditEngine() {
+                @Override
+                public AuditReport runAudit(AuditableCourse course) {
+                    throw new AssertionError("not in these tests");
+                }
+
+                @Override
+                public AuditReport runAudit(AuditableCourse course, AnalyzerRunSelection selection) {
+                    throw new AssertionError("not in these tests");
+                }
+            };
+            RefinerEngine refiner = new RefinerEngine() {
+                @Override
+                public RefinementPlan plan(AuditReport report, String auditId) {
+                    throw new AssertionError("not in these tests");
+                }
+
+                @Override
+                public Optional<RefinementTask> nextTask(RefinementPlan plan) {
+                    return Optional.empty();
+                }
+
+                @Override
+                public List<UnconvertedScoreCount> unconvertedScores(AuditReport report) {
+                    return List.of();
+                }
+
+                @Override
+                public List<PlanFindingTally> findingTally(AuditReport report, RefinementPlan plan) {
+                    return List.of();
+                }
+            };
+            DefaultBatchPublisher publisher = new DefaultBatchPublisher(ledger, artifacts, courses,
+                    course -> new AuditableCourse(List.of()), engine, reports, refiner, plans, active, comparator,
+                    TandaFixture.correctionScope(), new DefaultPreservationFactory().createCheck(),
+                    TandaFixture.COURSE_PATH);
+            return new DefaultBatchService(batches, plans, reports, active, baselines, courses, factory,
+                    TandaFixture.briefer(), selector, new DefaultBatchCostEstimator(), rules, panelStage, ledger, closer,
+                    publisher, new DefaultBatchReportBuilder(), TandaFixture.COURSE_PATH, goals);
+        }
+    }
+
+    /** A batch already published, with what it left. */
+    private static CorrectionBatch published(String id, String auditId, String planId, List<AudioRerecordRequest> rerecords,
+            Instant at) {
+        CorrectionBatch batch = TandaFixture.batch(id);
+        batch.setStatus(BatchStatus.PUBLISHED);
+        batch.setPublication(new BatchPublication(at, "José", null, auditId, planId, List.of(), List.of(), List.of(),
+                new ArrayList<>(rerecords)));
+        return batch;
+    }
+
+    private static List<String> taskIds(com.learney.contentaudit.revisiondomain.panel.TopicWork work) {
+        List<String> ids = new ArrayList<>();
+        for (var brief : work.getBriefs()) {
+            ids.add(brief.getTask().getId());
+        }
+        return ids;
+    }
+
+    private static IrregularFormsCatalog noIrregularForms() {
+        return new IrregularFormsCatalog() {
+            @Override
+            public Set<String> formsOf(String baseWord) {
+                return Set.of();
+            }
+
+            @Override
+            public boolean isPastParticiple(String word) {
+                return false;
+            }
+        };
     }
 }

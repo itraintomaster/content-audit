@@ -1,7 +1,26 @@
 package com.learney.contentaudit.revisiondomain.panelengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.revisiondomain.nonregression.RedWord;
+import com.learney.contentaudit.revisiondomain.nonregression.UnevaluatedMark;
+import com.learney.contentaudit.revisiondomain.nonregression.UnitMeasurement;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,97 +34,260 @@ public class CatalogTopicMeterTest {
     @DisplayName("should reuse the verdicts recorded for an exercise nobody changed, by the fingerprint of its content, without querying any judge")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldReuseTheVerdictsRecordedForAnExerciseNobodyChangedByTheFingerprintOfItsContentWithoutQueryingAnyJudge(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R002: the topic as it is was already judged; measured again, every verdict comes from the book by the
+        // fingerprint of what each judge reads, and no judge is queried.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        UnitMeasurement first = bench.meter().measure(work(topic, List.of()), topic, MeterBench.ALL, allowance(null, 4));
+        int consulted = bench.consultations.size();
+        QueryAllowance again = allowance(null, 4);
+
+        UnitMeasurement second = bench.meter().measure(work(topic, List.of()), topic, MeterBench.ALL, again);
+
+        assertTrue(consulted > 0, "the first time the judges were queried");
+        assertEquals(consulted, bench.consultations.size(), "nobody is queried again");
+        assertEquals(0, again.spent(), "it costs nothing");
+        assertEquals(keys(first.getFindings()), keys(second.getFindings()), "the same verdicts");
     }
 
     @Test
     @DisplayName("should give a candidate the same findings and scores that analyze gives the exercise in the course, as «Winter ___ (come) every year.» measured in its topic and in the whole course")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldGiveACandidateTheSameFindingsAndScoresThatAnalyzeGivesTheExerciseInTheCourseAsWinterComeEveryYearMeasuredInItsTopicAndInTheWholeCourse(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R004: «Winter ___ (come) every year.» measured in its topic gives the findings and scores that analyze gives it
+        // in the whole course.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        QuizTemplateEntity winter = withParts(exercise(topic, COME), text("Winter"), cloze("comes"), text("(come) every year."));
+        KnowledgeEntity withWinter = TopicState.apply(topic, COME, candidate(PanelCandidateKind.WHOLE_EXERCISE, winter), List.of());
+
+        UnitMeasurement measured = bench.meter().measure(work(topic, List.of()), withWinter, MeterBench.ALL, allowance(null, 4));
+        Map<String, Double> scoresInTopic = quizNode(bench.lastReport, COME).getScores();
+        AuditReport course = bench.analyze(MeterBench.course("m-a1", CefrLevel.A1, withWinter, contraste()), MeterBench.ALL);
+
+        assertEquals(keys(findingsOf(measured.getFindings(), COME)), keys(quizNode(course, COME).getFindings()), "the same findings");
+        assertEquals(keys(findingsOf(measured.getFindings(), VEGETABLES)), keys(quizNode(course, VEGETABLES).getFindings()));
+        assertEquals(scoresInTopic, quizNode(course, COME).getScores(), "and the same scores");
     }
 
     @Test
     @DisplayName("should measure each candidate with every instant analyzer of the starting analysis")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldMeasureEachCandidateWithEveryInstantAnalyzerOfTheStartingAnalysis() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R004: every instant analyzer of the starting analysis measures the candidate, in every run.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+
+        UnitMeasurement measured = bench.meter().measure(work(topic, List.of()), topic, MeterBench.INSTANT, allowance(null, 4));
+
+        assertFalse(bench.selections.isEmpty());
+        for (AnalyzerRunSelection selection : bench.selections) {
+            assertEquals(MeterBench.INSTANT, selection.getAnalyzers());
+        }
+        assertTrue(measured.getFindings().stream().anyMatch(f -> f.getAnalyzer().equals("hint-coherence")),
+                "hint-coherence measured it: " + keys(measured.getFindings()));
     }
 
     @Test
     @DisplayName("should measure the red words of the sentence and of each option put in the gap of a multiple choice as the analysis does, leaving out the words the topic teaches")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldMeasureTheRedWordsOfTheSentenceAndOfEachOptionPutInTheGapOfAMultipleChoiceAsTheAnalysisDoesLeavingOutTheWordsTheTopicTeaches(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R004 and R011: «My grandmother comes every year.» has a red word; so has the option «grandfather» put in the gap of
+        // a multiple choice; «regular», which «Afirmativas regulares» teaches, never is.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        QuizTemplateEntity grandmother = withParts(exercise(topic, COME), text("My grandmother"), cloze("comes"),
+                text("(come) every year."));
+        QuizTemplateEntity regular = withParts(exercise(topic, VEGETABLES), text("A regular bus"), cloze("comes"),
+                text("(come) every hour."));
+        QuizTemplateEntity choice = choice("67fab6d59930102295341e90", "is my best friend.", "Kevin", "grandfather", "teacher");
+        KnowledgeEntity changed = TopicState.apply(TopicState.apply(topic, COME, candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                grandmother), List.of()), VEGETABLES, candidate(PanelCandidateKind.WHOLE_EXERCISE, regular), List.of());
+        changed.getQuizTemplates().add(choice);
+
+        UnitMeasurement measured = bench.meter().measure(work(topic, List.of()), changed, MeterBench.INSTANT, allowance(null, 4));
+
+        assertEquals(List.of(COME + " grandmother A2 «My grandmother comes every year.»",
+                "67fab6d59930102295341e90 grandfather A2 «grandfather is my best friend.»"),
+                measured.getRedWords().stream().map(w -> w.getQuizId() + " " + w.getLemma() + " " + w.getLevel() + " «"
+                        + w.getSentence() + "»").toList());
     }
 
     @Test
     @DisplayName("should query the two translation-sense judges and no other when a candidate changes only the translation of «I ___ a lot of vegetables.»")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldQueryTheTwoTranslationsenseJudgesAndNoOtherWhenACandidateChangesOnlyTheTranslationOfIALotOfVegetables(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R005: only the translation of the vegetables changes: the two judges of translation-sense judge it, no other.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        bench.meter().measure(work(topic, List.of()), topic, MeterBench.ALL, allowance(null, 4));
+        int before = bench.consultations.size();
+        KnowledgeEntity candidate = TopicState.apply(topic, VEGETABLES, candidate(PanelCandidateKind.TRANSLATION_ONLY,
+                withTranslation(exercise(topic, VEGETABLES), "Me encantan las verduras.")), List.of());
+        QueryAllowance allowance = allowance(null, 4);
+
+        bench.meter().measure(work(topic, List.of()), candidate, MeterBench.ALL, allowance);
+
+        assertEquals(List.of("translation-sense-from-english", "translation-sense-from-translation"),
+                evaluators(bench.consultations.subList(before, bench.consultations.size())));
+        assertEquals(2, allowance.spent());
     }
 
     @Test
     @DisplayName("should query four judges, the two of translation-sense, single-answer and quiz-instruction, when a candidate changes the English of a CLOZE")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldQueryFourJudgesTheTwoOfTranslationsenseSingleanswerAndQuizinstructionWhenACandidateChangesTheEnglishOfACLOZE(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R005: the English of a CLOZE changes: the two of translation-sense, single-answer and quiz-instruction judge it,
+        // the four queries package C estimated.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        bench.meter().measure(work(topic, List.of()), topic, MeterBench.ALL, allowance(null, 4));
+        int before = bench.consultations.size();
+        KnowledgeEntity candidate = TopicState.apply(topic, VEGETABLES, candidate(PanelCandidateKind.ENGLISH_CHANGE,
+                withParts(exercise(topic, VEGETABLES), text("I"), cloze("love"), text("(love) vegetables."))), List.of());
+        QueryAllowance allowance = allowance(null, 4);
+
+        bench.meter().measure(work(topic, List.of()), candidate, MeterBench.ALL, allowance);
+
+        assertEquals(List.of("quiz-instruction", "single-answer", "translation-sense-from-english",
+                "translation-sense-from-translation"), evaluators(bench.consultations.subList(before, bench.consultations.size()))
+                .stream().sorted().toList());
+        assertEquals(4, allowance.spent());
     }
 
     @Test
     @DisplayName("should give each judge only what it reads in the course as the candidate leaves it, never the original, the reasons of the proposer nor another verdict")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldGiveEachJudgeOnlyWhatItReadsInTheCourseAsTheCandidateLeavesItNeverTheOriginalTheReasonsOfTheProposerNorAnotherVerdict(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R005: each judge gets what it reads in the course as the candidate leaves it: the new translation, never the
+        // one of the original, the reasons of whoever proposed it nor what another judge said.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        bench.meter().measure(work(topic, List.of()), topic, MeterBench.ALL, allowance(null, 4));
+        int before = bench.consultations.size();
+        KnowledgeEntity candidate = TopicState.apply(topic, VEGETABLES, new com.learney.contentaudit.revisiondomain.panel.PanelCandidate(
+                PanelCandidateKind.TRANSLATION_ONLY, withTranslation(exercise(topic, VEGETABLES), "Me encantan las verduras."), null,
+                null, "porque «a lot of» pide «mucho»"), List.of());
+
+        bench.meter().measure(work(topic, List.of()), candidate, MeterBench.ALL, allowance(null, 4));
+
+        List<String> read = bench.consultations.subList(before, bench.consultations.size());
+        assertTrue(read.stream().allMatch(r -> r.contains("Me encantan las verduras.")), "the candidate as it leaves the course");
+        assertTrue(read.stream().noneMatch(r -> r.contains("Me gustan mucho")), "never the original");
+        assertTrue(read.stream().noneMatch(r -> r.contains("porque")), "never the reasons of the proposer");
+        assertTrue(read.stream().noneMatch(r -> r.contains("same-meaning") || r.contains("lo marca")), "never another verdict");
     }
 
     @Test
     @DisplayName("should record each verdict under the fingerprint of what the judge reads, so it is reused without querying when the candidate enters the course")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRecordEachVerdictUnderTheFingerprintOfWhatTheJudgeReadsSoItIsReusedWithoutQueryingWhenTheCandidateEntersTheCourse(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R005 and F-JEXAM-R005: the verdicts on the candidate stay in the book by what each judge read; once the
+        // candidate is in the course, analyze reuses them and queries nobody.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        bench.meter().measure(work(topic, List.of()), topic, MeterBench.ALL, allowance(null, 4));
+        KnowledgeEntity candidate = TopicState.apply(topic, VEGETABLES, candidate(PanelCandidateKind.ENGLISH_CHANGE,
+                withParts(exercise(topic, VEGETABLES), text("I"), cloze("love"), text("(love) vegetables."))), List.of());
+        bench.meter().measure(work(topic, List.of()), candidate, MeterBench.ALL, allowance(null, 4));
+        int before = bench.consultations.size();
+
+        AuditReport course = bench.analyze(MeterBench.course("m-a1", CefrLevel.A1, candidate), MeterBench.ALL);
+
+        assertEquals(before, bench.consultations.size(), "nobody is queried when the candidate is in the course");
+        assertTrue(quizNode(course, VEGETABLES).getUnevaluatedBy().isEmpty(), "every judge has its verdict");
     }
 
     @Test
     @DisplayName("should not query a judge whose enabled version has not passed its exam")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldNotQueryAJudgeWhoseEnabledVersionHasNotPassedItsExam() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R005 and F-JEXAM-R003: the enabled version of single-answer did not pass its exam: it is not queried, and the
+        // exercise stays not evaluated by it.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        bench.meter().measure(work(topic, List.of()), topic, MeterBench.ALL, allowance(null, 4));
+        bench.notApproved.add("single-answer");
+        int before = bench.consultations.size();
+        KnowledgeEntity candidate = TopicState.apply(topic, VEGETABLES, candidate(PanelCandidateKind.ENGLISH_CHANGE,
+                withParts(exercise(topic, VEGETABLES), text("I"), cloze("love"), text("(love) vegetables."))), List.of());
+        QueryAllowance allowance = allowance(null, 4);
+
+        UnitMeasurement measured = bench.meter().measure(work(topic, List.of()), candidate, MeterBench.ALL, allowance);
+
+        assertFalse(evaluators(bench.consultations.subList(before, bench.consultations.size())).contains("single-answer"));
+        assertEquals(3, allowance.spent(), "the other three");
+        assertTrue(measured.getUnevaluated().stream().anyMatch(m -> m.getNodeId().equals(VEGETABLES)
+                && m.getAnalyzer().equals("single-answer")), "not evaluated by it");
     }
 
     @Test
     @DisplayName("should judge a candidate of a multiple choice with the rules of multiple-choice-validity and the judge of another option that also fits")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R011")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldJudgeACandidateOfAMultipleChoiceWithTheRulesOfMultiplechoicevalidityAndTheJudgeOfAnotherOptionThatAlsoFits(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R011: a candidate of «___ a child? (He)» is judged by the rules of multiple-choice-validity and by its judge of
+        // another option that also fits: «Is it» also fits; with «Are you» instead, nothing does.
+        MeterBench bench = new MeterBench();
+        QuizTemplateEntity child = choice("67fab6d59930102295341e87", "a child? (He)", "Is he", "Is it", "Is she");
+        KnowledgeEntity topic = topic("6814dafa7d73e7209a13d360", "Be: preguntas yes/no", new ArrayList<>(List.of(child)));
+        QuizTemplateEntity fixed = choice("67fab6d59930102295341e87", "a child? (He)", "Is he", "Are you", "Is she");
+        KnowledgeEntity candidate = TopicState.apply(topic, child.getId(), candidate(PanelCandidateKind.WHOLE_EXERCISE, fixed),
+                List.of());
+
+        UnitMeasurement original = bench.meter().measure(work(topic, List.of()), topic, MeterBench.ALL, allowance(null, 4));
+        int before = bench.consultations.size();
+        UnitMeasurement after = bench.meter().measure(work(topic, List.of()), candidate, MeterBench.ALL, allowance(null, 4));
+
+        assertTrue(keys(original.getFindings()).contains("multiple-choice-validity|another-option-valid|" + child.getId() + "|is it"),
+                keys(original.getFindings()).toString());
+        assertFalse(keys(after.getFindings()).stream().anyMatch(k -> k.startsWith("multiple-choice-validity")),
+                keys(after.getFindings()).toString());
+        assertEquals(1, bench.consultations.size() - before, "its judge read the new options");
+        assertTrue(bench.consultations.get(before).contains("Are you"));
+    }
+
+
+    static List<String> keys(List<Finding> findings) {
+        return findings.stream().map(f -> f.getIdentity().getKey()).sorted().toList();
+    }
+
+    static List<Finding> findingsOf(List<Finding> findings, String quizId) {
+        return findings.stream().filter(f -> f.getNode().getNodeId().equals(quizId)).toList();
+    }
+
+    static List<String> evaluators(List<String> consultations) {
+        return consultations.stream().map(c -> c.substring(0, c.indexOf(':'))).toList();
+    }
+
+    static AuditNode quizNode(AuditReport report, String quizId) {
+        List<AuditNode> pending = new ArrayList<>(List.of(report.getRoot()));
+        while (!pending.isEmpty()) {
+            AuditNode node = pending.remove(0);
+            if (node.getEntity() != null && quizId.equals(node.getEntity().getId())) {
+                return node;
+            }
+            if (node.getChildren() != null) {
+                pending.addAll(node.getChildren());
+            }
+        }
+        throw new AssertionError("no está " + quizId);
     }
 }

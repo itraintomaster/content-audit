@@ -1,7 +1,42 @@
 package com.learney.contentaudit.revisioninfrastructure.panelagent;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.coursedomain.FormKind;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
+import com.learney.contentaudit.refinerdomain.topicwords.TopicWord;
+import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLights;
+import com.learney.contentaudit.revisiondomain.panel.CandidateRejection;
+import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelProposal;
+import com.learney.contentaudit.revisiondomain.panel.PanelRequest;
+import com.learney.contentaudit.revisioninfrastructure.lagen.LagenConfig;
+import com.sentinel.agents.framework.state.RunState;
+import com.sentinel.agents.framework.state.RunStatus;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,19 +50,81 @@ public class AgentPanelProposerTest {
     @DisplayName("should give the agent only what the proposer receives, the topic as the student sees it, the findings, the level, the scope, the word lights, the order and the previous reasons, and never another candidate's verdict")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldGiveTheAgentOnlyWhatTheProposerReceivesTheTopicAsTheStudentSeesItTheFindingsTheLevelTheScopeTheWordLightsTheOrderAndThePreviousReasonsAndNeverAnotherCandidatesVerdict(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R003: the agent gets what the proposer receives and nothing else: the topic as the student sees it, the
+        // findings with their evidence, the level, what each task may touch, the word lights, José's order and the reasons of
+        // its own rejected candidate -- never a verdict on a candidate that is not its own.
+        AtomicReference<Map<String, String>> sent = new AtomicReference<>();
+        PanelAgentRuntimeLauncher launcher = (agent, inputs, model) -> {
+            sent.set(inputs);
+            return RunState.empty().withRunStatus(RunStatus.COMPLETED);
+        };
+        AgentPanelProposer proposer = new AgentPanelProposer(launcher, (state, request) -> new PanelProposal(new ArrayList<>(),
+                "panel-proposer", true, null), null, config(), Path.of("/proyecto"));
+
+        proposer.propose(request(2, List.of(new CandidateRejection(1, PanelCandidateKind.TRANSLATION_ONLY,
+                List.of("F-NOEMP-R001: error nuevo de translation-sense (natural)")))));
+
+        Map<String, String> inputs = sent.get();
+        assertEquals(List.of("batchId", "level", "knowledgeId", "quizId", "attempt", "twoFixes", "topicView", "tasks", "wordLights",
+                "conversion", "previousRejections", "project_root"), new ArrayList<>(inputs.keySet()), "nothing else");
+        assertEquals("A1", inputs.get("level"));
+        assertEquals("2", inputs.get("attempt"));
+        assertEquals("true", inputs.get("twoFixes"));
+        assertTrue(inputs.get("topicView").contains("I ___ a lot of vegetables."), "the topic as the student sees it");
+        assertTrue(inputs.get("tasks").contains("«Me gustan mucho las verduras.» no dice «I love a lot of vegetables.»"),
+                "the findings with their evidence");
+        assertTrue(inputs.get("tasks").contains("\"mayTouch\":[\"TRANSLATION\",\"STATEMENT\",\"ANSWERS\"]"), "what it may touch");
+        assertTrue(inputs.get("wordLights").contains("\"lemma\":\"vegetable\""), "the word lights");
+        assertTrue(inputs.get("conversion").contains("MULTIPLE_CHOICE"), "José's order");
+        assertTrue(inputs.get("previousRejections").contains("F-NOEMP-R001"), "the reasons of its rejected candidate");
+        assertFalse(String.join(" ", inputs.values()).contains("judges-disagree"), "never a verdict on another candidate");
     }
 
     @Test
     @DisplayName("should answer unavailable when the model service fails, so the panel trips its allowance and spends no attempt")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldAnswerUnavailableWhenTheModelServiceFailsSoThePanelTripsItsAllowanceAndSpendsNoAttempt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R010 inv. 2: the model service fails; the proposer answers unavailable, with why, and the panel trips its
+        // allowance without spending the attempt.
+        PanelAgentRuntimeLauncher failing = (agent, inputs, model) -> {
+            throw new IllegalStateException("claude-cli: connection refused");
+        };
+        AgentPanelProposer proposer = new AgentPanelProposer(failing, (state, request) -> {
+            throw new AssertionError("nothing to read");
+        }, null, config(), Path.of("/proyecto"));
+
+        PanelProposal proposal = proposer.propose(request(1, List.of()));
+
+        assertFalse(proposal.isAvailable());
+        assertTrue(proposal.getCandidates().isEmpty());
+        assertEquals("el servicio del modelo falló: claude-cli: connection refused", proposal.getUnavailableReason());
+    }
+
+
+    private static LagenConfig config() {
+        return new LagenConfig("claude-cli", "sonnet", null, null, null, null, null, null, 3);
+    }
+
+    /** The request of the panel for «I ___ a lot of vegetables.», on the given attempt and with its rejections. */
+    static PanelRequest request(int attempt, List<CandidateRejection> rejections) {
+        String quiz = "67fab6d59930102295341ecd";
+        Finding translation = new Finding("translation-sense", "same-meaning", new FindingNodeRef(AuditTarget.QUIZ, quiz, quiz),
+                FindingSeverity.HIGH, new FindingEvidence(List.of(new EvidencePart("Traducción", "Me gustan mucho las verduras.")),
+                "«Me gustan mucho las verduras.» no dice «I love a lot of vegetables.»", List.of()), FindingResolution.PANEL,
+                AnalysisCost.PAID_MODEL, new FindingIdentity("translation-sense|same-meaning|" + quiz, null));
+        RefinementTask task = new RefinementTask("t-translation", AuditTarget.QUIZ, quiz, quiz, DiagnosisKind.TRANSLATION_SENSE,
+                1, RefinementTaskStatus.IN_BATCH, null);
+        ErrorTaskBrief brief = new ErrorTaskBrief(task, translation, List.of(), List.of(ExercisePart.TRANSLATION,
+                ExercisePart.STATEMENT, ExercisePart.ANSWERS), true, null, List.of());
+        TopicWordLights lights = new TopicWordLights("auditoria", "6814dafa7d73e7209a13d389", "Afirmativas regulares",
+                CefrLevel.A1, List.of(new TopicWord("vegetable", "NOUN", CefrLevel.A1, false, 120, 3, null, null, null, false, null)), List.of());
+        return new PanelRequest("tanda-A1-20261001T120000Z", CefrLevel.A1, "6814dafa7d73e7209a13d389", quiz,
+                List.of(new QuizStudentView("I ___ a lot of vegetables.", List.of(), List.of(), "Completa.",
+                        "Me gustan mucho las verduras.", null)), List.of(brief), lights,
+                new ConversionOrder("6814dafa7d73e7209a13d389", FormKind.MULTIPLE_CHOICE, 3), attempt, rejections, true);
     }
 }

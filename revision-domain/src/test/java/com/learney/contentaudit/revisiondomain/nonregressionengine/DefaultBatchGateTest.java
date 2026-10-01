@@ -1,7 +1,35 @@
 package com.learney.contentaudit.revisiondomain.nonregressionengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeAttribution;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
+import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
+import com.learney.contentaudit.revisiondomain.comparison.FloorBreach;
+import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
+import com.learney.contentaudit.revisiondomain.comparison.RowValue;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.nonregression.BatchGate;
+import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
+import com.learney.contentaudit.revisiondomain.nonregression.ReturnCause;
+import com.learney.contentaudit.revisiondomain.nonregression.ReturnedChange;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,166 +43,379 @@ public class DefaultBatchGateTest {
     @DisplayName("should never return a change for a new length finding of the comparison, and list it among the declared length findings")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNeverReturnAChangeForANewLengthFindingOfTheComparisonAndListItAmongTheDeclaredLengthFindings(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 and R005 inv. 1: a change that only leaves its sentence out of the length of its level never returns: the new
+        // length finding is declared.
+        Finding longer = finding("sentence-length", "longer-than-goal", QUIZ_LIVING_ROOM, FindingSeverity.LOW, FindingResolution.PANEL,
+                null, "9 tokens contra 3 a 8 en A1");
+        BatchComparison comparison = comparison(List.of(change("prop-living-room", QUIZ_LIVING_ROOM, longer)), List.of(), List.of());
+
+        BatchGateVerdict verdict = gate().evaluate(comparison, List.of(), List.of());
+
+        assertTrue(verdict.isPasses(), verdict.getReasons().toString());
+        assertTrue(verdict.getReturned().isEmpty(), "the length never returns a change");
+        assertEquals(List.of(longer), verdict.getDeclaredLengthFindings(), "declared");
     }
 
     @Test
     @DisplayName("should not pass the A1 batch when its comparison shows the exercises of A1 with red words going from 351 to 352, as with «My grandmother ___ (come) every year.»")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNotPassTheA1BatchWhenItsComparisonShowsTheExercisesOfA1WithRedWordsGoingFrom351To352AsWithMyGrandmotherComeEveryYear(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 inv. 3: in A1 the exercises with red words go from 351 to 352 -- grandmother -- and the batch does not pass.
+        ComparisonRow redWords = countRow("palabras rojas", AnalyzerFamily.VOCABULARY, "m-a1", "A1", 351, 352);
+        BatchComparison comparison = comparison(List.of(), List.of(redWords),
+                List.of(breach(redWords, attribution("prop-grandmother", COME, 1.0, GoalUnit.EXERCISES))));
+
+        BatchGateVerdict verdict = gate().evaluate(comparison, List.of(), List.of());
+
+        assertFalse(verdict.isPasses(), "R005 inv. 3: a level with one more exercise with red words does not pass");
     }
 
     @Test
     @DisplayName("should not pass when a node the batch changed gains a counting finding or a red word that the starting analysis did not have")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNotPassWhenANodeTheBatchChangedGainsACountingFindingOrARedWordThatTheStartingAnalysisDidNotHave(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 inv. 1: a node the batch changed gains a finding that counts as an error, or a red word: the batch does not pass.
+        Finding error = finding("translation-sense", "same-meaning", VEGETABLES, FindingSeverity.HIGH, FindingResolution.PANEL,
+                null, "la traducción no dice lo mismo");
+        Finding redWord = finding("lemma-absence", "misplaced-word", COME, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                "grandmother", "grandmother es A2");
+
+        BatchGateVerdict withError = gate().evaluate(comparison(List.of(change("prop-vegetables", VEGETABLES, error)), List.of(),
+                List.of()), List.of(), List.of());
+        BatchGateVerdict withRedWord = gate().evaluate(comparison(List.of(change("prop-grandmother", COME, redWord)), List.of(),
+                List.of()), List.of(), List.of());
+
+        assertFalse(withError.isPasses(), "a new error");
+        assertFalse(withRedWord.isPasses(), "a new red word");
     }
 
     @Test
     @DisplayName("should not pass when the exercises with an error of some analyzer, with some error or blocking go up in a node, even if no changed exercise gained a finding, as a duplicate between two changed exercises of a topic")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNotPassWhenTheExercisesWithAnErrorOfSomeAnalyzerWithSomeErrorOrBlockingGoUpInANodeEvenIfNoChangedExerciseGainedAFindingAsADuplicateBetweenTwoChangedExercisesOfATopic(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 inv. 2: two changed exercises of a topic become duplicates of each other: no changed node gained a finding of its
+        // own in the changes F lists, but the exercises with error of exact-duplicates, with «algún error» and blocking go up
+        // in the topic, and the batch does not pass.
+        List<ComparisonRow> rows = List.of(countRow("exact-duplicates", AnalyzerFamily.ERRORS, AFIRMATIVAS, "Afirmativas regulares", 0, 2),
+                countRow("algún error", AnalyzerFamily.ERRORS, AFIRMATIVAS, "Afirmativas regulares", 3, 5),
+                countRow("bloqueantes", AnalyzerFamily.ERRORS, AFIRMATIVAS, "Afirmativas regulares", 1, 1));
+
+        BatchGateVerdict verdict = gate().evaluate(comparison(List.of(change("prop-a", VEGETABLES), change("prop-b", COME)), rows,
+                List.of()), List.of(), List.of());
+
+        assertFalse(verdict.isPasses(), "R005 inv. 2");
+        assertEquals(2, verdict.getReasons().size(), "the two counts that went up, not the blocking that stayed: " + verdict.getReasons());
+        assertTrue(verdict.getReasons().get(0).contains("exact-duplicates en Afirmativas regulares: 0 → 2"), verdict.getReasons().toString());
+        assertTrue(verdict.getReasons().get(1).contains("algún error en Afirmativas regulares: 3 → 5"), verdict.getReasons().toString());
     }
 
     @Test
     @DisplayName("should list apart and not count the audio that no longer matches in an exercise listed for rerecording, nor what José approved in the tray knowing it did not pass")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldListApartAndNotCountTheAudioThatNoLongerMatchesInAnExerciseListedForRerecordingNorWhatJosApprovedInTheTrayKnowingItDidNotPass(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005, its two exceptions: the audio that no longer matches an exercise listed for re-recording, and what José approved
+        // in the tray knowing it did not pass, are listed apart and not counted.
+        Finding audio = finding("data-coherence", "audio-matches", VEGETABLES, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                "audio", "audio: «I love a lot of vegetables.»; hoy: «I love vegetables.»");
+        Finding approved = finding("single-answer", "different-valid-answer", COME, FindingSeverity.BLOCKING, FindingResolution.PANEL,
+                null, "otra respuesta encaja");
+        BatchComparison comparison = comparison(List.of(change("prop-vegetables", VEGETABLES, audio),
+                change("prop-jose", COME, approved)), List.of(), List.of());
+
+        BatchGateVerdict verdict = gate().evaluate(comparison, List.of(), List.of("prop-jose"));
+
+        assertTrue(verdict.isPasses(), verdict.getReasons().toString());
+        assertTrue(verdict.getReturned().isEmpty(), "neither counts");
+        assertEquals(2, verdict.getListedExceptions().size(), "both listed apart: " + verdict.getListedExceptions());
+        assertTrue(verdict.getListedExceptions().stream().anyMatch(e -> e.startsWith("audio para regrabar: " + VEGETABLES)));
+        assertTrue(verdict.getListedExceptions().stream().anyMatch(e -> e.startsWith("excepción de José: prop-jose")));
     }
 
     @Test
     @DisplayName("should pass the vegetables batch with «Winter ___ (come) every year.», where no count goes up and no vocabulary number of A1 or of the course moves")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldPassTheVegetablesBatchWithWinterComeEveryYearWhereNoCountGoesUpAndNoVocabularyNumberOfA1OrOfTheCourseMoves(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and R006: with «Winter ___ (come) every year.» no count goes up and no vocabulary number of A1 nor of the course
+        // moves: the batch passes.
+        List<ComparisonRow> rows = List.of(countRow("palabras rojas", AnalyzerFamily.VOCABULARY, "m-a1", "A1", 351, 351),
+                countRow("algún error", AnalyzerFamily.ERRORS, "m-a1", "A1", 120, 116),
+                pointsRow("vocabulario", "m-a1", "A1", 96.54, 96.54, 96.54),
+                pointsRow("vocabulario", "root", "Curso", 73.923, 73.923, 73.923));
+
+        BatchGateVerdict verdict = gate().evaluate(comparison(List.of(change("prop-winter", COME)), rows, List.of()), List.of(), List.of());
+
+        assertTrue(verdict.isPasses(), verdict.getReasons().toString());
+        assertEquals(VerdictKind.PASSES, verdict.getVerdictKind(), "the kind of the comparison");
+        assertTrue(verdict.getReasons().isEmpty());
     }
 
     @Test
     @DisplayName("should not pass when a vocabulary number of a level ends more than 0.5 points below the baseline fixed before the first batch, as sentence-length of B2 at 0.6 below")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNotPassWhenAVocabularyNumberOfALevelEndsMoreThan05PointsBelowTheBaselineFixedBeforeTheFirstBatchAsSentencelengthOfB2At06Below(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: sentence-length of B2 ends 0.6 points below the baseline: more than the 0.5 of tolerance, it does not pass.
+        ComparisonRow row = pointsRow("sentence-length", "m-b2", "B2", 69.9, 69.9, 69.3);
+
+        BatchGateVerdict verdict = gate().evaluate(comparison(List.of(), List.of(row), List.of()), List.of(), List.of());
+
+        assertFalse(verdict.isPasses());
+        assertTrue(verdict.getReasons().get(0).startsWith("F-NOEMP-R006: sentence-length en B2: 69,9 → 69,3"), verdict.getReasons().toString());
     }
 
     @Test
     @DisplayName("should pass when a vocabulary number ends exactly 0.5 points below the fixed baseline")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldPassWhenAVocabularyNumberEndsExactly05PointsBelowTheFixedBaseline() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: exactly 0.5 points below the baseline is within the tolerance.
+        ComparisonRow row = pointsRow("sentence-length", "m-b2", "B2", 69.9, 69.9, 69.4);
+
+        BatchGateVerdict verdict = gate().evaluate(comparison(List.of(), List.of(row), List.of()), List.of(), List.of());
+
+        assertTrue(verdict.isPasses(), verdict.getReasons().toString());
     }
 
     @Test
     @DisplayName("should spend the tolerance accumulated against the fixed baseline and not against the start of the batch, so a second batch that lowers 0.3 points after another 0.3 does not pass")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldSpendTheToleranceAccumulatedAgainstTheFixedBaselineAndNotAgainstTheStartOfTheBatchSoASecondBatchThatLowers03PointsAfterAnother03DoesNotPass(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: the tolerance is spent by the sum of the batches. The first batch lowered the vocabulary of the course 0.3
+        // (73.923 → 73.623); a second one that lowers it 0.3 more ends 0.6 below the fixed baseline, though only 0.3 below its
+        // own start: it does not pass.
+        ComparisonRow row = pointsRow("vocabulario", "root", "Curso", 73.923, 73.623, 73.323);
+
+        BatchGateVerdict verdict = gate().evaluate(comparison(List.of(), List.of(row), List.of()), List.of(), List.of());
+
+        assertFalse(verdict.isPasses(), "against the baseline, accumulated");
+        assertTrue(verdict.getReasons().get(0).contains("73,923 → 73,323"), verdict.getReasons().toString());
     }
 
     @Test
     @DisplayName("should hold to the floor both each vocabulary analyzer and the vocabulary score of each level and of the course, as the 73.923 of the course")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldHoldToTheFloorBothEachVocabularyAnalyzerAndTheVocabularyScoreOfEachLevelAndOfTheCourseAsThe73923OfTheCourse(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: the floor holds for every vocabulary analyzer and for the score of vocabulary of each level and of the course.
+        ComparisonRow analyzerOfLevel = pointsRow("lemma-absence", "m-a1", "A1", 98.0, 98.0, 97.4);
+        ComparisonRow scoreOfLevel = pointsRow("vocabulario", "m-a1", "A1", 96.54, 96.54, 95.9);
+        ComparisonRow scoreOfCourse = pointsRow("vocabulario", "root", "Curso", 73.923, 73.923, 73.4);
+        ComparisonRow fine = pointsRow("coca-buckets-distribution", "root", "Curso", 72.5, 72.5, 72.1);
+
+        BatchGateVerdict verdict = gate().evaluate(comparison(List.of(), List.of(analyzerOfLevel, scoreOfLevel, scoreOfCourse, fine),
+                List.of()), List.of(), List.of());
+
+        assertFalse(verdict.isPasses());
+        assertEquals(3, verdict.getReasons().size(), verdict.getReasons().toString());
+        assertTrue(verdict.getReasons().get(0).contains("lemma-absence en A1"));
+        assertTrue(verdict.getReasons().get(1).contains("vocabulario en A1"));
+        assertTrue(verdict.getReasons().get(2).contains("vocabulario en Curso: 73,923 → 73,4"));
     }
 
     @Test
     @DisplayName("should not pass when a node outside the batch changed, as an exercise of «Contraste inicial» in the batch of the vegetables, and name that node")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNotPassWhenANodeOutsideTheBatchChangedAsAnExerciseOfContrasteInicialInTheBatchOfTheVegetablesAndNameThatNode(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: an exercise of «Contraste inicial» changed in the batch of the vegetables: it does not pass, and the node is named.
+        String outside = "67fab6d5993010229534207c";
+
+        BatchGateVerdict verdict = gate().evaluate(comparison(List.of(change("prop-winter", COME)), List.of(), List.of()),
+                List.of(outside), List.of());
+
+        assertFalse(verdict.isPasses());
+        assertEquals(List.of(outside), verdict.getChangedOutsideScope());
+        assertTrue(verdict.getReasons().get(0).contains(outside), verdict.getReasons().toString());
     }
 
     @Test
     @DisplayName("should return only the change of «My grandmother ___ (come) every year.», with cause NEW_RED_WORD and its reason, and keep the other three vegetables fixes")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldReturnOnlyTheChangeOfMyGrandmotherComeEveryYearWithCauseNEWREDWORDAndItsReasonAndKeepTheOtherThreeVegetablesFixes(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: only the change of «My grandmother ___ (come) every year.» returns, with NEW_RED_WORD and its reason; the other
+        // three fixes of the vegetables stay.
+        Finding grandmother = finding("lemma-absence", "misplaced-word", COME, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                "grandmother", "grandmother es A2");
+        BatchComparison comparison = comparison(List.of(change("prop-vegetables", VEGETABLES), change("prop-grandmother", COME, grandmother),
+                change("prop-fruit", FRUIT), change("prop-tea", TEA)), List.of(), List.of());
+
+        BatchGateVerdict verdict = gate().evaluate(comparison, List.of(), List.of());
+
+        assertEquals(1, verdict.getReturned().size(), "only one returns");
+        ReturnedChange back = verdict.getReturned().get(0);
+        assertEquals("prop-grandmother", back.getProposalId());
+        assertEquals(ReturnCause.NEW_RED_WORD, back.getCause());
+        assertTrue(back.getReason().contains("lemma-absence|misplaced-word|" + COME + "|grandmother"), back.getReason());
     }
 
     @Test
     @DisplayName("should return a change with cause NEW_ERROR when its node gains a counting finding")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldReturnAChangeWithCauseNEWERRORWhenItsNodeGainsACountingFinding() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: a change whose node gains a finding that counts as an error returns with NEW_ERROR.
+        Finding error = finding("hint-coherence", "hint-words", TEA, FindingSeverity.MEDIUM, FindingResolution.RULE, null,
+                "la pista no es la forma base");
+
+        BatchGateVerdict verdict = gate().evaluate(comparison(List.of(change("prop-tea", TEA, error)), List.of(), List.of()),
+                List.of(), List.of());
+
+        assertEquals(List.of("prop-tea NEW_ERROR"), verdict.getReturned().stream()
+                .map(r -> r.getProposalId() + " " + r.getCause()).toList());
     }
 
     @Test
     @DisplayName("should return, for a vocabulary number below its floor, the changes the comparison ranks as worsening it most, from the first on, until the sum of their effects brings it back within the floor")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldReturnForAVocabularyNumberBelowItsFloorTheChangesTheComparisonRanksAsWorseningItMostFromTheFirstOnUntilTheSumOfTheirEffectsBringsItBackWithinTheFloor(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: the vocabulary of A1 ends 1.1 points below the baseline, 0.6 below its floor. The comparison ranks the changes
+        // by how much they worsen it alone (−0.4, −0.3, −0.1, 0): the gate returns from the first on until their sum brings it
+        // back within, the first two.
+        ComparisonRow row = pointsRow("vocabulario", "m-a1", "A1", 96.54, 96.54, 95.44);
+        BatchComparison comparison = comparison(List.of(), List.of(row), List.of(breach(row,
+                attribution("prop-small", "q3", -0.1, GoalUnit.POINTS), attribution("prop-big", "q1", -0.4, GoalUnit.POINTS),
+                attribution("prop-none", "q4", 0.0, GoalUnit.POINTS), attribution("prop-mid", "q2", -0.3, GoalUnit.POINTS))));
+
+        BatchGateVerdict verdict = gate().evaluate(comparison, List.of(), List.of());
+
+        assertEquals(List.of("prop-big FLOOR", "prop-mid FLOOR"), verdict.getReturned().stream()
+                .map(r -> r.getProposalId() + " " + r.getCause()).toList(), "the most worsening first, until it is back");
     }
 
     @Test
     @DisplayName("should give the same verdict and return the same changes for the same comparison")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldGiveTheSameVerdictAndReturnTheSameChangesForTheSameComparison() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: the same comparison gives the same verdict and returns the same changes, whatever the order of its lists.
+        Finding grandmother = finding("lemma-absence", "misplaced-word", COME, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                "grandmother", "grandmother es A2");
+        Finding error = finding("hint-coherence", "hint-words", TEA, FindingSeverity.MEDIUM, FindingResolution.RULE, null, "pista");
+        ChangeOutcome a = change("prop-grandmother", COME, grandmother);
+        ChangeOutcome b = change("prop-tea", TEA, error);
+
+        BatchGateVerdict first = gate().evaluate(comparison(List.of(a, b), List.of(), List.of()), List.of(), List.of());
+        BatchGateVerdict second = gate().evaluate(comparison(List.of(b, a), List.of(), List.of()), List.of(), List.of());
+
+        assertEquals(first.isPasses(), second.isPasses());
+        assertEquals(first.getReturned(), second.getReturned(), "the same changes");
+        assertEquals(first.getReasons(), second.getReasons(), "the same reasons");
     }
 
     @Test
     @DisplayName("should name in each brake the number, its context, its value before and after, the tolerance and the changes it returned, as the exercises of A1 with red words from 351 to 352")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNameInEachBrakeTheNumberItsContextItsValueBeforeAndAfterTheToleranceAndTheChangesItReturnedAsTheExercisesOfA1WithRedWordsFrom351To352(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: each brake names the number, its context, its value before and after, the tolerance and what it returned.
+        ComparisonRow redWords = countRow("palabras rojas", AnalyzerFamily.VOCABULARY, "m-a1", "A1", 351, 352);
+        BatchComparison comparison = comparison(List.of(), List.of(redWords),
+                List.of(breach(redWords, attribution("prop-grandmother", COME, 1.0, GoalUnit.EXERCISES))));
+
+        BatchGateVerdict verdict = gate().evaluate(comparison, List.of(), List.of());
+
+        assertEquals(List.of("F-NOEMP-R005 (inv. 3): ejercicios con palabras rojas en A1: 351 → 352 contra el inicio de la tanda"
+                + " (tolerancia 0); devueltos: prop-grandmother"), verdict.getReasons());
+        assertEquals(List.of("prop-grandmother FLOOR"), verdict.getReturned().stream()
+                .map(r -> r.getProposalId() + " " + r.getCause()).toList());
     }
 
     @Test
     @DisplayName("should declare per analyzer how many exercises of the batch were left uncompared because the analyzer did not evaluate them at one end, and count them neither as better nor as worse")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldDeclarePerAnalyzerHowManyExercisesOfTheBatchWereLeftUncomparedBecauseTheAnalyzerDidNotEvaluateThemAtOneEndAndCountThemNeitherAsBetterNorAsWorse(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010: single-answer did not judge two changed exercises at one end: its finding there counts neither way, and the gate
+        // declares that single-answer left two exercises uncompared.
+        Finding single = finding("single-answer", "different-valid-answer", VEGETABLES, FindingSeverity.BLOCKING,
+                FindingResolution.PANEL, null, "otra respuesta encaja");
+        ChangeOutcome vegetables = new ChangeOutcome("prop-vegetables", AuditTarget.QUIZ, VEGETABLES, true, List.of(single), List.of(),
+                List.of("single-answer"));
+        ChangeOutcome come = new ChangeOutcome("prop-winter", AuditTarget.QUIZ, COME, false, List.of(), List.of(),
+                List.of("single-answer"));
+
+        BatchGateVerdict verdict = gate().evaluate(comparison(List.of(vegetables, come), List.of(), List.of()), List.of(), List.of());
+
+        assertTrue(verdict.isPasses(), "not counted as worse: " + verdict.getReasons());
+        assertEquals(List.of("single-answer 2"), verdict.getNotCompared().stream()
+                .map(n -> n.getAnalyzer() + " " + n.getQuizzes()).toList());
+    }
+
+
+    private static final String VEGETABLES = "67fab6d59930102295341ecd";
+    private static final String COME = "67fab6d59930102295341ec6";
+    private static final String FRUIT = "67fab6d59930102295341ec8";
+    private static final String TEA = "67fab6d59930102295341ec9";
+    private static final String QUIZ_LIVING_ROOM = "67fab6d59930102295341eb3";
+    private static final String AFIRMATIVAS = "6814dafa7d73e7209a13d389";
+
+    private static BatchGate gate() {
+        return new DefaultGateFactory().batchGate();
+    }
+
+    private static BatchComparison comparison(List<ChangeOutcome> changes, List<ComparisonRow> rows, List<FloorBreach> breaches) {
+        BatchComparison comparison = new BatchComparison();
+        comparison.setScopeId("tanda-A1-20261001T120000Z");
+        comparison.setChanges(new ArrayList<>(changes));
+        comparison.setRows(new ArrayList<>(rows));
+        comparison.setBreaches(new ArrayList<>(breaches));
+        comparison.setVerdict(new BatchVerdict(VerdictKind.PASSES, List.of(), List.of(), null, null));
+        return comparison;
+    }
+
+    private static ChangeOutcome change(String proposalId, String quizId, Finding... gained) {
+        return new ChangeOutcome(proposalId, AuditTarget.QUIZ, quizId, gained.length > 0, List.of(gained), List.of(), List.of());
+    }
+
+    private static ComparisonRow countRow(String subject, AnalyzerFamily family, String nodeId, String label, int start, int projected) {
+        return new ComparisonRow(subject, family, AuditTarget.MILESTONE, nodeId, label, new RowValue((double) start, null, 0),
+                null, new RowValue((double) start, null, 0), new RowValue((double) projected, null, 0),
+                (double) (projected - start), GoalUnit.EXERCISES, null, null);
+    }
+
+    private static ComparisonRow pointsRow(String subject, String nodeId, String label, double baseline, double start,
+            double projected) {
+        return new ComparisonRow(subject, AnalyzerFamily.VOCABULARY, nodeId.equals("root") ? AuditTarget.COURSE
+                : AuditTarget.MILESTONE, nodeId, label, new RowValue(baseline, null, 0), null, new RowValue(start, null, 0),
+                new RowValue(projected, null, 0), projected - baseline, GoalUnit.POINTS, null, null);
+    }
+
+    private static FloorBreach breach(ComparisonRow row, ChangeAttribution... attributions) {
+        return new FloorBreach("piso-" + row.getSubject() + "-" + row.getNodeId(), row, List.of(attributions));
+    }
+
+    private static ChangeAttribution attribution(String proposalId, String nodeId, double effect, GoalUnit unit) {
+        return new ChangeAttribution(proposalId, nodeId, effect, unit);
+    }
+
+    private static Finding finding(String analyzer, String rule, String quizId, FindingSeverity severity,
+            FindingResolution resolution, String marker, String observation) {
+        return new Finding(analyzer, rule, new FindingNodeRef(AuditTarget.QUIZ, quizId, quizId), severity,
+                new FindingEvidence(List.of(new EvidencePart("Ejercicio", quizId)), observation, List.of()), resolution,
+                AnalysisCost.INSTANT, new FindingIdentity(analyzer + "|" + rule + "|" + quizId
+                        + (marker != null ? "|" + marker : ""), marker));
     }
 }

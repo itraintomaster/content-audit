@@ -1,7 +1,31 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.rulefix.RuleFixRequest;
+import com.learney.contentaudit.auditdomain.rulefix.RuleFixRerecording;
+import com.learney.contentaudit.auditdomain.rulefix.RuleFixResult;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,39 +39,118 @@ public class DataCoherenceRuleFixTest {
     @DisplayName("should turn the «/» of an accepted answer into «|» and rebuild the stored sentence with the first answer, as «has not cut/hasn't cut» in «He ___ (not / cut) himself.»")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldTurnTheOfAnAcceptedAnswerIntoAndRebuildTheStoredSentenceWithTheFirstAnswerAsHasNotCuthasntCutInHeNotCutHimself(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TANDA-R004 and F-DATOS-R002 inv. 1, R001: «He ___ (not / cut) himself.» accepted «has not cut/hasn't cut», which the
+        // corrector reads as one single form. The «/» becomes «|» and the stored sentence is built again with the first answer.
+        QuizTemplateEntity cut = quiz(CUT, "A2.04.05.09", List.of(text("He"), cloze("has not cut/hasn't cut"),
+                text("(not / cut) himself.")), List.of("He has not cut/hasn't cut himself."));
+        Finding slash = dataFinding(CUT, "no-slash", "respuesta", FindingSeverity.BLOCKING, "has not cut/hasn't cut");
+
+        RuleFixResult result = fix().fix(new RuleFixRequest(cut, null, SentenceMode.FILL, List.of(slash)));
+
+        assertEquals("data-coherence", fix().analyzerName());
+        assertEquals(List.of(slash.getIdentity()), result.getFixed());
+        assertTrue(result.getDeclined().isEmpty(), result.getDetail());
+        assertEquals(List.of("has not cut|hasn't cut"), result.getQuiz().getForm().getSentenceParts().get(1).getOptions());
+        assertEquals("He has not cut himself.", result.getQuiz().getSentences().get(0), "built with the first answer");
+        assertTrue(result.getRerecordings().isEmpty(), "no finding asked about the audio");
+        assertEquals(List.of("has not cut/hasn't cut"), cut.getForm().getSentenceParts().get(1).getOptions(),
+                "the exercise it received stays as it was");
     }
 
     @Test
     @DisplayName("should leave «I learned ___ me / myself to drive a car.» (…399b) as it is and ask to rerecord its audio B1.13.05.15, which reads the hint, with «I learned myself to drive a car.»")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldLeaveILearnedMeMyselfToDriveACar399bAsItIsAndAskToRerecordItsAudioB1130515WhichReadsTheHintWithILearnedMyselfToDriveACar(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TANDA-R004 and F-DATOS-R002 inv. 2: the audio of «I learned ___ me / myself to drive a car.» reads the cue. The
+        // audio follows the exercise: the exercise stays as it is and the fix asks to record B1.13.05.15 again with what it
+        // says, «I learned myself to drive a car.».
+        QuizTemplateEntity learned = quiz(LEARNED, "B1.13.05.15", List.of(text("I learned"), cloze("myself"),
+                text("me / myself to drive a car.")), List.of("I learned myself me / myself to drive a car."));
+        Finding audio = dataFinding(LEARNED, "no-slash", "audio", FindingSeverity.MEDIUM,
+                "I learned myself me / myself to drive a car.");
+
+        RuleFixResult result = fix().fix(new RuleFixRequest(learned, null, SentenceMode.FILL, List.of(audio)));
+
+        assertSame(learned, result.getQuiz(), "the exercise stays as it is");
+        assertEquals(List.of(new RuleFixRerecording("B1.13.05.15", "I learned myself to drive a car.")), result.getRerecordings());
+        assertEquals(List.of(audio.getIdentity()), result.getFixed(), "the rule took it: it waits for the recording");
+        assertTrue(result.getDeclined().isEmpty());
     }
 
     @Test
     @DisplayName("should ask to rerecord the audio B1.13.05.20 of «He pinched ___ him / himself on the leg.» (…39a0) with «He pinched him on the leg.», without the hint nor the context in parentheses")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldAskToRerecordTheAudioB1130520OfHePinchedHimHimselfOnTheLeg39a0WithHePinchedHimOnTheLegWithoutTheHintNorTheContextInParentheses(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TANDA-R004 and F-DATOS-R002 inv. 2: «He pinched ___ him / himself on the leg. (George pinched Anthony.)» has an
+        // audio that reads the cue. It is recorded again with «He pinched him on the leg.»: neither the cue nor the context
+        // between parentheses.
+        QuizTemplateEntity pinched = quiz(PINCHED, "B1.13.05.20", List.of(text("He pinched"), cloze("him"),
+                text("him / himself on the leg. (George pinched Anthony.)")), List.of("He pinched him him / himself on the leg."));
+        Finding audio = dataFinding(PINCHED, "no-slash", "audio", FindingSeverity.MEDIUM, "He pinched him him / himself on the leg.");
+
+        RuleFixResult result = fix().fix(new RuleFixRequest(pinched, null, SentenceMode.FILL, List.of(audio)));
+
+        assertEquals(List.of(new RuleFixRerecording("B1.13.05.20", "He pinched him on the leg.")), result.getRerecordings());
+        String said = result.getRerecordings().get(0).getText();
+        assertFalse(said.contains("/") || said.contains("(") || said.contains("George"), said);
+        assertSame(pinched, result.getQuiz());
     }
 
     @Test
     @DisplayName("should ask to rerecord with «He has not cut himself.» the audio of «He ___ (not / cut) himself.», which reads «He has not cut/hasn't cut himself.», without touching the exercise")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldAskToRerecordWithHeHasNotCutHimselfTheAudioOfHeNotCutHimselfWhichReadsHeHasNotCuthasntCutHimselfWithoutTouchingTheExercise(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TANDA-R004 and F-DATOS-R002 inv. 2: the answers of «He ___ (not / cut) himself.» already carry «|», but its audio was
+        // recorded reading «He has not cut/hasn't cut himself.». The exercise is not touched; the audio is recorded again with
+        // what it says for its first answer.
+        QuizTemplateEntity cut = quiz(CUT, "A2.04.05.09", List.of(text("He"), cloze("has not cut|hasn't cut"),
+                text("(not / cut) himself.")), List.of("He has not cut himself.", "He hasn't cut himself."));
+        Finding audio = dataFinding(CUT, "no-slash", "audio", FindingSeverity.MEDIUM, "He has not cut/hasn't cut himself.");
+
+        RuleFixResult result = fix().fix(new RuleFixRequest(cut, null, SentenceMode.FILL, List.of(audio)));
+
+        assertSame(cut, result.getQuiz(), "without touching the exercise");
+        assertEquals(List.of("has not cut|hasn't cut"), cut.getForm().getSentenceParts().get(1).getOptions());
+        assertEquals(List.of(new RuleFixRerecording("A2.04.05.09", "He has not cut himself.")), result.getRerecordings());
+        assertEquals(List.of(audio.getIdentity()), result.getFixed());
+    }
+
+
+    private static final String CUT = "67fab6d5993010229534286c";
+    private static final String LEARNED = "67fab6d5993010229534399b";
+    private static final String PINCHED = "67fab6d599301022953439a0";
+
+    private static DataCoherenceRuleFix fix() {
+        return new DataCoherenceRuleFix(DefaultQuizSentenceConverter.create());
+    }
+
+    private static QuizTemplateEntity quiz(String id, String audioKey, List<SentencePartEntity> parts,
+            List<String> sentences) {
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", new ArrayList<>(parts), null, null);
+        return new QuizTemplateEntity(id, id, "CLOZE", "6814dafa7d73e7209a13d3a0", "label", null, null, null, null,
+                form, 0, 0, 0, null, null, null, audioKey, null, null, null, new ArrayList<>(sentences), null);
+    }
+
+    private static Finding dataFinding(String quizId, String rule, String marker, FindingSeverity severity, String there) {
+        return new Finding("data-coherence", rule, new FindingNodeRef(AuditTarget.QUIZ, quizId, quizId), severity,
+                new FindingEvidence(List.of(new EvidencePart("Ejercicio", quizId), new EvidencePart("Audio", there)),
+                        "lee la barra", List.of()), FindingResolution.RULE, AnalysisCost.INSTANT,
+                new FindingIdentity("data-coherence|" + rule + "|" + quizId + "|" + marker, marker));
+    }
+
+    private static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    private static SentencePartEntity cloze(String... options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", new ArrayList<>(List.of(options)));
     }
 }

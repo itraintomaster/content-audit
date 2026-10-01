@@ -1,7 +1,43 @@
 package com.learney.contentaudit.refinerdomain.errortask;
 
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerCorrection;
+import com.learney.contentaudit.auditdomain.AnalyzerCorrectionCatalog;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.auditnodeindex.DefaultAuditNodeIndexFactory;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.correctionengine.LemmaAbsenceCorrection;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryCorrection;
+import com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsCorrection;
+import com.learney.contentaudit.auditdomain.singleanswerengine.SingleAnswerCorrection;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.refinerdomain.TaskOrigin;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,48 +51,209 @@ public class DefaultErrorTaskBrieferTest {
     @DisplayName("should mark the brief of a task whose analyzer has no correction declaration with scopeDeclared false and an empty edit scope, so the batch leaves it as «sin alcance declarado»")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldMarkTheBriefOfATaskWhoseAnalyzerHasNoCorrectionDeclarationWithScopeDeclaredFalseAndAnEmptyEditScopeSoTheBatchLeavesItAsSinAlcanceDeclarado(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: a kind of task without a declaration is never attempted; its brief says so with scopeDeclared false and
+        // nothing it may touch. exact-duplicates has no declaration in this catalog.
+        Finding duplicate = finding("exact-duplicates", "exact-duplicate", VEGETABLES, FindingSeverity.HIGH,
+                FindingResolution.PANEL, AnalysisCost.INSTANT, null, "repite a otro ejercicio del tema");
+        RefinementTask task = task("task-007", AuditTarget.QUIZ, VEGETABLES, DiagnosisKind.EXACT_DUPLICATES,
+                origin(duplicate, List.of(VEGETABLES), List.of()));
+
+        ErrorTaskBrief brief = briefer().brief(vegetablesReport(), task).orElseThrow();
+
+        Assertions.assertFalse(brief.isScopeDeclared(), "R006: no declaration, no declared scope");
+        Assertions.assertEquals(List.of(), brief.getEditScope(), "and nothing it may touch");
+        Assertions.assertEquals(duplicate, brief.getFinding());
+        Assertions.assertEquals("I ___ a lot of vegetables.", brief.getQuizView().getStatement(), "the exercise still shows");
     }
 
     @Test
     @DisplayName("should brief the single-answer task of «I ___ a lot of vegetables.» with the exercise as the student sees it, its finding with its evidence and what a panel fix of single-answer may touch")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldBriefTheSingleanswerTaskOfIALotOfVegetablesWithTheExerciseAsTheStudentSeesItItsFindingWithItsEvidenceAndWhatAPanelFixOfSingleanswerMayTouch(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: the brief of the single-answer task of «I ___ a lot of vegetables.»: the exercise as the student sees it,
+        // the finding with its evidence and what a panel fix of single-answer may touch (F-TAREA-R006).
+        Finding single = finding("single-answer", "different-valid-answer", VEGETABLES, FindingSeverity.BLOCKING,
+                FindingResolution.PANEL, AnalysisCost.PAID_MODEL, null, "eat, like, buy y want también encajan");
+        RefinementTask task = task("task-002", AuditTarget.QUIZ, VEGETABLES, DiagnosisKind.SINGLE_ANSWER,
+                origin(single, List.of(VEGETABLES), List.of()));
+
+        ErrorTaskBrief brief = briefer().brief(vegetablesReport(), task).orElseThrow();
+
+        Assertions.assertSame(task, brief.getTask());
+        QuizStudentView view = brief.getQuizView();
+        Assertions.assertEquals("I ___ a lot of vegetables.", view.getStatement(), "as the student sees it");
+        Assertions.assertEquals("love", view.getGaps().get(0).getFirstAnswer());
+        Assertions.assertEquals("Me gustan mucho las verduras.", view.getTranslation());
+        Assertions.assertEquals("eat, like, buy y want también encajan", brief.getFinding().getEvidence().getObservation(),
+                "the finding with its evidence");
+        Assertions.assertEquals(FindingSeverity.BLOCKING, brief.getFinding().getSeverity());
+        Assertions.assertEquals(List.of(ExercisePart.ANSWERS, ExercisePart.HINT, ExercisePart.STATEMENT,
+                ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO), brief.getEditScope(), "what a panel fix may touch");
+        Assertions.assertTrue(brief.isScopeDeclared());
+        Assertions.assertEquals(List.of(), brief.getReachedQuizViews(), "an exercise task, not a topic one");
+        Assertions.assertEquals(List.of(), brief.getCoveredFindings());
     }
 
     @Test
     @DisplayName("should brief the mini-theory task of «$In time$ u $on time$» with the forty exercises it reaches as the student sees them, and no single quiz view")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldBriefTheMinitheoryTaskOfInTimeUOnTimeWithTheFortyExercisesItReachesAsTheStudentSeesThemAndNoSingleQuizView(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009 and R003: the mini theory of «$In time$ u $on time$» is a task of the topic; its brief brings the forty
+        // exercises it reaches as the student sees them, the mini theory in each, and no single quiz view.
+        List<AuditNode> quizzes = new ArrayList<>();
+        List<String> ids = new ArrayList<>();
+        for (int i = 0; i < 40; i++) {
+            String id = String.format("67fab6d5993010229534%04x", 0x3d25 + i);
+            ids.add(id);
+            quizzes.add(quizNode(id, "$In time$ u $on time$", List.of(text("The train arrived"), gap("on time"),
+                    text("(on time / in time).")), "El tren llegó puntual.", IN_TIME_TEXT));
+        }
+        AuditReport report = report(knowledgeNode("6814dafa7d73e7209a13d37d", "$In time$ u $on time$", quizzes));
+        Finding first = finding("mini-theory", "overstated-rule", ids.get(0), FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                AnalysisCost.PAID_MODEL, IN_TIME_TEXT, "la miniteoría promete más de lo que enseña");
+        List<Finding> covered = new ArrayList<>();
+        for (String id : ids.subList(1, 40)) {
+            covered.add(finding("mini-theory", "overstated-rule", id, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                    AnalysisCost.PAID_MODEL, IN_TIME_TEXT, "la miniteoría promete más de lo que enseña"));
+        }
+        RefinementTask task = task("task-001", AuditTarget.KNOWLEDGE, "6814dafa7d73e7209a13d37d", DiagnosisKind.MINI_THEORY,
+                origin(first, ids, covered));
+
+        ErrorTaskBrief brief = briefer().brief(report, task).orElseThrow();
+
+        Assertions.assertNull(brief.getQuizView(), "no single quiz view");
+        Assertions.assertEquals(40, brief.getReachedQuizViews().size(), "the forty exercises it reaches");
+        Assertions.assertTrue(brief.getReachedQuizViews().stream().allMatch(v -> IN_TIME_TEXT.equals(v.getMiniTheory())
+                && v.getStatement().equals("The train arrived ___ (on time / in time).")), "as the student sees them");
+        Assertions.assertEquals(List.of(ExercisePart.MINI_THEORY), brief.getEditScope());
+        Assertions.assertEquals(39, brief.getCoveredFindings().size());
     }
 
     @Test
     @DisplayName("should brief the LEMMA_ABSENCE task of «She spread the warm blue quilt on the bed.» with the off-level-words findings it covers")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldBriefTheLEMMAABSENCETaskOfSheSpreadTheWarmBlueQuiltOnTheBedWithTheOfflevelwordsFindingsItCovers(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009 and R004: the LEMMA_ABSENCE task that covers what off-level-words marks brings those findings, with what the
+        // lemma correction may touch.
+        Finding quilt = finding("lemma-absence", "misplaced-word", QUILT, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                AnalysisCost.INSTANT, "quilt", "quilt es B2");
+        Finding offQuilt = finding("off-level-words", "F-NIVFR-R002", QUILT, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                AnalysisCost.INSTANT, "quilt|NOUN", "quilt es B2 en un ejercicio de A2");
+        Finding offSpread = finding("off-level-words", "F-NIVFR-R002", QUILT, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                AnalysisCost.INSTANT, "spread|VERB", "spread es B2 en un ejercicio de A2");
+        AuditReport report = report(knowledgeNode("6814dafa7d73e7209a13d2a0", "Posición del adjetivo", List.of(quizNode(QUILT,
+                "Posición del adjetivo", List.of(text("She spread the warm blue quilt on the bed.")),
+                "Ella extendió la colcha azul tibia sobre la cama.", null))));
+        RefinementTask task = task("task-031", AuditTarget.QUIZ, QUILT, DiagnosisKind.LEMMA_ABSENCE,
+                origin(quilt, List.of(QUILT), List.of(offQuilt, offSpread)));
+
+        ErrorTaskBrief brief = briefer().brief(report, task).orElseThrow();
+
+        Assertions.assertEquals(List.of(offQuilt, offSpread), brief.getCoveredFindings(), "the findings it covers");
+        Assertions.assertEquals(quilt, brief.getFinding());
+        Assertions.assertEquals("She spread the warm blue quilt on the bed.", brief.getQuizView().getStatement());
+        Assertions.assertEquals(List.of(ExercisePart.STORED_SENTENCE, ExercisePart.STATEMENT, ExercisePart.ANSWERS,
+                ExercisePart.TRANSLATION), brief.getEditScope(), "what the lemma correction reaches today");
     }
 
     @Test
     @DisplayName("should give no brief for a vocabulary task without origin, as a SENTENCE_LENGTH task")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldGiveNoBriefForAVocabularyTaskWithoutOriginAsASENTENCELENGTHTask() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: a vocabulary task has no origin and no brief of errors.
+        RefinementTask task = task("task-100", AuditTarget.QUIZ, VEGETABLES, DiagnosisKind.SENTENCE_LENGTH, null);
+
+        Assertions.assertEquals(Optional.empty(), briefer().brief(vegetablesReport(), task));
+    }
+
+
+    private static final String VEGETABLES = "67fab6d59930102295341ecd";
+    private static final String QUILT = "67fab6d5993010229534484a";
+    private static final String IN_TIME_TEXT = "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.";
+
+    /** The briefer with the real renderer, the real index and the declarations of single-answer, mini-theory and lemmas. */
+    private static DefaultErrorTaskBriefer briefer() {
+        List<AnalyzerCorrection> corrections = List.of(new SingleAnswerCorrection(), new MiniTheoryCorrection(),
+                new LemmaAbsenceCorrection(), new OffLevelWordsCorrection());
+        AnalyzerCorrectionCatalog catalog = new AnalyzerCorrectionCatalog() {
+            @Override
+            public Optional<AnalyzerCorrection> find(String analyzerName) {
+                return corrections.stream().filter(c -> c.analyzerName().equals(analyzerName)).findFirst();
+            }
+
+            @Override
+            public List<AnalyzerCorrection> list() {
+                return corrections;
+            }
+        };
+        return new DefaultErrorTaskBriefer(catalog, new DefaultAuditNodeIndexFactory(),
+                new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
+    }
+
+    private static RefinementTask task(String id, AuditTarget target, String nodeId, DiagnosisKind kind, TaskOrigin origin) {
+        return new RefinementTask(id, target, nodeId, nodeId, kind, 1, RefinementTaskStatus.PENDING, origin);
+    }
+
+    private static TaskOrigin origin(Finding finding, List<String> reached, List<Finding> covered) {
+        return new TaskOrigin(finding, CefrLevel.A1, "k", "Tema", reached, covered);
+    }
+
+    private static Finding finding(String analyzer, String rule, String nodeId, FindingSeverity severity,
+            FindingResolution resolution, AnalysisCost cost, String marker, String observation) {
+        String key = analyzer + "|" + rule + "|" + nodeId + (marker != null ? "|" + marker : "");
+        return new Finding(analyzer, rule, new FindingNodeRef(AuditTarget.QUIZ, nodeId, nodeId), severity,
+                new FindingEvidence(List.of(new EvidencePart("Ejercicio", nodeId)), observation, List.of()),
+                resolution, cost, new FindingIdentity(key, marker));
+    }
+
+    private static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    private static SentencePartEntity gap(String... answers) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(answers));
+    }
+
+    private static AuditNode quizNode(String id, String title, List<SentencePartEntity> parts, String translation,
+            String miniTheory) {
+        AuditableQuiz quiz = new AuditableQuiz(null, id, title, id, translation, List.of(), null,
+                "Escribe la forma correcta.", parts, null, miniTheory, null);
+        AuditNode node = new AuditNode();
+        node.setEntity(quiz);
+        node.setTarget(AuditTarget.QUIZ);
+        node.setChildren(new ArrayList<>());
+        return node;
+    }
+
+    private static AuditNode knowledgeNode(String id, String label, List<AuditNode> quizzes) {
+        AuditNode node = new AuditNode();
+        node.setEntity(new AuditableKnowledge(List.of(), label, null, true, id, label, id, null, null));
+        node.setTarget(AuditTarget.KNOWLEDGE);
+        node.setChildren(new ArrayList<>(quizzes));
+        quizzes.forEach(q -> q.setParent(node));
+        return node;
+    }
+
+    private static AuditReport report(AuditNode knowledge) {
+        AuditNode root = new AuditNode();
+        root.setTarget(AuditTarget.COURSE);
+        root.setChildren(new ArrayList<>(List.of(knowledge)));
+        knowledge.setParent(root);
+        return new AuditReport(root);
+    }
+
+    private static AuditReport vegetablesReport() {
+        return report(knowledgeNode("6814dafa7d73e7209a13d389", "Afirmativas regulares", List.of(quizNode(VEGETABLES,
+                "Afirmativas regulares", List.of(text("I"), gap("love"), text("a lot of vegetables.")),
+                "Me gustan mucho las verduras.", "Con he, she, it el verbo lleva $-s$."))));
     }
 }

@@ -1,7 +1,34 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CorrectorMatcher;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcherTest;
+import com.learney.contentaudit.auditdomain.correctormatch.GapContext;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.rulefix.RuleFixRequest;
+import com.learney.contentaudit.auditdomain.rulefix.RuleFixResult;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,19 +42,114 @@ public class AnswerCompletenessRuleFixTest {
     @DisplayName("should decline, declared, the missing «aren't» of «They ___ (not / be) from Ireland.», a negation of be that the new corrector accepts and fixes, not the course")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDeclineDeclaredTheMissingArentOfTheyNotBeFromIrelandANegationOfBeThatTheNewCorrectorAcceptsAndFixesNotTheCourse(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TANDA-R004 and F-RESPC-R005: «They ___ (not / be) from Ireland.» accepts «'re not» and lacks «aren't», the other
+        // negation of be. The corrector in production since 1/10 accepts it: it is fixed in the corrector, not in the course,
+        // and the rule declines it saying so.
+        QuizTemplateEntity ireland = quiz("67fab6d59930102295341f2a", List.of(text("They"), cloze("'re not"),
+                text("(not / be) from Ireland.")), List.of("They're not from Ireland."));
+        Finding arent = formFinding("67fab6d59930102295341f2a", "be-short-negations", "aren't", "'re not");
+        AnswerCompletenessRuleFix fix = new AnswerCompletenessRuleFix(
+                new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.productionTable()));
+
+        RuleFixResult result = fix.fix(new RuleFixRequest(ireland, null, SentenceMode.FILL, List.of(arent)));
+
+        assertEquals("answer-completeness", fix.analyzerName());
+        assertTrue(result.getFixed().isEmpty(), "nothing is fixed in the course");
+        assertEquals(List.of(arent.getIdentity()), result.getDeclined(), "declined");
+        assertTrue(result.getDetail().contains("«aren't» la acepta el corrector"), result.getDetail());
+        assertSame(ireland, result.getQuiz(), "the exercise does not move");
+        assertEquals(List.of("'re not"), ireland.getForm().getSentenceParts().get(1).getOptions());
     }
 
     @Test
     @DisplayName("should add with «|», after the accepted ones, a missing form that the new corrector still rejects, keeping the first answer and what is heard")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldAddWithAfterTheAcceptedOnesAMissingFormThatTheNewCorrectorStillRejectsKeepingTheFirstAnswerAndWhatIsHeard(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TANDA-R004 and F-RESPC-R005: a missing form the corrector still rejects is added with «|» after the accepted ones of
+        // its gap. The first answer stays first, so the stored sentence and what the audio says do not move.
+        QuizTemplateEntity europe = quiz("67fab6d59930102295342b10", List.of(text("She"), cloze("travelled"),
+                text("(travel) to Europe last year.")), List.of("She travelled to Europe last year."));
+        Finding traveled = formFinding("67fab6d59930102295342b10", "spellings-and-till", "traveled", "travelled");
+
+        RuleFixResult result = new AnswerCompletenessRuleFix(stillRejectsWhatItDoesNotList())
+                .fix(new RuleFixRequest(europe, null, SentenceMode.FILL, List.of(traveled)));
+
+        assertEquals(List.of(traveled.getIdentity()), result.getFixed());
+        assertTrue(result.getDeclined().isEmpty(), result.getDetail());
+        List<SentencePartEntity> parts = result.getQuiz().getForm().getSentenceParts();
+        assertEquals(List.of("travelled|traveled"), parts.get(1).getOptions(), "after the accepted ones, with «|»");
+        assertEquals("travelled", parts.get(1).getOptions().get(0).split("\\|")[0], "the first answer stays first");
+        assertEquals(List.of("She travelled to Europe last year."), result.getQuiz().getSentences(), "what is heard");
+        assertEquals("A2.05.01.04", result.getQuiz().getAnswerAudioUrl());
+        assertTrue(result.getRerecordings().isEmpty());
+        assertEquals(List.of("travelled"), europe.getForm().getSentenceParts().get(1).getOptions(),
+                "the exercise it received stays as it was");
+    }
+
+
+    private static QuizTemplateEntity quiz(String id, List<SentencePartEntity> parts, List<String> sentences) {
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", new ArrayList<>(parts), null, null);
+        return new QuizTemplateEntity(id, id, "CLOZE", "6814dafa7d73e7209a13d389", "label", null, null, null, null,
+                form, 0, 0, 0, null, null, null, "A2.05.01.04", null, null, null, new ArrayList<>(sentences), null);
+    }
+
+    /** A missing form as the analyzer shows it: the exercise, what it accepts and what is missing. */
+    private static Finding formFinding(String quizId, String rule, String missing, String accepted) {
+        String marker = missing.toLowerCase(Locale.ROOT);
+        return new Finding("answer-completeness", rule, new FindingNodeRef(AuditTarget.QUIZ, quizId, quizId),
+                FindingSeverity.MEDIUM, new FindingEvidence(List.of(new EvidencePart("Ejercicio", quizId),
+                        new EvidencePart("Acepta", accepted), new EvidencePart("Falta", missing)),
+                        "acepta " + accepted + "; falta " + missing, List.of()),
+                FindingResolution.RULE, AnalysisCost.INSTANT,
+                new FindingIdentity("answer-completeness|" + rule + "|" + quizId + "|" + marker, marker));
+    }
+
+    /** A corrector that accepts only what the gap lists, letter by letter: it still rejects «traveled». */
+    private static CorrectorMatcher stillRejectsWhatItDoesNotList() {
+        return new CorrectorMatcher() {
+            @Override
+            public Set<String> canonicalForms(String text) {
+                return Set.of(text);
+            }
+
+            @Override
+            public boolean accepts(GapContext context, List<String> acceptedOptions, String written) {
+                for (String option : acceptedOptions) {
+                    for (String alternative : option.split("\\|")) {
+                        if (alternative.strip().equalsIgnoreCase(written.strip())) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public boolean sameAnswer(String first, String second) {
+                return first.strip().equalsIgnoreCase(second.strip());
+            }
+
+            @Override
+            public boolean sameAnswer(GapContext context, String first, String second) {
+                return sameAnswer(first, second);
+            }
+
+            @Override
+            public String tableVersion() {
+                return "sin tabla";
+            }
+        };
+    }
+
+    private static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    private static SentencePartEntity cloze(String... options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", new ArrayList<>(List.of(options)));
     }
 }

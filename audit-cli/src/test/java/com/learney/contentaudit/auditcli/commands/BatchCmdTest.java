@@ -1,7 +1,41 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
+import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
+import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchReport;
+import com.learney.contentaudit.revisiondomain.batch.BatchRunRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchService;
+import com.learney.contentaudit.revisiondomain.batch.BatchSettings;
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskCount;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.OutcomeCount;
+import com.learney.contentaudit.revisiondomain.batch.QueriesByRole;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
+import com.learney.contentaudit.coursedomain.FormKind;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import picocli.CommandLine;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,47 +49,255 @@ public class BatchCmdTest {
     @DisplayName("should open with 'batch open A1' the batch of A1 with the topics and queries at once and the orders given, and print its tasks")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldOpenWithBatchOpenA1TheBatchOfA1WithTheTopicsAndQueriesAtOnceAndTheOrdersGivenAndPrintItsTasks(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: 'batch open A1' with 8 topics and 6 queries at once and José's order on «Contracciones»: the service gets
+        // them as they were given, and the command prints the batch with its tasks.
+        Service service = new Service();
+
+        Run run = run(service, "open", "A1", "--topics-at-once", "8", "--queries-at-once", "6", "--to-multiple-choice",
+                "Contracciones");
+
+        assertEquals(0, run.exit(), run.err());
+        BatchOpenRequest asked = service.opened.get(0);
+        assertEquals(CefrLevel.A1, asked.getLevel());
+        assertEquals(Integer.valueOf(8), asked.getTopicsAtOnce());
+        assertEquals(Integer.valueOf(6), asked.getQueriesAtOnce());
+        assertEquals(List.of("Contracciones"), asked.getConvertToMultipleChoice());
+        assertTrue(run.out().contains("Tanda tanda-A1-20261001T120000Z abierta en A1, sobre el análisis audit-20260929"),
+                run.out());
+        assertTrue(run.out().contains("A la vez: 8 temas y 6 consultas"), run.out());
+        assertTrue(run.out().contains("Tareas (3):\n  t-pista\n  t-respuesta\n  t-teoria\n"), run.out());
+        assertTrue(run.out().contains("Encargo de José: el tema 6814dafa7d73e7209a13d3c1 pasa a opción múltiple con 3"
+                + " opciones."), run.out());
+        Run wrong = run(new Service(), "open", "Z9");
+        assertEquals(2, wrong.exit(), "a level that is not one");
     }
 
     @Test
     @DisplayName("should print with 'batch estimate' the cost of the open batch without making any query")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldPrintWithBatchEstimateTheCostOfTheOpenBatchWithoutMakingAnyQuery() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: 'batch estimate' prints the cost of the open batch, and makes no query: it does not run anything.
+        Service service = new Service();
+
+        Run run = run(service, "estimate");
+
+        assertEquals(0, run.exit(), run.err());
+        assertTrue(run.out().contains("  hint-coherence · regla: 1\n  single-answer · mesa: 2\n"), run.out());
+        assertTrue(run.out().contains("Ejercicios: 12, en 3 temas; el tema más pesado tiene 9 ejercicios."), run.out());
+        assertTrue(run.out().contains("Consultas: 17, unas 0,05 horas a 19 s por consulta con 4 temas y 4 consultas a la"
+                + " vez."), run.out());
+        assertTrue(service.runs.isEmpty(), "no run, no query");
     }
 
     @Test
     @DisplayName("should run with 'batch run' and no cap only the rules, and say that the panel tasks stayed not attempted")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldRunWithBatchRunAndNoCapOnlyTheRulesAndSayThatThePanelTasksStayedNotAttempted(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: 'batch run' without --cap runs the rules only, and says the panel tasks stayed not attempted.
+        Service service = new Service();
+
+        Run run = run(service, "run");
+
+        assertEquals(0, run.exit(), run.err());
+        assertEquals(1, service.runs.size());
+        assertEquals(null, service.runs.get(0).getQueryCap(), "no cap asked");
+        assertTrue(run.out().startsWith("Sin tope de consultas: corrieron sólo las reglas, que no consultan ningún modelo; 2"
+                + " tareas de la mesa quedaron sin intentar."), run.out());
+        assertTrue(run.out().contains("  resueltas por regla: 1\n  sin intentar: 2\n"), run.out());
+
+        Run capped = run(service, "run", "--cap", "300");
+        assertEquals(Integer.valueOf(300), service.runs.get(1).getQueryCap());
+        assertTrue(capped.out().startsWith("Corrida con tope de 300 consultas."), capped.out());
     }
 
     @Test
     @DisplayName("should drop with 'batch drop' one change naming the change, and all the changes of a rule naming the rule")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDropWithBatchDropOneChangeNamingTheChangeAndAllTheChangesOfARuleNamingTheRule(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: 'batch drop --change' drops that change, named; 'batch drop --rule' drops every change of the rule, named
+        // one by one. Both go through the service, as José's decisions.
+        Service service = new Service();
+
+        Run one = run(service, "drop", "--change", "mesa-67fab6d59930102295341ecd", "--reason", "no es mejor");
+
+        assertEquals(0, one.exit(), one.err());
+        BatchAdjustment change = service.adjustments.get(0);
+        assertEquals(BatchAdjustmentKind.DROP_CHANGE, change.getKind());
+        assertEquals("mesa-67fab6d59930102295341ecd", change.getChangeId());
+        assertEquals("no es mejor", change.getReason());
+        assertTrue(one.out().startsWith("Salió el cambio mesa-67fab6d59930102295341ecd.\n"
+                + "  mesa-67fab6d59930102295341ecd: no es mejor\n"), one.out());
+
+        Run rule = run(service, "drop", "--rule", "hint-coherence");
+
+        assertEquals(0, rule.exit(), rule.err());
+        assertEquals(BatchAdjustmentKind.DROP_RULE, service.adjustments.get(1).getKind());
+        assertEquals("hint-coherence", service.adjustments.get(1).getRuleId());
+        assertTrue(rule.out().startsWith("Salieron los 2 cambios de la regla hint-coherence.\n"), rule.out());
+        assertTrue(rule.out().contains("  regla-hint-coherence-67fab6d59930102295341ecd: José sacó la regla hint-coherence\n"),
+                rule.out());
+        assertTrue(rule.out().contains("  regla-hint-coherence-67fab6d59930102295341ec8: José sacó la regla hint-coherence\n"),
+                rule.out());
+
+        assertEquals(2, run(service, "drop", "--change", "x", "--rule", "y").exit(), "one of the two, not both");
     }
 
     @Test
     @DisplayName("should print with 'batch report' the report of a batch")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldPrintWithBatchReportTheReportOfABatch() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010: 'batch report' prints the report of the open batch -- or of the one named --, in text or in JSON.
+        Service service = new Service();
+
+        Run text = run(service, "report");
+
+        assertEquals(0, text.exit(), text.err());
+        assertTrue(text.out().startsWith("Tanda tanda-A1-20261001T120000Z · A1 · CLOSED\nTareas: 3\n"), text.out());
+        assertTrue(text.out().contains("Audios para regrabar (1):\n  A1.02.01.cd · 67fab6d59930102295341ecd · «I love"
+                + " vegetables.»\n"), text.out());
+        assertTrue(text.out().contains("Consultas: 8 del proponente y 30 de los jueces; 0,20 horas."), text.out());
+        assertEquals(List.of(""), service.reported, "the open batch");
+
+        Run json = run(service, "report", "tanda-A1-20261001T120000Z", "-f", "json");
+        assertEquals(0, json.exit());
+        assertEquals("tanda-A1-20261001T120000Z", service.reported.get(1));
+        assertTrue(json.out().contains("\"batchId\" : \"tanda-A1-20261001T120000Z\""), json.out());
+    }
+
+
+    record Run(int exit, String out, String err) {
+    }
+
+    /** The command line as José types it, with what it printed. */
+    private static Run run(BatchService service, String... args) {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        ByteArrayOutputStream err = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        PrintStream originalErr = System.err;
+        System.setOut(new PrintStream(out, true, StandardCharsets.UTF_8));
+        System.setErr(new PrintStream(err, true, StandardCharsets.UTF_8));
+        try {
+            int exit = new CommandLine(new BatchCmd(service)).execute(args);
+            return new Run(exit, out.toString(StandardCharsets.UTF_8), err.toString(StandardCharsets.UTF_8));
+        } finally {
+            System.setOut(originalOut);
+            System.setErr(originalErr);
+        }
+    }
+
+    /** The service of the batch, by hand: what it was asked, and a batch of A1 as it answers. */
+    static final class Service implements BatchService {
+        final List<BatchOpenRequest> opened = new ArrayList<>();
+
+        final List<BatchRunRequest> runs = new ArrayList<>();
+
+        final List<BatchAdjustment> adjustments = new ArrayList<>();
+
+        final List<String> reported = new ArrayList<>();
+
+        final CorrectionBatch batch = new CorrectionBatch();
+
+        Service() {
+            batch.setId("tanda-A1-20261001T120000Z");
+            batch.setLevel(CefrLevel.A1);
+            batch.setStatus(BatchStatus.OPEN);
+            batch.setBaselineAuditId("audit-20260929");
+            batch.setStartAuditId("audit-20260929");
+            batch.setPlanId("plan-20260929");
+            batch.setTaskIds(new ArrayList<>(List.of("t-pista", "t-respuesta", "t-teoria")));
+            batch.setChanges(new ArrayList<>(List.of(
+                    change("mesa-67fab6d59930102295341ecd", BatchChangeOrigin.PANEL, null),
+                    change("regla-hint-coherence-67fab6d59930102295341ecd", BatchChangeOrigin.RULE, "hint-coherence"),
+                    change("regla-hint-coherence-67fab6d59930102295341ec8", BatchChangeOrigin.RULE, "hint-coherence"))));
+            batch.setClosings(new ArrayList<>());
+        }
+
+        private static BatchChange change(String id, BatchChangeOrigin origin, String rule) {
+            return new BatchChange(id, origin, rule, "6814dafa7d73e7209a13d389", new ArrayList<>(), new ArrayList<>(), null,
+                    false, Instant.parse("2026-10-01T12:30:00Z"), null);
+        }
+
+        @Override
+        public CorrectionBatch open(BatchOpenRequest request) {
+            opened.add(request);
+            batch.setSettings(new BatchSettings(request.getTopicsAtOnce() != null ? request.getTopicsAtOnce() : 4,
+                    request.getQueriesAtOnce() != null ? request.getQueriesAtOnce() : 4, 3));
+            List<ConversionOrder> orders = new ArrayList<>();
+            if (request.getConvertToMultipleChoice().contains("Contracciones")) {
+                orders.add(new ConversionOrder("6814dafa7d73e7209a13d3c1", FormKind.MULTIPLE_CHOICE, 3));
+            }
+            batch.setConversionOrders(orders);
+            return batch;
+        }
+
+        @Override
+        public Optional<CorrectionBatch> current() {
+            return Optional.of(batch);
+        }
+
+        @Override
+        public BatchEstimate estimate() {
+            return new BatchEstimate(batch.getId(), List.of(new BatchTaskCount("hint-coherence", FindingResolution.RULE, 1),
+                    new BatchTaskCount("single-answer", FindingResolution.PANEL, 2)), 12, 3, 9, 0, 17, 0.05, 4, 4);
+        }
+
+        @Override
+        public BatchReport run(BatchRunRequest request) {
+            runs.add(request);
+            return build();
+        }
+
+        @Override
+        public BatchClosing close() {
+            throw new AssertionError("not in these tests");
+        }
+
+        @Override
+        public CorrectionBatch adjust(BatchAdjustment adjustment) {
+            adjustments.add(adjustment);
+            for (BatchChange change : batch.getChanges()) {
+                if (change.getDroppedReason() != null) {
+                    continue;
+                }
+                if (adjustment.getKind() == BatchAdjustmentKind.DROP_CHANGE
+                        && change.getChangeId().equals(adjustment.getChangeId())) {
+                    change.setDroppedReason(adjustment.getReason());
+                } else if (adjustment.getKind() == BatchAdjustmentKind.DROP_RULE
+                        && adjustment.getRuleId().equals(change.getRuleId())) {
+                    change.setDroppedReason("José sacó la regla " + adjustment.getRuleId());
+                }
+            }
+            return batch;
+        }
+
+        @Override
+        public BatchReport report(String batchId) {
+            reported.add(batchId == null ? "" : batchId);
+            return build();
+        }
+
+        private BatchReport build() {
+            List<OutcomeCount> outcomes = new ArrayList<>();
+            for (BatchTaskOutcomeKind kind : BatchTaskOutcomeKind.values()) {
+                outcomes.add(new OutcomeCount(kind, kind == BatchTaskOutcomeKind.RESOLVED_BY_RULE ? 1
+                        : kind == BatchTaskOutcomeKind.NOT_ATTEMPTED ? 2 : 0));
+            }
+            return new BatchReport(batch.getId(), CefrLevel.A1, BatchStatus.CLOSED, outcomes, 3, 0, 0, List.of(),
+                    List.of(new AudioRerecordRequest("67fab6d59930102295341ecd", "A1.02.01.cd",
+                            List.of("I love vegetables."))), List.of(), new QueriesByRole(8, 30), 0.2, List.of());
+        }
+
+        @Override
+        public BatchPublication publish(BatchPublishRequest request) {
+            throw new AssertionError("publishing is the tray's");
+        }
     }
 }

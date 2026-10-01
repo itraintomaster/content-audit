@@ -1,5 +1,10 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchStore;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -30,7 +35,6 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -534,17 +538,91 @@ public class ReviseCmdTest {
     @DisplayName("should revise as today a task that is in no open batch, with the same reviser and the same outcomes")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R014")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldReviseAsTodayATaskThatIsInNoOpenBatchWithTheSameReviserAndTheSameOutcomes() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R014: a batch of A1 is open, but this task is not in it: 'revise' goes to the same reviser and maps the same
+        // outcome as before the batches.
+        RefinementTask task = task("task-001");
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan("plan-latest", "audit-001", List.of(task))));
+        when(revisionEngine.revise(eq("plan-latest"), eq("task-001"), any(Path.class), isNull()))
+                .thenReturn(new RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, null, null));
+
+        int exit = withBatch(openBatch("tanda-A1-20261001T120000Z", "task-099")).revise("task-001", null, null, null);
+
+        assertEquals(0, exit, "APPROVED_APPLIED, as today");
+        verify(revisionEngine).revise(eq("plan-latest"), eq("task-001"), any(Path.class), isNull());
     }
 
     @Test
     @DisplayName("should reject 'revise' of a task of the open batch with «La tarea <id> es de la tanda <id> y se decide en su bandeja.» and exit non-zero without calling the revision engine")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldRejectReviseOfATaskOfTheOpenBatchWithLaTareaIdEsDeLaTandaIdYSeDecideEnSuBandejaAndExitNonzeroWithoutCallingTheRevisionEngine() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TANDA-R002: the task is in the open batch: 'revise' says where it is decided and never calls the engine.
+        RefinementTask task = task("task-001");
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan("plan-latest", "audit-001", List.of(task))));
+        ByteArrayOutputStream err = new ByteArrayOutputStream();
+        PrintStream original = System.err;
+        int exit;
+        try {
+            System.setErr(new PrintStream(err, true));
+            exit = withBatch(openBatch("tanda-A1-20261001T120000Z", "task-001")).revise("task-001", null, null, null);
+        } finally {
+            System.setErr(original);
+        }
+
+        assertNotEquals(0, exit);
+        assertTrue(err.toString().contains("La tarea task-001 es de la tanda tanda-A1-20261001T120000Z y se decide en su bandeja."),
+                err.toString());
+        verify(revisionEngine, never()).revise(anyString(), anyString(), any(Path.class), any());
+    }
+
+
+    /** The command with a store of batches, its options as the other tests leave them. */
+    private ReviseCmd withBatch(BatchStore store) {
+        ReviseCmd cmd = new ReviseCmd(revisionEngine, refinementPlanStore, store);
+        try {
+            for (Field f : cmd.getClass().getDeclaredFields()) {
+                f.setAccessible(true);
+                if (f.getType() == String.class && f.get(cmd) == null) {
+                    f.set(cmd, "/placeholder/course");
+                }
+            }
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException(e);
+        }
+        return cmd;
+    }
+
+    /** A store whose open batch lists the given tasks. */
+    private static BatchStore openBatch(String batchId, String... taskIds) {
+        CorrectionBatch batch = new CorrectionBatch();
+        batch.setId(batchId);
+        batch.setStatus(BatchStatus.OPEN);
+        batch.setTaskIds(new ArrayList<>(List.of(taskIds)));
+        return new BatchStore() {
+            @Override
+            public void save(CorrectionBatch saved) {
+            }
+
+            @Override
+            public Optional<CorrectionBatch> load(String id) {
+                return batchId.equals(id) ? Optional.of(batch) : Optional.empty();
+            }
+
+            @Override
+            public Optional<CorrectionBatch> open() {
+                return Optional.of(batch);
+            }
+
+            @Override
+            public List<CorrectionBatch> list() {
+                return List.of(batch);
+            }
+
+            @Override
+            public Optional<CorrectionBatch> latestPublished() {
+                return Optional.empty();
+            }
+        };
     }
 }

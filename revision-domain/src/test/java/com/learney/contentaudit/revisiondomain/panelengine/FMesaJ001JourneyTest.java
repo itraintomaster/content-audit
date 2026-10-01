@@ -1,7 +1,21 @@
 package com.learney.contentaudit.revisiondomain.panelengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
+import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelRunSettings;
+import com.learney.contentaudit.revisiondomain.panel.PanelRunner;
+import com.learney.contentaudit.revisiondomain.panel.PanelTopicResult;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,35 +35,109 @@ public class FMesaJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: La tanda abre la mesa de un tema con ... → La mesa vuelve a medir el ejercicio c... → Sus tareas terminan como ya no se sos... [Ninguno de sus hallazgos sigue] → success")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void path1_ningunoDeSusHallazgosSigue_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // tomar_tema → revalidar [Ninguno de sus hallazgos sigue] → ya_no_se_sostiene: the rule of the batch already put «(love)»;
+        // measured again, single-answer does not mark the vegetables and their task ends without a candidate nor an attempt.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        RecordingProposer proposer = new RecordingProposer(script());
+        RecordingSink sink = new RecordingSink();
+
+        List<PanelTopicResult> results = runner(bench, proposer).runTopics(List.of(work(topic, List.of(brief("t-single",
+                anotherAnswer())))), settings(), allowance(null, 4), sink);
+
+        assertTrue(proposer.requests.isEmpty(), "no candidate");
+        assertEquals(PanelOutcomeKind.NO_LONGER_HOLDS, sink.only().getOutcome());
+        assertEquals(0, sink.only().getAttempts());
+        assertEquals(1, results.size());
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: La tanda abre la mesa de un tema con ... → La mesa vuelve a medir el ejercicio c... → Quien propone entrega candidatos del ... [Sigue al menos uno] → Los jueces que leen lo que cambió juz... → El candidato queda como propuesta pen... [Un candidato resuelve al menos una tarea y no empeora nada] → success")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void path2_sigueAlMenosUno_unCandidatoResuelveAlMenosUnaTareaYNoEmpeoraNada_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // tomar_tema → revalidar [Sigue al menos uno] → proponer → juzgar [resuelve y no empeora] → aceptado: the translation of the
+        // vegetables does not say the English; the candidate with «Me encantan las verduras.» solves it, worsens nothing and
+        // stays as a pending proposal, while the topic the panel got does not change.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        QuizTemplateEntity fixed = withTranslation(exercise(topic, VEGETABLES), "Me encantan las verduras.");
+        RecordingSink sink = new RecordingSink();
+
+        runner(bench, new RecordingProposer(script(VEGETABLES, proposal(candidate(PanelCandidateKind.TRANSLATION_ONLY, fixed)))))
+                .runTopics(List.of(work(topic, List.of(brief("t-translation", translationDiffers())))), settings(),
+                        allowance(null, 4), sink);
+
+        PanelDecision decision = sink.only();
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(List.of("t-translation"), decision.getResolvedTaskIds());
+        assertEquals("Me encantan las verduras.", decision.getAccepted().getQuiz().getTranslation());
+        assertTrue(decision.getAcceptedVerdict().isPasses());
+        assertEquals("Me gustan mucho las verduras.", exercise(topic, VEGETABLES).getTranslation(), "the course does not change");
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: La tanda abre la mesa de un tema con ... → La mesa vuelve a medir el ejercicio c... → Quien propone entrega candidatos del ... [Sigue al menos uno] → Los jueces que leen lo que cambió juz... → La bandeja recibe los dos veredictos ... [Los dos jueces de traducción y sentido no coinciden] → failure")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void path3_sigueAlMenosUno_losDosJuecesDeTraduccinYSentidoNoCoinciden_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // … → juzgar [the two judges of translation and sense disagree] → desempate: the tray gets both verdicts and the exercise
+        // waits for José.
+        MeterBench bench = new MeterBench();
+        bench.disagreeOn = "Amo un montón de verduras.";
+        KnowledgeEntity topic = afirmativas();
+        QuizTemplateEntity disputed = withTranslation(exercise(topic, VEGETABLES), "Amo un montón de verduras.");
+        RecordingProposer proposer = new RecordingProposer(script(VEGETABLES, proposal(candidate(PanelCandidateKind.TRANSLATION_ONLY,
+                disputed))));
+        RecordingSink sink = new RecordingSink();
+
+        runner(bench, proposer).runTopics(List.of(work(topic, List.of(brief("t-translation", translationDiffers())))), settings(),
+                allowance(null, 4), sink);
+
+        PanelDecision decision = sink.only();
+        assertEquals(PanelOutcomeKind.TIE, decision.getOutcome());
+        assertEquals(1, proposer.requests.size(), "it waits for José without more attempts");
+        assertEquals("translation-sense|judges-disagree|" + VEGETABLES, decision.getTieFindings().get(0).getIdentity().getKey());
+        assertNull(decision.getAccepted());
     }
 
     @Test
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: La tanda abre la mesa de un tema con ... → La mesa vuelve a medir el ejercicio c... → Quien propone entrega candidatos del ... [Sigue al menos uno] → Los jueces que leen lo que cambió juz... → El ejercicio queda como estaba y la b... [Ningún candidato pasa después del tercer intento] → failure")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void path4_sigueAlMenosUno_ningnCandidatoPasaDespusDelTercerIntento_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // … → juzgar [no candidate passes after the third attempt] → sin_ganador: «He ___ (come) every year.» stays as it was, and
+        // the tray gets the candidate that failed least and the reasons of each attempt.
+        MeterBench bench = new MeterBench();
+        KnowledgeEntity topic = afirmativas();
+        QuizTemplateEntity grandmother = withTranslation(withParts(exercise(topic, COME), text("My grandmother"), cloze("comes"),
+                text("(come) every year.")), "Mi abuela viene cada año.");
+        RecordingSink sink = new RecordingSink();
+
+        runner(bench, new RecordingProposer(script(COME, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, grandmother)), COME,
+                proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, grandmother)), COME, proposal(candidate(
+                        PanelCandidateKind.WHOLE_EXERCISE, grandmother))))).runTopics(List.of(work(topic, List.of(brief("t-come",
+                com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.finding("single-answer", "different-valid-answer", COME,
+                        com.learney.contentaudit.auditdomain.finding.FindingSeverity.HIGH,
+                        com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL, null, "single-answer lo marca"))))),
+                settings(), allowance(null, 4), sink);
+
+        PanelDecision decision = sink.only();
+        assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
+        assertEquals(3, decision.getAttempts());
+        assertEquals(3, decision.getRejections().size(), "the reasons of each attempt");
+        assertTrue(String.join(" ", decision.getRejections().get(0).getReasons()).contains("grandmother"));
+        assertNotNull(decision.getBestFailing(), "the candidate that failed least");
+        assertEquals("He comes every year.", exercise(topic, COME).getSentences().get(0), "it stays as it was");
+    }
+
+
+    private static PanelRunner runner(MeterBench bench, RecordingProposer proposer) {
+        return new DefaultPanelRunnerFactory().create(bench.config(proposer));
+    }
+
+    private static PanelRunSettings settings() {
+        return new PanelRunSettings(4, 4, 3, MeterBench.ALL);
     }
 }

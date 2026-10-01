@@ -1,5 +1,13 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.auditcli.commands.FTareaJ001JourneyTest.Tarea;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
+import java.util.ArrayList;
+
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditdomain.AuditReportSummary;
@@ -4899,63 +4907,161 @@ public class GetCmdTest {
     @DisplayName("should list with 'get tasks' only the panel tasks of the topic Afirmativas regulares when filtered by that topic and the panel resolution, each with its finding: single-answer and translation-sense of «I ___ a lot of vegetables.» but not its hint")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldListWithGetTasksOnlyThePanelTasksOfTheTopicAfirmativasRegularesWhenFilteredByThatTopicAndThePanelResolutionEachWithItsFindingSingleanswerAndTranslationsenseOfIALotOfVegetablesButNotItsHint() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TAREA-R008: get tasks filtered by the topic Afirmativas regulares and the panel resolution brings the tasks of
+        // single-answer and translation-sense of «I ___ a lot of vegetables.», each with its finding, and not its hint,
+        // which goes by rule; nor the vocabulary task of another topic.
+        Tarea t = new Tarea();
+        planOf(t, t.course(t.level("A1", t.topic("t-ps", "Present Simple", t.vegetables(), t.otherTopicWithLength()))));
+
+        AnalyzeCmdTest.Base299.Captured run = AnalyzeCmdTest.Base299.run(t.getCmd(), "tasks", "--knowledge", Tarea.AFIRMATIVAS,
+                "--resolution", "panel", "-f", "json", "--without-correction-context");
+
+        assertEquals(0, run.exit(), run.err());
+        List<String> found = new ArrayList<>();
+        Tarea.json(run.out()).get("tasks").forEach(task -> found.add(task.get("diagnosis").asText() + " "
+                + task.get("origin").get("finding").get("identity").asText() + " "
+                + task.get("origin").get("finding").get("resolution").asText()));
+        assertEquals(List.of("SINGLE_ANSWER single-answer|different-valid-answer|" + Tarea.VEGETABLES + " PANEL",
+                "TRANSLATION_SENSE translation-sense|same-meaning|" + Tarea.VEGETABLES + " PANEL"), found);
     }
 
     @Test
     @DisplayName("should combine the filters by analyzer, severity and CEFR level with the sort by priority, as the blocking single-answer tasks of A1 in priority order")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldCombineTheFiltersByAnalyzerSeverityAndCEFRLevelWithTheSortByPriorityAsTheBlockingSingleanswerTasksOfA1InPriorityOrder() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TAREA-R008: the filters combine among them and with the sort by priority: the blocking single-answer tasks of A1,
+        // in priority order -- not the high one of A1, nor the blocking one of A2.
+        Tarea t = new Tarea();
+        String a1Worse = "67fab6d59930102295341f60";
+        String a1High = "67fab6d59930102295341f61";
+        String a2Blocking = "67fab6d59930102295341f62";
+        AuditNode a1Topic = t.knowledge("6814dafa7d73e7209a13d391", "Negativas", t.quiz(a1High, "Negativas",
+                List.of(Tarea.text("I"), Tarea.gap("don't"), Tarea.text("like it.")), "No me gusta.", null,
+                Tarea.scores("single-answer", 0.0), Tarea.finding("single-answer", "different-valid-answer", a1High,
+                        FindingSeverity.HIGH, FindingResolution.PANEL, AnalysisCost.PAID_MODEL, null, "doesn't también encaja")),
+                t.quiz(a1Worse, "Negativas", List.of(Tarea.text("You"), Tarea.gap("don't"), Tarea.text("eat meat.")),
+                        "No comés carne.", null, Tarea.scores("single-answer", 0.5), Tarea.finding("single-answer",
+                                "different-valid-answer", a1Worse, FindingSeverity.BLOCKING, FindingResolution.PANEL,
+                                AnalysisCost.PAID_MODEL, null, "can't también encaja")));
+        AuditNode a2Topic = t.knowledge("6814dafa7d73e7209a13d392", "Pasado", t.quiz(a2Blocking, "Pasado",
+                List.of(Tarea.text("I"), Tarea.gap("went"), Tarea.text("home.")), "Fui a casa.", null,
+                Tarea.scores("single-answer", 0.0), Tarea.finding("single-answer", "different-valid-answer", a2Blocking,
+                        FindingSeverity.BLOCKING, FindingResolution.PANEL, AnalysisCost.PAID_MODEL, null, "ran también encaja")));
+        planOf(t, t.course(t.level("A1", t.topic("t-ps", "Present Simple", a1Topic, t.vegetables())),
+                t.level("A2", t.topic("t-past", "Past Simple", a2Topic))));
+
+        AnalyzeCmdTest.Base299.Captured run = AnalyzeCmdTest.Base299.run(t.getCmd(), "tasks", "--analyzer", "single-answer",
+                "--severity", "blocking", "--level", "A1", "--sort", "priority", "-f", "json", "--without-correction-context");
+
+        assertEquals(0, run.exit(), run.err());
+        List<String> found = new ArrayList<>();
+        List<Integer> priorities = new ArrayList<>();
+        Tarea.json(run.out()).get("tasks").forEach(task -> {
+            found.add(task.get("nodeId").asText());
+            priorities.add(task.get("priority").asInt());
+        });
+        assertEquals(List.of(Tarea.VEGETABLES, a1Worse), found, "the blocking single-answer tasks of A1, worst first");
+        assertTrue(priorities.get(0) < priorities.get(1), "in priority order: " + priorities);
     }
 
     @Test
     @DisplayName("should reject 'get tasks' filtered by an analyzer outside the catalog with 'Analyzer 'hint-coherense' not found. Run 'content-audit get analyzers' to see available analyzers.' and exit non-zero")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldRejectGetTasksFilteredByAnAnalyzerOutsideTheCatalogWithAnalyzerHintcoherenseNotFoundRunContentauditGetAnalyzersToSeeAvailableAnalyzersAndExitNonzero() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TAREA-R008 with F-CLIRV-R016's message: a name outside the catalog rejects the query.
+        Tarea t = new Tarea();
+        planOf(t, t.course(t.level("A1", t.topic("t-ps", "Present Simple", t.vegetables()))));
+
+        AnalyzeCmdTest.Base299.Captured run = AnalyzeCmdTest.Base299.run(t.getCmd(), "tasks", "--analyzer", "hint-coherense");
+
+        assertNotEquals(0, run.exit(), "rejected");
+        assertTrue(run.err().contains("Analyzer 'hint-coherense' not found. Run 'content-audit get analyzers' to see "
+                + "available analyzers."), run.err());
+        assertFalse(run.out().contains("task-"), "no task listed: " + run.out());
     }
 
     @Test
     @DisplayName("should reject 'get tasks' filtered by a severity outside blocking, high, medium and low and exit non-zero")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldRejectGetTasksFilteredByASeverityOutsideBlockingHighMediumAndLowAndExitNonzero() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TAREA-R008: a severity outside the four rejects the query.
+        Tarea t = new Tarea();
+        planOf(t, t.course(t.level("A1", t.topic("t-ps", "Present Simple", t.vegetables()))));
+
+        AnalyzeCmdTest.Base299.Captured run = AnalyzeCmdTest.Base299.run(t.getCmd(), "tasks", "--severity", "critical");
+
+        assertNotEquals(0, run.exit(), "rejected");
+        assertTrue(run.err().contains("Invalid value for --severity: 'critical'. Allowed: blocking, high, medium, low"), run.err());
+        assertFalse(run.out().contains("task-"), run.out());
     }
 
     @Test
     @DisplayName("should list the tasks as today, vocabulary tasks included, when no filter by finding is given")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldListTheTasksAsTodayVocabularyTasksIncludedWhenNoFilterByFindingIsGiven() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TAREA-R008: without a filter by finding, get tasks lists as today: every task of the plan, the vocabulary ones
+        // too, and only the tasks of errors bring an origin.
+        Tarea t = new Tarea();
+        RefinementPlan plan = planOf(t, t.course(t.level("A1", t.topic("t-ps", "Present Simple", t.vegetables(), t.otherTopicWithLength()))));
+
+        AnalyzeCmdTest.Base299.Captured run = AnalyzeCmdTest.Base299.run(t.getCmd(), "tasks", "-f", "json", "--without-correction-context");
+
+        assertEquals(0, run.exit(), run.err());
+        List<String> listed = new ArrayList<>();
+        Tarea.json(run.out()).get("tasks").forEach(task -> listed.add(task.get("diagnosis").asText() + " " + task.has("origin")));
+        assertEquals(plan.getTasks().size(), listed.size(), "every task of the plan");
+        assertTrue(listed.contains("SENTENCE_LENGTH false"), "the vocabulary task, without origin: " + listed);
+        assertTrue(listed.contains("SINGLE_ANSWER true"), "the tasks of errors with theirs: " + listed);
     }
 
     @Test
     @DisplayName("should show 'get task' of the single-answer task of «I ___ a lot of vegetables.» with the exercise as the student sees it, its finding with its evidence (eat, like, buy and want also fit), its blocking severity, its panel resolution and what its fix may touch")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldShowGetTaskOfTheSingleanswerTaskOfIALotOfVegetablesWithTheExerciseAsTheStudentSeesItItsFindingWithItsEvidenceEatLikeBuyAndWantAlsoFitItsBlockingSeverityItsPanelResolutionAndWhatItsFixMayTouch() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TAREA-R009: get task of the single-answer task of «I ___ a lot of vegetables.» shows what the panel receives.
+        Tarea t = new Tarea();
+        RefinementPlan plan = planOf(t, t.course(t.level("A1", t.topic("t-ps", "Present Simple", t.vegetables()))));
+        String taskId = plan.getTasks().stream().filter(task -> task.getDiagnosisKind() == DiagnosisKind.SINGLE_ANSWER)
+                .findFirst().orElseThrow().getId();
+
+        AnalyzeCmdTest.Base299.Captured run = AnalyzeCmdTest.Base299.run(t.getCmd(), "task", taskId);
+
+        assertEquals(0, run.exit(), run.err());
+        String out = run.out();
+        assertTrue(out.contains("  I ___ a lot of vegetables."), "the exercise as the student sees it: " + out);
+        assertTrue(out.contains("gap 0: love"), "with its answer: " + out);
+        assertTrue(out.contains("Translation:  Me gustan mucho las verduras."), out);
+        assertTrue(out.contains("Evidence: eat, like, buy y want también encajan"), "its finding with its evidence: " + out);
+        assertTrue(out.contains("Severity:  BLOCKING"), out);
+        assertTrue(out.contains("Resolution: PANEL"), out);
+        assertTrue(out.contains("May touch: ANSWERS, HINT, STATEMENT, STORED_SENTENCE, AUDIO"), "what its fix may touch: " + out);
     }
 
     @Test
     @DisplayName("should show 'get task' of the mini-theory task of «$In time$ u $on time$» with the forty exercises it reaches")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldShowGetTaskOfTheMinitheoryTaskOfInTimeUOnTimeWithTheFortyExercisesItReaches() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TAREA-R009 and R003: the task of the mini theory of «$In time$ u $on time$» is on the topic; get task shows the
+        // forty exercises it reaches.
+        Tarea t = new Tarea();
+        RefinementPlan plan = planOf(t, t.course(t.level("B1", t.topic("t-prep", "Prepositions", t.inTimeOnTime(40)))));
+
+        AnalyzeCmdTest.Base299.Captured run = AnalyzeCmdTest.Base299.run(t.getCmd(), "task", plan.getTasks().get(0).getId());
+
+        assertEquals(0, run.exit(), run.err());
+        String out = run.out();
+        assertTrue(out.contains("Exercises it reaches (40):"), out);
+        assertEquals(40, out.lines().filter(line -> line.contains("The train arrived ___ (on time / in time).")).count(),
+                "the forty, as the student sees them");
+        assertTrue(out.contains("Covers:    39 finding(s)"), out);
+        assertTrue(out.contains("May touch: MINI_THEORY"), out);
     }
 
     @Test
@@ -5001,5 +5107,15 @@ public class GetCmdTest {
                 "F-CALUM-R003 inv. 4: the knowledge's, labelled as the knowledge's: " + output);
         assertFalse(output.contains("Instructions:  Consigna del tema"),
                 "F-CALUM-R003 inv. 2: the knowledge's never shows as the instructions to comply with: " + output);
+    }
+
+
+    /** The plan of the course with the real engine and the declarations of the fixtures, saved as the latest. */
+    private static RefinementPlan planOf(Tarea t, AuditNode course) {
+        t.reports.put("2026-09-30T11-54-02", new AuditReport(course));
+        RefinementPlan plan = new DefaultRefinerEngine(t.catalog, t.corrections).plan(new AuditReport(course),
+                "2026-09-30T11-54-02");
+        t.plans.save(plan);
+        return plan;
     }
 }
