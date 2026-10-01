@@ -4,6 +4,8 @@ import com.learney.contentaudit.auditcli.TrayCommand;
 import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.auditdomain.studentview.StudentGapView;
+import com.learney.contentaudit.auditdomain.studentview.StudentOptionView;
 import com.learney.contentaudit.coursedomain.FormEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.quizsentence.QuizSentenceConverter;
@@ -12,6 +14,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
 import com.learney.contentaudit.revisiondomain.batch.NoOpenBatchException;
 import com.learney.contentaudit.revisiondomain.blindsample.BlindPairView;
 import com.learney.contentaudit.revisiondomain.blindsample.PairAnswer;
+import com.learney.contentaudit.revisiondomain.blindsample.StudentSide;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
 import com.learney.contentaudit.revisiondomain.tray.Tray;
@@ -295,11 +298,9 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
                 view(out, "  después", pair.getAfter());
             }
             for (BlindPairView pair : list(item.getBlindPairs())) {
-                out.append("   par ").append(pair.getIndex()).append(": A «")
-                        .append(pair.getSideA() != null && pair.getSideA().getView() != null
-                                ? pair.getSideA().getView().getStatement() : "").append("» · B «")
-                        .append(pair.getSideB() != null && pair.getSideB().getView() != null
-                                ? pair.getSideB().getView().getStatement() : "").append("»\n");
+                out.append("   par ").append(pair.getIndex()).append('\n');
+                side(out, "A", pair.getSideA());
+                side(out, "B", pair.getSideB());
             }
             if (item.getRerecord() != null) {
                 out.append("   regrabar ").append(item.getRerecord().getAudioKey()).append(" con «")
@@ -314,15 +315,63 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
         return out.toString();
     }
 
+    /**
+     * An exercise as the student sees it (F-BANDEJA-R001): the sentence and its translation, and under them the
+     * instructions, the options, the answers each gap takes and the mini theory -- what a rule or the panel changes is
+     * often not the sentence, and José decides on the whole exercise.
+     */
     private static void view(StringBuilder out, String label, QuizStudentView view) {
         if (view == null) {
             return;
         }
         out.append("   ").append(label).append(": ").append(view.getStatement());
-        if (view.getTranslation() != null) {
+        if (view.getTranslation() != null && !view.getTranslation().isBlank()) {
             out.append(" · ").append(view.getTranslation());
         }
         out.append('\n');
+        details(out, "   " + " ".repeat(label.length() + 2), view, true);
+    }
+
+    /**
+     * A side of a pair of the blind sample, laid out as {@code sample show} lays it: what the student sees and the
+     * sentence answered, without the answers each gap takes, so the sample stays blind to which side is the new one.
+     */
+    private static void side(StringBuilder out, String name, StudentSide side) {
+        QuizStudentView view = side != null ? side.getView() : null;
+        if (view == null) {
+            out.append("     ").append(name).append(" · (sin vista)\n");
+            return;
+        }
+        out.append("     ").append(name).append(" · ").append(view.getStatement());
+        if (view.getTranslation() != null && !view.getTranslation().isBlank()) {
+            out.append(" · ").append(view.getTranslation());
+        }
+        out.append('\n');
+        details(out, "         ", view, false);
+        if (side.getAnswered() != null && !side.getAnswered().isBlank()) {
+            out.append("         respondido: ").append(side.getAnswered()).append('\n');
+        }
+    }
+
+    private static void details(StringBuilder out, String indent, QuizStudentView view, boolean withAnswers) {
+        if (view.getInstructions() != null && !view.getInstructions().isBlank()) {
+            out.append(indent).append("consigna: ").append(view.getInstructions()).append('\n');
+        }
+        if (view.getOptions() != null && !view.getOptions().isEmpty()) {
+            out.append(indent).append("opciones: ").append(String.join(" · ", view.getOptions().stream()
+                    .map(StudentOptionView::getLabel).toList())).append('\n');
+        }
+        if (withAnswers) {
+            for (StudentGapView gap : list(view.getGaps())) {
+                if (gap != null && gap.getAcceptedAnswers() != null && !gap.getAcceptedAnswers().isEmpty()) {
+                    out.append(indent).append("hueco ").append(gap.getIndex() + 1).append(": ")
+                            .append(String.join(" | ", gap.getAcceptedAnswers())).append('\n');
+                }
+            }
+        }
+        if (view.getMiniTheory() != null && !view.getMiniTheory().isBlank()) {
+            out.append(indent).append("miniteoría: ").append(view.getMiniTheory()).append('\n');
+        }
     }
 
     private static <T> List<T> list(List<T> values) {
