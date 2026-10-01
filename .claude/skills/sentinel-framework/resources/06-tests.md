@@ -326,6 +326,7 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 
 - should resolve a correction context carrying every violation the quiz diagnosis recorded, each with its breached constraint, its textual evidence and its explanation → FEAT-QICOR/F-QICOR-R002
 - should resolve a correction context carrying the whole quiz with its gaps and its accepted options, the knowledge instruction, the CEFR level and the sibling quizzes of the knowledge → FEAT-QICOR/F-QICOR-R002
+- should resolve a correction context carrying the instructions of the quiz copy, the ones the student sees and the judge reads, apart from the knowledge's → FEAT-CALUM/F-CALUM-R003
 
 ### CourseToAuditableMapper (audit-application)
 

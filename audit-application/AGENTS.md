@@ -747,6 +747,7 @@ Methods:
 - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
 - `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>`
 - `lookupLevelByLemma(String lemma): Optional<CefrLevel>`
+- `lookupDerivedFormLevel(String word): Optional<CefrLevel>`
 
 ### AuditableEntity (port)
 
@@ -1583,6 +1584,7 @@ Methods:
 | siblingQuizSentences | `List<String>` |
 | sourceAuditId | `String` |
 | planId | `String` |
+| quizInstructions | `String` |
 
 ### UnconvertedScoreCount (`record`)
 

@@ -405,4 +405,60 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     public void shouldRenderAQuizWhoseGapHasNoOptionsAndThatCarriesNoMultipleChoiceOptionsTheCLOZEWayAsBefore() {
         assertEquals("TEXT:She:|CLOZE::|TEXT:English.:|", judgedQuiz(sut, quiz(stem(null))));
     }
+
+    @Test
+    @DisplayName("should hand the judge the cefr level, the topic, the title and the instructions the app shows, the statement with its gaps and hints, the accepted answers of each gap and the options, in that order and nothing else")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R001")
+    public void shouldHandTheJudgeTheCefrLevelTheTopicTheTitleAndTheInstructionsTheAppShowsTheStatementWithItsGapsAndHintsTheAcceptedAnswersOfEachGapAndTheOptionsInThatOrderAndNothingElse() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should produce different judged content when the instructions of the quiz copy change, and the same content when only the knowledge instructions change")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R001")
+    public void shouldProduceDifferentJudgedContentWhenTheInstructionsOfTheQuizCopyChangeAndTheSameContentWhenOnlyTheKnowledgeInstructionsChange() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should take the title and the instructions from the quiz copy, the ones the app shows, when the knowledge carries different ones")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R001")
+    public void shouldTakeTheTitleAndTheInstructionsFromTheQuizCopyTheOnesTheAppShowsWhenTheKnowledgeCarriesDifferentOnes() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should build judged content with empty instructions for a quiz whose copy declares none")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R001")
+    public void shouldBuildJudgedContentWithEmptyInstructionsForAQuizWhoseCopyDeclaresNone() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should show the judge every option of a multiple choice quiz, in the order the student sees them, with the correct one marked")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R001")
+    public void shouldShowTheJudgeEveryOptionOfAMultipleChoiceQuizInTheOrderTheStudentSeesThemWithTheCorrectOneMarked() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should render a CLOZE quiz for the judge as the student view renders it, never in the internal format of the course")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R001")
+    public void shouldRenderACLOZEQuizForTheJudgeAsTheStudentViewRendersItNeverInTheInternalFormatOfTheCourse() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should render a quiz whose gap has no options with its gap, an empty line of accepted answers and no options")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R001")
+    public void shouldRenderAQuizWhoseGapHasNoOptionsWithItsGapAnEmptyLineOfAcceptedAnswersAndNoOptions() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

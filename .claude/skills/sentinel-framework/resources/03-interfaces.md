@@ -180,6 +180,7 @@ Examples:
 | `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>` | (none) |
 | `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>` | (none) |
 | `lookupLevelByLemma(String lemma): Optional<CefrLevel>` | (none) |
+| `lookupDerivedFormLevel(String word): Optional<CefrLevel>` | (none) |
 
 #### AuditableEntity (port)
 

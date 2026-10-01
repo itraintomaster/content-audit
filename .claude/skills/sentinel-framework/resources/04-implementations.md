@@ -375,6 +375,7 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 | `verdictReader` | `QuizInstructionVerdictReader` |
 | `config` | `QuizInstructionConfig` |
 | `runtime` | `JudgeRuntime` |
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
 
 #### QuizInstructionAnalyzer (package: quizinstructionengine)
 
@@ -401,6 +402,12 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 **Visibility:** public
 **Implements:** QuizInstructionSubjectBuilder
 
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
+
 #### DefaultQuizInstructionScorer (package: quizinstructionengine)
 
 **Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
@@ -424,6 +431,12 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 **Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
 **Visibility:** public
 **Implements:** QuizInstructionComplianceCheckerFactory
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
 
 #### DefaultQuizInstructionSubjectViewFactory (package: quizinstructionengine)
 
@@ -1072,6 +1085,7 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 | `lemmaAbsenceConfig` | `LemmaAbsenceConfig` |
 | `topicTeachingResolver` | `TopicTeachingResolver` |
 | `studentViewRenderer` | `QuizStudentViewRenderer` |
+| `evpCatalogPort` | `EvpCatalogPort` |
 
 #### OffLevelWordsAnalyzer (package: offlevelwords)
 
@@ -1087,6 +1101,7 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 | `lemmaAbsenceConfig` | `LemmaAbsenceConfig` |
 | `topicTeachingResolver` | `TopicTeachingResolver` |
 | `studentViewRenderer` | `QuizStudentViewRenderer` |
+| `evpCatalogPort` | `EvpCatalogPort` |
 
 #### OffLevelWordsCorrection (package: offlevelwords)
 

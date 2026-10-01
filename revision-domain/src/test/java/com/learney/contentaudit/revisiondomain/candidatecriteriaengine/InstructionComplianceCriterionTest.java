@@ -180,4 +180,12 @@ public class InstructionComplianceCriterionTest {
 
         assertEquals(CriterionOutcome.NOT_EVALUABLE, verdict.getOutcome());
     }
+
+    @Test
+    @DisplayName("should submit the corrected quiz as a whole to the instruction validation, with its parts, its level and the title and instructions of its copy, instead of checking the violations one by one")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R002")
+    public void shouldSubmitTheCorrectedQuizAsAWholeToTheInstructionValidationWithItsPartsItsLevelAndTheTitleAndInstructionsOfItsCopyInsteadOfCheckingTheViolationsOneByOne() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

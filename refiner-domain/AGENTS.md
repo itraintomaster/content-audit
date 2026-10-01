@@ -218,6 +218,7 @@ Refinement engine
 | siblingQuizSentences | `List<String>` |
 | sourceAuditId | `String` |
 | planId | `String` |
+| quizInstructions | `String` |
 
 ### UnconvertedScoreCount (`record`)
 
@@ -487,6 +488,7 @@ Methods:
 
 - should resolve a correction context carrying every violation the quiz diagnosis recorded, each with its breached constraint, its textual evidence and its explanation → FEAT-QICOR/F-QICOR-R002
 - should resolve a correction context carrying the whole quiz with its gaps and its accepted options, the knowledge instruction, the CEFR level and the sibling quizzes of the knowledge → FEAT-QICOR/F-QICOR-R002
+- should resolve a correction context carrying the instructions of the quiz copy, the ones the student sees and the judge reads, apart from the knowledge's → FEAT-CALUM/F-CALUM-R003
 
 ## Dependency Contracts
 
@@ -836,6 +838,7 @@ Methods:
 - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
 - `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>`
 - `lookupLevelByLemma(String lemma): Optional<CefrLevel>`
+- `lookupDerivedFormLevel(String word): Optional<CefrLevel>`
 
 ### AuditableEntity (port)
 

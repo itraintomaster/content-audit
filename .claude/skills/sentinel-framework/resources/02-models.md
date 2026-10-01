@@ -3526,10 +3526,11 @@ new OutOfCatalogWordContext(String lemma, String observedPos, Integer frequencyR
 | `siblingQuizSentences` | `List<String>` | Import `java.util.List` |
 | `sourceAuditId` | `String` |  |
 | `planId` | `String` |  |
+| `quizInstructions` | `String` |  |
 
 **Generated constructor:**
 ```java
-new QuizInstructionCorrectionContext(String taskId, String nodeId, String quizSentence, String translation, String sentence, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, String cefrLevelLabel, SentenceMode sentenceMode, List<InstructionViolation> violations, String verdictReason, InstructionSeverity severity, List<String> siblingQuizSentences, String sourceAuditId, String planId)
+new QuizInstructionCorrectionContext(String taskId, String nodeId, String quizSentence, String translation, String sentence, String knowledgeTitle, String knowledgeInstructions, String topicLabel, CefrLevel cefrLevel, String cefrLevelLabel, SentenceMode sentenceMode, List<InstructionViolation> violations, String verdictReason, InstructionSeverity severity, List<String> siblingQuizSentences, String sourceAuditId, String planId, String quizInstructions)
 ```
 
 #### UnconvertedScoreCount

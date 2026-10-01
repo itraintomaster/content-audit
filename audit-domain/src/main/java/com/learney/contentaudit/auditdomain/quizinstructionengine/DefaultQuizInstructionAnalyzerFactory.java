@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
+import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
 import com.learney.contentaudit.auditdomain.judging.JudgeSessions;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
@@ -34,13 +35,15 @@ public class DefaultQuizInstructionAnalyzerFactory implements AnalyzerProvider {
 
     private final JudgeRuntime runtime;
 
-    public DefaultQuizInstructionAnalyzerFactory(Evaluator evaluator, QuizInstructionVerdictReader verdictReader,
-            QuizInstructionConfig config, JudgeRuntime runtime) {
-        this.evaluator = evaluator;
-        this.verdictReader = verdictReader;
-        this.config = config;
-        this.runtime = runtime;
-    }
+private final QuizStudentViewRenderer studentViewRenderer;
+
+public DefaultQuizInstructionAnalyzerFactory(Evaluator evaluator, QuizInstructionVerdictReader verdictReader, QuizInstructionConfig config, JudgeRuntime runtime, QuizStudentViewRenderer studentViewRenderer) {
+    this.evaluator = evaluator;
+    this.verdictReader = verdictReader;
+    this.config = config;
+    this.runtime = runtime;
+    this.studentViewRenderer = studentViewRenderer;
+}
 
     /**
      * FEAT-JEXAM: the session is no longer opened here but by the judges runtime, the only place

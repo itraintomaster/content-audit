@@ -2306,3 +2306,27 @@ ganador y dos muestras para mirar— y José publica la tanda con un solo OK.
 
 - **F-BANDEJA-J001**: Vaciar la bandeja y publicar la tanda
 
+### FEAT-CALUM: El juez de consigna lee el ejercicio como lo ve el alumno [F-CALUM]
+
+> **Qué**: El juez de consigna recibe el ejercicio armado con la vista del alumno (F-RONDA1-R001), como
+los otros cuatro jueces:
+- el título y la consigna que muestra la app, que son los de la copia del ejercicio y no los del tema;
+- el enunciado con «___» y la pista;
+- las respuestas aceptadas de cada hueco;
+- en la opción múltiple, sus opciones con la correcta marcada.
+
+El nivel y el topic siguen como contexto. Vale igual en `revise-instructions`, para el original y para el candidato, y
+el corrector que arma el candidato apunta a esa misma consigna.
+
+**Por qué**: La app muestra la consigna de la copia y el juez leía la del tema. En la base del 29/9 difieren en 9.923 de
+11.287 ejercicios, así que el juez marcaba ejercicios por una consigna que el alumno nunca ve. Es la regla de José para
+todo juez: lee el ejercicio entero como lo ve el alumno (gancho C-07).
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-CALUM-R001 | El juez de consigna lee el ejercicio como lo ve el alumno | critical | - |
+| F-CALUM-R002 | `revise-instructions` juzga el original y el candidato como los verá el alumno | critical | - |
+| F-CALUM-R003 | El corrector de consignas apunta a la consigna que ve el alumno | critical | - |
+

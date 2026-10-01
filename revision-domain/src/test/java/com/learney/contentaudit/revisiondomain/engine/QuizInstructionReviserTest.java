@@ -1356,4 +1356,12 @@ public class QuizInstructionReviserTest {
         assertEquals(QUIZ_ID, ex.getQuizId());
         assertEquals(TASK_ID, ex.getTaskId());
     }
+
+    @Test
+    @DisplayName("should revalidate the original quiz with the title and the instructions of its copy, the ones the student sees")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R002")
+    public void shouldRevalidateTheOriginalQuizWithTheTitleAndTheInstructionsOfItsCopyTheOnesTheStudentSees() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

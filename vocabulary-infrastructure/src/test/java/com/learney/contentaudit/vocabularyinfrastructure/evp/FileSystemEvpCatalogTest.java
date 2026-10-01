@@ -606,4 +606,28 @@ public class FileSystemEvpCatalogTest {
         assertTrue(catalog.getExpectedLemmas(CefrLevel.A1).contains(new LemmaAndPos("cat", "NOUN")),
                 "R046: una entrada sin proveniencia de metalenguaje curado debe seguir fijando su lema esperado");
     }
+
+    @Test
+    @DisplayName("should resolve lookupDerivedFormLevel to the lowest level of the entries that list the word as a form of another lemma, like 'rewarding' at C1 for 'reward'")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R002")
+    public void shouldResolveLookupDerivedFormLevelToTheLowestLevelOfTheEntriesThatListTheWordAsAFormOfAnotherLemmaLikeRewardingAtC1ForReward() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should return empty from lookupDerivedFormLevel for a word listed only as its own lemma, as a plural of its lemma or inside a phrase")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R002")
+    public void shouldReturnEmptyFromLookupDerivedFormLevelForAWordListedOnlyAsItsOwnLemmaAsAPluralOfItsLemmaOrInsideAPhrase() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep lookupLevel and lookupLevelByLemma as they were when it indexes derived forms, so 'reward' still resolves to B1")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R006")
+    public void shouldKeepLookupLevelAndLookupLevelByLemmaAsTheyWereWhenItIndexesDerivedFormsSoRewardStillResolvesToB1() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

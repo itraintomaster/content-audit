@@ -253,4 +253,12 @@ public class QuizInstructionContextResolverTest {
         Assertions.assertFalse(ctx.getSiblingQuizSentences().contains(targetQuizSentence),
                 "R002: the target quiz is not its own sibling");
     }
+
+    @Test
+    @DisplayName("should resolve a correction context carrying the instructions of the quiz copy, the ones the student sees and the judge reads, apart from the knowledge's")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R003")
+    public void shouldResolveACorrectionContextCarryingTheInstructionsOfTheQuizCopyTheOnesTheStudentSeesAndTheJudgeReadsApartFromTheKnowledges() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }
