@@ -33,6 +33,11 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
     private final Map<LemmaAndPos, Integer> cocaRanks = new HashMap<>();
     private final Map<LemmaAndPos, String> semanticCategories = new HashMap<>();
     private final Set<String> phrases = new HashSet<>();
+    // F-NIVFR-R002: palabra encabezado (en minuscula) de las formas derivadas/compuestas que
+    // F-LABS-R040 deja fuera del nivel de su lema base -> MENOR nivel con que el catalogo la trae
+    // ("rewarding" C1, de reward; "smoking" A1, de smoke). Un indice aparte: no toca levelByLemma,
+    // lowestLevelByLemmaOnly ni expectedByLevel, asi que lookupLevel y lookupLevelByLemma no cambian.
+    private final Map<String, CefrLevel> lowestLevelByDerivedForm = new HashMap<>();
 
     // F-LABS-R042: techo (MENOR nivel) que aportan las entradas de frase
     // multipalabra para el mismo par lema+categoria que ellas mismas resuelven.
@@ -139,6 +144,12 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
                 // techos/puente de R042-R044, cocaRanks, semanticCategories), que se
                 // pueblan mas abajo sin condicionar por esta bandera.
                 boolean curatedMetalanguage = topic != null && topic.startsWith(CURATED_METALANG_TOPIC_PREFIX);
+
+                // F-NIVFR-R002: la forma derivada/compuesta queda consultable por su propia palabra
+                // encabezado, el nivel propio que off-level-words pone por encima de su base.
+                if (derivedForm) {
+                    lowestLevelByDerivedForm.merge(word.toLowerCase(Locale.ROOT), level, FileSystemEvpCatalog::lowest);
+                }
 
                 if (!derivedForm && !curatedMetalanguage) {
                     expectedByLevel.get(level).add(lp);
@@ -366,10 +377,19 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
         return Optional.ofNullable(lowestLevelByLemmaOnly.get(lemma));
     }
 
-
+    /**
+     * F-NIVFR-R002: el MENOR nivel entre las entradas del catalogo que traen la palabra como forma
+     * derivada o compuesta de otro lema (las que F-LABS-R040 deja fuera del nivel de su lema base),
+     * sin distinguir mayusculas: "rewarding" es C1 (de reward). Optional.empty() si ninguna entrada
+     * la trae asi: la palabra que es su propio lema, el plural de su lema (clothes) o parte de una
+     * frase ya fijan el nivel de su lema y no estan en este indice.
+     */
     @Override
     public Optional<CefrLevel> lookupDerivedFormLevel(String word) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (word == null) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable(lowestLevelByDerivedForm.get(word.toLowerCase(Locale.ROOT)));
     }
 
 }

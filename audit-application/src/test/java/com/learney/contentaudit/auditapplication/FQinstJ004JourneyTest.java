@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditapplication;
 
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -487,7 +489,7 @@ public class FQinstJ004JourneyTest {
             ContentFingerprinter fingerprinter, Evaluator evaluator) {
         return new DefaultQuizInstructionAnalyzerFactory(evaluator, new FakeQuizInstructionVerdictReader(),
                 new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()),
-                approvedJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, fingerprinter)));
+                approvedJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, fingerprinter)), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
     }
 
     /** Deterministic fake fingerprinter: same content map always yields the same fingerprint. */

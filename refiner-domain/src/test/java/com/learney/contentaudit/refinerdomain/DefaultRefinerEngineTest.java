@@ -456,7 +456,8 @@ public class DefaultRefinerEngineTest {
                         org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.LemmaCountConfig.class)),
                 new com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory(
                         null, null,
-                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.QuizInstructionConfig.class), null)));
+                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.QuizInstructionConfig.class), null, new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create()))));
     }
 
     /** The tree of the analysis 2026-09-30T11-54-02: every node, in preorder, with its scores. */
@@ -769,7 +770,7 @@ public class DefaultRefinerEngineTest {
             providers.add(provider(card, real.planBinding(card.getName())));
             if ("lemma-absence".equals(card.getName())) {
                 providers.add(new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(
-                        null, null, null, null));
+                        null, null, null, null, null));
             }
         }
         return new DefaultAnalyzerCatalog(providers);

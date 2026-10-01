@@ -1,4 +1,4 @@
-generatedAt: 2026-10-01T05:45:31.127305Z
+generatedAt: 2026-10-01T06:56:31.802821Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -22189,6 +22189,25 @@ features:
       passing: false
       module: refiner-domain
       implementation: QuizInstructionContextResolver
+    - name: "should print, in the correction context of a QUIZ_INSTRUCTION task, the\
+        \ instructions of the quiz copy the corrector receives, and the knowledge's\
+        \ labelled as the knowledge's"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: GetCmd
+    - name: "should serialize, in a QUIZ_INSTRUCTION correction context, the instructions\
+        \ of the quiz copy under quizInstructions, apart from the knowledge's"
+      implemented: true
+      passing: false
+      module: audit-cli
+      implementation: DefaultCorrectionContextJsonMapper
+    - name: "should identify itself as quiz-instruction-agent 1.1.0, the version whose\
+        \ correction complies with the instructions of the quiz copy"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: QuizInstructionAgentStrategy
     - name: "should hand the correction agent, as the instructions it must comply\
         \ with, those of the quiz copy and never the knowledge's"
       implemented: true
@@ -22197,11 +22216,14 @@ features:
       implementation: QuizInstructionAgentGenerator
   quality:
     classes:
+    - com.learney.contentaudit.auditcli.commands.DefaultCorrectionContextJsonMapper
+    - com.learney.contentaudit.auditcli.commands.GetCmd
     - com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionSubjectBuilder
     - com.learney.contentaudit.auditdomain.quizinstructionengine.QuizInstructionAnalyzer
     - com.learney.contentaudit.refinerdomain.QuizInstructionContextResolver
     - com.learney.contentaudit.revisiondomain.candidatecriteriaengine.InstructionComplianceCriterion
     - com.learney.contentaudit.revisiondomain.engine.QuizInstructionReviser
+    - com.learney.contentaudit.revisiondomain.quizinstruction.QuizInstructionAgentStrategy
     - com.learney.contentaudit.revisioninfrastructure.quizinstructionagent.QuizInstructionAgentGenerator
     thresholds:
       lineCoverage: 70
@@ -36712,49 +36734,13 @@ elements:
       trace: FEAT-HALL / F-HALL-R014
 
       given:
-        card = DefaultQuizInstructionAnalyzerFactory(null, null, mock(QuizInstructionConfig.class), null).describe()
+        card = DefaultQuizInstructionAnalyzerFactory(null, null, mock(QuizInstructionConfig.class), null, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())).describe()
         identities = ArrayList<>()
         run = 0
 
       then:
         identities.get(1) == identities.get(0)
         identities.get(0) == "quiz-instruction|" + card.getRules().get(0).getId() + "|67fab6d599301022953425b1"
-    - |
-      test: "should resolve every quiz of a course judged before FEAT-JEXAM from its recorded verdicts without a single consultation, with budget 100 and an approved version"
-      trace: FEAT-JEXAM / F-JEXAM-R007
-
-      given:
-        ledger = JexamLedger()
-        course = JexamCourse.withQuizzes(3)
-        judge = CountingJudge("v-agosto", COMPLIANT)
-        analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-agosto"), budget(100, null))
-        coverage = course.courseDiagnoses().getQuizInstructionCoverage().orElseThrow().getCoverage()
-
-      when:
-        sut.run(analyzer)
-
-      then:
-        judge.calls() == 0
-        coverage.getReused() == 3
-        coverage.getEvaluatedInRun() == 0
-    - |
-      test: "should look up each quiz under the same fingerprint the ledger recorded for it before FEAT-JEXAM"
-      trace: FEAT-JEXAM / F-JEXAM-R007
-
-      given:
-        fingerprintBeforeJexam = "1fed2eb5ec3d3e6ebfa2e0c91046fc8f7d8e2378aac9196809113c9ea6fa757a"
-        ledger = JexamLedger()
-        course = JexamCourse.withQuizzes(1)
-        judge = CountingJudge("v-agosto", COMPLIANT)
-        analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-agosto"), budget(100, null))
-
-      when:
-        sut.append(new EvaluationRecord(new EvaluationKey(CONSIGNA_EVALUATOR, fingerprintBeforeJexam), COMPLIANT, "q1", Instant.parse("2026-08-14T14:39:40Z"), "v-agosto"))
-
-      then:
-        ledger.lookedUp() == List.of(new EvaluationKey(CONSIGNA_EVALUATOR, fingerprintBeforeJexam))
-        judge.calls() == 0
-        course.quizzes().get(0).getScores().get("quiz-instruction") == 1.0
     - |
       test: "should reuse without consulting the recorded verdict of a quiz whose translation or mini-theory changed, since the consigna judge reads neither"
       trace: FEAT-JEXAM / F-JEXAM-R007
@@ -36767,7 +36753,7 @@ elements:
         analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-agosto"), budget(100, null))
 
       when:
-        sut.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(before.quizzes().get(0)), "q1", COMPLIANT, "v-agosto")
+        sut.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(before.quizzes().get(0)), "q1", COMPLIANT, "v-agosto")
 
       then:
         judge.calls() == 0
@@ -36786,7 +36772,7 @@ elements:
         judgeCoverage = course.judgeCoverage()
 
       when:
-        sut.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(judged), quizId(judged), COMPLIANT, "v-hoy")
+        sut.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(judged), quizId(judged), COMPLIANT, "v-hoy")
 
       then:
         judge.calls() == 0
@@ -36902,7 +36888,7 @@ elements:
         judge2 = coverage.getJudge()
 
       when:
-        sut.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(course.quizzes().get(0)), "q1", COMPLIANT, "v-agosto")
+        sut.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(course.quizzes().get(0)), "q1", COMPLIANT, "v-agosto")
 
       then:
         coverage.getCoverage() == new EvaluationCoverage(4, 4, 2, 2, 0, 0)
@@ -36944,7 +36930,7 @@ elements:
         analyzer = consignaAnalyzer(ledger, judge, examsOf(Map.of()), new EvaluationRunPolicy(10, false, null, new LinkedHashSet<>(List.of("q1", "q2")), EvaluationRunPurpose.EXAM, null))
 
       when:
-        sut.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(photo.quizzes().get(0)), "q1", BREACHING, "v-hoy")
+        sut.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(photo.quizzes().get(0)), "q1", BREACHING, "v-hoy")
 
       then:
         judge.asked() == List.of("q2")
@@ -36963,12 +36949,48 @@ elements:
         coverage = course.judgeCoverage()
 
       when:
-        sut.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(judgedBefore), quizId(judgedBefore), COMPLIANT, "v-hoy")
+        sut.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(judgedBefore), quizId(judgedBefore), COMPLIANT, "v-hoy")
 
       then:
         judge.calls() == 1
         List.of(coverage.getReached(), coverage.getEvaluated(), coverage.getNotEvaluated()) == List.of(4, 2, 2)
         coverage.getQuizzes() == new JudgeQuizTally(4, 2, 2)
+    - |
+      test: "should consult again, with budget and an approved version, every quiz whose verdict was recorded on what the consigna judge read before FEAT-CALUM"
+      trace: FEAT-CALUM / F-CALUM-R001
+
+      given:
+        ledger = JexamLedger()
+        course = JexamCourse.withQuizzes(3)
+        judge = CountingJudge("v-agosto", COMPLIANT)
+        analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-agosto"), budget(100, null))
+        coverage = course.courseDiagnoses().getQuizInstructionCoverage().orElseThrow().getCoverage()
+
+      when:
+        sut.run(analyzer)
+
+      then:
+        judge.calls() == 3
+        coverage.getReused() == 0
+        coverage.getEvaluatedInRun() == 3
+    - |
+      test: "should look up each quiz under the fingerprint of the exercise as the student sees it, never under the one recorded before FEAT-CALUM"
+      trace: FEAT-CALUM / F-CALUM-R001
+
+      given:
+        fingerprintBeforeCalum = "1fed2eb5ec3d3e6ebfa2e0c91046fc8f7d8e2378aac9196809113c9ea6fa757a"
+        fingerprintOfWhatTheStudentSees = "af5185fd5759a0b454e756b0d12b7214b811d74bdc7217d536cd9124e344f240"
+        ledger = JexamLedger()
+        course = JexamCourse.withQuizzes(1)
+        judge = CountingJudge("v-agosto", COMPLIANT)
+        analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-agosto"), budget(100, null))
+
+      when:
+        sut.append(new EvaluationRecord(new EvaluationKey(CONSIGNA_EVALUATOR, fingerprintBeforeCalum), COMPLIANT, "q1", Instant.parse("2026-08-14T14:39:40Z"), "v-agosto"))
+
+      then:
+        ledger.lookedUp() == List.of(new EvaluationKey(CONSIGNA_EVALUATOR, fingerprintOfWhatTheStudentSees))
+        judge.calls() == 1
   - name: DefaultQuizInstructionSubjectBuilder
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilder.java
@@ -37029,25 +37051,6 @@ elements:
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionSubjectBuilderTest.java
     testCleanViews:
     - |
-      test: "should hand the judge the cefr level, the topic, the knowledge label, the knowledge instructions and the whole quiz with all its parts and accepted options"
-      trace: FEAT-QINST / F-QINST-R009
-
-      given:
-        knowledge = AuditableKnowledge(List.of(), "Present Perfect", "Complete with present perfect", true, "k1", "Present Perfect", "PP", null, "Verb Tenses")
-        quiz = AuditableQuiz(List.of(), "q1", "Present Perfect", "Q1", null, List.of("I have eaten"), null, "Complete with present perfect", parts("have eaten", "'ve eaten"), null, null, null)
-        quizNode = quizNodeUnder("B1", knowledge, quiz)
-        subject = sut.build(quizNode)
-        judgedQuiz = subject.getContent().get("quiz")
-
-      then:
-        subject.getContent().get("cefrLevel") == "B1"
-        subject.getContent().get("topic") == "Verb Tenses"
-        subject.getContent().get("title") == "Present Perfect"
-        subject.getContent().get("instructions") == "Complete with present perfect"
-        judgedQuiz is not null
-        judgedQuiz.contains("have eaten") is true
-        judgedQuiz.contains("'ve eaten") is true
-    - |
       test: "should leave the quiz identifier out of the judged content"
       trace: FEAT-QINST / F-QINST-R009
 
@@ -37070,23 +37073,6 @@ elements:
       then:
         original.getContent() != null
     - |
-      test: "should produce different judged content for every quiz of a knowledge when the knowledge instructions change"
-      trace: FEAT-QINST / F-QINST-R009
-
-      given:
-        quiz1 = AuditableQuiz(List.of(), "q1", "Q1", "Q", null, List.of("s1"), null, "Original instructions", parts("a1"), null, null, null)
-        quiz2 = AuditableQuiz(List.of(), "q2", "Q2", "Q", null, List.of("s2"), null, "Original instructions", parts("a2"), null, null, null)
-        originalKnowledge = AuditableKnowledge(List.of(quiz1, quiz2), "K", "Original instructions", true, "k1", "K label", "K", null, "Topic")
-        changedKnowledge = AuditableKnowledge(List.of(quiz1, quiz2), "K", "Changed instructions", true, "k1", "K label", "K", null, "Topic")
-        originalSubject1 = sut.build(quizNodeUnder("B1", originalKnowledge, quiz1))
-        originalSubject2 = sut.build(quizNodeUnder("B1", originalKnowledge, quiz2))
-        changedSubject1 = sut.build(quizNodeUnder("B1", changedKnowledge, quiz1))
-        changedSubject2 = sut.build(quizNodeUnder("B1", changedKnowledge, quiz2))
-
-      then:
-        originalSubject1.getContent() != null
-        originalSubject2.getContent() != null
-    - |
       test: "should produce identical judged content when the same course is reprocessed without content changes"
       trace: FEAT-QINST / F-QINST-R009
 
@@ -37101,38 +37087,12 @@ elements:
       then:
         secondPass.getContent() == firstPass.getContent()
     - |
-      test: "should take the label and the instructions from the knowledge when the quiz carries diverging copies"
-      trace: FEAT-QINST / F-QINST-R009
-
-      given:
-        knowledge = AuditableKnowledge(List.of(), "Knowledge title", "Knowledge instructions", true, "k1", "Knowledge label", "K", null, "Topic")
-        quiz = AuditableQuiz(List.of(), "q1", "Stale quiz label", "Q", null, List.of("s"), null, "Stale quiz instructions", parts("a"), null, null, null)
-        subject = sut.build(quizNodeUnder("B1", knowledge, quiz))
-
-      then:
-        subject.getContent().get("title") == "Knowledge label"
-        subject.getContent().get("instructions") == "Knowledge instructions"
-    - |
-      test: "should build judged content for a quiz whose knowledge declares no instructions"
-      trace: FEAT-QINST / F-QINST-R014
-
-      given:
-        knowledge = AuditableKnowledge(List.of(), "K", null, true, "k1", "K label", "K", null, "Topic")
-        quiz = AuditableQuiz(List.of(), "q1", "Q", "Q", null, List.of("s"), null, null, parts("a"), null, null, null)
-        subject = Assertions.assertDoesNotThrow(() -> sut.build(quizNodeUnder("A1", knowledge, quiz)), "R014: a quiz whose knowledge declares no instructions must still be reachable by the analysis")
-
-      then:
-        subject.getContent().get("cefrLevel") == "A1"
-        subject.getContent().get("topic") == "Topic"
-        subject.getContent().get("title") == "K label"
-        subject.getContent().get("quiz") is not null
-    - |
       test: "should derive from a subject view the same judged content it derives from the audited quiz node, so a correction verified as compliant is verified with the criterion of the audit itself"
       trace: FEAT-QICOR / F-QICOR-R005
 
       given:
         sentenceParts = parts("have eaten", "'ve eaten")
-        knowledge = AuditableKnowledge(List.of(), "Present Perfect", "Complete with present perfect", true, "k1", "Present Perfect", "PP", null, "Verb Tenses")
+        knowledge = AuditableKnowledge(List.of(), "Present Perfect", "Knowledge instructions", true, "k1", "Knowledge label", "PP", null, "Verb Tenses")
         quiz = AuditableQuiz(List.of(), "q1", "Present Perfect", "Q1", null, List.of("I have eaten"), null, "Complete with present perfect", sentenceParts, null, null, null)
         quizNode = quizNodeUnder("B1", knowledge, quiz)
         view = QuizInstructionSubjectView("q1", "B1", "Verb Tenses", "Present Perfect", "Complete with present perfect", sentenceParts, null)
@@ -37141,18 +37101,6 @@ elements:
 
       then:
         fromView.getContent() == fromNode.getContent()
-    - |
-      test: "should show the judge every option of a multiple choice quiz in its gap, in the order the student sees them, with the correct one marked"
-      trace: FEAT-OPMUL / F-OPMUL-R005
-
-      given:
-        quiz = quiz(stem(null))
-
-      when:
-        sut.setMultipleChoice(choices("is"))
-
-      then:
-        judgedQuiz(sut, quiz) == "TEXT:She:|MULTIPLE_CHOICE::am,is[CORRECT],are|TEXT:English.:|"
     - |
       test: "should render a multiple choice quiz for the judge on the revalidation and candidate path exactly as on the analysis path"
       trace: FEAT-OPMUL / F-OPMUL-R005
@@ -37167,7 +37115,7 @@ elements:
         sut.setMultipleChoice(choices("is"))
 
       then:
-        sut.buildFromView(view).getContent().get("quiz") == judgedQuiz(sut, audited)
+        sut.buildFromView(view).getContent() == judged(sut, audited)
     - |
       test: "should give different judged content to two multiple choice quizzes that differ only in their correct option"
       trace: FEAT-OPMUL / F-OPMUL-R005
@@ -37180,19 +37128,100 @@ elements:
         sut.setMultipleChoice(choices("is"))
 
       then:
-        judgedQuiz(sut, first) != null
+        judged(sut, first) != null
     - |
-      test: "should render a CLOZE quiz for the judge character for character as it did before multiple choice existed"
-      trace: FEAT-OPMUL / F-OPMUL-R005
+      test: "should hand the judge the cefr level, the topic, the title and the instructions the app shows, the statement with its gaps and hints, the accepted answers of each gap and the options, in that order and nothing else"
+      trace: FEAT-CALUM / F-CALUM-R001
+
+      given:
+        knowledge = AuditableKnowledge(List.of(), "Adjetivo o adverbio", "Elige entre el adjetivo o el adverbio.", true, "k1", "Adjetivo o adverbio", "K", null, "Adjetives and Adverbs")
+        quiz = AuditableQuiz(List.of(), "q1", "Adjetivo o adverbio", "Q1", "Ella es una chica callada.", List.of("She is a quiet girl."), null, "Elegí la palabra correcta.", List.of(new SentencePartEntity(SentencePartKind.TEXT, "She is a", null), new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("quiet")), new SentencePartEntity(SentencePartKind.TEXT, "(quiet / quietly) girl.", null)), null, "Si describe a una persona, adjetivo.", null)
+        content = sut.build(quizNodeUnder("A1", knowledge, quiz)).getContent()
 
       then:
-        judgedQuiz(sut, quiz(stem(List.of("is")))) == "TEXT:She:|CLOZE::is|TEXT:English.:|"
+        List.copyOf(content.keySet()) == List.of("cefrLevel", "topic", "title", "instructions", "exercise", "acceptedAnswers", "options")
+        content.get("cefrLevel") == "A1"
+        content.get("topic") == "Adjetives and Adverbs"
+        content.get("title") == "Adjetivo o adverbio"
+        content.get("instructions") == "Elegí la palabra correcta."
+        content.get("exercise") == "She is a ___ (quiet / quietly) girl."
+        content.get("acceptedAnswers") == "Hueco 1: quiet"
+        content.get("options") == ""
     - |
-      test: "should render a quiz whose gap has no options and that carries no multiple choice options the CLOZE way, as before"
-      trace: FEAT-OPMUL / F-OPMUL-R005
+      test: "should produce different judged content when the instructions of the quiz copy change, and the same content when only the knowledge instructions change"
+      trace: FEAT-CALUM / F-CALUM-R001
+
+      given:
+        knowledge = AuditableKnowledge(List.of(), "K", "Knowledge instructions", true, "k1", "K label", "K", null, "Topic")
+        knowledgeChanged = AuditableKnowledge(List.of(), "K", "Other knowledge instructions", true, "k1", "K label", "K", null, "Topic")
+        quiz = AuditableQuiz(List.of(), "q1", "Q", "Q", null, List.of("s"), null, "Copy instructions", parts("a"), null, null, null)
+        quizChanged = AuditableQuiz(List.of(), "q1", "Q", "Q", null, List.of("s"), null, "Other copy instructions", parts("a"), null, null, null)
+        original = sut.build(quizNodeUnder("B1", knowledge, quiz)).getContent()
 
       then:
-        judgedQuiz(sut, quiz(stem(null))) == "TEXT:She:|CLOZE::|TEXT:English.:|"
+        original != null
+        sut.build(quizNodeUnder("B1", knowledgeChanged, quiz)).getContent() == original
+    - |
+      test: "should take the title and the instructions from the quiz copy, the ones the app shows, when the knowledge carries different ones"
+      trace: FEAT-CALUM / F-CALUM-R001
+
+      given:
+        knowledge = AuditableKnowledge(List.of(), "Knowledge title", "Knowledge instructions", true, "k1", "Knowledge label", "K", null, "Topic")
+        quiz = AuditableQuiz(List.of(), "q1", "Copy title", "Q", null, List.of("s"), null, "Copy instructions", parts("a"), null, null, null)
+        content = sut.build(quizNodeUnder("B1", knowledge, quiz)).getContent()
+
+      then:
+        content.get("title") == "Copy title"
+        content.get("instructions") == "Copy instructions"
+    - |
+      test: "should build judged content with empty instructions for a quiz whose copy declares none"
+      trace: FEAT-CALUM / F-CALUM-R001
+
+      given:
+        knowledge = AuditableKnowledge(List.of(), "K", "Knowledge instructions", true, "k1", "K label", "K", null, "Topic")
+        quiz = AuditableQuiz(List.of(), "q1", "Q", "Q", null, List.of("s"), null, null, parts("a"), null, null, null)
+        subject = Assertions.assertDoesNotThrow(() -> sut.build(quizNodeUnder("A1", knowledge, quiz)), "F-QINST-R014: a quiz whose copy declares no instructions is still judged")
+
+      then:
+        subject.getContent().get("instructions") == ""
+        subject.getContent().get("exercise") == "I ___"
+        subject.getContent().get("acceptedAnswers") == "Hueco 1: a"
+    - |
+      test: "should show the judge every option of a multiple choice quiz, in the order the student sees them, with the correct one marked"
+      trace: FEAT-CALUM / F-CALUM-R001
+
+      given:
+        quiz = quiz(stem(null))
+        content = judged(sut, quiz)
+
+      when:
+        sut.setMultipleChoice(choices("is"))
+
+      then:
+        content.get("exercise") == "She ___ English."
+        content.get("options") == "- am\n- is (correcta)\n- are"
+        content.get("acceptedAnswers") == "Hueco 1: is"
+    - |
+      test: "should render a CLOZE quiz for the judge as the student view renders it, never in the internal format of the course"
+      trace: FEAT-CALUM / F-CALUM-R001
+
+      given:
+        content = judged(sut, quiz(stem(List.of("is|'s"))))
+
+      then:
+        content.get("exercise") == "She ___ English."
+        content.get("acceptedAnswers") == "Hueco 1: is | 's"
+    - |
+      test: "should render a quiz whose gap has no options with its gap, an empty line of accepted answers and no options"
+      trace: FEAT-CALUM / F-CALUM-R001
+
+      given:
+        content = judged(sut, quiz(stem(null)))
+
+      then:
+        content.get("exercise") == "She ___ English."
+        content.get("acceptedAnswers") == "Hueco 1: "
+        content.get("options") == ""
   - name: DefaultQuizInstructionScorer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/quizinstructionengine/DefaultQuizInstructionScorer.java
@@ -45018,67 +45047,67 @@ elements:
     - name: "should not mark 'smoking' in the A1 list 'smoke - smoking' of a topic\
         \ that does not teach -ing, because the EVP lists 'smoking' as a form of 'smoke'\
         \ at A1 although the lemma 'smoking' resolves to B2"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should mark 'rewarding' in a B1 quiz of a topic that does not teach -ing,\
         \ out of the lemmas of the EVP and with its base 'reward' at B1, because the\
         \ EVP lists 'rewarding' apart at C1"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should not mark 'terrifying' in a B1 quiz when the EVP lists it as a\
         \ form of 'terrify' at B2, one level above, even with no reading of its base"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should not mark a derivative out of the EVP that the EVP does not list\
         \ either and whose base is within reach, like 'creamy' (cream A2) in a B1\
         \ quiz"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should mark 'nicely' (B2) in an A1 quiz of a topic that does not teach\
         \ -ly, since a base never beats the level the EVP gives a word"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should mark the noun 'fine' (B1) in the A1 quiz 'He paid a fine.' although\
         \ the adjective is A1, because another category only counts in a list of words"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should read 'run' as the verb (A1) and not mark it in the A1 list 'run\
         \ - running', where the tagger reads a noun (B1)"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should not mark 'takeout' (out of the EVP) in an A2 quiz, reading it\
         \ as its British pair 'takeaway' (B1)"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should mark 'recess' (out of the EVP) in a B1 quiz although 'break' is\
         \ A1, because recess and break do not name the same thing in common use"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should keep marking 'truck' when the EVP brings it two levels above the\
         \ A2 quiz, even though its British pair 'lorry' is A2"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should not mark 'nicely' (B2) in an A1 quiz of a topic whose title teaches\
         \ '$-ly$', because forming it from 'nice' (A1) is the exercise"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should mark 'allergic' in an A2 quiz although the translation adapts\
         \ it to Spanish, because an adjective that looks Spanish is not a loan"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should not mark 'limousine' in a B2 quiz whose translation says 'limusina',\
         \ a noun adapted to Spanish spelling"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should keep marking 'adore' when the tagger reads it as a noun after\
         \ 'They' and the translation says 'adoran', because the sentence uses it as\
         \ a verb"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     - name: "should keep marking 'rehabilitation' in a B1 quiz although the translation\
         \ adapts it to Spanish, because the EVP lists it as a form of 'rehabilitate'\
         \ at C1"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsAnalyzerTest.java
     testCleanViews:
     - |
@@ -45431,6 +45460,237 @@ elements:
         quiz.getScores().keySet() == Set.of("lemma-absence", NAME)
         quiz.getScores().get("lemma-absence") == 0.8
         assertSame(placement)
+    - |
+      test: "should not mark 'smoking' in the A1 list 'smoke - smoking' of a topic that does not teach -ing, because the EVP lists 'smoking' as a form of 'smoke' at A1 although the lemma 'smoking' resolves to B2"
+      trace: FEAT-NIVFR / F-NIVFR-R002
+
+      given:
+        tokens = "smoke|smoke|NOUN -|-|PUNCT smoking|smoking|NOUN"
+        course = Course()
+        quiz = course.quiz("A1", "Listas de palabras", "q-smoking", "smoke - smoking", "fumando", tokens)
+        without = Course()
+        marked = without.quiz("A1", "Listas de palabras", "q-smoking", "smoke - smoking", "fumando", tokens)
+
+      when:
+        sut.walk(smokingLexicon().derived("smoking", CefrLevel.A1).analyzer())
+
+      then:
+        lemmas(quiz) == List.of()
+        lemmas(marked) == List.of("smoking")
+    - |
+      test: "should mark 'rewarding' in a B1 quiz of a topic that does not teach -ing, out of the lemmas of the EVP and with its base 'reward' at B1, because the EVP lists 'rewarding' apart at C1"
+      trace: FEAT-NIVFR / F-NIVFR-R002
+
+      given:
+        tokens = "Gardening|garden|VERB is|be|AUX quite|quite|ADV rewarding|rewarding|ADJ|9447 .|.|PUNCT"
+        course = Course()
+        quiz = course.quiz("B1", "Trabajo y tiempo libre", "q-rewarding", "Gardening is quite rewarding.", "La jardinería es bastante gratificante.", tokens)
+        without = Course()
+        cleared = without.quiz("B1", "Trabajo y tiempo libre", "q-rewarding", "Gardening is quite rewarding.", "La jardinería es bastante gratificante.", tokens)
+
+      when:
+        sut.walk(rewardingLexicon().derived("rewarding", CefrLevel.C1).analyzer())
+
+      then:
+        lemmas(quiz) == List.of("rewarding")
+        lemmas(cleared) == List.of()
+    - |
+      test: "should not mark 'terrifying' in a B1 quiz when the EVP lists it as a form of 'terrify' at B2, one level above, even with no reading of its base"
+      trace: FEAT-NIVFR / F-NIVFR-R002
+
+      given:
+        tokens = "The|the|DET storm|storm|NOUN was|be|AUX terrifying|terrifying|ADJ|8327 .|.|PUNCT"
+        lexicon = Lexicon().level("storm", "NOUN", CefrLevel.A2)
+        course = Course()
+        quiz = course.quiz("B1", "El clima", "q-terrifying", "The storm was terrifying.", "La tormenta fue aterradora.", tokens)
+        without = Course()
+        marked = without.quiz("B1", "El clima", "q-terrifying", "The storm was terrifying.", "La tormenta fue aterradora.", tokens)
+
+      when:
+        sut.walk(lexicon.derived("terrifying", CefrLevel.B2).analyzer())
+
+      then:
+        lemmas(quiz) == List.of()
+        lemmas(marked) == List.of("terrifying")
+    - |
+      test: "should not mark a derivative out of the EVP that the EVP does not list either and whose base is within reach, like 'creamy' (cream A2) in a B1 quiz"
+      trace: FEAT-NIVFR / F-NIVFR-R002
+
+      given:
+        lexicon = Lexicon().level("soup", "NOUN", CefrLevel.A1).level("cream", "NOUN", CefrLevel.A2)
+        course = Course()
+        quiz = course.quiz("B1", "Comidas", "q-creamy", "The soup is creamy.", "La sopa es cremosa.", "The|the|DET soup|soup|NOUN is|be|AUX creamy|creamy|ADJ|8799 .|.|PUNCT")
+
+      when:
+        sut.walk(lexicon.analyzer())
+
+      then:
+        lemmas(quiz) == List.of()
+    - |
+      test: "should mark 'nicely' (B2) in an A1 quiz of a topic that does not teach -ly, since a base never beats the level the EVP gives a word"
+      trace: FEAT-NIVFR / F-NIVFR-R002
+
+      given:
+        course = Course()
+        quiz = course.quiz("A1", "Rutinas", "q-nicely", "She writes nicely.", "Ella escribe bien.", NICELY_TOKENS)
+
+      when:
+        sut.walk(nicelyLexicon().analyzer())
+
+      then:
+        lemmas(quiz) == List.of("nicely")
+    - |
+      test: "should mark the noun 'fine' (B1) in the A1 quiz 'He paid a fine.' although the adjective is A1, because another category only counts in a list of words"
+      trace: FEAT-NIVFR / F-NIVFR-R002
+
+      given:
+        lexicon = Lexicon().level("fine", "NOUN", CefrLevel.B1).level("fine", "ADJ", CefrLevel.A1).level("pay", "VERB", CefrLevel.A1)
+        course = Course()
+        quiz = course.quiz("A1", "Dinero", "q-fine", "He paid a fine.", "Pagó una multa.", "He|he|PRON paid|pay|VERB a|a|DET fine|fine|NOUN .|.|PUNCT")
+
+      when:
+        sut.walk(lexicon.analyzer())
+
+      then:
+        lemmas(quiz) == List.of("fine")
+    - |
+      test: "should read 'run' as the verb (A1) and not mark it in the A1 list 'run - running', where the tagger reads a noun (B1)"
+      trace: FEAT-NIVFR / F-NIVFR-R002
+
+      given:
+        lexicon = Lexicon().level("run", "NOUN", CefrLevel.B1).level("run", "VERB", CefrLevel.A1)
+        course = Course()
+        quiz = course.quiz("A1", "Listas de palabras", "q-run", "run - running", "corriendo", "run|run|NOUN -|-|PUNCT running|run|VERB")
+
+      when:
+        sut.walk(lexicon.analyzer())
+
+      then:
+        lemmas(quiz) == List.of()
+    - |
+      test: "should not mark 'takeout' (out of the EVP) in an A2 quiz, reading it as its British pair 'takeaway' (B1)"
+      trace: FEAT-NIVFR / F-NIVFR-R002
+
+      given:
+        tokens = "We|we|PRON order|order|VERB takeout|takeout|NOUN|14617 for|for|ADP dinner|dinner|NOUN .|.|PUNCT"
+        course = Course()
+        quiz = course.quiz("A2", "Comidas", "q-takeout", "We order takeout for dinner.", "Pedimos comida para llevar para la cena.", tokens)
+        without = Course()
+        marked = without.quiz("A2", "Comidas", "q-takeout", "We order takeout for dinner.", "Pedimos comida para llevar para la cena.", tokens)
+
+      when:
+        sut.walk(dinnerLexicon().level("takeaway", "NOUN", CefrLevel.B1).analyzer())
+
+      then:
+        lemmas(quiz) == List.of()
+        lemmas(marked) == List.of("takeout")
+    - |
+      test: "should mark 'recess' (out of the EVP) in a B1 quiz although 'break' is A1, because recess and break do not name the same thing in common use"
+      trace: FEAT-NIVFR / F-NIVFR-R002
+
+      given:
+        lexicon = Lexicon().level("break", "NOUN", CefrLevel.A1).level("student", "NOUN", CefrLevel.A1).level("play", "VERB", CefrLevel.A1)
+        course = Course()
+        quiz = course.quiz("B1", "La escuela", "q-recess", "The students play during recess.", "Los estudiantes juegan durante el recreo.", "The|the|DET students|student|NOUN play|play|VERB during|during|ADP recess|recess|NOUN|8060 .|.|PUNCT")
+
+      when:
+        sut.walk(lexicon.analyzer())
+
+      then:
+        lemmas(quiz) == List.of("recess")
+    - |
+      test: "should keep marking 'truck' when the EVP brings it two levels above the A2 quiz, even though its British pair 'lorry' is A2"
+      trace: FEAT-NIVFR / F-NIVFR-R002
+
+      given:
+        lexicon = Lexicon().level("truck", "NOUN", CefrLevel.B2).level("lorry", "NOUN", CefrLevel.A2).level("red", "ADJ", CefrLevel.A1)
+        course = Course()
+        quiz = course.quiz("A2", "Colores", "q-truck", "The truck is red.", "El camión es rojo.", "The|the|DET truck|truck|NOUN is|be|AUX red|red|ADJ .|.|PUNCT")
+
+      when:
+        sut.walk(lexicon.analyzer())
+
+      then:
+        lemmas(quiz) == List.of("truck")
+    - |
+      test: "should not mark 'nicely' (B2) in an A1 quiz of a topic whose title teaches '$-ly$', because forming it from 'nice' (A1) is the exercise"
+      trace: FEAT-NIVFR / F-NIVFR-R003
+
+      given:
+        course = Course()
+        quiz = course.quiz("A1", "Adjetivo + $-ly$", "q-nicely-ly", "She writes nicely.", "Ella escribe de manera agradable.", NICELY_TOKENS)
+
+      when:
+        sut.walk(nicelyLexicon().analyzer())
+
+      then:
+        quiz.getScores().get(NAME) == 1.0
+        lemmas(quiz) == List.of()
+    - |
+      test: "should mark 'allergic' in an A2 quiz although the translation adapts it to Spanish, because an adjective that looks Spanish is not a loan"
+      trace: FEAT-NIVFR / F-NIVFR-R004
+
+      given:
+        lexicon = Lexicon().level("coconut", "NOUN", CefrLevel.A1)
+        course = Course()
+        quiz = course.quiz("A2", "Salud", "q-allergic", "She is allergic to coconuts.", "Es alérgica a los cocos.", "She|she|PRON is|be|AUX allergic|allergic|ADJ|8217 to|to|ADP coconuts|coconut|NOUN .|.|PUNCT")
+
+      when:
+        sut.walk(lexicon.analyzer())
+
+      then:
+        lemmas(quiz) == List.of("allergic")
+    - |
+      test: "should not mark 'limousine' in a B2 quiz whose translation says 'limusina', a noun adapted to Spanish spelling"
+      trace: FEAT-NIVFR / F-NIVFR-R004
+
+      given:
+        lexicon = Lexicon().level("order", "VERB", CefrLevel.A1)
+        course = Course()
+        quiz = course.quiz("B2", "Viajes", "q-limousine", "She ordered a limousine.", "Ella pidió una limusina.", "She|she|PRON ordered|order|VERB a|a|DET limousine|limousine|NOUN|12204 .|.|PUNCT")
+
+      when:
+        sut.walk(lexicon.analyzer())
+
+      then:
+        lemmas(quiz) == List.of()
+    - |
+      test: "should keep marking 'adore' when the tagger reads it as a noun after 'They' and the translation says 'adoran', because the sentence uses it as a verb"
+      trace: FEAT-NIVFR / F-NIVFR-R004
+
+      given:
+        english = "They adore Italy and I adore it too."
+        spanish = "Ellos adoran Italia y yo también la adoro."
+        tokens = "They|they|PRON adore|adore|NOUN|9000 Italy|Italy|PROPN and|and|CCONJ I|I|PRON " + "adore|adore|NOUN|9000 it|it|PRON too|too|ADV .|.|PUNCT"
+        lexicon = Lexicon().level("too", "ADV", CefrLevel.A1)
+        course = Course()
+        quiz = course.quiz("A1", "Gustos", "q-adore-noun", english, spanish, tokens)
+        asNoun = Course()
+        loan = asNoun.quiz("A1", "Gustos", "q-adore-noun", "Italy is my adore.", spanish, "Italy|Italy|PROPN is|be|AUX my|my|PRON adore|adore|NOUN|9000 .|.|PUNCT")
+
+      when:
+        sut.walk(lexicon.analyzer())
+
+      then:
+        lemmas(quiz) == List.of("adore")
+        lemmas(loan) == List.of()
+    - |
+      test: "should keep marking 'rehabilitation' in a B1 quiz although the translation adapts it to Spanish, because the EVP lists it as a form of 'rehabilitate' at C1"
+      trace: FEAT-NIVFR / F-NIVFR-R004
+
+      given:
+        tokens = "He|he|PRON needs|need|VERB rehabilitation|rehabilitation|NOUN|9800 .|.|PUNCT"
+        course = Course()
+        quiz = course.quiz("B1", "Salud", "q-rehabilitation", "He needs rehabilitation.", "Él necesita rehabilitación.", tokens)
+        without = Course()
+        loan = without.quiz("B1", "Salud", "q-rehabilitation", "He needs rehabilitation.", "Él necesita rehabilitación.", tokens)
+
+      when:
+        sut.walk(needLexicon().derived("rehabilitation", CefrLevel.C1).analyzer())
+
+      then:
+        lemmas(quiz) == List.of("rehabilitation")
+        lemmas(loan) == List.of()
   - name: OffLevelWordsCorrection
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/offlevelwords/OffLevelWordsCorrection.java
@@ -51063,6 +51323,26 @@ elements:
         ctx.getSiblingQuizSentences().contains(sibling1QuizSentence) is true
         ctx.getSiblingQuizSentences().contains(sibling2QuizSentence) is true
         ctx.getSiblingQuizSentences().contains(targetQuizSentence) is false
+    - |
+      test: "should resolve a correction context carrying the instructions of the quiz copy, the ones the student sees and the judge reads, apart from the knowledge's"
+      trace: FEAT-CALUM / F-CALUM-R003
+
+      given:
+        copy = AuditableQuiz(List.of(), "quiz-3a", "Adjetivo o adverbio", "Q3A", "Ella es una chica callada.", List.of("She is a quiet girl."), "She is a ____ [quiet] (quiet / quietly) girl.", "Elegí la palabra correcta.", parts("quiet"), null, null, null)
+        knowledge = AuditableKnowledge(List.of(copy), "Adjetivo o adverbio", "Elige entre el adjetivo o el adverbio.", true, "know-3", "Adjetivo o adverbio", "AA", null, "Adjetives and Adverbs")
+        topic = AuditableTopic(List.of(knowledge), "topic-3", "Adjetives and Adverbs", "AA")
+        milestone = AuditableMilestone(List.of(topic), "ms-3", "A1", null)
+        verdict = QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR, "El ejercicio incumple su consigna", List.of(new InstructionViolation("OBJECTIVE_MISMATCH", "Elegí la palabra correcta.", "quiet", "La pista no deja elegir")), List.of())
+        courseNode = buildCourseNode()
+        milestoneNode = buildMilestoneNode(courseNode, milestone)
+        topicNode = buildTopicNode(milestoneNode, topic)
+        knowledgeNode = buildKnowledgeNode(topicNode, knowledge)
+        context = sut.resolve(new AuditReport(courseNode), buildTask("quiz-3a")).orElseThrow()
+
+      then:
+        context.getQuizInstructions() == "Elegí la palabra correcta."
+        context.getKnowledgeInstructions() == "Elige entre el adjetivo o el adverbio."
+        context.getKnowledgeTitle() == "Adjetivo o adverbio"
   - name: LemmaAbsenceContextSuggestedLemmaQueryPort
     status: EXISTS
     filePath: refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/lemmasuggestion/LemmaAbsenceContextSuggestedLemmaQueryPort.java
@@ -54583,7 +54863,7 @@ elements:
       trace: FEAT-HALL / F-HALL-R005
 
       given:
-        registry = DefaultAnalyzerRegistry(new DefaultAnalyzerCatalog(List.of(new SentenceLengthAnalyzerProvider(null, Mockito.mock(SentenceLengthConfig.class)), new KnowledgeTitleLengthAnalyzerProvider(), new KnowledgeInstructionsLengthAnalyzerProvider(), new CocaBucketsAnalyzerProvider(null, Mockito.mock(CocaBucketsConfig.class)), new LemmaRecurrenceAnalyzerProvider(Mockito.mock(LemmaRecurrenceConfig.class)), new LemmaAbsenceAnalyzerProvider(null, Mockito.mock(LemmaAbsenceConfig.class), null), new LemmaCountAnalyzerProvider(null, Mockito.mock(LemmaCountConfig.class)), new DefaultQuizInstructionAnalyzerFactory(null, null, Mockito.mock(QuizInstructionConfig.class), null))))
+        registry = DefaultAnalyzerRegistry(new DefaultAnalyzerCatalog(List.of(new SentenceLengthAnalyzerProvider(null, Mockito.mock(SentenceLengthConfig.class)), new KnowledgeTitleLengthAnalyzerProvider(), new KnowledgeInstructionsLengthAnalyzerProvider(), new CocaBucketsAnalyzerProvider(null, Mockito.mock(CocaBucketsConfig.class)), new LemmaRecurrenceAnalyzerProvider(Mockito.mock(LemmaRecurrenceConfig.class)), new LemmaAbsenceAnalyzerProvider(null, Mockito.mock(LemmaAbsenceConfig.class), null), new LemmaCountAnalyzerProvider(null, Mockito.mock(LemmaCountConfig.class)), new DefaultQuizInstructionAnalyzerFactory(null, null, Mockito.mock(QuizInstructionConfig.class), null, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())))))
         names = registry.listAnalyzers().stream().map(AnalyzerDescriptor::getName).toList()
 
       then:
@@ -54881,14 +55161,14 @@ elements:
       given:
         bench = Bench(workdir)
         service = bench.service(bench.runner())
-        judged = bench.judge.contents.get(0).get("quiz")
+        judged = bench.judge.contents.get(0).get("acceptedAnswers")
 
       when:
         sut.take(new JudgeExamRequest(QUIZ_INSTRUCTION, PHOTO, Set.of(VERDURAS), 10, null))
 
       then:
         bench.judge.asked.size() == 1
-        judged.contains("CLOZE:____:love|") is true
+        judged == "Hueco 1: love"
         judged.contains("like") is false
     - |
       test: "should record TAKEN for the version when every exercise of the file got a verdict, and not when one stayed without verdict or is not in the photo"
@@ -55028,7 +55308,7 @@ elements:
       then:
         taken.getVerdicts().stream().map(JudgeExamVerdict::getCaseId).toList() == List.of(MC_47CC, VERDURAS, BREACH_1, OK_1)
         taken.getVerdicts().stream().noneMatch(v -> v.getOutcome() == JudgeExamOutcome.NOT_JUDGED) is true
-        bench.judge.contents.stream().anyMatch(c -> c.get("quiz").contains("MULTIPLE_CHOICE:")) is true
+        bench.judge.contents.stream().anyMatch(c -> c.get("options").contains("(correcta)")) is true
         taken.getVerdicts().get(2).getOutcome() == JudgeExamOutcome.FAILS
         taken.getVerdicts().get(2).getRules() == List.of("instruction-breach")
         taken.getVerdicts().get(2).getWorstSeverity() is not null
@@ -57273,6 +57553,11 @@ elements:
         with the forty exercises it reaches
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
+    - name: "should print, in the correction context of a QUIZ_INSTRUCTION task, the\
+        \ instructions of the quiz copy the corrector receives, and the knowledge's\
+        \ labelled as the knowledge's"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
     testCleanViews:
     - |
       test: "should list all stored audits when invoked as 'get audits' without a name"
@@ -59225,7 +59510,7 @@ elements:
         sentenceLengthTask = RefinementTask("task-sl-001", AuditTarget.QUIZ, "quiz-node-2", "Quiz 2", DiagnosisKind.SENTENCE_LENGTH, 2, RefinementTaskStatus.PENDING, null)
         plan = RefinementPlan("plan-2026-08-03", sourceAuditId, Instant.parse("2026-08-03T00:00:00Z"), List.of(quizInstructionTask, sentenceLengthTask))
         report = AuditReport()
-        qiCtx = QuizInstructionCorrectionContext("task-qi-001", "quiz-node-1", "He ____ [go|goes] to school.", "El va a la escuela.", "He goes to school.", "Present Simple", "Escribe la forma afirmativa", "Verbs", CefrLevel.A1, "A1", null, List.of(new InstructionViolation("AGREEMENT", "El verbo debe concordar con el sujeto", "goes", "El sujeto es de tercera persona singular")), "No cumple: 1 violacion", InstructionSeverity.MAJOR, List.of(), sourceAuditId, "plan-2026-08-03")
+        qiCtx = QuizInstructionCorrectionContext("task-qi-001", "quiz-node-1", "He ____ [go|goes] to school.", "El va a la escuela.", "He goes to school.", "Present Simple", "Escribe la forma afirmativa", "Verbs", CefrLevel.A1, "A1", null, List.of(new InstructionViolation("AGREEMENT", "El verbo debe concordar con el sujeto", "goes", "El sujeto es de tercera persona singular")), "No cumple: 1 violacion", InstructionSeverity.MAJOR, List.of(), sourceAuditId, "plan-2026-08-03", "Escribe la forma afirmativa")
         filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.empty(), Optional.empty(), Optional.of(DiagnosisKind.QUIZ_INSTRUCTION), null)
         outBuf = ByteArrayOutputStream()
         originalOut = System.out
@@ -59481,6 +59766,33 @@ elements:
         new java.util.HashSet<>(spanish).size() == 20
         spanish.stream().noneMatch(String::isBlank) is true
         spanish.subList(17, 20) == List.of("Gramática", "Naturalidad", "Duplicados parecidos")
+    - |
+      test: "should print, in the correction context of a QUIZ_INSTRUCTION task, the instructions of the quiz copy the corrector receives, and the knowledge's labelled as the knowledge's"
+      trace: FEAT-CALUM / F-CALUM-R003
+
+      given:
+        sourceAuditId = "audit-2026-10-01T00-00-00"
+        qiTask = RefinementTask("task-qi-calum", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1", DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING, null)
+        plan = RefinementPlan("plan-2026-10-01", sourceAuditId, Instant.parse("2026-10-01T00:00:00Z"), List.of(qiTask))
+        qiCtx = QuizInstructionCorrectionContext("task-qi-calum", "quiz-node-1", "He ____ [goes] to school.", "Él va a la escuela.", "He goes to school.", "Present Simple", "Consigna del tema, que el alumno no ve.", "Verbs", CefrLevel.A1, "A1", null, List.of(), "No cumple", InstructionSeverity.MAJOR, List.of(), sourceAuditId, "plan-2026-10-01", "Escribí el verbo en presente.")
+        filter = GetTasksFilter(Optional.empty(), Optional.empty(), false, Optional.of(1), Optional.empty(), Optional.empty(), null)
+        outBuf = ByteArrayOutputStream()
+        originalOut = System.out
+        output = outBuf.toString()
+
+      mock:
+        refinementPlanStore.loadLatest() -> Optional.of(plan)
+        auditReportStore.load(sourceAuditId) -> Optional.of(new AuditReport())
+        correctionContextResolver.resolve(any(AuditReport.class), eq(qiTask)) -> Optional.of(qiCtx)
+
+      when:
+        sut.setOut(new PrintStream(outBuf))
+
+      then:
+        exit == 0
+        output.contains("Instructions:  Escribí el verbo en presente.") is true
+        output.contains("Knowledge instructions: Consigna del tema, que el alumno no ve.") is true
+        output.contains("Instructions:  Consigna del tema") is false
   - name: DeleteCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/DeleteCmd.java
@@ -61495,6 +61807,10 @@ elements:
         when the correction context has no out-of-catalog words
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultCorrectionContextJsonMapperTest.java
+    - name: "should serialize, in a QUIZ_INSTRUCTION correction context, the instructions\
+        \ of the quiz copy under quizInstructions, apart from the knowledge's"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/DefaultCorrectionContextJsonMapperTest.java
     testCleanViews:
     - |
       test: "should include the sentenceMode in the serialized payload when a LEMMA_ABSENCE correction context carries REWRITE so the override round-trip preserves the knowledge phrase mode"
@@ -61545,6 +61861,17 @@ elements:
         payload.containsKey("outOfCatalogWords") is true
         rawList instanceof List is true
         ((List<?>) rawList).isEmpty() is true
+    - |
+      test: "should serialize, in a QUIZ_INSTRUCTION correction context, the instructions of the quiz copy under quizInstructions, apart from the knowledge's"
+      trace: FEAT-CALUM / F-CALUM-R003
+
+      given:
+        context = QuizInstructionCorrectionContext("task-qi-01", "quiz-node-01", "He ____ [goes] to school.", "Él va a la escuela.", "He goes to school.", "Present Simple", "Consigna del tema, que el alumno no ve.", "Verbs", CefrLevel.A1, "A1", null, List.of(), "No cumple", InstructionSeverity.MAJOR, List.of(), "audit-01", "plan-01", "Escribí el verbo en presente.")
+        payload = DefaultCorrectionContextJsonMapper().toJsonMap(context)
+
+      then:
+        payload.get("quizInstructions") == "Escribí el verbo en presente."
+        payload.get("knowledgeInstructions") == "Consigna del tema, que el alumno no ve."
   - name: LexisCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/LexisCmd.java
@@ -64786,6 +65113,49 @@ elements:
 
       then:
         catalog.getExpectedLemmas(CefrLevel.A1).contains(new LemmaAndPos("cat", "NOUN")) is true
+    - |
+      test: "should resolve lookupDerivedFormLevel to the lowest level of the entries that list the word as a form of another lemma, like 'rewarding' at C1 for 'reward'"
+      trace: FEAT-NIVFR / F-NIVFR-R002
+
+      given:
+        catalogPath = writeCatalog(entry("reward", "reward", "B1", "NOUN", 3000), entry("rewarding", "reward", "C1", "ADJ", 9447), entry("Sparkling", "sparkle", "C1", "ADJ", 12000), entry("sparkling", "sparkle", "B2", "ADJ", 12000))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupDerivedFormLevel("rewarding") == Optional.of(CefrLevel.C1)
+        catalog.lookupDerivedFormLevel("Rewarding") == Optional.of(CefrLevel.C1)
+        catalog.lookupDerivedFormLevel("sparkling") == Optional.of(CefrLevel.B2)
+    - |
+      test: "should return empty from lookupDerivedFormLevel for a word listed only as its own lemma, as a plural of its lemma or inside a phrase"
+      trace: FEAT-NIVFR / F-NIVFR-R002
+
+      given:
+        catalogPath = writeCatalog(entry("fine", "fine", "A1", "ADJ", 800), entry("fine", "fine", "B1", "NOUN", 800), entry("clothes", "clothe", "A1", "NOUN", 1200), entry("sleep on it", "sleep", "C2", "VERB", 9000))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupDerivedFormLevel("fine") == Optional.empty()
+        catalog.lookupDerivedFormLevel("clothes") == Optional.empty()
+        catalog.lookupDerivedFormLevel("sleep on it") == Optional.empty()
+        catalog.lookupDerivedFormLevel("sleep") == Optional.empty()
+        catalog.lookupDerivedFormLevel("blorptastic") == Optional.empty()
+        catalog.lookupDerivedFormLevel(null) == Optional.empty()
+    - |
+      test: "should keep lookupLevel and lookupLevelByLemma as they were when it indexes derived forms, so 'reward' still resolves to B1"
+      trace: FEAT-NIVFR / F-NIVFR-R006
+
+      given:
+        catalogPath = writeCatalog(entry("reward", "reward", "B1", "NOUN", 3000), entry("rewarding", "reward", "C1", "ADJ", 9447), entry("smoke", "smoke", "B1", "NOUN", 5325), entry("smoking", "smoke", "A1", "NOUN", 5325))
+        catalog = FileSystemEvpCatalog(catalogPath)
+
+      then:
+        catalog.lookupLevel(new LemmaAndPos("reward", "NOUN")) == Optional.of(CefrLevel.B1)
+        catalog.lookupLevel(new LemmaAndPos("reward", "ADJ")) == Optional.empty()
+        catalog.lookupLevelByLemma("reward") == Optional.of(CefrLevel.B1)
+        catalog.lookupLevelByLemma("rewarding") == Optional.empty()
+        catalog.lookupLevel(new LemmaAndPos("smoke", "NOUN")) == Optional.of(CefrLevel.B1)
+        catalog.lookupLevelByLemma("smoke") == Optional.of(CefrLevel.B1)
+        catalog.lookupDerivedFormLevel("smoking") == Optional.of(CefrLevel.A1)
   - name: FileSystemIrregularFormsCatalog
     status: EXISTS
     filePath: vocabulary-infrastructure/src/main/java/com/learney/contentaudit/vocabularyinfrastructure/irregularforms/FileSystemIrregularFormsCatalog.java
@@ -71617,6 +71987,29 @@ elements:
         ex.getFailedCriteria().contains(CorrectionCriterion.REAL_WORLD_SENSE) is true
         ex.getQuizId() == QUIZ_ID
         ex.getTaskId() == TASK_ID
+    - |
+      test: "should revalidate the original quiz with the title and the instructions of its copy, the ones the student sees"
+      trace: FEAT-CALUM / F-CALUM-R002
+
+      given:
+        strategyRegistry = mock(QuizInstructionProposalStrategyRegistry.class)
+        deriver = mock(LemmaAbsenceProposalDeriver.class)
+        complianceChecker = mock(QuizInstructionComplianceChecker.class)
+        subjectViewFactory = mock(QuizInstructionSubjectViewFactory.class)
+        candidateAssessor = mock(QuizInstructionCandidateAssessor.class)
+        copy = buildQuiz("run")
+        before = CourseElementSnapshot(AuditTarget.QUIZ, QUIZ_ID, copy, null)
+        reviser = QuizInstructionReviser(strategyRegistry, deriver, complianceChecker, subjectViewFactory, buildConfig(3), candidateAssessor)
+
+      mock:
+        subjectViewFactory.fromQuiz(any(), any(), any(), any(), any()) -> subjectView(copy)
+        complianceChecker.revalidate(Mockito.any(QuizInstructionSubjectView.class)) -> compliant()
+
+      when:
+        sut.setTitle("Tercera persona")
+
+      then:
+        verify: subjectViewFactory.fromQuiz(copy, "A2", "Verb Tenses", "Tercera persona", "Escribí el verbo en presente.")
   - name: DefaultQuizInstructionProposalStrategyRegistry
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/engine/DefaultQuizInstructionProposalStrategyRegistry.java
@@ -72178,7 +72571,7 @@ elements:
         task = RefinementTask(taskId, AuditTarget.QUIZ, nodeId, "Quiz 1", DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING, null)
         plan = RefinementPlan(planId, sourceAuditId, Instant.parse("2026-08-11T00:00:00Z"), List.of(task))
         report = AuditReport()
-        context = QuizInstructionCorrectionContext(taskId, nodeId, "[Do I want] (I / need) a pen?", "El va a la escuela.", "He go to school.", "Present Simple", "Escribe la forma afirmativa", "Verbs", CefrLevel.A1, "A1", null, List.of(new InstructionViolation("AGREEMENT", "El verbo debe concordar con el sujeto", "go", "El sujeto es de tercera persona singular")), "No cumple: 1 violacion", InstructionSeverity.MAJOR, List.of(), sourceAuditId, planId)
+        context = QuizInstructionCorrectionContext(taskId, nodeId, "[Do I want] (I / need) a pen?", "El va a la escuela.", "He go to school.", "Present Simple", "Escribe la forma afirmativa", "Verbs", CefrLevel.A1, "A1", null, List.of(new InstructionViolation("AGREEMENT", "El verbo debe concordar con el sujeto", "go", "El sujeto es de tercera persona singular")), "No cumple: 1 violacion", InstructionSeverity.MAJOR, List.of(), sourceAuditId, planId, "Escribe la forma afirmativa")
         course = mock(CourseEntity.class)
         realParts = List.of(new SentencePartEntity(SentencePartKind.TEXT, "", null), new SentencePartEntity(SentencePartKind.CLOZE, null, List.of("Do I want")), new SentencePartEntity(SentencePartKind.TEXT, " (I / need) a pen?", null))
         realForm = FormEntity("CLOZE", 1.0, "", "", realParts, null, null)
@@ -75097,12 +75490,12 @@ elements:
         original = quiz("eats", "She eats breakfast every morning.")
         candidate = quiz("ate", "She ate breakfast every morning.")
         assessmentInput = input(original, candidate, List.of("eats"))
-        view = QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines", "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts(), null)
+        view = QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines", "Daily routines", "Write the verb in the past simple.", candidate.getForm().getSentenceParts(), null)
         compliantVerdict = QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE, "Cumple la consigna.", List.of(), List.of())
         verdict = criterion.evaluate(assessmentInput)
 
       mock:
-        subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Past simple narration", "Complete with the past simple form") -> view
+        subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Daily routines", "Write the verb in the past simple.") -> view
         complianceChecker.check(view) -> new QuizInstructionComplianceResult(QuizInstructionComplianceStatus.EVALUATED, compliantVerdict, null, "judge-v3", false)
 
       then:
@@ -75116,25 +75509,42 @@ elements:
         original = quiz("eats", "She eats breakfast every morning.")
         candidate = quiz("ate", "She ate breakfast every morning.")
         assessmentInput = input(original, candidate, List.of("eats", "one word"))
-        view = QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines", "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts(), null)
+        view = QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines", "Daily routines", "Write the verb in the past simple.", candidate.getForm().getSentenceParts(), null)
         stillBreaches = QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR, "La respuesta acepta mas de una palabra.", List.of(), List.of())
         verdict = criterion.evaluate(assessmentInput)
 
       mock:
-        subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Past simple narration", "Complete with the past simple form") -> view
+        subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Daily routines", "Write the verb in the past simple.") -> view
         complianceChecker.check(view) -> new QuizInstructionComplianceResult(QuizInstructionComplianceStatus.EVALUATED, stillBreaches, null, "judge-v3", false)
 
       then:
         verdict.getOutcome() == CriterionOutcome.FAILED
     - |
-      test: "should submit the corrected quiz as a whole to the instruction validation, with its parts, its level and its knowledge instruction, instead of checking the violations one by one"
+      test: "should refuse a candidate whose instruction validation could not be obtained, instead of assuming that it complies"
       trace: FEAT-QICOR / F-QICOR-R005
 
       given:
         original = quiz("eats", "She eats breakfast every morning.")
         candidate = quiz("ate", "She ate breakfast every morning.")
+        assessmentInput = input(original, candidate, List.of("eats"))
+        view = QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines", "Daily routines", "Write the verb in the past simple.", candidate.getForm().getSentenceParts(), null)
+        verdict = criterion.evaluate(assessmentInput)
+
+      mock:
+        subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Daily routines", "Write the verb in the past simple.") -> view
+        complianceChecker.check(view) -> new QuizInstructionComplianceResult(QuizInstructionComplianceStatus.UNAVAILABLE, null, "El juez no respondio a tiempo.", null, false)
+
+      then:
+        verdict.getOutcome() == CriterionOutcome.NOT_EVALUABLE
+    - |
+      test: "should submit the corrected quiz as a whole to the instruction validation, with its parts, its level and the title and instructions of its copy, instead of checking the violations one by one"
+      trace: FEAT-CALUM / F-CALUM-R002
+
+      given:
+        original = quiz("eats", "She eats breakfast every morning.")
+        candidate = quiz("ate", "She ate breakfast every morning.")
         assessmentInput = input(original, candidate, List.of("eats", "one word", "past tense"))
-        view = QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines", "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts(), null)
+        view = QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines", "Daily routines", "Write the verb in the past simple.", candidate.getForm().getSentenceParts(), null)
         compliantVerdict = QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE, "Cumple la consigna.", List.of(), List.of())
         quizCaptor = ArgumentCaptor.forClass(QuizTemplateEntity.class)
         levelCaptor = ArgumentCaptor.forClass(String.class)
@@ -75153,27 +75563,10 @@ elements:
         quizCaptor.getValue() == candidate
         levelCaptor.getValue() == "A1"
         topicCaptor.getValue() == "Daily Routines"
-        titleCaptor.getValue() == "Past simple narration"
-        instructionsCaptor.getValue() == "Complete with the past simple form"
+        titleCaptor.getValue() == "Daily routines"
+        instructionsCaptor.getValue() == "Write the verb in the past simple."
         verify: subjectViewFactory.fromQuiz(quizCaptor.capture(), levelCaptor.capture(), topicCaptor.capture(), titleCaptor.capture(), instructionsCaptor.capture())
         verify: complianceChecker.check(view)
-    - |
-      test: "should refuse a candidate whose instruction validation could not be obtained, instead of assuming that it complies"
-      trace: FEAT-QICOR / F-QICOR-R005
-
-      given:
-        original = quiz("eats", "She eats breakfast every morning.")
-        candidate = quiz("ate", "She ate breakfast every morning.")
-        assessmentInput = input(original, candidate, List.of("eats"))
-        view = QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines", "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts(), null)
-        verdict = criterion.evaluate(assessmentInput)
-
-      mock:
-        subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Past simple narration", "Complete with the past simple form") -> view
-        complianceChecker.check(view) -> new QuizInstructionComplianceResult(QuizInstructionComplianceStatus.UNAVAILABLE, null, "El juez no respondio a tiempo.", null, false)
-
-      then:
-        verdict.getOutcome() == CriterionOutcome.NOT_EVALUABLE
   - name: AuditReportQuizCorpus
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/candidatecriteriaengine/AuditReportQuizCorpus.java
@@ -75393,6 +75786,24 @@ elements:
   - name: QuizInstructionAgentStrategy
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/quizinstruction/QuizInstructionAgentStrategy.java
+    tests:
+    - name: "should identify itself as quiz-instruction-agent 1.1.0, the version whose\
+        \ correction complies with the instructions of the quiz copy"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/quizinstruction/QuizInstructionAgentStrategyTest.java
+    testCleanViews:
+    - |
+      test: "should identify itself as quiz-instruction-agent 1.1.0, the version whose correction complies with the instructions of the quiz copy"
+      trace: FEAT-CALUM / F-CALUM-R003
+
+      given:
+        strategy = QuizInstructionAgentStrategy(mock(QuizInstructionCandidateGenerator.class), "llm:anthropic")
+        id = strategy.id()
+
+      then:
+        id.getName() == "quiz-instruction-agent"
+        id.getVersion() == "1.1.0"
+        id.getProviderId() == "llm:anthropic"
   - name: DefaultBatchComparator
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/comparisonengine/DefaultBatchComparator.java
@@ -77048,6 +77459,35 @@ elements:
         inputs is not null
         inputs.get("maxAttempts") == "9"
         verify: launcher.launch(anyString(), anyMap(), any())
+    - |
+      test: "should hand the correction agent, as the instructions it must comply with, those of the quiz copy and never the knowledge's"
+      trace: FEAT-CALUM / F-CALUM-R003
+
+      given:
+        capturedInputs = AtomicReference<>()
+        launcher = mock(QuizInstructionAgentRuntimeLauncher.class)
+        parser = mock(QuizInstructionAgentCandidateParser.class)
+        generator = QuizInstructionAgentGenerator(launcher, parser, mock(QuizInstructionAgentErrorClassifier.class), null, lagenConfig(), Path.of("/placeholder/project"))
+        context = validContext()
+        inputs = capturedInputs.get()
+
+      mock:
+        parser.parse(any(), anyString()) -> new QuizInstructionGeneratorResponse("He ____ [goes] to school.", "El va a la escuela.", "Concordancia corregida.", List.of(), 1)
+
+      when:
+        sut.thenAnswer(invocation -> {
+          @SuppressWarnings("unchecked")
+          Map<String, String> inputs = invocation.getArgument(1);
+          capturedInputs.set(inputs);
+          return RunState.empty().withRunStatus(RunStatus.COMPLETED);
+      })
+
+      then:
+        inputs is not null
+        inputs.get("quizInstructions") == "Escribí el verbo en presente."
+        inputs.containsKey("knowledgeInstructions") is false
+        inputs.containsValue("Consigna del tema, que el alumno no ve.") is false
+        inputs.get("knowledgeTitle") == "Present Simple"
   - name: DefaultQuizInstructionAgentCandidateParser
     status: EXISTS
     filePath: revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/quizinstructionagent/DefaultQuizInstructionAgentCandidateParser.java
@@ -80023,10 +80463,10 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 2637
-  passing: 2605
+  total: 2640
+  passing: 2623
   failing: 0
-  notImplemented: 32
+  notImplemented: 17
 qualitySummary:
   enforcement: warn
   thresholds:

@@ -347,7 +347,7 @@ public class FQicorJ001JourneyTest {
                 InstructionSeverity.MAJOR,
                 List.of(),
                 AUDIT_ID,
-                PLAN_ID);
+                PLAN_ID, KNOWLEDGE_INSTRUCTIONS);
     }
 
     private CorrectionContextResolver<CorrectionContext> buildContextResolver() {

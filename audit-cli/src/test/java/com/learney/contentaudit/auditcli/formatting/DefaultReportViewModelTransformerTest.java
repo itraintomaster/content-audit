@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditcli.formatting;
 
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -126,7 +128,7 @@ public class DefaultReportViewModelTransformerTest {
                 new LemmaRecurrenceAnalyzerProvider(new DefaultLemmaRecurrenceConfig()),
                 new LemmaAbsenceAnalyzerProvider(null, absence, null),
                 new LemmaCountAnalyzerProvider(null, new DefaultLemmaCountConfigLoader().load(null)),
-                new DefaultQuizInstructionAnalyzerFactory(null, null, new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), null)))
+                new DefaultQuizInstructionAnalyzerFactory(null, null, new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), null, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()))))
                 .list();
     }
 

@@ -911,7 +911,7 @@ public class DefaultTopicWordLightsQueryTest {
                         new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(
                                 new com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer(evp(),
                                         new com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter(), absence),
-                                absence, new DefaultTopicTeachingResolver(), null).create(null);
+                                absence, new DefaultTopicTeachingResolver(), null, evp()).create(null);
                 quizzes.forEach(offLevel::onQuiz);
             }
             if (overExposed != null) {

@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -174,7 +176,7 @@ public class FJexamJ001JourneyTest {
                     new ExamEvaluationSessionFactory(ledger, fingerprinter), registry, evaluatorId -> List.of(),
                     new DefaultJudgeRuntimeConfig());
             catalog = new DefaultAnalyzerCatalog(List.of(new DefaultQuizInstructionAnalyzerFactory(judge,
-                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime)));
+                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()))));
             CourseRepository repository = mock(CourseRepository.class);
             CourseToAuditableMapper mapper = mock(CourseToAuditableMapper.class);
             CourseEntity entity = new CourseEntity();
@@ -182,11 +184,13 @@ public class FJexamJ001JourneyTest {
             when(mapper.map(entity)).thenReturn(course());
             runner = new DefaultAuditRunner(repository, mapper, new IAuditEngine(new IScoreAggregator(), catalog,
                     new DefaultFindingCollector(), new DefaultContextNumbersCalculator()), catalog);
-            // What the course's ledger had: the August verdict of q-0, by the version of today.
+            // What the course's ledger had: a verdict of q-0, by the version of today, on what the judge
+            // reads -- the exercise as the student sees it (F-CALUM-R001).
             ledger.append(new EvaluationRecord(new EvaluationKey(EVALUATOR, fingerprinter.fingerprint(Map.of(
                     "cefrLevel", "A1", "topic", "Present Simple", "title", "Afirmativas regulares",
                     "instructions", "Escribe la forma correcta del verbo.",
-                    "quiz", "TEXT:You:|CLOZE:____:see|TEXT:(see) cats.:|"))), FakeJudge.COMPLIANT, "q-0",
+                    "exercise", "You ___ (see) cats.", "acceptedAnswers", "Hueco 1: see",
+                    "options", ""))), FakeJudge.COMPLIANT, "q-0",
                     Instant.parse("2026-08-14T14:39:40Z"), FakeJudge.VERSION));
         }
 

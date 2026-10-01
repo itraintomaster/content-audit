@@ -22,8 +22,9 @@ import javax.annotation.processing.Generated;
 
 /**
  * Resolves the {@link QuizInstructionCorrectionContext} that feeds F-QICOR: the
- * quiz's own content, its knowledge's instruction (the consigna it must obey),
- * the CEFR level, its siblings, and -- the raw material of the correction,
+ * quiz's own content and instructions (the consigna it must obey: the quiz copy's,
+ * the one the app shows and the judge reads, F-CALUM-R003), its knowledge's label
+ * and instructions as context, the CEFR level, its siblings, and -- the raw material of the correction,
  * F-QICOR-R002 -- the violations and the reason the quiz-instruction judge
  * already recorded for it (F-QINST-R003).
  *
@@ -93,9 +94,13 @@ public class QuizInstructionContextResolver implements CorrectionContextResolver
         String quizSentence = null;
         String translation = null;
         String sentence = null;
+        // F-CALUM-R003: the consigna the corrector must comply with is the quiz copy's -- the one
+        // the app shows and the judge reads (F-CALUM-R001) --, never the knowledge's.
+        String quizInstructions = null;
         if (quizEntity instanceof AuditableQuiz quiz) {
             quizSentence = quiz.getQuizSentence();
             translation = quiz.getTranslation();
+            quizInstructions = quiz.getInstructions();
             sentence = (quiz.getSentences() != null && !quiz.getSentences().isEmpty())
                     ? quiz.getSentences().get(0)
                     : null;
@@ -171,7 +176,7 @@ public class QuizInstructionContextResolver implements CorrectionContextResolver
                 // string id it was loaded under. Left null here and stamped by
                 // DefaultRevisionEngine from the plan's sourceAuditId, mirroring the
                 // identical gap/fix already established for LemmaAbsenceCorrectionContext.
-                null, null, null);
+                null, null, quizInstructions);
 
         return Optional.of(context);
     }

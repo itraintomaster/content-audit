@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditapplication;
 
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -163,11 +164,11 @@ public class FOpmulJ001JourneyTest {
 
         audit(course, List.of(judgeFactory(ledger, judge)));
 
-        // Step: juez_ve_opciones (gate F-OPMUL-R005) -- every option in the gap, in the order the
-        // student sees them, the correct one marked.
-        List<String> judgedQuizzes = judge.judgedQuizzes();
-        assertTrue(judgedQuizzes.contains("TEXT:She:|MULTIPLE_CHOICE::am,is[CORRECT],are|TEXT:English.:|"),
-                "R005: the judge must see the options of the multiple-choice quiz: " + judgedQuizzes);
+        // Step: juez_ve_opciones (gate F-OPMUL-R005) -- every option, in the order the student sees
+        // them, the correct one marked, as the student view renders them (F-CALUM-R001).
+        List<String> judgedOptions = judge.judgedOptions();
+        assertTrue(judgedOptions.contains("- am\n- is (correcta)\n- are"),
+                "R005: the judge must see the options of the multiple-choice quiz: " + judgedOptions);
         assertEquals(1, ledger.historyBySubjectRef("mc-1").size(), "the verdict of the MC is recorded");
     }
 
@@ -176,8 +177,8 @@ public class FOpmulJ001JourneyTest {
     @Tag("path-4")
     @DisplayName("path-4: El usuario audita un curso que mezcla... → El juez no recibe ninguna consulta po... [Un CLOZE ya tiene veredicto de consigna registrado] → success")
     public void path4_unCLOZEYaTieneVeredictoDeConsignaRegistrado_success() {
-        // Step: auditar -- the CLOZE already has a verdict, recorded before multiple choice
-        // existed: its key is the content the judge received then, character for character.
+        // Step: auditar -- the CLOZE already has a verdict: its key is the content the judge reads,
+        // character for character -- the exercise as the student sees it (F-CALUM-R001).
         QuizTemplateEntity cloze = quiz("cloze-1", clozeForm(List.of(text("They"), clozeGap("are"), text("here."))));
         QuizTemplateEntity mc = quiz("mc-1", multipleChoiceForm(List.of(text("She"), gap(), text("English.")),
                 "is", "am", "is", "are"));
@@ -187,7 +188,9 @@ public class FOpmulJ001JourneyTest {
                 "topic", "Present Simple",
                 "title", "Be",
                 "instructions", INSTRUCTIONS,
-                "quiz", "TEXT:They:|CLOZE::are|TEXT:here.:|");
+                "exercise", "They ___ here.",
+                "acceptedAnswers", "Hueco 1: are",
+                "options", "");
         EvaluationKey clozeKey = new EvaluationKey(EVALUATOR_ID,
                 new FakeContentFingerprinter().fingerprint(clozeAsJudgedBefore));
         FakeEvaluationLedger ledger = new FakeEvaluationLedger();
@@ -233,7 +236,7 @@ public class FOpmulJ001JourneyTest {
     private static AnalyzerProvider judgeFactory(FakeEvaluationLedger ledger, FakeEvaluator judge) {
         return new DefaultQuizInstructionAnalyzerFactory(judge, new FakeQuizInstructionVerdictReader(),
                 new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()),
-                approvedJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, new FakeContentFingerprinter())));
+                approvedJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, new FakeContentFingerprinter())), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -271,6 +274,9 @@ public class FOpmulJ001JourneyTest {
         quiz.setId(id);
         quiz.setKind(form.getKind());
         quiz.setForm(form);
+        // The title and the instructions the app shows above the exercise (F-CALUM-R001).
+        quiz.setTitle("Be");
+        quiz.setInstructions(INSTRUCTIONS);
         return quiz;
     }
 
@@ -408,7 +414,11 @@ public class FOpmulJ001JourneyTest {
         }
 
         private List<String> judgedQuizzes() {
-            return judged.stream().map(s -> s.getContent().get("quiz")).toList();
+            return judged.stream().map(s -> s.getContent().get("exercise")).toList();
+        }
+
+        private List<String> judgedOptions() {
+            return judged.stream().map(s -> s.getContent().get("options")).toList();
         }
 
         private List<String> judgedSubjectRefs() {

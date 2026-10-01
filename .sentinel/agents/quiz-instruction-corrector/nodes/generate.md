@@ -94,7 +94,7 @@ Sin claves de más. Los tres campos son obligatorios y ninguno puede ir vacío.
 Nivel CEFR: {cefrLevel}
 Topic: {topicLabel}
 Lección: {knowledgeTitle}
-Consigna que debe cumplir: {knowledgeInstructions}
+Consigna que debe cumplir: {quizInstructions}
 Modo: {sentenceMode}
 
 Ejercicio original: {quizSentence}

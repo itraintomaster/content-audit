@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
@@ -83,7 +85,7 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
         Mockito.lenient().when(runtimeConfig.getMaxConcurrentEvaluations()).thenReturn(4);
         Mockito.lenient().when(evaluator.evaluatorId()).thenReturn("quiz-instruction-validator");
         sut = new DefaultQuizInstructionAnalyzerFactory(evaluator, verdictReader, config,
-                new DefaultJudgeRuntime(sessionFactory, examSessionFactory, examRegistry, timeline, runtimeConfig));
+                new DefaultJudgeRuntime(sessionFactory, examSessionFactory, examRegistry, timeline, runtimeConfig), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
     }
 
     private void versionWithExam(String version, JudgeExamStatus status) {

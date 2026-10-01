@@ -115,7 +115,7 @@ otra categoría suele ser otra palabra. El sufijo que el tema enseña sigue por 
 orquestador, 1/10): nicely, sadly, warmly, beautifully y smoking no marcan donde el tema enseña a formarlas. Vuelven 4
 marcas y no se va ninguna: allergic y ceramic (A2), recess (B1) y diligently (B2). Lo que el catálogo trae como forma
 derivada o compuesta de otro lema (rewarding C1, de reward; smoking A1, de smoke) F-LABS-R040 lo deja, con razón, fuera
-del nivel de su lema, y ningún método del puerto lo consulta: el parche aprobado el 1/10 lo suma ([TECH_SPEC](TECH_SPEC.md)).
+del nivel de su lema, y ningún método del puerto lo consultaba: el parche del 1/10 lo suma ([TECH_SPEC](TECH_SPEC.md)).
 En el curso del 29/9 no cambia ninguna marca, porque las dos están en temas que enseñan su sufijo («-ed vs -ing»,
 «Doble consonante y e»); cuida al derivado que el EVP trae en un nivel alto y que la lectura de su base soltaría.
 
@@ -178,7 +178,7 @@ warranty («garantía» empieza con otra letra) y hydrated («hidratado» no es 
 la segunda corrección del 1/10 vale sólo para sustantivos, y ceramic, allergic y diligently, que también sacaba,
 vuelven a marcar. Ningún sustantivo del curso que saca es un verbo mal etiquetado; la guarda es para el que venga. Lo
 que el catálogo trae como forma derivada de otro lema, dos niveles arriba o más, tampoco es préstamo: eso lo hace el
-parche aprobado el 1/10 ([R002](#F-NIVFR-R002)).
+parche de la forma derivada del 1/10 ([R002](#F-NIVFR-R002)).
 
 ### Grupo B — Qué deja y qué no toca
 
@@ -258,9 +258,7 @@ nuevas al menos 6 de cada 10 sean reales. **Costo**: segundos, en la pasada de `
 - **Afuera**: el sentido de una palabra (juez de traducción y sentido, paquete C); buscar palabras de otro nivel en la
   pista, las opciones incorrectas y la miniteoría (la miniteoría sí se lee para saber qué enseña el tema, R003); el tipo
   de tarea (paquete E); cambiar `lemma-absence`, el catálogo o sus curaciones; la teoría del tema, que content-audit
-  todavía no lee (parche propuesto el 1/10, en espera hasta después de la ronda 2); el nivel de la forma derivada que
-  el catálogo trae aparte, hasta que se aplique su parche (aprobado el 1/10, se aplica en `ronda2/integracion`:
-  [TECH_SPEC](TECH_SPEC.md)).
+  todavía no lee (parche propuesto el 1/10, en espera hasta después de la ronda 2).
 
 ## User Journeys
 

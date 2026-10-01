@@ -105,10 +105,18 @@ Reemplaza la fuente de la etiqueta y la consigna en [F-QINST-R009](#F-QINST-R009
 > 2. cada nombre dice de dónde sale su valor: la consigna de la copia nunca viaja con el nombre de la del tema, ni al
 >    revés;
 > 3. la etiqueta y la consigna del tema siguen en el contexto, como contexto: la lección para el corrector y lo que
->    hoy reciben los criterios del candidato.
+>    hoy reciben los criterios del candidato;
+> 4. `get` muestra, en el contexto de una corrección de consigna, la consigna de la copia, que es la que recibe el
+>    corrector, y la del tema rotulada como del tema, en texto y en JSON;
+> 5. el corrector se identifica como `quiz-instruction-agent 1.1.0`, porque cambió lo que recibe: sus propuestas dicen
+>    con qué versión se hicieron, y nada de lo hecho con la 1.0.0 cuenta como hecho por la 1.1.0.
 
 Contesta [DOUBT-CALUM-CORRECTOR](#DOUBT-CALUM-CORRECTOR) con la opción B. Con R001 y R002, el corrector, el juez y la
 verificación del candidato leen la misma consigna.
+
+Nada guarda resultados por la versión del corrector. Lo que se reusa en `revise-instructions` son los veredictos del
+juez, por la huella de lo que lee, y esa huella cambia con R001. Una propuesta pendiente de la 1.0.0 sigue frenando su
+tarea hasta que se decida, como cualquier propuesta pendiente ([F-REVAPR-R010](#F-REVAPR-R010)).
 
 <details><summary>Detalle y casos del curso</summary>
 
