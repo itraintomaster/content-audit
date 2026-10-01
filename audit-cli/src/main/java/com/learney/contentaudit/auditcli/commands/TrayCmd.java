@@ -182,6 +182,15 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
             System.err.println("Error: tray necesita show, answer o publish. Ver content-audit tray --help.");
             return 2;
         }
+        try {
+            return dispatch();
+        } catch (IllegalStateException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 1;
+        }
+    }
+
+    private Integer dispatch() {
         return switch (action) {
             case "show" -> showTray(format);
             case "answer" -> answerTray(itemId, answer, pairIndex, changeId, fixFile, note);

@@ -752,8 +752,8 @@ class Main {
         // FEAT-RONDA2 (hook F-06): the fixed baseline, apart from the active pair (F-PROYU-R006);
         // delete and prune never take it away.
         BaselineStore baselineStore = new FileSystemBaselineStore(baseDir);
-        // FEAT-RONDA2 (hook E-09): the batches of corrections (FEAT-TANDA, package E).
-        BatchStore batchStore = new FileSystemBatchStore();
+        // FEAT-RONDA2 (hook E-09): the batches of corrections (FEAT-TANDA, package E), under --workdir.
+        BatchStore batchStore = new FileSystemBatchStore(baseDir);
 
         // ----------------------------------------------------------------
         // Step 6b: FEAT-RONDA2 -- before and after, package F (hook F-06). The projection of the
@@ -793,7 +793,13 @@ class Main {
                 new MultipleChoiceValidityRuleFix(),
                 new DataCoherenceRuleFix(quizSentenceConverter),
                 new GrammarRuleFix());
-        TrayDecisionStore trayDecisionStore = new FileSystemTrayDecisionStore();
+        TrayDecisionStore trayDecisionStore = new FileSystemTrayDecisionStore(baseDir);
+        // E · FEAT-RONDA2 (hook E-09): the batch is asked of its factory on first use; its collaborators are
+        // put together in the block of E after the commands of F. reject and batch read it from here.
+        java.util.concurrent.atomic.AtomicReference<Supplier<com.learney.contentaudit.revisiondomain.batch.BatchService>>
+                batchFactory = new java.util.concurrent.atomic.AtomicReference<>();
+        com.learney.contentaudit.revisiondomain.batch.BatchService batchService =
+                lazyBatchService(() -> batchFactory.get().get());
 
         // ----------------------------------------------------------------
         // Step 7: Refiner + Revision engines
@@ -1195,8 +1201,8 @@ class Main {
             ApproveCmd approveCmd = new ApproveCmd(proposalDecisionService, batchStore);
             cmd.addSubcommand("approve", new picocli.CommandLine(approveCmd));
 
-            // The batch of E (FEAT-TANDA) is wired with its factory when package E builds it.
-            RejectCmd rejectCmd = new RejectCmd(proposalDecisionService, null);
+            // E · FEAT-BANDEJA (hook E-09): rejecting a proposal of the open batch takes its changes out of it.
+            RejectCmd rejectCmd = new RejectCmd(proposalDecisionService, batchService);
             cmd.addSubcommand("reject", new picocli.CommandLine(rejectCmd));
         }
 
@@ -1316,6 +1322,44 @@ class Main {
         cmd.addSubcommand("set-goals", new picocli.CommandLine(new GoalsCmd.Set(goalsCommand)));
         cmd.addSubcommand("sample", new picocli.CommandLine(new SampleCmd(blindSampleCommand)));
         cmd.addSubcommand("error-rate", new picocli.CommandLine(new ErrorRateCmd(errorRateCommand)));
+
+        // E · FEAT-RONDA2 (hook E-09): the batch and the tray of package E, built on first use so no other
+        // command pays for them. The panel takes its proposer from CONTENT_AUDIT_LAGEN_* only when a panel runs,
+        // under an explicit --cap; the rules query nothing. The locator of the course and the table of parts to
+        // fields go null: the factory of the batch builds them once the patch of FEAT-TANDA makes them public, and
+        // until then batch and tray say so.
+        com.learney.contentaudit.revisiondomain.panelengine.DefaultPanelRunnerFactory panelRunnerFactory =
+                new com.learney.contentaudit.revisiondomain.panelengine.DefaultPanelRunnerFactory();
+        final String batchCourse = CoursePathResolver.resolve(null);
+        Supplier<com.learney.contentaudit.revisiondomain.panel.PanelRunnerConfig> panelConfig = () ->
+                new com.learney.contentaudit.revisiondomain.panel.PanelRunnerConfig(panelProposer(llmProviderResolver),
+                        analyzerCatalog, analyzerCorrectionCatalog, auditEngine, courseToAuditableMapper,
+                        studentViewRenderer, nlpTokenizer, sentenceLexicalEvaluator, topicTeachingResolver,
+                        new com.learney.contentaudit.auditdomain.datacoherence.DefaultSpokenTextBuilder(),
+                        sentenceLengthConfig);
+        Supplier<com.learney.contentaudit.revisiondomain.panel.PanelRunner> panelRunner = memoized(
+                () -> panelRunnerFactory.create(panelConfig.get()));
+        batchFactory.set(memoized(() -> {
+            if (batchCourse == null) {
+                throw new IllegalStateException("Falta la ruta del curso: CONTENT_AUDIT_CONTENT_FOLDER o .env.");
+            }
+            return new com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchServiceFactory().create(
+                    new com.learney.contentaudit.revisiondomain.batch.BatchServiceConfig(batchStore, refinementPlanStore,
+                            auditReportStore, activeAnalysisSelectionStore, revisionArtifactStore,
+                            (CourseRepository) courseRepository, null, courseToAuditableMapper, auditEngine,
+                            refinerEngine, errorTaskBriefer, analyzerCorrectionCatalog, ruleFixes, panelRunner.get(),
+                            panelRunnerFactory.meter(panelConfig.get()), panelRunnerFactory, batchComparator,
+                            baselineStore, blindSampleService, topicWordLightsQuery, null,
+                            preservationFactory.createCheck(), Paths.get(batchCourse), goalBook));
+        }));
+        com.learney.contentaudit.revisiondomain.tray.TrayService trayService = lazyTrayService(memoized(() ->
+                new com.learney.contentaudit.revisiondomain.trayengine.DefaultTrayServiceFactory().create(
+                        new com.learney.contentaudit.revisiondomain.tray.TrayServiceConfig(batchService, batchStore,
+                                trayDecisionStore, blindSampleService, panelRunner.get(), panelRunnerFactory,
+                                studentViewRenderer, evaluationContentFingerprinter, (CourseRepository) courseRepository,
+                                batchCourse != null ? Paths.get(batchCourse) : null))));
+        cmd.addSubcommand("batch", new picocli.CommandLine(new BatchCmd(batchService)));            // E · FEAT-TANDA
+        cmd.addSubcommand("tray", new picocli.CommandLine(new TrayCmd(trayService, quizSentenceConverter))); // E · BANDEJA
 
         // ----------------------------------------------------------------
         // Step 9: Execute
@@ -1502,6 +1546,112 @@ class Main {
             @Override
             public Optional<String> evaluatorVersion() {
                 return delegate().evaluatorVersion();
+            }
+        };
+    }
+
+    // ----------------------------------------------------------------
+    // E · FEAT-RONDA2 (hook E-09): the batch and the tray, on first use
+    // ----------------------------------------------------------------
+
+    /** A value built once, the first time it is asked. */
+    private static <T> Supplier<T> memoized(Supplier<T> factory) {
+        return new Supplier<>() {
+            private T value;
+
+            @Override
+            public synchronized T get() {
+                if (value == null) {
+                    value = factory.get();
+                }
+                return value;
+            }
+        };
+    }
+
+    /** The proposer of the panel from CONTENT_AUDIT_LAGEN_*, or one that says why it cannot propose. */
+    private static com.learney.contentaudit.revisiondomain.panel.PanelProposer panelProposer(
+            LlmProviderResolver llmProviderResolver) {
+        try {
+            LagenConfig config = new DefaultLagenConfigResolver(llmProviderResolver).resolve(System.getenv());
+            return new com.learney.contentaudit.revisioninfrastructure.panelagent.DefaultPanelAgentProposerFactory()
+                    .create(config);
+        } catch (RuntimeException e) {
+            String why = e.getMessage();
+            return request -> {
+                throw new IllegalStateException("La mesa no tiene proponente: " + why);
+            };
+        }
+    }
+
+    /** The batch of package E, asked of its factory on first use (hook E-09). */
+    private static com.learney.contentaudit.revisiondomain.batch.BatchService lazyBatchService(
+            Supplier<com.learney.contentaudit.revisiondomain.batch.BatchService> factory) {
+        return new com.learney.contentaudit.revisiondomain.batch.BatchService() {
+            @Override
+            public com.learney.contentaudit.revisiondomain.batch.CorrectionBatch open(
+                    com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest request) {
+                return factory.get().open(request);
+            }
+
+            @Override
+            public Optional<com.learney.contentaudit.revisiondomain.batch.CorrectionBatch> current() {
+                return factory.get().current();
+            }
+
+            @Override
+            public com.learney.contentaudit.revisiondomain.batch.BatchEstimate estimate() {
+                return factory.get().estimate();
+            }
+
+            @Override
+            public com.learney.contentaudit.revisiondomain.batch.BatchReport run(
+                    com.learney.contentaudit.revisiondomain.batch.BatchRunRequest request) {
+                return factory.get().run(request);
+            }
+
+            @Override
+            public com.learney.contentaudit.revisiondomain.batch.BatchClosing close() {
+                return factory.get().close();
+            }
+
+            @Override
+            public com.learney.contentaudit.revisiondomain.batch.CorrectionBatch adjust(
+                    com.learney.contentaudit.revisiondomain.batch.BatchAdjustment adjustment) {
+                return factory.get().adjust(adjustment);
+            }
+
+            @Override
+            public com.learney.contentaudit.revisiondomain.batch.BatchReport report(String batchId) {
+                return factory.get().report(batchId);
+            }
+
+            @Override
+            public com.learney.contentaudit.revisiondomain.batch.BatchPublication publish(
+                    com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest request) {
+                return factory.get().publish(request);
+            }
+        };
+    }
+
+    /** The tray of package E, asked of its factory on first use (hook E-09). */
+    private static com.learney.contentaudit.revisiondomain.tray.TrayService lazyTrayService(
+            Supplier<com.learney.contentaudit.revisiondomain.tray.TrayService> factory) {
+        return new com.learney.contentaudit.revisiondomain.tray.TrayService() {
+            @Override
+            public com.learney.contentaudit.revisiondomain.tray.Tray view() {
+                return factory.get().view();
+            }
+
+            @Override
+            public com.learney.contentaudit.revisiondomain.tray.Tray answer(
+                    com.learney.contentaudit.revisiondomain.tray.TrayResponse response) {
+                return factory.get().answer(response);
+            }
+
+            @Override
+            public com.learney.contentaudit.revisiondomain.batch.BatchPublication publish(String approvedBy, String note) {
+                return factory.get().publish(approvedBy, note);
             }
         };
     }

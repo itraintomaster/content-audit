@@ -388,6 +388,15 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
                     + " --help.");
             return 2;
         }
+        try {
+            return dispatch();
+        } catch (IllegalStateException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 1;
+        }
+    }
+
+    private Integer dispatch() {
         return switch (action) {
             case "open" -> openBatch(target, topicsAtOnce, queriesAtOnce, convertToMultipleChoice);
             case "estimate" -> estimateBatch();
