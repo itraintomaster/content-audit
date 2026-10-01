@@ -5,6 +5,12 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — Con `env -i` el PATH pierde el python de miniconda y la gramática no arranca:
+  «NlpResourcesUnavailableException … No module named 'spacy'». Poner `/opt/homebrew/Caskroom/miniconda/base/bin` en el
+  PATH limpio, después del claude falso.
+2026-10-01 — developer — `--workdir` necesita los recursos del árbol (analysis/recursos-compartidos y demás): una carpeta
+  de estado aparte se arma con enlaces a las carpetas de la copia y su propio `.content-audit`.
+
 2026-10-01 — developer — LanguageTool 6.8: `new AmericanEnglish()` revienta en el inicializador; usar
   `Languages.getLanguageForShortCode("en-US"/"en-GB")`. Con Java 25 hace falta jdk.xml.totalEntitySizeLimit (lo sube el
   adaptador si nadie lo fijó).

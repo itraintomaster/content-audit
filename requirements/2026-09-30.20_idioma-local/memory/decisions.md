@@ -5,6 +5,12 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — Cómo se rinde el examen de una herramienta local: en una carpeta aparte, con una
+  copia compilada y un claude falso primero en el PATH; los casos son el oro del 077 de las dos mitades que el analizador
+  alcanza (`armar_casos.py`, que sólo cuenta); lo medido (`medir_idioma.py`) imprime sólo números, la meta se fija antes de
+  ver el número («la misma proporción» = al menos 4/47 de examinar/) y en `noDieronLoEsperado` van sólo ids de escribir/.
+  why: el registro lo lee quien mejore la herramienta, y examinar/ es la mitad que no se mira.
+
 2026-10-01 — developer — Publicar = corrida de examen o versión aprobada (la local: LocalToolGateDecision.publishes; la
   alternativa: standing.consultsOnCourse). Una versión sin aprobar no publica nada, tampoco «lo ya registrado»: el
   libro guarda las respuestas y aparecen apenas la versión aprueba. Versión examinada = la versión de la herramienta

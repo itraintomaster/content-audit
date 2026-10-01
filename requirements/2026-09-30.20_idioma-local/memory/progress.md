@@ -4,6 +4,16 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — Los tres exámenes de las herramientas locales rendidos y registrados, gratis y
+  sin una llamada a claude (el falso del PATH no dejó registro), en `~/projects/learney/content-audit-corridas/2026-10-01-examen-idioma/`: una copia de ronda2/impl-idioma cf34c054
+  (ronda2/integracion a06e5a60 más el arreglo de gramática y los umbrales de B1 y B2) sobre la foto del 29/9.
+  grammar REPROBADO (examinar/ 6 de 75; pide 7), naturalness APROBADO (51 de 185 y 56 de 261 en la cola), near-duplicates
+  REPROBADO (no marcados de la muestra ciega 20 de 40; tope 8). Registro: `content-audit/.content-audit/judge-exams/
+  <juez>.jsonl` de esa carpeta y lo medido en `registro/<juez>.json`; además `casos/`, `veredictos/`, `revision/`,
+  `estabilidad*/`, `correr.sh` y `medir_idioma.py`.
+  Next: José decide grammar y near-duplicates. El registro vive en esa carpeta: para que naturalness publique en otra,
+  su `judge-exams/naturalness.jsonl` tiene que estar ahí.
+
 2026-10-01 — developer (paquete B, ronda2/impl-idioma) — MLOCAL implementado: la compuerta (b0d39c64, e0ac311c),
   los adaptadores de LanguageTool 6.8 y Ollama (b8d9d8f9), el rechazo por nombre del runner y de analyze, el examen
   de las herramientas locales y sus tarjetas en get (2413766b), Main con los tres proveedores (2bc66406) y las dos

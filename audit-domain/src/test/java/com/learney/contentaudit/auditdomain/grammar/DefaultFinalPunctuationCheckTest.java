@@ -44,6 +44,15 @@ public class DefaultFinalPunctuationCheckTest {
         assertEquals(GrammarIssuePlacement.PUNCTUATION, issue.get().getPlacement());
         assertEquals("The chemist closes at 9pm", issue.get().getSentence());
         assertEquals("falta el signo final: «.»", issue.get().getExplanation());
+        // The sign is the one of the last sentence: «A: Is Emily walking? B: Yes, she is» (…2627) closes with «.».
+        assertEquals("falta el signo final: «.»", check.check(new FinishedSentence("A: Is Emily walking? B: Yes, she is",
+                0, List.of(new AnswerSpan(33, 35, "is"))), tokens("A/NOUN", ":/PUNCT", "Is/AUX", "Emily/PROPN",
+                "walking/VERB", "?/PUNCT", "B/NOUN", ":/PUNCT", "Yes/INTJ", ",/PUNCT", "she/PRON", "is/AUX"))
+                .orElseThrow().getExplanation());
+        // Only the solution, the first accepted answer: the corrector ignores the signs, so another accepted
+        // form without its period (…2e02, «He would not leave so soon») is no error the student sees.
+        assertEquals(Optional.empty(), check.check(new FinishedSentence("He would not leave so soon", 1, List.of()),
+                tokens("He/PRON", "would/AUX", "not/PART", "leave/VERB", "so/ADV", "soon/ADV")));
     }
 
     @Test
@@ -64,6 +73,13 @@ public class DefaultFinalPunctuationCheckTest {
         assertEquals(FindingSeverity.LOW, issue.get().getSeverity());
         assertEquals(FindingResolution.RULE, issue.get().getResolution());
         assertEquals("es una pregunta y cierra con punto: va «?»", issue.get().getExplanation());
+        // An imperative is no question: spaCy tags its verb VERB, not AUX (…294e, «Have a glass of water.»).
+        assertEquals(Optional.empty(), check.check(new FinishedSentence("Have a glass of water.", 0, List.of()),
+                tokens("Have/VERB", "a/DET", "glass/NOUN", "of/ADP", "water/NOUN", "./PUNCT")));
+        // Closed before its hint, the question keeps the hint's period: «boxes? (I'm holding the boxes).» (…2ad0).
+        assertEquals(Optional.empty(), check.check(new FinishedSentence("Could you help me with these boxes?.", 0,
+                List.of()), tokens("Could/AUX", "you/PRON", "help/VERB", "me/PRON", "with/ADP", "these/DET",
+                "boxes/NOUN", "?/PUNCT", "./PUNCT")));
     }
 
     @Test

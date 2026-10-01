@@ -4,6 +4,14 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — Umbrales de B1 y B2 calibrados (cf34c054): 9,91 (226 de 4.534) y 10,80 (95 de
+  1.901). A1 y A2 siguen en 9,07 y 10,0 (José); con la lectura de content-audit marcan 117 de 2.333 y 123 de 2.394 (el
+  5 % exacto de A2 sería 10,08). Examen rendido y registrado en `~/projects/learney/content-audit-corridas/2026-10-01-examen-idioma/`:
+  «llama3:8b@365c0bd3c000 · native-yes-no-1» APROBADO; escribir/ 51 de 185 en la cola (27,6 %; pide 28), examinar/ 56
+  de 261 (21,5 %; pide 40). 446 consultas a Ollama en 35 s, ninguna a claude.
+  Next: el REQUIREMENT (R003) y el TECH_SPEC todavía dicen que B1 y B2 se calculan antes de publicar: pasarles los
+  números (analista); el registro está en la carpeta del examen, no en la del curso.
+
 2026-10-01 — developer (paquete B) — NATUR implementado (3fcb571c): los 42 stubs del dominio y el del resolvedor,
   sin @Disabled; la alternativa naturalness-yes-no (059ae1ac). Control sobre una copia, llama3:8b aprobado sólo ahí: 11.105
   consultas en ~14 min (75 ms cada una), 240 marcas (A1 117 con 9,07; A2 123 con 10,0; B1 y B2 sin umbral), una
