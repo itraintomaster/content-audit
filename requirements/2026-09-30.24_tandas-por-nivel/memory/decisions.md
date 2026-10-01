@@ -5,6 +5,13 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (como analista) — El audio sigue al ejercicio (orquestador, 1/10): R004 inv. 4 (un arreglo por
+  regla puede ser sólo un pedido de regrabar), R006 inv. 3 (esa tarea queda «pendiente de regrabar», no resuelta), R010
+  cuenta las pendientes de regrabar y R012 nueva: publicar deja pendientes los pedidos, y una tanda no toma, ni por regla
+  ni para la mesa, una tarea del audio pendiente; la bandeja la muestra.
+  why: sin R012, el audio viejo de un ejercicio que una tanda cambió volvía como hallazgo de mesa (F-DATOS-R003) y otra
+  tanda lo «arreglaba» cambiando el ejercicio. Las 7 diferencias de audio de hoy siguen en la mesa: el ejercicio está mal.
+
 2026-10-01 — qa-tester (como analista) — R005 nombra el desenlace «sin alcance declarado», que R010 ya contaba: una tarea cuyo
   tipo no declara su alcance no se intenta (F-TAREA-R006). Decisión del orquestador del 1/10.
   why: así la parte de F-TAREA-R006 que vive en la mesa se prueba en la tanda, con su regla, y no espera al apply.
