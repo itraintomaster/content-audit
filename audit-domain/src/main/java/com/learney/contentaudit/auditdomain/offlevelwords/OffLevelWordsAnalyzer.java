@@ -48,13 +48,17 @@ import javax.annotation.processing.Generated;
  *       C2 = 6), or when it is out of the catalog in the strong-discount band of the quiz level,
  *       recognized with the lemma-absence configuration. One level above is never an error, and
  *       neither is a word that a regular reading brings within reach: the regular inflection of a
- *       catalog lemma when the lemmatizer's reading is absurd, the same lemma in another category,
- *       a proper name or a nationality, its British variant, or -- out of the catalog -- a compound
- *       or a derivative of words of the level. Every reading is measured with the same scorer.</li>
+ *       catalog lemma when the lemmatizer's reading is absurd, the same lemma in another category
+ *       when the tagger reads a list of words and not a sentence, a proper name or a nationality,
+ *       and -- only out of the catalog -- its British variant, a compound or a derivative of words
+ *       of the level. The level the catalog gives the word itself always wins: a reading that takes
+ *       the level of a base, a part or a British pair is for a word the catalog does not bring.
+ *       Every reading is measured with the same scorer.</li>
  *   <li>R003 and R004: a word the topic teaches never counts -- its title, its frequent answers, a
- *       mini theory that names the word alone, a suffix it teaches on a word of the level, or the
- *       name of a topic of the course --, nor an out-of-catalog word the translation repeats whole
- *       and without accents, or adapted to Spanish spelling when it is not a verb.</li>
+ *       mini theory that names the word alone, the name of a topic of the course, or, out of the
+ *       catalog, a suffix it teaches on a word of the level --, nor an out-of-catalog word the
+ *       translation repeats whole and without accents, or, if the sentence uses it as a noun,
+ *       adapted to Spanish spelling.</li>
  *   <li>R005: one medium finding per word, resolved at the panel; the quiz scores 1 without words
  *       and 0 with at least one, and keeps them in its typed diagnosis.</li>
  * </ul>
@@ -81,6 +85,12 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
 
     /** The categories the shared scorer evaluates (the content-word filter of lemma-absence). */
     private static final List<String> CONTENT_POS = List.of("NOUN", "VERB", "ADJ", "ADV");
+
+    /** R002: the categories that make a sentence of a list of words (see {@link #wordList}). */
+    private static final Set<String> SENTENCE_POS = Set.of("DET", "PRON", "AUX", "ADP");
+
+    /** R004: the subject pronouns that only a verb follows -- «you» and «it» may also be objects. */
+    private static final Set<String> SUBJECT_PRONOUNS = Set.of("i", "he", "she", "we", "they");
 
     private static final Pattern DOLLAR_TERM = Pattern.compile("\\$([^$]+)\\$");
 
@@ -223,7 +233,9 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
             String lemma = misplaced.getLemmaAndPos().getLemma();
             String pos = misplaced.getLemmaAndPos().getPos();
             Set<String> texts = textsOf(tokens, lemma, pos);
-            if (teaches(taught, lessons, metalanguage, lemma, texts, level)
+            // R002: the catalog brings the word with its own level, so no base, part or British pair
+            // decides it: «nicely» is B2 even where the topic teaches -ly on «nice»
+            if (teaches(taught, lessons, metalanguage, lemma, texts)
                     || nearerReading(tokens, lemma, pos, texts, level, false)
                     || !seen.add(lemma + "|" + pos)) {
                 continue;
@@ -239,9 +251,10 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
             String lemma = outOfCatalog.getLemma();
             String pos = outOfCatalog.getObservedPos();
             Set<String> texts = textsOf(tokens, lemma, pos);
-            if (teaches(taught, lessons, metalanguage, lemma, texts, level)
+            if (teaches(taught, lessons, metalanguage, lemma, texts)
+                    || formedWithTaughtSuffix(lessons, lemma, texts, level)
                     || inTranslation(quiz.getTranslation(), lemma, texts)
-                    || adaptedInTranslation(quiz.getTranslation(), pos, lemma, texts)
+                    || adaptedInTranslation(quiz.getTranslation(), tokens, pos, lemma, texts)
                     || nearerReading(tokens, lemma, pos, texts, level, true)
                     || !seen.add(lemma + "|" + pos)) {
                 continue;
@@ -264,16 +277,17 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
     // -------------------------------------------------------------------------
 
     /**
-     * R003: the topic teaches the word -- a term of its title or a frequent answer (the resolver the
-     * semaphore shares), a mini theory of the topic that names it alone between {@code $}, a suffix
-     * the topic teaches on a word of the level, or the name of a topic of the course.
+     * R003: the topic teaches the word itself -- a term of its title or a frequent answer (the
+     * resolver the semaphore shares), a mini theory of the topic that names it alone between
+     * {@code $}, or the name of a topic of the course. A suffix the topic teaches is another matter:
+     * it gives the level of a base, so it only counts out of the catalog (see
+     * {@link #formedWithTaughtSuffix}).
      */
-    private boolean teaches(TaughtWords taught, TopicLessons lessons, Set<String> metalanguage, String lemma,
-            Set<String> texts, CefrLevel level) {
+    private static boolean teaches(TaughtWords taught, TopicLessons lessons, Set<String> metalanguage, String lemma,
+            Set<String> texts) {
         return taught(taught, lemma, texts)
                 || lessons.namesAlone(lemma, texts)
-                || namedBy(metalanguage, lemma, texts)
-                || formedWithTaughtSuffix(lessons, lemma, texts, level);
+                || namedBy(metalanguage, lemma, texts);
     }
 
     /** R003: the topic teaches it -- a word of its title's terms, or a frequent lemma of its answers. */
@@ -311,8 +325,9 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
     }
 
     /**
-     * R003: a suffix the topic teaches ({@code $-ly$}, {@code $+ing$}) forms the word from a word of
-     * the level: «nicely» in «Adjetivo + $-ly$» at A1, since «nice» is A1.
+     * R003: a suffix the topic teaches ({@code $-ly$}, {@code $+ing$}) forms a word out of the
+     * catalog from a word of the level: «sweetly» in «Adverbios de modo» at A1, since «sweet» is A1.
+     * Never a word the catalog brings with its own level: «nicely» stays B2 there (R002).
      */
     private boolean formedWithTaughtSuffix(TopicLessons lessons, String lemma, Set<String> texts, CefrLevel level) {
         if (lessons.suffixes.isEmpty()) {
@@ -479,17 +494,18 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
 
     /**
      * R002: a regular reading of the word leaves it within reach of the quiz level, so the student
-     * of the level can know it: the lemmatizer misread it, the tagger misread its category or a
-     * proper name, it is the American form of a British word, or -- out of the catalog -- it is a
-     * compound or a derivative of words of the level.
+     * of the level can know it: the lemmatizer misread it, the tagger misread the category of a word
+     * in a list or a proper name, or -- only out of the catalog -- it is the American form of a
+     * British word, a compound or a derivative of words of the level. A word the catalog brings has
+     * its own level, and no base, part or British pair overrides it.
      */
     private boolean nearerReading(List<NlpToken> tokens, String lemma, String pos, Set<String> texts,
             CefrLevel level, boolean outOfCatalog) {
         return regularInflectionReading(lemma, pos, texts, level, outOfCatalog)
-                || (!outOfCatalog && otherCategoryReading(lemma, pos, level))
+                || (!outOfCatalog && wordList(tokens) && otherCategoryReading(lemma, pos, level))
                 || properNameReading(tokens, lemma, pos)
-                || britishVariantReading(lemma, pos, texts, level)
-                || (outOfCatalog && (compoundReading(lemma, level) || derivativeReading(lemma, level)));
+                || (outOfCatalog && (britishVariantReading(lemma, pos, texts, level)
+                        || compoundReading(lemma, level) || derivativeReading(lemma, level)));
     }
 
     /**
@@ -529,7 +545,9 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
 
     /**
      * R002: the same lemma in another content category is within reach -- the tagger reads «run» in
-     * «run - running» as a noun (B1), and the verb is A1.
+     * «run - running» as a noun (B1), and the verb is A1. Only for a list of words (see
+     * {@link #wordList}): in a sentence the tagger reads the category well, and the other category
+     * is often another word -- «He paid a fine» is the noun fine, B1, not the adjective, A1.
      */
     private boolean otherCategoryReading(String lemma, String pos, CefrLevel level) {
         for (String other : CONTENT_POS) {
@@ -542,6 +560,20 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
             }
         }
         return false;
+    }
+
+    /**
+     * R002: a list of words and not a sentence -- no determiner, pronoun, auxiliary nor preposition,
+     * as «run - running» or «smoke - smoking» --, where the tagger has no sentence to read the
+     * category from.
+     */
+    static boolean wordList(List<NlpToken> tokens) {
+        for (NlpToken token : tokens) {
+            if (token != null && SENTENCE_POS.contains(token.getPosTag())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -582,10 +614,11 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
     }
 
     /**
-     * R002: the EVP is British; the American form of a word is read as its British one, by the
-     * spelling patterns (color/colour, center/centre, organize/organise, catalog/catalogue,
-     * defense/defence) and by the pairs of {@link #BRITISH_FORMS}: «takeout» is «takeaway», B1, so
-     * it is not an error in an A2 quiz.
+     * R002: the EVP is British; the American form of a word out of the catalog is read as its
+     * British one, by the spelling patterns (color/colour, center/centre, organize/organise,
+     * catalog/catalogue, defense/defence) and by the pairs of {@link #BRITISH_FORMS}: «takeout» is
+     * «takeaway», B1, so it is not an error in an A2 quiz. A variant the catalog brings keeps its own
+     * level, so this reading never runs on one.
      */
     private boolean britishVariantReading(String lemma, String pos, Set<String> texts, CefrLevel level) {
         Set<String> forms = new LinkedHashSet<>();
@@ -871,9 +904,12 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
     }
 
     /**
-     * The form the EVP writes for a word written otherwise: the American vocabulary for a thing that
-     * British English names with another word, and the spellings that do not follow a pattern -- a
-     * closed list of the common pairs the learner's dictionaries give (Cambridge, Oxford Learner's).
+     * The form the EVP writes for a word written otherwise: the American word for a thing that
+     * British English names with another word, when both name the same thing in common use, and the
+     * spellings that do not follow a pattern -- a closed list of the pairs the learner's dictionaries
+     * give (Cambridge, Oxford Learner's). A pair that only overlaps is not here: highway (any main
+     * road) is not motorway, closet not wardrobe, semester not term, recess not break, attorney not
+     * lawyer, stove not cooker, comforter not duvet, pacifier not dummy.
      */
     static final Map<String, String> BRITISH_FORMS = Map.ofEntries(
             Map.entry("takeout", "takeaway"), Map.entry("apartment", "flat"), Map.entry("elevator", "lift"),
@@ -881,15 +917,14 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
             Map.entry("gasoline", "petrol"), Map.entry("sidewalk", "pavement"), Map.entry("subway", "underground"),
             Map.entry("zipper", "zip"), Map.entry("faucet", "tap"), Map.entry("trash", "rubbish"),
             Map.entry("garbage", "rubbish"), Map.entry("eraser", "rubber"), Map.entry("cellphone", "mobile"),
-            Map.entry("diaper", "nappy"), Map.entry("flashlight", "torch"), Map.entry("closet", "wardrobe"),
+            Map.entry("diaper", "nappy"), Map.entry("flashlight", "torch"),
             Map.entry("mailman", "postman"), Map.entry("mailbox", "postbox"), Map.entry("movie", "film"),
             Map.entry("soccer", "football"), Map.entry("restroom", "toilet"), Map.entry("drugstore", "chemist"),
-            Map.entry("truck", "lorry"), Map.entry("highway", "motorway"), Map.entry("freeway", "motorway"),
-            Map.entry("windshield", "windscreen"), Map.entry("stove", "cooker"), Map.entry("recess", "break"),
+            Map.entry("truck", "lorry"), Map.entry("freeway", "motorway"),
+            Map.entry("windshield", "windscreen"),
             Map.entry("sneaker", "trainer"), Map.entry("sweater", "jumper"), Map.entry("math", "maths"),
-            Map.entry("cab", "taxi"), Map.entry("semester", "term"), Map.entry("comforter", "duvet"),
-            Map.entry("fries", "chips"), Map.entry("pacifier", "dummy"), Map.entry("stroller", "pushchair"),
-            Map.entry("attorney", "lawyer"), Map.entry("mom", "mum"), Map.entry("gray", "grey"),
+            Map.entry("cab", "taxi"), Map.entry("fries", "chips"), Map.entry("stroller", "pushchair"),
+            Map.entry("mom", "mum"), Map.entry("gray", "grey"),
             Map.entry("pajama", "pyjama"), Map.entry("pajamas", "pyjamas"), Map.entry("tire", "tyre"),
             Map.entry("aluminum", "aluminium"), Map.entry("plow", "plough"), Map.entry("jewelry", "jewellery"),
             Map.entry("cozy", "cosy"), Map.entry("donut", "doughnut"), Map.entry("curb", "kerb"),
@@ -972,19 +1007,21 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
     }
 
     /**
-     * R004: a word that is not a verb is repeated by the translation adapted to Spanish spelling, as
-     * loans are written: «hamburger» is «hamburguesas», «limousine» «limusina», «pollen» «polen»,
-     * «ceramic» «cerámica». Both are compared folded (ph f, th t, y i, ou u, one consonant for a
-     * double, the Spanish es- before s and gu for g, no final vowels nor plural), from the same first
-     * letter: the same, or one the start of the other from five letters on («meteor», «meteoritos»);
-     * a noun may also differ in one letter («porcelain», «porcelana»). A verb never: «adore» and
-     * «adoran» keep marking, as the 077 asked.
+     * R004: a noun is repeated by the translation adapted to Spanish spelling, as loans are written:
+     * «hamburger» is «hamburguesas», «limousine» «limusina», «pollen» «polen». Both are compared
+     * folded (ph f, th t, y i, ou u, one consonant for a double, the Spanish es- before s and gu for
+     * g, no final vowels nor plural), from the same first letter: the same, one the start of the
+     * other from five letters on («meteor», «meteoritos»), or one letter apart («porcelain»,
+     * «porcelana»). Only a noun: an adjective or an adverb that looks Spanish is a cognate the student
+     * still has to know («allergic», «diligently»), and a verb never, not even one the tagger reads as
+     * a noun where the sentence uses it as a verb (see {@link #usedAsVerb}): «adore» and «adoran» keep
+     * marking, as the 077 asked.
      */
-    static boolean adaptedInTranslation(String translation, String pos, String lemma, Set<String> texts) {
-        if (translation == null || translation.isBlank() || pos == null || "VERB".equals(pos) || "AUX".equals(pos)) {
+    static boolean adaptedInTranslation(String translation, List<NlpToken> tokens, String pos, String lemma,
+            Set<String> texts) {
+        if (translation == null || translation.isBlank() || !"NOUN".equals(pos) || usedAsVerb(tokens, lemma, pos)) {
             return false;
         }
-        boolean noun = "NOUN".equals(pos);
         Set<String> english = new LinkedHashSet<>();
         english.add(foldEnglish(lemma));
         for (String text : texts) {
@@ -1001,13 +1038,55 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
                     if (spanish.isEmpty() || word.charAt(0) != spanish.charAt(0)) {
                         continue;
                     }
-                    if (word.equals(spanish) || sameStem(word, spanish) || noun && editDistance(word, spanish) <= 1) {
+                    if (word.equals(spanish) || sameStem(word, spanish) || editDistance(word, spanish) <= 1) {
                         return true;
                     }
                 }
             }
         }
         return false;
+    }
+
+    /**
+     * R004: the sentence uses the word as a verb, whatever the tagger says: it is written with -ed or
+     * -ing on its lemma, or it comes right after a subject pronoun (I, he, she, we, they), the «to»
+     * of an infinitive or a negation, adverbs in between -- «They adore cats», «to adore»,
+     * «don't really adore».
+     */
+    static boolean usedAsVerb(List<NlpToken> tokens, String lemma, String pos) {
+        if (tokens == null || lemma == null) {
+            return false;
+        }
+        String lowerLemma = lower(lemma);
+        NlpToken previous = null;
+        for (NlpToken token : tokens) {
+            if (token == null || token.getText() == null || token.getText().isBlank()
+                    || "SPACE".equals(token.getPosTag())) {
+                continue;
+            }
+            boolean same = token.getLemma() != null && token.getLemma().equalsIgnoreCase(lemma)
+                    && (pos == null || pos.equals(token.getPosTag()));
+            if (same) {
+                String text = lower(token.getText());
+                boolean verbEnding = !text.equals(lowerLemma) && (text.endsWith("ed") || text.endsWith("ing"));
+                if (verbEnding || previous != null && beforeAVerb(previous)) {
+                    return true;
+                }
+            }
+            if (!"ADV".equals(token.getPosTag())) {
+                previous = token;
+            }
+        }
+        return false;
+    }
+
+    /** A subject pronoun, the «to» of an infinitive or a negation: what only a verb follows. */
+    private static boolean beforeAVerb(NlpToken previous) {
+        String text = lower(previous.getText());
+        if (SUBJECT_PRONOUNS.contains(text)) {
+            return true;
+        }
+        return "PART".equals(previous.getPosTag()) && (text.equals("to") || text.equals("not") || text.equals("n't"));
     }
 
     static String foldEnglish(String word) {
