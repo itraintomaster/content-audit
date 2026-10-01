@@ -1,9 +1,12 @@
 name: quiz-instruction-validator
 description: |
-  Juez standalone para UN quiz de inglés. Recibe contexto pedagógico y el quiz
-  completo (JSON o string JSON), reconstruye todas las respuestas aceptadas y
-  decide si el quiz cumple literalmente TODAS las restricciones explícitas de
-  sus instrucciones, además de gramática, significado y resolubilidad.
+  Juez standalone para UN quiz de inglés. Recibe el ejercicio como lo ve el
+  alumno —el título y la consigna que muestra la app, el enunciado con sus
+  huecos y pistas, las respuestas aceptadas de cada hueco y, en la opción
+  múltiple, sus opciones— con el nivel y el topic como contexto; arma todas las
+  respuestas aceptadas y decide si el quiz cumple literalmente TODAS las
+  restricciones explícitas de su consigna, además de gramática, significado y
+  resolubilidad.
 
   Flujo:
 
@@ -33,4 +36,6 @@ dependencies:
   - topic
   - title
   - instructions
-  - quiz
+  - exercise
+  - acceptedAnswers
+  - options

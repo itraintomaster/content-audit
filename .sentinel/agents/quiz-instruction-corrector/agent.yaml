@@ -61,7 +61,7 @@ dependencies:
   - cefrLevel
   - topicLabel
   - knowledgeTitle
-  - knowledgeInstructions   # la consigna: es lo que hay que cumplir
+  - quizInstructions        # la consigna de la copia, la que ve el alumno y lee el juez: es lo que hay que cumplir
   - quizSentence            # el ejercicio original, en DSL de huecos
   - sentence                # la oración terminada del original
   - translation             # traducción original al español
