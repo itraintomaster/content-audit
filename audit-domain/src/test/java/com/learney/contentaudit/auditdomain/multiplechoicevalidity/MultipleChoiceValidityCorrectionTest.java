@@ -1,7 +1,12 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +20,18 @@ public class MultipleChoiceValidityCorrectionTest {
     @DisplayName("should let a rule fix of multiple-choice-validity touch only the options, as the capital letters of «___ a child? (He)», and a panel fix also the statement, the translation and the audio")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldLetARuleFixOfMultiplechoicevalidityTouchOnlyTheOptionsAsTheCapitalLettersOfAChildHeAndAPanelFixAlsoTheStatementTheTranslationAndTheAudio(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 (E-03): «___ a child? (He)» -- the rule only touches the options (the capital letter of all of them); the
+        // panel, which rebuilds an exercise with two correct options, also the statement, the translation, the stored
+        // sentence and the audio. It never changes the kind of the exercise.
+        MultipleChoiceValidityCorrection correction = new MultipleChoiceValidityCorrection();
+
+        Assertions.assertEquals("multiple-choice-validity", correction.analyzerName());
+        Assertions.assertEquals(List.of(ExercisePart.OPTIONS), correction.editScope(FindingResolution.RULE));
+        Assertions.assertEquals(List.of(ExercisePart.OPTIONS, ExercisePart.STATEMENT, ExercisePart.TRANSLATION,
+                ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO), correction.editScope(FindingResolution.PANEL));
+        Assertions.assertFalse(correction.editScope(FindingResolution.PANEL).contains(ExercisePart.FORM_KIND),
+                "it stays a multiple choice (F-MESA-R011)");
     }
 }

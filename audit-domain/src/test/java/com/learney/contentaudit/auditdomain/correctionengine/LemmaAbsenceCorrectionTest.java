@@ -1,7 +1,12 @@
 package com.learney.contentaudit.auditdomain.correctionengine;
 
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +20,17 @@ public class LemmaAbsenceCorrectionTest {
     @DisplayName("should let the LEMMA_ABSENCE fix that covers an error finding touch what the lemma correction reaches today: the plain sentence, the statement and the translation")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldLetTheLEMMAABSENCEFixThatCoversAnErrorFindingTouchWhatTheLemmaCorrectionReachesTodayThePlainSentenceTheStatementAndTheTranslation(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 and R004: the LEMMA_ABSENCE task that covers a finding of errors goes to the panel with what the lemma
+        // correction reaches today (F-LAPS-R013): the plain sentence, the statement with its answers, the translation.
+        LemmaAbsenceCorrection correction = new LemmaAbsenceCorrection();
+
+        Assertions.assertEquals("lemma-absence", correction.analyzerName());
+        Assertions.assertEquals(List.of(ExercisePart.STORED_SENTENCE, ExercisePart.STATEMENT, ExercisePart.ANSWERS,
+                ExercisePart.TRANSLATION), correction.editScope(FindingResolution.PANEL));
+        Assertions.assertEquals(List.of(), correction.editScope(FindingResolution.RULE), "no fix by rule");
+        Assertions.assertEquals(Optional.empty(), correction.coveringAnalyzer(), "it covers others, nobody covers it");
+        Assertions.assertFalse(correction.groupsByTopic());
     }
 }

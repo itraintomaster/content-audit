@@ -1,7 +1,12 @@
 package com.learney.contentaudit.auditdomain.offlevelwords;
 
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +20,15 @@ public class OffLevelWordsCorrectionTest {
     @DisplayName("should name lemma-absence as the analyzer whose task covers what off-level-words marks, and declare no edit scope of its own")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldNameLemmaabsenceAsTheAnalyzerWhoseTaskCoversWhatOfflevelwordsMarksAndDeclareNoEditScopeOfItsOwn(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 (E-05): off-level-words has no task of its own: the LEMMA_ABSENCE task of the same exercise covers what it
+        // marks, so it names lemma-absence and declares nothing it could touch by itself.
+        OffLevelWordsCorrection correction = new OffLevelWordsCorrection();
+
+        Assertions.assertEquals("off-level-words", correction.analyzerName());
+        Assertions.assertEquals(Optional.of("lemma-absence"), correction.coveringAnalyzer());
+        Assertions.assertEquals(List.of(), correction.editScope(FindingResolution.RULE));
+        Assertions.assertEquals(List.of(), correction.editScope(FindingResolution.PANEL));
     }
 }

@@ -1,7 +1,12 @@
 package com.learney.contentaudit.auditdomain.singleanswerengine;
 
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +20,15 @@ public class SingleAnswerCorrectionTest {
     @DisplayName("should let a rule fix of single-answer touch only the answers, and a panel fix the answers, the hint or the sentence with its audio, as for «I ___ a lot of vegetables.»")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldLetARuleFixOfSingleanswerTouchOnlyTheAnswersAndAPanelFixTheAnswersTheHintOrTheSentenceWithItsAudioAsForIALotOfVegetables(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 (E-04): for «I ___ a lot of vegetables.» a rule may only add another form of the answer; the panel may change
+        // the answers, the hint («(love)») or the sentence, with its audio.
+        SingleAnswerCorrection correction = new SingleAnswerCorrection();
+
+        Assertions.assertEquals("single-answer", correction.analyzerName());
+        Assertions.assertEquals(List.of(ExercisePart.ANSWERS), correction.editScope(FindingResolution.RULE));
+        Assertions.assertEquals(List.of(ExercisePart.ANSWERS, ExercisePart.HINT, ExercisePart.STATEMENT,
+                ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO), correction.editScope(FindingResolution.PANEL));
     }
 }

@@ -1,7 +1,12 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +20,22 @@ public class AnswerCompletenessCorrectionTest {
     @DisplayName("should let the rule fix of answer-completeness touch only the accepted answers, as adding a missing form with «|» to «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldLetTheRuleFixOfAnswercompletenessTouchOnlyTheAcceptedAnswersAsAddingAMissingFormWithToTheyNotBeFromIreland(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 (E-03): «They ___ (not / be) from Ireland.» -- the rule adds the missing form with «|» after the accepted ones
+        // and takes the request of a form out of the instructions and the mini theory; at the panel, only the accepted
+        // answers. Nothing else of the exercise, and never what is heard.
+        AnswerCompletenessCorrection correction = new AnswerCompletenessCorrection();
+
+        Assertions.assertEquals("answer-completeness", correction.analyzerName());
+        Assertions.assertEquals(List.of(ExercisePart.ANSWERS, ExercisePart.INSTRUCTIONS, ExercisePart.MINI_THEORY),
+                correction.editScope(FindingResolution.RULE), "the rule: the answers, and the request of a form");
+        Assertions.assertEquals(List.of(ExercisePart.ANSWERS), correction.editScope(FindingResolution.PANEL));
+        Assertions.assertFalse(correction.editScope(FindingResolution.RULE).contains(ExercisePart.AUDIO), "never the audio");
+        Assertions.assertEquals(List.of(), correction.editScope(FindingResolution.RANK_ONLY));
+        Assertions.assertEquals(Optional.empty(), correction.coveringAnalyzer());
+        Assertions.assertFalse(correction.groupsByTopic());
+        Assertions.assertFalse(correction.offersTwoFixes());
+        Assertions.assertEquals(List.of(), correction.tieRules());
     }
 }

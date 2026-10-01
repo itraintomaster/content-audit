@@ -1,7 +1,12 @@
 package com.learney.contentaudit.auditdomain.minitheoryengine;
 
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.Assertions;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,18 +20,31 @@ public class MiniTheoryCorrectionTest {
     @DisplayName("should declare that its findings group by topic, so the plan makes the mini-theory of «Contraste inicial» shown in nine exercises a single task")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldDeclareThatItsFindingsGroupByTopicSoThePlanMakesTheMinitheoryOfContrasteInicialShownInNineExercisesASingleTask(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 (E-04): the findings of mini-theory group by topic -- the mini theory of the state verbs of «Contraste
+        // inicial» in its nine exercises is one task of the plan --; the declaration is what tells the plan so. Nothing else
+        // of mini-theory is special: no cover, no tie, one fix.
+        MiniTheoryCorrection correction = new MiniTheoryCorrection();
+
+        Assertions.assertEquals("mini-theory", correction.analyzerName());
+        Assertions.assertTrue(correction.groupsByTopic(), "R003: its findings make one task per mini theory and topic");
+        Assertions.assertEquals(Optional.empty(), correction.coveringAnalyzer());
+        Assertions.assertEquals(List.of(), correction.tieRules());
+        Assertions.assertFalse(correction.offersTwoFixes());
     }
 
     @Test
     @DisplayName("should let the panel touch only the mini-theory of the exercises of the topic that show that text")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldLetThePanelTouchOnlyTheMinitheoryOfTheExercisesOfTheTopicThatShowThatText() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 (F-MESA-R012): the panel rewrites the mini theory once, for the exercises of the topic that show it; the fix
+        // touches nothing else of those exercises, and there is no fix by rule.
+        MiniTheoryCorrection correction = new MiniTheoryCorrection();
+
+        Assertions.assertEquals(List.of(ExercisePart.MINI_THEORY), correction.editScope(FindingResolution.PANEL));
+        Assertions.assertEquals(List.of(), correction.editScope(FindingResolution.RULE));
+        Assertions.assertFalse(correction.concernsAudio(null), "the mini theory is not heard");
     }
 }

@@ -250,6 +250,7 @@ import com.learney.contentaudit.refinerdomain.topicwords.DefaultTopicWordLightsQ
 import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLightsQuery;
 import com.learney.contentaudit.vocabularyinfrastructure.correctortable.FileSystemFormEquivalenceTableSource;
 import com.learney.contentaudit.vocabularyinfrastructure.irregularforms.FileSystemIrregularFormsCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerCorrection;
 import com.learney.contentaudit.auditdomain.AnalyzerCorrectionCatalog;
 import com.learney.contentaudit.auditdomain.RuleFix;
 import com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessRuleFix;
@@ -798,8 +799,10 @@ class Main {
         // Step 7: Refiner + Revision engines
         // ----------------------------------------------------------------
         // FEAT-RONDA2 (hook E-09): what the fix of each analyzer of errors may touch, one
-        // declaration per analyzer; the plan, get task and the batch read it here.
-        AnalyzerCorrectionCatalog analyzerCorrectionCatalog = new DefaultAnalyzerCorrectionCatalog(List.of(
+        // declaration per analyzer; the plan, get task and the batch read it here. The catalog
+        // breaks at startup on a declaration of an analyzer it does not have, so the two of
+        // package B join when B registers its providers above.
+        List<AnalyzerCorrection> analyzerCorrections = new ArrayList<>(List.of(
                 new QuizInstructionCorrection(),
                 new LemmaAbsenceCorrection(),
                 new HintCoherenceCorrection(),               // A (E-03)
@@ -810,10 +813,15 @@ class Main {
                 new TranslationSenseCorrection(),            // C (E-04)
                 new SingleAnswerCorrection(),                // C (E-04)
                 new MiniTheoryCorrection(),                  // C (E-04)
-                new OffLevelWordsCorrection(),               // D (E-05)
-                new GrammarCorrection(),                     // B (F-RONDA2-R009)
-                new NearDuplicatesCorrection()),             // B (F-RONDA2-R009)
-                analyzerCatalog);
+                new OffLevelWordsCorrection()));             // D (E-05)
+        for (AnalyzerCorrection ofPackageB : List.of(new GrammarCorrection(),        // B (F-RONDA2-R009)
+                new NearDuplicatesCorrection())) {                                   // B (F-RONDA2-R009)
+            if (analyzerCatalog.find(ofPackageB.analyzerName()).isPresent()) {
+                analyzerCorrections.add(ofPackageB);
+            }
+        }
+        AnalyzerCorrectionCatalog analyzerCorrectionCatalog =
+                new DefaultAnalyzerCorrectionCatalog(analyzerCorrections, analyzerCatalog);
         RefinerEngine refinerEngine = new DefaultRefinerEngine(analyzerCatalog, analyzerCorrectionCatalog);
         SentenceLengthContextResolver sentenceLengthContextResolver = new SentenceLengthContextResolver();
         LemmaAbsenceContextResolver lemmaAbsenceContextResolver = new LemmaAbsenceContextResolver();
