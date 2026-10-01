@@ -236,7 +236,7 @@ public class DefaultAnalyzerCatalogTest {
         return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿Pregunta de " + name + "?",
                 "La oracion como la ve el alumno", new ArrayList<>(List.of(new AnalyzerRuleCard("rule-" + name,
                         "La regla de " + name, cost))), "Meta de " + name, family, List.of(AuditTarget.QUIZ),
-                List.of(FindingResolution.PANEL), cost, name, java.util.List.of());
+                List.of(FindingResolution.PANEL), cost, name, java.util.List.of(), null);
     }
 
     static AnalyzerProvider providerOf(AnalyzerDescriptor card) {
@@ -338,8 +338,10 @@ public class DefaultAnalyzerCatalogTest {
         // R004 inv. 2: the eight cards of today bring the names of the table, one each, in catalog order.
         List<String> names = new DefaultAnalyzerCatalog(realProviders()).list().stream()
                 .map(AnalyzerDescriptor::getDisplayName).toList();
-        Assertions.assertEquals(List.of("Largo de oración", "Largo del título", "Largo de la consigna",
-                "Bandas de frecuencia", "Recurrencia", "Palabras que faltan", "Palabras poco vistas", "Consigna"), names);
+        Assertions.assertEquals(List.of("Oraciones con el largo de su nivel", "Títulos de largo adecuado",
+                "Consignas de largo adecuado", "Palabras de la frecuencia del nivel", "Palabras que vuelven a tiempo",
+                "Vocabulario del nivel presente", "Palabras vistas suficientes veces", "Consigna que no se cumple"),
+                names);
     }
 
     @Test
@@ -525,7 +527,7 @@ public class DefaultAnalyzerCatalogTest {
                         new AnalyzerRuleCard("native-says-no", ruleDescription + ", según claude -p",
                                 AnalysisCost.PAID_MODEL)),
                 goal, AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.RANK_ONLY),
-                AnalysisCost.PAID_MODEL, displayName, List.of(tools));
+                AnalysisCost.PAID_MODEL, displayName, List.of(tools), null);
     }
 
     /** The card of grammar as package B describes it, with the tool given. */
@@ -537,7 +539,7 @@ public class DefaultAnalyzerCatalogTest {
                         new AnalyzerRuleCard("final-punctuation", "La oración termina con su signo", AnalysisCost.INSTANT)),
                 "0 ejercicios con error", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.RULE, FindingResolution.PANEL), AnalysisCost.INSTANT, "Gramática",
-                List.of(tool));
+                List.of(tool), null);
     }
 
     private static LocalToolCard llama3(boolean available) {

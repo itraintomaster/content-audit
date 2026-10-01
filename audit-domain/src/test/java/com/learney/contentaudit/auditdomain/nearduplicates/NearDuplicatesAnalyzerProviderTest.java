@@ -75,7 +75,7 @@ public class NearDuplicatesAnalyzerProviderTest {
         AnalyzerDescriptor card = NearDuplicatesAnalyzerTest.World.withNomic().provider.describe();
 
         assertEquals("near-duplicates", card.getName());
-        assertEquals("Duplicados parecidos", card.getDisplayName());
+        assertEquals("Ejercicio casi repetido", card.getDisplayName());
         assertEquals("¿Dos ejercicios del mismo tema piden casi lo mismo?", card.getQuestion());
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());

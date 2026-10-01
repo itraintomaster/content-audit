@@ -1862,7 +1862,7 @@ public class DefaultAuditRunnerTest {
         return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿" + spanish + "?",
                 "La oración terminada", rules, "0 ejercicios con error",
                 com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
-                List.of(com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL), cost, spanish, List.of());
+                List.of(com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL), cost, spanish, List.of(), null);
     }
 
     /** The costs of a rule, by a short name. */

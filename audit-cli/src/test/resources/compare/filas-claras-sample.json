@@ -1,0 +1,1094 @@
+{
+  "baselineAuditId" : "2026-09-29T08-00-00",
+  "activeAuditId" : "2026-09-30T11-54-02",
+  "activePlanId" : "2026-09-30T11-54-12",
+  "scopeId" : "2026-09-30T11-54-12",
+  "availability" : "AVAILABLE",
+  "computedAt" : "2026-10-01T12:00:00Z",
+  "goals" : {
+    "fingerprint" : "a54c5df8222f6298d5bb8a148d21d8896741aa18ab6c2eb00f94a8dd4517aa2d",
+    "goals" : [ {
+      "id" : "piso de vocabulario · sentence-length · MILESTONE",
+      "kind" : "FLOOR",
+      "subject" : "sentence-length",
+      "nodeTarget" : "MILESTONE",
+      "threshold" : 0.5,
+      "unit" : "POINTS",
+      "reference" : "BASELINE",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de vocabulario · sentence-length · COURSE",
+      "kind" : "FLOOR",
+      "subject" : "sentence-length",
+      "nodeTarget" : "COURSE",
+      "threshold" : 0.5,
+      "unit" : "POINTS",
+      "reference" : "BASELINE",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de vocabulario · lemma-absence · MILESTONE",
+      "kind" : "FLOOR",
+      "subject" : "lemma-absence",
+      "nodeTarget" : "MILESTONE",
+      "threshold" : 0.5,
+      "unit" : "POINTS",
+      "reference" : "BASELINE",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de vocabulario · lemma-absence · COURSE",
+      "kind" : "FLOOR",
+      "subject" : "lemma-absence",
+      "nodeTarget" : "COURSE",
+      "threshold" : 0.5,
+      "unit" : "POINTS",
+      "reference" : "BASELINE",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de errores · single-answer · KNOWLEDGE",
+      "kind" : "FLOOR",
+      "subject" : "single-answer",
+      "nodeTarget" : "KNOWLEDGE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de errores · single-answer · TOPIC",
+      "kind" : "FLOOR",
+      "subject" : "single-answer",
+      "nodeTarget" : "TOPIC",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de errores · single-answer · MILESTONE",
+      "kind" : "FLOOR",
+      "subject" : "single-answer",
+      "nodeTarget" : "MILESTONE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de errores · single-answer · COURSE",
+      "kind" : "FLOOR",
+      "subject" : "single-answer",
+      "nodeTarget" : "COURSE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de errores · grammar · KNOWLEDGE",
+      "kind" : "FLOOR",
+      "subject" : "grammar",
+      "nodeTarget" : "KNOWLEDGE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de errores · grammar · TOPIC",
+      "kind" : "FLOOR",
+      "subject" : "grammar",
+      "nodeTarget" : "TOPIC",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de errores · grammar · MILESTONE",
+      "kind" : "FLOOR",
+      "subject" : "grammar",
+      "nodeTarget" : "MILESTONE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de errores · grammar · COURSE",
+      "kind" : "FLOOR",
+      "subject" : "grammar",
+      "nodeTarget" : "COURSE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de vocabulario · vocabulario · MILESTONE",
+      "kind" : "FLOOR",
+      "subject" : "vocabulario",
+      "nodeTarget" : "MILESTONE",
+      "threshold" : 0.5,
+      "unit" : "POINTS",
+      "reference" : "BASELINE",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de vocabulario · vocabulario · COURSE",
+      "kind" : "FLOOR",
+      "subject" : "vocabulario",
+      "nodeTarget" : "COURSE",
+      "threshold" : 0.5,
+      "unit" : "POINTS",
+      "reference" : "BASELINE",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de errores · algún error · KNOWLEDGE",
+      "kind" : "FLOOR",
+      "subject" : "algún error",
+      "nodeTarget" : "KNOWLEDGE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de errores · algún error · TOPIC",
+      "kind" : "FLOOR",
+      "subject" : "algún error",
+      "nodeTarget" : "TOPIC",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de errores · algún error · MILESTONE",
+      "kind" : "FLOOR",
+      "subject" : "algún error",
+      "nodeTarget" : "MILESTONE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "origin" : "FAMILY_DEFAULT"
+    }, {
+      "id" : "piso de errores · algún error · COURSE",
+      "kind" : "FLOOR",
+      "subject" : "algún error",
+      "nodeTarget" : "COURSE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "origin" : "FAMILY_DEFAULT"
+    } ],
+    "blindSample" : {
+      "size" : 100,
+      "minBetterOrEqual" : 90,
+      "maxWorse" : 1,
+      "criterion" : "OBSERVED",
+      "responsible" : "José",
+      "secondReviewerPairs" : 30,
+      "cumulativeMaxWorseShare" : 0.02
+    }
+  },
+  "goalsSealedAt" : "2026-09-30T20:00:00Z",
+  "goalChanges" : [ ],
+  "measureChanges" : [ ],
+  "appliedProposalIds" : [ "077-afirmativas-regulares-grandmother", "077-afirmativas-regulares-hat" ],
+  "nonApplicablePendings" : [ ],
+  "rows" : [ {
+    "subject" : "sentence-length",
+    "family" : "VOCABULARY",
+    "nodeTarget" : "COURSE",
+    "nodeId" : "root",
+    "label" : "Curso",
+    "baseline" : {
+      "value" : 0.9136,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 0.9136,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.9136,
+      "notEvaluated" : 0
+    },
+    "change" : 0.0,
+    "unit" : "POINTS",
+    "floor" : {
+      "goalId" : "piso de vocabulario · sentence-length · COURSE",
+      "threshold" : 0.5,
+      "unit" : "POINTS",
+      "reference" : "BASELINE",
+      "status" : "MET"
+    },
+    "displayName" : "Oraciones con el largo de su nivel",
+    "betterWhen" : "HIGHER",
+    "changeVerdict" : "UNCHANGED",
+    "explanation" : "Puntaje de 0 a 100: qué tanto las oraciones tienen el largo que corresponde a su nivel.",
+    "example" : null
+  }, {
+    "subject" : "lemma-absence",
+    "family" : "VOCABULARY",
+    "nodeTarget" : "COURSE",
+    "nodeId" : "root",
+    "label" : "Curso",
+    "baseline" : {
+      "value" : 0.865,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 0.865,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.865,
+      "notEvaluated" : 0
+    },
+    "change" : 0.0,
+    "unit" : "POINTS",
+    "floor" : {
+      "goalId" : "piso de vocabulario · lemma-absence · COURSE",
+      "threshold" : 0.5,
+      "unit" : "POINTS",
+      "reference" : "BASELINE",
+      "status" : "MET"
+    },
+    "displayName" : "Vocabulario del nivel presente",
+    "betterWhen" : "HIGHER",
+    "changeVerdict" : "UNCHANGED",
+    "explanation" : "Puntaje de 0 a 100: cuántas de las palabras que el nivel tiene que enseñar aparecen, sin palabras de un nivel más alto.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ec4",
+      "exercise" : "My grandmother ___ (come) every year.",
+      "detail" : "grandmother es una palabra de A2 en un ejercicio de A1"
+    }
+  }, {
+    "subject" : "single-answer",
+    "family" : "ERRORS",
+    "nodeTarget" : "COURSE",
+    "nodeId" : "root",
+    "label" : "Curso",
+    "baseline" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 11287
+    },
+    "approved" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 11287
+    },
+    "projected" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 11287
+    },
+    "change" : 0.0,
+    "unit" : "EXERCISES",
+    "floor" : {
+      "goalId" : "piso de errores · single-answer · COURSE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "status" : "UNDECIDABLE"
+    },
+    "displayName" : "Más de una respuesta válida",
+    "betterWhen" : "LOWER",
+    "changeVerdict" : "NOT_EVALUATED",
+    "explanation" : "Ejercicios para escribir donde, con lo que ve el alumno, hay otra respuesta igual de buena que el corrector no acepta.",
+    "example" : null
+  }, {
+    "subject" : "grammar",
+    "family" : "ERRORS",
+    "nodeTarget" : "COURSE",
+    "nodeId" : "root",
+    "label" : "Curso",
+    "baseline" : {
+      "value" : 61.0,
+      "share" : 0.005404447594577833,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 61.0,
+      "share" : 0.005404447594577833,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 60.0,
+      "share" : 0.005315850093027377,
+      "notEvaluated" : 0
+    },
+    "change" : -1.0,
+    "unit" : "EXERCISES",
+    "floor" : {
+      "goalId" : "piso de errores · grammar · COURSE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "status" : "MET"
+    },
+    "displayName" : "Error de gramática",
+    "betterWhen" : "LOWER",
+    "changeVerdict" : "IMPROVED",
+    "explanation" : "Ejercicios cuya oración terminada, con la respuesta puesta, tiene un error de gramática, de ortografía o de puntuación final.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ed6",
+      "exercise" : "She ___ (wear) hat every day.",
+      "detail" : "Falta el artículo antes de «hat»: «a hat» — la tanda lo arregla"
+    }
+  }, {
+    "subject" : "vocabulario",
+    "family" : "VOCABULARY",
+    "nodeTarget" : "COURSE",
+    "nodeId" : "root",
+    "label" : "Curso",
+    "baseline" : {
+      "value" : 0.7392,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 0.7392,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.7392,
+      "notEvaluated" : 0
+    },
+    "change" : 0.0,
+    "unit" : "POINTS",
+    "floor" : {
+      "goalId" : "piso de vocabulario · vocabulario · COURSE",
+      "threshold" : 0.5,
+      "unit" : "POINTS",
+      "reference" : "BASELINE",
+      "status" : "MET"
+    },
+    "displayName" : "Vocabulario, puntaje total",
+    "betterWhen" : "HIGHER",
+    "changeVerdict" : "UNCHANGED",
+    "explanation" : "El puntaje de vocabulario de 0 a 100: el promedio de las filas de puntaje de arriba.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ec4",
+      "exercise" : "My grandmother ___ (come) every year.",
+      "detail" : "Vocabulario del nivel presente: grandmother es una palabra de A2 en un ejercicio de A1"
+    }
+  }, {
+    "subject" : "algún error",
+    "family" : "ERRORS",
+    "nodeTarget" : "COURSE",
+    "nodeId" : "root",
+    "label" : "Curso",
+    "baseline" : {
+      "value" : 61.0,
+      "share" : 0.005404447594577833,
+      "notEvaluated" : 11287
+    },
+    "approved" : {
+      "value" : 61.0,
+      "share" : 0.005404447594577833,
+      "notEvaluated" : 11287
+    },
+    "projected" : {
+      "value" : 60.0,
+      "share" : 0.005315850093027377,
+      "notEvaluated" : 11287
+    },
+    "change" : -1.0,
+    "unit" : "EXERCISES",
+    "floor" : {
+      "goalId" : "piso de errores · algún error · COURSE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "status" : "UNDECIDABLE"
+    },
+    "displayName" : "Ejercicios con algún error",
+    "betterWhen" : "LOWER",
+    "changeVerdict" : "IMPROVED",
+    "explanation" : "Ejercicios con al menos uno de los problemas de arriba; cada ejercicio cuenta una vez.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ed6",
+      "exercise" : "She ___ (wear) hat every day.",
+      "detail" : "Error de gramática: Falta el artículo antes de «hat»: «a hat» — la tanda lo arregla"
+    }
+  }, {
+    "subject" : "sentence-length",
+    "family" : "VOCABULARY",
+    "nodeTarget" : "MILESTONE",
+    "nodeId" : "6814dafa7d73e7209a13d382",
+    "label" : "A1",
+    "baseline" : {
+      "value" : 0.948,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 0.948,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.948,
+      "notEvaluated" : 0
+    },
+    "change" : 0.0,
+    "unit" : "POINTS",
+    "floor" : {
+      "goalId" : "piso de vocabulario · sentence-length · MILESTONE",
+      "threshold" : 0.5,
+      "unit" : "POINTS",
+      "reference" : "BASELINE",
+      "status" : "MET"
+    },
+    "displayName" : "Oraciones con el largo de su nivel",
+    "betterWhen" : "HIGHER",
+    "changeVerdict" : "UNCHANGED",
+    "explanation" : "Puntaje de 0 a 100: qué tanto las oraciones tienen el largo que corresponde a su nivel.",
+    "example" : null
+  }, {
+    "subject" : "lemma-absence",
+    "family" : "VOCABULARY",
+    "nodeTarget" : "MILESTONE",
+    "nodeId" : "6814dafa7d73e7209a13d382",
+    "label" : "A1",
+    "baseline" : {
+      "value" : 0.9871,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 0.9871,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.987,
+      "notEvaluated" : 0
+    },
+    "change" : -0.009999999999998899,
+    "unit" : "POINTS",
+    "floor" : {
+      "goalId" : "piso de vocabulario · lemma-absence · MILESTONE",
+      "threshold" : 0.5,
+      "unit" : "POINTS",
+      "reference" : "BASELINE",
+      "status" : "MET"
+    },
+    "displayName" : "Vocabulario del nivel presente",
+    "betterWhen" : "HIGHER",
+    "changeVerdict" : "WORSENED",
+    "explanation" : "Puntaje de 0 a 100: cuántas de las palabras que el nivel tiene que enseñar aparecen, sin palabras de un nivel más alto.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ec4",
+      "exercise" : "My grandmother ___ (come) every year.",
+      "detail" : "grandmother es una palabra de A2 en un ejercicio de A1"
+    }
+  }, {
+    "subject" : "single-answer",
+    "family" : "ERRORS",
+    "nodeTarget" : "MILESTONE",
+    "nodeId" : "6814dafa7d73e7209a13d382",
+    "label" : "A1",
+    "baseline" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 1450
+    },
+    "approved" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 1450
+    },
+    "projected" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 1450
+    },
+    "change" : 0.0,
+    "unit" : "EXERCISES",
+    "floor" : {
+      "goalId" : "piso de errores · single-answer · MILESTONE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "status" : "UNDECIDABLE"
+    },
+    "displayName" : "Más de una respuesta válida",
+    "betterWhen" : "LOWER",
+    "changeVerdict" : "NOT_EVALUATED",
+    "explanation" : "Ejercicios para escribir donde, con lo que ve el alumno, hay otra respuesta igual de buena que el corrector no acepta.",
+    "example" : null
+  }, {
+    "subject" : "grammar",
+    "family" : "ERRORS",
+    "nodeTarget" : "MILESTONE",
+    "nodeId" : "6814dafa7d73e7209a13d382",
+    "label" : "A1",
+    "baseline" : {
+      "value" : 9.0,
+      "share" : 0.006206896551724138,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 9.0,
+      "share" : 0.006206896551724138,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 8.0,
+      "share" : 0.005517241379310344,
+      "notEvaluated" : 0
+    },
+    "change" : -1.0,
+    "unit" : "EXERCISES",
+    "floor" : {
+      "goalId" : "piso de errores · grammar · MILESTONE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "status" : "MET"
+    },
+    "displayName" : "Error de gramática",
+    "betterWhen" : "LOWER",
+    "changeVerdict" : "IMPROVED",
+    "explanation" : "Ejercicios cuya oración terminada, con la respuesta puesta, tiene un error de gramática, de ortografía o de puntuación final.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ed6",
+      "exercise" : "She ___ (wear) hat every day.",
+      "detail" : "Falta el artículo antes de «hat»: «a hat» — la tanda lo arregla"
+    }
+  }, {
+    "subject" : "vocabulario",
+    "family" : "VOCABULARY",
+    "nodeTarget" : "MILESTONE",
+    "nodeId" : "6814dafa7d73e7209a13d382",
+    "label" : "A1",
+    "baseline" : {
+      "value" : 0.9654,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 0.9654,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.9653,
+      "notEvaluated" : 0
+    },
+    "change" : -0.009999999999998899,
+    "unit" : "POINTS",
+    "floor" : {
+      "goalId" : "piso de vocabulario · vocabulario · MILESTONE",
+      "threshold" : 0.5,
+      "unit" : "POINTS",
+      "reference" : "BASELINE",
+      "status" : "MET"
+    },
+    "displayName" : "Vocabulario, puntaje total",
+    "betterWhen" : "HIGHER",
+    "changeVerdict" : "WORSENED",
+    "explanation" : "El puntaje de vocabulario de 0 a 100: el promedio de las filas de puntaje de arriba.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ec4",
+      "exercise" : "My grandmother ___ (come) every year.",
+      "detail" : "Vocabulario del nivel presente: grandmother es una palabra de A2 en un ejercicio de A1"
+    }
+  }, {
+    "subject" : "algún error",
+    "family" : "ERRORS",
+    "nodeTarget" : "MILESTONE",
+    "nodeId" : "6814dafa7d73e7209a13d382",
+    "label" : "A1",
+    "baseline" : {
+      "value" : 9.0,
+      "share" : 0.006206896551724138,
+      "notEvaluated" : 1450
+    },
+    "approved" : {
+      "value" : 9.0,
+      "share" : 0.006206896551724138,
+      "notEvaluated" : 1450
+    },
+    "projected" : {
+      "value" : 8.0,
+      "share" : 0.005517241379310344,
+      "notEvaluated" : 1450
+    },
+    "change" : -1.0,
+    "unit" : "EXERCISES",
+    "floor" : {
+      "goalId" : "piso de errores · algún error · MILESTONE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "status" : "UNDECIDABLE"
+    },
+    "displayName" : "Ejercicios con algún error",
+    "betterWhen" : "LOWER",
+    "changeVerdict" : "IMPROVED",
+    "explanation" : "Ejercicios con al menos uno de los problemas de arriba; cada ejercicio cuenta una vez.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ed6",
+      "exercise" : "She ___ (wear) hat every day.",
+      "detail" : "Error de gramática: Falta el artículo antes de «hat»: «a hat» — la tanda lo arregla"
+    }
+  }, {
+    "subject" : "sentence-length",
+    "family" : "VOCABULARY",
+    "nodeTarget" : "TOPIC",
+    "nodeId" : "6814dafa7d73e7209a13d383",
+    "label" : "Present Simple",
+    "baseline" : {
+      "value" : 0.95,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 0.95,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.95,
+      "notEvaluated" : 0
+    },
+    "change" : 0.0,
+    "unit" : "POINTS",
+    "displayName" : "Oraciones con el largo de su nivel",
+    "betterWhen" : "HIGHER",
+    "changeVerdict" : "UNCHANGED",
+    "explanation" : "Puntaje de 0 a 100: qué tanto las oraciones tienen el largo que corresponde a su nivel.",
+    "example" : null
+  }, {
+    "subject" : "lemma-absence",
+    "family" : "VOCABULARY",
+    "nodeTarget" : "TOPIC",
+    "nodeId" : "6814dafa7d73e7209a13d383",
+    "label" : "Present Simple",
+    "baseline" : {
+      "value" : 0.996,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 0.996,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.9955,
+      "notEvaluated" : 0
+    },
+    "change" : -0.04999999999999449,
+    "unit" : "POINTS",
+    "displayName" : "Vocabulario del nivel presente",
+    "betterWhen" : "HIGHER",
+    "changeVerdict" : "WORSENED",
+    "explanation" : "Puntaje de 0 a 100: cuántas de las palabras que el nivel tiene que enseñar aparecen, sin palabras de un nivel más alto.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ec4",
+      "exercise" : "My grandmother ___ (come) every year.",
+      "detail" : "grandmother es una palabra de A2 en un ejercicio de A1"
+    }
+  }, {
+    "subject" : "single-answer",
+    "family" : "ERRORS",
+    "nodeTarget" : "TOPIC",
+    "nodeId" : "6814dafa7d73e7209a13d383",
+    "label" : "Present Simple",
+    "baseline" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 120
+    },
+    "approved" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 120
+    },
+    "projected" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 120
+    },
+    "change" : 0.0,
+    "unit" : "EXERCISES",
+    "floor" : {
+      "goalId" : "piso de errores · single-answer · TOPIC",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "status" : "UNDECIDABLE"
+    },
+    "displayName" : "Más de una respuesta válida",
+    "betterWhen" : "LOWER",
+    "changeVerdict" : "NOT_EVALUATED",
+    "explanation" : "Ejercicios para escribir donde, con lo que ve el alumno, hay otra respuesta igual de buena que el corrector no acepta.",
+    "example" : null
+  }, {
+    "subject" : "grammar",
+    "family" : "ERRORS",
+    "nodeTarget" : "TOPIC",
+    "nodeId" : "6814dafa7d73e7209a13d383",
+    "label" : "Present Simple",
+    "baseline" : {
+      "value" : 3.0,
+      "share" : 0.025,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 3.0,
+      "share" : 0.025,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 2.0,
+      "share" : 0.016666666666666666,
+      "notEvaluated" : 0
+    },
+    "change" : -1.0,
+    "unit" : "EXERCISES",
+    "floor" : {
+      "goalId" : "piso de errores · grammar · TOPIC",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "status" : "MET"
+    },
+    "displayName" : "Error de gramática",
+    "betterWhen" : "LOWER",
+    "changeVerdict" : "IMPROVED",
+    "explanation" : "Ejercicios cuya oración terminada, con la respuesta puesta, tiene un error de gramática, de ortografía o de puntuación final.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ed6",
+      "exercise" : "She ___ (wear) hat every day.",
+      "detail" : "Falta el artículo antes de «hat»: «a hat» — la tanda lo arregla"
+    }
+  }, {
+    "subject" : "vocabulario",
+    "family" : "VOCABULARY",
+    "nodeTarget" : "TOPIC",
+    "nodeId" : "6814dafa7d73e7209a13d383",
+    "label" : "Present Simple",
+    "baseline" : {
+      "value" : 0.9712,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 0.9712,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.97095,
+      "notEvaluated" : 0
+    },
+    "change" : -0.024999999999997247,
+    "unit" : "POINTS",
+    "displayName" : "Vocabulario, puntaje total",
+    "betterWhen" : "HIGHER",
+    "changeVerdict" : "WORSENED",
+    "explanation" : "El puntaje de vocabulario de 0 a 100: el promedio de las filas de puntaje de arriba.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ec4",
+      "exercise" : "My grandmother ___ (come) every year.",
+      "detail" : "Vocabulario del nivel presente: grandmother es una palabra de A2 en un ejercicio de A1"
+    }
+  }, {
+    "subject" : "algún error",
+    "family" : "ERRORS",
+    "nodeTarget" : "TOPIC",
+    "nodeId" : "6814dafa7d73e7209a13d383",
+    "label" : "Present Simple",
+    "baseline" : {
+      "value" : 3.0,
+      "share" : 0.025,
+      "notEvaluated" : 120
+    },
+    "approved" : {
+      "value" : 3.0,
+      "share" : 0.025,
+      "notEvaluated" : 120
+    },
+    "projected" : {
+      "value" : 2.0,
+      "share" : 0.016666666666666666,
+      "notEvaluated" : 120
+    },
+    "change" : -1.0,
+    "unit" : "EXERCISES",
+    "floor" : {
+      "goalId" : "piso de errores · algún error · TOPIC",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "status" : "UNDECIDABLE"
+    },
+    "displayName" : "Ejercicios con algún error",
+    "betterWhen" : "LOWER",
+    "changeVerdict" : "IMPROVED",
+    "explanation" : "Ejercicios con al menos uno de los problemas de arriba; cada ejercicio cuenta una vez.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ed6",
+      "exercise" : "She ___ (wear) hat every day.",
+      "detail" : "Error de gramática: Falta el artículo antes de «hat»: «a hat» — la tanda lo arregla"
+    }
+  }, {
+    "subject" : "sentence-length",
+    "family" : "VOCABULARY",
+    "nodeTarget" : "KNOWLEDGE",
+    "nodeId" : "6814dafa7d73e7209a13d389",
+    "label" : "Afirmativas regulares",
+    "baseline" : {
+      "value" : 0.9,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 0.9,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.9,
+      "notEvaluated" : 0
+    },
+    "change" : 0.0,
+    "unit" : "POINTS",
+    "displayName" : "Oraciones con el largo de su nivel",
+    "betterWhen" : "HIGHER",
+    "changeVerdict" : "UNCHANGED",
+    "explanation" : "Puntaje de 0 a 100: qué tanto las oraciones tienen el largo que corresponde a su nivel.",
+    "example" : null
+  }, {
+    "subject" : "lemma-absence",
+    "family" : "VOCABULARY",
+    "nodeTarget" : "KNOWLEDGE",
+    "nodeId" : "6814dafa7d73e7209a13d389",
+    "label" : "Afirmativas regulares",
+    "baseline" : {
+      "value" : 1.0,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 1.0,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.95,
+      "notEvaluated" : 0
+    },
+    "change" : -5.000000000000004,
+    "unit" : "POINTS",
+    "displayName" : "Vocabulario del nivel presente",
+    "betterWhen" : "HIGHER",
+    "changeVerdict" : "WORSENED",
+    "explanation" : "Puntaje de 0 a 100: cuántas de las palabras que el nivel tiene que enseñar aparecen, sin palabras de un nivel más alto.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ec4",
+      "exercise" : "My grandmother ___ (come) every year.",
+      "detail" : "grandmother es una palabra de A2 en un ejercicio de A1"
+    }
+  }, {
+    "subject" : "single-answer",
+    "family" : "ERRORS",
+    "nodeTarget" : "KNOWLEDGE",
+    "nodeId" : "6814dafa7d73e7209a13d389",
+    "label" : "Afirmativas regulares",
+    "baseline" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 2
+    },
+    "approved" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 2
+    },
+    "projected" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 2
+    },
+    "change" : 0.0,
+    "unit" : "EXERCISES",
+    "floor" : {
+      "goalId" : "piso de errores · single-answer · KNOWLEDGE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "status" : "UNDECIDABLE"
+    },
+    "displayName" : "Más de una respuesta válida",
+    "betterWhen" : "LOWER",
+    "changeVerdict" : "NOT_EVALUATED",
+    "explanation" : "Ejercicios para escribir donde, con lo que ve el alumno, hay otra respuesta igual de buena que el corrector no acepta.",
+    "example" : null
+  }, {
+    "subject" : "grammar",
+    "family" : "ERRORS",
+    "nodeTarget" : "KNOWLEDGE",
+    "nodeId" : "6814dafa7d73e7209a13d389",
+    "label" : "Afirmativas regulares",
+    "baseline" : {
+      "value" : 1.0,
+      "share" : 0.5,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 1.0,
+      "share" : 0.5,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 0
+    },
+    "change" : -1.0,
+    "unit" : "EXERCISES",
+    "floor" : {
+      "goalId" : "piso de errores · grammar · KNOWLEDGE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "status" : "MET"
+    },
+    "displayName" : "Error de gramática",
+    "betterWhen" : "LOWER",
+    "changeVerdict" : "IMPROVED",
+    "explanation" : "Ejercicios cuya oración terminada, con la respuesta puesta, tiene un error de gramática, de ortografía o de puntuación final.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ed6",
+      "exercise" : "She ___ (wear) hat every day.",
+      "detail" : "Falta el artículo antes de «hat»: «a hat» — la tanda lo arregla"
+    }
+  }, {
+    "subject" : "vocabulario",
+    "family" : "VOCABULARY",
+    "nodeTarget" : "KNOWLEDGE",
+    "nodeId" : "6814dafa7d73e7209a13d389",
+    "label" : "Afirmativas regulares",
+    "baseline" : {
+      "value" : 0.95,
+      "notEvaluated" : 0
+    },
+    "approved" : {
+      "value" : 0.95,
+      "notEvaluated" : 0
+    },
+    "projected" : {
+      "value" : 0.925,
+      "notEvaluated" : 0
+    },
+    "change" : -2.499999999999991,
+    "unit" : "POINTS",
+    "displayName" : "Vocabulario, puntaje total",
+    "betterWhen" : "HIGHER",
+    "changeVerdict" : "WORSENED",
+    "explanation" : "El puntaje de vocabulario de 0 a 100: el promedio de las filas de puntaje de arriba.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ec4",
+      "exercise" : "My grandmother ___ (come) every year.",
+      "detail" : "Vocabulario del nivel presente: grandmother es una palabra de A2 en un ejercicio de A1"
+    }
+  }, {
+    "subject" : "algún error",
+    "family" : "ERRORS",
+    "nodeTarget" : "KNOWLEDGE",
+    "nodeId" : "6814dafa7d73e7209a13d389",
+    "label" : "Afirmativas regulares",
+    "baseline" : {
+      "value" : 1.0,
+      "share" : 0.5,
+      "notEvaluated" : 2
+    },
+    "approved" : {
+      "value" : 1.0,
+      "share" : 0.5,
+      "notEvaluated" : 2
+    },
+    "projected" : {
+      "value" : 0.0,
+      "share" : 0.0,
+      "notEvaluated" : 2
+    },
+    "change" : -1.0,
+    "unit" : "EXERCISES",
+    "floor" : {
+      "goalId" : "piso de errores · algún error · KNOWLEDGE",
+      "threshold" : 0.0,
+      "unit" : "EXERCISES",
+      "reference" : "BATCH_START",
+      "status" : "UNDECIDABLE"
+    },
+    "displayName" : "Ejercicios con algún error",
+    "betterWhen" : "LOWER",
+    "changeVerdict" : "IMPROVED",
+    "explanation" : "Ejercicios con al menos uno de los problemas de arriba; cada ejercicio cuenta una vez.",
+    "example" : {
+      "quizId" : "67fab6d59930102295341ed6",
+      "exercise" : "She ___ (wear) hat every day.",
+      "detail" : "Error de gramática: Falta el artículo antes de «hat»: «a hat» — la tanda lo arregla"
+    }
+  } ],
+  "changes" : [ {
+    "proposalId" : "077-afirmativas-regulares-grandmother",
+    "nodeTarget" : "QUIZ",
+    "nodeId" : "67fab6d59930102295341ec4",
+    "returns" : true,
+    "newFindings" : [ {
+      "analyzer" : "lemma-absence",
+      "rule" : "misplaced-word",
+      "node" : {
+        "target" : "QUIZ",
+        "nodeId" : "67fab6d59930102295341ec4",
+        "label" : "My grandmother comes every year."
+      },
+      "severity" : "MEDIUM",
+      "evidence" : {
+        "examined" : [ {
+          "label" : "Oración",
+          "text" : "My grandmother comes every year."
+        }, {
+          "label" : "Palabra",
+          "text" : "grandmother"
+        }, {
+          "label" : "Nivel de la palabra",
+          "text" : "A2"
+        }, {
+          "label" : "Nivel del ejercicio",
+          "text" : "A1"
+        } ],
+        "observation" : "grandmother es una palabra de A2 en un ejercicio de A1",
+        "relatedNodes" : [ ]
+      },
+      "resolution" : "PANEL",
+      "cost" : "INSTANT",
+      "identity" : {
+        "key" : "lemma-absence|misplaced-word|67fab6d59930102295341ec4|grandmother",
+        "marker" : "grandmother"
+      }
+    } ],
+    "fixedFindings" : [ ],
+    "undecidedAnalyzers" : [ "single-answer" ]
+  }, {
+    "proposalId" : "077-afirmativas-regulares-hat",
+    "nodeTarget" : "QUIZ",
+    "nodeId" : "67fab6d59930102295341ed6",
+    "returns" : false,
+    "newFindings" : [ ],
+    "fixedFindings" : [ {
+      "analyzer" : "grammar",
+      "rule" : "english-error",
+      "node" : {
+        "target" : "QUIZ",
+        "nodeId" : "67fab6d59930102295341ed6",
+        "label" : "She wears hat every day."
+      },
+      "severity" : "HIGH",
+      "evidence" : {
+        "examined" : [ {
+          "label" : "Oración terminada",
+          "text" : "She wears hat every day."
+        } ],
+        "observation" : "Falta el artículo antes de «hat»: «a hat».",
+        "relatedNodes" : [ ]
+      },
+      "resolution" : "PANEL",
+      "cost" : "INSTANT",
+      "identity" : {
+        "key" : "grammar|english-error|67fab6d59930102295341ed6|hat",
+        "marker" : "hat"
+      }
+    } ],
+    "undecidedAnalyzers" : [ "single-answer" ]
+  } ],
+  "breaches" : [ ],
+  "verdict" : {
+    "kind" : "FAILS",
+    "brokenFloorGoalIds" : [ ],
+    "returningProposalIds" : [ "077-afirmativas-regulares-grandmother" ],
+    "detail" : "No pasa: vuelve 1 cambio: 077-afirmativas-regulares-grandmother"
+  }
+}

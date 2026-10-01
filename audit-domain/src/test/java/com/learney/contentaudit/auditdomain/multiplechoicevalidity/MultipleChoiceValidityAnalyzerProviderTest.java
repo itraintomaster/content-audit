@@ -39,7 +39,7 @@ public class MultipleChoiceValidityAnalyzerProviderTest {
 
         assertEquals("multiple-choice-validity", provider.analyzerName());
         assertEquals("multiple-choice-validity", card.getName());
-        assertEquals("Opción múltiple válida", card.getDisplayName());
+        assertEquals("Opción múltiple mal armada", card.getDisplayName());
         assertEquals("¿Hay una sola opción correcta, y ninguna se delata por la forma?", card.getQuestion());
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());

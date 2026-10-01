@@ -39,7 +39,7 @@ public class AnswerCompletenessAnalyzerProviderTest {
 
         assertEquals("answer-completeness", provider.analyzerName());
         assertEquals("answer-completeness", card.getName());
-        assertEquals("Respuestas completas", card.getDisplayName());
+        assertEquals("Exige una forma o rechaza una respuesta válida", card.getDisplayName());
         assertEquals("¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?", card.getQuestion());
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());

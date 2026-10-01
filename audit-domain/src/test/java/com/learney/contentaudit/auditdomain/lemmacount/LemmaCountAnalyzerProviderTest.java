@@ -119,7 +119,7 @@ public class LemmaCountAnalyzerProviderTest {
         Assertions.assertEquals(AnalysisCost.INSTANT, card.getCost(), "R006: instant");
         Assertions.assertEquals(List.of("F-POCOV-R003"), card.getRules().stream().map(r -> r.getId()).toList(),
                 "its one rule, the one of its findings");
-        Assertions.assertEquals("Palabras poco vistas", card.getDisplayName(), "the name on screen");
+        Assertions.assertEquals("Palabras vistas suficientes veces", card.getDisplayName(), "the name on screen");
     }
 
     @Test

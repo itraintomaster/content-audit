@@ -37,7 +37,7 @@ public class GrammarAnalyzerProviderTest {
 
         assertEquals("grammar", provider.analyzerName());
         assertEquals("grammar", card.getName());
-        assertEquals("Gramática", card.getDisplayName());
+        assertEquals("Error de gramática", card.getDisplayName());
         assertEquals("¿La oración terminada tiene errores de inglés?", card.getQuestion());
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(AuditTarget.QUIZ, card.getTarget());

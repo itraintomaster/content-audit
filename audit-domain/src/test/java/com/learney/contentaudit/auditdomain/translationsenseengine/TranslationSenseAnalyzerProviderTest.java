@@ -463,7 +463,7 @@ public class TranslationSenseAnalyzerProviderTest {
         AnalyzerDescriptor card = lab.provider.describe();
 
         assertEquals(NAME, card.getName());
-        assertEquals("Traducción y sentido", card.getDisplayName(), "Su nombre en castellano (F-RONDA1-R004)");
+        assertEquals("Traducción que no corresponde", card.getDisplayName(), "Su nombre en castellano (F-RONDA1-R004)");
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(AnalysisCost.PAID_MODEL, card.getCost());
         assertEquals(AuditTarget.QUIZ, card.getTarget());

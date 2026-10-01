@@ -52,6 +52,6 @@ public class BatchReportLevelsIntegrationTest {
     private static ComparisonRow milestone(String subject, String id, String label, double before, double after) {
         return new ComparisonRow(subject, AnalyzerFamily.ERRORS, AuditTarget.MILESTONE, id, label,
                 new RowValue(before, null, 0), null, new RowValue(before, null, 0), new RowValue(after, null, 0),
-                after - before, GoalUnit.EXERCISES, null, null);
+                after - before, GoalUnit.EXERCISES, null, null, null, null, null, null, null);
     }
 }

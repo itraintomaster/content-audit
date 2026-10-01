@@ -37,7 +37,7 @@ public class ExactDuplicatesAnalyzerProviderTest {
 
         assertEquals("exact-duplicates", provider.analyzerName());
         assertEquals("exact-duplicates", card.getName());
-        assertEquals("Duplicados exactos", card.getDisplayName());
+        assertEquals("Ejercicio repetido igual", card.getDisplayName());
         assertEquals("¿Dos ejercicios del mismo tema dicen lo mismo?", card.getQuestion());
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());

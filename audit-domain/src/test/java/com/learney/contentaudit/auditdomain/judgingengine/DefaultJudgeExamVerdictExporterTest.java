@@ -75,7 +75,7 @@ public class DefaultJudgeExamVerdictExporterTest {
                 List.of(new AnalyzerRuleCard("instruction-breach", "El ejercicio no cumple la consigna",
                         AnalysisCost.PAID_MODEL)),
                 "0 ejercicios con error", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
-                List.of(FindingResolution.PANEL), AnalysisCost.PAID_MODEL, "Consigna", java.util.List.of());
+                List.of(FindingResolution.PANEL), AnalysisCost.PAID_MODEL, "Consigna", java.util.List.of(), null);
     }
 
     private static AnalyzerDescriptor translationSenseCard() {
@@ -91,7 +91,7 @@ public class DefaultJudgeExamVerdictExporterTest {
                                 AnalysisCost.PAID_MODEL)),
                 "0 ejercicios con error", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL, FindingResolution.RANK_ONLY), AnalysisCost.PAID_MODEL,
-                "Traducción y sentido", java.util.List.of());
+                "Traducción y sentido", java.util.List.of(), null);
     }
 
     /** Package A's analyzer: four instant rules, and the judge of «otra opción también vale» as a paid rule. */
@@ -109,7 +109,7 @@ public class DefaultJudgeExamVerdictExporterTest {
                                 AnalysisCost.PAID_MODEL)),
                 "0 ejercicios con error", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.RULE, FindingResolution.PANEL), AnalysisCost.PAID_MODEL,
-                "Opción múltiple válida", java.util.List.of());
+                "Opción múltiple válida", java.util.List.of(), null);
     }
 
     // -------------------------------------------------------------------------

@@ -86,7 +86,7 @@ public class StatsAnalyzerCmdTest {
 
         // The impl may check registry via listAnalyzers() or getAnalyzerConfig(); stub both
         AnalyzerDescriptor descriptor = new AnalyzerDescriptor(analyzerName,
-                "Checks sentence length", AuditTarget.KNOWLEDGE, null, null, null, null, null, null, null, null, analyzerName, java.util.List.of());
+                "Checks sentence length", AuditTarget.KNOWLEDGE, null, null, null, null, null, null, null, null, analyzerName, java.util.List.of(), null);
         when(analyzerRegistry.listAnalyzers()).thenReturn(List.of(descriptor));
         when(analyzerRegistry.getAnalyzerConfig(analyzerName))
                 .thenReturn(java.util.Optional.of(Map.of("maxSentenceLength", 25)));

@@ -70,7 +70,7 @@ public class DefaultAnalyzerCorrectionCatalogTest {
         for (String name : names) {
             cards.add(new AnalyzerDescriptor(name, name, AuditTarget.QUIZ, "¿" + name + "?", "El ejercicio", List.of(),
                     "-", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL),
-                    AnalysisCost.INSTANT, name, List.of()));
+                    AnalysisCost.INSTANT, name, List.of(), null));
         }
         return new AnalyzerCatalog() {
             @Override

@@ -156,7 +156,7 @@ public class SingleAnswerAnalyzerProviderTest {
         AnalyzerDescriptor card = provider(realRuntime(new MemoryLedger(), VERSION), new CountingJudge(WATER)).describe();
 
         assertEquals(NAME, card.getName());
-        assertEquals("Una sola respuesta", card.getDisplayName());
+        assertEquals("Más de una respuesta válida", card.getDisplayName());
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(AnalysisCost.PAID_MODEL, card.getCost());
         assertEquals(AuditTarget.QUIZ, card.getTarget());

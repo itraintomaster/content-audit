@@ -393,14 +393,14 @@ public class DefaultBatchGateTest {
     private static ComparisonRow countRow(String subject, AnalyzerFamily family, String nodeId, String label, int start, int projected) {
         return new ComparisonRow(subject, family, AuditTarget.MILESTONE, nodeId, label, new RowValue((double) start, null, 0),
                 null, new RowValue((double) start, null, 0), new RowValue((double) projected, null, 0),
-                (double) (projected - start), GoalUnit.EXERCISES, null, null);
+                (double) (projected - start), GoalUnit.EXERCISES, null, null, null, null, null, null, null);
     }
 
     private static ComparisonRow pointsRow(String subject, String nodeId, String label, double baseline, double start,
             double projected) {
         return new ComparisonRow(subject, AnalyzerFamily.VOCABULARY, nodeId.equals("root") ? AuditTarget.COURSE
                 : AuditTarget.MILESTONE, nodeId, label, new RowValue(baseline, null, 0), null, new RowValue(start, null, 0),
-                new RowValue(projected, null, 0), projected - baseline, GoalUnit.POINTS, null, null);
+                new RowValue(projected, null, 0), projected - baseline, GoalUnit.POINTS, null, null, null, null, null, null, null);
     }
 
     private static FloorBreach breach(ComparisonRow row, ChangeAttribution... attributions) {

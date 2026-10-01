@@ -62,7 +62,7 @@ public class OffLevelWordsAnalyzerProviderTest {
         assertTrue(card.getGoal().startsWith("0 "), "R007: goal 0: " + card.getGoal());
         assertEquals(List.of(FindingResolution.PANEL), card.getResolutions(), "R007: resolved at the panel");
         assertEquals(AnalysisCost.INSTANT, card.getCost(), "R007: instant");
-        assertEquals("Palabras de otro nivel", card.getDisplayName(), "F-RONDA1-R004: its Spanish name");
+        assertEquals("Palabra de otro nivel", card.getDisplayName(), "F-RONDA1-R004: its Spanish name");
     }
 
     @Test

@@ -344,7 +344,7 @@ public class PendingRerecordingIntegrationTest {
             DefaultBatchComparator comparator = new DefaultBatchComparator((course, scope) -> projection, baselines,
                     reports, new DefaultGoalBook(() -> declaration, sealedStore, catalog), catalog, engine,
                     new LeaveOneOutChangeAttributor(engine), scope -> Optional.empty(),
-                    new DefaultTopicTeachingResolver());
+                    new DefaultTopicTeachingResolver(), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
             return comparator.compare(Path.of("db/english-course"), null);
         }
     }

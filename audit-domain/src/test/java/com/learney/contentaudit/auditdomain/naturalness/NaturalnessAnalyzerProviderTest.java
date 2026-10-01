@@ -76,7 +76,7 @@ public class NaturalnessAnalyzerProviderTest {
         AnalyzerDescriptor card = NaturalnessAnalyzerTest.World.withLlama3().provider.describe();
 
         assertEquals("naturalness", card.getName());
-        assertEquals("Naturalidad", card.getDisplayName());
+        assertEquals("Oración poco natural", card.getDisplayName());
         assertEquals("¿Un nativo diría así esta oración?", card.getQuestion());
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
