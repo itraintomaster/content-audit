@@ -1,0 +1,461 @@
+code: FEAT-RONDA2
+description: "Integración de la ronda 2 (B idioma, E corrección por tandas, F antes\
+  \ y después): lo compartido que dejaron los trece parches como ganchos. Las tres\
+  \ ranuras de diagnóstico de B en el ejercicio y las dos del curso (B-02, B-03),\
+  \ la tarjeta de herramienta en la ficha (B-01), la medida de cada analizador en\
+  \ la raíz del informe y en el catálogo (F-01 a F-03, F-RONDA2-R004), los diez tipos\
+  \ de tarea nuevos (E-01, B-18, F-RONDA2-R008), el error de recursos del tokenizador\
+  \ (F-RONDA2-R007) y la apertura del constructor de lo que dice el audio, que la\
+  \ mesa de E necesita. Se aplica primero: nombra tipos que declaran los parches de\
+  \ los paquetes, así que generate va con la ronda entera aplicada."
+modules:
+- name: audit-domain
+  models:
+  - name: AnalyzerDescriptor
+    type: record
+    fields:
+    - name: tools
+      type: List<LocalToolCard>
+      description: "Las herramientas con que mide el analizador —la local y, si la\
+        \ tiene, la alternativa con claude -p—, con su versión, si están y su examen\
+        \ (FEAT-MLOCAL, gancho B-01). Vacía en los diecisiete que no usan herramienta;\
+        \ la llenan grammar, naturalness y near-duplicates. La medida toma de acá\
+        \ la herramienta con que midió y su versión examinada, nunca el estado del\
+        \ examen ni los motivos (F-RONDA2-R004)."
+      _change: add
+    _change: modify
+  - name: AuditNode
+    type: record
+    fields:
+    - name: measures
+      type: List<AnalyzerMeasure>
+      description: "Sólo en la raíz: la medida de cada analizador que corrió, en el\
+        \ orden del catálogo (F-RONDA2-R004). Vacía en los demás nodos y en un informe\
+        \ guardado antes de la ronda 2."
+      _change: add
+    _change: modify
+  - name: NlpResourcesUnavailableException
+    type: exception
+    fields:
+    - name: resource
+      type: String
+      description: "Qué falta: la lista de lemas, el procesador de spaCy, o spaCy\
+        \ que no corre."
+    - name: path
+      type: String
+      description: "Dónde se lo buscó, o el comando que no arrancó."
+    - name: detail
+      type: String
+      description: Qué hacer para que esté. Lo imprime analyze antes de salir sin
+        informe (F-RONDA2-R007).
+    message: "Falta %s en '%s': %s"
+    _change: add
+    extends: RuntimeException
+  interfaces:
+  - name: QuizDiagnoses
+    sealed: false
+    exposes:
+    - signature: "getGrammarDiagnosis(): Optional<GrammarDiagnosis>"
+      _change: add
+    - signature: "getNaturalnessDiagnosis(): Optional<NaturalnessDiagnosis>"
+      _change: add
+    - signature: "getNearDuplicateDiagnosis(): Optional<NearDuplicateDiagnosis>"
+      _change: add
+    _change: modify
+  - name: CourseDiagnoses
+    sealed: false
+    exposes:
+    - signature: "getLocalToolRuns(): List<LocalToolRunDiagnosis>"
+      _change: add
+    - signature: "getNaturalnessQueue(): Optional<NaturalnessQueueDiagnosis>"
+      _change: add
+    _change: modify
+  - name: AnalyzerCatalog
+    sealed: false
+    exposes:
+    - signature: "measure(String analyzerName): Optional<AnalyzerMeasure>"
+      _change: add
+    _change: modify
+  implementations:
+  - name: IAuditEngine
+    handwrittenTests:
+    - name: "should leave naturalness and near-duplicates out of the base run, even\
+        \ though near-duplicates has the instant rule same-but-wildcard"
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R003
+    - name: should run grammar in the base run because it is instant
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R003
+    - name: "should run fourteen of the twenty analyzers in the base run, the thirteen\
+        \ instant ones and multiple-choice-validity with budget 0"
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R003
+    - name: "should store at the root one measure per analyzer that ran, in catalog\
+        \ order, and no measure in the nodes below"
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R004
+  packages:
+  - name: catalog
+    models:
+    - name: AnalyzerMeasure
+      type: record
+      fields:
+      - name: analyzer
+        type: String
+        description: Nombre único del analizador que midió.
+      - name: fingerprint
+        type: String
+        description: "SHA-256 del JSON canónico de lo que define cómo mide: reglas\
+          \ y su costo, familia, lo que evalúa, resoluciones, configuración y la herramienta\
+          \ con que midió (la local o claude -p) con su versión examinada. Sin los\
+          \ textos de la ficha, el estado del examen ni los motivos (F-RONDA2-R004)."
+      - name: config
+        type: "Map<String,Object>"
+        description: "La configuración con que midió, como la describe su SelfDescribingConfig;\
+          \ vacía si no tiene."
+      _change: add
+    _change: modify
+  - name: datacoherence
+    interfaces:
+    - name: SpokenTextBuilder
+      sealed: false
+      visibility: public
+      _change: modify
+    implementations:
+    - name: DefaultSpokenTextBuilder
+      visibility: public
+      _change: modify
+    - name: DataCoherenceAnalyzerProvider
+      handwrittenTests:
+      - name: should bind data-coherence to the plan with the task kind DATA_COHERENCE
+          on the exercise
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R008
+    _change: modify
+  - name: findingengine
+    implementations:
+    - name: DefaultAnalyzerCatalog
+      handwrittenTests:
+      - name: should give the same measure fingerprint to the same card and configuration
+          in two runs
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R004
+      - name: "should change the fingerprint of lemma-count when its bands go from\
+          \ 4 for all to 8, 6, 4 and 3, and keep the fingerprints of the other analyzers"
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R004
+      - name: "should keep a fingerprint when only the Spanish name, the question,\
+          \ the descriptions or the goal of the card change"
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R004
+      - name: should keep a fingerprint when only the exam state of a tool or its
+          install hint changes
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R004
+      - name: should change the fingerprint of naturalness when it measures with claude
+          -p instead of llama3 in Ollama
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R004
+  - name: judgingengine
+    implementations:
+    - name: DefaultJudgeRuntime
+      handwrittenTests:
+      - name: "should open the claude -p alternative of naturalness with the judges'\
+          \ default budget 0 when the run declares none, reusing only what is recorded"
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R002
+  - name: hintcoherence
+    implementations:
+    - name: HintCoherenceAnalyzerProvider
+      handwrittenTests:
+      - name: should bind hint-coherence to the plan with the task kind HINT_COHERENCE
+          on the exercise
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R008
+  - name: answercompleteness
+    implementations:
+    - name: AnswerCompletenessAnalyzerProvider
+      handwrittenTests:
+      - name: should bind answer-completeness to the plan with the task kind ANSWER_COMPLETENESS
+          on the exercise
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R008
+  - name: multiplechoicevalidity
+    implementations:
+    - name: MultipleChoiceValidityAnalyzerProvider
+      handwrittenTests:
+      - name: should bind multiple-choice-validity to the plan with the task kind
+          MULTIPLE_CHOICE_VALIDITY on the exercise
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R008
+  - name: exactduplicates
+    implementations:
+    - name: ExactDuplicatesAnalyzerProvider
+      handwrittenTests:
+      - name: should bind exact-duplicates to the plan with the task kind EXACT_DUPLICATES
+          on the exercise
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R008
+  - name: translationsenseengine
+    implementations:
+    - name: TranslationSenseAnalyzerProvider
+      handwrittenTests:
+      - name: should bind translation-sense to the plan with the task kind TRANSLATION_SENSE
+          on the exercise
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R008
+  - name: singleanswerengine
+    implementations:
+    - name: SingleAnswerAnalyzerProvider
+      handwrittenTests:
+      - name: should bind single-answer to the plan with the task kind SINGLE_ANSWER
+          on the exercise
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R008
+  - name: minitheoryengine
+    implementations:
+    - name: MiniTheoryAnalyzerProvider
+      handwrittenTests:
+      - name: should bind mini-theory to the plan with the task kind MINI_THEORY on
+          the exercise
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R008
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: DiagnosisKind
+    type: enum
+    fields:
+    - name: HINT_COHERENCE
+      description: "hint-coherence, sobre el ejercicio (F-RONDA2-R008, gancho E-01)."
+      _change: add
+    - name: ANSWER_COMPLETENESS
+      description: "answer-completeness, sobre el ejercicio."
+      _change: add
+    - name: MULTIPLE_CHOICE_VALIDITY
+      description: "multiple-choice-validity, sobre el ejercicio; también los hallazgos\
+        \ de su juez."
+      _change: add
+    - name: DATA_COHERENCE
+      description: "data-coherence, sobre el ejercicio."
+      _change: add
+    - name: EXACT_DUPLICATES
+      description: "exact-duplicates, sobre la copia que sobra."
+      _change: add
+    - name: TRANSLATION_SENSE
+      description: "translation-sense, sobre el ejercicio; el desacuerdo de sus dos\
+        \ jueces va a la bandeja, no a tarea."
+      _change: add
+    - name: SINGLE_ANSWER
+      description: "single-answer, sobre el ejercicio."
+      _change: add
+    - name: MINI_THEORY
+      description: "mini-theory: una tarea por miniteoría, con los demás ejercicios\
+        \ que la muestran cubiertos (F-TAREA-R003)."
+      _change: add
+    - name: GRAMMAR
+      description: "grammar, sobre el ejercicio, por regla o por mesa (F-RONDA2-R008,\
+        \ gancho B-18)."
+      _change: add
+    - name: NEAR_DUPLICATES
+      description: "near-duplicates, sobre la copia casi igual que sobra, por mesa\
+        \ (F-RONDA2-R008, gancho B-18)."
+      _change: add
+    _change: modify
+  implementations:
+  - name: DefaultRefinerEngine
+    handwrittenTests:
+    - name: "should give each finding of the error family that counts the task kind\
+        \ of its analyzer, from HINT_COHERENCE to NEAR_DUPLICATES"
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R008
+    - name: "should never create a task for a naturalness finding, which only ranks"
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R008
+    - name: should cover an off-level-words finding with the LEMMA_ABSENCE task of
+        its exercise instead of a task of its own
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R008
+    - name: "should keep the 4,036 vocabulary tasks of the 29/9 analysis identical\
+        \ one by one with the twenty analyzers"
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R010
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: Main
+      handwrittenTests:
+      - name: "should register grammar «Gramática», naturalness «Naturalidad» and\
+          \ near-duplicates «Duplicados parecidos» after the seventeen analyzers of\
+          \ round 1, in that order"
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R001
+      - name: should keep each of the seventeen analyzers of round 1 in its place
+          in the catalog once the three of package B are registered
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R001
+    - name: GetCmd
+      handwrittenTests:
+      - name: "should show in get analyzers the twenty analyzers with twenty different\
+          \ Spanish names, the three of package B last"
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R001
+    - name: AnalyzeCmd
+      handwrittenTests:
+      - name: "should pass --budget naturalness=50 to naturalness as its run policy,\
+          \ the same as a judge's budget"
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R002
+      - name: should print «Falta la lista de lemas en '<path>'» and exit with code
+          1 without writing a report when the lemma list is missing
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R007
+      - name: should exit with code 1 without writing a report when a sentence is
+          not cached and spaCy does not run
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R007
+      - name: should leave the 886 files of the 29/9 course identical byte for byte
+          after analyzing it with the twenty analyzers
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R010
+    - name: StatsAnalyzerCmd
+      handwrittenTests:
+      - name: should exit with code 1 and name the missing spaCy processor when stats
+          analyzer runs without it
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R007
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    handwrittenTests:
+    - name: "should accept a budget for near-duplicates, which consults a model, and\
+        \ keep rejecting a budget for grammar, which is instant"
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R002
+    - name: "should hand naturalness no run policy when the run declares no budget,\
+        \ so its provider completes it by the route it consults"
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R002
+    - name: "should publish on the 29/9 course with the twenty analyzers a vocabulary\
+        \ of 73.86 % and levels 96.02, 93.60, 78.87 and 63.86"
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R010
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemAuditReportStore
+    handwrittenTests:
+    - name: should keep the measures of the root when a report is saved and loaded
+        again
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R004
+    - name: "should load a report saved before round 2 with an empty list of measures,\
+        \ without inventing them"
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R004
+- name: nlp-infrastructure
+  packages:
+  - name: spacy
+    implementations:
+    - name: SpacyProcessRunner
+      handwrittenTests:
+      - name: should launch spaCy once per batch with only the sentences that are
+          not in the cache
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R005
+      - name: should not launch spaCy for a batch whose sentences are all in the cache
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R005
+      - name: "should return the sentences of a batch in the order they were asked,\
+          \ cached or not"
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R005
+      - name: should not reuse a cached sentence after the lemma list changes
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R006
+      - name: should not reuse a cached sentence after the spaCy processor changes
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R006
+      - name: should reuse a cached sentence when the same lemma list is read from
+          another path
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R006
+      - name: should never read an entry saved with the old key of the whole batch
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R006
+    - name: CachedNlpTokenizer
+      handwrittenTests:
+      - name: "should give a sentence the same tokens alone, inside a batch or from\
+          \ the cache"
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R005
+    - name: SpacyNlpTokenizerFactory
+      handwrittenTests:
+      - name: "should build a tokenizer that stops with NlpResourcesUnavailableException\
+          \ naming the lemma list path when the list is missing, before tokenizing\
+          \ any sentence"
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R007
+      - name: should build a tokenizer that stops with NlpResourcesUnavailableException
+          when the spaCy processor script is missing
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R007
+      - name: "should build a tokenizer that stops when a sentence is not cached and\
+          \ spaCy does not run, instead of returning basic tokens"
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R007
+      - name: should build a tokenizer that tokenizes from the cache without launching
+          spaCy when the list and the processor are in place
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R007
+features:
+- id: FEAT-RONDA2
+  code: F-RONDA2
