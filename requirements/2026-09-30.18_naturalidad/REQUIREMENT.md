@@ -1,0 +1,224 @@
+---
+feature:
+  id: FEAT-NATUR
+  code: F-NATUR
+  name: Naturalidad - qué oraciones mirar primero
+  priority: medium
+---
+
+# Naturalidad: qué oraciones mirar primero
+
+## TL;DR
+
+**Qué**: `naturalness` le pregunta a un modelo de lenguaje local, por cada oración terminada, si un nativo la diría así,
+y marca el 5 % más dudoso de cada nivel para que los jueces empiecen por ahí. No cuenta errores.
+
+**Por qué**: Juzgar el curso con los cinco jueces son unas 220 horas de a una. Medido con el modelo ya instalado, esa
+cola trae el 27 % de lo que el 077 llamó antinatural o sin sentido, más de cinco veces el azar.
+
+## Recorrido de uso (estado actual)
+
+Cómo el operador intenta hoy elegir qué ejercicios juzgar primero:
+
+1. Corre el análisis → `AnalyzeCommand.analyze(coursePath, AnalyzeOptions)`. ✓ Disponible, pero ningún número dice qué
+   tan rara es una oración: los de vocabulario miden largo, frecuencia y lemas.
+2. Le pasa a un juez un conjunto de ejercicios → `AnalyzeOptions.reevaluateInstructionQuizIds`
+   ([F-QINST-R018](#F-QINST-R018)). ✓ Disponible para el juez de consigna; FEAT-JEXAM lo extiende a los nuevos.
+3. Arma ese conjunto con las oraciones más raras primero → ⚠️ nada lo propone: el orden es el del curso.
+
+**Punto de fricción**: paso 3.
+
+**Cambio mínimo necesario**: sumar `naturalness` al catálogo de FEAT-HALL, con un orden publicado y una lista de
+marcados que sirva de conjunto para un juez.
+
+## Reglas de Negocio
+
+<a id="F-NATUR-R001"></a>
+### Rule[F-NATUR-R001] - Lee la oración terminada, y sólo si es una oración
+**Severity**: critical | **Validation**: ASSUMPTION
+
+> Por ejercicio, `naturalness` lee la oración terminada de Gramática ([F-GRAMA-R001](#F-GRAMA-R001)) con la primera
+> respuesta aceptada. Un ejercicio cuya oración no tiene verbo o es una sola palabra («go - going», «hard work
+> uncountable») no alcanza: no tiene número ni hallazgo.
+
+En A1–A2 no alcanzan 76 de 4.813. La contraída y la larga valen igual (decisión de José, ronda 1): la pregunta de R002
+no castiga la contraída, así que la oración se lee como queda. SLOR sí la castigaba y obligaba a leer la forma larga,
+y quedó descartado ([DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO)).
+
+<a id="F-NATUR-R002"></a>
+### Rule[F-NATUR-R002] - Un número por ejercicio: qué tan poco probable es que un nativo lo diga así
+**Severity**: critical | **Validation**: VALIDATED
+
+> Al modelo local se le pregunta si un hablante nativo diría esa oración, con ese sentido y esas palabras, y el número
+> de naturalidad es cuánto más probable ve el «no» que el «sí» (el logaritmo del cociente): 0 es «tanto sí como no», y
+> cuanto más alto, más duda. Con el mismo modelo en la misma versión, el mismo ejercicio da el mismo número
+> ([F-MLOCAL-R002](#F-MLOCAL-R002)).
+
+Es una consulta de un token por oración, local y gratis. Se usa el cociente y no la probabilidad del «no» porque ésta
+se amontona en 1: más de 300 ejercicios por nivel pasan de 0,999. El método de la propuesta (SLOR) se midió peor y
+quedó descartado (José, 30/9): ver Contexto y [DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO).
+
+<a id="F-NATUR-R003"></a>
+### Rule[F-NATUR-R003] - Marca el 5 % más dudoso de cada nivel, y no cuenta como error
+**Severity**: critical | **Validation**: VALIDATED
+
+> Un ejercicio cuyo número queda por encima del umbral de su nivel tiene un hallazgo que sólo ordena: gravedad *baja*,
+> resolución *sólo ordena* ([F-HALL-R002](#F-HALL-R002)). No baja el puntaje, no produce tarea
+> ([F-HALL-R004](#F-HALL-R004)) y se cuenta como marcado, nunca como error ([F-HALL-R008](#F-HALL-R008)). El umbral de
+> cada nivel es fijo y deja marcado el 5 % de ese nivel en la base del 29/9; a igual número, el orden es el del curso.
+
+Fijo, para que cambiar un ejercicio no mueva la marca de otro ([F-HALL-R014](#F-HALL-R014)); lo decidió José el 30/9
+([DOUBT-NATUR-UMBRAL](#DOUBT-NATUR-UMBRAL)). Con llama3 8B en la versión medida, 9,07 en A1 (116 de 2.334) y 10,2 en A2
+(120 de 2.403). Los de B1 y B2 se calculan igual sobre la base del 29/9 antes de publicar: unos 9 minutos de modelo.
+Un modelo en otra versión da otros números, así que sus umbrales se vuelven a calcular con su examen
+([F-MLOCAL-R006](#F-MLOCAL-R006)).
+
+<a id="F-NATUR-R004"></a>
+### Rule[F-NATUR-R004] - La evidencia dice cuánto duda el modelo
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> La evidencia trae la oración como la lee el alumno, su número y el umbral del nivel: «El modelo local duda que un
+> nativo diga «She bought at the market.» (13,7; umbral de A2: 10,2)» ([F-HALL-R003](#F-HALL-R003)).
+
+No dice por qué: eso lo dice el juez de [traducción](glossary:Traducción) y sentido (FEAT-TRSEN), que es quien decide.
+
+<a id="F-NATUR-R005"></a>
+### Rule[F-NATUR-R005] - El orden y los marcados se pueden pasar a un juez
+**Severity**: major | **Validation**: ASSUMPTION
+
+> El informe publica, por nivel, los ejercicios marcados del más dudoso al menos dudoso, y esa lista, como archivo de
+> identificadores, es un conjunto válido para cualquier juez ([F-QINST-R019](#F-QINST-R019), [F-JEXAM-R005](#F-JEXAM-R005)).
+
+Así «el 5 % menos esperable va primero a los jueces», como dice la propuesta, sin que Naturalidad decida nada sola.
+
+<a id="F-NATUR-R006"></a>
+### Rule[F-NATUR-R006] - Se usa sólo si ordena mucho mejor que el azar
+**Severity**: critical | **Validation**: ASSUMPTION
+
+> El examen de `naturalness` son los ejercicios que el 077 marcó antinaturales o sin sentido: en la cola del 5 % de cada
+> nivel tienen que caer al menos el triple que al azar —15 %, 28 de los 186 de A1–A2 en `escribir/`, y la proporción
+> equivalente en `examinar/`—. Una versión que no lo aprueba no publica marcas ([F-MLOCAL-R006](#F-MLOCAL-R006)).
+
+Es el «si casi ninguno cae ahí, no sirve y se saca» de la propuesta, con un número. El prototipo con llama3 da 51 de 186
+(27 %) y aprueba; con SLOR daba 14 (7,5 %) y no.
+
+<a id="F-NATUR-R007"></a>
+### Rule[F-NATUR-R007] - `naturalness` es un analizador de errores que sólo ordena
+**Severity**: major | **Validation**: ASSUMPTION
+
+> El catálogo lista `naturalness` con su ficha ([F-HALL-R006](#F-HALL-R006)): pregunta «¿Un nativo diría así esta
+> oración?», familia *errores*, evalúa *ejercicio*, resolución *sólo ordena*, costo *modelo local*, y nombra el modelo
+> con su versión y el resultado de su examen.
+
+Familia *errores* porque así lo fija [F-HALL-R007](#F-HALL-R007) para los once nuevos; como sólo ordena, sus números son
+marcados, no errores.
+
+## Contexto
+
+Base: los 4.813 ejercicios de A1–A2 del curso del 29/9 en `db/english-course`, medidos con un prototipo en el
+scratchpad del analista, sin instalar nada: llama3 8B (Q4_0) en Ollama, el único modelo de lenguaje de la máquina.
+
+| Cola del 5 % por nivel (236 ejercicios) | Antinaturales y sin sentido del 077 (de 186) | Marcados en algún oro del 077 | Tiempo |
+|---|---:|---:|---:|
+| Al azar | 9 (5 %) | 23,2 % | — |
+| SLOR, método de la propuesta | 14 (7,5 %) | 26,7 % | 19 min |
+| Pregunta sí o no, R002 | 51 (27,4 %) | 47,9 % | 6 min |
+
+Con la cola del 10 %, la pregunta trae el 43,5 %; con la del 20 %, el 64 %. De los 47 de gramática del examen, 9 caen en
+la cola del 5 % (LanguageTool encuentra 1). Los umbrales del 5 % quedan en 9,1 (A1; exacto, 9,07) y 10,2 (A2), medidos
+sobre `yn-a1a2.jsonl`; la presentación decía 10,0 para A1 y era un error. Lo más dudoso de A2 es
+«She is an engineer of hers.», «Jakarta is the capital of the Philippines.» y «This idea does not very good.». Fuera de
+todo oro, la cola trae oraciones igual de raras que el 077 no anotó, como «She bought at the market.».
+
+SLOR se midió leyendo de a un token con 20 alternativas, porque Ollama no da la probabilidad del texto de entrada: toda
+palabra fuera de las 20 cuesta lo mismo. Un modelo chico con la probabilidad exacta (GPT-2) podría medir mejor; no se
+probó porque hay que bajarlo. Lo que el 077 llama antinatural son oraciones de palabras comunes y bien armadas —«I eat
+food every morning»—, y la pregunta directa las ve mejor que la probabilidad.
+
+## Alcance
+
+- **Adentro**: R001 a R007: la lectura, el número, la marca, su evidencia, la lista para los jueces, el examen y la ficha.
+- **Afuera**: decidir si una oración está mal (FEAT-TRSEN); el modelo y dónde corre (FEAT-MLOCAL); y escribir el curso al
+  analizar ([F-HALL-R015](#F-HALL-R015)).
+
+## User Journeys
+
+### Journey[F-NATUR-J001] - Ordenar qué mirar primero
+**Validation**: AUTO_VALIDATED
+
+```yaml
+journeys:
+  - id: F-NATUR-J001
+    name: Ordenar qué mirar primero
+    flow:
+      - id: correr
+        action: "El operador corre analyze pidiendo sólo naturalness, con una versión del modelo que aprobó su examen"
+        gate: [F-NATUR-R006]
+        then: leer
+      - id: leer
+        action: "El informe lee la oración terminada de cada ejercicio y le da su número"
+        gate: [F-NATUR-R001, F-NATUR-R002]
+        outcomes:
+          - when: "La oración no tiene verbo o es una sola palabra"
+            then: no_alcanza
+          - when: "El número queda por encima del umbral de su nivel"
+            then: marcado
+          - when: "El número queda en el umbral o por debajo"
+            then: sin_marca
+      - id: no_alcanza
+        action: "El ejercicio queda sin número ni hallazgo de naturalness"
+        gate: [F-NATUR-R001]
+        result: success
+      - id: marcado
+        action: "El ejercicio tiene un hallazgo que sólo ordena, con su número, entra en la lista del nivel para los jueces y no cuenta como error"
+        gate: [F-NATUR-R003, F-NATUR-R004, F-NATUR-R005, F-NATUR-R007]
+        result: success
+      - id: sin_marca
+        action: "El ejercicio tiene su número publicado y ningún hallazgo de naturalness"
+        gate: [F-NATUR-R002]
+        result: success
+```
+
+## Open Questions
+
+<a id="DOUBT-NATUR-METODO"></a>
+### Doubt[DOUBT-NATUR-METODO] - ¿Preguntarle al modelo o calcular la probabilidad (SLOR)?
+**Status**: RESOLVED (2026-09-30)
+
+- [x] Opción A (recomendada): preguntarle al modelo local si un nativo lo diría así (R002). Aprueba el examen con el
+  modelo ya instalado: 51 de 186 en la cola del 5 %.
+- [ ] Opción B: SLOR, como dice la propuesta, con un modelo chico que dé la probabilidad exacta (GPT-2, unos 500 MB).
+  Con lo instalado dio 14 de 186, casi el azar; con GPT-2 no se midió.
+- [ ] Opción C: medir B con GPT-2 antes de elegir.
+
+**Answer**: **Opción A** (José, 30/9: «Dale con … el método nuevo de naturalidad»): se le pregunta al modelo si un
+nativo lo diría, con respuesta sí o no, y el número es ln(P(no)/P(sí)) del primer token. SLOR queda descartado y no se
+baja ningún modelo.
+
+<a id="DOUBT-NATUR-MARCA"></a>
+### Doubt[DOUBT-NATUR-MARCA] - ¿Sólo ordena, o también cuenta como error?
+**Status**: RESOLVED (2026-09-30)
+
+- [x] Opción A (recomendada): sólo ordena, como aprobó José en el brief 089.
+- [ ] Opción B: lo marcado cuenta como error, *baja*.
+
+**Answer**: **Opción A** (José, 30/9): sólo ordena, no cuenta errores. De los marcados, 48 de cada 100 están en algún
+oro del 077; como error, la mitad de lo que sumaría a «algún error» serían oraciones que el 077 dio por buenas.
+
+<a id="DOUBT-NATUR-UMBRAL"></a>
+### Doubt[DOUBT-NATUR-UMBRAL] - ¿El 5 % de cada corrida o un umbral fijo?
+**Status**: RESOLVED (2026-09-30)
+
+- [x] Opción A (recomendada): umbral fijo por nivel, el que marcaba el 5 % en la base del 29/9.
+- [ ] Opción B: el 5 % de cada nivel en cada corrida, como dice la propuesta.
+
+**Answer**: **Opción A** (José, 30/9): el umbral es fijo por nivel. Con B, cada tanda que arregla oraciones raras hace
+marcar otras que no cambiaron, y el antes y después (paquete F) mostraría marcas nuevas sin cambios.
+
+## References
+
+- **FEAT-HALL** — Familia, «sólo ordena», marcados, identidad y ficha: R003, R004, R007.
+- **FEAT-GRAMA** — La oración terminada que se lee: R001.
+- **FEAT-MLOCAL** — El modelo local, su versión, su examen y qué pasa si falta: R002, R006.
+- **FEAT-QINST, FEAT-JEXAM** — El conjunto declarado que se le pasa a un juez: R005.
+- **FEAT-TRSEN** — El juez que decide si una oración marcada está mal: R004.

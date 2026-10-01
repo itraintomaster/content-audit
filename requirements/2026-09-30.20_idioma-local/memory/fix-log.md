@@ -1,0 +1,16 @@
+# Fix Log
+
+Fixes that worked, with a short why. Future agents hitting the same
+symptom read this before trying new approaches. Newest entries on top.
+
+<!-- entries below -->
+
+2026-09-30 — architect — `patch propose` y `patch validate` no resuelven tipos (requiresInject, firmas, `extends`), pero sí
+  rechazan un `implements` hacia una interfaz que no está ni en sentinel.yaml ni en el mismo parche; y aceptan `_change: modify`
+  sobre un módulo que no existe. Para parches que se aplican en cadena: cada uno implementa sólo interfaces propias o ya aplicadas.
+
+2026-09-30 — architect — El buscador de Maven Central (`solrsearch`) daba 6.6 como última de `org.languagetool:language-en`;
+  `repo1.maven.org/…/maven-metadata.xml` dice 6.8 (5/5/2026). Para la versión vigente, leer el maven-metadata.xml.
+
+2026-09-30 — architect — En el YAML de un parche, un campo llamado `yes` o `no` se lee como booleano (YAML 1.1): se usaron
+  `yesProbability` y `noProbability`.

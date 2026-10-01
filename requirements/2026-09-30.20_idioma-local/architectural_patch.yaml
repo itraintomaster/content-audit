@@ -1,0 +1,371 @@
+code: FEAT-MLOCAL
+description: |
+  FEAT-MLOCAL, paquete B de la ronda 2: las herramientas de idioma que corren en la máquina y lo común a grammar, naturalness y near-duplicates. En audit-domain, el paquete localtools (la herramienta, su versión y si se puede usar, los tres puertos —LanguageTool, pregunta de sí o no y vector de una oración—, la decisión de publicar, la tarjeta de la ficha y lo que queda en el informe) y localtoolsengine (la decisión, contra el registro de exámenes). Un módulo nuevo, local-language-infrastructure, con LanguageTool 6.8 dentro del proceso y los modelos de Ollama detrás de una fábrica que sólo habla con esta máquina. Lo compartido (ficha, ranuras de diagnóstico, runner, Main) está en ganchos-B.md.
+modules:
+- name: audit-domain
+  packages:
+  - name: localtools
+    description: |
+      Lo común a los analizadores de idioma que dependen de una herramienta que corre en la máquina (FEAT-MLOCAL): qué herramienta es, en qué versión está y si se puede usar ahora; sus tres puertos (LanguageTool en una variante del inglés, una pregunta de sí o no y el vector de una oración); la decisión de publicar o dejar sin evaluar; la tarjeta que va en la ficha; y lo que cada corrida deja en el informe. No sabe de LanguageTool ni de Ollama: esos son los adaptadores de local-language-infrastructure. Los números de modelo se guardan en el libro de evaluaciones (FEAT-EVCOST), con la versión examinada —modelo y método— en el id del evaluador, así que una versión nueva no reusa nada de otra (F-MLOCAL-R002 inv. 2).
+    visibility: public
+    models:
+    - name: LocalToolStatus
+      type: record
+      fields:
+      - name: tool
+        type: String
+        description: "Qué herramienta es, como la lee una persona: «LanguageTool»\
+          , «llama3:8b en Ollama»."
+      - name: version
+        type: String
+        description: "Versión instalada, la que decide el examen: «6.8» o el modelo\
+          \ con su huella de Ollama, «llama3:8b@365c0bd3c000». Null si no está disponible."
+      - name: available
+        type: boolean
+        description: Si se puede usar ahora. Una dirección de Ollama que no es de
+          esta máquina da false (F-MLOCAL-R001).
+      - name: unavailableReason
+        type: String
+        description: "Por qué no se puede usar, en castellano. Null si está disponible."
+      - name: installHint
+        type: String
+        description: "Cómo se instala o se levanta, para el mensaje de F-MLOCAL-R003:\
+          \ «ollama pull llama3:8b»."
+      _change: add
+    - name: LocalToolExamState
+      type: enum
+      fields:
+      - name: APPROVED
+        description: "La versión examinada rindió su examen y lo aprobó: publica (F-MLOCAL-R006)."
+      - name: FAILED
+        description: "Rindió y reprobó: sus ejercicios quedan sin evaluar, con el\
+          \ motivo."
+      - name: NOT_TAKEN
+        description: "Esa versión no tiene un examen registrado: sus ejercicios quedan\
+          \ sin evaluar, con el motivo."
+      _change: add
+    - name: LocalToolCard
+      type: record
+      fields:
+      - name: status
+        type: LocalToolStatus
+      - name: examinedVersion
+        type: String
+        description: "Lo que rinde examen: la versión de la herramienta y la del mé\
+          todo del analizador (la pregunta, el prefijo, el filtro), «llama3:8b@365c0bd3c000\
+          \ · native-yes-no-1». Cambiar cualquiera de las dos es una versión nueva."
+      - name: examState
+        type: LocalToolExamState
+      - name: examSummary
+        type: String
+        description: "El resultado del examen de la versión instalada, en una línea:\
+          \ «51 de 186 en la cola del 5 %, aprobado el 30/9». Null si no rindió."
+      _change: add
+    - name: LocalToolGateDecision
+      type: record
+      fields:
+      - name: publishes
+        type: boolean
+        description: True si el analizador evalúa y publica sus hallazgos en esta
+          corrida.
+      - name: status
+        type: LocalToolStatus
+        description: "El sondeo de la herramienta que tomó la decisión, una vez por\
+          \ corrida."
+      - name: examinedVersion
+        type: String
+        description: "La versión de la herramienta y la del método: la clave del examen\
+          \ y, en los de modelo, parte del id del evaluador en el libro. Null si la\
+          \ herramienta no está disponible."
+      - name: examState
+        type: LocalToolExamState
+      - name: examRun
+        type: boolean
+        description: "La corrida es el examen de la versión (política EXAM): publica\
+          \ aunque la versión no esté aprobada, porque es lo que se mide."
+      - name: reason
+        type: String
+        description: "Por qué no publica, en castellano, para el informe: no disponible,\
+          \ reprobada o sin examen. Null si publica."
+      _change: add
+    - name: LocalToolRunDiagnosis
+      type: record
+      fields:
+      - name: analyzer
+        type: String
+        description: Nombre canónico del analizador (F-HALL-R005). Es la identidad
+          de la fila al comparar dos informes.
+      - name: status
+        type: LocalToolStatus
+        description: "Con qué herramienta y versión midió esta corrida (F-MLOCAL-R002):\
+          \ si un hallazgo cambia sin que cambie su ejercicio, la diferencia está\
+          \ acá (inv. 3)."
+      - name: examinedVersion
+        type: String
+      - name: examState
+        type: LocalToolExamState
+      - name: published
+        type: boolean
+      - name: reason
+        type: String
+        description: "El motivo a la vista cuando no publicó (F-MLOCAL-R003 inv. 2,\
+          \ R006). Null si publicó."
+      - name: coverage
+        type: EvaluationCoverage
+        description: "Cuántos números salieron del libro y cuántos se pidieron al\
+          \ modelo en esta corrida. Null en grammar, que no guarda números."
+      _change: add
+    - name: LocalToolUnavailableException
+      type: exception
+      fields:
+      - name: analyzerName
+        type: String
+      - name: requiredTool
+        type: String
+        description: "La herramienta con la versión que pide: «LanguageTool 6.8»,\
+          \ «llama3:8b en Ollama»."
+      - name: installHint
+        type: String
+      message: "Analyzer '%s' needs %s, which is not available: %s."
+      _change: add
+      extends: RuntimeException
+    - name: EnglishVariant
+      type: enum
+      fields:
+      - name: AMERICAN
+      - name: BRITISH
+      _change: add
+    - name: GrammarMatch
+      type: record
+      fields:
+      - name: ruleId
+        type: String
+        description: "La regla de LanguageTool que marcó, por ejemplo EXPLAIN_TO o\
+          \ MORFOLOGIK_RULE_EN_US."
+      - name: categoryId
+        type: String
+        description: "Su categoría en LanguageTool: GRAMMAR, TYPOS, CASING, STYLE…\
+          ; el filtro de Gramática decide por ésta (F-GRAMA-R002)."
+      - name: start
+        type: int
+      - name: end
+        type: int
+      - name: message
+        type: String
+      - name: suggestions
+        type: List<String>
+        description: "Las primeras sugerencias de LanguageTool, en su orden."
+      _change: add
+    - name: YesNoProbabilities
+      type: record
+      fields:
+      - name: yesProbability
+        type: double
+        description: "Probabilidad del primer token de la respuesta, sumando sus formas\
+          \ («yes», «Yes», « yes», «y»)."
+      - name: noProbability
+        type: double
+        description: "Lo mismo para «no». Lo que no es ni sí ni no queda afuera; si\
+          \ las dos dan 0, la respuesta no sirve."
+      _change: add
+    - name: SentenceEmbedding
+      type: record
+      fields:
+      - name: values
+        type: List<Double>
+        description: "El vector de la oración tal como lo devuelve el modelo, sin\
+          \ normalizar."
+      _change: add
+    interfaces:
+    - name: LocalTool
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "status(): LocalToolStatus"
+      _change: add
+    - name: GrammarChecker
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "check(String sentence,EnglishVariant variant): List<GrammarMatch>"
+      _change: add
+      extends:
+      - LocalTool
+    - name: YesNoModel
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "ask(String system,String question): YesNoProbabilities"
+      _change: add
+      extends:
+      - LocalTool
+    - name: EmbeddingModel
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "embed(String text): SentenceEmbedding"
+      _change: add
+      extends:
+      - LocalTool
+    - name: LocalToolGate
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "decide(String analyzerName,LocalTool tool,String methodId,EvaluationRunPolicy\
+          \ policy): LocalToolGateDecision"
+      - signature: "card(String analyzerName,LocalTool tool,String methodId): LocalToolCard"
+      _change: add
+    _change: add
+  - name: localtoolsengine
+    description: |
+      La decisión de publicar de los tres analizadores de idioma, en un solo lugar: herramienta disponible y versión aprobada en su examen, o corrida de examen. Lee el registro de exámenes por versión de los jueces (FEAT-JEXAM), con el nombre del analizador y la versión examinada: B no declara otro registro. Sólo la raíz de composición la construye.
+    visibility: public
+    implementations:
+    - name: DefaultLocalToolGate
+      requiresInject:
+      - name: examRegistry
+        type: JudgeExamRegistry
+        description: "El registro de exámenes por versión de FEAT-JEXAM (ronda 1,\
+          \ paquete C): latest(nombre del analizador, versión examinada)."
+      visibility: public
+      implements:
+      - LocalToolGate
+      _change: add
+    allowedClients:
+    - audit-cli
+    _change: add
+  _change: modify
+- name: audit-cli
+  dependsOn:
+  - local-language-infrastructure
+  _change: modify
+- name: local-language-infrastructure
+  description: |
+    Las herramientas de idioma que corren en esta máquina (FEAT-MLOCAL): LanguageTool dentro del proceso y los modelos de Ollama, por HTTP a una dirección local. Ningún texto del curso sale de la máquina: una dirección de Ollama que no es local deja los modelos no disponibles, con el motivo, y nunca abre una conexión (F-MLOCAL-R001). Detalle de la raíz de composición: allowedClients=[audit-cli].
+  dependsOn:
+  - audit-domain
+  models:
+  - name: OllamaEndpoint
+    type: record
+    fields:
+    - name: baseUrl
+      type: String
+      description: "Dónde escucha Ollama; por omisión http://127.0.0.1:11434. Sólo\
+        \ localhost, 127.0.0.0/8 o ::1."
+    - name: timeoutSeconds
+      type: int
+      description: Tope de cada consulta. El sondeo de disponibilidad usa como mucho
+        2 segundos.
+    _change: add
+  interfaces:
+  - name: OllamaModelFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "yesNoModel(OllamaEndpoint endpoint,String model): YesNoModel"
+    - signature: "embeddingModel(OllamaEndpoint endpoint,String model): EmbeddingModel"
+    _change: add
+  allowedClients:
+  - audit-cli
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultOllamaModelFactory
+    suppressed: false
+    interface: OllamaModelFactory
+  uses:
+  - jackson-databind
+  - languagetool
+  packages:
+  - name: languagetool
+    description: |
+      LanguageTool 6.8 dentro del proceso: dos JLanguageTool, uno americano y otro británico, creados la primera vez que se usan y reusados en toda la corrida (unos 10 segundos el curso entero). Sólo las reglas que vienen prendidas y ninguna remota: no hay servicio de LanguageTool, ni público ni propio (F-MLOCAL-R001). Con Java 24 o más sube jdk.xml.totalEntitySizeLimit antes de crear el primero, si nadie lo fijó. status() no carga nada: dice la versión de la biblioteca. Una clase sola, sin fábrica: la construye la raíz de composición.
+    visibility: public
+    implementations:
+    - name: LanguageToolGrammarChecker
+      visibility: public
+      implements:
+      - GrammarChecker
+      _change: add
+    _change: add
+  - name: ollama
+    description: |
+      Adaptadores de Ollama 0.34: /api/tags para saber si el modelo está y con qué huella, /api/generate con logprobs de un token para la pregunta de sí o no, y /api/embed para el vector. Sólo la fábrica es pública; el cliente HTTP y los dos adaptadores son del paquete. El sondeo se hace una vez por proceso.
+    visibility: public
+    models:
+    - name: OllamaTokenProbability
+      type: record
+      fields:
+      - name: token
+        type: String
+      - name: logprob
+        type: double
+      visibility: internal
+      _change: add
+    interfaces:
+    - name: OllamaApi
+      sealed: false
+      exposes:
+      - signature: "probe(String model): LocalToolStatus"
+      - signature: "firstTokenProbabilities(String model,String system,String prompt):\
+          \ List<OllamaTokenProbability>"
+      - signature: "embed(String model,String input): List<Double>"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultOllamaModelFactory
+      visibility: public
+      implements:
+      - OllamaModelFactory
+      _change: add
+    - name: HttpOllamaApi
+      requiresInject:
+      - name: endpoint
+        type: OllamaEndpoint
+      implements:
+      - OllamaApi
+      _change: add
+    - name: OllamaYesNoModel
+      requiresInject:
+      - name: api
+        type: OllamaApi
+      - name: model
+        type: String
+      implements:
+      - YesNoModel
+      _change: add
+    - name: OllamaEmbeddingModel
+      requiresInject:
+      - name: api
+        type: OllamaApi
+      - name: model
+        type: String
+      implements:
+      - EmbeddingModel
+      _change: add
+    _change: add
+  _change: add
+features:
+- id: FEAT-MLOCAL
+  code: F-MLOCAL
+dependencies:
+- alias: languagetool
+  artifact: org.languagetool:language-en:6.8
+  scope: compile
+  provides:
+  - type: JLanguageTool
+    package: org.languagetool
+  - type: Language
+    package: org.languagetool
+  - type: AmericanEnglish
+    package: org.languagetool.language
+  - type: BritishEnglish
+    package: org.languagetool.language
+  - type: RuleMatch
+    package: org.languagetool.rules
+  - type: Rule
+    package: org.languagetool.rules
+  - type: Category
+    package: org.languagetool.rules
+  - type: CategoryId
+    package: org.languagetool.rules

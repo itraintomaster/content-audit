@@ -1,0 +1,213 @@
+code: FEAT-GRAMA
+description: |
+  FEAT-GRAMA, paquete B de la ronda 2: el analizador grammar. La oración terminada que lee (paquete finishedsentence, que también lee naturalness), el filtro de R002, el signo final de R003, la gravedad y la resolución de R004 y R005, su diagnóstico tipado y su proveedor con ficha. El puerto GrammarChecker, su adaptador de LanguageTool 6.8 y la dependencia son de FEAT-MLOCAL: este parche se aplica después del suyo.
+modules:
+- name: audit-domain
+  packages:
+  - name: finishedsentence
+    description: |
+      La oración terminada (F-GRAMA-R001): lo que el alumno lee después de contestar, una por respuesta aceptada —en opción múltiple, con la correcta—, sin la pista, con las contracciones pegadas a su palabra y los signos sin espacio antes, y sin la oración de partida cuando la respuesta es la oración entera. La leen grammar y naturalness. No es la oración plana de FEAT-QSENT, que sigue igual porque de ella sale el largo de oración (F-HALL-R013), ni el ejercicio terminado de FEAT-DUPEX, que conserva la oración de partida.
+    visibility: public
+    models:
+    - name: AnswerSpan
+      type: record
+      fields:
+      - name: start
+        type: int
+        description: Posición del primer carácter de la respuesta dentro de la oración
+          terminada.
+      - name: end
+        type: int
+        description: Posición siguiente al último carácter de la respuesta.
+      - name: text
+        type: String
+        description: La respuesta tal como quedó escrita en la oración.
+      _change: add
+    - name: FinishedSentence
+      type: record
+      fields:
+      - name: text
+        type: String
+        description: La oración como la lee el alumno después de contestar.
+      - name: answerIndex
+        type: int
+        description: "Qué combinación de respuestas aceptadas es: 0 es la primera\
+          \ de cada hueco; en opción múltiple, la correcta."
+      - name: answers
+        type: List<AnswerSpan>
+        description: "Dónde quedó cada respuesta dentro de text: con esto se sabe\
+          \ si una marca toca una respuesta aceptada o repite lo pegado al hueco (F-GRAMA-R004)."
+      _change: add
+    interfaces:
+    - name: FinishedSentenceReader
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "read(AuditableQuiz quiz,SentenceMode mode): List<FinishedSentence>"
+      _change: add
+    implementations:
+    - name: DefaultFinishedSentenceReader
+      visibility: public
+      domainLinks:
+      - term: Oración de quiz
+        role: transforms
+      glossarySuggestions:
+      - name: Oración terminada
+        technicalName: FinishedSentence
+        kind: value-object-candidate
+        basedOn: audit-domain/DefaultFinishedSentenceReader
+        derivedFrom:
+        - Oración de quiz
+        rationale: |
+          FEAT-GRAMA la nombra así: lo que el alumno lee después de contestar, una por respuesta aceptada. La leen Gramática y Naturalidad, y no es la oración plana ni el ejercicio terminado de Duplicados.
+      implements:
+      - FinishedSentenceReader
+      _change: add
+    _change: add
+  - name: grammar
+    description: |
+      El analizador grammar (FEAT-GRAMA): pasa LanguageTool en inglés americano y en británico por cada oración terminada, se queda con lo que marcan las dos en el mismo lugar y sólo si es gramática u ortografía (R002), suma la regla propia del signo final (R003) y le da a cada hallazgo gravedad y resolución según dónde está el error (R004, R005). Familia errores, evalúa el ejercicio, costo instantáneo, así que entra en la corrida base (F-MLOCAL-R004). Sólo los registros y el proveedor son públicos; el analizador y sus reglas son del paquete.
+    visibility: public
+    models:
+    - name: GrammarIssuePlacement
+      type: enum
+      fields:
+      - name: GLUED_REPEAT
+        description: "La respuesta aceptada repite palabras ya pegadas al hueco: quien\
+          \ sigue la pista no puede acertar. Bloqueante, se arregla con regla."
+      - name: ACCEPTED_ANSWER
+        description: "Lo marcado toca una respuesta aceptada. Alta, a la mesa."
+      - name: FIXED_TEXT
+        description: "Lo marcado está sólo en el texto fijo. Media, a la mesa."
+      - name: PUNCTUATION
+        description: "Falta el signo final o el espacio después de un punto. Baja,\
+          \ se arregla con regla."
+      _change: add
+    - name: GrammarIssue
+      type: record
+      fields:
+      - name: rule
+        type: String
+        description: "La regla de la ficha: english-error (R002) o final-punctuation\
+          \ (R003)."
+      - name: toolRule
+        type: String
+        description: "La regla de LanguageTool; vacía en el signo final. Con marked,\
+          \ es lo que identifica el hallazgo en el ejercicio (F-GRAMA-R006)."
+      - name: marked
+        type: String
+        description: "El texto marcado, tal cual está en la oración."
+      - name: sentence
+        type: String
+        description: "La primera oración terminada donde aparece; si dos respuestas\
+          \ aceptadas muestran lo mismo, es un solo problema."
+      - name: placement
+        type: GrammarIssuePlacement
+      - name: severity
+        type: FindingSeverity
+      - name: resolution
+        type: FindingResolution
+      - name: explanation
+        type: String
+        description: "Una línea en castellano para la evidencia: «teached → taught\
+          \ (ortografía)»."
+      _change: add
+    - name: GrammarDiagnosis
+      type: record
+      fields:
+      - name: sentences
+        type: List<String>
+        description: "Las oraciones terminadas que leyó, en orden."
+      - name: issues
+        type: List<GrammarIssue>
+        description: "Un problema por regla de LanguageTool y texto marcado, en el\
+          \ orden de la oración."
+      - name: score
+        type: double
+        description: "0 con al menos un problema, 1 sin ninguno (F-GRAMA-R006, F-HALL-R004)."
+      _change: add
+    interfaces:
+    - name: GrammarMatchFilter
+      sealed: false
+      exposes:
+      - signature: "keep(List<GrammarMatch> american,List<GrammarMatch> british):\
+          \ List<GrammarMatch>"
+      visibility: internal
+      _change: add
+    - name: FinalPunctuationCheck
+      sealed: false
+      exposes:
+      - signature: "check(FinishedSentence sentence,List<NlpToken> tokens): Optional<GrammarIssue>"
+      visibility: internal
+      _change: add
+    - name: GrammarIssueClassifier
+      sealed: false
+      exposes:
+      - signature: "classify(GrammarMatch match,FinishedSentence sentence): GrammarIssue"
+      visibility: internal
+      _change: add
+    - name: GrammarConfig
+      sealed: false
+      exposes:
+      - signature: "methodId(): String"
+      - signature: "keptCategories(): Set<String>"
+      - signature: "keptRules(): Set<String>"
+      - signature: "excludedRules(): Set<String>"
+      visibility: internal
+      _change: add
+      extends:
+      - SelfDescribingConfig
+    implementations:
+    - name: GrammarAnalyzerProvider
+      requiresInject:
+      - name: grammarChecker
+        type: GrammarChecker
+      - name: sentenceReader
+        type: FinishedSentenceReader
+      - name: localToolGate
+        type: LocalToolGate
+      visibility: public
+      implements:
+      - AnalyzerProvider
+      _change: add
+    - name: GrammarAnalyzer
+      requiresInject:
+      - name: grammarChecker
+        type: GrammarChecker
+      - name: sentenceReader
+        type: FinishedSentenceReader
+      - name: matchFilter
+        type: GrammarMatchFilter
+      - name: finalPunctuation
+        type: FinalPunctuationCheck
+      - name: issueClassifier
+        type: GrammarIssueClassifier
+      - name: gateDecision
+        type: LocalToolGateDecision
+      implements:
+      - ContentAnalyzer
+      _change: add
+    - name: DefaultGrammarMatchFilter
+      requiresInject:
+      - name: config
+        type: GrammarConfig
+      implements:
+      - GrammarMatchFilter
+      _change: add
+    - name: DefaultFinalPunctuationCheck
+      implements:
+      - FinalPunctuationCheck
+      _change: add
+    - name: DefaultGrammarIssueClassifier
+      implements:
+      - GrammarIssueClassifier
+      _change: add
+    - name: DefaultGrammarConfig
+      implements:
+      - GrammarConfig
+      _change: add
+    _change: add
+  _change: modify
+features:
+- id: FEAT-GRAMA
+  code: F-GRAMA

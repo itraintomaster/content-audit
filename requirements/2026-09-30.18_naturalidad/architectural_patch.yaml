@@ -1,0 +1,134 @@
+code: FEAT-NATUR
+description: |
+  FEAT-NATUR, paquete B de la ronda 2: el analizador naturalness. Le pregunta a llama3 8B en Ollama, por cada oración terminada, si un nativo la diría, guarda el número en el libro de evaluaciones con la versión del modelo, marca lo que pasa el umbral fijo de su nivel con un hallazgo que sólo ordena y publica la lista de cada nivel para los jueces. Usa YesNoModel y LocalToolGate de FEAT-MLOCAL y FinishedSentenceReader de FEAT-GRAMA: se aplica después de los dos.
+modules:
+- name: audit-domain
+  packages:
+  - name: naturalness
+    description: |
+      El analizador naturalness (FEAT-NATUR): una consulta de un token por oración terminada, «¿un nativo lo diría?», y el número es ln(P(no)/P(sí)). El número se guarda en el libro de evaluaciones (FEAT-EVCOST) con la versión del modelo y de la pregunta en el id del evaluador, y se reusa mientras no cambien (F-MLOCAL-R002 inv. 2). Sólo ordena: nunca baja el puntaje ni cuenta como error (F-NATUR-R003). Familia errores, evalúa el ejercicio, costo modelo local, así que no entra en la corrida base. Sólo los registros y el proveedor son públicos.
+    visibility: public
+    models:
+    - name: NaturalnessDiagnosis
+      type: record
+      fields:
+      - name: sentence
+        type: String
+        description: "La oración terminada con la primera respuesta aceptada, la que\
+          \ se le preguntó al modelo."
+      - name: level
+        type: String
+        description: "El nivel del ejercicio, el de su umbral."
+      - name: number
+        type: double
+        description: "ln(P(no)/P(sí)): 0 es «tanto sí como no»; cuanto más alto, má\
+          s duda (F-NATUR-R002)."
+      - name: threshold
+        type: Double
+        description: "El umbral fijo del nivel para esta versión del modelo. Null\
+          \ si el nivel todavía no lo tiene: el número se publica y no se marca."
+      - name: marked
+        type: boolean
+      - name: reused
+        type: boolean
+        description: Si el número salió del libro en vez de una consulta nueva.
+      _change: add
+    - name: NaturalnessLevelQueue
+      type: record
+      fields:
+      - name: level
+        type: String
+        domainLinks:
+        - term: Nivel CEFR
+          role: carries
+      - name: threshold
+        type: Double
+      - name: markedQuizIds
+        type: List<String>
+        description: "Los marcados del nivel, del más dudoso al menos dudoso y, a\
+          \ igual número, en el orden del curso. Escrita un id por línea es un conjunto\
+          \ válido para cualquier juez (F-NATUR-R005, F-QINST-R019)."
+      _change: add
+    - name: NaturalnessQueueDiagnosis
+      type: record
+      fields:
+      - name: examinedVersion
+        type: String
+        description: "La versión del modelo y de la pregunta que dio los números,\
+          \ la misma del examen."
+      - name: levels
+        type: List<NaturalnessLevelQueue>
+        description: "Una por nivel, en el orden del curso."
+      _change: add
+    interfaces:
+    - name: NaturalnessScorer
+      sealed: false
+      exposes:
+      - signature: "number(String payload): Optional<Double>"
+      visibility: internal
+      _change: add
+    - name: NaturalnessConfig
+      sealed: false
+      exposes:
+      - signature: "methodId(): String"
+      - signature: "system(): String"
+      - signature: "question(String sentence): String"
+      - signature: "thresholdFor(String toolVersion,String level): Optional<Double>"
+      visibility: internal
+      _change: add
+      extends:
+      - SelfDescribingConfig
+    implementations:
+    - name: NaturalnessAnalyzerProvider
+      requiresInject:
+      - name: yesNoModel
+        type: YesNoModel
+      - name: sessionFactory
+        type: EvaluationSessionFactory
+      - name: sentenceReader
+        type: FinishedSentenceReader
+      - name: localToolGate
+        type: LocalToolGate
+      visibility: public
+      implements:
+      - AnalyzerProvider
+      _change: add
+    - name: NaturalnessAnalyzer
+      requiresInject:
+      - name: session
+        type: EvaluationSession
+      - name: sentenceReader
+        type: FinishedSentenceReader
+      - name: scorer
+        type: NaturalnessScorer
+      - name: config
+        type: NaturalnessConfig
+      - name: gateDecision
+        type: LocalToolGateDecision
+      implements:
+      - ContentAnalyzer
+      _change: add
+    - name: NaturalnessEvaluator
+      requiresInject:
+      - name: yesNoModel
+        type: YesNoModel
+      - name: config
+        type: NaturalnessConfig
+      - name: examinedVersion
+        type: String
+      implements:
+      - Evaluator
+      _change: add
+    - name: DefaultNaturalnessScorer
+      implements:
+      - NaturalnessScorer
+      _change: add
+    - name: DefaultNaturalnessConfig
+      implements:
+      - NaturalnessConfig
+      _change: add
+    _change: add
+  _change: modify
+features:
+- id: FEAT-NATUR
+  code: F-NATUR
