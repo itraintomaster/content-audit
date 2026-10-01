@@ -1509,18 +1509,19 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
     }
 
     private int printAnalyzerListTable(List<AnalyzerDescriptor> descriptors) {
-        System.out.println("┌──────────────────────────────────────────┬──────────────────────────┬────────────┬──────────────┬──────────────────────────────────────┐");
-        System.out.println("│ Name                                     │ Nombre                   │ Family     │ Cost         │ Question                             │");
-        System.out.println("├──────────────────────────────────────────┼──────────────────────────┼────────────┼──────────────┼──────────────────────────────────────┤");
+        // F-FILAS-R001: the Spanish names say the problem or the good, up to 47 characters; they fit whole.
+        System.out.println("┌──────────────────────────────────────────┬──────────────────────────────────────────────────┬────────────┬──────────────┬──────────────────────────────────────┐");
+        System.out.println("│ Name                                     │ Nombre                                           │ Family     │ Cost         │ Question                             │");
+        System.out.println("├──────────────────────────────────────────┼──────────────────────────────────────────────────┼────────────┼──────────────┼──────────────────────────────────────┤");
         for (AnalyzerDescriptor d : descriptors) {
-            System.out.printf("│ %-40s │ %-24s │ %-10s │ %-12s │ %-36s │%n",
+            System.out.printf("│ %-40s │ %-48s │ %-10s │ %-12s │ %-36s │%n",
                     truncate(d.getName(), 40),
-                    truncate(d.getDisplayName() != null ? d.getDisplayName() : "", 24),
+                    truncate(d.getDisplayName() != null ? d.getDisplayName() : "", 48),
                     d.getFamily() != null ? d.getFamily().name() : "",
                     d.getCost() != null ? d.getCost().name() : "",
                     truncate(d.getQuestion(), 36));
         }
-        System.out.println("└──────────────────────────────────────────┴──────────────────────────┴────────────┴──────────────┴──────────────────────────────────────┘");
+        System.out.println("└──────────────────────────────────────────┴──────────────────────────────────────────────────┴────────────┴──────────────┴──────────────────────────────────────┘");
         return 0;
     }
 
@@ -1547,6 +1548,7 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         System.out.println("Target:      " + (d.getTarget() != null ? d.getTarget().name() : ""));
         System.out.println("Description: " + d.getDescription());
         System.out.println("Question:    " + nullToEmpty(d.getQuestion()));
+        System.out.println("Explanation: " + nullToEmpty(d.getExplanation()));
         System.out.println("Reads:       " + nullToEmpty(d.getReads()));
         System.out.println("Goal:        " + nullToEmpty(d.getGoal()));
         System.out.println("Family:      " + (d.getFamily() != null ? d.getFamily().name() : ""));
@@ -1621,6 +1623,8 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         Map<String, Object> m = new LinkedHashMap<>();
         m.put("name", d.getName());
         m.put("displayName", d.getDisplayName());
+        // F-FILAS-R004: the sentence that explains its row of the before and after table.
+        m.put("explanation", d.getExplanation());
         m.put("target", d.getTarget() != null ? d.getTarget().name() : null);
         m.put("description", d.getDescription());
         m.put("question", d.getQuestion());

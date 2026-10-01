@@ -57,7 +57,7 @@ class SingleAnswerAnalyzer implements ContentAnalyzer {
     static final String ANALYZER_NAME = "single-answer";
 
     /** F-RONDA1-R004: its name in Spanish. */
-    static final String DISPLAY_NAME = "Una sola respuesta";
+    static final String DISPLAY_NAME = "Más de una respuesta válida";
 
     static final String DESCRIPTION = "Lists, with what the student sees before answering, the other answers that "
             + "would also be right and the corrector rejects, dropping the forms the corrector already accepts";
@@ -71,7 +71,7 @@ class SingleAnswerAnalyzer implements ContentAnalyzer {
     /** F-UNICA-R003 / R007: the analyzer of package A that fixes an offered answer with a rule. */
     static final String ANSWER_COMPLETENESS = "answer-completeness";
 
-    static final String ANSWER_COMPLETENESS_DISPLAY_NAME = "Respuestas completas";
+    static final String ANSWER_COMPLETENESS_DISPLAY_NAME = "Exige una forma o rechaza una respuesta válida";
 
     private final JudgeSessions opened;
 

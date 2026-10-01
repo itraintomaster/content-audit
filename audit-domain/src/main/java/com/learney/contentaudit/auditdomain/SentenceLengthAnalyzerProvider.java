@@ -53,7 +53,8 @@ public class SentenceLengthAnalyzerProvider implements AnalyzerProvider {
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
-                AnalysisCost.INSTANT, "Largo de oración", List.of(), null);
+                AnalysisCost.INSTANT, "Oraciones con el largo de su nivel", List.of(),
+                "Puntaje de 0 a 100: qué tanto las oraciones tienen el largo que corresponde a su nivel.");
     }
 
     @Override

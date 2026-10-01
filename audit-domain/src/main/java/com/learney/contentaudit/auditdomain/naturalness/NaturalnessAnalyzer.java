@@ -75,7 +75,7 @@ class NaturalnessAnalyzer implements ContentAnalyzer {
 
     static final String ANALYZER_NAME = "naturalness";
 
-    static final String DISPLAY_NAME = "Naturalidad";
+    static final String DISPLAY_NAME = "Oración poco natural";
 
     static final String DESCRIPTION = "Le pregunta a un modelo si un nativo diría así la oración terminada de cada "
             + "ejercicio y marca las más dudosas de cada nivel para que los jueces empiecen por ahí; no cuenta errores";

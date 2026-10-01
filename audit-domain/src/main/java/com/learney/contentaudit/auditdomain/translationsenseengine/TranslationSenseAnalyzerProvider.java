@@ -36,7 +36,7 @@ import javax.annotation.processing.Generated;
 public class TranslationSenseAnalyzerProvider implements AnalyzerProvider {
 
     /** F-RONDA1-R004: the Spanish name next to the unique one. */
-    static final String DISPLAY_NAME = "Traducción y sentido";
+    static final String DISPLAY_NAME = "Traducción que no corresponde";
 
     /** F-RONDA2-R008: its scores below 1 become TRANSLATION_SENSE tasks on the exercise. */
     static final String TASK_KIND = "TRANSLATION_SENSE";
@@ -106,7 +106,9 @@ public class TranslationSenseAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL, FindingResolution.RANK_ONLY),
                 AnalysisCost.PAID_MODEL,
-                DISPLAY_NAME, List.of(), null);
+                DISPLAY_NAME, List.of(),
+                "Ejercicios cuyo inglés y traducción no dicen lo mismo, que un nativo no diría así, con palabras "
+                        + "que no van juntas o con un registro que no es del nivel.");
     }
 
     /**

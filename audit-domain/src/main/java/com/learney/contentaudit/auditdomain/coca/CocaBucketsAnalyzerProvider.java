@@ -63,7 +63,8 @@ public class CocaBucketsAnalyzerProvider implements AnalyzerProvider {
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.MILESTONE, AuditTarget.COURSE),
                 List.of(FindingResolution.RANK_ONLY),
-                AnalysisCost.INSTANT, "Bandas de frecuencia", List.of(), null);
+                AnalysisCost.INSTANT, "Palabras de la frecuencia del nivel", List.of(),
+                "Puntaje de 0 a 100: qué tanto las palabras de cada nivel son tan comunes como corresponde.");
     }
 
     /** A fresh analyzer per run, with its stateless collaborators built here, not in Main (P4). */

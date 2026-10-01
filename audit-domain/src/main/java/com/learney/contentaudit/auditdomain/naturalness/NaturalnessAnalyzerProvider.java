@@ -93,7 +93,9 @@ public class NaturalnessAnalyzerProvider implements AnalyzerProvider {
                 AnalysisCost.PAID_MODEL,
                 NaturalnessAnalyzer.DISPLAY_NAME,
                 List.of(localToolGate.card(NaturalnessAnalyzer.ANALYZER_NAME, yesNoModel, config.methodId()),
-                        localToolGate.alternativeCard(NaturalnessAnalyzer.ANALYZER_NAME, alternativeJudge)), null);
+                        localToolGate.alternativeCard(NaturalnessAnalyzer.ANALYZER_NAME, alternativeJudge)),
+                "Ejercicios cuya oración terminada un modelo duda que un nativo diría así. Sólo ordena qué revisar "
+                        + "primero: no cuenta como error.");
     }
 
     @Override

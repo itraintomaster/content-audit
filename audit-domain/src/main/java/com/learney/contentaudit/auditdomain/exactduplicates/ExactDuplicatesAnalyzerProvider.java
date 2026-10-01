@@ -60,7 +60,8 @@ public class ExactDuplicatesAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
                 AnalysisCost.INSTANT,
-                "Duplicados exactos", List.of(), null);
+                "Ejercicio repetido igual", List.of(),
+                "Ejercicios que, terminados, dicen exactamente lo mismo que otro anterior del mismo tema.");
     }
 
     @Override

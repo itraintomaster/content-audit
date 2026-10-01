@@ -17,6 +17,7 @@ import com.learney.contentaudit.revisiondomain.comparison.GoalChange;
 import com.learney.contentaudit.revisiondomain.comparison.GoalStatus;
 import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
 import com.learney.contentaudit.revisiondomain.comparison.MeasureChange;
+import com.learney.contentaudit.revisiondomain.comparison.RowExample;
 import com.learney.contentaudit.revisiondomain.comparison.RowGoalStatus;
 import com.learney.contentaudit.revisiondomain.comparison.RowValue;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
@@ -36,7 +37,9 @@ import javax.annotation.processing.Generated;
  * were sealed, the measure changes apart, what returns with its reason, the broken floors with the changes that
  * break them, and the rows of the course and the levels -- with the ones of topics and knowledges that change or
  * do not hold. The change of a score is written in points with its sign and the word, «−0,5 puntos», never with
- * «%»; a measure change, «cambio de medida: 73,92 → 73,86».
+ * «%»; a measure change, «cambio de medida: 73,92 → 73,86». In JSON every row carries, F-FILAS-R006, its visible
+ * name, which way is better, the verdict of its change, its explanation and its example -- the example written as
+ * null when there is none, so the app never guesses whether it is missing.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -47,7 +50,17 @@ public class DefaultBatchComparisonFormatter implements BatchComparisonFormatter
             .registerModule(new JavaTimeModule())
             .registerModule(new Jdk8Module())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+            .addMixIn(ComparisonRow.class, RowFields.class);
+
+    /** F-FILAS-R006: the explanation and the example of a row are written even when they are null. */
+    abstract static class RowFields {
+        @JsonInclude(JsonInclude.Include.ALWAYS)
+        public abstract String getExplanation();
+
+        @JsonInclude(JsonInclude.Include.ALWAYS)
+        public abstract RowExample getExample();
+    }
 
     /** The minus sign of a number, not the hyphen. */
     static final String MINUS = "−";

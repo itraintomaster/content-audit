@@ -30,8 +30,11 @@ final class ReportTree {
     private ReportTree() {
     }
 
-    /** A published number of a node: the value, its share, how many exercises it left unevaluated and of how many. */
-    record Value(Double value, Double share, int notEvaluated, int total) {
+    /**
+     * A published number of a node: the value, its share, how many exercises it left unevaluated and of how many,
+     * and whether it evaluated any exercise at all -- a count of nothing evaluated is not a zero (F-FILAS-R003).
+     */
+    record Value(Double value, Double share, int notEvaluated, int total, boolean evaluated) {
     }
 
     static String key(AuditTarget target, String id) {
@@ -112,7 +115,7 @@ final class ReportTree {
         ContextNumbers numbers = node.getNumbers();
         if (DefaultGoalBook.VOCABULARY.equals(subject)) {
             return numbers != null && numbers.getVocabularyScore() != null
-                    ? new Value(numbers.getVocabularyScore(), null, 0, 0) : null;
+                    ? new Value(numbers.getVocabularyScore(), null, 0, 0, true) : null;
         }
         if (DefaultGoalBook.ANY_ERROR.equals(subject)) {
             ErrorCounts errors = numbers != null ? numbers.getErrors() : null;
@@ -120,7 +123,7 @@ final class ReportTree {
                 return null;
             }
             return new Value((double) errors.getWithAnyError(), errors.getAnyErrorShare(),
-                    errors.getNotFullyEvaluated(), errors.getQuizzes());
+                    errors.getNotFullyEvaluated(), errors.getQuizzes(), anyEvaluated(errors));
         }
         if (family == AnalyzerFamily.ERRORS) {
             ErrorCounts errors = numbers != null ? numbers.getErrors() : null;
@@ -128,7 +131,7 @@ final class ReportTree {
                 for (AnalyzerErrorCounts counts : errors.getAnalyzers()) {
                     if (subject.equals(counts.getAnalyzer())) {
                         return new Value((double) counts.getWithError(), counts.getErrorShare(), counts.getNotEvaluated(),
-                                counts.getReached());
+                                counts.getReached(), evaluated(counts));
                     }
                 }
             }
@@ -137,13 +140,29 @@ final class ReportTree {
         if (numbers != null && numbers.getAnalyzerScores() != null) {
             for (AnalyzerScore score : numbers.getAnalyzerScores()) {
                 if (subject.equals(score.getAnalyzer())) {
-                    return score.getScore() != null ? new Value(score.getScore(), null, 0, 0) : null;
+                    return score.getScore() != null ? new Value(score.getScore(), null, 0, 0, true) : null;
                 }
             }
             return null;
         }
         Double score = node.getScores() != null ? node.getScores().get(subject) : null;
-        return score != null ? new Value(score, null, 0, 0) : null;
+        return score != null ? new Value(score, null, 0, 0, true) : null;
+    }
+
+    /** Whether an errors analyzer evaluated at least one exercise of the node, halfway included (F-RONDA1-R006). */
+    static boolean evaluated(AnalyzerErrorCounts counts) {
+        return counts.getEvaluated() > 0 || counts.getReached() - counts.getNotEvaluated() > 0
+                || counts.getWithError() > 0;
+    }
+
+    /** «algún error»: whether any analyzer of the errors family evaluated an exercise of the node. */
+    private static boolean anyEvaluated(ErrorCounts errors) {
+        for (AnalyzerErrorCounts counts : errors.getAnalyzers()) {
+            if (counts != null && evaluated(counts)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** The family the report published for an analyzer, when the catalog does not know it. */

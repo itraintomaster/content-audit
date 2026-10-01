@@ -34,7 +34,8 @@ public class KnowledgeInstructionsLengthAnalyzerProvider implements AnalyzerProv
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.KNOWLEDGE),
                 List.of(FindingResolution.RANK_ONLY),
-                AnalysisCost.INSTANT, "Largo de la consigna", List.of(), null);
+                AnalysisCost.INSTANT, "Consignas de largo adecuado", List.of(),
+                "Puntaje de 0 a 100: qué tanto las consignas de los temas entran en la pantalla del teléfono.");
     }
 
     @Override

@@ -74,7 +74,7 @@ class NearDuplicatesAnalyzer implements ContentAnalyzer {
 
     static final String ANALYZER_NAME = "near-duplicates";
 
-    static final String DISPLAY_NAME = "Duplicados parecidos";
+    static final String DISPLAY_NAME = "Ejercicio casi repetido";
 
     static final String DESCRIPTION = "Compara los ejercicios de cada tema que piden la misma respuesta y marca cada "
             + "copia casi igual del que viene antes: otro pronombre, otro demostrativo, otro posesivo u otro tiempo "

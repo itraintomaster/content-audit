@@ -93,7 +93,9 @@ public class SingleAnswerAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL, FindingResolution.RANK_ONLY),
                 AnalysisCost.PAID_MODEL,
-                SingleAnswerAnalyzer.DISPLAY_NAME, List.of(), null);
+                SingleAnswerAnalyzer.DISPLAY_NAME, List.of(),
+                "Ejercicios para escribir donde, con lo que ve el alumno, hay otra respuesta igual de buena que el "
+                        + "corrector no acepta.");
     }
 
     /**

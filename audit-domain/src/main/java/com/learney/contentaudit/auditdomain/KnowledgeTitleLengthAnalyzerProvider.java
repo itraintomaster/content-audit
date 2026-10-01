@@ -35,7 +35,8 @@ public class KnowledgeTitleLengthAnalyzerProvider implements AnalyzerProvider {
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.KNOWLEDGE),
                 List.of(FindingResolution.PANEL),
-                AnalysisCost.INSTANT, "Largo del título", List.of(), null);
+                AnalysisCost.INSTANT, "Títulos de largo adecuado", List.of(),
+                "Puntaje de 0 a 100: qué tanto los títulos de tema entran en la pantalla del teléfono.");
     }
 
     @Override
