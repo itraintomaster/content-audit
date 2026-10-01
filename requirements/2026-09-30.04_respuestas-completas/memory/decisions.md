@@ -5,6 +5,14 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — El #1194 (9915461ac) está en producción desde el 1/10 a las 04:06 UTC: su copia pasa
+  a ser formas-equivalentes.json, con las cuatro reglas, y sus 192 casos de oro, casos-de-oro/. La del #1191 queda como
+  formas-equivalentes-corrector-1191.json, con sus 153 casos en casos-de-oro-corrector-1191/, para medir el antes y el
+  después; la vacía sigue siendo la del corrector viejo. Ninguna copia duplicada. Las pruebas de oro prueban cada
+  versión con su carpeta, y «hoy» las dos con la vacía. Los límites del #1191 que el #1194 arregló (forgotten, overslept,
+  till) se prueban contra la copia del #1191; «has trained» sigue siendo límite con el #1194 (la aceptada ambigua queda
+  como está escrita).
+
 2026-10-01 — architect (impl A) — Las reglas del corrector que son código las dice la tabla en rules, una lista de
   CorrectorRule (enum), como invertsNegativeQuestions: sin bandera en el código (pedido del coordinador, 1/10). Enum y
   no textos: una regla que content-audit no sabe imitar para la corrida al leer la tabla. Hace falta el parche porque

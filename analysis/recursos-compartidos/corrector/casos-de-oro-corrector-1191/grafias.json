@@ -4,7 +4,7 @@
     "Decisión de José del 30/9/2026 (077-2): se aceptan las dos grafías, con una lista cerrada. Cada palabra de la lista se lee en su forma americana.",
     "Lo que no está en la lista queda como siempre, letra por letra.",
     "Si José no quiere esta regla, se saca borrando written_answer_spelling.go, su línea en plainWordReadings y este archivo.",
-    "«clase» agrupa los casos: lo de siempre, negación, auxiliar pegado, inversión, ambiguas, contracción ambigua, sin apóstrofo, grafías, until/till, paréntesis, sigue mal, límite. «sigue mal» y «límite» no aceptan: el primero es una respuesta equivocada que tiene que seguir dando mal; el segundo, una respuesta que estaría bien pero el corrector no puede decidir sola (la otra forma se lista con «|» en el ejercicio). Las demás clases aceptan, salvo «lo de siempre», que muestra lo que no cambia."
+    "«clase» agrupa los casos: lo de siempre, negación, auxiliar pegado, inversión, ambiguas, sin apóstrofo, grafías, until/till, sigue mal, límite. «sigue mal» y «límite» no aceptan: el primero es una respuesta equivocada que tiene que seguir dando mal; el segundo, una respuesta que estaría bien pero el corrector no puede decidir sola (la otra forma se lista con «|» en el ejercicio). Las demás clases aceptan, salvo «lo de siempre», que muestra lo que no cambia."
   ],
   "casos": [
     {"clase": "grafías", "regla": "grafia", "antes": "She", "esperado": "travelled", "despues": "(travel) to Europe.", "escrito": "traveled", "acepta": true, "hoy": false, "motivo": "travelled y traveled son la misma palabra.", "curso": "2211"},

@@ -36,8 +36,8 @@ import javax.annotation.processing.Generated;
  * The grammar that tells the long forms apart -- the closed lists of participles, determiners,
  * pronouns and adverbs -- is the corrector's own ({@code written_answer_words.go}); the table says
  * which equivalences are on and, in {@link FormEquivalenceTable#getRules()}, which rules of the
- * corrector that are code its version has (none in ittm #1191; the four of 1/10/2026 in the next
- * corrector, ittm claude/corrector-cuatro-reglas):
+ * corrector that are code its version has (none in ittm #1191; the four of 1/10/2026 in ittm #1194,
+ * in production since that day):
  *
  * <ul>
  *   <li>{@link CorrectorRule#AMBIGUOUS_CONTRACTIONS}: a contraction whose long form cannot be told
@@ -56,9 +56,9 @@ import javax.annotation.processing.Generated;
  * </ul>
  *
  * The golden cases of each corrector, copied as they are in {@code
- * analysis/recursos-compartidos/corrector/casos-de-oro/} (the one in production) and {@code
- * casos-de-oro-corrector-nuevo/} (the four rules), check that this class and the Go corrector
- * decide the same.
+ * analysis/recursos-compartidos/corrector/casos-de-oro/} (#1194, in production) and {@code
+ * casos-de-oro-corrector-1191/} (#1191), check that this class and the Go corrector decide the
+ * same.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",

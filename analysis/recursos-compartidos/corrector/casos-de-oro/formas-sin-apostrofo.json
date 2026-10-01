@@ -4,7 +4,7 @@
     "El corrector siempre aceptó «dont» donde la respuesta dice «don't», porque compara sin apóstrofos. Con esta regla, «dont» también vale donde la respuesta dice «do not».",
     "Sólo se abren las que no son otra palabra: its, were, well, ill, id, wed, shed, hell, shell, lets, cant y wont existen con otro sentido y quedan como siempre.",
     "Si José no quiere esta regla, se saca borrando written_answer_no_apostrophe.go, su línea en tokenize y este archivo.",
-    "«clase» agrupa los casos: lo de siempre, negación, auxiliar pegado, inversión, ambiguas, sin apóstrofo, grafías, until/till, sigue mal, límite. «sigue mal» y «límite» no aceptan: el primero es una respuesta equivocada que tiene que seguir dando mal; el segundo, una respuesta que estaría bien pero el corrector no puede decidir sola (la otra forma se lista con «|» en el ejercicio). Las demás clases aceptan, salvo «lo de siempre», que muestra lo que no cambia."
+    "«clase» agrupa los casos: lo de siempre, negación, auxiliar pegado, inversión, ambiguas, contracción ambigua, sin apóstrofo, grafías, until/till, paréntesis, sigue mal, límite. «sigue mal» y «límite» no aceptan: el primero es una respuesta equivocada que tiene que seguir dando mal; el segundo, una respuesta que estaría bien pero el corrector no puede decidir sola (la otra forma se lista con «|» en el ejercicio). Las demás clases aceptan, salvo «lo de siempre», que muestra lo que no cambia."
   ],
   "casos": [
     {"clase": "lo de siempre", "regla": "sin-apostrofo", "antes": "", "esperado": "I don't like it.", "despues": "", "escrito": "I dont like it.", "acepta": true, "hoy": true, "motivo": "Como siempre: sin apóstrofo coincide letra por letra."},

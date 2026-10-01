@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Encendido en ronda1/integracion: el corrector imita las cuatro reglas que nombra su
+  tabla (031c01c6) y el #1194 pasa a producción. Suite entera: 2.408 pruebas, todas en verde, ninguna apagada.
+
 2026-10-01 — architect, qa-tester y developer (impl A) — El corrector de las cuatro reglas del 1/10 (ittm
   claude/corrector-cuatro-reglas, f54585212), medido al lado del de producción. La tabla dice sus reglas: el parche suma
   CorrectorRule y FormEquivalenceTable.rules (propose y validate OK, fusionado con los dos nombres; backup antes) y cuatro

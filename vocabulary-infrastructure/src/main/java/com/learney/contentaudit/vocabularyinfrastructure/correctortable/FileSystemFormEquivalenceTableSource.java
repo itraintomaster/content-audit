@@ -19,7 +19,7 @@ import javax.annotation.processing.Generated;
 /**
  * F-RESPC-R001: the copy of the table of the corrector that is in production, versioned next to
  * the EVP in {@code analysis/recursos-compartidos/corrector/formas-equivalentes.json}, because
- * content-audit runs without network. Since 1/10/2026 it is the table of ittm #1191; when the
+ * content-audit runs without network. Since 1/10/2026 it is the table of ittm #1194; when the
  * corrector changes, the copy changes in the same step, the corrector first.
  *
  * <p>The format is the one content-audit expects (hook A-15): {@code version}, {@code
