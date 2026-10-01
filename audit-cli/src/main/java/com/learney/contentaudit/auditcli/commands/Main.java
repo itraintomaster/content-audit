@@ -587,7 +587,7 @@ class Main {
 
         analyzerProviders.add(singleAnswerProvider);              // 16 · C · FEAT-UNICA
 
-        // analyzerProviders.add(miniTheoryProvider);             // 17 · C · FEAT-MINIT, pendiente
+        analyzerProviders.add(miniTheoryProvider);                // 17 · C · FEAT-MINIT
 
         AnalyzerCatalog analyzerCatalog = new DefaultAnalyzerCatalog(analyzerProviders);
 
