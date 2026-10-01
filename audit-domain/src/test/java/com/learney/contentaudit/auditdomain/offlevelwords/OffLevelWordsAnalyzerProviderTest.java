@@ -117,7 +117,7 @@ public class OffLevelWordsAnalyzerProviderTest {
         Mockito.when(config.getOutOfCatalogMildDiscountRankBound(Mockito.any())).thenReturn(5000);
         return new OffLevelWordsAnalyzerProvider(new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), config),
                 config, new DefaultTopicTeachingResolver(),
-                new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
+                new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()), evp);
     }
 
     private static void walk(AuditNode node, java.util.function.Consumer<AuditNode> action) {

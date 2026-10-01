@@ -1,11 +1,11 @@
 package com.learney.contentaudit.auditdomain.offlevelwords;
-import com.learney.contentaudit.auditdomain.EvpCatalogPort;
 
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
 import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
 import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
@@ -32,15 +32,17 @@ public class OffLevelWordsAnalyzerProvider implements AnalyzerProvider {
 
     private final QuizStudentViewRenderer studentViewRenderer;
 
-private final EvpCatalogPort evpCatalogPort;
+    private final EvpCatalogPort evpCatalogPort;
 
-public OffLevelWordsAnalyzerProvider(SentenceLexicalScorer sentenceLexicalScorer, LemmaAbsenceConfig lemmaAbsenceConfig, TopicTeachingResolver topicTeachingResolver, QuizStudentViewRenderer studentViewRenderer, EvpCatalogPort evpCatalogPort) {
-    this.sentenceLexicalScorer = sentenceLexicalScorer;
-    this.lemmaAbsenceConfig = lemmaAbsenceConfig;
-    this.topicTeachingResolver = topicTeachingResolver;
-    this.studentViewRenderer = studentViewRenderer;
-    this.evpCatalogPort = evpCatalogPort;
-}
+    public OffLevelWordsAnalyzerProvider(SentenceLexicalScorer sentenceLexicalScorer,
+            LemmaAbsenceConfig lemmaAbsenceConfig, TopicTeachingResolver topicTeachingResolver,
+            QuizStudentViewRenderer studentViewRenderer, EvpCatalogPort evpCatalogPort) {
+        this.sentenceLexicalScorer = sentenceLexicalScorer;
+        this.lemmaAbsenceConfig = lemmaAbsenceConfig;
+        this.topicTeachingResolver = topicTeachingResolver;
+        this.studentViewRenderer = studentViewRenderer;
+        this.evpCatalogPort = evpCatalogPort;
+    }
 
     @Override
     public String analyzerName() {
@@ -78,7 +80,7 @@ public OffLevelWordsAnalyzerProvider(SentenceLexicalScorer sentenceLexicalScorer
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
         return new OffLevelWordsAnalyzer(sentenceLexicalScorer, lemmaAbsenceConfig, topicTeachingResolver,
-                studentViewRenderer);
+                studentViewRenderer, evpCatalogPort);
     }
 
     /**

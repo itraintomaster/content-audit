@@ -769,7 +769,7 @@ public class DefaultRefinerEngineTest {
             providers.add(provider(card, real.planBinding(card.getName())));
             if ("lemma-absence".equals(card.getName())) {
                 providers.add(new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(
-                        null, null, null, null));
+                        null, null, null, null, null));
             }
         }
         return new DefaultAnalyzerCatalog(providers);
