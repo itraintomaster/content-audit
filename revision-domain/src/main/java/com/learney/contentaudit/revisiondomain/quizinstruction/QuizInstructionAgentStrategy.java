@@ -27,7 +27,12 @@ import javax.annotation.processing.Generated;
 public class QuizInstructionAgentStrategy implements QuizInstructionProposalStrategy {
     private static final String STRATEGY_NAME = "quiz-instruction-agent";
 
-    private static final String STRATEGY_VERSION = "1.0.0";
+    /**
+     * 1.1.0 (F-CALUM-R003): the correction complies with the instructions of the quiz copy -- the ones the
+     * student sees and the judge reads --, no longer with the knowledge's. The version travels in every
+     * proposal, so what 1.0.0 did is never taken as done by 1.1.0.
+     */
+    private static final String STRATEGY_VERSION = "1.1.0";
 
     private final QuizInstructionCandidateGenerator generator;
 
