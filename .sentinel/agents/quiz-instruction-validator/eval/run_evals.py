@@ -25,7 +25,11 @@ from typing import Any
 AGENT_DIR = Path(__file__).resolve().parents[1]
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 DEFAULT_FIXTURES = Path(__file__).with_name("fixtures.json")
-EXPECTED_FAIL_ID = "67fab6d59930102295342145"
+# The quizzes of the corpus that do not follow their instructions in the course of today (the 29/9
+# photo plus 0.2). There is none: «I will stay» (…2145), the one that used to fail, was corrected on
+# 11/8 to «I 'll stay», and the instructions now ask for short forms «si es posible».
+EXPECTED_FAIL_IDS: frozenset = frozenset()
+CONTRACTED_AFFIRMATIVE_ID = "67fab6d59930102295342145"
 
 TOP_KEYS = {
     "schemaVersion",
@@ -244,8 +248,8 @@ def validate_fixture(path: Path) -> dict[str, Any]:
             fail_ids.append(quiz_id)
 
     require(
-        fail_ids == [EXPECTED_FAIL_ID],
-        f"expected exactly fail {EXPECTED_FAIL_ID}, got {fail_ids}",
+        set(fail_ids) == EXPECTED_FAIL_IDS and len(fail_ids) == len(EXPECTED_FAIL_IDS),
+        f"expected exactly fail {sorted(EXPECTED_FAIL_IDS)}, got {fail_ids}",
     )
     required_ids = {
         "67fab6d59930102295342139",
@@ -254,7 +258,7 @@ def validate_fixture(path: Path) -> dict[str, Any]:
         "67fab6d5993010229534213c",
         "67fab6d5993010229534213d",
         "67fab6d59930102295342140",
-        EXPECTED_FAIL_ID,
+        CONTRACTED_AFFIRMATIVE_ID,
     }
     require(
         required_ids <= quiz_ids,
@@ -473,9 +477,10 @@ def main() -> int:
             and set(schema.get("required", [])) == TOP_KEYS,
             "JSON schema is not closed or disagrees with required keys",
         )
+        fails = sorted(EXPECTED_FAIL_IDS)
         print(
-            "fixture: OK (10 real quizzes, 9 pass, 1 fail: %s)"
-            % EXPECTED_FAIL_ID
+            "fixture: OK (10 real quizzes, %d pass, %d fail%s)"
+            % (10 - len(fails), len(fails), (": " + ", ".join(fails)) if fails else "")
         )
         print("schema: OK (closed verdict contract)")
         validate_scripts(fixture)
