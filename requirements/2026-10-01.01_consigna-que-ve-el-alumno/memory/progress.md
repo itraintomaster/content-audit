@@ -4,6 +4,21 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (C) — FEAT-CALUM construido en ronda2/impl-calum, sobre fd91447c (apply b5724f63, generate
+  9e93a983, arreglo de SpacyProcessRunner fd91447c). Commits:
+  - R001 (32f0228b), R002 (9868302f), R003 (68565266);
+  - las dos definiciones (b9815c18): la versión del juez de consigna da 53fabe0d…;
+  - get y el corrector 1.1.0 (c86055d3).
+  Sus tres pruebas van escritas con el nombre que les dará generate. Su declaración es el parche de seguimiento de
+  esta carpeta (0 altas, 5 cambios), sin aplicar. Simulado: apply, generate y VERIFY OK; generate no las toca.
+  fd91447c no compilaba por FEAT-NIVFR: la aridad que dejó su generate va aparte (6f772245), sin su cuerpo.
+  `mvn -o test` (sin verify): 3.081 pruebas, 614 apagadas como antes, 0 fallas. Hay 3 errores: los esbozos de
+  lookupDerivedFormLevel en FileSystemEvpCatalogTest, que son el cuerpo de NIVFR.
+  sentinel verify, en una copia recién sacada, da una sola diferencia: MEMORY.md. También la da fd91447c intacta: la
+  columna de fecha sale de la hora de los archivos.
+  Next: el coordinador junta la rama y aplica el parche de seguimiento. El examen nuevo de consigna espera el OK de
+  José.
+
 2026-10-01 — developer (C) — R003 sumado al mismo parche, propuesto y sin aplicar.
   - Antes del propose, copia de la carpeta en content-audit-corridas/2026-10-01-consigna-alumno/backup-antes-de-R003
     (bug 08 de Sentinel).

@@ -1,0 +1,45 @@
+code: FEAT-CALUM
+description: "Seguimiento de FEAT-CALUM, sólo nombres de pruebas: el parche aplicado\
+  \ en ronda2/integracion (b5724f63) llevaba R001 a R003. Faltan las tres pruebas\
+  \ de lo que sumó el coordinador después (F-CALUM-R003 inv. 4 y 5): get muestra la\
+  \ consigna de la copia y la del tema rotulada como del tema, en texto y en JSON,\
+  \ y el corrector se identifica como quiz-instruction-agent 1.1.0. Las tres ya está\
+  n escritas en ronda2/impl-calum con el nombre que generate les dará."
+modules:
+- name: revision-domain
+  packages:
+  - name: quizinstruction
+    implementations:
+    - name: QuizInstructionAgentStrategy
+      handwrittenTests:
+      - name: "should identify itself as quiz-instruction-agent 1.1.0, the version\
+          \ whose correction complies with the instructions of the quiz copy"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R003
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: "should print, in the correction context of a QUIZ_INSTRUCTION task,\
+          \ the instructions of the quiz copy the corrector receives, and the knowledge's\
+          \ labelled as the knowledge's"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R003
+      _change: modify
+    - name: DefaultCorrectionContextJsonMapper
+      handwrittenTests:
+      - name: "should serialize, in a QUIZ_INSTRUCTION correction context, the instructions\
+          \ of the quiz copy under quizInstructions, apart from the knowledge's"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R003
+      _change: modify
+    _change: modify
+  _change: modify

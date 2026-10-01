@@ -5,6 +5,13 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (C) — Las pruebas de get y del corrector 1.1.0 entran antes de declararse, con el nombre que
+  les dará generate, como las de RESPC. La de la estrategia es una clase nueva y va sin @Generated hasta que el parche
+  de seguimiento la declare. Con la marca, sentinel verify la toma por huérfana; sin ella, generate no la toca y
+  verify da OK, simulado.
+2026-10-01 — developer (C) — La aridad de FEAT-NIVFR va en un commit propio, porque el árbol no compilaba sin ella. No
+  toca el cuerpo de NIVFR: sus 3 pruebas en rojo son de quien lo construya.
+
 2026-10-01 — architect (C) — R003 suma un campo, quizInstructions, en vez de renombrar knowledgeInstructions.
   Cambiarle el contenido a knowledgeInstructions dejaba un nombre de tema con un valor de copia. Renombrarlo arrastraba
   la mentira a CandidateAssessmentInput y al juez de candidatos, que siguen con la consigna del tema y quedan afuera.
