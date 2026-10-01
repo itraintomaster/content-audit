@@ -7,6 +7,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchAlreadyOpenException;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
 import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
@@ -27,6 +28,7 @@ import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -55,7 +57,7 @@ import picocli.CommandLine.Parameters;
                 + "  batch open <level> [--topics-at-once N] [--queries-at-once N] [--to-multiple-choice <topic>]...%n"
                 + "  batch estimate%n"
                 + "  batch run [--cap N]%n"
-                + "  batch close%n"
+                + "  batch close [--budget juez=N[,juez=N…]] [--cap N]%n"
                 + "  batch drop (--change <id> | --rule <rule>) [--reason <text>]%n"
                 + "  batch report [<batchId>] [-f text|json]%n%n"
                 + "Without --cap, batch run applies the rules only, which query no model; the panels open only under a"
@@ -69,6 +71,7 @@ import picocli.CommandLine.Parameters;
                 "  content-audit batch run",
                 "  content-audit batch run --cap 300",
                 "  content-audit batch close",
+                "  content-audit batch close --budget consigna=10,miniteoria=5",
                 "  content-audit batch drop --rule mayusculas --reason \"las opciones van en minúscula\"",
                 "  content-audit batch report",
         }
@@ -94,6 +97,10 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
 
     @Option(names = "--cap", description = "The cap of queries of this run; without it only the rules run")
     private Integer queryCap;
+
+    @Option(names = "--budget", split = ",", description = "El tope de consultas de cada juez al cerrar: juez=N,"
+            + " separados por coma")
+    private Map<String, Integer> judgeBudgets = new LinkedHashMap<>();
 
     @Option(names = "--change", description = "The change to drop")
     private String changeId;
@@ -239,10 +246,11 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
     }
 
     @Override
-    public Integer closeBatch() {
+    public Integer closeBatch(Map<String, Integer> judgeBudgets, Integer queryCap) {
         BatchClosing closing;
         try {
-            closing = batchService.close();
+            closing = batchService.close(new BatchCloseRequest(
+                    judgeBudgets != null ? judgeBudgets : new LinkedHashMap<>(), queryCap));
         } catch (NoOpenBatchException e) {
             System.err.println("Error: " + e.getMessage());
             return 1;
@@ -401,7 +409,7 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
             case "open" -> openBatch(target, topicsAtOnce, queriesAtOnce, convertToMultipleChoice);
             case "estimate" -> estimateBatch();
             case "run" -> runBatch(queryCap);
-            case "close" -> closeBatch();
+            case "close" -> closeBatch(judgeBudgets, queryCap);
             case "drop" -> dropFromBatch(changeId, ruleId, reason);
             case "report" -> reportBatch(target, format);
             default -> {

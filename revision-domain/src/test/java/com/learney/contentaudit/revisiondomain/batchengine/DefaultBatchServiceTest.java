@@ -30,6 +30,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchAlreadyOpenException;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchNotPublishableException;
 import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
@@ -54,6 +55,7 @@ import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
 import com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationFactory;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -192,7 +194,7 @@ public class DefaultBatchServiceTest {
 
         service.service().run(new BatchRunRequest(null));
         service.service().run(new BatchRunRequest(null));
-        service.service().close();
+        service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         assertEquals(1, service.goals.seals.size(), "only the opening sealed");
     }
@@ -346,7 +348,7 @@ public class DefaultBatchServiceTest {
         Service service = new Service();
         service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
         service.service().run(new BatchRunRequest(null));
-        service.service().close();
+        service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), null));
         CorrectionBatch opened = service.batches.open().orElseThrow();
         String changeId = opened.getChanges().get(0).getChangeId();
         String proposalId = opened.getQuizProposals().get(0).getProposalId();
@@ -406,7 +408,7 @@ public class DefaultBatchServiceTest {
         service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
         service.service().run(new BatchRunRequest(null));
         service.comparator.answer = scope -> TandaFixture.comparison(scope, List.of(), VerdictKind.BLIND_SAMPLE_MISSING);
-        service.service().close();
+        service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
                 () -> service.service().publish(new BatchPublishRequest("José", null, List.of())));
@@ -524,8 +526,9 @@ public class DefaultBatchServiceTest {
                     new DefaultGateFactory().changeGate(), ledger, batches).withPlans(plans);
             DefaultPanelStage panelStage = new DefaultPanelStage(panels, TandaFixture.briefer(), MesaFixture.corrections(),
                     null, ledger, batches).withPlans(plans);
+            BatchJudgePass judgePass = new NoJudgesPass();
             DefaultBatchCloser closer = new DefaultBatchCloser(comparator, new DefaultGateFactory().batchGate(), samples,
-                    ledger, batches, TandaFixture.COURSE_PATH).withPlans(plans, MesaFixture.corrections());
+                    ledger, batches, TandaFixture.COURSE_PATH, judgePass).withPlans(plans, MesaFixture.corrections());
             AuditEngine engine = new AuditEngine() {
                 @Override
                 public AuditReport runAudit(AuditableCourse course) {
@@ -564,7 +567,7 @@ public class DefaultBatchServiceTest {
                     TandaFixture.COURSE_PATH);
             return new DefaultBatchService(batches, plans, reports, active, baselines, courses, factory,
                     TandaFixture.briefer(), selector, new DefaultBatchCostEstimator(), rules, panelStage, ledger, closer,
-                    publisher, new DefaultBatchReportBuilder(), TandaFixture.COURSE_PATH, goals);
+                    publisher, new DefaultBatchReportBuilder(), TandaFixture.COURSE_PATH, goals, judgePass);
         }
     }
 

@@ -282,7 +282,8 @@ public class DefaultTrayAssemblerTest {
         fixture.batch.setClosings(new ArrayList<>(List.of(new BatchClosing(BandejaFixture.CLOSED_AT, null,
                 TandaFixture.comparison(null, List.of(), VerdictKind.FAILS), new BatchGateVerdict(false, VerdictKind.FAILS,
                 List.of(), List.of(), List.of("6814dafa7d73e7209a13d3c1"), List.of(), List.of(),
-                List.of("F-NOEMP-R007: cambió fuera de la tanda: 6814dafa7d73e7209a13d3c1")), List.of(), 1))));
+                List.of("F-NOEMP-R007: cambió fuera de la tanda: 6814dafa7d73e7209a13d3c1")), List.of(), 1, null,
+                null))));
         Tray stopped = fixture.assemble(true);
         assertFalse(stopped.isPublishable());
         assertEquals(List.of("la compuerta de «no empeorar» no pasa: F-NOEMP-R007: cambió fuera de la tanda:"

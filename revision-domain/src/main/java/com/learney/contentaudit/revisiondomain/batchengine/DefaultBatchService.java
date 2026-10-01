@@ -240,10 +240,10 @@ class DefaultBatchService implements BatchService {
     }
 
     @Override
-    public BatchClosing close() {
+    public BatchClosing close(BatchCloseRequest request) {
         CorrectionBatch batch = requireOpen();
         CourseEntity course = courseRepository.load(coursePath);
-        batch = closer.close(batch, course);
+        batch = closer.close(batch, course, request);
         batchStore.save(batch);
         List<BatchClosing> closings = BatchBook.list(batch.getClosings());
         return closings.isEmpty() ? null : closings.get(closings.size() - 1);
@@ -312,7 +312,8 @@ class DefaultBatchService implements BatchService {
         batch.setAdjustments(adjustments);
         batchStore.save(batch);
         if (recalculate && !BatchBook.list(batch.getClosings()).isEmpty()) {
-            batch = closer.close(batch, course); // R008: recalculated against the gate without what left
+            // R008: recalculated against the gate without what left; the re-adjustment closes with no request.
+            batch = closer.close(batch, course, new BatchCloseRequest(new LinkedHashMap<>(), null));
             batchStore.save(batch);
         }
         return batch;

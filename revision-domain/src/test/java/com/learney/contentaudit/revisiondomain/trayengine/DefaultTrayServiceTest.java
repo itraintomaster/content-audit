@@ -17,6 +17,7 @@ import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchNotPublishableException;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
@@ -46,6 +47,7 @@ import com.learney.contentaudit.revisiondomain.tray.TrayResponse;
 import com.learney.contentaudit.revisiondomain.tray.UnexpectedTrayAnswerException;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.annotation.processing.Generated;
@@ -208,7 +210,7 @@ public class DefaultTrayServiceTest {
         String proposal = BandejaFixture.BATCH + "-" + BandejaFixture.TEA;
         bandeja.comparator.answer = scope -> TandaFixture.passing(scope, List.of(new ChangeOutcome(proposal, AuditTarget.QUIZ,
                 BandejaFixture.TEA, true, List.of(BandejaFixture.teaDuplicate()), List.of(BandejaFixture.teaAnswer()), List.of())));
-        BatchClosing closing = bandeja.batchService.close();
+        BatchClosing closing = bandeja.batchService.close(new BatchCloseRequest(new LinkedHashMap<>(), null));
         assertTrue(closing.getGate().isPasses(), closing.getGate().getReasons().toString());
         assertTrue(closing.getGate().getReturned().isEmpty(), "not returned");
         assertTrue(closing.getGate().getListedExceptions().stream().anyMatch(e -> e.startsWith("excepción de José: " + proposal)),

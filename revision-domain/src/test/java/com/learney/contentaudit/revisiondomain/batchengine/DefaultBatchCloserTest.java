@@ -24,6 +24,7 @@ import com.learney.contentaudit.revisiondomain.RevisionVerdict;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
@@ -70,7 +71,7 @@ public class DefaultBatchCloserTest {
                 Instant.parse("2026-09-30T18:00:00Z"), null, new ArrayList<>(), null), RevisionVerdict.PENDING_APPROVAL, null,
                 RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, null, null, null, null));
 
-        closing.closer().close(batch, closing.course);
+        closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         assertEquals(List.of(TandaFixture.COURSE_PATH), closing.comparator.paths, "the copy of the course");
         ProjectionScope scope = closing.comparator.scopes.get(0);
@@ -94,7 +95,7 @@ public class DefaultBatchCloserTest {
                 : TandaFixture.passing(scope, List.of(outcome(P_VEGETABLES, MesaFixture.VEGETABLES, false, List.of(),
                         List.of())));
 
-        batch = closing.closer().close(batch, closing.course);
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         BatchChange come = change(batch, "mesa-" + MesaFixture.COME);
         assertTrue(come.getDroppedReason().startsWith("la compuerta de la tanda lo devolvió: F-NOEMP-R005: " + MesaFixture.COME
@@ -132,7 +133,7 @@ public class DefaultBatchCloserTest {
             closing.comparator.answer = scope -> TandaFixture.passing(scope, List.of(outcome("tanda-a1-" + TandaFixture.RESIDE,
                     TandaFixture.RESIDE, false, List.of(), fixed)));
 
-            batch = closing.closer().close(batch, closing.course);
+            batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
             BatchTaskOutcome outcome = BatchBook.outcome(batch, "t-reside").orElseThrow();
             if (both) {
@@ -161,7 +162,7 @@ public class DefaultBatchCloserTest {
         closing.record(batch, "mesa-" + MesaFixture.VEGETABLES, List.of("t-respuesta"),
                 TandaFixture.step(vegetables, ExercisePart.STATEMENT), TandaFixture.step(child, ExercisePart.TRANSLATION));
 
-        batch = closing.closer().close(batch, closing.course);
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         assertEquals(List.of(List.of(TandaFixture.CHILD)), closing.outsides, "the node outside, computed from the composition");
         BatchClosing closed = batch.getClosings().get(0);
@@ -181,7 +182,7 @@ public class DefaultBatchCloserTest {
         Closing closing = new Closing();
         CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
 
-        batch = closing.closer().close(batch, closing.course);
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         assertEquals(List.of(closing.comparator.scopes.get(0)), closing.samples.drawn, "the sample of the scope compared");
         assertEquals("muestra-1", batch.getBlindSampleId());
@@ -191,7 +192,7 @@ public class DefaultBatchCloserTest {
         stopped.record(outside, "mesa-" + MesaFixture.VEGETABLES, List.of("t-respuesta"), TandaFixture.step(
                 TandaFixture.edited(TandaFixture.exercise(stopped.course, TandaFixture.CHILD), q -> q.setTranslation("¿Niño?")),
                 ExercisePart.TRANSLATION));
-        outside = stopped.closer().close(outside, stopped.course);
+        outside = stopped.closer().close(outside, stopped.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
         assertTrue(stopped.samples.drawn.isEmpty(), "no sample for a batch the gate stops");
         assertNull(outside.getBlindSampleId());
     }
@@ -214,7 +215,7 @@ public class DefaultBatchCloserTest {
                 : TandaFixture.comparison(scope, List.of(outcome(P_COME, MesaFixture.COME, true, List.of(grandmother()), List.of()),
                         outcome(P_VEGETABLES, MesaFixture.VEGETABLES, true, List.of(duplicate), List.of())), VerdictKind.FAILS);
 
-        batch = closing.closer().close(batch, closing.course);
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         BatchTaskOutcome come = BatchBook.outcome(batch, "t-come").orElseThrow();
         assertEquals(BatchTaskOutcomeKind.PENDING, come.getKind(), "back to the panel");
@@ -262,7 +263,7 @@ public class DefaultBatchCloserTest {
                 outcome("tanda-a1-" + TandaFixture.LEARNED, TandaFixture.LEARNED, false, List.of(), List.of()),
                 outcome(P_VEGETABLES, MesaFixture.VEGETABLES, false, List.of(), List.of())));
 
-        batch = closing.closer().close(batch, closing.course);
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         BatchTaskOutcome waiting = BatchBook.outcome(batch, "t-audio").orElseThrow();
         assertEquals(BatchTaskOutcomeKind.PENDING_RERECORDING, waiting.getKind(), "not resolved: its audio is not recorded yet");
@@ -324,8 +325,8 @@ public class DefaultBatchCloserTest {
                 outsides.add(new ArrayList<>(outside));
                 return real.evaluate(comparison, outside, exceptions);
             };
-            return new DefaultBatchCloser(comparator, watched, samples, ledger(), batches, TandaFixture.COURSE_PATH)
-                    .withPlans(plans, MesaFixture.corrections());
+            return new DefaultBatchCloser(comparator, watched, samples, ledger(), batches, TandaFixture.COURSE_PATH,
+                    new NoJudgesPass()).withPlans(plans, MesaFixture.corrections());
         }
 
         CorrectionBatch batch(String... taskIds) {

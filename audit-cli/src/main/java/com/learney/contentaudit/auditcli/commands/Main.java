@@ -1349,7 +1349,7 @@ class Main {
                             refinerEngine, errorTaskBriefer, analyzerCorrectionCatalog, ruleFixes, panelRunner.get(),
                             panelRunnerFactory.meter(panelConfig.get()), panelRunnerFactory, batchComparator,
                             baselineStore, blindSampleService, topicWordLightsQuery, null,
-                            preservationFactory.createCheck(), Paths.get(batchCourse), goalBook, null));
+                            preservationFactory.createCheck(), Paths.get(batchCourse), goalBook, analyzerCatalog));
         }));
         com.learney.contentaudit.revisiondomain.tray.TrayService trayService = lazyTrayService(memoized(() ->
                 new com.learney.contentaudit.revisiondomain.trayengine.DefaultTrayServiceFactory().create(
@@ -1610,8 +1610,9 @@ class Main {
             }
 
             @Override
-            public com.learney.contentaudit.revisiondomain.batch.BatchClosing close() {
-                return factory.get().close();
+            public com.learney.contentaudit.revisiondomain.batch.BatchClosing close(
+                    com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest request) {
+                return factory.get().close(request);
             }
 
             @Override

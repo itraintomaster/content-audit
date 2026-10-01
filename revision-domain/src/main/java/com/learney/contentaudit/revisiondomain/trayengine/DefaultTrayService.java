@@ -8,6 +8,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchNotPublishableException;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
@@ -32,6 +33,7 @@ import com.learney.contentaudit.revisiondomain.tray.UnexpectedTrayAnswerExceptio
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -138,8 +140,8 @@ class DefaultTrayService implements TrayService {
         }
         // R004 and R007: a rule whose sample José did not approve stays out.
         List<String> excluded = TrayBook.rulesToSample(batch);
-        // R008: the verdict with every decision of José in.
-        BatchClosing closing = batchService.close();
+        // R008: the verdict with every decision of José in; publishing closes with no request (no judges paid here).
+        BatchClosing closing = batchService.close(new BatchCloseRequest(new LinkedHashMap<>(), null));
         if (closing == null || closing.getGate() == null || !closing.getGate().isPasses()) {
             throw new BatchNotPublishableException(batch.getId(), "la compuerta de «no empeorar» no pasa"
                     + (closing != null && closing.getGate() != null ? ": " + String.join("; ",

@@ -375,7 +375,8 @@ public class DefaultBatchPublisherTest {
         void close(CorrectionBatch batch) {
             batch.setClosings(new ArrayList<>(List.of(new BatchClosing(CLOSED_AT, DefaultBatchCloser.scope(batch),
                     TandaFixture.passing(DefaultBatchCloser.scope(batch), List.of()), new BatchGateVerdict(true,
-                    VerdictKind.PASSES, List.of(), List.of(), List.of(), List.of(), List.of(), List.of()), List.of(), 1))));
+                    VerdictKind.PASSES, List.of(), List.of(), List.of(), List.of(), List.of(), List.of()), List.of(), 1,
+                    null, null))));
             batch.setStatus(BatchStatus.CLOSED);
         }
 

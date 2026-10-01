@@ -240,7 +240,7 @@ public final class BandejaFixture {
         batch.setClosings(new ArrayList<>(List.of(new BatchClosing(CLOSED_AT, null,
                 TandaFixture.comparison(null, List.of(), VerdictKind.BLIND_SAMPLE_MISSING),
                 new BatchGateVerdict(true, VerdictKind.BLIND_SAMPLE_MISSING, List.of(), List.of(), List.of(), List.of(),
-                        List.of(), List.of()), List.of(), 1))));
+                        List.of(), List.of()), List.of(), 1, null, null))));
         return batch;
     }
 
@@ -429,7 +429,7 @@ public final class BandejaFixture {
                     new DefaultPanelRunnerFactory(), comparator,
                     new TandaFixture.Baselines(new Baseline(TandaFixture.BASELINE, Instant.parse("2026-09-29T08:00:00Z"))),
                     ciega, null, TandaFixture.correctionScope(), new DefaultPreservationFactory().createCheck(),
-                    TandaFixture.COURSE_PATH, new TandaFixture.Goals());
+                    TandaFixture.COURSE_PATH, new TandaFixture.Goals(), null);
             batchService = new DefaultBatchServiceFactory().create(config);
             tray = new DefaultTrayService(batchService, batches, ciega, panels, new DefaultPanelRunnerFactory(),
                     assembler(decisions), memory(decisions), courses, TandaFixture.COURSE_PATH);

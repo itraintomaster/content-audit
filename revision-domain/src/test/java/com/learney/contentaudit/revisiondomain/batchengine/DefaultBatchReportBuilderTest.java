@@ -120,7 +120,7 @@ public class DefaultBatchReportBuilderTest {
                 row("hint-coherence", AnalyzerFamily.ERRORS, AuditTarget.TOPIC, GoalUnit.EXERCISES, 5.0, 1.0),
                 row("vocabulario", AnalyzerFamily.VOCABULARY, AuditTarget.MILESTONE, GoalUnit.POINTS, 96.54, 96.5))));
         batch.setClosings(new ArrayList<>(List.of(new BatchClosing(TandaFixture.OPENED_AT, null, comparison, null, List.of(),
-                1))));
+                1, null, null))));
 
         BatchReport report = new DefaultBatchReportBuilder().build(batch);
 

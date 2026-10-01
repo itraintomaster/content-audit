@@ -102,7 +102,7 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
     }
 
     @Override
-    public CorrectionBatch close(CorrectionBatch batch, CourseEntity startCourse) {
+    public CorrectionBatch close(CorrectionBatch batch, CourseEntity startCourse, BatchCloseRequest request) {
         Map<String, RefinementTask> tasks = plans != null && batch.getPlanId() != null
                 ? plans.load(batch.getPlanId()).map(BatchBook::tasksById).orElse(Map.of()) : Map.of();
         List<String> returnedIds = new ArrayList<>();

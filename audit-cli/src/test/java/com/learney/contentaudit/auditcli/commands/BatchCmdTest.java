@@ -8,6 +8,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
 import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
@@ -246,7 +247,8 @@ public class BatchCmdTest {
         @Override
         public BatchEstimate estimate() {
             return new BatchEstimate(batch.getId(), List.of(new BatchTaskCount("hint-coherence", FindingResolution.RULE, 1),
-                    new BatchTaskCount("single-answer", FindingResolution.PANEL, 2)), 12, 3, 9, 0, 17, 0.05, 4, 4);
+                    new BatchTaskCount("single-answer", FindingResolution.PANEL, 2)), 12, 3, 9, 0, 17, 0.05, 4, 4, 0, null,
+                    0, 0.0);
         }
 
         @Override
@@ -256,7 +258,7 @@ public class BatchCmdTest {
         }
 
         @Override
-        public BatchClosing close() {
+        public BatchClosing close(BatchCloseRequest request) {
             throw new AssertionError("not in these tests");
         }
 
@@ -292,7 +294,7 @@ public class BatchCmdTest {
             }
             return new BatchReport(batch.getId(), CefrLevel.A1, BatchStatus.CLOSED, outcomes, 3, 0, 0, List.of(),
                     List.of(new AudioRerecordRequest("67fab6d59930102295341ecd", "A1.02.01.cd",
-                            List.of("I love vegetables."))), List.of(), new QueriesByRole(8, 30), 0.2, List.of());
+                            List.of("I love vegetables."))), List.of(), new QueriesByRole(8, 30), 0.2, List.of(), null);
         }
 
         @Override

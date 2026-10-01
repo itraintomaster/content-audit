@@ -4,6 +4,15 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (CJUEZ) — Puente de compilación tras `sentinel generate`: todo el reactor compila (main y
+  test), 18 archivos tocados (6 de producción + 12 de pruebas) más `NoJudgesPass.java` nuevo (fixture de prueba,
+  package-private, sin @Generated). `DefaultBatchJudgePass` queda con sus 3 `UnsupportedOperationException`, sin
+  llamador todavía. 3126/3183 pruebas del reactor completo pasan; fallan exactamente los 57 esbozos de F-CJUEZ (54
+  `@Tag("FEAT-CJUEZ")` + 3 de `FCjuezJ001JourneyTest`), todos con «Not implemented yet» y nada más.
+  Next: implementar `DefaultBatchJudgePass` (estimate/judge/judges) y el paso 1 del cierre en `DefaultBatchCloser`
+  (hoy `close(batch, startCourse, request)` ignora `request`); recién ahí los 57 esbozos dejan de tirar
+  UnsupportedOperationException.
+
 2026-10-01 — qa-tester (CJUEZ) — Parche sólo de pruebas propuesto (--replace) y validado: 54 handwrittenTests
   (R001 9, R002 10, R003 20, R004 8, R005 7; 23 en DefaultBatchJudgePass, el resto en el cierre, el servicio, la
   publicación, el informe, DefaultBatchComparator, DefaultTrayService y BatchCmd) y F-CJUEZ-J001 en revision-domain,
