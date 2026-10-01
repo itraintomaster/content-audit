@@ -287,7 +287,7 @@ public class DefaultBatchComparator implements BatchComparator {
         comparison.setAvailability(ConsolidatedViewAvailability.UNAVAILABLE);
         comparison.setUnavailability(new ConsolidatedViewUnavailability(reason, detail));
         comparison.setVerdict(new BatchVerdict(VerdictKind.UNDECIDABLE, new ArrayList<>(), new ArrayList<>(), null,
-                "No se puede decidir: " + detail));
+                "No se puede decidir: " + detail, null));
         return comparison;
     }
 
@@ -471,7 +471,7 @@ public class DefaultBatchComparator implements BatchComparator {
     }
 
     private static RowValue rowValue(ReportTree.Value value) {
-        return value == null ? null : new RowValue(value.value(), value.share(), value.notEvaluated());
+        return value == null ? null : new RowValue(value.value(), value.share(), value.notEvaluated(), false);
     }
 
     /** The change in the unit of the row: points of a score, exercises of a count. */
@@ -890,7 +890,7 @@ public class DefaultBatchComparator implements BatchComparator {
                         + (sample.getDetail() != null && !sample.getDetail().isBlank() ? " (" + sample.getDetail() + ")"
                                 : ""));
             }
-            return new BatchVerdict(VerdictKind.FAILS, broken, returning, sample, "No pasa: " + String.join("; ", parts));
+            return new BatchVerdict(VerdictKind.FAILS, broken, returning, sample, "No pasa: " + String.join("; ", parts), null);
         }
         if (!undecidableFloors.isEmpty() || !undecidedChanges.isEmpty()) {
             List<String> parts = new ArrayList<>();
@@ -903,21 +903,21 @@ public class DefaultBatchComparator implements BatchComparator {
                         + " sin evaluar por algún analizador: " + listed(undecidedChanges));
             }
             return new BatchVerdict(VerdictKind.UNDECIDABLE, broken, returning, sample,
-                    "No se puede decidir: ningún piso falla, pero " + String.join("; ", parts));
+                    "No se puede decidir: ningún piso falla, pero " + String.join("; ", parts), null);
         }
         if (sample == null) {
             return new BatchVerdict(VerdictKind.BLIND_SAMPLE_MISSING, broken, returning, null,
                     "Falta la muestra ciega: los pisos se cumplen y no vuelve ningún cambio, pero no hay muestra de '"
-                            + scopeId + "'.");
+                            + scopeId + "'.", null);
         }
         if (!sample.isClosed()) {
             return new BatchVerdict(VerdictKind.BLIND_SAMPLE_MISSING, broken, returning, sample,
                     "Falta la muestra ciega: los pisos se cumplen y no vuelve ningún cambio, pero la muestra "
-                            + sample.getSampleId() + " sigue abierta (" + sample.getAnswered() + " pares respondidos).");
+                            + sample.getSampleId() + " sigue abierta (" + sample.getAnswered() + " pares respondidos).", null);
         }
         return new BatchVerdict(VerdictKind.PASSES, broken, returning, sample,
                 "Pasa: se cumplen los pisos, no vuelve ningún cambio y la muestra ciega " + sample.getSampleId()
-                        + " cumple su meta.");
+                        + " cumple su meta.", null);
     }
 
     private static String listed(List<String> ids) {

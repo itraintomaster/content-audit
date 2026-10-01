@@ -237,4 +237,20 @@ public class DefaultBatchComparisonFormatterTest {
         assertTrue(text.contains("\"example\" : null"), text);
         assertEquals("NOT_EVALUATED", row.get("changeVerdict").asText());
     }
+
+    @Test
+    @DisplayName("should write the undecidable floors of the verdict in the JSON, and null when there are none")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R007")
+    public void shouldWriteTheUndecidableFloorsOfTheVerdictInTheJSONAndNullWhenThereAreNone() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should write in the JSON whether each value of a row was evaluated")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R008")
+    public void shouldWriteInTheJSONWhetherEachValueOfARowWasEvaluated() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

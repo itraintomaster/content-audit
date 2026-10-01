@@ -1818,4 +1818,28 @@ public class DefaultBatchComparatorTest {
         assertEquals(HATS, own.getQuizId(), "R005: the row of an analyzer, only its own findings");
         assertEquals("La pista no anuncia «wears».", own.getDetail(), "R005: the row already names its analyzer");
     }
+
+    @Test
+    @DisplayName("should say in the verdict how many floors cannot be decided, as many as its text counts, and the rows they belong to, once each and in the order of the rows")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R007")
+    public void shouldSayInTheVerdictHowManyFloorsCannotBeDecidedAsManyAsItsTextCountsAndTheRowsTheyBelongToOnceEachAndInTheOrderOfTheRows() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the undecidable floors of the verdict null when every floor is decided, and bring them with a verdict that fails too")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R007")
+    public void shouldLeaveTheUndecidableFloorsOfTheVerdictNullWhenEveryFloorIsDecidedAndBringThemWithAVerdictThatFailsToo() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should say in each value of a row whether its photo evaluated an exercise of the node, so a photo left open hides none of the others")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R008")
+    public void shouldSayInEachValueOfARowWhetherItsPhotoEvaluatedAnExerciseOfTheNodeSoAPhotoLeftOpenHidesNoneOfTheOthers() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }
