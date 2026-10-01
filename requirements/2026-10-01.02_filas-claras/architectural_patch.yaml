@@ -1,0 +1,95 @@
+code: FEAT-FILAS
+description: "Seguimiento de FEAT-FILAS (F-FILAS-R007, R008), pedido por la app el\
+  \ 1/10. El veredicto suma undecidableFloors: cuántos pisos no se pueden decidir,\
+  \ los mismos que cuenta su texto, y de qué filas, con su clave y su nombre visible.\
+  \ Cada número de la fila suma evaluated, con el criterio de R003, para que una foto\
+  \ sin evaluar no tape los números de las otras."
+modules:
+- name: revision-domain
+  packages:
+  - name: comparison
+    models:
+    - name: RowSubject
+      type: record
+      fields:
+      - name: subject
+        type: String
+        description: "La clave de la fila: el nombre único del analizador, o «vocabulario»\
+          \ o «algún error»."
+      - name: displayName
+        type: String
+        description: Su nombre visible (F-FILAS-R001).
+      _change: add
+    - name: UndecidableFloors
+      type: record
+      fields:
+      - name: count
+        type: int
+        description: "Cuántos pisos no se pueden decidir: los mismos que cuenta el\
+          \ texto del veredicto (F-FILAS-R007)."
+      - name: analyzers
+        type: List<RowSubject>
+        description: "Las filas de esos pisos, sin repetir y en el orden de las filas:\
+          \ el del catálogo, y después «vocabulario» y «algún error»."
+      _change: add
+    - name: RowValue
+      type: record
+      fields:
+      - name: evaluated
+        type: boolean
+        description: "Si el analizador evaluó algún ejercicio del nodo en esta foto,\
+          \ con el criterio de F-FILAS-R003: una foto sin evaluar no tapa los números\
+          \ de las otras (F-FILAS-R008)."
+        _change: add
+      _change: modify
+    - name: BatchVerdict
+      type: record
+      fields:
+      - name: undecidableFloors
+        type: UndecidableFloors
+        description: "Los pisos que no se pueden decidir, con cualquier veredicto;\
+          \ null si todos se deciden (F-FILAS-R007)."
+        _change: add
+      _change: modify
+    _change: modify
+  - name: comparisonengine
+    implementations:
+    - name: DefaultBatchComparator
+      handwrittenTests:
+      - name: "should say in the verdict how many floors cannot be decided, as many\
+          \ as its text counts, and the rows they belong to, once each and in the\
+          \ order of the rows"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R007
+      - name: "should leave the undecidable floors of the verdict null when every\
+          \ floor is decided, and bring them with a verdict that fails too"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R007
+      - name: "should say in each value of a row whether its photo evaluated an exercise\
+          \ of the node, so a photo left open hides none of the others"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R008
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: formatting
+    implementations:
+    - name: DefaultBatchComparisonFormatter
+      handwrittenTests:
+      - name: "should write the undecidable floors of the verdict in the JSON, and\
+          \ null when there are none"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R007
+      - name: should write in the JSON whether each value of a row was evaluated
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R008
+      _change: modify
+    _change: modify
+  _change: modify
