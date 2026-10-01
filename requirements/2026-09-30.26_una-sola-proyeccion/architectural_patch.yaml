@@ -1,0 +1,459 @@
+code: FEAT-PROYU
+description: "FEAT-PROYU: una sola proyección del curso con sus propuestas. Un proyector\
+  \ aplica las pendientes siempre igual y mide cada foto con los analizadores del\
+  \ análisis de partida; la vista consolidada, la proyección guardada, el impacto\
+  \ por propuesta y la comparación de F la leen de ahí. La línea base se separa del\
+  \ par activo y, como él, no se borra sin querer. Lo compartido (la medida en el\
+  \ informe, la resolución de ids de proyección, el cableado) va en ganchos-F.md."
+modules:
+- name: audit-domain
+  models:
+  - name: Baseline
+    type: record
+    fields:
+    - name: auditId
+      type: String
+      description: "Análisis del historial que José fijó como línea base (F-PROYU-R006).\
+        \ Nunca una proyección guardada: no está en el historial (R004)."
+    - name: fixedAt
+      type: Instant
+      description: "Cuándo se fijó. Correr analyze, proyectar, cambiar el par activo\
+        \ o publicar una tanda no la cambian (R006)."
+    glossarySuggestions:
+    - name: Línea base
+      technicalName: Baseline
+      kind: value-object-candidate
+      basedOn: audit-domain/Baseline
+      rationale: "El análisis contra el que se miden todas las tandas; F la separa\
+        \ del análisis activo, que avanza al publicar cada tanda (FEAT-TANDA)."
+    _change: add
+  interfaces:
+  - name: BaselineStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "read(): Optional<Baseline>"
+    - signature: "write(Baseline baseline): void"
+    _change: add
+  _change: modify
+- name: revision-domain
+  interfaces:
+  - name: ProjectionStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "save(CourseProjection projection): SavedProjection"
+    - signature: "load(String projectionId): Optional<AuditReport>"
+    _change: add
+  packages:
+  - name: projection
+    description: "FEAT-PROYU. Contrato de la proyección única: el curso del análisis\
+      \ activo con lo aprobado y con lo pendiente del alcance pedido, medido como\
+      \ lo mediría analyze sobre ese curso escrito (R001). Lo leen la vista consolidada,\
+      \ la proyección guardada, la comparación y la muestra ciega de F y la tanda\
+      \ de E. El motor vive en engine, junto al localizador de nodos que necesita;\
+      \ afuera sólo se ven el puerto, su fábrica y los portadores."
+    visibility: public
+    models:
+    - name: ProjectionScope
+      type: record
+      fields:
+      - name: scopeId
+        type: String
+        description: "Identificador opaco del alcance: el de la tanda abierta de E,\
+          \ o null fuera de una tanda. Sólo se copia a la salida."
+      - name: proposalIds
+        type: List<String>
+        description: "Pendientes a proyectar. null = todas las pendientes del plan\
+          \ activo (la vista consolidada de hoy); si no, sólo éstas: las de la tanda\
+          \ (FEAT-TANDA). Una que no es pendiente del plan activo queda no aplicable,\
+          \ con su causa (R002)."
+      - name: analyzerBudgets
+        type: "Map<String,Integer>"
+        description: "Tope de consultas nuevas por nombre canónico para los analizadores\
+          \ que consultan un modelo. Ausente = 0: sin pedido explícito no se paga\
+          \ (R003)."
+      _change: add
+    - name: ProjectedChange
+      type: record
+      fields:
+      - name: proposalId
+        type: String
+        description: La propuesta aplicada.
+        domainLinks:
+        - term: Propuesta de revisión
+          role: carries
+      - name: nodeTarget
+        type: AuditTarget
+      - name: nodeId
+        type: String
+      - name: pending
+        type: boolean
+        description: false = aprobada (foto approved); true = pendiente del alcance
+          (sólo en la foto projected).
+      _change: add
+    - name: CourseProjection
+      type: record
+      fields:
+      - name: activeAuditId
+        type: String
+      - name: activePlanId
+        type: String
+      - name: scopeId
+        type: String
+      - name: availability
+        type: ConsolidatedViewAvailability
+      - name: unavailability
+        type: ConsolidatedViewUnavailability
+        description: "Poblado sólo si no hay par activo, falta el plan o el motor\
+          \ falla; las mismas causas que la vista consolidada (F-CDIFF-R013)."
+      - name: original
+        type: AuditReport
+        description: "El análisis activo tal como está guardado: la foto original\
+          \ de la vista consolidada."
+      - name: approved
+        type: AuditReport
+        description: "El curso con lo aprobado, medido por el motor: el inicio de\
+          \ la tanda (F-METAS)."
+      - name: projected
+        type: AuditReport
+        description: El curso con lo aprobado y las pendientes aplicables del alcance.
+          Es la misma instancia que approved si no se aplicó ninguna (F-CDIFF-R007
+          inv. 3).
+      - name: changes
+        type: List<ProjectedChange>
+        description: "Aprobadas y pendientes aplicadas, en orden de aplicación (fecha\
+          \ de creación)."
+      - name: nonApplicablePendings
+        type: List<NonApplicablePending>
+        description: "Las que no entraron, con su causa. Todo número proyectado declara\
+          \ estas mismas listas (R002)."
+      glossarySuggestions:
+      - name: Proyección
+        technicalName: CourseProjection
+        kind: value-object-candidate
+        basedOn: revision-domain/projection/CourseProjection
+        derivedFrom:
+        - Propuesta de revisión
+        rationale: "El curso con lo aprobado y lo pendiente, medido sin escribirlo.\
+          \ FEAT-PROYU la vuelve una sola cuenta para todas las pantallas."
+      _change: add
+    - name: SavedProjection
+      type: record
+      fields:
+      - name: projectionId
+        type: String
+        description: "Id que aceptan plan --audit y la consulta de palabras sugeridas\
+          \ como análisis fuente (R005). Uno por par activo: guardar otra del mismo\
+          \ par la reemplaza."
+      - name: activeAuditId
+        type: String
+      - name: activePlanId
+        type: String
+      - name: scopeId
+        type: String
+      - name: savedAt
+        type: Instant
+      - name: appliedProposalIds
+        type: List<String>
+      - name: nonApplicablePendings
+        type: List<NonApplicablePending>
+      _change: add
+    - name: CourseProjectorConfig
+      type: record
+      fields:
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: revisionArtifactStore
+        type: RevisionArtifactStore
+      - name: courseRepository
+        type: CourseRepository
+      - name: courseMapper
+        type: CourseMapper
+      - name: auditEngine
+        type: AuditEngine
+      _change: add
+    interfaces:
+    - name: CourseProjector
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "project(Path coursePath, ProjectionScope scope): CourseProjection"
+      _change: add
+    - name: CourseProjectorFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(CourseProjectorConfig config): CourseProjector"
+      _change: add
+    _change: add
+  - name: consolidatedview
+    interfaces:
+    - name: ConsolidatedViewBuilder
+      sealed: false
+      exposes:
+      - signature: "build(Path coursePath): ConsolidatedView"
+      - signature: "build(Path coursePath, ProjectionScope scope): ConsolidatedView"
+        _change: add
+      _change: modify
+    _change: modify
+  - name: engine
+    models:
+    - name: AppliedProposals
+      type: record
+      fields:
+      - name: course
+        type: CourseEntity
+        description: El curso con las propuestas que entraron.
+      - name: applied
+        type: List<RevisionProposal>
+        description: "Las que entraron, por fecha de creación."
+      - name: nonApplicable
+        type: List<NonApplicablePending>
+        description: "Las que no: nodo ausente o elementBefore que ya no coincide,\
+          \ con su causa (R002)."
+      visibility: internal
+      _change: add
+    interfaces:
+    - name: PendingApplier
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "apply(CourseEntity course, List<RevisionProposal> proposals):\
+          \ AppliedProposals"
+      visibility: internal
+      _change: add
+    - name: ProjectionMeasurer
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "measure(CourseEntity course, AuditReport startingAnalysis, Map<String,Integer>\
+          \ analyzerBudgets): AuditReport"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultCourseProjectorFactory
+      visibility: public
+      implements:
+      - CourseProjectorFactory
+      _change: add
+    - name: DefaultCourseProjector
+      requiresInject:
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+        description: "El par activo: de su análisis sale la foto original y la lista\
+          \ de analizadores (R003)."
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        description: Sólo para declarar ACTIVE_PLAN_UNAVAILABLE como hoy.
+      - name: revisionArtifactStore
+        type: RevisionArtifactStore
+        description: Aprobadas y pendientes del plan activo; nada más se lee del plan.
+      - name: courseRepository
+        type: CourseRepository
+      - name: pendingApplier
+        type: PendingApplier
+      - name: projectionMeasurer
+        type: ProjectionMeasurer
+      implements:
+      - CourseProjector
+      _change: add
+    - name: DefaultPendingApplier
+      requiresInject:
+      - name: courseElementLocator
+        type: CourseElementLocator
+        description: "snapshot y replace de siempre: una propuesta entra si su nodo\
+          \ existe y su elementBefore coincide; se escribe como la escribe approve\
+          \ (F-REVAPR-R011)."
+      implements:
+      - PendingApplier
+      _change: add
+    - name: DefaultProjectionMeasurer
+      requiresInject:
+      - name: courseMapper
+        type: CourseMapper
+      - name: auditEngine
+        type: AuditEngine
+        description: "runAudit(course, selection) con los analizadores que corrió\
+          \ el análisis de partida, en orden del catálogo, y política con tope 0 salvo\
+          \ pedido (R003). Cada corrida arma analizadores nuevos (FEAT-HALL, FEAT-CERO)."
+      implements:
+      - ProjectionMeasurer
+      _change: add
+    - name: DefaultConsolidatedViewBuilder
+      requiresInject:
+      - name: revisionArtifactStore
+        type: RevisionArtifactStore
+        _change: delete
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+        _change: delete
+      - name: auditReportStore
+        type: AuditReportStore
+        _change: delete
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+        _change: delete
+      - name: courseRepository
+        type: CourseRepository
+        _change: delete
+      - name: courseElementLocator
+        type: CourseElementLocator
+        _change: delete
+      - name: courseMapper
+        type: CourseMapper
+        _change: delete
+      - name: auditEngine
+        type: AuditEngine
+        _change: delete
+      - name: courseProjector
+        type: CourseProjector
+        description: "Las tres fotos salen de acá; el constructor sólo las compara,\
+          \ curso incluido (R001)."
+      - name: nodeFieldDiffer
+        type: NodeFieldDiffer
+      _change: modify
+    - name: DefaultImpactPreviewComputer
+      requiresInject:
+      - name: courseMapper
+        type: CourseMapper
+        _change: delete
+      - name: auditEngine
+        type: AuditEngine
+        _change: delete
+      - name: elementLocator
+        type: CourseElementLocator
+        _change: delete
+      - name: auditReportStore
+        type: AuditReportStore
+        description: "Carga el análisis del que salió la tarea de la propuesta (sourceAuditId),\
+          \ nunca loadLatest (R006, R007)."
+      - name: pendingApplier
+        type: PendingApplier
+        description: "Aplica la propuesta sola sobre el curso con lo aprobado, con\
+          \ la misma regla que la proyección (R002)."
+      - name: projectionMeasurer
+        type: ProjectionMeasurer
+        description: "Mide las dos puntas con la misma medida (R001, R007)."
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemBaselineStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: "Raíz bajo la que se escribe .content-audit/baseline.json, un archivo\
+        \ como el del par activo. Lo provee audit-cli.Main."
+    types:
+    - Repository
+    visibility: public
+    implements:
+    - BaselineStore
+    _change: add
+  - name: FileSystemProjectionStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: "Raíz bajo la que se escribe .content-audit/projections/, hermano\
+        \ de audits/: list(), loadLatest() y prune no la ven (R004). Un archivo por\
+        \ par activo; guardar otra del mismo par lo reemplaza (R005)."
+    types:
+    - Repository
+    visibility: public
+    implements:
+    - ProjectionStore
+    _change: add
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: GetConsolidatedCommand
+    sealed: false
+    exposes:
+    - signature: "getConsolidated(String coursePath, String format): Integer"
+    - signature: "getConsolidated(String coursePath, String format, Map<String,Integer>\
+        \ analyzerBudgets): Integer"
+      _change: add
+    _change: modify
+  - name: SetBaselineCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "setBaseline(String auditId): Integer"
+    - signature: "showBaseline(String format): Integer"
+    _change: add
+  - name: SaveProjectionCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "saveProjection(String coursePath, List<String> proposalIds, Map<String,Integer>\
+        \ analyzerBudgets, String format): Integer"
+    _change: add
+  packages:
+  - name: commands
+    implementations:
+    - name: DefaultSetBaselineCommand
+      requiresInject:
+      - name: baselineStore
+        type: BaselineStore
+      - name: auditReportStore
+        type: AuditReportStore
+        description: "Para rechazar un id que no está en el historial, proyecciones\
+          \ incluidas (R006)."
+      types:
+      - Component
+      implements:
+      - SetBaselineCommand
+      _change: add
+    - name: DefaultSaveProjectionCommand
+      requiresInject:
+      - name: courseProjector
+        type: CourseProjector
+      - name: projectionStore
+        type: ProjectionStore
+        description: "Guarda la foto projected fuera del historial y devuelve su id\
+          \ (R004, R005)."
+      types:
+      - Component
+      implements:
+      - SaveProjectionCommand
+      _change: add
+    - name: DeleteCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+        description: delete audit rechaza el análisis activo (R006).
+      - name: baselineStore
+        type: BaselineStore
+        description: delete audit rechaza la línea base (R006).
+      _change: modify
+    - name: PruneCmd
+      requiresInject:
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+        description: prune audits conserva el activo aunque sea de los viejos y lo
+          dice (R006; cambia F-CLIRV-R003).
+      - name: baselineStore
+        type: BaselineStore
+        description: Lo mismo para la línea base (R006).
+      _change: modify
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-PROYU
+  code: F-PROYU
