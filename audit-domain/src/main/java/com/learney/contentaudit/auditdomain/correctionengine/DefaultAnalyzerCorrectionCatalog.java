@@ -16,11 +16,13 @@ import javax.annotation.processing.Generated;
  * The one index of how each analyzer of errors is corrected (FEAT-TAREA, F-TAREA-R006): the plan, {@code get task}, the
  * panel and the batch look a declaration up by the canonical name of its analyzer.
  *
- * <p>It is checked when it is built, against the catalog of analyzers, so a wrong declaration breaks the start and not
- * the middle of a batch: two declarations of the same analyzer, a declaration of an analyzer the catalog does not have,
- * or one that names as its cover an analyzer the catalog does not have, throw {@link IllegalArgumentException}. The
- * composition root only hands it the declarations of the analyzers it registered (the two of package B join when B
- * turns its providers on). {@link #list()} keeps the order of the catalog of analyzers, which is the order of every run.
+ * <p>It is checked when it is built, so a wrong declaration breaks the start and not the middle of a batch: two
+ * declarations of the same analyzer, or one without the name of its analyzer, throw {@link IllegalArgumentException}.
+ * Against the catalog of analyzers it only keeps what can run: a declaration of an analyzer the catalog of this run does
+ * not have is left out -- nothing of it can be found, so nothing of it is corrected --, as a command that composes a
+ * catalog of a few analyzers does (the journeys of F with the catalog of 29/9, without quiz-instruction); a cover the
+ * catalog does not have is never found. {@link #list()} keeps the order of the catalog of analyzers, which is the order
+ * of every run.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -73,18 +75,6 @@ public class DefaultAnalyzerCorrectionCatalog implements AnalyzerCorrectionCatal
         }
         if (analyzerCatalog == null) {
             return byName;
-        }
-        for (AnalyzerCorrection correction : byName.values()) {
-            String name = correction.analyzerName();
-            if (analyzerCatalog.find(name).isEmpty()) {
-                throw new IllegalArgumentException("La declaración de corrección de '" + name
-                        + "' nombra un analizador que no está en el catálogo");
-            }
-            Optional<String> covering = correction.coveringAnalyzer();
-            if (covering != null && covering.isPresent() && analyzerCatalog.find(covering.get()).isEmpty()) {
-                throw new IllegalArgumentException("La declaración de corrección de '" + name + "' nombra como cobertura a '"
-                        + covering.get() + "', que no está en el catálogo");
-            }
         }
         Map<String, AnalyzerCorrection> ordered = new LinkedHashMap<>();
         for (AnalyzerDescriptor card : analyzerCatalog.list()) {
