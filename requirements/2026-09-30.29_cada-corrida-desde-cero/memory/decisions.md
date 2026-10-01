@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — F-CERO-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`, como F-CDIFF-J001.
+  why: el operador pide la vista consolidada y la prueba la compara con una invocación nueva de analyze; GetConsolidatedCmd, DefaultGetConsolidatedCommand y AnalyzeCmd son package-private ahí.
+2026-10-01 — qa-tester — Las pruebas van en piezas que ya existen (IAuditEngine, los cuatro proveedores con estado, DefaultCourseProjector, DefaultImpactPreviewComputer); se distinguen de la de F-HALL-R014 porque piden lo mismo que una invocación nueva y que el primer informe no cambie.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): sin cambios de estructura.
 
 2026-09-30 — architect — Sin estructura propia: el modelo con HALL aplicado ya no inyecta un `ContentAnalyzer` en ninguna implementación y `IAuditEngine` pide un analizador nuevo por corrida al catálogo. Verificado en el código: el estado vive sólo en los cuatro analizadores de curso; agregación, recolector, calculador, puntuador léxico, mapeador (vacía sus mapas en cada `map`) y libro de evaluaciones (lee el archivo en cada consulta) no arrastran nada. El parche sólo registra FEAT-CERO.

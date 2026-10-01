@@ -5,6 +5,8 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — Un módulo que el parche del arquitecto no traía (revision-domain) entra a la fusión sin `_change`: el apply lo une con el existente y `patch validate` lo cuenta como cambio (0 altas, 8 cambios).
+
 2026-09-30 — analyst — `requirement validate --file` pide la carpeta del requirement, no el REQUIREMENT.md («Not a directory» si se le pasa el archivo). Se corrió sobre una copia del worktree en el scratchpad.
   why: la regla del paquete: nada de Sentinel que escriba fuera de la carpeta del requirement.
 
