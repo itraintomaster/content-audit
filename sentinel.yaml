@@ -16852,6 +16852,12 @@ modules:
         traceability:
           feature: FEAT-TAREA
           rule: F-TAREA-R009
+      - name: "should print, in the correction context of a QUIZ_INSTRUCTION task,\
+          \ the instructions of the quiz copy the corrector receives, and the knowledge's\
+          \ labelled as the knowledge's"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R003
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -17624,6 +17630,11 @@ modules:
         traceability:
           feature: FEAT-RCLA
           rule: F-RCLA-R003e
+      - name: "should serialize, in a QUIZ_INSTRUCTION correction context, the instructions\
+          \ of the quiz copy under quizInstructions, apart from the knowledge's"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R003
       implements:
       - CorrectionContextJsonMapper
     - name: LexisCmd
@@ -24519,6 +24530,12 @@ modules:
       - name: providerId
         type: String
       visibility: public
+      handwrittenTests:
+      - name: "should identify itself as quiz-instruction-agent 1.1.0, the version\
+          \ whose correction complies with the instructions of the quiz copy"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R003
       implements:
       - QuizInstructionProposalStrategy
   - name: projection
