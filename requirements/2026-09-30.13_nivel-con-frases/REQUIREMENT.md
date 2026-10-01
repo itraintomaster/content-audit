@@ -123,7 +123,7 @@ miniteoría sí: «$headphones$», «$pajamas$», «$couscous$», «$spaghetti$�
 término de una palabra: «$a warranty for$» (A2) enseña la preposición, y el 077 marcó warranty como error; lo mismo
 «$an invoice for$», «$a knack for$». La teoría del tema, que también enseña palabras («Los más frecuentes: … tweezers»,
 «concur with: coincidir con»), no la lee content-audit: vive en `ittm/content/theory` y el ejercicio la nombra con un
-`theoryId` que el modelo auditable no trae; el parche que la suma está propuesto, sin aplicar ([TECH_SPEC](TECH_SPEC.md)). El sufijo:
+`theoryId` que el modelo auditable no trae; el parche que la suma está propuesto y en espera hasta después de la ronda 2 ([TECH_SPEC](TECH_SPEC.md)). El sufijo:
 «Adverbios de modo» enseña «$-ly$» y saca nicely, sadly, warmly y beautifully en A1; «Doble consonante y e» enseña
 «$+ing$» y saca smoking. El metalenguaje: «modal verbs» en un ejercicio de B1, porque el curso tiene temas «Modal Verbs».
 
@@ -221,7 +221,7 @@ nuevas al menos 6 de cada 10 sean reales. **Costo**: segundos, en la pasada de `
 - **Afuera**: el sentido de una palabra (juez de traducción y sentido, paquete C); buscar palabras de otro nivel en la
   pista, las opciones incorrectas y la miniteoría (la miniteoría sí se lee para saber qué enseña el tema, R003); el tipo
   de tarea (paquete E); cambiar `lemma-absence`, el catálogo o sus curaciones; la teoría del tema, que content-audit
-  todavía no lee (parche propuesto el 1/10, sin aplicar).
+  todavía no lee (parche propuesto el 1/10, en espera hasta después de la ronda 2).
 
 ## User Journeys
 

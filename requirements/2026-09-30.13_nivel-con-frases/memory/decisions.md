@@ -24,6 +24,8 @@ should not re-litigate. Newest entries on top.
   TopicTheorySource, FileSystemTopicTheorySource (vocabulary-infrastructure), TaughtWords.theoryWords y el resolutor
   que lo inyecta; validado contra ronda1/integracion (8a3f949c). TECH_SPEC reescrito: el del 30/9 queda en 0998557c.
   why: es la causa de las 3 falsas que quedan en la muestra; costo, el constructor de AuditableQuiz en ~314 pruebas.
+2026-10-01 — orquestador — El parche de la teoría queda propuesto y EN ESPERA hasta después de la ronda 2: toca
+  AuditableQuiz, que también tocan los parches de la ronda 2, y cuesta ~314 llamadas. No aplicar antes.
 2026-10-01 — test-writer (paquete D) — FNivfrJ001JourneyTest fija 95 (9 · 25 · 42 · 19) en vez de 170 y la prueba de la
   ficha su nuevo «lee»: valores fijados que cambian con las reglas, no pruebas nuevas.
 
