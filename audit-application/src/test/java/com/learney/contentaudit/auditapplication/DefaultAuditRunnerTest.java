@@ -934,7 +934,8 @@ public class DefaultAuditRunnerTest {
     private static final class FakeQuizInstructionEvaluator implements Evaluator {
         private final String id;
         private final String version;
-        private final List<EvaluationSubject> evaluatedSubjects = new ArrayList<>();
+        // F-JEXAM-R006: the judge is consulted up to four at a time, so what it records must be thread-safe.
+        private final List<EvaluationSubject> evaluatedSubjects = java.util.Collections.synchronizedList(new ArrayList<>());
 
         private FakeQuizInstructionEvaluator(String id, String version) {
             this.id = id;

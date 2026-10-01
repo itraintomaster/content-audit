@@ -388,7 +388,8 @@ public class FOpmulJ001JourneyTest {
 
     /** The judge -- never a real model. Records what it was asked to judge. */
     private static final class FakeEvaluator implements Evaluator {
-        private final List<EvaluationSubject> judged = new ArrayList<>();
+        // F-JEXAM-R006: the judge is consulted up to four at a time, so what it records must be thread-safe.
+        private final List<EvaluationSubject> judged = java.util.Collections.synchronizedList(new ArrayList<>());
 
         @Override
         public String evaluatorId() {

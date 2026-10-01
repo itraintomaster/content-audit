@@ -1318,14 +1318,18 @@ public class AnalyzeCmdTest {
 
             private final Set<String> breaching;
 
-            private final List<String> asked = new ArrayList<>();
+            // F-JEXAM-R006: the judge is consulted up to four at a time -- what it records is thread-safe,
+            // and the order in which it is asked is not part of the run: the quizzes it is asked about are.
+            private final List<String> asked = java.util.Collections.synchronizedList(new ArrayList<>());
 
             FakeJudge(String... breaching) {
                 this.breaching = Set.of(breaching);
             }
 
             List<String> asked() {
-                return asked;
+                List<String> sorted = new ArrayList<>(asked);
+                java.util.Collections.sort(sorted);
+                return sorted;
             }
 
             @Override

@@ -1108,10 +1108,10 @@ class Main {
         cmd.addSubcommand("repair", new picocli.CommandLine(
                 new RepairCmd(preservationRepair, (CourseRepository) courseRepository)));
 
-        // exam -- hook C-18 (FEAT-JEXAM, package C): exam run / record / status. Turned on when
-        // ExamCmd carries its picocli command, which picocli needs to register it.
+        // exam -- hook C-18 (FEAT-JEXAM, package C): exam run / record / status, the fixed exam of the
+        // judges. Without --budget, exam run is a rehearsal that pays nothing (F-JEXAM-R010).
 
-        // cmd.addSubcommand("exam", new picocli.CommandLine(new ExamCmd(judgeExamService)));   // C · FEAT-JEXAM, pendiente
+        cmd.addSubcommand("exam", new picocli.CommandLine(new ExamCmd(judgeExamService)));   // C · FEAT-JEXAM
 
         // ----------------------------------------------------------------
         // Step 9: Execute
