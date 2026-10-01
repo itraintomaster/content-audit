@@ -1,0 +1,43 @@
+code: FEAT-RESPC
+description: "qa-tester, FEAT-RESPC, segundo parche, sólo nombres de pruebas: dos\
+  \ pruebas pasan a decir lo que hace el código desde 3a3238ed, el límite del corrector\
+  \ (brief 101, José 30/9; coordinador, 1/10). La de «has trained» sólo ordena y nombra\
+  \ la regla que le falta al corrector, sin «|» (R005); la de la ficha suma sólo ordena\
+  \ a sus resoluciones (R006). Cada una se renombra borrando el nombre viejo y agregando\
+  \ el nuevo, con la misma regla. Sin cambios de estructura."
+modules:
+- name: audit-domain
+  packages:
+  - name: answercompleteness
+    implementations:
+    - name: AnswerCompletenessAnalyzer
+      handwrittenTests:
+      - name: "should resolve by adding it after «|» a missing form the new corrector\
+          \ still rejects, as «has trained» if «He ___ (train) hard today.» only accepted\
+          \ «'s trained», a limit of the corrector"
+        _change: delete
+      - name: "should only rank a missing form of a class the corrector in production\
+          \ equates and still rejects, naming the rule the corrector lacks instead\
+          \ of adding it after «|», as «has trained» if «He ___ (train) hard today.»\
+          \ only accepted «'s trained»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R005
+      _change: modify
+    - name: AnswerCompletenessAnalyzerProvider
+      handwrittenTests:
+      - name: "should describe answer-completeness in the catalog as an errors analyzer\
+          \ that evaluates exercises, resolves by rule or at the panel and costs instant,\
+          \ asking «¿El corrector acepta todas las formas de la respuesta, y ninguna\
+          \ consigna pide una?»"
+        _change: delete
+      - name: "should describe answer-completeness in the catalog as an errors analyzer\
+          \ that evaluates exercises, resolves by rule, at the panel or by ranking\
+          \ only, and costs instant, asking «¿El corrector acepta todas las formas\
+          \ de la respuesta, y ninguna consigna pide una?»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R006
+      _change: modify
+    _change: modify
+  _change: modify

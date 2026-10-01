@@ -5,6 +5,9 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (impl A) — Los dos nombres van en un parche de esta carpeta y no en el de PISTA: ninguna prueba
+  aplicada en el repo traza a otra feature que la de su carpeta. La regla de cada una no cambia (R005 y R006).
+
 2026-10-01 — analyst (impl A) — R006 dice lo que hace la ficha desde el límite del corrector: resoluciones regla, mesa y
   sólo ordena; el puntaje baja sólo con un hallazgo de regla o de mesa (F-HALL-R004 inv. 2). R005 no se toca.
   why: la decisión del 1/10 (brief 101) sumó RANK_ONLY a la ficha y a su prueba; el texto de R006 seguía diciendo «regla

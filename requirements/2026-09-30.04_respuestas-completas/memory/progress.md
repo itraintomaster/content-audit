@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (impl A) — Segundo parche de FEAT-RESPC, sólo nombres: «has trained» (R005) y la ficha (R006) se
+  borran con el nombre viejo y se agregan con el que dice lo que hace el código. propose y `patch validate -i` contra
+  859e96af OK (0 altas, 3 cambios). TECH_SPEC reescrito para este parche, con --replace. Después de generate, los dos
+  métodos se renombran a mano: generate no agrega sus stubs (bug 2026-07-22-01).
+
 2026-10-01 — analyst (impl A) — R006 suma «sólo ordena» a las resoluciones de la ficha y dice que el puntaje baja sólo
   con regla o mesa, como hace el código desde 3a3238ed. Next: qa-tester, los nombres de las dos pruebas que lo
   contradicen («has trained» y la de la ficha).
