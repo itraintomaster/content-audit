@@ -5,6 +5,13 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — F-TANDA-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands` (2 caminos).
+  why: sus pasos son batch open, estimate, run y close y el OK de tray publish; BatchCmd y TrayCmd son package-private ahí,
+  como ExamCmd en F-JEXAM-J001, que es el molde del verbo.
+2026-10-01 — qa-tester — El arreglo por regla de grammar (GrammarRuleFix) es de F-RONDA2-R009 y espera al apply. Lo que
+  F-NOEMP-R008 pide a quien devuelve (un intento menos, sin intentos a la bandeja) se prueba con R006, que pasa la
+  compuerta de F-NOEMP-R005 a R008.
+
 2026-10-01 — qa-tester (como analista) — R011 nueva: abrir una tanda fija sus metas (la mitad de F-METAS-R006 que cumple
   la tanda); entra en la puerta de `abrir` de J001. Invariantes: fija las de la declaración al abrir, la comparación evalúa
   contra ellas y un pedido de abrir rechazado no fija nada. AUTO_VALIDATED: sale de F-METAS-R006, validada por José.

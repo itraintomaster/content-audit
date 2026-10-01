@@ -4,6 +4,16 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — `patch propose` (fusión): 66 handwrittenTests (R001 8, R002 6, R003 5, R004 9, R005 4, R006 7,
+  R007 5, R008 6, R009 7, R010 6, R011 3) y F-TANDA-J001 en audit-cli, paquete commands. Los cinco patrones de
+  revision-domain y el enum de RefinementTaskStatus intactos. `tech-spec write` y `patch validate -i` contra M12 del
+  integrador y contra la cadena con pruebas: exit 0, 0 conflictos. Sin aplicar.
+  Huecos para el analista: (1) regrabar no tiene lugar en la tanda: F-DATOS-R002 inv. 2 (85 audios con «/») y F-DATOS-R004
+  se arreglan «por regla» regrabando con el texto de hoy, sin cambiar el ejercicio, así que la compuerta no pide regrabar
+  (F-NOEMP-R004) y RuleFixResult no lo puede declarar; y después de publicar, el audio pendiente de una tanda aparece como
+  hallazgo de mesa de F-DATOS-R003 que otra tanda intentaría arreglar cambiando el ejercicio. (2) R005 no nombra el
+  desenlace «sin alcance declarado», que R010 cuenta: sumarlo dejaría probar acá lo que hoy espera (F-TAREA-R006).
+
 2026-10-01 — qa-tester (como analista) — REQUIREMENT.md: F-TANDA-R011 (abrir fija las metas), pedido del qa-tester de F
   vía el orquestador; `requirement validate` → [OK]. Sin cambios de estructura: el servicio ya recibe el GoalBook (F-10).
 

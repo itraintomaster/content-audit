@@ -875,3 +875,71 @@ modules:
             requiresInject:
               - { name: goalBook, type: GoalBook }
 ```
+
+## Declarar las 66 pruebas y ubicar el journey
+Las 66 son nuevas y cubren las once reglas (R001 8, R002 6, R003 5, R004 9, R005 4, R006 7, R007 5, R008 6, R009 7,
+R010 6, R011 3). Van sobre el servicio y sus piezas de `batchengine` (51), los cuatro arreglos por regla de A (5), el
+almacén de archivos (2), `BatchCmd` (5) y, para R002, sobre lo que ya existía: `ReviseCmd`, `nextTask` de
+`DefaultRefinerEngine` y la corrida de consignas. Ninguna consulta un modelo: proponente guionado, jueces con veredictos
+grabados, una comparación, una muestra ciega y un libro de metas de F armados a mano, y almacenes en memoria o en un
+directorio temporal.
+
+**R011 es nueva.** La mitad de F-METAS-R006 que cumple la tanda —abrir una tanda fija sus metas— no se puede probar en
+FEAT-METAS, porque el que abre es `DefaultBatchService`, que todavía no existe cuando se aplica ese parche. El qa-tester
+de F lo pidió y el de E, como analista, la sumó: fija al abrir, no vuelve a fijar al retomar ni al cerrar, y un pedido de
+abrir rechazado no fija nada. Entra también en la puerta de `abrir` de J001. La estructura ya estaba: el servicio recibe
+el `GoalBook` de F (gancho F-10).
+
+**De dónde sale cada prueba.** Abrir A1 sobre la línea base fijada: entran las tres tareas de «I ___ a lot of
+vegetables.» y la `LEMMA_ABSENCE` de «We reside ___ London with our granddad.», que cubre reside, y quedan afuera las
+3.051 de largo. Las reglas antes que las mesas, sin modelos: la pista «(love)» que sale de la primera respuesta; «aren't»
+en «They ___ (not / be) from Ireland.», que se declina porque lo arregla el corrector nuevo; las opciones de «___ a child?
+(He)» con mayúscula, todas a la vez; y la «/» de «has not cut/hasn't cut». Correr sin tope y ver las mesas sin intentar;
+cortar a mitad y retomar sin repetir ni pagar dos veces; devolver «My grandmother ___ (come) every year.» y recalcular
+sin él; sacar la regla de mayúsculas y conservar la oración que arregló la mesa; la miniteoría de «Contraste inicial» que
+no sale con un cambio de sus ejercicios; publicar y ver el curso escrito una vez, el análisis igual al recálculo, el par
+activo movido y la base quieta.
+
+**Lo que no se declara o espera.** Los arreglos por regla de `grammar` son de F-RONDA2-R009 y esperan al apply, como dejó
+el integrador. La estimación de 2,9 horas para A1 es del paquete con los casos de `escribir/`: la prueba fija el cálculo
+(19 s por consulta con N y C), no ese número.
+
+**El journey** va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: sus pasos son `batch open`, `estimate`,
+`run` y `close`, y el OK que publica sale de la bandeja (`tray publish`); `BatchCmd` y `TrayCmd` son package-private ahí,
+como `ExamCmd` en F-JEXAM-J001, que es el molde del verbo. `generate` crearía `FTandaJ001JourneyTest` con 2 caminos.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: batchengine
+        _change: add
+        implementations:
+          - name: DefaultBatchService
+            _change: add
+            handwrittenTests:
+              - name: "should fix, when the batch of A1 opens, the goals of the declaration as they are, with the time of the opening, as the vocabulary floor of 0.5 points"
+                traceability: { feature: FEAT-TANDA, rule: F-TANDA-R011 }
+          - name: DefaultBatchCloser
+            _change: add
+            handwrittenTests:
+              - name: "should hand F a scope with the pending proposals of the batch, one per exercise, and no other, even when the plan holds a vocabulary correction pending from revise"
+                traceability: { feature: FEAT-TANDA, rule: F-TANDA-R006 }
+  - name: audit-cli
+    _change: modify
+    packages:
+      - name: commands
+        _change: modify
+        implementations:
+          - name: ReviseCmd
+            _change: modify
+            handwrittenTests:
+              - name: "should reject 'revise' of a task of the open batch with «La tarea <id> es de la tanda <id> y se decide en su bandeja.» and exit non-zero without calling the revision engine"
+                traceability: { feature: FEAT-TANDA, rule: F-TANDA-R002 }
+features:
+  - id: FEAT-TANDA
+    code: F-TANDA
+    journeys:
+      - { id: F-TANDA-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
+```

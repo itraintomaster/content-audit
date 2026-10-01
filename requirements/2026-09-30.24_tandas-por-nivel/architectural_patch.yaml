@@ -15,7 +15,15 @@ description: "FEAT-TANDA: la tanda de un nivel como un recurso con estado guarda
   \ HintCoherenceRuleFix implements RuleFix en hintcoherence; AnswerCompletenessRuleFix\
   \ implements RuleFix en answercompleteness; MultipleChoiceValidityRuleFix implements\
   \ RuleFix en multiplechoicevalidity; DataCoherenceRuleFix implements RuleFix en\
-  \ datacoherence; GrammarRuleFix implements RuleFix en grammar."
+  \ datacoherence; GrammarRuleFix implements RuleFix en grammar.; qa-tester: 66 handwrittenTests\
+  \ trazan las 11 reglas de FEAT-TANDA (R011, abrir fija las metas, la sumó el qa-tester\
+  \ como analista: F-METAS-R006 no se puede probar en METAS) con el proponente guionado,\
+  \ jueces con veredictos grabados, una comparación de F armada a mano y almacenes\
+  \ en memoria o en un directorio temporal, sin consultar modelos: abrir A1 sobre\
+  \ la línea base, cotizar, correr sin tope, cortar y retomar, sacar la regla de mayú\
+  sculas, publicar. F-TANDA-J001 va a audit-cli, paquete commands: sus pasos son batch\
+  \ open, estimate, run y close, y el OK de la bandeja, y BatchCmd y TrayCmd son package-private\
+  \ ahí, como F-JEXAM-J001 con exam."
 modules:
 - name: audit-domain
   interfaces:
@@ -79,6 +87,13 @@ modules:
       - name: irregularForms
         type: IrregularFormsCatalog
       visibility: public
+      handwrittenTests:
+      - name: "should take the hint from the first answer, its base verb, its subject\
+          \ and its not, as «(love)» for «I ___ a lot of vegetables.», without changing\
+          \ what is heard"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R004
       implements:
       - RuleFix
       _change: add
@@ -90,6 +105,18 @@ modules:
       - name: correctorMatcher
         type: CorrectorMatcher
       visibility: public
+      handwrittenTests:
+      - name: "should decline, declared, the missing «aren't» of «They ___ (not /\
+          \ be) from Ireland.», a negation of be that the new corrector accepts and\
+          \ fixes, not the course"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R004
+      - name: "should add with «|», after the accepted ones, a missing form that the\
+          \ new corrector still rejects, keeping the first answer and what is heard"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R004
       implements:
       - RuleFix
       _change: add
@@ -98,6 +125,13 @@ modules:
     implementations:
     - name: MultipleChoiceValidityRuleFix
       visibility: public
+      handwrittenTests:
+      - name: "should capitalize every option of «___ a child? (He)», whose gap opens\
+          \ the question, «is he» to «Is he» and «am i» to «Am I», in all the options\
+          \ at once"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R004
       implements:
       - RuleFix
       _change: add
@@ -109,6 +143,13 @@ modules:
       - name: quizSentenceConverter
         type: QuizSentenceConverter
       visibility: public
+      handwrittenTests:
+      - name: "should turn the «/» of an accepted answer into «|» and rebuild the\
+          \ stored sentence with the first answer, as «has not cut/hasn't cut» in\
+          \ «He ___ (not / cut) himself.»"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R004
       implements:
       - RuleFix
       _change: add
@@ -133,6 +174,13 @@ modules:
         \ vuelve a PENDING."
       _change: add
     _change: modify
+  implementations:
+  - name: DefaultRefinerEngine
+    handwrittenTests:
+    - name: should never hand out a task IN_BATCH as the next task
+      traceability:
+        feature: FEAT-TANDA
+        rule: F-TANDA-R002
   _change: modify
 - name: revision-domain
   patterns:
@@ -784,6 +832,81 @@ modules:
         type: GoalBook
         description: "Al abrir la tanda llama a seal(): fija las metas con que se\
           \ la va a comparar (F-METAS-R006, gancho F-10)."
+      handwrittenTests:
+      - name: should open the first batch on the baseline fixed in the registry of
+          F and set the active pair to that analysis and its plan
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R001
+      - name: "should open each later batch on the analysis the last published batch\
+          \ left, keeping the same fixed baseline"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R001
+      - name: should refuse to open a batch while no baseline is fixed
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R001
+      - name: "should fix, when the batch of A1 opens, the goals of the declaration\
+          \ as they are, with the time of the opening, as the vocabulary floor of\
+          \ 0.5 points"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R011
+      - name: "should fix no goals when opening is refused, without a fixed baseline\
+          \ or with another batch open"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R011
+      - name: "should not fix the goals again when the batch is resumed or closed,\
+          \ so a goal changed after opening shows up as changed in its comparison"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R011
+      - name: "should refuse to open the batch of A2 while the batch of A1 is open,\
+          \ naming the open batch"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R002
+      - name: "should apply the rules and make no query when the run asks no cap,\
+          \ leaving every panel task not attempted"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R003
+      - name: "should start no query once the cap asked for the run is reached, and\
+          \ leave what was not decided as not attempted"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R003
+      - name: "should run the panels with the topics and queries at once asked when\
+          \ the batch opened, as 8 and 8"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R005
+      - name: "should mark the batch interrupted when the service fails, keeping every\
+          \ outcome, verdict and accepted change"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R007
+      - name: "should resume an interrupted batch where it stopped, without repeating\
+          \ a decided attempt nor paying a query twice"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R007
+      - name: "should reject the proposal of a dropped change, put its tasks back\
+          \ to pending and recalculate the batch against the gate"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R008
+      - name: should drop every change of a rule at once when José drops the rule
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R008
+      - name: "should refuse to publish, leaving the course untouched, while the verdict\
+          \ of F is not «pasa», as when the blind sample is missing"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R009
       implements:
       - BatchService
       _change: add
@@ -793,10 +916,47 @@ modules:
         type: RevisionArtifactStore
       - name: correctionCatalog
         type: AnalyzerCorrectionCatalog
+      handwrittenTests:
+      - name: "should take into the A1 batch every error task of A1 resolved by rule\
+          \ or by the panel, as the three tasks of «I ___ a lot of vegetables.», and\
+          \ no task of another level"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R001
+      - name: "should take the LEMMA_ABSENCE task that covers the off-level-words\
+          \ finding of reside in «We reside ___ London with our granddad.» and leave\
+          \ out every other vocabulary task, the 3,051 SENTENCE_LENGTH tasks among\
+          \ them"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R001
+      - name: should carry into the batch José's order to pass «Contracciones» of
+          A1 to multiple choice
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R001
+      - name: should declare per analyzer how many exercises of A1 went unevaluated
+          when the batch opens
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R001
+      - name: "should leave out of the batch, and declare, a task that has a pending\
+          \ proposal made outside the batch"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R002
       implements:
       - BatchTaskSelector
       _change: add
     - name: DefaultBatchCostEstimator
+      handwrittenTests:
+      - name: "should estimate before any query the tasks of the batch by analyzer\
+          \ and resolution, its exercises and topics, its heaviest topic, and the\
+          \ queries and hours at 19 seconds per query with the topics and queries\
+          \ at once chosen"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R003
       implements:
       - BatchCostEstimator
       _change: add
@@ -812,6 +972,28 @@ modules:
         type: BatchChangeLedger
       - name: batchStore
         type: BatchStore
+      handwrittenTests:
+      - name: "should apply the rule fixes before any panel opens and without querying\
+          \ any model, as «(love)» for the hint of «I ___ a lot of vegetables.»"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R004
+      - name: "should join in one change per analyzer and exercise every finding its\
+          \ rule fixes, and keep it as a pending change of the batch marked with its\
+          \ rule"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R004
+      - name: "should pass every rule change through the change gate, and send to\
+          \ the panel of its topic, without applying it, the tasks of a change that\
+          \ does not pass"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R004
+      - name: "should send to the panel, declared, the findings a rule fix declines"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R004
       implements:
       - RuleStage
       _change: add
@@ -829,6 +1011,32 @@ modules:
         type: BatchChangeLedger
       - name: batchStore
         type: BatchStore
+      handwrittenTests:
+      - name: "should open, after the rules, a panel for each topic of the level with\
+          \ panel tasks, with 4 topics and 4 queries at once unless others were asked"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R005
+      - name: "should end each panel task of the batch with exactly one outcome, resolved,\
+          \ no longer holds, no winner, tie or not attempted"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R005
+      - name: "should give each topic its panel tasks with their briefs, its word\
+          \ lights and José's order"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R005
+      - name: "should save each outcome as it arrives from the sink of the panel,\
+          \ so a batch cut after the third topic keeps its decisions"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R007
+      - name: should save each accepted candidate as the pending proposal of its exercise
+          with its artifact before taking the next topic
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R007
       implements:
       - PanelStage
       _change: add
@@ -838,6 +1046,28 @@ modules:
         type: RevisionArtifactStore
       - name: elementLocator
         type: CourseElementLocator
+      handwrittenTests:
+      - name: "should compose the copy of the course with the steps of the batch only,\
+          \ leaving byte for byte every exercise without an accepted change"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R006
+      - name: "should drop the capital-letters rule change of «___ a child? (He)»\
+          \ and keep a later panel change of the same exercise that touched other\
+          \ parts, recomposing the exercise"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R008
+      - name: "should drop with a change the later changes of the same exercise that\
+          \ touched the same parts, and name them"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R008
+      - name: should keep the rewritten mini-theory of «Contraste inicial» when a
+          change of one of its nine exercises is dropped
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R008
       implements:
       - BatchChangeLedger
       _change: add
@@ -855,6 +1085,42 @@ modules:
         type: BatchStore
       - name: coursePath
         type: Path
+      handwrittenTests:
+      - name: "should hand F a scope with the pending proposals of the batch, one\
+          \ per exercise, and no other, even when the plan holds a vocabulary correction\
+          \ pending from revise"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R006
+      - name: "should drop through the ledger the change the gate returns, as «My\
+          \ grandmother ___ (come) every year.», recalculate without it and close\
+          \ when the gate passes"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R006
+      - name: "should count a task as resolved when its finding identity and those\
+          \ it covers no longer appear in the recalculated course, as the LEMMA_ABSENCE\
+          \ task of reside only when lemma-absence and off-level-words both stop marking\
+          \ it"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R006
+      - name: "should hand the gate the nodes that changed outside the batch, computed\
+          \ when composing its course"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R006
+      - name: "should ask F for the blind sample of its scope once the gate passes,\
+          \ and keep its id"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R006
+      - name: "should spend one attempt of each change the gate returns and send its\
+          \ topic back to the panel with the reason, and end as returned without attempts,\
+          \ for the tray, a change that has none left"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R006
       implements:
       - BatchCloser
       _change: add
@@ -886,14 +1152,81 @@ modules:
         type: PreservationCheck
       - name: coursePath
         type: Path
+      handwrittenTests:
+      - name: "should write the course once with every accepted change left in the\
+          \ batch and no other, checking for each exercise that only what its steps\
+          \ declare changed"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R009
+      - name: should complete the tasks whose findings no longer appear and put back
+          to pending those without decision
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R009
+      - name: should analyze the written course with the same analyzers and get the
+          same findings and numbers as the recalculation that passed the gate
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R009
+      - name: "should move the active pair to the published analysis and its plan,\
+          \ from where the next batch opens, and leave the baseline where it was"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R009
+      - name: should compare again before publishing when the batch changed since
+          its last closing
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R009
+      - name: should write only the course of content-audit at its path and nothing
+          in production
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R009
       implements:
       - BatchPublisher
       _change: add
     - name: DefaultBatchReportBuilder
+      handwrittenTests:
+      - name: "should count the tasks of the batch by outcome, resolved by rule, resolved\
+          \ by the panel, no longer holds, covered, no winner, tie, returned without\
+          \ attempts, no declared scope and not attempted, adding up to its tasks"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R010
+      - name: should count apart the exercises of José's order on «Contracciones»
+          done and those without winner
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R010
+      - name: "should give per analyzer and level the exercises with error before\
+          \ and after, taken from the comparison of F"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R010
+      - name: "should list the audios to rerecord, as the four of the vegetables fixes,\
+          \ the queries by role and the hours"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R010
+      - name: should list José's decisions on the batch
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R010
       implements:
       - BatchReportBuilder
       _change: add
     _change: add
+  - name: engine
+    implementations:
+    - name: DefaultQuizInstructionCorrectionRunner
+      handwrittenTests:
+      - name: should leave out of a revise-instructions run the quiz-instruction tasks
+          that are in the open batch
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R002
   _change: modify
 - name: audit-infrastructure
   packages:
@@ -904,6 +1237,17 @@ modules:
     implementations:
     - name: FileSystemBatchStore
       visibility: public
+      handwrittenTests:
+      - name: "should find the single open batch among the saved ones, and none once\
+          \ it is published"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R002
+      - name: "should rewrite the file of the batch atomically after each step, so\
+          \ a cut never leaves it half written"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R007
       implements:
       - BatchStore
       _change: add
@@ -933,6 +1277,31 @@ modules:
         type: BatchService
       types:
       - Component
+      handwrittenTests:
+      - name: "should open with 'batch open A1' the batch of A1 with the topics and\
+          \ queries at once and the orders given, and print its tasks"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R001
+      - name: should print with 'batch estimate' the cost of the open batch without
+          making any query
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R003
+      - name: "should run with 'batch run' and no cap only the rules, and say that\
+          \ the panel tasks stayed not attempted"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R003
+      - name: "should drop with 'batch drop' one change naming the change, and all\
+          \ the changes of a rule naming the rule"
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R008
+      - name: should print with 'batch report' the report of a batch
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R010
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -945,9 +1314,21 @@ modules:
         description: "Rechaza revisar una tarea de la tanda abierta con el mensaje\
           \ de F-TANDA-R002, antes de llamar al motor."
         _change: add
+      handwrittenTests:
+      - name: should reject 'revise' of a task of the open batch with «La tarea <id>
+          es de la tanda <id> y se decide en su bandeja.» and exit non-zero without
+          calling the revision engine
+        traceability:
+          feature: FEAT-TANDA
+          rule: F-TANDA-R002
       _change: modify
     _change: modify
   _change: modify
 features:
 - id: FEAT-TANDA
   code: F-TANDA
+  journeys:
+  - id: F-TANDA-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
