@@ -1,7 +1,49 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
+import static com.learney.contentaudit.auditdomain.multiplechoicevalidity.DefaultOptionRuleCheckTest.item;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CorrectorMatcher;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJudgeRun;
+import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJudgment;
+import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJudgmentStatus;
+import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeOption;
+import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeVerdict;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,97 +57,299 @@ public class MultipleChoiceValidityAnalyzerTest {
     @DisplayName("should raise a blocking finding on an exercise with no valid option or with several, as «The performance was ___ awful.» with no option scoring")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R001")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldRaiseABlockingFindingOnAnExerciseWithNoValidOptionOrWithSeveralAsThePerformanceWasAwfulWithNoOptionScoring(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: «The performance was ___ awful.» (…48f1, B2) with no option scoring.
+        AuditNode node = analyze(DefaultOptionRuleCheckTest.todaysCorrector(), noJudge(),
+                DefaultOptionRuleCheckTest.performanceWasAwful(item("absolutely", 0.0), item("very", 0.0)));
+        FindingDraft none = only(node, "single-valid-option");
+        assertEquals(FindingSeverity.BLOCKING, none.getSeverity());
+        assertEquals(FindingResolution.PANEL, none.getResolution());
+        assertEquals("ninguna", none.getMarker());
+        assertEquals(0.0, node.getScores().get("multiple-choice-validity"));
+        FindingDraft two = only(analyze(DefaultOptionRuleCheckTest.todaysCorrector(), noJudge(),
+                DefaultOptionRuleCheckTest.performanceWasAwful(item("absolutely", 1.0), item("very", 1.0))),
+                "single-valid-option");
+        assertEquals(FindingSeverity.BLOCKING, two.getSeverity());
+        assertEquals("very", two.getMarker());
     }
 
     @Test
     @DisplayName("should send twin options to the panel, blocking when they look identical and one is correct, high when only their form differs from the correct one and low when both are incorrect, as «'ve got to» and «have got to» in «David ___ call his mother now. (must)»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R002")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldSendTwinOptionsToThePanelBlockingWhenTheyLookIdenticalAndOneIsCorrectHighWhenOnlyTheirFormDiffersFromTheCorrectOneAndLowWhenBothAreIncorrectAsVeGotToAndHaveGotToInDavidCallHisMotherNowMust(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «David ___ call his mother now. (must)» (…2e0c, A2), with the table of the new corrector.
+        CorrectorMatcher corrector = DefaultOptionRuleCheckTest.newCorrector();
+        FindingDraft bothIncorrect = only(analyze(corrector, noJudge(), DefaultOptionRuleCheckTest.davidMust()),
+                "distinct-options");
+        assertEquals("have got to", bothIncorrect.getMarker());
+        assertEquals(FindingSeverity.LOW, bothIncorrect.getSeverity());
+        assertEquals(FindingResolution.PANEL, bothIncorrect.getResolution());
+
+        FindingDraft formOfTheCorrect = only(analyze(corrector, noJudge(), DefaultOptionRuleCheckTest.davidMust(
+                item("'ve got to", 1.0), item("have got to", 0.0), item("must", 0.0))), "distinct-options");
+        assertEquals("have got to", formOfTheCorrect.getMarker());
+        assertEquals(FindingSeverity.HIGH, formOfTheCorrect.getSeverity());
+
+        FindingDraft identical = only(analyze(corrector, noJudge(), DefaultOptionRuleCheckTest.davidMust(
+                item("must", 1.0), item("have to", 0.0), item("must", 0.0))), "distinct-options");
+        assertEquals(FindingSeverity.BLOCKING, identical.getSeverity());
+        assertEquals(FindingResolution.PANEL, identical.getResolution());
     }
 
     @Test
     @DisplayName("should rate the capital letter low when all options share their case and medium when only some do, and resolve it by one rule over all the options at once, as in «___ a child? (He)»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R003")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldRateTheCapitalLetterLowWhenAllOptionsShareTheirCaseAndMediumWhenOnlySomeDoAndResolveItByOneRuleOverAllTheOptionsAtOnceAsInAChildHe(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «___ a child? (He)» (…1e87, A1): one finding for all the options, low, by rule.
+        List<FindingDraft> drafts = findings(analyze(DefaultOptionRuleCheckTest.todaysCorrector(), noJudge(),
+                DefaultOptionRuleCheckTest.aChild()));
+        FindingDraft capital = byMarker(drafts, "mayuscula");
+        assertEquals(FindingSeverity.LOW, capital.getSeverity());
+        assertEquals(FindingResolution.RULE, capital.getResolution());
+        assertEquals("am i · are we · are you · is he · is it · is she", part(capital, "En minúscula"));
+        assertEquals(FindingResolution.RULE, byMarker(drafts, "i").getResolution());
+        assertEquals(1, drafts.stream().filter(d -> d.getMarker().equals("mayuscula")).count());
+
+        FindingDraft mixed = byMarker(findings(analyze(DefaultOptionRuleCheckTest.todaysCorrector(), noJudge(),
+                DefaultOptionRuleCheckTest.aChild(item("Am I", 0.0), item("is he", 1.0), item("Is it", 0.0)))), "mayuscula");
+        assertEquals(FindingSeverity.MEDIUM, mixed.getSeverity(), "only the correct one in lowercase gives it away");
     }
 
     @Test
     @DisplayName("should send the dash at the start of a sentence to the panel, as in «___ golf is difficult to learn.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R003")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldSendTheDashAtTheStartOfASentenceToThePanelAsInGolfIsDifficultToLearn() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «___ golf is difficult to learn.» (…29d4, A2): the dash goes to the panel.
+        FindingDraft dash = only(analyze(DefaultOptionRuleCheckTest.todaysCorrector(), noJudge(),
+                DefaultOptionRuleCheckTest.golf()), "sentence-start-capital");
+        assertEquals("guion", dash.getMarker());
+        assertEquals(FindingResolution.PANEL, dash.getResolution());
+        assertEquals("-", part(dash, "Guion"));
     }
 
     @Test
     @DisplayName("should send the article that gives the answer away to the panel as medium, with the article and the options as evidence, as in «It was an ___ wonderful experience.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R004")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldSendTheArticleThatGivesTheAnswerAwayToThePanelAsMediumWithTheArticleAndTheOptionsAsEvidenceAsInItWasAnWonderfulExperience(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: «It was an ___ wonderful experience.» (…48fc, B2): «very» does not fit «an».
+        FindingDraft article = only(analyze(DefaultOptionRuleCheckTest.todaysCorrector(), noJudge(),
+                DefaultOptionRuleCheckTest.wonderfulExperience()), "article-gives-away");
+        assertEquals("very", article.getMarker());
+        assertEquals(FindingSeverity.MEDIUM, article.getSeverity());
+        assertEquals(FindingResolution.PANEL, article.getResolution());
+        assertEquals("an", part(article, "Artículo"));
+        assertEquals("*absolutely · very", part(article, "Opciones"));
+        assertEquals("It was an ___ wonderful experience.", part(article, "Ejercicio"));
     }
 
     @Test
     @DisplayName("should never leave a finding of its own on a write-in exercise, as «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldNeverLeaveAFindingOfItsOwnOnAWriteinExerciseAsTheyNotBeFromIreland() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: «They ___ (not / be) from Ireland.» (…25ac, A1) is written in: not requested, no score, no finding.
+        AuditableQuiz writeIn = new AuditableQuiz(List.of(), "67fab6d599301022953425ac", "label", "", null, List.of(), null,
+                "Usa $short forms$ si es posible.", List.of(DefaultOptionRuleCheckTest.text("They"),
+                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("'re not")),
+                        DefaultOptionRuleCheckTest.text("(not / be) from Ireland.")), null, null, null);
+        RecordingJudgeRun judge = new RecordingJudgeRun(Map.of());
+        AuditNode node = analyze(DefaultOptionRuleCheckTest.todaysCorrector(), judge, writeIn);
+        assertFalse(node.getScores().containsKey("multiple-choice-validity"));
+        assertEquals(List.of(), findings(node));
+        assertEquals(List.of(), judge.requested);
     }
 
     @Test
     @DisplayName("should score 0 a multiple choice exercise with a finding and 1 one with a single correct option, distinct options and nothing that gives it away, as «The performance was ___ awful.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldScore0AMultipleChoiceExerciseWithAFindingAnd1OneWithASingleCorrectOptionDistinctOptionsAndNothingThatGivesItAwayAsThePerformanceWasAwful(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: «The performance was ___ awful.» (…48f1) is clean: 1; «___ a child? (He)» has findings: 0.
+        AuditNode clean = analyze(DefaultOptionRuleCheckTest.newCorrector(), noJudge(),
+                DefaultOptionRuleCheckTest.performanceWasAwful());
+        assertEquals(1.0, clean.getScores().get("multiple-choice-validity"));
+        assertEquals(List.of(), findings(clean));
+        AuditNode child = analyze(DefaultOptionRuleCheckTest.newCorrector(), noJudge(), DefaultOptionRuleCheckTest.aChild());
+        assertEquals(0.0, child.getScores().get("multiple-choice-validity"));
+        assertEquals(0.0, ((DefaultQuizDiagnoses) child.getDiagnoses()).getMultipleChoiceValidityDiagnosis().orElseThrow()
+                .getScore());
     }
 
     @Test
     @DisplayName("should identify each finding by its rule, its exercise and the option it marks, so two runs mark «very» in «He's an ___ amazing man.» the same")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldIdentifyEachFindingByItsRuleItsExerciseAndTheOptionItMarksSoTwoRunsMarkVeryInHesAnAmazingManTheSame(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and F-HALL-R014: two runs of the engine give «very» in «He's an ___ amazing man.» (…48f4) the
+        // same identity: analyzer, rule, exercise and the option it marks.
+        String first = engineFinding(DefaultOptionRuleCheckTest.amazingMan()).getIdentity().getKey();
+        String second = engineFinding(DefaultOptionRuleCheckTest.amazingMan()).getIdentity().getKey();
+        assertEquals("multiple-choice-validity|article-gives-away|67fab6d599301022953448f4|very", first);
+        assertEquals(first, second);
     }
 
     @Test
     @DisplayName("should keep counting the findings of its rules on an exercise the judge did not see and say that the judge did not see it, as «___ a child? (He)» with the judge pending")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldKeepCountingTheFindingsOfItsRulesOnAnExerciseTheJudgeDidNotSeeAndSayThatTheJudgeDidNotSeeItAsAChildHeWithTheJudgePending(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and F-RONDA1-R006 (DOUBT-OMVAL-JUEZ-A-MEDIAS, A): the judge left «___ a child? (He)» pending: the
+        // findings of the rules count, the score is there and the node says the judge did not see it.
+        AuditableQuiz child = DefaultOptionRuleCheckTest.aChild();
+        RecordingJudgeRun judge = new RecordingJudgeRun(Map.of(child.getId(), judgment(child.getId(),
+                ChoiceAlternativeJudgmentStatus.PENDING, List.of(), null)));
+        AuditNode node = analyze(DefaultOptionRuleCheckTest.todaysCorrector(), judge, child);
+        assertEquals(List.of("mayuscula", "i"), findings(node).stream().map(FindingDraft::getMarker).toList());
+        assertEquals(0.0, node.getScores().get("multiple-choice-validity"));
+        assertEquals(List.of("multiple-choice-validity"), node.getPartiallyEvaluatedBy());
+        assertEquals(ChoiceAlternativeJudgmentStatus.PENDING, ((DefaultQuizDiagnoses) node.getDiagnoses())
+                .getMultipleChoiceValidityDiagnosis().orElseThrow().getJudgment().getStatus());
     }
 
     @Test
     @DisplayName("should turn an incorrect option the judge also finds valid into a finding for the panel, with the judge's explanation as evidence, as «very» if the judge found it valid in «The performance was ___ awful.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldTurnAnIncorrectOptionTheJudgeAlsoFindsValidIntoAFindingForThePanelWithTheJudgesExplanationAsEvidenceAsVeryIfTheJudgeFoundItValidInThePerformanceWasAwful(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and F-MCVALE-R004: the judge found «very» also valid in «The performance was ___ awful.»: its
+        // finding goes as it emits it, for the panel, and its score lowers the exercise's.
+        AuditableQuiz awful = DefaultOptionRuleCheckTest.performanceWasAwful();
+        FindingDraft alsoValid = new FindingDraft("another-option-valid", "very", FindingSeverity.HIGH,
+                FindingResolution.PANEL, new FindingEvidence(List.of(new EvidencePart("Explicación del juez",
+                        "«very awful» también se dice en el habla informal")), "Otra opción también vale.", List.of()));
+        RecordingJudgeRun judge = new RecordingJudgeRun(Map.of(awful.getId(), judgment(awful.getId(),
+                ChoiceAlternativeJudgmentStatus.JUDGED, List.of(alsoValid), 0.6)));
+        AuditNode node = analyze(DefaultOptionRuleCheckTest.todaysCorrector(), judge, awful);
+        assertEquals(List.of(alsoValid), findings(node));
+        assertEquals(FindingResolution.PANEL, findings(node).get(0).getResolution());
+        assertEquals("«very awful» también se dice en el habla informal", part(findings(node).get(0), "Explicación del juez"));
+        assertEquals(0.6, node.getScores().get("multiple-choice-validity"));
+        assertTrue(node.getPartiallyEvaluatedBy().isEmpty());
+    }
+
+    // ------------------------------------------------------------------
+    // The analyzer over one exercise, with a judge that is told what to answer
+    // ------------------------------------------------------------------
+
+    static AuditNode analyze(CorrectorMatcher corrector, ChoiceAlternativeJudgeRun judge, AuditableQuiz quiz) {
+        MultipleChoiceValidityAnalyzer analyzer = new MultipleChoiceValidityAnalyzer(new DefaultOptionRuleCheck(corrector),
+                judge, renderer());
+        AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, new ArrayList<>(), new LinkedHashMap<>(),
+                new LinkedHashMap<>(), new DefaultCourseDiagnoses());
+        AuditNode node = new AuditNode(quiz, AuditTarget.QUIZ, root, List.of(), new LinkedHashMap<>(),
+                new LinkedHashMap<>(), new DefaultQuizDiagnoses());
+        root.getChildren().add(node);
+        analyzer.onQuiz(node);
+        analyzer.onCourseComplete(root);
+        node.getMetadata().put("findings", analyzer.findingsAt(node));
+        return node;
+    }
+
+    @SuppressWarnings("unchecked")
+    static List<FindingDraft> findings(AuditNode node) {
+        return (List<FindingDraft>) node.getMetadata().get("findings");
+    }
+
+    static FindingDraft only(AuditNode node, String rule) {
+        List<FindingDraft> drafts = findings(node).stream().filter(d -> d.getRule().equals(rule)).toList();
+        assertEquals(1, drafts.size(), "one finding of " + rule + " in " + findings(node));
+        return drafts.get(0);
+    }
+
+    static FindingDraft byMarker(List<FindingDraft> drafts, String marker) {
+        return drafts.stream().filter(d -> d.getMarker().equals(marker)).findFirst()
+                .orElseThrow(() -> new AssertionError("no finding «" + marker + "» in "
+                        + drafts.stream().map(FindingDraft::getMarker).toList()));
+    }
+
+    static String part(FindingDraft draft, String label) {
+        for (EvidencePart part : draft.getEvidence().getExamined()) {
+            if (part.getLabel().equals(label)) {
+                return part.getText();
+            }
+        }
+        return null;
+    }
+
+    static DefaultQuizStudentViewRenderer renderer() {
+        return new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create());
+    }
+
+    static RecordingJudgeRun noJudge() {
+        return new RecordingJudgeRun(Map.of());
+    }
+
+    static ChoiceAlternativeJudgment judgment(String quizId, ChoiceAlternativeJudgmentStatus status,
+            List<FindingDraft> findings, Double score) {
+        ChoiceAlternativeVerdict verdict = status == ChoiceAlternativeJudgmentStatus.JUDGED
+                ? new ChoiceAlternativeVerdict(true, List.of(new ChoiceAlternativeOption("very", FindingSeverity.HIGH,
+                        "«very awful» también se dice")), null, "otra opción vale")
+                : null;
+        return new ChoiceAlternativeJudgment(quizId, status, verdict, List.of(), findings, score, "v1", false,
+                status == ChoiceAlternativeJudgmentStatus.JUDGED ? null : "pendiente");
+    }
+
+    /** A judge that answers what it is told, by exercise, and NOT_AVAILABLE for the rest. */
+    static final class RecordingJudgeRun implements ChoiceAlternativeJudgeRun {
+        final Map<String, ChoiceAlternativeJudgment> answers;
+        final List<String> requested = new ArrayList<>();
+
+        RecordingJudgeRun(Map<String, ChoiceAlternativeJudgment> answers) {
+            this.answers = answers;
+        }
+
+        @Override
+        public void request(AuditNode quizNode) {
+            requested.add(quizNode.getEntity().getId());
+        }
+
+        @Override
+        public void resolveAll() {
+        }
+
+        @Override
+        public ChoiceAlternativeJudgment judgmentOf(AuditNode quizNode) {
+            String id = quizNode.getEntity().getId();
+            return answers.getOrDefault(id, judgment(id, ChoiceAlternativeJudgmentStatus.NOT_AVAILABLE, List.of(), null));
+        }
+
+        @Override
+        public JudgeCoverageDiagnosis coverage() {
+            return new JudgeCoverageDiagnosis("multiple-choice-validity", AuditTarget.QUIZ, requested.size(), 0,
+                    requested.size(), List.of(), null, List.of(), "sin juez", null, List.of());
+        }
+    }
+
+    // ------------------------------------------------------------------
+    // Through the engine, with the factory «without judge»
+    // ------------------------------------------------------------------
+
+    private static Finding engineFinding(AuditableQuiz quiz) {
+        MultipleChoiceValidityAnalyzerProvider provider = new MultipleChoiceValidityAnalyzerProvider(
+                DefaultOptionRuleCheckTest.todaysCorrector(), new UnavailableChoiceAlternativeJudgeRunFactory(), renderer());
+        IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
+                new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(quiz), "Grados de énfasis", null, true,
+                "6814dafa7d73e7209a13d491", "Grados de énfasis", "6814dafa7d73e7209a13d491", SentenceMode.FILL, "Topic");
+        AuditableCourse course = new AuditableCourse(List.of(new AuditableMilestone(List.of(new AuditableTopic(
+                List.of(knowledge), "topic", "Topic", "topic")), "B2", "B2", "B2")));
+        AuditReport report = engine.runAudit(course,
+                new AnalyzerRunSelection(List.of("multiple-choice-validity"), Map.of()));
+        AuditNode node = report.getRoot().getChildren().get(0).getChildren().get(0).getChildren().get(0).getChildren()
+                .get(0);
+        assertEquals(1, node.getFindings().size());
+        return node.getFindings().get(0);
     }
 }

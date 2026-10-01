@@ -1,7 +1,19 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.CorrectorMatcher;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcherTest;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,119 +27,260 @@ public class DefaultOptionRuleCheckTest {
     @DisplayName("should report an exercise where no option is worth the full score, as «The performance was ___ awful.» if «absolutely» lost its score")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R001")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldReportAnExerciseWhereNoOptionIsWorthTheFullScoreAsThePerformanceWasAwfulIfAbsolutelyLostItsScore(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: «The performance was ___ awful.» (…48f1, B2) with «absolutely» at 0: no option is worth the score.
+        List<OptionIssue> issues = check(todaysCorrector(), performanceWasAwful(item("absolutely", 0.0), item("very", 0.0)));
+        assertEquals(List.of(new OptionIssue("single-valid-option", OptionIssueKind.NO_VALID_OPTION, null, null, false)),
+                issues);
     }
 
     @Test
     @DisplayName("should report an exercise where two options score, as «The performance was ___ awful.» if «very» also scored")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R001")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldReportAnExerciseWhereTwoOptionsScoreAsThePerformanceWasAwfulIfVeryAlsoScored(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: «very» also scoring: two options are worth the score, and a single choice never reaches it.
+        List<OptionIssue> issues = check(todaysCorrector(), performanceWasAwful(item("absolutely", 1.0), item("very", 1.0)));
+        assertEquals(List.of(new OptionIssue("single-valid-option", OptionIssueKind.SEVERAL_VALID_OPTIONS, "very",
+                "absolutely", true)), issues);
     }
 
     @Test
     @DisplayName("should report two incorrect options that are the same answer, as «'re going to» and «are going to» in «Are you busy? If so, I ___ do it for you.» of Elegir la forma natural")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R002")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldReportTwoIncorrectOptionsThatAreTheSameAnswerAsReGoingToAndAreGoingToInAreYouBusyIfSoIDoItForYouOfElegirLaFormaNatural(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 (José, 30/9): with the table of the new corrector «'re going to» and «are going to» (…26ef, A1)
+        // are the same answer; both are incorrect, one is left over. With today's copy only case and signs count.
+        List<OptionIssue> issues = check(newCorrector(), areYouBusy());
+        assertTrue(issues.contains(new OptionIssue("distinct-options", OptionIssueKind.SAME_ANSWER_OTHER_FORM,
+                "are going to", "'re going to", false)), issues.toString());
+        assertTrue(check(todaysCorrector(), areYouBusy()).stream().noneMatch(i -> i.getRule().equals("distinct-options")));
     }
 
     @Test
     @DisplayName("should report two options that look identical when one of them is the correct one, as «absolutely» twice in «The performance was ___ awful.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R002")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldReportTwoOptionsThatLookIdenticalWhenOneOfThemIsTheCorrectOneAsAbsolutelyTwiceInThePerformanceWasAwful(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «absolutely» twice, one of them the correct one: the student cannot tell them apart.
+        List<OptionIssue> issues = check(todaysCorrector(),
+                performanceWasAwful(item("absolutely", 1.0), item("very", 0.0), item("absolutely", 0.0)));
+        assertEquals(List.of(new OptionIssue("distinct-options", OptionIssueKind.IDENTICAL_OPTIONS, "absolutely",
+                "absolutely", true)), issues);
     }
 
     @Test
     @DisplayName("should report an option that is the correct one in another form, as «will» next to the correct «'ll» in «Are you busy? If so, I ___ do it for you.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R002")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldReportAnOptionThatIsTheCorrectOneInAnotherFormAsWillNextToTheCorrectLlInAreYouBusyIfSoIDoItForYou(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «will» next to the correct «'ll»: the corrector reads «I'll» as «I will», so the one who picks
+        // «will» is marked wrong with the right answer.
+        AuditableQuiz withWill = mc("67fab6d599301022953426ef",
+                List.of(text("Are you busy? If so, I"), gap(), text("do it for you.")),
+                item("'ll", 1.0), item("will", 0.0), item("'re going to", 0.0));
+        assertTrue(check(newCorrector(), withWill).contains(new OptionIssue("distinct-options",
+                OptionIssueKind.SAME_ANSWER_OTHER_FORM, "will", "'ll", true)));
     }
 
     @Test
     @DisplayName("should report the options in lowercase when the gap opens the sentence, as «am i · are we · are you · is he · is it · is she» in «___ a child? (He)»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R003")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldReportTheOptionsInLowercaseWhenTheGapOpensTheSentenceAsAmIAreWeAreYouIsHeIsItIsSheInAChildHe(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «___ a child? (He)» (…1e87, A1) opens the question: its six options are lowercase, and «am i»
+        // also writes «i» in lowercase.
+        List<OptionIssue> issues = check(todaysCorrector(), aChild());
+        assertEquals(List.of("am i", "are we", "are you", "is he", "is it", "is she"), options(issues,
+                OptionIssueKind.LOWERCASE_SENTENCE_START));
+        assertEquals(List.of("am i"), options(issues, OptionIssueKind.LOWERCASE_I));
+        assertTrue(issues.stream().allMatch(i -> i.getRule().equals("sentence-start-capital")));
     }
 
     @Test
     @DisplayName("should report a lowercase «i» in an option even when the gap does not open the sentence, as «i can't» in «A: Can you call Miss Green? B: No, ___ .»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R003")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldReportALowercaseIInAnOptionEvenWhenTheGapDoesNotOpenTheSentenceAsICantInACanYouCallMissGreenBNo(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: after «No,» the gap does not open the sentence, but «i can't» (…250b, A1) still writes «i».
+        List<OptionIssue> issues = check(todaysCorrector(), missGreen());
+        assertEquals(List.of("i can", "i can't"), options(issues, OptionIssueKind.LOWERCASE_I));
+        assertTrue(issues.contains(new OptionIssue("sentence-start-capital", OptionIssueKind.LOWERCASE_I, "i can't", null,
+                true)));
+        assertEquals(List.of(), options(issues, OptionIssueKind.LOWERCASE_SENTENCE_START));
     }
 
     @Test
     @DisplayName("should take the gap after the «A:» or «B:» of a dialogue as opening the sentence, as «everything · nothing» in «A: What did you find? B: ___ , it was empty.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R003")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldTakeTheGapAfterTheAOrBOfADialogueAsOpeningTheSentenceAsEverythingNothingInAWhatDidYouFindBItWasEmpty(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the gap after «B:» (…2c5e, A2) opens the answer.
+        assertEquals(List.of("everything", "nothing"), options(check(todaysCorrector(), whatDidYouFind()),
+                OptionIssueKind.LOWERCASE_SENTENCE_START));
     }
 
     @Test
     @DisplayName("should report the dash of putting nothing in a gap that opens the sentence, as «- · a» in «___ golf is difficult to learn.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R003")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldReportTheDashOfPuttingNothingInAGapThatOpensTheSentenceAsAInGolfIsDifficultToLearn(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: with «-», the correct one in «___ golf is difficult to learn.» (…29d4, A2), the sentence starts
+        // «golf is…»; the panel rearms it, capital included.
+        List<OptionIssue> issues = check(todaysCorrector(), golf());
+        assertEquals(List.of(new OptionIssue("sentence-start-capital", OptionIssueKind.DASH_AT_SENTENCE_START, "-", null,
+                true)), issues);
     }
 
     @Test
     @DisplayName("should not take as opening a sentence a gap whose text does not end in a period, a question or an exclamation mark, as «___ excited man» in A o an")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R003")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldNotTakeAsOpeningASentenceAGapWhoseTextDoesNotEndInAPeriodAQuestionOrAnExclamationMarkAsExcitedManInAOAn(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «___ excited man» (…233f, A1, A o an) is not a sentence: its lowercase options are fine.
+        assertEquals(List.of(), check(todaysCorrector(), excitedMan()));
     }
 
     @Test
     @DisplayName("should report the option that does not fit the «a» or «an» before the gap, as «very» after «an» in «He's an ___ amazing man.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R004")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldReportTheOptionThatDoesNotFitTheAOrAnBeforeTheGapAsVeryAfterAnInHesAnAmazingMan(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: after «an» in «He's an ___ amazing man.» (…48f4, B2) only «absolutely» fits.
+        assertEquals(List.of(new OptionIssue("article-gives-away", OptionIssueKind.ARTICLE_GIVES_AWAY, "very", "an", false)),
+                check(todaysCorrector(), amazingMan()));
     }
 
     @Test
     @DisplayName("should find nothing when every option fits the article before the gap, as «good · well» after «a» in «My brother is a ___ (good / well) driver.»")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R004")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldFindNothingWhenEveryOptionFitsTheArticleBeforeTheGapAsGoodWellAfterAInMyBrotherIsAGoodWellDriver(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: «good» and «well» both fit «a» in «My brother is a ___ (good / well) driver.» (…256a, A1).
+        assertEquals(List.of(), check(todaysCorrector(), goodDriver()));
+        assertFalse(DefaultOptionRuleCheck.startsWithVowelSound("university"));
+        assertTrue(DefaultOptionRuleCheck.startsWithVowelSound("hour"));
+    }
+
+    // ------------------------------------------------------------------
+    // The corrector of today and the new one, from the copies of their tables
+    // ------------------------------------------------------------------
+
+    static CorrectorMatcher todaysCorrector() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.installedTable());
+    }
+
+    static CorrectorMatcher newCorrector() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.newCorrectorTable());
+    }
+
+    private static List<OptionIssue> check(CorrectorMatcher corrector, AuditableQuiz quiz) {
+        return new DefaultOptionRuleCheck(corrector).check(quiz);
+    }
+
+    private static List<String> options(List<OptionIssue> issues, OptionIssueKind kind) {
+        return issues.stream().filter(i -> i.getKind() == kind).map(OptionIssue::getOption).toList();
+    }
+
+    // ------------------------------------------------------------------
+    // Exercises of the 29/9 course
+    // ------------------------------------------------------------------
+
+    static AuditableQuiz performanceWasAwful(MultipleChoiceItemEntity... items) {
+        return mc("67fab6d599301022953448f1", List.of(text("The performance was"), gap(), text("awful.")), items);
+    }
+
+    static AuditableQuiz performanceWasAwful() {
+        return performanceWasAwful(item("absolutely", 1.0), item("very", 0.0));
+    }
+
+    static AuditableQuiz areYouBusy() {
+        return mc("67fab6d599301022953426ef", List.of(text("Are you busy? If so, I"), gap(), text("do it for you.")),
+                item("'ll", 1.0), item("'re going to", 0.0), item("'s going to", 0.0), item("are going to", 0.0),
+                item("is going to", 0.0));
+    }
+
+    static AuditableQuiz davidMust(MultipleChoiceItemEntity... items) {
+        return mc("67fab6d59930102295342e0c", List.of(text("David"), gap(), text("call his mother now. (must)")),
+                items);
+    }
+
+    static AuditableQuiz davidMust() {
+        return davidMust(item("'s got to", 0.0), item("'ve got to", 0.0), item("has to", 0.0),
+                item("have got to", 0.0), item("have to", 0.0), item("must", 1.0));
+    }
+
+    static AuditableQuiz aChild(MultipleChoiceItemEntity... items) {
+        return mc("67fab6d59930102295341e87", List.of(gap(), text("a child? (He)")), items);
+    }
+
+    static AuditableQuiz aChild() {
+        return aChild(item("am i", 0.0), item("are we", 0.0), item("are you", 0.0), item("is he", 1.0),
+                item("is it", 0.0), item("is she", 0.0));
+    }
+
+    static AuditableQuiz missGreen() {
+        return mc("67fab6d5993010229534250b", List.of(text("A: Can you call Miss Green? B: No,"), gap(), text(".")),
+                item("he can", 0.0), item("he can't", 0.0), item("i can", 0.0), item("i can't", 1.0),
+                item("you can", 0.0), item("you can't", 0.0));
+    }
+
+    static AuditableQuiz whatDidYouFind() {
+        return mc("67fab6d59930102295342c5e", List.of(text("A: What did you find? B:"), gap(), text(", it was empty.")),
+                item("everything", 0.0), item("nothing", 1.0));
+    }
+
+    static AuditableQuiz golf() {
+        return mc("67fab6d599301022953429d4", List.of(gap(), text("golf is difficult to learn.")), item("-", 1.0),
+                item("a", 0.0));
+    }
+
+    static AuditableQuiz excitedMan() {
+        return mc("67fab6d5993010229534233f", List.of(gap(), text("excited man")), item("a", 0.0), item("an", 1.0));
+    }
+
+    static AuditableQuiz amazingMan() {
+        return mc("67fab6d599301022953448f4", List.of(text("He's an"), gap(), text("amazing man.")),
+                item("absolutely", 1.0), item("very", 0.0));
+    }
+
+    static AuditableQuiz wonderfulExperience() {
+        return mc("67fab6d599301022953448fc", List.of(text("It was an"), gap(), text("wonderful experience.")),
+                item("absolutely", 1.0), item("very", 0.0));
+    }
+
+    static AuditableQuiz goodDriver() {
+        return mc("67fab6d5993010229534256a", List.of(text("My brother is a"), gap(), text("(good / well) driver.")),
+                item("good", 1.0), item("well", 0.0));
+    }
+
+    static AuditableQuiz mc(String id, List<SentencePartEntity> parts, MultipleChoiceItemEntity... items) {
+        return new AuditableQuiz(List.of(), id, "label", "", null, List.of(), null, "Elige la opción correcta.", parts,
+                new MultipleChoiceEntity("SINGLE", List.of(items)), null, null);
+    }
+
+    static MultipleChoiceItemEntity item(String label, double incidence) {
+        return new MultipleChoiceItemEntity(label, incidence, label);
+    }
+
+    static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    static SentencePartEntity gap() {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", null);
     }
 }

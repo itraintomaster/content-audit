@@ -5,6 +5,17 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (impl A) — Con un guion al abrir la oración, R003 marca sólo el guion (mesa) y no la minúscula de las
+  otras opciones: la mesa rearma el ejercicio entero, mayúscula incluida, y un arreglo por regla en paralelo chocaría con él.
+  La mayúscula al abrir y la «i» son un hallazgo por ejercicio cada uno (marcas «mayuscula» e «i», por regla sobre todas las
+  opciones a la vez); el guion, «guion»; R001 marca «ninguna» o la segunda opción que vale; R002 la opción que sobra (la gemela
+  de la correcta, o la segunda de dos incorrectas); R004 la opción que no encaja con el artículo.
+  why: la identidad es regla + ejercicio + opción marcada (F-HALL-R014) y la mayúscula se arregla en todas a la vez.
+
+2026-09-30 — developer (impl A) — El puntaje es 0 con un hallazgo de regla y 1 sin ninguno; si el juez juzgó, gana el menor entre
+  ése y el suyo (1, 0,6, 0,3 o 0). Lo que el juez no juzgó (pendiente, fallido o sin juez) queda «a medias» con su puntaje de
+  reglas. La fábrica «no disponible» declara la regla del juez con el mismo id, texto y costo que la de C.
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): el juez entra por el contrato de C que vive en la integración (choicealternative): salen MultipleChoiceJudgeFactory/Session, MultipleChoiceJudgement(+Status), AlsoValidOption y MultipleChoiceJudgeCoverageDiagnosis; judgeRun, judgeRunFactory, diagnosis.judgment y UnavailableChoiceAlternativeJudgeRunFactory. DOUBT-OMVAL-JUEZ-A-MEDIAS y CORRIDA-BASE: A (F-RONDA1-R006, R007).
 
 2026-09-30 — qa-tester — F-OMVAL-J001 en audit-domain, paquete multiplechoicevalidity: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.

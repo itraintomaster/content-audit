@@ -1,7 +1,17 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +25,32 @@ public class MultipleChoiceValidityAnalyzerProviderTest {
     @DisplayName("should describe multiple-choice-validity with one card that asks «¿Hay una sola opción correcta, y ninguna se delata por la forma?», lists its four instant rules and the judge's rule and declares the paid model cost, the highest")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldDescribeMultiplechoicevalidityWithOneCardThatAsksHayUnaSolaOpcinCorrectaYNingunaSeDelataPorLaFormaListsItsFourInstantRulesAndTheJudgesRuleAndDeclaresThePaidModelCostTheHighest(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and F-HALL-R006: one card, its four instant rules and the judge's rule as the factory gives it;
+        // the cost of the card is the highest, the paid model; no task kind and no configuration.
+        MultipleChoiceValidityAnalyzerProvider provider = new MultipleChoiceValidityAnalyzerProvider(
+                DefaultOptionRuleCheckTest.todaysCorrector(), new UnavailableChoiceAlternativeJudgeRunFactory(),
+                MultipleChoiceValidityAnalyzerTest.renderer());
+        AnalyzerDescriptor card = provider.describe();
+
+        assertEquals("multiple-choice-validity", provider.analyzerName());
+        assertEquals("multiple-choice-validity", card.getName());
+        assertEquals("Opción múltiple válida", card.getDisplayName());
+        assertEquals("¿Hay una sola opción correcta, y ninguna se delata por la forma?", card.getQuestion());
+        assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
+        assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
+        assertEquals(List.of(FindingResolution.RULE, FindingResolution.PANEL), card.getResolutions());
+        assertEquals(List.of("single-valid-option", "distinct-options", "sentence-start-capital", "article-gives-away",
+                "another-option-valid"), card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
+        assertTrue(card.getRules().subList(0, 4).stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
+        assertEquals(AnalysisCost.PAID_MODEL, card.getRules().get(4).getCost());
+        assertEquals(AnalysisCost.PAID_MODEL, card.getCost());
+        assertTrue(provider.planBinding().isEmpty());
+        assertTrue(provider.config().isEmpty());
+        assertEquals("multiple-choice-validity", provider.create(null).getName());
+
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(card, catalog.find("multiple-choice-validity").orElseThrow(), "the catalog accepts the card");
     }
 }

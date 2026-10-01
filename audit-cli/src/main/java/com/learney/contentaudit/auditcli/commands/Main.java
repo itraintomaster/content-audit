@@ -223,6 +223,7 @@ import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeExamVerdic
 import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
 import com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryAnalyzerProvider;
 import com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.multiplechoicevalidity.UnavailableChoiceAlternativeJudgeRunFactory;
 import com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver;
 import com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider;
 import com.learney.contentaudit.auditdomain.offlevelwords.TopicTeachingResolver;
@@ -526,8 +527,9 @@ class Main {
         AnalyzerProvider hintCoherenceProvider = new HintCoherenceAnalyzerProvider(irregularForms, studentViewRenderer);
         AnalyzerProvider answerCompletenessProvider =
                 new AnswerCompletenessAnalyzerProvider(correctorMatcher, irregularForms, studentViewRenderer);
+        // A: «no disponible» until it is joined with C; then back to choiceAlternativeJudgeRunFactory (C-15).
         AnalyzerProvider multipleChoiceValidityProvider = new MultipleChoiceValidityAnalyzerProvider(
-                correctorMatcher, choiceAlternativeJudgeRunFactory, studentViewRenderer);
+                correctorMatcher, new UnavailableChoiceAlternativeJudgeRunFactory(), studentViewRenderer);
         AnalyzerProvider dataCoherenceProvider = new DataCoherenceAnalyzerProvider(
                 correctorMatcher, recordings, productionSentences, studentViewRenderer);
         AnalyzerProvider exactDuplicatesProvider = new ExactDuplicatesAnalyzerProvider(correctorMatcher, studentViewRenderer);
@@ -575,7 +577,7 @@ class Main {
 
         analyzerProviders.add(answerCompletenessProvider);                                                // 11 · A · FEAT-RESPC
 
-        // analyzerProviders.add(multipleChoiceValidityProvider); // 12 · A · FEAT-OMVAL (+ C · FEAT-MCVALE), pendiente
+        analyzerProviders.add(multipleChoiceValidityProvider);                                            // 12 · A · FEAT-OMVAL (+ C · FEAT-MCVALE)
 
         // analyzerProviders.add(dataCoherenceProvider);          // 13 · A · FEAT-DATOS, pendiente
 
