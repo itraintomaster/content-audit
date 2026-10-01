@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (como arquitecto) — Lo pendiente de regrabar vive en la publicación de cada tanda
+  (BatchPublication.rerecords): la siguiente los recibe al abrir (select) y no toma la tarea del audio. Sin almacén nuevo:
+  un pedido deja de estar pendiente cuando data-coherence ya no marca ese audio.
+  why: la tanda ya guarda sus publicaciones; un registro aparte de regrabaciones se desalinearía del de grabaciones (DATOS).
+
 2026-10-01 — qa-tester (como analista) — El audio sigue al ejercicio (orquestador, 1/10): R004 inv. 4 (un arreglo por
   regla puede ser sólo un pedido de regrabar), R006 inv. 3 (esa tarea queda «pendiente de regrabar», no resuelta), R010
   cuenta las pendientes de regrabar y R012 nueva: publicar deja pendientes los pedidos, y una tanda no toma, ni por regla

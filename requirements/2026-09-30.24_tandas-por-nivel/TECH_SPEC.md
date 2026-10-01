@@ -181,6 +181,8 @@ de F toma el inicio de la tanda del par activo, así que sin este paso comparar�
 tareas de errores del nivel con resolución regla o mesa, las de `lemma-absence` que cubren un error y los encargos de
 José; deja fuera, declaradas, las que tienen una propuesta pendiente ajena (R002), junta los desacuerdos de los jueces
 para la bandeja (F-TAREA-R005) y cuenta lo no evaluado por analizador. N y C son 4 y 4 si no se piden (José, 30/9).
+Desde el 1/10 recibe también los audios pendientes de regrabar de las tandas publicadas, y deja fuera las tareas del
+audio de esos ejercicios (R012, ver «Regrabar es un desenlace de un arreglo»).
 
 ```architecture
 modules:
@@ -225,7 +227,7 @@ modules:
             visibility: internal
             sealed: false
             exposes:
-              - signature: "select(RefinementPlan plan, AuditReport start, CefrLevel level, List<String> conversionTopics): CorrectionBatch"
+              - signature: "select(RefinementPlan plan, AuditReport start, CefrLevel level, List<String> conversionTopics, List<AudioRerecordRequest> pendingRerecords): CorrectionBatch"
         implementations:
           - name: DefaultBatchTaskSelector
             _change: add
@@ -876,11 +878,77 @@ modules:
               - { name: goalBook, type: GoalBook }
 ```
 
-## Declarar las 66 pruebas y ubicar el journey
-Las 66 son nuevas y cubren las once reglas (R001 8, R002 6, R003 5, R004 9, R005 4, R006 7, R007 5, R008 6, R009 7,
-R010 6, R011 3). Van sobre el servicio y sus piezas de `batchengine` (51), los cuatro arreglos por regla de A (5), el
-almacén de archivos (2), `BatchCmd` (5) y, para R002, sobre lo que ya existía: `ReviseCmd`, `nextTask` de
-`DefaultRefinerEngine` y la corrida de consignas. Ninguna consulta un modelo: proponente guionado, jueces con veredictos
+## Regrabar es un desenlace de un arreglo, y lo que se pidió regrabar no vuelve a la mesa
+El audio sigue al ejercicio, nunca al revés (orquestador, 1/10). Un arreglo por regla puede no cambiar el ejercicio y sólo
+pedir regrabar su audio con lo que dice hoy (R004, inv. 4): el resultado del arreglo lo declara, con la clave y el texto,
+y la compuerta lo deja pasar (F-NOEMP-R004). Su tarea no queda resuelta sino «pendiente de regrabar», porque el hallazgo
+sigue hasta que se graba (R006, inv. 3), y el informe la cuenta aparte (R010). Al publicar, la tanda deja esos pedidos
+pendientes en su publicación; la siguiente los recibe al abrir y no toma, ni por regla ni para la mesa, la tarea del audio
+de esos ejercicios (R012): sin esto, el audio viejo de «I ___ (love) vegetables.» volvía como hallazgo de mesa de
+F-DATOS-R003 y otra tanda lo «arreglaba» cambiando el ejercicio. Qué hallazgo es «del audio» lo dice el analizador en su
+declaración de corrección (`concernsAudio`), no la tanda: en `data-coherence`, el audio que lee la «/» o la pista, el que
+dice otra cosa y el que no tiene texto conocido; la «/» de una respuesta y la oración guardada no.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    interfaces:
+      - name: AnalyzerCorrection
+        _change: modify
+        exposes:
+          - signature: "concernsAudio(Finding finding): boolean"
+            _change: add
+    packages:
+      - name: rulefix
+        _change: add
+        models:
+          - name: RuleFixResult
+            _change: add
+            type: record
+            fields:
+              - { name: quiz, type: QuizTemplateEntity }
+              - { name: fixed, type: "List<FindingIdentity>" }
+              - { name: declined, type: "List<FindingIdentity>" }
+              - { name: detail, type: String }
+              - { name: rerecordings, type: "List<RuleFixRerecording>" }
+          - name: RuleFixRerecording
+            _change: add
+            type: record
+            fields:
+              - { name: audioKey, type: String }
+              - { name: text, type: String }
+```
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: batch
+        _change: add
+        models:
+          - name: CorrectionBatch
+            _change: add
+            fields:
+              - { name: pendingRerecords, type: "List<AudioRerecordRequest>" }
+          - name: BatchPublication
+            _change: add
+            fields:
+              - { name: rerecords, type: "List<AudioRerecordRequest>" }
+          - name: BatchTaskOutcomeKind
+            _change: add
+            type: enum
+            fields:
+              - { name: PENDING_RERECORDING }
+```
+
+## Declarar las 77 pruebas y ubicar el journey
+Las 77 son nuevas y cubren las doce reglas (R001 8, R002 6, R003 5, R004 13, R005 5, R006 8, R007 5, R008 6, R009 7,
+R010 6, R011 3, R012 5). Van sobre el servicio y sus piezas de `batchengine` (57), los cuatro arreglos por regla de A
+(8), el almacén de archivos (2), `BatchCmd` (5) y lo que ya existía: `ReviseCmd`, `nextTask` de `DefaultRefinerEngine` y
+la corrida de consignas para R002, `DefaultTopicPanel` (FEAT-MESA) para R005 y la declaración de `data-coherence`
+(FEAT-TAREA) para R012. Ninguna consulta un modelo: proponente guionado, jueces con veredictos
 grabados, una comparación, una muestra ciega y un libro de metas de F armados a mano, y almacenes en memoria o en un
 directorio temporal.
 
@@ -889,6 +957,12 @@ FEAT-METAS, porque el que abre es `DefaultBatchService`, que todavía no existe 
 de F lo pidió y el de E, como analista, la sumó: fija al abrir, no vuelve a fijar al retomar ni al cerrar, y un pedido de
 abrir rechazado no fija nada. Entra también en la puerta de `abrir` de J001. La estructura ya estaba: el servicio recibe
 el `GoalBook` de F (gancho F-10).
+
+**El audio sigue al ejercicio (orquestador, 1/10).** R004 suma la inv. 4, R006 la 3, R010 cuenta las pendientes de
+regrabar y R012 es nueva; R005 nombra «sin alcance declarado» y con eso se prueba acá lo de F-TAREA-R006 que antes
+esperaba al apply. Los casos: `…399b` («I learned ___ me / myself to drive a car.») y `…39a0` («He pinched ___ him /
+himself on the leg.»), cuyos audios leen la pista, y el de «He ___ (not / cut) himself.», que lee la «/»: se piden «I
+learned myself to drive a car.», «He pinched him on the leg.» y «He has not cut himself.», sin tocar el ejercicio.
 
 **De dónde sale cada prueba.** Abrir A1 sobre la línea base fijada: entran las tres tareas de «I ___ a lot of
 vegetables.» y la `LEMMA_ABSENCE` de «We reside ___ London with our granddad.», que cubre reside, y quedan afuera las

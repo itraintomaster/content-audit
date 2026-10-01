@@ -4,6 +4,12 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (como arquitecto) — Segunda vuelta: RuleFixResult suma rerecordings (RuleFixRerecording, clave y
+  texto); AnalyzerCorrection suma concernsAudio (qué hallazgo es del audio lo dice el analizador); CorrectionBatch suma
+  pendingRerecords, BatchPublication rerecords, el desenlace PENDING_RERECORDING y select recibe los pendientes. 77
+  pruebas (R004 13, R005 5, R006 8, R012 5). `propose --replace` desde lo commiteado, comparado con la copia de antes (sólo
+  lo pedido), `tech-spec write` (+2 fences) y `validate -i` contra M12 y contra la cadena: exit 0, 0 conflictos.
+
 2026-10-01 — qa-tester — `patch propose` (fusión): 66 handwrittenTests (R001 8, R002 6, R003 5, R004 9, R005 4, R006 7,
   R007 5, R008 6, R009 7, R010 6, R011 3) y F-TANDA-J001 en audit-cli, paquete commands. Los cinco patrones de
   revision-domain y el enum de RefinementTaskStatus intactos. `tech-spec write` y `patch validate -i` contra M12 del
