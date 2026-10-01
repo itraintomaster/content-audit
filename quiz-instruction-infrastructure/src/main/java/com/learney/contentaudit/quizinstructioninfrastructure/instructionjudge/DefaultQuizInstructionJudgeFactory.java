@@ -69,8 +69,9 @@ public DefaultQuizInstructionJudgeFactory(LlmProviderResolver llmProviderResolve
         }
 
         LlmProviderResolved provider = (LlmProviderResolved) resolution;
-        // FEAT-JEXAM (package C) makes the judge ask the probe before its first consultation;
-        // until it is built the judge only receives it.
+        // F-JEXAM-R011: the judge asks the probe -- the same one the new judges use -- once,
+        // before its first consultation, and lets it explain a failure. Its id, its version and
+        // its inputs do not change (F-JEXAM-R007).
         return new QuizInstructionAgentJudge(config, agentGraphRunner,
                 new DefaultQuizInstructionJudgeVersionResolver(agentDefinitionLocator),
                 chatModelFactory, provider, readinessProbe);

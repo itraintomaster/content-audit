@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (C) — quiz-instruction-infrastructure implementado (rama ronda1/impl-jueces-infra): AgentJudge (sesión verificada una vez por instancia, sincronizada; sin artifact → explain del terminationReason), DefaultAgentJudgeFactory, su resolver de versión (mismo digest que el de consigna), DefaultJudgeProviderReadinessProbe (claude auth status inyectado, tope 20 s) y los 4 lectores Jackson; el de consigna usa la misma verificación sin cambiar id, versión ni entradas.
+  20 pruebas encendidas y en verde (JEXAM 14, TRSEN 3, UNICA 1, MINIT 1, MCVALE 1); `mvn -o test` verde: 1.883 pasan, 487 apagadas, VERIFY OK. Versión fijada del de consigna: e3a546dc… (DefaultQuizInstructionJudgeFactoryTest).
+
 2026-09-30 — qa-tester — `patch propose` exit 0, fusionado con el parche del arquitecto (26 altas, 17 cambios); `tech-spec write` exit 0 (+1 fragmento). 90 handwrittenTests nuevas, R001 a R011 [covered]; F-JEXAM-J001 en audit-cli, paquete commands (2 caminos). Simulado en memoria sobre hoy, sobre 0.2 + 0.3 y sobre 0.2 + 0.3 + A (scratchpad qa-C/sim, sin apply ni generate): las 202 pruebas de C aterrizan, 0 errores de traza, 0 choques de nombre, 36 clases nuevas. R012 sin prueba propia. No aplicado.
   Next: José aplica sin --as (el parche lleva la estructura del arquitecto), después de 0.2 y 0.3 y con FEAT-JEXAM antes que TRSEN, UNICA, MINIT y MCVALE; feature sync; generate; @test-writer.
 
