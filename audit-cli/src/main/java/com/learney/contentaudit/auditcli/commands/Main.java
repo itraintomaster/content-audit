@@ -579,7 +579,7 @@ class Main {
 
         analyzerProviders.add(multipleChoiceValidityProvider);                                            // 12 · A · FEAT-OMVAL (+ C · FEAT-MCVALE)
 
-        // analyzerProviders.add(dataCoherenceProvider);          // 13 · A · FEAT-DATOS, pendiente
+        analyzerProviders.add(dataCoherenceProvider);                                                     // 13 · A · FEAT-DATOS
 
         // analyzerProviders.add(exactDuplicatesProvider);        // 14 · A · FEAT-DUPEX, pendiente
 

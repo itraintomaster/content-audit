@@ -5,6 +5,16 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (impl A) — R001 acepta, en cualquier tema, la oración armada en el modo del tema, el ejercicio
+  entero, el segmento de la respuesta y la respuesta sola: los ejercicios de reescritura viven también en temas FILL («Be
+  going to: he / ride the bicycle. ___», «They travel (once a month) ___») y sin eso el árbol daba 349 en vez de 0.
+  Con «/» en una respuesta no se mira R001: la oración se vuelve a armar igual cuando la barra pasa a «|».
+  why: DOUBT-DATOS-718, A: espacios y reescrituras no cuentan.
+
+2026-09-30 — developer (impl A) — R003 compara con su propia lectura (contraídas a largas, «'s» como is, has o posesivo, «'d»
+  como would o had, sin signos ni tildes) y con «uno contiene al otro» desde 3 letras; R003 sólo mira audios sin barra: el
+  que lee la barra ya es R002. Las claves compartidas se marcan en onCourseComplete, antes de agregar.
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): sin cambios de estructura.
 
 2026-09-30 — qa-tester — F-DATOS-J001 en audit-domain, paquete datacoherence: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.
