@@ -105,11 +105,11 @@ he, she, it el verbo lleva $-s$…». El texto del audio sale del registro que s
 > Toda ficha del catálogo trae, además de su nombre único, un nombre en castellano, y `get analyzers` lo muestra.
 > Invariantes:
 > 1. nunca está vacío y dos fichas no lo comparten;
-> 2. es el de la tabla de abajo;
+> 2. es el de la tabla de [F-FILAS-R001](#F-FILAS-R001); hasta el 1/10 era el de la tabla de abajo;
 > 3. no reemplaza al nombre único, que sigue siendo el único con que se nombra al analizador
 >    ([F-HALL-R005](#F-HALL-R005)).
 
-<details><summary>Los diecisiete de la ronda 1, en el orden del catálogo</summary>
+<details><summary>Los diecisiete de la ronda 1, en el orden del catálogo, con el nombre que tuvieron hasta el 1/10</summary>
 
 | # | Nombre único | Nombre en castellano |
 |---:|---|---|

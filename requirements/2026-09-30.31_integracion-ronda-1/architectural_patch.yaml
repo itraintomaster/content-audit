@@ -1,0 +1,47 @@
+code: FEAT-RONDA1
+description: "Sólo nombres de pruebas, por FEAT-FILAS (1/10): las tres pruebas de\
+  \ F-RONDA1-R004 cuyo nombre citaba «Largo de oración» o «Miniteoría» se borran y\
+  \ se agregan con los nombres nuevos de la tabla de F-FILAS-R001, con la misma trazabilidad.\
+  \ No cambia ningún contrato."
+modules:
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: Main
+      handwrittenTests:
+      - name: "should register the seventeen analyzers of round 1 in catalog order,\
+          \ from sentence-length to mini-theory, each with the Spanish name of its\
+          \ card, «Largo de oración» to «Miniteoría»"
+        _change: delete
+      - name: "should register the seventeen analyzers of round 1 in catalog order,\
+          \ from sentence-length to mini-theory, each with the Spanish name of its\
+          \ card, «Oraciones con el largo de su nivel» to «Miniteoría con error»"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R004
+      _change: modify
+    - name: AnalyzeCmd
+      handwrittenTests:
+      - name: "should reject «Largo de oración» as an analyzer name, since only the\
+          \ unique name sentence-length names the analyzer"
+        _change: delete
+      - name: "should reject «Oraciones con el largo de su nivel» as an analyzer name,\
+          \ since only the unique name sentence-length names the analyzer"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R004
+      _change: modify
+    - name: GetCmd
+      handwrittenTests:
+      - name: "should show in get analyzers the Spanish name of each analyzer next\
+          \ to its unique name, «Largo de oración» next to sentence-length"
+        _change: delete
+      - name: "should show in get analyzers the Spanish name of each analyzer next\
+          \ to its unique name, «Oraciones con el largo de su nivel» next to sentence-length"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R004
+      _change: modify
+    _change: modify
+  _change: modify

@@ -1,0 +1,265 @@
+code: FEAT-FILAS
+description: "Filas claras (F-FILAS-R001 a R006): la ficha de cada analizador suma\
+  \ la frase que explica su fila, y cada fila de la comparación suma su nombre visible,\
+  \ para qué lado mejora, el veredicto de su cambio, su frase y un ejemplo real del\
+  \ análisis. El comparador recibe el renderizador del alumno para mostrar el ejercicio\
+  \ del ejemplo. Los nombres en castellano cambian en el cuerpo de cada ficha; las\
+  \ cuatro pruebas cuyo nombre citaba un nombre viejo se renombran en los parches\
+  \ de FEAT-RONDA1 y FEAT-RONDA2, con su misma trazabilidad."
+modules:
+- name: audit-domain
+  models:
+  - name: AnalyzerDescriptor
+    type: record
+    fields:
+    - name: displayName
+      type: String
+      description: "Nombre en castellano con que la UI muestra al analizador: el problema\
+        \ que cuenta, en uno de errores, o lo bueno que mide, en uno de vocabulario,\
+        \ como «Oraciones con el largo de su nivel» (F-FILAS-R001). Nunca vacío y\
+        \ distinto en cada ficha. No reemplaza a name, el único con que se lo nombra\
+        \ (F-RONDA1-R004, F-HALL-R005)."
+      _change: modify
+    - name: explanation
+      type: String
+      description: "Una frase que dice qué ejercicios cuenta la fila del analizador,\
+        \ en uno de errores, o qué puntúa de 0 a 100, en uno de vocabulario: la que\
+        \ muestran get analyzers y cada fila de la comparación (F-FILAS-R004). Como\
+        \ el nombre, no entra en la medida (F-RONDA2-R004)."
+      _change: add
+    _change: modify
+  _change: modify
+- name: revision-domain
+  packages:
+  - name: comparison
+    models:
+    - name: BetterDirection
+      type: enum
+      fields:
+      - name: LOWER
+        description: "Menos es mejor: las filas de problemas, de la familia de errores\
+          \ y «algún error» (F-FILAS-R002)."
+      - name: HIGHER
+        description: "Más es mejor: las filas de puntaje, de la familia de vocabulario\
+          \ y «vocabulario» (F-FILAS-R002)."
+      _change: add
+    - name: ChangeVerdict
+      type: enum
+      fields:
+      - name: IMPROVED
+        description: El cambio fue para el lado bueno de la fila.
+      - name: WORSENED
+        description: El cambio fue para el lado malo de la fila.
+      - name: UNCHANGED
+        description: "El cambio, redondeado como se muestra, es cero: a dos decimales\
+          \ en puntos, a ejercicios enteros en errores."
+      - name: NOT_EVALUATED
+        description: "En la línea base o en la proyección la fila no tiene número,\
+          \ o el analizador no evaluó ningún ejercicio del nodo: nunca se lee como\
+          \ un cero (F-FILAS-R003)."
+      _change: add
+    - name: RowExample
+      type: record
+      fields:
+      - name: quizId
+        type: String
+        description: "El ejercicio del hallazgo; null si el hallazgo no es de un ejercicio,\
+          \ como un título o una palabra del nivel."
+      - name: exercise
+        type: String
+        description: "El ejercicio como lo ve el alumno: el enunciado con sus huecos\
+          \ y sus pistas, y las opciones en la opción múltiple. null si el hallazgo\
+          \ no es de un ejercicio."
+      - name: detail
+        type: String
+        description: "En una línea, qué tiene: la observación del hallazgo. Dice si\
+          \ la tanda lo arregla, y en «vocabulario» y «algún error» nombra al analizador."
+      _change: add
+    - name: ComparisonRow
+      type: record
+      fields:
+      - name: subject
+        type: String
+        description: "La clave de la fila: el nombre único del analizador, o «vocabulario»\
+          \ o «algún error», como las nombran las metas. No cambia con el nombre visible\
+          \ (F-FILAS-R001)."
+        _change: modify
+      - name: displayName
+        type: String
+        description: "El nombre visible de la fila: el de la ficha del analizador,\
+          \ «Vocabulario, puntaje total» o «Ejercicios con algún error»; el nombre\
+          \ único de un analizador que el catálogo de hoy no conoce (F-FILAS-R001)."
+        _change: add
+      - name: betterWhen
+        type: BetterDirection
+        description: "LOWER en las filas de problemas, HIGHER en las de puntaje (F-FILAS-R002)."
+        _change: add
+      - name: changeVerdict
+        type: ChangeVerdict
+        description: El veredicto del cambio contra la línea base; lo decide content-audit
+          y la UI lo pinta (F-FILAS-R003).
+        _change: add
+      - name: explanation
+        type: String
+        description: "La frase de la ficha del analizador, o la de «vocabulario» o\
+          \ «algún error»; null si el catálogo de hoy no lo conoce (F-FILAS-R004)."
+        _change: add
+      - name: example
+        type: RowExample
+        description: "Un hallazgo real del análisis en el nodo o debajo, elegido siempre\
+          \ igual: primero uno que la tanda arregla, después el más concreto y de\
+          \ identificador menor; null si no hay ninguno (F-FILAS-R005)."
+        _change: add
+      _change: modify
+    _change: modify
+  - name: comparisonengine
+    implementations:
+    - name: DefaultBatchComparator
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: El ejercicio del ejemplo de cada fila como lo ve el alumno (F-FILAS-R005).
+        _change: add
+      handwrittenTests:
+      - name: "should show the vocabulary row as «Vocabulario, puntaje total» and\
+          \ the any-error row as «Ejercicios con algún error», keeping their subjects,\
+          \ the keys the goals name"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R001
+      - name: "should show each analyzer row with the Spanish name of its card, and\
+          \ with its unique name when today's catalog does not know it"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R001
+      - name: "should say that lower is better in every row of the errors family and\
+          \ in the any-error row, and higher in every row of the vocabulary family\
+          \ and in the vocabulary row"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R002
+      - name: "should mark a drop of an errors row as improved and a rise as worsened,\
+          \ and a rise of a vocabulary row as improved and a drop as worsened"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R003
+      - name: "should mark as unchanged a row whose change rounds to zero as it is\
+          \ shown, to two decimals in points and to whole exercises in errors"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R003
+      - name: "should mark as not evaluated a row whose analyzer evaluated no exercise\
+          \ of the node, instead of reading its zero as a real zero"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R003
+      - name: "should mark as not evaluated a row without a number in the baseline,\
+          \ as the error rows of the base of 29/9"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R003
+      - name: should mark as not evaluated the any-error row of a node where no errors
+          analyzer evaluated an exercise
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R003
+      - name: "should give each analyzer row the explanation of its card, and the\
+          \ vocabulary and any-error rows their own"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R004
+      - name: "should take as the example of a row a finding the batch fixes before\
+          \ one that stays in the projection, and say in its line that the batch fixes\
+          \ it"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: "should take as the example the finding of the lowest quiz id under\
+          \ the node, so the same comparison always gives the same example"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: should leave the example null when the analyzer has no finding under
+          the node
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: "should never take as the example of an errors row a finding that only\
+          \ ranks, as the ones of naturalness"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: "should show the exercise of the example as the student sees it, with\
+          \ its gap and its hint, and say in one line what it has"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: "should take as the example of a score row a concrete finding of the\
+          \ analyzer, as a word of the level, with no exercise"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: should not take as fixed a finding the projection lost only because
+          its analyzer left the exercise unevaluated
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: "should take as the example of the any-error row an error of any analyzer,\
+          \ and name the analyzer in its line"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: Main
+      handwrittenTests:
+      - name: "should give each of the twenty analyzers of the catalog the Spanish\
+          \ name of the FEAT-FILAS table, the problem it counts or the good it scores"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R001
+      - name: should give each of the twenty analyzers of the catalog the explanation
+          of the FEAT-FILAS table
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R004
+      _change: modify
+    - name: GetCmd
+      handwrittenTests:
+      - name: "should print the explanation of each card in get analyzers, as text\
+          \ and as JSON"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R004
+      _change: modify
+    - name: DefaultCompareCommand
+      handwrittenTests:
+      - name: "should print with -f json, for a batch of two exercises, the comparison\
+          \ of the sample file the review app is built against"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R006
+      _change: modify
+    _change: modify
+  - name: formatting
+    implementations:
+    - name: DefaultBatchComparisonFormatter
+      handwrittenTests:
+      - name: "should write in the JSON of every row its Spanish name, which way is\
+          \ better, the verdict of its change, its explanation and its example"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R006
+      - name: "should write the example of a row without one as null in the JSON,\
+          \ never leave it out"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R006
+      _change: modify
+    _change: modify
+  _change: modify

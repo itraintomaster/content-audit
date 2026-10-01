@@ -1,0 +1,25 @@
+code: FEAT-RONDA2
+description: "Sólo el nombre de una prueba, por FEAT-FILAS (1/10): la de F-RONDA2-R001\
+  \ que citaba «Gramática», «Naturalidad» y «Duplicados parecidos» se borra y se agrega\
+  \ con los nombres nuevos de la tabla de F-FILAS-R001, con la misma trazabilidad.\
+  \ No cambia ningún contrato."
+modules:
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: Main
+      handwrittenTests:
+      - name: "should register grammar «Gramática», naturalness «Naturalidad» and\
+          \ near-duplicates «Duplicados parecidos» after the seventeen analyzers of\
+          \ round 1, in that order"
+        _change: delete
+      - name: "should register grammar «Error de gramática», naturalness «Oración\
+          \ poco natural» and near-duplicates «Ejercicio casi repetido» after the\
+          \ seventeen analyzers of round 1, in that order"
+        traceability:
+          feature: FEAT-RONDA2
+          rule: F-RONDA2-R001
+      _change: modify
+    _change: modify
+  _change: modify
