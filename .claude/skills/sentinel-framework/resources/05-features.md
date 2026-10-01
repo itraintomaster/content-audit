@@ -2355,4 +2355,6 @@ mejor; las de puntaje dicen lo bueno, y más es mejor. Además, cada fila de `co
 | F-FILAS-R004 | Cada fila trae una frase que la explica | major | - |
 | F-FILAS-R005 | Cada fila trae un ejemplo real del análisis, o ninguno | major | - |
 | F-FILAS-R006 | `compare -f json` publica todo esto en cada fila | critical | - |
+| F-FILAS-R007 | El veredicto dice cuántos pisos no se pueden decidir y de qué filas | major | - |
+| F-FILAS-R008 | Cada número de la fila dice si su foto se evaluó | major | - |
 

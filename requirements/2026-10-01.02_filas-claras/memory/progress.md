@@ -4,6 +4,16 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — equipo de una tarea (FILAS) — Seguimiento pedido por la app (sesión de testers), con la rama ya
+  juntada en integración (merge 89eefafc): R007 (verdict.undecidableFloors) y R008 (evaluated en cada RowValue).
+  - Parche de seguimiento en la misma carpeta (2 altas, 6 modificaciones), apply y generate como antes; verify OK.
+  - tech-spec append rechaza el archivo entero porque sus bloques viejos nombran el primer parche, ya archivado: la
+    sección nueva se agregó a mano.
+  - count de undecidableFloors = los pisos distintos que cuenta el texto del veredicto (un id de piso por defecto
+    cubre todos los nodos de un tipo); lo trae con cualquier veredicto.
+  - La muestra cambió: single-answer evaluado en la línea base y abierto en la tanda, para mostrar el caso mixto.
+  Next: avisar a la sesión de testers; push lo hace José.
+
 2026-10-01 — equipo de una tarea (FILAS) — Construido y en verde, en ronda2/filas-claras.
   - apply de los tres parches (FILAS 3+10, RONDA1 4, RONDA2 2): el diff de sentinel.yaml contra HEAD es sólo lo
     pedido (patrones, allowedClients y domainLinks intactos); generate restaurando los pom.xml, SpacyProcessRunner y

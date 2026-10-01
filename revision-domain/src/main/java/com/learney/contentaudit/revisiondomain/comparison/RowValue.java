@@ -14,13 +14,16 @@ public class RowValue {
 
     private int notEvaluated;
 
+    private boolean evaluated;
+
     public RowValue() {
     }
 
-    public RowValue(Double value, Double share, int notEvaluated) {
+    public RowValue(Double value, Double share, int notEvaluated, boolean evaluated) {
         this.value = value;
         this.share = share;
         this.notEvaluated = notEvaluated;
+        this.evaluated = evaluated;
     }
 
     public Double getValue() {
@@ -47,6 +50,14 @@ public class RowValue {
         this.notEvaluated = notEvaluated;
     }
 
+    public boolean isEvaluated() {
+        return this.evaluated;
+    }
+
+    public void setEvaluated(boolean evaluated) {
+        this.evaluated = evaluated;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,11 +65,12 @@ public class RowValue {
         RowValue that = (RowValue) o;
         return Objects.equals(this.value, that.value)
                     && Objects.equals(this.share, that.share)
-                    && Objects.equals(this.notEvaluated, that.notEvaluated);
+                    && Objects.equals(this.notEvaluated, that.notEvaluated)
+                    && Objects.equals(this.evaluated, that.evaluated);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, share, notEvaluated);
+        return Objects.hash(value, share, notEvaluated, evaluated);
     }
 }

@@ -58,6 +58,7 @@ import com.learney.contentaudit.revisiondomain.SealedGoalsStore;
 import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcome;
 import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcomeSource;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
 import com.learney.contentaudit.revisiondomain.comparison.BetterDirection;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeAttribution;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
@@ -75,8 +76,10 @@ import com.learney.contentaudit.revisiondomain.comparison.GoalStatus;
 import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
 import com.learney.contentaudit.revisiondomain.comparison.MeasureChange;
 import com.learney.contentaudit.revisiondomain.comparison.RowExample;
+import com.learney.contentaudit.revisiondomain.comparison.RowSubject;
 import com.learney.contentaudit.revisiondomain.comparison.RowValue;
 import com.learney.contentaudit.revisiondomain.comparison.SealedGoals;
+import com.learney.contentaudit.revisiondomain.comparison.UndecidableFloors;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
 import com.learney.contentaudit.revisiondomain.projection.CourseProjection;
@@ -151,9 +154,9 @@ public class DefaultBatchComparatorTest {
         BatchComparison comparison = mesa.compare();
 
         ComparisonRow vocabulary = row(comparison, "vocabulario", A1);
-        assertEquals(new RowValue(0.9654, null, 0), vocabulary.getBaseline(), "R001: the baseline, as published");
-        assertEquals(new RowValue(0.9650, null, 0), vocabulary.getApproved(), "R001: the batch start, as published");
-        assertEquals(new RowValue(0.9611, null, 0), vocabulary.getProjected(), "R001: the projection, as published");
+        assertEquals(new RowValue(0.9654, null, 0, true), vocabulary.getBaseline(), "R001: the baseline, as published");
+        assertEquals(new RowValue(0.9650, null, 0, true), vocabulary.getApproved(), "R001: the batch start, as published");
+        assertEquals(new RowValue(0.9611, null, 0, true), vocabulary.getProjected(), "R001: the projection, as published");
         ComparisonRow hint = row(comparison, HINT, A1);
         assertEquals(3.0, hint.getBaseline().getValue(), 1e-9);
         assertEquals(2.0, hint.getApproved().getValue(), 1e-9);
@@ -226,9 +229,9 @@ public class DefaultBatchComparatorTest {
         BatchComparison comparison = mesa.compare();
 
         ComparisonRow hint = row(comparison, HINT, REGULAR);
-        assertEquals(new RowValue(3.0, 0.75, 0), hint.getBaseline(), "R001: 3 of the 4 exercises");
-        assertEquals(new RowValue(2.0, 0.5, 0), hint.getApproved());
-        assertEquals(new RowValue(1.0, 0.25, 0), hint.getProjected());
+        assertEquals(new RowValue(3.0, 0.75, 0, true), hint.getBaseline(), "R001: 3 of the 4 exercises");
+        assertEquals(new RowValue(2.0, 0.5, 0, true), hint.getApproved());
+        assertEquals(new RowValue(1.0, 0.25, 0, true), hint.getProjected());
         assertEquals(-2.0, hint.getChange(), 1e-9, "R001: two exercises fewer than the baseline");
         assertEquals(GoalUnit.EXERCISES, hint.getUnit(), "R001: in exercises");
     }
@@ -247,11 +250,11 @@ public class DefaultBatchComparatorTest {
             ComparisonRow row = row(comparison, subject, A1);
             assertNull(row.getBaseline(), "R001: the base of 29/9 did not measure " + subject + ": empty, not 0");
             assertNull(row.getChange(), "R001: and no change against it");
-            assertEquals(new RowValue(0.0, 0.0, 0), row.getProjected(), "R001: the projection did measure it");
+            assertEquals(new RowValue(0.0, 0.0, 0, true), row.getProjected(), "R001: the projection did measure it");
             assertEquals(GoalStatus.MET, row.getFloor().getStatus(),
                     "R005: the floor of errors is decided against the batch start");
         }
-        assertEquals(new RowValue(0.9654, null, 0), row(comparison, "vocabulario", A1).getBaseline(),
+        assertEquals(new RowValue(0.9654, null, 0, true), row(comparison, "vocabulario", A1).getBaseline(),
                 "R001: what it did measure is there");
     }
 
@@ -1549,7 +1552,7 @@ public class DefaultBatchComparatorTest {
         BatchComparison comparison = mesa.compare();
 
         ComparisonRow instruction = row(comparison, INSTRUCTION, REGULAR);
-        assertEquals(new RowValue(0.0, 0.0, 4), instruction.getProjected(),
+        assertEquals(new RowValue(0.0, 0.0, 4, false), instruction.getProjected(),
                 "R003 inv. 2: its numbers are published as today, 0 (0,0 %) with 4 unevaluated");
         assertEquals(0.0, instruction.getChange(), 1e-9);
         assertEquals(ChangeVerdict.NOT_EVALUATED, instruction.getChangeVerdict(), "R003: not a real zero");
@@ -1570,7 +1573,7 @@ public class DefaultBatchComparatorTest {
         for (String subject : List.of(HINT, INSTRUCTION, "algún error")) {
             ComparisonRow row = row(comparison, subject, A1);
             assertNull(row.getBaseline(), "the base of 29/9 did not measure " + subject);
-            assertEquals(new RowValue(0.0, 0.0, 0), row.getProjected(), "the projection did");
+            assertEquals(new RowValue(0.0, 0.0, 0, true), row.getProjected(), "the projection did");
             assertEquals(ChangeVerdict.NOT_EVALUATED, row.getChangeVerdict(), "R003: no number in the baseline");
         }
         assertEquals(ChangeVerdict.UNCHANGED, row(comparison, "vocabulario", A1).getChangeVerdict(),
@@ -1592,7 +1595,7 @@ public class DefaultBatchComparatorTest {
         BatchComparison comparison = mesa.compare();
 
         ComparisonRow regular = row(comparison, "algún error", REGULAR);
-        assertEquals(new RowValue(0.0, 0.0, 4), regular.getProjected());
+        assertEquals(new RowValue(0.0, 0.0, 4, false), regular.getProjected());
         assertEquals(ChangeVerdict.NOT_EVALUATED, regular.getChangeVerdict(),
                 "R003: no analyzer of errors evaluated an exercise of the knowledge");
         assertEquals(ChangeVerdict.UNCHANGED, row(comparison, "algún error", WITH_BE).getChangeVerdict(),
@@ -1817,5 +1820,86 @@ public class DefaultBatchComparatorTest {
         RowExample own = row(comparison, HINT, REGULAR).getExample();
         assertEquals(HATS, own.getQuizId(), "R005: the row of an analyzer, only its own findings");
         assertEquals("La pista no anuncia «wears».", own.getDetail(), "R005: the row already names its analyzer");
+    }
+
+    @Test
+    @DisplayName("should say in the verdict how many floors cannot be decided, as many as its text counts, and the rows they belong to, once each and in the order of the rows")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R007")
+    public void shouldSayInTheVerdictHowManyFloorsCannotBeDecidedAsManyAsItsTextCountsAndTheRowsTheyBelongToOnceEachAndInTheOrderOfTheRows() {
+        // quiz-instruction did not judge the two exercises the batch changed, one in each knowledge of Present
+        // Simple: its floors and those of «algún error» cannot be decided from the knowledges up to the course.
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), Foto.deHoy().unevaluated(VEGETABLES, INSTRUCTION).errors(REGULAR, INSTRUCTION, 0, 1)
+                        .anyError(REGULAR, 4, 0, 1).unevaluated(LIVING_ROOM, INSTRUCTION)
+                        .errors(WITH_BE, INSTRUCTION, 0, 1).anyError(WITH_BE, 2, 0, 1),
+                cambio(P_VEGETABLES, VEGETABLES), cambio(P_LIVING_ROOM, LIVING_ROOM));
+
+        BatchComparison comparison = mesa.compare();
+
+        BatchVerdict verdict = comparison.getVerdict();
+        assertEquals(VerdictKind.UNDECIDABLE, verdict.getKind());
+        UndecidableFloors undecided = verdict.getUndecidableFloors();
+        assertNotNull(undecided, "R007: the verdict says it apart from its text");
+        assertEquals(8, undecided.getCount(), "R007: one floor per row and type of node -- the two knowledges share "
+                + "theirs --, as the text counts");
+        assertTrue(verdict.getDetail().contains("8 pisos sin decidir"), "R007 inv. 2: the text, as before: "
+                + verdict.getDetail());
+        assertEquals(List.of(new RowSubject(INSTRUCTION, "Consigna que no se cumple"),
+                new RowSubject("algún error", "Ejercicios con algún error")), undecided.getAnalyzers(),
+                "R007: the rows of those floors, once each, in the order of the rows, with their visible name");
+    }
+
+    @Test
+    @DisplayName("should leave the undecidable floors of the verdict null when every floor is decided, and bring them with a verdict that fails too")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R007")
+    public void shouldLeaveTheUndecidableFloorsOfTheVerdictNullWhenEveryFloorIsDecidedAndBringThemWithAVerdictThatFailsToo() {
+        Mesa decided = new Mesa().baseline(Foto.deHoy());
+        decided.batch(Foto.deHoy(), Foto.deHoy(), cambio(P_VEGETABLES, VEGETABLES));
+
+        assertNull(decided.compare().getVerdict().getUndecidableFloors(), "R007: every floor is decided");
+
+        // The grandmother returns, so the batch fails; quiz-instruction did not judge the vegetables.
+        Mesa failing = new Mesa().baseline(Foto.deHoy());
+        failing.batch(Foto.deHoy(), Foto.deHoy().conLasCuatro().unevaluated(VEGETABLES, INSTRUCTION)
+                .errors(REGULAR, INSTRUCTION, 0, 1).anyError(REGULAR, 4, 0, 1), LAS_CUATRO);
+
+        BatchVerdict verdict = failing.compare().getVerdict();
+
+        assertEquals(VerdictKind.FAILS, verdict.getKind());
+        assertNotNull(verdict.getUndecidableFloors(), "R007 inv. 1: with a verdict that fails, too");
+        assertEquals(List.of(INSTRUCTION, "algún error"), verdict.getUndecidableFloors().getAnalyzers().stream()
+                .map(RowSubject::getSubject).toList());
+    }
+
+    @Test
+    @DisplayName("should say in each value of a row whether its photo evaluated an exercise of the node, so a photo left open hides none of the others")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R008")
+    public void shouldSayInEachValueOfARowWhetherItsPhotoEvaluatedAnExerciseOfTheNodeSoAPhotoLeftOpenHidesNoneOfTheOthers() {
+        // quiz-instruction ran without a budget only in the projection.
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), Foto.deHoy().errors(REGULAR, INSTRUCTION, 0, 4), cambio(P_VEGETABLES, VEGETABLES));
+
+        ComparisonRow open = row(mesa.compare(), INSTRUCTION, REGULAR);
+
+        assertTrue(open.getBaseline().isEvaluated(), "R008: the baseline was evaluated");
+        assertTrue(open.getApproved().isEvaluated(), "R008: so was the batch start");
+        assertFalse(open.getProjected().isEvaluated(), "R008: the projection was not");
+        assertEquals(ChangeVerdict.NOT_EVALUATED, open.getChangeVerdict(), "R008 inv. 2: the verdict, as before");
+
+        // Its measure changed and the baseline, measured again with it, was left open: only that value says so.
+        Mesa remeasured = new Mesa().baseline(Foto.deHoy().measure(INSTRUCTION, "quiz-instruction · v0", Map.of()));
+        remeasured.remeasured(Foto.deHoy().errors(REGULAR, INSTRUCTION, 0, 4));
+        remeasured.batch(Foto.deHoy(), Foto.deHoy(), cambio(P_VEGETABLES, VEGETABLES));
+
+        ComparisonRow row = row(remeasured.compare(), INSTRUCTION, REGULAR);
+
+        assertEquals(List.of(true, false, true, true), List.of(row.getBaseline().isEvaluated(),
+                row.getRemeasuredBaseline().isEvaluated(), row.getApproved().isEvaluated(),
+                row.getProjected().isEvaluated()), "R008: baseline, remeasured baseline, batch start and projection");
+        assertTrue(row(remeasured.compare(), LEMMA_ABSENCE, REGULAR).getProjected().isEvaluated(),
+                "R008: a score is always evaluated where it is published");
     }
 }

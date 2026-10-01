@@ -382,7 +382,7 @@ public class DefaultBatchGateTest {
         comparison.setChanges(new ArrayList<>(changes));
         comparison.setRows(new ArrayList<>(rows));
         comparison.setBreaches(new ArrayList<>(breaches));
-        comparison.setVerdict(new BatchVerdict(VerdictKind.PASSES, List.of(), List.of(), null, null));
+        comparison.setVerdict(new BatchVerdict(VerdictKind.PASSES, List.of(), List.of(), null, null, null));
         return comparison;
     }
 
@@ -391,16 +391,16 @@ public class DefaultBatchGateTest {
     }
 
     private static ComparisonRow countRow(String subject, AnalyzerFamily family, String nodeId, String label, int start, int projected) {
-        return new ComparisonRow(subject, family, AuditTarget.MILESTONE, nodeId, label, new RowValue((double) start, null, 0),
-                null, new RowValue((double) start, null, 0), new RowValue((double) projected, null, 0),
+        return new ComparisonRow(subject, family, AuditTarget.MILESTONE, nodeId, label, new RowValue((double) start, null, 0, true),
+                null, new RowValue((double) start, null, 0, true), new RowValue((double) projected, null, 0, true),
                 (double) (projected - start), GoalUnit.EXERCISES, null, null, null, null, null, null, null);
     }
 
     private static ComparisonRow pointsRow(String subject, String nodeId, String label, double baseline, double start,
             double projected) {
         return new ComparisonRow(subject, AnalyzerFamily.VOCABULARY, nodeId.equals("root") ? AuditTarget.COURSE
-                : AuditTarget.MILESTONE, nodeId, label, new RowValue(baseline, null, 0), null, new RowValue(start, null, 0),
-                new RowValue(projected, null, 0), projected - baseline, GoalUnit.POINTS, null, null, null, null, null, null, null);
+                : AuditTarget.MILESTONE, nodeId, label, new RowValue(baseline, null, 0, true), null, new RowValue(start, null, 0, true),
+                new RowValue(projected, null, 0, true), projected - baseline, GoalUnit.POINTS, null, null, null, null, null, null, null);
     }
 
     private static FloorBreach breach(ComparisonRow row, ChangeAttribution... attributions) {
