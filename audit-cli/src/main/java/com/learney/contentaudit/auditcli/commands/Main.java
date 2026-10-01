@@ -583,9 +583,9 @@ class Main {
 
         // analyzerProviders.add(exactDuplicatesProvider);        // 14 · A · FEAT-DUPEX, pendiente
 
-        // analyzerProviders.add(translationSenseProvider);       // 15 · C · FEAT-TRSEN, pendiente
+        analyzerProviders.add(translationSenseProvider);          // 15 · C · FEAT-TRSEN
 
-        // analyzerProviders.add(singleAnswerProvider);           // 16 · C · FEAT-UNICA, pendiente
+        analyzerProviders.add(singleAnswerProvider);              // 16 · C · FEAT-UNICA
 
         // analyzerProviders.add(miniTheoryProvider);             // 17 · C · FEAT-MINIT, pendiente
 
