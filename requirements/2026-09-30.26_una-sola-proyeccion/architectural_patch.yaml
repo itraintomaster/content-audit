@@ -9,12 +9,13 @@ description: "FEAT-PROYU: una sola proyección del curso con sus propuestas. Un 
   \ (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; orden\
   \ de la cadena: FEAT-RONDA2, B, F y E: DefaultConsolidatedViewBuilder.nodeFieldDiffer\
   \ conserva su descripción (el apply la perdía); GetConsolidatedCommand repite sealed:\
-  \ true (el apply la abría, bug 09).; qa-tester: 46 pruebas para las 7 reglas de\
+  \ true (el apply la abría, bug 09).; qa-tester: 47 pruebas para las 7 reglas de\
   \ FEAT-PROYU, con el caso del 29/9: las cuatro propuestas de «Afirmativas regulares»\
   \ (curso 73,92 y niveles 96,54 · 94,16 · 79,45 · 63,51 en la foto con pendientes;\
   \ «My grandmother ___ (come) every year.» de 1,0 a 0,9 y su tema de 100,0 a 99,5),\
-  \ los 143 ejercicios con dos tareas y la línea base 2026-09-30T11-54-02. F-PROYU-J001\
-  \ va a audit-cli, paquete commands."
+  \ los 143 ejercicios con dos tareas, la línea base 2026-09-30T11-54-02 y R003 con\
+  \ la política de analyze (lo local sin tope, claude -p con tope 0 salvo pedido).\
+  \ F-PROYU-J001 va a audit-cli, paquete commands."
 modules:
 - name: audit-domain
   models:
@@ -379,6 +380,12 @@ modules:
       - name: "should give budget 0 to the judges that consult claude -p unless the\
           \ request names a budget for them, so a projection pays no consultation\
           \ by default"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R003
+      - name: "should run without a cap the analyzers that consult a local model,\
+          \ as naturalness and near-duplicates with llama3 in Ollama, the way analyze\
+          \ does"
         traceability:
           feature: FEAT-PROYU
           rule: F-PROYU-R003

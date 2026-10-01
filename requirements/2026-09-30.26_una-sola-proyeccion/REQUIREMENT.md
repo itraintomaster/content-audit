@@ -108,9 +108,11 @@ los once analizadores nuevos, que un ejercicio tenga varias tareas va a ser lo c
 ### Rule[F-PROYU-R003] - La proyección mide lo mismo que la línea base y no paga de más
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> La proyección corre los mismos analizadores que corrió el análisis activo. Un analizador que consulta un modelo reusa
-> los veredictos registrados y sólo consulta los ejercicios que cambiaron, con el tope que se pida en ese pedido —0 si
-> no se pide—; lo que no evaluó queda declarado sin evaluar, nunca como aprobado.
+> La proyección corre los mismos analizadores que corrió el análisis activo, con la política de tope de `analyze`
+> ([F-RONDA2-R002](#F-RONDA2-R002)): lo que se le consulta a un modelo local no tiene tope, y lo que se le consulta a
+> claude -p tiene tope 0 salvo que el pedido lo suba. Un analizador que consulta un modelo reusa los veredictos
+> registrados y sólo consulta los ejercicios que cambiaron; lo que no evaluó queda declarado sin evaluar, nunca como
+> aprobado.
 
 <details><summary>Detail</summary>
 
@@ -119,6 +121,12 @@ curso. La base del 29/9 corrió sin el juez de consigna, así que su proyección
 [F-QINST-R006](#F-QINST-R006) (tope por corrida), [F-EVCOST-R003](#F-EVCOST-R003) (un veredicto registrado se reusa) y
 [F-HALL-R008](#F-HALL-R008) (lo no evaluado se declara), y la decisión de José del 30/9: sin pedido explícito no se paga
 nada. Un ejercicio que no cambió tiene la misma huella y reusa su veredicto, así que proyectar sólo cuesta lo que cambió.
+
+La política es la de `analyze` desde el 1/10: la regla decía «0 si no se pide» para todo analizador que consulta un
+modelo, y eso chocaba con [F-RONDA2-R002](#F-RONDA2-R002), que no le pone tope a lo local. Con Ollama, `naturalness` y
+`near-duplicates` corren sin tope en la proyección, como en `analyze`, y la foto da lo mismo que `analyze` sobre el curso
+escrito ([F-PROYU-R001](#F-PROYU-R001)); sin Ollama, su alternativa con claude -p tiene tope 0, como los jueces. Con 0
+para todo, esos dos dejarían sin evaluar los ejercicios cambiados aunque consultarlos no cueste nada.
 
 </details>
 
@@ -327,6 +335,8 @@ primer día y el 29/9 queda como referencia histórica.
   Citado por R001, R003 y R007.
 - **FEAT-QINST, FEAT-EVCOST** — Tope y reuso de veredictos ([F-QINST-R006](#F-QINST-R006),
   [F-EVCOST-R003](#F-EVCOST-R003)). Citado por R003.
+- **FEAT-RONDA2** — La política de tope de `analyze`: lo local sin tope y claude -p con tope 0 salvo pedido
+  ([F-RONDA2-R002](#F-RONDA2-R002)). Citado por R003.
 - **FEAT-PLANEF, FEAT-CSLATDC** — Plan efímero con contexto y palabras sugeridas del mismo análisis fuente
   ([F-PLANEF-R001](#F-PLANEF-R001), [F-PLANEF-R002](#F-PLANEF-R002), [F-CSLATDC-R015](#F-CSLATDC-R015)). Citado por R005.
 - **FEAT-PIPRE** — Impacto por propuesta ([F-PIPRE-R003](#F-PIPRE-R003), [F-PIPRE-R004](#F-PIPRE-R004)). Citado por R007.

@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analyst — R003 con la política de tope de `analyze` (decidido por el orquestador el 1/10, gana F-RONDA2-R002): lo local sin tope y claude -p con tope 0 salvo pedido. Antes decía «0 si no se pide» para todo. Validation sigue AUTO_VALIDATED; FEAT-RONDA2 suma a References.
+  why: con Ollama, naturalness y near-duplicates corren sin tope en analyze; con 0 en la proyección dejaban sin evaluar lo cambiado y R001 no se cumplía.
+2026-10-01 — qa-tester — Una prueba más de R003 en DefaultProjectionMeasurer: naturalness y near-duplicates con llama3 en Ollama corren sin tope, como en analyze. Para el arquitecto: «Ausente = 0» en ProjectionScope.analyzerBudgets, «tope 0 salvo pedido» en la inyección auditEngine de DefaultProjectionMeasurer y dos secciones del TECH_SPEC todavía dicen 0 para todo.
+
 2026-10-01 — qa-tester — F-PROYU-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
   why: cruza get consolidated, save-projection, plan --audit, get audits y prune audits, package-private ahí (como F-JEXAM-J001 y F-CDIFF-J001); el proyector se alcanza por su fábrica pública.
 2026-10-01 — qa-tester — Para el analista: R003 dice «0 si no se pide» y F-RONDA2-R002, que lo local no tiene tope sin --budget. ¿La proyección corre naturalness y near-duplicates con Ollama sin tope (como analyze, R001) o con 0? Las pruebas de R003 fijan sólo claude -p, donde coinciden.
