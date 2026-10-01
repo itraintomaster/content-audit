@@ -1,70 +1,43 @@
 code: FEAT-NIVFR
-description: "FEAT-NIVFR, la teoria del tema en lo que el tema ensena (F-NIVFR-R003).\
-  \ La teoria de cada tema vive en ittm/content/theory y el ejercicio la nombra con\
-  \ su theoryId, que el modelo auditable no traia: AuditableQuiz suma theoryId (CourseToAuditableMapper\
-  \ lo copia de QuizTemplateEntity), un puerto TopicTheorySource da el texto de una\
-  \ teoria por su id, un adaptador de archivos en vocabulary-infrastructure lo lee,\
-  \ y la regla del tema (DefaultTopicTeachingResolver, compartida con el semaforo)\
-  \ deja en TaughtWords las palabras de las teorias del tema. Medido con un prototipo\
-  \ sobre el curso del 29/9: despues de las lecturas del 1/10 saca 3 marcas mas (tweezers,\
-  \ concur, acquainted) y ninguna del oro de escribir. Costo conocido: el constructor\
-  \ de AuditableQuiz suma un argumento (unas 314 llamadas en pruebas de 57 archivos)."
+description: "FEAT-NIVFR, el nivel propio de la forma derivada (F-NIVFR-R002, correccion\
+  \ del 1/10). El EVP trae aparte formas derivadas y compuestas de otro lema (rewarding\
+  \ C1, de reward; smoking A1, de smoke; terrifying B2, de terrify) y F-LABS-R040\
+  \ las deja, con razon, fuera del nivel de su lema base, asi que ningun metodo del\
+  \ puerto las consulta. off-level-words las necesita para que el nivel propio de\
+  \ la palabra gane a la base, la parte, el sufijo del tema, el par britanico y el\
+  \ prestamo. EvpCatalogPort suma lookupDerivedFormLevel, que FileSystemEvpCatalog\
+  \ resuelve con un indice aparte (lookupLevel y lookupLevelByLemma no cambian: lemma-absence,\
+  \ lexis y el 73,9 % no se mueven), y el proveedor y el analizador lo reciben por\
+  \ inyeccion. Medido con un prototipo sobre el curso del 29/9: rewarding (C1, en\
+  \ B1) vuelve a marcar y smoking (A1, en «smoke - smoking») deja de marcar; 104 ejercicios\
+  \ igual, escribir/nivel 26 de 52."
 modules:
 - name: audit-domain
-  models:
-  - name: AuditableQuiz
-    type: record
-    fields:
-    - name: theoryId
-      type: String
-      description: "Id de la teoria del tema que el ejercicio nombra (QuizTemplateEntity.theoryId,\
-        \ por ejemplo b1.07.Nouns_That_Are_Always_Plural), copiado tal cual por CourseToAuditableMapper.\
-        \ Null si el ejercicio no nombra ninguna."
-      _change: add
-    _change: modify
   interfaces:
-  - name: TopicTheorySource
-    stereotype: port
+  - name: EvpCatalogPort
     sealed: false
     exposes:
-    - signature: "theoryText(String theoryId): Optional<String>"
-    _change: add
+    - signature: "lookupDerivedFormLevel(String word): Optional<CefrLevel>"
+      _change: add
+    _change: modify
   packages:
   - name: offlevelwords
-    models:
-    - name: TaughtWords
-      type: record
-      fields:
-      - name: theoryWords
-        type: List<String>
-        description: "Palabras de las teorias que nombran los ejercicios del tema,\
-          \ en minuscula (la teoria de Siempre plurales lista tweezers; la de verbos\
-          \ con preposicion, concur with). Vacia si la teoria no se encuentra."
+    implementations:
+    - name: OffLevelWordsAnalyzerProvider
+      requiresInject:
+      - name: evpCatalogPort
+        type: EvpCatalogPort
+        description: "Para el nivel propio de una forma derivada o compuesta que el\
+          \ EVP trae aparte (lookupDerivedFormLevel, F-NIVFR-R002). El nivel de cada\
+          \ palabra sigue siendo el del puntuador compartido (R001): el catalogo solo\
+          \ decide si una lectura puede soltar lo que lexis ya marca."
         _change: add
       _change: modify
-    implementations:
-    - name: DefaultTopicTeachingResolver
+    - name: OffLevelWordsAnalyzer
       requiresInject:
-      - name: topicTheorySource
-        type: TopicTheorySource
+      - name: evpCatalogPort
+        type: EvpCatalogPort
         _change: add
       _change: modify
     _change: modify
-  _change: modify
-- name: vocabulary-infrastructure
-  packages:
-  - name: theory
-    description: "Teorias de los temas del curso, una por archivo JSON en ittm/content/theory,\
-      \ leidas por su id."
-    visibility: internal
-    implementations:
-    - name: FileSystemTopicTheorySource
-      requiresInject:
-      - name: theoryFolder
-        type: Path
-      visibility: public
-      implements:
-      - TopicTheorySource
-      _change: add
-    _change: add
   _change: modify
