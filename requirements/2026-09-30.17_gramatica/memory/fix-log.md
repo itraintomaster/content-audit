@@ -5,6 +5,9 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — La regla de la pregunta con punto mira sólo el último segmento de la oración: con la
+  oración entera, «Can you hear me clearly? if not, I can speak louder.» daba un falso positivo.
+
 2026-10-01 — qa-tester — Bug 08 al fusionar: `qa-B2/tools/restaurar.py <parche del arquitecto> <fusionado> <salida>`
   copia domainLinks y glossarySuggestions perdidos y se vuelve a proponer con --replace; `comparar.py` da 0 perdidos.
 

@@ -4,6 +4,12 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — NATUR implementado (3fcb571c): los 42 stubs del dominio y el del resolvedor,
+  sin @Disabled; la alternativa naturalness-yes-no (059ae1ac). Control sobre una copia, llama3:8b aprobado sólo ahí: 11.105
+  consultas en ~14 min (75 ms cada una), 240 marcas (A1 117 con 9,07; A2 123 con 10,0; B1 y B2 sin umbral), una
+  segunda corrida igual en 4 s sin consultar nada. Pendiente: calibrar B1 y B2 y rendir el examen (B-19);
+  la medida de la cola del 5 % contra traduccion_sentido no está en medir.py (sólo la categoría naturalidad).
+
 2026-10-01 — qa-tester (de analista y arquitecto) — Umbral de A2 en 10,0 (REQUIREMENT, TECH_SPEC y dos pruebas
   renombradas) y una prueba más (39): pregunta por «He did something to help.», nunca por «He did to help.». Backup,
   `patch propose --replace` (sin pérdidas), `tech-spec write` y `patch validate -i` contra mi modelo encadenado

@@ -5,6 +5,14 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — LanguageTool 6.8: `new AmericanEnglish()` revienta en el inicializador; usar
+  `Languages.getLanguageForShortCode("en-US"/"en-GB")`. Con Java 25 hace falta jdk.xml.totalEntitySizeLimit (lo sube el
+  adaptador si nadie lo fijó).
+2026-10-01 — developer — `-Dgroups=herramienta-real` y cualquier -Dtest: siempre con `-am`; sin él, los jars viejos de
+  ~/.m2 dan NoClassDefFoundError.
+2026-10-01 — developer — El catálogo lee las fichas al construirse: en una prueba que registra un examen y después pide
+  la ficha, construir el catálogo después del registro (si no, la tarjeta dice «sin examen»).
+
 2026-10-01 — qa-tester — El aviso «reglas sin prueba en el parche» de la simulación (TestCoverageValidator) cuenta
   sólo pruebas declarativas, no handwrittenTests: la cobertura real la da `tool listModules --with-coverage --root
   <modelo simulado>` (las 8 reglas [covered]).

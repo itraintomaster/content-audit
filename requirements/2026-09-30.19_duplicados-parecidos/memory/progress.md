@@ -4,6 +4,12 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — DUPAR implementado (11fa7369): los 43 stubs sin @Disabled; la alternativa
+  near-duplicates-same-exercise (059ae1ac). Control sobre una copia con nomic-embed-text aprobado sólo ahí: 4.658
+  vectores (20,7 MB) en ~60 s la primera vez y 1 s después; 45 copias (A1 23, A2 9, B1 12, B2 1): 25 por el comodín y 20 por parecido. medir.py en
+  escribir/, duplicados: 15 de 15 con exact-duplicates; near-duplicates solo, 8 de 15 (los 6 casi iguales y 2 exactos
+  que también son casi copias).
+
 2026-10-01 — qa-tester — 38 handwrittenTests nuevas, las 8 reglas [covered]; F-DUPAR-J001 en audit-domain, paquete
   nearduplicates (5 caminos). `patch propose` con fusión sin pérdidas, `tech-spec write` (+1 fragmento) y `patch validate
   -i` contra M04 del integrador y contra el modelo con las pruebas de MLOCAL, GRAMA y NATUR: exit 0. Sin aplicar.

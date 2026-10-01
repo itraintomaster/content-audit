@@ -4,6 +4,16 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B, ronda2/impl-idioma) — MLOCAL implementado: la compuerta (b0d39c64, e0ac311c),
+  los adaptadores de LanguageTool 6.8 y Ollama (b8d9d8f9), el rechazo por nombre del runner y de analyze, el examen
+  de las herramientas locales y sus tarjetas en get (2413766b), Main con los tres proveedores (2bc66406) y las dos
+  alternativas con claude -p (059ae1ac). Sin @Disabled los 37 stubs de MLOCAL. Control sobre copias (antes = ronda2/integracion
+  6376f4a2, después = esta rama), los tres aprobados sólo en la copia y el claude falso sin una llamada: vocabulario
+  73,86 % y 96,02 · 93,60 · 78,87 · 63,86 en las dos; los 11.760 nodos iguales salvo los totales de «algún error» (1.364
+  → 1.444); 5.311 tareas de los diecisiete idénticas y en el mismo orden, más 57 GRAMMAR y 45 NEAR_DUPLICATES; los 886
+  archivos del curso intactos. Pendiente: el segundo parche de pruebas de MLOCAL (OG1) y rendir y registrar los
+  exámenes reales (B-19).
+
 2026-10-01 — qa-tester — Simulación rehecha con GRAMA R001 inv. 5 y el umbral de A2 en 10,0 (`qa-B2/sim2`, `qa-B2/dry2`):
   FEAT-RONDA2 + B sin errores de definición, de traza ni de ubicación; `generate` crearía los 4 journeys y 157 stubs (22
   clases nuevas y 11 stubs en 6 que ya existen). Con F y E encima, 9 journeys sin ubicar, todos de E y F; ninguna prueba

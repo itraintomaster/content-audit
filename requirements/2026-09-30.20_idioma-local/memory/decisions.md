@@ -5,6 +5,17 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — Publicar = corrida de examen o versión aprobada (la local: LocalToolGateDecision.publishes; la
+  alternativa: standing.consultsOnCourse). Una versión sin aprobar no publica nada, tampoco «lo ya registrado»: el
+  libro guarda las respuestas y aparecen apenas la versión aprueba. Versión examinada = la versión de la herramienta
+  con su nombre adelante y el método: «LanguageTool 6.8 · filtro-<8 hex>», «llama3:8b@365c0bd3c000 · native-yes-no-1»,
+  «nomic-embed-text@0a109f422b47 · clustering-1».
+2026-10-01 — developer — B-05: el runner rechaza por nombre (incluidas la puerta vieja y la vista detallada de stats)
+  cuando ninguna tarjeta de la ficha está disponible; «<herramienta> o <herramienta>» y la pista de la primera. B-11:
+  el examen de un analizador con herramienta corre con su política aunque sea instantáneo (grammar); sin cobertura del
+  runtime, la versión es la de la fila de su corrida y el exportador cuenta todas sus reglas. Los cuerpos tocados de C
+  (DefaultJudgeRuntime.standing, DefaultJudgeExamVerdictExporter) no cambian contratos.
+
 2026-10-01 — coordinador — OG1 resuelto: lo común de MLOCAL que realizan los analizadores (la fila de cada corrida,
   R002 inv. 3 y R003 inv. 3, y lo que haga falta de R005) se prueba con un segundo parche de pruebas de MLOCAL, después
   de aplicar los cuatro de B, autoaplicado con `patch apply --as=qa-tester`.
