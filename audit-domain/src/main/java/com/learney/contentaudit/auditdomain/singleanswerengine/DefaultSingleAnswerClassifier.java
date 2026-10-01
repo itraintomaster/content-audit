@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.singleanswerengine;
+import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.CorrectorMatcher;
@@ -73,11 +74,13 @@ class DefaultSingleAnswerClassifier implements SingleAnswerClassifier {
 
     private final SingleAnswerConfig config;
 
-    public DefaultSingleAnswerClassifier(CorrectorMatcher correctorMatcher,
-            SingleAnswerConfig config) {
-        this.correctorMatcher = correctorMatcher;
-        this.config = config;
-    }
+private final QuizStudentViewRenderer studentViewRenderer;
+
+public DefaultSingleAnswerClassifier(CorrectorMatcher correctorMatcher, SingleAnswerConfig config, QuizStudentViewRenderer studentViewRenderer) {
+    this.correctorMatcher = correctorMatcher;
+    this.config = config;
+    this.studentViewRenderer = studentViewRenderer;
+}
 
     @Override
     public SingleAnswerOutcome classify(SingleAnswerVerdict verdict, AuditableQuiz quiz,

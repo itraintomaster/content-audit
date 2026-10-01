@@ -1384,4 +1384,44 @@ public class DefaultEvaluationSessionTest {
         assertEquals(Optional.of(expiredSession), session.unavailableReason(),
                 "the reason is the cause and the remedy the evaluator gave on its first service failure");
     }
+
+    @Test
+    @DisplayName("should return a failed resolution carrying the kind and reason the evaluator gave when its output is unusable")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R002")
+    public void shouldReturnAFailedResolutionCarryingTheKindAndReasonTheEvaluatorGaveWhenItsOutputIsUnusable() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should return a failed resolution as evaluator unavailable, with the exception message as its reason, when the evaluator throws")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R002")
+    public void shouldReturnAFailedResolutionAsEvaluatorUnavailableWithTheExceptionMessageAsItsReasonWhenTheEvaluatorThrows() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give each failed resolution of a batch the cause of its own consultation, not the first failure of the run")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R002")
+    public void shouldGiveEachFailedResolutionOfABatchTheCauseOfItsOwnConsultationNotTheFirstFailureOfTheRun() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave without cause every resolution that is reused, evaluated or pending, including the pending left by a stopped service")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R002")
+    public void shouldLeaveWithoutCauseEveryResolutionThatIsReusedEvaluatedOrPendingIncludingThePendingLeftByAStoppedService() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should never write the cause of a failed consultation into the ledger")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R002")
+    public void shouldNeverWriteTheCauseOfAFailedConsultationIntoTheLedger() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (C) — Definición del juez sin casos del examen (guardián en verde); ejemplos de
+  defecto inventados cuando el pozo no tenía uno real. Versión nueva 63f16ebd…, sin examen rendido.
+
 2026-09-30 — developer (C) — C-26: definición de agente en `.sentinel/agents/mini-theory-judge` (evaluate → gate_verdict → emit, el grafo del juez de consigna; `dependencies` en el orden del mapa de contenido; artifact `miniTheoryVerdict`; al agotar intentos emite `{"outputUnusable": true}`). `eval/run_evals.py` en verde sin modelo (43 salidas grabadas) y los 15 veredictos canónicos de sus fixtures los lee el lector Jackson de Java. `eval/` entra en la versión, como en el juez de consigna: tocar una fixture es una versión nueva que rinde el examen.
   Next: el examen fijo con tope (orquestador) y `exam record`; las guías traen ítems del examen fijo con su veredicto (escalado).
 

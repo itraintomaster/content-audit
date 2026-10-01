@@ -1,7 +1,32 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
+import static com.learney.contentaudit.auditdomain.multiplechoicevalidity.DefaultOptionRuleCheckTest.item;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CorrectorMatcher;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerErrorCounts;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,53 +46,157 @@ public class FOmvalJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Hallazgo bloqueante que cuenta en los... [No vale ninguna opción, o valen dos] → success")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void path1_noValeNingunaOpcinOValenDos_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr: analyze with only multiple-choice-validity, without a judge connected.
+        AuditNode root = analyze(DefaultOptionRuleCheckTest.productionCorrector(), List.of(
+                DefaultOptionRuleCheckTest.performanceWasAwful(item("absolutely", 0.0), item("very", 0.0))));
+
+        // leer_opciones → bloqueante: no option scores in «The performance was ___ awful.»: a blocking finding that
+        // counts in the errors of its topic, its level and the course (R001).
+        Finding none = quiz(root, "67fab6d599301022953448f1").getFindings().get(0);
+        assertEquals("single-valid-option", none.getRule());
+        assertEquals(FindingSeverity.BLOCKING, none.getSeverity());
+        AuditNode level = root.getChildren().get(0);
+        AuditNode topic = level.getChildren().get(0);
+        for (AuditNode container : List.of(topic, level, root)) {
+            assertEquals(1, container.getNumbers().getErrors().getWithAnyError(), container.getTarget().name());
+            assertEquals(1, container.getNumbers().getErrors().getBySeverity().getBlocking(), container.getTarget().name());
+        }
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Hallazgo alta para la mesa, con las d... [Dos opciones son la misma respuesta con otra forma, y una es la correcta] → success")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void path2_dosOpcionesSonLaMismaRespuestaConOtraFormaYUnaEsLaCorrecta_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → leer_opciones → dos_correctas: «will» next to the correct «'ll» in «Are you busy? If so, I ___
+        // do it for you.», with the table of the new corrector: high, for the panel, with both options as evidence.
+        AuditableQuiz withWill = DefaultOptionRuleCheckTest.mc("67fab6d599301022953426ef", List.of(
+                DefaultOptionRuleCheckTest.text("Are you busy? If so, I"), DefaultOptionRuleCheckTest.gap(),
+                DefaultOptionRuleCheckTest.text("do it for you.")), item("'ll", 1.0), item("will", 0.0),
+                item("are going to", 0.0));
+        AuditNode root = analyze(DefaultOptionRuleCheckTest.productionCorrector(), List.of(withWill));
+
+        Finding twin = finding(quiz(root, "67fab6d599301022953426ef"), "will");
+        assertEquals("distinct-options", twin.getRule());
+        assertEquals(FindingSeverity.HIGH, twin.getSeverity());
+        assertEquals(FindingResolution.PANEL, twin.getResolution());
+        assertEquals("'ll · will", part(twin, "La misma respuesta"));
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Hallazgo baja para la mesa: sobra una... [Dos opciones incorrectas son la misma respuesta] → success")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void path3_dosOpcionesIncorrectasSonLaMismaRespuesta_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → leer_opciones → sobra_una: «'ve got to» and «have got to» in «David ___ call his mother now.
+        // (must)», both incorrect: low, for the panel.
+        AuditNode root = analyze(DefaultOptionRuleCheckTest.productionCorrector(), List.of(DefaultOptionRuleCheckTest.davidMust()));
+
+        Finding leftOver = finding(quiz(root, "67fab6d59930102295342e0c"), "have got to");
+        assertEquals("distinct-options", leftOver.getRule());
+        assertEquals(FindingSeverity.LOW, leftOver.getSeverity());
+        assertEquals(FindingResolution.PANEL, leftOver.getResolution());
     }
 
     @Test
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Hallazgo de gravedad baja que se resu... [El hueco abre la oración y las opciones van en minúscula] → success")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void path4_elHuecoAbreLaOracinYLasOpcionesVanEnMinscula_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → leer_opciones → mayuscula: «___ a child? (He)» opens the question in lowercase: low, by one rule
+        // over all the options at once; with no judge connected the exercise is evaluated halfway.
+        AuditNode root = analyze(DefaultOptionRuleCheckTest.productionCorrector(), List.of(DefaultOptionRuleCheckTest.aChild()));
+
+        AuditNode child = quiz(root, "67fab6d59930102295341e87");
+        Finding capital = finding(child, "mayuscula");
+        assertEquals("sentence-start-capital", capital.getRule());
+        assertEquals(FindingSeverity.LOW, capital.getSeverity());
+        assertEquals(FindingResolution.RULE, capital.getResolution());
+        assertEquals(List.of("multiple-choice-validity"), child.getPartiallyEvaluatedBy());
+        AnalyzerErrorCounts counts = root.getNumbers().getErrors().getAnalyzers().stream()
+                .filter(a -> a.getAnalyzer().equals("multiple-choice-validity")).findFirst().orElseThrow();
+        assertEquals(1, counts.getWithError());
+        assertEquals(1, counts.getPartiallyEvaluated());
     }
 
     @Test
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Hallazgo de gravedad media para la me... [El artículo antes del hueco sólo encaja con la correcta] → success")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void path5_elArtculoAntesDelHuecoSloEncajaConLaCorrecta_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → leer_opciones → delata: «He's an ___ amazing man.»: medium, for the panel, with the article and the
+        // options as evidence (R004).
+        AuditNode root = analyze(DefaultOptionRuleCheckTest.productionCorrector(), List.of(DefaultOptionRuleCheckTest.amazingMan()));
+
+        Finding article = finding(quiz(root, "67fab6d599301022953448f4"), "very");
+        assertEquals("article-gives-away", article.getRule());
+        assertEquals(FindingSeverity.MEDIUM, article.getSeverity());
+        assertEquals(FindingResolution.PANEL, article.getResolution());
+        assertEquals("an", part(article, "Artículo"));
+        assertEquals("*absolutely · very", part(article, "Opciones"));
     }
 
     @Test
     @Order(6)
     @Tag("path-6")
     @DisplayName("path-6: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Sin hallazgo de este analizador; el e... [Una sola vale, son distintas y la forma no delata nada] → success")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void path6_unaSolaValeSonDistintasYLaFormaNoDelataNada_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → leer_opciones → sin_hallazgo: «The performance was ___ awful.» as the course has it: no finding of
+        // this analyzer and score 1.
+        AuditNode root = analyze(DefaultOptionRuleCheckTest.productionCorrector(), List.of(DefaultOptionRuleCheckTest.performanceWasAwful()));
+
+        AuditNode awful = quiz(root, "67fab6d599301022953448f1");
+        assertEquals(List.of(), awful.getFindings());
+        assertEquals(1.0, awful.getScores().get("multiple-choice-validity"));
+        assertTrue(root.getNumbers().getErrors().getWithAnyError() == 0);
+    }
+
+    // ------------------------------------------------------------------
+    // analyze with only multiple-choice-validity, through the engine, without a judge connected
+    // ------------------------------------------------------------------
+
+    private static AuditNode analyze(CorrectorMatcher corrector, List<AuditableQuiz> quizzes) {
+        MultipleChoiceValidityAnalyzerProvider provider = new MultipleChoiceValidityAnalyzerProvider(corrector,
+                new UnavailableChoiceAlternativeJudgeRunFactory(), MultipleChoiceValidityAnalyzerTest.renderer());
+        IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
+                new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+        AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Tema", null, true, "6814dafa7d73e7209a13d491",
+                "Tema", "6814dafa7d73e7209a13d491", SentenceMode.FILL, "Topic");
+        AuditableCourse course = new AuditableCourse(List.of(new AuditableMilestone(List.of(new AuditableTopic(
+                List.of(knowledge), "topic", "Topic", "topic")), "A1", "A1", "A1")));
+        AuditReport report = engine.runAudit(course,
+                new AnalyzerRunSelection(List.of("multiple-choice-validity"), Map.of()));
+        return report.getRoot();
+    }
+
+    private static AuditNode quiz(AuditNode node, String id) {
+        if (node.getEntity() != null && id.equals(node.getEntity().getId())) {
+            return node;
+        }
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                AuditNode found = quiz(child, id);
+                if (found != null) {
+                    return found;
+                }
+            }
+        }
+        return null;
+    }
+
+    private static Finding finding(AuditNode node, String marker) {
+        return node.getFindings().stream().filter(f -> marker.equals(f.getIdentity().getMarker())).findFirst()
+                .orElseThrow(() -> new AssertionError("no finding «" + marker + "» in "
+                        + node.getFindings().stream().map(f -> f.getIdentity().getMarker()).toList()));
+    }
+
+    private static String part(Finding finding, String label) {
+        for (EvidencePart part : finding.getEvidence().getExamined()) {
+            if (part.getLabel().equals(label)) {
+                return part.getText();
+            }
+        }
+        return null;
     }
 }

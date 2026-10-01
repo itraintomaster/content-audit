@@ -1,7 +1,36 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.DefaultKnowledgeDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
+import com.learney.contentaudit.auditdomain.IrregularFormsCatalog;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,89 +44,480 @@ public class HintCoherenceAnalyzerTest {
     @DisplayName("should raise a high finding on an exercise without hint when three quarters or more of its topic's exercises of the same shape carry one, as «I ___ a lot of vegetables.» among the 19 of 20 of Afirmativas regulares")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R001")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldRaiseAHighFindingOnAnExerciseWithoutHintWhenThreeQuartersOrMoreOfItsTopicsExercisesOfTheSameShapeCarryOneAsIALotOfVegetablesAmongThe19Of20OfAfirmativasRegulares(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: Afirmativas regulares (A1, FILL): 19 of its 20 gaps carry a hint; «I ___ a lot of
+        // vegetables.» (…1ecd) does not.
+        AuditNode topic = run(knowledge("6814dafa7d73e7209a13d389", "Afirmativas regulares", SentenceMode.FILL,
+                afirmativasRegulares()));
+        AuditNode vegetables = quizNode(topic, "1ecd");
+
+        List<FindingDraft> drafts = analyzer.findingsAt(vegetables);
+        assertEquals(1, drafts.size());
+        assertEquals(HintCoherenceAnalyzer.RULE_MISSING_HINT, drafts.get(0).getRule());
+        assertEquals(FindingSeverity.HIGH, drafts.get(0).getSeverity());
+        assertEquals(FindingResolution.RULE, drafts.get(0).getResolution());
+        HintCoherenceDiagnosis diagnosis = diagnosis(vegetables);
+        assertEquals(19, diagnosis.getHintedInTopic());
+        assertEquals(20, diagnosis.getComparableInTopic());
+        assertEquals("(love)", diagnosis.getIssues().get(0).getProposedHint());
+        assertTrue(labels(drafts.get(0)).contains("Con pista en el tema"),
+                "the exercises of the topic that do carry a hint are its evidence");
+        for (AuditNode quiz : topic.getChildren()) {
+            if (quiz != vegetables) {
+                assertEquals(1.0, quiz.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME), id(quiz));
+            }
+        }
+
+        // The union (1/10): Adverbios de frecuencia (A1, REWRITE) are transformations that carry their adverb
+        // and a few gaps without one, as «We ___ eat eggs every morning.» (…2572): their shape does not reach
+        // three quarters, the whole topic does, and the finding says so.
+        AuditNode adverbs = run(knowledge("6814dafa7d73e7209a13d3c4", "Adverbios de frecuencia", SentenceMode.REWRITE,
+                adverbiosDeFrecuencia()));
+        AuditNode eggs = quizNode(adverbs, "2572");
+        List<FindingDraft> missing = analyzer.findingsAt(eggs);
+        assertEquals(List.of(HintCoherenceAnalyzer.RULE_MISSING_HINT), rules(missing));
+        assertEquals(ExerciseShape.GAP_IN_SENTENCE, diagnosis(eggs).getShape());
+        assertEquals(6, diagnosis(eggs).getHintedInTopic());
+        assertEquals(8, diagnosis(eggs).getComparableInTopic());
+        assertTrue(missing.get(0).getEvidence().getObservation().contains("6 de 8 ejercicios del tema la llevan"),
+                missing.get(0).getEvidence().getObservation());
+        assertTrue(part(missing.get(0), "Con pista en el tema").endsWith("(always) ___"),
+                "the hinted transformations are its evidence");
+    }
+
+    /** Adverbios de frecuencia (…d3c4, A1, REWRITE): six transformations with their adverb, two gaps without. */
+    static List<AuditableQuiz> adverbiosDeFrecuencia() {
+        return List.of(
+                ex("256f", text("She does her homework after school. (always)"), cloze("She always does her homework after school.")),
+                ex("2570", text("He is sad. (never)"), cloze("He is never sad.")),
+                ex("2571", text("I watch TV in the evening. (sometimes)"), cloze("I sometimes watch TV in the evening.")),
+                ex("2572", text("We"), cloze("always"), text("eat eggs every morning.")),
+                ex("2574", text("I watch films. (never)"), cloze("I never watch films.")),
+                ex("2575", text("He"), cloze("never"), text("drinks juice in the morning.")),
+                ex("2576", text("She eats fish. (never)"), cloze("She never eats fish.")),
+                ex("2577", text("She is bored. (sometimes)"), cloze("She is sometimes bored.")));
     }
 
     @Test
     @DisplayName("should take exactly three quarters of the topic as reaching the threshold and leave a topic below it without finding, as «I'd love ___ .» in One y ones, where 12 of 20 carry a hint")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R001")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldTakeExactlyThreeQuartersOfTheTopicAsReachingTheThresholdAndLeaveATopicBelowItWithoutFindingAsIdLoveInOneYOnesWhere12Of20CarryAHint(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // DOUBT-PISTA-UMBRAL (B, José 30/9): from three quarters. In One y ones (A2) 12 of its 20 gaps
+        // carry a hint: «A: Would you like a cup of tea? B: Yes, I'd love ___ .» (…2c0e) has no
+        // finding. If three more carried one, 15 of 20 is exactly three quarters, and it would.
+        AuditNode below = run(knowledge("6814dafa7d73e7209a13d277", "One y ones", SentenceMode.FILL, oneYOnes(List.of())));
+        AuditNode love = quizNode(below, "2c0e");
+        assertEquals(List.of(), analyzer.findingsAt(love));
+        assertEquals(1.0, love.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME));
+        assertEquals(12, diagnosis(love).getHintedInTopic());
+        assertEquals(20, diagnosis(love).getComparableInTopic());
+
+        AuditNode exactly = run(knowledge("6814dafa7d73e7209a13d277", "One y ones", SentenceMode.FILL,
+                oneYOnes(List.of("2c0f", "2c11", "2c16"))));
+        AuditNode loveAgain = quizNode(exactly, "2c0e");
+        assertEquals(15, diagnosis(loveAgain).getHintedInTopic());
+        assertEquals(List.of(HintCoherenceAnalyzer.RULE_MISSING_HINT), rules(analyzer.findingsAt(loveAgain)));
+        assertEquals(0.0, loveAgain.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME));
     }
 
     @Test
     @DisplayName("should count hints only among exercises of the same shape, so the 20 transformations without hint of El posesivo are not measured against its 20 hinted gaps")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R001")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldCountHintsOnlyAmongExercisesOfTheSameShapeSoThe20TransformationsWithoutHintOfElPosesivoAreNotMeasuredAgainstIts20HintedGaps(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: El posesivo (A1, REWRITE) mixes 20 transformations answered with the whole sentence,
+        // none with a hint, and 20 gaps that carry one. Each shape is counted on its own.
+        AuditNode topic = run(knowledge("6814dafa7d73e7209a13d3ca", "El posesivo", SentenceMode.REWRITE, elPosesivo()));
+
+        AuditNode transformation = quizNode(topic, "2367");
+        assertEquals(ExerciseShape.WHOLE_SENTENCE, diagnosis(transformation).getShape());
+        assertEquals(0, diagnosis(transformation).getHintedInTopic());
+        assertEquals(20, diagnosis(transformation).getComparableInTopic(), "only the 20 transformations");
+        AuditNode gap = quizNode(topic, "2a38");
+        assertEquals(ExerciseShape.GAP_IN_SENTENCE, diagnosis(gap).getShape());
+        assertEquals(20, diagnosis(gap).getHintedInTopic());
+        assertEquals(20, diagnosis(gap).getComparableInTopic());
+        for (AuditNode quiz : topic.getChildren()) {
+            assertEquals(List.of(), analyzer.findingsAt(quiz), id(quiz));
+        }
     }
 
     @Test
     @DisplayName("should neither count nor mark multiple choice exercises, as «My brother is a ___ (good / well) driver.» in ¿Good o well?")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R001")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldNeitherCountNorMarkMultipleChoiceExercisesAsMyBrotherIsAGoodWellDriverInGoodOWell(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the multiple choice does not enter -- its options already say what to choose.
+        // «My brother is a ___ (good / well) driver.» (…256a, A1, ¿Good o well?) gets no score, no
+        // diagnosis and no finding, and the 20 multiple choice of One y ones are not counted.
+        AuditableQuiz driver = new AuditableQuiz(List.of(), "67fab6d5993010229534256a", "label", "", null,
+                List.of("My brother is a good driver."), null, "Elige 'well' o 'good'.",
+                List.of(text("My brother is a"), gap(), text("(good / well) driver.")),
+                new MultipleChoiceEntity("SINGLE", List.of(new MultipleChoiceItemEntity("good", 1.0, "good"),
+                        new MultipleChoiceItemEntity("well", 0.0, "well"))), null, "A1.11.03.06");
+        AuditNode goodOrWell = run(knowledge("6814dafa7d73e7209a13d3eb", "¿Good o well?", SentenceMode.FILL, List.of(driver)));
+        AuditNode node = goodOrWell.getChildren().get(0);
+
+        assertFalse(node.getScores().containsKey(HintCoherenceAnalyzer.ANALYZER_NAME));
+        assertTrue(((DefaultQuizDiagnoses) node.getDiagnoses()).getHintCoherenceDiagnosis().isEmpty());
+        assertEquals(List.of(), analyzer.findingsAt(node));
+
+        List<AuditableQuiz> mixed = new ArrayList<>(oneYOnes(List.of()));
+        mixed.add(driver);
+        AuditNode withChoice = run(knowledge("6814dafa7d73e7209a13d277", "One y ones", SentenceMode.FILL, mixed));
+        assertEquals(20, diagnosis(quizNode(withChoice, "2c0e")).getComparableInTopic());
     }
 
     @Test
     @DisplayName("should raise a blocking finding with the hint and the answer as evidence when the hint names another verb than the answer, as «This idea ___ (not / sound) very good.» answered «does not»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldRaiseABlockingFindingWithTheHintAndTheAnswerAsEvidenceWhenTheHintNamesAnotherVerbThanTheAnswerAsThisIdeaNotSoundVeryGoodAnsweredDoesNot(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 inv. 1: «This idea ___ (not / sound) very good.» (…2657, A2) accepts «does not|doesn't»:
+        // sound is nowhere, and whoever follows the hint is rejected.
+        AuditableQuiz idea = quiz("67fab6d59930102295342657", "This idea does not very good.",
+                "This|this|DET idea|idea|NOUN does|do|AUX not|not|PART very|very|ADV good|good|ADJ .|.|PUNCT",
+                text("This idea"), cloze("does not|doesn't"), text("(not / sound) very good."));
+        AuditNode node = run(knowledge("6814dafa7d73e7209a13d1f5", "Verbos estáticos 1", SentenceMode.FILL,
+                List.of(idea))).getChildren().get(0);
+
+        List<FindingDraft> drafts = analyzer.findingsAt(node);
+        assertEquals(1, drafts.size());
+        FindingDraft sound = drafts.get(0);
+        assertEquals(HintCoherenceAnalyzer.RULE_HINT_WORDS, sound.getRule());
+        assertEquals(FindingSeverity.BLOCKING, sound.getSeverity());
+        assertEquals("sound", sound.getMarker());
+        assertEquals("(not / sound)", part(sound, "Pista"));
+        assertEquals("does not", part(sound, "Respuesta"));
+        assertEquals(0.0, node.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME));
     }
 
     @Test
     @DisplayName("should raise a blocking finding when the subject of the hint is not the subject of the answer, as «What ___ (it / be)?» answered «is that»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R003")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldRaiseABlockingFindingWhenTheSubjectOfTheHintIsNotTheSubjectOfTheAnswerAsWhatItBeAnsweredIsThat(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 inv. 1: «What ___ (it / be)? (present simple)» (…20ad, A1, Contraste inicial) only
+        // accepts «is that».
+        AuditableQuiz what = quiz("67fab6d599301022953420ad", "What is that?",
+                "What|what|PRON is|be|AUX that|that|PRON ?|?|PUNCT",
+                text("What"), cloze("is that"), text("(it / be)? (present simple)"));
+        AuditNode node = run(knowledge("6814dafa7d73e7209a13d1c6", "Contraste inicial", SentenceMode.FILL,
+                List.of(what))).getChildren().get(0);
+
+        List<FindingDraft> drafts = analyzer.findingsAt(node);
+        assertEquals(List.of(HintCoherenceAnalyzer.RULE_HINT_SUBJECT), rules(drafts));
+        assertEquals(FindingSeverity.BLOCKING, drafts.get(0).getSeverity());
+        assertEquals("it", drafts.get(0).getMarker());
+        assertEquals("(it / be)", diagnosis(node).getHint());
     }
 
     @Test
     @DisplayName("should score 0 an exercise with a finding and 1 an exercise whose hint announces its answer, as «You ___ (see) cats.» answered «see»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldScore0AnExerciseWithAFindingAnd1AnExerciseWhoseHintAnnouncesItsAnswerAsYouSeeCatsAnsweredSee(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: «You ___ (see) cats.» (…1ec3) scores 1 and leaves no finding; «Who ___ (I / see)?»
+        // (…2031), whose hint names another subject, scores 0.
+        AuditNode topic = run(knowledge("6814dafa7d73e7209a13d389", "Afirmativas regulares", SentenceMode.FILL,
+                List.of(youSeeCats(), whoAreYouSeeing())));
+
+        AuditNode cats = quizNode(topic, "1ec3");
+        assertEquals(1.0, cats.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME));
+        assertEquals(List.of(), analyzer.findingsAt(cats));
+        assertEquals(1.0, diagnosis(cats).getScore());
+        AuditNode who = quizNode(topic, "2031");
+        assertEquals(0.0, who.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME));
+        assertEquals(0.0, diagnosis(who).getScore());
     }
 
     @Test
     @DisplayName("should show as evidence the exercise as the student sees it, its answer and the line that names the fault, as «Who ___ (I / see)? → are you seeing: el sujeto I no es you»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldShowAsEvidenceTheExerciseAsTheStudentSeesItItsAnswerAndTheLineThatNamesTheFaultAsWhoISeeAreYouSeeingElSujetoINoEsYou(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and F-HALL-R003: the evidence is the exercise as the student sees it, never the
+        // internal format of the course.
+        AuditNode node = run(knowledge("6814dafa7d73e7209a13d1b7", "Palabras wh", SentenceMode.FILL,
+                List.of(whoAreYouSeeing()))).getChildren().get(0);
+
+        FindingDraft who = analyzer.findingsAt(node).get(0);
+        assertEquals("Who ___ (I / see)?", part(who, "Ejercicio"));
+        assertEquals("are you seeing", part(who, "Respuesta"));
+        assertTrue(who.getEvidence().getObservation().startsWith("Who ___ (I / see)? → are you seeing: el sujeto I no es you"),
+                who.getEvidence().getObservation());
+        assertFalse(who.getEvidence().getObservation().contains("____ ["), "never the internal format");
     }
 
     @Test
     @DisplayName("should identify each finding by its rule and the word it names, so two runs give «Who ___ (I / see)?» the same identity")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldIdentifyEachFindingByItsRuleAndTheWordItNamesSoTwoRunsGiveWhoISeeTheSameIdentity(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-HALL-R014: the identity is analyzer, rule, node and the word as marker, stamped by the
+        // engine's collector; two runs over the same exercise give the same one.
+        List<String> identities = new ArrayList<>();
+        for (int run = 0; run < 2; run++) {
+            AuditNode topic = run(knowledge("6814dafa7d73e7209a13d1b7", "Palabras wh", SentenceMode.FILL,
+                    List.of(whoAreYouSeeing())));
+            new DefaultFindingCollector().collect(topic, analyzer,
+                    new HintCoherenceAnalyzerProvider(table(), renderer()).describe());
+            List<Finding> findings = topic.getChildren().get(0).getFindings();
+            assertEquals(1, findings.size());
+            identities.add(findings.get(0).getIdentity().getKey());
+        }
+
+        assertEquals(identities.get(0), identities.get(1));
+        assertEquals("hint-coherence|hint-subject|67fab6d59930102295342031|i", identities.get(0));
+    }
+
+    // ------------------------------------------------------------------
+    // Running the analyzer over one topic
+    // ------------------------------------------------------------------
+
+    private HintCoherenceAnalyzer analyzer;
+
+    private AuditNode run(AuditNode knowledge) {
+        analyzer = new HintCoherenceAnalyzer(new DefaultHintReader(), new DefaultHintAnswerCheck(table()), renderer());
+        analyzer.onKnowledge(knowledge);
+        for (AuditNode quiz : knowledge.getChildren()) {
+            analyzer.onQuiz(quiz);
+        }
+        return knowledge;
+    }
+
+    static AuditNode knowledge(String id, String label, SentenceMode mode, List<AuditableQuiz> quizzes) {
+        AuditableKnowledge entity = new AuditableKnowledge(quizzes, label, null, true, id, label, id, mode, "topic");
+        AuditNode knowledge = new AuditNode(entity, AuditTarget.KNOWLEDGE, null, new ArrayList<>(),
+                new LinkedHashMap<>(), new LinkedHashMap<>(), new DefaultKnowledgeDiagnoses());
+        for (AuditableQuiz quiz : quizzes) {
+            knowledge.getChildren().add(new AuditNode(quiz, AuditTarget.QUIZ, knowledge, List.of(),
+                    new LinkedHashMap<>(), new LinkedHashMap<>(), new DefaultQuizDiagnoses()));
+        }
+        return knowledge;
+    }
+
+    private static AuditNode quizNode(AuditNode knowledge, String idSuffix) {
+        for (AuditNode quiz : knowledge.getChildren()) {
+            if (quiz.getEntity().getId().endsWith(idSuffix)) {
+                return quiz;
+            }
+        }
+        throw new AssertionError("no exercise " + idSuffix);
+    }
+
+    private static HintCoherenceDiagnosis diagnosis(AuditNode quiz) {
+        return ((DefaultQuizDiagnoses) quiz.getDiagnoses()).getHintCoherenceDiagnosis().orElseThrow();
+    }
+
+    private static String id(AuditNode quiz) {
+        return quiz.getEntity().getId();
+    }
+
+    private static List<String> rules(List<FindingDraft> drafts) {
+        return drafts.stream().map(FindingDraft::getRule).toList();
+    }
+
+    private static List<String> labels(FindingDraft draft) {
+        return draft.getEvidence().getExamined().stream().map(EvidencePart::getLabel).toList();
+    }
+
+    private static String part(FindingDraft draft, String label) {
+        for (EvidencePart part : draft.getEvidence().getExamined()) {
+            if (part.getLabel().equals(label)) {
+                return part.getText();
+            }
+        }
+        return null;
+    }
+
+    static DefaultQuizStudentViewRenderer renderer() {
+        return new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create());
+    }
+
+    /** The forms these cases need from the closed table of irregular forms. */
+    static IrregularFormsCatalog table() {
+        Map<String, Set<String>> forms = Map.of("be", Set.of("was", "were", "been", "am", "is", "are", "being"),
+                "see", Set.of("saw", "seen"), "have", Set.of("had", "has", "having"));
+        return new IrregularFormsCatalog() {
+            @Override
+            public Set<String> formsOf(String baseWord) {
+                return forms.getOrDefault(baseWord, Set.of());
+            }
+
+            @Override
+            public boolean isPastParticiple(String word) {
+                return Set.of("been", "seen", "had").contains(word);
+            }
+        };
+    }
+
+    // ------------------------------------------------------------------
+    // Exercises of the 29/9 course
+    // ------------------------------------------------------------------
+
+    static AuditableQuiz youSeeCats() {
+        return quiz("67fab6d59930102295341ec3", "You see cats.", "You|you|PRON see|see|VERB cats|cat|NOUN .|.|PUNCT",
+                text("You"), cloze("see"), text("(see) cats."));
+    }
+
+    static AuditableQuiz whoAreYouSeeing() {
+        return quiz("67fab6d59930102295342031", "Who are you seeing?",
+                "Who|who|PRON are|be|AUX you|you|PRON seeing|see|VERB ?|?|PUNCT",
+                text("Who"), cloze("are you seeing"), text("(I / see)?"));
+    }
+
+    /** Afirmativas regulares (…d389, A1): 20 gaps, 19 with a hint. */
+    static List<AuditableQuiz> afirmativasRegulares() {
+        return List.of(
+                youSeeCats(),
+                ex("1ec4", text("It"), cloze("comes"), text("(come) every year.")),
+                ex("1ec5", text("He"), cloze("leaves"), text("(leave) the bedroom.")),
+                ex("1ec6", text("They"), cloze("go"), text("(go) to school every day.")),
+                ex("1ec7", text("We"), cloze("make"), text("(make) clothes.")),
+                ex("1ec8", text("He"), cloze("buys"), text("(buy) a lot of tea.")),
+                ex("1ec9", text("She"), cloze("eats"), text("(eat) lunch.")),
+                ex("1eca", text("You"), cloze("enjoy"), text("(enjoy) life.")),
+                ex("1ecb", text("We"), cloze("know"), text("(know) ourselves.")),
+                ex("1ecc", text("We"), cloze("want"), text("(want) some food.")),
+                quiz("67fab6d59930102295341ecd", "I love a lot of vegetables.",
+                        "I|I|PRON love|love|VERB a|a|DET lot|lot|NOUN of|of|ADP vegetables|vegetable|NOUN .|.|PUNCT",
+                        text("I"), cloze("love"), text("a lot of vegetables.")),
+                ex("1ece", text("I"), cloze("play"), text("(play) basketball every week.")),
+                ex("1ecf", text("He"), cloze("reads"), text("(read) books.")),
+                ex("1ed0", text("They"), cloze("work"), text("(work) on the beach.")),
+                ex("1ed1", text("She"), cloze("lives"), text("(live) in London.")),
+                ex("1ed2", text("You"), cloze("have"), text("(have) two sisters.")),
+                ex("1ed3", text("I"), cloze("help"), text("(help) my friends.")),
+                ex("1ed4", text("It"), cloze("gets"), text("(get) cold here.")),
+                ex("1ed5", text("I"), cloze("learn"), text("(learn) every afternoon.")),
+                ex("1ed6", text("She"), cloze("sports"), text("(sport) hats.")));
+    }
+
+    /** One y ones (…d277, A2): its 20 gaps, 12 with a hint; the ones listed get «(one)» too. */
+    static List<AuditableQuiz> oneYOnes(List<String> alsoHinted) {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        String[][] gaps = {
+                {"2c0e", "A: Would you like a cup of tea? B: Yes, I'd love", "one", "."},
+                {"2c0f", "I don't have a five euro note. Do you have", "one", "?"},
+                {"2c10", "I wanted some blue shirts but I could only find those", "green ones", "(green)."},
+                {"2c11", "Do you have a rubber? I need", "one", "."},
+                {"2c12", "A: Which shoes would you like? B: The", "brown ones", "(brown)."},
+                {"2c13", "Where's my hat? It's", "a blue one", "(blue)."},
+                {"2c14", "Where are the rulers? She needs", "a black one", "(black)."},
+                {"2c15", "There are some oranges over there. Could you pass me", "a small one", "(small)?"},
+                {"2c16", "He's talking about buying a new car but he already has", "one", "."},
+                {"2c17", "He needs a piece of paper. Could you pass", "one", "?"},
+                {"2c18", "She asked me for a plate and so I gave her", "one", "."},
+                {"2c19", "A: Which skirts do you want? B: The", "red ones", "(red)."},
+                {"2c1a", "A: What colour jumper would you like? B: I'd like", "a grey one", "(grey)."},
+                {"2c1b", "A: Would you like a biscuit? B: Yes, I'd love", "one", "."},
+                {"2c1c", "Which do you want? B: Could I have those large", "round ones", "(round)?"},
+                {"2c1d", "I'd like five of those", "yellow ones", "(yellow), please."},
+                {"2c1e", "I had crisps, so I gave you", "two golden ones", "(two golden)."},
+                {"2c1f", "I asked her for a pen and she gave me", "one", "."},
+                {"2c20", "A: What kind of ice creams do you want? B:", "Chocolate ones", "(chocolate) please."},
+                {"2c21", "Why is he talking about buying a house? He lives in", "a big one", "(big)."}};
+        for (String[] g : gaps) {
+            String after = alsoHinted.contains(g[0]) ? "(one) " + g[3] : g[3];
+            quizzes.add(ex(g[0], text(g[1]), cloze(g[2]), text(after)));
+        }
+        return quizzes;
+    }
+
+    /** El posesivo (…d3ca, A1, REWRITE): 20 transformations without hint and 20 gaps with one. */
+    static List<AuditableQuiz> elPosesivo() {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        String[][] transformations = {
+                {"2367", "That house belongs to Mary.", "That is Mary's house.|That's Mary's house."},
+                {"2368", "That garden belongs to my parents.", "That is my parents' garden.|That's my parents' garden."},
+                {"2369", "Those pencils belong to the students.", "Those are the students' pencils."},
+                {"236a", "That game belongs to Michael.", "That is Michael's game.|That's Michael's game."},
+                {"236b", "That candy belongs to the child.", "That is the child's candy.|That's the child's candy."},
+                {"236c", "That pen belongs to Sarah.", "That is Sarah's pen.|That's Sarah's pen."},
+                {"236d", "Those jackets belong to the waitresses.", "Those are the waitresses' jackets."},
+                {"236e", "Those eyes belong to the dogs.", "Those are the dogs' eyes."},
+                {"236f", "That dress belongs to Emily.", "That is Emily's dress.|That's Emily's dress."},
+                {"2370", "Those jeans belong to my family.", "Those are my family's jeans."},
+                {"2371", "Those tomatoes belong to the man.", "Those are the man's tomatoes."},
+                {"2372", "That home belongs to the birds.", "That is the birds' home.|That's the birds' home."},
+                {"2373", "That drink belongs to the pig.", "That is the pig's drink.|That's the pig's drink."},
+                {"2374", "Those books belong to your friends.", "Those are your friends' books."},
+                {"2375", "Those Saturdays belong to the sons.", "Those are the sons' Saturdays."},
+                {"2376", "That ball belongs to the player.", "That is the player's ball.|That's the player's ball."},
+                {"2377", "Those skirts belong to the girls.", "Those are the girls' skirts."},
+                {"2378", "That book belongs to the women.", "That is the women's book.|That's the women's book."},
+                {"2379", "Those coats belong to the people.", "Those are the people's coats."},
+                {"237a", "That water belongs to the waiters.", "That is the waiters' water.|That's the waiters' water."}};
+        for (String[] t : transformations) {
+            quizzes.add(ex(t[0], text(t[1]), cloze(t[2])));
+        }
+        String[][] gaps = {
+                {"2a38", "He rode his", "sister's bicycle", "(bicycle that belongs to his sister)."},
+                {"2a39", "He ate the", "cat's food", "(food that belongs to the cat)."},
+                {"2a3a", "Those are our", "cousins' bicycles", "(bicycles that belong to our cousins)."},
+                {"2a3b", "These are the", "boys' bikes", "(bikes that belong to the boys)."},
+                {"2a3c", "These are", "Mary's flowers", "(flowers that belong to Mary)."},
+                {"2a3d", "These are the", "doctors' offices", "(offices that belong to the doctors)."},
+                {"2a3e", "I had the", "chef's soup", "(soup that belongs to the chef)."},
+                {"2a3f", "These are my", "father's glasses", "(glasses that belong to my father)."},
+                {"2a40", "These are the", "women's toilets", "(toilets that belong to the women)."},
+                {"2a41", "That is the", "child's balloon", "(balloon that belongs to the child)."},
+                {"2a42", "This is my", "grandfather's watch", "(watch that belongs to my grandfather)."},
+                {"2a43", "We visited my", "uncle's farm", "(farm that belongs to my uncle)."},
+                {"2a44", "She found their", "painters' files", "(files that belong to their painters)."},
+                {"2a45", "I borrowed my", "brother's shirt", "(shirt that belongs to my brother)."},
+                {"2a46", "This is", "Anna's dog", "(dog that belongs to Anna)."},
+                {"2a47", "Do you know the", "dentists' names", "(names that belong to the dentists)?"},
+                {"2a48", "That is", "Peter's bike", "(bike that belongs to Peter)."},
+                {"2a49", "Those are the", "kings' hats", "(hats that belong to the kings)."},
+                {"2a4a", "We read the", "shop's advertisement", "(advertisement that belongs to the shop)."},
+                {"2a4b", "We went to our", "aunt's party", "(party that belongs to our aunt)."}};
+        for (String[] g : gaps) {
+            quizzes.add(ex(g[0], text(g[1]), cloze(g[2]), text(g[3])));
+        }
+        return quizzes;
+    }
+
+    /** An exercise of the 29/9 course by the last four characters of its id, without tokens. */
+    static AuditableQuiz ex(String idSuffix, SentencePartEntity... parts) {
+        return new AuditableQuiz(List.of(), "67fab6d5993010229534" + idSuffix, "label", "", null, List.of(),
+                null, null, List.of(parts), null, null, null);
+    }
+
+    static AuditableQuiz quiz(String id, String sentence, String tokens, SentencePartEntity... parts) {
+        return new AuditableQuiz(tokens(tokens), id, "label", "", null, List.of(sentence), null, null,
+                List.of(parts), null, null, null);
+    }
+
+    static List<NlpToken> tokens(String spec) {
+        List<NlpToken> tokens = new ArrayList<>();
+        for (String token : spec.split(" ")) {
+            String[] fields = token.split("\\|");
+            tokens.add(new NlpToken(fields[0], fields[1], fields[2], null, false, fields[2].equals("PUNCT")));
+        }
+        return tokens;
+    }
+
+    static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    static SentencePartEntity cloze(String... options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(options));
+    }
+
+    static SentencePartEntity gap() {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", null);
     }
 }

@@ -23,17 +23,21 @@ public class JudgeUnitTally {
 
     private List<String> unmatchedDeclaredIds;
 
+    private JudgeQuizTally quizzes;
+
     public JudgeUnitTally() {
     }
 
     public JudgeUnitTally(AuditTarget unit, int reached, int evaluated, int notEvaluated,
-            Map<String, Integer> verdictsByVersion, List<String> unmatchedDeclaredIds) {
+            Map<String, Integer> verdictsByVersion, List<String> unmatchedDeclaredIds,
+            JudgeQuizTally quizzes) {
         this.unit = unit;
         this.reached = reached;
         this.evaluated = evaluated;
         this.notEvaluated = notEvaluated;
         this.verdictsByVersion = verdictsByVersion;
         this.unmatchedDeclaredIds = unmatchedDeclaredIds;
+        this.quizzes = quizzes;
     }
 
     public AuditTarget getUnit() {
@@ -84,6 +88,14 @@ public class JudgeUnitTally {
         this.unmatchedDeclaredIds = unmatchedDeclaredIds;
     }
 
+    public JudgeQuizTally getQuizzes() {
+        return this.quizzes;
+    }
+
+    public void setQuizzes(JudgeQuizTally quizzes) {
+        this.quizzes = quizzes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -94,11 +106,12 @@ public class JudgeUnitTally {
                     && Objects.equals(this.evaluated, that.evaluated)
                     && Objects.equals(this.notEvaluated, that.notEvaluated)
                     && Objects.equals(this.verdictsByVersion, that.verdictsByVersion)
-                    && Objects.equals(this.unmatchedDeclaredIds, that.unmatchedDeclaredIds);
+                    && Objects.equals(this.unmatchedDeclaredIds, that.unmatchedDeclaredIds)
+                    && Objects.equals(this.quizzes, that.quizzes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(unit, reached, evaluated, notEvaluated, verdictsByVersion, unmatchedDeclaredIds);
+        return Objects.hash(unit, reached, evaluated, notEvaluated, verdictsByVersion, unmatchedDeclaredIds, quizzes);
     }
 }

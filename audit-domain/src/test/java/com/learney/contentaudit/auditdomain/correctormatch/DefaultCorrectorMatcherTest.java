@@ -1,7 +1,19 @@
 package com.learney.contentaudit.auditdomain.correctormatch;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,59 +27,345 @@ public class DefaultCorrectorMatcherTest {
     @DisplayName("should accept «cafe» where the accepted answer says «café» and take «everyday» as «every day», as the backend corrector does for «Don't run in the café.» and «The girls would cycle to school every day.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldAcceptCafeWhereTheAcceptedAnswerSaysCafAndTakeEverydayAsEveryDayAsTheBackendCorrectorDoesForDontRunInTheCafAndTheGirlsWouldCycleToSchoolEveryDay(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the corrector removes accents since 19/5/2025 and spaces always: the old one did it
+        // without any table, and so does the one in production since 1/10/2026 (#1191). «You
+        // shouldn't run in the café. ___» (…22c5, A1) accepts «Don't run in the café.|Do not run in
+        // the café.»; «It was the girls' habit… ___» (…4570, B2) accepts «The girls would cycle to
+        // school every day.».
+        DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(productionTable());
+        GapContext cafe = new GapContext("You shouldn't run in the café.", "");
+        GapContext girls = new GapContext("It was the girls' habit to cycle to school every day.", "");
+
+        assertTrue(today.accepts(cafe, List.of("Don't run in the café.|Do not run in the café."),
+                "Don't run in the cafe"));
+        assertTrue(today.accepts(girls, List.of("The girls would cycle to school every day."),
+                "The girls would cycle to school everyday."));
+        assertFalse(today.accepts(girls, List.of("The girls would cycle to school every day."),
+                "The girls will cycle to school every day."), "a different word is still a different answer");
+        DefaultCorrectorMatcher old = new DefaultCorrectorMatcher(oldCorrectorTable());
+        assertTrue(old.accepts(cafe, List.of("Don't run in the café.|Do not run in the café."), "Don't run in the cafe"));
+        assertTrue(old.accepts(girls, List.of("The girls would cycle to school every day."),
+                "The girls would cycle to school everyday."));
     }
 
     @Test
     @DisplayName("should split the accepted answers on «|» and never on «/», so «has not cut | hasn't cut» accepts each form and «has not cut/hasn't cut» is a single form")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldSplitTheAcceptedAnswersOnAndNeverOnSoHasNotCutHasntCutAcceptsEachFormAndHasNotCuthasntCutIsASingleForm(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: «He ___ (not / cut) himself.» (…286c, A2). The corrector in production splits only on
+        // «|»: with a slash the student would have to type it, and neither form alone is accepted.
+        DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(productionTable());
+        GapContext he = new GapContext("He", "(not / cut) himself.");
+
+        assertTrue(today.accepts(he, List.of("has not cut | hasn't cut"), "has not cut"));
+        assertTrue(today.accepts(he, List.of("has not cut | hasn't cut"), "hasn't cut"));
+        assertFalse(today.accepts(he, List.of("has not cut/hasn't cut"), "has not cut"));
+        assertFalse(today.accepts(he, List.of("has not cut/hasn't cut"), "hasn't cut"));
+        assertTrue(today.accepts(he, List.of("has not cut/hasn't cut"), "has not cut/hasn't cut"),
+                "the slashed answer is one single form");
     }
 
     @Test
     @DisplayName("should take «aren't», «are not» and «'re not» as three different forms with today's empty table, so «They ___ (not / be) from Ireland.» rejects «aren't»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldTakeArentAreNotAndReNotAsThreeDifferentFormsWithTodaysEmptyTableSoTheyNotBeFromIrelandRejectsArent(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 invariant: with the empty table of the old corrector, in production until 1/10/2026,
+        // the corrector compares letter by letter. «They ___ (not / be) from Ireland.» (…25ac, A1)
+        // accepts only «'re not».
+        DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(oldCorrectorTable());
+        GapContext they = new GapContext("They", "(not / be) from Ireland.");
+
+        assertTrue(today.accepts(they, List.of("'re not"), "'re not"));
+        assertFalse(today.accepts(they, List.of("'re not"), "aren't"));
+        assertFalse(today.accepts(they, List.of("'re not"), "are not"));
+        assertFalse(today.sameAnswer(they, "aren't", "are not"));
+        assertEquals("corrector viejo, hasta el 1/10/2026 (sin tabla de formas equivalentes)", today.tableVersion());
     }
 
     @Test
     @DisplayName("should take «aren't», «are not» and «'re not» as the same form with the new corrector's table, so «They ___ (not / be) from Ireland.» accepts «aren't»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldTakeArentAreNotAndReNotAsTheSameFormWithTheNewCorrectorsTableSoTheyNotBeFromIrelandAcceptsArent(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 invariant: with the table of the new corrector, in production since 1/10/2026 (#1191),
+        // the three are read «are not».
+        DefaultCorrectorMatcher next = new DefaultCorrectorMatcher(productionTable());
+        GapContext they = new GapContext("They", "(not / be) from Ireland.");
+
+        assertTrue(next.accepts(they, List.of("'re not"), "aren't"));
+        assertTrue(next.accepts(they, List.of("'re not"), "are not"));
+        assertTrue(next.accepts(they, List.of("'re not"), "'re not"));
+        assertTrue(next.sameAnswer(they, "aren't", "'re not"));
+        assertFalse(next.accepts(they, List.of("'re not"), "are"), "the negation still has to be there");
+        assertEquals("corrector en producción, ittm #1191 (30e0efcc0), desplegado el 1/10/2026", next.tableVersion());
     }
 
     @Test
     @DisplayName("should decide every golden case of the backend corrector as its «hoy» column says with today's empty table, as «traveled» rejected for «She ___ (travel) to Europe.» answered «travelled»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldDecideEveryGoldenCaseOfTheBackendCorrectorAsItsHoyColumnSaysWithTodaysEmptyTableAsTraveledRejectedForSheTravelToEuropeAnsweredTravelled(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // DOUBT-RESPC-IMITAR (A): content-audit imitates the Go corrector by running its own golden
+        // cases, copied as they are from be/domain/quiz/pkg/shared/testdata (ittm #1191). With the
+        // empty table of the old corrector -- in production until 1/10/2026, kept only as data of
+        // this column -- each case decides its «hoy».
+        DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(oldCorrectorTable());
+        List<String> wrong = new ArrayList<>();
+        int cases = 0;
+        for (GoldenCase c : goldenCases()) {
+            cases++;
+            boolean decided = today.accepts(new GapContext(c.before(), c.after()), List.of(c.expected()), c.written());
+            if (decided != c.today()) {
+                wrong.add(c.describe("hoy", decided));
+            }
+        }
+
+        assertTrue(cases > 0, "the copy of the golden cases is installed");
+        assertEquals(List.of(), wrong, "golden cases deciding something else than «hoy»");
+        assertFalse(today.accepts(new GapContext("She", "(travel) to Europe."), List.of("travelled"), "traveled"));
     }
 
     @Test
     @DisplayName("should decide every golden case of the backend corrector as its «acepta» column says with the copy of the new corrector's table, reading each gap with the sentence around it, as «is» for «It ___ (be) hot inside.» answered «'s»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldDecideEveryGoldenCaseOfTheBackendCorrectorAsItsAceptaColumnSaysWithTheCopyOfTheNewCorrectorsTableReadingEachGapWithTheSentenceAroundItAsIsForItBeHotInsideAnsweredS(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // DOUBT-RESPC-IMITAR (A): with the copy of the new corrector's table, the one in production
+        // since 1/10/2026, each case decides its «acepta»; the gap is read with the sentence around
+        // it, without hints, so «'s» in «It ___ (be) hot inside.» (…1fa5, A1) is «is» and never «has».
+        DefaultCorrectorMatcher next = new DefaultCorrectorMatcher(productionTable());
+        List<String> wrong = new ArrayList<>();
+        int cases = 0;
+        for (GoldenCase c : goldenCases()) {
+            cases++;
+            boolean decided = next.accepts(new GapContext(c.before(), c.after()), List.of(c.expected()), c.written());
+            if (decided != c.accepts()) {
+                wrong.add(c.describe("acepta", decided));
+            }
+        }
+
+        assertTrue(cases > 0, "the copy of the golden cases is installed");
+        assertEquals(List.of(), wrong, "golden cases deciding something else than «acepta»");
+        GapContext hot = new GapContext("It", "(be) hot inside.");
+        assertTrue(next.accepts(hot, List.of("'s"), "is"));
+        assertFalse(next.accepts(hot, List.of("'s"), "has"));
+    }
+
+    // ------------------------------------------------------------------
+    // The copies of the corrector installed in analysis/recursos-compartidos/corrector (A-16)
+    // ------------------------------------------------------------------
+
+    private static final Path CORRECTOR = Path.of("../analysis/recursos-compartidos/corrector");
+
+    /** A golden case of the corrector, as its «como_se_lee» explains it. */
+    private record GoldenCase(String file, String klass, String before, String expected, String after,
+            String written, boolean accepts, boolean today, String reason) {
+        String describe(String column, boolean decided) {
+            return file + " [" + klass + "] " + before + " [" + expected + "] " + after + " ← «" + written
+                    + "»: " + column + " dice " + (column.equals("hoy") ? today : accepts) + " y da " + decided
+                    + " (" + reason + ")";
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static List<GoldenCase> goldenCases() {
+        List<GoldenCase> cases = new ArrayList<>();
+        try (Stream<Path> files = Files.list(CORRECTOR.resolve("casos-de-oro"))) {
+            for (Path file : files.filter(p -> p.toString().endsWith(".json")).sorted().toList()) {
+                Map<String, Object> root = (Map<String, Object>) Json.parse(Files.readString(file));
+                for (Object o : (List<Object>) root.get("casos")) {
+                    Map<String, Object> c = (Map<String, Object>) o;
+                    cases.add(new GoldenCase(file.getFileName().toString(), (String) c.get("clase"),
+                            (String) c.get("antes"), (String) c.get("esperado"), (String) c.get("despues"),
+                            (String) c.get("escrito"), (Boolean) c.get("acepta"), (Boolean) c.get("hoy"),
+                            (String) c.get("motivo")));
+                }
+            }
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+        return cases;
+    }
+
+    /** The copy of the table of the corrector in production: the new one, ittm #1191, since 1/10/2026. */
+    public static FormEquivalenceTable productionTable() {
+        return table(CORRECTOR.resolve("formas-equivalentes.json"));
+    }
+
+    /**
+     * The empty table of the old corrector, in production until 1/10/2026: data of the «hoy»
+     * column of the golden cases, and a corrector that equates no class for the tests that need one.
+     */
+    public static FormEquivalenceTable oldCorrectorTable() {
+        return table(CORRECTOR.resolve("formas-equivalentes-corrector-viejo.json"));
+    }
+
+    /** The table as the file adapter reads it (format of hook A-15), without leaving audit-domain. */
+    @SuppressWarnings("unchecked")
+    private static FormEquivalenceTable table(Path path) {
+        Map<String, Object> root;
+        try {
+            root = (Map<String, Object>) Json.parse(Files.readString(path));
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+        List<ContractionExpansion> contractions = new ArrayList<>();
+        for (Object o : (List<Object>) root.get("contracciones")) {
+            Map<String, Object> c = (Map<String, Object>) o;
+            contractions.add(new ContractionExpansion((String) c.get("contraida"),
+                    new ArrayList<>((List<String>) (List<?>) c.get("largas")), (Boolean) c.get("palabraEntera")));
+        }
+        List<EquivalentWordGroup> groups = new ArrayList<>();
+        for (Object o : (List<Object>) root.get("palabrasEquivalentes")) {
+            Map<String, Object> g = (Map<String, Object>) o;
+            groups.add(new EquivalentWordGroup(FormEquivalenceClass.valueOf((String) g.get("clase")),
+                    new ArrayList<>((List<String>) (List<?>) g.get("palabras"))));
+        }
+        return new FormEquivalenceTable((String) root.get("version"), contractions, groups,
+                (Boolean) root.get("invierteNegativas"));
+    }
+
+    /** The small JSON reader below, for the tests of the other analyzers that read a copy of the course. */
+    public static Object parseJson(String text) {
+        return Json.parse(text);
+    }
+
+    /** A small JSON reader: audit-domain has no JSON library, and the copies are plain JSON. */
+    private static final class Json {
+        private final String s;
+        private int i;
+
+        private Json(String s) {
+            this.s = s;
+        }
+
+        static Object parse(String text) {
+            Json json = new Json(text);
+            json.space();
+            Object value = json.value();
+            json.space();
+            if (json.i != json.s.length()) {
+                throw new IllegalArgumentException("JSON con texto de más en " + json.i);
+            }
+            return value;
+        }
+
+        private void space() {
+            while (i < s.length() && Character.isWhitespace(s.charAt(i))) {
+                i++;
+            }
+        }
+
+        private Object value() {
+            char c = s.charAt(i);
+            if (c == '{') {
+                i++;
+                Map<String, Object> map = new LinkedHashMap<>();
+                space();
+                if (s.charAt(i) == '}') {
+                    i++;
+                    return map;
+                }
+                while (true) {
+                    space();
+                    String key = string();
+                    space();
+                    expect(':');
+                    space();
+                    map.put(key, value());
+                    space();
+                    if (s.charAt(i) == ',') {
+                        i++;
+                        continue;
+                    }
+                    expect('}');
+                    return map;
+                }
+            }
+            if (c == '[') {
+                i++;
+                List<Object> list = new ArrayList<>();
+                space();
+                if (s.charAt(i) == ']') {
+                    i++;
+                    return list;
+                }
+                while (true) {
+                    space();
+                    list.add(value());
+                    space();
+                    if (s.charAt(i) == ',') {
+                        i++;
+                        continue;
+                    }
+                    expect(']');
+                    return list;
+                }
+            }
+            if (c == '"') {
+                return string();
+            }
+            if (s.startsWith("true", i)) {
+                i += 4;
+                return Boolean.TRUE;
+            }
+            if (s.startsWith("false", i)) {
+                i += 5;
+                return Boolean.FALSE;
+            }
+            if (s.startsWith("null", i)) {
+                i += 4;
+                return null;
+            }
+            int start = i;
+            while (i < s.length() && "+-0123456789.eE".indexOf(s.charAt(i)) >= 0) {
+                i++;
+            }
+            return Double.parseDouble(s.substring(start, i));
+        }
+
+        private void expect(char c) {
+            if (s.charAt(i) != c) {
+                throw new IllegalArgumentException("JSON: se esperaba '" + c + "' en " + i);
+            }
+            i++;
+        }
+
+        private String string() {
+            expect('"');
+            StringBuilder sb = new StringBuilder();
+            while (true) {
+                char c = s.charAt(i++);
+                if (c == '"') {
+                    return sb.toString();
+                }
+                if (c != '\\') {
+                    sb.append(c);
+                    continue;
+                }
+                char escaped = s.charAt(i++);
+                switch (escaped) {
+                    case 'n' -> sb.append('\n');
+                    case 't' -> sb.append('\t');
+                    case 'r' -> sb.append('\r');
+                    case 'b' -> sb.append('\b');
+                    case 'f' -> sb.append('\f');
+                    case 'u' -> {
+                        sb.append((char) Integer.parseInt(s.substring(i, i + 4), 16));
+                        i += 4;
+                    }
+                    default -> sb.append(escaped);
+                }
+            }
+        }
     }
 }

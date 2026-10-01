@@ -455,7 +455,7 @@ class Main {
         JudgeExamVerdictExporter judgeExamVerdictExporter = new DefaultJudgeExamVerdictExporter();
 
         QuizInstructionVerdictReader quizInstructionVerdictReader = new JacksonQuizInstructionVerdictReader();
-        QuizInstructionConfig quizInstructionConfig = new DefaultQuizInstructionConfig();
+        QuizInstructionConfig quizInstructionConfig = new DefaultQuizInstructionConfig(judgeRuntimeConfig);
 
         // Hook C-13 (FEAT-JEXAM): the quiz-instruction judge opens its session through the judges
         // runtime -- the exam's brake and budget 0 without a request (F-JEXAM-R003, R010); the
@@ -528,6 +528,7 @@ class Main {
         AnalyzerProvider hintCoherenceProvider = new HintCoherenceAnalyzerProvider(irregularForms, studentViewRenderer);
         AnalyzerProvider answerCompletenessProvider =
                 new AnswerCompletenessAnalyzerProvider(correctorMatcher, irregularForms, studentViewRenderer);
+        // A + C: Opción múltiple runs the judge of package C (hook C-15).
         AnalyzerProvider multipleChoiceValidityProvider = new MultipleChoiceValidityAnalyzerProvider(
                 correctorMatcher, choiceAlternativeJudgeRunFactory, studentViewRenderer);
         AnalyzerProvider dataCoherenceProvider = new DataCoherenceAnalyzerProvider(
@@ -549,10 +550,7 @@ class Main {
         // The catalog validates every card at startup (F-HALL-R006 inv. 1).
         //
         // FEAT-RONDA1 (F-RONDA1-R004): the seventeen of round 1, in this order. The analyzers of
-        // packages A, C and D are built above; each one enters the catalog when its package
-        // implements it -- the catalog reads every card at startup, so an unimplemented provider
-        // would stop every command. To turn one on, uncomment its line (they are kept apart so
-        // the three packages never touch the same lines).
+        // packages A, C and D are built above, and all seventeen are on.
         // ----------------------------------------------------------------
         List<AnalyzerProvider> analyzerProviders = new ArrayList<>();
         analyzerProviders.add(new SentenceLengthAnalyzerProvider(nlpTokenizer, sentenceLengthConfig));     //  1
@@ -573,15 +571,15 @@ class Main {
 
         analyzerProviders.add(quizInstructionProvider);                                                   //  9
 
-        // analyzerProviders.add(hintCoherenceProvider);          // 10 · A · FEAT-PISTA, pendiente
+        analyzerProviders.add(hintCoherenceProvider);                                                     // 10 · A · FEAT-PISTA
 
-        // analyzerProviders.add(answerCompletenessProvider);     // 11 · A · FEAT-RESPC, pendiente
+        analyzerProviders.add(answerCompletenessProvider);                                                // 11 · A · FEAT-RESPC
 
-        // analyzerProviders.add(multipleChoiceValidityProvider); // 12 · A · FEAT-OMVAL (+ C · FEAT-MCVALE), pendiente
+        analyzerProviders.add(multipleChoiceValidityProvider);                                            // 12 · A · FEAT-OMVAL (+ C · FEAT-MCVALE)
 
-        // analyzerProviders.add(dataCoherenceProvider);          // 13 · A · FEAT-DATOS, pendiente
+        analyzerProviders.add(dataCoherenceProvider);                                                     // 13 · A · FEAT-DATOS
 
-        // analyzerProviders.add(exactDuplicatesProvider);        // 14 · A · FEAT-DUPEX, pendiente
+        analyzerProviders.add(exactDuplicatesProvider);                                                   // 14 · A · FEAT-DUPEX
 
         analyzerProviders.add(translationSenseProvider);          // 15 · C · FEAT-TRSEN
 

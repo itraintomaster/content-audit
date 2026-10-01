@@ -1059,4 +1059,20 @@ public class DefaultJudgeRuntimeTest {
                 "the approval lets it consult");
         assertEquals(1, judge.calls());
     }
+
+    @Test
+    @DisplayName("should declare in the coverage of a topic judge the exercises its topics hold, under the state of each topic")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R001")
+    public void shouldDeclareInTheCoverageOfATopicJudgeTheExercisesItsTopicsHoldUnderTheStateOfEachTopic() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare for a judge that consults by exercise as many exercises as units, in each state")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R001")
+    public void shouldDeclareForAJudgeThatConsultsByExerciseAsManyExercisesAsUnitsInEachState() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

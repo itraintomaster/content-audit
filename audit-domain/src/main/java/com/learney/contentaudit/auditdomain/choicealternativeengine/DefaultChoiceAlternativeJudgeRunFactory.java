@@ -82,7 +82,7 @@ public class DefaultChoiceAlternativeJudgeRunFactory implements ChoiceAlternativ
         JudgeSessions opened = runtime.open(hostAnalyzerName, evaluators, policy);
         return new LedgerBackedChoiceAlternativeJudgeRun(opened, runtime,
                 new DefaultChoiceAlternativeSubjectBuilder(studentViewRenderer),
-                new DefaultChoiceAlternativeClassifier(correctorMatcher, config),
+                new DefaultChoiceAlternativeClassifier(correctorMatcher, config, studentViewRenderer),
                 verdictReader);
     }
 }

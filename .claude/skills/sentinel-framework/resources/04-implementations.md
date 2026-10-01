@@ -843,6 +843,7 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 |------|------|
 | `correctorMatcher` | `CorrectorMatcher` |
 | `config` | `SingleAnswerConfig` |
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
 
 #### MiniTheoryAnalyzerProvider (package: minitheoryengine)
 
@@ -899,6 +900,7 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 | Name | Type |
 |------|------|
 | `config` | `MiniTheoryConfig` |
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
 
 #### DefaultChoiceAlternativeJudgeRunFactory (package: choicealternativeengine)
 
@@ -958,6 +960,7 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 |------|------|
 | `correctorMatcher` | `CorrectorMatcher` |
 | `config` | `ChoiceAlternativeConfig` |
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
 
 #### DefaultTopicTeachingResolver (package: offlevelwords)
 
@@ -1346,6 +1349,19 @@ public DefaultLemmaCountConfig(int threshold, List<LemmaCountBand> bands) {
 **Implements:** QuizInstructionConfig
 
 **Framework types:** Component
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `judgeRuntimeConfig` | `JudgeRuntimeConfig` |
+
+**Generated constructor:**
+```java
+public DefaultQuizInstructionConfig(JudgeRuntimeConfig judgeRuntimeConfig) {
+    this.judgeRuntimeConfig = judgeRuntimeConfig;
+}
+```
 
 #### DefaultJudgeExamService
 

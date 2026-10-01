@@ -1,7 +1,31 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.CorrectorMatcher;
+import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
+import com.learney.contentaudit.auditdomain.IrregularFormsCatalog;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcherTest;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,156 +39,373 @@ public class AnswerCompletenessAnalyzerTest {
     @DisplayName("should report the long form the corrector rejects, as «do not eat» for «I ___ (not / eat) meat often.», which only accepts «don't eat»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldReportTheLongFormTheCorrectorRejectsAsDoNotEatForINotEatMeatOftenWhichOnlyAcceptsDontEat(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «I ___ (not / eat) meat often.» (…263c, A2) only accepts «don't eat».
+        List<FindingDraft> drafts = findings(oldCorrector(), iDontEatMeat());
+        FindingDraft missing = byMarker(drafts, "do not eat");
+        assertEquals("contracted-and-long-forms", missing.getRule());
+        assertEquals(FindingResolution.RULE, missing.getResolution());
+        assertEquals(1, drafts.size());
     }
 
     @Test
     @DisplayName("should report the missing form whatever the instructions ask, as «don't have» for «They ___ (not / have) many cars.» under «Usa $long forms$.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldReportTheMissingFormWhateverTheInstructionsAskAsDontHaveForTheyNotHaveManyCarsUnderUsaLongForms(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «They ___ (not / have) many cars.» (…1ed7, A1) under «Usa $long forms$.» only accepts «do not
+        // have»; the instructions do not excuse the other form.
+        List<FindingDraft> drafts = findings(oldCorrector(), theyDoNotHaveManyCars());
+        assertEquals("contracted-and-long-forms", byMarker(drafts, "don't have").getRule());
+        assertEquals("form-request", byMarker(drafts, "consigna").getRule());
     }
 
     @Test
     @DisplayName("should report «aren't» missing for «They ___ (not / be) from Ireland.», which accepts «'re not» while its mini-theory teaches «aren't»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R003")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldReportArentMissingForTheyNotBeFromIrelandWhichAcceptsReNotWhileItsMinitheoryTeachesArent(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «They ___ (not / be) from Ireland.» (…25ac, A1) accepts «'re not»; its mini theory teaches «aren't».
+        FindingDraft arent = byMarker(findings(oldCorrector(), theyAreNotFromIreland()), "aren't");
+        assertEquals("be-short-negations", arent.getRule());
     }
 
     @Test
     @DisplayName("should report «traveled» missing for «She ___ (travel) to Europe.», which only accepts «travelled»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R004")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldReportTraveledMissingForSheTravelToEuropeWhichOnlyAcceptsTravelled() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: «She ___ (travel) to Europe.» (…2211, A1) only accepts «travelled».
+        List<FindingDraft> drafts = findings(oldCorrector(), sheTravelledToEurope());
+        assertEquals(1, drafts.size());
+        assertEquals("spellings-and-till", byMarker(drafts, "traveled").getRule());
     }
 
     @Test
     @DisplayName("should leave one finding per missing form, identified by the form, as «aren't» and «are not» for «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldLeaveOneFindingPerMissingFormIdentifiedByTheFormAsArentAndAreNotForTheyNotBeFromIreland(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: one finding per form, its identity is the form; the request of the instructions is another one.
+        List<FindingDraft> drafts = findings(oldCorrector(), theyAreNotFromIreland());
+        assertEquals(List.of("are not", "aren't"), drafts.stream().filter(d -> !d.getRule().equals("form-request"))
+                .map(FindingDraft::getMarker).sorted().toList());
+        assertEquals("contracted-and-long-forms", byMarker(drafts, "are not").getRule());
+        assertEquals("be-short-negations", byMarker(drafts, "aren't").getRule());
     }
 
     @Test
     @DisplayName("should rate high a missing form that the mini-theory or the statement shows, as «aren't» in «They ___ (not / be) from Ireland.», whose mini-theory says «Negativo: $isn't$, $aren't$.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldRateHighAMissingFormThatTheMinitheoryOrTheStatementShowsAsArentInTheyNotBeFromIrelandWhoseMinitheorySaysNegativoIsntArent(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the mini theory says «Negativo: $isn't$, $aren't$.»: the student writes what it teaches and fails.
+        List<FindingDraft> drafts = findings(oldCorrector(), theyAreNotFromIreland());
+        assertEquals(FindingSeverity.HIGH, byMarker(drafts, "aren't").getSeverity());
+        assertEquals(FindingSeverity.MEDIUM, byMarker(drafts, "are not").getSeverity());
     }
 
     @Test
     @DisplayName("should rate low the long form missing in a short answer, as «is not» for «A: Is it hot today? B: No, it ___ .» answered «isn't»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldRateLowTheLongFormMissingInAShortAnswerAsIsNotForAIsItHotTodayBNoItAnsweredIsnt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: «A: Is it hot today? B: No, it ___ .» (…1f5d, A1) answered «isn't»: «No, it is not» is rare.
+        List<FindingDraft> drafts = findings(oldCorrector(), isItHotToday());
+        assertEquals(FindingSeverity.LOW, byMarker(drafts, "is not").getSeverity());
+        assertEquals(FindingSeverity.MEDIUM, byMarker(drafts, "'s not").getSeverity());
     }
 
     @Test
     @DisplayName("should rate medium any other missing form, as «do not eat» for «I ___ (not / eat) meat often.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldRateMediumAnyOtherMissingFormAsDoNotEatForINotEatMeatOften() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: neither the mini theory nor the statement shows «do not eat», and it is not a short answer.
+        assertEquals(FindingSeverity.MEDIUM, byMarker(findings(oldCorrector(), iDontEatMeat()), "do not eat").getSeverity());
     }
 
     @Test
     @DisplayName("should resolve by rule in the corrector, and not in the course, a missing form of a class the new corrector equates, leaving the first answer and its audio as they are, as «aren't» for «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldResolveByRuleInTheCorrectorAndNotInTheCourseAMissingFormOfAClassTheNewCorrectorEquatesLeavingTheFirstAnswerAndItsAudioAsTheyAreAsArentForTheyNotBeFromIreland(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the old corrector does not equate the short negations of be; the new one does: the fix is the
+        // corrector, not the course, and the first answer and its audio stay.
+        FindingDraft arent = byMarker(findings(oldCorrector(), theyAreNotFromIreland()), "aren't");
+        assertEquals(FindingResolution.RULE, arent.getResolution());
+        assertTrue(arent.getEvidence().getObservation().contains("se arregla en el corrector y no en el curso"));
+        assertTrue(arent.getEvidence().getObservation().contains("la primera respuesta y su audio no cambian"));
     }
 
     @Test
     @DisplayName("should resolve by adding it after «|» a missing form the new corrector still rejects, as «has trained» if «He ___ (train) hard today.» only accepted «'s trained», a limit of the corrector")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldResolveByAddingItAfterAMissingFormTheNewCorrectorStillRejectsAsHasTrainedIfHeTrainHardTodayOnlyAcceptedSTrainedALimitOfTheCorrector(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: «He ___ (train) hard today.» (…3061, A2) accepts «'s trained|has trained». With only «'s trained»,
+        // the corrector in production equates the contractions and still rejects «has trained»: it cannot tell
+        // whether «'s» is is or has. A limit of the corrector is fixed in the corrector and never after «|»
+        // (brief 101, José 30/9): the finding names the rule it lacks and only ranks, so the exercise, its
+        // first answer and its audio do not change, and it scores 1.
+        AuditableQuiz onlyContracted = quiz("67fab6d59930102295343061", "", "", text("He"), cloze("'s trained"),
+                text("(train) hard today."));
+        FindingDraft hasTrained = byMarker(findings(productionCorrector(), onlyContracted), "has trained");
+        assertEquals("contracted-and-long-forms", hasTrained.getRule());
+        assertEquals(FindingResolution.RANK_ONLY, hasTrained.getResolution());
+        assertEquals(FindingSeverity.MEDIUM, hasTrained.getSeverity());
+        assertTrue(hasTrained.getEvidence().getObservation().contains("se arregla en el corrector y no en el curso"),
+                hasTrained.getEvidence().getObservation());
+        assertFalse(hasTrained.getEvidence().getObservation().contains("|"), "never proposed after «|»");
+        assertEquals("«'s» ambiguo: el corrector tiene que leer el de la respuesta aceptada con la forma larga que"
+                + " escribe el alumno", part(hasTrained, "Le falta al corrector"));
+        AuditNode node = node(onlyContracted);
+        analyzer(productionCorrector()).onQuiz(node);
+        assertEquals(1.0, node.getScores().get("answer-completeness"), "a limit of the corrector only ranks");
+        assertTrue(findings(productionCorrector(), quiz("67fab6d59930102295343061", "", "", text("He"),
+                cloze("'s trained|has trained"), text("(train) hard today."))).isEmpty(), "the course accepts both");
+
+        // The other limits of the 29/9 course name the rule the corrector lacks, as asked to the corrector.
+        FindingDraft forgotten = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534283e", "", "",
+                text("He"), cloze("has forgotten"), text("(forget) to pay."))), "'s forgotten");
+        assertEquals("«'s» ambiguo: el corrector tiene que leerlo con la forma larga de la respuesta aceptada",
+                part(forgotten, "Le falta al corrector"));
+        FindingDraft overslept = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534447b", "", "",
+                text("“I overslept this morning” (the boy whispered)"),
+                cloze("The boy whispered that he had overslept that morning."))),
+                "the boy whispered that he'd overslept that morning.");
+        assertEquals("falta «overslept» en los participios: lee «'d» como would", part(overslept, "Le falta al corrector"));
+        FindingDraft till = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534326a", "", "",
+                text("why / she / work there until then?"), cloze("Why had she worked there until then?"), text(""))),
+                "why had she worked there till then?");
+        assertEquals("la regla de till toma «there» como sujeto", part(till, "Le falta al corrector"));
+        assertEquals(FindingResolution.RANK_ONLY, till.getResolution());
     }
 
     @Test
     @DisplayName("should stop reporting the forms the new corrector's table equates, reading the gap with the sentence around it, as «is» for «It ___ (be) hot inside.» answered «'s»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldStopReportingTheFormsTheNewCorrectorsTableEquatesReadingTheGapWithTheSentenceAroundItAsIsForItBeHotInsideAnsweredS(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: «It ___ (be) hot inside.» (…1fa5, A1) answered «'s»: with the old corrector «is» is missing; the new one reads
+        // «It's» with the word before the gap and accepts it.
+        assertEquals("contracted-and-long-forms", byMarker(findings(oldCorrector(), itIsHotInside()), "is").getRule());
+        assertTrue(findings(productionCorrector(), itIsHotInside()).stream().noneMatch(d -> !d.getRule().equals("form-request")));
+        assertTrue(findings(productionCorrector(), iDontEatMeat()).isEmpty());
+        assertTrue(findings(productionCorrector(), sheTravelledToEurope()).isEmpty());
     }
 
     @Test
     @DisplayName("should show as evidence the exercise as the student sees it, what it accepts and what is missing, as «They ___ (not / be) from Ireland. → acepta 're not; falta aren't»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldShowAsEvidenceTheExerciseAsTheStudentSeesItWhatItAcceptsAndWhatIsMissingAsTheyNotBeFromIrelandAceptaReNotFaltaArent(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the exercise as the student sees it, what it accepts and what is missing.
+        FindingDraft arent = byMarker(findings(oldCorrector(), theyAreNotFromIreland()), "aren't");
+        assertEquals("They ___ (not / be) from Ireland.", part(arent, "Ejercicio"));
+        assertEquals("'re not", part(arent, "Acepta"));
+        assertEquals("aren't", part(arent, "Falta"));
+        assertTrue(arent.getEvidence().getObservation().startsWith("They ___ (not / be) from Ireland. → acepta 're not; falta aren't"));
     }
 
     @Test
     @DisplayName("should leave multiple choice exercises without a finding of its own, as «___ a child? (He)»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R006")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldLeaveMultipleChoiceExercisesWithoutAFindingOfItsOwnAsAChildHe() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: «___ a child? (He)» (…1e87, A1) is FEAT-OMVAL's: no score and no finding of this analyzer.
+        AuditableQuiz child = quiz("67fab6d59930102295341e87", "Elige el comienzo correcto de la pregunta 'yes / no' con el verbo 'be'.",
+                "Para preguntar, be pasa adelante del sujeto: $Is he$…?, $Are we$…?", gap(), text("a child? (He)"));
+        child.setMultipleChoice(new MultipleChoiceEntity("SINGLE", List.of(new MultipleChoiceItemEntity("1", 0.0, "am i"),
+                new MultipleChoiceItemEntity("2", 1.0, "is he"), new MultipleChoiceItemEntity("3", 0.0, "are you"))));
+        AuditNode node = node(child);
+        AnswerCompletenessAnalyzer analyzer = analyzer(oldCorrector());
+        analyzer.onQuiz(node);
+        assertFalse(node.getScores().containsKey("answer-completeness"));
+        assertEquals(List.of(), analyzer.findingsAt(node));
     }
 
     @Test
     @DisplayName("should score 0 an exercise with a finding and 1 an exercise whose forms are all accepted and whose instructions ask for none, as «You ___ (see) cats.» answered «see»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R006")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldScore0AnExerciseWithAFindingAnd1AnExerciseWhoseFormsAreAllAcceptedAndWhoseInstructionsAskForNoneAsYouSeeCatsAnsweredSee(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: errors family, score 0 or 1. «You ___ (see) cats.» (…1ec3, A1) has nothing missing and asks nothing.
+        AnswerCompletenessAnalyzer analyzer = analyzer(oldCorrector());
+        AuditNode cats = node(quiz("67fab6d59930102295341ec3", "Escribe oraciones afirmativas en presente simple.", "",
+                text("You"), cloze("see"), text("(see) cats.")));
+        AuditNode meat = node(iDontEatMeat());
+        analyzer.onQuiz(cats);
+        analyzer.onQuiz(meat);
+        assertEquals(1.0, cats.getScores().get("answer-completeness"));
+        assertEquals(List.of(), analyzer.findingsAt(cats));
+        assertEquals(0.0, meat.getScores().get("answer-completeness"));
+        assertEquals(0.0, ((DefaultQuizDiagnoses) meat.getDiagnoses()).getAnswerCompletenessDiagnosis().orElseThrow().getScore());
     }
 
     @Test
     @DisplayName("should leave a low finding with the instructions and the phrase that asks, fixed by removing the request without touching the audio, as «Usa $short forms$ si es posible.» in «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldLeaveALowFindingWithTheInstructionsAndThePhraseThatAsksFixedByRemovingTheRequestWithoutTouchingTheAudioAsUsaShortFormsSiEsPosibleInTheyNotBeFromIreland(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: the standard sentence of #1152 is removed by rule; the audio does not change.
+        FindingDraft request = byMarker(findings(oldCorrector(), theyAreNotFromIreland()), "consigna");
+        assertEquals("form-request", request.getRule());
+        assertEquals(FindingSeverity.LOW, request.getSeverity());
+        assertEquals(FindingResolution.RULE, request.getResolution());
+        assertEquals("Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.", part(request, "Consigna"));
+        assertEquals("Usa $short forms$ si es posible.", part(request, "Pide"));
+        assertTrue(request.getEvidence().getObservation().contains("el audio no cambia"));
     }
 
     @Test
     @DisplayName("should leave a finding on the mini-theory that asks for a form, naming the mini-theory in its identity, as for «It ___ (be) hot inside.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldLeaveAFindingOnTheMinitheoryThatAsksForAFormNamingTheMinitheoryInItsIdentityAsForItBeHotInside(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: «Elige $am$, $is$ o $are$ según el sujeto, y usa $short forms$.» asks too; its identity names the
+        // mini theory, so it does not collide with the request of the instructions.
+        List<FindingDraft> drafts = findings(productionCorrector(), itIsHotInside());
+        FindingDraft mini = byMarker(drafts, "miniteoria");
+        assertEquals("form-request", mini.getRule());
+        assertEquals(FindingSeverity.LOW, mini.getSeverity());
+        assertEquals("Elige $am$, $is$ o $are$ según el sujeto, y usa $short forms$.", part(mini, "Miniteoría"));
+        assertEquals(List.of("consigna", "miniteoria"), drafts.stream().map(FindingDraft::getMarker).toList());
+    }
+
+    // ------------------------------------------------------------------
+    // The corrector in production since 1/10/2026 (#1191), and one that equates no class: the old
+    // one, kept as data, so the rules of this analyzer can be seen at work
+    // ------------------------------------------------------------------
+
+    static CorrectorMatcher oldCorrector() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.oldCorrectorTable());
+    }
+
+    static CorrectorMatcher productionCorrector() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.productionTable());
+    }
+
+    static AnswerCompletenessAnalyzer analyzer(CorrectorMatcher corrector) {
+        return new AnswerCompletenessAnalyzer(corrector, new DefaultEquivalentFormGenerator(participles()),
+                new DefaultFormRequestDetector(), renderer());
+    }
+
+    static DefaultQuizStudentViewRenderer renderer() {
+        return new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create());
+    }
+
+    /** The table of irregular forms, as far as these answers need it. */
+    static IrregularFormsCatalog participles() {
+        Set<String> participles = Set.of("been", "got", "gone", "seen", "done", "had", "forgotten", "overslept");
+        return new IrregularFormsCatalog() {
+            @Override
+            public Set<String> formsOf(String baseWord) {
+                return Set.of();
+            }
+
+            @Override
+            public boolean isPastParticiple(String word) {
+                return participles.contains(word);
+            }
+        };
+    }
+
+    private static List<FindingDraft> findings(CorrectorMatcher corrector, AuditableQuiz quiz) {
+        AnswerCompletenessAnalyzer analyzer = analyzer(corrector);
+        AuditNode node = node(quiz);
+        analyzer.onQuiz(node);
+        return analyzer.findingsAt(node);
+    }
+
+    static AuditNode node(AuditableQuiz quiz) {
+        return new AuditNode(quiz, AuditTarget.QUIZ, null, List.of(), new LinkedHashMap<>(), new LinkedHashMap<>(),
+                new DefaultQuizDiagnoses());
+    }
+
+    private static FindingDraft byMarker(List<FindingDraft> drafts, String marker) {
+        return drafts.stream().filter(d -> d.getMarker().equals(marker)).findFirst()
+                .orElseThrow(() -> new AssertionError("no finding «" + marker + "» in "
+                        + drafts.stream().map(FindingDraft::getMarker).toList()));
+    }
+
+    private static String part(FindingDraft draft, String label) {
+        for (EvidencePart part : draft.getEvidence().getExamined()) {
+            if (part.getLabel().equals(label)) {
+                return part.getText();
+            }
+        }
+        return null;
+    }
+
+    // ------------------------------------------------------------------
+    // Exercises of the 29/9 course
+    // ------------------------------------------------------------------
+
+    static AuditableQuiz iDontEatMeat() {
+        return quiz("67fab6d5993010229534263c", "Escribe las oraciones en presente simple o en presente continuo.",
+                "$every day$ y $often$ piden simple. $at the moment$ y $just now$ piden continuo.",
+                text("I"), cloze("don't eat"), text("(not / eat) meat often."));
+    }
+
+    static AuditableQuiz theyDoNotHaveManyCars() {
+        return quiz("67fab6d59930102295341ed7", "Usa $long forms$. Escribe la forma negativa en presente simple.",
+                "$do not$ o $does not$ + verbo base. La $-s$ se la queda $does$.",
+                text("They"), cloze("do not have"), text("(not / have) many cars."));
+    }
+
+    static AuditableQuiz theyAreNotFromIreland() {
+        return quiz("67fab6d599301022953425ac",
+                "Usa $short forms$ si es posible. Conjuga el verbo 'ser/estar' en presente simple.",
+                "$'m$ con I, $'s$ con he/she/it, $'re$ con you/we/they. Negativo: $isn't$, $aren't$.",
+                text("They"), cloze("'re not"), text("(not / be) from Ireland."));
+    }
+
+    static AuditableQuiz sheTravelledToEurope() {
+        return quiz("67fab6d59930102295342211", "Escribe oraciones afirmativas en 'past simple'.",
+                "Termina en e → $-d$. Consonante + y → $-ied$. Vocal + consonante corta → se duplica.",
+                text("She"), cloze("travelled"), text("(travel) to Europe."));
+    }
+
+    static AuditableQuiz isItHotToday() {
+        return quiz("67fab6d59930102295341f5d", "Usa $short forms$ si es posible. Escribe la respuesta corta.",
+                "Si la pregunta lleva $be$, contestá con $be$: $am$/$is$/$are$, nunca $do$ ni $does$.",
+                text("A: Is it hot today? B: No, it"), cloze("isn't"), text("."));
+    }
+
+    static AuditableQuiz itIsHotInside() {
+        return quiz("67fab6d59930102295341fa5", "Usa $short forms$ si es posible. Escribe oraciones en presente simple.",
+                "Elige $am$, $is$ o $are$ según el sujeto, y usa $short forms$.",
+                text("It"), cloze("'s"), text("(be) hot inside."));
+    }
+
+    static AuditableQuiz quiz(String id, String instructions, String miniTheory, SentencePartEntity... parts) {
+        return new AuditableQuiz(List.of(), id, "label", "", null, List.of(), null, instructions, List.of(parts), null,
+                miniTheory, null);
+    }
+
+    static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    static SentencePartEntity cloze(String... options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(options));
+    }
+
+    static SentencePartEntity gap() {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", null);
     }
 }

@@ -354,4 +354,12 @@ public class DefaultChoiceAlternativeClassifierTest {
             return lower.replace("isn't", "is not").replace("aren't", "are not");
         }
     }
+
+    @Test
+    @DisplayName("should write the statement, the options and the finished sentence of its evidence with the student view renderer it receives")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R003")
+    public void shouldWriteTheStatementTheOptionsAndTheFinishedSentenceOfItsEvidenceWithTheStudentViewRendererItReceives() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

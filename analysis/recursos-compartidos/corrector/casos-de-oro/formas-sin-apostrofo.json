@@ -1,0 +1,28 @@
+{
+  "descripcion": "Casos de oro de las contracciones escritas sin apóstrofo (written_answer_no_apostrophe.go). Se leen igual que formas-equivalentes.json.",
+  "como_se_lee": [
+    "El corrector siempre aceptó «dont» donde la respuesta dice «don't», porque compara sin apóstrofos. Con esta regla, «dont» también vale donde la respuesta dice «do not».",
+    "Sólo se abren las que no son otra palabra: its, were, well, ill, id, wed, shed, hell, shell, lets, cant y wont existen con otro sentido y quedan como siempre.",
+    "Si José no quiere esta regla, se saca borrando written_answer_no_apostrophe.go, su línea en tokenize y este archivo.",
+    "«clase» agrupa los casos: lo de siempre, negación, auxiliar pegado, inversión, ambiguas, sin apóstrofo, grafías, until/till, sigue mal, límite. «sigue mal» y «límite» no aceptan: el primero es una respuesta equivocada que tiene que seguir dando mal; el segundo, una respuesta que estaría bien pero el corrector no puede decidir sola (la otra forma se lista con «|» en el ejercicio). Las demás clases aceptan, salvo «lo de siempre», que muestra lo que no cambia."
+  ],
+  "casos": [
+    {"clase": "lo de siempre", "regla": "sin-apostrofo", "antes": "", "esperado": "I don't like it.", "despues": "", "escrito": "I dont like it.", "acepta": true, "hoy": true, "motivo": "Como siempre: sin apóstrofo coincide letra por letra."},
+    {"clase": "sin apóstrofo", "regla": "sin-apostrofo", "antes": "", "esperado": "I do not like it.", "despues": "", "escrito": "I dont like it.", "acepta": true, "hoy": false, "motivo": "«dont» es «don't», que es «do not»."},
+    {"clase": "sin apóstrofo", "regla": "sin-apostrofo", "antes": "She", "esperado": "is not", "despues": "(not / be) very happy.", "escrito": "isnt", "acepta": true, "hoy": false, "motivo": "«isnt» es «isn't»."},
+    {"clase": "sin apóstrofo", "regla": "sin-apostrofo", "antes": "", "esperado": "I am ready to leave.", "despues": "", "escrito": "Im ready to leave.", "acepta": true, "hoy": false, "motivo": "«Im» es «I'm»."},
+    {"clase": "sin apóstrofo", "regla": "sin-apostrofo", "antes": "", "esperado": "They are playing in the park.", "despues": "", "escrito": "Theyre playing in the park.", "acepta": true, "hoy": false, "motivo": "«Theyre» es «They're»."},
+    {"clase": "sin apóstrofo", "regla": "sin-apostrofo", "antes": "", "esperado": "He is going outside.", "despues": "", "escrito": "Hes going outside.", "acepta": true, "hoy": false, "motivo": "«Hes» es «He's», y se lee por lo que sigue: is."},
+    {"clase": "sin apóstrofo", "regla": "sin-apostrofo", "antes": "", "esperado": "He has been working here for ages.", "despues": "", "escrito": "Hes been working here for ages.", "acepta": true, "hoy": false, "motivo": "«Hes been» es «He has been»."},
+    {"clase": "sin apóstrofo", "regla": "sin-apostrofo", "antes": "", "esperado": "We have already started.", "despues": "", "escrito": "Weve already started.", "acepta": true, "hoy": false, "motivo": "«Weve» es «We've»."},
+    {"clase": "sin apóstrofo", "regla": "sin-apostrofo", "antes": "", "esperado": "You should have told me.", "despues": "", "escrito": "You shouldve told me.", "acepta": true, "hoy": false, "motivo": "«shouldve» es «should've»."},
+    {"clase": "sin apóstrofo", "regla": "sin-apostrofo", "antes": "You play tennis,", "esperado": "do you not", "despues": "?", "escrito": "dont you", "acepta": true, "hoy": false, "motivo": "«dont you» es «don't you», que en la pregunta es «do you not»."},
+    {"clase": "sigue mal", "regla": "sin-apostrofo", "antes": "", "esperado": "It is raining.", "despues": "", "escrito": "Its raining.", "acepta": false, "hoy": false, "motivo": "«its» es el posesivo: no se abre."},
+    {"clase": "sigue mal", "regla": "sin-apostrofo", "antes": "", "esperado": "We are happy.", "despues": "", "escrito": "Were happy.", "acepta": false, "hoy": false, "motivo": "«were» es otra palabra: no se abre."},
+    {"clase": "sigue mal", "regla": "sin-apostrofo", "antes": "", "esperado": "We will go.", "despues": "", "escrito": "Well go.", "acepta": false, "hoy": false, "motivo": "«well» es otra palabra: no se abre."},
+    {"clase": "sigue mal", "regla": "sin-apostrofo", "antes": "", "esperado": "I would like a glass of juice.", "despues": "", "escrito": "Id like a glass of juice.", "acepta": false, "hoy": false, "motivo": "«id» es otra palabra: no se abre."},
+    {"clase": "sigue mal", "regla": "sin-apostrofo", "antes": "", "esperado": "I cannot swim.", "despues": "", "escrito": "I cant swim.", "acepta": false, "hoy": false, "motivo": "«cant» es otra palabra: no se abre. Con «can't» en la respuesta vale, como siempre."},
+    {"clase": "sigue mal", "regla": "sin-apostrofo", "antes": "", "esperado": "He will not come.", "despues": "", "escrito": "He wont come.", "acepta": false, "hoy": false, "motivo": "«wont» es otra palabra: no se abre."},
+    {"clase": "sigue mal", "regla": "sin-apostrofo", "antes": "", "esperado": "Let us go.", "despues": "", "escrito": "Lets go.", "acepta": false, "hoy": false, "motivo": "«lets» es otra palabra («He lets me go»): no se abre."}
+  ]
+}

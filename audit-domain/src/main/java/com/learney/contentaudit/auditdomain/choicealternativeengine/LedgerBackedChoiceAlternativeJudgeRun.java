@@ -250,7 +250,7 @@ class LedgerBackedChoiceAlternativeJudgeRun implements ChoiceAlternativeJudgeRun
         }
         JudgeUnitTally tally = new JudgeUnitTally(AuditTarget.QUIZ, reached, evaluated, notEvaluated,
                 new TreeMap<>(verdictsByVersion),
-                unmatchedDeclaredIds != null ? new ArrayList<>(unmatchedDeclaredIds) : null);
+                unmatchedDeclaredIds != null ? new ArrayList<>(unmatchedDeclaredIds) : null, null);
         return runtime.coverage(opened, tally);
     }
 

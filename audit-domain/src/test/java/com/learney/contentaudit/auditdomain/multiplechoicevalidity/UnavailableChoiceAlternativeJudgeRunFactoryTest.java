@@ -1,7 +1,19 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJudgeRun;
+import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJudgmentStatus;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import java.util.LinkedHashMap;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +27,28 @@ public class UnavailableChoiceAlternativeJudgeRunFactoryTest {
     @DisplayName("should give the card the judge's rule with the paid model cost while no judge is connected, so multiple-choice-validity keeps a single card")
     @Tag("FEAT-OMVAL")
     @Tag("F-OMVAL-R005")
-    @Disabled("Stub de FEAT-OMVAL (paquete A), sin implementar")
     public void shouldGiveTheCardTheJudgesRuleWithThePaidModelCostWhileNoJudgeIsConnectedSoMultiplechoicevalidityKeepsASingleCard(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: without a judge connected the card still declares the judge's rule, the one package C emits.
+        UnavailableChoiceAlternativeJudgeRunFactory factory = new UnavailableChoiceAlternativeJudgeRunFactory();
+        AnalyzerRuleCard rule = factory.judgeRule();
+        assertEquals("another-option-valid", rule.getId());
+        assertEquals(AnalysisCost.PAID_MODEL, rule.getCost());
+        assertTrue(rule.getDescription().contains("otra opción también vale"));
+        assertEquals(rule, new MultipleChoiceValidityAnalyzerProvider(DefaultOptionRuleCheckTest.productionCorrector(), factory,
+                MultipleChoiceValidityAnalyzerTest.renderer()).describe().getRules().get(4));
+
+        // And it consults nobody: «___ a child? (He)» comes back not available, and the coverage says why.
+        ChoiceAlternativeJudgeRun run = factory.open(null);
+        AuditNode child = new AuditNode(DefaultOptionRuleCheckTest.aChild(), AuditTarget.QUIZ, null, List.of(),
+                new LinkedHashMap<>(), new LinkedHashMap<>(), new DefaultQuizDiagnoses());
+        run.request(child);
+        run.resolveAll();
+        assertEquals(ChoiceAlternativeJudgmentStatus.NOT_AVAILABLE, run.judgmentOf(child).getStatus());
+        JudgeCoverageDiagnosis coverage = run.coverage();
+        assertEquals(1, coverage.getReached());
+        assertEquals(0, coverage.getEvaluated());
+        assertEquals(1, coverage.getNotEvaluated());
+        assertTrue(coverage.getUnavailableReason().contains("No hay un juez"));
     }
 }

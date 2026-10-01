@@ -2136,6 +2136,7 @@ new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 | `unavailableReason` | `String` |
 | `cost` | `JudgeCostEstimate` |
 | `unmatchedDeclaredIds` | `List<String>` |
+| `quizzes` | `JudgeQuizTally` |
 
 #### JudgeSessions (package: judging)
 
@@ -2178,6 +2179,7 @@ new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 | `notEvaluated` | `int` |
 | `verdictsByVersion` | `Map<String,Integer>` |
 | `unmatchedDeclaredIds` | `List<String>` |
+| `quizzes` | `JudgeQuizTally` |
 
 #### JudgeExamOutcome (package: judging)
 
@@ -2207,6 +2209,18 @@ new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 | `worstSeverity` | `FindingSeverity` |
 | `rules` | `List<String>` |
 | `detail` | `String` |
+
+#### JudgeQuizTally (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `reached` | `int` |
+| `evaluated` | `int` |
+| `notEvaluated` | `int` |
 
 #### TranslationSenseCondition (package: translationsense)
 
@@ -4925,10 +4939,11 @@ new EvaluationResolutionKind(null REUSED, null EVALUATED, null PENDING, null FAI
 | `kind` | `EvaluationResolutionKind` |  |
 | `payload` | `String` |  |
 | `evaluatorVersion` | `String` |  |
+| `failure` | `EvaluationNotEmitted` |  |
 
 **Generated constructor:**
 ```java
-new EvaluationResolution(EvaluationResolutionKind kind, String payload, String evaluatorVersion)
+new EvaluationResolution(EvaluationResolutionKind kind, String payload, String evaluatorVersion, EvaluationNotEmitted failure)
 ```
 
 #### EvaluationCoverage

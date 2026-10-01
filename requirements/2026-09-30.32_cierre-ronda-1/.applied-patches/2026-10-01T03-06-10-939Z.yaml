@@ -1,0 +1,259 @@
+code: FEAT-CIERRE
+description: "FEAT-CIERRE: cierra los cuatro huecos del contrato que dejó la construcció\
+  n de los jueces con modelo (paquete C), antes de la primera corrida paga. (1) La\
+  \ cobertura de un juez cuenta los ejercicios que abarcan sus unidades: JudgeQuizTally\
+  \ nuevo, en JudgeUnitTally y en JudgeCoverageDiagnosis (F-CIERRE-R001). (2) Un resultado\
+  \ FAILED de la sesión trae su causa: EvaluationResolution.failure, con el EvaluationNotEmitted\
+  \ que ya existía (F-CIERRE-R002). (3) El clasificador de una sola respuesta, el\
+  \ de opción múltiple y el repartidor de miniteoría reciben QuizStudentViewRenderer,\
+  \ la misma vista que lee el juez (F-CIERRE-R003). (4) DefaultQuizInstructionConfig\
+  \ recibe JudgeRuntimeConfig para mostrar el tope de analyze junto al de revise-instructions\
+  \ (F-CIERRE-R004). El gancho C-27 ya está cumplido: feature sync dice in sync en\
+  \ las cinco features de C, definitions no se parchea y el lector descubre cada REQUIREMENT.md;\
+  \ este parche no toca features.; qa-tester: traza F-CIERRE-R001 a R004 a handwrittenTests\
+  \ nuevas sobre las implementaciones que el parche cambia o que llenan lo nuevo:\
+  \ el runtime y los cinco analizadores para la cuenta de ejercicios, la sesión y\
+  \ la corrida del juez de opción múltiple para la causa de la falla, los tres clasificadores\
+  \ para el renderizador y la configuración de consigna para sus dos topes. Todas\
+  \ con jueces falsos o grabados: ninguna consulta un modelo."
+modules:
+- name: evaluation-ledger-domain
+  models:
+  - name: EvaluationResolution
+    type: record
+    fields:
+    - name: failure
+      type: EvaluationNotEmitted
+      description: "La causa cuando kind es FAILED: el tipo (EVALUATOR_UNAVAILABLE\
+        \ u OUTPUT_UNUSABLE) y el motivo que dio el evaluador; una excepción del evaluador\
+        \ llega como EVALUATOR_UNAVAILABLE con su mensaje (F-CIERRE-R002). Null en\
+        \ REUSED, EVALUATED y PENDING, también en el pendiente por la parada del servicio.\
+        \ Nunca se registra en el libro."
+      _change: add
+    _change: modify
+  packages:
+  - name: evaluationsession
+    implementations:
+    - name: DefaultEvaluationSession
+      handwrittenTests:
+      - name: should return a failed resolution carrying the kind and reason the evaluator
+          gave when its output is unusable
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      - name: "should return a failed resolution as evaluator unavailable, with the\
+          \ exception message as its reason, when the evaluator throws"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      - name: "should give each failed resolution of a batch the cause of its own\
+          \ consultation, not the first failure of the run"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      - name: "should leave without cause every resolution that is reused, evaluated\
+          \ or pending, including the pending left by a stopped service"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      - name: should never write the cause of a failed consultation into the ledger
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-domain
+  packages:
+  - name: judging
+    models:
+    - name: JudgeQuizTally
+      type: record
+      fields:
+      - name: reached
+        type: int
+        description: Ejercicios que abarcan las unidades alcanzadas.
+      - name: evaluated
+        type: int
+        description: "Ejercicios de las unidades evaluadas, con resultado reusado\
+          \ o nuevo."
+      - name: notEvaluated
+        type: int
+        description: "Ejercicios de las unidades sin evaluar: los mismos que el informe\
+          \ marca con el nombre del juez en su unevaluatedBy (F-CIERRE-R001 inv. 4)."
+      _change: add
+    - name: JudgeUnitTally
+      type: record
+      fields:
+      - name: quizzes
+        type: JudgeQuizTally
+        description: "Los ejercicios que abarcan las unidades de esta cuenta (F-CIERRE-R001).\
+          \ Con la unidad QUIZ, los mismos números que las unidades; con KNOWLEDGE,\
+          \ cada tema suma todos sus ejercicios al estado del tema."
+        _change: add
+      _change: modify
+    - name: JudgeCoverageDiagnosis
+      type: record
+      fields:
+      - name: quizzes
+        type: JudgeQuizTally
+        description: "Los ejercicios que abarcan las unidades alcanzadas, evaluadas\
+          \ y sin evaluar (F-CIERRE-R001, F-MINIT-R005 inv. 4). Los copia de la cuenta\
+          \ que le pasa el analizador; para los cuatro jueces por ejercicio coinciden\
+          \ con reached, evaluated y notEvaluated."
+        _change: add
+      _change: modify
+    _change: modify
+  - name: singleanswerengine
+    implementations:
+    - name: DefaultSingleAnswerClassifier
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "La vista del alumno que lee el juez (F-RONDA1-R001): el enunciado\
+          \ y la oración terminada de la evidencia salen de acá, no de una regla propia\
+          \ (F-CIERRE-R003)."
+        _change: add
+      handwrittenTests:
+      - name: should write the statement and the finished sentence of its evidence
+          with the student view renderer it receives
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R003
+      - name: should keep the marker of each finding whatever text the student view
+          renderer gives the exercise
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R003
+      _change: modify
+    - name: SingleAnswerAnalyzer
+      handwrittenTests:
+      - name: "should declare in its tally as many exercises as quizzes, in each state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      _change: modify
+    _change: modify
+  - name: choicealternativeengine
+    implementations:
+    - name: DefaultChoiceAlternativeClassifier
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "La vista del alumno que lee el juez (F-RONDA1-R001): el enunciado,\
+          \ las opciones y la oración terminada de la evidencia salen de acá, no de\
+          \ un renderizador armado adentro (F-CIERRE-R003)."
+        _change: add
+      handwrittenTests:
+      - name: "should write the statement, the options and the finished sentence of\
+          \ its evidence with the student view renderer it receives"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R003
+      _change: modify
+    - name: LedgerBackedChoiceAlternativeJudgeRun
+      handwrittenTests:
+      - name: "should declare in its coverage as many exercises as quizzes, in each\
+          \ state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      - name: "should name in a judgment that failed the cause of its own consultation,\
+          \ not the first failure of the run"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      _change: modify
+    _change: modify
+  - name: minitheoryengine
+    implementations:
+    - name: DefaultMiniTheoryDistributor
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "La vista del alumno (F-RONDA1-R001): la oración terminada de\
+          \ cada ejercicio en la evidencia sale de acá, como la lee el juez (F-CIERRE-R003)."
+        _change: add
+      handwrittenTests:
+      - name: should write the finished sentence of each exercise in its evidence
+          with the student view renderer it receives
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R003
+      _change: modify
+    - name: MiniTheoryAnalyzer
+      handwrittenTests:
+      - name: "should count in its tally every exercise of each topic under the state\
+          \ of that topic, evaluated or not"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      - name: should declare as exercises without evaluation exactly the exercises
+          the report marks as not evaluated by mini-theory
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      _change: modify
+    _change: modify
+  - name: judgingengine
+    implementations:
+    - name: DefaultJudgeRuntime
+      handwrittenTests:
+      - name: "should declare in the coverage of a topic judge the exercises its topics\
+          \ hold, under the state of each topic"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      - name: "should declare for a judge that consults by exercise as many exercises\
+          \ as units, in each state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      _change: modify
+    _change: modify
+  - name: translationsenseengine
+    implementations:
+    - name: TranslationSenseAnalyzer
+      handwrittenTests:
+      - name: "should declare in its tally as many exercises as quizzes, in each state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      _change: modify
+    _change: modify
+  - name: quizinstructionengine
+    implementations:
+    - name: QuizInstructionAnalyzer
+      handwrittenTests:
+      - name: "should declare in its tally as many exercises as quizzes, in each state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-application
+  implementations:
+  - name: DefaultQuizInstructionConfig
+    requiresInject:
+    - name: judgeRuntimeConfig
+      type: JudgeRuntimeConfig
+      description: "De acá sale el tope por omisión de analyze para quiz-instruction\
+        \ (0, F-JEXAM-R010), que describe() muestra junto al de revise-instructions\
+        \ (F-CIERRE-R004). El tope propio de esta configuración sigue siendo el de\
+        \ revise-instructions."
+      _change: add
+    handwrittenTests:
+    - name: "should describe the analyze budget of quiz-instruction from the judges\
+        \ runtime config and the revise-instructions budget of 500, each named with\
+        \ its command"
+      traceability:
+        feature: FEAT-CIERRE
+        rule: F-CIERRE-R004
+    - name: "should describe a different analyze budget when the judges runtime config\
+        \ gives another one, without copying 0"
+      traceability:
+        feature: FEAT-CIERRE
+        rule: F-CIERRE-R004
+    _change: modify
+  _change: modify

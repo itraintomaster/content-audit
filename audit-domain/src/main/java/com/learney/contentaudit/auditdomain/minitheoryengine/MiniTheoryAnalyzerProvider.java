@@ -105,7 +105,7 @@ public class MiniTheoryAnalyzerProvider implements AnalyzerProvider {
         JudgeSessions opened = runtime.open(MiniTheoryAnalyzer.ANALYZER_NAME,
                 judge != null ? List.of(judge) : List.of(), policy);
         return new MiniTheoryAnalyzer(opened, runtime, new DefaultMiniTheorySubjectBuilder(studentViewRenderer),
-                new DefaultMiniTheoryDistributor(config), verdictReader);
+                new DefaultMiniTheoryDistributor(config, studentViewRenderer), verdictReader);
     }
 
     /** F-HALL-R004 / F-RONDA1-R008: its scores below 1 become MINI_THEORY tasks on the exercise. */

@@ -76,27 +76,27 @@ miniteoría se ve después de contestar:
 - lo que está mal en un ejercicio y no tiene que ver con la regla: la
   traducción, otra respuesta posible, la pista.
 
-## Ejemplos del curso
+## Ejemplos
 
-- «Contraste inicial» (A1). «$Be$, $want$, $enjoy$ y otros verbos de estado no
-  llevan continuo: siempre simple.» → `FALSE_RULE`, `HIGH`: *enjoy* va en
-  continuo todo el tiempo. Contraejemplo: «Are you enjoying the party?».
-- «Artículos: $a$, $the$ o nada» (A2). «Si después viene $that$ o $who$, va
-  $the$.» → `FALSE_RULE`, `HIGH`. Contraejemplo: «a friend who lives in Paris».
-- «Gerundio obligatorio» (A2). «$stop$, $keep$, $mind$, $practise$ y $can't
-  help$ piden siempre $-ing$.» → `OVERSTATED`, `MEDIUM`: *stop* + *to* existe,
-  con otro sentido. Contraejemplo: «They stopped to eat.».
-- «Sujeto u objeto» (A1). «Antes del verbo va $she$. Después del verbo o de una
-  preposición va $her$.» es cierta, pero la muestran ejercicios de *he* / *him*
-  como «Dogs looked at he / him ___ .» → `NOT_COVERING_EXERCISE`, `LOW`, sólo
-  con esos ejercicios. Contraejemplo: «Dogs looked at him.».
-- «Países» (A2). «Los países van sin artículo. Sólo llevan $the$ los plurales o
-  uniones: $the UK$.» la muestra «Have you ever visited ___ Czech Republic?»,
-  cuya correcta es *the*: *the Czech Republic* no es plural ni unión
+- «Adverbios de modo» (A1). «Termina en $-y$: pasa a $-ily$. $happy$ →
+  $happily$.» → `FALSE_RULE`, `HIGH`: *early* termina en *-y* y no cambia.
+  Contraejemplo: «She gets up early.».
+- «La hora» (A1). «Si la hora tiene minutos, se dice con $past$: $ten past
+  six$.» → `FALSE_RULE`, `HIGH`. Contraejemplo: «It's twenty to seven.».
+- «La edad» (A1). «La edad lleva siempre $years old$: $I'm ten years old$.»
+  → `OVERSTATED`, `MEDIUM`: *years old* se omite todo el tiempo.
+  Contraejemplo: «My sister is ten.».
+- «La hora» (A1). «Para la media hora va $half past$: $half past six$ es
+  6:30.» es cierta, pero la muestran ejercicios de *quarter past* y *quarter
+  to* como «The bus leaves at ___ (7:15).» → `NOT_COVERING_EXERCISE`, `LOW`,
+  sólo con esos ejercicios. Contraejemplo: «The bus leaves at a quarter past
+  seven.».
+- «Números ordinales» (A1). «Los ordinales se forman siempre con $-th$
+  ($fourth$, $sixth$, $tenth$).» la muestra «Tom came ___ (three) in the
+  competition.», cuya correcta es *third*: no termina en *-th*
   → `CONTRADICTED_BY_EXERCISE`, `HIGH`, con ese ejercicio.
-- «Afirmativas regulares» (A1). «Con he, she, it el verbo lleva $-s$. Con I,
-  you, we, they va en forma base.» es cierta y sus ejercicios la cumplen
-  → `holds` true.
+- «Propuestas y consejos» (A2). «$Let's$ se niega con $not$ después: $Let's
+  not$ + verbo base.» es cierta y sus ejercicios la cumplen → `holds` true.
 
 ## Salida
 
@@ -110,9 +110,9 @@ Tu mensaje final es EXCLUSIVAMENTE un objeto JSON, sin prosa ni fences:
       "holds": false,
       "problem": "FALSE_RULE",
       "severity": "HIGH",
-      "counterexample": "Are you enjoying the party?",
+      "counterexample": "She gets up early.",
       "exercises": [1, 3],
-      "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+      "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
     },
     {
       "miniTheory": 2,
@@ -124,7 +124,7 @@ Tu mensaje final es EXCLUSIVAMENTE un objeto JSON, sin prosa ni fences:
       "explanation": "La regla es cierta y su ejercicio la cumple."
     }
   ],
-  "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+  "rationale": "M1 es falsa por «early»; M2 está bien."
 }
 ```
 

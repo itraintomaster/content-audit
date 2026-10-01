@@ -46,8 +46,6 @@ public class MainTest {
     @DisplayName("should register the seventeen analyzers of round 1 in catalog order, from sentence-length to mini-theory, each with the Spanish name of its card, «Largo de oración» to «Miniteoría»")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R004")
-    @org.junit.jupiter.api.Disabled("FEAT-RONDA1: espera los nueve proveedores de A, C y D; hoy Main registra los ocho de "
-            + "antes y deja sus nueve líneas listas para encender")
     public void shouldRegisterTheSeventeenAnalyzersOfRound1InCatalogOrderFromSentencelengthToMinitheoryEachWithTheSpanishNameOfItsCardLargoDeOracinToMiniteora(
             @org.junit.jupiter.api.io.TempDir java.nio.file.Path workdir) throws Exception {
         // R004: the catalog Main builds, read as the command line reads it -- get analyzers -f json --

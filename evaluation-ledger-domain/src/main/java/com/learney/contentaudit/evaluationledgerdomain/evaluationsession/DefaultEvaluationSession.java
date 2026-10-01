@@ -160,7 +160,7 @@ class DefaultEvaluationSession implements EvaluationSession {
                 reused++;
                 EvaluationRecord record = current.get();
                 return new EvaluationResolution(
-                        EvaluationResolutionKind.REUSED, record.getPayload(), record.getEvaluatorVersion());
+                        EvaluationResolutionKind.REUSED, record.getPayload(), record.getEvaluatorVersion(), null);
             }
         }
 
@@ -171,14 +171,14 @@ class DefaultEvaluationSession implements EvaluationSession {
         // evaluation is left pending.
         if (evaluatorUnavailable) {
             pending++;
-            return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null);
+            return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null);
         }
 
         // R003: the budget bounds only NEW evaluations; reuse above never
         // consumes it.
         if (newEvaluationsUsed >= budget.getMaxNewEvaluations()) {
             pending++;
-            return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null);
+            return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null);
         }
         newEvaluationsUsed++;
         evaluatorVersionConsulted = true;
@@ -194,7 +194,7 @@ class DefaultEvaluationSession implements EvaluationSession {
                     key, emitted.getPayload(), subject.getSubjectRef(), Instant.now(), version);
             ledger.append(record);
             evaluatedInRun++;
-            return new EvaluationResolution(EvaluationResolutionKind.EVALUATED, emitted.getPayload(), version);
+            return new EvaluationResolution(EvaluationResolutionKind.EVALUATED, emitted.getPayload(), version, null);
         }
 
         if (outcome instanceof EvaluationNotEmitted notEmitted) {
@@ -206,7 +206,7 @@ class DefaultEvaluationSession implements EvaluationSession {
                 // consulting it for the remainder of this run.
                 markUnavailable(notEmitted.getReason());
             }
-            return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null);
+            return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null);
         }
 
         throw new IllegalStateException(
@@ -251,7 +251,7 @@ class DefaultEvaluationSession implements EvaluationSession {
                         key, emitted.getPayload(), subject.getSubjectRef(), Instant.now(), version);
                 ledger.append(record);
                 evaluatedInRun++;
-                return new EvaluationResolution(EvaluationResolutionKind.EVALUATED, emitted.getPayload(), version);
+                return new EvaluationResolution(EvaluationResolutionKind.EVALUATED, emitted.getPayload(), version, null);
             }
 
             if (outcome instanceof EvaluationNotEmitted notEmitted) {
@@ -259,7 +259,7 @@ class DefaultEvaluationSession implements EvaluationSession {
                 if (notEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE) {
                     markUnavailable(notEmitted.getReason());
                 }
-                return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null);
+                return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null);
             }
 
             throw new IllegalStateException(
@@ -276,10 +276,10 @@ class DefaultEvaluationSession implements EvaluationSession {
             reused++;
             EvaluationRecord record = current.get();
             return new EvaluationResolution(
-                    EvaluationResolutionKind.REUSED, record.getPayload(), record.getEvaluatorVersion());
+                    EvaluationResolutionKind.REUSED, record.getPayload(), record.getEvaluatorVersion(), null);
         }
         pending++;
-        return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null);
+        return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null);
     }
 
 
@@ -300,10 +300,10 @@ class DefaultEvaluationSession implements EvaluationSession {
             reused++;
             EvaluationRecord record = current.get();
             return new EvaluationResolution(
-                    EvaluationResolutionKind.REUSED, record.getPayload(), record.getEvaluatorVersion());
+                    EvaluationResolutionKind.REUSED, record.getPayload(), record.getEvaluatorVersion(), null);
         }
         pending++;
-        return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null);
+        return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null);
     }
 
 
@@ -486,11 +486,11 @@ class DefaultEvaluationSession implements EvaluationSession {
 
     private static EvaluationResolution reusedResolution(EvaluationRecord record) {
         return new EvaluationResolution(
-                EvaluationResolutionKind.REUSED, record.getPayload(), record.getEvaluatorVersion());
+                EvaluationResolutionKind.REUSED, record.getPayload(), record.getEvaluatorVersion(), null);
     }
 
     private static EvaluationResolution pendingResolution() {
-        return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null);
+        return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null);
     }
 
     /**
@@ -516,7 +516,7 @@ class DefaultEvaluationSession implements EvaluationSession {
                 ledger.append(record);
                 evaluatedInRun++;
             }
-            return new EvaluationResolution(EvaluationResolutionKind.EVALUATED, emitted.getPayload(), version);
+            return new EvaluationResolution(EvaluationResolutionKind.EVALUATED, emitted.getPayload(), version, null);
         }
         if (outcome instanceof EvaluationNotEmitted notEmitted) {
             synchronized (this) {
@@ -525,7 +525,7 @@ class DefaultEvaluationSession implements EvaluationSession {
             if (notEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE) {
                 markUnavailable(notEmitted.getReason());
             }
-            return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null);
+            return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null);
         }
         throw new IllegalStateException(
                 "Unknown EvaluationOutcome implementation: " + outcome.getClass().getName());

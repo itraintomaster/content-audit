@@ -32,13 +32,15 @@ public class JudgeCoverageDiagnosis {
 
     private List<String> unmatchedDeclaredIds;
 
+    private JudgeQuizTally quizzes;
+
     public JudgeCoverageDiagnosis() {
     }
 
     public JudgeCoverageDiagnosis(String judgeName, AuditTarget unit, int reached, int evaluated,
             int notEvaluated, List<EvaluatorCoverage> evaluators, JudgeExamStanding standing,
             List<JudgeVersionStanding> versions, String unavailableReason, JudgeCostEstimate cost,
-            List<String> unmatchedDeclaredIds) {
+            List<String> unmatchedDeclaredIds, JudgeQuizTally quizzes) {
         this.judgeName = judgeName;
         this.unit = unit;
         this.reached = reached;
@@ -50,6 +52,7 @@ public class JudgeCoverageDiagnosis {
         this.unavailableReason = unavailableReason;
         this.cost = cost;
         this.unmatchedDeclaredIds = unmatchedDeclaredIds;
+        this.quizzes = quizzes;
     }
 
     public String getJudgeName() {
@@ -140,6 +143,14 @@ public class JudgeCoverageDiagnosis {
         this.unmatchedDeclaredIds = unmatchedDeclaredIds;
     }
 
+    public JudgeQuizTally getQuizzes() {
+        return this.quizzes;
+    }
+
+    public void setQuizzes(JudgeQuizTally quizzes) {
+        this.quizzes = quizzes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -155,11 +166,12 @@ public class JudgeCoverageDiagnosis {
                     && Objects.equals(this.versions, that.versions)
                     && Objects.equals(this.unavailableReason, that.unavailableReason)
                     && Objects.equals(this.cost, that.cost)
-                    && Objects.equals(this.unmatchedDeclaredIds, that.unmatchedDeclaredIds);
+                    && Objects.equals(this.unmatchedDeclaredIds, that.unmatchedDeclaredIds)
+                    && Objects.equals(this.quizzes, that.quizzes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(judgeName, unit, reached, evaluated, notEvaluated, evaluators, standing, versions, unavailableReason, cost, unmatchedDeclaredIds);
+        return Objects.hash(judgeName, unit, reached, evaluated, notEvaluated, evaluators, standing, versions, unavailableReason, cost, unmatchedDeclaredIds, quizzes);
     }
 }

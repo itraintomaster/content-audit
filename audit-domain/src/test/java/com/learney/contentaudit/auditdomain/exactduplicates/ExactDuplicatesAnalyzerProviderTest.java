@@ -1,7 +1,17 @@
 package com.learney.contentaudit.auditdomain.exactduplicates;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +25,28 @@ public class ExactDuplicatesAnalyzerProviderTest {
     @DisplayName("should describe exact-duplicates in the catalog as an errors analyzer that evaluates exercises, resolves at the panel and costs instant, asking «¿Dos ejercicios del mismo tema dicen lo mismo?»")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R005")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldDescribeExactduplicatesInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesAtThePanelAndCostsInstantAskingDosEjerciciosDelMismoTemaDicenLoMismo(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and F-HALL-R006: the card the catalog validates at startup; no task kind and no configuration.
+        ExactDuplicatesAnalyzerProvider provider = new ExactDuplicatesAnalyzerProvider(
+                ExactDuplicatesAnalyzerTest.productionCorrector(), ExactDuplicatesAnalyzerTest.renderer());
+        AnalyzerDescriptor card = provider.describe();
+
+        assertEquals("exact-duplicates", provider.analyzerName());
+        assertEquals("exact-duplicates", card.getName());
+        assertEquals("Duplicados exactos", card.getDisplayName());
+        assertEquals("¿Dos ejercicios del mismo tema dicen lo mismo?", card.getQuestion());
+        assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
+        assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
+        assertEquals(List.of(FindingResolution.PANEL), card.getResolutions());
+        assertEquals(AnalysisCost.INSTANT, card.getCost());
+        assertEquals(List.of("exact-duplicate"), card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
+        assertTrue(card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
+        assertTrue(provider.planBinding().isEmpty());
+        assertTrue(provider.config().isEmpty());
+        assertEquals("exact-duplicates", provider.create(null).getName());
+
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(card, catalog.find("exact-duplicates").orElseThrow(), "the catalog accepts the card");
     }
 }

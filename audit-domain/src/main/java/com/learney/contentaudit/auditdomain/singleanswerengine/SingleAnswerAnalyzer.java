@@ -178,7 +178,7 @@ class SingleAnswerAnalyzer implements ContentAnalyzer {
             return null;
         }
         JudgeUnitTally tally = new JudgeUnitTally(AuditTarget.QUIZ, units.size(), evaluated, notEvaluated,
-                verdictsByVersion, plan != null ? plan.getUnmatchedDeclaredIds() : null);
+                verdictsByVersion, plan != null ? plan.getUnmatchedDeclaredIds() : null, null);
         if (!(rootNode.getDiagnoses() instanceof DefaultCourseDiagnoses)) {
             rootNode.setDiagnoses(new DefaultCourseDiagnoses());
         }

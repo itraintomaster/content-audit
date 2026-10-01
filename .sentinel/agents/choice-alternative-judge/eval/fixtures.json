@@ -22,59 +22,65 @@
     "mayúscula (*am i* / *Am I*), *a* o *an*, singular o plural",
     "**antes de contestar**"
   ],
-  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (una label que no es opción o que es la correcta, BLOCKING o LOW en una alternativa, correctIsValid sin su correctProblem), y que emit produzca choiceAlternativeVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (title, instructions, exercise, options) de los ejemplos de F-MCVALE-R002; el título y la consigna de «sed» son ilustrativos: el requirement sólo da el enunciado y las opciones.",
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (una label que no es opción o que es la correcta, BLOCKING o LOW en una alternativa, correctIsValid sin su correctProblem), y que emit produzca choiceAlternativeVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (title, instructions, exercise, options), armado como DefaultChoiceAlternativeSubjectBuilder, de ejercicios A1/A2 del curso que no están en el examen; los de «manzanas» (la clave invertida) y «verano» (HIGH) son inventados y no están en el curso.",
   "inputs": {
-    "sed": {
-      "title": "Conectores",
-      "instructions": "Elige la opción correcta.",
-      "exercise": "Are you thirsty? ___ , let's drink water soon.",
-      "options": "- if not (correcta)\n- if so"
+    "manzanas": {
+      "title": "$Before$ y $after$",
+      "instructions": "Elige 'before' o 'after'.",
+      "exercise": "Wash the apples ___ you eat them.",
+      "options": "- after (correcta)\n- before"
     },
-    "comida": {
-      "title": "$Really$, $much$ o $a lot$",
-      "instructions": "Elige 'really', 'much', 'a lot' o 'a lot of'.",
-      "exercise": "I don't enjoy extra food ___ .",
-      "options": "- a lot\n- a lot of\n- much (correcta)\n- really"
+    "verano": {
+      "title": "$For$ o $during$",
+      "instructions": "Elige 'for' o 'during'.",
+      "exercise": "I stayed with my grandparents ___ the summer.",
+      "options": "- during\n- for (correcta)"
     },
-    "gato": {
-      "title": "Lugar: $in$, $at$, $on$",
-      "instructions": "Elige 'in', 'at' u 'on'.",
-      "exercise": "There's a cat ___ the window.",
-      "options": "- at (correcta)\n- in\n- on"
+    "musica": {
+      "title": "$Some$ y $any$",
+      "instructions": "Elige 'some' o 'any'.",
+      "exercise": "Did you hear ___ music?",
+      "options": "- any (correcta)\n- some"
     },
-    "te": {
-      "title": "$A$ o $some$",
-      "instructions": "Elige 'a' o 'some'.",
-      "exercise": "She wants ___ hot tea.",
-      "options": "- a\n- some (correcta)"
+    "champu": {
+      "title": "Información nueva",
+      "instructions": "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
+      "exercise": "He ordered ___ shampoo.",
+      "options": "- - (correcta)\n- a"
     },
     "articulo": {
-      "title": "Países",
-      "instructions": "Elige 'the' o usa – si no se necesita ningún artículo.",
-      "exercise": "Jakarta is the capital of ___ Philippines.",
+      "title": "General o particular",
+      "instructions": "Elige 'the' o usa – si no necesitamos ningún artículo.",
+      "exercise": "Whose are ___ bikes in the garage?",
       "options": "- -\n- the (correcta)"
     },
+    "roma": {
+      "title": "$For$ o $during$",
+      "instructions": "Elige 'for' o 'during'.",
+      "exercise": "I studied in Rome ___ five years.",
+      "options": "- during\n- for (correcta)"
+    },
     "sin-entrada-de-opciones": {
-      "title": "Lugar: $in$, $at$, $on$",
-      "instructions": "Elige 'in', 'at' u 'on'.",
-      "exercise": "There's a cat ___ the window."
+      "title": "$Some$ y $any$",
+      "instructions": "Elige 'some' o 'any'.",
+      "exercise": "Did you hear ___ music?"
     }
   },
   "cases": [
     {
-      "caseId": "sed-clave-invertida",
-      "note": "«Are you thirsty? ___ , let's drink water soon.» (…47cc): la correcta no vale, «if so» sí.",
-      "inputs": "sed",
+      "caseId": "manzanas-clave-invertida",
+      "note": "«Wash the apples ___ you eat them.» (inventado): la correcta no vale, «before» sí.",
+      "inputs": "manzanas",
       "verdict": {
         "correctIsValid": false,
         "validAlternatives": [
           {
-            "label": "if so",
+            "label": "before",
             "severity": "HIGH",
-            "reason": "«Are you thirsty? If so, let's drink water soon.» es la que tiene sentido."
+            "reason": "«Wash the apples before you eat them.» es la que tiene sentido."
           }
         ],
-        "correctProblem": "«If not» dice que toman agua si no tiene sed, y contradice la pregunta.",
+        "correctProblem": "«After» pide lavar las manzanas después de comerlas, y eso no tiene sentido.",
         "rationale": "La clave está invertida: la correcta no vale y la otra sí."
       },
       "expect": {
@@ -83,16 +89,16 @@
       }
     },
     {
-      "caseId": "comida-a-lot-alta",
-      "note": "«I don't enjoy extra food ___ .» (…2f1b): «a lot» al final vale igual que «much».",
-      "inputs": "comida",
+      "caseId": "verano-during-alta",
+      "note": "«I stayed with my grandparents ___ the summer.» (inventado): «during» vale igual que «for».",
+      "inputs": "verano",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "a lot",
+            "label": "during",
             "severity": "HIGH",
-            "reason": "En una negativa, «a lot» al final es tan correcto como «much»."
+            "reason": "Con un período como «the summer», «during» es tan correcto como «for»."
           }
         ],
         "correctProblem": null,
@@ -104,20 +110,20 @@
       }
     },
     {
-      "caseId": "gato-in-media",
-      "note": "«There's a cat ___ the window.» (…2cb8): «in» es defendible.",
-      "inputs": "gato",
+      "caseId": "musica-some-media",
+      "note": "«Did you hear ___ music?» (…2392): «some» es defendible.",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "passed",
@@ -125,16 +131,16 @@
       }
     },
     {
-      "caseId": "te-a-media",
-      "note": "«She wants ___ hot tea.» (…232e): «a hot tea» es una taza de té.",
-      "inputs": "te",
+      "caseId": "champu-a-media",
+      "note": "«He ordered ___ shampoo.» (…2a59): «a shampoo» es un frasco o un lavado.",
+      "inputs": "champu",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
             "label": "a",
             "severity": "MEDIUM",
-            "reason": "«a hot tea» es inglés normal: una taza de té."
+            "reason": "«a shampoo» también se dice: un frasco de champú, o un lavado en la peluquería."
           }
         ],
         "correctProblem": null,
@@ -147,8 +153,8 @@
     },
     {
       "caseId": "solo-la-correcta",
-      "note": "Sólo vale la correcta: lista vacía y correctProblem null.",
-      "inputs": "gato",
+      "note": "«I studied in Rome ___ five years.» (…2d1e): sólo vale la correcta; lista vacía y correctProblem null.",
+      "inputs": "roma",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [],
@@ -163,18 +169,18 @@
     {
       "caseId": "label-con-mayusculas",
       "note": "La label vuelve tal cual está en las opciones.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "In",
+            "label": "Some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "passed",
@@ -182,31 +188,31 @@
           "correctIsValid": true,
           "validAlternatives": [
             {
-              "label": "in",
+              "label": "some",
               "severity": "MEDIUM",
-              "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
             }
           ],
           "correctProblem": null,
-          "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
         }
       }
     },
     {
       "caseId": "label-entre-comillas",
       "note": "Comillas alrededor de la label no hacen reintentar.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "«in»",
+            "label": "«some»",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "passed",
@@ -214,13 +220,13 @@
           "correctIsValid": true,
           "validAlternatives": [
             {
-              "label": "in",
+              "label": "some",
               "severity": "MEDIUM",
-              "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
             }
           ],
           "correctProblem": null,
-          "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
         }
       }
     },
@@ -283,18 +289,18 @@
     {
       "caseId": "correcta-valida-con-motivo-vacio",
       "note": "Con correctIsValid true, un correctProblem vacío se canonicaliza a null.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": "  ",
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "passed",
@@ -302,31 +308,31 @@
           "correctIsValid": true,
           "validAlternatives": [
             {
-              "label": "in",
+              "label": "some",
               "severity": "MEDIUM",
-              "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
             }
           ],
           "correctProblem": null,
-          "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
         }
       }
     },
     {
       "caseId": "enums-en-minusculas",
       "note": "Mayúsculas de los enums y espacios de los textos se canonicalizan.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "medium",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "passed",
@@ -334,13 +340,13 @@
           "correctIsValid": true,
           "validAlternatives": [
             {
-              "label": "in",
+              "label": "some",
               "severity": "MEDIUM",
-              "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
             }
           ],
           "correctProblem": null,
-          "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
         }
       }
     },
@@ -352,13 +358,13 @@
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "passed",
@@ -368,18 +374,18 @@
     {
       "caseId": "label-que-es-la-correcta",
       "note": "La correcta nunca va en validAlternatives; el esquema no sabe cuál es.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "at",
+            "label": "any",
             "severity": "HIGH",
             "reason": "Puesta en la oración, también es correcta."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "failed",
@@ -392,18 +398,18 @@
     {
       "caseId": "label-que-no-es-opcion",
       "note": "La label es una de las opciones del ejercicio.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "under",
+            "label": "much",
             "severity": "HIGH",
             "reason": "Puesta en la oración, también es correcta."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "failed",
@@ -416,23 +422,23 @@
     {
       "caseId": "label-repetida",
       "note": "Una entrada por opción.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "HIGH",
             "reason": "Puesta en la oración, también es correcta."
           },
           {
-            "label": "In",
+            "label": "Some",
             "severity": "MEDIUM",
             "reason": "Puesta en la oración, también es correcta."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "failed",
@@ -445,18 +451,18 @@
     {
       "caseId": "severidad-bloqueante",
       "note": "La clave invertida se dice con correctIsValid; las alternativas son HIGH o MEDIUM.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "BLOCKING",
             "reason": "Puesta en la oración, también es correcta."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "failed",
@@ -469,18 +475,18 @@
     {
       "caseId": "severidad-baja",
       "note": "LOW no va en una alternativa.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "LOW",
             "reason": "Puesta en la oración, también es correcta."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "failed",
@@ -493,14 +499,14 @@
     {
       "caseId": "invalida-sin-motivo",
       "note": "correctIsValid false exige correctProblem.",
-      "inputs": "sed",
+      "inputs": "manzanas",
       "verdict": {
         "correctIsValid": false,
         "validAlternatives": [
           {
-            "label": "if so",
+            "label": "before",
             "severity": "HIGH",
-            "reason": "«Are you thirsty? If so, let's drink water soon.» es la que tiene sentido."
+            "reason": "«Wash the apples before you eat them.» es la que tiene sentido."
           }
         ],
         "correctProblem": null,
@@ -517,18 +523,18 @@
     {
       "caseId": "valida-con-motivo",
       "note": "correctIsValid true lleva correctProblem null.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": "No vale.",
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "failed",
@@ -541,18 +547,18 @@
     {
       "caseId": "correct-is-valid-como-texto",
       "note": "correctIsValid es boolean.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": "true",
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "failed",
@@ -565,19 +571,19 @@
     {
       "caseId": "alternativa-con-clave-de-mas",
       "note": "Cada alternativa es un objeto cerrado.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera.",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.",
             "confidence": 0.7
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "failed",
@@ -590,17 +596,17 @@
     {
       "caseId": "falta-correct-problem",
       "note": "correctProblem es parte del objeto cerrado aunque vaya null.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "expect": {
         "route": "failed",
@@ -613,18 +619,18 @@
     {
       "caseId": "run-dir-por-state-json",
       "note": "Sin run_dir en las entradas: project_root + el run_id (UUID) del state.json, como lo proyecta el CLI.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "resolution": "state.json",
       "expect": {
@@ -635,18 +641,18 @@
     {
       "caseId": "run-id-ambiguo",
       "note": "Dos state.json con el mismo runId: el gate no adivina; emit sale conservador.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "resolution": "ambiguous",
       "expect": {
@@ -659,18 +665,18 @@
     {
       "caseId": "run-id-inseguro",
       "note": "Un run_id que escaparía del directorio de runs se rechaza.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "resolution": "unsafe-run-id",
       "expect": {
@@ -683,18 +689,18 @@
     {
       "caseId": "sin-run-dir",
       "note": "Sin run_dir ni project_root no hay dónde leer: falla el gate y emit da outputUnusable.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "resolution": "none",
       "expect": {
@@ -707,7 +713,7 @@
     {
       "caseId": "sin-salida-de-evaluate",
       "note": "evaluate no dejó verdicts.json.",
-      "inputs": "gato",
+      "inputs": "musica",
       "expect": {
         "route": "failed",
         "errorContains": [
@@ -718,7 +724,7 @@
     {
       "caseId": "validated-viejo-se-borra",
       "note": "Un validated-verdict.json de un intento anterior no sobrevive a un gate que falla.",
-      "inputs": "gato",
+      "inputs": "musica",
       "raw": "no hay veredicto",
       "staleValidated": true,
       "expect": {
@@ -731,7 +737,7 @@
     {
       "caseId": "no-es-json",
       "note": "Prosa sin objeto JSON.",
-      "inputs": "gato",
+      "inputs": "musica",
       "raw": "No puedo juzgar este ejercicio.",
       "expect": {
         "route": "failed",
@@ -743,7 +749,7 @@
     {
       "caseId": "lista-en-vez-de-objeto",
       "note": "Un array no es el veredicto.",
-      "inputs": "gato",
+      "inputs": "musica",
       "raw": "[1, 2]",
       "expect": {
         "route": "failed",
@@ -755,7 +761,7 @@
     {
       "caseId": "output-unusable-del-modelo",
       "note": "{\"outputUnusable\": true} lo produce emit, nunca el modelo: el gate lo rechaza.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "outputUnusable": true
       },
@@ -769,18 +775,18 @@
     {
       "caseId": "validated-corrupto-antes-de-emit",
       "note": "Si validated-verdict.json no se puede leer, emit no inventa: outputUnusable.",
-      "inputs": "gato",
+      "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
         "validAlternatives": [
           {
-            "label": "in",
+            "label": "some",
             "severity": "MEDIUM",
-            "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
           }
         ],
         "correctProblem": null,
-        "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
       },
       "corruptValidated": true,
       "expect": {
@@ -791,63 +797,63 @@
     {
       "caseId": "fence-json",
       "note": "La salida en un fence ```json se acepta sin pagar otra consulta.",
-      "inputs": "gato",
-      "raw": "```json\n{\n  \"correctIsValid\": true,\n  \"validAlternatives\": [\n    {\n      \"label\": \"in\",\n      \"severity\": \"MEDIUM\",\n      \"reason\": \"«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera.\"\n    }\n  ],\n  \"correctProblem\": null,\n  \"rationale\": \"«in» también vale, aunque con window lo más esperado es «at».\"\n}\n```",
+      "inputs": "musica",
+      "raw": "```json\n{\n  \"correctIsValid\": true,\n  \"validAlternatives\": [\n    {\n      \"label\": \"some\",\n      \"severity\": \"MEDIUM\",\n      \"reason\": \"«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.\"\n    }\n  ],\n  \"correctProblem\": null,\n  \"rationale\": \"«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».\"\n}\n```",
       "expect": {
         "route": "passed",
         "canonical": {
           "correctIsValid": true,
           "validAlternatives": [
             {
-              "label": "in",
+              "label": "some",
               "severity": "MEDIUM",
-              "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
             }
           ],
           "correctProblem": null,
-          "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
         }
       }
     },
     {
       "caseId": "prosa-alrededor",
       "note": "Prosa antes y una etiqueta después: se toma el objeto.",
-      "inputs": "gato",
-      "raw": "Este es mi veredicto:\n{\"correctIsValid\": true, \"validAlternatives\": [{\"label\": \"in\", \"severity\": \"MEDIUM\", \"reason\": \"«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera.\"}], \"correctProblem\": null, \"rationale\": \"«in» también vale, aunque con window lo más esperado es «at».\"}\nLABEL: done",
+      "inputs": "musica",
+      "raw": "Este es mi veredicto:\n{\"correctIsValid\": true, \"validAlternatives\": [{\"label\": \"some\", \"severity\": \"MEDIUM\", \"reason\": \"«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.\"}], \"correctProblem\": null, \"rationale\": \"«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».\"}\nLABEL: done",
       "expect": {
         "route": "passed",
         "canonical": {
           "correctIsValid": true,
           "validAlternatives": [
             {
-              "label": "in",
+              "label": "some",
               "severity": "MEDIUM",
-              "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
             }
           ],
           "correctProblem": null,
-          "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
         }
       }
     },
     {
       "caseId": "json-dentro-de-un-string",
       "note": "El objeto serializado dentro de un string JSON se desenvuelve.",
-      "inputs": "gato",
-      "raw": "\"{\\\"correctIsValid\\\": true, \\\"validAlternatives\\\": [{\\\"label\\\": \\\"in\\\", \\\"severity\\\": \\\"MEDIUM\\\", \\\"reason\\\": \\\"«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera.\\\"}], \\\"correctProblem\\\": null, \\\"rationale\\\": \\\"«in» también vale, aunque con window lo más esperado es «at».\\\"}\"",
+      "inputs": "musica",
+      "raw": "\"{\\\"correctIsValid\\\": true, \\\"validAlternatives\\\": [{\\\"label\\\": \\\"some\\\", \\\"severity\\\": \\\"MEDIUM\\\", \\\"reason\\\": \\\"«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.\\\"}], \\\"correctProblem\\\": null, \\\"rationale\\\": \\\"«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».\\\"}\"",
       "expect": {
         "route": "passed",
         "canonical": {
           "correctIsValid": true,
           "validAlternatives": [
             {
-              "label": "in",
+              "label": "some",
               "severity": "MEDIUM",
-              "reason": "«There's a cat in the window.» también es correcta: el gato en el marco, visto desde afuera."
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
             }
           ],
           "correctProblem": null,
-          "rationale": "«in» también vale, aunque con window lo más esperado es «at»."
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
         }
       }
     }

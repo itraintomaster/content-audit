@@ -5,6 +5,36 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Una forma que falta de una clase que el corrector en producción ya iguala (contracción,
+  negación de be, grafía de la lista, until/till) y que igual rechaza es un límite del corrector: se arregla en el corrector y
+  no en el curso, y el hallazgo nunca propone «|». Nombra la regla que le falta, preguntándole al propio corrector: «'s»/«'d»
+  ambiguo (lo deja como está porque no sabe si es is o has, had o would: tiene que leerlo con la forma larga de la respuesta
+  aceptada), falta un participio (lee «'d» como would porque no conoce «overslept») o la regla de till toma «there» como
+  sujeto. Resolución sólo ordena (RANK_ONLY): de las tres que existen es la única que no cambia el ejercicio, y por
+  F-HALL-R004 inv. 2 no baja el puntaje, así que el plan no hace de ella una tarea de contenido; regla y mesa sí cuentan
+  como error. La ficha suma RANK_ONLY a sus resoluciones. Gravedad, la de R005: media en las 12 de hoy. La prueba de «has
+  trained» espera el texto del corrector. Cuando el corrector instalado no iguala la clase (sólo con la tabla vieja) sigue
+  siendo regla, «la iguala el corrector nuevo», como dice R005.
+  why: brief 101, José 30/9: las equivalencias van como regla del corrector y el «|» queda para respuestas de verdad
+  distintas; lo decidió el coordinador el 1/10 (R005 está bien y no se toca; el código y la prueba de «has trained» lo
+  contradecían). Las tres reglas del corrector de Go las propone el coordinador en ittm.
+
+2026-10-01 — developer (impl A) — Una sola copia de la tabla del corrector en producción (formas-equivalentes.json). La
+  vacía del corrector viejo se llama formas-equivalentes-corrector-viejo.json y es dato de prueba: la columna «hoy» de los
+  casos de oro y las pruebas que necesitan un corrector que no iguala ninguna clase para ver las reglas del analizador
+  (oldCorrector()); el resto de las pruebas usa la de producción (productionCorrector()). content-audit no la lee al
+  analizar.
+
+2026-09-30 — developer (impl A) — El generador no inventa formas que nadie escribe: un sujeto sustantivo sólo va de contraída a larga
+  («Peter's reading» → «Peter is reading», nunca «The car's»), have como verbo principal no se contrae («I have a car»), al final
+  de la oración tampoco («than he is.»), «'s» ante been/got/gotten es has y ante un participio adjetivo sin objeto es is («It's
+  crowded»), y «'d» ante un participio igual a la base («She'd run») se saltea porque no se sabe si es had o would.
+  why: cada forma falsa sería un hallazgo que manda a agregar con «|» algo que el alumno no escribe.
+
+2026-09-30 — developer (impl A) — La copia de producción de la tabla (formas-equivalentes.json) queda vacía, con la versión
+  «corrector de hoy»; la del corrector nuevo va al lado (formas-equivalentes-corrector-nuevo.json) sólo para medir y para las
+  pruebas. La resolución de cada forma que falta sale de preguntarle al corrector instalado si ya iguala su clase.
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): CorrectorMatcher.accepts recibe GapContext (antes y después del hueco, sin pistas) y suma sameAnswer(GapContext, …) para opciones de un hueco; modelo GapContext en correctormatch (pendiente del qa-tester de A).
 
 2026-09-30 — qa-tester — F-RESPC-J001 en audit-domain, paquete answercompleteness: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.

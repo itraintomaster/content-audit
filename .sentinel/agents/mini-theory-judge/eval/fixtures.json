@@ -23,54 +23,54 @@
     "que la miniteoría pida una forma",
     "Cada miniteoría de `miniTheories` aparece al menos una vez"
   ],
-  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (M o E fuera de las entradas, una M sin juzgar, la gravedad que no sale del problema, un ejercicio que contradice una M que no muestra), y que emit produzca miniTheoryVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (cefrLevel, topic, instructions, miniTheories, exercises) de los ejemplos de F-MINIT-R002.",
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (M o E fuera de las entradas, una M sin juzgar, la gravedad que no sale del problema, un ejercicio que contradice una M que no muestra), y que emit produzca miniTheoryVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (cefrLevel, topic, instructions, miniTheories, exercises), con las líneas que arma DefaultMiniTheorySubjectBuilder: «Adverbios de modo», un tema del curso fuera del examen, y dos temas inventados que no están en el curso, «La hora» y «Números ordinales».",
   "inputs": {
-    "contraste": {
+    "adverbios": {
       "cefrLevel": "A1",
-      "topic": "Contraste inicial",
-      "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'.",
-      "miniTheories": "M1: $Be$, $want$, $enjoy$ y otros verbos de estado no llevan continuo: siempre simple. (ejercicios: E1, E3)\nM2: Con $now$ o $at the moment$ va el continuo: $She is reading now$. (ejercicios: E2)",
-      "exercises": "E1: You ___ (enjoy) coffee. (present simple) → enjoy\nE2: She ___ (read) a book now. → is reading | 's reading\nE3: We ___ (not / want) lunch. (present simple) → don't want | do not want"
+      "topic": "Adverbios de modo",
+      "instructions": "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
+      "miniTheories": "M1: Termina en $-y$: pasa a $-ily$. $happy$ → $happily$. (ejercicios: E1, E3)\nM2: $hard$ y $early$ tampoco cambian. (ejercicios: E2)",
+      "exercises": "E1: The dogs moved. (noisy) ___ → The dogs moved noisily.\nE2: He studied. (hard) ___ → He studied hard.\nE3: She did the problem. (easy) ___ → She did the problem easily."
     },
-    "sujeto-objeto": {
+    "la-hora": {
       "cefrLevel": "A1",
-      "topic": "Sujeto u objeto",
-      "instructions": "Elige el pronombre correcto.",
-      "miniTheories": "M1: Antes del verbo va $she$. Después del verbo o de una preposición va $her$. (ejercicios: E1, E2, E3)\nM2: Antes del verbo va $they$. Después del verbo o de una preposición, $them$. (ejercicios: E4)",
-      "exercises": "E1: I saw she / her ___ yesterday. → her\nE2: Dogs looked at he / him ___ . → him\nE3: Would you like to call he / him ___ tomorrow? → him\nE4: They / Them ___ live here. → They"
+      "topic": "La hora",
+      "instructions": "Escribe la hora en palabras.",
+      "miniTheories": "M1: Para la media hora va $half past$: $half past six$ es 6:30. (ejercicios: E1, E2, E3)\nM2: Con la hora en punto va $o'clock$: $five o'clock$. (ejercicios: E4)",
+      "exercises": "E1: The film starts at ___ (8:30). → half past eight\nE2: The bus leaves at ___ (7:15). → a quarter past seven | quarter past seven\nE3: I get up at ___ (6:45). → a quarter to seven | quarter to seven\nE4: The library opens at ___ (10:00). → ten o'clock"
     },
-    "paises": {
-      "cefrLevel": "A2",
-      "topic": "Países",
-      "instructions": "Elige 'the' o usa – si no se necesita ningún artículo.",
-      "miniTheories": "M1: Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$. (ejercicios: E1, E2)",
-      "exercises": "E1: Have you ever visited ___ Czech Republic? → opciones: -, the (correcta)\nE2: ___ France is beautiful. → opciones: - (correcta), the"
+    "ordinales": {
+      "cefrLevel": "A1",
+      "topic": "Números ordinales",
+      "instructions": "Escribe el ordinal del número entre paréntesis.",
+      "miniTheories": "M1: Los ordinales se forman siempre con $-th$ ($fourth$, $sixth$, $tenth$). (ejercicios: E1, E2)",
+      "exercises": "E1: Tom came ___ (three) in the competition. → third\nE2: It's his ___ (six) birthday. → sixth"
     },
     "parentesis-en-el-texto": {
-      "cefrLevel": "A2",
-      "topic": "Ortografía del participio",
-      "instructions": "Forma oraciones en Present Perfect.",
-      "miniTheories": "M1: Vocal + consonante al final: se dobla la consonante y va $-ed$ (plan → planned). (ejercicios: E1, E2)\nM2: Con $-e$ final se agrega sólo $-d$ (live → lived). (ejercicios: E3)",
-      "exercises": "E1: They ___ (plan) the trip. → have planned | 've planned\nE2: She ___ (open) the door. → has opened | 's opened\nE3: We ___ (live) here for years. → have lived | 've lived"
+      "cefrLevel": "A1",
+      "topic": "Números ordinales",
+      "instructions": "Escribe el ordinal del número entre paréntesis.",
+      "miniTheories": "M1: Los ordinales se forman siempre con $-th$ ($fourth$, $sixth$, $tenth$). (ejercicios: E1, E2)\nM2: $first$, $second$ y $third$ son irregulares: no llevan $-th$. (ejercicios: E3)",
+      "exercises": "E1: Today is the ___ (ten) of May. → tenth\nE2: Tom came ___ (three) in the competition. → third\nE3: It's my ___ (one) day at school. → first"
     },
     "sin-miniteorias": {
       "cefrLevel": "A1",
       "topic": "Repaso",
       "instructions": "Completa las oraciones.",
       "miniTheories": "",
-      "exercises": "E1: She ___ (be) happy. → is | 's"
+      "exercises": "E1: They ate ___ rice. → opciones: any, some (correcta)"
     },
     "sin-entradas-numeradas": {
       "cefrLevel": "A1",
-      "topic": "Contraste inicial",
-      "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'."
+      "topic": "Adverbios de modo",
+      "instructions": "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración."
     }
   },
   "cases": [
     {
-      "caseId": "contraste-enjoy-falsa",
-      "note": "«Contraste inicial»: la de enjoy es falsa (F-MINIT-R002); M2 está bien.",
-      "inputs": "contraste",
+      "caseId": "adverbios-early-falsa",
+      "note": "«Adverbios de modo»: la de -y → -ily es falsa por early (F-MINIT-R002); M2 está bien.",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -78,12 +78,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -97,7 +97,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "passed",
@@ -105,9 +105,9 @@
       }
     },
     {
-      "caseId": "sujeto-objeto-no-cubre",
-      "note": "La de she/her es cierta pero la muestran ejercicios de he/him: sólo esos, LOW.",
-      "inputs": "sujeto-objeto",
+      "caseId": "la-hora-no-cubre",
+      "note": "La de half past es cierta pero la muestran ejercicios de quarter past y quarter to: sólo esos, LOW.",
+      "inputs": "la-hora",
       "verdict": {
         "assessments": [
           {
@@ -115,12 +115,12 @@
             "holds": false,
             "problem": "NOT_COVERING_EXERCISE",
             "severity": "LOW",
-            "counterexample": "Dogs looked at him.",
+            "counterexample": "The bus leaves at a quarter past seven.",
             "exercises": [
               2,
               3
             ],
-            "explanation": "Habla de she/her y estos ejercicios son de he/him."
+            "explanation": "Habla de half past, y estos ejercicios son de quarter past y quarter to."
           },
           {
             "miniTheory": 2,
@@ -134,7 +134,7 @@
             "explanation": "Cierta y cubre su ejercicio."
           }
         ],
-        "rationale": "M1 no cubre los ejercicios de he/him."
+        "rationale": "M1 no cubre los ejercicios de quarter past y quarter to."
       },
       "expect": {
         "route": "passed",
@@ -142,9 +142,9 @@
       }
     },
     {
-      "caseId": "paises-contradicha",
-      "note": "«Have you ever visited ___ Czech Republic?» contradice «sólo los plurales o uniones».",
-      "inputs": "paises",
+      "caseId": "ordinales-contradicha",
+      "note": "«Tom came ___ (three) in the competition.» contradice «siempre con -th».",
+      "inputs": "ordinales",
       "verdict": {
         "assessments": [
           {
@@ -152,11 +152,11 @@
             "holds": false,
             "problem": "CONTRADICTED_BY_EXERCISE",
             "severity": "HIGH",
-            "counterexample": "Have you ever visited the Czech Republic?",
+            "counterexample": "Tom came third in the competition.",
             "exercises": [
               1
             ],
-            "explanation": "«the Czech Republic» no es plural ni unión y lleva the."
+            "explanation": "«third» no termina en -th, y la regla dice siempre."
           }
         ],
         "rationale": "El ejercicio E1 contradice la regla."
@@ -169,7 +169,7 @@
     {
       "caseId": "exagerada-y-contradicha",
       "note": "Una entrada por problema: una M puede exagerar y además tener un ejercicio que la contradice.",
-      "inputs": "paises",
+      "inputs": "ordinales",
       "verdict": {
         "assessments": [
           {
@@ -177,23 +177,23 @@
             "holds": false,
             "problem": "OVERSTATED",
             "severity": "MEDIUM",
-            "counterexample": "the Netherlands",
+            "counterexample": "It's my first day at school.",
             "exercises": [
               1,
               2
             ],
-            "explanation": "«Sólo» exagera: hay países con the que no son plurales ni uniones."
+            "explanation": "«Siempre» exagera: first, second y third no llevan -th."
           },
           {
             "miniTheory": 1,
             "holds": false,
             "problem": "CONTRADICTED_BY_EXERCISE",
             "severity": "HIGH",
-            "counterexample": "Have you ever visited the Czech Republic?",
+            "counterexample": "Tom came third in the competition.",
             "exercises": [
               1
             ],
-            "explanation": "E1 lleva the sin ser plural ni unión."
+            "explanation": "E1 no lleva -th: third."
           }
         ],
         "rationale": "M1 exagera y E1 la contradice."
@@ -206,7 +206,7 @@
     {
       "caseId": "todas-ciertas",
       "note": "Una entrada holds true por cada M.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -243,7 +243,7 @@
     {
       "caseId": "referencias-como-en-las-entradas",
       "note": "«M1» y «E3» como en las entradas se canonicalizan a números; exercises sin repetir y en orden.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -251,13 +251,13 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               "E3",
               "E1",
               1
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -271,7 +271,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "passed",
@@ -282,12 +282,12 @@
               "holds": false,
               "problem": "FALSE_RULE",
               "severity": "HIGH",
-              "counterexample": "Are you enjoying the party?",
+              "counterexample": "She gets up early.",
               "exercises": [
                 1,
                 3
               ],
-              "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+              "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
             },
             {
               "miniTheory": 2,
@@ -301,14 +301,14 @@
               "explanation": "La regla es cierta y su ejercicio la cumple."
             }
           ],
-          "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+          "rationale": "M1 es falsa por «early»; M2 está bien."
         }
       }
     },
     {
       "caseId": "enums-en-minusculas",
       "note": "Mayúsculas de los enums y espacios de los textos se canonicalizan.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -316,12 +316,12 @@
             "holds": false,
             "problem": "false_rule",
             "severity": "high",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "  Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común.\n"
+            "explanation": "  Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común.\n"
           },
           {
             "miniTheory": 2,
@@ -335,7 +335,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "passed",
@@ -346,12 +346,12 @@
               "holds": false,
               "problem": "FALSE_RULE",
               "severity": "HIGH",
-              "counterexample": "Are you enjoying the party?",
+              "counterexample": "She gets up early.",
               "exercises": [
                 1,
                 3
               ],
-              "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+              "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
             },
             {
               "miniTheory": 2,
@@ -365,7 +365,7 @@
               "explanation": "La regla es cierta y su ejercicio la cumple."
             }
           ],
-          "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+          "rationale": "M1 es falsa por «early»; M2 está bien."
         }
       }
     },
@@ -380,11 +380,11 @@
             "holds": false,
             "problem": "CONTRADICTED_BY_EXERCISE",
             "severity": "HIGH",
-            "counterexample": "She has opened the door.",
+            "counterexample": "Tom came third in the competition.",
             "exercises": [
               2
             ],
-            "explanation": "opened no dobla la n aunque termina en vocal + consonante."
+            "explanation": "«third» no lleva -th aunque la regla dice siempre."
           },
           {
             "miniTheory": 2,
@@ -416,7 +416,7 @@
             "holds": false,
             "problem": "CONTRADICTED_BY_EXERCISE",
             "severity": "HIGH",
-            "counterexample": "We have lived here.",
+            "counterexample": "It's my first day at school.",
             "exercises": [
               3
             ],
@@ -468,12 +468,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -487,7 +487,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "passed",
@@ -497,7 +497,7 @@
     {
       "caseId": "miniteoria-que-no-esta",
       "note": "miniTheory tiene que ser una M de las entradas; el esquema no lo sabe.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -505,12 +505,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -574,7 +574,7 @@
     {
       "caseId": "ejercicio-que-no-esta",
       "note": "exercises son E de las entradas.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -582,12 +582,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               9
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -601,7 +601,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -614,7 +614,7 @@
     {
       "caseId": "falta-una-miniteoria",
       "note": "Cada M del tema aparece al menos una vez (F-MINIT-R002: por cada miniteoría).",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -622,12 +622,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           }
         ],
         "rationale": "Sólo M1."
@@ -643,7 +643,7 @@
     {
       "caseId": "cierta-con-problema",
       "note": "Con holds true, problem va null.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -651,12 +651,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -670,7 +670,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -683,7 +683,7 @@
     {
       "caseId": "cierta-con-contraejemplo",
       "note": "Con holds true, counterexample va null.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -691,26 +691,26 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
             "holds": true,
             "problem": null,
             "severity": null,
-            "counterexample": "She is reading now.",
+            "counterexample": "He studied hard.",
             "exercises": [
               2
             ],
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -723,7 +723,7 @@
     {
       "caseId": "falsa-sin-problema",
       "note": "Con holds false, problem dice qué tiene.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -731,12 +731,12 @@
             "holds": false,
             "problem": null,
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -750,7 +750,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -763,7 +763,7 @@
     {
       "caseId": "gravedad-que-no-corresponde",
       "note": "La gravedad sale del problema (F-MINIT-R004): FALSE_RULE es HIGH.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -771,12 +771,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "MEDIUM",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -790,7 +790,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -803,7 +803,7 @@
     {
       "caseId": "bloqueante",
       "note": "mini-theory nunca es BLOCKING: la miniteoría se ve después de contestar.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -811,12 +811,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "BLOCKING",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -830,7 +830,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -843,7 +843,7 @@
     {
       "caseId": "sin-contraejemplo",
       "note": "Con holds false, el contraejemplo es obligatorio.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -856,7 +856,7 @@
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -870,7 +870,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -883,7 +883,7 @@
     {
       "caseId": "falsa-sin-ejercicios",
       "note": "Con holds false, exercises nombra los involucrados.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -891,9 +891,9 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -907,7 +907,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -920,7 +920,7 @@
     {
       "caseId": "contradicha-donde-no-se-muestra",
       "note": "CONTRADICTED_BY_EXERCISE sólo con ejercicios que muestran la M (F-MINIT-R003).",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -928,11 +928,11 @@
             "holds": false,
             "problem": "CONTRADICTED_BY_EXERCISE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               2
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -946,7 +946,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -959,7 +959,7 @@
     {
       "caseId": "problema-repetido",
       "note": "Una entrada por M y problema, con todos sus ejercicios.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -967,22 +967,22 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 1,
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -996,7 +996,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -1009,7 +1009,7 @@
     {
       "caseId": "falsa-y-exagerada",
       "note": "Una regla no es FALSE_RULE y OVERSTATED a la vez.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -1017,24 +1017,24 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 1,
             "holds": false,
             "problem": "OVERSTATED",
             "severity": "MEDIUM",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -1048,7 +1048,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -1061,7 +1061,7 @@
     {
       "caseId": "cierta-y-con-problema",
       "note": "Si es cierta va una sola entrada.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -1069,12 +1069,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -1092,14 +1092,14 @@
             "holds": false,
             "problem": "NOT_COVERING_EXERCISE",
             "severity": "LOW",
-            "counterexample": "She reads.",
+            "counterexample": "She runs fast.",
             "exercises": [
               2
             ],
             "explanation": "Una línea que dice qué tiene la regla."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -1112,7 +1112,7 @@
     {
       "caseId": "referencia-booleana",
       "note": "true no es un número de miniteoría.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -1120,12 +1120,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -1139,7 +1139,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -1152,7 +1152,7 @@
     {
       "caseId": "exercises-no-es-array",
       "note": "exercises es un array de números.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -1160,9 +1160,9 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": "E1, E3",
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -1176,7 +1176,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -1189,7 +1189,7 @@
     {
       "caseId": "evaluacion-con-clave-de-mas",
       "note": "Cada evaluación es un objeto cerrado.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -1197,12 +1197,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común.",
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común.",
             "confidence": 0.9
           },
           {
@@ -1217,7 +1217,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "expect": {
         "route": "failed",
@@ -1230,7 +1230,7 @@
     {
       "caseId": "falta-rationale",
       "note": "Falta una clave del objeto cerrado.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -1238,12 +1238,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -1269,7 +1269,7 @@
     {
       "caseId": "run-dir-por-state-json",
       "note": "Sin run_dir en las entradas: project_root + el run_id (UUID) del state.json, como lo proyecta el CLI.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -1277,12 +1277,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -1296,7 +1296,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "resolution": "state.json",
       "expect": {
@@ -1307,7 +1307,7 @@
     {
       "caseId": "run-id-ambiguo",
       "note": "Dos state.json con el mismo runId: el gate no adivina; emit sale conservador.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -1315,12 +1315,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -1334,7 +1334,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "resolution": "ambiguous",
       "expect": {
@@ -1347,7 +1347,7 @@
     {
       "caseId": "run-id-inseguro",
       "note": "Un run_id que escaparía del directorio de runs se rechaza.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -1355,12 +1355,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -1374,7 +1374,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "resolution": "unsafe-run-id",
       "expect": {
@@ -1387,7 +1387,7 @@
     {
       "caseId": "sin-run-dir",
       "note": "Sin run_dir ni project_root no hay dónde leer: falla el gate y emit da outputUnusable.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -1395,12 +1395,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -1414,7 +1414,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "resolution": "none",
       "expect": {
@@ -1427,7 +1427,7 @@
     {
       "caseId": "sin-salida-de-evaluate",
       "note": "evaluate no dejó verdicts.json.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "expect": {
         "route": "failed",
         "errorContains": [
@@ -1438,7 +1438,7 @@
     {
       "caseId": "validated-viejo-se-borra",
       "note": "Un validated-verdict.json de un intento anterior no sobrevive a un gate que falla.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "raw": "no hay veredicto",
       "staleValidated": true,
       "expect": {
@@ -1451,7 +1451,7 @@
     {
       "caseId": "no-es-json",
       "note": "Prosa sin objeto JSON.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "raw": "No puedo juzgar este ejercicio.",
       "expect": {
         "route": "failed",
@@ -1463,7 +1463,7 @@
     {
       "caseId": "lista-en-vez-de-objeto",
       "note": "Un array no es el veredicto.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "raw": "[1, 2]",
       "expect": {
         "route": "failed",
@@ -1475,7 +1475,7 @@
     {
       "caseId": "output-unusable-del-modelo",
       "note": "{\"outputUnusable\": true} lo produce emit, nunca el modelo: el gate lo rechaza.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "outputUnusable": true
       },
@@ -1489,7 +1489,7 @@
     {
       "caseId": "validated-corrupto-antes-de-emit",
       "note": "Si validated-verdict.json no se puede leer, emit no inventa: outputUnusable.",
-      "inputs": "contraste",
+      "inputs": "adverbios",
       "verdict": {
         "assessments": [
           {
@@ -1497,12 +1497,12 @@
             "holds": false,
             "problem": "FALSE_RULE",
             "severity": "HIGH",
-            "counterexample": "Are you enjoying the party?",
+            "counterexample": "She gets up early.",
             "exercises": [
               1,
               3
             ],
-            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
           },
           {
             "miniTheory": 2,
@@ -1516,7 +1516,7 @@
             "explanation": "La regla es cierta y su ejercicio la cumple."
           }
         ],
-        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        "rationale": "M1 es falsa por «early»; M2 está bien."
       },
       "corruptValidated": true,
       "expect": {
@@ -1527,8 +1527,8 @@
     {
       "caseId": "fence-json",
       "note": "La salida en un fence ```json se acepta sin pagar otra consulta.",
-      "inputs": "contraste",
-      "raw": "```json\n{\n  \"assessments\": [\n    {\n      \"miniTheory\": 1,\n      \"holds\": false,\n      \"problem\": \"FALSE_RULE\",\n      \"severity\": \"HIGH\",\n      \"counterexample\": \"Are you enjoying the party?\",\n      \"exercises\": [\n        1,\n        3\n      ],\n      \"explanation\": \"Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común.\"\n    },\n    {\n      \"miniTheory\": 2,\n      \"holds\": true,\n      \"problem\": null,\n      \"severity\": null,\n      \"counterexample\": null,\n      \"exercises\": [\n        2\n      ],\n      \"explanation\": \"La regla es cierta y su ejercicio la cumple.\"\n    }\n  ],\n  \"rationale\": \"M1 es falsa por «enjoy»; M2 está bien.\"\n}\n```",
+      "inputs": "adverbios",
+      "raw": "```json\n{\n  \"assessments\": [\n    {\n      \"miniTheory\": 1,\n      \"holds\": false,\n      \"problem\": \"FALSE_RULE\",\n      \"severity\": \"HIGH\",\n      \"counterexample\": \"She gets up early.\",\n      \"exercises\": [\n        1,\n        3\n      ],\n      \"explanation\": \"Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común.\"\n    },\n    {\n      \"miniTheory\": 2,\n      \"holds\": true,\n      \"problem\": null,\n      \"severity\": null,\n      \"counterexample\": null,\n      \"exercises\": [\n        2\n      ],\n      \"explanation\": \"La regla es cierta y su ejercicio la cumple.\"\n    }\n  ],\n  \"rationale\": \"M1 es falsa por «early»; M2 está bien.\"\n}\n```",
       "expect": {
         "route": "passed",
         "canonical": {
@@ -1538,12 +1538,12 @@
               "holds": false,
               "problem": "FALSE_RULE",
               "severity": "HIGH",
-              "counterexample": "Are you enjoying the party?",
+              "counterexample": "She gets up early.",
               "exercises": [
                 1,
                 3
               ],
-              "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+              "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
             },
             {
               "miniTheory": 2,
@@ -1557,15 +1557,15 @@
               "explanation": "La regla es cierta y su ejercicio la cumple."
             }
           ],
-          "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+          "rationale": "M1 es falsa por «early»; M2 está bien."
         }
       }
     },
     {
       "caseId": "prosa-alrededor",
       "note": "Prosa antes y una etiqueta después: se toma el objeto.",
-      "inputs": "contraste",
-      "raw": "Este es mi veredicto:\n{\"assessments\": [{\"miniTheory\": 1, \"holds\": false, \"problem\": \"FALSE_RULE\", \"severity\": \"HIGH\", \"counterexample\": \"Are you enjoying the party?\", \"exercises\": [1, 3], \"explanation\": \"Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común.\"}, {\"miniTheory\": 2, \"holds\": true, \"problem\": null, \"severity\": null, \"counterexample\": null, \"exercises\": [2], \"explanation\": \"La regla es cierta y su ejercicio la cumple.\"}], \"rationale\": \"M1 es falsa por «enjoy»; M2 está bien.\"}\nLABEL: done",
+      "inputs": "adverbios",
+      "raw": "Este es mi veredicto:\n{\"assessments\": [{\"miniTheory\": 1, \"holds\": false, \"problem\": \"FALSE_RULE\", \"severity\": \"HIGH\", \"counterexample\": \"She gets up early.\", \"exercises\": [1, 3], \"explanation\": \"Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común.\"}, {\"miniTheory\": 2, \"holds\": true, \"problem\": null, \"severity\": null, \"counterexample\": null, \"exercises\": [2], \"explanation\": \"La regla es cierta y su ejercicio la cumple.\"}], \"rationale\": \"M1 es falsa por «early»; M2 está bien.\"}\nLABEL: done",
       "expect": {
         "route": "passed",
         "canonical": {
@@ -1575,12 +1575,12 @@
               "holds": false,
               "problem": "FALSE_RULE",
               "severity": "HIGH",
-              "counterexample": "Are you enjoying the party?",
+              "counterexample": "She gets up early.",
               "exercises": [
                 1,
                 3
               ],
-              "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+              "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
             },
             {
               "miniTheory": 2,
@@ -1594,15 +1594,15 @@
               "explanation": "La regla es cierta y su ejercicio la cumple."
             }
           ],
-          "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+          "rationale": "M1 es falsa por «early»; M2 está bien."
         }
       }
     },
     {
       "caseId": "json-dentro-de-un-string",
       "note": "El objeto serializado dentro de un string JSON se desenvuelve.",
-      "inputs": "contraste",
-      "raw": "\"{\\\"assessments\\\": [{\\\"miniTheory\\\": 1, \\\"holds\\\": false, \\\"problem\\\": \\\"FALSE_RULE\\\", \\\"severity\\\": \\\"HIGH\\\", \\\"counterexample\\\": \\\"Are you enjoying the party?\\\", \\\"exercises\\\": [1, 3], \\\"explanation\\\": \\\"Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común.\\\"}, {\\\"miniTheory\\\": 2, \\\"holds\\\": true, \\\"problem\\\": null, \\\"severity\\\": null, \\\"counterexample\\\": null, \\\"exercises\\\": [2], \\\"explanation\\\": \\\"La regla es cierta y su ejercicio la cumple.\\\"}], \\\"rationale\\\": \\\"M1 es falsa por «enjoy»; M2 está bien.\\\"}\"",
+      "inputs": "adverbios",
+      "raw": "\"{\\\"assessments\\\": [{\\\"miniTheory\\\": 1, \\\"holds\\\": false, \\\"problem\\\": \\\"FALSE_RULE\\\", \\\"severity\\\": \\\"HIGH\\\", \\\"counterexample\\\": \\\"She gets up early.\\\", \\\"exercises\\\": [1, 3], \\\"explanation\\\": \\\"Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común.\\\"}, {\\\"miniTheory\\\": 2, \\\"holds\\\": true, \\\"problem\\\": null, \\\"severity\\\": null, \\\"counterexample\\\": null, \\\"exercises\\\": [2], \\\"explanation\\\": \\\"La regla es cierta y su ejercicio la cumple.\\\"}], \\\"rationale\\\": \\\"M1 es falsa por «early»; M2 está bien.\\\"}\"",
       "expect": {
         "route": "passed",
         "canonical": {
@@ -1612,12 +1612,12 @@
               "holds": false,
               "problem": "FALSE_RULE",
               "severity": "HIGH",
-              "counterexample": "Are you enjoying the party?",
+              "counterexample": "She gets up early.",
               "exercises": [
                 1,
                 3
               ],
-              "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+              "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
             },
             {
               "miniTheory": 2,
@@ -1631,7 +1631,7 @@
               "explanation": "La regla es cierta y su ejercicio la cumple."
             }
           ],
-          "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+          "rationale": "M1 es falsa por «early»; M2 está bien."
         }
       }
     }

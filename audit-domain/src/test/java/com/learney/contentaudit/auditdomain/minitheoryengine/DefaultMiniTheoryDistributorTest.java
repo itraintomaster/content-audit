@@ -655,4 +655,12 @@ public class DefaultMiniTheoryDistributorTest {
             }
         };
     }
+
+    @Test
+    @DisplayName("should write the finished sentence of each exercise in its evidence with the student view renderer it receives")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R003")
+    public void shouldWriteTheFinishedSentenceOfEachExerciseInItsEvidenceWithTheStudentViewRendererItReceives() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

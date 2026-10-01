@@ -785,4 +785,12 @@ public class SingleAnswerAnalyzerTest {
     private static SingleAnswerVerdict verdict(AlternativeAnswer... alternatives) {
         return new SingleAnswerVerdict(List.of(alternatives), "Lo que el alumno ve antes de contestar.");
     }
+
+    @Test
+    @DisplayName("should declare in its tally as many exercises as quizzes, in each state")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R001")
+    public void shouldDeclareInItsTallyAsManyExercisesAsQuizzesInEachState() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

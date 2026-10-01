@@ -97,6 +97,7 @@ The following models and interfaces are available from dependencies. You can use
 | kind | `EvaluationResolutionKind` |
 | payload | `String` |
 | evaluatorVersion | `String` |
+| failure | `EvaluationNotEmitted` |
 
 ### EvaluationCoverage (`record`)
 

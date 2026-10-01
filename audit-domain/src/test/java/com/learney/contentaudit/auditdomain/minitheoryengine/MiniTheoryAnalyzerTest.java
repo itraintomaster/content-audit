@@ -922,4 +922,20 @@ public class MiniTheoryAnalyzerTest {
         assertTrue(((QuizDiagnoses) exercise.getDiagnoses()).getMiniTheoryDiagnosis().isEmpty(),
                 id + " has no mini-theory diagnosis");
     }
+
+    @Test
+    @DisplayName("should count in its tally every exercise of each topic under the state of that topic, evaluated or not")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R001")
+    public void shouldCountInItsTallyEveryExerciseOfEachTopicUnderTheStateOfThatTopicEvaluatedOrNot() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare as exercises without evaluation exactly the exercises the report marks as not evaluated by mini-theory")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R001")
+    public void shouldDeclareAsExercisesWithoutEvaluationExactlyTheExercisesTheReportMarksAsNotEvaluatedByMinitheory() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -240,7 +240,7 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
         return new JudgeCoverageDiagnosis(opened.getJudgeName(), tally.getUnit(), tally.getReached(),
                 tally.getEvaluated(), tally.getNotEvaluated(), evaluators, opened.getStanding(), versions,
                 unavailableReason, cost,
-                tally.getUnmatchedDeclaredIds() != null ? new ArrayList<>(tally.getUnmatchedDeclaredIds()) : null);
+                tally.getUnmatchedDeclaredIds() != null ? new ArrayList<>(tally.getUnmatchedDeclaredIds()) : null, null);
     }
 
     /**

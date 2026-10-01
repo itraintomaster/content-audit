@@ -5,6 +5,34 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — R001 es la unión: un ejercicio sin pista tiene hallazgo si su grupo estructural O el
+  tema entero (todos los de hueco para escribir) llega a tres cuartos. Medido sobre el curso del 29/9:
+    (i) tipo estructural, lo de antes: 7 missing-hint; examen escribir 14 de 46, 9 de 15 anotados, 2 fuera del oro.
+    (ii) por modo, como el prototipo (el tema entero): 14; 20 de 46, 15 de 15, 3 fuera del oro.
+    (iii) unión: 14; 20 de 46, 15 de 15, 3 fuera del oro. En este curso marca lo mismo que (ii).
+  Las marcas que cambian entre variantes son 7, todas nuevas (ninguna se pierde), revisadas a mano: 6 reales (los huecos
+  sin pista de temas de transformaciones que llevan todas su pista: 2572, 2575 y 257d en Adverbios de frecuencia, 2589 y
+  2591 en Frecuencia: parte 2, 2e83 en Oraciones con than; el alumno no puede saber qué adverbio o qué adjetivo va) y 1
+  falsa (2596: «(100%)» anuncia always, y el lector lo tomaba por una nota; ahora es una pista descriptiva).
+  why: la unión anda como (ii) en la muestra del curso sin perder anotados, nunca pierde una marca del tipo estructural y
+  deja la prueba de El posesivo en verde (sus 20 transformaciones sin pista no llegan ni por tipo, 0 de 20, ni por tema,
+  20 de 40). El diagnóstico lleva los números del grupo que decidió y la evidencia lo dice («38 de 40 ejercicios del tema
+  la llevan», sin «del mismo tipo»). Con el porcentaje como pista: 13 missing-hint; examen 20 de 46, 15 de 15, 2 fuera.
+
+2026-09-30 — developer (impl A) — R001 cuenta por tipo estructural, como dice la regla y su prueba de El posesivo:
+  hueco dentro de la oración, o respuesta que es la oración entera (sin texto después del hueco y la respuesta de dos
+  palabras o más tras un enunciado vacío o cerrado; en REWRITE, también la respuesta que es una oración).
+  why: el prototipo del analista agrupaba por modo (REWRITE = oración entera) y así encontraba 6 anotados más (los huecos
+  sin pista de Adverbios de frecuencia, Frecuencia: parte 2 y 2e83); con el tipo literal no salen. Escalado al orquestador.
+2026-09-30 — developer (impl A) — La pista de un hueco: el paréntesis pegado (después o antes); si no, uno corto que
+  cierra el enunciado («(always)», «(brown / large)»); si no, las opciones con «/» junto al hueco («Our / ours ___»).
+  Paréntesis de 4 palabras o más sin «/» = pista descriptiva (cuenta para R001, no se compara); en oración entera, un
+  paréntesis cuyas palabras están en la oración de partida apunta a ella («(the fish)») y tampoco se compara.
+2026-09-30 — developer (impl A) — R002 inv. 2 (verbo sin anunciar) sólo cuando la respuesta no es una oración: en una
+  oración entera los verbos vienen de la oración que se reescribe (aplicado a todo daba 500 marcas falsas).
+2026-09-30 — developer (impl A) — Ids de las reglas de la ficha: missing-hint, hint-words, hint-subject, hint-negation;
+  la marca de la identidad es la palabra en minúscula (vacía en missing-hint).
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): sin cambios de estructura.
 
 2026-09-30 — qa-tester — F-PISTA-J001 en audit-domain, paquete hintcoherence: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.
