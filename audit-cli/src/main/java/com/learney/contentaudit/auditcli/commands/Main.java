@@ -529,8 +529,11 @@ class Main {
         // Hook C-13 (FEAT-JEXAM): the quiz-instruction judge opens its session through the judges
         // runtime -- the exam's brake and budget 0 without a request (F-JEXAM-R003, R010); the
         // candidates of revise-instructions keep the course's session factory and its 500 below.
+        // F-CALUM-R001: the judge reads the exercise as the student sees it, with the same render
+        // as the other four judges.
         AnalyzerProvider quizInstructionProvider = new DefaultQuizInstructionAnalyzerFactory(
-                quizInstructionJudge, quizInstructionVerdictReader, quizInstructionConfig, judgeRuntime);
+                quizInstructionJudge, quizInstructionVerdictReader, quizInstructionConfig, judgeRuntime,
+                studentViewRenderer);
 
         // ----------------------------------------------------------------
         // Step 4b'': FEAT-RONDA1 -- what the analyzers of round 1 need (hooks A-06, C-14, C-16,
@@ -959,7 +962,7 @@ class Main {
         // already wired for the audit's own quiz-instruction analyzer (Step 4b above), so
         // the verdict this checker produces or reuses is exactly what the next audit would.
         QuizInstructionComplianceChecker quizInstructionComplianceChecker =
-                new DefaultQuizInstructionComplianceCheckerFactory().create(
+                new DefaultQuizInstructionComplianceCheckerFactory(studentViewRenderer).create(
                         evaluationSessionFactory, quizInstructionJudge, quizInstructionVerdictReader,
                         new EvaluationBudget(quizInstructionConfig.getDefaultMaxNewEvaluations()));
 

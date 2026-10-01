@@ -7,6 +7,8 @@ import com.learney.contentaudit.auditdomain.localtools.LocalToolCard;
 import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -226,7 +228,7 @@ public class DefaultAnalyzerCatalogTest {
                 new LemmaAbsenceAnalyzerProvider(evp, absence,
                         new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), absence)),
                 new LemmaCountAnalyzerProvider(evp, count),
-                new DefaultQuizInstructionAnalyzerFactory(null, null, Mockito.mock(QuizInstructionConfig.class), null));
+                new DefaultQuizInstructionAnalyzerFactory(null, null, Mockito.mock(QuizInstructionConfig.class), null, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())));
     }
 
     /** A complete card for an analyzer that does not exist yet, evaluating the quiz. */

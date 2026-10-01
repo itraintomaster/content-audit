@@ -1,5 +1,9 @@
 package com.learney.contentaudit.auditapplication;
 
+import com.learney.contentaudit.auditdomain.studentview.StudentOptionView;
+import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -132,8 +136,8 @@ public class DefaultJudgeExamServiceTest {
         service.take(new JudgeExamRequest(QUIZ_INSTRUCTION, PHOTO, Set.of(VERDURAS), 10, null));
 
         assertEquals(1, bench.judge.asked.size());
-        String judged = bench.judge.contents.get(0).get("quiz");
-        assertTrue(judged.contains("CLOZE:____:love|"), "R001: the verduras as they are in the photo: " + judged);
+        String judged = bench.judge.contents.get(0).get("acceptedAnswers");
+        assertEquals("Hueco 1: love", judged, "R001: the verduras as they are in the photo: " + judged);
         assertFalse(judged.contains("like"), "R001: never as the live course has them now: " + judged);
     }
 
@@ -320,7 +324,7 @@ public class DefaultJudgeExamServiceTest {
                 "R009: one verdict per exercise of the file");
         assertTrue(taken.getVerdicts().stream().noneMatch(v -> v.getOutcome() == JudgeExamOutcome.NOT_JUDGED),
                 "R009: CLOZE and multiple choice alike");
-        assertTrue(bench.judge.contents.stream().anyMatch(c -> c.get("quiz").contains("MULTIPLE_CHOICE:")),
+        assertTrue(bench.judge.contents.stream().anyMatch(c -> c.get("options").contains("(correcta)")),
                 "R009: the multiple choice is read with its options, as on the course");
         assertEquals(JudgeExamOutcome.FAILS, taken.getVerdicts().get(2).getOutcome());
         assertEquals(List.of("instruction-breach"), taken.getVerdicts().get(2).getRules());
@@ -377,7 +381,7 @@ public class DefaultJudgeExamServiceTest {
                     : new QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR, "Incumple la consigna",
                             List.of(new InstructionViolation("CALCO", "Natural", "the moment", "calco")), List.of());
             catalog = new DefaultAnalyzerCatalog(List.of(new DefaultQuizInstructionAnalyzerFactory(judge, reader,
-                    new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime)));
+                    new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()))));
         }
 
         DefaultAuditRunner runner() {
@@ -397,16 +401,27 @@ public class DefaultJudgeExamServiceTest {
                     runtime);
         }
 
-        /** What the consigna judge reads for a quiz of the photo, key by key, as it read it in August. */
+        /** What the consigna judge reads for a quiz of the photo, key by key: the exercise as the student sees it. */
         Map<String, String> contentOf(String quizId) {
             AuditableQuiz quiz = photo.getMilestones().get(0).getTopics().get(0).getKnowledge().get(0).getQuizzes()
                     .stream().filter(q -> q.getId().equals(quizId)).findFirst().orElseThrow();
+            QuizStudentView view = new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()).render(quiz);
             Map<String, String> content = new LinkedHashMap<>();
             content.put("cefrLevel", "A1");
             content.put("topic", "Present Simple");
             content.put("title", "Mezcla");
             content.put("instructions", "Completa la oración.");
-            content.put("quiz", serialize(quiz));
+            content.put("exercise", view.getStatement());
+            List<String> gaps = new ArrayList<>();
+            for (int i = 0; i < view.getGaps().size(); i++) {
+                gaps.add("Hueco " + (i + 1) + ": " + String.join(" | ", view.getGaps().get(i).getAcceptedAnswers()));
+            }
+            content.put("acceptedAnswers", String.join("\n", gaps));
+            List<String> options = new ArrayList<>();
+            for (StudentOptionView option : view.getOptions()) {
+                options.add("- " + option.getLabel() + (option.isCorrect() ? " (correcta)" : ""));
+            }
+            content.put("options", String.join("\n", options));
             return content;
         }
 

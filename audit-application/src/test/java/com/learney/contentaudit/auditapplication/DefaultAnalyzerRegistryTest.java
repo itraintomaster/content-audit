@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditapplication;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.CocaBucketsConfig;
 import com.learney.contentaudit.auditdomain.KnowledgeInstructionsLengthAnalyzerProvider;
@@ -45,7 +47,7 @@ public class DefaultAnalyzerRegistryTest {
                 new LemmaRecurrenceAnalyzerProvider(Mockito.mock(LemmaRecurrenceConfig.class)),
                 new LemmaAbsenceAnalyzerProvider(null, Mockito.mock(LemmaAbsenceConfig.class), null),
                 new LemmaCountAnalyzerProvider(null, Mockito.mock(LemmaCountConfig.class)),
-                new DefaultQuizInstructionAnalyzerFactory(null, null, Mockito.mock(QuizInstructionConfig.class), null))));
+                new DefaultQuizInstructionAnalyzerFactory(null, null, Mockito.mock(QuizInstructionConfig.class), null, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())))));
 
         List<String> names = registry.listAnalyzers().stream().map(AnalyzerDescriptor::getName).toList();
 
