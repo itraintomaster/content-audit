@@ -160,8 +160,9 @@ public class FNivfrJ001JourneyTest {
             assertEquals(before.get(Base299.key(node)), node.getNumbers().getVocabularyScore(), 1e-12,
                     "R006: the vocabulary of " + Base299.key(node));
         }
-        assertEquals("73,9 %", GetCmd.scoreText(analysis.report().getRoot().getNumbers().getVocabularyScore()),
-                "R006: 73,9 % in the course");
+        // rama ronda1/recur-posiciones (opción B): la recurrencia da 0,09 y el vocabulario del curso, 74,1 %
+        assertEquals("74,1 %", GetCmd.scoreText(analysis.report().getRoot().getNumbers().getVocabularyScore()),
+                "R006: 74,1 % in the course with option B");
         FileSystemRefinementPlanStore plans = new FileSystemRefinementPlanStore(analysis.workdir());
         PlanCmd plan = new PlanCmd(analysis.store(), new DefaultRefinerEngine(analysis.catalog()), plans,
                 mock(EphemeralPlanRenderer.class));

@@ -1084,6 +1084,11 @@ public class DefaultAuditRunnerTest {
                     "the same node in the same place");
             Map<String, Double> expectedScores = new LinkedHashMap<>();
             expected.get(2).fields().forEachRemaining(e -> expectedScores.put(e.getKey(), e.getValue().asDouble()));
+            if ("root".equals(id)) {
+                // rama ronda1/recur-posiciones (opción B, F-RECUR-R001): sin la puntuación en las posiciones,
+                // lemma-recurrence da 0,09 en el curso en vez del 0,08 publicado el 29/9; el resto, igual.
+                expectedScores.put("lemma-recurrence", 0.09);
+            }
             assertEquals(expectedScores, node.getScores(), "R013: the same score of each analyzer on " + id);
             assertEquals(new ArrayList<>(expectedScores.keySet()), new ArrayList<>(node.getScores().keySet()),
                     "and in the same order on " + id);

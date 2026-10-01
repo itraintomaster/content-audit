@@ -300,14 +300,15 @@ public class StatsAnalyzerCmdTest {
         Base299.Captured json = Base299.run(cmd, "analyzer", "lemma-recurrence", Base299.COURSE.toString(), "-f", "json");
 
         assertEquals(0, text.exit(), text.err());
-        assertTrue(text.out().matches("(?s).*movie\\s+90\\s+1\\.005\\s+poco vista\\s+1\\.083\\s+6\\.510, de A1 a A2.*"),
+        // rama ronda1/recur-posiciones (opción B): la puntuación no ocupa posición; movie vuelve cada 855 y es normal
+        assertTrue(text.out().matches("(?s).*movie\\s+90\\s+855\\s+normal\\s+913\\s+5\\.400, de A1 a A2.*"),
                 "R003: each lemma, movie among them: " + text.out().substring(0, Math.min(2000, text.out().length())));
-        assertTrue(text.out().matches("(?s).*A1\\s+15\\.802\\s+448\\s+176\\s+257\\s+15\\s+39,3 %.*"),
-                "R004: each level, A1 among them (since 1/10, only lemmas written with letters)");
+        assertTrue(text.out().matches("(?s).*A1\\s+12\\.934\\s+448\\s+200\\s+228\\s+20\\s+44,6 %.*"),
+                "R004: each level, A1 among them (option B: the positions without the punctuation)");
         assertEquals(0, json.exit(), json.err());
         JsonNode detail = new ObjectMapper().readTree(json.out()).get("detail");
         assertEquals(1743, detail.get("lemmas").size(), "R003: the 1,743 analysed lemmas of the diagnosis");
-        assertEquals(0.08, detail.get("score").asDouble(), 1e-12);
+        assertEquals(0.09, detail.get("score").asDouble(), 1e-12);
         assertEquals(List.of("A1", "A2", "B1", "B2"), java.util.stream.StreamSupport.stream(detail.get("levels")
                 .spliterator(), false).map(level -> level.get("level").asText()).toList(), "R004: the four levels");
     }
