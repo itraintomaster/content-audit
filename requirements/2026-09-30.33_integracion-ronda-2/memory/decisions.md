@@ -25,7 +25,8 @@ should not re-litigate. Newest entries on top.
   de 768 números (76 MB): con 71ba5182, caliente 0,24 s; frío de a una consulta y un agregado, 554 s, porque cada agregado
   hace releer el archivo; con un prototipo que suma lo agregado al índice, 6,7 s. Pero B ya abre por `resolveAll`, que
   consulta todo antes de escribir y no relee: el caso de B queda resuelto. Fuera de la ronda: el juez de consigna resuelve
-  de a uno (`LedgerBackedQuizInstructionComplianceChecker`) y relee su libro de 25 MB después de cada consulta nueva.
+  de a uno (`LedgerBackedQuizInstructionComplianceChecker`) y relee su libro de 25 MB después de cada consulta nueva, unos
+  0,08 s contra los segundos de cada consulta a claude -p: no vale la pena tocarlo ahora.
   why: el borrador tenía una R010 para esto; con resolveAll no hace falta, y no se suma lo que nadie de la ronda usa.
 2026-10-01 — integrador — B-06 invertido (B, 30/9 noche), regla R002: el tope por omisión depende de a quién se consulta.
   El runner NO completa la política (sin --budget llega vacía); el proveedor de B usa la política sin tope de su modelo
