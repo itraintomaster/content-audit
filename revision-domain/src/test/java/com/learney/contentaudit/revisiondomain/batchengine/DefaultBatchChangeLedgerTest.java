@@ -1,7 +1,35 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.cloze;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.text;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.withParts;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.coursedomain.MilestoneEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.TopicEntity;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchProposalRef;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,39 +43,197 @@ public class DefaultBatchChangeLedgerTest {
     @DisplayName("should compose the copy of the course with the steps of the batch only, leaving byte for byte every exercise without an accepted change")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldComposeTheCopyOfTheCourseWithTheStepsOfTheBatchOnlyLeavingByteForByteEveryExerciseWithoutAnAcceptedChange(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: the course the batch measures is the copy as the batch opened with the steps of the batch on top, and nothing
+        // else: a dropped change leaves no trace, every exercise without an accepted change is the one of the copy, byte for
+        // byte, and the copy itself is never written.
+        CourseEntity start = TandaFixture.course();
+        String startJson = json(start);
+        TandaFixture.Artifacts artifacts = new TandaFixture.Artifacts();
+        DefaultBatchChangeLedger ledger = new DefaultBatchChangeLedger(artifacts, TandaFixture.locator());
+        CorrectionBatch batch = TandaFixture.batch("tanda-a1", "t-vegetables", "t-fruit");
+        QuizTemplateEntity vegetables = withParts(TandaFixture.exercise(start, MesaFixture.VEGETABLES), text("I"),
+                cloze("love"), text("vegetables."));
+        ledger.record(batch, TandaFixture.change(null, BatchChangeOrigin.PANEL, null, List.of("t-vegetables"),
+                TandaFixture.step(vegetables, ExercisePart.STATEMENT)), start);
+        QuizTemplateEntity fruit = withParts(TandaFixture.exercise(start, FRUIT), text("You"), cloze("eat"),
+                text("(eat) fruit."));
+        ledger.record(batch, TandaFixture.change(null, BatchChangeOrigin.RULE, "regla-de-prueba", List.of("t-fruit"),
+                TandaFixture.step(fruit, ExercisePart.STATEMENT)), start);
+        ledger.drop(batch, batch.getChanges().get(1).getChangeId(), "lo sacó José", start);
+
+        CourseEntity composed = ledger.composedCourse(batch, start);
+
+        assertEquals(startJson, json(start), "the copy as the batch opened is never written");
+        assertEquals(List.of("I love vegetables."), TandaFixture.exercise(composed, MesaFixture.VEGETABLES).getSentences());
+        int same = 0;
+        for (QuizTemplateEntity quiz : quizzes(start)) {
+            if (!quiz.getId().equals(MesaFixture.VEGETABLES)) {
+                assertEquals(json(quiz), json(TandaFixture.exercise(composed, quiz.getId())), "byte for byte: " + quiz.getId());
+                same++;
+            }
+        }
+        assertEquals(35, same, "the 35 other exercises of the copy, the dropped fruit among them");
+        assertEquals(List.of(new BatchProposalRef(MesaFixture.VEGETABLES, "tanda-a1-" + MesaFixture.VEGETABLES)),
+                batch.getQuizProposals(), "one proposal per exercise with a change in");
+        RevisionArtifact proposal = artifacts.load(TandaFixture.PLAN, "tanda-a1-" + MesaFixture.VEGETABLES).orElseThrow();
+        assertEquals(RevisionVerdict.PENDING_APPROVAL, proposal.getVerdict());
+        assertEquals(json(TandaFixture.exercise(start, MesaFixture.VEGETABLES)),
+                json(proposal.getProposal().getElementBefore().getQuiz()), "before: as the batch opened");
+        assertEquals(json(TandaFixture.exercise(composed, MesaFixture.VEGETABLES)),
+                json(proposal.getProposal().getElementAfter().getQuiz()), "after: its steps composed");
+        assertEquals(RevisionVerdict.REJECTED, artifacts.load(TandaFixture.PLAN, "tanda-a1-" + FRUIT).orElseThrow()
+                .getVerdict(), "the fruit has nothing left: its proposal is rejected");
     }
 
     @Test
     @DisplayName("should drop the capital-letters rule change of «___ a child? (He)» and keep a later panel change of the same exercise that touched other parts, recomposing the exercise")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDropTheCapitallettersRuleChangeOfAChildHeAndKeepALaterPanelChangeOfTheSameExerciseThatTouchedOtherPartsRecomposingTheExercise(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: the rule of capital letters wrote «Is he» / «Am I» / «Are you» in «___ a child? (He)»; later the panel wrote
+        // its translation over that exercise. José drops the rule: the options go back as the copy has them, the translation
+        // of the panel stays, and the proposal of the exercise is composed again from what is left.
+        CourseEntity start = TandaFixture.course();
+        DefaultBatchChangeLedger ledger = new DefaultBatchChangeLedger(new TandaFixture.Artifacts(), TandaFixture.locator());
+        CorrectionBatch batch = TandaFixture.batch("tanda-a1", "t-mayusculas", "t-traduccion");
+        QuizTemplateEntity child = TandaFixture.exercise(start, TandaFixture.CHILD);
+        QuizTemplateEntity capitals = TandaFixture.edited(child, q -> q.getForm().setMultipleChoice(new MultipleChoiceEntity(
+                "SINGLE", new ArrayList<>(List.of(new MultipleChoiceItemEntity("is he", 1.0, "Is he"),
+                        new MultipleChoiceItemEntity("am i", 0.0, "Am I"),
+                        new MultipleChoiceItemEntity("are you", 0.0, "Are you"))))));
+        ledger.record(batch, TandaFixture.change("regla-1", BatchChangeOrigin.RULE, "mayusculas", List.of("t-mayusculas"),
+                TandaFixture.step(capitals, ExercisePart.OPTIONS)), start);
+        QuizTemplateEntity translated = TandaFixture.edited(capitals, q -> q.setTranslation("¿Él es un niño?"));
+        ledger.record(batch, TandaFixture.change("mesa-2", BatchChangeOrigin.PANEL, null, List.of("t-traduccion"),
+                TandaFixture.step(translated, ExercisePart.TRANSLATION)), start);
+
+        ledger.drop(batch, "regla-1", "José sacó la regla de mayúsculas", start);
+
+        assertEquals("José sacó la regla de mayúsculas", batch.getChanges().get(0).getDroppedReason());
+        assertNull(batch.getChanges().get(1).getDroppedReason(), "the panel touched other parts: it stays");
+        QuizTemplateEntity composed = TandaFixture.exercise(ledger.composedCourse(batch, start), TandaFixture.CHILD);
+        assertEquals(List.of("is he", "am i", "are you"), labels(composed), "the options as the copy has them");
+        assertEquals("¿Él es un niño?", composed.getTranslation(), "the translation of the panel");
+        assertEquals(List.of(new BatchProposalRef(TandaFixture.CHILD, "tanda-a1-" + TandaFixture.CHILD)),
+                batch.getQuizProposals());
+        BatchTaskOutcome back = BatchBook.outcome(batch, "t-mayusculas").orElseThrow();
+        assertEquals(BatchTaskOutcomeKind.PENDING, back.getKind());
+        assertEquals("volvió a pendiente: José sacó la regla de mayúsculas", back.getDetail());
+        assertTrue(BatchBook.outcome(batch, "t-traduccion").isEmpty(), "the task of the panel is not touched");
     }
 
     @Test
     @DisplayName("should drop with a change the later changes of the same exercise that touched the same parts, and name them")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDropWithAChangeTheLaterChangesOfTheSameExerciseThatTouchedTheSamePartsAndNameThem(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008, option A of DOUBT-SACAR-ENCADENADO: a later change that touched the same parts of the same exercise was made
+        // over the dropped one, so it leaves with it, named; one that touched other parts stays.
+        CourseEntity start = TandaFixture.course();
+        DefaultBatchChangeLedger ledger = new DefaultBatchChangeLedger(new TandaFixture.Artifacts(), TandaFixture.locator());
+        CorrectionBatch batch = TandaFixture.batch("tanda-a1", "t-respuesta", "t-enunciado", "t-teoria");
+        QuizTemplateEntity vegetables = TandaFixture.exercise(start, MesaFixture.VEGETABLES);
+        QuizTemplateEntity answers = withParts(vegetables, text("I"), cloze("love", "like"), text("a lot of vegetables."));
+        QuizTemplateEntity statement = withParts(answers, text("I"), cloze("love", "like"), text("vegetables."));
+        QuizTemplateEntity theory = TandaFixture.edited(statement, q -> q.setMiniTheory("Love y like no van en -ing."));
+        ledger.record(batch, TandaFixture.change("regla-1", BatchChangeOrigin.RULE, "respuestas", List.of("t-respuesta"),
+                TandaFixture.step(answers, ExercisePart.ANSWERS)), start);
+        ledger.record(batch, TandaFixture.change("mesa-2", BatchChangeOrigin.PANEL, null, List.of("t-enunciado"),
+                TandaFixture.step(statement, ExercisePart.STATEMENT)), start);
+        ledger.record(batch, TandaFixture.change("mesa-3", BatchChangeOrigin.PANEL, null, List.of("t-teoria"),
+                TandaFixture.step(theory, ExercisePart.MINI_THEORY)), start);
+
+        ledger.drop(batch, "regla-1", "José sacó la regla de respuestas", start);
+
+        List<BatchChange> changes = batch.getChanges();
+        assertEquals("José sacó la regla de respuestas", changes.get(0).getDroppedReason());
+        assertEquals("sale con regla-1: tocó lo mismo en el mismo ejercicio", changes.get(1).getDroppedReason(),
+                "the statement was written over the answer: it leaves with it, named");
+        assertNull(changes.get(2).getDroppedReason(), "the mini theory touched another part: it stays");
+        QuizTemplateEntity composed = TandaFixture.exercise(ledger.composedCourse(batch, start), MesaFixture.VEGETABLES);
+        assertEquals(vegetables.getForm().getSentenceParts(), composed.getForm().getSentenceParts(), "the parts of the copy");
+        assertEquals(vegetables.getSentences(), composed.getSentences());
+        assertEquals("Love y like no van en -ing.", composed.getMiniTheory());
+        assertEquals(BatchTaskOutcomeKind.PENDING, BatchBook.kind(batch, "t-respuesta"));
+        assertEquals("volvió a pendiente: sale con regla-1: tocó lo mismo en el mismo ejercicio",
+                BatchBook.outcome(batch, "t-enunciado").orElseThrow().getDetail());
+        assertTrue(BatchBook.outcome(batch, "t-teoria").isEmpty());
     }
 
     @Test
     @DisplayName("should keep the rewritten mini-theory of «Contraste inicial» when a change of one of its nine exercises is dropped")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldKeepTheRewrittenMinitheoryOfContrasteInicialWhenAChangeOfOneOfItsNineExercisesIsDropped(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R008: the panel rewrote the mini theory of the nine exercises of «Contraste inicial» that show the state verbs;
+        // a rule had changed the statement of one of them before. Dropping that rule leaves the mini theory of the nine.
+        CourseEntity start = TandaFixture.course();
+        DefaultBatchChangeLedger ledger = new DefaultBatchChangeLedger(new TandaFixture.Artifacts(), TandaFixture.locator());
+        CorrectionBatch batch = TandaFixture.batch("tanda-a1", "t-likes", "t-teoria");
+        List<String> nine = MesaFixture.stateVerbExercises();
+        String likes = nine.get(1);
+        QuizTemplateEntity original = TandaFixture.exercise(start, likes);
+        QuizTemplateEntity rule = withParts(original, text("She"), cloze("likes"), text("(like) chocolate a lot."));
+        ledger.record(batch, TandaFixture.change("regla-1", BatchChangeOrigin.RULE, "enunciado", List.of("t-likes"),
+                TandaFixture.step(rule, ExercisePart.STATEMENT)), start);
+        String rewritten = "Los verbos de estado (like, love, want, need) van en presente simple, sin -ing.";
+        List<com.learney.contentaudit.revisiondomain.batch.BatchChangeStep> steps = new ArrayList<>();
+        CourseEntity withRule = ledger.composedCourse(batch, start);
+        for (String quizId : nine) {
+            steps.add(TandaFixture.step(TandaFixture.edited(TandaFixture.exercise(withRule, quizId),
+                    q -> q.setMiniTheory(rewritten)), ExercisePart.MINI_THEORY));
+        }
+        ledger.record(batch, TandaFixture.change("mesa-2", BatchChangeOrigin.PANEL, null, List.of("t-teoria"),
+                steps.toArray(com.learney.contentaudit.revisiondomain.batch.BatchChangeStep[]::new)), start);
+
+        ledger.drop(batch, "regla-1", "José sacó la regla", start);
+
+        assertNull(batch.getChanges().get(1).getDroppedReason(), "the mini theory is another part: it stays");
+        CourseEntity composed = ledger.composedCourse(batch, start);
+        for (String quizId : nine) {
+            assertEquals(rewritten, TandaFixture.exercise(composed, quizId).getMiniTheory(), "the nine keep it: " + quizId);
+        }
+        assertEquals(original.getSentences(), TandaFixture.exercise(composed, likes).getSentences(),
+                "the statement of the dropped rule goes back to the copy");
+        assertEquals(9, batch.getQuizProposals().size(), "one proposal per exercise of the nine");
+    }
+
+
+    private static final String FRUIT = "67fab6d59930102295341ec8";
+
+    private static final ObjectMapper JSON = new ObjectMapper().configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS,
+            true);
+
+    private static String json(Object value) {
+        try {
+            return JSON.writeValueAsString(value);
+        } catch (JsonProcessingException e) {
+            throw new AssertionError(e);
+        }
+    }
+
+    private static List<QuizTemplateEntity> quizzes(CourseEntity course) {
+        List<QuizTemplateEntity> quizzes = new ArrayList<>();
+        for (MilestoneEntity milestone : course.getRoot().getMilestones()) {
+            for (TopicEntity topic : milestone.getTopics()) {
+                for (KnowledgeEntity knowledge : topic.getKnowledges()) {
+                    quizzes.addAll(knowledge.getQuizTemplates());
+                }
+            }
+        }
+        return quizzes;
+    }
+
+    private static List<String> labels(QuizTemplateEntity quiz) {
+        List<String> labels = new ArrayList<>();
+        for (MultipleChoiceItemEntity item : quiz.getForm().getMultipleChoice().getItems()) {
+            labels.add(item.getLabel());
+        }
+        return labels;
     }
 }

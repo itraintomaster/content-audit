@@ -9,6 +9,7 @@ import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.coursedomain.FormKind;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
@@ -18,6 +19,7 @@ import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordReques
 import com.learney.contentaudit.revisiondomain.nonregression.NotComparedCount;
 import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -44,6 +46,11 @@ class DefaultBatchTaskSelector implements BatchTaskSelector {
     private final RevisionArtifactStore artifactStore;
 
     private final AnalyzerCorrectionCatalog correctionCatalog;
+
+    /** The kinds of task of the vocabulary family: a batch takes one only when it covers an error finding (R001). */
+    static final Set<DiagnosisKind> VOCABULARY_KINDS = EnumSet.of(DiagnosisKind.SENTENCE_LENGTH,
+            DiagnosisKind.LEMMA_ABSENCE, DiagnosisKind.COCA_BUCKETS, DiagnosisKind.LEMMA_RECURRENCE,
+            DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, DiagnosisKind.KNOWLEDGE_INSTRUCTIONS_LENGTH);
 
     /** F-MESA-R015 inv. 2 [ASSUMPTION]: three options. */
     static final int CONVERSION_OPTIONS = 3;
@@ -86,8 +93,9 @@ class DefaultBatchTaskSelector implements BatchTaskSelector {
             boolean covering = !BatchBook.list(task.getOrigin().getCoveredFindings()).isEmpty();
             boolean byRuleOrPanel = finding.getResolution() == FindingResolution.RULE
                     || finding.getResolution() == FindingResolution.PANEL;
-            if (!covering && !byRuleOrPanel) {
-                continue;
+            boolean vocabulary = task.getDiagnosisKind() != null && VOCABULARY_KINDS.contains(task.getDiagnosisKind());
+            if (vocabulary ? !covering : !byRuleOrPanel) {
+                continue; // a vocabulary task of its own never enters; an error task, by rule or at the panel
             }
             if (concernsAudio(finding) && BatchBook.quizzesOf(task).stream().anyMatch(waitingAudio::contains)) {
                 notTaken.add(task.getId()); // its audio waits to be recorded with what the exercise says

@@ -50,6 +50,10 @@ import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionArtifactStore;
 import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
+import com.learney.contentaudit.revisiondomain.batch.BatchSettings;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
@@ -709,5 +713,49 @@ public final class TandaFixture {
 
     public static SentencePartEntity gap() {
         return new SentencePartEntity(SentencePartKind.CLOZE, "", null);
+    }
+
+    // -------------------------------------------------------------------------
+    // A batch and its changes
+    // -------------------------------------------------------------------------
+
+    public static final Instant OPENED_AT = Instant.parse("2026-10-01T12:00:00Z");
+
+    public static final String START_AUDIT = "audit-20261001";
+
+    /** An open batch of A1 over the plan, with the given tasks. */
+    public static CorrectionBatch batch(String id, String... taskIds) {
+        return new CorrectionBatch(id, CefrLevel.A1, BatchStatus.OPEN, BASELINE, START_AUDIT, PLAN,
+                new ArrayList<>(MesaFixture.ANALYZERS), new BatchSettings(2, 1, 3), new ArrayList<>(),
+                new ArrayList<>(List.of(taskIds)), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                new ArrayList<>(), null, null, 0, OPENED_AT, null, new ArrayList<>());
+    }
+
+    /** A change of the batch, with its steps in the order they were taken. */
+    public static BatchChange change(String changeId, BatchChangeOrigin origin, String ruleId, List<String> taskIds,
+            BatchChangeStep... steps) {
+        return new BatchChange(changeId, origin, ruleId, null, new ArrayList<>(taskIds),
+                new ArrayList<>(List.of(steps)), null, false, OPENED_AT, null);
+    }
+
+    /** A step: the exercise as the change leaves it and the parts it touched. */
+    public static BatchChangeStep step(QuizTemplateEntity after, ExercisePart... parts) {
+        return new BatchChangeStep(after.getId(), new ArrayList<>(List.of(parts)),
+                new CourseElementSnapshot(AuditTarget.QUIZ, after.getId(), after, null));
+    }
+
+    /** The exercise of the course with that id, as the course has it. */
+    public static QuizTemplateEntity exercise(CourseEntity course, String quizId) {
+        return BatchBook.place(course, quizId).map(BatchBook.Place::quiz)
+                .orElseThrow(() -> new AssertionError("no exercise " + quizId));
+    }
+
+    /** A copy of the exercise with what changes. */
+    public static QuizTemplateEntity edited(QuizTemplateEntity quiz,
+            java.util.function.Consumer<QuizTemplateEntity> edit) {
+        QuizTemplateEntity copy = BatchBook.copy(quiz);
+        edit.accept(copy);
+        return copy;
     }
 }

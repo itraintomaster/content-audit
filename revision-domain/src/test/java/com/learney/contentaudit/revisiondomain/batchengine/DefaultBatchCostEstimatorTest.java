@@ -1,7 +1,23 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
+import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
+import com.learney.contentaudit.revisiondomain.batch.BatchSettings;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskCount;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +31,60 @@ public class DefaultBatchCostEstimatorTest {
     @DisplayName("should estimate before any query the tasks of the batch by analyzer and resolution, its exercises and topics, its heaviest topic, and the queries and hours at 19 seconds per query with the topics and queries at once chosen")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldEstimateBeforeAnyQueryTheTasksOfTheBatchByAnalyzerAndResolutionItsExercisesAndTopicsItsHeaviestTopicAndTheQueriesAndHoursAt19SecondsPerQueryWithTheTopicsAndQueriesAtOnceChosen(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: before any query. «Afirmativas regulares»: the hint of the vegetables by rule (free), the vegetables and
+        // «He ___ (come) every year.» at the panel (5 queries each: the proposal and the four judges of a new English).
+        // «Contraste inicial»: its mini theory, a task of the whole topic over its nine exercises (2 queries). Reside: the
+        // LEMMA_ABSENCE task at the panel (5). 17 queries; the heaviest topic, by its exercises, is «Contraste inicial».
+        Finding come = MesaFixture.finding("single-answer", "different-valid-answer", MesaFixture.COME, FindingSeverity.BLOCKING,
+                FindingResolution.PANEL, null, "«goes» también encaja");
+        Finding theory = MesaFixture.topicFinding("mini-theory", "theory-fits", MesaFixture.CONTRASTE, FindingSeverity.HIGH,
+                null, "la miniteoría no habla del contraste");
+        Finding lemma = MesaFixture.finding("lemma-absence", "misplaced-word", TandaFixture.RESIDE, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, "reside", "«reside» no es de A1");
+        Finding offLevel = MesaFixture.finding("off-level-words", "far-above-level", TandaFixture.RESIDE, FindingSeverity.HIGH,
+                FindingResolution.PANEL, "reside", "«reside» es de C1");
+        List<RefinementTask> tasks = List.of(
+                TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-respuesta", MesaFixture.anotherAnswer(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-traduccion", MesaFixture.translationDiffers(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-come", come, MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.topicTask("t-teoria", theory, MesaFixture.CONTRASTE, MesaFixture.stateVerbExercises()),
+                TandaFixture.covering("t-reside", lemma, List.of(offLevel), TandaFixture.RESIDE_TOPIC));
+        AuditReport start = TandaFixture.report(TandaFixture.course(), List.of(), Map.of(), MesaFixture.ANALYZERS);
+        List<ErrorTaskBrief> briefs = new ArrayList<>();
+        for (RefinementTask task : tasks) {
+            briefs.add(TandaFixture.briefer().brief(start, task).orElseThrow());
+        }
+        CorrectionBatch batch = TandaFixture.batch("tanda-a1", "t-pista", "t-respuesta", "t-traduccion", "t-come", "t-teoria",
+                "t-reside");
+        batch.setSettings(new BatchSettings(4, 4, 3));
+
+        BatchEstimate estimate = new DefaultBatchCostEstimator().estimate(batch, briefs);
+
+        assertEquals("tanda-a1", estimate.getBatchId());
+        assertEquals(List.of(new BatchTaskCount("hint-coherence", FindingResolution.RULE, 1),
+                new BatchTaskCount("single-answer", FindingResolution.PANEL, 2),
+                new BatchTaskCount("translation-sense", FindingResolution.PANEL, 1),
+                new BatchTaskCount("mini-theory", FindingResolution.PANEL, 1),
+                new BatchTaskCount("lemma-absence", FindingResolution.PANEL, 1)), estimate.getTasks(),
+                "by analyzer and resolution");
+        assertEquals(12, estimate.getQuizzes(), "the vegetables, «come», the nine of the mini theory and reside");
+        assertEquals(3, estimate.getTopics());
+        assertEquals(9, estimate.getHeaviestTopicQuizzes(), "«Contraste inicial»");
+        assertEquals(17, estimate.getEstimatedQueries(), "5 + 5 + 2 + 5; the rule costs nothing");
+        // four lanes: 17 queries × 19 s / 4 = 81 s, but «Afirmativas regulares» works one query at a time: 10 × 19 s = 190 s.
+        assertEquals(0.05, estimate.getEstimatedHours(), 1e-9);
+        assertEquals(4, estimate.getTopicsAtOnce());
+        assertEquals(4, estimate.getQueriesAtOnce());
+
+        batch.setSettings(new BatchSettings(1, 1, 3));
+        BatchEstimate oneAtATime = new DefaultBatchCostEstimator().estimate(batch, briefs);
+
+        assertEquals(17, oneAtATime.getEstimatedQueries(), "the same queries");
+        assertEquals(0.09, oneAtATime.getEstimatedHours(), 1e-9, "one lane: 17 × 19 s = 323 s");
+        assertEquals(1, oneAtATime.getTopicsAtOnce());
+        assertEquals(1, oneAtATime.getQueriesAtOnce());
     }
 }

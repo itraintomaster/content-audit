@@ -1,7 +1,37 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.cloze;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.quiz;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.text;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.topic;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.FormKind;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
+import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.RevisionProposal;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.nonregression.NotComparedCount;
+import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,67 +45,203 @@ public class DefaultBatchTaskSelectorTest {
     @DisplayName("should take into the A1 batch every error task of A1 resolved by rule or by the panel, as the three tasks of «I ___ a lot of vegetables.», and no task of another level")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldTakeIntoTheA1BatchEveryErrorTaskOfA1ResolvedByRuleOrByThePanelAsTheThreeTasksOfIALotOfVegetablesAndNoTaskOfAnotherLevel(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the three tasks of «I ___ a lot of vegetables.» -- its hint by rule, another answer and its translation at the
+        // panel -- enter the batch of A1; the task of «I ___ (go) to the cinema.», of A2, does not.
+        CourseEntity course = TandaFixture.course();
+        Finding past = MesaFixture.finding("hint-coherence", "missing-hint", TandaFixture.PAST, FindingSeverity.HIGH,
+                FindingResolution.RULE, null, "no lleva pista");
+        List<Finding> findings = List.of(MesaFixture.missingHint(), MesaFixture.anotherAnswer(),
+                MesaFixture.translationDiffers(), past);
+        AuditReport start = TandaFixture.report(course, findings, Map.of(), MesaFixture.ANALYZERS);
+        TandaFixture.Plans plans = new TandaFixture.Plans(TandaFixture.plan(
+                TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-respuesta", MesaFixture.anotherAnswer(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-traduccion", MesaFixture.translationDiffers(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-pasado", past, TandaFixture.PAST_TOPIC, CefrLevel.A2)));
+
+        CorrectionBatch batch = selector(new TandaFixture.Artifacts()).select(plans.load(TandaFixture.PLAN).orElseThrow(),
+                start, CefrLevel.A1, List.of(), List.of());
+
+        assertEquals(CefrLevel.A1, batch.getLevel());
+        assertEquals(TandaFixture.PLAN, batch.getPlanId());
+        assertEquals(List.of("t-pista", "t-respuesta", "t-traduccion"), batch.getTaskIds());
+        assertTrue(batch.getNotTakenTaskIds().isEmpty(), "nothing of A1 is left out: " + batch.getNotTakenTaskIds());
     }
 
     @Test
     @DisplayName("should take the LEMMA_ABSENCE task that covers the off-level-words finding of reside in «We reside ___ London with our granddad.» and leave out every other vocabulary task, the 3,051 SENTENCE_LENGTH tasks among them")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldTakeTheLEMMAABSENCETaskThatCoversTheOfflevelwordsFindingOfResideInWeResideLondonWithOurGranddadAndLeaveOutEveryOtherVocabularyTaskThe3051SENTENCELENGTHTasksAmongThem(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the only vocabulary task that enters is the LEMMA_ABSENCE one that covers the error of off-level-words on
+        // «reside» (C1 in A1); a LEMMA_ABSENCE task of its own and the tasks of length stay out, and are not declared.
+        CourseEntity course = TandaFixture.course();
+        Finding offLevel = MesaFixture.finding("off-level-words", "far-above-level", TandaFixture.RESIDE, FindingSeverity.HIGH,
+                FindingResolution.PANEL, "reside", "«reside» es de C1 en un ejercicio de A1");
+        Finding lemma = MesaFixture.finding("lemma-absence", "misplaced-word", TandaFixture.RESIDE, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, "reside", "«reside» no es de A1");
+        Finding ownLemma = MesaFixture.finding("lemma-absence", "misplaced-word", MesaFixture.VEGETABLES,
+                FindingSeverity.MEDIUM, FindingResolution.PANEL, "vegetable", "«vegetable» no es de A1");
+        AuditReport start = TandaFixture.report(course, List.of(offLevel, lemma, ownLemma), Map.of(), MesaFixture.ANALYZERS);
+        List<RefinementTask> tasks = new ArrayList<>(List.of(
+                TandaFixture.covering("t-reside", lemma, List.of(offLevel), TandaFixture.RESIDE_TOPIC),
+                TandaFixture.task("t-vegetable", ownLemma, MesaFixture.AFIRMATIVAS, CefrLevel.A1)));
+        for (int i = 1; i <= 3; i++) {
+            tasks.add(TandaFixture.lengthTask("t-largo-" + i, MesaFixture.VEGETABLES));
+        }
+
+        CorrectionBatch batch = selector(new TandaFixture.Artifacts()).select(
+                TandaFixture.plan(tasks.toArray(RefinementTask[]::new)), start, CefrLevel.A1, List.of(), List.of());
+
+        assertEquals(List.of("t-reside"), batch.getTaskIds());
+        assertTrue(batch.getNotTakenTaskIds().isEmpty(), "a vocabulary task of its own is not a batch's: nothing to declare");
     }
 
     @Test
     @DisplayName("should carry into the batch José's order to pass «Contracciones» of A1 to multiple choice")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldCarryIntoTheBatchJossOrderToPassContraccionesOfA1ToMultipleChoice() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: José's order -- «Contracciones» of A1 passes to multiple choice -- travels in the batch, named by its topic.
+        CourseEntity course = TandaFixture.course();
+        AuditReport start = TandaFixture.report(course, List.of(), Map.of(), MesaFixture.ANALYZERS);
+
+        CorrectionBatch batch = selector(new TandaFixture.Artifacts()).select(TandaFixture.plan(), start, CefrLevel.A1,
+                List.of("Contracciones"), List.of());
+
+        assertEquals(1, batch.getConversionOrders().size());
+        ConversionOrder order = batch.getConversionOrders().get(0);
+        assertEquals(MesaFixture.CONTRACCIONES, order.getKnowledgeId());
+        assertEquals(FormKind.MULTIPLE_CHOICE, order.getTargetKind());
+        assertEquals(3, order.getOptionCount(), "three options, the correct one and two others");
     }
 
     @Test
     @DisplayName("should declare per analyzer how many exercises of A1 went unevaluated when the batch opens")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDeclarePerAnalyzerHowManyExercisesOfA1WentUnevaluatedWhenTheBatchOpens() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-NOEMP-R010 from the opening: per analyzer, the exercises of A1 it left unevaluated -- the ones of A2 do not count.
+        CourseEntity course = TandaFixture.course();
+        AuditReport start = TandaFixture.report(course, List.of(), Map.of(
+                MesaFixture.VEGETABLES, List.of("single-answer", "translation-sense"),
+                MesaFixture.COME, List.of("single-answer"),
+                TandaFixture.PAST, List.of("single-answer")), MesaFixture.ANALYZERS);
+
+        CorrectionBatch batch = selector(new TandaFixture.Artifacts()).select(TandaFixture.plan(), start, CefrLevel.A1,
+                List.of(), List.of());
+
+        assertEquals(List.of(new NotComparedCount("single-answer", 2), new NotComparedCount("translation-sense", 1)),
+                batch.getUnevaluated());
     }
 
     @Test
     @DisplayName("should leave out of the batch, and declare, a task that has a pending proposal made outside the batch")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldLeaveOutOfTheBatchAndDeclareATaskThatHasAPendingProposalMadeOutsideTheBatch(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «revise» already left a proposal of the translation of the vegetables waiting for José: the batch does not
+        // take its task, and says so.
+        CourseEntity course = TandaFixture.course();
+        AuditReport start = TandaFixture.report(course, List.of(MesaFixture.missingHint(), MesaFixture.translationDiffers()),
+                Map.of(), MesaFixture.ANALYZERS);
+        TandaFixture.Artifacts artifacts = new TandaFixture.Artifacts();
+        QuizTemplateEntity vegetables = TandaFixture.exercise(course, MesaFixture.VEGETABLES);
+        artifacts.save(new RevisionArtifact(new RevisionProposal("revise-1", "t-traduccion", TandaFixture.PLAN,
+                TandaFixture.BASELINE, null, AuditTarget.QUIZ, MesaFixture.VEGETABLES,
+                new CourseElementSnapshot(AuditTarget.QUIZ, MesaFixture.VEGETABLES, vegetables, null),
+                new CourseElementSnapshot(AuditTarget.QUIZ, MesaFixture.VEGETABLES,
+                        TandaFixture.edited(vegetables, q -> q.setTranslation("Amo las verduras.")), null),
+                "revise", "revise", Instant.parse("2026-09-30T18:00:00Z"), null, new ArrayList<>(), null),
+                RevisionVerdict.PENDING_APPROVAL, null, RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, null, null, null, null));
+
+        CorrectionBatch batch = selector(artifacts).select(TandaFixture.plan(
+                TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-traduccion", MesaFixture.translationDiffers(), MesaFixture.AFIRMATIVAS, CefrLevel.A1)),
+                start, CefrLevel.A1, List.of(), List.of());
+
+        assertEquals(List.of("t-pista"), batch.getTaskIds());
+        assertEquals(List.of("t-traduccion"), batch.getNotTakenTaskIds(), "left out, declared");
     }
 
     @Test
     @DisplayName("should take neither by rule nor to the panel the data-coherence task about the audio of «I learned ___ me / myself to drive a car.» while its rerecording with «I learned myself to drive a car.» is pending, and declare it pending with its key and text")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R012")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldTakeNeitherByRuleNorToThePanelTheDatacoherenceTaskAboutTheAudioOfILearnedMeMyselfToDriveACarWhileItsRerecordingWithILearnedMyselfToDriveACarIsPendingAndDeclareItPendingWithItsKeyAndText(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: a published batch asked to record «I learned myself to drive a car.» again and the audio still reads the «/»:
+        // the audio follows the exercise, so no batch touches the exercise for that audio while its recording is pending.
+        CourseEntity course = withLearned();
+        Finding audio = audioOfLearned();
+        AuditReport start = TandaFixture.report(course, List.of(audio, MesaFixture.missingHint()), Map.of(),
+                MesaFixture.ANALYZERS);
+        AudioRerecordRequest pending = new AudioRerecordRequest(LEARNED, MesaFixture.audioKey(LEARNED),
+                List.of("I learned myself to drive a car."));
+
+        CorrectionBatch batch = selector(new TandaFixture.Artifacts()).select(TandaFixture.plan(
+                TandaFixture.task("t-audio", audio, REFLEXIVE, CefrLevel.A1),
+                TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1)),
+                start, CefrLevel.A1, List.of(), List.of(pending));
+
+        assertEquals(List.of("t-pista"), batch.getTaskIds(), "neither by rule nor at the panel");
+        assertEquals(List.of("t-audio"), batch.getNotTakenTaskIds());
+        assertEquals(1, batch.getPendingRerecords().size());
+        assertEquals(MesaFixture.audioKey(LEARNED), batch.getPendingRerecords().get(0).getAudioKey(), "with its key");
+        assertEquals(List.of("I learned myself to drive a car."), batch.getPendingRerecords().get(0).getNewTexts(),
+                "and its text");
     }
 
     @Test
     @DisplayName("should declare nothing pending for a published rerecording whose audio data-coherence no longer marks, because the registry already has it with that text")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R012")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDeclareNothingPendingForAPublishedRerecordingWhoseAudioDatacoherenceNoLongerMarksBecauseTheRegistryAlreadyHasItWithThatText(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012: the recording of «I learned myself to drive a car.» is in the registry and data-coherence no longer marks
+        // the audio: the request is done, and nothing is carried as pending.
+        CourseEntity course = withLearned();
+        AuditReport start = TandaFixture.report(course, List.of(MesaFixture.missingHint()), Map.of(), MesaFixture.ANALYZERS);
+        AudioRerecordRequest recorded = new AudioRerecordRequest(LEARNED, MesaFixture.audioKey(LEARNED),
+                List.of("I learned myself to drive a car."));
+
+        CorrectionBatch batch = selector(new TandaFixture.Artifacts()).select(TandaFixture.plan(
+                TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1)),
+                start, CefrLevel.A1, List.of(), List.of(recorded));
+
+        assertTrue(batch.getPendingRerecords().isEmpty(), "the registry already has it: " + batch.getPendingRerecords());
+        assertEquals(List.of("t-pista"), batch.getTaskIds());
+        assertTrue(batch.getNotTakenTaskIds().isEmpty());
+    }
+
+
+    private static final String LEARNED = "67fab6d5993010229534399b";
+
+    private static final String REFLEXIVE = "6814dafa7d73e7209a13d3e0";
+
+    private static DefaultBatchTaskSelector selector(TandaFixture.Artifacts artifacts) {
+        return new DefaultBatchTaskSelector(artifacts, MesaFixture.corrections());
+    }
+
+    /** The course with «I learned ___ (me / myself) to drive a car.» in a topic of A1. */
+    private static CourseEntity withLearned() {
+        CourseEntity course = TandaFixture.course();
+        QuizTemplateEntity learned = quiz(LEARNED, "Aprendí a manejar solo.", text("I learned"), cloze("myself"),
+                text("(me / myself) to drive a car."));
+        learned.setKnowledgeId(REFLEXIVE);
+        course.getRoot().getMilestones().get(0).getTopics().get(0).getKnowledges()
+                .add(topic(REFLEXIVE, "Pronombres reflexivos", new ArrayList<>(List.of(learned))));
+        return course;
+    }
+
+    /** data-coherence on its audio, which reads the «/» (SLASH_IN_AUDIO). */
+    private static Finding audioOfLearned() {
+        return MesaFixture.finding("data-coherence", "no-slash", LEARNED, FindingSeverity.MEDIUM, FindingResolution.RULE,
+                "audio", "audio: «I learned me / myself to drive a car.»; hoy: «I learned myself to drive a car.». El"
+                        + " audio lee la barra: se regraba con el texto de hoy.");
     }
 }
