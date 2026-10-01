@@ -4,6 +4,14 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer + analyst (paquete D, rama ronda1/recur-posiciones) — Opción B, sin juntar: además de A, un token
+  ocupa posición sólo si su texto tiene una letra o una cifra (la puntuación y los símbolos no). Corrida de hoy: 78.162
+  posiciones, 0,09 con 160 · 1.534 · 49 de 1.743 (9,18 %), 1.583 hallazgos; niveles 12.934/448/200 · 15.997/752/203 ·
+  33.439/1.137/187 · 15.792/818/201; vocabulario del curso 73,86 % → 74,00 % (niveles iguales); sobre los puntajes
+  publicados del 29/9 que usan las pruebas, 73,92 % → 74,07 %. «movie» pasa a normal (855). Suite completa en verde
+  (2.370, 0 fallas) con los valores fijados de B; R001 pasa a ASSUMPTION con DOUBT-POSICIONES-SIN-PUNTUACION abierta.
+  Next: José decide A o B; si B, el integrador junta esta rama sobre ronda1/integracion.
+
 2026-10-01 — developer + analyst (paquete D) — Opción A del orquestador: sólo entra un lema escrito con letras (con
   apóstrofo o guion internos); afuera «'», «-», «i.», «1st», «3rd», «4th» y «comic_strip». Las posiciones no cambian
   (91.873). Curso: 0,08 con 131 · 1.566 · 46 de 1.743 (7,52 %), 1.612 hallazgos; niveles 448/176 · 752/155 ·
