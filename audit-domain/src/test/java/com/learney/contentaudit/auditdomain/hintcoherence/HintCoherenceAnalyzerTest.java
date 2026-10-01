@@ -68,6 +68,35 @@ public class HintCoherenceAnalyzerTest {
                 assertEquals(1.0, quiz.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME), id(quiz));
             }
         }
+
+        // The union (1/10): Adverbios de frecuencia (A1, REWRITE) are transformations that carry their adverb
+        // and a few gaps without one, as «We ___ eat eggs every morning.» (…2572): their shape does not reach
+        // three quarters, the whole topic does, and the finding says so.
+        AuditNode adverbs = run(knowledge("6814dafa7d73e7209a13d3c4", "Adverbios de frecuencia", SentenceMode.REWRITE,
+                adverbiosDeFrecuencia()));
+        AuditNode eggs = quizNode(adverbs, "2572");
+        List<FindingDraft> missing = analyzer.findingsAt(eggs);
+        assertEquals(List.of(HintCoherenceAnalyzer.RULE_MISSING_HINT), rules(missing));
+        assertEquals(ExerciseShape.GAP_IN_SENTENCE, diagnosis(eggs).getShape());
+        assertEquals(6, diagnosis(eggs).getHintedInTopic());
+        assertEquals(8, diagnosis(eggs).getComparableInTopic());
+        assertTrue(missing.get(0).getEvidence().getObservation().contains("6 de 8 ejercicios del tema la llevan"),
+                missing.get(0).getEvidence().getObservation());
+        assertTrue(part(missing.get(0), "Con pista en el tema").endsWith("(always) ___"),
+                "the hinted transformations are its evidence");
+    }
+
+    /** Adverbios de frecuencia (…d3c4, A1, REWRITE): six transformations with their adverb, two gaps without. */
+    static List<AuditableQuiz> adverbiosDeFrecuencia() {
+        return List.of(
+                ex("256f", text("She does her homework after school. (always)"), cloze("She always does her homework after school.")),
+                ex("2570", text("He is sad. (never)"), cloze("He is never sad.")),
+                ex("2571", text("I watch TV in the evening. (sometimes)"), cloze("I sometimes watch TV in the evening.")),
+                ex("2572", text("We"), cloze("always"), text("eat eggs every morning.")),
+                ex("2574", text("I watch films. (never)"), cloze("I never watch films.")),
+                ex("2575", text("He"), cloze("never"), text("drinks juice in the morning.")),
+                ex("2576", text("She eats fish. (never)"), cloze("She never eats fish.")),
+                ex("2577", text("She is bored. (sometimes)"), cloze("She is sometimes bored.")));
     }
 
     @Test

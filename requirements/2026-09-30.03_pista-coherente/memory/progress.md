@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — R001 pasa a la unión (tipo o tema entero) y «(100%)» cuenta como pista: hint-coherence marca
+  48 ejercicios (A1 13, A2 9, B1 20, B2 6): 13 sin pista, 46 de palabras y 4 de sujeto; 31 por regla y 32 a la mesa.
+  Examen escribir: 20 de 46 (43 %), 15 de 15 anotados de pista, 2 marcas fuera del oro. La prueba de El posesivo sigue en
+  verde y la de R001 suma el caso de la unión (Adverbios de frecuencia).
+
 2026-09-30 — developer (impl A) — hint-coherence construido y encendido en Main (línea 10): DefaultHintReader,
   DefaultHintAnswerCheck, HintCoherenceAnalyzer y su proveedor, con la tabla de formas irregulares instalada. 29 pruebas
   en verde (4 del lector, 12 del chequeo, 9 del analizador, 1 de la ficha, 3 del journey). Sobre el curso del 29/9: 42

@@ -5,6 +5,20 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — R001 es la unión: un ejercicio sin pista tiene hallazgo si su grupo estructural O el
+  tema entero (todos los de hueco para escribir) llega a tres cuartos. Medido sobre el curso del 29/9:
+    (i) tipo estructural, lo de antes: 7 missing-hint; examen escribir 14 de 46, 9 de 15 anotados, 2 fuera del oro.
+    (ii) por modo, como el prototipo (el tema entero): 14; 20 de 46, 15 de 15, 3 fuera del oro.
+    (iii) unión: 14; 20 de 46, 15 de 15, 3 fuera del oro. En este curso marca lo mismo que (ii).
+  Las marcas que cambian entre variantes son 7, todas nuevas (ninguna se pierde), revisadas a mano: 6 reales (los huecos
+  sin pista de temas de transformaciones que llevan todas su pista: 2572, 2575 y 257d en Adverbios de frecuencia, 2589 y
+  2591 en Frecuencia: parte 2, 2e83 en Oraciones con than; el alumno no puede saber qué adverbio o qué adjetivo va) y 1
+  falsa (2596: «(100%)» anuncia always, y el lector lo tomaba por una nota; ahora es una pista descriptiva).
+  why: la unión anda como (ii) en la muestra del curso sin perder anotados, nunca pierde una marca del tipo estructural y
+  deja la prueba de El posesivo en verde (sus 20 transformaciones sin pista no llegan ni por tipo, 0 de 20, ni por tema,
+  20 de 40). El diagnóstico lleva los números del grupo que decidió y la evidencia lo dice («38 de 40 ejercicios del tema
+  la llevan», sin «del mismo tipo»). Con el porcentaje como pista: 13 missing-hint; examen 20 de 46, 15 de 15, 2 fuera.
+
 2026-09-30 — developer (impl A) — R001 cuenta por tipo estructural, como dice la regla y su prueba de El posesivo:
   hueco dentro de la oración, o respuesta que es la oración entera (sin texto después del hueco y la respuesta de dos
   palabras o más tras un enunciado vacío o cerrado; en REWRITE, también la respuesta que es una oración).

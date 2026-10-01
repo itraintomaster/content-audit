@@ -30,9 +30,12 @@ import javax.annotation.processing.Generated;
  *
  * <ul>
  *   <li>R001: in {@link #onKnowledge}, which the engine calls before the exercises of the topic,
- *       it counts how many exercises of each shape carry a hint; an exercise without one in a
- *       shape where three quarters or more carry it has a high finding (DOUBT-PISTA-UMBRAL, José
- *       30/9).</li>
+ *       it counts how many exercises of each shape carry a hint, and how many of the whole topic;
+ *       an exercise without one has a high finding when three quarters or more carry it in its
+ *       shape, or in the whole topic (DOUBT-PISTA-UMBRAL, José 30/9; the union of the 1/10). The
+ *       shape keeps a topic with few hints of one shape from marking the other, as the 20
+ *       transformations of El posesivo; the whole topic catches the few gaps without hint of a
+ *       topic of transformations that all carry one, as «We ___ eat eggs every morning.».</li>
  *   <li>R002 to R004: the hint against the first answer, by {@link HintAnswerCheck}: a blocking
  *       finding per word, subject or «not» that does not match.</li>
  * </ul>
@@ -98,10 +101,31 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
             return hinted.getOrDefault(shape, List.of()).size();
         }
 
+        int comparableInTopic() {
+            return comparable.values().stream().mapToInt(Integer::intValue).sum();
+        }
+
+        int hintedInTopic() {
+            return hinted.values().stream().mapToInt(List::size).sum();
+        }
+
         /** Three quarters or more of the exercises of this shape carry a hint; exactly three quarters reach. */
+        boolean asksForHintInShape(ExerciseShape shape) {
+            return reaches(hinted(shape), comparable(shape));
+        }
+
+        /** Three quarters or more of the write-in exercises of the whole topic carry a hint. */
+        boolean asksForHintInTopic() {
+            return reaches(hintedInTopic(), comparableInTopic());
+        }
+
+        /** R001: the shape or the whole topic asks for a hint. */
         boolean asksForHint(ExerciseShape shape) {
-            int all = comparable(shape);
-            return all > 0 && hinted(shape) * 4 >= all * 3;
+            return asksForHintInShape(shape) || asksForHintInTopic();
+        }
+
+        private static boolean reaches(int hinted, int all) {
+            return all > 0 && hinted * 4 >= all * 3;
         }
     }
 
@@ -151,10 +175,14 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
         if (!(node.getDiagnoses() instanceof DefaultQuizDiagnoses)) {
             node.setDiagnoses(new DefaultQuizDiagnoses());
         }
+        // The counts of the group that decides: the shape, unless only the whole topic asks for a hint.
+        boolean byTopic = !topic.asksForHintInShape(reading.shape()) && topic.asksForHintInTopic();
         ((DefaultQuizDiagnoses) node.getDiagnoses()).setHintCoherenceDiagnosis(new HintCoherenceDiagnosis(
                 reading.hint().map(ExerciseHint::getText).orElse(null),
                 String.join(" · ", DefaultHintReader.firstAnswers(quiz)),
-                reading.shape(), topic.hinted(reading.shape()), topic.comparable(reading.shape()),
+                reading.shape(),
+                byTopic ? topic.hintedInTopic() : topic.hinted(reading.shape()),
+                byTopic ? topic.comparableInTopic() : topic.comparable(reading.shape()),
                 List.copyOf(issues), score));
         return null;
     }
@@ -211,7 +239,7 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
                 examined.add(new EvidencePart("Pista", diagnosis.getHint()));
             }
             if (issue.getKind() == HintIssueKind.MISSING_HINT) {
-                for (String example : hintedExamples(node, diagnosis.getShape(), 3)) {
+                for (String example : hintedExamples(node, diagnosis.getShape(), byTopic(node, diagnosis), 3)) {
                     examined.add(new EvidencePart("Con pista en el tema", example));
                 }
             }
@@ -219,7 +247,8 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
                 examined.add(new EvidencePart(issue.getResolution() == FindingResolution.PANEL
                         ? "Pista que sale de la respuesta" : "Pista propuesta", issue.getProposedHint()));
             }
-            String observation = statement + " → " + diagnosis.getFirstAnswer() + ": " + fault(issue, diagnosis)
+            String observation = statement + " → " + diagnosis.getFirstAnswer() + ": "
+                    + fault(issue, diagnosis, byTopic(node, diagnosis))
                     + (issue.getResolution() == FindingResolution.PANEL
                             ? ". Va a la mesa: arreglar la pista cambiaría lo que pide el ejercicio"
                             : ". Se arregla completando la pista; la respuesta y su audio no cambian");
@@ -236,12 +265,20 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
         return kind == HintIssueKind.MISSING_HINT ? FindingSeverity.HIGH : FindingSeverity.BLOCKING;
     }
 
+    /** Whether the missing hint of this exercise was asked by the whole topic and not by its shape. */
+    private boolean byTopic(AuditNode quizNode, HintCoherenceDiagnosis diagnosis) {
+        Topic topic = topics.get(quizNode.getParent());
+        return topic != null && diagnosis.getShape() != null && !topic.asksForHintInShape(diagnosis.getShape())
+                && topic.asksForHintInTopic();
+    }
+
     /** The line that names the fault: «el sujeto I no es you». */
-    private static String fault(HintIssue issue, HintCoherenceDiagnosis diagnosis) {
+    private static String fault(HintIssue issue, HintCoherenceDiagnosis diagnosis, boolean byTopic) {
         String word = issue.getWord();
         return switch (issue.getKind()) {
             case MISSING_HINT -> "no lleva pista y " + diagnosis.getHintedInTopic() + " de "
-                    + diagnosis.getComparableInTopic() + " ejercicios del tema, del mismo tipo, la llevan";
+                    + diagnosis.getComparableInTopic() + " ejercicios del tema" + (byTopic ? "" : ", del mismo tipo,")
+                    + " la llevan";
             case HINT_WORD_ABSENT -> "«" + word + "» de la pista no está en la respuesta";
             case VERB_NOT_ANNOUNCED -> "el verbo " + word + " de la respuesta no está en la pista";
             case SUBJECT_MISMATCH -> "el sujeto " + word + " no es " + answerSubject(diagnosis.getFirstAnswer());
@@ -262,14 +299,25 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
         return "el de la respuesta";
     }
 
-    /** Up to n exercises of the topic, of the same shape, that do carry a hint, as the student sees them. */
-    private List<String> hintedExamples(AuditNode quizNode, ExerciseShape shape, int n) {
+    /**
+     * Up to n exercises of the topic that do carry a hint, as the student sees them: of the same
+     * shape, or of any shape when the whole topic is the one that asks for the hint.
+     */
+    private List<String> hintedExamples(AuditNode quizNode, ExerciseShape shape, boolean byTopic, int n) {
         Topic topic = topics.get(quizNode.getParent());
         List<String> examples = new ArrayList<>();
         if (topic == null || shape == null) {
             return examples;
         }
-        for (AuditableQuiz sibling : topic.hinted.getOrDefault(shape, List.of())) {
+        List<AuditableQuiz> hinted = new ArrayList<>(topic.hinted.getOrDefault(shape, List.of()));
+        if (byTopic) {
+            for (ExerciseShape other : ExerciseShape.values()) {
+                if (other != shape) {
+                    hinted.addAll(topic.hinted.getOrDefault(other, List.of()));
+                }
+            }
+        }
+        for (AuditableQuiz sibling : hinted) {
             if (examples.size() >= n) {
                 break;
             }
