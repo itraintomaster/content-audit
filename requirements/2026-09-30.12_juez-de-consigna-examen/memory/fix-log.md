@@ -4,6 +4,11 @@ Fixes that worked, with a short why. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (C, líder) — Sin `mvn clean` offline (falta el plugin): tras cambiar un constructor, borrar
+  */target/classes, */target/test-classes y */target/maven-status; la compilación incremental no recompila a los que lo llaman.
+2026-09-30 — developer (C, líder) — Con 4 consultas a la vez los jueces falsos de las pruebas tienen que guardar lo que se les
+  pregunta en listas seguras entre hilos: FHallJ001 perdió una de 64 llamadas con un ArrayList.
+
 2026-09-30 — developer (C) — Una consulta que vuelve por sesión o cuota casi nunca llega como excepción: AgentRun la atrapa y devuelve un RunState HALTED sin artifact, con terminationReason «[ERROR] top-level agent threw: claude CLI exited with 1: …». Por eso el juez explica el terminationReason cuando falta el artifact.
 2026-09-30 — developer (C) — Al clasificar fallas, nunca pasar el mensaje completo de Jackson (trae «line: 401, column: 429» y el texto del veredicto): usar getOriginalMessage(); los códigos HTTP se buscan como palabra y no detrás de «line:»/«column:».
 

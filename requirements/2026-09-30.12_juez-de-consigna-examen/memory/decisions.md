@@ -4,6 +4,14 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (C, líder) — El juez de consigna resuelve siempre en lote (onQuiz junta, onCourseComplete resuelve), sin
+  camino de a uno aparte: sus 27 pruebas de FEAT-QINST resuelven cada ejercicio con un onCourseComplete después de pedirlo, con
+  una sesión falsa que contesta resolveAll con sus respuestas de a uno. Lo que leen y su huella no cambian (R007).
+2026-09-30 — developer (C, líder) — En la sesión, un pedido posterior por el mismo contenido que otro programado en el mismo lote
+  se resuelve después, de a uno: dos ejercicios iguales nunca pagan dos veces y el tope rinde lo mismo con cualquier N.
+2026-09-30 — developer (C, líder) — TAKEN se escribe sólo si la versión no tiene registro todavía: volver a rendir no le pisa un
+  APROBADO. «exam record» exige un TAKEN previo de esa versión en la historia.
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): DefaultJudgeProviderReadinessProbe inyecta authStatusCommand: List<String> (pendiente del qa-tester de C).
 
 2026-09-30 — qa-tester — F-JEXAM-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.

@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (C, líder) — Base común y juez de consigna construidos en ronda1/impl-jueces (e0ad1746..): sesión en lote
+  (resolveAll, recorded, unavailableReason), libro y sesiones del examen, DefaultJudgeRuntime, configuración (4 a la vez, tope 0,
+  189/h y 60/h), registro de exámenes en .content-audit/judge-exams/<juez>.jsonl, exportador, DefaultJudgeExamService, ExamCmd
+  con @Command y «exam» en Main. El juez de consigna abre por el runtime y resuelve en onCourseComplete; 32 pruebas propias en verde.
+
 2026-09-30 — developer (C) — quiz-instruction-infrastructure implementado (rama ronda1/impl-jueces-infra): AgentJudge (sesión verificada una vez por instancia, sincronizada; sin artifact → explain del terminationReason), DefaultAgentJudgeFactory, su resolver de versión (mismo digest que el de consigna), DefaultJudgeProviderReadinessProbe (claude auth status inyectado, tope 20 s) y los 4 lectores Jackson; el de consigna usa la misma verificación sin cambiar id, versión ni entradas.
   20 pruebas encendidas y en verde (JEXAM 14, TRSEN 3, UNICA 1, MINIT 1, MCVALE 1); `mvn -o test` verde: 1.883 pasan, 487 apagadas, VERIFY OK. Versión fijada del de consigna: e3a546dc… (DefaultQuizInstructionJudgeFactoryTest).
 

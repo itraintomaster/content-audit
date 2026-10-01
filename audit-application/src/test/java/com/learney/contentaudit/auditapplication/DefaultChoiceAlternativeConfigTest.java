@@ -1,7 +1,11 @@
 package com.learney.contentaudit.auditapplication;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import java.util.Map;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,8 +19,29 @@ public class DefaultChoiceAlternativeConfigTest {
     @DisplayName("should score a quiz 0 for a blocking, 0.3 for a high and 0.6 for a medium worst severity")
     @Tag("FEAT-MCVALE")
     @Tag("F-MCVALE-R003")
-    @Disabled("Stub de FEAT-MCVALE (paquete C), sin implementar")
     public void shouldScoreAQuiz0ForABlocking03ForAHighAnd06ForAMediumWorstSeverity() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultChoiceAlternativeConfig config = new DefaultChoiceAlternativeConfig();
+
+        // The scale of F-MCVALE-R003: 0 when the correct one is not valid, 0.3 when another option is
+        // just as valid, 0.6 when another one is defensible but less natural.
+        assertEquals(0.0, config.getScoreFor(FindingSeverity.BLOCKING), 1e-9);
+        assertEquals(0.3, config.getScoreFor(FindingSeverity.HIGH), 1e-9);
+        assertEquals(0.6, config.getScoreFor(FindingSeverity.MEDIUM), 1e-9);
+
+        // Every finding of the judge counts as error, so no severity leaves the quiz at 1, and the
+        // worse the severity the lower the score.
+        for (FindingSeverity severity : FindingSeverity.values()) {
+            assertTrue(config.getScoreFor(severity) < 1.0, "a " + severity + " finding never scores 1");
+        }
+        assertTrue(config.getScoreFor(FindingSeverity.BLOCKING) < config.getScoreFor(FindingSeverity.HIGH));
+        assertTrue(config.getScoreFor(FindingSeverity.HIGH) < config.getScoreFor(FindingSeverity.MEDIUM));
+
+        // config analyzer multiple-choice-validity shows the same scale it applies.
+        Map<String, Object> description = config.describe();
+        assertEquals("multiple-choice-validity", description.get("hostAnalyzer"));
+        assertEquals("another-option-valid", description.get("rule"));
+        assertEquals(1.0, description.get("scoreWithoutFindings"));
+        assertEquals(Map.of("BLOCKING", 0.0, "HIGH", 0.3, "MEDIUM", 0.6),
+                description.get("scoresByWorstSeverity"));
     }
 }
