@@ -5,6 +5,34 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — La alternativa usa el runtime de C sin duplicarlo: los dos de modelo abren SIEMPRE con
+  `JudgeRuntime.open(nombre, [evaluador], política)` —local con `LocalToolGateDecision.localPolicy` (la de la corrida o, sin
+  pedido, sin tope y de a una); claude -p con la política de la corrida, que sin pedido es tope 0—. El evaluador de claude -p
+  lo arma Main con `AgentJudgeFactory` de C (gancho B-21); cobertura y costo en `getJudgeCoverages` (C-04).
+  why: «que B use el runtime de C, sin duplicarlo»; y el tope que no alcanza al modelo local vive en un solo lugar.
+
+2026-09-30 — architect — Fuera `LocalToolExamState` y el `examRegistry` de `DefaultLocalToolGate`: el examen sale de
+  `JudgeRuntime.standing` y se lee como `JudgeExamStatus`. `LocalToolRunDiagnosis` pierde `coverage` y suma `alternative`;
+  `LocalToolCard` suma `alternative`; `LocalToolGate` suma `alternativeCard(nombre, evaluador)`.
+  why: el estado propio no tenía TAKEN ni NO_VERSION, y la cobertura quedaba escrita dos veces.
+
+2026-09-30 — architect — B-06 cambia de sentido: el runner no le da Integer.MAX_VALUE a los de costo LOCAL_MODEL (llegaría a
+  claude -p sin tope); deja la política en null y la completa la decisión. `CONTENT_AUDIT_OLLAMA_URL=off` apaga los modelos
+  locales a pedido: así se rinde el examen de la alternativa en una máquina con Ollama.
+
+2026-09-30 — analyst — José, 30/9 a la noche: sin Ollama, naturalness y near-duplicates le preguntan a claude -p
+  (DOUBT-MLOCAL-SIN-OLLAMA → A). Nuevas R007 (la alternativa, con las reglas de los jueces: 4 a la vez, sesión verificada,
+  costo declarado) y R008 (tope 0 sin pedido y «falta el tope»; el modelo local nunca tiene tope). R001: nada sale de la
+  máquina con sus herramientas; a claude -p, sólo sin Ollama y con tope. R003: por nombre se rechaza sólo sin herramienta
+  ni alternativa. R006: la versión de la alternativa rinde su propio examen.
+  why: «sin Ollama no se deja sin evaluar; recordá que tenemos claude -p».
+
+2026-09-30 — analyst — Nueva DOUBT-MLOCAL-TOPE-ALTERNATIVA (OPEN; A recomendada y aplicada: el tope 0 de los jueces).
+  why: la nota de José «cuidar que no pase por el tope 0 de los jueces pagos» se lee de dos maneras; el orquestador fijó A.
+
+2026-09-30 — analyst — Costo de la alternativa contado con scripts, sin consultar (scratchpad `arq-B2/`): naturalness
+  11.173 consultas (A1 2.334), near-duplicates 699 (A1 276): 67,5 h de a una y 16,9 con 4, a 176/h (ritmo de C).
+
 2026-09-30 — architect — Las herramientas son de este parche: puertos `GrammarChecker`, `YesNoModel` y `EmbeddingModel` (los
   tres extienden `LocalTool`) en `audit-domain.localtools`, y sus adaptadores en el módulo nuevo `local-language-infrastructure`
   (`allowedClients: [audit-cli]`; audit-cli depende de él): LanguageTool 6.8 en el proceso y Ollama detrás de una fábrica.

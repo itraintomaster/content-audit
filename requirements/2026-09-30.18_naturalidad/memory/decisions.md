@@ -5,6 +5,21 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Las dos rutas abren por `JudgeRuntime` y resuelven en lote (onQuiz junta, onCourseComplete
+  resuelve), como los jueces; el proveedor ya no recibe la fábrica de sesiones sino `judgeRuntime` y `alternativeJudge`.
+  El contenido de claude -p es {system, question} de `NaturalnessConfig`: la misma pregunta por construcción. `number` pasa
+  a `Double` (null con claude -p); `alternative` en el diagnóstico y en la lista. Reglas `unlikely-sentence` (modelo local)
+  y `native-says-no` (modelo pago): la ficha pasa a costo modelo pago.
+
+2026-09-30 — analyst — Nueva R008: sin Ollama, la misma pregunta a claude -p; un «no» marca, sin número ni umbral, y la
+  lista del nivel va en el orden del curso. DOUBT-NATUR-ALTERNATIVA (OPEN; A aplicada). R006: el triple que el azar con la
+  misma cantidad de marcas; con claude -p, sobre los 186 + 400 al azar de A1–A2 (586 consultas). R007: dos reglas, ficha
+  de costo modelo pago (el mayor). Consultas: A1 2.334, A2 2.403, B1 4.535, B2 1.901 (114 de 11.287 no alcanzan).
+  why: claude -p no devuelve probabilidades, así que el cociente de R002 no se puede calcular.
+
+2026-09-30 — analyst — Umbral de A1 verificado otra vez con `arq-B2/umbral_nat.py` sobre `yn-a1a2.jsonl`: puesto 116 = 9,0752,
+  puesto 117 = 9,0664 → 9,07 (se muestra 9,1); 10,0 marcaría 90 (3,9 %). A2: 10,2313 / 10,1865 → 10,2 marca 120.
+
 2026-09-30 — architect — El número se guarda en el libro de evaluaciones con un evaluador propio: contenido = la oración; id =
   «naturalness» + versión examinada (modelo@huella · methodId de la pregunta), así que otra versión no reusa nada. Se guardan
   las dos probabilidades, no el número. Sin `--budget`, sin tope (gancho B-06).
