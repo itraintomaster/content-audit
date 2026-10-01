@@ -4,6 +4,14 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (C) — Validado contra ronda2/integracion (d80f7f6a), la línea principal nueva.
+  - `patch validate -i sentinel.yaml` sobre una copia descartable de ronda2: 0 altas, 8 cambios, 0 conflictos.
+  - Ensayado ahí el aterrizaje entero: apply, generate, cuerpos y definición. VERIFY OK, y las mismas 68 líneas en
+    rojo que ronda2 ya tenía antes (spaCy, stubs de la ronda 2). Ninguna nueva, ninguna arreglada; revision-domain
+    suma la prueba nueva del revisor.
+  - La versión con la definición completa es la misma: 53fabe0d….
+  El merge de ronda2/integracion a esta rama no se hizo: el permiso de la sesión lo bloqueó. Lo junta el coordinador.
+
 2026-10-01 — developer (C) — Parche propuesto y sin aplicar. `patch validate -i sentinel.yaml`: 0 altas, 8 cambios,
   0 conflictos; `feature validate` OK.
   Simulado entero en una copia descartable de ronda1/consigna-alumno: apply, generate, cuerpos y pruebas.
