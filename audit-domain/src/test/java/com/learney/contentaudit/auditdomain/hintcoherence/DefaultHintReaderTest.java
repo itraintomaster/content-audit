@@ -64,6 +64,12 @@ public class DefaultHintReaderTest {
         Optional<ExerciseHint> man = reader.read(quiz("67fab6d59930102295342aae", text("I saw"), cloze("a"),
                 text("man (the listener doesn't know which man).")), SentenceMode.FILL);
         assertTrue(man.isEmpty(), "a context note is not a hint");
+
+        // A percentage is a hint without words to compare: «I ___ drink tea in the morning. (100%)» (…2596, A1,
+        // Frecuencia: parte 2) announces «always».
+        ExerciseHint hundred = reader.read(quiz("67fab6d59930102295342596", text("I"), cloze("always"),
+                text("drink tea in the morning. (100%)")), SentenceMode.REWRITE).orElseThrow();
+        assertEquals(List.of(), hundred.getWords());
     }
 
     @Test

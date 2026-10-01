@@ -63,7 +63,10 @@ class DefaultHintReader implements HintReader {
     /** Register, time and grammar notes that are not words to write. */
     private static final Set<String> NOTES = Set.of("formal", "informal", "polite", "now", "in general",
             "countable", "uncountable", "no plural form", "short form", "short forms", "long form",
-            "long forms", "mid", "100%");
+            "long forms", "mid");
+
+    /** A frequency given as a percentage, «(100%)»: it announces the adverb without its words. */
+    private static final Pattern PERCENTAGE = Pattern.compile("\\d+(?:[.,]\\d+)?\\s*%");
 
     /** A statement of words separated by «/» may open with a label: «Be going to: They not / paint…». */
     private static final Pattern LABEL = Pattern.compile("^[A-Za-z ]+:\\s*");
@@ -276,6 +279,9 @@ class DefaultHintReader implements HintReader {
         }
         if (text.contains("/")) {
             return slots(text).isEmpty() ? null : Kind.WORDS;
+        }
+        if (PERCENTAGE.matcher(text).matches()) {
+            return Kind.DESCRIPTIVE; // «I ___ drink tea in the morning. (100%)» → always: a hint, not words
         }
         if (isLabel(text)) {
             return null;
