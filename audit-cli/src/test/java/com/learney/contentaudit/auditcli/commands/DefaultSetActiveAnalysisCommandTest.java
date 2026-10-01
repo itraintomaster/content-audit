@@ -1,9 +1,17 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.revisiondomain.comparison.EffectiveGoals;
+import com.learney.contentaudit.revisiondomain.comparison.SealedGoals;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.List;
+import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelection;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -77,8 +85,25 @@ public class DefaultSetActiveAnalysisCommandTest {
     @DisplayName("should leave the sealed goals untouched when the active pair changes")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
-    public void shouldLeaveTheSealedGoalsUntouchedWhenTheActivePairChanges() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldLeaveTheSealedGoalsUntouchedWhenTheActivePairChanges() throws Exception {
+        FHistorial historial = new FHistorial(dir);
+        historial.sealedGoals.write(new SealedGoals(Instant.parse("2026-09-30T20:00:00Z"),
+                new EffectiveGoals("huella-de-las-metas", List.of(), null)));
+        Path sealed = dir.resolve(".content-audit/metas-fijadas.json");
+        byte[] before = Files.readAllBytes(sealed);
+        DefaultSetActiveAnalysisCommand command = new DefaultSetActiveAnalysisCommand(historial.active);
+
+        FHistorial.Salida set = FHistorial.run(() -> command.setActive("2026-10-01T06-11-09", "2026-10-01T06-11-36"));
+        byte[] afterSetting = Files.readAllBytes(sealed);
+        FHistorial.Salida cleared = FHistorial.run(() -> command.setActive(null, null));
+
+        assertEquals(0, set.exit(), set.err());
+        assertEquals(0, cleared.exit(), cleared.err());
+        assertArrayEquals(before, afterSetting, "R006: changing the active pair does not seal or touch the goals");
+        assertArrayEquals(before, Files.readAllBytes(sealed), "R006: nor clearing it");
+        assertEquals("huella-de-las-metas", historial.sealedGoals.read().orElseThrow().getGoals().getFingerprint());
     }
+
+    @TempDir
+    Path dir;
 }

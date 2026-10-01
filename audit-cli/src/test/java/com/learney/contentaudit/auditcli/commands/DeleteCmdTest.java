@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.auditdomain.ActiveAnalysisSelection;
+import com.learney.contentaudit.auditdomain.Baseline;
+
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
@@ -11,7 +14,6 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -274,17 +276,46 @@ public class DeleteCmdTest {
     @DisplayName("should refuse to delete the active analysis with «Cannot delete audit '<id>': it is the active analysis. Point 'set-active' to another analysis first.»")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldRefuseToDeleteTheActiveAnalysisWithCannotDeleteAuditIdItIsTheActiveAnalysisPointSetactiveToAnotherAnalysisFirst() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(fDir);
+        String active = historial.analysis("2026-10-01T06-11-09", "activo");
+        historial.active.write(new ActiveAnalysisSelection(active, "2026-10-01T06-11-36"));
+        historial.baselines.write(new Baseline(active, Instant.parse("2026-10-01T07:00:00Z")));
+        DeleteCmd delete = new DeleteCmd(auditReportStore, refinementPlanStore, historial.active, historial.baselines);
+        delete.setBaseDir(fDir);
+
+        FHistorial.Salida refused = FHistorial.run(() -> delete.delete("audit", active));
+
+        assertEquals(1, refused.exit());
+        assertEquals("Cannot delete audit '2026-10-01T06-11-09': it is the active analysis. "
+                + "Point 'set-active' to another analysis first.", refused.err().strip(),
+                "R006: the active analysis first, before the baseline");
+        assertTrue(Files.exists(fDir.resolve(".content-audit/audits/audit-2026-10-01T06-11-09.json")));
     }
 
     @Test
     @DisplayName("should refuse to delete the baseline with «Cannot delete audit '<id>': it is the baseline. Fix another one with 'set-baseline' first.», even when no plan references it")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldRefuseToDeleteTheBaselineWithCannotDeleteAuditIdItIsTheBaselineFixAnotherOneWithSetbaselineFirstEvenWhenNoPlanReferencesIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(fDir);
+        String baseline = historial.analysis("2026-09-30T11-54-02", "base");
+        historial.analysis("2026-10-01T06-11-09", "activo");
+        historial.active.write(new ActiveAnalysisSelection("2026-10-01T06-11-09", "2026-10-01T06-11-36"));
+        historial.baselines.write(new Baseline(baseline, Instant.parse("2026-10-01T07:00:00Z")));
+        DeleteCmd delete = new DeleteCmd(auditReportStore, refinementPlanStore, historial.active, historial.baselines);
+        delete.setBaseDir(fDir);
+
+        FHistorial.Salida refused = FHistorial.run(() -> delete.delete("audit", baseline));
+
+        assertEquals(List.of(), historial.names("plans"), "no plan references it");
+        assertEquals(1, refused.exit());
+        assertEquals("Cannot delete audit '2026-09-30T11-54-02': it is the baseline. "
+                + "Fix another one with 'set-baseline' first.", refused.err().strip());
+        assertTrue(Files.exists(fDir.resolve(".content-audit/audits/audit-2026-09-30T11-54-02.json")),
+                "R006: the baseline stays in the history");
     }
+
+    @TempDir
+    Path fDir;
 }

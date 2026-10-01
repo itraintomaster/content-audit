@@ -1,7 +1,28 @@
 package com.learney.contentaudit.auditcli.formatting;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
+import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
+import com.learney.contentaudit.revisiondomain.comparison.GoalChange;
+import com.learney.contentaudit.revisiondomain.comparison.GoalReference;
+import com.learney.contentaudit.revisiondomain.comparison.GoalStatus;
+import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
+import com.learney.contentaudit.revisiondomain.comparison.MeasureChange;
+import com.learney.contentaudit.revisiondomain.comparison.RowGoalStatus;
+import com.learney.contentaudit.revisiondomain.comparison.RowValue;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,26 +36,121 @@ public class DefaultBatchComparisonFormatterTest {
     @DisplayName("should write the change of a score in points with its sign and the word, «−0,5 puntos», never with «%»")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldWriteTheChangeOfAScoreInPointsWithItsSignAndTheWord05PuntosNeverWith() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        BatchComparison comparison = comparison(List.of(
+                row("lemma-absence", AnalyzerFamily.VOCABULARY, AuditTarget.KNOWLEDGE, "Afirmativas regulares", 1.0,
+                        null, 0.995, -0.5, null),
+                row("lemma-absence", AnalyzerFamily.VOCABULARY, AuditTarget.TOPIC, "Present Simple", 0.99552, null,
+                        0.99519, -0.033, null),
+                row("lemma-count", AnalyzerFamily.VOCABULARY, AuditTarget.MILESTONE, "A1", 0.9437, null, 0.9467, 0.3,
+                        null),
+                row("vocabulario", AnalyzerFamily.VOCABULARY, AuditTarget.COURSE, "Curso", 0.7392, null, 0.7392, 0.0,
+                        floor(GoalStatus.MET))));
+
+        String text = new DefaultBatchComparisonFormatter().format(comparison, "text");
+
+        String knowledge = line(text, "Afirmativas regulares · lemma-absence");
+        assertEquals("Afirmativas regulares · lemma-absence: 100,0 → 99,5 (−0,5 puntos)", knowledge,
+                "R001: in points, with its sign and the word");
+        assertTrue(line(text, "Present Simple · lemma-absence").contains("(−0,03 puntos)"));
+        assertTrue(line(text, "A1 · lemma-count").contains("(+0,3 puntos)"));
+        assertTrue(line(text, "Curso · vocabulario").startsWith("Curso · vocabulario: 73,92 → 73,92 (0,0 puntos)"));
+        for (String row : List.of(knowledge, line(text, "A1 · lemma-count"), line(text, "Curso · vocabulario"))) {
+            assertFalse(row.contains("%"), "R001: never «%»: " + row);
+        }
+        assertFalse(text.contains("-0,5"), "R001: the minus sign, not a hyphen");
     }
 
     @Test
     @DisplayName("should print which goals changed since they were sealed, with their value then and now")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldPrintWhichGoalsChangedSinceTheyWereSealedWithTheirValueThenAndNow() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        BatchComparison changed = comparison(List.of());
+        changed.setGoalsSealedAt(Instant.parse("2026-09-30T20:00:00Z"));
+        changed.setGoalChanges(List.of(new GoalChange("piso de vocabulario", "0,5", "1,0")));
+        BatchComparison never = comparison(List.of());
+        never.setGoalsSealedAt(null);
+        BatchComparison same = comparison(List.of());
+        same.setGoalsSealedAt(Instant.parse("2026-09-30T20:00:00Z"));
+
+        DefaultBatchComparisonFormatter formatter = new DefaultBatchComparisonFormatter();
+
+        assertTrue(formatter.format(changed, "text").contains(
+                "metas cambiadas desde que se fijaron: piso de vocabulario 0,5 → 1,0"), formatter.format(changed, "text"));
+        assertTrue(formatter.format(never, "text").contains("Metas nunca fijadas"), "R006: never sealed, said");
+        assertTrue(formatter.format(same, "text").contains("Metas fijadas el 2026-09-30T20:00:00Z, sin cambios."));
+        String json = formatter.format(changed, "json");
+        assertTrue(json.contains("\"goalId\" : \"piso de vocabulario\""), json);
+        assertTrue(json.contains("\"before\" : \"0,5\""));
+        assertTrue(json.contains("\"after\" : \"1,0\""));
     }
 
     @Test
     @DisplayName("should write a measure change as «cambio de medida: 73,92 → 73,86»")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R007")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldWriteAMeasureChangeAsCambioDeMedida73927386() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        BatchComparison comparison = comparison(List.of(
+                row("vocabulario", AnalyzerFamily.VOCABULARY, AuditTarget.COURSE, "Curso", 0.7392, 0.7386, 0.7386, 0.0,
+                        floor(GoalStatus.MET)),
+                row("vocabulario", AnalyzerFamily.VOCABULARY, AuditTarget.MILESTONE, "A1", 0.9654, 0.9602, 0.9602, 0.0,
+                        floor(GoalStatus.MET)),
+                row("lemma-count", AnalyzerFamily.VOCABULARY, AuditTarget.COURSE, "Curso", 0.670, 0.665, 0.665, 0.0,
+                        floor(GoalStatus.MET))));
+        comparison.setMeasureChanges(List.of(new MeasureChange("lemma-count", "lemma-count · bandas 1 · 2 · 4 · 8",
+                "lemma-count · bandas 8 · 6 · 4 · 3", Map.of("bands", "1 · 2 · 4 · 8"), Map.of("bands", "8 · 6 · 4 · 3"))));
+
+        String text = new DefaultBatchComparisonFormatter().format(comparison, "text");
+
+        assertTrue(line(text, "Curso · vocabulario").startsWith(
+                "Curso · vocabulario: cambio de medida: 73,92 → 73,86 · 73,86 → 73,86 (0,0 puntos)"), text);
+        assertTrue(line(text, "A1 · vocabulario").contains("cambio de medida: 96,54 → 96,02"));
+        assertTrue(line(text, "Curso · lemma-count").contains("cambio de medida: 67,0 → 66,5"));
+        assertTrue(text.contains("Cambios de medida (1):\n  lemma-count: lemma-count · bandas 1 · 2 · 4 · 8 → "
+                + "lemma-count · bandas 8 · 6 · 4 · 3"), text);
+    }
+
+    private static BatchComparison comparison(List<ComparisonRow> rows) {
+        BatchComparison comparison = new BatchComparison();
+        comparison.setBaselineAuditId("2026-09-29T08-00-00");
+        comparison.setActiveAuditId("2026-09-30T11-54-02");
+        comparison.setActivePlanId("2026-09-30T11-54-12");
+        comparison.setScopeId("2026-09-30T11-54-12");
+        comparison.setAvailability(ConsolidatedViewAvailability.AVAILABLE);
+        comparison.setComputedAt(Instant.parse("2026-10-01T10:00:00Z"));
+        comparison.setGoalsSealedAt(Instant.parse("2026-09-30T20:00:00Z"));
+        comparison.setGoalChanges(new ArrayList<>());
+        comparison.setMeasureChanges(new ArrayList<>());
+        comparison.setAppliedProposalIds(List.of("077-vegetables"));
+        comparison.setNonApplicablePendings(new ArrayList<>());
+        comparison.setRows(new ArrayList<>(rows));
+        comparison.setChanges(new ArrayList<>());
+        comparison.setBreaches(new ArrayList<>());
+        comparison.setVerdict(new BatchVerdict(VerdictKind.BLIND_SAMPLE_MISSING, List.of(), List.of(), null,
+                "Falta la muestra ciega"));
+        return comparison;
+    }
+
+    private static ComparisonRow row(String subject, AnalyzerFamily family, AuditTarget target, String label,
+            Double baseline, Double remeasured, Double projected, Double change, RowGoalStatus floor) {
+        return new ComparisonRow(subject, family, target, label, label, new RowValue(baseline, null, 0),
+                remeasured != null ? new RowValue(remeasured, null, 0) : null, new RowValue(baseline, null, 0),
+                new RowValue(projected, null, 0), change, GoalUnit.POINTS, floor, null);
+    }
+
+    private static RowGoalStatus floor(GoalStatus status) {
+        return new RowGoalStatus("piso de vocabulario · vocabulario · COURSE", 0.5, GoalUnit.POINTS,
+                GoalReference.BASELINE, status);
+    }
+
+    /** The line of the text that starts with the row's label and subject. */
+    private static String line(String text, String start) {
+        for (String line : text.split("\n")) {
+            if (line.strip().startsWith(start)) {
+                return line.strip();
+            }
+        }
+        throw new AssertionError("no line «" + start + "» in:\n" + text);
     }
 }

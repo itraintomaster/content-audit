@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -153,8 +152,56 @@ public class DefaultSuggestedLemmaQuerySessionFactoryTest {
     @DisplayName("should open the suggested words query of a task planned from a saved projection on that projection, so a lemma a pending proposal already brought into the course is no longer offered")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R005")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldOpenTheSuggestedWordsQueryOfATaskPlannedFromASavedProjectionOnThatProjectionSoALemmaAPendingProposalAlreadyBroughtIntoTheCourseIsNoLongerOffered() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // A task of «Afirmativas regulares» planned with plan --audit on the saved projection of the active pair:
+        // the pending proposal of «My grandmother ___ (come) every year.» already brought «grandmother» into the
+        // course of that photo, while the active analysis -- without the pending proposals -- still lacks it.
+        final String PROJECTION_ID = "proyeccion-2026-09-30T11-54-02-2026-09-30T11-54-12";
+        final String ACTIVE_ID = "2026-09-30T11-54-02";
+
+        AuditNode projectedRoot = new AuditNode();
+        projectedRoot.setTarget(AuditTarget.COURSE);
+        projectedRoot.setChildren(new ArrayList<>());
+        projectedRoot.setScores(new LinkedHashMap<>());
+        projectedRoot.setMetadata(new LinkedHashMap<>(java.util.Map.of("projectionMeasure", "STARTING_ANALYSIS")));
+        AuditReport projection = new AuditReport(projectedRoot);
+        AuditNode activeRoot = new AuditNode();
+        activeRoot.setTarget(AuditTarget.COURSE);
+        activeRoot.setChildren(new ArrayList<>());
+        activeRoot.setScores(new LinkedHashMap<>());
+        activeRoot.setMetadata(new LinkedHashMap<>());
+        AuditReport active = new AuditReport(activeRoot);
+
+        RefinementTask task = new RefinementTask("task-077-lemma", AuditTarget.QUIZ, "67fab6d59930102295341ec4",
+                "It ___ (come) every year.", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
+        SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(Optional.of(3), Optional.of("NOUN"),
+                Optional.of(CefrLevel.A1), false, Optional.empty());
+        SuggestedLemmaQueryResult onTheProjection = new SuggestedLemmaQueryResult("task-077-lemma", CefrLevel.A1,
+                List.of(new SuggestedLemma("winter", "NOUN", "A1, absent in the level", 640, null, null, null)));
+        SuggestedLemmaQueryResult onTheActive = new SuggestedLemmaQueryResult("task-077-lemma", CefrLevel.A1,
+                List.of(new SuggestedLemma("grandmother", "NOUN", "absent before the pending proposal", 2100, null,
+                        null, null),
+                        new SuggestedLemma("winter", "NOUN", "A1, absent in the level", 640, null, null, null)));
+
+        SuggestedLemmaQueryPort queryPort = Mockito.mock(SuggestedLemmaQueryPort.class);
+        AuditReportStore auditReportStore = Mockito.mock(AuditReportStore.class);
+        Mockito.when(auditReportStore.load(PROJECTION_ID)).thenReturn(Optional.of(projection));
+        Mockito.when(auditReportStore.load(ACTIVE_ID)).thenReturn(Optional.of(active));
+        Mockito.when(auditReportStore.loadLatest()).thenReturn(Optional.of(active));
+        Mockito.when(queryPort.query(Mockito.same(projection), Mockito.same(task), Mockito.same(criteria)))
+                .thenReturn(onTheProjection);
+        Mockito.when(queryPort.query(Mockito.same(active), Mockito.same(task), Mockito.same(criteria)))
+                .thenReturn(onTheActive);
+
+        SuggestedLemmaQuerySession session = new DefaultSuggestedLemmaQuerySessionFactory(queryPort, auditReportStore)
+                .bindForTask(PROJECTION_ID, task);
+        SuggestedLemmaQueryResult offered = session.requestMore(criteria);
+
+        Assertions.assertSame(onTheProjection, offered, "F-PROYU-R005: the query runs on the saved projection");
+        Assertions.assertFalse(offered.getSuggestedLemmas().stream().anyMatch(l -> "grandmother".equals(l.getLemma())),
+                "F-PROYU-R005: a lemma the pending proposal already brought is no longer offered");
+        Mockito.verify(auditReportStore).load(PROJECTION_ID);
+        Mockito.verify(auditReportStore, Mockito.never()).load(ACTIVE_ID);
+        Mockito.verify(auditReportStore, Mockito.never()).loadLatest();
     }
 }

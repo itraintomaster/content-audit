@@ -1,0 +1,51 @@
+package com.learney.contentaudit.auditcli.commands;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * What the commands of package F share: their JSON -- dates as ISO text, without the empty fields -- and the scope
+ * a request names with {@code --proposal} and {@code --budget}.
+ */
+final class CommandJson {
+    private static final ObjectMapper MAPPER = new ObjectMapper()
+            .registerModule(new JavaTimeModule())
+            .registerModule(new Jdk8Module())
+            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+    private CommandJson() {
+    }
+
+    static String write(Object value) {
+        try {
+            return MAPPER.writerWithDefaultPrettyPrinter().writeValueAsString(value);
+        } catch (Exception e) {
+            throw new IllegalStateException("Could not write the JSON: " + e.getMessage(), e);
+        }
+    }
+
+    static boolean isJson(String format) {
+        return format != null && "json".equalsIgnoreCase(format.trim());
+    }
+
+    /**
+     * The scope of a request: the pending proposals it names -- every pending proposal of the active plan when it
+     * names none -- and the budget of the analyzers it names. Null when it names nothing.
+     */
+    static ProjectionScope scope(List<String> proposalIds, Map<String, Integer> analyzerBudgets) {
+        boolean proposals = proposalIds != null && !proposalIds.isEmpty();
+        boolean budgets = analyzerBudgets != null && !analyzerBudgets.isEmpty();
+        if (!proposals && !budgets) {
+            return null;
+        }
+        return new ProjectionScope(null, proposals ? List.copyOf(proposalIds) : null,
+                budgets ? Map.copyOf(analyzerBudgets) : null);
+    }
+}

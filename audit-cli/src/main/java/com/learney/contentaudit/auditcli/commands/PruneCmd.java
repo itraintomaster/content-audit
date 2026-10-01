@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.auditdomain.ActiveAnalysisSelection;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
+import com.learney.contentaudit.auditdomain.Baseline;
 import com.learney.contentaudit.auditdomain.BaselineStore;
 
 import com.learney.contentaudit.auditcli.PruneCommand;
@@ -100,6 +102,7 @@ public PruneCmd(AuditReportStore auditReportStore, RefinementPlanStore refinemen
     }
 
     private int pruneAudits(int keep) {
+        // Only the analyses of the history: a saved projection is neither counted nor deleted (F-PROYU-R004).
         List<String> allIds = StoreHelper.listAuditIds(baseDir);
         // listAuditIds returns sorted ascending by filename (timestamp), so most recent is last
         int total = allIds.size();
@@ -108,15 +111,31 @@ public PruneCmd(AuditReportStore auditReportStore, RefinementPlanStore refinemen
             return 0;
         }
 
-        // Keep the N most recent (last N in ascending-sorted list)
-        int removeCount = total - keep;
-        List<String> toRemove = allIds.subList(0, removeCount);
-
-        for (String id : toRemove) {
-            StoreHelper.deleteAudit(baseDir, id);
+        // Keep the N most recent (last N in ascending-sorted list) and, always, the baseline and the active
+        // analysis, saying so (F-PROYU-R006).
+        String baselineId = baselineStore != null
+                ? baselineStore.read().map(Baseline::getAuditId).orElse(null) : null;
+        String activeId = activeAnalysisSelectionStore != null
+                ? activeAnalysisSelectionStore.read().map(ActiveAnalysisSelection::getAuditId).orElse(null) : null;
+        List<String> candidates = allIds.subList(0, total - keep);
+        int removeCount = 0;
+        for (String id : candidates) {
+            boolean kept = false;
+            if (id.equals(baselineId)) {
+                System.out.println("Kept the baseline " + id);
+                kept = true;
+            }
+            if (id.equals(activeId)) {
+                System.out.println("Kept the active analysis " + id);
+                kept = true;
+            }
+            if (!kept) {
+                StoreHelper.deleteAudit(baseDir, id);
+                removeCount++;
+            }
         }
 
-        System.out.println("Kept " + keep + " audits, removed " + removeCount + ".");
+        System.out.println("Kept " + (total - removeCount) + " audits, removed " + removeCount + ".");
         return 0;
     }
 

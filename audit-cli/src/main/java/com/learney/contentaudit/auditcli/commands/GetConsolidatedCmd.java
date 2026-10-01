@@ -18,6 +18,9 @@ import picocli.CommandLine.Parameters;
                 "",
                 "  # JSON format",
                 "  content-audit get-consolidated db/english-course --format json",
+                "",
+                "  # With a budget of new consultations for an analyzer (F-PROYU-R003)",
+                "  content-audit get-consolidated db/english-course --budget quiz-instruction=50",
         }
 )
 final class GetConsolidatedCmd implements Callable<Integer> {
@@ -32,12 +35,19 @@ final class GetConsolidatedCmd implements Callable<Integer> {
             defaultValue = "json")
     private String format;
 
+    // FEAT-RONDA2, package F (hook F-06): the budget per analyzer of the projection.
+    @Option(names = "--budget", description = "New consultations of an analyzer, as name=N (repeatable).")
+    private java.util.Map<String, Integer> budgets = new java.util.LinkedHashMap<>();
+
     GetConsolidatedCmd(GetConsolidatedCommand delegate) {
         this.delegate = delegate;
     }
 
     @Override
     public Integer call() {
+        if (budgets != null && !budgets.isEmpty()) {
+            return delegate.getConsolidated(coursePath, format, budgets);
+        }
         return delegate.getConsolidated(coursePath, format);
     }
 }
