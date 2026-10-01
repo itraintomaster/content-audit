@@ -5,6 +5,13 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — F-NOEMP-J001 en revision-domain, `com.learney.contentaudit.revisiondomain.batchengine` (3 caminos).
+  why: recalcular, comparar, devolver y volver a recalcular es el lazo de DefaultBatchCloser, package-private ahí; la
+  compuerta se obtiene por DefaultGateFactory, pública. Los pasos son del sistema, como F-PIPRE-J001.
+2026-10-01 — qa-tester — La compuerta decide y quien la llama mueve: gastar un intento y mandar a la bandeja lo devuelto
+  (R008) se prueba en F-TANDA-R006 (que pasa la compuerta de R005 a R008) y F-MESA-R007; la lista de audios (R004) en
+  F-TANDA-R010; el curso idéntico fuera de la tanda (R007) en F-TANDA-R006 inv. 1. Acá, la compuerta con lo que recibe.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): lleva la lista entera de patrones de revision-domain (el apply la reemplaza en vez de sumarla). Lo que dice el audio sale de SpokenTextBuilder, que FEAT-RONDA2 abre.
 
 2026-09-30 — architect — Compuerta por cambio sobre dos mediciones de la unidad (ejercicio + su tema), por identidad de

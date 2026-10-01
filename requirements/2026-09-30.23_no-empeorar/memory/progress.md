@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — `patch propose` (fusión): 34 handwrittenTests (17 en DefaultChangeGate, 17 en DefaultBatchGate;
+  R001 5, R002 5, R003 3, R004 2, R005 5, R006 4, R007 1, R008 3, R009 4, R010 2) y F-NOEMP-J001 en revision-domain, paquete
+  batchengine. Los tres patrones de revision-domain intactos. `tech-spec write` y `patch validate -i` contra M10 del
+  integrador y contra la cadena con pruebas: exit 0, 0 conflictos. Sin aplicar.
+
 2026-09-30 — architect — Parche (2 altas, 1 cambio, 0 conflictos) y TECH_SPEC (5 fragmentos) en exit 0. Next: el orquestador revisa; se aplica después de la ronda 1 integrada y de F, en el orden TAREA → NOEMP → MESA → TANDA → BANDEJA; luego `definitions`, `feature sync`, @qa-tester. Ganchos en tablero/ronda2/ganchos-E.md.
 
 2026-09-30 — analyst — REQUIREMENT v2 con José, 30/9: DOUBT-NO-EMPEORAR RESOLVED (A), R006 VALIDATED y la reconciliación con F (el largo nunca devuelve). `requirement validate` → [OK].
