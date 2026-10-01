@@ -5,6 +5,10 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rehacer encima de una base nueva: juntar ronda1/integracion en ronda2/integracion y correr
+  `integrador-2/rehacer-ronda-2.sh` (specs.py, armar32.py, cadena.sh real y revisar.sh real). Probado con FEAT-CIERRE:
+  los 14 parches salen iguales salvo su descripción, y sólo cambian las huellas.
+
 2026-10-01 — integrador — Rebasar desde el commit de DISEÑO de cada paquete (B ae83b2d0, E 70c50c1a, F cfb6b20a), no desde
   HEAD: así `rehacer-ronda-2.sh` se puede correr otra vez encima del parche de cierre de la ronda 1 sin aplicar nada dos
   veces. Volver a tomar B = cambiar su commit en la tabla ORIGEN de integrador-2/rebase.py.

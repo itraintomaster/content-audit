@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Número de carpeta: 2026-09-30.33. Al empezar la .32 estaba libre; FEAT-CIERRE la tomó a las 23:36 en
+  ronda1/integracion, que ya está junta en ronda2/integracion. El sentinel-baseline.yaml de esta carpeta se rehízo con el
+  modelo con FEAT-CIERRE: es la foto de lo que esta integración tiene delante, y aplicar-ronda-2.sh compara contra la
+  huella de huellas-de-la-cadena.txt.
+
 2026-10-01 — integrador — B-08 (DOUBT-MLOCAL-MESA, abierta): se construye con la A, sin cambios de estructura. La mesa mide
   cada candidato con los analizadores del análisis de partida, que incluyen a los tres de B; con Ollama es gratis, y sin
   Ollama la alternativa recibe la política de la mesa (lo reservado del cupo, de a una, E-11), así que nunca pasa su tope.

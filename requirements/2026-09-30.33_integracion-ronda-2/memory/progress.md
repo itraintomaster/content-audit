@@ -4,6 +4,13 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Entró en ronda1/integracion el cierre de la ronda 1 (FEAT-CIERRE, 2026-09-30.32, aplicado y
+  generado hasta 35172b1c): se juntó en ronda2/integracion y la cadena se rehízo encima con `rehacer-ronda-2.sh`, un solo
+  comando. La carpeta de esta integración pasó de .32 a .33 (CIERRE tomó la 32 a las 23:36) y su sentinel-baseline.yaml se
+  rehízo con la base nueva (huella 34709717). Resultado igual que antes: 15 de 15 validate, 0 conflictos, 0 choques,
+  0 referencias que no se ven; generate aborta por los trece J001; con ellos, 322 archivos nuevos y 92 cambiados, 9
+  llamados en main, 334 construcciones en pruebas y 17 fichas que generate rellena con tools null (todos los proveedores).
+
 2026-10-01 — integrador (arquitecto + qa-tester) — `patch propose --replace` de FEAT-RONDA2 (2 altas, 31 cambios, 0
   conflictos) con sus 47 pruebas (9 de las 10 reglas; R009 cae en piezas de E y B y va después de aplicar) y `tech-spec
   write` (10 fences), contra el sentinel.yaml de ronda1/integracion (huella 2d1b1d37). Los trece de B, F y E rebasados

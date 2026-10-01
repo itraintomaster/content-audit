@@ -4645,6 +4645,10 @@ modules:
         traceability:
           feature: FEAT-JEXAM
           rule: F-JEXAM-R002
+      - name: "should declare in its tally as many exercises as quizzes, in each state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
       implements:
       - ContentAnalyzer
     - name: DefaultQuizInstructionSubjectBuilder
@@ -7303,6 +7307,12 @@ modules:
         type: JudgeCostEstimate
       - name: unmatchedDeclaredIds
         type: List<String>
+      - name: quizzes
+        type: JudgeQuizTally
+        description: "Los ejercicios que abarcan las unidades alcanzadas, evaluadas\
+          \ y sin evaluar (F-CIERRE-R001, F-MINIT-R005 inv. 4). Los copia de la cuenta\
+          \ que le pasa el analizador; para los cuatro jueces por ejercicio coinciden\
+          \ con reached, evaluated y notEvaluated."
     - name: JudgeSessions
       type: record
       fields:
@@ -7349,6 +7359,11 @@ modules:
         type: "Map<String,Integer>"
       - name: unmatchedDeclaredIds
         type: List<String>
+      - name: quizzes
+        type: JudgeQuizTally
+        description: "Los ejercicios que abarcan las unidades de esta cuenta (F-CIERRE-R001).\
+          \ Con la unidad QUIZ, los mismos números que las unidades; con KNOWLEDGE,\
+          \ cada tema suma todos sus ejercicios al estado del tema."
     - name: JudgeExamOutcome
       type: enum
       fields:
@@ -7379,6 +7394,20 @@ modules:
         type: String
         description: "La observación de cada hallazgo, en castellano, para revisar\
           \ a mano."
+    - name: JudgeQuizTally
+      type: record
+      fields:
+      - name: reached
+        type: int
+        description: Ejercicios que abarcan las unidades alcanzadas.
+      - name: evaluated
+        type: int
+        description: "Ejercicios de las unidades evaluadas, con resultado reusado\
+          \ o nuevo."
+      - name: notEvaluated
+        type: int
+        description: "Ejercicios de las unidades sin evaluar: los mismos que el informe\
+          \ marca con el nombre del juez en su unevaluatedBy (F-CIERRE-R001 inv. 4)."
     interfaces:
     - name: JudgeRuntime
       stereotype: port
@@ -7540,6 +7569,16 @@ modules:
         traceability:
           feature: FEAT-JEXAM
           rule: F-JEXAM-R001
+      - name: "should declare in the coverage of a topic judge the exercises its topics\
+          \ hold, under the state of each topic"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      - name: "should declare for a judge that consults by exercise as many exercises\
+          \ as units, in each state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
       implements:
       - JudgeRuntime
     - name: DefaultJudgeExamVerdictExporter
@@ -7813,6 +7852,10 @@ modules:
         traceability:
           feature: FEAT-TRSEN
           rule: F-TRSEN-R007
+      - name: "should declare in its tally as many exercises as quizzes, in each state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
       implements:
       - ContentAnalyzer
     - name: DefaultTranslationSenseSubjectBuilder
@@ -8083,6 +8126,10 @@ modules:
         traceability:
           feature: FEAT-UNICA
           rule: F-UNICA-R007
+      - name: "should declare in its tally as many exercises as quizzes, in each state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
       implements:
       - ContentAnalyzer
     - name: DefaultSingleAnswerSubjectBuilder
@@ -8116,6 +8163,11 @@ modules:
         type: CorrectorMatcher
       - name: config
         type: SingleAnswerConfig
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "La vista del alumno que lee el juez (F-RONDA1-R001): el enunciado\
+          \ y la oración terminada de la evidencia salen de acá, no de una regla propia\
+          \ (F-CIERRE-R003)."
       handwrittenTests:
       - name: "should drop «is not» listed by the judge for a quiz that accepts «\
           isn't», leaving it without single-answer finding"
@@ -8173,6 +8225,16 @@ modules:
         traceability:
           feature: FEAT-UNICA
           rule: F-UNICA-R007
+      - name: should write the statement and the finished sentence of its evidence
+          with the student view renderer it receives
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R003
+      - name: should keep the marker of each finding whatever text the student view
+          renderer gives the exercise
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R003
       implements:
       - SingleAnswerClassifier
   - name: minitheory
@@ -8394,6 +8456,16 @@ modules:
         traceability:
           feature: FEAT-MINIT
           rule: F-MINIT-R007
+      - name: "should count in its tally every exercise of each topic under the state\
+          \ of that topic, evaluated or not"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      - name: should declare as exercises without evaluation exactly the exercises
+          the report marks as not evaluated by mini-theory
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
       implements:
       - ContentAnalyzer
     - name: DefaultMiniTheorySubjectBuilder
@@ -8434,6 +8506,10 @@ modules:
       - name: config
         type: MiniTheoryConfig
         description: "De acá sale el alcance del error: SHOWN_ONLY o WHOLE_TOPIC."
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "La vista del alumno (F-RONDA1-R001): la oración terminada de\
+          \ cada ejercicio en la evidencia sale de acá, como la lee el juez (F-CIERRE-R003)."
       handwrittenTests:
       - name: should put a finding of the false «enjoy» mini-theory in the 9 exercises
           of «Contraste inicial» that show it and in none of its other 71
@@ -8477,6 +8553,11 @@ modules:
         traceability:
           feature: FEAT-MINIT
           rule: F-MINIT-R006
+      - name: should write the finished sentence of each exercise in its evidence
+          with the student view renderer it receives
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R003
       implements:
       - MiniTheoryDistributor
   - name: choicealternativeengine
@@ -8599,6 +8680,16 @@ modules:
         traceability:
           feature: FEAT-MCVALE
           rule: F-MCVALE-R007
+      - name: "should declare in its coverage as many exercises as quizzes, in each\
+          \ state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      - name: "should name in a judgment that failed the cause of its own consultation,\
+          \ not the first failure of the run"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
       implements:
       - ChoiceAlternativeJudgeRun
     - name: DefaultChoiceAlternativeSubjectBuilder
@@ -8634,6 +8725,11 @@ modules:
           la correcta (isn't / is not). Es el CorrectorMatcher del paquete A (FEAT-RESPC).
       - name: config
         type: ChoiceAlternativeConfig
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "La vista del alumno que lee el juez (F-RONDA1-R001): el enunciado,\
+          \ las opciones y la oración terminada de la evidencia salen de acá, no de\
+          \ un renderizador armado adentro (F-CIERRE-R003)."
       handwrittenTests:
       - name: "should drop «is not» listed as also valid for a quiz whose correct\
           \ option is «isn't», leaving it without finding of another-option-valid"
@@ -8670,6 +8766,11 @@ modules:
         traceability:
           feature: FEAT-MCVALE
           rule: F-MCVALE-R007
+      - name: "should write the statement, the options and the finished sentence of\
+          \ its evidence with the student view renderer it receives"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R003
       implements:
       - ChoiceAlternativeClassifier
   - name: offlevelwords
@@ -12181,6 +12282,13 @@ modules:
     implements:
     - LemmaCountConfigLoader
   - name: DefaultQuizInstructionConfig
+    requiresInject:
+    - name: judgeRuntimeConfig
+      type: JudgeRuntimeConfig
+      description: "De acá sale el tope por omisión de analyze para quiz-instruction\
+        \ (0, F-JEXAM-R010), que describe() muestra junto al de revise-instructions\
+        \ (F-CIERRE-R004). El tope propio de esta configuración sigue siendo el de\
+        \ revise-instructions."
     types:
     - Component
     visibility: public
@@ -12194,6 +12302,17 @@ modules:
       traceability:
         feature: FEAT-QINST
         rule: F-QINST-R002
+    - name: "should describe the analyze budget of quiz-instruction from the judges\
+        \ runtime config and the revise-instructions budget of 500, each named with\
+        \ its command"
+      traceability:
+        feature: FEAT-CIERRE
+        rule: F-CIERRE-R004
+    - name: "should describe a different analyze budget when the judges runtime config\
+        \ gives another one, without copying 0"
+      traceability:
+        feature: FEAT-CIERRE
+        rule: F-CIERRE-R004
     implements:
     - QuizInstructionConfig
   - name: DefaultJudgeExamService
@@ -21377,6 +21496,13 @@ modules:
       description: "Version que produjo el resultado devuelto (F-EVCOST-R001, F-EVCOST-R003).\
         \ Poblada exactamente cuando kind es REUSED o EVALUATED; null cuando no hay\
         \ resultado (PENDING, FAILED)."
+    - name: failure
+      type: EvaluationNotEmitted
+      description: "La causa cuando kind es FAILED: el tipo (EVALUATOR_UNAVAILABLE\
+        \ u OUTPUT_UNUSABLE) y el motivo que dio el evaluador; una excepción del evaluador\
+        \ llega como EVALUATOR_UNAVAILABLE con su mensaje (F-CIERRE-R002). Null en\
+        \ REUSED, EVALUATED y PENDING, también en el pendiente por la parada del servicio.\
+        \ Nunca se registra en el libro."
   - name: EvaluationCoverage
     type: record
     fields:
@@ -21634,6 +21760,30 @@ modules:
         traceability:
           feature: FEAT-JEXAM
           rule: F-JEXAM-R011
+      - name: should return a failed resolution carrying the kind and reason the evaluator
+          gave when its output is unusable
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      - name: "should return a failed resolution as evaluator unavailable, with the\
+          \ exception message as its reason, when the evaluator throws"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      - name: "should give each failed resolution of a batch the cause of its own\
+          \ consultation, not the first failure of the run"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      - name: "should leave without cause every resolution that is reused, evaluated\
+          \ or pending, including the pending left by a stopped service"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      - name: should never write the cause of a failed consultation into the ledger
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
       implements:
       - EvaluationSession
     - name: ExamEvaluationSessionFactory
@@ -23128,6 +23278,8 @@ features:
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.commands
+- id: FEAT-CIERRE
+  code: F-CIERRE
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:1.13.0
