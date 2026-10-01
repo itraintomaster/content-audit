@@ -4,6 +4,13 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — R003 del REQUIREMENT y el TECH_SPEC con los umbrales de B1 (9,91, 226 de 4.534)
+  y B2 (10,80, 95 de 1.901) y el método: los k = int(n · 0,05) números más altos de la corrida de content-audit, y el
+  umbral con dos decimales que deja marcados exactamente esos k. `requirement validate` [OK].
+  Punto abierto (para José): con esa misma corrida A1 y A2 marcan apenas más que el 5 %: A1 117 de 2.333 (k = 116;
+  exacto, ~9,073) y A2 123 de 2.394 (k = 119; exacto, 10,08). Salieron del prototipo, que leía distinto (A2 sin los 40
+  de la lista «a / b»); quedan en 9,07 y 10,0 hasta que José diga. Moverlos es otra versión de la configuración.
+
 2026-10-01 — developer (paquete B) — Umbrales de B1 y B2 calibrados (cf34c054): 9,91 (226 de 4.534) y 10,80 (95 de
   1.901). A1 y A2 siguen en 9,07 y 10,0 (José); con la lectura de content-audit marcan 117 de 2.333 y 123 de 2.394 (el
   5 % exacto de A2 sería 10,08). Examen rendido y registrado en `~/projects/learney/content-audit-corridas/2026-10-01-examen-idioma/`:
