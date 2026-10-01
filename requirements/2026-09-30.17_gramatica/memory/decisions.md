@@ -5,6 +5,18 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — F-GRAMA-J001 en audit-domain, `com.learney.contentaudit.auditdomain.grammar`: el
+  analizador y sus piezas son package-private ahí y los puertos se simulan, como los J001 de los analizadores de la ronda 1.
+2026-10-01 — qa-tester — Dos pruebas con LanguageTool de verdad van sobre LanguageToolGrammarChecker (de FEAT-MLOCAL),
+  trazadas a F-GRAMA-R002: lo apagado por omisión no marca («You prefer Italian food.») y «explained us» en las dos
+  variantes. Llevan `herramienta-real`.
+2026-10-01 — qa-tester — Para el analista: (1) R001 no dice cómo se lee un ejercicio con la lista «a / b» dentro de la
+  oración ya cerrada y el hueco después: «He did something / anything to help.» + «something» (40 en A2, Indefinidos con
+  some/any y every/no). El prototipo saca la lista sin poner la respuesta y lee «He did to help.»: de ahí sale la marca
+  falsa de signo final «was wrong with the telephone.» (…396f) y 15 de las 120 marcas de A2 de Naturalidad.
+  (2) La lista de casos de R004 pone los 13 «videogames» como media; en 5 (…294b, …404c, …41e0, …4552, …47f8) la palabra
+  está dentro de la respuesta de una reescritura y R004 inv. 2 los hace alta. Las pruebas siguen a la regla.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): sin cambios de estructura. GrammarCorrection y GrammarRuleFix, en grammar, los suman TAREA y TANDA (F-RONDA2-R009); GRAMMAR es tipo de tarea (F-RONDA2-R008, DOUBT-RONDA2-TAREAS-B con A).
 
 2026-09-30 — analyst — Verificados los dos números de B: 3 bloqueantes (…320a, …4009, …408e) con `arq-B2/bloqueantes.py`; el

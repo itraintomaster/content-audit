@@ -4,6 +4,12 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — 44 handwrittenTests nuevas, las 7 reglas [covered]; F-GRAMA-J001 en audit-domain, paquete
+  grammar (3 caminos). `patch propose` con fusión; el bug 08 se llevó domainLinks y glossarySuggestions de
+  DefaultFinishedSentenceReader: devueltos desde el parche del arquitecto y re-propuesto con --replace (lo demás, igual).
+  `tech-spec write` (+1 fragmento) y `patch validate -i` contra M02 del integrador y contra el modelo con las pruebas de
+  MLOCAL: exit 0. Sin aplicar.
+
 2026-09-30 — architect — Sin cambios por la alternativa: Gramática no la necesita (LanguageTool corre en el proceso).
   `patch validate -i` contra el sentinel.yaml de `ronda1/integracion`: exit 0.
 

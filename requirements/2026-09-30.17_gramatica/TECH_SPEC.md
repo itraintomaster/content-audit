@@ -282,3 +282,59 @@ features:
   - id: FEAT-GRAMA
     code: F-GRAMA
 ```
+
+## Declarar las 44 pruebas y ubicar el journey
+
+Las 44 son nuevas: no hay pruebas previas de estas reglas que portar. Cada una traza a una regla de FEAT-GRAMA (R001 10,
+R002 12, R003 4, R004 8, R005 2, R006 5, R007 3) y lleva un caso del curso del 29/9; las marcas son las que grabó el
+prototipo (`scratchpad/ronda2-B/lt/all-en-US.tsv` y `all-en-GB.tsv`), que el doble de `GrammarChecker` devuelve tal cual.
+
+- **La lectura (R001)**, en `DefaultFinishedSentenceReader`: una oración por respuesta aceptada (`…3f64`, «She's run» y
+  «She has run»), sin la pista ni la lista pegada al hueco (`…351a`), sin texto por la opción «-» (`…2354`), sólo la
+  respuesta en una reescritura (`…439d`), el diálogo entero (`…2627`), «They're» pegado (`…1fb1`), sin la etiqueta
+  «Link type: sequence» (`…305e`) y el juicio: «not correct» no se lee (`…3512`), «correct» sí, sin la etiqueta
+  (`…3510`). La posición de cada respuesta (R004) también es suya.
+- **El filtro (R002)**, en `DefaultGrammarMatchFilter`: lo que dan las dos variantes («teached», `…439d`; «explained
+  us», `…2bb4`) y las dos de datos («noise noise», «11.I»); afuera lo de una sola variante («theatre», `…2ce0`;
+  «traveled», `…34fd`), mayúsculas (`…3a69`), la «i» de una opción (`…250b`), estilo (`…3a20`), compuestos (`…4958`) y
+  SINGULAR_AGREEMENT_SENT_START (`…3529`). Lo apagado por omisión (ARTICLE_MISSING en «You prefer Italian food.»,
+  `…25f1`) y «explained us» en las dos variantes se prueban con LanguageTool de verdad sobre el adaptador de
+  FEAT-MLOCAL, con la etiqueta `herramienta-real`.
+- **El signo final (R003)**: «The chemist closes at 9pm» (`…268a`) y «Did Michael give us these scarves.» (`…2acb`);
+  sin verbo (`…2305`) o en minúscula (`…1fc7`), nada.
+- **Gravedad y resolución (R004, R005)**, en `DefaultGrammarIssueClassifier`: las tres repeticiones pegadas al hueco
+  (`…320a`, `…4009`, `…408e`, también como censo del curso en `GrammarAnalyzer`), «He've» (`…3f81`), «videogames» dentro
+  de la respuesta de una reescritura (`…294b`, alta) y en el texto fijo (`…3c3e`, media), y «11.I» (`…2462`, baja).
+- **El analizador y su ficha (R006, R007)**: puntaje 0 y 1, un solo hallazgo por regla y texto aunque lo muestren dos
+  respuestas (`…3165`), la evidencia, la ficha con su tarjeta de LanguageTool, sin examen aprobado nada se publica, la
+  corrida de examen y que cambiar una lista del filtro es una versión nueva.
+
+Varios casos son del examen del 077 (las tres repeticiones, «He've had», «explained us», «11.I», «No, i can't.», «Did
+Michael…»): son los del REQUIREMENT, las pruebas los usan con dobles y ningún agente los lee. **No se declara**, porque
+ninguna regla de FEAT-GRAMA lo pide: qué hace `grammar` sin LanguageTool (FEAT-MLOCAL R003, se decide en la compuerta) y
+su fila en el curso; su tipo de tarea `GRAMMAR` lo prueba FEAT-RONDA2 después de aplicar (F-RONDA2-R008).
+
+**El journey** va a `audit-domain`, paquete `grammar`: el analizador y sus piezas son package-private ahí y los puertos
+se simulan, como los J001 de los analizadores de la ronda 1. `generate` crearía `FGramaJ001JourneyTest` con 3 caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: grammar
+        _change: add
+        implementations:
+          - name: DefaultGrammarIssueClassifier
+            _change: add
+            handwrittenTests:
+              - name: "should give BLOCKING to an accepted answer that repeats the words glued after the gap, «noise noise» in «Have the neighbors been making noise noise?»"
+                traceability: { feature: FEAT-GRAMA, rule: F-GRAMA-R004 }
+              - name: "should give HIGH to «videogames» inside the answer of the rewrite «Let's not play videogames right now.»"
+                traceability: { feature: FEAT-GRAMA, rule: F-GRAMA-R004 }
+features:
+  - id: FEAT-GRAMA
+    code: F-GRAMA
+    journeys:
+      - { id: F-GRAMA-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.grammar }
+```
