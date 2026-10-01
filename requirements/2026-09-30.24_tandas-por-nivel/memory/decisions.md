@@ -5,6 +5,17 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — arquitecto (construcción E) — Parche de construcción, propuesto y validado contra el sentinel.yaml de
+  ronda2/impl-correccion (0 conflictos), SIN aplicar: `architectural_patch.yaml` de esta carpeta. (1) `FileSystemBatchStore`
+  y `FileSystemTrayDecisionStore` reciben `baseDir: Path`, como los otros diez almacenes (E-09 lo suponía); (2)
+  `DefaultCourseElementLocator` y `DefaultCorrectionScope` pasan a públicas dentro de revision-domain, para que
+  `DefaultBatchServiceFactory` las arme cuando el registro trae null, como las fábricas de revise, approve y la vista
+  consolidada con el localizador; (3) `CappedQueryAllowance` recibe `cap: Integer` y `queriesAtOnce: int`, sin los que
+  `PanelRunnerFactory.allowance(cap, C)` no lo puede configurar. Sin contratos nuevos.
+  why: ni Main ni batchengine pueden construir un CourseElementLocator ni un CorrectionScope (internas de engine y
+  preservationengine), y sin ruta los almacenes escribirían donde está parado el proceso, no en --workdir.
+  El TECH_SPEC no lleva la sección: `tech-spec append` exige que todas las fences de la carpeta estén en el parche nuevo.
+
 2026-10-01 — qa-tester (como arquitecto) — Lo pendiente de regrabar vive en la publicación de cada tanda
   (BatchPublication.rerecords): la siguiente los recibe al abrir (select) y no toma la tarea del audio. Sin almacén nuevo:
   un pedido deja de estar pendiente cuando data-coherence ya no marca ese audio.

@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (construcción E) — Propuesto el parche de construcción (ver decisions.md). Hasta que se aplique y se
+  genere, esperan: los cuerpos y las 3 pruebas de los dos almacenes, `CappedQueryAllowance` (2 pruebas) y la fábrica de la
+  mesa, y en Main la tanda y la bandeja. Se construye todo lo demás.
+
 2026-10-01 — qa-tester (como arquitecto) — Segunda vuelta: RuleFixResult suma rerecordings (RuleFixRerecording, clave y
   texto); AnalyzerCorrection suma concernsAudio (qué hallazgo es del audio lo dice el analizador); CorrectionBatch suma
   pendingRerecords, BatchPublication rerecords, el desenlace PENDING_RERECORDING y select recibe los pendientes. 77

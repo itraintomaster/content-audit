@@ -1,0 +1,59 @@
+code: FEAT-TANDA
+modules:
+- name: audit-infrastructure
+  packages:
+  - name: batchstore
+    implementations:
+    - name: FileSystemBatchStore
+      requiresInject:
+      - name: baseDir
+        type: Path
+        description: "Raíz bajo la que se escribe .content-audit/batches/<id>.json,\
+          \ un archivo por tanda, reescrito de forma atómica. Lo provee audit-cli.Main,\
+          \ como a los demás almacenes."
+        _change: add
+      _change: modify
+    _change: modify
+  - name: traystore
+    implementations:
+    - name: FileSystemTrayDecisionStore
+      requiresInject:
+      - name: baseDir
+        type: Path
+        description: "Raíz bajo la que se agrega .content-audit/tray-decisions.jsonl,\
+          \ aparte de tandas e informes. Lo provee audit-cli.Main."
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: DefaultCourseElementLocator
+      visibility: public
+      _change: modify
+    _change: modify
+  - name: preservationengine
+    implementations:
+    - name: DefaultCorrectionScope
+      visibility: public
+      _change: modify
+    _change: modify
+  - name: panelengine
+    implementations:
+    - name: CappedQueryAllowance
+      requiresInject:
+      - name: cap
+        type: Integer
+        description: "El tope de consultas de la corrida que pidió José (F-TANDA-R003);\
+          \ null, sin tope. Lo pasa la fábrica de la mesa."
+        _change: add
+      - name: queriesAtOnce
+        type: int
+        description: "C, las consultas en curso a la vez entre todas las mesas (F-MESA-R010);\
+          \ 4 si no se pide otro."
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
