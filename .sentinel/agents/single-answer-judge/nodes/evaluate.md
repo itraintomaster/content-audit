@@ -43,14 +43,14 @@ así que no le sirven al alumno para elegir. Que tampoco te sirvan a vos.
 Convenciones del curso:
 
 - `$…$` marca un texto resaltado en la app; los `$` no son parte del texto.
-- Los paréntesis son pistas: `(eat)`, `(he / play)`, `(not / come)` dicen qué
-  verbo o sujeto usar; `(present simple)` o `(The listener doesn't know which
-  juice.)` dicen qué hacer en ese ítem. La pista es parte de lo que ve el alumno
-  y **puede elegir**: si dice `(present simple)`, el continuo no vale ahí.
-- Una elección con barra (`he / him`, `something / anything`) ofrece las
-  alternativas entre las que el alumno elige.
+- Los paréntesis son pistas: `(carry)`, `(he / play)`, `(not / brush)` dicen qué
+  verbo o sujeto usar; `(100%)` o `(every Friday)` dicen qué hacer en ese ítem.
+  La pista es parte de lo que ve el alumno y **puede elegir**: si dice `(100%)`,
+  *usually* no vale ahí.
+- Una elección con barra (`our / ours`, `my / mine`) ofrece las alternativas
+  entre las que el alumno elige.
 - Cuando el enunciado es una oración y después viene `___`, o un esqueleto con
-  barras (`Peter / cook / very badly these days.`), el hueco es la oración
+  barras (`He invested / reading / a book / time.`), el hueco es la oración
   entera: la respuesta es la oración completa.
 
 ## Lo que el corrector ya acepta
@@ -71,7 +71,7 @@ está aceptada si es igual a alguna de las de su hueco después de:
 
 **Nunca listes una respuesta que difiere de una aceptada sólo en eso**: el
 corrector ya la acepta. Y si dos respuestas que vas a listar difieren entre sí
-sólo en eso (*won't come* y *will not come*), listá una sola: cuando se acepte
+sólo en eso (*can't drive* y *cannot drive*), listá una sola: cuando se acepte
 una, el corrector acepta la otra.
 
 ## Qué listás
@@ -89,8 +89,7 @@ Toda respuesta que cumple las tres cosas:
 Cada una lleva su clase (`kind`):
 
 - `OFFERED_BY_INSTRUCTION` — la consigna o la pista la ofrecen como opción
-  («usa 'from' ... 'to / until / till'», `(he / him)`) y el corrector no la
-  acepta;
+  («usa 'can' o 'be able to'», `(our / ours)`) y el corrector no la acepta;
 - `DIFFERENT_VALID` — cualquier otra respuesta correcta que el corrector no
   acepta: otro verbo, otra preposición, la afirmativa en vez de la negativa,
   el otro tiempo verbal que la consigna permite.
@@ -112,34 +111,31 @@ natural ni la puntuación o los espacios; eso lo miran otros analizadores. Nunca
 sugerís que la consigna pida una forma, corta o larga: el corrector acepta
 siempre las dos.
 
-## Ejemplos del curso
+## Ejemplos
 
-- «I ___ a lot of vegetables.», título «Afirmativas regulares», consigna
-  «Escribe la forma afirmativa en presente simple.», `Hueco 1: love`. El hueco
-  no tiene pista y *eat*, *like*, *buy* o *want* encajan igual que *love*:
-  cuatro entradas `DIFFERENT_VALID`, `BLOCKING`.
-- «Does he need water? He ___ .», consigna «Usa $short forms$ si es posible.
-  Escribe la respuesta corta.», `Hueco 1: does`. La oración no dice *Yes* ni
-  *No*: *doesn't* es tan correcta como *does*, y sólo la traducción, que se ve
-  después, dice cuál era → `doesn't`, `DIFFERENT_VALID`, `HIGH`.
-- «She ___ (not / come).», consigna «¿Es más natural usar 'will' o 'going to'?
-  Escribe oraciones.», `Hueco 1: isn't going to come | is not going to come |
-  's not going to come`. Sin contexto, *She won't come.* es igual de posible,
-  aunque menos esperable para quien practica *going to* → `won't come`,
-  `DIFFERENT_VALID`, `MEDIUM`; no listes también *will not come*.
-- «He went to Italy on Friday and came back on Sunday.He was in Italy ___ .»,
-  consigna «Crea oraciones usando 'from' ... 'to / until / till'.», `Hueco 1:
-  from Friday to Sunday | until Sunday | till Sunday`. La consigna ofrece
-  *until*, y *from Friday until Sunday* se rechaza → `from Friday until
-  Sunday`, `OFFERED_BY_INSTRUCTION`, `HIGH`; no listes también *from Friday
-  till Sunday*.
-- «She ___ (travel) to Europe.», `Hueco 1: travelled`: *traveled* es la otra
-  grafía y el corrector la acepta. «They ___ (not / be) from Ireland.»,
-  `Hueco 1: 're not`: *aren't* es la otra negación corta. En los dos la lista va
-  vacía.
-- «She ___ (play) tennis every Sunday. (present simple)», `Hueco 1: plays`: la
-  pista y *every Sunday* eligen el presente simple; *is playing* no vale ahí.
-  La lista va vacía.
+- «She goes ___ me.», título «Verbos con preposición 2», consigna «Coloca las
+  preposiciones correctas.», `Hueco 1: with`. El hueco no tiene pista y
+  *without*, *after*, *before* o *behind* encajan igual que *with*: cuatro
+  entradas `DIFFERENT_VALID`, `BLOCKING`.
+- «He is very good ___ people.», consigna «Completa con la preposición
+  correcta.», `Hueco 1: with`. La oración no dice si es hábil o amable con la
+  gente: *to* es tan correcta como *with*, y nada de lo que ve el alumno dice
+  cuál → `to`, `DIFFERENT_VALID`, `HIGH`.
+- «She ate lunch before she went to work. ___», consigna «Transforma las
+  oraciones para que incluyan la forma 'verb-ing'.», `Hueco 1: She ate lunch
+  before going to work.`. *Before going to work, she ate lunch.* también es
+  correcta, aunque menos esperable: la transformación suele dejar el orden →
+  `Before going to work, she ate lunch.`, `DIFFERENT_VALID`, `MEDIUM`.
+- «My grandmother ___ (not / drive).», consigna «Usa 'can' o 'be able to'.
+  Escribe la forma negativa.», `Hueco 1: isn't able to drive | is not able to
+  drive`. La consigna ofrece *can*, y *can't drive* se rechaza → `can't drive`,
+  `OFFERED_BY_INSTRUCTION`, `HIGH`; no listes también *cannot drive*.
+- «I ___ (dream) about the sea last night.», consigna «Escribe la forma en
+  'past simple'.», `Hueco 1: dreamt`: *dreamed* es la otra grafía y el
+  corrector la acepta. «She ___ (not / be) here right now.», `Hueco 1: isn't`:
+  *'s not* es la otra negación corta. En los dos la lista va vacía.
+- «I ___ drink tea in the morning. (100%)», `Hueco 1: always`: la pista elige
+  *always*; *usually* u *often* no valen ahí. La lista va vacía.
 
 ## Salida
 
@@ -149,14 +145,14 @@ Tu mensaje final es EXCLUSIVAMENTE un objeto JSON, sin prosa ni fences:
 {
   "alternatives": [
     {
-      "answer": "doesn't",
+      "answer": "to",
       "gap": 1,
       "kind": "DIFFERENT_VALID",
       "severity": "HIGH",
-      "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.» y nada de lo que ve el alumno dice cuál."
+      "reason": "La oración no dice si es hábil o amable con la gente: «He is very good to people.» es tan correcta como «He is very good with people.» y nada de lo que ve el alumno dice cuál."
     }
   ],
-  "rationale": "La respuesta corta no está atada a un sí o a un no, así que la negativa vale igual que la aceptada."
+  "rationale": "Con good valen with y to, y la oración no elige entre las dos, así que la otra vale igual que la aceptada."
 }
 ```
 
