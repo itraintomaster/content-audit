@@ -6,13 +6,18 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableEntity;
 import com.learney.contentaudit.auditdomain.AuditableMilestone;
 import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
 import com.learney.contentaudit.auditdomain.EvpCatalogPort;
+import com.learney.contentaudit.auditdomain.LemmaCountBand;
 import com.learney.contentaudit.auditdomain.LemmaCountConfig;
 import com.learney.contentaudit.auditdomain.LevelDiagnoses;
 import com.learney.contentaudit.auditdomain.NodeDiagnoses;
 import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountCourseDiagnosis;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountLevelDiagnosis;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountResult;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountStats;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaExposure;
 import com.learney.contentaudit.auditdomain.lemmacount.LevelLemmaCountResult;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.SuggestedLemma;
@@ -74,6 +79,17 @@ class LevelWideLemmaInventory implements LeveledLemmaInventory {
                 buildSubExposedLookup(report, level);
 
         int threshold = lemmaCountConfig.getThreshold();
+        // F-POCOV-R007: the threshold of each word is the one of its band, as lemma-count published
+        // it in its table; a word without a row takes the band of its COCA rank in that table.
+        Optional<LemmaCountResult> lemmaCount = courseLemmaCount(report);
+        Map<LemmaAndPos, LemmaExposure> exposures = new HashMap<>();
+        lemmaCount.map(LemmaCountResult::getExposures).ifPresent(rows -> rows.forEach(row -> {
+            if (row.getLemmaAndPos() != null) {
+                exposures.put(row.getLemmaAndPos(), row);
+            }
+        }));
+        List<LemmaCountBand> bands = lemmaCount.map(LemmaCountResult::getBands)
+                .filter(b -> !b.isEmpty()).orElse(List.of());
 
         // Step 3: Map each EVP lemma to a SuggestedLemma with exposure classification
         List<SuggestedLemma> candidates = new ArrayList<>();
@@ -87,10 +103,12 @@ class LevelWideLemmaInventory implements LeveledLemmaInventory {
             Integer cocaRank = cocaRankOpt.orElse(null);
 
             LemmaCountStats stats = subExposedByLemma.get(lp);
+            LemmaExposure exposure = exposures.get(lp);
             if (stats != null) {
                 // Sub-exposed: lemma is present in the sub-exposed list (score < 1.0)
                 int count = stats.getCount();
-                int resolvedThreshold = resolveThreshold(threshold, stats);
+                int resolvedThreshold = exposure != null && exposure.getThreshold() > 0
+                        ? exposure.getThreshold() : resolveThreshold(threshold, stats);
                 candidates.add(new SuggestedLemma(
                         lp.getLemma(),
                         lp.getPos(),
@@ -107,12 +125,39 @@ class LevelWideLemmaInventory implements LeveledLemmaInventory {
                         null,
                         cocaRank,
                         null,       // count unknown for already-exposed lemmas
-                        threshold,
+                        bandThreshold(exposure, cocaRank, bands, threshold),
                         false));
             }
         }
 
         return candidates;
+    }
+
+    /** The lemma-count result of the report, when its course has one. */
+    private static Optional<LemmaCountResult> courseLemmaCount(AuditReport report) {
+        AuditNode courseRoot = report.getRoot();
+        if (courseRoot == null || !(courseRoot.getDiagnoses() instanceof CourseDiagnoses)) {
+            return Optional.empty();
+        }
+        return ((CourseDiagnoses) courseRoot.getDiagnoses()).getLemmaCountDiagnosis()
+                .map(LemmaCountCourseDiagnosis::getResult);
+    }
+
+    /**
+     * F-POCOV-R007: the threshold an exposed word reports: its row's, or the one of the band its
+     * COCA rank falls in (the last band also takes the unranked); without bands, the configured one.
+     */
+    private static int bandThreshold(LemmaExposure exposure, Integer cocaRank, List<LemmaCountBand> bands,
+            int configuredThreshold) {
+        if (exposure != null && exposure.getThreshold() > 0) {
+            return exposure.getThreshold();
+        }
+        for (LemmaCountBand band : bands) {
+            if (band.getMaxCocaRank() == null || (cocaRank != null && cocaRank <= band.getMaxCocaRank())) {
+                return band.getThreshold();
+            }
+        }
+        return bands.isEmpty() ? configuredThreshold : bands.get(bands.size() - 1).getThreshold();
     }
 
     /**

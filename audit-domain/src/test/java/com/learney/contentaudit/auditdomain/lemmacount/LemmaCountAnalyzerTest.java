@@ -13,6 +13,15 @@ import com.learney.contentaudit.auditdomain.ContentWordFilter;
 import com.learney.contentaudit.auditdomain.CourseDiagnoses;
 import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
 import com.learney.contentaudit.auditdomain.LemmaCountConfig;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
+import com.learney.contentaudit.auditdomain.LemmaCountBand;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import java.util.Map;
 import com.learney.contentaudit.auditdomain.NlpToken;
 import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
 import java.util.ArrayList;
@@ -833,14 +842,18 @@ public class LemmaCountAnalyzerTest {
 
         List<FindingDraft> drafts = analyzer.findingsAt(root);
 
-        assertEquals(1, drafts.size(), "one finding for the course");
+        // F-POCOV-R003 split the one finding of the course into one per level below 1, A1 and B2 here.
+        assertEquals(List.of("A1", "B2"), drafts.stream().map(FindingDraft::getMarker).toList(),
+                "one finding of the course per level below 1 (F-POCOV-R003)");
         StringBuilder evidence = new StringBuilder();
-        drafts.get(0).getEvidence().getExamined().forEach(p -> evidence.append(p.getLabel()).append(": ")
-                .append(p.getText()).append('\n'));
-        evidence.append(drafts.get(0).getEvidence().getObservation());
+        drafts.forEach(draft -> {
+            draft.getEvidence().getExamined().forEach(p -> evidence.append(p.getLabel()).append(": ")
+                    .append(p.getText()).append('\n'));
+            evidence.append(draft.getEvidence().getObservation()).append('\n');
+        });
         assertTrue(evidence.toString().contains("67,0 %"), "R003: the score of the course: " + evidence);
-        assertTrue(evidence.toString().contains("nose (1)") && evidence.toString().contains("café (1)")
-                        && evidence.toString().contains("venue (1)"),
+        assertTrue(evidence.toString().contains("nose (1 de 4)") && evidence.toString().contains("café (1 de 4)")
+                        && evidence.toString().contains("venue (1 de 4)"),
                 "R003: the lemmas below their target, with the sentences they appear in: " + evidence);
         assertTrue(evidence.toString().contains("4 oraciones"), "R003: next to the target of 4: " + evidence);
     }
@@ -849,170 +862,649 @@ public class LemmaCountAnalyzerTest {
     @DisplayName("should score 'number' (A1, 5 sentences, among the 1,000 most common) 0.625 and mark it under-exposed with bands 8, 6, 4 and 3, and score it 1 with 4 for every band")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldScoreNumberA15SentencesAmongThe1000MostCommon0625AndMarkItUnderexposedWithBands864And3AndScoreIt1With4ForEveryBand() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: «number» (A1, 5 sentences, COCA 211) asks for 8 sentences with the bands, so it scores
+        // 5/8 = 0,625 and is under-exposed; with 4 for every band it scores 1, as before the bands.
+        Course course = new Course();
+        course.level("A1").knowledge("k1", "Números").quizzes(5, "number|NOUN");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("number|NOUN"), CefrLevel.A1), Map.of(lp("number|NOUN"), 211));
+
+        LemmaCountResult withBands = run(course, catalog, bands(8, 6, 4, 3));
+        LemmaExposure number = row(withBands, "number|NOUN");
+        assertEquals(8, number.getThreshold(), "R001: the band of the 1,000 most common asks for 8");
+        assertEquals(0.625, number.getScore(), 1e-12, "R001: 5 sentences of 8");
+        assertEquals(List.of(lp("number|NOUN")), subExposed(withBands, CefrLevel.A1), "R001: under-exposed with 8");
+
+        LemmaCountResult withFour = run(course, catalog, bands(4, 4, 4, 4));
+        assertEquals(4, row(withFour, "number|NOUN").getThreshold());
+        assertEquals(1.0, row(withFour, "number|NOUN").getScore(), 1e-12, "R001 inv. 1: 1 with 4 for every band");
+        assertEquals(List.of(), subExposed(withFour, CefrLevel.A1), "R001 inv. 1: not under-exposed with 4");
     }
 
     @Test
     @DisplayName("should take a word's band from its COCA rank in the EVP catalog for its lemma and part of speech, so 'hop' read from 'hoped' asks for 3 sentences with rank 5,603 and not for 8 with the rank 413 of 'hope'")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldTakeAWordsBandFromItsCOCARankInTheEVPCatalogForItsLemmaAndPartOfSpeechSoHopReadFromHopedAsksFor3SentencesWithRank5603AndNotFor8WithTheRank413OfHope() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 3: «hop» (read from «hoped» by the shared lemmatizer) takes the COCA rank of
+        // hop/VERB in the catalog, 5,603, so it asks for 3 sentences; never the 413 of «hope», which
+        // would ask for 8. The written form of the sentence plays no part.
+        Course course = new Course();
+        course.level("B1").knowledge("k1", "Esperanzas").quiz("q1", "hop|VERB").quiz("q2", "hop|VERB");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("hop|VERB"), CefrLevel.C1, lp("hope|VERB"), CefrLevel.A2),
+                Map.of(lp("hop|VERB"), 5603, lp("hope|VERB"), 413));
+
+        LemmaCountResult result = run(course, catalog, bands(8, 6, 4, 3));
+
+        LemmaExposure hop = row(result, "hop|VERB");
+        assertEquals(Integer.valueOf(5603), hop.getCocaRank(), "R001 inv. 3: the rank of hop/VERB in the catalog");
+        assertEquals(3, hop.getThreshold(), "R001: beyond 3,000 asks for 3 sentences, not 8");
+        assertEquals(2.0 / 3.0, hop.getScore(), 1e-12, "R001: 2 sentences of 3");
+        assertEquals("más allá de 3.000 o sin puesto", hop.getBand());
     }
 
     @Test
     @DisplayName("should apply the threshold of the last band to a word without COCA rank")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldApplyTheThresholdOfTheLastBandToAWordWithoutCOCARank() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the last band has no top and also takes the words the catalog does not rank.
+        Course course = new Course();
+        course.level("B1").knowledge("k1", "Oficios").quizzes(2, "goalkeeping|NOUN");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("goalkeeping|NOUN"), CefrLevel.B1), Map.of());
+
+        LemmaCountResult result = run(course, catalog, bands(8, 6, 4, 3));
+
+        LemmaExposure word = row(result, "goalkeeping|NOUN");
+        assertNull(word.getCocaRank(), "no rank in the catalog");
+        assertEquals("más allá de 3.000 o sin puesto", word.getBand(), "R001: the last band");
+        assertEquals(3, word.getThreshold(), "R001: the threshold of the last band");
+        assertEquals(2.0 / 3.0, word.getScore(), 1e-12);
     }
 
     @Test
     @DisplayName("should give lemma-count A1 0.9388350, A2 0.7114198, B1 0.5251412, B2 0.3404948, C1 0.8333333, course 0.6698448 and 1,535 under-exposed words with 4 for every band, on the lemma table of the course of 29/9")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldGiveLemmacountA109388350A207114198B105251412B203404948C108333333Course06698448And1535UnderexposedWordsWith4ForEveryBandOnTheLemmaTableOfTheCourseOf299() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 1: on the lemma table of the 29/9 course (2,597 words with a level, 473 without),
+        // 4 for every band gives exactly the numbers of today.
+        LemmaCountResult result = runCourseOf299(bands(4, 4, 4, 4));
+
+        assertEquals(List.of("A1 0,9388350", "A2 0,7114198", "B1 0,5251412", "B2 0,3404948", "C1 0,8333333"),
+                levelScores(result), "R001 inv. 1: the levels of today");
+        assertEquals("0,6698448", seven(result.getCourseScore().orElseThrow()), "R001 inv. 1: the course of today");
+        assertEquals(1535, underExposedCount(result), "R001 inv. 1: 1,535 under-exposed words");
+        assertEquals(473, result.getUnassigned().size(), "the 473 words without a level stay unassigned");
     }
 
     @Test
     @DisplayName("should give lemma-count A1 0.9077670, A2 0.6782407, B1 0.4903013, B2 0.3612196, C1 0.8888889, course 0.6652835 and 1,616 under-exposed words with bands 8, 6, 4 and 3, on the lemma table of the course of 29/9")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldGiveLemmacountA109077670A206782407B104903013B203612196C108888889Course06652835And1616UnderexposedWordsWithBands864And3OnTheLemmaTableOfTheCourseOf299() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 2: the same table with the bands 8, 6, 4 and 3, by the COCA rank of the catalog.
+        LemmaCountResult result = runCourseOf299(bands(8, 6, 4, 3));
+
+        assertEquals(List.of("A1 0,9077670", "A2 0,6782407", "B1 0,4903013", "B2 0,3612196", "C1 0,8888889"),
+                levelScores(result), "R001 inv. 2: the levels with the bands");
+        assertEquals("0,6652835", seven(result.getCourseScore().orElseThrow()), "R001 inv. 2: the course");
+        assertEquals(1616, underExposedCount(result), "R001 inv. 2: 1,616 under-exposed words");
     }
 
     @Test
     @DisplayName("should leave in a level one finding per under-exposed word assigned to it, of rule F-POCOV-R003, low severity, only ordering and instant cost, like 'education' (B1) in 1 sentence of 4")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R003")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldLeaveInALevelOneFindingPerUnderexposedWordAssignedToItOfRuleFPOCOVR003LowSeverityOnlyOrderingAndInstantCostLikeEducationB1In1SentenceOf4() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «education» (B1, 1 sentence of 4) is a finding of B1; «school», in 5 sentences, is not.
+        Course course = new Course();
+        course.level("B1").knowledge("k1", "Estudios").quiz("q1", "education|NOUN", "school|NOUN")
+                .quizzes(4, "school|NOUN");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("education|NOUN"), CefrLevel.B1,
+                lp("school|NOUN"), CefrLevel.B1), Map.of(lp("education|NOUN"), 424, lp("school|NOUN"), 146));
+        LemmaCountConfig config = bands(4, 4, 4, 4);
+        LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(new DefaultContentWordFilter(), catalog, config);
+        course.walk(analyzer);
+
+        List<FindingDraft> drafts = analyzer.findingsAt(course.levelNode("B1"));
+
+        assertEquals(1, drafts.size(), "R003: one finding per under-exposed word of the level");
+        FindingDraft education = drafts.get(0);
+        assertEquals("F-POCOV-R003", education.getRule());
+        assertEquals("education|NOUN", education.getMarker(), "the word it is about");
+        assertEquals(FindingSeverity.LOW, education.getSeverity(), "R003: low");
+        assertEquals(FindingResolution.RANK_ONLY, education.getResolution(), "R003: only ordering");
+        AnalyzerRuleCard rule = new LemmaCountAnalyzerProvider(mock(EvpCatalogPort.class), config).describe()
+                .getRules().stream().filter(r -> r.getId().equals(education.getRule())).findFirst().orElseThrow();
+        assertEquals(AnalysisCost.INSTANT, rule.getCost(), "R003: instant, the cost of its rule");
     }
 
     @Test
     @DisplayName("should give as evidence the lemma, its part of speech, its sentences against N and its band, like 'education (B1): 1 sentence of 4; band of the 1,000 most common'")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R003")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldGiveAsEvidenceTheLemmaItsPartOfSpeechItsSentencesAgainstNAndItsBandLikeEducationB11SentenceOf4BandOfThe1000MostCommon() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the evidence of a word reads without running anything again: «education (B1): 1
+        // oración de 4; banda de las 1.000 más comunes».
+        Course course = new Course();
+        course.level("B1").knowledge("k1", "Estudios").quiz("q1", "education|NOUN");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("education|NOUN"), CefrLevel.B1),
+                Map.of(lp("education|NOUN"), 424));
+        LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(new DefaultContentWordFilter(), catalog, bands(4, 4, 4, 4));
+        course.walk(analyzer);
+
+        FindingDraft education = analyzer.findingsAt(course.levelNode("B1")).get(0);
+
+        assertEquals("education (B1): 1 oración de 4; banda de las 1.000 más comunes",
+                education.getEvidence().getObservation(), "R003: the observation");
+        Map<String, String> parts = parts(education);
+        assertEquals("education", parts.get("Palabra"), "R003: the lemma");
+        assertEquals("NOUN", parts.get("Categoría"), "R003: its part of speech");
+        assertEquals("1 de 4", parts.get("Oraciones"), "R003: its sentences against N");
+        assertEquals("1.000 más comunes", parts.get("Banda"), "R003: its band");
     }
 
     @Test
     @DisplayName("should leave in the course one finding per level with score below 1 that counts its under-exposed words")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R003")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldLeaveInTheCourseOneFindingPerLevelWithScoreBelow1ThatCountsItsUnderexposedWords() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the course has one finding per level below 1, which counts its under-exposed words;
+        // a level at 1 leaves none.
+        Course course = new Course();
+        course.level("A1").knowledge("k1", "Casa").quizzes(4, "house|NOUN");
+        course.level("B1").knowledge("k2", "Estudios").quiz("q-b1", "education|NOUN", "research|NOUN")
+                .quizzes(4, "school|NOUN");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("house|NOUN"), CefrLevel.A1,
+                lp("education|NOUN"), CefrLevel.B1, lp("research|NOUN"), CefrLevel.B1, lp("school|NOUN"), CefrLevel.B1),
+                Map.of());
+        LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(new DefaultContentWordFilter(), catalog, bands(4, 4, 4, 4));
+        course.walk(analyzer);
+
+        List<FindingDraft> drafts = analyzer.findingsAt(course.root);
+
+        assertEquals(List.of("B1"), drafts.stream().map(FindingDraft::getMarker).toList(),
+                "R003: one finding for B1, below 1, and none for A1, at 1");
+        assertEquals("2 de 3 palabras", parts(drafts.get(0)).get("Poco vistas"), "R003: it counts its words");
+        assertEquals(FindingSeverity.LOW, drafts.get(0).getSeverity());
+        assertEquals(FindingResolution.RANK_ONLY, drafts.get(0).getResolution());
     }
 
     @Test
     @DisplayName("should name the under-exposed word of C1, 'hop', in the course finding about C1, since C1 has no level node")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R003")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldNameTheUnderexposedWordOfC1HopInTheCourseFindingAboutC1SinceC1HasNoLevelNode() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: C1 has no node in the course, so its under-exposed word, «hop», is named in the
+        // finding of the course about C1.
+        Course course = new Course();
+        course.level("B1").knowledge("k1", "Esperanzas").quiz("q1", "hop|VERB", "school|NOUN")
+                .quiz("q2", "hop|VERB", "school|NOUN").quizzes(2, "school|NOUN");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("hop|VERB"), CefrLevel.C1, lp("school|NOUN"), CefrLevel.B1),
+                Map.of(lp("hop|VERB"), 5603, lp("school|NOUN"), 146));
+        LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(new DefaultContentWordFilter(), catalog, bands(8, 6, 4, 3));
+        course.walk(analyzer);
+
+        List<FindingDraft> drafts = analyzer.findingsAt(course.root);
+
+        FindingDraft c1 = drafts.stream().filter(d -> "C1".equals(d.getMarker())).findFirst()
+                .orElseThrow(() -> new AssertionError("R003: a course finding about C1"));
+        assertTrue(c1.getEvidence().getObservation().contains("hop (2 oraciones de 3)"),
+                "R003: it names hop with its sentences and N: " + c1.getEvidence().getObservation());
+        assertTrue(analyzer.findingsAt(course.levelNode("B1")).stream()
+                .noneMatch(d -> d.getMarker() != null && d.getMarker().startsWith("hop|")),
+                "hop is not a finding of B1, the level of its sentences");
     }
 
     @Test
     @DisplayName("should leave no finding for an unassigned lemma nor in a level whose score is 1")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R003")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldLeaveNoFindingForAnUnassignedLemmaNorInALevelWhoseScoreIs1() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: a lemma without a level (F-LCOUNT-R011) leaves no finding, nor does a level at 1.
+        Course course = new Course();
+        course.level("A1").knowledge("k1", "Casa").quiz("q1", "house|NOUN", "zorb|NOUN").quizzes(3, "house|NOUN");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("house|NOUN"), CefrLevel.A1), Map.of());
+        LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(new DefaultContentWordFilter(), catalog, bands(4, 4, 4, 4));
+        course.walk(analyzer);
+
+        assertEquals(1.0, course.levelNode("A1").getScores().get("lemma-count"), 1e-12, "A1 at 1");
+        assertEquals(List.of(), analyzer.findingsAt(course.levelNode("A1")), "R003: nothing in a level at 1");
+        assertEquals(List.of(), analyzer.findingsAt(course.root), "R003: nothing in the course either");
+        assertEquals(List.of(lp("zorb|NOUN")), lastResult(course).getUnassigned().stream()
+                .map(UnassignedLemmaEntry::getLemmaAndPos).toList(), "zorb stays unassigned, without a finding");
     }
 
     @Test
     @DisplayName("should identify each finding by lemma and part of speech, so a noun and a verb with the same lemma, both under-exposed in the level, leave two findings")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R003")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldIdentifyEachFindingByLemmaAndPartOfSpeechSoANounAndAVerbWithTheSameLemmaBothUnderexposedInTheLevelLeaveTwoFindings() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 and F-HALL-R014: the identity is lemma and part of speech, so «visit» as a noun and as
+        // a verb, both under-exposed in A2, are two findings.
+        Course course = new Course();
+        course.level("A2").knowledge("k1", "Viajes").quiz("q1", "visit|NOUN", "visit|VERB");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("visit|NOUN"), CefrLevel.A2, lp("visit|VERB"), CefrLevel.A2),
+                Map.of(lp("visit|NOUN"), 1500, lp("visit|VERB"), 600));
+        LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(new DefaultContentWordFilter(), catalog, bands(8, 6, 4, 3));
+        course.walk(analyzer);
+
+        List<String> markers = analyzer.findingsAt(course.levelNode("A2")).stream().map(FindingDraft::getMarker)
+                .sorted().toList();
+
+        assertEquals(List.of("visit|NOUN", "visit|VERB"), markers, "R003: two findings, one per part of speech");
     }
 
     @Test
     @DisplayName("should leave 1,534 level findings and 5 course findings with 4 for every band, and 1,615 and 5 with bands 8, 6, 4 and 3, on the lemma table of the course of 29/9")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R003")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldLeave1534LevelFindingsAnd5CourseFindingsWith4ForEveryBandAnd1615And5WithBands864And3OnTheLemmaTableOfTheCourseOf299() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: on the 29/9 table, 1,534 level findings (62 + 418 + 688 + 366) and 5 course findings,
+        // C1 included; with the bands, 1,615 (89 + 461 + 707 + 358) and 5.
+        assertEquals(List.of(1534, 5), findingCountsOf299(bands(4, 4, 4, 4)), "R003: with 4 for every band");
+        assertEquals(List.of(1615, 5), findingCountsOf299(bands(8, 6, 4, 3)), "R003: with 8, 6, 4 and 3");
     }
 
     @Test
     @DisplayName("should publish each level's words by band, then by fewer sentences, then by ascending COCA rank, so a word of the 1,000 most common in 3 sentences comes before one of the 2,000 in 1 sentence")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R004")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldPublishEachLevelsWordsByBandThenByFewerSentencesThenByAscendingCOCARankSoAWordOfThe1000MostCommonIn3SentencesComesBeforeOneOfThe2000In1Sentence() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: a level publishes its words by band, then fewer sentences, then ascending COCA rank:
+        // «beach» (1,000 most common, 3 sentences) goes before «pillow» (up to 2,000, 1 sentence).
+        Course course = new Course();
+        course.level("A2").knowledge("k1", "Vacaciones")
+                .quiz("q1", "beach|NOUN", "pillow|NOUN", "sea|NOUN", "sand|NOUN")
+                .quiz("q2", "beach|NOUN").quiz("q3", "beach|NOUN");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("beach|NOUN"), CefrLevel.A2, lp("pillow|NOUN"), CefrLevel.A2,
+                lp("sea|NOUN"), CefrLevel.A2, lp("sand|NOUN"), CefrLevel.A2),
+                Map.of(lp("beach|NOUN"), 900, lp("pillow|NOUN"), 1500, lp("sea|NOUN"), 950, lp("sand|NOUN"), 100));
+
+        LemmaCountResult result = run(course, catalog, bands(8, 6, 4, 3));
+
+        assertEquals(List.of("sand", "sea", "beach", "pillow"), result.getExposures().stream()
+                .filter(e -> e.getAssignedLevel() == CefrLevel.A2).map(e -> e.getLemmaAndPos().getLemma()).toList(),
+                "R004: band, then fewer sentences, then ascending COCA rank");
     }
 
     @Test
     @DisplayName("should put first in B1 feeling, political, research, human, education, sense and effect, all in one sentence, with 4 for every band on the lemma table of the course of 29/9")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R004")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldPutFirstInB1FeelingPoliticalResearchHumanEducationSenseAndEffectAllInOneSentenceWith4ForEveryBandOnTheLemmaTableOfTheCourseOf299() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 on the 29/9 table with 4 for every band: B1 opens with its words of the 1,000 most
+        // common in a single sentence, by ascending COCA rank of the catalog. political, research,
+        // human, education, sense, effect and feeling are all in that first block. With the rank of
+        // the catalog (DOUBT-PUESTO-DE-LA-BANDA, A) «little» (ADV, 238) and «face» (VERB, 369) open
+        // it too, and «feeling» (853) comes later in it than with the rank of its first sentence.
+        LemmaCountResult result = runCourseOf299(bands(4, 4, 4, 4));
+
+        List<LemmaExposure> b1 = result.getExposures().stream().filter(e -> e.getAssignedLevel() == CefrLevel.B1)
+                .toList();
+        List<LemmaExposure> firstBlock = b1.stream().takeWhile(e -> e.getCount() == 1
+                && "1.000 más comunes".equals(e.getBand())).toList();
+        assertEquals(54, firstBlock.size(), "the first block: the 1,000 most common in one sentence");
+        assertEquals(List.of("little", "political", "face", "research", "human", "education", "sense", "effect"),
+                firstBlock.stream().limit(8).map(e -> e.getLemmaAndPos().getLemma()).toList(),
+                "R004: by ascending COCA rank");
+        List<String> named = List.of("political", "research", "human", "education", "sense", "effect", "feeling");
+        assertEquals(named, firstBlock.stream().map(e -> e.getLemmaAndPos().getLemma()).filter(named::contains)
+                .toList(), "R004: the seven, all in one sentence, in the first block and in rank order");
     }
 
     @Test
     @DisplayName("should keep each level's under-exposed list ordered by ascending sentences, as today")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R004")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldKeepEachLevelsUnderexposedListOrderedByAscendingSentencesAsToday() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 and F-LCOUNT-R017: the list of under-exposed words of a level keeps its order by
+        // sentences; only the table and the findings carry the order by band.
+        Course course = new Course();
+        course.level("A2").knowledge("k1", "Vacaciones")
+                .quiz("q1", "beach|NOUN", "pillow|NOUN").quiz("q2", "beach|NOUN").quiz("q3", "beach|NOUN");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("beach|NOUN"), CefrLevel.A2, lp("pillow|NOUN"), CefrLevel.A2),
+                Map.of(lp("beach|NOUN"), 900, lp("pillow|NOUN"), 1500));
+
+        LemmaCountResult result = run(course, catalog, bands(8, 6, 4, 3));
+
+        assertEquals(List.of(lp("pillow|NOUN"), lp("beach|NOUN")), subExposed(result, CefrLevel.A2),
+                "F-LCOUNT-R017: pillow (1 sentence) before beach (3), as today");
     }
 
     @Test
     @DisplayName("should name in each under-exposed word's finding the topics whose quizzes use it, in course order")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R005")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldNameInEachUnderexposedWordsFindingTheTopicsWhoseQuizzesUseItInCourseOrder() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the finding of «lamp» names the topics whose quizzes use it, in course order.
+        Course course = new Course();
+        Level a2 = course.level("A2");
+        a2.knowledge("k-adj", "Posición del adjetivo").quiz("q1", "lamp|NOUN");
+        a2.knowledge("k-of", "Cuantificadores: con o sin $of$").quiz("q2", "lamp|NOUN");
+        a2.knowledge("k-none", "Rutinas").quiz("q3", "wake|VERB");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("lamp|NOUN"), CefrLevel.A2, lp("wake|VERB"), CefrLevel.A2),
+                Map.of(lp("lamp|NOUN"), 4541));
+        LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(new DefaultContentWordFilter(), catalog, bands(8, 6, 4, 3));
+        course.walk(analyzer);
+
+        FindingDraft lamp = analyzer.findingsAt(course.levelNode("A2")).stream()
+                .filter(d -> "lamp|NOUN".equals(d.getMarker())).findFirst().orElseThrow();
+
+        assertEquals("Posición del adjetivo · Cuantificadores: con o sin $of$", parts(lamp).get("Temas"),
+                "R005: the topics that use it, in course order");
+        assertEquals(List.of("k-adj", "k-of"), lamp.getEvidence().getRelatedNodes().stream()
+                .map(n -> n.getNodeId()).toList(), "R005: the knowledges, as related nodes");
     }
 
     @Test
     @DisplayName("should record in each word's row every knowledge whose quizzes use it, so a topic can read the under-exposed words of its level it uses")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R005")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldRecordInEachWordsRowEveryKnowledgeWhoseQuizzesUseItSoATopicCanReadTheUnderexposedWordsOfItsLevelItUses() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: each row records every knowledge whose quizzes use the word, so a topic reads which
+        // under-exposed words of its level it uses.
+        Course course = new Course();
+        Level a2 = course.level("A2");
+        a2.knowledge("k-adj", "Posición del adjetivo").quiz("q1", "lamp|NOUN", "leather|NOUN")
+                .quiz("q2", "lamp|NOUN");
+        a2.knowledge("k-of", "Cuantificadores: con o sin $of$").quiz("q3", "lamp|NOUN", "rubber|NOUN");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("lamp|NOUN"), CefrLevel.A2, lp("leather|NOUN"), CefrLevel.A2,
+                lp("rubber|NOUN"), CefrLevel.A2), Map.of(lp("lamp|NOUN"), 900));
+
+        LemmaCountResult result = run(course, catalog, bands(8, 6, 4, 3));
+
+        assertEquals(List.of("k-adj", "k-of"), row(result, "lamp|NOUN").getKnowledgeIds(),
+                "R005: every knowledge that uses lamp");
+        assertEquals(List.of("lamp", "rubber"), result.getExposures().stream()
+                .filter(e -> e.getScore() < 1.0 && e.getKnowledgeIds().contains("k-of"))
+                .map(e -> e.getLemmaAndPos().getLemma()).sorted().toList(),
+                "R005: the under-exposed words that «Cuantificadores» uses");
     }
 
     @Test
     @DisplayName("should not leave as under-exposed a word of the level that no quiz uses, which is the absent word of lemma-absence")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R005")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldNotLeaveAsUnderexposedAWordOfTheLevelThatNoQuizUsesWhichIsTheAbsentWordOfLemmaabsence() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: a word of the level that no quiz uses is absent (lemma-absence), not under-exposed.
+        Course course = new Course();
+        course.level("A1").knowledge("k1", "Cuerpo").quiz("q1", "face|NOUN");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("face|NOUN"), CefrLevel.A1, lp("nose|NOUN"), CefrLevel.A1),
+                Map.of(lp("face|NOUN"), 369, lp("nose|NOUN"), 1720));
+        LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(new DefaultContentWordFilter(), catalog, bands(8, 6, 4, 3));
+        course.walk(analyzer);
+        LemmaCountResult result = lastResult(course);
+
+        assertTrue(result.getExposures().stream().noneMatch(e -> e.getLemmaAndPos().equals(lp("nose|NOUN"))),
+                "R005: nose, which no quiz uses, has no row");
+        assertEquals(List.of(lp("face|NOUN")), subExposed(result, CefrLevel.A1), "only face is under-exposed");
+        assertTrue(analyzer.findingsAt(course.levelNode("A1")).stream()
+                .noneMatch(d -> "nose|NOUN".equals(d.getMarker())), "R005: no finding for nose");
     }
 
     @Test
     @DisplayName("should publish in its result the band table it used, with the threshold of each band")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R006")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldPublishInItsResultTheBandTableItUsedWithTheThresholdOfEachBand() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 and R004: the result publishes the band table it used, and each row the threshold of
+        // its band.
+        Course course = new Course();
+        course.level("A2").knowledge("k1", "Vacaciones").quiz("q1", "beach|NOUN", "pillow|NOUN", "sand|NOUN",
+                "dune|NOUN");
+        LemmaCefrLevelResolver catalog = catalog(Map.of(lp("beach|NOUN"), CefrLevel.A2, lp("pillow|NOUN"), CefrLevel.A2,
+                lp("sand|NOUN"), CefrLevel.A2, lp("dune|NOUN"), CefrLevel.A2),
+                Map.of(lp("beach|NOUN"), 900, lp("pillow|NOUN"), 1500, lp("sand|NOUN"), 2500, lp("dune|NOUN"), 9000));
+        LemmaCountConfig config = bands(8, 6, 4, 3);
+
+        LemmaCountResult result = run(course, catalog, config);
+
+        assertEquals(config.getBands(), result.getBands(), "R001: the band table it used");
+        assertEquals(List.of(8, 6, 4, 3), result.getBands().stream().map(LemmaCountBand::getThreshold).toList());
+        assertEquals(List.of("beach 8", "pillow 6", "sand 4", "dune 3"), result.getExposures().stream()
+                .map(e -> e.getLemmaAndPos().getLemma() + " " + e.getThreshold()).toList(),
+                "R004: each row with the threshold of its band");
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-POCOV fixtures
+    // -----------------------------------------------------------------------
+
+    private static final Integer[] BAND_TOPS = {1000, 2000, 3000, null};
+    private static final String[] BAND_NAMES = {"1.000 más comunes", "hasta 2.000", "hasta 3.000",
+            "más allá de 3.000 o sin puesto"};
+
+    /** A configuration with the four bands of F-POCOV-R001 and the given thresholds. */
+    private static LemmaCountConfig bands(int... thresholds) {
+        List<LemmaCountBand> table = new ArrayList<>();
+        for (int i = 0; i < thresholds.length; i++) {
+            table.add(new LemmaCountBand(BAND_NAMES[i], BAND_TOPS[i], thresholds[i]));
+        }
+        LemmaCountConfig config = mock(LemmaCountConfig.class);
+        when(config.getThreshold()).thenReturn(4);
+        when(config.getBands()).thenReturn(table);
+        return config;
+    }
+
+    private static LemmaAndPos lp(String key) {
+        int bar = key.lastIndexOf('|');
+        return new LemmaAndPos(key.substring(0, bar), key.substring(bar + 1));
+    }
+
+    /** The EVP catalog as the resolver reads it: the level and the COCA rank of each lemma and part of speech. */
+    private static LemmaCefrLevelResolver catalog(Map<LemmaAndPos, CefrLevel> levels, Map<LemmaAndPos, Integer> ranks) {
+        return new LemmaCefrLevelResolver() {
+            @Override
+            public Optional<CefrLevel> resolve(LemmaAndPos lemmaAndPos, Optional<CefrLevel> nlpCefr) {
+                return Optional.ofNullable(levels.get(lemmaAndPos));
+            }
+
+            @Override
+            public Optional<Integer> resolveCocaRank(LemmaAndPos lemmaAndPos) {
+                return Optional.ofNullable(ranks.get(lemmaAndPos));
+            }
+        };
+    }
+
+    private static LemmaCountResult run(Course course, LemmaCefrLevelResolver catalog, LemmaCountConfig config) {
+        course.walk(new LemmaCountAnalyzer(new DefaultContentWordFilter(), catalog, config));
+        return lastResult(course);
+    }
+
+    private static LemmaCountResult lastResult(Course course) {
+        return ((DefaultCourseDiagnoses) course.root.getDiagnoses()).getLemmaCountDiagnosis().orElseThrow().getResult();
+    }
+
+    private static LemmaExposure row(LemmaCountResult result, String key) {
+        return result.getExposures().stream().filter(e -> e.getLemmaAndPos().equals(lp(key))).findFirst()
+                .orElseThrow(() -> new AssertionError("no row for " + key));
+    }
+
+    private static List<LemmaAndPos> subExposed(LemmaCountResult result, CefrLevel level) {
+        return result.getLevels().stream().filter(l -> l.getLevel() == level)
+                .flatMap(l -> l.getSubExposedLemmas().stream()).map(LemmaCountStats::getLemmaAndPos).toList();
+    }
+
+    private static int underExposedCount(LemmaCountResult result) {
+        return result.getLevels().stream().mapToInt(l -> l.getSubExposedLemmas().size()).sum();
+    }
+
+    private static List<String> levelScores(LemmaCountResult result) {
+        return result.getLevels().stream().map(l -> l.getLevel().name() + " " + seven(l.getScore())).toList();
+    }
+
+    private static String seven(double value) {
+        return String.format(java.util.Locale.ROOT, "%.7f", value).replace('.', ',');
+    }
+
+    private static Map<String, String> parts(FindingDraft draft) {
+        Map<String, String> parts = new LinkedHashMap<>();
+        for (EvidencePart part : draft.getEvidence().getExamined()) {
+            parts.put(part.getLabel(), part.getText());
+        }
+        return parts;
+    }
+
+    /** The level findings of A1 to B2 and the course findings of the 29/9 table. */
+    private static List<Integer> findingCountsOf299(LemmaCountConfig config) {
+        Course course = courseOf299();
+        LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(new DefaultContentWordFilter(), catalogOf299(), config);
+        course.walk(analyzer);
+        int levelFindings = 0;
+        for (String level : List.of("A1", "A2", "B1", "B2")) {
+            levelFindings += analyzer.findingsAt(course.levelNode(level)).size();
+        }
+        return List.of(levelFindings, analyzer.findingsAt(course.root).size());
+    }
+
+    private static LemmaCountResult runCourseOf299(LemmaCountConfig config) {
+        return run(courseOf299(), catalogOf299(), config);
+    }
+
+    /**
+     * The lemma table of the 29/9 course (analysis 2026-09-30T11-54-02): one row per content lemma
+     * with its sentences, its EVP level and its EVP COCA rank, 2,597 with a level and 473 without.
+     */
+    private static List<String[]> tableOf299() {
+        try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(
+                new java.util.zip.GZIPInputStream(LemmaCountAnalyzerTest.class.getResourceAsStream(
+                        "/pocov-2026-09-30/lemmas.tsv.gz")), java.nio.charset.StandardCharsets.UTF_8))) {
+            return reader.lines().map(line -> line.split("\t", -1)).toList();
+        } catch (java.io.IOException e) {
+            throw new AssertionError("the lemma table of 29/9 is unreadable", e);
+        }
+    }
+
+    private static LemmaCefrLevelResolver catalogOf299() {
+        Map<LemmaAndPos, CefrLevel> levels = new java.util.HashMap<>();
+        Map<LemmaAndPos, Integer> ranks = new java.util.HashMap<>();
+        for (String[] row : tableOf299()) {
+            LemmaAndPos key = new LemmaAndPos(row[0], row[1]);
+            if (!row[3].isEmpty()) {
+                levels.put(key, CefrLevel.valueOf(row[3]));
+            }
+            if (!row[4].isEmpty()) {
+                ranks.put(key, Integer.valueOf(row[4]));
+            }
+        }
+        return catalog(levels, ranks);
+    }
+
+    /**
+     * A synthetic course where quiz k carries every lemma of the table with more than k sentences,
+     * so each lemma appears in exactly its sentences (597 at most), under the four levels of the course.
+     */
+    private static Course courseOf299() {
+        List<String[]> table = tableOf299();
+        int max = table.stream().mapToInt(row -> Integer.parseInt(row[2])).max().orElse(0);
+        Course course = new Course();
+        Knowledge knowledge = course.level("A1").knowledge("k-299", "El curso del 29/9");
+        for (String level : List.of("A2", "B1", "B2")) {
+            course.level(level);
+        }
+        for (int k = 0; k < max; k++) {
+            List<String> words = new ArrayList<>();
+            for (String[] row : table) {
+                if (Integer.parseInt(row[2]) > k) {
+                    words.add(row[0] + "|" + row[1]);
+                }
+            }
+            knowledge.quiz("q" + k, words.toArray(new String[0]));
+        }
+        return course;
+    }
+
+    /** A course tree of levels, knowledges and quizzes, walked as the engine walks it. */
+    private static final class Course {
+        final AuditNode root = node(AuditTarget.COURSE, null, null, new DefaultCourseDiagnoses());
+        private final Map<String, Level> levels = new LinkedHashMap<>();
+
+        Level level(String label) {
+            return levels.computeIfAbsent(label, l -> new Level(node(AuditTarget.MILESTONE,
+                    new com.learney.contentaudit.auditdomain.AuditableMilestone(List.of(), "m-" + l, l, l), root,
+                    new com.learney.contentaudit.auditdomain.DefaultLevelDiagnoses())));
+        }
+
+        AuditNode levelNode(String label) {
+            return levels.get(label).node;
+        }
+
+        void walk(LemmaCountAnalyzer analyzer) {
+            for (Level level : levels.values()) {
+                for (Knowledge knowledge : level.knowledges) {
+                    knowledge.quizzes.forEach(analyzer::onQuiz);
+                }
+            }
+            analyzer.onCourseComplete(root);
+        }
+    }
+
+    private static final class Level {
+        final AuditNode node;
+        final AuditNode topic;
+        final List<Knowledge> knowledges = new ArrayList<>();
+
+        Level(AuditNode node) {
+            this.node = node;
+            this.topic = node(AuditTarget.TOPIC,
+                    new com.learney.contentaudit.auditdomain.AuditableTopic(List.of(), "t-" + node.getEntity().getId(),
+                            "Tema", "T"), node, null);
+        }
+
+        Knowledge knowledge(String id, String label) {
+            Knowledge knowledge = new Knowledge(node(AuditTarget.KNOWLEDGE,
+                    new com.learney.contentaudit.auditdomain.AuditableKnowledge(List.of(), label, "", true, id, label, "K",
+                            null, "Tema"), topic, null));
+            knowledges.add(knowledge);
+            return knowledge;
+        }
+    }
+
+    private static final class Knowledge {
+        final AuditNode node;
+        final List<AuditNode> quizzes = new ArrayList<>();
+        private int generated = 0;
+
+        Knowledge(AuditNode node) {
+            this.node = node;
+        }
+
+        /** A quiz carrying one content token per «lemma|POS». */
+        Knowledge quiz(String id, String... words) {
+            List<NlpToken> tokens = new ArrayList<>();
+            for (String word : words) {
+                LemmaAndPos key = lp(word);
+                tokens.add(new NlpToken(key.getLemma(), key.getLemma(), key.getPos(), null, false, false));
+            }
+            quizzes.add(node(AuditTarget.QUIZ, new AuditableQuiz(tokens, id, id, "Q", null, List.of(id), null, null,
+                    null, null, null, null), node, null));
+            return this;
+        }
+
+        /** n quizzes, each carrying the words. */
+        Knowledge quizzes(int n, String... words) {
+            for (int i = 0; i < n; i++) {
+                quiz(node.getEntity().getId() + "-q" + (generated++), words);
+            }
+            return this;
+        }
+    }
+
+    private static AuditNode node(AuditTarget target, com.learney.contentaudit.auditdomain.AuditableEntity entity,
+            AuditNode parent, com.learney.contentaudit.auditdomain.NodeDiagnoses diagnoses) {
+        AuditNode node = new AuditNode();
+        node.setTarget(target);
+        node.setEntity(entity);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        node.setDiagnoses(diagnoses);
+        if (parent != null) {
+            parent.getChildren().add(node);
+        }
+        return node;
     }
 }

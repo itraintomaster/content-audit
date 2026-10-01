@@ -5,6 +5,18 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (paquete D) — Regla del hallazgo «F-POCOV-R003» (antes under-exposed-lemmas); en el curso, un
+  hallazgo por nivel menor que 1 marcado con el nivel, con «Curso: 67,0 %» en la evidencia; si el curso queda menor que
+  1 sin niveles (curso sin palabras con nivel) deja un hallazgo de respaldo, para no romper F-HALL-R001.
+  why: R003 pide un hallazgo por nivel; el contrato exige al menos uno en todo nodo de vocabulario menor que 1.
+2026-09-30 — developer (paquete D) — Las sugeridas siguen tomando las oraciones de las listas de sub-expuestos (no de la
+  tabla); sólo el N sale de la tabla. Con 4 para todas la salida es idéntica a la de hoy (prueba con el mismo análisis
+  sin tabla). «number … escasa con 4» se prueba con la lista sintética, como las pruebas de F-SLEM de los tiers 5 y 6.
+  why: tomar las oraciones de la tabla movería a tier 6 lemas APPEARS_TOO_LATE que hoy van en tier 4 (rompe R007 inv. 2).
+2026-09-30 — developer (paquete D) — Las pruebas de F-HALL-R013 (DefaultAuditRunnerTest y Base299 de AnalyzeCmdTest)
+  pasan a cargar «4»: fijan los números del análisis del 29/9, que se hizo con 4 para todas; la comparación de
+  diagnósticos ignora bands, exposures y lemmaRecurrenceDiagnosis, que el fixture no tiene.
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): LemmaCountConfig repite sealed true (el modify lo habría abierto); la prueba del valor por omisión del cargador pasa a 8·6·4·3, confirmado por José (misma regla).
 
 2026-09-30 — qa-tester — F-POCOV-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.

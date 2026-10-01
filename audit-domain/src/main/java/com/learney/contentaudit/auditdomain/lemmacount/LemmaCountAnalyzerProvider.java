@@ -6,6 +6,7 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.EvpCatalogPort;
+import com.learney.contentaudit.auditdomain.LemmaCountBand;
 import com.learney.contentaudit.auditdomain.LemmaCountConfig;
 import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
@@ -14,6 +15,7 @@ import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
@@ -38,22 +40,44 @@ public class LemmaCountAnalyzerProvider implements AnalyzerProvider {
         return LemmaCountAnalyzer.ANALYZER_NAME;
     }
 
+    /**
+     * F-POCOV-R006: the card with its name of always, «Palabras poco vistas» on screen: whether
+     * each word of the level appears in enough sentences, reading the finished sentences of the
+     * whole course; vocabulary, evaluating the levels and the course, rank-only and instant, with
+     * the threshold of each band it uses in its goal.
+     */
     @Override
     public AnalyzerDescriptor describe() {
         return new AnalyzerDescriptor(
                 LemmaCountAnalyzer.ANALYZER_NAME,
                 LemmaCountAnalyzer.DESCRIPTION,
                 AuditTarget.COURSE,
-                "¿Cada palabra aparece en suficientes oraciones?",
-                "Las oraciones distintas en que aparece cada lema de contenido, con su nivel CEFR según el EVP",
+                "¿Cada palabra del nivel aparece en suficientes oraciones?",
+                "Las oraciones terminadas de todo el curso: en cuántas aparece cada palabra de contenido, con su "
+                        + "nivel CEFR y su puesto COCA según el EVP",
                 List.of(new AnalyzerRuleCard(LemmaCountAnalyzer.RULE_UNDER_EXPOSED,
-                        "Hay lemas que aparecen en menos oraciones distintas que la meta",
+                        "Una palabra del nivel aparece en menos oraciones que las que pide su banda",
                         AnalysisCost.INSTANT)),
-                "Cada lema de contenido en al menos " + lemmaCountConfig.getThreshold() + " oraciones distintas",
+                goal(),
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.MILESTONE, AuditTarget.COURSE),
                 List.of(FindingResolution.RANK_ONLY),
                 AnalysisCost.INSTANT, "Palabras poco vistas");
+    }
+
+    /** «Cada palabra del nivel en tantas oraciones como pide su banda: 8 de las 1.000 más comunes, …». */
+    private String goal() {
+        List<LemmaCountBand> bands = lemmaCountConfig.getBands();
+        if (bands == null || bands.isEmpty()) {
+            return "Cada palabra del nivel en al menos " + lemmaCountConfig.getThreshold() + " oraciones distintas";
+        }
+        List<String> parts = new ArrayList<>();
+        for (LemmaCountBand band : bands) {
+            parts.add(band.getThreshold() + " " + LemmaCountAnalyzer.bandPhrase(band.getName()));
+        }
+        String joined = parts.size() == 1 ? parts.get(0)
+                : String.join(", ", parts.subList(0, parts.size() - 1)) + " y " + parts.get(parts.size() - 1);
+        return "Cada palabra del nivel en tantas oraciones distintas como pide su banda: " + joined;
     }
 
     @Override

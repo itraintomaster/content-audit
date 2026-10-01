@@ -642,9 +642,33 @@ public class DefaultRefinerEngineTest {
     @DisplayName("should open no task for lemma-count and keep the plan of the analysis of 29/9 at 4,036 tasks, with 4 for every band and with bands 8, 6, 4 and 3")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R002")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldOpenNoTaskForLemmacountAndKeepThePlanOfTheAnalysisOf299At4036TasksWith4ForEveryBandAndWithBands864And3() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-POCOV-R002: lemma-count asks for no task. The analysis of 29/9 with lemma-count at 4 for
+        // every band (as published) and with the bands 8, 6, 4 and 3 (its course at 0,6652835 and its
+        // levels at 0,9077670 · 0,6782407 · 0,4903013 · 0,3612196) plans the same 4,036 tasks, task
+        // by task, and declares nothing about lemma-count.
+        AuditNode withFour = baseTree();
+        AuditNode withBands = baseTree();
+        Map<String, Double> bands = Map.of("A1", 0.9077670, "A2", 0.6782407, "B1", 0.4903013, "B2", 0.3612196);
+        withBands.getScores().put("lemma-count", 0.6652835);
+        for (AuditNode level : withBands.getChildren()) {
+            level.getScores().put("lemma-count", bands.get(level.getEntity().getLabel()));
+        }
+
+        for (AuditNode tree : List.of(withFour, withBands)) {
+            AuditReport report = new AuditReport(tree);
+            RefinementPlan plan = sut.plan(report, "2026-09-30T11-54-02");
+
+            List<String> tasks = plan.getTasks().stream().map(task -> task.getNodeTarget() + "\t" + task.getNodeId()
+                    + "\t" + task.getNodeLabel() + "\t" + task.getDiagnosisKind()).toList();
+            Assertions.assertEquals(4036, tasks.size(), "R002: the same 4,036 tasks");
+            Assertions.assertEquals(readLines("plan.tsv.gz"), tasks, "R002: task by task, none of lemma-count");
+            Assertions.assertTrue(sut.unconvertedScores(report).stream()
+                    .noneMatch(count -> "lemma-count".equals(count.getAnalyzer())),
+                    "R002: its scores below 1 are not declared as tasks it could not make");
+        }
+        Assertions.assertEquals(0.6652835, withBands.getScores().get("lemma-count"), 1e-12,
+                "the plan reads the bands run as it is");
     }
 
     @Test

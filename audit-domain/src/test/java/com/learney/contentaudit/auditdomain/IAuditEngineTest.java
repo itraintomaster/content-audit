@@ -1174,18 +1174,27 @@ public class IAuditEngineTest {
     @DisplayName("should publish a course vocabulary score of 73.92% and levels 96.54, 94.16, 79.45 and 63.51 with lemma-count at 4 for every band, next to the other six published scores of the analysis of 29/9")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldPublishACourseVocabularyScoreOf7392AndLevels965494167945And6351WithLemmacountAt4ForEveryBandNextToTheOtherSixPublishedScoresOfTheAnalysisOf299() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-POCOV-R001 inv. 1: lemma-count run over the lemma table of the 29/9 course with 4 for
+        // every band, next to the six other scores the analysis 2026-09-30T11-54-02 published, gives
+        // the vocabulary of today: 73,92 % and 96,54 · 94,16 · 79,45 · 63,51.
+        AuditReport report = realEngine(onPublished299(lemmaCountOf299(4, 4, 4, 4))).runAudit(lemmaCourseOf299());
+
+        assertEquals("73,92", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R001 inv. 1: the course");
+        assertEquals(List.of("96,54", "94,16", "79,45", "63,51"), levelVocabulary(report), "R001 inv. 1: A1 to B2");
     }
 
     @Test
     @DisplayName("should publish a course vocabulary score of 73.86% and levels 96.02, 93.60, 78.87 and 63.86 with lemma-count at bands 8, 6, 4 and 3, next to the other six published scores of the analysis of 29/9")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldPublishACourseVocabularyScoreOf7386AndLevels960293607887And6386WithLemmacountAtBands864And3NextToTheOtherSixPublishedScoresOfTheAnalysisOf299() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-POCOV-R001 inv. 2: the same with the bands 8, 6, 4 and 3, the default José confirmed:
+        // 73,86 % and 96,02 · 93,60 · 78,87 · 63,86.
+        AuditReport report = realEngine(onPublished299(lemmaCountOf299(8, 6, 4, 3))).runAudit(lemmaCourseOf299());
+
+        assertEquals("73,86", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R001 inv. 2: the course");
+        assertEquals(List.of("96,02", "93,60", "78,87", "63,86"), levelVocabulary(report), "R001 inv. 2: A1 to B2");
     }
 
     @Test
@@ -1204,5 +1213,221 @@ public class IAuditEngineTest {
     @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldKeepTheVocabularyScoreOfEveryLevelAt965494167945And6351WithTheRecurrenceOfEachLevelPublishedAsDetail() {
         throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    // ------------------------------------------------------------------
+    // Package D: the published scores of the analysis 2026-09-30T11-54-02
+    // ------------------------------------------------------------------
+
+    /** The seven vocabulary analyzers of 29/9, in catalog order (off-level-words goes after lemma-absence). */
+    private static final List<String> VOCABULARY_299 = List.of("sentence-length", "knowledge-title-length",
+            "knowledge-instructions-length", "coca-buckets-distribution", "lemma-recurrence", "lemma-absence",
+            "lemma-count");
+
+    /** What the analysis 2026-09-30T11-54-02 published for each of them: course, A1, A2, B1 and B2. */
+    private static final Map<String, double[]> PUBLISHED_299 = Map.of(
+            "sentence-length", new double[] {0.8644799618316434, 0.9419743222686404, 0.9628114845938375,
+                    0.8538308658609214, 0.6993031746031746},
+            "knowledge-title-length", new double[] {0.9877878929349517, 1.0, 1.0, 0.9754901960784313,
+                    0.9756613756613757},
+            "knowledge-instructions-length", new double[] {0.9546429877621389, 0.9315082644628099,
+                    0.9751157407407408, 0.9584558823529411, 0.9534920634920635},
+            "coca-buckets-distribution", new double[] {0.7253788624322802, 1.0, 1.0, 0.5792869389091038,
+                    0.3222285108200172},
+            "lemma-recurrence", new double[] {0.08, Double.NaN, Double.NaN, Double.NaN, Double.NaN},
+            "lemma-absence", new double[] {0.89250300362255, 0.980205616081019, 1.0, 0.874974670719351,
+                    0.5196321188539111},
+            "lemma-count", new double[] {0.6698448144961168, 0.9388349514563107, 0.7114197530864198,
+                    0.5251412429378531, 0.3404947916666667});
+
+    private static final List<String> LEVELS_299 = List.of("A1", "A2", "B1", "B2");
+
+    /**
+     * The catalog of the 29/9 vocabulary: the given providers run for real, and every other of the
+     * seven publishes on the course and its levels what the analysis of 29/9 published.
+     */
+    private static List<AnalyzerProvider> onPublished299(AnalyzerProvider... real) {
+        Map<String, AnalyzerProvider> byName = new LinkedHashMap<>();
+        for (AnalyzerProvider provider : real) {
+            byName.put(provider.analyzerName(), provider);
+        }
+        List<AnalyzerProvider> providers = new ArrayList<>();
+        for (String name : VOCABULARY_299) {
+            providers.add(byName.containsKey(name) ? byName.remove(name) : publishedProvider(name));
+            if ("lemma-absence".equals(name) && byName.containsKey("off-level-words")) {
+                providers.add(byName.remove("off-level-words"));
+            }
+        }
+        providers.addAll(byName.values());
+        return providers;
+    }
+
+    /** A provider whose analyzer leaves on the course and its levels the scores published on 29/9. */
+    private static AnalyzerProvider publishedProvider(String name) {
+        AnalyzerDescriptor card = DefaultAnalyzerCatalogTest.card(name, AnalyzerFamily.VOCABULARY, AnalysisCost.INSTANT);
+        double[] published = PUBLISHED_299.get(name);
+        return new AnalyzerProvider() {
+            @Override
+            public String analyzerName() {
+                return name;
+            }
+
+            @Override
+            public AnalyzerDescriptor describe() {
+                return card;
+            }
+
+            @Override
+            public ContentAnalyzer create(EvaluationRunPolicy policy) {
+                return new ContentAnalyzer() {
+                    @Override
+                    public Void onKnowledge(AuditNode node) {
+                        return null;
+                    }
+
+                    @Override
+                    public Void onQuiz(AuditNode node) {
+                        return null;
+                    }
+
+                    @Override
+                    public Void onMilestone(AuditNode node) {
+                        return null;
+                    }
+
+                    @Override
+                    public Void onTopic(AuditNode node) {
+                        return null;
+                    }
+
+                    @Override
+                    public Void onCourseComplete(AuditNode root) {
+                        root.getScores().put(name, published[0]);
+                        for (AuditNode level : root.getChildren()) {
+                            int index = LEVELS_299.indexOf(level.getEntity().getLabel());
+                            if (index >= 0 && !Double.isNaN(published[index + 1])) {
+                                level.getScores().put(name, published[index + 1]);
+                            }
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    public String getName() {
+                        return name;
+                    }
+
+                    @Override
+                    public AuditTarget getTarget() {
+                        return AuditTarget.COURSE;
+                    }
+
+                    @Override
+                    public String getDescription() {
+                        return "The scores published on 29/9";
+                    }
+
+                    @Override
+                    public List<FindingDraft> findingsAt(AuditNode node) {
+                        return List.of();
+                    }
+                };
+            }
+
+            @Override
+            public Optional<AnalyzerPlanBinding> planBinding() {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<SelfDescribingConfig> config() {
+                return Optional.empty();
+            }
+        };
+    }
+
+    /**
+     * The lemma table of the 29/9 course (2,597 content lemmas with an EVP level, 473 without):
+     * lemma, part of speech, sentences, EVP level and EVP COCA rank.
+     */
+    private static List<String[]> lemmaTableOf299() {
+        try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(
+                new java.util.zip.GZIPInputStream(IAuditEngineTest.class.getResourceAsStream(
+                        "/pocov-2026-09-30/lemmas.tsv.gz")), java.nio.charset.StandardCharsets.UTF_8))) {
+            return reader.lines().map(line -> line.split("\\t", -1)).toList();
+        } catch (java.io.IOException e) {
+            throw new AssertionError("the lemma table of 29/9 is unreadable", e);
+        }
+    }
+
+    /** The real lemma-count provider, over an EVP catalog that knows the levels and ranks of the table. */
+    private static AnalyzerProvider lemmaCountOf299(int... thresholds) {
+        Map<LemmaAndPos, CefrLevel> levels = new java.util.HashMap<>();
+        Map<LemmaAndPos, Integer> ranks = new java.util.HashMap<>();
+        for (String[] row : lemmaTableOf299()) {
+            LemmaAndPos key = new LemmaAndPos(row[0], row[1]);
+            if (!row[3].isEmpty()) {
+                levels.put(key, CefrLevel.valueOf(row[3]));
+            }
+            if (!row[4].isEmpty()) {
+                ranks.put(key, Integer.valueOf(row[4]));
+            }
+        }
+        EvpCatalogPort evp = Mockito.mock(EvpCatalogPort.class);
+        Mockito.when(evp.lookupLevel(any())).thenAnswer(i -> Optional.ofNullable(levels.get(i.<LemmaAndPos>getArgument(0))));
+        Mockito.when(evp.getCocaRank(any())).thenAnswer(i -> Optional.ofNullable(ranks.get(i.<LemmaAndPos>getArgument(0))));
+        Integer[] tops = {1000, 2000, 3000, null};
+        String[] names = {"1.000 más comunes", "hasta 2.000", "hasta 3.000", "más allá de 3.000 o sin puesto"};
+        List<LemmaCountBand> bands = new ArrayList<>();
+        for (int i = 0; i < thresholds.length; i++) {
+            bands.add(new LemmaCountBand(names[i], tops[i], thresholds[i]));
+        }
+        LemmaCountConfig config = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(config.getThreshold()).thenReturn(4);
+        Mockito.when(config.getBands()).thenReturn(bands);
+        return new com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider(evp, config);
+    }
+
+    /**
+     * A course with the four levels of 29/9 where quiz k of A1 carries every lemma of the table with
+     * more than k sentences, so each lemma appears in exactly its sentences.
+     */
+    private static AuditableCourse lemmaCourseOf299() {
+        List<String[]> table = lemmaTableOf299();
+        int max = table.stream().mapToInt(row -> Integer.parseInt(row[2])).max().orElse(0);
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (int k = 0; k < max; k++) {
+            List<NlpToken> tokens = new ArrayList<>();
+            for (String[] row : table) {
+                if (Integer.parseInt(row[2]) > k) {
+                    tokens.add(new NlpToken(row[0], row[0], row[1], null, false, false));
+                }
+            }
+            quizzes.add(new AuditableQuiz(tokens, "q" + k, "q" + k, "Q", null, List.of("q" + k), null, null, null,
+                    null, null, null));
+        }
+        List<AuditableMilestone> milestones = new ArrayList<>();
+        for (String level : LEVELS_299) {
+            List<AuditableQuiz> own = "A1".equals(level) ? quizzes : List.of();
+            AuditableKnowledge knowledge = new AuditableKnowledge(own, "Tema " + level, "Consigna", true, "k-" + level,
+                    "Tema " + level, "K", null, "Topic " + level);
+            AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t-" + level, "Topic " + level, "T");
+            milestones.add(new AuditableMilestone(List.of(topic), "m-" + level, level, level));
+        }
+        return new AuditableCourse(milestones);
+    }
+
+    private static List<String> levelVocabulary(AuditReport report) {
+        List<String> levels = new ArrayList<>();
+        for (AuditNode level : report.getRoot().getChildren()) {
+            levels.add(percent2(level.getNumbers().getVocabularyScore()));
+        }
+        return levels;
+    }
+
+    /** Two decimals with a decimal comma, as the brief reads them: 0,738582 -> 73,86. */
+    private static String percent2(Double fraction) {
+        assertNotNull(fraction, "a vocabulary score");
+        return String.format(java.util.Locale.ROOT, "%.2f", fraction * 100).replace('.', ',');
     }
 }

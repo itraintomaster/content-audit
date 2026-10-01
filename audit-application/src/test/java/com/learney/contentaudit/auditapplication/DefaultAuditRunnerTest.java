@@ -1108,7 +1108,11 @@ public class DefaultAuditRunnerTest {
                 catalog, new DefaultFindingCollector(), new DefaultContextNumbersCalculator()), catalog);
     }
 
-    /** The seven classic providers as Main builds them, over the given EVP catalog. */
+    /**
+     * The seven classic providers as Main builds them, over the given EVP catalog, with lemma-count
+     * at «4 para todas», the configuration of the analysis 2026-09-30T11-54-02 (F-POCOV-R001 inv. 1;
+     * the default is 8 · 6 · 4 · 3 since 30/9).
+     */
     private static List<AnalyzerProvider> classicProviders(EvpCatalogPort evp) {
         DefaultLemmaAbsenceConfig absence = new DefaultLemmaAbsenceConfig();
         return List.of(
@@ -1119,7 +1123,7 @@ public class DefaultAuditRunnerTest {
                 new LemmaRecurrenceAnalyzerProvider(new DefaultLemmaRecurrenceConfig()),
                 new LemmaAbsenceAnalyzerProvider(evp, absence,
                         new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), absence)),
-                new LemmaCountAnalyzerProvider(evp, new DefaultLemmaCountConfigLoader().load(null)));
+                new LemmaCountAnalyzerProvider(evp, new DefaultLemmaCountConfigLoader().load("4")));
     }
 
     /** The real judge factory whose judge finds a major breach in q-breach and nothing in any other quiz. */
@@ -1207,6 +1211,14 @@ public class DefaultAuditRunnerTest {
      * word of lemma-count, FEAT-POCOV), which they leave empty until their package builds them:
      * a field the fixture does not have and that is empty is not a difference.
      */
+    /**
+     * What package D publishes on top of what the fixtures recorded: the band table and the row per
+     * word of lemma-count (FEAT-POCOV) and the course diagnosis of lemma-recurrence (FEAT-RECUR).
+     * They add data next to the recorded diagnoses without changing any of them.
+     */
+    private static final java.util.Set<String> PACKAGE_D_ADDITIONS = java.util.Set.of("bands", "exposures",
+            "lemmaRecurrenceDiagnosis");
+
     private static JsonNode withoutNewEmptyFields(JsonNode expected, JsonNode actual) {
         if (actual instanceof com.fasterxml.jackson.databind.node.ObjectNode object && expected != null
                 && expected.isObject()) {
@@ -1214,7 +1226,8 @@ public class DefaultAuditRunnerTest {
             object.fieldNames().forEachRemaining(names::add);
             for (String name : names) {
                 JsonNode value = object.get(name);
-                if (!expected.has(name) && (value.isNull() || (value.isArray() && value.isEmpty()))) {
+                if (!expected.has(name) && (PACKAGE_D_ADDITIONS.contains(name) || value.isNull()
+                        || (value.isArray() && value.isEmpty()))) {
                     object.remove(name);
                 } else {
                     withoutNewEmptyFields(expected.get(name), value);
