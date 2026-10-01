@@ -8,12 +8,15 @@ import com.learney.contentaudit.auditdomain.AuditableMilestone;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.AuditableTopic;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionSubjectView;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,7 +40,8 @@ public class DefaultQuizInstructionSubjectBuilderTest {
 
     @BeforeEach
     public void setUp() {
-        sut = new DefaultQuizInstructionSubjectBuilder();
+        sut = new DefaultQuizInstructionSubjectBuilder(
+                new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
     }
 
     // ------------------------------------------------------------------
@@ -46,7 +50,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
 
     private static List<SentencePartEntity> parts(String... acceptedOptions) {
         return List.of(
-                new SentencePartEntity(SentencePartKind.TEXT, "I ___ ", null),
+                new SentencePartEntity(SentencePartKind.TEXT, "I", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, null, List.of(acceptedOptions)));
     }
 
@@ -110,8 +114,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     /**
      * Builds the full tree course -> milestone(cefrLabel) -> topic -> knowledge -> quiz
      * and returns the quiz node, mirroring the ancestor chain the subject builder walks
-     * to reach the CEFR level, the topic name (copied on the knowledge) and the knowledge
-     * label/instructions.
+     * to reach the CEFR level and the topic name (copied on the knowledge).
      */
     private static AuditNode quizNodeUnder(String cefrLabel, AuditableKnowledge knowledge, AuditableQuiz quiz) {
         AuditNode course = buildCourseNode();
@@ -123,10 +126,10 @@ public class DefaultQuizInstructionSubjectBuilderTest {
 
     // FEAT-OPMUL helpers: "She ___ English." under an A1 knowledge, as the judge receives it.
 
-    private static String judgedQuiz(DefaultQuizInstructionSubjectBuilder builder, AuditableQuiz quiz) {
+    private static Map<String, String> judged(DefaultQuizInstructionSubjectBuilder builder, AuditableQuiz quiz) {
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Be", "Elige la forma de be.", true,
                 "k1", "Be", "K", null, "Present Simple");
-        return builder.build(quizNodeUnder("A1", knowledge, quiz)).getContent().get("quiz");
+        return builder.build(quizNodeUnder("A1", knowledge, quiz)).getContent();
     }
 
     private static List<SentencePartEntity> stem(List<String> gapOptions) {
@@ -153,38 +156,6 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     // ------------------------------------------------------------------
     // Tests
     // ------------------------------------------------------------------
-
-    @Test
-    @DisplayName("should hand the judge the cefr level, the topic, the knowledge label, the knowledge instructions and the whole quiz with all its parts and accepted options")
-    @Tag("FEAT-QINST")
-    @Tag("F-QINST-R009")
-    public void shouldHandTheJudgeTheCefrLevelTheTopicTheKnowledgeLabelTheKnowledgeInstructionsAndTheWholeQuizWithAllItsPartsAndAcceptedOptions(
-            ) {
-        AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Present Perfect", "Complete with present perfect", true,
-                "k1", "Present Perfect", "PP", null, "Verb Tenses");
-        AuditableQuiz quiz = new AuditableQuiz(
-                List.of(), "q1", "Present Perfect", "Q1", null, List.of("I have eaten"), null,
-                "Complete with present perfect", parts("have eaten", "'ve eaten"), null, null, null);
-        AuditNode quizNode = quizNodeUnder("B1", knowledge, quiz);
-
-        EvaluationSubject subject = sut.build(quizNode);
-
-        Assertions.assertEquals("B1", subject.getContent().get("cefrLevel"),
-                "R009: the CEFR level of the ancestor milestone must reach the judge");
-        Assertions.assertEquals("Verb Tenses", subject.getContent().get("topic"),
-                "R009: the topic must reach the judge");
-        Assertions.assertEquals("Present Perfect", subject.getContent().get("title"),
-                "R009: the knowledge label must reach the judge as the title");
-        Assertions.assertEquals("Complete with present perfect", subject.getContent().get("instructions"),
-                "R009: the knowledge instructions must reach the judge");
-        String judgedQuiz = subject.getContent().get("quiz");
-        Assertions.assertNotNull(judgedQuiz, "R009: the whole quiz must reach the judge");
-        Assertions.assertTrue(judgedQuiz.contains("have eaten"),
-                "R009: every accepted option of the quiz must reach the judge");
-        Assertions.assertTrue(judgedQuiz.contains("'ve eaten"),
-                "R009: every accepted option of the quiz must reach the judge");
-    }
 
     @Test
     @DisplayName("should leave the quiz identifier out of the judged content")
@@ -228,33 +199,6 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     }
 
     @Test
-    @DisplayName("should produce different judged content for every quiz of a knowledge when the knowledge instructions change")
-    @Tag("FEAT-QINST")
-    @Tag("F-QINST-R009")
-    public void shouldProduceDifferentJudgedContentForEveryQuizOfAKnowledgeWhenTheKnowledgeInstructionsChange(
-            ) {
-        AuditableQuiz quiz1 = new AuditableQuiz(
-                List.of(), "q1", "Q1", "Q", null, List.of("s1"), null, "Original instructions", parts("a1"), null, null, null);
-        AuditableQuiz quiz2 = new AuditableQuiz(
-                List.of(), "q2", "Q2", "Q", null, List.of("s2"), null, "Original instructions", parts("a2"), null, null, null);
-
-        AuditableKnowledge originalKnowledge = new AuditableKnowledge(
-                List.of(quiz1, quiz2), "K", "Original instructions", true, "k1", "K label", "K", null, "Topic");
-        AuditableKnowledge changedKnowledge = new AuditableKnowledge(
-                List.of(quiz1, quiz2), "K", "Changed instructions", true, "k1", "K label", "K", null, "Topic");
-
-        EvaluationSubject originalSubject1 = sut.build(quizNodeUnder("B1", originalKnowledge, quiz1));
-        EvaluationSubject originalSubject2 = sut.build(quizNodeUnder("B1", originalKnowledge, quiz2));
-        EvaluationSubject changedSubject1 = sut.build(quizNodeUnder("B1", changedKnowledge, quiz1));
-        EvaluationSubject changedSubject2 = sut.build(quizNodeUnder("B1", changedKnowledge, quiz2));
-
-        Assertions.assertNotEquals(originalSubject1.getContent(), changedSubject1.getContent(),
-                "R009: changing the knowledge instructions must change the judged content of every quiz it owns (cascade)");
-        Assertions.assertNotEquals(originalSubject2.getContent(), changedSubject2.getContent(),
-                "R009: changing the knowledge instructions must change the judged content of every quiz it owns (cascade)");
-    }
-
-    @Test
     @DisplayName("should produce identical judged content when the same course is reprocessed without content changes")
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R009")
@@ -279,64 +223,22 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     }
 
     @Test
-    @DisplayName("should take the label and the instructions from the knowledge when the quiz carries diverging copies")
-    @Tag("FEAT-QINST")
-    @Tag("F-QINST-R009")
-    public void shouldTakeTheLabelAndTheInstructionsFromTheKnowledgeWhenTheQuizCarriesDivergingCopies(
-            ) {
-        AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Knowledge title", "Knowledge instructions", true, "k1", "Knowledge label", "K", null, "Topic");
-        AuditableQuiz quiz = new AuditableQuiz(
-                List.of(), "q1", "Stale quiz label", "Q", null, List.of("s"), null,
-                "Stale quiz instructions", parts("a"), null, null, null);
-
-        EvaluationSubject subject = sut.build(quizNodeUnder("B1", knowledge, quiz));
-
-        Assertions.assertEquals("Knowledge label", subject.getContent().get("title"),
-                "R009: the knowledge is the canonical source for the title, even when the quiz carries a diverging copy");
-        Assertions.assertEquals("Knowledge instructions", subject.getContent().get("instructions"),
-                "R009: the knowledge is the canonical source for the instructions, even when the quiz carries a diverging copy");
-    }
-
-    @Test
-    @DisplayName("should build judged content for a quiz whose knowledge declares no instructions")
-    @Tag("FEAT-QINST")
-    @Tag("F-QINST-R014")
-    public void shouldBuildJudgedContentForAQuizWhoseKnowledgeDeclaresNoInstructions() {
-        AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "K", null, true, "k1", "K label", "K", null, "Topic");
-        AuditableQuiz quiz = new AuditableQuiz(
-                List.of(), "q1", "Q", "Q", null, List.of("s"), null, null, parts("a"), null, null, null);
-
-        EvaluationSubject subject = Assertions.assertDoesNotThrow(
-                () -> sut.build(quizNodeUnder("A1", knowledge, quiz)),
-                "R014: a quiz whose knowledge declares no instructions must still be reachable by the analysis");
-
-        Assertions.assertEquals("A1", subject.getContent().get("cefrLevel"),
-                "R014: cefr level, topic and title must still be handed even without instructions");
-        Assertions.assertEquals("Topic", subject.getContent().get("topic"));
-        Assertions.assertEquals("K label", subject.getContent().get("title"));
-        Assertions.assertNotNull(subject.getContent().get("quiz"),
-                "R014: the quiz content must still be built without explicit instructions");
-    }
-
-    @Test
     @DisplayName("should derive from a subject view the same judged content it derives from the audited quiz node, so a correction verified as compliant is verified with the criterion of the audit itself")
     @Tag("FEAT-QICOR")
     @Tag("F-QICOR-R005")
     public void shouldDeriveFromASubjectViewTheSameJudgedContentItDerivesFromTheAuditedQuizNodeSoACorrectionVerifiedAsCompliantIsVerifiedWithTheCriterionOfTheAuditItself() {
         List<SentencePartEntity> sentenceParts = parts("have eaten", "'ve eaten");
         AuditableKnowledge knowledge = new AuditableKnowledge(
-                List.of(), "Present Perfect", "Complete with present perfect", true,
-                "k1", "Present Perfect", "PP", null, "Verb Tenses");
+                List.of(), "Present Perfect", "Knowledge instructions", true,
+                "k1", "Knowledge label", "PP", null, "Verb Tenses");
         AuditableQuiz quiz = new AuditableQuiz(
                 List.of(), "q1", "Present Perfect", "Q1", null, List.of("I have eaten"), null,
                 "Complete with present perfect", sentenceParts, null, null, null);
         AuditNode quizNode = quizNodeUnder("B1", knowledge, quiz);
 
         // Same underlying quiz, expressed as the standalone view a correction would build
-        // instead of walking the audit tree: same milestone label, same knowledge-derived
-        // topic/title/instructions, same sentence parts.
+        // instead of walking the audit tree: same milestone label and topic, the title and the
+        // instructions of the quiz copy (F-CALUM-R002), same sentence parts.
         QuizInstructionSubjectView view = new QuizInstructionSubjectView(
                 "q1", "B1", "Verb Tenses", "Present Perfect", "Complete with present perfect", sentenceParts, null);
 
@@ -347,16 +249,6 @@ public class DefaultQuizInstructionSubjectBuilderTest {
                 "R005: buildFromView must derive exactly the same judged content as build(quizNode) for the "
                         + "same quiz, or the fingerprint computed while verifying a correction diverges from the "
                         + "one the next audit computes and the verdict is never reused");
-    }
-
-    @Test
-    @DisplayName("should show the judge every option of a multiple choice quiz in its gap, in the order the student sees them, with the correct one marked")
-    @Tag("FEAT-OPMUL")
-    @Tag("F-OPMUL-R005")
-    public void shouldShowTheJudgeEveryOptionOfAMultipleChoiceQuizInItsGapInTheOrderTheStudentSeesThemWithTheCorrectOneMarked() {
-        AuditableQuiz quiz = quiz(stem(null));
-        quiz.setMultipleChoice(choices("is"));
-        assertEquals("TEXT:She:|MULTIPLE_CHOICE::am,is[CORRECT],are|TEXT:English.:|", judgedQuiz(sut, quiz));
     }
 
     @Test
@@ -375,7 +267,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
         QuizInstructionSubjectView view = new DefaultQuizInstructionSubjectViewFactory()
                 .fromQuiz(template, "A1", "Present Simple", "Be", "Elige la forma de be.");
 
-        assertEquals(judgedQuiz(sut, audited), sut.buildFromView(view).getContent().get("quiz"));
+        assertEquals(judged(sut, audited), sut.buildFromView(view).getContent());
     }
 
     @Test
@@ -387,23 +279,7 @@ public class DefaultQuizInstructionSubjectBuilderTest {
         first.setMultipleChoice(choices("is"));
         AuditableQuiz second = quiz(stem(null));
         second.setMultipleChoice(choices("am"));
-        assertNotEquals(judgedQuiz(sut, first), judgedQuiz(sut, second));
-    }
-
-    @Test
-    @DisplayName("should render a CLOZE quiz for the judge character for character as it did before multiple choice existed")
-    @Tag("FEAT-OPMUL")
-    @Tag("F-OPMUL-R005")
-    public void shouldRenderACLOZEQuizForTheJudgeCharacterForCharacterAsItDidBeforeMultipleChoiceExisted() {
-        assertEquals("TEXT:She:|CLOZE::is|TEXT:English.:|", judgedQuiz(sut, quiz(stem(List.of("is")))));
-    }
-
-    @Test
-    @DisplayName("should render a quiz whose gap has no options and that carries no multiple choice options the CLOZE way, as before")
-    @Tag("FEAT-OPMUL")
-    @Tag("F-OPMUL-R005")
-    public void shouldRenderAQuizWhoseGapHasNoOptionsAndThatCarriesNoMultipleChoiceOptionsTheCLOZEWayAsBefore() {
-        assertEquals("TEXT:She:|CLOZE::|TEXT:English.:|", judgedQuiz(sut, quiz(stem(null))));
+        assertNotEquals(judged(sut, first), judged(sut, second));
     }
 
     @Test
@@ -411,7 +287,33 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     @Tag("FEAT-CALUM")
     @Tag("F-CALUM-R001")
     public void shouldHandTheJudgeTheCefrLevelTheTopicTheTitleAndTheInstructionsTheAppShowsTheStatementWithItsGapsAndHintsTheAcceptedAnswersOfEachGapAndTheOptionsInThatOrderAndNothingElse() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(), "Adjetivo o adverbio",
+                "Elige entre el adjetivo o el adverbio.", true, "k1", "Adjetivo o adverbio", "K", null,
+                "Adjetives and Adverbs");
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "q1", "Adjetivo o adverbio", "Q1", "Ella es una chica callada.",
+                List.of("She is a quiet girl."), null, "Elegí la palabra correcta.",
+                List.of(new SentencePartEntity(SentencePartKind.TEXT, "She is a", null),
+                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("quiet")),
+                        new SentencePartEntity(SentencePartKind.TEXT, "(quiet / quietly) girl.", null)),
+                null, "Si describe a una persona, adjetivo.", null);
+
+        Map<String, String> content = sut.build(quizNodeUnder("A1", knowledge, quiz)).getContent();
+
+        assertEquals(List.of("cefrLevel", "topic", "title", "instructions", "exercise", "acceptedAnswers", "options"),
+                List.copyOf(content.keySet()), "F-CALUM-R001: these keys, in this order and nothing else, are the fingerprint");
+        assertEquals("A1", content.get("cefrLevel"));
+        assertEquals("Adjetives and Adverbs", content.get("topic"));
+        assertEquals("Adjetivo o adverbio", content.get("title"));
+        assertEquals("Elegí la palabra correcta.", content.get("instructions"),
+                "F-CALUM-R001: the instructions are the ones the app shows, those of the quiz copy");
+        assertEquals("She is a ___ (quiet / quietly) girl.", content.get("exercise"),
+                "F-CALUM-R001: the statement with «___» in the gap and its hint, as the student view renders it");
+        assertEquals("Hueco 1: quiet", content.get("acceptedAnswers"));
+        assertEquals("", content.get("options"), "F-CALUM-R001: a CLOZE quiz has no options");
+        for (String value : content.values()) {
+            Assertions.assertFalse(value.contains("Ella es una chica callada") || value.contains("Si describe"),
+                    "F-CALUM-R001: neither the translation nor the mini theory reach the consigna judge");
+        }
     }
 
     @Test
@@ -419,7 +321,21 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     @Tag("FEAT-CALUM")
     @Tag("F-CALUM-R001")
     public void shouldProduceDifferentJudgedContentWhenTheInstructionsOfTheQuizCopyChangeAndTheSameContentWhenOnlyTheKnowledgeInstructionsChange() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableKnowledge knowledge = new AuditableKnowledge(
+                List.of(), "K", "Knowledge instructions", true, "k1", "K label", "K", null, "Topic");
+        AuditableKnowledge knowledgeChanged = new AuditableKnowledge(
+                List.of(), "K", "Other knowledge instructions", true, "k1", "K label", "K", null, "Topic");
+        AuditableQuiz quiz = new AuditableQuiz(
+                List.of(), "q1", "Q", "Q", null, List.of("s"), null, "Copy instructions", parts("a"), null, null, null);
+        AuditableQuiz quizChanged = new AuditableQuiz(
+                List.of(), "q1", "Q", "Q", null, List.of("s"), null, "Other copy instructions", parts("a"), null, null, null);
+
+        Map<String, String> original = sut.build(quizNodeUnder("B1", knowledge, quiz)).getContent();
+
+        assertNotEquals(original, sut.build(quizNodeUnder("B1", knowledge, quizChanged)).getContent(),
+                "F-CALUM-R001 inv. 4: changing the instructions of the copy changes what the judge reads");
+        assertEquals(original, sut.build(quizNodeUnder("B1", knowledgeChanged, quiz)).getContent(),
+                "F-CALUM-R001 inv. 4: changing only the knowledge instructions, which the student never sees, changes nothing");
     }
 
     @Test
@@ -427,7 +343,22 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     @Tag("FEAT-CALUM")
     @Tag("F-CALUM-R001")
     public void shouldTakeTheTitleAndTheInstructionsFromTheQuizCopyTheOnesTheAppShowsWhenTheKnowledgeCarriesDifferentOnes() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableKnowledge knowledge = new AuditableKnowledge(
+                List.of(), "Knowledge title", "Knowledge instructions", true, "k1", "Knowledge label", "K", null, "Topic");
+        AuditableQuiz quiz = new AuditableQuiz(
+                List.of(), "q1", "Copy title", "Q", null, List.of("s"), null,
+                "Copy instructions", parts("a"), null, null, null);
+
+        Map<String, String> content = sut.build(quizNodeUnder("B1", knowledge, quiz)).getContent();
+
+        assertEquals("Copy title", content.get("title"),
+                "F-CALUM-R001: the title is the one the app shows above the exercise, the copy's");
+        assertEquals("Copy instructions", content.get("instructions"),
+                "F-CALUM-R001: the instructions are the ones the app shows, the copy's, never the knowledge's");
+        for (String value : content.values()) {
+            Assertions.assertFalse(value.contains("Knowledge"),
+                    "F-CALUM-R001 inv. 1: neither the label nor the instructions of the knowledge reach the judge");
+        }
     }
 
     @Test
@@ -435,7 +366,19 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     @Tag("FEAT-CALUM")
     @Tag("F-CALUM-R001")
     public void shouldBuildJudgedContentWithEmptyInstructionsForAQuizWhoseCopyDeclaresNone() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableKnowledge knowledge = new AuditableKnowledge(
+                List.of(), "K", "Knowledge instructions", true, "k1", "K label", "K", null, "Topic");
+        AuditableQuiz quiz = new AuditableQuiz(
+                List.of(), "q1", "Q", "Q", null, List.of("s"), null, null, parts("a"), null, null, null);
+
+        EvaluationSubject subject = Assertions.assertDoesNotThrow(
+                () -> sut.build(quizNodeUnder("A1", knowledge, quiz)),
+                "F-QINST-R014: a quiz whose copy declares no instructions is still judged");
+
+        assertEquals("", subject.getContent().get("instructions"),
+                "F-CALUM-R001 inv. 2: an absent value is empty, and the knowledge's never fills it");
+        assertEquals("I ___", subject.getContent().get("exercise"));
+        assertEquals("Hueco 1: a", subject.getContent().get("acceptedAnswers"));
     }
 
     @Test
@@ -443,7 +386,16 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     @Tag("FEAT-CALUM")
     @Tag("F-CALUM-R001")
     public void shouldShowTheJudgeEveryOptionOfAMultipleChoiceQuizInTheOrderTheStudentSeesThemWithTheCorrectOneMarked() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableQuiz quiz = quiz(stem(null));
+        quiz.setMultipleChoice(choices("is"));
+
+        Map<String, String> content = judged(sut, quiz);
+
+        assertEquals("She ___ English.", content.get("exercise"));
+        assertEquals("- am\n- is (correcta)\n- are", content.get("options"),
+                "F-CALUM-R001: every option, in the student's order, with the correct one marked");
+        assertEquals("Hueco 1: is", content.get("acceptedAnswers"),
+                "F-CALUM-R001: the gap of a multiple choice accepts only its correct option");
     }
 
     @Test
@@ -451,7 +403,15 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     @Tag("FEAT-CALUM")
     @Tag("F-CALUM-R001")
     public void shouldRenderACLOZEQuizForTheJudgeAsTheStudentViewRendersItNeverInTheInternalFormatOfTheCourse() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Map<String, String> content = judged(sut, quiz(stem(List.of("is|'s"))));
+
+        assertEquals("She ___ English.", content.get("exercise"));
+        assertEquals("Hueco 1: is | 's", content.get("acceptedAnswers"),
+                "F-CALUM-R001: the accepted answers of the gap, split on «|»");
+        for (String value : content.values()) {
+            Assertions.assertFalse(value.contains("TEXT:") || value.contains("CLOZE:"),
+                    "F-CALUM-R001 inv. 1: the internal format of the course never reaches the judge");
+        }
     }
 
     @Test
@@ -459,6 +419,10 @@ public class DefaultQuizInstructionSubjectBuilderTest {
     @Tag("FEAT-CALUM")
     @Tag("F-CALUM-R001")
     public void shouldRenderAQuizWhoseGapHasNoOptionsWithItsGapAnEmptyLineOfAcceptedAnswersAndNoOptions() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Map<String, String> content = judged(sut, quiz(stem(null)));
+
+        assertEquals("She ___ English.", content.get("exercise"));
+        assertEquals("Hueco 1: ", content.get("acceptedAnswers"));
+        assertEquals("", content.get("options"));
     }
 }

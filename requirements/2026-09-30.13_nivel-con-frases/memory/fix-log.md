@@ -5,6 +5,14 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — test-writer (paquete D) — generate sumó los 3 stubs nuevos de FileSystemEvpCatalogTest pero ninguno de los
+  15 de OffLevelWordsAnalyzerTest (bug 2026-07-22-01): se escriben a mano con el nombre y el DisplayName que da
+  TestStubGenerator (leído con la librería del jar, sin generate).
+2026-10-01 — developer (paquete D) — Desde ronda 2, `dependency:build-classpath -pl audit-cli` falla offline porque
+  local-language-infrastructure no está instalado: con `compile ... -pl audit-cli -am` el reactor lo resuelve.
+2026-10-01 — developer (paquete D) — Las construcciones del proveedor no eran cuatro sino nueve: buscar
+  «OffLevelWordsAnalyzerProvider(» y no «new OffLevelWordsAnalyzerProvider», porque varias usan el nombre completo.
+
 2026-10-01 — qa-tester (paquete D) — `patch validate -i <copia>/sentinel.yaml` falla («Patch validation error:
   .../requirements/.../REQUIREMENT.md») si la copia no trae la carpeta requirements al lado: el validador busca las
   carpetas junto al sentinel.yaml. Para validar contra otra rama: `git archive <rama> sentinel.yaml requirements`.

@@ -4,7 +4,7 @@ requirement: 2026-09-30.13_nivel-con-frases
 generated: 2026-10-01T05:40:00Z
 ---
 
-# Tech Spec: el nivel propio de la forma derivada (FEAT-NIVFR, parche del 1/10, aprobado y sin aplicar)
+# Tech Spec: el nivel propio de la forma derivada (FEAT-NIVFR, parche del 1/10, aplicado en b5724f63 y construido)
 
 La corrección del 1/10 dice que el nivel que el EVP le da a la palabra misma gana a cualquier lectura que tome el nivel
 de una base, una parte, un par británico o la palabra castellana (F-NIVFR-R002 y R004), y el orquestador decidió que
@@ -90,3 +90,9 @@ pruebas se escriben a mano (el prototipo del 1/10 está probado sobre el curso: 
 la sesión). Cambian cuatro construcciones: `Main`, la prueba del proveedor, el ayudante de la prueba del analizador y
 J001, que se queda en 99 (9 · 27 · 43 · 20). El parche de la teoría del tema sigue en espera hasta después de la ronda
 2, con su TECH_SPEC, en `en-espera/`; valida también contra el `sentinel.yaml` de `ronda2/integracion`.
+
+Construido el 1/10 sobre `ronda2/integracion` (generate 9e93a983): `lookupDerivedFormLevel` y sus 3 pruebas (f70bf4ee),
+su uso en el analizador y las construcciones del proveedor, que eran nueve y no cuatro: además de Main, la prueba del
+proveedor, `Lexicon` y J001, también `IAuditEngineTest`, el semáforo, `DefaultRefinerEngineTest`,
+`DefaultAuditRunnerTest`, `AnalyzeCmdTest` y `GetCmdTest` (b4f15968); y las 15 pruebas del analizador, que generate no
+sumó a la clase (6f1028a6). Control sobre una copia: 99 ejercicios, 26 de 52 en `escribir/` y vocabulario 73,86 %.

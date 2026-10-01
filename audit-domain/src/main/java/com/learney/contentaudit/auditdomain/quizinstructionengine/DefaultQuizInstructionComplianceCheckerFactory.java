@@ -33,6 +33,6 @@ public class DefaultQuizInstructionComplianceCheckerFactory implements QuizInstr
             EvaluationBudget budget) {
         EvaluationSession session = sessionFactory.open(budget, evaluator);
         return new LedgerBackedQuizInstructionComplianceChecker(
-                session, new DefaultQuizInstructionSubjectBuilder(), verdictReader);
+                session, new DefaultQuizInstructionSubjectBuilder(studentViewRenderer), verdictReader);
     }
 }

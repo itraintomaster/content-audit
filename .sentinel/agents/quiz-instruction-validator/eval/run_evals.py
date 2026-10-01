@@ -5,10 +5,14 @@ The runner has no third-party dependencies. By default it verifies fixture
 structure, exact source fidelity, corpus composition, and the verdict schema.
 
 To exercise a locally available CLI, pass it after ``--command``. The command
-receives one JSON object on stdin with the five agent dependencies; ``quiz`` is
-a complete JSON string. It must print either the verdict itself or an object
-whose ``quizInstructionVerdict`` field contains the verdict (object or JSON
-string). No particular Sentinel CLI syntax is assumed here.
+receives one JSON object on stdin with the seven agent dependencies, the
+exercise as the student sees it (F-CALUM-R001): ``cefrLevel``, ``topic``, the
+``title`` and ``instructions`` of the quiz copy, ``exercise`` (the statement
+with ``___`` in every gap and its hint), ``acceptedAnswers`` (one line per gap,
+``Hueco N: a | b``) and ``options`` (multiple choice only). It must print
+either the verdict itself or an object whose ``quizInstructionVerdict`` field
+contains the verdict (object or JSON string). No particular Sentinel CLI syntax
+is assumed here.
 """
 
 from __future__ import annotations
@@ -463,16 +467,44 @@ def extract_verdict(output: str) -> Any:
     return parsed
 
 
+def student_view_inputs(case: dict[str, Any]) -> dict[str, str]:
+    """The seven inputs of the judge, built as DefaultQuizStudentViewRenderer and
+    DefaultQuizInstructionSubjectBuilder build them from a quiz of the course."""
+    quiz = case["quiz"]
+    form = quiz.get("form") or {}
+    parts = form.get("sentenceParts") or []
+    tokens = []
+    gaps = []
+    for part in parts:
+        if part.get("kind") == "CLOZE":
+            tokens.append("___")
+            accepted = [variant.strip() for option in (part.get("options") or []) if option is not None
+                        for variant in str(option).split("|") if variant.strip()]
+            gaps.append(accepted)
+        elif (part.get("text") or "").strip():
+            tokens.append(part["text"].strip())
+    items = (form.get("multipleChoice") or {}).get("items") or []
+    if items:
+        correct = [item.get("label") for item in items if (item.get("incidence") or 0) > 0][:1]
+        gaps = [correct for _ in gaps]
+    return {
+        "cefrLevel": case["cefrLevel"],
+        "topic": case["topic"],
+        "title": quiz.get("title") or "",
+        "instructions": quiz.get("instructions") or "",
+        "exercise": " ".join(tokens),
+        "acceptedAnswers": "\n".join(
+            "Hueco %d: %s" % (index + 1, " | ".join(accepted)) for index, accepted in enumerate(gaps)),
+        "options": "\n".join(
+            "- %s%s" % (item.get("label") or "", " (correcta)" if (item.get("incidence") or 0) > 0 else "")
+            for item in items),
+    }
+
+
 def run_command(
     command: list[str], case: dict[str, Any], timeout_seconds: float
 ) -> dict[str, Any]:
-    payload = {
-        "cefrLevel": case["cefrLevel"],
-        "topic": case["topic"],
-        "title": case["title"],
-        "instructions": case["instructions"],
-        "quiz": json.dumps(case["quiz"], ensure_ascii=False, separators=(",", ":")),
-    }
+    payload = student_view_inputs(case)
     completed = subprocess.run(
         command,
         input=json.dumps(payload, ensure_ascii=False),
@@ -486,9 +518,8 @@ def run_command(
             "agent command failed with exit %d: %s"
             % (completed.returncode, completed.stderr.strip())
         )
-    verdict = validate_verdict(
-        extract_verdict(completed.stdout), case["quiz"]["id"]
-    )
+    # The judge never receives the quiz identifier (F-QINST-R009), so its quizId stays empty.
+    verdict = validate_verdict(extract_verdict(completed.stdout), "")
     if (
         verdict["confidence"] == 0.0
         and verdict["violations"]

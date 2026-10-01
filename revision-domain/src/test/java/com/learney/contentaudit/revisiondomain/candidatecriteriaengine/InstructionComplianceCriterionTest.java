@@ -58,7 +58,7 @@ public class InstructionComplianceCriterionTest {
                 new SentencePartEntity(SentencePartKind.TEXT, " breakfast every morning.", null));
         FormEntity form = new FormEntity("CLOZE", 1.0, "", "", sentenceParts, null, null);
         return new QuizTemplateEntity("quiz-1", "quiz-1", "CLOZE", "knowledge-1", "Daily routines",
-                "Complete with the past simple form", "Ella desayuno todas las mañanas.",
+                "Write the verb in the past simple.", "Ella desayuno todas las mañanas.",
                 "milestone.1.routines", "Daily Routines", form, 0.0, 0.0, 0.0, "", "", "", "", "",
                 "", "", List.of(sentenceText), null);
     }
@@ -83,9 +83,9 @@ public class InstructionComplianceCriterionTest {
         QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
         CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("eats"));
         QuizInstructionSubjectView view = new QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines",
-                "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts(), null);
-        when(subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Past simple narration",
-                "Complete with the past simple form")).thenReturn(view);
+                "Daily routines", "Write the verb in the past simple.", candidate.getForm().getSentenceParts(), null);
+        when(subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Daily routines",
+                "Write the verb in the past simple.")).thenReturn(view);
         QuizInstructionVerdict compliantVerdict = new QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE,
                 "Cumple la consigna.", List.of(), List.of());
         when(complianceChecker.check(view)).thenReturn(new QuizInstructionComplianceResult(
@@ -110,9 +110,9 @@ public class InstructionComplianceCriterionTest {
         QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
         CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("eats", "one word"));
         QuizInstructionSubjectView view = new QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines",
-                "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts(), null);
-        when(subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Past simple narration",
-                "Complete with the past simple form")).thenReturn(view);
+                "Daily routines", "Write the verb in the past simple.", candidate.getForm().getSentenceParts(), null);
+        when(subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Daily routines",
+                "Write the verb in the past simple.")).thenReturn(view);
         QuizInstructionVerdict stillBreaches = new QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR,
                 "La respuesta acepta mas de una palabra.", List.of(), List.of());
         when(complianceChecker.check(view)).thenReturn(new QuizInstructionComplianceResult(
@@ -124,11 +124,31 @@ public class InstructionComplianceCriterionTest {
     }
 
     @Test
-    @DisplayName("should submit the corrected quiz as a whole to the instruction validation, with its parts, its level and its knowledge instruction, instead of checking the violations one by one")
+    @DisplayName("should refuse a candidate whose instruction validation could not be obtained, instead of assuming that it complies")
     @Tag("FEAT-QICOR")
     @Tag("F-QICOR-R005")
-    public void shouldSubmitTheCorrectedQuizAsAWholeToTheInstructionValidationWithItsPartsItsLevelAndItsKnowledgeInstructionInsteadOfCheckingTheViolationsOneByOne(
+    public void shouldRefuseACandidateWhoseInstructionValidationCouldNotBeObtainedInsteadOfAssumingThatItComplies(
             ) {
+        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
+        QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
+        CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("eats"));
+        QuizInstructionSubjectView view = new QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines",
+                "Daily routines", "Write the verb in the past simple.", candidate.getForm().getSentenceParts(), null);
+        when(subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Daily routines",
+                "Write the verb in the past simple.")).thenReturn(view);
+        when(complianceChecker.check(view)).thenReturn(new QuizInstructionComplianceResult(
+                QuizInstructionComplianceStatus.UNAVAILABLE, null, "El juez no respondio a tiempo.", null, false));
+
+        CriterionVerdict verdict = criterion.evaluate(assessmentInput);
+
+        assertEquals(CriterionOutcome.NOT_EVALUABLE, verdict.getOutcome());
+    }
+
+    @Test
+    @DisplayName("should submit the corrected quiz as a whole to the instruction validation, with its parts, its level and the title and instructions of its copy, instead of checking the violations one by one")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R002")
+    public void shouldSubmitTheCorrectedQuizAsAWholeToTheInstructionValidationWithItsPartsItsLevelAndTheTitleAndInstructionsOfItsCopyInsteadOfCheckingTheViolationsOneByOne() {
         QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
         QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
         // Three violations were signalled — a per-violation check would call the judge
@@ -136,7 +156,7 @@ public class InstructionComplianceCriterionTest {
         CandidateAssessmentInput assessmentInput = input(original, candidate,
                 List.of("eats", "one word", "past tense"));
         QuizInstructionSubjectView view = new QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines",
-                "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts(), null);
+                "Daily routines", "Write the verb in the past simple.", candidate.getForm().getSentenceParts(), null);
         when(subjectViewFactory.fromQuiz(any(), any(), any(), any(), any())).thenReturn(view);
         QuizInstructionVerdict compliantVerdict = new QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE,
                 "Cumple la consigna.", List.of(), List.of());
@@ -155,37 +175,10 @@ public class InstructionComplianceCriterionTest {
         assertEquals(candidate, quizCaptor.getValue());
         assertEquals("A1", levelCaptor.getValue());
         assertEquals("Daily Routines", topicCaptor.getValue());
-        assertEquals("Past simple narration", titleCaptor.getValue());
-        assertEquals("Complete with the past simple form", instructionsCaptor.getValue());
+        assertEquals("Daily routines", titleCaptor.getValue(),
+                "F-CALUM-R002: the candidate is judged with the title of its copy, the one the student sees");
+        assertEquals("Write the verb in the past simple.", instructionsCaptor.getValue(),
+                "F-CALUM-R002: the candidate is judged with the instructions of its copy, never the knowledge's");
         verify(complianceChecker, times(1)).check(view);
-    }
-
-    @Test
-    @DisplayName("should refuse a candidate whose instruction validation could not be obtained, instead of assuming that it complies")
-    @Tag("FEAT-QICOR")
-    @Tag("F-QICOR-R005")
-    public void shouldRefuseACandidateWhoseInstructionValidationCouldNotBeObtainedInsteadOfAssumingThatItComplies(
-            ) {
-        QuizTemplateEntity original = quiz("eats", "She eats breakfast every morning.");
-        QuizTemplateEntity candidate = quiz("ate", "She ate breakfast every morning.");
-        CandidateAssessmentInput assessmentInput = input(original, candidate, List.of("eats"));
-        QuizInstructionSubjectView view = new QuizInstructionSubjectView("quiz-1", "A1", "Daily Routines",
-                "Past simple narration", "Complete with the past simple form", candidate.getForm().getSentenceParts(), null);
-        when(subjectViewFactory.fromQuiz(candidate, "A1", "Daily Routines", "Past simple narration",
-                "Complete with the past simple form")).thenReturn(view);
-        when(complianceChecker.check(view)).thenReturn(new QuizInstructionComplianceResult(
-                QuizInstructionComplianceStatus.UNAVAILABLE, null, "El juez no respondio a tiempo.", null, false));
-
-        CriterionVerdict verdict = criterion.evaluate(assessmentInput);
-
-        assertEquals(CriterionOutcome.NOT_EVALUABLE, verdict.getOutcome());
-    }
-
-    @Test
-    @DisplayName("should submit the corrected quiz as a whole to the instruction validation, with its parts, its level and the title and instructions of its copy, instead of checking the violations one by one")
-    @Tag("FEAT-CALUM")
-    @Tag("F-CALUM-R002")
-    public void shouldSubmitTheCorrectedQuizAsAWholeToTheInstructionValidationWithItsPartsItsLevelAndTheTitleAndInstructionsOfItsCopyInsteadOfCheckingTheViolationsOneByOne() {
-        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisioninfrastructure.quizinstructionagent;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyMap;
@@ -53,7 +54,7 @@ public class QuizInstructionAgentGeneratorTest {
                 "Verbs", CefrLevel.A1, "A1", null,
                 List.of(new InstructionViolation("AGREEMENT", "El verbo debe concordar con el sujeto",
                         "go", "El sujeto es de tercera persona singular")),
-                "No cumple: 1 violacion", InstructionSeverity.MAJOR, List.of(), "audit-001", "plan-001");
+                "No cumple: 1 violacion", InstructionSeverity.MAJOR, List.of(), "audit-001", "plan-001", "Escribe la forma afirmativa");
     }
 
     private LagenConfig lagenConfig() {
@@ -117,6 +118,38 @@ public class QuizInstructionAgentGeneratorTest {
     @Tag("FEAT-CALUM")
     @Tag("F-CALUM-R003")
     public void shouldHandTheCorrectionAgentAsTheInstructionsItMustComplyWithThoseOfTheQuizCopyAndNeverTheKnowledges() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Arrange: the copy the student sees and the knowledge say different things.
+        AtomicReference<Map<String, String>> capturedInputs = new AtomicReference<>();
+        QuizInstructionAgentRuntimeLauncher launcher = mock(QuizInstructionAgentRuntimeLauncher.class);
+        when(launcher.launch(anyString(), anyMap(), any()))
+                .thenAnswer(invocation -> {
+                    @SuppressWarnings("unchecked")
+                    Map<String, String> inputs = invocation.getArgument(1);
+                    capturedInputs.set(inputs);
+                    return RunState.empty().withRunStatus(RunStatus.COMPLETED);
+                });
+        QuizInstructionAgentCandidateParser parser = mock(QuizInstructionAgentCandidateParser.class);
+        when(parser.parse(any(), anyString())).thenReturn(new QuizInstructionGeneratorResponse(
+                "He ____ [goes] to school.", "El va a la escuela.", "Concordancia corregida.", List.of(), 1));
+        QuizInstructionAgentGenerator generator = new QuizInstructionAgentGenerator(
+                launcher, parser, mock(QuizInstructionAgentErrorClassifier.class), null, lagenConfig(),
+                Path.of("/placeholder/project"));
+        QuizInstructionCorrectionContext context = validContext();
+        context.setKnowledgeInstructions("Consigna del tema, que el alumno no ve.");
+        context.setQuizInstructions("Escribí el verbo en presente.");
+
+        // Act
+        generator.generate(new QuizInstructionGenerationRequest(context, 3));
+
+        // Assert
+        Map<String, String> inputs = capturedInputs.get();
+        assertNotNull(inputs, "launch() must have been called and the inputs map must not be null");
+        assertEquals("Escribí el verbo en presente.", inputs.get("quizInstructions"),
+                "F-CALUM-R003: the consigna the agent must comply with is the quiz copy's: " + inputs);
+        assertFalse(inputs.containsKey("knowledgeInstructions"),
+                "F-CALUM-R003 inv. 1: the knowledge's never reaches the agent as what it must comply with: " + inputs);
+        assertFalse(inputs.containsValue("Consigna del tema, que el alumno no ve."),
+                "F-CALUM-R003 inv. 1: not under any other name either: " + inputs);
+        assertEquals("Present Simple", inputs.get("knowledgeTitle"), "F-CALUM-R003 inv. 3: the lesson, as context");
     }
 }

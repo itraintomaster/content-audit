@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditapplication;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -722,7 +723,7 @@ public class DefaultAuditRunnerTest {
     /** The judge's provider under the name the report publishes, with the judge's real card. */
     private static AnalyzerProvider judgeProvider() {
         AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null,
-                mock(QuizInstructionConfig.class), null).describe();
+                mock(QuizInstructionConfig.class), null, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())).describe();
         AnalyzerProvider provider = mock(AnalyzerProvider.class);
         lenient().when(provider.analyzerName()).thenReturn(ANALYZER_NAME);
         lenient().when(provider.describe()).thenReturn(card);
@@ -813,7 +814,7 @@ public class DefaultAuditRunnerTest {
                 new LemmaRecurrenceAnalyzerProvider(mock(LemmaRecurrenceConfig.class)),
                 new LemmaAbsenceAnalyzerProvider(null, mock(LemmaAbsenceConfig.class), null),
                 new LemmaCountAnalyzerProvider(null, mock(LemmaCountConfig.class)),
-                new DefaultQuizInstructionAnalyzerFactory(null, null, mock(QuizInstructionConfig.class), null)));
+                new DefaultQuizInstructionAnalyzerFactory(null, null, mock(QuizInstructionConfig.class), null, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()))));
     }
 
     // -----------------------------------------------------------------------
@@ -1155,7 +1156,7 @@ public class DefaultAuditRunnerTest {
                 : new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "Cumple", List.of(), List.of());
         return new DefaultQuizInstructionAnalyzerFactory(evaluator, reader, new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()),
                 approvedJudgeRuntime(new DefaultEvaluationSessionFactory(
-                        new FakeQuizInstructionEvaluationLedger(), new FakeQuizInstructionContentFingerprinter())));
+                        new FakeQuizInstructionEvaluationLedger(), new FakeQuizInstructionContentFingerprinter())), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
     }
 
     private static void walkTree(AuditNode node, Consumer<AuditNode> action) {
@@ -1455,10 +1456,10 @@ public class DefaultAuditRunnerTest {
 
         List<AnalyzerProvider> providers = new ArrayList<>(classicProviders(evp).subList(0, 6));
         providers.add(new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(scorer, absence,
-                new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(), renderer));
+                new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(), renderer, evp));
         providers.add(new LemmaCountAnalyzerProvider(evp, lemmaCount));
         providers.add(new DefaultQuizInstructionAnalyzerFactory(judge, mock(QuizInstructionVerdictReader.class),
-                new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime));
+                new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())));
         providers.add(new com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzerProvider(irregularForms,
                 renderer));
         providers.add(new com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessAnalyzerProvider(
