@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): lleva la lista entera de patrones de revision-domain (el apply la reemplaza en vez de sumarla). Lo que dice el audio sale de SpokenTextBuilder, que FEAT-RONDA2 abre.
+
 2026-09-30 — architect — Compuerta por cambio sobre dos mediciones de la unidad (ejercicio + su tema), por identidad de
   hallazgo, con palabras rojas por oración y por opción en el hueco. Compuerta por tanda sobre `BatchComparison` de F (no un
   puerto propio): se sacaron `BatchScope`, `BatchVerdict` y los portadores de comparación de E.

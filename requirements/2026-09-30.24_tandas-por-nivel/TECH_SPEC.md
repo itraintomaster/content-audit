@@ -1,7 +1,7 @@
 ---
 patch: FEAT-TANDA
 requirement: 2026-09-30.24_tandas-por-nivel
-generated: 2026-10-01T00:00:00Z
+generated: 2026-10-01T03:00:00Z
 ---
 
 # Tech Spec: Tandas por nivel (FEAT-TANDA)
@@ -10,7 +10,7 @@ Paquete E, ronda 2, contra el `sentinel.yaml` con 0.2 y 0.3 aplicados. La tanda 
 toma las tareas de FEAT-TAREA, corre la mesa de FEAT-MESA, pasa la compuerta de FEAT-NOEMP y compara con la
 comparación del paquete F (`BatchComparator`, `ProjectionScope`, `BaselineStore`, `BlindSampleService`). Lo nuevo es el
 recurso con estado, que se guarda después de cada paso, y el libro de cambios, que deja sacar uno sin romper los demás.
-Lo compartido —el cableado de `Main`, los arreglos por regla de A, el caché por oración— está en `ganchos-E.md`.
+Lo compartido —el cableado de `Main`, los arreglos por regla de A, el caché por oración— está en `ganchos-E.md`. Rebasado por el integrador de la ronda 2 sobre el `sentinel.yaml` de `ronda1/integracion` (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; `sentinel-baseline.yaml` queda como foto del diseño. Trae ahora los arreglos por regla del gancho E-06 y el libro de metas de F (F-10): ver la última sección.
 
 ## Arreglar por regla con un puerto de cada analizador
 Las reglas de R004 —la mayúscula de las opciones, la forma que falta con «|», la pista que sale de la respuesta, la
@@ -68,6 +68,7 @@ modules:
     models:
       - name: RefinementTaskStatus
         _change: modify
+        type: enum
         fields:
           - name: IN_BATCH
             _change: add
@@ -102,7 +103,7 @@ modules:
       - name: batch
         _change: add
         visibility: public
-        allowedClients: [audit-cli]
+        allowedClients: [audit-cli, audit-infrastructure]
         models:
           - name: CorrectionBatch
             _change: add
@@ -189,7 +190,7 @@ modules:
       - name: batch
         _change: add
         visibility: public
-        allowedClients: [audit-cli]
+        allowedClients: [audit-cli, audit-infrastructure]
         models:
           - name: BatchOpenRequest
             _change: add
@@ -248,7 +249,7 @@ modules:
       - name: batch
         _change: add
         visibility: public
-        allowedClients: [audit-cli]
+        allowedClients: [audit-cli, audit-infrastructure]
         models:
           - name: BatchRunRequest
             _change: add
@@ -359,7 +360,7 @@ modules:
       - name: batch
         _change: add
         visibility: public
-        allowedClients: [audit-cli]
+        allowedClients: [audit-cli, audit-infrastructure]
         models:
           - name: BatchChange
             _change: add
@@ -461,7 +462,7 @@ modules:
       - name: batch
         _change: add
         visibility: public
-        allowedClients: [audit-cli]
+        allowedClients: [audit-cli, audit-infrastructure]
         models:
           - name: BatchClosing
             _change: add
@@ -513,7 +514,7 @@ modules:
       - name: batch
         _change: add
         visibility: public
-        allowedClients: [audit-cli]
+        allowedClients: [audit-cli, audit-infrastructure]
         models:
           - name: BatchPublishRequest
             _change: add
@@ -584,7 +585,7 @@ modules:
       - name: batch
         _change: add
         visibility: public
-        allowedClients: [audit-cli]
+        allowedClients: [audit-cli, audit-infrastructure]
         models:
           - name: BatchTaskOutcome
             _change: add
@@ -676,7 +677,7 @@ modules:
       - name: batch
         _change: add
         visibility: public
-        allowedClients: [audit-cli]
+        allowedClients: [audit-cli, audit-infrastructure]
         models:
           - name: BatchServiceConfig
             _change: add
@@ -806,4 +807,71 @@ features:
 modules:
   - name: revision-domain
     _change: modify
+```
+
+## Lo que suma la integración de la ronda 2
+Abrir una tanda fija sus metas (F-METAS-R006, gancho F-10): el servicio recibe el libro de metas de F y llama a `seal()`
+al abrir, con el mismo registro de configuración. Los arreglos por regla (R004) son clases de cada analizador que
+implementan `RuleFix`: los cuatro de A (gancho E-06) y el de `grammar` (F-RONDA2-R009), en sus paquetes, porque sólo el
+analizador sabe arreglar lo que marca. El paquete `batch` suma `audit-infrastructure` a sus clientes, porque su almacén
+de archivos implementa `BatchStore`. Y `RefinementTaskStatus` se declara como enum, y el módulo lleva la lista entera de
+patrones (cinco), porque el apply reemplaza la lista en vez de sumarla.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: hintcoherence
+        _change: modify
+        implementations:
+          - name: HintCoherenceRuleFix
+            _change: add
+            visibility: public
+            implements: [RuleFix]
+            requiresInject:
+              - { name: irregularForms, type: IrregularFormsCatalog }
+      - name: answercompleteness
+        _change: modify
+        implementations:
+          - name: AnswerCompletenessRuleFix
+            _change: add
+            visibility: public
+            implements: [RuleFix]
+            requiresInject:
+              - { name: correctorMatcher, type: CorrectorMatcher }
+      - name: multiplechoicevalidity
+        _change: modify
+        implementations:
+          - { name: MultipleChoiceValidityRuleFix, _change: add, visibility: public, implements: [RuleFix] }
+      - name: datacoherence
+        _change: modify
+        implementations:
+          - name: DataCoherenceRuleFix
+            _change: add
+            visibility: public
+            implements: [RuleFix]
+            requiresInject:
+              - { name: quizSentenceConverter, type: QuizSentenceConverter }
+      - name: grammar
+        _change: modify
+        implementations:
+          - { name: GrammarRuleFix, _change: add, visibility: public, implements: [RuleFix] }
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: batch
+        _change: add
+        models:
+          - name: BatchServiceConfig
+            _change: add
+            fields:
+              - { name: goalBook, type: GoalBook }
+      - name: batchengine
+        _change: add
+        implementations:
+          - name: DefaultBatchService
+            _change: add
+            requiresInject:
+              - { name: goalBook, type: GoalBook }
 ```

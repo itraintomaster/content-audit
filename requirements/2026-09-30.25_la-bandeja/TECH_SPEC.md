@@ -1,7 +1,7 @@
 ---
 patch: FEAT-BANDEJA
 requirement: 2026-09-30.25_la-bandeja
-generated: 2026-10-01T00:10:00Z
+generated: 2026-10-01T03:00:00Z
 ---
 
 # Tech Spec: La bandeja (FEAT-BANDEJA)
@@ -9,7 +9,7 @@ generated: 2026-10-01T00:10:00Z
 Paquete E, ronda 2, contra el `sentinel.yaml` con 0.2 y 0.3 aplicados. La bandeja no decide ni cuenta: arma lo que la
 tanda necesita de José, en el orden alineado con F, y convierte cada respuesta en un ajuste de la tanda por su único
 puerto de entrada (`adjust`). La muestra ciega es del paquete F (`BlindSampleService`, `BlindPairView`, `PairAnswer` de
-FEAT-CIEGA): la bandeja la presenta y le pasa las respuestas. El tablero la dibuja, no la arma (F-HALL-R010).
+FEAT-CIEGA): la bandeja la presenta y le pasa las respuestas. El tablero la dibuja, no la arma (F-HALL-R010). Rebasado por el integrador de la ronda 2 sobre el `sentinel.yaml` de `ronda1/integracion` (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; `sentinel-baseline.yaml` queda como foto del diseño. El paquete `tray` suma `audit-infrastructure` a sus clientes y el módulo lleva la lista entera de patrones: ver la última sección.
 
 ## Armar una vista con el orden de F
 José eligió el 30/9 que la muestra ciega la responda él antes de ver la tanda (la A de DOUBT-QUIEN-CIEGA): por eso,
@@ -26,7 +26,7 @@ modules:
       - name: tray
         _change: add
         visibility: public
-        allowedClients: [audit-cli]
+        allowedClients: [audit-cli, audit-infrastructure]
         models:
           - name: Tray
             _change: add
@@ -118,7 +118,7 @@ modules:
       - name: tray
         _change: add
         visibility: public
-        allowedClients: [audit-cli]
+        allowedClients: [audit-cli, audit-infrastructure]
         models:
           - name: TrayAnswer
             _change: add
@@ -201,7 +201,7 @@ modules:
       - name: tray
         _change: add
         visibility: public
-        allowedClients: [audit-cli]
+        allowedClients: [audit-cli, audit-infrastructure]
         models:
           - name: RememberedDecision
             _change: add
@@ -268,7 +268,7 @@ modules:
       - name: tray
         _change: add
         visibility: public
-        allowedClients: [audit-cli]
+        allowedClients: [audit-cli, audit-infrastructure]
         models:
           - name: TrayServiceConfig
             _change: add
@@ -384,6 +384,17 @@ se rechaza con el mensaje de R008 y el curso queda idéntico. Ninguna consulta u
 features:
   - id: FEAT-BANDEJA
     code: F-BANDEJA
+modules:
+  - name: revision-domain
+    _change: modify
+```
+
+## Lo que suma la integración de la ronda 2
+El almacén de decisiones de archivos (`FileSystemTrayDecisionStore`, en `audit-infrastructure`) implementa
+`TrayDecisionStore`, que vive en `tray`: el paquete suma ese módulo a sus clientes. Y como el apply reemplaza la lista de
+patrones de `revision-domain` en vez de sumarla, este parche, el último que la toca, lleva las seis.
+
+```architecture
 modules:
   - name: revision-domain
     _change: modify

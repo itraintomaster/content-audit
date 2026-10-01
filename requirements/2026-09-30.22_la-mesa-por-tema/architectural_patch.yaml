@@ -4,10 +4,29 @@ description: "FEAT-MESA: la mesa de un tema. Revalida, pide candidatos del ejerc
   \ recortado, los hace juzgar por los jueces del catálogo con el libro de evaluaciones,\
   \ decide con un script y corre N temas y C consultas a la vez con un cupo compartido.\
   \ Quien propone es un puerto: un agente en revision-infrastructure, o uno guionado\
-  \ para pruebas y repeticiones que no paga."
+  \ para pruebas y repeticiones que no paga. Rebasado por el integrador de la ronda\
+  \ 2 sobre el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada y construida)\
+  \ y sobre FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2, B,\
+  \ F y E: revision-domain lleva la lista entera de patrones, 4 (el apply reemplaza,\
+  \ no suma)."
 modules:
 - name: revision-domain
   patterns:
+  - type: Strategy
+    implementations:
+    - LemmaAbsenceMvpStrategy
+    suppressed: false
+    interface: LemmaAbsenceProposalStrategy
+  - type: Factory
+    implementations:
+    - DefaultPreservationFactory
+    suppressed: false
+    interface: PreservationFactory
+  - type: Factory
+    implementations:
+    - DefaultGateFactory
+    suppressed: false
+    interface: GateFactory
   - type: Factory
     implementations:
     - DefaultPanelRunnerFactory

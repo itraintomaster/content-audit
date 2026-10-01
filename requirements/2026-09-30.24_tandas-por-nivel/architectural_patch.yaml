@@ -5,7 +5,17 @@ description: "FEAT-TANDA: la tanda de un nivel como un recurso con estado guarda
   \ de cada analizador sin modelo, corre las mesas con un tope, cierra comparando\
   \ sólo sus propias propuestas con la comparación de F, deja sacar cambios recomponiendo\
   \ cada ejercicio por partes, y publica una sola vez, mueve el par activo y no toca\
-  \ producción."
+  \ producción. Rebasado por el integrador de la ronda 2 sobre el sentinel.yaml de\
+  \ ronda1/integracion (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que\
+  \ se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E: RefinementTaskStatus\
+  \ declara type: enum (el parche decía record, bug 03); revision-domain lleva la\
+  \ lista entera de patrones, 5 (el apply reemplaza, no suma); BatchServiceConfig\
+  \ y DefaultBatchService suman goalBook: GoalBook (gancho F-10); el paquete batch\
+  \ suma audit-infrastructure a sus clientes: FileSystemBatchStore implementa BatchStore;\
+  \ HintCoherenceRuleFix implements RuleFix en hintcoherence; AnswerCompletenessRuleFix\
+  \ implements RuleFix en answercompleteness; MultipleChoiceValidityRuleFix implements\
+  \ RuleFix en multiplechoicevalidity; DataCoherenceRuleFix implements RuleFix en\
+  \ datacoherence; GrammarRuleFix implements RuleFix en grammar."
 modules:
 - name: audit-domain
   interfaces:
@@ -62,11 +72,60 @@ modules:
         type: String
       _change: add
     _change: add
+  - name: hintcoherence
+    implementations:
+    - name: HintCoherenceRuleFix
+      requiresInject:
+      - name: irregularForms
+        type: IrregularFormsCatalog
+      visibility: public
+      implements:
+      - RuleFix
+      _change: add
+    _change: modify
+  - name: answercompleteness
+    implementations:
+    - name: AnswerCompletenessRuleFix
+      requiresInject:
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      visibility: public
+      implements:
+      - RuleFix
+      _change: add
+    _change: modify
+  - name: multiplechoicevalidity
+    implementations:
+    - name: MultipleChoiceValidityRuleFix
+      visibility: public
+      implements:
+      - RuleFix
+      _change: add
+    _change: modify
+  - name: datacoherence
+    implementations:
+    - name: DataCoherenceRuleFix
+      requiresInject:
+      - name: quizSentenceConverter
+        type: QuizSentenceConverter
+      visibility: public
+      implements:
+      - RuleFix
+      _change: add
+    _change: modify
+  - name: grammar
+    implementations:
+    - name: GrammarRuleFix
+      visibility: public
+      implements:
+      - RuleFix
+      _change: add
+    _change: modify
   _change: modify
 - name: refiner-domain
   models:
   - name: RefinementTaskStatus
-    type: record
+    type: enum
     fields:
     - name: IN_BATCH
       description: "La tarea es de la tanda abierta (F-TANDA-R002): `nextTask` y `revise-instructions`\
@@ -77,6 +136,26 @@ modules:
   _change: modify
 - name: revision-domain
   patterns:
+  - type: Strategy
+    implementations:
+    - LemmaAbsenceMvpStrategy
+    suppressed: false
+    interface: LemmaAbsenceProposalStrategy
+  - type: Factory
+    implementations:
+    - DefaultPreservationFactory
+    suppressed: false
+    interface: PreservationFactory
+  - type: Factory
+    implementations:
+    - DefaultGateFactory
+    suppressed: false
+    interface: GateFactory
+  - type: Factory
+    implementations:
+    - DefaultPanelRunnerFactory
+    suppressed: false
+    interface: PanelRunnerFactory
   - type: Factory
     implementations:
     - DefaultBatchServiceFactory
@@ -521,6 +600,10 @@ modules:
         type: PreservationCheck
       - name: coursePath
         type: Path
+      - name: goalBook
+        type: GoalBook
+        description: "El libro de metas de F: abrir una tanda fija sus metas (F-METAS-R006,\
+          \ gancho F-10)."
       _change: add
     - name: BatchAlreadyOpenException
       type: exception
@@ -590,6 +673,7 @@ modules:
       _change: add
     allowedClients:
     - audit-cli
+    - audit-infrastructure
     _change: add
   - name: batchengine
     description: El motor de la tanda. Cada colaborador lleva una regla de FEAT-TANDA
@@ -696,6 +780,10 @@ modules:
         type: BatchReportBuilder
       - name: coursePath
         type: Path
+      - name: goalBook
+        type: GoalBook
+        description: "Al abrir la tanda llama a seal(): fija las metas con que se\
+          \ la va a comparar (F-METAS-R006, gancho F-10)."
       implements:
       - BatchService
       _change: add

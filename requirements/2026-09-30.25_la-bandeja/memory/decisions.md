@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): tray suma audit-infrastructure a sus clientes (FileSystemTrayDecisionStore); lleva la lista entera de patrones de revision-domain, las seis.
+
 2026-09-30 — architect — La bandeja es una vista que arma content-audit y convierte cada respuesta en un ajuste de la tanda
   (`BatchService.adjust`); la muestra ciega es la de F (`BlindSampleService`, `BlindPairView`, `PairAnswer`), sin puerto propio.
 

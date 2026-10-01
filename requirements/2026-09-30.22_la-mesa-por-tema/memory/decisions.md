@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): lleva la lista entera de patrones de revision-domain. SpokenTextBuilder, interna de datacoherence, la abre FEAT-RONDA2 (sin eso la mesa no compilaba); B-08 (DOUBT-MLOCAL-MESA) con A, sin cambios de estructura.
+
 2026-09-30 — architect — La mesa mide con el motor y los analizadores del análisis de partida sobre el curso recortado
   al tema (nivel → topic → tema): mismos hallazgos de ejercicio y tema que en el curso, y un juez sólo puede consultar ese
   tema. Jueces con el libro: lo que no cambió reusa por huella.

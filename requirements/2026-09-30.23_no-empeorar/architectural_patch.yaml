@@ -3,10 +3,23 @@ description: "FEAT-NOEMP: la compuerta de no empeorar en dos niveles. Por cambio
   \ compara dos mediciones de la unidad (el ejercicio con su tema) y veta errores\
   \ nuevos y palabras rojas nuevas, declara el largo y pide regrabar; por tanda, lee\
   \ la comparación del paquete F (BatchComparison de FEAT-METAS) y decide qué vuelve,\
-  \ sin devolver nunca por el largo."
+  \ sin devolver nunca por el largo. Rebasado por el integrador de la ronda 2 sobre\
+  \ el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada y construida) y sobre\
+  \ FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E: revision-domain\
+  \ lleva la lista entera de patrones, 3 (el apply reemplaza, no suma)."
 modules:
 - name: revision-domain
   patterns:
+  - type: Strategy
+    implementations:
+    - LemmaAbsenceMvpStrategy
+    suppressed: false
+    interface: LemmaAbsenceProposalStrategy
+  - type: Factory
+    implementations:
+    - DefaultPreservationFactory
+    suppressed: false
+    interface: PreservationFactory
   - type: Factory
     implementations:
     - DefaultGateFactory

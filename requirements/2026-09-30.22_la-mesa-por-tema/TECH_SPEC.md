@@ -1,7 +1,7 @@
 ---
 patch: FEAT-MESA
 requirement: 2026-09-30.22_la-mesa-por-tema
-generated: 2026-09-30T23:50:00Z
+generated: 2026-10-01T03:00:00Z
 ---
 
 # Tech Spec: La mesa por tema (FEAT-MESA)
@@ -10,7 +10,7 @@ Paquete E, ronda 2, contra el `sentinel.yaml` con 0.2 y 0.3 aplicados. La mesa n
 analizadores del catálogo tal como corren en `analyze`, el libro de evaluaciones para no pagar dos veces, la compuerta
 de FEAT-NOEMP y la vista de tarea de FEAT-TAREA. Lo nuevo es el lazo por tema —revalidar, proponer, medir, juzgar,
 decidir—, el cupo compartido de consultas y el puerto de quien propone. Depende de tres piezas de la ronda 1 que todavía
-no están en el modelo (el renderizador A-01, el semáforo de D y lo que dice el audio de A): ver `ganchos-E.md`.
+no están en el modelo (el renderizador A-01, el semáforo de D y lo que dice el audio de A): ver `ganchos-E.md`. Rebasado por el integrador de la ronda 2 sobre el `sentinel.yaml` de `ronda1/integracion` (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; `sentinel-baseline.yaml` queda como foto del diseño. Lleva la lista entera de patrones de `revision-domain`: ver la última sección. Lo que dice el audio lo construye la pieza de A que FEAT-RONDA2 abre (`SpokenTextBuilder`).
 
 ## Darle a la mesa el tema entero, como está en la tanda
 Una mesa toma un tema y no un ejercicio porque las tres tareas del ejercicio 11 de *Afirmativas regulares* son un solo
@@ -513,6 +513,17 @@ con tres opciones, y las mismas decisiones con 1 y 1, 4 y 4, y 8 y 8 a la vez. N
 features:
   - id: FEAT-MESA
     code: F-MESA
+modules:
+  - name: revision-domain
+    _change: modify
+```
+
+## Lo que suma la integración de la ronda 2
+`patch apply` reemplaza la lista de patrones de un módulo por la del parche, no la suma: NOEMP, MESA, TANDA y BANDEJA
+declaraban cada uno su fábrica en `revision-domain`, y aplicados en orden quedaba sólo la última, sin las dos que el
+módulo ya tenía. Este parche lleva la lista entera hasta él (cuatro), armada contra el modelo que deja el anterior.
+
+```architecture
 modules:
   - name: revision-domain
     _change: modify

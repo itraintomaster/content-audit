@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): BatchServiceConfig y DefaultBatchService reciben el GoalBook de F (abrir fija las metas, F-10); suma los cinco RuleFix (E-06 de A y el de grammar); batch suma audit-infrastructure a sus clientes; RefinementTaskStatus declara type: enum; lista entera de patrones.
+
 2026-09-30 — architect — Una propuesta pendiente por ejercicio, compuesta por pasos con sus partes (`BatchChangeLedger`):
   sacar un cambio quita sus pasos y los posteriores que tocaron lo mismo y reemplaza la propuesta.
   why: con una propuesta por cambio, F declararía no aplicables a las posteriores apenas se saca una (F-CDIFF-R012).

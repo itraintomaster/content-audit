@@ -3,12 +3,42 @@ description: "FEAT-BANDEJA: la bandeja de la tanda como una vista que content-au
   \ arma: primero la muestra ciega del paquete F, con su servicio, y, cerrada ésta,\
   \ los desempates, los sin ganador y las muestras de regla; cada respuesta de José\
   \ se vuelve un ajuste de la tanda, lo decidido se recuerda por identidad y huella,\
-  \ y publicar es un solo OK que sólo acepta la bandeja."
+  \ y publicar es un solo OK que sólo acepta la bandeja. Rebasado por el integrador\
+  \ de la ronda 2 sobre el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada\
+  \ y construida) y sobre FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2,\
+  \ B, F y E: revision-domain lleva la lista entera de patrones, 6 (el apply reemplaza,\
+  \ no suma); el paquete tray suma audit-infrastructure a sus clientes: FileSystemTrayDecisionStore\
+  \ implementa TrayDecisionStore."
 modules:
 - name: revision-domain
   dependsOn:
   - evaluation-ledger-domain
   patterns:
+  - type: Strategy
+    implementations:
+    - LemmaAbsenceMvpStrategy
+    suppressed: false
+    interface: LemmaAbsenceProposalStrategy
+  - type: Factory
+    implementations:
+    - DefaultPreservationFactory
+    suppressed: false
+    interface: PreservationFactory
+  - type: Factory
+    implementations:
+    - DefaultGateFactory
+    suppressed: false
+    interface: GateFactory
+  - type: Factory
+    implementations:
+    - DefaultPanelRunnerFactory
+    suppressed: false
+    interface: PanelRunnerFactory
+  - type: Factory
+    implementations:
+    - DefaultBatchServiceFactory
+    suppressed: false
+    interface: BatchServiceFactory
   - type: Factory
     implementations:
     - DefaultTrayServiceFactory
@@ -246,6 +276,7 @@ modules:
       _change: add
     allowedClients:
     - audit-cli
+    - audit-infrastructure
     _change: add
   - name: trayengine
     description: "El motor de la bandeja: arma la vista, sortea las muestras de regla,\

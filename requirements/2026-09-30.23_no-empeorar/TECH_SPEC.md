@@ -1,7 +1,7 @@
 ---
 patch: FEAT-NOEMP
 requirement: 2026-09-30.23_no-empeorar
-generated: 2026-09-30T23:40:00Z
+generated: 2026-10-01T03:00:00Z
 ---
 
 # Tech Spec: No empeorar (FEAT-NOEMP)
@@ -9,7 +9,7 @@ generated: 2026-09-30T23:40:00Z
 Paquete E, ronda 2, contra el `sentinel.yaml` con 0.2 y 0.3 aplicados. La compuerta tiene dos niveles con dos entradas
 distintas: por cambio, dos mediciones de la misma unidad que arma la mesa; por tanda, la comparación que publica el
 paquete F (`BatchComparison` de FEAT-METAS), que E lee y no recalcula. Ninguna de las dos consulta modelos ni escribe
-nada: deciden con lo que reciben, y por eso las mismas entradas dan siempre la misma salida (R009).
+nada: deciden con lo que reciben, y por eso las mismas entradas dan siempre la misma salida (R009). Rebasado por el integrador de la ronda 2 sobre el `sentinel.yaml` de `ronda1/integracion` (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; `sentinel-baseline.yaml` queda como foto del diseño. Lleva la lista entera de patrones de `revision-domain`: ver la última sección.
 
 ## Medir una unidad una sola vez, en una forma que se pueda comparar
 La compuerta por cambio no puede comparar promedios: «grandmother» no movió ningún número de A1 y sí la cuenta de
@@ -231,6 +231,17 @@ en la cuenta de palabras marcadas la tanda no pasa (R005). Ninguna consulta un m
 features:
   - id: FEAT-NOEMP
     code: F-NOEMP
+modules:
+  - name: revision-domain
+    _change: modify
+```
+
+## Lo que suma la integración de la ronda 2
+`patch apply` reemplaza la lista de patrones de un módulo por la del parche, no la suma: NOEMP, MESA, TANDA y BANDEJA
+declaraban cada uno su fábrica en `revision-domain`, y aplicados en orden quedaba sólo la última, sin las dos que el
+módulo ya tenía. Este parche lleva la lista entera hasta él (tres), armada contra el modelo que deja el anterior.
+
+```architecture
 modules:
   - name: revision-domain
     _change: modify

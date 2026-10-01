@@ -2,7 +2,20 @@ code: FEAT-TAREA
 description: "FEAT-TAREA: el plan hace una tarea por hallazgo de la familia de errores,\
   \ con su origen (hallazgo, nivel, tema, cubiertos y ejercicios que alcanza), cuenta\
   \ hallazgos contra tareas, cubiertos y no convertidos, y cada analizador declara\
-  \ en su ficha de corrección lo que su arreglo puede tocar."
+  \ en su ficha de corrección lo que su arreglo puede tocar. Rebasado por el integrador\
+  \ de la ronda 2 sobre el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada\
+  \ y construida) y sobre FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2,\
+  \ B, F y E: GetCmd inyecta errorTaskBriefer: ErrorTaskBriefer (gancho E-07); HintCoherenceCorrection\
+  \ implements AnalyzerCorrection en hintcoherence; AnswerCompletenessCorrection implements\
+  \ AnalyzerCorrection en answercompleteness; MultipleChoiceValidityCorrection implements\
+  \ AnalyzerCorrection en multiplechoicevalidity; DataCoherenceCorrection implements\
+  \ AnalyzerCorrection en datacoherence; ExactDuplicatesCorrection implements AnalyzerCorrection\
+  \ en exactduplicates; TranslationSenseCorrection implements AnalyzerCorrection en\
+  \ translationsenseengine; SingleAnswerCorrection implements AnalyzerCorrection en\
+  \ singleanswerengine; MiniTheoryCorrection implements AnalyzerCorrection en minitheoryengine;\
+  \ OffLevelWordsCorrection implements AnalyzerCorrection en offlevelwords; GrammarCorrection\
+  \ implements AnalyzerCorrection en grammar; NearDuplicatesCorrection implements\
+  \ AnalyzerCorrection en nearduplicates."
 modules:
 - name: audit-domain
   interfaces:
@@ -106,6 +119,94 @@ modules:
     allowedClients:
     - audit-cli
     _change: add
+  - name: hintcoherence
+    implementations:
+    - name: HintCoherenceCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: answercompleteness
+    implementations:
+    - name: AnswerCompletenessCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: multiplechoicevalidity
+    implementations:
+    - name: MultipleChoiceValidityCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: datacoherence
+    implementations:
+    - name: DataCoherenceCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: exactduplicates
+    implementations:
+    - name: ExactDuplicatesCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: translationsenseengine
+    implementations:
+    - name: TranslationSenseCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: singleanswerengine
+    implementations:
+    - name: SingleAnswerCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: minitheoryengine
+    implementations:
+    - name: MiniTheoryCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: offlevelwords
+    implementations:
+    - name: OffLevelWordsCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: grammar
+    implementations:
+    - name: GrammarCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: nearduplicates
+    implementations:
+    - name: NearDuplicatesCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
   _change: modify
 - name: refiner-domain
   models:
@@ -284,6 +385,19 @@ modules:
     - name: knowledgeId
       type: Optional<String>
     _change: add
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      requiresInject:
+      - name: errorTaskBriefer
+        type: ErrorTaskBriefer
+        description: "Arma el detalle de una tarea de errores para `get task` (F-TAREA-R009)\
+          \ y filtra `get tasks` por analizador, resolución, gravedad, nivel y tema\
+          \ (F-TAREA-R008, gancho E-07)."
+        _change: add
+      _change: modify
+    _change: modify
   _change: modify
 features:
 - id: FEAT-TAREA

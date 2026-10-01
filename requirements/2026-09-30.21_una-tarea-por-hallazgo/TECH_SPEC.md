@@ -1,7 +1,7 @@
 ---
 patch: FEAT-TAREA
 requirement: 2026-09-30.21_una-tarea-por-hallazgo
-generated: 2026-09-30T23:30:00Z
+generated: 2026-10-01T03:00:00Z
 ---
 
 # Tech Spec: Una tarea por hallazgo (FEAT-TAREA)
@@ -10,7 +10,7 @@ Paquete E, ronda 2, contra el `sentinel.yaml` con 0.2 y 0.3 aplicados. FEAT-HALL
 le pasó a E qué tarea crea cada analizador y cómo se corrige; este parche es esa parte: el origen de cada tarea, la
 cuenta que cierra, la declaración de lo que cada arreglo puede tocar y la vista que comparten `get task` y la mesa. Lo
 compartido que no trae —las constantes de `DiagnosisKind`, las declaraciones de los analizadores de A, C y D, `GetCmd`,
-`PlanCmd` y `Main`— está en `ganchos-E.md`, uno por línea.
+`PlanCmd` y `Main`— está en `ganchos-E.md`, uno por línea. Rebasado por el integrador de la ronda 2 sobre el `sentinel.yaml` de `ronda1/integracion` (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; `sentinel-baseline.yaml` queda como foto del diseño. Trae ahora lo que estaba en los ganchos E-03 a E-05 y E-07: ver la última sección.
 
 ## Declarar, por analizador, cómo se corrige lo que marca
 El plan, la mesa y la tanda necesitan saber lo mismo de cada analizador de errores: qué partes del ejercicio puede
@@ -308,4 +308,74 @@ features:
 modules:
   - name: audit-cli
     _change: modify
+```
+
+## Lo que suma la integración de la ronda 2
+Cada analizador declara cómo se corrige lo que marca en una clase de su paquete que implementa `AnalyzerCorrection`
+(R006): las cinco de A (gancho E-03), las tres de C (E-04), la de D (E-05) y, desde FEAT-RONDA2, las dos de B. Van en
+este parche y no en el de la integración porque implementan una interfaz que declara éste; en sus paquetes, porque lo
+que puede tocar un arreglo es del analizador. Las tablas de cada una están en R006 y en F-RONDA2-R009: la de
+`off-level-words` no tiene alcance propio y nombra a `lemma-absence` como cobertura; la de traducción desempata con
+`judges-disagree` y ofrece los dos arreglos; la de miniteoría agrupa por tema. `GetCmd` recibe el armado del detalle
+de una tarea para `get task` y los filtros de `get tasks` (E-07): suma un argumento a su constructor.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: hintcoherence
+        _change: modify
+        implementations:
+          - { name: HintCoherenceCorrection, _change: add, visibility: public, implements: [AnalyzerCorrection] }
+      - name: answercompleteness
+        _change: modify
+        implementations:
+          - { name: AnswerCompletenessCorrection, _change: add, visibility: public, implements: [AnalyzerCorrection] }
+      - name: multiplechoicevalidity
+        _change: modify
+        implementations:
+          - { name: MultipleChoiceValidityCorrection, _change: add, visibility: public, implements: [AnalyzerCorrection] }
+      - name: datacoherence
+        _change: modify
+        implementations:
+          - { name: DataCoherenceCorrection, _change: add, visibility: public, implements: [AnalyzerCorrection] }
+      - name: exactduplicates
+        _change: modify
+        implementations:
+          - { name: ExactDuplicatesCorrection, _change: add, visibility: public, implements: [AnalyzerCorrection] }
+      - name: translationsenseengine
+        _change: modify
+        implementations:
+          - { name: TranslationSenseCorrection, _change: add, visibility: public, implements: [AnalyzerCorrection] }
+      - name: singleanswerengine
+        _change: modify
+        implementations:
+          - { name: SingleAnswerCorrection, _change: add, visibility: public, implements: [AnalyzerCorrection] }
+      - name: minitheoryengine
+        _change: modify
+        implementations:
+          - { name: MiniTheoryCorrection, _change: add, visibility: public, implements: [AnalyzerCorrection] }
+      - name: offlevelwords
+        _change: modify
+        implementations:
+          - { name: OffLevelWordsCorrection, _change: add, visibility: public, implements: [AnalyzerCorrection] }
+      - name: grammar
+        _change: modify
+        implementations:
+          - { name: GrammarCorrection, _change: add, visibility: public, implements: [AnalyzerCorrection] }
+      - name: nearduplicates
+        _change: modify
+        implementations:
+          - { name: NearDuplicatesCorrection, _change: add, visibility: public, implements: [AnalyzerCorrection] }
+  - name: audit-cli
+    _change: modify
+    packages:
+      - name: commands
+        _change: modify
+        implementations:
+          - name: GetCmd
+            _change: modify
+            requiresInject:
+              - { name: errorTaskBriefer, type: ErrorTaskBriefer, _change: add }
 ```

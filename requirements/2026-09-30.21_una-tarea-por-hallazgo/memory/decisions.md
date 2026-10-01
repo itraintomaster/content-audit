@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): suma las once AnalyzerCorrection en los paquetes de cada analizador (E-03 a A, E-04 a C, E-05 a D, y grammar y near-duplicates por F-RONDA2-R009) y GetCmd + errorTaskBriefer (E-07). Las constantes de DiagnosisKind (E-01, más GRAMMAR y NEAR_DUPLICATES) van en FEAT-RONDA2.
+
 2026-09-30 — architect — Declaración de corrección por analizador (`AnalyzerCorrection`, raíz de audit-domain): alcance por
   resolución en `ExercisePart`, cobertura, agrupar por tema, reglas de desempate y dos arreglos. La implementa cada analizador
   en su paquete (ganchos E-03 a E-05); E escribe las de quiz-instruction y lemma-absence.
