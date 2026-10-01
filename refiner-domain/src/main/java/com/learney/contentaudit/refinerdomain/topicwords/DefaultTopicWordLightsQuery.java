@@ -215,7 +215,7 @@ public class DefaultTopicWordLightsQuery implements TopicWordLightsQuery {
                 asked.isIncludeExposed(), orEmpty(asked.getRegex()));
         String anchor = quizzes.isEmpty() ? knowledge.getEntity().getId() : quizzes.get(0).getEntity().getId();
         RefinementTask transientTask = new RefinementTask("word-lights-" + knowledge.getEntity().getId(), AuditTarget.QUIZ,
-                anchor, knowledge.getEntity().getLabel(), DiagnosisKind.LEMMA_ABSENCE, 0, RefinementTaskStatus.PENDING);
+                anchor, knowledge.getEntity().getLabel(), DiagnosisKind.LEMMA_ABSENCE, 0, RefinementTaskStatus.PENDING, null);
         SuggestedLemmaQueryResult result = suggestedLemmaQueryPort.query(report, transientTask, unlimited);
         List<SuggestedLemma> toAdd = new ArrayList<>();
         Optional<Integer> limit = orEmpty(asked.getLimit());

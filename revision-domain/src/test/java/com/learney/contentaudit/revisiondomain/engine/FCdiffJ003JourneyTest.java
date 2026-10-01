@@ -92,7 +92,7 @@ public class FCdiffJ003JourneyTest {
         builder = new DefaultConsolidatedViewBuilder(
                 revisionArtifactStore, activeAnalysisSelectionStore,
                 auditReportStore, refinementPlanStore, courseRepository,
-                courseElementLocator, courseMapper, auditEngine, realDiffer);
+                courseElementLocator, courseMapper, auditEngine, realDiffer, null);
     }
 
     private AuditNode knowledgeNodeWithAbsentLemmaList(String id, List<AbsentLemma> absentLemmas,

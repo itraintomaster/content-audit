@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,7 +31,7 @@ public class HintCoherenceAnalyzerProviderTest {
     public void shouldDescribeHintcoherenceInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleOrAtThePanelAndCostsInstantAskingLaPistaLeAnunciaAlAlumnoLoQueTieneQueEscribir(
             ) {
         // R005 and F-HALL-R006: the card the catalog validates at startup, with the Spanish name of
-        // F-RONDA1-R004; no task kind and no configuration in this round.
+        // F-RONDA1-R004; its task kind since F-RONDA2-R008, and no configuration.
         HintCoherenceAnalyzerProvider provider =
                 new HintCoherenceAnalyzerProvider(HintCoherenceAnalyzerTest.table(), HintCoherenceAnalyzerTest.renderer());
         AnalyzerDescriptor card = provider.describe();
@@ -45,11 +48,30 @@ public class HintCoherenceAnalyzerProviderTest {
                 card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
         assertTrue(card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
         assertTrue(card.getGoal().contains("tres cuartos"), "the threshold of José is written in the goal");
-        assertTrue(provider.planBinding().isEmpty());
+        assertEquals(Optional.of(new AnalyzerPlanBinding("HINT_COHERENCE", List.of(AuditTarget.QUIZ))), provider.planBinding(),
+                "F-RONDA2-R008: its task kind, on the exercise");
         assertTrue(provider.config().isEmpty());
         assertEquals("hint-coherence", provider.create(null).getName());
 
         DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
         assertEquals(card, catalog.find("hint-coherence").orElseThrow(), "the catalog accepts the card");
+    }
+
+    @Test
+    @DisplayName("should bind hint-coherence to the plan with the task kind HINT_COHERENCE on the exercise")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldBindHintcoherenceToThePlanWithTheTaskKindHINTCOHERENCEOnTheExercise()  {
+        // F-RONDA2-R008 (hook E-02): its findings that count become HINT_COHERENCE tasks, one on the exercise
+        // where it found them; the catalog accepts the binding, since the card evaluates exercises.
+        HintCoherenceAnalyzerProvider provider =
+                new HintCoherenceAnalyzerProvider(HintCoherenceAnalyzerTest.table(), HintCoherenceAnalyzerTest.renderer());
+        AnalyzerPlanBinding expected = new AnalyzerPlanBinding("HINT_COHERENCE", List.of(AuditTarget.QUIZ));
+
+        assertEquals(Optional.of(expected), provider.planBinding(), "R008: its task kind, on the exercise");
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(Optional.of(expected), catalog.planBinding("hint-coherence"), "the catalog serves it to the plan");
+        assertTrue(provider.describe().getEvaluatedTargets().contains(AuditTarget.QUIZ),
+                "its tasks go on a level the card evaluates");
     }
 }

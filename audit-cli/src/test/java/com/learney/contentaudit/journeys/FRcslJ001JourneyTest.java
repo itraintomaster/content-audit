@@ -176,7 +176,7 @@ public class FRcslJ001JourneyTest {
         // Step: solicitar_tarea — task identifies quiz-001 as a SENTENCE_LENGTH problem
         RefinementTask task = new RefinementTask(
                 "task-001", AuditTarget.QUIZ, "quiz-001", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
 
         // Step: verificar_auditoria — build audit tree with milestone lemma diagnosis
         DefaultLevelDiagnoses milestoneDiagnoses = new DefaultLevelDiagnoses();
@@ -221,7 +221,7 @@ public class FRcslJ001JourneyTest {
         // Step: solicitar_tarea — task identifies quiz-001 as a SENTENCE_LENGTH problem
         RefinementTask task = new RefinementTask(
                 "task-002", AuditTarget.QUIZ, "quiz-001", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
 
         // Step: verificar_auditoria — build audit tree with NO lemma absence diagnosis on milestone
         DefaultLevelDiagnoses milestoneDiagnoses = new DefaultLevelDiagnoses();
@@ -255,7 +255,7 @@ public class FRcslJ001JourneyTest {
         // Step: solicitar_tarea — task references a quiz that does not exist in the tree
         RefinementTask task = new RefinementTask(
                 "task-003", AuditTarget.QUIZ, "non-existent-quiz-id", "Unknown Quiz",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
 
         // Step: verificar_auditoria — tree exists but the quiz node is not in it
         DefaultLevelDiagnoses milestoneDiagnoses = new DefaultLevelDiagnoses();

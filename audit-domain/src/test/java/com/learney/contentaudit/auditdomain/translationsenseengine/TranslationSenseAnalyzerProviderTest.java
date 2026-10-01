@@ -538,4 +538,22 @@ public class TranslationSenseAnalyzerProviderTest {
         assertEquals(1.0, quizNode(report, DINNER_ID).getScores().get(NAME), 1e-9,
                 "El desacuerdo queda en 1: ninguna tarea, sólo la bandeja");
     }
+
+    @Test
+    @DisplayName("should bind translation-sense to the plan with the task kind TRANSLATION_SENSE on the exercise")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldBindTranslationsenseToThePlanWithTheTaskKindTRANSLATIONSENSEOnTheExercise()  {
+        // F-RONDA2-R008 (hook E-02): its findings that count become TRANSLATION_SENSE tasks, one on the exercise
+        // where it found them; the catalog accepts the binding, since the card evaluates exercises.
+        Lab lab = new Lab(subject -> new EvaluationEmitted(PASS), subject -> new EvaluationEmitted(PASS));
+        TranslationSenseAnalyzerProvider provider = lab.provider;
+        AnalyzerPlanBinding expected = new AnalyzerPlanBinding("TRANSLATION_SENSE", List.of(AuditTarget.QUIZ));
+
+        assertEquals(Optional.of(expected), provider.planBinding(), "R008: its task kind, on the exercise");
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(Optional.of(expected), catalog.planBinding("translation-sense"), "the catalog serves it to the plan");
+        assertTrue(provider.describe().getEvaluatedTargets().contains(AuditTarget.QUIZ),
+                "its tasks go on a level the card evaluates");
+    }
 }

@@ -92,4 +92,13 @@ public class LemmaRecurrenceAnalyzerProviderTest {
                 "the rule of its findings");
         Assertions.assertEquals("Recurrencia", card.getDisplayName(), "the name on screen");
     }
+
+    @Test
+    @DisplayName("should create for every run an analyzer that counts positions from the start, so the recurrence of the course stays at 8.0% on a second run instead of falling to 4.0%")
+    @Tag("FEAT-CERO")
+    @Tag("F-CERO-R001")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
+    public void shouldCreateForEveryRunAnAnalyzerThatCountsPositionsFromTheStartSoTheRecurrenceOfTheCourseStaysAt80OnASecondRunInsteadOfFallingTo40() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -75,7 +75,7 @@ public class DataCoherenceAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.RULE, FindingResolution.PANEL),
                 AnalysisCost.INSTANT,
-                "Datos coherentes");
+                "Datos coherentes", List.of());
     }
 
     @Override
@@ -84,9 +84,12 @@ public class DataCoherenceAnalyzerProvider implements AnalyzerProvider {
                 new DefaultSpokenTextBuilder(), studentViewRenderer);
     }
 
+    /**
+     * F-RONDA2-R008 (hook E-02): its findings that count become DATA_COHERENCE tasks on the exercise.
+     */
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        return Optional.empty();
+        return Optional.of(new AnalyzerPlanBinding("DATA_COHERENCE", List.of(AuditTarget.QUIZ)));
     }
 
     @Override

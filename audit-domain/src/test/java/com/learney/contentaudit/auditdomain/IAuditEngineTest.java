@@ -623,7 +623,7 @@ public class IAuditEngineTest {
         AnalyzerDescriptor card = new AnalyzerDescriptor("pista-coherente", "Checks the hint", AuditTarget.QUIZ, "¿La pista coincide?",
                 "La pista y la respuesta", List.of(new AnalyzerRuleCard("hint-matches", "La pista coincide", AnalysisCost.INSTANT)),
                 "Ninguna pista incoherente", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
-                List.of(FindingResolution.RULE), AnalysisCost.INSTANT, "pista-coherente");
+                List.of(FindingResolution.RULE), AnalysisCost.INSTANT, "pista-coherente", java.util.List.of());
         AnalyzerProvider fixable = scriptedProvider(card, (node, drafts) -> {
             node.getScores().put("pista-coherente", "q1".equals(node.getEntity().getId()) ? 0.0 : 1.0);
             if ("q1".equals(node.getEntity().getId())) {
@@ -671,7 +671,7 @@ public class IAuditEngineTest {
                 "-", judge ? com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS
                         : com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.VOCABULARY,
                 java.util.List.of(target), java.util.List.of(com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL),
-                cost, analyzer.getName());
+                cost, analyzer.getName(), java.util.List.of());
         return new com.learney.contentaudit.auditdomain.AnalyzerProvider() {
             @Override
             public String analyzerName() {
@@ -1659,5 +1659,247 @@ public class IAuditEngineTest {
                     "m-" + level, level, level));
         });
         return new AuditableCourse(milestones);
+    }
+
+    @Test
+    @DisplayName("should leave naturalness and near-duplicates out of the base run, even though near-duplicates has the instant rule same-but-wildcard")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R003")
+    public void shouldLeaveNaturalnessAndNearduplicatesOutOfTheBaseRunEvenThoughNearduplicatesHasTheInstantRuleSamebutwildcard()  {
+        // R003: the base run leaves out every analyzer with a rule of local model, even when it has an
+        // instant one -- near-duplicates has same-but-wildcard --, as José decided: of package B,
+        // only grammar runs in the base run.
+        Map<String, Optional<EvaluationRunPolicy>> built = new LinkedHashMap<>();
+        List<AnalyzerProvider> providers = new ArrayList<>(classics());
+        providers.add(scriptedProvider(naturalnessCard(), (node, drafts) -> {
+            throw new AssertionError("naturalness never runs in the base run");
+        }));
+        providers.add(scriptedProvider(nearDuplicatesCard(), (node, drafts) -> {
+            throw new AssertionError("near-duplicates never runs in the base run");
+        }));
+
+        AuditReport report = realEngine(recordingPolicies(providers, built)).runAudit(multipleChoiceCourse());
+
+        assertTrue(nearDuplicatesCard().getRules().stream()
+                        .anyMatch(rule -> "same-but-wildcard".equals(rule.getId()) && rule.getCost() == AnalysisCost.INSTANT),
+                "near-duplicates does have an instant rule");
+        assertEquals(classics().stream().map(AnalyzerProvider::analyzerName).toList(), new ArrayList<>(built.keySet()),
+                "R003: only the instant ones are built");
+        for (String outOfTheBase : List.of("naturalness", "near-duplicates")) {
+            walk(report.getRoot(), node -> {
+                assertNull(node.getScores().get(outOfTheBase), outOfTheBase + " leaves no score");
+                assertFalse(node.getUnevaluatedBy().contains(outOfTheBase), outOfTheBase + " does not even reach a node");
+            });
+        }
+    }
+
+    @Test
+    @DisplayName("should run grammar in the base run because it is instant")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R003")
+    public void shouldRunGrammarInTheBaseRunBecauseItIsInstant()  {
+        // R003: grammar costs instant -- its two rules are --, so the base run runs it over every
+        // exercise, with no budget to declare.
+        Map<String, Optional<EvaluationRunPolicy>> built = new LinkedHashMap<>();
+        List<String> read = new ArrayList<>();
+        List<AnalyzerProvider> providers = new ArrayList<>(classics());
+        providers.add(scriptedProvider(grammarCard(), (node, drafts) -> read.add(node.getEntity().getId())));
+
+        realEngine(recordingPolicies(providers, built)).runAudit(multipleChoiceCourse());
+
+        assertTrue(built.containsKey("grammar"), "R003: grammar runs in the base run");
+        assertEquals(Optional.empty(), built.get("grammar"), "an instant analyzer gets no budget");
+        assertEquals(List.of(A_CHILD_ID, SHOW_ID, "q-dog"), read, "it reads every exercise of the course");
+    }
+
+    @Test
+    @DisplayName("should run fourteen of the twenty analyzers in the base run, the thirteen instant ones and multiple-choice-validity with budget 0")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R003")
+    public void shouldRunFourteenOfTheTwentyAnalyzersInTheBaseRunTheThirteenInstantOnesAndMultiplechoicevalidityWithBudget0()  {
+        // R003: with the twenty in the catalog the base run runs fourteen -- the thirteen instant
+        // ones, grammar among them, and multiple-choice-validity with budget 0 --, and leaves out
+        // quiz-instruction, the three judges of C, naturalness and near-duplicates.
+        MultipleChoiceJudgeStandIn multipleChoice = new MultipleChoiceJudgeStandIn(Map.of());
+        List<AnalyzerProvider> twenty = twentyOfRoundTwo(multipleChoice);
+        Map<String, Optional<EvaluationRunPolicy>> built = new LinkedHashMap<>();
+
+        realEngine(recordingPolicies(twenty, built)).runAudit(multipleChoiceCourse());
+
+        assertEquals(TWENTY, new DefaultAnalyzerCatalog(twenty).list().stream().map(AnalyzerDescriptor::getName).toList(),
+                "the twenty, in the order of the catalog");
+        assertEquals(List.of("sentence-length", "knowledge-title-length", "knowledge-instructions-length",
+                "coca-buckets-distribution", "lemma-recurrence", "lemma-absence", "off-level-words", "lemma-count",
+                "hint-coherence", "answer-completeness", MULTIPLE_CHOICE, "data-coherence", "exact-duplicates",
+                "grammar"), new ArrayList<>(built.keySet()), "R003: fourteen of the twenty, in catalog order");
+        built.forEach((name, policy) -> {
+            if (MULTIPLE_CHOICE.equals(name)) {
+                assertEquals(0, policy.orElseThrow().getMaxNewEvaluations(), "R003: budget 0 for its judge");
+            } else {
+                assertEquals(Optional.empty(), policy, name + " is instant: no budget");
+            }
+        });
+        assertEquals(0, multipleChoice.consultations(), "no consultation is paid");
+    }
+
+    @Test
+    @DisplayName("should store at the root one measure per analyzer that ran, in catalog order, and no measure in the nodes below")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldStoreAtTheRootOneMeasurePerAnalyzerThatRanInCatalogOrderAndNoMeasureInTheNodesBelow()  {
+        // R004: the root of the report keeps, for every analyzer that ran and in the order of the
+        // catalog, the measure the catalog gives it; no node below keeps any.
+        List<AnalyzerProvider> providers = withJudge(Map.of(), Set.of());
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
+
+        AuditReport report = realEngine(providers).runAudit(multipleChoiceCourse(),
+                new AnalyzerRunSelection(List.of("lemma-count", "sentence-length", "coca-buckets-distribution"), Map.of()));
+
+        List<com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure> measures = report.getRoot().getMeasures();
+        assertEquals(List.of("sentence-length", "coca-buckets-distribution", "lemma-count"),
+                measures.stream().map(com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure::getAnalyzer).toList(),
+                "R004: one per analyzer that ran, in catalog order");
+        for (com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure measure : measures) {
+            assertEquals(catalog.measure(measure.getAnalyzer()).orElseThrow(), measure,
+                    "R004: the measure of the catalog: " + measure.getAnalyzer());
+        }
+        walk(report.getRoot(), node -> {
+            if (node != report.getRoot()) {
+                assertTrue(node.getMeasures().isEmpty(), "R004 inv. 4: only the root keeps measures");
+            }
+        });
+    }
+
+    @Test
+    @DisplayName("should give the base of 29/9 on its second run in the same process 73.92% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 8.00 of recurrence, as a new invocation, and not 72.90")
+    @Tag("FEAT-CERO")
+    @Tag("F-CERO-R001")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
+    public void shouldGiveTheBaseOf299OnItsSecondRunInTheSameProcess7392InTheCourse965494167945And6351InTheLevels5793OfCOCAInB1And800OfRecurrenceAsANewInvocationAndNot7290() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give a run the numbers of a new invocation whatever courses ran before it, so a word only the earlier course used is absent for lemma-absence and lemma-count")
+    @Tag("FEAT-CERO")
+    @Tag("F-CERO-R001")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
+    public void shouldGiveARunTheNumbersOfANewInvocationWhateverCoursesRanBeforeItSoAWordOnlyTheEarlierCourseUsedIsAbsentForLemmaabsenceAndLemmacount() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the first report untouched by a second run in the same process, its 55 topics keeping their COCA diagnosis, A1 · Present Simple with 2,366 tokens in four bands")
+    @Tag("FEAT-CERO")
+    @Tag("F-CERO-R002")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
+    public void shouldLeaveTheFirstReportUntouchedByASecondRunInTheSameProcessIts55TopicsKeepingTheirCOCADiagnosisA1PresentSimpleWith2366TokensInFourBands() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-RONDA2 fixtures: the twenty analyzers and the base run
+    // ------------------------------------------------------------------
+
+    /** The twenty analyzers of rounds 1 and 2, in the order of the catalog (F-RONDA1-R004, F-RONDA2-R001). */
+    private static final List<String> TWENTY = List.of("sentence-length", "knowledge-title-length",
+            "knowledge-instructions-length", "coca-buckets-distribution", "lemma-recurrence", "lemma-absence",
+            "off-level-words", "lemma-count", "quiz-instruction", "hint-coherence", "answer-completeness",
+            MULTIPLE_CHOICE, "data-coherence", "exact-duplicates", "translation-sense", "single-answer", "mini-theory",
+            "grammar", "naturalness", "near-duplicates");
+
+    /**
+     * The twenty, with the cards of the analyzers of rounds 1 and 2 by their costs: the seven
+     * classics and the judge are the real ones; the others leave nothing, since only which of them
+     * the base run builds matters here.
+     */
+    private static List<AnalyzerProvider> twentyOfRoundTwo(MultipleChoiceJudgeStandIn multipleChoice) {
+        List<AnalyzerProvider> eight = withJudge(Map.of(), Set.of());
+        List<AnalyzerProvider> providers = new ArrayList<>(eight.subList(0, 6));
+        providers.add(quiet(DefaultAnalyzerCatalogTest.card("off-level-words", AnalyzerFamily.ERRORS, AnalysisCost.INSTANT)));
+        providers.add(eight.get(6));
+        providers.add(eight.get(7));
+        for (String name : List.of("hint-coherence", "answer-completeness")) {
+            providers.add(quiet(DefaultAnalyzerCatalogTest.card(name, AnalyzerFamily.ERRORS, AnalysisCost.INSTANT)));
+        }
+        providers.add(multipleChoice.provider());
+        for (String name : List.of("data-coherence", "exact-duplicates")) {
+            providers.add(quiet(DefaultAnalyzerCatalogTest.card(name, AnalyzerFamily.ERRORS, AnalysisCost.INSTANT)));
+        }
+        for (String name : List.of("translation-sense", "single-answer", "mini-theory")) {
+            providers.add(quiet(DefaultAnalyzerCatalogTest.card(name, AnalyzerFamily.ERRORS, AnalysisCost.PAID_MODEL)));
+        }
+        providers.add(quiet(grammarCard()));
+        providers.add(quiet(naturalnessCard()));
+        providers.add(quiet(nearDuplicatesCard()));
+        return providers;
+    }
+
+    private static AnalyzerProvider quiet(AnalyzerDescriptor card) {
+        return scriptedProvider(card, (node, drafts) -> { });
+    }
+
+    /** grammar: english-error and final-punctuation, both instant (FEAT-GRAMA). */
+    private static AnalyzerDescriptor grammarCard() {
+        return cardOfPackageB("grammar", AnalysisCost.INSTANT, List.of(
+                new AnalyzerRuleCard("english-error", "LanguageTool marca un error de inglés", AnalysisCost.INSTANT),
+                new AnalyzerRuleCard("final-punctuation", "La oración termina con su signo", AnalysisCost.INSTANT)));
+    }
+
+    /** naturalness: unlikely-sentence of local model and native-says-no of paid model (FEAT-NATUR). */
+    private static AnalyzerDescriptor naturalnessCard() {
+        return cardOfPackageB("naturalness", AnalysisCost.PAID_MODEL, List.of(
+                new AnalyzerRuleCard("unlikely-sentence", "llama3 no la diría", AnalysisCost.LOCAL_MODEL),
+                new AnalyzerRuleCard("native-says-no", "claude -p no la diría", AnalysisCost.PAID_MODEL)));
+    }
+
+    /** near-duplicates: same-but-wildcard instant, same-meaning of local model, same-exercise of paid model (FEAT-DUPAR). */
+    private static AnalyzerDescriptor nearDuplicatesCard() {
+        return cardOfPackageB("near-duplicates", AnalysisCost.PAID_MODEL, List.of(
+                new AnalyzerRuleCard("same-but-wildcard", "Lo mismo salvo el comodín", AnalysisCost.INSTANT),
+                new AnalyzerRuleCard("same-meaning", "Casi lo mismo para nomic-embed-text", AnalysisCost.LOCAL_MODEL),
+                new AnalyzerRuleCard("same-exercise", "El mismo ejercicio para claude -p", AnalysisCost.PAID_MODEL)));
+    }
+
+    private static AnalyzerDescriptor cardOfPackageB(String name, AnalysisCost cost, List<AnalyzerRuleCard> rules) {
+        AnalyzerDescriptor card = DefaultAnalyzerCatalogTest.card(name, AnalyzerFamily.ERRORS, cost);
+        card.setRules(rules);
+        return card;
+    }
+
+    /** Wraps each provider to write down, in order, which analyzers the engine builds and with what policy. */
+    private static List<AnalyzerProvider> recordingPolicies(List<AnalyzerProvider> providers,
+            Map<String, Optional<EvaluationRunPolicy>> built) {
+        List<AnalyzerProvider> result = new ArrayList<>();
+        for (AnalyzerProvider provider : providers) {
+            result.add(new AnalyzerProvider() {
+                @Override
+                public String analyzerName() {
+                    return provider.analyzerName();
+                }
+
+                @Override
+                public AnalyzerDescriptor describe() {
+                    return provider.describe();
+                }
+
+                @Override
+                public ContentAnalyzer create(EvaluationRunPolicy policy) {
+                    built.put(provider.analyzerName(), Optional.ofNullable(policy));
+                    return provider.create(policy);
+                }
+
+                @Override
+                public Optional<AnalyzerPlanBinding> planBinding() {
+                    return provider.planBinding();
+                }
+
+                @Override
+                public Optional<SelfDescribingConfig> config() {
+                    return provider.config();
+                }
+            });
+        }
+        return result;
     }
 }

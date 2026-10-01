@@ -35,7 +35,7 @@ import javax.annotation.processing.Generated;
 )
 public class MiniTheoryAnalyzerProvider implements AnalyzerProvider {
 
-    /** The kind of task its scores below 1 become in the plan (package E defines it). */
+    /** The kind of task its scores below 1 become in the plan (F-RONDA2-R008; one per mini-theory is package E's). */
     static final String TASK_KIND = "MINI_THEORY";
 
     private final JudgeRuntime runtime;
@@ -91,7 +91,7 @@ public class MiniTheoryAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
                 AnalysisCost.PAID_MODEL,
-                "Miniteoría");
+                "Miniteoría", List.of());
     }
 
     /**

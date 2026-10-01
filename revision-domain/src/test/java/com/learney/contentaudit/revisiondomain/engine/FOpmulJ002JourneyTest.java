@@ -260,7 +260,7 @@ public class FOpmulJ002JourneyTest {
     }
 
     private static RefinementTask task(String id, DiagnosisKind kind) {
-        return new RefinementTask(id, AuditTarget.QUIZ, MC_ID, "Be", kind, 1, RefinementTaskStatus.PENDING);
+        return new RefinementTask(id, AuditTarget.QUIZ, MC_ID, "Be", kind, 1, RefinementTaskStatus.PENDING, null);
     }
 
     // ---------------------------------------------------------------------------------------------

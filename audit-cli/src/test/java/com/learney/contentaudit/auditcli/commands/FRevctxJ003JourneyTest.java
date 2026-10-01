@@ -57,7 +57,7 @@ public class FRevctxJ003JourneyTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, "quiz-j003", "Quiz J003",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId,
                 Instant.parse("2026-05-09T10:00:00Z"), List.of(task));
@@ -74,7 +74,7 @@ public class FRevctxJ003JourneyTest {
         RevisionOutcome outcome = new RevisionOutcome(RevisionOutcomeKind.APPROVED_APPLIED, null, null);
         when(engine.revise(eq(planId), eq(taskId), any(Path.class), isNull())).thenReturn(outcome);
 
-        ReviseCmd cmd = new ReviseCmd(engine, planStore);
+        ReviseCmd cmd = new ReviseCmd(engine, planStore, null);
         // Inject placeholder course path
         for (Field f : cmd.getClass().getDeclaredFields()) {
             f.setAccessible(true);

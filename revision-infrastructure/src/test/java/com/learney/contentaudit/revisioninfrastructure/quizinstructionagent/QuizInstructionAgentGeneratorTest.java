@@ -111,4 +111,12 @@ public class QuizInstructionAgentGeneratorTest {
                 "expected the maxAttempts value (9) the request carried to reach the agent's own "
                         + "'maxAttempts' input verbatim: " + inputs);
     }
+
+    @Test
+    @DisplayName("should hand the correction agent, as the instructions it must comply with, those of the quiz copy and never the knowledge's")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R003")
+    public void shouldHandTheCorrectionAgentAsTheInstructionsItMustComplyWithThoseOfTheQuizCopyAndNeverTheKnowledges() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

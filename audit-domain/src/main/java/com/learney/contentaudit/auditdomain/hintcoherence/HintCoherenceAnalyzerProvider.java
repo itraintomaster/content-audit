@@ -78,7 +78,7 @@ public class HintCoherenceAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.RULE, FindingResolution.PANEL),
                 AnalysisCost.INSTANT,
-                "Pista coherente");
+                "Pista coherente", List.of());
     }
 
     @Override
@@ -87,9 +87,12 @@ public class HintCoherenceAnalyzerProvider implements AnalyzerProvider {
                 studentViewRenderer);
     }
 
+    /**
+     * F-RONDA2-R008 (hook E-02): its findings that count become HINT_COHERENCE tasks on the exercise.
+     */
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        return Optional.empty();
+        return Optional.of(new AnalyzerPlanBinding("HINT_COHERENCE", List.of(AuditTarget.QUIZ)));
     }
 
     @Override

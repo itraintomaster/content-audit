@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -66,5 +67,23 @@ public class CocaBucketsAnalyzerProviderTest {
         }
         org.junit.jupiter.api.Assertions.assertEquals(highest, card.getCost(),
                 "R006 inv. 2: the cost of the card of " + name + " is the highest cost of its rules");
+    }
+
+    @Test
+    @DisplayName("should create for every run an analyzer without the topics of an earlier run, so measuring the base of 29/9 twice keeps A1 at 100 and B1 at 57.9 in COCA instead of 75 and 76.1")
+    @Tag("FEAT-CERO")
+    @Tag("F-CERO-R001")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
+    public void shouldCreateForEveryRunAnAnalyzerWithoutTheTopicsOfAnEarlierRunSoMeasuringTheBaseOf299TwiceKeepsA1At100AndB1At579InCOCAInsteadOf75And761() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give each analyzer it creates its own topics, so a second run writes its COCA diagnosis on its own topic nodes and not on those of the first report")
+    @Tag("FEAT-CERO")
+    @Tag("F-CERO-R002")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
+    public void shouldGiveEachAnalyzerItCreatesItsOwnTopicsSoASecondRunWritesItsCOCADiagnosisOnItsOwnTopicNodesAndNotOnThoseOfTheFirstReport() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

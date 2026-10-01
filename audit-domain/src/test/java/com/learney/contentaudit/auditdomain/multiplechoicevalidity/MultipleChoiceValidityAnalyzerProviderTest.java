@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,7 +31,7 @@ public class MultipleChoiceValidityAnalyzerProviderTest {
     public void shouldDescribeMultiplechoicevalidityWithOneCardThatAsksHayUnaSolaOpcinCorrectaYNingunaSeDelataPorLaFormaListsItsFourInstantRulesAndTheJudgesRuleAndDeclaresThePaidModelCostTheHighest(
             ) {
         // R005 and F-HALL-R006: one card, its four instant rules and the judge's rule as the factory gives it;
-        // the cost of the card is the highest, the paid model; no task kind and no configuration.
+        // the cost of the card is the highest, the paid model; its task kind since F-RONDA2-R008, and no configuration.
         MultipleChoiceValidityAnalyzerProvider provider = new MultipleChoiceValidityAnalyzerProvider(
                 DefaultOptionRuleCheckTest.productionCorrector(), new UnavailableChoiceAlternativeJudgeRunFactory(),
                 MultipleChoiceValidityAnalyzerTest.renderer());
@@ -46,11 +49,31 @@ public class MultipleChoiceValidityAnalyzerProviderTest {
         assertTrue(card.getRules().subList(0, 4).stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
         assertEquals(AnalysisCost.PAID_MODEL, card.getRules().get(4).getCost());
         assertEquals(AnalysisCost.PAID_MODEL, card.getCost());
-        assertTrue(provider.planBinding().isEmpty());
+        assertEquals(Optional.of(new AnalyzerPlanBinding("MULTIPLE_CHOICE_VALIDITY", List.of(AuditTarget.QUIZ))), provider.planBinding(),
+                "F-RONDA2-R008: its task kind, on the exercise");
         assertTrue(provider.config().isEmpty());
         assertEquals("multiple-choice-validity", provider.create(null).getName());
 
         DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
         assertEquals(card, catalog.find("multiple-choice-validity").orElseThrow(), "the catalog accepts the card");
+    }
+
+    @Test
+    @DisplayName("should bind multiple-choice-validity to the plan with the task kind MULTIPLE_CHOICE_VALIDITY on the exercise")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldBindMultiplechoicevalidityToThePlanWithTheTaskKindMULTIPLECHOICEVALIDITYOnTheExercise()  {
+        // F-RONDA2-R008 (hook E-02): its findings that count become MULTIPLE_CHOICE_VALIDITY tasks, one on the exercise
+        // where it found them; the catalog accepts the binding, since the card evaluates exercises.
+        MultipleChoiceValidityAnalyzerProvider provider = new MultipleChoiceValidityAnalyzerProvider(
+                DefaultOptionRuleCheckTest.productionCorrector(), new UnavailableChoiceAlternativeJudgeRunFactory(),
+                MultipleChoiceValidityAnalyzerTest.renderer());
+        AnalyzerPlanBinding expected = new AnalyzerPlanBinding("MULTIPLE_CHOICE_VALIDITY", List.of(AuditTarget.QUIZ));
+
+        assertEquals(Optional.of(expected), provider.planBinding(), "R008: its task kind, on the exercise");
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(Optional.of(expected), catalog.planBinding("multiple-choice-validity"), "the catalog serves it to the plan");
+        assertTrue(provider.describe().getEvaluatedTargets().contains(AuditTarget.QUIZ),
+                "its tasks go on a level the card evaluates");
     }
 }

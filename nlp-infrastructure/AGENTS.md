@@ -148,6 +148,7 @@ The following models and interfaces are available from dependencies. You can use
 | resolutions | `List<FindingResolution>` |
 | cost | `AnalysisCost` |
 | displayName | `String` |
+| tools | `List<LocalToolCard>` |
 
 ### AuditNode (`record`)
 
@@ -164,6 +165,7 @@ The following models and interfaces are available from dependencies. You can use
 | numbers | `ContextNumbers` |
 | unevaluatedBy | `List<String>` |
 | partiallyEvaluatedBy | `List<String>` |
+| measures | `List<AnalyzerMeasure>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -238,6 +240,25 @@ The following models and interfaces are available from dependencies. You can use
 | name | `String` |
 | maxCocaRank | `Integer` |
 | threshold | `int` |
+
+### NlpResourcesUnavailableException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `Falta %s en '%s': %s`
+
+| Field | Type |
+|-------|------|
+| resource | `String` |
+| path | `String` |
+| detail | `String` |
+
+### Baseline (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| fixedAt | `Instant` |
 
 ### AuditEngine (port)
 
@@ -350,6 +371,7 @@ Methods:
 - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
 - `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>`
 - `lookupLevelByLemma(String lemma): Optional<CefrLevel>`
+- `lookupDerivedFormLevel(String word): Optional<CefrLevel>`
 
 ### AuditableEntity (port)
 
@@ -377,6 +399,8 @@ Methods:
 - `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
 - `getJudgeCoverages(): List<JudgeCoverageDiagnosis>`
 - `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>`
+- `getLocalToolRuns(): List<LocalToolRunDiagnosis>`
+- `getNaturalnessQueue(): Optional<NaturalnessQueueDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -415,6 +439,9 @@ Methods:
 - `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>`
 - `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>`
 - `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>`
+- `getGrammarDiagnosis(): Optional<GrammarDiagnosis>`
+- `getNaturalnessDiagnosis(): Optional<NaturalnessDiagnosis>`
+- `getNearDuplicateDiagnosis(): Optional<NearDuplicateDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -490,6 +517,7 @@ Methods:
 - `find(String analyzerName): Optional<AnalyzerDescriptor>`
 - `provider(String analyzerName): Optional<AnalyzerProvider>`
 - `planBinding(String analyzerName): Optional<AnalyzerPlanBinding>`
+- `measure(String analyzerName): Optional<AnalyzerMeasure>`
 
 ### FindingCollector (port)
 
@@ -592,6 +620,39 @@ Methods:
 Methods:
 
 - `getScoreFor(FindingSeverity severity): double`
+
+### BaselineStore (port)
+
+Methods:
+
+- `read(): Optional<Baseline>`
+- `write(Baseline baseline): void`
+
+### AnalyzerCorrection (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `editScope(FindingResolution resolution): List<ExercisePart>`
+- `coveringAnalyzer(): Optional<String>`
+- `groupsByTopic(): boolean`
+- `tieRules(): List<String>`
+- `offersTwoFixes(): boolean`
+- `concernsAudio(Finding finding): boolean`
+
+### AnalyzerCorrectionCatalog (port)
+
+Methods:
+
+- `find(String analyzerName): Optional<AnalyzerCorrection>`
+- `list(): List<AnalyzerCorrection>`
+
+### RuleFix (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `fix(RuleFixRequest request): RuleFixResult`
 
 ### From course-domain
 

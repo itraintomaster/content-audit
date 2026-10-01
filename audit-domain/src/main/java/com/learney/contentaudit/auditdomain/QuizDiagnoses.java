@@ -3,10 +3,13 @@ package com.learney.contentaudit.auditdomain;
 import com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessDiagnosis;
 import com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceDiagnosis;
 import com.learney.contentaudit.auditdomain.exactduplicates.ExactDuplicateDiagnosis;
+import com.learney.contentaudit.auditdomain.grammar.GrammarDiagnosis;
 import com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.LemmaPlacementDiagnosis;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryDiagnosis;
 import com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityDiagnosis;
+import com.learney.contentaudit.auditdomain.naturalness.NaturalnessDiagnosis;
+import com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicateDiagnosis;
 import com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsDiagnosis;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionDiagnosis;
 import com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerDiagnosis;
@@ -16,7 +19,8 @@ import java.util.Optional;
 /**
  * The typed place of every analyzer that diagnoses a quiz (DLABS): one slot per analyzer, never
  * a map. FEAT-RONDA1 adds the nine slots of round 1 (hooks A-04, C-05 and D-02); each analyzer
- * writes only its own and a slot nobody wrote stays empty.
+ * writes only its own and a slot nobody wrote stays empty. FEAT-RONDA2 adds the three of package B
+ * (hook B-02): grammar, naturalness and near-duplicates.
  */
 public non-sealed interface QuizDiagnoses extends NodeDiagnoses {
     Optional<LemmaPlacementDiagnosis> getLemmaAbsenceDiagnosis();
@@ -31,4 +35,7 @@ public non-sealed interface QuizDiagnoses extends NodeDiagnoses {
     Optional<SingleAnswerDiagnosis> getSingleAnswerDiagnosis();
     Optional<MiniTheoryDiagnosis> getMiniTheoryDiagnosis();
     Optional<OffLevelWordsDiagnosis> getOffLevelWordsDiagnosis();
+    Optional<GrammarDiagnosis> getGrammarDiagnosis();
+    Optional<NaturalnessDiagnosis> getNaturalnessDiagnosis();
+    Optional<NearDuplicateDiagnosis> getNearDuplicateDiagnosis();
 }

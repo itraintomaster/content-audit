@@ -4,6 +4,7 @@ import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolCard;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
@@ -37,13 +38,15 @@ public class AnalyzerDescriptor {
 
     private String displayName;
 
+    private List<LocalToolCard> tools;
+
     public AnalyzerDescriptor() {
     }
 
     public AnalyzerDescriptor(String name, String description, AuditTarget target, String question,
             String reads, List<AnalyzerRuleCard> rules, String goal, AnalyzerFamily family,
             List<AuditTarget> evaluatedTargets, List<FindingResolution> resolutions,
-            AnalysisCost cost, String displayName) {
+            AnalysisCost cost, String displayName, List<LocalToolCard> tools) {
         this.name = name;
         this.description = description;
         this.target = target;
@@ -56,6 +59,7 @@ public class AnalyzerDescriptor {
         this.resolutions = resolutions;
         this.cost = cost;
         this.displayName = displayName;
+        this.tools = tools;
     }
 
     public String getName() {
@@ -154,6 +158,14 @@ public class AnalyzerDescriptor {
         this.displayName = displayName;
     }
 
+    public List<LocalToolCard> getTools() {
+        return this.tools;
+    }
+
+    public void setTools(List<LocalToolCard> tools) {
+        this.tools = tools;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -170,11 +182,12 @@ public class AnalyzerDescriptor {
                     && Objects.equals(this.evaluatedTargets, that.evaluatedTargets)
                     && Objects.equals(this.resolutions, that.resolutions)
                     && Objects.equals(this.cost, that.cost)
-                    && Objects.equals(this.displayName, that.displayName);
+                    && Objects.equals(this.displayName, that.displayName)
+                    && Objects.equals(this.tools, that.tools);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, target, question, reads, rules, goal, family, evaluatedTargets, resolutions, cost, displayName);
+        return Objects.hash(name, description, target, question, reads, rules, goal, family, evaluatedTargets, resolutions, cost, displayName, tools);
     }
 }

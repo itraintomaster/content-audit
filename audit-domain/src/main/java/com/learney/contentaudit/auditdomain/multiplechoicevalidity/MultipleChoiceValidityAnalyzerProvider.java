@@ -86,7 +86,7 @@ public class MultipleChoiceValidityAnalyzerProvider implements AnalyzerProvider 
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.RULE, FindingResolution.PANEL),
                 cost,
-                "Opción múltiple válida");
+                "Opción múltiple válida", List.of());
     }
 
     @Override
@@ -95,9 +95,12 @@ public class MultipleChoiceValidityAnalyzerProvider implements AnalyzerProvider 
                 judgeRunFactory != null ? judgeRunFactory.open(policy) : null, studentViewRenderer);
     }
 
+    /**
+     * F-RONDA2-R008 (hook E-02): its findings that count become MULTIPLE_CHOICE_VALIDITY tasks on the exercise.
+     */
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        return Optional.empty();
+        return Optional.of(new AnalyzerPlanBinding("MULTIPLE_CHOICE_VALIDITY", List.of(AuditTarget.QUIZ)));
     }
 
     @Override

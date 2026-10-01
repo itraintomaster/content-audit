@@ -132,7 +132,7 @@ public class FRclalenJ002JourneyTest {
         RefinementTask task = new RefinementTask(
                 "task-j002-001", AuditTarget.QUIZ, "quiz-within-range-001",
                 "Quiz 1 - L1.T1.K1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // -----------------------------------------------------------------------
         // Step: construir_y_enriquecer (gate F-RCLALEN-R001, F-RCLALEN-R003)

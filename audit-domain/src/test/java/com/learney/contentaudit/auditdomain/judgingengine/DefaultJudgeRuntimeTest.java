@@ -61,6 +61,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -1114,5 +1115,50 @@ public class DefaultJudgeRuntimeTest {
             assertEquals(new JudgeQuizTally(10, 7, 3), coverage.getQuizzes());
         }
         assertEquals(0, judge.calls(), "the coverage consults nobody");
+    }
+
+    @Test
+    @DisplayName("should open the claude -p alternative of naturalness with the judges' default budget 0 when the run declares none, reusing only what is recorded")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R002")
+    public void shouldOpenTheClaudePAlternativeOfNaturalnessWithTheJudgesDefaultBudget0WhenTheRunDeclaresNoneReusingOnlyWhatIsRecorded()  {
+        // F-RONDA2-R002: without --budget, what goes to claude -p has the 0 of F-JEXAM-R010, also the
+        // alternative of naturalness when Ollama is not there: the runner hands no policy (inv. 1)
+        // and the runtime opens it with 0, so it reuses what is recorded and leaves the rest
+        // unevaluated -- never a score nobody paid for (inv. 2). Its version passed its exam.
+        String naturalness = "naturalness";
+        String alternative = "naturalness-yes-no";
+        approved(naturalness, "nat-claude-v1");
+        ledger.append(recorded(alternative, "s-recorded", "{\"answer\": \"no\"}", "nat-claude-v1"));
+        ScriptedJudge claudeP = ScriptedJudge.healthy(alternative, "nat-claude-v1");
+
+        JudgeSessions opened = runtime.open(naturalness, List.of(claudeP), null);
+
+        assertEquals(naturalness, opened.getJudgeName());
+        assertTrue(opened.getStanding().isConsultsOnCourse(), "the version passed its exam");
+        assertEquals(0, opened.getEffectivePolicy().getMaxNewEvaluations(), "R002: budget 0, the judges' default");
+        List<EvaluationResolution> resolved = resolve(opened, 0, requests("s-recorded", "s-new-1", "s-new-2"));
+        assertEquals(List.of(EvaluationResolutionKind.REUSED, EvaluationResolutionKind.PENDING,
+                EvaluationResolutionKind.PENDING), kinds(resolved), "R002 inv. 2: reuses what is recorded, the rest unevaluated");
+        assertEquals("{\"answer\": \"no\"}", resolved.get(0).getPayload(), "the recorded answer, as it was");
+        assertEquals(0, claudeP.calls(), "R002: no consultation to claude -p that nobody asked for");
+    }
+
+    @Test
+    @DisplayName("should declare, for the claude -p alternative of naturalness opened without budget, how many consultations its pending sentences would cost and their hours one at a time and four at a time, consulting none")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
+    public void shouldDeclareForTheClaudePAlternativeOfNaturalnessOpenedWithoutBudgetHowManyConsultationsItsPendingSentencesWouldCostAndTheirHoursOneAtATimeAndFourAtATimeConsultingNone() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should stop the consultations of the claude -p alternative of near-duplicates at the first failure of the service and let the run finish")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R007")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
+    public void shouldStopTheConsultationsOfTheClaudePAlternativeOfNearduplicatesAtTheFirstFailureOfTheServiceAndLetTheRunFinish() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

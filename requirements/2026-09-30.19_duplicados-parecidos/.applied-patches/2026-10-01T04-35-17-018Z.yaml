@@ -1,0 +1,421 @@
+code: FEAT-DUPAR
+description: "FEAT-DUPAR, paquete B de la ronda 2: el analizador near-duplicates.\
+  \ Dentro de cada tema junta los pares que piden la misma respuesta como el corrector\
+  \ y no son iguales tal cual, los marca por el comodín o por un parecido de 0,95\
+  \ o más con nomic-embed-text en Ollama, y deja un hallazgo bajo, a la mesa, en cada\
+  \ copia. Sin Ollama, los pares que el comodín no resuelve y cambian como mucho 4\
+  \ de cada 10 palabras los juzga claude -p, un evaluador de los jueces de C; el comodí\
+  n corre siempre y lo que falta juzgar queda a medias. Las dos rutas abren por el\
+  \ runtime de los jueces (JudgeRuntime). Usa EmbeddingModel y LocalToolGate de FEAT-MLOCAL,\
+  \ y CorrectorMatcher (FEAT-RESPC), QuizStudentViewRenderer (gancho A-01) y JudgeRuntime\
+  \ (FEAT-JEXAM) de la ronda 1: se aplica después de FEAT-MLOCAL y de la integració\
+  n de la ronda 1. Rebasado por el integrador de la ronda 2 sobre el sentinel.yaml\
+  \ de ronda1/integracion (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2,\
+  \ que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E, sin cambios de\
+  \ estructura.; qa-tester de la ronda 2 (B): traza las 8 reglas de FEAT-DUPAR a 38\
+  \ handwrittenTests nuevas (no hay pruebas previas que portar), con pares reales\
+  \ del curso del 29/9 y los parecidos que midió el prototipo del analista, y ubica\
+  \ F-DUPAR-J001 en audit-domain, paquete nearduplicates, como F-DUPEX-J001. Las dos\
+  \ rutas se prueban con dobles de EmbeddingModel y del evaluador de claude -p sobre\
+  \ el runtime de los jueces con libros en memoria."
+modules:
+- name: audit-domain
+  packages:
+  - name: nearduplicates
+    description: |
+      El analizador near-duplicates (FEAT-DUPAR): compara cada ejercicio con los anteriores de su tema, como exact-duplicates. Un par es candidato si pide la misma respuesta comparada como el corrector y no es un duplicado exacto (R001); es casi duplicado si queda igual al tapar pronombres, demostrativos, posesivos y el tiempo del auxiliar, o si el parecido de sus vectores llega a 0,95 (R002); sin Ollama, si cambia como mucho 4 de cada 10 palabras y claude -p dice que es el mismo ejercicio (R008). Las consultas —un vector por ejercicio, o un juicio por par— van por el runtime de los jueces, que las guarda en el libro y las reusa, aplica el freno del examen, el tope y las consultas a la vez, y declara la cobertura y el costo. Familia errores, evalúa el ejercicio, costo de la ficha modelo pago: no entra en la corrida base. Sólo los registros y el proveedor son públicos.
+    visibility: public
+    models:
+    - name: NearDuplicateCondition
+      type: enum
+      fields:
+      - name: WILDCARD
+        description: "Quedan iguales al tapar pronombres, demostrativos, posesivos\
+          \ y el tiempo del auxiliar (F-DUPAR-R002 inv. 1). Regla same-but-wildcard,\
+          \ instantánea."
+      - name: SIMILARITY
+        description: "El parecido de sus vectores llega al umbral, 0,95 (F-DUPAR-R002\
+          \ inv. 2). Regla same-meaning, modelo local."
+      - name: JUDGED
+        description: "Sin Ollama, claude -p dice que para el alumno es el mismo ejercicio\
+          \ (F-DUPAR-R008). Regla same-exercise, modelo pago."
+      _change: add
+    - name: NearDuplicateDiagnosis
+      type: record
+      fields:
+      - name: keptQuizId
+        type: String
+        description: "El ejercicio que queda: el primero del tema con el que es casi\
+          \ igual (F-DUPAR-R003). Es la marca del hallazgo."
+      - name: condition
+        type: NearDuplicateCondition
+        description: "Si se cumplen varias, WILDCARD: es la que no depende de ningú\
+          n modelo."
+      - name: difference
+        type: String
+        description: "Qué cambia, para la evidencia: «He → She». Vacío si no es por\
+          \ el comodín."
+      - name: similarity
+        type: double
+        description: "El parecido de los dos vectores (SIMILARITY), redondeado a dos\
+          \ decimales en la evidencia («parecido 0,99»). 0 si no se calculó."
+      - name: wordSimilarity
+        type: double
+        description: "El parecido de palabras de los dos ejercicios terminados, con\
+          \ el que se eligió el candidato de claude -p (JUDGED): «cambian 2 de 6 palabras»\
+          ."
+      - name: judgeReason
+        type: String
+        description: "La razón de claude -p en una línea, tal como la dio (JUDGED).\
+          \ Null en las otras condiciones."
+      - name: finishedExercise
+        type: String
+        description: "Este ejercicio terminado, el que se comparó."
+      - name: keptFinishedExercise
+        type: String
+      - name: score
+        type: double
+        description: "0: tener el diagnóstico es ser una copia (F-DUPAR-R004). El\
+          \ que queda no lleva diagnóstico y conserva 1."
+      _change: add
+    - name: SameExerciseVerdict
+      type: record
+      fields:
+      - name: sameExercise
+        type: boolean
+        description: "Lo que contestó claude -p: si para el alumno es el mismo ejercicio."
+      - name: reason
+        type: String
+      visibility: internal
+      _change: add
+    interfaces:
+    - name: NearDuplicateRules
+      sealed: false
+      exposes:
+      - signature: "sameRequest(AuditableQuiz first,AuditableQuiz second): boolean"
+      - signature: "wildcardDifference(AuditableQuiz first,AuditableQuiz second):\
+          \ Optional<String>"
+      - signature: "wordSimilarity(AuditableQuiz first,AuditableQuiz second): double"
+      visibility: internal
+      _change: add
+    - name: NearDuplicatesConfig
+      sealed: false
+      exposes:
+      - signature: "methodId(): String"
+      - signature: "inputPrefix(): String"
+      - signature: "similarityThreshold(): double"
+      - signature: "candidateWordSimilarity(): double"
+      visibility: internal
+      _change: add
+      extends:
+      - SelfDescribingConfig
+    - name: SameExerciseQuestion
+      sealed: false
+      exposes:
+      - signature: "subjectOf(AuditableQuiz kept,AuditableQuiz copy): EvaluationSubject"
+      - signature: "read(String payload): Optional<SameExerciseVerdict>"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: NearDuplicatesAnalyzerProvider
+      requiresInject:
+      - name: embeddingModel
+        type: EmbeddingModel
+      - name: alternativeJudge
+        type: Evaluator
+        description: "El evaluador de claude -p de la alternativa, hecho con AgentJudgeFactory\
+          \ de C (agente near-duplicates-same-exercise). Sólo se usa sin el modelo\
+          \ local."
+      - name: judgeRuntime
+        type: JudgeRuntime
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      - name: localToolGate
+        type: LocalToolGate
+      visibility: public
+      handwrittenTests:
+      - name: "should open near-duplicates through the judges' runtime with the vector\
+          \ evaluator and the policy without limit of the local tool decision when\
+          \ nomic-embed-text is available, never with claude -p"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R008
+      - name: "should open near-duplicates through the judges' runtime with the claude\
+          \ -p alternative and the run's policy as it comes when nomic-embed-text\
+          \ is not available, so without --budget near-duplicates=N it has budget\
+          \ 0"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R008
+      - name: "should describe near-duplicates as an errors analyzer that evaluates\
+          \ exercises and resolves at the panel, asking «¿Dos ejercicios del mismo\
+          \ tema piden casi lo mismo?», with the rules same-but-wildcard instant,\
+          \ same-meaning of local model and same-exercise of paid model, and paid\
+          \ model as the cost of its card"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R006
+      - name: "should carry in its card two tools, nomic-embed-text in Ollama and\
+          \ claude -p, each with its version and its exam"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R006
+      implements:
+      - AnalyzerProvider
+      _change: add
+    - name: NearDuplicatesAnalyzer
+      requiresInject:
+      - name: opened
+        type: JudgeSessions
+        description: "Las sesiones que abrió el runtime de los jueces con el evaluador\
+          \ de la ruta elegida: el de vectores con su política sin tope, o el de claude\
+          \ -p con la de la corrida."
+      - name: runtime
+        type: JudgeRuntime
+      - name: rules
+        type: NearDuplicateRules
+      - name: question
+        type: SameExerciseQuestion
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      - name: config
+        type: NearDuplicatesConfig
+      - name: gateDecision
+        type: LocalToolGateDecision
+      handwrittenTests:
+      - name: "should compare an exercise only with the earlier exercises of its own\
+          \ topic, never with an exercise of another topic"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R001
+      - name: should leave the two exact «They weren't at the park.» of Práctica mixta
+          to exact-duplicates and still mark both as near copies of «You weren't at
+          the park.»
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R001
+      - name: "should mark as near duplicates two candidates whose vectors reach 0.95,\
+          \ «They prepared lunch for each other.» after «They cooked lunch for each\
+          \ other.», 0.98"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R002
+      - name: "should not mark a candidate whose vectors stay below 0.95 and that\
+          \ the wildcard does not settle, «Have you heard about my news?» after «\
+          Have you heard the news?», 0.94"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R002
+      - name: "should leave without finding the first exercise in the order of the\
+          \ topic and give the one after it a finding that names it, «Where is she?»\
+          \ naming «Where is he?» in Contraste inicial"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R003
+      - name: "should mark n minus 1 exercises in a group of n near duplicates, the\
+          \ two «Could I» after «A: Can I drive your car? B: No, you can't.» in Respuestas\
+          \ cortas, both naming it"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R003
+      - name: "should mark the same copies in two runs of the same course, reusing\
+          \ every vector without asking nomic-embed-text again"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R003
+      - name: "should give every copy a low finding for the panel that counts as an\
+          \ error and scores 0, and keep 1 in the exercise that stays"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R004
+      - name: "should give each finding the cost of the rule that found it: instant\
+          \ for same-but-wildcard, local model for same-meaning and paid model for\
+          \ same-exercise"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R004
+      - name: "should give a pair found both by the wildcard and by its vectors the\
+          \ instant rule same-but-wildcard, «A: Are we ready? B: Yes, we are.» after\
+          \ «A: Are they ready? B: Yes, they are.»"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R004
+      - name: "should show as evidence both exercises as the student sees them and\
+          \ «Casi igual a …208f del mismo tema: cambia he por she», never the internal\
+          \ format of the exercise"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R005
+      - name: "should say in the evidence of a pair found by its vectors «Dice lo\
+          \ mismo que …46ac: parecido 0,98»"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R005
+      - name: "should say in the evidence of a pair judged by claude -p «Para claude\
+          \ -p es el mismo ejercicio que …2725: cambian 2 de 7 palabras»"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R005
+      - name: "should leave all of near-duplicates unevaluated, the wildcard included,\
+          \ while the examined version of nomic-embed-text with its prefix has no\
+          \ approved exam"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R007
+      - name: "should mark the same copies when the same examined version takes the\
+          \ exam twice, without a single new consultation"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R007
+      - name: "should ask claude -p only about candidates that the wildcard does not\
+          \ settle and whose word similarity reaches 0.6, as «I am sorry.» and «I\
+          \ am hot.», 0.67, and not about «That is his car.» and «That car is his.»\
+          , 0.50"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R008
+      - name: "should make a near duplicate of a candidate that claude -p calls the\
+          \ same exercise, «Offer: I'll wash the dishes.» after «Offer: I'll wash\
+          \ the dishes for you.», with the same finding as any other"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R008
+      - name: "should discard a candidate that claude -p calls a different exercise,\
+          \ «I am hot.» after «I am sorry.»"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R008
+      - name: "should run the wildcard without the local model, marking «Where is\
+          \ she?» after «Where is he?» without Ollama"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R008
+      - name: "should leave half evaluated an exercise with a candidate left unjudged\
+          \ for lack of budget, keeping its wildcard findings and saying how many\
+          \ pairs are missing"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R008
+      - name: should ask claude -p once per candidate pair and stop at the budget
+          of --budget near-duplicates=N
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R008
+      implements:
+      - ContentAnalyzer
+      _change: add
+    - name: SentenceEmbeddingEvaluator
+      requiresInject:
+      - name: embeddingModel
+        type: EmbeddingModel
+      - name: config
+        type: NearDuplicatesConfig
+      - name: examinedVersion
+        type: String
+      handwrittenTests:
+      - name: "should ask nomic-embed-text for the vector of the finished exercise\
+          \ with the prefix «clustering: » and record it under an evaluator id that\
+          \ carries the examined version"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R002
+      - name: should not reuse the vectors that another examined version recorded
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R002
+      implements:
+      - Evaluator
+      _change: add
+    - name: DefaultNearDuplicateRules
+      requiresInject:
+      - name: correctorMatcher
+        type: CorrectorMatcher
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      handwrittenTests:
+      - name: "should take as the same request «Where are you now?» and «Where are\
+          \ they now?», whose answers differ only in the pronoun the student copies\
+          \ from the prompt"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R001
+      - name: "should not take as the same request «I observed him clean the room.»\
+          \ and «I observed him cleaning the room.», whose answers differ"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R001
+      - name: "should compare the answers as the corrector does, taking «'ll wash»\
+          \ and «will wash» as the same answer"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R001
+      - name: "should find «Where is he?» and «Where is she?» of Contraste inicial\
+          \ equal under the wildcard and say what changes, he → she"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R002
+      - name: "should find «I don't have much time.» and «I didn't have much time.»\
+          \ equal under the wildcard, which covers the tense of the auxiliary"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R002
+      - name: "should not find under the wildcard two exercises that change a verb,\
+          \ «They cooked lunch for each other.» and «They prepared lunch for each\
+          \ other.»"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R002
+      - name: "should give as word similarity 1 minus the words to change, add or\
+          \ remove over the longer length, 0.67 for «Have you ever been to Rome?»\
+          \ and «Have you ever visited Rome?»"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R008
+      implements:
+      - NearDuplicateRules
+      _change: add
+    - name: DefaultNearDuplicatesConfig
+      handwrittenTests:
+      - name: "should hold the threshold 0.95, the prefix «clustering: » and the word\
+          \ similarity 0.6 of the candidates for claude -p"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R002
+      - name: "should change its methodId when the prefix changes, so the vectors\
+          \ are a new examined version that takes its own exam"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R007
+      implements:
+      - NearDuplicatesConfig
+      _change: add
+    - name: DefaultSameExerciseQuestion
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      handwrittenTests:
+      - name: "should give claude -p both exercises as the student sees them, in the\
+          \ order of the topic, as the content it judges"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R008
+      - name: "should read the verdict {sameExercise, reason} of claude -p and leave\
+          \ the pair unjudged when it cannot be read, never as a near duplicate"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R008
+      implements:
+      - SameExerciseQuestion
+      _change: add
+    _change: add
+  _change: modify
+features:
+- id: FEAT-DUPAR
+  code: F-DUPAR
+  journeys:
+  - id: F-DUPAR-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.nearduplicates

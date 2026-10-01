@@ -2157,4 +2157,20 @@ public class QuizInstructionAnalyzerTest {
                 coverage.getNotEvaluated()));
         assertEquals(new JudgeQuizTally(4, 2, 2), coverage.getQuizzes(), "as many exercises as quizzes, in each state");
     }
+
+    @Test
+    @DisplayName("should consult again, with budget and an approved version, every quiz whose verdict was recorded on what the consigna judge read before FEAT-CALUM")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R001")
+    public void shouldConsultAgainWithBudgetAndAnApprovedVersionEveryQuizWhoseVerdictWasRecordedOnWhatTheConsignaJudgeReadBeforeFEATCALUM() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should look up each quiz under the fingerprint of the exercise as the student sees it, never under the one recorded before FEAT-CALUM")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R001")
+    public void shouldLookUpEachQuizUnderTheFingerprintOfTheExerciseAsTheStudentSeesItNeverUnderTheOneRecordedBeforeFEATCALUM() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

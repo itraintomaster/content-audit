@@ -13,5 +13,7 @@ public enum RefinementTaskStatus {
 
     SKIPPED,
 
-    STALE
+    STALE,
+
+    IN_BATCH
 }

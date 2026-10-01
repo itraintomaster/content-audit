@@ -38,7 +38,7 @@ public class TranslationSenseAnalyzerProvider implements AnalyzerProvider {
     /** F-RONDA1-R004: the Spanish name next to the unique one. */
     static final String DISPLAY_NAME = "Traducción y sentido";
 
-    /** F-HALL-R004 inv. 3: its scores below 1 become TRANSLATION_SENSE tasks, named even before the plan knows them. */
+    /** F-RONDA2-R008: its scores below 1 become TRANSLATION_SENSE tasks on the exercise. */
     static final String TASK_KIND = "TRANSLATION_SENSE";
 
     private final JudgeRuntime runtime;
@@ -106,7 +106,7 @@ public class TranslationSenseAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL, FindingResolution.RANK_ONLY),
                 AnalysisCost.PAID_MODEL,
-                DISPLAY_NAME);
+                DISPLAY_NAME, List.of());
     }
 
     /**

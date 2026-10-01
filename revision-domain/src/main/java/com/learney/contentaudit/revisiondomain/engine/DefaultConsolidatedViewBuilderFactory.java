@@ -25,6 +25,17 @@ public class DefaultConsolidatedViewBuilderFactory implements ConsolidatedViewBu
                 locator,
                 config.getCourseMapper(),
                 config.getAuditEngine(),
-                config.getNodeFieldDiffer());
+                config.getNodeFieldDiffer(),
+                // FEAT-PROYU (package F): the projector the builder will take its three photos
+                // from, armed with the same fields of the config. The builder still measures
+                // the old way until F rewrites it on the projector.
+                new DefaultCourseProjector(
+                        config.getActiveAnalysisSelectionStore(),
+                        config.getAuditReportStore(),
+                        config.getRefinementPlanStore(),
+                        config.getRevisionArtifactStore(),
+                        config.getCourseRepository(),
+                        new DefaultPendingApplier(locator),
+                        new DefaultProjectionMeasurer(config.getCourseMapper(), config.getAuditEngine())));
     }
 }

@@ -343,7 +343,7 @@ public class FHallJ001JourneyTest {
      */
     private static void assertPlanOfTheCourse(Analysis analysis) {
         FileSystemRefinementPlanStore plans = new FileSystemRefinementPlanStore(analysis.workdir());
-        PlanCmd plan = new PlanCmd(analysis.store(), new DefaultRefinerEngine(analysis.catalog()), plans,
+        PlanCmd plan = new PlanCmd(analysis.store(), new DefaultRefinerEngine(analysis.catalog(), null), plans,
                 mock(EphemeralPlanRenderer.class));
 
         Base299.Captured run = Base299.run(plan, "--audit", analysis.id());

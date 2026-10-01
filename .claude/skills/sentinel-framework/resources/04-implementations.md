@@ -375,6 +375,7 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 | `verdictReader` | `QuizInstructionVerdictReader` |
 | `config` | `QuizInstructionConfig` |
 | `runtime` | `JudgeRuntime` |
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
 
 #### QuizInstructionAnalyzer (package: quizinstructionengine)
 
@@ -401,6 +402,12 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 **Visibility:** public
 **Implements:** QuizInstructionSubjectBuilder
 
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
+
 #### DefaultQuizInstructionScorer (package: quizinstructionengine)
 
 **Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
@@ -424,6 +431,12 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 **Package:** `com.learney.contentaudit.auditdomain.quizinstructionengine`
 **Visibility:** public
 **Implements:** QuizInstructionComplianceCheckerFactory
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
 
 #### DefaultQuizInstructionSubjectViewFactory (package: quizinstructionengine)
 
@@ -539,6 +552,24 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 |------|------|
 | `irregularForms` | `IrregularFormsCatalog` |
 
+#### HintCoherenceCorrection (package: hintcoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.hintcoherence`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
+
+#### HintCoherenceRuleFix (package: hintcoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.hintcoherence`
+**Visibility:** public
+**Implements:** RuleFix
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `irregularForms` | `IrregularFormsCatalog` |
+
 #### DefaultCorrectorMatcher (package: correctormatch)
 
 **Package:** `com.learney.contentaudit.auditdomain.correctormatch`
@@ -598,6 +629,24 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 **Visibility:** public
 **Implements:** FormRequestDetector
 
+#### AnswerCompletenessCorrection (package: answercompleteness)
+
+**Package:** `com.learney.contentaudit.auditdomain.answercompleteness`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
+
+#### AnswerCompletenessRuleFix (package: answercompleteness)
+
+**Package:** `com.learney.contentaudit.auditdomain.answercompleteness`
+**Visibility:** public
+**Implements:** RuleFix
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `correctorMatcher` | `CorrectorMatcher` |
+
 #### MultipleChoiceValidityAnalyzerProvider (package: multiplechoicevalidity)
 
 **Package:** `com.learney.contentaudit.auditdomain.multiplechoicevalidity`
@@ -644,6 +693,18 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 **Visibility:** public
 **Implements:** ChoiceAlternativeJudgeRunFactory
 
+#### MultipleChoiceValidityCorrection (package: multiplechoicevalidity)
+
+**Package:** `com.learney.contentaudit.auditdomain.multiplechoicevalidity`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
+
+#### MultipleChoiceValidityRuleFix (package: multiplechoicevalidity)
+
+**Package:** `com.learney.contentaudit.auditdomain.multiplechoicevalidity`
+**Visibility:** public
+**Implements:** RuleFix
+
 #### DataCoherenceAnalyzerProvider (package: datacoherence)
 
 **Package:** `com.learney.contentaudit.auditdomain.datacoherence`
@@ -681,6 +742,24 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 **Visibility:** public
 **Implements:** SpokenTextBuilder
 
+#### DataCoherenceCorrection (package: datacoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.datacoherence`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
+
+#### DataCoherenceRuleFix (package: datacoherence)
+
+**Package:** `com.learney.contentaudit.auditdomain.datacoherence`
+**Visibility:** public
+**Implements:** RuleFix
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `quizSentenceConverter` | `QuizSentenceConverter` |
+
 #### ExactDuplicatesAnalyzerProvider (package: exactduplicates)
 
 **Package:** `com.learney.contentaudit.auditdomain.exactduplicates`
@@ -706,6 +785,12 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 |------|------|
 | `correctorMatcher` | `CorrectorMatcher` |
 | `studentViewRenderer` | `QuizStudentViewRenderer` |
+
+#### ExactDuplicatesCorrection (package: exactduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.exactduplicates`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
 
 #### DefaultJudgeRuntime (package: judgingengine)
 
@@ -786,6 +871,12 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 |------|------|
 | `config` | `TranslationSenseConfig` |
 
+#### TranslationSenseCorrection (package: translationsenseengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.translationsenseengine`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
+
 #### SingleAnswerAnalyzerProvider (package: singleanswerengine)
 
 **Package:** `com.learney.contentaudit.auditdomain.singleanswerengine`
@@ -845,6 +936,12 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 | `config` | `SingleAnswerConfig` |
 | `studentViewRenderer` | `QuizStudentViewRenderer` |
 
+#### SingleAnswerCorrection (package: singleanswerengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.singleanswerengine`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
+
 #### MiniTheoryAnalyzerProvider (package: minitheoryengine)
 
 **Package:** `com.learney.contentaudit.auditdomain.minitheoryengine`
@@ -901,6 +998,12 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 |------|------|
 | `config` | `MiniTheoryConfig` |
 | `studentViewRenderer` | `QuizStudentViewRenderer` |
+
+#### MiniTheoryCorrection (package: minitheoryengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.minitheoryengine`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
 
 #### DefaultChoiceAlternativeJudgeRunFactory (package: choicealternativeengine)
 
@@ -982,6 +1085,7 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 | `lemmaAbsenceConfig` | `LemmaAbsenceConfig` |
 | `topicTeachingResolver` | `TopicTeachingResolver` |
 | `studentViewRenderer` | `QuizStudentViewRenderer` |
+| `evpCatalogPort` | `EvpCatalogPort` |
 
 #### OffLevelWordsAnalyzer (package: offlevelwords)
 
@@ -997,6 +1101,274 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 | `lemmaAbsenceConfig` | `LemmaAbsenceConfig` |
 | `topicTeachingResolver` | `TopicTeachingResolver` |
 | `studentViewRenderer` | `QuizStudentViewRenderer` |
+| `evpCatalogPort` | `EvpCatalogPort` |
+
+#### OffLevelWordsCorrection (package: offlevelwords)
+
+**Package:** `com.learney.contentaudit.auditdomain.offlevelwords`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
+
+#### DefaultLocalToolGate (package: localtoolsengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.localtoolsengine`
+**Visibility:** public
+**Implements:** LocalToolGate
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `judgeRuntime` | `JudgeRuntime` |
+
+#### DefaultFinishedSentenceReader (package: finishedsentence)
+
+**Package:** `com.learney.contentaudit.auditdomain.finishedsentence`
+**Visibility:** public
+**Implements:** FinishedSentenceReader
+
+#### GrammarAnalyzerProvider (package: grammar)
+
+**Package:** `com.learney.contentaudit.auditdomain.grammar`
+**Visibility:** public
+**Implements:** AnalyzerProvider
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `grammarChecker` | `GrammarChecker` |
+| `sentenceReader` | `FinishedSentenceReader` |
+| `localToolGate` | `LocalToolGate` |
+
+#### GrammarAnalyzer (package: grammar)
+
+**Package:** `com.learney.contentaudit.auditdomain.grammar`
+**Visibility:** public
+**Implements:** ContentAnalyzer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `grammarChecker` | `GrammarChecker` |
+| `sentenceReader` | `FinishedSentenceReader` |
+| `matchFilter` | `GrammarMatchFilter` |
+| `finalPunctuation` | `FinalPunctuationCheck` |
+| `issueClassifier` | `GrammarIssueClassifier` |
+| `gateDecision` | `LocalToolGateDecision` |
+
+#### DefaultGrammarMatchFilter (package: grammar)
+
+**Package:** `com.learney.contentaudit.auditdomain.grammar`
+**Visibility:** public
+**Implements:** GrammarMatchFilter
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `config` | `GrammarConfig` |
+
+#### DefaultFinalPunctuationCheck (package: grammar)
+
+**Package:** `com.learney.contentaudit.auditdomain.grammar`
+**Visibility:** public
+**Implements:** FinalPunctuationCheck
+
+#### DefaultGrammarIssueClassifier (package: grammar)
+
+**Package:** `com.learney.contentaudit.auditdomain.grammar`
+**Visibility:** public
+**Implements:** GrammarIssueClassifier
+
+#### DefaultGrammarConfig (package: grammar)
+
+**Package:** `com.learney.contentaudit.auditdomain.grammar`
+**Visibility:** public
+**Implements:** GrammarConfig
+
+#### GrammarCorrection (package: grammar)
+
+**Package:** `com.learney.contentaudit.auditdomain.grammar`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
+
+#### GrammarRuleFix (package: grammar)
+
+**Package:** `com.learney.contentaudit.auditdomain.grammar`
+**Visibility:** public
+**Implements:** RuleFix
+
+#### NaturalnessAnalyzerProvider (package: naturalness)
+
+**Package:** `com.learney.contentaudit.auditdomain.naturalness`
+**Visibility:** public
+**Implements:** AnalyzerProvider
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `yesNoModel` | `YesNoModel` |
+| `alternativeJudge` | `Evaluator` |
+| `judgeRuntime` | `JudgeRuntime` |
+| `sentenceReader` | `FinishedSentenceReader` |
+| `localToolGate` | `LocalToolGate` |
+
+#### NaturalnessAnalyzer (package: naturalness)
+
+**Package:** `com.learney.contentaudit.auditdomain.naturalness`
+**Visibility:** public
+**Implements:** ContentAnalyzer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `opened` | `JudgeSessions` |
+| `runtime` | `JudgeRuntime` |
+| `sentenceReader` | `FinishedSentenceReader` |
+| `scorer` | `NaturalnessScorer` |
+| `config` | `NaturalnessConfig` |
+| `gateDecision` | `LocalToolGateDecision` |
+
+#### NaturalnessEvaluator (package: naturalness)
+
+**Package:** `com.learney.contentaudit.auditdomain.naturalness`
+**Visibility:** public
+**Implements:** Evaluator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `yesNoModel` | `YesNoModel` |
+| `config` | `NaturalnessConfig` |
+| `examinedVersion` | `String` |
+
+#### DefaultNaturalnessScorer (package: naturalness)
+
+**Package:** `com.learney.contentaudit.auditdomain.naturalness`
+**Visibility:** public
+**Implements:** NaturalnessScorer
+
+#### DefaultNaturalnessConfig (package: naturalness)
+
+**Package:** `com.learney.contentaudit.auditdomain.naturalness`
+**Visibility:** public
+**Implements:** NaturalnessConfig
+
+#### NearDuplicatesAnalyzerProvider (package: nearduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.nearduplicates`
+**Visibility:** public
+**Implements:** AnalyzerProvider
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `embeddingModel` | `EmbeddingModel` |
+| `alternativeJudge` | `Evaluator` |
+| `judgeRuntime` | `JudgeRuntime` |
+| `correctorMatcher` | `CorrectorMatcher` |
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
+| `localToolGate` | `LocalToolGate` |
+
+#### NearDuplicatesAnalyzer (package: nearduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.nearduplicates`
+**Visibility:** public
+**Implements:** ContentAnalyzer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `opened` | `JudgeSessions` |
+| `runtime` | `JudgeRuntime` |
+| `rules` | `NearDuplicateRules` |
+| `question` | `SameExerciseQuestion` |
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
+| `config` | `NearDuplicatesConfig` |
+| `gateDecision` | `LocalToolGateDecision` |
+
+#### SentenceEmbeddingEvaluator (package: nearduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.nearduplicates`
+**Visibility:** public
+**Implements:** Evaluator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `embeddingModel` | `EmbeddingModel` |
+| `config` | `NearDuplicatesConfig` |
+| `examinedVersion` | `String` |
+
+#### DefaultNearDuplicateRules (package: nearduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.nearduplicates`
+**Visibility:** public
+**Implements:** NearDuplicateRules
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `correctorMatcher` | `CorrectorMatcher` |
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
+
+#### DefaultNearDuplicatesConfig (package: nearduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.nearduplicates`
+**Visibility:** public
+**Implements:** NearDuplicatesConfig
+
+#### DefaultSameExerciseQuestion (package: nearduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.nearduplicates`
+**Visibility:** public
+**Implements:** SameExerciseQuestion
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
+
+#### NearDuplicatesCorrection (package: nearduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.nearduplicates`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
+
+#### DefaultAnalyzerCorrectionCatalog (package: correctionengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.correctionengine`
+**Visibility:** public
+**Implements:** AnalyzerCorrectionCatalog
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `corrections` | `List<AnalyzerCorrection>` |
+| `analyzerCatalog` | `AnalyzerCatalog` |
+
+#### QuizInstructionCorrection (package: correctionengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.correctionengine`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
+
+#### LemmaAbsenceCorrection (package: correctionengine)
+
+**Package:** `com.learney.contentaudit.auditdomain.correctionengine`
+**Visibility:** public
+**Implements:** AnalyzerCorrection
 
 ### Module: course-domain
 
@@ -1094,11 +1466,13 @@ public DispatchingCorrectionContextResolver(SentenceLengthContextResolver senten
 | Name | Type |
 |------|------|
 | `analyzerCatalog` | `AnalyzerCatalog` |
+| `analyzerCorrectionCatalog` | `AnalyzerCorrectionCatalog` |
 
 **Generated constructor:**
 ```java
-public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog) {
+public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog, AnalyzerCorrectionCatalog analyzerCorrectionCatalog) {
     this.analyzerCatalog = analyzerCatalog;
+    this.analyzerCorrectionCatalog = analyzerCorrectionCatalog;
 }
 ```
 
@@ -1193,6 +1567,20 @@ public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog) {
 | `sentenceLexicalEvaluator` | `SentenceLexicalEvaluator` |
 | `suggestedLemmaQueryPort` | `SuggestedLemmaQueryPort` |
 | `topicTeachingResolver` | `TopicTeachingResolver` |
+
+#### DefaultErrorTaskBriefer (package: errortask)
+
+**Package:** `com.learney.contentaudit.refinerdomain.errortask`
+**Visibility:** public
+**Implements:** ErrorTaskBriefer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `analyzerCorrectionCatalog` | `AnalyzerCorrectionCatalog` |
+| `auditNodeIndexFactory` | `AuditNodeIndexFactory` |
+| `quizStudentViewRenderer` | `QuizStudentViewRenderer` |
 
 ### Module: audit-application
 
@@ -1539,6 +1927,7 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | `topicWordLightsQuery` | `TopicWordLightsQuery` |
 | `topicStudentViewQuery` | `TopicStudentViewQuery` |
 | `activeAnalysisSelectionStore` | `ActiveAnalysisSelectionStore` |
+| `errorTaskBriefer` | `ErrorTaskBriefer` |
 
 #### DeleteCmd (package: commands)
 
@@ -1552,6 +1941,8 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 |------|------|
 | `auditReportStore` | `AuditReportStore` |
 | `refinementPlanStore` | `RefinementPlanStore` |
+| `activeAnalysisSelectionStore` | `ActiveAnalysisSelectionStore` |
+| `baselineStore` | `BaselineStore` |
 
 #### PruneCmd (package: commands)
 
@@ -1565,6 +1956,8 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 |------|------|
 | `auditReportStore` | `AuditReportStore` |
 | `refinementPlanStore` | `RefinementPlanStore` |
+| `activeAnalysisSelectionStore` | `ActiveAnalysisSelectionStore` |
+| `baselineStore` | `BaselineStore` |
 
 #### PlanCmd (package: commands)
 
@@ -1593,6 +1986,7 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 |------|------|
 | `revisionEngine` | `RevisionEngine` |
 | `refinementPlanStore` | `RefinementPlanStore` |
+| `batchStore` | `BatchStore` |
 
 #### ConfigAnalyzerCmd (package: commands)
 
@@ -1632,6 +2026,7 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | Name | Type |
 |------|------|
 | `decisionService` | `ProposalDecisionService` |
+| `batchStore` | `BatchStore` |
 
 #### RejectCmd (package: commands)
 
@@ -1644,6 +2039,7 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | Name | Type |
 |------|------|
 | `decisionService` | `ProposalDecisionService` |
+| `batchService` | `BatchService` |
 
 #### DefaultGetConsolidatedCommand (package: commands)
 
@@ -1754,6 +2150,106 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 | Name | Type |
 |------|------|
 | `examService` | `JudgeExamService` |
+
+#### DefaultSetBaselineCommand (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** SetBaselineCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `baselineStore` | `BaselineStore` |
+| `auditReportStore` | `AuditReportStore` |
+
+#### DefaultSaveProjectionCommand (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** SaveProjectionCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `courseProjector` | `CourseProjector` |
+| `projectionStore` | `ProjectionStore` |
+
+#### DefaultCompareCommand (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** CompareCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `batchComparator` | `BatchComparator` |
+| `formatter` | `BatchComparisonFormatter` |
+
+#### DefaultGoalsCommand (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** GoalsCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `goalBook` | `GoalBook` |
+
+#### DefaultBlindSampleCommand (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** BlindSampleCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `blindSampleService` | `BlindSampleService` |
+
+#### DefaultErrorRateCommand (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** ErrorRateCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `blindErrorRateService` | `BlindErrorRateService` |
+
+#### BatchCmd (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** BatchCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `batchService` | `BatchService` |
+
+#### TrayCmd (package: commands)
+
+**Package:** `com.learney.contentaudit.auditcli.commands`
+**Visibility:** internal
+**Implements:** TrayCommand
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `trayService` | `TrayService` |
+| `quizSentenceConverter` | `QuizSentenceConverter` |
 
 #### TextReportFormatter (package: formatting)
 
@@ -1868,6 +2364,12 @@ public FileSystemCourseRepository(CourseValidator courseValidator) {
 **Package:** `com.learney.contentaudit.auditcli.formatting`
 **Visibility:** internal
 **Implements:** DetailedFormatter
+
+#### DefaultBatchComparisonFormatter (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+**Implements:** BatchComparisonFormatter
 
 #### DefaultWorkdirResolver (package: bootstrap)
 
@@ -2133,6 +2635,111 @@ public FileSystemJudgeExamRegistry(Path baseDir) {
 }
 ```
 
+#### FileSystemBaselineStore
+
+**Package:** `com.learney.contentaudit.auditinfrastructure`
+
+**Implements:** BaselineStore
+
+**Framework types:** Repository
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `baseDir` | `Path` |
+
+**Generated constructor:**
+```java
+public FileSystemBaselineStore(Path baseDir) {
+    this.baseDir = baseDir;
+}
+```
+
+#### FileSystemProjectionStore
+
+**Package:** `com.learney.contentaudit.auditinfrastructure`
+
+**Implements:** ProjectionStore
+
+**Framework types:** Repository
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `baseDir` | `Path` |
+
+**Generated constructor:**
+```java
+public FileSystemProjectionStore(Path baseDir) {
+    this.baseDir = baseDir;
+}
+```
+
+#### FileSystemGoalDeclarationSource
+
+**Package:** `com.learney.contentaudit.auditinfrastructure`
+
+**Implements:** GoalDeclarationSource
+
+**Framework types:** Repository
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `declarationFile` | `Path` |
+
+**Generated constructor:**
+```java
+public FileSystemGoalDeclarationSource(Path declarationFile) {
+    this.declarationFile = declarationFile;
+}
+```
+
+#### FileSystemSealedGoalsStore
+
+**Package:** `com.learney.contentaudit.auditinfrastructure`
+
+**Implements:** SealedGoalsStore
+
+**Framework types:** Repository
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `baseDir` | `Path` |
+
+**Generated constructor:**
+```java
+public FileSystemSealedGoalsStore(Path baseDir) {
+    this.baseDir = baseDir;
+}
+```
+
+#### FileSystemBlindSampleStore
+
+**Package:** `com.learney.contentaudit.auditinfrastructure`
+
+**Implements:** BlindSampleStore
+
+**Framework types:** Repository
+
+**Constructor dependencies (requiresInject):**
+
+| Name | Type |
+|------|------|
+| `baseDir` | `Path` |
+
+**Generated constructor:**
+```java
+public FileSystemBlindSampleStore(Path baseDir) {
+    this.baseDir = baseDir;
+}
+```
+
 #### FileSystemAudioRecordingRegistry (package: exercisecopies)
 
 **Package:** `com.learney.contentaudit.auditinfrastructure.exercisecopies`
@@ -2156,6 +2763,18 @@ public FileSystemJudgeExamRegistry(Path baseDir) {
 | Name | Type |
 |------|------|
 | `exportPath` | `Path` |
+
+#### FileSystemBatchStore (package: batchstore)
+
+**Package:** `com.learney.contentaudit.auditinfrastructure.batchstore`
+**Visibility:** internal
+**Implements:** BatchStore
+
+#### FileSystemTrayDecisionStore (package: traystore)
+
+**Package:** `com.learney.contentaudit.auditinfrastructure.traystore`
+**Visibility:** internal
+**Implements:** TrayDecisionStore
 
 ### Module: revision-domain
 
@@ -2301,10 +2920,9 @@ public FileSystemJudgeExamRegistry(Path baseDir) {
 
 | Name | Type |
 |------|------|
-| `courseMapper` | `CourseMapper` |
-| `auditEngine` | `AuditEngine` |
-| `elementLocator` | `CourseElementLocator` |
 | `auditReportStore` | `AuditReportStore` |
+| `pendingApplier` | `PendingApplier` |
+| `projectionMeasurer` | `ProjectionMeasurer` |
 
 #### DefaultConsolidatedViewBuilderFactory (package: engine)
 
@@ -2322,15 +2940,8 @@ public FileSystemJudgeExamRegistry(Path baseDir) {
 
 | Name | Type |
 |------|------|
-| `revisionArtifactStore` | `RevisionArtifactStore` |
-| `activeAnalysisSelectionStore` | `ActiveAnalysisSelectionStore` |
-| `auditReportStore` | `AuditReportStore` |
-| `refinementPlanStore` | `RefinementPlanStore` |
-| `courseRepository` | `CourseRepository` |
-| `courseElementLocator` | `CourseElementLocator` |
-| `courseMapper` | `CourseMapper` |
-| `auditEngine` | `AuditEngine` |
 | `nodeFieldDiffer` | `NodeFieldDiffer` |
+| `courseProjector` | `CourseProjector` |
 
 #### KnowledgeTitleReviser (package: engine)
 
@@ -2436,6 +3047,55 @@ public FileSystemJudgeExamRegistry(Path baseDir) {
 **Package:** `com.learney.contentaudit.revisiondomain.engine`
 **Visibility:** internal
 **Implements:** QuizInstructionCandidateAssessorFactory
+
+#### DefaultCourseProjectorFactory (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** CourseProjectorFactory
+
+#### DefaultCourseProjector (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** CourseProjector
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `activeAnalysisSelectionStore` | `ActiveAnalysisSelectionStore` |
+| `auditReportStore` | `AuditReportStore` |
+| `refinementPlanStore` | `RefinementPlanStore` |
+| `revisionArtifactStore` | `RevisionArtifactStore` |
+| `courseRepository` | `CourseRepository` |
+| `pendingApplier` | `PendingApplier` |
+| `projectionMeasurer` | `ProjectionMeasurer` |
+
+#### DefaultPendingApplier (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** PendingApplier
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `courseElementLocator` | `CourseElementLocator` |
+
+#### DefaultProjectionMeasurer (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+**Implements:** ProjectionMeasurer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `courseMapper` | `CourseMapper` |
+| `auditEngine` | `AuditEngine` |
 
 #### LemmaAbsenceMvpStrategy (package: lemmaabsence)
 
@@ -2704,6 +3364,425 @@ public FileSystemJudgeExamRegistry(Path baseDir) {
 | `generator` | `QuizInstructionCandidateGenerator` |
 | `providerId` | `String` |
 
+#### DefaultBatchComparator (package: comparisonengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.comparisonengine`
+**Visibility:** public
+**Implements:** BatchComparator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `courseProjector` | `CourseProjector` |
+| `baselineStore` | `BaselineStore` |
+| `auditReportStore` | `AuditReportStore` |
+| `goalBook` | `GoalBook` |
+| `analyzerCatalog` | `AnalyzerCatalog` |
+| `auditEngine` | `AuditEngine` |
+| `changeAttributor` | `ChangeAttributor` |
+| `sampleOutcomeSource` | `SampleOutcomeSource` |
+| `topicTeachingResolver` | `TopicTeachingResolver` |
+
+#### DefaultGoalBook (package: comparisonengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.comparisonengine`
+**Visibility:** public
+**Implements:** GoalBook
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `declarationSource` | `GoalDeclarationSource` |
+| `sealedGoalsStore` | `SealedGoalsStore` |
+| `analyzerCatalog` | `AnalyzerCatalog` |
+
+#### LeaveOneOutChangeAttributor (package: comparisonengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.comparisonengine`
+**Visibility:** public
+**Implements:** ChangeAttributor
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `auditEngine` | `AuditEngine` |
+
+#### DefaultSampleStatistics (package: blindsampleengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.blindsampleengine`
+**Visibility:** public
+**Implements:** SampleStatistics
+
+#### DefaultBlindSampleService (package: blindsampleengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.blindsampleengine`
+**Visibility:** public
+**Implements:** BlindSampleService
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `courseProjector` | `CourseProjector` |
+| `batchComparator` | `BatchComparator` |
+| `goalBook` | `GoalBook` |
+| `baselineStore` | `BaselineStore` |
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
+| `store` | `BlindSampleStore` |
+| `statistics` | `SampleStatistics` |
+
+#### DefaultSampleOutcomeSource (package: blindsampleengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.blindsampleengine`
+**Visibility:** public
+**Implements:** SampleOutcomeSource
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `store` | `BlindSampleStore` |
+| `statistics` | `SampleStatistics` |
+
+#### DefaultBlindErrorRateService (package: blindsampleengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.blindsampleengine`
+**Visibility:** public
+**Implements:** BlindErrorRateService
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `courseProjector` | `CourseProjector` |
+| `baselineStore` | `BaselineStore` |
+| `auditReportStore` | `AuditReportStore` |
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
+| `store` | `BlindSampleStore` |
+| `statistics` | `SampleStatistics` |
+
+#### DefaultGateFactory (package: nonregressionengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.nonregressionengine`
+**Visibility:** internal
+**Implements:** GateFactory
+
+#### DefaultChangeGate (package: nonregressionengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.nonregressionengine`
+**Visibility:** internal
+**Implements:** ChangeGate
+
+#### DefaultBatchGate (package: nonregressionengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.nonregressionengine`
+**Visibility:** internal
+**Implements:** BatchGate
+
+#### ScriptedPanelProposer (package: panel)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panel`
+**Visibility:** public
+**Implements:** PanelProposer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `script` | `Map<String,List<PanelProposal>>` |
+
+#### DefaultPanelRunnerFactory (package: panelengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panelengine`
+**Visibility:** internal
+**Implements:** PanelRunnerFactory
+
+#### DefaultPanelRunner (package: panelengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panelengine`
+**Visibility:** internal
+**Implements:** PanelRunner
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `topicPanel` | `TopicPanel` |
+
+#### DefaultTopicPanel (package: panelengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panelengine`
+**Visibility:** internal
+**Implements:** TopicPanel
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `proposer` | `PanelProposer` |
+| `meter` | `TopicMeter` |
+| `screen` | `CandidateScreen` |
+| `script` | `PanelDecisionScript` |
+| `changeGate` | `ChangeGate` |
+| `quizStudentViewRenderer` | `QuizStudentViewRenderer` |
+
+#### CatalogTopicMeter (package: panelengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panelengine`
+**Visibility:** internal
+**Implements:** TopicMeter
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `auditEngine` | `AuditEngine` |
+| `courseMapper` | `CourseMapper` |
+| `nlpTokenizer` | `NlpTokenizer` |
+| `lexicalEvaluator` | `SentenceLexicalEvaluator` |
+| `topicTeachingResolver` | `TopicTeachingResolver` |
+| `spokenTextBuilder` | `SpokenTextBuilder` |
+| `sentenceLengthConfig` | `SentenceLengthConfig` |
+
+#### DefaultCandidateScreen (package: panelengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panelengine`
+**Visibility:** internal
+**Implements:** CandidateScreen
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `correctionCatalog` | `AnalyzerCorrectionCatalog` |
+
+#### DefaultPanelDecisionScript (package: panelengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panelengine`
+**Visibility:** internal
+**Implements:** PanelDecisionScript
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `correctionCatalog` | `AnalyzerCorrectionCatalog` |
+
+#### CappedQueryAllowance (package: panelengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panelengine`
+**Visibility:** internal
+**Implements:** QueryAllowance
+
+#### DefaultBatchServiceFactory (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+**Implements:** BatchServiceFactory
+
+#### DefaultBatchService (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+**Implements:** BatchService
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `batchStore` | `BatchStore` |
+| `refinementPlanStore` | `RefinementPlanStore` |
+| `auditReportStore` | `AuditReportStore` |
+| `activeAnalysisSelectionStore` | `ActiveAnalysisSelectionStore` |
+| `baselineStore` | `BaselineStore` |
+| `courseRepository` | `CourseRepository` |
+| `panelRunnerFactory` | `PanelRunnerFactory` |
+| `briefer` | `ErrorTaskBriefer` |
+| `taskSelector` | `BatchTaskSelector` |
+| `costEstimator` | `BatchCostEstimator` |
+| `ruleStage` | `RuleStage` |
+| `panelStage` | `PanelStage` |
+| `changeLedger` | `BatchChangeLedger` |
+| `closer` | `BatchCloser` |
+| `publisher` | `BatchPublisher` |
+| `reportBuilder` | `BatchReportBuilder` |
+| `coursePath` | `Path` |
+| `goalBook` | `GoalBook` |
+
+#### DefaultBatchTaskSelector (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+**Implements:** BatchTaskSelector
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `artifactStore` | `RevisionArtifactStore` |
+| `correctionCatalog` | `AnalyzerCorrectionCatalog` |
+
+#### DefaultBatchCostEstimator (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+**Implements:** BatchCostEstimator
+
+#### DefaultRuleStage (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+**Implements:** RuleStage
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `ruleFixes` | `List<RuleFix>` |
+| `topicMeter` | `TopicMeter` |
+| `changeGate` | `ChangeGate` |
+| `changeLedger` | `BatchChangeLedger` |
+| `batchStore` | `BatchStore` |
+
+#### DefaultPanelStage (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+**Implements:** PanelStage
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `panelRunner` | `PanelRunner` |
+| `briefer` | `ErrorTaskBriefer` |
+| `correctionCatalog` | `AnalyzerCorrectionCatalog` |
+| `wordLightsQuery` | `TopicWordLightsQuery` |
+| `changeLedger` | `BatchChangeLedger` |
+| `batchStore` | `BatchStore` |
+
+#### DefaultBatchChangeLedger (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+**Implements:** BatchChangeLedger
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `artifactStore` | `RevisionArtifactStore` |
+| `elementLocator` | `CourseElementLocator` |
+
+#### DefaultBatchCloser (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+**Implements:** BatchCloser
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `batchComparator` | `BatchComparator` |
+| `batchGate` | `BatchGate` |
+| `blindSampleService` | `BlindSampleService` |
+| `changeLedger` | `BatchChangeLedger` |
+| `batchStore` | `BatchStore` |
+| `coursePath` | `Path` |
+
+#### DefaultBatchPublisher (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+**Implements:** BatchPublisher
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `changeLedger` | `BatchChangeLedger` |
+| `artifactStore` | `RevisionArtifactStore` |
+| `courseRepository` | `CourseRepository` |
+| `courseMapper` | `CourseMapper` |
+| `auditEngine` | `AuditEngine` |
+| `auditReportStore` | `AuditReportStore` |
+| `refinerEngine` | `RefinerEngine` |
+| `refinementPlanStore` | `RefinementPlanStore` |
+| `activeAnalysisSelectionStore` | `ActiveAnalysisSelectionStore` |
+| `batchComparator` | `BatchComparator` |
+| `correctionScope` | `CorrectionScope` |
+| `preservationCheck` | `PreservationCheck` |
+| `coursePath` | `Path` |
+
+#### DefaultBatchReportBuilder (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+**Implements:** BatchReportBuilder
+
+#### DefaultTrayServiceFactory (package: trayengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.trayengine`
+**Visibility:** internal
+**Implements:** TrayServiceFactory
+
+#### DefaultTrayService (package: trayengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.trayengine`
+**Visibility:** internal
+**Implements:** TrayService
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `batchService` | `BatchService` |
+| `batchStore` | `BatchStore` |
+| `blindSampleService` | `BlindSampleService` |
+| `panelRunner` | `PanelRunner` |
+| `panelRunnerFactory` | `PanelRunnerFactory` |
+| `assembler` | `TrayAssembler` |
+| `memory` | `DecisionMemory` |
+| `courseRepository` | `CourseRepository` |
+| `coursePath` | `Path` |
+
+#### DefaultTrayAssembler (package: trayengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.trayengine`
+**Visibility:** internal
+**Implements:** TrayAssembler
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `ruleSampleDrawer` | `RuleSampleDrawer` |
+| `memory` | `DecisionMemory` |
+| `quizStudentViewRenderer` | `QuizStudentViewRenderer` |
+
+#### SeededRuleSampleDrawer (package: trayengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.trayengine`
+**Visibility:** internal
+**Implements:** RuleSampleDrawer
+
+#### FingerprintDecisionMemory (package: trayengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.trayengine`
+**Visibility:** internal
+**Implements:** DecisionMemory
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `decisionStore` | `TrayDecisionStore` |
+| `contentFingerprinter` | `ContentFingerprinter` |
+
 ### Module: revision-infrastructure
 
 #### DefaultLemmaAbsenceAgentGeneratorFactory (package: lemmaabsenceagent)
@@ -2894,6 +3973,46 @@ public FileSystemJudgeExamRegistry(Path baseDir) {
 **Package:** `com.learney.contentaudit.revisioninfrastructure.candidatejudgment`
 **Visibility:** public
 **Implements:** CandidateJudgmentRuntimeLauncher
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `agentGraphRunner` | `AgentGraphRunner` |
+
+#### DefaultPanelAgentProposerFactory (package: panelagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.panelagent`
+**Visibility:** public
+**Implements:** PanelAgentProposerFactory
+
+#### AgentPanelProposer (package: panelagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.panelagent`
+**Visibility:** public
+**Implements:** PanelProposer
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `agentRuntimeLauncher` | `PanelAgentRuntimeLauncher` |
+| `proposalParser` | `PanelAgentProposalParser` |
+| `chatModel` | `ChatModel` |
+| `config` | `LagenConfig` |
+| `projectRoot` | `Path` |
+
+#### DefaultPanelAgentProposalParser (package: panelagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.panelagent`
+**Visibility:** public
+**Implements:** PanelAgentProposalParser
+
+#### SharedRuntimePanelAgentLauncher (package: panelagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.panelagent`
+**Visibility:** public
+**Implements:** PanelAgentRuntimeLauncher
 
 **Constructor dependencies:**
 
@@ -3171,4 +4290,56 @@ public FileSystemEvaluationLedger(Path baseDir) {
 **Package:** `com.learney.contentaudit.quizinstructioninfrastructure.choicealternativeverdict`
 **Visibility:** public
 **Implements:** ChoiceAlternativeVerdictReader
+
+### Module: local-language-infrastructure
+
+#### LanguageToolGrammarChecker (package: languagetool)
+
+**Package:** `com.learney.contentaudit.locallanguageinfrastructure.languagetool`
+**Visibility:** public
+**Implements:** GrammarChecker
+
+#### DefaultOllamaModelFactory (package: ollama)
+
+**Package:** `com.learney.contentaudit.locallanguageinfrastructure.ollama`
+**Visibility:** public
+**Implements:** OllamaModelFactory
+
+#### HttpOllamaApi (package: ollama)
+
+**Package:** `com.learney.contentaudit.locallanguageinfrastructure.ollama`
+**Visibility:** public
+**Implements:** OllamaApi
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `endpoint` | `OllamaEndpoint` |
+
+#### OllamaYesNoModel (package: ollama)
+
+**Package:** `com.learney.contentaudit.locallanguageinfrastructure.ollama`
+**Visibility:** public
+**Implements:** YesNoModel
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `api` | `OllamaApi` |
+| `model` | `String` |
+
+#### OllamaEmbeddingModel (package: ollama)
+
+**Package:** `com.learney.contentaudit.locallanguageinfrastructure.ollama`
+**Visibility:** public
+**Implements:** EmbeddingModel
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `api` | `OllamaApi` |
+| `model` | `String` |
 

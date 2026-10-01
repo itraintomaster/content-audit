@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -72,7 +73,7 @@ public class DefaultSuggestedLemmaQuerySessionFactoryTest {
         // Task whose source analysis is A
         RefinementTask task = new RefinementTask(
                 TASK_ID, AuditTarget.QUIZ, "quiz-r015-1", "Quiz R015",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Criteria for the query (explicit level to keep the test focused on R015, not level inference)
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(
@@ -146,5 +147,14 @@ public class DefaultSuggestedLemmaQuerySessionFactoryTest {
 
         // 3. loadLatest() must never have been called (R015 forbids resolving by most recent)
         Mockito.verify(auditReportStore, Mockito.never()).loadLatest();
+    }
+
+    @Test
+    @DisplayName("should open the suggested words query of a task planned from a saved projection on that projection, so a lemma a pending proposal already brought into the course is no longer offered")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
+    public void shouldOpenTheSuggestedWordsQueryOfATaskPlannedFromASavedProjectionOnThatProjectionSoALemmaAPendingProposalAlreadyBroughtIntoTheCourseIsNoLongerOffered() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

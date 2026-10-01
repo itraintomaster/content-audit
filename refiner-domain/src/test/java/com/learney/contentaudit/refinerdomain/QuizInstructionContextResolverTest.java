@@ -122,7 +122,7 @@ public class QuizInstructionContextResolverTest {
     private RefinementTask buildTask(String quizId) {
         return new RefinementTask(
                 "task-qicor-1", AuditTarget.QUIZ, quizId, "Quiz label",
-                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING, null);
     }
 
     private DefaultQuizDiagnoses buildQuizDiagnoses(QuizInstructionVerdict verdict) {
@@ -252,5 +252,13 @@ public class QuizInstructionContextResolverTest {
         Assertions.assertTrue(ctx.getSiblingQuizSentences().contains(sibling2QuizSentence));
         Assertions.assertFalse(ctx.getSiblingQuizSentences().contains(targetQuizSentence),
                 "R002: the target quiz is not its own sibling");
+    }
+
+    @Test
+    @DisplayName("should resolve a correction context carrying the instructions of the quiz copy, the ones the student sees and the judge reads, apart from the knowledge's")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R003")
+    public void shouldResolveACorrectionContextCarryingTheInstructionsOfTheQuizCopyTheOnesTheStudentSeesAndTheJudgeReadsApartFromTheKnowledges() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

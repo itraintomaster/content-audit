@@ -234,13 +234,13 @@ public class FQicorJ002JourneyTest {
     private RefinementPlan buildPlan() {
         RefinementTask taskA = new RefinementTask(
                 TASK_A_ID, AuditTarget.QUIZ, QUIZ_A_ID, "Quiz A",
-                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING, null);
         RefinementTask taskB = new RefinementTask(
                 TASK_B_ID, AuditTarget.QUIZ, QUIZ_B_ID, "Quiz B",
-                DiagnosisKind.QUIZ_INSTRUCTION, 2, RefinementTaskStatus.PENDING);
+                DiagnosisKind.QUIZ_INSTRUCTION, 2, RefinementTaskStatus.PENDING, null);
         RefinementTask taskC = new RefinementTask(
                 TASK_C_ID, AuditTarget.QUIZ, QUIZ_C_ID, "Quiz C",
-                DiagnosisKind.QUIZ_INSTRUCTION, 3, RefinementTaskStatus.PENDING);
+                DiagnosisKind.QUIZ_INSTRUCTION, 3, RefinementTaskStatus.PENDING, null);
         return new RefinementPlan(PLAN_ID, AUDIT_ID, Instant.now(), List.of(taskA, taskB, taskC));
     }
 

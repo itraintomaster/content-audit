@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditcli;
 
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -8,4 +9,6 @@ import javax.annotation.processing.Generated;
 )
 public interface GetConsolidatedCommand {
     Integer getConsolidated(String coursePath, String format);
+
+    Integer getConsolidated(String coursePath, String format, Map<String, Integer> analyzerBudgets);
 }

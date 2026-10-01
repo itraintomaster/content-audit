@@ -174,7 +174,7 @@ public class DefaultProposalDecisionServiceTest {
                                              RefinementTaskStatus status) {
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, "quiz-001", "Quiz about verbs",
-                DiagnosisKind.SENTENCE_LENGTH, 1, status
+                DiagnosisKind.SENTENCE_LENGTH, 1, status, null
         );
         return new RefinementPlan(planId, "audit-001", Instant.now(), List.of(task));
     }

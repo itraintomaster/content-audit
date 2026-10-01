@@ -179,7 +179,7 @@ public class FRclaqsJ001JourneyTest {
         // Step: solicitar_tarea — operator requests a LEMMA_ABSENCE task
         RefinementTask task = new RefinementTask(
                 "task-rclaqs-j001-001", AuditTarget.QUIZ, "quiz-j001-001", "Quiz A1 - to be",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Step: localizar_quiz — system locates the quiz's AuditableQuiz in the AuditReport.
         // The AuditableQuiz was created by CourseToAuditableMapper, which already stamped
@@ -260,7 +260,7 @@ public class FRclaqsJ001JourneyTest {
         // Step: solicitar_tarea — operator requests a LEMMA_ABSENCE task
         RefinementTask task = new RefinementTask(
                 "task-rclaqs-j001-002", AuditTarget.QUIZ, "quiz-j001-002-invalid", "Quiz Invalid FormEntity",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Step: localizar_quiz / derivar_quizsentence [gate: F-RCLAQS-R004]
         // R004: if FormEntity is invalid (e.g., CLOZE with empty options),
@@ -327,7 +327,7 @@ public class FRclaqsJ001JourneyTest {
         // Step: solicitar_tarea — operator requests a LEMMA_ABSENCE task
         RefinementTask task = new RefinementTask(
                 "task-rclaqs-j001-003", AuditTarget.QUIZ, "quiz-j001-003-nonexistent", "Non-existent Quiz",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Step: localizar_quiz [outcome: FormEntity NOT found — inherited RCLA R005]
         // The quiz referenced by the task does not exist in the AuditReport.

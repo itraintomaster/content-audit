@@ -4,19 +4,29 @@ import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
 import com.learney.contentaudit.auditdomain.catalog.InvalidAnalyzerCardException;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolCard;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.HexFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeMap;
 import javax.annotation.processing.Generated;
 
 /**
@@ -41,6 +51,9 @@ public class DefaultAnalyzerCatalog implements AnalyzerCatalog {
 
     /** F-RONDA1-R004 inv. 1: the Spanish name of every card, to reject a second card using it. */
     private final Map<String, String> analyzersByDisplayName = new LinkedHashMap<>();
+
+    /** F-RONDA2-R004: the measure of each analyzer, worked out the first time it is asked. */
+    private final Map<String, AnalyzerMeasure> measuresByName = new LinkedHashMap<>();
 
     public DefaultAnalyzerCatalog(List<AnalyzerProvider> providers) {
         this.providers = providers;
@@ -194,5 +207,178 @@ public class DefaultAnalyzerCatalog implements AnalyzerCatalog {
 
     private static boolean isBlank(String value) {
         return value == null || value.isBlank();
+    }
+
+    // -------------------------------------------------------------------------
+    // The measure of an analyzer (F-RONDA2-R004)
+    // -------------------------------------------------------------------------
+
+    /**
+     * F-RONDA2-R004: with what an analyzer measures -- its name, the configuration it measures
+     * with, and a fingerprint that changes only when how it measures changes: its rules and the
+     * cost of each, its family, what it reads and evaluates, its resolutions, its configuration
+     * and the tool it measures with (the local one or, without it, claude -p) with the version
+     * that took the exam. The texts of the card -- its Spanish name, question, descriptions and
+     * goal --, the exam state of its tools and their reasons and install hints stay out: they
+     * change without the measure changing. The fingerprint is the SHA-256 of a JSON with its keys
+     * in order, so the same card and configuration give the same one in any run and on any
+     * machine.
+     */
+    @Override
+    public synchronized Optional<AnalyzerMeasure> measure(String analyzerName) {
+        if (analyzerName == null || !cardsByName.containsKey(analyzerName)) {
+            return Optional.empty();
+        }
+        AnalyzerMeasure measure = measuresByName.get(analyzerName);
+        if (measure == null) {
+            measure = measureOf(cardsByName.get(analyzerName), providersByName.get(analyzerName));
+            measuresByName.put(analyzerName, measure);
+        }
+        return Optional.of(measure);
+    }
+
+    private static AnalyzerMeasure measureOf(AnalyzerDescriptor card, AnalyzerProvider provider) {
+        Optional<SelfDescribingConfig> config = provider.config();
+        Map<String, Object> described = config != null && config.isPresent() ? config.get().describe() : null;
+        Map<String, Object> configuration = described != null
+                ? Collections.unmodifiableMap(new LinkedHashMap<>(described))
+                : Map.of();
+
+        Map<String, Object> measured = new TreeMap<>();
+        measured.put("analyzer", card.getName());
+        measured.put("target", card.getTarget());
+        measured.put("reads", card.getReads());
+        measured.put("family", card.getFamily());
+        measured.put("evaluatedTargets", card.getEvaluatedTargets());
+        measured.put("resolutions", card.getResolutions());
+        measured.put("cost", card.getCost());
+        List<Map<String, Object>> rules = new ArrayList<>();
+        for (AnalyzerRuleCard rule : card.getRules()) {
+            Map<String, Object> measuredRule = new TreeMap<>();
+            measuredRule.put("id", rule.getId());
+            measuredRule.put("cost", rule.getCost());
+            rules.add(measuredRule);
+        }
+        measured.put("rules", rules);
+        measured.put("config", configuration);
+        measured.put("tool", toolMeasuredWith(card.getTools()));
+        return new AnalyzerMeasure(card.getName(), sha256(canonicalJson(measured)), configuration);
+    }
+
+    /**
+     * The tool the analyzer measures with: its local tool when it is available, otherwise its
+     * alternative with claude -p when that one is; null when it has no tool or none is available.
+     */
+    private static Map<String, Object> toolMeasuredWith(List<LocalToolCard> tools) {
+        if (tools == null || tools.isEmpty()) {
+            return null;
+        }
+        LocalToolCard used = null;
+        for (LocalToolCard tool : tools) {
+            if (tool != null && !tool.isAlternative() && isAvailable(tool)) {
+                used = tool;
+                break;
+            }
+        }
+        if (used == null) {
+            for (LocalToolCard tool : tools) {
+                if (tool != null && tool.isAlternative() && isAvailable(tool)) {
+                    used = tool;
+                    break;
+                }
+            }
+        }
+        if (used == null) {
+            return null;
+        }
+        Map<String, Object> tool = new TreeMap<>();
+        tool.put("tool", used.getStatus().getTool());
+        tool.put("version", used.getStatus().getVersion());
+        tool.put("examinedVersion", used.getExaminedVersion());
+        tool.put("alternative", used.isAlternative());
+        return tool;
+    }
+
+    private static boolean isAvailable(LocalToolCard tool) {
+        LocalToolStatus status = tool.getStatus();
+        return status != null && status.isAvailable();
+    }
+
+    /** JSON with the keys of every object in order, so equal values always write the same text. */
+    private static String canonicalJson(Object value) {
+        StringBuilder out = new StringBuilder();
+        writeCanonical(value, out);
+        return out.toString();
+    }
+
+    private static void writeCanonical(Object value, StringBuilder out) {
+        if (value == null) {
+            out.append("null");
+        } else if (value instanceof Map<?, ?> map) {
+            Map<String, Object> sorted = new TreeMap<>();
+            for (Map.Entry<?, ?> entry : map.entrySet()) {
+                sorted.put(String.valueOf(entry.getKey()), entry.getValue());
+            }
+            out.append('{');
+            boolean first = true;
+            for (Map.Entry<String, Object> entry : sorted.entrySet()) {
+                if (!first) {
+                    out.append(',');
+                }
+                first = false;
+                writeString(entry.getKey(), out);
+                out.append(':');
+                writeCanonical(entry.getValue(), out);
+            }
+            out.append('}');
+        } else if (value instanceof Collection<?> collection) {
+            out.append('[');
+            boolean first = true;
+            for (Object element : collection) {
+                if (!first) {
+                    out.append(',');
+                }
+                first = false;
+                writeCanonical(element, out);
+            }
+            out.append(']');
+        } else if (value instanceof Boolean || value instanceof Number) {
+            out.append(value);
+        } else if (value instanceof Enum<?> constant) {
+            writeString(constant.name(), out);
+        } else {
+            writeString(String.valueOf(value), out);
+        }
+    }
+
+    private static void writeString(String text, StringBuilder out) {
+        out.append('"');
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            switch (c) {
+                case '"' -> out.append("\\\"");
+                case '\\' -> out.append("\\\\");
+                case '\n' -> out.append("\\n");
+                case '\r' -> out.append("\\r");
+                case '\t' -> out.append("\\t");
+                default -> {
+                    if (c < 0x20) {
+                        out.append(String.format("\\u%04x", (int) c));
+                    } else {
+                        out.append(c);
+                    }
+                }
+            }
+        }
+        out.append('"');
+    }
+
+    private static String sha256(String text) {
+        try {
+            return HexFormat.of().formatHex(
+                    MessageDigest.getInstance("SHA-256").digest(text.getBytes(StandardCharsets.UTF_8)));
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalStateException("SHA-256 is not available", e);
+        }
     }
 }

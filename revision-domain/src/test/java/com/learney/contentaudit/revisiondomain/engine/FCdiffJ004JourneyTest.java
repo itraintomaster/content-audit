@@ -85,7 +85,7 @@ public class FCdiffJ004JourneyTest {
         builder = new DefaultConsolidatedViewBuilder(
                 revisionArtifactStore, activeAnalysisSelectionStore,
                 auditReportStore, refinementPlanStore, courseRepository,
-                courseElementLocator, courseMapper, auditEngine, realDiffer);
+                courseElementLocator, courseMapper, auditEngine, realDiffer, null);
     }
 
     private AuditNode quizNodeWithScore(String id, String dimension, double score) {

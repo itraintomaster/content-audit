@@ -60,7 +60,7 @@ public class ExactDuplicatesAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
                 AnalysisCost.INSTANT,
-                "Duplicados exactos");
+                "Duplicados exactos", List.of());
     }
 
     @Override
@@ -68,9 +68,12 @@ public class ExactDuplicatesAnalyzerProvider implements AnalyzerProvider {
         return new ExactDuplicatesAnalyzer(correctorMatcher, studentViewRenderer);
     }
 
+    /**
+     * F-RONDA2-R008 (hook E-02): its findings that count become EXACT_DUPLICATES tasks on the exercise.
+     */
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        return Optional.empty();
+        return Optional.of(new AnalyzerPlanBinding("EXACT_DUPLICATES", List.of(AuditTarget.QUIZ)));
     }
 
     @Override

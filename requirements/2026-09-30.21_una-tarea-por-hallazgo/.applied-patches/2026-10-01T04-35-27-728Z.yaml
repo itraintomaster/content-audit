@@ -1,0 +1,720 @@
+code: FEAT-TAREA
+description: "FEAT-TAREA: el plan hace una tarea por hallazgo de la familia de errores,\
+  \ con su origen (hallazgo, nivel, tema, cubiertos y ejercicios que alcanza), cuenta\
+  \ hallazgos contra tareas, cubiertos y no convertidos, y cada analizador declara\
+  \ en su ficha de corrección lo que su arreglo puede tocar. Rebasado por el integrador\
+  \ de la ronda 2 sobre el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada\
+  \ y construida) y sobre FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2,\
+  \ B, F y E: GetCmd inyecta errorTaskBriefer: ErrorTaskBriefer (gancho E-07); HintCoherenceCorrection\
+  \ implements AnalyzerCorrection en hintcoherence; AnswerCompletenessCorrection implements\
+  \ AnalyzerCorrection en answercompleteness; MultipleChoiceValidityCorrection implements\
+  \ AnalyzerCorrection en multiplechoicevalidity; DataCoherenceCorrection implements\
+  \ AnalyzerCorrection en datacoherence; ExactDuplicatesCorrection implements AnalyzerCorrection\
+  \ en exactduplicates; TranslationSenseCorrection implements AnalyzerCorrection en\
+  \ translationsenseengine; SingleAnswerCorrection implements AnalyzerCorrection en\
+  \ singleanswerengine; MiniTheoryCorrection implements AnalyzerCorrection en minitheoryengine;\
+  \ OffLevelWordsCorrection implements AnalyzerCorrection en offlevelwords; GrammarCorrection\
+  \ implements AnalyzerCorrection en grammar; NearDuplicatesCorrection implements\
+  \ AnalyzerCorrection en nearduplicates.; qa-tester: 49 handwrittenTests trazan las\
+  \ 9 reglas de FEAT-TAREA, cada una con un caso real del curso del 29/9 (el ejercicio\
+  \ 11 de Afirmativas regulares con pista, una sola respuesta y traducción; la miniteorí\
+  a de In time u on time en sus 40 ejercicios; spread y quilt en «She spread the warm\
+  \ blue quilt on the bed.»), y F-TAREA-J001 va a audit-cli, paquete commands: plan,\
+  \ get tasks y get task son PlanCmd y GetCmd, package-private ahí, como F-HALL-J001\
+  \ y F-JEXAM-J001."
+modules:
+- name: audit-domain
+  interfaces:
+  - name: AnalyzerCorrection
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "analyzerName(): String"
+    - signature: "editScope(FindingResolution resolution): List<ExercisePart>"
+    - signature: "coveringAnalyzer(): Optional<String>"
+    - signature: "groupsByTopic(): boolean"
+    - signature: "tieRules(): List<String>"
+    - signature: "offersTwoFixes(): boolean"
+    domainLinks:
+    - term: Tarea de corrección
+      role: uses
+    glossarySuggestions:
+    - name: Alcance del arreglo
+      technicalName: AnalyzerCorrection
+      kind: policy-candidate
+      basedOn: audit-domain/AnalyzerCorrection
+      derivedFrom:
+      - Tarea de corrección
+      - Tipo de diagnóstico
+      rationale: F-TAREA-R006 llama así a lo que cada tipo de tarea declara que su
+        arreglo puede cambiar; todo lo demás se conserva.
+    _change: add
+  - name: AnalyzerCorrectionCatalog
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "find(String analyzerName): Optional<AnalyzerCorrection>"
+    - signature: "list(): List<AnalyzerCorrection>"
+    _change: add
+  packages:
+  - name: correction
+    description: "Vocabulario cerrado de las partes de un ejercicio que un arreglo\
+      \ puede tocar (FEAT-TAREA R006). Público porque lo leen refiner-domain, revision-domain\
+      \ y audit-cli."
+    visibility: public
+    models:
+    - name: ExercisePart
+      type: enum
+      fields:
+      - name: STATEMENT
+        description: "El enunciado: sus partes fijas, cuántas son y en qué orden."
+      - name: HINT
+        description: La pista que acompaña al hueco.
+      - name: ANSWERS
+        description: Las respuestas aceptadas de cada hueco para escribir.
+      - name: OPTIONS
+        description: Las opciones de una opción múltiple y cuál es la correcta.
+      - name: FORM_KIND
+        description: "El tipo de ejercicio: pasar de hueco para escribir a opción\
+          \ múltiple (encargo de F-MESA-R015)."
+      - name: TRANSLATION
+        description: La traducción.
+      - name: MINI_THEORY
+        description: La miniteoría de los ejercicios del tema que muestran ese texto.
+      - name: INSTRUCTIONS
+        description: La consigna del ejercicio.
+      - name: TOPIC_INSTRUCTIONS
+        description: "La consigna del tema, una vez por tema."
+      - name: STORED_SENTENCE
+        description: "La oración guardada, la que se arma con la primera respuesta."
+      - name: AUDIO
+        description: "Permiso para cambiar lo que se escucha: el cambio lleva su pedido\
+          \ de regrabar (F-NOEMP-R004)."
+      - name: WHOLE_EXERCISE
+        description: "Todo el contenido del ejercicio, sin su identidad ni su título:\
+          \ lo que reescribe un duplicado."
+      _change: add
+    _change: add
+  - name: correctionengine
+    description: "Implementaciones de E: el catálogo de declaraciones y las declaraciones\
+      \ de los dos analizadores que ya existían y producen tareas de la tanda (quiz-instruction,\
+      \ y lemma-absence cuando cubre un hallazgo de errores). Público sólo para la\
+      \ raíz de composición, como findingengine."
+    visibility: public
+    implementations:
+    - name: DefaultAnalyzerCorrectionCatalog
+      requiresInject:
+      - name: corrections
+        type: List<AnalyzerCorrection>
+      - name: analyzerCatalog
+        type: AnalyzerCatalog
+      visibility: public
+      handwrittenTests:
+      - name: "should find by its canonical name the correction declaration of every\
+          \ error analyzer that has a task kind, from hint-coherence to quiz-instruction"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      implements:
+      - AnalyzerCorrectionCatalog
+      _change: add
+    - name: QuizInstructionCorrection
+      visibility: public
+      handwrittenTests:
+      - name: "should let only a panel fix of quiz-instruction touch the exercise,\
+          \ within what the instruction correction reaches today, and declare no rule\
+          \ fix"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    - name: LemmaAbsenceCorrection
+      visibility: public
+      handwrittenTests:
+      - name: "should let the LEMMA_ABSENCE fix that covers an error finding touch\
+          \ what the lemma correction reaches today: the plain sentence, the statement\
+          \ and the translation"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    allowedClients:
+    - audit-cli
+    _change: add
+  - name: hintcoherence
+    implementations:
+    - name: HintCoherenceCorrection
+      visibility: public
+      handwrittenTests:
+      - name: "should let a rule fix of hint-coherence touch only the hint, and a\
+          \ panel fix also the answers and the audio, as for «I ___ a lot of vegetables.»"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: answercompleteness
+    implementations:
+    - name: AnswerCompletenessCorrection
+      visibility: public
+      handwrittenTests:
+      - name: "should let the rule fix of answer-completeness touch only the accepted\
+          \ answers, as adding a missing form with «|» to «They ___ (not / be) from\
+          \ Ireland.»"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: multiplechoicevalidity
+    implementations:
+    - name: MultipleChoiceValidityCorrection
+      visibility: public
+      handwrittenTests:
+      - name: "should let a rule fix of multiple-choice-validity touch only the options,\
+          \ as the capital letters of «___ a child? (He)», and a panel fix also the\
+          \ statement, the translation and the audio"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: datacoherence
+    implementations:
+    - name: DataCoherenceCorrection
+      visibility: public
+      handwrittenTests:
+      - name: "should let a rule fix of data-coherence touch the stored sentence and\
+          \ the «/» of the answers or only ask to rerecord the audio with what the\
+          \ exercise says today, and a panel fix also the statement and the answers,\
+          \ with the audio following the exercise"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: exactduplicates
+    implementations:
+    - name: ExactDuplicatesCorrection
+      visibility: public
+      handwrittenTests:
+      - name: "should let only the panel touch a duplicate, rewriting the whole exercise\
+          \ with its audio and never deleting it"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: translationsenseengine
+    implementations:
+    - name: TranslationSenseCorrection
+      visibility: public
+      handwrittenTests:
+      - name: "should let the panel touch the translation, or the English with its\
+          \ audio, and offer both fixes, as for «I ___ a lot of vegetables.»"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      - name: "should name judges-disagree as its tie rule, so a disagreement of its\
+          \ two judges goes to the tray and never becomes a task"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R005
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: singleanswerengine
+    implementations:
+    - name: SingleAnswerCorrection
+      visibility: public
+      handwrittenTests:
+      - name: "should let a rule fix of single-answer touch only the answers, and\
+          \ a panel fix the answers, the hint or the sentence with its audio, as for\
+          \ «I ___ a lot of vegetables.»"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: minitheoryengine
+    implementations:
+    - name: MiniTheoryCorrection
+      visibility: public
+      handwrittenTests:
+      - name: "should declare that its findings group by topic, so the plan makes\
+          \ the mini-theory of «Contraste inicial» shown in nine exercises a single\
+          \ task"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R003
+      - name: should let the panel touch only the mini-theory of the exercises of
+          the topic that show that text
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: offlevelwords
+    implementations:
+    - name: OffLevelWordsCorrection
+      visibility: public
+      handwrittenTests:
+      - name: "should name lemma-absence as the analyzer whose task covers what off-level-words\
+          \ marks, and declare no edit scope of its own"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R004
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: grammar
+    implementations:
+    - name: GrammarCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  - name: nearduplicates
+    implementations:
+    - name: NearDuplicatesCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: RefinementTask
+    type: record
+    fields:
+    - name: origin
+      type: TaskOrigin
+      description: "De qué hallazgo salió la tarea (F-TAREA-R002). Nulo en las tareas\
+        \ de vocabulario, salvo la de lemma-absence que cubre hallazgos de errores\
+        \ (F-TAREA-R004): así las tareas de vocabulario son las de hoy (F-TAREA-R007)."
+      _change: add
+    _change: modify
+  - name: TaskOrigin
+    type: record
+    fields:
+    - name: finding
+      type: Finding
+      description: "El hallazgo propio de la tarea, con su identidad, gravedad, resolució\
+        n y costo. Nulo en una tarea de vocabulario que sólo cubre."
+    - name: cefrLevel
+      type: CefrLevel
+      description: "El nivel del nodo, el de su milestone."
+    - name: knowledgeId
+      type: String
+      description: El tema del nodo.
+    - name: knowledgeLabel
+      type: String
+    - name: reachedQuizIds
+      type: List<String>
+      description: "Los ejercicios que alcanza una tarea agrupada por tema: los que\
+        \ muestran esa miniteoría (F-TAREA-R003). Vacía en una tarea de ejercicio."
+    - name: coveredFindings
+      type: List<Finding>
+      description: "Los hallazgos declarados cubiertos por esta tarea (F-TAREA-R003,\
+        \ R004). La tarea queda resuelta sólo cuando su hallazgo y todos estos dejan\
+        \ de aparecer."
+    domainLinks:
+    - term: Tarea de corrección
+      role: carries
+    _change: add
+  - name: PlanFindingTally
+    type: record
+    fields:
+    - name: analyzer
+      type: String
+    - name: countingFindings
+      type: int
+      description: Hallazgos que cuentan como error en nodos que el analizador evaluó.
+    - name: ownTasks
+      type: int
+    - name: covered
+      type: int
+    - name: unconverted
+      type: int
+    - name: unconvertedReason
+      type: String
+      description: "Por qué no se convirtieron, o nulo si no hay ninguno: sin tipo\
+        \ de tarea, o sin tarea que lo cubra."
+    _change: add
+  interfaces:
+  - name: RefinerEngine
+    sealed: false
+    exposes:
+    - signature: "findingTally(AuditReport report, RefinementPlan plan): List<PlanFindingTally>"
+      _change: add
+    _change: modify
+  implementations:
+  - name: DefaultRefinerEngine
+    requiresInject:
+    - name: analyzerCorrectionCatalog
+      type: AnalyzerCorrectionCatalog
+      description: Qué analizador cubre a cuál (off-level-words con lemma-absence)
+        y cuál se agrupa por tema (mini-theory). Resuelve el gancho D-04 de la ronda
+        1 con una declaración y no con una regla general.
+      _change: add
+    handwrittenTests:
+    - name: "should open one task for each of the three counting findings of «I ___\
+        \ a lot of vegetables.» (A1, Afirmativas regulares), from hint-coherence,\
+        \ single-answer and translation-sense, all three on the same exercise"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R001
+    - name: "should add up, for each error analyzer of the plan, its counting findings\
+        \ to its own tasks plus its covered findings plus its unconverted findings\
+        \ in the finding tally"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R001
+    - name: "should declare as unconverted, under its analyzer and with the reason\
+        \ that it has no task kind, every counting finding of an error analyzer without\
+        \ a task kind, and open no task for them"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R001
+    - name: "should declare as unconverted, with the reason that no task covers it,\
+        \ an off-level-words finding whose exercise has no LEMMA_ABSENCE task"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R001
+    - name: "should never hold an error task without the finding it came from, nor\
+        \ a second task for the same finding"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R001
+    - name: "should carry in the single-answer task of «I ___ a lot of vegetables.»\
+        \ the identity of its finding, its blocking severity, the panel resolution,\
+        \ its paid-model cost, level A1 and the topic Afirmativas regulares"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R002
+    - name: "should derive from two plans of the same analysis the same error tasks\
+        \ with the same finding identities and in the same order, breaking equal priorities\
+        \ by node and finding identity"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R002
+    - name: should keep the identity of the hint-coherence finding of «I ___ a lot
+        of vegetables.» in its task when the plan is derived from a later analysis
+        of the same course
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R002
+    - name: "should turn the forty findings that the mini-theory of «$In time$ u $on\
+        \ time$» (B1) leaves in its forty exercises into one task on the topic that\
+        \ reaches the forty, owns one finding and covers the other thirty-nine"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R003
+    - name: "should open one topic task per mini-theory with a problem, two for «\
+        Contraste inicial» (A1) when two of its eight mini-theories are marked, and\
+        \ never one task per exercise that shows them"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R003
+    - name: "should count the forty mini-theory findings of «$In time$ u $on time$»\
+        \ in its tally as one own task and thirty-nine covered, so they still add\
+        \ up to forty"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R003
+    - name: "should declare the off-level-words findings of spread and quilt in «\
+        She spread the warm blue quilt on the bed.» (A2) covered by the LEMMA_ABSENCE\
+        \ task of that exercise, naming that task, and open no task of their own"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R004
+    - name: "should list the covered off-level-words findings in the origin of the\
+        \ LEMMA_ABSENCE task of «She spread the warm blue quilt on the bed.», so the\
+        \ task counts as resolved only when both analyzers stop marking spread and\
+        \ quilt"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R004
+    - name: "should never declare an off-level-words finding covered by the SENTENCE_LENGTH\
+        \ task of its exercise, because only the task of lemma-absence marks the same\
+        \ word"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R004
+    - name: "should open no task for the rank-only finding «los jueces no coinciden»\
+        \ of translation-sense and leave it out of the counting findings of the tally,\
+        \ for the tray of the batch of its level"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R005
+    - name: "should keep a single LEMMA_ABSENCE task for «She spread the warm blue\
+        \ quilt on the bed.» although lemma-absence marks two words in it, one task\
+        \ per exercise as the vocabulary plan does today"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R007
+    - name: "should derive from the 29/9 analysis, with the error tasks one per finding,\
+        \ the same 4,036 vocabulary tasks with the same kinds and nodes: 3,051 SENTENCE_LENGTH,\
+        \ 950 LEMMA_ABSENCE, 25 KNOWLEDGE_INSTRUCTIONS_LENGTH, 6 KNOWLEDGE_TITLE_LENGTH,\
+        \ 3 COCA_BUCKETS and 1 LEMMA_RECURRENCE"
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R007
+    - name: should leave the origin empty in every vocabulary task except a LEMMA_ABSENCE
+        task that covers an error finding
+      traceability:
+        feature: FEAT-TAREA
+        rule: F-TAREA-R007
+    _change: modify
+  packages:
+  - name: errortask
+    description: "Lo que se sabe de una tarea de errores, armado una sola vez: lo\
+      \ muestra `get task` y lo recibe la mesa (F-TAREA-R009, F-MESA-R003). Público\
+      \ para audit-cli y revision-domain."
+    visibility: public
+    models:
+    - name: ErrorTaskBrief
+      type: record
+      fields:
+      - name: task
+        type: RefinementTask
+      - name: finding
+        type: Finding
+      - name: coveredFindings
+        type: List<Finding>
+      - name: editScope
+        type: List<ExercisePart>
+        description: Lo que su arreglo puede tocar según su resolución; vacía si el
+          tipo no lo declara.
+      - name: scopeDeclared
+        type: boolean
+        description: "Falso cuando el analizador no tiene declaración de correcció\
+          n: la tanda la deja «sin alcance declarado» (F-TAREA-R006)."
+      - name: quizView
+        type: QuizStudentView
+        description: El ejercicio como lo ve el alumno (renderizador A-01 de la ronda
+          1). Nulo en una tarea del tema.
+      - name: reachedQuizViews
+        type: List<QuizStudentView>
+        description: "Los ejercicios que alcanza una tarea del tema, como los ve el\
+          \ alumno."
+      _change: add
+    interfaces:
+    - name: ErrorTaskBriefer
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "brief(AuditReport report, RefinementTask task): Optional<ErrorTaskBrief>"
+      _change: add
+    implementations:
+    - name: DefaultErrorTaskBriefer
+      requiresInject:
+      - name: analyzerCorrectionCatalog
+        type: AnalyzerCorrectionCatalog
+      - name: auditNodeIndexFactory
+        type: AuditNodeIndexFactory
+      - name: quizStudentViewRenderer
+        type: QuizStudentViewRenderer
+      visibility: public
+      handwrittenTests:
+      - name: "should mark the brief of a task whose analyzer has no correction declaration\
+          \ with scopeDeclared false and an empty edit scope, so the batch leaves\
+          \ it as «sin alcance declarado»"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      - name: "should brief the single-answer task of «I ___ a lot of vegetables.»\
+          \ with the exercise as the student sees it, its finding with its evidence\
+          \ and what a panel fix of single-answer may touch"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R009
+      - name: "should brief the mini-theory task of «$In time$ u $on time$» with the\
+          \ forty exercises it reaches as the student sees them, and no single quiz\
+          \ view"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R009
+      - name: should brief the LEMMA_ABSENCE task of «She spread the warm blue quilt
+          on the bed.» with the off-level-words findings it covers
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R009
+      - name: "should give no brief for a vocabulary task without origin, as a SENTENCE_LENGTH\
+          \ task"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R009
+      implements:
+      - ErrorTaskBriefer
+      _change: add
+    _change: add
+  _change: modify
+- name: revision-domain
+  packages:
+  - name: preservation
+    visibility: public
+    interfaces:
+    - name: CorrectionScope
+      sealed: false
+      exposes:
+      - signature: "changeableFields(Set<ExercisePart> parts, AuditTarget target):\
+          \ Set<ScopedField>"
+        _change: add
+      _change: modify
+    - name: PreservationCheck
+      sealed: false
+      exposes:
+      - signature: "verifyWithin(CourseEntity courseBefore, CourseEntity courseAfter,\
+          \ CourseElementSnapshot revised, Set<ScopedField> changeable): List<PreservationViolation>"
+        _change: add
+      _change: modify
+    _change: modify
+  - name: preservationengine
+    implementations:
+    - name: DefaultCorrectionScope
+      handwrittenTests:
+      - name: "should translate the hint, the answers and the audio permission of\
+          \ a panel fix of hint-coherence into the changeable fields of the quiz"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      - name: "should make changeable only the union of the parts declared by the\
+          \ tasks of an exercise, the hint of hint-coherence and the translation of\
+          \ translation-sense for «I ___ a lot of vegetables.»"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+    - name: DefaultPreservationCheck
+      handwrittenTests:
+      - name: "should report a violation when the translation of «I ___ a lot of vegetables.»\
+          \ changes and only its hint is changeable, and none when the translation\
+          \ is in the union of its tasks"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+      - name: should report a violation when what the audio says changes within a
+          scope that does not carry the audio permission
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R006
+  _change: modify
+- name: audit-cli
+  models:
+  - name: GetTasksFilter
+    type: record
+    fields:
+    - name: findingFilter
+      type: TaskFindingFilter
+      description: "Filtros por hallazgo de F-TAREA-R008; nulo o vacío, `get tasks`\
+        \ filtra como hoy."
+      _change: add
+    _change: modify
+  - name: TaskFindingFilter
+    type: record
+    fields:
+    - name: analyzer
+      type: Optional<String>
+    - name: resolution
+      type: Optional<FindingResolution>
+    - name: severity
+      type: Optional<FindingSeverity>
+    - name: level
+      type: Optional<CefrLevel>
+    - name: knowledgeId
+      type: Optional<String>
+    _change: add
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      requiresInject:
+      - name: errorTaskBriefer
+        type: ErrorTaskBriefer
+        description: "Arma el detalle de una tarea de errores para `get task` (F-TAREA-R009)\
+          \ y filtra `get tasks` por analizador, resolución, gravedad, nivel y tema\
+          \ (F-TAREA-R008, gancho E-07)."
+        _change: add
+      handwrittenTests:
+      - name: "should list with 'get tasks' only the panel tasks of the topic Afirmativas\
+          \ regulares when filtered by that topic and the panel resolution, each with\
+          \ its finding: single-answer and translation-sense of «I ___ a lot of vegetables.»\
+          \ but not its hint"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R008
+      - name: "should combine the filters by analyzer, severity and CEFR level with\
+          \ the sort by priority, as the blocking single-answer tasks of A1 in priority\
+          \ order"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R008
+      - name: should reject 'get tasks' filtered by an analyzer outside the catalog
+          with 'Analyzer 'hint-coherense' not found. Run 'content-audit get analyzers'
+          to see available analyzers.' and exit non-zero
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R008
+      - name: "should reject 'get tasks' filtered by a severity outside blocking,\
+          \ high, medium and low and exit non-zero"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R008
+      - name: "should list the tasks as today, vocabulary tasks included, when no\
+          \ filter by finding is given"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R008
+      - name: "should show 'get task' of the single-answer task of «I ___ a lot of\
+          \ vegetables.» with the exercise as the student sees it, its finding with\
+          \ its evidence (eat, like, buy and want also fit), its blocking severity,\
+          \ its panel resolution and what its fix may touch"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R009
+      - name: should show 'get task' of the mini-theory task of «$In time$ u $on time$»
+          with the forty exercises it reaches
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R009
+      _change: modify
+    - name: PlanCmd
+      handwrittenTests:
+      - name: "should print after deriving the plan, for each error analyzer, its\
+          \ counting findings, own tasks, covered findings and unconverted findings\
+          \ with their reason"
+        traceability:
+          feature: FEAT-TAREA
+          rule: F-TAREA-R001
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-TAREA
+  code: F-TAREA
+  journeys:
+  - id: F-TAREA-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands

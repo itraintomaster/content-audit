@@ -39,6 +39,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -57,12 +58,12 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
     private static final Path COURSE_PATH = Path.of("db/english-course");
 
     private static RefinementTask task(String id, String nodeId, DiagnosisKind kind) {
-        return new RefinementTask(id, AuditTarget.QUIZ, nodeId, "Be", kind, 1, RefinementTaskStatus.PENDING);
+        return new RefinementTask(id, AuditTarget.QUIZ, nodeId, "Be", kind, 1, RefinementTaskStatus.PENDING, null);
     }
 
     private static RefinementTask task(String id, int priority, DiagnosisKind kind) {
         return new RefinementTask(id, AuditTarget.QUIZ, "quiz-" + id, "Quiz " + id, kind, priority,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     private static RefinementPlan plan(List<RefinementTask> tasks) {
@@ -643,5 +644,23 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
         assertEquals(RefinementTaskStatus.SKIPPED, saved.getValue().getTasks().get(0).getStatus(),
                 "the runner's own save must not put the multiple-choice task back to PENDING");
         assertEquals(RefinementTaskStatus.STALE, saved.getValue().getTasks().get(1).getStatus());
+    }
+
+    @Test
+    @DisplayName("should correct a quiz-instruction task outside any batch with the comparative criteria, the three attempts and the outcomes of today")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R014")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
+    public void shouldCorrectAQuizinstructionTaskOutsideAnyBatchWithTheComparativeCriteriaTheThreeAttemptsAndTheOutcomesOfToday() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave out of a revise-instructions run the quiz-instruction tasks that are in the open batch")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
+    public void shouldLeaveOutOfAReviseinstructionsRunTheQuizinstructionTasksThatAreInTheOpenBatch() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

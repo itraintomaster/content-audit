@@ -242,7 +242,7 @@ public class FQicorJ001JourneyTest {
     private RefinementPlan buildPlan() {
         RefinementTask task = new RefinementTask(
                 TASK_ID, AuditTarget.QUIZ, QUIZ_ID, "Past Simple Quiz 1",
-                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING, null);
         return new RefinementPlan(PLAN_ID, AUDIT_ID, Instant.now(), List.of(task));
     }
 

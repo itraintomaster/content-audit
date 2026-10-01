@@ -26,6 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -630,5 +631,23 @@ public class DefaultPreservationCheckTest {
         List<String> unknownOptions = violatedPaths(optionlessSnapshot, currentWithOptions);
 
         assertTrue(unknownOptions.isEmpty(), unknownOptions.toString());
+    }
+
+    @Test
+    @DisplayName("should report a violation when the translation of «I ___ a lot of vegetables.» changes and only its hint is changeable, and none when the translation is in the union of its tasks")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldReportAViolationWhenTheTranslationOfIALotOfVegetablesChangesAndOnlyItsHintIsChangeableAndNoneWhenTheTranslationIsInTheUnionOfItsTasks() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should report a violation when what the audio says changes within a scope that does not carry the audio permission")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldReportAViolationWhenWhatTheAudioSaysChangesWithinAScopeThatDoesNotCarryTheAudioPermission() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

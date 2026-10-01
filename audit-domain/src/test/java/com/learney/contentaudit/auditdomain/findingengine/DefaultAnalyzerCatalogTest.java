@@ -1,4 +1,12 @@
 package com.learney.contentaudit.auditdomain.findingengine;
+
+import com.learney.contentaudit.auditdomain.LemmaCountBand;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolCard;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -226,7 +234,7 @@ public class DefaultAnalyzerCatalogTest {
         return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿Pregunta de " + name + "?",
                 "La oracion como la ve el alumno", new ArrayList<>(List.of(new AnalyzerRuleCard("rule-" + name,
                         "La regla de " + name, cost))), "Meta de " + name, family, List.of(AuditTarget.QUIZ),
-                List.of(FindingResolution.PANEL), cost, name);
+                List.of(FindingResolution.PANEL), cost, name, java.util.List.of());
     }
 
     static AnalyzerProvider providerOf(AnalyzerDescriptor card) {
@@ -330,5 +338,223 @@ public class DefaultAnalyzerCatalogTest {
                 .map(AnalyzerDescriptor::getDisplayName).toList();
         Assertions.assertEquals(List.of("Largo de oración", "Largo del título", "Largo de la consigna",
                 "Bandas de frecuencia", "Recurrencia", "Palabras que faltan", "Palabras poco vistas", "Consigna"), names);
+    }
+
+    @Test
+    @DisplayName("should give the same measure fingerprint to the same card and configuration in two runs")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldGiveTheSameMeasureFingerprintToTheSameCardAndConfigurationInTwoRuns()  {
+        // R004 inv. 3: the same card and the same configuration give the same fingerprint in any run.
+        // Two catalogs over the eight real providers, as two runs of analyze build them, with
+        // lemma-count at the bands of 30/9: every analyzer measures the same in both.
+        DefaultAnalyzerCatalog first = new DefaultAnalyzerCatalog(withLemmaCountBands(8, 6, 4, 3));
+        DefaultAnalyzerCatalog second = new DefaultAnalyzerCatalog(withLemmaCountBands(8, 6, 4, 3));
+
+        Assertions.assertEquals(8, first.list().size());
+        for (AnalyzerDescriptor card : first.list()) {
+            AnalyzerMeasure measure = first.measure(card.getName()).orElseThrow();
+            Assertions.assertEquals(card.getName(), measure.getAnalyzer(), "R004: the measure names its analyzer");
+            Assertions.assertTrue(measure.getFingerprint().matches("[0-9a-f]{64}"),
+                    "R004: the fingerprint is a SHA-256: " + measure.getFingerprint());
+            Assertions.assertEquals(measure, second.measure(card.getName()).orElseThrow(),
+                    "R004 inv. 3: the same measure in another run: " + card.getName());
+        }
+        Assertions.assertEquals(lemmaCountDescription(8, 6, 4, 3), first.measure("lemma-count").orElseThrow().getConfig(),
+                "R004: the measure keeps the configuration it measured with");
+        Assertions.assertEquals(Optional.empty(), first.measure("near-duplicates"),
+                "nothing invents the measure of an analyzer the catalog does not have");
+    }
+
+    @Test
+    @DisplayName("should change the fingerprint of lemma-count when its bands go from 4 for all to 8, 6, 4 and 3, and keep the fingerprints of the other analyzers")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldChangeTheFingerprintOfLemmacountWhenItsBandsGoFrom4ForAllTo864And3AndKeepTheFingerprintsOfTheOtherAnalyzers()  {
+        // R004 inv. 1 and its criterion: with the bands 8 · 6 · 4 · 3 of FEAT-POCOV the fingerprint of
+        // lemma-count is another than with 4 for all, and the fingerprints of the others do not move.
+        DefaultAnalyzerCatalog fourForAll = new DefaultAnalyzerCatalog(withLemmaCountBands(4, 4, 4, 4));
+        DefaultAnalyzerCatalog bands = new DefaultAnalyzerCatalog(withLemmaCountBands(8, 6, 4, 3));
+
+        List<String> changed = new ArrayList<>();
+        for (AnalyzerDescriptor card : fourForAll.list()) {
+            String before = fourForAll.measure(card.getName()).orElseThrow().getFingerprint();
+            String after = bands.measure(card.getName()).orElseThrow().getFingerprint();
+            if (!before.equals(after)) {
+                changed.add(card.getName());
+            }
+        }
+        Assertions.assertEquals(List.of("lemma-count"), changed, "R004: only lemma-count measures another way");
+        Assertions.assertEquals(lemmaCountDescription(4, 4, 4, 4), fourForAll.measure("lemma-count").orElseThrow().getConfig());
+        Assertions.assertEquals(lemmaCountDescription(8, 6, 4, 3), bands.measure("lemma-count").orElseThrow().getConfig());
+    }
+
+    @Test
+    @DisplayName("should keep a fingerprint when only the Spanish name, the question, the descriptions or the goal of the card change")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldKeepAFingerprintWhenOnlyTheSpanishNameTheQuestionTheDescriptionsOrTheGoalOfTheCardChange()  {
+        // R004 inv. 2: the texts of the card -- the Spanish name, the question, the descriptions of
+        // the card and of its rules, and the goal -- change without the measure changing.
+        AnalyzerDescriptor today = naturalnessCard("Naturalidad", "¿Un nativo diría así esta oración?",
+                "Las oraciones que un nativo no diría", "La oración no suena natural",
+                "Las más dudosas de cada nivel van primero a los jueces", AnalysisCost.LOCAL_MODEL, llama3(true));
+        AnalyzerDescriptor reworded = naturalnessCard("Lo natural", "¿Así lo diría alguien que habla inglés?",
+                "Busca lo que no suena natural", "Nadie lo diría así",
+                "Primero lo más dudoso", AnalysisCost.LOCAL_MODEL, llama3(true));
+
+        Assertions.assertEquals(fingerprintOf(today), fingerprintOf(reworded), "R004 inv. 2: only texts changed");
+        AnalyzerDescriptor otherCost = naturalnessCard("Naturalidad", "¿Un nativo diría así esta oración?",
+                "Las oraciones que un nativo no diría", "La oración no suena natural",
+                "Las más dudosas de cada nivel van primero a los jueces", AnalysisCost.PAID_MODEL, llama3(true));
+        Assertions.assertNotEquals(fingerprintOf(today), fingerprintOf(otherCost),
+                "R004 inv. 1: the cost of a rule is how it measures");
+    }
+
+    @Test
+    @DisplayName("should keep a fingerprint when only the exam state of a tool or its install hint changes")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldKeepAFingerprintWhenOnlyTheExamStateOfAToolOrItsInstallHintChanges()  {
+        // R004 inv. 2: the exam state of a tool, its summary and its install hint stay out of the
+        // fingerprint; the version that took the exam is in it (inv. 1).
+        LocalToolCard notTaken = new LocalToolCard(new LocalToolStatus("LanguageTool", "6.8", true, null,
+                "mvn dependency:resolve"), "LanguageTool 6.8 · filtro-1", JudgeExamStatus.NOT_TAKEN, "sin examen", false);
+        LocalToolCard approved = new LocalToolCard(new LocalToolStatus("LanguageTool", "6.8", true, null,
+                "viene con content-audit"), "LanguageTool 6.8 · filtro-1", JudgeExamStatus.APPROVED,
+                "aprobado: 4 de 4 en escribir/", false);
+        LocalToolCard otherFilter = new LocalToolCard(new LocalToolStatus("LanguageTool", "6.8", true, null,
+                "viene con content-audit"), "LanguageTool 6.8 · filtro-2", JudgeExamStatus.APPROVED,
+                "aprobado: 4 de 4 en escribir/", false);
+
+        Assertions.assertEquals(fingerprintOf(grammarCard(notTaken)), fingerprintOf(grammarCard(approved)),
+                "R004 inv. 2: the exam state and the install hint are not how it measures");
+        Assertions.assertNotEquals(fingerprintOf(grammarCard(approved)), fingerprintOf(grammarCard(otherFilter)),
+                "R004 inv. 1: the examined version is");
+    }
+
+    @Test
+    @DisplayName("should change the fingerprint of naturalness when it measures with claude -p instead of llama3 in Ollama")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldChangeTheFingerprintOfNaturalnessWhenItMeasuresWithClaudePInsteadOfLlama3InOllama()  {
+        // R004 inv. 1 and its criterion: when Ollama is not there and naturalness measures with
+        // claude -p (F-MLOCAL-R007), its fingerprint changes -- it marks by the answer and not by a
+        // number --, so a comparison shows a change of measure and not a course that changed.
+        AnalyzerDescriptor withOllama = naturalnessCard("Naturalidad", "¿Un nativo diría así esta oración?",
+                "Las oraciones que un nativo no diría", "La oración no suena natural",
+                "Las más dudosas de cada nivel van primero a los jueces", AnalysisCost.LOCAL_MODEL,
+                llama3(true), claudeP());
+        AnalyzerDescriptor withoutOllama = naturalnessCard("Naturalidad", "¿Un nativo diría así esta oración?",
+                "Las oraciones que un nativo no diría", "La oración no suena natural",
+                "Las más dudosas de cada nivel van primero a los jueces", AnalysisCost.LOCAL_MODEL,
+                llama3(false), claudeP());
+
+        AnalyzerMeasure local = measureOf(withOllama);
+        AnalyzerMeasure alternative = measureOf(withoutOllama);
+        Assertions.assertNotEquals(local.getFingerprint(), alternative.getFingerprint(),
+                "R004: claude -p is another measure than llama3:8b");
+        Assertions.assertEquals(local.getConfig(), alternative.getConfig(), "the configuration did not change, the tool did");
+    }
+
+    // -------------------------------------------------------------------------
+    // FEAT-RONDA2: the measure of an analyzer (F-RONDA2-R004)
+    // -------------------------------------------------------------------------
+
+    /** The eight real providers, with lemma-count at the threshold of each band, 1.000 to beyond 3.000. */
+    private static List<AnalyzerProvider> withLemmaCountBands(int... thresholds) {
+        List<AnalyzerProvider> providers = new ArrayList<>(realProviders());
+        providers.set(6, new LemmaCountAnalyzerProvider(Mockito.mock(EvpCatalogPort.class), lemmaCountConfig(thresholds)));
+        return providers;
+    }
+
+    private static final String[] BAND_NAMES = {"1.000 más comunes", "hasta 2.000", "hasta 3.000",
+            "más allá de 3.000 o sin puesto"};
+
+    private static final Integer[] BAND_MAX_RANKS = {1000, 2000, 3000, null};
+
+    /** The configuration of lemma-count with its bands, described as audit-application describes it. */
+    private static LemmaCountConfig lemmaCountConfig(int... thresholds) {
+        List<LemmaCountBand> bands = new ArrayList<>();
+        for (int i = 0; i < thresholds.length; i++) {
+            bands.add(new LemmaCountBand(BAND_NAMES[i], BAND_MAX_RANKS[i], thresholds[i]));
+        }
+        Map<String, Object> description = lemmaCountDescription(thresholds);
+        return new LemmaCountConfig() {
+            @Override
+            public int getThreshold() {
+                return 4;
+            }
+
+            @Override
+            public List<LemmaCountBand> getBands() {
+                return bands;
+            }
+
+            @Override
+            public Map<String, Object> describe() {
+                return description;
+            }
+        };
+    }
+
+    private static Map<String, Object> lemmaCountDescription(int... thresholds) {
+        Map<String, Object> description = new LinkedHashMap<>();
+        description.put("analyzerName", "lemma-count");
+        description.put("threshold", 4);
+        List<Map<String, Object>> rows = new ArrayList<>();
+        for (int i = 0; i < thresholds.length; i++) {
+            Map<String, Object> row = new LinkedHashMap<>();
+            row.put("name", BAND_NAMES[i]);
+            row.put("maxCocaRank", BAND_MAX_RANKS[i]);
+            row.put("threshold", thresholds[i]);
+            rows.add(row);
+        }
+        description.put("bands", rows);
+        return description;
+    }
+
+    /** The card of naturalness as package B describes it: two rules, local model and paid model, and its tools. */
+    private static AnalyzerDescriptor naturalnessCard(String displayName, String question, String description,
+            String ruleDescription, String goal, AnalysisCost localRuleCost, LocalToolCard... tools) {
+        return new AnalyzerDescriptor("naturalness", description, AuditTarget.QUIZ, question,
+                "La oración terminada con la primera respuesta",
+                List.of(new AnalyzerRuleCard("unlikely-sentence", ruleDescription, localRuleCost),
+                        new AnalyzerRuleCard("native-says-no", ruleDescription + ", según claude -p",
+                                AnalysisCost.PAID_MODEL)),
+                goal, AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.RANK_ONLY),
+                AnalysisCost.PAID_MODEL, displayName, List.of(tools));
+    }
+
+    /** The card of grammar as package B describes it, with the tool given. */
+    private static AnalyzerDescriptor grammarCard(LocalToolCard tool) {
+        return new AnalyzerDescriptor("grammar", "Errores de inglés en la oración terminada", AuditTarget.QUIZ,
+                "¿La oración terminada tiene errores de inglés?", "La oración terminada de cada respuesta aceptada",
+                List.of(new AnalyzerRuleCard("english-error", "LanguageTool marca un error de inglés",
+                                AnalysisCost.INSTANT),
+                        new AnalyzerRuleCard("final-punctuation", "La oración termina con su signo", AnalysisCost.INSTANT)),
+                "0 ejercicios con error", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
+                List.of(FindingResolution.RULE, FindingResolution.PANEL), AnalysisCost.INSTANT, "Gramática",
+                List.of(tool));
+    }
+
+    private static LocalToolCard llama3(boolean available) {
+        return new LocalToolCard(new LocalToolStatus("llama3:8b en Ollama", "llama3:8b@365c0bd3c000", available,
+                available ? null : "Ollama no responde en http://127.0.0.1:11434", "ollama pull llama3:8b"),
+                "llama3:8b@365c0bd3c000 · native-yes-no-1", JudgeExamStatus.APPROVED, "aprobado", false);
+    }
+
+    private static LocalToolCard claudeP() {
+        return new LocalToolCard(new LocalToolStatus("claude -p", "naturalness-yes-no@1", true, null,
+                "claude auth login"), "naturalness-yes-no@1", JudgeExamStatus.APPROVED, "aprobado", true);
+    }
+
+    /** The measure of a card whose provider has no configuration, in a catalog of its own. */
+    private static AnalyzerMeasure measureOf(AnalyzerDescriptor card) {
+        return new DefaultAnalyzerCatalog(List.of(providerOf(card))).measure(card.getName()).orElseThrow();
+    }
+
+    private static String fingerprintOf(AnalyzerDescriptor card) {
+        return measureOf(card).getFingerprint();
     }
 }

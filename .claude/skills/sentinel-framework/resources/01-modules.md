@@ -77,6 +77,10 @@ project-root/
 │   ├── pom.xml            # Module POM (generated)
 │   ├── src/main/java/     # Production code
 │   └── src/test/java/     # Test code
+├── local-language-infrastructure/
+│   ├── pom.xml            # Module POM (generated)
+│   ├── src/main/java/     # Production code
+│   └── src/test/java/     # Test code
 ```
 
 ## Declared Modules
@@ -91,10 +95,10 @@ project-root/
 | Depends On | course-domain, evaluation-ledger-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 20 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection, EvaluationRunPolicy, EmptyReevaluationSetException, AmbiguousReevaluationScopeException, EvaluationRunPurpose, LemmaCountBand) |
-| Interfaces | 44 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig, QuizInstructionVerdictReader, QuizInstructionConfig, AnalyzerProvider, AnalyzerCatalog, FindingCollector, ContextNumbersCalculator, QuizStudentViewRenderer, TopicStudentViewQuery, IrregularFormsCatalog, CorrectorMatcher, FormEquivalenceTableSource, AudioRecordingRegistry, ProductionSentenceSource, JudgeExamRegistry, JudgeRuntimeConfig, TranslationSenseConfig, SingleAnswerConfig, MiniTheoryConfig, ChoiceAlternativeConfig) |
+| Models | 22 (AuditReport, AuditableCourse, AuditableKnowledge, AuditableTopic, AuditableMilestone, AuditableQuiz, CefrLevel, TargetRange, AuditTarget, NlpToken, AnalyzerDescriptor, AuditNode, SentenceLengthDiagnosis, AuditReportSummary, ActiveAnalysisSelection, EvaluationRunPolicy, EmptyReevaluationSetException, AmbiguousReevaluationScopeException, EvaluationRunPurpose, LemmaCountBand, NlpResourcesUnavailableException, Baseline) |
+| Interfaces | 48 (AuditEngine, ContentAnalyzer, AnalysisResult, NlpTokenizer, SentenceLengthConfig, ScoreAggregator, CocaBucketsConfig, ContentWordFilter, LemmaRecurrenceConfig, LemmaAbsenceConfig, EvpCatalogPort, AuditableEntity, SelfDescribingConfig, NodeDiagnoses, CourseDiagnoses, LevelDiagnoses, TopicDiagnoses, KnowledgeDiagnoses, QuizDiagnoses, AuditReportStore, CourseMapper, ActiveAnalysisSelectionStore, AuditNodeIndex, AuditNodeIndexFactory, LemmaCountConfig, QuizInstructionVerdictReader, QuizInstructionConfig, AnalyzerProvider, AnalyzerCatalog, FindingCollector, ContextNumbersCalculator, QuizStudentViewRenderer, TopicStudentViewQuery, IrregularFormsCatalog, CorrectorMatcher, FormEquivalenceTableSource, AudioRecordingRegistry, ProductionSentenceSource, JudgeExamRegistry, JudgeRuntimeConfig, TranslationSenseConfig, SingleAnswerConfig, MiniTheoryConfig, ChoiceAlternativeConfig, BaselineStore, AnalyzerCorrection, AnalyzerCorrectionCatalog, RuleFix) |
 | Implementations | 8 (IAuditEngine, KnowledgeTitleLengthAnalyzer, KnowledgeInstructionsLengthAnalyzer, SentenceLengthAnalyzer, IScoreAggregator, SentenceLengthAnalyzerProvider, KnowledgeTitleLengthAnalyzerProvider, KnowledgeInstructionsLengthAnalyzerProvider) |
-| Packages | 30 (coca [internal], lrec [internal], labs [internal], auditnodeindex [internal], lemmacount [internal], lexicalflags [public], quizinstruction [public], quizinstructionengine [public], finding [public], catalog [public], contextnumbers [public], findingengine [public], studentview [public], choicealternative [public], hintcoherence [public], correctormatch [public], answercompleteness [public], multiplechoicevalidity [public], datacoherence [public], exactduplicates [public], judging [public], judgingengine [public], translationsense [public], translationsenseengine [public], singleanswer [public], singleanswerengine [public], minitheory [public], minitheoryengine [public], choicealternativeengine [public], offlevelwords [public]) |
+| Packages | 39 (coca [internal], lrec [internal], labs [internal], auditnodeindex [internal], lemmacount [internal], lexicalflags [public], quizinstruction [public], quizinstructionengine [public], finding [public], catalog [public], contextnumbers [public], findingengine [public], studentview [public], choicealternative [public], hintcoherence [public], correctormatch [public], answercompleteness [public], multiplechoicevalidity [public], datacoherence [public], exactduplicates [public], judging [public], judgingengine [public], translationsense [public], translationsenseengine [public], singleanswer [public], singleanswerengine [public], minitheory [public], minitheoryengine [public], choicealternativeengine [public], offlevelwords [public], localtools [public], localtoolsengine [public], finishedsentence [public], grammar [public], naturalness [public], nearduplicates [public], correction [public], correctionengine [public], rulefix [public]) |
 
 ### course-domain
 
@@ -121,10 +125,10 @@ project-root/
 | Depends On | audit-domain, course-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | internal |
-| Models | 17 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext, OutOfCatalogWordContext, QuizInstructionCorrectionContext, UnconvertedScoreCount) |
+| Models | 19 (DiagnosisKind, RefinementTaskStatus, RefinementTask, RefinementPlan, SuggestedLemma, SentenceLengthCorrectionContext, MisplacedLemmaContext, LemmaAbsenceCorrectionContext, LengthDirection, SuggestedLemmaQueryResult, SuggestedLemmaQueryRejectedException, SuggestedLemmaQueryCriteria, ScarceContentWord, KnowledgeTitleCorrectionContext, OutOfCatalogWordContext, QuizInstructionCorrectionContext, UnconvertedScoreCount, TaskOrigin, PlanFindingTally) |
 | Interfaces | 7 (RefinerEngine, RefinementPlanStore, CorrectionContextResolver, CorrectionContext, SuggestedLemmaQueryPort, SuggestedLemmaQuerySession, SuggestedLemmaQuerySessionFactory) |
 | Implementations | 6 (SentenceLengthContextResolver, LemmaAbsenceContextResolver, DispatchingCorrectionContextResolver, DefaultRefinerEngine, KnowledgeTitleContextResolver, QuizInstructionContextResolver) |
-| Packages | 2 (lemmasuggestion [internal], topicwords [public]) |
+| Packages | 3 (lemmasuggestion [internal], topicwords [public], errortask [public]) |
 
 ### audit-application
 
@@ -161,11 +165,11 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.auditcli` |
-| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure, evaluation-ledger-domain, evaluation-ledger-infrastructure, agent-runtime-infrastructure, quiz-instruction-infrastructure |
+| Depends On | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure, evaluation-ledger-domain, evaluation-ledger-infrastructure, agent-runtime-infrastructure, quiz-instruction-infrastructure, local-language-infrastructure |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
-| Models | 6 (GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter, AnalyzeOptions) |
-| Interfaces | 17 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand, RepairCommand, ReviseInstructionsCommand, AssessCandidateCommand, ExamCommand) |
+| Models | 7 (GetTasksFilter, LagenMode, PlanStorageMode, EphemeralRenderOptions, SuggestedLemmasFilter, AnalyzeOptions, TaskFindingFilter) |
+| Interfaces | 25 (AnalyzeCommand, GetCommand, DeleteCommand, PruneCommand, PlanCommand, ReviseCommand, ConfigAnalyzerCommand, StatsAnalyzerCommand, ApproveCommand, RejectCommand, GetConsolidatedCommand, SetActiveAnalysisCommand, LexisCommand, RepairCommand, ReviseInstructionsCommand, AssessCandidateCommand, ExamCommand, SetBaselineCommand, SaveProjectionCommand, CompareCommand, GoalsCommand, BlindSampleCommand, ErrorRateCommand, BatchCommand, TrayCommand) |
 | Implementations | 0 |
 | Packages | 3 (commands [internal], formatting [internal], bootstrap [internal]) |
 
@@ -211,8 +215,8 @@ project-root/
 | Scope | internal |
 | Models | 0 |
 | Interfaces | 0 |
-| Implementations | 7 (FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore, FileSystemActiveAnalysisSelectionStore, FileSystemQuizInstructionCorrectionRunStore, FileSystemJudgeExamRegistry) |
-| Packages | 1 (exercisecopies [internal]) |
+| Implementations | 12 (FileSystemAuditReportStore, FileSystemRefinementPlanStore, FileSystemRevisionArtifactStore, FileSystemImpactPreviewStore, FileSystemActiveAnalysisSelectionStore, FileSystemQuizInstructionCorrectionRunStore, FileSystemJudgeExamRegistry, FileSystemBaselineStore, FileSystemProjectionStore, FileSystemGoalDeclarationSource, FileSystemSealedGoalsStore, FileSystemBlindSampleStore) |
+| Packages | 3 (exercisecopies [internal], batchstore [internal], traystore [internal]) |
 
 ### revision-domain
 
@@ -221,13 +225,13 @@ project-root/
 | Property | Value |
 |----------|-------|
 | Package | `com.learney.contentaudit.revisiondomain` |
-| Depends On | audit-domain, refiner-domain, course-domain |
+| Depends On | audit-domain, refiner-domain, course-domain, evaluation-ledger-domain |
 | Allowed Clients | (unrestricted) |
 | Scope | public |
 | Models | 20 (RevisionVerdict, RevisionOutcomeKind, CourseElementSnapshot, RevisionProposal, RevisionArtifact, RevisionOutcome, RevisionEngineConfig, ApprovalMode, ProposalDecisionOutcomeKind, ProposalDecisionOutcome, StrategyId, LemmaAbsenceQuizCandidate, ProposalStrategyFailedException, ProposalDerivationException, ConsolidatedViewBuilderConfig, CorrectionContextSource, CorrectionContextOverride, OverrideRejectedException, DiagnosisNotSustainedException, NoAcceptableCandidateException) |
-| Interfaces | 24 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser, KnowledgeTitleProposalStrategy, KnowledgeTitleProposalStrategyRegistry, KnowledgeTitleProposalDeriver, PreservationFactory, QuizInstructionProposalStrategy, QuizInstructionProposalStrategyRegistry, QuizInstructionCorrectionRunner, QuizInstructionCorrectionRunnerFactory, QuizInstructionCorrectionRunStore) |
+| Interfaces | 28 (Reviser, RevisionValidator, RevisionValidatorResult, RevisionArtifactStore, CourseElementLocator, RevisionEngine, RevisionEngineFactory, RevisionValidatorFactory, ProposalDecisionService, ProposalDecisionServiceFactory, LemmaAbsenceProposalStrategy, LemmaAbsenceProposalStrategyRegistry, LemmaAbsenceProposalDeriver, ImpactPreviewStore, CorrectionContextOverrideParser, KnowledgeTitleProposalStrategy, KnowledgeTitleProposalStrategyRegistry, KnowledgeTitleProposalDeriver, PreservationFactory, QuizInstructionProposalStrategy, QuizInstructionProposalStrategyRegistry, QuizInstructionCorrectionRunner, QuizInstructionCorrectionRunnerFactory, QuizInstructionCorrectionRunStore, ProjectionStore, GoalDeclarationSource, SealedGoalsStore, BlindSampleStore) |
 | Implementations | 0 |
-| Packages | 12 (engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public], fielddiff [internal], contextoverride [internal], knowledgetitle [public], preservation [public], preservationengine [internal], candidatecriteria [public], candidatecriteriaengine [internal], quizinstruction [public]) |
+| Packages | 25 (engine [internal], lemmaabsence [public], impactpreview [public], consolidatedview [public], fielddiff [internal], contextoverride [internal], knowledgetitle [public], preservation [public], preservationengine [internal], candidatecriteria [public], candidatecriteriaengine [internal], quizinstruction [public], projection [public], comparison [public], comparisonengine [public], blindsample [public], blindsampleengine [public], nonregression [public], nonregressionengine [internal], panel [public], panelengine [internal], batch [public], batchengine [internal], tray [public], trayengine [internal]) |
 
 ### revision-infrastructure
 
@@ -242,7 +246,7 @@ project-root/
 | Models | 0 |
 | Interfaces | 0 |
 | Implementations | 0 |
-| Packages | 5 (lagen [public], lemmaabsenceagent [internal], knowledgetitleagent [public], quizinstructionagent [public], candidatejudgment [public]) |
+| Packages | 6 (lagen [public], lemmaabsenceagent [internal], knowledgetitleagent [public], quizinstructionagent [public], candidatejudgment [public], panelagent [public]) |
 
 ### evaluation-ledger-domain
 
@@ -307,6 +311,22 @@ project-root/
 | Implementations | 0 |
 | Packages | 7 (instructionjudge [public], instructionverdict [public], agentjudge [public], translationsenseverdict [public], singleanswerverdict [public], minitheoryverdict [public], choicealternativeverdict [public]) |
 
+### local-language-infrastructure
+
+> Las herramientas de idioma que corren en esta máquina (FEAT-MLOCAL): LanguageTool dentro del proceso y los modelos de Ollama, por HTTP a una dirección local. Ningún texto del curso sale de la máquina por acá: una dirección de Ollama que no es local, o «off», deja los modelos no disponibles, con el motivo, y nunca abre una conexión (F-MLOCAL-R001); entonces los dos de modelo usan la alternativa con claude -p, que no vive acá sino en los jueces de C. Detalle de la raíz de composición: allowedClients=[audit-cli].
+
+
+| Property | Value |
+|----------|-------|
+| Package | `com.learney.contentaudit.locallanguageinfrastructure` |
+| Depends On | audit-domain |
+| Allowed Clients | audit-cli |
+| Scope | public |
+| Models | 1 (OllamaEndpoint) |
+| Interfaces | 1 (OllamaModelFactory) |
+| Implementations | 0 |
+| Packages | 2 (languagetool [public], ollama [public]) |
+
 ## Dependency Graph
 
 ```
@@ -339,6 +359,7 @@ audit-cli ──depends──> evaluation-ledger-domain
 audit-cli ──depends──> evaluation-ledger-infrastructure
 audit-cli ──depends──> agent-runtime-infrastructure
 audit-cli ──depends──> quiz-instruction-infrastructure
+audit-cli ──depends──> local-language-infrastructure
 nlp-infrastructure ──depends──> audit-domain
 vocabulary-infrastructure ──depends──> audit-domain
 audit-infrastructure ──depends──> audit-domain
@@ -347,6 +368,7 @@ audit-infrastructure ──depends──> revision-domain
 revision-domain ──depends──> audit-domain
 revision-domain ──depends──> refiner-domain
 revision-domain ──depends──> course-domain
+revision-domain ──depends──> evaluation-ledger-domain
 revision-infrastructure ──depends──> revision-domain
 revision-infrastructure ──depends──> refiner-domain
 revision-infrastructure ──depends──> agent-runtime-infrastructure
@@ -358,6 +380,7 @@ agent-runtime-infrastructure (leaf — no dependencies)
 quiz-instruction-infrastructure ──depends──> audit-domain
 quiz-instruction-infrastructure ──depends──> evaluation-ledger-domain
 quiz-instruction-infrastructure ──depends──> agent-runtime-infrastructure
+local-language-infrastructure ──depends──> audit-domain
 ```
 
 ## Access Control Matrix
@@ -369,16 +392,17 @@ quiz-instruction-infrastructure ──depends──> agent-runtime-infrastructur
 | refiner-domain | audit-domain, course-domain | (any) |
 | audit-application | audit-domain, course-domain, refiner-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, revision-domain, evaluation-ledger-domain | (any) |
 | course-infrastructure | course-domain | (any) |
-| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure, evaluation-ledger-domain, evaluation-ledger-infrastructure, agent-runtime-infrastructure, quiz-instruction-infrastructure | (any) |
+| audit-cli | audit-application, audit-domain, course-domain, course-infrastructure, nlp-infrastructure, vocabulary-infrastructure, audit-infrastructure, refiner-domain, revision-domain, revision-infrastructure, evaluation-ledger-domain, evaluation-ledger-infrastructure, agent-runtime-infrastructure, quiz-instruction-infrastructure, local-language-infrastructure | (any) |
 | nlp-infrastructure | audit-domain | (any) |
 | vocabulary-infrastructure | audit-domain | (any) |
 | audit-infrastructure | audit-domain, refiner-domain, revision-domain | (any) |
-| revision-domain | audit-domain, refiner-domain, course-domain | (any) |
+| revision-domain | audit-domain, refiner-domain, course-domain, evaluation-ledger-domain | (any) |
 | revision-infrastructure | revision-domain, refiner-domain, agent-runtime-infrastructure, audit-domain, course-domain | audit-cli |
 | evaluation-ledger-domain | (none) | (any) |
 | evaluation-ledger-infrastructure | evaluation-ledger-domain | (any) |
 | agent-runtime-infrastructure | (none) | quiz-instruction-infrastructure, audit-cli, revision-infrastructure |
 | quiz-instruction-infrastructure | audit-domain, evaluation-ledger-domain, agent-runtime-infrastructure | audit-cli |
+| local-language-infrastructure | audit-domain | audit-cli |
 
 ## Enforcement Mechanisms
 

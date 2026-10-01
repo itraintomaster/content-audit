@@ -70,6 +70,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -1380,28 +1381,14 @@ public class DefaultAuditRunnerTest {
      * Main builds them over the files the packages install, and every judge with budget 0.
      */
     private static AuditReport runRoundOne(LemmaCountConfig lemmaCount, Path workdir) {
-        EvpCatalogPort evp = new FileSystemEvpCatalog(Path.of("../analysis/recursos-compartidos/enriched_vocabulary_catalog.json"));
-        DefaultLemmaAbsenceConfig absence = new DefaultLemmaAbsenceConfig();
-        DefaultSentenceLexicalScorer scorer = new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), absence);
-        QuizStudentViewRenderer renderer = new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
-                DefaultQuizSentenceConverter.create());
-        Path shared = Path.of("../analysis/recursos-compartidos");
-        IrregularFormsCatalog irregularForms =
-                new com.learney.contentaudit.vocabularyinfrastructure.irregularforms.FileSystemIrregularFormsCatalog(
-                        shared.resolve("formas-irregulares.json"));
-        CorrectorMatcher corrector = new com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher(
-                new com.learney.contentaudit.vocabularyinfrastructure.correctortable.FileSystemFormEquivalenceTableSource(
-                        shared.resolve("corrector/formas-equivalentes.json")).load());
         RoundOneLedger ledger = new RoundOneLedger();
-        EvaluationSessionFactory sessions = new DefaultEvaluationSessionFactory(ledger,
-                new FakeQuizInstructionContentFingerprinter());
-        com.learney.contentaudit.auditdomain.judging.JudgeRuntime runtime =
-                new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime(sessions,
-                        new com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory(
-                                ledger, new FakeQuizInstructionContentFingerprinter()),
-                        new com.learney.contentaudit.auditinfrastructure.FileSystemJudgeExamRegistry(workdir), ledger,
-                        new DefaultJudgeRuntimeConfig());
-        Evaluator judge = new Evaluator() {
+        com.learney.contentaudit.auditdomain.judging.JudgeRuntime runtime = roundOneRuntime(ledger, workdir);
+        return runOn299(roundOneProviders(lemmaCount, runtime, roundOneJudge()), ROUND_ONE);
+    }
+
+    /** A judge that is never consulted: in these runs every judge has budget 0. */
+    private static Evaluator roundOneJudge() {
+        return new Evaluator() {
             @Override
             public String evaluatorId() {
                 return "round-one-judge";
@@ -1417,6 +1404,54 @@ public class DefaultAuditRunnerTest {
                 throw new AssertionError("with budget 0 no judge is consulted");
             }
         };
+    }
+
+    /** The common runtime of the judges over the ledger of the test and the exam registry of the working directory. */
+    private static com.learney.contentaudit.auditdomain.judging.JudgeRuntime roundOneRuntime(RoundOneLedger ledger,
+            Path workdir) {
+        EvaluationSessionFactory sessions = new DefaultEvaluationSessionFactory(ledger,
+                new FakeQuizInstructionContentFingerprinter());
+        return new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime(sessions,
+                new com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory(
+                        ledger, new FakeQuizInstructionContentFingerprinter()),
+                new com.learney.contentaudit.auditinfrastructure.FileSystemJudgeExamRegistry(workdir), ledger,
+                new DefaultJudgeRuntimeConfig());
+    }
+
+    /** analyze of the 29/9 course (its recorded spaCy tokens) with these providers, every judge with budget 0. */
+    private static AuditReport runOn299(List<AnalyzerProvider> providers, List<String> expectedNames) {
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
+        assertEquals(expectedNames, catalog.list().stream().map(AnalyzerDescriptor::getName).toList(),
+                "the analyzers of the run, in the order of the catalog");
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(new RecordedTokenizer(), DefaultQuizSentenceConverter.create());
+        DefaultAuditRunner runner = new DefaultAuditRunner(new FileSystemCourseRepository(new CourseValidatorImpl()), mapper,
+                new IAuditEngine(new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator(), catalog,
+                        new DefaultFindingCollector(), new DefaultContextNumbersCalculator()), catalog);
+        Map<String, EvaluationRunPolicy> noBudget = new LinkedHashMap<>();
+        for (AnalyzerDescriptor card : catalog.list()) {
+            if (JUDGES.contains(card.getName())) {
+                noBudget.put(card.getName(), new EvaluationRunPolicy(0, false, null, null, null, null));
+            }
+        }
+        return runner.runAudit(Path.of("../db/english-course"), new AuditRunRequest(null, null, noBudget));
+    }
+
+    /**
+     * The seventeen providers of round 1, built as Main builds them over the files the packages
+     * install, with the judges over the given runtime and judge.
+     */
+    private static List<AnalyzerProvider> roundOneProviders(LemmaCountConfig lemmaCount,
+            com.learney.contentaudit.auditdomain.judging.JudgeRuntime runtime, Evaluator judge) {
+        EvpCatalogPort evp = new FileSystemEvpCatalog(Path.of("../analysis/recursos-compartidos/enriched_vocabulary_catalog.json"));
+        DefaultLemmaAbsenceConfig absence = new DefaultLemmaAbsenceConfig();
+        DefaultSentenceLexicalScorer scorer = new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), absence);
+        QuizStudentViewRenderer renderer = new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                DefaultQuizSentenceConverter.create());
+        Path shared = Path.of("../analysis/recursos-compartidos");
+        IrregularFormsCatalog irregularForms =
+                new com.learney.contentaudit.vocabularyinfrastructure.irregularforms.FileSystemIrregularFormsCatalog(
+                        shared.resolve("formas-irregulares.json"));
+        CorrectorMatcher corrector = productionCorrector();
 
         List<AnalyzerProvider> providers = new ArrayList<>(classicProviders(evp).subList(0, 6));
         providers.add(new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(scorer, absence,
@@ -1449,17 +1484,14 @@ public class DefaultAuditRunnerTest {
         providers.add(new com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryAnalyzerProvider(runtime, judge,
                 mock(com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdictReader.class),
                 new DefaultMiniTheoryConfig(), renderer));
+        return providers;
+    }
 
-        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
-        assertEquals(ROUND_ONE, catalog.list().stream().map(AnalyzerDescriptor::getName).toList(),
-                "the seventeen of round 1, in the order of F-RONDA1-R004");
-        CourseToAuditableMapper mapper = new CourseToAuditableMapper(new RecordedTokenizer(), DefaultQuizSentenceConverter.create());
-        DefaultAuditRunner runner = new DefaultAuditRunner(new FileSystemCourseRepository(new CourseValidatorImpl()), mapper,
-                new IAuditEngine(new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceScoreAggregator(), catalog,
-                        new DefaultFindingCollector(), new DefaultContextNumbersCalculator()), catalog);
-        Map<String, EvaluationRunPolicy> noBudget = new LinkedHashMap<>();
-        JUDGES.forEach(name -> noBudget.put(name, new EvaluationRunPolicy(0, false, null, null, null, null)));
-        return runner.runAudit(Path.of("../db/english-course"), new AuditRunRequest(null, null, noBudget));
+    /** The corrector's comparison over the copy of its production table. */
+    private static CorrectorMatcher productionCorrector() {
+        return new com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher(
+                new com.learney.contentaudit.vocabularyinfrastructure.correctortable.FileSystemFormEquivalenceTableSource(
+                        Path.of("../analysis/recursos-compartidos/corrector/formas-equivalentes.json")).load());
     }
 
     /** Two decimals, with a decimal comma: 0,738621 -> 73,86. */
@@ -1531,5 +1563,326 @@ public class DefaultAuditRunnerTest {
         };
         return new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime(sessions, sessions, approved,
                 evaluatorId -> java.util.List.of(), new com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig());
+    }
+
+    @Test
+    @DisplayName("should accept a budget for near-duplicates, which consults a model, and keep rejecting a budget for grammar, which is instant")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R002")
+    public void shouldAcceptABudgetForNearduplicatesWhichConsultsAModelAndKeepRejectingABudgetForGrammarWhichIsInstant() {
+        // F-RONDA2-R002: --budget name=N limits the route it touches, and a budget only means something
+        // to an analyzer that consults a model. near-duplicates may consult one -- its card costs paid
+        // model, the highest of its rules -- and takes the budget; grammar is instant and a budget
+        // for it is still rejected, before the course is loaded.
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("q1"));
+        List<Optional<EvaluationRunPolicy>> nearDuplicatesPolicies = new ArrayList<>();
+        DefaultAuditRunner runner = runnerWith(packageBStandIn(grammarCard(), new ArrayList<>()),
+                packageBStandIn(nearDuplicatesCard(), nearDuplicatesPolicies));
+
+        runner.runAudit(coursePath, new AuditRunRequest(Set.of("near-duplicates"), null,
+                Map.of("near-duplicates", new EvaluationRunPolicy(30, false, null, null, null, null))));
+        IllegalArgumentException rejected = assertThrows(IllegalArgumentException.class,
+                () -> runner.runAudit(coursePath, new AuditRunRequest(Set.of("grammar"), null,
+                        Map.of("grammar", new EvaluationRunPolicy(30, false, null, null, null, null)))));
+
+        assertEquals(1, nearDuplicatesPolicies.size());
+        assertEquals(30, nearDuplicatesPolicies.get(0).orElseThrow().getMaxNewEvaluations(),
+                "R002: the budget reaches near-duplicates as its run policy");
+        assertTrue(rejected.getMessage().contains("'grammar' does not consult a model"), rejected.getMessage());
+        verify(courseRepository, times(1)).load(coursePath);
+    }
+
+    @Test
+    @DisplayName("should hand naturalness no run policy when the run declares no budget, so its provider completes it by the route it consults")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R002")
+    public void shouldHandNaturalnessNoRunPolicyWhenTheRunDeclaresNoBudgetSoItsProviderCompletesItByTheRouteItConsults() {
+        // F-RONDA2-R002 inv. 1: the runner does not complete the policy. Without --budget for it,
+        // naturalness gets none -- also when the run declares a budget for another analyzer --, so
+        // its provider completes it by the route it consults: no cap with llama3 in Ollama, the 0
+        // of the judges with claude -p.
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithQuizzes("q1"));
+        List<Optional<EvaluationRunPolicy>> naturalnessPolicies = new ArrayList<>();
+        DefaultAuditRunner runner = runnerWith(packageBStandIn(naturalnessCard(), naturalnessPolicies),
+                packageBStandIn(nearDuplicatesCard(), new ArrayList<>()));
+
+        runner.runAudit(coursePath, new AuditRunRequest(Set.of("naturalness"), null, null));
+        runner.runAudit(coursePath, new AuditRunRequest(null, null,
+                Map.of("near-duplicates", new EvaluationRunPolicy(5, false, null, null, null, null))));
+
+        assertEquals(List.of(Optional.empty(), Optional.empty()), naturalnessPolicies,
+                "R002 inv. 1: no policy reaches naturalness when the run declares none for it");
+    }
+
+    @Test
+    @DisplayName("should publish on the 29/9 course with the twenty analyzers a vocabulary of 73.86 % and levels 96.02, 93.60, 78.87 and 63.86")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R010")
+    @org.junit.jupiter.api.Disabled("FEAT-RONDA2: espera a B, que construya los proveedores de grammar, naturalness y near-duplicates")
+    public void shouldPublishOnThe299CourseWithTheTwentyAnalyzersAVocabularyOf7386AndLevels960293607887And6386(@org.junit.jupiter.api.io.TempDir Path workdir) {
+        // F-RONDA2-R010 inv. 1: with the twenty in the catalog -- the three of package B are of the
+        // errors family and do not enter the average of vocabulary --, the 29/9 course publishes the
+        // vocabulary of the round 1 integrated: 73,86 % and 96,02 · 93,60 · 78,87 · 63,86.
+        AuditReport report = runRoundTwo(workdir);
+
+        assertEquals("73,86", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R010: the course");
+        assertEquals(List.of("96,02", "93,60", "78,87", "63,86"), report.getRoot().getChildren().stream()
+                .map(level -> percent2(level.getNumbers().getVocabularyScore())).toList(), "R010: A1, A2, B1 and B2");
+    }
+
+    @Test
+    @DisplayName("should reject before loading the course a run that asks for naturalness by name when neither llama3:8b in Ollama nor claude -p is available, with «Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is not available: ollama pull llama3:8b.»")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
+    public void shouldRejectBeforeLoadingTheCourseARunThatAsksForNaturalnessByNameWhenNeitherLlama38bInOllamaNorClaudePIsAvailableWithAnalyzerNaturalnessNeedsLlama38bEnOllamaOClaudePWhichIsNotAvailableOllamaPullLlama38b() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject before loading the course a run that asks for grammar by name when LanguageTool is not available, since grammar has no alternative")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
+    public void shouldRejectBeforeLoadingTheCourseARunThatAsksForGrammarByNameWhenLanguageToolIsNotAvailableSinceGrammarHasNoAlternative() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not reject a run that asks for near-duplicates by name without Ollama when the claude -p alternative is available")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
+    public void shouldNotRejectARunThatAsksForNearduplicatesByNameWithoutOllamaWhenTheClaudePAlternativeIsAvailable() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not reject a run without selection when LanguageTool is not available, leaving every exercise unevaluated by grammar with the reason in view while the other analyzers run")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
+    public void shouldNotRejectARunWithoutSelectionWhenLanguageToolIsNotAvailableLeavingEveryExerciseUnevaluatedByGrammarWithTheReasonInViewWhileTheOtherAnalyzersRun() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should run grammar, naturalness and near-duplicates in an analyze without selection")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R004")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
+    public void shouldRunGrammarNaturalnessAndNearduplicatesInAnAnalyzeWithoutSelection() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-RONDA2: the three of package B
+    // -----------------------------------------------------------------------
+
+    /** The twenty analyzers of rounds 1 and 2, in the order of the catalog (F-RONDA2-R001). */
+    private static final List<String> ROUND_TWO = roundTwoNames();
+
+    private static List<String> roundTwoNames() {
+        List<String> names = new ArrayList<>(ROUND_ONE);
+        names.addAll(List.of("grammar", "naturalness", "near-duplicates"));
+        return names;
+    }
+
+    /**
+     * analyze of the 29/9 course with the twenty: the seventeen of round 1 and the three of package B
+     * as Main builds them (hook B-07), over tools that leave nothing -- LanguageTool marking no
+     * error, Ollama off -- and with every judge and both alternatives at budget 0.
+     */
+    private static AuditReport runRoundTwo(Path workdir) {
+        RoundOneLedger ledger = new RoundOneLedger();
+        com.learney.contentaudit.auditdomain.judging.JudgeRuntime runtime = roundOneRuntime(ledger, workdir);
+        Evaluator judge = roundOneJudge();
+        List<AnalyzerProvider> providers = new ArrayList<>(roundOneProviders(
+                new DefaultLemmaCountConfigLoader().load(null), runtime, judge));
+        QuizStudentViewRenderer renderer = new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                DefaultQuizSentenceConverter.create());
+        com.learney.contentaudit.auditdomain.localtools.LocalToolGate gate =
+                new com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate(runtime);
+        com.learney.contentaudit.auditdomain.finishedsentence.FinishedSentenceReader sentences =
+                new com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader();
+        providers.add(new com.learney.contentaudit.auditdomain.grammar.GrammarAnalyzerProvider(new NoErrorsGrammar(),
+                sentences, gate));
+        providers.add(new com.learney.contentaudit.auditdomain.naturalness.NaturalnessAnalyzerProvider(new OllamaOffYesNo(),
+                judge, runtime, sentences, gate));
+        providers.add(new com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicatesAnalyzerProvider(
+                new OllamaOffEmbedding(), judge, runtime, productionCorrector(), renderer, gate));
+        return runOn299(providers, ROUND_TWO);
+    }
+
+    private static com.learney.contentaudit.auditdomain.localtools.LocalToolStatus ollamaOff(String model) {
+        return new com.learney.contentaudit.auditdomain.localtools.LocalToolStatus(model + " en Ollama", null, false,
+                "CONTENT_AUDIT_OLLAMA_URL=off", "ollama pull " + model);
+    }
+
+    /** LanguageTool that finds no error in any sentence. */
+    private static final class NoErrorsGrammar implements com.learney.contentaudit.auditdomain.localtools.GrammarChecker {
+        @Override
+        public com.learney.contentaudit.auditdomain.localtools.LocalToolStatus status() {
+            return new com.learney.contentaudit.auditdomain.localtools.LocalToolStatus("LanguageTool", "6.8", true, null,
+                    "viene con content-audit");
+        }
+
+        @Override
+        public List<com.learney.contentaudit.auditdomain.localtools.GrammarMatch> check(String sentence,
+                com.learney.contentaudit.auditdomain.localtools.EnglishVariant variant) {
+            return List.of();
+        }
+    }
+
+    /** llama3:8b with Ollama off. */
+    private static final class OllamaOffYesNo implements com.learney.contentaudit.auditdomain.localtools.YesNoModel {
+        @Override
+        public com.learney.contentaudit.auditdomain.localtools.LocalToolStatus status() {
+            return ollamaOff("llama3:8b");
+        }
+
+        @Override
+        public com.learney.contentaudit.auditdomain.localtools.YesNoProbabilities ask(String system, String question) {
+            throw new AssertionError("Ollama is off: nothing is asked");
+        }
+    }
+
+    /** nomic-embed-text with Ollama off. */
+    private static final class OllamaOffEmbedding implements com.learney.contentaudit.auditdomain.localtools.EmbeddingModel {
+        @Override
+        public com.learney.contentaudit.auditdomain.localtools.LocalToolStatus status() {
+            return ollamaOff("nomic-embed-text");
+        }
+
+        @Override
+        public com.learney.contentaudit.auditdomain.localtools.SentenceEmbedding embed(String text) {
+            throw new AssertionError("Ollama is off: nothing is embedded");
+        }
+    }
+
+    /** grammar's card as package B describes it: two instant rules (FEAT-GRAMA). */
+    private static AnalyzerDescriptor grammarCard() {
+        return packageBCard("grammar", "Gramática", AnalysisCostOf.INSTANT, List.of(
+                new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("english-error",
+                        "LanguageTool marca un error de inglés", AnalysisCostOf.INSTANT),
+                new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("final-punctuation",
+                        "La oración termina con su signo", AnalysisCostOf.INSTANT)));
+    }
+
+    /** naturalness' card as package B describes it: local model and paid model (FEAT-NATUR). */
+    private static AnalyzerDescriptor naturalnessCard() {
+        return packageBCard("naturalness", "Naturalidad", AnalysisCostOf.PAID_MODEL, List.of(
+                new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("unlikely-sentence",
+                        "llama3 no la diría", AnalysisCostOf.LOCAL_MODEL),
+                new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("native-says-no",
+                        "claude -p no la diría", AnalysisCostOf.PAID_MODEL)));
+    }
+
+    /** near-duplicates' card as package B describes it: instant, local model and paid model (FEAT-DUPAR). */
+    private static AnalyzerDescriptor nearDuplicatesCard() {
+        return packageBCard("near-duplicates", "Duplicados parecidos", AnalysisCostOf.PAID_MODEL, List.of(
+                new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("same-but-wildcard",
+                        "Lo mismo salvo el comodín", AnalysisCostOf.INSTANT),
+                new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("same-meaning",
+                        "Casi lo mismo para nomic-embed-text", AnalysisCostOf.LOCAL_MODEL),
+                new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("same-exercise",
+                        "El mismo ejercicio para claude -p", AnalysisCostOf.PAID_MODEL)));
+    }
+
+    private static AnalyzerDescriptor packageBCard(String name, String spanish,
+            com.learney.contentaudit.auditdomain.finding.AnalysisCost cost,
+            List<com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard> rules) {
+        return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿" + spanish + "?",
+                "La oración terminada", rules, "0 ejercicios con error",
+                com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
+                List.of(com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL), cost, spanish, List.of());
+    }
+
+    /** The costs of a rule, by a short name. */
+    private static final class AnalysisCostOf {
+        static final com.learney.contentaudit.auditdomain.finding.AnalysisCost INSTANT =
+                com.learney.contentaudit.auditdomain.finding.AnalysisCost.INSTANT;
+        static final com.learney.contentaudit.auditdomain.finding.AnalysisCost LOCAL_MODEL =
+                com.learney.contentaudit.auditdomain.finding.AnalysisCost.LOCAL_MODEL;
+        static final com.learney.contentaudit.auditdomain.finding.AnalysisCost PAID_MODEL =
+                com.learney.contentaudit.auditdomain.finding.AnalysisCost.PAID_MODEL;
+    }
+
+    /** An analyzer of package B stood in by its card: it writes down the policy of each run and leaves nothing. */
+    private static AnalyzerProvider packageBStandIn(AnalyzerDescriptor card, List<Optional<EvaluationRunPolicy>> policies) {
+        return new AnalyzerProvider() {
+            @Override
+            public String analyzerName() {
+                return card.getName();
+            }
+
+            @Override
+            public AnalyzerDescriptor describe() {
+                return card;
+            }
+
+            @Override
+            public ContentAnalyzer create(EvaluationRunPolicy policy) {
+                policies.add(Optional.ofNullable(policy));
+                return new ContentAnalyzer() {
+                    @Override
+                    public Void onQuiz(AuditNode node) {
+                        return null;
+                    }
+
+                    @Override
+                    public Void onKnowledge(AuditNode node) {
+                        return null;
+                    }
+
+                    @Override
+                    public Void onMilestone(AuditNode node) {
+                        return null;
+                    }
+
+                    @Override
+                    public Void onTopic(AuditNode node) {
+                        return null;
+                    }
+
+                    @Override
+                    public Void onCourseComplete(AuditNode rootNode) {
+                        return null;
+                    }
+
+                    @Override
+                    public String getName() {
+                        return card.getName();
+                    }
+
+                    @Override
+                    public AuditTarget getTarget() {
+                        return AuditTarget.QUIZ;
+                    }
+
+                    @Override
+                    public String getDescription() {
+                        return card.getDescription();
+                    }
+
+                    @Override
+                    public List<FindingDraft> findingsAt(AuditNode node) {
+                        return List.of();
+                    }
+                };
+            }
+
+            @Override
+            public Optional<com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding> planBinding() {
+                return Optional.empty();
+            }
+
+            @Override
+            public Optional<SelfDescribingConfig> config() {
+                return Optional.empty();
+            }
+        };
     }
 }

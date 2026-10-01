@@ -31,7 +31,7 @@ public class SentinelArchitectureTest {
   @Test
   public void enforceModuleBoundaries() {
     JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
-    ArchRuleDefinition.classes().that().resideInAPackage("..auditcli..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditcli..", "..auditapplication..", "..auditdomain..", "..coursedomain..", "..evaluationledgerdomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..", "..vocabularyinfrastructure..", "..auditinfrastructure..", "..revisiondomain..", "..revisioninfrastructure..", "..agentruntimeinfrastructure..", "..evaluationledgerinfrastructure..", "..quizinstructioninfrastructure..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
+    ArchRuleDefinition.classes().that().resideInAPackage("..auditcli..").should().onlyDependOnClassesThat(JavaClass.Predicates.resideInAnyPackage("..auditcli..", "..auditapplication..", "..auditdomain..", "..coursedomain..", "..evaluationledgerdomain..", "..refinerdomain..", "..courseinfrastructure..", "..nlpinfrastructure..", "..vocabularyinfrastructure..", "..auditinfrastructure..", "..revisiondomain..", "..revisioninfrastructure..", "..agentruntimeinfrastructure..", "..evaluationledgerinfrastructure..", "..quizinstructioninfrastructure..", "..locallanguageinfrastructure..").or(DescribedPredicate.not(JavaClass.Predicates.resideInAPackage("com.learney.contentaudit..")))).allowEmptyShould(true).check(classes);
   }
 
   @Test
@@ -83,6 +83,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.AnalyzeOptions");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: AnalyzeOptions - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.TaskFindingFilter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TaskFindingFilter - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.AnalyzeCommand");
@@ -168,6 +173,46 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.ExamCommand");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ExamCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.SetBaselineCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SetBaselineCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.SaveProjectionCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SaveProjectionCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.CompareCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CompareCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.GoalsCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: GoalsCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.BlindSampleCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BlindSampleCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.ErrorRateCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ErrorRateCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.BatchCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BatchCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.TrayCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TrayCommand - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.commands.EphemeralPlanRenderer");
@@ -283,6 +328,46 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.commands.ExamCmd");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ExamCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.DefaultSetBaselineCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultSetBaselineCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.DefaultSaveProjectionCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultSaveProjectionCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.DefaultCompareCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultCompareCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.DefaultGoalsCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultGoalsCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.DefaultBlindSampleCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultBlindSampleCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.DefaultErrorRateCommand");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultErrorRateCommand - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.BatchCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BatchCmd - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.commands.TrayCmd");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TrayCmd - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.ReportViewModel");
@@ -410,6 +495,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: QuizInstructionCorrectionRunFormatter - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.BatchComparisonFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BatchComparisonFormatter - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditcli.formatting.TextReportFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: TextReportFormatter - " + e.getMessage());
@@ -483,6 +573,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditcli.formatting.LemmaRecurrenceDetailedFormatter");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LemmaRecurrenceDetailedFormatter - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditcli.formatting.DefaultBatchComparisonFormatter");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultBatchComparisonFormatter - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditcli.bootstrap.InvalidWorkdirException");

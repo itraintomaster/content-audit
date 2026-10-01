@@ -49,7 +49,7 @@ public class DefaultRefinerEngineTest {
 
     @BeforeEach
     void setUp() {
-        sut = new DefaultRefinerEngine(realCatalog());
+        sut = new DefaultRefinerEngine(realCatalog(), null);
     }
 
     /**
@@ -363,7 +363,7 @@ public class DefaultRefinerEngineTest {
         // R004 inv. 3: before F-QINST-R017 the plan had no task kind for the judge and dropped its
         // scores without a word. An errors analyzer without a task kind is declared, not dropped.
         DefaultRefinerEngine engine = new DefaultRefinerEngine(new DefaultAnalyzerCatalog(List.of(
-                provider(errorsCard("quiz-instruction"), Optional.empty()))));
+                provider(errorsCard("quiz-instruction"), Optional.empty()))), null);
         AuditReport report = reportWithQuizScores("quiz-instruction", 0.3, 0.0, 0.6, 1.0);
 
         List<UnconvertedScoreCount> unconverted = engine.unconvertedScores(report);
@@ -381,10 +381,11 @@ public class DefaultRefinerEngineTest {
     @Tag("F-HALL-R004")
     public void shouldDeclareAsUnconvertedTheScoresBelow1OfAnAnalyzerWhosePlanBindingNamesATaskKindThePlanDoesNotKnow() {
         // R004 inv. 3: a binding whose task kind is not a DiagnosisKind of the plan (a new analyzer
-        // whose constant was not added) is declared too.
+        // whose constant was not added) is declared too. HINT_COHERENCE exists since FEAT-RONDA2
+        // (R008), so the unknown kind is one no analyzer has.
         DefaultRefinerEngine engine = new DefaultRefinerEngine(new DefaultAnalyzerCatalog(List.of(
-                provider(errorsCard("pista-coherente"), Optional.of(new AnalyzerPlanBinding("HINT_COHERENCE",
-                        List.of(AuditTarget.QUIZ)))))));
+                provider(errorsCard("pista-coherente"), Optional.of(new AnalyzerPlanBinding("PISTA_COHERENTE",
+                        List.of(AuditTarget.QUIZ)))))), null);
         AuditReport report = reportWithQuizScores("pista-coherente", 0.0, 0.5);
 
         List<UnconvertedScoreCount> unconverted = engine.unconvertedScores(report);
@@ -393,7 +394,7 @@ public class DefaultRefinerEngineTest {
         Assertions.assertEquals(1, unconverted.size());
         Assertions.assertEquals("pista-coherente", unconverted.get(0).getAnalyzer());
         Assertions.assertEquals(2, unconverted.get(0).getNodeCount());
-        Assertions.assertTrue(unconverted.get(0).getReason().contains("HINT_COHERENCE"),
+        Assertions.assertTrue(unconverted.get(0).getReason().contains("PISTA_COHERENTE"),
                 "R004: the reason names the unknown task kind: " + unconverted.get(0).getReason());
     }
 
@@ -406,7 +407,7 @@ public class DefaultRefinerEngineTest {
         // pista-coherente is a name the plan never heard of; its binding names a task kind it knows.
         DefaultRefinerEngine engine = new DefaultRefinerEngine(new DefaultAnalyzerCatalog(List.of(
                 provider(errorsCard("pista-coherente"), Optional.of(new AnalyzerPlanBinding("QUIZ_INSTRUCTION",
-                        List.of(AuditTarget.QUIZ)))))));
+                        List.of(AuditTarget.QUIZ)))))), null);
         AuditReport report = reportWithQuizScores("pista-coherente", 0.0, 1.0, 0.5);
 
         RefinementPlan plan = engine.plan(report, "a1");
@@ -514,7 +515,7 @@ public class DefaultRefinerEngineTest {
     private static AnalyzerDescriptor errorsCard(String name) {
         return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿" + name + "?", "El ejercicio",
                 List.of(new AnalyzerRuleCard("rule-" + name, "La regla", AnalysisCost.INSTANT)), "Ningun error",
-                AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, name);
+                AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, name, java.util.List.of());
     }
 
     private static AnalyzerProvider provider(AnalyzerDescriptor card, Optional<AnalyzerPlanBinding> binding) {
@@ -571,7 +572,7 @@ public class DefaultRefinerEngineTest {
         }
         DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(seventeen);
         Assertions.assertEquals(17, catalog.list().size(), "the seventeen of round 1");
-        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalog);
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalog, null);
 
         AuditNode tree = baseTree();
         List<AuditNode> quizzes = new ArrayList<>();
@@ -630,7 +631,7 @@ public class DefaultRefinerEngineTest {
         // F-NIVFR-R006 (DOUBT-TAREA-COMPARTIDA, A): «We reside in London with our granddad.» has
         // off-level-words 0 and lemma-absence below 1: the plan opens only its LEMMA_ABSENCE task and
         // declares off-level-words covered by it, never as a score without task kind.
-        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalogWithOffLevelWords());
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalogWithOffLevelWords(), null);
         AuditReport report = reportWithQuizScores("lemma-absence", 0.7);
         report.getRoot().getChildren().get(0).getScores().put(OFF_LEVEL_WORDS, 0.0);
 
@@ -653,7 +654,7 @@ public class DefaultRefinerEngineTest {
         // F-NIVFR-R006: the analysis of 29/9 with the 170 quizzes off-level-words marks (18 · 33 · 81 ·
         // 38, measured by the analyst's prototype) plans the same 4,036 tasks as without it, and each of
         // the 170 has its LEMMA_ABSENCE task, which covers it.
-        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalogWithOffLevelWords());
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalogWithOffLevelWords(), null);
         AuditNode without = baseTree();
         AuditNode with = baseTree();
         Set<String> marked = new HashSet<>(readResource("/nivfr-2026-09-30/off-level-quizzes.txt"));
@@ -825,5 +826,388 @@ public class DefaultRefinerEngineTest {
                             "lemma-recurrence|F-RECUR-R005|root|w" + i, "w" + i)));
         }
         return findings;
+    }
+
+    @Test
+    @DisplayName("should give each finding of the error family that counts the task kind of its analyzer, from HINT_COHERENCE to NEAR_DUPLICATES")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldGiveEachFindingOfTheErrorFamilyThatCountsTheTaskKindOfItsAnalyzerFromHINTCOHERENCEToNEARDUPLICATES()  {
+        // R008: each analyzer of the errors family of rounds 1 and 2 binds its findings that count to
+        // the plan with its task kind, on the exercise. One exercise per analyzer, each with one
+        // finding that counts: each gets one task, of its analyzer's kind.
+        List<AnalyzerProvider> providers = new ArrayList<>();
+        for (Map.Entry<String, DiagnosisKind> entry : TASK_KINDS_OF_ROUND_TWO.entrySet()) {
+            providers.add(provider(errorsCard(entry.getKey()), Optional.of(new AnalyzerPlanBinding(
+                    entry.getValue().name(), List.of(AuditTarget.QUIZ)))));
+        }
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(new DefaultAnalyzerCatalog(providers), null);
+        AuditNode course = buildNode(AuditTarget.COURSE, "root", "Course", new LinkedHashMap<>());
+        List<AuditNode> exercises = new ArrayList<>();
+        for (String analyzer : TASK_KINDS_OF_ROUND_TWO.keySet()) {
+            AuditNode exercise = buildNode(AuditTarget.QUIZ, "q-" + analyzer, "I ___ a lot of vegetables.",
+                    new LinkedHashMap<>(Map.of(analyzer, 0.0)));
+            exercise.setFindings(List.of(countingFinding(analyzer, "q-" + analyzer)));
+            exercise.setParent(course);
+            exercises.add(exercise);
+        }
+        course.setChildren(exercises);
+        AuditReport report = new AuditReport(course);
+
+        RefinementPlan plan = engine.plan(report, "2026-09-30T11-54-02");
+
+        Map<String, DiagnosisKind> taskOf = new LinkedHashMap<>();
+        plan.getTasks().forEach(task -> taskOf.put(task.getNodeId(), task.getDiagnosisKind()));
+        Map<String, DiagnosisKind> expected = new LinkedHashMap<>();
+        TASK_KINDS_OF_ROUND_TWO.forEach((analyzer, kind) -> expected.put("q-" + analyzer, kind));
+        Assertions.assertEquals(expected, taskOf, "R008: one task per finding, of its analyzer's kind");
+        Assertions.assertEquals(10, plan.getTasks().size());
+        plan.getTasks().forEach(task -> Assertions.assertEquals(AuditTarget.QUIZ, task.getNodeTarget(), "on the exercise"));
+        Assertions.assertTrue(engine.unconvertedScores(report).isEmpty(), "every finding that counts has its task");
+    }
+
+    @Test
+    @DisplayName("should never create a task for a naturalness finding, which only ranks")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldNeverCreateATaskForANaturalnessFindingWhichOnlyRanks()  {
+        // R008 inv. 2 (F-TAREA-R005): naturalness only ranks. Its finding stays on the exercise,
+        // low and rank-only, its score stays at 1 and the plan opens no task for it -- there is no
+        // task kind of its own --, while the finding of hint-coherence on another exercise does.
+        AnalyzerDescriptor naturalness = new AnalyzerDescriptor("naturalness", "Las oraciones que un nativo no diría",
+                AuditTarget.QUIZ, "¿Un nativo diría así esta oración?", "La oración terminada con la primera respuesta",
+                List.of(new AnalyzerRuleCard("unlikely-sentence", "llama3 no la diría", AnalysisCost.LOCAL_MODEL),
+                        new AnalyzerRuleCard("native-says-no", "claude -p no la diría", AnalysisCost.PAID_MODEL)),
+                "Las más dudosas de cada nivel van primero a los jueces", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
+                List.of(FindingResolution.RANK_ONLY), AnalysisCost.PAID_MODEL, "Naturalidad", List.of());
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(new DefaultAnalyzerCatalog(List.of(
+                provider(naturalness, Optional.empty()),
+                provider(errorsCard("hint-coherence"), Optional.of(new AnalyzerPlanBinding("HINT_COHERENCE",
+                        List.of(AuditTarget.QUIZ)))))), null);
+        AuditNode course = buildNode(AuditTarget.COURSE, "root", "Course", new LinkedHashMap<>());
+        AuditNode doubtful = buildNode(AuditTarget.QUIZ, "q-engineer", "She is an engineer of hers.",
+                new LinkedHashMap<>(Map.of("naturalness", 1.0)));
+        com.learney.contentaudit.auditdomain.finding.Finding ranks = new com.learney.contentaudit.auditdomain.finding.Finding(
+                "naturalness", "unlikely-sentence",
+                new com.learney.contentaudit.auditdomain.finding.FindingNodeRef(AuditTarget.QUIZ, "q-engineer",
+                        "She is an engineer of hers."),
+                com.learney.contentaudit.auditdomain.finding.FindingSeverity.LOW,
+                new com.learney.contentaudit.auditdomain.finding.FindingEvidence(List.of(
+                        new com.learney.contentaudit.auditdomain.finding.EvidencePart("Oración", "She is an engineer of hers.")),
+                        "Un nativo no la diría así (14,68)", List.of()),
+                FindingResolution.RANK_ONLY, AnalysisCost.LOCAL_MODEL,
+                new com.learney.contentaudit.auditdomain.finding.FindingIdentity(
+                        "naturalness|unlikely-sentence|q-engineer|", ""));
+        doubtful.setFindings(List.of(ranks));
+        AuditNode hinted = buildNode(AuditTarget.QUIZ, "q-hint", "I ___ a lot of vegetables.",
+                new LinkedHashMap<>(Map.of("hint-coherence", 0.0)));
+        hinted.setFindings(List.of(countingFinding("hint-coherence", "q-hint")));
+        link(course, List.of(doubtful, hinted));
+        AuditReport report = new AuditReport(course);
+
+        RefinementPlan plan = engine.plan(report, "2026-09-30T11-54-02");
+
+        Assertions.assertEquals(List.of("q-hint HINT_COHERENCE"), plan.getTasks().stream()
+                .map(task -> task.getNodeId() + " " + task.getDiagnosisKind()).toList(),
+                "R008 inv. 2: no task for naturalness, the hint keeps its own");
+        Assertions.assertTrue(java.util.Arrays.stream(DiagnosisKind.values()).noneMatch(k -> k.name().equals("NATURALNESS")),
+                "naturalness has no task kind");
+        Assertions.assertTrue(engine.unconvertedScores(report).isEmpty(),
+                "nothing to declare: a finding that only ranks does not count");
+    }
+
+    @Test
+    @DisplayName("should cover an off-level-words finding with the LEMMA_ABSENCE task of its exercise instead of a task of its own")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldCoverAnOfflevelwordsFindingWithTheLEMMAABSENCETaskOfItsExerciseInsteadOfATaskOfItsOwn()  {
+        // R008 inv. 3 (F-TAREA-R004, F-NIVFR-R006): off-level-words has no task kind of its own. In
+        // «She spread the warm blue quilt on the bed.» (A2) it marks quilt, which lemma-absence also
+        // marks: the plan opens only the LEMMA_ABSENCE task of the exercise and declares the
+        // off-level-words finding covered by it, never unconverted.
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalogWithOffLevelWords(), null);
+        AuditNode course = buildNode(AuditTarget.COURSE, "root", "Course", new LinkedHashMap<>());
+        AuditNode quilt = buildNode(AuditTarget.QUIZ, "q-quilt", "She spread the warm blue quilt on the bed.",
+                new LinkedHashMap<>(Map.of("lemma-absence", 0.7, OFF_LEVEL_WORDS, 0.0)));
+        quilt.setFindings(List.of(countingFinding(OFF_LEVEL_WORDS, "q-quilt")));
+        link(course, List.of(quilt));
+        AuditReport report = new AuditReport(course);
+
+        RefinementPlan plan = engine.plan(report, "2026-09-30T11-54-02");
+
+        Assertions.assertEquals(List.of("q-quilt LEMMA_ABSENCE"), plan.getTasks().stream()
+                .map(task -> task.getNodeId() + " " + task.getDiagnosisKind()).toList(),
+                "R008 inv. 3: the LEMMA_ABSENCE task of the exercise, and none of off-level-words");
+        Assertions.assertEquals(List.of("off-level-words 1 cubierto por la tarea LEMMA_ABSENCE del ejercicio"),
+                engine.unconvertedScores(report).stream()
+                        .map(c -> c.getAnalyzer() + " " + c.getNodeCount() + " " + c.getReason()).toList(),
+                "covered by that task, never dropped");
+    }
+
+    @Test
+    @DisplayName("should keep the 4,036 vocabulary tasks of the 29/9 analysis identical one by one with the twenty analyzers")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R010")
+    public void shouldKeepThe4036VocabularyTasksOfThe299AnalysisIdenticalOneByOneWithTheTwentyAnalyzers()  {
+        // R010 inv. 2: with the twenty in the catalog and the task kinds of R008, the analysis of 29/9
+        // plans the same 4,036 vocabulary tasks, one by one and in the same order; the error tasks
+        // are new, one per exercise and analyzer with a finding that counts. naturalness opens none.
+        List<AnalyzerProvider> twenty = new ArrayList<>();
+        com.learney.contentaudit.auditdomain.AnalyzerCatalog real = realCatalog();
+        List<AnalyzerDescriptor> eight = real.list();
+        for (AnalyzerDescriptor card : eight.subList(0, 6)) {
+            twenty.add(provider(card, real.planBinding(card.getName())));
+        }
+        twenty.add(provider(errorsCard(OFF_LEVEL_WORDS), Optional.empty()));
+        for (AnalyzerDescriptor card : eight.subList(6, 8)) {
+            twenty.add(provider(card, real.planBinding(card.getName())));
+        }
+        for (Map.Entry<String, DiagnosisKind> entry : TASK_KINDS_OF_ROUND_TWO.entrySet()) {
+            if ("grammar".equals(entry.getKey())) {
+                break;
+            }
+            twenty.add(provider(errorsCard(entry.getKey()), Optional.of(new AnalyzerPlanBinding(
+                    entry.getValue().name(), List.of(AuditTarget.QUIZ)))));
+        }
+        twenty.add(provider(errorsCard("grammar"), Optional.of(new AnalyzerPlanBinding("GRAMMAR", List.of(AuditTarget.QUIZ)))));
+        twenty.add(provider(errorsCard("naturalness"), Optional.empty()));
+        twenty.add(provider(errorsCard("near-duplicates"), Optional.of(new AnalyzerPlanBinding("NEAR_DUPLICATES",
+                List.of(AuditTarget.QUIZ)))));
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(twenty);
+        Assertions.assertEquals(20, catalog.list().size(), "the twenty of rounds 1 and 2");
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalog, null);
+
+        AuditNode tree = baseTree();
+        List<AuditNode> quizzes = new ArrayList<>();
+        collectQuizzes(tree, quizzes);
+        int i = 0;
+        for (String analyzer : TASK_KINDS_OF_ROUND_TWO.keySet()) {
+            quizzes.get(i++).getScores().put(analyzer, 0.0);
+        }
+        quizzes.get(i).getScores().put("naturalness", 1.0);
+        AuditReport report = new AuditReport(tree);
+
+        RefinementPlan plan = engine.plan(report, "2026-09-30T11-54-02");
+
+        List<String> vocabulary = describe(plan).stream()
+                .filter(task -> VOCABULARY_KINDS.contains(task.substring(task.lastIndexOf('\t') + 1))).toList();
+        Assertions.assertEquals(4036, vocabulary.size(), "R010: the 4,036 vocabulary tasks");
+        Assertions.assertEquals(readLines("plan.tsv.gz"), vocabulary, "R010: one by one, in the same order");
+        Map<DiagnosisKind, Integer> errors = new TreeMap<>();
+        plan.getTasks().stream().filter(task -> !VOCABULARY_KINDS.contains(task.getDiagnosisKind().name()))
+                .forEach(task -> errors.merge(task.getDiagnosisKind(), 1, Integer::sum));
+        Map<DiagnosisKind, Integer> expected = new TreeMap<>();
+        TASK_KINDS_OF_ROUND_TWO.values().forEach(kind -> expected.put(kind, 1));
+        Assertions.assertEquals(expected, errors, "the error tasks are new: one per analyzer here, naturalness none");
+    }
+
+    @Test
+    @DisplayName("should open one task for each of the three counting findings of «I ___ a lot of vegetables.» (A1, Afirmativas regulares), from hint-coherence, single-answer and translation-sense, all three on the same exercise")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldOpenOneTaskForEachOfTheThreeCountingFindingsOfIALotOfVegetablesA1AfirmativasRegularesFromHintcoherenceSingleanswerAndTranslationsenseAllThreeOnTheSameExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should add up, for each error analyzer of the plan, its counting findings to its own tasks plus its covered findings plus its unconverted findings in the finding tally")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldAddUpForEachErrorAnalyzerOfThePlanItsCountingFindingsToItsOwnTasksPlusItsCoveredFindingsPlusItsUnconvertedFindingsInTheFindingTally() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare as unconverted, under its analyzer and with the reason that it has no task kind, every counting finding of an error analyzer without a task kind, and open no task for them")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldDeclareAsUnconvertedUnderItsAnalyzerAndWithTheReasonThatItHasNoTaskKindEveryCountingFindingOfAnErrorAnalyzerWithoutATaskKindAndOpenNoTaskForThem() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare as unconverted, with the reason that no task covers it, an off-level-words finding whose exercise has no LEMMA_ABSENCE task")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldDeclareAsUnconvertedWithTheReasonThatNoTaskCoversItAnOfflevelwordsFindingWhoseExerciseHasNoLEMMAABSENCETask() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should never hold an error task without the finding it came from, nor a second task for the same finding")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldNeverHoldAnErrorTaskWithoutTheFindingItCameFromNorASecondTaskForTheSameFinding() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should carry in the single-answer task of «I ___ a lot of vegetables.» the identity of its finding, its blocking severity, the panel resolution, its paid-model cost, level A1 and the topic Afirmativas regulares")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldCarryInTheSingleanswerTaskOfIALotOfVegetablesTheIdentityOfItsFindingItsBlockingSeverityThePanelResolutionItsPaidmodelCostLevelA1AndTheTopicAfirmativasRegulares() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should derive from two plans of the same analysis the same error tasks with the same finding identities and in the same order, breaking equal priorities by node and finding identity")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldDeriveFromTwoPlansOfTheSameAnalysisTheSameErrorTasksWithTheSameFindingIdentitiesAndInTheSameOrderBreakingEqualPrioritiesByNodeAndFindingIdentity() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep the identity of the hint-coherence finding of «I ___ a lot of vegetables.» in its task when the plan is derived from a later analysis of the same course")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldKeepTheIdentityOfTheHintcoherenceFindingOfIALotOfVegetablesInItsTaskWhenThePlanIsDerivedFromALaterAnalysisOfTheSameCourse() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should turn the forty findings that the mini-theory of «$In time$ u $on time$» (B1) leaves in its forty exercises into one task on the topic that reaches the forty, owns one finding and covers the other thirty-nine")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldTurnTheFortyFindingsThatTheMinitheoryOfInTimeUOnTimeB1LeavesInItsFortyExercisesIntoOneTaskOnTheTopicThatReachesTheFortyOwnsOneFindingAndCoversTheOtherThirtynine() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should open one topic task per mini-theory with a problem, two for «Contraste inicial» (A1) when two of its eight mini-theories are marked, and never one task per exercise that shows them")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldOpenOneTopicTaskPerMinitheoryWithAProblemTwoForContrasteInicialA1WhenTwoOfItsEightMinitheoriesAreMarkedAndNeverOneTaskPerExerciseThatShowsThem() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should count the forty mini-theory findings of «$In time$ u $on time$» in its tally as one own task and thirty-nine covered, so they still add up to forty")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldCountTheFortyMinitheoryFindingsOfInTimeUOnTimeInItsTallyAsOneOwnTaskAndThirtynineCoveredSoTheyStillAddUpToForty() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare the off-level-words findings of spread and quilt in «She spread the warm blue quilt on the bed.» (A2) covered by the LEMMA_ABSENCE task of that exercise, naming that task, and open no task of their own")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldDeclareTheOfflevelwordsFindingsOfSpreadAndQuiltInSheSpreadTheWarmBlueQuiltOnTheBedA2CoveredByTheLEMMAABSENCETaskOfThatExerciseNamingThatTaskAndOpenNoTaskOfTheirOwn() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should list the covered off-level-words findings in the origin of the LEMMA_ABSENCE task of «She spread the warm blue quilt on the bed.», so the task counts as resolved only when both analyzers stop marking spread and quilt")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldListTheCoveredOfflevelwordsFindingsInTheOriginOfTheLEMMAABSENCETaskOfSheSpreadTheWarmBlueQuiltOnTheBedSoTheTaskCountsAsResolvedOnlyWhenBothAnalyzersStopMarkingSpreadAndQuilt() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should never declare an off-level-words finding covered by the SENTENCE_LENGTH task of its exercise, because only the task of lemma-absence marks the same word")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldNeverDeclareAnOfflevelwordsFindingCoveredByTheSENTENCELENGTHTaskOfItsExerciseBecauseOnlyTheTaskOfLemmaabsenceMarksTheSameWord() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should open no task for the rank-only finding «los jueces no coinciden» of translation-sense and leave it out of the counting findings of the tally, for the tray of the batch of its level")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R005")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldOpenNoTaskForTheRankonlyFindingLosJuecesNoCoincidenOfTranslationsenseAndLeaveItOutOfTheCountingFindingsOfTheTallyForTheTrayOfTheBatchOfItsLevel() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep a single LEMMA_ABSENCE task for «She spread the warm blue quilt on the bed.» although lemma-absence marks two words in it, one task per exercise as the vocabulary plan does today")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R007")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldKeepASingleLEMMAABSENCETaskForSheSpreadTheWarmBlueQuiltOnTheBedAlthoughLemmaabsenceMarksTwoWordsInItOneTaskPerExerciseAsTheVocabularyPlanDoesToday() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should derive from the 29/9 analysis, with the error tasks one per finding, the same 4,036 vocabulary tasks with the same kinds and nodes: 3,051 SENTENCE_LENGTH, 950 LEMMA_ABSENCE, 25 KNOWLEDGE_INSTRUCTIONS_LENGTH, 6 KNOWLEDGE_TITLE_LENGTH, 3 COCA_BUCKETS and 1 LEMMA_RECURRENCE")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R007")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldDeriveFromThe299AnalysisWithTheErrorTasksOnePerFindingTheSame4036VocabularyTasksWithTheSameKindsAndNodes3051SENTENCELENGTH950LEMMAABSENCE25KNOWLEDGEINSTRUCTIONSLENGTH6KNOWLEDGETITLELENGTH3COCABUCKETSAnd1LEMMARECURRENCE() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the origin empty in every vocabulary task except a LEMMA_ABSENCE task that covers an error finding")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R007")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldLeaveTheOriginEmptyInEveryVocabularyTaskExceptALEMMAABSENCETaskThatCoversAnErrorFinding() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should never hand out a task IN_BATCH as the next task")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
+    public void shouldNeverHandOutATaskINBATCHAsTheNextTask() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    // -------------------------------------------------------------------------
+    // FEAT-RONDA2: the task kind of every analyzer of errors (F-RONDA2-R008)
+    // -------------------------------------------------------------------------
+
+    /** The task kind of each analyzer of errors of rounds 1 and 2 that has one, in catalog order (R008). */
+    private static final Map<String, DiagnosisKind> TASK_KINDS_OF_ROUND_TWO = taskKindsOfRoundTwo();
+
+    private static Map<String, DiagnosisKind> taskKindsOfRoundTwo() {
+        Map<String, DiagnosisKind> kinds = new LinkedHashMap<>();
+        kinds.put("hint-coherence", DiagnosisKind.HINT_COHERENCE);
+        kinds.put("answer-completeness", DiagnosisKind.ANSWER_COMPLETENESS);
+        kinds.put("multiple-choice-validity", DiagnosisKind.MULTIPLE_CHOICE_VALIDITY);
+        kinds.put("data-coherence", DiagnosisKind.DATA_COHERENCE);
+        kinds.put("exact-duplicates", DiagnosisKind.EXACT_DUPLICATES);
+        kinds.put("translation-sense", DiagnosisKind.TRANSLATION_SENSE);
+        kinds.put("single-answer", DiagnosisKind.SINGLE_ANSWER);
+        kinds.put("mini-theory", DiagnosisKind.MINI_THEORY);
+        kinds.put("grammar", DiagnosisKind.GRAMMAR);
+        kinds.put("near-duplicates", DiagnosisKind.NEAR_DUPLICATES);
+        return kinds;
+    }
+
+    /** The task kinds of the vocabulary family, the ones of the plan of 29/9 (F-TAREA-R007). */
+    private static final Set<String> VOCABULARY_KINDS = Set.of("SENTENCE_LENGTH", "LEMMA_ABSENCE",
+            "KNOWLEDGE_INSTRUCTIONS_LENGTH", "KNOWLEDGE_TITLE_LENGTH", "COCA_BUCKETS", "LEMMA_RECURRENCE");
+
+    /** A finding that counts as an error: high, to be resolved at the panel. */
+    private static com.learney.contentaudit.auditdomain.finding.Finding countingFinding(String analyzer, String quizId) {
+        return new com.learney.contentaudit.auditdomain.finding.Finding(analyzer, "rule-" + analyzer,
+                new com.learney.contentaudit.auditdomain.finding.FindingNodeRef(AuditTarget.QUIZ, quizId, quizId),
+                com.learney.contentaudit.auditdomain.finding.FindingSeverity.HIGH,
+                new com.learney.contentaudit.auditdomain.finding.FindingEvidence(List.of(
+                        new com.learney.contentaudit.auditdomain.finding.EvidencePart("Ejercicio", quizId)),
+                        "Un error de " + analyzer, List.of()),
+                FindingResolution.PANEL, AnalysisCost.INSTANT,
+                new com.learney.contentaudit.auditdomain.finding.FindingIdentity(
+                        analyzer + "|rule-" + analyzer + "|" + quizId + "|", ""));
     }
 }

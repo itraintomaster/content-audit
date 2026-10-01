@@ -1,5 +1,6 @@
 package com.learney.contentaudit.revisiondomain.consolidatedview;
 
+import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
 import java.nio.file.Path;
 import javax.annotation.processing.Generated;
 
@@ -9,4 +10,6 @@ import javax.annotation.processing.Generated;
 )
 public interface ConsolidatedViewBuilder {
     ConsolidatedView build(Path coursePath);
+
+    ConsolidatedView build(Path coursePath, ProjectionScope scope);
 }

@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -434,7 +435,7 @@ public class PlanCmdTest {
                         "Animals Quiz",
                         com.learney.contentaudit.refinerdomain.DiagnosisKind.LEMMA_ABSENCE,
                         1,
-                        com.learney.contentaudit.refinerdomain.RefinementTaskStatus.PENDING);
+                        com.learney.contentaudit.refinerdomain.RefinementTaskStatus.PENDING, null);
 
         RefinementPlan planWithLemmaAbsence = new RefinementPlan(
                 "plan-slem-r008", auditId, java.time.Instant.now(), List.of(lemmaAbsenceTask));
@@ -472,7 +473,7 @@ public class PlanCmdTest {
         when(store.load("2026-09-30T11-54-02")).thenReturn(Optional.of(report));
         RefinementPlanStore plans = mock(RefinementPlanStore.class);
         when(plans.save(any())).thenReturn("plan-2026-09-30");
-        PlanCmd plan = new PlanCmd(store, new DefaultRefinerEngine(catalog), plans, mock(EphemeralPlanRenderer.class));
+        PlanCmd plan = new PlanCmd(store, new DefaultRefinerEngine(catalog, null), plans, mock(EphemeralPlanRenderer.class));
 
         Base299.Captured run = Base299.run(plan, "--audit", "2026-09-30T11-54-02");
 
@@ -484,5 +485,32 @@ public class PlanCmdTest {
         verify(plans).save(saved.capture());
         assertEquals(4036, saved.getValue().getTasks().size(), "the plan keeps the 4.036 tasks of the seven classics");
         assertTrue(run.out().contains("4036 improvements identified"), run.out());
+    }
+
+    @Test
+    @DisplayName("should derive an ephemeral plan with correction context from a saved projection named with --audit, writing no plan and no analysis")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
+    public void shouldDeriveAnEphemeralPlanWithCorrectionContextFromASavedProjectionNamedWithAuditWritingNoPlanAndNoAnalysis() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should derive the plan without --audit from the latest analysis of the history, not from a projection saved after it")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
+    public void shouldDeriveThePlanWithoutAuditFromTheLatestAnalysisOfTheHistoryNotFromAProjectionSavedAfterIt() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should print after deriving the plan, for each error analyzer, its counting findings, own tasks, covered findings and unconverted findings with their reason")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldPrintAfterDerivingThePlanForEachErrorAnalyzerItsCountingFindingsOwnTasksCoveredFindingsAndUnconvertedFindingsWithTheirReason() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

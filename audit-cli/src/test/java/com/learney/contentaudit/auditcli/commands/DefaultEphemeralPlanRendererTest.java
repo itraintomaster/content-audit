@@ -91,7 +91,7 @@ public class DefaultEphemeralPlanRendererTest {
                 "Adjective vs Adverb",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
         return new RefinementPlan(
                 "plan-001",
@@ -255,7 +255,7 @@ public class DefaultEphemeralPlanRendererTest {
                 "Good or Well",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(
                 "plan-r002-inv1", "audit-r002", Instant.parse("2026-05-09T10:00:00Z"), List.of(task));
@@ -308,7 +308,7 @@ public class DefaultEphemeralPlanRendererTest {
                 "Adjective vs Adverb",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(
                 "plan-r002-inv2", "audit-r002-inv2", Instant.parse("2026-05-09T11:00:00Z"), List.of(task));
@@ -366,7 +366,7 @@ public class DefaultEphemeralPlanRendererTest {
                 "Adverbs of Frequency",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(
                 "plan-r002-inv4", "audit-r002-inv4", Instant.parse("2026-05-09T12:00:00Z"), List.of(task));
@@ -417,7 +417,7 @@ public class DefaultEphemeralPlanRendererTest {
                 "Good or Well",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
         RefinementTask taskWithoutCtx = new RefinementTask(
                 "task-r002-partial-b",
@@ -426,7 +426,7 @@ public class DefaultEphemeralPlanRendererTest {
                 "Using Adverbs of Frequency",
                 DiagnosisKind.LEMMA_ABSENCE,
                 2,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(
                 "plan-r002-partial", "audit-r002-partial",

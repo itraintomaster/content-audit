@@ -55,7 +55,7 @@ public class KnowledgeTitleReviserTest {
                 "Knowledge label",
                 DiagnosisKind.KNOWLEDGE_TITLE_LENGTH,
                 1,
-                com.learney.contentaudit.refinerdomain.RefinementTaskStatus.PENDING);
+                com.learney.contentaudit.refinerdomain.RefinementTaskStatus.PENDING, null);
     }
 
     @Test

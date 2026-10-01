@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import java.util.Map;
 
 import com.learney.contentaudit.auditcli.GetConsolidatedCommand;
 import com.learney.contentaudit.auditcli.formatting.ConsolidatedViewFormatter;
@@ -36,5 +37,15 @@ final class DefaultGetConsolidatedCommand implements GetConsolidatedCommand {
 
         // R013 detail 3: UNAVAILABLE does not block; exit 0 in all cases
         return 0;
+    }
+
+    /**
+     * The overload with a budget per analyzer (FEAT-PROYU, package F): generate added it to the
+     * port but not to this implementation, whose file already had a method of the same name.
+     * Left unimplemented, like a stub, for package F to write.
+     */
+    @Override
+    public Integer getConsolidated(String coursePath, String format, Map<String, Integer> analyzerBudgets) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

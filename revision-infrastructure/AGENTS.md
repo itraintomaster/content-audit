@@ -416,6 +416,36 @@ Methods:
 - `listByPlan(String planId): List<QuizInstructionCorrectionRunReport>`
 - `latest(): Optional<QuizInstructionCorrectionRunReport>`
 
+### ProjectionStore (port)
+
+Methods:
+
+- `save(CourseProjection projection): SavedProjection`
+- `load(String projectionId): Optional<AuditReport>`
+
+### GoalDeclarationSource (port)
+
+Methods:
+
+- `read(): GoalDeclaration`
+
+### SealedGoalsStore (port)
+
+Methods:
+
+- `read(): Optional<SealedGoals>`
+- `write(SealedGoals sealedGoals): void`
+
+### BlindSampleStore (port)
+
+Methods:
+
+- `savePairs(BlindSample sample): void`
+- `loadPairs(String sampleId): Optional<BlindSample>`
+- `listPairs(): List<BlindSample>`
+- `saveErrorRate(ErrorRateSample sample): void`
+- `loadErrorRate(String sampleId): Optional<ErrorRateSample>`
+
 ### From audit-domain
 
 ## Models
@@ -537,6 +567,7 @@ Methods:
 | resolutions | `List<FindingResolution>` |
 | cost | `AnalysisCost` |
 | displayName | `String` |
+| tools | `List<LocalToolCard>` |
 
 ### AuditNode (`record`)
 
@@ -553,6 +584,7 @@ Methods:
 | numbers | `ContextNumbers` |
 | unevaluatedBy | `List<String>` |
 | partiallyEvaluatedBy | `List<String>` |
+| measures | `List<AnalyzerMeasure>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -627,6 +659,25 @@ Methods:
 | name | `String` |
 | maxCocaRank | `Integer` |
 | threshold | `int` |
+
+### NlpResourcesUnavailableException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `Falta %s en '%s': %s`
+
+| Field | Type |
+|-------|------|
+| resource | `String` |
+| path | `String` |
+| detail | `String` |
+
+### Baseline (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| fixedAt | `Instant` |
 
 ### AuditEngine (port)
 
@@ -739,6 +790,7 @@ Methods:
 - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
 - `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>`
 - `lookupLevelByLemma(String lemma): Optional<CefrLevel>`
+- `lookupDerivedFormLevel(String word): Optional<CefrLevel>`
 
 ### AuditableEntity (port)
 
@@ -766,6 +818,8 @@ Methods:
 - `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
 - `getJudgeCoverages(): List<JudgeCoverageDiagnosis>`
 - `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>`
+- `getLocalToolRuns(): List<LocalToolRunDiagnosis>`
+- `getNaturalnessQueue(): Optional<NaturalnessQueueDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -804,6 +858,9 @@ Methods:
 - `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>`
 - `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>`
 - `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>`
+- `getGrammarDiagnosis(): Optional<GrammarDiagnosis>`
+- `getNaturalnessDiagnosis(): Optional<NaturalnessDiagnosis>`
+- `getNearDuplicateDiagnosis(): Optional<NearDuplicateDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -879,6 +936,7 @@ Methods:
 - `find(String analyzerName): Optional<AnalyzerDescriptor>`
 - `provider(String analyzerName): Optional<AnalyzerProvider>`
 - `planBinding(String analyzerName): Optional<AnalyzerPlanBinding>`
+- `measure(String analyzerName): Optional<AnalyzerMeasure>`
 
 ### FindingCollector (port)
 
@@ -981,6 +1039,39 @@ Methods:
 Methods:
 
 - `getScoreFor(FindingSeverity severity): double`
+
+### BaselineStore (port)
+
+Methods:
+
+- `read(): Optional<Baseline>`
+- `write(Baseline baseline): void`
+
+### AnalyzerCorrection (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `editScope(FindingResolution resolution): List<ExercisePart>`
+- `coveringAnalyzer(): Optional<String>`
+- `groupsByTopic(): boolean`
+- `tieRules(): List<String>`
+- `offersTwoFixes(): boolean`
+- `concernsAudio(Finding finding): boolean`
+
+### AnalyzerCorrectionCatalog (port)
+
+Methods:
+
+- `find(String analyzerName): Optional<AnalyzerCorrection>`
+- `list(): List<AnalyzerCorrection>`
+
+### RuleFix (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `fix(RuleFixRequest request): RuleFixResult`
 
 ### From course-domain
 
@@ -1336,6 +1427,16 @@ Methods:
 | KNOWLEDGE_TITLE_LENGTH | `null` |
 | KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
 | QUIZ_INSTRUCTION | `null` |
+| HINT_COHERENCE | `null` |
+| ANSWER_COMPLETENESS | `null` |
+| MULTIPLE_CHOICE_VALIDITY | `null` |
+| DATA_COHERENCE | `null` |
+| EXACT_DUPLICATES | `null` |
+| TRANSLATION_SENSE | `null` |
+| SINGLE_ANSWER | `null` |
+| MINI_THEORY | `null` |
+| GRAMMAR | `null` |
+| NEAR_DUPLICATES | `null` |
 
 ### RefinementTaskStatus (`enum`)
 
@@ -1345,6 +1446,7 @@ Methods:
 | COMPLETED | `null` |
 | SKIPPED | `null` |
 | STALE | `null` |
+| IN_BATCH | `null` |
 
 ### RefinementTask (`record`)
 
@@ -1357,6 +1459,7 @@ Methods:
 | diagnosisKind | `DiagnosisKind` |
 | priority | `int` |
 | status | `RefinementTaskStatus` |
+| origin | `TaskOrigin` |
 
 ### RefinementPlan (`record`)
 
@@ -1524,6 +1627,7 @@ Methods:
 | siblingQuizSentences | `List<String>` |
 | sourceAuditId | `String` |
 | planId | `String` |
+| quizInstructions | `String` |
 
 ### UnconvertedScoreCount (`record`)
 
@@ -1533,6 +1637,28 @@ Methods:
 | nodeCount | `int` |
 | reason | `String` |
 
+### TaskOrigin (`record`)
+
+| Field | Type |
+|-------|------|
+| finding | `Finding` |
+| cefrLevel | `CefrLevel` |
+| knowledgeId | `String` |
+| knowledgeLabel | `String` |
+| reachedQuizIds | `List<String>` |
+| coveredFindings | `List<Finding>` |
+
+### PlanFindingTally (`record`)
+
+| Field | Type |
+|-------|------|
+| analyzer | `String` |
+| countingFindings | `int` |
+| ownTasks | `int` |
+| covered | `int` |
+| unconverted | `int` |
+| unconvertedReason | `String` |
+
 ### RefinerEngine (port)
 
 Methods:
@@ -1540,6 +1666,7 @@ Methods:
 - `plan(AuditReport report, String auditId): RefinementPlan`
 - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
 - `unconvertedScores(AuditReport report): List<UnconvertedScoreCount>`
+- `findingTally(AuditReport report, RefinementPlan plan): List<PlanFindingTally>`
 
 ### RefinementPlanStore (port)
 

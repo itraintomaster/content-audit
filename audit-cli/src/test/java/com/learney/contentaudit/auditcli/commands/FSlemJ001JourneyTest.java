@@ -192,7 +192,7 @@ public class FSlemJ001JourneyTest {
         LemmaAbsenceContextResolver resolver = new LemmaAbsenceContextResolver();
         RefinementTask task = new RefinementTask(
                 "task-j001-p1", AuditTarget.QUIZ, "quiz-j001-p1",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> ctx = resolver.resolve(report, task);
 
@@ -307,7 +307,7 @@ public class FSlemJ001JourneyTest {
         LemmaAbsenceContextResolver resolver = new LemmaAbsenceContextResolver();
         RefinementTask task = new RefinementTask(
                 "task-j001-p2", AuditTarget.QUIZ, "quiz-j001-p2",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Gate R012: must NOT throw even without lemma-count signal
         Optional<LemmaAbsenceCorrectionContext> ctx = resolver.resolve(report, task);
@@ -400,7 +400,7 @@ public class FSlemJ001JourneyTest {
         LemmaAbsenceContextResolver resolver = new LemmaAbsenceContextResolver();
         RefinementTask task = new RefinementTask(
                 "task-j001-p3", AuditTarget.QUIZ, "quiz-j001-p3",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> ctx = resolver.resolve(report, task);
 

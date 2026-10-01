@@ -3,10 +3,13 @@ package com.learney.contentaudit.auditdomain;
 import com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessDiagnosis;
 import com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceDiagnosis;
 import com.learney.contentaudit.auditdomain.exactduplicates.ExactDuplicateDiagnosis;
+import com.learney.contentaudit.auditdomain.grammar.GrammarDiagnosis;
 import com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.LemmaPlacementDiagnosis;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryDiagnosis;
 import com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityDiagnosis;
+import com.learney.contentaudit.auditdomain.naturalness.NaturalnessDiagnosis;
+import com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicateDiagnosis;
 import com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsDiagnosis;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionDiagnosis;
 import com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerDiagnosis;
@@ -40,6 +43,14 @@ public final class DefaultQuizDiagnoses implements QuizDiagnoses {
     private MiniTheoryDiagnosis miniTheoryDiagnosis;
 
     private OffLevelWordsDiagnosis offLevelWordsDiagnosis;
+
+    // FEAT-RONDA2: the slots of package B, one per analyzer (hook B-02).
+
+    private GrammarDiagnosis grammarDiagnosis;
+
+    private NaturalnessDiagnosis naturalnessDiagnosis;
+
+    private NearDuplicateDiagnosis nearDuplicateDiagnosis;
 
     @Override
     public Optional<LemmaPlacementDiagnosis> getLemmaAbsenceDiagnosis() {
@@ -147,5 +158,32 @@ public final class DefaultQuizDiagnoses implements QuizDiagnoses {
 
     public void setOffLevelWordsDiagnosis(OffLevelWordsDiagnosis diagnosis) {
         this.offLevelWordsDiagnosis = diagnosis;
+    }
+
+    @Override
+    public Optional<GrammarDiagnosis> getGrammarDiagnosis() {
+        return Optional.ofNullable(grammarDiagnosis);
+    }
+
+    public void setGrammarDiagnosis(GrammarDiagnosis diagnosis) {
+        this.grammarDiagnosis = diagnosis;
+    }
+
+    @Override
+    public Optional<NaturalnessDiagnosis> getNaturalnessDiagnosis() {
+        return Optional.ofNullable(naturalnessDiagnosis);
+    }
+
+    public void setNaturalnessDiagnosis(NaturalnessDiagnosis diagnosis) {
+        this.naturalnessDiagnosis = diagnosis;
+    }
+
+    @Override
+    public Optional<NearDuplicateDiagnosis> getNearDuplicateDiagnosis() {
+        return Optional.ofNullable(nearDuplicateDiagnosis);
+    }
+
+    public void setNearDuplicateDiagnosis(NearDuplicateDiagnosis diagnosis) {
+        this.nearDuplicateDiagnosis = diagnosis;
     }
 }

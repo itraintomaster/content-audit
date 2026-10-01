@@ -21,4 +21,6 @@ public interface EvpCatalogPort {
     Optional<CefrLevel> lookupLevel(LemmaAndPos lemmaAndPos);
 
     Optional<CefrLevel> lookupLevelByLemma(String lemma);
+
+    Optional<CefrLevel> lookupDerivedFormLevel(String word);
 }

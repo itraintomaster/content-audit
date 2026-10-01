@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditinfrastructure;
+
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
 import com.learney.contentaudit.auditdomain.contextnumbers.AuditDigest;
 import com.learney.contentaudit.auditdomain.contextnumbers.DigestNode;
 import com.learney.contentaudit.auditdomain.contextnumbers.ErrorCounts;
@@ -39,6 +41,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -554,5 +557,90 @@ class FileSystemAuditReportStoreTest {
 
     private static DigestNode digestKnowledge(AuditDigest digest) {
         return digest.getRoot().getChildren().get(0).getChildren().get(0).getChildren().get(0);
+    }
+
+    @Test
+    @DisplayName("should keep the measures of the root when a report is saved and loaded again")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldKeepTheMeasuresOfTheRootWhenAReportIsSavedAndLoadedAgain(@TempDir Path tempDir) throws Exception {
+        // F-RONDA2-R004: the root of the report keeps the measure of each analyzer that ran, in
+        // catalog order, with its configuration; the stored report gives them back as they were.
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, studentViewRenderer());
+        AuditReport report = afirmativasRegulares();
+        Map<String, Object> bands = new LinkedHashMap<>();
+        bands.put("analyzerName", "lemma-count");
+        bands.put("threshold", 4);
+        bands.put("bands", List.of(Map.of("name", "1.000 más comunes", "maxCocaRank", 1000, "threshold", 8),
+                Map.of("name", "hasta 2.000", "maxCocaRank", 2000, "threshold", 6)));
+        List<AnalyzerMeasure> measures = List.of(
+                new AnalyzerMeasure("sentence-length", "1".repeat(64), Map.of("analyzerName", "sentence-length",
+                        "toleranceMargin", 5)),
+                new AnalyzerMeasure("lemma-count", "2".repeat(64), bands),
+                new AnalyzerMeasure("hint-coherence", "3".repeat(64), Map.of()));
+        report.getRoot().setMeasures(measures);
+
+        AuditReport loaded = store.load(store.save(report)).orElseThrow();
+
+        assertEquals(measures, loaded.getRoot().getMeasures(), "R004: the measures of the root, as they were");
+        assertEmptyBelow(loaded.getRoot());
+    }
+
+    @Test
+    @DisplayName("should load a report saved before round 2 with an empty list of measures, without inventing them")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldLoadAReportSavedBeforeRound2WithAnEmptyListOfMeasuresWithoutInventingThem(@TempDir Path tempDir) throws Exception {
+        // F-RONDA2-R004 inv. 4: a report stored before the rule has no measures; it is read with the
+        // list empty, on the root and on every node -- nothing invents its measure.
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, studentViewRenderer());
+        String id = store.save(afirmativasRegulares());
+        Path file = tempDir.resolve(".content-audit/audits/audit-" + id + ".json");
+        com.fasterxml.jackson.databind.ObjectMapper json = new com.fasterxml.jackson.databind.ObjectMapper();
+        com.fasterxml.jackson.databind.JsonNode stored = json.readTree(file.toFile());
+        withoutMeasures(stored);
+        json.writeValue(file.toFile(), stored);
+        assertFalse(Files.readString(file).contains("\"measures\""), "a report of before round 2");
+
+        AuditReport loaded = store.load(id).orElseThrow();
+
+        assertEquals(List.of(), loaded.getRoot().getMeasures(), "R004 inv. 4: an empty list on the root");
+        assertEmptyBelow(loaded.getRoot());
+        assertEquals("Afirmativas regulares", loaded.getRoot().getChildren().get(0).getChildren().get(0).getChildren().get(0)
+                .getEntity().getLabel(), "the rest of the report is read as before");
+    }
+
+    @Test
+    @DisplayName("should leave a saved projection out of list and loadLatest even when it was saved after the last analysis")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
+    public void shouldLeaveASavedProjectionOutOfListAndLoadLatestEvenWhenItWasSavedAfterTheLastAnalysis() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should load a saved projection by its id when no analysis has that id, so plan --audit and the suggested words query accept it as their source analysis")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
+    public void shouldLoadASavedProjectionByItsIdWhenNoAnalysisHasThatIdSoPlanAuditAndTheSuggestedWordsQueryAcceptItAsTheirSourceAnalysis() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    /** F-RONDA2-R004 inv. 4: only the root keeps measures. */
+    private static void assertEmptyBelow(AuditNode root) {
+        for (AuditNode child : root.getChildren()) {
+            assertEquals(List.of(), child.getMeasures(), "no measures below the root");
+            assertEmptyBelow(child);
+        }
+    }
+
+    /** The stored tree as a report of before round 2 had it: without the field of the measures. */
+    private static void withoutMeasures(com.fasterxml.jackson.databind.JsonNode node) {
+        if (node instanceof com.fasterxml.jackson.databind.node.ObjectNode object) {
+            object.remove("measures");
+        }
+        node.forEach(FileSystemAuditReportStoreTest::withoutMeasures);
     }
 }

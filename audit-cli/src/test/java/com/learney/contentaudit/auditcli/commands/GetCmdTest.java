@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -98,7 +99,7 @@ public class GetCmdTest {
         SuggestedLemmaQueryPort suggestedLemmaQueryPort = mock(SuggestedLemmaQueryPort.class);
         cmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
                 correctionContextResolver, null, null, new DefaultCorrectionContextJsonMapper(),
-                suggestedLemmaQueryPort, null, null, null);
+                suggestedLemmaQueryPort, null, null, null, null);
         cmd.setRevisionArtifactStore(revisionArtifactStore);
         // GetCmd has a picocli @Option field 'formatName' that picocli normally populates.
         // When constructing directly in unit tests, we must inject a default value so the
@@ -300,7 +301,7 @@ public class GetCmdTest {
                 "Quiz 1",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(
                 planId,
@@ -316,7 +317,7 @@ public class GetCmdTest {
                 false,
                 Optional.empty(),
                 Optional.empty(),
-                Optional.empty()
+                Optional.empty(), null
         );
         int exit = cmd.get("tasks", null, filter);
 
@@ -335,7 +336,7 @@ public class GetCmdTest {
                 "Knowledge 1",
                 DiagnosisKind.SENTENCE_LENGTH,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
         RefinementTask completedTask = new RefinementTask(
                 "task-002",
@@ -344,7 +345,7 @@ public class GetCmdTest {
                 "Quiz 1",
                 DiagnosisKind.LEMMA_ABSENCE,
                 2,
-                RefinementTaskStatus.COMPLETED
+                RefinementTaskStatus.COMPLETED, null
         );
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19",
@@ -360,7 +361,7 @@ public class GetCmdTest {
                 false,
                 Optional.empty(),
                 Optional.empty(),
-                Optional.empty()
+                Optional.empty(), null
         );
         int exit = cmd.get("tasks", null, filter);
 
@@ -379,7 +380,7 @@ public class GetCmdTest {
                 "Quiz 1",
                 DiagnosisKind.COCA_BUCKETS,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
         RefinementTask lowPriority = new RefinementTask(
                 "task-002",
@@ -388,7 +389,7 @@ public class GetCmdTest {
                 "Knowledge 1",
                 DiagnosisKind.SENTENCE_LENGTH,
                 3,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
         RefinementTask midPriority = new RefinementTask(
                 "task-003",
@@ -397,7 +398,7 @@ public class GetCmdTest {
                 "Topic 1",
                 DiagnosisKind.LEMMA_ABSENCE,
                 2,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
         // Plan has tasks in non-priority order; sort should reorder them
         RefinementPlan plan = new RefinementPlan(
@@ -414,7 +415,7 @@ public class GetCmdTest {
                 true,
                 Optional.empty(),
                 Optional.empty(),
-                Optional.empty()
+                Optional.empty(), null
         );
         int exit = cmd.get("tasks", null, filter);
 
@@ -428,13 +429,13 @@ public class GetCmdTest {
     public void shouldCapTheResultCountWhenGetTasksLimitNIsSupplied() {
         RefinementTask task1 = new RefinementTask(
                 "task-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementTask task2 = new RefinementTask(
                 "task-002", AuditTarget.KNOWLEDGE, "knowledge-node-1", "Knowledge 1",
-                DiagnosisKind.SENTENCE_LENGTH, 2, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 2, RefinementTaskStatus.PENDING, null);
         RefinementTask task3 = new RefinementTask(
                 "task-003", AuditTarget.TOPIC, "topic-node-1", "Topic 1",
-                DiagnosisKind.COCA_BUCKETS, 3, RefinementTaskStatus.PENDING);
+                DiagnosisKind.COCA_BUCKETS, 3, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19",
                 "2026-04-19T10-30-00",
@@ -449,7 +450,7 @@ public class GetCmdTest {
                 false,
                 Optional.of(2),
                 Optional.empty(),
-                Optional.empty()
+                Optional.empty(), null
         );
         int exit = cmd.get("tasks", null, filter);
 
@@ -464,13 +465,13 @@ public class GetCmdTest {
             ) {
         RefinementTask pendingHigh = new RefinementTask(
                 "task-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementTask pendingLow = new RefinementTask(
                 "task-002", AuditTarget.KNOWLEDGE, "knowledge-node-1", "Knowledge 1",
-                DiagnosisKind.SENTENCE_LENGTH, 3, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 3, RefinementTaskStatus.PENDING, null);
         RefinementTask completed = new RefinementTask(
                 "task-003", AuditTarget.TOPIC, "topic-node-1", "Topic 1",
-                DiagnosisKind.COCA_BUCKETS, 2, RefinementTaskStatus.COMPLETED);
+                DiagnosisKind.COCA_BUCKETS, 2, RefinementTaskStatus.COMPLETED, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19",
                 "2026-04-19T10-30-00",
@@ -486,7 +487,7 @@ public class GetCmdTest {
                 true,
                 Optional.of(1),
                 Optional.empty(),
-                Optional.empty()
+                Optional.empty(), null
         );
         int exit = cmd.get("tasks", null, filter);
 
@@ -513,7 +514,7 @@ public class GetCmdTest {
                     false,
                     Optional.empty(),
                     Optional.empty(),
-                    Optional.empty()
+                    Optional.empty(), null
             );
             exit = cmd.get("tasks", null, filter);
         } finally {
@@ -541,7 +542,7 @@ public class GetCmdTest {
     public void shouldReturnZeroTasksAndExitZeroWhenLimit0IsSupplied() {
         RefinementTask task = new RefinementTask(
                 "task-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19",
                 "2026-04-19T10-30-00",
@@ -556,7 +557,7 @@ public class GetCmdTest {
                 false,
                 Optional.of(0),
                 Optional.empty(),
-                Optional.empty()
+                Optional.empty(), null
         );
         int exit = cmd.get("tasks", null, filter);
 
@@ -576,7 +577,7 @@ public class GetCmdTest {
                 false,
                 Optional.of(-1),
                 Optional.empty(),
-                Optional.empty()
+                Optional.empty(), null
         );
         int exit = cmd.get("tasks", null, filter);
 
@@ -611,7 +612,7 @@ public class GetCmdTest {
                     false,
                     Optional.empty(),
                     Optional.empty(),
-                    Optional.empty()
+                    Optional.empty(), null
             );
             exit = cmd.get("tasks", null, filter);
         } finally {
@@ -670,7 +671,7 @@ public class GetCmdTest {
         // Plan has only completed tasks; filter requests pending — zero match
         RefinementTask completedTask = new RefinementTask(
                 "task-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.COMPLETED);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.COMPLETED, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19",
                 "2026-04-19T10-30-00",
@@ -693,7 +694,7 @@ public class GetCmdTest {
                     false,
                     Optional.empty(),
                     Optional.empty(),
-                    Optional.empty()
+                    Optional.empty(), null
             );
             exit = cmd.get("tasks", null, filter);
         } finally {
@@ -721,7 +722,7 @@ public class GetCmdTest {
     public void shouldResolveToTheMostRecentPlanWhenGetTasksIsInvokedWithoutPlan() {
         RefinementTask task = new RefinementTask(
                 "task-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan latestPlan = new RefinementPlan(
                 "plan-latest",
                 "2026-04-19T10-30-00",
@@ -737,7 +738,7 @@ public class GetCmdTest {
                 false,
                 Optional.empty(),
                 Optional.empty(),
-                Optional.empty()
+                Optional.empty(), null
         );
         int exit = cmd.get("tasks", null, filter);
 
@@ -767,7 +768,7 @@ public class GetCmdTest {
                     false,
                     Optional.empty(),
                     Optional.empty(),
-                    Optional.empty()
+                    Optional.empty(), null
             );
             exit = cmd.get("tasks", null, filter);
         } finally {
@@ -794,7 +795,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -816,7 +817,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         // Act
         int exit = cmd.get("tasks", null, filter);
@@ -835,7 +836,7 @@ public class GetCmdTest {
         // Arrange: a COCA_BUCKETS task — resolver must NOT be called for non-SL/LA diagnoses
         RefinementTask cbTask = new RefinementTask(
                 "task-cb-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.COCA_BUCKETS, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.COCA_BUCKETS, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", "audit-2026-04-19T10-30-00",
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(cbTask));
@@ -844,7 +845,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         // Act
         cmd.get("tasks", null, filter);
@@ -869,7 +870,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -891,7 +892,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -926,10 +927,10 @@ public class GetCmdTest {
 
         RefinementTask sentenceLengthTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementTask lemmaAbsenceTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-2", "Quiz 2",
-                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", "audit-2026-04-19T10-30-00",
                 Instant.parse("2026-04-19T10:30:00Z"),
@@ -939,7 +940,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -976,7 +977,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -999,7 +1000,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1037,7 +1038,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1060,7 +1061,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1097,7 +1098,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1124,7 +1125,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1162,7 +1163,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-does-not-exist";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1172,7 +1173,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1205,7 +1206,7 @@ public class GetCmdTest {
         // Plan with blank sourceAuditId — cannot load report
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", "",
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1214,7 +1215,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1248,7 +1249,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1262,7 +1263,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1296,7 +1297,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1319,7 +1320,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1351,7 +1352,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1374,7 +1375,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1409,7 +1410,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1436,7 +1437,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1469,7 +1470,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1492,7 +1493,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1521,7 +1522,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1544,7 +1545,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1572,7 +1573,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-002", AuditTarget.QUIZ, "quiz-node-2", "Quiz 2",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1595,7 +1596,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1624,7 +1625,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-does-not-exist";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1634,7 +1635,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1670,7 +1671,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask slTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(slTask));
@@ -1693,7 +1694,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1725,7 +1726,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -1752,7 +1753,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         // Act
         int exit = cmd.get("tasks", null, filter);
@@ -1776,7 +1777,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -1806,7 +1807,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1841,7 +1842,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -1871,7 +1872,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1909,7 +1910,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -1939,7 +1940,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -1973,7 +1974,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -1987,7 +1988,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -2021,7 +2022,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -2049,7 +2050,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -2087,7 +2088,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -2117,7 +2118,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -2148,7 +2149,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -2178,7 +2179,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -2213,7 +2214,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -2243,7 +2244,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -2274,7 +2275,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -2302,7 +2303,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -2331,7 +2332,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-does-not-exist";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -2341,7 +2342,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -2396,7 +2397,7 @@ public class GetCmdTest {
         // Act: 'get proposals' — no id, no filters
         GetTasksFilter noFilter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
         int exit = cmd.get("proposals", null, noFilter);
 
         // Assert: R002 — list all; exit zero
@@ -2433,7 +2434,7 @@ public class GetCmdTest {
         // Act: 'get proposals --plan plan-alpha'
         GetTasksFilter planFilter = new GetTasksFilter(
                 Optional.of("plan-alpha"), Optional.empty(), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
         int exit = cmd.get("proposals", null, planFilter);
 
         // Assert: R003 — filter by plan, exit zero
@@ -2469,7 +2470,7 @@ public class GetCmdTest {
         // Act: 'get proposals --status pending'
         GetTasksFilter statusFilter = new GetTasksFilter(
                 Optional.empty(), Optional.of("pending"), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
         int exit = cmd.get("proposals", null, statusFilter);
 
         // Assert: R003 — 'pending' maps to PENDING_APPROVAL; exit zero
@@ -2505,7 +2506,7 @@ public class GetCmdTest {
         // Act: 'get proposals --status approved'
         GetTasksFilter statusFilter = new GetTasksFilter(
                 Optional.empty(), Optional.of("approved"), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
         int exit = cmd.get("proposals", null, statusFilter);
 
         // Assert: R003 — 'approved' maps to APPROVED; exit zero
@@ -2541,7 +2542,7 @@ public class GetCmdTest {
         // Act: 'get proposals --status rejected'
         GetTasksFilter statusFilter = new GetTasksFilter(
                 Optional.empty(), Optional.of("rejected"), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
         int exit = cmd.get("proposals", null, statusFilter);
 
         // Assert: R003 — 'rejected' maps to REJECTED; exit zero
@@ -2578,7 +2579,7 @@ public class GetCmdTest {
         // Act: 'get proposals --plan plan-alpha --status pending' — conjunctive filter
         GetTasksFilter combinedFilter = new GetTasksFilter(
                 Optional.of("plan-alpha"), Optional.of("pending"), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
         int exit = cmd.get("proposals", null, combinedFilter);
 
         // Assert: R003 conjunctive filter (plan AND status); exit zero
@@ -2603,7 +2604,7 @@ public class GetCmdTest {
         try {
             GetTasksFilter invalidStatusFilter = new GetTasksFilter(
                     Optional.empty(), Optional.of("bogus-value"), false,
-                    Optional.empty(), Optional.empty(), Optional.empty());
+                    Optional.empty(), Optional.empty(), Optional.empty(), null);
             exit = cmd.get("proposals", null, invalidStatusFilter);
         } finally {
             System.setErr(originalErr);
@@ -2642,7 +2643,7 @@ public class GetCmdTest {
         // Act: 'get proposal <id>' — singular resource with id, no --plan
         GetTasksFilter noFilter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
         int exit = cmd.get("proposal", proposalId, noFilter);
 
         // Assert: R002 — known id → exit zero (artifact printed)
@@ -2673,7 +2674,7 @@ public class GetCmdTest {
         // Act: 'get proposal <id> --plan plan-alpha' — plan-scoped direct lookup
         GetTasksFilter planFilter = new GetTasksFilter(
                 Optional.of(planId), Optional.empty(), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
         int exit = cmd.get("proposal", proposalId, planFilter);
 
         // Assert: R002 — plan-scoped lookup returns artifact; exit zero
@@ -2700,7 +2701,7 @@ public class GetCmdTest {
         try {
             GetTasksFilter noFilter = new GetTasksFilter(
                     Optional.empty(), Optional.empty(), false,
-                    Optional.empty(), Optional.empty(), Optional.empty());
+                    Optional.empty(), Optional.empty(), Optional.empty(), null);
             exit = cmd.get("proposal", unknownId, noFilter);
         } finally {
             System.setErr(originalErr);
@@ -2735,7 +2736,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-rclaqs-001";
         RefinementTask laTask = new RefinementTask(
                 "task-rclaqs-r005-001", AuditTarget.QUIZ, "quiz-rclaqs-001", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-rclaqs-001", sourceAuditId,
                 Instant.parse("2026-04-22T10:00:00Z"), List.of(laTask));
@@ -2764,7 +2765,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -2799,7 +2800,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-rclaqs-002";
         RefinementTask laTask = new RefinementTask(
                 "task-rclaqs-r005-002", AuditTarget.QUIZ, "quiz-rclaqs-002", "Quiz 2",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-rclaqs-002", sourceAuditId,
                 Instant.parse("2026-04-22T10:00:00Z"), List.of(laTask));
@@ -2826,7 +2827,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -2869,7 +2870,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-rclaqs-003";
         RefinementTask laTask = new RefinementTask(
                 "task-rclaqs-r005-003", AuditTarget.QUIZ, "quiz-rclaqs-003", "Quiz 3",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-rclaqs-003", sourceAuditId,
                 Instant.parse("2026-04-22T10:00:00Z"), List.of(laTask));
@@ -2884,7 +2885,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -2975,7 +2976,7 @@ public class GetCmdTest {
         // Act
         GetTasksFilter noFilter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outBuf));
@@ -3045,7 +3046,7 @@ public class GetCmdTest {
         // Act
         GetTasksFilter noFilter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outBuf));
@@ -3081,7 +3082,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -3112,7 +3113,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -3156,7 +3157,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -3185,7 +3186,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -3222,7 +3223,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-015", AuditTarget.QUIZ, "quiz-id-456", "Quiz 15 - L1.T2.K4",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -3251,7 +3252,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -3291,7 +3292,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-016", AuditTarget.QUIZ, "quiz-id-789", "Quiz 16 - L1.T2.K5",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -3320,7 +3321,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -3363,7 +3364,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-017", AuditTarget.QUIZ, "quiz-id-no-len", "Quiz 17 - L1.T2.K6",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -3392,7 +3393,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -3427,7 +3428,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -3458,7 +3459,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -3494,7 +3495,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -3523,7 +3524,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -3560,7 +3561,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-015", AuditTarget.QUIZ, "quiz-id-456", "Quiz 15 - L1.T2.K4",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -3589,7 +3590,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -3626,7 +3627,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-016", AuditTarget.QUIZ, "quiz-id-789", "Quiz 16 - L1.T2.K5",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -3655,7 +3656,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -3692,7 +3693,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-017", AuditTarget.QUIZ, "quiz-id-no-len", "Quiz 17 - L1.T2.K6",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -3721,7 +3722,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -3756,7 +3757,7 @@ public class GetCmdTest {
         GetCmd localCmd = new GetCmd(
                 auditReportStore, refinementPlanStore, analyzerRegistry,
                 correctionContextResolver, null, null,
-                new DefaultCorrectionContextJsonMapper(), suggestedLemmaQueryPort, null, null, null);
+                new DefaultCorrectionContextJsonMapper(), suggestedLemmaQueryPort, null, null, null, null);
         Field formatField = GetCmd.class.getDeclaredField("formatName");
         formatField.setAccessible(true);
         formatField.set(localCmd, "text");
@@ -3766,7 +3767,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 taskId, AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -3863,7 +3864,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -3898,7 +3899,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.of("pending"), true,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -3979,7 +3980,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -4016,7 +4017,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.of("pending"), true,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -4057,7 +4058,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-014", AuditTarget.QUIZ, "quiz-id-123", "Quiz 14 - L1.T2.K3",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -4089,7 +4090,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.of("pending"), true,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -4122,7 +4123,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -4155,7 +4156,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -4194,7 +4195,7 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-04-19T10-30-00";
         RefinementTask laTask = new RefinementTask(
                 "task-la-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-04-19", sourceAuditId,
                 Instant.parse("2026-04-19T10:30:00Z"), List.of(laTask));
@@ -4224,7 +4225,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.of(1), Optional.empty(), Optional.empty());
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -4261,10 +4262,10 @@ public class GetCmdTest {
         String sourceAuditId = "audit-2026-08-03T00-00-00";
         RefinementTask quizInstructionTask = new RefinementTask(
                 "task-qi-001", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
-                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING, null);
         RefinementTask sentenceLengthTask = new RefinementTask(
                 "task-sl-001", AuditTarget.QUIZ, "quiz-node-2", "Quiz 2",
-                DiagnosisKind.SENTENCE_LENGTH, 2, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 2, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(
                 "plan-2026-08-03", sourceAuditId,
                 Instant.parse("2026-08-03T00:00:00Z"),
@@ -4291,7 +4292,7 @@ public class GetCmdTest {
 
         GetTasksFilter filter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.empty(), Optional.empty(), Optional.of(DiagnosisKind.QUIZ_INSTRUCTION));
+                Optional.empty(), Optional.empty(), Optional.of(DiagnosisKind.QUIZ_INSTRUCTION), null);
 
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
@@ -4613,7 +4614,7 @@ public class GetCmdTest {
                 mock(AnalyzerRegistry.class), mock(CorrectionContextResolver.class), null, null,
                 new DefaultCorrectionContextJsonMapper(), mock(SuggestedLemmaQueryPort.class), null,
                 new com.learney.contentaudit.auditdomain.studentview.DefaultTopicStudentViewQuery(renderer, recordings),
-                new com.learney.contentaudit.auditinfrastructure.FileSystemActiveAnalysisSelectionStore(workdir));
+                new com.learney.contentaudit.auditinfrastructure.FileSystemActiveAnalysisSelectionStore(workdir), null);
         get.setRevisionArtifactStore(mock(RevisionArtifactStore.class));
         return get;
     }
@@ -4775,7 +4776,7 @@ public class GetCmdTest {
     /** plan over the analysis, as Main builds it, saved in the working directory. */
     static void planOf(Path workdir, AnalyzerCatalog catalog, String auditId) {
         PlanCmd plan = new PlanCmd(new FileSystemAuditReportStore(workdir, null),
-                new com.learney.contentaudit.refinerdomain.DefaultRefinerEngine(catalog),
+                new com.learney.contentaudit.refinerdomain.DefaultRefinerEngine(catalog, null),
                 new com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore(workdir),
                 mock(EphemeralPlanRenderer.class));
         Base299.Captured planned = Base299.run(plan, "--audit", auditId);
@@ -4804,7 +4805,7 @@ public class GetCmdTest {
                 new DefaultCorrectionContextJsonMapper(), suggested,
                 new com.learney.contentaudit.refinerdomain.topicwords.DefaultTopicWordLightsQuery(lexis, suggested,
                         new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver()),
-                null, null);
+                null, null, null);
         get.setRevisionArtifactStore(mock(RevisionArtifactStore.class));
         return get;
     }
@@ -4824,5 +4825,108 @@ public class GetCmdTest {
             }
         }
         throw new AssertionError("no " + lemma + "|" + pos + " among the words of the topic");
+    }
+
+    @Test
+    @DisplayName("should show in get analyzers the twenty analyzers with twenty different Spanish names, the three of package B last")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R001")
+    @org.junit.jupiter.api.Disabled("FEAT-RONDA2: espera a B, que construya los proveedores de grammar, naturalness y near-duplicates")
+    public void shouldShowInGetAnalyzersTheTwentyAnalyzersWithTwentyDifferentSpanishNamesTheThreeOfPackageBLast(@org.junit.jupiter.api.io.TempDir Path workdir) throws IOException {
+        // F-RONDA2-R001: get analyzers of the catalog Main builds lists the twenty, each next to its
+        // Spanish name -- twenty different ones, none empty --, the three of package B last.
+        AnalyzerCatalog catalog = new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(
+                AnalyzeCmdTest.Base299.roundTwoProviders(
+                        new com.learney.contentaudit.evaluationledgerinfrastructure.FileSystemEvaluationLedger(workdir),
+                        workdir));
+
+        AnalyzeCmdTest.Base299.Captured json = AnalyzeCmdTest.Base299.run(
+                AnalyzeCmdTest.Base299.getCmd(auditReportStore, catalog), "analyzers", "-f", "json");
+
+        assertEquals(0, json.exit(), json.err());
+        JsonNode listed = new ObjectMapper().readTree(json.out());
+        List<String> names = new java.util.ArrayList<>();
+        List<String> spanish = new java.util.ArrayList<>();
+        listed.forEach(card -> {
+            names.add(card.get("name").asText());
+            spanish.add(card.get("displayName").asText());
+        });
+        assertEquals(AnalyzeCmdTest.Base299.ROUND_TWO, names, "R001: the twenty, the three of package B last");
+        assertEquals(20, new java.util.HashSet<>(spanish).size(), "R001 inv. 1: twenty different Spanish names");
+        assertTrue(spanish.stream().noneMatch(String::isBlank), "R001 inv. 1: none empty");
+        assertEquals(List.of("Gramática", "Naturalidad", "Duplicados parecidos"), spanish.subList(17, 20),
+                "R001: «Gramática», «Naturalidad» and «Duplicados parecidos»");
+    }
+
+    @Test
+    @DisplayName("should show in get analyzer naturalness its two tools, llama3:8b in Ollama and claude -p, each with its version, whether it is available and its exam")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
+    public void shouldShowInGetAnalyzerNaturalnessItsTwoToolsLlama38bInOllamaAndClaudePEachWithItsVersionWhetherItIsAvailableAndItsExam() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should list with 'get tasks' only the panel tasks of the topic Afirmativas regulares when filtered by that topic and the panel resolution, each with its finding: single-answer and translation-sense of «I ___ a lot of vegetables.» but not its hint")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldListWithGetTasksOnlyThePanelTasksOfTheTopicAfirmativasRegularesWhenFilteredByThatTopicAndThePanelResolutionEachWithItsFindingSingleanswerAndTranslationsenseOfIALotOfVegetablesButNotItsHint() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should combine the filters by analyzer, severity and CEFR level with the sort by priority, as the blocking single-answer tasks of A1 in priority order")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldCombineTheFiltersByAnalyzerSeverityAndCEFRLevelWithTheSortByPriorityAsTheBlockingSingleanswerTasksOfA1InPriorityOrder() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject 'get tasks' filtered by an analyzer outside the catalog with 'Analyzer 'hint-coherense' not found. Run 'content-audit get analyzers' to see available analyzers.' and exit non-zero")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldRejectGetTasksFilteredByAnAnalyzerOutsideTheCatalogWithAnalyzerHintcoherenseNotFoundRunContentauditGetAnalyzersToSeeAvailableAnalyzersAndExitNonzero() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject 'get tasks' filtered by a severity outside blocking, high, medium and low and exit non-zero")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldRejectGetTasksFilteredByASeverityOutsideBlockingHighMediumAndLowAndExitNonzero() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should list the tasks as today, vocabulary tasks included, when no filter by finding is given")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldListTheTasksAsTodayVocabularyTasksIncludedWhenNoFilterByFindingIsGiven() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should show 'get task' of the single-answer task of «I ___ a lot of vegetables.» with the exercise as the student sees it, its finding with its evidence (eat, like, buy and want also fit), its blocking severity, its panel resolution and what its fix may touch")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldShowGetTaskOfTheSingleanswerTaskOfIALotOfVegetablesWithTheExerciseAsTheStudentSeesItItsFindingWithItsEvidenceEatLikeBuyAndWantAlsoFitItsBlockingSeverityItsPanelResolutionAndWhatItsFixMayTouch() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should show 'get task' of the mini-theory task of «$In time$ u $on time$» with the forty exercises it reaches")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
+    public void shouldShowGetTaskOfTheMinitheoryTaskOfInTimeUOnTimeWithTheFortyExercisesItReaches() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

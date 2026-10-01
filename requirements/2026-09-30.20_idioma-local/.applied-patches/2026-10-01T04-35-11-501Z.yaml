@@ -1,0 +1,613 @@
+code: FEAT-MLOCAL
+description: "FEAT-MLOCAL, paquete B de la ronda 2: las herramientas de idioma que\
+  \ corren en la máquina, lo común a grammar, naturalness y near-duplicates, y la\
+  \ alternativa sin Ollama (José, 30/9 a la noche). En audit-domain, el paquete localtools\
+  \ (la herramienta, su versión y si se puede usar, los tres puertos —LanguageTool,\
+  \ pregunta de sí o no y vector de una oración—, la decisión de publicar con la polí\
+  tica del modelo local, la tarjeta de la ficha —la local y la de claude -p— y lo\
+  \ que queda en el informe) y localtoolsengine (la decisión, con el examen que lee\
+  \ el runtime de los jueces de C). La alternativa no se declara acá: es un evaluador\
+  \ de claude -p hecho con AgentJudgeFactory (C) y abierto con JudgeRuntime (C), con\
+  \ su tope 0 sin pedido, sus 4 a la vez, su sesión verificada y su costo declarado.\
+  \ Un módulo nuevo, local-language-infrastructure, con LanguageTool 6.8 dentro del\
+  \ proceso y los modelos de Ollama detrás de una fábrica que sólo habla con esta\
+  \ máquina. Lo compartido (ficha, ranuras de diagnóstico, runner, Main, agentes)\
+  \ está en ganchos-B.md. Rebasado por el integrador de la ronda 2 sobre el sentinel.yaml\
+  \ de ronda1/integracion (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2,\
+  \ que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E, sin cambios de\
+  \ estructura.; qa-tester de la ronda 2 (B): traza las 8 reglas de FEAT-MLOCAL a\
+  \ 32 handwrittenTests nuevas (no hay pruebas previas que portar), con casos reales\
+  \ del curso del 29/9 y los números de los prototipos del analista, y ubica F-MLOCAL-J001\
+  \ en audit-cli, paquete commands, como F-JEXAM-J001 y F-HALL-J001. Las reglas comunes\
+  \ que realizan los tres analizadores se prueban en sus parches, trazadas a sus propias\
+  \ reglas."
+modules:
+- name: audit-domain
+  packages:
+  - name: localtools
+    description: |
+      Lo común a los analizadores de idioma que dependen de una herramienta que corre en la máquina (FEAT-MLOCAL): qué herramienta es, en qué versión está y si se puede usar ahora; sus tres puertos (LanguageTool en una variante del inglés, una pregunta de sí o no y el vector de una oración); la decisión de publicar y la política con que se consulta el modelo local; la tarjeta que va en la ficha, la de la herramienta y la de la alternativa con claude -p; y lo que cada corrida deja en el informe. No sabe de LanguageTool, de Ollama ni de claude-cli: esos son los adaptadores. El examen por versión es el de los jueces (JudgeRuntime.standing, JudgeExamStatus): B no declara otro registro ni otro estado. Los números de modelo y las respuestas de claude -p van al libro de evaluaciones por el runtime de los jueces (F-MLOCAL-R002 inv. 2).
+    visibility: public
+    models:
+    - name: LocalToolStatus
+      type: record
+      fields:
+      - name: tool
+        type: String
+        description: "Qué herramienta es, como la lee una persona: «LanguageTool»\
+          , «llama3:8b en Ollama», «claude -p (sin Ollama)»."
+      - name: version
+        type: String
+        description: "Versión instalada, la que decide el examen: «6.8», el modelo\
+          \ con su huella de Ollama «llama3:8b@365c0bd3c000», o la del juez de claude\
+          \ -p. Null si no está disponible."
+      - name: available
+        type: boolean
+        description: "Si se puede usar ahora. Una dirección de Ollama que no es de\
+          \ esta máquina, o «off», da false (F-MLOCAL-R001). La alternativa está disponible\
+          \ si su evaluador enuncia versión, aunque la sesión de claude-cli haya vencido:\
+          \ eso lo ve la primera consulta (F-JEXAM-R011)."
+      - name: unavailableReason
+        type: String
+        description: "Por qué no se puede usar, en castellano. Null si está disponible."
+      - name: installHint
+        type: String
+        description: "Cómo se instala o se levanta, para el mensaje de F-MLOCAL-R003:\
+          \ «ollama pull llama3:8b»; para la alternativa, «claude auth login»."
+      _change: add
+    - name: LocalToolCard
+      type: record
+      fields:
+      - name: status
+        type: LocalToolStatus
+      - name: examinedVersion
+        type: String
+        description: "Lo que rinde examen: la versión de la herramienta y la del mé\
+          todo del analizador (la pregunta, el prefijo, el filtro), «llama3:8b@365c0bd3c000\
+          \ · native-yes-no-1»; para la alternativa, la versión del juez de claude\
+          \ -p. Cambiar cualquiera es una versión nueva."
+      - name: examState
+        type: JudgeExamStatus
+        description: "El examen de esa versión según el registro de los jueces (F-MLOCAL-R006,\
+          \ F-JEXAM-R003)."
+      - name: examSummary
+        type: String
+        description: "El resultado del examen de esa versión, en una línea: «51 de\
+          \ 186 en la cola del 5 %, aprobado el 30/9». Null si no rindió."
+      - name: alternative
+        type: boolean
+        description: "True en la tarjeta de claude -p: sólo se usa sin el modelo local\
+          \ y sólo consulta con un tope pedido (F-MLOCAL-R007, R008)."
+      _change: add
+    - name: LocalToolGateDecision
+      type: record
+      fields:
+      - name: publishes
+        type: boolean
+        description: "True si la herramienta local está disponible y su versión aprobó\
+          \ el examen, o si la corrida es su examen. grammar publica sólo con true;\
+          \ los de modelo dejan además que el runtime de los jueces aplique el mismo\
+          \ freno a sus consultas."
+      - name: status
+        type: LocalToolStatus
+        description: "El sondeo de la herramienta local que tomó la decisión, una\
+          \ vez por corrida. Con available false, los de modelo usan la alternativa\
+          \ (F-MLOCAL-R007)."
+      - name: examinedVersion
+        type: String
+        description: "La versión de la herramienta y la del método: la clave del examen\
+          \ y, en los de modelo, la versión de su evaluador local. Null si la herramienta\
+          \ no está disponible."
+      - name: examState
+        type: JudgeExamStatus
+      - name: examRun
+        type: boolean
+        description: "La corrida es el examen de la versión (política EXAM): publica\
+          \ aunque la versión no esté aprobada, porque es lo que se mide."
+      - name: reason
+        type: String
+        description: "Por qué no publica con la herramienta local, en castellano,\
+          \ para el informe: no disponible, reprobada o sin examen. Null si publica."
+      - name: localPolicy
+        type: EvaluationRunPolicy
+        description: "La política con que se consulta el modelo local: la de la corrida;\
+          \ sin pedido, sin tope y de a una, porque el tope 0 de los jueces no alcanza\
+          \ a los modelos locales (F-MLOCAL-R008, gancho B-06). La alternativa nunca\
+          \ la usa: recibe la de la corrida tal cual."
+      _change: add
+    - name: LocalToolRunDiagnosis
+      type: record
+      fields:
+      - name: analyzer
+        type: String
+        description: Nombre canónico del analizador (F-HALL-R005). Es la identidad
+          de la fila al comparar dos informes.
+      - name: status
+        type: LocalToolStatus
+        description: "Con qué herramienta local y versión midió esta corrida, o por\
+          \ qué no estaba (F-MLOCAL-R002 inv. 3)."
+      - name: examinedVersion
+        type: String
+      - name: examState
+        type: JudgeExamStatus
+      - name: published
+        type: boolean
+      - name: reason
+        type: String
+        description: "El motivo a la vista de lo que quedó sin evaluar, en castellano:\
+          \ sin la herramienta local y sin alternativa (F-MLOCAL-R003 inv. 3), la\
+          \ versión sin examen aprobado (R006) o, con la alternativa, «falta el tope»\
+          \ si la corrida no le pidió ninguno a claude -p (R008), con lo que costarí\
+          a. Son tres motivos distintos. Null si evaluó todo."
+      - name: alternative
+        type: boolean
+        description: "True si esta corrida usó claude -p porque el modelo local no\
+          \ estaba. Su versión, su examen, lo que falta y su costo están en la cobertura\
+          \ de jueces del curso con el mismo nombre (CourseDiagnoses.getJudgeCoverages,\
+          \ F-MLOCAL-R007 inv. 4)."
+      _change: add
+    - name: LocalToolUnavailableException
+      type: exception
+      fields:
+      - name: analyzerName
+        type: String
+      - name: requiredTool
+        type: String
+        description: "La herramienta con la versión que pide y, si tiene, la alternativa:\
+          \ «llama3:8b en Ollama o claude -p»."
+      - name: installHint
+        type: String
+      message: "Analyzer '%s' needs %s, which is not available: %s."
+      _change: add
+      extends: RuntimeException
+    - name: EnglishVariant
+      type: enum
+      fields:
+      - name: AMERICAN
+      - name: BRITISH
+      _change: add
+    - name: GrammarMatch
+      type: record
+      fields:
+      - name: ruleId
+        type: String
+        description: "La regla de LanguageTool que marcó, por ejemplo EXPLAIN_TO o\
+          \ MORFOLOGIK_RULE_EN_US."
+      - name: categoryId
+        type: String
+        description: "Su categoría en LanguageTool: GRAMMAR, TYPOS, CASING, STYLE…\
+          ; el filtro de Gramática decide por ésta (F-GRAMA-R002)."
+      - name: start
+        type: int
+      - name: end
+        type: int
+      - name: message
+        type: String
+      - name: suggestions
+        type: List<String>
+        description: "Las primeras sugerencias de LanguageTool, en su orden."
+      _change: add
+    - name: YesNoProbabilities
+      type: record
+      fields:
+      - name: yesProbability
+        type: double
+        description: "Probabilidad del primer token de la respuesta, sumando sus formas\
+          \ («yes», «Yes», « yes», «y»)."
+      - name: noProbability
+        type: double
+        description: "Lo mismo para «no». Lo que no es ni sí ni no queda afuera; si\
+          \ las dos dan 0, la respuesta no sirve."
+      _change: add
+    - name: SentenceEmbedding
+      type: record
+      fields:
+      - name: values
+        type: List<Double>
+        description: "El vector de la oración tal como lo devuelve el modelo, sin\
+          \ normalizar."
+      _change: add
+    interfaces:
+    - name: LocalTool
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "status(): LocalToolStatus"
+      _change: add
+    - name: GrammarChecker
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "check(String sentence,EnglishVariant variant): List<GrammarMatch>"
+      _change: add
+      extends:
+      - LocalTool
+    - name: YesNoModel
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "ask(String system,String question): YesNoProbabilities"
+      _change: add
+      extends:
+      - LocalTool
+    - name: EmbeddingModel
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "embed(String text): SentenceEmbedding"
+      _change: add
+      extends:
+      - LocalTool
+    - name: LocalToolGate
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "decide(String analyzerName,LocalTool tool,String methodId,EvaluationRunPolicy\
+          \ policy): LocalToolGateDecision"
+      - signature: "card(String analyzerName,LocalTool tool,String methodId): LocalToolCard"
+      - signature: "alternativeCard(String analyzerName,Evaluator alternative): LocalToolCard"
+      glossarySuggestions:
+      - name: Alternativa sin Ollama
+        technicalName: LocalToolCard.alternative
+        kind: policy-candidate
+        basedOn: audit-domain/localtools/LocalToolGate
+        rationale: |
+          José, 30/9 a la noche: «sin Ollama no se deja sin evaluar; recordá que tenemos claude -p». Naturalidad y Duplicados parecidos le hacen su pregunta a claude -p cuando su modelo local no está, con el tope, el examen y la sesión de los jueces. La ficha y el informe la nombran así para distinguirla de la herramienta local.
+      _change: add
+    _change: add
+  - name: localtoolsengine
+    description: |
+      La decisión de publicar de los tres analizadores de idioma y las tarjetas de su ficha, en un solo lugar: herramienta disponible y versión aprobada, o corrida de examen; y, para los de modelo, la política sin tope ni pedido del modelo local. El examen lo lee del runtime de los jueces (JudgeRuntime.standing): mismo registro, mismos estados y mismos motivos que los jueces de C; B no declara otro. Sólo la raíz de composición la construye.
+    visibility: public
+    implementations:
+    - name: DefaultLocalToolGate
+      requiresInject:
+      - name: judgeRuntime
+        type: JudgeRuntime
+        description: "El runtime de los jueces de FEAT-JEXAM (ronda 1, paquete C):\
+          \ standing(nombre del analizador, versión examinada) da el examen de la\
+          \ herramienta local y el de la alternativa."
+      visibility: public
+      handwrittenTests:
+      - name: "should publish with the local tool when its examined version, llama3:8b@365c0bd3c000\
+          \ · native-yes-no-1, has an approved exam in the judges' registry"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should not publish with a local tool whose examined version never took\
+          \ the exam, giving the judges' reason «sin examen», as LanguageTool 6.8\
+          \ with the filter of grammar before its exam is recorded"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should not publish with a local tool whose examined version failed\
+          \ its last exam, giving «reprobada» as the reason"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should publish in an EXAM run although the examined version has no\
+          \ approved exam, since that run is what the exam measures"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should take another methodId of the same model as a new examined version,\
+          \ so llama3:8b@365c0bd3c000 with another question does not publish on the\
+          \ exam of native-yes-no-1"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should read the exam of the claude -p alternative of naturalness apart\
+          \ from the exam of llama3, so an approved llama3 does not enable claude\
+          \ -p"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should not publish when the local tool is not available and give the\
+          \ reason with its install hint, «ollama pull nomic-embed-text» for near-duplicates\
+          \ without its model"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R003
+      - name: "should take the claude -p alternative as available when its evaluator\
+          \ states a version, even with the claude-cli session expired"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R003
+      - name: "should take the claude -p alternative as not available when its evaluator\
+          \ states no version, as a judge without version"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R003
+      - name: should hand the local model a policy without limit and one consultation
+          at a time when the run declares no budget for its analyzer
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R004
+      - name: "should name in the card of naturalness the tool «llama3:8b en Ollama»\
+          , its version llama3:8b@365c0bd3c000 and its examined version llama3:8b@365c0bd3c000\
+          \ · native-yes-no-1"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
+      - name: "should put in the card, next to the examined version, its exam state\
+          \ and its result in one line, «51 de 186 en la cola del 5 %, aprobado el\
+          \ 30/9», and no result when it never took the exam"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should name in the alternative card of near-duplicates claude -p with\
+          \ the version of its judge, marked as the alternative and read without consulting\
+          \ it"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
+      - name: "should carry in the decision of a run the probed status of the tool\
+          \ and its examined version, so the report of the run names the tool and\
+          \ the version that measured"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
+      - name: "should decide for a run on a candidate of the mesa what it decides\
+          \ for the run on the course, the same tool, examined version and exam, so\
+          \ a candidate is read as an exercise of the course"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R005
+      implements:
+      - LocalToolGate
+      _change: add
+    allowedClients:
+    - audit-cli
+    _change: add
+  - name: judgingengine
+    implementations:
+    - name: DefaultJudgeRuntime
+      handwrittenTests:
+      - name: "should declare, for the claude -p alternative of naturalness opened\
+          \ without budget, how many consultations its pending sentences would cost\
+          \ and their hours one at a time and four at a time, consulting none"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R008
+      - name: should stop the consultations of the claude -p alternative of near-duplicates
+          at the first failure of the service and let the run finish
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R007
+  _change: modify
+- name: audit-cli
+  dependsOn:
+  - local-language-infrastructure
+  packages:
+  - name: commands
+    implementations:
+    - name: AnalyzeCmd
+      handwrittenTests:
+      - name: "should print what is missing and how to install it, exit non-zero and\
+          \ save no analysis when asked to run naturalness without Ollama nor claude\
+          \ -p"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R003
+    - name: GetCmd
+      handwrittenTests:
+      - name: "should show in get analyzer naturalness its two tools, llama3:8b in\
+          \ Ollama and claude -p, each with its version, whether it is available and\
+          \ its exam"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
+  _change: modify
+- name: local-language-infrastructure
+  description: |
+    Las herramientas de idioma que corren en esta máquina (FEAT-MLOCAL): LanguageTool dentro del proceso y los modelos de Ollama, por HTTP a una dirección local. Ningún texto del curso sale de la máquina por acá: una dirección de Ollama que no es local, o «off», deja los modelos no disponibles, con el motivo, y nunca abre una conexión (F-MLOCAL-R001); entonces los dos de modelo usan la alternativa con claude -p, que no vive acá sino en los jueces de C. Detalle de la raíz de composición: allowedClients=[audit-cli].
+  dependsOn:
+  - audit-domain
+  models:
+  - name: OllamaEndpoint
+    type: record
+    fields:
+    - name: baseUrl
+      type: String
+      description: "Dónde escucha Ollama; por omisión http://127.0.0.1:11434. Sólo\
+        \ localhost, 127.0.0.0/8 o ::1; «off» apaga los modelos locales a pedido,\
+        \ para rendir el examen de la alternativa en una máquina con Ollama."
+    - name: timeoutSeconds
+      type: int
+      description: Tope de cada consulta. El sondeo de disponibilidad usa como mucho
+        2 segundos.
+    _change: add
+  interfaces:
+  - name: OllamaModelFactory
+    stereotype: factory
+    sealed: false
+    exposes:
+    - signature: "yesNoModel(OllamaEndpoint endpoint,String model): YesNoModel"
+    - signature: "embeddingModel(OllamaEndpoint endpoint,String model): EmbeddingModel"
+    _change: add
+  allowedClients:
+  - audit-cli
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultOllamaModelFactory
+    suppressed: false
+    interface: OllamaModelFactory
+  uses:
+  - jackson-databind
+  - languagetool
+  packages:
+  - name: languagetool
+    description: |
+      LanguageTool 6.8 dentro del proceso: dos JLanguageTool, uno americano y otro británico, creados la primera vez que se usan y reusados en toda la corrida (unos 10 segundos el curso entero). Sólo las reglas que vienen prendidas y ninguna remota: no hay servicio de LanguageTool, ni público ni propio (F-MLOCAL-R001). Con Java 24 o más sube jdk.xml.totalEntitySizeLimit antes de crear el primero, si nadie lo fijó. status() no carga nada: dice la versión de la biblioteca. Una clase sola, sin fábrica: la construye la raíz de composición.
+    visibility: public
+    implementations:
+    - name: LanguageToolGrammarChecker
+      visibility: public
+      handwrittenTests:
+      - name: "should check «Ana was teached a lesson by my brother.» with the real\
+          \ LanguageTool 6.8 inside the process and without network, marking «teached»\
+          \ in American and in British English"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R001
+      - name: "should state LanguageTool and the version of its library, 6.8, without\
+          \ creating a checker nor loading a rule"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
+      implements:
+      - GrammarChecker
+      _change: add
+    _change: add
+  - name: ollama
+    description: |
+      Adaptadores de Ollama 0.34: /api/tags para saber si el modelo está y con qué huella, /api/generate con logprobs de un token para la pregunta de sí o no, y /api/embed para el vector. Sólo la fábrica es pública; el cliente HTTP y los dos adaptadores son del paquete. El sondeo se hace una vez por proceso.
+    visibility: public
+    models:
+    - name: OllamaTokenProbability
+      type: record
+      fields:
+      - name: token
+        type: String
+      - name: logprob
+        type: double
+      visibility: internal
+      _change: add
+    interfaces:
+    - name: OllamaApi
+      sealed: false
+      exposes:
+      - signature: "probe(String model): LocalToolStatus"
+      - signature: "firstTokenProbabilities(String model,String system,String prompt):\
+          \ List<OllamaTokenProbability>"
+      - signature: "embed(String model,String input): List<Double>"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultOllamaModelFactory
+      visibility: public
+      implements:
+      - OllamaModelFactory
+      _change: add
+    - name: HttpOllamaApi
+      requiresInject:
+      - name: endpoint
+        type: OllamaEndpoint
+      handwrittenTests:
+      - name: "should open no connection and report the model not available, with\
+          \ the reason, when the Ollama address is not of this machine, as http://192.168.0.10:11434"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R001
+      - name: should open no connection and report the local models not available
+          when the Ollama address is «off»
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R001
+      - name: "should read in /api/tags that llama3:8b is pulled and give as its version\
+          \ the model with its digest, llama3:8b@365c0bd3c000"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
+      - name: should report llama3:8b not available with «ollama pull llama3:8b» when
+          Ollama answers but the model is not pulled
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R003
+      - name: should report Ollama not available within 2 seconds when nothing answers
+          at 127.0.0.1:11434
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R003
+      implements:
+      - OllamaApi
+      _change: add
+    - name: OllamaYesNoModel
+      requiresInject:
+      - name: api
+        type: OllamaApi
+      - name: model
+        type: String
+      implements:
+      - YesNoModel
+      _change: add
+    - name: OllamaEmbeddingModel
+      requiresInject:
+      - name: api
+        type: OllamaApi
+      - name: model
+        type: String
+      implements:
+      - EmbeddingModel
+      _change: add
+    _change: add
+  _change: add
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    handwrittenTests:
+    - name: "should reject before loading the course a run that asks for naturalness\
+        \ by name when neither llama3:8b in Ollama nor claude -p is available, with\
+        \ «Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is\
+        \ not available: ollama pull llama3:8b.»"
+      traceability:
+        feature: FEAT-MLOCAL
+        rule: F-MLOCAL-R003
+    - name: "should reject before loading the course a run that asks for grammar by\
+        \ name when LanguageTool is not available, since grammar has no alternative"
+      traceability:
+        feature: FEAT-MLOCAL
+        rule: F-MLOCAL-R003
+    - name: should not reject a run that asks for near-duplicates by name without
+        Ollama when the claude -p alternative is available
+      traceability:
+        feature: FEAT-MLOCAL
+        rule: F-MLOCAL-R003
+    - name: "should not reject a run without selection when LanguageTool is not available,\
+        \ leaving every exercise unevaluated by grammar with the reason in view while\
+        \ the other analyzers run"
+      traceability:
+        feature: FEAT-MLOCAL
+        rule: F-MLOCAL-R003
+    - name: "should run grammar, naturalness and near-duplicates in an analyze without\
+        \ selection"
+      traceability:
+        feature: FEAT-MLOCAL
+        rule: F-MLOCAL-R004
+  - name: DefaultJudgeExamService
+    handwrittenTests:
+    - name: "should record the exam that naturalness takes without its local model\
+        \ under the version of claude -p, leaving the version of llama3 without exam"
+      traceability:
+        feature: FEAT-MLOCAL
+        rule: F-MLOCAL-R006
+features:
+- id: FEAT-MLOCAL
+  code: F-MLOCAL
+  journeys:
+  - id: F-MLOCAL-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
+dependencies:
+- alias: languagetool
+  artifact: org.languagetool:language-en:6.8
+  scope: compile
+  provides:
+  - type: JLanguageTool
+    package: org.languagetool
+  - type: Language
+    package: org.languagetool
+  - type: AmericanEnglish
+    package: org.languagetool.language
+  - type: BritishEnglish
+    package: org.languagetool.language
+  - type: RuleMatch
+    package: org.languagetool.rules
+  - type: Rule
+    package: org.languagetool.rules
+  - type: Category
+    package: org.languagetool.rules
+  - type: CategoryId
+    package: org.languagetool.rules

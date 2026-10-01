@@ -96,11 +96,16 @@ public class DefaultRevisionEngineFactory implements RevisionEngineFactory {
                 ? config.getValidator()
                 : new AutoApproveValidator();
 
+        // FEAT-PROYU (package F): the applier and the measurer of the projection, armed with
+        // the fields the config already brings. The preview still measures the old way until F
+        // rewrites it on them.
         DefaultImpactPreviewComputer impactPreviewComputer = new DefaultImpactPreviewComputer(
                 config.getCourseMapper(),
                 config.getAuditEngine(),
                 elementLocator,
-                config.getAuditReportStore()
+                config.getAuditReportStore(),
+                new DefaultPendingApplier(elementLocator),
+                new DefaultProjectionMeasurer(config.getCourseMapper(), config.getAuditEngine())
         );
 
         return new DefaultRevisionEngine(

@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.offlevelwords;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
 
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
@@ -31,14 +32,15 @@ public class OffLevelWordsAnalyzerProvider implements AnalyzerProvider {
 
     private final QuizStudentViewRenderer studentViewRenderer;
 
-    public OffLevelWordsAnalyzerProvider(SentenceLexicalScorer sentenceLexicalScorer,
-            LemmaAbsenceConfig lemmaAbsenceConfig, TopicTeachingResolver topicTeachingResolver,
-            QuizStudentViewRenderer studentViewRenderer) {
-        this.sentenceLexicalScorer = sentenceLexicalScorer;
-        this.lemmaAbsenceConfig = lemmaAbsenceConfig;
-        this.topicTeachingResolver = topicTeachingResolver;
-        this.studentViewRenderer = studentViewRenderer;
-    }
+private final EvpCatalogPort evpCatalogPort;
+
+public OffLevelWordsAnalyzerProvider(SentenceLexicalScorer sentenceLexicalScorer, LemmaAbsenceConfig lemmaAbsenceConfig, TopicTeachingResolver topicTeachingResolver, QuizStudentViewRenderer studentViewRenderer, EvpCatalogPort evpCatalogPort) {
+    this.sentenceLexicalScorer = sentenceLexicalScorer;
+    this.lemmaAbsenceConfig = lemmaAbsenceConfig;
+    this.topicTeachingResolver = topicTeachingResolver;
+    this.studentViewRenderer = studentViewRenderer;
+    this.evpCatalogPort = evpCatalogPort;
+}
 
     @Override
     public String analyzerName() {
@@ -69,7 +71,7 @@ public class OffLevelWordsAnalyzerProvider implements AnalyzerProvider {
                 AnalyzerFamily.ERRORS,
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
-                AnalysisCost.INSTANT, "Palabras de otro nivel");
+                AnalysisCost.INSTANT, "Palabras de otro nivel", List.of());
     }
 
     /** A new analyzer for every run (F-HALL-R014); it consults no model, so no policy applies. */

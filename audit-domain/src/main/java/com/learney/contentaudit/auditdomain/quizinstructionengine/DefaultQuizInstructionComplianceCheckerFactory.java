@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
+import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 
 import com.learney.contentaudit.auditdomain.QuizInstructionVerdictReader;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionComplianceChecker;
@@ -20,6 +21,12 @@ public class DefaultQuizInstructionComplianceCheckerFactory implements QuizInstr
      * itself uses, so a verdict registered here is exactly what the next audit
      * would reuse, and vice versa.
      */
+    private final QuizStudentViewRenderer studentViewRenderer;
+    
+    public DefaultQuizInstructionComplianceCheckerFactory(QuizStudentViewRenderer studentViewRenderer) {
+        this.studentViewRenderer = studentViewRenderer;
+    }
+    
     @Override
     public QuizInstructionComplianceChecker create(EvaluationSessionFactory sessionFactory,
             Evaluator evaluator, QuizInstructionVerdictReader verdictReader,

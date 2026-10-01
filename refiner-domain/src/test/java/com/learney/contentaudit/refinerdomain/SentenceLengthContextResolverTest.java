@@ -129,7 +129,7 @@ public class SentenceLengthContextResolverTest {
                 "Quiz label",
                 DiagnosisKind.SENTENCE_LENGTH,
                 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     private SentenceLengthDiagnosis buildDiagnosis(int tokenCount, int targetMin, int targetMax,
@@ -360,7 +360,7 @@ public class SentenceLengthContextResolverTest {
 
         // task has target KNOWLEDGE but id is the quiz's id — won't match QUIZ target
         RefinementTask task = new RefinementTask("task-7", AuditTarget.KNOWLEDGE, "quiz-7",
-                "label", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                "label", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<SentenceLengthCorrectionContext> result = sut.resolve(report, task);
 
@@ -775,7 +775,7 @@ public class SentenceLengthContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
 
         RefinementTask task = new RefinementTask("my-specific-task-id", AuditTarget.QUIZ,
-                "quiz-21", "label", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                "quiz-21", "label", DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<SentenceLengthCorrectionContext> result = sut.resolve(report, task);
 

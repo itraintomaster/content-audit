@@ -16,6 +16,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -223,5 +224,14 @@ public class RejectCmdTest {
         } finally {
             System.setErr(originalErr);
         }
+    }
+
+    @Test
+    @DisplayName("should drop through the batch the changes of the exercise when 'reject proposal' names a proposal of the open batch")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
+    public void shouldDropThroughTheBatchTheChangesOfTheExerciseWhenRejectProposalNamesAProposalOfTheOpenBatch() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

@@ -175,7 +175,7 @@ public class FPocovJ001JourneyTest {
 
     private static PlanRun plan(Analysis analysis) {
         FileSystemRefinementPlanStore plans = new FileSystemRefinementPlanStore(analysis.workdir());
-        PlanCmd plan = new PlanCmd(analysis.store(), new DefaultRefinerEngine(analysis.catalog()), plans,
+        PlanCmd plan = new PlanCmd(analysis.store(), new DefaultRefinerEngine(analysis.catalog(), null), plans,
                 mock(EphemeralPlanRenderer.class));
         Base299.Captured run = Base299.run(plan, "--audit", analysis.id());
         assertEquals(0, run.exit(), run.err());

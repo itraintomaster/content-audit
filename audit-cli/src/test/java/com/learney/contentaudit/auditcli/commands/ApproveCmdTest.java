@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -374,5 +375,23 @@ public class ApproveCmdTest {
         } finally {
             System.setErr(originalErr);
         }
+    }
+
+    @Test
+    @DisplayName("should reject 'approve proposal' of a proposal of the open batch with «La propuesta <id> es de la tanda <id>: entra al curso al publicar la tanda.» and exit non-zero, leaving the course identical")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
+    public void shouldRejectApproveProposalOfAProposalOfTheOpenBatchWithLaPropuestaIdEsDeLaTandaIdEntraAlCursoAlPublicarLaTandaAndExitNonzeroLeavingTheCourseIdentical() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should approve as today a proposal that belongs to no open batch")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
+    public void shouldApproveAsTodayAProposalThatBelongsToNoOpenBatch() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

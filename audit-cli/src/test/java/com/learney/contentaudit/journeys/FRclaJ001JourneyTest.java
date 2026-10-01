@@ -187,7 +187,7 @@ public class FRclaJ001JourneyTest {
         // Step: generar_plan (gate F-RCLA-R001) — task targets a QUIZ with lemma-absence issues
         RefinementTask task = new RefinementTask(
                 "task-rcla-001", AuditTarget.QUIZ, "quiz-negotiate-001", "Quiz 1 - L1.T1.K1",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Step: verificar_auditoria (gate F-RCLA-R005) — build audit tree
         // Quiz: sentence with misplaced lemma "negotiate" (B2 found in A1 quiz)
@@ -266,7 +266,7 @@ public class FRclaJ001JourneyTest {
         // Step: generar_plan — task targets a QUIZ with lemma-absence issues
         RefinementTask task = new RefinementTask(
                 "task-rcla-002", AuditTarget.QUIZ, "quiz-negotiate-002", "Quiz 2 - L1.T1.K1",
-                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING, null);
 
         // Step: verificar_auditoria — build audit tree
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-negotiate-002", "Quiz 2", "Q002", "Ella puede negociar con habilidad", List.of("She can negotiate with skill"), null, null, null, null, null, null);
@@ -319,7 +319,7 @@ public class FRclaJ001JourneyTest {
         // Step: generar_plan — task targets a QUIZ
         RefinementTask task = new RefinementTask(
                 "task-rcla-003", AuditTarget.QUIZ, "quiz-no-diagnosis-003", "Quiz 3 - L1.T1.K1",
-                DiagnosisKind.LEMMA_ABSENCE, 3, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 3, RefinementTaskStatus.PENDING, null);
 
         // Step: verificar_auditoria — audit tree exists and quiz node can be found
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-no-diagnosis-003", "Quiz 3", "Q003", "El corre todos los dias", List.of("He runs every day"), null, null, null, null, null, null);
@@ -361,7 +361,7 @@ public class FRclaJ001JourneyTest {
         // Step: generar_plan — task references a quiz by nodeId
         RefinementTask task = new RefinementTask(
                 "task-rcla-004", AuditTarget.QUIZ, "quiz-non-existent-999", "Unknown Quiz",
-                DiagnosisKind.LEMMA_ABSENCE, 4, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 4, RefinementTaskStatus.PENDING, null);
 
         // Step: verificar_auditoria — audit tree exists but the referenced quiz node is NOT in it
         AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-different-id-004", // different id from task.nodeId
@@ -404,7 +404,7 @@ public class FRclaJ001JourneyTest {
         // Step: generar_plan — task references a quiz
         RefinementTask task = new RefinementTask(
                 "task-rcla-005", AuditTarget.QUIZ, "quiz-null-root-005", "Unknown Quiz 5",
-                DiagnosisKind.LEMMA_ABSENCE, 5, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 5, RefinementTaskStatus.PENDING, null);
 
         // Step: verificar_auditoria — audit report has a null root (report not found / corrupted)
         // This exercises the other sub-case of "El reporte no se encuentra":

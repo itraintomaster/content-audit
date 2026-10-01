@@ -107,5 +107,12 @@ class DefaultListIdentityRegistry implements ListIdentityRegistry {
         declare("LemmaRecurrenceCourseDiagnosis", "levels",    "level");
         declare("LemmaCountResult",               "exposures", "lemmaAndPos.lemma", "lemmaAndPos.pos");
         declare("LemmaCountResult",               "bands",     "name");
+
+        // FEAT-RONDA2 (hook B-04): the lists of package B -- the issues of grammar by the
+        // LanguageTool rule and what it marks, the queue of naturalness by level, and the runs of
+        // the local tools of the course by analyzer.
+        declare("GrammarDiagnosis",          "issues",        "toolRule", "marked");
+        declare("NaturalnessQueueDiagnosis", "levels",        "level");
+        declare("DefaultCourseDiagnoses",    "localToolRuns", "analyzer");
     }
 }

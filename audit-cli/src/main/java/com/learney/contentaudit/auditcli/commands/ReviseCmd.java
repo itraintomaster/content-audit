@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 
 import com.learney.contentaudit.auditcli.ReviseCommand;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
@@ -133,10 +134,13 @@ class ReviseCmd implements ReviseCommand, Callable<Integer> {
                     + "Mutually exclusive with --correction-context (F-REVCTX-R001).")
     private String correctionContextFilePath;
 
-    public ReviseCmd(RevisionEngine revisionEngine, RefinementPlanStore refinementPlanStore) {
-        this.revisionEngine = revisionEngine;
-        this.refinementPlanStore = refinementPlanStore;
-    }
+private final BatchStore batchStore;
+
+public ReviseCmd(RevisionEngine revisionEngine, RefinementPlanStore refinementPlanStore, BatchStore batchStore) {
+    this.revisionEngine = revisionEngine;
+    this.refinementPlanStore = refinementPlanStore;
+    this.batchStore = batchStore;
+}
 
     @Override
     public Integer call() {

@@ -68,7 +68,7 @@ public class FCslatdcJ001JourneyTest {
     private RefinementTask buildLemmaAbsenceTask() {
         return new RefinementTask(
                 TASK_ID, AuditTarget.QUIZ, QUIZ_ID, "Quiz — lemma absence task",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
     }
 
     private RefinementPlan buildPlan(RefinementTask task) {
@@ -106,9 +106,9 @@ public class FCslatdcJ001JourneyTest {
             Class<?> getCmdClass = Class.forName("com.learney.contentaudit.auditcli.commands.GetCmd");
             Constructor<?> ctor = null;
             for (Constructor<?> c : getCmdClass.getDeclaredConstructors()) {
-                if (c.getParameterCount() == 11) { ctor = c; break; }
+                if (c.getParameterCount() == 12) { ctor = c; break; }
             }
-            if (ctor == null) throw new NoSuchMethodException("No 11-param constructor found in GetCmd");
+            if (ctor == null) throw new NoSuchMethodException("No 12-param constructor found in GetCmd");
             ctor.setAccessible(true);
             Object cmd = ctor.newInstance(
                     auditReportStore,
@@ -121,7 +121,8 @@ public class FCslatdcJ001JourneyTest {
                     suggestedLemmaQueryPort,
                     null,   // topicWordLightsQuery (FEAT-RONDA1) — not needed for suggested-lemmas path
                     null,   // topicStudentViewQuery (FEAT-RONDA1)
-                    null);  // activeAnalysisSelectionStore (FEAT-RONDA1)
+                    null,   // activeAnalysisSelectionStore (FEAT-RONDA1)
+                    null);  // errorTaskBriefer (FEAT-RONDA2, E-07)
 
             // Inject revisionArtifactStore via setter
             Method setRevisionArtifactStore = getCmdClass.getDeclaredMethod(

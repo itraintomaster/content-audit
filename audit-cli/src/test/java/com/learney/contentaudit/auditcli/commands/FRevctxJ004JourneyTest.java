@@ -35,7 +35,7 @@ public class FRevctxJ004JourneyTest {
     private ReviseCmd buildCmd() throws Exception {
         RevisionEngine engine = mock(RevisionEngine.class);
         RefinementPlanStore planStore = mock(RefinementPlanStore.class);
-        ReviseCmd cmd = new ReviseCmd(engine, planStore);
+        ReviseCmd cmd = new ReviseCmd(engine, planStore, null);
         // Set mandatory course-path field via reflection so the command can proceed
         for (Field f : cmd.getClass().getDeclaredFields()) {
             f.setAccessible(true);

@@ -43,6 +43,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -104,7 +105,7 @@ public class DefaultQuizInstructionCandidateAssessorTest {
     }
 
     private static RefinementTask task(String id, String nodeId, DiagnosisKind kind) {
-        return new RefinementTask(id, AuditTarget.QUIZ, nodeId, "Be", kind, 1, RefinementTaskStatus.PENDING);
+        return new RefinementTask(id, AuditTarget.QUIZ, nodeId, "Be", kind, 1, RefinementTaskStatus.PENDING, null);
     }
 
     private static InstructionViolation violation(String evidence) {
@@ -144,7 +145,7 @@ public class DefaultQuizInstructionCandidateAssessorTest {
 
     private static RefinementTask buildTask(DiagnosisKind diagnosisKind) {
         return new RefinementTask(TASK_ID, AuditTarget.QUIZ, QUIZ_ID, "Quiz 1", diagnosisKind, 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     private static RefinementPlan buildPlan(List<RefinementTask> tasks) {
@@ -339,7 +340,7 @@ public class DefaultQuizInstructionCandidateAssessorTest {
         String candidateTranslation = "¿Necesito un bolígrafo?";
 
         RefinementTask task = new RefinementTask(taskId, AuditTarget.QUIZ, nodeId, "Quiz 1",
-                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING, null);
         RefinementPlan plan = new RefinementPlan(planId, sourceAuditId, Instant.parse("2026-08-11T00:00:00Z"),
                 List.of(task));
         when(collaborators.refinementPlanStore.load(planId)).thenReturn(Optional.of(plan));
@@ -431,7 +432,7 @@ public class DefaultQuizInstructionCandidateAssessorTest {
         // Arrange — the plan exists, but it never listed this task
         Collaborators collaborators = new Collaborators();
         RefinementTask otherTask = new RefinementTask("task-unrelated", AuditTarget.QUIZ, "quiz-unrelated",
-                "Other quiz", DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING);
+                "Other quiz", DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING, null);
         when(collaborators.refinementPlanStore.load(PLAN_ID))
                 .thenReturn(Optional.of(buildPlan(List.of(otherTask))));
 
@@ -574,5 +575,14 @@ public class DefaultQuizInstructionCandidateAssessorTest {
                         "She ____ [was] English.", "Ella era inglesa."));
         assertTrue(refused.getReason().contains("opcion multiple"), refused.getReason());
         verifyNoInteractions(assessor, deriver);
+    }
+
+    @Test
+    @DisplayName("should keep judging a faithful translation against the original outside a batch, while the panel judges the exercise as it stays")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R014")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
+    public void shouldKeepJudgingAFaithfulTranslationAgainstTheOriginalOutsideABatchWhileThePanelJudgesTheExerciseAsItStays() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

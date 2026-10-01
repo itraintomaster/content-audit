@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
+import com.learney.contentaudit.auditdomain.BaselineStore;
 
 import com.learney.contentaudit.auditcli.PruneCommand;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
@@ -48,10 +50,16 @@ final class PruneCmd implements PruneCommand, Callable<Integer> {
             required = true)
     private int keep;
 
-    public PruneCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore) {
-        this.auditReportStore = auditReportStore;
-        this.refinementPlanStore = refinementPlanStore;
-    }
+private final ActiveAnalysisSelectionStore activeAnalysisSelectionStore;
+
+private final BaselineStore baselineStore;
+
+public PruneCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, ActiveAnalysisSelectionStore activeAnalysisSelectionStore, BaselineStore baselineStore) {
+    this.auditReportStore = auditReportStore;
+    this.refinementPlanStore = refinementPlanStore;
+    this.activeAnalysisSelectionStore = activeAnalysisSelectionStore;
+    this.baselineStore = baselineStore;
+}
 
     /** Called by Main to inject the resolved working directory. */
     void setBaseDir(Path baseDir) {

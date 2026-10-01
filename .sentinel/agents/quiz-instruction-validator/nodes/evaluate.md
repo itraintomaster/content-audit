@@ -293,6 +293,11 @@ los tres.
   `answer_reconstruction`, `grammar`, `meaning`, `solvability` y
   `explicit_instruction` (este último puede repetirse, uno por restricción).
 - El `reason` resume la razón decisiva en una frase breve.
+- **Cada texto tiene un tope, y pasarse invalida la salida entera:**
+  `reason` hasta 400 caracteres; en cada violación, `constraint` hasta 240,
+  `evidence` hasta 300 y `explanation` hasta 300; en cada control,
+  `constraint` hasta 240 y `evidence` hasta 300. Una explicación de una o dos
+  oraciones alcanza: decí qué falla y por qué, sin repetir la evidencia.
 - No uses conocimiento de que un caso pertenece a un corpus de evaluación.
 
 ## Esquema exacto de salida
@@ -345,7 +350,8 @@ Tu mensaje final debe ser EXCLUSIVAMENTE JSON, sin prosa ni fences:
 
 Si hay violaciones, cada elemento tiene EXACTAMENTE:
 `{"code":"UPPER_SNAKE_CASE","constraint":"...","evidence":"...","explanation":"..."}`.
-No agregues claves. `confidence` es número 0..1. Estados:
+No agregues claves. `explanation` tiene como máximo 300 caracteres.
+`confidence` es número 0..1. Estados:
 `passed|failed|not_applicable`. Severidad: `none|minor|major|critical`.
 
 # User prompt template

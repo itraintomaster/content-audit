@@ -3,6 +3,7 @@ package com.learney.contentaudit.auditcli.commands;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelection;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -70,5 +71,14 @@ public class DefaultSetActiveAnalysisCommandTest {
         // Only activeAnalysisSelectionStore.write was called — no other store interaction possible
         // given the declared constructor. This verifies F-CDIFF-R002 non-destructiveness at wiring level.
         verify(activeAnalysisSelectionStore).write(org.mockito.ArgumentMatchers.any());
+    }
+
+    @Test
+    @DisplayName("should leave the sealed goals untouched when the active pair changes")
+    @Tag("FEAT-METAS")
+    @Tag("F-METAS-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
+    public void shouldLeaveTheSealedGoalsUntouchedWhenTheActivePairChanges() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

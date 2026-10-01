@@ -1,4 +1,6 @@
 package com.learney.contentaudit.revisiondomain.engine;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjector;
+import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
 import com.learney.contentaudit.revisiondomain.consolidatedview.NodeFieldDiffer;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
 import com.learney.contentaudit.auditdomain.AuditEngine;
@@ -39,7 +41,9 @@ private final AuditEngine auditEngine;
 
 private final NodeFieldDiffer nodeFieldDiffer;
 
-public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStore, ActiveAnalysisSelectionStore activeAnalysisSelectionStore, AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, CourseRepository courseRepository, CourseElementLocator courseElementLocator, CourseMapper courseMapper, AuditEngine auditEngine, NodeFieldDiffer nodeFieldDiffer) {
+private final CourseProjector courseProjector;
+
+public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStore, ActiveAnalysisSelectionStore activeAnalysisSelectionStore, AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, CourseRepository courseRepository, CourseElementLocator courseElementLocator, CourseMapper courseMapper, AuditEngine auditEngine, NodeFieldDiffer nodeFieldDiffer, CourseProjector courseProjector) {
     this.revisionArtifactStore = revisionArtifactStore;
     this.activeAnalysisSelectionStore = activeAnalysisSelectionStore;
     this.auditReportStore = auditReportStore;
@@ -49,6 +53,7 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
     this.courseMapper = courseMapper;
     this.auditEngine = auditEngine;
     this.nodeFieldDiffer = nodeFieldDiffer;
+    this.courseProjector = courseProjector;
 }
 
     @Override
@@ -316,5 +321,15 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
                 java.time.Instant.now(),
                 java.util.List.of(),
                 java.util.List.of());
+    }
+
+    /**
+     * The overload with a budget per analyzer (FEAT-PROYU, package F): generate added it to the
+     * port but not to this implementation, whose file already had a method of the same name.
+     * Left unimplemented, like a stub, for package F to write on the projector.
+     */
+    @Override
+    public ConsolidatedView build(Path coursePath, ProjectionScope scope) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

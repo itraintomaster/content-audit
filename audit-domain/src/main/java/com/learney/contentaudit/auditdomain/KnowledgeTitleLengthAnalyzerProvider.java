@@ -35,7 +35,7 @@ public class KnowledgeTitleLengthAnalyzerProvider implements AnalyzerProvider {
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.KNOWLEDGE),
                 List.of(FindingResolution.PANEL),
-                AnalysisCost.INSTANT, "Largo del título");
+                AnalysisCost.INSTANT, "Largo del título", List.of());
     }
 
     @Override

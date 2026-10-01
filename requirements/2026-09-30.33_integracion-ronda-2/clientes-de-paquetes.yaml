@@ -1,0 +1,52 @@
+code: __proposal__
+description: "Integración de la ronda 2, último paso: los allowedClients de once paquetes, que el patch apply del jar de hoy
+  descarta al crear un paquete y no cambia al modificarlo (bug 10 de Sentinel). Siete son de la ronda 2 (localtoolsengine,
+  correctionengine, panel, batch, tray, comparisonengine y blindsampleengine) y cuatro de la ronda 1, cuyo paso 16 sigue
+  pendiente por el mismo bug (findingengine, judgingengine, offlevelwords y topicwords). Cada lista es la ENTERA, con lo que
+  suma la ronda 2: offlevelwords y topicwords, revision-domain (la comparación y la mesa leen lo que el tema enseña y el
+  semáforo, gancho F-14); batch y tray, audit-infrastructure (sus almacenes de archivos implementan los puertos). Así da
+  lo mismo si el arreglo de PatchApplier une o reemplaza, y si antes se aplicó o no el paso 16 de la ronda 1. Sólo
+  allowedClients: ni visibilidad ni contenido."
+modules:
+- name: audit-domain
+  _change: modify
+  packages:
+  - name: findingengine
+    _change: modify
+    allowedClients: [audit-cli]
+  - name: judgingengine
+    _change: modify
+    allowedClients: [audit-cli]
+  - name: offlevelwords
+    _change: modify
+    allowedClients: [audit-cli, refiner-domain, revision-domain]
+  - name: localtoolsengine
+    _change: modify
+    allowedClients: [audit-cli]
+  - name: correctionengine
+    _change: modify
+    allowedClients: [audit-cli]
+- name: refiner-domain
+  _change: modify
+  packages:
+  - name: topicwords
+    _change: modify
+    allowedClients: [audit-cli, revision-domain]
+- name: revision-domain
+  _change: modify
+  packages:
+  - name: panel
+    _change: modify
+    allowedClients: [audit-cli, revision-infrastructure]
+  - name: batch
+    _change: modify
+    allowedClients: [audit-cli, audit-infrastructure]
+  - name: tray
+    _change: modify
+    allowedClients: [audit-cli, audit-infrastructure]
+  - name: comparisonengine
+    _change: modify
+    allowedClients: [audit-cli]
+  - name: blindsampleengine
+    _change: modify
+    allowedClients: [audit-cli]

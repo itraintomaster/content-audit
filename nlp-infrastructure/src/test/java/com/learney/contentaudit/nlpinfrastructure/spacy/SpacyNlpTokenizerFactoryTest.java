@@ -1,5 +1,8 @@
 package com.learney.contentaudit.nlpinfrastructure.spacy;
 
+import com.learney.contentaudit.auditdomain.NlpResourcesUnavailableException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -31,10 +34,8 @@ public class SpacyNlpTokenizerFactoryTest {
     public void shouldInvokeTheSpaCybackedPipelineUsingThePythonScriptPathAndCocaDataPathProvidedInNlpTokenizerConfigNotAHardcodedLocationAndPropagateAClearErrorCitingTheMissingPathWhenEitherPointsToANonexistentOrUnreadableFile(
             ) {
         // R021: config paths used (not hardcoded); non-existent path → fail-fast with clear error.
-        // The factory wraps SpacyNlpTokenizer in FallbackNlpTokenizer (R030), which absorbs
-        // runtime errors into basic tokens. R021's fail-fast clause belongs to the SpaCy-backed
-        // internal layer, so we test SpacyNlpTokenizer directly to verify the path is used
-        // and the error message cites it.
+        // Since F-RONDA2-R007 the error is NlpResourcesUnavailableException, which names the
+        // processor and the path where it was looked for.
         String nonExistentScript = "/nonexistent/path/sample_processor.py";
         String nonExistentCoca = "/nonexistent/path/lemmas_20k_words.txt";
         NlpTokenizerConfig config = new NlpTokenizerConfig(nonExistentScript, nonExistentCoca, 5);
@@ -58,6 +59,7 @@ public class SpacyNlpTokenizerFactoryTest {
     @Tag("FEAT-NLP")
     @Tag("F-NLP-R030")
     @Tag("F-NLP-J002")
+    @org.junit.jupiter.api.Disabled("FEAT-RONDA2: F-RONDA2-R007 reemplaza el modo reducido de F-NLP-R030 (DOUBT-RONDA2-SPACY, opción A): sin spaCy el tokenizador frena; el qa-tester da de baja o re-etiqueta esta prueba")
     public void givenAnEnvironmentWhereSpaCyIsNotAvailableWhenTheFactoryCreatesTheTokenizerAndAnAuditRunsThenBasiccountAnalyzersCompleteNormallyWhileEnrichedtokenrequiringAnalyzersAreReportedAsOmittedInTheFinalAuditReport(
             ) throws IOException {
         // R030: config paths are VALID (script exists on disk) but at runtime SpaCy is not
@@ -104,5 +106,89 @@ public class SpacyNlpTokenizerFactoryTest {
         } finally {
             Files.deleteIfExists(failScript);
         }
+    }
+
+    @Test
+    @DisplayName("should build a tokenizer that stops with NlpResourcesUnavailableException naming the lemma list path when the list is missing, before tokenizing any sentence")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R007")
+    public void shouldBuildATokenizerThatStopsWithNlpResourcesUnavailableExceptionNamingTheLemmaListPathWhenTheListIsMissingBeforeTokenizingAnySentence(@org.junit.jupiter.api.io.TempDir Path dir) throws Exception {
+        // R007 inv. 1 and 2: without the lemma list the tokenizer stops with the error that says what
+        // is missing and where it was looked for, before tokenizing any sentence: spaCy is not
+        // launched and nothing is kept in the cache.
+        SpacyProcessRunnerTest.FakeSpacy spacy = new SpacyProcessRunnerTest.FakeSpacy(dir);
+        Path missing = dir.resolve("ittm/pipeline/src/main/resources/vocabulary/lemmas_20k_words.txt");
+        NlpTokenizer tokenizer = new SpacyNlpTokenizerFactory(spacy.cache)
+                .create(new NlpTokenizerConfig(spacy.processor.toString(), missing.toString(), 60));
+
+        NlpResourcesUnavailableException stop = assertThrows(NlpResourcesUnavailableException.class,
+                () -> tokenizer.analyzeTokensBatch(List.of("She runs every morning.")));
+
+        assertEquals("la lista de lemas", stop.getResource());
+        assertEquals(missing.toAbsolutePath().normalize().toString(), stop.getPath(), "R007 inv. 2: where it looked for it");
+        assertTrue(stop.getMessage().startsWith("Falta la lista de lemas en '" + missing.toAbsolutePath().normalize() + "'"),
+                stop.getMessage());
+        assertEquals(List.of(), spacy.launches(), "spaCy is not launched");
+        assertFalse(Files.exists(spacy.cache), "R007 inv. 1: nothing is kept in the cache");
+    }
+
+    @Test
+    @DisplayName("should build a tokenizer that stops with NlpResourcesUnavailableException when the spaCy processor script is missing")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R007")
+    public void shouldBuildATokenizerThatStopsWithNlpResourcesUnavailableExceptionWhenTheSpaCyProcessorScriptIsMissing(@org.junit.jupiter.api.io.TempDir Path dir) throws Exception {
+        // R007: without the processor of spaCy the tokenizer stops too, naming it and its path.
+        SpacyProcessRunnerTest.FakeSpacy spacy = new SpacyProcessRunnerTest.FakeSpacy(dir);
+        Path missing = dir.resolve("analysis/recursos-compartidos/spacy/sample_processor.py");
+        NlpTokenizer tokenizer = new SpacyNlpTokenizerFactory(spacy.cache)
+                .create(new NlpTokenizerConfig(missing.toString(), spacy.lemmaList.toString(), 60));
+
+        NlpResourcesUnavailableException stop = assertThrows(NlpResourcesUnavailableException.class,
+                () -> tokenizer.analyzeTokens("She runs every morning."));
+
+        assertEquals("el procesador de spaCy", stop.getResource());
+        assertEquals(missing.toAbsolutePath().normalize().toString(), stop.getPath());
+        assertTrue(stop.getMessage().startsWith("Falta el procesador de spaCy en '"), stop.getMessage());
+        assertEquals(List.of(), spacy.launches());
+    }
+
+    @Test
+    @DisplayName("should build a tokenizer that stops when a sentence is not cached and spaCy does not run, instead of returning basic tokens")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R007")
+    public void shouldBuildATokenizerThatStopsWhenASentenceIsNotCachedAndSpaCyDoesNotRunInsteadOfReturningBasicTokens(@org.junit.jupiter.api.io.TempDir Path dir) throws Exception {
+        // R007 inv. 3: with the list and the processor in place but spaCy not running -- python
+        // without spaCy --, a sentence that is not in the cache stops the tokenizer; it never
+        // carries on with basic tokens (the reduced mode of F-NLP-R030 no longer runs).
+        SpacyProcessRunnerTest.FakeSpacy spacy = new SpacyProcessRunnerTest.FakeSpacy(dir);
+        Files.writeString(spacy.processor, "import sys\n"
+                + "print(\"ModuleNotFoundError: No module named 'spacy'\", file=sys.stderr)\n"
+                + "sys.exit(1)\n");
+        NlpTokenizer tokenizer = new SpacyNlpTokenizerFactory(spacy.cache).create(spacy.config());
+
+        NlpResourcesUnavailableException stop = assertThrows(NlpResourcesUnavailableException.class,
+                () -> tokenizer.analyzeTokens("She runs every morning"));
+
+        assertEquals("spaCy", stop.getResource());
+        assertTrue(stop.getDetail().contains("No module named 'spacy'"), "it says why: " + stop.getDetail());
+        assertFalse(Files.exists(spacy.cache.resolve("sentences")), "nothing is kept");
+    }
+
+    @Test
+    @DisplayName("should build a tokenizer that tokenizes from the cache without launching spaCy when the list and the processor are in place")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R007")
+    public void shouldBuildATokenizerThatTokenizesFromTheCacheWithoutLaunchingSpaCyWhenTheListAndTheProcessorAreInPlace(@org.junit.jupiter.api.io.TempDir Path dir) throws Exception {
+        // R007 inv. 4: with the list and the processor in place and every sentence in the cache, a
+        // new run tokenizes without launching spaCy.
+        SpacyProcessRunnerTest.FakeSpacy spacy = new SpacyProcessRunnerTest.FakeSpacy(dir);
+        List<NlpToken> first = new SpacyNlpTokenizerFactory(spacy.cache).create(spacy.config())
+                .analyzeTokens("She runs every morning.");
+
+        List<NlpToken> again = new SpacyNlpTokenizerFactory(spacy.cache).create(spacy.config())
+                .analyzeTokens("She runs every morning.");
+
+        assertEquals(first, again, "the same tokens, from the cache");
+        assertEquals(1, spacy.launches().size(), "R007 inv. 4: spaCy ran only the first time");
     }
 }

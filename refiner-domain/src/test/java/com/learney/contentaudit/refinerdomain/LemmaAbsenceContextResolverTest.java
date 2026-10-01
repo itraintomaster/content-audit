@@ -162,7 +162,7 @@ public class LemmaAbsenceContextResolverTest {
                 "Quiz label",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     private DefaultQuizDiagnoses buildQuizDiagnosesWithPlacement(
@@ -500,7 +500,7 @@ public class LemmaAbsenceContextResolverTest {
 
         // task has target KNOWLEDGE but id is the quiz's id — won't match QUIZ target
         RefinementTask task = new RefinementTask("task-la-11", AuditTarget.KNOWLEDGE, "quiz-la-11",
-                "label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -824,7 +824,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = new RefinementTask(
                 "task-rclaqs-01", AuditTarget.QUIZ, "quiz-rclaqs-01",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -861,7 +861,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = new RefinementTask(
                 "task-rclaqs-02", AuditTarget.QUIZ, "quiz-rclaqs-02",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -899,7 +899,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = new RefinementTask(
                 "task-rclaqs-03", AuditTarget.QUIZ, "quiz-rclaqs-03",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -932,7 +932,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
 
         RefinementTask task = new RefinementTask("my-specific-task-id-la", AuditTarget.QUIZ,
-                "quiz-la-22", "label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "quiz-la-22", "label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -1372,7 +1372,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = new RefinementTask(
                 "task-r002a", AuditTarget.QUIZ, "quiz-r002a",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Act
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
@@ -1445,7 +1445,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = new RefinementTask(
                 "task-r002b", AuditTarget.QUIZ, "quiz-r002b",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Act
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
@@ -1547,7 +1547,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(courseNode);
         RefinementTask task = new RefinementTask(
                 "task-r003-v2", AuditTarget.QUIZ, "quiz-r003-v2",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -1641,7 +1641,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(courseNode);
         RefinementTask task = new RefinementTask(
                 "task-r004", AuditTarget.QUIZ, "quiz-r004",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Act
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
@@ -1718,7 +1718,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(courseNode);
         RefinementTask task = new RefinementTask(
                 "task-r005a-v2", AuditTarget.QUIZ, "quiz-r005a-v2",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -1788,7 +1788,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(courseNode);
         RefinementTask task = new RefinementTask(
                 "task-r005b-v2", AuditTarget.QUIZ, "quiz-r005b-v2",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -1865,7 +1865,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = new RefinementTask(
                 "task-r006", AuditTarget.QUIZ, "quiz-r006",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Act
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
@@ -1956,7 +1956,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(courseNode);
         RefinementTask task = new RefinementTask(
                 "task-r007-v2", AuditTarget.QUIZ, "quiz-r007-v2",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -2014,7 +2014,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = new RefinementTask(
                 "task-r012", AuditTarget.QUIZ, "quiz-r012",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Act: must NOT throw
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
@@ -2082,7 +2082,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = new RefinementTask(
                 "task-r013a", AuditTarget.QUIZ, "quiz-r013a",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Act
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
@@ -2174,7 +2174,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = new RefinementTask(
                 "task-r013b", AuditTarget.QUIZ, "quiz-r013b",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Act
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
@@ -2267,7 +2267,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(courseNode);
         RefinementTask task = new RefinementTask(
                 "task-r014a", AuditTarget.QUIZ, "quiz-r014a",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -2337,7 +2337,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(courseNode);
         RefinementTask task = new RefinementTask(
                 "task-r014b", AuditTarget.QUIZ, "quiz-r014b",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -2416,7 +2416,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(courseNode);
         RefinementTask task = new RefinementTask(
                 "task-r014c", AuditTarget.QUIZ, "quiz-r014c",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -2494,7 +2494,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(courseNode);
         RefinementTask task = new RefinementTask(
                 "task-r014d", AuditTarget.QUIZ, "quiz-r014d",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -2578,7 +2578,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(courseNode);
         RefinementTask task = new RefinementTask(
                 "task-r015", AuditTarget.QUIZ, "quiz-r015",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Must not throw even though there is no CocaProgressionDiagnosis
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
@@ -2657,7 +2657,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(milestoneNode.getParent());
         RefinementTask task = new RefinementTask(
                 "task-r003b-filter", AuditTarget.QUIZ, "quiz-r003b-filter",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -2728,7 +2728,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(milestoneNode.getParent());
         RefinementTask task = new RefinementTask(
                 "task-r003b-fields", AuditTarget.QUIZ, "quiz-r003b-fields",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -2788,7 +2788,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(milestoneNode.getParent());
         RefinementTask task = new RefinementTask(
                 "task-r003c-no-signal", AuditTarget.QUIZ, "quiz-r003c-no-signal",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -2851,7 +2851,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(milestoneNode.getParent());
         RefinementTask task = new RefinementTask(
                 "task-r003c-none-scarce", AuditTarget.QUIZ, "quiz-r003c-none-scarce",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -2888,7 +2888,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = new RefinementTask(
                 "task-la-ooc-1", AuditTarget.QUIZ, "quiz-la-ooc-1",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -2933,7 +2933,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = new RefinementTask(
                 "task-la-disc-1", AuditTarget.QUIZ, "quiz-la-disc-1",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 
@@ -2979,7 +2979,7 @@ public class LemmaAbsenceContextResolverTest {
         AuditReport report = new AuditReport(tree[0]);
         RefinementTask task = new RefinementTask(
                 "task-la-ooc-empty", AuditTarget.QUIZ, "quiz-la-ooc-empty",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         Optional<LemmaAbsenceCorrectionContext> result = sut.resolve(report, task);
 

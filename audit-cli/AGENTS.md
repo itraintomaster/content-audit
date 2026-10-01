@@ -17,6 +17,7 @@ CLI entry point
 | limit | `Optional<Integer>` |
 | target | `Optional<AuditTarget>` |
 | diagnosisKind | `Optional<DiagnosisKind>` |
+| findingFilter | `TaskFindingFilter` |
 
 ### LagenMode (`enum`)
 
@@ -65,6 +66,16 @@ CLI entry point
 | analyzerBudgets | `Map<String,Integer>` |
 | analyzerReevaluationSets | `Map<String,Set<String>>` |
 | maxConcurrentEvaluations | `Integer` |
+
+### TaskFindingFilter (`record`)
+
+| Field | Type |
+|-------|------|
+| analyzer | `Optional<String>` |
+| resolution | `Optional<FindingResolution>` |
+| severity | `Optional<FindingSeverity>` |
+| level | `Optional<CefrLevel>` |
+| knowledgeId | `Optional<String>` |
 
 ## Interfaces
 
@@ -135,6 +146,7 @@ Methods:
 Methods:
 
 - `getConsolidated(String coursePath, String format): Integer`
+- `getConsolidated(String coursePath, String format, Map<String,Integer> analyzerBudgets): Integer`
 
 ### SetActiveAnalysisCommand (port) [sealed]
 
@@ -173,6 +185,69 @@ Methods:
 - `takeExam(String judgeName,String casesFile,String photoCourse,Integer budget,Integer concurrency,String verdictsOut): Integer`
 - `recordExam(String resultFile): Integer`
 - `showExams(String judgeName): Integer`
+
+### SetBaselineCommand (port) [sealed]
+
+Methods:
+
+- `setBaseline(String auditId): Integer`
+- `showBaseline(String format): Integer`
+
+### SaveProjectionCommand (port) [sealed]
+
+Methods:
+
+- `saveProjection(String coursePath, List<String> proposalIds, Map<String,Integer> analyzerBudgets, String format): Integer`
+
+### CompareCommand (port) [sealed]
+
+Methods:
+
+- `compare(String coursePath, List<String> proposalIds, Map<String,Integer> analyzerBudgets, String format): Integer`
+
+### GoalsCommand (port) [sealed]
+
+Methods:
+
+- `listGoals(String format): Integer`
+- `setGoals(String format): Integer`
+
+### BlindSampleCommand (port) [sealed]
+
+Methods:
+
+- `draw(String coursePath, List<String> proposalIds, Long seed, String format): Integer`
+- `show(String sampleId, String format): Integer`
+- `answer(String sampleId, int pairIndex, String answer, String reviewer): Integer`
+- `close(String sampleId, String format): Integer`
+
+### ErrorRateCommand (port) [sealed]
+
+Methods:
+
+- `draw(String coursePath, String level, int size, Long seed, String format): Integer`
+- `show(String sampleId, String format): Integer`
+- `mark(String sampleId, int itemIndex, boolean hasError, String reviewer): Integer`
+- `close(String sampleId, String format): Integer`
+
+### BatchCommand (port) [sealed]
+
+Methods:
+
+- `openBatch(String level, Integer topicsAtOnce, Integer queriesAtOnce, List<String> convertToMultipleChoice): Integer`
+- `estimateBatch(): Integer`
+- `runBatch(Integer queryCap): Integer`
+- `closeBatch(): Integer`
+- `dropFromBatch(String changeId, String ruleId, String reason): Integer`
+- `reportBatch(String batchId, String format): Integer`
+
+### TrayCommand (port) [sealed]
+
+Methods:
+
+- `showTray(String format): Integer`
+- `answerTray(String itemId, String answer, Integer pairIndex, String changeId, String fixFile, String note): Integer`
+- `publishTray(String note): Integer`
 
 ## Dependency Contracts
 
@@ -372,6 +447,7 @@ Methods:
 | resolutions | `List<FindingResolution>` |
 | cost | `AnalysisCost` |
 | displayName | `String` |
+| tools | `List<LocalToolCard>` |
 
 ### AuditNode (`record`)
 
@@ -388,6 +464,7 @@ Methods:
 | numbers | `ContextNumbers` |
 | unevaluatedBy | `List<String>` |
 | partiallyEvaluatedBy | `List<String>` |
+| measures | `List<AnalyzerMeasure>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -462,6 +539,25 @@ Methods:
 | name | `String` |
 | maxCocaRank | `Integer` |
 | threshold | `int` |
+
+### NlpResourcesUnavailableException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `Falta %s en '%s': %s`
+
+| Field | Type |
+|-------|------|
+| resource | `String` |
+| path | `String` |
+| detail | `String` |
+
+### Baseline (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| fixedAt | `Instant` |
 
 ### AuditEngine (port)
 
@@ -574,6 +670,7 @@ Methods:
 - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
 - `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>`
 - `lookupLevelByLemma(String lemma): Optional<CefrLevel>`
+- `lookupDerivedFormLevel(String word): Optional<CefrLevel>`
 
 ### AuditableEntity (port)
 
@@ -601,6 +698,8 @@ Methods:
 - `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
 - `getJudgeCoverages(): List<JudgeCoverageDiagnosis>`
 - `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>`
+- `getLocalToolRuns(): List<LocalToolRunDiagnosis>`
+- `getNaturalnessQueue(): Optional<NaturalnessQueueDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -639,6 +738,9 @@ Methods:
 - `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>`
 - `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>`
 - `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>`
+- `getGrammarDiagnosis(): Optional<GrammarDiagnosis>`
+- `getNaturalnessDiagnosis(): Optional<NaturalnessDiagnosis>`
+- `getNearDuplicateDiagnosis(): Optional<NearDuplicateDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -714,6 +816,7 @@ Methods:
 - `find(String analyzerName): Optional<AnalyzerDescriptor>`
 - `provider(String analyzerName): Optional<AnalyzerProvider>`
 - `planBinding(String analyzerName): Optional<AnalyzerPlanBinding>`
+- `measure(String analyzerName): Optional<AnalyzerMeasure>`
 
 ### FindingCollector (port)
 
@@ -816,6 +919,39 @@ Methods:
 Methods:
 
 - `getScoreFor(FindingSeverity severity): double`
+
+### BaselineStore (port)
+
+Methods:
+
+- `read(): Optional<Baseline>`
+- `write(Baseline baseline): void`
+
+### AnalyzerCorrection (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `editScope(FindingResolution resolution): List<ExercisePart>`
+- `coveringAnalyzer(): Optional<String>`
+- `groupsByTopic(): boolean`
+- `tieRules(): List<String>`
+- `offersTwoFixes(): boolean`
+- `concernsAudio(Finding finding): boolean`
+
+### AnalyzerCorrectionCatalog (port)
+
+Methods:
+
+- `find(String analyzerName): Optional<AnalyzerCorrection>`
+- `list(): List<AnalyzerCorrection>`
+
+### RuleFix (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `fix(RuleFixRequest request): RuleFixResult`
 
 ### From course-domain
 
@@ -1171,6 +1307,16 @@ Methods:
 | KNOWLEDGE_TITLE_LENGTH | `null` |
 | KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
 | QUIZ_INSTRUCTION | `null` |
+| HINT_COHERENCE | `null` |
+| ANSWER_COMPLETENESS | `null` |
+| MULTIPLE_CHOICE_VALIDITY | `null` |
+| DATA_COHERENCE | `null` |
+| EXACT_DUPLICATES | `null` |
+| TRANSLATION_SENSE | `null` |
+| SINGLE_ANSWER | `null` |
+| MINI_THEORY | `null` |
+| GRAMMAR | `null` |
+| NEAR_DUPLICATES | `null` |
 
 ### RefinementTaskStatus (`enum`)
 
@@ -1180,6 +1326,7 @@ Methods:
 | COMPLETED | `null` |
 | SKIPPED | `null` |
 | STALE | `null` |
+| IN_BATCH | `null` |
 
 ### RefinementTask (`record`)
 
@@ -1192,6 +1339,7 @@ Methods:
 | diagnosisKind | `DiagnosisKind` |
 | priority | `int` |
 | status | `RefinementTaskStatus` |
+| origin | `TaskOrigin` |
 
 ### RefinementPlan (`record`)
 
@@ -1359,6 +1507,7 @@ Methods:
 | siblingQuizSentences | `List<String>` |
 | sourceAuditId | `String` |
 | planId | `String` |
+| quizInstructions | `String` |
 
 ### UnconvertedScoreCount (`record`)
 
@@ -1368,6 +1517,28 @@ Methods:
 | nodeCount | `int` |
 | reason | `String` |
 
+### TaskOrigin (`record`)
+
+| Field | Type |
+|-------|------|
+| finding | `Finding` |
+| cefrLevel | `CefrLevel` |
+| knowledgeId | `String` |
+| knowledgeLabel | `String` |
+| reachedQuizIds | `List<String>` |
+| coveredFindings | `List<Finding>` |
+
+### PlanFindingTally (`record`)
+
+| Field | Type |
+|-------|------|
+| analyzer | `String` |
+| countingFindings | `int` |
+| ownTasks | `int` |
+| covered | `int` |
+| unconverted | `int` |
+| unconvertedReason | `String` |
+
 ### RefinerEngine (port)
 
 Methods:
@@ -1375,6 +1546,7 @@ Methods:
 - `plan(AuditReport report, String auditId): RefinementPlan`
 - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
 - `unconvertedScores(AuditReport report): List<UnconvertedScoreCount>`
+- `findingTally(AuditReport report, RefinementPlan plan): List<PlanFindingTally>`
 
 ### RefinementPlanStore (port)
 
@@ -1837,6 +2009,36 @@ Methods:
 - `listByPlan(String planId): List<QuizInstructionCorrectionRunReport>`
 - `latest(): Optional<QuizInstructionCorrectionRunReport>`
 
+### ProjectionStore (port)
+
+Methods:
+
+- `save(CourseProjection projection): SavedProjection`
+- `load(String projectionId): Optional<AuditReport>`
+
+### GoalDeclarationSource (port)
+
+Methods:
+
+- `read(): GoalDeclaration`
+
+### SealedGoalsStore (port)
+
+Methods:
+
+- `read(): Optional<SealedGoals>`
+- `write(SealedGoals sealedGoals): void`
+
+### BlindSampleStore (port)
+
+Methods:
+
+- `savePairs(BlindSample sample): void`
+- `loadPairs(String sampleId): Optional<BlindSample>`
+- `listPairs(): List<BlindSample>`
+- `saveErrorRate(ErrorRateSample sample): void`
+- `loadErrorRate(String sampleId): Optional<ErrorRateSample>`
+
 ### From agent-runtime-infrastructure
 
 ## Models
@@ -1961,4 +2163,22 @@ Methods:
 
 - `probe(LlmProviderResolved provider): JudgeProviderReadiness`
 - `explain(LlmProviderResolved provider,String failure): JudgeProviderReadiness`
+
+### From local-language-infrastructure
+
+## Models
+
+### OllamaEndpoint (`record`)
+
+| Field | Type |
+|-------|------|
+| baseUrl | `String` |
+| timeoutSeconds | `int` |
+
+### OllamaModelFactory (factory)
+
+Methods:
+
+- `yesNoModel(OllamaEndpoint endpoint,String model): YesNoModel`
+- `embeddingModel(OllamaEndpoint endpoint,String model): EmbeddingModel`
 

@@ -366,4 +366,10 @@ public class FileSystemEvpCatalog implements EvpCatalogPort {
         return Optional.ofNullable(lowestLevelByLemmaOnly.get(lemma));
     }
 
+
+    @Override
+    public Optional<CefrLevel> lookupDerivedFormLevel(String word) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

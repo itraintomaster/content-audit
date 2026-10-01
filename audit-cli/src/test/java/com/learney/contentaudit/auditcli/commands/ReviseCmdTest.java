@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -85,7 +86,7 @@ public class ReviseCmdTest {
                 "Sample Quiz",
                 DiagnosisKind.SENTENCE_LENGTH,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
     }
 
@@ -507,7 +508,7 @@ public class ReviseCmdTest {
                 "Animals Quiz — LEMMA_ABSENCE",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
 
         RefinementPlan latestPlan = plan(planId, "audit-slem-r009", List.of(lemmaAbsenceTask));
@@ -527,5 +528,23 @@ public class ReviseCmdTest {
         assertEquals(0, exit,
                 "R009: revise on LEMMA_ABSENCE task without override must exit 0 (APPROVED_APPLIED)");
         verify(revisionEngine).revise(eq(planId), eq(taskId), any(Path.class), isNull());
+    }
+
+    @Test
+    @DisplayName("should revise as today a task that is in no open batch, with the same reviser and the same outcomes")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R014")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
+    public void shouldReviseAsTodayATaskThatIsInNoOpenBatchWithTheSameReviserAndTheSameOutcomes() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject 'revise' of a task of the open batch with «La tarea <id> es de la tanda <id> y se decide en su bandeja.» and exit non-zero without calling the revision engine")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
+    public void shouldRejectReviseOfATaskOfTheOpenBatchWithLaTareaIdEsDeLaTandaIdYSeDecideEnSuBandejaAndExitNonzeroWithoutCallingTheRevisionEngine() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

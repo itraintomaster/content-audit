@@ -56,6 +56,13 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should publish a course vocabulary score of 73.86% and levels 96.02, 93.60, 78.87 and 63.86 with lemma-count at bands 8, 6, 4 and 3, next to the other six published scores of the analysis of 29/9 → FEAT-POCOV/F-POCOV-R001
 - should keep the course vocabulary score at 73.92% with lemma-recurrence at 0.08 publishing its course diagnosis, on the published scores of the analysis of 29/9 → FEAT-RECUR/F-RECUR-R001
 - should keep the vocabulary score of every level at 96.54, 94.16, 79.45 and 63.51 with the recurrence of each level published as detail → FEAT-RECUR/F-RECUR-R004
+- should leave naturalness and near-duplicates out of the base run, even though near-duplicates has the instant rule same-but-wildcard → FEAT-RONDA2/F-RONDA2-R003
+- should run grammar in the base run because it is instant → FEAT-RONDA2/F-RONDA2-R003
+- should run fourteen of the twenty analyzers in the base run, the thirteen instant ones and multiple-choice-validity with budget 0 → FEAT-RONDA2/F-RONDA2-R003
+- should store at the root one measure per analyzer that ran, in catalog order, and no measure in the nodes below → FEAT-RONDA2/F-RONDA2-R004
+- should give the base of 29/9 on its second run in the same process 73.92% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 8.00 of recurrence, as a new invocation, and not 72.90 → FEAT-CERO/F-CERO-R001
+- should give a run the numbers of a new invocation whatever courses ran before it, so a word only the earlier course used is absent for lemma-absence and lemma-count → FEAT-CERO/F-CERO-R001
+- should leave the first report untouched by a second run in the same process, its 55 topics keeping their COCA diagnosis, A1 · Present Simple with 2,366 tokens in four bands → FEAT-CERO/F-CERO-R002
 
 ### KnowledgeTitleLengthAnalyzer (audit-domain)
 
@@ -286,6 +293,29 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should open no task for lemma-count and keep the plan of the analysis of 29/9 at 4,036 tasks, with 4 for every band and with bands 8, 6, 4 and 3 → FEAT-POCOV/F-POCOV-R002
 - should keep a single LEMMA_RECURRENCE task, on the course, and 4,036 tasks in the plan of the analysis of 29/9 with the new lemma-recurrence diagnosis and findings → FEAT-RECUR/F-RECUR-R002
 - should open no task for lemma-recurrence findings, only the course task when its score is below 1 → FEAT-RECUR/F-RECUR-R002
+- should give each finding of the error family that counts the task kind of its analyzer, from HINT_COHERENCE to NEAR_DUPLICATES → FEAT-RONDA2/F-RONDA2-R008
+- should never create a task for a naturalness finding, which only ranks → FEAT-RONDA2/F-RONDA2-R008
+- should cover an off-level-words finding with the LEMMA_ABSENCE task of its exercise instead of a task of its own → FEAT-RONDA2/F-RONDA2-R008
+- should keep the 4,036 vocabulary tasks of the 29/9 analysis identical one by one with the twenty analyzers → FEAT-RONDA2/F-RONDA2-R010
+- should open one task for each of the three counting findings of «I ___ a lot of vegetables.» (A1, Afirmativas regulares), from hint-coherence, single-answer and translation-sense, all three on the same exercise → FEAT-TAREA/F-TAREA-R001
+- should add up, for each error analyzer of the plan, its counting findings to its own tasks plus its covered findings plus its unconverted findings in the finding tally → FEAT-TAREA/F-TAREA-R001
+- should declare as unconverted, under its analyzer and with the reason that it has no task kind, every counting finding of an error analyzer without a task kind, and open no task for them → FEAT-TAREA/F-TAREA-R001
+- should declare as unconverted, with the reason that no task covers it, an off-level-words finding whose exercise has no LEMMA_ABSENCE task → FEAT-TAREA/F-TAREA-R001
+- should never hold an error task without the finding it came from, nor a second task for the same finding → FEAT-TAREA/F-TAREA-R001
+- should carry in the single-answer task of «I ___ a lot of vegetables.» the identity of its finding, its blocking severity, the panel resolution, its paid-model cost, level A1 and the topic Afirmativas regulares → FEAT-TAREA/F-TAREA-R002
+- should derive from two plans of the same analysis the same error tasks with the same finding identities and in the same order, breaking equal priorities by node and finding identity → FEAT-TAREA/F-TAREA-R002
+- should keep the identity of the hint-coherence finding of «I ___ a lot of vegetables.» in its task when the plan is derived from a later analysis of the same course → FEAT-TAREA/F-TAREA-R002
+- should turn the forty findings that the mini-theory of «$In time$ u $on time$» (B1) leaves in its forty exercises into one task on the topic that reaches the forty, owns one finding and covers the other thirty-nine → FEAT-TAREA/F-TAREA-R003
+- should open one topic task per mini-theory with a problem, two for «Contraste inicial» (A1) when two of its eight mini-theories are marked, and never one task per exercise that shows them → FEAT-TAREA/F-TAREA-R003
+- should count the forty mini-theory findings of «$In time$ u $on time$» in its tally as one own task and thirty-nine covered, so they still add up to forty → FEAT-TAREA/F-TAREA-R003
+- should declare the off-level-words findings of spread and quilt in «She spread the warm blue quilt on the bed.» (A2) covered by the LEMMA_ABSENCE task of that exercise, naming that task, and open no task of their own → FEAT-TAREA/F-TAREA-R004
+- should list the covered off-level-words findings in the origin of the LEMMA_ABSENCE task of «She spread the warm blue quilt on the bed.», so the task counts as resolved only when both analyzers stop marking spread and quilt → FEAT-TAREA/F-TAREA-R004
+- should never declare an off-level-words finding covered by the SENTENCE_LENGTH task of its exercise, because only the task of lemma-absence marks the same word → FEAT-TAREA/F-TAREA-R004
+- should open no task for the rank-only finding «los jueces no coinciden» of translation-sense and leave it out of the counting findings of the tally, for the tray of the batch of its level → FEAT-TAREA/F-TAREA-R005
+- should keep a single LEMMA_ABSENCE task for «She spread the warm blue quilt on the bed.» although lemma-absence marks two words in it, one task per exercise as the vocabulary plan does today → FEAT-TAREA/F-TAREA-R007
+- should derive from the 29/9 analysis, with the error tasks one per finding, the same 4,036 vocabulary tasks with the same kinds and nodes: 3,051 SENTENCE_LENGTH, 950 LEMMA_ABSENCE, 25 KNOWLEDGE_INSTRUCTIONS_LENGTH, 6 KNOWLEDGE_TITLE_LENGTH, 3 COCA_BUCKETS and 1 LEMMA_RECURRENCE → FEAT-TAREA/F-TAREA-R007
+- should leave the origin empty in every vocabulary task except a LEMMA_ABSENCE task that covers an error finding → FEAT-TAREA/F-TAREA-R007
+- should never hand out a task IN_BATCH as the next task → FEAT-TANDA/F-TANDA-R002
 
 ### KnowledgeTitleContextResolver (refiner-domain)
 
@@ -296,6 +326,7 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 
 - should resolve a correction context carrying every violation the quiz diagnosis recorded, each with its breached constraint, its textual evidence and its explanation → FEAT-QICOR/F-QICOR-R002
 - should resolve a correction context carrying the whole quiz with its gaps and its accepted options, the knowledge instruction, the CEFR level and the sibling quizzes of the knowledge → FEAT-QICOR/F-QICOR-R002
+- should resolve a correction context carrying the instructions of the quiz copy, the ones the student sees and the judge reads, apart from the knowledge's → FEAT-CALUM/F-CALUM-R003
 
 ### CourseToAuditableMapper (audit-application)
 
@@ -348,6 +379,14 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should publish on the 29/9 course, with the seven classic analyzers, the same score of each one on each of its 11.760 nodes and the same typed diagnoses as the analysis 2026-09-30T11-54-02 → FEAT-HALL/F-HALL-R013
 - should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels 96.0, 93.6, 78.9 and 63.9 → FEAT-RONDA1/F-RONDA1-R008
 - should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2, 79.5 and 63.5 → FEAT-RONDA1/F-RONDA1-R008
+- should accept a budget for near-duplicates, which consults a model, and keep rejecting a budget for grammar, which is instant → FEAT-RONDA2/F-RONDA2-R002
+- should hand naturalness no run policy when the run declares no budget, so its provider completes it by the route it consults → FEAT-RONDA2/F-RONDA2-R002
+- should publish on the 29/9 course with the twenty analyzers a vocabulary of 73.86 % and levels 96.02, 93.60, 78.87 and 63.86 → FEAT-RONDA2/F-RONDA2-R010
+- should reject before loading the course a run that asks for naturalness by name when neither llama3:8b in Ollama nor claude -p is available, with «Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is not available: ollama pull llama3:8b.» → FEAT-MLOCAL/F-MLOCAL-R003
+- should reject before loading the course a run that asks for grammar by name when LanguageTool is not available, since grammar has no alternative → FEAT-MLOCAL/F-MLOCAL-R003
+- should not reject a run that asks for near-duplicates by name without Ollama when the claude -p alternative is available → FEAT-MLOCAL/F-MLOCAL-R003
+- should not reject a run without selection when LanguageTool is not available, leaving every exercise unevaluated by grammar with the reason in view while the other analyzers run → FEAT-MLOCAL/F-MLOCAL-R003
+- should run grammar, naturalness and near-duplicates in an analyze without selection → FEAT-MLOCAL/F-MLOCAL-R004
 
 ### DefaultCocaBucketsConfig (audit-application)
 
@@ -458,6 +497,7 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should reject with JudgeExamNotTakenException the measured result of a version that did not take the whole exam, recording nothing → FEAT-JEXAM/F-JEXAM-R001
 - should list every exam record of a judge, across its versions, in the order they were recorded → FEAT-JEXAM/F-JEXAM-R001
 - should give one verdict to every exercise of a quiz-instruction exam file that mixes CLOZE and multiple choice exercises, without knowing their groups → FEAT-JEXAM/F-JEXAM-R009
+- should record the exam that naturalness takes without its local model under the version of claude -p, leaving the version of llama3 without exam → FEAT-MLOCAL/F-MLOCAL-R006
 
 ### DefaultJudgeRuntimeConfig (audit-application)
 
@@ -530,6 +570,10 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should keep in the digest the labels of the course, the levels, the topic groups and the topics → FEAT-RONDA1/F-RONDA1-R002
 - should keep «Afirmativas regulares» as the exercise label of the saved report, the title the quiz instruction judge reads → FEAT-RONDA1/F-RONDA1-R002
 - should copy into the digest the analyzers that evaluated each node halfway → FEAT-RONDA1/F-RONDA1-R006
+- should keep the measures of the root when a report is saved and loaded again → FEAT-RONDA2/F-RONDA2-R004
+- should load a report saved before round 2 with an empty list of measures, without inventing them → FEAT-RONDA2/F-RONDA2-R004
+- should leave a saved projection out of list and loadLatest even when it was saved after the last analysis → FEAT-PROYU/F-PROYU-R004
+- should load a saved projection by its id when no analysis has that id, so plan --audit and the suggested words query accept it as their source analysis → FEAT-PROYU/F-PROYU-R005
 
 ### FileSystemRevisionArtifactStore (audit-infrastructure)
 
@@ -566,6 +610,29 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should append each exam record of a judge as one line of .content-audit/judge-exams/<judge>.jsonl and never rewrite an earlier one → FEAT-JEXAM/F-JEXAM-R001
 - should give as latest of a version its last record, and nothing for a version that never took the exam → FEAT-JEXAM/F-JEXAM-R001
 - should keep every exam record readable after the analysis reports under the same base directory are deleted → FEAT-JEXAM/F-JEXAM-R001
+
+### FileSystemBaselineStore (audit-infrastructure)
+
+- should keep the baseline in its own file, .content-audit/baseline.json, so changing the active pair or saving a new analysis does not move it → FEAT-PROYU/F-PROYU-R006
+- should read back the fixed baseline with its analysis id and the time it was fixed → FEAT-PROYU/F-PROYU-R006
+
+### FileSystemProjectionStore (audit-infrastructure)
+
+- should write a saved projection under .content-audit/projections/ and nothing under audits/ → FEAT-PROYU/F-PROYU-R004
+- should keep one saved projection per active pair, so saving another projection of the same pair replaces the previous one → FEAT-PROYU/F-PROYU-R005
+- should load a saved projection by the id it returned when saving it → FEAT-PROYU/F-PROYU-R005
+
+### FileSystemGoalDeclarationSource (audit-infrastructure)
+
+- should read from one declaration the family floors, the named goals with node, subject, kind, threshold, unit and reference, and the goal of the blind sample → FEAT-METAS/F-METAS-R005
+
+### FileSystemSealedGoalsStore (audit-infrastructure)
+
+- should keep the sealed goals in .content-audit/metas-fijadas.json and read them back with their values → FEAT-METAS/F-METAS-R006
+
+### FileSystemBlindSampleStore (audit-infrastructure)
+
+- should keep samples and their answers under .content-audit/blind-samples/ and write nothing else → FEAT-CIEGA/F-CIEGA-R003
 
 ### FileSystemEvaluationLedger (evaluation-ledger-infrastructure)
 

@@ -17,6 +17,7 @@ import com.learney.contentaudit.auditcli.formatting.ReportViewModelTransformer;
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.NlpResourcesUnavailableException;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -221,6 +222,11 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
             return 1;
+        } catch (NlpResourcesUnavailableException e) {
+            // F-RONDA2-R007: without the lemma list, the processor or spaCy, nothing is measured:
+            // what is missing and where it was looked for, exit 1 and no report.
+            System.err.println("Error: " + e.getMessage());
+            return 1;
         } catch (RuntimeException e) {
             System.err.println("Error running audit: " + e.getMessage());
             return 1;
@@ -316,6 +322,11 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
             return 1;
+        } catch (NlpResourcesUnavailableException e) {
+            // F-RONDA2-R007: without the lemma list, the processor or spaCy, nothing is measured:
+            // what is missing and where it was looked for, exit 1 and no report.
+            System.err.println("Error: " + e.getMessage());
+            return 1;
         } catch (RuntimeException e) {
             System.err.println("Error running audit: " + e.getMessage());
             return 1;
@@ -397,6 +408,11 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
             System.out.println(formatter.format(viewModel, scope));
             return 0;
         } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 1;
+        } catch (NlpResourcesUnavailableException e) {
+            // F-RONDA2-R007: without the lemma list, the processor or spaCy, nothing is measured:
+            // what is missing and where it was looked for, exit 1 and no report.
             System.err.println("Error: " + e.getMessage());
             return 1;
         } catch (RuntimeException e) {

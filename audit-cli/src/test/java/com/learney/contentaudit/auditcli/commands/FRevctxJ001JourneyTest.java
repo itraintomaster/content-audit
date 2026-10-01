@@ -42,7 +42,7 @@ public class FRevctxJ001JourneyTest {
 
     /** Constructs a ReviseCmd with mocked collaborators and injects a placeholder course path. */
     private ReviseCmd buildCmd(RevisionEngine engine, RefinementPlanStore planStore) throws Exception {
-        ReviseCmd cmd = new ReviseCmd(engine, planStore);
+        ReviseCmd cmd = new ReviseCmd(engine, planStore, null);
         for (Field f : cmd.getClass().getDeclaredFields()) {
             f.setAccessible(true);
             if (f.getType() == String.class && f.get(cmd) == null) {
@@ -86,7 +86,7 @@ public class FRevctxJ001JourneyTest {
 
         RefinementTask persistedTask = new RefinementTask(
                 taskId, AuditTarget.QUIZ, "quiz-j001", "Quiz J001 LEMMA_ABSENCE",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId,
                 Instant.parse("2026-05-09T10:00:00Z"), List.of(persistedTask));
@@ -136,7 +136,7 @@ public class FRevctxJ001JourneyTest {
 
         RefinementTask persistedTask = new RefinementTask(
                 taskId, AuditTarget.QUIZ, "quiz-j001-path2", "Quiz J001 path2",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId,
                 Instant.parse("2026-05-09T10:00:00Z"), List.of(persistedTask));

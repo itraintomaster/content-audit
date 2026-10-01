@@ -75,7 +75,7 @@ public class AnswerCompletenessAnalyzerProvider implements AnalyzerProvider {
                 // A limit of the corrector only ranks: the rule it lacks is the corrector's, not the course's.
                 List.of(FindingResolution.RULE, FindingResolution.PANEL, FindingResolution.RANK_ONLY),
                 AnalysisCost.INSTANT,
-                "Respuestas completas");
+                "Respuestas completas", List.of());
     }
 
     @Override
@@ -84,9 +84,12 @@ public class AnswerCompletenessAnalyzerProvider implements AnalyzerProvider {
                 new DefaultFormRequestDetector(), studentViewRenderer);
     }
 
+    /**
+     * F-RONDA2-R008 (hook E-02): its findings that count become ANSWER_COMPLETENESS tasks on the exercise.
+     */
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        return Optional.empty();
+        return Optional.of(new AnalyzerPlanBinding("ANSWER_COMPLETENESS", List.of(AuditTarget.QUIZ)));
     }
 
     @Override

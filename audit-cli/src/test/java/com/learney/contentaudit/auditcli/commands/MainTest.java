@@ -114,4 +114,50 @@ public class MainTest {
                 card.get("resolutions").toString(), card.get("cost").asText(),
                 card.get("rules").get(0).get("id").asText()), "R007: its card");
     }
+
+    @Test
+    @DisplayName("should register grammar «Gramática», naturalness «Naturalidad» and near-duplicates «Duplicados parecidos» after the seventeen analyzers of round 1, in that order")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R001")
+    @org.junit.jupiter.api.Disabled("FEAT-RONDA2: espera a B; sus tres proveedores quedan comentados en Main hasta que construya sus fichas")
+    public void shouldRegisterGrammarGramticaNaturalnessNaturalidadAndNearduplicatesDuplicadosParecidosAfterTheSeventeenAnalyzersOfRound1InThatOrder(@org.junit.jupiter.api.io.TempDir java.nio.file.Path workdir) throws Exception {
+        // F-RONDA2-R001: the catalog Main builds, read as the command line reads it, lists after the
+        // seventeen of round 1 and in this order grammar «Gramática», naturalness «Naturalidad» and
+        // near-duplicates «Duplicados parecidos».
+        com.fasterxml.jackson.databind.JsonNode cards = analyzersOfMain(workdir);
+
+        java.util.List<String> lastThree = new java.util.ArrayList<>();
+        for (int i = 17; i < cards.size(); i++) {
+            lastThree.add(cards.get(i).get("name").asText() + " " + cards.get(i).get("displayName").asText());
+        }
+        org.junit.jupiter.api.Assertions.assertEquals(20, cards.size(), "R001: the twenty");
+        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("grammar Gramática", "naturalness Naturalidad",
+                "near-duplicates Duplicados parecidos"), lastThree, "R001: the three of package B, after the seventeen");
+    }
+
+    @Test
+    @DisplayName("should keep each of the seventeen analyzers of round 1 in its place in the catalog once the three of package B are registered")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R001")
+    @org.junit.jupiter.api.Disabled("FEAT-RONDA2: espera a B; sus tres proveedores quedan comentados en Main hasta que construya sus fichas")
+    public void shouldKeepEachOfTheSeventeenAnalyzersOfRound1InItsPlaceInTheCatalogOnceTheThreeOfPackageBAreRegistered(@org.junit.jupiter.api.io.TempDir java.nio.file.Path workdir) throws Exception {
+        // F-RONDA2-R001 inv. 2: the three new ones are only added at the end -- each of the seventeen of
+        // round 1 keeps its place and its Spanish name.
+        com.fasterxml.jackson.databind.JsonNode cards = analyzersOfMain(workdir);
+
+        java.util.List<String> firstSeventeen = new java.util.ArrayList<>();
+        for (int i = 0; i < 17; i++) {
+            firstSeventeen.add(cards.get(i).get("name").asText() + " " + cards.get(i).get("displayName").asText());
+        }
+        org.junit.jupiter.api.Assertions.assertEquals(20, cards.size(), "the twenty");
+        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("sentence-length Largo de oración",
+                "knowledge-title-length Largo del título", "knowledge-instructions-length Largo de la consigna",
+                "coca-buckets-distribution Bandas de frecuencia", "lemma-recurrence Recurrencia",
+                "lemma-absence Palabras que faltan", "off-level-words Palabras de otro nivel",
+                "lemma-count Palabras poco vistas", "quiz-instruction Consigna", "hint-coherence Pista coherente",
+                "answer-completeness Respuestas completas", "multiple-choice-validity Opción múltiple válida",
+                "data-coherence Datos coherentes", "exact-duplicates Duplicados exactos",
+                "translation-sense Traducción y sentido", "single-answer Una sola respuesta", "mini-theory Miniteoría"),
+                firstSeventeen, "R001 inv. 2: the seventeen of round 1, each in its place");
+    }
 }

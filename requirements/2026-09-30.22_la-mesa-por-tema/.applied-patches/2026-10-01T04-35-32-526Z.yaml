@@ -1,0 +1,865 @@
+code: FEAT-MESA
+description: "FEAT-MESA: la mesa de un tema. Revalida, pide candidatos del ejercicio\
+  \ entero a quien propone, los mide con la misma medición del análisis sobre el tema\
+  \ recortado, los hace juzgar por los jueces del catálogo con el libro de evaluaciones,\
+  \ decide con un script y corre N temas y C consultas a la vez con un cupo compartido.\
+  \ Quien propone es un puerto: un agente en revision-infrastructure, o uno guionado\
+  \ para pruebas y repeticiones que no paga. Rebasado por el integrador de la ronda\
+  \ 2 sobre el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada y construida)\
+  \ y sobre FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2, B,\
+  \ F y E: revision-domain lleva la lista entera de patrones, 4 (el apply reemplaza,\
+  \ no suma).; qa-tester: 55 handwrittenTests trazan las 15 reglas de FEAT-MESA con\
+  \ el proponente guionado y jueces con veredictos grabados, sin consultar modelos:\
+  \ el ejercicio 11 de Afirmativas regulares y sus dos arreglos, grandmother y Winter,\
+  \ tres intentos sin ganador, el desacuerdo de traducción, la miniteoría de Contraste\
+  \ inicial en sus nueve ejercicios y Contracciones pasado a opción múltiple con tres\
+  \ opciones. F-MESA-J001 va a revision-domain, paquete panelengine: el corredor,\
+  \ la mesa, el medidor, el filtro y el guion son package-private ahí."
+modules:
+- name: revision-domain
+  patterns:
+  - type: Strategy
+    implementations:
+    - LemmaAbsenceMvpStrategy
+    suppressed: false
+    interface: LemmaAbsenceProposalStrategy
+  - type: Factory
+    implementations:
+    - DefaultPreservationFactory
+    suppressed: false
+    interface: PreservationFactory
+  - type: Factory
+    implementations:
+    - DefaultGateFactory
+    suppressed: false
+    interface: GateFactory
+  - type: Factory
+    implementations:
+    - DefaultPanelRunnerFactory
+    suppressed: false
+    interface: PanelRunnerFactory
+  packages:
+  - name: panel
+    description: "Contrato de la mesa (FEAT-MESA). Público para audit-cli, que la\
+      \ cablea, y para revision-infrastructure, que implementa al agente que propone."
+    visibility: public
+    models:
+    - name: TopicWork
+      type: record
+      fields:
+      - name: batchId
+        type: String
+      - name: level
+        type: CefrLevel
+      - name: milestoneId
+        type: String
+      - name: topicId
+        type: String
+      - name: knowledge
+        type: KnowledgeEntity
+        description: "El tema como está en la tanda, con lo ya aceptado (F-MESA-R001\
+          \ inv. 3)."
+      - name: sentenceMode
+        type: SentenceMode
+      - name: briefs
+        type: List<ErrorTaskBrief>
+        description: "Las tareas de mesa del tema, con su hallazgo, su evidencia y\
+          \ lo que su arreglo puede tocar."
+      - name: wordLights
+        type: TopicWordLights
+        description: "El semáforo del tema (FEAT-SEMAF, ronda 1)."
+      - name: conversion
+        type: ConversionOrder
+        description: "El encargo de José sobre el tema, o nulo (F-MESA-R015)."
+      - name: attemptsUsed
+        type: "Map<String,Integer>"
+        description: "Intentos ya gastados por ejercicio, cuando un cambio vuelve\
+          \ de la compuerta de la tanda (F-NOEMP-R008)."
+      - name: carriedRejections
+        type: List<CandidateRejection>
+        description: "Los motivos con que volvió un cambio, para quien propone."
+      _change: add
+    - name: ConversionOrder
+      type: record
+      fields:
+      - name: knowledgeId
+        type: String
+      - name: targetKind
+        type: FormKind
+      - name: optionCount
+        type: int
+        description: "Tres, mientras José no conteste DOUBT-OPCIONES-CONTRACCIONES."
+      glossarySuggestions:
+      - name: Encargo
+        technicalName: ConversionOrder
+        kind: process-candidate
+        basedOn: revision-domain/panel/ConversionOrder
+        rationale: "José pide al abrir la tanda algo que ningún analizador marca,\
+          \ como pasar «Contracciones» a opción múltiple; la mesa lo arma y lo decide\
+          \ el mismo script."
+      _change: add
+    - name: PanelRequest
+      type: record
+      fields:
+      - name: batchId
+        type: String
+      - name: level
+        type: CefrLevel
+      - name: knowledgeId
+        type: String
+      - name: quizId
+        type: String
+        description: "El ejercicio a corregir; nulo en una tarea del tema, como la\
+          \ miniteoría."
+      - name: topicView
+        type: List<QuizStudentView>
+        description: "El tema entero como lo ve el alumno, con lo ya aceptado (F-MESA-R003)."
+      - name: briefs
+        type: List<ErrorTaskBrief>
+      - name: wordLights
+        type: TopicWordLights
+      - name: conversion
+        type: ConversionOrder
+      - name: attempt
+        type: int
+      - name: previousRejections
+        type: List<CandidateRejection>
+      - name: twoFixes
+        type: boolean
+        description: "El inglés y la traducción no dicen lo mismo: pedir un candidato\
+          \ que cambie sólo la traducción y otro que cambie el inglés."
+      _change: add
+    - name: PanelCandidate
+      type: record
+      fields:
+      - name: kind
+        type: PanelCandidateKind
+      - name: quiz
+        type: QuizTemplateEntity
+        description: El ejercicio entero como quedaría; nulo en una miniteoría.
+      - name: miniTheoryText
+        type: String
+        description: "El texto nuevo, en una miniteoría."
+      - name: topicInstructions
+        type: String
+        description: "La consigna nueva del tema, en un encargo que la cambia."
+      - name: rationale
+        type: String
+        description: "Por qué, según quien propone. Ningún juez la lee (F-MESA-R005)."
+      _change: add
+    - name: PanelCandidateKind
+      type: enum
+      fields:
+      - name: WHOLE_EXERCISE
+      - name: TRANSLATION_ONLY
+      - name: ENGLISH_CHANGE
+      - name: MINI_THEORY
+      - name: MULTIPLE_CHOICE_CONVERSION
+      _change: add
+    - name: PanelProposal
+      type: record
+      fields:
+      - name: candidates
+        type: List<PanelCandidate>
+      - name: proposerVersion
+        type: String
+      - name: available
+        type: boolean
+        description: "Falso si el servicio falló: la mesa corta el cupo y el ejercicio\
+          \ queda sin intentar (F-MESA-R010 inv. 2)."
+      - name: unavailableReason
+        type: String
+      _change: add
+    - name: CandidateRejection
+      type: record
+      fields:
+      - name: attempt
+        type: int
+      - name: candidateKind
+        type: PanelCandidateKind
+      - name: reasons
+        type: List<String>
+        description: "Los criterios que no pasó, cada uno con su evidencia (F-MESA-R007)."
+      _change: add
+    - name: PanelOutcomeKind
+      type: enum
+      fields:
+      - name: ACCEPTED
+      - name: NO_LONGER_HOLDS
+      - name: NO_WINNER
+      - name: TIE
+      - name: NOT_ATTEMPTED
+      - name: NO_DECLARED_SCOPE
+      _change: add
+    - name: PanelDecision
+      type: record
+      fields:
+      - name: knowledgeId
+        type: String
+      - name: quizIds
+        type: List<String>
+        description: "El ejercicio, o los que alcanza la miniteoría o el encargo."
+      - name: taskIds
+        type: List<String>
+      - name: outcome
+        type: PanelOutcomeKind
+      - name: accepted
+        type: PanelCandidate
+      - name: acceptedVerdict
+        type: ChangeGateVerdict
+      - name: resolvedTaskIds
+        type: List<String>
+        description: Las tareas cuyo analizador ya no marca su hallazgo en el candidato
+          aceptado.
+      - name: attempts
+        type: int
+      - name: rejections
+        type: List<CandidateRejection>
+      - name: bestFailing
+        type: PanelCandidate
+        description: "Sin ganador: el candidato que menos falló (F-MESA-R007)."
+      - name: bestFailingVerdict
+        type: ChangeGateVerdict
+      - name: tieFindings
+        type: List<Finding>
+        description: "Desempate: los dos veredictos de traducción y sentido, como\
+          \ hallazgos con su evidencia (F-MESA-R008)."
+      - name: queriesSpent
+        type: int
+      _change: add
+    - name: PanelTopicResult
+      type: record
+      fields:
+      - name: knowledgeId
+        type: String
+      - name: decisions
+        type: List<PanelDecision>
+      - name: queriesSpent
+        type: int
+      - name: interrupted
+        type: boolean
+      _change: add
+    - name: PanelRunSettings
+      type: record
+      fields:
+      - name: topicsAtOnce
+        type: int
+      - name: queriesAtOnce
+        type: int
+      - name: maxAttempts
+        type: int
+      - name: analyzers
+        type: List<String>
+        description: "Los analizadores del análisis del que partió la tanda: la mesa\
+          \ mide con esos y no con otros."
+      _change: add
+    - name: PanelRunnerConfig
+      type: record
+      fields:
+      - name: proposer
+        type: PanelProposer
+      - name: analyzerCatalog
+        type: AnalyzerCatalog
+      - name: correctionCatalog
+        type: AnalyzerCorrectionCatalog
+      - name: auditEngine
+        type: AuditEngine
+      - name: courseMapper
+        type: CourseMapper
+      - name: quizStudentViewRenderer
+        type: QuizStudentViewRenderer
+      - name: nlpTokenizer
+        type: NlpTokenizer
+      - name: lexicalEvaluator
+        type: SentenceLexicalEvaluator
+      - name: topicTeachingResolver
+        type: TopicTeachingResolver
+      - name: spokenTextBuilder
+        type: SpokenTextBuilder
+      - name: sentenceLengthConfig
+        type: SentenceLengthConfig
+      _change: add
+    interfaces:
+    - name: PanelProposer
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "propose(PanelRequest request): PanelProposal"
+      _change: add
+    - name: QueryAllowance
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "tryReserve(int queries): boolean"
+      - signature: "settle(int reserved, int spent): void"
+      - signature: "trip(String cause): void"
+      - signature: "tripped(): Optional<String>"
+      - signature: "spent(): int"
+      _change: add
+    - name: PanelDecisionSink
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "accept(PanelDecision decision): void"
+      _change: add
+    - name: TopicMeter
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "measure(TopicWork work, KnowledgeEntity knowledgeState, List<String>\
+          \ analyzers, QueryAllowance allowance): UnitMeasurement"
+      _change: add
+    - name: PanelRunner
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "runTopics(List<TopicWork> topics, PanelRunSettings settings, QueryAllowance\
+          \ allowance, PanelDecisionSink sink): List<PanelTopicResult>"
+      - signature: "assessGiven(TopicWork work, String quizId, PanelCandidate candidate,\
+          \ PanelRunSettings settings, QueryAllowance allowance): PanelDecision"
+      glossarySuggestions:
+      - name: Mesa
+        technicalName: PanelRunner
+        kind: process-candidate
+        basedOn: revision-domain/panel/PanelRunner
+        derivedFrom:
+        - Propuesta de revisión
+        - Candidato de ejercicio
+        rationale: "FEAT-MESA: uno propone, content-audit mide, los jueces juzgan\
+          \ y un script decide, por tema; nadie juzga lo suyo."
+      _change: add
+    - name: PanelRunnerFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(PanelRunnerConfig config): PanelRunner"
+      - signature: "meter(PanelRunnerConfig config): TopicMeter"
+      - signature: "allowance(Integer cap, int queriesAtOnce): QueryAllowance"
+      _change: add
+    implementations:
+    - name: ScriptedPanelProposer
+      requiresInject:
+      - name: script
+        type: "Map<String,List<PanelProposal>>"
+      visibility: public
+      implements:
+      - PanelProposer
+      _change: add
+    allowedClients:
+    - audit-cli
+    - revision-infrastructure
+    _change: add
+  - name: panelengine
+    description: "El motor de la mesa. Todo package-private salvo la fábrica: la raí\
+      z de composición sólo ve PanelRunner, TopicMeter y QueryAllowance."
+    visibility: internal
+    models:
+    - name: ScoredCandidate
+      type: record
+      fields:
+      - name: candidate
+        type: PanelCandidate
+      - name: measurement
+        type: UnitMeasurement
+      - name: gate
+        type: ChangeGateVerdict
+      - name: screenViolations
+        type: List<String>
+      visibility: internal
+      _change: add
+    - name: ScriptDecision
+      type: record
+      fields:
+      - name: outcome
+        type: PanelOutcomeKind
+      - name: winnerIndex
+        type: int
+      - name: resolvedTaskIds
+        type: List<String>
+      - name: tieFindings
+        type: List<Finding>
+      - name: reasons
+        type: List<String>
+      visibility: internal
+      _change: add
+    interfaces:
+    - name: TopicPanel
+      sealed: false
+      exposes:
+      - signature: "run(TopicWork work, PanelRunSettings settings, QueryAllowance\
+          \ allowance, PanelDecisionSink sink): PanelTopicResult"
+      - signature: "assess(TopicWork work, String quizId, PanelCandidate candidate,\
+          \ PanelRunSettings settings, QueryAllowance allowance): PanelDecision"
+      visibility: internal
+      _change: add
+    - name: CandidateScreen
+      sealed: false
+      exposes:
+      - signature: "screen(TopicWork work, String quizId, PanelCandidate candidate):\
+          \ List<String>"
+      visibility: internal
+      _change: add
+    - name: PanelDecisionScript
+      sealed: false
+      exposes:
+      - signature: "decide(List<ErrorTaskBrief> tasks, UnitMeasurement original, List<ScoredCandidate>\
+          \ candidates): ScriptDecision"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultPanelRunnerFactory
+      visibility: public
+      implements:
+      - PanelRunnerFactory
+      _change: add
+    - name: DefaultPanelRunner
+      requiresInject:
+      - name: topicPanel
+        type: TopicPanel
+      handwrittenTests:
+      - name: should never open two panels on the same topic at once
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R001
+      - name: "should never keep more than N topics open nor more than C queries in\
+          \ flight, with 4 and 4 when nothing else is asked"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R010
+      - name: "should start no query after a service failure, keep the answers of\
+          \ the queries in flight and leave the exercises without decision as not\
+          \ attempted, without spending attempts"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R010
+      - name: "should make the same decisions with 1 and 1, 4 and 4, and 8 and 8 topics\
+          \ and queries at once for the same candidates and verdicts"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R010
+      implements:
+      - PanelRunner
+      _change: add
+    - name: DefaultTopicPanel
+      requiresInject:
+      - name: proposer
+        type: PanelProposer
+      - name: meter
+        type: TopicMeter
+      - name: screen
+        type: CandidateScreen
+      - name: script
+        type: PanelDecisionScript
+      - name: changeGate
+        type: ChangeGate
+      - name: quizStudentViewRenderer
+        type: QuizStudentViewRenderer
+      handwrittenTests:
+      - name: "should ask candidates of the whole exercise for «I ___ a lot of vegetables.»\
+          \ that try to solve its three tasks at once, never one candidate per task"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R001
+      - name: "should work the mini-theory task of «Contraste inicial» once for the\
+          \ topic, never once per exercise that shows it"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R001
+      - name: should show each later candidate of the topic the topic with what the
+          panel already accepted in the batch
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R001
+      - name: "should end the single-answer task of «I ___ a lot of vegetables.» as\
+          \ no longer holding, without asking a candidate nor spending an attempt,\
+          \ when after the hint rule added «(love)» single-answer no longer marks\
+          \ it"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R002
+      - name: should leave an exercise untouched and ask no candidate when none of
+          its findings holds after measuring it again
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R002
+      - name: should measure an exercise again only with the analyzers that read something
+          its tasks may change
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R002
+      - name: "should send the proposer the twenty exercises of Afirmativas regulares\
+          \ as the student sees them, the findings of «I ___ a lot of vegetables.»\
+          \ with their evidence, level A1, what each task may touch and the word lights\
+          \ of the topic"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R003
+      - name: "should send the proposer the reasons of its rejected candidate from\
+          \ the second attempt on, and never a verdict on a candidate that is not\
+          \ its own"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R003
+      - name: "should ask two candidates for an exercise whose English and translation\
+          \ do not say the same, one that changes only the translation and one that\
+          \ changes the English"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R003
+      - name: should send the proposer of «Contracciones» José's order to pass the
+          topic to multiple choice
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R003
+      - name: "should end an exercise without winner after three rejected attempts,\
+          \ leaving the original and its tasks open and handing over the candidate\
+          \ that failed least with what it did not pass and the reasons of each attempt"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R007
+      - name: "should send «My grandmother ___ (come) every year.» back to the proposer\
+          \ with the rule it failed and grandmother (A2) as evidence, and accept «\
+          Winter ___ (come) every year.» on the second attempt"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R007
+      - name: should give an exercise that came back from the batch gate with one
+          attempt spent only two more attempts
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R007
+      - name: "should stop the attempts of an exercise whose candidate the two translation-sense\
+          \ judges disagree on, and leave it as a tie for José with both verdicts"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R008
+      - name: "should hand the accepted candidate to the sink as a decision and never\
+          \ write the course, leaving the files of Afirmativas regulares identical\
+          \ byte for byte"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R009
+      - name: "should carry in the decision of an accepted candidate the candidate\
+          \ and its gate verdict, for the batch to keep it as a pending proposal with\
+          \ its artifact"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R009
+      - name: "should resolve the mini-theory of «Contraste inicial» before the candidates\
+          \ of its exercises, which then see the new text"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R012
+      - name: "should deliver, for the order to pass «Contracciones» to multiple choice,\
+          \ one candidate per exercise of the topic and the instructions of the topic\
+          \ rewritten once"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R015
+      - name: "should leave as it was, for the tray without winner, an exercise of\
+          \ «Contracciones» whose conversion no candidate passed"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R015
+      implements:
+      - TopicPanel
+      _change: add
+    - name: CatalogTopicMeter
+      requiresInject:
+      - name: auditEngine
+        type: AuditEngine
+      - name: courseMapper
+        type: CourseMapper
+      - name: nlpTokenizer
+        type: NlpTokenizer
+      - name: lexicalEvaluator
+        type: SentenceLexicalEvaluator
+      - name: topicTeachingResolver
+        type: TopicTeachingResolver
+      - name: spokenTextBuilder
+        type: SpokenTextBuilder
+      - name: sentenceLengthConfig
+        type: SentenceLengthConfig
+      handwrittenTests:
+      - name: "should reuse the verdicts recorded for an exercise nobody changed,\
+          \ by the fingerprint of its content, without querying any judge"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R002
+      - name: "should give a candidate the same findings and scores that analyze gives\
+          \ the exercise in the course, as «Winter ___ (come) every year.» measured\
+          \ in its topic and in the whole course"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R004
+      - name: should measure each candidate with every instant analyzer of the starting
+          analysis
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R004
+      - name: "should measure the red words of the sentence and of each option put\
+          \ in the gap of a multiple choice as the analysis does, leaving out the\
+          \ words the topic teaches"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R004
+      - name: should query the two translation-sense judges and no other when a candidate
+          changes only the translation of «I ___ a lot of vegetables.»
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R005
+      - name: "should query four judges, the two of translation-sense, single-answer\
+          \ and quiz-instruction, when a candidate changes the English of a CLOZE"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R005
+      - name: "should give each judge only what it reads in the course as the candidate\
+          \ leaves it, never the original, the reasons of the proposer nor another\
+          \ verdict"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R005
+      - name: "should record each verdict under the fingerprint of what the judge\
+          \ reads, so it is reused without querying when the candidate enters the\
+          \ course"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R005
+      - name: should not query a judge whose enabled version has not passed its exam
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R005
+      - name: should judge a candidate of a multiple choice with the rules of multiple-choice-validity
+          and the judge of another option that also fits
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R011
+      implements:
+      - TopicMeter
+      _change: add
+    - name: DefaultCandidateScreen
+      requiresInject:
+      - name: correctionCatalog
+        type: AnalyzerCorrectionCatalog
+      handwrittenTests:
+      - name: "should reject before measuring a candidate of a multiple choice that\
+          \ stops being multiple choice, has other than exactly one correct option\
+          \ or changes the number of options"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R011
+      - name: should let through a candidate of a multiple choice that changes the
+          sentence or the option left over and keeps one correct option among the
+          same number
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R011
+      - name: "should reject a mini-theory candidate that misses an exercise of the\
+          \ topic showing the text, or reaches one that does not show it"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R012
+      - name: "should let through a conversion of «You ___ (do not) work at the bank.»\
+          \ with «don't» as the correct option, two other contractions and three options,\
+          \ and the same translation and mini-theory"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R015
+      - name: "should reject a conversion of «She ___ (is not) very happy.» that offers\
+          \ «isn't» next to the correct «'s not», the same answer in another form"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R015
+      - name: "should reject a conversion whose correct option is not the first accepted\
+          \ answer of today, so what is heard would change"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R015
+      implements:
+      - CandidateScreen
+      _change: add
+    - name: DefaultPanelDecisionScript
+      requiresInject:
+      - name: correctionCatalog
+        type: AnalyzerCorrectionCatalog
+      handwrittenTests:
+      - name: should accept «Winter ___ (come) every year.» because it solves its
+          task and the change gate passes
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R006
+      - name: should reject a candidate that solves no task of the exercise even if
+          it worsens nothing
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R006
+      - name: "should reject «My grandmother ___ (come) every year.», which solves\
+          \ its task but adds grandmother (A2)"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R006
+      - name: "should pick among the accepted candidates the one that leaves fewer\
+          \ findings by severity, then the one that does not change what is heard,\
+          \ then the one within the length range, then the first"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R006
+      - name: should give the same decision and the same reasons for the same measurements
+          and verdicts
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R006
+      - name: "should decide a tie, neither accepting nor rejecting, when the two\
+          \ translation-sense judges disagree on the candidate, with both verdicts\
+          \ as its findings"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R008
+      - name: "should reject the translation-only candidate of «I ___ a lot of vegetables.»\
+          \ that translation-sense finds unnatural and accept the one that changes\
+          \ the English, which asks to rerecord"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R013
+      - name: should reject a candidate for which the single-answer judge finds another
+          answer that also fits and the original did not have
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R013
+      implements:
+      - PanelDecisionScript
+      _change: add
+    - name: CappedQueryAllowance
+      handwrittenTests:
+      - name: should refuse a reservation that would go over the cap of the batch
+          or over the queries at once
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R010
+      - name: "should refuse every reservation once a service failure tripped it,\
+          \ and say why"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R010
+      implements:
+      - QueryAllowance
+      _change: add
+    _change: add
+  - name: engine
+    implementations:
+    - name: DefaultQuizInstructionCorrectionRunner
+      handwrittenTests:
+      - name: "should correct a quiz-instruction task outside any batch with the comparative\
+          \ criteria, the three attempts and the outcomes of today"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R014
+    - name: DefaultQuizInstructionCandidateAssessor
+      handwrittenTests:
+      - name: "should keep judging a faithful translation against the original outside\
+          \ a batch, while the panel judges the exercise as it stays"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R014
+  _change: modify
+- name: revision-infrastructure
+  packages:
+  - name: panelagent
+    description: "El agente que propone en la mesa, sobre el runtime compartido de\
+      \ sentinel-agents, como el de la corrección de consigna. Sólo consulta un modelo\
+      \ cuando la tanda le reserva cupo; sin cupo, no se lo llama."
+    visibility: public
+    interfaces:
+    - name: PanelAgentProposerFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config): PanelProposer"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
+      _change: add
+    - name: PanelAgentRuntimeLauncher
+      sealed: false
+      exposes:
+      - signature: "launch(String agentName, Map<String,String> inputs, ChatModel\
+          \ chatModel): RunState"
+      visibility: internal
+      _change: add
+    - name: PanelAgentProposalParser
+      sealed: false
+      exposes:
+      - signature: "parse(RunState runState, PanelRequest request): PanelProposal"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultPanelAgentProposerFactory
+      visibility: public
+      implements:
+      - PanelAgentProposerFactory
+      _change: add
+    - name: AgentPanelProposer
+      requiresInject:
+      - name: agentRuntimeLauncher
+        type: PanelAgentRuntimeLauncher
+      - name: proposalParser
+        type: PanelAgentProposalParser
+      - name: chatModel
+        type: ChatModel
+      - name: config
+        type: LagenConfig
+      - name: projectRoot
+        type: Path
+      handwrittenTests:
+      - name: "should give the agent only what the proposer receives, the topic as\
+          \ the student sees it, the findings, the level, the scope, the word lights,\
+          \ the order and the previous reasons, and never another candidate's verdict"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R003
+      - name: "should answer unavailable when the model service fails, so the panel\
+          \ trips its allowance and spends no attempt"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R010
+      implements:
+      - PanelProposer
+      _change: add
+    - name: DefaultPanelAgentProposalParser
+      handwrittenTests:
+      - name: "should read from the output of the agent the two candidates for «I\
+          \ ___ a lot of vegetables.», the one that changes only the translation and\
+          \ the one that changes the English"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R003
+      implements:
+      - PanelAgentProposalParser
+      _change: add
+    - name: SharedRuntimePanelAgentLauncher
+      requiresInject:
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      implements:
+      - PanelAgentRuntimeLauncher
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: ReviseCmd
+      handwrittenTests:
+      - name: "should revise as today a task that is in no open batch, with the same\
+          \ reviser and the same outcomes"
+        traceability:
+          feature: FEAT-MESA
+          rule: F-MESA-R014
+features:
+- id: FEAT-MESA
+  code: F-MESA
+  journeys:
+  - id: F-MESA-J001
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.panelengine

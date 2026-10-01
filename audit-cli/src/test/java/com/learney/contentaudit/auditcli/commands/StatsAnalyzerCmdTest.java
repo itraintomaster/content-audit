@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.auditdomain.NlpTokenizer;
+import java.nio.file.Files;
+
 import com.learney.contentaudit.auditapplication.AnalyzerRegistry;
 import com.learney.contentaudit.auditapplication.AuditRunner;
 import com.learney.contentaudit.auditcli.formatting.AnalyzerStatsTransformer;
@@ -83,7 +86,7 @@ public class StatsAnalyzerCmdTest {
 
         // The impl may check registry via listAnalyzers() or getAnalyzerConfig(); stub both
         AnalyzerDescriptor descriptor = new AnalyzerDescriptor(analyzerName,
-                "Checks sentence length", AuditTarget.KNOWLEDGE, null, null, null, null, null, null, null, null, analyzerName);
+                "Checks sentence length", AuditTarget.KNOWLEDGE, null, null, null, null, null, null, null, null, analyzerName, java.util.List.of());
         when(analyzerRegistry.listAnalyzers()).thenReturn(List.of(descriptor));
         when(analyzerRegistry.getAnalyzerConfig(analyzerName))
                 .thenReturn(java.util.Optional.of(Map.of("maxSentenceLength", 25)));
@@ -310,5 +313,35 @@ public class StatsAnalyzerCmdTest {
         assertEquals(0.08, detail.get("score").asDouble(), 1e-12);
         assertEquals(List.of("A1", "A2", "B1", "B2"), java.util.stream.StreamSupport.stream(detail.get("levels")
                 .spliterator(), false).map(level -> level.get("level").asText()).toList(), "R004: the four levels");
+    }
+
+    @Test
+    @DisplayName("should exit with code 1 and name the missing spaCy processor when stats analyzer runs without it")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R007")
+    public void shouldExitWithCode1AndNameTheMissingSpaCyProcessorWhenStatsAnalyzerRunsWithoutIt(@TempDir Path workdir) throws IOException {
+        // F-RONDA2-R007: it holds for everything that measures a course, stats analyzer included:
+        // without the processor of spaCy it exits with 1 and names it, with the path where it looked.
+        Path processor = workdir.resolve("analysis/recursos-compartidos/spacy/sample_processor.py");
+        Path lemmaList = Files.writeString(workdir.resolve("lemmas_20k_words.txt"), "rank\tlemma\n");
+        NlpTokenizer tokenizer = new com.learney.contentaudit.nlpinfrastructure.spacy.SpacyNlpTokenizerFactory().create(
+                new com.learney.contentaudit.nlpinfrastructure.NlpTokenizerConfig(processor.toString(),
+                        lemmaList.toString(), 60));
+        AnalyzerCatalog catalog = new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(
+                Base299.classicProviders());
+        DefaultAuditRunner runner = Base299.runner(catalog,
+                new com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository(
+                        new com.learney.contentaudit.courseinfrastructure.CourseValidatorImpl()),
+                new com.learney.contentaudit.auditapplication.CourseToAuditableMapper(tokenizer,
+                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create()));
+        StatsAnalyzerCmd stats = new StatsAnalyzerCmd(new DefaultAnalyzerRegistry(catalog),
+                new DefaultAnalyzerStatsTransformer(), runner, Map.of());
+
+        Base299.Captured run = Base299.run(stats, "analyzer", "sentence-length", Base299.COURSE.toString());
+
+        assertEquals(1, run.exit(), "R007: exit 1");
+        assertTrue(run.err().contains("Falta el procesador de spaCy en '" + processor.toAbsolutePath().normalize() + "'"),
+                "R007: names the missing processor and where it looked for it: " + run.err());
+        assertEquals("", run.out(), "no stats");
     }
 }

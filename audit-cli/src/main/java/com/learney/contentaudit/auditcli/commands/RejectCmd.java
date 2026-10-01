@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.revisiondomain.batch.BatchService;
 
 import com.learney.contentaudit.auditcli.RejectCommand;
 import com.learney.contentaudit.revisiondomain.ProposalDecisionOutcome;
@@ -48,9 +49,12 @@ final class RejectCmd implements RejectCommand, Callable<Integer> {
             description = "Optional rejection reason.")
     private String reason;
 
-    public RejectCmd(ProposalDecisionService decisionService) {
-        this.decisionService = decisionService;
-    }
+private final BatchService batchService;
+
+public RejectCmd(ProposalDecisionService decisionService, BatchService batchService) {
+    this.decisionService = decisionService;
+    this.batchService = batchService;
+}
 
     @Override
     public Integer call() {

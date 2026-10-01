@@ -80,7 +80,7 @@ public class QuizInstructionReviserTest {
     private static RefinementTask buildTask() {
         return new RefinementTask(TASK_ID, AuditTarget.QUIZ, QUIZ_ID,
                 "Present Simple Third Person Singular", DiagnosisKind.QUIZ_INSTRUCTION, 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     private static QuizInstructionCorrectionContext buildContext() {
@@ -1355,5 +1355,13 @@ public class QuizInstructionReviserTest {
                         + "must be named (R006 (d), R016)");
         assertEquals(QUIZ_ID, ex.getQuizId());
         assertEquals(TASK_ID, ex.getTaskId());
+    }
+
+    @Test
+    @DisplayName("should revalidate the original quiz with the title and the instructions of its copy, the ones the student sees")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R002")
+    public void shouldRevalidateTheOriginalQuizWithTheTitleAndTheInstructionsOfItsCopyTheOnesTheStudentSees() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

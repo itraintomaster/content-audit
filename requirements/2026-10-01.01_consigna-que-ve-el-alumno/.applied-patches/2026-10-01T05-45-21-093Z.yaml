@@ -1,0 +1,199 @@
+code: FEAT-CALUM
+description: "El juez de consigna lee el ejercicio como lo ve el alumno (F-CALUM-R001,\
+  \ R002): su constructor de sujeto recibe el renderizador del alumno, igual que los\
+  \ de los otros cuatro jueces, y las dos fábricas que lo crean se lo pasan. Las pruebas\
+  \ que decían que el juez lee la etiqueta y la consigna del tema, o el formato interno\
+  \ del curso, o que un curso juzgado antes se resuelve sin consultar (F-JEXAM-R007,\
+  \ que FEAT-CALUM deja sin efecto), se borran con su nombre viejo y se agregan con\
+  \ el que dice lo nuevo. R003: el contexto de la corrección suma quizInstructions,\
+  \ la consigna de la copia, y el corrector la recibe como lo que tiene que cumplir;\
+  \ la etiqueta y la consigna del tema quedan como contexto, con su descripción al\
+  \ día."
+modules:
+- name: audit-domain
+  packages:
+  - name: quizinstructionengine
+    implementations:
+    - name: DefaultQuizInstructionSubjectBuilder
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "Las claves y su orden son la huella: cefrLevel, topic, title\
+          \ e instructions de la copia (los que muestra la app), exercise, acceptedAnswers\
+          \ y options."
+        _change: add
+      handwrittenTests:
+      - name: "should hand the judge the cefr level, the topic, the knowledge label,\
+          \ the knowledge instructions and the whole quiz with all its parts and accepted\
+          \ options"
+        _change: delete
+      - name: "should hand the judge the cefr level, the topic, the title and the\
+          \ instructions the app shows, the statement with its gaps and hints, the\
+          \ accepted answers of each gap and the options, in that order and nothing\
+          \ else"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: should produce different judged content for every quiz of a knowledge
+          when the knowledge instructions change
+        _change: delete
+      - name: "should produce different judged content when the instructions of the\
+          \ quiz copy change, and the same content when only the knowledge instructions\
+          \ change"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: should take the label and the instructions from the knowledge when the
+          quiz carries diverging copies
+        _change: delete
+      - name: "should take the title and the instructions from the quiz copy, the\
+          \ ones the app shows, when the knowledge carries different ones"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: should build judged content for a quiz whose knowledge declares no instructions
+        _change: delete
+      - name: should build judged content with empty instructions for a quiz whose
+          copy declares none
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: "should show the judge every option of a multiple choice quiz in its\
+          \ gap, in the order the student sees them, with the correct one marked"
+        _change: delete
+      - name: "should show the judge every option of a multiple choice quiz, in the\
+          \ order the student sees them, with the correct one marked"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: should render a CLOZE quiz for the judge character for character as
+          it did before multiple choice existed
+        _change: delete
+      - name: "should render a CLOZE quiz for the judge as the student view renders\
+          \ it, never in the internal format of the course"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: "should render a quiz whose gap has no options and that carries no multiple\
+          \ choice options the CLOZE way, as before"
+        _change: delete
+      - name: "should render a quiz whose gap has no options with its gap, an empty\
+          \ line of accepted answers and no options"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      _change: modify
+    - name: QuizInstructionAnalyzer
+      handwrittenTests:
+      - name: "should resolve every quiz of a course judged before FEAT-JEXAM from\
+          \ its recorded verdicts without a single consultation, with budget 100 and\
+          \ an approved version"
+        _change: delete
+      - name: "should consult again, with budget and an approved version, every quiz\
+          \ whose verdict was recorded on what the consigna judge read before FEAT-CALUM"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: should look up each quiz under the same fingerprint the ledger recorded
+          for it before FEAT-JEXAM
+        _change: delete
+      - name: "should look up each quiz under the fingerprint of the exercise as the\
+          \ student sees it, never under the one recorded before FEAT-CALUM"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      _change: modify
+    - name: DefaultQuizInstructionAnalyzerFactory
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: Para el constructor del sujeto del juez (F-CALUM-R001).
+        _change: add
+      _change: modify
+    - name: DefaultQuizInstructionComplianceCheckerFactory
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: Para el constructor del sujeto con que revise-instructions verifica
+          (F-CALUM-R002).
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: revision-domain
+  packages:
+  - name: candidatecriteriaengine
+    implementations:
+    - name: InstructionComplianceCriterion
+      handwrittenTests:
+      - name: "should submit the corrected quiz as a whole to the instruction validation,\
+          \ with its parts, its level and its knowledge instruction, instead of checking\
+          \ the violations one by one"
+        _change: delete
+      - name: "should submit the corrected quiz as a whole to the instruction validation,\
+          \ with its parts, its level and the title and instructions of its copy,\
+          \ instead of checking the violations one by one"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R002
+      _change: modify
+    _change: modify
+  - name: engine
+    implementations:
+    - name: QuizInstructionReviser
+      handwrittenTests:
+      - name: "should revalidate the original quiz with the title and the instructions\
+          \ of its copy, the ones the student sees"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R002
+      _change: modify
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: QuizInstructionCorrectionContext
+    type: record
+    fields:
+    - name: knowledgeTitle
+      type: String
+      description: "Etiqueta del knowledge: la lección, como contexto. Lo que el ejercicio\
+        \ tiene que cumplir es quizInstructions (F-CALUM-R003)."
+      _change: modify
+    - name: knowledgeInstructions
+      type: String
+      description: "Instructions del knowledge, como contexto: no es lo que el corrector\
+        \ tiene que cumplir (F-CALUM-R003). Nullable."
+      _change: modify
+    - name: quizInstructions
+      type: String
+      description: "La consigna de la copia del ejercicio: la que muestra la app,\
+        \ la que lee el juez de consigna (F-CALUM-R001) y la que tiene que cumplir\
+        \ el corrector (F-CALUM-R003). Nullable."
+      _change: add
+    _change: modify
+  implementations:
+  - name: QuizInstructionContextResolver
+    handwrittenTests:
+    - name: "should resolve a correction context carrying the instructions of the\
+        \ quiz copy, the ones the student sees and the judge reads, apart from the\
+        \ knowledge's"
+      traceability:
+        feature: FEAT-CALUM
+        rule: F-CALUM-R003
+    _change: modify
+  _change: modify
+- name: revision-infrastructure
+  packages:
+  - name: quizinstructionagent
+    implementations:
+    - name: QuizInstructionAgentGenerator
+      handwrittenTests:
+      - name: "should hand the correction agent, as the instructions it must comply\
+          \ with, those of the quiz copy and never the knowledge's"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R003
+      _change: modify
+    _change: modify
+  _change: modify

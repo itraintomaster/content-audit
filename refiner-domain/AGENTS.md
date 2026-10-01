@@ -18,6 +18,16 @@ Refinement engine
 | KNOWLEDGE_TITLE_LENGTH | `null` |
 | KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
 | QUIZ_INSTRUCTION | `null` |
+| HINT_COHERENCE | `null` |
+| ANSWER_COMPLETENESS | `null` |
+| MULTIPLE_CHOICE_VALIDITY | `null` |
+| DATA_COHERENCE | `null` |
+| EXACT_DUPLICATES | `null` |
+| TRANSLATION_SENSE | `null` |
+| SINGLE_ANSWER | `null` |
+| MINI_THEORY | `null` |
+| GRAMMAR | `null` |
+| NEAR_DUPLICATES | `null` |
 
 ### RefinementTaskStatus (`enum`)
 
@@ -27,6 +37,7 @@ Refinement engine
 | COMPLETED | `null` |
 | SKIPPED | `null` |
 | STALE | `null` |
+| IN_BATCH | `null` |
 
 ### RefinementTask (`record`)
 
@@ -39,6 +50,7 @@ Refinement engine
 | diagnosisKind | `DiagnosisKind` |
 | priority | `int` |
 | status | `RefinementTaskStatus` |
+| origin | `TaskOrigin` |
 
 ### RefinementPlan (`record`)
 
@@ -206,6 +218,7 @@ Refinement engine
 | siblingQuizSentences | `List<String>` |
 | sourceAuditId | `String` |
 | planId | `String` |
+| quizInstructions | `String` |
 
 ### UnconvertedScoreCount (`record`)
 
@@ -214,6 +227,28 @@ Refinement engine
 | analyzer | `String` |
 | nodeCount | `int` |
 | reason | `String` |
+
+### TaskOrigin (`record`)
+
+| Field | Type |
+|-------|------|
+| finding | `Finding` |
+| cefrLevel | `CefrLevel` |
+| knowledgeId | `String` |
+| knowledgeLabel | `String` |
+| reachedQuizIds | `List<String>` |
+| coveredFindings | `List<Finding>` |
+
+### PlanFindingTally (`record`)
+
+| Field | Type |
+|-------|------|
+| analyzer | `String` |
+| countingFindings | `int` |
+| ownTasks | `int` |
+| covered | `int` |
+| unconverted | `int` |
+| unconvertedReason | `String` |
 
 ## Interfaces
 
@@ -224,6 +259,7 @@ Methods:
 - `plan(AuditReport report, String auditId): RefinementPlan`
 - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
 - `unconvertedScores(AuditReport report): List<UnconvertedScoreCount>`
+- `findingTally(AuditReport report, RefinementPlan plan): List<PlanFindingTally>`
 
 ### RefinementPlanStore (port)
 
@@ -390,6 +426,7 @@ Methods:
 **Dependencies (constructor injection):**
 
 - `analyzerCatalog`: `AnalyzerCatalog`
+- `analyzerCorrectionCatalog`: `AnalyzerCorrectionCatalog`
 
 **Tests that must pass:**
 
@@ -410,6 +447,29 @@ Methods:
 - should open no task for lemma-count and keep the plan of the analysis of 29/9 at 4,036 tasks, with 4 for every band and with bands 8, 6, 4 and 3 → FEAT-POCOV/F-POCOV-R002
 - should keep a single LEMMA_RECURRENCE task, on the course, and 4,036 tasks in the plan of the analysis of 29/9 with the new lemma-recurrence diagnosis and findings → FEAT-RECUR/F-RECUR-R002
 - should open no task for lemma-recurrence findings, only the course task when its score is below 1 → FEAT-RECUR/F-RECUR-R002
+- should give each finding of the error family that counts the task kind of its analyzer, from HINT_COHERENCE to NEAR_DUPLICATES → FEAT-RONDA2/F-RONDA2-R008
+- should never create a task for a naturalness finding, which only ranks → FEAT-RONDA2/F-RONDA2-R008
+- should cover an off-level-words finding with the LEMMA_ABSENCE task of its exercise instead of a task of its own → FEAT-RONDA2/F-RONDA2-R008
+- should keep the 4,036 vocabulary tasks of the 29/9 analysis identical one by one with the twenty analyzers → FEAT-RONDA2/F-RONDA2-R010
+- should open one task for each of the three counting findings of «I ___ a lot of vegetables.» (A1, Afirmativas regulares), from hint-coherence, single-answer and translation-sense, all three on the same exercise → FEAT-TAREA/F-TAREA-R001
+- should add up, for each error analyzer of the plan, its counting findings to its own tasks plus its covered findings plus its unconverted findings in the finding tally → FEAT-TAREA/F-TAREA-R001
+- should declare as unconverted, under its analyzer and with the reason that it has no task kind, every counting finding of an error analyzer without a task kind, and open no task for them → FEAT-TAREA/F-TAREA-R001
+- should declare as unconverted, with the reason that no task covers it, an off-level-words finding whose exercise has no LEMMA_ABSENCE task → FEAT-TAREA/F-TAREA-R001
+- should never hold an error task without the finding it came from, nor a second task for the same finding → FEAT-TAREA/F-TAREA-R001
+- should carry in the single-answer task of «I ___ a lot of vegetables.» the identity of its finding, its blocking severity, the panel resolution, its paid-model cost, level A1 and the topic Afirmativas regulares → FEAT-TAREA/F-TAREA-R002
+- should derive from two plans of the same analysis the same error tasks with the same finding identities and in the same order, breaking equal priorities by node and finding identity → FEAT-TAREA/F-TAREA-R002
+- should keep the identity of the hint-coherence finding of «I ___ a lot of vegetables.» in its task when the plan is derived from a later analysis of the same course → FEAT-TAREA/F-TAREA-R002
+- should turn the forty findings that the mini-theory of «$In time$ u $on time$» (B1) leaves in its forty exercises into one task on the topic that reaches the forty, owns one finding and covers the other thirty-nine → FEAT-TAREA/F-TAREA-R003
+- should open one topic task per mini-theory with a problem, two for «Contraste inicial» (A1) when two of its eight mini-theories are marked, and never one task per exercise that shows them → FEAT-TAREA/F-TAREA-R003
+- should count the forty mini-theory findings of «$In time$ u $on time$» in its tally as one own task and thirty-nine covered, so they still add up to forty → FEAT-TAREA/F-TAREA-R003
+- should declare the off-level-words findings of spread and quilt in «She spread the warm blue quilt on the bed.» (A2) covered by the LEMMA_ABSENCE task of that exercise, naming that task, and open no task of their own → FEAT-TAREA/F-TAREA-R004
+- should list the covered off-level-words findings in the origin of the LEMMA_ABSENCE task of «She spread the warm blue quilt on the bed.», so the task counts as resolved only when both analyzers stop marking spread and quilt → FEAT-TAREA/F-TAREA-R004
+- should never declare an off-level-words finding covered by the SENTENCE_LENGTH task of its exercise, because only the task of lemma-absence marks the same word → FEAT-TAREA/F-TAREA-R004
+- should open no task for the rank-only finding «los jueces no coinciden» of translation-sense and leave it out of the counting findings of the tally, for the tray of the batch of its level → FEAT-TAREA/F-TAREA-R005
+- should keep a single LEMMA_ABSENCE task for «She spread the warm blue quilt on the bed.» although lemma-absence marks two words in it, one task per exercise as the vocabulary plan does today → FEAT-TAREA/F-TAREA-R007
+- should derive from the 29/9 analysis, with the error tasks one per finding, the same 4,036 vocabulary tasks with the same kinds and nodes: 3,051 SENTENCE_LENGTH, 950 LEMMA_ABSENCE, 25 KNOWLEDGE_INSTRUCTIONS_LENGTH, 6 KNOWLEDGE_TITLE_LENGTH, 3 COCA_BUCKETS and 1 LEMMA_RECURRENCE → FEAT-TAREA/F-TAREA-R007
+- should leave the origin empty in every vocabulary task except a LEMMA_ABSENCE task that covers an error finding → FEAT-TAREA/F-TAREA-R007
+- should never hand out a task IN_BATCH as the next task → FEAT-TANDA/F-TANDA-R002
 
 ### KnowledgeTitleContextResolver
 
@@ -428,6 +488,7 @@ Methods:
 
 - should resolve a correction context carrying every violation the quiz diagnosis recorded, each with its breached constraint, its textual evidence and its explanation → FEAT-QICOR/F-QICOR-R002
 - should resolve a correction context carrying the whole quiz with its gaps and its accepted options, the knowledge instruction, the CEFR level and the sibling quizzes of the knowledge → FEAT-QICOR/F-QICOR-R002
+- should resolve a correction context carrying the instructions of the quiz copy, the ones the student sees and the judge reads, apart from the knowledge's → FEAT-CALUM/F-CALUM-R003
 
 ## Dependency Contracts
 
@@ -554,6 +615,7 @@ The following models and interfaces are available from dependencies. You can use
 | resolutions | `List<FindingResolution>` |
 | cost | `AnalysisCost` |
 | displayName | `String` |
+| tools | `List<LocalToolCard>` |
 
 ### AuditNode (`record`)
 
@@ -570,6 +632,7 @@ The following models and interfaces are available from dependencies. You can use
 | numbers | `ContextNumbers` |
 | unevaluatedBy | `List<String>` |
 | partiallyEvaluatedBy | `List<String>` |
+| measures | `List<AnalyzerMeasure>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -644,6 +707,25 @@ The following models and interfaces are available from dependencies. You can use
 | name | `String` |
 | maxCocaRank | `Integer` |
 | threshold | `int` |
+
+### NlpResourcesUnavailableException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `Falta %s en '%s': %s`
+
+| Field | Type |
+|-------|------|
+| resource | `String` |
+| path | `String` |
+| detail | `String` |
+
+### Baseline (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| fixedAt | `Instant` |
 
 ### AuditEngine (port)
 
@@ -756,6 +838,7 @@ Methods:
 - `getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>`
 - `lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>`
 - `lookupLevelByLemma(String lemma): Optional<CefrLevel>`
+- `lookupDerivedFormLevel(String word): Optional<CefrLevel>`
 
 ### AuditableEntity (port)
 
@@ -783,6 +866,8 @@ Methods:
 - `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
 - `getJudgeCoverages(): List<JudgeCoverageDiagnosis>`
 - `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>`
+- `getLocalToolRuns(): List<LocalToolRunDiagnosis>`
+- `getNaturalnessQueue(): Optional<NaturalnessQueueDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -821,6 +906,9 @@ Methods:
 - `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>`
 - `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>`
 - `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>`
+- `getGrammarDiagnosis(): Optional<GrammarDiagnosis>`
+- `getNaturalnessDiagnosis(): Optional<NaturalnessDiagnosis>`
+- `getNearDuplicateDiagnosis(): Optional<NearDuplicateDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -896,6 +984,7 @@ Methods:
 - `find(String analyzerName): Optional<AnalyzerDescriptor>`
 - `provider(String analyzerName): Optional<AnalyzerProvider>`
 - `planBinding(String analyzerName): Optional<AnalyzerPlanBinding>`
+- `measure(String analyzerName): Optional<AnalyzerMeasure>`
 
 ### FindingCollector (port)
 
@@ -998,6 +1087,39 @@ Methods:
 Methods:
 
 - `getScoreFor(FindingSeverity severity): double`
+
+### BaselineStore (port)
+
+Methods:
+
+- `read(): Optional<Baseline>`
+- `write(Baseline baseline): void`
+
+### AnalyzerCorrection (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `editScope(FindingResolution resolution): List<ExercisePart>`
+- `coveringAnalyzer(): Optional<String>`
+- `groupsByTopic(): boolean`
+- `tieRules(): List<String>`
+- `offersTwoFixes(): boolean`
+- `concernsAudio(Finding finding): boolean`
+
+### AnalyzerCorrectionCatalog (port)
+
+Methods:
+
+- `find(String analyzerName): Optional<AnalyzerCorrection>`
+- `list(): List<AnalyzerCorrection>`
+
+### RuleFix (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `fix(RuleFixRequest request): RuleFixResult`
 
 ### From course-domain
 

@@ -1,0 +1,906 @@
+code: FEAT-METAS
+description: "FEAT-METAS: antes y después de una tanda contra la línea base, con metas\
+  \ fijadas antes de correr. Un comparador lee la proyección única de FEAT-PROYU sin\
+  \ recalcularla, le aplica las metas de una sola declaración y publica filas con\
+  \ su cambio y su estado, lo que vuelve, los pisos rotos con los cambios que los\
+  \ rompen, los cambios de medida aparte y el veredicto. Las metas se fijan con set-goals\
+  \ y al abrir cada tanda. La medida de cada analizador en el informe es un gancho\
+  \ (ganchos-F.md). Rebasado por el integrador de la ronda 2 sobre el sentinel.yaml\
+  \ de ronda1/integracion (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2,\
+  \ que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E: DefaultBatchComparator\
+  \ inyecta topicTeachingResolver: TopicTeachingResolver (gancho F-14).; qa-tester:\
+  \ 53 pruebas para las 9 reglas de FEAT-METAS, con el caso del 29/9: las cuatro propuestas\
+  \ de «Afirmativas regulares» (vuelve sólo «My grandmother ___ (come) every year.»\
+  , con su motivo de lemma-absence; ningún número de nivel se mueve), el largo de\
+  \ «He isn't in the living-room.», invest en «$Invest time$ + gerundio», las bandas\
+  \ 8 · 6 · 4 · 3 (73,92 → 73,86; 96,54 → 96,02; 67,0 → 66,5) y el piso de vocabulario\
+  \ de 0,5 pasado a 1,0. F-METAS-J001 va a audit-cli, paquete commands."
+modules:
+- name: revision-domain
+  interfaces:
+  - name: GoalDeclarationSource
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "read(): GoalDeclaration"
+    _change: add
+  - name: SealedGoalsStore
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "read(): Optional<SealedGoals>"
+    - signature: "write(SealedGoals sealedGoals): void"
+    _change: add
+  packages:
+  - name: comparison
+    description: "FEAT-METAS. Contrato de la comparación de una tanda contra la lí\
+      nea base: las metas (declaradas, efectivas y fijadas), las filas con su antes,\
+      \ su inicio de tanda, su después y su estado, lo que vuelve, los pisos rotos\
+      \ con su atribución, los cambios de medida y el veredicto. Lo leen la compuerta\
+      \ y la bandeja de E y la vista Antes y después de G; ninguno resta nada por\
+      \ su cuenta."
+    visibility: public
+    models:
+    - name: GoalKind
+      type: enum
+      fields:
+      - name: FLOOR
+        description: "Piso: lo que la tanda no puede empeorar; decide el veredicto\
+          \ (R005, R008)."
+      - name: PROGRESS
+        description: "Meta de avance: adónde se quiere llegar; se muestra y no decide."
+      _change: add
+    - name: GoalUnit
+      type: enum
+      fields:
+      - name: POINTS
+        description: "Puntos de un puntaje de vocabulario: «−0,5 puntos», nunca «\
+          %» (F-PIPRE-R013)."
+      - name: EXERCISES
+        description: Ejercicios con error.
+      - name: PERCENT
+        description: Porcentaje de ejercicios con error.
+      _change: add
+    - name: GoalReference
+      type: enum
+      fields:
+      - name: BASELINE
+        description: "Contra la línea base, acumulado entre tandas: el piso de vocabulario."
+      - name: BATCH_START
+        description: "Contra el inicio de la tanda (el curso con lo aprobado): el\
+          \ piso de errores y el de los nodos cambiados."
+      - name: ABSOLUTE
+        description: "Un valor fijo: las metas de avance."
+      _change: add
+    - name: GoalOrigin
+      type: enum
+      fields:
+      - name: DECLARED
+      - name: FAMILY_DEFAULT
+        description: "El piso de la familia, puesto a un analizador que la declaració\
+          n no nombra: uno nuevo queda cubierto sin tocarla (R005)."
+      _change: add
+    - name: SampleCriterion
+      type: enum
+      fields:
+      - name: OBSERVED
+        description: "La meta se cumple con lo contado (José, 30/9)."
+      - name: BOUND
+        description: La meta se cumple con la cota del intervalo al 95 %.
+      _change: add
+    - name: Goal
+      type: record
+      fields:
+      - name: id
+        type: String
+        description: "Clave estable, para decir qué meta cambió desde que se fijó\
+          \ (R006)."
+      - name: kind
+        type: GoalKind
+      - name: subject
+        type: String
+        description: "Nombre canónico de un analizador, o vocabulary, any-error, blocking\
+          \ o changed-nodes."
+      - name: nodeTarget
+        type: AuditTarget
+        description: "Nivel del nodo: curso, nivel, topic o tema."
+        domainLinks:
+        - term: Objetivo de auditoría
+          role: carries
+      - name: nodeId
+        type: String
+        description: null = cada nodo de ese nivel.
+      - name: threshold
+        type: double
+        description: "Piso: cuánto puede empeorar contra su referencia. Meta de avance:\
+          \ el valor al que se quiere llegar."
+      - name: unit
+        type: GoalUnit
+      - name: reference
+        type: GoalReference
+      - name: origin
+        type: GoalOrigin
+      glossarySuggestions:
+      - name: Meta
+        technicalName: Goal
+        kind: policy-candidate
+        basedOn: revision-domain/comparison/Goal
+        derivedFrom:
+        - Objetivo de auditoría
+        rationale: "Piso o meta de avance de un número de content-audit, declarada\
+          \ antes de correr; FEAT-METAS la vuelve la única fuente de «pasa» o «no\
+          \ pasa»."
+      _change: add
+    - name: FamilyFloor
+      type: record
+      fields:
+      - name: family
+        type: AnalyzerFamily
+      - name: threshold
+        type: double
+      - name: unit
+        type: GoalUnit
+      - name: reference
+        type: GoalReference
+      - name: nodeTargets
+        type: List<AuditTarget>
+        description: "Errores: todos los nodos. Vocabulario: niveles y curso."
+      _change: add
+    - name: BlindSampleGoal
+      type: record
+      fields:
+      - name: size
+        type: int
+        description: "Pares por tanda: 100 (José, 30/9)."
+      - name: minBetterOrEqual
+        type: int
+        description: 90 de 100.
+      - name: maxWorse
+        type: int
+        description: 1 como mucho.
+      - name: criterion
+        type: SampleCriterion
+      - name: responsible
+        type: String
+        description: "Quien responde la muestra que cuenta: José (F-CIEGA-R005)."
+      - name: secondReviewerPairs
+        type: int
+        description: "Pares que repite un segundo revisor: 30 en la primera tanda."
+      - name: cumulativeMaxWorseShare
+        type: double
+        description: "Meta de avance: menos de 2 % de peores, afirmado sumando tandas\
+          \ (F-CIEGA-R004)."
+      _change: add
+    - name: GoalDeclaration
+      type: record
+      fields:
+      - name: familyFloors
+        type: List<FamilyFloor>
+      - name: goals
+        type: List<Goal>
+      - name: blindSample
+        type: BlindSampleGoal
+      _change: add
+    - name: EffectiveGoals
+      type: record
+      fields:
+      - name: fingerprint
+        type: String
+        description: "Huella de las metas efectivas: lo que se registra al fijarlas\
+          \ (R006)."
+      - name: goals
+        type: List<Goal>
+        description: Las declaradas más el piso de familia de cada analizador del
+          catálogo que no nombran.
+      - name: blindSample
+        type: BlindSampleGoal
+      _change: add
+    - name: SealedGoals
+      type: record
+      fields:
+      - name: sealedAt
+        type: Instant
+      - name: goals
+        type: EffectiveGoals
+      _change: add
+    - name: GoalChange
+      type: record
+      fields:
+      - name: goalId
+        type: String
+      - name: before
+        type: String
+        description: Valor fijado; null si la meta no existía.
+      - name: after
+        type: String
+        description: Valor con que se evaluó; null si la meta ya no existe.
+      _change: add
+    - name: GoalStatus
+      type: enum
+      fields:
+      - name: MET
+      - name: NOT_MET
+      - name: UNDECIDABLE
+        description: Ejercicios sin evaluar podrían cambiar el estado (R002).
+      _change: add
+    - name: RowValue
+      type: record
+      fields:
+      - name: value
+        type: Double
+        description: "Vocabulario: el puntaje publicado. Errores: los ejercicios con\
+          \ error. null si esa foto no lo trae."
+      - name: share
+        type: Double
+        description: "Errores: el porcentaje publicado; vocabulario: null."
+      - name: notEvaluated
+        type: int
+      _change: add
+    - name: RowGoalStatus
+      type: record
+      fields:
+      - name: goalId
+        type: String
+      - name: threshold
+        type: double
+      - name: unit
+        type: GoalUnit
+      - name: reference
+        type: GoalReference
+      - name: status
+        type: GoalStatus
+      _change: add
+    - name: ComparisonRow
+      type: record
+      fields:
+      - name: subject
+        type: String
+      - name: family
+        type: AnalyzerFamily
+      - name: nodeTarget
+        type: AuditTarget
+      - name: nodeId
+        type: String
+      - name: label
+        type: String
+      - name: baseline
+        type: RowValue
+        description: "De la línea base, copiado del informe (R001)."
+      - name: remeasuredBaseline
+        type: RowValue
+        description: La línea base medida con la medida de hoy; sólo si la medida
+          cambió (R007).
+      - name: approved
+        type: RowValue
+        description: "Del curso con lo aprobado: el inicio de la tanda."
+      - name: projected
+        type: RowValue
+        description: De la proyección con las pendientes de la tanda.
+      - name: change
+        type: Double
+        description: "Contra la línea base (re-medida si cambió la medida), en la\
+          \ unidad de la fila: la UI no resta (regla 1.1 de G)."
+      - name: unit
+        type: GoalUnit
+      - name: floor
+        type: RowGoalStatus
+      - name: progress
+        type: RowGoalStatus
+      _change: add
+    - name: ChangeOutcome
+      type: record
+      fields:
+      - name: proposalId
+        type: String
+        domainLinks:
+        - term: Propuesta de revisión
+          role: carries
+      - name: nodeTarget
+        type: AuditTarget
+      - name: nodeId
+        type: String
+      - name: returns
+        type: boolean
+        description: "Ganó un hallazgo que cuenta: de errores (no sólo ordena) o de\
+          \ vocabulario de gravedad media o más; el largo nunca (R003)."
+      - name: newFindings
+        type: List<Finding>
+        description: "El motivo: los hallazgos que cuentan y no estaban al inicio\
+          \ de la tanda, propios o de otro nodo que lo nombra."
+      - name: fixedFindings
+        type: List<Finding>
+        description: "Los que desaparecieron: cuentan como arreglados."
+      - name: undecidedAnalyzers
+        type: List<String>
+        description: "Los que no lo evaluaron en la proyección: para ellos queda sin\
+          \ decidir, no «no vuelve»."
+      _change: add
+    - name: ChangeAttribution
+      type: record
+      fields:
+      - name: proposalId
+        type: String
+      - name: nodeId
+        type: String
+      - name: effect
+        type: double
+        description: El número con la tanda entera menos el número sin este cambio
+          (R004).
+      - name: unit
+        type: GoalUnit
+      _change: add
+    - name: FloorBreach
+      type: record
+      fields:
+      - name: goalId
+        type: String
+      - name: row
+        type: ComparisonRow
+      - name: attributions
+        type: List<ChangeAttribution>
+        description: Ordenadas del que más empeora al que menos.
+      _change: add
+    - name: MeasureChange
+      type: record
+      fields:
+      - name: analyzer
+        type: String
+      - name: baselineFingerprint
+        type: String
+      - name: currentFingerprint
+        type: String
+      - name: baselineConfig
+        type: "Map<String,Object>"
+      - name: currentConfig
+        type: "Map<String,Object>"
+      _change: add
+    - name: VerdictKind
+      type: enum
+      fields:
+      - name: PASSES
+      - name: FAILS
+      - name: BLIND_SAMPLE_MISSING
+      - name: UNDECIDABLE
+      _change: add
+    - name: BatchVerdict
+      type: record
+      fields:
+      - name: kind
+        type: VerdictKind
+      - name: brokenFloorGoalIds
+        type: List<String>
+      - name: returningProposalIds
+        type: List<String>
+      - name: sample
+        type: SampleOutcome
+        description: "El resultado de la muestra ciega de la tanda: lo publica FEAT-CIEGA,\
+          \ que declara el portador y su puerto."
+      - name: detail
+        type: String
+      _change: add
+    - name: BatchComparison
+      type: record
+      fields:
+      - name: baselineAuditId
+        type: String
+      - name: activeAuditId
+        type: String
+      - name: activePlanId
+        type: String
+      - name: scopeId
+        type: String
+      - name: availability
+        type: ConsolidatedViewAvailability
+      - name: unavailability
+        type: ConsolidatedViewUnavailability
+      - name: computedAt
+        type: Instant
+      - name: goals
+        type: EffectiveGoals
+        description: Con qué metas evaluó (R006).
+      - name: goalsSealedAt
+        type: Instant
+        description: "null si nunca se fijaron: la comparación lo dice."
+      - name: goalChanges
+        type: List<GoalChange>
+      - name: measureChanges
+        type: List<MeasureChange>
+      - name: appliedProposalIds
+        type: List<String>
+      - name: nonApplicablePendings
+        type: List<NonApplicablePending>
+      - name: rows
+        type: List<ComparisonRow>
+      - name: changes
+        type: List<ChangeOutcome>
+      - name: breaches
+        type: List<FloorBreach>
+      - name: verdict
+        type: BatchVerdict
+      glossarySuggestions:
+      - name: Antes y después
+        technicalName: BatchComparison
+        kind: value-object-candidate
+        basedOn: revision-domain/comparison/BatchComparison
+        derivedFrom:
+        - Propuesta de revisión
+        rationale: La comparación de una tanda contra la línea base con sus metas
+          y su veredicto; la vista «Antes y después» de la propuesta v2.
+      _change: add
+    interfaces:
+    - name: BatchComparator
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "compare(Path coursePath, ProjectionScope scope): BatchComparison"
+      _change: add
+    - name: GoalBook
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "effective(): EffectiveGoals"
+      - signature: "seal(): SealedGoals"
+      - signature: "sealed(): Optional<SealedGoals>"
+      _change: add
+    _change: add
+  - name: comparisonengine
+    description: "FEAT-METAS. El motor de la comparación: el comparador, el libro\
+      \ de metas y la atribución por quitar de a un cambio. Público sólo para la raí\
+      z de composición (P8), como findingengine de FEAT-HALL."
+    visibility: public
+    interfaces:
+    - name: ChangeAttributor
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "attribute(CourseProjection projection, List<FloorBreach> breaches):\
+          \ List<FloorBreach>"
+      _change: add
+    implementations:
+    - name: DefaultBatchComparator
+      requiresInject:
+      - name: courseProjector
+        type: CourseProjector
+        description: "Las fotos approved (inicio de la tanda) y projected, con el\
+          \ alcance de la tanda (FEAT-PROYU)."
+      - name: baselineStore
+        type: BaselineStore
+      - name: auditReportStore
+        type: AuditReportStore
+        description: Carga la línea base y lee sus números sin recalcularlos (R001).
+      - name: goalBook
+        type: GoalBook
+      - name: analyzerCatalog
+        type: AnalyzerCatalog
+        description: "Familia de cada analizador y su medida de hoy (R003, R007)."
+      - name: auditEngine
+        type: AuditEngine
+        description: "Sólo para re-medir la línea base cuando cambió una medida: una\
+          \ corrida sobre las entidades del informe base, sin volver a leer el curso\
+          \ (R007)."
+      - name: changeAttributor
+        type: ChangeAttributor
+      - name: sampleOutcomeSource
+        type: SampleOutcomeSource
+        description: "El resultado de la muestra ciega de la tanda, para el veredicto\
+          \ (R008); el puerto lo declara e implementa FEAT-CIEGA."
+      - name: topicTeachingResolver
+        type: TopicTeachingResolver
+        description: "Lo que el tema enseña, de D (FEAT-NIVFR): una palabra que el\
+          \ tema enseña no hace volver un cambio (F-METAS-R003, F-SEMAF-R004), igual\
+          \ que en la mesa de E (gancho F-14)."
+      visibility: public
+      handwrittenTests:
+      - name: "should publish for every analyzer that ran in the baseline a row in\
+          \ each knowledge, topic, level and the course, plus a vocabulary row and\
+          \ an any-error row per node"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should copy into each row the number of the baseline, of the batch\
+          \ start and of the projection from their reports, without computing it again"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should give lemma-absence on «Afirmativas regulares» 100.0 before,\
+          \ 99.5 after and -0.5 points, and on the topic Present Simple 99.55, 99.52\
+          \ and -0.03 points, with the four pending proposals"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should give the vocabulary rows of A1 and of the course 96.54 and 73.92\
+          \ before and after, a change of 0.0 points, with the four pending proposals"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should count in an error row the exercises with an error, in number\
+          \ and in share, and give its change in exercises"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should leave empty, and not at zero, the error rows of a baseline that\
+          \ ran no error analyzer, as the base of 29/9"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should attach to each row the floor and the progress goal that apply\
+          \ to it, with their threshold, unit and reference"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R002
+      - name: should mark undecidable the any-error row of A1 with goal 0 when 30
+          exercises of A1 are unjudged and none of the judged ones has an error
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R002
+      - name: should mark met that row once those 30 exercises are judged and none
+          has an error
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R002
+      - name: "should mark not met a floor that the evaluated exercises already break,\
+          \ whatever the unevaluated ones would give"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R002
+      - name: "should return «My grandmother ___ (come) every year.» with the reason\
+          \ «lemma-absence · palabra de otro nivel: grandmother es A2», and none of\
+          \ the other three proposals of «Afirmativas regulares»"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should never return a change whose only new finding is of sentence\
+          \ length, as «He isn't in the living-room.» with 9 tokens against 3 to 8\
+          \ in A1"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should not return a change for a word its knowledge teaches, as invest\
+          \ in «$Invest time$ + gerundio», although invest is B2"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should return a change that gains a finding of the errors family, and\
+          \ not one that gains a finding of an analyzer that only orders, as naturalness"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should not return a change for a new vocabulary finding of low severity,\
+          \ below an off-level or an out-of-catalog word"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should return a change when another node gains a finding that counts\
+          \ and names it as related in its evidence, as a duplicate does"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should list as fixed the findings a change made disappear, matched\
+          \ by their identity of analyzer, rule, node and what they mark"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should leave a change undecided for an analyzer that did not evaluate\
+          \ it in the projection, instead of not returning it"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should attribute a broken floor of a level or of the course to the\
+          \ changes of the batch, and attribute nothing while every floor holds"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R004
+      - name: "should check the vocabulary floor against the baseline, accumulated,\
+          \ so a second batch of -0.4 points after another one of -0.4 breaks the\
+          \ floor of 0.5"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R005
+      - name: "should check the error floor against the batch start, so a batch cannot\
+          \ add an error to a level already below the baseline"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R005
+      - name: "should evaluate with the current goals and say «metas cambiadas desde\
+          \ que se fijaron: piso de vocabulario 0,5 → 1,0» when the vocabulary floor\
+          \ sealed at 0.5 is now 1.0"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+      - name: should say that the goals were never sealed when there is no sealed
+          version of them
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+      - name: "should show the vocabulary row of the course as a measure change 73.92\
+          \ → 73.86 with the lemma-count bands 8, 6, 4 and 3, and count the batch\
+          \ from 73.86"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R007
+      - name: "should show A1 as 96.54 → 96.02 and lemma-count on the course as 67.0\
+          \ → 66.5 with those bands, so the first batch after them breaks no vocabulary\
+          \ floor in A1, A2 or B1"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R007
+      - name: should re-measure the baseline with the new measure on the same course
+          of the baseline report before counting the batch
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R007
+      - name: should leave undecidable the rows of an analyzer with a new measure
+          when the baseline cannot be measured again
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R007
+      - name: "should show as a measure change, and not as a change of the course,\
+          \ naturalness measured with claude -p in the projection and with llama3\
+          \ in Ollama in the baseline"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R007
+      - name: "should give the batch of the four proposals of «Afirmativas regulares»\
+          \ the verdict fails, with «My grandmother ___ (come) every year.» as the\
+          \ node that returns"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: should give that batch without the grandmother proposal the verdict
+          passes once its blind sample is answered and meets its goal
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: should give the verdict blind sample missing when every floor holds
+          and the blind sample is missing or still open
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: should give the verdict undecidable when no floor fails but one of them
+          cannot be decided
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: "should give the verdict fails with the list of broken floors when a\
+          \ floor fails, even if the blind sample meets its goal"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: should give the verdict fails when the closed blind sample does not
+          meet its goal
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: "should never let a progress goal decide the verdict, as any error above\
+          \ 5% in the course"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: "should write nothing when comparing: no course, proposal, plan, sealed\
+          \ goals or analysis of the history"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R009
+      implements:
+      - BatchComparator
+      _change: add
+    - name: DefaultGoalBook
+      requiresInject:
+      - name: declarationSource
+        type: GoalDeclarationSource
+      - name: sealedGoalsStore
+        type: SealedGoalsStore
+      - name: analyzerCatalog
+        type: AnalyzerCatalog
+        description: Para poner el piso de su familia a cada analizador que la declaración
+          no nombra (R005).
+      visibility: public
+      handwrittenTests:
+      - name: "should give every analyzer of the catalog that the declaration does\
+          \ not name the floor of its family, marked as family default, so an analyzer\
+          \ as hint-coherence is covered without touching the declaration"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R005
+      - name: "should use the floors José accepted on 30/9 when the declaration lacks\
+          \ a family: errors 0 against the batch start in every node and vocabulary\
+          \ 0.5 points against the baseline in levels and course"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R005
+      - name: "should carry the goal of the blind sample of the declaration, 100 pairs\
+          \ with at least 90 better or equal and at most 1 worse, counted"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R005
+      - name: "should seal the effective goals whole, with their fingerprint, their\
+          \ values and the time they were sealed"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+      - name: should give the same fingerprint to the same effective goals and another
+          one when a value changes
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+      implements:
+      - GoalBook
+      _change: add
+    - name: LeaveOneOutChangeAttributor
+      requiresInject:
+      - name: auditEngine
+        type: AuditEngine
+        description: "Una corrida por cambio sobre la proyección con ese ejercicio\
+          \ devuelto a su versión de antes, armada con los ejercicios ya leídos de\
+          \ las dos fotos: sin tokenizar, 0,05 a 0,1 s cada una (R004)."
+      visibility: public
+      handwrittenTests:
+      - name: "should put first, with -1 point, the single change that lowers the\
+          \ vocabulary of A1 by one point while the others do not move it"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R004
+      - name: "should order the changes by how much each one worsens the broken number\
+          \ alone, the projection minus the projection without it, in points or in\
+          \ exercises"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R004
+      implements:
+      - ChangeAttributor
+      _change: add
+    allowedClients:
+    - audit-cli
+    _change: add
+  _change: modify
+- name: audit-infrastructure
+  implementations:
+  - name: FileSystemGoalDeclarationSource
+    requiresInject:
+    - name: declarationFile
+      type: Path
+      description: "La declaración que edita José, versionada en el repo (propuesta:\
+        \ analysis/metas.json). Si falta una familia, el libro usa su piso por defecto."
+    types:
+    - Repository
+    visibility: public
+    handwrittenTests:
+    - name: "should read from one declaration the family floors, the named goals with\
+        \ node, subject, kind, threshold, unit and reference, and the goal of the\
+        \ blind sample"
+      traceability:
+        feature: FEAT-METAS
+        rule: F-METAS-R005
+    implements:
+    - GoalDeclarationSource
+    _change: add
+  - name: FileSystemSealedGoalsStore
+    requiresInject:
+    - name: baseDir
+      type: Path
+      description: "Raíz bajo la que se escribe .content-audit/metas-fijadas.json:\
+        \ las metas efectivas y cuándo se fijaron (R006)."
+    types:
+    - Repository
+    visibility: public
+    handwrittenTests:
+    - name: should keep the sealed goals in .content-audit/metas-fijadas.json and
+        read them back with their values
+      traceability:
+        feature: FEAT-METAS
+        rule: F-METAS-R006
+    implements:
+    - SealedGoalsStore
+    _change: add
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: CompareCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "compare(String coursePath, List<String> proposalIds, Map<String,Integer>\
+        \ analyzerBudgets, String format): Integer"
+    _change: add
+  - name: GoalsCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "listGoals(String format): Integer"
+    - signature: "setGoals(String format): Integer"
+    _change: add
+  packages:
+  - name: commands
+    implementations:
+    - name: DefaultCompareCommand
+      requiresInject:
+      - name: batchComparator
+        type: BatchComparator
+      - name: formatter
+        type: BatchComparisonFormatter
+      types:
+      - Component
+      handwrittenTests:
+      - name: should leave the course files byte for byte and get audits listing the
+          same analyses after compare
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R009
+      implements:
+      - CompareCommand
+      _change: add
+    - name: DefaultGoalsCommand
+      requiresInject:
+      - name: goalBook
+        type: GoalBook
+        description: "get-goals lista las efectivas; set-goals las fija (R005, R006)."
+      types:
+      - Component
+      handwrittenTests:
+      - name: "should list with get-goals the effective goals, the declared ones and\
+          \ the family floors, each with its origin"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R005
+      - name: should seal the effective goals with set-goals
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+      implements:
+      - GoalsCommand
+      _change: add
+    - name: DefaultSetBaselineCommand
+      handwrittenTests:
+      - name: should leave the sealed goals untouched when the baseline is fixed
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+    - name: DefaultSetActiveAnalysisCommand
+      handwrittenTests:
+      - name: should leave the sealed goals untouched when the active pair changes
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+    _change: modify
+  - name: formatting
+    interfaces:
+    - name: BatchComparisonFormatter
+      stereotype: service
+      sealed: false
+      exposes:
+      - signature: "format(BatchComparison comparison, String format): String"
+      visibility: public
+      _change: add
+    implementations:
+    - name: DefaultBatchComparisonFormatter
+      types:
+      - Component
+      visibility: public
+      handwrittenTests:
+      - name: "should write the change of a score in points with its sign and the\
+          \ word, «−0,5 puntos», never with «%»"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should print which goals changed since they were sealed, with their\
+          \ value then and now"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+      - name: "should write a measure change as «cambio de medida: 73,92 → 73,86»"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R007
+      implements:
+      - BatchComparisonFormatter
+      _change: add
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-METAS
+  code: F-METAS
+  journeys:
+  - id: F-METAS-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands

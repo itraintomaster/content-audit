@@ -1,0 +1,666 @@
+code: FEAT-BANDEJA
+description: "FEAT-BANDEJA: la bandeja de la tanda como una vista que content-audit\
+  \ arma: primero la muestra ciega del paquete F, con su servicio, y, cerrada ésta,\
+  \ los desempates, los sin ganador y las muestras de regla; cada respuesta de José\
+  \ se vuelve un ajuste de la tanda, lo decidido se recuerda por identidad y huella,\
+  \ y publicar es un solo OK que sólo acepta la bandeja. Rebasado por el integrador\
+  \ de la ronda 2 sobre el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada\
+  \ y construida) y sobre FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2,\
+  \ B, F y E: revision-domain lleva la lista entera de patrones, 6 (el apply reemplaza,\
+  \ no suma); el paquete tray suma audit-infrastructure a sus clientes: FileSystemTrayDecisionStore\
+  \ implementa TrayDecisionStore.; qa-tester: 42 handwrittenTests trazan las 9 reglas\
+  \ de FEAT-BANDEJA con una tanda armada a mano, un servicio de muestra ciega de mentira\
+  \ y la mesa con el proponente guionado, sin consultar modelos: la ciega primero\
+  \ y sola, el no es error que no vuelve mientras el ejercicio no cambie, la misma\
+  \ muestra de 20 en dos lecturas y el approve de una propuesta de la tanda rechazado.\
+  \ F-BANDEJA-J001 va a audit-cli, paquete commands: sus pasos son tray show, answer\
+  \ y publish, y TrayCmd es package-private ahí.; orquestador, 1/10 (el audio sigue\
+  \ al ejercicio): TrayItemKind suma PENDING_RERECORDING y TrayItem suma rerecord,\
+  \ para mostrar al final y sin pregunta lo que hay que regrabar (F-BANDEJA-R009)."
+modules:
+- name: revision-domain
+  dependsOn:
+  - evaluation-ledger-domain
+  patterns:
+  - type: Strategy
+    implementations:
+    - LemmaAbsenceMvpStrategy
+    suppressed: false
+    interface: LemmaAbsenceProposalStrategy
+  - type: Factory
+    implementations:
+    - DefaultPreservationFactory
+    suppressed: false
+    interface: PreservationFactory
+  - type: Factory
+    implementations:
+    - DefaultGateFactory
+    suppressed: false
+    interface: GateFactory
+  - type: Factory
+    implementations:
+    - DefaultPanelRunnerFactory
+    suppressed: false
+    interface: PanelRunnerFactory
+  - type: Factory
+    implementations:
+    - DefaultBatchServiceFactory
+    suppressed: false
+    interface: BatchServiceFactory
+  - type: Factory
+    implementations:
+    - DefaultTrayServiceFactory
+    suppressed: false
+    interface: TrayServiceFactory
+  packages:
+  - name: tray
+    description: "Contrato de la bandeja (FEAT-BANDEJA). Público sólo para audit-cli.\
+      \ La muestra ciega es del paquete F (FEAT-CIEGA): la bandeja la presenta con\
+      \ su servicio y le pasa las respuestas; no sortea ni cuenta."
+    visibility: public
+    models:
+    - name: Tray
+      type: record
+      fields:
+      - name: batchId
+        type: String
+      - name: blindSampleOpen
+        type: boolean
+        description: "Mientras es verdadero, items trae sólo la muestra ciega (F-BANDEJA-R001)."
+      - name: items
+        type: List<TrayItem>
+        description: "En el orden de F-BANDEJA-R001: la ciega; las decisiones por\
+          \ gravedad; las muestras de regla."
+      - name: publishable
+        type: boolean
+      - name: blockers
+        type: List<String>
+        description: "Por qué todavía no se puede publicar, si no se puede."
+      glossarySuggestions:
+      - name: Bandeja
+        technicalName: Tray
+        kind: process-candidate
+        basedOn: revision-domain/tray/Tray
+        derivedFrom:
+        - Veredicto de revisión
+        rationale: "FEAT-BANDEJA: lo único que la tanda le deja a José —muestra ciega,\
+          \ desempates, sin ganador y muestras de regla— y el único lugar desde donde\
+          \ se publica."
+      _change: add
+    - name: TrayItem
+      type: record
+      fields:
+      - name: itemId
+        type: String
+      - name: kind
+        type: TrayItemKind
+      - name: severity
+        type: FindingSeverity
+      - name: knowledgeId
+        type: String
+      - name: quizId
+        type: String
+      - name: question
+        type: String
+      - name: answers
+        type: List<TrayAnswer>
+        description: "Las respuestas que acepta esta cosa, y ninguna otra."
+      - name: before
+        type: QuizStudentView
+        description: El ejercicio como lo ve el alumno hoy.
+      - name: after
+        type: QuizStudentView
+        description: "El candidato como lo vería, en un desempate sobre un candidato\
+          \ o un sin ganador."
+      - name: findings
+        type: List<Finding>
+        description: "Los dos veredictos de un desempate, o lo que no pasó el candidato\
+          \ que menos falló."
+      - name: reasons
+        type: List<String>
+        description: "Los motivos de cada intento, en un sin ganador."
+      - name: ruleId
+        type: String
+      - name: samplePairs
+        type: List<TraySamplePair>
+        description: "Hasta 20 cambios de la regla, al azar, con el antes y el despué\
+          s (F-BANDEJA-R004)."
+      - name: blindSampleId
+        type: String
+      - name: blindPairs
+        type: List<BlindPairView>
+        description: "Los pares de la muestra ciega tal como los entrega el paquete\
+          \ F mientras está abierta: sin lado, sin motivo, sin autor."
+      - name: rerecord
+        type: AudioRerecordRequest
+        description: "En un audio pendiente de regrabar: la clave y el texto con que\
+          \ hay que grabarlo (F-BANDEJA-R009)."
+      _change: add
+    - name: TrayItemKind
+      type: enum
+      fields:
+      - name: BLIND_SAMPLE
+      - name: TIE_ON_COURSE
+      - name: TIE_ON_CANDIDATE
+      - name: NO_WINNER
+      - name: RULE_SAMPLE
+      - name: PENDING_RERECORDING
+        description: "Un audio pendiente de regrabar: sin pregunta, al final (F-BANDEJA-R009)."
+      _change: add
+    - name: TrayAnswer
+      type: enum
+      fields:
+      - name: IS_ERROR
+      - name: NOT_ERROR
+      - name: PASSES
+      - name: DOES_NOT_PASS
+      - name: KEEP_ORIGINAL
+      - name: APPROVE_CANDIDATE
+      - name: WRITE_FIX
+      - name: RULE_OK
+      - name: DROP_CHANGE
+      - name: DROP_RULE
+      - name: BLIND_PAIR
+        description: "Una respuesta de la muestra ciega: la elección va en pairAnswer,\
+          \ con las cuatro del paquete F."
+      _change: add
+    - name: TraySamplePair
+      type: record
+      fields:
+      - name: changeId
+        type: String
+      - name: quizId
+        type: String
+      - name: before
+        type: QuizStudentView
+      - name: after
+        type: QuizStudentView
+      _change: add
+    - name: TrayResponse
+      type: record
+      fields:
+      - name: itemId
+        type: String
+      - name: answer
+        type: TrayAnswer
+      - name: pairIndex
+        type: Integer
+        description: El par de la muestra ciega que se responde.
+      - name: pairAnswer
+        type: PairAnswer
+        description: La elección en ese par (F-CIEGA-R003).
+      - name: changeId
+        type: String
+        description: El cambio que José saca de una muestra de regla.
+      - name: fix
+        type: PanelCandidate
+        description: "El arreglo que escribió José, en un sin ganador (F-BANDEJA-R003)."
+      - name: note
+        type: String
+      - name: decidedBy
+        type: String
+      _change: add
+    - name: RememberedDecision
+      type: record
+      fields:
+      - name: identityKey
+        type: String
+        description: La identidad del hallazgo (F-HALL-R014).
+      - name: marker
+        type: String
+      - name: contentFingerprint
+        type: String
+        description: "La huella del ejercicio como lo ve el alumno: si cambia, la\
+          \ pregunta puede volver (F-BANDEJA-R006)."
+      - name: answer
+        type: TrayAnswer
+      - name: batchId
+        type: String
+      - name: decidedAt
+        type: Instant
+      _change: add
+    - name: TrayServiceConfig
+      type: record
+      fields:
+      - name: batchService
+        type: BatchService
+      - name: batchStore
+        type: BatchStore
+      - name: decisionStore
+        type: TrayDecisionStore
+      - name: blindSampleService
+        type: BlindSampleService
+      - name: panelRunner
+        type: PanelRunner
+      - name: panelRunnerFactory
+        type: PanelRunnerFactory
+      - name: quizStudentViewRenderer
+        type: QuizStudentViewRenderer
+      - name: contentFingerprinter
+        type: ContentFingerprinter
+      - name: courseRepository
+        type: CourseRepository
+      - name: coursePath
+        type: Path
+      _change: add
+    - name: ProposalInOpenBatchException
+      type: exception
+      fields:
+      - name: proposalId
+        type: String
+      - name: batchId
+        type: String
+      message: "La propuesta %s es de la tanda %s: entra al curso al publicar la tanda."
+      _change: add
+      extends: RuntimeException
+    - name: UnexpectedTrayAnswerException
+      type: exception
+      fields:
+      - name: answer
+        type: String
+      - name: itemId
+        type: String
+      - name: allowed
+        type: String
+      message: "La respuesta %s no vale para %s: %s"
+      _change: add
+      extends: RuntimeException
+    interfaces:
+    - name: TrayService
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "view(): Tray"
+      - signature: "answer(TrayResponse response): Tray"
+      - signature: "publish(String approvedBy, String note): BatchPublication"
+      _change: add
+    - name: TrayDecisionStore
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "remember(RememberedDecision decision): void"
+      - signature: "recall(String identityKey, String marker, String contentFingerprint):\
+          \ Optional<RememberedDecision>"
+      _change: add
+    - name: TrayServiceFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(TrayServiceConfig config): TrayService"
+      _change: add
+    allowedClients:
+    - audit-cli
+    - audit-infrastructure
+    _change: add
+  - name: trayengine
+    description: "El motor de la bandeja: arma la vista, sortea las muestras de regla,\
+      \ recuerda lo decidido y traduce cada respuesta en un ajuste de la tanda. Package-private\
+      \ salvo la fábrica."
+    visibility: internal
+    interfaces:
+    - name: TrayAssembler
+      sealed: false
+      exposes:
+      - signature: "assemble(CorrectionBatch batch, List<BlindPairView> blindPairs,\
+          \ boolean blindSampleClosed, CourseEntity course): Tray"
+      visibility: internal
+      _change: add
+    - name: RuleSampleDrawer
+      sealed: false
+      exposes:
+      - signature: "draw(CorrectionBatch batch, String ruleId, int size): List<BatchChange>"
+      visibility: internal
+      _change: add
+    - name: DecisionMemory
+      sealed: false
+      exposes:
+      - signature: "recall(Finding finding, QuizTemplateEntity quiz): Optional<RememberedDecision>"
+      - signature: "remember(Finding finding, QuizTemplateEntity quiz, TrayAnswer\
+          \ answer, String batchId): void"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultTrayServiceFactory
+      visibility: public
+      implements:
+      - TrayServiceFactory
+      _change: add
+    - name: DefaultTrayService
+      requiresInject:
+      - name: batchService
+        type: BatchService
+      - name: batchStore
+        type: BatchStore
+      - name: blindSampleService
+        type: BlindSampleService
+      - name: panelRunner
+        type: PanelRunner
+      - name: panelRunnerFactory
+        type: PanelRunnerFactory
+      - name: assembler
+        type: TrayAssembler
+      - name: memory
+        type: DecisionMemory
+      - name: courseRepository
+        type: CourseRepository
+      - name: coursePath
+        type: Path
+      handwrittenTests:
+      - name: "should reject an answer the item does not accept, as keeping the original\
+          \ for a tie, naming the answers it accepts"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R001
+      - name: should open a task of the exercise in the panel of the batch when José
+          answers that a tie on the course is an error
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R002
+      - name: should open no task and leave the exercise as it is when José answers
+          that a tie on the course is not an error
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R002
+      - name: should accept the candidate in the batch when José answers that a tie
+          on a candidate passes
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R002
+      - name: "should send the exercise back to the panel with one attempt less when\
+          \ José answers that the candidate does not pass, or end it without winner\
+          \ when no attempt is left"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R002
+      - name: should leave the exercise unchanged and its tasks open when José keeps
+          the original
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R003
+      - name: "should take the candidate into the batch as approved by José when he\
+          \ approves it, declaring what it did not pass as his exception for the batch\
+          \ gate"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R003
+      - name: "should measure and judge the fix José writes like any candidate of\
+          \ the panel, and send it back to him with the reasons when it does not pass"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R003
+      - name: should approve the changes of a rule when José answers that its sample
+          is fine
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R004
+      - name: "should drop through the batch one change of the sample, or the whole\
+          \ rule, when José asks it"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R004
+      - name: "should pass each answer of the blind sample to the service of F, pair\
+          \ by pair, without touching the batch"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R005
+      - name: "should close the blind sample with F after its last pair, and only\
+          \ then show the rest of the tray"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R005
+      - name: should remember José's answer to a tie or to an exercise without winner
+          as soon as he gives it
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R006
+      - name: "should publish the rest of the batch with a tie or an exercise without\
+          \ winner unanswered, leaving that exercise as it was, its tasks open and\
+          \ «sin decidir» in the report"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R007
+      - name: "should publish without the changes of a rule whose sample is unanswered,\
+          \ and with the rest of the batch"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R007
+      - name: "should refuse to publish while the blind sample is not closed, with\
+          \ the verdict «falta la muestra ciega»"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R007
+      - name: "should publish the batch with José's single OK and record who, when\
+          \ and which proposals entered"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R008
+      - name: "should refuse the OK when, with José's decisions incorporated, the\
+          \ verdict of F is not «pasa» or the gate does not pass"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R008
+      - name: "should publish the batch with audios pending rerecording, which are\
+          \ never answered and never block the OK"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R009
+      implements:
+      - TrayService
+      _change: add
+    - name: DefaultTrayAssembler
+      requiresInject:
+      - name: ruleSampleDrawer
+        type: RuleSampleDrawer
+      - name: memory
+        type: DecisionMemory
+      - name: quizStudentViewRenderer
+        type: QuizStudentViewRenderer
+      handwrittenTests:
+      - name: "should show only the blind sample, and nothing else of the batch, while\
+          \ the blind sample is not closed"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R001
+      - name: "should list after the closed blind sample the ties and the exercises\
+          \ without winner by severity, then the samples of each rule and at the end\
+          \ the audios to rerecord"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R001
+      - name: "should give each item its kind, the exercise as the student sees it,\
+          \ what is asked and the answers it accepts"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R001
+      - name: "should list only what the batch needs from José, never a change the\
+          \ panel accepted on its own"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R001
+      - name: "should show a tie on an exercise of the course with the two verdicts\
+          \ of translation-sense and their evidence, asking whether it is an error"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R002
+      - name: "should show for an exercise without winner the original, the candidate\
+          \ that failed least with each control it did not pass, and the reasons of\
+          \ its three attempts"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R003
+      - name: should show each sampled change of a rule with its before and after
+          as the student sees them
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R004
+      - name: "should show the pairs of the blind sample as F gives them, without\
+          \ side, reason or author"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R005
+      - name: "should not ask again, in a later batch or analysis, a question José\
+          \ already answered while the exercise did not change"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R006
+      - name: should ask again the question of an exercise whose content changed since
+          José answered it
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R006
+      - name: "should say whether the tray can be published and, when it cannot, why"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R007
+      - name: "should show at the end, without a question, each audio pending rerecording\
+          \ with its exercise as the student sees it, its key and the text to record,\
+          \ as B1.13.05.15 with «I learned myself to drive a car.»"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R009
+      - name: "should show both the rerecordings the open batch asks and those left\
+          \ pending by published batches, each audio once with the latest text"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R009
+      implements:
+      - TrayAssembler
+      _change: add
+    - name: SeededRuleSampleDrawer
+      handwrittenTests:
+      - name: "should draw 20 changes at random from a rule with 170, the same 20\
+          \ every time the tray of the same batch is opened"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R004
+      - name: should show all the changes of a rule with fewer than 20
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R004
+      implements:
+      - RuleSampleDrawer
+      _change: add
+    - name: FingerprintDecisionMemory
+      requiresInject:
+      - name: decisionStore
+        type: TrayDecisionStore
+      - name: contentFingerprinter
+        type: ContentFingerprinter
+      handwrittenTests:
+      - name: "should recall José's answer to a tie by the identity of the finding\
+          \ and the fingerprint of the exercise as the student sees it, and nothing\
+          \ once the exercise changed"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R006
+      implements:
+      - DecisionMemory
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-infrastructure
+  packages:
+  - name: traystore
+    description: "Adaptador en disco de las decisiones de la bandeja. Interno: só\
+      lo la raíz de composición lo construye."
+    visibility: internal
+    implementations:
+    - name: FileSystemTrayDecisionStore
+      visibility: public
+      handwrittenTests:
+      - name: "should keep José's decisions in an append-only file apart from batches\
+          \ and reports, so pruning analyses leaves them"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R006
+      implements:
+      - TrayDecisionStore
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: TrayCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "showTray(String format): Integer"
+    - signature: "answerTray(String itemId, String answer, Integer pairIndex, String\
+        \ changeId, String fixFile, String note): Integer"
+    - signature: "publishTray(String note): Integer"
+    _change: add
+  packages:
+  - name: commands
+    visibility: internal
+    implementations:
+    - name: TrayCmd
+      requiresInject:
+      - name: trayService
+        type: TrayService
+      - name: quizSentenceConverter
+        type: QuizSentenceConverter
+      types:
+      - Component
+      handwrittenTests:
+      - name: should print with 'tray show' the items of the tray in their order
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R001
+      - name: "should read the fix José writes from the file given to 'tray answer',\
+          \ in the notation of the course with its translation, and pass it as a candidate"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R003
+      - name: should publish the open batch with 'tray publish' as José's single OK
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R008
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - TrayCommand
+      _change: add
+    - name: ApproveCmd
+      requiresInject:
+      - name: batchStore
+        type: BatchStore
+        description: "Rechaza aprobar de a una una propuesta de la tanda abierta con\
+          \ el mensaje de F-BANDEJA-R008, sin escribir el curso."
+        _change: add
+      handwrittenTests:
+      - name: "should reject 'approve proposal' of a proposal of the open batch with\
+          \ «La propuesta <id> es de la tanda <id>: entra al curso al publicar la\
+          \ tanda.» and exit non-zero, leaving the course identical"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R008
+      - name: should approve as today a proposal that belongs to no open batch
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R008
+      _change: modify
+    - name: RejectCmd
+      requiresInject:
+      - name: batchService
+        type: BatchService
+        description: "Rechazar una propuesta de la tanda abierta es sacar su cambio\
+          \ (F-TANDA-R008): se delega en la tanda, que recompone el ejercicio y deja\
+          \ la tarea pendiente."
+        _change: add
+      handwrittenTests:
+      - name: should drop through the batch the changes of the exercise when 'reject
+          proposal' names a proposal of the open batch
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R008
+      _change: modify
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-BANDEJA
+  code: F-BANDEJA
+  journeys:
+  - id: F-BANDEJA-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands

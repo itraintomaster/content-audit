@@ -1,5 +1,7 @@
 package com.learney.contentaudit.nlpinfrastructure.spacy;
 
+import java.nio.file.Path;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -102,5 +104,35 @@ public class CachedNlpTokenizerTest {
                 "R026: cached NlpToken must preserve enriched fields (posTag)");
         assertEquals(245, cached.get(1).getFrequencyRank(),
                 "R026: cached NlpToken must preserve enriched fields (frequencyRank)");
+    }
+
+    @Test
+    @DisplayName("should give a sentence the same tokens alone, inside a batch or from the cache")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R005")
+    public void shouldGiveASentenceTheSameTokensAloneInsideABatchOrFromTheCache(@org.junit.jupiter.api.io.TempDir Path dir) throws Exception {
+        // R005 inv. 3: the tokens of a sentence are the same whether it was tokenized alone, inside a
+        // batch, from the disk cache of an earlier run or from the memory of this one.
+        SpacyProcessRunnerTest.FakeSpacy aloneSpacy = new SpacyProcessRunnerTest.FakeSpacy(dir.resolve("alone"));
+        SpacyProcessRunnerTest.FakeSpacy batchSpacy = new SpacyProcessRunnerTest.FakeSpacy(dir.resolve("batch"));
+        String sentence = "She runs every morning.";
+
+        List<NlpToken> alone = tokenizerOf(aloneSpacy).analyzeTokens(sentence);
+        NlpTokenizer inBatch = tokenizerOf(batchSpacy);
+        List<NlpToken> batched = inBatch.analyzeTokensBatch(List.of("He walks to school.", sentence, "I read a book."))
+                .get(sentence);
+        List<NlpToken> fromMemory = inBatch.analyzeTokens(sentence);
+        List<NlpToken> fromDisk = tokenizerOf(batchSpacy).analyzeTokensBatch(List.of(sentence)).get(sentence);
+
+        assertEquals(4, alone.size(), "a token per word");
+        assertEquals(alone, batched, "R005 inv. 3: alone and inside a batch");
+        assertEquals(alone, fromMemory, "and from the memory of the run");
+        assertEquals(alone, fromDisk, "and from the cache of an earlier run");
+        assertEquals(1, batchSpacy.launches().size(), "the cache served the last two without spaCy");
+    }
+
+    /** The tokenizer of a run as the factory builds it, over the processor stood in and its cache. */
+    private static NlpTokenizer tokenizerOf(SpacyProcessRunnerTest.FakeSpacy spacy) {
+        return new CachedNlpTokenizer(new SpacyNlpTokenizer(spacy.runner(), new SpacyResultParser()));
     }
 }

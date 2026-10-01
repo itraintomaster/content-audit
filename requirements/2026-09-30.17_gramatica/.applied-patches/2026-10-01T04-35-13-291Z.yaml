@@ -1,0 +1,503 @@
+code: FEAT-GRAMA
+description: "FEAT-GRAMA, paquete B de la ronda 2: el analizador grammar. La oració\
+  n terminada que lee (paquete finishedsentence, que también lee naturalness), el\
+  \ filtro de R002, el signo final de R003, la gravedad y la resolución de R004 y\
+  \ R005, su diagnóstico tipado y su proveedor con ficha. El puerto GrammarChecker,\
+  \ su adaptador de LanguageTool 6.8 y la dependencia son de FEAT-MLOCAL: este parche\
+  \ se aplica después del suyo. Rebasado por el integrador de la ronda 2 sobre el\
+  \ sentinel.yaml de ronda1/integracion (la ronda 1 aplicada y construida) y sobre\
+  \ FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E, sin\
+  \ cambios de estructura.; qa-tester de la ronda 2 (B): traza las 7 reglas de FEAT-GRAMA\
+  \ a 48 handwrittenTests nuevas (no hay pruebas previas que portar), cada una con\
+  \ un caso real del curso del 29/9 o una marca que grabó el prototipo del analista,\
+  \ y ubica F-GRAMA-J001 en audit-domain, paquete grammar, como los analizadores de\
+  \ la ronda 1. Dos corren con LanguageTool de verdad, sobre el adaptador de FEAT-MLOCAL.\
+  \ R001 inv. 5 (coordinador, 1/10): la lista «a / b» dentro de la oración cerrada,\
+  \ con el hueco después, se lee con la respuesta en su lugar, como el audio grabado;\
+  \ el ejercicio terminado del renderizador compartido no cambia."
+modules:
+- name: audit-domain
+  packages:
+  - name: finishedsentence
+    description: |
+      La oración terminada (F-GRAMA-R001): lo que el alumno lee después de contestar, una por respuesta aceptada —en opción múltiple, con la correcta—, sin la pista, con las contracciones pegadas a su palabra y los signos sin espacio antes, y sin la oración de partida cuando la respuesta es la oración entera. La leen grammar y naturalness. No es la oración plana de FEAT-QSENT, que sigue igual porque de ella sale el largo de oración (F-HALL-R013), ni el ejercicio terminado de FEAT-DUPEX, que conserva la oración de partida. Con la lista «a / b» dentro de una oración ya cerrada y el hueco después, la respuesta va en el lugar de la lista, con su mayúscula (F-GRAMA-R001 inv. 5): es el texto con que se grabó el audio de esos 40 ejercicios de A2. El ejercicio terminado del renderizador compartido (QuizStudentViewRenderer) no cambia: lo leen los jueces y está congelado para ellos (C-07).
+    visibility: public
+    models:
+    - name: AnswerSpan
+      type: record
+      fields:
+      - name: start
+        type: int
+        description: Posición del primer carácter de la respuesta dentro de la oración
+          terminada.
+      - name: end
+        type: int
+        description: Posición siguiente al último carácter de la respuesta.
+      - name: text
+        type: String
+        description: La respuesta tal como quedó escrita en la oración.
+      _change: add
+    - name: FinishedSentence
+      type: record
+      fields:
+      - name: text
+        type: String
+        description: La oración como la lee el alumno después de contestar.
+      - name: answerIndex
+        type: int
+        description: "Qué combinación de respuestas aceptadas es: 0 es la primera\
+          \ de cada hueco; en opción múltiple, la correcta."
+      - name: answers
+        type: List<AnswerSpan>
+        description: "Dónde quedó cada respuesta dentro de text: con esto se sabe\
+          \ si una marca toca una respuesta aceptada o repite lo pegado al hueco (F-GRAMA-R004)."
+      _change: add
+    interfaces:
+    - name: FinishedSentenceReader
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "read(AuditableQuiz quiz,SentenceMode mode): List<FinishedSentence>"
+      _change: add
+    implementations:
+    - name: DefaultFinishedSentenceReader
+      visibility: public
+      handwrittenTests:
+      - name: "should read one finished sentence per accepted answer, «She's run a\
+          \ marathon» and «She has run a marathon» for «She ___ (run) a marathon (so\
+          \ she's at the finish line now)»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      - name: "should leave out the parenthesis and the «a / b» list glued to the\
+          \ gap, reading «The agency were very organized.» for «The agency was / were\
+          \ ___ very organized. (UK)»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      - name: "should leave no text for the option «-», reading «This is water.» where\
+          \ the plain sentence says «This is - water.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      - name: "should read only the answer when it is the whole sentence, «Ana was\
+          \ teached a lesson by my brother.» without the starting sentence «My brother\
+          \ teached Ana a lesson.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      - name: "should read a dialogue whole, «A: Is Emily walking? B: Yes, she is»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      - name: "should glue the contraction to its word and leave no space before a\
+          \ sign, reading «They're late for the game.» where the stored sentence says\
+          \ «They 're late for the game.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      - name: "should read only the sentence when the option is a label put after\
+          \ it, «We checked the location and then crossed the border.» without «Link\
+          \ type: sequence»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      - name: "should not read a judgment exercise whose answer is «not correct»,\
+          \ as «Where is the pliers in the garage?», whose sentence is wrong on purpose"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      - name: "should read a judgment exercise whose answer is «correct» without the\
+          \ label, «My tights are in my drawer.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      - name: "should give where each accepted answer sits in its finished sentence,\
+          \ «'ve had» inside «He've had a bike for a while.», so a mark can tell whether\
+          \ it touches an answer"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R004
+      - name: "should put the answer in the place of the «a / b» list of a closed\
+          \ sentence when the gap comes after it, reading «Something was wrong with\
+          \ the telephone.» for «Something / anything was wrong with the telephone.»\
+          \ answered «Something»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      - name: "should give the answer the capital of the list it replaces, reading\
+          \ «Something is broken.» for «Something / anything is broken.» answered\
+          \ «something»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      - name: "should read the 40 exercises of A2 with the «a / b» list inside a closed\
+          \ sentence as the text their audio was recorded with, as «He did something\
+          \ to help.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      domainLinks:
+      - term: Oración de quiz
+        role: transforms
+      glossarySuggestions:
+      - name: Oración terminada
+        technicalName: FinishedSentence
+        kind: value-object-candidate
+        basedOn: audit-domain/DefaultFinishedSentenceReader
+        derivedFrom:
+        - Oración de quiz
+        rationale: |
+          FEAT-GRAMA la nombra así: lo que el alumno lee después de contestar, una por respuesta aceptada. La leen Gramática y Naturalidad, y no es la oración plana ni el ejercicio terminado de Duplicados.
+      implements:
+      - FinishedSentenceReader
+      _change: add
+    _change: add
+  - name: grammar
+    description: |
+      El analizador grammar (FEAT-GRAMA): pasa LanguageTool en inglés americano y en británico por cada oración terminada, se queda con lo que marcan las dos en el mismo lugar y sólo si es gramática u ortografía (R002), suma la regla propia del signo final (R003) y le da a cada hallazgo gravedad y resolución según dónde está el error (R004, R005). Familia errores, evalúa el ejercicio, costo instantáneo, así que entra en la corrida base (F-MLOCAL-R004). Sólo los registros y el proveedor son públicos; el analizador y sus reglas son del paquete.
+    visibility: public
+    models:
+    - name: GrammarIssuePlacement
+      type: enum
+      fields:
+      - name: GLUED_REPEAT
+        description: "La respuesta aceptada repite palabras ya pegadas al hueco: quien\
+          \ sigue la pista no puede acertar. Bloqueante, se arregla con regla."
+      - name: ACCEPTED_ANSWER
+        description: "Lo marcado toca una respuesta aceptada. Alta, a la mesa."
+      - name: FIXED_TEXT
+        description: "Lo marcado está sólo en el texto fijo. Media, a la mesa."
+      - name: PUNCTUATION
+        description: "Falta el signo final o el espacio después de un punto. Baja,\
+          \ se arregla con regla."
+      _change: add
+    - name: GrammarIssue
+      type: record
+      fields:
+      - name: rule
+        type: String
+        description: "La regla de la ficha: english-error (R002) o final-punctuation\
+          \ (R003)."
+      - name: toolRule
+        type: String
+        description: "La regla de LanguageTool; vacía en el signo final. Con marked,\
+          \ es lo que identifica el hallazgo en el ejercicio (F-GRAMA-R006)."
+      - name: marked
+        type: String
+        description: "El texto marcado, tal cual está en la oración."
+      - name: sentence
+        type: String
+        description: "La primera oración terminada donde aparece; si dos respuestas\
+          \ aceptadas muestran lo mismo, es un solo problema."
+      - name: placement
+        type: GrammarIssuePlacement
+      - name: severity
+        type: FindingSeverity
+      - name: resolution
+        type: FindingResolution
+      - name: explanation
+        type: String
+        description: "Una línea en castellano para la evidencia: «teached → taught\
+          \ (ortografía)»."
+      _change: add
+    - name: GrammarDiagnosis
+      type: record
+      fields:
+      - name: sentences
+        type: List<String>
+        description: "Las oraciones terminadas que leyó, en orden."
+      - name: issues
+        type: List<GrammarIssue>
+        description: "Un problema por regla de LanguageTool y texto marcado, en el\
+          \ orden de la oración."
+      - name: score
+        type: double
+        description: "0 con al menos un problema, 1 sin ninguno (F-GRAMA-R006, F-HALL-R004)."
+      _change: add
+    interfaces:
+    - name: GrammarMatchFilter
+      sealed: false
+      exposes:
+      - signature: "keep(List<GrammarMatch> american,List<GrammarMatch> british):\
+          \ List<GrammarMatch>"
+      visibility: internal
+      _change: add
+    - name: FinalPunctuationCheck
+      sealed: false
+      exposes:
+      - signature: "check(FinishedSentence sentence,List<NlpToken> tokens): Optional<GrammarIssue>"
+      visibility: internal
+      _change: add
+    - name: GrammarIssueClassifier
+      sealed: false
+      exposes:
+      - signature: "classify(GrammarMatch match,FinishedSentence sentence): GrammarIssue"
+      visibility: internal
+      _change: add
+    - name: GrammarConfig
+      sealed: false
+      exposes:
+      - signature: "methodId(): String"
+      - signature: "keptCategories(): Set<String>"
+      - signature: "keptRules(): Set<String>"
+      - signature: "excludedRules(): Set<String>"
+      visibility: internal
+      _change: add
+      extends:
+      - SelfDescribingConfig
+    implementations:
+    - name: GrammarAnalyzerProvider
+      requiresInject:
+      - name: grammarChecker
+        type: GrammarChecker
+      - name: sentenceReader
+        type: FinishedSentenceReader
+      - name: localToolGate
+        type: LocalToolGate
+      visibility: public
+      handwrittenTests:
+      - name: "should describe grammar in the catalog as an errors analyzer that evaluates\
+          \ exercises, resolves by rule and at the panel and costs instant, asking\
+          \ «¿La oración terminada tiene errores de inglés?», with the instant rules\
+          \ english-error and final-punctuation"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R006
+      - name: "should carry in its card LanguageTool with its version and the exam\
+          \ of its examined version, LanguageTool 6.8 with its filter"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R006
+      implements:
+      - AnalyzerProvider
+      _change: add
+    - name: GrammarAnalyzer
+      requiresInject:
+      - name: grammarChecker
+        type: GrammarChecker
+      - name: sentenceReader
+        type: FinishedSentenceReader
+      - name: matchFilter
+        type: GrammarMatchFilter
+      - name: finalPunctuation
+        type: FinalPunctuationCheck
+      - name: issueClassifier
+        type: GrammarIssueClassifier
+      - name: gateDecision
+        type: LocalToolGateDecision
+      handwrittenTests:
+      - name: "should check with LanguageTool the finished sentences and never the\
+          \ plain ones, «They're late for the game.» and not «They 're late for the\
+          \ game.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R001
+      - name: "should leave without finding, with score 1, an exercise whose only\
+          \ marks are of one variant, of style or of casing, as «They walked to the\
+          \ theatre.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R002
+      - name: "should find on the course of 29/9 three blocking findings, the answers\
+          \ that repeat what is glued to the gap: «noise noise», «in August in August»\
+          \ and «the apartment the apartment»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R004
+      - name: "should score 0 an exercise with a finding and 1 an exercise without,\
+          \ as «Ana was teached a lesson by my brother.» and «This is water.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R006
+      - name: "should make one finding of the same LanguageTool rule and marked text\
+          \ that two accepted answers show, «videogames» in «At 10:30, they were not\
+          \ playing videogames.» and «At 10:30, they weren't playing videogames.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R006
+      - name: "should give as evidence the finished sentence, the marked text and\
+          \ one line in Spanish, «teached → taught (ortografía)»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R006
+      - name: "should leave every exercise unevaluated by grammar, without score nor\
+          \ finding, while LanguageTool 6.8 with its filter has no approved exam"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R007
+      - name: should read every exercise of the exam file in an EXAM run and publish
+          their findings although the version has no approved exam
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R007
+      - name: "should give no final-punctuation finding to «Something was wrong with\
+          \ the telephone.», which read without its answer was «was wrong with the\
+          \ telephone.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R003
+      implements:
+      - ContentAnalyzer
+      _change: add
+    - name: DefaultGrammarMatchFilter
+      requiresInject:
+      - name: config
+        type: GrammarConfig
+      handwrittenTests:
+      - name: "should keep a spelling mark that American and British English give\
+          \ at the same place, «teached» in «Ana was teached a lesson by my brother.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R002
+      - name: "should keep grammar, confused words and collocations, as «explained\
+          \ us» in «The teacher explained us the lesson.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R002
+      - name: "should drop a mark only one variant gives, «theatre» in «They walked\
+          \ to the theatre.» and «traveled» in «He traveled to the UAE last month.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R002
+      - name: "should drop casing, as the lowercase «if» in «Can you hear me clearly?\
+          \ if not, I can speak louder.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R002
+      - name: "should drop the lowercase «i» of an option although LanguageTool files\
+          \ it under typos, as in «A: Can you call Miss Green? B: No, i can't.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R002
+      - name: "should drop style, as «really tired» in «He feels really tired if he\
+          \ doesn't drink coffee.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R002
+      - name: "should drop compounds, as «any more» in «They don't drink wine any\
+          \ more.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R002
+      - name: "should drop SINGULAR_AGREEMENT_SENT_START, which contradicts the topic\
+          \ Nombres colectivos, as «are» in «The band are so talented.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R002
+      - name: "should keep the two data rules although they are not grammar, the repeated\
+          \ word in «Have the neighbors been making noise noise?» and the missing\
+          \ space in «…slept until 11.I slept…»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R002
+      implements:
+      - GrammarMatchFilter
+      _change: add
+    - name: DefaultFinalPunctuationCheck
+      handwrittenTests:
+      - name: "should give a low finding to a sentence with a verb, three words or\
+          \ more and a capital that does not end in «.», «?» or «!», as «The chemist\
+          \ closes at 9pm»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R003
+      - name: "should give a low finding to a question that starts with auxiliary\
+          \ and subject and ends in a period, as «Did Michael give us these scarves.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R003
+      - name: "should not mark a sentence without a verb, as «hard work uncountable»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R003
+      - name: "should not mark a sentence that starts in lowercase, as «stop - stopping»\
+          \ of Doble consonante y e"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R003
+      implements:
+      - FinalPunctuationCheck
+      _change: add
+    - name: DefaultGrammarIssueClassifier
+      handwrittenTests:
+      - name: "should give BLOCKING to an accepted answer that repeats the words glued\
+          \ after the gap, «noise noise» in «Have the neighbors been making noise\
+          \ noise?»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R004
+      - name: "should give HIGH to a mark that touches an accepted answer, «He've»\
+          \ in «He've had a bike for a while.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R004
+      - name: should give HIGH to «videogames» inside the answer of the rewrite «Let's
+          not play videogames right now.»
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R004
+      - name: "should give MEDIUM to a mark only in the fixed text, «videogames» in\
+          \ «I would rather learn German than play videogames.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R004
+      - name: "should give LOW to the missing space after a period, «11.I» in «I woke\
+          \ up at 7 and slept until 11.I slept till 11.»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R004
+      - name: "should take the first condition that holds, so «noise noise», which\
+          \ is also inside the accepted answer, is BLOCKING and not HIGH"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R004
+      - name: "should send to a rule the repetition glued to the gap, the missing\
+          \ final sign and the missing space after a period"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R005
+      - name: "should send to the panel every other finding, as «He've» and «videogames»"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R005
+      implements:
+      - GrammarIssueClassifier
+      _change: add
+    - name: DefaultGrammarConfig
+      handwrittenTests:
+      - name: "should change its methodId when one of its lists changes, so the filter\
+          \ is a new examined version that takes its own exam"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R007
+      implements:
+      - GrammarConfig
+      _change: add
+    _change: add
+  _change: modify
+- name: local-language-infrastructure
+  packages:
+  - name: languagetool
+    implementations:
+    - name: LanguageToolGrammarChecker
+      handwrittenTests:
+      - name: "should run only the rules the real LanguageTool 6.8 brings on, so «\
+          You prefer Italian food.» gets no ARTICLE_MISSING mark"
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R002
+      - name: should mark «explained us» in «The teacher explained us the lesson.»
+          at the same place in American and in British English with the real LanguageTool
+          6.8
+        traceability:
+          feature: FEAT-GRAMA
+          rule: F-GRAMA-R002
+features:
+- id: FEAT-GRAMA
+  code: F-GRAMA
+  journeys:
+  - id: F-GRAMA-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.grammar

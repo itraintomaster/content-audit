@@ -41,6 +41,18 @@ public class SentinelArchitectureTest {
   }
 
   @Test
+  public void enforcePackageBatchstoreVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..auditinfrastructure..", "java..").should().dependOnClassesThat().resideInAPackage("..auditinfrastructure.batchstore..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
+  public void enforcePackageTraystoreVisibility() {
+    JavaClasses classes = new ClassFileImporter().importPath(resolveClassesDir());
+    ArchRuleDefinition.noClasses().that().resideOutsideOfPackages("..auditinfrastructure..", "java..").should().dependOnClassesThat().resideInAPackage("..auditinfrastructure.traystore..").allowEmptyShould(true).check(classes);
+  }
+
+  @Test
   public void enforceAllDeclaredClassesExist() {
     try {
       Class.forName("com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore");
@@ -78,6 +90,31 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: FileSystemJudgeExamRegistry - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditinfrastructure.FileSystemBaselineStore");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemBaselineStore - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditinfrastructure.FileSystemProjectionStore");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemProjectionStore - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditinfrastructure.FileSystemGoalDeclarationSource");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemGoalDeclarationSource - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditinfrastructure.FileSystemSealedGoalsStore");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemSealedGoalsStore - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditinfrastructure.FileSystemBlindSampleStore");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemBlindSampleStore - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemAudioRecordingRegistry");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: FileSystemAudioRecordingRegistry - " + e.getMessage());
@@ -86,6 +123,16 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemProductionSentenceSource");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: FileSystemProductionSentenceSource - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditinfrastructure.batchstore.FileSystemBatchStore");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemBatchStore - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditinfrastructure.traystore.FileSystemTrayDecisionStore");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: FileSystemTrayDecisionStore - " + e.getMessage());
     }
   }
 }
