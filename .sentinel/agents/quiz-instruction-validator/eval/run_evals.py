@@ -407,21 +407,22 @@ def validate_scripts(fixture: dict[str, Any]) -> None:
         validate_verdict(canonical, quiz["id"])
 
         # The judge sometimes closes a check with an empty filler key after a stray comma
-        # ("status2": null): it says nothing, so the gate drops it and the canonical verdict
-        # keeps the closed object.
-        null_extra = sample_pass_verdict(quiz["id"])
-        null_extra["checkedConstraints"][0]["status2"] = None
-        verdict_path.write_text(
-            json.dumps(null_extra, ensure_ascii=False), encoding="utf-8"
-        )
-        gate_output = run_script(
-            AGENT_DIR / "scripts" / "gate_verdict.sh", state
-        )
-        require(
-            gate_output.get("route") == "passed",
-            "an extra key with null failed the gate",
-        )
-        validate_verdict(load_json(run_dir / "validated-verdict.json"), quiz["id"])
+        # ("status2": null, "evidenceNote": ""): it says nothing, so the gate drops it and the
+        # canonical verdict keeps the closed object.
+        for empty in (None, "", "  "):
+            empty_extra = sample_pass_verdict(quiz["id"])
+            empty_extra["checkedConstraints"][0]["status2"] = empty
+            verdict_path.write_text(
+                json.dumps(empty_extra, ensure_ascii=False), encoding="utf-8"
+            )
+            gate_output = run_script(
+                AGENT_DIR / "scripts" / "gate_verdict.sh", state
+            )
+            require(
+                gate_output.get("route") == "passed",
+                "an empty extra key (%r) failed the gate" % (empty,),
+            )
+            validate_verdict(load_json(run_dir / "validated-verdict.json"), quiz["id"])
 
         # An extra key with content still fails: the object stays closed.
         noted = sample_pass_verdict(quiz["id"])
@@ -594,7 +595,7 @@ def main() -> int:
         validate_scripts(fixture)
         print(
             "scripts: OK (state.json UUID resolution, ambiguity rejection, "
-            "gate pass/fail, null extra keys dropped, emit fallback)"
+            "gate pass/fail, empty extra keys dropped, emit fallback)"
         )
 
         if not args.command:
