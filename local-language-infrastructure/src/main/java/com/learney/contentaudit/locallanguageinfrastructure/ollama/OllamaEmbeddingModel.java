@@ -22,4 +22,13 @@ class OllamaEmbeddingModel implements EmbeddingModel {
     public SentenceEmbedding embed(String text) {
         throw new UnsupportedOperationException("Not implemented yet");
     }
+
+    /**
+     * LocalTool, which this tool's port extends: generate did not add it to the stub (the
+     * build needs it). Left unimplemented, like the rest of the stub, for its package to write.
+     */
+    @Override
+    public com.learney.contentaudit.auditdomain.localtools.LocalToolStatus status() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

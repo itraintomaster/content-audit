@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
 import com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import java.util.ArrayList;
@@ -37,6 +38,10 @@ public class AuditNode {
     // them, as multiple-choice-validity with its judge pending. The node counts as evaluated by
     // them and their findings count; a name is never here and in unevaluatedBy at once.
     private List<String> partiallyEvaluatedBy = new ArrayList<>();
+
+    // F-RONDA2-R004: on the root only, the measure of every analyzer that ran, in catalog order;
+    // empty on every other node and in a report stored before the rule.
+    private List<AnalyzerMeasure> measures = new ArrayList<>();
 
     public AuditNode() {
     }
@@ -141,6 +146,14 @@ public class AuditNode {
         this.partiallyEvaluatedBy = partiallyEvaluatedBy;
     }
 
+    public List<AnalyzerMeasure> getMeasures() {
+        return this.measures;
+    }
+
+    public void setMeasures(List<AnalyzerMeasure> measures) {
+        this.measures = measures != null ? measures : new ArrayList<>();
+    }
+
     public Optional<AuditNode> ancestor(AuditTarget level) {
         AuditNode current = this.parent;
         while (current != null) {
@@ -167,12 +180,13 @@ public class AuditNode {
                     && Objects.equals(this.findings, that.findings)
                     && Objects.equals(this.numbers, that.numbers)
                     && Objects.equals(this.unevaluatedBy, that.unevaluatedBy)
-                    && Objects.equals(this.partiallyEvaluatedBy, that.partiallyEvaluatedBy);
+                    && Objects.equals(this.partiallyEvaluatedBy, that.partiallyEvaluatedBy)
+                    && Objects.equals(this.measures, that.measures);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(entity, target, parent, children, scores, metadata, diagnoses,
-                findings, numbers, unevaluatedBy, partiallyEvaluatedBy);
+                findings, numbers, unevaluatedBy, partiallyEvaluatedBy, measures);
     }
 }

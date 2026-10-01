@@ -53,4 +53,14 @@ class DefaultCorrectionScope implements CorrectionScope {
         // complement — every attribute of the element stays preserved by default.
         return Set.of();
     }
+
+    /**
+     * The overload a correction declaration names by its exercise parts (FEAT-TAREA, package E):
+     * generate added it to the port but not to this implementation, whose file already had a
+     * method of the same name. Left unimplemented, like a stub, for package E to write.
+     */
+    @Override
+    public Set<ScopedField> changeableFields(Set<ExercisePart> parts, AuditTarget target) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -4,7 +4,9 @@ import com.learney.contentaudit.auditdomain.coca.CocaProgressionDiagnosis;
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceCourseDiagnosis;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountCourseDiagnosis;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolRunDiagnosis;
 import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceCourseDiagnosis;
+import com.learney.contentaudit.auditdomain.naturalness.NaturalnessQueueDiagnosis;
 import com.learney.contentaudit.auditdomain.quizinstruction.QuizInstructionCoverageDiagnosis;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,13 @@ public final class DefaultCourseDiagnoses implements CourseDiagnoses {
 
     // FEAT-RONDA1 (hook D-10)
     private LemmaRecurrenceCourseDiagnosis lemmaRecurrenceDiagnosis;
+
+    // FEAT-RONDA2 (hook B-03): the run of every local tool that ran, in the order they published
+    // it; each analyzer of package B adds its own and never touches another's.
+    private List<LocalToolRunDiagnosis> localToolRuns = new ArrayList<>();
+
+    // FEAT-RONDA2 (hook B-03)
+    private NaturalnessQueueDiagnosis naturalnessQueue;
 
     @Override
     public Optional<LemmaAbsenceCourseDiagnosis> getLemmaAbsenceDiagnosis() {
@@ -87,5 +96,31 @@ public final class DefaultCourseDiagnoses implements CourseDiagnoses {
 
     public void setLemmaRecurrenceDiagnosis(LemmaRecurrenceCourseDiagnosis diagnosis) {
         this.lemmaRecurrenceDiagnosis = diagnosis;
+    }
+
+    @Override
+    public List<LocalToolRunDiagnosis> getLocalToolRuns() {
+        return localToolRuns;
+    }
+
+    /** Needed to read the list back from a stored report. */
+    public void setLocalToolRuns(List<LocalToolRunDiagnosis> localToolRuns) {
+        this.localToolRuns = localToolRuns != null ? new ArrayList<>(localToolRuns) : new ArrayList<>();
+    }
+
+    /** What an analyzer of package B calls to publish the run of its local tool. */
+    public void addLocalToolRun(LocalToolRunDiagnosis run) {
+        if (run != null) {
+            localToolRuns.add(run);
+        }
+    }
+
+    @Override
+    public Optional<NaturalnessQueueDiagnosis> getNaturalnessQueue() {
+        return Optional.ofNullable(naturalnessQueue);
+    }
+
+    public void setNaturalnessQueue(NaturalnessQueueDiagnosis queue) {
+        this.naturalnessQueue = queue;
     }
 }

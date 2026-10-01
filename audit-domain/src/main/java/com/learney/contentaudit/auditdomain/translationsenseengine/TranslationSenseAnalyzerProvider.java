@@ -106,7 +106,7 @@ public class TranslationSenseAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL, FindingResolution.RANK_ONLY),
                 AnalysisCost.PAID_MODEL,
-                DISPLAY_NAME, null);
+                DISPLAY_NAME, List.of());
     }
 
     /**

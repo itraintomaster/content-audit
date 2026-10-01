@@ -322,4 +322,14 @@ public DefaultConsolidatedViewBuilder(RevisionArtifactStore revisionArtifactStor
                 java.util.List.of(),
                 java.util.List.of());
     }
+
+    /**
+     * The overload with a budget per analyzer (FEAT-PROYU, package F): generate added it to the
+     * port but not to this implementation, whose file already had a method of the same name.
+     * Left unimplemented, like a stub, for package F to write on the projector.
+     */
+    @Override
+    public ConsolidatedView build(Path coursePath, ProjectionScope scope) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

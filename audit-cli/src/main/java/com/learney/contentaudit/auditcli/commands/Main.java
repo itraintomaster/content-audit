@@ -250,6 +250,27 @@ import com.learney.contentaudit.refinerdomain.topicwords.DefaultTopicWordLightsQ
 import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLightsQuery;
 import com.learney.contentaudit.vocabularyinfrastructure.correctortable.FileSystemFormEquivalenceTableSource;
 import com.learney.contentaudit.vocabularyinfrastructure.irregularforms.FileSystemIrregularFormsCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerCorrectionCatalog;
+import com.learney.contentaudit.auditdomain.BaselineStore;
+import com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessCorrection;
+import com.learney.contentaudit.auditdomain.correctionengine.DefaultAnalyzerCorrectionCatalog;
+import com.learney.contentaudit.auditdomain.correctionengine.LemmaAbsenceCorrection;
+import com.learney.contentaudit.auditdomain.correctionengine.QuizInstructionCorrection;
+import com.learney.contentaudit.auditdomain.datacoherence.DataCoherenceCorrection;
+import com.learney.contentaudit.auditdomain.exactduplicates.ExactDuplicatesCorrection;
+import com.learney.contentaudit.auditdomain.grammar.GrammarCorrection;
+import com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceCorrection;
+import com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryCorrection;
+import com.learney.contentaudit.auditdomain.multiplechoicevalidity.MultipleChoiceValidityCorrection;
+import com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicatesCorrection;
+import com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsCorrection;
+import com.learney.contentaudit.auditdomain.singleanswerengine.SingleAnswerCorrection;
+import com.learney.contentaudit.auditdomain.translationsenseengine.TranslationSenseCorrection;
+import com.learney.contentaudit.auditinfrastructure.FileSystemBaselineStore;
+import com.learney.contentaudit.auditinfrastructure.batchstore.FileSystemBatchStore;
+import com.learney.contentaudit.refinerdomain.errortask.DefaultErrorTaskBriefer;
+import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBriefer;
+import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -641,11 +662,33 @@ class Main {
         ImpactPreviewStore impactPreviewStore = new FileSystemImpactPreviewStore(baseDir);
         ActiveAnalysisSelectionStore activeAnalysisSelectionStore =
                 new FileSystemActiveAnalysisSelectionStore(baseDir);
+        // FEAT-RONDA2 (hook F-06): the fixed baseline, apart from the active pair (F-PROYU-R006);
+        // delete and prune never take it away.
+        BaselineStore baselineStore = new FileSystemBaselineStore(baseDir);
+        // FEAT-RONDA2 (hook E-09): the batches of corrections (FEAT-TANDA, package E).
+        BatchStore batchStore = new FileSystemBatchStore();
 
         // ----------------------------------------------------------------
         // Step 7: Refiner + Revision engines
         // ----------------------------------------------------------------
-        RefinerEngine refinerEngine = new DefaultRefinerEngine(analyzerCatalog);
+        // FEAT-RONDA2 (hook E-09): what the fix of each analyzer of errors may touch, one
+        // declaration per analyzer; the plan, get task and the batch read it here.
+        AnalyzerCorrectionCatalog analyzerCorrectionCatalog = new DefaultAnalyzerCorrectionCatalog(List.of(
+                new QuizInstructionCorrection(),
+                new LemmaAbsenceCorrection(),
+                new HintCoherenceCorrection(),               // A (E-03)
+                new AnswerCompletenessCorrection(),          // A (E-03)
+                new MultipleChoiceValidityCorrection(),      // A (E-03)
+                new DataCoherenceCorrection(),               // A (E-03)
+                new ExactDuplicatesCorrection(),             // A (E-03)
+                new TranslationSenseCorrection(),            // C (E-04)
+                new SingleAnswerCorrection(),                // C (E-04)
+                new MiniTheoryCorrection(),                  // C (E-04)
+                new OffLevelWordsCorrection(),               // D (E-05)
+                new GrammarCorrection(),                     // B (F-RONDA2-R009)
+                new NearDuplicatesCorrection()),             // B (F-RONDA2-R009)
+                analyzerCatalog);
+        RefinerEngine refinerEngine = new DefaultRefinerEngine(analyzerCatalog, analyzerCorrectionCatalog);
         SentenceLengthContextResolver sentenceLengthContextResolver = new SentenceLengthContextResolver();
         LemmaAbsenceContextResolver lemmaAbsenceContextResolver = new LemmaAbsenceContextResolver();
         KnowledgeTitleContextResolver knowledgeTitleContextResolver = new KnowledgeTitleContextResolver();
@@ -1000,7 +1043,7 @@ class Main {
                 new PlanCmd(auditReportStore, refinerEngine, refinementPlanStore, ephemeralPlanRenderer)));
 
         // revise
-        ReviseCmd reviseCmd = new ReviseCmd(revisionEngine, refinementPlanStore);
+        ReviseCmd reviseCmd = new ReviseCmd(revisionEngine, refinementPlanStore, batchStore);
         cmd.addSubcommand("revise", new picocli.CommandLine(reviseCmd));
 
         // revise-instructions — F-QICOR-R008 (journey J002): bounded batch of
@@ -1015,10 +1058,10 @@ class Main {
 
         // approve / reject — only available when ProposalDecisionService could be constructed
         if (proposalDecisionService != null) {
-            ApproveCmd approveCmd = new ApproveCmd(proposalDecisionService);
+            ApproveCmd approveCmd = new ApproveCmd(proposalDecisionService, batchStore);
             cmd.addSubcommand("approve", new picocli.CommandLine(approveCmd));
 
-            RejectCmd rejectCmd = new RejectCmd(proposalDecisionService);
+            RejectCmd rejectCmd = new RejectCmd(proposalDecisionService, null);
             cmd.addSubcommand("reject", new picocli.CommandLine(rejectCmd));
         }
 
@@ -1042,21 +1085,27 @@ class Main {
         TopicStudentViewQuery topicStudentViewQuery = new DefaultTopicStudentViewQuery(studentViewRenderer, recordings);
         TopicWordLightsQuery topicWordLightsQuery = new DefaultTopicWordLightsQuery(
                 sentenceLexicalEvaluator, suggestedLemmaQueryPort, topicTeachingResolver);
+        // FEAT-RONDA2 (hook E-07): get task of an error task shows its finding and what its fix
+        // may touch.
+        ErrorTaskBriefer errorTaskBriefer = new DefaultErrorTaskBriefer(
+                analyzerCorrectionCatalog, auditNodeIndexFactory, studentViewRenderer);
         GetCmd getCmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
                 correctionContextResolver, impactPreviewStore, new DefaultImpactPreviewFormatter(),
                 correctionContextJsonMapper, suggestedLemmaQueryPort, topicWordLightsQuery,
-                topicStudentViewQuery, activeAnalysisSelectionStore);
+                topicStudentViewQuery, activeAnalysisSelectionStore, errorTaskBriefer);
         getCmd.setBaseDir(baseDir);
         getCmd.setRevisionArtifactStore(revisionArtifactStore);
         cmd.addSubcommand("get", new picocli.CommandLine(getCmd));
 
         // delete — inject baseDir for filesystem-level removal
-        DeleteCmd deleteCmd = new DeleteCmd(auditReportStore, refinementPlanStore);
+        DeleteCmd deleteCmd = new DeleteCmd(auditReportStore, refinementPlanStore,
+                activeAnalysisSelectionStore, baselineStore);
         deleteCmd.setBaseDir(baseDir);
         cmd.addSubcommand("delete", new picocli.CommandLine(deleteCmd));
 
         // prune — inject baseDir for filesystem-level removal
-        PruneCmd pruneCmd = new PruneCmd(auditReportStore, refinementPlanStore);
+        PruneCmd pruneCmd = new PruneCmd(auditReportStore, refinementPlanStore,
+                activeAnalysisSelectionStore, baselineStore);
         pruneCmd.setBaseDir(baseDir);
         cmd.addSubcommand("prune", new picocli.CommandLine(pruneCmd));
 
