@@ -137,10 +137,10 @@ public class DefaultCorrectorMatcherTest {
     }
 
     @Test
-    @DisplayName("should decide every golden case of the backend corrector as its «acepta» column says with the copy of the new corrector's table, reading each gap with the sentence around it, as «is» for «It ___ (be) hot inside.» answered «'s»")
+    @DisplayName("should decide every golden case of the corrector #1191 as its «acepta» column says with the copy of its table, reading each gap with the sentence around it, as «is» for «It ___ (be) hot inside.» answered «'s»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
-    public void shouldDecideEveryGoldenCaseOfTheBackendCorrectorAsItsAceptaColumnSaysWithTheCopyOfTheNewCorrectorsTableReadingEachGapWithTheSentenceAroundItAsIsForItBeHotInsideAnsweredS(
+    public void shouldDecideEveryGoldenCaseOfTheCorrector1191AsItsAceptaColumnSaysWithTheCopyOfItsTableReadingEachGapWithTheSentenceAroundItAsIsForItBeHotInsideAnsweredS(
             ) {
         // DOUBT-RESPC-IMITAR (A): with the copy of the table of #1191, the new corrector of 1/10/2026 until
         // #1194 came out, each of its 153 cases decides its «acepta»; the gap is read with the sentence around
@@ -223,10 +223,10 @@ public class DefaultCorrectorMatcherTest {
     }
 
     @Test
-    @DisplayName("should take two texts as the same answer when the corrector matches them in either order, so «He's forgotten to pay.» and «He has forgotten to pay.» are one answer with the four rules and two with the corrector in production")
+    @DisplayName("should take two texts as the same answer when the corrector matches them in either order, so «He's forgotten to pay.» and «He has forgotten to pay.» are one answer with the four rules of #1194 and two with #1191")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
-    public void shouldTakeTwoTextsAsTheSameAnswerWhenTheCorrectorMatchesThemInEitherOrderSoHesForgottenToPayAndHeHasForgottenToPayAreOneAnswerWithTheFourRulesAndTwoWithTheCorrectorInProduction(
+    public void shouldTakeTwoTextsAsTheSameAnswerWhenTheCorrectorMatchesThemInEitherOrderSoHesForgottenToPayAndHeHasForgottenToPayAreOneAnswerWithTheFourRulesOf1194AndTwoWith1191(
             ) {
         // R001: two options of a multiple choice, or two copies of an exercise, are the same answer if the
         // corrector takes either as the other. With the four rules matching is not symmetric: the

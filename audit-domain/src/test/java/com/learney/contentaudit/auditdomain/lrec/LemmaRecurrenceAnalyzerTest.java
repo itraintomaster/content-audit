@@ -468,14 +468,13 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should give the course of 29/9 a lemma-recurrence score of 0.08, with 134 normal, 1,570 under-exposed and 46 over-exposed of its 1,750 returning lemmas")
+    @DisplayName("should give the course of 29/9 a lemma-recurrence score of 0.08, with 131 normal, 1,566 under-exposed and 46 over-exposed of its 1,743 returning lemmas")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R001")
-    public void shouldGiveTheCourseOf299ALemmarecurrenceScoreOf008With134Normal1570UnderexposedAnd46OverexposedOfIts1750ReturningLemmas() {
+    public void shouldGiveTheCourseOf299ALemmarecurrenceScoreOf008With131Normal1566UnderexposedAnd46OverexposedOfIts1743ReturningLemmas() {
         // R001: the 91,873 positions of the 29/9 course in order A1 → B2 give 0,08: 131 normal, 1,566
         // under-exposed and 46 over-exposed of its 1,743 returning lemmas (1/10: «'», «-», «i.», «1st»,
-        // «3rd», «4th» and «comic_strip» are not words; before, 134, 1,570 and 46 of 1,750). The name of
-        // this test still carries the numbers of 30/9: it comes from sentinel.yaml (pending, @qa-tester).
+        // «3rd», «4th» and «comic_strip» are not words; before, 134, 1,570 and 46 of 1,750).
         Run299 run = run299();
 
         assertEquals(0.08, run.root.getScores().get("lemma-recurrence"), 1e-12, "R001: the score of today");
@@ -620,13 +619,12 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should publish for the course of 29/9 A1 450 returning lemmas with 178 normal (39.6%), A2 752 with 155 (20.6%), B1 1,139 with 161 (14.1%) and B2 819 with 165 (20.1%)")
+    @DisplayName("should publish for the course of 29/9 A1 448 returning lemmas with 176 normal (39.3%), A2 752 with 155 (20.6%), B1 1,137 with 161 (14.2%) and B2 818 with 165 (20.2%)")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
-    public void shouldPublishForTheCourseOf299A1450ReturningLemmasWith178Normal396A2752With155206B11139With161141AndB2819With165201() {
+    public void shouldPublishForTheCourseOf299A1448ReturningLemmasWith176Normal393A2752With155206B11137With161142AndB2818With165202() {
         // R004 on the 29/9 course, with only the lemmas written with letters (1/10): A1 448 returning
         // lemmas, 176 normal (39,3 %); A2 752, 155 (20,6 %); B1 1,137, 161 (14,2 %); B2 818, 165 (20,2 %).
-        // The name of this test still carries the numbers of 30/9 (pending, @qa-tester).
         List<String> levels = run299().diagnosis().getLevels().stream().map(l -> l.getLevel() + " " + l.getPositions()
                 + " " + l.getReturningLemmas() + " " + l.getNormalCount() + " " + l.getSubExposedCount() + " "
                 + l.getOverExposedCount() + " " + String.format(java.util.Locale.ROOT, "%.1f", 100 * l.getNormalShare()))
@@ -750,12 +748,12 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should leave 1,616 findings in the course of 29/9, 1,570 for under-exposed and 46 for over-exposed lemmas")
+    @DisplayName("should leave 1,612 findings in the course of 29/9, 1,566 for under-exposed and 46 for over-exposed lemmas")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
-    public void shouldLeave1616FindingsInTheCourseOf2991570ForUnderexposedAnd46ForOverexposedLemmas() {
+    public void shouldLeave1612FindingsInTheCourseOf2991566ForUnderexposedAnd46ForOverexposedLemmas() {
         // R005 on the 29/9 course: 1,612 findings, 1,566 for under-exposed lemmas and 46 for over-exposed
-        // ones (1/10, only lemmas written with letters; the name keeps the 1,616 of 30/9, pending @qa-tester).
+        // ones (1/10, only lemmas written with letters; 1,616 before).
         Run299 run = run299();
 
         List<FindingDraft> drafts = run.analyzer.findingsAt(run.root);

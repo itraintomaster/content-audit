@@ -64,10 +64,10 @@ public class FileSystemFormEquivalenceTableSourceTest {
     }
 
     @Test
-    @DisplayName("should read from «reglas» the rules that are code of the version of the corrector, the four in the copy of the new corrector and none in the one in production, and stop at a rule it does not know")
+    @DisplayName("should read from «reglas» the rules that are code of the version of the corrector, the four in the copy of #1194, in production, and none in the copy of #1191, and stop at a rule it does not know")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R001")
-    public void shouldReadFromReglasTheRulesThatAreCodeOfTheVersionOfTheCorrectorTheFourInTheCopyOfTheNewCorrectorAndNoneInTheOneInProductionAndStopAtARuleItDoesNotKnow(
+    public void shouldReadFromReglasTheRulesThatAreCodeOfTheVersionOfTheCorrectorTheFourInTheCopyOf1194InProductionAndNoneInTheCopyOf1191AndStopAtARuleItDoesNotKnow(
             ) throws IOException {
         // R001: the copy of each corrector says its version and the rules of it that are code. The one in
         // production, ittm #1194 (9915461ac), has the four of 1/10 and the table of #1191 as it is; the copy of
