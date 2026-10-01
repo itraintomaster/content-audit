@@ -571,7 +571,7 @@ class Main {
 
         analyzerProviders.add(quizInstructionProvider);                                                   //  9
 
-        // analyzerProviders.add(hintCoherenceProvider);          // 10 · A · FEAT-PISTA, pendiente
+        analyzerProviders.add(hintCoherenceProvider);                                                     // 10 · A · FEAT-PISTA
 
         // analyzerProviders.add(answerCompletenessProvider);     // 11 · A · FEAT-RESPC, pendiente
 

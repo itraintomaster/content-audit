@@ -4,6 +4,12 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (impl A) — hint-coherence construido y encendido en Main (línea 10): DefaultHintReader,
+  DefaultHintAnswerCheck, HintCoherenceAnalyzer y su proveedor, con la tabla de formas irregulares instalada. 29 pruebas
+  en verde (4 del lector, 12 del chequeo, 9 del analizador, 1 de la ficha, 3 del journey). Sobre el curso del 29/9: 42
+  ejercicios con hallazgo (A1 8, A2 8, B1 20, B2 6): 7 sin pista, 46 de palabras, 4 de sujeto, 0 de not; 25 por regla y
+  32 a la mesa. Examen escribir: 14 de 46, 9 de los 15 anotados de pista, 2 marcas fuera del oro.
+
 2026-09-30 — qa-tester — patch propose OK, fusionado con el parche del arquitecto (3 altas, 2 cambios, 0 conflictos); `patch validate` y `tech-spec write` OK, con -i contra el modelo después de 0.2 y 0.3. 28 handwrittenTests nuevas (0 portadas: no había tests de estas reglas), las 5 reglas [covered]; F-PISTA-J001 en audit-domain, paquete hintcoherence. Simulación en memoria (scratchpad/qa-A/SimularQA.java): aterrizan las 28, `feature status` OK, generate crearía 3 caminos y 28 stubs en {Impl}Test nuevos, sin choques de nombre. Sin aplicar.
   Next: integrador (A-01, A-16); José aplica sin --as; generate; @test-writer.
   Ojo: con 0.3 aplicado, generate aborta por F-HALL-J001/J002 sin testModule (no es de A: los ubica el qa-tester de 0.3).

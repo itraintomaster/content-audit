@@ -5,6 +5,20 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (impl A) — R001 cuenta por tipo estructural, como dice la regla y su prueba de El posesivo:
+  hueco dentro de la oración, o respuesta que es la oración entera (sin texto después del hueco y la respuesta de dos
+  palabras o más tras un enunciado vacío o cerrado; en REWRITE, también la respuesta que es una oración).
+  why: el prototipo del analista agrupaba por modo (REWRITE = oración entera) y así encontraba 6 anotados más (los huecos
+  sin pista de Adverbios de frecuencia, Frecuencia: parte 2 y 2e83); con el tipo literal no salen. Escalado al orquestador.
+2026-09-30 — developer (impl A) — La pista de un hueco: el paréntesis pegado (después o antes); si no, uno corto que
+  cierra el enunciado («(always)», «(brown / large)»); si no, las opciones con «/» junto al hueco («Our / ours ___»).
+  Paréntesis de 4 palabras o más sin «/» = pista descriptiva (cuenta para R001, no se compara); en oración entera, un
+  paréntesis cuyas palabras están en la oración de partida apunta a ella («(the fish)») y tampoco se compara.
+2026-09-30 — developer (impl A) — R002 inv. 2 (verbo sin anunciar) sólo cuando la respuesta no es una oración: en una
+  oración entera los verbos vienen de la oración que se reescribe (aplicado a todo daba 500 marcas falsas).
+2026-09-30 — developer (impl A) — Ids de las reglas de la ficha: missing-hint, hint-words, hint-subject, hint-negation;
+  la marca de la identidad es la palabra en minúscula (vacía en missing-hint).
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): sin cambios de estructura.
 
 2026-09-30 — qa-tester — F-PISTA-J001 en audit-domain, paquete hintcoherence: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.
