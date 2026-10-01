@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analyst (impl A) — La condición del camino «falta» de F-PISTA-J001 también dice la unión. Cambia el nombre del
+  método generado del journey: generate conserva el viejo, que tiene cuerpo, y avisa; se renombra a mano al encender, como
+  las dos de RESPC. La primera prueba de R001 («…of the same shape carry one…») no se renombra: lo que dice sigue siendo
+  cierto, y su cuerpo ya prueba también la unión (Adverbios de frecuencia).
+
 2026-10-01 — architect (impl A) — R006 es un método más de HintAnswerCheck, checkRewrite(AuditableQuiz), y no un
   colaborador nuevo: necesita lo que ya tiene DefaultHintAnswerCheck (tokens de la oración guardada, tabla de irregulares,
   comparación de R002). Sin puerto, sin inyección, sin cambiar constructores. El analizador la llama sólo en WHOLE_SENTENCE;

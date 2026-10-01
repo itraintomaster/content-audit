@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analyst (impl A) — R001 dice la unión del 1/10, como el código: sin pista es hallazgo si la llevan tres cuartos
+  de su tipo o de todo su tema. Casos: Afirmativas regulares (por tipo), Adverbios de frecuencia 2572 (sólo por tema, 17 de
+  20) y El posesivo (ni el tipo, 0 de 20, ni el tema, 20 de 40). También la condición del camino «falta» de F-PISTA-J001.
+  Lo pidió el coordinador el 1/10: que nada describa algo que el código ya no hace.
+
 2026-10-01 — qa-tester (impl A) — Simulación del apply y del generate, en el scratchpad (impl-A/r006): copia descartable
   de ronda1/integracion 35172b1c (FEAT-CIERRE ya aplicado) con esta rama encima. `patch validate -i` OK contra 859e96af y
   contra 35172b1c. El apply en memoria y el de la CLI dan el mismo sentinel.yaml, con cambios sólo en hintcoherence y

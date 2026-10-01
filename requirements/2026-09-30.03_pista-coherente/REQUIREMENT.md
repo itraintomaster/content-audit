@@ -43,14 +43,18 @@ respuesta aceptada**, la que dice el audio.
 ### Rule[F-PISTA-R001] - Si tres cuartos o más del tema llevan pista, la llevan todos
 **Severity**: critical | **Validation**: VALIDATED
 
-> Entre los ejercicios de hueco para escribir de un tema y del mismo tipo —hueco dentro de la oración, o respuesta que
-> es la oración entera—, si tres cuartos o más llevan pista, cada uno que no la lleva tiene un hallazgo *alta*.
+> Un ejercicio de hueco para escribir que no lleva pista tiene un hallazgo *alta* si en su tema la llevan tres cuartos
+> o más de los de su mismo tipo —hueco dentro de la oración, o respuesta que es la oración entera— o tres cuartos o más
+> de todos.
 
 «I ___ a lot of vegetables.» (`67fab6d59930102295341ecd`, A1, *Afirmativas regulares*: 19 de 20 con pista) y «She put
-a ___ of sugar in her tea.» (`67fab6d59930102295342a02`, A2, 9 de 10). El tipo separa los temas mixtos: en *El
-posesivo* (A1), las 20 transformaciones sin pista no se comparan con los 20 huecos que sí la llevan. La opción múltiple
-no entra: sus opciones ya dicen qué elegir. El umbral lo decidió José el 30/9: tres cuartos
-([DOUBT-PISTA-UMBRAL](#DOUBT-PISTA-UMBRAL)).
+a ___ of sugar in her tea.» (`67fab6d59930102295342a02`, A2, 9 de 10). Alcanza el tema entero aunque el tipo no: en
+*Adverbios de frecuencia* (A1) las transformaciones traen su adverbio entre paréntesis, y «We ___ eat eggs every
+morning.» (`67fab6d59930102295342572`) no dice cuál va (17 de 20 del tema con pista). El tipo cuida los temas mixtos: en
+*El posesivo* (A1), las 20 transformaciones sin pista no tienen hallazgo, porque no llegan ni las de su tipo (0 de 20)
+ni el tema (20 de 40). La opción múltiple no entra: sus opciones ya dicen qué elegir. El umbral lo decidió José el
+30/9: tres cuartos ([DOUBT-PISTA-UMBRAL](#DOUBT-PISTA-UMBRAL)). La unión de tipo y tema quedó el 1/10: encuentra los
+6 anotados del 077 que el tipo solo no veía, sin perder ninguno.
 
 <a id="F-PISTA-R002"></a>
 ### Rule[F-PISTA-R002] - Las palabras de la pista están en la respuesta, y la respuesta no trae un verbo sin anunciar
@@ -222,7 +226,7 @@ journeys:
         action: "El informe lee la pista y la primera respuesta de cada ejercicio, y cuántos del tema llevan pista"
         gate: [F-PISTA-R005]
         outcomes:
-          - {when: "El ejercicio no tiene pista y tres cuartos o más de su tema, del mismo tipo, sí", then: falta}
+          - {when: "El ejercicio no tiene pista y la llevan tres cuartos o más de su tipo, o de todo su tema", then: falta}
           - {when: "La pista nombra otro verbo, otro sujeto u otra negación que la respuesta", then: no_coincide}
           - {when: "La pista coincide con la respuesta", then: coincide}
       - {id: falta, action: "Hallazgo alta, con los ejercicios del tema que sí llevan pista como evidencia", gate: [F-PISTA-R001], result: success}
