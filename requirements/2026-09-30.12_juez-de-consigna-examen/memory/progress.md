@@ -4,6 +4,14 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (C, líder) — Examen descontaminado: ninguna definición de agente trae un caso del examen
+  (escribir/ + examen fijo), y en mini-theory-judge tampoco un ejercicio de los 61 temas de su examen. Guardián en
+  quiz-instruction-infrastructure (AgentDefinitionsExamGuardIntegrationTest + agentguard/examen.json, que arma
+  scripts/armar_guardia_del_examen.py): 289 violaciones sobre 71ba5182, 0 hoy. Versiones nuevas (configuración por
+  omisión): consigna b7162dcc…, traducción 2e7d443f…+ac7abfd9…, una sola respuesta d6ff57d6…, miniteoría 63f16ebd…,
+  opción múltiple 4f8b7cdf…. Ninguna rindió el examen todavía.
+  Next: el orquestador corre el guardián con --partes escribir,jueces,examinar; después, el examen fijo.
+
 2026-09-30 — developer (C, líder) — Control sobre una copia (scratchpad impl-C/control), con la base del 29/9 y tope 0:
   sin libro, vocabulario 73,92 % (96,5 · 94,2 · 79,5 · 63,5) y plan 4.036; con el libro real de consigna (15.351 líneas,
   huella 00aeeebd… igual antes y después), mismo vocabulario, 3.920 reusados y 7.367 pendientes, plan 4.046 (las 10 de más
