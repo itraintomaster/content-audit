@@ -5,6 +5,13 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — equipo de una tarea (FILAS) — undecidableFloors.count cuenta pisos distintos, como el texto del
+  veredicto, y no filas: «piso de errores · quiz-instruction · KNOWLEDGE» es uno aunque no se decida en dos temas. Las
+  filas van por su clave y su nombre visible, en el orden de las filas (catálogo, después «vocabulario» y «algún
+  error»), incluidas las dos generales. Se llena con cualquier veredicto, también «no pasa».
+2026-10-01 — equipo de una tarea (FILAS) — RowValue.evaluated es boolean primitivo: un valor viejo guardado en una
+  tanda (batches/) se lee como false, pero nada lo lee de ahí; la comparación siempre lo calcula de nuevo.
+
 2026-10-01 — equipo de una tarea (FILAS) — «vocabulario» y «algún error» no se renombran: son el subject de sus
   filas y la clave de las metas. Los nombra analysis/metas.json («avance · algún error · curso»), entran en el id de
   las metas por defecto («piso de errores · algún error · KNOWLEDGE») y en la huella de las metas fijadas. El nombre
