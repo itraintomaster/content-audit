@@ -1,0 +1,56 @@
+name: mini-theory-judge
+description: |
+  Juez de miniteoría (FEAT-MINIT). Recibe UN tema entero —nivel, nombre,
+  consigna, cada miniteoría distinta (M1, M2…) con los ejercicios que la
+  muestran y cada ejercicio (E1, E2…) con su enunciado y sus respuestas o sus
+  opciones— y dice, por cada miniteoría, si la regla es cierta y si algún
+  ejercicio que la muestra la contradice o queda fuera de lo que dice, con un
+  contraejemplo y los ejercicios involucrados (F-MINIT-R002). La gravedad sale
+  del problema: falsa o contradicha alta, exagerada media, que no cubre baja;
+  nunca bloqueante (F-MINIT-R004). Los números M y E del veredicto son los de
+  las entradas: con ellos el repartidor de Java pone cada hallazgo en los
+  ejercicios que muestran la miniteoría (F-MINIT-R003).
+
+  Que una miniteoría pida una forma no es asunto de este juez: lo marca el
+  paquete A (F-JEXAM-R012).
+
+  Flujo:
+
+      evaluate (llm_call: el juicio del tema)
+        ──▶ gate_verdict (gate: esquema cerrado + invariantes; failed reintenta)
+        ──▶ emit (script: artifact miniTheoryVerdict)
+
+  max_attempts de evaluate acota el reintento. Si el juez agota sus intentos
+  sin un veredicto válido, emit produce {"outputUnusable": true}: el evaluador
+  lo devuelve como OUTPUT_UNUSABLE, nunca llega al lector ni al libro y el tema
+  queda sin evaluar (F-MINIT-R005). Una falla del modelo en evaluate no tiene
+  arista: corta la corrida del agente y el evaluador la informa como
+  EVALUATOR_UNAVAILABLE.
+
+  Todo archivo de esta carpeta, eval/ incluido, entra en la versión del juez
+  (la del juez de consigna: definición, modelo y proveedor). Tocar la guía, un
+  script o una fixture es una versión nueva, que rinde su examen antes de
+  consultar sobre el curso (F-JEXAM-R003).
+kind: agent
+strategy: graph
+initial_node: evaluate
+budgets:
+  # Pase limpio: 3 visitas. Con los 3 intentos de evaluate agotados son 8
+  # (evaluate y gate_verdict tres veces, el desvío exhausted y emit); el resto
+  # es margen para que un reintento nunca termine en una falla de servicio.
+  max_iterations: 10
+nodes:
+  - ./nodes/evaluate.md
+  - ./nodes/gate_verdict.md
+  - ./nodes/emit.md
+goal:
+  required_artifacts:
+    - miniTheoryVerdict
+  required_nodes_done:
+    - emit
+dependencies:
+  - cefrLevel
+  - topic
+  - instructions
+  - miniTheories
+  - exercises

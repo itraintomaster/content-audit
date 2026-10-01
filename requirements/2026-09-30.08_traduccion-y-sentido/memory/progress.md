@@ -20,3 +20,6 @@ Current state, last action, next step. Newest entries on top.
   sin enlace, que sale del nombre `translation-sense`, no del término.
   Next: José contesta DOUBT-TRSEN-COMBINAR y DOUBT-TRSEN-CATALOGO; el integrador suma la carpeta a `definitions` y corre
   `feature sync --feature FEAT-TRSEN` (J001); después @architect.
+
+2026-09-30 — developer (C) — C-26: definición de agente en `.sentinel/agents/translation-sense-from-english` y `.sentinel/agents/translation-sense-from-translation` (evaluate → gate_verdict → emit, el grafo del juez de consigna; `dependencies` en el orden del mapa de contenido; artifact `translationSenseVerdict`; al agotar intentos emite `{"outputUnusable": true}`). `eval/run_evals.py` en verde sin modelo (33 + 33 salidas grabadas) y los 12 + 12 veredictos canónicos de sus fixtures los lee el lector Jackson de Java. `eval/` entra en la versión, como en el juez de consigna: tocar una fixture es una versión nueva que rinde el examen.
+  Next: el examen fijo con tope (orquestador) y `exam record`; las guías traen ítems del examen fijo con su veredicto (escalado).

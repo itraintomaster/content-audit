@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "translation-sense-verdict.schema.json",
+  "title": "TranslationSenseVerdict",
+  "description": "Veredicto canónico que emite el agente como artifact translationSenseVerdict (F-TRSEN-R002, R004); lo lee JacksonTranslationSenseVerdictReader. Si el juez agota sus intentos, el artifact es {\"outputUnusable\": true} en vez de este objeto.",
+  "$comment": "El gate además exige una sola entrada por condición, que JSON Schema no puede expresar.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["passes", "failures", "rationale"],
+  "properties": {
+    "passes": { "type": "boolean" },
+    "failures": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["condition", "severity", "fragment", "evidence"],
+        "properties": {
+          "condition": {
+            "type": "string",
+            "enum": ["SAME_MEANING", "NATIVE_WOULD_SAY", "WORDS_GO_TOGETHER", "LEVEL_REGISTER"]
+          },
+          "severity": { "type": "string", "enum": ["HIGH", "MEDIUM", "LOW"] },
+          "fragment": { "type": "string", "minLength": 1, "maxLength": 300 },
+          "evidence": { "type": "string", "minLength": 1, "maxLength": 400 }
+        },
+        "allOf": [
+          {
+            "if": { "required": ["condition"], "properties": { "condition": { "const": "LEVEL_REGISTER" } } },
+            "then": { "properties": { "severity": { "const": "LOW" } } }
+          },
+          {
+            "if": { "required": ["severity"], "properties": { "severity": { "const": "LOW" } } },
+            "then": { "properties": { "condition": { "const": "LEVEL_REGISTER" } } }
+          }
+        ]
+      }
+    },
+    "rationale": { "type": "string", "minLength": 1, "maxLength": 800 }
+  },
+  "if": { "required": ["passes"], "properties": { "passes": { "const": true } } },
+  "then": { "properties": { "failures": { "maxItems": 0 } } },
+  "else": { "properties": { "failures": { "minItems": 1 } } }
+}

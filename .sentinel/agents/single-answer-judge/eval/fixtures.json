@@ -1,0 +1,791 @@
+{
+  "agent": "single-answer-judge",
+  "artifact": "singleAnswerVerdict",
+  "gateId": "single_answer_judge_gate_verdict",
+  "emitId": "single_answer_judge_emit",
+  "dependencies": [
+    "title",
+    "instructions",
+    "exercise",
+    "acceptedAnswers"
+  ],
+  "topKeys": [
+    "alternatives",
+    "rationale"
+  ],
+  "promptMustMention": [
+    "OFFERED_BY_INSTRUCTION",
+    "DIFFERENT_VALID",
+    "BLOCKING",
+    "**Nunca listes una respuesta que difiere de una aceptada sólo en eso**",
+    "*until* y *till*",
+    "**antes de contestar**",
+    "Nunca\nsugerís que la consigna pida una forma"
+  ],
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (gap fuera de los huecos de acceptedAnswers, respuesta repetida, LOW), y que emit produzca singleAnswerVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (title, instructions, exercise, acceptedAnswers) de los ejemplos de F-UNICA-R003 y R004.",
+  "inputs": {
+    "agua": {
+      "title": "Respuestas cortas",
+      "instructions": "Usa $short forms$ si es posible. Escribe la respuesta corta.",
+      "exercise": "Does he need water? He ___ .",
+      "acceptedAnswers": "Hueco 1: does"
+    },
+    "verduras": {
+      "title": "Afirmativas regulares",
+      "instructions": "Escribe la forma afirmativa en presente simple.",
+      "exercise": "I ___ a lot of vegetables.",
+      "acceptedAnswers": "Hueco 1: love"
+    },
+    "no-vendra": {
+      "title": "Elegir la forma natural",
+      "instructions": "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
+      "exercise": "She ___ (not / come).",
+      "acceptedAnswers": "Hueco 1: isn't going to come | is not going to come | 's not going to come"
+    },
+    "italia": {
+      "title": "Rangos temporales",
+      "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+      "exercise": "He went to Italy on Friday and came back on Sunday.He was in Italy ___ .",
+      "acceptedAnswers": "Hueco 1: from Friday to Sunday | until Sunday | till Sunday"
+    },
+    "dos-huecos": {
+      "title": "Pasado simple",
+      "instructions": "Escribe los verbos en 'past simple'.",
+      "exercise": "We ___ (go) to the park and ___ (play) football.",
+      "acceptedAnswers": "Hueco 1: went\nHueco 2: played"
+    },
+    "sin-entrada-de-huecos": {
+      "title": "Respuestas cortas",
+      "instructions": "Escribe la respuesta corta.",
+      "exercise": "Does he need water? He ___ ."
+    }
+  },
+  "cases": [
+    {
+      "caseId": "agua-doesnt-alta",
+      "note": "«Does he need water? He ___ .» (…1f57): «doesn't» vale igual. F-UNICA-R004.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.»."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "verduras-bloqueante",
+      "note": "Las verduras (…1ecd): sin pista, eat, like, buy y want encajan igual que love.",
+      "inputs": "verduras",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "eat",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "Sin pista, «eat» encaja igual que «love»."
+          },
+          {
+            "answer": "like",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "Sin pista, «like» encaja igual que «love»."
+          },
+          {
+            "answer": "buy",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "Sin pista, «buy» encaja igual que «love»."
+          },
+          {
+            "answer": "want",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "Sin pista, «want» encaja igual que «love»."
+          }
+        ],
+        "rationale": "El hueco no tiene pista y la aceptada es una entre muchas."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "no-vendra-media",
+      "note": "«She ___ (not / come).» (…2189): «won't come» es correcta pero menos esperable.",
+      "inputs": "no-vendra",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "won't come",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "Sin contexto, «She won't come.» también es natural."
+          }
+        ],
+        "rationale": "Sin contexto la negativa con will también vale."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "italia-ofrecida-por-la-consigna",
+      "note": "«He was in Italy ___ .» (…2464): la consigna ofrece until y el corrector rechaza «from Friday until Sunday». F-UNICA-R003.",
+      "inputs": "italia",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "from Friday until Sunday",
+            "gap": 1,
+            "kind": "OFFERED_BY_INSTRUCTION",
+            "severity": "HIGH",
+            "reason": "La consigna ofrece «to / until / till» y el corrector sólo acepta «to» con «from»."
+          }
+        ],
+        "rationale": "Una opción que ofrece la consigna, no una respuesta distinta."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "lista-vacia-pasa",
+      "note": "Sin otra respuesta, el ejercicio pasa.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "La pista deja una sola respuesta."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "segundo-hueco",
+      "note": "gap es el número de «Hueco 2».",
+      "inputs": "dos-huecos",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "watched",
+            "gap": 2,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«watched football» también es correcta."
+          }
+        ],
+        "rationale": "En el segundo hueco vale otro verbo."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "misma-respuesta-en-dos-huecos",
+      "note": "La misma respuesta en huecos distintos no es una repetición.",
+      "inputs": "dos-huecos",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "ran",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "Es correcta y el alumno la podría escribir."
+          },
+          {
+            "answer": "ran",
+            "gap": 2,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "Dos huecos, cada uno con la suya."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "enums-en-minusculas",
+      "note": "Mayúsculas de los enums y espacios de los textos se canonicalizan.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": " doesn't ",
+            "gap": 1,
+            "kind": "different_valid",
+            "severity": "high",
+            "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.»."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "doesn't",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.»."
+            }
+          ],
+          "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "sin-entrada-de-huecos",
+      "note": "Si no llega acceptedAnswers (uso fuera de content-audit) no hay contra qué comparar gap.",
+      "inputs": "sin-entrada-de-huecos",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 3,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "hueco-fuera-de-rango",
+      "note": "gap tiene que ser uno de los huecos de acceptedAnswers; el esquema no lo sabe.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 2,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un hueco del ejercicio"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "hueco-cero",
+      "note": "Los huecos empiezan en 1, como «Hueco 1».",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 0,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "entero desde 1"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "hueco-booleano",
+      "note": "true no es un número de hueco.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": true,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "entero desde 1"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "hueco-como-texto",
+      "note": "\"1\" no es un número.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": "1",
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "entero desde 1"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "severidad-baja",
+      "note": "single-answer no usa LOW (F-UNICA-R004).",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "LOW",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "LOW no existe en este juez"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "clase-desconocida",
+      "note": "Sólo las dos clases de F-UNICA-R002.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 1,
+            "kind": "SAME_FORM",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "fuera del enum"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "respuesta-repetida",
+      "note": "La misma respuesta dos veces en el mismo hueco, comparada como el corrector (mayúsculas y signos no cuentan).",
+      "inputs": "no-vendra",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "won't come",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "Es correcta y el alumno la podría escribir."
+          },
+          {
+            "answer": "Won't come.",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "Repetida."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "ya está listada para el hueco 1"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "alternativa-con-clave-de-mas",
+      "note": "Cada alternativa es un objeto cerrado.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.».",
+            "confidence": 0.8
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "alternatives[0] no respeta el objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "respuesta-vacia",
+      "note": "answer no va vacía.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "answer está vacío"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "alternatives-no-es-array",
+      "note": "alternatives es un array.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": {
+          "answer": "doesn't"
+        },
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "alternatives tiene que ser un array"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "falta-rationale",
+      "note": "Falta una clave del objeto cerrado.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.»."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan=['rationale']"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "run-dir-por-state-json",
+      "note": "Sin run_dir en las entradas: project_root + el run_id (UUID) del state.json, como lo proyecta el CLI.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.»."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "resolution": "state.json",
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "run-id-ambiguo",
+      "note": "Dos state.json con el mismo runId: el gate no adivina; emit sale conservador.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.»."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "resolution": "ambiguous",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exactamente uno"
+        ]
+      }
+    },
+    {
+      "caseId": "run-id-inseguro",
+      "note": "Un run_id que escaparía del directorio de runs se rechaza.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.»."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "resolution": "unsafe-run-id",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "run_id ausente o inseguro"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-run-dir",
+      "note": "Sin run_dir ni project_root no hay dónde leer: falla el gate y emit da outputUnusable.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.»."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "resolution": "none",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan run_dir"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-salida-de-evaluate",
+      "note": "evaluate no dejó verdicts.json.",
+      "inputs": "agua",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "verdicts.json no existe"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-viejo-se-borra",
+      "note": "Un validated-verdict.json de un intento anterior no sobrevive a un gate que falla.",
+      "inputs": "agua",
+      "raw": "no hay veredicto",
+      "staleValidated": true,
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "no-es-json",
+      "note": "Prosa sin objeto JSON.",
+      "inputs": "agua",
+      "raw": "No puedo juzgar este ejercicio.",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "lista-en-vez-de-objeto",
+      "note": "Un array no es el veredicto.",
+      "inputs": "agua",
+      "raw": "[1, 2]",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "output-unusable-del-modelo",
+      "note": "{\"outputUnusable\": true} lo produce emit, nunca el modelo: el gate lo rechaza.",
+      "inputs": "agua",
+      "verdict": {
+        "outputUnusable": true
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "objeto cerrado"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-corrupto-antes-de-emit",
+      "note": "Si validated-verdict.json no se puede leer, emit no inventa: outputUnusable.",
+      "inputs": "agua",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "doesn't",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.»."
+          }
+        ],
+        "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "corruptValidated": true,
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "fence-json",
+      "note": "La salida en un fence ```json se acepta sin pagar otra consulta.",
+      "inputs": "agua",
+      "raw": "```json\n{\n  \"alternatives\": [\n    {\n      \"answer\": \"doesn't\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"HIGH\",\n      \"reason\": \"La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.».\"\n    }\n  ],\n  \"rationale\": \"La negativa vale igual que la aceptada y nada de lo que ve el alumno elige.\"\n}\n```",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "doesn't",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.»."
+            }
+          ],
+          "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "prosa-alrededor",
+      "note": "Prosa antes y una etiqueta después: se toma el objeto.",
+      "inputs": "agua",
+      "raw": "Este es mi veredicto:\n{\"alternatives\": [{\"answer\": \"doesn't\", \"gap\": 1, \"kind\": \"DIFFERENT_VALID\", \"severity\": \"HIGH\", \"reason\": \"La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.».\"}], \"rationale\": \"La negativa vale igual que la aceptada y nada de lo que ve el alumno elige.\"}\nLABEL: done",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "doesn't",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.»."
+            }
+          ],
+          "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "json-dentro-de-un-string",
+      "note": "El objeto serializado dentro de un string JSON se desenvuelve.",
+      "inputs": "agua",
+      "raw": "\"{\\\"alternatives\\\": [{\\\"answer\\\": \\\"doesn't\\\", \\\"gap\\\": 1, \\\"kind\\\": \\\"DIFFERENT_VALID\\\", \\\"severity\\\": \\\"HIGH\\\", \\\"reason\\\": \\\"La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.».\\\"}], \\\"rationale\\\": \\\"La negativa vale igual que la aceptada y nada de lo que ve el alumno elige.\\\"}\"",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "doesn't",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice Yes ni No: «He doesn't.» es tan correcta como «He does.»."
+            }
+          ],
+          "rationale": "La negativa vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    }
+  ]
+}
