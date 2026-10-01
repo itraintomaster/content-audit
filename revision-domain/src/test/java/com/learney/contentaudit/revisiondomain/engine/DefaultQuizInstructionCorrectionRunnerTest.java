@@ -39,7 +39,6 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -650,17 +649,50 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
     @DisplayName("should correct a quiz-instruction task outside any batch with the comparative criteria, the three attempts and the outcomes of today")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R014")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldCorrectAQuizinstructionTaskOutsideAnyBatchWithTheComparativeCriteriaTheThreeAttemptsAndTheOutcomesOfToday() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R014: outside any batch, revise-instructions corrects a quiz-instruction task as before this requirement: the
+        // same engine call, the same three attempts of its configuration and the same outcomes, counted the same way.
+        RevisionEngine revisionEngine = mock(RevisionEngine.class);
+        RefinementPlanStore refinementPlanStore = mock(RefinementPlanStore.class);
+        QuizInstructionCorrectionRunStore runStore = mock(QuizInstructionCorrectionRunStore.class);
+        QuizInstructionCorrectionConfig config = new QuizInstructionCorrectionConfig(3, 20);
+        when(refinementPlanStore.load(PLAN_ID)).thenReturn(Optional.of(plan(List.of(
+                task("t1", 1, DiagnosisKind.QUIZ_INSTRUCTION), task("t2", 2, DiagnosisKind.QUIZ_INSTRUCTION)))));
+        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.anyString(), Mockito.any(), Mockito.any()))
+                .thenReturn(proposedOutcome("t1", List.of(), null), new RevisionOutcome(RevisionOutcomeKind.NO_ACCEPTABLE_CANDIDATE,
+                        null, "No se logro una correccion aceptable: reprobaron [FAITHFUL_TRANSLATION]"));
+
+        QuizInstructionCorrectionRunReport report = new DefaultQuizInstructionCorrectionRunner(revisionEngine, refinementPlanStore,
+                runStore, config).run(request(null));
+
+        assertEquals(3, config.getMaxAttempts(), "the three attempts of today");
+        assertEquals(2, report.getEligibleTasks());
+        assertEquals(1, report.getProposed());
+        assertEquals(1, report.getNotCorrected());
+        verify(revisionEngine, times(2)).revise(Mockito.eq(PLAN_ID), Mockito.anyString(), Mockito.any(), Mockito.any());
     }
 
     @Test
     @DisplayName("should leave out of a revise-instructions run the quiz-instruction tasks that are in the open batch")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldLeaveOutOfAReviseinstructionsRunTheQuizinstructionTasksThatAreInTheOpenBatch() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TANDA-R002: a quiz-instruction task of the open batch is IN_BATCH in the plan: revise-instructions does not take it.
+        RevisionEngine revisionEngine = mock(RevisionEngine.class);
+        RefinementPlanStore refinementPlanStore = mock(RefinementPlanStore.class);
+        QuizInstructionCorrectionRunStore runStore = mock(QuizInstructionCorrectionRunStore.class);
+        RefinementTask inBatch = new RefinementTask("t2", AuditTarget.QUIZ, "quiz-t2", "Quiz t2", DiagnosisKind.QUIZ_INSTRUCTION, 2,
+                RefinementTaskStatus.IN_BATCH, null);
+        when(refinementPlanStore.load(PLAN_ID)).thenReturn(Optional.of(plan(List.of(task("t1", 1, DiagnosisKind.QUIZ_INSTRUCTION),
+                inBatch, task("t3", 3, DiagnosisKind.QUIZ_INSTRUCTION)))));
+        when(revisionEngine.revise(Mockito.eq(PLAN_ID), Mockito.anyString(), Mockito.any(), Mockito.any()))
+                .thenReturn(new RevisionOutcome(RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, null, null));
+
+        QuizInstructionCorrectionRunReport report = new DefaultQuizInstructionCorrectionRunner(revisionEngine, refinementPlanStore,
+                runStore, new QuizInstructionCorrectionConfig(3, 20)).run(request(null));
+
+        assertEquals(2, report.getEligibleTasks(), "the one of the batch is not eligible");
+        verify(revisionEngine, never()).revise(Mockito.eq(PLAN_ID), Mockito.eq("t2"), Mockito.any(), Mockito.any());
+        verify(revisionEngine, times(2)).revise(Mockito.eq(PLAN_ID), Mockito.anyString(), Mockito.any(), Mockito.any());
     }
 }
