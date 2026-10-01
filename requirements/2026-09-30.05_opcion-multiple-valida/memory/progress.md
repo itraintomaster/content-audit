@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Lo de MultipleChoiceValidityAnalyzerTest:330 ya quedó arreglado en la integración
+  (634af491, «, null»).
+
 2026-10-01 — developer (impl A) — Visto al simular el parche de R006 sobre ronda1/integracion 35172b1c: FEAT-CIERRE
   rompe la compilación de MultipleChoiceValidityAnalyzerTest:330, porque JudgeCoverageDiagnosis suma JudgeQuizTally
   (12 argumentos). Con «, null» compila y las pruebas de la opción múltiple pasan (probado en la copia). No se arregla en

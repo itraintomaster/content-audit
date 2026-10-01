@@ -4,6 +4,13 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (impl A) — Simulación repetida con R001 sobre ronda1/integracion 6cfaa008 (FEAT-CIERRE con sus
+  pruebas a la aridad nueva): validate OK (PISTA 7 cambios, RESPC 3); apply en memoria = apply de la CLI; generate cambia
+  los mismos 5 archivos de hintcoherence y avisa que conserva 4 métodos con nombre viejo (El posesivo, el camino 1 del
+  journey y las 2 de RESPC). Main y pruebas compilan salvo el switch de fault(); con ese caso, la suite entera corre 2.404
+  pruebas y fallan 25: los 5 stubs de R006 y 20 stubs de FEAT-CIERRE que C todavía no llenó. Los nombres exactos que
+  generate les daría a los 4 métodos, para renombrar a mano, quedaron en scratchpad/impl-A/r006/nombres-nuevos.txt.
+
 2026-10-01 — architect y qa-tester (impl A) — R001 entra al mismo parche (backup antes del propose; nada perdido): las
   descripciones de hintedInTopic y comparableInTopic dicen el grupo que decide, y la prueba de El posesivo se borra con el
   nombre viejo y se agrega con uno que dice tipo y tema entero, con la misma regla. TECH_SPEC con una sección más.
