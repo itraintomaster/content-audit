@@ -1,7 +1,33 @@
 package com.learney.contentaudit.auditinfrastructure.batchstore;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
+import com.learney.contentaudit.revisiondomain.batch.BatchSettings;
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
+import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.io.TempDir;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,18 +41,107 @@ public class FileSystemBatchStoreTest {
     @DisplayName("should find the single open batch among the saved ones, and none once it is published")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldFindTheSingleOpenBatchAmongTheSavedOnesAndNoneOnceItIsPublished() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: among the saved batches, the open one is the one not published; once it is published there is none, and it
+        // is the latest published.
+        FileSystemBatchStore store = new FileSystemBatchStore(workdir);
+        CorrectionBatch first = batch("tanda-A1-20260930T100000Z", Instant.parse("2026-09-30T10:00:00Z"));
+        first.setStatus(BatchStatus.PUBLISHED);
+        first.setPublication(new BatchPublication(Instant.parse("2026-09-30T18:00:00Z"), "José", null, "audit-1", "plan-1",
+                List.of(), List.of(), List.of(), List.of()));
+        store.save(first);
+        CorrectionBatch second = batch("tanda-A2-20261001T120000Z", Instant.parse("2026-10-01T12:00:00Z"));
+        store.save(second);
+
+        assertEquals("tanda-A2-20261001T120000Z", store.open().orElseThrow().getId(), "the single open batch");
+        assertEquals(2, store.list().size());
+
+        second.setStatus(BatchStatus.PUBLISHED);
+        second.setPublication(new BatchPublication(Instant.parse("2026-10-01T18:00:00Z"), "José", null, "audit-2", "plan-2",
+                List.of(), List.of(), List.of(), List.of()));
+        store.save(second);
+
+        assertTrue(store.open().isEmpty(), "none once it is published");
+        assertEquals("tanda-A2-20261001T120000Z", store.latestPublished().orElseThrow().getId());
+        assertEquals("audit-2", new FileSystemBatchStore(workdir).latestPublished().orElseThrow().getPublication()
+                .getPublishedAuditId(), "read back from its file");
     }
 
     @Test
     @DisplayName("should rewrite the file of the batch atomically after each step, so a cut never leaves it half written")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldRewriteTheFileOfTheBatchAtomicallyAfterEachStepSoACutNeverLeavesItHalfWritten(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: after each step the file of the batch is written whole to a file of its own and moved over the old one. A
+        // write cut in the middle -- here, a value that breaks while it is written -- leaves the previous file as it was,
+        // and no half file behind.
+        FileSystemBatchStore store = new FileSystemBatchStore(workdir);
+        CorrectionBatch batch = batch("tanda-A1-20261001T120000Z", Instant.parse("2026-10-01T12:00:00Z"));
+        store.save(batch);
+        Path file = workdir.resolve(".content-audit/batches/tanda-A1-20261001T120000Z.json");
+        assertTrue(Files.isRegularFile(file), "one file per batch");
+
+        batch.setOutcomes(new ArrayList<>(List.of(new BatchTaskOutcome("t-pista", BatchTaskOutcomeKind.RESOLVED_BY_RULE,
+                "regla-hint-coherence-1ecd", 0, null))));
+        store.save(batch);
+        String afterTheRules = read(file);
+        assertTrue(afterTheRules.contains("RESOLVED_BY_RULE"), "rewritten after the step");
+
+        QuizTemplateEntity broken = new QuizTemplateEntity();
+        broken.setId("67fab6d59930102295341ecd");
+        broken.setUnmodeledFields(Map.of("corte", new Bomb()));
+        batch.setPanelDecisions(new ArrayList<>(List.of(new PanelDecision("6814dafa7d73e7209a13d389",
+                List.of("67fab6d59930102295341ecd"), List.of("t-respuesta"), PanelOutcomeKind.ACCEPTED,
+                new PanelCandidate(PanelCandidateKind.ENGLISH_CHANGE, broken, null, null, "sin «a lot of»"), null,
+                List.of("t-respuesta"), 1, List.of(), null, null, List.of(), 5))));
+
+        assertThrows(UncheckedIOException.class, () -> store.save(batch), "the write is cut");
+
+        assertEquals(afterTheRules, read(file), "the previous file, whole");
+        assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_RULE, store.load(batch.getId()).orElseThrow().getOutcomes().get(0)
+                .getKind(), "and readable");
+        assertEquals(List.of(file.getFileName().toString()), names(file.getParent()), "no half file behind");
+    }
+
+
+    @TempDir
+    Path workdir;
+
+    /** A value that breaks while it is written, as a cut in the middle of the file. */
+    public static final class Bomb {
+        public String getValue() {
+            throw new IllegalStateException("se cortó la escritura");
+        }
+    }
+
+    private static CorrectionBatch batch(String id, Instant openedAt) {
+        CorrectionBatch batch = new CorrectionBatch();
+        batch.setId(id);
+        batch.setLevel(id.contains("A2") ? CefrLevel.A2 : CefrLevel.A1);
+        batch.setStatus(BatchStatus.OPEN);
+        batch.setBaselineAuditId("audit-20260929");
+        batch.setStartAuditId("audit-20260929");
+        batch.setPlanId("plan-20260929");
+        batch.setSettings(new BatchSettings(4, 4, 3));
+        batch.setTaskIds(new ArrayList<>(List.of("t-pista", "t-respuesta")));
+        batch.setOpenedAt(openedAt);
+        return batch;
+    }
+
+    private static List<String> names(Path dir) {
+        try (Stream<Path> files = Files.list(dir)) {
+            return files.map(f -> f.getFileName().toString()).sorted().toList();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    private static String read(Path file) {
+        try {
+            return Files.readString(file, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 }
