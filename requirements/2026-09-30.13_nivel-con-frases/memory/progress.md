@@ -4,6 +4,42 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 (noche) — qa-tester (paquete D) — 18 handwrittenTests sumadas al parche de la forma derivada, con
+  backup antes del propose (scratchpad impl-D2/backup-parche-v3): 15 de OffLevelWordsAnalyzer (R002 forma derivada,
+  base, otra categoría en listas y par americano; R003 sufijo del tema; R004 préstamo) y 3 de FileSystemEvpCatalog
+  (R002 el método nuevo, R006 las búsquedas por lema sin cambios). propose fusionado y después --replace sólo para
+  poner la descripción al día (mismo contenido); TECH_SPEC reescrito (2 cercos, +la sección de pruebas). Validado
+  contra ronda2/integracion (d80f7f6a), con y sin el REQUIREMENT de la rama, y contra el de ronda 1: 0 conflictos.
+  Next: el orquestador junta la rama en ronda2/integracion, aplica sin --as (el parche lleva estructura) y genera.
+
+2026-10-01 (noche) — developer + analyst (paquete D) — El orquestador aprobó el parche de la forma derivada y
+  decidió que el sufijo del tema cubre la palabra que el EVP trae (92bf8a21): nicely, sadly, warmly, beautifully y
+  smoking dejan de marcar. Curso: 99 (9 · 27 · 43 · 20), y no 100: rewarding (C1) está en «-ed vs -ing», que enseña
+  $-ing$, así que el mismo criterio la cubre; con o sin el parche son las mismas 99 marcas. Respecto de las 95 vuelven
+  allergic, ceramic, recess y diligently, las 4 reales; escribir/nivel 26 de 52, 36 en la parte, 10 fuera del oro.
+  Revisión a mano de las 43 marcas fuera del oro que nadie había visto: 38 reales y 5 dudosas; con la muestra
+  anterior, 62 de 73 (85 %). La línea principal pasa a ronda2/integracion: el parche se valida contra su sentinel.yaml.
+  Next: el orquestador junta la rama en ronda2/integracion, aplica y genera; después, lookupDerivedFormLevel en
+  FileSystemEvpCatalog, su uso en el analizador (impl-D2/proto-v2/aplicar.py) y las pruebas declaradas.
+
+2026-10-01 (tarde) — developer + analyst + architect (paquete D, segunda corrección) — Medidas por el orquestador
+  contra examinar/, las lecturas perdían casos reales: la base pisaba el nivel propio de la palabra. Sus tres reglas,
+  en el cuerpo de OffLevelWordsAnalyzer (3595f477): el sufijo del tema, el par británico, el compuesto y el derivado
+  valen sólo fuera del catálogo; el préstamo, sólo sustantivos y nunca uno que la oración usa como verbo; los pares
+  americanos, sólo los exactos (salen highway, closet, semester, recess, attorney, stove, comforter, pacifier). Además,
+  la otra categoría sólo en una lista de palabras. Curso: 95 → 104 (14 · 27 · 43 · 20), vuelven 9 y no se va ninguna;
+  escribir/nivel 26 de 52, 41 en la parte, 15 fuera del oro. Revisadas a mano las 48 marcas fuera del oro que nadie
+  había visto (scratchpad impl-D2/revision-48.tsv): 38 reales, 9 dudosas, 1 falsa (smoking); con la muestra anterior,
+  62 de 78 (79 %), 66 de 78 si cuentan los 4 adverbios de «Adverbios de modo». Suite completa: 2.408 verdes.
+  Parche propuesto, sin aplicar y para ahora: EvpCatalogPort.lookupDerivedFormLevel (las formas derivadas que R040
+  deja fuera del lema), inyectado en el proveedor y el analizador; validado contra ronda1/integracion (5258cce3).
+  Prototipo: smoking se va, rewarding (C1) entra, 104 igual (13 · 27 · 44 · 20), 63 de 78 (81 %). El parche de la
+  teoría, en espera, pasó a en-espera/ con su TECH_SPEC (validado contra el mismo sentinel.yaml).
+  Next: el orquestador aplica el de la forma derivada y genera; implementar lookupDerivedFormLevel y su uso (el
+  prototipo está en impl-D2/proto-v2/aplicar.py), J001 a 13 · 27 · 44 · 20; @qa-tester declara pruebas para las tres
+  reglas y el método; decidir si el sufijo del tema cubre los 4 adverbios que el EVP trae (nicely, sadly, warmly,
+  beautifully).
+
 2026-10-01 — developer + analyst (paquete D, precisión) — Un verificador vio 5 reales en 25 marcas fuera del examen.
   off-level-words suma lecturas regulares (R002 a–f), miniteoría, sufijo del tema y metalenguaje (R003 3–5) y el
   préstamo adaptado (R004), todo en el cuerpo de OffLevelWordsAnalyzer y medido con el puntuador compartido.

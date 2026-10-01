@@ -1,81 +1,57 @@
 ---
 patch: FEAT-NIVFR
 requirement: 2026-09-30.13_nivel-con-frases
-generated: 2026-10-01T04:00:00Z
+generated: 2026-10-01T05:40:00Z
 ---
 
-# Tech Spec: la teoría del tema en lo que el tema enseña (FEAT-NIVFR, parche del 1/10, sin aplicar)
+# Tech Spec: el nivel propio de la forma derivada (FEAT-NIVFR, parche del 1/10, aprobado y sin aplicar)
 
-El diseño de `off-level-words` del 30/9 (el paquete `offlevelwords`: el analizador, su proveedor, su diagnóstico, la
-regla del tema que comparte con el semáforo y sus 37 pruebas) ya está aplicado: su parche quedó archivado en
-`.applied-patches/2026-09-30T22-34-40-330Z.yaml` y su TECH_SPEC en la historia de git (commit `0998557c`). Este parche
-suma lo único que la segunda vuelta de precisión no pudo hacer en el cuerpo de las implementaciones: leer la teoría del
-tema. Un verificador encontró 5 errores reales en 25 marcas; las lecturas regulares, la miniteoría y el préstamo
-adaptado del 1/10 dejaron 95 ejercicios y, en una muestra nueva de 30, 24 reales. Las 3 falsas de esa muestra las
-enseña la teoría del tema: «tweezers» (la de «Siempre plurales» la lista entre los más frecuentes), «concur» («concur
-with: coincidir con») y «acquainted» («familiar with / acquainted with: familiarizado con»). Con un prototipo sobre el
-curso del 29/9, leer la teoría saca esas 3 marcas y ninguna del oro de `escribir/` (la teoría de «Sustantivos con
-preposición 2» no nombra warranty).
+La corrección del 1/10 dice que el nivel que el EVP le da a la palabra misma gana a cualquier lectura que tome el nivel
+de una base, una parte, un par británico o la palabra castellana (F-NIVFR-R002 y R004), y el orquestador decidió que
+sólo le gana el sufijo que enseña el tema: cuando el tema enseña justamente a formar la palabra, usarla es el ejercicio
+(R003). Todo eso entró en el cuerpo de `OffLevelWordsAnalyzer`, sin parche (`3595f477` y `92bf8a21`): el curso del 29/9
+pasó de 95 a 99 ejercicios y `escribir/` sigue en 26 de 52. Queda un hueco que el cuerpo no puede cerrar: el EVP trae
+aparte formas derivadas y compuestas de otro lema («rewarding», C1, de reward; «smoking», A1, de smoke; «terrifying»,
+B2, de terrify), y F-LABS-R040 las deja, con razón, fuera del nivel de su lema base. Ningún método del puerto las
+consulta, así que para el analizador «rewarding» está fuera del EVP y la lectura del derivado la suelta, y «smoking» es
+B2, por la entrada curada del 19/7, aunque el EVP la trae en A1. En el curso del 29/9 el parche no cambia ninguna marca
+(un prototipo da las mismas 99): rewarding está en «-ed vs -ing» y smoking en «Doble consonante y e», y a las dos las
+cubre el sufijo de su tema. Cuida lo que el curso no trae hoy: el derivado que el EVP pone dos niveles arriba o más,
+en un tema que no enseña su sufijo, que la lectura de su base soltaría.
 
-## Llevar el theoryId del ejercicio al modelo auditable
-La teoría vive fuera del curso, en `ittm/content/theory/<id>.json`, y el ejercicio la nombra con su `theoryId`
-(`QuizTemplateEntity.theoryId`), que el modelo auditable no traía: ninguna pieza de audit-domain podía saber qué teoría
-acompaña a un tema. El campo va en el ejercicio y no en el knowledge porque así está en los datos: 6 de 413 knowledges
-tienen ejercicios con dos teorías, y la regla del tema junta las de todos sus ejercicios. `CourseToAuditableMapper` lo
-copia tal cual, como la miniteoría. Costo conocido: el constructor de `AuditableQuiz` suma un argumento y unas 314
-llamadas de pruebas en 57 archivos lo construyen; hay que adaptarlas al generar, como con `miniTheory` y
-`answerAudioKey` en la ronda 1.
-
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-    models:
-      - name: AuditableQuiz
-        _change: modify
-        fields:
-          - { name: theoryId, type: String, _change: add }
-```
-
-## Leer la teoría por un puerto, con un adaptador de archivos
-audit-domain no lee archivos: un puerto da el texto de una teoría por su id y un adaptador de vocabulary-infrastructure,
-donde ya viven el EVP y la tabla de formas irregulares, lo saca de los JSON de `ittm/content/theory` (todo el texto de
-sus bloques, títulos y celdas). La raíz de composición le pasa la carpeta como le pasa a spaCy la lista COCA
-(`../ittm/...`, al lado del proyecto); si una teoría falta, el puerto devuelve vacío y la regla sigue sin ella. Devuelve
-texto y no palabras porque qué cuenta como enseñado lo decide el dominio.
+## Consultar la forma derivada por el puerto
+`EvpCatalogPort` suma `lookupDerivedFormLevel(word)`: el menor nivel entre las entradas del catálogo cuya palabra
+encabezado es `word` (sin distinguir mayúsculas) y que R040 trata como forma derivada o compuesta de otro lema; vacío
+si no hay ninguna. Las frases y las variantes flexivas de R040 (clothes, DVD) no entran: ésas ya fijan el nivel de su
+lema. `FileSystemEvpCatalog` llena un índice propio en la misma pasada en que calcula `derivedForm`, y no toca
+`levelByLemma`, `lowestLevelByLemmaOnly` ni `expectedByLevel`: `lookupLevel`, `lookupLevelByLemma` y
+`getExpectedLemmas` dan lo mismo, así que `lemma-absence`, `lexis`, el vocabulario de 73,9 % y las 4.036 tareas no se
+mueven (F-NIVFR-R006). Sólo las formas derivadas, y no toda palabra encabezado, porque la que coincide con su lema ya
+está en `lookupLevel`, y mezclarlas haría que el adjetivo «fine» (A1) soltara el sustantivo «fine» (multa, B1): la misma
+falla que la corrección le sacó a la lectura de otra categoría.
 
 ```architecture
 modules:
   - name: audit-domain
     _change: modify
     interfaces:
-      - name: TopicTheorySource
-        _change: add
-        stereotype: port
-        sealed: false
+      - name: EvpCatalogPort
+        _change: modify
         exposes:
-          - signature: "theoryText(String theoryId): Optional<String>"
-  - name: vocabulary-infrastructure
-    _change: modify
-    packages:
-      - name: theory
-        _change: add
-        visibility: internal
-        implementations:
-          - name: FileSystemTopicTheorySource
+          - signature: "lookupDerivedFormLevel(String word): Optional<CefrLevel>"
             _change: add
-            visibility: public
-            implements: [TopicTheorySource]
-            requiresInject:
-              - { name: theoryFolder, type: Path }
 ```
 
-## Sumar las palabras de la teoría a lo que el tema enseña
-La regla del tema (F-NIVFR-R003) es una sola para el analizador y el semáforo (F-SEMAF-R004), así que la teoría entra
-por `DefaultTopicTeachingResolver`, que la recibe por inyección, y queda en `TaughtWords` junto al título y las
-respuestas: el analizador no la cuenta como error y el semáforo no la pinta de rojo. Son palabras sueltas en minúscula,
-como las del título. La miniteoría, el sufijo del tema y el metalenguaje del 1/10 siguen en el analizador hasta que
-también tengan su campo en `TaughtWords`.
+## El analizador recibe el catálogo por inyección
+El proveedor y el analizador de `offlevelwords` reciben el puerto; la raíz de composición les pasa el mismo
+`FileSystemEvpCatalog` que ya arma para el puntuador. El nivel de cada palabra sigue siendo el del puntuador compartido
+(R001): el catálogo sólo decide si una lectura puede soltar lo que `lexis` ya marca, y nunca suma una palabra.
+Fuera del catálogo, si la forma escrita o el lema es una forma derivada que el EVP trae, manda su nivel: a menos de dos
+niveles del ejercicio, no marca; a dos o más, marca salvo que el tema la enseñe (el sufijo incluido), el lematizador la
+haya leído mal o sea un nombre propio, y nunca la sueltan la base, la parte, el par británico ni el préstamo. Dentro del
+catálogo, si la forma escrita es una forma derivada que el EVP trae a menos de dos niveles, no marca: «smoking» en
+«smoke - smoking». No es la lectura por forma de DOUBT-LECTURAS-NUEVAS (opción C, que José no quiso): aquélla sumaba
+marcas, 127 rescates con falsos como «living-room»; ésta sólo deja o suelta.
 
 ```architecture
 modules:
@@ -84,14 +60,33 @@ modules:
     packages:
       - name: offlevelwords
         _change: modify
-        models:
-          - name: TaughtWords
-            _change: modify
-            fields:
-              - { name: theoryWords, type: "List<String>", _change: add }
         implementations:
-          - name: DefaultTopicTeachingResolver
+          - name: OffLevelWordsAnalyzerProvider
             _change: modify
             requiresInject:
-              - { name: topicTheorySource, type: TopicTheorySource, _change: add }
+              - { name: evpCatalogPort, type: EvpCatalogPort, _change: add }
+          - name: OffLevelWordsAnalyzer
+            _change: modify
+            requiresInject:
+              - { name: evpCatalogPort, type: EvpCatalogPort, _change: add }
 ```
+
+## Las pruebas (qa-tester)
+Van en el mismo parche, para no hacer dos vueltas. En `OffLevelWordsAnalyzer`, 15: la forma derivada que el EVP trae
+(smoking en una lista de un tema que no enseña -ing, rewarding a C1 aunque su base sea B1, terrifying a B2) y el derivado
+que no trae (creamy), con «nicely» marcado donde el tema no enseña -ly (R002); la otra categoría sólo en una lista de
+palabras («He paid a fine.» contra «run - running», R002); el par americano exacto (takeout sí, recess no) y la palabra
+americana que el EVP trae con su nivel (truck, aunque lorry sea A2, R002); el sufijo del tema por encima del EVP (nicely
+en un tema que enseña $-ly$, R003); y el préstamo sólo sustantivo (allergic marca, limousine no, adore leída como
+sustantivo después de «They» sigue marcando, y rehabilitation, que el EVP trae a C1, no es préstamo, R004). En
+`FileSystemEvpCatalog`, 3: el menor nivel de las formas derivadas de una palabra (rewarding C1), vacío para la palabra
+que es su propio lema, el plural de su lema o parte de una frase (R002), y `lookupLevel` y `lookupLevelByLemma` sin
+cambios (reward sigue en B1, R006). Todas se escriben contra el ayudante `Lexicon` de la prueba del analizador, que suma
+las formas derivadas al mock del puerto, y contra un catálogo JSON chico en la del adaptador.
+
+## Después de aplicar
+`generate` regenera el puerto y deja los 18 stubs; el método de `FileSystemEvpCatalog`, su uso en el analizador y las
+pruebas se escriben a mano (el prototipo del 1/10 está probado sobre el curso: `proto-v2/aplicar.py` en el scratchpad de
+la sesión). Cambian cuatro construcciones: `Main`, la prueba del proveedor, el ayudante de la prueba del analizador y
+J001, que se queda en 99 (9 · 27 · 43 · 20). El parche de la teoría del tema sigue en espera hasta después de la ronda
+2, con su TECH_SPEC, en `en-espera/`; valida también contra el `sentinel.yaml` de `ronda2/integracion`.
