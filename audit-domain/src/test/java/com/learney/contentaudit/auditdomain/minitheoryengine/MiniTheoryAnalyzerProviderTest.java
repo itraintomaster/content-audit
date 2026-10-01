@@ -1,7 +1,34 @@
 package com.learney.contentaudit.auditdomain.minitheoryengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryAssessment;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryProblem;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdict;
+import com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryAnalyzerTest.Topic;
+import com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryAnalyzerTest.World;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,37 +42,137 @@ public class MiniTheoryAnalyzerProviderTest {
     @DisplayName("should publish the name mini-theory and open its judge through the judges runtime under that name, so a version without an approved exam gets budget 0")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldPublishTheNameMinitheoryAndOpenItsJudgeThroughTheJudgesRuntimeUnderThatNameSoAVersionWithoutAnApprovedExamGetsBudget0(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // v1 approved its exam only as another judge: as mini-theory it has none.
+        World world = World.approvedFor("quiz-instruction");
+        Topic gerundio = MiniTheoryAnalyzerTest.gerundio();
+        world.holds(gerundio);
+
+        assertEquals("mini-theory", world.provider.analyzerName());
+        AuditNode root = world.run(MiniTheoryAnalyzerTest.course(gerundio), MiniTheoryAnalyzerTest.budget(5));
+
+        assertEquals(List.of("mini-theory@v1"), world.exams.askedFor, "its exam is looked up under its own name");
+        assertEquals(0, world.judge.calls(), "a version without an approved exam: budget 0, whatever the run asked");
+        JudgeCoverageDiagnosis coverage = MiniTheoryAnalyzerTest.coverageOf(root);
+        assertEquals("mini-theory", coverage.getJudgeName());
+        assertEquals(JudgeExamStatus.NOT_TAKEN, coverage.getStanding().getStatus());
+        assertFalse(coverage.getStanding().isConsultsOnCourse());
+        assertTrue(coverage.getStanding().getReason().startsWith("sin examen"), coverage.getStanding().getReason());
+        for (AuditNode exercise : MiniTheoryAnalyzerTest.exercisesOf(root, gerundio.id)) {
+            MiniTheoryAnalyzerTest.assertUnevaluated(exercise);
+        }
+
+        // The same version approved as mini-theory consults within the budget the run asked.
+        World approved = World.approved();
+        approved.holds(gerundio);
+        approved.run(MiniTheoryAnalyzerTest.course(gerundio), MiniTheoryAnalyzerTest.budget(5));
+        assertEquals(1, approved.judge.calls());
     }
 
     @Test
     @DisplayName("should publish a card with family errors, paid model cost, the quiz as evaluated level and the rules false-rule, overstated-rule, contradicting-exercise and uncovered-exercise")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R002")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldPublishACardWithFamilyErrorsPaidModelCostTheQuizAsEvaluatedLevelAndTheRulesFalseruleOverstatedruleContradictingexerciseAndUncoveredexercise(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        MiniTheoryAnalyzerProvider provider = World.approved().provider;
+
+        AnalyzerDescriptor card = provider.describe();
+
+        assertEquals("mini-theory", card.getName());
+        assertEquals("Miniteoría", card.getDisplayName(), "its Spanish name (F-RONDA1-R004)");
+        assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
+        assertEquals(AnalysisCost.PAID_MODEL, card.getCost());
+        assertEquals(AuditTarget.QUIZ, card.getTarget());
+        assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets(),
+                "asked once per topic, it evaluates the exercise, where the error counts");
+        List<String> rules = new ArrayList<>();
+        for (AnalyzerRuleCard rule : card.getRules()) {
+            rules.add(rule.getId());
+            assertEquals(AnalysisCost.PAID_MODEL, rule.getCost(), rule.getId() + " is judged by a paid model");
+            assertFalse(rule.getDescription().isBlank());
+        }
+        assertEquals(List.of("false-rule", "overstated-rule", "contradicting-exercise", "uncovered-exercise"), rules);
+        assertEquals("¿La regla de la tarjeta es cierta, y ningún ejercicio del tema la contradice?",
+                card.getQuestion());
+        assertFalse(card.getReads().isBlank());
+        assertFalse(card.getGoal().isBlank());
+        // The catalog validates the card at startup and publishes it.
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(Optional.of(card), catalog.find("mini-theory"));
     }
 
     @Test
     @DisplayName("should declare in its card the panel as resolution of its four rules")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R007")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldDeclareInItsCardThePanelAsResolutionOfItsFourRules() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        assertEquals(List.of(FindingResolution.PANEL), world.provider.describe().getResolutions());
+
+        // A topic where each of the four rules leaves its finding: all go to the panel.
+        Topic repaso = new Topic("A2", "k-repaso", "Repaso de A2", List.of(
+                MiniTheoryAnalyzerTest.cloze("q-1", "She has", "a", "friend who lives in Paris.",
+                        "She has a friend who lives in Paris.", MiniTheoryAnalyzerTest.ARTICLES),
+                MiniTheoryAnalyzerTest.cloze("q-2", "They stopped", "eating", "(eat).", "They stopped eating.",
+                        MiniTheoryAnalyzerTest.STOP_ING),
+                MiniTheoryAnalyzerTest.cloze("q-3", "She can", "swims", "(swim).", "She can swims.", CAN_BASE),
+                MiniTheoryAnalyzerTest.cloze("q-4", "I called", "him", "(he).", "I called him.", SHE_HER)));
+        world.answers(repaso, new MiniTheoryVerdict(List.of(
+                new MiniTheoryAssessment(1, false, MiniTheoryProblem.FALSE_RULE, FindingSeverity.HIGH,
+                        "a friend who lives in Paris", List.of(1), "Con who también va a."),
+                new MiniTheoryAssessment(2, false, MiniTheoryProblem.OVERSTATED, FindingSeverity.MEDIUM,
+                        "They stopped to eat.", List.of(2), "stop también va con to."),
+                new MiniTheoryAssessment(3, true, MiniTheoryProblem.CONTRADICTED_BY_EXERCISE, FindingSeverity.HIGH,
+                        null, List.of(3), "E3 acepta swims después de can."),
+                new MiniTheoryAssessment(4, true, MiniTheoryProblem.NOT_COVERING_EXERCISE, FindingSeverity.LOW,
+                        null, List.of(4), "E4 es de he/him.")), "Cuatro problemas."));
+
+        AuditNode root = world.run(MiniTheoryAnalyzerTest.course(repaso), MiniTheoryAnalyzerTest.budget(1));
+
+        Set<String> rules = new LinkedHashSet<>();
+        for (AuditNode exercise : MiniTheoryAnalyzerTest.exercisesOf(root, repaso.id)) {
+            for (Finding finding : exercise.getFindings()) {
+                assertEquals(FindingResolution.PANEL, finding.getResolution(), finding.getRule() + " goes to the panel");
+                assertEquals(AnalysisCost.PAID_MODEL, finding.getCost());
+                rules.add(finding.getRule());
+            }
+        }
+        assertEquals(Set.of("false-rule", "overstated-rule", "contradicting-exercise", "uncovered-exercise"), rules,
+                "the four rules, each resolved at the panel");
     }
 
     @Test
     @DisplayName("should bind its scores below 1 to the plan as MINI_THEORY tasks on quizzes")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R004")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldBindItsScoresBelow1ToThePlanAsMINITHEORYTasksOnQuizzes() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        Topic gerundio = MiniTheoryAnalyzerTest.gerundio();
+        world.overstates(gerundio, MiniTheoryAnalyzerTest.STOP_ING, List.of(1));
+
+        Optional<AnalyzerPlanBinding> binding = world.provider.planBinding();
+
+        assertTrue(binding.isPresent());
+        assertEquals("MINI_THEORY", binding.get().getTaskKind());
+        assertEquals(List.of(AuditTarget.QUIZ), binding.get().getTaskTargets());
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(world.provider));
+        assertEquals(binding, catalog.planBinding("mini-theory"), "the catalog accepts it: it evaluates the quiz");
+
+        // Its scores below 1 are on the exercises, where those tasks go.
+        AuditNode root = world.run(MiniTheoryAnalyzerTest.course(gerundio), MiniTheoryAnalyzerTest.budget(1));
+        List<String> below = new ArrayList<>();
+        for (AuditNode exercise : MiniTheoryAnalyzerTest.exercisesOf(root, gerundio.id)) {
+            assertEquals(AuditTarget.QUIZ, exercise.getTarget());
+            if (exercise.getScores().get("mini-theory") < 1.0) {
+                below.add(((AuditableQuiz) exercise.getEntity()).getId());
+            }
+        }
+        assertEquals(List.of("q-ger-1", "q-ger-2", "q-ger-3"), below, "the three that show the overstated card");
     }
+
+    static final String CAN_BASE = "Después de can va el verbo en forma base.";
+
+    static final String SHE_HER = "Antes del verbo va she. Después del verbo o de una preposición va her.";
 }
