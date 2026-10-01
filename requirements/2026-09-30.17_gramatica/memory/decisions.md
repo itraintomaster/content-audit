@@ -5,6 +5,16 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analista y arquitecto (qa-tester B, por el coordinador) — R001 inv. 5: la lista «a / b» dentro de una
+  oración ya cerrada, con el hueco después, se lee con la respuesta en el lugar de la lista y su mayúscula: «Something
+  was wrong with the telephone.». Son 40 de A2 y en los 40 es el texto con que se grabó el audio. El arreglo vive sólo en
+  DefaultFinishedSentenceReader (Gramática y Naturalidad): el ejercicio terminado del renderizador compartido (`get
+  student-view`) sigue «Something / anything was wrong with the telephone. Something», congelado para los jueces (C-07).
+  why: leída sin la respuesta, daba el signo final falso de …396f y 15 marcas de A2 de Naturalidad que no eran del curso.
+2026-10-01 — analista (qa-tester B) — R003 y el Contexto pasan a contar con la lectura de R001: 8 signos finales, todos
+  reales (el prototipo daba 10: la etiqueta tras «Link type:» y …396f), y 47 ejercicios con hallazgo, 36 reales. En las
+  40 oraciones de la inv. 5, LanguageTool 6.5 (el del prototipo) no da marcas que pasen el filtro (medido el 1/10).
+
 2026-10-01 — analista (qa-tester B, por el coordinador) — Los casos de R004 dicen lo que dice la regla: de los 13
   «videogames», los 5 que están dentro de la respuesta de una reescritura (…294b, …404c, …41e0, …4552, …47f8) son alta,
   y los 8 del texto fijo, media. La regla no cambia; el TECH_SPEC, igual.

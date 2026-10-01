@@ -47,7 +47,10 @@ versión a la vista, qué pasa si falta la herramienta, candidatos de la mesa—
 > 2. si la respuesta es la oración entera, sólo ésa, sin la oración de partida; un diálogo se lee entero;
 > 3. las contracciones van pegadas a su palabra y los signos, sin espacio antes;
 > 4. si la opción es una etiqueta puesta después de la oración (*defining*, *sequence*, *correct*), se lee la oración
->    sola; y un ejercicio de juicio cuya respuesta es «not correct» no se lee, porque su oración está mal a propósito.
+>    sola; y un ejercicio de juicio cuya respuesta es «not correct» no se lee, porque su oración está mal a propósito;
+> 5. si la lista «a / b» está dentro de una oración ya cerrada y el hueco va después, la respuesta va en el lugar de la
+>    lista, con la mayúscula de la lista: «Something / anything was wrong with the telephone.» con «Something» se lee
+>    «Something was wrong with the telephone.».
 
 <details><summary>Detalle y medidas sobre la base del 29/9</summary>
 
@@ -63,6 +66,15 @@ de oración, y eso no se toca ([F-HALL-R013](#F-HALL-R013)).
 
 La contraída y la larga son la misma respuesta (decisión de José, ronda 1): `grammar` lee las dos si las dos están
 aceptadas, nunca marca una contra la otra y nunca dice que falta una. Eso último es de Respuestas completas (FEAT-RESPC).
+
+La invariante 5 alcanza a 40 ejercicios, todos de A2, en *Indefinidos con some o any* y *Indefinidos con every o no*:
+el alumno escribe después de la oración la palabra de la lista que va. En los 40, la oración leída así es el texto con
+que se grabó su audio ([F-RONDA1-R003](#F-RONDA1-R003)), como «He did something to help.» (`…396b`). Leídas sin la
+respuesta, como hacía el prototipo, quedaban oraciones como «He did to help.»: una daba un signo final falso (`…396f`,
+[F-GRAMA-R003](#F-GRAMA-R003)) y 15 eran marcas de A2 de Naturalidad que no venían del curso (FEAT-NATUR). El ejercicio
+terminado de la vista que leen los jueces ([F-RONDA1-R001](#F-RONDA1-R001) inv. 2) no cambia —sigue «Something /
+anything was wrong with the telephone. Something»—, porque los jueces calculan su huella sobre él: esta lectura es sólo
+la de Gramática y Naturalidad (coordinador, 1/10).
 
 </details>
 
@@ -103,8 +115,9 @@ La lista de las que contradicen al curso es SINGULAR_AGREEMENT_SENT_START, la de
 > Una oración terminada con verbo, de tres palabras o más y que empieza con mayúscula, que no termina en «.», «?» o
 > «!», tiene un hallazgo *baja*; también una pregunta que empieza con auxiliar y sujeto y termina en punto.
 
-Hoy: 10, y 8 son reales: «I heard a funny noise», «She offered me cookies», «Did Michael give us these scarves.». Los
-otros dos son una etiqueta tras «Link type:» y un pedazo de oración. El 077 los puso en gramática, *baja*.
+Con la lectura de R001 son 8, todas reales: «I heard a funny noise», «She offered me cookies», «Did Michael give us these
+scarves.». El prototipo daba 10: los otros dos eran la etiqueta tras «Link type:», que no se lee (R001 inv. 4), y «was
+wrong with the telephone.», la lista leída sin su respuesta (R001 inv. 5). El 077 los puso en gramática, *baja*.
 
 <a id="F-GRAMA-R004"></a>
 ### Rule[F-GRAMA-R004] - La gravedad depende de dónde está el error
@@ -183,7 +196,9 @@ B1 y B2 del 077 salen de los porcentajes de la propuesta (1,0 % y 1,5 %). De los
 repeticiones pegadas al hueco de R004, 13 «videogames», 7 espacios que faltan—, 3 discutibles («those ones», «a
 water») y 10 falsos («The artist … gave a speech» → «give»). «He've had» no es bloqueante: con R004 es *alta*, porque
 toca una respuesta aceptada y se puede acertar. **Precisión**: unas 7 de cada 10 (36 de 49). **Costo**: todo el curso en unos 10 segundos más 1 de
-arranque, en la máquina.
+arranque, en la máquina. Con la lectura de R001 salen dos de los 10 falsos, los signos finales de la etiqueta tras «Link
+type:» (B1, inv. 4) y de la lista de `…396f` (A2, inv. 5): quedan 47 ejercicios con hallazgo y 36 reales. En las 40
+oraciones de la inv. 5, LanguageTool 6.5 no da ninguna marca que pase el filtro de R002 (medido el 1/10, sin modelo).
 
 **El examen.** Sobre los 47 de `escribir/gramatica.json` encuentra 4 (8,5 %): «explained us» y tres signos finales.
 Marca 23 en esa parte, 19 fuera del oro, muchos reales de otras categorías (los «11.I» están en el oro de pista).

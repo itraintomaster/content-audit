@@ -20,8 +20,12 @@ was» (110) y un «..» tras una nota: con ella LanguageTool dio 920 marcas, con
 el largo de oración (F-HALL-R013), así que Gramática arma la suya y la plana no se toca. Es una por respuesta aceptada
 porque R001 lee todas, la contraída y la larga, y cada una trae dónde quedó cada respuesta: con eso se sabe si una marca
 toca una respuesta aceptada o repite lo pegado al hueco. Recibe el modo del tema porque en una reescritura la respuesta
-es la oración entera y la de partida no se lee. No es el ejercicio terminado del renderizador del integrador (A-01),
-que conserva la oración de partida porque así lo pide Duplicados exactos: las dos lecturas conviven a propósito (B-20).
+es la oración entera y la de partida no se lee. Cuando la lista «a / b» está dentro de una oración ya cerrada y el hueco
+va después (40 ejercicios de A2), pone la respuesta en el lugar de la lista, con su mayúscula: «Something was wrong with
+the telephone.», el texto con que se grabó el audio de cada uno (R001 inv. 5, el coordinador el 1/10). No es el
+ejercicio terminado del renderizador del integrador (A-01), que conserva la oración de partida porque así lo pide
+Duplicados exactos y que en esos 40 dice «Something / anything was wrong with the telephone. Something»: está congelado
+para los jueces (C-07) y no se toca. Las dos lecturas conviven a propósito (B-20).
 
 ```architecture
 modules:
@@ -110,7 +114,8 @@ modules:
 R003 marca la oración con verbo, de tres palabras o más y con mayúscula que no cierra con «.», «?» o «!», y la pregunta
 que empieza con auxiliar y sujeto y cierra con punto. «Con verbo» y «empieza con auxiliar» piden categorías
 gramaticales, y el ejercicio ya las trae: los tokens de spaCy que el curso calcula al cargarse. Así no hace falta un
-segundo analizador de lenguaje. Hoy son 10 marcas, 8 reales, y 3 de los 4 aciertos del examen.
+segundo analizador de lenguaje. Con la lectura de R001 son 8 marcas, todas reales, y 3 de los 4 aciertos del examen;
+el prototipo daba 10 porque leía la etiqueta tras «Link type:» y la lista de `…396f` sin su respuesta.
 
 ```architecture
 modules:
@@ -258,8 +263,8 @@ Las pruebas no llaman a LanguageTool: usan un doble de `GrammarChecker` con las 
 (`scratchpad/ronda2-B/lt/marcas-us.tsv` y `marcas-gb.tsv`). Casos reales: «He ___ (own) a bike for a while.»
 (`…3f81`), alta; «Have the neighbors been making ___ (the neighbors / make) noise?» (`…320a`), bloqueante y regla;
 «A: She's choosing her clothers.» (`…33a1`), media; «…slept until 11.I slept…», baja y regla. La lectura se prueba con
-ejercicios del curso: «They 're» queda «They're», la opción «-» no deja texto, la pista «was / were» no se lee y un
-juicio con «not correct» no se lee. La prueba con LanguageTool de verdad lleva la etiqueta `herramienta-real`: la 6.8
+ejercicios del curso: «They 're» queda «They're», la opción «-» no deja texto, la pista «was / were» no se lee, un
+juicio con «not correct» no se lee y la lista de una oración cerrada deja la respuesta en su lugar, como el audio. La prueba con LanguageTool de verdad lleva la etiqueta `herramienta-real`: la 6.8
 marca «teached» y «explained us» en las dos variantes. El examen (R007) se rinde con `exam run grammar` y se mide con
 `medir.py`: al menos 4 de los 47 de `escribir/gramatica.json`, y 7 de cada 10 reales en 50 marcas fuera del oro. Hasta
 que se registre el examen de «LanguageTool 6.8 · su filtro», `grammar` queda sin evaluar, también en la corrida base
@@ -284,17 +289,19 @@ features:
     code: F-GRAMA
 ```
 
-## Declarar las 44 pruebas y ubicar el journey
+## Declarar las 48 pruebas y ubicar el journey
 
-Las 44 son nuevas: no hay pruebas previas de estas reglas que portar. Cada una traza a una regla de FEAT-GRAMA (R001 10,
-R002 12, R003 4, R004 8, R005 2, R006 5, R007 3) y lleva un caso del curso del 29/9; las marcas son las que grabó el
+Las 48 son nuevas: no hay pruebas previas de estas reglas que portar. Cada una traza a una regla de FEAT-GRAMA (R001 13,
+R002 12, R003 5, R004 8, R005 2, R006 5, R007 3) y lleva un caso del curso del 29/9; las marcas son las que grabó el
 prototipo (`scratchpad/ronda2-B/lt/all-en-US.tsv` y `all-en-GB.tsv`), que el doble de `GrammarChecker` devuelve tal cual.
 
 - **La lectura (R001)**, en `DefaultFinishedSentenceReader`: una oración por respuesta aceptada (`…3f64`, «She's run» y
   «She has run»), sin la pista ni la lista pegada al hueco (`…351a`), sin texto por la opción «-» (`…2354`), sólo la
   respuesta en una reescritura (`…439d`), el diálogo entero (`…2627`), «They're» pegado (`…1fb1`), sin la etiqueta
   «Link type: sequence» (`…305e`) y el juicio: «not correct» no se lee (`…3512`), «correct» sí, sin la etiqueta
-  (`…3510`). La posición de cada respuesta (R004) también es suya.
+  (`…3510`). La posición de cada respuesta (R004) también es suya. Y la invariante 5: la respuesta en el lugar de la
+  lista (`…396f`), con la mayúscula de la lista (`…3969`), y los 40 de A2 iguales al texto de su audio grabado; con
+  eso, `…396f` ya no da un signo final falso (R003, en `GrammarAnalyzer`).
 - **El filtro (R002)**, en `DefaultGrammarMatchFilter`: lo que dan las dos variantes («teached», `…439d`; «explained
   us», `…2bb4`) y las dos de datos («noise noise», «11.I»); afuera lo de una sola variante («theatre», `…2ce0`;
   «traveled», `…34fd`), mayúsculas (`…3a69`), la «i» de una opción (`…250b`), estilo (`…3a20`), compuestos (`…4958`) y
