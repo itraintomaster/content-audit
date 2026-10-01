@@ -146,10 +146,10 @@ public class AnswerCompletenessAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should resolve by adding it after «|» a missing form the new corrector still rejects, as «has trained» if «He ___ (train) hard today.» only accepted «'s trained», a limit of the corrector")
+    @DisplayName("should only rank a missing form of a class the corrector in production equates and still rejects, naming the rule the corrector lacks instead of adding it after «|», as «has trained» if «He ___ (train) hard today.» only accepted «'s trained»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R005")
-    public void shouldResolveByAddingItAfterAMissingFormTheNewCorrectorStillRejectsAsHasTrainedIfHeTrainHardTodayOnlyAcceptedSTrainedALimitOfTheCorrector(
+    public void shouldOnlyRankAMissingFormOfAClassTheCorrectorInProductionEquatesAndStillRejectsNamingTheRuleTheCorrectorLacksInsteadOfAddingItAfterAsHasTrainedIfHeTrainHardTodayOnlyAcceptedSTrained(
             ) {
         // R005: «He ___ (train) hard today.» (…3061, A2) accepts «'s trained|has trained». With only «'s trained»,
         // the corrector in production equates the contractions and still rejects «has trained»: it cannot tell

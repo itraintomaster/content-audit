@@ -22,10 +22,10 @@ import org.junit.jupiter.api.Test;
 )
 public class AnswerCompletenessAnalyzerProviderTest {
     @Test
-    @DisplayName("should describe answer-completeness in the catalog as an errors analyzer that evaluates exercises, resolves by rule or at the panel and costs instant, asking «¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?»")
+    @DisplayName("should describe answer-completeness in the catalog as an errors analyzer that evaluates exercises, resolves by rule, at the panel or by ranking only, and costs instant, asking «¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R006")
-    public void shouldDescribeAnswercompletenessInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleOrAtThePanelAndCostsInstantAskingElCorrectorAceptaTodasLasFormasDeLaRespuestaYNingunaConsignaPideUna(
+    public void shouldDescribeAnswercompletenessInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleAtThePanelOrByRankingOnlyAndCostsInstantAskingElCorrectorAceptaTodasLasFormasDeLaRespuestaYNingunaConsignaPideUna(
             ) {
         // R006 and F-HALL-R006: the card the catalog validates at startup, with the Spanish name of F-RONDA1-R004;
         // no task kind (package E's) and no configuration.
