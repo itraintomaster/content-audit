@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — La foto con lo aprobado se mide siempre, aunque no haya aprobadas, para que las dos fotos tengan la misma medida; sin pendientes que entren, la proyección es esa misma foto. El `scopeId` es el de la tanda o, sin tanda, el id del plan activo: así la muestra ciega y el veredicto se encuentran.
+  why: R001 y R003; F-METAS-R008 lee la muestra por el id del alcance.
+
+2026-10-01 — developer — Una proyección guardada por par activo: `proyeccion-<audit>-<plan>`; guardar otra del mismo par la reemplaza. `load(id)` cae a `projections/` (F-05); `list`, `loadLatest`, `loadDigest` y `StoreHelper` siguen viendo sólo `audits/`.
+
 2026-10-01 — architect — El tope de la proyección dice lo mismo que R003 (pedido del orquestador): `ProjectionScope.analyzerBudgets` vale sólo para los analizadores que el pedido nombra; el resto mide con la política de analyze, y `DefaultProjectionMeasurer` pasa vacía su política, que el proveedor completa según a quién consulta (lo local sin tope, claude -p con 0). Alineadas también «Dar a la proyección un solo contrato» y «Medir cada foto…». Sin cambios de estructura.
   why: F-RONDA2-R002 inv. 1, el runner no completa la política; si el medidor pusiera 0, naturalness y near-duplicates con Ollama quedarían sin evaluar en la proyección.
 

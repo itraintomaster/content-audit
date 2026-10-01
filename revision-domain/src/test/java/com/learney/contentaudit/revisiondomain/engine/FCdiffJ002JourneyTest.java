@@ -86,10 +86,7 @@ public class FCdiffJ002JourneyTest {
     void setUp() {
         // Usamos el NodeFieldDiffer real para verificar R019/R020/R023
         NodeFieldDiffer realDiffer = new DefaultNodeFieldDifferFactory().create();
-        builder = new DefaultConsolidatedViewBuilder(
-                revisionArtifactStore, activeAnalysisSelectionStore,
-                auditReportStore, refinementPlanStore, courseRepository,
-                courseElementLocator, courseMapper, auditEngine, realDiffer, null);
+        builder = new DefaultConsolidatedViewBuilder(realDiffer, new DefaultCourseProjector(activeAnalysisSelectionStore, auditReportStore, refinementPlanStore, revisionArtifactStore, courseRepository, new DefaultPendingApplier(courseElementLocator), new DefaultProjectionMeasurer(courseMapper, auditEngine)));
     }
 
     private AuditNode quizNodeWith(String id, int tokenCount, int delta) {

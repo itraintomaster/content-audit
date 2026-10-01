@@ -1,7 +1,12 @@
 package com.learney.contentaudit.revisiondomain.blindsampleengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.learney.contentaudit.revisiondomain.blindsample.PairAnswer;
+import com.learney.contentaudit.revisiondomain.blindsample.ProportionEstimate;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,36 +20,74 @@ public class DefaultSampleStatisticsTest {
     @DisplayName("should give 95 of 100 the share 95% with the 95% Wilson interval [88.8; 97.8], 1 of 100 [0.2; 5.4] and 4 of 100 [1.6; 9.8]")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldGive95Of100TheShare95WithThe95WilsonInterval8889781Of1000254And4Of1001698() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultSampleStatistics statistics = new DefaultSampleStatistics();
+
+        ProportionEstimate betterOrEqual = statistics.proportion(95, 100);
+        ProportionEstimate worse = statistics.proportion(1, 100);
+        ProportionEstimate bothWrong = statistics.proportion(4, 100);
+
+        assertEquals(0.95, betterOrEqual.getShare(), 1e-12, "R004: 95 %");
+        assertEquals(95, betterOrEqual.getCount());
+        assertEquals(100, betterOrEqual.getTotal());
+        assertEquals(88.8, betterOrEqual.getLower95() * 100, 0.05, "R004: [88,8; 97,8]");
+        assertEquals(97.8, betterOrEqual.getUpper95() * 100, 0.05);
+        assertEquals(0.2, worse.getLower95() * 100, 0.05, "R004: [0,2; 5,4]");
+        assertEquals(5.4, worse.getUpper95() * 100, 0.05);
+        assertEquals(1.6, bothWrong.getLower95() * 100, 0.05, "R004: [1,6; 9,8]");
+        assertEquals(9.8, bothWrong.getUpper95() * 100, 0.05);
     }
 
     @Test
     @DisplayName("should give 0 of 100 a one-sided 95% upper bound of 3.0%, 2 of 300 a bound of 2.1% and 2 of 400 a bound of 1.6%")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldGive0Of100AOnesided95UpperBoundOf302Of300ABoundOf21And2Of400ABoundOf16() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultSampleStatistics statistics = new DefaultSampleStatistics();
+
+        assertEquals(3.0, statistics.proportion(0, 100).getUpperOneSided95() * 100, 0.05,
+                "R004: 0 of 100 cannot show less than 3,0 %");
+        assertEquals(2.1, statistics.proportion(2, 300).getUpperOneSided95() * 100, 0.05, "R004: 2 of 300, 2,1 %");
+        assertEquals(1.6, statistics.proportion(2, 400).getUpperOneSided95() * 100, 0.05, "R004: 2 of 400, 1,6 %");
+        assertEquals(1 - Math.pow(0.05, 1.0 / 100), statistics.proportion(0, 100).getUpperOneSided95(), 1e-12,
+                "R004: the exact bound, (1 − p)^100 = 5 %");
     }
 
     @Test
     @DisplayName("should give Cohen's kappa 1 to two reviewers who answer every common pair alike and 0 to two who agree only as often as chance")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R005")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldGiveCohensKappa1ToTwoReviewersWhoAnswerEveryCommonPairAlikeAnd0ToTwoWhoAgreeOnlyAsOftenAsChance(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultSampleStatistics statistics = new DefaultSampleStatistics();
+        List<PairAnswer> jose = new ArrayList<>();
+        for (int i = 0; i < 30; i++) {
+            jose.add(PairAnswer.values()[i % 4]);
+        }
+
+        assertEquals(1.0, statistics.kappa(jose, new ArrayList<>(jose)), 1e-12, "R005: alike in every pair");
+        List<PairAnswer> chanceA = List.of(PairAnswer.A_BETTER, PairAnswer.A_BETTER, PairAnswer.B_BETTER,
+                PairAnswer.B_BETTER);
+        List<PairAnswer> chanceB = List.of(PairAnswer.A_BETTER, PairAnswer.B_BETTER, PairAnswer.A_BETTER,
+                PairAnswer.B_BETTER);
+        assertEquals(0.0, statistics.kappa(chanceA, chanceB), 1e-12, "R005: alike half the time, as chance");
     }
 
     @Test
     @DisplayName("should give 400 exercises a 95% margin of 4.3 points at 25.7% and of 2.1 points at 5%")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldGive400ExercisesA95MarginOf43PointsAt257AndOf21PointsAt5() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultSampleStatistics statistics = new DefaultSampleStatistics();
+
+        ProportionEstimate start = statistics.proportion(103, 400);
+        ProportionEstimate end = statistics.proportion(20, 400);
+
+        assertEquals(25.7, start.getShare() * 100, 0.06, "R006: «algún error» of the proposal v2");
+        assertEquals(4.3, DefaultSampleStatistics.margin(start) * 100, 0.05, "R006: ±4,3 points with 400");
+        assertEquals(5.0, end.getShare() * 100, 1e-9);
+        assertEquals(2.1, DefaultSampleStatistics.margin(end) * 100, 0.05, "R006: ±2,1 points at 5 %");
+        assertEquals(4.3, (start.getUpper95() - start.getLower95()) / 2 * 100, 0.05,
+                "R006: the Wilson interval it publishes is as wide");
     }
 }

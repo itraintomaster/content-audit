@@ -1,7 +1,43 @@
 package com.learney.contentaudit.revisiondomain.comparisonengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditEngine;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerErrorCounts;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerScore;
+import com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers;
+import com.learney.contentaudit.auditdomain.contextnumbers.ErrorCounts;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeAttribution;
+import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
+import com.learney.contentaudit.revisiondomain.comparison.FloorBreach;
+import com.learney.contentaudit.revisiondomain.comparison.GoalReference;
+import com.learney.contentaudit.revisiondomain.comparison.GoalStatus;
+import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
+import com.learney.contentaudit.revisiondomain.comparison.RowGoalStatus;
+import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjection;
+import com.learney.contentaudit.revisiondomain.projection.ProjectedChange;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,19 +51,227 @@ public class LeaveOneOutChangeAttributorTest {
     @DisplayName("should put first, with -1 point, the single change that lowers the vocabulary of A1 by one point while the others do not move it")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldPutFirstWith1PointTheSingleChangeThatLowersTheVocabularyOfA1ByOnePointWhileTheOthersDoNotMoveIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Motor motor = new Motor();
+        Map<String, String> start = Motor.clean();
+        Map<String, String> batch = new LinkedHashMap<>(start);
+        batch.put(Q2, "We know our grandmother.");
+        batch.put(Q5, "I work every single day.");
+        batch.put(Q8, "They walk home together.");
+        CourseProjection projection = motor.projection(start, batch, cambio("p-q5", Q5), cambio("p-q2", Q2),
+                cambio("p-q8", Q8), new ProjectedChange("aprobada-q9", AuditTarget.QUIZ, Q9, false));
+        assertEquals(99.0, Motor.vocabularyOfA1(projection.getProjected()) * 100, 1e-9, "the batch lowers A1 a point");
+
+        List<FloorBreach> attributed = new LeaveOneOutChangeAttributor(motor).attribute(projection,
+                List.of(breach("vocabulario", AnalyzerFamily.VOCABULARY, GoalUnit.POINTS)));
+
+        assertEquals(1, attributed.size());
+        List<ChangeAttribution> changes = attributed.get(0).getAttributions();
+        assertEquals("p-q2", changes.get(0).getProposalId(), "R004: the change that lowers it goes first");
+        assertEquals(Q2, changes.get(0).getNodeId());
+        assertEquals(-1.0, changes.get(0).getEffect(), 1e-9, "R004: with −1 point");
+        assertEquals(GoalUnit.POINTS, changes.get(0).getUnit());
+        assertEquals(1, changes.size(), "R004: the ones that do not move it are not named");
+        assertEquals("piso de vocabulario · vocabulario · MILESTONE", attributed.get(0).getGoalId());
+        assertEquals(3, motor.runs.size(), "R004: one run per change of the batch, none for an approved one");
+        for (AnalyzerRunSelection selection : motor.runs) {
+            assertEquals(List.of("lemma-absence", "hint-coherence"), selection.getAnalyzers(),
+                    "R004: with the analyzers of the projection");
+        }
     }
 
     @Test
     @DisplayName("should order the changes by how much each one worsens the broken number alone, the projection minus the projection without it, in points or in exercises")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldOrderTheChangesByHowMuchEachOneWorsensTheBrokenNumberAloneTheProjectionMinusTheProjectionWithoutItInPointsOrInExercises(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Motor motor = new Motor();
+        Map<String, String> start = Motor.clean();
+        start.put(Q3, "I love a fortnight of vegetables.");
+        start.put(Q4, "She sports hats.");
+        Map<String, String> batch = new LinkedHashMap<>(start);
+        batch.put(Q2, "We know our grandmother.");                          // −1 point
+        batch.put(Q1, "My grandmother and my godmother come every year."); // −2 points
+        batch.put(Q3, "I love vegetables.");                               // +1 point
+        batch.put(Q4, "She wears hats.");                                  // one error fewer
+        batch.put(Q6, "She sports a hat every day.");                      // one error more
+        batch.put(Q5, "I work every single day.");                         // moves nothing
+        CourseProjection projection = motor.projection(start, batch, cambio("p-q2", Q2), cambio("p-q1", Q1),
+                cambio("p-q3", Q3), cambio("p-q4", Q4), cambio("p-q6", Q6), cambio("p-q5", Q5));
+
+        List<FloorBreach> attributed = new LeaveOneOutChangeAttributor(motor).attribute(projection, List.of(
+                breach("vocabulario", AnalyzerFamily.VOCABULARY, GoalUnit.POINTS),
+                breach("hint-coherence", AnalyzerFamily.ERRORS, GoalUnit.EXERCISES)));
+
+        List<ChangeAttribution> points = attributed.get(0).getAttributions();
+        assertEquals(List.of("p-q1", "p-q2", "p-q3"), points.stream().map(ChangeAttribution::getProposalId).toList(),
+                "R004: the one that lowers the score most first; the one that raises it last");
+        assertEquals(-2.0, points.get(0).getEffect(), 1e-9, "R004: the projection minus the projection without it");
+        assertEquals(-1.0, points.get(1).getEffect(), 1e-9);
+        assertEquals(1.0, points.get(2).getEffect(), 1e-9);
+        assertTrue(points.stream().allMatch(a -> a.getUnit() == GoalUnit.POINTS), "R004: in points");
+
+        List<ChangeAttribution> exercises = attributed.get(1).getAttributions();
+        assertEquals(List.of("p-q6", "p-q4"), exercises.stream().map(ChangeAttribution::getProposalId).toList(),
+                "R004: the one that adds an error first");
+        assertEquals(1.0, exercises.get(0).getEffect(), 1e-9);
+        assertEquals(-1.0, exercises.get(1).getEffect(), 1e-9);
+        assertTrue(exercises.stream().allMatch(a -> a.getUnit() == GoalUnit.EXERCISES), "R004: in exercises");
+        assertEquals(6, motor.runs.size(), "R004: one run per change, for both floors at once");
+    }
+
+    static final String A1 = "6814dafa7d73e7209a13d382";
+    static final String PRESENT_SIMPLE = "6814dafa7d73e7209a13d383";
+    static final String REGULAR = "6814dafa7d73e7209a13d389";
+    static final String Q1 = "67fab6d59930102295341ec4";
+    static final String Q2 = "67fab6d59930102295341ecb";
+    static final String Q3 = "67fab6d59930102295341ecd";
+    static final String Q4 = "67fab6d59930102295341ed6";
+    static final String Q5 = "67fab6d59930102295342000";
+    static final String Q6 = "67fab6d59930102295342001";
+    static final String Q7 = "67fab6d59930102295342002";
+    static final String Q8 = "67fab6d59930102295342003";
+    static final String Q9 = "67fab6d59930102295342004";
+    static final String Q10 = "67fab6d59930102295342005";
+
+    static ProjectedChange cambio(String proposalId, String quizId) {
+        return new ProjectedChange(proposalId, AuditTarget.QUIZ, quizId, true);
+    }
+
+    static FloorBreach breach(String subject, AnalyzerFamily family, GoalUnit unit) {
+        String goal = (family == AnalyzerFamily.VOCABULARY ? "piso de vocabulario · " : "piso de errores · ") + subject
+                + " · MILESTONE";
+        ComparisonRow row = new ComparisonRow(subject, family, AuditTarget.MILESTONE, A1, "A1", null, null, null, null,
+                null, unit, new RowGoalStatus(goal, family == AnalyzerFamily.VOCABULARY ? 0.5 : 0.0, unit,
+                        family == AnalyzerFamily.VOCABULARY ? GoalReference.BASELINE : GoalReference.BATCH_START,
+                        GoalStatus.NOT_MET), null);
+        return new FloorBreach(goal, row, new ArrayList<>());
+    }
+
+    /**
+     * An engine that measures A1 -- one knowledge of ten exercises -- as lemma-absence and hint-coherence would:
+     * each word of another level takes 0,1 from its exercise («grandmother» and «godmother» are A2, «fortnight»
+     * B2), and «sports» as a verb is an error. Ten exercises: a word of another level is one point of A1.
+     */
+    static final class Motor implements AuditEngine {
+        private static final Set<String> OFF_LEVEL = Set.of("grandmother", "godmother", "fortnight");
+        final List<AnalyzerRunSelection> runs = new ArrayList<>();
+
+        static Map<String, String> clean() {
+            Map<String, String> sentences = new LinkedHashMap<>();
+            sentences.put(Q1, "It comes every year.");
+            sentences.put(Q2, "We know each other.");
+            sentences.put(Q3, "I love vegetables.");
+            sentences.put(Q4, "She wears hats.");
+            sentences.put(Q5, "I work every day.");
+            sentences.put(Q6, "She wears a hat every day.");
+            sentences.put(Q7, "They live here.");
+            sentences.put(Q8, "They walk home.");
+            sentences.put(Q9, "We cook dinner.");
+            sentences.put(Q10, "He reads books.");
+            return sentences;
+        }
+
+        CourseProjection projection(Map<String, String> start, Map<String, String> batch, ProjectedChange... changes) {
+            AuditReport approved = runAudit(course(start), new AnalyzerRunSelection(List.of("lemma-absence",
+                    "hint-coherence"), Map.of()));
+            AuditReport projected = runAudit(course(batch), new AnalyzerRunSelection(List.of("lemma-absence",
+                    "hint-coherence"), Map.of()));
+            runs.clear();
+            return new CourseProjection("2026-09-30T11-54-02", "2026-09-30T11-54-12", "tanda-1",
+                    ConsolidatedViewAvailability.AVAILABLE, null, approved, approved, projected, List.of(changes),
+                    List.of());
+        }
+
+        static double vocabularyOfA1(AuditReport report) {
+            return report.getRoot().getChildren().get(0).getNumbers().getVocabularyScore();
+        }
+
+        @Override
+        public AuditReport runAudit(AuditableCourse course) {
+            throw new AssertionError("the attributor measures with the analyzers of the projection");
+        }
+
+        @Override
+        public AuditReport runAudit(AuditableCourse course, AnalyzerRunSelection selection) {
+            runs.add(selection);
+            AuditNode root = node(null, AuditTarget.COURSE, null);
+            for (AuditableMilestone milestone : course.getMilestones()) {
+                AuditNode level = node(milestone, AuditTarget.MILESTONE, root);
+                for (AuditableTopic topic : milestone.getTopics()) {
+                    AuditNode topicNode = node(topic, AuditTarget.TOPIC, level);
+                    for (AuditableKnowledge knowledge : topic.getKnowledge()) {
+                        AuditNode knowledgeNode = node(knowledge, AuditTarget.KNOWLEDGE, topicNode);
+                        for (AuditableQuiz quiz : knowledge.getQuizzes()) {
+                            node(quiz, AuditTarget.QUIZ, knowledgeNode);
+                        }
+                    }
+                }
+            }
+            numbers(root);
+            root.setMeasures(new ArrayList<>(List.of(new AnalyzerMeasure("lemma-absence", "la", Map.of()),
+                    new AnalyzerMeasure("hint-coherence", "hc", Map.of()))));
+            return new AuditReport(root);
+        }
+
+        private static AuditNode node(AuditableEntity entity, AuditTarget target, AuditNode parent) {
+            AuditNode node = new AuditNode(entity, target, parent, new ArrayList<>(), new LinkedHashMap<>(),
+                    new LinkedHashMap<>(), null);
+            if (parent != null) {
+                parent.getChildren().add(node);
+            }
+            return node;
+        }
+
+        /** Sums up the exercises below a node: the average score and the exercises with an error. */
+        private static double[] numbers(AuditNode node) {
+            double sum = 0.0;
+            int quizzes = 0;
+            int errors = 0;
+            if (node.getTarget() == AuditTarget.QUIZ) {
+                String sentence = ((AuditableQuiz) node.getEntity()).getSentences().get(0).toLowerCase(Locale.ROOT);
+                double score = 1.0;
+                for (String word : sentence.split("[^a-z]+")) {
+                    if (OFF_LEVEL.contains(word)) {
+                        score -= 0.1;
+                    }
+                }
+                sum = score;
+                quizzes = 1;
+                errors = sentence.contains("sports") ? 1 : 0;
+            } else {
+                for (AuditNode child : node.getChildren()) {
+                    double[] below = numbers(child);
+                    sum += below[0];
+                    quizzes += (int) below[1];
+                    errors += (int) below[2];
+                }
+            }
+            double average = quizzes > 0 ? sum / quizzes : 1.0;
+            node.getScores().put("lemma-absence", average);
+            node.setNumbers(new ContextNumbers(average,
+                    List.of(new AnalyzerScore("lemma-absence", AnalyzerFamily.VOCABULARY, average, List.of())),
+                    new ErrorCounts(quizzes, errors, quizzes > 0 ? (double) errors / quizzes : 0.0, null, 0,
+                            List.of(new AnalyzerErrorCounts("hint-coherence", quizzes, quizzes, 0, errors,
+                                    quizzes > 0 ? (double) errors / quizzes : 0.0, 0, 0))),
+                    List.of()));
+            return new double[] {sum, quizzes, errors};
+        }
+
+        private static AuditableCourse course(Map<String, String> sentences) {
+            List<AuditableQuiz> quizzes = new ArrayList<>();
+            for (Map.Entry<String, String> quiz : sentences.entrySet()) {
+                quizzes.add(new AuditableQuiz(List.of(), quiz.getKey(), quiz.getValue(), quiz.getKey(), null,
+                        List.of(quiz.getValue()), quiz.getValue(), "Escribe la forma correcta.", List.of(), null, null,
+                        null));
+            }
+            AuditableKnowledge regular = new AuditableKnowledge(quizzes, "Afirmativas regulares",
+                    "Escribe la forma correcta.", true, REGULAR, "Afirmativas regulares", REGULAR, SentenceMode.FILL,
+                    "Present Simple");
+            AuditableTopic presentSimple = new AuditableTopic(List.of(regular), PRESENT_SIMPLE, "Present Simple", "a1.01");
+            return new AuditableCourse(List.of(new AuditableMilestone(List.of(presentSimple), A1, "A1", "A1")));
+        }
     }
 }

@@ -1,13 +1,17 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.auditdomain.ActiveAnalysisSelection;
+import com.learney.contentaudit.auditdomain.Baseline;
+
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Instant;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -276,26 +280,73 @@ public class PruneCmdTest {
     @DisplayName("should keep the baseline 2026-09-30T11-54-02 after three new analyses and prune audits --keep 3, saying «Kept the baseline 2026-09-30T11-54-02»")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldKeepTheBaseline20260930T115402AfterThreeNewAnalysesAndPruneAuditsKeep3SayingKeptTheBaseline20260930T115402() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(fDir);
+        historial.analysis("2026-09-30T11-54-02", "base");
+        historial.baselines.write(new Baseline("2026-09-30T11-54-02", Instant.parse("2026-09-30T12:00:00Z")));
+        for (String id : List.of("2026-10-01T06-11-09", "2026-10-02T06-11-09", "2026-10-03T06-11-09")) {
+            historial.analysis(id, "nuevo");
+        }
+        PruneCmd prune = new PruneCmd(auditReportStore, refinementPlanStore, historial.active, historial.baselines);
+        prune.setBaseDir(fDir);
+
+        FHistorial.Salida pruned = FHistorial.run(() -> prune.prune("audits", 3));
+
+        assertEquals(0, pruned.exit(), pruned.err());
+        assertTrue(pruned.out().contains("Kept the baseline 2026-09-30T11-54-02"), pruned.out());
+        assertTrue(pruned.out().contains("Kept 4 audits, removed 0."), "R006: the summary counts all it kept");
+        assertEquals(List.of("audit-2026-09-30T11-54-02.json", "audit-2026-10-01T06-11-09.json",
+                "audit-2026-10-02T06-11-09.json", "audit-2026-10-03T06-11-09.json"), historial.names("audits"));
     }
 
     @Test
     @DisplayName("should keep the active analysis although it is among the oldest, saying «Kept the active analysis <id>»")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldKeepTheActiveAnalysisAlthoughItIsAmongTheOldestSayingKeptTheActiveAnalysisId() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(fDir);
+        for (String id : List.of("2026-09-01T00-00-00", "2026-09-02T00-00-00", "2026-09-03T00-00-00",
+                "2026-09-04T00-00-00", "2026-09-05T00-00-00")) {
+            historial.analysis(id, "analisis");
+        }
+        historial.active.write(new ActiveAnalysisSelection("2026-09-01T00-00-00", "2026-09-01T00-05-00"));
+        PruneCmd prune = new PruneCmd(auditReportStore, refinementPlanStore, historial.active, historial.baselines);
+        prune.setBaseDir(fDir);
+
+        FHistorial.Salida pruned = FHistorial.run(() -> prune.prune("audits", 2));
+
+        assertEquals(0, pruned.exit(), pruned.err());
+        assertTrue(pruned.out().contains("Kept the active analysis 2026-09-01T00-00-00"), pruned.out());
+        assertTrue(pruned.out().contains("Kept 3 audits, removed 2."), pruned.out());
+        assertEquals(List.of("audit-2026-09-01T00-00-00.json", "audit-2026-09-04T00-00-00.json",
+                "audit-2026-09-05T00-00-00.json"), historial.names("audits"), "R006: the oldest stays, being the active one");
     }
 
     @Test
     @DisplayName("should neither count nor delete saved projections when pruning audits")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldNeitherCountNorDeleteSavedProjectionsWhenPruningAudits() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(fDir);
+        historial.analysis("2026-09-30T11-54-02", "analisis");
+        historial.analysis("2026-10-01T06-11-09", "analisis");
+        historial.projections.save(FHistorial.projection("2026-09-30T11-54-02", "2026-09-30T11-54-12",
+                "con-las-pendientes", List.of("task-042"), List.of()));
+        List<String> projections = historial.names("projections");
+        PruneCmd prune = new PruneCmd(auditReportStore, refinementPlanStore, historial.active, historial.baselines);
+        prune.setBaseDir(fDir);
+
+        FHistorial.Salida pruned = FHistorial.run(() -> prune.prune("audits", 1));
+
+        assertEquals(0, pruned.exit(), pruned.err());
+        assertTrue(pruned.out().contains("Kept 1 audits, removed 1."), "R004: two analyses, the projection not counted: "
+                + pruned.out());
+        assertEquals(List.of("audit-2026-10-01T06-11-09.json"), historial.names("audits"));
+        assertEquals(List.of("proyeccion-2026-09-30T11-54-02-2026-09-30T11-54-12.json",
+                "proyeccion-2026-09-30T11-54-02-2026-09-30T11-54-12.saved.json"), projections);
+        assertEquals(projections, historial.names("projections"), "R004: nor deleted");
     }
+
+    @TempDir
+    Path fDir;
 }

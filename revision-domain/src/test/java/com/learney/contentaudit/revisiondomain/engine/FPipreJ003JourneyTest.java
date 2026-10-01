@@ -55,7 +55,7 @@ public class FPipreJ003JourneyTest {
     @Mock private AuditReportStore auditReportStore;
 
     private ImpactPreviewComputer buildComputer() {
-        return new DefaultImpactPreviewComputer(courseMapper, auditEngine, elementLocator, auditReportStore, null, null);
+        return new DefaultImpactPreviewComputer(auditReportStore, new DefaultPendingApplier(elementLocator), new DefaultProjectionMeasurer(courseMapper, auditEngine));
     }
 
     @Test
@@ -81,14 +81,14 @@ public class FPipreJ003JourneyTest {
         // Step 2 (intentar_preview): System attempts to compute the preview.
         //   Gate: R001 (preview computed once per proposal), R002 (what-if, no AuditReport persisted).
         //   Decision: [El nodo objetivo se localiza en el curso simulado] → preview_ok
-        AuditNode quizBaseline = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizBaseline = new AuditNode(quizEntity(nodeId), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.50), Map.of(), null);
         AuditNode courseBaseline = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizBaseline),
                 Map.of("lemma-absence", 0.55), Map.of(), null);
         AuditReport baselineReport = new AuditReport(courseBaseline);
 
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
-        AuditNode quizSim = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizSim = new AuditNode(quizEntity(nodeId), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.65), Map.of(), null);
         AuditNode courseSim = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizSim),
                 Map.of("lemma-absence", 0.60), Map.of(), null);
@@ -100,11 +100,13 @@ public class FPipreJ003JourneyTest {
         publishVocabularyScore(quizSim, 0.65);
         publishVocabularyScore(courseSim, 0.60);
 
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
+        // FEAT-PROYU (F-PROYU-R007): both ends are measured with the analyzers of the analysis the
+        // task came from: the course of that moment first, then the course with the proposal.
+        when(auditReportStore.load("audit-j003")).thenReturn(Optional.of(baselineReport));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(snapshot));
         when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
+        when(auditEngine.runAudit(any())).thenReturn(baselineReport, simulatedReport);
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -163,10 +165,9 @@ public class FPipreJ003JourneyTest {
                 new AuditNode(null, AuditTarget.COURSE, null, List.of(),
                         Map.of("lemma-absence", 0.50), Map.of(), null)
         );
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
-        // elementLocator.snapshot returns empty => node absent
+        when(auditReportStore.load("audit-j003")).thenReturn(Optional.of(baselineReport));
+        // elementLocator.snapshot returns empty => node absent, nothing is written nor measured
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.empty());
-        when(elementLocator.replace(any(), any())).thenReturn(course);
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -189,6 +190,12 @@ public class FPipreJ003JourneyTest {
                 "detail must be a non-blank human-readable cause (R009)");
         assertTrue(preview.getLevelImpacts().isEmpty(),
                 "levelImpacts must be empty for UNAVAILABLE preview");
+    }
+
+    /** The entity of a quiz node: the impact finds the node of the proposal by its id. */
+    private static com.learney.contentaudit.auditdomain.AuditableQuiz quizEntity(String id) {
+        return new com.learney.contentaudit.auditdomain.AuditableQuiz(List.of(), id, id, null, null, List.of(), null,
+                null, List.of(), null, null, null);
     }
 
     private static void publishVocabularyScore(AuditNode node, double score) {

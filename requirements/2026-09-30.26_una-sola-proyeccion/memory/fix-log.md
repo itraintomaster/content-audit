@@ -5,6 +5,13 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — La base fd91447c no compilaba (FEAT-CALUM generado sin cuerpos): se trabajó con un andamio local sin commitear y, cuando el integrador cerró CALUM (6376f4a2), se juntó ronda2/integracion. El andamio 3f05e4c2 quedó colgando y fuera de la rama.
+  why: el orquestador pidió no tocar los archivos de CALUM para no chocar al juntar.
+
+2026-10-01 — developer — F-CDIFF-R013 se rompía con el proyector nuevo: una aprobada que no entra por otra causa que ELEMENT_BEFORE_MISMATCH es INCONSISTENT_PROPOSAL; la que no entra porque approve ya la escribió se ignora sin declararla.
+
+2026-10-01 — developer — Guardar un análisis con un id dado en las pruebas: `FileSystemAuditReportStore.save` nombra por el segundo; se guarda y se renombra el informe y su digest enseguida (Workdir.save, FHistorial.analysis), si no dos guardados del mismo segundo se pisan.
+
 2026-10-01 — architect — Para cambiar la descripción de un campo por propose se reenvía el modelo entero (PatchMerger reemplaza los modelos por nombre) y, para una inyección, todas las inyecciones de la implementación (requiresInject entra entero si viene). Sin `_change` ni descripción del parche, la fusión conserva el `_change: add`, las pruebas y la descripción. Copia antes, ensayo sobre una copia y comparación después: cambiados 2, perdidos 0.
 
 2026-10-01 — qa-tester — Para sumar una prueba a un parche ya fusionado sin concatenar otra vez la descripción: copia del fusionado y del parche del arquitecto (bug 08), el del arquitecto de vuelta desde git y propose del parche de pruebas entero. Comparado con el fusionado anterior: 0 perdidos y sólo la prueba nueva.

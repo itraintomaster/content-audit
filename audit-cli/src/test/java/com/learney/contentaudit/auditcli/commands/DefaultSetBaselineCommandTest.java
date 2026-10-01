@@ -1,7 +1,20 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.ActiveAnalysisSelection;
+import com.learney.contentaudit.auditdomain.Baseline;
+import com.learney.contentaudit.revisiondomain.comparison.EffectiveGoals;
+import com.learney.contentaudit.revisiondomain.comparison.SealedGoals;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
+import org.junit.jupiter.api.io.TempDir;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,46 +28,108 @@ public class DefaultSetBaselineCommandTest {
     @DisplayName("should fix as the baseline an analysis of the history, as 2026-09-30T11-54-02, and show it with showBaseline")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldFixAsTheBaselineAnAnalysisOfTheHistoryAs20260930T115402AndShowItWithShowBaseline(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(dir);
+        historial.analysis("2026-09-30T11-54-02", "analisis");
+        DefaultSetBaselineCommand command = new DefaultSetBaselineCommand(historial.baselines, historial.audits);
+
+        FHistorial.Salida fixed = FHistorial.run(() -> command.setBaseline("2026-09-30T11-54-02"));
+        FHistorial.Salida shown = FHistorial.run(() -> command.showBaseline("text"));
+        FHistorial.Salida json = FHistorial.run(() -> command.showBaseline("json"));
+
+        assertEquals(0, fixed.exit(), fixed.err());
+        assertEquals("Baseline fixed: 2026-09-30T11-54-02", fixed.out().strip());
+        assertEquals("2026-09-30T11-54-02", historial.baselines.read().orElseThrow().getAuditId(),
+                "R006: kept in its own record");
+        assertTrue(shown.out().startsWith("Baseline: 2026-09-30T11-54-02 (fixed at "), shown.out());
+        assertTrue(json.out().contains("\"auditId\" : \"2026-09-30T11-54-02\""), json.out());
+        assertTrue(Files.exists(dir.resolve(".content-audit/baseline.json")));
     }
 
     @Test
     @DisplayName("should refuse an id that is not an analysis of the history with «Cannot fix '<id>' as the baseline: it is not an analysis in the history.»")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldRefuseAnIdThatIsNotAnAnalysisOfTheHistoryWithCannotFixIdAsTheBaselineItIsNotAnAnalysisInTheHistory(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(dir);
+        historial.analysis("2026-09-30T11-54-02", "analisis");
+        DefaultSetBaselineCommand command = new DefaultSetBaselineCommand(historial.baselines, historial.audits);
+
+        FHistorial.Salida refused = FHistorial.run(() -> command.setBaseline("2026-01-01T00-00-00"));
+
+        assertEquals(1, refused.exit());
+        assertEquals("Cannot fix '2026-01-01T00-00-00' as the baseline: it is not an analysis in the history.",
+                refused.err().strip());
+        assertEquals(Optional.empty(), historial.baselines.read(), "R006: nothing fixed");
     }
 
     @Test
     @DisplayName("should refuse to fix a saved projection as the baseline, although plan --audit accepts its id")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldRefuseToFixASavedProjectionAsTheBaselineAlthoughPlanAuditAcceptsItsId() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(dir);
+        historial.analysis("2026-09-30T11-54-02", "analisis");
+        String projection = historial.projections.save(FHistorial.projection("2026-09-30T11-54-02",
+                "2026-09-30T11-54-12", "proyeccion", List.of("p-1"), List.of())).getProjectionId();
+        DefaultSetBaselineCommand command = new DefaultSetBaselineCommand(historial.baselines, historial.audits);
+
+        FHistorial.Salida refused = FHistorial.run(() -> command.setBaseline(projection));
+
+        assertEquals("proyeccion-2026-09-30T11-54-02-2026-09-30T11-54-12", projection);
+        assertTrue(historial.audits.load(projection).isPresent(), "plan --audit accepts its id (F-PROYU-R005)");
+        assertEquals(1, refused.exit(), "R006: but it is not an analysis of the history");
+        assertEquals("Cannot fix '" + projection + "' as the baseline: it is not an analysis in the history.",
+                refused.err().strip());
+        assertEquals(Optional.empty(), historial.baselines.read());
     }
 
     @Test
     @DisplayName("should leave the active pair as it was when the baseline is fixed")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
-    public void shouldLeaveTheActivePairAsItWasWhenTheBaselineIsFixed() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldLeaveTheActivePairAsItWasWhenTheBaselineIsFixed() throws Exception {
+        FHistorial historial = new FHistorial(dir);
+        historial.analysis("2026-09-29T08-00-00", "base");
+        historial.analysis("2026-09-30T11-54-02", "analisis");
+        historial.active.write(new ActiveAnalysisSelection("2026-09-30T11-54-02", "2026-09-30T11-54-12"));
+        byte[] pair = Files.readAllBytes(dir.resolve(".content-audit").resolve(historial.names("").stream()
+                .filter(n -> n.contains("active")).findFirst().orElseThrow()));
+        DefaultSetBaselineCommand command = new DefaultSetBaselineCommand(historial.baselines, historial.audits);
+
+        FHistorial.Salida fixed = FHistorial.run(() -> command.setBaseline("2026-09-29T08-00-00"));
+
+        assertEquals(0, fixed.exit(), fixed.err());
+        ActiveAnalysisSelection active = historial.active.read().orElseThrow();
+        assertEquals("2026-09-30T11-54-02", active.getAuditId(), "R006: the active pair does not move");
+        assertEquals("2026-09-30T11-54-12", active.getPlanId());
+        assertArrayEquals(pair, Files.readAllBytes(dir.resolve(".content-audit").resolve(historial.names("").stream()
+                .filter(n -> n.contains("active")).findFirst().orElseThrow())), "R006: not a byte of it");
+        assertEquals("2026-09-29T08-00-00", historial.baselines.read().map(Baseline::getAuditId).orElseThrow());
     }
 
     @Test
     @DisplayName("should leave the sealed goals untouched when the baseline is fixed")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
-    public void shouldLeaveTheSealedGoalsUntouchedWhenTheBaselineIsFixed() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldLeaveTheSealedGoalsUntouchedWhenTheBaselineIsFixed() throws Exception {
+        FHistorial historial = new FHistorial(dir);
+        historial.analysis("2026-09-30T11-54-02", "analisis");
+        historial.sealedGoals.write(new SealedGoals(Instant.parse("2026-09-30T20:00:00Z"),
+                new EffectiveGoals("huella-de-las-metas", List.of(), null)));
+        Path sealed = dir.resolve(".content-audit/metas-fijadas.json");
+        byte[] before = Files.readAllBytes(sealed);
+        DefaultSetBaselineCommand command = new DefaultSetBaselineCommand(historial.baselines, historial.audits);
+
+        FHistorial.Salida fixed = FHistorial.run(() -> command.setBaseline("2026-09-30T11-54-02"));
+
+        assertEquals(0, fixed.exit(), fixed.err());
+        assertArrayEquals(before, Files.readAllBytes(sealed), "R006 (F-METAS): the sealed goals, byte for byte");
+        assertEquals("huella-de-las-metas", historial.sealedGoals.read().orElseThrow().getGoals().getFingerprint());
     }
+
+    @TempDir
+    Path dir;
 }

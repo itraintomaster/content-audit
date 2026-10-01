@@ -1,4 +1,23 @@
 package com.learney.contentaudit.auditdomain.lrec;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProviderTest;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.zip.GZIPInputStream;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
@@ -10,7 +29,6 @@ import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -97,8 +115,70 @@ public class LemmaRecurrenceAnalyzerProviderTest {
     @DisplayName("should create for every run an analyzer that counts positions from the start, so the recurrence of the course stays at 8.0% on a second run instead of falling to 4.0%")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldCreateForEveryRunAnAnalyzerThatCountsPositionsFromTheStartSoTheRecurrenceOfTheCourseStaysAt80OnASecondRunInsteadOfFallingTo40() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CERO-R001: lemma-recurrence counts the position of every token of the course from the start; with
+        // an analyzer per run, the 29/9 course gives 8,0 % on the second run of the same process too. An analyzer
+        // kept for the second run goes on from where the first ended, and falls to 4,0 %.
+        LemmaRecurrenceAnalyzerProvider provider = new LemmaRecurrenceAnalyzerProvider(config299());
+        IAuditEngine engine = CocaBucketsAnalyzerProviderTest.Coca299.engine(provider);
+
+        AuditReport first = engine.runAudit(streamCourseOf299());
+        AuditReport second = engine.runAudit(streamCourseOf299());
+
+        Assertions.assertEquals(0.08, first.getRoot().getScores().get("lemma-recurrence"), 1e-12, "8,0 % the first time");
+        Assertions.assertEquals(0.08, second.getRoot().getScores().get("lemma-recurrence"), 1e-12,
+                "R001: 8,0 % on the second run, as a new invocation");
+        IAuditEngine reusing = CocaBucketsAnalyzerProviderTest.Coca299.engine(
+                CocaBucketsAnalyzerProviderTest.Coca299.reusing(provider));
+        reusing.runAudit(streamCourseOf299());
+        Assertions.assertEquals(0.04, reusing.runAudit(streamCourseOf299()).getRoot().getScores().get("lemma-recurrence"),
+                1e-12, "an analyzer kept for the second run falls to 4,0 %");
+    }
+
+    /** The configuration of lemma-recurrence of the 29/9 analysis: top 2,000, 1,000 and 50 tokens. */
+    private static LemmaRecurrenceConfig config299() {
+        LemmaRecurrenceConfig config = Mockito.mock(LemmaRecurrenceConfig.class);
+        Mockito.when(config.getTop()).thenReturn(2000);
+        Mockito.when(config.getSubExposedThreshold()).thenReturn(1000.0);
+        Mockito.when(config.getOverExposedThreshold()).thenReturn(50.0);
+        Mockito.when(config.describe()).thenReturn(Map.of());
+        return config;
+    }
+
+    /**
+     * The 11,287 exercises of the 29/9 course, in order, under their levels and knowledges, with the lemma and
+     * part of speech of each of their 91,873 tokens (resource recur-2026-09-30/stream.tsv.gz).
+     */
+    private static AuditableCourse streamCourseOf299() {
+        Map<String, Map<String, List<AuditableQuiz>>> byLevel = new LinkedHashMap<>();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new GZIPInputStream(
+                LemmaRecurrenceAnalyzerProviderTest.class.getResourceAsStream("/recur-2026-09-30/stream.tsv.gz")),
+                StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split("\t", -1);
+                List<NlpToken> tokens = new ArrayList<>();
+                for (int i = 3; i < fields.length; i++) {
+                    int bar = fields[i].lastIndexOf('|');
+                    String pos = fields[i].substring(bar + 1);
+                    tokens.add(new NlpToken(fields[i].substring(0, bar), fields[i].substring(0, bar), pos, null, false,
+                            "PUNCT".equals(pos)));
+                }
+                byLevel.computeIfAbsent(fields[0], l -> new LinkedHashMap<>()).computeIfAbsent(fields[2], k -> new ArrayList<>())
+                        .add(new AuditableQuiz(tokens, fields[1], fields[1], "Q", null, List.of(), null, null, null, null,
+                                null, null));
+            }
+        } catch (IOException e) {
+            throw new AssertionError("the 29/9 stream is unreadable", e);
+        }
+        List<AuditableMilestone> milestones = new ArrayList<>();
+        byLevel.forEach((level, knowledges) -> {
+            List<AuditableKnowledge> themes = new ArrayList<>();
+            knowledges.forEach((id, quizzes) -> themes.add(new AuditableKnowledge(quizzes, id, "Consigna", true, id, id,
+                    "K", null, "Topic")));
+            milestones.add(new AuditableMilestone(List.of(new AuditableTopic(themes, "t-" + level, "Topic " + level, "T")),
+                    "m-" + level, level, level));
+        });
+        return new AuditableCourse(milestones);
     }
 }

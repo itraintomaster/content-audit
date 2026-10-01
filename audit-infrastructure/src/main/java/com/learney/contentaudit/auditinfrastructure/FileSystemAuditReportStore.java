@@ -148,13 +148,21 @@ public class FileSystemAuditReportStore implements AuditReportStore {
         return statement != null && !statement.isBlank() ? statement : fallback;
     }
 
+    /**
+     * The analysis with that id; if the history has none, the saved projection with that id
+     * (hook F-05, F-PROYU-R005), so {@code plan --audit <id>} and the suggested words query accept a
+     * saved projection as their source analysis. {@link #list()}, {@link #loadLatest()} and
+     * {@link #loadDigest(String)} keep seeing only {@code audits/}: a projection is never an analysis
+     * of the history (F-PROYU-R004).
+     */
     @Override
     public Optional<AuditReport> load(String id) {
         Path file = resolveAuditsDir().resolve(FILE_PREFIX + id + FILE_SUFFIX);
-        if (!Files.exists(file)) {
-            return Optional.empty();
+        if (Files.exists(file)) {
+            return Optional.of(loadFromFile(file));
         }
-        return Optional.of(loadFromFile(file));
+        return FileSystemProjectionStore.existingReportFile(baseDir, id)
+                .map(projection -> FileSystemProjectionStore.readReport(objectMapper, projection));
     }
 
     @Override

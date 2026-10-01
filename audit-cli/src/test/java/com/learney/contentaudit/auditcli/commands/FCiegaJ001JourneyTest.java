@@ -1,7 +1,29 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditcli.commands.FProyuJ001JourneyTest.Proyeccion299;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindPair;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSample;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSampleResult;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSampleService;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import org.junit.jupiter.api.io.TempDir;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,17 +43,116 @@ public class FCiegaJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador pide la muestra ciega de ... → Quien revisa ve cada par como lo ve e... → El operador cierra la muestra; conten... → content-audit publica mejor o igual, ... [La meta de la muestra se cumple con su criterio] → success")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void path1_laMetaDeLaMuestraSeCumpleConSuCriterio_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Proyeccion299.Workdir work = tanda();
+        Map<String, String> course = AnalyzeCmdTest.Base299.hashes(Proyeccion299.COURSE);
+        Map<String, String> history = work.hashes(".content-audit/audits");
+        BlindSampleService samples = work.blindSample(Proyeccion299.BANDS_OF_29_9);
+        DefaultBlindSampleCommand command = new DefaultBlindSampleCommand(samples);
+
+        // pedir: the sample of the batch, drawn with a seed among the changes that do not return.
+        AnalyzeCmdTest.Base299.Captured drawn = Proyeccion299.capture(() -> command.draw(
+                Proyeccion299.COURSE.toString(), List.of(), 20261001L, "text"));
+        assertEquals(0, drawn.exit(), drawn.err());
+        String id = sampleId(drawn.out());
+        BlindSample sample = work.samples.loadPairs(id).orElseThrow();
+        assertEquals(Set.of("p-" + Proyeccion299.OURSELVES, "p-" + Proyeccion299.VEGETABLES, "p-" + Proyeccion299.HATS),
+                new HashSet<>(sample.getPairs().stream().map(BlindPair::getProposalId).toList()),
+                "R001: «grandmother» returns, so it is not drawn");
+
+        // ver: each pair as the student sees it, without the side of the after.
+        AnalyzeCmdTest.Base299.Captured shown = Proyeccion299.capture(() -> command.show(id, "text"));
+        assertEquals(0, shown.exit(), shown.err());
+        assertTrue(shown.out().contains("I ___ (love) vegetables. Me encantan las verduras."), shown.out());
+        assertTrue(shown.out().contains("I ___ a lot of vegetables. Me gustan mucho las verduras."), shown.out());
+        assertFalse(shown.out().contains("p-" + Proyeccion299.VEGETABLES), "R002: no proposal while open");
+
+        // responder: José picks the after in every pair; the tester answers too, and only José counts.
+        FMetasJ001JourneyTest.answerAll(samples, sample, "José", false);
+        FMetasJ001JourneyTest.answerAll(samples, sample, "tester", true);
+
+        // cerrar
+        AnalyzeCmdTest.Base299.Captured closed = Proyeccion299.capture(() -> command.close(id, "text"));
+        assertEquals(0, closed.exit(), closed.err());
+        BlindSampleResult result = samples.result(id).orElseThrow();
+        assertEquals(3, result.getBetterOrEqual().getCount(), "R004: better or equal, José's");
+        assertEquals(0, result.getWorse().getCount());
+        assertTrue(result.isMeetsGoal(), "R004: the goal of José, counted");
+        assertTrue(closed.out().contains("Meets its goal."), closed.out());
+        assertTrue(closed.out().contains("the after is"), "R002: closed, the sides are revealed: " + closed.out());
+        assertEquals(3, result.getAgreement().getCommonPairs(), "R005: José and the tester on the same pairs");
+        // Without the grandmother proposal, which returns, the batch of the plan passes with this sample.
+        BatchComparison comparison = work.comparator(Proyeccion299.BANDS_OF_29_9).compare(Proyeccion299.COURSE,
+                new com.learney.contentaudit.revisiondomain.projection.ProjectionScope(null, List.of(
+                        "p-" + Proyeccion299.OURSELVES, "p-" + Proyeccion299.VEGETABLES, "p-" + Proyeccion299.HATS),
+                        null));
+        assertEquals(VerdictKind.PASSES, comparison.getVerdict().getKind(), "F-METAS-R008: the batch passes: "
+                + comparison.getVerdict().getDetail());
+        assertEquals(course, AnalyzeCmdTest.Base299.hashes(Proyeccion299.COURSE), "R003: the course as it was");
+        assertEquals(history, work.hashes(".content-audit/audits"), "R003: the history as it was");
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador pide la muestra ciega de ... → Quien revisa ve cada par como lo ve e... → El operador cierra la muestra; conten... → content-audit publica las tres propor... [La meta de la muestra no se cumple] → failure")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void path2_laMetaDeLaMuestraNoSeCumple_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Proyeccion299.Workdir work = tanda();
+        BlindSampleService samples = work.blindSample(Proyeccion299.BANDS_OF_29_9);
+        DefaultBlindSampleCommand command = new DefaultBlindSampleCommand(samples);
+        AnalyzeCmdTest.Base299.Captured drawn = Proyeccion299.capture(() -> command.draw(
+                Proyeccion299.COURSE.toString(), List.of(), 7L, "text"));
+        String id = sampleId(drawn.out());
+        BlindSample sample = work.samples.loadPairs(id).orElseThrow();
+
+        // José finds the before better in the first pair.
+        FMetasJ001JourneyTest.answerAll(samples, sample, "José", true);
+        AnalyzeCmdTest.Base299.Captured closed = Proyeccion299.capture(() -> command.close(id, "text"));
+
+        BlindSampleResult result = samples.result(id).orElseThrow();
+        assertEquals(1, result.getWorse().getCount(), "R004: one worse");
+        assertEquals(2, result.getBetterOrEqual().getCount());
+        assertFalse(result.isMeetsGoal(), "R004: at most 1 of 100 worse: 1 of 3 is far more");
+        assertTrue(result.getUnmetParts().contains("peores: 1 de 3, la meta es a lo sumo 1 de 100"),
+                "R004: and which part: " + result.getUnmetParts());
+        assertTrue(closed.out().contains("Does not meet its goal: "), closed.out());
+        BatchComparison comparison = work.comparator(Proyeccion299.BANDS_OF_29_9).compare(Proyeccion299.COURSE, null);
+        assertEquals(VerdictKind.FAILS, comparison.getVerdict().getKind(), "F-METAS-R008: the batch fails");
+        assertTrue(comparison.getVerdict().getDetail().contains("la muestra ciega " + id + " no cumple su meta"),
+                comparison.getVerdict().getDetail());
+    }
+
+    @TempDir
+    Path tmp;
+
+    /**
+     * The base of 29/9 as the active analysis and as the baseline, its plan with the three 077 fixes of
+     * «Afirmativas regulares» that no analyzer sees and the grandmother proposal, which returns; José's goals.
+     */
+    private Proyeccion299.Workdir tanda() {
+        Proyeccion299.Workdir work = new Proyeccion299.Workdir(tmp.resolve("trabajo"));
+        String audit = work.analyze("2026-09-30T11-54-02", Proyeccion299.BANDS_OF_29_9);
+        String plan = work.plan("2026-09-30T11-54-12", audit);
+        CourseEntity course = Proyeccion299.repository().load(Proyeccion299.COURSE);
+        for (String id : List.of(Proyeccion299.GRANDMOTHER, Proyeccion299.OURSELVES, Proyeccion299.VEGETABLES,
+                Proyeccion299.HATS)) {
+            QuizTemplateEntity before = Proyeccion299.quiz(course, id);
+            work.seed(Proyeccion299.pending("p-" + id, plan, audit, before, Proyeccion299.fixed(before),
+                    Proyeccion299.createdAt(id)));
+        }
+        work.activate(audit, plan);
+        work.fixBaseline(audit);
+        try {
+            work.declareGoals(Files.readString(Path.of("../analysis/metas.json"), StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+        return work;
+    }
+
+    private static String sampleId(String out) {
+        java.util.regex.Matcher id = java.util.regex.Pattern.compile("muestra-[0-9T-]+").matcher(out);
+        assertTrue(id.find(), "sample draw printed the id: " + out);
+        return id.group();
     }
 }

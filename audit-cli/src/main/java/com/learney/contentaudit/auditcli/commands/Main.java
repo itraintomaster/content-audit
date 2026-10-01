@@ -1308,6 +1308,15 @@ class Main {
         DefaultBlindSampleCommand blindSampleCommand = new DefaultBlindSampleCommand(blindSampleService);
         DefaultErrorRateCommand errorRateCommand = new DefaultErrorRateCommand(blindErrorRateService);
 
+        // F · FEAT-RONDA2 (hook F-06): the verbs of package F, each over its command above.
+        cmd.addSubcommand("set-baseline", new picocli.CommandLine(new SetBaselineCmd(setBaselineCommand)));
+        cmd.addSubcommand("save-projection", new picocli.CommandLine(new SaveProjectionCmd(saveProjectionCommand)));
+        cmd.addSubcommand("compare", new picocli.CommandLine(new CompareCmd(compareCommand)));
+        cmd.addSubcommand("get-goals", new picocli.CommandLine(new GoalsCmd.Get(goalsCommand)));
+        cmd.addSubcommand("set-goals", new picocli.CommandLine(new GoalsCmd.Set(goalsCommand)));
+        cmd.addSubcommand("sample", new picocli.CommandLine(new SampleCmd(blindSampleCommand)));
+        cmd.addSubcommand("error-rate", new picocli.CommandLine(new ErrorRateCmd(errorRateCommand)));
+
         // ----------------------------------------------------------------
         // Step 9: Execute
         // ----------------------------------------------------------------

@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.auditdomain.ActiveAnalysisSelection;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
+import com.learney.contentaudit.auditdomain.Baseline;
 import com.learney.contentaudit.auditdomain.BaselineStore;
 
 import com.learney.contentaudit.auditcli.DeleteCommand;
@@ -108,6 +110,25 @@ public DeleteCmd(AuditReportStore auditReportStore, RefinementPlanStore refineme
     }
 
     private int deleteAudit(String auditId) {
+        // F-PROYU-R006: the active analysis and the baseline are never deleted -- first the active one, then
+        // the baseline, even when no plan references it; then what was always checked.
+        if (activeAnalysisSelectionStore != null) {
+            Optional<ActiveAnalysisSelection> active = activeAnalysisSelectionStore.read();
+            if (active.isPresent() && auditId.equals(active.get().getAuditId())) {
+                System.err.println("Cannot delete audit '" + auditId + "': it is the active analysis. "
+                        + "Point 'set-active' to another analysis first.");
+                return 1;
+            }
+        }
+        if (baselineStore != null) {
+            Optional<Baseline> baseline = baselineStore.read();
+            if (baseline.isPresent() && auditId.equals(baseline.get().getAuditId())) {
+                System.err.println("Cannot delete audit '" + auditId + "': it is the baseline. "
+                        + "Fix another one with 'set-baseline' first.");
+                return 1;
+            }
+        }
+
         // Check if any plan references this audit (R002: refuse with list of referencing plan ids)
         List<String> referencingPlans = StoreHelper.listPlanIdsReferencingAudit(baseDir, auditId);
         if (!referencingPlans.isEmpty()) {

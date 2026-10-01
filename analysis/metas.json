@@ -1,0 +1,150 @@
+{
+  "familyFloors": [
+    {
+      "family": "ERRORS",
+      "threshold": 0,
+      "unit": "EXERCISES",
+      "reference": "BATCH_START",
+      "nodeTargets": ["KNOWLEDGE", "TOPIC", "MILESTONE", "COURSE"]
+    },
+    {
+      "family": "VOCABULARY",
+      "threshold": 0.5,
+      "unit": "POINTS",
+      "reference": "BASELINE",
+      "nodeTargets": ["MILESTONE", "COURSE"]
+    }
+  ],
+  "goals": [
+    {
+      "id": "avance · off-level-words · niveles",
+      "kind": "PROGRESS",
+      "subject": "off-level-words",
+      "nodeTarget": "MILESTONE",
+      "nodeId": null,
+      "threshold": 0,
+      "unit": "EXERCISES",
+      "reference": "ABSOLUTE",
+      "origin": "DECLARED"
+    },
+    {
+      "id": "avance · quiz-instruction · niveles",
+      "kind": "PROGRESS",
+      "subject": "quiz-instruction",
+      "nodeTarget": "MILESTONE",
+      "nodeId": null,
+      "threshold": 0,
+      "unit": "EXERCISES",
+      "reference": "ABSOLUTE",
+      "origin": "DECLARED"
+    },
+    {
+      "id": "avance · hint-coherence · niveles",
+      "kind": "PROGRESS",
+      "subject": "hint-coherence",
+      "nodeTarget": "MILESTONE",
+      "nodeId": null,
+      "threshold": 0,
+      "unit": "EXERCISES",
+      "reference": "ABSOLUTE",
+      "origin": "DECLARED"
+    },
+    {
+      "id": "avance · answer-completeness · niveles",
+      "kind": "PROGRESS",
+      "subject": "answer-completeness",
+      "nodeTarget": "MILESTONE",
+      "nodeId": null,
+      "threshold": 0,
+      "unit": "EXERCISES",
+      "reference": "ABSOLUTE",
+      "origin": "DECLARED"
+    },
+    {
+      "id": "avance · multiple-choice-validity · niveles",
+      "kind": "PROGRESS",
+      "subject": "multiple-choice-validity",
+      "nodeTarget": "MILESTONE",
+      "nodeId": null,
+      "threshold": 0,
+      "unit": "EXERCISES",
+      "reference": "ABSOLUTE",
+      "origin": "DECLARED"
+    },
+    {
+      "id": "avance · data-coherence · niveles",
+      "kind": "PROGRESS",
+      "subject": "data-coherence",
+      "nodeTarget": "MILESTONE",
+      "nodeId": null,
+      "threshold": 0,
+      "unit": "EXERCISES",
+      "reference": "ABSOLUTE",
+      "origin": "DECLARED"
+    },
+    {
+      "id": "avance · exact-duplicates · niveles",
+      "kind": "PROGRESS",
+      "subject": "exact-duplicates",
+      "nodeTarget": "MILESTONE",
+      "nodeId": null,
+      "threshold": 0,
+      "unit": "EXERCISES",
+      "reference": "ABSOLUTE",
+      "origin": "DECLARED"
+    },
+    {
+      "id": "avance · translation-sense · niveles",
+      "kind": "PROGRESS",
+      "subject": "translation-sense",
+      "nodeTarget": "MILESTONE",
+      "nodeId": null,
+      "threshold": 0,
+      "unit": "EXERCISES",
+      "reference": "ABSOLUTE",
+      "origin": "DECLARED"
+    },
+    {
+      "id": "avance · single-answer · niveles",
+      "kind": "PROGRESS",
+      "subject": "single-answer",
+      "nodeTarget": "MILESTONE",
+      "nodeId": null,
+      "threshold": 0,
+      "unit": "EXERCISES",
+      "reference": "ABSOLUTE",
+      "origin": "DECLARED"
+    },
+    {
+      "id": "avance · mini-theory · niveles",
+      "kind": "PROGRESS",
+      "subject": "mini-theory",
+      "nodeTarget": "MILESTONE",
+      "nodeId": null,
+      "threshold": 0,
+      "unit": "EXERCISES",
+      "reference": "ABSOLUTE",
+      "origin": "DECLARED"
+    },
+    {
+      "id": "avance · algún error · curso",
+      "kind": "PROGRESS",
+      "subject": "algún error",
+      "nodeTarget": "COURSE",
+      "nodeId": null,
+      "threshold": 5,
+      "unit": "PERCENT",
+      "reference": "ABSOLUTE",
+      "origin": "DECLARED"
+    }
+  ],
+  "blindSample": {
+    "size": 100,
+    "minBetterOrEqual": 90,
+    "maxWorse": 1,
+    "criterion": "OBSERVED",
+    "responsible": "José",
+    "secondReviewerPairs": 30,
+    "cumulativeMaxWorseShare": 0.02
+  }
+}

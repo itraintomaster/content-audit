@@ -1,7 +1,23 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindErrorRateService;
+import com.learney.contentaudit.revisiondomain.blindsample.ErrorRateItem;
+import com.learney.contentaudit.revisiondomain.blindsample.ErrorRateSample;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,8 +31,25 @@ public class DefaultErrorRateCommandTest {
     @DisplayName("should draw with error-rate draw from the level it names, as A1, or from the whole course")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldDrawWithErrorrateDrawFromTheLevelItNamesAsA1OrFromTheWholeCourse() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        BlindErrorRateService service = mock(BlindErrorRateService.class);
+        when(service.draw(any(), any(), any(), anyInt(), any())).thenReturn(new ErrorRateSample("tasa-1",
+                AuditTarget.MILESTONE, "6814dafa7d73e7209a13d382", 1, 7L, Instant.parse("2026-10-01T10:00:00Z"),
+                "2026-09-29T08-00-00", "2026-09-30T11-54-02",
+                List.of(new ErrorRateItem(1, "67fab6d59930102295341ecd", true, null)), new ArrayList<>(), null));
+        DefaultErrorRateCommand command = new DefaultErrorRateCommand(service);
+
+        FHistorial.Salida a1 = FHistorial.run(() -> command.draw("db/english-course", "A1", 400, 7L, "text"));
+        FHistorial.Salida course = FHistorial.run(() -> command.draw("db/english-course", "curso", 400, null, "json"));
+
+        assertEquals(0, a1.exit(), a1.err());
+        verify(service).draw(Path.of("db/english-course"), AuditTarget.MILESTONE, "A1", 400, 7L);
+        assertEquals(0, course.exit(), course.err());
+        verify(service).draw(Path.of("db/english-course"), AuditTarget.COURSE, null, 400, null);
+        assertTrue(a1.out().contains("Drew tasa-1 with seed 7: 1 exercises of A1."), a1.out());
+        for (String output : List.of(a1.out(), course.out())) {
+            assertFalse(output.contains("fromBaseline"), "R006: without saying where each comes from: " + output);
+            assertFalse(output.contains("67fab6d59930102295341ecd"), "R006: nor which exercise it is");
+        }
     }
 }

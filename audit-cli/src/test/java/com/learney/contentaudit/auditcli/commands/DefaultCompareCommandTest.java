@@ -1,7 +1,32 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import com.learney.contentaudit.auditcli.formatting.DefaultBatchComparisonFormatter;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AuditEngine;
+import com.learney.contentaudit.auditdomain.AuditReportSummary;
+import com.learney.contentaudit.auditdomain.Baseline;
+import com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver;
+import com.learney.contentaudit.revisiondomain.blindsampleengine.DefaultSampleOutcomeSource;
+import com.learney.contentaudit.revisiondomain.blindsampleengine.DefaultSampleStatistics;
+import com.learney.contentaudit.revisiondomain.comparison.GoalDeclaration;
+import com.learney.contentaudit.revisiondomain.comparisonengine.DefaultBatchComparator;
+import com.learney.contentaudit.revisiondomain.comparisonengine.DefaultGoalBook;
+import com.learney.contentaudit.revisiondomain.comparisonengine.LeaveOneOutChangeAttributor;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjector;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.io.TempDir;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +40,45 @@ public class DefaultCompareCommandTest {
     @DisplayName("should leave the course files byte for byte and get audits listing the same analyses after compare")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R009")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldLeaveTheCourseFilesByteForByteAndGetAuditsListingTheSameAnalysesAfterCompare(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            ) throws Exception {
+        FHistorial historial = new FHistorial(dir);
+        Path course = dir.resolve("db/english-course");
+        Files.createDirectories(course);
+        Files.writeString(course.resolve("quiz-templates.json"), "[{\"_id\":\"67fab6d59930102295341ecd\","
+                + "\"sentence\":\"I love a lot of vegetables.\"}]", StandardCharsets.UTF_8);
+        historial.analysis("2026-09-29T08-00-00", "base");
+        historial.analysis("2026-09-30T11-54-02", "analisis");
+        historial.baselines.write(new Baseline("2026-09-29T08-00-00", Instant.parse("2026-09-30T09:00:00Z")));
+        CourseProjector projector = mock(CourseProjector.class);
+        when(projector.project(any(), any())).thenReturn(FHistorial.projection("2026-09-30T11-54-02",
+                "2026-09-30T11-54-12", "con-las-pendientes", List.of("task-042"), List.of()));
+        AnalyzerCatalog catalog = mock(AnalyzerCatalog.class);
+        AuditEngine engine = mock(AuditEngine.class);
+        DefaultBatchComparator comparator = new DefaultBatchComparator(projector, historial.baselines,
+                historial.audits, new DefaultGoalBook(() -> new GoalDeclaration(List.of(), List.of(), null),
+                        historial.sealedGoals, catalog), catalog, engine, new LeaveOneOutChangeAttributor(engine),
+                new DefaultSampleOutcomeSource(historial.samples, new DefaultSampleStatistics()),
+                new DefaultTopicTeachingResolver());
+        DefaultCompareCommand command = new DefaultCompareCommand(comparator, new DefaultBatchComparisonFormatter());
+        Map<String, byte[]> before = historial.files();
+        List<String> analyses = historial.audits.list().stream().map(AuditReportSummary::getId).toList();
+
+        FHistorial.Salida compared = FHistorial.run(() -> command.compare(course.toString(), List.of(), Map.of(),
+                "text"));
+
+        assertEquals(0, compared.exit(), compared.err());
+        assertTrue(compared.out().contains("Antes y después contra la línea base 2026-09-29T08-00-00"), compared.out());
+        Map<String, byte[]> after = historial.files();
+        assertEquals(before.keySet(), after.keySet(), "R009: no file written, none removed");
+        for (Map.Entry<String, byte[]> file : before.entrySet()) {
+            assertTrue(java.util.Arrays.equals(file.getValue(), after.get(file.getKey())),
+                    "R009: " + file.getKey() + " byte for byte");
+        }
+        assertEquals(analyses, historial.audits.list().stream().map(AuditReportSummary::getId).toList(),
+                "R009: get audits lists the same analyses");
     }
+
+    @TempDir
+    Path dir;
 }

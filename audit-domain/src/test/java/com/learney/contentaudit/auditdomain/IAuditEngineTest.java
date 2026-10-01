@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProviderTest;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
@@ -38,13 +41,13 @@ import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzer;
 import com.learney.contentaudit.auditdomain.lrec.IntervalCalculator;
 import com.learney.contentaudit.auditdomain.lrec.ExposureClassifier;
 import com.learney.contentaudit.auditdomain.lrec.ExposureStatus;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -1775,27 +1778,84 @@ public class IAuditEngineTest {
     @DisplayName("should give the base of 29/9 on its second run in the same process 73.92% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 8.00 of recurrence, as a new invocation, and not 72.90")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldGiveTheBaseOf299OnItsSecondRunInTheSameProcess7392InTheCourse965494167945And6351InTheLevels5793OfCOCAInB1And800OfRecurrenceAsANewInvocationAndNot7290() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CERO-R001: the same engine measures the base of 29/9 twice in one process. The second run gives what a
+        // new invocation gives: 73,92 % in the course and 96,54 · 94,16 · 79,45 · 63,51 in the levels with
+        // lemma-recurrence at 8,00 % (the other vocabulary scores as 29/9 published them), and COCA, measured for
+        // real over the ranks of the 29/9 course, 57,93 in B1. Carrying the first run, it gave 72,90.
+        IAuditEngine vocabulary = realEngine(onPublished299(
+                new com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzerProvider(ceroRecurrenceConfig())));
+        AuditReport first = vocabulary.runAudit(streamCourseOf299());
+        AuditReport second = vocabulary.runAudit(streamCourseOf299());
+        IAuditEngine coca = realEngine(List.of(new CocaBucketsAnalyzerProvider(Mockito.mock(NlpTokenizer.class),
+                CocaBucketsAnalyzerProviderTest.Coca299.config())));
+        coca.runAudit(CocaBucketsAnalyzerProviderTest.Coca299.course());
+        AuditReport cocaSecond = coca.runAudit(CocaBucketsAnalyzerProviderTest.Coca299.course());
+
+        assertEquals("73,92", percent2(second.getRoot().getNumbers().getVocabularyScore()), "R001: the course");
+        assertEquals(List.of("96,54", "94,16", "79,45", "63,51"), levelVocabulary(second), "R001: the levels");
+        assertEquals(0.08, second.getRoot().getScores().get("lemma-recurrence"), 1e-12, "R001: recurrence at 8,00 %");
+        assertEquals("57,93", percent2(cocaSecond.getRoot().getChildren().get(2).getScores()
+                .get("coca-buckets-distribution")), "R001: COCA of B1");
+        assertEquals(percent2(first.getRoot().getNumbers().getVocabularyScore()),
+                percent2(second.getRoot().getNumbers().getVocabularyScore()), "R001: as the first run, a new invocation");
+        assertNotEquals("72,90", percent2(second.getRoot().getNumbers().getVocabularyScore()), "R001: not 72,90");
     }
 
     @Test
     @DisplayName("should give a run the numbers of a new invocation whatever courses ran before it, so a word only the earlier course used is absent for lemma-absence and lemma-count")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldGiveARunTheNumbersOfANewInvocationWhateverCoursesRanBeforeItSoAWordOnlyTheEarlierCourseUsedIsAbsentForLemmaabsenceAndLemmacount() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CERO-R001: a course with «She spread the quilt.» in every level runs first; then, in the same process,
+        // the course without it. The second run gives what a new invocation gives on that course: for lemma-absence,
+        // quilt -- which the EVP expects in B2 -- is absent from B2; for lemma-count, it is in no sentence.
+        IAuditEngine engine = realEngine(List.of(ceroLemmaAbsence(), ceroLemmaCount()));
+        AuditReport withQuilt = engine.runAudit(offLevelCourse());
+        AuditReport afterIt = engine.runAudit(withoutQuilt(offLevelCourse()));
+        AuditReport newInvocation = realEngine(List.of(ceroLemmaAbsence(), ceroLemmaCount()))
+                .runAudit(withoutQuilt(offLevelCourse()));
+
+        AuditNode b2 = afterIt.getRoot().getChildren().get(3);
+        assertEquals(1, ((LevelDiagnoses) b2.getDiagnoses()).getLemmaAbsenceDiagnosis().orElseThrow().getTotalAbsent(),
+                "R001: lemma-absence finds quilt absent from B2");
+        assertEquals(List.of("quilt", "spread"), countedLemmas(withQuilt.getRoot().getChildren().get(3)),
+                "lemma-count counts quilt and spread in B2 in the first course");
+        assertEquals(List.of(), countedLemmas(b2), "R001: in the second, quilt is in no sentence, nor spread");
+        assertEquals(countedLemmas(newInvocation.getRoot().getChildren().get(3)), countedLemmas(b2),
+                "R001: as a new invocation");
+        Map<String, Map<String, Double>> expected = new LinkedHashMap<>();
+        walk(newInvocation.getRoot(), n -> expected.put(n.getTarget() + " " + (n.getEntity() != null ? n.getEntity().getId()
+                : "root"), new java.util.TreeMap<>(n.getScores())));
+        Map<String, Map<String, Double>> actual = new LinkedHashMap<>();
+        walk(afterIt.getRoot(), n -> actual.put(n.getTarget() + " " + (n.getEntity() != null ? n.getEntity().getId()
+                : "root"), new java.util.TreeMap<>(n.getScores())));
+        assertEquals(expected, actual, "R001: every node, as a new invocation");
     }
 
     @Test
     @DisplayName("should leave the first report untouched by a second run in the same process, its 55 topics keeping their COCA diagnosis, A1 · Present Simple with 2,366 tokens in four bands")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldLeaveTheFirstReportUntouchedByASecondRunInTheSameProcessIts55TopicsKeepingTheirCOCADiagnosisA1PresentSimpleWith2366TokensInFourBands() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CERO-R002: the same engine measures the 29/9 course again; the first report keeps what it had: its 55
+        // topics their COCA diagnosis, A1 · Present Simple with 2,366 tokens in four bands.
+        IAuditEngine engine = realEngine(List.of(new CocaBucketsAnalyzerProvider(Mockito.mock(NlpTokenizer.class),
+                CocaBucketsAnalyzerProviderTest.Coca299.config())));
+        AuditReport first = engine.runAudit(CocaBucketsAnalyzerProviderTest.Coca299.course());
+        Map<String, List<Integer>> before = CocaBucketsAnalyzerProviderTest.Coca299.topicBands(first);
+        Map<String, Double> scoresBefore = new LinkedHashMap<>(first.getRoot().getScores());
+
+        engine.runAudit(CocaBucketsAnalyzerProviderTest.Coca299.course());
+
+        assertEquals(55, before.size(), "the 55 topics of 29/9");
+        assertEquals(before, CocaBucketsAnalyzerProviderTest.Coca299.topicBands(first),
+                "R002: the 55 topics of the first report keep their COCA diagnosis");
+        assertEquals(List.of(2130, 131, 41, 64), CocaBucketsAnalyzerProviderTest.Coca299.topicBands(first)
+                .get(CocaBucketsAnalyzerProviderTest.Coca299.PRESENT_SIMPLE_A1), "R002: A1 · Present Simple, four bands");
+        assertEquals(2366, CocaBucketsAnalyzerProviderTest.Coca299.topicTokens(first,
+                CocaBucketsAnalyzerProviderTest.Coca299.PRESENT_SIMPLE_A1), "R002: with 2,366 tokens");
+        assertEquals(scoresBefore, first.getRoot().getScores(), "R002: and the course keeps its scores");
     }
 
     // ------------------------------------------------------------------
@@ -1902,5 +1962,65 @@ public class IAuditEngineTest {
             });
         }
         return result;
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-CERO fixtures
+    // ------------------------------------------------------------------
+
+    /** The configuration of lemma-recurrence of the 29/9 analysis. */
+    private static LemmaRecurrenceConfig ceroRecurrenceConfig() {
+        LemmaRecurrenceConfig config = Mockito.mock(LemmaRecurrenceConfig.class);
+        Mockito.when(config.getTop()).thenReturn(2000);
+        Mockito.when(config.getSubExposedThreshold()).thenReturn(1000.0);
+        Mockito.when(config.getOverExposedThreshold()).thenReturn(50.0);
+        Mockito.when(config.describe()).thenReturn(Map.of());
+        return config;
+    }
+
+    /** lemma-absence over the EVP of the off-level course, which also expects quilt in B2. */
+    private static AnalyzerProvider ceroLemmaAbsence() {
+        EvpCatalogPort evp = offLevelEvp();
+        Mockito.when(evp.getExpectedLemmas(CefrLevel.B2)).thenReturn(Set.of(new LemmaAndPos("quilt", "NOUN")));
+        LemmaAbsenceConfig config = offLevelConfig();
+        return new LemmaAbsenceAnalyzerProvider(evp, config,
+                new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), config));
+    }
+
+    /** lemma-count with 8 sentences for every band, over an EVP that knows the words of the off-level course. */
+    private static AnalyzerProvider ceroLemmaCount() {
+        Map<String, CefrLevel> levels = Map.of("spread", CefrLevel.B2, "quilt", CefrLevel.B2, "cat", CefrLevel.A1,
+                "city", CefrLevel.A1, "sleep", CefrLevel.A1);
+        EvpCatalogPort evp = Mockito.mock(EvpCatalogPort.class);
+        Mockito.when(evp.lookupLevel(any())).thenAnswer(i -> Optional.ofNullable(levels.get(
+                i.<LemmaAndPos>getArgument(0).getLemma())));
+        Mockito.when(evp.getCocaRank(any())).thenAnswer(i -> Optional.of(3500));
+        LemmaCountConfig config = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(config.getThreshold()).thenReturn(8);
+        Mockito.when(config.getBands()).thenReturn(List.of(new LemmaCountBand("1.000 más comunes", 1000, 8),
+                new LemmaCountBand("hasta 2.000", 2000, 8), new LemmaCountBand("hasta 3.000", 3000, 8),
+                new LemmaCountBand("más allá de 3.000 o sin puesto", null, 8)));
+        return new com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider(evp, config);
+    }
+
+    /** The lemmas lemma-count counted in the level, in alphabetical order (none when it counted nothing there). */
+    private static List<String> countedLemmas(AuditNode level) {
+        return ((LevelDiagnoses) level.getDiagnoses()).getLemmaCountDiagnosis()
+                .map(d -> d.getLevelResult().getSubExposedLemmas().stream()
+                        .map(stats -> stats.getLemmaAndPos().getLemma()).sorted().toList())
+                .orElse(List.of());
+    }
+
+    /** The course without the exercises of «She spread the quilt.». */
+    private static AuditableCourse withoutQuilt(AuditableCourse course) {
+        for (AuditableMilestone level : course.getMilestones()) {
+            for (AuditableTopic topic : level.getTopics()) {
+                for (AuditableKnowledge knowledge : topic.getKnowledge()) {
+                    knowledge.setQuizzes(knowledge.getQuizzes().stream()
+                            .filter(q -> !q.getId().startsWith("q-quilt")).toList());
+                }
+            }
+        }
+        return course;
     }
 }

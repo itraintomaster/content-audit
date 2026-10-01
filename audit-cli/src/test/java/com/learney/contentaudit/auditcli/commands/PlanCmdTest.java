@@ -1,6 +1,10 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import com.learney.contentaudit.auditcli.commands.FTareaJ001JourneyTest.Tarea;
+import static org.mockito.ArgumentMatchers.eq;
+import java.nio.file.Path;
+import java.util.Map;
+import org.junit.jupiter.api.io.TempDir;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -493,18 +497,67 @@ public class PlanCmdTest {
     @DisplayName("should derive an ephemeral plan with correction context from a saved projection named with --audit, writing no plan and no analysis")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R005")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldDeriveAnEphemeralPlanWithCorrectionContextFromASavedProjectionNamedWithAuditWritingNoPlanAndNoAnalysis() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(fDir);
+        historial.analysis("2026-09-30T11-54-02", "analisis");
+        String projection = historial.projections.save(FHistorial.projection("2026-09-30T11-54-02",
+                "2026-09-30T11-54-12", "con-las-pendientes", List.of("task-042"), List.of())).getProjectionId();
+        Map<String, byte[]> before = historial.files();
+        RefinementPlan derived = new RefinementPlan("plan-efimero", projection, Instant.parse("2026-10-01T10:00:00Z"),
+                List.of());
+        when(refinerEngine.plan(any(AuditReport.class), eq(projection))).thenReturn(derived);
+        when(ephemeralPlanRenderer.render(eq(derived), any(AuditReport.class), eq(new EphemeralRenderOptions(true))))
+                .thenReturn(0);
+        PlanCmd plan = new PlanCmd(historial.audits, refinerEngine, refinementPlanStore, ephemeralPlanRenderer);
+
+        int exit = plan.plan(projection, PlanStorageMode.EPHEMERAL, true);
+
+        assertEquals(0, exit);
+        ArgumentCaptor<AuditReport> report = ArgumentCaptor.forClass(AuditReport.class);
+        verify(refinerEngine).plan(report.capture(), eq(projection));
+        assertEquals("con-las-pendientes", report.getValue().getRoot().getMetadata().get("marca"),
+                "R005: the plan is derived from the photo with the pending proposals");
+        verify(ephemeralPlanRenderer).render(eq(derived), any(AuditReport.class), eq(new EphemeralRenderOptions(true)));
+        verify(refinementPlanStore, never()).save(any());
+        assertEquals(before.keySet(), historial.files().keySet(), "R005: no plan and no analysis written");
     }
 
     @Test
     @DisplayName("should derive the plan without --audit from the latest analysis of the history, not from a projection saved after it")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldDeriveThePlanWithoutAuditFromTheLatestAnalysisOfTheHistoryNotFromAProjectionSavedAfterIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(fDir);
+        historial.analysis("2026-09-29T08-00-00", "base");
+        historial.analysis("2026-09-30T11-54-02", "analisis");
+        historial.projections.save(FHistorial.projection("2026-09-30T11-54-02", "2026-09-30T11-54-12",
+                "con-las-pendientes", List.of("task-042"), List.of()));
+        RefinementPlan derived = new RefinementPlan("plan-1", "2026-09-30T11-54-02",
+                Instant.parse("2026-10-01T10:00:00Z"), List.of());
+        when(refinerEngine.plan(any(AuditReport.class), eq("2026-09-30T11-54-02"))).thenReturn(derived);
+        when(refinementPlanStore.save(derived)).thenReturn("plan-1");
+        PlanCmd plan = new PlanCmd(historial.audits, refinerEngine, refinementPlanStore, ephemeralPlanRenderer);
+        for (Field field : plan.getClass().getDeclaredFields()) {
+            if (field.getType() == String.class && !java.lang.reflect.Modifier.isStatic(field.getModifiers())) {
+                try {
+                    field.setAccessible(true);
+                    if (field.get(plan) == null) {
+                        field.set(plan, "table");
+                    }
+                } catch (IllegalAccessException e) {
+                    throw new IllegalStateException(e);
+                }
+            }
+        }
+
+        FHistorial.Salida run = FHistorial.run(() -> plan.plan(null, PlanStorageMode.DISK, false));
+
+        assertEquals(0, run.exit(), run.err());
+        ArgumentCaptor<AuditReport> report = ArgumentCaptor.forClass(AuditReport.class);
+        verify(refinerEngine).plan(report.capture(), eq("2026-09-30T11-54-02"));
+        assertEquals("analisis", report.getValue().getRoot().getMetadata().get("marca"),
+                "R004: the latest analysis of the history, not the projection saved after it");
+        verify(refinementPlanStore).save(derived);
     }
 
     @Test
@@ -532,4 +585,7 @@ public class PlanCmdTest {
         assertTrue(err.matches("(?s).*single-answer\\s+1 = 1 \\+ 0 \\+ 0\n.*"), err);
         assertTrue(run.out().indexOf("Refinement plan created") >= 0, "and the plan is printed as today: " + run.out());
     }
+
+    @TempDir
+    Path fDir;
 }
