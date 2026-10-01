@@ -1,7 +1,11 @@
 package com.learney.contentaudit.auditapplication;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import java.util.Map;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,8 +19,25 @@ public class DefaultTranslationSenseConfigTest {
     @DisplayName("should score a quiz 0.3 for a high, 0.6 for a medium and 0.8 for a low worst severity")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R004")
-    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldScoreAQuiz03ForAHigh06ForAMediumAnd08ForALowWorstSeverity() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultTranslationSenseConfig config = new DefaultTranslationSenseConfig();
+
+        assertEquals(0.3, config.getScoreFor(FindingSeverity.HIGH), 1e-9,
+                "Alta (enseña algo falso) puntúa 0,3 (F-TRSEN-R004)");
+        assertEquals(0.6, config.getScoreFor(FindingSeverity.MEDIUM), 1e-9,
+                "Media (se entiende pero está mal) puntúa 0,6 (F-TRSEN-R004)");
+        assertEquals(0.8, config.getScoreFor(FindingSeverity.LOW), 1e-9,
+                "Baja (sólo el registro) puntúa 0,8 (F-TRSEN-R004)");
+        assertEquals(0.3, config.getScoreFor(FindingSeverity.BLOCKING), 1e-9,
+                "Ningún hallazgo de este juez es bloqueante: si llegara uno, puntúa como alta (F-TRSEN-R004)");
+
+        // The scale is the one `config analyzer translation-sense` shows.
+        Map<String, Object> description = config.describe();
+        assertEquals("translation-sense", description.get("analyzerName"));
+        @SuppressWarnings("unchecked")
+        Map<String, Object> scores = (Map<String, Object>) description.get("scoresByHighestSeverity");
+        assertEquals(Map.of("HIGH", 0.3, "MEDIUM", 0.6, "LOW", 0.8), scores,
+                "La configuración describe la escala 0,3 / 0,6 / 0,8 por la gravedad más alta");
+        assertTrue(description.containsKey("scoreWithoutErrors"), "Describe también el 1 sin errores");
     }
 }
