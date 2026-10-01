@@ -328,7 +328,7 @@ public class FQinstJ003JourneyTest {
     }
     /** The judge's provider under the name the report publishes, with the judge's real card. */
     private static AnalyzerProvider judgeProvider() {
-        AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null, null,
+        AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null,
                 mock(QuizInstructionConfig.class), null).describe();
         AnalyzerProvider provider = mock(AnalyzerProvider.class);
         when(provider.analyzerName()).thenReturn(ANALYZER_NAME);
@@ -468,7 +468,8 @@ public class FQinstJ003JourneyTest {
     private static final class FakeEvaluator implements Evaluator {
         private final String id;
         private final String version;
-        private final List<EvaluationSubject> evaluatedSubjects = new ArrayList<>();
+        // F-JEXAM-R006: the judge is consulted up to four at a time, so what it records must be thread-safe.
+        private final List<EvaluationSubject> evaluatedSubjects = java.util.Collections.synchronizedList(new ArrayList<>());
 
         private FakeEvaluator(String id, String version) {
             this.id = id;

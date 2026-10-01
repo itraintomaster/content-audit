@@ -1,7 +1,77 @@
 package com.learney.contentaudit.auditdomain.translationsenseengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
+import com.learney.contentaudit.auditdomain.TranslationSenseConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judging.JudgeRequestPlan;
+import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
+import com.learney.contentaudit.auditdomain.judging.JudgeSessions;
+import com.learney.contentaudit.auditdomain.judging.JudgeUnitTally;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.auditdomain.translationsense.TranslationSenseCondition;
+import com.learney.contentaudit.auditdomain.translationsense.TranslationSenseFailure;
+import com.learney.contentaudit.auditdomain.translationsense.TranslationSenseVerdict;
+import com.learney.contentaudit.auditdomain.translationsense.TranslationSenseVerdictReader;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -11,42 +81,461 @@ import org.junit.jupiter.api.Test;
         comments = "Generated by Sentinel"
 )
 public class TranslationSenseAnalyzerProviderTest {
+
+    // ------------------------------------------------------------------
+    // The two judges, their recorded verdicts and the runtime around them
+    // ------------------------------------------------------------------
+
+    private static final String NAME = "translation-sense";
+
+    private static final String EN_VERSION = "tse-en-1";
+
+    private static final String TR_VERSION = "tse-tr-1";
+
+    private static final String PAIR_VERSION = EN_VERSION + "+" + TR_VERSION;
+
+    private static final DefaultQuizStudentViewRenderer RENDERER =
+            new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create());
+
+    private static final Sha256ContentFingerprinter FINGERPRINTER = new Sha256ContentFingerprinter();
+
+    private static final VerdictBook BOOK = new VerdictBook();
+
+    private static final String PASS = BOOK.json(new TranslationSenseVerdict(true, List.of(),
+            "El inglés y la traducción dicen lo mismo y suena natural"));
+
+    private static final String VERDURAS_FROM_ENGLISH = BOOK.json(new TranslationSenseVerdict(false, List.of(
+            new TranslationSenseFailure(TranslationSenseCondition.SAME_MEANING, FindingSeverity.HIGH, "a lot of",
+                    "«a lot of» cuenta verduras; «mucho» dice cuánto gustan")), "Cantidad contra cuánto gustan"));
+
+    private static final String VERDURAS_FROM_TRANSLATION = BOOK.json(new TranslationSenseVerdict(false, List.of(
+            new TranslationSenseFailure(TranslationSenseCondition.SAME_MEANING, FindingSeverity.MEDIUM, "mucho",
+                    "«mucho» dice cuánto gustan, no cuántas verduras")), "Desde la traducción el inglés no lo dice"));
+
+    /** «I didn't meet ___ .» (…396a), failed by both judges on every condition. */
+    private static final String EVERY_CONDITION = BOOK.json(new TranslationSenseVerdict(false, List.of(
+            new TranslationSenseFailure(TranslationSenseCondition.SAME_MEANING, FindingSeverity.MEDIUM, "anything",
+                    "«nada» no es «anything» en una negativa con meet"),
+            new TranslationSenseFailure(TranslationSenseCondition.NATIVE_WOULD_SAY, FindingSeverity.MEDIUM,
+                    "I didn't meet anything", "un nativo no lo diría así"),
+            new TranslationSenseFailure(TranslationSenseCondition.WORDS_GO_TOGETHER, FindingSeverity.MEDIUM, "meet",
+                    "meet va con personas, no con cosas"),
+            new TranslationSenseFailure(TranslationSenseCondition.LEVEL_REGISTER, FindingSeverity.LOW, "meet",
+                    "registro poco natural para A1")), "Falla en las cuatro condiciones"));
+
+    private static final String DINNER_FROM_ENGLISH = BOOK.json(new TranslationSenseVerdict(false, List.of(
+            new TranslationSenseFailure(TranslationSenseCondition.NATIVE_WOULD_SAY, FindingSeverity.MEDIUM,
+                    "It's the moment", "calco: un nativo dice «It's time for dinner!»")), "Calco"));
+
+    private static final TranslationSenseConfig SCALE = new TranslationSenseConfig() {
+        @Override
+        public double getScoreFor(FindingSeverity severity) {
+            return switch (severity) {
+                case BLOCKING, HIGH -> 0.3;
+                case MEDIUM -> 0.6;
+                case LOW -> 0.8;
+            };
+        }
+
+        @Override
+        public Map<String, Object> describe() {
+            return Map.of("scoresByHighestSeverity", Map.of("HIGH", 0.3, "MEDIUM", 0.6, "LOW", 0.8));
+        }
+    };
+
+    private static final class Judge implements Evaluator {
+        final String id;
+        final String version;
+        final Function<EvaluationSubject, EvaluationOutcome> script;
+        final List<String> calls = Collections.synchronizedList(new ArrayList<>());
+
+        Judge(String id, String version, Function<EvaluationSubject, EvaluationOutcome> script) {
+            this.id = id;
+            this.version = version;
+            this.script = script;
+        }
+
+        @Override
+        public String evaluatorId() {
+            return id;
+        }
+
+        @Override
+        public EvaluationOutcome evaluate(EvaluationSubject subject) {
+            calls.add(subject.getSubjectRef());
+            return script.apply(subject);
+        }
+
+        @Override
+        public Optional<String> evaluatorVersion() {
+            return Optional.of(version);
+        }
+    }
+
+    private static final class VerdictBook implements TranslationSenseVerdictReader {
+        private final Map<String, TranslationSenseVerdict> byPayload = new ConcurrentHashMap<>();
+
+        String json(TranslationSenseVerdict verdict) {
+            StringBuilder sb = new StringBuilder("{\"passes\": ").append(verdict.isPasses()).append(", \"failures\": [");
+            for (int i = 0; i < verdict.getFailures().size(); i++) {
+                TranslationSenseFailure f = verdict.getFailures().get(i);
+                sb.append(i > 0 ? ", " : "")
+                        .append("{\"condition\": \"").append(f.getCondition().name())
+                        .append("\", \"severity\": \"").append(f.getSeverity().name())
+                        .append("\", \"fragment\": \"").append(f.getFragment().replace("\"", "\\\""))
+                        .append("\", \"evidence\": \"").append(f.getEvidence().replace("\"", "\\\"")).append("\"}");
+            }
+            String json = sb.append("], \"rationale\": \"").append(verdict.getRationale().replace("\"", "\\\""))
+                    .append("\"}").toString();
+            byPayload.put(json, verdict);
+            return json;
+        }
+
+        @Override
+        public TranslationSenseVerdict read(String payload) {
+            TranslationSenseVerdict verdict = byPayload.get(payload);
+            if (verdict == null) {
+                throw new IllegalArgumentException("veredicto ilegible: " + payload);
+            }
+            return verdict;
+        }
+    }
+
+    private static final class MemoryLedger implements EvaluationLedger {
+        private final List<EvaluationRecord> records = new ArrayList<>();
+
+        @Override
+        public synchronized void append(EvaluationRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public synchronized Optional<EvaluationRecord> findLatest(EvaluationKey key) {
+            for (int i = records.size() - 1; i >= 0; i--) {
+                if (records.get(i).getKey().equals(key)) {
+                    return Optional.of(records.get(i));
+                }
+            }
+            return Optional.empty();
+        }
+
+        @Override
+        public synchronized List<EvaluationRecord> history(EvaluationKey key) {
+            return records.stream().filter(r -> r.getKey().equals(key)).toList();
+        }
+    }
+
+    private static final class Registry implements JudgeExamRegistry {
+        final Set<String> approved = new HashSet<>();
+        final List<String> asked = Collections.synchronizedList(new ArrayList<>());
+
+        @Override
+        public void record(JudgeExamRecord record) {
+        }
+
+        @Override
+        public Optional<JudgeExamRecord> latest(String judgeName, String judgeVersion) {
+            asked.add(judgeName + " " + judgeVersion);
+            if (!approved.contains(judgeVersion)) {
+                return Optional.empty();
+            }
+            return Optional.of(new JudgeExamRecord(judgeName, judgeVersion, JudgeExamStatus.APPROVED, 102, 0,
+                    List.of(), List.of(), true, "2026-09-29", "prueba", Instant.parse("2026-09-30T00:00:00Z")));
+        }
+
+        @Override
+        public List<JudgeExamRecord> history(String judgeName) {
+            return List.of();
+        }
+    }
+
+    private static final class RuntimeConfig implements JudgeRuntimeConfig {
+        @Override
+        public int getMaxConcurrentEvaluations() {
+            return 4;
+        }
+
+        @Override
+        public int getDefaultMaxNewEvaluations(String judgeName) {
+            return 0;
+        }
+
+        @Override
+        public double getDefaultRatePerHour(String judgeName) {
+            return 189.0;
+        }
+
+        @Override
+        public Map<String, Object> describe() {
+            return Map.of();
+        }
+    }
+
+    /** The judges runtime, recording what it is asked to open. */
+    private static final class RecordingRuntime implements JudgeRuntime {
+        final JudgeRuntime delegate;
+        final List<String> openedNames = new ArrayList<>();
+        final List<List<Evaluator>> openedWith = new ArrayList<>();
+        final List<JudgeSessions> opened = new ArrayList<>();
+
+        RecordingRuntime(JudgeRuntime delegate) {
+            this.delegate = delegate;
+        }
+
+        @Override
+        public JudgeSessions open(String judgeName, List<Evaluator> evaluators, EvaluationRunPolicy policy) {
+            openedNames.add(judgeName);
+            openedWith.add(List.copyOf(evaluators));
+            JudgeSessions sessions = delegate.open(judgeName, evaluators, policy);
+            opened.add(sessions);
+            return sessions;
+        }
+
+        @Override
+        public JudgeRequestPlan plan(List<AuditNode> units, EvaluationRunPolicy policy) {
+            return delegate.plan(units, policy);
+        }
+
+        @Override
+        public JudgeCoverageDiagnosis coverage(JudgeSessions opened, JudgeUnitTally tally) {
+            return delegate.coverage(opened, tally);
+        }
+
+        @Override
+        public JudgeExamStanding standing(String judgeName, String judgeVersion) {
+            return delegate.standing(judgeName, judgeVersion);
+        }
+    }
+
+    private static final class Lab {
+        final MemoryLedger ledger = new MemoryLedger();
+        final Registry registry = new Registry();
+        final RecordingRuntime runtime = new RecordingRuntime(new DefaultJudgeRuntime(
+                new DefaultEvaluationSessionFactory(ledger, FINGERPRINTER),
+                new ExamEvaluationSessionFactory(ledger, FINGERPRINTER), registry, evaluatorId -> List.of(),
+                new RuntimeConfig()));
+        final Judge fromEnglish;
+        final Judge fromTranslation;
+        final TranslationSenseAnalyzerProvider provider;
+
+        Lab(Function<EvaluationSubject, EvaluationOutcome> english,
+                Function<EvaluationSubject, EvaluationOutcome> translation) {
+            fromEnglish = new Judge("translation-sense-from-english", EN_VERSION, english);
+            fromTranslation = new Judge("translation-sense-from-translation", TR_VERSION, translation);
+            provider = new TranslationSenseAnalyzerProvider(runtime, fromEnglish, fromTranslation, BOOK, SCALE, RENDERER);
+        }
+
+        AuditReport audit(EvaluationRunPolicy policy, AuditableQuiz... quizzes) {
+            IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
+                    new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+            return engine.runAudit(courseOf(quizzes), new AnalyzerRunSelection(List.of(NAME), Map.of(NAME, policy)));
+        }
+    }
+
+    private static AuditableCourse courseOf(AuditableQuiz... quizzes) {
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(quizzes), "Gustos", "Completa la oración.", true,
+                "k-1", "Gustos", null, SentenceMode.FILL, "Present simple");
+        AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t-1", "Present simple", null);
+        return new AuditableCourse(List.of(new AuditableMilestone(List.of(topic), "m-a1", "A1", null)));
+    }
+
+    private static AuditableQuiz quiz(String id, String english, String answer, String translation) {
+        String[] halves = english.split("___", -1);
+        List<SentencePartEntity> parts = new ArrayList<>();
+        if (!halves[0].isBlank()) {
+            parts.add(new SentencePartEntity(SentencePartKind.TEXT, halves[0].strip(), null));
+        }
+        parts.add(new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(answer)));
+        if (halves.length > 1 && !halves[1].isBlank()) {
+            parts.add(new SentencePartEntity(SentencePartKind.TEXT, halves[1].strip(), null));
+        }
+        return new AuditableQuiz(List.of(), id, "Ejercicio " + id, null, translation,
+                List.of(english.replace("___", answer)), null, "Completa con la palabra que falta.", parts, null, null,
+                null);
+    }
+
+    private static final String VERDURAS_ID = "67fab6d59930102295341ecd";
+
+    private static final String DINNER_ID = "67fab6d59930102295342d9e";
+
+    private static final String MEET_ID = "67fab6d5993010229534396a";
+
+    private static AuditableQuiz verduras() {
+        return quiz(VERDURAS_ID, "I ___ a lot of vegetables.", "like", "Me gustan mucho las verduras.");
+    }
+
+    private static AuditableQuiz dinner() {
+        return quiz(DINNER_ID, "It's the moment ___ dinner!", "for", "¡Es hora de cenar!");
+    }
+
+    private static AuditableQuiz meet() {
+        return quiz(MEET_ID, "I didn't meet ___ .", "anything", "No conocí nada.");
+    }
+
+    private static EvaluationRunPolicy budget(int maxNewEvaluations) {
+        return new EvaluationRunPolicy(maxNewEvaluations, false, null, null, null, null);
+    }
+
+    private static Function<EvaluationSubject, EvaluationOutcome> byQuiz(Map<String, String> payloads) {
+        return subject -> new EvaluationEmitted(payloads.getOrDefault(subject.getSubjectRef(), PASS));
+    }
+
+    private static List<AuditNode> quizNodes(AuditNode node) {
+        List<AuditNode> quizzes = new ArrayList<>();
+        if (node.getTarget() == AuditTarget.QUIZ) {
+            quizzes.add(node);
+        }
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                quizzes.addAll(quizNodes(child));
+            }
+        }
+        return quizzes;
+    }
+
+    private static AuditNode quizNode(AuditReport report, String id) {
+        return quizNodes(report.getRoot()).stream()
+                .filter(n -> id.equals(n.getEntity().getId()))
+                .findFirst()
+                .orElseThrow();
+    }
+
+    private static List<Finding> findingsOf(AuditNode node) {
+        return node.getFindings().stream().filter(f -> NAME.equals(f.getAnalyzer())).toList();
+    }
+
+    // ------------------------------------------------------------------
+    // Tests
+    // ------------------------------------------------------------------
+
     @Test
     @DisplayName("should publish the name translation-sense and open its two judges through the judges runtime under that name, so a version without an approved exam gets budget 0")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R005")
-    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldPublishTheNameTranslationsenseAndOpenItsTwoJudgesThroughTheJudgesRuntimeUnderThatNameSoAVersionWithoutAnApprovedExamGetsBudget0(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Lab lab = new Lab(subject -> new EvaluationEmitted(PASS), subject -> new EvaluationEmitted(PASS));
+
+        assertEquals(NAME, lab.provider.analyzerName());
+        assertEquals(NAME, lab.provider.describe().getName(), "El nombre del proveedor es el de su ficha");
+
+        ContentAnalyzer analyzer = lab.provider.create(budget(10));
+        assertEquals(NAME, analyzer.getName());
+        assertEquals(List.of(NAME), lab.runtime.openedNames, "Abre por el runtime de los jueces, con su nombre");
+        assertEquals(1, lab.runtime.openedWith.size());
+        assertSame(lab.fromEnglish, lab.runtime.openedWith.get(0).get(0), "Primero el juez desde el inglés…");
+        assertSame(lab.fromTranslation, lab.runtime.openedWith.get(0).get(1), "…después el de la traducción");
+        assertTrue(lab.registry.asked.contains(NAME + " " + PAIR_VERSION),
+                "El freno del examen se consulta con su nombre y la versión del par");
+        JudgeSessions opened = lab.runtime.opened.get(0);
+        assertEquals(JudgeExamStatus.NOT_TAKEN, opened.getStanding().getStatus());
+        assertFalse(opened.getStanding().isConsultsOnCourse());
+        assertEquals(0, opened.getEffectivePolicy().getMaxNewEvaluations(),
+                "Una versión sin examen aprobado abre con tope 0, aunque la corrida pida 10 (F-JEXAM-R003)");
+
+        // Through a whole run: the budget of 10 does not reach any judge.
+        AuditReport report = lab.audit(budget(10), quiz("q01", "I ___ apples.", "like", "Me gustan las manzanas."),
+                verduras());
+        assertTrue(lab.fromEnglish.calls.isEmpty() && lab.fromTranslation.calls.isEmpty(),
+                "Sin examen aprobado, ninguna consulta sobre el curso");
+        for (AuditNode node : quizNodes(report.getRoot())) {
+            assertTrue(node.getUnevaluatedBy().contains(NAME));
+        }
+        JudgeCoverageDiagnosis coverage = ((DefaultCourseDiagnoses) report.getRoot().getDiagnoses()).getJudgeCoverages()
+                .get(0);
+        assertEquals(JudgeExamStatus.NOT_TAKEN, coverage.getStanding().getStatus(), "El informe dice por qué");
+
+        // The same request once the version passed its exam does consult.
+        lab.registry.approved.add(PAIR_VERSION);
+        lab.audit(budget(10), quiz("q01", "I ___ apples.", "like", "Me gustan las manzanas."));
+        assertEquals(List.of("q01"), lab.fromEnglish.calls);
+        assertEquals(List.of("q01"), lab.fromTranslation.calls);
     }
 
     @Test
     @DisplayName("should publish a card with family errors, paid model cost, the quiz as evaluated level and the rules same-meaning, native-would-say, words-go-together, level-register and judges-disagree")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R002")
-    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldPublishACardWithFamilyErrorsPaidModelCostTheQuizAsEvaluatedLevelAndTheRulesSamemeaningNativewouldsayWordsgotogetherLevelregisterAndJudgesdisagree(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Lab lab = new Lab(subject -> new EvaluationEmitted(PASS), subject -> new EvaluationEmitted(PASS));
+
+        AnalyzerDescriptor card = lab.provider.describe();
+
+        assertEquals(NAME, card.getName());
+        assertEquals("Traducción y sentido", card.getDisplayName(), "Su nombre en castellano (F-RONDA1-R004)");
+        assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
+        assertEquals(AnalysisCost.PAID_MODEL, card.getCost());
+        assertEquals(AuditTarget.QUIZ, card.getTarget());
+        assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
+        assertEquals(List.of("same-meaning", "native-would-say", "words-go-together", "level-register", "judges-disagree"),
+                card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
+        for (AnalyzerRuleCard rule : card.getRules()) {
+            assertEquals(AnalysisCost.PAID_MODEL, rule.getCost(), "Toda regla la decide el modelo: " + rule.getId());
+            assertFalse(rule.getDescription().isBlank(), rule.getId());
+        }
+        assertEquals("¿El inglés y la traducción dicen lo mismo, y un nativo lo diría así?", card.getQuestion());
+        assertTrue(card.getReads().contains("traducción") && card.getReads().contains("consigna"),
+                "Lee el nivel, la consigna, el enunciado, la oración y la traducción: " + card.getReads());
+        assertTrue(card.getGoal().contains("0 ejercicios con error"), card.getGoal());
+
+        // The catalog validates the card at startup: it enters as is.
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(lab.provider));
+        assertEquals(Optional.of(card), catalog.find(NAME));
+        assertTrue(lab.provider.config().isPresent(), "config analyzer translation-sense muestra su escala");
     }
 
     @Test
     @DisplayName("should declare in its card the panel as resolution of the four conditions and rank only for judges-disagree")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R007")
-    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldDeclareInItsCardThePanelAsResolutionOfTheFourConditionsAndRankOnlyForJudgesdisagree(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Lab lab = new Lab(byQuiz(Map.of(VERDURAS_ID, VERDURAS_FROM_ENGLISH, MEET_ID, EVERY_CONDITION, DINNER_ID,
+                        DINNER_FROM_ENGLISH)),
+                byQuiz(Map.of(VERDURAS_ID, VERDURAS_FROM_TRANSLATION, MEET_ID, EVERY_CONDITION)));
+        lab.registry.approved.add(PAIR_VERSION);
+
+        assertEquals(List.of(FindingResolution.PANEL, FindingResolution.RANK_ONLY), lab.provider.describe().getResolutions(),
+                "La mesa y «sólo ordena», y nada más");
+
+        AuditReport report = lab.audit(budget(6), verduras(), meet(), dinner());
+        Set<String> panelRules = new HashSet<>();
+        Set<String> rankOnlyRules = new HashSet<>();
+        for (AuditNode node : quizNodes(report.getRoot())) {
+            for (Finding finding : findingsOf(node)) {
+                (finding.getResolution() == FindingResolution.PANEL ? panelRules : rankOnlyRules).add(finding.getRule());
+                if (finding.getResolution() == FindingResolution.PANEL) {
+                    assertFalse("judges-disagree".equals(finding.getRule()));
+                }
+            }
+        }
+        assertEquals(Set.of("same-meaning", "native-would-say", "words-go-together", "level-register"), panelRules,
+                "Las cuatro condiciones se resuelven en la mesa, con los mismos dos jueces (F-TRSEN-R007)");
+        assertEquals(Set.of("judges-disagree"), rankOnlyRules, "El desacuerdo sólo ordena");
     }
 
     @Test
     @DisplayName("should bind its scores below 1 to the plan as TRANSLATION_SENSE tasks on quizzes")
     @Tag("FEAT-TRSEN")
     @Tag("F-TRSEN-R004")
-    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void shouldBindItsScoresBelow1ToThePlanAsTRANSLATIONSENSETasksOnQuizzes() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Lab lab = new Lab(byQuiz(Map.of(VERDURAS_ID, VERDURAS_FROM_ENGLISH, DINNER_ID, DINNER_FROM_ENGLISH)),
+                byQuiz(Map.of(VERDURAS_ID, VERDURAS_FROM_TRANSLATION)));
+        lab.registry.approved.add(PAIR_VERSION);
+
+        AnalyzerPlanBinding binding = lab.provider.planBinding().orElseThrow();
+        assertEquals("TRANSLATION_SENSE", binding.getTaskKind());
+        assertEquals(List.of(AuditTarget.QUIZ), binding.getTaskTargets());
+        assertEquals(Optional.of(binding),
+                new DefaultAnalyzerCatalog(List.of(lab.provider)).planBinding(NAME),
+                "El catálogo acepta la ligadura: sus tareas van sobre un nivel que la ficha evalúa");
+
+        // What the plan reads: a score below 1 on the quiz only where the judges found an error.
+        AuditReport report = lab.audit(budget(4), verduras(), dinner());
+        assertTrue(quizNode(report, VERDURAS_ID).getScores().get(NAME) < 1.0,
+                "Las verduras, con error, quedan bajo 1: una tarea TRANSLATION_SENSE");
+        assertEquals(1.0, quizNode(report, DINNER_ID).getScores().get(NAME), 1e-9,
+                "El desacuerdo queda en 1: ninguna tarea, sólo la bandeja");
     }
 }

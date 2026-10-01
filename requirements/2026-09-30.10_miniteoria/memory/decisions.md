@@ -4,6 +4,9 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (C) — La gravedad del hallazgo sale del problema (falsa y contradicha HIGH, exagera MEDIUM, no cubre LOW; F-MINIT-R004), nunca de la que escriba el modelo: así nunca es BLOCKING. Un veredicto que reprocha una miniteoría o un ejercicio que el tema no tiene, o una contradicción sin su ejercicio, no es de ese contenido: el tema queda sin evaluar en vez de adivinar dónde contarlo.
+2026-09-30 — developer (C) — Un tema sin ninguna miniteoría no es unidad del juez (no se consulta ni se cuenta). La evidencia muestra cada ejercicio como su oración terminada (y sus opciones en la opción múltiple): el repartidor sólo recibe la configuración, no el render (escalado).
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): MiniTheoryAnalyzerProvider implements AnalyzerProvider (C-03).
 
 2026-09-30 — qa-tester — F-MINIT-J001 en audit-domain, `com.learney.contentaudit.auditdomain.minitheoryengine`.

@@ -1,7 +1,75 @@
 package com.learney.contentaudit.auditdomain.minitheoryengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
+import com.learney.contentaudit.auditdomain.MiniTheoryConfig;
+import com.learney.contentaudit.auditdomain.QuizDiagnoses;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerErrorCounts;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage;
+import com.learney.contentaudit.auditdomain.judging.JudgeCostEstimate;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryAssessment;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryDiagnosis;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryErrorScope;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryProblem;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdict;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdictReader;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,87 +83,843 @@ public class MiniTheoryAnalyzerTest {
     @DisplayName("should consult the judge once per topic, never once per exercise")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldConsultTheJudgeOncePerTopicNeverOncePerExercise() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        Topic gerundio = gerundio();
+        Topic articulos = articulos();
+        Topic afirmativas = afirmativas();
+        world.holds(gerundio).holds(articulos).holds(afirmativas);
+
+        // Four at a time: the first consultation alone, the other two together.
+        AuditNode root = world.run(course(gerundio, articulos, afirmativas), budget(10));
+
+        assertEquals(Set.of(gerundio.id, articulos.id, afirmativas.id), Set.copyOf(world.judge.consulted()),
+                "one consultation per topic, with the topic as its subject");
+        assertEquals(3, world.judge.calls(), "28 exercises, 3 topics: 3 consultations");
+        assertEquals(5, world.judge.subjectOf(gerundio.id).getContent().get("exercises").split("\n").length,
+                "the subject of «Gerundio obligatorio» brings its 5 exercises");
+        assertEquals(3, world.judge.subjectOf(articulos.id).getContent().get("exercises").split("\n").length,
+                "the subject of «Artículos» brings its 3 exercises");
+        assertEquals(20, world.judge.subjectOf(afirmativas.id).getContent().get("exercises").split("\n").length,
+                "the subject of «Afirmativas regulares» brings its 20 exercises");
+        for (Topic topic : List.of(gerundio, articulos, afirmativas)) {
+            for (AuditNode exercise : exercisesOf(root, topic.id)) {
+                assertEquals(1.0, exercise.getScores().get("mini-theory"), 1e-9, "every exercise has its score");
+                assertEquals(topic.id, diagnosisOf(exercise).getKnowledgeId(), "judged with its topic");
+            }
+        }
     }
 
     @Test
     @DisplayName("should count topics against its budget, so with budget 1 and two new topics it judges one and leaves every exercise of the other unevaluated")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldCountTopicsAgainstItsBudgetSoWithBudget1AndTwoNewTopicsItJudgesOneAndLeavesEveryExerciseOfTheOtherUnevaluated(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        Topic gerundio = gerundio();
+        Topic articulos = articulos();
+        world.holds(gerundio).holds(articulos);
+
+        AuditNode root = world.run(course(gerundio, articulos), budget(1));
+
+        assertEquals(1, world.judge.calls(), "budget 1: one topic, whatever its 5 exercises");
+        for (AuditNode exercise : exercisesOf(root, gerundio.id)) {
+            assertEquals(1.0, exercise.getScores().get("mini-theory"), 1e-9, "the judged topic: all its exercises");
+        }
+        for (AuditNode exercise : exercisesOf(root, articulos.id)) {
+            assertUnevaluated(exercise);
+        }
+        JudgeCoverageDiagnosis coverage = coverageOf(root);
+        assertEquals(AuditTarget.KNOWLEDGE, coverage.getUnit(), "it counts topics");
+        assertEquals(2, coverage.getReached());
+        assertEquals(1, coverage.getEvaluated());
+        assertEquals(1, coverage.getNotEvaluated());
     }
 
     @Test
     @DisplayName("should reuse the verdict of a topic whose content did not change without consulting and without spending budget")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldReuseTheVerdictOfATopicWhoseContentDidNotChangeWithoutConsultingAndWithoutSpendingBudget(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        Topic gerundio = gerundio();
+        Topic articulos = articulos();
+        world.overstates(gerundio, STOP_ING, List.of(1)).holds(articulos);
+        world.run(course(gerundio), budget(1));
+        assertEquals(1, world.judge.calls());
+
+        // The same topic, untouched, comes first; the budget of 1 is still there for the new one.
+        AuditNode root = world.run(course(gerundio(), articulos()), budget(1));
+
+        assertEquals(2, world.judge.calls(), "only the new topic was consulted");
+        assertEquals(List.of(gerundio.id, articulos.id), world.judge.consulted());
+        for (AuditNode exercise : exercisesOf(root, gerundio.id)) {
+            assertTrue(diagnosisOf(exercise).isReusedFromPreviousRun(), "reused, without consulting");
+        }
+        assertEquals(0.6, exercisesOf(root, gerundio.id).get(0).getScores().get("mini-theory"), 1e-9,
+                "the reused verdict scores as the fresh one did");
+        for (AuditNode exercise : exercisesOf(root, articulos.id)) {
+            assertFalse(diagnosisOf(exercise).isReusedFromPreviousRun(), "judged in this run");
+        }
+        EvaluationCoverage session = coverageOf(root).getEvaluators().get(0).getCoverage();
+        assertEquals(1, session.getReused());
+        assertEquals(1, session.getEvaluatedInRun(), "the reuse did not spend the budget of 1");
+        assertEquals(0, session.getPending());
     }
 
     @Test
     @DisplayName("should leave the exercises of an unevaluated topic without mini-theory score and finding, marked as unevaluated by mini-theory")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldLeaveTheExercisesOfAnUnevaluatedTopicWithoutMinitheoryScoreAndFindingMarkedAsUnevaluatedByMinitheory(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        Topic gerundio = gerundio();
+        // Had it been consulted, its card would have been found overstated.
+        world.overstates(gerundio, STOP_ING, List.of(1));
+
+        AuditNode root = world.run(course(gerundio), budget(0));
+
+        assertEquals(0, world.judge.calls());
+        List<AuditNode> exercises = exercisesOf(root, gerundio.id);
+        assertEquals(5, exercises.size());
+        for (AuditNode exercise : exercises) {
+            assertUnevaluated(exercise);
+        }
+        AuditNode knowledge = knowledgeOf(root, gerundio.id);
+        assertFalse(knowledge.getScores().containsKey("mini-theory"), "nothing to aggregate in its topic");
+        assertFalse(knowledge.getUnevaluatedBy().contains("mini-theory"), "the exercises carry it, where it counts");
+        AnalyzerErrorCounts counts = errorCountsOf(knowledge);
+        assertEquals(5, counts.getNotEvaluated(), "its 5 exercises count as not evaluated");
+        assertEquals(0, counts.getEvaluated());
+        assertEquals(0, counts.getWithError());
     }
 
     @Test
     @DisplayName("should finish the run and record nothing when the judge's service fails or its output is unusable, leaving those topics unevaluated")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldFinishTheRunAndRecordNothingWhenTheJudgesServiceFailsOrItsOutputIsUnusableLeavingThoseTopicsUnevaluated(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        Topic gerundio = gerundio();
+        Topic articulos = articulos();
+        Topic afirmativas = afirmativas();
+        String expired = "sesión vencida: renovala con `claude auth login`";
+        world.judge.answering(gerundio.id, new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE,
+                "el agente agotó sus intentos"));
+        world.judge.answering(articulos.id, new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE,
+                expired));
+        world.holds(afirmativas);
+
+        AuditNode root = world.run(course(gerundio, articulos, afirmativas),
+                new EvaluationRunPolicy(10, false, null, null, null, 1));
+
+        assertNotNull(root, "the run finishes");
+        assertEquals(List.of(gerundio.id, articulos.id), world.judge.consulted(),
+                "an unusable output does not stop it; after the service failed it consults no more");
+        assertEquals(List.of(), world.ledger.all(), "nothing is recorded");
+        for (Topic topic : List.of(gerundio, articulos, afirmativas)) {
+            for (AuditNode exercise : exercisesOf(root, topic.id)) {
+                assertUnevaluated(exercise);
+            }
+        }
+        JudgeCoverageDiagnosis coverage = coverageOf(root);
+        assertEquals(3, coverage.getReached());
+        assertEquals(0, coverage.getEvaluated());
+        assertEquals(3, coverage.getNotEvaluated());
+        assertEquals(expired, coverage.getUnavailableReason(), "it says why it stopped and how to fix it");
+        assertEquals(2, coverage.getEvaluators().get(0).getCoverage().getFailed());
+        assertEquals(1, coverage.getEvaluators().get(0).getCoverage().getPending());
     }
 
     @Test
     @DisplayName("should declare the topics reached, evaluated and unevaluated, and the exercises they contain, in its coverage")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldDeclareTheTopicsReachedEvaluatedAndUnevaluatedAndTheExercisesTheyContainInItsCoverage(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        Topic gerundio = gerundio();       // 5 exercises, already judged
+        Topic articulos = articulos();     // 3 exercises, judged in this run
+        Topic afirmativas = afirmativas(); // 20 exercises, no budget left
+        world.holds(gerundio).holds(articulos).holds(afirmativas);
+        world.run(course(gerundio), budget(1));
+
+        AuditNode root = world.run(course(gerundio(), articulos(), afirmativas()), budget(1));
+
+        JudgeCoverageDiagnosis coverage = coverageOf(root);
+        assertEquals("mini-theory", coverage.getJudgeName());
+        assertEquals(AuditTarget.KNOWLEDGE, coverage.getUnit());
+        assertEquals(3, coverage.getReached(), "three topics reached");
+        assertEquals(2, coverage.getEvaluated(), "one reused and one consulted");
+        assertEquals(1, coverage.getNotEvaluated(), "one without budget");
+        EvaluatorCoverage judge = coverage.getEvaluators().get(0);
+        assertEquals("mini-theory-judge", judge.getEvaluatorId());
+        assertEquals(new EvaluationCoverage(3, 2, 1, 1, 1, 0), judge.getCoverage());
+        assertEquals("v1", judge.getConsultedVersion());
+        assertEquals(List.of(new JudgeVersionStanding("v1", 2, JudgeExamStatus.APPROVED)), coverage.getVersions());
+        assertEquals(JudgeExamStatus.APPROVED, coverage.getStanding().getStatus());
+        assertEquals(1, coverage.getCost().getPendingUnits(), "one topic pending");
+        assertNull(coverage.getUnmatchedDeclaredIds(), "no set was declared");
+
+        // The exercises they contain: 5 + 3 evaluated in their exercises, the 20 of the third not.
+        AnalyzerErrorCounts exercises = errorCountsOf(root);
+        assertEquals(28, exercises.getReached());
+        assertEquals(8, exercises.getEvaluated());
+        assertEquals(20, exercises.getNotEvaluated());
+        for (AuditNode exercise : exercisesOf(root, afirmativas.id)) {
+            assertUnevaluated(exercise);
+        }
     }
 
     @Test
     @DisplayName("should consult the judge on no topic when the run asks no budget for mini-theory, and declare what the pending topics cost")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R005")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldConsultTheJudgeOnNoTopicWhenTheRunAsksNoBudgetForMinitheoryAndDeclareWhatThePendingTopicsCost(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        Topic gerundio = gerundio();
+        Topic articulos = articulos();
+        Topic afirmativas = afirmativas();
+        world.holds(gerundio).holds(articulos).holds(afirmativas);
+
+        // No policy for mini-theory: the run asks it nothing.
+        AuditNode root = world.run(course(gerundio, articulos, afirmativas), null);
+
+        assertEquals(0, world.judge.calls(), "without an explicit request no judge consults");
+        JudgeCoverageDiagnosis coverage = coverageOf(root);
+        assertEquals(3, coverage.getNotEvaluated());
+        JudgeCostEstimate cost = coverage.getCost();
+        assertEquals(3, cost.getPendingUnits(), "three topics pending");
+        assertEquals(3, cost.getPendingConsultations(), "one consultation per topic");
+        assertEquals(60.0, cost.getRatePerHour(), 1e-9, "without history, the rate of whole topics");
+        assertFalse(cost.isRateMeasured());
+        assertEquals(0.05, cost.getHoursOneAtATime(), 1e-9, "3 topics at 60 an hour");
+        assertEquals(4, cost.getMaxConcurrentEvaluations());
+        assertEquals(0.0125, cost.getHoursConcurrent(), 1e-9, "four at a time");
     }
 
     @Test
     @DisplayName("should judge in an EXAM run the topics of the exercises of the file and no other topic")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R006")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldJudgeInAnEXAMRunTheTopicsOfTheExercisesOfTheFileAndNoOtherTopic() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The exam is never braked: this version has no exam yet.
+        World world = World.notExamined();
+        Topic afirmativas = afirmativas();
+        Topic articulos = articulos();
+        Topic gerundio = gerundio();
+        world.holds(afirmativas).holds(articulos).holds(gerundio);
+        // The file: the verduras and a good exercise of «Artículos»; nothing of «Gerundio».
+        Set<String> file = Set.of(VERDURAS, articulos.exerciseIds.get(2));
+
+        AuditNode root = world.run(course(afirmativas, articulos, gerundio),
+                new EvaluationRunPolicy(10, false, null, file, EvaluationRunPurpose.EXAM, null));
+
+        assertEquals(2, world.judge.calls(), "the topics of the exercises of the file, each once");
+        assertEquals(Set.of(afirmativas.id, articulos.id), Set.copyOf(world.judge.consulted()));
+        for (AuditNode exercise : exercisesOf(root, gerundio.id)) {
+            assertFalse(exercise.getScores().containsKey("mini-theory"), "a topic outside the file is not judged");
+            assertFalse(exercise.getUnevaluatedBy().contains("mini-theory"), "nor counted");
+        }
+        AuditNode verduras = exerciseOf(root, afirmativas.id, VERDURAS);
+        assertEquals(1.0, verduras.getScores().get("mini-theory"), 1e-9, "its card is true: the verduras pass here");
+        JudgeCoverageDiagnosis coverage = coverageOf(root);
+        assertEquals(2, coverage.getReached());
+        assertEquals(2, coverage.getEvaluated());
+        assertEquals(List.of(), coverage.getUnmatchedDeclaredIds(), "both ids of the file are in the photo");
+        for (EvaluationRecord record : world.ledger.all()) {
+            assertEquals("exam:mini-theory-judge", record.getKey().getEvaluatorId(),
+                    "the exam writes only in its own space, never in the course's");
+        }
+        assertEquals(2, world.ledger.all().size());
     }
 
     @Test
     @DisplayName("should judge a candidate that rewrites a mini-theory with the same judge and version, and reuse its verdict once the candidate enters the course")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R007")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldJudgeACandidateThatRewritesAMinitheoryWithTheSameJudgeAndVersionAndReuseItsVerdictOnceTheCandidateEntersTheCourse(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        Topic gerundio = gerundio();
+        world.overstates(gerundio, STOP_ING, List.of(1));
+        AuditNode before = world.run(course(gerundio), budget(1));
+        assertEquals(1, world.judge.calls());
+        assertEquals(List.of("overstated-rule"), rulesOf(exerciseOf(before, gerundio.id, gerundio.exerciseIds.get(0))));
+
+        // The panel's candidate: one rewrite of the card, in every exercise that shows it.
+        Topic candidate = gerundio(STOP_ING_REWRITTEN);
+        world.holds(candidate);
+        AuditNode judgedCandidate = world.run(course(candidate),
+                new EvaluationRunPolicy(1, false, null, Set.of(candidate.id), null, null));
+
+        assertEquals(2, world.judge.calls(), "the candidate is judged by the same judge");
+        JudgeCoverageDiagnosis ofCandidate = coverageOf(judgedCandidate);
+        assertEquals(List.of(new JudgeVersionStanding("v1", 1, JudgeExamStatus.APPROVED)), ofCandidate.getVersions(),
+                "and the same version");
+        EvaluationRecord recorded = world.ledger.all().get(1);
+        assertEquals("mini-theory-judge", recorded.getKey().getEvaluatorId());
+        assertEquals("v1", recorded.getEvaluatorVersion());
+        assertEquals(candidate.id, recorded.getSubjectRef());
+
+        // The candidate enters the course: its verdict is there, by what the judge reads.
+        AuditNode after = world.run(course(gerundio(STOP_ING_REWRITTEN)), budget(1));
+
+        assertEquals(2, world.judge.calls(), "reused, without consulting");
+        for (AuditNode exercise : exercisesOf(after, gerundio.id)) {
+            assertEquals(1.0, exercise.getScores().get("mini-theory"), 1e-9);
+            assertTrue(rulesOf(exercise).isEmpty());
+            assertTrue(diagnosisOf(exercise).isReusedFromPreviousRun());
+        }
+        assertEquals(1, coverageOf(after).getEvaluators().get(0).getCoverage().getReused());
+    }
+
+    // ------------------------------------------------------------------
+    // The topics
+    // ------------------------------------------------------------------
+
+    static final String STOP_ING = "Verbos como enjoy, finish o stop piden siempre -ing.";
+
+    static final String STOP_ING_REWRITTEN =
+            "Verbos como enjoy o finish piden -ing. Con stop, -ing es dejar de hacer algo y to es parar para hacerlo.";
+
+    static final String ENJOY_ING = "Después de enjoy va el verbo con -ing.";
+
+    static final String ARTICLES = "Si después viene that o who, va the.";
+
+    static final String A_AN = "Delante de un sonido vocal va an.";
+
+    static final String VERDURAS = "67fab6d59930102295341ecd";
+
+    static final String VERDURAS_MINI_THEORY =
+            "Con he, she, it el verbo lleva $-s$. Con I, you, we, they va en forma base.";
+
+    /** A topic of the course, with its exercises in order. */
+    static final class Topic {
+        final String level;
+        final String id;
+        final String name;
+        final List<AuditableQuiz> quizzes;
+        final List<String> exerciseIds = new ArrayList<>();
+
+        Topic(String level, String id, String name, List<AuditableQuiz> quizzes) {
+            this.level = level;
+            this.id = id;
+            this.name = name;
+            this.quizzes = quizzes;
+            for (AuditableQuiz quiz : quizzes) {
+                exerciseIds.add(quiz.getId());
+            }
+        }
+
+        AuditableKnowledge knowledge() {
+            return new AuditableKnowledge(quizzes, name, "Completa con la forma correcta.", true, id, name, "K",
+                    SentenceMode.FILL, name);
+        }
+    }
+
+    /** A2 «Gerundio obligatorio»: 5 exercises; the stop card (M1) in E1 to E3, the enjoy one (M2) in E4 and E5. */
+    static Topic gerundio() {
+        return gerundio(STOP_ING);
+    }
+
+    static Topic gerundio(String stopCard) {
+        return new Topic("A2", "k-gerundio-obligatorio", "Gerundio obligatorio", List.of(
+                cloze("q-ger-1", "They stopped", "eating", "(eat) at noon.", "They stopped eating at noon.", stopCard),
+                cloze("q-ger-2", "She finished", "writing", "(write) the letter.", "She finished writing the letter.",
+                        stopCard),
+                cloze("q-ger-3", "We stopped", "talking", "(talk).", "We stopped talking.", stopCard),
+                cloze("q-ger-4", "I enjoy", "reading", "(read).", "I enjoy reading.", ENJOY_ING),
+                cloze("q-ger-5", "He enjoys", "swimming", "(swim).", "He enjoys swimming.", ENJOY_ING)));
+    }
+
+    /** A2 «Artículos: a, the o nada»: 3 exercises; the that/who card in E1 and E3, the an one in E2. */
+    static Topic articulos() {
+        return new Topic("A2", "k-articulos", "Artículos: a, the o nada", List.of(
+                cloze("q-art-1", "This is", "the", "man who helped me.", "This is the man who helped me.", ARTICLES),
+                cloze("q-art-2", "I ate", "an", "apple.", "I ate an apple.", A_AN),
+                cloze("q-art-3", "She has", "a", "friend who lives in Paris.", "She has a friend who lives in Paris.",
+                        ARTICLES)));
+    }
+
+    /** A1 «Afirmativas regulares»: its 20 exercises with one true card; the 11th are the verduras. */
+    static Topic afirmativas() {
+        String[][] rows = {
+                {"67fab6d59930102295341ec3", "You", "see", "(see) cats."},
+                {"67fab6d59930102295341ec4", "It", "comes", "(come) every year."},
+                {"67fab6d59930102295341ec5", "He", "leaves", "(leave) the bedroom."},
+                {"67fab6d59930102295341ec6", "They", "go", "(go) to school every day."},
+                {"67fab6d59930102295341ec7", "We", "make", "(make) clothes."},
+                {"67fab6d59930102295341ec8", "He", "buys", "(buy) a lot of tea."},
+                {"67fab6d59930102295341ec9", "She", "eats", "(eat) lunch."},
+                {"67fab6d59930102295341eca", "You", "enjoy", "(enjoy) life."},
+                {"67fab6d59930102295341ecb", "We", "know", "(know) ourselves."},
+                {"67fab6d59930102295341ecc", "We", "want", "(want) some food."},
+                {VERDURAS, "I", "love", "a lot of vegetables."},
+                {"67fab6d59930102295341ece", "I", "play", "(play) basketball every week."},
+                {"67fab6d59930102295341ecf", "He", "reads", "(read) books."},
+                {"67fab6d59930102295341ed0", "They", "work", "(work) on the beach."},
+                {"67fab6d59930102295341ed1", "She", "lives", "(live) in London."},
+                {"67fab6d59930102295341ed2", "You", "have", "(have) two sisters."},
+                {"67fab6d59930102295341ed3", "I", "help", "(help) my friends."},
+                {"67fab6d59930102295341ed4", "It", "gets", "(get) cold here."},
+                {"67fab6d59930102295341ed5", "I", "learn", "(learn) every afternoon."},
+                {"67fab6d59930102295341ed6", "She", "sports", "(sport) hats."}};
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (String[] row : rows) {
+            quizzes.add(cloze(row[0], row[1], row[2], row[3],
+                    row[1] + " " + row[2] + " " + row[3].replaceAll("\\([^)]*\\) ", ""), VERDURAS_MINI_THEORY));
+        }
+        return new Topic("A1", "6814dafa7d73e7209a13d389", "Afirmativas regulares", quizzes);
+    }
+
+    static AuditableQuiz cloze(String id, String before, String answer, String after, String sentence,
+            String miniTheory) {
+        return new AuditableQuiz(List.of(), id, id, "", "Traducción de " + id, List.of(sentence), null, "Completa.",
+                List.of(new SentencePartEntity(SentencePartKind.TEXT, before, null),
+                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(answer)),
+                        new SentencePartEntity(SentencePartKind.TEXT, after, null)),
+                null, miniTheory, "audio-" + id);
+    }
+
+    /** The course: one level per level of its topics, in order; each topic under one area. */
+    static AuditableCourse course(Topic... topics) {
+        Map<String, List<AuditableKnowledge>> byLevel = new LinkedHashMap<>();
+        for (Topic topic : topics) {
+            byLevel.computeIfAbsent(topic.level, level -> new ArrayList<>()).add(topic.knowledge());
+        }
+        List<AuditableMilestone> milestones = new ArrayList<>();
+        for (Map.Entry<String, List<AuditableKnowledge>> level : byLevel.entrySet()) {
+            AuditableTopic area = new AuditableTopic(level.getValue(), "t-" + level.getKey(), "Gramática", "T");
+            milestones.add(new AuditableMilestone(List.of(area), "m-" + level.getKey(), level.getKey(),
+                    level.getKey()));
+        }
+        return new AuditableCourse(milestones);
+    }
+
+    static EvaluationRunPolicy budget(int topics) {
+        return new EvaluationRunPolicy(topics, false, null, null, null, null);
+    }
+
+    // ------------------------------------------------------------------
+    // The world of a judge: the ledger, the recorded judge, its exam and the engine
+    // ------------------------------------------------------------------
+
+    /** The runtime of the judges as Main builds it, over a ledger in memory, with a recorded judge. */
+    static final class World {
+        final Ledger ledger = new Ledger();
+        final RecordedJudge judge = new RecordedJudge("v1");
+        final RecordedReader reader = new RecordedReader();
+        final Exams exams;
+        final DefaultJudgeRuntime runtime;
+        final MiniTheoryAnalyzerProvider provider;
+
+        private World(Exams exams, MiniTheoryErrorScope scope) {
+            this.exams = exams;
+            Sha256ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
+            this.runtime = new DefaultJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, fingerprinter),
+                    new ExamEvaluationSessionFactory(ledger, fingerprinter), exams, evaluatorId -> List.of(),
+                    new RuntimeConfig());
+            this.provider = new MiniTheoryAnalyzerProvider(runtime, judge, reader, new Config(scope),
+                    new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
+        }
+
+        /** A world whose version v1 approved its exam as mini-theory. */
+        static World approved() {
+            return new World(new Exams("mini-theory", "v1"), MiniTheoryErrorScope.SHOWN_ONLY);
+        }
+
+        static World approved(MiniTheoryErrorScope scope) {
+            return new World(new Exams("mini-theory", "v1"), scope);
+        }
+
+        /** A world where no version took the exam. */
+        static World notExamined() {
+            return new World(new Exams(null, null), MiniTheoryErrorScope.SHOWN_ONLY);
+        }
+
+        /** A world where only a judge of another name approved v1. */
+        static World approvedFor(String judgeName) {
+            return new World(new Exams(judgeName, "v1"), MiniTheoryErrorScope.SHOWN_ONLY);
+        }
+
+        /** The judge holds every mini theory of this content of the topic. */
+        World holds(Topic topic) {
+            List<MiniTheoryAssessment> assessments = new ArrayList<>();
+            int count = miniTheoriesOf(topic).size();
+            for (int m = 1; m <= count; m++) {
+                assessments.add(new MiniTheoryAssessment(m, true, null, null, null, List.of(), "Es cierta."));
+            }
+            return answers(topic, new MiniTheoryVerdict(assessments, "Todas las tarjetas son ciertas."));
+        }
+
+        /** The judge finds this card of the topic overstated, naming those exercises. */
+        World overstates(Topic topic, String card, List<Integer> exercises) {
+            List<String> cards = miniTheoriesOf(topic);
+            List<MiniTheoryAssessment> assessments = new ArrayList<>();
+            for (int m = 1; m <= cards.size(); m++) {
+                assessments.add(cards.get(m - 1).equals(card)
+                        ? new MiniTheoryAssessment(m, false, MiniTheoryProblem.OVERSTATED, FindingSeverity.MEDIUM,
+                                "They stopped to eat.", exercises, "Con stop también va to, con otro sentido.")
+                        : new MiniTheoryAssessment(m, true, null, null, null, List.of(), "Es cierta."));
+            }
+            return answers(topic, new MiniTheoryVerdict(assessments, "Una tarjeta exagera."));
+        }
+
+        /** The judge answers this verdict, as recorded JSON, for exactly this content of the topic. */
+        World answers(Topic topic, MiniTheoryVerdict verdict) {
+            String payload = reader.record(verdict);
+            String miniTheories = String.join("|", miniTheoriesOf(topic));
+            judge.answeringWhen(subject -> topic.id.equals(subject.getSubjectRef())
+                            && subject.getContent().get("miniTheories") != null
+                            && sameCards(subject.getContent().get("miniTheories"), miniTheories),
+                    new EvaluationEmitted(payload));
+            return this;
+        }
+
+        /** Runs the engine with only mini-theory, with this policy (null: the run asks it nothing). */
+        AuditNode run(AuditableCourse course, EvaluationRunPolicy policy) {
+            Map<String, EvaluationRunPolicy> policies = policy != null ? Map.of("mini-theory", policy) : Map.of();
+            IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
+                    new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+            return engine.runAudit(course, new AnalyzerRunSelection(List.of("mini-theory"), policies)).getRoot();
+        }
+
+        private static List<String> miniTheoriesOf(Topic topic) {
+            List<String> cards = new ArrayList<>();
+            for (AuditableQuiz quiz : topic.quizzes) {
+                String card = quiz.getMiniTheory();
+                if (card != null && !card.isBlank() && !cards.contains(card)) {
+                    cards.add(card);
+                }
+            }
+            return cards;
+        }
+
+        /** Whether the «miniTheories» of a subject lists exactly these cards, in this order. */
+        private static boolean sameCards(String miniTheories, String cards) {
+            List<String> listed = new ArrayList<>();
+            for (String line : miniTheories.split("\n")) {
+                String text = line.replaceFirst("^M\\d+: ", "").replaceFirst(" \\(ejercicios: [^)]*\\)$", "");
+                listed.add(text);
+            }
+            return String.join("|", listed).equals(cards);
+        }
+    }
+
+    /** The ledger in memory: the latest with a key wins and the history keeps them all. */
+    static final class Ledger implements EvaluationLedger {
+        private final List<EvaluationRecord> records = new ArrayList<>();
+
+        @Override
+        public synchronized void append(EvaluationRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public synchronized Optional<EvaluationRecord> findLatest(EvaluationKey key) {
+            EvaluationRecord latest = null;
+            for (EvaluationRecord record : records) {
+                if (record.getKey().equals(key)) {
+                    latest = record;
+                }
+            }
+            return Optional.ofNullable(latest);
+        }
+
+        @Override
+        public synchronized List<EvaluationRecord> history(EvaluationKey key) {
+            List<EvaluationRecord> history = new ArrayList<>();
+            for (EvaluationRecord record : records) {
+                if (record.getKey().equals(key)) {
+                    history.add(record);
+                }
+            }
+            return history;
+        }
+
+        synchronized List<EvaluationRecord> all() {
+            return new ArrayList<>(records);
+        }
+    }
+
+    /**
+     * The mini-theory-judge agent, answering recorded verdicts (the JSON of miniTheoryVerdict) and
+     * counting its consultations. A content it has no answer for comes back unusable. The runtime
+     * consults up to N at a time, so every access is synchronized.
+     */
+    static final class RecordedJudge implements Evaluator {
+        private final String version;
+        private final List<Predicate<EvaluationSubject>> conditions = new ArrayList<>();
+        private final List<EvaluationOutcome> outcomes = new ArrayList<>();
+        private final List<EvaluationSubject> subjects = new ArrayList<>();
+
+        RecordedJudge(String version) {
+            this.version = version;
+        }
+
+        synchronized RecordedJudge answering(String topicId, EvaluationOutcome outcome) {
+            return answeringWhen(subject -> topicId.equals(subject.getSubjectRef()), outcome);
+        }
+
+        synchronized RecordedJudge answeringWhen(Predicate<EvaluationSubject> condition, EvaluationOutcome outcome) {
+            // The latest answer recorded for a content wins.
+            conditions.add(0, condition);
+            outcomes.add(0, outcome);
+            return this;
+        }
+
+        @Override
+        public String evaluatorId() {
+            return "mini-theory-judge";
+        }
+
+        @Override
+        public synchronized EvaluationOutcome evaluate(EvaluationSubject subject) {
+            subjects.add(subject);
+            for (int i = 0; i < conditions.size(); i++) {
+                if (conditions.get(i).test(subject)) {
+                    return outcomes.get(i);
+                }
+            }
+            return new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "sin veredicto grabado");
+        }
+
+        @Override
+        public Optional<String> evaluatorVersion() {
+            return Optional.ofNullable(version);
+        }
+
+        synchronized int calls() {
+            return subjects.size();
+        }
+
+        synchronized List<String> consulted() {
+            List<String> refs = new ArrayList<>();
+            for (EvaluationSubject subject : subjects) {
+                refs.add(subject.getSubjectRef());
+            }
+            return refs;
+        }
+
+        synchronized EvaluationSubject subjectOf(String topicId) {
+            for (EvaluationSubject subject : subjects) {
+                if (topicId.equals(subject.getSubjectRef())) {
+                    return subject;
+                }
+            }
+            throw new AssertionError("the judge was never asked about " + topicId);
+        }
+    }
+
+    /** Reads back the recorded JSON: in audit-domain there is no Jackson reader. */
+    static final class RecordedReader implements MiniTheoryVerdictReader {
+        private final Map<String, MiniTheoryVerdict> byPayload = new HashMap<>();
+
+        synchronized String record(MiniTheoryVerdict verdict) {
+            String payload = json(verdict);
+            byPayload.put(payload, verdict);
+            return payload;
+        }
+
+        @Override
+        public synchronized MiniTheoryVerdict read(String payload) {
+            MiniTheoryVerdict verdict = byPayload.get(payload);
+            if (verdict == null) {
+                throw new IllegalArgumentException("Veredicto ilegible: " + payload);
+            }
+            return verdict;
+        }
+    }
+
+    /** The JSON the agent emits, with the shape of the artifact miniTheoryVerdict. */
+    static String json(MiniTheoryVerdict verdict) {
+        StringBuilder json = new StringBuilder("{\"assessments\": [");
+        for (int i = 0; i < verdict.getAssessments().size(); i++) {
+            MiniTheoryAssessment a = verdict.getAssessments().get(i);
+            if (i > 0) {
+                json.append(", ");
+            }
+            json.append("{\"miniTheory\": ").append(a.getMiniTheory())
+                    .append(", \"holds\": ").append(a.isHolds())
+                    .append(", \"problem\": ").append(a.getProblem() != null ? quoted(a.getProblem().name()) : "null")
+                    .append(", \"severity\": ").append(a.getSeverity() != null ? quoted(a.getSeverity().name()) : "null")
+                    .append(", \"counterexample\": ").append(a.getCounterexample() != null
+                            ? quoted(a.getCounterexample()) : "null")
+                    .append(", \"exercises\": ").append(a.getExercises())
+                    .append(", \"explanation\": ").append(quoted(a.getExplanation() != null ? a.getExplanation() : ""))
+                    .append('}');
+        }
+        return json.append("], \"rationale\": ").append(quoted(verdict.getRationale())).append('}').toString();
+    }
+
+    private static String quoted(String text) {
+        return "\"" + text.replace("\\", "\\\\").replace("\"", "\\\"") + "\"";
+    }
+
+    /** The exam of the judges: the one version a judge approved, if any; it writes down who asks. */
+    static final class Exams implements JudgeExamRegistry {
+        private final String approvedJudge;
+        private final String approvedVersion;
+        final List<String> askedFor = new ArrayList<>();
+
+        Exams(String approvedJudge, String approvedVersion) {
+            this.approvedJudge = approvedJudge;
+            this.approvedVersion = approvedVersion;
+        }
+
+        @Override
+        public void record(JudgeExamRecord record) {
+            throw new UnsupportedOperationException("a run never records an exam");
+        }
+
+        @Override
+        public synchronized Optional<JudgeExamRecord> latest(String judgeName, String judgeVersion) {
+            askedFor.add(judgeName + "@" + judgeVersion);
+            if (approvedJudge != null && approvedJudge.equals(judgeName) && approvedVersion.equals(judgeVersion)) {
+                return Optional.of(new JudgeExamRecord(judgeName, judgeVersion, JudgeExamStatus.APPROVED, 51, 0,
+                        List.of(), List.of(), true, "2026-09-29", "test", Instant.parse("2026-09-30T12:00:00Z")));
+            }
+            return Optional.empty();
+        }
+
+        @Override
+        public List<JudgeExamRecord> history(String judgeName) {
+            return List.of();
+        }
+    }
+
+    /** DefaultJudgeRuntimeConfig lives in audit-application: 4 at a time, budget 0, 60 topics an hour. */
+    static final class RuntimeConfig implements JudgeRuntimeConfig {
+        @Override
+        public int getMaxConcurrentEvaluations() {
+            return 4;
+        }
+
+        @Override
+        public int getDefaultMaxNewEvaluations(String judgeName) {
+            return 0;
+        }
+
+        @Override
+        public double getDefaultRatePerHour(String judgeName) {
+            return "mini-theory".equals(judgeName) ? 60.0 : 189.0;
+        }
+
+        @Override
+        public Map<String, Object> describe() {
+            return Map.of("maxConcurrentEvaluations", 4);
+        }
+    }
+
+    /** The scale of DefaultMiniTheoryConfig (audit-application), with the scope of the world. */
+    static final class Config implements MiniTheoryConfig {
+        private final MiniTheoryErrorScope scope;
+
+        Config(MiniTheoryErrorScope scope) {
+            this.scope = scope;
+        }
+
+        @Override
+        public MiniTheoryErrorScope getErrorScope() {
+            return scope;
+        }
+
+        @Override
+        public double getScoreFor(FindingSeverity severity) {
+            if (severity == null) {
+                return 1.0;
+            }
+            return switch (severity) {
+                case BLOCKING, HIGH -> 0.3;
+                case MEDIUM -> 0.6;
+                case LOW -> 0.8;
+            };
+        }
+
+        @Override
+        public Map<String, Object> describe() {
+            return Map.of("errorScope", scope.name());
+        }
+    }
+
+    // ------------------------------------------------------------------
+    // Reading the report
+    // ------------------------------------------------------------------
+
+    static AuditNode knowledgeOf(AuditNode root, String knowledgeId) {
+        for (AuditNode level : root.getChildren()) {
+            for (AuditNode area : level.getChildren()) {
+                for (AuditNode knowledge : area.getChildren()) {
+                    if (knowledgeId.equals(knowledge.getEntity().getId())) {
+                        return knowledge;
+                    }
+                }
+            }
+        }
+        throw new AssertionError("no topic " + knowledgeId + " in the report");
+    }
+
+    static List<AuditNode> exercisesOf(AuditNode root, String knowledgeId) {
+        return knowledgeOf(root, knowledgeId).getChildren();
+    }
+
+    static AuditNode exerciseOf(AuditNode root, String knowledgeId, String quizId) {
+        for (AuditNode exercise : exercisesOf(root, knowledgeId)) {
+            if (quizId.equals(exercise.getEntity().getId())) {
+                return exercise;
+            }
+        }
+        throw new AssertionError("no exercise " + quizId + " in " + knowledgeId);
+    }
+
+    static MiniTheoryDiagnosis diagnosisOf(AuditNode exercise) {
+        return ((QuizDiagnoses) exercise.getDiagnoses()).getMiniTheoryDiagnosis()
+                .orElseThrow(() -> new AssertionError("no mini-theory diagnosis in " + exercise.getEntity().getId()));
+    }
+
+    static JudgeCoverageDiagnosis coverageOf(AuditNode root) {
+        List<JudgeCoverageDiagnosis> coverages = ((CourseDiagnoses) root.getDiagnoses()).getJudgeCoverages();
+        List<JudgeCoverageDiagnosis> ofMiniTheory = new ArrayList<>();
+        for (JudgeCoverageDiagnosis coverage : coverages) {
+            if ("mini-theory".equals(coverage.getJudgeName())) {
+                ofMiniTheory.add(coverage);
+            }
+        }
+        assertEquals(1, ofMiniTheory.size(), "mini-theory publishes its coverage once");
+        return ofMiniTheory.get(0);
+    }
+
+    static AnalyzerErrorCounts errorCountsOf(AuditNode node) {
+        for (AnalyzerErrorCounts counts : node.getNumbers().getErrors().getAnalyzers()) {
+            if ("mini-theory".equals(counts.getAnalyzer())) {
+                return counts;
+            }
+        }
+        throw new AssertionError("no error counts of mini-theory");
+    }
+
+    static List<String> rulesOf(AuditNode exercise) {
+        List<String> rules = new ArrayList<>();
+        for (Finding finding : exercise.getFindings()) {
+            if ("mini-theory".equals(finding.getAnalyzer())) {
+                rules.add(finding.getRule());
+            }
+        }
+        return rules;
+    }
+
+    static void assertUnevaluated(AuditNode exercise) {
+        String id = exercise.getEntity().getId();
+        assertFalse(exercise.getScores().containsKey("mini-theory"), id + " has no mini-theory score");
+        assertTrue(rulesOf(exercise).isEmpty(), id + " has no mini-theory finding");
+        assertTrue(exercise.getUnevaluatedBy().contains("mini-theory"), id + " is declared not evaluated by mini-theory");
+        assertTrue(((QuizDiagnoses) exercise.getDiagnoses()).getMiniTheoryDiagnosis().isEmpty(),
+                id + " has no mini-theory diagnosis");
     }
 }

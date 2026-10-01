@@ -3,6 +3,8 @@ package com.learney.contentaudit.evaluationledgerdomain.evaluationsession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
@@ -21,18 +23,69 @@ class ExamScopedEvaluationLedger implements EvaluationLedger {
         this.pinnedVersion = pinnedVersion;
     }
 
+    /**
+     * F-JEXAM-R002 inv. 1: an exam verdict is written only in the exam space, under the
+     * evaluator prefixed {@value #EXAM_PREFIX}, so the course ledger -- where the most recent
+     * verdict wins (F-EVCOST-R006) -- never sees it and analyze gives the same before and after.
+     */
     @Override
     public void append(EvaluationRecord record) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        EvaluationKey key = record.getKey();
+        ledger.append(new EvaluationRecord(examKey(key), record.getPayload(), record.getSubjectRef(),
+                record.getRecordedAt(), record.getEvaluatorVersion()));
     }
 
+    /**
+     * F-JEXAM-R002 inv. 2: only a verdict the taking version emitted on this same content counts,
+     * first the one it gave in an earlier exam and then the one it gave on the course; a verdict of
+     * any other version is never reused, so a version that already took the exam takes it again
+     * without consulting and a new version is always really examined.
+     */
     @Override
     public Optional<EvaluationRecord> findLatest(EvaluationKey key) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Optional<EvaluationRecord> fromExam = latestOfPinnedVersion(ledger.history(examKey(key)));
+        if (fromExam.isPresent()) {
+            return fromExam;
+        }
+        return latestOfPinnedVersion(ledger.history(key));
     }
 
+    /** Every record of the taking version for this content, course and exam spaces, oldest first. */
     @Override
     public List<EvaluationRecord> history(EvaluationKey key) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        List<EvaluationRecord> records = new ArrayList<>();
+        records.addAll(ofPinnedVersion(ledger.history(key)));
+        records.addAll(ofPinnedVersion(ledger.history(examKey(key))));
+        records.sort(Comparator.comparing(EvaluationRecord::getRecordedAt,
+                Comparator.nullsFirst(Comparator.naturalOrder())));
+        return records;
+    }
+
+    static final String EXAM_PREFIX = "exam:";
+
+    private static EvaluationKey examKey(EvaluationKey key) {
+        String evaluatorId = key.getEvaluatorId();
+        String examId = evaluatorId != null && evaluatorId.startsWith(EXAM_PREFIX)
+                ? evaluatorId
+                : EXAM_PREFIX + evaluatorId;
+        return new EvaluationKey(examId, key.getContentFingerprint());
+    }
+
+    private Optional<EvaluationRecord> latestOfPinnedVersion(List<EvaluationRecord> records) {
+        List<EvaluationRecord> matching = ofPinnedVersion(records);
+        return matching.isEmpty() ? Optional.empty() : Optional.of(matching.get(matching.size() - 1));
+    }
+
+    private List<EvaluationRecord> ofPinnedVersion(List<EvaluationRecord> records) {
+        List<EvaluationRecord> matching = new ArrayList<>();
+        if (records == null || pinnedVersion == null) {
+            return matching;
+        }
+        for (EvaluationRecord record : records) {
+            if (record != null && pinnedVersion.equals(record.getEvaluatorVersion())) {
+                matching.add(record);
+            }
+        }
+        return matching;
     }
 }

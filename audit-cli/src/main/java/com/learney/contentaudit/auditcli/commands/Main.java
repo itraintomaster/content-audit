@@ -457,9 +457,11 @@ class Main {
         QuizInstructionVerdictReader quizInstructionVerdictReader = new JacksonQuizInstructionVerdictReader();
         QuizInstructionConfig quizInstructionConfig = new DefaultQuizInstructionConfig();
 
+        // Hook C-13 (FEAT-JEXAM): the quiz-instruction judge opens its session through the judges
+        // runtime -- the exam's brake and budget 0 without a request (F-JEXAM-R003, R010); the
+        // candidates of revise-instructions keep the course's session factory and its 500 below.
         AnalyzerProvider quizInstructionProvider = new DefaultQuizInstructionAnalyzerFactory(
-                evaluationSessionFactory, quizInstructionJudge, quizInstructionVerdictReader, quizInstructionConfig,
-                judgeRuntime);
+                quizInstructionJudge, quizInstructionVerdictReader, quizInstructionConfig, judgeRuntime);
 
         // ----------------------------------------------------------------
         // Step 4b'': FEAT-RONDA1 -- what the analyzers of round 1 need (hooks A-06, C-14, C-16,
@@ -581,11 +583,11 @@ class Main {
 
         // analyzerProviders.add(exactDuplicatesProvider);        // 14 · A · FEAT-DUPEX, pendiente
 
-        // analyzerProviders.add(translationSenseProvider);       // 15 · C · FEAT-TRSEN, pendiente
+        analyzerProviders.add(translationSenseProvider);          // 15 · C · FEAT-TRSEN
 
-        // analyzerProviders.add(singleAnswerProvider);           // 16 · C · FEAT-UNICA, pendiente
+        analyzerProviders.add(singleAnswerProvider);              // 16 · C · FEAT-UNICA
 
-        // analyzerProviders.add(miniTheoryProvider);             // 17 · C · FEAT-MINIT, pendiente
+        analyzerProviders.add(miniTheoryProvider);                // 17 · C · FEAT-MINIT
 
         AnalyzerCatalog analyzerCatalog = new DefaultAnalyzerCatalog(analyzerProviders);
 
@@ -1106,10 +1108,10 @@ class Main {
         cmd.addSubcommand("repair", new picocli.CommandLine(
                 new RepairCmd(preservationRepair, (CourseRepository) courseRepository)));
 
-        // exam -- hook C-18 (FEAT-JEXAM, package C): exam run / record / status. Turned on when
-        // ExamCmd carries its picocli command, which picocli needs to register it.
+        // exam -- hook C-18 (FEAT-JEXAM, package C): exam run / record / status, the fixed exam of the
+        // judges. Without --budget, exam run is a rehearsal that pays nothing (F-JEXAM-R010).
 
-        // cmd.addSubcommand("exam", new picocli.CommandLine(new ExamCmd(judgeExamService)));   // C · FEAT-JEXAM, pendiente
+        cmd.addSubcommand("exam", new picocli.CommandLine(new ExamCmd(judgeExamService)));   // C · FEAT-JEXAM
 
         // ----------------------------------------------------------------
         // Step 9: Execute

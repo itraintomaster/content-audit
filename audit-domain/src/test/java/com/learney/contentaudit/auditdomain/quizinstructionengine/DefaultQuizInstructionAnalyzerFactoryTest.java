@@ -5,6 +5,13 @@ import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import java.util.List;
+import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline;
+import org.junit.jupiter.api.BeforeEach;
 
 import com.learney.contentaudit.auditdomain.AmbiguousReevaluationScopeException;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
@@ -19,13 +26,11 @@ import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -52,8 +57,43 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
     @Mock
     private EvaluationSession session;
 
-    @InjectMocks
+    @Mock
+    private EvaluationSessionFactory examSessionFactory;
+
+    @Mock
+    private JudgeExamRegistry examRegistry;
+
+    @Mock
+    private EvaluationTimeline timeline;
+
+    @Mock
+    private JudgeRuntimeConfig runtimeConfig;
+
     private DefaultQuizInstructionAnalyzerFactory sut;
+
+    /**
+     * FEAT-JEXAM: the factory opens the judge's session through the judges runtime -- the real
+     * one, over the course's session factory, so what the run asks and what the brake of the exam
+     * allows are what reaches the session. The runtime's defaults are José's: budget 0 without a
+     * request and 4 consultations at a time.
+     */
+    @BeforeEach
+    void setUp() {
+        Mockito.lenient().when(runtimeConfig.getDefaultMaxNewEvaluations(Mockito.anyString())).thenReturn(0);
+        Mockito.lenient().when(runtimeConfig.getMaxConcurrentEvaluations()).thenReturn(4);
+        Mockito.lenient().when(evaluator.evaluatorId()).thenReturn("quiz-instruction-validator");
+        sut = new DefaultQuizInstructionAnalyzerFactory(evaluator, verdictReader, config,
+                new DefaultJudgeRuntime(sessionFactory, examSessionFactory, examRegistry, timeline, runtimeConfig));
+    }
+
+    private void versionWithExam(String version, JudgeExamStatus status) {
+        Mockito.lenient().when(evaluator.evaluatorVersion()).thenReturn(java.util.Optional.of(version));
+        Mockito.lenient().when(examRegistry.latest("quiz-instruction", version)).thenReturn(status == null
+                ? java.util.Optional.empty()
+                : java.util.Optional.of(new JudgeExamRecord("quiz-instruction", version, status, 238, 0, List.of(),
+                        List.of(), status == JudgeExamStatus.APPROVED, "2026-09-29", "orquestador",
+                        java.time.Instant.parse("2026-09-30T22:00:00Z"))));
+    }
 
     @Test
     @DisplayName("should build the analyzer with the configured default budget when the run declares no policy for the judge")
@@ -61,7 +101,12 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
     @Tag("F-QINST-R006")
     public void shouldBuildTheAnalyzerWithTheConfiguredDefaultBudgetWhenTheRunDeclaresNoPolicyForTheJudge(
             ) {
-        Mockito.when(config.getDefaultMaxNewEvaluations()).thenReturn(500);
+        // F-JEXAM-R010 (José, 30/9: «sin pedido explícito no se paga nada») takes the configured
+        // default of quiz-instruction from 500 to 0: the default now lives in the judges runtime,
+        // the same for the five judges, and an approved version still gets no budget without a
+        // request. The 500 of QuizInstructionConfig is left for revise-instructions.
+        versionWithExam("v-consigna", JudgeExamStatus.APPROVED);
+        Mockito.lenient().when(config.getDefaultMaxNewEvaluations()).thenReturn(500);
         Mockito.when(sessionFactory.open(Mockito.any(), Mockito.eq(evaluator))).thenReturn(session);
 
         // The run declares no policy for this evaluator: DefaultAuditRunner would pass null here
@@ -77,8 +122,8 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
 
         Assertions.assertNotNull(usedPolicy,
                 "R006: a session must be opened with a concrete policy even absent an explicit one");
-        Assertions.assertEquals(500, usedPolicy.getMaxNewEvaluations(),
-                "R006: absent a per-run policy, the configured default budget must be used");
+        Assertions.assertEquals(0, usedPolicy.getMaxNewEvaluations(),
+                "R006 + F-JEXAM-R010: absent a per-run policy, the configured default budget is 0 -- not 500");
     }
 
     @Test
@@ -92,7 +137,6 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
         // report (ContentAnalyzer.getName()). These are two methods on two different
         // objects (the factory and the analyzer it assembles); nothing in the contract
         // keeps them equal by construction except the factory's own coherence.
-        Mockito.when(config.getDefaultMaxNewEvaluations()).thenReturn(500);
         Mockito.when(sessionFactory.open(Mockito.any(), Mockito.eq(evaluator))).thenReturn(session);
 
         ContentAnalyzer analyzer = sut.create(null);
@@ -177,17 +221,46 @@ public class DefaultQuizInstructionAnalyzerFactoryTest {
     @DisplayName("should build the consigna analyzer with budget 0 when the run declares no budget for quiz-instruction, instead of the 500 of its configuration")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R010")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldBuildTheConsignaAnalyzerWithBudget0WhenTheRunDeclaresNoBudgetForQuizinstructionInsteadOfThe500OfItsConfiguration() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-JEXAM-R010 (José, 30/9): a run that asks quiz-instruction no budget pays nothing, whatever
+        // its configuration says (500, kept for revise-instructions) and even with an approved version.
+        versionWithExam("v-consigna", JudgeExamStatus.APPROVED);
+        Mockito.lenient().when(config.getDefaultMaxNewEvaluations()).thenReturn(500);
+        Mockito.when(sessionFactory.open(Mockito.any(), Mockito.eq(evaluator))).thenReturn(session);
+
+        sut.create(new EvaluationRunPolicy(0, false, null, null, null, 4));
+        sut.create(null);
+
+        ArgumentCaptor<EvaluationBudget> budgets = ArgumentCaptor.forClass(EvaluationBudget.class);
+        Mockito.verify(sessionFactory, Mockito.times(2)).open(budgets.capture(), Mockito.eq(evaluator));
+        Assertions.assertEquals(List.of(0, 0),
+                budgets.getAllValues().stream().map(EvaluationBudget::getMaxNewEvaluations).toList(),
+                "R010: without a budget asked for quiz-instruction its session opens with 0, not with the 500 of its "
+                + "configuration");
     }
 
     @Test
     @DisplayName("should open the consigna judge through the judges runtime, so a version that did not pass the exam gets budget 0 whatever the run asked")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R003")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldOpenTheConsignaJudgeThroughTheJudgesRuntimeSoAVersionThatDidNotPassTheExamGetsBudget0WhateverTheRunAsked() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-JEXAM-R003 (José, 30/9: «sin aprobar, no paga»): the factory no longer opens the session on
+        // its own -- the judges runtime does, with the brake of the exam. The same run asking 500 opens
+        // with 0 for a version without exam or that failed it, and with 500 only once it is approved.
+        Mockito.when(sessionFactory.open(Mockito.any(), Mockito.eq(evaluator))).thenReturn(session);
+        EvaluationRunPolicy asks500 = new EvaluationRunPolicy(500, false, null, null, null, null);
+
+        versionWithExam("v-sin-examen", null);
+        sut.create(asks500);
+        versionWithExam("v-reprobada", JudgeExamStatus.FAILED);
+        sut.create(asks500);
+        versionWithExam("v-aprobada", JudgeExamStatus.APPROVED);
+        sut.create(asks500);
+
+        ArgumentCaptor<EvaluationBudget> budgets = ArgumentCaptor.forClass(EvaluationBudget.class);
+        Mockito.verify(sessionFactory, Mockito.times(3)).open(budgets.capture(), Mockito.eq(evaluator));
+        Assertions.assertEquals(List.of(0, 0, 500),
+                budgets.getAllValues().stream().map(EvaluationBudget::getMaxNewEvaluations).toList(),
+                "R003: without exam 0, failed 0, approved the 500 the run asked");
     }
 }

@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequest;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
@@ -68,7 +69,7 @@ public class FQinstJ002JourneyTest {
     @DisplayName("path-1: El usuario audita un curso cuyos ejer... → El sistema consulta al juez por los e... → La auditoria termina y su informe dec... [El tope de la corrida se agota antes de recorrer todos los ejercicios] → El usuario vuelve a auditar el mismo ... → El juez no recibe ninguna consulta po... [El contenido juzgado de los ejercicios ya evaluados no cambio] → success")
     public void path1_elTopeDeLaCorridaSeAgotaAntesDeRecorrerTodosLosEjercicios_elContenidoJuzgadoDeLosEjerciciosYaEvaluadosNoCambio_success(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -94,8 +95,8 @@ public class FQinstJ002JourneyTest {
         // veredictos previos; el tope de la corrida (1) alcanza solo para qa
         when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1"));
         when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
-        analyzer.onQuiz(quizA);
-        analyzer.onQuiz(quizB);
+        resolveNow(analyzer, quizA);
+        resolveNow(analyzer, quizB);
 
         // Nodo "informe_parcial" (gate F-QINST-R004, F-QINST-R005): declara evaluados y
         // pendientes; qb no tiene puntaje ni diagnostico y no participa de ningun promedio
@@ -119,8 +120,8 @@ public class FQinstJ002JourneyTest {
         when(subjectBuilder.build(quizBAgain)).thenReturn(subjB);
         when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a", "v1"));
         when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b", "v1"));
-        analyzer.onQuiz(quizAAgain);
-        analyzer.onQuiz(quizBAgain);
+        resolveNow(analyzer, quizAAgain);
+        resolveNow(analyzer, quizBAgain);
 
         assertFalse(quizBAgain.getScores().isEmpty(), "F-QINST-R008: qb avanza en la segunda corrida");
         verify(session, never()).resolveForced(any());
@@ -142,7 +143,7 @@ public class FQinstJ002JourneyTest {
     @DisplayName("path-2: El usuario audita un curso cuyos ejer... → El sistema consulta al juez por los e... → La auditoria termina y su informe dec... [El tope de la corrida se agota antes de recorrer todos los ejercicios] → El usuario vuelve a auditar el mismo ... → El ejercicio cuyo contenido cambio vu... [Cambio el contenido juzgado de un ejercicio ya evaluado (por ejemplo, una de sus opciones aceptadas), conservando su identificador] → success")
     public void path2_elTopeDeLaCorridaSeAgotaAntesDeRecorrerTodosLosEjercicios_cambioElContenidoJuzgadoDeUnEjercicioYaEvaluadoPorEjemploUnaDeSusOpcionesAceptadasConservandoSuIdentificador_success(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -167,8 +168,8 @@ public class FQinstJ002JourneyTest {
         // solo para qa
         when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1"));
         when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
-        analyzer.onQuiz(quizA);
-        analyzer.onQuiz(quizB);
+        resolveNow(analyzer, quizA);
+        resolveNow(analyzer, quizB);
 
         // Nodo "informe_parcial" (gate F-QINST-R004, F-QINST-R005)
         EvaluationCoverage firstRunCoverage = new EvaluationCoverage(2, 1, 1, 0, 1, 0);
@@ -194,7 +195,7 @@ public class FQinstJ002JourneyTest {
 
         // Nodo "reevalua_lo_cambiado" (gate F-QINST-R009): vuelve a consultarse al juez y el
         // puntaje se recalcula sobre el veredicto nuevo -> success
-        analyzer.onQuiz(quizAChanged);
+        resolveNow(analyzer, quizAChanged);
 
         verify(session).resolve(subjAChanged);
         assertEquals(0.6, quizAChanged.getScores().values().iterator().next(), 0.0001,
@@ -207,7 +208,7 @@ public class FQinstJ002JourneyTest {
     @DisplayName("path-3: El usuario audita un curso cuyos ejer... → El sistema consulta al juez por los e... → La auditoria termina igual, sin abort... [El juez deja de responder a mitad de corrida porque el servicio cae o el credito se agota] → El usuario vuelve a auditar el mismo ... → El juez no recibe ninguna consulta po... [El contenido juzgado de los ejercicios ya evaluados no cambio] → success")
     public void path3_elJuezDejaDeResponderAMitadDeCorridaPorqueElServicioCaeOElCreditoSeAgota_elContenidoJuzgadoDeLosEjerciciosYaEvaluadosNoCambio_success(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -236,8 +237,8 @@ public class FQinstJ002JourneyTest {
         // Nodo "informe_tras_falla" (gate F-QINST-R007): la auditoria termina igual, sin
         // abortar; qb se declara fallido y sin puntaje, qa conserva lo ya obtenido
         assertDoesNotThrow(() -> {
-            analyzer.onQuiz(quizA);
-            analyzer.onQuiz(quizB);
+            resolveNow(analyzer, quizA);
+            resolveNow(analyzer, quizB);
         }, "F-QINST-R007: una falla del juez a mitad de corrida no debe abortar la auditoria");
         assertFalse(quizA.getScores().isEmpty(), "F-QINST-R007: qa evaluado antes de la falla conserva su puntaje");
         assertTrue(quizB.getScores().isEmpty(), "F-QINST-R007: qb no evaluado por la falla, sin puntaje");
@@ -252,8 +253,8 @@ public class FQinstJ002JourneyTest {
         when(subjectBuilder.build(quizBAgain)).thenReturn(subjB);
         when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a", "v1"));
         when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b", "v1"));
-        analyzer.onQuiz(quizAAgain);
-        analyzer.onQuiz(quizBAgain);
+        resolveNow(analyzer, quizAAgain);
+        resolveNow(analyzer, quizBAgain);
 
         assertFalse(quizBAgain.getScores().isEmpty(), "F-QINST-R008: qb avanza en la segunda corrida");
         verify(session, never()).resolveForced(any());
@@ -275,7 +276,7 @@ public class FQinstJ002JourneyTest {
     @DisplayName("path-4: El usuario audita un curso cuyos ejer... → El sistema consulta al juez por los e... → La auditoria termina igual, sin abort... [El juez deja de responder a mitad de corrida porque el servicio cae o el credito se agota] → El usuario vuelve a auditar el mismo ... → El ejercicio cuyo contenido cambio vu... [Cambio el contenido juzgado de un ejercicio ya evaluado (por ejemplo, una de sus opciones aceptadas), conservando su identificador] → success")
     public void path4_elJuezDejaDeResponderAMitadDeCorridaPorqueElServicioCaeOElCreditoSeAgota_cambioElContenidoJuzgadoDeUnEjercicioYaEvaluadoPorEjemploUnaDeSusOpcionesAceptadasConservandoSuIdentificador_success(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -303,8 +304,8 @@ public class FQinstJ002JourneyTest {
 
         // Nodo "informe_tras_falla" (gate F-QINST-R007): la auditoria termina igual, sin abortar
         assertDoesNotThrow(() -> {
-            analyzer.onQuiz(quizA);
-            analyzer.onQuiz(quizB);
+            resolveNow(analyzer, quizA);
+            resolveNow(analyzer, quizB);
         }, "F-QINST-R007: una falla del juez a mitad de corrida no debe abortar la auditoria");
         assertFalse(quizA.getScores().isEmpty(), "F-QINST-R007: qa evaluado antes de la falla conserva su puntaje");
         assertTrue(quizB.getScores().isEmpty(), "F-QINST-R007: qb no evaluado por la falla, sin puntaje");
@@ -322,10 +323,46 @@ public class FQinstJ002JourneyTest {
 
         // Nodo "reevalua_lo_cambiado" (gate F-QINST-R009): vuelve a consultarse al juez y el
         // puntaje se recalcula sobre el veredicto nuevo -> success
-        analyzer.onQuiz(quizAChanged);
+        resolveNow(analyzer, quizAChanged);
 
         verify(session).resolve(subjAChanged);
         assertEquals(0.6, quizAChanged.getScores().values().iterator().next(), 0.0001,
                 "F-QINST-R009: el puntaje se recalcula sobre el veredicto nuevo");
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-JEXAM (F-JEXAM-R006): the analyzer gathers what each quiz asks in onQuiz and resolves
+    // the whole run in onCourseComplete with resolveAll. These cases were written one quiz at a
+    // time: a mocked session answers resolveAll with its one-at-a-time stubs, mode by mode, and
+    // each quiz is resolved right after it is asked -- exactly what one at a time did.
+    // ------------------------------------------------------------------
+
+    private static EvaluationSession oneAtATimeSession() {
+        EvaluationSession session = mock(EvaluationSession.class);
+        when(session.resolveAll(anyList(), anyInt())).thenAnswer(invocation -> {
+            List<EvaluationRequest> requests = invocation.getArgument(0);
+            List<EvaluationResolution> resolutions = new ArrayList<>();
+            for (EvaluationRequest request : requests) {
+                EvaluationSubject subject = request.getSubject();
+                resolutions.add(switch (request.getMode()) {
+                    case FORCE -> session.resolveForced(subject);
+                    case PREFER_NEW -> session.resolvePreferringNew(subject);
+                    case REUSE_ONLY -> session.resolveWithoutConsulting(subject);
+                    default -> session.resolve(subject);
+                });
+            }
+            return resolutions;
+        });
+        return session;
+    }
+
+    private static void resolveNow(QuizInstructionAnalyzer analyzer, AuditNode quizNode) {
+        analyzer.onQuiz(quizNode);
+        AuditNode scratchCourse = new AuditNode();
+        scratchCourse.setTarget(AuditTarget.COURSE);
+        scratchCourse.setChildren(new ArrayList<>());
+        scratchCourse.setScores(new LinkedHashMap<>());
+        scratchCourse.setMetadata(new LinkedHashMap<>());
+        analyzer.onCourseComplete(scratchCourse);
     }
 }

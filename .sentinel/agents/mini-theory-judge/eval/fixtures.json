@@ -1,0 +1,1639 @@
+{
+  "agent": "mini-theory-judge",
+  "artifact": "miniTheoryVerdict",
+  "gateId": "mini_theory_judge_gate_verdict",
+  "emitId": "mini_theory_judge_emit",
+  "dependencies": [
+    "cefrLevel",
+    "topic",
+    "instructions",
+    "miniTheories",
+    "exercises"
+  ],
+  "topKeys": [
+    "assessments",
+    "rationale"
+  ],
+  "promptMustMention": [
+    "FALSE_RULE",
+    "OVERSTATED",
+    "CONTRADICTED_BY_EXERCISE",
+    "NOT_COVERING_EXERCISE",
+    "nunca hay `BLOCKING`",
+    "que la miniteoría pida una forma",
+    "Cada miniteoría de `miniTheories` aparece al menos una vez"
+  ],
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (M o E fuera de las entradas, una M sin juzgar, la gravedad que no sale del problema, un ejercicio que contradice una M que no muestra), y que emit produzca miniTheoryVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (cefrLevel, topic, instructions, miniTheories, exercises) de los ejemplos de F-MINIT-R002.",
+  "inputs": {
+    "contraste": {
+      "cefrLevel": "A1",
+      "topic": "Contraste inicial",
+      "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'.",
+      "miniTheories": "M1: $Be$, $want$, $enjoy$ y otros verbos de estado no llevan continuo: siempre simple. (ejercicios: E1, E3)\nM2: Con $now$ o $at the moment$ va el continuo: $She is reading now$. (ejercicios: E2)",
+      "exercises": "E1: You ___ (enjoy) coffee. (present simple) → enjoy\nE2: She ___ (read) a book now. → is reading | 's reading\nE3: We ___ (not / want) lunch. (present simple) → don't want | do not want"
+    },
+    "sujeto-objeto": {
+      "cefrLevel": "A1",
+      "topic": "Sujeto u objeto",
+      "instructions": "Elige el pronombre correcto.",
+      "miniTheories": "M1: Antes del verbo va $she$. Después del verbo o de una preposición va $her$. (ejercicios: E1, E2, E3)\nM2: Antes del verbo va $they$. Después del verbo o de una preposición, $them$. (ejercicios: E4)",
+      "exercises": "E1: I saw she / her ___ yesterday. → her\nE2: Dogs looked at he / him ___ . → him\nE3: Would you like to call he / him ___ tomorrow? → him\nE4: They / Them ___ live here. → They"
+    },
+    "paises": {
+      "cefrLevel": "A2",
+      "topic": "Países",
+      "instructions": "Elige 'the' o usa – si no se necesita ningún artículo.",
+      "miniTheories": "M1: Los países van sin artículo. Sólo llevan $the$ los plurales o uniones: $the UK$. (ejercicios: E1, E2)",
+      "exercises": "E1: Have you ever visited ___ Czech Republic? → opciones: -, the (correcta)\nE2: ___ France is beautiful. → opciones: - (correcta), the"
+    },
+    "parentesis-en-el-texto": {
+      "cefrLevel": "A2",
+      "topic": "Ortografía del participio",
+      "instructions": "Forma oraciones en Present Perfect.",
+      "miniTheories": "M1: Vocal + consonante al final: se dobla la consonante y va $-ed$ (plan → planned). (ejercicios: E1, E2)\nM2: Con $-e$ final se agrega sólo $-d$ (live → lived). (ejercicios: E3)",
+      "exercises": "E1: They ___ (plan) the trip. → have planned | 've planned\nE2: She ___ (open) the door. → has opened | 's opened\nE3: We ___ (live) here for years. → have lived | 've lived"
+    },
+    "sin-miniteorias": {
+      "cefrLevel": "A1",
+      "topic": "Repaso",
+      "instructions": "Completa las oraciones.",
+      "miniTheories": "",
+      "exercises": "E1: She ___ (be) happy. → is | 's"
+    },
+    "sin-entradas-numeradas": {
+      "cefrLevel": "A1",
+      "topic": "Contraste inicial",
+      "instructions": "Escribe las oraciones en 'present simple' o 'present continuous'."
+    }
+  },
+  "cases": [
+    {
+      "caseId": "contraste-enjoy-falsa",
+      "note": "«Contraste inicial»: la de enjoy es falsa (F-MINIT-R002); M2 está bien.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "sujeto-objeto-no-cubre",
+      "note": "La de she/her es cierta pero la muestran ejercicios de he/him: sólo esos, LOW.",
+      "inputs": "sujeto-objeto",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "NOT_COVERING_EXERCISE",
+            "severity": "LOW",
+            "counterexample": "Dogs looked at him.",
+            "exercises": [
+              2,
+              3
+            ],
+            "explanation": "Habla de she/her y estos ejercicios son de he/him."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              4
+            ],
+            "explanation": "Cierta y cubre su ejercicio."
+          }
+        ],
+        "rationale": "M1 no cubre los ejercicios de he/him."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "paises-contradicha",
+      "note": "«Have you ever visited ___ Czech Republic?» contradice «sólo los plurales o uniones».",
+      "inputs": "paises",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "CONTRADICTED_BY_EXERCISE",
+            "severity": "HIGH",
+            "counterexample": "Have you ever visited the Czech Republic?",
+            "exercises": [
+              1
+            ],
+            "explanation": "«the Czech Republic» no es plural ni unión y lleva the."
+          }
+        ],
+        "rationale": "El ejercicio E1 contradice la regla."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "exagerada-y-contradicha",
+      "note": "Una entrada por problema: una M puede exagerar y además tener un ejercicio que la contradice.",
+      "inputs": "paises",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "OVERSTATED",
+            "severity": "MEDIUM",
+            "counterexample": "the Netherlands",
+            "exercises": [
+              1,
+              2
+            ],
+            "explanation": "«Sólo» exagera: hay países con the que no son plurales ni uniones."
+          },
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "CONTRADICTED_BY_EXERCISE",
+            "severity": "HIGH",
+            "counterexample": "Have you ever visited the Czech Republic?",
+            "exercises": [
+              1
+            ],
+            "explanation": "E1 lleva the sin ser plural ni unión."
+          }
+        ],
+        "rationale": "M1 exagera y E1 la contradice."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "todas-ciertas",
+      "note": "Una entrada holds true por cada M.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Cierta."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "Cierta."
+          }
+        ],
+        "rationale": "Las dos están bien."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "referencias-como-en-las-entradas",
+      "note": "«M1» y «E3» como en las entradas se canonicalizan a números; exercises sin repetir y en orden.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": "M1",
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              "E3",
+              "E1",
+              1
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "assessments": [
+            {
+              "miniTheory": 1,
+              "holds": false,
+              "problem": "FALSE_RULE",
+              "severity": "HIGH",
+              "counterexample": "Are you enjoying the party?",
+              "exercises": [
+                1,
+                3
+              ],
+              "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            },
+            {
+              "miniTheory": 2,
+              "holds": true,
+              "problem": null,
+              "severity": null,
+              "counterexample": null,
+              "exercises": [
+                2
+              ],
+              "explanation": "La regla es cierta y su ejercicio la cumple."
+            }
+          ],
+          "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        }
+      }
+    },
+    {
+      "caseId": "enums-en-minusculas",
+      "note": "Mayúsculas de los enums y espacios de los textos se canonicalizan.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "false_rule",
+            "severity": "high",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "  Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común.\n"
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "assessments": [
+            {
+              "miniTheory": 1,
+              "holds": false,
+              "problem": "FALSE_RULE",
+              "severity": "HIGH",
+              "counterexample": "Are you enjoying the party?",
+              "exercises": [
+                1,
+                3
+              ],
+              "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            },
+            {
+              "miniTheory": 2,
+              "holds": true,
+              "problem": null,
+              "severity": null,
+              "counterexample": null,
+              "exercises": [
+                2
+              ],
+              "explanation": "La regla es cierta y su ejercicio la cumple."
+            }
+          ],
+          "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        }
+      }
+    },
+    {
+      "caseId": "parentesis-dentro-de-la-miniteoria",
+      "note": "El texto de M1 tiene sus propios paréntesis; los ejercicios que la muestran salen del final de la línea.",
+      "inputs": "parentesis-en-el-texto",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "CONTRADICTED_BY_EXERCISE",
+            "severity": "HIGH",
+            "counterexample": "She has opened the door.",
+            "exercises": [
+              2
+            ],
+            "explanation": "opened no dobla la n aunque termina en vocal + consonante."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              3
+            ],
+            "explanation": "Cierta."
+          }
+        ],
+        "rationale": "E2 contradice a M1."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "parentesis-y-ejercicio-que-no-la-muestra",
+      "note": "Con paréntesis en el texto igual se sabe que E3 no muestra M1.",
+      "inputs": "parentesis-en-el-texto",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "CONTRADICTED_BY_EXERCISE",
+            "severity": "HIGH",
+            "counterexample": "We have lived here.",
+            "exercises": [
+              3
+            ],
+            "explanation": "Una línea que dice qué tiene la regla."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              3
+            ],
+            "explanation": "Cierta."
+          }
+        ],
+        "rationale": "Mal."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "E3 no la muestra"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "tema-sin-miniteorias",
+      "note": "Un tema sin miniteorías: assessments vacío.",
+      "inputs": "sin-miniteorias",
+      "verdict": {
+        "assessments": [],
+        "rationale": "No hay miniteorías."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "sin-entradas-numeradas",
+      "note": "Si no llegan miniTheories ni exercises (uso fuera de content-audit), no hay rangos que mirar.",
+      "inputs": "sin-entradas-numeradas",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "miniteoria-que-no-esta",
+      "note": "miniTheory tiene que ser una M de las entradas; el esquema no lo sabe.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          },
+          {
+            "miniTheory": 3,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [],
+            "explanation": "Cierta."
+          }
+        ],
+        "rationale": "Tres."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "M3 no es una miniteoría del tema"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "miniteoria-en-un-tema-sin-miniteorias",
+      "note": "Con miniTheories vacío no hay M que juzgar.",
+      "inputs": "sin-miniteorias",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              1
+            ],
+            "explanation": "Cierta."
+          }
+        ],
+        "rationale": "Inventada."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es una miniteoría del tema"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "ejercicio-que-no-esta",
+      "note": "exercises son E de las entradas.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              9
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "E9"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "falta-una-miniteoria",
+      "note": "Cada M del tema aparece al menos una vez (F-MINIT-R002: por cada miniteoría).",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          }
+        ],
+        "rationale": "Sólo M1."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan miniteorías en assessments: M2"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "cierta-con-problema",
+      "note": "Con holds true, problem va null.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": "OVERSTATED",
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "con holds true, problem va null"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "cierta-con-contraejemplo",
+      "note": "Con holds true, counterexample va null.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": "She is reading now.",
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "con holds true, counterexample va null"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "falsa-sin-problema",
+      "note": "Con holds false, problem dice qué tiene.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": null,
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "con holds false, problem"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "gravedad-que-no-corresponde",
+      "note": "La gravedad sale del problema (F-MINIT-R004): FALSE_RULE es HIGH.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "MEDIUM",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "FALSE_RULE va con severity HIGH"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "bloqueante",
+      "note": "mini-theory nunca es BLOCKING: la miniteoría se ve después de contestar.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "BLOCKING",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "BLOCKING no existe en este juez"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "sin-contraejemplo",
+      "note": "Con holds false, el contraejemplo es obligatorio.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": null,
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "counterexample es una oración"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "falsa-sin-ejercicios",
+      "note": "Con holds false, exercises nombra los involucrados.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exercises nombra los ejercicios involucrados"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "contradicha-donde-no-se-muestra",
+      "note": "CONTRADICTED_BY_EXERCISE sólo con ejercicios que muestran la M (F-MINIT-R003).",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "CONTRADICTED_BY_EXERCISE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              2
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "E2 no la muestra"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "problema-repetido",
+      "note": "Una entrada por M y problema, con todos sus ejercicios.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "M1 repite el problema FALSE_RULE"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "falsa-y-exagerada",
+      "note": "Una regla no es FALSE_RULE y OVERSTATED a la vez.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "OVERSTATED",
+            "severity": "MEDIUM",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no puede ser FALSE_RULE y OVERSTATED"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "cierta-y-con-problema",
+      "note": "Si es cierta va una sola entrada.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          },
+          {
+            "miniTheory": 2,
+            "holds": false,
+            "problem": "NOT_COVERING_EXERCISE",
+            "severity": "LOW",
+            "counterexample": "She reads.",
+            "exercises": [
+              2
+            ],
+            "explanation": "Una línea que dice qué tiene la regla."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "M2 tiene una entrada con holds true y otras más"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "referencia-booleana",
+      "note": "true no es un número de miniteoría.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": true,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "tiene que ser un número entero"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "exercises-no-es-array",
+      "note": "exercises es un array de números.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": "E1, E3",
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exercises tiene que ser un array"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "evaluacion-con-clave-de-mas",
+      "note": "Cada evaluación es un objeto cerrado.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común.",
+            "confidence": 0.9
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "assessments[0] no respeta el objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "falta-rationale",
+      "note": "Falta una clave del objeto cerrado.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan=['rationale']"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "run-dir-por-state-json",
+      "note": "Sin run_dir en las entradas: project_root + el run_id (UUID) del state.json, como lo proyecta el CLI.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "resolution": "state.json",
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "run-id-ambiguo",
+      "note": "Dos state.json con el mismo runId: el gate no adivina; emit sale conservador.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "resolution": "ambiguous",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exactamente uno"
+        ]
+      }
+    },
+    {
+      "caseId": "run-id-inseguro",
+      "note": "Un run_id que escaparía del directorio de runs se rechaza.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "resolution": "unsafe-run-id",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "run_id ausente o inseguro"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-run-dir",
+      "note": "Sin run_dir ni project_root no hay dónde leer: falla el gate y emit da outputUnusable.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "resolution": "none",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan run_dir"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-salida-de-evaluate",
+      "note": "evaluate no dejó verdicts.json.",
+      "inputs": "contraste",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "verdicts.json no existe"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-viejo-se-borra",
+      "note": "Un validated-verdict.json de un intento anterior no sobrevive a un gate que falla.",
+      "inputs": "contraste",
+      "raw": "no hay veredicto",
+      "staleValidated": true,
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "no-es-json",
+      "note": "Prosa sin objeto JSON.",
+      "inputs": "contraste",
+      "raw": "No puedo juzgar este ejercicio.",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "lista-en-vez-de-objeto",
+      "note": "Un array no es el veredicto.",
+      "inputs": "contraste",
+      "raw": "[1, 2]",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "output-unusable-del-modelo",
+      "note": "{\"outputUnusable\": true} lo produce emit, nunca el modelo: el gate lo rechaza.",
+      "inputs": "contraste",
+      "verdict": {
+        "outputUnusable": true
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "objeto cerrado"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-corrupto-antes-de-emit",
+      "note": "Si validated-verdict.json no se puede leer, emit no inventa: outputUnusable.",
+      "inputs": "contraste",
+      "verdict": {
+        "assessments": [
+          {
+            "miniTheory": 1,
+            "holds": false,
+            "problem": "FALSE_RULE",
+            "severity": "HIGH",
+            "counterexample": "Are you enjoying the party?",
+            "exercises": [
+              1,
+              3
+            ],
+            "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+          },
+          {
+            "miniTheory": 2,
+            "holds": true,
+            "problem": null,
+            "severity": null,
+            "counterexample": null,
+            "exercises": [
+              2
+            ],
+            "explanation": "La regla es cierta y su ejercicio la cumple."
+          }
+        ],
+        "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+      },
+      "corruptValidated": true,
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "fence-json",
+      "note": "La salida en un fence ```json se acepta sin pagar otra consulta.",
+      "inputs": "contraste",
+      "raw": "```json\n{\n  \"assessments\": [\n    {\n      \"miniTheory\": 1,\n      \"holds\": false,\n      \"problem\": \"FALSE_RULE\",\n      \"severity\": \"HIGH\",\n      \"counterexample\": \"Are you enjoying the party?\",\n      \"exercises\": [\n        1,\n        3\n      ],\n      \"explanation\": \"Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común.\"\n    },\n    {\n      \"miniTheory\": 2,\n      \"holds\": true,\n      \"problem\": null,\n      \"severity\": null,\n      \"counterexample\": null,\n      \"exercises\": [\n        2\n      ],\n      \"explanation\": \"La regla es cierta y su ejercicio la cumple.\"\n    }\n  ],\n  \"rationale\": \"M1 es falsa por «enjoy»; M2 está bien.\"\n}\n```",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "assessments": [
+            {
+              "miniTheory": 1,
+              "holds": false,
+              "problem": "FALSE_RULE",
+              "severity": "HIGH",
+              "counterexample": "Are you enjoying the party?",
+              "exercises": [
+                1,
+                3
+              ],
+              "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            },
+            {
+              "miniTheory": 2,
+              "holds": true,
+              "problem": null,
+              "severity": null,
+              "counterexample": null,
+              "exercises": [
+                2
+              ],
+              "explanation": "La regla es cierta y su ejercicio la cumple."
+            }
+          ],
+          "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        }
+      }
+    },
+    {
+      "caseId": "prosa-alrededor",
+      "note": "Prosa antes y una etiqueta después: se toma el objeto.",
+      "inputs": "contraste",
+      "raw": "Este es mi veredicto:\n{\"assessments\": [{\"miniTheory\": 1, \"holds\": false, \"problem\": \"FALSE_RULE\", \"severity\": \"HIGH\", \"counterexample\": \"Are you enjoying the party?\", \"exercises\": [1, 3], \"explanation\": \"Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común.\"}, {\"miniTheory\": 2, \"holds\": true, \"problem\": null, \"severity\": null, \"counterexample\": null, \"exercises\": [2], \"explanation\": \"La regla es cierta y su ejercicio la cumple.\"}], \"rationale\": \"M1 es falsa por «enjoy»; M2 está bien.\"}\nLABEL: done",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "assessments": [
+            {
+              "miniTheory": 1,
+              "holds": false,
+              "problem": "FALSE_RULE",
+              "severity": "HIGH",
+              "counterexample": "Are you enjoying the party?",
+              "exercises": [
+                1,
+                3
+              ],
+              "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            },
+            {
+              "miniTheory": 2,
+              "holds": true,
+              "problem": null,
+              "severity": null,
+              "counterexample": null,
+              "exercises": [
+                2
+              ],
+              "explanation": "La regla es cierta y su ejercicio la cumple."
+            }
+          ],
+          "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        }
+      }
+    },
+    {
+      "caseId": "json-dentro-de-un-string",
+      "note": "El objeto serializado dentro de un string JSON se desenvuelve.",
+      "inputs": "contraste",
+      "raw": "\"{\\\"assessments\\\": [{\\\"miniTheory\\\": 1, \\\"holds\\\": false, \\\"problem\\\": \\\"FALSE_RULE\\\", \\\"severity\\\": \\\"HIGH\\\", \\\"counterexample\\\": \\\"Are you enjoying the party?\\\", \\\"exercises\\\": [1, 3], \\\"explanation\\\": \\\"Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común.\\\"}, {\\\"miniTheory\\\": 2, \\\"holds\\\": true, \\\"problem\\\": null, \\\"severity\\\": null, \\\"counterexample\\\": null, \\\"exercises\\\": [2], \\\"explanation\\\": \\\"La regla es cierta y su ejercicio la cumple.\\\"}], \\\"rationale\\\": \\\"M1 es falsa por «enjoy»; M2 está bien.\\\"}\"",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "assessments": [
+            {
+              "miniTheory": 1,
+              "holds": false,
+              "problem": "FALSE_RULE",
+              "severity": "HIGH",
+              "counterexample": "Are you enjoying the party?",
+              "exercises": [
+                1,
+                3
+              ],
+              "explanation": "Pone a «enjoy» entre los verbos que nunca van en continuo, y «I'm enjoying the party» es correcto y común."
+            },
+            {
+              "miniTheory": 2,
+              "holds": true,
+              "problem": null,
+              "severity": null,
+              "counterexample": null,
+              "exercises": [
+                2
+              ],
+              "explanation": "La regla es cierta y su ejercicio la cumple."
+            }
+          ],
+          "rationale": "M1 es falsa por «enjoy»; M2 está bien."
+        }
+      }
+    }
+  ]
+}

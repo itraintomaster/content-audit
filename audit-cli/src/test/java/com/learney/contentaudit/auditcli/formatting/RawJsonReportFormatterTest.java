@@ -87,7 +87,7 @@ public class RawJsonReportFormatterTest {
                 new LemmaRecurrenceAnalyzerProvider(new DefaultLemmaRecurrenceConfig()),
                 new LemmaAbsenceAnalyzerProvider(null, absence, null),
                 new LemmaCountAnalyzerProvider(null, new DefaultLemmaCountConfigLoader().load(null)),
-                new DefaultQuizInstructionAnalyzerFactory(null, null, null, new DefaultQuizInstructionConfig(), null)))
+                new DefaultQuizInstructionAnalyzerFactory(null, null, new DefaultQuizInstructionConfig(), null)))
                 .list();
     }
 

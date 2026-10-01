@@ -454,7 +454,7 @@ public class DefaultRefinerEngineTest {
                 new com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider(null,
                         org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.LemmaCountConfig.class)),
                 new com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory(
-                        null, null, null,
+                        null, null,
                         org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.QuizInstructionConfig.class), null)));
     }
 

@@ -1,7 +1,24 @@
 package com.learney.contentaudit.auditdomain.minitheoryengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerErrorCounts;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryAssessment;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryProblem;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdict;
+import com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryAnalyzerTest.Topic;
+import com.learney.contentaudit.auditdomain.minitheoryengine.MiniTheoryAnalyzerTest.World;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,28 +38,139 @@ public class FMinitJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo mi... → El veredicto dice, por cada miniteorí... [El tema ya tiene veredicto para ese contenido, o se lo consulta dentro del tope] → Ningún ejercicio del tema tiene halla... [Todas están bien] → success")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void path1_elTemaYaTieneVeredictoParaEseContenidoOSeLoConsultaDentroDelTope_todasEstnBien_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr: analyze asks mini-theory with a budget, with a version that approved its exam.
+        World world = World.approved();
+        Topic gerundio = MiniTheoryAnalyzerTest.gerundio();
+        world.holds(gerundio);
+
+        // leer, consulted within the budget: every card holds.
+        AuditNode consulted = world.run(MiniTheoryAnalyzerTest.course(gerundio), MiniTheoryAnalyzerTest.budget(1));
+        // leer, with a verdict already recorded for this content: the same, without consulting.
+        AuditNode reused = world.run(MiniTheoryAnalyzerTest.course(MiniTheoryAnalyzerTest.gerundio()),
+                MiniTheoryAnalyzerTest.budget(1));
+
+        assertEquals(1, world.judge.calls(), "consulted once, then reused");
+        for (AuditNode root : List.of(consulted, reused)) {
+            // pasa: no exercise of the topic has a mini-theory finding and each one scores 1.
+            for (AuditNode exercise : MiniTheoryAnalyzerTest.exercisesOf(root, gerundio.id)) {
+                assertEquals(1.0, exercise.getScores().get("mini-theory"), 1e-9);
+                assertTrue(MiniTheoryAnalyzerTest.rulesOf(exercise).isEmpty());
+                assertTrue(MiniTheoryAnalyzerTest.diagnosisOf(exercise).getAssessments().isEmpty());
+            }
+            AuditNode topic = MiniTheoryAnalyzerTest.knowledgeOf(root, gerundio.id);
+            assertEquals(1.0, topic.getScores().get("mini-theory"), 1e-9, "the topic gets it by aggregation");
+            AnalyzerErrorCounts counts = MiniTheoryAnalyzerTest.errorCountsOf(topic);
+            assertEquals(5, counts.getEvaluated());
+            assertEquals(0, counts.getWithError());
+            assertEquals(1, MiniTheoryAnalyzerTest.coverageOf(root).getEvaluated());
+        }
+        assertFalse(MiniTheoryAnalyzerTest.diagnosisOf(MiniTheoryAnalyzerTest.exercisesOf(consulted, gerundio.id)
+                .get(0)).isReusedFromPreviousRun());
+        assertTrue(MiniTheoryAnalyzerTest.diagnosisOf(MiniTheoryAnalyzerTest.exercisesOf(reused, gerundio.id)
+                .get(0)).isReusedFromPreviousRun());
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo mi... → El veredicto dice, por cada miniteorí... [El tema ya tiene veredicto para ese contenido, o se lo consulta dentro del tope] → Cada ejercicio que muestra una minite... [Al menos una tiene problema] → success")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void path2_elTemaYaTieneVeredictoParaEseContenidoOSeLoConsultaDentroDelTope_alMenosUnaTieneProblema_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        Topic contraste = contrasteInicial();
+        world.answers(contraste, new MiniTheoryVerdict(List.of(
+                new MiniTheoryAssessment(1, true, null, null, null, List.of(), "Cierta."),
+                new MiniTheoryAssessment(2, true, null, null, null, List.of(), "Cierta."),
+                new MiniTheoryAssessment(3, false, MiniTheoryProblem.FALSE_RULE, FindingSeverity.HIGH,
+                        "Are you enjoying the party?", List.of(3, 12),
+                        DefaultMiniTheoryDistributorTest.ENJOY_EXPLANATION)), "La de enjoy es falsa."));
+
+        AuditNode root = world.run(MiniTheoryAnalyzerTest.course(contraste), MiniTheoryAnalyzerTest.budget(1));
+
+        // error: each exercise that shows the false card has its finding, with severity and
+        // evidence, and counts as error; those that do not show it, not.
+        List<AuditNode> exercises = MiniTheoryAnalyzerTest.exercisesOf(root, contraste.id);
+        assertEquals(80, exercises.size());
+        for (int e = 1; e <= 80; e++) {
+            AuditNode exercise = exercises.get(e - 1);
+            List<Finding> findings = new ArrayList<>();
+            for (Finding finding : exercise.getFindings()) {
+                if ("mini-theory".equals(finding.getAnalyzer())) {
+                    findings.add(finding);
+                }
+            }
+            if (DefaultMiniTheoryDistributorTest.ENJOY_AT.contains(e)) {
+                assertEquals(1, findings.size(), "E" + e + " shows the false card");
+                Finding finding = findings.get(0);
+                assertEquals("false-rule", finding.getRule());
+                assertEquals(FindingSeverity.HIGH, finding.getSeverity());
+                assertEquals(DefaultMiniTheoryDistributorTest.ENJOY, finding.getIdentity().getMarker());
+                List<String> texts = new ArrayList<>();
+                for (EvidencePart part : finding.getEvidence().getExamined()) {
+                    texts.add(part.getText());
+                }
+                assertTrue(texts.contains(DefaultMiniTheoryDistributorTest.ENJOY), "the card, in the evidence");
+                assertTrue(texts.contains("Are you enjoying the party?"), "its counterexample, in the evidence");
+                assertEquals(0.3, exercise.getScores().get("mini-theory"), 1e-9);
+            } else {
+                assertTrue(findings.isEmpty(), "E" + e + " does not show it");
+                assertEquals(1.0, exercise.getScores().get("mini-theory"), 1e-9);
+            }
+        }
+        AnalyzerErrorCounts counts = MiniTheoryAnalyzerTest.errorCountsOf(
+                MiniTheoryAnalyzerTest.knowledgeOf(root, contraste.id));
+        assertEquals(80, counts.getEvaluated());
+        assertEquals(9, counts.getWithError(), "it counts as error in the 9 that show it, as the 077 counted");
+        assertEquals(9, MiniTheoryAnalyzerTest.knowledgeOf(root, contraste.id).getNumbers().getErrors()
+                .getWithAnyError(), "and as «some error» there");
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo mi... → El tema queda sin evaluar: sus ejerci... [No tiene veredicto y no queda tope] → success")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void path3_noTieneVeredictoYNoQuedaTope_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        Topic contraste = contrasteInicial();
+        world.holds(contraste);
+
+        AuditNode root = world.run(MiniTheoryAnalyzerTest.course(contraste), MiniTheoryAnalyzerTest.budget(0));
+
+        // sin_evaluar: no score and no finding of mini-theory in its exercises, and the coverage
+        // counts the topic with its exercises.
+        assertEquals(0, world.judge.calls());
+        for (AuditNode exercise : MiniTheoryAnalyzerTest.exercisesOf(root, contraste.id)) {
+            MiniTheoryAnalyzerTest.assertUnevaluated(exercise);
+        }
+        JudgeCoverageDiagnosis coverage = MiniTheoryAnalyzerTest.coverageOf(root);
+        assertEquals(1, coverage.getReached());
+        assertEquals(0, coverage.getEvaluated());
+        assertEquals(1, coverage.getNotEvaluated(), "the topic, not evaluated");
+        assertEquals(1, coverage.getCost().getPendingUnits(), "one topic to judge");
+        AnalyzerErrorCounts course = MiniTheoryAnalyzerTest.errorCountsOf(root);
+        assertEquals(80, course.getReached());
+        assertEquals(80, course.getNotEvaluated(), "with its 80 exercises");
+        assertEquals(0, course.getEvaluated());
+    }
+
+    /** A1 «Contraste inicial» for the engine: the 80 exercises of DefaultMiniTheoryDistributorTest. */
+    private static Topic contrasteInicial() {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (int e = 1; e <= 80; e++) {
+            String id = "q-ci-" + e;
+            if (DefaultMiniTheoryDistributorTest.ENJOY_AT.contains(e)) {
+                quizzes.add(MiniTheoryAnalyzerTest.cloze(id, "I", "want", "(want) a new phone.", "I want a new phone.",
+                        DefaultMiniTheoryDistributorTest.ENJOY));
+            } else if (e % 2 == 1) {
+                quizzes.add(MiniTheoryAnalyzerTest.cloze(id, "She", "is reading", "(read) now.", "She is reading now.",
+                        DefaultMiniTheoryDistributorTest.NOW));
+            } else {
+                quizzes.add(MiniTheoryAnalyzerTest.cloze(id, "He", "walks", "(walk) every day.", "He walks every day.",
+                        DefaultMiniTheoryDistributorTest.USUALLY));
+            }
+        }
+        return new Topic("A1", "k-contraste-inicial", "Contraste inicial", quizzes);
     }
 }

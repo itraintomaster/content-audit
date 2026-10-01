@@ -824,7 +824,8 @@ public class AnalyzeCmdTest {
 
         for (List<String> selection : List.of(List.<String>of(), List.of("--analyzers", "sentence-length"),
                 List.of("--analyzers", "quiz-instruction"))) {
-            List<String> args = new ArrayList<>(List.of(course.toString(), "-f", "raw"));
+            // F-JEXAM-R010: the judge is consulted only when the run asks it a budget.
+            List<String> args = new ArrayList<>(List.of(course.toString(), "-f", "raw", "--budget", "quiz-instruction=1"));
             args.addAll(selection);
 
             Base299.Captured run = Base299.run(sut, args.toArray(String[]::new));
@@ -1008,9 +1009,9 @@ public class AnalyzeCmdTest {
 
         /** The judge as Main builds it -- its factory, session and verdict reader -- over a fake judge. */
         static AnalyzerProvider judge(FakeJudge judge, EvaluationLedger ledger) {
-            return new DefaultQuizInstructionAnalyzerFactory(
-                    new DefaultEvaluationSessionFactory(ledger, new Sha256ContentFingerprinter()), judge,
-                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(), null);
+            return new DefaultQuizInstructionAnalyzerFactory(judge, new JacksonQuizInstructionVerdictReader(),
+                    new DefaultQuizInstructionConfig(),
+                    approvedJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, new Sha256ContentFingerprinter())));
         }
 
         /** Main's eight providers, in its order. */
@@ -1072,7 +1073,7 @@ public class AnalyzeCmdTest {
             providers.add(new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(scorer,
                     absence, new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(), renderer));
             providers.add(classicProviders().get(6));
-            providers.add(new DefaultQuizInstructionAnalyzerFactory(sessions, judge,
+            providers.add(new DefaultQuizInstructionAnalyzerFactory(judge,
                     new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(), runtime));
             providers.add(new com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzerProvider(
                     irregularForms, renderer));
@@ -1321,14 +1322,18 @@ public class AnalyzeCmdTest {
 
             private final Set<String> breaching;
 
-            private final List<String> asked = new ArrayList<>();
+            // F-JEXAM-R006: the judge is consulted up to four at a time -- what it records is thread-safe,
+            // and the order in which it is asked is not part of the run: the quizzes it is asked about are.
+            private final List<String> asked = java.util.Collections.synchronizedList(new ArrayList<>());
 
             FakeJudge(String... breaching) {
                 this.breaching = Set.of(breaching);
             }
 
             List<String> asked() {
-                return asked;
+                List<String> sorted = new ArrayList<>(asked);
+                java.util.Collections.sort(sorted);
+                return sorted;
             }
 
             @Override
@@ -1584,5 +1589,34 @@ public class AnalyzeCmdTest {
         assertEquals(0, analyzed.exit(), analyzed.err());
         assertEquals(Base299.FILES, before.size(), "the 886 files of the course");
         assertEquals(before, Base299.hashes(course), "R008 inv. 3: the course, byte for byte");
+    }
+
+    /**
+     * FEAT-JEXAM: the judges runtime over this test's sessions, with every judge version approved,
+     * so a run that asks the judge a budget may consult it (F-JEXAM-R003); without a budget it
+     * consults nothing (F-JEXAM-R010).
+     */
+    private static com.learney.contentaudit.auditdomain.judging.JudgeRuntime approvedJudgeRuntime(
+            com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory sessions) {
+        com.learney.contentaudit.auditdomain.JudgeExamRegistry approved = new com.learney.contentaudit.auditdomain.JudgeExamRegistry() {
+            @Override
+            public void record(com.learney.contentaudit.auditdomain.judging.JudgeExamRecord record) {
+            }
+
+            @Override
+            public java.util.Optional<com.learney.contentaudit.auditdomain.judging.JudgeExamRecord> latest(
+                    String judgeName, String judgeVersion) {
+                return java.util.Optional.of(new com.learney.contentaudit.auditdomain.judging.JudgeExamRecord(
+                        judgeName, judgeVersion, com.learney.contentaudit.auditdomain.judging.JudgeExamStatus.APPROVED,
+                        0, 0, java.util.List.of(), java.util.List.of(), true, null, null, null));
+            }
+
+            @Override
+            public java.util.List<com.learney.contentaudit.auditdomain.judging.JudgeExamRecord> history(String judgeName) {
+                return java.util.List.of();
+            }
+        };
+        return new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime(sessions, sessions, approved,
+                evaluatorId -> java.util.List.of(), new com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig());
     }
 }

@@ -1,7 +1,35 @@
 package com.learney.contentaudit.auditdomain.singleanswerengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.CorrectorMatcher;
+import com.learney.contentaudit.auditdomain.SingleAnswerConfig;
+import com.learney.contentaudit.auditdomain.correctormatch.GapContext;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.singleanswer.AlternativeAnswer;
+import com.learney.contentaudit.auditdomain.singleanswer.AlternativeAnswerKind;
+import com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerVerdict;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,106 +43,469 @@ public class DefaultSingleAnswerClassifierTest {
     @DisplayName("should drop «is not» listed by the judge for a quiz that accepts «isn't», leaving it without single-answer finding")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R002")
-    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldDropIsNotListedByTheJudgeForAQuizThatAcceptsIsntLeavingItWithoutSingleanswerFinding(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableQuiz atHome = quiz("q-isnt", "Negativas con be", "Escribe la forma negativa.",
+                text("He"), cloze("isn't"), text("(not / be) at home."));
+        SingleAnswerVerdict verdict = verdict(
+                alt("is not", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.HIGH,
+                        "La forma larga también es correcta."));
+        FakeCorrector corrector = new FakeCorrector(List.of("isn't", "is not"));
+
+        SingleAnswerOutcome outcome = classifier(corrector).classify(verdict, atHome, false);
+
+        // F-JEXAM-R012: the corrector accepts «is not» where «isn't» is accepted -- not another answer.
+        assertTrue(outcome.getFindings().isEmpty(), "no single-answer finding for a form the corrector accepts");
+        assertEquals(1.0, outcome.getScore(), 1e-9);
+        assertEquals(List.of(), outcome.getDiagnosis().getCounted());
+        assertEquals(List.of("is not"), outcome.getDiagnosis().getDroppedAsAccepted());
+        // It asked the corrector with the gap's accepted answers and the text around the gap, without the hint.
+        assertEquals(1, corrector.calls.size());
+        Call call = corrector.calls.get(0);
+        assertEquals(new GapContext("He", "at home."), call.context());
+        assertEquals(List.of("isn't"), call.accepted());
+        assertEquals("is not", call.written());
+
+        // The drop is the corrector's: with today's empty table «is not» is not «isn't», and it counts.
+        SingleAnswerOutcome withEmptyTable = classifier(new FakeCorrector()).classify(verdict, atHome, false);
+        assertEquals(List.of("is not"), markers(withEmptyTable));
+        assertEquals(0.3, withEmptyTable.getScore(), 1e-9);
     }
 
     @Test
     @DisplayName("should drop «traveled» listed for a quiz that accepts «travelled» and «till» for one that accepts «until», since the corrector accepts them")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R002")
-    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldDropTraveledListedForAQuizThatAcceptsTravelledAndTillForOneThatAcceptsUntilSinceTheCorrectorAcceptsThem(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FakeCorrector corrector = new FakeCorrector(List.of("travelled", "traveled"), List.of("until", "till"));
+        DefaultSingleAnswerClassifier classifier = classifier(corrector);
+
+        AuditableQuiz spain = quiz("q-travelled", "Pasado simple regular", "Escribe el verbo en pasado.",
+                text("They"), cloze("travelled"), text("(travel) to Spain last year."));
+        SingleAnswerOutcome spelling = classifier.classify(verdict(
+                alt("traveled", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.HIGH,
+                        "La grafía americana también es correcta.")), spain, false);
+
+        AuditableQuiz wait = quiz("q-until", "Rangos temporales", "Completa con la preposición.",
+                text("Wait here"), cloze("until"), text("I come back."));
+        SingleAnswerOutcome tillUntil = classifier.classify(verdict(
+                alt("till", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.HIGH,
+                        "till significa lo mismo.")), wait, false);
+
+        assertTrue(spelling.getFindings().isEmpty(), "the closed list of spellings is the same answer");
+        assertEquals(1.0, spelling.getScore(), 1e-9);
+        assertEquals(List.of("traveled"), spelling.getDiagnosis().getDroppedAsAccepted());
+        assertTrue(tillUntil.getFindings().isEmpty(), "until and till are the same answer");
+        assertEquals(1.0, tillUntil.getScore(), 1e-9);
+        assertEquals(List.of("till"), tillUntil.getDiagnosis().getDroppedAsAccepted());
+        assertEquals(List.of(new GapContext("They", "to Spain last year."), new GapContext("Wait here", "I come back.")),
+                corrector.calls.stream().map(Call::context).collect(Collectors.toList()));
     }
 
     @Test
     @DisplayName("should keep in the diagnosis the answers dropped because the corrector accepts them, visible and not counted")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R002")
-    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldKeepInTheDiagnosisTheAnswersDroppedBecauseTheCorrectorAcceptsThemVisibleAndNotCounted(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableQuiz sheWontCome = quiz("67fab6d59930102295342189", "Elegir la forma natural",
+                "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
+                text("She"), cloze("isn't going to come"), text("(not / come)."));
+        AlternativeAnswer longForm = alt("is not going to come", 1, AlternativeAnswerKind.DIFFERENT_VALID,
+                FindingSeverity.HIGH, "La forma larga también vale.");
+        AlternativeAnswer wontCome = alt("won't come", 1, AlternativeAnswerKind.DIFFERENT_VALID,
+                FindingSeverity.MEDIUM, "will también es natural para algo que no se planeó.");
+        SingleAnswerVerdict verdict = verdict(longForm, wontCome);
+
+        SingleAnswerOutcome outcome = classifier(new FakeCorrector(List.of("isn't", "is not")))
+                .classify(verdict, sheWontCome, true);
+
+        // Visible: the verdict stays as the judge emitted it, with the dropped answer in it.
+        assertSame(verdict, outcome.getDiagnosis().getVerdict());
+        assertEquals(List.of("is not going to come"), outcome.getDiagnosis().getDroppedAsAccepted());
+        // Not counted: only what is left gives findings and score.
+        assertEquals(List.of(wontCome), outcome.getDiagnosis().getCounted());
+        assertEquals(List.of("won't come"), markers(outcome));
+        assertEquals(0.6, outcome.getScore(), 1e-9, "the dropped HIGH never weighs; the counted MEDIUM does");
+        assertEquals(0.6, outcome.getDiagnosis().getScore(), 1e-9);
+        assertTrue(outcome.getDiagnosis().isReusedFromPreviousRun());
     }
 
     @Test
     @DisplayName("should pass a quiz whose judge lists no other answer, with score 1 and no finding")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R002")
-    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldPassAQuizWhoseJudgeListsNoOtherAnswerWithScore1AndNoFinding() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableQuiz doesHe = doesHeNeedWater();
+        DefaultSingleAnswerClassifier classifier = classifier(new FakeCorrector(List.of("doesn't", "does not")));
+
+        SingleAnswerVerdict empty = new SingleAnswerVerdict(List.of(), "Sólo «does» completa la respuesta corta.");
+        SingleAnswerOutcome passes = classifier.classify(empty, doesHe, false);
+
+        assertEquals(1.0, passes.getScore(), 1e-9);
+        assertTrue(passes.getFindings().isEmpty());
+        assertEquals(1.0, passes.getDiagnosis().getScore(), 1e-9);
+        assertEquals(List.of(), passes.getDiagnosis().getCounted());
+        assertEquals(List.of(), passes.getDiagnosis().getDroppedAsAccepted());
+        assertSame(empty, passes.getDiagnosis().getVerdict());
+        assertFalse(passes.getDiagnosis().isReusedFromPreviousRun());
+
+        // A verdict whose list is absent is read as an empty list, never as an error.
+        SingleAnswerOutcome absent = classifier.classify(new SingleAnswerVerdict(null, ""), doesHe, true);
+        assertEquals(1.0, absent.getScore(), 1e-9);
+        assertTrue(absent.getFindings().isEmpty());
+        assertTrue(absent.getDiagnosis().isReusedFromPreviousRun());
     }
 
     @Test
     @DisplayName("should give «from Friday until Sunday» and «from Friday till Sunday», offered by the instruction of «He was in Italy ___ .», a rank-only finding each that names the answer and answer-completeness")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R003")
-    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldGiveFromFridayUntilSundayAndFromFridayTillSundayOfferedByTheInstructionOfHeWasInItalyARankonlyFindingEachThatNamesTheAnswerAndAnswercompleteness(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The corrector takes until and till as one, but neither phrase is «from Friday to Sunday».
+        SingleAnswerOutcome outcome = classifier(new FakeCorrector(List.of("until", "till")))
+                .classify(verdict(
+                        alt("from Friday until Sunday", 1, AlternativeAnswerKind.OFFERED_BY_INSTRUCTION,
+                                FindingSeverity.HIGH, "La consigna ofrece «to / until / till»."),
+                        alt("from Friday till Sunday", 1, AlternativeAnswerKind.OFFERED_BY_INSTRUCTION,
+                                FindingSeverity.HIGH, "La consigna ofrece «to / until / till».")), italy(), false);
+
+        assertEquals(List.of("from Friday until Sunday", "from Friday till Sunday"), markers(outcome),
+                "one finding per answer, marked with the answer");
+        for (FindingDraft finding : outcome.getFindings()) {
+            assertEquals(SingleAnswerAnalyzer.RULE_OFFERED_ALTERNATIVE, finding.getRule());
+            assertEquals(FindingResolution.RANK_ONLY, finding.getResolution(), "it only ranks");
+            String evidence = evidenceText(finding);
+            assertTrue(evidence.contains(finding.getMarker()), "the evidence names the answer: " + evidence);
+            assertTrue(evidence.contains("answer-completeness"), "and who fixes it: " + evidence);
+            assertTrue(evidence.contains("Respuestas completas"), evidence);
+            assertTrue(evidence.contains("«|»"), "with a rule that adds it with «|»: " + evidence);
+            assertTrue(parts(finding).contains(new EvidencePart("Ejercicio",
+                    "He went to Italy on Friday and came back on Sunday.He was in Italy ___ .")),
+                    "the exercise as the student sees it");
+            assertTrue(parts(finding).contains(new EvidencePart("Consigna",
+                    "Crea oraciones usando 'from' ... 'to / until / till'.")));
+            assertTrue(parts(finding).contains(new EvidencePart("Respuestas aceptadas",
+                    "from Friday to Sunday | until Sunday | till Sunday")));
+        }
+        assertEquals(1.0, outcome.getScore(), 1e-9);
     }
 
     @Test
     @DisplayName("should count no error of single-answer for a quiz whose only other answers are offered by its instruction, keeping its score at 1")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R003")
-    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldCountNoErrorOfSingleanswerForAQuizWhoseOnlyOtherAnswersAreOfferedByItsInstructionKeepingItsScoreAt1(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Even when the judge rates it blocking: it is answer-completeness's to fix, not an error here.
+        AlternativeAnswer offered = alt("from Friday until Sunday", 1, AlternativeAnswerKind.OFFERED_BY_INSTRUCTION,
+                FindingSeverity.BLOCKING, "La consigna ofrece until y el corrector lo rechaza.");
+
+        SingleAnswerOutcome outcome = classifier(new FakeCorrector(List.of("until", "till")))
+                .classify(verdict(offered), italy(), false);
+
+        assertEquals(1.0, outcome.getScore(), 1e-9, "an offered answer never lowers the score");
+        assertEquals(1.0, outcome.getDiagnosis().getScore(), 1e-9);
+        assertEquals(1, outcome.getFindings().size(), "it is still shown, so answer-completeness sees it");
+        assertTrue(outcome.getFindings().stream().noneMatch(f -> f.getResolution() != FindingResolution.RANK_ONLY),
+                "no finding that counts as error");
+        assertTrue(outcome.getFindings().stream()
+                .noneMatch(f -> SingleAnswerAnalyzer.RULE_DIFFERENT_VALID_ANSWER.equals(f.getRule())));
+        assertEquals(List.of(offered), outcome.getDiagnosis().getCounted());
     }
 
     @Test
     @DisplayName("should give the verduras (…1ecd) a blocking finding and score 0 when eat, like, buy and want fit as well as «love» and no hint picks one")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R004")
-    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldGiveTheVerduras1ecdABlockingFindingAndScore0WhenEatLikeBuyAndWantFitAsWellAsLoveAndNoHintPicksOne(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableQuiz verduras = quiz("67fab6d59930102295341ecd", "Afirmativas regulares",
+                "Escribe la forma afirmativa en presente simple.",
+                text("I"), cloze("love"), text("a lot of vegetables."));
+        List<AlternativeAnswer> fitAsWell = new ArrayList<>();
+        for (String verb : List.of("eat", "like", "buy", "want")) {
+            fitAsWell.add(alt(verb, 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.BLOCKING,
+                    "Encaja igual que «love» y ninguna pista elige."));
+        }
+
+        SingleAnswerOutcome outcome = classifier(new FakeCorrector())
+                .classify(new SingleAnswerVerdict(fitAsWell, "Sin pista no se puede saber cuál acepta."), verduras,
+                        false);
+
+        assertEquals(List.of("eat", "like", "buy", "want"), markers(outcome));
+        for (FindingDraft finding : outcome.getFindings()) {
+            assertEquals(SingleAnswerAnalyzer.RULE_DIFFERENT_VALID_ANSWER, finding.getRule());
+            assertEquals(FindingSeverity.BLOCKING, finding.getSeverity());
+            assertEquals(FindingResolution.PANEL, finding.getResolution(), "an error, to the panel");
+            assertTrue(parts(finding).contains(new EvidencePart("Ejercicio", "I ___ a lot of vegetables.")));
+            assertTrue(parts(finding).contains(new EvidencePart("Respuestas aceptadas", "love")));
+            assertTrue(parts(finding).contains(new EvidencePart("Otra respuesta válida", finding.getMarker())));
+        }
+        assertEquals(0.0, outcome.getScore(), 1e-9);
+        assertEquals(fitAsWell, outcome.getDiagnosis().getCounted());
     }
 
     @Test
     @DisplayName("should give «Does he need water? He ___ .» a high finding for «doesn't» and score 0.3")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R004")
-    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldGiveDoesHeNeedWaterHeAHighFindingForDoesntAndScore03() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        SingleAnswerOutcome outcome = classifier(new FakeCorrector(List.of("doesn't", "does not")))
+                .classify(verdict(alt("doesn't", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.HIGH,
+                        "Sólo la traducción, que se ve después, dice que la respuesta es sí.")), doesHeNeedWater(),
+                        false);
+
+        assertEquals(1, outcome.getFindings().size());
+        FindingDraft finding = outcome.getFindings().get(0);
+        assertEquals(SingleAnswerAnalyzer.RULE_DIFFERENT_VALID_ANSWER, finding.getRule());
+        assertEquals("doesn't", finding.getMarker());
+        assertEquals(FindingSeverity.HIGH, finding.getSeverity());
+        assertEquals(FindingResolution.PANEL, finding.getResolution());
+        assertTrue(parts(finding).contains(new EvidencePart("Ejercicio", "Does he need water? He ___ .")));
+        assertTrue(finding.getEvidence().getObservation().contains("«doesn't»"),
+                finding.getEvidence().getObservation());
+        assertTrue(finding.getEvidence().getObservation().contains("se ve después"),
+                "with the judge's reason: " + finding.getEvidence().getObservation());
+        assertEquals(0.3, outcome.getScore(), 1e-9);
     }
 
     @Test
     @DisplayName("should give «She ___ (not / come).» a medium finding for «won't come» and score 0.6")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R004")
-    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldGiveSheNotComeAMediumFindingForWontComeAndScore06() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // …2189 as it is: three forms of «going to» accepted, none of «will».
+        AuditableQuiz sheWontCome = quiz("67fab6d59930102295342189", "Elegir la forma natural",
+                "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
+                text("She"), cloze("isn't going to come|is not going to come|'s not going to come"),
+                text("(not / come)."));
+        FakeCorrector corrector = new FakeCorrector(List.of("won't", "will not"), List.of("isn't", "is not"));
+
+        SingleAnswerOutcome outcome = classifier(corrector).classify(verdict(
+                alt("won't come", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.MEDIUM,
+                        "«won't come» también es natural, aunque menos esperable con la consigna.")), sheWontCome,
+                false);
+
+        assertEquals(List.of("won't come"), markers(outcome));
+        FindingDraft finding = outcome.getFindings().get(0);
+        assertEquals(FindingSeverity.MEDIUM, finding.getSeverity());
+        assertEquals(FindingResolution.PANEL, finding.getResolution());
+        assertTrue(parts(finding).contains(new EvidencePart("Ejercicio", "She ___ (not / come).")),
+                "the hint as the student sees it");
+        assertEquals(0.6, outcome.getScore(), 1e-9);
+        assertEquals(new GapContext("She", "."), corrector.calls.get(0).context(), "the corrector reads it without the hint");
+        assertEquals(List.of("isn't going to come", "is not going to come", "'s not going to come"),
+                corrector.calls.get(0).accepted(), "the gap's options split on «|»");
     }
 
     @Test
     @DisplayName("should give one finding per counted answer, marked with the answer, and score the quiz by the gravest")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R004")
-    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldGiveOneFindingPerCountedAnswerMarkedWithTheAnswerAndScoreTheQuizByTheGravest(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableQuiz sheWontCome = quiz("67fab6d59930102295342189", "Elegir la forma natural",
+                "¿Es más natural usar 'will' o 'going to'? Escribe oraciones.",
+                text("She"), cloze("isn't going to come"), text("(not / come)."));
+        SingleAnswerVerdict verdict = verdict(
+                alt("won't come", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.MEDIUM, "will vale."),
+                alt("isn't coming", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.HIGH,
+                        "El presente continuo para planes vale igual."),
+                alt("won't come", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.MEDIUM, "will vale."),
+                alt("is not going to come", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.BLOCKING,
+                        "La forma larga."));
+
+        SingleAnswerOutcome outcome = classifier(new FakeCorrector(List.of("isn't", "is not")))
+                .classify(verdict, sheWontCome, false);
+
+        assertEquals(List.of("won't come", "isn't coming"), markers(outcome),
+                "one per counted answer -- the repeated one once, the accepted one none");
+        assertEquals(List.of(FindingSeverity.MEDIUM, FindingSeverity.HIGH),
+                outcome.getFindings().stream().map(FindingDraft::getSeverity).collect(Collectors.toList()));
+        assertEquals(0.3, outcome.getScore(), 1e-9, "by the gravest counted one, HIGH; the dropped BLOCKING never weighs");
+        assertEquals(2, outcome.getDiagnosis().getCounted().size());
+
+        // With more than one gap, the marker carries its gap: the same answer in two gaps is two findings.
+        AuditableQuiz twoGaps = quiz("q-two-gaps", "Rangos temporales", "Completa con from y to.",
+                text("He was in Italy"), cloze("from"), text("Friday"), cloze("to"), text("Sunday."));
+        SingleAnswerOutcome perGap = classifier(new FakeCorrector()).classify(verdict(
+                alt("between", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.MEDIUM, "Otra preposición."),
+                alt("until", 2, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.HIGH, "until vale igual."),
+                alt("till", 2, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.BLOCKING, "till vale igual.")),
+                twoGaps, false);
+
+        assertEquals(List.of("Hueco 1: between", "Hueco 2: until", "Hueco 2: till"), markers(perGap));
+        Set<String> identities = new HashSet<>();
+        for (FindingDraft finding : perGap.getFindings()) {
+            assertTrue(identities.add(finding.getRule() + "|" + finding.getMarker()), "never twice the same rule and marker");
+        }
+        assertTrue(parts(perGap.getFindings().get(1)).contains(new EvidencePart("Respuestas aceptadas del hueco 2", "to")));
+        assertEquals(0.0, perGap.getScore(), 1e-9, "by the gravest, BLOCKING");
     }
 
     @Test
     @DisplayName("should pass a candidate such as «Yes, he ___» for «Does he need water?» when the judge lists nothing or only answers offered by its instruction")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R007")
-    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldPassACandidateSuchAsYesHeForDoesHeNeedWaterWhenTheJudgeListsNothingOrOnlyAnswersOfferedByItsInstruction(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultSingleAnswerClassifier classifier = classifier(new FakeCorrector(List.of("doesn't", "does not")));
+        // The marked exercise: «doesn't» is just as good and nothing the student sees picks.
+        SingleAnswerOutcome marked = classifier.classify(verdict(alt("doesn't", 1, AlternativeAnswerKind.DIFFERENT_VALID,
+                FindingSeverity.HIGH, "Sólo la traducción dice cuál.")), doesHeNeedWater(), false);
+        assertEquals(0.3, marked.getScore(), 1e-9);
+
+        // The panel's candidate leaves a single answer.
+        AuditableQuiz candidate = quiz("67fab6d59930102295341f57", "Respuestas cortas",
+                "Contesta con la respuesta corta o con la larga.",
+                text("Does he need water? Yes, he"), cloze("does"), text("."));
+
+        SingleAnswerOutcome nothingListed = classifier.classify(
+                new SingleAnswerVerdict(List.of(), "Con «Yes» sólo cabe «does»."), candidate, false);
+        assertEquals(1.0, nothingListed.getScore(), 1e-9);
+        assertTrue(nothingListed.getFindings().isEmpty(), "the candidate passes: nothing listed");
+
+        SingleAnswerOutcome onlyOffered = classifier.classify(verdict(alt("needs water", 1,
+                AlternativeAnswerKind.OFFERED_BY_INSTRUCTION, FindingSeverity.MEDIUM,
+                "La consigna ofrece la respuesta larga.")), candidate, false);
+        assertEquals(1.0, onlyOffered.getScore(), 1e-9, "the candidate passes: only what its instruction offers");
+        assertTrue(onlyOffered.getFindings().stream().allMatch(f -> f.getResolution() == FindingResolution.RANK_ONLY));
+    }
+
+    // -------------------------------------------------------------------------
+    // Helpers
+    // -------------------------------------------------------------------------
+
+    private static DefaultSingleAnswerClassifier classifier(CorrectorMatcher corrector) {
+        return new DefaultSingleAnswerClassifier(corrector, new Scale());
+    }
+
+    /** The scale of F-UNICA-R004, as audit-application configures it. */
+    private static final class Scale implements SingleAnswerConfig {
+        @Override
+        public double getScoreFor(FindingSeverity severity) {
+            return switch (severity) {
+                case BLOCKING -> 0.0;
+                case HIGH -> 0.3;
+                case MEDIUM, LOW -> 0.6;
+            };
+        }
+
+        @Override
+        public Map<String, Object> describe() {
+            return Map.of("scale", "0 / 0,3 / 0,6");
+        }
+    }
+
+    private record Call(GapContext context, List<String> accepted, String written) {
+    }
+
+    /**
+     * The corrector of package A is not built in this branch: this double accepts what each test
+     * says -- the written answer and an accepted one are the same once every form of a group is
+     * read as the first one, word by word («is not» as «isn't», «traveled» as «travelled», «till»
+     * as «until»). Without groups it compares letter by letter, like today's empty table.
+     */
+    private static final class FakeCorrector implements CorrectorMatcher {
+        private final List<List<String>> groups;
+        final List<Call> calls = new ArrayList<>();
+
+        @SafeVarargs
+        FakeCorrector(List<String>... groups) {
+            this.groups = Arrays.asList(groups);
+        }
+
+        private String canonical(String text) {
+            String result = text.strip().replaceAll("\\s+", " ").toLowerCase(Locale.ROOT);
+            for (List<String> group : groups) {
+                for (String form : group.subList(1, group.size())) {
+                    Matcher matcher = Pattern.compile("(?<![\\w'])" + Pattern.quote(form) + "(?![\\w'])")
+                            .matcher(result);
+                    result = matcher.replaceAll(Matcher.quoteReplacement(group.get(0)));
+                }
+            }
+            return result;
+        }
+
+        @Override
+        public Set<String> canonicalForms(String text) {
+            return new LinkedHashSet<>(List.of(canonical(text)));
+        }
+
+        @Override
+        public boolean accepts(GapContext context, List<String> acceptedOptions, String written) {
+            calls.add(new Call(context, List.copyOf(acceptedOptions), written));
+            String target = canonical(written);
+            return acceptedOptions.stream().map(this::canonical).anyMatch(target::equals);
+        }
+
+        @Override
+        public boolean sameAnswer(String first, String second) {
+            return canonical(first).equals(canonical(second));
+        }
+
+        @Override
+        public boolean sameAnswer(GapContext context, String first, String second) {
+            return sameAnswer(first, second);
+        }
+
+        @Override
+        public String tableVersion() {
+            return "doble-de-prueba";
+        }
+    }
+
+    private static AuditableQuiz doesHeNeedWater() {
+        return quiz("67fab6d59930102295341f57", "Respuestas cortas",
+                "Usa $short forms$ si es posible. Escribe la respuesta corta.",
+                text("Does he need water? He"), cloze("does"), text("."));
+    }
+
+    private static AuditableQuiz italy() {
+        return quiz("67fab6d59930102295342464", "Rangos temporales",
+                "Crea oraciones usando 'from' ... 'to / until / till'.",
+                text("He went to Italy on Friday and came back on Sunday.He was in Italy"),
+                cloze("from Friday to Sunday|until Sunday|till Sunday"), text("."));
+    }
+
+    private static AuditableQuiz quiz(String id, String title, String instructions, SentencePartEntity... parts) {
+        return new AuditableQuiz(List.of(), id, title, "", "La traducción se ve después.", List.of(), null,
+                instructions, List.of(parts), null, "La miniteoría se ve después.", "A1.00.00.00");
+    }
+
+    private static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    private static SentencePartEntity cloze(String options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(options));
+    }
+
+    private static AlternativeAnswer alt(String answer, int gap, AlternativeAnswerKind kind, FindingSeverity severity,
+            String reason) {
+        return new AlternativeAnswer(answer, gap, kind, severity, reason);
+    }
+
+    private static SingleAnswerVerdict verdict(AlternativeAnswer... alternatives) {
+        return new SingleAnswerVerdict(List.of(alternatives), "Lo que el alumno ve antes de contestar.");
+    }
+
+    private static List<String> markers(SingleAnswerOutcome outcome) {
+        return outcome.getFindings().stream().map(FindingDraft::getMarker).collect(Collectors.toList());
+    }
+
+    private static List<EvidencePart> parts(FindingDraft finding) {
+        return finding.getEvidence().getExamined();
+    }
+
+    private static String evidenceText(FindingDraft finding) {
+        StringBuilder sb = new StringBuilder(finding.getEvidence().getObservation());
+        for (EvidencePart part : parts(finding)) {
+            sb.append('\n').append(part.getLabel()).append(": ").append(part.getText());
+        }
+        return sb.toString();
     }
 }

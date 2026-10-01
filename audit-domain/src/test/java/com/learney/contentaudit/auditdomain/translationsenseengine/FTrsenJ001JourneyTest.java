@@ -1,7 +1,68 @@
 package com.learney.contentaudit.auditdomain.translationsenseengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
+import com.learney.contentaudit.auditdomain.TranslationSenseConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerErrorCounts;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.auditdomain.translationsense.TranslationSenseAgreement;
+import com.learney.contentaudit.auditdomain.translationsense.TranslationSenseCondition;
+import com.learney.contentaudit.auditdomain.translationsense.TranslationSenseDiagnosis;
+import com.learney.contentaudit.auditdomain.translationsense.TranslationSenseFailure;
+import com.learney.contentaudit.auditdomain.translationsense.TranslationSenseVerdict;
+import com.learney.contentaudit.auditdomain.translationsense.TranslationSenseVerdictReader;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -17,42 +78,425 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-TRSEN-J001")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FTrsenJ001JourneyTest {
+
+    // ------------------------------------------------------------------
+    // The operator runs analyze asking translation-sense with a budget, with a version that passed its exam
+    // ------------------------------------------------------------------
+
+    private static final String NAME = "translation-sense";
+
+    private static final String EN_ID = "translation-sense-from-english";
+
+    private static final String TR_ID = "translation-sense-from-translation";
+
+    private static final String EN_VERSION = "tse-en-1";
+
+    private static final String TR_VERSION = "tse-tr-1";
+
+    private static final DefaultQuizStudentViewRenderer RENDERER =
+            new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create());
+
+    private static final Sha256ContentFingerprinter FINGERPRINTER = new Sha256ContentFingerprinter();
+
+    private static final VerdictBook BOOK = new VerdictBook();
+
+    private static final String PASS = BOOK.json(new TranslationSenseVerdict(true, List.of(),
+            "El inglés y la traducción dicen lo mismo y suena natural"));
+
+    private static final String VERDURAS_FROM_ENGLISH = BOOK.json(new TranslationSenseVerdict(false, List.of(
+            new TranslationSenseFailure(TranslationSenseCondition.SAME_MEANING, FindingSeverity.HIGH, "a lot of",
+                    "«a lot of» cuenta verduras; «mucho» dice cuánto gustan")),
+            "La traducción habla de cuánto gustan y el inglés de cuántas verduras"));
+
+    private static final String VERDURAS_FROM_TRANSLATION = BOOK.json(new TranslationSenseVerdict(false, List.of(
+            new TranslationSenseFailure(TranslationSenseCondition.SAME_MEANING, FindingSeverity.MEDIUM, "mucho",
+                    "«mucho» dice cuánto gustan, no cuántas verduras"),
+            new TranslationSenseFailure(TranslationSenseCondition.NATIVE_WOULD_SAY, FindingSeverity.MEDIUM,
+                    "I like a lot of vegetables", "para «me gustan mucho» un nativo dice «I like vegetables a lot»")),
+            "Desde «Me gustan mucho las verduras», el inglés no lo dice"));
+
+    private static final String DINNER_FROM_ENGLISH = BOOK.json(new TranslationSenseVerdict(false, List.of(
+            new TranslationSenseFailure(TranslationSenseCondition.NATIVE_WOULD_SAY, FindingSeverity.MEDIUM,
+                    "It's the moment", "calco: un nativo dice «It's time for dinner!»")),
+            "«the moment» no se usa para la hora de una comida"));
+
+    private static final TranslationSenseConfig SCALE = new TranslationSenseConfig() {
+        @Override
+        public double getScoreFor(FindingSeverity severity) {
+            return switch (severity) {
+                case BLOCKING, HIGH -> 0.3;
+                case MEDIUM -> 0.6;
+                case LOW -> 0.8;
+            };
+        }
+
+        @Override
+        public Map<String, Object> describe() {
+            return Map.of();
+        }
+    };
+
+    private static final class Judge implements Evaluator {
+        final String id;
+        final String version;
+        final Map<String, String> payloads;
+        final List<String> calls = Collections.synchronizedList(new ArrayList<>());
+        final Map<String, List<String>> receivedKeys = new ConcurrentHashMap<>();
+
+        Judge(String id, String version, Map<String, String> payloads) {
+            this.id = id;
+            this.version = version;
+            this.payloads = payloads;
+        }
+
+        @Override
+        public String evaluatorId() {
+            return id;
+        }
+
+        @Override
+        public EvaluationOutcome evaluate(EvaluationSubject subject) {
+            calls.add(subject.getSubjectRef());
+            receivedKeys.put(subject.getSubjectRef(), new ArrayList<>(subject.getContent().keySet()));
+            return new EvaluationEmitted(payloads.getOrDefault(subject.getSubjectRef(), PASS));
+        }
+
+        @Override
+        public Optional<String> evaluatorVersion() {
+            return Optional.of(version);
+        }
+    }
+
+    private static final class VerdictBook implements TranslationSenseVerdictReader {
+        private final Map<String, TranslationSenseVerdict> byPayload = new ConcurrentHashMap<>();
+
+        String json(TranslationSenseVerdict verdict) {
+            StringBuilder sb = new StringBuilder("{\"passes\": ").append(verdict.isPasses()).append(", \"failures\": [");
+            for (int i = 0; i < verdict.getFailures().size(); i++) {
+                TranslationSenseFailure f = verdict.getFailures().get(i);
+                sb.append(i > 0 ? ", " : "")
+                        .append("{\"condition\": \"").append(f.getCondition().name())
+                        .append("\", \"severity\": \"").append(f.getSeverity().name())
+                        .append("\", \"fragment\": \"").append(f.getFragment().replace("\"", "\\\""))
+                        .append("\", \"evidence\": \"").append(f.getEvidence().replace("\"", "\\\"")).append("\"}");
+            }
+            String json = sb.append("], \"rationale\": \"").append(verdict.getRationale().replace("\"", "\\\""))
+                    .append("\"}").toString();
+            byPayload.put(json, verdict);
+            return json;
+        }
+
+        @Override
+        public TranslationSenseVerdict read(String payload) {
+            TranslationSenseVerdict verdict = byPayload.get(payload);
+            if (verdict == null) {
+                throw new IllegalArgumentException("veredicto ilegible: " + payload);
+            }
+            return verdict;
+        }
+    }
+
+    private static final class MemoryLedger implements EvaluationLedger {
+        private final List<EvaluationRecord> records = new ArrayList<>();
+
+        @Override
+        public synchronized void append(EvaluationRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public synchronized Optional<EvaluationRecord> findLatest(EvaluationKey key) {
+            for (int i = records.size() - 1; i >= 0; i--) {
+                if (records.get(i).getKey().equals(key)) {
+                    return Optional.of(records.get(i));
+                }
+            }
+            return Optional.empty();
+        }
+
+        @Override
+        public synchronized List<EvaluationRecord> history(EvaluationKey key) {
+            return records.stream().filter(r -> r.getKey().equals(key)).toList();
+        }
+    }
+
+    /** The version of the pair passed its exam. */
+    private static final class ApprovingRegistry implements JudgeExamRegistry {
+        @Override
+        public void record(JudgeExamRecord record) {
+        }
+
+        @Override
+        public Optional<JudgeExamRecord> latest(String judgeName, String judgeVersion) {
+            if (!(EN_VERSION + "+" + TR_VERSION).equals(judgeVersion)) {
+                return Optional.empty();
+            }
+            return Optional.of(new JudgeExamRecord(judgeName, judgeVersion, JudgeExamStatus.APPROVED, 102, 0,
+                    List.of(), List.of(), true, "2026-09-29", "prueba", Instant.parse("2026-09-30T00:00:00Z")));
+        }
+
+        @Override
+        public List<JudgeExamRecord> history(String judgeName) {
+            return List.of();
+        }
+    }
+
+    private static final class RuntimeConfig implements JudgeRuntimeConfig {
+        @Override
+        public int getMaxConcurrentEvaluations() {
+            return 4;
+        }
+
+        @Override
+        public int getDefaultMaxNewEvaluations(String judgeName) {
+            return 0;
+        }
+
+        @Override
+        public double getDefaultRatePerHour(String judgeName) {
+            return 189.0;
+        }
+
+        @Override
+        public Map<String, Object> describe() {
+            return Map.of();
+        }
+    }
+
+    /** analyze with translation-sense, end to end: provider, real runtime, engine, collector and numbers. */
+    private static final class Operator {
+        final MemoryLedger ledger = new MemoryLedger();
+        final Judge fromEnglish;
+        final Judge fromTranslation;
+        final IAuditEngine engine;
+
+        Operator(Map<String, String> englishPayloads, Map<String, String> translationPayloads) {
+            fromEnglish = new Judge(EN_ID, EN_VERSION, englishPayloads);
+            fromTranslation = new Judge(TR_ID, TR_VERSION, translationPayloads);
+            DefaultJudgeRuntime runtime = new DefaultJudgeRuntime(
+                    new DefaultEvaluationSessionFactory(ledger, FINGERPRINTER),
+                    new ExamEvaluationSessionFactory(ledger, FINGERPRINTER), new ApprovingRegistry(),
+                    evaluatorId -> List.of(), new RuntimeConfig());
+            TranslationSenseAnalyzerProvider provider = new TranslationSenseAnalyzerProvider(runtime, fromEnglish,
+                    fromTranslation, BOOK, SCALE, RENDERER);
+            engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
+                    new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+        }
+
+        AuditReport analyze(int budget, AuditableCourse course) {
+            return engine.runAudit(course, new AnalyzerRunSelection(List.of(NAME),
+                    Map.of(NAME, new EvaluationRunPolicy(budget, false, null, null, null, null))));
+        }
+
+        /** A judge that already judged this same content in an earlier run. */
+        void alreadyJudged(Judge judge, AuditableQuiz quiz, String payload) {
+            AuditNode node = new AuditNode(quiz, AuditTarget.QUIZ, null, List.of(), new LinkedHashMap<>(),
+                    new LinkedHashMap<>(), null);
+            AuditNode milestone = new AuditNode(new AuditableMilestone(List.of(), "m-a1", "A1", null),
+                    AuditTarget.MILESTONE, null, new ArrayList<>(), new LinkedHashMap<>(), new LinkedHashMap<>(), null);
+            node.setParent(milestone);
+            EvaluationSubject subject = new DefaultTranslationSenseSubjectBuilder(RENDERER).build(node);
+            ledger.append(new EvaluationRecord(new EvaluationKey(judge.id, FINGERPRINTER.fingerprint(subject.getContent())),
+                    payload, subject.getSubjectRef(), Instant.parse("2026-09-29T12:00:00Z"), judge.version));
+        }
+    }
+
+    private static AuditableCourse courseOf(AuditableQuiz... quizzes) {
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(quizzes), "Gustos", "Completa la oración.", true,
+                "k-1", "Gustos", null, SentenceMode.FILL, "Present simple");
+        AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t-1", "Present simple", null);
+        return new AuditableCourse(List.of(new AuditableMilestone(List.of(topic), "m-a1", "A1", null)));
+    }
+
+    private static AuditableQuiz quiz(String id, String english, String answer, String translation) {
+        String[] halves = english.split("___", -1);
+        List<SentencePartEntity> parts = new ArrayList<>();
+        if (!halves[0].isBlank()) {
+            parts.add(new SentencePartEntity(SentencePartKind.TEXT, halves[0].strip(), null));
+        }
+        parts.add(new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(answer)));
+        if (halves.length > 1 && !halves[1].isBlank()) {
+            parts.add(new SentencePartEntity(SentencePartKind.TEXT, halves[1].strip(), null));
+        }
+        return new AuditableQuiz(List.of(), id, "Ejercicio " + id, null, translation,
+                List.of(english.replace("___", answer)), null, "Completa con la palabra que falta.", parts, null, null,
+                null);
+    }
+
+    private static final String VERDURAS_ID = "67fab6d59930102295341ecd";
+
+    private static final String DINNER_ID = "67fab6d59930102295342d9e";
+
+    private static final String SCHOOL_ID = "q-school";
+
+    private static AuditableQuiz verduras() {
+        return quiz(VERDURAS_ID, "I ___ a lot of vegetables.", "like", "Me gustan mucho las verduras.");
+    }
+
+    private static AuditableQuiz dinner() {
+        return quiz(DINNER_ID, "It's the moment ___ dinner!", "for", "¡Es hora de cenar!");
+    }
+
+    private static AuditableQuiz school() {
+        return quiz(SCHOOL_ID, "She ___ to school every day.", "goes", "Ella va a la escuela todos los días.");
+    }
+
+    private static AuditNode quizNode(AuditReport report, String id) {
+        AuditNode knowledge = report.getRoot().getChildren().get(0).getChildren().get(0).getChildren().get(0);
+        return knowledge.getChildren().stream().filter(n -> id.equals(n.getEntity().getId())).findFirst().orElseThrow();
+    }
+
+    /** The knowledge, the topic, the level and the course above the quizzes. */
+    private static List<AuditNode> contexts(AuditReport report) {
+        AuditNode course = report.getRoot();
+        AuditNode level = course.getChildren().get(0);
+        AuditNode topic = level.getChildren().get(0);
+        AuditNode knowledge = topic.getChildren().get(0);
+        return List.of(knowledge, topic, level, course);
+    }
+
+    private static AnalyzerErrorCounts errorsAt(AuditNode context) {
+        return context.getNumbers().getErrors().getAnalyzers().stream()
+                .filter(a -> NAME.equals(a.getAnalyzer()))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Sin conteos de translation-sense en " + context.getTarget()));
+    }
+
+    private static List<Finding> findingsOf(AuditNode node) {
+        return node.getFindings().stream().filter(f -> NAME.equals(f.getAnalyzer())).toList();
+    }
+
+    private static TranslationSenseDiagnosis diagnosisOf(AuditNode node) {
+        return ((DefaultQuizDiagnoses) node.getDiagnoses()).getTranslationSenseDiagnosis().orElseThrow();
+    }
+
+    private static JudgeCoverageDiagnosis coverageOf(AuditReport report) {
+        return ((DefaultCourseDiagnoses) report.getRoot().getDiagnoses()).getJudgeCoverages().stream()
+                .filter(c -> NAME.equals(c.getJudgeName()))
+                .findFirst()
+                .orElseThrow();
+    }
+
+    // ------------------------------------------------------------------
+    // The paths
+    // ------------------------------------------------------------------
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo tr... → El sistema junta los dos veredictos [Cada juez ya juzgó ese mismo contenido, o se lo consulta en un contexto limpio dentro del tope] → El ejercicio no tiene hallazgo de tra... [Los dos dicen que cumple] → success")
-    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void path1_cadaJuezYaJuzgEseMismoContenidoOSeLoConsultaEnUnContextoLimpioDentroDelTope_losDosDicenQueCumple_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Operator operator = new Operator(Map.of(), Map.of());
+        // The judge from the English already judged this same content; the other one is consulted within the budget.
+        operator.alreadyJudged(operator.fromEnglish, school(), PASS);
+
+        AuditReport report = operator.analyze(1, courseOf(school()));
+
+        assertTrue(operator.fromEnglish.calls.isEmpty(), "El juez que ya juzgó ese contenido no se consulta");
+        assertEquals(List.of(SCHOOL_ID), operator.fromTranslation.calls, "El otro se consulta, dentro del tope");
+        assertEquals(List.of("cefrLevel", "instructions", "exercise", "acceptedSentences", "translation"),
+                operator.fromTranslation.receivedKeys.get(SCHOOL_ID),
+                "En un contexto limpio: lee el ejercicio y nada del otro juez");
+        AuditNode quiz = quizNode(report, SCHOOL_ID);
+        assertEquals(TranslationSenseAgreement.BOTH_PASS, diagnosisOf(quiz).getAgreement(), "Los dos dicen que cumple");
+        assertTrue(findingsOf(quiz).isEmpty(), "El ejercicio no tiene hallazgo de translation-sense");
+        assertEquals(1.0, quiz.getScores().get(NAME), 1e-9, "…y su puntaje es 1");
+        assertEquals(0, errorsAt(report.getRoot()).getWithError());
+        assertEquals(1, coverageOf(report).getEvaluated());
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo tr... → El sistema junta los dos veredictos [Cada juez ya juzgó ese mismo contenido, o se lo consulta en un contexto limpio dentro del tope] → El ejercicio tiene un hallazgo por co... [Los dos dicen que no cumple] → success")
-    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void path2_cadaJuezYaJuzgEseMismoContenidoOSeLoConsultaEnUnContextoLimpioDentroDelTope_losDosDicenQueNoCumple_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Operator operator = new Operator(Map.of(VERDURAS_ID, VERDURAS_FROM_ENGLISH),
+                Map.of(VERDURAS_ID, VERDURAS_FROM_TRANSLATION));
+
+        AuditReport report = operator.analyze(2, courseOf(verduras()));
+
+        AuditNode quiz = quizNode(report, VERDURAS_ID);
+        assertEquals(TranslationSenseAgreement.BOTH_FAIL, diagnosisOf(quiz).getAgreement(), "Los dos dicen que no cumple");
+        List<Finding> findings = findingsOf(quiz);
+        assertEquals(List.of("native-would-say", "same-meaning"), findings.stream().map(Finding::getRule).toList(),
+                "Un hallazgo por condición marcada");
+        Finding sameMeaning = findings.stream().filter(f -> "same-meaning".equals(f.getRule())).findFirst().orElseThrow();
+        assertEquals(FindingSeverity.HIGH, sameMeaning.getSeverity(), "…con su gravedad");
+        for (Finding finding : findings) {
+            assertEquals(FindingResolution.PANEL, finding.getResolution(), "…que cuenta como error");
+        }
+        List<String> examined = sameMeaning.getEvidence().getExamined().stream()
+                .map(p -> p.getLabel() + ": " + p.getText()).toList();
+        assertTrue(examined.contains("Ejercicio: I ___ a lot of vegetables."),
+                "…y evidencia con el ejercicio como lo ve el alumno: " + examined);
+        assertTrue(examined.contains("Traducción: Me gustan mucho las verduras."), examined.toString());
+        assertTrue(sameMeaning.getEvidence().getExamined().stream().map(EvidencePart::getText)
+                .anyMatch(t -> t.contains("«a lot of» cuenta verduras")), examined.toString());
+        assertEquals(0.3, quiz.getScores().get(NAME), 1e-9);
+
+        for (AuditNode context : contexts(report)) {
+            assertEquals(1, errorsAt(context).getWithError(),
+                    "Cuenta como error en su " + context.getTarget() + " (tema, topic, nivel y curso)");
+        }
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo tr... → El sistema junta los dos veredictos [Cada juez ya juzgó ese mismo contenido, o se lo consulta en un contexto limpio dentro del tope] → El ejercicio queda marcado con los do... [No coinciden] → success")
-    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void path3_cadaJuezYaJuzgEseMismoContenidoOSeLoConsultaEnUnContextoLimpioDentroDelTope_noCoinciden_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Operator operator = new Operator(Map.of(DINNER_ID, DINNER_FROM_ENGLISH), Map.of());
+
+        AuditReport report = operator.analyze(2, courseOf(dinner()));
+
+        AuditNode quiz = quizNode(report, DINNER_ID);
+        TranslationSenseDiagnosis diagnosis = diagnosisOf(quiz);
+        assertEquals(TranslationSenseAgreement.SPLIT, diagnosis.getAgreement(), "No coinciden");
+        assertFalse(diagnosis.getFromEnglish().isPasses());
+        assertTrue(diagnosis.getFromTranslation().isPasses(), "El diagnóstico guarda los dos veredictos enteros");
+        List<Finding> findings = findingsOf(quiz);
+        assertEquals(1, findings.size(), "Queda marcado con un solo hallazgo");
+        Finding disagree = findings.get(0);
+        assertEquals("judges-disagree", disagree.getRule());
+        assertEquals(FindingResolution.RANK_ONLY, disagree.getResolution(), "…que sólo ordena");
+        assertEquals(List.of(DefaultTranslationSenseCombiner.FROM_ENGLISH, DefaultTranslationSenseCombiner.FROM_TRANSLATION),
+                disagree.getEvidence().getExamined().stream().map(EvidencePart::getLabel)
+                        .filter(l -> l.startsWith("Juez")).toList(), "…con los dos veredictos");
+        assertEquals(1.0, quiz.getScores().get(NAME), 1e-9);
+        for (AuditNode context : contexts(report)) {
+            assertEquals(0, errorsAt(context).getWithError(), "No cuenta como error en su " + context.getTarget());
+            assertEquals(1, errorsAt(context).getMarked(), "…y queda marcado para la bandeja");
+        }
     }
 
     @Test
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo tr... → El ejercicio queda sin evaluar, sin p... [Falta el veredicto de algún juez y no queda tope] → success")
-    @Disabled("Stub de FEAT-TRSEN (paquete C), sin implementar")
     public void path4_faltaElVeredictoDeAlgnJuezYNoQuedaTope_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Operator operator = new Operator(Map.of(VERDURAS_ID, VERDURAS_FROM_ENGLISH),
+                Map.of(VERDURAS_ID, VERDURAS_FROM_TRANSLATION));
+        // The verduras have the verdict of one judge; the budget of 2 goes to the quiz before them.
+        operator.alreadyJudged(operator.fromEnglish, verduras(), VERDURAS_FROM_ENGLISH);
+
+        AuditReport report = operator.analyze(2, courseOf(school(), verduras()));
+
+        assertEquals(List.of(SCHOOL_ID), operator.fromEnglish.calls);
+        assertEquals(List.of(SCHOOL_ID), operator.fromTranslation.calls, "No queda tope para el juez que falta");
+        AuditNode quiz = quizNode(report, VERDURAS_ID);
+        assertFalse(quiz.getScores().containsKey(NAME), "Queda sin evaluar: sin puntaje");
+        assertTrue(findingsOf(quiz).isEmpty(), "…sin hallazgo");
+        assertTrue(((DefaultQuizDiagnoses) quiz.getDiagnoses()).getTranslationSenseDiagnosis().isEmpty(), "…sin diagnóstico");
+        assertTrue(quiz.getUnevaluatedBy().contains(NAME));
+
+        JudgeCoverageDiagnosis coverage = coverageOf(report);
+        assertEquals(2, coverage.getReached());
+        assertEquals(1, coverage.getEvaluated());
+        assertEquals(1, coverage.getNotEvaluated(), "La cobertura lo cuenta");
+        assertEquals(1, coverage.getCost().getPendingConsultations(), "Le falta una sola consulta: la del juez que falta");
+        assertEquals(1, errorsAt(report.getRoot()).getNotEvaluated());
     }
 }

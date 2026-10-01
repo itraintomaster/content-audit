@@ -1,5 +1,15 @@
 package com.learney.contentaudit.evaluationledgerdomain.evaluationsession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequest;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequestMode;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.List;
 
 import com.learney.contentaudit.evaluationledgerdomain.ContentFingerprinter;
@@ -79,7 +89,10 @@ class DefaultEvaluationSession implements EvaluationSession {
 
     private int newEvaluationsUsed = 0;
 
-    private boolean evaluatorUnavailable = false;
+    private volatile boolean evaluatorUnavailable = false;
+
+    /** F-JEXAM-R011: the cause and the remedy of the first service failure of this run. */
+    private volatile String unavailableReason;
 
     private boolean evaluatorVersionConsulted = false;
 
@@ -191,7 +204,7 @@ class DefaultEvaluationSession implements EvaluationSession {
             if (notEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE) {
                 // R009: the failure is attributable to the service — stop
                 // consulting it for the remainder of this run.
-                evaluatorUnavailable = true;
+                markUnavailable(notEmitted.getReason());
             }
             return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null);
         }
@@ -244,7 +257,7 @@ class DefaultEvaluationSession implements EvaluationSession {
             if (outcome instanceof EvaluationNotEmitted notEmitted) {
                 failed++;
                 if (notEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE) {
-                    evaluatorUnavailable = true;
+                    markUnavailable(notEmitted.getReason());
                 }
                 return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null);
             }
@@ -294,21 +307,281 @@ class DefaultEvaluationSession implements EvaluationSession {
     }
 
 
+    /**
+     * F-JEXAM-R006: resolves a whole run's requests with up to {@code maxConcurrent} consultations
+     * in flight at once, giving exactly what the one-at-a-time methods give for the same requests
+     * in the same order.
+     *
+     * <ol>
+     *   <li>In the calling thread and in the order of the list, every request is decided exactly as
+     *       its one-at-a-time method decides it -- reuse, pending, or a consultation that takes one
+     *       unit of the budget -- so the same contents are consulted with any N and never more than
+     *       the budget (inv. 1 and 3). A later request for a content already scheduled in this
+     *       batch waits for it and is resolved afterwards, one at a time, as it would be after the
+     *       first one landed in the ledger: two equal exercises never pay twice.</li>
+     *   <li>The scheduled consultations run next: the first one alone (F-JEXAM-R011: an expired
+     *       session fails once, not N times), the rest on N threads that only evaluate and append.
+     *       After a service failure no consultation starts (inv. 2); one already in flight is
+     *       recorded if the evaluator pronounced itself. A consultation that never started falls
+     *       back to what its mode gives without the evaluator.</li>
+     * </ol>
+     */
     @Override
-    public List<EvaluationResolution> resolveAll(List<EvaluationRequest> requests,int maxConcurrent) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public List<EvaluationResolution> resolveAll(List<EvaluationRequest> requests, int maxConcurrent) {
+        if (requests == null || requests.isEmpty()) {
+            return List.of();
+        }
+        int size = requests.size();
+        EvaluationResolution[] results = new EvaluationResolution[size];
+        EvaluationKey[] keys = new EvaluationKey[size];
+        List<Integer> scheduled = new ArrayList<>();
+        List<Integer> deferred = new ArrayList<>();
+        Set<EvaluationKey> scheduledKeys = new HashSet<>();
+
+        // Phase 1: the same decisions, in the same order, as one at a time.
+        for (int i = 0; i < size; i++) {
+            EvaluationRequest request = requests.get(i);
+            EvaluationSubject subject = request.getSubject();
+            EvaluationKey key = keyOf(subject);
+            keys[i] = key;
+            if (scheduledKeys.contains(key)) {
+                deferred.add(i);
+                continue;
+            }
+            EvaluationRequestMode mode = modeOf(request);
+            reached++;
+            switch (mode) {
+                case REUSE_ONLY -> results[i] = reuseOrPending(key);
+                case FORCE -> {
+                    if (reserveConsultation()) {
+                        scheduled.add(i);
+                        scheduledKeys.add(key);
+                    } else {
+                        pending++;
+                        results[i] = pendingResolution();
+                    }
+                }
+                case PREFER_NEW -> {
+                    if (reserveConsultation()) {
+                        scheduled.add(i);
+                        scheduledKeys.add(key);
+                    } else {
+                        results[i] = reuseOrPending(key);
+                    }
+                }
+                default -> {
+                    Optional<EvaluationRecord> current = ledger.findLatest(key);
+                    if (current.isPresent()) {
+                        reused++;
+                        results[i] = reusedResolution(current.get());
+                    } else if (reserveConsultation()) {
+                        scheduled.add(i);
+                        scheduledKeys.add(key);
+                    } else {
+                        pending++;
+                        results[i] = pendingResolution();
+                    }
+                }
+            }
+        }
+
+        // Phase 2: the consultations, the first one alone and then up to N at a time.
+        if (!scheduled.isEmpty()) {
+            int first = scheduled.get(0);
+            results[first] = consultInBatch(requests.get(first).getSubject(), keys[first]);
+            List<Integer> rest = scheduled.subList(1, scheduled.size());
+            if (!rest.isEmpty()) {
+                runConcurrently(requests, keys, rest, results, Math.max(1, maxConcurrent));
+            }
+            for (int i : scheduled) {
+                if (results[i] == null) {
+                    // Never started: the service went down before its turn. It gives what its
+                    // mode gives without the evaluator, and its unit of budget goes back.
+                    synchronized (this) {
+                        newEvaluationsUsed--;
+                    }
+                    results[i] = withoutEvaluator(modeOf(requests.get(i)), keys[i]);
+                }
+            }
+        }
+
+        // Phase 3: the later requests for a content scheduled above, one at a time, in order.
+        for (int i : deferred) {
+            results[i] = resolveOne(requests.get(i));
+        }
+        return Arrays.asList(results);
     }
 
-
+    /**
+     * F-JEXAM-R005 / F-TRSEN-R005: whether this evaluator already has a result for exactly this
+     * content, without reaching, counting or consulting anything.
+     */
     @Override
     public boolean recorded(EvaluationSubject subject) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return ledger.findLatest(keyOf(subject)).isPresent();
     }
 
-
+    /**
+     * F-JEXAM-R011: the cause and the remedy the evaluator gave on the first service failure of
+     * this run; empty when the service never failed.
+     */
     @Override
     public Optional<String> unavailableReason() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.ofNullable(unavailableReason);
     }
 
+    // -------------------------------------------------------------------------
+    // Batch helpers
+    // -------------------------------------------------------------------------
+
+    private EvaluationKey keyOf(EvaluationSubject subject) {
+        return new EvaluationKey(evaluator.evaluatorId(), fingerprinter.fingerprint(subject.getContent()));
+    }
+
+    private static EvaluationRequestMode modeOf(EvaluationRequest request) {
+        return request.getMode() != null ? request.getMode() : EvaluationRequestMode.REUSE_OR_EVALUATE;
+    }
+
+    private EvaluationResolution resolveOne(EvaluationRequest request) {
+        EvaluationSubject subject = request.getSubject();
+        return switch (modeOf(request)) {
+            case FORCE -> resolveForced(subject);
+            case PREFER_NEW -> resolvePreferringNew(subject);
+            case REUSE_ONLY -> resolveWithoutConsulting(subject);
+            default -> resolve(subject);
+        };
+    }
+
+    private boolean reserveConsultation() {
+        if (evaluatorUnavailable || newEvaluationsUsed >= budget.getMaxNewEvaluations()) {
+            return false;
+        }
+        newEvaluationsUsed++;
+        return true;
+    }
+
+    private EvaluationResolution reuseOrPending(EvaluationKey key) {
+        Optional<EvaluationRecord> current = ledger.findLatest(key);
+        synchronized (this) {
+            if (current.isPresent()) {
+                reused++;
+                return reusedResolution(current.get());
+            }
+            pending++;
+            return pendingResolution();
+        }
+    }
+
+    private EvaluationResolution withoutEvaluator(EvaluationRequestMode mode, EvaluationKey key) {
+        if (mode == EvaluationRequestMode.PREFER_NEW) {
+            return reuseOrPending(key);
+        }
+        // REUSE_OR_EVALUATE was only scheduled because nothing was recorded for it, and FORCE
+        // never reuses: both stay pending, exactly as one at a time after the failure.
+        synchronized (this) {
+            pending++;
+        }
+        return pendingResolution();
+    }
+
+    private static EvaluationResolution reusedResolution(EvaluationRecord record) {
+        return new EvaluationResolution(
+                EvaluationResolutionKind.REUSED, record.getPayload(), record.getEvaluatorVersion());
+    }
+
+    private static EvaluationResolution pendingResolution() {
+        return new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null);
+    }
+
+    /**
+     * One consultation of the batch: evaluate and append, nothing else. An evaluator that throws
+     * instead of answering is a service failure (F-QINST-R007): it never escapes a worker thread.
+     */
+    private EvaluationResolution consultInBatch(EvaluationSubject subject, EvaluationKey key) {
+        synchronized (this) {
+            evaluatorVersionConsulted = true;
+        }
+        EvaluationOutcome outcome;
+        try {
+            outcome = evaluator.evaluate(subject);
+        } catch (RuntimeException e) {
+            outcome = new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE,
+                    e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName());
+        }
+        if (outcome instanceof EvaluationEmitted emitted) {
+            String version = evaluatorVersion.get();
+            EvaluationRecord record = new EvaluationRecord(
+                    key, emitted.getPayload(), subject.getSubjectRef(), Instant.now(), version);
+            synchronized (this) {
+                ledger.append(record);
+                evaluatedInRun++;
+            }
+            return new EvaluationResolution(EvaluationResolutionKind.EVALUATED, emitted.getPayload(), version);
+        }
+        if (outcome instanceof EvaluationNotEmitted notEmitted) {
+            synchronized (this) {
+                failed++;
+            }
+            if (notEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE) {
+                markUnavailable(notEmitted.getReason());
+            }
+            return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null);
+        }
+        throw new IllegalStateException(
+                "Unknown EvaluationOutcome implementation: " + outcome.getClass().getName());
+    }
+
+    private void runConcurrently(List<EvaluationRequest> requests, EvaluationKey[] keys, List<Integer> indexes,
+            EvaluationResolution[] results, int maxConcurrent) {
+        int threads = Math.min(maxConcurrent, indexes.size());
+        AtomicInteger next = new AtomicInteger();
+        Runnable worker = () -> {
+            while (true) {
+                int k = next.getAndIncrement();
+                if (k >= indexes.size()) {
+                    return;
+                }
+                if (evaluatorUnavailable) {
+                    // inv. 2: after a service failure no consultation starts.
+                    continue;
+                }
+                int i = indexes.get(k);
+                results[i] = consultInBatch(requests.get(i).getSubject(), keys[i]);
+            }
+        };
+        if (threads == 1) {
+            worker.run();
+            return;
+        }
+        ExecutorService pool = Executors.newFixedThreadPool(threads, runnable -> {
+            Thread thread = new Thread(runnable, "judge-consultation");
+            thread.setDaemon(true);
+            return thread;
+        });
+        try {
+            List<Future<?>> futures = new ArrayList<>();
+            for (int t = 0; t < threads; t++) {
+                futures.add(pool.submit(worker));
+            }
+            for (Future<?> future : futures) {
+                future.get();
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            markUnavailable("La corrida se interrumpió mientras consultaba al evaluador");
+        } catch (ExecutionException e) {
+            throw new IllegalStateException("A consultation of the batch failed unexpectedly", e.getCause());
+        } finally {
+            pool.shutdownNow();
+        }
+    }
+
+    private synchronized void markUnavailable(String reason) {
+        evaluatorUnavailable = true;
+        if (unavailableReason == null) {
+            unavailableReason = reason != null && !reason.isBlank()
+                    ? reason
+                    : "El evaluador no está disponible";
+        }
+    }
 }

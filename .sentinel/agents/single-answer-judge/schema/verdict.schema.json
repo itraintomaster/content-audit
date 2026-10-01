@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "single-answer-verdict.schema.json",
+  "title": "SingleAnswerVerdict",
+  "description": "Veredicto canónico que emite el agente como artifact singleAnswerVerdict (F-UNICA-R002, R004); lo lee JacksonSingleAnswerVerdictReader. Si el juez agota sus intentos, el artifact es {\"outputUnusable\": true} en vez de este objeto.",
+  "$comment": "El gate además exige que gap sea uno de los huecos de la entrada acceptedAnswers y que cada respuesta aparezca una sola vez por hueco, comparada como la compara el corrector; JSON Schema no puede expresarlo.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["alternatives", "rationale"],
+  "properties": {
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["answer", "gap", "kind", "severity", "reason"],
+        "properties": {
+          "answer": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "gap": { "type": "integer", "minimum": 1 },
+          "kind": { "type": "string", "enum": ["OFFERED_BY_INSTRUCTION", "DIFFERENT_VALID"] },
+          "severity": { "type": "string", "enum": ["BLOCKING", "HIGH", "MEDIUM"] },
+          "reason": { "type": "string", "minLength": 1, "maxLength": 400 }
+        }
+      }
+    },
+    "rationale": { "type": "string", "minLength": 1, "maxLength": 800 }
+  }
+}

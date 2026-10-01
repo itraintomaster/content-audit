@@ -2,6 +2,7 @@ package com.learney.contentaudit.evaluationledgerdomain.evaluationsession;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
@@ -16,21 +17,33 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequest;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequestMode;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -67,6 +80,177 @@ public class DefaultEvaluationSessionTest {
             return records.stream()
                     .filter(record -> record.getKey().equals(key))
                     .collect(Collectors.toList());
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // FEAT-JEXAM: a ledger that tolerates several consultations appending at once, and an
+    // evaluator that answers its recorded verdicts and counts how it is called.
+    // -------------------------------------------------------------------------
+
+    private static final String JUDGE_ID = "qinst-judge";
+
+    /** The fingerprint of a test content is its text: two subjects with the same text are the same content. */
+    private static final ContentFingerprinter TEXT_FINGERPRINT = content -> "fp:" + content.get("instruction");
+
+    private static EvaluationSubject subject(String text) {
+        return new EvaluationSubject("quiz-" + text, Map.of("instruction", text));
+    }
+
+    private static EvaluationRequest request(String text, EvaluationRequestMode mode) {
+        return new EvaluationRequest(subject(text), mode);
+    }
+
+    private static List<EvaluationRequest> requests(List<String> texts, EvaluationRequestMode mode) {
+        return texts.stream().map(text -> request(text, mode)).collect(Collectors.toList());
+    }
+
+    private static EvaluationRecord recorded(String text, String payload, String version) {
+        return new EvaluationRecord(new EvaluationKey(JUDGE_ID, "fp:" + text), payload, "quiz-" + text,
+                Instant.parse("2026-08-10T10:00:00Z"), version);
+    }
+
+    /** What each one-at-a-time method gives for the request, as the batch has to give it. */
+    private static EvaluationResolution resolveOneAtATime(EvaluationSession session, EvaluationRequest request) {
+        switch (request.getMode()) {
+            case FORCE:
+                return session.resolveForced(request.getSubject());
+            case PREFER_NEW:
+                return session.resolvePreferringNew(request.getSubject());
+            case REUSE_ONLY:
+                return session.resolveWithoutConsulting(request.getSubject());
+            default:
+                return session.resolve(request.getSubject());
+        }
+    }
+
+    private static List<EvaluationResolutionKind> kinds(List<EvaluationResolution> resolutions) {
+        return resolutions.stream().map(EvaluationResolution::getKind).collect(Collectors.toList());
+    }
+
+    private static List<String> sorted(List<String> values) {
+        List<String> copy = new ArrayList<>(values);
+        Collections.sort(copy);
+        return copy;
+    }
+
+    private static void pause(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    /** Waits for the latch; a timeout is flagged, not thrown, since a throwing evaluator is a service failure. */
+    private static void awaitOrFlag(CountDownLatch latch, AtomicBoolean timedOut) {
+        try {
+            if (!latch.await(5, TimeUnit.SECONDS)) {
+                timedOut.set(true);
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            timedOut.set(true);
+        }
+    }
+
+    /** A verdict that takes a while to come back, so that consultations at a time really overlap. */
+    private static EvaluationOutcome slowVerdict(String text, long millis) {
+        pause(millis);
+        return new EvaluationEmitted("verdict for " + text);
+    }
+
+    /** Thread-safe: the consultations of a batch append from several threads at once. */
+    private static final class SynchronizedLedger implements EvaluationLedger {
+        private final List<EvaluationRecord> records = new ArrayList<>();
+        private final int initialSize;
+
+        SynchronizedLedger(List<EvaluationRecord> initial) {
+            records.addAll(initial);
+            initialSize = initial.size();
+        }
+
+        @Override
+        public synchronized Optional<EvaluationRecord> findLatest(EvaluationKey key) {
+            return records.stream()
+                    .filter(record -> record.getKey().equals(key))
+                    .reduce((first, second) -> second);
+        }
+
+        @Override
+        public synchronized void append(EvaluationRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public synchronized List<EvaluationRecord> history(EvaluationKey key) {
+            return records.stream()
+                    .filter(record -> record.getKey().equals(key))
+                    .collect(Collectors.toList());
+        }
+
+        /** What the run appended, without the time it was recorded at, in a stable order. */
+        synchronized List<String> appendedInRun() {
+            return sorted(records.subList(initialSize, records.size()).stream()
+                    .map(record -> record.getKey().getEvaluatorId() + "|" + record.getKey().getContentFingerprint()
+                            + "|" + record.getPayload() + "|" + record.getSubjectRef() + "|"
+                            + record.getEvaluatorVersion())
+                    .collect(Collectors.toList()));
+        }
+
+        synchronized List<String> fingerprintsAppendedInRun() {
+            return records.subList(initialSize, records.size()).stream()
+                    .map(record -> record.getKey().getContentFingerprint())
+                    .collect(Collectors.toList());
+        }
+    }
+
+    /**
+     * Answers what its script recorded for each content, never a model; counts which contents it was
+     * asked, and how many consultations were in flight at the same time.
+     */
+    private static final class ScriptedEvaluator implements Evaluator {
+        private final String version;
+        private final Function<String, EvaluationOutcome> script;
+        private final List<String> consulted = Collections.synchronizedList(new ArrayList<>());
+        private final AtomicInteger inFlight = new AtomicInteger();
+        private final AtomicInteger maxInFlight = new AtomicInteger();
+
+        ScriptedEvaluator(String version, Function<String, EvaluationOutcome> script) {
+            this.version = version;
+            this.script = script;
+        }
+
+        @Override
+        public String evaluatorId() {
+            return JUDGE_ID;
+        }
+
+        @Override
+        public Optional<String> evaluatorVersion() {
+            return Optional.of(version);
+        }
+
+        @Override
+        public EvaluationOutcome evaluate(EvaluationSubject subject) {
+            String text = subject.getContent().get("instruction");
+            consulted.add(text);
+            maxInFlight.accumulateAndGet(inFlight.incrementAndGet(), Math::max);
+            try {
+                return script.apply(text);
+            } finally {
+                inFlight.decrementAndGet();
+            }
+        }
+
+        List<String> consulted() {
+            synchronized (consulted) {
+                return new ArrayList<>(consulted);
+            }
+        }
+
+        int maxInFlight() {
+            return maxInFlight.get();
         }
     }
 
@@ -862,53 +1046,342 @@ public class DefaultEvaluationSessionTest {
     @DisplayName("should consult with four at a time exactly the three contents it consults one at a time when five new contents meet a budget of 3, in the order of the requests")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R006")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldConsultWithFourAtATimeExactlyTheThreeContentsItConsultsOneAtATimeWhenFiveNewContentsMeetABudgetOf3InTheOrderOfTheRequests() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 inv. 1: with N at a time the run consults the same contents it consults one at a
+        // time, and never more than its budget. Five contents nobody judged meet a budget of 3.
+        List<String> contents = List.of("c1", "c2", "c3", "c4", "c5");
+        Function<String, EvaluationOutcome> verdicts = text -> slowVerdict(text, 50);
+
+        SynchronizedLedger oneLedger = new SynchronizedLedger(List.of());
+        ScriptedEvaluator oneEvaluator = new ScriptedEvaluator("v1", verdicts);
+        DefaultEvaluationSession oneAtATime =
+                new DefaultEvaluationSession(oneLedger, TEXT_FINGERPRINT, oneEvaluator, new EvaluationBudget(3));
+        List<EvaluationResolution> oneByOne = new ArrayList<>();
+        for (String content : contents) {
+            oneByOne.add(oneAtATime.resolve(subject(content)));
+        }
+
+        SynchronizedLedger batchLedger = new SynchronizedLedger(List.of());
+        ScriptedEvaluator batchEvaluator = new ScriptedEvaluator("v1", verdicts);
+        DefaultEvaluationSession fourAtATime =
+                new DefaultEvaluationSession(batchLedger, TEXT_FINGERPRINT, batchEvaluator, new EvaluationBudget(3));
+        List<EvaluationResolution> batch =
+                fourAtATime.resolveAll(requests(contents, EvaluationRequestMode.REUSE_OR_EVALUATE), 4);
+
+        assertEquals(List.of("c1", "c2", "c3"), oneEvaluator.consulted(),
+                "one at a time, the budget of 3 reaches the first three requests");
+        assertEquals(Set.of("c1", "c2", "c3"), new HashSet<>(batchEvaluator.consulted()),
+                "four at a time must consult exactly the contents one at a time consults (F-JEXAM-R006 inv. 1)");
+        assertEquals(3, batchEvaluator.consulted().size(),
+                "four at a time must never consult more than the budget of 3 (F-JEXAM-R006 inv. 1)");
+        assertEquals(List.of(EvaluationResolutionKind.EVALUATED, EvaluationResolutionKind.EVALUATED,
+                        EvaluationResolutionKind.EVALUATED, EvaluationResolutionKind.PENDING,
+                        EvaluationResolutionKind.PENDING), kinds(batch),
+                "one resolution per request, in the order of the requests: the first three consulted, the last two pending");
+        assertEquals(oneByOne, batch,
+                "each request must be resolved exactly as one at a time, verdict and version included");
+        assertEquals(List.of("fp:c1", "fp:c2", "fp:c3"), sorted(batchLedger.fingerprintsAppendedInRun()),
+                "the three verdicts are recorded, and nothing for the two pending contents");
+        assertTrue(batchEvaluator.maxInFlight() <= 4, "never more than four consultations in flight at once");
     }
 
     @Test
     @DisplayName("should resolve a batch mixing reuse-or-evaluate, forced, prefer-new and reuse-only requests exactly as the one-at-a-time methods resolve them in the same order")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R006")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldResolveABatchMixingReuseorevaluateForcedPrefernewAndReuseonlyRequestsExactlyAsTheOneatatimeMethodsResolveThemInTheSameOrder() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 inv. 1 and 3: a batch decides, in the order of its requests, exactly what the
+        // one-at-a-time methods decide -- reuse-or-evaluate (resolve), forced (resolveForced),
+        // prefer-new (resolvePreferringNew) and reuse-only (resolveWithoutConsulting) -- with a
+        // budget of 4 that runs out half way, a content the evaluator cannot read and a content
+        // asked twice in the same run.
+        List<EvaluationRecord> ledgerBefore = List.of(
+                recorded("kept", "kept-old", "v0"),
+                recorded("forced", "forced-old", "v0"),
+                recorded("preferred-reached", "preferred-reached-old", "v0"),
+                recorded("preferred-kept", "preferred-kept-old", "v0"),
+                recorded("forced-unreached", "forced-unreached-old", "v0"),
+                recorded("reuse-only-kept", "reuse-only-kept-old", "v0"));
+        List<EvaluationRequest> requests = List.of(
+                request("kept", EvaluationRequestMode.REUSE_OR_EVALUATE),
+                request("new-1", EvaluationRequestMode.REUSE_OR_EVALUATE),
+                request("forced", EvaluationRequestMode.FORCE),
+                request("preferred-reached", EvaluationRequestMode.PREFER_NEW),
+                request("unreadable", EvaluationRequestMode.REUSE_OR_EVALUATE),
+                request("preferred-kept", EvaluationRequestMode.PREFER_NEW),
+                request("forced-unreached", EvaluationRequestMode.FORCE),
+                request("reuse-only-kept", EvaluationRequestMode.REUSE_ONLY),
+                request("reuse-only-new", EvaluationRequestMode.REUSE_ONLY),
+                request("new-2", EvaluationRequestMode.REUSE_OR_EVALUATE),
+                request("new-1", EvaluationRequestMode.REUSE_OR_EVALUATE));
+        Function<String, EvaluationOutcome> verdicts = text -> {
+            pause(30);
+            return "unreadable".equals(text)
+                    ? new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "salida ilegible para " + text)
+                    : new EvaluationEmitted("new verdict for " + text);
+        };
+
+        SynchronizedLedger oneLedger = new SynchronizedLedger(ledgerBefore);
+        ScriptedEvaluator oneEvaluator = new ScriptedEvaluator("v1", verdicts);
+        DefaultEvaluationSession oneAtATime =
+                new DefaultEvaluationSession(oneLedger, TEXT_FINGERPRINT, oneEvaluator, new EvaluationBudget(4));
+        List<EvaluationResolution> oneByOne = new ArrayList<>();
+        for (EvaluationRequest request : requests) {
+            oneByOne.add(resolveOneAtATime(oneAtATime, request));
+        }
+
+        SynchronizedLedger batchLedger = new SynchronizedLedger(ledgerBefore);
+        ScriptedEvaluator batchEvaluator = new ScriptedEvaluator("v1", verdicts);
+        DefaultEvaluationSession atATime =
+                new DefaultEvaluationSession(batchLedger, TEXT_FINGERPRINT, batchEvaluator, new EvaluationBudget(4));
+        List<EvaluationResolution> batch = atATime.resolveAll(requests, 4);
+
+        // The scenario really exercises every mode, as one at a time resolves it.
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "kept-old", "v0"), oneByOne.get(0));
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for new-1", "v1"),
+                oneByOne.get(1));
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for forced", "v1"),
+                oneByOne.get(2));
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED,
+                "new verdict for preferred-reached", "v1"), oneByOne.get(3));
+        assertEquals(EvaluationResolutionKind.FAILED, oneByOne.get(4).getKind());
+        assertEquals(EvaluationResolutionKind.PENDING, oneByOne.get(6).getKind(),
+                "a forced request the exhausted budget cannot reach is pending");
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reuse-only-kept-old", "v0"),
+                oneByOne.get(7));
+        assertEquals(EvaluationResolutionKind.PENDING, oneByOne.get(8).getKind());
+        assertEquals(EvaluationResolutionKind.PENDING, oneByOne.get(9).getKind());
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "new verdict for new-1", "v1"),
+                oneByOne.get(10), "the content asked twice reuses what the run already paid for it");
+
+        assertEquals(requests.size(), batch.size(), "one resolution per request");
+        for (int i = 0; i < requests.size(); i++) {
+            assertEquals(oneByOne.get(i), batch.get(i), "request " + i + " (" + requests.get(i).getMode() + " on "
+                    + requests.get(i).getSubject().getSubjectRef() + ") must be resolved as one at a time");
+        }
+        assertEquals(sorted(oneEvaluator.consulted()), sorted(batchEvaluator.consulted()),
+                "the batch must consult exactly the contents one at a time consults, and each as many times");
+        assertEquals(oneLedger.appendedInRun(), batchLedger.appendedInRun(),
+                "the batch must record exactly what one at a time records");
     }
 
     @Test
     @DisplayName("should start no consultation after a service failure while resolving at a time, and record the verdict of each consultation already in flight that the evaluator emitted")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R006")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldStartNoConsultationAfterAServiceFailureWhileResolvingAtATimeAndRecordTheVerdictOfEachConsultationAlreadyInFlightThatTheEvaluatorEmitted() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 inv. 2: eight new contents, four at a time. c1 goes alone; then c2..c5 are in flight
+        // together. The service fails on c2 while c3, c4 and c5 are still being judged: those three
+        // pronounce themselves after the failure and are recorded, and c6..c8 are never started.
+        AtomicBoolean timedOut = new AtomicBoolean(false);
+        CountDownLatch othersInFlight = new CountDownLatch(3);
+        CountDownLatch serviceFailed = new CountDownLatch(1);
+        Function<String, EvaluationOutcome> script = text -> {
+            switch (text) {
+                case "c2":
+                    awaitOrFlag(othersInFlight, timedOut);
+                    serviceFailed.countDown();
+                    return new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE,
+                            "servicio caído: el proveedor no responde; reintentá más tarde");
+                case "c3":
+                case "c4":
+                case "c5":
+                    othersInFlight.countDown();
+                    awaitOrFlag(serviceFailed, timedOut);
+                    // They pronounce themselves well after the failure was reported.
+                    return slowVerdict(text, 300);
+                default:
+                    return new EvaluationEmitted("verdict for " + text);
+            }
+        };
+        List<String> contents = List.of("c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8");
+
+        SynchronizedLedger ledger = new SynchronizedLedger(List.of());
+        ScriptedEvaluator evaluator = new ScriptedEvaluator("v1", script);
+        DefaultEvaluationSession session =
+                new DefaultEvaluationSession(ledger, TEXT_FINGERPRINT, evaluator, new EvaluationBudget(10));
+
+        List<EvaluationResolution> resolutions =
+                session.resolveAll(requests(contents, EvaluationRequestMode.REUSE_OR_EVALUATE), 4);
+
+        assertFalse(timedOut.get(), "c2, c3, c4 and c5 must have been in flight at the same time");
+        assertEquals(Set.of("c1", "c2", "c3", "c4", "c5"), new HashSet<>(evaluator.consulted()),
+                "after the service failure no consultation may start (F-JEXAM-R006 inv. 2)");
+        assertEquals(5, evaluator.consulted().size());
+        assertEquals(List.of(EvaluationResolutionKind.EVALUATED, EvaluationResolutionKind.FAILED,
+                        EvaluationResolutionKind.EVALUATED, EvaluationResolutionKind.EVALUATED,
+                        EvaluationResolutionKind.EVALUATED, EvaluationResolutionKind.PENDING,
+                        EvaluationResolutionKind.PENDING, EvaluationResolutionKind.PENDING), kinds(resolutions),
+                "the consultations in flight keep the verdict they emitted; the ones never started stay pending");
+        for (String inFlight : List.of("c3", "c4", "c5")) {
+            assertEquals("verdict for " + inFlight,
+                    ledger.findLatest(new EvaluationKey(JUDGE_ID, "fp:" + inFlight)).map(EvaluationRecord::getPayload)
+                            .orElse(null),
+                    inFlight + " was in flight when the service failed and its verdict must be recorded");
+        }
+        assertEquals(List.of("fp:c1", "fp:c3", "fp:c4", "fp:c5"), sorted(ledger.fingerprintsAppendedInRun()),
+                "nothing is recorded for the failed consultation nor for the ones never started");
     }
 
     @Test
     @DisplayName("should return the same resolution for every content with one and with four consultations at a time, given the same ledger and the same verdicts")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R006")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldReturnTheSameResolutionForEveryContentWithOneAndWithFourConsultationsAtATimeGivenTheSameLedgerAndTheSameVerdicts() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 inv. 3: with the same ledger and the same verdicts, the resolutions and the numbers
+        // are the same with any N. Twelve contents: three already judged, two the evaluator cannot
+        // read, and a budget of 6 that leaves some pending.
+        List<String> contents = List.of("q01", "q02", "q03", "q04", "q05", "q06", "q07", "q08", "q09", "q10",
+                "q11", "q12");
+        List<EvaluationRecord> ledgerBefore = List.of(
+                recorded("q03", "q03-old", "v0"),
+                recorded("q07", "q07-old", "v0"),
+                recorded("q11", "q11-old", "v0"));
+        Function<String, EvaluationOutcome> verdicts = text -> {
+            pause(80);
+            return "q05".equals(text) || "q09".equals(text)
+                    ? new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "salida ilegible para " + text)
+                    : new EvaluationEmitted("verdict for " + text);
+        };
+
+        SynchronizedLedger oneLedger = new SynchronizedLedger(ledgerBefore);
+        ScriptedEvaluator oneEvaluator = new ScriptedEvaluator("v1", verdicts);
+        DefaultEvaluationSession withOne =
+                new DefaultEvaluationSession(oneLedger, TEXT_FINGERPRINT, oneEvaluator, new EvaluationBudget(6));
+        List<EvaluationResolution> resolvedWithOne =
+                withOne.resolveAll(requests(contents, EvaluationRequestMode.REUSE_OR_EVALUATE), 1);
+
+        SynchronizedLedger fourLedger = new SynchronizedLedger(ledgerBefore);
+        ScriptedEvaluator fourEvaluator = new ScriptedEvaluator("v1", verdicts);
+        DefaultEvaluationSession withFour =
+                new DefaultEvaluationSession(fourLedger, TEXT_FINGERPRINT, fourEvaluator, new EvaluationBudget(6));
+        List<EvaluationResolution> resolvedWithFour =
+                withFour.resolveAll(requests(contents, EvaluationRequestMode.REUSE_OR_EVALUATE), 4);
+
+        assertEquals(EnumSet.allOf(EvaluationResolutionKind.class), EnumSet.copyOf(kinds(resolvedWithOne)),
+                "the course mixes reused, evaluated, failed and pending contents");
+        assertEquals(contents.size(), resolvedWithFour.size(), "one resolution per content");
+        for (int i = 0; i < contents.size(); i++) {
+            assertEquals(resolvedWithOne.get(i), resolvedWithFour.get(i),
+                    contents.get(i) + " must get the same resolution with one and with four at a time");
+        }
+        assertEquals(withOne.coverage(), withFour.coverage(),
+                "the numbers of the run must be the same with any number at a time (F-JEXAM-R006 inv. 3)");
+        assertEquals(sorted(oneEvaluator.consulted()), sorted(fourEvaluator.consulted()),
+                "the same contents are consulted with one and with four at a time");
+        assertEquals(oneLedger.appendedInRun(), fourLedger.appendedInRun(),
+                "the same verdicts are recorded with one and with four at a time");
+        assertEquals(1, oneEvaluator.maxInFlight(), "with one at a time, consultations never overlap");
+        assertTrue(fourEvaluator.maxInFlight() > 1 && fourEvaluator.maxInFlight() <= 4,
+                "with four at a time, consultations overlap and never more than four: " + fourEvaluator.maxInFlight());
     }
 
     @Test
     @DisplayName("should send the first consultation of a batch alone, so an evaluator whose provider session expired is called once and not four times")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldSendTheFirstConsultationOfABatchAloneSoAnEvaluatorWhoseProviderSessionExpiredIsCalledOnceAndNotFourTimes() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011: with consultations at a time the first one goes alone, so a provider whose session
+        // expired fails once and not four times. Six new contents, budget 100, four at a time.
+        List<String> contents = List.of("c1", "c2", "c3", "c4", "c5", "c6");
+        ScriptedEvaluator expired = new ScriptedEvaluator("v1", text -> {
+            pause(100);
+            return new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE,
+                    "sesión vencida: renovala con claude auth login");
+        });
+        SynchronizedLedger ledger = new SynchronizedLedger(List.of());
+        DefaultEvaluationSession session =
+                new DefaultEvaluationSession(ledger, TEXT_FINGERPRINT, expired, new EvaluationBudget(100));
+
+        List<EvaluationResolution> resolutions =
+                session.resolveAll(requests(contents, EvaluationRequestMode.REUSE_OR_EVALUATE), 4);
+
+        assertEquals(List.of("c1"), expired.consulted(),
+                "an evaluator whose session expired must be called once, not four times (F-JEXAM-R011)");
+        assertEquals(List.of(EvaluationResolutionKind.FAILED, EvaluationResolutionKind.PENDING,
+                        EvaluationResolutionKind.PENDING, EvaluationResolutionKind.PENDING,
+                        EvaluationResolutionKind.PENDING, EvaluationResolutionKind.PENDING), kinds(resolutions),
+                "the first consultation fails and every other content stays pending, without error");
+        assertEquals(List.of(), ledger.appendedInRun(), "nothing is recorded");
+
+        // A healthy evaluator: the first consultation has finished before any other one starts.
+        AtomicBoolean firstFinished = new AtomicBoolean(false);
+        List<String> startedBeforeTheFirstFinished = Collections.synchronizedList(new ArrayList<>());
+        ScriptedEvaluator healthy = new ScriptedEvaluator("v1", text -> {
+            if ("c1".equals(text)) {
+                EvaluationOutcome outcome = slowVerdict(text, 200);
+                firstFinished.set(true);
+                return outcome;
+            }
+            if (!firstFinished.get()) {
+                startedBeforeTheFirstFinished.add(text);
+            }
+            return slowVerdict(text, 50);
+        });
+        DefaultEvaluationSession healthySession = new DefaultEvaluationSession(
+                new SynchronizedLedger(List.of()), TEXT_FINGERPRINT, healthy, new EvaluationBudget(100));
+
+        List<EvaluationResolution> healthyResolutions =
+                healthySession.resolveAll(requests(contents, EvaluationRequestMode.REUSE_OR_EVALUATE), 4);
+
+        assertEquals("c1", healthy.consulted().get(0), "the first consultation of the batch goes first");
+        assertEquals(List.of(), startedBeforeTheFirstFinished,
+                "no other consultation may start while the first one is still in flight");
+        assertEquals(Set.of("c1", "c2", "c3", "c4", "c5", "c6"), new HashSet<>(healthy.consulted()));
+        assertEquals(Collections.nCopies(6, EvaluationResolutionKind.EVALUATED), kinds(healthyResolutions));
     }
 
     @Test
     @DisplayName("should keep as unavailable reason the cause and the remedy the evaluator gave on its first service failure")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldKeepAsUnavailableReasonTheCauseAndTheRemedyTheEvaluatorGaveOnItsFirstServiceFailure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R011: the report names the cause and how to solve it. The session keeps what the evaluator
+        // said on its FIRST service failure: an unreadable output is not a service failure, and a
+        // second failure of a consultation that was already in flight does not replace the first.
+        String expiredSession = "sesión vencida: renovala con claude auth login";
+        String exhaustedQuota = "cuota agotada: esperá a que se renueve el límite de uso";
+        AtomicBoolean timedOut = new AtomicBoolean(false);
+        CountDownLatch othersInFlight = new CountDownLatch(3);
+        CountDownLatch firstFailureReturned = new CountDownLatch(1);
+        Function<String, EvaluationOutcome> script = text -> {
+            switch (text) {
+                case "c0":
+                    return new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "salida ilegible para c0");
+                case "c2":
+                    awaitOrFlag(othersInFlight, timedOut);
+                    firstFailureReturned.countDown();
+                    return new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, expiredSession);
+                case "c3":
+                    othersInFlight.countDown();
+                    awaitOrFlag(firstFailureReturned, timedOut);
+                    pause(300);
+                    return new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, exhaustedQuota);
+                case "c4":
+                case "c5":
+                    othersInFlight.countDown();
+                    awaitOrFlag(firstFailureReturned, timedOut);
+                    return slowVerdict(text, 300);
+                default:
+                    return new EvaluationEmitted("verdict for " + text);
+            }
+        };
+        ScriptedEvaluator evaluator = new ScriptedEvaluator("v1", script);
+        DefaultEvaluationSession session = new DefaultEvaluationSession(
+                new SynchronizedLedger(List.of()), TEXT_FINGERPRINT, evaluator, new EvaluationBudget(100));
+
+        assertEquals(Optional.empty(), session.unavailableReason(), "no failure yet, no reason");
+
+        EvaluationResolution unreadable = session.resolve(subject("c0"));
+        assertEquals(EvaluationResolutionKind.FAILED, unreadable.getKind());
+        assertEquals(Optional.empty(), session.unavailableReason(),
+                "an output the evaluator could not produce for one content is not a service failure");
+
+        session.resolveAll(requests(List.of("c1", "c2", "c3", "c4", "c5"), EvaluationRequestMode.REUSE_OR_EVALUATE),
+                4);
+
+        assertFalse(timedOut.get(), "c2, c3, c4 and c5 must have been in flight at the same time");
+        assertEquals(Optional.of(expiredSession), session.unavailableReason(),
+                "the reason is the cause and the remedy the evaluator gave on its first service failure");
     }
 }
