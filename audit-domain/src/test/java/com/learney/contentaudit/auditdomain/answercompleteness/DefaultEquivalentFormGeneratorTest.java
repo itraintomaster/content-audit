@@ -41,6 +41,10 @@ public class DefaultEquivalentFormGeneratorTest {
         // contraction, «There's…», is the same answer.
         assertEquals(FormEquivalenceClass.CONTRACTION,
                 forms("There is a house near the school.", "school").get("There's a house near the school."));
+        // «She sells cheese. Someone produces the cheese in Switzerland. ___» (…4393, B2): the form keeps the
+        // capital of the name, as the student would write it.
+        assertEquals(FormEquivalenceClass.CONTRACTION, forms("She sells cheese that is produced in Switzerland.", "")
+                .get("She sells cheese that's produced in Switzerland."));
     }
 
     @Test

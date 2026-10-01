@@ -4,6 +4,16 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Las 12 formas que el corrector en producción sigue rechazando son las 12 reglas que le
+  faltan (clase a), ninguna es otra respuesta ni una forma que nadie escribe: 7 «'s» + participio que el corrector no sabe
+  si es is o has (he's forgotten, he's turned, she's left, he's meant, she's danced, he's run, that's produced sin «by»), 3
+  «'d» + participio igual a la base que no sabe si es had o would (she'd read ×2, he'd run), 1 participio que no está en su
+  lista cerrada (overslept: lee «he would overslept») y 1 till después de «there», que el corrector toma por sujeto. Hoy el
+  analizador las emite media, por regla, con «se agrega con «|» después de las que hay» (la prueba de «has trained» del
+  TECH_SPEC); R005 dice que una forma de una clase que iguala el corrector se arregla en el corrector, y el brief 101 deja
+  el «|» sólo para respuestas distintas: decide el coordinador, R005 no se tocó. El generador escribía en minúscula los
+  nombres de la forma («in switzerland»): ahora les devuelve la mayúscula.
+
 2026-10-01 — developer (impl A) — Salió el corrector nuevo: ittm #1191 (30e0efcc0) en producción desde el 1/10/2026 00:30 UTC
   (learney-app, sa-east-1). formas-equivalentes.json es ahora su tabla, versión «corrector en producción, ittm #1191
   (30e0efcc0), desplegado el 1/10/2026», y es la única copia: la del «corrector nuevo» se fue. La vacía quedó como

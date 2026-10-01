@@ -455,13 +455,27 @@ class DefaultEquivalentFormGenerator implements EquivalentFormGenerator {
     }
 
     /** The case of the accepted answer: its capital first letter, and «I». */
+    /**
+     * The forms are built in lower case: the pronoun I, the first letter and the words the answer
+     * writes with a capital inside the sentence -- the names, «Switzerland», «Mary» -- get their
+     * capital back, so the form the finding shows is the one the student would write.
+     */
     private static String restoreCase(String form, String original) {
         String result = form.replaceAll("(?<![A-Za-z'])i(?![A-Za-z])", "I");
+        Matcher names = CAPITALIZED_INSIDE.matcher(original);
+        while (names.find()) {
+            String name = names.group(1);
+            result = result.replaceAll("(?<![A-Za-z'])" + Pattern.quote(name.toLowerCase(Locale.ROOT)) + "(?![A-Za-z])",
+                    Matcher.quoteReplacement(name));
+        }
         if (!original.isEmpty() && Character.isUpperCase(original.charAt(0)) && !result.isEmpty()) {
             result = Character.toUpperCase(result.charAt(0)) + result.substring(1);
         }
         return result;
     }
+
+    /** A word with a capital that does not open a sentence: «in Switzerland», not «She» at the start. */
+    private static final Pattern CAPITALIZED_INSIDE = Pattern.compile("(?<![.?!:]\\s|^)(?<=\\s|[“\"(])([A-Z][a-z]+)\\b");
 
     private static String unifyApostrophes(String text) {
         return text.replace('’', '\'').replace('‘', '\'').replace('′', '\'').replace('`', '\'');
