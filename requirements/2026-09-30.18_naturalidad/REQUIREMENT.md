@@ -10,8 +10,8 @@ feature:
 
 ## TL;DR
 
-**Qué**: `naturalness` le pregunta a un modelo de lenguaje local, por cada oración terminada, si un nativo la diría así,
-y marca el 5 % más dudoso de cada nivel para que los jueces empiecen por ahí. No cuenta errores.
+**Qué**: `naturalness` le pregunta a un modelo local —sin Ollama, a claude -p—, por cada oración terminada, si un nativo
+la diría así, y marca las más dudosas de cada nivel para que los jueces empiecen por ahí. No cuenta errores.
 
 **Por qué**: Juzgar el curso con los cinco jueces son unas 220 horas de a una. Medido con el modelo ya instalado, esa
 cola trae el 27 % de lo que el 077 llamó antinatural o sin sentido, más de cinco veces el azar.
@@ -29,7 +29,7 @@ Cómo el operador intenta hoy elegir qué ejercicios juzgar primero:
 **Punto de fricción**: paso 3.
 
 **Cambio mínimo necesario**: sumar `naturalness` al catálogo de FEAT-HALL, con un orden publicado y una lista de
-marcados que sirva de conjunto para un juez.
+marcados que sirva de conjunto para un juez; sin Ollama, con la misma pregunta a claude -p (FEAT-MLOCAL R007).
 
 ## Reglas de Negocio
 
@@ -39,11 +39,11 @@ marcados que sirva de conjunto para un juez.
 
 > Por ejercicio, `naturalness` lee la oración terminada de Gramática ([F-GRAMA-R001](#F-GRAMA-R001)) con la primera
 > respuesta aceptada. Un ejercicio cuya oración no tiene verbo o es una sola palabra («go - going», «hard work
-> uncountable») no alcanza: no tiene número ni hallazgo.
+> uncountable») no alcanza: no tiene número ni hallazgo, y no se le pregunta a ningún modelo.
 
-En A1–A2 no alcanzan 76 de 4.813. La contraída y la larga valen igual (decisión de José, ronda 1): la pregunta de R002
-no castiga la contraída, así que la oración se lee como queda. SLOR sí la castigaba y obligaba a leer la forma larga,
-y quedó descartado ([DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO)).
+En A1–A2 no alcanzan 76 de 4.813; en el curso, 114 de 11.287. La contraída y la larga valen igual (decisión de José,
+ronda 1): la pregunta de R002 no castiga la contraída, así que la oración se lee como queda. SLOR sí la castigaba y
+obligaba a leer la forma larga, y quedó descartado ([DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO)).
 
 <a id="F-NATUR-R002"></a>
 ### Rule[F-NATUR-R002] - Un número por ejercicio: qué tan poco probable es que un nativo lo diga así
@@ -56,7 +56,8 @@ y quedó descartado ([DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO)).
 
 Es una consulta de un token por oración, local y gratis. Se usa el cociente y no la probabilidad del «no» porque ésta
 se amontona en 1: más de 300 ejercicios por nivel pasan de 0,999. El método de la propuesta (SLOR) se midió peor y
-quedó descartado (José, 30/9): ver Contexto y [DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO).
+quedó descartado (José, 30/9): ver Contexto y [DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO). claude -p no da probabilidades:
+con la alternativa no hay número ([F-NATUR-R008](#F-NATUR-R008)).
 
 <a id="F-NATUR-R003"></a>
 ### Rule[F-NATUR-R003] - Marca el 5 % más dudoso de cada nivel, y no cuenta como error
@@ -71,14 +72,16 @@ Fijo, para que cambiar un ejercicio no mueva la marca de otro ([F-HALL-R014](#F-
 ([DOUBT-NATUR-UMBRAL](#DOUBT-NATUR-UMBRAL)). Con llama3 8B en la versión medida, 9,07 en A1 (116 de 2.334) y 10,2 en A2
 (120 de 2.403). Los de B1 y B2 se calculan igual sobre la base del 29/9 antes de publicar: unos 9 minutos de modelo.
 Un modelo en otra versión da otros números, así que sus umbrales se vuelven a calcular con su examen
-([F-MLOCAL-R006](#F-MLOCAL-R006)).
+([F-MLOCAL-R006](#F-MLOCAL-R006)). Con claude -p no hay umbral: marca su «no» ([F-NATUR-R008](#F-NATUR-R008)).
 
 <a id="F-NATUR-R004"></a>
 ### Rule[F-NATUR-R004] - La evidencia dice cuánto duda el modelo
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
-> La evidencia trae la oración como la lee el alumno, su número y el umbral del nivel: «El modelo local duda que un
-> nativo diga «She bought at the market.» (13,7; umbral de A2: 10,2)» ([F-HALL-R003](#F-HALL-R003)).
+> La evidencia trae la oración como la lee el alumno y qué dijo el modelo ([F-HALL-R003](#F-HALL-R003)): con el modelo
+> local, su número y el umbral del nivel, «El modelo local duda que un nativo diga «She bought at the market.» (13,7;
+> umbral de A2: 10,2)»; con claude -p, su respuesta, «claude -p contesta que un nativo no diría «She bought at the
+> market.» (sin Ollama)».
 
 No dice por qué: eso lo dice el juez de [traducción](glossary:Traducción) y sentido (FEAT-TRSEN), que es quien decide.
 
@@ -86,8 +89,9 @@ No dice por qué: eso lo dice el juez de [traducción](glossary:Traducción) y s
 ### Rule[F-NATUR-R005] - El orden y los marcados se pueden pasar a un juez
 **Severity**: major | **Validation**: ASSUMPTION
 
-> El informe publica, por nivel, los ejercicios marcados del más dudoso al menos dudoso, y esa lista, como archivo de
-> identificadores, es un conjunto válido para cualquier juez ([F-QINST-R019](#F-QINST-R019), [F-JEXAM-R005](#F-JEXAM-R005)).
+> El informe publica, por nivel, los ejercicios marcados del más dudoso al menos dudoso —con claude -p, en el orden del
+> curso—, y esa lista, como archivo de identificadores, es un conjunto válido para cualquier juez
+> ([F-QINST-R019](#F-QINST-R019), [F-JEXAM-R005](#F-JEXAM-R005)).
 
 Así «el 5 % menos esperable va primero a los jueces», como dice la propuesta, sin que Naturalidad decida nada sola.
 
@@ -95,23 +99,64 @@ Así «el 5 % menos esperable va primero a los jueces», como dice la propuesta,
 ### Rule[F-NATUR-R006] - Se usa sólo si ordena mucho mejor que el azar
 **Severity**: critical | **Validation**: ASSUMPTION
 
-> El examen de `naturalness` son los ejercicios que el 077 marcó antinaturales o sin sentido: en la cola del 5 % de cada
-> nivel tienen que caer al menos el triple que al azar —15 %, 28 de los 186 de A1–A2 en `escribir/`, y la proporción
-> equivalente en `examinar/`—. Una versión que no lo aprueba no publica marcas ([F-MLOCAL-R006](#F-MLOCAL-R006)).
+> El examen de `naturalness` son los ejercicios que el 077 marcó antinaturales o sin sentido: lo que marca tiene que
+> traer al menos el triple de ellos que el azar con la misma cantidad de marcas. Invariantes:
+> 1. con el modelo local, en la cola del 5 % de cada nivel caen al menos 28 de los 186 de A1–A2 en `escribir/` (15 %), y
+>    la proporción equivalente en `examinar/`;
+> 2. con claude -p, sobre esos 186 y 400 ejercicios de A1–A2 elegidos al azar fuera de ellos (semilla 87), la proporción
+>    de los 186 que contesta «no» es al menos el triple de la proporción de los 400;
+> 3. una versión que no lo aprueba no publica marcas ([F-MLOCAL-R006](#F-MLOCAL-R006)).
 
 Es el «si casi ninguno cae ahí, no sirve y se saca» de la propuesta, con un número. El prototipo con llama3 da 51 de 186
-(27 %) y aprueba; con SLOR daba 14 (7,5 %) y no.
+(27 %) y aprueba; con SLOR daba 14 (7,5 %) y no. Con claude -p, rendir con la muestra cuesta 586 consultas (3,3 h de a
+una, 50 min con 4) en vez de las 4.737 de A1–A2 enteros (27 h); si marca el 5 %, la muestra lo estima con un error de
+alrededor de un punto, lejos del 15 % que se pide sobre los 186.
 
 <a id="F-NATUR-R007"></a>
 ### Rule[F-NATUR-R007] - `naturalness` es un analizador de errores que sólo ordena
 **Severity**: major | **Validation**: ASSUMPTION
 
 > El catálogo lista `naturalness` con su ficha ([F-HALL-R006](#F-HALL-R006)): pregunta «¿Un nativo diría así esta
-> oración?», familia *errores*, evalúa *ejercicio*, resolución *sólo ordena*, costo *modelo local*, y nombra el modelo
-> con su versión y el resultado de su examen.
+> oración?», familia *errores*, evalúa *ejercicio*, resolución *sólo ordena*, dos reglas —la del modelo local, costo
+> *modelo local*, y la de claude -p, costo *modelo pago*—, costo de la ficha *modelo pago*, y nombra el modelo local y
+> claude -p con su versión y el resultado de su examen.
 
 Familia *errores* porque así lo fija [F-HALL-R007](#F-HALL-R007) para los once nuevos; como sólo ordena, sus números son
-marcados, no errores.
+marcados, no errores. El costo de la ficha es el mayor de sus reglas ([F-HALL-R006](#F-HALL-R006) inv. 2), aunque con
+Ollama nunca consulte a claude -p; cada hallazgo lleva el de su regla ([F-HALL-R002](#F-HALL-R002)).
+
+<a id="F-NATUR-R008"></a>
+### Rule[F-NATUR-R008] - Sin Ollama, la misma pregunta a claude -p: un «no» marca
+**Severity**: critical | **Validation**: ASSUMPTION
+
+> Sin su modelo local ([F-MLOCAL-R007](#F-MLOCAL-R007)), `naturalness` le hace a claude -p la pregunta de R002, con el
+> mismo mensaje de sistema y la misma oración terminada (R001). Invariantes:
+> 1. claude -p contesta sí o no, sin número: un «no» deja un hallazgo de su regla, gravedad *baja*, que sólo ordena y
+>    cuenta como marcado, como en R003; un «sí» no deja ninguno;
+> 2. el diagnóstico dice que contestó claude -p y no trae número ni umbral;
+> 3. la lista de cada nivel (R005) trae los «no» en el orden del curso;
+> 4. hace una consulta por ejercicio que alcanza, y sólo dentro de su tope ([F-MLOCAL-R008](#F-MLOCAL-R008)).
+
+<details><summary>Por qué sin número, un caso y cuánto cuesta</summary>
+
+claude -p no devuelve la probabilidad de cada respuesta, así que el cociente de R002 no se puede calcular; cuántos «no»
+da no está fijado en el 5 %: lo controla el examen (R006). «She bought at the market.» (`67fab6d59930102295343974`,
+A2): llama3 da 13,65 contra el umbral de 10,2 y queda marcado; sin Ollama, a claude -p se le pregunta lo mismo —«Would a
+native English speaker naturally say or write this exact sentence, with this meaning and these words? Sentence: "She
+bought at the market."»— y, si contesta «no», queda marcado igual, con la evidencia de R004.
+
+| Alcance | Consultas | Horas de a una | Horas con 4 a la vez |
+|---|---:|---:|---:|
+| A1 | 2.334 | 13,3 | 3,3 |
+| A2 | 2.403 | 13,7 | 3,4 |
+| B1 | 4.535 | 25,8 | 6,4 |
+| B2 | 1.901 | 10,8 | 2,7 |
+| Curso entero | 11.173 | 63,5 | 15,9 |
+
+Al ritmo medido de los jueces, 176 por hora de a una (FEAT-JEXAM). Después de una tanda, una consulta por ejercicio
+tocado. La duda de qué marca la alternativa es [DOUBT-NATUR-ALTERNATIVA](#DOUBT-NATUR-ALTERNATIVA).
+
+</details>
 
 ## Contexto
 
@@ -126,20 +171,25 @@ scratchpad del analista, sin instalar nada: llama3 8B (Q4_0) en Ollama, el únic
 
 Con la cola del 10 %, la pregunta trae el 43,5 %; con la del 20 %, el 64 %. De los 47 de gramática del examen, 9 caen en
 la cola del 5 % (LanguageTool encuentra 1). Los umbrales del 5 % quedan en 9,1 (A1; exacto, 9,07) y 10,2 (A2), medidos
-sobre `yn-a1a2.jsonl`; la presentación decía 10,0 para A1 y era un error. Lo más dudoso de A2 es
-«She is an engineer of hers.», «Jakarta is the capital of the Philippines.» y «This idea does not very good.». Fuera de
-todo oro, la cola trae oraciones igual de raras que el 077 no anotó, como «She bought at the market.».
+sobre `yn-a1a2.jsonl`; la presentación decía 10,0 para A1 y era un error: 10,0 marca 90 de 2.334, el 3,9 %. Lo más
+dudoso de A2 es «She is an engineer of hers.», «Jakarta is the capital of the Philippines.» y «This idea does not very
+good.». Fuera de todo oro, la cola trae oraciones igual de raras que el 077 no anotó, como «She bought at the market.».
 
 SLOR se midió leyendo de a un token con 20 alternativas, porque Ollama no da la probabilidad del texto de entrada: toda
 palabra fuera de las 20 cuesta lo mismo. Un modelo chico con la probabilidad exacta (GPT-2) podría medir mejor; no se
 probó porque hay que bajarlo. Lo que el 077 llama antinatural son oraciones de palabras comunes y bien armadas —«I eat
 food every morning»—, y la pregunta directa las ve mejor que la probabilidad.
 
+Sin Ollama, la misma pregunta va a claude -p (José, 30/9 a la noche; FEAT-MLOCAL R007): el curso entero son 11.173
+consultas, 63,5 horas de a una. Es casi un tercio de lo que cuestan los cuatro jueces nuevos sobre el mismo nivel: rinde
+en los niveles que los jueces no van a juzgar enteros.
+
 ## Alcance
 
-- **Adentro**: R001 a R007: la lectura, el número, la marca, su evidencia, la lista para los jueces, el examen y la ficha.
-- **Afuera**: decidir si una oración está mal (FEAT-TRSEN); el modelo y dónde corre (FEAT-MLOCAL); y escribir el curso al
-  analizar ([F-HALL-R015](#F-HALL-R015)).
+- **Adentro**: R001 a R008: la lectura, el número, la marca, su evidencia, la lista para los jueces, el examen, la
+  ficha y la alternativa con claude -p.
+- **Afuera**: decidir si una oración está mal (FEAT-TRSEN); el modelo, dónde corre, cuándo se usa claude -p y su tope
+  (FEAT-MLOCAL); y escribir el curso al analizar ([F-HALL-R015](#F-HALL-R015)).
 
 ## User Journeys
 
@@ -152,30 +202,42 @@ journeys:
     name: Ordenar qué mirar primero
     flow:
       - id: correr
-        action: "El operador corre analyze pidiendo sólo naturalness, con una versión del modelo que aprobó su examen"
+        action: "El operador corre analyze pidiendo sólo naturalness, con una versión que aprobó su examen y, sin Ollama, con un tope para claude -p"
         gate: [F-NATUR-R006]
         then: leer
       - id: leer
-        action: "El informe lee la oración terminada de cada ejercicio y le da su número"
-        gate: [F-NATUR-R001, F-NATUR-R002]
+        action: "El informe lee la oración terminada de cada ejercicio y le pregunta al modelo si un nativo la diría"
+        gate: [F-NATUR-R001]
         outcomes:
           - when: "La oración no tiene verbo o es una sola palabra"
             then: no_alcanza
-          - when: "El número queda por encima del umbral de su nivel"
+          - when: "Con Ollama, el número queda por encima del umbral de su nivel"
             then: marcado
-          - when: "El número queda en el umbral o por debajo"
+          - when: "Con Ollama, el número queda en el umbral o por debajo"
             then: sin_marca
+          - when: "Sin Ollama, claude -p contesta que un nativo no la diría"
+            then: marcado_alternativa
+          - when: "Sin Ollama, claude -p contesta que un nativo sí la diría"
+            then: sin_marca_alternativa
       - id: no_alcanza
-        action: "El ejercicio queda sin número ni hallazgo de naturalness"
+        action: "El ejercicio queda sin número ni hallazgo de naturalness, y no se le consultó a ningún modelo"
         gate: [F-NATUR-R001]
         result: success
       - id: marcado
         action: "El ejercicio tiene un hallazgo que sólo ordena, con su número, entra en la lista del nivel para los jueces y no cuenta como error"
-        gate: [F-NATUR-R003, F-NATUR-R004, F-NATUR-R005, F-NATUR-R007]
+        gate: [F-NATUR-R002, F-NATUR-R003, F-NATUR-R004, F-NATUR-R005, F-NATUR-R007]
         result: success
       - id: sin_marca
         action: "El ejercicio tiene su número publicado y ningún hallazgo de naturalness"
         gate: [F-NATUR-R002]
+        result: success
+      - id: marcado_alternativa
+        action: "El ejercicio tiene un hallazgo de claude -p que sólo ordena, sin número, entra en la lista del nivel en el orden del curso y no cuenta como error"
+        gate: [F-NATUR-R004, F-NATUR-R005, F-NATUR-R008]
+        result: success
+      - id: sin_marca_alternativa
+        action: "El ejercicio no tiene hallazgo de naturalness y su diagnóstico dice que lo leyó claude -p"
+        gate: [F-NATUR-R008]
         result: success
 ```
 
@@ -215,10 +277,25 @@ oro del 077; como error, la mitad de lo que sumaría a «algún error» serían 
 **Answer**: **Opción A** (José, 30/9): el umbral es fijo por nivel. Con B, cada tanda que arregla oraciones raras hace
 marcar otras que no cambiaron, y el antes y después (paquete F) mostraría marcas nuevas sin cambios.
 
+<a id="DOUBT-NATUR-ALTERNATIVA"></a>
+### Doubt[DOUBT-NATUR-ALTERNATIVA] - Sin Ollama, ¿qué marca la pregunta a claude -p?
+**Status**: OPEN
+
+- [ ] Opción A (recomendada): un «no» marca, sin número, y la lista del nivel va en el orden del curso (R008); el examen
+  frena la versión que marque de más.
+- [ ] Opción B: preguntarle además qué tan seguro está (sí, quizás sí, quizás no, no) y ordenar por eso. Es otra
+  pregunta, con su propia versión y su examen.
+- [ ] Opción C: pedirle un puntaje de 0 a 10 y marcar el 5 % de cada nivel con umbrales fijos. Es otra pregunta, y
+  calibrar sus umbrales cuesta consultar A1–A2 enteros: 4.737 consultas, 27 horas de a una.
+
+**Answer**: Pendiente. Recomiendo A, y se diseñó con A: es lo que dijo José, «la misma pregunta de sí o no», y no
+inventa un número que claude -p no da.
+
 ## References
 
-- **FEAT-HALL** — Familia, «sólo ordena», marcados, identidad y ficha: R003, R004, R007.
+- **FEAT-HALL** — Familia, «sólo ordena», marcados, identidad, costo por regla y ficha: R003, R004, R007.
 - **FEAT-GRAMA** — La oración terminada que se lee: R001.
-- **FEAT-MLOCAL** — El modelo local, su versión, su examen y qué pasa si falta: R002, R006.
-- **FEAT-QINST, FEAT-JEXAM** — El conjunto declarado que se le pasa a un juez: R005.
+- **FEAT-MLOCAL** — El modelo local, su versión, su examen, qué pasa si falta y la alternativa con su tope: R002, R006,
+  R008.
+- **FEAT-QINST, FEAT-JEXAM** — El conjunto declarado que se le pasa a un juez y el ritmo de claude -p: R005, R008.
 - **FEAT-TRSEN** — El juez que decide si una oración marcada está mal: R004.

@@ -5,6 +5,19 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — analyst — José, 30/9 a la noche: sin Ollama, naturalness y near-duplicates le preguntan a claude -p
+  (DOUBT-MLOCAL-SIN-OLLAMA → A). Nuevas R007 (la alternativa, con las reglas de los jueces: 4 a la vez, sesión verificada,
+  costo declarado) y R008 (tope 0 sin pedido y «falta el tope»; el modelo local nunca tiene tope). R001: nada sale de la
+  máquina con sus herramientas; a claude -p, sólo sin Ollama y con tope. R003: por nombre se rechaza sólo sin herramienta
+  ni alternativa. R006: la versión de la alternativa rinde su propio examen.
+  why: «sin Ollama no se deja sin evaluar; recordá que tenemos claude -p».
+
+2026-09-30 — analyst — Nueva DOUBT-MLOCAL-TOPE-ALTERNATIVA (OPEN; A recomendada y aplicada: el tope 0 de los jueces).
+  why: la nota de José «cuidar que no pase por el tope 0 de los jueces pagos» se lee de dos maneras; el orquestador fijó A.
+
+2026-09-30 — analyst — Costo de la alternativa contado con scripts, sin consultar (scratchpad `arq-B2/`): naturalness
+  11.173 consultas (A1 2.334), near-duplicates 699 (A1 276): 67,5 h de a una y 16,9 con 4, a 176/h (ritmo de C).
+
 2026-09-30 — architect — Las herramientas son de este parche: puertos `GrammarChecker`, `YesNoModel` y `EmbeddingModel` (los
   tres extienden `LocalTool`) en `audit-domain.localtools`, y sus adaptadores en el módulo nuevo `local-language-infrastructure`
   (`allowedClients: [audit-cli]`; audit-cli depende de él): LanguageTool 6.8 en el proceso y Ollama detrás de una fábrica.

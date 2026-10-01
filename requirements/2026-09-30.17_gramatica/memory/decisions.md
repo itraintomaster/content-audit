@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — analyst — Verificados los dos números de B: 3 bloqueantes (…320a, …4009, …408e) con `arq-B2/bloqueantes.py`; el
+  cuarto que da ese chequeo, …3529, es la lista «is / are» de la pista y SINGULAR_AGREEMENT_SENT_START, excluida. Y 17 «gone
+  to» en `escribir/gramatica.json` (todos A2). El REQUIREMENT ya los tenía bien desde 884355c2; sin cambios.
+
 2026-09-30 — architect — La oración terminada es un paquete propio (`finishedsentence`: `FinishedSentenceReader`, una por
   respuesta aceptada, con las posiciones de cada respuesta) que también lee naturalness; no reemplaza la oración plana ni el
   ejercicio terminado de A-01 (gancho B-20). R002, R003 y R004/R005 son tres piezas internas del paquete `grammar`.
