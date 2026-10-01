@@ -611,23 +611,80 @@ public class FileSystemEvpCatalogTest {
     @DisplayName("should resolve lookupDerivedFormLevel to the lowest level of the entries that list the word as a form of another lemma, like 'rewarding' at C1 for 'reward'")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R002")
-    public void shouldResolveLookupDerivedFormLevelToTheLowestLevelOfTheEntriesThatListTheWordAsAFormOfAnotherLemmaLikeRewardingAtC1ForReward() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldResolveLookupDerivedFormLevelToTheLowestLevelOfTheEntriesThatListTheWordAsAFormOfAnotherLemmaLikeRewardingAtC1ForReward()
+            throws IOException {
+        // F-NIVFR-R002: "rewarding" es una forma derivada de "reward" (R040 la deja fuera del nivel del
+        // lema) y el catalogo la trae en C1; "sparkling" figura dos veces como forma de "sparkle", en C1 y
+        // en B2: vale el menor. La palabra se busca sin distinguir mayusculas.
+        Path catalogPath = writeCatalog(
+                entry("reward", "reward", "B1", "NOUN", 3000),
+                entry("rewarding", "reward", "C1", "ADJ", 9447),
+                entry("Sparkling", "sparkle", "C1", "ADJ", 12000),
+                entry("sparkling", "sparkle", "B2", "ADJ", 12000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.C1), catalog.lookupDerivedFormLevel("rewarding"),
+                "R002: el nivel propio de la forma derivada");
+        assertEquals(Optional.of(CefrLevel.C1), catalog.lookupDerivedFormLevel("Rewarding"),
+                "R002: sin distinguir mayusculas");
+        assertEquals(Optional.of(CefrLevel.B2), catalog.lookupDerivedFormLevel("sparkling"),
+                "R002: el menor nivel entre las entradas de la forma");
     }
 
     @Test
     @DisplayName("should return empty from lookupDerivedFormLevel for a word listed only as its own lemma, as a plural of its lemma or inside a phrase")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R002")
-    public void shouldReturnEmptyFromLookupDerivedFormLevelForAWordListedOnlyAsItsOwnLemmaAsAPluralOfItsLemmaOrInsideAPhrase() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldReturnEmptyFromLookupDerivedFormLevelForAWordListedOnlyAsItsOwnLemmaAsAPluralOfItsLemmaOrInsideAPhrase()
+            throws IOException {
+        // F-NIVFR-R002: solo las formas derivadas o compuestas de otro lema entran al indice. "fine" es su
+        // propio lema, "clothes" el plural de "clothe" (R040 la trata como el mismo vocablo) y "sleep on it"
+        // una frase: ninguna es una forma derivada, y una palabra ausente tampoco.
+        Path catalogPath = writeCatalog(
+                entry("fine", "fine", "A1", "ADJ", 800),
+                entry("fine", "fine", "B1", "NOUN", 800),
+                entry("clothes", "clothe", "A1", "NOUN", 1200),
+                entry("sleep on it", "sleep", "C2", "VERB", 9000));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.empty(), catalog.lookupDerivedFormLevel("fine"), "R002: su propio lema");
+        assertEquals(Optional.empty(), catalog.lookupDerivedFormLevel("clothes"), "R002: el plural de su lema");
+        assertEquals(Optional.empty(), catalog.lookupDerivedFormLevel("sleep on it"), "R002: una frase");
+        assertEquals(Optional.empty(), catalog.lookupDerivedFormLevel("sleep"), "R002: el lema de la frase");
+        assertEquals(Optional.empty(), catalog.lookupDerivedFormLevel("blorptastic"), "R002: una palabra ausente");
+        assertEquals(Optional.empty(), catalog.lookupDerivedFormLevel(null), "R002: sin palabra");
     }
 
     @Test
     @DisplayName("should keep lookupLevel and lookupLevelByLemma as they were when it indexes derived forms, so 'reward' still resolves to B1")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
-    public void shouldKeepLookupLevelAndLookupLevelByLemmaAsTheyWereWhenItIndexesDerivedFormsSoRewardStillResolvesToB1() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldKeepLookupLevelAndLookupLevelByLemmaAsTheyWereWhenItIndexesDerivedFormsSoRewardStillResolvesToB1()
+            throws IOException {
+        // F-NIVFR-R006: el indice de las formas derivadas es aparte. "rewarding" (C1) no sube ni crea el
+        // nivel de "reward", y "smoking" (A1, forma de smoke) no baja el B1 del sustantivo "smoke": las
+        // busquedas por lema, las de lemma-absence y lexis, dan lo mismo que sin el indice.
+        Path catalogPath = writeCatalog(
+                entry("reward", "reward", "B1", "NOUN", 3000),
+                entry("rewarding", "reward", "C1", "ADJ", 9447),
+                entry("smoke", "smoke", "B1", "NOUN", 5325),
+                entry("smoking", "smoke", "A1", "NOUN", 5325));
+
+        FileSystemEvpCatalog catalog = new FileSystemEvpCatalog(catalogPath);
+
+        assertEquals(Optional.of(CefrLevel.B1), catalog.lookupLevel(new LemmaAndPos("reward", "NOUN")),
+                "R006: reward sigue en B1");
+        assertEquals(Optional.empty(), catalog.lookupLevel(new LemmaAndPos("reward", "ADJ")),
+                "R006: la forma derivada no crea el par del lema");
+        assertEquals(Optional.of(CefrLevel.B1), catalog.lookupLevelByLemma("reward"), "R006: el lema sigue en B1");
+        assertEquals(Optional.empty(), catalog.lookupLevelByLemma("rewarding"),
+                "R006: la forma derivada no es un lema");
+        assertEquals(Optional.of(CefrLevel.B1), catalog.lookupLevel(new LemmaAndPos("smoke", "NOUN")),
+                "R006: el A1 de smoking no baja a smoke");
+        assertEquals(Optional.of(CefrLevel.B1), catalog.lookupLevelByLemma("smoke"), "R006: ni por el lema");
+        assertEquals(Optional.of(CefrLevel.A1), catalog.lookupDerivedFormLevel("smoking"),
+                "R002: smoking queda con su propio nivel");
     }
 }

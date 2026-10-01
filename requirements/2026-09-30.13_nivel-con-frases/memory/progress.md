@@ -4,6 +4,18 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 (madrugada) — developer + test-writer (paquete D) — La forma derivada, construida sobre ronda2/integracion
+  (apply b5724f63, generate 9e93a983 y fd91447c, traídos con el merge a6666899): lookupDerivedFormLevel en
+  FileSystemEvpCatalog con sus 3 pruebas (f70bf4ee); su uso en el analizador, como el prototipo, y las NUEVE
+  construcciones del proveedor (b4f15968); las 15 pruebas del analizador (6f1028a6). Las 18 pasan, y una mutación de
+  cada regla las rompe. Control sobre una copia: 99 (9 · 27 · 43 · 20), escribir 26 de 52, vocabulario 73,86 %.
+  Suite completa: 3.103 pruebas, 614 apagadas (B, E y F), 0 fallas y 13 errores, todos stubs de FEAT-CALUM sin escribir
+  («Not implemented yet»). Para compilar hubo que cablear a mano lo que el generate de CALUM dejó (el renderer de la
+  vista del alumno en DefaultQuizInstructionSubjectBuilder y su fábrica, quizInstructions en
+  QuizInstructionCorrectionContext): 25 archivos, NO commiteados (es de ronda2/impl-calum); quedó en el scratchpad
+  impl-D2/calum-cableado-local.patch.
+  Next: el orquestador junta la rama cuando CALUM compile.
+
 2026-10-01 (noche) — qa-tester (paquete D) — 18 handwrittenTests sumadas al parche de la forma derivada, con
   backup antes del propose (scratchpad impl-D2/backup-parche-v3): 15 de OffLevelWordsAnalyzer (R002 forma derivada,
   base, otra categoría en listas y par americano; R003 sufijo del tema; R004 préstamo) y 3 de FileSystemEvpCatalog

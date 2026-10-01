@@ -1557,7 +1557,8 @@ public class IAuditEngineTest {
                 new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), config), config,
                 new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(),
                 new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
-                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create()));
+                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create()),
+                evp);
     }
 
     /** The typed diagnosis lemma-absence leaves on a node, whatever its level. */

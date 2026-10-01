@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
+import com.learney.contentaudit.refinerdomain.QuizInstructionCorrectionContext;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.refinerdomain.LemmaAbsenceCorrectionContext;
@@ -142,5 +144,25 @@ public class DefaultCorrectionContextJsonMapperTest {
         assertTrue(rawList instanceof List, "outOfCatalogWords debe ser una lista, fue: " + rawList);
         assertTrue(((List<?>) rawList).isEmpty(),
                 "outOfCatalogWords debe estar vacia cuando no hay palabras fuera de catalogo, fue: " + rawList);
+    }
+
+    @Test
+    @DisplayName("should serialize, in a QUIZ_INSTRUCTION correction context, the instructions of the quiz copy under quizInstructions, apart from the knowledge's")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R003")
+    public void shouldSerializeInAQUIZINSTRUCTIONCorrectionContextTheInstructionsOfTheQuizCopyUnderQuizInstructionsApartFromTheKnowledges(
+            ) {
+        QuizInstructionCorrectionContext context = new QuizInstructionCorrectionContext(
+                "task-qi-01", "quiz-node-01", "He ____ [goes] to school.", "Él va a la escuela.",
+                "He goes to school.", "Present Simple", "Consigna del tema, que el alumno no ve.", "Verbs",
+                CefrLevel.A1, "A1", null, List.of(), "No cumple", InstructionSeverity.MAJOR, List.of(),
+                "audit-01", "plan-01", "Escribí el verbo en presente.");
+
+        Map<String, Object> payload = new DefaultCorrectionContextJsonMapper().toJsonMap(context);
+
+        assertEquals("Escribí el verbo en presente.", payload.get("quizInstructions"),
+                "F-CALUM-R003 inv. 4: the instructions the corrector receives, the quiz copy's");
+        assertEquals("Consigna del tema, que el alumno no ve.", payload.get("knowledgeInstructions"),
+                "F-CALUM-R003 inv. 4: the knowledge's, under its own key");
     }
 }

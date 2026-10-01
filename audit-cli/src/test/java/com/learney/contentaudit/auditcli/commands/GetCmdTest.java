@@ -4286,7 +4286,7 @@ public class GetCmdTest {
                 List.of(new InstructionViolation("AGREEMENT", "El verbo debe concordar con el sujeto",
                         "goes", "El sujeto es de tercera persona singular")),
                 "No cumple: 1 violacion", InstructionSeverity.MAJOR, List.of(), sourceAuditId,
-                "plan-2026-08-03");
+                "plan-2026-08-03", "Escribe la forma afirmativa");
         when(correctionContextResolver.resolve(any(AuditReport.class), eq(quizInstructionTask)))
                 .thenReturn(Optional.of(qiCtx));
 
@@ -4758,7 +4758,8 @@ public class GetCmdTest {
                         new com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter(), absence),
                 absence, new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(),
                 new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
-                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create())));
+                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create()),
+                Base299.evp()));
         providers.add(Base299.classicProviders().get(6));
         providers.add(Base299.judge(new Base299.FakeJudge(), new Base299.MapLedger()));
         return new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(providers);
@@ -4928,5 +4929,50 @@ public class GetCmdTest {
     @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldShowGetTaskOfTheMinitheoryTaskOfInTimeUOnTimeWithTheFortyExercisesItReaches() {
         throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should print, in the correction context of a QUIZ_INSTRUCTION task, the instructions of the quiz copy the corrector receives, and the knowledge's labelled as the knowledge's")
+    @Tag("FEAT-CALUM")
+    @Tag("F-CALUM-R003")
+    public void shouldPrintInTheCorrectionContextOfAQUIZINSTRUCTIONTaskTheInstructionsOfTheQuizCopyTheCorrectorReceivesAndTheKnowledgesLabelledAsTheKnowledges(
+            ) {
+        String sourceAuditId = "audit-2026-10-01T00-00-00";
+        RefinementTask qiTask = new RefinementTask(
+                "task-qi-calum", AuditTarget.QUIZ, "quiz-node-1", "Quiz 1",
+                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING, null);
+        RefinementPlan plan = new RefinementPlan(
+                "plan-2026-10-01", sourceAuditId, Instant.parse("2026-10-01T00:00:00Z"), List.of(qiTask));
+        when(refinementPlanStore.loadLatest()).thenReturn(Optional.of(plan));
+        when(auditReportStore.load(sourceAuditId)).thenReturn(Optional.of(new AuditReport()));
+        // The copy the student sees and the knowledge say different things.
+        QuizInstructionCorrectionContext qiCtx = new QuizInstructionCorrectionContext(
+                "task-qi-calum", "quiz-node-1", "He ____ [goes] to school.", "Él va a la escuela.",
+                "He goes to school.", "Present Simple", "Consigna del tema, que el alumno no ve.", "Verbs",
+                CefrLevel.A1, "A1", null, List.of(), "No cumple", InstructionSeverity.MAJOR, List.of(),
+                sourceAuditId, "plan-2026-10-01", "Escribí el verbo en presente.");
+        when(correctionContextResolver.resolve(any(AuditReport.class), eq(qiTask))).thenReturn(Optional.of(qiCtx));
+        GetTasksFilter filter = new GetTasksFilter(
+                Optional.empty(), Optional.empty(), false,
+                Optional.of(1), Optional.empty(), Optional.empty(), null);
+
+        ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outBuf));
+        int exit;
+        try {
+            exit = cmd.get("tasks", null, filter);
+        } finally {
+            System.setOut(originalOut);
+        }
+
+        assertEquals(0, exit);
+        String output = outBuf.toString();
+        assertTrue(output.contains("Instructions:  Escribí el verbo en presente."),
+                "F-CALUM-R003 inv. 4: the instructions the corrector receives, the quiz copy's: " + output);
+        assertTrue(output.contains("Knowledge instructions: Consigna del tema, que el alumno no ve."),
+                "F-CALUM-R003 inv. 4: the knowledge's, labelled as the knowledge's: " + output);
+        assertFalse(output.contains("Instructions:  Consigna del tema"),
+                "F-CALUM-R003 inv. 2: the knowledge's never shows as the instructions to comply with: " + output);
     }
 }

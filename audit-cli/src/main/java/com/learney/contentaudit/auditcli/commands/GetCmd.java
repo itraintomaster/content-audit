@@ -840,7 +840,10 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
         System.out.println("    QuizSentence:  " + nullToEmpty(ctx.getQuizSentence()));
         System.out.println("    Translation:   " + nullToEmpty(ctx.getTranslation()));
         System.out.println("    Knowledge:     " + nullToEmpty(ctx.getKnowledgeTitle()));
-        System.out.println("    Instructions:  " + nullToEmpty(ctx.getKnowledgeInstructions()));
+        // F-CALUM-R003: the instructions the corrector complies with are the quiz copy's; the
+        // knowledge's stays, labelled as the knowledge's.
+        System.out.println("    Instructions:  " + nullToEmpty(ctx.getQuizInstructions()));
+        System.out.println("    Knowledge instructions: " + nullToEmpty(ctx.getKnowledgeInstructions()));
         System.out.println("    Topic:         " + nullToEmpty(ctx.getTopicLabel()));
         System.out.println("    CEFR Level:    " + (ctx.getCefrLevel() != null ? ctx.getCefrLevel().name() : ""));
         System.out.println("    Sentence mode: " + (ctx.getSentenceMode() != null ? ctx.getSentenceMode().name() : ""));

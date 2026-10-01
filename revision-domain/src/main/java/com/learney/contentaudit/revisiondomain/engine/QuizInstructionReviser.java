@@ -106,9 +106,13 @@ class QuizInstructionReviser implements Reviser {
         // R009: revalidate the ORIGINAL with the same validation that will judge the
         // corrected candidate, forcing a fresh consultation (revalidate, not check) so
         // a stale registered verdict cannot mask a criterion that has since improved.
+        // F-CALUM-R002: with the title and the instructions of its own copy, the ones the
+        // student sees, exactly as the audit reads it.
+        QuizTemplateEntity original = before.getQuiz();
         QuizInstructionSubjectView originalView = subjectViewFactory.fromQuiz(
-                before.getQuiz(), qic.getCefrLevelLabel(), qic.getTopicLabel(),
-                qic.getKnowledgeTitle(), qic.getKnowledgeInstructions());
+                original, qic.getCefrLevelLabel(), qic.getTopicLabel(),
+                original != null ? original.getTitle() : null,
+                original != null ? original.getInstructions() : null);
         QuizInstructionComplianceResult revalidation = complianceChecker.revalidate(originalView);
         if (revalidation.getStatus() == QuizInstructionComplianceStatus.EVALUATED) {
             QuizInstructionVerdict verdict = revalidation.getVerdict();

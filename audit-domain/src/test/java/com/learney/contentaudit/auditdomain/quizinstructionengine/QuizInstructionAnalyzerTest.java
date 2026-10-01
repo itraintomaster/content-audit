@@ -1,4 +1,6 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequest;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
@@ -1407,7 +1409,7 @@ public class QuizInstructionAnalyzerTest {
         // R014: the codes of the violations are written by the model and are not stable, so the
         // judge leaves one finding per breaching quiz and its identity is analyzer, rule and quiz.
         AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null,
-                mock(QuizInstructionConfig.class), null).describe();
+                mock(QuizInstructionConfig.class), null, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())).describe();
         List<String> identities = new ArrayList<>();
         int run = 0;
         for (QuizInstructionVerdict verdict : List.of(
@@ -1472,69 +1474,13 @@ public class QuizInstructionAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should resolve every quiz of a course judged before FEAT-JEXAM from its recorded verdicts without a single consultation, with budget 100 and an approved version")
-    @Tag("FEAT-JEXAM")
-    @Tag("F-JEXAM-R007")
-    public void shouldResolveEveryQuizOfACourseJudgedBeforeFEATJEXAMFromItsRecordedVerdictsWithoutASingleConsultationWithBudget100AndAnApprovedVersion() {
-        // The ledger as the consigna judge left it in August: one verdict per quiz, under the content
-        // the judge read then (cefrLevel, topic, title, instructions and the serialized quiz).
-        JexamLedger ledger = new JexamLedger();
-        JexamCourse course = JexamCourse.withQuizzes(3);
-        for (AuditNode quiz : course.quizzes()) {
-            ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(quiz), quizId(quiz), COMPLIANT,
-                    "v-agosto");
-        }
-        CountingJudge judge = new CountingJudge("v-agosto", COMPLIANT);
-        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-agosto"),
-                budget(100, null));
-
-        course.run(analyzer);
-
-        assertEquals(0, judge.calls(), "R007: a course judged before FEAT-JEXAM is resolved without consulting");
-        for (AuditNode quiz : course.quizzes()) {
-            assertEquals(1.0, quiz.getScores().get("quiz-instruction"), 1e-9, "R007: every quiz keeps its verdict");
-            assertTrue(((QuizDiagnoses) quiz.getDiagnoses()).getQuizInstructionDiagnosis().orElseThrow()
-                    .isReusedFromPreviousRun(), "R007: reused, not judged again");
-        }
-        EvaluationCoverage coverage = course.courseDiagnoses().getQuizInstructionCoverage().orElseThrow().getCoverage();
-        assertEquals(3, coverage.getReused());
-        assertEquals(0, coverage.getEvaluatedInRun());
-    }
-
-    @Test
-    @DisplayName("should look up each quiz under the same fingerprint the ledger recorded for it before FEAT-JEXAM")
-    @Tag("FEAT-JEXAM")
-    @Tag("F-JEXAM-R007")
-    public void shouldLookUpEachQuizUnderTheSameFingerprintTheLedgerRecordedForItBeforeFEATJEXAM() {
-        // The fingerprint of «You ____ [see] (see) cats.» (A1, «Afirmativas regulares») as the code before
-        // FEAT-JEXAM computed it from what the consigna judge reads -- written down, not recomputed, so a
-        // change in what it reads or in how it is fingerprinted breaks this test before it re-bills 3.900
-        // verdicts.
-        String fingerprintBeforeJexam = "1fed2eb5ec3d3e6ebfa2e0c91046fc8f7d8e2378aac9196809113c9ea6fa757a";
-        JexamLedger ledger = new JexamLedger();
-        JexamCourse course = JexamCourse.withQuizzes(1);
-        ledger.append(new EvaluationRecord(new EvaluationKey(CONSIGNA_EVALUATOR, fingerprintBeforeJexam), COMPLIANT,
-                "q1", Instant.parse("2026-08-14T14:39:40Z"), "v-agosto"));
-        CountingJudge judge = new CountingJudge("v-agosto", COMPLIANT);
-        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-agosto"),
-                budget(100, null));
-
-        course.run(analyzer);
-
-        assertEquals(List.of(new EvaluationKey(CONSIGNA_EVALUATOR, fingerprintBeforeJexam)), ledger.lookedUp(),
-                "R007: the quiz is looked up under exactly the fingerprint recorded before FEAT-JEXAM");
-        assertEquals(0, judge.calls(), "R007: and found, so the judge is not consulted");
-        assertEquals(1.0, course.quizzes().get(0).getScores().get("quiz-instruction"), 1e-9);
-    }
-
-    @Test
     @DisplayName("should reuse without consulting the recorded verdict of a quiz whose translation or mini-theory changed, since the consigna judge reads neither")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R007")
     public void shouldReuseWithoutConsultingTheRecordedVerdictOfAQuizWhoseTranslationOrMinitheoryChangedSinceTheConsignaJudgeReadsNeither() {
         JexamLedger ledger = new JexamLedger();
         JexamCourse before = JexamCourse.withQuizzes(1);
-        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(before.quizzes().get(0)), "q1", COMPLIANT,
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(before.quizzes().get(0)), "q1", COMPLIANT,
                 "v-agosto");
         // The same quiz after a batch that rewrote its translation and its mini theory.
         JexamCourse after = JexamCourse.withQuizzes(1, "Tú ves gatos.", "Con you el verbo va sin -s.");
@@ -1558,7 +1504,7 @@ public class QuizInstructionAnalyzerTest {
         JexamCourse course = JexamCourse.withQuizzes(2);
         AuditNode judged = course.quizzes().get(0);
         AuditNode pending = course.quizzes().get(1);
-        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(judged), quizId(judged), COMPLIANT, "v-hoy");
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(judged), quizId(judged), COMPLIANT, "v-hoy");
         CountingJudge judge = new CountingJudge("v-hoy", COMPLIANT);
         QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge,
                 examsOf(Map.of("v-hoy", JudgeExamStatus.FAILED)), budget(500, null));
@@ -1610,9 +1556,9 @@ public class QuizInstructionAnalyzerTest {
             JexamLedger ledger = new JexamLedger();
             JexamCourse course = JexamCourse.withQuizzes(9);
             // The same recorded verdicts and the same answers of the judge in both runs.
-            ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(course.quizzes().get(0)), "q1",
+            ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(course.quizzes().get(0)), "q1",
                     BREACHING, "v-hoy");
-            ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(course.quizzes().get(4)), "q5",
+            ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(course.quizzes().get(4)), "q5",
                     COMPLIANT, "v-hoy");
             CountingJudge judge = new CountingJudge("v-hoy", COMPLIANT).breaching("q2", "q7");
             QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-hoy"),
@@ -1745,9 +1691,9 @@ public class QuizInstructionAnalyzerTest {
     public void shouldCarryInItsCoverageNextToTodaysCountsTheExamOfItsVersionAndOfEveryVersionWhoseVerdictsItReused() {
         JexamLedger ledger = new JexamLedger();
         JexamCourse course = JexamCourse.withQuizzes(4);
-        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(course.quizzes().get(0)), "q1", COMPLIANT,
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(course.quizzes().get(0)), "q1", COMPLIANT,
                 "v-agosto");
-        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(course.quizzes().get(1)), "q2", COMPLIANT,
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(course.quizzes().get(1)), "q2", COMPLIANT,
                 "v-agosto");
         CountingJudge judge = new CountingJudge("v-nueva", COMPLIANT);
         QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge,
@@ -1806,9 +1752,9 @@ public class QuizInstructionAnalyzerTest {
         JexamLedger ledger = new JexamLedger();
         JexamCourse photo = JexamCourse.withQuizzes(2);
         // The same version judged q1 on the course, on the same content; another version judged q2.
-        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(photo.quizzes().get(0)), "q1", BREACHING,
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(photo.quizzes().get(0)), "q1", BREACHING,
                 "v-hoy");
-        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(photo.quizzes().get(1)), "q2", COMPLIANT,
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(photo.quizzes().get(1)), "q2", COMPLIANT,
                 "v-otra");
         CountingJudge judge = new CountingJudge("v-hoy", COMPLIANT);
         QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, examsOf(Map.of()),
@@ -1905,7 +1851,7 @@ public class QuizInstructionAnalyzerTest {
                 ? new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "Cumple", List.of(), List.of())
                 : new QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR, "Incumple la consigna",
                         List.of(new InstructionViolation("TENSE", "Pasado", "goes", "presente")), List.of());
-        return (QuizInstructionAnalyzer) new DefaultQuizInstructionAnalyzerFactory(judge, reader, scores, runtime)
+        return (QuizInstructionAnalyzer) new DefaultQuizInstructionAnalyzerFactory(judge, reader, scores, runtime, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()))
                 .create(policy);
     }
 
@@ -2052,7 +1998,13 @@ public class QuizInstructionAnalyzerTest {
             return new JexamCourse(root, quizzes);
         }
 
-        /** What the consigna judge read in August for one of these quizzes, key by key. */
+        /** What the consigna judge reads today for one of these quizzes: the exercise as the student sees it. */
+        static Map<String, String> contentJudged(AuditNode quiz) {
+            return new DefaultQuizInstructionSubjectBuilder(
+                    new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())).build(quiz).getContent();
+        }
+
+        /** What the consigna judge read in August for one of these quizzes, key by key, before FEAT-CALUM. */
         static Map<String, String> contentJudgedBefore(AuditNode quiz) {
             Map<String, String> content = new LinkedHashMap<>();
             content.put("cefrLevel", "A1");
@@ -2144,7 +2096,7 @@ public class QuizInstructionAnalyzerTest {
         JexamLedger ledger = new JexamLedger();
         JexamCourse course = JexamCourse.withQuizzes(4);
         AuditNode judgedBefore = course.quizzes().get(0);
-        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(judgedBefore), quizId(judgedBefore),
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudged(judgedBefore), quizId(judgedBefore),
                 COMPLIANT, "v-hoy");
         CountingJudge judge = new CountingJudge("v-hoy", COMPLIANT);
         QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-hoy"), budget(1, null));
@@ -2163,7 +2115,25 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-CALUM")
     @Tag("F-CALUM-R001")
     public void shouldConsultAgainWithBudgetAndAnApprovedVersionEveryQuizWhoseVerdictWasRecordedOnWhatTheConsignaJudgeReadBeforeFEATCALUM() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The ledger as the consigna judge left it in August: one verdict per quiz, under what it read
+        // then -- the label and the instructions of the topic and the serialized quiz.
+        JexamLedger ledger = new JexamLedger();
+        JexamCourse course = JexamCourse.withQuizzes(3);
+        for (AuditNode quiz : course.quizzes()) {
+            ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(quiz), quizId(quiz), COMPLIANT,
+                    "v-agosto");
+        }
+        CountingJudge judge = new CountingJudge("v-agosto", COMPLIANT);
+        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-agosto"),
+                budget(100, null));
+
+        course.run(analyzer);
+
+        assertEquals(3, judge.calls(),
+                "F-CALUM-R001: what the judge reads changed, so no verdict recorded before is reused");
+        EvaluationCoverage coverage = course.courseDiagnoses().getQuizInstructionCoverage().orElseThrow().getCoverage();
+        assertEquals(0, coverage.getReused());
+        assertEquals(3, coverage.getEvaluatedInRun());
     }
 
     @Test
@@ -2171,6 +2141,23 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-CALUM")
     @Tag("F-CALUM-R001")
     public void shouldLookUpEachQuizUnderTheFingerprintOfTheExerciseAsTheStudentSeesItNeverUnderTheOneRecordedBeforeFEATCALUM() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // «You ___ (see) cats.» (A1, «Afirmativas regulares»): the fingerprint of August, and the one of
+        // the exercise as the student sees it -- written down, not recomputed, so a change in what the
+        // judge reads or in how it is fingerprinted breaks this test before it re-bills the course.
+        String fingerprintBeforeCalum = "1fed2eb5ec3d3e6ebfa2e0c91046fc8f7d8e2378aac9196809113c9ea6fa757a";
+        String fingerprintOfWhatTheStudentSees = "af5185fd5759a0b454e756b0d12b7214b811d74bdc7217d536cd9124e344f240";
+        JexamLedger ledger = new JexamLedger();
+        JexamCourse course = JexamCourse.withQuizzes(1);
+        ledger.append(new EvaluationRecord(new EvaluationKey(CONSIGNA_EVALUATOR, fingerprintBeforeCalum), COMPLIANT,
+                "q1", Instant.parse("2026-08-14T14:39:40Z"), "v-agosto"));
+        CountingJudge judge = new CountingJudge("v-agosto", COMPLIANT);
+        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-agosto"),
+                budget(100, null));
+
+        course.run(analyzer);
+
+        assertEquals(List.of(new EvaluationKey(CONSIGNA_EVALUATOR, fingerprintOfWhatTheStudentSees)), ledger.lookedUp(),
+                "F-CALUM-R001: the quiz is looked up under the fingerprint of what the student sees, never the August one");
+        assertEquals(1, judge.calls(), "F-CALUM-R001: nothing is recorded under it yet, so the judge is consulted");
     }
 }

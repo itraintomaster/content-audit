@@ -4,6 +4,31 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (C) — Control y junta en seco.
+  - Control, analyze sin tope sobre copias con un claude falso: 0 llamadas y el libro intacto. Contra la misma base
+    con el sujeto viejo, los 8.898 hallazgos de los otros analizadores son idénticos. La consigna pasa de 3.920
+    veredictos reusados (10 hallazgos HIGH) a 0: el sujeto nuevo cambia la huella. Vuelven sólo si se juzga de nuevo.
+  - ronda2/integracion ya trae el cuerpo de NIVFR (27317fa9). 1296e6b2 deja el cableado de prueba de NIVFR igual al
+    suyo, y `git merge-tree` junta sin conflicto.
+  - En ese árbol: 3.096 pruebas, 0 fallas, 0 errores, 614 apagadas; verify sólo MEMORY.md; el parche de seguimiento
+    valida. Son 7 menos que las 3.103 de D: se van las 10 del sujeto viejo, que el parche ya no declara, y entran 3.
+  Next: el coordinador junta la rama y aplica el parche de seguimiento. El examen de consigna espera el OK de José.
+
+2026-10-01 — developer (C) — FEAT-CALUM construido en ronda2/impl-calum, sobre fd91447c (apply b5724f63, generate
+  9e93a983, arreglo de SpacyProcessRunner fd91447c). Commits:
+  - R001 (32f0228b), R002 (9868302f), R003 (68565266);
+  - las dos definiciones (b9815c18): la versión del juez de consigna da 53fabe0d…;
+  - get y el corrector 1.1.0 (c86055d3).
+  Sus tres pruebas van escritas con el nombre que les dará generate. Su declaración es el parche de seguimiento de
+  esta carpeta (0 altas, 5 cambios), sin aplicar. Simulado: apply, generate y VERIFY OK; generate no las toca.
+  fd91447c no compilaba por FEAT-NIVFR: la aridad que dejó su generate va aparte (6f772245), sin su cuerpo.
+  `mvn -o test` (sin verify): 3.081 pruebas, 614 apagadas como antes, 0 fallas. Hay 3 errores: los esbozos de
+  lookupDerivedFormLevel en FileSystemEvpCatalogTest, que son el cuerpo de NIVFR.
+  sentinel verify, en una copia recién sacada, da una sola diferencia: MEMORY.md. También la da fd91447c intacta: la
+  columna de fecha sale de la hora de los archivos.
+  Next: el coordinador junta la rama y aplica el parche de seguimiento. El examen nuevo de consigna espera el OK de
+  José.
+
 2026-10-01 — developer (C) — R003 sumado al mismo parche, propuesto y sin aplicar.
   - Antes del propose, copia de la carpeta en content-audit-corridas/2026-10-01-consigna-alumno/backup-antes-de-R003
     (bug 08 de Sentinel).
