@@ -1,0 +1,865 @@
+code: FEAT-TANDA
+description: "FEAT-TANDA: la tanda de un nivel como un recurso con estado guardado\
+  \ paso a paso. Abre sobre el último análisis publicado con la línea base fija del\
+  \ paquete F y fija el par activo en su punto de partida, cotiza, aplica las reglas\
+  \ de cada analizador sin modelo, corre las mesas con un tope, cierra comparando\
+  \ sólo sus propias propuestas con la comparación de F, deja sacar cambios recomponiendo\
+  \ cada ejercicio por partes, y publica una sola vez, mueve el par activo y no toca\
+  \ producción."
+modules:
+- name: audit-domain
+  interfaces:
+  - name: RuleFix
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "analyzerName(): String"
+    - signature: "fix(RuleFixRequest request): RuleFixResult"
+    glossarySuggestions:
+    - name: Arreglo por regla
+      technicalName: RuleFix
+      kind: policy-candidate
+      basedOn: audit-domain/RuleFix
+      rationale: "F-TANDA-R004 y la resolución «regla» de F-HALL-R002: lo que un analizador\
+        \ arregla sin modelo, como la mayúscula de las opciones o la «/» que pasa\
+        \ a «|»."
+    _change: add
+  packages:
+  - name: rulefix
+    description: "Entrada y salida de un arreglo por regla (F-TANDA-R004). Público:\
+      \ lo implementan los analizadores de A en sus paquetes y lo usa la tanda."
+    visibility: public
+    models:
+    - name: RuleFixRequest
+      type: record
+      fields:
+      - name: quiz
+        type: QuizTemplateEntity
+        description: El ejercicio como está en la tanda.
+      - name: auditQuiz
+        type: AuditableQuiz
+        description: "El mismo ejercicio como lo midió el motor, con sus tokens."
+      - name: sentenceMode
+        type: SentenceMode
+      - name: findings
+        type: List<Finding>
+        description: Sólo los de este analizador con resolución regla.
+      _change: add
+    - name: RuleFixResult
+      type: record
+      fields:
+      - name: quiz
+        type: QuizTemplateEntity
+        description: El ejercicio arreglado; igual al de entrada si no arregló nada.
+      - name: fixed
+        type: List<FindingIdentity>
+      - name: declined
+        type: List<FindingIdentity>
+        description: "Los que la regla no puede arreglar en el curso, como la forma\
+          \ que arregla el corrector: pasan a la mesa o quedan sin intentar con su\
+          \ motivo."
+      - name: detail
+        type: String
+      _change: add
+    _change: add
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: RefinementTaskStatus
+    type: record
+    fields:
+    - name: IN_BATCH
+      description: "La tarea es de la tanda abierta (F-TANDA-R002): `nextTask` y `revise-instructions`\
+        \ no la toman y `revise` la rechaza. Al publicar pasa a COMPLETED, STALE o\
+        \ vuelve a PENDING."
+      _change: add
+    _change: modify
+  _change: modify
+- name: revision-domain
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultBatchServiceFactory
+    suppressed: false
+    interface: BatchServiceFactory
+  packages:
+  - name: batch
+    description: Contrato de la tanda (FEAT-TANDA). Público sólo para audit-cli.
+    visibility: public
+    models:
+    - name: CorrectionBatch
+      type: record
+      fields:
+      - name: id
+        type: String
+      - name: level
+        type: CefrLevel
+      - name: status
+        type: BatchStatus
+      - name: baselineAuditId
+        type: String
+        description: "La línea base fija del paquete F (BaselineStore), leída al abrir:\
+          \ la tanda no la mueve."
+      - name: startAuditId
+        type: String
+        description: "El último análisis publicado: el de la línea base en la primera\
+          \ tanda."
+      - name: planId
+        type: String
+        description: "El plan de ese análisis, de donde salen sus tareas."
+      - name: analyzers
+        type: List<String>
+        description: "Los analizadores que corrió el análisis de partida: con esos\
+          \ se mide todo en la tanda."
+      - name: settings
+        type: BatchSettings
+      - name: conversionOrders
+        type: List<ConversionOrder>
+      - name: taskIds
+        type: List<String>
+      - name: notTakenTaskIds
+        type: List<String>
+        description: Tareas del nivel con una propuesta pendiente de fuera de la tanda
+          (F-TANDA-R002).
+      - name: unevaluated
+        type: List<NotComparedCount>
+        description: "Por analizador, ejercicios del nivel sin evaluar al abrir (F-TANDA-R001)."
+      - name: courseTies
+        type: List<Finding>
+        description: "Los desacuerdos de los jueces en el nivel, para la bandeja (F-TAREA-R005)."
+      - name: changes
+        type: List<BatchChange>
+      - name: quizProposals
+        type: List<BatchProposalRef>
+        description: "La propuesta pendiente vigente de cada ejercicio de la tanda:\
+          \ una por ejercicio."
+      - name: outcomes
+        type: List<BatchTaskOutcome>
+      - name: panelDecisions
+        type: List<PanelDecision>
+      - name: adjustments
+        type: List<BatchAdjustment>
+      - name: closings
+        type: List<BatchClosing>
+      - name: blindSampleId
+        type: String
+        description: La muestra ciega que el paquete F sorteó para esta tanda cuando
+          pasó su compuerta; nula hasta entonces.
+      - name: queryCap
+        type: Integer
+        description: "Nulo si José no pidió tope: la tanda no consulta ningún modelo\
+          \ (F-TANDA-R003)."
+      - name: queriesSpent
+        type: int
+      - name: openedAt
+        type: Instant
+      - name: publication
+        type: BatchPublication
+      glossarySuggestions:
+      - name: Tanda
+        technicalName: CorrectionBatch
+        kind: process-candidate
+        basedOn: revision-domain/batch/CorrectionBatch
+        derivedFrom:
+        - Tarea de corrección
+        - Propuesta de revisión
+        - Nivel CEFR
+        rationale: "La corrección de un nivel: sus tareas, sus propuestas pendientes\
+          \ y nada más; se recalcula al cerrar y se publica con un solo OK."
+      _change: add
+    - name: BatchStatus
+      type: enum
+      fields:
+      - name: OPEN
+      - name: RUNNING
+      - name: INTERRUPTED
+      - name: CLOSED
+      - name: PUBLISHED
+      _change: add
+    - name: BatchSettings
+      type: record
+      fields:
+      - name: topicsAtOnce
+        type: int
+      - name: queriesAtOnce
+        type: int
+      - name: maxAttempts
+        type: int
+      _change: add
+    - name: BatchOpenRequest
+      type: record
+      fields:
+      - name: level
+        type: CefrLevel
+      - name: topicsAtOnce
+        type: Integer
+        description: "Nulo: 4 (José, 30/9)."
+      - name: queriesAtOnce
+        type: Integer
+        description: "Nulo: 4 (José, 30/9)."
+      - name: convertToMultipleChoice
+        type: List<String>
+        description: Temas que José encarga pasar a opción múltiple (F-MESA-R015).
+      _change: add
+    - name: BatchRunRequest
+      type: record
+      fields:
+      - name: queryCap
+        type: Integer
+        description: "El tope explícito de consultas de esta corrida; nulo, ninguna\
+          \ (F-TANDA-R003)."
+      _change: add
+    - name: BatchEstimate
+      type: record
+      fields:
+      - name: batchId
+        type: String
+      - name: tasks
+        type: List<BatchTaskCount>
+      - name: quizzes
+        type: int
+      - name: topics
+        type: int
+      - name: heaviestTopicQuizzes
+        type: int
+      - name: conversionQuizzes
+        type: int
+      - name: estimatedQueries
+        type: int
+      - name: estimatedHours
+        type: double
+      - name: topicsAtOnce
+        type: int
+      - name: queriesAtOnce
+        type: int
+      _change: add
+    - name: BatchTaskCount
+      type: record
+      fields:
+      - name: analyzer
+        type: String
+      - name: resolution
+        type: FindingResolution
+      - name: tasks
+        type: int
+      _change: add
+    - name: BatchChange
+      type: record
+      fields:
+      - name: changeId
+        type: String
+      - name: origin
+        type: BatchChangeOrigin
+      - name: ruleId
+        type: String
+        description: "En un cambio por regla, el analizador cuya regla lo hizo: la\
+          \ unidad que José saca entera (F-TANDA-R008)."
+      - name: knowledgeId
+        type: String
+      - name: taskIds
+        type: List<String>
+      - name: steps
+        type: List<BatchChangeStep>
+      - name: gateVerdict
+        type: ChangeGateVerdict
+      - name: joseException
+        type: boolean
+        description: José lo aprobó sabiendo que no pasaba (F-BANDEJA-R003).
+      - name: createdAt
+        type: Instant
+      - name: droppedReason
+        type: String
+        description: Nulo mientras está en la tanda.
+      _change: add
+    - name: BatchChangeOrigin
+      type: enum
+      fields:
+      - name: RULE
+      - name: PANEL
+      - name: CONVERSION
+      - name: JOSE
+      _change: add
+    - name: BatchChangeStep
+      type: record
+      fields:
+      - name: quizId
+        type: String
+      - name: parts
+        type: List<ExercisePart>
+        description: "Las partes que tocó este paso: con ellas se recompone el ejercicio\
+          \ si sale un paso anterior (F-TANDA-R008)."
+      - name: after
+        type: CourseElementSnapshot
+      _change: add
+    - name: BatchProposalRef
+      type: record
+      fields:
+      - name: quizId
+        type: String
+      - name: proposalId
+        type: String
+      _change: add
+    - name: BatchTaskOutcome
+      type: record
+      fields:
+      - name: taskId
+        type: String
+      - name: kind
+        type: BatchTaskOutcomeKind
+      - name: changeId
+        type: String
+      - name: attempts
+        type: int
+      - name: detail
+        type: String
+      _change: add
+    - name: BatchTaskOutcomeKind
+      type: enum
+      fields:
+      - name: PENDING
+      - name: RESOLVED_BY_RULE
+      - name: RESOLVED_BY_PANEL
+      - name: NO_LONGER_HOLDS
+      - name: COVERED
+      - name: NO_WINNER
+      - name: TIE
+      - name: RETURNED_WITHOUT_ATTEMPTS
+      - name: NO_DECLARED_SCOPE
+      - name: NOT_ATTEMPTED
+      _change: add
+    - name: BatchAdjustment
+      type: record
+      fields:
+      - name: kind
+        type: BatchAdjustmentKind
+      - name: quizId
+        type: String
+      - name: taskIds
+        type: List<String>
+      - name: changeId
+        type: String
+      - name: ruleId
+        type: String
+      - name: candidate
+        type: PanelCandidate
+      - name: finding
+        type: Finding
+      - name: reason
+        type: String
+      - name: decidedBy
+        type: String
+      - name: decidedAt
+        type: Instant
+      _change: add
+    - name: BatchAdjustmentKind
+      type: enum
+      fields:
+      - name: TASK_FROM_TIE
+      - name: ACCEPT_CANDIDATE
+      - name: ACCEPT_AS_EXCEPTION
+      - name: RETURN_TO_PANEL
+      - name: KEEP_ORIGINAL
+      - name: DROP_CHANGE
+      - name: DROP_RULE
+      - name: APPROVE_RULE_SAMPLE
+      _change: add
+    - name: BatchClosing
+      type: record
+      fields:
+      - name: closedAt
+        type: Instant
+      - name: scope
+        type: ProjectionScope
+        description: "Lo que la tanda le pasa al paquete F: su id y sus propuestas\
+          \ pendientes, y ninguna otra (F-TANDA-R006 inv. 1)."
+      - name: comparison
+        type: BatchComparison
+        description: "La comparación de FEAT-METAS, tal cual."
+      - name: gate
+        type: BatchGateVerdict
+      - name: returnedChangeIds
+        type: List<String>
+      - name: rounds
+        type: int
+      _change: add
+    - name: BatchReport
+      type: record
+      fields:
+      - name: batchId
+        type: String
+      - name: level
+        type: CefrLevel
+      - name: status
+        type: BatchStatus
+      - name: outcomes
+        type: List<OutcomeCount>
+        description: Una fila por desenlace; suman las tareas de la tanda (F-TANDA-R010).
+      - name: totalTasks
+        type: int
+      - name: conversionDone
+        type: int
+      - name: conversionNoWinner
+        type: int
+      - name: errorsByAnalyzer
+        type: List<AnalyzerLevelErrors>
+      - name: rerecords
+        type: List<AudioRerecordRequest>
+      - name: lengths
+        type: List<LengthDeclaration>
+      - name: queries
+        type: QueriesByRole
+      - name: hours
+        type: double
+      - name: joseDecisions
+        type: List<BatchAdjustment>
+      _change: add
+    - name: OutcomeCount
+      type: record
+      fields:
+      - name: kind
+        type: BatchTaskOutcomeKind
+      - name: tasks
+        type: int
+      _change: add
+    - name: AnalyzerLevelErrors
+      type: record
+      fields:
+      - name: analyzer
+        type: String
+      - name: level
+        type: CefrLevel
+      - name: before
+        type: int
+      - name: after
+        type: int
+      _change: add
+    - name: QueriesByRole
+      type: record
+      fields:
+      - name: proposer
+        type: int
+      - name: judges
+        type: int
+      _change: add
+    - name: BatchPublishRequest
+      type: record
+      fields:
+      - name: approvedBy
+        type: String
+      - name: note
+        type: String
+      - name: excludedRuleIds
+        type: List<String>
+        description: "Reglas sin muestra aprobada: sus cambios quedan fuera (F-BANDEJA-R007)."
+      _change: add
+    - name: BatchPublication
+      type: record
+      fields:
+      - name: publishedAt
+        type: Instant
+      - name: approvedBy
+        type: String
+      - name: note
+        type: String
+      - name: publishedAuditId
+        type: String
+      - name: publishedPlanId
+        type: String
+      - name: appliedProposalIds
+        type: List<String>
+      - name: completedTaskIds
+        type: List<String>
+      - name: reopenedTaskIds
+        type: List<String>
+      _change: add
+    - name: BatchServiceConfig
+      type: record
+      fields:
+      - name: batchStore
+        type: BatchStore
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+      - name: artifactStore
+        type: RevisionArtifactStore
+      - name: courseRepository
+        type: CourseRepository
+      - name: elementLocator
+        type: CourseElementLocator
+      - name: courseMapper
+        type: CourseMapper
+      - name: auditEngine
+        type: AuditEngine
+      - name: refinerEngine
+        type: RefinerEngine
+      - name: briefer
+        type: ErrorTaskBriefer
+      - name: correctionCatalog
+        type: AnalyzerCorrectionCatalog
+      - name: ruleFixes
+        type: List<RuleFix>
+      - name: panelRunner
+        type: PanelRunner
+      - name: topicMeter
+        type: TopicMeter
+      - name: panelRunnerFactory
+        type: PanelRunnerFactory
+      - name: batchComparator
+        type: BatchComparator
+      - name: baselineStore
+        type: BaselineStore
+      - name: blindSampleService
+        type: BlindSampleService
+      - name: wordLightsQuery
+        type: TopicWordLightsQuery
+      - name: correctionScope
+        type: CorrectionScope
+      - name: preservationCheck
+        type: PreservationCheck
+      - name: coursePath
+        type: Path
+      _change: add
+    - name: BatchAlreadyOpenException
+      type: exception
+      fields:
+      - name: batchId
+        type: String
+      message: "Ya hay una tanda abierta: %s. Publicala antes de abrir otra."
+      _change: add
+      extends: RuntimeException
+    - name: NoOpenBatchException
+      type: exception
+      fields:
+      - name: detail
+        type: String
+      message: "No hay ninguna tanda abierta: %s"
+      _change: add
+      extends: RuntimeException
+    - name: TaskInOpenBatchException
+      type: exception
+      fields:
+      - name: taskId
+        type: String
+      - name: batchId
+        type: String
+      message: La tarea %s es de la tanda %s y se decide en su bandeja.
+      _change: add
+      extends: RuntimeException
+    - name: BatchNotPublishableException
+      type: exception
+      fields:
+      - name: batchId
+        type: String
+      - name: reasons
+        type: String
+      message: "La tanda %s no se puede publicar: %s"
+      _change: add
+      extends: RuntimeException
+    interfaces:
+    - name: BatchService
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "open(BatchOpenRequest request): CorrectionBatch"
+      - signature: "current(): Optional<CorrectionBatch>"
+      - signature: "estimate(): BatchEstimate"
+      - signature: "run(BatchRunRequest request): BatchReport"
+      - signature: "close(): BatchClosing"
+      - signature: "adjust(BatchAdjustment adjustment): CorrectionBatch"
+      - signature: "report(String batchId): BatchReport"
+      - signature: "publish(BatchPublishRequest request): BatchPublication"
+      _change: add
+    - name: BatchStore
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "save(CorrectionBatch batch): void"
+      - signature: "load(String batchId): Optional<CorrectionBatch>"
+      - signature: "open(): Optional<CorrectionBatch>"
+      - signature: "list(): List<CorrectionBatch>"
+      - signature: "latestPublished(): Optional<CorrectionBatch>"
+      _change: add
+    - name: BatchServiceFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(BatchServiceConfig config): BatchService"
+      _change: add
+    allowedClients:
+    - audit-cli
+    _change: add
+  - name: batchengine
+    description: El motor de la tanda. Cada colaborador lleva una regla de FEAT-TANDA
+      y es package-private; la raíz de composición sólo construye la fábrica.
+    visibility: internal
+    interfaces:
+    - name: BatchTaskSelector
+      sealed: false
+      exposes:
+      - signature: "select(RefinementPlan plan, AuditReport start, CefrLevel level,\
+          \ List<String> conversionTopics): CorrectionBatch"
+      visibility: internal
+      _change: add
+    - name: BatchCostEstimator
+      sealed: false
+      exposes:
+      - signature: "estimate(CorrectionBatch batch, List<ErrorTaskBrief> briefs):\
+          \ BatchEstimate"
+      visibility: internal
+      _change: add
+    - name: RuleStage
+      sealed: false
+      exposes:
+      - signature: "apply(CorrectionBatch batch, AuditReport start, CourseEntity course):\
+          \ CorrectionBatch"
+      visibility: internal
+      _change: add
+    - name: PanelStage
+      sealed: false
+      exposes:
+      - signature: "run(CorrectionBatch batch, AuditReport start, CourseEntity course,\
+          \ QueryAllowance allowance): CorrectionBatch"
+      visibility: internal
+      _change: add
+    - name: BatchChangeLedger
+      sealed: false
+      exposes:
+      - signature: "record(CorrectionBatch batch, BatchChange change, CourseEntity\
+          \ startCourse): CorrectionBatch"
+      - signature: "drop(CorrectionBatch batch, String changeId, String reason, CourseEntity\
+          \ startCourse): CorrectionBatch"
+      - signature: "composedCourse(CorrectionBatch batch, CourseEntity startCourse):\
+          \ CourseEntity"
+      visibility: internal
+      _change: add
+    - name: BatchCloser
+      sealed: false
+      exposes:
+      - signature: "close(CorrectionBatch batch, CourseEntity startCourse): CorrectionBatch"
+      visibility: internal
+      _change: add
+    - name: BatchPublisher
+      sealed: false
+      exposes:
+      - signature: "publish(CorrectionBatch batch, BatchPublishRequest request, CourseEntity\
+          \ startCourse): CorrectionBatch"
+      visibility: internal
+      _change: add
+    - name: BatchReportBuilder
+      sealed: false
+      exposes:
+      - signature: "build(CorrectionBatch batch): BatchReport"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultBatchServiceFactory
+      visibility: public
+      implements:
+      - BatchServiceFactory
+      _change: add
+    - name: DefaultBatchService
+      requiresInject:
+      - name: batchStore
+        type: BatchStore
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+      - name: baselineStore
+        type: BaselineStore
+      - name: courseRepository
+        type: CourseRepository
+      - name: panelRunnerFactory
+        type: PanelRunnerFactory
+      - name: briefer
+        type: ErrorTaskBriefer
+      - name: taskSelector
+        type: BatchTaskSelector
+      - name: costEstimator
+        type: BatchCostEstimator
+      - name: ruleStage
+        type: RuleStage
+      - name: panelStage
+        type: PanelStage
+      - name: changeLedger
+        type: BatchChangeLedger
+      - name: closer
+        type: BatchCloser
+      - name: publisher
+        type: BatchPublisher
+      - name: reportBuilder
+        type: BatchReportBuilder
+      - name: coursePath
+        type: Path
+      implements:
+      - BatchService
+      _change: add
+    - name: DefaultBatchTaskSelector
+      requiresInject:
+      - name: artifactStore
+        type: RevisionArtifactStore
+      - name: correctionCatalog
+        type: AnalyzerCorrectionCatalog
+      implements:
+      - BatchTaskSelector
+      _change: add
+    - name: DefaultBatchCostEstimator
+      implements:
+      - BatchCostEstimator
+      _change: add
+    - name: DefaultRuleStage
+      requiresInject:
+      - name: ruleFixes
+        type: List<RuleFix>
+      - name: topicMeter
+        type: TopicMeter
+      - name: changeGate
+        type: ChangeGate
+      - name: changeLedger
+        type: BatchChangeLedger
+      - name: batchStore
+        type: BatchStore
+      implements:
+      - RuleStage
+      _change: add
+    - name: DefaultPanelStage
+      requiresInject:
+      - name: panelRunner
+        type: PanelRunner
+      - name: briefer
+        type: ErrorTaskBriefer
+      - name: correctionCatalog
+        type: AnalyzerCorrectionCatalog
+      - name: wordLightsQuery
+        type: TopicWordLightsQuery
+      - name: changeLedger
+        type: BatchChangeLedger
+      - name: batchStore
+        type: BatchStore
+      implements:
+      - PanelStage
+      _change: add
+    - name: DefaultBatchChangeLedger
+      requiresInject:
+      - name: artifactStore
+        type: RevisionArtifactStore
+      - name: elementLocator
+        type: CourseElementLocator
+      implements:
+      - BatchChangeLedger
+      _change: add
+    - name: DefaultBatchCloser
+      requiresInject:
+      - name: batchComparator
+        type: BatchComparator
+      - name: batchGate
+        type: BatchGate
+      - name: blindSampleService
+        type: BlindSampleService
+      - name: changeLedger
+        type: BatchChangeLedger
+      - name: batchStore
+        type: BatchStore
+      - name: coursePath
+        type: Path
+      implements:
+      - BatchCloser
+      _change: add
+    - name: DefaultBatchPublisher
+      requiresInject:
+      - name: changeLedger
+        type: BatchChangeLedger
+      - name: artifactStore
+        type: RevisionArtifactStore
+      - name: courseRepository
+        type: CourseRepository
+      - name: courseMapper
+        type: CourseMapper
+      - name: auditEngine
+        type: AuditEngine
+      - name: auditReportStore
+        type: AuditReportStore
+      - name: refinerEngine
+        type: RefinerEngine
+      - name: refinementPlanStore
+        type: RefinementPlanStore
+      - name: activeAnalysisSelectionStore
+        type: ActiveAnalysisSelectionStore
+      - name: batchComparator
+        type: BatchComparator
+      - name: correctionScope
+        type: CorrectionScope
+      - name: preservationCheck
+        type: PreservationCheck
+      - name: coursePath
+        type: Path
+      implements:
+      - BatchPublisher
+      _change: add
+    - name: DefaultBatchReportBuilder
+      implements:
+      - BatchReportBuilder
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-infrastructure
+  packages:
+  - name: batchstore
+    description: "Adaptador en disco de las tandas. Interno: sólo la raíz de composició\
+      n lo construye."
+    visibility: internal
+    implementations:
+    - name: FileSystemBatchStore
+      visibility: public
+      implements:
+      - BatchStore
+      _change: add
+    _change: add
+  _change: modify
+- name: audit-cli
+  interfaces:
+  - name: BatchCommand
+    stereotype: port
+    sealed: true
+    exposes:
+    - signature: "openBatch(String level, Integer topicsAtOnce, Integer queriesAtOnce,\
+        \ List<String> convertToMultipleChoice): Integer"
+    - signature: "estimateBatch(): Integer"
+    - signature: "runBatch(Integer queryCap): Integer"
+    - signature: "closeBatch(): Integer"
+    - signature: "dropFromBatch(String changeId, String ruleId, String reason): Integer"
+    - signature: "reportBatch(String batchId, String format): Integer"
+    _change: add
+  packages:
+  - name: commands
+    visibility: internal
+    implementations:
+    - name: BatchCmd
+      requiresInject:
+      - name: batchService
+        type: BatchService
+      types:
+      - Component
+      externalImplements:
+      - java.util.concurrent.Callable<Integer>
+      implements:
+      - BatchCommand
+      _change: add
+    - name: ReviseCmd
+      requiresInject:
+      - name: batchStore
+        type: BatchStore
+        description: "Rechaza revisar una tarea de la tanda abierta con el mensaje\
+          \ de F-TANDA-R002, antes de llamar al motor."
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+features:
+- id: FEAT-TANDA
+  code: F-TANDA

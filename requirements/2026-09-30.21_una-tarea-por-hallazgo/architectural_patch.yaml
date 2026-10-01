@@ -1,0 +1,290 @@
+code: FEAT-TAREA
+description: "FEAT-TAREA: el plan hace una tarea por hallazgo de la familia de errores,\
+  \ con su origen (hallazgo, nivel, tema, cubiertos y ejercicios que alcanza), cuenta\
+  \ hallazgos contra tareas, cubiertos y no convertidos, y cada analizador declara\
+  \ en su ficha de corrección lo que su arreglo puede tocar."
+modules:
+- name: audit-domain
+  interfaces:
+  - name: AnalyzerCorrection
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "analyzerName(): String"
+    - signature: "editScope(FindingResolution resolution): List<ExercisePart>"
+    - signature: "coveringAnalyzer(): Optional<String>"
+    - signature: "groupsByTopic(): boolean"
+    - signature: "tieRules(): List<String>"
+    - signature: "offersTwoFixes(): boolean"
+    domainLinks:
+    - term: Tarea de corrección
+      role: uses
+    glossarySuggestions:
+    - name: Alcance del arreglo
+      technicalName: AnalyzerCorrection
+      kind: policy-candidate
+      basedOn: audit-domain/AnalyzerCorrection
+      derivedFrom:
+      - Tarea de corrección
+      - Tipo de diagnóstico
+      rationale: F-TAREA-R006 llama así a lo que cada tipo de tarea declara que su
+        arreglo puede cambiar; todo lo demás se conserva.
+    _change: add
+  - name: AnalyzerCorrectionCatalog
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "find(String analyzerName): Optional<AnalyzerCorrection>"
+    - signature: "list(): List<AnalyzerCorrection>"
+    _change: add
+  packages:
+  - name: correction
+    description: "Vocabulario cerrado de las partes de un ejercicio que un arreglo\
+      \ puede tocar (FEAT-TAREA R006). Público porque lo leen refiner-domain, revision-domain\
+      \ y audit-cli."
+    visibility: public
+    models:
+    - name: ExercisePart
+      type: enum
+      fields:
+      - name: STATEMENT
+        description: "El enunciado: sus partes fijas, cuántas son y en qué orden."
+      - name: HINT
+        description: La pista que acompaña al hueco.
+      - name: ANSWERS
+        description: Las respuestas aceptadas de cada hueco para escribir.
+      - name: OPTIONS
+        description: Las opciones de una opción múltiple y cuál es la correcta.
+      - name: FORM_KIND
+        description: "El tipo de ejercicio: pasar de hueco para escribir a opción\
+          \ múltiple (encargo de F-MESA-R015)."
+      - name: TRANSLATION
+        description: La traducción.
+      - name: MINI_THEORY
+        description: La miniteoría de los ejercicios del tema que muestran ese texto.
+      - name: INSTRUCTIONS
+        description: La consigna del ejercicio.
+      - name: TOPIC_INSTRUCTIONS
+        description: "La consigna del tema, una vez por tema."
+      - name: STORED_SENTENCE
+        description: "La oración guardada, la que se arma con la primera respuesta."
+      - name: AUDIO
+        description: "Permiso para cambiar lo que se escucha: el cambio lleva su pedido\
+          \ de regrabar (F-NOEMP-R004)."
+      - name: WHOLE_EXERCISE
+        description: "Todo el contenido del ejercicio, sin su identidad ni su título:\
+          \ lo que reescribe un duplicado."
+      _change: add
+    _change: add
+  - name: correctionengine
+    description: "Implementaciones de E: el catálogo de declaraciones y las declaraciones\
+      \ de los dos analizadores que ya existían y producen tareas de la tanda (quiz-instruction,\
+      \ y lemma-absence cuando cubre un hallazgo de errores). Público sólo para la\
+      \ raíz de composición, como findingengine."
+    visibility: public
+    implementations:
+    - name: DefaultAnalyzerCorrectionCatalog
+      requiresInject:
+      - name: corrections
+        type: List<AnalyzerCorrection>
+      - name: analyzerCatalog
+        type: AnalyzerCatalog
+      visibility: public
+      implements:
+      - AnalyzerCorrectionCatalog
+      _change: add
+    - name: QuizInstructionCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    - name: LemmaAbsenceCorrection
+      visibility: public
+      implements:
+      - AnalyzerCorrection
+      _change: add
+    allowedClients:
+    - audit-cli
+    _change: add
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: RefinementTask
+    type: record
+    fields:
+    - name: origin
+      type: TaskOrigin
+      description: "De qué hallazgo salió la tarea (F-TAREA-R002). Nulo en las tareas\
+        \ de vocabulario, salvo la de lemma-absence que cubre hallazgos de errores\
+        \ (F-TAREA-R004): así las tareas de vocabulario son las de hoy (F-TAREA-R007)."
+      _change: add
+    _change: modify
+  - name: TaskOrigin
+    type: record
+    fields:
+    - name: finding
+      type: Finding
+      description: "El hallazgo propio de la tarea, con su identidad, gravedad, resolució\
+        n y costo. Nulo en una tarea de vocabulario que sólo cubre."
+    - name: cefrLevel
+      type: CefrLevel
+      description: "El nivel del nodo, el de su milestone."
+    - name: knowledgeId
+      type: String
+      description: El tema del nodo.
+    - name: knowledgeLabel
+      type: String
+    - name: reachedQuizIds
+      type: List<String>
+      description: "Los ejercicios que alcanza una tarea agrupada por tema: los que\
+        \ muestran esa miniteoría (F-TAREA-R003). Vacía en una tarea de ejercicio."
+    - name: coveredFindings
+      type: List<Finding>
+      description: "Los hallazgos declarados cubiertos por esta tarea (F-TAREA-R003,\
+        \ R004). La tarea queda resuelta sólo cuando su hallazgo y todos estos dejan\
+        \ de aparecer."
+    domainLinks:
+    - term: Tarea de corrección
+      role: carries
+    _change: add
+  - name: PlanFindingTally
+    type: record
+    fields:
+    - name: analyzer
+      type: String
+    - name: countingFindings
+      type: int
+      description: Hallazgos que cuentan como error en nodos que el analizador evaluó.
+    - name: ownTasks
+      type: int
+    - name: covered
+      type: int
+    - name: unconverted
+      type: int
+    - name: unconvertedReason
+      type: String
+      description: "Por qué no se convirtieron, o nulo si no hay ninguno: sin tipo\
+        \ de tarea, o sin tarea que lo cubra."
+    _change: add
+  interfaces:
+  - name: RefinerEngine
+    sealed: false
+    exposes:
+    - signature: "findingTally(AuditReport report, RefinementPlan plan): List<PlanFindingTally>"
+      _change: add
+    _change: modify
+  implementations:
+  - name: DefaultRefinerEngine
+    requiresInject:
+    - name: analyzerCorrectionCatalog
+      type: AnalyzerCorrectionCatalog
+      description: Qué analizador cubre a cuál (off-level-words con lemma-absence)
+        y cuál se agrupa por tema (mini-theory). Resuelve el gancho D-04 de la ronda
+        1 con una declaración y no con una regla general.
+      _change: add
+    _change: modify
+  packages:
+  - name: errortask
+    description: "Lo que se sabe de una tarea de errores, armado una sola vez: lo\
+      \ muestra `get task` y lo recibe la mesa (F-TAREA-R009, F-MESA-R003). Público\
+      \ para audit-cli y revision-domain."
+    visibility: public
+    models:
+    - name: ErrorTaskBrief
+      type: record
+      fields:
+      - name: task
+        type: RefinementTask
+      - name: finding
+        type: Finding
+      - name: coveredFindings
+        type: List<Finding>
+      - name: editScope
+        type: List<ExercisePart>
+        description: Lo que su arreglo puede tocar según su resolución; vacía si el
+          tipo no lo declara.
+      - name: scopeDeclared
+        type: boolean
+        description: "Falso cuando el analizador no tiene declaración de correcció\
+          n: la tanda la deja «sin alcance declarado» (F-TAREA-R006)."
+      - name: quizView
+        type: QuizStudentView
+        description: El ejercicio como lo ve el alumno (renderizador A-01 de la ronda
+          1). Nulo en una tarea del tema.
+      - name: reachedQuizViews
+        type: List<QuizStudentView>
+        description: "Los ejercicios que alcanza una tarea del tema, como los ve el\
+          \ alumno."
+      _change: add
+    interfaces:
+    - name: ErrorTaskBriefer
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "brief(AuditReport report, RefinementTask task): Optional<ErrorTaskBrief>"
+      _change: add
+    implementations:
+    - name: DefaultErrorTaskBriefer
+      requiresInject:
+      - name: analyzerCorrectionCatalog
+        type: AnalyzerCorrectionCatalog
+      - name: auditNodeIndexFactory
+        type: AuditNodeIndexFactory
+      - name: quizStudentViewRenderer
+        type: QuizStudentViewRenderer
+      visibility: public
+      implements:
+      - ErrorTaskBriefer
+      _change: add
+    _change: add
+  _change: modify
+- name: revision-domain
+  packages:
+  - name: preservation
+    visibility: public
+    interfaces:
+    - name: CorrectionScope
+      sealed: false
+      exposes:
+      - signature: "changeableFields(Set<ExercisePart> parts, AuditTarget target):\
+          \ Set<ScopedField>"
+        _change: add
+      _change: modify
+    - name: PreservationCheck
+      sealed: false
+      exposes:
+      - signature: "verifyWithin(CourseEntity courseBefore, CourseEntity courseAfter,\
+          \ CourseElementSnapshot revised, Set<ScopedField> changeable): List<PreservationViolation>"
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  models:
+  - name: GetTasksFilter
+    type: record
+    fields:
+    - name: findingFilter
+      type: TaskFindingFilter
+      description: "Filtros por hallazgo de F-TAREA-R008; nulo o vacío, `get tasks`\
+        \ filtra como hoy."
+      _change: add
+    _change: modify
+  - name: TaskFindingFilter
+    type: record
+    fields:
+    - name: analyzer
+      type: Optional<String>
+    - name: resolution
+      type: Optional<FindingResolution>
+    - name: severity
+      type: Optional<FindingSeverity>
+    - name: level
+      type: Optional<CefrLevel>
+    - name: knowledgeId
+      type: Optional<String>
+    _change: add
+  _change: modify
+features:
+- id: FEAT-TAREA
+  code: F-TAREA

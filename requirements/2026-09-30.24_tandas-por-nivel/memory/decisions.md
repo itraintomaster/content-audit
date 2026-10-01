@@ -1,0 +1,42 @@
+# Decisions
+
+Architectural decisions and escalation resolutions that future sessions
+should not re-litigate. Newest entries on top.
+
+<!-- entries below -->
+
+2026-09-30 — architect — Una propuesta pendiente por ejercicio, compuesta por pasos con sus partes (`BatchChangeLedger`):
+  sacar un cambio quita sus pasos y los posteriores que tocaron lo mismo y reemplaza la propuesta.
+  why: con una propuesta por cambio, F declararía no aplicables a las posteriores apenas se saca una (F-CDIFF-R012).
+
+2026-09-30 — architect — Alineado con F (su TECH_SPEC del 30/9): la línea base se lee de `BaselineStore` (sin base no abre);
+  la tanda pone el par activo en su punto de partida al abrir y lo mueve al publicar; cierra con `BatchComparator` y un
+  `ProjectionScope` con sus propuestas; pide la muestra ciega a `BlindSampleService` cuando pasa la compuerta.
+
+2026-09-30 — architect — Tareas de la tanda en un estado nuevo `IN_BATCH`: `nextTask` y revise-instructions ya no las ven;
+  `revise` las rechaza en el comando con el mensaje de R002. Reglas por el puerto `RuleFix` de cada analizador de A (E-06).
+
+2026-09-30 — analyst — José, 30/9 (vía MESA y BANDEJA): 4 y 4 a la vez; la mesa acepta; la opción múltiple entra a la
+  tanda (R004); encargos de José al abrir, como «Contracciones» a opción múltiple (R001.4, R010).
+
+2026-09-30 — analyst — Alineado con F: una tanda son SUS propuestas pendientes sobre el curso del que partió, nunca «las
+  pendientes del plan activo» (R006 inv. 1); la línea base queda fija y la heredan las tandas; el punto de partida es el
+  análisis de la última publicada (R001, R009 inv. 4).
+  why: el plan puede tener correcciones de vocabulario pendientes de `revise`; y lo que avanza al publicar no es la base.
+
+2026-09-30 — analyst — R008: sacar un cambio saca los posteriores del mismo ejercicio que tocaron lo mismo; los demás se
+  conservan y se vuelven a juzgar; la miniteoría no sale [ASSUMPTION] → DOUBT-SACAR-ENCADENADO (OPEN, recomendada A).
+
+2026-09-30 — analyst — La proyección y la comparación de la tanda son las del paquete F (F-PROYU-R001, F-METAS-R001/R008).
+
+2026-09-30 — analyst — Código FEAT-TANDA / F-TANDA: nuevo.
+
+2026-09-30 — analyst — La tanda toma sólo errores (+ LEMMA_ABSENCE que cubre un error); el largo y el resto del vocabulario quedan fuera (R001).
+  why: José 11/8 (el largo no rechaza), el 077 no corrigió largos y 3.051 tareas triplicarían la mesa; siguen con revise.
+
+2026-09-30 — analyst — Una sola tanda abierta; sus tareas no las toman revise ni revise-instructions (R002, mensaje [ASSUMPTION]).
+
+2026-09-30 — analyst — La vista previa por propuesta (F-PIPRE-R001) se mantiene; la tanda suma el recálculo combinado.
+  why: sacarla sería cambiar una decisión; su costo (~38 s cada una con el caché de hoy) es tarea del arquitecto (caché por oración).
+
+2026-09-30 — analyst — Publicar = aprobar juntos los pendientes de la tanda; nunca producción (R009).

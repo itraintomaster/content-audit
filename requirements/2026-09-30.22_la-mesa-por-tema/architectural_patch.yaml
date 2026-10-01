@@ -1,0 +1,518 @@
+code: FEAT-MESA
+description: "FEAT-MESA: la mesa de un tema. Revalida, pide candidatos del ejercicio\
+  \ entero a quien propone, los mide con la misma medición del análisis sobre el tema\
+  \ recortado, los hace juzgar por los jueces del catálogo con el libro de evaluaciones,\
+  \ decide con un script y corre N temas y C consultas a la vez con un cupo compartido.\
+  \ Quien propone es un puerto: un agente en revision-infrastructure, o uno guionado\
+  \ para pruebas y repeticiones que no paga."
+modules:
+- name: revision-domain
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultPanelRunnerFactory
+    suppressed: false
+    interface: PanelRunnerFactory
+  packages:
+  - name: panel
+    description: "Contrato de la mesa (FEAT-MESA). Público para audit-cli, que la\
+      \ cablea, y para revision-infrastructure, que implementa al agente que propone."
+    visibility: public
+    models:
+    - name: TopicWork
+      type: record
+      fields:
+      - name: batchId
+        type: String
+      - name: level
+        type: CefrLevel
+      - name: milestoneId
+        type: String
+      - name: topicId
+        type: String
+      - name: knowledge
+        type: KnowledgeEntity
+        description: "El tema como está en la tanda, con lo ya aceptado (F-MESA-R001\
+          \ inv. 3)."
+      - name: sentenceMode
+        type: SentenceMode
+      - name: briefs
+        type: List<ErrorTaskBrief>
+        description: "Las tareas de mesa del tema, con su hallazgo, su evidencia y\
+          \ lo que su arreglo puede tocar."
+      - name: wordLights
+        type: TopicWordLights
+        description: "El semáforo del tema (FEAT-SEMAF, ronda 1)."
+      - name: conversion
+        type: ConversionOrder
+        description: "El encargo de José sobre el tema, o nulo (F-MESA-R015)."
+      - name: attemptsUsed
+        type: "Map<String,Integer>"
+        description: "Intentos ya gastados por ejercicio, cuando un cambio vuelve\
+          \ de la compuerta de la tanda (F-NOEMP-R008)."
+      - name: carriedRejections
+        type: List<CandidateRejection>
+        description: "Los motivos con que volvió un cambio, para quien propone."
+      _change: add
+    - name: ConversionOrder
+      type: record
+      fields:
+      - name: knowledgeId
+        type: String
+      - name: targetKind
+        type: FormKind
+      - name: optionCount
+        type: int
+        description: "Tres, mientras José no conteste DOUBT-OPCIONES-CONTRACCIONES."
+      glossarySuggestions:
+      - name: Encargo
+        technicalName: ConversionOrder
+        kind: process-candidate
+        basedOn: revision-domain/panel/ConversionOrder
+        rationale: "José pide al abrir la tanda algo que ningún analizador marca,\
+          \ como pasar «Contracciones» a opción múltiple; la mesa lo arma y lo decide\
+          \ el mismo script."
+      _change: add
+    - name: PanelRequest
+      type: record
+      fields:
+      - name: batchId
+        type: String
+      - name: level
+        type: CefrLevel
+      - name: knowledgeId
+        type: String
+      - name: quizId
+        type: String
+        description: "El ejercicio a corregir; nulo en una tarea del tema, como la\
+          \ miniteoría."
+      - name: topicView
+        type: List<QuizStudentView>
+        description: "El tema entero como lo ve el alumno, con lo ya aceptado (F-MESA-R003)."
+      - name: briefs
+        type: List<ErrorTaskBrief>
+      - name: wordLights
+        type: TopicWordLights
+      - name: conversion
+        type: ConversionOrder
+      - name: attempt
+        type: int
+      - name: previousRejections
+        type: List<CandidateRejection>
+      - name: twoFixes
+        type: boolean
+        description: "El inglés y la traducción no dicen lo mismo: pedir un candidato\
+          \ que cambie sólo la traducción y otro que cambie el inglés."
+      _change: add
+    - name: PanelCandidate
+      type: record
+      fields:
+      - name: kind
+        type: PanelCandidateKind
+      - name: quiz
+        type: QuizTemplateEntity
+        description: El ejercicio entero como quedaría; nulo en una miniteoría.
+      - name: miniTheoryText
+        type: String
+        description: "El texto nuevo, en una miniteoría."
+      - name: topicInstructions
+        type: String
+        description: "La consigna nueva del tema, en un encargo que la cambia."
+      - name: rationale
+        type: String
+        description: "Por qué, según quien propone. Ningún juez la lee (F-MESA-R005)."
+      _change: add
+    - name: PanelCandidateKind
+      type: enum
+      fields:
+      - name: WHOLE_EXERCISE
+      - name: TRANSLATION_ONLY
+      - name: ENGLISH_CHANGE
+      - name: MINI_THEORY
+      - name: MULTIPLE_CHOICE_CONVERSION
+      _change: add
+    - name: PanelProposal
+      type: record
+      fields:
+      - name: candidates
+        type: List<PanelCandidate>
+      - name: proposerVersion
+        type: String
+      - name: available
+        type: boolean
+        description: "Falso si el servicio falló: la mesa corta el cupo y el ejercicio\
+          \ queda sin intentar (F-MESA-R010 inv. 2)."
+      - name: unavailableReason
+        type: String
+      _change: add
+    - name: CandidateRejection
+      type: record
+      fields:
+      - name: attempt
+        type: int
+      - name: candidateKind
+        type: PanelCandidateKind
+      - name: reasons
+        type: List<String>
+        description: "Los criterios que no pasó, cada uno con su evidencia (F-MESA-R007)."
+      _change: add
+    - name: PanelOutcomeKind
+      type: enum
+      fields:
+      - name: ACCEPTED
+      - name: NO_LONGER_HOLDS
+      - name: NO_WINNER
+      - name: TIE
+      - name: NOT_ATTEMPTED
+      - name: NO_DECLARED_SCOPE
+      _change: add
+    - name: PanelDecision
+      type: record
+      fields:
+      - name: knowledgeId
+        type: String
+      - name: quizIds
+        type: List<String>
+        description: "El ejercicio, o los que alcanza la miniteoría o el encargo."
+      - name: taskIds
+        type: List<String>
+      - name: outcome
+        type: PanelOutcomeKind
+      - name: accepted
+        type: PanelCandidate
+      - name: acceptedVerdict
+        type: ChangeGateVerdict
+      - name: resolvedTaskIds
+        type: List<String>
+        description: Las tareas cuyo analizador ya no marca su hallazgo en el candidato
+          aceptado.
+      - name: attempts
+        type: int
+      - name: rejections
+        type: List<CandidateRejection>
+      - name: bestFailing
+        type: PanelCandidate
+        description: "Sin ganador: el candidato que menos falló (F-MESA-R007)."
+      - name: bestFailingVerdict
+        type: ChangeGateVerdict
+      - name: tieFindings
+        type: List<Finding>
+        description: "Desempate: los dos veredictos de traducción y sentido, como\
+          \ hallazgos con su evidencia (F-MESA-R008)."
+      - name: queriesSpent
+        type: int
+      _change: add
+    - name: PanelTopicResult
+      type: record
+      fields:
+      - name: knowledgeId
+        type: String
+      - name: decisions
+        type: List<PanelDecision>
+      - name: queriesSpent
+        type: int
+      - name: interrupted
+        type: boolean
+      _change: add
+    - name: PanelRunSettings
+      type: record
+      fields:
+      - name: topicsAtOnce
+        type: int
+      - name: queriesAtOnce
+        type: int
+      - name: maxAttempts
+        type: int
+      - name: analyzers
+        type: List<String>
+        description: "Los analizadores del análisis del que partió la tanda: la mesa\
+          \ mide con esos y no con otros."
+      _change: add
+    - name: PanelRunnerConfig
+      type: record
+      fields:
+      - name: proposer
+        type: PanelProposer
+      - name: analyzerCatalog
+        type: AnalyzerCatalog
+      - name: correctionCatalog
+        type: AnalyzerCorrectionCatalog
+      - name: auditEngine
+        type: AuditEngine
+      - name: courseMapper
+        type: CourseMapper
+      - name: quizStudentViewRenderer
+        type: QuizStudentViewRenderer
+      - name: nlpTokenizer
+        type: NlpTokenizer
+      - name: lexicalEvaluator
+        type: SentenceLexicalEvaluator
+      - name: topicTeachingResolver
+        type: TopicTeachingResolver
+      - name: spokenTextBuilder
+        type: SpokenTextBuilder
+      - name: sentenceLengthConfig
+        type: SentenceLengthConfig
+      _change: add
+    interfaces:
+    - name: PanelProposer
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "propose(PanelRequest request): PanelProposal"
+      _change: add
+    - name: QueryAllowance
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "tryReserve(int queries): boolean"
+      - signature: "settle(int reserved, int spent): void"
+      - signature: "trip(String cause): void"
+      - signature: "tripped(): Optional<String>"
+      - signature: "spent(): int"
+      _change: add
+    - name: PanelDecisionSink
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "accept(PanelDecision decision): void"
+      _change: add
+    - name: TopicMeter
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "measure(TopicWork work, KnowledgeEntity knowledgeState, List<String>\
+          \ analyzers, QueryAllowance allowance): UnitMeasurement"
+      _change: add
+    - name: PanelRunner
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "runTopics(List<TopicWork> topics, PanelRunSettings settings, QueryAllowance\
+          \ allowance, PanelDecisionSink sink): List<PanelTopicResult>"
+      - signature: "assessGiven(TopicWork work, String quizId, PanelCandidate candidate,\
+          \ PanelRunSettings settings, QueryAllowance allowance): PanelDecision"
+      glossarySuggestions:
+      - name: Mesa
+        technicalName: PanelRunner
+        kind: process-candidate
+        basedOn: revision-domain/panel/PanelRunner
+        derivedFrom:
+        - Propuesta de revisión
+        - Candidato de ejercicio
+        rationale: "FEAT-MESA: uno propone, content-audit mide, los jueces juzgan\
+          \ y un script decide, por tema; nadie juzga lo suyo."
+      _change: add
+    - name: PanelRunnerFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(PanelRunnerConfig config): PanelRunner"
+      - signature: "meter(PanelRunnerConfig config): TopicMeter"
+      - signature: "allowance(Integer cap, int queriesAtOnce): QueryAllowance"
+      _change: add
+    implementations:
+    - name: ScriptedPanelProposer
+      requiresInject:
+      - name: script
+        type: "Map<String,List<PanelProposal>>"
+      visibility: public
+      implements:
+      - PanelProposer
+      _change: add
+    allowedClients:
+    - audit-cli
+    - revision-infrastructure
+    _change: add
+  - name: panelengine
+    description: "El motor de la mesa. Todo package-private salvo la fábrica: la raí\
+      z de composición sólo ve PanelRunner, TopicMeter y QueryAllowance."
+    visibility: internal
+    models:
+    - name: ScoredCandidate
+      type: record
+      fields:
+      - name: candidate
+        type: PanelCandidate
+      - name: measurement
+        type: UnitMeasurement
+      - name: gate
+        type: ChangeGateVerdict
+      - name: screenViolations
+        type: List<String>
+      visibility: internal
+      _change: add
+    - name: ScriptDecision
+      type: record
+      fields:
+      - name: outcome
+        type: PanelOutcomeKind
+      - name: winnerIndex
+        type: int
+      - name: resolvedTaskIds
+        type: List<String>
+      - name: tieFindings
+        type: List<Finding>
+      - name: reasons
+        type: List<String>
+      visibility: internal
+      _change: add
+    interfaces:
+    - name: TopicPanel
+      sealed: false
+      exposes:
+      - signature: "run(TopicWork work, PanelRunSettings settings, QueryAllowance\
+          \ allowance, PanelDecisionSink sink): PanelTopicResult"
+      - signature: "assess(TopicWork work, String quizId, PanelCandidate candidate,\
+          \ PanelRunSettings settings, QueryAllowance allowance): PanelDecision"
+      visibility: internal
+      _change: add
+    - name: CandidateScreen
+      sealed: false
+      exposes:
+      - signature: "screen(TopicWork work, String quizId, PanelCandidate candidate):\
+          \ List<String>"
+      visibility: internal
+      _change: add
+    - name: PanelDecisionScript
+      sealed: false
+      exposes:
+      - signature: "decide(List<ErrorTaskBrief> tasks, UnitMeasurement original, List<ScoredCandidate>\
+          \ candidates): ScriptDecision"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultPanelRunnerFactory
+      visibility: public
+      implements:
+      - PanelRunnerFactory
+      _change: add
+    - name: DefaultPanelRunner
+      requiresInject:
+      - name: topicPanel
+        type: TopicPanel
+      implements:
+      - PanelRunner
+      _change: add
+    - name: DefaultTopicPanel
+      requiresInject:
+      - name: proposer
+        type: PanelProposer
+      - name: meter
+        type: TopicMeter
+      - name: screen
+        type: CandidateScreen
+      - name: script
+        type: PanelDecisionScript
+      - name: changeGate
+        type: ChangeGate
+      - name: quizStudentViewRenderer
+        type: QuizStudentViewRenderer
+      implements:
+      - TopicPanel
+      _change: add
+    - name: CatalogTopicMeter
+      requiresInject:
+      - name: auditEngine
+        type: AuditEngine
+      - name: courseMapper
+        type: CourseMapper
+      - name: nlpTokenizer
+        type: NlpTokenizer
+      - name: lexicalEvaluator
+        type: SentenceLexicalEvaluator
+      - name: topicTeachingResolver
+        type: TopicTeachingResolver
+      - name: spokenTextBuilder
+        type: SpokenTextBuilder
+      - name: sentenceLengthConfig
+        type: SentenceLengthConfig
+      implements:
+      - TopicMeter
+      _change: add
+    - name: DefaultCandidateScreen
+      requiresInject:
+      - name: correctionCatalog
+        type: AnalyzerCorrectionCatalog
+      implements:
+      - CandidateScreen
+      _change: add
+    - name: DefaultPanelDecisionScript
+      requiresInject:
+      - name: correctionCatalog
+        type: AnalyzerCorrectionCatalog
+      implements:
+      - PanelDecisionScript
+      _change: add
+    - name: CappedQueryAllowance
+      implements:
+      - QueryAllowance
+      _change: add
+    _change: add
+  _change: modify
+- name: revision-infrastructure
+  packages:
+  - name: panelagent
+    description: "El agente que propone en la mesa, sobre el runtime compartido de\
+      \ sentinel-agents, como el de la corrección de consigna. Sólo consulta un modelo\
+      \ cuando la tanda le reserva cupo; sin cupo, no se lo llama."
+    visibility: public
+    interfaces:
+    - name: PanelAgentProposerFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "create(LagenConfig config): PanelProposer"
+      - signature: "providerIdFor(LagenConfig config): String"
+      visibility: public
+      _change: add
+    - name: PanelAgentRuntimeLauncher
+      sealed: false
+      exposes:
+      - signature: "launch(String agentName, Map<String,String> inputs, ChatModel\
+          \ chatModel): RunState"
+      visibility: internal
+      _change: add
+    - name: PanelAgentProposalParser
+      sealed: false
+      exposes:
+      - signature: "parse(RunState runState, PanelRequest request): PanelProposal"
+      visibility: internal
+      _change: add
+    implementations:
+    - name: DefaultPanelAgentProposerFactory
+      visibility: public
+      implements:
+      - PanelAgentProposerFactory
+      _change: add
+    - name: AgentPanelProposer
+      requiresInject:
+      - name: agentRuntimeLauncher
+        type: PanelAgentRuntimeLauncher
+      - name: proposalParser
+        type: PanelAgentProposalParser
+      - name: chatModel
+        type: ChatModel
+      - name: config
+        type: LagenConfig
+      - name: projectRoot
+        type: Path
+      implements:
+      - PanelProposer
+      _change: add
+    - name: DefaultPanelAgentProposalParser
+      implements:
+      - PanelAgentProposalParser
+      _change: add
+    - name: SharedRuntimePanelAgentLauncher
+      requiresInject:
+      - name: agentGraphRunner
+        type: AgentGraphRunner
+      implements:
+      - PanelAgentRuntimeLauncher
+      _change: add
+    _change: add
+  _change: modify
+features:
+- id: FEAT-MESA
+  code: F-MESA

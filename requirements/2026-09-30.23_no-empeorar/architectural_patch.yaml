@@ -1,0 +1,264 @@
+code: FEAT-NOEMP
+description: "FEAT-NOEMP: la compuerta de no empeorar en dos niveles. Por cambio,\
+  \ compara dos mediciones de la unidad (el ejercicio con su tema) y veta errores\
+  \ nuevos y palabras rojas nuevas, declara el largo y pide regrabar; por tanda, lee\
+  \ la comparación del paquete F (BatchComparison de FEAT-METAS) y decide qué vuelve,\
+  \ sin devolver nunca por el largo."
+modules:
+- name: revision-domain
+  patterns:
+  - type: Factory
+    implementations:
+    - DefaultGateFactory
+    suppressed: false
+    interface: GateFactory
+  packages:
+  - name: nonregression
+    description: "Contrato de la compuerta de no empeorar (FEAT-NOEMP). Público: lo\
+      \ usan la mesa y la tanda en revision-domain, audit-cli para mostrar sus motivos,\
+      \ y quien implemente la comparación del paquete F."
+    visibility: public
+    models:
+    - name: UnitMeasurement
+      type: record
+      fields:
+      - name: level
+        type: CefrLevel
+      - name: findings
+        type: List<Finding>
+        description: "Los hallazgos de la unidad medida: el tema y sus ejercicios,\
+          \ de todos los analizadores de la selección, tal como los publica el motor."
+      - name: unevaluated
+        type: List<UnevaluatedMark>
+        description: Qué analizador no evaluó qué nodo en esta medición (F-NOEMP-R010).
+      - name: redWords
+        type: List<RedWord>
+        description: "Las palabras rojas de cada ejercicio, y en una opción múltiple\
+          \ de cada opción puesta en el hueco, sin las que enseña el tema."
+      - name: spokenTexts
+        type: List<SpokenText>
+        description: Lo que dice el audio de cada ejercicio.
+      - name: lengths
+        type: List<LengthDeclaration>
+        description: El largo de cada ejercicio contra el rango de su nivel.
+      _change: add
+    - name: UnevaluatedMark
+      type: record
+      fields:
+      - name: nodeId
+        type: String
+      - name: analyzer
+        type: String
+      _change: add
+    - name: RedWord
+      type: record
+      fields:
+      - name: quizId
+        type: String
+      - name: lemma
+        type: String
+      - name: level
+        type: CefrLevel
+        description: El nivel de la palabra; nulo si está fuera del catálogo.
+      - name: outOfCatalog
+        type: boolean
+      - name: sentence
+        type: String
+        description: "La oración donde aparece: la del ejercicio, o la de una opció\
+          n puesta en el hueco."
+      glossarySuggestions:
+      - name: Palabra roja
+        technicalName: RedWord
+        kind: value-object-candidate
+        basedOn: revision-domain/nonregression/RedWord
+        derivedFrom:
+        - Eval de no-regresión léxica
+        - Consulta léxica del análisis
+        rationale: "FEAT-NOEMP y el semáforo la llaman así: la palabra que la consulta\
+          \ léxica marca para el nivel del ejercicio, salvo las que enseña el tema.\
+          \ Un cambio no puede sumar ninguna."
+      _change: add
+    - name: SpokenText
+      type: record
+      fields:
+      - name: quizId
+        type: String
+      - name: audioKey
+        type: String
+      - name: texts
+        type: List<String>
+      _change: add
+    - name: LengthDeclaration
+      type: record
+      fields:
+      - name: quizId
+        type: String
+      - name: tokens
+        type: int
+      - name: targetMin
+        type: int
+      - name: targetMax
+        type: int
+      - name: inRange
+        type: boolean
+      _change: add
+    - name: AudioRerecordRequest
+      type: record
+      fields:
+      - name: quizId
+        type: String
+      - name: audioKey
+        type: String
+      - name: newTexts
+        type: List<String>
+        description: Lo que tiene que decir el audio nuevo.
+      _change: add
+    - name: ChangeProbe
+      type: record
+      fields:
+      - name: changedQuizIds
+        type: List<String>
+      - name: topicLevelChange
+        type: boolean
+        description: "El cambio es del tema (la miniteoría o la consigna del tema):\
+          \ se compara el tema entero (F-NOEMP-R001)."
+      - name: before
+        type: UnitMeasurement
+      - name: after
+        type: UnitMeasurement
+      _change: add
+    - name: ChangeGateVerdict
+      type: record
+      fields:
+      - name: passes
+        type: boolean
+      - name: newErrors
+        type: List<Finding>
+        description: "Hallazgos que cuentan como error y la unidad no tenía, por identidad\
+          \ (F-NOEMP-R001)."
+      - name: newRedWords
+        type: List<RedWord>
+        description: "Palabras rojas que antes no eran rojas, con su nivel (F-NOEMP-R002)."
+      - name: lengths
+        type: List<LengthDeclaration>
+        description: El largo declarado de cada ejercicio cambiado; nunca veta (F-NOEMP-R003).
+      - name: rerecords
+        type: List<AudioRerecordRequest>
+        description: Un pedido por ejercicio cuyo audio dice otra cosa (F-NOEMP-R004).
+      - name: notCompared
+        type: List<NotComparedCount>
+        description: "Por analizador, ejercicios que no evaluó en una de las dos puntas\
+          \ (F-NOEMP-R010)."
+      - name: reasons
+        type: List<String>
+        description: Cada motivo nombra la regla que no pasó y su evidencia (F-NOEMP-R009).
+      _change: add
+    - name: NotComparedCount
+      type: record
+      fields:
+      - name: analyzer
+        type: String
+      - name: quizzes
+        type: int
+      _change: add
+    - name: ReturnCause
+      type: enum
+      fields:
+      - name: NEW_ERROR
+      - name: NEW_RED_WORD
+      - name: FLOOR
+      _change: add
+    - name: ReturnedChange
+      type: record
+      fields:
+      - name: proposalId
+        type: String
+      - name: cause
+        type: ReturnCause
+      - name: reason
+        type: String
+      _change: add
+    - name: BatchGateVerdict
+      type: record
+      fields:
+      - name: passes
+        type: boolean
+      - name: verdictKind
+        type: VerdictKind
+        description: "El veredicto de la comparación del paquete F (F-METAS-R008),\
+          \ tal cual."
+      - name: returned
+        type: List<ReturnedChange>
+      - name: declaredLengthFindings
+        type: List<Finding>
+        description: "Hallazgos nuevos de largo en nodos cambiados: se declaran y\
+          \ no devuelven nada (F-NOEMP-R003)."
+      - name: changedOutsideScope
+        type: List<String>
+        description: "Nodos que cambiaron sin ser de la tanda; con uno solo, no pasa\
+          \ (F-NOEMP-R007)."
+      - name: listedExceptions
+        type: List<String>
+        description: "Las propuestas que José aprobó sabiendo que no pasaban (F-BANDEJA-R003):\
+          \ se listan y no se vuelven a contar."
+      - name: notCompared
+        type: List<NotComparedCount>
+      - name: reasons
+        type: List<String>
+        description: "Cada freno: el número, su contexto, antes, después, la tolerancia\
+          \ y lo que devolvió (F-NOEMP-R009)."
+      _change: add
+    interfaces:
+    - name: ChangeGate
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "check(ChangeProbe probe): ChangeGateVerdict"
+      glossarySuggestions:
+      - name: Compuerta de no empeorar
+        technicalName: ChangeGate
+        kind: policy-candidate
+        basedOn: revision-domain/nonregression/ChangeGate
+        derivedFrom:
+        - Eval de no-regresión léxica
+        rationale: "FEAT-NOEMP la define como el control con reglas fijas que decide\
+          \ si un cambio, o una tanda entera, entra al curso."
+      _change: add
+    - name: BatchGate
+      stereotype: port
+      sealed: false
+      exposes:
+      - signature: "evaluate(BatchComparison comparison, List<String> changedOutsideScope,\
+          \ List<String> exceptionProposalIds): BatchGateVerdict"
+      _change: add
+    - name: GateFactory
+      stereotype: factory
+      sealed: false
+      exposes:
+      - signature: "changeGate(): ChangeGate"
+      - signature: "batchGate(): BatchGate"
+      _change: add
+    _change: add
+  - name: nonregressionengine
+    description: "Las dos compuertas. Sin estado ni dependencias: deciden sólo con\
+      \ lo que reciben, así que las mismas entradas dan siempre la misma salida (F-NOEMP-R009)."
+    visibility: internal
+    implementations:
+    - name: DefaultGateFactory
+      visibility: public
+      implements:
+      - GateFactory
+      _change: add
+    - name: DefaultChangeGate
+      implements:
+      - ChangeGate
+      _change: add
+    - name: DefaultBatchGate
+      implements:
+      - BatchGate
+      _change: add
+    _change: add
+  _change: modify
+features:
+- id: FEAT-NOEMP
+  code: F-NOEMP
