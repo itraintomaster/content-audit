@@ -157,16 +157,16 @@ Methods:
 - should reject before loading the course a run that asks for quiz-instructions, a name get analyzers does not list, with the message that points to get analyzers → FEAT-HALL/F-HALL-R012
 - should reject before loading the course a run that excludes a name get analyzers does not list, instead of ignoring it → FEAT-HALL/F-HALL-R012
 - should publish on the 29/9 course, with the seven classic analyzers, the same score of each one on each of its 11.760 nodes and the same typed diagnoses as the analysis 2026-09-30T11-54-02 → FEAT-HALL/F-HALL-R013
-- should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels 96.0, 93.6, 78.9 and 63.9 → FEAT-RONDA1/F-RONDA1-R008
-- should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2, 79.5 and 63.5 → FEAT-RONDA1/F-RONDA1-R008
 - should accept a budget for near-duplicates, which consults a model, and keep rejecting a budget for grammar, which is instant → FEAT-RONDA2/F-RONDA2-R002
 - should hand naturalness no run policy when the run declares no budget, so its provider completes it by the route it consults → FEAT-RONDA2/F-RONDA2-R002
-- should publish on the 29/9 course with the twenty analyzers a vocabulary of 73.86 % and levels 96.02, 93.60, 78.87 and 63.86 → FEAT-RONDA2/F-RONDA2-R010
 - should reject before loading the course a run that asks for naturalness by name when neither llama3:8b in Ollama nor claude -p is available, with «Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is not available: ollama pull llama3:8b.» → FEAT-MLOCAL/F-MLOCAL-R003
 - should reject before loading the course a run that asks for grammar by name when LanguageTool is not available, since grammar has no alternative → FEAT-MLOCAL/F-MLOCAL-R003
 - should not reject a run that asks for near-duplicates by name without Ollama when the claude -p alternative is available → FEAT-MLOCAL/F-MLOCAL-R003
 - should not reject a run without selection when LanguageTool is not available, leaving every exercise unevaluated by grammar with the reason in view while the other analyzers run → FEAT-MLOCAL/F-MLOCAL-R003
 - should run grammar, naturalness and near-duplicates in an analyze without selection → FEAT-MLOCAL/F-MLOCAL-R004
+- should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 74.00% and levels 96.0, 93.6, 78.9 and 63.9 → FEAT-RONDA1/F-RONDA1-R008
+- should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 74.07% and levels 96.5, 94.2, 79.5 and 63.5 → FEAT-RONDA1/F-RONDA1-R008
+- should publish on the 29/9 course with the twenty analyzers a vocabulary of 74.00 % and levels 96.02, 93.60, 78.87 and 63.86 → FEAT-RONDA2/F-RONDA2-R010
 
 ### DefaultCocaBucketsConfig
 
