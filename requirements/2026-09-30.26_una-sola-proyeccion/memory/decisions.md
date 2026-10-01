@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — F-PROYU-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
+  why: cruza get consolidated, save-projection, plan --audit, get audits y prune audits, package-private ahí (como F-JEXAM-J001 y F-CDIFF-J001); el proyector se alcanza por su fábrica pública.
+2026-10-01 — qa-tester — Para el analista: R003 dice «0 si no se pide» y F-RONDA2-R002, que lo local no tiene tope sin --budget. ¿La proyección corre naturalness y near-duplicates con Ollama sin tope (como analyze, R001) o con 0? Las pruebas de R003 fijan sólo claude -p, donde coinciden.
+2026-10-01 — qa-tester — R007, «el número de cada nivel es el puntaje de vocabulario publicado», no se repite: ya lo fija la prueba de F-HALL-R010 en DefaultImpactPreviewComputer.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): GetConsolidatedCommand repite sealed: true (el apply la abría, bug 09) y nodeFieldDiffer conserva su descripción. La medida de cada analizador en el informe (F-01 a F-04) es F-RONDA2-R004; el caché por oración (F-07), R005.
 
 2026-09-30 — analyst — Duda nueva DOUBT-LINEA-BASE-TANDAS (OPEN, recomendada A: fijar como línea base un análisis nuevo con la ronda 1 integrada, no el del 29/9, que no trae hallazgos, errores ni medida).

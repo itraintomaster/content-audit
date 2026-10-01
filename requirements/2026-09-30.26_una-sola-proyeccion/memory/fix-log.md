@@ -5,6 +5,10 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — Antes de proponer, copia del parche y del TECH_SPEC (bug 08); comparado después con comparar.py del integrador: 0 perdidos, domainLinks 1 → 1 y glossarySuggestions 2 → 2 (están en modelos y campos, que el parche de pruebas no toca).
+  why: la fusión los pierde sólo en las implementaciones que toca; el parche del qa-tester no declara patterns, así que el bug 11 tampoco aplica.
+2026-10-01 — qa-tester — «reglas sin prueba en el parche (aviso)» de Aplicar sale 7 aunque las 7 tengan prueba: TestCoverageValidator cuenta sólo DeclarativeTest. La cobertura de handwrittenTests se mira con Revisar, sección 5.
+
 2026-09-30 — analyst — `requirement validate --file` pide la carpeta del requirement, no el REQUIREMENT.md («Not a directory» si se le pasa el archivo). Se corrió sobre una copia del worktree en el scratchpad.
   why: la regla del paquete: nada de Sentinel que escriba fuera de la carpeta del requirement.
 
