@@ -1,5 +1,8 @@
 package com.learney.contentaudit.revisiondomain.preservationengine;
 
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import java.util.EnumSet;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,7 +29,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -637,17 +639,67 @@ public class DefaultPreservationCheckTest {
     @DisplayName("should report a violation when the translation of «I ___ a lot of vegetables.» changes and only its hint is changeable, and none when the translation is in the union of its tasks")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldReportAViolationWhenTheTranslationOfIALotOfVegetablesChangesAndOnlyItsHintIsChangeableAndNoneWhenTheTranslationIsInTheUnionOfItsTasks() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TAREA-R006: the fix of «I ___ a lot of vegetables.» writes the hint «(love)» and a new translation. With only the
+        // hint changeable, the translation is a violation; with the union of its tasks -- the hint and the translation --,
+        // nothing is.
+        QuizTemplateEntity before = vegetablesQuiz("a lot of vegetables.", "love", "Me gustan mucho las verduras.");
+        QuizTemplateEntity after = vegetablesQuiz("(love) a lot of vegetables.", "love", "Amo muchas verduras.");
+        CourseEntity courseBefore = courseOf("course-1", List.of("k-afirmativas"), knowledge("k-afirmativas", "Afirmativas regulares", before));
+        CourseEntity courseAfter = courseOf("course-1", List.of("k-afirmativas"), knowledge("k-afirmativas", "Afirmativas regulares", after));
+        CourseElementSnapshot revised = new CourseElementSnapshot(AuditTarget.QUIZ, VEGETABLES, after, null);
+        DefaultCorrectionScope parts = new DefaultCorrectionScope();
+
+        List<PreservationViolation> hintOnly = buildCheck().verifyWithin(courseBefore, courseAfter, revised,
+                parts.changeableFields(EnumSet.of(ExercisePart.HINT), AuditTarget.QUIZ));
+        List<PreservationViolation> union = buildCheck().verifyWithin(courseBefore, courseAfter, revised,
+                parts.changeableFields(EnumSet.of(ExercisePart.HINT, ExercisePart.TRANSLATION), AuditTarget.QUIZ));
+
+        assertEquals(List.of("translation"), hintOnly.stream().map(PreservationViolation::getPath).toList(),
+                "only the hint may change: the translation is a violation");
+        assertEquals("Amo muchas verduras.", hintOnly.get(0).getAfterValue());
+        assertTrue(union.isEmpty(), "the translation is in the union of its tasks: " + union);
     }
 
     @Test
     @DisplayName("should report a violation when what the audio says changes within a scope that does not carry the audio permission")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldReportAViolationWhenWhatTheAudioSaysChangesWithinAScopeThatDoesNotCarryTheAudioPermission() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-NOEMP-R004 through F-TAREA-R006: answers may change under a scope with ANSWERS, but if the first answer changes,
+        // what is heard changes too, and without the permission of the audio that is a violation at «(audio)». An alternative
+        // added after the first answer, or the same scope with AUDIO, is none.
+        QuizTemplateEntity before = vegetablesQuiz("a lot of vegetables.", "love", "Me gustan mucho las verduras.");
+        QuizTemplateEntity heardChanges = vegetablesQuiz("a lot of vegetables.", "eat", "Me gustan mucho las verduras.");
+        QuizTemplateEntity alternative = vegetablesQuiz("a lot of vegetables.", "love|adore", "Me gustan mucho las verduras.");
+        DefaultCorrectionScope parts = new DefaultCorrectionScope();
+        Set<ScopedField> answers = parts.changeableFields(EnumSet.of(ExercisePart.ANSWERS), AuditTarget.QUIZ);
+        Set<ScopedField> answersAndAudio = parts.changeableFields(EnumSet.of(ExercisePart.ANSWERS, ExercisePart.AUDIO), AuditTarget.QUIZ);
+
+        List<PreservationViolation> withoutPermission = verifyQuiz(before, heardChanges, answers);
+
+        assertEquals(List.of("(audio)"), withoutPermission.stream().map(PreservationViolation::getPath).toList(),
+                "what is heard changed without the permission of the audio");
+        assertEquals("I love a lot of vegetables.", withoutPermission.get(0).getBeforeValue());
+        assertEquals("I eat a lot of vegetables.", withoutPermission.get(0).getAfterValue());
+        assertTrue(verifyQuiz(before, heardChanges, answersAndAudio).isEmpty(), "with AUDIO among its parts, it may");
+        assertTrue(verifyQuiz(before, alternative, answers).isEmpty(), "an alternative after the first answer is not heard");
+    }
+
+
+    private static final String VEGETABLES = "67fab6d59930102295341ecd";
+
+    /** «I ___ a lot of vegetables.» with the given text after the gap, answers and translation; its stored sentence stays. */
+    private static QuizTemplateEntity vegetablesQuiz(String afterGap, String answers, String translation) {
+        return quiz(VEGETABLES, "k-afirmativas", "Afirmativas regulares", List.of("I love a lot of vegetables."),
+                translation, form("CLOZE", 1.0, "", "", text("I"), cloze(answers), text(afterGap)));
+    }
+
+    private List<PreservationViolation> verifyQuiz(QuizTemplateEntity before, QuizTemplateEntity after,
+            Set<ScopedField> changeable) {
+        CourseEntity courseBefore = courseOf("course-1", List.of("k-afirmativas"), knowledge("k-afirmativas", "Afirmativas regulares", before));
+        CourseEntity courseAfter = courseOf("course-1", List.of("k-afirmativas"), knowledge("k-afirmativas", "Afirmativas regulares", after));
+        return buildCheck().verifyWithin(courseBefore, courseAfter,
+                new CourseElementSnapshot(AuditTarget.QUIZ, VEGETABLES, after, null), changeable);
     }
 }

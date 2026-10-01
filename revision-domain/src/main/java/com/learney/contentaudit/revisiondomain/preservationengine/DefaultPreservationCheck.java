@@ -32,9 +32,49 @@ class DefaultPreservationCheck implements PreservationCheck {
     @Override
     public List<PreservationViolation> verify(CourseEntity courseBefore, CourseEntity courseAfter,
             CourseElementSnapshot revised, DiagnosisKind kind) {
+        return check(courseBefore, courseAfter, revised, scope.changeableFields(kind, revised.getNodeTarget()));
+    }
+
+    /**
+     * F-TAREA-R006: the same check, with the fields a batch declares for the exercise -- the union of what its tasks
+     * may touch, from {@link CorrectionScope#changeableFields(java.util.Set, AuditTarget)} --, and the permission of
+     * the audio: an exercise whose fix changes what is heard without {@code AUDIO} among its parts is a violation at
+     * {@code (audio)} (F-NOEMP-R004), even when every changed field was declared.
+     */
+    @Override
+    public List<PreservationViolation> verifyWithin(CourseEntity courseBefore, CourseEntity courseAfter,
+            CourseElementSnapshot revised, Set<ScopedField> changeable) {
+        Set<ScopedField> declared = changeable != null ? changeable : Set.of();
+        List<PreservationViolation> violations = check(courseBefore, courseAfter, revised, declared);
+        if (revised.getNodeTarget() == AuditTarget.QUIZ && !containsPath(declared, DefaultCorrectionScope.AUDIO_PERMISSION)) {
+            QuizTemplateEntity before = findQuiz(courseBefore, revised.getNodeId());
+            QuizTemplateEntity after = findQuiz(courseAfter, revised.getNodeId());
+            if (before != null && after != null) {
+                String heardBefore = HeardSentence.of(before);
+                String heardAfter = HeardSentence.of(after);
+                if (!HeardSentence.normalized(heardBefore).equals(HeardSentence.normalized(heardAfter))) {
+                    violations.add(new PreservationViolation(revised.getNodeId(), DefaultCorrectionScope.AUDIO_PERMISSION,
+                            AttributeState.VALUE_PRESENT, AttributeState.VALUE_PRESENT, heardBefore, heardAfter));
+                }
+            }
+        }
+        return violations;
+    }
+
+    private static QuizTemplateEntity findQuiz(CourseEntity course, String quizId) {
+        for (KnowledgeEntity knowledge : CourseElementFieldDiff.collectKnowledges(course).values()) {
+            QuizTemplateEntity quiz = CourseElementFieldDiff.indexQuizzes(knowledge).get(quizId);
+            if (quiz != null) {
+                return quiz;
+            }
+        }
+        return null;
+    }
+
+    private List<PreservationViolation> check(CourseEntity courseBefore, CourseEntity courseAfter,
+            CourseElementSnapshot revised, Set<ScopedField> declaredScope) {
         List<PreservationViolation> violations = new ArrayList<>();
         AuditTarget target = revised.getNodeTarget();
-        Set<ScopedField> declaredScope = scope.changeableFields(kind, target);
 
         Map<String, KnowledgeEntity> knowledgesBefore = CourseElementFieldDiff.collectKnowledges(courseBefore);
         Map<String, KnowledgeEntity> knowledgesAfter = CourseElementFieldDiff.collectKnowledges(courseAfter);
@@ -109,9 +149,5 @@ class DefaultPreservationCheck implements PreservationCheck {
         return scope.stream().anyMatch(field -> path.equals(field.getPath()));
     }
 
-    @Override
-    public List<PreservationViolation> verifyWithin(CourseEntity courseBefore, CourseEntity courseAfter, CourseElementSnapshot revised, Set<ScopedField> changeable) {
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
 
 }

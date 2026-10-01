@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.auditcli.commands.FTareaJ001JourneyTest.Tarea;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -509,8 +511,25 @@ public class PlanCmdTest {
     @DisplayName("should print after deriving the plan, for each error analyzer, its counting findings, own tasks, covered findings and unconverted findings with their reason")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldPrintAfterDerivingThePlanForEachErrorAnalyzerItsCountingFindingsOwnTasksCoveredFindingsAndUnconvertedFindingsWithTheirReason() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TAREA-R001 (hook E-08): after deriving the plan it prints, per analyzer of errors, its findings that count and how
+        // they add up: own tasks (the vegetables), covered (off-level-words, by LEMMA_ABSENCE) and unconverted with the reason
+        // (exact-duplicates, without a task kind here).
+        Tarea t = new Tarea();
+        t.reports.put("2026-09-30T11-54-02", new AuditReport(t.course(t.level("A1", t.topic("t-ps", "Present Simple",
+                t.vegetables(), t.duplicates())), t.level("A2", t.topic("t-adj", "Adjectives", t.quilt())))));
+
+        Base299.Captured run = Base299.run(t.planCmd(), "--audit", "2026-09-30T11-54-02");
+
+        assertEquals(0, run.exit(), run.err());
+        String err = run.err();
+        assertTrue(err.contains("Hallazgos de errores del plan (que cuentan = tareas + cubiertos + no convertidos):"), err);
+        assertTrue(err.matches("(?s).*off-level-words\\s+2 = 0 \\+ 2 \\+ 0\n.*"), "covered: " + err);
+        assertTrue(err.matches("(?s).*hint-coherence\\s+1 = 1 \\+ 0 \\+ 0\n.*"), "own: " + err);
+        assertTrue(err.matches("(?s).*exact-duplicates\\s+2 = 0 \\+ 0 \\+ 2\\s+no convertidos: su ficha no declara un tipo de tarea.*"),
+                "unconverted with the reason: " + err);
+        assertTrue(err.matches("(?s).*translation-sense\\s+1 = 1 \\+ 0 \\+ 0\n.*"), err);
+        assertTrue(err.matches("(?s).*single-answer\\s+1 = 1 \\+ 0 \\+ 0\n.*"), err);
+        assertTrue(run.out().indexOf("Refinement plan created") >= 0, "and the plan is printed as today: " + run.out());
     }
 }

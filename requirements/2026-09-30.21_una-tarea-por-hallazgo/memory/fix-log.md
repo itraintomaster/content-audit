@@ -5,6 +5,11 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — test-writer (construcción E) — Los fixtures de get, plan y J001 viven en
+  `FTareaJ001JourneyTest.Tarea` (como `AnalyzeCmdTest.Base299`): catálogo de mentira con ligaduras, declaraciones de
+  verdad, el plan de verdad, almacenes de mentira y la CLI por picocli (`Base299.run`). Sin mocks con stubs: la
+  extensión estricta de Mockito de GetCmdTest rompe con stubs sin usar.
+
 2026-10-01 — qa-tester — Antes de proponer, qa-E2/chequear.py contra el modelo anterior de la cadena: que cada implementación
   con pruebas exista (si no, el apply la crea vacía), que ningún nombre ya exista (el merge pisaría su traza) y que ningún
   método derivado se repita. Después, comparar.py contra la copia de antes: sin pérdidas (bug 08 no muerde: ninguna
