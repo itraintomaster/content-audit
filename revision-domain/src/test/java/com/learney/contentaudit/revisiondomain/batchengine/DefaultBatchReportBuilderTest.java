@@ -1,7 +1,40 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.coursedomain.FormKind;
+import com.learney.contentaudit.revisiondomain.batch.AnalyzerLevelErrors;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchReport;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batch.OutcomeCount;
+import com.learney.contentaudit.revisiondomain.batch.QueriesByRole;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
+import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
+import com.learney.contentaudit.revisiondomain.comparison.RowValue;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
+import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
+import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,47 +48,154 @@ public class DefaultBatchReportBuilderTest {
     @DisplayName("should count the tasks of the batch by outcome, resolved by rule, resolved by the panel, no longer holds, covered, no winner, tie, returned without attempts, no declared scope, pending rerecording and not attempted, adding up to its tasks")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldCountTheTasksOfTheBatchByOutcomeResolvedByRuleResolvedByThePanelNoLongerHoldsCoveredNoWinnerTieReturnedWithoutAttemptsNoDeclaredScopePendingRerecordingAndNotAttemptedAddingUpToItsTasks(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010: each task of the batch has one outcome at a time, and the outcomes add up to its tasks.
+        CorrectionBatch batch = TandaFixture.batch("tanda-a1");
+        int[] times = {1, 3, 4, 1, 2, 2, 1, 1, 1, 2, 1};
+        List<String> taskIds = new ArrayList<>();
+        BatchTaskOutcomeKind[] kinds = BatchTaskOutcomeKind.values();
+        for (int k = 0; k < kinds.length; k++) {
+            for (int i = 0; i < times[k]; i++) {
+                String taskId = "t-" + kinds[k].name().toLowerCase() + "-" + i;
+                taskIds.add(taskId);
+                if (kinds[k] != BatchTaskOutcomeKind.PENDING) {
+                    BatchBook.setOutcome(batch, taskId, kinds[k], null, 1, null);
+                }
+            }
+        }
+        batch.setTaskIds(taskIds);
+
+        BatchReport report = new DefaultBatchReportBuilder().build(batch);
+
+        assertEquals(19, report.getTotalTasks());
+        List<OutcomeCount> expected = new ArrayList<>();
+        for (int k = 0; k < kinds.length; k++) {
+            expected.add(new OutcomeCount(kinds[k], times[k]));
+        }
+        assertEquals(expected, report.getOutcomes(), "every outcome, the ones with no task too");
+        assertEquals(report.getTotalTasks(), report.getOutcomes().stream().mapToInt(OutcomeCount::getTasks).sum(),
+                "they add up to its tasks");
     }
 
     @Test
     @DisplayName("should count apart the exercises of José's order on «Contracciones» done and those without winner")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldCountApartTheExercisesOfJossOrderOnContraccionesDoneAndThoseWithoutWinner() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010 and F-MESA-R015: José's order on «Contracciones» is not a task. Two of its exercises passed to multiple choice;
+        // the third found no winner. They are counted apart, and the tasks still add up without them.
+        CorrectionBatch batch = TandaFixture.batch("tanda-a1", "t-respuesta");
+        BatchBook.setOutcome(batch, "t-respuesta", BatchTaskOutcomeKind.RESOLVED_BY_PANEL, "mesa-1", 1, null);
+        batch.setConversionOrders(new ArrayList<>(List.of(new ConversionOrder(MesaFixture.CONTRACCIONES,
+                FormKind.MULTIPLE_CHOICE, 3))));
+        PanelCandidate converted = new PanelCandidate(PanelCandidateKind.MULTIPLE_CHOICE_CONVERSION, null, null, null,
+                "pasa a opción múltiple");
+        batch.setPanelDecisions(new ArrayList<>(List.of(
+                new PanelDecision(MesaFixture.CONTRACCIONES, List.of("67fab6d59930102295343101", "67fab6d59930102295343103"),
+                        List.of(), PanelOutcomeKind.ACCEPTED, converted, null, List.of(), 1, List.of(), null, null, List.of(), 5),
+                new PanelDecision(MesaFixture.CONTRACCIONES, List.of("67fab6d59930102295343102"), List.of(),
+                        PanelOutcomeKind.NO_WINNER, null, null, List.of(), 3, List.of(), converted, null, List.of(), 15))));
+
+        BatchReport report = new DefaultBatchReportBuilder().build(batch);
+
+        assertEquals(2, report.getConversionDone());
+        assertEquals(1, report.getConversionNoWinner());
+        assertEquals(1, report.getTotalTasks(), "the order is not a task");
     }
 
     @Test
     @DisplayName("should give per analyzer and level the exercises with error before and after, taken from the comparison of F")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldGivePerAnalyzerAndLevelTheExercisesWithErrorBeforeAndAfterTakenFromTheComparisonOfF(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010: per analyzer and level, the exercises with an error at the batch start and after it, as F compared them --
+        // copied from its rows, never recalculated; the rows of a topic and those of vocabulary are not these.
+        CorrectionBatch batch = TandaFixture.batch("tanda-a1");
+        BatchComparison comparison = TandaFixture.passing(null, List.of());
+        comparison.setRows(new ArrayList<>(List.of(
+                row("hint-coherence", AnalyzerFamily.ERRORS, AuditTarget.MILESTONE, GoalUnit.EXERCISES, 12.0, 3.0),
+                row("algún error", AnalyzerFamily.ERRORS, AuditTarget.MILESTONE, GoalUnit.EXERCISES, 40.0, 31.0),
+                row("hint-coherence", AnalyzerFamily.ERRORS, AuditTarget.TOPIC, GoalUnit.EXERCISES, 5.0, 1.0),
+                row("vocabulario", AnalyzerFamily.VOCABULARY, AuditTarget.MILESTONE, GoalUnit.POINTS, 96.54, 96.5))));
+        batch.setClosings(new ArrayList<>(List.of(new BatchClosing(TandaFixture.OPENED_AT, null, comparison, null, List.of(),
+                1))));
+
+        BatchReport report = new DefaultBatchReportBuilder().build(batch);
+
+        assertEquals(List.of(new AnalyzerLevelErrors("hint-coherence", CefrLevel.A1, 12, 3),
+                new AnalyzerLevelErrors("algún error", CefrLevel.A1, 40, 31)), report.getErrorsByAnalyzer());
     }
 
     @Test
     @DisplayName("should list the audios to rerecord, as the four of the vegetables fixes, the queries by role and the hours")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldListTheAudiosToRerecordAsTheFourOfTheVegetablesFixesTheQueriesByRoleAndTheHours(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010: the four fixes of the vegetables change what is heard: four audios to record, each with its new text. A change
+        // José dropped asks nothing. 38 queries: 8 of the proposer, 30 of the judges; 0,2 hours at 19 seconds a query.
+        CorrectionBatch batch = TandaFixture.batch("tanda-a1");
+        String[][] fixes = {{"67fab6d59930102295341ec4", "My grandmother comes every year."},
+                {"67fab6d59930102295341ecb", "We know each other."}, {MesaFixture.VEGETABLES, "I love vegetables."},
+                {"67fab6d59930102295341ed6", "She wears hats."}};
+        List<BatchChange> changes = new ArrayList<>();
+        List<AudioRerecordRequest> expected = new ArrayList<>();
+        for (String[] fix : fixes) {
+            AudioRerecordRequest request = new AudioRerecordRequest(fix[0], MesaFixture.audioKey(fix[0]), List.of(fix[1]));
+            expected.add(request);
+            BatchChange change = TandaFixture.change("mesa-" + fix[0], BatchChangeOrigin.PANEL, null, List.of());
+            change.setGateVerdict(new ChangeGateVerdict(true, List.of(), List.of(), List.of(), List.of(request), List.of(),
+                    List.of()));
+            changes.add(change);
+        }
+        BatchChange dropped = TandaFixture.change("mesa-otro", BatchChangeOrigin.PANEL, null, List.of());
+        dropped.setGateVerdict(new ChangeGateVerdict(true, List.of(), List.of(), List.of(), List.of(new AudioRerecordRequest(
+                MesaFixture.COME, MesaFixture.audioKey(MesaFixture.COME), List.of("Winter comes every year."))), List.of(),
+                List.of()));
+        dropped.setDroppedReason("lo sacó José");
+        changes.add(dropped);
+        batch.setChanges(changes);
+        batch.setPanelDecisions(new ArrayList<>(List.of(
+                new PanelDecision(MesaFixture.AFIRMATIVAS, List.of(MesaFixture.VEGETABLES), List.of(), PanelOutcomeKind.ACCEPTED,
+                        null, null, List.of(), 5, List.of(), null, null, List.of(), 25),
+                new PanelDecision(MesaFixture.CONTRASTE, List.of(), List.of(), PanelOutcomeKind.TIE, null, null, List.of(), 3,
+                        List.of(), null, null, List.of(), 13))));
+        batch.setQueriesSpent(38);
+
+        BatchReport report = new DefaultBatchReportBuilder().build(batch);
+
+        assertEquals(expected, report.getRerecords(), "the four audios, each with its new text");
+        assertEquals(new QueriesByRole(8, 30), report.getQueries());
+        assertEquals(0.2, report.getHours(), 1e-9);
     }
 
     @Test
     @DisplayName("should list José's decisions on the batch")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldListJossDecisionsOnTheBatch() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010: what José decided on the batch, as he decided it.
+        CorrectionBatch batch = TandaFixture.batch("tanda-a1");
+        List<BatchAdjustment> decisions = List.of(
+                new BatchAdjustment(BatchAdjustmentKind.ACCEPT_AS_EXCEPTION, MesaFixture.COME, List.of("t-come"), null, null,
+                        null, null, "la abuela queda: es A2 pero se enseña en el tema", "José",
+                        Instant.parse("2026-10-01T15:00:00Z")),
+                new BatchAdjustment(BatchAdjustmentKind.DROP_RULE, null, List.of(), null, "mayusculas", null, null,
+                        "las opciones van en minúscula", "José", Instant.parse("2026-10-01T15:05:00Z")));
+        batch.setAdjustments(new ArrayList<>(decisions));
+
+        BatchReport report = new DefaultBatchReportBuilder().build(batch);
+
+        assertEquals(decisions, report.getJoseDecisions());
+    }
+
+
+    private static ComparisonRow row(String subject, AnalyzerFamily family, AuditTarget target, GoalUnit unit,
+            double before, double after) {
+        return new ComparisonRow(subject, family, target, target == AuditTarget.MILESTONE ? "m-a1" : "t-present", "A1",
+                new RowValue(before, null, 0), null, new RowValue(before, null, 0), new RowValue(after, null, 0),
+                after - before, unit, null, null);
     }
 }

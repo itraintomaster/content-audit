@@ -1,7 +1,63 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.cloze;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.text;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.withParts;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditdomain.AuditEngine;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.Baseline;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.refinerdomain.PlanFindingTally;
+import com.learney.contentaudit.refinerdomain.RefinementPlan;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.refinerdomain.RefinerEngine;
+import com.learney.contentaudit.refinerdomain.UnconvertedScoreCount;
+import com.learney.contentaudit.revisiondomain.RevisionArtifact;
+import com.learney.contentaudit.revisiondomain.RevisionOutcomeKind;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
+import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchNotPublishableException;
+import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
+import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationFactory;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,67 +71,361 @@ public class DefaultBatchPublisherTest {
     @DisplayName("should write the course once with every accepted change left in the batch and no other, checking for each exercise that only what its steps declare changed")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldWriteTheCourseOnceWithEveryAcceptedChangeLeftInTheBatchAndNoOtherCheckingForEachExerciseThatOnlyWhatItsStepsDeclareChanged(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009 inv. 1: publishing writes the course once, with every accepted change left in the batch -- the vegetables --
+        // and no other -- not the grandmother José dropped --, checking that in each exercise only what its steps declare
+        // changed. A rule of the hint that also touched the answer does not publish, and nothing is written.
+        Publishing publishing = new Publishing();
+        CorrectionBatch batch = publishing.closedBatch();
+
+        batch = publishing.publisher().publish(batch, new BatchPublishRequest("José", "la primera tanda", List.of()),
+                publishing.start);
+
+        assertEquals(1, publishing.courses.written.size(), "written once");
+        CourseEntity written = publishing.courses.written.get(0);
+        assertEquals(List.of("I love vegetables."), TandaFixture.exercise(written, MesaFixture.VEGETABLES).getSentences());
+        assertEquals(json(TandaFixture.exercise(publishing.start, MesaFixture.COME)),
+                json(TandaFixture.exercise(written, MesaFixture.COME)), "the dropped grandmother is not written");
+        assertEquals(List.of(P_VEGETABLES), batch.getPublication().getAppliedProposalIds());
+        RevisionArtifact applied = publishing.artifacts.load(TandaFixture.PLAN, P_VEGETABLES).orElseThrow();
+        assertEquals(RevisionVerdict.APPROVED, applied.getVerdict());
+        assertEquals(RevisionOutcomeKind.APPROVED_APPLIED, applied.getOutcome());
+        assertEquals(BatchStatus.PUBLISHED, batch.getStatus());
+
+        Publishing touched = new Publishing();
+        CorrectionBatch wrong = touched.batch("t-pista");
+        QuizTemplateEntity hint = TandaFixture.edited(TandaFixture.exercise(touched.start, MesaFixture.VEGETABLES), q -> {
+            q.getForm().getSentenceParts().get(1).setOptions(new ArrayList<>(List.of("like")));
+            q.getForm().getSentenceParts().get(2).setText("(love) a lot of vegetables.");
+        });
+        touched.record(wrong, TandaFixture.change("regla-hint-coherence-" + MesaFixture.VEGETABLES, BatchChangeOrigin.RULE,
+                "hint-coherence", List.of("t-pista"), TandaFixture.step(hint, ExercisePart.HINT)));
+        touched.close(wrong);
+        CorrectionBatch toPublish = wrong;
+
+        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
+                () -> touched.publisher().publish(toPublish, new BatchPublishRequest("José", null, List.of()), touched.start));
+        assertTrue(refused.getMessage().contains("cambió lo que sus pasos no declaran: " + MesaFixture.VEGETABLES),
+                refused.getMessage());
+        assertTrue(touched.courses.written.isEmpty(), "nothing is written");
     }
 
     @Test
     @DisplayName("should complete the tasks whose findings no longer appear and put back to pending those without decision")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldCompleteTheTasksWhoseFindingsNoLongerAppearAndPutBackToPendingThoseWithoutDecision(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009 inv. 2: the tasks whose finding -- and what it covers -- no longer appears in the published analysis are
+        // completed; one that no longer holds is closed too; one without a decision goes back to pending.
+        Publishing publishing = new Publishing();
+        CorrectionBatch batch = publishing.closedBatch();
+        batch.setTaskIds(new ArrayList<>(List.of("t-pista", "t-respuesta", "t-traduccion", "t-reside")));
+        BatchBook.setOutcome(batch, "t-pista", BatchTaskOutcomeKind.RESOLVED_BY_RULE, null, 0, null);
+        BatchBook.setOutcome(batch, "t-traduccion", BatchTaskOutcomeKind.NO_WINNER, null, 3, null);
+        BatchBook.setOutcome(batch, "t-reside", BatchTaskOutcomeKind.NO_LONGER_HOLDS, null, 1, null);
+        publishing.remaining = List.of(MesaFixture.translationDiffers(), LEMMA, OFF_LEVEL);
+
+        batch = publishing.publisher().publish(batch, new BatchPublishRequest("José", null, List.of()), publishing.start);
+
+        assertEquals(List.of("t-pista", "t-respuesta", "t-reside"), batch.getPublication().getCompletedTaskIds());
+        assertEquals(List.of("t-traduccion"), batch.getPublication().getReopenedTaskIds());
+        RefinementPlan plan = publishing.plans.load(TandaFixture.PLAN).orElseThrow();
+        assertEquals(RefinementTaskStatus.COMPLETED, status(plan, "t-pista"));
+        assertEquals(RefinementTaskStatus.COMPLETED, status(plan, "t-respuesta"));
+        assertEquals(RefinementTaskStatus.PENDING, status(plan, "t-traduccion"), "no winner: pending again");
+        assertEquals(RefinementTaskStatus.STALE, status(plan, "t-reside"), "it no longer holds");
     }
 
     @Test
     @DisplayName("should analyze the written course with the same analyzers and get the same findings and numbers as the recalculation that passed the gate")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldAnalyzeTheWrittenCourseWithTheSameAnalyzersAndGetTheSameFindingsAndNumbersAsTheRecalculationThatPassedTheGate(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009 inv. 3: the written course is analyzed with the analyzers of the batch, every judge with budget 0 -- it reuses
+        // what it recorded --, and it gives what the recalculation gave: the same course, the same measure.
+        Publishing publishing = new Publishing();
+        CorrectionBatch batch = publishing.closedBatch();
+        publishing.remaining = List.of(MesaFixture.translationDiffers());
+        AuditReport recalculated = publishing.measure(publishing.ledger().composedCourse(batch, publishing.start));
+
+        batch = publishing.publisher().publish(batch, new BatchPublishRequest("José", null, List.of()), publishing.start);
+
+        assertEquals(List.of(publishing.courses.written.get(0)), publishing.mapped, "the course as it was written");
+        AnalyzerRunSelection selection = publishing.selections.get(0);
+        assertEquals(batch.getAnalyzers(), selection.getAnalyzers(), "the same analyzers");
+        for (EvaluationRunPolicy policy : selection.getPolicies().values()) {
+            assertEquals(0, policy.getMaxNewEvaluations(), "no judge consults: they reuse what they recorded");
+        }
+        AuditReport published = publishing.reports.load(batch.getPublication().getPublishedAuditId()).orElseThrow();
+        assertEquals(identities(recalculated), identities(published), "the same findings");
+        assertEquals(json(publishing.courses.written.get(0)), json(publishing.ledger().composedCourse(batch, publishing.start)),
+                "the same course the recalculation measured");
     }
 
     @Test
     @DisplayName("should move the active pair to the published analysis and its plan, from where the next batch opens, and leave the baseline where it was")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldMoveTheActivePairToThePublishedAnalysisAndItsPlanFromWhereTheNextBatchOpensAndLeaveTheBaselineWhereItWas(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009 inv. 3 and 4: the active pair moves to the published analysis and its plan -- where the next batch opens --;
+        // the baseline does not move: the publisher does not even hold it.
+        Publishing publishing = new Publishing();
+        CorrectionBatch batch = publishing.closedBatch();
+        TandaFixture.Baselines baselines = new TandaFixture.Baselines(new Baseline(TandaFixture.BASELINE,
+                Instant.parse("2026-09-29T08:00:00Z")));
+
+        batch = publishing.publisher().publish(batch, new BatchPublishRequest("José", null, List.of()), publishing.start);
+
+        assertEquals(batch.getPublication().getPublishedAuditId(), publishing.active.selection.getAuditId());
+        assertEquals(batch.getPublication().getPublishedPlanId(), publishing.active.selection.getPlanId());
+        assertTrue(publishing.reports.load(publishing.active.selection.getAuditId()).isPresent(), "the analysis is saved");
+        assertTrue(publishing.plans.load(publishing.active.selection.getPlanId()).isPresent(), "and its plan");
+        assertEquals(TandaFixture.BASELINE, baselines.read().orElseThrow().getAuditId(), "the baseline where it was");
     }
 
     @Test
     @DisplayName("should compare again before publishing when the batch changed since its last closing")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldCompareAgainBeforePublishingWhenTheBatchChangedSinceItsLastClosing() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: José dropped a change after the closing: the verdict of the closing is not the batch's any more. The publisher
+        // asks F again; F does not give «pasa», and nothing is written. Without changes since the closing, it does not ask.
+        Publishing publishing = new Publishing();
+        CorrectionBatch batch = publishing.closedBatch();
+        batch.setAdjustments(new ArrayList<>(List.of(new BatchAdjustment(BatchAdjustmentKind.DROP_CHANGE, MesaFixture.COME,
+                List.of(), "mesa-otro", null, null, null, "no", "José", CLOSED_AT.plusSeconds(60)))));
+        publishing.comparator.answer = scope -> TandaFixture.comparison(scope, List.of(), VerdictKind.BLIND_SAMPLE_MISSING);
+
+        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
+                () -> publishing.publisher().publish(batch, new BatchPublishRequest("José", null, List.of()), publishing.start));
+
+        assertEquals(1, publishing.comparator.scopes.size(), "compared again");
+        assertEquals(List.of(P_VEGETABLES), publishing.comparator.scopes.get(0).getProposalIds());
+        assertTrue(refused.getMessage().contains("el veredicto de F es «BLIND_SAMPLE_MISSING», no «pasa»"), refused.getMessage());
+        assertTrue(publishing.courses.written.isEmpty());
+
+        Publishing unchanged = new Publishing();
+        CorrectionBatch same = unchanged.closedBatch();
+        unchanged.publisher().publish(same, new BatchPublishRequest("José", null, List.of()), unchanged.start);
+        assertTrue(unchanged.comparator.scopes.isEmpty(), "nothing changed since its closing: its verdict stands");
+        assertEquals(BatchStatus.PUBLISHED, same.getStatus());
     }
 
     @Test
     @DisplayName("should write only the course of content-audit at its path and nothing in production")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldWriteOnlyTheCourseOfContentauditAtItsPathAndNothingInProduction() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009 inv. 5: the only course written is the one of content-audit, at its path. Taking it to production and
+        // recording the audios are José's steps: the publisher has no port to production, and the audios stay pending.
+        Publishing publishing = new Publishing();
+        CorrectionBatch batch = publishing.closedBatch();
+
+        batch = publishing.publisher().publish(batch, new BatchPublishRequest("José", null, List.of()), publishing.start);
+
+        assertEquals(List.of(TandaFixture.COURSE_PATH), publishing.courses.paths, "the course of content-audit, once");
+        assertEquals(1, batch.getPublication().getRerecords().size(), "the audio of the vegetables, still to record");
     }
 
     @Test
     @DisplayName("should leave pending, when it publishes, the rerecordings asked by its accepted changes and by its rule fixes")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R012")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldLeavePendingWhenItPublishesTheRerecordingsAskedByItsAcceptedChangesAndByItsRuleFixes(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R012 inv. 1: the publication keeps pending the audios its accepted changes asked to record -- the vegetables --
+        // and the ones its rule fixes asked -- «I learned myself to drive a car.» --; not the one of a change José dropped.
+        Publishing publishing = new Publishing(TandaFixture.withLearned(TandaFixture.course()));
+        CorrectionBatch batch = publishing.closedBatch();
+        batch.getTaskIds().add("t-audio");
+        BatchChange rule = TandaFixture.change("regla-data-coherence-" + TandaFixture.LEARNED, BatchChangeOrigin.RULE,
+                "data-coherence", List.of("t-audio"), new BatchChangeStep(TandaFixture.LEARNED, new ArrayList<>(),
+                        new com.learney.contentaudit.revisiondomain.CourseElementSnapshot(
+                                com.learney.contentaudit.auditdomain.AuditTarget.QUIZ, TandaFixture.LEARNED,
+                                TandaFixture.exercise(publishing.start, TandaFixture.LEARNED), null)));
+        AudioRerecordRequest learned = new AudioRerecordRequest(TandaFixture.LEARNED, MesaFixture.audioKey(TandaFixture.LEARNED),
+                List.of("I learned myself to drive a car."));
+        rule.setGateVerdict(new ChangeGateVerdict(true, List.of(), List.of(), List.of(), List.of(learned), List.of(), List.of()));
+        publishing.record(batch, rule);
+
+        batch = publishing.publisher().publish(batch, new BatchPublishRequest("José", null, List.of()), publishing.start);
+
+        assertEquals(List.of(VEGETABLES_AUDIO, learned), batch.getPublication().getRerecords());
+    }
+
+
+    private static final String P_VEGETABLES = "tanda-a1-" + MesaFixture.VEGETABLES;
+
+    private static final String P_COME = "tanda-a1-" + MesaFixture.COME;
+
+    private static final Instant CLOSED_AT = TandaFixture.OPENED_AT.plusSeconds(3600);
+
+    private static final AudioRerecordRequest VEGETABLES_AUDIO = new AudioRerecordRequest(MesaFixture.VEGETABLES,
+            MesaFixture.audioKey(MesaFixture.VEGETABLES), List.of("I love vegetables."));
+
+    private static final Finding LEMMA = MesaFixture.finding("lemma-absence", "misplaced-word", TandaFixture.RESIDE,
+            FindingSeverity.MEDIUM, FindingResolution.PANEL, "reside", "«reside» no es de A1");
+
+    private static final Finding OFF_LEVEL = MesaFixture.finding("off-level-words", "far-above-level", TandaFixture.RESIDE,
+            FindingSeverity.HIGH, FindingResolution.PANEL, "reside", "«reside» es de C1");
+
+    /** The publisher over the course in memory: its stores, an engine that measures the course it is given, the real check. */
+    private static final class Publishing {
+        final CourseEntity start;
+
+        final TandaFixture.Courses courses;
+
+        final TandaFixture.Artifacts artifacts = new TandaFixture.Artifacts();
+
+        final TandaFixture.Reports reports = new TandaFixture.Reports();
+
+        final TandaFixture.ActivePair active = new TandaFixture.ActivePair();
+
+        final TandaFixture.Comparator comparator = new TandaFixture.Comparator();
+
+        final TandaFixture.Plans plans = new TandaFixture.Plans(TandaFixture.plan(
+                TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-respuesta", MesaFixture.anotherAnswer(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-traduccion", MesaFixture.translationDiffers(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.covering("t-reside", LEMMA, List.of(OFF_LEVEL), TandaFixture.RESIDE_TOPIC),
+                TandaFixture.task("t-come", MesaFixture.finding("single-answer", "different-valid-answer",
+                        MesaFixture.COME, FindingSeverity.BLOCKING, FindingResolution.PANEL, null, "«goes» encaja"),
+                        MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-audio", TandaFixture.audioOfLearned(), TandaFixture.REFLEXIVE, CefrLevel.A1)));
+
+        final List<CourseEntity> mapped = new ArrayList<>();
+
+        final List<AnalyzerRunSelection> selections = new ArrayList<>();
+
+        /** What the published analysis still marks. */
+        List<Finding> remaining = new ArrayList<>();
+
+        Publishing() {
+            this(TandaFixture.course());
+        }
+
+        Publishing(CourseEntity start) {
+            this.start = start;
+            this.courses = new TandaFixture.Courses(start);
+        }
+
+        AuditReport measure(CourseEntity course) {
+            return TandaFixture.report(course, remaining, Map.of(), MesaFixture.ANALYZERS);
+        }
+
+        DefaultBatchChangeLedger ledger() {
+            return new DefaultBatchChangeLedger(artifacts, TandaFixture.locator());
+        }
+
+        DefaultBatchPublisher publisher() {
+            AuditEngine engine = new AuditEngine() {
+                @Override
+                public AuditReport runAudit(AuditableCourse course) {
+                    throw new AssertionError("the published course is analyzed with the analyzers of the batch");
+                }
+
+                @Override
+                public AuditReport runAudit(AuditableCourse course, AnalyzerRunSelection selection) {
+                    selections.add(selection);
+                    return measure(mapped.get(mapped.size() - 1));
+                }
+            };
+            RefinerEngine refiner = new RefinerEngine() {
+                @Override
+                public RefinementPlan plan(AuditReport report, String auditId) {
+                    return new RefinementPlan(null, auditId, Instant.parse("2026-10-01T18:00:00Z"), new ArrayList<>());
+                }
+
+                @Override
+                public Optional<RefinementTask> nextTask(RefinementPlan plan) {
+                    return Optional.empty();
+                }
+
+                @Override
+                public List<UnconvertedScoreCount> unconvertedScores(AuditReport report) {
+                    return List.of();
+                }
+
+                @Override
+                public List<PlanFindingTally> findingTally(AuditReport report, RefinementPlan plan) {
+                    return List.of();
+                }
+            };
+            return new DefaultBatchPublisher(ledger(), artifacts, courses, course -> {
+                mapped.add(course);
+                return new AuditableCourse(List.of());
+            }, engine, reports, refiner, plans, active, comparator, TandaFixture.correctionScope(),
+                    new DefaultPreservationFactory().createCheck(), TandaFixture.COURSE_PATH);
+        }
+
+        CorrectionBatch batch(String... taskIds) {
+            CorrectionBatch batch = TandaFixture.batch("tanda-a1", taskIds);
+            batch.setStatus(BatchStatus.RUNNING);
+            return batch;
+        }
+
+        void record(CorrectionBatch batch, BatchChange change) {
+            ledger().record(batch, change, start);
+        }
+
+        void close(CorrectionBatch batch) {
+            batch.setClosings(new ArrayList<>(List.of(new BatchClosing(CLOSED_AT, DefaultBatchCloser.scope(batch),
+                    TandaFixture.passing(DefaultBatchCloser.scope(batch), List.of()), new BatchGateVerdict(true,
+                    VerdictKind.PASSES, List.of(), List.of(), List.of(), List.of(), List.of(), List.of()), List.of(), 1))));
+            batch.setStatus(BatchStatus.CLOSED);
+        }
+
+        /**
+         * A closed batch that passed: the vegetables without «a lot of», with their request to record, and the
+         * grandmother, which José dropped before the closing.
+         */
+        CorrectionBatch closedBatch() {
+            CorrectionBatch batch = batch("t-respuesta", "t-come");
+            BatchChange vegetables = TandaFixture.change("mesa-" + MesaFixture.VEGETABLES, BatchChangeOrigin.PANEL, null,
+                    List.of("t-respuesta"), TandaFixture.step(withParts(TandaFixture.exercise(start,
+                            MesaFixture.VEGETABLES), text("I"), cloze("love"), text("vegetables.")),
+                            ExercisePart.STATEMENT));
+            vegetables.setGateVerdict(new ChangeGateVerdict(true, List.of(), List.of(), List.of(),
+                    List.of(VEGETABLES_AUDIO), List.of(), List.of()));
+            record(batch, vegetables);
+            BatchBook.setOutcome(batch, "t-respuesta", BatchTaskOutcomeKind.RESOLVED_BY_PANEL, vegetables.getChangeId(), 1,
+                    null);
+            BatchChange come = TandaFixture.change("mesa-" + MesaFixture.COME, BatchChangeOrigin.PANEL, null,
+                    List.of("t-come"), TandaFixture.step(withParts(TandaFixture.exercise(start, MesaFixture.COME),
+                            text("My grandmother"), cloze("comes"), text("(come) every year.")), ExercisePart.STATEMENT));
+            come.setGateVerdict(new ChangeGateVerdict(true, List.of(), List.of(), List.of(), List.of(
+                    new AudioRerecordRequest(MesaFixture.COME, MesaFixture.audioKey(MesaFixture.COME),
+                            List.of("My grandmother comes every year."))), List.of(), List.of()));
+            record(batch, come);
+            ledger().drop(batch, come.getChangeId(), "lo sacó José", start);
+            close(batch);
+            return batch;
+        }
+    }
+
+    private static Set<String> identities(AuditReport report) {
+        Set<String> identities = new TreeSet<>();
+        for (AuditNode node : BatchBook.nodes(report)) {
+            for (Finding finding : node.getFindings()) {
+                identities.add(BatchBook.identity(finding));
+            }
+        }
+        return identities;
+    }
+
+    private static RefinementTaskStatus status(RefinementPlan plan, String taskId) {
+        return plan.getTasks().stream().filter(t -> t.getId().equals(taskId)).findFirst().orElseThrow().getStatus();
+    }
+
+    private static String json(Object value) {
+        try {
+            return new ObjectMapper().writeValueAsString(value);
+        } catch (JsonProcessingException e) {
+            throw new AssertionError(e);
+        }
     }
 }

@@ -124,12 +124,14 @@ class DefaultBatchPublisher implements BatchPublisher {
     public CorrectionBatch publish(CorrectionBatch batch, BatchPublishRequest request,
             CourseEntity startCourse) {
         // Rules José left out before the OK go first, through the ledger.
+        boolean dropped = false;
         for (String ruleId : request != null ? BatchBook.list(request.getExcludedRuleIds()) : List.<String>of()) {
             for (BatchChange change : BatchBook.copy(batch.getChanges())) {
                 if (change != null && change.getDroppedReason() == null && change.getOrigin() == BatchChangeOrigin.RULE
                         && Objects.equals(change.getRuleId(), ruleId)) {
                     batch = changeLedger.drop(batch, change.getChangeId(), "José sacó la regla " + ruleId
                             + " al publicar", startCourse);
+                    dropped = true;
                 }
             }
         }
@@ -140,7 +142,7 @@ class DefaultBatchPublisher implements BatchPublisher {
             throw new BatchNotPublishableException(batch.getId(), "la tanda no se cerró: falta la comparación de F");
         }
         BatchComparison comparison = last.getComparison();
-        if (changedSince(batch, last)) {
+        if (dropped || changedSince(batch, last)) {
             comparison = batchComparator.compare(coursePath, DefaultBatchCloser.scope(batch));
         }
         VerdictKind kind = comparison != null && comparison.getVerdict() != null ? comparison.getVerdict().getKind() : null;
@@ -155,7 +157,7 @@ class DefaultBatchPublisher implements BatchPublisher {
         CourseEntity composed = changeLedger.composedCourse(batch, startCourse);
         List<String> violations = new ArrayList<>();
         for (BatchProposalRef ref : BatchBook.list(batch.getQuizProposals())) {
-            violations.addAll(preserved(batch, ref, startCourse, composed));
+            violations.addAll(preserved(batch, ref, startCourse, withOnly(batch, ref.getQuizId(), startCourse)));
         }
         if (!violations.isEmpty()) {
             throw new BatchNotPublishableException(batch.getId(), "cambió lo que sus pasos no declaran: "
@@ -220,6 +222,35 @@ class DefaultBatchPublisher implements BatchPublisher {
         }
         return BatchBook.list(batch.getAdjustments()).stream().anyMatch(a -> a != null && a.getDecidedAt() != null
                 && a.getDecidedAt().isAfter(closedAt));
+    }
+
+    /**
+     * The course as the batch opened with only this node as the batch leaves it: what each exercise may change is checked
+     * against a course where nothing else moved, so the changes of the other exercises are not read as its own.
+     */
+    private CourseEntity withOnly(CorrectionBatch batch, String nodeId, CourseEntity startCourse) {
+        List<BatchChange> mine = new ArrayList<>();
+        for (BatchChange change : BatchBook.list(batch.getChanges())) {
+            if (change == null || change.getDroppedReason() != null) {
+                continue;
+            }
+            List<BatchChangeStep> steps = new ArrayList<>();
+            for (BatchChangeStep step : BatchBook.list(change.getSteps())) {
+                if (step != null && Objects.equals(step.getQuizId(), nodeId)) {
+                    steps.add(step);
+                }
+            }
+            if (!steps.isEmpty()) {
+                mine.add(new BatchChange(change.getChangeId(), change.getOrigin(), change.getRuleId(),
+                        change.getKnowledgeId(), change.getTaskIds(), steps, change.getGateVerdict(),
+                        change.isJoseException(), change.getCreatedAt(), null));
+            }
+        }
+        CorrectionBatch view = new CorrectionBatch();
+        view.setId(batch.getId());
+        view.setPlanId(batch.getPlanId());
+        view.setChanges(mine);
+        return changeLedger.composedCourse(view, startCourse);
     }
 
     /** F-TANDA-R009: only what the steps of the exercise declare changed in it. */
