@@ -1,7 +1,48 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.cloze;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.text;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.withParts;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchReport;
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeAttribution;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
+import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
+import com.learney.contentaudit.revisiondomain.comparison.FloorBreach;
+import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
+import com.learney.contentaudit.revisiondomain.comparison.RowValue;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.nonregression.BatchGate;
+import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
+import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
+import com.learney.contentaudit.revisiondomain.nonregression.ReturnCause;
+import com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,27 +62,216 @@ public class FNoempJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: La tanda recalcula el curso entero co... → La compuerta lee la comparación de la... → La tanda queda en condiciones de publ... [No aparece ninguna identidad nueva, ningún conteo sube y el vocabulario queda dentro de la tolerancia] → success")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void path1_noApareceNingunaIdentidadNuevaNingnConteoSubeYElVocabularioQuedaDentroDeLaTolerancia_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // J001, path 1. The batch of A1 recalculates the course with its accepted changes: the vegetables without «a lot of»
+        // -- what is heard changes, so it carries its request to record «I love vegetables.» -- and «Winter ___ (come) every
+        // year.». F compares: no new identity, no count goes up, the vocabulary of the course stays. The gate passes and the
+        // batch is ready to publish, with the list of audios to record.
+        Journey journey = new Journey();
+        CorrectionBatch batch = journey.batch();
+        journey.comparator.answer = scope -> journey.comparison(scope,
+                List.of(outcome(P_VEGETABLES, MesaFixture.VEGETABLES, List.of()), outcome(P_COME, MesaFixture.COME, List.of())),
+                List.of(countRow("algún error", AnalyzerFamily.ERRORS, 12, 12),
+                        countRow("palabras rojas", AnalyzerFamily.VOCABULARY, 351, 351),
+                        pointsRow("vocabulario", 73.92, 73.92, 73.92)), List.of());
+
+        batch = journey.closer().close(batch, journey.course);
+
+        BatchClosing closed = batch.getClosings().get(batch.getClosings().size() - 1);
+        assertTrue(closed.getGate().isPasses(), closed.getGate().getReasons().toString());
+        assertTrue(closed.getGate().getReturned().isEmpty());
+        assertTrue(closed.getGate().getReasons().isEmpty());
+        assertEquals(1, closed.getRounds());
+        assertEquals(BatchStatus.CLOSED, batch.getStatus(), "ready to publish");
+        assertEquals("muestra-1", batch.getBlindSampleId(), "with the blind sample of its scope");
+        BatchReport report = new DefaultBatchReportBuilder().build(batch);
+        assertEquals(List.of(new AudioRerecordRequest(MesaFixture.VEGETABLES, MesaFixture.audioKey(MesaFixture.VEGETABLES),
+                List.of("I love vegetables."))), report.getRerecords(), "the list of audios to record");
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: La tanda recalcula el curso entero co... → La compuerta lee la comparación de la... → La compuerta nombra el número y devue... [Un cambio sumó una palabra roja o un error nuevo] → La tanda se recalcula sin los devuelt... → failure")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void path2_unCambioSumUnaPalabraRojaOUnErrorNuevo_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // J001, path 2. «My grandmother ___ (come) every year.» adds a red word: the exercises of A1 with red words go from
+        // 351 to 352. The gate names the number and returns the change with its reason and one attempt less; the batch is
+        // recalculated without it, and the same comparison gives the same verdict.
+        Journey journey = new Journey();
+        CorrectionBatch batch = journey.batch();
+        ComparisonRow redWords = countRow("palabras rojas", AnalyzerFamily.VOCABULARY, 351, 352);
+        List<BatchComparison> first = new ArrayList<>();
+        journey.comparator.answer = scope -> {
+            if (scope.getProposalIds().contains(P_COME)) {
+                BatchComparison comparison = journey.comparison(scope, List.of(
+                        outcome(P_VEGETABLES, MesaFixture.VEGETABLES, List.of()),
+                        outcome(P_COME, MesaFixture.COME, List.of(grandmother()))), List.of(redWords),
+                        List.of(new FloorBreach("piso-palabras-rojas-A1", redWords, List.of(new ChangeAttribution(P_COME,
+                                MesaFixture.COME, 1.0, GoalUnit.EXERCISES)))));
+                first.add(comparison);
+                return comparison;
+            }
+            return journey.comparison(scope, List.of(outcome(P_VEGETABLES, MesaFixture.VEGETABLES, List.of())),
+                    List.of(countRow("palabras rojas", AnalyzerFamily.VOCABULARY, 351, 351)), List.of());
+        };
+
+        batch = journey.closer().close(batch, journey.course);
+
+        BatchGateVerdict stopped = journey.verdicts.get(0);
+        assertFalse(stopped.isPasses());
+        assertEquals(ReturnCause.NEW_RED_WORD, stopped.getReturned().get(0).getCause());
+        assertTrue(stopped.getReasons().contains("F-NOEMP-R005 (inv. 3): ejercicios con palabras rojas en A1: 351 → 352"
+                + " contra el inicio de la tanda (tolerancia 0); devueltos: " + P_COME), stopped.getReasons().toString());
+        BatchTaskOutcome come = BatchBook.outcome(batch, "t-come").orElseThrow();
+        assertEquals(BatchTaskOutcomeKind.PENDING, come.getKind(), "back to the panel");
+        assertEquals(1, come.getAttempts(), "one attempt less");
+        assertTrue(come.getDetail().startsWith("F-NOEMP-R005: " + MesaFixture.COME + " gana una palabra roja de lemma-absence"),
+                come.getDetail());
+        assertEquals(List.of(P_VEGETABLES), journey.comparator.scopes.get(1).getProposalIds(), "recalculated without it");
+        assertTrue(journey.verdicts.get(1).isPasses());
+        BatchGateVerdict again = new DefaultGateFactory().batchGate().evaluate(first.get(0), List.of(), List.of());
+        assertEquals(stopped.getReturned(), again.getReturned(), "R009: the same comparison returns the same changes");
+        assertEquals(stopped.getReasons(), again.getReasons(), "with the same reasons");
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: La tanda recalcula el curso entero co... → La compuerta lee la comparación de la... → La compuerta nombra el número y devue... [Un número de vocabulario quedó más de medio punto por debajo de la línea base] → La tanda se recalcula sin los devuelt... → failure")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void path3_unNmeroDeVocabularioQuedMsDeMedioPuntoPorDebajoDeLaLneaBase_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // J001, path 3. The vocabulary of the course ends at 73,32, 0,6 points below the baseline of 73,92: more than the
+        // half point of tolerance. F ranks the vegetables as lowering it 0,4 and «Winter» 0,3; returning the vegetables is
+        // enough to bring it back within. The batch is recalculated without them.
+        Journey journey = new Journey();
+        CorrectionBatch batch = journey.batch();
+        ComparisonRow vocabulary = pointsRow("vocabulario", 73.92, 73.92, 73.32);
+        journey.comparator.answer = scope -> scope.getProposalIds().contains(P_VEGETABLES)
+                ? journey.comparison(scope, List.of(outcome(P_VEGETABLES, MesaFixture.VEGETABLES, List.of()),
+                        outcome(P_COME, MesaFixture.COME, List.of())), List.of(vocabulary),
+                        List.of(new FloorBreach("piso-vocabulario", vocabulary, List.of(
+                                new ChangeAttribution(P_COME, MesaFixture.COME, -0.3, GoalUnit.POINTS),
+                                new ChangeAttribution(P_VEGETABLES, MesaFixture.VEGETABLES, -0.4, GoalUnit.POINTS)))))
+                : journey.comparison(scope, List.of(outcome(P_COME, MesaFixture.COME, List.of())),
+                        List.of(pointsRow("vocabulario", 73.92, 73.92, 73.62)), List.of());
+
+        batch = journey.closer().close(batch, journey.course);
+
+        BatchGateVerdict stopped = journey.verdicts.get(0);
+        assertEquals(1, stopped.getReturned().size(), "only what brings it back within");
+        assertEquals(P_VEGETABLES, stopped.getReturned().get(0).getProposalId(), "the one that lowers it most");
+        assertEquals(ReturnCause.FLOOR, stopped.getReturned().get(0).getCause());
+        assertTrue(stopped.getReasons().get(0).startsWith("F-NOEMP-R006: vocabulario en Curso: 73,92 → 73,32 contra la línea"
+                + " base (tolerancia 0,5 puntos, acumulada); devueltos: " + P_VEGETABLES), stopped.getReasons().toString());
+        BatchTaskOutcome vegetables = BatchBook.outcome(batch, "t-respuesta").orElseThrow();
+        assertEquals(BatchTaskOutcomeKind.PENDING, vegetables.getKind());
+        assertEquals(2, vegetables.getAttempts(), "one attempt more than the one it had");
+        assertTrue(vegetables.getDetail().startsWith("F-NOEMP-R006: vocabulario en Curso"), vegetables.getDetail());
+        assertNull(change(batch, "mesa-" + MesaFixture.COME).getDroppedReason(), "«Winter» stays");
+        assertEquals(List.of(P_COME), journey.comparator.scopes.get(1).getProposalIds(), "recalculated without them");
+        assertTrue(journey.verdicts.get(1).isPasses(), journey.verdicts.get(1).getReasons().toString());
+    }
+
+
+    private static final String P_VEGETABLES = "tanda-a1-" + MesaFixture.VEGETABLES;
+
+    private static final String P_COME = "tanda-a1-" + MesaFixture.COME;
+
+    /** Closing a batch of A1 against the real gate, with F's comparison written by hand. */
+    private static final class Journey {
+        final TandaFixture.Comparator comparator = new TandaFixture.Comparator();
+
+        final TandaFixture.Samples samples = new TandaFixture.Samples();
+
+        final TandaFixture.Artifacts artifacts = new TandaFixture.Artifacts();
+
+        final List<BatchGateVerdict> verdicts = new ArrayList<>();
+
+        final CourseEntity course = TandaFixture.course();
+
+        final TandaFixture.Plans plans = new TandaFixture.Plans(TandaFixture.plan(
+                TandaFixture.task("t-respuesta", MesaFixture.anotherAnswer(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                TandaFixture.task("t-come", MesaFixture.finding("single-answer", "different-valid-answer",
+                        MesaFixture.COME, FindingSeverity.BLOCKING, FindingResolution.PANEL, null,
+                        "«goes» también encaja"), MesaFixture.AFIRMATIVAS, CefrLevel.A1)));
+
+        DefaultBatchChangeLedger ledger() {
+            return new DefaultBatchChangeLedger(artifacts, TandaFixture.locator());
+        }
+
+        DefaultBatchCloser closer() {
+            BatchGate real = new DefaultGateFactory().batchGate();
+            BatchGate watched = (comparison, outside, exceptions) -> {
+                BatchGateVerdict verdict = real.evaluate(comparison, outside, exceptions);
+                verdicts.add(verdict);
+                return verdict;
+            };
+            return new DefaultBatchCloser(comparator, watched, samples, ledger(), new TandaFixture.Batches(),
+                    TandaFixture.COURSE_PATH).withPlans(plans, MesaFixture.corrections());
+        }
+
+        /**
+         * The batch after its panels: the vegetables without «a lot of», with their request to record what they say
+         * now, and «Winter ___ (come) every year.», whose audio says the answer only.
+         */
+        CorrectionBatch batch() {
+            CorrectionBatch batch = TandaFixture.batch("tanda-a1", "t-respuesta", "t-come");
+            batch.setStatus(BatchStatus.RUNNING);
+            BatchChange vegetables = TandaFixture.change("mesa-" + MesaFixture.VEGETABLES, BatchChangeOrigin.PANEL, null,
+                    List.of("t-respuesta"), TandaFixture.step(withParts(TandaFixture.exercise(course,
+                            MesaFixture.VEGETABLES), text("I"), cloze("love"), text("vegetables.")),
+                            ExercisePart.STATEMENT));
+            vegetables.setGateVerdict(new ChangeGateVerdict(true, List.of(), List.of(), List.of(),
+                    List.of(new AudioRerecordRequest(MesaFixture.VEGETABLES, MesaFixture.audioKey(MesaFixture.VEGETABLES),
+                            List.of("I love vegetables."))), List.of(), List.of()));
+            ledger().record(batch, vegetables, course);
+            BatchBook.setOutcome(batch, "t-respuesta", BatchTaskOutcomeKind.RESOLVED_BY_PANEL, vegetables.getChangeId(), 1,
+                    null);
+            BatchChange winter = TandaFixture.change("mesa-" + MesaFixture.COME, BatchChangeOrigin.PANEL, null,
+                    List.of("t-come"), TandaFixture.step(withParts(TandaFixture.exercise(course, MesaFixture.COME),
+                            text("Winter"), cloze("comes"), text("(come) every year.")), ExercisePart.STATEMENT));
+            winter.setGateVerdict(new ChangeGateVerdict(true, List.of(), List.of(), List.of(), List.of(), List.of(),
+                    List.of()));
+            ledger().record(batch, winter, course);
+            BatchBook.setOutcome(batch, "t-come", BatchTaskOutcomeKind.RESOLVED_BY_PANEL, winter.getChangeId(), 0, null);
+            return batch;
+        }
+
+        BatchComparison comparison(ProjectionScope scope, List<ChangeOutcome> changes, List<ComparisonRow> rows,
+                List<FloorBreach> breaches) {
+            boolean returns = changes.stream().anyMatch(ChangeOutcome::isReturns) || !breaches.isEmpty();
+            BatchComparison comparison = TandaFixture.comparison(scope, changes,
+                    returns ? VerdictKind.FAILS : VerdictKind.PASSES);
+            comparison.setRows(new ArrayList<>(rows));
+            comparison.setBreaches(new ArrayList<>(breaches));
+            return comparison;
+        }
+    }
+
+    private static ChangeOutcome outcome(String proposalId, String quizId, List<Finding> gained) {
+        return new ChangeOutcome(proposalId, AuditTarget.QUIZ, quizId, !gained.isEmpty(), new ArrayList<>(gained),
+                new ArrayList<>(), new ArrayList<>());
+    }
+
+    /** lemma-absence on «grandmother», a word of A2 in A1: a red word. */
+    private static Finding grandmother() {
+        return MesaFixture.finding("lemma-absence", "misplaced-word", MesaFixture.COME, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, "grandmother", "«grandmother» es de A2 en un ejercicio de A1");
+    }
+
+    private static ComparisonRow countRow(String subject, AnalyzerFamily family, int start, int projected) {
+        return new ComparisonRow(subject, family, AuditTarget.MILESTONE, "m-a1", "A1", new RowValue((double) start, null, 0),
+                null, new RowValue((double) start, null, 0), new RowValue((double) projected, null, 0),
+                (double) (projected - start), GoalUnit.EXERCISES, null, null);
+    }
+
+    private static ComparisonRow pointsRow(String subject, double baseline, double start, double projected) {
+        return new ComparisonRow(subject, AnalyzerFamily.VOCABULARY, AuditTarget.COURSE, "root", "Curso",
+                new RowValue(baseline, null, 0), null, new RowValue(start, null, 0), new RowValue(projected, null, 0),
+                projected - baseline, GoalUnit.POINTS, null, null);
+    }
+
+    private static BatchChange change(CorrectionBatch batch, String changeId) {
+        return batch.getChanges().stream().filter(c -> c.getChangeId().equals(changeId)).findFirst().orElseThrow();
     }
 }
