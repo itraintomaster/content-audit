@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — F-CIEGA-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
+  why: el camino es sample draw, show, answer y close; DefaultBlindSampleCommand es package-private ahí y el servicio está en blindsampleengine, público para audit-cli.
+2026-10-01 — qa-tester — El par de las verduras de las pruebas es el de R002: «I ___ (love) vegetables. Me encantan las verduras.» contra «I ___ a lot of vegetables. Me gustan mucho las verduras.» (el arreglo que cambia el inglés y el audio), no el que cambia sólo la traducción.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): sin cambios de estructura.
 
 2026-09-30 — architect — Muestra en revision-domain: contrato `blindsample` y motor `blindsampleengine` (público sólo para audit-cli). Dos portadores por par: el guardado con el lado (`BlindPair`) y el que ve quien revisa (`BlindPairView`), sin lado, motivo, fecha ni autor.

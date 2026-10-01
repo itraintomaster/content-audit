@@ -1,7 +1,7 @@
 ---
 patch: FEAT-PROYU
 requirement: 2026-09-30.26_una-sola-proyeccion
-generated: 2026-10-01T03:00:00Z
+generated: 2026-10-01T05:10:00Z
 ---
 
 # Tech Spec: Una sola proyección del curso con sus propuestas (FEAT-PROYU)
@@ -118,8 +118,9 @@ Hay tres caminos que calculan el mismo después y no coinciden. El paquete públ
 que devuelve las tres fotos —el análisis activo guardado, el curso con lo aprobado y el curso con lo pendiente— y las
 listas de lo que entró y lo que no, que todo número proyectado tiene que declarar (R002). `ProjectionScope` es la
 respuesta a «qué es una tanda»: F no conoce el modelo de E, así que E le pasa las pendientes de su tanda y su id, y sin
-tanda se proyecta todo el plan activo, como hoy. El tope por analizador viaja en el mismo alcance y vale 0 si nadie lo
-pide (R003). Las causas de indisponibilidad son las de la vista consolidada, para no tener dos taxonomías de lo mismo.
+tanda se proyecta todo el plan activo, como hoy. El tope por analizador viaja en el mismo alcance, y el analizador que
+el pedido no nombra mide con la política de `analyze` (R003, F-RONDA2-R002): lo local sin tope y claude -p con tope 0.
+Las causas de indisponibilidad son las de la vista consolidada, para no tener dos taxonomías de lo mismo.
 
 ```architecture
 modules:
@@ -252,11 +253,13 @@ modules:
 ## Medir cada foto con los analizadores del análisis de partida
 La foto con pendientes da 92,38 en A1 donde `analyze` da 96,54 por el arrastre del motor, que FEAT-HALL ya resuelve
 armando analizadores nuevos en cada corrida (ver FEAT-CERO). Queda otra diferencia, que hoy no se ve porque la base del
-29/9 corrió sólo los siete instantáneos: la vista corre la selección base, y una base que corrió un juez o un
-analizador nuevo no se proyectaría con los mismos (R003). `ProjectionMeasurer` es el único punto que mapea un curso y
-lo mide: toma los nombres de la medida que el análisis de partida guardó en su raíz (gancho F-01 a F-04), arma la
-selección en orden del catálogo con tope 0 salvo pedido y llama a `runAudit(course, selection)`. Un informe sin medida —anterior al contrato— cae a la
-corrida base de hoy y lo declara. Así «la misma medida» (R001, R003, R007) sale por construcción.
+29/9 corrió sólo los siete instantáneos: la vista corre la selección base, y una base que corrió un juez o un analizador
+nuevo no se proyectaría con los mismos (R003). `ProjectionMeasurer` es el único punto que mapea un curso y lo mide: toma
+los nombres de la medida que el análisis de partida guardó en su raíz (gancho F-01 a F-04), arma la selección en orden
+del catálogo con la política de `analyze` —el tope de lo que el pedido nombra y, para el resto, la política vacía, que
+el proveedor completa según a quién consulta: lo local sin tope y claude -p con 0 (F-RONDA2-R002)— y llama a
+`runAudit(course, selection)`. Un informe sin medida —anterior al contrato— cae a la corrida base de hoy y lo declara.
+Así «la misma medida» (R001, R003, R007) sale por construcción.
 
 ```architecture
 modules:
@@ -471,4 +474,84 @@ features:
 modules:
   - name: audit-cli
     _change: modify
+```
+
+## Declarar las 47 pruebas de FEAT-PROYU y ubicar su journey
+Las 47 son nuevas: ningún test de hoy verifica estas reglas, porque el proyector, el aplicador, el medidor, la línea
+base y la proyección guardada todavía no están en el código. Cada una fija una regla en la pieza que la cumple, y donde
+la regla trae un número, la prueba lo fija con el caso del 29/9: el informe 2026-09-30T11-54-02, su plan
+2026-09-30T11-54-12 y las cuatro propuestas de «Afirmativas regulares».
+
+| Pieza | Reglas | Pruebas | Qué fija |
+|---|---|---:|---|
+| `DefaultCourseProjector` | R001, R002, R003, R006 | 7 | 73,92 y 96,54 · 94,16 · 79,45 · 63,51 en la foto con pendientes, no 92,38 en A1; «My grandmother ___ (come) every year.» de 1,0 a 0,9 sin mover ningún topic; sin aprobadas, la foto con lo aprobado es el análisis activo, con los 55 topics; las aplicadas y las no aplicables; el alcance de una tanda; las dos fotos con los mismos analizadores y topes; parte del par activo |
+| `DefaultPendingApplier` | R001, R002 | 4 | escribe como `approve`; entra si el nodo existe y su `elementBefore` coincide; orden de creación, con los 143 ejercicios de dos tareas; nodo ausente |
+| `DefaultProjectionMeasurer` | R001, R003 | 6 | mide como `analyze`; corre los analizadores de la medida del análisis de partida; sin medida, la corrida base (la del 29/9 no corre `quiz-instruction`); tope 0 a los jueces de claude -p; sin tope lo que consulta un modelo local, como `naturalness` y `near-duplicates` con Ollama; reusa veredictos |
+| `DefaultConsolidatedViewBuilder` | R001, R002 | 2 | el curso entra con el id del resumen; las mismas no aplicables que la proyección |
+| `DefaultImpactPreviewComputer` | R002, R004, R007 | 5 | no aplica lo que la proyección no aplicaría; el análisis de la tarea, nunca el último; «Afirmativas regulares» de 100,0 a 99,5 y no «Afirmativas con $be$»; los contenedores reales; las dos puntas con los analizadores de la tarea |
+| `FileSystemProjectionStore` | R004, R005 | 3 | escribe en `projections/`; una por par activo; se carga por su id |
+| `FileSystemAuditReportStore` | R004, R005 | 2 | `list` y `loadLatest` no la ven; `load` la resuelve por id (gancho F-05) |
+| `FileSystemBaselineStore` | R006 | 2 | su propio archivo; se lee con el id y la fecha |
+| `DefaultSetBaselineCommand` | R006 | 4 | 2026-09-30T11-54-02; el error de un id fuera del historial; una proyección guardada no; el par activo no se mueve |
+| `DefaultSaveProjectionCommand` | R002, R004, R005 | 3 | guarda e imprime el id; las aplicadas y las no aplicables; `get audits` igual |
+| `DeleteCmd` y `PruneCmd` | R004, R006 | 5 | los dos errores de `delete audit`; «Kept the baseline 2026-09-30T11-54-02» con `--keep 3`; el activo, aunque sea viejo; las proyecciones no cuentan |
+| `PlanCmd` | R004, R005 | 2 | `plan --audit <id de la proyección>` efímero y con contexto; sin `--audit`, el último del historial |
+| `DefaultGetConsolidatedCommand` | R003 | 1 | el tope de `--budget` llega a la proyección |
+| `DefaultSuggestedLemmaQuerySessionFactory` | R005 | 1 | las palabras sugeridas de una tarea proyectada salen de la proyección |
+
+Por regla: R001 6, R002 8, R003 7, R004 6, R005 6, R006 11 y R007 3.
+
+**El journey.** F-PROYU-J001 va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`, con el criterio de
+F-JEXAM-J001 y F-CDIFF-J001: su camino cruza `get consolidated`, `save-projection`, `plan --audit`, `get audits` y
+`prune audits`, cuyos comandos son package-private ahí; el proyector se alcanza por su fábrica pública y los almacenes
+son públicos. `generate` crearía `FProyuJ001JourneyTest` con 2 caminos.
+
+**Dependencias.** Las de R003 leen la medida de cada analizador en la raíz del informe (F-RONDA2-R004); la de
+`FileSystemAuditReportStore.load`, el gancho F-05; las de los números, el informe y el plan del 29/9.
+
+**Lo que no se declara.** Que el número de cada nivel del impacto sea el puntaje de vocabulario publicado (R007) ya lo
+fija la prueba de F-HALL-R010 en `DefaultImpactPreviewComputer`, y no se repite.
+
+**Decidido el 1/10.** R003 decía «0 si no se pide» para todo analizador que consulta un modelo, y eso chocaba con
+F-RONDA2-R002. Gana F-RONDA2-R002: la proyección usa la política de `analyze`, lo local sin tope y claude -p con tope 0
+salvo pedido. El REQUIREMENT lo dice desde el 1/10, y una prueba más de `DefaultProjectionMeasurer` fija el caso local:
+`naturalness` y `near-duplicates` con llama3 en Ollama corren sin tope, como en `analyze`. Desde el 1/10 dicen lo
+mismo la descripción del campo `analyzerBudgets` de `ProjectionScope`, la de la inyección `auditEngine` de
+`DefaultProjectionMeasurer` y las secciones «Dar a la proyección un solo contrato» y «Medir cada foto con los
+analizadores del análisis de partida»; ninguno cambia la estructura.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: engine
+        _change: modify
+        implementations:
+          - name: DefaultCourseProjector
+            _change: add
+            handwrittenTests:
+              - name: "should give the photo with the four pending proposals of «Afirmativas regulares» the numbers of analyze on the copy with them written, 73.92% in the course and 96.54, 94.16, 79.45 and 63.51 in the levels, and not 92.38 in A1"
+                traceability: { feature: FEAT-PROYU, rule: F-PROYU-R001 }
+          - name: DefaultProjectionMeasurer
+            _change: add
+            handwrittenTests:
+              - name: "should run without a cap the analyzers that consult a local model, as naturalness and near-duplicates with llama3 in Ollama, the way analyze does"
+                traceability: { feature: FEAT-PROYU, rule: F-PROYU-R003 }
+  - name: audit-cli
+    _change: modify
+    packages:
+      - name: commands
+        _change: modify
+        implementations:
+          - name: PruneCmd
+            _change: modify
+            handwrittenTests:
+              - name: "should keep the baseline 2026-09-30T11-54-02 after three new analyses and prune audits --keep 3, saying «Kept the baseline 2026-09-30T11-54-02»"
+                traceability: { feature: FEAT-PROYU, rule: F-PROYU-R006 }
+features:
+  - id: FEAT-PROYU
+    code: F-PROYU
+    journeys:
+      - { id: F-PROYU-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
 ```

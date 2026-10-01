@@ -9,7 +9,13 @@ description: "FEAT-PROYU: una sola proyección del curso con sus propuestas. Un 
   \ (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; orden\
   \ de la cadena: FEAT-RONDA2, B, F y E: DefaultConsolidatedViewBuilder.nodeFieldDiffer\
   \ conserva su descripción (el apply la perdía); GetConsolidatedCommand repite sealed:\
-  \ true (el apply la abría, bug 09)."
+  \ true (el apply la abría, bug 09).; qa-tester: 47 pruebas para las 7 reglas de\
+  \ FEAT-PROYU, con el caso del 29/9: las cuatro propuestas de «Afirmativas regulares»\
+  \ (curso 73,92 y niveles 96,54 · 94,16 · 79,45 · 63,51 en la foto con pendientes;\
+  \ «My grandmother ___ (come) every year.» de 1,0 a 0,9 y su tema de 100,0 a 99,5),\
+  \ los 143 ejercicios con dos tareas, la línea base 2026-09-30T11-54-02 y R003 con\
+  \ la política de analyze (lo local sin tope, claude -p con tope 0 salvo pedido).\
+  \ F-PROYU-J001 va a audit-cli, paquete commands."
 modules:
 - name: audit-domain
   models:
@@ -75,9 +81,10 @@ modules:
           \ con su causa (R002)."
       - name: analyzerBudgets
         type: "Map<String,Integer>"
-        description: "Tope de consultas nuevas por nombre canónico para los analizadores\
-          \ que consultan un modelo. Ausente = 0: sin pedido explícito no se paga\
-          \ (R003)."
+        description: "Tope de consultas nuevas por nombre canónico, sólo para los\
+          \ analizadores que el pedido nombra. El que no está mide con la política\
+          \ de analyze (R003, F-RONDA2-R002): lo que consulta un modelo local, sin\
+          \ tope; lo que consulta claude -p, con tope 0."
       _change: add
     - name: ProjectedChange
       type: record
@@ -266,6 +273,49 @@ modules:
         type: PendingApplier
       - name: projectionMeasurer
         type: ProjectionMeasurer
+      handwrittenTests:
+      - name: "should give the photo with the four pending proposals of «Afirmativas\
+          \ regulares» the numbers of analyze on the copy with them written, 73.92%\
+          \ in the course and 96.54, 94.16, 79.45 and 63.51 in the levels, and not\
+          \ 92.38 in A1"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R001
+      - name: "should lower «My grandmother ___ (come) every year.» from 1.0 to 0.9\
+          \ in lemma-absence in the photo with pending proposals, with grandmother\
+          \ (A2) as an off-level word, and leave every topic as it was"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R001
+      - name: "should give the photo with the approved proposals, when nothing is\
+          \ approved, the numbers, findings and diagnoses of the active analysis,\
+          \ the COCA tokens of the 55 topics included"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R001
+      - name: "should declare in the projection the pending proposals it applied and\
+          \ those not applicable with their causes, the same lists its numbers come\
+          \ from"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R002
+      - name: "should project only the pending proposals a batch names in its scope,\
+          \ every pending proposal of the active plan when the scope names none, and\
+          \ declare not applicable an id that is not a pending proposal of the active\
+          \ plan"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R002
+      - name: should measure the photo with the approved proposals and the photo with
+          the pending ones with the same analyzers and the same budgets of the scope
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R003
+      - name: "should start the projection from the active analysis and its plan,\
+          \ never from the latest analysis of the history nor from the baseline"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R006
       implements:
       - CourseProjector
       _change: add
@@ -276,6 +326,28 @@ modules:
         description: "snapshot y replace de siempre: una propuesta entra si su nodo\
           \ existe y su elementBefore coincide; se escribe como la escribe approve\
           \ (F-REVAPR-R011)."
+      handwrittenTests:
+      - name: "should write each proposal as approve writes it, replacing the node\
+          \ of its elementBefore with its elementAfter"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R001
+      - name: should apply a pending proposal only when its node exists and its elementBefore
+          matches that node in the course with the approved proposals
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R002
+      - name: "should apply the pending proposals in creation order, so of an exercise\
+          \ with two tasks, SENTENCE_LENGTH and LEMMA_ABSENCE, as 143 of the plan\
+          \ of 29/9, the older enters and the newer is declared not applicable"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R002
+      - name: "should declare not applicable, with its cause, a pending proposal whose\
+          \ node no longer exists in the course"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R002
       implements:
       - PendingApplier
       _change: add
@@ -286,8 +358,47 @@ modules:
       - name: auditEngine
         type: AuditEngine
         description: "runAudit(course, selection) con los analizadores que corrió\
-          \ el análisis de partida, en orden del catálogo, y política con tope 0 salvo\
-          \ pedido (R003). Cada corrida arma analizadores nuevos (FEAT-HALL, FEAT-CERO)."
+          \ el análisis de partida, en orden del catálogo, y la política de analyze\
+          \ (R003, F-RONDA2-R002): el tope de los que el pedido nombra y, para el\
+          \ resto, la política vacía, que el proveedor completa según a quién consulta:\
+          \ lo local sin tope y claude -p con 0. Cada corrida arma analizadores nuevos\
+          \ (FEAT-HALL, FEAT-CERO)."
+      handwrittenTests:
+      - name: "should map and measure a course the way analyze does, so the report\
+          \ of a projected course equals the one analyze gives on that course written\
+          \ to disk"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R001
+      - name: "should run exactly the analyzers whose measures the starting analysis\
+          \ keeps at its root, in catalog order, and no other"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R003
+      - name: "should fall back to the base run and declare it when the starting analysis\
+          \ keeps no measures, as the base of 29/9, so quiz-instruction, which that\
+          \ base did not run, is not run either"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R003
+      - name: "should give budget 0 to the judges that consult claude -p unless the\
+          \ request names a budget for them, so a projection pays no consultation\
+          \ by default"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R003
+      - name: "should run without a cap the analyzers that consult a local model,\
+          \ as naturalness and near-duplicates with llama3 in Ollama, the way analyze\
+          \ does"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R003
+      - name: "should reuse the recorded verdicts of the exercises that did not change\
+          \ and consult only the changed ones within the budget of the request, leaving\
+          \ the rest declared unevaluated and never approved"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R003
       implements:
       - ProjectionMeasurer
       _change: add
@@ -330,6 +441,18 @@ modules:
           \ } que copia tal cual a NodeImpact.fieldChanges. El builder NO interpreta\
           \ el contenido del mapa; es la frontera entre 'que campos cambiaron' (R019)\
           \ y 'que decisiones del plan los provocaron' (R011)."
+      handwrittenTests:
+      - name: "should compare the course node too, with the id the digest gives it,\
+          \ so the course of the four pending proposals of «Afirmativas regulares»\
+          \ appears with 73.92%"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R001
+      - name: "should declare in the consolidated view the same pending proposals\
+          \ not applicable, with their causes, as the projection it reads"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R002
       _change: modify
     - name: DefaultImpactPreviewComputer
       requiresInject:
@@ -353,6 +476,36 @@ modules:
       - name: projectionMeasurer
         type: ProjectionMeasurer
         description: "Mide las dos puntas con la misma medida (R001, R007)."
+      handwrittenTests:
+      - name: "should give no impact for a proposal whose elementBefore no longer\
+          \ matches its node, declaring it not applicable with its cause as the projection\
+          \ does"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R002
+      - name: "should measure the impact against the analysis the task of the proposal\
+          \ came from, never the latest analysis of the history nor a saved projection"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R004
+      - name: "should report the impact of «My grandmother ___ (come) every year.»\
+          \ on its own knowledge «Afirmativas regulares», from 100.0 to 99.5 in lemma-absence,\
+          \ and not on «Afirmativas con $be$», the first knowledge of the course"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R007
+      - name: "should report the topic, the level and the course that contain the\
+          \ node, walking up from it, so a proposal on a B2 exercise never shows level\
+          \ A1"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R007
+      - name: "should measure the course of that moment with the approved proposals\
+          \ and that course with the proposal, both with the analyzers of the analysis\
+          \ the task came from"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R007
       _change: modify
     _change: modify
   _change: modify
@@ -367,6 +520,17 @@ modules:
     types:
     - Repository
     visibility: public
+    handwrittenTests:
+    - name: "should keep the baseline in its own file, .content-audit/baseline.json,\
+        \ so changing the active pair or saving a new analysis does not move it"
+      traceability:
+        feature: FEAT-PROYU
+        rule: F-PROYU-R006
+    - name: should read back the fixed baseline with its analysis id and the time
+        it was fixed
+      traceability:
+        feature: FEAT-PROYU
+        rule: F-PROYU-R006
     implements:
     - BaselineStore
     _change: add
@@ -380,9 +544,37 @@ modules:
     types:
     - Repository
     visibility: public
+    handwrittenTests:
+    - name: should write a saved projection under .content-audit/projections/ and
+        nothing under audits/
+      traceability:
+        feature: FEAT-PROYU
+        rule: F-PROYU-R004
+    - name: "should keep one saved projection per active pair, so saving another projection\
+        \ of the same pair replaces the previous one"
+      traceability:
+        feature: FEAT-PROYU
+        rule: F-PROYU-R005
+    - name: should load a saved projection by the id it returned when saving it
+      traceability:
+        feature: FEAT-PROYU
+        rule: F-PROYU-R005
     implements:
     - ProjectionStore
     _change: add
+  - name: FileSystemAuditReportStore
+    handwrittenTests:
+    - name: should leave a saved projection out of list and loadLatest even when it
+        was saved after the last analysis
+      traceability:
+        feature: FEAT-PROYU
+        rule: F-PROYU-R004
+    - name: "should load a saved projection by its id when no analysis has that id,\
+        \ so plan --audit and the suggested words query accept it as their source\
+        \ analysis"
+      traceability:
+        feature: FEAT-PROYU
+        rule: F-PROYU-R005
   _change: modify
 - name: audit-cli
   interfaces:
@@ -421,6 +613,26 @@ modules:
           \ incluidas (R006)."
       types:
       - Component
+      handwrittenTests:
+      - name: "should fix as the baseline an analysis of the history, as 2026-09-30T11-54-02,\
+          \ and show it with showBaseline"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R006
+      - name: "should refuse an id that is not an analysis of the history with «Cannot\
+          \ fix '<id>' as the baseline: it is not an analysis in the history.»"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R006
+      - name: "should refuse to fix a saved projection as the baseline, although plan\
+          \ --audit accepts its id"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R006
+      - name: should leave the active pair as it was when the baseline is fixed
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R006
       implements:
       - SetBaselineCommand
       _change: add
@@ -434,6 +646,22 @@ modules:
           \ (R004, R005)."
       types:
       - Component
+      handwrittenTests:
+      - name: should save the photo with the pending proposals of the active pair
+          and print the id that plan --audit accepts
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R005
+      - name: "should print with that id the pending proposals applied and those not\
+          \ applicable, each with its cause"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R002
+      - name: "should leave get audits listing the same analyses, with the same latest\
+          \ one, after saving a projection"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R004
       implements:
       - SaveProjectionCommand
       _change: add
@@ -449,6 +677,19 @@ modules:
       - name: baselineStore
         type: BaselineStore
         description: delete audit rechaza la línea base (R006).
+      handwrittenTests:
+      - name: "should refuse to delete the active analysis with «Cannot delete audit\
+          \ '<id>': it is the active analysis. Point 'set-active' to another analysis\
+          \ first.»"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R006
+      - name: "should refuse to delete the baseline with «Cannot delete audit '<id>':\
+          \ it is the baseline. Fix another one with 'set-baseline' first.», even\
+          \ when no plan references it"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R006
       _change: modify
     - name: PruneCmd
       requiresInject:
@@ -463,9 +704,60 @@ modules:
       - name: baselineStore
         type: BaselineStore
         description: Lo mismo para la línea base (R006).
+      handwrittenTests:
+      - name: "should keep the baseline 2026-09-30T11-54-02 after three new analyses\
+          \ and prune audits --keep 3, saying «Kept the baseline 2026-09-30T11-54-02»"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R006
+      - name: "should keep the active analysis although it is among the oldest, saying\
+          \ «Kept the active analysis <id>»"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R006
+      - name: should neither count nor delete saved projections when pruning audits
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R004
       _change: modify
+    - name: PlanCmd
+      handwrittenTests:
+      - name: "should derive an ephemeral plan with correction context from a saved\
+          \ projection named with --audit, writing no plan and no analysis"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R005
+      - name: "should derive the plan without --audit from the latest analysis of\
+          \ the history, not from a projection saved after it"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R004
+    - name: DefaultGetConsolidatedCommand
+      handwrittenTests:
+      - name: should pass to the projection the budget per analyzer that the request
+          names with --budget
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R003
     _change: modify
   _change: modify
+- name: refiner-domain
+  packages:
+  - name: lemmasuggestion
+    implementations:
+    - name: DefaultSuggestedLemmaQuerySessionFactory
+      handwrittenTests:
+      - name: "should open the suggested words query of a task planned from a saved\
+          \ projection on that projection, so a lemma a pending proposal already brought\
+          \ into the course is no longer offered"
+        traceability:
+          feature: FEAT-PROYU
+          rule: F-PROYU-R005
 features:
 - id: FEAT-PROYU
   code: F-PROYU
+  journeys:
+  - id: F-PROYU-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands

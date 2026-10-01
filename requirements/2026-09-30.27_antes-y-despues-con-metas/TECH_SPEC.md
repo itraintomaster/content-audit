@@ -1,7 +1,7 @@
 ---
 patch: FEAT-METAS
 requirement: 2026-09-30.27_antes-y-despues-con-metas
-generated: 2026-10-01T03:00:00Z
+generated: 2026-10-01T04:50:00Z
 ---
 
 # Tech Spec: Antes y después de una tanda contra la línea base, con metas (FEAT-METAS)
@@ -587,4 +587,55 @@ modules:
             _change: add
             requiresInject:
               - { name: topicTeachingResolver, type: TopicTeachingResolver }
+```
+
+## Declarar las 53 pruebas de FEAT-METAS y ubicar su journey
+Las 53 son nuevas: la comparación, las metas y el veredicto no existen en el código. Casi todas caen en
+`DefaultBatchComparator`, que es el que arma filas, cambios que vuelven, pisos y veredicto; las metas, en el libro y su
+declaración; la atribución, en su propio puerto. Los casos salen del REQUIREMENT y del curso del 29/9.
+
+| Pieza | Reglas | Pruebas | Qué fija |
+|---|---|---:|---|
+| `DefaultBatchComparator` | R001–R009 | 36 | las filas y sus tres fotos copiadas; `lemma-absence` de «Afirmativas regulares» 100,0 → 99,5 (−0,5 puntos) y de Present Simple 99,55 → 99,52; A1 y el curso en 96,54 y 73,92 sin cambio; filas de errores vacías con la base del 29/9; «no se puede decidir» con 30 de A1 sin juzgar; vuelve sólo «My grandmother ___ (come) every year.», con su motivo; el largo de «He isn't in the living-room.» nunca; invest en «$Invest time$ + gerundio» no; lo arreglado y lo sin decidir; vocabulario contra la base, acumulado, y errores contra el inicio de la tanda; «piso de vocabulario 0,5 → 1,0»; el cambio de medida 73,92 → 73,86, 96,54 → 96,02 y 67,0 → 66,5, y el de `naturalness` con claude -p; los cuatro veredictos; comparar no escribe |
+| `DefaultGoalBook` | R005, R006 | 5 | el piso de la familia para el que la declaración no nombra, como `hint-coherence`; los pisos del 30/9 si falta una familia; la meta de la muestra; fija las metas enteras con su huella |
+| `LeaveOneOutChangeAttributor` | R004 | 2 | el único cambio que baja A1 un punto va primero con −1; el orden por efecto propio |
+| `FileSystemGoalDeclarationSource`, `FileSystemSealedGoalsStore` | R005, R006 | 2 | una sola declaración; `metas-fijadas.json` |
+| `DefaultGoalsCommand` | R005, R006 | 2 | `get-goals` con su origen; `set-goals` |
+| `DefaultCompareCommand` | R009 | 1 | el curso byte a byte y `get audits` igual |
+| `DefaultSetBaselineCommand`, `DefaultSetActiveAnalysisCommand` | R006 | 2 | fijar la línea base o cambiar el par activo no toca las metas fijadas |
+| `DefaultBatchComparisonFormatter` | R001, R006, R007 | 3 | «−0,5 puntos», nunca «%»; las metas cambiadas; «cambio de medida: 73,92 → 73,86» |
+
+Por regla: R001 7, R002 4, R003 8, R004 3, R005 7, R006 9, R007 6, R008 7 y R009 2.
+
+**El journey.** F-METAS-J001 va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: su camino empieza con
+`set-goals` y sigue con `compare`, cuyos comandos son package-private ahí; el comparador y el libro de metas están en
+`comparisonengine`, público para `audit-cli`. `generate` crearía `FMetasJ001JourneyTest` con 6 caminos.
+
+**Dependencias.** La medida en la raíz del informe (F-RONDA2-R004), lo que el tema enseña de D (F-14), la proyección de
+FEAT-PROYU y el resultado de la muestra de FEAT-CIEGA, que el veredicto lee por `SampleOutcomeSource`.
+
+**Decidido el 1/10.** (1) Que abrir una tanda también fija las metas (R006) se prueba en FEAT-TANDA, donde está el
+servicio que abre la tanda (`DefaultBatchService`): cuando se aplica este parche todavía no existe, así que acá no hay
+prueba de esa parte. La toma el qa-tester de E, y el REQUIREMENT lo anota en R006. (2) Las filas de un analizador que
+no corrió en la línea base, como los de errores en la base del 29/9, salen vacías y no en cero: no midió nada. Es lo que
+ya decía el detalle de R001 y lo que fija su prueba; R001 no cambia.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: comparisonengine
+        _change: add
+        implementations:
+          - name: DefaultBatchComparator
+            _change: add
+            handwrittenTests:
+              - name: "should return «My grandmother ___ (come) every year.» with the reason «lemma-absence · palabra de otro nivel: grandmother es A2», and none of the other three proposals of «Afirmativas regulares»"
+                traceability: { feature: FEAT-METAS, rule: F-METAS-R003 }
+features:
+  - id: FEAT-METAS
+    code: F-METAS
+    journeys:
+      - { id: F-METAS-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
 ```

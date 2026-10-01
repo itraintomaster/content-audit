@@ -1,7 +1,7 @@
 ---
 patch: FEAT-CERO
 requirement: 2026-09-30.29_cada-corrida-desde-cero
-generated: 2026-09-30T23:15:00Z
+generated: 2026-10-01T03:45:00Z
 ---
 
 # Tech Spec: Cada corrida del motor empieza de cero (FEAT-CERO)
@@ -44,4 +44,40 @@ pruebas son del qa-tester.
 modules:
   - name: audit-domain
     _change: modify
+```
+
+## Declarar las 11 pruebas de FEAT-CERO y ubicar su journey
+FEAT-CERO no tiene piezas propias: sus pruebas van en las que ya existen, con los números del 29/9. Se distinguen de la
+de F-HALL-R014 en `IAuditEngine`, que pide dos corridas iguales: éstas piden lo mismo que una invocación nueva aunque
+antes haya corrido otro curso, y que el primer informe no cambie.
+
+| Pieza | Reglas | Pruebas | Qué fija |
+|---|---|---:|---|
+| `IAuditEngine` | R001, R002 | 3 | la segunda corrida da 73,92, 96,54 · 94,16 · 79,45 · 63,51, COCA de B1 57,93 y recurrencia 8,00, no 72,90; una palabra que sólo usaba el curso anterior no cuenta; el primer informe conserva los 55 topics (A1 · Present Simple, 2.366 tokens en cuatro bandas) |
+| los proveedores de `coca-buckets-distribution`, `lemma-recurrence`, `lemma-absence` y `lemma-count` | R001, R002 | 5 | cada `create` da un analizador sin lo de la corrida anterior: A1 en 100 y B1 en 57,9 de COCA, no 75 y 76,1; la recurrencia en 8,0 %, no 4,0 %; los lemas y las oraciones del curso que mide; COCA escribe en sus topics y no en los del primer informe |
+| `DefaultCourseProjector` | R001, R002 | 2 | la foto con pendientes, igual a una invocación nueva; la foto con lo aprobado conserva el COCA de los 55 topics |
+| `DefaultImpactPreviewComputer` | R001 | 1 | el impacto de la propuesta k de `revise-instructions`, como si fuera la primera |
+
+Por regla: R001 8 y R002 3. La regla para el developer de este TECH_SPEC —un proveedor no reusa entre dos `create` nada
+que el analizador modifique— queda fijada por las cinco de los proveedores.
+
+**El journey.** F-CERO-J001 va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`, como F-CDIFF-J001: el
+operador pide la vista consolidada, y la prueba la compara con una invocación nueva de `analyze`; `GetConsolidatedCmd`,
+`DefaultGetConsolidatedCommand` y `AnalyzeCmd` son package-private ahí. `generate` crearía `FCeroJ001JourneyTest` con 2
+caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    implementations:
+      - name: IAuditEngine
+        handwrittenTests:
+          - name: "should leave the first report untouched by a second run in the same process, its 55 topics keeping their COCA diagnosis, A1 · Present Simple with 2,366 tokens in four bands"
+            traceability: { feature: FEAT-CERO, rule: F-CERO-R002 }
+features:
+  - id: FEAT-CERO
+    code: F-CERO
+    journeys:
+      - { id: F-CERO-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
 ```

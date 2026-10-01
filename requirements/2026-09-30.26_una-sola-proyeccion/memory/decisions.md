@@ -5,6 +5,18 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — architect — El tope de la proyección dice lo mismo que R003 (pedido del orquestador): `ProjectionScope.analyzerBudgets` vale sólo para los analizadores que el pedido nombra; el resto mide con la política de analyze, y `DefaultProjectionMeasurer` pasa vacía su política, que el proveedor completa según a quién consulta (lo local sin tope, claude -p con 0). Alineadas también «Dar a la proyección un solo contrato» y «Medir cada foto…». Sin cambios de estructura.
+  why: F-RONDA2-R002 inv. 1, el runner no completa la política; si el medidor pusiera 0, naturalness y near-duplicates con Ollama quedarían sin evaluar en la proyección.
+
+2026-10-01 — analyst — R003 con la política de tope de `analyze` (decidido por el orquestador el 1/10, gana F-RONDA2-R002): lo local sin tope y claude -p con tope 0 salvo pedido. Antes decía «0 si no se pide» para todo. Validation sigue AUTO_VALIDATED; FEAT-RONDA2 suma a References.
+  why: con Ollama, naturalness y near-duplicates corren sin tope en analyze; con 0 en la proyección dejaban sin evaluar lo cambiado y R001 no se cumplía.
+2026-10-01 — qa-tester — Una prueba más de R003 en DefaultProjectionMeasurer: naturalness y near-duplicates con llama3 en Ollama corren sin tope, como en analyze. Para el arquitecto: «Ausente = 0» en ProjectionScope.analyzerBudgets, «tope 0 salvo pedido» en la inyección auditEngine de DefaultProjectionMeasurer y dos secciones del TECH_SPEC todavía dicen 0 para todo.
+
+2026-10-01 — qa-tester — F-PROYU-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
+  why: cruza get consolidated, save-projection, plan --audit, get audits y prune audits, package-private ahí (como F-JEXAM-J001 y F-CDIFF-J001); el proyector se alcanza por su fábrica pública.
+2026-10-01 — qa-tester — Para el analista: R003 dice «0 si no se pide» y F-RONDA2-R002, que lo local no tiene tope sin --budget. ¿La proyección corre naturalness y near-duplicates con Ollama sin tope (como analyze, R001) o con 0? Las pruebas de R003 fijan sólo claude -p, donde coinciden.
+2026-10-01 — qa-tester — R007, «el número de cada nivel es el puntaje de vocabulario publicado», no se repite: ya lo fija la prueba de F-HALL-R010 en DefaultImpactPreviewComputer.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): GetConsolidatedCommand repite sealed: true (el apply la abría, bug 09) y nodeFieldDiffer conserva su descripción. La medida de cada analizador en el informe (F-01 a F-04) es F-RONDA2-R004; el caché por oración (F-07), R005.
 
 2026-09-30 — analyst — Duda nueva DOUBT-LINEA-BASE-TANDAS (OPEN, recomendada A: fijar como línea base un análisis nuevo con la ronda 1 integrada, no el del 29/9, que no trae hallazgos, errores ni medida).

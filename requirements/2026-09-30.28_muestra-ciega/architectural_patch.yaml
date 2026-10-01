@@ -8,7 +8,14 @@ description: "FEAT-CIEGA: la muestra ciega de cada tanda y la tasa de error a ci
   \ por un puerto propio que el veredicto de FEAT-METAS inyecta. Rebasado por el integrador\
   \ de la ronda 2 sobre el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada\
   \ y construida) y sobre FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2,\
-  \ B, F y E, sin cambios de estructura."
+  \ B, F y E, sin cambios de estructura.; qa-tester: 37 pruebas para las 6 reglas\
+  \ de FEAT-CIEGA, con los casos del REQUIREMENT: el par de las verduras como lo ve\
+  \ el alumno («I ___ (love) vegetables. Me encantan las verduras.» y «I ___ a lot\
+  \ of vegetables. Me gustan mucho las verduras.»), «My grandmother ___ (come) every\
+  \ year.» fuera de la muestra porque vuelve, 95 · 1 · 4 de 100 con sus intervalos,\
+  \ la cota de 3,0 % con 100 pares y la suma de 300 y 400 pares, José y los 30 pares\
+  \ del tester, y ±4,3 puntos con 400 ejercicios. F-CIEGA-J001 va a audit-cli, paquete\
+  \ commands."
 modules:
 - name: revision-domain
   interfaces:
@@ -378,6 +385,27 @@ modules:
     implementations:
     - name: DefaultSampleStatistics
       visibility: public
+      handwrittenTests:
+      - name: "should give 95 of 100 the share 95% with the 95% Wilson interval [88.8;\
+          \ 97.8], 1 of 100 [0.2; 5.4] and 4 of 100 [1.6; 9.8]"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R004
+      - name: "should give 0 of 100 a one-sided 95% upper bound of 3.0%, 2 of 300\
+          \ a bound of 2.1% and 2 of 400 a bound of 1.6%"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R004
+      - name: should give Cohen's kappa 1 to two reviewers who answer every common
+          pair alike and 0 to two who agree only as often as chance
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R005
+      - name: should give 400 exercises a 95% margin of 4.3 points at 25.7% and of
+          2.1 points at 5%
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R006
       implements:
       - SampleStatistics
       _change: add
@@ -406,6 +434,120 @@ modules:
       - name: statistics
         type: SampleStatistics
       visibility: public
+      handwrittenTests:
+      - name: "should draw the same 100 changes in the same order twice with the same\
+          \ seed, and other changes with another seed"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R001
+      - name: "should draw only among the changes the comparison does not return,\
+          \ so «My grandmother ___ (come) every year.» never enters the sample of\
+          \ the four proposals of «Afirmativas regulares»"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R001
+      - name: should take every change when the batch has fewer than the 100 pairs
+          of the goal
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R001
+      - name: "should publish with the sample the seed it drew with, also when the\
+          \ request gives none"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R001
+      - name: "should draw from the pending proposals of the batch scope, or from\
+          \ those of the active plan when no batch is open"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R001
+      - name: "should show the vegetables pair as the student sees each side, «I ___\
+          \ (love) vegetables. Me encantan las verduras.» and «I ___ a lot of vegetables.\
+          \ Me gustan mucho las verduras.»"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R002
+      - name: "should show each side with its instruction, sentence with the gap,\
+          \ hint, options, translation and mini-theory before answering, and the finished\
+          \ sentence after answering"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R002
+      - name: "should draw with the seed the side of the after for each pair, so it\
+          \ changes from one pair to another"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R002
+      - name: "should hand out while the sample is open only views without the side\
+          \ of the after, analyzer marks, the reason of the change, dates or authors"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R002
+      - name: should reveal which side is the before only when the sample is closed
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R002
+      - name: "should keep each answer, A better, B better, equal or both wrong, with\
+          \ who answered and when"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R003
+      - name: "should refuse an answer or a change once the sample is closed with\
+          \ «Sample '<id>' is closed: it no longer accepts answers or changes.»"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R003
+      - name: "should write only the sample and its answers when answering, never\
+          \ the course, the proposals or the analysis history"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R003
+      - name: "should publish on closing 95 better or equal, 1 worse and 4 both wrong\
+          \ of 100 answered pairs, each with its 95% interval"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R004
+      - name: "should count as worse an answer for the side of the before, as better\
+          \ or equal an answer for the after or equal, and both wrong apart"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R004
+      - name: "should meet the goal José set on 30/9, at least 90 better or equal\
+          \ and at most 1 worse counted, with 95, 1 and 4 of 100"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R004
+      - name: "should not meet a goal on the bound of the worse below 2% with 100\
+          \ pairs, whose lowest possible bound is 3.0%, and say which part is not\
+          \ met"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R004
+      - name: "should add up the samples closed since the baseline, 300 pairs with\
+          \ 2 worse giving a bound of 2.1% above the goal of 2% and 400 pairs with\
+          \ 2 worse giving 1.6% below it"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R004
+      - name: should compute the result over the answered pairs only
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R004
+      - name: "should compute the result of the batch with the answers of José, the\
+          \ responsible the goal names, and not with those of the tester"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R005
+      - name: "should publish in how many of the first 30 pairs José and the tester\
+          \ answered alike, and Cohen's kappa over them"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R005
+      - name: "should keep apart the answers of two reviewers to the same pair, each\
+          \ with who answered and when"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R005
       implements:
       - BlindSampleService
       _change: add
@@ -419,6 +561,17 @@ modules:
         type: SampleStatistics
         description: Para el criterio «cota» de la meta guardada en la muestra (R004).
       visibility: public
+      handwrittenTests:
+      - name: "should give the verdict of a batch the outcome of its closed sample\
+          \ by the scope id, with its counts and whether it meets its goal"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R004
+      - name: should give an open sample as not closed and a batch without a sample
+          as no outcome
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R004
       implements:
       - SampleOutcomeSource
       _change: add
@@ -438,6 +591,31 @@ modules:
       - name: statistics
         type: SampleStatistics
       visibility: public
+      handwrittenTests:
+      - name: "should draw n exercises of a level or of the course, each shown once\
+          \ in its baseline or its projected version, without saying which"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R006
+      - name: "should hand out while open only each exercise as the student sees it,\
+          \ without whether it comes from the baseline"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R006
+      - name: "should publish on closing the share with an error before and after\
+          \ with its 95% margin, 4.3 points at 25.7% with 400 exercises"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R006
+      - name: should publish next to it the any-error share the analyzers gave those
+          same exercises and say whether it falls within the margin
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R006
+      - name: should refuse a mark once the error-rate sample is closed
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R006
       implements:
       - BlindErrorRateService
       _change: add
@@ -456,6 +634,12 @@ modules:
     types:
     - Repository
     visibility: public
+    handwrittenTests:
+    - name: should keep samples and their answers under .content-audit/blind-samples/
+        and write nothing else
+      traceability:
+        feature: FEAT-CIEGA
+        rule: F-CIEGA-R003
     implements:
     - BlindSampleStore
     _change: add
@@ -493,6 +677,17 @@ modules:
         type: BlindSampleService
       types:
       - Component
+      handwrittenTests:
+      - name: should print with sample show only what can be seen while the sample
+          is open
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R002
+      - name: should accept only the four answers and refuse any other with a non-zero
+          exit
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R003
       implements:
       - BlindSampleCommand
       _change: add
@@ -502,6 +697,12 @@ modules:
         type: BlindErrorRateService
       types:
       - Component
+      handwrittenTests:
+      - name: "should draw with error-rate draw from the level it names, as A1, or\
+          \ from the whole course"
+        traceability:
+          feature: FEAT-CIEGA
+          rule: F-CIEGA-R006
       implements:
       - ErrorRateCommand
       _change: add
@@ -510,3 +711,8 @@ modules:
 features:
 - id: FEAT-CIEGA
   code: F-CIEGA
+  journeys:
+  - id: F-CIEGA-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands

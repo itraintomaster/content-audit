@@ -7,10 +7,112 @@ description: "FEAT-CERO: cada corrida del motor empieza de cero. Sin cambios de 
   \ el informe de la primera— lleguen a la generación. Rebasado por el integrador\
   \ de la ronda 2 sobre el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada\
   \ y construida) y sobre FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2,\
-  \ B, F y E, sin cambios de estructura."
+  \ B, F y E, sin cambios de estructura.; qa-tester: 11 pruebas para las 2 reglas\
+  \ de FEAT-CERO, con los números del 29/9: la segunda corrida da 73,92 y 96,54 ·\
+  \ 94,16 · 79,45 · 63,51, COCA de B1 57,93 y recurrencia 8,00, como una invocació\
+  n nueva, y no 72,90; el primer informe conserva los 55 topics con su COCA (A1 ·\
+  \ Present Simple, 2.366 tokens en cuatro bandas). En el motor, en los cuatro proveedores\
+  \ que arrastraban estado, en la proyección y en el impacto por propuesta. F-CERO-J001\
+  \ va a audit-cli, paquete commands."
 modules:
 - name: audit-domain
+  implementations:
+  - name: IAuditEngine
+    handwrittenTests:
+    - name: "should give the base of 29/9 on its second run in the same process 73.92%\
+        \ in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA\
+        \ in B1 and 8.00 of recurrence, as a new invocation, and not 72.90"
+      traceability:
+        feature: FEAT-CERO
+        rule: F-CERO-R001
+    - name: "should give a run the numbers of a new invocation whatever courses ran\
+        \ before it, so a word only the earlier course used is absent for lemma-absence\
+        \ and lemma-count"
+      traceability:
+        feature: FEAT-CERO
+        rule: F-CERO-R001
+    - name: "should leave the first report untouched by a second run in the same process,\
+        \ its 55 topics keeping their COCA diagnosis, A1 · Present Simple with 2,366\
+        \ tokens in four bands"
+      traceability:
+        feature: FEAT-CERO
+        rule: F-CERO-R002
+  packages:
+  - name: coca
+    implementations:
+    - name: CocaBucketsAnalyzerProvider
+      handwrittenTests:
+      - name: "should create for every run an analyzer without the topics of an earlier\
+          \ run, so measuring the base of 29/9 twice keeps A1 at 100 and B1 at 57.9\
+          \ in COCA instead of 75 and 76.1"
+        traceability:
+          feature: FEAT-CERO
+          rule: F-CERO-R001
+      - name: "should give each analyzer it creates its own topics, so a second run\
+          \ writes its COCA diagnosis on its own topic nodes and not on those of the\
+          \ first report"
+        traceability:
+          feature: FEAT-CERO
+          rule: F-CERO-R002
+  - name: lrec
+    implementations:
+    - name: LemmaRecurrenceAnalyzerProvider
+      handwrittenTests:
+      - name: "should create for every run an analyzer that counts positions from\
+          \ the start, so the recurrence of the course stays at 8.0% on a second run\
+          \ instead of falling to 4.0%"
+        traceability:
+          feature: FEAT-CERO
+          rule: F-CERO-R001
+  - name: labs
+    implementations:
+    - name: LemmaAbsenceAnalyzerProvider
+      handwrittenTests:
+      - name: "should create for every run an analyzer that sees only the lemmas of\
+          \ the course it measures, not those of an earlier course"
+        traceability:
+          feature: FEAT-CERO
+          rule: F-CERO-R001
+  - name: lemmacount
+    implementations:
+    - name: LemmaCountAnalyzerProvider
+      handwrittenTests:
+      - name: "should create for every run an analyzer that counts only the sentences\
+          \ of the course it measures, so a sentence that lost the word in a proposal\
+          \ is no longer counted"
+        traceability:
+          feature: FEAT-CERO
+          rule: F-CERO-R001
   _change: modify
+- name: revision-domain
+  packages:
+  - name: engine
+    implementations:
+    - name: DefaultCourseProjector
+      handwrittenTests:
+      - name: "should give the photo with pending proposals the numbers of a new invocation\
+          \ on that course, whether or not the photo with the approved ones was measured\
+          \ before in the same process"
+        traceability:
+          feature: FEAT-CERO
+          rule: F-CERO-R001
+      - name: should keep the COCA diagnosis of the 55 topics in the photo with the
+          approved proposals after measuring the photo with the pending ones
+        traceability:
+          feature: FEAT-CERO
+          rule: F-CERO-R002
+    - name: DefaultImpactPreviewComputer
+      handwrittenTests:
+      - name: should give the impact of the k-th proposal of a revise-instructions
+          batch the same numbers as if it were the first one computed in the process
+        traceability:
+          feature: FEAT-CERO
+          rule: F-CERO-R001
 features:
 - id: FEAT-CERO
   code: F-CERO
+  journeys:
+  - id: F-CERO-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands

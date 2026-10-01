@@ -1,7 +1,7 @@
 ---
 patch: FEAT-CIEGA
 requirement: 2026-09-30.28_muestra-ciega
-generated: 2026-09-30T23:00:00Z
+generated: 2026-10-01T03:45:00Z
 ---
 
 # Tech Spec: Muestra ciega de cada tanda (FEAT-CIEGA)
@@ -472,4 +472,48 @@ features:
 modules:
   - name: audit-cli
     _change: modify
+```
+
+## Declarar las 37 pruebas de FEAT-CIEGA y ubicar su journey
+Las 37 son nuevas: la muestra ciega no existe en el código. Cada una fija una regla con el caso del REQUIREMENT. El par
+de las verduras es el de R002, el que cambia el inglés y el audio: «I ___ (love) vegetables. Me encantan las verduras.»
+contra «I ___ a lot of vegetables. Me gustan mucho las verduras.»; no el arreglo que cambia sólo la traducción. Los
+números son los de R004 y R006.
+
+| Pieza | Reglas | Pruebas | Qué fija |
+|---|---|---:|---|
+| `DefaultBlindSampleService` | R001–R005 | 22 | la misma semilla da los mismos 100 cambios en el mismo orden; «My grandmother ___ (come) every year.» no entra porque vuelve; todos si hay menos de 100; la semilla publicada; el alcance de la tanda; el par de las verduras como lo ve el alumno; el lado sorteado por par; nada que delate el lado mientras está abierta; se revela al cerrar; las cuatro respuestas con quién y cuándo; cerrada no acepta nada; responder no toca el curso; 95 · 1 · 4 de 100; la meta de José; la cota de 3,0 % con 100 pares; la suma de 300 y 400 pares; sólo lo de José y el kappa de los 30 pares del tester |
+| `DefaultSampleStatistics` | R004–R006 | 4 | Wilson: [88,8; 97,8], [0,2; 5,4] y [1,6; 9,8]; la cota a una cola: 3,0 %, 2,1 % y 1,6 %; el kappa; ±4,3 y ±2,1 puntos con 400 |
+| `DefaultSampleOutcomeSource` | R004 | 2 | lo que lee el veredicto de la tanda por su id; abierta o sin muestra |
+| `DefaultBlindErrorRateService` | R006 | 5 | n ejercicios de un nivel o del curso mezclados sin decir de dónde; ±4,3 puntos al 25,7 % con 400; el «algún error» de los analizadores al lado; cerrada no acepta marcas |
+| `FileSystemBlindSampleStore` | R003 | 1 | sólo `blind-samples/` |
+| `DefaultBlindSampleCommand`, `DefaultErrorRateCommand` | R002, R003, R006 | 3 | `sample show` sólo muestra lo que se puede ver; sólo las cuatro respuestas; `error-rate draw` de un nivel o del curso |
+
+Por regla: R001 5, R002 6, R003 5, R004 10, R005 4 y R006 7.
+
+**El journey.** F-CIEGA-J001 va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: su camino es
+`sample draw`, `show`, `answer` y `close`, y `DefaultBlindSampleCommand` es package-private ahí; el servicio está en
+`blindsampleengine`, público para `audit-cli`. `generate` crearía `FCiegaJ001JourneyTest` con 2 caminos.
+
+**Dependencias.** El renderizador «como lo ve el alumno» de la integración de la ronda 1 (F-15), lo que vuelve según
+FEAT-METAS y la meta de la muestra de su libro de metas.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: blindsampleengine
+        _change: add
+        implementations:
+          - name: DefaultBlindSampleService
+            _change: add
+            handwrittenTests:
+              - name: "should show the vegetables pair as the student sees each side, «I ___ (love) vegetables. Me encantan las verduras.» and «I ___ a lot of vegetables. Me gustan mucho las verduras.»"
+                traceability: { feature: FEAT-CIEGA, rule: F-CIEGA-R002 }
+features:
+  - id: FEAT-CIEGA
+    code: F-CIEGA
+    journeys:
+      - { id: F-CIEGA-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
 ```

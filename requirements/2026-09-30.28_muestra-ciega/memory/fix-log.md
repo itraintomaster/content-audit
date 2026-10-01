@@ -5,6 +5,8 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — Copia del parche antes de proponer (bug 08); después, 0 perdidos: domainLinks 1 → 1 y glossarySuggestions 1 → 1.
+
 2026-09-30 — architect — `patch propose` también rechaza una implementación DE PAQUETE que implementa una interfaz que no está en el sentinel.yaml ni en el mismo parche («Implementation X implements unknown interface: Y»). Tipos en requiresInject, campos y firmas no se validan. Solución: declarar el puerto en el parche que lo implementa y dejar que el otro sólo lo inyecte.
   why: el fix-log de HALL sólo anotaba el caso raíz → paquete.
 

@@ -190,6 +190,10 @@ comparación evalúa con 1,0 y dice «metas cambiadas desde que se fijaron: piso
 la propuesta: «las metas se escriben antes de correr, para no acomodarlas después». Fijar la línea base o cambiar el par
 activo no toca las metas fijadas.
 
+**Dónde se prueba**: que abrir una tanda también las fija se prueba en FEAT-TANDA, donde está el servicio que abre la
+tanda; cuando se aplica esta feature, ese servicio todavía no existe (decidido por el orquestador el 1/10). El resto de
+la regla se prueba acá.
+
 <a id="F-METAS-R007"></a>
 ### Rule[F-METAS-R007] - Un cambio de medida se muestra aparte
 **Severity**: critical | **Validation**: AUTO_VALIDATED
@@ -374,4 +378,5 @@ tanda que empeora lo que otra ya había arreglado.
   [F-PIPRE-R013](#F-PIPRE-R013)). Citado por R001, R006 y R009.
 - **FEAT-LASAG** — No-regresión léxica del candidato ([F-LASAG-R007](#F-LASAG-R007)). Citado por R003.
 - **FEAT-TANDA, FEAT-NOEMP** (paquete E) — Qué es una tanda, desde dónde arranca y la compuerta que lee esta
-  comparación (F-NOEMP-R003, R005, R006). Citado en las definiciones, R003 y R005.
+  comparación (F-NOEMP-R003, R005, R006). Citado en las definiciones, R003 y R005; en R006, FEAT-TANDA prueba que abrir
+  una tanda fija las metas.
