@@ -48,7 +48,6 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -84,16 +83,7 @@ public class DefaultConsolidatedViewBuilderTest {
 
     @BeforeEach
     void setUp() {
-        builder = new DefaultConsolidatedViewBuilder(
-                revisionArtifactStore,
-                activeAnalysisSelectionStore,
-                auditReportStore,
-                refinementPlanStore,
-                courseRepository,
-                courseElementLocator,
-                courseMapper,
-                auditEngine,
-                nodeFieldDiffer, null);
+        builder = new DefaultConsolidatedViewBuilder(nodeFieldDiffer, new DefaultCourseProjector(activeAnalysisSelectionStore, auditReportStore, refinementPlanStore, revisionArtifactStore, courseRepository, new DefaultPendingApplier(courseElementLocator), new DefaultProjectionMeasurer(courseMapper, auditEngine)));
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -1315,12 +1305,12 @@ public class DefaultConsolidatedViewBuilderTest {
                         new com.learney.contentaudit.auditdomain.contextnumbers.SeverityCounts(0, 0, 0, 0), 0, List.of()), null));
         stubActive(baselineQuiz);
         when(revisionArtifactStore.listByPlan(PLAN_ID)).thenReturn(List.of(approvedArtifact("p1", "q1")));
+        // FEAT-PROYU (F-PROYU-R002): the approved proposal is written where its node is.
+        when(courseElementLocator.snapshot(any(), any(), any()))
+                .thenReturn(Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, "q1", null, null)));
         when(courseElementLocator.replace(any(), any())).thenAnswer(invocation -> invocation.getArgument(0));
         when(auditEngine.runAudit(any())).thenReturn(reportWith(consolidatedQuiz));
-        DefaultConsolidatedViewBuilder realDiff = new DefaultConsolidatedViewBuilder(revisionArtifactStore,
-                activeAnalysisSelectionStore, auditReportStore, refinementPlanStore, courseRepository,
-                courseElementLocator, courseMapper, auditEngine,
-                new com.learney.contentaudit.revisiondomain.fielddiff.DefaultNodeFieldDifferFactory().create(), null);
+        DefaultConsolidatedViewBuilder realDiff = new DefaultConsolidatedViewBuilder(new com.learney.contentaudit.revisiondomain.fielddiff.DefaultNodeFieldDifferFactory().create(), new DefaultCourseProjector(activeAnalysisSelectionStore, auditReportStore, refinementPlanStore, revisionArtifactStore, courseRepository, new DefaultPendingApplier(courseElementLocator), new DefaultProjectionMeasurer(courseMapper, auditEngine)));
 
         ConsolidatedView view = realDiff.build(COURSE_PATH);
 
@@ -1340,17 +1330,75 @@ public class DefaultConsolidatedViewBuilderTest {
     @DisplayName("should compare the course node too, with the id the digest gives it, so the course of the four pending proposals of «Afirmativas regulares» appears with 73.92%")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldCompareTheCourseNodeTooWithTheIdTheDigestGivesItSoTheCourseOfTheFourPendingProposalsOfAfirmativasRegularesAppearsWith7392() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the photos of the four pending proposals of «Afirmativas regulares» bring the course too -- 73,92 %
+        // in the three --; the course has no entity, and the view compares it under the id the digest gives it.
+        // Before FEAT-PROYU it was skipped and the course appeared in no photo.
+        AuditReport original = courseReport(0.7392339318685259, 0.89250300362255);
+        AuditReport approved = courseReport(0.7392339318685259, 0.89250300362255);
+        AuditReport projected = courseReport(0.7392301245098765, 0.8924921);
+        com.learney.contentaudit.revisiondomain.projection.CourseProjector projector =
+                org.mockito.Mockito.mock(com.learney.contentaudit.revisiondomain.projection.CourseProjector.class);
+        when(projector.project(COURSE_PATH, null)).thenReturn(projection(original, approved, projected, List.of()));
+
+        ConsolidatedView view = new DefaultConsolidatedViewBuilder(new DefaultNodeFieldDifferFactory().create(), projector)
+                .build(COURSE_PATH);
+
+        NodeImpact course = view.getNodeImpacts().stream().filter(n -> "root".equals(n.getNodeId())).findFirst()
+                .orElseThrow(() -> new AssertionError("R001: the course appears, as \"root\": " + view.getNodeImpacts()));
+        assertEquals(AuditTarget.COURSE, course.getNodeTarget(), "R001: the course node");
+        FieldChange vocabulary = course.getFieldChanges().get("numbers.vocabularyScore");
+        assertNotNull(vocabulary, "R001: its vocabulary score, in the three photos: " + course.getFieldChanges().keySet());
+        assertEquals("73,92", percent((Double) vocabulary.getOriginal()), "R001: 73,92 % in the active analysis");
+        assertEquals("73,92", percent((Double) vocabulary.getConsolidated()), "R001: with what is approved");
+        assertEquals("73,92", percent((Double) vocabulary.getPendingProjection()), "R001: and with the four pending");
     }
 
     @Test
     @DisplayName("should declare in the consolidated view the same pending proposals not applicable, with their causes, as the projection it reads")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldDeclareInTheConsolidatedViewTheSamePendingProposalsNotApplicableWithTheirCausesAsTheProjectionItReads() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: the projection declared «Winter ___ (come) every year.» not applicable -- «My grandmother…», older,
+        // already changed the exercise -- and an id that is not a pending proposal of the active plan; the view
+        // declares exactly those, with their causes, and nothing else.
+        List<com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePending> declared = List.of(
+                new com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePending("p-winter",
+                        com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePendingReason.ELEMENT_BEFORE_MISMATCH,
+                        "El elementBefore de la propuesta no coincide con el nodo '67fab6d59930102295341ec4'"),
+                new com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePending("p-otra",
+                        com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePendingReason.OTHER,
+                        "'p-otra' no es una propuesta pendiente del plan activo"));
+        AuditReport same = courseReport(0.7392339318685259, 0.89250300362255);
+        com.learney.contentaudit.revisiondomain.projection.CourseProjector projector =
+                org.mockito.Mockito.mock(com.learney.contentaudit.revisiondomain.projection.CourseProjector.class);
+        when(projector.project(COURSE_PATH, null)).thenReturn(projection(same, same, same, declared));
+
+        ConsolidatedView view = new DefaultConsolidatedViewBuilder(new DefaultNodeFieldDifferFactory().create(), projector)
+                .build(COURSE_PATH);
+
+        assertEquals(ConsolidatedViewAvailability.AVAILABLE, view.getAvailability());
+        assertEquals(declared, view.getNonApplicablePendings(), "R002: the same not applicable, with their causes");
+    }
+
+    /** A report with only the course: its published vocabulary score and its lemma-absence score. */
+    private static AuditReport courseReport(double vocabulary, double lemmaAbsence) {
+        AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, List.of(),
+                new java.util.LinkedHashMap<>(Map.of("lemma-absence", lemmaAbsence)), Map.of(), null);
+        root.setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers(vocabulary, List.of(),
+                null, null));
+        return new AuditReport(root);
+    }
+
+    private static com.learney.contentaudit.revisiondomain.projection.CourseProjection projection(AuditReport original,
+            AuditReport approved, AuditReport projected,
+            List<com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePending> nonApplicable) {
+        return new com.learney.contentaudit.revisiondomain.projection.CourseProjection(AUDIT_ID, PLAN_ID, PLAN_ID,
+                ConsolidatedViewAvailability.AVAILABLE, null, original, approved, projected, List.of(), nonApplicable);
+    }
+
+    /** Two decimals with a decimal comma: 0,7392339 -> 73,92. */
+    private static String percent(Double score) {
+        return String.format(java.util.Locale.ROOT, "%.2f", score * 100).replace('.', ',');
     }
 }

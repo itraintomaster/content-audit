@@ -82,10 +82,7 @@ public class FCdiffJ004JourneyTest {
     @BeforeEach
     void setUp() {
         NodeFieldDiffer realDiffer = new DefaultNodeFieldDifferFactory().create();
-        builder = new DefaultConsolidatedViewBuilder(
-                revisionArtifactStore, activeAnalysisSelectionStore,
-                auditReportStore, refinementPlanStore, courseRepository,
-                courseElementLocator, courseMapper, auditEngine, realDiffer, null);
+        builder = new DefaultConsolidatedViewBuilder(realDiffer, new DefaultCourseProjector(activeAnalysisSelectionStore, auditReportStore, refinementPlanStore, revisionArtifactStore, courseRepository, new DefaultPendingApplier(courseElementLocator), new DefaultProjectionMeasurer(courseMapper, auditEngine)));
     }
 
     private AuditNode quizNodeWithScore(String id, String dimension, double score) {
