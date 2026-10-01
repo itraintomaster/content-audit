@@ -5,6 +5,21 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — La alternativa usa el runtime de C sin duplicarlo: los dos de modelo abren SIEMPRE con
+  `JudgeRuntime.open(nombre, [evaluador], política)` —local con `LocalToolGateDecision.localPolicy` (la de la corrida o, sin
+  pedido, sin tope y de a una); claude -p con la política de la corrida, que sin pedido es tope 0—. El evaluador de claude -p
+  lo arma Main con `AgentJudgeFactory` de C (gancho B-21); cobertura y costo en `getJudgeCoverages` (C-04).
+  why: «que B use el runtime de C, sin duplicarlo»; y el tope que no alcanza al modelo local vive en un solo lugar.
+
+2026-09-30 — architect — Fuera `LocalToolExamState` y el `examRegistry` de `DefaultLocalToolGate`: el examen sale de
+  `JudgeRuntime.standing` y se lee como `JudgeExamStatus`. `LocalToolRunDiagnosis` pierde `coverage` y suma `alternative`;
+  `LocalToolCard` suma `alternative`; `LocalToolGate` suma `alternativeCard(nombre, evaluador)`.
+  why: el estado propio no tenía TAKEN ni NO_VERSION, y la cobertura quedaba escrita dos veces.
+
+2026-09-30 — architect — B-06 cambia de sentido: el runner no le da Integer.MAX_VALUE a los de costo LOCAL_MODEL (llegaría a
+  claude -p sin tope); deja la política en null y la completa la decisión. `CONTENT_AUDIT_OLLAMA_URL=off` apaga los modelos
+  locales a pedido: así se rinde el examen de la alternativa en una máquina con Ollama.
+
 2026-09-30 — analyst — José, 30/9 a la noche: sin Ollama, naturalness y near-duplicates le preguntan a claude -p
   (DOUBT-MLOCAL-SIN-OLLAMA → A). Nuevas R007 (la alternativa, con las reglas de los jueces: 4 a la vez, sesión verificada,
   costo declarado) y R008 (tope 0 sin pedido y «falta el tope»; el modelo local nunca tiene tope). R001: nada sale de la

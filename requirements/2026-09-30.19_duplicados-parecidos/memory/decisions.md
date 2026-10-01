@@ -5,6 +5,12 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Las dos rutas abren por `JudgeRuntime`: un vector por ejercicio, o un juicio por par
+  (`SameExerciseQuestion`: los dos ejercicios de `QuizStudentViewRenderer`; veredicto {sameExercise, reason}). onKnowledge
+  arma pares, comodín y pedidos; onCourseComplete resuelve todo junto y decide. Regla `same-exercise` (modelo pago),
+  condición JUDGED; el comodín corre siempre; lo que falta queda a medias (`partiallyEvaluatedBy`). Candidatos con
+  `wordSimilarity` ≥ `candidateWordSimilarity()`, 0,6. El proveedor ya no recibe la fábrica de sesiones.
+
 2026-09-30 — analyst — Nueva R008: sin Ollama, candidatos = pares de R001 que el comodín no resuelve con parecido de
   palabras ≥ 0,6 (cambian como mucho 4 de cada 10); claude -p juzga si es el mismo ejercicio; el comodín corre siempre; sin
   tope, a medias (F-RONDA1-R006). Dudas OPEN con A aplicada: DOUBT-DUPAR-PARECIDO-TEXTO (0,6) y DOUBT-DUPAR-A-MEDIAS.

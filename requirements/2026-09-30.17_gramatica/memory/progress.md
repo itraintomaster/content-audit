@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Sin cambios por la alternativa: Gramática no la necesita (LanguageTool corre en el proceso).
+  `patch validate -i` contra el sentinel.yaml de `ronda1/integracion`: exit 0.
+
 2026-09-30 — architect — Diseño propuesto, sin aplicar: `architectural_patch.yaml` (2 altas, 1 cambio, 0 conflictos; `patch
   validate` exit 0) y `TECH_SPEC.md` (7 fragmentos). Dudas resueltas por José y números corregidos en REQUIREMENT
   (`requirement validate` [OK]). Lo compartido, en ittm `…/ronda2/ganchos-B.md`.

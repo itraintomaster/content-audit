@@ -1,21 +1,23 @@
 ---
 patch: FEAT-MLOCAL
 requirement: 2026-09-30.20_idioma-local
-generated: 2026-09-30T21:30:00Z
+generated: 2026-09-30T23:55:00Z
 ---
 
 # Tech Spec: Idioma local, herramientas y modelos que corren en la máquina (FEAT-MLOCAL)
 
-Paquete B de la ronda 2, diseñado contra el `sentinel.yaml` de la rama `ronda2/idioma`, que ya tiene aplicados 0.2
-(FEAT-OPMUL) y 0.3 (FEAT-HALL). Este parche trae las herramientas —LanguageTool, llama3 8B y nomic-embed-text— y lo
-común a los tres analizadores de idioma; los analizadores están en los parches de FEAT-GRAMA, FEAT-NATUR y FEAT-DUPAR,
-que se aplican después de éste. Lo que toca archivos compartidos (la ficha, las ranuras de diagnóstico, el runner,
-`Main`, el libro de evaluaciones) no está acá: va, uno por línea, en
-`docs/propuestas/tablero-corregir-sin-empeorar/ronda2/ganchos-B.md` de ittm.
+Paquete B de la ronda 2. Este parche trae las herramientas —LanguageTool, llama3 8B y nomic-embed-text— y lo común a
+los tres analizadores de idioma; los analizadores están en los parches de FEAT-GRAMA, FEAT-NATUR y FEAT-DUPAR, que se
+aplican después de éste. Rebasado el 30/9 a la noche sobre el `sentinel.yaml` de `ronda1/integracion` (0.2, 0.3 y la
+ronda 1 aplicados), con la decisión de José: «sin Ollama no se deja sin evaluar; recordá que tenemos claude -p».
+`sentinel-baseline.yaml` queda como la foto de la rama `ronda2/idioma`, sin la ronda 1.
 
-De la ronda 1 usa una sola pieza: el registro de exámenes por versión de FEAT-JEXAM (`JudgeExamRegistry`, paquete C).
-`patch propose` y `patch validate` no resuelven tipos, así que el parche valida hoy; `generate` necesita la ronda 1
-integrada antes.
+**Lo que se usa de C sin declararlo de nuevo**: el runtime de los jueces (`JudgeRuntime`: abre las sesiones con el
+freno del examen, el tope 0 sin pedido y las 4 a la vez, planea qué pide cada unidad y declara cobertura y costo), sus
+estados de examen (`JudgeExamStatus`), el evaluador de claude -p (`AgentJudgeFactory` con un `AgentJudgeSpec`, que
+verifica la sesión antes de la primera consulta) y el comando `exam`. Lo que toca archivos compartidos —la ficha, las
+ranuras, `Main`, las definiciones de agentes— va, uno por línea, en
+`docs/propuestas/tablero-corregir-sin-empeorar/ronda2/ganchos-B.md` de ittm.
 
 ## Nombrar la herramienta, su versión y si se puede usar ahora
 
@@ -23,7 +25,7 @@ Las tres herramientas son distintas —una biblioteca dentro del proceso y dos m
 reglas de FEAT-MLOCAL les piden lo mismo: nombre y versión a la vista (R002) y saber antes de empezar si falta (R003).
 `LocalTool` es esa pregunta común. `status()` tiene que ser barato, sin cargar reglas ni modelos, porque lo llama la
 ficha y el catálogo arma las fichas cada vez que arranca la CLI; el sondeo de Ollama se hace una vez por proceso y con
-tope de 2 segundos.
+tope de 2 segundos. El mismo registro describe a la alternativa en su tarjeta, sin que la alternativa sea un `LocalTool`.
 
 ```architecture
 modules:
@@ -121,16 +123,16 @@ modules:
               - signature: "embed(String text): SentenceEmbedding"
 ```
 
-## Decidir en un solo lugar si un analizador publica
+## Decidir en un solo lugar si publica la herramienta local, con el examen de los jueces
 
-R003 y R006 dicen lo mismo para los tres: sin herramienta o sin examen aprobado, sus ejercicios quedan sin evaluar,
-con el motivo; si la corrida es el examen, publica, porque es lo que se mide. Escrita tres veces, esa decisión
-divergiría; `LocalToolGate` la toma una vez por corrida, en el `create(policy)` de cada proveedor, y el analizador sólo
-obedece. Lo que rinde examen es la versión de la herramienta más la del método del analizador —la pregunta, el prefijo,
-el filtro—, así que cambiar el prompt también pide un examen nuevo. El registro es el de los jueces (FEAT-JEXAM), con
-el nombre del analizador y esa versión: un segundo registro sería duplicar lo que la ronda 1 ya diseñó, y la
-dependencia queda concentrada en `DefaultLocalToolGate`, que vive con `allowedClients: [audit-cli]` como los motores de
-0.3.
+R003 y R006 dicen lo mismo para los tres: sin herramienta o sin examen aprobado, lo que depende de ella queda sin
+evaluar, con el motivo; si la corrida es el examen, publica, porque es lo que se mide. `LocalToolGate.decide` lo toma
+una vez por corrida, en el `create(policy)` de cada proveedor. El examen ya no se lee del registro a mano ni con un
+estado propio: `DefaultLocalToolGate` le pregunta a `JudgeRuntime.standing` y usa `JudgeExamStatus`, así un registro
+TAKEN o una versión sin enunciar se leen igual que para los jueces y el motivo es el mismo texto. La decisión trae
+además `localPolicy`, la política con que se consulta el modelo local: la de la corrida o, sin pedido, sin tope y de a
+una. Es el único lugar donde vive el gancho B-06: el tope 0 de los jueces no alcanza a los modelos locales, y la
+alternativa nunca usa esta política.
 
 ```architecture
 modules:
@@ -141,13 +143,6 @@ modules:
         _change: add
         visibility: public
         models:
-          - name: LocalToolExamState
-            _change: add
-            type: enum
-            fields:
-              - { name: APPROVED }
-              - { name: FAILED }
-              - { name: NOT_TAKEN }
           - name: LocalToolGateDecision
             _change: add
             type: record
@@ -155,9 +150,10 @@ modules:
               - { name: publishes, type: boolean }
               - { name: status, type: LocalToolStatus }
               - { name: examinedVersion, type: String }
-              - { name: examState, type: LocalToolExamState }
+              - { name: examState, type: JudgeExamStatus }
               - { name: examRun, type: boolean }
               - { name: reason, type: String }
+              - { name: localPolicy, type: EvaluationRunPolicy }
         interfaces:
           - name: LocalToolGate
             _change: add
@@ -165,7 +161,6 @@ modules:
             sealed: false
             exposes:
               - signature: "decide(String analyzerName,LocalTool tool,String methodId,EvaluationRunPolicy policy): LocalToolGateDecision"
-              - signature: "card(String analyzerName,LocalTool tool,String methodId): LocalToolCard"
       - name: localtoolsengine
         _change: add
         visibility: public
@@ -176,16 +171,28 @@ modules:
             visibility: public
             implements: [LocalToolGate]
             requiresInject:
-              - { name: examRegistry, type: JudgeExamRegistry }
+              - { name: judgeRuntime, type: JudgeRuntime }
 ```
 
-## Mostrar la herramienta y su examen en la ficha
+## Sin Ollama, la alternativa: claude -p por el runtime de los jueces
+
+José decidió el 30/9 a la noche que sin Ollama Naturalidad y Duplicados parecidos le preguntan a claude -p (R007). La
+alternativa no se modela acá: es un `Evaluator` de C, hecho en `Main` con `AgentJudgeFactory` y un `AgentJudgeSpec`
+por analizador (gancho B-21), que cada proveedor recibe ya construido, como reciben sus evaluadores los jueces de C.
+Si `decide` dice que el modelo local no está, el proveedor abre con `JudgeRuntime.open(nombre, [alternativa], política
+de la corrida)`: el runtime pone el tope 0 sin pedido (R008, F-JEXAM-R010), frena una versión sin examen, verifica la
+sesión antes de la primera consulta, consulta 4 a la vez y declara lo que falta y lo que cuesta. Con el modelo local
+abre igual por el runtime, con su evaluador y `localPolicy`: un solo camino de sesiones, freno y cobertura para las dos
+rutas, y ninguno propio de B.
+
+## Mostrar la herramienta, la alternativa y sus exámenes en la ficha
 
 R002 pide que la ficha nombre la herramienta con su versión y R006, que el resultado del examen quede junto a la
-versión, en la ficha. `LocalToolCard` es esa tarjeta, y el proveedor la arma en `describe()` con `card(...)`. El campo
-que la cuelga de `AnalyzerDescriptor` es compartido y va como gancho B-01; con él, el runner también puede rechazar un
-pedido por nombre antes de cargar el curso leyendo sólo fichas (gancho B-05), y la interfaz de G la dibuja sin conocer
-a nadie.
+versión. `LocalToolCard` es esa tarjeta; el proveedor la arma en `describe()` con `card(...)` y, si tiene alternativa,
+suma la de claude -p con `alternativeCard(...)`, que lee la versión del evaluador sin consultarlo y su examen del
+runtime. `alternative` separa las dos: la de claude -p sólo se usa sin el modelo local y sólo consulta con tope. Con
+las dos tarjetas en la ficha (gancho B-01), el runner rechaza un pedido por nombre sólo si ninguna está disponible
+(gancho B-05) y la interfaz de G las dibuja sin conocer a nadie.
 
 ```architecture
 modules:
@@ -202,17 +209,27 @@ modules:
             fields:
               - { name: status, type: LocalToolStatus }
               - { name: examinedVersion, type: String }
-              - { name: examState, type: LocalToolExamState }
+              - { name: examState, type: JudgeExamStatus }
               - { name: examSummary, type: String }
+              - { name: alternative, type: boolean }
+        interfaces:
+          - name: LocalToolGate
+            _change: add
+            stereotype: port
+            sealed: false
+            exposes:
+              - signature: "card(String analyzerName,LocalTool tool,String methodId): LocalToolCard"
+              - signature: "alternativeCard(String analyzerName,Evaluator alternative): LocalToolCard"
 ```
 
 ## Dejar en el informe con qué midió cada corrida
 
-R002 inv. 3 pide que, si un hallazgo cambia sin que cambie su ejercicio, el informe muestre que cambió la versión. Por
-eso cada corrida deja, en el curso, una fila por analizador de idioma con la herramienta, la versión examinada, si
-publicó y por qué no, y la cobertura del libro: la vista consolidada compara las filas por `analyzer` y la diferencia de
-versión aparece sola. Una lista común y no una ranura por analizador, como la de los jueces de C: el gancho B-03 suma
-una sola ranura.
+R002 inv. 3 pide que, si un hallazgo cambia sin que cambie su ejercicio, el informe muestre que cambió la versión o la
+herramienta. Cada corrida deja, en el curso, una fila por analizador de idioma con la herramienta local, la versión
+examinada, si publicó y por qué no, y si usó la alternativa (gancho B-03). La cobertura salió de esta fila: los dos de
+modelo abren por el runtime de los jueces, así que su cobertura, el examen de la versión consultada, lo que falta y su
+costo van en la ranura común de C (`CourseDiagnoses.getJudgeCoverages`, C-04), con el mismo nombre; duplicarla acá
+sería tener dos verdades para lo mismo.
 
 ```architecture
 modules:
@@ -230,19 +247,19 @@ modules:
               - { name: analyzer, type: String }
               - { name: status, type: LocalToolStatus }
               - { name: examinedVersion, type: String }
-              - { name: examState, type: LocalToolExamState }
+              - { name: examState, type: JudgeExamStatus }
               - { name: published, type: boolean }
               - { name: reason, type: String }
-              - { name: coverage, type: EvaluationCoverage }
+              - { name: alternative, type: boolean }
 ```
 
 ## Rechazar antes de cargar el curso lo que se pidió y no puede correr
 
-Pedido por su nombre y sin herramienta, `analyze` rechaza antes de empezar y no escribe informe (R003 inv. 1). El
-runner ya valida los nombres contra el catálogo antes de cargar el curso, porque cargarlo tokeniza con spaCy y tarda;
-con la tarjeta de cada ficha puede hacer lo mismo con la herramienta. La excepción lleva el mensaje del requirement y
-se lanza desde el runner (gancho B-05); sin selección no se lanza nunca: el analizador queda sin evaluar y los demás
-corren.
+Pedido por su nombre, sin herramienta y sin alternativa, `analyze` rechaza antes de empezar y no escribe informe (R003
+inv. 1). El runner ya valida los nombres contra el catálogo antes de cargar el curso, porque cargarlo tokeniza con spaCy
+y tarda; con las tarjetas de cada ficha puede hacer lo mismo con las herramientas. Con la alternativa disponible no se
+rechaza (inv. 2): sin tope, el runtime reusa lo que claude -p ya contestó y declara el costo de lo que falta, como con
+cualquier juez. Sin selección no se lanza nunca.
 
 ```architecture
 modules:
@@ -264,25 +281,26 @@ modules:
               - { name: installHint, type: String }
 ```
 
-## Guardar cada número de modelo en el libro que ya existe
+## Guardar cada número y cada respuesta en el libro que ya existe
 
-R002 inv. 2 pide guardar el número de cada ejercicio con su contenido y su versión, y reusarlo mientras no cambien: con
-llama3, una corrida larga y una corta difirieron hasta 0,025, lo bastante para mover una marca de borde. Es el libro de
-evaluaciones de FEAT-EVCOST, sin costo: `naturalness` y `near-duplicates` abren una sesión con su propio `Evaluator` y
-tope sin límite. Como el libro no hace de la versión una parte de la identidad (F-EVCOST-R006) y R002 sí lo pide para
-los modelos locales, la versión examinada va en el id del evaluador: cada versión tiene su archivo y ninguna reusa lo de
-otra. Hay un costo que este parche no puede arreglar: `FileSystemEvaluationLedger` relee el archivo entero en cada
-consulta; con los 11.287 vectores de `near-duplicates` (unos 46 MB) eso es inusable, y el gancho B-09 le pide un índice
-en memoria, sin cambiar su contrato.
+R002 inv. 2 pide reusar mientras no cambien contenido y versión. Los dos de modelo abren sus sesiones con
+`JudgeRuntime.open`, así que todo va al libro de evaluaciones de FEAT-EVCOST. Con el modelo local, la versión examinada
+va en el id del evaluador: cada versión tiene su archivo y ninguna reusa lo de otra, que es lo que R002 pide y el libro
+no hace solo (F-EVCOST-R006). Con claude -p rige la regla de los jueces: el evaluador es el del agente y reusa el último
+veredicto de ese contenido; Naturalidad pone su pregunta dentro del contenido, así que cambiar la pregunta vuelve a
+consultar. El costo de leer el libro lo resolvió la ronda 1: `FileSystemEvaluationLedger` lee cada archivo una vez
+mientras no cambie (71ba5182), y `resolveAll` decide qué consulta antes de escribir, así que los 46 MB de vectores se leen
+una vez por corrida (gancho B-09).
 
 ## Un módulo para las herramientas, que sólo habla con esta máquina
 
 LanguageTool y el cliente de Ollama son infraestructura: en audit-domain quedan sólo los puertos. Un módulo nuevo y no
 `nlp-infrastructure`, que es la tokenización de spaCy detrás de su propia fábrica. `allowedClients: [audit-cli]`
-porque sólo la raíz de composición lo construye (P8), y audit-cli pasa a depender de él; nadie más lo necesita, así que
-va en este parche y no como gancho. R001 queda por construcción: LanguageTool corre dentro del proceso, y una dirección
-de Ollama que no es de esta máquina no abre ninguna conexión y deja los modelos no disponibles, con el motivo; no es
-una excepción, para que un mal valor en el entorno no tire comandos que no usan modelos.
+porque sólo la raíz de composición lo construye (P8), y audit-cli pasa a depender de él. R001 queda por construcción:
+LanguageTool corre dentro del proceso, y una dirección de Ollama que no es de esta máquina no abre ninguna conexión y
+deja los modelos no disponibles, con el motivo; no es una excepción, para que un mal valor en el entorno no tire
+comandos que no usan modelos. «off» los apaga a pedido: es como se rinde el examen de la alternativa en una máquina que
+tiene Ollama. claude -p no vive acá: es de los jueces, en quiz-instruction-infrastructure.
 
 ```architecture
 modules:
@@ -410,15 +428,18 @@ modules:
               - { name: model, type: String }
 ```
 
-## Cómo se prueba sin llamar a las herramientas
+## Cómo se prueba sin llamar a las herramientas ni a claude
 
-Ninguna prueba común llama a LanguageTool ni a Ollama. Los analizadores se prueban con dobles de `GrammarChecker`,
-`YesNoModel` y `EmbeddingModel`, cargados con respuestas del prototipo del analista (`scratchpad/ronda2-B/`). Los
-adaptadores de Ollama se prueban con un doble de `OllamaApi`, y `HttpOllamaApi` contra un `HttpServer` del JDK en
-127.0.0.1 que devuelve respuestas grabadas: así se prueba también que una dirección no local no abre ninguna conexión.
-`DefaultLocalToolGate` se prueba con un registro de exámenes en memoria: sin examen, reprobado, aprobado y la corrida de
-examen. La prueba que usa las herramientas de verdad va aparte, con la etiqueta `herramienta-real`, y se saltea con
-`Assumptions` si `status()` dice que no están; surefire la excluye por omisión (gancho B-14).
+Ninguna prueba común llama a LanguageTool, a Ollama ni a claude. Los analizadores se prueban con dobles de
+`GrammarChecker`, `YesNoModel` y `EmbeddingModel`, cargados con respuestas del prototipo del analista
+(`scratchpad/ronda2-B/`), y con un `Evaluator` doble para la alternativa, con la forma que emite su agente, que cuenta
+cuántas veces lo llaman, sobre el `DefaultJudgeRuntime` de C con libros en memoria. Los adaptadores de Ollama se prueban
+con un doble de `OllamaApi`, y `HttpOllamaApi` contra un `HttpServer` del JDK en 127.0.0.1 que devuelve respuestas
+grabadas: así se prueba también que una dirección no local o «off» no abre ninguna conexión. `DefaultLocalToolGate` se
+prueba con un registro de exámenes en memoria detrás del runtime: sin examen, reprobado, rendido sin medir, aprobado,
+la corrida de examen y la política sin tope ni pedido. La prueba que usa las herramientas de verdad va aparte, con la
+etiqueta `herramienta-real`, y se saltea con `Assumptions` si `status()` dice que no están; surefire la excluye por
+omisión (gancho B-14). Ninguna prueba consulta a claude -p de verdad.
 
 ## Registrar FEAT-MLOCAL
 

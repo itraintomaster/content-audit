@@ -1,12 +1,12 @@
 code: FEAT-DUPAR
 description: |
-  FEAT-DUPAR, paquete B de la ronda 2: el analizador near-duplicates. Dentro de cada tema junta los pares que piden la misma respuesta como el corrector y no son iguales tal cual, los marca por el comodín o por un parecido de 0,95 o más con nomic-embed-text en Ollama, y deja un hallazgo bajo, a la mesa, en cada copia. Usa EmbeddingModel y LocalToolGate de FEAT-MLOCAL, y CorrectorMatcher (FEAT-RESPC) y QuizStudentViewRenderer (gancho A-01) de la ronda 1: se aplica después de FEAT-MLOCAL y de la integración de la ronda 1.
+  FEAT-DUPAR, paquete B de la ronda 2: el analizador near-duplicates. Dentro de cada tema junta los pares que piden la misma respuesta como el corrector y no son iguales tal cual, los marca por el comodín o por un parecido de 0,95 o más con nomic-embed-text en Ollama, y deja un hallazgo bajo, a la mesa, en cada copia. Sin Ollama, los pares que el comodín no resuelve y cambian como mucho 4 de cada 10 palabras los juzga claude -p, un evaluador de los jueces de C; el comodín corre siempre y lo que falta juzgar queda a medias. Las dos rutas abren por el runtime de los jueces (JudgeRuntime). Usa EmbeddingModel y LocalToolGate de FEAT-MLOCAL, y CorrectorMatcher (FEAT-RESPC), QuizStudentViewRenderer (gancho A-01) y JudgeRuntime (FEAT-JEXAM) de la ronda 1: se aplica después de FEAT-MLOCAL y de la integración de la ronda 1.
 modules:
 - name: audit-domain
   packages:
   - name: nearduplicates
     description: |
-      El analizador near-duplicates (FEAT-DUPAR): compara cada ejercicio con los anteriores de su tema, en onKnowledge, como exact-duplicates. Un par es candidato si pide la misma respuesta comparada como el corrector y no es un duplicado exacto (R001); es casi duplicado si queda igual al tapar pronombres, demostrativos, posesivos y el tiempo del auxiliar, o si el parecido de sus vectores llega a 0,95 (R002). El vector de cada ejercicio se guarda en el libro de evaluaciones con la versión del modelo en el id del evaluador, así que después sólo se pide el de lo que cambió (F-MLOCAL-R002 inv. 2). Familia errores, evalúa el ejercicio, costo modelo local: no entra en la corrida base. Sólo los registros y el proveedor son públicos.
+      El analizador near-duplicates (FEAT-DUPAR): compara cada ejercicio con los anteriores de su tema, como exact-duplicates. Un par es candidato si pide la misma respuesta comparada como el corrector y no es un duplicado exacto (R001); es casi duplicado si queda igual al tapar pronombres, demostrativos, posesivos y el tiempo del auxiliar, o si el parecido de sus vectores llega a 0,95 (R002); sin Ollama, si cambia como mucho 4 de cada 10 palabras y claude -p dice que es el mismo ejercicio (R008). Las consultas —un vector por ejercicio, o un juicio por par— van por el runtime de los jueces, que las guarda en el libro y las reusa, aplica el freno del examen, el tope y las consultas a la vez, y declara la cobertura y el costo. Familia errores, evalúa el ejercicio, costo de la ficha modelo pago: no entra en la corrida base. Sólo los registros y el proveedor son públicos.
     visibility: public
     models:
     - name: NearDuplicateCondition
@@ -19,6 +19,9 @@ modules:
       - name: SIMILARITY
         description: "El parecido de sus vectores llega al umbral, 0,95 (F-DUPAR-R002\
           \ inv. 2). Regla same-meaning, modelo local."
+      - name: JUDGED
+        description: "Sin Ollama, claude -p dice que para el alumno es el mismo ejercicio\
+          \ (F-DUPAR-R008). Regla same-exercise, modelo pago."
       _change: add
     - name: NearDuplicateDiagnosis
       type: record
@@ -29,14 +32,25 @@ modules:
           \ igual (F-DUPAR-R003). Es la marca del hallazgo."
       - name: condition
         type: NearDuplicateCondition
-        description: "Si las dos se cumplen, WILDCARD: es la que no depende del modelo."
+        description: "Si se cumplen varias, WILDCARD: es la que no depende de ningú\
+          n modelo."
       - name: difference
         type: String
-        description: "Qué cambia, para la evidencia: «He → She». Vacío si es por parecido."
+        description: "Qué cambia, para la evidencia: «He → She». Vacío si no es por\
+          \ el comodín."
       - name: similarity
         type: double
-        description: "El parecido de los dos vectores, redondeado a dos decimales\
-          \ en la evidencia («parecido 0,99»)."
+        description: "El parecido de los dos vectores (SIMILARITY), redondeado a dos\
+          \ decimales en la evidencia («parecido 0,99»). 0 si no se calculó."
+      - name: wordSimilarity
+        type: double
+        description: "El parecido de palabras de los dos ejercicios terminados, con\
+          \ el que se eligió el candidato de claude -p (JUDGED): «cambian 2 de 6 palabras»\
+          ."
+      - name: judgeReason
+        type: String
+        description: "La razón de claude -p en una línea, tal como la dio (JUDGED).\
+          \ Null en las otras condiciones."
       - name: finishedExercise
         type: String
         description: "Este ejercicio terminado, el que se comparó."
@@ -47,6 +61,16 @@ modules:
         description: "0: tener el diagnóstico es ser una copia (F-DUPAR-R004). El\
           \ que queda no lleva diagnóstico y conserva 1."
       _change: add
+    - name: SameExerciseVerdict
+      type: record
+      fields:
+      - name: sameExercise
+        type: boolean
+        description: "Lo que contestó claude -p: si para el alumno es el mismo ejercicio."
+      - name: reason
+        type: String
+      visibility: internal
+      _change: add
     interfaces:
     - name: NearDuplicateRules
       sealed: false
@@ -54,6 +78,7 @@ modules:
       - signature: "sameRequest(AuditableQuiz first,AuditableQuiz second): boolean"
       - signature: "wildcardDifference(AuditableQuiz first,AuditableQuiz second):\
           \ Optional<String>"
+      - signature: "wordSimilarity(AuditableQuiz first,AuditableQuiz second): double"
       visibility: internal
       _change: add
     - name: NearDuplicatesConfig
@@ -62,17 +87,30 @@ modules:
       - signature: "methodId(): String"
       - signature: "inputPrefix(): String"
       - signature: "similarityThreshold(): double"
+      - signature: "candidateWordSimilarity(): double"
       visibility: internal
       _change: add
       extends:
       - SelfDescribingConfig
+    - name: SameExerciseQuestion
+      sealed: false
+      exposes:
+      - signature: "subjectOf(AuditableQuiz kept,AuditableQuiz copy): EvaluationSubject"
+      - signature: "read(String payload): Optional<SameExerciseVerdict>"
+      visibility: internal
+      _change: add
     implementations:
     - name: NearDuplicatesAnalyzerProvider
       requiresInject:
       - name: embeddingModel
         type: EmbeddingModel
-      - name: sessionFactory
-        type: EvaluationSessionFactory
+      - name: alternativeJudge
+        type: Evaluator
+        description: "El evaluador de claude -p de la alternativa, hecho con AgentJudgeFactory\
+          \ de C (agente near-duplicates-same-exercise). Sólo se usa sin el modelo\
+          \ local."
+      - name: judgeRuntime
+        type: JudgeRuntime
       - name: correctorMatcher
         type: CorrectorMatcher
       - name: studentViewRenderer
@@ -85,10 +123,17 @@ modules:
       _change: add
     - name: NearDuplicatesAnalyzer
       requiresInject:
-      - name: session
-        type: EvaluationSession
+      - name: opened
+        type: JudgeSessions
+        description: "Las sesiones que abrió el runtime de los jueces con el evaluador\
+          \ de la ruta elegida: el de vectores con su política sin tope, o el de claude\
+          \ -p con la de la corrida."
+      - name: runtime
+        type: JudgeRuntime
       - name: rules
         type: NearDuplicateRules
+      - name: question
+        type: SameExerciseQuestion
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
       - name: config
@@ -121,6 +166,13 @@ modules:
     - name: DefaultNearDuplicatesConfig
       implements:
       - NearDuplicatesConfig
+      _change: add
+    - name: DefaultSameExerciseQuestion
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+      implements:
+      - SameExerciseQuestion
       _change: add
     _change: add
   _change: modify

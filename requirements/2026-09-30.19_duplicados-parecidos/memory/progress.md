@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Parche y TECH_SPEC con la alternativa (6 fragmentos), rebasados sobre `ronda1/integracion`;
+  propose, tech-spec y validate en exit 0. Next: integrador de la ronda 2; José contesta DOUBT-DUPAR-PARECIDO-TEXTO y
+  DOUBT-DUPAR-A-MEDIAS.
+
 2026-09-30 — analyst — REQUIREMENT v2 con la alternativa de claude -p (R008 nueva; R002, R004 a R007 y J001 ajustados;
   dos dudas abiertas). `requirement validate` [OK]. Next: @architect.
 

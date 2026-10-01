@@ -5,6 +5,13 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — `patch propose --replace -i <sentinel.yaml de ronda1/integracion>` no fusiona: domainLinks y
+  glossarySuggestions quedan (comparado con `arq-B2/comparar.py`); sólo agrega `suppressed: false` en patterns.
+  why: el bug 08 de Sentinel pierde domainLinks al fusionar; con --replace no hay fusión.
+
+2026-09-30 — architect — Simulado en memoria (arq-B2/sim.sh, Simular de arq-B): al aplicar, `localtoolsengine` queda sin
+  `allowedClients: [audit-cli]` (bug 10), igual que `judgingengine` en la ronda 1. Va como gancho para el integrador.
+
 2026-09-30 — architect — `patch propose` y `patch validate` no resuelven tipos (requiresInject, firmas, `extends`), pero sí
   rechazan un `implements` hacia una interfaz que no está ni en sentinel.yaml ni en el mismo parche; y aceptan `_change: modify`
   sobre un módulo que no existe. Para parches que se aplican en cadena: cada uno implementa sólo interfaces propias o ya aplicadas.

@@ -5,6 +5,12 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Las dos rutas abren por `JudgeRuntime` y resuelven en lote (onQuiz junta, onCourseComplete
+  resuelve), como los jueces; el proveedor ya no recibe la fábrica de sesiones sino `judgeRuntime` y `alternativeJudge`.
+  El contenido de claude -p es {system, question} de `NaturalnessConfig`: la misma pregunta por construcción. `number` pasa
+  a `Double` (null con claude -p); `alternative` en el diagnóstico y en la lista. Reglas `unlikely-sentence` (modelo local)
+  y `native-says-no` (modelo pago): la ficha pasa a costo modelo pago.
+
 2026-09-30 — analyst — Nueva R008: sin Ollama, la misma pregunta a claude -p; un «no» marca, sin número ni umbral, y la
   lista del nivel va en el orden del curso. DOUBT-NATUR-ALTERNATIVA (OPEN; A aplicada). R006: el triple que el azar con la
   misma cantidad de marcas; con claude -p, sobre los 186 + 400 al azar de A1–A2 (586 consultas). R007: dos reglas, ficha

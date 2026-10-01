@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — architect — Parche y TECH_SPEC rebasados sobre `ronda1/integracion` con la alternativa: `patch propose
+  --replace`, `tech-spec write --replace` (10 fragmentos) y `patch validate -i` contra su sentinel.yaml en exit 0; la cadena
+  MLOCAL → GRAMA → NATUR → DUPAR simulada sobre ese modelo, válida. Ganchos nuevos B-21 a B-24 en ittm `…/ronda2/ganchos-B.md`.
+  Next: el integrador de la ronda 2; José contesta DOUBT-MLOCAL-TOPE-ALTERNATIVA y DOUBT-MLOCAL-MESA.
+
 2026-09-30 — analyst — REQUIREMENT v2 con la alternativa de claude -p: R001, R003, R004 y R006 ajustadas, R007 y R008
   nuevas, J001 con cinco salidas, dos dudas nuevas (SIN-OLLAMA resuelta, TOPE-ALTERNATIVA abierta). `requirement validate` [OK].
   Next: @architect ajusta parche y TECH_SPEC para usar el runtime de los jueces de C.
