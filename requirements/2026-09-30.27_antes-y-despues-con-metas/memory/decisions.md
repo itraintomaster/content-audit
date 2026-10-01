@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): DefaultBatchComparator inyecta TopicTeachingResolver de D (F-14); offlevelwords suma revision-domain a sus clientes en el paso de los allowedClients de FEAT-RONDA2.
+
 2026-09-30 — analyst — R003: «salvo la que el tema enseña» (F-SEMAF-R004, ya aceptada por José), para que la mesa de E, su compuerta y la comparación no difieran; lo resuelve el `TopicTeachingResolver` de D (gancho F-14). Duda nueva DOUBT-ERRORES-CONTRA-QUE (OPEN, recomendada A: errores contra el inicio de la tanda; vocabulario contra la base).
 
 2026-09-30 — architect — Comparación en revision-domain: contrato en `comparison` (público) y motor en `comparisonengine` (público sólo para audit-cli, como findingengine de HALL): `DefaultBatchComparator`, `DefaultGoalBook` y `LeaveOneOutChangeAttributor`.

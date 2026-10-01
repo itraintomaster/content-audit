@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): GetConsolidatedCommand repite sealed: true (el apply la abría, bug 09) y nodeFieldDiffer conserva su descripción. La medida de cada analizador en el informe (F-01 a F-04) es F-RONDA2-R004; el caché por oración (F-07), R005.
+
 2026-09-30 — analyst — Duda nueva DOUBT-LINEA-BASE-TANDAS (OPEN, recomendada A: fijar como línea base un análisis nuevo con la ronda 1 integrada, no el del 29/9, que no trae hallazgos, errores ni medida).
 
 2026-09-30 — architect — Un solo proyector (`CourseProjector`, paquete público `projection`, motor en `engine` con fábrica y `CourseProjectorConfig`) arma las tres fotos para la vista consolidada, la proyección guardada, la comparación y la muestra de F y la tanda de E. Adentro, dos colaboradores internos: `PendingApplier` (R002, una sola regla de aplicación) y `ProjectionMeasurer` (R001/R003, mapear y correr con los analizadores del análisis de partida, tope 0 salvo pedido).

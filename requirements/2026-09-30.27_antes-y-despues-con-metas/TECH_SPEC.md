@@ -1,7 +1,7 @@
 ---
 patch: FEAT-METAS
 requirement: 2026-09-30.27_antes-y-despues-con-metas
-generated: 2026-09-30T22:30:00Z
+generated: 2026-10-01T03:00:00Z
 ---
 
 # Tech Spec: Antes y después de una tanda contra la línea base, con metas (FEAT-METAS)
@@ -11,7 +11,7 @@ proyección de FEAT-PROYU (tipos `CourseProjector`, `ProjectionScope`, `CoursePr
 números que FEAT-HALL publica en cada nodo; no cambia el contrato de la vista consolidada (F-CDIFF-R010). Todo vive en
 revision-domain, donde ya están la vista consolidada y la vista previa: un paquete público con el contrato y otro con el
 motor, abierto sólo a la raíz de composición. Lo compartido —la medida de cada analizador en el informe, el cableado y
-lo que E tiene que llamar— está en `ganchos-F.md`.
+lo que E tiene que llamar— está en `ganchos-F.md`. Rebasado por el integrador de la ronda 2 sobre el `sentinel.yaml` de `ronda1/integracion` (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; `sentinel-baseline.yaml` queda como foto del diseño. La comparación recibe lo que el tema enseña, de D (gancho F-14): ver la última sección.
 
 ## Declarar las metas en un solo lugar
 R005 pide una sola declaración que se pueda listar y que cubra a un analizador nuevo sin tocarla. La declaración trae
@@ -567,4 +567,24 @@ features:
 modules:
   - name: audit-cli
     _change: modify
+```
+
+## Lo que suma la integración de la ronda 2
+Una palabra que el tema enseña no hace volver un cambio (R003, alineada con F-SEMAF-R004), y la mesa de E ya la
+excluye con el `TopicTeachingResolver` de D (FEAT-NIVFR). Si la comparación no recibe el mismo, devolvería un cambio que
+la mesa aceptó: por eso el comparador lo inyecta (gancho F-14). El paquete `offlevelwords` suma `revision-domain` a sus
+clientes en el paso de los `allowedClients` de FEAT-RONDA2, el último de la ronda.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: comparisonengine
+        _change: add
+        implementations:
+          - name: DefaultBatchComparator
+            _change: add
+            requiresInject:
+              - { name: topicTeachingResolver, type: TopicTeachingResolver }
 ```

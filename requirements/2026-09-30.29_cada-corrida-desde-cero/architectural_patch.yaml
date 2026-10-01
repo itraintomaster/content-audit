@@ -4,7 +4,10 @@ description: "FEAT-CERO: cada corrida del motor empieza de cero. Sin cambios de 
   \ corrida con su proveedor, y ninguna implementación inyecta ya un ContentAnalyzer.\
   \ El parche registra la feature para que su journey y sus pruebas —dos corridas\
   \ en el mismo proceso dan lo mismo que una invocación nueva, y la segunda no toca\
-  \ el informe de la primera— lleguen a la generación."
+  \ el informe de la primera— lleguen a la generación. Rebasado por el integrador\
+  \ de la ronda 2 sobre el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada\
+  \ y construida) y sobre FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2,\
+  \ B, F y E, sin cambios de estructura."
 modules:
 - name: audit-domain
   _change: modify

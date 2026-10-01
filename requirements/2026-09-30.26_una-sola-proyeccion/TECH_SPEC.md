@@ -1,7 +1,7 @@
 ---
 patch: FEAT-PROYU
 requirement: 2026-09-30.26_una-sola-proyeccion
-generated: 2026-09-30T22:00:00Z
+generated: 2026-10-01T03:00:00Z
 ---
 
 # Tech Spec: Una sola proyección del curso con sus propuestas (FEAT-PROYU)
@@ -11,7 +11,7 @@ decisión se leyó en el código de este worktree: `DefaultConsolidatedViewBuild
 el motor dos veces; `DefaultImpactPreviewComputer` compara contra `loadLatest()` y, para cada contenedor, toma el
 primero de su tipo; `PruneCmd` borra los más viejos sin mirar nada. Lo compartido que este parche necesita y no trae
 —la medida de cada analizador en el informe, la resolución del id de una proyección por `AuditReportStore.load`, el
-caché de tokens por oración y el cableado de `Main`— está en `ganchos-F.md`, uno por línea.
+caché de tokens por oración y el cableado de `Main`— está en `ganchos-F.md`, uno por línea. Rebasado por el integrador de la ronda 2 sobre el `sentinel.yaml` de `ronda1/integracion` (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; `sentinel-baseline.yaml` queda como foto del diseño. `GetConsolidatedCommand` repite `sealed: true`: el apply la abría si el parche no lo decía (bug 09 de Sentinel).
 
 ## Separar la línea base del par activo
 Hasta hoy la línea base era el par activo, pero desde el paquete E el activo avanza: cada tanda abre sobre el análisis
@@ -352,6 +352,7 @@ modules:
     interfaces:
       - name: GetConsolidatedCommand
         _change: modify
+        sealed: true
         exposes:
           - signature: "getConsolidated(String coursePath, String format, Map<String,Integer> analyzerBudgets): Integer"
             _change: add

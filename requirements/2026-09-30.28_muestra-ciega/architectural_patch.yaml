@@ -5,7 +5,10 @@ description: "FEAT-CIEGA: la muestra ciega de cada tanda y la tasa de error a ci
   \ integrador de la ronda 1, sin decir cuál es cuál; guarda cada respuesta con quié\
   n y cuándo; al cerrar revela los lados y publica las tres proporciones con su intervalo,\
   \ la meta, la suma desde la línea base y el kappa de dos revisores. Publica su resultado\
-  \ por un puerto propio que el veredicto de FEAT-METAS inyecta."
+  \ por un puerto propio que el veredicto de FEAT-METAS inyecta. Rebasado por el integrador\
+  \ de la ronda 2 sobre el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada\
+  \ y construida) y sobre FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2,\
+  \ B, F y E, sin cambios de estructura."
 modules:
 - name: revision-domain
   interfaces:

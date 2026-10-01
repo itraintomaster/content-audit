@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): sin cambios de estructura.
+
 2026-09-30 — architect — Muestra en revision-domain: contrato `blindsample` y motor `blindsampleengine` (público sólo para audit-cli). Dos portadores por par: el guardado con el lado (`BlindPair`) y el que ve quien revisa (`BlindPairView`), sin lado, motivo, fecha ni autor.
 
 2026-09-30 — architect — Sorteo reproducible: candidatos (cambios que no vuelven según METAS) ordenados por fecha e id, barajados con un generador inicializado con la semilla publicada; el mismo generador sortea el lado. Intervalos de Wilson al 95 % (95/100 → [88,8; 97,8]) y cota exacta a una cola para el criterio «cota» y la suma (0/100 → 3,0 %). Kappa de Cohen.

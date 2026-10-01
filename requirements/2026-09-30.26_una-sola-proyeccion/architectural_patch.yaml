@@ -4,7 +4,12 @@ description: "FEAT-PROYU: una sola proyección del curso con sus propuestas. Un 
   \ análisis de partida; la vista consolidada, la proyección guardada, el impacto\
   \ por propuesta y la comparación de F la leen de ahí. La línea base se separa del\
   \ par activo y, como él, no se borra sin querer. Lo compartido (la medida en el\
-  \ informe, la resolución de ids de proyección, el cableado) va en ganchos-F.md."
+  \ informe, la resolución de ids de proyección, el cableado) va en ganchos-F.md.\
+  \ Rebasado por el integrador de la ronda 2 sobre el sentinel.yaml de ronda1/integracion\
+  \ (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; orden\
+  \ de la cadena: FEAT-RONDA2, B, F y E: DefaultConsolidatedViewBuilder.nodeFieldDiffer\
+  \ conserva su descripción (el apply la perdía); GetConsolidatedCommand repite sealed:\
+  \ true (el apply la abría, bug 09)."
 modules:
 - name: audit-domain
   models:
@@ -318,6 +323,13 @@ modules:
           \ curso incluido (R001)."
       - name: nodeFieldDiffer
         type: NodeFieldDiffer
+        description: "F-CDIFF-R019/R020/R022/R023: el motor de descubrimiento dinamico\
+          \ que reemplaza la logica v2 de snapshots crudos + collectStatisticImpacts.\
+          \ El builder le pasa los tres AuditNode (baseline / consolidated / pendingProjection)\
+          \ por cada nodeTarget+nodeId tocado, y obtiene el mapa { fieldPath → FieldChange\
+          \ } que copia tal cual a NodeImpact.fieldChanges. El builder NO interpreta\
+          \ el contenido del mapa; es la frontera entre 'que campos cambiaron' (R019)\
+          \ y 'que decisiones del plan los provocaron' (R011)."
       _change: modify
     - name: DefaultImpactPreviewComputer
       requiresInject:
@@ -375,7 +387,7 @@ modules:
 - name: audit-cli
   interfaces:
   - name: GetConsolidatedCommand
-    sealed: false
+    sealed: true
     exposes:
     - signature: "getConsolidated(String coursePath, String format): Integer"
     - signature: "getConsolidated(String coursePath, String format, Map<String,Integer>\

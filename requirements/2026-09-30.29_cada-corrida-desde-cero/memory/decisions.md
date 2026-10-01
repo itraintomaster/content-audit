@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): sin cambios de estructura.
+
 2026-09-30 — architect — Sin estructura propia: el modelo con HALL aplicado ya no inyecta un `ContentAnalyzer` en ninguna implementación y `IAuditEngine` pide un analizador nuevo por corrida al catálogo. Verificado en el código: el estado vive sólo en los cuatro analizadores de curso; agregación, recolector, calculador, puntuador léxico, mapeador (vacía sus mapas en cada `map`) y libro de evaluaciones (lee el archivo en cada consulta) no arrastran nada. El parche sólo registra FEAT-CERO.
   why: le queda propio la prueba y una regla para el developer (un proveedor no reusa entre dos `create` nada que el analizador modifique).
 

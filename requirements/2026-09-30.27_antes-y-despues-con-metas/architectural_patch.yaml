@@ -5,7 +5,10 @@ description: "FEAT-METAS: antes y después de una tanda contra la línea base, c
   \ su cambio y su estado, lo que vuelve, los pisos rotos con los cambios que los\
   \ rompen, los cambios de medida aparte y el veredicto. Las metas se fijan con set-goals\
   \ y al abrir cada tanda. La medida de cada analizador en el informe es un gancho\
-  \ (ganchos-F.md)."
+  \ (ganchos-F.md). Rebasado por el integrador de la ronda 2 sobre el sentinel.yaml\
+  \ de ronda1/integracion (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2,\
+  \ que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E: DefaultBatchComparator\
+  \ inyecta topicTeachingResolver: TopicTeachingResolver (gancho F-14)."
 modules:
 - name: revision-domain
   interfaces:
@@ -475,6 +478,11 @@ modules:
         type: SampleOutcomeSource
         description: "El resultado de la muestra ciega de la tanda, para el veredicto\
           \ (R008); el puerto lo declara e implementa FEAT-CIEGA."
+      - name: topicTeachingResolver
+        type: TopicTeachingResolver
+        description: "Lo que el tema enseña, de D (FEAT-NIVFR): una palabra que el\
+          \ tema enseña no hace volver un cambio (F-METAS-R003, F-SEMAF-R004), igual\
+          \ que en la mesa de E (gancho F-14)."
       visibility: public
       implements:
       - BatchComparator
