@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analista (qa-tester B, por el coordinador) — Los casos de R004 dicen lo que dice la regla: de los 13
+  «videogames», los 5 que están dentro de la respuesta de una reescritura (…294b, …404c, …41e0, …4552, …47f8) son alta,
+  y los 8 del texto fijo, media. La regla no cambia; el TECH_SPEC, igual.
+
 2026-10-01 — qa-tester — F-GRAMA-J001 en audit-domain, `com.learney.contentaudit.auditdomain.grammar`: el
   analizador y sus piezas son package-private ahí y los puertos se simulan, como los J001 de los analizadores de la ronda 1.
 2026-10-01 — qa-tester — Dos pruebas con LanguageTool de verdad van sobre LanguageToolGrammarChecker (de FEAT-MLOCAL),

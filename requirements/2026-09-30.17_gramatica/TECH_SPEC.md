@@ -137,9 +137,10 @@ modules:
 
 R004 decide por el lugar, en orden: bloqueante si la respuesta aceptada repite palabras pegadas al hueco (hoy son 3:
 «noise noise», «in August in August», «the apartment the apartment»); alta si lo marcado toca una respuesta aceptada
-(«He've had»); media si está sólo en el texto fijo («clothers», los 13 «videogames»); baja si falta el signo o el
-espacio después de un punto. R005 manda a la regla la repetición, el signo y el espacio, y a la mesa todo lo demás. El
-clasificador lo decide con las posiciones de las respuestas en la oración terminada, sin volver a leer el ejercicio.
+(«He've had», y «videogames» dentro de la respuesta de 5 reescrituras); media si está sólo en el texto fijo
+(«clothers» y los otros 8 «videogames»); baja si falta el signo o el espacio después de un punto. R005 manda a la regla
+la repetición, el signo y el espacio, y a la mesa todo lo demás. El clasificador lo decide con las posiciones de las
+respuestas en la oración terminada, sin volver a leer el ejercicio.
 
 ```architecture
 modules:

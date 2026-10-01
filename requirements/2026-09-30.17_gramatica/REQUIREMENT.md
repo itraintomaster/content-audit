@@ -122,8 +122,11 @@ otros dos son una etiqueta tras «Link type:» y un pedazo de oración. El 077 l
 - Bloqueante: «Have the neighbors been making ___ (the neighbors / make) noise?» acepta «Have the neighbors been making
   noise» (`67fab6d5993010229534320a`, B1); igual «in August in August» (`…4009`) y «the apartment the apartment» (`…408e`).
 - Alta: «He ___ (own) a bike for a while.» → «'ve had | have had» (`…3f81`, B2); «Ana was teached a lesson» (`…439d`);
-  «The teacher explained ___ (we / us) the lesson.» → «us» (`…2bb4`, A1, en el 077).
-- Media: «A: She's choosing her clothers.» (`…33a1`); «videogames» en 13 ejercicios.
+  «The teacher explained ___ (we / us) the lesson.» → «us» (`…2bb4`, A1, en el 077); y «videogames» dentro de la
+  respuesta de 5 reescrituras, como «Let's not play videogames right now.» (`…294b`, A2; también `…404c`, `…41e0`,
+  `…4552` y `…47f8`): el corrector exige la palabra mal escrita.
+- Media: «A: She's choosing her clothers.» (`…33a1`); «videogames» en el texto fijo de los otros 8, como «I would rather
+  learn German than play videogames.» (`…3c3e`).
 - Baja: «…slept until 11.I slept…» (7 ejercicios de *Rangos temporales*, A1).
 
 </details>
