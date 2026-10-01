@@ -1242,17 +1242,18 @@ public class IAuditEngineTest {
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R001")
     public void shouldKeepTheCourseVocabularyScoreAt7392WithLemmarecurrenceAt008PublishingItsCourseDiagnosisOnThePublishedScoresOfTheAnalysisOf299() {
-        // F-RECUR-R001: lemma-recurrence run over the 91,873 positions of the 29/9 course gives 0,08 and
-        // publishes its course diagnosis and its 1,612 findings (1/10: only lemmas written with letters);
-        // next to the six other scores published on 29/9 the vocabulary of the course stays at 73,92 %.
+        // F-RECUR-R001, rama ronda1/recur-posiciones (opción B): la puntuación no ocupa posición: lemma-recurrence run over the 29/9 course gives
+        // 0,09 and publishes its course diagnosis and its 1,583 findings; next to the six other scores
+        // published on 29/9 the vocabulary of the course goes from 73,92 % to 74,07 %. The name keeps 73,92
+        // and 0,08 (pending, @qa-tester).
         AuditReport report = recurrenceRun299();
 
-        assertEquals(0.08, report.getRoot().getScores().get("lemma-recurrence"), 1e-12, "R001: 0,08, as before");
+        assertEquals(0.09, report.getRoot().getScores().get("lemma-recurrence"), 1e-12, "R001: 0,09 with option B");
         assertEquals(1743, ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaRecurrenceDiagnosis().orElseThrow()
                 .getResult().getLemmaStats().size(), "R003: its course diagnosis, with the 1,743 returning lemmas");
-        assertEquals(1612, report.getRoot().getFindings().stream()
+        assertEquals(1583, report.getRoot().getFindings().stream()
                 .filter(f -> "lemma-recurrence".equals(f.getAnalyzer())).count(), "R005: its findings, in the course");
-        assertEquals("73,92", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R001: 73,92 %");
+        assertEquals("74,07", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R001: 74,07 % with option B");
     }
 
     @Test
@@ -1780,9 +1781,10 @@ public class IAuditEngineTest {
     @Tag("F-CERO-R001")
     public void shouldGiveTheBaseOf299OnItsSecondRunInTheSameProcess7392InTheCourse965494167945And6351InTheLevels5793OfCOCAInB1And800OfRecurrenceAsANewInvocationAndNot7290() {
         // F-CERO-R001: the same engine measures the base of 29/9 twice in one process. The second run gives what a
-        // new invocation gives: 73,92 % in the course and 96,54 · 94,16 · 79,45 · 63,51 in the levels with
-        // lemma-recurrence at 8,00 % (the other vocabulary scores as 29/9 published them), and COCA, measured for
-        // real over the ranks of the 29/9 course, 57,93 in B1. Carrying the first run, it gave 72,90.
+        // new invocation gives: 74,07 % in the course and 96,54 · 94,16 · 79,45 · 63,51 in the levels with
+        // lemma-recurrence at 9,00 % (opción B de F-RECUR-R001, José 1/10: la puntuación no ocupa posición; 73,92 %
+        // and 8,00 % with option A; the other vocabulary scores as 29/9 published them), and COCA, measured for
+        // real over the ranks of the 29/9 course, 57,93 in B1. Carrying the first run, it gave 72,90 (option A).
         IAuditEngine vocabulary = realEngine(onPublished299(
                 new com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzerProvider(ceroRecurrenceConfig())));
         AuditReport first = vocabulary.runAudit(streamCourseOf299());
@@ -1792,9 +1794,9 @@ public class IAuditEngineTest {
         coca.runAudit(CocaBucketsAnalyzerProviderTest.Coca299.course());
         AuditReport cocaSecond = coca.runAudit(CocaBucketsAnalyzerProviderTest.Coca299.course());
 
-        assertEquals("73,92", percent2(second.getRoot().getNumbers().getVocabularyScore()), "R001: the course");
+        assertEquals("74,07", percent2(second.getRoot().getNumbers().getVocabularyScore()), "R001: the course");
         assertEquals(List.of("96,54", "94,16", "79,45", "63,51"), levelVocabulary(second), "R001: the levels");
-        assertEquals(0.08, second.getRoot().getScores().get("lemma-recurrence"), 1e-12, "R001: recurrence at 8,00 %");
+        assertEquals(0.09, second.getRoot().getScores().get("lemma-recurrence"), 1e-12, "R001: recurrence at 9,00 %");
         assertEquals("57,93", percent2(cocaSecond.getRoot().getChildren().get(2).getScores()
                 .get("coca-buckets-distribution")), "R001: COCA of B1");
         assertEquals(percent2(first.getRoot().getNumbers().getVocabularyScore()),

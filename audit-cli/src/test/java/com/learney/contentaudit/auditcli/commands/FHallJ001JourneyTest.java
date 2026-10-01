@@ -309,12 +309,13 @@ public class FHallJ001JourneyTest {
                     "R009: the vocabulary score of " + key);
         }
         AuditNode course = analysis.report().getRoot();
-        assertEquals("73,9 %", GetCmd.scoreText(course.getNumbers().getVocabularyScore()), "R010: on the course");
+        // rama ronda1/recur-posiciones (opción B): la recurrencia da 0,09 y el vocabulario del curso, 74,1 %
+        assertEquals("74,1 %", GetCmd.scoreText(course.getNumbers().getVocabularyScore()), "R010: on the course");
         assertEquals(List.of("96,5 %", "94,2 %", "79,5 %", "63,5 %"), course.getChildren().stream()
                 .map(level -> GetCmd.scoreText(level.getNumbers().getVocabularyScore())).toList(), "R010: on the levels");
         Base299.Captured audit = Base299.run(Base299.getCmd(analysis.store(), analysis.catalog()), "audit", analysis.id());
-        assertTrue(audit.out().contains("Score:    73,9 %"), "R010: the one get audit shows: " + audit.out());
-        assertTrue(Pattern.compile("Score: 73[.,]9%").matcher(analysis.output().out()).find(),
+        assertTrue(audit.out().contains("Score:    74,1 %"), "R010: the one get audit shows: " + audit.out());
+        assertTrue(Pattern.compile("Score: 74[.,]1%").matcher(analysis.output().out()).find(),
                 "R010: the one analyze shows: " + analysis.output().out());
     }
 

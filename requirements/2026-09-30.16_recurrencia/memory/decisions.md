@@ -5,6 +5,14 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (rama ronda1/recur-posiciones) — En B, una posición es un token cuyo TEXTO tiene una letra o una
+  cifra («'s» de «There's» ocupa posición aunque su lema sea «'»; «1900» también). Por eso el fixture stream.tsv.gz, que
+  sólo guarda lemas, da 15.996 posiciones en A2 y la corrida real 15.997: cada prueba fija las de su fuente.
+  why: un intervalo mide palabras que el alumno lee; el lema no sirve para decidir si un token se lee.
+2026-10-01 — developer (rama ronda1/recur-posiciones) — Las pruebas que fijan «el vocabulario de antes» (preContract
+  de Base299, F-HALL-R013 de DefaultAuditRunner) usan 0,09 en vez del 0,08 publicado para lemma-recurrence en el curso.
+  why: B mueve sólo la clave de recurrencia del curso; el resto de los 11.760 nodos sigue igual al análisis del 29/9.
+
 2026-10-01 — orquestador + developer (paquete D) — Lo que no es una palabra no entra a la recurrencia (opción A):
   el criterio es el lema (letras, apóstrofo o guion internos), no el texto, porque el análisis cuenta lemas y el
   fixture stream.tsv.gz guarda sólo lema y categoría; así la corrida real y el fixture dan lo mismo. Los ordinales con

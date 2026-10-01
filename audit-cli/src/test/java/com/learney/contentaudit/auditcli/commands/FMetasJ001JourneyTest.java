@@ -72,10 +72,10 @@ public class FMetasJ001JourneyTest {
         assertEquals(List.of("lemma-count"), comparison.getMeasureChanges().stream().map(MeasureChange::getAnalyzer)
                 .toList(), "R007: the measure of lemma-count changed since the baseline");
         ComparisonRow course = row(comparison, "vocabulario", "root");
-        assertEquals("73,92", Proyeccion299.percent(course.getBaseline().getValue()), "R007: the baseline as it was");
-        assertEquals("73,86", Proyeccion299.percent(course.getRemeasuredBaseline().getValue()),
+        assertEquals("74,07", Proyeccion299.percent(course.getBaseline().getValue()), "R007: the baseline as it was");
+        assertEquals("74,00", Proyeccion299.percent(course.getRemeasuredBaseline().getValue()),
                 "R007: measured again with today's bands");
-        assertTrue(text.contains("cambio de medida: 73,92 → 73,86"), text);
+        assertTrue(text.contains("cambio de medida: 74,07 → 74,0"), text); // 73,92 → 73,86 before the opción B of F-RECUR-R001
         ComparisonRow a1 = row(comparison, "vocabulario", Proyeccion299.LEVELS.get(0));
         assertEquals("96,54", Proyeccion299.percent(a1.getBaseline().getValue()));
         assertEquals("96,02", Proyeccion299.percent(a1.getRemeasuredBaseline().getValue()), "R007: «96,54 → 96,02»");
@@ -169,7 +169,7 @@ public class FMetasJ001JourneyTest {
         BatchComparison comparison = work.comparator(Proyeccion299.BANDS_OF_29_9).compare(Proyeccion299.COURSE, null);
 
         assertTrue(comparison.getMeasureChanges().isEmpty(), "R007: the same measures");
-        assertEquals("73,92", Proyeccion299.percent(row(comparison, "vocabulario", "root").getProjected().getValue()));
+        assertEquals("74,07", Proyeccion299.percent(row(comparison, "vocabulario", "root").getProjected().getValue()));
         assertEquals(0.0, row(comparison, "vocabulario", "root").getChange(), 0.005, "R001: the course does not move");
         ComparisonRow regular = row(comparison, "lemma-absence", Proyeccion299.REGULAR_AFFIRMATIVES);
         assertEquals(-0.5, regular.getChange(), 0.005, "R001: «Afirmativas regulares» −0,5 points");

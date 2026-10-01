@@ -69,12 +69,13 @@ public class FCeroJ001JourneyTest {
         CourseProjection photos = work.projector(BANDS_OF_29_9).project(COURSE, null);
 
         // dos_fotos, F-CERO-R001: the photo with the pending proposals gives, in every node, what a new invocation
-        // gives on the course with them written -- 73,92 % and 96,54 · 94,16 · 79,45 · 63,51, not 72,90 and 92,38.
+        // gives on the course with them written -- 74,07 % and 96,54 · 94,16 · 79,45 · 63,51, not 72,90 and 92,38
+        // (73,92 % before the opción B of F-RECUR-R001, José 1/10: la puntuación no ocupa posición).
         AuditReport newInvocation = analyze(courseWith(tmp.resolve("copia"), written), BANDS_OF_29_9);
         assertEquals(0, asked.exit(), asked.err());
         assertEquals(vocabulary(newInvocation), vocabulary(photos.getProjected()),
                 "R001: every node of the photo with the pending proposals, as a new invocation");
-        assertEquals("73,92", percent(photos.getProjected().getRoot().getNumbers().getVocabularyScore()), "R001: the course");
+        assertEquals("74,07", percent(photos.getProjected().getRoot().getNumbers().getVocabularyScore()), "R001: the course");
         assertEquals(List.of("96,54", "94,16", "79,45", "63,51"), levels(photos.getProjected()), "R001: A1 to B2");
         assertEquals(0.9, node(photos.getProjected(), GRANDMOTHER).getScores().get("lemma-absence"), 1e-9,
                 "R001: «My grandmother ___ (come) every year.» from 1,0 to 0,9");
@@ -115,7 +116,7 @@ public class FCeroJ001JourneyTest {
         assertEquals(0, asked.exit(), asked.err());
         assertEquals(vocabulary(analyzed), vocabulary(photos.getApproved()),
                 "R001: every node of the photo with what is approved, as analyze on the course");
-        assertEquals("73,92", percent(photos.getApproved().getRoot().getNumbers().getVocabularyScore()), "R001: the course");
+        assertEquals("74,07", percent(photos.getApproved().getRoot().getNumbers().getVocabularyScore()), "R001: the course");
         assertEquals(cocaTokens(analyzed), cocaTokens(photos.getApproved()), "R001: the COCA tokens of its 55 topics");
         assertSame(photos.getApproved(), photos.getProjected(), "nothing pending: the photo with pending proposals is the same");
         assertTrue(view(asked.out()).get("nodeImpacts").isEmpty(), "nothing changed, so the view shows no node: "

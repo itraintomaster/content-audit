@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — orquestador (integración de la ronda 2) — José eligió B al aprobar el brief 106: se juntó
+  `ronda1/recur-posiciones` en `ronda2/integracion` (rama `ronda2/recur-b`). Choques: los nombres de las pruebas (gana el
+  de sentinel.yaml hasta el parche nuevo) y este archivo. DOUBT-POSICIONES-SIN-PUNTUACION resuelta y R001 validada.
+  Next: parche de sólo nombres para que los tres de LemmaRecurrenceAnalyzer digan los números de B, generate y suite.
+
 2026-10-01 — developer (paquete D, integración) — Aplicados los nombres (70cc26eb) y hecho el generate (cda2f97a), que no
   suma métodos (bug 2026-07-22-01): renombrados a mano, con nombre y @DisplayName de sentinel.yaml, los tres de
   LemmaRecurrenceAnalyzerTest y los tres de RESPC (DefaultCorrectorMatcherTest ×2, FileSystemFormEquivalenceTableSourceTest).
@@ -15,6 +20,13 @@ Current state, last action, next step. Newest entries on top.
   del 30/9 (R001 131 · 1.566 · 46 de 1.743; R004 A1 448/176 … B2 818/165; R005 1.612 hallazgos). `patch validate -i
   sentinel.yaml` OK, solo y junto al de RESPC. TECH_SPEC sin tocar: el parche no cambia estructura.
   Next: el integrador aplica los dos y genera; después se renombran a mano los seis métodos y corre la suite.
+2026-10-01 — developer + analyst (paquete D, rama ronda1/recur-posiciones) — Opción B, sin juntar: además de A, un token
+  ocupa posición sólo si su texto tiene una letra o una cifra (la puntuación y los símbolos no). Corrida de hoy: 78.162
+  posiciones, 0,09 con 160 · 1.534 · 49 de 1.743 (9,18 %), 1.583 hallazgos; niveles 12.934/448/200 · 15.997/752/203 ·
+  33.439/1.137/187 · 15.792/818/201; vocabulario del curso 73,86 % → 74,00 % (niveles iguales); sobre los puntajes
+  publicados del 29/9 que usan las pruebas, 73,92 % → 74,07 %. «movie» pasa a normal (855). Suite completa en verde
+  (2.370, 0 fallas) con los valores fijados de B; R001 pasa a ASSUMPTION con DOUBT-POSICIONES-SIN-PUNTUACION abierta.
+  Next: José decide A o B; si B, el integrador junta esta rama sobre ronda1/integracion.
 
 2026-10-01 — developer + analyst (paquete D) — Opción A del orquestador: sólo entra un lema escrito con letras (con
   apóstrofo o guion internos); afuera «'», «-», «i.», «1st», «3rd», «4th» y «comic_strip». Las posiciones no cambian
