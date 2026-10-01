@@ -303,7 +303,7 @@ public class StatsAnalyzerCmdTest {
         Base299.Captured json = Base299.run(cmd, "analyzer", "lemma-recurrence", Base299.COURSE.toString(), "-f", "json");
 
         assertEquals(0, text.exit(), text.err());
-        // rama ronda1/recur-posiciones (opción B): la puntuación no ocupa posición; movie vuelve cada 855 y es normal
+        // Opción B, José 1/10: la puntuación no ocupa posición; movie vuelve cada 855 y es normal
         assertTrue(text.out().matches("(?s).*movie\\s+90\\s+855\\s+normal\\s+913\\s+5\\.400, de A1 a A2.*"),
                 "R003: each lemma, movie among them: " + text.out().substring(0, Math.min(2000, text.out().length())));
         assertTrue(text.out().matches("(?s).*A1\\s+12\\.934\\s+448\\s+200\\s+228\\s+20\\s+44,6 %.*"),

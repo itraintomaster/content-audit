@@ -468,10 +468,10 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should give the course of 29/9 a lemma-recurrence score of 0.08, with 131 normal, 1,566 under-exposed and 46 over-exposed of its 1,743 returning lemmas")
+    @DisplayName("should give the course of 29/9 a lemma-recurrence score of 0.09, with 160 normal, 1,534 under-exposed and 49 over-exposed of its 1,743 returning lemmas")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R001")
-    public void shouldGiveTheCourseOf299ALemmarecurrenceScoreOf008With131Normal1566UnderexposedAnd46OverexposedOfIts1743ReturningLemmas() {
+    public void shouldGiveTheCourseOf299ALemmarecurrenceScoreOf009With160Normal1534UnderexposedAnd49OverexposedOfIts1743ReturningLemmas() {
         // R001 (opción B, José 1/10): la puntuación no ocupa posición. Of the 91,873 tokens of the 29/9 course, the 78,161
         // with a letter or a figure are positions, in order A1 → B2, and give 0,09: 160 normal, 1,534
         // under-exposed and 49 over-exposed of its 1,743 returning lemmas (option A: 0,08, 131, 1,566 and 46).
@@ -513,13 +513,13 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should publish in the course diagnosis each analysed lemma with its count, mean interval, status, deviation, longest gap with its start and end levels and its levels, like 'movie': 90 times, every 1,005 words, under-exposed, longest gap 6,510 from A1 to A2")
+    @DisplayName("should publish in the course diagnosis each analysed lemma with its count, mean interval, status, deviation, longest gap with its start and end levels and its levels, like 'movie': 90 times, every 855 words, normal, longest gap 5,400 from A1 to A2")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
-    public void shouldPublishInTheCourseDiagnosisEachAnalysedLemmaWithItsCountMeanIntervalStatusDeviationLongestGapWithItsStartAndEndLevelsAndItsLevelsLikeMovie90TimesEvery1005WordsUnderexposedLongestGap6510FromA1ToA2() {
+    public void shouldPublishInTheCourseDiagnosisEachAnalysedLemmaWithItsCountMeanIntervalStatusDeviationLongestGapWithItsStartAndEndLevelsAndItsLevelsLikeMovie90TimesEvery855WordsNormalLongestGap5400FromA1ToA2() {
         // R003 on the 29/9 course (opción B, José 1/10): la puntuación no ocupa posición: «movie», 90 times, every 855 words,
         // normal (with option A, every 1,005, under-exposed), a deviation of 913, its longest gap 5,400 from A1
-        // to A2, and in the four levels. The name keeps the numbers of 30/9 (pending, @qa-tester).
+        // to A2, and in the four levels.
         LemmaStats movie = run299().stats("movie");
 
         assertEquals(90, movie.getCount(), "R003: its times");
@@ -534,10 +534,10 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should take a lemma's longest gap as the largest interval between two consecutive occurrences, with the levels of the quizzes where it starts and ends, like 27,379 from B1 to B2 for 'suppose'")
+    @DisplayName("should take a lemma's longest gap as the largest interval between two consecutive occurrences, with the levels of the quizzes where it starts and ends, like 23,684 from B1 to B2 for 'suppose'")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
-    public void shouldTakeALemmasLongestGapAsTheLargestIntervalBetweenTwoConsecutiveOccurrencesWithTheLevelsOfTheQuizzesWhereItStartsAndEndsLike27379FromB1ToB2ForSuppose() {
+    public void shouldTakeALemmasLongestGapAsTheLargestIntervalBetweenTwoConsecutiveOccurrencesWithTheLevelsOfTheQuizzesWhereItStartsAndEndsLike23684FromB1ToB2ForSuppose() {
         // R003 (opción B, José 1/10): la puntuación no ocupa posición: «suppose» returns on average every 603 words, but its
         // largest interval between two consecutive occurrences is 23,684, from a B1 quiz to a B2 one;
         // «vegetable»'s, 23,825, is in B1 (option A: 696, 27,379 and 27,780; the name keeps those).
@@ -621,10 +621,10 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should publish for the course of 29/9 A1 448 returning lemmas with 176 normal (39.3%), A2 752 with 155 (20.6%), B1 1,137 with 161 (14.2%) and B2 818 with 165 (20.2%)")
+    @DisplayName("should publish for the course of 29/9 A1 448 returning lemmas with 200 normal (44.6%), A2 752 with 203 (27.0%), B1 1,137 with 187 (16.4%) and B2 818 with 201 (24.6%)")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
-    public void shouldPublishForTheCourseOf299A1448ReturningLemmasWith176Normal393A2752With155206B11137With161142AndB2818With165202() {
+    public void shouldPublishForTheCourseOf299A1448ReturningLemmasWith200Normal446A2752With203270B11137With187164AndB2818With201246() {
         // R004 on the 29/9 course, with only the lemmas written with letters (1/10): A1 448 returning
         // lemmas, 176 normal (39,3 %); A2 752, 155 (20,6 %); B1 1,137, 161 (14,2 %); B2 818, 165 (20,2 %).
         List<String> levels = run299().diagnosis().getLevels().stream().map(l -> l.getLevel() + " " + l.getPositions()
@@ -686,12 +686,12 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should give as evidence the lemma, its times, how often it returns against the goal and its longest gap, like 'movie: 90 times, returns every 1,005 words (goal: more than 50 and up to 1,000); its longest gap, 6,510, goes from A1 to A2'")
+    @DisplayName("should give as evidence the lemma, its times, how often it returns against the goal and its longest gap, like 'vegetable: 10 times, returns every 7,765 words (goal: more than 50 and up to 1,000); its longest gap, 23,825, is in B1'")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
-    public void shouldGiveAsEvidenceTheLemmaItsTimesHowOftenItReturnsAgainstTheGoalAndItsLongestGapLikeMovie90TimesReturnsEvery1005WordsGoalMoreThan50AndUpTo1000ItsLongestGap6510GoesFromA1ToA2() {
+    public void shouldGiveAsEvidenceTheLemmaItsTimesHowOftenItReturnsAgainstTheGoalAndItsLongestGapLikeVegetable10TimesReturnsEvery7765WordsGoalMoreThan50AndUpTo1000ItsLongestGap23825IsInB1() {
         // R005: the evidence of «vegetable» on the 29/9 course. Opción B, José 1/10: la puntuación no ocupa posición, «movie»
-        // returns every 855 words and is normal, so it leaves no finding (the name keeps it, pending @qa-tester).
+        // returns every 855 words and is normal, so it leaves no finding.
         Run299 run = run299();
 
         FindingDraft movie = run.analyzer.findingsAt(run.root).stream().filter(d -> "vegetable".equals(d.getMarker()))
@@ -753,10 +753,10 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should leave 1,612 findings in the course of 29/9, 1,566 for under-exposed and 46 for over-exposed lemmas")
+    @DisplayName("should leave 1,583 findings in the course of 29/9, 1,534 for under-exposed and 49 for over-exposed lemmas")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
-    public void shouldLeave1612FindingsInTheCourseOf2991566ForUnderexposedAnd46ForOverexposedLemmas() {
+    public void shouldLeave1583FindingsInTheCourseOf2991534ForUnderexposedAnd49ForOverexposedLemmas() {
         // R005 on the 29/9 course (opción B, José 1/10): la puntuación no ocupa posición: 1,583 findings, 1,534 for
         // under-exposed lemmas and 49 for over-exposed ones (option A: 1,612).
         Run299 run = run299();

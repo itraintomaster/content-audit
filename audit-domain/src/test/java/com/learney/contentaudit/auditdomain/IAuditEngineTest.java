@@ -1238,14 +1238,13 @@ public class IAuditEngineTest {
     }
 
     @Test
-    @DisplayName("should keep the course vocabulary score at 73.92% with lemma-recurrence at 0.08 publishing its course diagnosis, on the published scores of the analysis of 29/9")
+    @DisplayName("should keep the course vocabulary score at 74.07% with lemma-recurrence at 0.09 publishing its course diagnosis, on the published scores of the analysis of 29/9")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R001")
-    public void shouldKeepTheCourseVocabularyScoreAt7392WithLemmarecurrenceAt008PublishingItsCourseDiagnosisOnThePublishedScoresOfTheAnalysisOf299() {
-        // F-RECUR-R001, rama ronda1/recur-posiciones (opción B): la puntuación no ocupa posición: lemma-recurrence run over the 29/9 course gives
+    public void shouldKeepTheCourseVocabularyScoreAt7407WithLemmarecurrenceAt009PublishingItsCourseDiagnosisOnThePublishedScoresOfTheAnalysisOf299() {
+        // F-RECUR-R001 (opción B, José 1/10): la puntuación no ocupa posición: lemma-recurrence run over the 29/9 course gives
         // 0,09 and publishes its course diagnosis and its 1,583 findings; next to the six other scores
-        // published on 29/9 the vocabulary of the course goes from 73,92 % to 74,07 %. The name keeps 73,92
-        // and 0,08 (pending, @qa-tester).
+        // published on 29/9 the vocabulary of the course goes from 73,92 % to 74,07 %.
         AuditReport report = recurrenceRun299();
 
         assertEquals(0.09, report.getRoot().getScores().get("lemma-recurrence"), 1e-12, "R001: 0,09 with option B");
@@ -1776,10 +1775,10 @@ public class IAuditEngineTest {
     }
 
     @Test
-    @DisplayName("should give the base of 29/9 on its second run in the same process 73.92% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 8.00 of recurrence, as a new invocation, and not 72.90")
+    @DisplayName("should give the base of 29/9 on its second run in the same process 74.07% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 9.00 of recurrence, as a new invocation, and not 72.90")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
-    public void shouldGiveTheBaseOf299OnItsSecondRunInTheSameProcess7392InTheCourse965494167945And6351InTheLevels5793OfCOCAInB1And800OfRecurrenceAsANewInvocationAndNot7290() {
+    public void shouldGiveTheBaseOf299OnItsSecondRunInTheSameProcess7407InTheCourse965494167945And6351InTheLevels5793OfCOCAInB1And900OfRecurrenceAsANewInvocationAndNot7290() {
         // F-CERO-R001: the same engine measures the base of 29/9 twice in one process. The second run gives what a
         // new invocation gives: 74,07 % in the course and 96,54 · 94,16 · 79,45 · 63,51 in the levels with
         // lemma-recurrence at 9,00 % (opción B de F-RECUR-R001, José 1/10: la puntuación no ocupa posición; 73,92 %

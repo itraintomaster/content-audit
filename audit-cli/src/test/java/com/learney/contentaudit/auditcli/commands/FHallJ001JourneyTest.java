@@ -309,7 +309,7 @@ public class FHallJ001JourneyTest {
                     "R009: the vocabulary score of " + key);
         }
         AuditNode course = analysis.report().getRoot();
-        // rama ronda1/recur-posiciones (opción B): la recurrencia da 0,09 y el vocabulario del curso, 74,1 %
+        // Opción B, José 1/10: la recurrencia da 0,09 y el vocabulario del curso, 74,1 %
         assertEquals("74,1 %", GetCmd.scoreText(course.getNumbers().getVocabularyScore()), "R010: on the course");
         assertEquals(List.of("96,5 %", "94,2 %", "79,5 %", "63,5 %"), course.getChildren().stream()
                 .map(level -> GetCmd.scoreText(level.getNumbers().getVocabularyScore())).toList(), "R010: on the levels");

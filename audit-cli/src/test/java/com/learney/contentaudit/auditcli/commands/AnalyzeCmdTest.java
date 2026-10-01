@@ -1286,7 +1286,7 @@ public class AnalyzeCmdTest {
                 for (Iterator<Map.Entry<String, JsonNode>> it = row.get(2).fields(); it.hasNext(); ) {
                     Map.Entry<String, JsonNode> score = it.next();
                     if (!score.getKey().contains("/")) {
-                        // rama ronda1/recur-posiciones (opción B, F-RECUR-R001): sin la puntuación en las
+                        // Opción B de F-RECUR-R001, José 1/10: sin la puntuación en las
                         // posiciones, lemma-recurrence da 0,09 en el curso en vez del 0,08 publicado el 29/9
                         boolean recurrence = course && "lemma-recurrence".equals(score.getKey());
                         sum += recurrence ? 0.09 : score.getValue().asDouble();

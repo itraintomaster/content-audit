@@ -55,7 +55,7 @@ public class FRecurJ001JourneyTest {
         // keeps its 0,08 with the thresholds of today
         Analysis analysis = analyze(workdir, Base299.classicProviders().get(4));
         AuditNode course = analysis.report().getRoot();
-        // rama ronda1/recur-posiciones (opción B): la puntuación no ocupa posición y la recurrencia da 0,09
+        // Opción B, José 1/10: la puntuación no ocupa posición y la recurrencia da 0,09
         assertEquals(0.09, course.getScores().get(RECURRENCE), 1e-12, "R001: 0,09 with option B");
 
         // === Node: por_palabra ===

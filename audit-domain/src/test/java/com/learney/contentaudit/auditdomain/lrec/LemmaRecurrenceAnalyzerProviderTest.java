@@ -112,10 +112,10 @@ public class LemmaRecurrenceAnalyzerProviderTest {
     }
 
     @Test
-    @DisplayName("should create for every run an analyzer that counts positions from the start, so the recurrence of the course stays at 8.0% on a second run instead of falling to 4.0%")
+    @DisplayName("should create for every run an analyzer that counts positions from the start, so the recurrence of the course stays at 9.0% on a second run instead of falling to 5.0%")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
-    public void shouldCreateForEveryRunAnAnalyzerThatCountsPositionsFromTheStartSoTheRecurrenceOfTheCourseStaysAt80OnASecondRunInsteadOfFallingTo40() {
+    public void shouldCreateForEveryRunAnAnalyzerThatCountsPositionsFromTheStartSoTheRecurrenceOfTheCourseStaysAt90OnASecondRunInsteadOfFallingTo50() {
         // F-CERO-R001: lemma-recurrence counts the position of every word of the course from the start; with
         // an analyzer per run, the 29/9 course gives 9,0 % on the second run of the same process too. An analyzer
         // kept for the second run goes on from where the first ended, and falls to 5,0 % (8,0 % and 4,0 % with

@@ -4382,10 +4382,10 @@ public class GetCmdTest {
     }
 
     @Test
-    @DisplayName("should show in get audit and get audits the vocabulary score published on the course, 73,9 % for the 29/9 base, instead of 73,4 %, the average of its eleven course keys")
+    @DisplayName("should show in get audit and get audits the vocabulary score published on the course, 74,1 % for the 29/9 base, instead of 73,5 %, the average of its eleven course keys")
     @Tag("FEAT-HALL")
     @Tag("F-HALL-R010")
-    public void shouldShowInGetAuditAndGetAuditsTheVocabularyScorePublishedOnTheCourse739ForThe299BaseInsteadOf734TheAverageOfItsElevenCourseKeys(
+    public void shouldShowInGetAuditAndGetAuditsTheVocabularyScorePublishedOnTheCourse741ForThe299BaseInsteadOf735TheAverageOfItsElevenCourseKeys(
             @TempDir Path workdir) {
         // R010: get audits and get audit show the vocabulary score the engine published on the course --
         // 73,9 % for the 29/9 base -- instead of 73,4 %, the average of its eleven course keys (the
@@ -4403,7 +4403,7 @@ public class GetCmdTest {
 
         Map<String, Double> courseKeys = store.load(id).orElseThrow().getRoot().getScores();
         assertEquals(11, courseKeys.size(), "the eleven course keys: " + courseKeys.keySet());
-        // rama ronda1/recur-posiciones (opción B): la recurrencia da 0,09 y el vocabulario del curso, 74,1 % (73,5 % la media de las claves)
+        // Opción B, José 1/10: la recurrencia da 0,09 y el vocabulario del curso, 74,1 % (73,5 % la media de las claves)
         assertEquals("73,5 %", GetCmd.scoreText(courseKeys.values().stream().mapToDouble(d -> d).average().orElseThrow()),
                 "their average, what get audits and get audit showed before the contract");
         assertEquals(0, audits.exit(), audits.err());
@@ -4713,10 +4713,10 @@ public class GetCmdTest {
     }
 
     @Test
-    @DisplayName("should leave the stored analysis of 29/9 and its plan byte for byte identical after get word-lights, at 73.92% and 4,036 tasks")
+    @DisplayName("should leave the stored analysis of 29/9 and its plan byte for byte identical after get word-lights, at 74.07% and 4,036 tasks")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R007")
-    public void shouldLeaveTheStoredAnalysisOf299AndItsPlanByteForByteIdenticalAfterGetWordlightsAt7392And4036Tasks(@TempDir Path workdir) {
+    public void shouldLeaveTheStoredAnalysisOf299AndItsPlanByteForByteIdenticalAfterGetWordlightsAt7407And4036Tasks(@TempDir Path workdir) {
         // R007: get word-lights writes nothing: after asking it -- with filters, with a limit and for a topic
         // the analysis does not have -- the analysis of the 29/9 course, its digest and its plan are byte
         // for byte the ones of before, at 73,92 % and 4.036 tasks, and so is the course.
@@ -4738,7 +4738,7 @@ public class GetCmdTest {
         assertTrue(before.keySet().stream().anyMatch(path -> path.contains("plans")), "the plan is among them: " + before);
         com.learney.contentaudit.auditdomain.AuditReport stored =
                 new FileSystemAuditReportStore(workdir, null).load(id).orElseThrow();
-        // rama ronda1/recur-posiciones (opción B): la recurrencia da 0,09 y el vocabulario del curso, 74,07 %
+        // Opción B, José 1/10: la recurrencia da 0,09 y el vocabulario del curso, 74,07 %
         assertEquals("74,07 %", String.format(java.util.Locale.ROOT, "%.2f %%",
                 stored.getRoot().getNumbers().getVocabularyScore() * 100).replace('.', ','), "R007: 74,07 % in the course");
         assertEquals(Base299.preContractVocabulary().get("COURSE root"),

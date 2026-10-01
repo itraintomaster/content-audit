@@ -1091,7 +1091,7 @@ public class DefaultAuditRunnerTest {
             Map<String, Double> expectedScores = new LinkedHashMap<>();
             expected.get(2).fields().forEachRemaining(e -> expectedScores.put(e.getKey(), e.getValue().asDouble()));
             if ("root".equals(id)) {
-                // rama ronda1/recur-posiciones (opción B, F-RECUR-R001): sin la puntuación en las posiciones,
+                // Opción B de F-RECUR-R001, José 1/10: sin la puntuación en las posiciones,
                 // lemma-recurrence da 0,09 en el curso en vez del 0,08 publicado el 29/9; el resto, igual.
                 expectedScores.put("lemma-recurrence", 0.09);
             }
@@ -1339,10 +1339,10 @@ public class DefaultAuditRunnerTest {
     }
 
     @Test
-    @DisplayName("should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels 96.0, 93.6, 78.9 and 63.9")
+    @DisplayName("should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 74.00% and levels 96.0, 93.6, 78.9 and 63.9")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R008")
-    public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1AndTheDefaultBands864And3AVocabularyScoreOf7386AndLevels960936789And639(
+    public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1AndTheDefaultBands864And3AVocabularyScoreOf7400AndLevels960936789And639(
             @org.junit.jupiter.api.io.TempDir Path workdir) {
         // R008 inv. 1: with the seventeen of round 1 and the bands 8 · 6 · 4 · 3, the default since
         // 30/9 (José), the 29/9 course publishes 74,00 % and the levels 96,0 · 93,6 · 78,9 · 63,9 (73,86 % before
@@ -1355,10 +1355,10 @@ public class DefaultAuditRunnerTest {
     }
 
     @Test
-    @DisplayName("should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2, 79.5 and 63.5")
+    @DisplayName("should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 74.07% and levels 96.5, 94.2, 79.5 and 63.5")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R008")
-    public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1And4ForEveryBandTheNumbersOfToday7392AndLevels965942795And635(
+    public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1And4ForEveryBandTheNumbersOfToday7407AndLevels965942795And635(
             @org.junit.jupiter.api.io.TempDir Path workdir) {
         // R008 inv. 1: the same seventeen with 4 for every band give the numbers of today, 74,07 %
         // and 96,5 · 94,2 · 79,5 · 63,5: the new analyzers are of the errors family and move nothing (73,92 %
@@ -1626,10 +1626,10 @@ public class DefaultAuditRunnerTest {
     }
 
     @Test
-    @DisplayName("should publish on the 29/9 course with the twenty analyzers a vocabulary of 73.86 % and levels 96.02, 93.60, 78.87 and 63.86")
+    @DisplayName("should publish on the 29/9 course with the twenty analyzers a vocabulary of 74.00 % and levels 96.02, 93.60, 78.87 and 63.86")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R010")
-    public void shouldPublishOnThe299CourseWithTheTwentyAnalyzersAVocabularyOf7386AndLevels960293607887And6386(@org.junit.jupiter.api.io.TempDir Path workdir) {
+    public void shouldPublishOnThe299CourseWithTheTwentyAnalyzersAVocabularyOf7400AndLevels960293607887And6386(@org.junit.jupiter.api.io.TempDir Path workdir) {
         // F-RONDA2-R010 inv. 1: with the twenty in the catalog -- the three of package B are of the
         // errors family and do not enter the average of vocabulary --, the 29/9 course publishes the
         // vocabulary of the round 1 integrated: 74,00 % and 96,02 · 93,60 · 78,87 · 63,86 (73,86 % before the
