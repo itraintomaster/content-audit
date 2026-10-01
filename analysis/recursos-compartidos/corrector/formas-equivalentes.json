@@ -1,0 +1,7 @@
+{
+ "version": "corrector de hoy (sin tabla de formas equivalentes)",
+ "descripcion": "La copia de content-audit de la tabla del corrector de respuestas escritas que está en producción. El corrector de hoy no tiene tabla: compara letra por letra, sin mayúsculas, espacios, signos, apóstrofos ni tildes, así que «aren't», «are not» y «'re not» son tres formas distintas. Se reemplaza por formas-equivalentes-corrector-nuevo.json en el mismo paso en que sale el corrector nuevo: primero el corrector, después el contenido.",
+ "contracciones": [],
+ "palabrasEquivalentes": [],
+ "invierteNegativas": false
+}
