@@ -38,7 +38,6 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -4623,35 +4622,207 @@ public class GetCmdTest {
     @DisplayName("should print as JSON the word lights of a knowledge with get word-lights, read from the source analysis of the latest plan like get suggested-lemmas, or from the latest analysis when there is no plan")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R001")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
-    public void shouldPrintAsJSONTheWordLightsOfAKnowledgeWithGetWordlightsReadFromTheSourceAnalysisOfTheLatestPlanLikeGetSuggestedlemmasOrFromTheLatestAnalysisWhenThereIsNoPlan() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldPrintAsJSONTheWordLightsOfAKnowledgeWithGetWordlightsReadFromTheSourceAnalysisOfTheLatestPlanLikeGetSuggestedlemmasOrFromTheLatestAnalysisWhenThereIsNoPlan(@TempDir Path workdir) throws IOException {
+        // R001 and hook D-05: get word-lights prints, as JSON, the lights of «Posición del adjetivo»: with no
+        // plan, from the latest analysis; once there is a plan, from its source analysis, like get
+        // suggested-lemmas, even when a later analysis exists.
+        AnalyzerCatalog catalog = wordLightsCatalog();
+        String latest = analyzeForWordLights(workdir, catalog);
+        Base299.Captured withoutPlan = Base299.run(wordLightsGetCmd(workdir), "word-lights", POSICION_DEL_ADJETIVO);
+
+        String earlier = "2026-09-29T10-00-00";
+        for (String dir : List.of(".content-audit/audits", ".content-audit/audit-digests")) {
+            java.nio.file.Files.copy(workdir.resolve(dir).resolve("audit-" + latest + ".json"),
+                    workdir.resolve(dir).resolve("audit-" + earlier + ".json"));
+        }
+        planOf(workdir, catalog, earlier);
+        Base299.Captured withPlan = Base299.run(wordLightsGetCmd(workdir), "word-lights", POSICION_DEL_ADJETIVO,
+                "--limit", "10");
+
+        assertEquals(0, withoutPlan.exit(), withoutPlan.err());
+        assertEquals(0, withPlan.exit(), withPlan.err());
+        JsonNode first = new ObjectMapper().readTree(withoutPlan.out());
+        JsonNode second = new ObjectMapper().readTree(withPlan.out());
+        assertEquals(latest, first.get("auditId").asText(), "without a plan, the latest analysis");
+        assertEquals(earlier, second.get("auditId").asText(), "with a plan, its source analysis, like get suggested-lemmas");
+        assertEquals(List.of(POSICION_DEL_ADJETIVO, "Posición del adjetivo", "A2"), List.of(
+                first.get("knowledgeId").asText(), first.get("knowledgeLabel").asText(), first.get("level").asText()),
+                "R001: the topic and its level");
+        assertEquals(157, first.get("words").size(), "R001: the 157 words of the topic");
+        assertEquals(Map.of("RED", 42L, "GREEN", 27L, "NEUTRAL", 88L), lightsOf(first),
+                "R001: 42 red and 27 green, with lemma-count at 4 for every band");
+        JsonNode quilt = wordOf(first, "quilt", "NOUN");
+        assertEquals(List.of("B2", "RED", "true"), List.of(quilt.get("level").asText(), quilt.get("light").asText(),
+                quilt.get("offLevelError").asText()), "quilt: B2, red and an error of off-level-words");
+        JsonNode lamp = wordOf(first, "lamp", "NOUN");
+        assertEquals(List.of("A2", "4", "4", "GREEN", "SCARCE"), List.of(lamp.get("level").asText(),
+                lamp.get("sentenceCount").asText(), lamp.get("threshold").asText(), lamp.get("light").asText(),
+                lamp.get("greenState").asText()), "lamp: A2, in 4 sentences, green and scarce");
+        assertEquals(10, second.get("toAdd").size(), "--limit 10");
+        for (JsonNode lemma : second.get("toAdd")) {
+            assertTrue(lemma.has("lemma") && lemma.has("pos") && lemma.has("reason") && lemma.has("cocaRank"),
+                    "each word to add as get suggested-lemmas prints it: " + lemma);
+        }
     }
 
     @Test
     @DisplayName("should exit with code 1 and print the not-found message for a knowledge that is not in the analysis")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R001")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
-    public void shouldExitWithCode1AndPrintTheNotfoundMessageForAKnowledgeThatIsNotInTheAnalysis() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldExitWithCode1AndPrintTheNotfoundMessageForAKnowledgeThatIsNotInTheAnalysis(@TempDir Path workdir) {
+        // R001 and hook D-05: a topic the analysis does not have is an error with the message of the rule and
+        // exit code 1, and no list on the standard output.
+        analyzeForWordLights(workdir, wordLightsCatalog());
+
+        Base299.Captured missing = Base299.run(wordLightsGetCmd(workdir), "word-lights", "6814dafa7d73e7209a13d000");
+
+        assertEquals(1, missing.exit());
+        assertEquals("Error: Knowledge '6814dafa7d73e7209a13d000' not found in the analysis.", missing.err().strip());
+        assertTrue(missing.out().isBlank(), "no list: " + missing.out());
     }
 
     @Test
     @DisplayName("should reject --level for word-lights, since the level is the topic's")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R001")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
-    public void shouldRejectLevelForWordlightsSinceTheLevelIsTheTopics() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldRejectLevelForWordlightsSinceTheLevelIsTheTopics(@TempDir Path workdir) throws IOException {
+        // R001: the level is the topic's: --level is rejected with code 1 and nothing printed, while the same
+        // request without it answers with the topic's level.
+        analyzeForWordLights(workdir, wordLightsCatalog());
+
+        Base299.Captured withLevel = Base299.run(wordLightsGetCmd(workdir), "word-lights", POSICION_DEL_ADJETIVO,
+                "--level", "B1");
+        Base299.Captured without = Base299.run(wordLightsGetCmd(workdir), "word-lights", POSICION_DEL_ADJETIVO);
+
+        assertEquals(1, withLevel.exit());
+        assertEquals("Error: --level does not apply to 'word-lights': the level is the topic's own.",
+                withLevel.err().strip());
+        assertTrue(withLevel.out().isBlank(), withLevel.out());
+        assertEquals(0, without.exit(), without.err());
+        assertEquals("A2", new ObjectMapper().readTree(without.out()).get("level").asText(), "the topic's level");
     }
 
     @Test
     @DisplayName("should leave the stored analysis of 29/9 and its plan byte for byte identical after get word-lights, at 73.92% and 4,036 tasks")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R007")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
-    public void shouldLeaveTheStoredAnalysisOf299AndItsPlanByteForByteIdenticalAfterGetWordlightsAt7392And4036Tasks() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldLeaveTheStoredAnalysisOf299AndItsPlanByteForByteIdenticalAfterGetWordlightsAt7392And4036Tasks(@TempDir Path workdir) {
+        // R007: get word-lights writes nothing: after asking it -- with filters, with a limit and for a topic
+        // the analysis does not have -- the analysis of the 29/9 course, its digest and its plan are byte
+        // for byte the ones of before, at 73,92 % and 4.036 tasks, and so is the course.
+        AnalyzerCatalog catalog = wordLightsCatalog();
+        String id = analyzeForWordLights(workdir, catalog);
+        planOf(workdir, catalog, id);
+        Map<String, String> before = Base299.hashes(workdir);
+        Map<String, String> course = Base299.hashes(Base299.COURSE);
+
+        List<Base299.Captured> asked = List.of(
+                Base299.run(wordLightsGetCmd(workdir), "word-lights", POSICION_DEL_ADJETIVO),
+                Base299.run(wordLightsGetCmd(workdir), "word-lights", POSICION_DEL_ADJETIVO, "--part-of-speech", "NOUN",
+                        "--limit", "10", "--include-exposed", "--regex", "^[a-m]"),
+                Base299.run(wordLightsGetCmd(workdir), "word-lights", "6814dafa7d73e7209a13d000"));
+
+        assertEquals(List.of(0, 0, 1), asked.stream().map(Base299.Captured::exit).toList(), "the three were answered");
+        assertEquals(before, Base299.hashes(workdir), "R007: the analysis, its digest and its plan, byte for byte");
+        assertEquals(course, Base299.hashes(Base299.COURSE), "the course, byte for byte");
+        assertTrue(before.keySet().stream().anyMatch(path -> path.contains("plans")), "the plan is among them: " + before);
+        com.learney.contentaudit.auditdomain.AuditReport stored =
+                new FileSystemAuditReportStore(workdir, null).load(id).orElseThrow();
+        assertEquals("73,92 %", String.format(java.util.Locale.ROOT, "%.2f %%",
+                stored.getRoot().getNumbers().getVocabularyScore() * 100).replace('.', ','), "R007: 73,92 % in the course");
+        assertEquals(Base299.preContractVocabulary().get("COURSE root"),
+                stored.getRoot().getNumbers().getVocabularyScore(), 1e-12, "the vocabulary of before the round");
+        assertEquals(4036, new com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore(workdir)
+                .loadLatest().orElseThrow().getTasks().size(), "R007: the 4.036 tasks of the plan");
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-SEMAF: get word-lights over an analysis of the 29/9 course
+    // ------------------------------------------------------------------
+
+    /** «Posición del adjetivo», A2: 157 words, 42 red and 27 green with lemma-count at 4 for every band. */
+    static final String POSICION_DEL_ADJETIVO = "6814dafa7d73e7209a13d2a0";
+
+    /**
+     * The catalog of the analysis 2026-09-30T11-54-02 -- the classics, with lemma-count at «4 para
+     * todas» -- with off-level-words after lemma-absence, as Main orders it, and the judge.
+     */
+    static AnalyzerCatalog wordLightsCatalog() {
+        com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig absence =
+                new com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig();
+        List<com.learney.contentaudit.auditdomain.AnalyzerProvider> providers =
+                new java.util.ArrayList<>(Base299.classicProviders().subList(0, 6));
+        providers.add(new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(
+                new com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer(Base299.evp(),
+                        new com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter(), absence),
+                absence, new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(),
+                new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create())));
+        providers.add(Base299.classicProviders().get(6));
+        providers.add(Base299.judge(new Base299.FakeJudge(), new Base299.MapLedger()));
+        return new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(providers);
+    }
+
+    /** analyze of the 29/9 course with that catalog and without the judge, saved in the working directory; its id. */
+    static String analyzeForWordLights(Path workdir, AnalyzerCatalog catalog) {
+        Base299.Captured analyzed = Base299.run(Base299.analyzeCmd(Base299.runner(catalog),
+                new FileSystemAuditReportStore(workdir, null)), Base299.COURSE.toString(), "--exclude-analyzers",
+                Base299.JUDGE);
+        assertEquals(0, analyzed.exit(), analyzed.err());
+        return Base299.savedId(analyzed);
+    }
+
+    /** plan over the analysis, as Main builds it, saved in the working directory. */
+    static void planOf(Path workdir, AnalyzerCatalog catalog, String auditId) {
+        PlanCmd plan = new PlanCmd(new FileSystemAuditReportStore(workdir, null),
+                new com.learney.contentaudit.refinerdomain.DefaultRefinerEngine(catalog),
+                new com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore(workdir),
+                mock(EphemeralPlanRenderer.class));
+        Base299.Captured planned = Base299.run(plan, "--audit", auditId);
+        assertEquals(0, planned.exit(), planned.err());
+    }
+
+    /**
+     * get as Main builds it for word-lights and suggested-lemmas: the real query, with the evaluator of
+     * lexis, the port of the suggested lemmas and the resolver of what a topic teaches, over the
+     * analyses and plans of the working directory; lemma-count at «4 para todas», as the analysis.
+     */
+    static GetCmd wordLightsGetCmd(Path workdir) {
+        com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig absence =
+                new com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig();
+        com.learney.contentaudit.auditdomain.lexicalflags.SentenceLexicalEvaluator lexis =
+                new com.learney.contentaudit.auditdomain.lexicalflags.DefaultSentenceLexicalEvaluator(
+                        new com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer(Base299.evp(),
+                                new com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter(), absence));
+        SuggestedLemmaQueryPort suggested =
+                com.learney.contentaudit.refinerdomain.lemmasuggestion.LemmaAbsenceContextSuggestedLemmaQueryPort.create(
+                        new com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver(), Base299.evp(),
+                        new com.learney.contentaudit.auditapplication.DefaultLemmaCountConfigLoader().load("4"));
+        GetCmd get = new GetCmd(new FileSystemAuditReportStore(workdir, null),
+                new com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore(workdir),
+                mock(AnalyzerRegistry.class), mock(CorrectionContextResolver.class), null, null,
+                new DefaultCorrectionContextJsonMapper(), suggested,
+                new com.learney.contentaudit.refinerdomain.topicwords.DefaultTopicWordLightsQuery(lexis, suggested,
+                        new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver()),
+                null, null);
+        get.setRevisionArtifactStore(mock(RevisionArtifactStore.class));
+        return get;
+    }
+
+    /** How many words of the printed lights have each light. */
+    static Map<String, Long> lightsOf(JsonNode lights) {
+        Map<String, Long> counts = new java.util.TreeMap<>();
+        lights.get("words").forEach(word -> counts.merge(word.get("light").asText(), 1L, Long::sum));
+        return counts;
+    }
+
+    /** The printed word with that lemma and part of speech. */
+    static JsonNode wordOf(JsonNode lights, String lemma, String pos) {
+        for (JsonNode word : lights.get("words")) {
+            if (lemma.equals(word.get("lemma").asText()) && pos.equals(word.get("pos").asText())) {
+                return word;
+            }
+        }
+        throw new AssertionError("no " + lemma + "|" + pos + " among the words of the topic");
     }
 }

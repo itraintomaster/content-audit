@@ -1,7 +1,27 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditcli.commands.AnalyzeCmdTest.Base299;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import org.junit.jupiter.api.io.TempDir;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,17 +41,116 @@ public class FSemafJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El que propone pide el semáforo de un... → Cada palabra del tema sale con su niv... [El tema existe en el análisis] → La lista para sumar trae las sugerida... → success")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
-    public void path1_elTemaExisteEnElAnlisis_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path1_elTemaExisteEnElAnlisis_success(@TempDir Path workdir) throws IOException {
+        // === Node: pedir ===
+        // Gate: F-SEMAF-R001 -- the one who proposes asks the lights of «Posición del adjetivo» (A2) in the
+        // analysis of the 29/9 course, with a part of speech and a limit
+        AnalyzerCatalog catalog = GetCmdTest.wordLightsCatalog();
+        String id = GetCmdTest.analyzeForWordLights(workdir, catalog);
+        GetCmdTest.planOf(workdir, catalog, id);
+        Map<String, String> before = Base299.hashes(workdir);
+        Base299.Captured asked = Base299.run(GetCmdTest.wordLightsGetCmd(workdir), "word-lights",
+                GetCmdTest.POSICION_DEL_ADJETIVO, "--part-of-speech", "NOUN", "--limit", "10");
+        assertEquals(0, asked.exit(), asked.err());
+        JsonNode lights = new ObjectMapper().readTree(asked.out());
+
+        // === Node: colorear ===
+        // Gate: F-SEMAF-R002, F-SEMAF-R004, F-SEMAF-R005, F-SEMAF-R006 -- each word once with its level, its
+        // sentences and its light; what the topic teaches is never red
+        JsonNode words = lights.get("words");
+        Set<String> keys = new HashSet<>();
+        words.forEach(word -> keys.add(word.get("lemma").asText() + "|" + word.get("pos").asText()));
+        assertEquals(List.of(157, 157), List.of(words.size(), keys.size()), "R001: the 157 words, once each");
+        assertEquals(Map.of("GREEN", 27L, "NEUTRAL", 88L, "RED", 42L), GetCmdTest.lightsOf(lights), "42 red, 27 green");
+        Set<String> red = new HashSet<>();
+        for (JsonNode word : words) {
+            assertTrue(word.get("sentenceCount").asInt() >= 1, "every word of the topic has its sentences: " + word);
+            String light = word.get("light").asText();
+            if ("RED".equals(light)) {
+                red.add(word.get("lemma").asText());
+                assertFalse(word.get("taughtByTopic").asBoolean(), "R004: what the topic teaches is never red: " + word);
+            }
+            if ("GREEN".equals(light)) {
+                int sentences = word.get("sentenceCount").asInt();
+                int threshold = word.get("threshold").asInt();
+                assertEquals("A2", word.get("level").asText(), "R002: green is of the topic's level: " + word);
+                assertTrue(sentences < 2 * threshold, "R002: in fewer than 2N sentences: " + word);
+                assertEquals(sentences < threshold ? "UNDER_EXPOSED" : "SCARCE", word.get("greenState").asText(),
+                        "R002: poco vista from 1 to N-1, escasa from N to 2N-1: " + word);
+            }
+            if ("A2".equals(word.get("level").asText()) && !"RED".equals(light)
+                    && word.get("sentenceCount").asInt() >= 2 * word.get("threshold").asInt()) {
+                assertEquals("NEUTRAL", light, "R006: a word the course repeats stays neutral: " + word);
+            }
+        }
+        assertTrue(red.containsAll(List.of("bench", "brick", "spread", "quilt", "shed", "metal", "stone")),
+                "R005: bench, brick, spread, quilt and shed, and B1 like metal and stone: " + red);
+        assertEquals("NEUTRAL", GetCmdTest.wordOf(lights, "large", "ADJ").get("light").asText(),
+                "R006: large, A2 in 18 sentences, is neutral");
+        Base299.Captured invest = Base299.run(GetCmdTest.wordLightsGetCmd(workdir), "word-lights", INVEST_TIME);
+        assertEquals(0, invest.exit(), invest.err());
+        JsonNode invested = GetCmdTest.wordOf(new ObjectMapper().readTree(invest.out()), "invest", "VERB");
+        assertEquals(List.of("B2", "true", "NEUTRAL"), List.of(invested.get("level").asText(),
+                invested.get("taughtByTopic").asText(), invested.get("light").asText()),
+                "R004: «$Invest time$ + gerundio» teaches invest, B2: never red there");
+
+        // === Node: sumar ===
+        // Gate: F-SEMAF-R003, F-SEMAF-R007 -- the suggested words of A2 in their order, without the topic's and
+        // without red ones, and the analysis and the plan stay the same
+        String task = lemmaAbsenceTaskOfLevel(workdir, id, "A2");
+        Base299.Captured suggested = Base299.run(GetCmdTest.wordLightsGetCmd(workdir), "suggested-lemmas", task,
+                "--part-of-speech", "NOUN");
+        assertEquals(0, suggested.exit(), suggested.err());
+        List<String> expected = new ArrayList<>();
+        for (JsonNode lemma : new ObjectMapper().readTree(suggested.out()).get("suggestedLemmas")) {
+            String key = lemma.get("lemma").asText() + "|" + lemma.get("pos").asText();
+            if (!keys.contains(key) && !red.contains(lemma.get("lemma").asText())) {
+                expected.add(key);
+            }
+        }
+        List<String> toAdd = new ArrayList<>();
+        lights.get("toAdd").forEach(lemma -> toAdd.add(lemma.get("lemma").asText() + "|" + lemma.get("pos").asText()));
+        assertEquals(expected.subList(0, 10), toAdd, "R003: the order of get suggested-lemmas, 10 of 10");
+        assertTrue(toAdd.stream().noneMatch(key -> red.contains(key.substring(0, key.indexOf('|')))),
+                "R007: no red word to add");
+        assertEquals(before, Base299.hashes(workdir), "R007: the analysis and the plan, byte for byte");
+        // result: success
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El que propone pide el semáforo de un... → La consulta se rechaza con el mensaje... [El tema no existe] → failure")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
-    public void path2_elTemaNoExiste_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path2_elTemaNoExiste_failure(@TempDir Path workdir) {
+        // === Node: pedir ===
+        // Gate: F-SEMAF-R001 -- the one who proposes asks the lights of a topic the analysis does not have
+        AnalyzerCatalog catalog = GetCmdTest.wordLightsCatalog();
+        GetCmdTest.analyzeForWordLights(workdir, catalog);
+        Base299.Captured asked = Base299.run(GetCmdTest.wordLightsGetCmd(workdir), "word-lights",
+                "6814dafa7d73e7209a13d000", "--part-of-speech", "NOUN", "--limit", "10");
+
+        // === Node: rechazo ===
+        // The query is rejected with the message of a missing topic and returns no list
+        assertEquals(1, asked.exit());
+        assertEquals("Error: Knowledge '6814dafa7d73e7209a13d000' not found in the analysis.", asked.err().strip());
+        assertTrue(asked.out().isBlank(), "no list: " + asked.out());
+        // result: failure
+    }
+
+    /** «$Invest time$ + gerundio», A2: the topic teaches invest, B2. */
+    private static final String INVEST_TIME = "6814dafa7d73e7209a13d250";
+
+    /** A LEMMA_ABSENCE task of the plan on a quiz of that level, the kind get suggested-lemmas answers. */
+    private static String lemmaAbsenceTaskOfLevel(Path workdir, String auditId, String level) {
+        AuditReport report = new FileSystemAuditReportStore(workdir, null).load(auditId).orElseThrow();
+        for (RefinementTask task : new FileSystemRefinementPlanStore(workdir).loadLatest().orElseThrow().getTasks()) {
+            if (task.getDiagnosisKind() == DiagnosisKind.LEMMA_ABSENCE) {
+                List<AuditNode> chain = Base299.upwards(Base299.node(report, task.getNodeId()));
+                if (level.equals(chain.get(chain.size() - 2).getEntity().getLabel())) {
+                    return task.getId();
+                }
+            }
+        }
+        throw new AssertionError("no LEMMA_ABSENCE task in " + level);
     }
 }
