@@ -1,4 +1,5 @@
 package com.learney.contentaudit.revisiondomain.comparisonengine;
+import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 
 import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
@@ -111,20 +112,20 @@ public class DefaultBatchComparator implements BatchComparator {
 
     private final TopicTeachingResolver topicTeachingResolver;
 
-    public DefaultBatchComparator(CourseProjector courseProjector, BaselineStore baselineStore,
-            AuditReportStore auditReportStore, GoalBook goalBook, AnalyzerCatalog analyzerCatalog,
-            AuditEngine auditEngine, ChangeAttributor changeAttributor,
-            SampleOutcomeSource sampleOutcomeSource, TopicTeachingResolver topicTeachingResolver) {
-        this.courseProjector = courseProjector;
-        this.baselineStore = baselineStore;
-        this.auditReportStore = auditReportStore;
-        this.goalBook = goalBook;
-        this.analyzerCatalog = analyzerCatalog;
-        this.auditEngine = auditEngine;
-        this.changeAttributor = changeAttributor;
-        this.sampleOutcomeSource = sampleOutcomeSource;
-        this.topicTeachingResolver = topicTeachingResolver;
-    }
+private final QuizStudentViewRenderer studentViewRenderer;
+
+public DefaultBatchComparator(CourseProjector courseProjector, BaselineStore baselineStore, AuditReportStore auditReportStore, GoalBook goalBook, AnalyzerCatalog analyzerCatalog, AuditEngine auditEngine, ChangeAttributor changeAttributor, SampleOutcomeSource sampleOutcomeSource, TopicTeachingResolver topicTeachingResolver, QuizStudentViewRenderer studentViewRenderer) {
+    this.courseProjector = courseProjector;
+    this.baselineStore = baselineStore;
+    this.auditReportStore = auditReportStore;
+    this.goalBook = goalBook;
+    this.analyzerCatalog = analyzerCatalog;
+    this.auditEngine = auditEngine;
+    this.changeAttributor = changeAttributor;
+    this.sampleOutcomeSource = sampleOutcomeSource;
+    this.topicTeachingResolver = topicTeachingResolver;
+    this.studentViewRenderer = studentViewRenderer;
+}
 
     @Override
     public BatchComparison compare(Path coursePath, ProjectionScope scope) {
@@ -429,7 +430,7 @@ public class DefaultBatchComparator implements BatchComparator {
                 && projected.value() != null ? delta(projected.value(), reference.value(), unit) : null;
         ComparisonRow row = new ComparisonRow(subject, family, node.getTarget(), id, ReportTree.labelOf(node),
                 rowValue(baseline), rowValue(remeasured), rowValue(start), rowValue(projected), change, unit, null,
-                null);
+                null, null, null, null, null, null);
         Goal floor = goalFor(goals, GoalKind.FLOOR, subject, node.getTarget(), id);
         if (floor != null) {
             row.setFloor(new RowGoalStatus(floor.getId(), floor.getThreshold(), floor.getUnit(), floor.getReference(),

@@ -93,7 +93,7 @@ public class NaturalnessAnalyzerProvider implements AnalyzerProvider {
                 AnalysisCost.PAID_MODEL,
                 NaturalnessAnalyzer.DISPLAY_NAME,
                 List.of(localToolGate.card(NaturalnessAnalyzer.ANALYZER_NAME, yesNoModel, config.methodId()),
-                        localToolGate.alternativeCard(NaturalnessAnalyzer.ANALYZER_NAME, alternativeJudge)));
+                        localToolGate.alternativeCard(NaturalnessAnalyzer.ANALYZER_NAME, alternativeJudge)), null);
     }
 
     @Override

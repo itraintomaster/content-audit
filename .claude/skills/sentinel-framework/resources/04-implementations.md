@@ -3395,6 +3395,7 @@ public FileSystemBlindSampleStore(Path baseDir) {
 | `changeAttributor` | `ChangeAttributor` |
 | `sampleOutcomeSource` | `SampleOutcomeSource` |
 | `topicTeachingResolver` | `TopicTeachingResolver` |
+| `studentViewRenderer` | `QuizStudentViewRenderer` |
 
 #### DefaultGoalBook (package: comparisonengine)
 

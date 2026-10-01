@@ -96,7 +96,7 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
                 AnalysisCost.PAID_MODEL,
                 NearDuplicatesAnalyzer.DISPLAY_NAME,
                 List.of(localToolGate.card(NearDuplicatesAnalyzer.ANALYZER_NAME, embeddingModel, config.methodId()),
-                        localToolGate.alternativeCard(NearDuplicatesAnalyzer.ANALYZER_NAME, alternativeJudge)));
+                        localToolGate.alternativeCard(NearDuplicatesAnalyzer.ANALYZER_NAME, alternativeJudge)), null);
     }
 
     @Override

@@ -93,7 +93,7 @@ public class SingleAnswerAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL, FindingResolution.RANK_ONLY),
                 AnalysisCost.PAID_MODEL,
-                SingleAnswerAnalyzer.DISPLAY_NAME, List.of());
+                SingleAnswerAnalyzer.DISPLAY_NAME, List.of(), null);
     }
 
     /**

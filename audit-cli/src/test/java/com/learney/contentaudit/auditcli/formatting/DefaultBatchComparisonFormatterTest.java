@@ -153,4 +153,20 @@ public class DefaultBatchComparisonFormatterTest {
         }
         throw new AssertionError("no line «" + start + "» in:\n" + text);
     }
+
+    @Test
+    @DisplayName("should write in the JSON of every row its Spanish name, which way is better, the verdict of its change, its explanation and its example")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R006")
+    public void shouldWriteInTheJSONOfEveryRowItsSpanishNameWhichWayIsBetterTheVerdictOfItsChangeItsExplanationAndItsExample() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should write the example of a row without one as null in the JSON, never leave it out")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R006")
+    public void shouldWriteTheExampleOfARowWithoutOneAsNullInTheJSONNeverLeaveItOut() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

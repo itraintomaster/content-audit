@@ -82,7 +82,7 @@ public class GrammarAnalyzerProvider implements AnalyzerProvider {
                 List.of(FindingResolution.RULE, FindingResolution.PANEL),
                 AnalysisCost.INSTANT,
                 GrammarAnalyzer.DISPLAY_NAME,
-                List.of(localToolGate.card(GrammarAnalyzer.ANALYZER_NAME, grammarChecker, config.methodId())));
+                List.of(localToolGate.card(GrammarAnalyzer.ANALYZER_NAME, grammarChecker, config.methodId())), null);
     }
 
     /**

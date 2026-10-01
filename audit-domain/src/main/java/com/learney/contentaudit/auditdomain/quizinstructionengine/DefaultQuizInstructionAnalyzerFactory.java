@@ -91,7 +91,7 @@ public DefaultQuizInstructionAnalyzerFactory(Evaluator evaluator, QuizInstructio
                 AnalyzerFamily.ERRORS,
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
-                AnalysisCost.PAID_MODEL, "Consigna", List.of());
+                AnalysisCost.PAID_MODEL, "Consigna", List.of(), null);
     }
 
     /** F-QINST-R017: its scores below 1 become QUIZ_INSTRUCTION tasks on the quiz. */

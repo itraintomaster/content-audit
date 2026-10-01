@@ -62,7 +62,7 @@ public class LemmaCountAnalyzerProvider implements AnalyzerProvider {
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.MILESTONE, AuditTarget.COURSE),
                 List.of(FindingResolution.RANK_ONLY),
-                AnalysisCost.INSTANT, "Palabras poco vistas", List.of());
+                AnalysisCost.INSTANT, "Palabras poco vistas", List.of(), null);
     }
 
     /** «Cada palabra del nivel en tantas oraciones como pide su banda: 8 de las 1.000 más comunes, …». */

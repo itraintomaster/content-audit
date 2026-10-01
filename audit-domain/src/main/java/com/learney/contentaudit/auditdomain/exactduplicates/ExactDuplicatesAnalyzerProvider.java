@@ -60,7 +60,7 @@ public class ExactDuplicatesAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
                 AnalysisCost.INSTANT,
-                "Duplicados exactos", List.of());
+                "Duplicados exactos", List.of(), null);
     }
 
     @Override

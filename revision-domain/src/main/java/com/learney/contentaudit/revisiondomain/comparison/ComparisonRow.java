@@ -36,13 +36,25 @@ public class ComparisonRow {
 
     private RowGoalStatus progress;
 
+    private String displayName;
+
+    private BetterDirection betterWhen;
+
+    private ChangeVerdict changeVerdict;
+
+    private String explanation;
+
+    private RowExample example;
+
     public ComparisonRow() {
     }
 
     public ComparisonRow(String subject, AnalyzerFamily family, AuditTarget nodeTarget,
             String nodeId, String label, RowValue baseline, RowValue remeasuredBaseline,
             RowValue approved, RowValue projected, Double change, GoalUnit unit,
-            RowGoalStatus floor, RowGoalStatus progress) {
+            RowGoalStatus floor, RowGoalStatus progress, String displayName,
+            BetterDirection betterWhen, ChangeVerdict changeVerdict, String explanation,
+            RowExample example) {
         this.subject = subject;
         this.family = family;
         this.nodeTarget = nodeTarget;
@@ -56,6 +68,11 @@ public class ComparisonRow {
         this.unit = unit;
         this.floor = floor;
         this.progress = progress;
+        this.displayName = displayName;
+        this.betterWhen = betterWhen;
+        this.changeVerdict = changeVerdict;
+        this.explanation = explanation;
+        this.example = example;
     }
 
     public String getSubject() {
@@ -162,6 +179,46 @@ public class ComparisonRow {
         this.progress = progress;
     }
 
+    public String getDisplayName() {
+        return this.displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public BetterDirection getBetterWhen() {
+        return this.betterWhen;
+    }
+
+    public void setBetterWhen(BetterDirection betterWhen) {
+        this.betterWhen = betterWhen;
+    }
+
+    public ChangeVerdict getChangeVerdict() {
+        return this.changeVerdict;
+    }
+
+    public void setChangeVerdict(ChangeVerdict changeVerdict) {
+        this.changeVerdict = changeVerdict;
+    }
+
+    public String getExplanation() {
+        return this.explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
+
+    public RowExample getExample() {
+        return this.example;
+    }
+
+    public void setExample(RowExample example) {
+        this.example = example;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -179,11 +236,16 @@ public class ComparisonRow {
                     && Objects.equals(this.change, that.change)
                     && Objects.equals(this.unit, that.unit)
                     && Objects.equals(this.floor, that.floor)
-                    && Objects.equals(this.progress, that.progress);
+                    && Objects.equals(this.progress, that.progress)
+                    && Objects.equals(this.displayName, that.displayName)
+                    && Objects.equals(this.betterWhen, that.betterWhen)
+                    && Objects.equals(this.changeVerdict, that.changeVerdict)
+                    && Objects.equals(this.explanation, that.explanation)
+                    && Objects.equals(this.example, that.example);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(subject, family, nodeTarget, nodeId, label, baseline, remeasuredBaseline, approved, projected, change, unit, floor, progress);
+        return Objects.hash(subject, family, nodeTarget, nodeId, label, baseline, remeasuredBaseline, approved, projected, change, unit, floor, progress, displayName, betterWhen, changeVerdict, explanation, example);
     }
 }

@@ -568,6 +568,7 @@ Methods:
 | cost | `AnalysisCost` |
 | displayName | `String` |
 | tools | `List<LocalToolCard>` |
+| explanation | `String` |
 
 ### AuditNode (`record`)
 

@@ -81,4 +81,12 @@ public class DefaultCompareCommandTest {
 
     @TempDir
     Path dir;
+
+    @Test
+    @DisplayName("should print with -f json, for a batch of two exercises, the comparison of the sample file the review app is built against")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R006")
+    public void shouldPrintWithFJsonForABatchOfTwoExercisesTheComparisonOfTheSampleFileTheReviewAppIsBuiltAgainst() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

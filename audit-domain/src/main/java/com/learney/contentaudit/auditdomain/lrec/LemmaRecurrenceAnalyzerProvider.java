@@ -58,7 +58,7 @@ public class LemmaRecurrenceAnalyzerProvider implements AnalyzerProvider {
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.COURSE),
                 List.of(FindingResolution.RANK_ONLY),
-                AnalysisCost.INSTANT, "Recurrencia", List.of());
+                AnalysisCost.INSTANT, "Recurrencia", List.of(), null);
     }
 
     /** A fresh analyzer per run, with its stateless collaborators built here, not in Main (P4). */

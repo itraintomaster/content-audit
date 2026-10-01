@@ -40,13 +40,15 @@ public class AnalyzerDescriptor {
 
     private List<LocalToolCard> tools;
 
+    private String explanation;
+
     public AnalyzerDescriptor() {
     }
 
     public AnalyzerDescriptor(String name, String description, AuditTarget target, String question,
             String reads, List<AnalyzerRuleCard> rules, String goal, AnalyzerFamily family,
             List<AuditTarget> evaluatedTargets, List<FindingResolution> resolutions,
-            AnalysisCost cost, String displayName, List<LocalToolCard> tools) {
+            AnalysisCost cost, String displayName, List<LocalToolCard> tools, String explanation) {
         this.name = name;
         this.description = description;
         this.target = target;
@@ -60,6 +62,7 @@ public class AnalyzerDescriptor {
         this.cost = cost;
         this.displayName = displayName;
         this.tools = tools;
+        this.explanation = explanation;
     }
 
     public String getName() {
@@ -166,6 +169,14 @@ public class AnalyzerDescriptor {
         this.tools = tools;
     }
 
+    public String getExplanation() {
+        return this.explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -183,11 +194,12 @@ public class AnalyzerDescriptor {
                     && Objects.equals(this.resolutions, that.resolutions)
                     && Objects.equals(this.cost, that.cost)
                     && Objects.equals(this.displayName, that.displayName)
-                    && Objects.equals(this.tools, that.tools);
+                    && Objects.equals(this.tools, that.tools)
+                    && Objects.equals(this.explanation, that.explanation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, target, question, reads, rules, goal, family, evaluatedTargets, resolutions, cost, displayName, tools);
+        return Objects.hash(name, description, target, question, reads, rules, goal, family, evaluatedTargets, resolutions, cost, displayName, tools, explanation);
     }
 }

@@ -230,10 +230,11 @@ new NlpToken(String text, String lemma, String posTag, Integer frequencyRank, bo
 | `cost` | `AnalysisCost` |  |
 | `displayName` | `String` |  |
 | `tools` | `List<LocalToolCard>` | Import `java.util.List` |
+| `explanation` | `String` |  |
 
 **Generated constructor:**
 ```java
-new AnalyzerDescriptor(String name, String description, AuditTarget target, String question, String reads, List<AnalyzerRuleCard> rules, String goal, AnalyzerFamily family, List<AuditTarget> evaluatedTargets, List<FindingResolution> resolutions, AnalysisCost cost, String displayName, List<LocalToolCard> tools)
+new AnalyzerDescriptor(String name, String description, AuditTarget target, String question, String reads, List<AnalyzerRuleCard> rules, String goal, AnalyzerFamily family, List<AuditTarget> evaluatedTargets, List<FindingResolution> resolutions, AnalysisCost cost, String displayName, List<LocalToolCard> tools, String explanation)
 ```
 
 #### AuditNode
@@ -5528,6 +5529,11 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `unit` | `GoalUnit` |
 | `floor` | `RowGoalStatus` |
 | `progress` | `RowGoalStatus` |
+| `displayName` | `String` |
+| `betterWhen` | `BetterDirection` |
+| `changeVerdict` | `ChangeVerdict` |
+| `explanation` | `String` |
+| `example` | `RowExample` |
 
 #### ChangeOutcome (package: comparison)
 
@@ -5636,6 +5642,42 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `changes` | `List<ChangeOutcome>` |
 | `breaches` | `List<FloorBreach>` |
 | `verdict` | `BatchVerdict` |
+
+#### BetterDirection (package: comparison)
+
+**Package:** `com.learney.contentaudit.revisiondomain.comparison`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `LOWER` | `null` |
+| `HIGHER` | `null` |
+
+#### ChangeVerdict (package: comparison)
+
+**Package:** `com.learney.contentaudit.revisiondomain.comparison`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `IMPROVED` | `null` |
+| `WORSENED` | `null` |
+| `UNCHANGED` | `null` |
+| `NOT_EVALUATED` | `null` |
+
+#### RowExample (package: comparison)
+
+**Package:** `com.learney.contentaudit.revisiondomain.comparison`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `quizId` | `String` |
+| `exercise` | `String` |
+| `detail` | `String` |
 
 #### PairAnswer (package: blindsample)
 

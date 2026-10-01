@@ -73,7 +73,7 @@ public class OffLevelWordsAnalyzerProvider implements AnalyzerProvider {
                 AnalyzerFamily.ERRORS,
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
-                AnalysisCost.INSTANT, "Palabras de otro nivel", List.of());
+                AnalysisCost.INSTANT, "Palabras de otro nivel", List.of(), null);
     }
 
     /** A new analyzer for every run (F-HALL-R014); it consults no model, so no policy applies. */

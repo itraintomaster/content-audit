@@ -150,6 +150,7 @@ The following models and interfaces are available from dependencies. You can use
 | cost | `AnalysisCost` |
 | displayName | `String` |
 | tools | `List<LocalToolCard>` |
+| explanation | `String` |
 
 ### AuditNode (`record`)
 

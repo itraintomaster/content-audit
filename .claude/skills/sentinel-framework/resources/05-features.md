@@ -2330,3 +2330,29 @@ todo juez: lee el ejercicio entero como lo ve el alumno (gancho C-07).
 | F-CALUM-R002 | `revise-instructions` juzga el original y el candidato como los verá el alumno | critical | - |
 | F-CALUM-R003 | El corrector de consignas apunta a la consigna que ve el alumno | critical | - |
 
+### FEAT-FILAS: Filas claras - cada fila dice qué cuenta y si su cambio es bueno o malo [F-FILAS]
+
+> **Qué**: Las filas de «Antes y después» se llaman por lo que cuentan. Las de problemas dicen el problema, y menos es
+mejor; las de puntaje dicen lo bueno, y más es mejor. Además, cada fila de `compare -f json` dice:
+- para qué lado mejora;
+- si su cambio mejoró, empeoró, quedó igual o no se evaluó;
+- una frase que la explica;
+- un ejemplo real del análisis.
+
+**Por qué**: José vio dos problemas en la tabla de la app de revisión (1/10):
+- «Respuestas completas» cuenta los ejercicios con respuestas *incompletas*: cuando el número baja parece que empeoró,
+  y es al revés. Pasa lo mismo con otras filas.
+- El cambio no dice si es bueno o malo: en errores bajar es bueno, en vocabulario subir es bueno. Y un analizador que no
+  evaluó sale como «0 (0,0 %)», que parece un cero real.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-FILAS-R001 | Cada fila se llama por lo que cuenta | major | - |
+| F-FILAS-R002 | Cada fila dice para qué lado mejora | major | - |
+| F-FILAS-R003 | Cada fila dice si su cambio mejoró, empeoró, quedó igual o no se evaluó | critical | - |
+| F-FILAS-R004 | Cada fila trae una frase que la explica | major | - |
+| F-FILAS-R005 | Cada fila trae un ejemplo real del análisis, o ninguno | major | - |
+| F-FILAS-R006 | `compare -f json` publica todo esto en cada fila | critical | - |
+

@@ -1395,4 +1395,140 @@ public class DefaultBatchComparatorTest {
             return comparator().compare(COURSE, null);
         }
     }
+
+    @Test
+    @DisplayName("should show the vocabulary row as «Vocabulario, puntaje total» and the any-error row as «Ejercicios con algún error», keeping their subjects, the keys the goals name")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R001")
+    public void shouldShowTheVocabularyRowAsVocabularioPuntajeTotalAndTheAnyerrorRowAsEjerciciosConAlgnErrorKeepingTheirSubjectsTheKeysTheGoalsName() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should show each analyzer row with the Spanish name of its card, and with its unique name when today's catalog does not know it")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R001")
+    public void shouldShowEachAnalyzerRowWithTheSpanishNameOfItsCardAndWithItsUniqueNameWhenTodaysCatalogDoesNotKnowIt() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should say that lower is better in every row of the errors family and in the any-error row, and higher in every row of the vocabulary family and in the vocabulary row")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R002")
+    public void shouldSayThatLowerIsBetterInEveryRowOfTheErrorsFamilyAndInTheAnyerrorRowAndHigherInEveryRowOfTheVocabularyFamilyAndInTheVocabularyRow() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should mark a drop of an errors row as improved and a rise as worsened, and a rise of a vocabulary row as improved and a drop as worsened")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R003")
+    public void shouldMarkADropOfAnErrorsRowAsImprovedAndARiseAsWorsenedAndARiseOfAVocabularyRowAsImprovedAndADropAsWorsened() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should mark as unchanged a row whose change rounds to zero as it is shown, to two decimals in points and to whole exercises in errors")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R003")
+    public void shouldMarkAsUnchangedARowWhoseChangeRoundsToZeroAsItIsShownToTwoDecimalsInPointsAndToWholeExercisesInErrors() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should mark as not evaluated a row whose analyzer evaluated no exercise of the node, instead of reading its zero as a real zero")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R003")
+    public void shouldMarkAsNotEvaluatedARowWhoseAnalyzerEvaluatedNoExerciseOfTheNodeInsteadOfReadingItsZeroAsARealZero() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should mark as not evaluated a row without a number in the baseline, as the error rows of the base of 29/9")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R003")
+    public void shouldMarkAsNotEvaluatedARowWithoutANumberInTheBaselineAsTheErrorRowsOfTheBaseOf299() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should mark as not evaluated the any-error row of a node where no errors analyzer evaluated an exercise")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R003")
+    public void shouldMarkAsNotEvaluatedTheAnyerrorRowOfANodeWhereNoErrorsAnalyzerEvaluatedAnExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give each analyzer row the explanation of its card, and the vocabulary and any-error rows their own")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R004")
+    public void shouldGiveEachAnalyzerRowTheExplanationOfItsCardAndTheVocabularyAndAnyerrorRowsTheirOwn() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should take as the example of a row a finding the batch fixes before one that stays in the projection, and say in its line that the batch fixes it")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldTakeAsTheExampleOfARowAFindingTheBatchFixesBeforeOneThatStaysInTheProjectionAndSayInItsLineThatTheBatchFixesIt() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should take as the example the finding of the lowest quiz id under the node, so the same comparison always gives the same example")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldTakeAsTheExampleTheFindingOfTheLowestQuizIdUnderTheNodeSoTheSameComparisonAlwaysGivesTheSameExample() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the example null when the analyzer has no finding under the node")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldLeaveTheExampleNullWhenTheAnalyzerHasNoFindingUnderTheNode() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should never take as the example of an errors row a finding that only ranks, as the ones of naturalness")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldNeverTakeAsTheExampleOfAnErrorsRowAFindingThatOnlyRanksAsTheOnesOfNaturalness() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should show the exercise of the example as the student sees it, with its gap and its hint, and say in one line what it has")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldShowTheExerciseOfTheExampleAsTheStudentSeesItWithItsGapAndItsHintAndSayInOneLineWhatItHas() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should take as the example of a score row a concrete finding of the analyzer, as a word of the level, with no exercise")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldTakeAsTheExampleOfAScoreRowAConcreteFindingOfTheAnalyzerAsAWordOfTheLevelWithNoExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not take as fixed a finding the projection lost only because its analyzer left the exercise unevaluated")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldNotTakeAsFixedAFindingTheProjectionLostOnlyBecauseItsAnalyzerLeftTheExerciseUnevaluated() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should take as the example of the any-error row an error of any analyzer, and name the analyzer in its line")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldTakeAsTheExampleOfTheAnyerrorRowAnErrorOfAnyAnalyzerAndNameTheAnalyzerInItsLine() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

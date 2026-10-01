@@ -5120,4 +5120,12 @@ public class GetCmdTest {
         t.plans.save(plan);
         return plan;
     }
+
+    @Test
+    @DisplayName("should print the explanation of each card in get analyzers, as text and as JSON")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R004")
+    public void shouldPrintTheExplanationOfEachCardInGetAnalyzersAsTextAndAsJSON() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

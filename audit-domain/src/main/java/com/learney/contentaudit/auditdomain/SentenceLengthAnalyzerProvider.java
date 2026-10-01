@@ -53,7 +53,7 @@ public class SentenceLengthAnalyzerProvider implements AnalyzerProvider {
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
-                AnalysisCost.INSTANT, "Largo de oración", List.of());
+                AnalysisCost.INSTANT, "Largo de oración", List.of(), null);
     }
 
     @Override

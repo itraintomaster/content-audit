@@ -158,4 +158,20 @@ public class MainTest {
                 "translation-sense Traducción y sentido", "single-answer Una sola respuesta", "mini-theory Miniteoría"),
                 firstSeventeen, "R001 inv. 2: the seventeen of round 1, each in its place");
     }
+
+    @Test
+    @DisplayName("should give each of the twenty analyzers of the catalog the Spanish name of the FEAT-FILAS table, the problem it counts or the good it scores")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R001")
+    public void shouldGiveEachOfTheTwentyAnalyzersOfTheCatalogTheSpanishNameOfTheFEATFILASTableTheProblemItCountsOrTheGoodItScores() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give each of the twenty analyzers of the catalog the explanation of the FEAT-FILAS table")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R004")
+    public void shouldGiveEachOfTheTwentyAnalyzersOfTheCatalogTheExplanationOfTheFEATFILASTable() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

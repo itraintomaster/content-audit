@@ -91,7 +91,7 @@ public class MiniTheoryAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
                 AnalysisCost.PAID_MODEL,
-                "Miniteoría", List.of());
+                "Miniteoría", List.of(), null);
     }
 
     /**
