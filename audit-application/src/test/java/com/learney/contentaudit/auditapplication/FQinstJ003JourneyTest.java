@@ -328,7 +328,7 @@ public class FQinstJ003JourneyTest {
     }
     /** The judge's provider under the name the report publishes, with the judge's real card. */
     private static AnalyzerProvider judgeProvider() {
-        AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null, null,
+        AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null,
                 mock(QuizInstructionConfig.class), null).describe();
         AnalyzerProvider provider = mock(AnalyzerProvider.class);
         when(provider.analyzerName()).thenReturn(ANALYZER_NAME);

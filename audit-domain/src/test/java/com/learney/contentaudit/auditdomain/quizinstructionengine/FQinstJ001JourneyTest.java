@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequest;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
@@ -60,7 +61,7 @@ public class FQinstJ001JourneyTest {
     @Tag("path-1")
     @DisplayName("path-1: El sistema entrega al juez el conteni... → El ejercicio recibe el puntaje maximo... [El juez responde que el ejercicio cumple su consigna, con severidad ninguna] → success")
     public void path1_elJuezRespondeQueElEjercicioCumpleSuConsignaConSeveridadNinguna_success() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -88,7 +89,7 @@ public class FQinstJ001JourneyTest {
 
         // Nodo "cumple" (gate F-QINST-R002, F-QINST-R003): puntaje maximo + diagnostico sin
         // violaciones, con los controles realizados por el juez -> desenlace success
-        analyzer.onQuiz(quizNode);
+        resolveNow(analyzer, quizNode);
 
         assertFalse(quizNode.getScores().isEmpty(),
                 "F-QINST-R002: el ejercicio que cumple recibe el puntaje maximo del analisis");
@@ -109,7 +110,7 @@ public class FQinstJ001JourneyTest {
     @Tag("path-2")
     @DisplayName("path-2: El sistema entrega al juez el conteni... → El ejercicio recibe el puntaje corres... [El juez responde que el ejercicio no cumple, con severidad menor] → success")
     public void path2_elJuezRespondeQueElEjercicioNoCumpleConSeveridadMenor_success() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -136,7 +137,7 @@ public class FQinstJ001JourneyTest {
 
         // Nodo "incumple_menor" (gate F-QINST-R002, F-QINST-R003): puntaje de severidad menor
         // + diagnostico con la violacion detectada, su restriccion, evidencia y explicacion
-        analyzer.onQuiz(quizNode);
+        resolveNow(analyzer, quizNode);
 
         assertEquals(0.6, quizNode.getScores().values().iterator().next(), 0.0001,
                 "F-QINST-R002: severidad menor -> puntaje 0,6");
@@ -157,7 +158,7 @@ public class FQinstJ001JourneyTest {
     @Tag("path-3")
     @DisplayName("path-3: El sistema entrega al juez el conteni... → El ejercicio recibe el puntaje corres... [El juez responde que el ejercicio no cumple, con severidad mayor] → success")
     public void path3_elJuezRespondeQueElEjercicioNoCumpleConSeveridadMayor_success() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -184,7 +185,7 @@ public class FQinstJ001JourneyTest {
 
         // Nodo "incumple_mayor" (gate F-QINST-R002, F-QINST-R003): puntaje de severidad mayor
         // + diagnostico con sus violaciones y evidencia
-        analyzer.onQuiz(quizNode);
+        resolveNow(analyzer, quizNode);
 
         assertEquals(0.3, quizNode.getScores().values().iterator().next(), 0.0001,
                 "F-QINST-R002: severidad mayor -> puntaje 0,3");
@@ -204,7 +205,7 @@ public class FQinstJ001JourneyTest {
     @Tag("path-4")
     @DisplayName("path-4: El sistema entrega al juez el conteni... → El ejercicio recibe el puntaje minimo... [El juez responde que el ejercicio no cumple, con severidad critica] → success")
     public void path4_elJuezRespondeQueElEjercicioNoCumpleConSeveridadCritica_success() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -231,7 +232,7 @@ public class FQinstJ001JourneyTest {
 
         // Nodo "incumple_critico" (gate F-QINST-R002, F-QINST-R003): puntaje minimo
         // + diagnostico con sus violaciones y evidencia
-        analyzer.onQuiz(quizNode);
+        resolveNow(analyzer, quizNode);
 
         assertEquals(0.0, quizNode.getScores().values().iterator().next(), 0.0001,
                 "F-QINST-R002: severidad critica -> puntaje 0,0");
@@ -252,7 +253,7 @@ public class FQinstJ001JourneyTest {
     @DisplayName("path-5: El sistema entrega al juez el conteni... → El ejercicio no recibe puntaje ni dia... [El juez no logra emitir un veredicto valido y responde con su veredicto conservador de infraestructura (confianza nula y violacion de salida invalida)] → failure")
     public void path5_elJuezNoLograEmitirUnVeredictoValidoYRespondeConSuVeredictoConservadorDeInfraestructuraConfianzaNulaYViolacionDeSalidaInvalida_failure(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -276,7 +277,7 @@ public class FQinstJ001JourneyTest {
         // Nodo "falla_del_juez" (gate F-QINST-R013): el ejercicio no recibe puntaje ni
         // diagnostico, no queda registrado ningun veredicto para el, y se cuenta como
         // fallido -> desenlace failure
-        analyzer.onQuiz(quizNode);
+        resolveNow(analyzer, quizNode);
 
         assertTrue(quizNode.getScores().isEmpty(),
                 "F-QINST-R013: la respuesta de infraestructura del juez no otorga puntaje");
@@ -284,5 +285,41 @@ public class FQinstJ001JourneyTest {
                 "F-QINST-R013: la respuesta de infraestructura del juez no deja diagnostico");
         verify(verdictReader, never()).read(any());
         verify(scorer, never()).score(any());
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-JEXAM (F-JEXAM-R006): the analyzer gathers what each quiz asks in onQuiz and resolves
+    // the whole run in onCourseComplete with resolveAll. These cases were written one quiz at a
+    // time: a mocked session answers resolveAll with its one-at-a-time stubs, mode by mode, and
+    // each quiz is resolved right after it is asked -- exactly what one at a time did.
+    // ------------------------------------------------------------------
+
+    private static EvaluationSession oneAtATimeSession() {
+        EvaluationSession session = mock(EvaluationSession.class);
+        when(session.resolveAll(anyList(), anyInt())).thenAnswer(invocation -> {
+            List<EvaluationRequest> requests = invocation.getArgument(0);
+            List<EvaluationResolution> resolutions = new ArrayList<>();
+            for (EvaluationRequest request : requests) {
+                EvaluationSubject subject = request.getSubject();
+                resolutions.add(switch (request.getMode()) {
+                    case FORCE -> session.resolveForced(subject);
+                    case PREFER_NEW -> session.resolvePreferringNew(subject);
+                    case REUSE_ONLY -> session.resolveWithoutConsulting(subject);
+                    default -> session.resolve(subject);
+                });
+            }
+            return resolutions;
+        });
+        return session;
+    }
+
+    private static void resolveNow(QuizInstructionAnalyzer analyzer, AuditNode quizNode) {
+        analyzer.onQuiz(quizNode);
+        AuditNode scratchCourse = new AuditNode();
+        scratchCourse.setTarget(AuditTarget.COURSE);
+        scratchCourse.setChildren(new ArrayList<>());
+        scratchCourse.setScores(new LinkedHashMap<>());
+        scratchCourse.setMetadata(new LinkedHashMap<>());
+        analyzer.onCourseComplete(scratchCourse);
     }
 }

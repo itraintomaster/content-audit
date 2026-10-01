@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequest;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.QuizInstructionConfig;
 import com.learney.contentaudit.auditdomain.finding.EvidencePart;
@@ -98,7 +99,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("F-QINST-R003")
     public void shouldRecordForABreachingQuizADiagnosisWithEveryViolationCarryingItsCodeItsBreachedConstraintItsEvidenceAndItsExplanation(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -123,7 +124,7 @@ public class QuizInstructionAnalyzerTest {
         when(scorer.score(verdict)).thenReturn(0.3);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(node);
+        resolveNow(analyzer, node);
 
         assertInstanceOf(QuizDiagnoses.class, node.getDiagnoses(),
                 "El diagnostico del ejercicio evaluado debe ser un QuizDiagnoses (R003)");
@@ -151,7 +152,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("F-QINST-R003")
     public void shouldRecordForACompliantQuizADiagnosisWithTheChecksTheJudgePerformedAndNoViolations(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -174,7 +175,7 @@ public class QuizInstructionAnalyzerTest {
         when(scorer.score(verdict)).thenReturn(1.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(node);
+        resolveNow(analyzer, node);
 
         assertInstanceOf(QuizDiagnoses.class, node.getDiagnoses(),
                 "El diagnostico del ejercicio evaluado debe ser un QuizDiagnoses (R003)");
@@ -196,7 +197,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("F-QINST-R003")
     public void shouldRecordInTheQuizDiagnosisTheReasonTheSeverityAndTheConfidenceTheJudgeReported(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -214,7 +215,7 @@ public class QuizInstructionAnalyzerTest {
         when(scorer.score(verdict)).thenReturn(0.6);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(node);
+        resolveNow(analyzer, node);
 
         QuizInstructionDiagnosis diagnosis = ((QuizDiagnoses) node.getDiagnoses())
                 .getQuizInstructionDiagnosis()
@@ -233,7 +234,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R004")
     public void shouldLeaveAQuizPendingForBudgetWithoutScoreAndWithoutDiagnosis() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -247,7 +248,7 @@ public class QuizInstructionAnalyzerTest {
         when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(node);
+        resolveNow(analyzer, node);
 
         assertTrue(node.getScores().isEmpty(),
                 "Un ejercicio pendiente por presupuesto no debe recibir puntaje (R004)");
@@ -262,7 +263,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R004")
     public void shouldLeaveAFailedQuizWithoutScoreAndWithoutDiagnosis() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -276,7 +277,7 @@ public class QuizInstructionAnalyzerTest {
         when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(node);
+        resolveNow(analyzer, node);
 
         assertTrue(node.getScores().isEmpty(),
                 "Un ejercicio fallido no debe recibir puntaje (R004)");
@@ -292,7 +293,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("F-QINST-R005")
     public void shouldDeclareOnTheCourseNodeHowManyQuizzesWereReachedResolvedEvaluatedInThisRunReusedPendingAndFailed(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -327,7 +328,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R005")
     public void shouldDeclareACoverageWhoseResolvedPendingAndFailedCountsAddUpToTheReachedTotal() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -359,7 +360,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("F-QINST-R005")
     public void shouldMarkAVerdictTakenFromAPreviousRunAsReusedBothInTheQuizDiagnosisAndInTheDeclaredCoverage(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -376,7 +377,7 @@ public class QuizInstructionAnalyzerTest {
         when(scorer.score(verdict)).thenReturn(1.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(quizNode);
+        resolveNow(analyzer, quizNode);
 
         QuizInstructionDiagnosis quizDiagnosis = ((QuizDiagnoses) quizNode.getDiagnoses())
                 .getQuizInstructionDiagnosis()
@@ -402,7 +403,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("F-QINST-R006")
     public void shouldStopQueryingTheJudgeOnceTheRunBudgetIsExhaustedAndFinishWithoutErrorLeavingTheRestPending(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -427,8 +428,8 @@ public class QuizInstructionAnalyzerTest {
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         assertDoesNotThrow(() -> {
-            analyzer.onQuiz(withinBudget);
-            analyzer.onQuiz(beyondBudget);
+            resolveNow(analyzer, withinBudget);
+            resolveNow(analyzer, beyondBudget);
         }, "Agotar el presupuesto de la corrida no debe abortarla (R006)");
 
         assertFalse(withinBudget.getScores().isEmpty(),
@@ -453,7 +454,7 @@ public class QuizInstructionAnalyzerTest {
         when(scorer.score(verdict)).thenReturn(1.0);
 
         // Corrida con tope 0: un curso ya evaluado igual se audita entero (R006, F-EVCOST-R003)
-        EvaluationSession zeroBudgetSession = mock(EvaluationSession.class);
+        EvaluationSession zeroBudgetSession = oneAtATimeSession();
         AuditNode zeroBudgetNode = buildQuizNode(buildQuiz("q1"));
         EvaluationSubject zeroBudgetSubject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(zeroBudgetNode)).thenReturn(zeroBudgetSubject);
@@ -461,13 +462,13 @@ public class QuizInstructionAnalyzerTest {
                 .thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1"));
         QuizInstructionAnalyzer zeroBudgetAnalyzer = new QuizInstructionAnalyzer(
                 zeroBudgetSession, subjectBuilder, scorer, scopeMatcher, verdictReader, normalPolicy(0), null, null);
-        zeroBudgetAnalyzer.onQuiz(zeroBudgetNode);
+        resolveNow(zeroBudgetAnalyzer, zeroBudgetNode);
         assertFalse(zeroBudgetNode.getScores().isEmpty(),
                 "Un ejercicio ya evaluado se puntua aunque el tope de la corrida sea 0 (R006)");
         verify(zeroBudgetSession, never()).resolveForced(any());
 
         // Corrida con tope alto: el mismo curso ya evaluado tampoco consulta al juez (R006)
-        EvaluationSession highBudgetSession = mock(EvaluationSession.class);
+        EvaluationSession highBudgetSession = oneAtATimeSession();
         AuditNode highBudgetNode = buildQuizNode(buildQuiz("q1"));
         EvaluationSubject highBudgetSubject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(highBudgetNode)).thenReturn(highBudgetSubject);
@@ -475,7 +476,7 @@ public class QuizInstructionAnalyzerTest {
                 .thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1"));
         QuizInstructionAnalyzer highBudgetAnalyzer = new QuizInstructionAnalyzer(
                 highBudgetSession, subjectBuilder, scorer, scopeMatcher, verdictReader, normalPolicy(500), null, null);
-        highBudgetAnalyzer.onQuiz(highBudgetNode);
+        resolveNow(highBudgetAnalyzer, highBudgetNode);
         assertFalse(highBudgetNode.getScores().isEmpty(),
                 "Un ejercicio ya evaluado se puntua sin importar cuan alto sea el tope (R006)");
         verify(highBudgetSession, never()).resolveForced(any());
@@ -487,7 +488,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("F-QINST-R007")
     public void shouldFinishTheRunWhenTheJudgeStopsRespondingCountingTheQuizzesItCouldNotJudgeAsFailed(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -511,8 +512,8 @@ public class QuizInstructionAnalyzerTest {
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         assertDoesNotThrow(() -> {
-            analyzer.onQuiz(judgedBeforeFailure);
-            analyzer.onQuiz(notReachedAfterFailure);
+            resolveNow(analyzer, judgedBeforeFailure);
+            resolveNow(analyzer, notReachedAfterFailure);
         }, "Una falla del juez a mitad de corrida no debe abortar la auditoria (R007)");
 
         assertFalse(judgedBeforeFailure.getScores().isEmpty(),
@@ -526,7 +527,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R007")
     public void shouldKeepTheScoreAndTheDiagnosisOfTheQuizzesJudgedBeforeTheJudgeFailure() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -551,8 +552,8 @@ public class QuizInstructionAnalyzerTest {
         when(session.resolve(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(judgedBeforeFailure);
-        analyzer.onQuiz(notReachedAfterFailure);
+        resolveNow(analyzer, judgedBeforeFailure);
+        resolveNow(analyzer, notReachedAfterFailure);
 
         assertFalse(judgedBeforeFailure.getScores().isEmpty(),
                 "El ejercicio evaluado antes de la falla conserva su puntaje (R007)");
@@ -575,7 +576,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R008")
     public void shouldScoreAQuizFromItsRecordedVerdictWithoutQueryingTheJudge() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -592,7 +593,7 @@ public class QuizInstructionAnalyzerTest {
         when(scorer.score(verdict)).thenReturn(0.6);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(node);
+        resolveNow(analyzer, node);
 
         assertEquals(0.6, node.getScores().values().iterator().next(), 0.0001,
                 "El ejercicio se puntua a partir del veredicto ya registrado (R008)");
@@ -606,7 +607,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("F-QINST-R008")
     public void shouldSpendTheRunBudgetOnlyOnQuizzesWithoutACurrentVerdictSoConsecutiveRunsAdvanceOverDifferentQuizzes(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -629,8 +630,8 @@ public class QuizInstructionAnalyzerTest {
         // Corrida 1: el tope (1) alcanza para qa; qb queda sin veredicto (pendiente)
         when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1"));
         when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
-        analyzer.onQuiz(quizA);
-        analyzer.onQuiz(quizB);
+        resolveNow(analyzer, quizA);
+        resolveNow(analyzer, quizB);
         assertFalse(quizA.getScores().isEmpty(), "qa se evalua en la corrida 1 (R008)");
         assertTrue(quizB.getScores().isEmpty(), "qb queda pendiente en la corrida 1: el presupuesto se agoto en qa (R008)");
 
@@ -642,8 +643,8 @@ public class QuizInstructionAnalyzerTest {
         when(subjectBuilder.build(quizBAgain)).thenReturn(subjB);
         when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a", "v1"));
         when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b", "v1"));
-        analyzer.onQuiz(quizAAgain);
-        analyzer.onQuiz(quizBAgain);
+        resolveNow(analyzer, quizAAgain);
+        resolveNow(analyzer, quizBAgain);
 
         assertFalse(quizBAgain.getScores().isEmpty(),
                 "En la corrida 2 el presupuesto avanza sobre qb, que antes estaba pendiente (R008)");
@@ -660,7 +661,7 @@ public class QuizInstructionAnalyzerTest {
         // por una version anterior se SIGUE reutilizando y puntuando -- el ejercicio NO vuelve a
         // quedar pendiente -- y tanto el diagnostico del ejercicio como la cobertura declarada lo
         // atribuyen a la version REAL que lo produjo, no a la vigente.
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -681,7 +682,7 @@ public class QuizInstructionAnalyzerTest {
         when(scorer.score(verdict)).thenReturn(1.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(node);
+        resolveNow(analyzer, node);
 
         assertFalse(node.getScores().isEmpty(),
                 "Un veredicto de una version anterior del juez se sigue reutilizando y puntuando; el ejercicio no queda pendiente (R010)");
@@ -712,7 +713,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("F-QINST-R012")
     public void shouldQueryTheJudgeAgainForQuizzesThatAlreadyHadACurrentVerdictWhenReEvaluationIsRequested(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -729,7 +730,7 @@ public class QuizInstructionAnalyzerTest {
         when(scorer.score(verdict)).thenReturn(1.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(node);
+        resolveNow(analyzer, node);
 
         verify(session).resolveForced(subject);
         verify(session, never()).resolve(any());
@@ -742,7 +743,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R012")
     public void shouldKeepAnExplicitReEvaluationWithinTheRunBudget() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -767,8 +768,8 @@ public class QuizInstructionAnalyzerTest {
         when(session.resolveForced(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(withinBudget);
-        analyzer.onQuiz(beyondBudget);
+        resolveNow(analyzer, withinBudget);
+        resolveNow(analyzer, beyondBudget);
 
         assertFalse(withinBudget.getScores().isEmpty(), "El primer ejercicio re-evaluado entra dentro del tope (R012)");
         assertTrue(beyondBudget.getScores().isEmpty(), "El segundo excede el tope de la corrida y queda pendiente (R012)");
@@ -782,7 +783,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("F-QINST-R013")
     public void shouldLeaveWithoutScoreAndWithoutDiagnosisAndCountAsFailedAQuizWhoseJudgeOutputWasUnusable(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -797,7 +798,7 @@ public class QuizInstructionAnalyzerTest {
         when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(node);
+        resolveNow(analyzer, node);
 
         assertTrue(node.getScores().isEmpty(),
                 "La respuesta de infraestructura del juez no debe traducirse en puntaje (R013)");
@@ -812,7 +813,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R013")
     public void shouldQueryTheJudgeAgainInALaterRunForAQuizWhosePreviousOutputWasUnusable() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -825,7 +826,7 @@ public class QuizInstructionAnalyzerTest {
         when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(firstRunNode);
+        resolveNow(analyzer, firstRunNode);
         assertTrue(firstRunNode.getScores().isEmpty(), "La corrida anterior no dejo veredicto: salida invalida (R013)");
 
         // Corrida siguiente: al no haberse registrado veredicto, el ejercicio sigue pendiente
@@ -837,7 +838,7 @@ public class QuizInstructionAnalyzerTest {
         when(verdictReader.read("payload-retry")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
 
-        analyzer.onQuiz(laterRunNode);
+        resolveNow(analyzer, laterRunNode);
 
         verify(session, times(2)).resolve(subject);
         assertFalse(laterRunNode.getScores().isEmpty(),
@@ -850,7 +851,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("F-QINST-R014")
     public void shouldReachEveryQuizOfTheCourseIncludingThoseWhoseKnowledgeDeclaresNoInstructions(
             ) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -870,7 +871,7 @@ public class QuizInstructionAnalyzerTest {
         when(scorer.score(verdict)).thenReturn(1.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(node);
+        resolveNow(analyzer, node);
 
         verify(subjectBuilder).build(node);
         assertFalse(node.getScores().isEmpty(),
@@ -882,7 +883,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R014")
     public void shouldDeclareAReachedCountEqualToTheNumberOfQuizzesOfTheCourseWithNoExclusions() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -908,7 +909,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R005")
     public void shouldDeclareInTheCoverageTheJudgeVersionTheRunEvaluatedWith() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -946,7 +947,7 @@ public class QuizInstructionAnalyzerTest {
         // veredicto reutilizado de una version anterior ("v7") con uno evaluado de nuevo bajo la
         // vigente ("v9"): las dos versiones deben aparecer en el recuento, aunque solo "v9" sea
         // la version consultada.
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -980,8 +981,8 @@ public class QuizInstructionAnalyzerTest {
         when(scorer.score(reusedVerdict)).thenReturn(1.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(evaluatedInThisRun);
-        analyzer.onQuiz(reusedFromEarlierRun);
+        resolveNow(analyzer, evaluatedInThisRun);
+        resolveNow(analyzer, reusedFromEarlierRun);
 
         // La corrida efectivamente mezclo veredictos de dos versiones distintas: precondicion del escenario
         assertFalse(((QuizDiagnoses) evaluatedInThisRun.getDiagnoses()).getQuizInstructionDiagnosis()
@@ -1026,7 +1027,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R018")
     public void shouldQueryTheJudgeForEveryQuizOfTheDeclaredSetAndForNoQuizOutsideItWhateverVerdictTheOutsidersAlreadyHave() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -1062,9 +1063,9 @@ public class QuizInstructionAnalyzerTest {
         when(session.resolveWithoutConsulting(subjOutsideWithoutVerdict)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(inDeclaredSet);
-        analyzer.onQuiz(outsideWithVerdict);
-        analyzer.onQuiz(outsideWithoutVerdict);
+        resolveNow(analyzer, inDeclaredSet);
+        resolveNow(analyzer, outsideWithVerdict);
+        resolveNow(analyzer, outsideWithoutVerdict);
 
         verify(session, times(1)).resolvePreferringNew(subjInSet);
         verify(session).resolveWithoutConsulting(subjOutsideWithVerdict);
@@ -1086,7 +1087,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R018")
     public void shouldKeepTheScoreAndTheDiagnosisOfAQuizOfTheDeclaredSetTheBudgetDidNotReachInsteadOfLeavingItPending() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -1107,7 +1108,7 @@ public class QuizInstructionAnalyzerTest {
         when(scorer.score(verdict)).thenReturn(1.0);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(beyondBudget);
+        resolveNow(analyzer, beyondBudget);
 
         verify(session).resolvePreferringNew(subject);
         verify(session, never()).resolve(any());
@@ -1128,7 +1129,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R018")
     public void shouldDeclareAsUnmatchedEveryIdOfTheDeclaredSetThatNoQuizOfTheCourseCorrespondedTo() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -1151,7 +1152,7 @@ public class QuizInstructionAnalyzerTest {
         when(session.coverage()).thenReturn(coverage);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(matchedNode);
+        resolveNow(analyzer, matchedNode);
         AuditNode courseNode = buildCourseNode();
         analyzer.onCourseComplete(courseNode);
 
@@ -1169,7 +1170,7 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R018")
     public void shouldKeepTheReachedTotalAndTheCoverageSumsClosedWhenTheDeclaredSetCarriesIdsThatMatchNoQuizOfTheCourse() {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionScorer scorer = mock(QuizInstructionScorer.class);
         QuizInstructionScopeMatcher scopeMatcher = mock(QuizInstructionScopeMatcher.class);
@@ -1201,8 +1202,8 @@ public class QuizInstructionAnalyzerTest {
         when(session.coverage()).thenReturn(coverage);
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
-        analyzer.onQuiz(inDeclaredSet);
-        analyzer.onQuiz(outsideDeclaredSet);
+        resolveNow(analyzer, inDeclaredSet);
+        resolveNow(analyzer, outsideDeclaredSet);
         AuditNode courseNode = buildCourseNode();
         analyzer.onCourseComplete(courseNode);
 
@@ -1236,7 +1237,7 @@ public class QuizInstructionAnalyzerTest {
             AuditNode node = buildQuizNode(buildQuiz("q-" + kind));
             QuizInstructionAnalyzer analyzer = judge(kind, breach(InstructionSeverity.CRITICAL, "BLANK_UNSOLVABLE"));
 
-            analyzer.onQuiz(node);
+            resolveNow(analyzer, node);
 
             assertNull(node.getScores().get("quiz-instruction"), kind + ": no score on a quiz the judge did not evaluate");
             assertTrue(analyzer.findingsAt(node).isEmpty(), "R001: no finding on a quiz left " + kind);
@@ -1260,7 +1261,7 @@ public class QuizInstructionAnalyzerTest {
             AuditNode node = buildQuizNode(buildQuiz("q-" + severity));
             QuizInstructionAnalyzer analyzer = judge(EvaluationResolutionKind.EVALUATED, breach(severity, "CODE"));
 
-            analyzer.onQuiz(node);
+            resolveNow(analyzer, node);
             List<FindingDraft> drafts = analyzer.findingsAt(node);
 
             assertEquals(scores.get(severity), node.getScores().get("quiz-instruction"), 1e-9,
@@ -1287,7 +1288,7 @@ public class QuizInstructionAnalyzerTest {
         AuditNode node = buildQuizNode(buildQuiz("q1"));
         QuizInstructionAnalyzer analyzer = judge(EvaluationResolutionKind.EVALUATED, verdict);
 
-        analyzer.onQuiz(node);
+        resolveNow(analyzer, node);
         FindingDraft finding = analyzer.findingsAt(node).get(0);
 
         List<EvidencePart> examined = finding.getEvidence().getExamined();
@@ -1312,11 +1313,11 @@ public class QuizInstructionAnalyzerTest {
         AuditNode breaching = buildQuizNode(buildQuiz("q-breach"));
         QuizInstructionAnalyzer breachingJudge = judge(EvaluationResolutionKind.EVALUATED,
                 breach(InstructionSeverity.MINOR, "MISSING_HINT"));
-        breachingJudge.onQuiz(breaching);
+        resolveNow(breachingJudge, breaching);
         AuditNode compliant = buildQuizNode(buildQuiz("q-ok"));
         QuizInstructionAnalyzer compliantJudge = judge(EvaluationResolutionKind.EVALUATED,
                 new QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE, "Cumple la consigna", List.of(), List.of()));
-        compliantJudge.onQuiz(compliant);
+        resolveNow(compliantJudge, compliant);
 
         List<FindingDraft> breachingFindings = breachingJudge.findingsAt(breaching);
         List<FindingDraft> compliantFindings = compliantJudge.findingsAt(compliant);
@@ -1338,13 +1339,13 @@ public class QuizInstructionAnalyzerTest {
         // reached; «algún error» would stop reading as a floor.
         for (EvaluationResolutionKind kind : List.of(EvaluationResolutionKind.PENDING, EvaluationResolutionKind.FAILED)) {
             AuditNode node = buildQuizNode(buildQuiz("q-" + kind));
-            judge(kind, breach(InstructionSeverity.MAJOR, "X")).onQuiz(node);
+            resolveNow(judge(kind, breach(InstructionSeverity.MAJOR, "X")), node);
 
             assertEquals(List.of("quiz-instruction"), node.getUnevaluatedBy(),
                     "R008: a quiz left " + kind + " is declared not evaluated by quiz-instruction");
         }
         AuditNode evaluated = buildQuizNode(buildQuiz("q-evaluated"));
-        judge(EvaluationResolutionKind.EVALUATED, breach(InstructionSeverity.MAJOR, "X")).onQuiz(evaluated);
+        resolveNow(judge(EvaluationResolutionKind.EVALUATED, breach(InstructionSeverity.MAJOR, "X")), evaluated);
         assertTrue(evaluated.getUnevaluatedBy().isEmpty(), "an evaluated quiz is not declared unevaluated");
     }
 
@@ -1357,10 +1358,10 @@ public class QuizInstructionAnalyzerTest {
         QuizInstructionVerdict verdict = breach(InstructionSeverity.CRITICAL, "BLANK_UNSOLVABLE");
         AuditNode fresh = buildQuizNode(buildQuiz("q1"));
         QuizInstructionAnalyzer freshJudge = judge(EvaluationResolutionKind.EVALUATED, verdict);
-        freshJudge.onQuiz(fresh);
+        resolveNow(freshJudge, fresh);
         AuditNode reused = buildQuizNode(buildQuiz("q1"));
         QuizInstructionAnalyzer reusedJudge = judge(EvaluationResolutionKind.REUSED, verdict);
-        reusedJudge.onQuiz(reused);
+        resolveNow(reusedJudge, reused);
 
         assertEquals(fresh.getScores().get("quiz-instruction"), reused.getScores().get("quiz-instruction"));
         assertEquals(freshJudge.findingsAt(fresh), reusedJudge.findingsAt(reused),
@@ -1374,7 +1375,7 @@ public class QuizInstructionAnalyzerTest {
     public void shouldLeaveASingleFindingPerBreachingQuizWhoseIdentityDependsNeitherOnTheViolationCodesTheModelWritesNorOnTheJudgeVersion() {
         // R014: the codes of the violations are written by the model and are not stable, so the
         // judge leaves one finding per breaching quiz and its identity is analyzer, rule and quiz.
-        AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null, null,
+        AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null,
                 mock(QuizInstructionConfig.class), null).describe();
         List<String> identities = new ArrayList<>();
         int run = 0;
@@ -1390,7 +1391,7 @@ public class QuizInstructionAnalyzerTest {
             root.getChildren().add(node);
             node.setParent(root);
             QuizInstructionAnalyzer analyzer = judge(EvaluationResolutionKind.EVALUATED, verdict, "judge-v" + run);
-            analyzer.onQuiz(node);
+            resolveNow(analyzer, node);
 
             assertEquals(1, analyzer.findingsAt(node).size(), "R014: a single finding per breaching quiz");
             new DefaultFindingCollector().collect(root, analyzer, card);
@@ -1421,7 +1422,7 @@ public class QuizInstructionAnalyzerTest {
     /** A judge whose session resolves every quiz with the given kind, scored by the configured scorer. */
     private QuizInstructionAnalyzer judge(EvaluationResolutionKind kind, QuizInstructionVerdict verdict,
             String judgeVersion) {
-        EvaluationSession session = mock(EvaluationSession.class);
+        EvaluationSession session = oneAtATimeSession();
         QuizInstructionSubjectBuilder subjectBuilder = mock(QuizInstructionSubjectBuilder.class);
         QuizInstructionVerdictReader verdictReader = mock(QuizInstructionVerdictReader.class);
         QuizInstructionConfig config = mock(QuizInstructionConfig.class);
@@ -1554,5 +1555,41 @@ public class QuizInstructionAnalyzerTest {
     @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldResolveWithoutConsultingInAnEXAMRunAnExamQuizTheSameVersionAlreadyJudgedOnTheSameContent() {
         throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-JEXAM (F-JEXAM-R006): the analyzer gathers what each quiz asks in onQuiz and resolves
+    // the whole run in onCourseComplete with resolveAll. These cases were written one quiz at a
+    // time: a mocked session answers resolveAll with its one-at-a-time stubs, mode by mode, and
+    // each quiz is resolved right after it is asked -- exactly what one at a time did.
+    // ------------------------------------------------------------------
+
+    private static EvaluationSession oneAtATimeSession() {
+        EvaluationSession session = mock(EvaluationSession.class);
+        when(session.resolveAll(anyList(), anyInt())).thenAnswer(invocation -> {
+            List<EvaluationRequest> requests = invocation.getArgument(0);
+            List<EvaluationResolution> resolutions = new ArrayList<>();
+            for (EvaluationRequest request : requests) {
+                EvaluationSubject subject = request.getSubject();
+                resolutions.add(switch (request.getMode()) {
+                    case FORCE -> session.resolveForced(subject);
+                    case PREFER_NEW -> session.resolvePreferringNew(subject);
+                    case REUSE_ONLY -> session.resolveWithoutConsulting(subject);
+                    default -> session.resolve(subject);
+                });
+            }
+            return resolutions;
+        });
+        return session;
+    }
+
+    private static void resolveNow(QuizInstructionAnalyzer analyzer, AuditNode quizNode) {
+        analyzer.onQuiz(quizNode);
+        AuditNode scratchCourse = new AuditNode();
+        scratchCourse.setTarget(AuditTarget.COURSE);
+        scratchCourse.setChildren(new ArrayList<>());
+        scratchCourse.setScores(new LinkedHashMap<>());
+        scratchCourse.setMetadata(new LinkedHashMap<>());
+        analyzer.onCourseComplete(scratchCourse);
     }
 }

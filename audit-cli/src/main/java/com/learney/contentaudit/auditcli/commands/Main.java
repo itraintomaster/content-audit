@@ -457,9 +457,11 @@ class Main {
         QuizInstructionVerdictReader quizInstructionVerdictReader = new JacksonQuizInstructionVerdictReader();
         QuizInstructionConfig quizInstructionConfig = new DefaultQuizInstructionConfig();
 
+        // Hook C-13 (FEAT-JEXAM): the quiz-instruction judge opens its session through the judges
+        // runtime -- the exam's brake and budget 0 without a request (F-JEXAM-R003, R010); the
+        // candidates of revise-instructions keep the course's session factory and its 500 below.
         AnalyzerProvider quizInstructionProvider = new DefaultQuizInstructionAnalyzerFactory(
-                evaluationSessionFactory, quizInstructionJudge, quizInstructionVerdictReader, quizInstructionConfig,
-                judgeRuntime);
+                quizInstructionJudge, quizInstructionVerdictReader, quizInstructionConfig, judgeRuntime);
 
         // ----------------------------------------------------------------
         // Step 4b'': FEAT-RONDA1 -- what the analyzers of round 1 need (hooks A-06, C-14, C-16,
