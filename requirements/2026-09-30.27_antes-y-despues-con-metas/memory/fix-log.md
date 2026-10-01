@@ -5,6 +5,8 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — Copia del parche antes de proponer (bug 08); después, 0 perdidos: domainLinks 2 → 2 y glossarySuggestions 2 → 2. La descripción queda concatenada con «; » (PatchMerger): se propone una sola vez por carpeta.
+
 2026-09-30 — architect — `tech-spec write` se niega a achicar el TECH_SPEC sin `--replace` («Refusing to shrink»); al reescribir una sección con menos líneas, pasar `--replace`.
 
 2026-09-30 — analyst — `requirement validate --file` pide la carpeta del requirement, no el REQUIREMENT.md («Not a directory» si se le pasa el archivo). Se corrió sobre una copia del worktree en el scratchpad.

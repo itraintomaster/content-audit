@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — F-METAS-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
+  why: el camino es set-goals y compare, package-private ahí; el comparador y el libro de metas están en comparisonengine, público para audit-cli.
+2026-10-01 — qa-tester — Para el analista (1): «abrir una tanda también las fija» (R006) no tiene prueba posible: DefaultBatchService (FEAT-TANDA) no existe cuando se aplica METAS y ninguna regla de TANDA lo dice. Sumarlo a F-TANDA-R001 o probarlo en un parche de METAS posterior a TANDA.
+2026-10-01 — qa-tester — Para el analista (2): R001 pide filas «para cada analizador que corrió en la línea base», pero su detalle deja vacías las de errores de la base del 29/9 y R007 deja indecidibles las de una medida nueva. La prueba sigue el detalle: vacías, no en cero.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): DefaultBatchComparator inyecta TopicTeachingResolver de D (F-14); offlevelwords suma revision-domain a sus clientes en el paso de los allowedClients de FEAT-RONDA2.
 
 2026-09-30 — analyst — R003: «salvo la que el tema enseña» (F-SEMAF-R004, ya aceptada por José), para que la mesa de E, su compuerta y la comparación no difieran; lo resuelve el `TopicTeachingResolver` de D (gancho F-14). Duda nueva DOUBT-ERRORES-CONTRA-QUE (OPEN, recomendada A: errores contra el inicio de la tanda; vocabulario contra la base).

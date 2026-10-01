@@ -8,7 +8,13 @@ description: "FEAT-METAS: antes y después de una tanda contra la línea base, c
   \ (ganchos-F.md). Rebasado por el integrador de la ronda 2 sobre el sentinel.yaml\
   \ de ronda1/integracion (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2,\
   \ que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E: DefaultBatchComparator\
-  \ inyecta topicTeachingResolver: TopicTeachingResolver (gancho F-14)."
+  \ inyecta topicTeachingResolver: TopicTeachingResolver (gancho F-14).; qa-tester:\
+  \ 53 pruebas para las 9 reglas de FEAT-METAS, con el caso del 29/9: las cuatro propuestas\
+  \ de «Afirmativas regulares» (vuelve sólo «My grandmother ___ (come) every year.»\
+  , con su motivo de lemma-absence; ningún número de nivel se mueve), el largo de\
+  \ «He isn't in the living-room.», invest en «$Invest time$ + gerundio», las bandas\
+  \ 8 · 6 · 4 · 3 (73,92 → 73,86; 96,54 → 96,02; 67,0 → 66,5) y el piso de vocabulario\
+  \ de 0,5 pasado a 1,0. F-METAS-J001 va a audit-cli, paquete commands."
 modules:
 - name: revision-domain
   interfaces:
@@ -484,6 +490,197 @@ modules:
           \ tema enseña no hace volver un cambio (F-METAS-R003, F-SEMAF-R004), igual\
           \ que en la mesa de E (gancho F-14)."
       visibility: public
+      handwrittenTests:
+      - name: "should publish for every analyzer that ran in the baseline a row in\
+          \ each knowledge, topic, level and the course, plus a vocabulary row and\
+          \ an any-error row per node"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should copy into each row the number of the baseline, of the batch\
+          \ start and of the projection from their reports, without computing it again"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should give lemma-absence on «Afirmativas regulares» 100.0 before,\
+          \ 99.5 after and -0.5 points, and on the topic Present Simple 99.55, 99.52\
+          \ and -0.03 points, with the four pending proposals"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should give the vocabulary rows of A1 and of the course 96.54 and 73.92\
+          \ before and after, a change of 0.0 points, with the four pending proposals"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should count in an error row the exercises with an error, in number\
+          \ and in share, and give its change in exercises"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should leave empty, and not at zero, the error rows of a baseline that\
+          \ ran no error analyzer, as the base of 29/9"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should attach to each row the floor and the progress goal that apply\
+          \ to it, with their threshold, unit and reference"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R002
+      - name: should mark undecidable the any-error row of A1 with goal 0 when 30
+          exercises of A1 are unjudged and none of the judged ones has an error
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R002
+      - name: should mark met that row once those 30 exercises are judged and none
+          has an error
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R002
+      - name: "should mark not met a floor that the evaluated exercises already break,\
+          \ whatever the unevaluated ones would give"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R002
+      - name: "should return «My grandmother ___ (come) every year.» with the reason\
+          \ «lemma-absence · palabra de otro nivel: grandmother es A2», and none of\
+          \ the other three proposals of «Afirmativas regulares»"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should never return a change whose only new finding is of sentence\
+          \ length, as «He isn't in the living-room.» with 9 tokens against 3 to 8\
+          \ in A1"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should not return a change for a word its knowledge teaches, as invest\
+          \ in «$Invest time$ + gerundio», although invest is B2"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should return a change that gains a finding of the errors family, and\
+          \ not one that gains a finding of an analyzer that only orders, as naturalness"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should not return a change for a new vocabulary finding of low severity,\
+          \ below an off-level or an out-of-catalog word"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should return a change when another node gains a finding that counts\
+          \ and names it as related in its evidence, as a duplicate does"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should list as fixed the findings a change made disappear, matched\
+          \ by their identity of analyzer, rule, node and what they mark"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should leave a change undecided for an analyzer that did not evaluate\
+          \ it in the projection, instead of not returning it"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R003
+      - name: "should attribute a broken floor of a level or of the course to the\
+          \ changes of the batch, and attribute nothing while every floor holds"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R004
+      - name: "should check the vocabulary floor against the baseline, accumulated,\
+          \ so a second batch of -0.4 points after another one of -0.4 breaks the\
+          \ floor of 0.5"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R005
+      - name: "should check the error floor against the batch start, so a batch cannot\
+          \ add an error to a level already below the baseline"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R005
+      - name: "should evaluate with the current goals and say «metas cambiadas desde\
+          \ que se fijaron: piso de vocabulario 0,5 → 1,0» when the vocabulary floor\
+          \ sealed at 0.5 is now 1.0"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+      - name: should say that the goals were never sealed when there is no sealed
+          version of them
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+      - name: "should show the vocabulary row of the course as a measure change 73.92\
+          \ → 73.86 with the lemma-count bands 8, 6, 4 and 3, and count the batch\
+          \ from 73.86"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R007
+      - name: "should show A1 as 96.54 → 96.02 and lemma-count on the course as 67.0\
+          \ → 66.5 with those bands, so the first batch after them breaks no vocabulary\
+          \ floor in A1, A2 or B1"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R007
+      - name: should re-measure the baseline with the new measure on the same course
+          of the baseline report before counting the batch
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R007
+      - name: should leave undecidable the rows of an analyzer with a new measure
+          when the baseline cannot be measured again
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R007
+      - name: "should show as a measure change, and not as a change of the course,\
+          \ naturalness measured with claude -p in the projection and with llama3\
+          \ in Ollama in the baseline"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R007
+      - name: "should give the batch of the four proposals of «Afirmativas regulares»\
+          \ the verdict fails, with «My grandmother ___ (come) every year.» as the\
+          \ node that returns"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: should give that batch without the grandmother proposal the verdict
+          passes once its blind sample is answered and meets its goal
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: should give the verdict blind sample missing when every floor holds
+          and the blind sample is missing or still open
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: should give the verdict undecidable when no floor fails but one of them
+          cannot be decided
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: "should give the verdict fails with the list of broken floors when a\
+          \ floor fails, even if the blind sample meets its goal"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: should give the verdict fails when the closed blind sample does not
+          meet its goal
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: "should never let a progress goal decide the verdict, as any error above\
+          \ 5% in the course"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R008
+      - name: "should write nothing when comparing: no course, proposal, plan, sealed\
+          \ goals or analysis of the history"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R009
       implements:
       - BatchComparator
       _change: add
@@ -498,6 +695,34 @@ modules:
         description: Para poner el piso de su familia a cada analizador que la declaración
           no nombra (R005).
       visibility: public
+      handwrittenTests:
+      - name: "should give every analyzer of the catalog that the declaration does\
+          \ not name the floor of its family, marked as family default, so an analyzer\
+          \ as hint-coherence is covered without touching the declaration"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R005
+      - name: "should use the floors José accepted on 30/9 when the declaration lacks\
+          \ a family: errors 0 against the batch start in every node and vocabulary\
+          \ 0.5 points against the baseline in levels and course"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R005
+      - name: "should carry the goal of the blind sample of the declaration, 100 pairs\
+          \ with at least 90 better or equal and at most 1 worse, counted"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R005
+      - name: "should seal the effective goals whole, with their fingerprint, their\
+          \ values and the time they were sealed"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+      - name: should give the same fingerprint to the same effective goals and another
+          one when a value changes
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
       implements:
       - GoalBook
       _change: add
@@ -509,6 +734,18 @@ modules:
           \ devuelto a su versión de antes, armada con los ejercicios ya leídos de\
           \ las dos fotos: sin tokenizar, 0,05 a 0,1 s cada una (R004)."
       visibility: public
+      handwrittenTests:
+      - name: "should put first, with -1 point, the single change that lowers the\
+          \ vocabulary of A1 by one point while the others do not move it"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R004
+      - name: "should order the changes by how much each one worsens the broken number\
+          \ alone, the projection minus the projection without it, in points or in\
+          \ exercises"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R004
       implements:
       - ChangeAttributor
       _change: add
@@ -527,6 +764,13 @@ modules:
     types:
     - Repository
     visibility: public
+    handwrittenTests:
+    - name: "should read from one declaration the family floors, the named goals with\
+        \ node, subject, kind, threshold, unit and reference, and the goal of the\
+        \ blind sample"
+      traceability:
+        feature: FEAT-METAS
+        rule: F-METAS-R005
     implements:
     - GoalDeclarationSource
     _change: add
@@ -539,6 +783,12 @@ modules:
     types:
     - Repository
     visibility: public
+    handwrittenTests:
+    - name: should keep the sealed goals in .content-audit/metas-fijadas.json and
+        read them back with their values
+      traceability:
+        feature: FEAT-METAS
+        rule: F-METAS-R006
     implements:
     - SealedGoalsStore
     _change: add
@@ -570,6 +820,12 @@ modules:
         type: BatchComparisonFormatter
       types:
       - Component
+      handwrittenTests:
+      - name: should leave the course files byte for byte and get audits listing the
+          same analyses after compare
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R009
       implements:
       - CompareCommand
       _change: add
@@ -580,9 +836,31 @@ modules:
         description: "get-goals lista las efectivas; set-goals las fija (R005, R006)."
       types:
       - Component
+      handwrittenTests:
+      - name: "should list with get-goals the effective goals, the declared ones and\
+          \ the family floors, each with its origin"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R005
+      - name: should seal the effective goals with set-goals
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
       implements:
       - GoalsCommand
       _change: add
+    - name: DefaultSetBaselineCommand
+      handwrittenTests:
+      - name: should leave the sealed goals untouched when the baseline is fixed
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+    - name: DefaultSetActiveAnalysisCommand
+      handwrittenTests:
+      - name: should leave the sealed goals untouched when the active pair changes
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
     _change: modify
   - name: formatting
     interfaces:
@@ -598,6 +876,21 @@ modules:
       types:
       - Component
       visibility: public
+      handwrittenTests:
+      - name: "should write the change of a score in points with its sign and the\
+          \ word, «−0,5 puntos», never with «%»"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R001
+      - name: "should print which goals changed since they were sealed, with their\
+          \ value then and now"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R006
+      - name: "should write a measure change as «cambio de medida: 73,92 → 73,86»"
+        traceability:
+          feature: FEAT-METAS
+          rule: F-METAS-R007
       implements:
       - BatchComparisonFormatter
       _change: add
@@ -606,3 +899,8 @@ modules:
 features:
 - id: FEAT-METAS
   code: F-METAS
+  journeys:
+  - id: F-METAS-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
