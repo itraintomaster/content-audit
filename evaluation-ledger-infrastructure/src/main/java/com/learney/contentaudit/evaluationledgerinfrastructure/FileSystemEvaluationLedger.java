@@ -222,9 +222,23 @@ public class FileSystemEvaluationLedger implements EvaluationLedger, EvaluationT
     }
 
 
+    /**
+     * F-JEXAM-R004: when each result of this evaluator was recorded, in the order the lines were
+     * appended -- what the judge runtime measures the judge's rate with. A record of the exam
+     * space ({@code exam:<evaluator>}) lives in its own file and never shows up here.
+     */
     @Override
     public List<Instant> recordedTimes(String evaluatorId) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        List<Instant> times = new ArrayList<>();
+        if (evaluatorId == null) {
+            return times;
+        }
+        for (EvaluationRecord record : readAll(evaluatorId)) {
+            if (record.getRecordedAt() != null && evaluatorId.equals(record.getKey().getEvaluatorId())) {
+                times.add(record.getRecordedAt());
+            }
+        }
+        return times;
     }
 
 }

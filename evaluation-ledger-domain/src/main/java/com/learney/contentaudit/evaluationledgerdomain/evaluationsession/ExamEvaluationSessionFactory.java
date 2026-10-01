@@ -23,8 +23,21 @@ public class ExamEvaluationSessionFactory implements EvaluationSessionFactory {
         this.fingerprinter = fingerprinter;
     }
 
+    /**
+     * F-JEXAM-R002: the sessions of an exam are the usual ones over a ledger that looks different
+     * -- it reads only what the taking version recorded, in the exam space and then in the course's,
+     * and writes only in the exam space. The fingerprint is the course's, so an exam exercise is
+     * recognised exactly as on the course; the rules of the session do not change.
+     */
     @Override
     public EvaluationSession open(EvaluationBudget budget, Evaluator evaluator) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (budget == null) {
+            throw new IllegalArgumentException(
+                    "EvaluationBudget must not be null: the caller of ExamEvaluationSessionFactory.open(...) "
+                            + "is responsible for providing a non-null budget.");
+        }
+        String pinnedVersion = evaluator.evaluatorVersion().orElse(null);
+        return new DefaultEvaluationSession(new ExamScopedEvaluationLedger(ledger, pinnedVersion),
+                fingerprinter, evaluator, budget);
     }
 }
