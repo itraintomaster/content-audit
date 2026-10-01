@@ -1349,7 +1349,7 @@ class Main {
                             refinerEngine, errorTaskBriefer, analyzerCorrectionCatalog, ruleFixes, panelRunner.get(),
                             panelRunnerFactory.meter(panelConfig.get()), panelRunnerFactory, batchComparator,
                             baselineStore, blindSampleService, topicWordLightsQuery, null,
-                            preservationFactory.createCheck(), Paths.get(batchCourse), goalBook));
+                            preservationFactory.createCheck(), Paths.get(batchCourse), goalBook, null));
         }));
         com.learney.contentaudit.revisiondomain.tray.TrayService trayService = lazyTrayService(memoized(() ->
                 new com.learney.contentaudit.revisiondomain.trayengine.DefaultTrayServiceFactory().create(

@@ -29,12 +29,21 @@ public class BatchEstimate {
 
     private int queriesAtOnce;
 
+    private int changedQuizzes;
+
+    private List<BatchJudgeAccount> judges;
+
+    private int judgeQueries;
+
+    private double judgeHours;
+
     public BatchEstimate() {
     }
 
     public BatchEstimate(String batchId, List<BatchTaskCount> tasks, int quizzes, int topics,
             int heaviestTopicQuizzes, int conversionQuizzes, int estimatedQueries,
-            double estimatedHours, int topicsAtOnce, int queriesAtOnce) {
+            double estimatedHours, int topicsAtOnce, int queriesAtOnce, int changedQuizzes,
+            List<BatchJudgeAccount> judges, int judgeQueries, double judgeHours) {
         this.batchId = batchId;
         this.tasks = tasks;
         this.quizzes = quizzes;
@@ -45,6 +54,10 @@ public class BatchEstimate {
         this.estimatedHours = estimatedHours;
         this.topicsAtOnce = topicsAtOnce;
         this.queriesAtOnce = queriesAtOnce;
+        this.changedQuizzes = changedQuizzes;
+        this.judges = judges;
+        this.judgeQueries = judgeQueries;
+        this.judgeHours = judgeHours;
     }
 
     public String getBatchId() {
@@ -127,6 +140,38 @@ public class BatchEstimate {
         this.queriesAtOnce = queriesAtOnce;
     }
 
+    public int getChangedQuizzes() {
+        return this.changedQuizzes;
+    }
+
+    public void setChangedQuizzes(int changedQuizzes) {
+        this.changedQuizzes = changedQuizzes;
+    }
+
+    public List<BatchJudgeAccount> getJudges() {
+        return this.judges;
+    }
+
+    public void setJudges(List<BatchJudgeAccount> judges) {
+        this.judges = judges;
+    }
+
+    public int getJudgeQueries() {
+        return this.judgeQueries;
+    }
+
+    public void setJudgeQueries(int judgeQueries) {
+        this.judgeQueries = judgeQueries;
+    }
+
+    public double getJudgeHours() {
+        return this.judgeHours;
+    }
+
+    public void setJudgeHours(double judgeHours) {
+        this.judgeHours = judgeHours;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -141,11 +186,15 @@ public class BatchEstimate {
                     && Objects.equals(this.estimatedQueries, that.estimatedQueries)
                     && Objects.equals(this.estimatedHours, that.estimatedHours)
                     && Objects.equals(this.topicsAtOnce, that.topicsAtOnce)
-                    && Objects.equals(this.queriesAtOnce, that.queriesAtOnce);
+                    && Objects.equals(this.queriesAtOnce, that.queriesAtOnce)
+                    && Objects.equals(this.changedQuizzes, that.changedQuizzes)
+                    && Objects.equals(this.judges, that.judges)
+                    && Objects.equals(this.judgeQueries, that.judgeQueries)
+                    && Objects.equals(this.judgeHours, that.judgeHours);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(batchId, tasks, quizzes, topics, heaviestTopicQuizzes, conversionQuizzes, estimatedQueries, estimatedHours, topicsAtOnce, queriesAtOnce);
+        return Objects.hash(batchId, tasks, quizzes, topics, heaviestTopicQuizzes, conversionQuizzes, estimatedQueries, estimatedHours, topicsAtOnce, queriesAtOnce, changedQuizzes, judges, judgeQueries, judgeHours);
     }
 }

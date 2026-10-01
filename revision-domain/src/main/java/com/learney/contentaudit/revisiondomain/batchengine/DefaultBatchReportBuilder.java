@@ -121,7 +121,7 @@ class DefaultBatchReportBuilder implements BatchReportBuilder {
                 BatchBook.list(batch.getTaskIds()).size(), conversionDone, conversionNoWinner, errors,
                 new ArrayList<>(rerecords.values()), new ArrayList<>(lengths.values()),
                 new QueriesByRole(Math.min(proposerQueries, batch.getQueriesSpent()), judges), hours,
-                BatchBook.copy(batch.getAdjustments()));
+                BatchBook.copy(batch.getAdjustments()), null);
     }
 
     private static int value(Double value) {

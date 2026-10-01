@@ -94,6 +94,6 @@ class DefaultBatchCostEstimator implements BatchCostEstimator {
         int lanes = Math.max(1, Math.min(topicsAtOnce, queriesAtOnce));
         double hours = Math.max(queries * SECONDS_PER_QUERY / lanes, heaviestQueries * SECONDS_PER_QUERY) / 3600.0;
         return new BatchEstimate(batch.getId(), tasks, quizzes.size(), quizzesByTopic.size(), heaviest,
-                conversionQuizzes.size(), queries, Math.round(hours * 100.0) / 100.0, topicsAtOnce, queriesAtOnce);
+                conversionQuizzes.size(), queries, Math.round(hours * 100.0) / 100.0, topicsAtOnce, queriesAtOnce, 0, null, 0, 0.0);
     }
 }

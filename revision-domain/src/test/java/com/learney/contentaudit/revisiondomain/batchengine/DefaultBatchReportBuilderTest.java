@@ -198,4 +198,12 @@ public class DefaultBatchReportBuilderTest {
                 new RowValue(before, null, 0), null, new RowValue(before, null, 0), new RowValue(after, null, 0),
                 after - before, unit, null, null, null, null, null, null, null);
     }
+
+    @Test
+    @DisplayName("should give in the report the accounts of the judges of the last closing of the batch, and none while it was never closed")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R005")
+    public void shouldGiveInTheReportTheAccountsOfTheJudgesOfTheLastClosingOfTheBatchAndNoneWhileItWasNeverClosed() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

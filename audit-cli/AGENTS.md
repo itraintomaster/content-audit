@@ -237,9 +237,9 @@ Methods:
 - `openBatch(String level, Integer topicsAtOnce, Integer queriesAtOnce, List<String> convertToMultipleChoice): Integer`
 - `estimateBatch(): Integer`
 - `runBatch(Integer queryCap): Integer`
-- `closeBatch(): Integer`
 - `dropFromBatch(String changeId, String ruleId, String reason): Integer`
 - `reportBatch(String batchId, String format): Integer`
+- `closeBatch(Map<String,Integer> judgeBudgets, Integer queryCap): Integer`
 
 ### TrayCommand (port) [sealed]
 

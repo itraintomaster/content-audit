@@ -1818,4 +1818,52 @@ public class DefaultBatchComparatorTest {
         assertEquals(HATS, own.getQuizId(), "R005: the row of an analyzer, only its own findings");
         assertEquals("La pista no anuncia «wears».", own.getDetail(), "R005: the row already names its analyzer");
     }
+
+    @Test
+    @DisplayName("should leave undecided the floors of quiz-instruction, without an exam, over the exercises the batch changed, and those of any error, although the ledger had a verdict for them, so the verdict cannot be decided")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R004")
+    public void shouldLeaveUndecidedTheFloorsOfQuizinstructionWithoutAnExamOverTheExercisesTheBatchChangedAndThoseOfAnyErrorAlthoughTheLedgerHadAVerdictForThemSoTheVerdictCannotBeDecided() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should end the detail of the verdict of the A1 batch, after everything else, with «juez sin aprobar: Consigna que no se cumple, Opción múltiple mal armada, Más de una respuesta válida, Error de gramática, Ejercicio casi repetido», each judge once and in the order of the catalog")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R004")
+    public void shouldEndTheDetailOfTheVerdictOfTheA1BatchAfterEverythingElseWithJuezSinAprobarConsignaQueNoSeCumpleOpcinMltipleMalArmadaMsDeUnaRespuestaVlidaErrorDeGramticaEjercicioCasiRepetidoEachJudgeOnceAndInTheOrderOfTheCatalog() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep as fails a verdict with a broken floor and still name at the end of its detail the judge without approval that reads what the batch changed")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R004")
+    public void shouldKeepAsFailsAVerdictWithABrokenFloorAndStillNameAtTheEndOfItsDetailTheJudgeWithoutApprovalThatReadsWhatTheBatchChanged() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should neither block nor name a judge without approval that reads nothing the batch changed, as multiple-choice-validity in a batch of gap exercises only")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R004")
+    public void shouldNeitherBlockNorNameAJudgeWithoutApprovalThatReadsNothingTheBatchChangedAsMultiplechoicevalidityInABatchOfGapExercisesOnly() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should block and name grammar, a local tool whose exam failed, when it reads an exercise the batch changed")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R004")
+    public void shouldBlockAndNameGrammarALocalToolWhoseExamFailedWhenItReadsAnExerciseTheBatchChanged() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should block and name a judge of topics without approval, as mini-theory, when it reads the topic of an exercise the batch changed")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R004")
+    public void shouldBlockAndNameAJudgeOfTopicsWithoutApprovalAsMinitheoryWhenItReadsTheTopicOfAnExerciseTheBatchChanged() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

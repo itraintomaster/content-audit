@@ -428,4 +428,12 @@ public class DefaultBatchPublisherTest {
             throw new AssertionError(e);
         }
     }
+
+    @Test
+    @DisplayName("should refuse to publish a batch whose verdict names a judge without approval, copying «juez sin aprobar: Consigna que no se cumple» into the refusal and writing no course")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R004")
+    public void shouldRefuseToPublishABatchWhoseVerdictNamesAJudgeWithoutApprovalCopyingJuezSinAprobarConsignaQueNoSeCumpleIntoTheRefusalAndWritingNoCourse() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -300,4 +300,76 @@ public class BatchCmdTest {
             throw new AssertionError("publishing is the tray's");
         }
     }
+
+    @Test
+    @DisplayName("should hand the service with 'batch close --budget translation-sense=500,mini-theory=60 --cap 600' the budget of each judge and the cap of the batch")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldHandTheServiceWithBatchCloseBudgetTranslationsense500minitheory60Cap600TheBudgetOfEachJudgeAndTheCapOfTheBatch() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should exit with 2 and «El tope tiene que ser 0 o más» when 'batch close' asks a negative budget or cap, without closing")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldExitWith2AndElTopeTieneQueSer0OMsWhenBatchCloseAsksANegativeBudgetOrCapWithoutClosing() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should exit with 2 and the message of the service when 'batch close --budget consigna=100' names what is not a judge of the batch")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldExitWith2AndTheMessageOfTheServiceWhenBatchCloseBudgetConsigna100NamesWhatIsNotAJudgeOfTheBatch() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should print with 'batch close' a line per judge with its visible name, its exercises or topics, its queries spent, reused and missing, its budget and its floors decided of the total, and the reason of one without approval")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R005")
+    public void shouldPrintWithBatchCloseALinePerJudgeWithItsVisibleNameItsExercisesOrTopicsItsQueriesSpentReusedAndMissingItsBudgetAndItsFloorsDecidedOfTheTotalAndTheReasonOfOneWithoutApproval() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should print with 'batch report' the same line per judge as the last closing")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R005")
+    public void shouldPrintWithBatchReportTheSameLinePerJudgeAsTheLastClosing() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should print with 'batch close' the request 'batch close --budget translation-sense=…,mini-theory=…' that completes what the approved judges still miss")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldPrintWithBatchCloseTheRequestBatchCloseBudgetTranslationsenseminitheoryThatCompletesWhatTheApprovedJudgesStillMiss() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should print with 'batch close' why a judge stopped after a failure of its service")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldPrintWithBatchCloseWhyAJudgeStoppedAfterAFailureOfItsService() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should print with 'batch estimate' the judges at closing over the exercises the batch changes today, a line per judge with what it judges, reuses and misses, and the total queries and hours of the approved ones")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R002")
+    public void shouldPrintWithBatchEstimateTheJudgesAtClosingOverTheExercisesTheBatchChangesTodayALinePerJudgeWithWhatItJudgesReusesAndMissesAndTheTotalQueriesAndHoursOfTheApprovedOnes() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should say with 'batch estimate' that the batch has not changed any exercise yet and that the judges are estimated after batch run")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R002")
+    public void shouldSayWithBatchEstimateThatTheBatchHasNotChangedAnyExerciseYetAndThatTheJudgesAreEstimatedAfterBatchRun() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

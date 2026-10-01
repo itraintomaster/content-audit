@@ -1,4 +1,5 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 
 import com.learney.contentaudit.auditdomain.AnalyzerCorrectionCatalog;
 import com.learney.contentaudit.auditdomain.finding.Finding;
@@ -77,21 +78,22 @@ class DefaultBatchCloser implements BatchCloser {
 
     private AnalyzerCorrectionCatalog corrections;
 
+private final BatchJudgePass judgePass;
+
+public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, BlindSampleService blindSampleService, BatchChangeLedger changeLedger, BatchStore batchStore, Path coursePath, BatchJudgePass judgePass) {
+    this.batchComparator = batchComparator;
+    this.batchGate = batchGate;
+    this.blindSampleService = blindSampleService;
+    this.changeLedger = changeLedger;
+    this.batchStore = batchStore;
+    this.coursePath = coursePath;
+    this.judgePass = judgePass;
+}
+
     /** A guard: the gate returns at least one change each round, so the rounds end; this only stops a broken comparator. */
     static final int MAX_ROUNDS = 20;
 
     static final int DEFAULT_MAX_ATTEMPTS = 3;
-
-    public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate,
-            BlindSampleService blindSampleService, BatchChangeLedger changeLedger,
-            BatchStore batchStore, Path coursePath) {
-        this.batchComparator = batchComparator;
-        this.batchGate = batchGate;
-        this.blindSampleService = blindSampleService;
-        this.changeLedger = changeLedger;
-        this.batchStore = batchStore;
-        this.coursePath = coursePath;
-    }
 
     DefaultBatchCloser withPlans(RefinementPlanStore plans, AnalyzerCorrectionCatalog corrections) {
         this.plans = plans;
@@ -122,7 +124,7 @@ class DefaultBatchCloser implements BatchCloser {
                 continue;
             }
             List<BatchClosing> closings = BatchBook.copy(batch.getClosings());
-            closings.add(new BatchClosing(Instant.now(), scope, comparison, verdict, returnedIds, rounds));
+            closings.add(new BatchClosing(Instant.now(), scope, comparison, verdict, returnedIds, rounds, null, null));
             batch.setClosings(closings);
             if (verdict.isPasses() && blindSampleService != null && batch.getBlindSampleId() == null) {
                 // one sample per batch: closing again with José's decisions keeps the one he answers

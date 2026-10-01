@@ -1,4 +1,5 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelection;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
@@ -127,34 +128,6 @@ class DefaultBatchService implements BatchService {
 
     private static final DateTimeFormatter STAMP = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmss'Z'")
             .withZone(ZoneOffset.UTC);
-
-    public DefaultBatchService(BatchStore batchStore, RefinementPlanStore refinementPlanStore,
-            AuditReportStore auditReportStore,
-            ActiveAnalysisSelectionStore activeAnalysisSelectionStore, BaselineStore baselineStore,
-            CourseRepository courseRepository, PanelRunnerFactory panelRunnerFactory,
-            ErrorTaskBriefer briefer, BatchTaskSelector taskSelector,
-            BatchCostEstimator costEstimator, RuleStage ruleStage, PanelStage panelStage,
-            BatchChangeLedger changeLedger, BatchCloser closer, BatchPublisher publisher,
-            BatchReportBuilder reportBuilder, Path coursePath, GoalBook goalBook) {
-        this.batchStore = batchStore;
-        this.refinementPlanStore = refinementPlanStore;
-        this.auditReportStore = auditReportStore;
-        this.activeAnalysisSelectionStore = activeAnalysisSelectionStore;
-        this.baselineStore = baselineStore;
-        this.courseRepository = courseRepository;
-        this.panelRunnerFactory = panelRunnerFactory;
-        this.briefer = briefer;
-        this.taskSelector = taskSelector;
-        this.costEstimator = costEstimator;
-        this.ruleStage = ruleStage;
-        this.panelStage = panelStage;
-        this.changeLedger = changeLedger;
-        this.closer = closer;
-        this.publisher = publisher;
-        this.reportBuilder = reportBuilder;
-        this.coursePath = coursePath;
-        this.goalBook = goalBook;
-    }
 
     @Override
     public CorrectionBatch open(BatchOpenRequest request) {
@@ -371,6 +344,30 @@ class DefaultBatchService implements BatchService {
 
     /** The panel that measures and judges a fix José writes, as any candidate; the factory hands it over. */
     private PanelRunner panelRunner;
+
+private final BatchJudgePass judgePass;
+
+public DefaultBatchService(BatchStore batchStore, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, ActiveAnalysisSelectionStore activeAnalysisSelectionStore, BaselineStore baselineStore, CourseRepository courseRepository, PanelRunnerFactory panelRunnerFactory, ErrorTaskBriefer briefer, BatchTaskSelector taskSelector, BatchCostEstimator costEstimator, RuleStage ruleStage, PanelStage panelStage, BatchChangeLedger changeLedger, BatchCloser closer, BatchPublisher publisher, BatchReportBuilder reportBuilder, Path coursePath, GoalBook goalBook, BatchJudgePass judgePass) {
+    this.batchStore = batchStore;
+    this.refinementPlanStore = refinementPlanStore;
+    this.auditReportStore = auditReportStore;
+    this.activeAnalysisSelectionStore = activeAnalysisSelectionStore;
+    this.baselineStore = baselineStore;
+    this.courseRepository = courseRepository;
+    this.panelRunnerFactory = panelRunnerFactory;
+    this.briefer = briefer;
+    this.taskSelector = taskSelector;
+    this.costEstimator = costEstimator;
+    this.ruleStage = ruleStage;
+    this.panelStage = panelStage;
+    this.changeLedger = changeLedger;
+    this.closer = closer;
+    this.publisher = publisher;
+    this.reportBuilder = reportBuilder;
+    this.coursePath = coursePath;
+    this.goalBook = goalBook;
+    this.judgePass = judgePass;
+}
 
     DefaultBatchService withPanel(PanelRunner panelRunner) {
         this.panelRunner = panelRunner;

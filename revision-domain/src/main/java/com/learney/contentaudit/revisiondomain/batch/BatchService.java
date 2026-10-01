@@ -16,11 +16,11 @@ public interface BatchService {
 
     BatchReport run(BatchRunRequest request);
 
-    BatchClosing close();
-
     CorrectionBatch adjust(BatchAdjustment adjustment);
 
     BatchReport report(String batchId);
 
     BatchPublication publish(BatchPublishRequest request);
+
+    BatchClosing close(BatchCloseRequest request);
 }

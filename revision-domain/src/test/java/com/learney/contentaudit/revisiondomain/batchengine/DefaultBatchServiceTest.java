@@ -599,4 +599,76 @@ public class DefaultBatchServiceTest {
             }
         };
     }
+
+    @Test
+    @DisplayName("should count in the estimate as changed today the exercises with a pending proposal of the batch and every exercise of a topic whose instruction changes")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R002")
+    public void shouldCountInTheEstimateAsChangedTodayTheExercisesWithAPendingProposalOfTheBatchAndEveryExerciseOfATopicWhoseInstructionChanges() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should add to the estimate the account of each judge, estimated without any query on the start course and on the course composed with the changes of the batch")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R002")
+    public void shouldAddToTheEstimateTheAccountOfEachJudgeEstimatedWithoutAnyQueryOnTheStartCourseAndOnTheCourseComposedWithTheChangesOfTheBatch() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should total in the estimate the missing queries of the approved judges that are paid, as 2404 of translation-sense and 60 of mini-theory, without those of quiz-instruction without an exam or of naturalness with Ollama, and their hours at 19 s per query with 4 at once")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R002")
+    public void shouldTotalInTheEstimateTheMissingQueriesOfTheApprovedJudgesThatArePaidAs2404OfTranslationsenseAnd60OfMinitheoryWithoutThoseOfQuizinstructionWithoutAnExamOrOfNaturalnessWithOllamaAndTheirHoursAt19SPerQueryWith4AtOnce() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should estimate no judge, with 0 changed exercises, while the batch has not changed any exercise")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R002")
+    public void shouldEstimateNoJudgeWith0ChangedExercisesWhileTheBatchHasNotChangedAnyExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should refuse a request that budgets «consigna», which is not a judge of the batch, naming its judges, before closing or querying anything")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldRefuseARequestThatBudgetsConsignaWhichIsNotAJudgeOfTheBatchNamingItsJudgesBeforeClosingOrQueryingAnything() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should refuse a request with a negative budget or a negative cap, before closing or querying anything")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldRefuseARequestWithANegativeBudgetOrANegativeCapBeforeClosingOrQueryingAnything() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should accept a request that budgets quiz-instruction with 600, a judge of the batch although it cannot query, and hand it to the closing as asked")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldAcceptARequestThatBudgetsQuizinstructionWith600AJudgeOfTheBatchAlthoughItCannotQueryAndHandItToTheClosingAsAsked() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should close again with an empty request, paying no judge, when José drops a change of a batch closed with a budget")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldCloseAgainWithAnEmptyRequestPayingNoJudgeWhenJosDropsAChangeOfABatchClosedWithABudget() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should write neither the course nor any analysis of the history when closing with a budget, keeping the closing only in the batch")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R001")
+    public void shouldWriteNeitherTheCourseNorAnyAnalysisOfTheHistoryWhenClosingWithABudgetKeepingTheClosingOnlyInTheBatch() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

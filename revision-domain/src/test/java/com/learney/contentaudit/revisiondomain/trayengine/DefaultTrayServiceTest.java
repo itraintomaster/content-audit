@@ -547,4 +547,12 @@ public class DefaultTrayServiceTest {
             throw new AssertionError(e);
         }
     }
+
+    @Test
+    @DisplayName("should close the batch with an empty request before publishing it from the tray, paying no judge")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldCloseTheBatchWithAnEmptyRequestBeforePublishingItFromTheTrayPayingNoJudge() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

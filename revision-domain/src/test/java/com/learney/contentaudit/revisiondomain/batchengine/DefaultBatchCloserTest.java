@@ -372,4 +372,36 @@ public class DefaultBatchCloserTest {
     private static BatchChange change(CorrectionBatch batch, String changeId) {
         return batch.getChanges().stream().filter(c -> c.getChangeId().equals(changeId)).findFirst().orElseThrow();
     }
+
+    @Test
+    @DisplayName("should judge, before comparing, the exercises the batch changes on the start course and on the course composed with its changes, with the request of the closing")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R001")
+    public void shouldJudgeBeforeComparingTheExercisesTheBatchChangesOnTheStartCourseAndOnTheCourseComposedWithItsChangesWithTheRequestOfTheClosing() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should add the queries the judges were paid at closing to the queries of the batch")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldAddTheQueriesTheJudgesWerePaidAtClosingToTheQueriesOfTheBatch() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give each judge of the closing the queries paid to it, the ones the ledger had at the start of the closing and the ones still missing after the last comparison, where what naturalness judged with Ollama when comparing no longer counts")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R005")
+    public void shouldGiveEachJudgeOfTheClosingTheQueriesPaidToItTheOnesTheLedgerHadAtTheStartOfTheClosingAndTheOnesStillMissingAfterTheLastComparisonWhereWhatNaturalnessJudgedWithOllamaWhenComparingNoLongerCounts() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should count as decided the floors of the rows of a judge in the last comparison that are met or not met, and as undecided those that cannot be decided")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R005")
+    public void shouldCountAsDecidedTheFloorsOfTheRowsOfAJudgeInTheLastComparisonThatAreMetOrNotMetAndAsUndecidedThoseThatCannotBeDecided() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }
