@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (construcción E) — TANDA construida: las 66 pruebas en verde (ledger 4, selección 7, costo 1,
+  reglas 5, mesa 5, cierre 7, informe 5, publicación 7, servicio 16, almacén 2, BatchCmd 5, FTandaJ001 2) y F-NOEMP-J001
+  (3). `batch` registrado en Main a pedido (E-09); falla con un mensaje claro hasta que se aplique el parche de
+  construcción (la fábrica arma el localizador y la tabla de partes a campos). Las pruebas los leen por reflexión.
+
 2026-10-01 — developer (construcción E) — Propuesto el parche de construcción (ver decisions.md). Hasta que se aplique y se
   genere, esperan: los cuerpos y las 3 pruebas de los dos almacenes, `CappedQueryAllowance` (2 pruebas) y la fábrica de la
   mesa, y en Main la tanda y la bandeja. Se construye todo lo demás.

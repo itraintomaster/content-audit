@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (construcción E) — BANDEJA construida: 44 pruebas en verde (armado 13, servicio 19, memoria 1,
+  muestra 2, almacén 1, TrayCmd 3, approve 2, reject 1, FBandejaJ001 2). `tray` registrado en Main a pedido (E-09), con la
+  misma espera del parche que la tanda.
+
 2026-10-01 — qa-tester (como arquitecto) — Segunda vuelta: TrayItemKind suma PENDING_RERECORDING y TrayItem rerecord
   (R009); 42 pruebas. `propose --replace` desde lo commiteado, comparado con la copia de antes (sólo lo pedido),
   `tech-spec write` (+1 fence) y `validate -i` contra M13 y contra la cadena: exit 0, 0 conflictos. Generate simulado:

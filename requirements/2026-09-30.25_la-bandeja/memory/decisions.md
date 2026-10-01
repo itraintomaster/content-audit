@@ -5,6 +5,19 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (construcción E) — Lo que se decidió construyendo la bandeja:
+  - sin muestra ciega sorteada todavía (la compuerta no pasó), la bandeja muestra lo demás y dice que falta la ciega: si
+    no, José no podría destrabar la tanda; con la ciega sorteada y abierta, sólo la ciega;
+  - el último par cierra la ciega con F (no hay en F cómo saber cuántos respondió José): se contesta par por par;
+  - un sin ganador sale de las tareas en NO_WINNER o RETURNED_WITHOUT_ATTEMPTS: su candidato es el de la última decisión
+    de la mesa o el cambio que devolvió la compuerta; su gravedad, la más alta de lo que no pasó;
+  - la memoria de un sin ganador usa una identidad propia (`sin-ganador|<ejercicio>|<tareas>`) y la huella de lo que ve
+    el alumno (instrucciones, partes, opciones, traducción, miniteoría): el título o el código no la mueven;
+  - publicar: ciega cerrada, reglas sin muestra aprobada afuera (excludedRuleIds), `close` con las decisiones adentro y
+    `publish` de la tanda, que exige «pasa»; el arreglo de José lo mide la tanda (TrayServiceConfig no trae plan ni
+    briefer), y el `panelRunner` del servicio de la bandeja queda sin uso.
+  why: R001, R003, R005, R006, R007 y R008 tal como están, con el contrato generado.
+
 2026-10-01 — qa-tester (como analista) — R009 nueva y R001 con una clase más: los audios pendientes de regrabar se
   ven en la bandeja, al final y sin pregunta (orquestador, 1/10); no frenan la publicación (R007).
 
