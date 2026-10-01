@@ -13,8 +13,7 @@ import javax.annotation.processing.Generated;
  * reservation counts against both limits until it is settled, and only what was spent stays against the cap. A refused
  * reservation while nothing tripped means «wait»: the queries in flight will settle.
  *
- * <p>The limits come from {@link #limitTo}, which the factory calls; the constructor with them is the architect's
- * patch of FEAT-TANDA (requiresInject cap, queriesAtOnce), not applied yet.
+ * <p>The two limits come in the constructor (requiresInject cap, queriesAtOnce), which the factory of the panel calls.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -25,9 +24,9 @@ class CappedQueryAllowance implements QueryAllowance {
     /** F-MESA-R010 inv. 4: four queries at once when nothing else is asked. */
     static final int DEFAULT_QUERIES_AT_ONCE = 4;
 
-    private Integer cap;
+    private final Integer cap;
 
-    private int queriesAtOnce = DEFAULT_QUERIES_AT_ONCE;
+    private final int queriesAtOnce;
 
     private int inFlight;
 
@@ -35,11 +34,13 @@ class CappedQueryAllowance implements QueryAllowance {
 
     private String trippedBy;
 
-    /** The two limits: the cap of the batch (none when null) and the queries in flight at once (at least one). */
-    synchronized CappedQueryAllowance limitTo(Integer cap, int queriesAtOnce) {
+    /**
+     * The two limits: the cap of the batch (none when null; a negative one is none left) and the queries in flight at
+     * once ({@link #DEFAULT_QUERIES_AT_ONCE} when none is asked).
+     */
+    CappedQueryAllowance(Integer cap, int queriesAtOnce) {
         this.cap = cap != null && cap < 0 ? Integer.valueOf(0) : cap;
-        this.queriesAtOnce = Math.max(1, queriesAtOnce);
-        return this;
+        this.queriesAtOnce = queriesAtOnce > 0 ? queriesAtOnce : DEFAULT_QUERIES_AT_ONCE;
     }
 
     @Override

@@ -39,7 +39,6 @@ public class DefaultPanelRunnerFactory implements PanelRunnerFactory {
 
     @Override
     public QueryAllowance allowance(Integer cap, int queriesAtOnce) {
-        return new CappedQueryAllowance().limitTo(cap,
-                queriesAtOnce > 0 ? queriesAtOnce : CappedQueryAllowance.DEFAULT_QUERIES_AT_ONCE);
+        return new CappedQueryAllowance(cap, queriesAtOnce);
     }
 }

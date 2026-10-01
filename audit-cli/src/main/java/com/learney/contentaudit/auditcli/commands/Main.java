@@ -1325,8 +1325,7 @@ class Main {
         // E · FEAT-RONDA2 (hook E-09): the batch and the tray of package E, built on first use so no other
         // command pays for them. The panel takes its proposer from CONTENT_AUDIT_LAGEN_* only when a panel runs,
         // under an explicit --cap; the rules query nothing. The locator of the course and the table of parts to
-        // fields go null: the factory of the batch builds them once the patch of FEAT-TANDA makes them public, and
-        // until then batch and tray say so.
+        // fields go null: the factory of the batch builds the ones of revision-domain, as revise and approve do.
         com.learney.contentaudit.revisiondomain.panelengine.DefaultPanelRunnerFactory panelRunnerFactory =
                 new com.learney.contentaudit.revisiondomain.panelengine.DefaultPanelRunnerFactory();
         final String batchCourse = CoursePathResolver.resolve(null);
