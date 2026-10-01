@@ -81,9 +81,10 @@ modules:
           \ con su causa (R002)."
       - name: analyzerBudgets
         type: "Map<String,Integer>"
-        description: "Tope de consultas nuevas por nombre canónico para los analizadores\
-          \ que consultan un modelo. Ausente = 0: sin pedido explícito no se paga\
-          \ (R003)."
+        description: "Tope de consultas nuevas por nombre canónico, sólo para los\
+          \ analizadores que el pedido nombra. El que no está mide con la política\
+          \ de analyze (R003, F-RONDA2-R002): lo que consulta un modelo local, sin\
+          \ tope; lo que consulta claude -p, con tope 0."
       _change: add
     - name: ProjectedChange
       type: record
@@ -357,8 +358,11 @@ modules:
       - name: auditEngine
         type: AuditEngine
         description: "runAudit(course, selection) con los analizadores que corrió\
-          \ el análisis de partida, en orden del catálogo, y política con tope 0 salvo\
-          \ pedido (R003). Cada corrida arma analizadores nuevos (FEAT-HALL, FEAT-CERO)."
+          \ el análisis de partida, en orden del catálogo, y la política de analyze\
+          \ (R003, F-RONDA2-R002): el tope de los que el pedido nombra y, para el\
+          \ resto, la política vacía, que el proveedor completa según a quién consulta:\
+          \ lo local sin tope y claude -p con 0. Cada corrida arma analizadores nuevos\
+          \ (FEAT-HALL, FEAT-CERO)."
       handwrittenTests:
       - name: "should map and measure a course the way analyze does, so the report\
           \ of a projected course equals the one analyze gives on that course written\

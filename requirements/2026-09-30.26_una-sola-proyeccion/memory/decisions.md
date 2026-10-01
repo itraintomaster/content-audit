@@ -5,6 +5,9 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — architect — El tope de la proyección dice lo mismo que R003 (pedido del orquestador): `ProjectionScope.analyzerBudgets` vale sólo para los analizadores que el pedido nombra; el resto mide con la política de analyze, y `DefaultProjectionMeasurer` pasa vacía su política, que el proveedor completa según a quién consulta (lo local sin tope, claude -p con 0). Alineadas también «Dar a la proyección un solo contrato» y «Medir cada foto…». Sin cambios de estructura.
+  why: F-RONDA2-R002 inv. 1, el runner no completa la política; si el medidor pusiera 0, naturalness y near-duplicates con Ollama quedarían sin evaluar en la proyección.
+
 2026-10-01 — analyst — R003 con la política de tope de `analyze` (decidido por el orquestador el 1/10, gana F-RONDA2-R002): lo local sin tope y claude -p con tope 0 salvo pedido. Antes decía «0 si no se pide» para todo. Validation sigue AUTO_VALIDATED; FEAT-RONDA2 suma a References.
   why: con Ollama, naturalness y near-duplicates corren sin tope en analyze; con 0 en la proyección dejaban sin evaluar lo cambiado y R001 no se cumplía.
 2026-10-01 — qa-tester — Una prueba más de R003 en DefaultProjectionMeasurer: naturalness y near-duplicates con llama3 en Ollama corren sin tope, como en analyze. Para el arquitecto: «Ausente = 0» en ProjectionScope.analyzerBudgets, «tope 0 salvo pedido» en la inyección auditEngine de DefaultProjectionMeasurer y dos secciones del TECH_SPEC todavía dicen 0 para todo.

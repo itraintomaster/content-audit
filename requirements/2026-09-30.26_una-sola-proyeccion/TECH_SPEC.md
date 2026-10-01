@@ -1,7 +1,7 @@
 ---
 patch: FEAT-PROYU
 requirement: 2026-09-30.26_una-sola-proyeccion
-generated: 2026-10-01T04:30:00Z
+generated: 2026-10-01T05:10:00Z
 ---
 
 # Tech Spec: Una sola proyección del curso con sus propuestas (FEAT-PROYU)
@@ -118,8 +118,9 @@ Hay tres caminos que calculan el mismo después y no coinciden. El paquete públ
 que devuelve las tres fotos —el análisis activo guardado, el curso con lo aprobado y el curso con lo pendiente— y las
 listas de lo que entró y lo que no, que todo número proyectado tiene que declarar (R002). `ProjectionScope` es la
 respuesta a «qué es una tanda»: F no conoce el modelo de E, así que E le pasa las pendientes de su tanda y su id, y sin
-tanda se proyecta todo el plan activo, como hoy. El tope por analizador viaja en el mismo alcance y vale 0 si nadie lo
-pide (R003). Las causas de indisponibilidad son las de la vista consolidada, para no tener dos taxonomías de lo mismo.
+tanda se proyecta todo el plan activo, como hoy. El tope por analizador viaja en el mismo alcance, y el analizador que
+el pedido no nombra mide con la política de `analyze` (R003, F-RONDA2-R002): lo local sin tope y claude -p con tope 0.
+Las causas de indisponibilidad son las de la vista consolidada, para no tener dos taxonomías de lo mismo.
 
 ```architecture
 modules:
@@ -252,11 +253,13 @@ modules:
 ## Medir cada foto con los analizadores del análisis de partida
 La foto con pendientes da 92,38 en A1 donde `analyze` da 96,54 por el arrastre del motor, que FEAT-HALL ya resuelve
 armando analizadores nuevos en cada corrida (ver FEAT-CERO). Queda otra diferencia, que hoy no se ve porque la base del
-29/9 corrió sólo los siete instantáneos: la vista corre la selección base, y una base que corrió un juez o un
-analizador nuevo no se proyectaría con los mismos (R003). `ProjectionMeasurer` es el único punto que mapea un curso y
-lo mide: toma los nombres de la medida que el análisis de partida guardó en su raíz (gancho F-01 a F-04), arma la
-selección en orden del catálogo con tope 0 salvo pedido y llama a `runAudit(course, selection)`. Un informe sin medida —anterior al contrato— cae a la
-corrida base de hoy y lo declara. Así «la misma medida» (R001, R003, R007) sale por construcción.
+29/9 corrió sólo los siete instantáneos: la vista corre la selección base, y una base que corrió un juez o un analizador
+nuevo no se proyectaría con los mismos (R003). `ProjectionMeasurer` es el único punto que mapea un curso y lo mide: toma
+los nombres de la medida que el análisis de partida guardó en su raíz (gancho F-01 a F-04), arma la selección en orden
+del catálogo con la política de `analyze` —el tope de lo que el pedido nombra y, para el resto, la política vacía, que
+el proveedor completa según a quién consulta: lo local sin tope y claude -p con 0 (F-RONDA2-R002)— y llama a
+`runAudit(course, selection)`. Un informe sin medida —anterior al contrato— cae a la corrida base de hoy y lo declara.
+Así «la misma medida» (R001, R003, R007) sale por construcción.
 
 ```architecture
 modules:
@@ -512,13 +515,10 @@ fija la prueba de F-HALL-R010 en `DefaultImpactPreviewComputer`, y no se repite.
 **Decidido el 1/10.** R003 decía «0 si no se pide» para todo analizador que consulta un modelo, y eso chocaba con
 F-RONDA2-R002. Gana F-RONDA2-R002: la proyección usa la política de `analyze`, lo local sin tope y claude -p con tope 0
 salvo pedido. El REQUIREMENT lo dice desde el 1/10, y una prueba más de `DefaultProjectionMeasurer` fija el caso local:
-`naturalness` y `near-duplicates` con llama3 en Ollama corren sin tope, como en `analyze`.
-
-**Para el arquitecto.** Tres textos siguen diciendo 0 para todo y hay que alinearlos con R003: la descripción del campo
-`analyzerBudgets` de `ProjectionScope` («Ausente = 0»), la de la inyección `auditEngine` de `DefaultProjectionMeasurer`
-(«tope 0 salvo pedido») y las secciones «Dar a la proyección un solo contrato» y «Medir cada foto con los analizadores
-del análisis de partida» de este TECH_SPEC. Ninguno cambia la estructura: el medidor pasa vacía la política de lo que el
-pedido no nombra y el proveedor la completa según a quién consulta, como el runner de F-RONDA2-R002.
+`naturalness` y `near-duplicates` con llama3 en Ollama corren sin tope, como en `analyze`. Desde el 1/10 dicen lo
+mismo la descripción del campo `analyzerBudgets` de `ProjectionScope`, la de la inyección `auditEngine` de
+`DefaultProjectionMeasurer` y las secciones «Dar a la proyección un solo contrato» y «Medir cada foto con los
+analizadores del análisis de partida»; ninguno cambia la estructura.
 
 ```architecture
 modules:

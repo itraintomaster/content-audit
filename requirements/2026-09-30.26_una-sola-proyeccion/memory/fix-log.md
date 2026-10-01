@@ -5,6 +5,8 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — architect — Para cambiar la descripción de un campo por propose se reenvía el modelo entero (PatchMerger reemplaza los modelos por nombre) y, para una inyección, todas las inyecciones de la implementación (requiresInject entra entero si viene). Sin `_change` ni descripción del parche, la fusión conserva el `_change: add`, las pruebas y la descripción. Copia antes, ensayo sobre una copia y comparación después: cambiados 2, perdidos 0.
+
 2026-10-01 — qa-tester — Para sumar una prueba a un parche ya fusionado sin concatenar otra vez la descripción: copia del fusionado y del parche del arquitecto (bug 08), el del arquitecto de vuelta desde git y propose del parche de pruebas entero. Comparado con el fusionado anterior: 0 perdidos y sólo la prueba nueva.
 
 2026-10-01 — qa-tester — Antes de proponer, copia del parche y del TECH_SPEC (bug 08); comparado después con comparar.py del integrador: 0 perdidos, domainLinks 1 → 1 y glossarySuggestions 2 → 2 (están en modelos y campos, que el parche de pruebas no toca).
