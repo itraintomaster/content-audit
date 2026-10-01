@@ -676,12 +676,21 @@ public final class TandaFixture {
         /** The run is cut -- the process dies -- after this many topics; never when negative. */
         public int cutAfterTopics = -1;
 
+        /** The service of the models fails after this many topics of a run: the allowance trips with the cause. */
+        public int tripAfterTopics = -1;
+
+        public String tripCause = "el servicio de modelos no respondió (529)";
+
         @Override
         public List<PanelTopicResult> runTopics(List<TopicWork> topics, PanelRunSettings settings, QueryAllowance allowance,
                 PanelDecisionSink sink) {
             this.settings.add(settings);
             List<PanelTopicResult> results = new ArrayList<>();
+            int done = 0;
             for (TopicWork work : topics) {
+                if (tripAfterTopics >= 0 && done++ == tripAfterTopics && allowance != null) {
+                    allowance.trip(tripCause);
+                }
                 if (cutAfterTopics >= 0 && works.size() >= cutAfterTopics) {
                     throw new IllegalStateException("se cortó la tanda después de " + cutAfterTopics + " temas");
                 }
