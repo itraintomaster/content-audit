@@ -1,7 +1,41 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditcli.commands.FProyuJ001JourneyTest.Proyeccion299;
+import com.learney.contentaudit.auditcli.formatting.DefaultBatchComparisonFormatter;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindPair;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSample;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSampleResult;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSampleService;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSide;
+import com.learney.contentaudit.revisiondomain.blindsample.PairAnswer;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeAttribution;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
+import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
+import com.learney.contentaudit.revisiondomain.comparison.FloorBreach;
+import com.learney.contentaudit.revisiondomain.comparison.GoalStatus;
+import com.learney.contentaudit.revisiondomain.comparison.MeasureChange;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.io.TempDir;
+import picocli.CommandLine;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,59 +55,269 @@ public class FMetasJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: José fija las metas antes de la tanda... → El operador pide la comparación de la... → La comparación muestra el cambio de m... [La medida de un analizador cambió desde la línea base] → La comparación revisa los hallazgos d... → La comparación lista los nodos que vu... [Algún nodo cambiado ganó un hallazgo que cuenta y no tenía] → failure")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void path1_laMedidaDeUnAnalizadorCambiDesdeLaLneaBase_algnNodoCambiadoGanUnHallazgoQueCuentaYNoTena_failure(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The base of 29/9 measured with lemma-count at «4 para todas»; today's bands are 8 · 6 · 4 · 3. The batch:
+        // the four proposals of «Afirmativas regulares».
+        Proyeccion299.Workdir work = tanda(LAS_CUATRO, null);
+
+        // fijar
+        sealGoals(work, Proyeccion299.TODAYS_BANDS);
+
+        // comparar · medida
+        BatchComparison comparison = work.comparator(Proyeccion299.TODAYS_BANDS).compare(Proyeccion299.COURSE, null);
+        String text = new DefaultBatchComparisonFormatter().format(comparison, "text");
+        assertNotNull(comparison.getGoalsSealedAt(), "R006: the goals it evaluated with were sealed");
+        assertTrue(comparison.getGoalChanges().isEmpty(), "R006: and did not change since");
+        assertEquals(List.of("lemma-count"), comparison.getMeasureChanges().stream().map(MeasureChange::getAnalyzer)
+                .toList(), "R007: the measure of lemma-count changed since the baseline");
+        ComparisonRow course = row(comparison, "vocabulario", "root");
+        assertEquals("73,92", Proyeccion299.percent(course.getBaseline().getValue()), "R007: the baseline as it was");
+        assertEquals("73,86", Proyeccion299.percent(course.getRemeasuredBaseline().getValue()),
+                "R007: measured again with today's bands");
+        assertTrue(text.contains("cambio de medida: 73,92 → 73,86"), text);
+        ComparisonRow a1 = row(comparison, "vocabulario", Proyeccion299.LEVELS.get(0));
+        assertEquals("96,54", Proyeccion299.percent(a1.getBaseline().getValue()));
+        assertEquals("96,02", Proyeccion299.percent(a1.getRemeasuredBaseline().getValue()), "R007: «96,54 → 96,02»");
+
+        // nodos · vuelven
+        ChangeOutcome grandmother = change(comparison, "p-" + Proyeccion299.GRANDMOTHER);
+        assertTrue(grandmother.isReturns(), "R003: «My grandmother ___ (come) every year.» returns");
+        assertTrue(text.contains("p-" + Proyeccion299.GRANDMOTHER + " · QUIZ " + Proyeccion299.GRANDMOTHER
+                + " · lemma-absence · palabra de otro nivel: grandmother es A2"), "R003: with its reason: " + text);
+        for (String other : List.of(Proyeccion299.OURSELVES, Proyeccion299.VEGETABLES, Proyeccion299.HATS)) {
+            assertFalse(change(comparison, "p-" + other).isReturns(), "R003: " + other + " does not return");
+        }
+        assertEquals(VerdictKind.FAILS, comparison.getVerdict().getKind(), "R008: a node returns");
+        assertEquals(List.of("p-" + Proyeccion299.GRANDMOTHER), comparison.getVerdict().getReturningProposalIds());
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: José fija las metas antes de la tanda... → El operador pide la comparación de la... → La comparación muestra el cambio de m... [La medida de un analizador cambió desde la línea base] → La comparación revisa los hallazgos d... → La comparación evalúa los pisos de ca... [Ningún nodo cambiado ganó un hallazgo que cuenta] → La comparación lista los cambios que ... [Un piso de nivel o de curso no se cumple] → failure")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void path2_laMedidaDeUnAnalizadorCambiDesdeLaLneaBase_ningnNodoCambiadoGanUnHallazgoQueCuenta_unPisoDeNivelODeCursoNoSeCumple_failure(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // José declares, besides his floors, that the length does not drop in any level; the batch makes one A1
+        // sentence too long, which no analyzer counts against the change.
+        Proyeccion299.Workdir work = tanda(LARGO, LENGTH_FLOOR);
+        sealGoals(work, Proyeccion299.TODAYS_BANDS);
+
+        BatchComparison comparison = work.comparator(Proyeccion299.TODAYS_BANDS).compare(Proyeccion299.COURSE, null);
+
+        assertEquals(List.of("lemma-count"), comparison.getMeasureChanges().stream().map(MeasureChange::getAnalyzer)
+                .toList(), "R007: the measure changed");
+        assertTrue(comparison.getChanges().stream().noneMatch(ChangeOutcome::isReturns),
+                "R003: the length never returns a change");
+        FloorBreach breach = breach(comparison, "el largo no baja en ningún nivel", Proyeccion299.LEVELS.get(0));
+        assertEquals(GoalStatus.NOT_MET, breach.getRow().getFloor().getStatus(), "R005: the floor of A1 breaks");
+        assertEquals("p-largo", breach.getAttributions().get(0).getProposalId(),
+                "R004: the change that breaks it, first");
+        assertTrue(breach.getAttributions().get(0).getEffect() < 0, "R004: with how much it lowers it alone");
+        assertTrue(breach.getAttributions().stream().noneMatch(a -> ("p-" + Proyeccion299.OURSELVES)
+                .equals(a.getProposalId())), "R004: a change that does not move it is not named");
+        assertEquals(VerdictKind.FAILS, comparison.getVerdict().getKind());
+        assertTrue(comparison.getVerdict().getBrokenFloorGoalIds().contains("el largo no baja en ningún nivel"));
+        assertTrue(row(comparison, "vocabulario", "root").getRemeasuredBaseline() != null,
+                "R007: and the batch is counted from the baseline measured again");
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: José fija las metas antes de la tanda... → El operador pide la comparación de la... → La comparación muestra el cambio de m... [La medida de un analizador cambió desde la línea base] → La comparación revisa los hallazgos d... → La comparación evalúa los pisos de ca... [Ningún nodo cambiado ganó un hallazgo que cuenta] → El veredicto es falta la muestra cieg... [Todos los pisos se cumplen] → success")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void path3_laMedidaDeUnAnalizadorCambiDesdeLaLneaBase_ningnNodoCambiadoGanUnHallazgoQueCuenta_todosLosPisosSeCumplen_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Proyeccion299.Workdir work = tanda(LAS_TRES, null);
+        sealGoals(work, Proyeccion299.TODAYS_BANDS);
+        Map<String, String> course = AnalyzeCmdTest.Base299.hashes(Proyeccion299.COURSE);
+        Map<String, String> artifacts = work.hashes(".content-audit/revisions");
+        Map<String, String> history = work.hashes(".content-audit/audits");
+
+        BatchComparison comparison = work.comparator(Proyeccion299.TODAYS_BANDS).compare(Proyeccion299.COURSE, null);
+
+        assertEquals(1, comparison.getMeasureChanges().size(), "R007: the measure changed");
+        for (String level : Proyeccion299.LEVELS) {
+            ComparisonRow row = row(comparison, "vocabulario", level);
+            assertEquals(GoalStatus.MET, row.getFloor().getStatus(),
+                    "R007: counted from the baseline measured again, no level breaks: " + row.getLabel());
+        }
+        assertTrue(comparison.getBreaches().isEmpty(), "R005: every floor holds");
+        assertEquals(VerdictKind.BLIND_SAMPLE_MISSING, comparison.getVerdict().getKind(), "R008: only the sample is missing");
+
+        // esperar_muestra: José answers the blind sample of the batch, and it meets its goal.
+        BlindSampleService samples = work.blindSample(Proyeccion299.TODAYS_BANDS);
+        BlindSample sample = samples.draw(Proyeccion299.COURSE, null, 20261001L);
+        answerAll(samples, sample, "José", false);
+        assertTrue(samples.close(sample.getSampleId()).isMeetsGoal());
+        BatchComparison answered = work.comparator(Proyeccion299.TODAYS_BANDS).compare(Proyeccion299.COURSE, null);
+        assertEquals(VerdictKind.PASSES, answered.getVerdict().getKind(), "R008: answered and in goal, it passes");
+        assertEquals(course, AnalyzeCmdTest.Base299.hashes(Proyeccion299.COURSE), "R009: the course as it was");
+        assertEquals(artifacts, work.hashes(".content-audit/revisions"), "R009: the proposals as they were");
+        assertEquals(history, work.hashes(".content-audit/audits"), "R009: the history as it was");
     }
 
     @Test
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: José fija las metas antes de la tanda... → El operador pide la comparación de la... → La comparación revisa los hallazgos d... [Todas las medidas son las mismas] → La comparación lista los nodos que vu... [Algún nodo cambiado ganó un hallazgo que cuenta y no tenía] → failure")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void path4_todasLasMedidasSonLasMismas_algnNodoCambiadoGanUnHallazgoQueCuentaYNoTena_failure(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Proyeccion299.Workdir work = tanda(LAS_CUATRO, null);
+        sealGoals(work, Proyeccion299.BANDS_OF_29_9);
+
+        BatchComparison comparison = work.comparator(Proyeccion299.BANDS_OF_29_9).compare(Proyeccion299.COURSE, null);
+
+        assertTrue(comparison.getMeasureChanges().isEmpty(), "R007: the same measures");
+        assertEquals("73,92", Proyeccion299.percent(row(comparison, "vocabulario", "root").getProjected().getValue()));
+        assertEquals(0.0, row(comparison, "vocabulario", "root").getChange(), 0.005, "R001: the course does not move");
+        ComparisonRow regular = row(comparison, "lemma-absence", Proyeccion299.REGULAR_AFFIRMATIVES);
+        assertEquals(-0.5, regular.getChange(), 0.005, "R001: «Afirmativas regulares» −0,5 points");
+        assertTrue(change(comparison, "p-" + Proyeccion299.GRANDMOTHER).isReturns(), "R003: grandmother returns");
+        assertEquals(VerdictKind.FAILS, comparison.getVerdict().getKind());
+
+        // The same, through the verb of the CLI.
+        AnalyzeCmdTest.Base299.Captured compared = Proyeccion299.capture(() -> new CommandLine(new CompareCmd(
+                new DefaultCompareCommand(work.comparator(Proyeccion299.BANDS_OF_29_9),
+                        new DefaultBatchComparisonFormatter()))).execute(Proyeccion299.COURSE.toString()));
+        assertEquals(0, compared.exit(), compared.err());
+        assertTrue(compared.out().contains("Veredicto: NO PASA"), compared.out());
+        assertTrue(compared.out().contains("Afirmativas regulares · lemma-absence: 100,0 → 99,5 (−0,5 puntos)"),
+                compared.out());
     }
 
     @Test
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: José fija las metas antes de la tanda... → El operador pide la comparación de la... → La comparación revisa los hallazgos d... [Todas las medidas son las mismas] → La comparación evalúa los pisos de ca... [Ningún nodo cambiado ganó un hallazgo que cuenta] → La comparación lista los cambios que ... [Un piso de nivel o de curso no se cumple] → failure")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void path5_todasLasMedidasSonLasMismas_ningnNodoCambiadoGanUnHallazgoQueCuenta_unPisoDeNivelODeCursoNoSeCumple_failure(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Proyeccion299.Workdir work = tanda(LARGO, LENGTH_FLOOR);
+        sealGoals(work, Proyeccion299.BANDS_OF_29_9);
+
+        BatchComparison comparison = work.comparator(Proyeccion299.BANDS_OF_29_9).compare(Proyeccion299.COURSE, null);
+
+        assertTrue(comparison.getMeasureChanges().isEmpty(), "R007: the same measures");
+        assertTrue(comparison.getChanges().stream().noneMatch(ChangeOutcome::isReturns), "R003: nothing returns");
+        FloorBreach breach = breach(comparison, "el largo no baja en ningún nivel", Proyeccion299.LEVELS.get(0));
+        List<ChangeAttribution> attributions = breach.getAttributions();
+        assertEquals(List.of("p-largo"), attributions.stream().map(ChangeAttribution::getProposalId).toList(),
+                "R004: the long sentence, the only change that moves the length of A1");
+        assertEquals(breach.getRow().getChange(), attributions.get(0).getEffect(), 1e-6,
+                "R004: alone, it lowers it as much as the whole batch");
+        assertEquals(VerdictKind.FAILS, comparison.getVerdict().getKind());
     }
 
     @Test
     @Order(6)
     @Tag("path-6")
     @DisplayName("path-6: José fija las metas antes de la tanda... → El operador pide la comparación de la... → La comparación revisa los hallazgos d... [Todas las medidas son las mismas] → La comparación evalúa los pisos de ca... [Ningún nodo cambiado ganó un hallazgo que cuenta] → El veredicto es falta la muestra cieg... [Todos los pisos se cumplen] → success")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void path6_todasLasMedidasSonLasMismas_ningnNodoCambiadoGanUnHallazgoQueCuenta_todosLosPisosSeCumplen_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Proyeccion299.Workdir work = tanda(LAS_TRES, null);
+        sealGoals(work, Proyeccion299.BANDS_OF_29_9);
+        Map<String, String> course = AnalyzeCmdTest.Base299.hashes(Proyeccion299.COURSE);
+
+        BatchComparison comparison = work.comparator(Proyeccion299.BANDS_OF_29_9).compare(Proyeccion299.COURSE, null);
+
+        assertTrue(comparison.getMeasureChanges().isEmpty(), "R007: the same measures");
+        assertTrue(comparison.getChanges().stream().noneMatch(ChangeOutcome::isReturns), "R003: nothing returns");
+        assertTrue(comparison.getBreaches().isEmpty(), "R005: every floor holds");
+        assertEquals(VerdictKind.BLIND_SAMPLE_MISSING, comparison.getVerdict().getKind());
+        assertEquals(course, AnalyzeCmdTest.Base299.hashes(Proyeccion299.COURSE), "R009: comparing writes nothing");
+    }
+
+    @TempDir
+    Path tmp;
+
+    /** The four proposals of the 077 for «Afirmativas regulares»; «grandmother» returns. */
+    private static final List<String> LAS_CUATRO = List.of(Proyeccion299.GRANDMOTHER, Proyeccion299.OURSELVES,
+            Proyeccion299.VEGETABLES, Proyeccion299.HATS);
+
+    /** The same batch without the grandmother proposal: nothing a today's analyzer sees. */
+    private static final List<String> LAS_TRES = List.of(Proyeccion299.OURSELVES, Proyeccion299.VEGETABLES,
+            Proyeccion299.HATS);
+
+    /** «We ___ (know) each other.» and the vegetables made too long for A1. */
+    private static final List<String> LARGO = List.of(Proyeccion299.OURSELVES, "largo");
+
+    /** José's floor of the length: it does not drop in any level. */
+    private static final String LENGTH_FLOOR = """
+            {"id": "el largo no baja en ningún nivel", "kind": "FLOOR", "subject": "sentence-length",
+             "nodeTarget": "MILESTONE", "nodeId": null, "threshold": 0, "unit": "POINTS", "reference": "BASELINE",
+             "origin": "DECLARED"}""";
+
+    /**
+     * The base of 29/9 (lemma-count at «4 para todas») as the active analysis and as the baseline, its plan with
+     * the pending proposals of the batch -- the 077 fixes of «Afirmativas regulares» and, for «largo», the
+     * vegetables made too long --, and José's goals of analysis/metas.json, with one floor more when given.
+     */
+    private Proyeccion299.Workdir tanda(List<String> proposals, String extraGoal) {
+        Proyeccion299.Workdir work = new Proyeccion299.Workdir(tmp.resolve("trabajo"));
+        String audit = work.analyze("2026-09-30T11-54-02", Proyeccion299.BANDS_OF_29_9);
+        String plan = work.plan("2026-09-30T11-54-12", audit);
+        CourseEntity course = Proyeccion299.repository().load(Proyeccion299.COURSE);
+        for (String id : proposals) {
+            if ("largo".equals(id)) {
+                QuizTemplateEntity before = Proyeccion299.quiz(course, Proyeccion299.VEGETABLES);
+                QuizTemplateEntity after = Proyeccion299.rewritten(before, "I", "love",
+                        "vegetables and fruit, and I eat them with my mother and my father every day.",
+                        Proyeccion299.LONG_VEGETABLES, "Me encantan las verduras y la fruta, y las como con mi mamá y "
+                                + "mi papá todos los días.");
+                work.seed(Proyeccion299.pending("p-largo", plan, audit, before, after,
+                        Instant.parse("2026-09-30T12:00:03Z")));
+                continue;
+            }
+            QuizTemplateEntity before = Proyeccion299.quiz(course, id);
+            work.seed(Proyeccion299.pending("p-" + id, plan, audit, before, Proyeccion299.fixed(before),
+                    Proyeccion299.createdAt(id)));
+        }
+        work.activate(audit, plan);
+        work.fixBaseline(audit);
+        try {
+            String goals = Files.readString(Path.of("../analysis/metas.json"), StandardCharsets.UTF_8);
+            if (extraGoal != null) {
+                goals = goals.replaceFirst("\"goals\"\\s*:\\s*\\[", "\"goals\": [" + extraGoal + ",");
+            }
+            work.declareGoals(goals);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+        return work;
+    }
+
+    /** José seals the goals before the batch, with set-goals. */
+    private static void sealGoals(Proyeccion299.Workdir work, String lemmaCount) {
+        AnalyzeCmdTest.Base299.Captured sealed = Proyeccion299.capture(() -> new DefaultGoalsCommand(
+                work.goalBook(lemmaCount)).setGoals("text"));
+        assertEquals(0, sealed.exit(), sealed.err());
+        assertTrue(sealed.out().startsWith("Goals sealed at "), sealed.out());
+    }
+
+    /** Whoever answers every pair: the after when {@code worseFirst} is false; the before in the first pair if true. */
+    static void answerAll(BlindSampleService samples, BlindSample sample, String reviewer, boolean worseFirst) {
+        for (BlindPair pair : sample.getPairs()) {
+            boolean after = !(worseFirst && pair.getIndex() == 1);
+            BlindSide side = after ? pair.getAfterSide() : (pair.getAfterSide() == BlindSide.A ? BlindSide.B : BlindSide.A);
+            samples.answer(sample.getSampleId(), pair.getIndex(), side == BlindSide.A ? PairAnswer.A_BETTER
+                    : PairAnswer.B_BETTER, reviewer);
+        }
+    }
+
+    private static ComparisonRow row(BatchComparison comparison, String subject, String nodeId) {
+        return comparison.getRows().stream().filter(r -> subject.equals(r.getSubject()) && nodeId.equals(r.getNodeId()))
+                .findFirst().orElseThrow(() -> new AssertionError("no row of " + subject + " in " + nodeId));
+    }
+
+    private static ChangeOutcome change(BatchComparison comparison, String proposalId) {
+        return comparison.getChanges().stream().filter(c -> proposalId.equals(c.getProposalId())).findFirst()
+                .orElseThrow(() -> new AssertionError("no change " + proposalId));
+    }
+
+    private static FloorBreach breach(BatchComparison comparison, String goalId, String nodeId) {
+        return comparison.getBreaches().stream().filter(b -> goalId.equals(b.getGoalId())
+                        && nodeId.equals(b.getRow().getNodeId())).findFirst()
+                .orElseThrow(() -> new AssertionError("no breach of " + goalId + " in " + nodeId + " among "
+                        + comparison.getBreaches().stream().map(b -> b.getGoalId() + "@" + b.getRow().getLabel()).toList()));
     }
 }
