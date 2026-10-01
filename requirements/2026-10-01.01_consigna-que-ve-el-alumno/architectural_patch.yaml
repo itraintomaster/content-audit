@@ -5,7 +5,10 @@ description: "El juez de consigna lee el ejercicio como lo ve el alumno (F-CALUM
   \ que decían que el juez lee la etiqueta y la consigna del tema, o el formato interno\
   \ del curso, o que un curso juzgado antes se resuelve sin consultar (F-JEXAM-R007,\
   \ que FEAT-CALUM deja sin efecto), se borran con su nombre viejo y se agregan con\
-  \ el que dice lo nuevo."
+  \ el que dice lo nuevo. R003: el contexto de la corrección suma quizInstructions,\
+  \ la consigna de la copia, y el corrector la recibe como lo que tiene que cumplir;\
+  \ la etiqueta y la consigna del tema quedan como contexto, con su descripción al\
+  \ día."
 modules:
 - name: audit-domain
   packages:
@@ -144,6 +147,53 @@ modules:
         traceability:
           feature: FEAT-CALUM
           rule: F-CALUM-R002
+      _change: modify
+    _change: modify
+  _change: modify
+- name: refiner-domain
+  models:
+  - name: QuizInstructionCorrectionContext
+    type: record
+    fields:
+    - name: knowledgeTitle
+      type: String
+      description: "Etiqueta del knowledge: la lección, como contexto. Lo que el ejercicio\
+        \ tiene que cumplir es quizInstructions (F-CALUM-R003)."
+      _change: modify
+    - name: knowledgeInstructions
+      type: String
+      description: "Instructions del knowledge, como contexto: no es lo que el corrector\
+        \ tiene que cumplir (F-CALUM-R003). Nullable."
+      _change: modify
+    - name: quizInstructions
+      type: String
+      description: "La consigna de la copia del ejercicio: la que muestra la app,\
+        \ la que lee el juez de consigna (F-CALUM-R001) y la que tiene que cumplir\
+        \ el corrector (F-CALUM-R003). Nullable."
+      _change: add
+    _change: modify
+  implementations:
+  - name: QuizInstructionContextResolver
+    handwrittenTests:
+    - name: "should resolve a correction context carrying the instructions of the\
+        \ quiz copy, the ones the student sees and the judge reads, apart from the\
+        \ knowledge's"
+      traceability:
+        feature: FEAT-CALUM
+        rule: F-CALUM-R003
+    _change: modify
+  _change: modify
+- name: revision-infrastructure
+  packages:
+  - name: quizinstructionagent
+    implementations:
+    - name: QuizInstructionAgentGenerator
+      handwrittenTests:
+      - name: "should hand the correction agent, as the instructions it must comply\
+          \ with, those of the quiz copy and never the knowledge's"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R003
       _change: modify
     _change: modify
   _change: modify

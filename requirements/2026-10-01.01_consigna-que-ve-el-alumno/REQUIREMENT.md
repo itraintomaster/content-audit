@@ -17,7 +17,8 @@ los otros cuatro jueces:
 - las respuestas aceptadas de cada hueco;
 - en la opción múltiple, sus opciones con la correcta marcada.
 
-El nivel y el topic siguen como contexto. Vale igual en `revise-instructions`, para el original y para el candidato.
+El nivel y el topic siguen como contexto. Vale igual en `revise-instructions`, para el original y para el candidato, y
+el corrector que arma el candidato apunta a esa misma consigna.
 
 **Por qué**: La app muestra la consigna de la copia y el juez leía la del tema. En la base del 29/9 difieren en 9.923 de
 11.287 ejercicios, así que el juez marcaba ejercicios por una consigna que el alumno nunca ve. Es la regla de José para
@@ -32,7 +33,8 @@ Cómo quien revisa el curso usa hoy al juez de consigna:
    otra cosa que la de la copia.
 2. Corre `analyze` con tope para el juez → ⚠️ lo mismo sobre el curso: el veredicto habla de una consigna que el alumno
    no ve.
-3. Corre `revise-instructions` → ⚠️ el original y cada candidato se verifican contra la consigna del tema.
+3. Corre `revise-instructions` → ⚠️ el corrector arma cada candidato para la consigna del tema, y el original y el
+   candidato se verifican contra esa misma consigna, que el alumno no ve.
 4. Lee el hallazgo de un ejercicio que incumple → la ficha ya dice que el juez mira «el ejercicio como lo ve el alumno»
    ([F-HALL-R006](#F-HALL-R006)). ⚠️ Hoy no es cierto.
 
@@ -40,7 +42,9 @@ Cómo quien revisa el curso usa hoy al juez de consigna:
 
 **Cambio mínimo necesario**:
 - el constructor del sujeto del juez de consigna recibe el renderizador del alumno, como los de los otros cuatro;
-- los dos lugares de `revise-instructions` que arman la vista del ejercicio le pasan el título y la consigna de su copia.
+- los dos lugares de `revise-instructions` que arman la vista del ejercicio le pasan el título y la consigna de su copia;
+- el contexto de la corrección lleva la consigna de la copia en un campo propio, y el corrector la recibe como la
+  consigna que tiene que cumplir.
 
 ## Reglas de Negocio
 
@@ -91,8 +95,31 @@ Reemplaza la fuente de la etiqueta y la consigna en [F-QINST-R009](#F-QINST-R009
 > alumno y con el título y la consigna de su propia copia, igual que en `analyze`. Invariante: el mismo ejercicio da el
 > mismo contenido por los dos caminos ([F-QICOR-R005](#F-QICOR-R005)).
 
-El corrector que arma los candidatos sigue recibiendo la consigna del tema: alinearlo queda fuera de este requirement
-([DOUBT-CALUM-CORRECTOR](#DOUBT-CALUM-CORRECTOR)).
+<a id="F-CALUM-R003"></a>
+### Rule[F-CALUM-R003] - El corrector de consignas apunta a la consigna que ve el alumno
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> El contexto de una corrección de consigna lleva la consigna de la copia del ejercicio, la que muestra la app y lee el
+> juez, en un campo propio. El corrector la recibe como la consigna que tiene que cumplir. Invariantes:
+> 1. el corrector nunca recibe la consigna del tema como lo que hay que cumplir;
+> 2. cada nombre dice de dónde sale su valor: la consigna de la copia nunca viaja con el nombre de la del tema, ni al
+>    revés;
+> 3. la etiqueta y la consigna del tema siguen en el contexto, como contexto: la lección para el corrector y lo que
+>    hoy reciben los criterios del candidato.
+
+Contesta [DOUBT-CALUM-CORRECTOR](#DOUBT-CALUM-CORRECTOR) con la opción B. Con R001 y R002, el corrector, el juez y la
+verificación del candidato leen la misma consigna.
+
+<details><summary>Detalle y casos del curso</summary>
+
+En la base del 29/9 hay 413 temas:
+- 113 temas, con 4.923 ejercicios, tienen copias con consignas distintas entre sí: ninguna consigna del tema puede ser
+  la de todas sus copias;
+- de los otros 300, en 245 la única consigna de las copias es otra que la del tema.
+
+Por eso igualar el dato no alcanza para alinear al corrector con el juez.
+
+</details>
 
 ## Dudas
 
@@ -101,13 +128,17 @@ El corrector que arma los candidatos sigue recibiendo la consigna del tema: alin
 El corrector recibe la consigna del tema para armar el candidato, y el juez lo verifica contra la de su copia. Cuando las
 dos difieren, un candidato bien armado para el tema puede no pasar.
 
-- [ ] Opción A (recomendada): igualar el dato, la opción A de
-  [DOUBT-CONSIGNA-QUE-VE-EL-ALUMNO](#DOUBT-CONSIGNA-QUE-VE-EL-ALUMNO), que ya está decidida. Con las dos consignas
-  iguales, la duda desaparece sin tocar el corrector.
-- [ ] Opción B: que el corrector reciba la consigna de la copia, con otro requirement de FEAT-QICOR.
+- [ ] Opción A: igualar el dato, la opción A de
+  [DOUBT-CONSIGNA-QUE-VE-EL-ALUMNO](#DOUBT-CONSIGNA-QUE-VE-EL-ALUMNO). No alcanza: en 113 temas las copias tienen
+  consignas distintas entre sí.
+- [x] Opción B (recomendada): que el corrector reciba la consigna de la copia, la misma que lee el juez.
 - [ ] Opción C: dejarlo así: `revise-instructions` no corre en la ronda 1.
 
-**Status**: OPEN
+**Status**: RESOLVED (2026-10-01)
+
+**Answer**: **Opción B** (coordinador, 1/10): el corrector recibe la consigna de la copia, con un nombre que no
+mienta, en este mismo requirement ([F-CALUM-R003](#F-CALUM-R003)). Igualar el dato queda como limpieza aparte, para la
+mesa.
 
 ## Contexto
 
@@ -125,9 +156,10 @@ dos difieren, un candidato bien armado para el tema puede no pasar.
 
 ## Alcance
 
-- **Adentro**: R001 y R002.
+- **Adentro**: R001, R002 y R003.
 - **Afuera**:
-  - el corrector de `revise-instructions` ([DOUBT-CALUM-CORRECTOR](#DOUBT-CALUM-CORRECTOR));
+  - igualar la consigna de cada tema a la de sus copias, que es limpieza de datos para la mesa;
+  - el juez de candidatos de `revise-instructions` (candidate-judgment), que sigue recibiendo la consigna del tema;
   - volver a rendir el examen, que espera el OK de José;
   - el oro del examen, que es del coordinador.
 
@@ -136,5 +168,6 @@ dos difieren, un candidato bien armado para el tema puede no pasar.
 - **FEAT-QINST** — La identidad por contenido y el ejercicio sin consigna: R009 y R014.
 - **FEAT-JEXAM** — El freno del examen, el tope 0 por omisión y lo que leía el juez: R003, R007 y R010.
 - **FEAT-RONDA1** — La vista del alumno: R001.
-- **FEAT-QICOR** — El mismo criterio para el candidato que para el análisis: R005.
+- **FEAT-QICOR** — El mismo criterio para el candidato que para el análisis, y lo que recibe el corrector: R002 y
+  R005.
 - **FEAT-HALL** — La ficha del juez: R006.

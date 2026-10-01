@@ -4,6 +4,21 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (C) — R003 sumado al mismo parche, propuesto y sin aplicar.
+  - Antes del propose, copia de la carpeta en content-audit-corridas/2026-10-01-consigna-alumno/backup-antes-de-R003
+    (bug 08 de Sentinel).
+  - El propose fue con --replace y el parche entero, sin fusión. Comparado con la copia, no se perdió nada; propose
+    sólo agregó `type: record` al modelo.
+  - `patch validate`: 0 altas, 13 cambios, 0 conflictos, contra la rama y contra ronda2/integracion (d80f7f6a).
+  - Ensayado entero en copias descartables:
+    - en la rama: VERIFY OK y 2.411 pruebas en verde (las dos nuevas de R003 incluidas);
+    - en ronda2: VERIFY OK y las mismas 68 líneas en rojo que ronda2 ya tenía, ninguna nueva.
+  - generate rellena con null la construcción de main (el resolvedor). A mano quedan 7 construcciones de prueba del
+    contexto: llevan la consigna del tema como la de la copia, igual que antes.
+  - El kit de content-audit-corridas/2026-10-01-consigna-alumno ya trae R003: cuerpos.diff (32 archivos) y la
+    definición de los dos agentes. La versión del juez de consigna no cambia por R003: 53fabe0d….
+  Next: el coordinador junta ronda2, aplica y genera; después entran los cuerpos y las definiciones.
+
 2026-10-01 — developer (C) — Validado contra ronda2/integracion (d80f7f6a), la línea principal nueva.
   - `patch validate -i sentinel.yaml` sobre una copia descartable de ronda2: 0 altas, 8 cambios, 0 conflictos.
   - Ensayado ahí el aterrizaje entero: apply, generate, cuerpos y definición. VERIFY OK, y las mismas 68 líneas en

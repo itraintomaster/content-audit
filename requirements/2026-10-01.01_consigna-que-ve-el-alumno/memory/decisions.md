@@ -5,6 +5,15 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — architect (C) — R003 suma un campo, quizInstructions, en vez de renombrar knowledgeInstructions.
+  Cambiarle el contenido a knowledgeInstructions dejaba un nombre de tema con un valor de copia. Renombrarlo arrastraba
+  la mentira a CandidateAssessmentInput y al juez de candidatos, que siguen con la consigna del tema y quedan afuera.
+  La etiqueta y la consigna del tema siguen como contexto, con la descripción al día. El corrector recibe
+  quizInstructions y deja de recibir knowledgeInstructions; la lección sigue siendo knowledgeTitle.
+2026-10-01 — analyst (C) — DOUBT-CALUM-CORRECTOR, resuelta con la B (coordinador): el corrector apunta a la consigna
+  de la copia. Igualar el dato no alcanza: en 113 de 413 temas las copias tienen consignas distintas entre sí. Igualar
+  queda como limpieza aparte, para la mesa.
+
 2026-10-01 — architect (C) — El constructor del sujeto del juez de consigna recibe QuizStudentViewRenderer inyectado
   (requiresInject), como los de los otros cuatro jueces, y las dos fábricas que lo crean también: la del análisis y la
   de los candidatos de revise-instructions. No se pasa por parámetro ni se arma adentro.
