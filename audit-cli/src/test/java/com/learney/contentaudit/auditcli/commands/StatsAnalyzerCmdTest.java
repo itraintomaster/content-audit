@@ -287,8 +287,28 @@ public class StatsAnalyzerCmdTest {
     @DisplayName("should show with stats analyzer lemma-recurrence the data of each lemma and each level read from the course diagnosis of the report")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
-    public void shouldShowWithStatsAnalyzerLemmarecurrenceTheDataOfEachLemmaAndEachLevelReadFromTheCourseDiagnosisOfTheReport() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldShowWithStatsAnalyzerLemmarecurrenceTheDataOfEachLemmaAndEachLevelReadFromTheCourseDiagnosisOfTheReport() throws Exception {
+        // F-RECUR-R003: stats analyzer lemma-recurrence over the 29/9 course shows, next to its stats, each
+        // lemma and each level as the course diagnosis of the report publishes them, as Main wires it (D-15).
+        AnalyzerCatalog catalog = new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(
+                Base299.classicProviders());
+        StatsAnalyzerCmd cmd = new StatsAnalyzerCmd(new DefaultAnalyzerRegistry(catalog),
+                new DefaultAnalyzerStatsTransformer(), Base299.runner(catalog),
+                Map.of("lemma-recurrence", new com.learney.contentaudit.auditcli.formatting.LemmaRecurrenceDetailedFormatter()));
+
+        Base299.Captured text = Base299.run(cmd, "analyzer", "lemma-recurrence", Base299.COURSE.toString());
+        Base299.Captured json = Base299.run(cmd, "analyzer", "lemma-recurrence", Base299.COURSE.toString(), "-f", "json");
+
+        assertEquals(0, text.exit(), text.err());
+        assertTrue(text.out().matches("(?s).*movie\\s+90\\s+1\\.005\\s+poco vista\\s+1\\.083\\s+6\\.510, de A1 a A2.*"),
+                "R003: each lemma, movie among them: " + text.out().substring(0, Math.min(2000, text.out().length())));
+        assertTrue(text.out().matches("(?s).*A1\\s+15\\.802\\s+450\\s+178\\s+257\\s+15\\s+39,6 %.*"),
+                "R004: each level, A1 among them");
+        assertEquals(0, json.exit(), json.err());
+        JsonNode detail = new ObjectMapper().readTree(json.out()).get("detail");
+        assertEquals(1750, detail.get("lemmas").size(), "R003: the 1,750 analysed lemmas of the diagnosis");
+        assertEquals(0.08, detail.get("score").asDouble(), 1e-12);
+        assertEquals(List.of("A1", "A2", "B1", "B2"), java.util.stream.StreamSupport.stream(detail.get("levels")
+                .spliterator(), false).map(level -> level.get("level").asText()).toList(), "R004: the four levels");
     }
 }

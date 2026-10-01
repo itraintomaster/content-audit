@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain;
-import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
@@ -1237,18 +1238,36 @@ public class IAuditEngineTest {
     @DisplayName("should keep the course vocabulary score at 73.92% with lemma-recurrence at 0.08 publishing its course diagnosis, on the published scores of the analysis of 29/9")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R001")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldKeepTheCourseVocabularyScoreAt7392WithLemmarecurrenceAt008PublishingItsCourseDiagnosisOnThePublishedScoresOfTheAnalysisOf299() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-RECUR-R001: lemma-recurrence run over the 91,873 positions of the 29/9 course gives 0,08 and
+        // publishes its course diagnosis and its 1,616 findings; next to the six other scores published on
+        // 29/9 the vocabulary of the course stays at 73,92 %.
+        AuditReport report = recurrenceRun299();
+
+        assertEquals(0.08, report.getRoot().getScores().get("lemma-recurrence"), 1e-12, "R001: 0,08, as before");
+        assertEquals(1750, ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaRecurrenceDiagnosis().orElseThrow()
+                .getResult().getLemmaStats().size(), "R003: its course diagnosis, with the 1,750 returning lemmas");
+        assertEquals(1616, report.getRoot().getFindings().stream()
+                .filter(f -> "lemma-recurrence".equals(f.getAnalyzer())).count(), "R005: its findings, in the course");
+        assertEquals("73,92", percent2(report.getRoot().getNumbers().getVocabularyScore()), "R001: 73,92 %");
     }
 
     @Test
     @DisplayName("should keep the vocabulary score of every level at 96.54, 94.16, 79.45 and 63.51 with the recurrence of each level published as detail")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldKeepTheVocabularyScoreOfEveryLevelAt965494167945And6351WithTheRecurrenceOfEachLevelPublishedAsDetail() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-RECUR-R004 (DOUBT-PUNTAJE-POR-NIVEL, A): the recurrence of each level travels as detail of the
+        // course diagnosis, so the vocabulary of the levels stays at 96,54 · 94,16 · 79,45 · 63,51.
+        AuditReport report = recurrenceRun299();
+
+        assertEquals(List.of("96,54", "94,16", "79,45", "63,51"), levelVocabulary(report), "R004: A1 to B2");
+        assertEquals(4, ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaRecurrenceDiagnosis().orElseThrow()
+                .getLevels().size(), "R004: the recurrence of each level, published as detail");
+        for (AuditNode level : report.getRoot().getChildren()) {
+            assertFalse(level.getScores().containsKey("lemma-recurrence"), "R004: never a score of "
+                    + level.getEntity().getLabel());
+        }
     }
 
     // ------------------------------------------------------------------
@@ -1565,5 +1584,80 @@ public class IAuditEngineTest {
     private static List<String> findingKeys(AuditNode node, String analyzer) {
         return node.getFindings().stream().filter(f -> analyzer.equals(f.getAnalyzer()))
                 .map(f -> f.getIdentity().getKey() + " " + f.getEvidence().getObservation()).toList();
+    }
+
+    // ------------------------------------------------------------------
+    // Package D: lemma-recurrence over the 29/9 course
+    // ------------------------------------------------------------------
+
+    private static AuditReport recurrenceRun299;
+
+    /** lemma-recurrence for real over the 29/9 course, next to the six other scores it published. */
+    private static synchronized AuditReport recurrenceRun299() {
+        if (recurrenceRun299 == null) {
+            LemmaRecurrenceConfig config = new LemmaRecurrenceConfig() {
+                @Override
+                public int getTop() {
+                    return 2000;
+                }
+
+                @Override
+                public double getSubExposedThreshold() {
+                    return 1000.0;
+                }
+
+                @Override
+                public double getOverExposedThreshold() {
+                    return 50.0;
+                }
+
+                @Override
+                public Map<String, Object> describe() {
+                    return Map.of();
+                }
+            };
+            recurrenceRun299 = realEngine(onPublished299(
+                    new com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzerProvider(config)))
+                    .runAudit(streamCourseOf299());
+        }
+        return recurrenceRun299;
+    }
+
+    /**
+     * The 11,287 quizzes of the 29/9 course, in order, under their levels and knowledges, with the lemma
+     * and part of speech of each of their 91,873 tokens, as the analysis 2026-09-30T11-54-02 had them.
+     */
+    private static AuditableCourse streamCourseOf299() {
+        Map<String, Map<String, List<AuditableQuiz>>> byLevel = new LinkedHashMap<>();
+        try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(
+                new java.util.zip.GZIPInputStream(IAuditEngineTest.class.getResourceAsStream(
+                        "/recur-2026-09-30/stream.tsv.gz")), java.nio.charset.StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split("\\t", -1);
+                List<NlpToken> tokens = new ArrayList<>();
+                for (int i = 3; i < fields.length; i++) {
+                    int bar = fields[i].lastIndexOf('|');
+                    String pos = fields[i].substring(bar + 1);
+                    tokens.add(new NlpToken(fields[i].substring(0, bar), fields[i].substring(0, bar), pos, null, false,
+                            "PUNCT".equals(pos)));
+                }
+                byLevel.computeIfAbsent(fields[0], l -> new LinkedHashMap<>())
+                        .computeIfAbsent(fields[2], k -> new ArrayList<>())
+                        .add(new AuditableQuiz(tokens, fields[1], fields[1], "Q", null, List.of(), null, null, null, null,
+                                null, null));
+            }
+        } catch (java.io.IOException e) {
+            throw new AssertionError("the 29/9 stream is unreadable", e);
+        }
+        List<AuditableMilestone> milestones = new ArrayList<>();
+        byLevel.forEach((level, knowledges) -> {
+            List<AuditableKnowledge> themes = new ArrayList<>();
+            knowledges.forEach((id, quizzes) -> themes.add(new AuditableKnowledge(quizzes, id, "Consigna", true, id, id,
+                    "K", null, "Topic")));
+            milestones.add(new AuditableMilestone(List.of(new AuditableTopic(themes, "t-" + level, "Topic " + level, "T")),
+                    "m-" + level, level, level));
+        });
+        return new AuditableCourse(milestones);
     }
 }

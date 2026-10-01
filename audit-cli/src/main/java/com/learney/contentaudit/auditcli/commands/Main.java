@@ -628,9 +628,9 @@ class Main {
         LemmaRecurrenceDetailedFormatter lemmaRecurrenceDetailedFormatter = new LemmaRecurrenceDetailedFormatter();
         Map<String, DetailedFormatter> statsDetailedFormatters = new HashMap<>();
 
-        // detailedFormatters.put("lemma-recurrence", lemmaRecurrenceDetailedFormatter);       // D · FEAT-RECUR, pendiente
+        detailedFormatters.put("lemma-recurrence", lemmaRecurrenceDetailedFormatter);          // D · FEAT-RECUR
 
-        // statsDetailedFormatters.put("lemma-recurrence", lemmaRecurrenceDetailedFormatter);  // D · FEAT-RECUR, pendiente
+        statsDetailedFormatters.put("lemma-recurrence", lemmaRecurrenceDetailedFormatter);     // D · FEAT-RECUR
 
         // ----------------------------------------------------------------
         // Step 6: Persistence stores — all constructed with resolved baseDir

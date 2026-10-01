@@ -722,18 +722,42 @@ public class DefaultRefinerEngineTest {
     @DisplayName("should keep a single LEMMA_RECURRENCE task, on the course, and 4,036 tasks in the plan of the analysis of 29/9 with the new lemma-recurrence diagnosis and findings")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R002")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldKeepASingleLEMMARECURRENCETaskOnTheCourseAnd4036TasksInThePlanOfTheAnalysisOf299WithTheNewLemmarecurrenceDiagnosisAndFindings() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-RECUR-R002: with the course diagnosis of lemma-recurrence and its 1,616 findings on the course,
+        // the analysis of 29/9 plans the same 4,036 tasks, with a single LEMMA_RECURRENCE, on the course.
+        AuditNode tree = baseTree();
+        tree.setDiagnoses(recurrenceDiagnosis());
+        tree.setFindings(recurrenceFindings(1616));
+        AuditReport report = new AuditReport(tree);
+
+        List<String> tasks = describe(sut.plan(report, "2026-09-30T11-54-02"));
+
+        Assertions.assertEquals(4036, tasks.size(), "R002: the same 4,036 tasks");
+        Assertions.assertEquals(readLines("plan.tsv.gz"), tasks, "R002: task by task");
+        Assertions.assertEquals(List.of("COURSE\troot"), tasks.stream().filter(t -> t.endsWith("LEMMA_RECURRENCE"))
+                .map(t -> t.substring(0, t.indexOf('\t', t.indexOf('\t') + 1))).toList(),
+                "R002: a single LEMMA_RECURRENCE task, on the course");
     }
 
     @Test
     @DisplayName("should open no task for lemma-recurrence findings, only the course task when its score is below 1")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R002")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldOpenNoTaskForLemmarecurrenceFindingsOnlyTheCourseTaskWhenItsScoreIsBelow1() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-RECUR-R002: its findings never open tasks; the course below 1 opens its one LEMMA_RECURRENCE
+        // task, and a course at 1 none, findings or not.
+        AuditNode below = buildNode(AuditTarget.COURSE, "root", "Curso", new LinkedHashMap<>(Map.of("lemma-recurrence", 0.08)));
+        below.setChildren(new ArrayList<>());
+        below.setFindings(recurrenceFindings(2));
+        AuditNode withoutFindings = buildNode(AuditTarget.COURSE, "root", "Curso",
+                new LinkedHashMap<>(Map.of("lemma-recurrence", 0.08)));
+        withoutFindings.setChildren(new ArrayList<>());
+        AuditNode atOne = buildNode(AuditTarget.COURSE, "root", "Curso", new LinkedHashMap<>(Map.of("lemma-recurrence", 1.0)));
+        atOne.setChildren(new ArrayList<>());
+
+        Assertions.assertEquals(List.of("COURSE root LEMMA_RECURRENCE"), tasksOf(below), "R002: only the course task");
+        Assertions.assertEquals(tasksOf(withoutFindings), tasksOf(below), "the findings add no task");
+        Assertions.assertEquals(List.of(), tasksOf(atOne), "R002: no task at 1");
     }
 
     /** The eight real providers and off-level-words, as Main registers them (its card declares no task). */
@@ -762,5 +786,44 @@ public class DefaultRefinerEngineTest {
         } catch (IOException e) {
             throw new AssertionError("fixture " + resource + " unreadable", e);
         }
+    }
+
+    private List<String> tasksOf(AuditNode course) {
+        return sut.plan(new AuditReport(course), "a").getTasks().stream()
+                .map(t -> t.getNodeTarget() + " " + t.getNodeId() + " " + t.getDiagnosisKind()).toList();
+    }
+
+    /** The course diagnosis lemma-recurrence publishes: here one lemma and one level of detail. */
+    private static com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses recurrenceDiagnosis() {
+        com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses diagnoses =
+                new com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses();
+        diagnoses.setLemmaRecurrenceDiagnosis(new com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceCourseDiagnosis(
+                new com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceResult(List.of(
+                        new com.learney.contentaudit.auditdomain.lrec.LemmaStats("movie", "NOUN", 90, 1005.02, 1082.57,
+                                com.learney.contentaudit.auditdomain.lrec.ExposureStatus.SUB_EXPOSED, List.of(), 6510,
+                                com.learney.contentaudit.auditdomain.CefrLevel.A1,
+                                com.learney.contentaudit.auditdomain.CefrLevel.A2,
+                                List.of(com.learney.contentaudit.auditdomain.CefrLevel.A1))),
+                        new com.learney.contentaudit.auditdomain.lrec.ExposureSummary(134, 1570, 46), 0.08),
+                List.of(new com.learney.contentaudit.auditdomain.lrec.LevelRecurrence(
+                        com.learney.contentaudit.auditdomain.CefrLevel.A1, 15802, 450, 178, 257, 15, 0.396))));
+        return diagnoses;
+    }
+
+    /** n findings of lemma-recurrence on the course, low and rank-only, as F-RECUR-R005 leaves them. */
+    private static List<com.learney.contentaudit.auditdomain.finding.Finding> recurrenceFindings(int n) {
+        List<com.learney.contentaudit.auditdomain.finding.Finding> findings = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            findings.add(new com.learney.contentaudit.auditdomain.finding.Finding("lemma-recurrence", "F-RECUR-R005",
+                    new com.learney.contentaudit.auditdomain.finding.FindingNodeRef(AuditTarget.COURSE, "root", "Curso"),
+                    com.learney.contentaudit.auditdomain.finding.FindingSeverity.LOW,
+                    new com.learney.contentaudit.auditdomain.finding.FindingEvidence(List.of(
+                            new com.learney.contentaudit.auditdomain.finding.EvidencePart("Palabra", "w" + i)),
+                            "w" + i + " vuelve poco", List.of()),
+                    FindingResolution.RANK_ONLY, AnalysisCost.INSTANT,
+                    new com.learney.contentaudit.auditdomain.finding.FindingIdentity(
+                            "lemma-recurrence|F-RECUR-R005|root|w" + i, "w" + i)));
+        }
+        return findings;
     }
 }

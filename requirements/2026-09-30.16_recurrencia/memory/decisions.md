@@ -5,6 +5,13 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (paquete D) — El detalle por nivel usa los mismos umbrales y el mismo tope de 2.000 que el curso,
+  medido con las posiciones de los ejercicios de ese nivel. Regla «F-RECUR-R005» (antes unhealthy-recurrence); cada
+  hallazgo suma «Curso: 8,0 % de las 1.750 palabras analizadas…»; con puntaje menor que 1 y ningún lema fuera de rango
+  (ninguna palabra vuelve) deja un hallazgo de respaldo, para no romper F-HALL-R001.
+2026-09-30 — developer (paquete D) — La prueba F-HALL-R003 de lemma-recurrence pasa de un hallazgo de curso a uno por lema
+  fuera de rango (92 en su curso de prueba), como pide R005.
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): sin cambios de estructura (lugar en CourseDiagnoses y formateador en stats, D-10 y D-15, van en la integración).
 
 2026-09-30 — qa-tester — F-RECUR-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.

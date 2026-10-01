@@ -1,13 +1,41 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+
+import com.learney.contentaudit.auditapplication.DefaultAnalyzerRegistry;
+import com.learney.contentaudit.auditcli.commands.AnalyzeCmdTest.Base299;
+import com.learney.contentaudit.auditcli.formatting.DefaultAnalyzerStatsTransformer;
+import com.learney.contentaudit.auditcli.formatting.LemmaRecurrenceDetailedFormatter;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.LemmaRecurrenceConfig;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceCourseDiagnosis;
+import com.learney.contentaudit.auditdomain.lrec.LemmaStats;
+import com.learney.contentaudit.auditdomain.lrec.LevelRecurrence;
+import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.io.TempDir;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -21,17 +49,162 @@ public class FRecurJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze con lemma-r... → Cada lema analizado trae veces, cada ... → Cada lema poco visto o sobre-expuesto... [El puntaje del curso es menor que 1] → Cada nivel trae su recurrencia como d... → success")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
-    public void path1_elPuntajeDelCursoEsMenorQue1_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path1_elPuntajeDelCursoEsMenorQue1_success(@TempDir Path workdir) {
+        // === Node: analizar ===
+        // Gate: F-RECUR-R001 -- analyze over the 29/9 course with the classic analyzers: lemma-recurrence
+        // keeps its 0,08 with the thresholds of today
+        Analysis analysis = analyze(workdir, Base299.classicProviders().get(4));
+        AuditNode course = analysis.report().getRoot();
+        assertEquals(0.08, course.getScores().get(RECURRENCE), 1e-12, "R001: 0,08");
+
+        // === Node: por_palabra ===
+        // Gate: F-RECUR-R003 -- each analysed lemma with its times, interval, status, deviation, longest gap
+        // and levels, and stats analyzer shows the same
+        LemmaRecurrenceCourseDiagnosis diagnosis = diagnosis(course);
+        LemmaStats movie = diagnosis.getResult().getLemmaStats().stream().filter(s -> s.getLemma().equals("movie"))
+                .findFirst().orElseThrow();
+        assertEquals(List.of("90", "1005", "SUB_EXPOSED", "6510", "A1", "A2", "[A1, A2, B1, B2]"), List.of(
+                String.valueOf(movie.getCount()), String.valueOf(Math.round(movie.getMeanInterval())),
+                movie.getExposureStatus().name(), String.valueOf(movie.getLongestGap()),
+                movie.getLongestGapFromLevel().name(), movie.getLongestGapToLevel().name(), movie.getLevels().toString()),
+                "R003: movie");
+        assertTrue(movie.getStdDevInterval() > 0, "R003: its deviation");
+        Base299.Captured stats = stats(analysis.catalog());
+        assertEquals(0, stats.exit(), stats.err());
+        assertTrue(stats.out().matches("(?s).*movie\\s+90\\s+1\\.005\\s+poco vista\\s+1\\.083\\s+6\\.510, de A1 a A2.*"),
+                "R003: stats analyzer lemma-recurrence shows it");
+
+        // === Node: hallazgos ===
+        // Gate: F-RECUR-R005 -- below 1, one low finding that only orders per lemma out of range, in the course
+        List<Finding> findings = course.getFindings().stream().filter(f -> RECURRENCE.equals(f.getAnalyzer())).toList();
+        assertEquals(1616, findings.size(), "R005: 1,570 under-exposed and 46 over-exposed lemmas");
+        assertTrue(findings.stream().allMatch(f -> "F-RECUR-R005".equals(f.getRule())
+                && "LOW".equals(f.getSeverity().name()) && "RANK_ONLY".equals(f.getResolution().name())),
+                "R005: low and only ordering");
+
+        // === Node: por_nivel ===
+        // Gate: F-RECUR-R002, F-RECUR-R004 -- each level brings its recurrence as detail, and the score, the
+        // 73,9 % and the 4,036 tasks stay the same
+        assertEquals(List.of("A1 450 178", "A2 752 155", "B1 1139 161", "B2 819 165"), levels(diagnosis),
+                "R004: the recurrence of each level");
+        for (AuditNode level : course.getChildren()) {
+            assertFalse(level.getScores().containsKey(RECURRENCE), "R004: detail, never a score of the level");
+        }
+        assertEquals("73,9 %", GetCmd.scoreText(course.getNumbers().getVocabularyScore()), "R002: 73,9 %");
+        List<String> tasks = plan(analysis);
+        assertEquals(Base299.preContractPlan(), tasks, "R002: the 4,036 tasks of the plan, task by task");
+        assertEquals(1, tasks.stream().filter(t -> t.endsWith("LEMMA_RECURRENCE")).count(),
+                "R002: a single LEMMA_RECURRENCE task, on the course");
+        // result: success
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze con lemma-r... → Cada lema analizado trae veces, cada ... → Cada nivel trae su recurrencia como d... [Todos los lemas vuelven a intervalos sanos] → success")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
-    public void path2_todosLosLemasVuelvenAIntervalosSanos_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path2_todosLosLemasVuelvenAIntervalosSanos_success(@TempDir Path workdir) {
+        // === Node: analizar ===
+        // Gate: F-RECUR-R001 -- the same course with thresholds under which every lemma returns at a
+        // healthy interval (more than 0 and up to 1,000,000 words): the course scores 1
+        Analysis analysis = analyze(workdir, new LemmaRecurrenceAnalyzerProvider(healthyEverywhere()));
+        AuditNode course = analysis.report().getRoot();
+        assertEquals(1.0, course.getScores().get(RECURRENCE), 1e-12, "the branch: every lemma returns at a healthy interval");
+
+        // === Node: por_palabra ===
+        // Gate: F-RECUR-R003 -- every analysed lemma, normal, with its data
+        LemmaRecurrenceCourseDiagnosis diagnosis = diagnosis(course);
+        assertEquals(1750, diagnosis.getResult().getLemmaStats().size(), "R003: the 1,750 returning lemmas");
+        assertTrue(diagnosis.getResult().getLemmaStats().stream().allMatch(s -> "NORMAL".equals(s.getExposureStatus().name())
+                && s.getLongestGap() > 0 && !s.getLevels().isEmpty()), "R003: each with its data, all normal");
+        assertTrue(course.getFindings().stream().noneMatch(f -> RECURRENCE.equals(f.getAnalyzer())),
+                "no finding of lemma-recurrence at 1");
+
+        // === Node: por_nivel ===
+        // Gate: F-RECUR-R002, F-RECUR-R004 -- each level brings its recurrence as detail; at 1 the plan opens
+        // no LEMMA_RECURRENCE task, and the rest of the plan is the one of before
+        assertEquals(List.of("A1 450 450", "A2 752 752", "B1 1139 1139", "B2 819 819"), levels(diagnosis),
+                "R004: every returning lemma of each level is normal");
+        for (AuditNode level : course.getChildren()) {
+            assertFalse(level.getScores().containsKey(RECURRENCE), "R004: detail, never a score of the level");
+        }
+        List<String> tasks = plan(analysis);
+        List<String> before = new ArrayList<>(Base299.preContractPlan());
+        before.removeIf(t -> t.endsWith("LEMMA_RECURRENCE"));
+        assertEquals(before, tasks, "R002: the tasks of before, without the LEMMA_RECURRENCE of a course below 1");
+        // result: success
+    }
+
+    private static final String RECURRENCE = "lemma-recurrence";
+
+    private record Analysis(Path workdir, AnalyzerCatalog catalog, FileSystemAuditReportStore store, String id,
+            AuditReport report) {
+    }
+
+    /** analyze over the 29/9 course with the classic analyzers, lemma-recurrence as given, and no judge. */
+    private static Analysis analyze(Path workdir, AnalyzerProvider recurrence) {
+        List<AnalyzerProvider> providers = new ArrayList<>(Base299.classicProviders());
+        providers.set(4, recurrence);
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir, null);
+        Base299.Captured output = Base299.run(Base299.analyzeCmd(Base299.runner(catalog), store),
+                Base299.COURSE.toString());
+        assertEquals(0, output.exit(), output.err());
+        String id = Base299.savedId(output);
+        return new Analysis(workdir, catalog, store, id, store.load(id).orElseThrow());
+    }
+
+    /** stats analyzer lemma-recurrence, as Main wires it with its detailed view (D-15). */
+    private static Base299.Captured stats(AnalyzerCatalog catalog) {
+        StatsAnalyzerCmd cmd = new StatsAnalyzerCmd(new DefaultAnalyzerRegistry(catalog),
+                new DefaultAnalyzerStatsTransformer(), Base299.runner(catalog),
+                Map.of(RECURRENCE, new LemmaRecurrenceDetailedFormatter()));
+        return Base299.run(cmd, "analyzer", RECURRENCE, Base299.COURSE.toString());
+    }
+
+    private static List<String> plan(Analysis analysis) {
+        FileSystemRefinementPlanStore plans = new FileSystemRefinementPlanStore(analysis.workdir());
+        PlanCmd plan = new PlanCmd(analysis.store(), new DefaultRefinerEngine(analysis.catalog()), plans,
+                mock(EphemeralPlanRenderer.class));
+        Base299.Captured run = Base299.run(plan, "--audit", analysis.id());
+        assertEquals(0, run.exit(), run.err());
+        return plans.loadLatest().orElseThrow().getTasks().stream()
+                .map(task -> task.getNodeTarget() + "\t" + task.getNodeId() + "\t" + task.getNodeLabel() + "\t"
+                        + task.getDiagnosisKind())
+                .toList();
+    }
+
+    private static LemmaRecurrenceCourseDiagnosis diagnosis(AuditNode course) {
+        return ((CourseDiagnoses) course.getDiagnoses()).getLemmaRecurrenceDiagnosis().orElseThrow();
+    }
+
+    /** «A1 450 178»: the level, its returning lemmas and the normal ones. */
+    private static List<String> levels(LemmaRecurrenceCourseDiagnosis diagnosis) {
+        return diagnosis.getLevels().stream().map(l -> l.getLevel() + " " + l.getReturningLemmas() + " "
+                + l.getNormalCount()).toList();
+    }
+
+    /** Thresholds under which every interval is healthy: more than 0 and up to 1,000,000 words. */
+    private static LemmaRecurrenceConfig healthyEverywhere() {
+        return new LemmaRecurrenceConfig() {
+            @Override
+            public int getTop() {
+                return 2000;
+            }
+
+            @Override
+            public double getSubExposedThreshold() {
+                return 1_000_000.0;
+            }
+
+            @Override
+            public double getOverExposedThreshold() {
+                return 0.0;
+            }
+
+            @Override
+            public Map<String, Object> describe() {
+                return Map.of();
+            }
+        };
     }
 }

@@ -1,5 +1,21 @@
 package com.learney.contentaudit.auditcli.formatting;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.lrec.ExposureStatus;
+import com.learney.contentaudit.auditdomain.lrec.ExposureSummary;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceCourseDiagnosis;
+import com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceResult;
+import com.learney.contentaudit.auditdomain.lrec.LemmaStats;
+import com.learney.contentaudit.auditdomain.lrec.LevelRecurrence;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -15,19 +31,63 @@ public class LemmaRecurrenceDetailedFormatterTest {
     @DisplayName("should show each lemma of the lemma-recurrence course diagnosis with its count, interval, status, deviation, longest gap and levels, and the recurrence of each level")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
-    public void shouldShowEachLemmaOfTheLemmarecurrenceCourseDiagnosisWithItsCountIntervalStatusDeviationLongestGapAndLevelsAndTheRecurrenceOfEachLevel(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldShowEachLemmaOfTheLemmarecurrenceCourseDiagnosisWithItsCountIntervalStatusDeviationLongestGapAndLevelsAndTheRecurrenceOfEachLevel() throws Exception {
+        // F-RECUR-R003 and R004: each lemma of the course diagnosis with its count, interval, status,
+        // deviation, longest gap and levels, and the recurrence of each level, in text and in JSON.
+        AuditNode root = courseWith(new LemmaStats("movie", "NOUN", 90, 1005.02, 1082.57, ExposureStatus.SUB_EXPOSED,
+                List.of(1, 2), 6510, CefrLevel.A1, CefrLevel.A2, List.of(CefrLevel.A1, CefrLevel.A2, CefrLevel.B1,
+                        CefrLevel.B2)), new LevelRecurrence(CefrLevel.A1, 15802, 450, 178, 257, 15, 178.0 / 450));
+        LemmaRecurrenceDetailedFormatter formatter = new LemmaRecurrenceDetailedFormatter();
+
+        String text = formatter.format("lemma-recurrence", root, "text");
+        JsonNode json = new ObjectMapper().readTree(formatter.format("lemma-recurrence", root, "json"));
+
+        assertTrue(text.matches("(?s).*movie\\s+90\\s+1\\.005\\s+poco vista\\s+1\\.083\\s+6\\.510, de A1 a A2\\s+A1, A2, "
+                + "B1, B2.*"), "R003: the row of movie: " + text);
+        assertTrue(text.matches("(?s).*A1\\s+15\\.802\\s+450\\s+178\\s+257\\s+15\\s+39,6 %.*"),
+                "R004: the row of A1: " + text);
+        JsonNode movie = json.get("lemmas").get(0);
+        assertEquals(List.of("movie", "90", "SUB_EXPOSED", "6510", "A1", "A2", "[\"A1\",\"A2\",\"B1\",\"B2\"]"),
+                List.of(movie.get("lemma").asText(), movie.get("count").asText(), movie.get("status").asText(),
+                        movie.get("longestGap").asText(), movie.get("longestGapFromLevel").asText(),
+                        movie.get("longestGapToLevel").asText(), movie.get("levels").toString()), "R003 in JSON");
+        assertEquals(1005.02, movie.get("meanInterval").asDouble(), 1e-9);
+        assertEquals(1082.57, movie.get("stdDevInterval").asDouble(), 1e-9);
+        assertEquals(List.of("A1", "450", "178"), List.of(json.get("levels").get(0).get("level").asText(),
+                json.get("levels").get(0).get("returningLemmas").asText(),
+                json.get("levels").get(0).get("normalCount").asText()), "R004 in JSON");
     }
 
     @Test
     @DisplayName("should print the values of the course diagnosis as published, without recomputing them from positions")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldPrintTheValuesOfTheCourseDiagnosisAsPublishedWithoutRecomputingThemFromPositions(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-RECUR-R003 and F-HALL-R010: the values are the published ones; the positions, which here
+        // would give an interval of 1 and a gap of 1, are never used to recompute them.
+        AuditNode root = courseWith(new LemmaStats("suppose", "VERB", 41, 696.25, 4272.66, ExposureStatus.NORMAL,
+                List.of(10, 11), 27379, CefrLevel.B1, CefrLevel.B2, List.of(CefrLevel.B1, CefrLevel.B2)),
+                new LevelRecurrence(CefrLevel.B1, 38949, 1139, 161, 938, 40, 161.0 / 1139));
+
+        String text = new LemmaRecurrenceDetailedFormatter().format("lemma-recurrence", root, "text");
+
+        assertTrue(text.matches("(?s).*suppose\\s+41\\s+696\\s+normal\\s+4\\.273\\s+27\\.379, de B1 a B2\\s+B1, B2.*"),
+                "the published values, not the ones of its positions: " + text);
+        assertTrue(text.contains("0,08"), "the score of the course as published: " + text);
+    }
+
+    /** A course whose diagnosis publishes one lemma and one level, with a score of 0,08 and its summary. */
+    private static AuditNode courseWith(LemmaStats lemma, LevelRecurrence level) {
+        AuditNode root = new AuditNode();
+        root.setTarget(AuditTarget.COURSE);
+        root.setChildren(new java.util.ArrayList<>());
+        root.setScores(new java.util.LinkedHashMap<>(Map.of("lemma-recurrence", 0.08)));
+        DefaultCourseDiagnoses diagnoses = new DefaultCourseDiagnoses();
+        int normal = lemma.getExposureStatus() == ExposureStatus.NORMAL ? 1 : 0;
+        diagnoses.setLemmaRecurrenceDiagnosis(new LemmaRecurrenceCourseDiagnosis(new LemmaRecurrenceResult(List.of(lemma),
+                new ExposureSummary(normal, 1 - normal, 0), 0.08), List.of(level)));
+        root.setDiagnoses(diagnoses);
+        return root;
     }
 }
