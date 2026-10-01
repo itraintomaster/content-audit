@@ -1,7 +1,14 @@
 package com.learney.contentaudit.auditdomain.exactduplicates;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,26 +28,52 @@ public class FDupexJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe compara los ejercicios ter... → La copia lleva un hallazgo de graveda... [Dos ejercicios del tema terminan igual] → El tema, su nivel y el curso cuentan ... → success")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void path1_dosEjerciciosDelTemaTerminanIgual_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr: analyze with only exact-duplicates → comparar → copia: «They weren't at the park.» twice in Práctica
+        // mixta: the second is a low copy for the panel → contar: the topic, its level and the course count 1 error.
+        AuditNode root = ExactDuplicatesAnalyzerTest.engine(List.of(List.of(
+                ExactDuplicatesAnalyzerTest.theyWerent("67fab6d5993010229534224b"),
+                ExactDuplicatesAnalyzerTest.stop("67fab6d59930102295341fc7"),
+                ExactDuplicatesAnalyzerTest.theyWerent("67fab6d59930102295342260"))));
+        Finding copy = ExactDuplicatesAnalyzerTest.engineQuiz(root, "67fab6d59930102295342260").getFindings().get(0);
+        assertEquals(FindingSeverity.LOW, copy.getSeverity());
+        assertEquals(FindingResolution.PANEL, copy.getResolution());
+        AuditNode level = root.getChildren().get(0);
+        AuditNode topic = level.getChildren().get(0);
+        AuditNode knowledge = topic.getChildren().get(0);
+        for (AuditNode container : List.of(knowledge, topic, level, root)) {
+            assertEquals(1, container.getNumbers().getErrors().getWithAnyError(), container.getTarget().name());
+        }
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe compara los ejercicios ter... → Ningún ejercicio del tema tiene halla... [Hay iguales sólo en temas distintos] → success")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void path2_hayIgualesSloEnTemasDistintos_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → comparar → sin_hallazgo: «They weren't at the park.» once in each of two topics: no finding.
+        AuditNode root = ExactDuplicatesAnalyzerTest.engine(List.of(
+                List.of(ExactDuplicatesAnalyzerTest.theyWerent("67fab6d5993010229534224b")),
+                List.of(ExactDuplicatesAnalyzerTest.theyWerent("67fab6d59930102295342260"))));
+        assertEquals(List.of(), ExactDuplicatesAnalyzerTest.engineQuiz(root, "67fab6d5993010229534224b").getFindings());
+        assertEquals(List.of(), ExactDuplicatesAnalyzerTest.engineQuiz(root, "67fab6d59930102295342260").getFindings());
+        assertEquals(0, root.getNumbers().getErrors().getWithAnyError());
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → El informe compara los ejercicios ter... → Ningún ejercicio del tema tiene halla... [Ningún ejercicio del tema se repite] → success")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void path3_ningnEjercicioDelTemaSeRepite_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → comparar → sin_hallazgo: a topic without repeated exercises: no finding, everything scores 1.
+        AuditNode root = ExactDuplicatesAnalyzerTest.engine(List.of(List.of(
+                ExactDuplicatesAnalyzerTest.theyWerent("67fab6d5993010229534224b"),
+                ExactDuplicatesAnalyzerTest.stop("67fab6d59930102295341fc7"))));
+        for (String id : List.of("67fab6d5993010229534224b", "67fab6d59930102295341fc7")) {
+            AuditNode quiz = ExactDuplicatesAnalyzerTest.engineQuiz(root, id);
+            assertEquals(List.of(), quiz.getFindings());
+            assertEquals(1.0, quiz.getScores().get("exact-duplicates"));
+        }
+        assertTrue(root.getNumbers().getErrors().getWithAnyError() == 0);
     }
 }

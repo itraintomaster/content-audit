@@ -222,6 +222,11 @@ public class DefaultCorrectorMatcherTest {
                 (Boolean) root.get("invierteNegativas"));
     }
 
+    /** The small JSON reader below, for the tests of the other analyzers that read a copy of the course. */
+    public static Object parseJson(String text) {
+        return Json.parse(text);
+    }
+
     /** A small JSON reader: audit-domain has no JSON library, and the copies are plain JSON. */
     private static final class Json {
         private final String s;

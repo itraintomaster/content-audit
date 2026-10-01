@@ -581,7 +581,7 @@ class Main {
 
         analyzerProviders.add(dataCoherenceProvider);                                                     // 13 · A · FEAT-DATOS
 
-        // analyzerProviders.add(exactDuplicatesProvider);        // 14 · A · FEAT-DUPEX, pendiente
+        analyzerProviders.add(exactDuplicatesProvider);                                                   // 14 · A · FEAT-DUPEX
 
         // analyzerProviders.add(translationSenseProvider);       // 15 · C · FEAT-TRSEN, pendiente
 
