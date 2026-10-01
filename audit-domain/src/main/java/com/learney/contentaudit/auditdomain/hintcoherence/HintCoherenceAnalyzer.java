@@ -284,6 +284,7 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
             case SUBJECT_MISMATCH -> "el sujeto " + word + " no es " + answerSubject(diagnosis.getFirstAnswer());
             case SUBJECT_NOT_ANNOUNCED -> "el sujeto " + word + " no lo nombran ni la pista ni el enunciado";
             case NEGATION_WITHOUT_NEGATIVE -> "la pista lleva not y la respuesta no niega";
+            case REWRITE_WORD_NOT_ANNOUNCED -> "«" + word + "» no sale de la oración de partida, la pista ni la consigna";
         };
     }
 

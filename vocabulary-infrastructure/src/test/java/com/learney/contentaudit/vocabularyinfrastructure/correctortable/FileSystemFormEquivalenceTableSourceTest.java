@@ -2,12 +2,16 @@ package com.learney.contentaudit.vocabularyinfrastructure.correctortable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.learney.contentaudit.auditdomain.correctormatch.ContractionExpansion;
+import com.learney.contentaudit.auditdomain.correctormatch.CorrectorRule;
 import com.learney.contentaudit.auditdomain.correctormatch.EquivalentWordGroup;
 import com.learney.contentaudit.auditdomain.correctormatch.FormEquivalenceClass;
 import com.learney.contentaudit.auditdomain.correctormatch.FormEquivalenceTable;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
@@ -57,5 +61,38 @@ public class FileSystemFormEquivalenceTableSourceTest {
                         .load();
         assertTrue(old.getContractions().isEmpty() && old.getEquivalentWords().isEmpty());
         assertFalse(old.isInvertsNegativeQuestions());
+    }
+
+    @Test
+    @DisplayName("should read from «reglas» the rules that are code of the version of the corrector, the four in the copy of the new corrector and none in the one in production, and stop at a rule it does not know")
+    @Tag("FEAT-RESPC")
+    @Tag("F-RESPC-R001")
+    public void shouldReadFromReglasTheRulesThatAreCodeOfTheVersionOfTheCorrectorTheFourInTheCopyOfTheNewCorrectorAndNoneInTheOneInProductionAndStopAtARuleItDoesNotKnow(
+            ) throws IOException {
+        // R001: the copy of each corrector says its version and the rules of it that are code. The one of
+        // ittm claude/corrector-cuatro-reglas (f54585212), not deployed, has the four of 1/10 and the table of
+        // #1191 as it is; the one in production names none.
+        FormEquivalenceTable next = new FileSystemFormEquivalenceTableSource(
+                CORRECTOR.resolve("formas-equivalentes-corrector-nuevo.json")).load();
+        assertEquals(List.of(CorrectorRule.AMBIGUOUS_CONTRACTIONS, CorrectorRule.STANDARD_IRREGULAR_PARTICIPLES,
+                CorrectorRule.TILL_OWN_SUBJECTS, CorrectorRule.OPTIONAL_PARENTHESES), next.getRules());
+        assertTrue(next.getVersion().contains("f54585212"));
+        FormEquivalenceTable production =
+                new FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes.json")).load();
+        assertEquals(List.of(), production.getRules());
+        assertEquals(production.getContractions(), next.getContractions());
+        assertEquals(production.getEquivalentWords(), next.getEquivalentWords());
+
+        // A rule content-audit does not know how to imitate stops the run, as a missing file does.
+        Path unknown = Files.createTempFile("formas-equivalentes", ".json");
+        try {
+            Files.writeString(unknown, "{\"version\": \"x\", \"contracciones\": [], \"palabrasEquivalentes\": [],"
+                    + " \"invierteNegativas\": false, \"reglas\": [\"ACCEPTS_EVERYTHING\"]}");
+            IllegalStateException stop = assertThrows(IllegalStateException.class,
+                    () -> new FileSystemFormEquivalenceTableSource(unknown).load());
+            assertTrue(stop.getMessage().contains("ACCEPTS_EVERYTHING"), stop.getMessage());
+        } finally {
+            Files.deleteIfExists(unknown);
+        }
     }
 }

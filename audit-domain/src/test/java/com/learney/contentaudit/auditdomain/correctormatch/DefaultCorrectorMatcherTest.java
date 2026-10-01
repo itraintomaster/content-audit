@@ -114,13 +114,15 @@ public class DefaultCorrectorMatcherTest {
     public void shouldDecideEveryGoldenCaseOfTheBackendCorrectorAsItsHoyColumnSaysWithTodaysEmptyTableAsTraveledRejectedForSheTravelToEuropeAnsweredTravelled(
             ) {
         // DOUBT-RESPC-IMITAR (A): content-audit imitates the Go corrector by running its own golden
-        // cases, copied as they are from be/domain/quiz/pkg/shared/testdata (ittm #1191). With the
-        // empty table of the old corrector -- in production until 1/10/2026, kept only as data of
-        // this column -- each case decides its «hoy».
+        // cases, copied as they are from be/domain/quiz/pkg/shared/testdata: those of ittm #1191 and those
+        // of the corrector with the four rules of 1/10. With the empty table of the old corrector -- in
+        // production until 1/10/2026, kept only as data of this column -- each case decides its «hoy».
         DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(oldCorrectorTable());
         List<String> wrong = new ArrayList<>();
         int cases = 0;
-        for (GoldenCase c : goldenCases()) {
+        List<GoldenCase> every = new ArrayList<>(goldenCases());
+        every.addAll(goldenCases(NEXT_GOLDEN_CASES));
+        for (GoldenCase c : every) {
             cases++;
             boolean decided = today.accepts(new GapContext(c.before(), c.after()), List.of(c.expected()), c.written());
             if (decided != c.today()) {
@@ -160,6 +162,88 @@ public class DefaultCorrectorMatcherTest {
         assertFalse(next.accepts(hot, List.of("'s"), "has"));
     }
 
+    @Test
+    @DisplayName("should decide every golden case of the corrector with the four rules of 1/10 as its «acepta» column says with the copy of its table, which names those rules, as «'s forgotten» for «He ___ (forget) to pay.» and «Peter was admired.» for «Peter was admired (by Mary).»")
+    @Tag("FEAT-RESPC")
+    @Tag("F-RESPC-R001")
+    public void shouldDecideEveryGoldenCaseOfTheCorrectorWithTheFourRulesOf110AsItsAceptaColumnSaysWithTheCopyOfItsTableWhichNamesThoseRulesAsSForgottenForHeForgetToPayAndPeterWasAdmiredForPeterWasAdmiredByMary(
+            ) {
+        // R001: the 192 golden cases of ittm claude/corrector-cuatro-reglas (f54585212), copied as they are.
+        // Its table is the one of #1191 plus «reglas», the four rules that are code; the one in production
+        // names none, and with it the cases of the four rules do not accept.
+        FormEquivalenceTable table = nextCorrectorTable();
+        assertEquals(List.of(CorrectorRule.AMBIGUOUS_CONTRACTIONS, CorrectorRule.STANDARD_IRREGULAR_PARTICIPLES,
+                CorrectorRule.TILL_OWN_SUBJECTS, CorrectorRule.OPTIONAL_PARENTHESES), table.getRules());
+        DefaultCorrectorMatcher next = new DefaultCorrectorMatcher(table);
+        List<String> wrong = new ArrayList<>();
+        int cases = 0;
+        for (GoldenCase c : goldenCases(NEXT_GOLDEN_CASES)) {
+            cases++;
+            boolean decided = next.accepts(new GapContext(c.before(), c.after()), List.of(c.expected()), c.written());
+            if (decided != c.accepts()) {
+                wrong.add(c.describe("acepta", decided));
+            }
+        }
+
+        assertEquals(192, cases, "the copy of the golden cases of the corrector with the four rules is installed");
+        assertEquals(List.of(), wrong, "golden cases deciding something else than «acepta»");
+        DefaultCorrectorMatcher production = new DefaultCorrectorMatcher(productionTable());
+        GapContext forgot = new GapContext("He", "(forget) to pay.");
+        assertTrue(next.accepts(forgot, List.of("has forgotten"), "'s forgotten"));
+        assertFalse(production.accepts(forgot, List.of("has forgotten"), "'s forgotten"));
+        GapContext peter = new GapContext("Mary admired Peter.", "");
+        assertTrue(next.accepts(peter, List.of("Peter was admired (by Mary)."), "Peter was admired."));
+        assertTrue(next.accepts(peter, List.of("Peter was admired (by Mary)."), "Peter was admired by Mary."));
+        assertFalse(production.accepts(peter, List.of("Peter was admired (by Mary)."), "Peter was admired."));
+    }
+
+    @Test
+    @DisplayName("should give the benefit of the doubt only to the student, so an ambiguous contraction counts as any of its long forms when the student writes it and stays as written in the accepted answer, as «'s forgotten» for «has forgotten» but not «is trained» for «'s trained»")
+    @Tag("FEAT-RESPC")
+    @Tag("F-RESPC-R001")
+    public void shouldGiveTheBenefitOfTheDoubtOnlyToTheStudentSoAnAmbiguousContractionCountsAsAnyOfItsLongFormsWhenTheStudentWritesItAndStaysAsWrittenInTheAcceptedAnswerAsSForgottenForHasForgottenButNotIsTrainedForSTrained(
+            ) {
+        // R001, AMBIGUOUS_CONTRACTIONS: «He ___ (forget) to pay.» (…283e, A2) accepts «has forgotten»; the
+        // student's «'s forgotten» is has or is, and has is the accepted one. «He ___ (train) hard today.»
+        // (…3061, A2) accepts «'s trained»: the accepted answer says one thing, so «is trained» is still
+        // wrong, and so is «has trained» until the exercise lists it. Only what the student writes opens.
+        DefaultCorrectorMatcher next = new DefaultCorrectorMatcher(nextCorrectorTable());
+        assertTrue(next.accepts(new GapContext("He", "(forget) to pay."), List.of("has forgotten"), "'s forgotten"));
+        assertFalse(next.accepts(new GapContext("He", "(forget) to pay."), List.of("has forgotten"), "is forgotten"));
+        GapContext trained = new GapContext("He", "(train) hard today.");
+        assertFalse(next.accepts(trained, List.of("'s trained"), "is trained"));
+        assertFalse(next.accepts(trained, List.of("'s trained"), "has trained"));
+        assertTrue(next.accepts(trained, List.of("'s trained"), "'s trained"));
+        // What is not a verb is not opened: a possessive, the end of the sentence, «'d» after a wh- word.
+        assertFalse(next.accepts(new GapContext("", ""), List.of("Peter has left hand."), "Peter's left hand."));
+        assertFalse(next.accepts(new GapContext("A: Has she left? B: Yes,", ""), List.of("she has."), "she's."));
+        // The same contraction in the text of the exercise, out of the gap, stays as written.
+        assertFalse(next.accepts(new GapContext("He's forgotten to pay, so he", "."), List.of("has to"), "is to"));
+    }
+
+    @Test
+    @DisplayName("should take two texts as the same answer when the corrector matches them in either order, so «He's forgotten to pay.» and «He has forgotten to pay.» are one answer with the four rules and two with the corrector in production")
+    @Tag("FEAT-RESPC")
+    @Tag("F-RESPC-R001")
+    public void shouldTakeTwoTextsAsTheSameAnswerWhenTheCorrectorMatchesThemInEitherOrderSoHesForgottenToPayAndHeHasForgottenToPayAreOneAnswerWithTheFourRulesAndTwoWithTheCorrectorInProduction(
+            ) {
+        // R001: two options of a multiple choice, or two copies of an exercise, are the same answer if the
+        // corrector takes either as the other. With the four rules matching is not symmetric: the
+        // ambiguous contraction opens on the student's side and the parentheses on the accepted one.
+        DefaultCorrectorMatcher next = new DefaultCorrectorMatcher(nextCorrectorTable());
+        DefaultCorrectorMatcher production = new DefaultCorrectorMatcher(productionTable());
+        assertTrue(next.sameAnswer("He's forgotten to pay.", "He has forgotten to pay."));
+        assertTrue(next.sameAnswer("He has forgotten to pay.", "He's forgotten to pay."));
+        assertFalse(production.sameAnswer("He's forgotten to pay.", "He has forgotten to pay."));
+        assertTrue(next.sameAnswer("Peter was admired by Mary.", "Peter was admired (by Mary)."));
+        assertTrue(next.sameAnswer("Peter was admired (by Mary).", "Peter was admired."));
+        assertFalse(production.sameAnswer("Peter was admired by Mary.", "Peter was admired (by Mary)."));
+        // Without an ambiguous contraction or parentheses, both correctors decide the same, in both orders.
+        assertTrue(next.sameAnswer("I do not know.", "I don't know.") && production.sameAnswer("I don't know.",
+                "I do not know."));
+        assertFalse(next.sameAnswer("Peter was admired by.", "Peter was admired (by Mary)."), "the span goes whole");
+    }
+
     // ------------------------------------------------------------------
     // The copies of the corrector installed in analysis/recursos-compartidos/corrector (A-16)
     // ------------------------------------------------------------------
@@ -176,10 +260,17 @@ public class DefaultCorrectorMatcherTest {
         }
     }
 
-    @SuppressWarnings("unchecked")
+    /** The golden cases of the corrector with the four rules of 1/10, next to those of the one in production. */
+    private static final String NEXT_GOLDEN_CASES = "casos-de-oro-corrector-nuevo";
+
     private static List<GoldenCase> goldenCases() {
+        return goldenCases("casos-de-oro");
+    }
+
+    @SuppressWarnings("unchecked")
+    private static List<GoldenCase> goldenCases(String folder) {
         List<GoldenCase> cases = new ArrayList<>();
-        try (Stream<Path> files = Files.list(CORRECTOR.resolve("casos-de-oro"))) {
+        try (Stream<Path> files = Files.list(CORRECTOR.resolve(folder))) {
             for (Path file : files.filter(p -> p.toString().endsWith(".json")).sorted().toList()) {
                 Map<String, Object> root = (Map<String, Object>) Json.parse(Files.readString(file));
                 for (Object o : (List<Object>) root.get("casos")) {
@@ -199,6 +290,14 @@ public class DefaultCorrectorMatcherTest {
     /** The copy of the table of the corrector in production: the new one, ittm #1191, since 1/10/2026. */
     public static FormEquivalenceTable productionTable() {
         return table(CORRECTOR.resolve("formas-equivalentes.json"));
+    }
+
+    /**
+     * The copy of the corrector with the four rules of 1/10 (ittm claude/corrector-cuatro-reglas), not
+     * deployed: next to the one in production, to measure the before and after.
+     */
+    public static FormEquivalenceTable nextCorrectorTable() {
+        return table(CORRECTOR.resolve("formas-equivalentes-corrector-nuevo.json"));
     }
 
     /**
@@ -230,8 +329,15 @@ public class DefaultCorrectorMatcherTest {
             groups.add(new EquivalentWordGroup(FormEquivalenceClass.valueOf((String) g.get("clase")),
                     new ArrayList<>((List<String>) (List<?>) g.get("palabras"))));
         }
+        List<CorrectorRule> rules = new ArrayList<>();
+        Object named = root.get("reglas");
+        if (named instanceof List<?> list) {
+            for (Object rule : list) {
+                rules.add(CorrectorRule.valueOf((String) rule));
+            }
+        }
         return new FormEquivalenceTable((String) root.get("version"), contractions, groups,
-                (Boolean) root.get("invierteNegativas"));
+                (Boolean) root.get("invierteNegativas"), rules);
     }
 
     /** The small JSON reader below, for the tests of the other analyzers that read a copy of the course. */

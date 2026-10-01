@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.auditdomain.FormEquivalenceTableSource;
 import com.learney.contentaudit.auditdomain.correctormatch.ContractionExpansion;
+import com.learney.contentaudit.auditdomain.correctormatch.CorrectorRule;
 import com.learney.contentaudit.auditdomain.correctormatch.EquivalentWordGroup;
 import com.learney.contentaudit.auditdomain.correctormatch.FormEquivalenceClass;
 import com.learney.contentaudit.auditdomain.correctormatch.FormEquivalenceTable;
@@ -24,8 +25,10 @@ import javax.annotation.processing.Generated;
  * <p>The format is the one content-audit expects (hook A-15): {@code version}, {@code
  * contracciones} (each with {@code contraida}, its {@code largas} and whether it is a {@code
  * palabraEntera}), {@code palabrasEquivalentes} (each with its {@code clase} and {@code
- * palabras}) and {@code invierteNegativas}. Without the file the run does not start: the empty
- * table is data, a missing file is an installation error.
+ * palabras}), {@code invierteNegativas} and {@code reglas}, the rules of the corrector that are
+ * code and that its version has, by their name (none in ittm #1191). Without the file the run does
+ * not start: the empty table is data, a missing file is an installation error, and so is a rule
+ * content-audit does not know how to imitate.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -67,7 +70,16 @@ public class FileSystemFormEquivalenceTableSource implements FormEquivalenceTabl
             }
             groups.add(new EquivalentWordGroup(FormEquivalenceClass.valueOf(group.path("clase").asText()), words));
         }
+        List<CorrectorRule> rules = new ArrayList<>();
+        for (JsonNode rule : root.path("reglas")) {
+            try {
+                rules.add(CorrectorRule.valueOf(rule.asText()));
+            } catch (IllegalArgumentException e) {
+                throw new IllegalStateException("La tabla del corrector " + tablePath + " trae la regla «"
+                        + rule.asText() + "», que content-audit no sabe imitar.", e);
+            }
+        }
         return new FormEquivalenceTable(root.path("version").asText(null), contractions, groups,
-                root.path("invierteNegativas").asBoolean(false), null);
+                root.path("invierteNegativas").asBoolean(false), rules);
     }
 }
