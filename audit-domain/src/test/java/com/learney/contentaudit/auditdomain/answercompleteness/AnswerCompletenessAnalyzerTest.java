@@ -42,7 +42,7 @@ public class AnswerCompletenessAnalyzerTest {
     public void shouldReportTheLongFormTheCorrectorRejectsAsDoNotEatForINotEatMeatOftenWhichOnlyAcceptsDontEat(
             ) {
         // R002: «I ___ (not / eat) meat often.» (…263c, A2) only accepts «don't eat».
-        List<FindingDraft> drafts = findings(todaysCorrector(), iDontEatMeat());
+        List<FindingDraft> drafts = findings(oldCorrector(), iDontEatMeat());
         FindingDraft missing = byMarker(drafts, "do not eat");
         assertEquals("contracted-and-long-forms", missing.getRule());
         assertEquals(FindingResolution.RULE, missing.getResolution());
@@ -57,7 +57,7 @@ public class AnswerCompletenessAnalyzerTest {
             ) {
         // R002: «They ___ (not / have) many cars.» (…1ed7, A1) under «Usa $long forms$.» only accepts «do not
         // have»; the instructions do not excuse the other form.
-        List<FindingDraft> drafts = findings(todaysCorrector(), theyDoNotHaveManyCars());
+        List<FindingDraft> drafts = findings(oldCorrector(), theyDoNotHaveManyCars());
         assertEquals("contracted-and-long-forms", byMarker(drafts, "don't have").getRule());
         assertEquals("form-request", byMarker(drafts, "consigna").getRule());
     }
@@ -69,7 +69,7 @@ public class AnswerCompletenessAnalyzerTest {
     public void shouldReportArentMissingForTheyNotBeFromIrelandWhichAcceptsReNotWhileItsMinitheoryTeachesArent(
             ) {
         // R003: «They ___ (not / be) from Ireland.» (…25ac, A1) accepts «'re not»; its mini theory teaches «aren't».
-        FindingDraft arent = byMarker(findings(todaysCorrector(), theyAreNotFromIreland()), "aren't");
+        FindingDraft arent = byMarker(findings(oldCorrector(), theyAreNotFromIreland()), "aren't");
         assertEquals("be-short-negations", arent.getRule());
     }
 
@@ -79,7 +79,7 @@ public class AnswerCompletenessAnalyzerTest {
     @Tag("F-RESPC-R004")
     public void shouldReportTraveledMissingForSheTravelToEuropeWhichOnlyAcceptsTravelled() {
         // R004: «She ___ (travel) to Europe.» (…2211, A1) only accepts «travelled».
-        List<FindingDraft> drafts = findings(todaysCorrector(), sheTravelledToEurope());
+        List<FindingDraft> drafts = findings(oldCorrector(), sheTravelledToEurope());
         assertEquals(1, drafts.size());
         assertEquals("spellings-and-till", byMarker(drafts, "traveled").getRule());
     }
@@ -91,7 +91,7 @@ public class AnswerCompletenessAnalyzerTest {
     public void shouldLeaveOneFindingPerMissingFormIdentifiedByTheFormAsArentAndAreNotForTheyNotBeFromIreland(
             ) {
         // R005: one finding per form, its identity is the form; the request of the instructions is another one.
-        List<FindingDraft> drafts = findings(todaysCorrector(), theyAreNotFromIreland());
+        List<FindingDraft> drafts = findings(oldCorrector(), theyAreNotFromIreland());
         assertEquals(List.of("are not", "aren't"), drafts.stream().filter(d -> !d.getRule().equals("form-request"))
                 .map(FindingDraft::getMarker).sorted().toList());
         assertEquals("contracted-and-long-forms", byMarker(drafts, "are not").getRule());
@@ -105,7 +105,7 @@ public class AnswerCompletenessAnalyzerTest {
     public void shouldRateHighAMissingFormThatTheMinitheoryOrTheStatementShowsAsArentInTheyNotBeFromIrelandWhoseMinitheorySaysNegativoIsntArent(
             ) {
         // R005: the mini theory says «Negativo: $isn't$, $aren't$.»: the student writes what it teaches and fails.
-        List<FindingDraft> drafts = findings(todaysCorrector(), theyAreNotFromIreland());
+        List<FindingDraft> drafts = findings(oldCorrector(), theyAreNotFromIreland());
         assertEquals(FindingSeverity.HIGH, byMarker(drafts, "aren't").getSeverity());
         assertEquals(FindingSeverity.MEDIUM, byMarker(drafts, "are not").getSeverity());
     }
@@ -117,7 +117,7 @@ public class AnswerCompletenessAnalyzerTest {
     public void shouldRateLowTheLongFormMissingInAShortAnswerAsIsNotForAIsItHotTodayBNoItAnsweredIsnt(
             ) {
         // R005: «A: Is it hot today? B: No, it ___ .» (…1f5d, A1) answered «isn't»: «No, it is not» is rare.
-        List<FindingDraft> drafts = findings(todaysCorrector(), isItHotToday());
+        List<FindingDraft> drafts = findings(oldCorrector(), isItHotToday());
         assertEquals(FindingSeverity.LOW, byMarker(drafts, "is not").getSeverity());
         assertEquals(FindingSeverity.MEDIUM, byMarker(drafts, "'s not").getSeverity());
     }
@@ -128,7 +128,7 @@ public class AnswerCompletenessAnalyzerTest {
     @Tag("F-RESPC-R005")
     public void shouldRateMediumAnyOtherMissingFormAsDoNotEatForINotEatMeatOften() {
         // R005: neither the mini theory nor the statement shows «do not eat», and it is not a short answer.
-        assertEquals(FindingSeverity.MEDIUM, byMarker(findings(todaysCorrector(), iDontEatMeat()), "do not eat").getSeverity());
+        assertEquals(FindingSeverity.MEDIUM, byMarker(findings(oldCorrector(), iDontEatMeat()), "do not eat").getSeverity());
     }
 
     @Test
@@ -137,9 +137,9 @@ public class AnswerCompletenessAnalyzerTest {
     @Tag("F-RESPC-R005")
     public void shouldResolveByRuleInTheCorrectorAndNotInTheCourseAMissingFormOfAClassTheNewCorrectorEquatesLeavingTheFirstAnswerAndItsAudioAsTheyAreAsArentForTheyNotBeFromIreland(
             ) {
-        // R005: today's corrector does not equate the short negations of be; the new one does: the fix is the
+        // R005: the old corrector does not equate the short negations of be; the new one does: the fix is the
         // corrector, not the course, and the first answer and its audio stay.
-        FindingDraft arent = byMarker(findings(todaysCorrector(), theyAreNotFromIreland()), "aren't");
+        FindingDraft arent = byMarker(findings(oldCorrector(), theyAreNotFromIreland()), "aren't");
         assertEquals(FindingResolution.RULE, arent.getResolution());
         assertTrue(arent.getEvidence().getObservation().contains("se arregla en el corrector y no en el curso"));
         assertTrue(arent.getEvidence().getObservation().contains("la primera respuesta y su audio no cambian"));
@@ -155,11 +155,11 @@ public class AnswerCompletenessAnalyzerTest {
         // the new corrector reads «'s» as is and still rejects «has trained»: it is added after «|».
         AuditableQuiz onlyContracted = quiz("67fab6d59930102295343061", "", "", text("He"), cloze("'s trained"),
                 text("(train) hard today."));
-        FindingDraft hasTrained = byMarker(findings(newCorrector(), onlyContracted), "has trained");
+        FindingDraft hasTrained = byMarker(findings(productionCorrector(), onlyContracted), "has trained");
         assertEquals("contracted-and-long-forms", hasTrained.getRule());
         assertEquals(FindingResolution.RULE, hasTrained.getResolution());
         assertTrue(hasTrained.getEvidence().getObservation().contains("se agrega con «|» después de las que hay"));
-        assertTrue(findings(newCorrector(), quiz("67fab6d59930102295343061", "", "", text("He"),
+        assertTrue(findings(productionCorrector(), quiz("67fab6d59930102295343061", "", "", text("He"),
                 cloze("'s trained|has trained"), text("(train) hard today."))).isEmpty(), "the course accepts both");
     }
 
@@ -169,12 +169,12 @@ public class AnswerCompletenessAnalyzerTest {
     @Tag("F-RESPC-R005")
     public void shouldStopReportingTheFormsTheNewCorrectorsTableEquatesReadingTheGapWithTheSentenceAroundItAsIsForItBeHotInsideAnsweredS(
             ) {
-        // R005: «It ___ (be) hot inside.» (…1fa5, A1) answered «'s»: today «is» is missing; the new corrector reads
+        // R005: «It ___ (be) hot inside.» (…1fa5, A1) answered «'s»: with the old corrector «is» is missing; the new one reads
         // «It's» with the word before the gap and accepts it.
-        assertEquals("contracted-and-long-forms", byMarker(findings(todaysCorrector(), itIsHotInside()), "is").getRule());
-        assertTrue(findings(newCorrector(), itIsHotInside()).stream().noneMatch(d -> !d.getRule().equals("form-request")));
-        assertTrue(findings(newCorrector(), iDontEatMeat()).isEmpty());
-        assertTrue(findings(newCorrector(), sheTravelledToEurope()).isEmpty());
+        assertEquals("contracted-and-long-forms", byMarker(findings(oldCorrector(), itIsHotInside()), "is").getRule());
+        assertTrue(findings(productionCorrector(), itIsHotInside()).stream().noneMatch(d -> !d.getRule().equals("form-request")));
+        assertTrue(findings(productionCorrector(), iDontEatMeat()).isEmpty());
+        assertTrue(findings(productionCorrector(), sheTravelledToEurope()).isEmpty());
     }
 
     @Test
@@ -184,7 +184,7 @@ public class AnswerCompletenessAnalyzerTest {
     public void shouldShowAsEvidenceTheExerciseAsTheStudentSeesItWhatItAcceptsAndWhatIsMissingAsTheyNotBeFromIrelandAceptaReNotFaltaArent(
             ) {
         // R005: the exercise as the student sees it, what it accepts and what is missing.
-        FindingDraft arent = byMarker(findings(todaysCorrector(), theyAreNotFromIreland()), "aren't");
+        FindingDraft arent = byMarker(findings(oldCorrector(), theyAreNotFromIreland()), "aren't");
         assertEquals("They ___ (not / be) from Ireland.", part(arent, "Ejercicio"));
         assertEquals("'re not", part(arent, "Acepta"));
         assertEquals("aren't", part(arent, "Falta"));
@@ -202,7 +202,7 @@ public class AnswerCompletenessAnalyzerTest {
         child.setMultipleChoice(new MultipleChoiceEntity("SINGLE", List.of(new MultipleChoiceItemEntity("1", 0.0, "am i"),
                 new MultipleChoiceItemEntity("2", 1.0, "is he"), new MultipleChoiceItemEntity("3", 0.0, "are you"))));
         AuditNode node = node(child);
-        AnswerCompletenessAnalyzer analyzer = analyzer(todaysCorrector());
+        AnswerCompletenessAnalyzer analyzer = analyzer(oldCorrector());
         analyzer.onQuiz(node);
         assertFalse(node.getScores().containsKey("answer-completeness"));
         assertEquals(List.of(), analyzer.findingsAt(node));
@@ -215,7 +215,7 @@ public class AnswerCompletenessAnalyzerTest {
     public void shouldScore0AnExerciseWithAFindingAnd1AnExerciseWhoseFormsAreAllAcceptedAndWhoseInstructionsAskForNoneAsYouSeeCatsAnsweredSee(
             ) {
         // R006: errors family, score 0 or 1. «You ___ (see) cats.» (…1ec3, A1) has nothing missing and asks nothing.
-        AnswerCompletenessAnalyzer analyzer = analyzer(todaysCorrector());
+        AnswerCompletenessAnalyzer analyzer = analyzer(oldCorrector());
         AuditNode cats = node(quiz("67fab6d59930102295341ec3", "Escribe oraciones afirmativas en presente simple.", "",
                 text("You"), cloze("see"), text("(see) cats.")));
         AuditNode meat = node(iDontEatMeat());
@@ -234,7 +234,7 @@ public class AnswerCompletenessAnalyzerTest {
     public void shouldLeaveALowFindingWithTheInstructionsAndThePhraseThatAsksFixedByRemovingTheRequestWithoutTouchingTheAudioAsUsaShortFormsSiEsPosibleInTheyNotBeFromIreland(
             ) {
         // R007: the standard sentence of #1152 is removed by rule; the audio does not change.
-        FindingDraft request = byMarker(findings(todaysCorrector(), theyAreNotFromIreland()), "consigna");
+        FindingDraft request = byMarker(findings(oldCorrector(), theyAreNotFromIreland()), "consigna");
         assertEquals("form-request", request.getRule());
         assertEquals(FindingSeverity.LOW, request.getSeverity());
         assertEquals(FindingResolution.RULE, request.getResolution());
@@ -251,7 +251,7 @@ public class AnswerCompletenessAnalyzerTest {
             ) {
         // R007: «Elige $am$, $is$ o $are$ según el sujeto, y usa $short forms$.» asks too; its identity names the
         // mini theory, so it does not collide with the request of the instructions.
-        List<FindingDraft> drafts = findings(newCorrector(), itIsHotInside());
+        List<FindingDraft> drafts = findings(productionCorrector(), itIsHotInside());
         FindingDraft mini = byMarker(drafts, "miniteoria");
         assertEquals("form-request", mini.getRule());
         assertEquals(FindingSeverity.LOW, mini.getSeverity());
@@ -260,15 +260,16 @@ public class AnswerCompletenessAnalyzerTest {
     }
 
     // ------------------------------------------------------------------
-    // The corrector of today and the new one, from the copies of their tables
+    // The corrector in production since 1/10/2026 (#1191), and one that equates no class: the old
+    // one, kept as data, so the rules of this analyzer can be seen at work
     // ------------------------------------------------------------------
 
-    static CorrectorMatcher todaysCorrector() {
-        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.installedTable());
+    static CorrectorMatcher oldCorrector() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.oldCorrectorTable());
     }
 
-    static CorrectorMatcher newCorrector() {
-        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.newCorrectorTable());
+    static CorrectorMatcher productionCorrector() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.productionTable());
     }
 
     static AnswerCompletenessAnalyzer analyzer(CorrectorMatcher corrector) {

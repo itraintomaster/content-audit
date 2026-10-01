@@ -30,7 +30,7 @@ public class DefaultOptionRuleCheckTest {
     public void shouldReportAnExerciseWhereNoOptionIsWorthTheFullScoreAsThePerformanceWasAwfulIfAbsolutelyLostItsScore(
             ) {
         // R001: «The performance was ___ awful.» (…48f1, B2) with «absolutely» at 0: no option is worth the score.
-        List<OptionIssue> issues = check(todaysCorrector(), performanceWasAwful(item("absolutely", 0.0), item("very", 0.0)));
+        List<OptionIssue> issues = check(productionCorrector(), performanceWasAwful(item("absolutely", 0.0), item("very", 0.0)));
         assertEquals(List.of(new OptionIssue("single-valid-option", OptionIssueKind.NO_VALID_OPTION, null, null, false)),
                 issues);
     }
@@ -42,7 +42,7 @@ public class DefaultOptionRuleCheckTest {
     public void shouldReportAnExerciseWhereTwoOptionsScoreAsThePerformanceWasAwfulIfVeryAlsoScored(
             ) {
         // R001: «very» also scoring: two options are worth the score, and a single choice never reaches it.
-        List<OptionIssue> issues = check(todaysCorrector(), performanceWasAwful(item("absolutely", 1.0), item("very", 1.0)));
+        List<OptionIssue> issues = check(productionCorrector(), performanceWasAwful(item("absolutely", 1.0), item("very", 1.0)));
         assertEquals(List.of(new OptionIssue("single-valid-option", OptionIssueKind.SEVERAL_VALID_OPTIONS, "very",
                 "absolutely", true)), issues);
     }
@@ -53,12 +53,13 @@ public class DefaultOptionRuleCheckTest {
     @Tag("F-OMVAL-R002")
     public void shouldReportTwoIncorrectOptionsThatAreTheSameAnswerAsReGoingToAndAreGoingToInAreYouBusyIfSoIDoItForYouOfElegirLaFormaNatural(
             ) {
-        // R002 (José, 30/9): with the table of the new corrector «'re going to» and «are going to» (…26ef, A1)
-        // are the same answer; both are incorrect, one is left over. With today's copy only case and signs count.
-        List<OptionIssue> issues = check(newCorrector(), areYouBusy());
+        // R002 (José, 30/9): with the table of the corrector in production since 1/10/2026 «'re going to» and «are
+        // going to» (…26ef, A1) are the same answer; both are incorrect, one is left over. With the old corrector
+        // only case and signs counted.
+        List<OptionIssue> issues = check(productionCorrector(), areYouBusy());
         assertTrue(issues.contains(new OptionIssue("distinct-options", OptionIssueKind.SAME_ANSWER_OTHER_FORM,
                 "are going to", "'re going to", false)), issues.toString());
-        assertTrue(check(todaysCorrector(), areYouBusy()).stream().noneMatch(i -> i.getRule().equals("distinct-options")));
+        assertTrue(check(oldCorrector(), areYouBusy()).stream().noneMatch(i -> i.getRule().equals("distinct-options")));
     }
 
     @Test
@@ -68,7 +69,7 @@ public class DefaultOptionRuleCheckTest {
     public void shouldReportTwoOptionsThatLookIdenticalWhenOneOfThemIsTheCorrectOneAsAbsolutelyTwiceInThePerformanceWasAwful(
             ) {
         // R002: «absolutely» twice, one of them the correct one: the student cannot tell them apart.
-        List<OptionIssue> issues = check(todaysCorrector(),
+        List<OptionIssue> issues = check(productionCorrector(),
                 performanceWasAwful(item("absolutely", 1.0), item("very", 0.0), item("absolutely", 0.0)));
         assertEquals(List.of(new OptionIssue("distinct-options", OptionIssueKind.IDENTICAL_OPTIONS, "absolutely",
                 "absolutely", true)), issues);
@@ -85,7 +86,7 @@ public class DefaultOptionRuleCheckTest {
         AuditableQuiz withWill = mc("67fab6d599301022953426ef",
                 List.of(text("Are you busy? If so, I"), gap(), text("do it for you.")),
                 item("'ll", 1.0), item("will", 0.0), item("'re going to", 0.0));
-        assertTrue(check(newCorrector(), withWill).contains(new OptionIssue("distinct-options",
+        assertTrue(check(productionCorrector(), withWill).contains(new OptionIssue("distinct-options",
                 OptionIssueKind.SAME_ANSWER_OTHER_FORM, "will", "'ll", true)));
     }
 
@@ -97,7 +98,7 @@ public class DefaultOptionRuleCheckTest {
             ) {
         // R003: «___ a child? (He)» (…1e87, A1) opens the question: its six options are lowercase, and «am i»
         // also writes «i» in lowercase.
-        List<OptionIssue> issues = check(todaysCorrector(), aChild());
+        List<OptionIssue> issues = check(productionCorrector(), aChild());
         assertEquals(List.of("am i", "are we", "are you", "is he", "is it", "is she"), options(issues,
                 OptionIssueKind.LOWERCASE_SENTENCE_START));
         assertEquals(List.of("am i"), options(issues, OptionIssueKind.LOWERCASE_I));
@@ -111,7 +112,7 @@ public class DefaultOptionRuleCheckTest {
     public void shouldReportALowercaseIInAnOptionEvenWhenTheGapDoesNotOpenTheSentenceAsICantInACanYouCallMissGreenBNo(
             ) {
         // R003: after «No,» the gap does not open the sentence, but «i can't» (…250b, A1) still writes «i».
-        List<OptionIssue> issues = check(todaysCorrector(), missGreen());
+        List<OptionIssue> issues = check(productionCorrector(), missGreen());
         assertEquals(List.of("i can", "i can't"), options(issues, OptionIssueKind.LOWERCASE_I));
         assertTrue(issues.contains(new OptionIssue("sentence-start-capital", OptionIssueKind.LOWERCASE_I, "i can't", null,
                 true)));
@@ -125,7 +126,7 @@ public class DefaultOptionRuleCheckTest {
     public void shouldTakeTheGapAfterTheAOrBOfADialogueAsOpeningTheSentenceAsEverythingNothingInAWhatDidYouFindBItWasEmpty(
             ) {
         // R003: the gap after «B:» (…2c5e, A2) opens the answer.
-        assertEquals(List.of("everything", "nothing"), options(check(todaysCorrector(), whatDidYouFind()),
+        assertEquals(List.of("everything", "nothing"), options(check(productionCorrector(), whatDidYouFind()),
                 OptionIssueKind.LOWERCASE_SENTENCE_START));
     }
 
@@ -137,7 +138,7 @@ public class DefaultOptionRuleCheckTest {
             ) {
         // R003: with «-», the correct one in «___ golf is difficult to learn.» (…29d4, A2), the sentence starts
         // «golf is…»; the panel rearms it, capital included.
-        List<OptionIssue> issues = check(todaysCorrector(), golf());
+        List<OptionIssue> issues = check(productionCorrector(), golf());
         assertEquals(List.of(new OptionIssue("sentence-start-capital", OptionIssueKind.DASH_AT_SENTENCE_START, "-", null,
                 true)), issues);
     }
@@ -149,7 +150,7 @@ public class DefaultOptionRuleCheckTest {
     public void shouldNotTakeAsOpeningASentenceAGapWhoseTextDoesNotEndInAPeriodAQuestionOrAnExclamationMarkAsExcitedManInAOAn(
             ) {
         // R003: «___ excited man» (…233f, A1, A o an) is not a sentence: its lowercase options are fine.
-        assertEquals(List.of(), check(todaysCorrector(), excitedMan()));
+        assertEquals(List.of(), check(productionCorrector(), excitedMan()));
     }
 
     @Test
@@ -160,7 +161,7 @@ public class DefaultOptionRuleCheckTest {
             ) {
         // R004: after «an» in «He's an ___ amazing man.» (…48f4, B2) only «absolutely» fits.
         assertEquals(List.of(new OptionIssue("article-gives-away", OptionIssueKind.ARTICLE_GIVES_AWAY, "very", "an", false)),
-                check(todaysCorrector(), amazingMan()));
+                check(productionCorrector(), amazingMan()));
     }
 
     @Test
@@ -170,21 +171,21 @@ public class DefaultOptionRuleCheckTest {
     public void shouldFindNothingWhenEveryOptionFitsTheArticleBeforeTheGapAsGoodWellAfterAInMyBrotherIsAGoodWellDriver(
             ) {
         // R004: «good» and «well» both fit «a» in «My brother is a ___ (good / well) driver.» (…256a, A1).
-        assertEquals(List.of(), check(todaysCorrector(), goodDriver()));
+        assertEquals(List.of(), check(productionCorrector(), goodDriver()));
         assertFalse(DefaultOptionRuleCheck.startsWithVowelSound("university"));
         assertTrue(DefaultOptionRuleCheck.startsWithVowelSound("hour"));
     }
 
     // ------------------------------------------------------------------
-    // The corrector of today and the new one, from the copies of their tables
+    // The corrector in production since 1/10/2026 (#1191), and the old one, kept as data
     // ------------------------------------------------------------------
 
-    static CorrectorMatcher todaysCorrector() {
-        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.installedTable());
+    static CorrectorMatcher productionCorrector() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.productionTable());
     }
 
-    static CorrectorMatcher newCorrector() {
-        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.newCorrectorTable());
+    static CorrectorMatcher oldCorrector() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.oldCorrectorTable());
     }
 
     private static List<OptionIssue> check(CorrectorMatcher corrector, AuditableQuiz quiz) {

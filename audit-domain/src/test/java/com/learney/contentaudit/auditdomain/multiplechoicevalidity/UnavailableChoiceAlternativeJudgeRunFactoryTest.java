@@ -35,7 +35,7 @@ public class UnavailableChoiceAlternativeJudgeRunFactoryTest {
         assertEquals("another-option-valid", rule.getId());
         assertEquals(AnalysisCost.PAID_MODEL, rule.getCost());
         assertTrue(rule.getDescription().contains("otra opción también vale"));
-        assertEquals(rule, new MultipleChoiceValidityAnalyzerProvider(DefaultOptionRuleCheckTest.todaysCorrector(), factory,
+        assertEquals(rule, new MultipleChoiceValidityAnalyzerProvider(DefaultOptionRuleCheckTest.productionCorrector(), factory,
                 MultipleChoiceValidityAnalyzerTest.renderer()).describe().getRules().get(4));
 
         // And it consults nobody: «___ a child? (He)» comes back not available, and the coverage says why.

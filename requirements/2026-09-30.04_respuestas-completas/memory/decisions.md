@@ -5,6 +5,12 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Una sola copia de la tabla del corrector en producción (formas-equivalentes.json). La
+  vacía del corrector viejo se llama formas-equivalentes-corrector-viejo.json y es dato de prueba: la columna «hoy» de los
+  casos de oro y las pruebas que necesitan un corrector que no iguala ninguna clase para ver las reglas del analizador
+  (oldCorrector()); el resto de las pruebas usa la de producción (productionCorrector()). content-audit no la lee al
+  analizar.
+
 2026-09-30 — developer (impl A) — El generador no inventa formas que nadie escribe: un sujeto sustantivo sólo va de contraída a larga
   («Peter's reading» → «Peter is reading», nunca «The car's»), have como verbo principal no se contrae («I have a car»), al final
   de la oración tampoco («than he is.»), «'s» ante been/got/gotten es has y ante un participio adjetivo sin objeto es is («It's

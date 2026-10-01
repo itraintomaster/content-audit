@@ -60,14 +60,14 @@ public class MultipleChoiceValidityAnalyzerTest {
     public void shouldRaiseABlockingFindingOnAnExerciseWithNoValidOptionOrWithSeveralAsThePerformanceWasAwfulWithNoOptionScoring(
             ) {
         // R001: «The performance was ___ awful.» (…48f1, B2) with no option scoring.
-        AuditNode node = analyze(DefaultOptionRuleCheckTest.todaysCorrector(), noJudge(),
+        AuditNode node = analyze(DefaultOptionRuleCheckTest.productionCorrector(), noJudge(),
                 DefaultOptionRuleCheckTest.performanceWasAwful(item("absolutely", 0.0), item("very", 0.0)));
         FindingDraft none = only(node, "single-valid-option");
         assertEquals(FindingSeverity.BLOCKING, none.getSeverity());
         assertEquals(FindingResolution.PANEL, none.getResolution());
         assertEquals("ninguna", none.getMarker());
         assertEquals(0.0, node.getScores().get("multiple-choice-validity"));
-        FindingDraft two = only(analyze(DefaultOptionRuleCheckTest.todaysCorrector(), noJudge(),
+        FindingDraft two = only(analyze(DefaultOptionRuleCheckTest.productionCorrector(), noJudge(),
                 DefaultOptionRuleCheckTest.performanceWasAwful(item("absolutely", 1.0), item("very", 1.0))),
                 "single-valid-option");
         assertEquals(FindingSeverity.BLOCKING, two.getSeverity());
@@ -81,7 +81,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     public void shouldSendTwinOptionsToThePanelBlockingWhenTheyLookIdenticalAndOneIsCorrectHighWhenOnlyTheirFormDiffersFromTheCorrectOneAndLowWhenBothAreIncorrectAsVeGotToAndHaveGotToInDavidCallHisMotherNowMust(
             ) {
         // R002: «David ___ call his mother now. (must)» (…2e0c, A2), with the table of the new corrector.
-        CorrectorMatcher corrector = DefaultOptionRuleCheckTest.newCorrector();
+        CorrectorMatcher corrector = DefaultOptionRuleCheckTest.productionCorrector();
         FindingDraft bothIncorrect = only(analyze(corrector, noJudge(), DefaultOptionRuleCheckTest.davidMust()),
                 "distinct-options");
         assertEquals("have got to", bothIncorrect.getMarker());
@@ -106,7 +106,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     public void shouldRateTheCapitalLetterLowWhenAllOptionsShareTheirCaseAndMediumWhenOnlySomeDoAndResolveItByOneRuleOverAllTheOptionsAtOnceAsInAChildHe(
             ) {
         // R003: «___ a child? (He)» (…1e87, A1): one finding for all the options, low, by rule.
-        List<FindingDraft> drafts = findings(analyze(DefaultOptionRuleCheckTest.todaysCorrector(), noJudge(),
+        List<FindingDraft> drafts = findings(analyze(DefaultOptionRuleCheckTest.productionCorrector(), noJudge(),
                 DefaultOptionRuleCheckTest.aChild()));
         FindingDraft capital = byMarker(drafts, "mayuscula");
         assertEquals(FindingSeverity.LOW, capital.getSeverity());
@@ -115,7 +115,7 @@ public class MultipleChoiceValidityAnalyzerTest {
         assertEquals(FindingResolution.RULE, byMarker(drafts, "i").getResolution());
         assertEquals(1, drafts.stream().filter(d -> d.getMarker().equals("mayuscula")).count());
 
-        FindingDraft mixed = byMarker(findings(analyze(DefaultOptionRuleCheckTest.todaysCorrector(), noJudge(),
+        FindingDraft mixed = byMarker(findings(analyze(DefaultOptionRuleCheckTest.productionCorrector(), noJudge(),
                 DefaultOptionRuleCheckTest.aChild(item("Am I", 0.0), item("is he", 1.0), item("Is it", 0.0)))), "mayuscula");
         assertEquals(FindingSeverity.MEDIUM, mixed.getSeverity(), "only the correct one in lowercase gives it away");
     }
@@ -126,7 +126,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     @Tag("F-OMVAL-R003")
     public void shouldSendTheDashAtTheStartOfASentenceToThePanelAsInGolfIsDifficultToLearn() {
         // R003: «___ golf is difficult to learn.» (…29d4, A2): the dash goes to the panel.
-        FindingDraft dash = only(analyze(DefaultOptionRuleCheckTest.todaysCorrector(), noJudge(),
+        FindingDraft dash = only(analyze(DefaultOptionRuleCheckTest.productionCorrector(), noJudge(),
                 DefaultOptionRuleCheckTest.golf()), "sentence-start-capital");
         assertEquals("guion", dash.getMarker());
         assertEquals(FindingResolution.PANEL, dash.getResolution());
@@ -140,7 +140,7 @@ public class MultipleChoiceValidityAnalyzerTest {
     public void shouldSendTheArticleThatGivesTheAnswerAwayToThePanelAsMediumWithTheArticleAndTheOptionsAsEvidenceAsInItWasAnWonderfulExperience(
             ) {
         // R004: «It was an ___ wonderful experience.» (…48fc, B2): «very» does not fit «an».
-        FindingDraft article = only(analyze(DefaultOptionRuleCheckTest.todaysCorrector(), noJudge(),
+        FindingDraft article = only(analyze(DefaultOptionRuleCheckTest.productionCorrector(), noJudge(),
                 DefaultOptionRuleCheckTest.wonderfulExperience()), "article-gives-away");
         assertEquals("very", article.getMarker());
         assertEquals(FindingSeverity.MEDIUM, article.getSeverity());
@@ -161,7 +161,7 @@ public class MultipleChoiceValidityAnalyzerTest {
                         new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("'re not")),
                         DefaultOptionRuleCheckTest.text("(not / be) from Ireland.")), null, null, null);
         RecordingJudgeRun judge = new RecordingJudgeRun(Map.of());
-        AuditNode node = analyze(DefaultOptionRuleCheckTest.todaysCorrector(), judge, writeIn);
+        AuditNode node = analyze(DefaultOptionRuleCheckTest.productionCorrector(), judge, writeIn);
         assertFalse(node.getScores().containsKey("multiple-choice-validity"));
         assertEquals(List.of(), findings(node));
         assertEquals(List.of(), judge.requested);
@@ -174,11 +174,11 @@ public class MultipleChoiceValidityAnalyzerTest {
     public void shouldScore0AMultipleChoiceExerciseWithAFindingAnd1OneWithASingleCorrectOptionDistinctOptionsAndNothingThatGivesItAwayAsThePerformanceWasAwful(
             ) {
         // R005: «The performance was ___ awful.» (…48f1) is clean: 1; «___ a child? (He)» has findings: 0.
-        AuditNode clean = analyze(DefaultOptionRuleCheckTest.newCorrector(), noJudge(),
+        AuditNode clean = analyze(DefaultOptionRuleCheckTest.productionCorrector(), noJudge(),
                 DefaultOptionRuleCheckTest.performanceWasAwful());
         assertEquals(1.0, clean.getScores().get("multiple-choice-validity"));
         assertEquals(List.of(), findings(clean));
-        AuditNode child = analyze(DefaultOptionRuleCheckTest.newCorrector(), noJudge(), DefaultOptionRuleCheckTest.aChild());
+        AuditNode child = analyze(DefaultOptionRuleCheckTest.productionCorrector(), noJudge(), DefaultOptionRuleCheckTest.aChild());
         assertEquals(0.0, child.getScores().get("multiple-choice-validity"));
         assertEquals(0.0, ((DefaultQuizDiagnoses) child.getDiagnoses()).getMultipleChoiceValidityDiagnosis().orElseThrow()
                 .getScore());
@@ -209,7 +209,7 @@ public class MultipleChoiceValidityAnalyzerTest {
         AuditableQuiz child = DefaultOptionRuleCheckTest.aChild();
         RecordingJudgeRun judge = new RecordingJudgeRun(Map.of(child.getId(), judgment(child.getId(),
                 ChoiceAlternativeJudgmentStatus.PENDING, List.of(), null)));
-        AuditNode node = analyze(DefaultOptionRuleCheckTest.todaysCorrector(), judge, child);
+        AuditNode node = analyze(DefaultOptionRuleCheckTest.productionCorrector(), judge, child);
         assertEquals(List.of("mayuscula", "i"), findings(node).stream().map(FindingDraft::getMarker).toList());
         assertEquals(0.0, node.getScores().get("multiple-choice-validity"));
         assertEquals(List.of("multiple-choice-validity"), node.getPartiallyEvaluatedBy());
@@ -231,7 +231,7 @@ public class MultipleChoiceValidityAnalyzerTest {
                         "«very awful» también se dice en el habla informal")), "Otra opción también vale.", List.of()));
         RecordingJudgeRun judge = new RecordingJudgeRun(Map.of(awful.getId(), judgment(awful.getId(),
                 ChoiceAlternativeJudgmentStatus.JUDGED, List.of(alsoValid), 0.6)));
-        AuditNode node = analyze(DefaultOptionRuleCheckTest.todaysCorrector(), judge, awful);
+        AuditNode node = analyze(DefaultOptionRuleCheckTest.productionCorrector(), judge, awful);
         assertEquals(List.of(alsoValid), findings(node));
         assertEquals(FindingResolution.PANEL, findings(node).get(0).getResolution());
         assertEquals("«very awful» también se dice en el habla informal", part(findings(node).get(0), "Explicación del juez"));
@@ -338,7 +338,7 @@ public class MultipleChoiceValidityAnalyzerTest {
 
     private static Finding engineFinding(AuditableQuiz quiz) {
         MultipleChoiceValidityAnalyzerProvider provider = new MultipleChoiceValidityAnalyzerProvider(
-                DefaultOptionRuleCheckTest.todaysCorrector(), new UnavailableChoiceAlternativeJudgeRunFactory(), renderer());
+                DefaultOptionRuleCheckTest.productionCorrector(), new UnavailableChoiceAlternativeJudgeRunFactory(), renderer());
         IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
                 new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
         AuditableKnowledge knowledge = new AuditableKnowledge(List.of(quiz), "Grados de énfasis", null, true,

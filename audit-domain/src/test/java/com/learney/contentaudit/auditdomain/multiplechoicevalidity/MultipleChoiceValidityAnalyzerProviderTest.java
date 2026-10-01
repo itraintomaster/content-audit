@@ -30,7 +30,7 @@ public class MultipleChoiceValidityAnalyzerProviderTest {
         // R005 and F-HALL-R006: one card, its four instant rules and the judge's rule as the factory gives it;
         // the cost of the card is the highest, the paid model; no task kind and no configuration.
         MultipleChoiceValidityAnalyzerProvider provider = new MultipleChoiceValidityAnalyzerProvider(
-                DefaultOptionRuleCheckTest.todaysCorrector(), new UnavailableChoiceAlternativeJudgeRunFactory(),
+                DefaultOptionRuleCheckTest.productionCorrector(), new UnavailableChoiceAlternativeJudgeRunFactory(),
                 MultipleChoiceValidityAnalyzerTest.renderer());
         AnalyzerDescriptor card = provider.describe();
 

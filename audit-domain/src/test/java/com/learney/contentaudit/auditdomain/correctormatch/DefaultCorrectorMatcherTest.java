@@ -29,11 +29,12 @@ public class DefaultCorrectorMatcherTest {
     @Tag("F-RESPC-R001")
     public void shouldAcceptCafeWhereTheAcceptedAnswerSaysCafAndTakeEverydayAsEveryDayAsTheBackendCorrectorDoesForDontRunInTheCafAndTheGirlsWouldCycleToSchoolEveryDay(
             ) {
-        // R001: the corrector removes accents since 19/5/2025 and spaces always, with today's
-        // empty table already. «You shouldn't run in the café. ___» (…22c5, A1) accepts «Don't run
-        // in the café.|Do not run in the café.»; «It was the girls' habit… ___» (…4570, B2) accepts
-        // «The girls would cycle to school every day.».
-        DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(installedTable());
+        // R001: the corrector removes accents since 19/5/2025 and spaces always: the old one did it
+        // without any table, and so does the one in production since 1/10/2026 (#1191). «You
+        // shouldn't run in the café. ___» (…22c5, A1) accepts «Don't run in the café.|Do not run in
+        // the café.»; «It was the girls' habit… ___» (…4570, B2) accepts «The girls would cycle to
+        // school every day.».
+        DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(productionTable());
         GapContext cafe = new GapContext("You shouldn't run in the café.", "");
         GapContext girls = new GapContext("It was the girls' habit to cycle to school every day.", "");
 
@@ -43,6 +44,10 @@ public class DefaultCorrectorMatcherTest {
                 "The girls would cycle to school everyday."));
         assertFalse(today.accepts(girls, List.of("The girls would cycle to school every day."),
                 "The girls will cycle to school every day."), "a different word is still a different answer");
+        DefaultCorrectorMatcher old = new DefaultCorrectorMatcher(oldCorrectorTable());
+        assertTrue(old.accepts(cafe, List.of("Don't run in the café.|Do not run in the café."), "Don't run in the cafe"));
+        assertTrue(old.accepts(girls, List.of("The girls would cycle to school every day."),
+                "The girls would cycle to school everyday."));
     }
 
     @Test
@@ -51,9 +56,9 @@ public class DefaultCorrectorMatcherTest {
     @Tag("F-RESPC-R001")
     public void shouldSplitTheAcceptedAnswersOnAndNeverOnSoHasNotCutHasntCutAcceptsEachFormAndHasNotCuthasntCutIsASingleForm(
             ) {
-        // R001: «He ___ (not / cut) himself.» (…286c, A2). The corrector splits only on «|»: with a
-        // slash the student would have to type it, and neither form alone is accepted.
-        DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(installedTable());
+        // R001: «He ___ (not / cut) himself.» (…286c, A2). The corrector in production splits only on
+        // «|»: with a slash the student would have to type it, and neither form alone is accepted.
+        DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(productionTable());
         GapContext he = new GapContext("He", "(not / cut) himself.");
 
         assertTrue(today.accepts(he, List.of("has not cut | hasn't cut"), "has not cut"));
@@ -70,16 +75,17 @@ public class DefaultCorrectorMatcherTest {
     @Tag("F-RESPC-R001")
     public void shouldTakeArentAreNotAndReNotAsThreeDifferentFormsWithTodaysEmptyTableSoTheyNotBeFromIrelandRejectsArent(
             ) {
-        // R001 invariant: with today's empty table the corrector compares letter by letter.
-        // «They ___ (not / be) from Ireland.» (…25ac, A1) accepts only «'re not».
-        DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(installedTable());
+        // R001 invariant: with the empty table of the old corrector, in production until 1/10/2026,
+        // the corrector compares letter by letter. «They ___ (not / be) from Ireland.» (…25ac, A1)
+        // accepts only «'re not».
+        DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(oldCorrectorTable());
         GapContext they = new GapContext("They", "(not / be) from Ireland.");
 
         assertTrue(today.accepts(they, List.of("'re not"), "'re not"));
         assertFalse(today.accepts(they, List.of("'re not"), "aren't"));
         assertFalse(today.accepts(they, List.of("'re not"), "are not"));
         assertFalse(today.sameAnswer(they, "aren't", "are not"));
-        assertEquals("corrector de hoy (sin tabla de formas equivalentes)", today.tableVersion());
+        assertEquals("corrector viejo, hasta el 1/10/2026 (sin tabla de formas equivalentes)", today.tableVersion());
     }
 
     @Test
@@ -88,8 +94,9 @@ public class DefaultCorrectorMatcherTest {
     @Tag("F-RESPC-R001")
     public void shouldTakeArentAreNotAndReNotAsTheSameFormWithTheNewCorrectorsTableSoTheyNotBeFromIrelandAcceptsArent(
             ) {
-        // R001 invariant: with the new corrector's table the three are read «are not».
-        DefaultCorrectorMatcher next = new DefaultCorrectorMatcher(newCorrectorTable());
+        // R001 invariant: with the table of the new corrector, in production since 1/10/2026 (#1191),
+        // the three are read «are not».
+        DefaultCorrectorMatcher next = new DefaultCorrectorMatcher(productionTable());
         GapContext they = new GapContext("They", "(not / be) from Ireland.");
 
         assertTrue(next.accepts(they, List.of("'re not"), "aren't"));
@@ -97,6 +104,7 @@ public class DefaultCorrectorMatcherTest {
         assertTrue(next.accepts(they, List.of("'re not"), "'re not"));
         assertTrue(next.sameAnswer(they, "aren't", "'re not"));
         assertFalse(next.accepts(they, List.of("'re not"), "are"), "the negation still has to be there");
+        assertEquals("corrector en producción, ittm #1191 (30e0efcc0), desplegado el 1/10/2026", next.tableVersion());
     }
 
     @Test
@@ -107,8 +115,9 @@ public class DefaultCorrectorMatcherTest {
             ) {
         // DOUBT-RESPC-IMITAR (A): content-audit imitates the Go corrector by running its own golden
         // cases, copied as they are from be/domain/quiz/pkg/shared/testdata (ittm #1191). With the
-        // installed copy -- today's corrector, the empty table -- each case decides its «hoy».
-        DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(installedTable());
+        // empty table of the old corrector -- in production until 1/10/2026, kept only as data of
+        // this column -- each case decides its «hoy».
+        DefaultCorrectorMatcher today = new DefaultCorrectorMatcher(oldCorrectorTable());
         List<String> wrong = new ArrayList<>();
         int cases = 0;
         for (GoldenCase c : goldenCases()) {
@@ -130,10 +139,10 @@ public class DefaultCorrectorMatcherTest {
     @Tag("F-RESPC-R001")
     public void shouldDecideEveryGoldenCaseOfTheBackendCorrectorAsItsAceptaColumnSaysWithTheCopyOfTheNewCorrectorsTableReadingEachGapWithTheSentenceAroundItAsIsForItBeHotInsideAnsweredS(
             ) {
-        // DOUBT-RESPC-IMITAR (A): with the copy of the new corrector's table each case decides its
-        // «acepta»; the gap is read with the sentence around it, without hints, so «'s» in
-        // «It ___ (be) hot inside.» (…1fa5, A1) is «is» and never «has».
-        DefaultCorrectorMatcher next = new DefaultCorrectorMatcher(newCorrectorTable());
+        // DOUBT-RESPC-IMITAR (A): with the copy of the new corrector's table, the one in production
+        // since 1/10/2026, each case decides its «acepta»; the gap is read with the sentence around
+        // it, without hints, so «'s» in «It ___ (be) hot inside.» (…1fa5, A1) is «is» and never «has».
+        DefaultCorrectorMatcher next = new DefaultCorrectorMatcher(productionTable());
         List<String> wrong = new ArrayList<>();
         int cases = 0;
         for (GoldenCase c : goldenCases()) {
@@ -187,14 +196,17 @@ public class DefaultCorrectorMatcherTest {
         return cases;
     }
 
-    /** The copy of the table of the corrector in production: today's, empty. */
-    public static FormEquivalenceTable installedTable() {
+    /** The copy of the table of the corrector in production: the new one, ittm #1191, since 1/10/2026. */
+    public static FormEquivalenceTable productionTable() {
         return table(CORRECTOR.resolve("formas-equivalentes.json"));
     }
 
-    /** The copy of the new corrector's table, the one that replaces it when the corrector ships. */
-    public static FormEquivalenceTable newCorrectorTable() {
-        return table(CORRECTOR.resolve("formas-equivalentes-corrector-nuevo.json"));
+    /**
+     * The empty table of the old corrector, in production until 1/10/2026: data of the «hoy»
+     * column of the golden cases, and a corrector that equates no class for the tests that need one.
+     */
+    public static FormEquivalenceTable oldCorrectorTable() {
+        return table(CORRECTOR.resolve("formas-equivalentes-corrector-viejo.json"));
     }
 
     /** The table as the file adapter reads it (format of hook A-15), without leaving audit-domain. */

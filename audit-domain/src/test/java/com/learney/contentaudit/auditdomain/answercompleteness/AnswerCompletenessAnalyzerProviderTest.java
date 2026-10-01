@@ -30,7 +30,7 @@ public class AnswerCompletenessAnalyzerProviderTest {
         // R006 and F-HALL-R006: the card the catalog validates at startup, with the Spanish name of F-RONDA1-R004;
         // no task kind (package E's) and no configuration.
         AnswerCompletenessAnalyzerProvider provider = new AnswerCompletenessAnalyzerProvider(
-                AnswerCompletenessAnalyzerTest.todaysCorrector(), AnswerCompletenessAnalyzerTest.participles(),
+                AnswerCompletenessAnalyzerTest.productionCorrector(), AnswerCompletenessAnalyzerTest.participles(),
                 AnswerCompletenessAnalyzerTest.renderer());
         AnalyzerDescriptor card = provider.describe();
 

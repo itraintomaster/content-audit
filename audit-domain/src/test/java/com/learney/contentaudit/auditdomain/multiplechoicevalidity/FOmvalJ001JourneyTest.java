@@ -48,7 +48,7 @@ public class FOmvalJ001JourneyTest {
     @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe lee las opciones de cada e... → Hallazgo bloqueante que cuenta en los... [No vale ninguna opción, o valen dos] → success")
     public void path1_noValeNingunaOpcinOValenDos_success() {
         // correr: analyze with only multiple-choice-validity, without a judge connected.
-        AuditNode root = analyze(DefaultOptionRuleCheckTest.todaysCorrector(), List.of(
+        AuditNode root = analyze(DefaultOptionRuleCheckTest.productionCorrector(), List.of(
                 DefaultOptionRuleCheckTest.performanceWasAwful(item("absolutely", 0.0), item("very", 0.0))));
 
         // leer_opciones → bloqueante: no option scores in «The performance was ___ awful.»: a blocking finding that
@@ -75,7 +75,7 @@ public class FOmvalJ001JourneyTest {
                 DefaultOptionRuleCheckTest.text("Are you busy? If so, I"), DefaultOptionRuleCheckTest.gap(),
                 DefaultOptionRuleCheckTest.text("do it for you.")), item("'ll", 1.0), item("will", 0.0),
                 item("are going to", 0.0));
-        AuditNode root = analyze(DefaultOptionRuleCheckTest.newCorrector(), List.of(withWill));
+        AuditNode root = analyze(DefaultOptionRuleCheckTest.productionCorrector(), List.of(withWill));
 
         Finding twin = finding(quiz(root, "67fab6d599301022953426ef"), "will");
         assertEquals("distinct-options", twin.getRule());
@@ -91,7 +91,7 @@ public class FOmvalJ001JourneyTest {
     public void path3_dosOpcionesIncorrectasSonLaMismaRespuesta_success() {
         // correr → leer_opciones → sobra_una: «'ve got to» and «have got to» in «David ___ call his mother now.
         // (must)», both incorrect: low, for the panel.
-        AuditNode root = analyze(DefaultOptionRuleCheckTest.newCorrector(), List.of(DefaultOptionRuleCheckTest.davidMust()));
+        AuditNode root = analyze(DefaultOptionRuleCheckTest.productionCorrector(), List.of(DefaultOptionRuleCheckTest.davidMust()));
 
         Finding leftOver = finding(quiz(root, "67fab6d59930102295342e0c"), "have got to");
         assertEquals("distinct-options", leftOver.getRule());
@@ -106,7 +106,7 @@ public class FOmvalJ001JourneyTest {
     public void path4_elHuecoAbreLaOracinYLasOpcionesVanEnMinscula_success() {
         // correr → leer_opciones → mayuscula: «___ a child? (He)» opens the question in lowercase: low, by one rule
         // over all the options at once; with no judge connected the exercise is evaluated halfway.
-        AuditNode root = analyze(DefaultOptionRuleCheckTest.todaysCorrector(), List.of(DefaultOptionRuleCheckTest.aChild()));
+        AuditNode root = analyze(DefaultOptionRuleCheckTest.productionCorrector(), List.of(DefaultOptionRuleCheckTest.aChild()));
 
         AuditNode child = quiz(root, "67fab6d59930102295341e87");
         Finding capital = finding(child, "mayuscula");
@@ -127,7 +127,7 @@ public class FOmvalJ001JourneyTest {
     public void path5_elArtculoAntesDelHuecoSloEncajaConLaCorrecta_success() {
         // correr → leer_opciones → delata: «He's an ___ amazing man.»: medium, for the panel, with the article and the
         // options as evidence (R004).
-        AuditNode root = analyze(DefaultOptionRuleCheckTest.todaysCorrector(), List.of(DefaultOptionRuleCheckTest.amazingMan()));
+        AuditNode root = analyze(DefaultOptionRuleCheckTest.productionCorrector(), List.of(DefaultOptionRuleCheckTest.amazingMan()));
 
         Finding article = finding(quiz(root, "67fab6d599301022953448f4"), "very");
         assertEquals("article-gives-away", article.getRule());
@@ -144,7 +144,7 @@ public class FOmvalJ001JourneyTest {
     public void path6_unaSolaValeSonDistintasYLaFormaNoDelataNada_success() {
         // correr → leer_opciones → sin_hallazgo: «The performance was ___ awful.» as the course has it: no finding of
         // this analyzer and score 1.
-        AuditNode root = analyze(DefaultOptionRuleCheckTest.newCorrector(), List.of(DefaultOptionRuleCheckTest.performanceWasAwful()));
+        AuditNode root = analyze(DefaultOptionRuleCheckTest.productionCorrector(), List.of(DefaultOptionRuleCheckTest.performanceWasAwful()));
 
         AuditNode awful = quiz(root, "67fab6d599301022953448f1");
         assertEquals(List.of(), awful.getFindings());

@@ -22,8 +22,9 @@ import javax.annotation.processing.Generated;
  *   <li>Two answers are the same if they match letter by letter, without case, spaces, the signs
  *       {@code ! ? : ; , . - _}, apostrophes, quotes and accents -- what the corrector does since
  *       19/5/2025 --, or if the whole sentence around the gap, read in its long form, matches the
- *       same way. With today's empty table nothing is read in its long form, so only the first
- *       comparison is left: «aren't», «are not» and «'re not» are three different forms.</li>
+ *       same way. With an empty table, as the old corrector's until 1/10/2026, nothing is read in
+ *       its long form, so only the first comparison is left: «aren't», «are not» and «'re not» are
+ *       three different forms. The table in production since then (ittm #1191) equates them.</li>
  *   <li>The long reading opens every contraction of the table whose long form can be told from
  *       what follows («'s» before a participle is has; «'d» before better is had), puts the not
  *       of a negative question after its subject when the table says so, reads the listed

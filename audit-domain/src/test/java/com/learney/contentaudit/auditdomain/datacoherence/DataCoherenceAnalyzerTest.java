@@ -325,8 +325,9 @@ public class DataCoherenceAnalyzerTest {
         }
     }
 
-    static CorrectorMatcher todaysCorrector() {
-        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.installedTable());
+    /** The corrector in production since 1/10/2026 (#1191). */
+    static CorrectorMatcher productionCorrector() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.productionTable());
     }
 
     static DefaultQuizStudentViewRenderer renderer() {
@@ -335,7 +336,7 @@ public class DataCoherenceAnalyzerTest {
 
     /** The analyzer over one exercise of a topic with the given mode, the course closed after it. */
     static AuditNode analyze(Copies copies, SentenceMode mode, AuditableQuiz quiz) {
-        DataCoherenceAnalyzer analyzer = new DataCoherenceAnalyzer(todaysCorrector(), copies, copies,
+        DataCoherenceAnalyzer analyzer = new DataCoherenceAnalyzer(productionCorrector(), copies, copies,
                 new DefaultSpokenTextBuilder(), renderer());
         AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, new ArrayList<>(), new LinkedHashMap<>(),
                 new LinkedHashMap<>(), new DefaultCourseDiagnoses());
@@ -355,7 +356,7 @@ public class DataCoherenceAnalyzerTest {
 
     /** analyze with only data-coherence, through the engine. */
     static AuditNode engine(Copies copies, List<AuditableQuiz> quizzes) {
-        DataCoherenceAnalyzerProvider provider = new DataCoherenceAnalyzerProvider(todaysCorrector(), copies, copies,
+        DataCoherenceAnalyzerProvider provider = new DataCoherenceAnalyzerProvider(productionCorrector(), copies, copies,
                 renderer());
         IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
                 new DefaultFindingCollector(), new DefaultContextNumbersCalculator());

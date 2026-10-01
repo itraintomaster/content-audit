@@ -29,7 +29,7 @@ public class DataCoherenceAnalyzerProviderTest {
             ) {
         // R005 and F-HALL-R006: the card the catalog validates at startup; no task kind and no configuration.
         DataCoherenceAnalyzerTest.Copies copies = new DataCoherenceAnalyzerTest.Copies();
-        DataCoherenceAnalyzerProvider provider = new DataCoherenceAnalyzerProvider(DataCoherenceAnalyzerTest.todaysCorrector(),
+        DataCoherenceAnalyzerProvider provider = new DataCoherenceAnalyzerProvider(DataCoherenceAnalyzerTest.productionCorrector(),
                 copies, copies, DataCoherenceAnalyzerTest.renderer());
         AnalyzerDescriptor card = provider.describe();
 

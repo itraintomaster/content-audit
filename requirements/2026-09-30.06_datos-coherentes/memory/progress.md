@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Con la tabla del corrector en producción (#1191) los números no se mueven: 102 ejercicios,
+  9 oraciones de producción, 85 audios con barra, 7 audios distintos y 1 sin clave; examen escribir 39 de 39.
+
 2026-09-30 — developer (impl A) — data-coherence construido y encendido en Main (línea 13): DefaultSpokenTextBuilder (la regla
   del 24/8, tts_text y spoken_from_choice_parts), el analizador, su ficha y los dos adaptadores de sólo lectura
   (FileSystemAudioRecordingRegistry, FileSystemProductionSentenceSource, en streaming). db/grabaciones.json armado con

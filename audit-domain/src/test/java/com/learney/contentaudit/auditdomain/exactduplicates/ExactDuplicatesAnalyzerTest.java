@@ -66,7 +66,7 @@ public class ExactDuplicatesAnalyzerTest {
         Map<String, String> found = new TreeMap<>();
         Map<String, Integer> byLevel = new TreeMap<>();
         for (String folder : TOPICS_WITH_COPIES) {
-            AuditNode knowledge = analyze(todaysCorrector(), topic(folder));
+            AuditNode knowledge = analyze(productionCorrector(), topic(folder));
             for (AuditNode quiz : knowledge.getChildren()) {
                 if (!findings(quiz).isEmpty()) {
                     found.put(quiz.getEntity().getId(), findings(quiz).get(0).getMarker());
@@ -87,7 +87,7 @@ public class ExactDuplicatesAnalyzerTest {
             ) {
         // R001.1: «The show started ___ time.» (in / on, …3d28) and «The show started ___ .» (in time / on time, …4a4c),
         // B1, In time u on time: both finish «The show started on time.».
-        AuditNode knowledge = analyze(todaysCorrector(), List.of(
+        AuditNode knowledge = analyze(productionCorrector(), List.of(
                 mc("67fab6d59930102295343d28", List.of(text("The show started"), gap(), text("time.")), item("in", 0.0),
                         item("on", 1.0)),
                 mc("67fab6d59930102295344a4c", List.of(text("The show started"), gap(), text(".")), item("in time", 0.0),
@@ -104,7 +104,7 @@ public class ExactDuplicatesAnalyzerTest {
             ) {
         // R001.1 (DOUBT-DUPEX-PISTA): «rice ___ (no plural form)» (…2313) and «rice ___» (…2314), A1, Contable o
         // incontable: the hint does not count.
-        AuditNode knowledge = analyze(todaysCorrector(), List.of(riceWithHint(), rice()));
+        AuditNode knowledge = analyze(productionCorrector(), List.of(riceWithHint(), rice()));
         assertEquals(List.of(), findings(quiz(knowledge, "67fab6d59930102295342313")));
         assertEquals("67fab6d59930102295342313", only(quiz(knowledge, "67fab6d59930102295342314")).getMarker());
     }
@@ -121,7 +121,7 @@ public class ExactDuplicatesAnalyzerTest {
                 .anyMatch(p -> p.getKind() == SentencePartKind.CLOZE && p.getOptions() != null
                         && p.getOptions().get(0).startsWith("So am I."))).count();
         assertEquals(11, soAmI);
-        AuditNode knowledge = analyze(todaysCorrector(), quizzes);
+        AuditNode knowledge = analyze(productionCorrector(), quizzes);
         assertTrue(knowledge.getChildren().stream().allMatch(q -> findings(q).isEmpty()));
     }
 
@@ -148,7 +148,7 @@ public class ExactDuplicatesAnalyzerTest {
     public void shouldNotTakeAsExactDuplicatesTwoExercisesThatDifferInAWordAsIDontHaveTimeAndIDidntHaveTime(
             ) {
         // R001: «I didn't have ___ time.» (…2b6b) and «I don't have ___ time.» (…2b7f), A2: a similar one, package B's.
-        AuditNode knowledge = analyze(todaysCorrector(), List.of(
+        AuditNode knowledge = analyze(productionCorrector(), List.of(
                 mc("67fab6d59930102295342b6b", List.of(text("I didn't have"), gap(), text("time.")), item("much", 1.0),
                         item("much of", 0.0)),
                 mc("67fab6d59930102295342b7f", List.of(text("I don't have"), gap(), text("time.")), item("much", 1.0),
@@ -163,7 +163,7 @@ public class ExactDuplicatesAnalyzerTest {
     public void shouldLeaveWithoutFindingTheFirstExerciseInTheOrderOfTheTopicAndMarkTheOneThatComesAfterItAs67fab6d59930102295342260After67fab6d5993010229534224bInPrcticaMixta(
             ) {
         // R002 (DOUBT-DUPEX-CUAL-QUEDA): 224b comes before 2260 in Práctica mixta (A1): 224b stays.
-        AuditNode knowledge = analyze(todaysCorrector(), List.of(theyWerent("67fab6d5993010229534224b"),
+        AuditNode knowledge = analyze(productionCorrector(), List.of(theyWerent("67fab6d5993010229534224b"),
                 theyWerent("67fab6d59930102295342260")));
         assertEquals(List.of(), findings(quiz(knowledge, "67fab6d5993010229534224b")));
         assertEquals(1, findings(quiz(knowledge, "67fab6d59930102295342260")).size());
@@ -194,7 +194,7 @@ public class ExactDuplicatesAnalyzerTest {
     public void shouldNameInEachFindingTheExerciseThatStaysAs67fab6d5993010229534224bInTheFindingOf67fab6d59930102295342260(
             ) {
         // R002.2 and F-HALL-R003: the finding of 2260 names 224b as its other node.
-        AuditNode knowledge = analyze(todaysCorrector(), List.of(theyWerent("67fab6d5993010229534224b"),
+        AuditNode knowledge = analyze(productionCorrector(), List.of(theyWerent("67fab6d5993010229534224b"),
                 theyWerent("67fab6d59930102295342260")));
         FindingDraft copy = only(quiz(knowledge, "67fab6d59930102295342260"));
         assertEquals(List.of(new FindingNodeRef(AuditTarget.QUIZ, "67fab6d5993010229534224b", "label")),
@@ -240,7 +240,7 @@ public class ExactDuplicatesAnalyzerTest {
     public void shouldShowAsEvidenceBothExercisesAsTheStudentSeesThemTheFinishedExerciseTheyShareAndIdnticoA67fab6d5993010229534224bDelMismoTemaNeverTheInternalFormatTheyWerentNotBe(
             ) {
         // R004: both exercises as the student sees them, the finished exercise and the line «Idéntico a …».
-        AuditNode knowledge = analyze(todaysCorrector(), List.of(theyWerent("67fab6d5993010229534224b"),
+        AuditNode knowledge = analyze(productionCorrector(), List.of(theyWerent("67fab6d5993010229534224b"),
                 theyWerent("67fab6d59930102295342260")));
         FindingDraft copy = only(quiz(knowledge, "67fab6d59930102295342260"));
         assertEquals("They ___ (not / be) at the park.", part(copy, "Copia"));
@@ -260,7 +260,7 @@ public class ExactDuplicatesAnalyzerTest {
     public void shouldScore0TheCopyAnd1TheExerciseThatStaysAndEveryExerciseWithoutATwinAsInPrcticaMixta(
             ) {
         // R005: in Práctica mixta (A1, 80 exercises of the course of 29/9) only 2260 scores 0.
-        AuditNode knowledge = analyze(todaysCorrector(), topic("a1/past-simple/past-simple-mixed-practice-1"));
+        AuditNode knowledge = analyze(productionCorrector(), topic("a1/past-simple/past-simple-mixed-practice-1"));
         assertEquals(80, knowledge.getChildren().size());
         for (AuditNode quiz : knowledge.getChildren()) {
             double expected = quiz.getEntity().getId().equals("67fab6d59930102295342260") ? 0.0 : 1.0;
@@ -317,8 +317,9 @@ public class ExactDuplicatesAnalyzerTest {
     // The analyzer over one topic, and the engine over a course
     // ------------------------------------------------------------------
 
-    static CorrectorMatcher todaysCorrector() {
-        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.installedTable());
+    /** The corrector in production since 1/10/2026 (#1191): with its table the copies are the same 23. */
+    static CorrectorMatcher productionCorrector() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.productionTable());
     }
 
     static DefaultQuizStudentViewRenderer renderer() {
@@ -373,7 +374,7 @@ public class ExactDuplicatesAnalyzerTest {
 
     /** analyze with only exact-duplicates, one topic per list, through the engine. */
     static AuditNode engine(List<List<AuditableQuiz>> topics) {
-        ExactDuplicatesAnalyzerProvider provider = new ExactDuplicatesAnalyzerProvider(todaysCorrector(), renderer());
+        ExactDuplicatesAnalyzerProvider provider = new ExactDuplicatesAnalyzerProvider(productionCorrector(), renderer());
         IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
                 new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
         List<AuditableKnowledge> knowledges = new ArrayList<>();

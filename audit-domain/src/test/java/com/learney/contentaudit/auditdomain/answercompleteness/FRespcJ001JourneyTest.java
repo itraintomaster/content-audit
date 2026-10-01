@@ -43,7 +43,8 @@ public class FRespcJ001JourneyTest {
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → Para cada respuesta aceptada, el info... → Un hallazgo por forma que falta, con ... [Falta la forma contraída o la larga] → success")
     public void path1_faltaLaFormaContradaOLaLarga_success() {
-        // correr: analyze with only answer-completeness over Rutinas y ahora, with the corrector of today.
+        // correr: analyze with only answer-completeness over Rutinas y ahora, with a corrector that equates no
+        // class (the old one, until 1/10/2026), so the rules of the analyzer are seen at work.
         AuditNode root = analyze(knowledge("6814dafa7d73e7209a13d221", "Rutinas y ahora",
                 List.of(AnswerCompletenessAnalyzerTest.iDontEatMeat())));
 
@@ -136,12 +137,12 @@ public class FRespcJ001JourneyTest {
     }
 
     // ------------------------------------------------------------------
-    // analyze with only answer-completeness, through the engine, with the corrector of today
+    // analyze with only answer-completeness, through the engine, with the old corrector
     // ------------------------------------------------------------------
 
     private static AuditNode analyze(AuditableKnowledge knowledge) {
         AnswerCompletenessAnalyzerProvider provider = new AnswerCompletenessAnalyzerProvider(
-                AnswerCompletenessAnalyzerTest.todaysCorrector(), AnswerCompletenessAnalyzerTest.participles(),
+                AnswerCompletenessAnalyzerTest.oldCorrector(), AnswerCompletenessAnalyzerTest.participles(),
                 AnswerCompletenessAnalyzerTest.renderer());
         IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
                 new DefaultFindingCollector(), new DefaultContextNumbersCalculator());

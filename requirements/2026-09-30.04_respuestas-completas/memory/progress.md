@@ -4,6 +4,18 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Salió el corrector nuevo: ittm #1191 (30e0efcc0) en producción desde el 1/10/2026 00:30 UTC
+  (learney-app, sa-east-1). formas-equivalentes.json es ahora su tabla, versión «corrector en producción, ittm #1191
+  (30e0efcc0), desplegado el 1/10/2026», y es la única copia: la del «corrector nuevo» se fue. La vacía quedó como
+  formas-equivalentes-corrector-viejo.json, sólo para la columna «hoy» de los casos de oro (153 de 153 en las dos pruebas).
+  Curso del 29/9 con la tabla en producción: 706 ejercicios con hallazgo (A1 554, A2 105, B1 23, B2 24): 697 pedidos de
+  forma (654 por regla, 43 a la mesa, baja) y 12 formas que el corrector todavía rechaza (11 contraída/larga, 1 till,
+  media), 3 ejercicios con las dos cosas; antes eran 2.124 ejercicios y 2.791 hallazgos. Examen escribir: 0 de 128, que se
+  lee como «los 128 los resuelve el corrector»: en esos ejercicios ninguna forma equivalente queda rechazada. El control de
+  que el analizador ve lo que un corrector rechaza son sus pruebas con la tabla vieja (y 123 de 128 con ella). En la
+  parte quedan 5 marcas fuera del oro: 5 de las 12 formas (A2, Participios irregulares).
+  Next: las 12 formas son reglas que le faltan al corrector (decisión pendiente de R005 sobre el «|»).
+
 2026-09-30 — developer (impl A) — answer-completeness construido y encendido en Main (línea 11): DefaultEquivalentFormGenerator,
   DefaultFormRequestDetector, AnswerCompletenessAnalyzer y su proveedor, sobre la comparación del corrector (DefaultCorrectorMatcher,
   153 de 153 casos de oro) y la tabla de formas irregulares. 36 pruebas en verde (generador 8, detector 6, analizador 16, ficha 1,

@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Con la tabla del corrector en producción (#1191) las copias siguen siendo 23 (A1 17, A2 2,
+  B1 4); la prueba de los 14 temas corre con esa tabla.
+
 2026-09-30 — developer (impl A) — exact-duplicates construido y encendido en Main (línea 14): el analizador compara en
   onKnowledge cada ejercicio terminado (FILL, sin la pista, con la primera respuesta o la correcta) con los anteriores del
   tema con CorrectorMatcher.sameAnswer; el primero queda (1) y cada copia lleva 0 y un hallazgo bajo para la mesa que nombra

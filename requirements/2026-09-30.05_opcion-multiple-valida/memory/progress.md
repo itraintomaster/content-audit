@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Con la tabla del corrector en producción (#1191, desde el 1/10/2026) R002 cuenta los 28
+  ejercicios con dos incorrectas que son la misma respuesta (38 pares: A1 20 en Elegir la forma natural, A2 8 en
+  Obligación): 354 ejercicios con hallazgo (A1 109, A2 115, B1 87, B2 43), 344 de mayúscula, 38 de opciones iguales y 2 de
+  artículo. El examen escribir sigue en 186 de 186.
+
 2026-09-30 — developer (impl A) — multiple-choice-validity construido y encendido en Main (línea 12) con la fábrica «no
   disponible» (UnavailableChoiceAlternativeJudgeRunFactory): DefaultOptionRuleCheck, el analizador en dos tiempos (reglas y
   pedido al juez en onQuiz; puntaje, diagnóstico, «a medias» y cobertura en onCourseComplete) y su ficha de cinco reglas,

@@ -29,14 +29,13 @@ public class FileSystemFormEquivalenceTableSourceTest {
     @Tag("F-RESPC-R001")
     public void shouldReadFromTheCopyOfTheCorrectorsTableItsVersionEachContractionWithAllItsLongFormsAsSWithIsAndHasAndEachGroupOfEquivalentWordsWithItsClassAsTravelledAndTraveled(
             ) {
-        // R001: the copy of the new corrector's table, the one that replaces today's when the
-        // corrector ships. «'s» keeps every long form (is, has), because the corrector reads it by
+        // R001: the installed copy is the table of the corrector in production since 1/10/2026, the new
+        // one of ittm #1191. «'s» keeps every long form (is, has), because the corrector reads it by
         // what follows; travelled and traveled are one group of the closed list of spellings.
         FormEquivalenceTable table =
-                new FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes-corrector-nuevo.json"))
-                        .load();
+                new FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes.json")).load();
 
-        assertTrue(table.getVersion() != null && table.getVersion().contains("#1191"), table.getVersion());
+        assertEquals("corrector en producción, ittm #1191 (30e0efcc0), desplegado el 1/10/2026", table.getVersion());
         Optional<ContractionExpansion> s = table.getContractions().stream()
                 .filter(c -> c.getContracted().equals("'s")).findFirst();
         assertTrue(s.isPresent());
@@ -52,10 +51,11 @@ public class FileSystemFormEquivalenceTableSourceTest {
                 new EquivalentWordGroup(FormEquivalenceClass.PREPOSITION, List.of("till", "until"))));
         assertTrue(table.isInvertsNegativeQuestions());
 
-        // The installed copy is today's corrector: an empty table is data, read the same way.
-        FormEquivalenceTable today =
-                new FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes.json")).load();
-        assertTrue(today.getContractions().isEmpty() && today.getEquivalentWords().isEmpty());
-        assertFalse(today.isInvertsNegativeQuestions());
+        // The old corrector's table, kept as data of the golden cases: an empty table is read the same way.
+        FormEquivalenceTable old =
+                new FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes-corrector-viejo.json"))
+                        .load();
+        assertTrue(old.getContractions().isEmpty() && old.getEquivalentWords().isEmpty());
+        assertFalse(old.isInvertsNegativeQuestions());
     }
 }

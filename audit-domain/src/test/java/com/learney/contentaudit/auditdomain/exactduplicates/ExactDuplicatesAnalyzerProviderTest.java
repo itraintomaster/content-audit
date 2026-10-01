@@ -29,7 +29,7 @@ public class ExactDuplicatesAnalyzerProviderTest {
             ) {
         // R005 and F-HALL-R006: the card the catalog validates at startup; no task kind and no configuration.
         ExactDuplicatesAnalyzerProvider provider = new ExactDuplicatesAnalyzerProvider(
-                ExactDuplicatesAnalyzerTest.todaysCorrector(), ExactDuplicatesAnalyzerTest.renderer());
+                ExactDuplicatesAnalyzerTest.productionCorrector(), ExactDuplicatesAnalyzerTest.renderer());
         AnalyzerDescriptor card = provider.describe();
 
         assertEquals("exact-duplicates", provider.analyzerName());
