@@ -1,7 +1,21 @@
 package com.learney.contentaudit.auditdomain.grammar;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolCard;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,19 +29,48 @@ public class GrammarAnalyzerProviderTest {
     @DisplayName("should describe grammar in the catalog as an errors analyzer that evaluates exercises, resolves by rule and at the panel and costs instant, asking «¿La oración terminada tiene errores de inglés?», with the instant rules english-error and final-punctuation")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R006")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldDescribeGrammarInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleAndAtThePanelAndCostsInstantAskingLaOracinTerminadaTieneErroresDeInglsWithTheInstantRulesEnglisherrorAndFinalpunctuation(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        GrammarAnalyzerProvider provider = GrammarAnalyzerTest.World.approved().provider;
+
+        AnalyzerDescriptor card = provider.describe();
+
+        assertEquals("grammar", provider.analyzerName());
+        assertEquals("grammar", card.getName());
+        assertEquals("Gramática", card.getDisplayName());
+        assertEquals("¿La oración terminada tiene errores de inglés?", card.getQuestion());
+        assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
+        assertEquals(AuditTarget.QUIZ, card.getTarget());
+        assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
+        assertEquals(List.of(FindingResolution.RULE, FindingResolution.PANEL), card.getResolutions());
+        assertEquals(AnalysisCost.INSTANT, card.getCost());
+        assertEquals(List.of("english-error", "final-punctuation"),
+                card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
+        assertTrue(card.getRules().stream().allMatch(rule -> rule.getCost() == AnalysisCost.INSTANT));
+        assertEquals(Optional.of(new AnalyzerPlanBinding("GRAMMAR", List.of(AuditTarget.QUIZ))), provider.planBinding(),
+                "its errors become GRAMMAR tasks (F-RONDA2-R008)");
+        assertTrue(provider.config().isPresent(), "config analyzer grammar shows its lists");
     }
 
     @Test
     @DisplayName("should carry in its card LanguageTool with its version and the exam of its examined version, LanguageTool 6.8 with its filter")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R006")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldCarryInItsCardLanguageToolWithItsVersionAndTheExamOfItsExaminedVersionLanguageTool68WithItsFilter(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        List<LocalToolCard> examined = GrammarAnalyzerTest.World.approved().provider.describe().getTools();
+        List<LocalToolCard> notExamined = GrammarAnalyzerTest.World.notExamined().provider.describe().getTools();
+
+        assertEquals(1, examined.size(), "LanguageTool, and no alternative: grammar needs none");
+        LocalToolCard card = examined.get(0);
+        assertEquals("LanguageTool", card.getStatus().getTool());
+        assertEquals("6.8", card.getStatus().getVersion());
+        assertTrue(card.getStatus().isAvailable());
+        assertEquals(GrammarAnalyzerTest.World.examinedVersion(), card.getExaminedVersion());
+        assertTrue(card.getExaminedVersion().startsWith("LanguageTool 6.8 · filtro-"), card.getExaminedVersion());
+        assertEquals(JudgeExamStatus.APPROVED, card.getExamState());
+        assertEquals("aprobado el 1/10", card.getExamSummary());
+        assertFalse(card.isAlternative());
+        assertEquals(JudgeExamStatus.NOT_TAKEN, notExamined.get(0).getExamState());
     }
 }

@@ -1,7 +1,16 @@
 package com.learney.contentaudit.auditdomain.grammar;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.localtools.LocalToolGateDecision;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
+import com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate;
+import java.util.HashSet;
+import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +24,30 @@ public class DefaultGrammarConfigTest {
     @DisplayName("should change its methodId when one of its lists changes, so the filter is a new examined version that takes its own exam")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R007")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldChangeItsMethodIdWhenOneOfItsListsChangesSoTheFilterIsANewExaminedVersionThatTakesItsOwnExam(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultGrammarConfig current = new DefaultGrammarConfig();
+        Set<String> withAtTime = new HashSet<>(current.excludedRules());
+        withAtTime.add("AT_TIME");
+        DefaultGrammarConfig dropsAtTime = new DefaultGrammarConfig(current.keptCategories(), current.keptRules(),
+                withAtTime);
+
+        assertEquals(new DefaultGrammarConfig().methodId(), current.methodId(), "the same lists, the same method");
+        assertTrue(current.methodId().startsWith("filtro-"), current.methodId());
+        assertNotEquals(current.methodId(), dropsAtTime.methodId());
+
+        // The judges' registry approved LanguageTool 6.8 with the current filter: the other filter is
+        // another examined version, without exam.
+        GrammarAnalyzerTest.World world = GrammarAnalyzerTest.World.approved();
+        DefaultLocalToolGate gate = world.gate;
+        LocalToolStatus languageTool = world.languageTool.status();
+        LocalToolGateDecision approved = gate.decide("grammar", () -> languageTool, current.methodId(), null);
+        LocalToolGateDecision another = gate.decide("grammar", () -> languageTool, dropsAtTime.methodId(), null);
+
+        assertTrue(approved.isPublishes());
+        assertEquals("LanguageTool 6.8 · " + current.methodId(), approved.getExaminedVersion());
+        assertFalse(another.isPublishes());
+        assertEquals("LanguageTool 6.8 · " + dropsAtTime.methodId(), another.getExaminedVersion());
+        assertTrue(another.getReason().startsWith("sin examen"), another.getReason());
     }
 }

@@ -1,7 +1,64 @@
 package com.learney.contentaudit.auditdomain.grammar;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.QuizDiagnoses;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcherTest;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
+import com.learney.contentaudit.auditdomain.localtools.EnglishVariant;
+import com.learney.contentaudit.auditdomain.localtools.GrammarChecker;
+import com.learney.contentaudit.auditdomain.localtools.GrammarMatch;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolRunDiagnosis;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
+import com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Stream;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,89 +72,503 @@ public class GrammarAnalyzerTest {
     @DisplayName("should check with LanguageTool the finished sentences and never the plain ones, «They're late for the game.» and not «They 're late for the game.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldCheckWithLanguageToolTheFinishedSentencesAndNeverThePlainOnesTheyreLateForTheGameAndNotTheyReLateForTheGame(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        // …1fb1, Todas las formas (A1): the course keeps «They 're late for the game.» as its sentence.
+        AuditableQuiz theyre = new AuditableQuiz(List.of(), "67fab6d59930102295341fb1", "Todas las formas", "", null,
+                List.of("They 're late for the game."), null, "Usa short forms si es posible.",
+                List.of(text("They"), gap("'re"), text("(be) late for the game.")), null, null, null);
+
+        world.run(course(SentenceMode.FILL, theyre), null);
+
+        assertEquals(List.of("They're late for the game. / AMERICAN", "They're late for the game. / BRITISH"),
+                world.languageTool.checked);
+        assertTrue(world.languageTool.checked.stream().noneMatch(s -> s.startsWith("They 're")));
     }
 
     @Test
     @DisplayName("should leave without finding, with score 1, an exercise whose only marks are of one variant, of style or of casing, as «They walked to the theatre.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldLeaveWithoutFindingWithScore1AnExerciseWhoseOnlyMarksAreOfOneVariantOfStyleOrOfCasingAsTheyWalkedToTheTheatre(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        AuditableQuiz theatre = multipleChoice("67fab6d59930102295342ce0",
+                List.of(text("They walked"), gap(), text("the theatre.")), "to", "in");
+        AuditableQuiz style = multipleChoice("67fab6d59930102295343a20",
+                List.of(text("He feels really tired"), gap(), text("he doesn't drink coffee.")), "if", "unless");
+        AuditableQuiz casing = multipleChoice("67fab6d59930102295343a69",
+                List.of(text("Can you hear me clearly?"), gap(), text(", I can speak louder.")), "if not", "if so");
+
+        AuditNode root = world.run(course(SentenceMode.FILL, theatre, style, casing), null);
+
+        for (String id : List.of("67fab6d59930102295342ce0", "67fab6d59930102295343a20", "67fab6d59930102295343a69")) {
+            AuditNode quiz = quiz(root, id);
+            assertEquals(1.0, quiz.getScores().get("grammar"), id);
+            assertEquals(List.of(), grammarFindings(quiz), id);
+        }
+        assertEquals(List.of("They walked to the theatre."),
+                grammarDiagnosis(quiz(root, "67fab6d59930102295342ce0")).getSentences());
     }
 
     @Test
     @DisplayName("should find on the course of 29/9 three blocking findings, the answers that repeat what is glued to the gap: «noise noise», «in August in August» and «the apartment the apartment»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R004")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldFindOnTheCourseOf299ThreeBlockingFindingsTheAnswersThatRepeatWhatIsGluedToTheGapNoiseNoiseInAugustInAugustAndTheApartmentTheApartment(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+
+        AuditNode root = world.run(courseOf299(), null);
+
+        List<String> blocking = new ArrayList<>();
+        walk(root, node -> {
+            for (Finding finding : grammarFindings(node)) {
+                if (finding.getSeverity() == FindingSeverity.BLOCKING) {
+                    blocking.add("…" + node.getEntity().getId().substring(20) + " " + finding.getIdentity().getMarker());
+                }
+            }
+        });
+        assertEquals(List.of("…320a ENGLISH_WORD_REPEAT_RULE|noise noise",
+                "…4009 PHRASE_REPETITION|in August in August",
+                "…408e PHRASE_REPETITION|the apartment the apartment"), blocking.stream().sorted().toList());
+        assertEquals(11287, countQuizzes(root), "the whole course of 29/9 was read");
     }
 
     @Test
     @DisplayName("should score 0 an exercise with a finding and 1 an exercise without, as «Ana was teached a lesson by my brother.» and «This is water.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R006")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldScore0AnExerciseWithAFindingAnd1AnExerciseWithoutAsAnaWasTeachedALessonByMyBrotherAndThisIsWater(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+
+        AuditNode root = world.run(twoTopics(teached(), water()), null);
+
+        AuditNode teached = quiz(root, "67fab6d5993010229534439d");
+        AuditNode water = quiz(root, "67fab6d59930102295342354");
+        assertEquals(0.0, teached.getScores().get("grammar"));
+        assertEquals(1, grammarFindings(teached).size());
+        assertEquals(1.0, water.getScores().get("grammar"));
+        assertEquals(List.of(), grammarFindings(water));
+        assertEquals(0.0, grammarDiagnosis(teached).getScore());
     }
 
     @Test
     @DisplayName("should make one finding of the same LanguageTool rule and marked text that two accepted answers show, «videogames» in «At 10:30, they were not playing videogames.» and «At 10:30, they weren't playing videogames.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R006")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldMakeOneFindingOfTheSameLanguageToolRuleAndMarkedTextThatTwoAcceptedAnswersShowVideogamesInAt1030TheyWereNotPlayingVideogamesAndAt1030TheyWerentPlayingVideogames(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        // …3165, En un momento preciso (B1).
+        AuditableQuiz playing = cloze("67fab6d59930102295343165", text("At 10:30, they"),
+                gap("were not playing|weren't playing"), text("(not / play) videogames."));
+
+        AuditNode root = world.run(course(SentenceMode.FILL, playing), null);
+
+        AuditNode quiz = quiz(root, "67fab6d59930102295343165");
+        assertEquals(List.of("At 10:30, they were not playing videogames.", "At 10:30, they weren't playing videogames."),
+                grammarDiagnosis(quiz).getSentences());
+        List<Finding> findings = grammarFindings(quiz);
+        assertEquals(1, findings.size(), findings.toString());
+        assertEquals("MORFOLOGIK_RULE_EN_US|videogames", findings.get(0).getIdentity().getMarker());
+        assertEquals(FindingSeverity.MEDIUM, findings.get(0).getSeverity(), "only in the fixed text");
     }
 
     @Test
     @DisplayName("should give as evidence the finished sentence, the marked text and one line in Spanish, «teached → taught (ortografía)»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R006")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
-    public void shouldGiveAsEvidenceTheFinishedSentenceTheMarkedTextAndOneLineInSpanishTeachedTaughtOrtografa(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldGiveAsEvidenceTheFinishedSentenceTheMarkedTextAndOneLineInSpanishTeachedTaughtOrtografa() {
+        World world = World.approved();
+
+        AuditNode root = world.run(course(SentenceMode.REWRITE, teached()), null);
+
+        Finding finding = grammarFindings(quiz(root, "67fab6d5993010229534439d")).get(0);
+        assertEquals("english-error", finding.getRule());
+        assertEquals(List.of(new EvidencePart("Oración terminada", "Ana was teached a lesson by my brother."),
+                new EvidencePart("Marcado", "teached")), finding.getEvidence().getExamined());
+        assertEquals("teached → taught (ortografía)", finding.getEvidence().getObservation());
+        assertEquals(FindingSeverity.HIGH, finding.getSeverity(), "inside the answer of the rewrite");
+        assertEquals(FindingResolution.PANEL, finding.getResolution());
     }
 
     @Test
     @DisplayName("should leave every exercise unevaluated by grammar, without score nor finding, while LanguageTool 6.8 with its filter has no approved exam")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R007")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldLeaveEveryExerciseUnevaluatedByGrammarWithoutScoreNorFindingWhileLanguageTool68WithItsFilterHasNoApprovedExam(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.notExamined();
+
+        AuditNode root = world.run(twoTopics(teached(), water()), null);
+
+        for (String id : List.of("67fab6d5993010229534439d", "67fab6d59930102295342354")) {
+            AuditNode quiz = quiz(root, id);
+            assertNull(quiz.getScores().get("grammar"), id);
+            assertEquals(List.of(), grammarFindings(quiz), id);
+            assertTrue(quiz.getUnevaluatedBy().contains("grammar"), id);
+        }
+        assertTrue(world.languageTool.checked.isEmpty(), "nothing is checked with a version that does not publish");
+        LocalToolRunDiagnosis run = runOf(root);
+        assertEquals("LanguageTool 6.8 · " + new DefaultGrammarConfig().methodId(), run.getExaminedVersion());
+        assertFalse(run.isPublished());
+        assertEquals(JudgeExamStatus.NOT_TAKEN, run.getExamState());
+        assertTrue(run.getReason().startsWith("sin examen"), run.getReason());
     }
 
     @Test
     @DisplayName("should read every exercise of the exam file in an EXAM run and publish their findings although the version has no approved exam")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R007")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldReadEveryExerciseOfTheExamFileInAnEXAMRunAndPublishTheirFindingsAlthoughTheVersionHasNoApprovedExam(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.notExamined();
+        EvaluationRunPolicy exam = new EvaluationRunPolicy(0, false, null,
+                Set.of("67fab6d5993010229534439d", "67fab6d59930102295342354"), EvaluationRunPurpose.EXAM, null);
+
+        AuditNode root = world.run(twoTopics(teached(), water()), exam);
+
+        assertEquals(0.0, quiz(root, "67fab6d5993010229534439d").getScores().get("grammar"));
+        assertEquals("MORFOLOGIK_RULE_EN_US|teached",
+                grammarFindings(quiz(root, "67fab6d5993010229534439d")).get(0).getIdentity().getMarker());
+        assertEquals(1.0, quiz(root, "67fab6d59930102295342354").getScores().get("grammar"));
+        LocalToolRunDiagnosis run = runOf(root);
+        assertTrue(run.isPublished(), "the exam run is what the exam measures");
+        assertEquals(JudgeExamStatus.NOT_TAKEN, run.getExamState());
     }
 
     @Test
     @DisplayName("should give no final-punctuation finding to «Something was wrong with the telephone.», which read without its answer was «was wrong with the telephone.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R003")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldGiveNoFinalpunctuationFindingToSomethingWasWrongWithTheTelephoneWhichReadWithoutItsAnswerWasWasWrongWithTheTelephone(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.approved();
+        // …396f, Indefinidos con some o any (A2), with the spaCy tokens of the sentence the course keeps,
+        // «Something / anything was wrong with the telephone. Something».
+        List<NlpToken> tokens = DefaultFinalPunctuationCheckTest.tokens("Something/PRON", "//SYM", "anything/PRON",
+                "was/AUX", "wrong/ADJ", "with/ADP", "the/DET", "telephone/NOUN", "./PUNCT", "Something/PRON");
+        AuditableQuiz telephone = new AuditableQuiz(tokens, "67fab6d5993010229534396f", "Indefinidos", "", null,
+                List.of("Something / anything was wrong with the telephone. Something"), null,
+                "Elige la palabra correcta.", List.of(text("Something / anything was wrong with the telephone."),
+                        gap("Something"), text("")), null, null, null);
+
+        AuditNode root = world.run(course(SentenceMode.FILL, telephone), null);
+
+        AuditNode quiz = quiz(root, "67fab6d5993010229534396f");
+        assertEquals(List.of("Something was wrong with the telephone."), grammarDiagnosis(quiz).getSentences());
+        assertTrue(grammarFindings(quiz).stream().noneMatch(f -> f.getRule().equals("final-punctuation")));
+        assertEquals(1.0, quiz.getScores().get("grammar"));
+    }
+
+    // -------------------------------------------------------------------------
+    // The world: LanguageTool as recorded, the judges' registry and the engine
+    // -------------------------------------------------------------------------
+
+    /** grammar as Main builds it, over a recorded LanguageTool and the judges' registry in memory. */
+    static final class World {
+        final RecordedLanguageTool languageTool = new RecordedLanguageTool();
+        final Exams exams = new Exams();
+        final DefaultJudgeRuntime runtime = new DefaultJudgeRuntime(mock(EvaluationSessionFactory.class),
+                mock(EvaluationSessionFactory.class), exams, evaluatorId -> List.of(), new Judges());
+        final DefaultLocalToolGate gate = new DefaultLocalToolGate(runtime);
+        final GrammarAnalyzerProvider provider = new GrammarAnalyzerProvider(languageTool,
+                new DefaultFinishedSentenceReader(), gate);
+
+        /** LanguageTool 6.8 with the filter of grammar approved its exam. */
+        static World approved() {
+            World world = new World();
+            world.exams.record(new JudgeExamRecord("grammar", examinedVersion(), JudgeExamStatus.APPROVED, 47, 0,
+                    List.of(), List.of(), true, "2026-09-29", "medir.py", Instant.parse("2026-10-01T12:00:00Z")));
+            return world;
+        }
+
+        /** No version of grammar took the exam. */
+        static World notExamined() {
+            return new World();
+        }
+
+        static String examinedVersion() {
+            return "LanguageTool 6.8 · " + new DefaultGrammarConfig().methodId();
+        }
+
+        /** analyze asking only grammar, with this policy (null: the run asks it nothing). */
+        AuditNode run(AuditableCourse course, EvaluationRunPolicy policy) {
+            Map<String, EvaluationRunPolicy> policies = policy != null ? Map.of("grammar", policy) : Map.of();
+            IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
+                    new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+            return engine.runAudit(course, new AnalyzerRunSelection(List.of("grammar"), policies)).getRoot();
+        }
+    }
+
+    /** LanguageTool 6.8 answering what LanguageTool marked on the course of 29/9; it writes down what it checks. */
+    static final class RecordedLanguageTool implements GrammarChecker {
+        final List<String> checked = new ArrayList<>();
+
+        @Override
+        public LocalToolStatus status() {
+            return new LocalToolStatus("LanguageTool", "6.8", true, null, "viene con content-audit");
+        }
+
+        @Override
+        public List<GrammarMatch> check(String sentence, EnglishVariant variant) {
+            checked.add(sentence + " / " + variant);
+            return DefaultGrammarMatchFilterTest.Recorded.marks(sentence, variant);
+        }
+    }
+
+    /** The judges' registry in memory. */
+    static final class Exams implements JudgeExamRegistry {
+        private final List<JudgeExamRecord> records = new ArrayList<>();
+
+        @Override
+        public void record(JudgeExamRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public Optional<JudgeExamRecord> latest(String judgeName, String judgeVersion) {
+            JudgeExamRecord latest = null;
+            for (JudgeExamRecord record : records) {
+                if (record.getJudgeName().equals(judgeName) && record.getJudgeVersion().equals(judgeVersion)) {
+                    latest = record;
+                }
+            }
+            return Optional.ofNullable(latest);
+        }
+
+        @Override
+        public List<JudgeExamRecord> history(String judgeName) {
+            return records.stream().filter(r -> r.getJudgeName().equals(judgeName)).toList();
+        }
+    }
+
+    static final class Judges implements JudgeRuntimeConfig {
+        @Override
+        public int getMaxConcurrentEvaluations() {
+            return 4;
+        }
+
+        @Override
+        public int getDefaultMaxNewEvaluations(String judgeName) {
+            return 0;
+        }
+
+        @Override
+        public double getDefaultRatePerHour(String judgeName) {
+            return 189.0;
+        }
+
+        @Override
+        public Map<String, Object> describe() {
+            return Map.of();
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Exercises and courses
+    // -------------------------------------------------------------------------
+
+    static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    static SentencePartEntity gap(String... options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", options.length == 0 ? null : List.of(options));
+    }
+
+    static AuditableQuiz cloze(String id, SentencePartEntity... parts) {
+        return new AuditableQuiz(List.of(), id, id, "", null, List.of(), null, null, List.of(parts), null, null, null);
+    }
+
+    /** A multiple choice whose correct option is the first one given. */
+    static AuditableQuiz multipleChoice(String id, List<SentencePartEntity> parts, String correct, String... others) {
+        List<MultipleChoiceItemEntity> items = new ArrayList<>();
+        items.add(new MultipleChoiceItemEntity(correct, 1.0, correct));
+        for (String other : others) {
+            items.add(new MultipleChoiceItemEntity(other, 0.0, other));
+        }
+        return new AuditableQuiz(List.of(), id, id, "", null, List.of(), null, null, parts,
+                new MultipleChoiceEntity("SINGLE", items), null, null);
+    }
+
+    /** …439d, Objeto indirecto inicial (B2), a rewrite. */
+    static AuditableQuiz teached() {
+        return cloze("67fab6d5993010229534439d", text("My brother teached Ana a lesson."),
+                gap("Ana was teached a lesson by my brother."), text(""));
+    }
+
+    /** …2354, A, an o sin artículo (A1): the correct option is «-». */
+    static AuditableQuiz water() {
+        return multipleChoice("67fab6d59930102295342354", List.of(text("This is"), gap(), text("water.")), "-", "a", "an");
+    }
+
+    /** One level, one area, one topic in this mode with these exercises, in order. */
+    static AuditableCourse course(SentenceMode mode, AuditableQuiz... quizzes) {
+        AuditableKnowledge knowledge = new AuditableKnowledge(List.of(quizzes), "Tema", "Completa.", true, "k-1",
+                "Tema", "K1", mode, "Área");
+        return new AuditableCourse(List.of(new AuditableMilestone(List.of(new AuditableTopic(List.of(knowledge),
+                "t-1", "Área", "T1")), "m-B1", "B1", "B1")));
+    }
+
+    /** The rewrite of …439d in its rewrite topic, and …2354 in a topic to fill. */
+    static AuditableCourse twoTopics(AuditableQuiz rewrite, AuditableQuiz fill) {
+        AuditableKnowledge rewriting = new AuditableKnowledge(List.of(rewrite), "Objeto indirecto inicial", "Crea.", true,
+                "k-rewrite", "Objeto indirecto inicial", "K1", SentenceMode.REWRITE, "Área");
+        AuditableKnowledge filling = new AuditableKnowledge(List.of(fill), "A, an o sin artículo", "Elige.", true,
+                "k-fill", "A, an o sin artículo", "K2", SentenceMode.FILL, "Área");
+        return new AuditableCourse(List.of(new AuditableMilestone(List.of(new AuditableTopic(
+                List.of(rewriting, filling), "t-1", "Área", "T1")), "m-B2", "B2", "B2")));
+    }
+
+    static AuditNode quiz(AuditNode root, String id) {
+        List<AuditNode> found = new ArrayList<>();
+        walk(root, node -> {
+            if (node.getTarget() == AuditTarget.QUIZ && id.equals(node.getEntity().getId())) {
+                found.add(node);
+            }
+        });
+        if (found.isEmpty()) {
+            throw new AssertionError("no exercise " + id);
+        }
+        return found.get(0);
+    }
+
+    static void walk(AuditNode node, java.util.function.Consumer<AuditNode> visit) {
+        visit.accept(node);
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                walk(child, visit);
+            }
+        }
+    }
+
+    private static int countQuizzes(AuditNode root) {
+        int[] count = {0};
+        walk(root, node -> {
+            if (node.getTarget() == AuditTarget.QUIZ) {
+                count[0]++;
+            }
+        });
+        return count[0];
+    }
+
+    static List<Finding> grammarFindings(AuditNode node) {
+        List<Finding> findings = new ArrayList<>();
+        if (node.getFindings() != null) {
+            for (Finding finding : node.getFindings()) {
+                if ("grammar".equals(finding.getAnalyzer())) {
+                    findings.add(finding);
+                }
+            }
+        }
+        return findings;
+    }
+
+    static GrammarDiagnosis grammarDiagnosis(AuditNode quiz) {
+        return ((QuizDiagnoses) quiz.getDiagnoses()).getGrammarDiagnosis()
+                .orElseThrow(() -> new AssertionError("no diagnosis of grammar"));
+    }
+
+    static LocalToolRunDiagnosis runOf(AuditNode root) {
+        return ((CourseDiagnoses) root.getDiagnoses()).getLocalToolRuns().stream()
+                .filter(run -> "grammar".equals(run.getAnalyzer()))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("no row of the run of grammar"));
+    }
+
+    // -------------------------------------------------------------------------
+    // The course of 29/9, as db/english-course keeps it
+    // -------------------------------------------------------------------------
+
+    /** Every level, topic and exercise of ../db/english-course, each topic with its mode. */
+    @SuppressWarnings("unchecked")
+    static AuditableCourse courseOf299() {
+        Path root = Path.of("../db/english-course");
+        List<AuditableMilestone> levels = new ArrayList<>();
+        for (Path level : folders(root)) {
+            List<AuditableTopic> areas = new ArrayList<>();
+            for (Path area : folders(level)) {
+                List<AuditableKnowledge> topics = new ArrayList<>();
+                for (Path topic : folders(area)) {
+                    Path quizzes = topic.resolve("quizzes.json");
+                    if (!Files.exists(quizzes)) {
+                        continue;
+                    }
+                    Map<String, Object> meta = (Map<String, Object>) DefaultCorrectorMatcherTest.parseJson(
+                            read(topic.resolve("_knowledge.json")));
+                    SentenceMode mode = "REWRITE".equals(meta.get("sentenceMode")) ? SentenceMode.REWRITE : SentenceMode.FILL;
+                    List<AuditableQuiz> exercises = new ArrayList<>();
+                    for (Object o : (List<Object>) DefaultCorrectorMatcherTest.parseJson(read(quizzes))) {
+                        exercises.add(quizOf((Map<String, Object>) o));
+                    }
+                    topics.add(new AuditableKnowledge(exercises, (String) meta.get("label"),
+                            (String) meta.get("instructions"), true, (String) meta.get("code"),
+                            (String) meta.get("label"), (String) meta.get("code"), mode, area.getFileName().toString()));
+                }
+                areas.add(new AuditableTopic(topics, area.getFileName().toString(), area.getFileName().toString(), "T"));
+            }
+            String code = level.getFileName().toString().toUpperCase();
+            levels.add(new AuditableMilestone(areas, "m-" + code, code, code));
+        }
+        return new AuditableCourse(levels);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static AuditableQuiz quizOf(Map<String, Object> q) {
+        Map<String, Object> form = (Map<String, Object>) q.get("form");
+        List<SentencePartEntity> parts = new ArrayList<>();
+        for (Object p : (List<Object>) form.get("sentenceParts")) {
+            Map<String, Object> part = (Map<String, Object>) p;
+            parts.add(new SentencePartEntity(SentencePartKind.valueOf((String) part.get("kind")),
+                    (String) part.get("text"), (List<String>) (List<?>) part.get("options")));
+        }
+        MultipleChoiceEntity multipleChoice = null;
+        if ("MULTIPLE_CHOICE".equals(form.get("kind"))) {
+            List<MultipleChoiceItemEntity> items = new ArrayList<>();
+            for (Object i : (List<Object>) form.get("items")) {
+                Map<String, Object> item = (Map<String, Object>) i;
+                items.add(new MultipleChoiceItemEntity((String) item.get("id"), number(item.get("incidence")),
+                        (String) item.get("label")));
+            }
+            multipleChoice = new MultipleChoiceEntity((String) form.get("selection"), items);
+        }
+        return new AuditableQuiz(List.of(), (String) q.get("id"), (String) q.get("title"), "",
+                (String) q.get("translation"), (List<String>) (List<?>) form.get("sentences"), null,
+                (String) q.get("instructions"), parts, multipleChoice, (String) q.get("miniTheory"),
+                (String) q.get("answerAudioUrl"));
+    }
+
+    @SuppressWarnings("unchecked")
+    private static double number(Object value) {
+        if (value instanceof Number n) {
+            return n.doubleValue();
+        }
+        Map<String, Object> wrapped = (Map<String, Object>) value;
+        for (String key : List.of("$numberDouble", "$numberInt", "$numberLong")) {
+            if (wrapped.containsKey(key)) {
+                return Double.parseDouble((String) wrapped.get(key));
+            }
+        }
+        throw new IllegalArgumentException("número sin formato conocido: " + value);
+    }
+
+    private static List<Path> folders(Path parent) {
+        try (Stream<Path> children = Files.list(parent)) {
+            return children.filter(Files::isDirectory).sorted().toList();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    private static String read(Path file) {
+        try {
+            return Files.readString(file);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 }
