@@ -57,8 +57,9 @@ class QuizInstructionAgentGenerator implements QuizInstructionCandidateGenerator
      *   taskId                — context.getTaskId()
      *   cefrLevel             — context.getCefrLevel().name() (or cefrLevelLabel, or "")
      *   topicLabel            — context.getTopicLabel() (or "")
-     *   knowledgeTitle        — context.getKnowledgeTitle()
-     *   knowledgeInstructions — context.getKnowledgeInstructions() (the consigna)
+     *   knowledgeTitle        — context.getKnowledgeTitle() (the lesson, as context)
+     *   quizInstructions      — context.getQuizInstructions() (the consigna to comply with: the
+     *                           quiz copy's, the one the app shows and the judge reads, F-CALUM-R003)
      *   quizSentence          — context.getQuizSentence() (the original, in quizSentence DSL)
      *   sentence              — context.getSentence() (the original's finished sentence)
      *   translation           — context.getTranslation()
@@ -127,7 +128,7 @@ class QuizInstructionAgentGenerator implements QuizInstructionCandidateGenerator
             inputs.put("cefrLevel", "");
             inputs.put("topicLabel", "");
             inputs.put("knowledgeTitle", "");
-            inputs.put("knowledgeInstructions", "");
+            inputs.put("quizInstructions", "");
             inputs.put("quizSentence", "");
             inputs.put("sentence", "");
             inputs.put("translation", "");
@@ -143,7 +144,7 @@ class QuizInstructionAgentGenerator implements QuizInstructionCandidateGenerator
             inputs.put("cefrLevel", cefrLevel);
             inputs.put("topicLabel", orEmpty(context.getTopicLabel()));
             inputs.put("knowledgeTitle", orEmpty(context.getKnowledgeTitle()));
-            inputs.put("knowledgeInstructions", orEmpty(context.getKnowledgeInstructions()));
+            inputs.put("quizInstructions", orEmpty(context.getQuizInstructions()));
             inputs.put("quizSentence", orEmpty(context.getQuizSentence()));
             inputs.put("sentence", orEmpty(context.getSentence()));
             inputs.put("translation", orEmpty(context.getTranslation()));

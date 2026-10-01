@@ -58,7 +58,7 @@ public DefaultQuizInstructionAnalyzerFactory(Evaluator evaluator, QuizInstructio
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
         JudgeSessions opened = runtime.open(QuizInstructionAnalyzer.ANALYZER_NAME, List.of(evaluator), policy);
         EvaluationSession session = opened.getSessions().get(0);
-        return new QuizInstructionAnalyzer(session, new DefaultQuizInstructionSubjectBuilder(),
+        return new QuizInstructionAnalyzer(session, new DefaultQuizInstructionSubjectBuilder(studentViewRenderer),
                 new DefaultQuizInstructionScorer(config), new DefaultQuizInstructionScopeMatcher(),
                 verdictReader, opened.getEffectivePolicy(), opened, runtime);
     }

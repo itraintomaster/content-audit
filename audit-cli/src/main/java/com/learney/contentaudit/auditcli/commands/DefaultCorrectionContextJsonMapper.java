@@ -48,6 +48,9 @@ class DefaultCorrectionContextJsonMapper implements CorrectionContextJsonMapper 
         map.put("quizSentence", ctx.getQuizSentence());
         map.put("sentence", ctx.getSentence());
         map.put("translation", ctx.getTranslation());
+        // F-CALUM-R003: the instructions the corrector complies with, the quiz copy's; the knowledge's
+        // keep their own key, which the dashboard reads.
+        map.put("quizInstructions", ctx.getQuizInstructions());
         map.put("knowledgeTitle", ctx.getKnowledgeTitle());
         map.put("knowledgeInstructions", ctx.getKnowledgeInstructions());
         map.put("topicLabel", ctx.getTopicLabel());

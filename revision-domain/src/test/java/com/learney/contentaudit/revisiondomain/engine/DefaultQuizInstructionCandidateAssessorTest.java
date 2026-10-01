@@ -132,7 +132,7 @@ public class DefaultQuizInstructionCandidateAssessorTest {
                 InstructionSeverity.MAJOR,
                 List.of(),
                 "audit-qicor-1",
-                "plan-qicor-1");
+                "plan-qicor-1", "Completa la oracion con el verbo en presente simple, tercera persona.");
     }
 
     private static CourseElementSnapshot buildOriginal() {
@@ -355,7 +355,7 @@ public class DefaultQuizInstructionCandidateAssessorTest {
                 "Present Simple", "Escribe la forma afirmativa", "Verbs", CefrLevel.A1, "A1", null,
                 List.of(new InstructionViolation("AGREEMENT", "El verbo debe concordar con el sujeto", "go",
                         "El sujeto es de tercera persona singular")),
-                "No cumple: 1 violacion", InstructionSeverity.MAJOR, List.of(), sourceAuditId, planId);
+                "No cumple: 1 violacion", InstructionSeverity.MAJOR, List.of(), sourceAuditId, planId, "Escribe la forma afirmativa");
         when(collaborators.contextResolver.resolve(report, task)).thenReturn(Optional.of(context));
 
         CourseEntity course = mock(CourseEntity.class);

@@ -176,6 +176,8 @@ public class FRclaJ002JourneyTest {
                 new com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider(null,
                         org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.LemmaCountConfig.class)),
                 new com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory(null, null,
-                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.QuizInstructionConfig.class), null)));
+                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.QuizInstructionConfig.class), null,
+                        new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                                com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create()))));
     }
 }

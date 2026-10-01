@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditapplication;
 
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -329,7 +331,7 @@ public class FQinstJ003JourneyTest {
     /** The judge's provider under the name the report publishes, with the judge's real card. */
     private static AnalyzerProvider judgeProvider() {
         AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null,
-                mock(QuizInstructionConfig.class), null).describe();
+                mock(QuizInstructionConfig.class), null, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())).describe();
         AnalyzerProvider provider = mock(AnalyzerProvider.class);
         when(provider.analyzerName()).thenReturn(ANALYZER_NAME);
         when(provider.describe()).thenReturn(card);

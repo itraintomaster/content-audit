@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -1013,7 +1014,7 @@ public class AnalyzeCmdTest {
         static AnalyzerProvider judge(FakeJudge judge, EvaluationLedger ledger) {
             return new DefaultQuizInstructionAnalyzerFactory(judge, new JacksonQuizInstructionVerdictReader(),
                     new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()),
-                    approvedJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, new Sha256ContentFingerprinter())));
+                    approvedJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, new Sha256ContentFingerprinter())), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
         }
 
         /** Main's eight providers, in its order. */
@@ -1077,7 +1078,7 @@ public class AnalyzeCmdTest {
                     evp()));
             providers.add(classicProviders().get(6));
             providers.add(new DefaultQuizInstructionAnalyzerFactory(judge,
-                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime));
+                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())));
             providers.add(new com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzerProvider(
                     irregularForms, renderer));
             providers.add(new com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessAnalyzerProvider(

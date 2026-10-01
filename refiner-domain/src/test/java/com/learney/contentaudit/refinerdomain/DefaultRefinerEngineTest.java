@@ -456,7 +456,8 @@ public class DefaultRefinerEngineTest {
                         org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.LemmaCountConfig.class)),
                 new com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory(
                         null, null,
-                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.QuizInstructionConfig.class), null)));
+                        org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.QuizInstructionConfig.class), null, new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create()))));
     }
 
     /** The tree of the analysis 2026-09-30T11-54-02: every node, in preorder, with its scores. */

@@ -27,86 +27,67 @@ pedagógico dado.
 
 ## Procedimiento obligatorio
 
-1. Parseá `quiz`. Puede llegarte de dos formas.
+1. Leé el ejercicio como lo ve el alumno. Te llega en tres entradas.
 
-   **(a) Formato de partes delimitadas.** Una sola línea con esta estructura:
+   **`exercise`** es el enunciado tal como aparece en pantalla: cada hueco es
+   `___` y la pista va como la ve el alumno, entre paréntesis o con barras.
 
-   ```
-   KIND:texto:opciones|KIND:texto:opciones|
-   ```
+       She is a ___ (quiet / quietly) girl.
 
-   Cada parte termina en `|`. En una parte `CLOZE` el texto suele ser `null` y
-   las opciones aceptadas van separadas por comas.
-   Nunca cites un delimitador como si fuera contenido: si vas a marcar un
-   defecto de puntuación, primero asegurate de que esa puntuación esté DENTRO
-   de un campo y no sea la que separa los campos.
+   **`acceptedAnswers`** trae una línea por hueco, en el orden del enunciado:
+   `Hueco 1: a | b`. `Hueco 1:` es una etiqueta de la entrada, no texto del
+   ejercicio: nunca la cites como contenido.
 
-   **Los dos puntos que delimitan son el PRIMERO y el ÚLTIMO de la parte.**
-   Todos los que quedan en el medio son texto del ejercicio. `TEXT:Mary:|` tiene
-   dos: la parte es de tipo `TEXT` y su texto es `Mary` — no `Mary:`. Pero
-   `TEXT:Guess: You:|` tiene tres, y el del medio es contenido: el texto de esa
-   parte es `Guess: You`, entera. Lo mismo con `TEXT:First: If we:|`
-   (texto `First: If we`) o `TEXT:A: There's no coffee. B: I:|`.
-   Nunca reportes que "falta el sujeto" o que "la parte no aporta el texto"
-   porque cortaste en un dos puntos del medio: la etiqueta y lo que sigue van
-   juntos.
-
-   **La barra `|` dentro de una opción separa variantes aceptadas.** El curso la
+   **La barra ` | ` entre respuestas separa variantes aceptadas.** El curso la
    usa para guardar dos formas igual de válidas de la misma respuesta:
-   `CLOZE::to|with` acepta `to` **y** `with`; `CLOZE::'s going to|is going to`
-   acepta la contraída y la plena. No es una parte mal formada, no es un
-   segmento sin tipo, y no es un defecto de serialización: es la convención,
-   y aparece en 907 ejercicios del curso.
-   - Partí la opción por `|` y tratá cada trozo como **una respuesta aceptada
-     más**, exactamente igual que si vinieran separadas por coma.
-   - Nunca levantes `INVALID_ANSWER_RECONSTRUCTION` ni "opción sin tipo ni
-     campos" por una barra dentro de una opción.
-   - Sí es defecto cuando al partir por `|` alguno de los trozos **no es una
-     respuesta completa** —`from June to` / `until` / `till September` deja dos
-     fragmentos colgados—. Ahí el problema es que partieron una frase, no que
-     usaron la barra.
+   `Hueco 1: to | with` acepta `to` **y** `with`; `Hueco 1: 's going to | is going to`
+   acepta la contraída y la plena. No es un defecto de serialización: es la
+   convención, y aparece en 907 ejercicios del curso.
+   - Tratá cada variante como **una respuesta aceptada más**.
+   - Nunca levantes `INVALID_ANSWER_RECONSTRUCTION` por una barra entre
+     variantes.
+   - Sí es defecto cuando alguna variante **no es una respuesta completa**
+     —`from June to` / `until` / `till September` deja dos fragmentos
+     colgados—. Ahí el problema es que partieron una frase, no que usaron la
+     barra.
 
-   **Una parte `MULTIPLE_CHOICE` es el hueco de un ejercicio de opción múltiple.**
-   Ocupa el lugar que en los demás ejercicios ocupa el `CLOZE`:
+   **`options` sólo trae algo en un ejercicio de opción múltiple.** Una línea
+   por opción, en el orden en que el alumno las ve; la correcta termina en
+   ` (correcta)` —el sufijo no es parte del texto—:
 
-   ```
-   TEXT:She:|MULTIPLE_CHOICE::am,is[CORRECT],are|TEXT:English.:|
-   ```
+       exercise:        She ___ English.
+       acceptedAnswers: Hueco 1: is
+       options:         - am
+                        - is (correcta)
+                        - are
 
-   Sus opciones, separadas por coma, **no son respuestas aceptadas**: son todas
-   las alternativas que el alumno ve, en el orden en que las ve, y elige UNA.
-   La que termina en `[CORRECT]` es la respuesta correcta —el sufijo no es parte
-   del texto—; las demás son distractores puestos ahí para ser incorrectos.
-   - Armá la respuesta completa con la opción `[CORRECT]` en el hueco y juzgala
-     como juzgarías la respuesta de un `CLOZE`: que cumpla la consigna, que sea
-     gramatical y natural, y que la mayúscula y la puntuación correspondan al
-     lugar que ocupa en la oración.
+   Esas opciones **no son respuestas aceptadas**: son todas las alternativas que
+   el alumno ve, y elige UNA. Las demás son distractores puestos ahí para ser
+   incorrectos.
+   - Armá la respuesta completa con la opción correcta en el hueco y juzgala
+     como juzgarías la respuesta de cualquier hueco: que cumpla la consigna, que
+     sea gramatical y natural, y que la mayúscula y la puntuación correspondan
+     al lugar que ocupa en la oración.
    - Además, ningún distractor puede ser también correcto en ese contexto. Si
      alguno lo es, el ejercicio es ambiguo: reportalo como defecto.
    - No trates un distractor como variante aceptada, ni la falta de variantes
      como defecto: acá no hay alternativas equivalentes, hay una sola correcta.
 
-   **(b) Objeto JSON.** Puede venir como objeto, como JSON serializado en un
-   string, o como un string que contiene otra serialización. Decodificá hasta
-   obtener el objeto completo.
-2. Identificá TODOS los huecos/partes y TODAS las opciones aceptadas.
-   **Si te llega `form.sentences`, esas son las respuestas completas. Punto.**
-   No las reconstruyas: leelas literalmente de ahí y juzgá eso, carácter por
-   carácter, sin agregar ni quitar puntuación. Si tu lectura de las partes no
-   coincide con `form.sentences`, la equivocada es tu lectura, no el quiz.
-   Cuando no te llega (el formato de partes delimitadas no la trae), armá vos la
-   respuesta uniendo los campos de texto de las partes en orden, con un espacio
-   entre partes y sin los delimitadores.
+   En los demás ejercicios `options` viene vacío.
+2. Identificá TODOS los huecos y TODAS las respuestas aceptadas. Armá cada
+   respuesta completa poniendo en su hueco cada respuesta aceptada, sin la
+   pista (ver «El enunciado se muestra, no se pronuncia»).
    Contrastá además con respuestas canónicas y traducción cuando existan. No
-   juzgues una opción aislada sin su texto anterior/posterior.
-3. Al unir partes, normalizá solo espacios de serialización: `I` + `'ll stay`
-   representa `I'll stay`; `wo` + `n't` representa `won't`. No "corrijas" el
-   contenido aceptado para hacerlo pasar.
+   juzgues una respuesta aislada sin su texto anterior/posterior.
+3. Al poner la respuesta en su hueco, normalizá solo espacios: `I ___` con
+   `'ll stay` representa `I'll stay`; `wo` + `n't` representa `won't`. No
+   "corrijas" el contenido aceptado para hacerlo pasar.
 4. Extraé cada restricción EXPLÍCITA de `instructions` y verificá todas contra
    cada respuesta aceptada. Una sola opción aceptada incorrecta o incompatible
    hace fallar el quiz.
 5. Verificá además:
-   - reconstrucción: las partes/opciones forman respuestas completas coherentes;
+   - reconstrucción: el enunciado y sus respuestas forman respuestas completas
+     coherentes;
    - gramática y naturalidad;
    - significado y fidelidad con traducción/contexto;
    - resolubilidad: la consigna y los cues permiten inferir la respuesta;
@@ -116,10 +97,10 @@ pedagógico dado.
 
 ## El enunciado se muestra, no se pronuncia
 
-Una parte `TEXT` puede no ser texto de la oración sino **enunciado**: el material
-que se le muestra al alumno para decirle qué producir. Aparece en pantalla, pero
-**no forma parte de la respuesta**. Es la convención del curso, no un defecto del
-quiz, y castigarla es castigar la convención en vez del contenido.
+Un fragmento de `exercise` puede no ser texto de la oración sino **enunciado**:
+el material que se le muestra al alumno para decirle qué producir. Aparece en
+pantalla, pero **no forma parte de la respuesta**. Es la convención del curso, no
+un defecto del quiz, y castigarla es castigar la convención en vez del contenido.
 
 Se presenta en tres formas. Las tres son enunciado, no contenido:
 
@@ -127,21 +108,22 @@ Se presenta en tres formas. Las tres son enunciado, no contenido:
 `(the dogs / want)`, `(not / get)`. Anuncia el sujeto y/o el verbo que hay que
 conjugar.
 
-    [Does he have] (he / have) a child?   →   Does he have a child?
+    ___ (he / have) a child?   +   Hueco 1: Does he have   →   Does he have a child?
 
 **(b) Elección inline con barra.** `he / him`, `a / an`, `some / any`. Ofrece las
 alternativas entre las que el alumno elige; la elegida es la que va en el hueco,
 y las demás **no** se escriben.
 
-    My brother visited he / him [him].    →   My brother visited him.
+    My brother visited he / him ___ yesterday.   +   Hueco 1: him
+        →   My brother visited him yesterday.
 
-**(c) Esqueleto de transformación.** Una parte `TEXT` compuesta de fragmentos
+**(c) Esqueleto de transformación.** Un enunciado compuesto de fragmentos
 separados por barras —`She invested / writing / six hours.`,
 `He invested / reading / a book / time.`— es la oración a construir, en notación
 abreviada. Cuando aparece, el hueco suele contener **la respuesta completa**, y
 esa respuesta es lo único que se juzga.
 
-    She invested / writing / six hours. [She invested six hours writing.]
+    She invested / writing / six hours. ___   +   Hueco 1: She invested six hours writing.
     →   She invested six hours writing.
 
 ### No todo paréntesis es un cue: algunos SON la consigna del ítem
@@ -179,13 +161,12 @@ cuando la consigna la ató a una marca explícita.
 
 ### Reglas operativas
 
-- **Descartá el enunciado y juzgá lo que queda.** Si te llega `form.sentences`,
-  la confirmación es directa: el enunciado no aparece ahí. Ojo: descartar vale
-  para los cues de conjugación y las alternativas, **no** para un paréntesis en
-  prosa, que es consigna del ítem y se lee.
+- **Descartá el enunciado y juzgá lo que queda.** Ojo: descartar vale para los
+  cues de conjugación y las alternativas, **no** para un paréntesis en prosa,
+  que es consigna del ítem y se lee.
 - **Si un hueco contiene una oración completa, esa oración ES la respuesta.**
-  Todo `TEXT` a su alrededor es enunciado. No lo concatenes: concatenar produce
-  una duplicación que no existe en el ejercicio real.
+  Todo el texto de `exercise` a su alrededor es enunciado. No lo concatenes:
+  concatenar produce una duplicación que no existe en el ejercicio real.
 - **Nunca** reportes `INVALID_ANSWER_RECONSTRUCTION`, duplicación de sujeto o
   verbo, ni agramaticalidad **producida por vos al unir enunciado con respuesta**.
   Antes de marcar una duplicación, preguntate si la estás viendo porque uniste
@@ -195,8 +176,8 @@ cuando la consigna la ató a una marca explícita.
   porque no separa alternativas ni fragmentos a conjugar.
 - El enunciado **sí** cuenta a favor de la **resolubilidad**: es justamente lo
   que vuelve inferible la respuesta esperada.
-- Un fragmento que NO desaparece al contrastar contra `form.sentences` no es
-  enunciado: es contenido real de la oración y lo juzgás como tal.
+- Un fragmento que sigue estando en la oración terminada no es enunciado: es
+  contenido real de la oración y lo juzgás como tal.
 - Este criterio se aplica igual a TODOS los quizzes del ejercicio. Si dos
   quizzes comparten la misma construcción, tienen que recibir el mismo
   veredicto en lo que hace al enunciado. Una inconsistencia acá es un error tuyo.
@@ -281,13 +262,11 @@ los tres.
   limitado que igualmente obliga a marcar false.
 - `violations` queda vacío al pasar y contiene al menos una evidencia concreta al
   fallar.
-- Si te llega `form.sentences`, la oración terminada ya te la dieron: no hay
-  nada que reconstruir mal, y una violación de `answer_reconstruction` deja de
-  ser posible. Cualquier diferencia con lo que vos armaste es tuya.
-- Toda evidencia que cites tiene que aparecer LITERAL en el quiz. Antes de
-  escribirla, buscala carácter por carácter en el input. Si no la encontrás tal
-  cual —porque le agregaste un delimitador, un signo o una palabra— no la cites
-  y no levantes esa violación.
+- Toda evidencia que cites tiene que aparecer LITERAL en el ejercicio
+  (`exercise`, `acceptedAnswers` u `options`, sin la etiqueta `Hueco N:`).
+  Antes de escribirla, buscala carácter por carácter en la entrada. Si no la
+  encontrás tal cual —porque le agregaste un signo o una palabra— no la cites y
+  no levantes esa violación.
 - `checkedConstraints` debe enumerar cada restricción explícita por separado y
   también incluir exactamente los cinco tipos de control:
   `answer_reconstruction`, `grammar`, `meaning`, `solvability` y
@@ -361,7 +340,13 @@ Topic: {topic}
 Título/objetivo: {title}
 Instrucciones: {instructions}
 
-Quiz completo:
-{quiz}
+Ejercicio, como lo ve el alumno:
+{exercise}
 
-Reconstruí todas las respuestas y emití solo el JSON estricto.
+Respuestas aceptadas:
+{acceptedAnswers}
+
+Opciones (sólo en opción múltiple):
+{options}
+
+Armá todas las respuestas completas y emití solo el JSON estricto.
