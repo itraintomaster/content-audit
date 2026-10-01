@@ -20,7 +20,10 @@ should not re-litigate. Newest entries on top.
   why: «adore»/«adoran» y «reside»/«residimos» siguen marcando (077); «hydrated»/«hidratado» (oro) queda a una letra.
 2026-10-01 — developer (paquete D) — La teoría del tema no se lee: vive en ittm/content/theory y el ejercicio la
   nombra por theoryId, que AuditableQuiz no trae. Con un prototipo, sacaría 3 marcas más (tweezers, concur, acquainted:
-  las 3 falsas de la muestra) y ninguna del oro; sumarla es un parche (campo, puerto y adaptador).
+  las 3 falsas de la muestra) y ninguna del oro. Parche propuesto, sin aplicar: AuditableQuiz.theoryId, puerto
+  TopicTheorySource, FileSystemTopicTheorySource (vocabulary-infrastructure), TaughtWords.theoryWords y el resolutor
+  que lo inyecta; validado contra ronda1/integracion (8a3f949c). TECH_SPEC reescrito: el del 30/9 queda en 0998557c.
+  why: es la causa de las 3 falsas que quedan en la muestra; costo, el constructor de AuditableQuiz en ~314 pruebas.
 2026-10-01 — test-writer (paquete D) — FNivfrJ001JourneyTest fija 95 (9 · 25 · 42 · 19) en vez de 170 y la prueba de la
   ficha su nuevo «lee»: valores fijados que cambian con las reglas, no pruebas nuevas.
 

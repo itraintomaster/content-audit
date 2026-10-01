@@ -1,0 +1,70 @@
+code: FEAT-NIVFR
+description: "FEAT-NIVFR, la teoria del tema en lo que el tema ensena (F-NIVFR-R003).\
+  \ La teoria de cada tema vive en ittm/content/theory y el ejercicio la nombra con\
+  \ su theoryId, que el modelo auditable no traia: AuditableQuiz suma theoryId (CourseToAuditableMapper\
+  \ lo copia de QuizTemplateEntity), un puerto TopicTheorySource da el texto de una\
+  \ teoria por su id, un adaptador de archivos en vocabulary-infrastructure lo lee,\
+  \ y la regla del tema (DefaultTopicTeachingResolver, compartida con el semaforo)\
+  \ deja en TaughtWords las palabras de las teorias del tema. Medido con un prototipo\
+  \ sobre el curso del 29/9: despues de las lecturas del 1/10 saca 3 marcas mas (tweezers,\
+  \ concur, acquainted) y ninguna del oro de escribir. Costo conocido: el constructor\
+  \ de AuditableQuiz suma un argumento (unas 314 llamadas en pruebas de 57 archivos)."
+modules:
+- name: audit-domain
+  models:
+  - name: AuditableQuiz
+    type: record
+    fields:
+    - name: theoryId
+      type: String
+      description: "Id de la teoria del tema que el ejercicio nombra (QuizTemplateEntity.theoryId,\
+        \ por ejemplo b1.07.Nouns_That_Are_Always_Plural), copiado tal cual por CourseToAuditableMapper.\
+        \ Null si el ejercicio no nombra ninguna."
+      _change: add
+    _change: modify
+  interfaces:
+  - name: TopicTheorySource
+    stereotype: port
+    sealed: false
+    exposes:
+    - signature: "theoryText(String theoryId): Optional<String>"
+    _change: add
+  packages:
+  - name: offlevelwords
+    models:
+    - name: TaughtWords
+      type: record
+      fields:
+      - name: theoryWords
+        type: List<String>
+        description: "Palabras de las teorias que nombran los ejercicios del tema,\
+          \ en minuscula (la teoria de Siempre plurales lista tweezers; la de verbos\
+          \ con preposicion, concur with). Vacia si la teoria no se encuentra."
+        _change: add
+      _change: modify
+    implementations:
+    - name: DefaultTopicTeachingResolver
+      requiresInject:
+      - name: topicTheorySource
+        type: TopicTheorySource
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: vocabulary-infrastructure
+  packages:
+  - name: theory
+    description: "Teorias de los temas del curso, una por archivo JSON en ittm/content/theory,\
+      \ leidas por su id."
+    visibility: internal
+    implementations:
+    - name: FileSystemTopicTheorySource
+      requiresInject:
+      - name: theoryFolder
+        type: Path
+      visibility: public
+      implements:
+      - TopicTheorySource
+      _change: add
+    _change: add
+  _change: modify

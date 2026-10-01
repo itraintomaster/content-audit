@@ -11,7 +11,9 @@ Current state, last action, next step. Newest entries on top.
   parte y 8 fuera del oro (antes 51 y 25); muestra nueva de 30 (semilla 87, fuera del oro de escribir y de las 25 del
   verificador), revisada a mano: 24 reales, 3 falsas (las tres las enseña la teoría del tema) y 3 dudosas. De las 25 del
   verificador quedan 7: mop, plier, rake, mow, wax, lavender, toolbox. Vocabulario 73,92 % y 4.036 tareas igual (J001).
-  Next: la teoría del tema pide un parche (ver decisions); @qa-tester declara pruebas para las lecturas nuevas.
+  Parche de la teoría del tema propuesto (architectural_patch.yaml + TECH_SPEC), sin aplicar.
+  Next: el integrador decide si lo aplica (adaptar ~314 constructores de AuditableQuiz en pruebas, el mapper y Main);
+  @qa-tester declara pruebas para las lecturas nuevas de R002 a R004 (hoy sin pruebas propias).
 
 2026-09-30 — developer + test-writer (paquete D) — FEAT-NIVFR construido: 39 pruebas sin @Disabled (37 + J001).
   off-level-words puntúa con el SentenceLexicalScorer compartido, cuenta dos niveles arriba (C1=5, C2=6) o fuera del
