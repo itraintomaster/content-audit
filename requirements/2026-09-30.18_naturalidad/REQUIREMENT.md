@@ -41,9 +41,11 @@ marcados que sirva de conjunto para un juez; sin Ollama, con la misma pregunta a
 > respuesta aceptada. Un ejercicio cuya oración no tiene verbo o es una sola palabra («go - going», «hard work
 > uncountable») no alcanza: no tiene número ni hallazgo, y no se le pregunta a ningún modelo.
 
-En A1–A2 no alcanzan 76 de 4.813; en el curso, 114 de 11.287. La contraída y la larga valen igual (decisión de José,
+En A1–A2 no alcanzan 75 de 4.813; en el curso, 113 de 11.287. La contraída y la larga valen igual (decisión de José,
 ronda 1): la pregunta de R002 no castiga la contraída, así que la oración se lee como queda. SLOR sí la castigaba y
-obligaba a leer la forma larga, y quedó descartado ([DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO)).
+obligaba a leer la forma larga, y quedó descartado ([DOUBT-NATUR-METODO](#DOUBT-NATUR-METODO)). Con la lista «a / b»
+dentro de una oración ya cerrada, la respuesta va en su lugar ([F-GRAMA-R001](#F-GRAMA-R001) inv. 5): se pregunta por
+«He did something to help.», nunca por «He did to help.».
 
 <a id="F-NATUR-R002"></a>
 ### Rule[F-NATUR-R002] - Un número por ejercicio: qué tan poco probable es que un nativo lo diga así
@@ -69,8 +71,10 @@ con la alternativa no hay número ([F-NATUR-R008](#F-NATUR-R008)).
 > cada nivel es fijo y deja marcado el 5 % de ese nivel en la base del 29/9; a igual número, el orden es el del curso.
 
 Fijo, para que cambiar un ejercicio no mueva la marca de otro ([F-HALL-R014](#F-HALL-R014)); lo decidió José el 30/9
-([DOUBT-NATUR-UMBRAL](#DOUBT-NATUR-UMBRAL)). Con llama3 8B en la versión medida, 9,07 en A1 (116 de 2.334) y 10,2 en A2
-(120 de 2.403). Los de B1 y B2 se calculan igual sobre la base del 29/9 antes de publicar: unos 9 minutos de modelo.
+([DOUBT-NATUR-UMBRAL](#DOUBT-NATUR-UMBRAL)). Con llama3 8B en la versión medida, 9,07 en A1 (116 de 2.334) y 10,0 en A2
+(118 de 2.364). A2 se midió sin los 40 ejercicios de la lista «a / b» ([F-GRAMA-R001](#F-GRAMA-R001) inv. 5): su número
+era el de una oración sin la respuesta, y 15 pasaban el umbral de antes, 10,2 (coordinador, 1/10). Esos 40 se miden con
+su oración junto con B1 y B2, que se calculan igual sobre la base del 29/9 antes de publicar: unos 9 minutos de modelo.
 Un modelo en otra versión da otros números, así que sus umbrales se vuelven a calcular con su examen
 ([F-MLOCAL-R006](#F-MLOCAL-R006)). Con claude -p no hay umbral: marca su «no» ([F-NATUR-R008](#F-NATUR-R008)).
 
@@ -79,9 +83,9 @@ Un modelo en otra versión da otros números, así que sus umbrales se vuelven a
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
 > La evidencia trae la oración como la lee el alumno y qué dijo el modelo ([F-HALL-R003](#F-HALL-R003)): con el modelo
-> local, su número y el umbral del nivel, «El modelo local duda que un nativo diga «She bought at the market.» (13,7;
-> umbral de A2: 10,2)»; con claude -p, su respuesta, «claude -p contesta que un nativo no diría «She bought at the
-> market.» (sin Ollama)».
+> local, su número y el umbral del nivel, «El modelo local duda que un nativo diga «She is an engineer of hers.» (14,7;
+> umbral de A2: 10,0)»; con claude -p, su respuesta, «claude -p contesta que un nativo no diría «She is an engineer of
+> hers.» (sin Ollama)».
 
 No dice por qué: eso lo dice el juez de [traducción](glossary:Traducción) y sentido (FEAT-TRSEN), que es quien decide.
 
@@ -108,9 +112,10 @@ Así «el 5 % menos esperable va primero a los jueces», como dice la propuesta,
 > 3. una versión que no lo aprueba no publica marcas ([F-MLOCAL-R006](#F-MLOCAL-R006)).
 
 Es el «si casi ninguno cae ahí, no sirve y se saca» de la propuesta, con un número. El prototipo con llama3 da 51 de 186
-(27 %) y aprueba; con SLOR daba 14 (7,5 %) y no. Con claude -p, rendir con la muestra cuesta 586 consultas (3,3 h de a
-una, 50 min con 4) en vez de las 4.737 de A1–A2 enteros (27 h); si marca el 5 %, la muestra lo estima con un error de
-alrededor de un punto, lejos del 15 % que se pide sobre los 186.
+(27 %) y aprueba; con SLOR daba 14 (7,5 %) y no. Esos 51 se midieron con la lectura y el umbral de A2 de antes de
+[F-GRAMA-R001](#F-GRAMA-R001) inv. 5: el examen de la versión los vuelve a medir. Con claude -p, rendir con la muestra
+cuesta 586 consultas (3,3 h de a una, 50 min con 4) en vez de las 4.738 de A1–A2 enteros (27 h); si marca el 5 %, la
+muestra lo estima con un error de alrededor de un punto, lejos del 15 % que se pide sobre los 186.
 
 <a id="F-NATUR-R007"></a>
 ### Rule[F-NATUR-R007] - `naturalness` es un analizador de errores que sólo ordena
@@ -140,18 +145,18 @@ Ollama nunca consulte a claude -p; cada hallazgo lleva el de su regla ([F-HALL-R
 <details><summary>Por qué sin número, un caso y cuánto cuesta</summary>
 
 claude -p no devuelve la probabilidad de cada respuesta, así que el cociente de R002 no se puede calcular; cuántos «no»
-da no está fijado en el 5 %: lo controla el examen (R006). «She bought at the market.» (`67fab6d59930102295343974`,
-A2): llama3 da 13,65 contra el umbral de 10,2 y queda marcado; sin Ollama, a claude -p se le pregunta lo mismo —«Would a
-native English speaker naturally say or write this exact sentence, with this meaning and these words? Sentence: "She
-bought at the market."»— y, si contesta «no», queda marcado igual, con la evidencia de R004.
+da no está fijado en el 5 %: lo controla el examen (R006). «She is an engineer of hers.» (`67fab6d59930102295342c0d`,
+A2): llama3 da 14,68 contra el umbral de 10,0 y queda marcado; sin Ollama, a claude -p se le pregunta lo mismo —«Would
+a native English speaker naturally say or write this exact sentence, with this meaning and these words? Sentence: "She
+is an engineer of hers."»— y, si contesta «no», queda marcado igual, con la evidencia de R004.
 
 | Alcance | Consultas | Horas de a una | Horas con 4 a la vez |
 |---|---:|---:|---:|
 | A1 | 2.334 | 13,3 | 3,3 |
-| A2 | 2.403 | 13,7 | 3,4 |
+| A2 | 2.404 | 13,7 | 3,4 |
 | B1 | 4.535 | 25,8 | 6,4 |
 | B2 | 1.901 | 10,8 | 2,7 |
-| Curso entero | 11.173 | 63,5 | 15,9 |
+| Curso entero | 11.174 | 63,5 | 15,9 |
 
 Al ritmo medido de los jueces, 176 por hora de a una (FEAT-JEXAM). Después de una tanda, una consulta por ejercicio
 tocado. La duda de qué marca la alternativa es [DOUBT-NATUR-ALTERNATIVA](#DOUBT-NATUR-ALTERNATIVA).
@@ -170,17 +175,20 @@ scratchpad del analista, sin instalar nada: llama3 8B (Q4_0) en Ollama, el únic
 | Pregunta sí o no, R002 | 51 (27,4 %) | 47,9 % | 6 min |
 
 Con la cola del 10 %, la pregunta trae el 43,5 %; con la del 20 %, el 64 %. De los 47 de gramática del examen, 9 caen en
-la cola del 5 % (LanguageTool encuentra 1). Los umbrales del 5 % quedan en 9,1 (A1; exacto, 9,07) y 10,2 (A2), medidos
-sobre `yn-a1a2.jsonl`; la presentación decía 10,0 para A1 y era un error: 10,0 marca 90 de 2.334, el 3,9 %. Lo más
-dudoso de A2 es «She is an engineer of hers.», «Jakarta is the capital of the Philippines.» y «This idea does not very
-good.». Fuera de todo oro, la cola trae oraciones igual de raras que el 077 no anotó, como «She bought at the market.».
+la cola del 5 % (LanguageTool encuentra 1). Los umbrales del 5 % quedan en 9,1 (A1; exacto, 9,07) y 10,0 (A2, sin los 40
+de la lista «a / b»), medidos sobre `yn-a1a2.jsonl`; la presentación decía 10,0 para A1 y era un error: en A1, 10,0 marca
+90 de 2.334, el 3,9 %. Lo más dudoso de A2 es «She is an engineer of hers.», «Jakarta is the capital of the
+Philippines.» y «This idea does not very good.». La cola de A2 del prototipo traía además 15 oraciones que no eran del
+curso sino de su lectura de la lista «a / b» sin la respuesta, como «She bought at the market.» por «She bought
+something at the market.» ([F-GRAMA-R001](#F-GRAMA-R001) inv. 5): el umbral de A2 se midió sin ellas, y la tabla de
+arriba es la del prototipo, con ellas.
 
 SLOR se midió leyendo de a un token con 20 alternativas, porque Ollama no da la probabilidad del texto de entrada: toda
 palabra fuera de las 20 cuesta lo mismo. Un modelo chico con la probabilidad exacta (GPT-2) podría medir mejor; no se
 probó porque hay que bajarlo. Lo que el 077 llama antinatural son oraciones de palabras comunes y bien armadas —«I eat
 food every morning»—, y la pregunta directa las ve mejor que la probabilidad.
 
-Sin Ollama, la misma pregunta va a claude -p (José, 30/9 a la noche; FEAT-MLOCAL R007): el curso entero son 11.173
+Sin Ollama, la misma pregunta va a claude -p (José, 30/9 a la noche; FEAT-MLOCAL R007): el curso entero son 11.174
 consultas, 63,5 horas de a una. Es casi un tercio de lo que cuestan los cuatro jueces nuevos sobre el mismo nivel: rinde
 en los niveles que los jueces no van a juzgar enteros.
 
@@ -286,7 +294,7 @@ marcar otras que no cambiaron, y el antes y después (paquete F) mostraría marc
 - [ ] Opción B: preguntarle además qué tan seguro está (sí, quizás sí, quizás no, no) y ordenar por eso. Es otra
   pregunta, con su propia versión y su examen.
 - [ ] Opción C: pedirle un puntaje de 0 a 10 y marcar el 5 % de cada nivel con umbrales fijos. Es otra pregunta, y
-  calibrar sus umbrales cuesta consultar A1–A2 enteros: 4.737 consultas, 27 horas de a una.
+  calibrar sus umbrales cuesta consultar A1–A2 enteros: 4.738 consultas, 27 horas de a una.
 
 **Answer**: Pendiente. Recomiendo A, y se diseñó con A: es lo que dijo José, «la misma pregunta de sí o no», y no
 inventa un número que claude -p no da.

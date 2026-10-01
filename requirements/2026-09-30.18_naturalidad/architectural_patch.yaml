@@ -11,12 +11,14 @@ description: "FEAT-NATUR, paquete B de la ronda 2: el analizador naturalness. Le
   \ por el integrador de la ronda 2 sobre el sentinel.yaml de ronda1/integracion (la\
   \ ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; orden\
   \ de la cadena: FEAT-RONDA2, B, F y E, sin cambios de estructura.; qa-tester de\
-  \ la ronda 2 (B): traza las 8 reglas de FEAT-NATUR a 38 handwrittenTests nuevas\
+  \ la ronda 2 (B): traza las 8 reglas de FEAT-NATUR a 39 handwrittenTests nuevas\
   \ (no hay pruebas previas que portar), con las probabilidades que grabó el prototipo\
   \ del analista para oraciones reales del curso del 29/9, y ubica F-NATUR-J001 en\
   \ audit-domain, paquete naturalness, como F-TRSEN-J001. Las dos rutas se prueban\
   \ con dobles de YesNoModel y del evaluador de claude -p sobre el runtime de los\
-  \ jueces con libros en memoria."
+  \ jueces con libros en memoria. El umbral de A2 es 10,0 (coordinador, 1/10): medido\
+  \ sin los 40 ejercicios de la lista «a / b», que se leen con la respuesta en su\
+  \ lugar (F-GRAMA-R001 inv. 5)."
 modules:
 - name: audit-domain
   packages:
@@ -191,6 +193,11 @@ modules:
         traceability:
           feature: FEAT-NATUR
           rule: F-NATUR-R001
+      - name: "should ask about «He did something to help.», with the answer in the\
+          \ place of the «a / b» list, and never about «He did to help.»"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R001
       - name: "should reuse in a second run the answer recorded for an unchanged sentence\
           \ under the same examined version, without asking llama3 again"
         traceability:
@@ -222,7 +229,7 @@ modules:
           feature: FEAT-NATUR
           rule: F-NATUR-R003
       - name: "should give as evidence with llama3 «El modelo local duda que un nativo\
-          \ diga «She is an engineer of hers.» (14,7; umbral de A2: 10,2)»"
+          \ diga «She is an engineer of hers.» (14,7; umbral de A2: 10,0)»"
         traceability:
           feature: FEAT-NATUR
           rule: F-NATUR-R004
@@ -341,7 +348,7 @@ modules:
     - name: DefaultNaturalnessConfig
       handwrittenTests:
       - name: should hold for llama3:8b@365c0bd3c000 with the question of the prototype
-          the thresholds 9.07 for A1 and 10.2 for A2
+          the thresholds 9.07 for A1 and 10.0 for A2
         traceability:
           feature: FEAT-NATUR
           rule: F-NATUR-R003

@@ -5,6 +5,17 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analista (qa-tester B, por el coordinador) — Umbral de A2 vuelto a medir sin los 40 ejercicios de la lista
+  «a / b», que F-GRAMA-R001 inv. 5 lee con la respuesta en su lugar: 10,0 (puesto 118 de 2.364 = 10,0364; el 119 =
+  9,9814). Con 10,2 marcaba 120, y 15 eran esas oraciones rotas; sobre los 2.364 limpios marcaba 105. Los 40 se miden con
+  su oración junto con B1 y B2 (B-19), que confirma el de A2. A1 no cambia (9,07; ninguno de los 40 es de A1).
+  why: el número viejo era el de una oración sin la respuesta («He did to help.»). Datos del prototipo, sin consultar
+  ningún modelo: `qa-B2/lista/umbral_nat_v2.py` sobre `yn-a1a2.jsonl` (spaCy sólo para «alcanza»).
+2026-10-01 — analista (qa-tester B) — Con la lectura nueva, 3969 («Something is broken.») alcanza: no alcanzan 75 de
+  4.813 en A1–A2 y 113 de 11.287 en el curso; A2 son 2.404 consultas y el curso 11.174. Los ejemplos de R004 y R008 pasan
+  a «She is an engineer of hers.» (14,68): «She bought at the market.» era una de las 15 rotas. El «51 de 186» del
+  examen se midió con la lectura y el umbral de antes: lo vuelve a medir el examen de la versión.
+
 2026-10-01 — qa-tester — F-NATUR-J001 en audit-domain, `com.learney.contentaudit.auditdomain.naturalness`: el
   analizador y sus piezas son package-private ahí; los puertos se simulan y el runtime de los jueces corre con libros en
   memoria, como F-TRSEN-J001.
