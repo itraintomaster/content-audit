@@ -101,7 +101,7 @@ public class QuizInstructionReviserTest {
                 InstructionSeverity.MAJOR,
                 List.of(),
                 "audit-qicor-1",
-                "plan-qicor-1");
+                "plan-qicor-1", "Completa la oracion con el verbo en presente simple, tercera persona.");
     }
 
     private static QuizTemplateEntity buildQuiz(String answer) {

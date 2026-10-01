@@ -4286,7 +4286,7 @@ public class GetCmdTest {
                 List.of(new InstructionViolation("AGREEMENT", "El verbo debe concordar con el sujeto",
                         "goes", "El sujeto es de tercera persona singular")),
                 "No cumple: 1 violacion", InstructionSeverity.MAJOR, List.of(), sourceAuditId,
-                "plan-2026-08-03");
+                "plan-2026-08-03", "Escribe la forma afirmativa");
         when(correctionContextResolver.resolve(any(AuditReport.class), eq(quizInstructionTask)))
                 .thenReturn(Optional.of(qiCtx));
 

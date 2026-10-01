@@ -259,6 +259,37 @@ public class QuizInstructionContextResolverTest {
     @Tag("FEAT-CALUM")
     @Tag("F-CALUM-R003")
     public void shouldResolveACorrectionContextCarryingTheInstructionsOfTheQuizCopyTheOnesTheStudentSeesAndTheJudgeReadsApartFromTheKnowledges() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The copy the app shows says one thing and the knowledge another, as in 9.923 quizzes of the
+        // 29/9 base.
+        AuditableQuiz copy = new AuditableQuiz(
+                List.of(), "quiz-3a", "Adjetivo o adverbio", "Q3A", "Ella es una chica callada.",
+                List.of("She is a quiet girl."), "She is a ____ [quiet] (quiet / quietly) girl.",
+                "Elegí la palabra correcta.", parts("quiet"), null, null, null);
+        AuditableKnowledge knowledge = new AuditableKnowledge(
+                List.of(copy), "Adjetivo o adverbio", "Elige entre el adjetivo o el adverbio.", true,
+                "know-3", "Adjetivo o adverbio", "AA", null, "Adjetives and Adverbs");
+        AuditableTopic topic = new AuditableTopic(List.of(knowledge), "topic-3", "Adjetives and Adverbs", "AA");
+        AuditableMilestone milestone = new AuditableMilestone(List.of(topic), "ms-3", "A1", null);
+        QuizInstructionVerdict verdict = new QuizInstructionVerdict(
+                false, 0.9, InstructionSeverity.MAJOR, "El ejercicio incumple su consigna",
+                List.of(new InstructionViolation("OBJECTIVE_MISMATCH", "Elegí la palabra correcta.",
+                        "quiet", "La pista no deja elegir")),
+                List.of());
+
+        AuditNode courseNode = buildCourseNode();
+        AuditNode milestoneNode = buildMilestoneNode(courseNode, milestone);
+        AuditNode topicNode = buildTopicNode(milestoneNode, topic);
+        AuditNode knowledgeNode = buildKnowledgeNode(topicNode, knowledge);
+        buildQuizNode(knowledgeNode, copy, buildQuizDiagnoses(verdict));
+
+        QuizInstructionCorrectionContext context =
+                sut.resolve(new AuditReport(courseNode), buildTask("quiz-3a")).orElseThrow();
+
+        Assertions.assertEquals("Elegí la palabra correcta.", context.getQuizInstructions(),
+                "F-CALUM-R003: the consigna to comply with is the quiz copy's, the one the student sees");
+        Assertions.assertEquals("Elige entre el adjetivo o el adverbio.", context.getKnowledgeInstructions(),
+                "F-CALUM-R003 inv. 2: the knowledge's stays under its own name, as context");
+        Assertions.assertEquals("Adjetivo o adverbio", context.getKnowledgeTitle(),
+                "F-CALUM-R003 inv. 3: the lesson stays as context");
     }
 }
