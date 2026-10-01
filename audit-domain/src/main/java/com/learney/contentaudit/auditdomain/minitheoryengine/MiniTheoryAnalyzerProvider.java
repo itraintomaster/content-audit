@@ -91,7 +91,9 @@ public class MiniTheoryAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
                 AnalysisCost.PAID_MODEL,
-                "Miniteoría", List.of());
+                "Miniteoría con error", List.of(),
+                "Ejercicios cuya tarjeta de teoría dice una regla falsa o exagerada, o que contradicen esa regla o "
+                        + "quedan fuera de lo que explica.");
     }
 
     /**

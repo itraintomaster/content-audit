@@ -38,7 +38,7 @@ public class DataCoherenceAnalyzerProviderTest {
 
         assertEquals("data-coherence", provider.analyzerName());
         assertEquals("data-coherence", card.getName());
-        assertEquals("Datos coherentes", card.getDisplayName());
+        assertEquals("Audio o respuesta que no coincide", card.getDisplayName());
         assertEquals("¿Todas las copias del ejercicio dicen lo mismo?", card.getQuestion());
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());

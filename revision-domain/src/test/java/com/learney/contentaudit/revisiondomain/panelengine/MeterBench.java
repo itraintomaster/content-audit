@@ -234,7 +234,7 @@ public final class MeterBench {
                     List.of(new AnalyzerRuleCard(rule, "lo que marca", AnalysisCost.PAID_MODEL),
                             new AnalyzerRuleCard("judges-disagree", "los jueces no coinciden", AnalysisCost.PAID_MODEL)),
                     "0 ejercicios", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL),
-                    AnalysisCost.PAID_MODEL, name, List.of());
+                    AnalysisCost.PAID_MODEL, name, List.of(), null);
         }
 
         @Override

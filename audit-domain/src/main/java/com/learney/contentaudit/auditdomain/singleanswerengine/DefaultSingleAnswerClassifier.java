@@ -65,8 +65,8 @@ class DefaultSingleAnswerClassifier implements SingleAnswerClassifier {
     private static final double PASSES = 1.0;
 
     /** F-UNICA-R003 / R007: who fixes an answer the instruction offers, and how. */
-    static final String ANSWER_COMPLETENESS_FIX = SingleAnswerAnalyzer.ANSWER_COMPLETENESS_DISPLAY_NAME
-            + " (" + SingleAnswerAnalyzer.ANSWER_COMPLETENESS
+    static final String ANSWER_COMPLETENESS_FIX = "«" + SingleAnswerAnalyzer.ANSWER_COMPLETENESS_DISPLAY_NAME
+            + "» (" + SingleAnswerAnalyzer.ANSWER_COMPLETENESS
             + "), con una regla que la agrega a las respuestas aceptadas con «|»";
 
     private final CorrectorMatcher correctorMatcher;
@@ -277,8 +277,8 @@ class DefaultSingleAnswerClassifier implements SingleAnswerClassifier {
             observation.append('.');
         }
         if (offered) {
-            observation.append(" No cuenta como error de ").append(SingleAnswerAnalyzer.DISPLAY_NAME)
-                    .append(": la arregla ").append(ANSWER_COMPLETENESS_FIX).append('.');
+            observation.append(" No cuenta como error de «").append(SingleAnswerAnalyzer.DISPLAY_NAME)
+                    .append("»: la arregla ").append(ANSWER_COMPLETENESS_FIX).append('.');
         }
         return new FindingEvidence(examined, observation.toString(), List.of());
     }

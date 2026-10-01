@@ -4549,14 +4549,14 @@ public class GetCmdTest {
     }
 
     @Test
-    @DisplayName("should show in get analyzers the Spanish name of each analyzer next to its unique name, «Largo de oración» next to sentence-length")
+    @DisplayName("should show in get analyzers the Spanish name of each analyzer next to its unique name, «Oraciones con el largo de su nivel» next to sentence-length")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R004")
-    public void shouldShowInGetAnalyzersTheSpanishNameOfEachAnalyzerNextToItsUniqueNameLargoDeOracinNextToSentencelength()
+    public void shouldShowInGetAnalyzersTheSpanishNameOfEachAnalyzerNextToItsUniqueNameOracionesConElLargoDeSuNivelNextToSentencelength()
             throws IOException {
         // R004: get analyzers shows, next to the unique name of every card of the catalog Main
-        // builds, its Spanish name -- «Largo de oración» next to sentence-length -- in text, in JSON
-        // and in the table.
+        // builds, its Spanish name -- «Oraciones con el largo de su nivel» next to sentence-length -- in
+        // text, in JSON and in the table.
         AnalyzerCatalog catalog = Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger());
 
         Base299.Captured text = Base299.run(Base299.getCmd(auditReportStore, catalog), "analyzers");
@@ -4564,7 +4564,8 @@ public class GetCmdTest {
         Base299.Captured table = Base299.run(Base299.getCmd(auditReportStore, catalog), "analyzers", "-f", "table");
 
         assertEquals(0, text.exit(), text.err());
-        assertTrue(text.out().contains("Name:        sentence-length (Largo de oración)"), text.out());
+        assertTrue(text.out().contains("Name:        sentence-length (Oraciones con el largo de su nivel)"),
+                text.out());
         JsonNode listed = new ObjectMapper().readTree(json.out());
         List<AnalyzerDescriptor> cards = catalog.list();
         for (int i = 0; i < cards.size(); i++) {
@@ -4575,9 +4576,11 @@ public class GetCmdTest {
             assertEquals(card.getDisplayName(), listed.get(i).get("displayName").asText());
             assertTrue(table.out().contains(card.getDisplayName()), "the table too: " + card.getDisplayName());
         }
-        assertEquals(List.of("Largo de oración", "Largo del título", "Largo de la consigna", "Bandas de frecuencia",
-                "Recurrencia", "Palabras que faltan", "Palabras poco vistas", "Consigna"),
-                cards.stream().map(AnalyzerDescriptor::getDisplayName).toList(), "R004 inv. 2: the names of the table");
+        assertEquals(List.of("Oraciones con el largo de su nivel", "Títulos de largo adecuado",
+                "Consignas de largo adecuado", "Palabras de la frecuencia del nivel", "Palabras que vuelven a tiempo",
+                "Vocabulario del nivel presente", "Palabras vistas suficientes veces", "Consigna que no se cumple"),
+                cards.stream().map(AnalyzerDescriptor::getDisplayName).toList(),
+                "R004 inv. 2: the names of the table of F-FILAS-R001");
     }
 
     // ------------------------------------------------------------------
@@ -4864,8 +4867,9 @@ public class GetCmdTest {
         assertEquals(AnalyzeCmdTest.Base299.ROUND_TWO, names, "R001: the twenty, the three of package B last");
         assertEquals(20, new java.util.HashSet<>(spanish).size(), "R001 inv. 1: twenty different Spanish names");
         assertTrue(spanish.stream().noneMatch(String::isBlank), "R001 inv. 1: none empty");
-        assertEquals(List.of("Gramática", "Naturalidad", "Duplicados parecidos"), spanish.subList(17, 20),
-                "R001: «Gramática», «Naturalidad» and «Duplicados parecidos»");
+        assertEquals(List.of("Error de gramática", "Oración poco natural", "Ejercicio casi repetido"),
+                spanish.subList(17, 20),
+                "R001: «Error de gramática», «Oración poco natural» and «Ejercicio casi repetido» (F-FILAS-R001)");
     }
 
     @Test
@@ -5119,5 +5123,42 @@ public class GetCmdTest {
                 "2026-09-30T11-54-02");
         t.plans.save(plan);
         return plan;
+    }
+
+    @Test
+    @DisplayName("should print the explanation of each card in get analyzers, as text and as JSON")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R004")
+    public void shouldPrintTheExplanationOfEachCardInGetAnalyzersAsTextAndAsJSON(
+            @org.junit.jupiter.api.io.TempDir Path workdir) throws IOException {
+        // F-FILAS-R004: get analyzers shows the sentence that explains the row of every card of the catalog Main
+        // builds -- the twenty --, in text next to its question and in JSON next to its Spanish name.
+        AnalyzerCatalog catalog = new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(
+                AnalyzeCmdTest.Base299.roundTwoProviders(
+                        new com.learney.contentaudit.evaluationledgerinfrastructure.FileSystemEvaluationLedger(workdir),
+                        workdir));
+
+        AnalyzeCmdTest.Base299.Captured text = AnalyzeCmdTest.Base299.run(
+                AnalyzeCmdTest.Base299.getCmd(auditReportStore, catalog), "analyzers");
+        AnalyzeCmdTest.Base299.Captured json = AnalyzeCmdTest.Base299.run(
+                AnalyzeCmdTest.Base299.getCmd(auditReportStore, catalog), "analyzers", "-f", "json");
+
+        assertEquals(0, text.exit(), text.err());
+        assertEquals(0, json.exit(), json.err());
+        JsonNode listed = new ObjectMapper().readTree(json.out());
+        List<AnalyzerDescriptor> cards = catalog.list();
+        assertEquals(20, cards.size(), "the twenty");
+        for (int i = 0; i < cards.size(); i++) {
+            AnalyzerDescriptor card = cards.get(i);
+            assertTrue(card.getExplanation() != null && !card.getExplanation().isBlank(),
+                    "R004: " + card.getName() + " brings its sentence");
+            assertTrue(text.out().contains("Explanation: " + card.getExplanation()),
+                    "R004: in text, " + card.getName() + ": " + text.out());
+            assertEquals(card.getName(), listed.get(i).get("name").asText());
+            assertEquals(card.getExplanation(), listed.get(i).get("explanation").asText(),
+                    "R004: in JSON, " + card.getName());
+        }
+        assertTrue(text.out().contains("Explanation: Ejercicios cuya consigna o miniteoría pide una forma (la corta o "
+                + "la larga), o cuyo corrector rechaza otra forma igual de correcta de la respuesta."), text.out());
     }
 }

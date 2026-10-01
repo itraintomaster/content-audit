@@ -1131,6 +1131,21 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: BatchComparison - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.comparison.BetterDirection");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BetterDirection - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.comparison.ChangeVerdict");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ChangeVerdict - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.comparison.RowExample");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RowExample - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.comparison.BatchComparator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: BatchComparator - " + e.getMessage());

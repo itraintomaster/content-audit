@@ -196,6 +196,6 @@ public class DefaultBatchReportBuilderTest {
             double before, double after) {
         return new ComparisonRow(subject, family, target, target == AuditTarget.MILESTONE ? "m-a1" : "t-present", "A1",
                 new RowValue(before, null, 0), null, new RowValue(before, null, 0), new RowValue(after, null, 0),
-                after - before, unit, null, null);
+                after - before, unit, null, null, null, null, null, null, null);
     }
 }

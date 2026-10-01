@@ -3,16 +3,22 @@ package com.learney.contentaudit.auditcli.formatting;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
 import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
+import com.learney.contentaudit.revisiondomain.comparison.BetterDirection;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeVerdict;
 import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
+import com.learney.contentaudit.revisiondomain.comparison.FloorBreach;
 import com.learney.contentaudit.revisiondomain.comparison.GoalChange;
 import com.learney.contentaudit.revisiondomain.comparison.GoalReference;
 import com.learney.contentaudit.revisiondomain.comparison.GoalStatus;
 import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
 import com.learney.contentaudit.revisiondomain.comparison.MeasureChange;
+import com.learney.contentaudit.revisiondomain.comparison.RowExample;
 import com.learney.contentaudit.revisiondomain.comparison.RowGoalStatus;
 import com.learney.contentaudit.revisiondomain.comparison.RowValue;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
@@ -136,7 +142,7 @@ public class DefaultBatchComparisonFormatterTest {
             Double baseline, Double remeasured, Double projected, Double change, RowGoalStatus floor) {
         return new ComparisonRow(subject, family, target, label, label, new RowValue(baseline, null, 0),
                 remeasured != null ? new RowValue(remeasured, null, 0) : null, new RowValue(baseline, null, 0),
-                new RowValue(projected, null, 0), change, GoalUnit.POINTS, floor, null);
+                new RowValue(projected, null, 0), change, GoalUnit.POINTS, floor, null, null, null, null, null, null);
     }
 
     private static RowGoalStatus floor(GoalStatus status) {
@@ -152,5 +158,83 @@ public class DefaultBatchComparisonFormatterTest {
             }
         }
         throw new AssertionError("no line «" + start + "» in:\n" + text);
+    }
+
+    @Test
+    @DisplayName("should write in the JSON of every row its Spanish name, which way is better, the verdict of its change, its explanation and its example")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R006")
+    public void shouldWriteInTheJSONOfEveryRowItsSpanishNameWhichWayIsBetterTheVerdictOfItsChangeItsExplanationAndItsExample(
+            ) throws Exception {
+        ComparisonRow absence = row("lemma-absence", AnalyzerFamily.VOCABULARY, AuditTarget.KNOWLEDGE,
+                "Afirmativas regulares", 1.0, null, 0.995, -0.5, null);
+        absence.setDisplayName("Vocabulario del nivel presente");
+        absence.setBetterWhen(BetterDirection.HIGHER);
+        absence.setChangeVerdict(ChangeVerdict.WORSENED);
+        absence.setExplanation("Puntaje de 0 a 100: cuántas de las palabras que el nivel tiene que enseñar aparecen, "
+                + "sin palabras de un nivel más alto.");
+        absence.setExample(new RowExample("67fab6d59930102295341ec4", "My grandmother ___ (come) every year.",
+                "grandmother es una palabra de A2 en un ejercicio de A1"));
+        ComparisonRow grammar = row("grammar", AnalyzerFamily.ERRORS, AuditTarget.KNOWLEDGE, "Afirmativas regulares",
+                1.0, null, 0.0, -1.0, null);
+        grammar.setUnit(GoalUnit.EXERCISES);
+        grammar.setDisplayName("Error de gramática");
+        grammar.setBetterWhen(BetterDirection.LOWER);
+        grammar.setChangeVerdict(ChangeVerdict.IMPROVED);
+        grammar.setExplanation("Ejercicios cuya oración terminada, con la respuesta puesta, tiene un error de "
+                + "gramática, de ortografía o de puntuación final.");
+        grammar.setExample(new RowExample("67fab6d59930102295341ed6", "She ___ (wear) hat every day.",
+                "Falta el artículo antes de «hat»: «a hat» — la tanda lo arregla"));
+        BatchComparison comparison = comparison(List.of(absence, grammar));
+        comparison.setBreaches(List.of(new FloorBreach("piso de vocabulario · lemma-absence · KNOWLEDGE", absence,
+                List.of())));
+
+        JsonNode json = new ObjectMapper().readTree(new DefaultBatchComparisonFormatter().format(comparison, "json"));
+
+        JsonNode score = json.get("rows").get(0);
+        assertEquals("Vocabulario del nivel presente", score.get("displayName").asText(), "R006: its visible name");
+        assertEquals("HIGHER", score.get("betterWhen").asText(), "R006: which way is better");
+        assertEquals("WORSENED", score.get("changeVerdict").asText(), "R006: the verdict of its change");
+        assertEquals(absence.getExplanation(), score.get("explanation").asText(), "R006: its sentence");
+        assertEquals("67fab6d59930102295341ec4", score.get("example").get("quizId").asText(), "R006: its example");
+        assertEquals("My grandmother ___ (come) every year.", score.get("example").get("exercise").asText());
+        assertEquals("grandmother es una palabra de A2 en un ejercicio de A1",
+                score.get("example").get("detail").asText());
+        assertEquals("lemma-absence", score.get("subject").asText(), "R006 inv. 1: the fields of before stay");
+        assertEquals(-0.5, score.get("change").asDouble(), 1e-9);
+        assertEquals("POINTS", score.get("unit").asText());
+        JsonNode problem = json.get("rows").get(1);
+        assertEquals(List.of("Error de gramática", "LOWER", "IMPROVED"), List.of(problem.get("displayName").asText(),
+                problem.get("betterWhen").asText(), problem.get("changeVerdict").asText()));
+        assertEquals("Falta el artículo antes de «hat»: «a hat» — la tanda lo arregla",
+                problem.get("example").get("detail").asText());
+        JsonNode broken = json.get("breaches").get(0).get("row");
+        assertEquals(List.of("Vocabulario del nivel presente", "HIGHER", "WORSENED"), List.of(
+                broken.get("displayName").asText(), broken.get("betterWhen").asText(),
+                broken.get("changeVerdict").asText()), "R006: the row of a broken floor, too");
+        assertEquals("67fab6d59930102295341ec4", broken.get("example").get("quizId").asText());
+    }
+
+    @Test
+    @DisplayName("should write the example of a row without one as null in the JSON, never leave it out")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R006")
+    public void shouldWriteTheExampleOfARowWithoutOneAsNullInTheJSONNeverLeaveItOut() throws Exception {
+        ComparisonRow single = row("single-answer", AnalyzerFamily.ERRORS, AuditTarget.KNOWLEDGE,
+                "Afirmativas regulares", 0.0, null, 0.0, 0.0, null);
+        single.setUnit(GoalUnit.EXERCISES);
+        single.setDisplayName("Más de una respuesta válida");
+        single.setBetterWhen(BetterDirection.LOWER);
+        single.setChangeVerdict(ChangeVerdict.NOT_EVALUATED);
+        single.setExplanation("Ejercicios para escribir donde, con lo que ve el alumno, hay otra respuesta igual de "
+                + "buena que el corrector no acepta.");
+
+        String text = new DefaultBatchComparisonFormatter().format(comparison(List.of(single)), "json");
+
+        JsonNode row = new ObjectMapper().readTree(text).get("rows").get(0);
+        assertTrue(row.has("example"), "R006 inv. 2: the example is written although there is none: " + row);
+        assertTrue(row.get("example").isNull(), "R006 inv. 2: as null");
+        assertTrue(text.contains("\"example\" : null"), text);
+        assertEquals("NOT_EVALUATED", row.get("changeVerdict").asText());
     }
 }

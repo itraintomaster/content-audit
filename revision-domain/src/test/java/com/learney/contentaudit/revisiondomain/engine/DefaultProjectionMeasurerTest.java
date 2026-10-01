@@ -304,7 +304,7 @@ public class DefaultProjectionMeasurerTest {
             return new AnalyzerDescriptor(name, "Doble de un juez", AuditTarget.QUIZ, "¿Cumple?", "El ejercicio",
                     List.of(new AnalyzerRuleCard("verdict", "El veredicto del modelo", cost)), "Ninguno con error",
                     AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), cost,
-                    "Juez " + name, List.of());
+                    "Juez " + name, List.of(), null);
         }
 
         @Override

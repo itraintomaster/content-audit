@@ -55,13 +55,15 @@ Acá **tema** es lo que el curso llama *knowledge*, como en FEAT-HALL y FEAT-RON
 ### Rule[F-RONDA2-R001] - Las tres fichas de B traen su nombre en castellano y van después de las diecisiete
 **Severity**: major | **Validation**: VALIDATED
 
-> El catálogo lista, después de los diecisiete analizadores de la ronda 1 y en este orden, `grammar` «Gramática»,
-> `naturalness` «Naturalidad» y `near-duplicates` «Duplicados parecidos». Invariantes:
+> El catálogo lista, después de los diecisiete analizadores de la ronda 1 y en este orden, `grammar` «Error de
+> gramática», `naturalness` «Oración poco natural» y `near-duplicates` «Ejercicio casi repetido», con los nombres de
+> [F-FILAS-R001](#F-FILAS-R001). Invariantes:
 > 1. los veinte nombres en castellano son distintos y ninguno está vacío ([F-RONDA1-R004](#F-RONDA1-R004));
 > 2. los diecisiete de la ronda 1 conservan su lugar: los tres nuevos sólo se suman al final;
 > 3. el nombre único sigue siendo el único con que se nombra a un analizador ([F-HALL-R005](#F-HALL-R005)).
 
-Son los nombres de la presentación de B que vio José (gancho B-17). Los paquetes E y F no suman analizadores.
+Hasta el 1/10 se llamaron «Gramática», «Naturalidad» y «Duplicados parecidos», los nombres de la presentación de B
+que vio José (gancho B-17). Los paquetes E y F no suman analizadores.
 
 <a id="F-RONDA2-R002"></a>
 ### Rule[F-RONDA2-R002] - El tope por omisión depende de a quién se consulta

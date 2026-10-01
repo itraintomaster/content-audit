@@ -245,9 +245,11 @@ modules:
         (consulta un modelo) y si entra en la corrida base del motor (instantáneo).
     - name: displayName
       type: String
-      description: "Nombre en castellano con que la UI muestra al analizador, como\
-        \ «Largo de oración»: nunca vacío y distinto en cada ficha. No reemplaza a\
-        \ name, el único con que se lo nombra (F-RONDA1-R004, F-HALL-R005)."
+      description: "Nombre en castellano con que la UI muestra al analizador: el problema\
+        \ que cuenta, en uno de errores, o lo bueno que mide, en uno de vocabulario,\
+        \ como «Oraciones con el largo de su nivel» (F-FILAS-R001). Nunca vacío y\
+        \ distinto en cada ficha. No reemplaza a name, el único con que se lo nombra\
+        \ (F-RONDA1-R004, F-HALL-R005)."
     - name: tools
       type: List<LocalToolCard>
       description: "Las herramientas con que mide el analizador —la local y, si la\
@@ -256,6 +258,12 @@ modules:
         \ la llenan grammar, naturalness y near-duplicates. La medida toma de acá\
         \ la herramienta con que midió y su versión examinada, nunca el estado del\
         \ examen ni los motivos (F-RONDA2-R004)."
+    - name: explanation
+      type: String
+      description: "Una frase que dice qué ejercicios cuenta la fila del analizador,\
+        \ en uno de errores, o qué puntúa de 0 a 100, en uno de vocabulario: la que\
+        \ muestran get analyzers y cada fila de la comparación (F-FILAS-R004). Como\
+        \ el nombre, no entra en la medida (F-RONDA2-R004)."
     glossarySuggestions:
     - name: Ficha del analizador
       technicalName: AnalyzerDescriptor
@@ -16082,25 +16090,35 @@ modules:
         traceability:
           feature: FEAT-CLI
           rule: F-CLI-R006
-      - name: "should register the seventeen analyzers of round 1 in catalog order,\
-          \ from sentence-length to mini-theory, each with the Spanish name of its\
-          \ card, «Largo de oración» to «Miniteoría»"
-        traceability:
-          feature: FEAT-RONDA1
-          rule: F-RONDA1-R004
       - name: "should list off-level-words with its card in get analyzers, registered\
           \ in the catalog right after lemma-absence"
         traceability:
           feature: FEAT-NIVFR
           rule: F-NIVFR-R007
-      - name: "should register grammar «Gramática», naturalness «Naturalidad» and\
-          \ near-duplicates «Duplicados parecidos» after the seventeen analyzers of\
-          \ round 1, in that order"
+      - name: should keep each of the seventeen analyzers of round 1 in its place
+          in the catalog once the three of package B are registered
         traceability:
           feature: FEAT-RONDA2
           rule: F-RONDA2-R001
-      - name: should keep each of the seventeen analyzers of round 1 in its place
-          in the catalog once the three of package B are registered
+      - name: "should give each of the twenty analyzers of the catalog the Spanish\
+          \ name of the FEAT-FILAS table, the problem it counts or the good it scores"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R001
+      - name: should give each of the twenty analyzers of the catalog the explanation
+          of the FEAT-FILAS table
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R004
+      - name: "should register the seventeen analyzers of round 1 in catalog order,\
+          \ from sentence-length to mini-theory, each with the Spanish name of its\
+          \ card, «Oraciones con el largo de su nivel» to «Miniteoría con error»"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R004
+      - name: "should register grammar «Error de gramática», naturalness «Oración\
+          \ poco natural» and near-duplicates «Ejercicio casi repetido» after the\
+          \ seventeen analyzers of round 1, in that order"
         traceability:
           feature: FEAT-RONDA2
           rule: F-RONDA2-R001
@@ -16231,11 +16249,6 @@ modules:
         traceability:
           feature: FEAT-HALL
           rule: F-HALL-R015
-      - name: "should reject «Largo de oración» as an analyzer name, since only the\
-          \ unique name sentence-length names the analyzer"
-        traceability:
-          feature: FEAT-RONDA1
-          rule: F-RONDA1-R004
       - name: should leave the 886 files of the 29/9 course identical byte for byte
           after analyzing it with the seventeen analyzers of round 1
         traceability:
@@ -16267,6 +16280,11 @@ modules:
         traceability:
           feature: FEAT-MLOCAL
           rule: F-MLOCAL-R003
+      - name: "should reject «Oraciones con el largo de su nivel» as an analyzer name,\
+          \ since only the unique name sentence-length names the analyzer"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R004
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -16769,11 +16787,6 @@ modules:
         traceability:
           feature: FEAT-RONDA1
           rule: F-RONDA1-R003
-      - name: "should show in get analyzers the Spanish name of each analyzer next\
-          \ to its unique name, «Largo de oración» next to sentence-length"
-        traceability:
-          feature: FEAT-RONDA1
-          rule: F-RONDA1-R004
       - name: "should print as JSON the word lights of a knowledge with get word-lights,\
           \ read from the source analysis of the latest plan like get suggested-lemmas,\
           \ or from the latest analysis when there is no plan"
@@ -16858,6 +16871,16 @@ modules:
         traceability:
           feature: FEAT-SEMAF
           rule: F-SEMAF-R007
+      - name: "should print the explanation of each card in get analyzers, as text\
+          \ and as JSON"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R004
+      - name: "should show in get analyzers the Spanish name of each analyzer next\
+          \ to its unique name, «Oraciones con el largo de su nivel» next to sentence-length"
+        traceability:
+          feature: FEAT-RONDA1
+          rule: F-RONDA1-R004
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -17855,6 +17878,11 @@ modules:
         traceability:
           feature: FEAT-METAS
           rule: F-METAS-R009
+      - name: "should print with -f json, for a batch of two exercises, the comparison\
+          \ of the sample file the review app is built against"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R006
       implements:
       - CompareCommand
     - name: DefaultGoalsCommand
@@ -18514,6 +18542,16 @@ modules:
         traceability:
           feature: FEAT-METAS
           rule: F-METAS-R007
+      - name: "should write in the JSON of every row its Spanish name, which way is\
+          \ better, the verdict of its change, its explanation and its example"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R006
+      - name: "should write the example of a row without one as null in the JSON,\
+          \ never leave it out"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R006
       implements:
       - BatchComparisonFormatter
   - name: bootstrap
@@ -24897,6 +24935,9 @@ modules:
       fields:
       - name: subject
         type: String
+        description: "La clave de la fila: el nombre único del analizador, o «vocabulario»\
+          \ o «algún error», como las nombran las metas. No cambia con el nombre visible\
+          \ (F-FILAS-R001)."
       - name: family
         type: AnalyzerFamily
       - name: nodeTarget
@@ -24928,6 +24969,27 @@ modules:
         type: RowGoalStatus
       - name: progress
         type: RowGoalStatus
+      - name: displayName
+        type: String
+        description: "El nombre visible de la fila: el de la ficha del analizador,\
+          \ «Vocabulario, puntaje total» o «Ejercicios con algún error»; el nombre\
+          \ único de un analizador que el catálogo de hoy no conoce (F-FILAS-R001)."
+      - name: betterWhen
+        type: BetterDirection
+        description: "LOWER en las filas de problemas, HIGHER en las de puntaje (F-FILAS-R002)."
+      - name: changeVerdict
+        type: ChangeVerdict
+        description: El veredicto del cambio contra la línea base; lo decide content-audit
+          y la UI lo pinta (F-FILAS-R003).
+      - name: explanation
+        type: String
+        description: "La frase de la ficha del analizador, o la de «vocabulario» o\
+          \ «algún error»; null si el catálogo de hoy no lo conoce (F-FILAS-R004)."
+      - name: example
+        type: RowExample
+        description: "Un hallazgo real del análisis en el nodo o debajo, elegido siempre\
+          \ igual: primero uno que la tanda arregla, después el más concreto y de\
+          \ identificador menor; null si no hay ninguno (F-FILAS-R005)."
     - name: ChangeOutcome
       type: record
       fields:
@@ -25061,6 +25123,45 @@ modules:
         - Propuesta de revisión
         rationale: La comparación de una tanda contra la línea base con sus metas
           y su veredicto; la vista «Antes y después» de la propuesta v2.
+    - name: BetterDirection
+      type: enum
+      fields:
+      - name: LOWER
+        description: "Menos es mejor: las filas de problemas, de la familia de errores\
+          \ y «algún error» (F-FILAS-R002)."
+      - name: HIGHER
+        description: "Más es mejor: las filas de puntaje, de la familia de vocabulario\
+          \ y «vocabulario» (F-FILAS-R002)."
+    - name: ChangeVerdict
+      type: enum
+      fields:
+      - name: IMPROVED
+        description: El cambio fue para el lado bueno de la fila.
+      - name: WORSENED
+        description: El cambio fue para el lado malo de la fila.
+      - name: UNCHANGED
+        description: "El cambio, redondeado como se muestra, es cero: a dos decimales\
+          \ en puntos, a ejercicios enteros en errores."
+      - name: NOT_EVALUATED
+        description: "En la línea base o en la proyección la fila no tiene número,\
+          \ o el analizador no evaluó ningún ejercicio del nodo: nunca se lee como\
+          \ un cero (F-FILAS-R003)."
+    - name: RowExample
+      type: record
+      fields:
+      - name: quizId
+        type: String
+        description: "El ejercicio del hallazgo; null si el hallazgo no es de un ejercicio,\
+          \ como un título o una palabra del nivel."
+      - name: exercise
+        type: String
+        description: "El ejercicio como lo ve el alumno: el enunciado con sus huecos\
+          \ y sus pistas, y las opciones en la opción múltiple. null si el hallazgo\
+          \ no es de un ejercicio."
+      - name: detail
+        type: String
+        description: "En una línea, qué tiene: la observación del hallazgo. Dice si\
+          \ la tanda lo arregla, y en «vocabulario» y «algún error» nombra al analizador."
     interfaces:
     - name: BatchComparator
       stereotype: port
@@ -25119,6 +25220,9 @@ modules:
         description: "Lo que el tema enseña, de D (FEAT-NIVFR): una palabra que el\
           \ tema enseña no hace volver un cambio (F-METAS-R003, F-SEMAF-R004), igual\
           \ que en la mesa de E (gancho F-14)."
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: El ejercicio del ejemplo de cada fila como lo ve el alumno (F-FILAS-R005).
       visibility: public
       handwrittenTests:
       - name: "should publish for every analyzer that ran in the baseline a row in\
@@ -25311,6 +25415,94 @@ modules:
         traceability:
           feature: FEAT-METAS
           rule: F-METAS-R009
+      - name: "should show the vocabulary row as «Vocabulario, puntaje total» and\
+          \ the any-error row as «Ejercicios con algún error», keeping their subjects,\
+          \ the keys the goals name"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R001
+      - name: "should show each analyzer row with the Spanish name of its card, and\
+          \ with its unique name when today's catalog does not know it"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R001
+      - name: "should say that lower is better in every row of the errors family and\
+          \ in the any-error row, and higher in every row of the vocabulary family\
+          \ and in the vocabulary row"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R002
+      - name: "should mark a drop of an errors row as improved and a rise as worsened,\
+          \ and a rise of a vocabulary row as improved and a drop as worsened"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R003
+      - name: "should mark as unchanged a row whose change rounds to zero as it is\
+          \ shown, to two decimals in points and to whole exercises in errors"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R003
+      - name: "should mark as not evaluated a row whose analyzer evaluated no exercise\
+          \ of the node, instead of reading its zero as a real zero"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R003
+      - name: "should mark as not evaluated a row without a number in the baseline,\
+          \ as the error rows of the base of 29/9"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R003
+      - name: should mark as not evaluated the any-error row of a node where no errors
+          analyzer evaluated an exercise
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R003
+      - name: "should give each analyzer row the explanation of its card, and the\
+          \ vocabulary and any-error rows their own"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R004
+      - name: "should take as the example of a row a finding the batch fixes before\
+          \ one that stays in the projection, and say in its line that the batch fixes\
+          \ it"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: "should take as the example the finding of the lowest quiz id under\
+          \ the node, so the same comparison always gives the same example"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: should leave the example null when the analyzer has no finding under
+          the node
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: "should never take as the example of an errors row a finding that only\
+          \ ranks, as the ones of naturalness"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: "should show the exercise of the example as the student sees it, with\
+          \ its gap and its hint, and say in one line what it has"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: "should take as the example of a score row a concrete finding of the\
+          \ analyzer, as a word of the level, with no exercise"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: should not take as fixed a finding the projection lost only because
+          its analyzer left the exercise unevaluated
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
+      - name: "should take as the example of the any-error row an error of any analyzer,\
+          \ and name the analyzer in its line"
+        traceability:
+          feature: FEAT-FILAS
+          rule: F-FILAS-R005
       implements:
       - BatchComparator
     - name: DefaultGoalBook
@@ -31264,6 +31456,8 @@ features:
     testPackage: com.learney.contentaudit.auditcli.commands
 - id: FEAT-CALUM
   code: F-CALUM
+- id: FEAT-FILAS
+  code: F-FILAS
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:1.13.0

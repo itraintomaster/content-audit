@@ -82,7 +82,9 @@ public class GrammarAnalyzerProvider implements AnalyzerProvider {
                 List.of(FindingResolution.RULE, FindingResolution.PANEL),
                 AnalysisCost.INSTANT,
                 GrammarAnalyzer.DISPLAY_NAME,
-                List.of(localToolGate.card(GrammarAnalyzer.ANALYZER_NAME, grammarChecker, config.methodId())));
+                List.of(localToolGate.card(GrammarAnalyzer.ANALYZER_NAME, grammarChecker, config.methodId())),
+                "Ejercicios cuya oración terminada, con la respuesta puesta, tiene un error de gramática, de "
+                        + "ortografía o de puntuación final.");
     }
 
     /**

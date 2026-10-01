@@ -50,6 +50,23 @@ public class DefaultGoalBook implements GoalBook {
     /** The row of the exercises with any error of each node. */
     public static final String ANY_ERROR = "algún error";
 
+    /**
+     * F-FILAS-R001: how the comparison shows the row of {@link #VOCABULARY}. The subject stays the key the goals
+     * name -- in the declaration, in the ids of the family floors and in the fingerprint of the sealed goals.
+     */
+    public static final String VOCABULARY_DISPLAY_NAME = "Vocabulario, puntaje total";
+
+    /** F-FILAS-R004: what the row of {@link #VOCABULARY} scores. */
+    public static final String VOCABULARY_EXPLANATION =
+            "El puntaje de vocabulario de 0 a 100: el promedio de las filas de puntaje de arriba.";
+
+    /** F-FILAS-R001: how the comparison shows the row of {@link #ANY_ERROR}; its subject stays the key, as above. */
+    public static final String ANY_ERROR_DISPLAY_NAME = "Ejercicios con algún error";
+
+    /** F-FILAS-R004: what the row of {@link #ANY_ERROR} counts. */
+    public static final String ANY_ERROR_EXPLANATION =
+            "Ejercicios con al menos uno de los problemas de arriba; cada ejercicio cuenta una vez.";
+
     static final String ERRORS_FLOOR = "piso de errores";
 
     static final String VOCABULARY_FLOOR = "piso de vocabulario";

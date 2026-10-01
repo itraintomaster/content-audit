@@ -112,6 +112,6 @@ public class DefaultGoalsCommandTest {
 
     private static AnalyzerDescriptor card(String name, AnalyzerFamily family) {
         return new AnalyzerDescriptor(name, name, AuditTarget.QUIZ, "¿?", "la oración", List.of(), "1,0", family,
-                List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, name, List.of());
+                List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, name, List.of(), null);
     }
 }

@@ -81,7 +81,7 @@ public class MiniTheoryAnalyzerProviderTest {
         AnalyzerDescriptor card = provider.describe();
 
         assertEquals("mini-theory", card.getName());
-        assertEquals("Miniteoría", card.getDisplayName(), "its Spanish name (F-RONDA1-R004)");
+        assertEquals("Miniteoría con error", card.getDisplayName(), "its Spanish name (F-RONDA1-R004)");
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(AnalysisCost.PAID_MODEL, card.getCost());
         assertEquals(AuditTarget.QUIZ, card.getTarget());

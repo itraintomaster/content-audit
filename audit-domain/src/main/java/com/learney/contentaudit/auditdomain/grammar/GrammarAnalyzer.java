@@ -55,7 +55,7 @@ class GrammarAnalyzer implements ContentAnalyzer {
     static final String ANALYZER_NAME = "grammar";
 
     /** F-RONDA2-R001: its name in Spanish. */
-    static final String DISPLAY_NAME = "Gramática";
+    static final String DISPLAY_NAME = "Error de gramática";
 
     static final String DESCRIPTION = "Lee con LanguageTool cada oración terminada, una por respuesta aceptada, y "
             + "marca gramática y ortografía que marcan el inglés americano y el británico, más el signo final";

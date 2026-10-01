@@ -78,7 +78,9 @@ public class HintCoherenceAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.RULE, FindingResolution.PANEL),
                 AnalysisCost.INSTANT,
-                "Pista coherente", List.of());
+                "Pista que falta, confunde o regala la respuesta", List.of(),
+                "Ejercicios para escribir sin pista cuando la llevan tres cuartos o más de los de su tema, con una "
+                        + "pista que no le dice al alumno qué escribir, o con una pista que es la respuesta misma.");
     }
 
     @Override

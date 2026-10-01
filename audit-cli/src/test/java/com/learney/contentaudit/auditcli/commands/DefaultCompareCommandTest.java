@@ -3,27 +3,68 @@ package com.learney.contentaudit.auditcli.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import com.learney.contentaudit.auditcli.formatting.DefaultBatchComparisonFormatter;
 import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AuditEngine;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditdomain.AuditReportSummary;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
 import com.learney.contentaudit.auditdomain.Baseline;
+import com.learney.contentaudit.auditdomain.BaselineStore;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerErrorCounts;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerScore;
+import com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers;
+import com.learney.contentaudit.auditdomain.contextnumbers.ErrorCounts;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.revisiondomain.SealedGoalsStore;
+import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcomeSource;
 import com.learney.contentaudit.revisiondomain.blindsampleengine.DefaultSampleOutcomeSource;
 import com.learney.contentaudit.revisiondomain.blindsampleengine.DefaultSampleStatistics;
 import com.learney.contentaudit.revisiondomain.comparison.GoalDeclaration;
+import com.learney.contentaudit.revisiondomain.comparison.SealedGoals;
+import com.learney.contentaudit.revisiondomain.comparisonengine.ChangeAttributor;
 import com.learney.contentaudit.revisiondomain.comparisonengine.DefaultBatchComparator;
 import com.learney.contentaudit.revisiondomain.comparisonengine.DefaultGoalBook;
 import com.learney.contentaudit.revisiondomain.comparisonengine.LeaveOneOutChangeAttributor;
+import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjection;
 import com.learney.contentaudit.revisiondomain.projection.CourseProjector;
+import com.learney.contentaudit.revisiondomain.projection.ProjectedChange;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import org.junit.jupiter.api.io.TempDir;
 
 import javax.annotation.processing.Generated;
@@ -59,7 +100,7 @@ public class DefaultCompareCommandTest {
                 historial.audits, new DefaultGoalBook(() -> new GoalDeclaration(List.of(), List.of(), null),
                         historial.sealedGoals, catalog), catalog, engine, new LeaveOneOutChangeAttributor(engine),
                 new DefaultSampleOutcomeSource(historial.samples, new DefaultSampleStatistics()),
-                new DefaultTopicTeachingResolver());
+                new DefaultTopicTeachingResolver(), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
         DefaultCompareCommand command = new DefaultCompareCommand(comparator, new DefaultBatchComparisonFormatter());
         Map<String, byte[]> before = historial.files();
         List<String> analyses = historial.audits.list().stream().map(AuditReportSummary::getId).toList();
@@ -81,4 +122,236 @@ public class DefaultCompareCommandTest {
 
     @TempDir
     Path dir;
+
+    @Test
+    @DisplayName("should print with -f json, for a batch of two exercises, the comparison of the sample file the review app is built against")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R006")
+    public void shouldPrintWithFJsonForABatchOfTwoExercisesTheComparisonOfTheSampleFileTheReviewAppIsBuiltAgainst(
+            ) throws Exception {
+        // R006: compare -f json of a batch of «Afirmativas regulares» with two changes -- «My grandmother ___
+        // (come) every year.», which brings an A2 word, and «She ___ (wear) a hat every day.», which fixes an
+        // error of grammar -- over a catalog of two score rows and two problem rows, one of them never judged.
+        Muestra muestra = new Muestra();
+        DefaultCompareCommand command = new DefaultCompareCommand(muestra.comparator(),
+                new DefaultBatchComparisonFormatter());
+
+        FHistorial.Salida printed = FHistorial.run(() -> command.compare("db/english-course", List.of(), Map.of(),
+                "json"));
+
+        assertEquals(0, printed.exit(), printed.err());
+        String json = printed.out().replaceAll("\"computedAt\" : \"[^\"]*\"",
+                "\"computedAt\" : \"2026-10-01T12:00:00Z\"").strip() + "\n";
+        Path written = Path.of("target", "compare-sample.json");
+        Files.writeString(written, json, StandardCharsets.UTF_8);
+
+        com.fasterxml.jackson.databind.JsonNode rows = new com.fasterxml.jackson.databind.ObjectMapper().readTree(json)
+                .get("rows");
+        Map<String, Integer> verdicts = new java.util.TreeMap<>();
+        java.util.Set<String> families = new java.util.TreeSet<>();
+        int withExample = 0;
+        for (com.fasterxml.jackson.databind.JsonNode row : rows) {
+            for (String field : List.of("displayName", "betterWhen", "changeVerdict", "explanation", "example")) {
+                assertTrue(row.has(field), "R006: every row brings " + field + ": " + row);
+            }
+            verdicts.merge(row.get("changeVerdict").asText(), 1, Integer::sum);
+            families.add(row.get("family").asText() + " " + row.get("betterWhen").asText());
+            withExample += row.get("example").isNull() ? 0 : 1;
+        }
+        assertEquals(java.util.Set.of("ERRORS LOWER", "VOCABULARY HIGHER"), families,
+                "R006: rows of both families, each with its direction");
+        assertTrue(verdicts.keySet().containsAll(List.of("IMPROVED", "WORSENED", "UNCHANGED", "NOT_EVALUATED")),
+                "R006: the four verdicts: " + verdicts);
+        assertTrue(withExample > 0 && withExample < rows.size(), "R006: rows with an example and rows with null");
+        String sample = new String(DefaultCompareCommandTest.class.getResourceAsStream(SAMPLE).readAllBytes(),
+                StandardCharsets.UTF_8);
+        assertEquals(sample, json, "R006: the sample the review app is built against; this run left its output in "
+                + written.toAbsolutePath());
+    }
+
+    /** The sample of compare -f json the review app is built against (F-FILAS-R006). */
+    static final String SAMPLE = "/compare/filas-claras-sample.json";
+
+    /**
+     * The course of the sample in three photos -- the baseline, the batch start and the projection --, with the
+     * numbers the engine publishes in each node: A1, Present Simple, «Afirmativas regulares» and its two
+     * exercises. lemma-absence and sentence-length score; grammar and single-answer count errors, and
+     * single-answer ran without a budget, so it left every exercise open.
+     */
+    static final class Muestra {
+        static final String BASELINE = "2026-09-29T08-00-00";
+        static final String AUDIT = "2026-09-30T11-54-02";
+        static final String PLAN = "2026-09-30T11-54-12";
+        static final String A1 = "6814dafa7d73e7209a13d382";
+        static final String TOPIC = "6814dafa7d73e7209a13d383";
+        static final String KNOWLEDGE = "6814dafa7d73e7209a13d389";
+        static final String GRANDMOTHER = "67fab6d59930102295341ec4";
+        static final String HAT = "67fab6d59930102295341ed6";
+        static final String LEMMA_ABSENCE = "lemma-absence";
+        static final String SENTENCE_LENGTH = "sentence-length";
+        static final String GRAMMAR = "grammar";
+        static final String SINGLE_ANSWER = "single-answer";
+
+        /** The four cards, with the Spanish name and the sentence of the table of FEAT-FILAS. */
+        static final List<AnalyzerDescriptor> CARDS = List.of(
+                card(SENTENCE_LENGTH, AnalyzerFamily.VOCABULARY, "Oraciones con el largo de su nivel",
+                        "Puntaje de 0 a 100: qué tanto las oraciones tienen el largo que corresponde a su nivel."),
+                card(LEMMA_ABSENCE, AnalyzerFamily.VOCABULARY, "Vocabulario del nivel presente",
+                        "Puntaje de 0 a 100: cuántas de las palabras que el nivel tiene que enseñar aparecen, sin "
+                                + "palabras de un nivel más alto."),
+                card(SINGLE_ANSWER, AnalyzerFamily.ERRORS, "Más de una respuesta válida",
+                        "Ejercicios para escribir donde, con lo que ve el alumno, hay otra respuesta igual de buena "
+                                + "que el corrector no acepta."),
+                card(GRAMMAR, AnalyzerFamily.ERRORS, "Error de gramática",
+                        "Ejercicios cuya oración terminada, con la respuesta puesta, tiene un error de gramática, de "
+                                + "ortografía o de puntuación final."));
+
+        final AnalyzerCatalog catalog = mock(AnalyzerCatalog.class);
+        final BaselineStore baselines = mock(BaselineStore.class);
+        final AuditReportStore reports = mock(AuditReportStore.class);
+        final CourseProjector projector = mock(CourseProjector.class);
+        final AuditEngine engine = mock(AuditEngine.class);
+        final SampleOutcomeSource samples = mock(SampleOutcomeSource.class);
+        private SealedGoals sealed;
+
+        Muestra() {
+            when(catalog.list()).thenReturn(CARDS);
+            when(catalog.find(anyString())).thenAnswer(call -> CARDS.stream()
+                    .filter(card -> card.getName().equals(call.getArgument(0))).findFirst());
+            when(catalog.measure(anyString())).thenReturn(Optional.empty());
+            when(samples.outcomeFor(any())).thenReturn(Optional.empty());
+            when(baselines.read()).thenReturn(Optional.of(new Baseline(BASELINE, Instant.parse("2026-09-30T09:00:00Z"))));
+            when(reports.load(BASELINE)).thenReturn(Optional.of(photo(false)));
+            AuditReport start = photo(false);
+            when(projector.project(any(), any())).thenReturn(new CourseProjection(AUDIT, PLAN, PLAN,
+                    ConsolidatedViewAvailability.AVAILABLE, null, start, start, photo(true), new ArrayList<>(List.of(
+                            new ProjectedChange("077-afirmativas-regulares-grandmother", AuditTarget.QUIZ, GRANDMOTHER,
+                                    true),
+                            new ProjectedChange("077-afirmativas-regulares-hat", AuditTarget.QUIZ, HAT, true))),
+                    new ArrayList<>()));
+        }
+
+        DefaultBatchComparator comparator() {
+            SealedGoalsStore store = new SealedGoalsStore() {
+                @Override
+                public Optional<SealedGoals> read() {
+                    return Optional.ofNullable(sealed);
+                }
+
+                @Override
+                public void write(SealedGoals goals) {
+                    sealed = goals;
+                }
+            };
+            DefaultGoalBook book = new DefaultGoalBook(() -> new GoalDeclaration(List.of(), List.of(), null), store,
+                    catalog);
+            sealed = new SealedGoals(Instant.parse("2026-09-30T20:00:00Z"), book.effective());
+            return new DefaultBatchComparator(projector, baselines, reports, book, catalog, engine,
+                    mock(ChangeAttributor.class), samples, new DefaultTopicTeachingResolver(),
+                    new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
+        }
+
+        static AnalyzerDescriptor card(String name, AnalyzerFamily family, String spanish, String explanation) {
+            return new AnalyzerDescriptor(name, name, AuditTarget.QUIZ, "¿?", "la oración", List.of(), "-", family,
+                    List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, spanish,
+                    List.of(), explanation);
+        }
+
+        /**
+         * A photo of the course: the baseline and the batch start as they were, or the projection with the two
+         * changes. Every node publishes its own numbers -- the level and the course hardly move with two
+         * exercises.
+         */
+        static AuditReport photo(boolean projected) {
+            AuditNode root = node(null, AuditTarget.COURSE, null);
+            AuditNode level = node(new AuditableMilestone(new ArrayList<>(), A1, "A1", "A1"), AuditTarget.MILESTONE,
+                    root);
+            AuditNode topic = node(new AuditableTopic(new ArrayList<>(), TOPIC, "Present Simple", "a1.01"),
+                    AuditTarget.TOPIC, level);
+            AuditNode knowledge = node(new AuditableKnowledge(new ArrayList<>(), "Afirmativas regulares",
+                    "Escribe la forma correcta.", true, KNOWLEDGE, "Afirmativas regulares", KNOWLEDGE,
+                    SentenceMode.FILL, "Present Simple"), AuditTarget.KNOWLEDGE, topic);
+            AuditNode grandmother = node(quiz(GRANDMOTHER, projected ? "My grandmother" : "It", "comes",
+                    "(come) every year."), AuditTarget.QUIZ, knowledge);
+            AuditNode hat = node(quiz(HAT, "She", "wears", projected ? "(wear) a hat every day." : "(wear) hat every day."),
+                    AuditTarget.QUIZ, knowledge);
+            for (AuditNode exercise : List.of(grandmother, hat)) {
+                exercise.getUnevaluatedBy().add(SINGLE_ANSWER);
+            }
+            if (projected) {
+                grandmother.getFindings().add(new Finding(LEMMA_ABSENCE, "misplaced-word",
+                        new FindingNodeRef(AuditTarget.QUIZ, GRANDMOTHER, "My grandmother comes every year."),
+                        FindingSeverity.MEDIUM, new FindingEvidence(List.of(
+                                new EvidencePart("Oración", "My grandmother comes every year."),
+                                new EvidencePart("Palabra", "grandmother"), new EvidencePart("Nivel de la palabra", "A2"),
+                                new EvidencePart("Nivel del ejercicio", "A1")),
+                                "grandmother es una palabra de A2 en un ejercicio de A1", List.of()),
+                        FindingResolution.PANEL, AnalysisCost.INSTANT, new FindingIdentity(
+                                LEMMA_ABSENCE + "|misplaced-word|" + GRANDMOTHER + "|grandmother", "grandmother")));
+            } else {
+                hat.getFindings().add(new Finding(GRAMMAR, "english-error",
+                        new FindingNodeRef(AuditTarget.QUIZ, HAT, "She wears hat every day."), FindingSeverity.HIGH,
+                        new FindingEvidence(List.of(new EvidencePart("Oración terminada", "She wears hat every day.")),
+                                "Falta el artículo antes de «hat»: «a hat».", List.of()),
+                        FindingResolution.PANEL, AnalysisCost.INSTANT,
+                        new FindingIdentity(GRAMMAR + "|english-error|" + HAT + "|hat", "hat")));
+            }
+            // node: lemma-absence, sentence-length, vocabulary (their average), exercises, with a grammar error
+            numbers(root, 0.8650, 0.9136, 0.7392, 11287, 61, projected);
+            numbers(level, 0.9871, 0.9480, 0.9654, 1450, 9, projected);
+            numbers(topic, 0.9960, 0.9500, 0.9712, 120, 3, projected);
+            numbers(knowledge, 1.0, 0.9000, 0.9500, 2, 1, projected);
+            if (projected) {
+                score(knowledge, LEMMA_ABSENCE, 0.95, 0.925);
+                score(topic, LEMMA_ABSENCE, 0.9955, 0.97095);
+                score(level, LEMMA_ABSENCE, 0.9870, 0.9653);
+            }
+            for (String analyzer : List.of(SENTENCE_LENGTH, LEMMA_ABSENCE, SINGLE_ANSWER, GRAMMAR)) {
+                root.getMeasures().add(new AnalyzerMeasure(analyzer, analyzer + " · 2026-09", Map.of()));
+            }
+            return new AuditReport(root);
+        }
+
+        /** What a node publishes: the two scores and their average, and the errors -- one fewer once projected. */
+        private static void numbers(AuditNode node, double absence, double length, double vocabulary, int quizzes,
+                int grammarErrors, boolean projected) {
+            int errors = projected ? grammarErrors - 1 : grammarErrors;
+            List<AnalyzerScore> scores = new ArrayList<>(List.of(
+                    new AnalyzerScore(SENTENCE_LENGTH, AnalyzerFamily.VOCABULARY, length, List.of()),
+                    new AnalyzerScore(LEMMA_ABSENCE, AnalyzerFamily.VOCABULARY, absence, List.of())));
+            List<AnalyzerErrorCounts> counts = new ArrayList<>(List.of(
+                    new AnalyzerErrorCounts(SINGLE_ANSWER, quizzes, 0, quizzes, 0, 0.0, 0, 0),
+                    new AnalyzerErrorCounts(GRAMMAR, quizzes, quizzes, 0, errors, (double) errors / quizzes, 0, 0)));
+            node.setNumbers(new ContextNumbers(vocabulary, scores, new ErrorCounts(quizzes, errors,
+                    (double) errors / quizzes, null, quizzes, counts), List.of()));
+        }
+
+        private static void score(AuditNode node, String analyzer, double value, double vocabulary) {
+            List<AnalyzerScore> scores = new ArrayList<>();
+            for (AnalyzerScore score : node.getNumbers().getAnalyzerScores()) {
+                scores.add(analyzer.equals(score.getAnalyzer())
+                        ? new AnalyzerScore(analyzer, AnalyzerFamily.VOCABULARY, value, List.of()) : score);
+            }
+            node.getNumbers().setAnalyzerScores(scores);
+            node.getNumbers().setVocabularyScore(vocabulary);
+        }
+
+        /** «<before> ___ <after>», with the answer of its gap. */
+        private static AuditableQuiz quiz(String id, String before, String answer, String after) {
+            String sentence = before + " " + answer + " " + after.replaceFirst("^\\([^)]*\\) ", "");
+            return new AuditableQuiz(List.of(), id, sentence, id, null, List.of(sentence), sentence,
+                    "Escribe la forma correcta.", List.of(new SentencePartEntity(SentencePartKind.TEXT, before, null),
+                            new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(answer)),
+                            new SentencePartEntity(SentencePartKind.TEXT, after, null)), null, null, null);
+        }
+
+        private static AuditNode node(AuditableEntity entity, AuditTarget target, AuditNode parent) {
+            AuditNode node = new AuditNode(entity, target, parent, new ArrayList<>(), new LinkedHashMap<>(),
+                    new LinkedHashMap<>(), null);
+            if (parent != null) {
+                parent.getChildren().add(node);
+            }
+            return node;
+        }
+    }
 }

@@ -622,7 +622,7 @@ public class FProyuJ001JourneyTest {
                         new DefaultGoalBook(new FileSystemGoalDeclarationSource(goalsFile), sealedGoals, catalog),
                         catalog, engine, new LeaveOneOutChangeAttributor(engine),
                         new DefaultSampleOutcomeSource(samples, new DefaultSampleStatistics()),
-                        new DefaultTopicTeachingResolver());
+                        new DefaultTopicTeachingResolver(), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
             }
 
             /** The blind sample as Main wires it, over the same comparison. */

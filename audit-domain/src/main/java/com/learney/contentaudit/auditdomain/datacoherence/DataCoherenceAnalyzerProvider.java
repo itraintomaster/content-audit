@@ -75,7 +75,10 @@ public class DataCoherenceAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.RULE, FindingResolution.PANEL),
                 AnalysisCost.INSTANT,
-                "Datos coherentes", List.of());
+                "Audio o respuesta que no coincide", List.of(),
+                "Ejercicios cuyas copias no dicen lo mismo: la oración guardada o el audio no coinciden con el "
+                        + "enunciado y su respuesta, una respuesta o el audio llevan «/», o el audio falta o no se "
+                        + "sabe qué dice.");
     }
 
     @Override

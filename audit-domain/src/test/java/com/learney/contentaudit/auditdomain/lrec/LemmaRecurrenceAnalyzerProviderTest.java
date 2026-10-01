@@ -108,7 +108,7 @@ public class LemmaRecurrenceAnalyzerProviderTest {
         Assertions.assertEquals(AnalysisCost.INSTANT, card.getCost(), "R006: instant");
         Assertions.assertEquals(List.of("F-RECUR-R005"), card.getRules().stream().map(r -> r.getId()).toList(),
                 "the rule of its findings");
-        Assertions.assertEquals("Recurrencia", card.getDisplayName(), "the name on screen");
+        Assertions.assertEquals("Palabras que vuelven a tiempo", card.getDisplayName(), "the name on screen");
     }
 
     @Test

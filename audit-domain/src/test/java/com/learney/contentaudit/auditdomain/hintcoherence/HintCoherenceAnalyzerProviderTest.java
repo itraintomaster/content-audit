@@ -38,7 +38,7 @@ public class HintCoherenceAnalyzerProviderTest {
 
         assertEquals("hint-coherence", provider.analyzerName());
         assertEquals("hint-coherence", card.getName());
-        assertEquals("Pista coherente", card.getDisplayName());
+        assertEquals("Pista que falta, confunde o regala la respuesta", card.getDisplayName());
         assertEquals("¿La pista le anuncia al alumno lo que tiene que escribir?", card.getQuestion());
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());

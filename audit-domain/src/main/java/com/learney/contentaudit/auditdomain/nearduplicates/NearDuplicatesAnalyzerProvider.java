@@ -96,7 +96,9 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
                 AnalysisCost.PAID_MODEL,
                 NearDuplicatesAnalyzer.DISPLAY_NAME,
                 List.of(localToolGate.card(NearDuplicatesAnalyzer.ANALYZER_NAME, embeddingModel, config.methodId()),
-                        localToolGate.alternativeCard(NearDuplicatesAnalyzer.ANALYZER_NAME, alternativeJudge)));
+                        localToolGate.alternativeCard(NearDuplicatesAnalyzer.ANALYZER_NAME, alternativeJudge)),
+                "Ejercicios que piden la misma respuesta y casi lo mismo que otro anterior del mismo tema: otro "
+                        + "pronombre, otro tiempo o la misma idea con otras palabras.");
     }
 
     @Override

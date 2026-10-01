@@ -146,7 +146,7 @@ public class LeaveOneOutChangeAttributorTest {
         ComparisonRow row = new ComparisonRow(subject, family, AuditTarget.MILESTONE, A1, "A1", null, null, null, null,
                 null, unit, new RowGoalStatus(goal, family == AnalyzerFamily.VOCABULARY ? 0.5 : 0.0, unit,
                         family == AnalyzerFamily.VOCABULARY ? GoalReference.BASELINE : GoalReference.BATCH_START,
-                        GoalStatus.NOT_MET), null);
+                        GoalStatus.NOT_MET), null, null, null, null, null, null);
         return new FloorBreach(goal, row, new ArrayList<>());
     }
 

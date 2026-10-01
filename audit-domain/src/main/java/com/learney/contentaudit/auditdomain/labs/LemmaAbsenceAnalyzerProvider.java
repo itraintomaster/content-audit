@@ -72,7 +72,9 @@ public class LemmaAbsenceAnalyzerProvider implements AnalyzerProvider {
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.QUIZ, AuditTarget.MILESTONE, AuditTarget.COURSE),
                 List.of(FindingResolution.PANEL, FindingResolution.RANK_ONLY),
-                AnalysisCost.INSTANT, "Palabras que faltan", List.of());
+                AnalysisCost.INSTANT, "Vocabulario del nivel presente", List.of(),
+                "Puntaje de 0 a 100: cuántas de las palabras que el nivel tiene que enseñar aparecen, sin palabras "
+                        + "de un nivel más alto.");
     }
 
     @Override

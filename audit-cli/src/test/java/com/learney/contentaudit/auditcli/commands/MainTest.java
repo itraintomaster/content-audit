@@ -42,10 +42,10 @@ public class MainTest {
     }
 
     @Test
-    @DisplayName("should register the seventeen analyzers of round 1 in catalog order, from sentence-length to mini-theory, each with the Spanish name of its card, «Largo de oración» to «Miniteoría»")
+    @DisplayName("should register the seventeen analyzers of round 1 in catalog order, from sentence-length to mini-theory, each with the Spanish name of its card, «Oraciones con el largo de su nivel» to «Miniteoría con error»")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R004")
-    public void shouldRegisterTheSeventeenAnalyzersOfRound1InCatalogOrderFromSentencelengthToMinitheoryEachWithTheSpanishNameOfItsCardLargoDeOracinToMiniteora(
+    public void shouldRegisterTheSeventeenAnalyzersOfRound1InCatalogOrderFromSentencelengthToMinitheoryEachWithTheSpanishNameOfItsCardOracionesConElLargoDeSuNivelToMiniteoraConError(
             @org.junit.jupiter.api.io.TempDir java.nio.file.Path workdir) throws Exception {
         // R004: the catalog Main builds, read as the command line reads it -- get analyzers -f json --
         // has the seventeen of round 1 in the order of the table, each with its Spanish name.
@@ -63,11 +63,14 @@ public class MainTest {
                 "multiple-choice-validity", "data-coherence", "exact-duplicates", "translation-sense", "single-answer",
                 "mini-theory"), names.subList(0, 17),
                 "R004: the seventeen, in catalog order (F-RONDA2-R001 inv. 2: the three of package B go after them)");
-        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("Largo de oración", "Largo del título",
-                "Largo de la consigna", "Bandas de frecuencia", "Recurrencia", "Palabras que faltan",
-                "Palabras de otro nivel", "Palabras poco vistas", "Consigna", "Pista coherente", "Respuestas completas",
-                "Opción múltiple válida", "Datos coherentes", "Duplicados exactos", "Traducción y sentido",
-                "Una sola respuesta", "Miniteoría"), spanish.subList(0, 17), "R004 inv. 2: the Spanish names of the table");
+        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("Oraciones con el largo de su nivel",
+                "Títulos de largo adecuado", "Consignas de largo adecuado", "Palabras de la frecuencia del nivel",
+                "Palabras que vuelven a tiempo", "Vocabulario del nivel presente", "Palabra de otro nivel",
+                "Palabras vistas suficientes veces", "Consigna que no se cumple",
+                "Pista que falta, confunde o regala la respuesta", "Exige una forma o rechaza una respuesta válida",
+                "Opción múltiple mal armada", "Audio o respuesta que no coincide", "Ejercicio repetido igual",
+                "Traducción que no corresponde", "Más de una respuesta válida", "Miniteoría con error"),
+                spanish.subList(0, 17), "R004 inv. 2: the Spanish names of the table of F-FILAS-R001");
     }
 
     /**
@@ -107,7 +110,7 @@ public class MainTest {
         org.junit.jupiter.api.Assertions.assertEquals("lemma-absence", names.get(offLevel - 1),
                 "R007: right after lemma-absence");
         com.fasterxml.jackson.databind.JsonNode card = cards.get(offLevel);
-        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("Palabras de otro nivel",
+        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("Palabra de otro nivel",
                 "¿Hay palabras que el alumno de este nivel no puede conocer?", "ERRORS", "[\"QUIZ\"]", "[\"PANEL\"]",
                 "INSTANT", "F-NIVFR-R002"), java.util.List.of(card.get("displayName").asText(),
                 card.get("question").asText(), card.get("family").asText(), card.get("evaluatedTargets").toString(),
@@ -116,13 +119,13 @@ public class MainTest {
     }
 
     @Test
-    @DisplayName("should register grammar «Gramática», naturalness «Naturalidad» and near-duplicates «Duplicados parecidos» after the seventeen analyzers of round 1, in that order")
+    @DisplayName("should register grammar «Error de gramática», naturalness «Oración poco natural» and near-duplicates «Ejercicio casi repetido» after the seventeen analyzers of round 1, in that order")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R001")
-    public void shouldRegisterGrammarGramticaNaturalnessNaturalidadAndNearduplicatesDuplicadosParecidosAfterTheSeventeenAnalyzersOfRound1InThatOrder(@org.junit.jupiter.api.io.TempDir java.nio.file.Path workdir) throws Exception {
+    public void shouldRegisterGrammarErrorDeGramticaNaturalnessOracinPocoNaturalAndNearduplicatesEjercicioCasiRepetidoAfterTheSeventeenAnalyzersOfRound1InThatOrder(@org.junit.jupiter.api.io.TempDir java.nio.file.Path workdir) throws Exception {
         // F-RONDA2-R001: the catalog Main builds, read as the command line reads it, lists after the
-        // seventeen of round 1 and in this order grammar «Gramática», naturalness «Naturalidad» and
-        // near-duplicates «Duplicados parecidos».
+        // seventeen of round 1 and in this order grammar «Error de gramática», naturalness «Oración poco
+        // natural» and near-duplicates «Ejercicio casi repetido», the names of F-FILAS-R001.
         com.fasterxml.jackson.databind.JsonNode cards = analyzersOfMain(workdir);
 
         java.util.List<String> lastThree = new java.util.ArrayList<>();
@@ -130,8 +133,9 @@ public class MainTest {
             lastThree.add(cards.get(i).get("name").asText() + " " + cards.get(i).get("displayName").asText());
         }
         org.junit.jupiter.api.Assertions.assertEquals(20, cards.size(), "R001: the twenty");
-        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("grammar Gramática", "naturalness Naturalidad",
-                "near-duplicates Duplicados parecidos"), lastThree, "R001: the three of package B, after the seventeen");
+        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("grammar Error de gramática",
+                "naturalness Oración poco natural", "near-duplicates Ejercicio casi repetido"), lastThree,
+                "R001: the three of package B, after the seventeen");
     }
 
     @Test
@@ -148,14 +152,130 @@ public class MainTest {
             firstSeventeen.add(cards.get(i).get("name").asText() + " " + cards.get(i).get("displayName").asText());
         }
         org.junit.jupiter.api.Assertions.assertEquals(20, cards.size(), "the twenty");
-        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("sentence-length Largo de oración",
-                "knowledge-title-length Largo del título", "knowledge-instructions-length Largo de la consigna",
-                "coca-buckets-distribution Bandas de frecuencia", "lemma-recurrence Recurrencia",
-                "lemma-absence Palabras que faltan", "off-level-words Palabras de otro nivel",
-                "lemma-count Palabras poco vistas", "quiz-instruction Consigna", "hint-coherence Pista coherente",
-                "answer-completeness Respuestas completas", "multiple-choice-validity Opción múltiple válida",
-                "data-coherence Datos coherentes", "exact-duplicates Duplicados exactos",
-                "translation-sense Traducción y sentido", "single-answer Una sola respuesta", "mini-theory Miniteoría"),
+        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of(
+                "sentence-length Oraciones con el largo de su nivel", "knowledge-title-length Títulos de largo adecuado",
+                "knowledge-instructions-length Consignas de largo adecuado",
+                "coca-buckets-distribution Palabras de la frecuencia del nivel",
+                "lemma-recurrence Palabras que vuelven a tiempo", "lemma-absence Vocabulario del nivel presente",
+                "off-level-words Palabra de otro nivel", "lemma-count Palabras vistas suficientes veces",
+                "quiz-instruction Consigna que no se cumple",
+                "hint-coherence Pista que falta, confunde o regala la respuesta",
+                "answer-completeness Exige una forma o rechaza una respuesta válida",
+                "multiple-choice-validity Opción múltiple mal armada",
+                "data-coherence Audio o respuesta que no coincide", "exact-duplicates Ejercicio repetido igual",
+                "translation-sense Traducción que no corresponde", "single-answer Más de una respuesta válida",
+                "mini-theory Miniteoría con error"),
                 firstSeventeen, "R001 inv. 2: the seventeen of round 1, each in its place");
+    }
+
+    @Test
+    @DisplayName("should give each of the twenty analyzers of the catalog the Spanish name of the FEAT-FILAS table, the problem it counts or the good it scores")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R001")
+    public void shouldGiveEachOfTheTwentyAnalyzersOfTheCatalogTheSpanishNameOfTheFEATFILASTableTheProblemItCountsOrTheGoodItScores(
+            @org.junit.jupiter.api.io.TempDir java.nio.file.Path workdir) throws Exception {
+        // F-FILAS-R001: the catalog Main builds, read as the command line reads it, names every analyzer as the
+        // table says -- an errors analyzer by the problem it counts, a vocabulary one by the good it scores --,
+        // twenty names, none empty and no two alike, and the unique name of each one as before.
+        com.fasterxml.jackson.databind.JsonNode cards = analyzersOfMain(workdir);
+
+        java.util.Map<String, String> names = new java.util.LinkedHashMap<>();
+        java.util.Map<String, String> families = new java.util.LinkedHashMap<>();
+        cards.forEach(card -> {
+            names.put(card.get("name").asText(), card.get("displayName").asText());
+            families.put(card.get("name").asText(), card.get("family").asText());
+        });
+        java.util.Map<String, String> table = new java.util.LinkedHashMap<>();
+        table.put("sentence-length", "Oraciones con el largo de su nivel");
+        table.put("knowledge-title-length", "Títulos de largo adecuado");
+        table.put("knowledge-instructions-length", "Consignas de largo adecuado");
+        table.put("coca-buckets-distribution", "Palabras de la frecuencia del nivel");
+        table.put("lemma-recurrence", "Palabras que vuelven a tiempo");
+        table.put("lemma-absence", "Vocabulario del nivel presente");
+        table.put("off-level-words", "Palabra de otro nivel");
+        table.put("lemma-count", "Palabras vistas suficientes veces");
+        table.put("quiz-instruction", "Consigna que no se cumple");
+        table.put("hint-coherence", "Pista que falta, confunde o regala la respuesta");
+        table.put("answer-completeness", "Exige una forma o rechaza una respuesta válida");
+        table.put("multiple-choice-validity", "Opción múltiple mal armada");
+        table.put("data-coherence", "Audio o respuesta que no coincide");
+        table.put("exact-duplicates", "Ejercicio repetido igual");
+        table.put("translation-sense", "Traducción que no corresponde");
+        table.put("single-answer", "Más de una respuesta válida");
+        table.put("mini-theory", "Miniteoría con error");
+        table.put("grammar", "Error de gramática");
+        table.put("naturalness", "Oración poco natural");
+        table.put("near-duplicates", "Ejercicio casi repetido");
+        org.junit.jupiter.api.Assertions.assertEquals(table, names, "R001: the names of the table, by unique name");
+        org.junit.jupiter.api.Assertions.assertEquals(20, new java.util.HashSet<>(names.values()).size(),
+                "R001 inv. 3: twenty different names");
+        java.util.List<String> vocabulary = new java.util.ArrayList<>();
+        families.forEach((name, family) -> {
+            if ("VOCABULARY".equals(family)) {
+                vocabulary.add(name);
+            }
+        });
+        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("sentence-length", "knowledge-title-length",
+                "knowledge-instructions-length", "coca-buckets-distribution", "lemma-recurrence", "lemma-absence",
+                "lemma-count"), vocabulary, "R001: the seven score rows, named by the good; the rest by the problem");
+    }
+
+    @Test
+    @DisplayName("should give each of the twenty analyzers of the catalog the explanation of the FEAT-FILAS table")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R004")
+    public void shouldGiveEachOfTheTwentyAnalyzersOfTheCatalogTheExplanationOfTheFEATFILASTable(
+            @org.junit.jupiter.api.io.TempDir java.nio.file.Path workdir) throws Exception {
+        // F-FILAS-R004: every card of the catalog Main builds brings the sentence of the table -- what exercises
+        // it counts, for an errors analyzer, or what it scores from 0 to 100, for a vocabulary one --, and
+        // get analyzers -f json shows it.
+        com.fasterxml.jackson.databind.JsonNode cards = analyzersOfMain(workdir);
+
+        java.util.Map<String, String> explanations = new java.util.LinkedHashMap<>();
+        cards.forEach(card -> explanations.put(card.get("name").asText(),
+                card.hasNonNull("explanation") ? card.get("explanation").asText() : null));
+        java.util.Map<String, String> table = new java.util.LinkedHashMap<>();
+        table.put("sentence-length",
+                "Puntaje de 0 a 100: qué tanto las oraciones tienen el largo que corresponde a su nivel.");
+        table.put("knowledge-title-length",
+                "Puntaje de 0 a 100: qué tanto los títulos de tema entran en la pantalla del teléfono.");
+        table.put("knowledge-instructions-length",
+                "Puntaje de 0 a 100: qué tanto las consignas de los temas entran en la pantalla del teléfono.");
+        table.put("coca-buckets-distribution",
+                "Puntaje de 0 a 100: qué tanto las palabras de cada nivel son tan comunes como corresponde.");
+        table.put("lemma-recurrence",
+                "Puntaje de 0 a 100: qué tanto las palabras vuelven a aparecer a intervalos sanos.");
+        table.put("lemma-absence", "Puntaje de 0 a 100: cuántas de las palabras que el nivel tiene que enseñar "
+                + "aparecen, sin palabras de un nivel más alto.");
+        table.put("off-level-words", "Ejercicios con una palabra que el alumno de ese nivel todavía no puede "
+                + "conocer: de dos niveles más arriba, o rara y fuera del catálogo.");
+        table.put("lemma-count",
+                "Puntaje de 0 a 100: qué tanto cada palabra del nivel aparece en suficientes oraciones.");
+        table.put("quiz-instruction", "Ejercicios que no cumplen lo que pide su consigna.");
+        table.put("hint-coherence", "Ejercicios para escribir sin pista cuando la llevan tres cuartos o más de los "
+                + "de su tema, con una pista que no le dice al alumno qué escribir, o con una pista que es la "
+                + "respuesta misma.");
+        table.put("answer-completeness", "Ejercicios cuya consigna o miniteoría pide una forma (la corta o la "
+                + "larga), o cuyo corrector rechaza otra forma igual de correcta de la respuesta.");
+        table.put("multiple-choice-validity", "Opción múltiple con más de una opción correcta (o ninguna), con "
+                + "opciones repetidas o con una que se delata por la forma.");
+        table.put("data-coherence", "Ejercicios cuyas copias no dicen lo mismo: la oración guardada o el audio no "
+                + "coinciden con el enunciado y su respuesta, una respuesta o el audio llevan «/», o el audio falta "
+                + "o no se sabe qué dice.");
+        table.put("exact-duplicates",
+                "Ejercicios que, terminados, dicen exactamente lo mismo que otro anterior del mismo tema.");
+        table.put("translation-sense", "Ejercicios cuyo inglés y traducción no dicen lo mismo, que un nativo no "
+                + "diría así, con palabras que no van juntas o con un registro que no es del nivel.");
+        table.put("single-answer", "Ejercicios para escribir donde, con lo que ve el alumno, hay otra respuesta "
+                + "igual de buena que el corrector no acepta.");
+        table.put("mini-theory", "Ejercicios cuya tarjeta de teoría dice una regla falsa o exagerada, o que "
+                + "contradicen esa regla o quedan fuera de lo que explica.");
+        table.put("grammar", "Ejercicios cuya oración terminada, con la respuesta puesta, tiene un error de "
+                + "gramática, de ortografía o de puntuación final.");
+        table.put("naturalness", "Ejercicios cuya oración terminada un modelo duda que un nativo diría así. Sólo "
+                + "ordena qué revisar primero: no cuenta como error.");
+        table.put("near-duplicates", "Ejercicios que piden la misma respuesta y casi lo mismo que otro anterior del "
+                + "mismo tema: otro pronombre, otro tiempo o la misma idea con otras palabras.");
+        org.junit.jupiter.api.Assertions.assertEquals(table, explanations, "R004 inv. 1: the sentences of the table");
     }
 }

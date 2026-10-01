@@ -191,7 +191,7 @@ public class DefaultSingleAnswerClassifierTest {
             String evidence = evidenceText(finding);
             assertTrue(evidence.contains(finding.getMarker()), "the evidence names the answer: " + evidence);
             assertTrue(evidence.contains("answer-completeness"), "and who fixes it: " + evidence);
-            assertTrue(evidence.contains("Respuestas completas"), evidence);
+            assertTrue(evidence.contains("«Exige una forma o rechaza una respuesta válida»"), evidence);
             assertTrue(evidence.contains("«|»"), "with a rule that adds it with «|»: " + evidence);
             assertTrue(parts(finding).contains(new EvidencePart("Ejercicio",
                     "He went to Italy on Friday and came back on Sunday.He was in Italy ___ .")),

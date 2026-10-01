@@ -771,10 +771,11 @@ class Main {
         GoalBook goalBook = new DefaultGoalBook(goalDeclarationSource, sealedGoalsStore, analyzerCatalog);
         SampleStatistics sampleStatistics = new DefaultSampleStatistics();
         SampleOutcomeSource sampleOutcomeSource = new DefaultSampleOutcomeSource(blindSampleStore, sampleStatistics);
-        // Hook F-14: the comparison never returns a change for a word its topic teaches, as the panel.
+        // Hook F-14: the comparison never returns a change for a word its topic teaches, as the panel. F-FILAS-R005:
+        // the example of each row shows its exercise as the student sees it.
         BatchComparator batchComparator = new DefaultBatchComparator(courseProjector, baselineStore,
                 auditReportStore, goalBook, analyzerCatalog, auditEngine, new LeaveOneOutChangeAttributor(auditEngine),
-                sampleOutcomeSource, topicTeachingResolver);
+                sampleOutcomeSource, topicTeachingResolver, studentViewRenderer);
         BlindSampleService blindSampleService = new DefaultBlindSampleService(courseProjector, batchComparator,
                 goalBook, baselineStore, studentViewRenderer, blindSampleStore, sampleStatistics);
         BlindErrorRateService blindErrorRateService = new DefaultBlindErrorRateService(courseProjector,

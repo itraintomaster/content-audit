@@ -1558,7 +1558,7 @@ public class AnalyzeCmdTest {
                                 new AnalyzerRuleCard(RANKS, "El ejercicio baja en la lista, sin error",
                                         AnalysisCost.INSTANT)),
                         "Ningún ejercicio rompe la regla", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
-                        List.of(FindingResolution.RULE, FindingResolution.RANK_ONLY), AnalysisCost.INSTANT, NAME, java.util.List.of());
+                        List.of(FindingResolution.RULE, FindingResolution.RANK_ONLY), AnalysisCost.INSTANT, NAME, java.util.List.of(), null);
             }
 
             @Override
@@ -1640,24 +1640,24 @@ public class AnalyzeCmdTest {
     }
 
     @Test
-    @DisplayName("should reject «Largo de oración» as an analyzer name, since only the unique name sentence-length names the analyzer")
+    @DisplayName("should reject «Oraciones con el largo de su nivel» as an analyzer name, since only the unique name sentence-length names the analyzer")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R004")
-    public void shouldRejectLargoDeOracinAsAnAnalyzerNameSinceOnlyTheUniqueNameSentencelengthNamesTheAnalyzer() {
+    public void shouldRejectOracionesConElLargoDeSuNivelAsAnAnalyzerNameSinceOnlyTheUniqueNameSentencelengthNamesTheAnalyzer() {
         // R004 inv. 3: the Spanish name of the card never names the analyzer (F-HALL-R005) -- to run
         // it, exclude it or budget it --, and the run is rejected before the course is loaded.
         AnalyzerCatalog catalog = Base299.mainCatalog(new Base299.FakeJudge(), new Base299.MapLedger());
-        assertEquals("Largo de oración", catalog.find("sentence-length").orElseThrow().getDisplayName());
+        assertEquals("Oraciones con el largo de su nivel", catalog.find("sentence-length").orElseThrow().getDisplayName());
         CourseRepository repository = mock(CourseRepository.class);
         AuditReportStore store = mock(AuditReportStore.class);
 
-        for (String[] args : List.of(new String[] {"english-course", "--analyzers", "Largo de oración"},
-                new String[] {"english-course", "--exclude-analyzers", "Largo de oración"},
-                new String[] {"english-course", "--budget", "Largo de oración=1"})) {
+        for (String[] args : List.of(new String[] {"english-course", "--analyzers", "Oraciones con el largo de su nivel"},
+                new String[] {"english-course", "--exclude-analyzers", "Oraciones con el largo de su nivel"},
+                new String[] {"english-course", "--budget", "Oraciones con el largo de su nivel=1"})) {
             Base299.Captured rejected = Base299.run(Base299.analyzeCmd(
                     Base299.runner(catalog, repository, mock(CourseToAuditableMapper.class)), store), args);
             assertEquals(1, rejected.exit(), String.join(" ", args));
-            assertTrue(rejected.err().contains("Analyzer 'Largo de oración' not found"),
+            assertTrue(rejected.err().contains("Analyzer 'Oraciones con el largo de su nivel' not found"),
                     "R004: only the unique name names it: " + rejected.err());
         }
         verifyNoInteractions(repository);

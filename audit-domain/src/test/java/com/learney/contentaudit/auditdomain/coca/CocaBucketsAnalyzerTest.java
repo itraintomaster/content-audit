@@ -759,7 +759,7 @@ public class CocaBucketsAnalyzerTest {
                 "-", judge ? com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS
                         : com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.VOCABULARY,
                 java.util.List.of(target), java.util.List.of(com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL),
-                cost, analyzer.getName(), java.util.List.of());
+                cost, analyzer.getName(), java.util.List.of(), null);
         return new com.learney.contentaudit.auditdomain.AnalyzerProvider() {
             @Override
             public String analyzerName() {

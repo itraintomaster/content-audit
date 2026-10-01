@@ -532,7 +532,7 @@ public class DefaultRefinerEngineTest {
     private static AnalyzerDescriptor errorsCard(String name) {
         return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿" + name + "?", "El ejercicio",
                 List.of(new AnalyzerRuleCard("rule-" + name, "La regla", AnalysisCost.INSTANT)), "Ningun error",
-                AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, name, java.util.List.of());
+                AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, name, java.util.List.of(), null);
     }
 
     private static AnalyzerProvider provider(AnalyzerDescriptor card, Optional<AnalyzerPlanBinding> binding) {
@@ -896,7 +896,7 @@ public class DefaultRefinerEngineTest {
                 List.of(new AnalyzerRuleCard("unlikely-sentence", "llama3 no la diría", AnalysisCost.LOCAL_MODEL),
                         new AnalyzerRuleCard("native-says-no", "claude -p no la diría", AnalysisCost.PAID_MODEL)),
                 "Las más dudosas de cada nivel van primero a los jueces", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
-                List.of(FindingResolution.RANK_ONLY), AnalysisCost.PAID_MODEL, "Naturalidad", List.of());
+                List.of(FindingResolution.RANK_ONLY), AnalysisCost.PAID_MODEL, "Naturalidad", List.of(), null);
         DefaultRefinerEngine engine = new DefaultRefinerEngine(new DefaultAnalyzerCatalog(List.of(
                 provider(naturalness, Optional.empty()),
                 provider(errorsCard("hint-coherence"), Optional.of(new AnalyzerPlanBinding("HINT_COHERENCE",

@@ -593,7 +593,7 @@ public class DefaultCourseProjectorTest {
                     AuditTarget.QUIZ, "¿Usa palabras de su nivel?", "Las palabras de la oración",
                     List.of(new AnalyzerRuleCard("misplaced-word", "Una palabra de otro nivel", AnalysisCost.INSTANT)),
                     "Ninguna palabra de otro nivel", AnalyzerFamily.VOCABULARY, List.of(AuditTarget.QUIZ),
-                    List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, "Ausencias (prueba)", List.of());
+                    List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, "Ausencias (prueba)", List.of(), null);
             return provider(card, () -> new Analyzer(card) {
                 @Override
                 public Void onQuiz(AuditNode node) {
@@ -628,7 +628,7 @@ public class DefaultCourseProjectorTest {
                     AuditTarget.TOPIC, "¿Cuántas palabras tiene cada topic?", "Las palabras de cada topic",
                     List.of(new AnalyzerRuleCard("topic-words", "Las palabras del topic", AnalysisCost.INSTANT)),
                     "Las bandas de cada topic", AnalyzerFamily.VOCABULARY, List.of(AuditTarget.TOPIC),
-                    List.of(FindingResolution.RANK_ONLY), AnalysisCost.INSTANT, "Bandas (prueba)", List.of());
+                    List.of(FindingResolution.RANK_ONLY), AnalysisCost.INSTANT, "Bandas (prueba)", List.of(), null);
             return provider(card, () -> new Analyzer(card) {
                 private final List<AuditNode> topics = new ArrayList<>();
                 private final Map<String, Integer> words = new LinkedHashMap<>();

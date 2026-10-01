@@ -11,6 +11,7 @@ import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.Baseline;
 import com.learney.contentaudit.auditdomain.BaselineStore;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
@@ -29,7 +30,9 @@ import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcomeSource;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparator;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
 import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
+import com.learney.contentaudit.revisiondomain.comparison.BetterDirection;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeVerdict;
 import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
 import com.learney.contentaudit.revisiondomain.comparison.EffectiveGoals;
 import com.learney.contentaudit.revisiondomain.comparison.FloorBreach;
@@ -51,6 +54,8 @@ import com.learney.contentaudit.revisiondomain.projection.CourseProjection;
 import com.learney.contentaudit.revisiondomain.projection.CourseProjector;
 import com.learney.contentaudit.revisiondomain.projection.ProjectedChange;
 import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -75,6 +80,8 @@ import javax.annotation.processing.Generated;
  * that gains a finding that counts returns; a broken floor of a level or of the course names the changes that
  * break it; a measure that changed since the baseline is shown apart and the batch is counted from the baseline
  * measured again with it. The verdict reads the floors, what returns and the blind sample, never a progress goal.
+ * Every row also says what it is (F-FILAS): its visible name and explanation, which way is better, whether its
+ * change improved, worsened, stayed or was not evaluated, and a real finding of the analysis as its example.
  * Comparing writes nothing.
  */
 @Generated(
@@ -111,10 +118,13 @@ public class DefaultBatchComparator implements BatchComparator {
 
     private final TopicTeachingResolver topicTeachingResolver;
 
+    private final QuizStudentViewRenderer studentViewRenderer;
+
     public DefaultBatchComparator(CourseProjector courseProjector, BaselineStore baselineStore,
             AuditReportStore auditReportStore, GoalBook goalBook, AnalyzerCatalog analyzerCatalog,
             AuditEngine auditEngine, ChangeAttributor changeAttributor,
-            SampleOutcomeSource sampleOutcomeSource, TopicTeachingResolver topicTeachingResolver) {
+            SampleOutcomeSource sampleOutcomeSource, TopicTeachingResolver topicTeachingResolver,
+            QuizStudentViewRenderer studentViewRenderer) {
         this.courseProjector = courseProjector;
         this.baselineStore = baselineStore;
         this.auditReportStore = auditReportStore;
@@ -124,6 +134,7 @@ public class DefaultBatchComparator implements BatchComparator {
         this.changeAttributor = changeAttributor;
         this.sampleOutcomeSource = sampleOutcomeSource;
         this.topicTeachingResolver = topicTeachingResolver;
+        this.studentViewRenderer = studentViewRenderer;
     }
 
     @Override
@@ -204,9 +215,12 @@ public class DefaultBatchComparator implements BatchComparator {
             remeasuredIndex = remeasured != null ? ReportTree.index(remeasured) : null;
         }
 
-        // R001, R002: the rows, with their goals.
+        // R001, R002: the rows, with their goals -- and, F-FILAS, the name, the direction, the verdict, the
+        // explanation and the example each one shows.
         Map<String, Map<String, Integer>> changedUnevaluated = changedUnevaluated(batch, projectedIndex, subjects);
         List<Goal> goalList = goals != null && goals.getGoals() != null ? goals.getGoals() : List.of();
+        Legend legend = new Legend(cards(), RowExamples.index(projection.getApproved(), projection.getProjected(),
+                projectedIndex, subjects));
         List<ComparisonRow> rows = new ArrayList<>();
         for (AuditNode node : projectedIndex.values()) {
             if (node.getTarget() == null || node.getTarget() == AuditTarget.QUIZ) {
@@ -217,7 +231,8 @@ public class DefaultBatchComparator implements BatchComparator {
             for (Map.Entry<String, AnalyzerFamily> subject : subjects.entrySet()) {
                 ComparisonRow row = row(subject.getKey(), subject.getValue(), node, id, baselineIndex.get(key),
                         startIndex.get(key), remeasuredSubjects.contains(subject.getKey()), remeasuredIndex, key,
-                        changedUnevaluated.getOrDefault(key, Map.of()).getOrDefault(subject.getKey(), 0), goalList);
+                        changedUnevaluated.getOrDefault(key, Map.of()).getOrDefault(subject.getKey(), 0), goalList,
+                        legend);
                 if (row != null) {
                     rows.add(row);
                 }
@@ -412,7 +427,7 @@ public class DefaultBatchComparator implements BatchComparator {
 
     private ComparisonRow row(String subject, AnalyzerFamily family, AuditNode node, String id, AuditNode baselineNode,
             AuditNode startNode, boolean measureChanged, Map<String, AuditNode> remeasuredIndex, String key,
-            int changedUnevaluated, List<Goal> goals) {
+            int changedUnevaluated, List<Goal> goals, Legend legend) {
         ReportTree.Value baseline = ReportTree.value(baselineNode, subject, family);
         ReportTree.Value start = ReportTree.value(startNode, subject, family);
         ReportTree.Value projected = ReportTree.value(node, subject, family);
@@ -427,9 +442,12 @@ public class DefaultBatchComparator implements BatchComparator {
         ReportTree.Value reference = values.reference();
         Double change = reference != null && reference.value() != null && projected != null
                 && projected.value() != null ? delta(projected.value(), reference.value(), unit) : null;
+        BetterDirection better = family == AnalyzerFamily.ERRORS ? BetterDirection.LOWER : BetterDirection.HIGHER;
         ComparisonRow row = new ComparisonRow(subject, family, node.getTarget(), id, ReportTree.labelOf(node),
                 rowValue(baseline), rowValue(remeasured), rowValue(start), rowValue(projected), change, unit, null,
-                null);
+                null, legend.displayName(subject), better, changeVerdict(reference, projected, change, unit, better),
+                legend.explanation(subject),
+                legend.examples().exampleFor(subject, key, studentViewRenderer, legend::displayName));
         Goal floor = goalFor(goals, GoalKind.FLOOR, subject, node.getTarget(), id);
         if (floor != null) {
             row.setFloor(new RowGoalStatus(floor.getId(), floor.getThreshold(), floor.getUnit(), floor.getReference(),
@@ -459,6 +477,72 @@ public class DefaultBatchComparator implements BatchComparator {
     /** The change in the unit of the row: points of a score, exercises of a count. */
     private static double delta(double now, double before, GoalUnit unit) {
         return unit == GoalUnit.POINTS ? (now - before) * 100.0 : now - before;
+    }
+
+    /**
+     * F-FILAS-R003: not evaluated when the baseline the batch is counted from, or the projection, has no number or
+     * its analyzer evaluated no exercise of the node; otherwise unchanged when the change, rounded as it is shown --
+     * two decimals in points, whole exercises in errors --, is zero; otherwise improved or worsened by its direction.
+     */
+    static ChangeVerdict changeVerdict(ReportTree.Value reference, ReportTree.Value projected, Double change,
+            GoalUnit unit, BetterDirection better) {
+        if (change == null || reference == null || reference.value() == null || !reference.evaluated()
+                || projected == null || projected.value() == null || !projected.evaluated()) {
+            return ChangeVerdict.NOT_EVALUATED;
+        }
+        int sign = unit == GoalUnit.POINTS
+                ? BigDecimal.valueOf(change).setScale(2, RoundingMode.HALF_UP).signum()
+                : Long.signum(Math.round(change));
+        if (sign == 0) {
+            return ChangeVerdict.UNCHANGED;
+        }
+        return (sign > 0) == (better == BetterDirection.HIGHER) ? ChangeVerdict.IMPROVED : ChangeVerdict.WORSENED;
+    }
+
+    /**
+     * F-FILAS-R001, R004, R005: what a row shows besides its numbers -- its visible name and its explanation, from
+     * the card of its analyzer, and its example. «vocabulario» and «algún error» keep their subject, the key the
+     * goals name, and show a name and an explanation of their own; an analyzer today's catalog does not know shows
+     * its unique name and no explanation.
+     */
+    record Legend(Map<String, AnalyzerDescriptor> cards, RowExamples examples) {
+        String displayName(String subject) {
+            if (DefaultGoalBook.VOCABULARY.equals(subject)) {
+                return DefaultGoalBook.VOCABULARY_DISPLAY_NAME;
+            }
+            if (DefaultGoalBook.ANY_ERROR.equals(subject)) {
+                return DefaultGoalBook.ANY_ERROR_DISPLAY_NAME;
+            }
+            AnalyzerDescriptor card = subject != null ? cards.get(subject) : null;
+            return card != null && card.getDisplayName() != null && !card.getDisplayName().isBlank()
+                    ? card.getDisplayName() : subject;
+        }
+
+        String explanation(String subject) {
+            if (DefaultGoalBook.VOCABULARY.equals(subject)) {
+                return DefaultGoalBook.VOCABULARY_EXPLANATION;
+            }
+            if (DefaultGoalBook.ANY_ERROR.equals(subject)) {
+                return DefaultGoalBook.ANY_ERROR_EXPLANATION;
+            }
+            AnalyzerDescriptor card = subject != null ? cards.get(subject) : null;
+            return card != null && card.getExplanation() != null && !card.getExplanation().isBlank()
+                    ? card.getExplanation() : null;
+        }
+    }
+
+    /** The cards of today's catalog, by unique name. */
+    private Map<String, AnalyzerDescriptor> cards() {
+        Map<String, AnalyzerDescriptor> cards = new HashMap<>();
+        List<AnalyzerDescriptor> list = analyzerCatalog != null ? analyzerCatalog.list() : null;
+        if (list != null) {
+            for (AnalyzerDescriptor card : list) {
+                if (card != null && card.getName() != null) {
+                    cards.putIfAbsent(card.getName(), card);
+                }
+            }
+        }
+        return cards;
     }
 
     /** The goal of a row: one for its node over one for every node of its type, in the order of the goals. */

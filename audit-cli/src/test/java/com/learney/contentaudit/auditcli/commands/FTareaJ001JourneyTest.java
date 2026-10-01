@@ -269,7 +269,7 @@ public class FTareaJ001JourneyTest {
                     "El ejercicio", List.of(new AnalyzerRuleCard("rule-" + name, "La regla", AnalysisCost.INSTANT)),
                     "Ninguno", family, List.of(AuditTarget.QUIZ),
                     List.of(FindingResolution.RULE, FindingResolution.PANEL, FindingResolution.RANK_ONLY),
-                    AnalysisCost.INSTANT, name, List.of());
+                    AnalysisCost.INSTANT, name, List.of(), null);
             return new AnalyzerProvider() {
                 @Override
                 public String analyzerName() {

@@ -93,6 +93,6 @@ public class SentenceLengthAnalyzerProviderTest {
         for (com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard rule : card.getRules()) {
             Assertions.assertEquals(AnalysisCost.INSTANT, rule.getCost(), "both rules are instant");
         }
-        Assertions.assertEquals("Largo de oración", card.getDisplayName(), "F-RONDA1-R004: its Spanish name");
+        Assertions.assertEquals("Oraciones con el largo de su nivel", card.getDisplayName(), "F-RONDA1-R004: its Spanish name");
     }
 }

@@ -49,13 +49,19 @@ import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
 import com.learney.contentaudit.revisiondomain.SealedGoalsStore;
 import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcome;
 import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcomeSource;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.BetterDirection;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeAttribution;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeVerdict;
 import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
 import com.learney.contentaudit.revisiondomain.comparison.FamilyFloor;
 import com.learney.contentaudit.revisiondomain.comparison.FloorBreach;
@@ -68,6 +74,7 @@ import com.learney.contentaudit.revisiondomain.comparison.GoalReference;
 import com.learney.contentaudit.revisiondomain.comparison.GoalStatus;
 import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
 import com.learney.contentaudit.revisiondomain.comparison.MeasureChange;
+import com.learney.contentaudit.revisiondomain.comparison.RowExample;
 import com.learney.contentaudit.revisiondomain.comparison.RowValue;
 import com.learney.contentaudit.revisiondomain.comparison.SealedGoals;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
@@ -999,6 +1006,13 @@ public class DefaultBatchComparatorTest {
     static final Goal ANY_ERROR_IN_A1_ZERO = new Goal("algún error en A1: 0", GoalKind.FLOOR, "algún error",
             AuditTarget.MILESTONE, A1, 0.0, GoalUnit.EXERCISES, GoalReference.ABSOLUTE, GoalOrigin.DECLARED);
 
+    /** The Spanish name of the cards of the photo, as today's catalog names them (F-FILAS-R001). */
+    static final Map<String, String> SPANISH = Map.of(
+            LEMMA_ABSENCE, "Vocabulario del nivel presente", LEMMA_COUNT, "Palabras vistas suficientes veces",
+            SENTENCE_LENGTH, "Oraciones con el largo de su nivel",
+            HINT, "Pista que falta, confunde o regala la respuesta", INSTRUCTION, "Consigna que no se cumple",
+            DUPLICATES, "Ejercicio repetido igual", NATURALNESS, "Oración poco natural");
+
     /** Today's catalog, in its order: vocabulary first, then errors; naturalness only orders. */
     static final List<AnalyzerDescriptor> CARDS = List.of(
             card(LEMMA_ABSENCE, AnalyzerFamily.VOCABULARY, FindingResolution.PANEL, FindingResolution.RANK_ONLY),
@@ -1011,7 +1025,8 @@ public class DefaultBatchComparatorTest {
 
     static AnalyzerDescriptor card(String name, AnalyzerFamily family, FindingResolution... resolutions) {
         return new AnalyzerDescriptor(name, name, AuditTarget.QUIZ, "¿?", "la oración", List.of(), "1,0", family,
-                List.of(AuditTarget.QUIZ), List.of(resolutions), AnalysisCost.INSTANT, name, List.of());
+                List.of(AuditTarget.QUIZ), List.of(resolutions), AnalysisCost.INSTANT, SPANISH.getOrDefault(name, name),
+                List.of(), "La frase de " + name + ".");
     }
 
     static ProjectedChange cambio(String proposalId, String quizId) {
@@ -1366,7 +1381,7 @@ public class DefaultBatchComparatorTest {
 
         DefaultBatchComparator comparator() {
             return new DefaultBatchComparator(projector, baselines, reports, book(), catalog, engine, attributor,
-                    samples, new DefaultTopicTeachingResolver());
+                    samples, new DefaultTopicTeachingResolver(), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
         }
 
         Mesa baseline(Foto foto) {
@@ -1394,5 +1409,413 @@ public class DefaultBatchComparatorTest {
         BatchComparison compare() {
             return comparator().compare(COURSE, null);
         }
+    }
+
+    @Test
+    @DisplayName("should show the vocabulary row as «Vocabulario, puntaje total» and the any-error row as «Ejercicios con algún error», keeping their subjects, the keys the goals name")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R001")
+    public void shouldShowTheVocabularyRowAsVocabularioPuntajeTotalAndTheAnyerrorRowAsEjerciciosConAlgnErrorKeepingTheirSubjectsTheKeysTheGoalsName() {
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.declaration = new GoalDeclaration(List.of(), List.of(ANY_ERROR_IN_A1_ZERO), null);
+        mesa.batch(Foto.deHoy(), Foto.deHoy());
+
+        BatchComparison comparison = mesa.compare();
+
+        for (String node : List.of(ROOT, A1, PRESENT_SIMPLE, REGULAR)) {
+            ComparisonRow vocabulary = row(comparison, "vocabulario", node);
+            assertEquals("Vocabulario, puntaje total", vocabulary.getDisplayName(), "R001: the vocabulary row of " + node);
+            assertEquals("vocabulario", vocabulary.getSubject(), "R001 inv. 2: its key stays");
+            ComparisonRow anyError = row(comparison, "algún error", node);
+            assertEquals("Ejercicios con algún error", anyError.getDisplayName(), "R001: the any-error row of " + node);
+            assertEquals("algún error", anyError.getSubject(), "R001 inv. 2: its key stays");
+        }
+        assertEquals("algún error en A1: 0", row(comparison, "algún error", A1).getFloor().getGoalId(),
+                "R001 inv. 2: the goal declared for «algún error» still applies to its row");
+        assertEquals("piso de errores · algún error · KNOWLEDGE",
+                row(comparison, "algún error", REGULAR).getFloor().getGoalId(),
+                "R001 inv. 2: and so does the floor of the family, with the id the sealed goals keep");
+        assertEquals("piso de vocabulario · vocabulario · COURSE",
+                row(comparison, "vocabulario", ROOT).getFloor().getGoalId());
+    }
+
+    @Test
+    @DisplayName("should show each analyzer row with the Spanish name of its card, and with its unique name when today's catalog does not know it")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R001")
+    public void shouldShowEachAnalyzerRowWithTheSpanishNameOfItsCardAndWithItsUniqueNameWhenTodaysCatalogDoesNotKnowIt() {
+        // «dictado» ran in both photos but today's catalog does not know it: only its published numbers do.
+        Mesa mesa = new Mesa().baseline(Foto.deHoy().measure("dictado", "dictado · v1", Map.of())
+                .score(ROOT, "dictado", 0.5));
+        mesa.batch(Foto.deHoy(), Foto.deHoy().measure("dictado", "dictado · v1", Map.of()).score(ROOT, "dictado", 0.5));
+
+        BatchComparison comparison = mesa.compare();
+
+        assertEquals("Vocabulario del nivel presente", row(comparison, LEMMA_ABSENCE, REGULAR).getDisplayName(),
+                "R001: the name of its card");
+        assertEquals("Palabras vistas suficientes veces", row(comparison, LEMMA_COUNT, A1).getDisplayName());
+        assertEquals("Pista que falta, confunde o regala la respuesta", row(comparison, HINT, A1).getDisplayName());
+        assertEquals("Consigna que no se cumple", row(comparison, INSTRUCTION, ROOT).getDisplayName());
+        for (ComparisonRow row : comparison.getRows()) {
+            if (SPANISH.containsKey(row.getSubject())) {
+                assertEquals(SPANISH.get(row.getSubject()), row.getDisplayName(),
+                        "R001: " + row.getSubject() + " in " + row.getNodeId() + ", its unique name still the subject");
+            }
+        }
+        ComparisonRow unknown = row(comparison, "dictado", ROOT);
+        assertEquals("dictado", unknown.getDisplayName(), "R001 inv. 4: an analyzer the catalog does not know");
+        assertNull(unknown.getExplanation(), "F-FILAS-R004 inv. 3: and no sentence");
+    }
+
+    @Test
+    @DisplayName("should say that lower is better in every row of the errors family and in the any-error row, and higher in every row of the vocabulary family and in the vocabulary row")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R002")
+    public void shouldSayThatLowerIsBetterInEveryRowOfTheErrorsFamilyAndInTheAnyerrorRowAndHigherInEveryRowOfTheVocabularyFamilyAndInTheVocabularyRow() {
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), Foto.deHoy());
+
+        BatchComparison comparison = mesa.compare();
+
+        assertEquals(BetterDirection.LOWER, row(comparison, HINT, REGULAR).getBetterWhen(), "R002: a problem row");
+        assertEquals(BetterDirection.LOWER, row(comparison, INSTRUCTION, ROOT).getBetterWhen());
+        assertEquals(BetterDirection.LOWER, row(comparison, "algún error", A1).getBetterWhen());
+        assertEquals(BetterDirection.HIGHER, row(comparison, LEMMA_ABSENCE, REGULAR).getBetterWhen(), "R002: a score row");
+        assertEquals(BetterDirection.HIGHER, row(comparison, LEMMA_COUNT, A1).getBetterWhen());
+        assertEquals(BetterDirection.HIGHER, row(comparison, "vocabulario", ROOT).getBetterWhen());
+        for (ComparisonRow row : comparison.getRows()) {
+            assertEquals(row.getFamily() == AnalyzerFamily.ERRORS ? BetterDirection.LOWER : BetterDirection.HIGHER,
+                    row.getBetterWhen(), "R002: " + row.getSubject() + " in " + row.getNodeId());
+        }
+    }
+
+    @Test
+    @DisplayName("should mark a drop of an errors row as improved and a rise as worsened, and a rise of a vocabulary row as improved and a drop as worsened")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R003")
+    public void shouldMarkADropOfAnErrorsRowAsImprovedAndARiseAsWorsenedAndARiseOfAVocabularyRowAsImprovedAndADropAsWorsened() {
+        Mesa mesa = new Mesa().baseline(Foto.deHoy().errors(REGULAR, HINT, 2, 0));
+        mesa.batch(Foto.deHoy().errors(REGULAR, HINT, 2, 0),
+                Foto.deHoy().errors(REGULAR, HINT, 1, 0).errors(REGULAR, INSTRUCTION, 1, 0)
+                        .score(REGULAR, LEMMA_ABSENCE, 0.995).score(A1, LEMMA_COUNT, 0.95),
+                cambio(P_VEGETABLES, VEGETABLES));
+
+        BatchComparison comparison = mesa.compare();
+
+        ComparisonRow hint = row(comparison, HINT, REGULAR);
+        assertEquals(-1.0, hint.getChange(), 1e-9);
+        assertEquals(ChangeVerdict.IMPROVED, hint.getChangeVerdict(), "R003: 2 → 1 exercises with an error");
+        assertEquals(ChangeVerdict.WORSENED, row(comparison, INSTRUCTION, REGULAR).getChangeVerdict(),
+                "R003: 0 → 1 exercises with an error");
+        ComparisonRow absence = row(comparison, LEMMA_ABSENCE, REGULAR);
+        assertEquals(-0.5, absence.getChange(), 1e-9);
+        assertEquals(ChangeVerdict.WORSENED, absence.getChangeVerdict(), "R003: 100,0 → 99,5 points");
+        assertEquals(ChangeVerdict.IMPROVED, row(comparison, LEMMA_COUNT, A1).getChangeVerdict(),
+                "R003: 94,37 → 95,0 points");
+    }
+
+    @Test
+    @DisplayName("should mark as unchanged a row whose change rounds to zero as it is shown, to two decimals in points and to whole exercises in errors")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R003")
+    public void shouldMarkAsUnchangedARowWhoseChangeRoundsToZeroAsItIsShownToTwoDecimalsInPointsAndToWholeExercisesInErrors() {
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), Foto.deHoy().score(PRESENT_SIMPLE, LEMMA_ABSENCE, 0.99549)
+                .score(WITH_BE, LEMMA_ABSENCE, 0.98994), cambio(P_VEGETABLES, VEGETABLES));
+
+        BatchComparison comparison = mesa.compare();
+
+        ComparisonRow topic = row(comparison, LEMMA_ABSENCE, PRESENT_SIMPLE);
+        assertEquals(-0.003, topic.getChange(), 1e-9);
+        assertEquals(ChangeVerdict.UNCHANGED, topic.getChangeVerdict(), "R003: −0,003 points is shown as 0,0");
+        assertEquals(ChangeVerdict.WORSENED, row(comparison, LEMMA_ABSENCE, WITH_BE).getChangeVerdict(),
+                "R003: −0,006 points is shown as −0,01");
+        ComparisonRow hint = row(comparison, HINT, REGULAR);
+        assertEquals(0.0, hint.getChange(), 1e-9);
+        assertEquals(ChangeVerdict.UNCHANGED, hint.getChangeVerdict(), "R003: 0 → 0 exercises");
+        assertEquals(ChangeVerdict.UNCHANGED, row(comparison, "vocabulario", ROOT).getChangeVerdict(),
+                "R003: 73,92 → 73,92");
+    }
+
+    @Test
+    @DisplayName("should mark as not evaluated a row whose analyzer evaluated no exercise of the node, instead of reading its zero as a real zero")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R003")
+    public void shouldMarkAsNotEvaluatedARowWhoseAnalyzerEvaluatedNoExerciseOfTheNodeInsteadOfReadingItsZeroAsARealZero() {
+        // quiz-instruction ran without a budget: it left the four exercises of «Afirmativas regulares» open.
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), Foto.deHoy().errors(REGULAR, INSTRUCTION, 0, 4), cambio(P_VEGETABLES, VEGETABLES));
+
+        BatchComparison comparison = mesa.compare();
+
+        ComparisonRow instruction = row(comparison, INSTRUCTION, REGULAR);
+        assertEquals(new RowValue(0.0, 0.0, 4), instruction.getProjected(),
+                "R003 inv. 2: its numbers are published as today, 0 (0,0 %) with 4 unevaluated");
+        assertEquals(0.0, instruction.getChange(), 1e-9);
+        assertEquals(ChangeVerdict.NOT_EVALUATED, instruction.getChangeVerdict(), "R003: not a real zero");
+        assertEquals(ChangeVerdict.UNCHANGED, row(comparison, HINT, REGULAR).getChangeVerdict(),
+                "R003: hint-coherence evaluated them: its zero is real");
+    }
+
+    @Test
+    @DisplayName("should mark as not evaluated a row without a number in the baseline, as the error rows of the base of 29/9")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R003")
+    public void shouldMarkAsNotEvaluatedARowWithoutANumberInTheBaselineAsTheErrorRowsOfTheBaseOf299() {
+        Mesa mesa = new Mesa().baseline(Foto.del299());
+        mesa.batch(Foto.deHoy(), Foto.deHoy(), cambio(P_VEGETABLES, VEGETABLES));
+
+        BatchComparison comparison = mesa.compare();
+
+        for (String subject : List.of(HINT, INSTRUCTION, "algún error")) {
+            ComparisonRow row = row(comparison, subject, A1);
+            assertNull(row.getBaseline(), "the base of 29/9 did not measure " + subject);
+            assertEquals(new RowValue(0.0, 0.0, 0), row.getProjected(), "the projection did");
+            assertEquals(ChangeVerdict.NOT_EVALUATED, row.getChangeVerdict(), "R003: no number in the baseline");
+        }
+        assertEquals(ChangeVerdict.UNCHANGED, row(comparison, "vocabulario", A1).getChangeVerdict(),
+                "R003: what the base did measure has its verdict");
+    }
+
+    @Test
+    @DisplayName("should mark as not evaluated the any-error row of a node where no errors analyzer evaluated an exercise")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R003")
+    public void shouldMarkAsNotEvaluatedTheAnyerrorRowOfANodeWhereNoErrorsAnalyzerEvaluatedAnExercise() {
+        // In «Afirmativas regulares» neither analyzer of errors evaluated an exercise; in «Afirmativas con be»
+        // quiz-instruction left both open but hint-coherence evaluated them.
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), Foto.deHoy().errors(REGULAR, HINT, 0, 4).errors(REGULAR, INSTRUCTION, 0, 4)
+                .anyError(REGULAR, 4, 0, 4).errors(WITH_BE, INSTRUCTION, 0, 2).anyError(WITH_BE, 2, 0, 2),
+                cambio(P_VEGETABLES, VEGETABLES));
+
+        BatchComparison comparison = mesa.compare();
+
+        ComparisonRow regular = row(comparison, "algún error", REGULAR);
+        assertEquals(new RowValue(0.0, 0.0, 4), regular.getProjected());
+        assertEquals(ChangeVerdict.NOT_EVALUATED, regular.getChangeVerdict(),
+                "R003: no analyzer of errors evaluated an exercise of the knowledge");
+        assertEquals(ChangeVerdict.UNCHANGED, row(comparison, "algún error", WITH_BE).getChangeVerdict(),
+                "R003: one did, so its zero is a real one, open exercises and all");
+    }
+
+    @Test
+    @DisplayName("should give each analyzer row the explanation of its card, and the vocabulary and any-error rows their own")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R004")
+    public void shouldGiveEachAnalyzerRowTheExplanationOfItsCardAndTheVocabularyAndAnyerrorRowsTheirOwn() {
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), Foto.deHoy());
+
+        BatchComparison comparison = mesa.compare();
+
+        assertEquals("La frase de lemma-absence.", row(comparison, LEMMA_ABSENCE, REGULAR).getExplanation(),
+                "R004: the sentence of its card");
+        assertEquals("La frase de hint-coherence.", row(comparison, HINT, A1).getExplanation());
+        assertEquals("El puntaje de vocabulario de 0 a 100: el promedio de las filas de puntaje de arriba.",
+                row(comparison, "vocabulario", ROOT).getExplanation(), "R004: the vocabulary row, its own");
+        assertEquals("Ejercicios con al menos uno de los problemas de arriba; cada ejercicio cuenta una vez.",
+                row(comparison, "algún error", ROOT).getExplanation(), "R004: the any-error row, its own");
+        for (ComparisonRow row : comparison.getRows()) {
+            assertNotNull(row.getExplanation(), "R004: " + row.getSubject() + " in " + row.getNodeId());
+        }
+    }
+
+    @Test
+    @DisplayName("should take as the example of a row a finding the batch fixes before one that stays in the projection, and say in its line that the batch fixes it")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldTakeAsTheExampleOfARowAFindingTheBatchFixesBeforeOneThatStaysInTheProjectionAndSayInItsLineThatTheBatchFixesIt() {
+        Finding fixed = hallazgo(HINT, "hint-words", HATS, FindingSeverity.HIGH, FindingResolution.PANEL, null,
+                "La pista «(sport)» no anuncia «wears».");
+        Finding stays = hallazgo(HINT, "hint-words", OURSELVES, FindingSeverity.HIGH, FindingResolution.PANEL, null,
+                "La pista no anuncia «each other».");
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy().finding(fixed).finding(stays), Foto.deHoy().finding(stays), cambio(P_HATS, HATS));
+
+        BatchComparison comparison = mesa.compare();
+
+        RowExample example = row(comparison, HINT, REGULAR).getExample();
+        assertEquals(HATS, example.getQuizId(), "R005: the one the batch fixes, before one that stays with a lower id");
+        assertEquals("La pista «(sport)» no anuncia «wears» — la tanda lo arregla", example.getDetail(),
+                "R005: its line says the batch fixes it");
+        assertEquals(example, row(comparison, HINT, PRESENT_SIMPLE).getExample(), "R005: also above the knowledge");
+
+        Mesa without = new Mesa().baseline(Foto.deHoy());
+        without.batch(Foto.deHoy().finding(stays), Foto.deHoy().finding(stays), cambio(P_HATS, HATS));
+        RowExample staying = row(without.compare(), HINT, REGULAR).getExample();
+        assertEquals(OURSELVES, staying.getQuizId(), "R005: with nothing fixed, one of the projection");
+        assertEquals("La pista no anuncia «each other».", staying.getDetail());
+    }
+
+    @Test
+    @DisplayName("should take as the example the finding of the lowest quiz id under the node, so the same comparison always gives the same example")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldTakeAsTheExampleTheFindingOfTheLowestQuizIdUnderTheNodeSoTheSameComparisonAlwaysGivesTheSameExample() {
+        Finding hats = hallazgo(HINT, "hint-words", HATS, FindingSeverity.HIGH, FindingResolution.PANEL, null,
+                "La pista no anuncia «wears».");
+        Finding vegetables = hallazgo(HINT, "hint-words", VEGETABLES, FindingSeverity.HIGH, FindingResolution.PANEL,
+                null, "La pista no anuncia «a lot of».");
+        // A finding of the knowledge itself is less concrete than one of an exercise below it.
+        Finding ofTheKnowledge = new Finding(HINT, "hint-share", new FindingNodeRef(AuditTarget.KNOWLEDGE, REGULAR,
+                "Afirmativas regulares"), FindingSeverity.HIGH, new FindingEvidence(List.of(),
+                "Tres de cuatro llevan pista.", List.of()), FindingResolution.PANEL, AnalysisCost.INSTANT,
+                new FindingIdentity(HINT + "|hint-share|" + REGULAR, null));
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy().finding(ofTheKnowledge).finding(hats).finding(vegetables),
+                Foto.deHoy().finding(ofTheKnowledge).finding(hats).finding(vegetables));
+
+        RowExample example = row(mesa.compare(), HINT, REGULAR).getExample();
+
+        assertEquals(VEGETABLES, example.getQuizId(), "R005: the lowest quiz id under the knowledge, an exercise "
+                + "before the knowledge itself");
+        assertEquals("La pista no anuncia «a lot of».", example.getDetail());
+        assertEquals(example, row(mesa.compare(), HINT, REGULAR).getExample(), "R005: the same comparison, again");
+        Mesa reordered = new Mesa().baseline(Foto.deHoy());
+        reordered.batch(Foto.deHoy().finding(vegetables).finding(hats).finding(ofTheKnowledge),
+                Foto.deHoy().finding(vegetables).finding(hats).finding(ofTheKnowledge));
+        assertEquals(example, row(reordered.compare(), HINT, REGULAR).getExample(),
+                "R005: whatever order the findings come in");
+        assertEquals(VEGETABLES, row(mesa.compare(), HINT, ROOT).getExample().getQuizId(), "R005: up to the course");
+    }
+
+    @Test
+    @DisplayName("should leave the example null when the analyzer has no finding under the node")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldLeaveTheExampleNullWhenTheAnalyzerHasNoFindingUnderTheNode() {
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), Foto.deHoy().conLasCuatro(), LAS_CUATRO);
+
+        BatchComparison comparison = mesa.compare();
+
+        assertNotNull(row(comparison, LEMMA_ABSENCE, REGULAR).getExample(), "the grandmother is there");
+        assertNull(row(comparison, LEMMA_ABSENCE, A2).getExample(), "R005: nothing of lemma-absence under A2");
+        assertNull(row(comparison, LEMMA_ABSENCE, WITH_BE).getExample(), "R005: nor in «Afirmativas con be»");
+        assertNull(row(comparison, HINT, REGULAR).getExample(), "R005: hint-coherence found nothing");
+        assertNull(row(comparison, "algún error", ROOT).getExample(), "R005: no error in the whole course");
+    }
+
+    @Test
+    @DisplayName("should never take as the example of an errors row a finding that only ranks, as the ones of naturalness")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldNeverTakeAsTheExampleOfAnErrorsRowAFindingThatOnlyRanksAsTheOnesOfNaturalness() {
+        Finding doubtful = hallazgo(NATURALNESS, "unlikely-sentence", VEGETABLES, FindingSeverity.LOW,
+                FindingResolution.RANK_ONLY, null, "El modelo duda de que un nativo diga «I love vegetables.».");
+        Mesa mesa = new Mesa().baseline(Foto.deHoy().measure(NATURALNESS, "naturalness · llama3", Map.of())
+                .errors(REGULAR, NATURALNESS, 0, 0));
+        mesa.batch(Foto.deHoy().measure(NATURALNESS, "naturalness · llama3", Map.of())
+                        .errors(REGULAR, NATURALNESS, 0, 0).finding(doubtful),
+                Foto.deHoy().measure(NATURALNESS, "naturalness · llama3", Map.of())
+                        .errors(REGULAR, NATURALNESS, 0, 0).finding(doubtful));
+
+        BatchComparison comparison = mesa.compare();
+
+        assertNull(row(comparison, NATURALNESS, REGULAR).getExample(),
+                "R005: it only ranks, so it never illustrates a row that counts errors");
+        assertNull(row(comparison, "algún error", REGULAR).getExample(), "R005: nor «algún error»");
+    }
+
+    @Test
+    @DisplayName("should show the exercise of the example as the student sees it, with its gap and its hint, and say in one line what it has")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldShowTheExerciseOfTheExampleAsTheStudentSeesItWithItsGapAndItsHintAndSayInOneLineWhatItHas() {
+        Foto projected = Foto.deHoy().conLasCuatro();
+        projected.nodes.get(GRANDMOTHER).setEntity(new AuditableQuiz(List.of(), GRANDMOTHER,
+                "My grandmother comes every year.", GRANDMOTHER, "Mi abuela viene todos los años.",
+                List.of("My grandmother comes every year."), "My grandmother comes every year.",
+                "Escribe la forma correcta.", List.of(new SentencePartEntity(SentencePartKind.TEXT, "My grandmother", null),
+                        new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("comes")),
+                        new SentencePartEntity(SentencePartKind.TEXT, "(come) every year.", null)), null, null, null));
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), projected, LAS_CUATRO);
+
+        BatchComparison comparison = mesa.compare();
+
+        RowExample example = row(comparison, LEMMA_ABSENCE, REGULAR).getExample();
+        assertEquals(new RowExample(GRANDMOTHER, "My grandmother ___ (come) every year.",
+                "grandmother es una palabra de A2 en un ejercicio de A1"), example,
+                "R005: the exercise with its gap and its hint, and what it has, in one line");
+    }
+
+    @Test
+    @DisplayName("should take as the example of a score row a concrete finding of the analyzer, as a word of the level, with no exercise")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldTakeAsTheExampleOfAScoreRowAConcreteFindingOfTheAnalyzerAsAWordOfTheLevelWithNoExercise() {
+        Finding butter = new Finding(LEMMA_COUNT, "under-exposed", new FindingNodeRef(AuditTarget.MILESTONE, A1, "A1"),
+                FindingSeverity.LOW, new FindingEvidence(List.of(new EvidencePart("Palabra", "butter"),
+                        new EvidencePart("Oraciones", "2 de 6")), "butter (A1): 2 oraciones de 6", List.of()),
+                FindingResolution.RANK_ONLY, AnalysisCost.INSTANT,
+                new FindingIdentity(LEMMA_COUNT + "|under-exposed|" + A1 + "|butter|NOUN", "butter|NOUN"));
+        Finding ofTheCourse = new Finding(LEMMA_COUNT, "under-exposed", new FindingNodeRef(AuditTarget.COURSE, ROOT,
+                "Curso"), FindingSeverity.LOW, new FindingEvidence(List.of(new EvidencePart("Nivel", "A1")),
+                "A1 da 94,37 %: 12 de sus 300 palabras aparecen en menos oraciones que las que pide su banda",
+                List.of()), FindingResolution.RANK_ONLY, AnalysisCost.INSTANT,
+                new FindingIdentity(LEMMA_COUNT + "|under-exposed|root|A1", "A1"));
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy().finding(ofTheCourse).finding(butter), Foto.deHoy().finding(ofTheCourse).finding(butter));
+
+        BatchComparison comparison = mesa.compare();
+
+        RowExample word = new RowExample(null, null, "butter (A1): 2 oraciones de 6");
+        assertEquals(word, row(comparison, LEMMA_COUNT, A1).getExample(), "R005: a word of the level, no exercise");
+        assertEquals(word, row(comparison, LEMMA_COUNT, ROOT).getExample(),
+                "R005: in the course too, the word before the summary of the level");
+        assertEquals(new RowExample(null, null, "Palabras vistas suficientes veces: butter (A1): 2 oraciones de 6"),
+                row(comparison, "vocabulario", ROOT).getExample(), "R005: the vocabulary row names the analyzer");
+    }
+
+    @Test
+    @DisplayName("should not take as fixed a finding the projection lost only because its analyzer left the exercise unevaluated")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldNotTakeAsFixedAFindingTheProjectionLostOnlyBecauseItsAnalyzerLeftTheExerciseUnevaluated() {
+        Finding open = hallazgo(INSTRUCTION, "instruction-breach", VEGETABLES, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, null, "No cumple la consigna.");
+        Finding stays = hallazgo(INSTRUCTION, "instruction-breach", HATS, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, null, "Tampoco cumple la consigna.");
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy().finding(open).finding(stays),
+                Foto.deHoy().unevaluated(VEGETABLES, INSTRUCTION).finding(stays), cambio(P_VEGETABLES, VEGETABLES));
+
+        RowExample example = row(mesa.compare(), INSTRUCTION, REGULAR).getExample();
+
+        assertEquals(HATS, example.getQuizId(), "R005: quiz-instruction did not judge the new exercise -- its "
+                + "finding vanished for lack of a budget, it is not fixed");
+        assertEquals("Tampoco cumple la consigna.", example.getDetail());
+
+        Mesa judged = new Mesa().baseline(Foto.deHoy());
+        judged.batch(Foto.deHoy().finding(open).finding(stays), Foto.deHoy().finding(stays),
+                cambio(P_VEGETABLES, VEGETABLES));
+        RowExample fixed = row(judged.compare(), INSTRUCTION, REGULAR).getExample();
+        assertEquals(VEGETABLES, fixed.getQuizId(), "R005: judged and gone, it is fixed");
+        assertEquals("No cumple la consigna — la tanda lo arregla", fixed.getDetail());
+    }
+
+    @Test
+    @DisplayName("should take as the example of the any-error row an error of any analyzer, and name the analyzer in its line")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R005")
+    public void shouldTakeAsTheExampleOfTheAnyerrorRowAnErrorOfAnyAnalyzerAndNameTheAnalyzerInItsLine() {
+        Finding hint = hallazgo(HINT, "hint-words", HATS, FindingSeverity.HIGH, FindingResolution.PANEL, null,
+                "La pista no anuncia «wears».");
+        Finding instruction = hallazgo(INSTRUCTION, "instruction-breach", VEGETABLES, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, null, "No cumple la consigna.");
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy().finding(hint).finding(instruction), Foto.deHoy().finding(hint).finding(instruction));
+
+        BatchComparison comparison = mesa.compare();
+
+        RowExample anyError = row(comparison, "algún error", REGULAR).getExample();
+        assertEquals(VEGETABLES, anyError.getQuizId(), "R005: an error of any analyzer, the lowest id");
+        assertEquals("Consigna que no se cumple: No cumple la consigna.", anyError.getDetail(),
+                "R005: its line names the analyzer");
+        RowExample own = row(comparison, HINT, REGULAR).getExample();
+        assertEquals(HATS, own.getQuizId(), "R005: the row of an analyzer, only its own findings");
+        assertEquals("La pista no anuncia «wears».", own.getDetail(), "R005: the row already names its analyzer");
     }
 }
