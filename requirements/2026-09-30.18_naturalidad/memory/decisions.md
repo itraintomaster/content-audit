@@ -5,6 +5,18 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — F-NATUR-J001 en audit-domain, `com.learney.contentaudit.auditdomain.naturalness`: el
+  analizador y sus piezas son package-private ahí; los puertos se simulan y el runtime de los jueces corre con libros en
+  memoria, como F-TRSEN-J001.
+2026-10-01 — qa-tester — «Con llama3 nunca se consulta a claude -p» se traza a F-NATUR-R008 (es su condición: «sin su
+  modelo local»), en el proveedor; la suma de las formas de sí y no, a R002 en OllamaYesNoModel (de FEAT-MLOCAL); y la
+  lista de un nivel como conjunto de un juez, a R005 en DefaultReevaluationQuizSetResolver.
+2026-10-01 — qa-tester — Para el analista: 15 de las 120 marcas de A2 del prototipo son ejercicios de la lista «a / b»
+  dentro de la oración ya cerrada, leídos sin la respuesta: «He did to help.» (14,48), «I invited to enter our room.»,
+  «I didn't see on the street.», «I require to eat.»… y el ejemplo de R004 y R008, «She bought at the market.»
+  (…3974). Si F-GRAMA-R001 los lee con la respuesta en el lugar de la lista, el umbral de A2 (10,2) y ese ejemplo se
+  vuelven a medir.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): sin cambios de estructura. naturalness no tiene tipo de tarea (sólo ordena, F-RONDA2-R008) y no entra en la corrida base (F-RONDA2-R003).
 
 2026-09-30 — architect — Las dos rutas abren por `JudgeRuntime` y resuelven en lote (onQuiz junta, onCourseComplete
