@@ -550,8 +550,10 @@ de la correcta «'s not» no. Y las mismas decisiones con 1 y 1, 4 y 4, y 8 y 8 
 
 **Lo que cumplen otras piezas.** Que el candidato aceptado quede como propuesta pendiente con su artefacto (R009) lo
 guarda la tanda, y se prueba con F-TANDA-R007; acá, que la mesa lo entrega en su decisión y no escribe el curso. El tope
-total de consultas de la tanda es F-TANDA-R003. Y una parte de F-TAREA-R006 vive en `DefaultTopicPanel`: que un tipo sin
-alcance declarado nunca se intenta; como traza a FEAT-TAREA, no entra en este parche y va después de aplicar.
+total de consultas de la tanda es F-TANDA-R003. Una parte de F-TAREA-R006 vive en `DefaultTopicPanel`: que un tipo sin
+alcance declarado nunca se intenta; desde el 1/10 se prueba en la tanda con F-TANDA-R005, que nombra ese desenlace. Y la
+mesa nunca recibe la tarea de un audio pendiente de regrabar (F-TANDA-R012): ninguna tanda cambia un ejercicio para que
+diga lo que dice un audio viejo.
 
 **El journey** va a `revision-domain`, en `com.learney.contentaudit.revisiondomain.panelengine`: el corredor, la mesa, el
 medidor, el filtro y el guion son package-private ahí, y quien propone y la compuerta se arman con sus piezas públicas

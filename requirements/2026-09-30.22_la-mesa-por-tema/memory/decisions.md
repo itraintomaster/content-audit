@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — Sin cambios de parche por el audio (orquestador, 1/10): la mesa nunca recibe la tarea de un audio
+  pendiente de regrabar (F-TANDA-R012). Lo de F-TAREA-R006 en DefaultTopicPanel se prueba con F-TANDA-R005.
+  why: las 7 diferencias de audio de hoy (F-DATOS-R003) tienen el ejercicio mal; siguen en la mesa, que juzga el ejercicio.
+
 2026-10-01 — qa-tester — F-MESA-J001 en revision-domain, `com.learney.contentaudit.revisiondomain.panelengine` (4 caminos).
   why: el corredor, la mesa, el medidor, el filtro y el guion son package-private ahí; quien propone y la compuerta se
   arman con sus piezas públicas (ScriptedPanelProposer, DefaultGateFactory). Pasos del sistema, como F-PIPRE-J001.
