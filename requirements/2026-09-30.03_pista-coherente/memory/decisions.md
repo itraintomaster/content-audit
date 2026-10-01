@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Una contracción de la fuente anuncia lo que dice («There's» → be, have): sin eso,
+  R006 marcaba «be» en 38cf, 38d8 y 4730, porque el puerto ubica el «'s» de la respuesta (el prototipo no lo veía).
+  La única marca de más contra el prototipo es 437a («drank» → «got drunk»): la tabla de irregulares de content-audit
+  no dice de qué base es una forma, y el prototipo sí. Queda así: una marca, a la mesa.
+
 2026-10-01 — analyst (impl A) — La condición del camino «falta» de F-PISTA-J001 también dice la unión. Cambia el nombre del
   método generado del journey: generate conserva el viejo, que tiene cuerpo, y avisa; se renombra a mano al encender, como
   las dos de RESPC. La primera prueba de R001 («…of the same shape carry one…») no se renombra: lo que dice sigue siendo

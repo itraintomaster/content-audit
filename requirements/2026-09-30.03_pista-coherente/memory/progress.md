@@ -4,6 +4,13 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — R006 encendida en ronda1/integracion (f95bd811), con las 5 pruebas llenas y los
+  nombres de El posesivo y del camino 1 del journey al día. Control sobre una copia (primer-analisis/correr.sh, sin
+  jueces y con el claude falso, que no se llamó nunca): vocabulario 73,86 %, igual; rewrite-words marca 61 ejercicios
+  (A1 10, A2 4, B1 34, B2 13): los 60 del prototipo, con las mismas palabras, y 437a; hint-coherence pasa de 48 a 102
+  ejercicios. Examen escribir, pista: 31 de 46 (67,4 %; antes, 20); 4 marcas fuera del oro de pista: 2dd0 y 2ddc (el
+  límite conocido de R006, en el oro de consigna) y 2170 y 3b9e (R001, de antes). Suite: 2.408 en verde.
+
 2026-10-01 — qa-tester (impl A) — Simulación repetida con R001 sobre ronda1/integracion 6cfaa008 (FEAT-CIERRE con sus
   pruebas a la aridad nueva): validate OK (PISTA 7 cambios, RESPC 3); apply en memoria = apply de la CLI; generate cambia
   los mismos 5 archivos de hintcoherence y avisa que conserva 4 métodos con nombre viejo (El posesivo, el camino 1 del
