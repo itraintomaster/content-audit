@@ -5,6 +5,20 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Una forma que falta de una clase que el corrector en producción ya iguala (contracción,
+  negación de be, grafía de la lista, until/till) y que igual rechaza es un límite del corrector: se arregla en el corrector y
+  no en el curso, y el hallazgo nunca propone «|». Nombra la regla que le falta, preguntándole al propio corrector: «'s»/«'d»
+  ambiguo (lo deja como está porque no sabe si es is o has, had o would: tiene que leerlo con la forma larga de la respuesta
+  aceptada), falta un participio (lee «'d» como would porque no conoce «overslept») o la regla de till toma «there» como
+  sujeto. Resolución sólo ordena (RANK_ONLY): de las tres que existen es la única que no cambia el ejercicio, y por
+  F-HALL-R004 inv. 2 no baja el puntaje, así que el plan no hace de ella una tarea de contenido; regla y mesa sí cuentan
+  como error. La ficha suma RANK_ONLY a sus resoluciones. Gravedad, la de R005: media en las 12 de hoy. La prueba de «has
+  trained» espera el texto del corrector. Cuando el corrector instalado no iguala la clase (sólo con la tabla vieja) sigue
+  siendo regla, «la iguala el corrector nuevo», como dice R005.
+  why: brief 101, José 30/9: las equivalencias van como regla del corrector y el «|» queda para respuestas de verdad
+  distintas; lo decidió el coordinador el 1/10 (R005 está bien y no se toca; el código y la prueba de «has trained» lo
+  contradecían). Las tres reglas del corrector de Go las propone el coordinador en ittm.
+
 2026-10-01 — developer (impl A) — Una sola copia de la tabla del corrector en producción (formas-equivalentes.json). La
   vacía del corrector viejo se llama formas-equivalentes-corrector-viejo.json y es dato de prueba: la columna «hoy» de los
   casos de oro y las pruebas que necesitan un corrector que no iguala ninguna clase para ver las reglas del analizador

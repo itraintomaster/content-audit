@@ -40,7 +40,9 @@ public class AnswerCompletenessAnalyzerProviderTest {
         assertEquals("¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?", card.getQuestion());
         assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
-        assertEquals(List.of(FindingResolution.RULE, FindingResolution.PANEL), card.getResolutions());
+        // RANK_ONLY: a limit of the corrector names the rule it lacks and changes nothing in the exercise.
+        assertEquals(List.of(FindingResolution.RULE, FindingResolution.PANEL, FindingResolution.RANK_ONLY),
+                card.getResolutions());
         assertEquals(AnalysisCost.INSTANT, card.getCost());
         assertEquals(List.of("contracted-and-long-forms", "be-short-negations", "spellings-and-till", "form-request"),
                 card.getRules().stream().map(AnalyzerRuleCard::getId).toList());

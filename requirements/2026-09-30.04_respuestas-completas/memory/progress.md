@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Los límites del corrector ya no proponen «|»: las 12 formas son sólo ordena, media, con la regla
+  que le falta al corrector (10 «'s»/«'d» ambiguo, 1 overslept, 1 till después de «there»). Curso del 29/9: 706 ejercicios con
+  hallazgo de answer-completeness, 694 con error (los pedidos de forma) y 12 marcados; «algún error» del curso, 1.216
+  (10,8 %); vocabulario 73,92 % sin cambios.
+
 2026-10-01 — developer (impl A) — Las 12 formas que el corrector en producción sigue rechazando son las 12 reglas que le
   faltan (clase a), ninguna es otra respuesta ni una forma que nadie escribe: 7 «'s» + participio que el corrector no sabe
   si es is o has (he's forgotten, he's turned, she's left, he's meant, she's danced, he's run, that's produced sin «by»), 3
