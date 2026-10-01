@@ -11,8 +11,9 @@ feature:
 ## TL;DR
 
 **Qué**: Un analizador de la familia de errores compara la pista de cada ejercicio con su respuesta —el verbo, el
-sujeto y la negación—, marca las reescrituras que piden palabras que nada anuncia y marca los ejercicios sin pista en
-un tema donde tres cuartos o más la llevan.
+sujeto y la negación—, marca las reescrituras que piden palabras que nada anuncia, marca las pistas que regalan la
+respuesta sin dejar nada para decidir, y marca los ejercicios sin pista en un tema donde tres cuartos o más la
+llevan.
 
 **Por qué**: Una pista que no coincide con la respuesta hace imposible acertar: «Who ___ (I / see)?» sólo acepta «are
 you seeing». El 077 encontró 188 ejercicios imposibles y content-audit los muestra en verde.
@@ -166,6 +167,87 @@ mesa cuestan una mirada; aceptar *want* → *have* taparía también el pedido d
 
 </details>
 
+<a id="F-PISTA-R007"></a>
+### Rule[F-PISTA-R007] - La pista no regala la respuesta si el alumno todavía tiene que decidir algo
+**Severity**: critical | **Validation**: VALIDATED
+
+> En un hueco para escribir, la pista regala la respuesta cuando dice lo mismo que una de sus respuestas aceptadas y
+> no deja nada para decidir: no trae ningún verbo, o trae alguno ya conjugado. Si todos los verbos de la pista están
+> en forma base, no regala aunque coincida: el alumno todavía decide si la deja así o la conjuga.
+
+<details><summary>Detalle y casos del curso</summary>
+
+José (1/10): «Si hay una conjugación posible, es decir, y justo coincide que hay que usar el infinitivo, pero la idea
+es que vos o uses el infinitivo o conjugues, no estás regalando. Pero si la idea es elegir la palabra correcta y ahí
+te están poniendo la palabra, la única palabra que puede ir, y no hay que conjugar en el ejercicio ni nada, bueno,
+estás regalando.»
+
+**Primera condición, que diga lo mismo.** La pista se toma sin paréntesis y se compara con cualquiera de las
+respuestas aceptadas de su hueco, no sólo la primera (la que dice el audio, a diferencia de
+[F-PISTA-R002](#F-PISTA-R002) a [F-PISTA-R004](#F-PISTA-R004)): las variantes de una misma respuesta ya son
+equivalentes entre sí ([F-QSENT-R001](#F-QSENT-R001)). La comparación normaliza las dos: minúsculas, sin puntuación
+—la «/» cuenta como puntuación— y con espacios simples. Compara la pista de cada hueco contra las respuestas de ese
+hueco, nunca contra las de otro: en «We ___ (play) cards again, if we ___ (are) bored.» la pista «(are)» se mira
+sólo contra el segundo hueco.
+
+**Segunda condición, que no quede nada para decidir.** La pista no está en forma base cuando no trae ningún verbo
+(adverbios, preposiciones, pronombres, artículos, adjetivos: «(always)» → «always» regala) o cuando trae alguno
+conjugado («(is)» → «is» regala). Si trae un verbo y está en forma base, no regala aunque coincida: «I ___ (love) a
+lot of vegetables.» → «love» no regala, porque el alumno todavía decide si la deja así o la conjuga («loves»), y lo
+mismo después de un modal. En una pista de varias palabras cuentan todos sus verbos: «(you / see)» y «(that / be)»
+están en forma base entera y no regalan; «We're going to invest time / learning / about History / next year.»
+regala porque ya trae conjugados *'re* y *going*.
+
+Si una palabra es verbo, y si está en forma base, se sabe por cómo la lee el tokenizador compartido en la oración
+terminada ([F-NLP-R010](#F-NLP-R010)): el verbo y su [lema](glossary:Lema); está en forma base si son iguales. La
+misma tabla de formas irregulares que ya usa esta regla reconoce la forma de la pista cuando no es la que trae la
+oración guardada («is» frente a «'s»). Sin listas armadas a mano.
+
+**Casos del curso**, con la pista como quedó después de la tanda del 1/10:
+
+| Ejercicio | Pista → respuesta | Resultado |
+|---|---|---|
+| `67fab6d59930102295341ecd` A1, Afirmativas regulares, «I ___ (love) a lot of vegetables.» | love → love | no regala: verbo en forma base |
+| `67fab6d59930102295342170` A1, Preguntas yes/no y wh, «Why ___ (is) the beach going to close?» | is → is | regala; la regla propone «(be)» |
+| `67fab6d59930102295342572` A1, Adverbios de frecuencia, «We ___ (always) eat eggs every morning.» (y `…2575` never, `…257d` often en el mismo tema; `…2589` always y `…2591` sometimes en *Frecuencia: parte 2*) | always → always | regala; la regla no propone pista: el hallazgo va a la mesa |
+| `67fab6d59930102295342580` «I ___ in the kitchen. (always)» | always → «am always» | no regala: la respuesta no es sólo la pista |
+| `67fab6d59930102295342596` «I ___ drink tea in the morning. (100%)» | 100% → always | no regala: el texto no coincide |
+| `67fab6d5993010229534256f` «She does her homework after school. (always) ___» | always → la oración entera | no regala: hay que ubicar el adverbio |
+| `67fab6d59930102295342021` A1, Preguntas sí/no, «___ (I / am) below you?» | I / am → «Am I» | no regala: el orden cambia; si la regla propone esa pista, propone «(I / be)» |
+| `67fab6d59930102295342031` «(you / see)»; `67fab6d599301022953420ad` y `67fab6d599301022953420b1` «(that / be)»; `67fab6d5993010229534215c` «(be / rain)» | — | sin cambios: ya están en forma base |
+
+Las filas 2, 3 y 7 no tenían pista en el curso del 29/9: se la agregó la regla de arreglo de la pista que falta
+([F-PISTA-R001](#F-PISTA-R001)) en la tanda del 1/10, y en 2 y 3 la pista que agregó regalaba. Es el motivo de esta
+regla: de las 12 pistas que la tanda agregó en A1, en 7 la pista fue la respuesta misma.
+
+**Arreglo por regla.** Cuando lo que regala es un verbo conjugado, la regla cambia sólo la pista, en el mismo
+hueco, por su forma base —con su sujeto y su «not» si los traía—: «(is)» → «(be)»; «(I / am)» → «(I / be)»; en «We
+___ (play) cards again, if we ___ (are) bored.» cambia sólo la pista del segundo hueco, «(are)» → «(be)»: la del
+primero ya estaba en forma base. La respuesta y el audio no cambian.
+
+**Cuándo va a la mesa.** Cuando lo que regala no se conjuga (adverbio, adjetivo, preposición…) o es el enunciado
+con «/» de una respuesta que es la oración entera, la regla no borra la pista: dejaría el ejercicio sin pista en un
+tema donde hacen falta, y pelearía con [F-PISTA-R001](#F-PISTA-R001) (si la llevan tres cuartos del tema, la llevan
+todos). Queda como hallazgo para la *mesa*.
+
+**La pista que [F-PISTA-R001](#F-PISTA-R001) propone tampoco regala.** Cuando a un ejercicio le falta la pista y la
+respuesta es un verbo, la regla propone su forma base: «(be)» y no «(is)», para «Why ___ the beach going to close?»
+→ «is»; «(I / be)» y no «(I / am)», para «___ below you?» → «Am I». Cuando la única pista posible es la palabra
+misma, porque no se conjuga, no propone ninguna: ese hallazgo de pista que falta va a la *mesa* en lugar de ir por
+*regla*. Cómo [F-PISTA-R001](#F-PISTA-R001) encuentra la falta no cambia.
+
+**El hallazgo**: gravedad *alta* —como la pista que falta: el ejercicio no se vuelve imposible, pero deja de enseñar
+([F-HALL-R002](#F-HALL-R002))—, familia *errores*, marca = la pista normalizada.
+
+**Límite conocido**: 4 marcas falsas del prototipo, cuando el tokenizador compartido lee como sustantivo o adjetivo
+un verbo que está en forma base y la pista parece no conjugable: «If it ___ (snow) heavily, the roads ___ (close).»
+→ «close» (`67fab6d599301022953439e0`, B1, *Condicional cero*), «The cats / sleep / on the bed every day.»
+(`67fab6d59930102295343da4`, B1, *Quejas habituales*), «We observed the girls ___ (dance) ballet.»
+(`67fab6d599301022953441d9`) y «He heard her ___ (knock).» (`67fab6d599301022953441dd`, B2, *Acción completa o
+parcial*, donde el alumno elige entre el infinitivo y el gerundio). Van a la mesa y cuestan una mirada.
+
+</details>
+
 ## Contexto
 
 Base: curso vivo del 29/9 en `db/english-course`, medido con un prototipo de las reglas en el scratchpad del analista.
@@ -200,10 +282,17 @@ reales (93 %); en una muestra nueva de 30, 25 (83 %). De los 27 imposibles de `e
 como de pista, hint-coherence encontraba 5; R006 marca 11, 10 nuevos: juntos, 15. **Meta**: 8 de cada 10 marcas reales
 en una muestra revisada a mano.
 
+**La pista que regala (R007).** Medida el 1/10 sobre el mismo curso, antes de la tanda: con la regla tal cual, el
+prototipo encuentra 167 pistas iguales a alguna respuesta aceptada de su hueco; 139 están en forma base y no regalan
+(casi todas en los condicionales de B1: «If you ___ (freeze) water…» → «freeze») y 28 regalan: A1 0, A2 23, B1 3, B2
+2. De esas 28, 20 son de *Posición del adjetivo* (A2), con los adjetivos ya en el orden de la respuesta; 3 de
+*Invest time + gerundio* (A2), con el enunciado con «/» igual a la respuesta; y 1 es un verbo conjugado, que la
+regla arregla sola. Es el número del prototipo; lo reemplaza el del analizador cuando corra.
+
 ## Alcance
 
 - **Adentro**: R001 a R004 sobre la pista y la primera respuesta; R006 sobre lo que la reescritura trae sin que nada lo
-  anuncie; sus hallazgos y la ficha.
+  anuncie; R007 sobre la pista que regala la respuesta; sus hallazgos y la ficha.
 - **Afuera**: la consigna que contradice la respuesta (juez de consigna); otra respuesta igual de buena; que la
   respuesta use las palabras de la oración que se transforma ([DOUBT-PISTA-TRANSFORMAR](#DOUBT-PISTA-TRANSFORMAR)); el
   tramo opcional entre paréntesis de una respuesta, como «Peter was admired (by Mary).», que arregla el corrector; y
@@ -308,8 +397,9 @@ y después.
 
 ## References
 
-- **FEAT-HALL** — Hallazgo, gravedad, resolución, costo, ficha, conteo e identidad: R005 y R006.
-- **FEAT-QSENT** — La pista entre paréntesis y la primera respuesta ([F-QSENT-R007](#F-QSENT-R007),
-  [F-QSENT-R018](#F-QSENT-R018)): R001 a R004 y R006.
-- **FEAT-NLP** — Una sola tokenización ([F-NLP-R010](#F-NLP-R010)): R002 y R006.
+- **FEAT-HALL** — Hallazgo, gravedad, resolución, costo, ficha, conteo e identidad: R005, R006 y R007.
+- **FEAT-QSENT** — La pista entre paréntesis, la primera respuesta y las variantes equivalentes de una misma
+  respuesta ([F-QSENT-R001](#F-QSENT-R001), [F-QSENT-R007](#F-QSENT-R007), [F-QSENT-R018](#F-QSENT-R018)): R001 a
+  R004, R006 y R007.
+- **FEAT-NLP** — Una sola tokenización ([F-NLP-R010](#F-NLP-R010)): R002, R006 y R007.
 - **FEAT-DATOS** — Las respuestas cortadas por la «|»: el examen.
