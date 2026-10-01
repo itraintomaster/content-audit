@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — coordinador — El doble hallazgo de …2260 en Práctica mixta es lo esperado: cada analizador dice su
+  relación —copia exacta de …224b en exact-duplicates, casi igual a …2231 en near-duplicates— y la mesa los agrupa.
+  La prueba de R001 que lo fija queda como está. Responde la pregunta del qa-tester del 1/10.
+
 2026-10-01 — qa-tester — F-DUPAR-J001 en audit-domain, `com.learney.contentaudit.auditdomain.nearduplicates`: el
   analizador y sus piezas son package-private ahí y los puertos se simulan, como F-DUPEX-J001.
 2026-10-01 — qa-tester — «Si lo encuentran el comodín y el vector, gana el comodín» (decisión del arquitecto) se prueba bajo
