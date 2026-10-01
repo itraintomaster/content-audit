@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.revisiondomain.batch.AnalyzerLevelErrors;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
@@ -89,9 +90,10 @@ class DefaultBatchReportBuilder implements BatchReportBuilder {
         BatchClosing last = closings.isEmpty() ? null : closings.get(closings.size() - 1);
         if (last != null && last.getComparison() != null) {
             for (ComparisonRow row : BatchBook.list(last.getComparison().getRows())) {
+                CefrLevel level = row != null ? levelOf(row.getLabel()) : null;
                 if (row != null && row.getFamily() == AnalyzerFamily.ERRORS && row.getUnit() == GoalUnit.EXERCISES
-                        && row.getNodeTarget() == AuditTarget.MILESTONE) {
-                    errors.add(new AnalyzerLevelErrors(row.getSubject(), batch.getLevel(),
+                        && row.getNodeTarget() == AuditTarget.MILESTONE && level != null) {
+                    errors.add(new AnalyzerLevelErrors(row.getSubject(), level,
                             value(row.getApproved() != null ? row.getApproved().getValue() : null),
                             value(row.getProjected() != null ? row.getProjected().getValue() : null)));
                 }
@@ -124,5 +126,22 @@ class DefaultBatchReportBuilder implements BatchReportBuilder {
 
     private static int value(Double value) {
         return value == null ? 0 : (int) Math.round(value);
+    }
+
+    /**
+     * The level of a row of a milestone, by the name of its milestone -- the way the batch finds the milestone of its
+     * level ({@code DefaultBatchTaskSelector}). F compares every level, so each row says its own; a milestone that is not
+     * a level is not a row of this list.
+     */
+    private static CefrLevel levelOf(String label) {
+        if (label == null) {
+            return null;
+        }
+        for (CefrLevel level : CefrLevel.values()) {
+            if (level.name().equalsIgnoreCase(label.trim())) {
+                return level;
+            }
+        }
+        return null;
     }
 }
