@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analyst (impl A) — R006 suma «sólo ordena» a las resoluciones de la ficha y dice que el puntaje baja sólo
+  con regla o mesa, como hace el código desde 3a3238ed. Next: qa-tester, los nombres de las dos pruebas que lo
+  contradicen («has trained» y la de la ficha).
+
 2026-10-01 — developer (impl A) — Los límites del corrector ya no proponen «|»: las 12 formas son sólo ordena, media, con la regla
   que le falta al corrector (10 «'s»/«'d» ambiguo, 1 overslept, 1 till después de «there»). Curso del 29/9: 706 ejercicios con
   hallazgo de answer-completeness, 694 con error (los pedidos de forma) y 12 marcados; «algún error» del curso, 1.216

@@ -121,8 +121,10 @@ el control de que nada vuelve atrás.
 
 > El catálogo lista `answer-completeness` con su ficha ([F-HALL-R006](#F-HALL-R006)): pregunta «¿El corrector acepta
 > todas las formas de la respuesta, y ninguna consigna pide una?», familia *errores*, evalúa *ejercicio*, resoluciones
-> *regla* y *mesa*, costo *instantáneo*. Alcanza sólo a los de hueco para escribir. Con hallazgo, el ejercicio tiene
-> puntaje 0; sin ninguno, 1.
+> *regla*, *mesa* y *sólo ordena*, costo *instantáneo*. Alcanza sólo a los de hueco para escribir. Con un hallazgo de
+> *regla* o de *mesa*, el ejercicio tiene puntaje 0; sin ninguno, 1. *Sólo ordena* es el límite del corrector: la forma
+> de una clase que el corrector en producción ya iguala y que igual rechaza se arregla en el corrector, no en el curso,
+> y no baja el puntaje ([F-HALL-R004](#F-HALL-R004)).
 
 El nombre es [ASSUMPTION]. Una forma que el juez de «una sola respuesta» (paquete C) encuentre y sea la misma con otra
 forma llega acá, según la propuesta; cómo, lo diseña C. Desde el 30/9, la otra forma, contraída o larga, nunca es

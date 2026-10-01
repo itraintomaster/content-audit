@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analyst (impl A) — R006 dice lo que hace la ficha desde el límite del corrector: resoluciones regla, mesa y
+  sólo ordena; el puntaje baja sólo con un hallazgo de regla o de mesa (F-HALL-R004 inv. 2). R005 no se toca.
+  why: la decisión del 1/10 (brief 101) sumó RANK_ONLY a la ficha y a su prueba; el texto de R006 seguía diciendo «regla
+  y mesa» y «con hallazgo, puntaje 0».
+
 2026-10-01 — developer (impl A) — Una forma que falta de una clase que el corrector en producción ya iguala (contracción,
   negación de be, grafía de la lista, until/till) y que igual rechaza es un límite del corrector: se arregla en el corrector y
   no en el curso, y el hallazgo nunca propone «|». Nombra la regla que le falta, preguntándole al propio corrector: «'s»/«'d»
