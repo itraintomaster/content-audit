@@ -1,7 +1,11 @@
 package com.learney.contentaudit.auditdomain.nearduplicates;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,19 +19,42 @@ public class DefaultSameExerciseQuestionTest {
     @DisplayName("should give claude -p both exercises as the student sees them, in the order of the topic, as the content it judges")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldGiveClaudePBothExercisesAsTheStudentSeesThemInTheOrderOfTheTopicAsTheContentItJudges(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        SameExerciseQuestion question = new DefaultSameExerciseQuestion(NearDuplicatesAnalyzerTest.renderer());
+
+        EvaluationSubject offer = question.subjectOf(NearDuplicatesAnalyzerTest.washForYou(),
+                NearDuplicatesAnalyzerTest.wash());
+        EvaluationSubject sorryHot = question.subjectOf(NearDuplicatesAnalyzerTest.sorry(), NearDuplicatesAnalyzerTest.hot());
+
+        assertEquals(List.of("title", "first", "second"), List.copyOf(offer.getContent().keySet()),
+                "the dependencies of near-duplicates-same-exercise, in order");
+        assertEquals("Funciones mixtas", offer.getContent().get("title"));
+        assertEquals("Offer: I ___ (wash) the dishes for you.\nResuelto: Offer: I'll wash the dishes for you.",
+                offer.getContent().get("first"), "the one that stays goes first");
+        assertEquals("Offer: I ___ (wash) the dishes.\nResuelto: Offer: I'll wash the dishes.",
+                offer.getContent().get("second"));
+        assertEquals("67fab6d59930102295342725~67fab6d59930102295342fd5", offer.getSubjectRef());
+        assertEquals("I ___ sorry. (am · are · is)\nResuelto: I am sorry.", sorryHot.getContent().get("first"),
+                "a multiple choice with its options");
     }
 
     @Test
     @DisplayName("should read the verdict {sameExercise, reason} of claude -p and leave the pair unjudged when it cannot be read, never as a near duplicate")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldReadTheVerdictSameExerciseReasonOfClaudePAndLeaveThePairUnjudgedWhenItCannotBeReadNeverAsANearDuplicate(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        SameExerciseQuestion question = new DefaultSameExerciseQuestion(NearDuplicatesAnalyzerTest.renderer());
+
+        assertEquals(Optional.of(new SameExerciseVerdict(true, "Piden lo mismo: «'ll wash» en una oferta")),
+                question.read("{\"sameExercise\": true, \"reason\": \"Piden lo mismo: «'ll wash» en una oferta\"}"));
+        assertEquals(Optional.of(new SameExerciseVerdict(false, "Dos oraciones distintas: \"sorry\" y \"hot\"")),
+                question.read("{\"reason\":\"Dos oraciones distintas: \\\"sorry\\\" y \\\"hot\\\"\",\"sameExercise\":false}"));
+        assertEquals(Optional.empty(), question.read("{\"outputUnusable\": true}"), "the agent ran out of tries");
+        assertEquals(Optional.empty(), question.read("{\"sameExercise\": \"yes\", \"reason\": \"sí\"}"));
+        assertEquals(Optional.empty(), question.read("{\"reason\": \"sin veredicto\"}"));
+        assertEquals(Optional.empty(), question.read("Sí, es el mismo ejercicio."));
+        assertEquals(Optional.empty(), question.read(null));
     }
 }

@@ -1,7 +1,16 @@
 package com.learney.contentaudit.auditdomain.nearduplicates;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,46 +30,117 @@ public class FDuparJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → La copia lleva un hallazgo baja para ... [El par sólo cambia pronombres, demostrativos, posesivos o el tiempo del auxiliar] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void path1_elParSloCambiaPronombresDemostrativosPosesivosOElTiempoDelAuxiliar_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr: near-duplicates alone, with nomic-embed-text and its examined version approved.
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
+
+        AuditNode root = world.run(NearDuplicatesAnalyzerTest.course(NearDuplicatesAnalyzerTest.topic(
+                "Contraste inicial", NearDuplicatesAnalyzerTest.whereHe(), NearDuplicatesAnalyzerTest.whereShe())), null);
+
+        // marca: «Where is she?» only changes the pronoun; «Where is he?», the first, stays.
+        Finding copy = NearDuplicatesAnalyzerTest.only(NearDuplicatesAnalyzerTest.quiz(root,
+                NearDuplicatesAnalyzerTest.WHERE_SHE));
+        assertEquals("same-but-wildcard", copy.getRule());
+        assertEquals(FindingSeverity.LOW, copy.getSeverity());
+        assertEquals(FindingResolution.PANEL, copy.getResolution());
+        assertEquals("Casi igual a …208f del mismo tema: cambia he por she",
+                NearDuplicatesAnalyzerTest.part(copy, "Casi igual"));
+        assertEquals(List.of(), NearDuplicatesAnalyzerTest.findings(NearDuplicatesAnalyzerTest.quiz(root,
+                NearDuplicatesAnalyzerTest.WHERE_HE)));
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → La copia lleva un hallazgo baja para ... [Con Ollama, el modelo local les da un parecido de 0,95 o más] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void path2_conOllamaElModeloLocalLesDaUnParecidoDe095OMs_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
+
+        AuditNode root = world.run(NearDuplicatesAnalyzerTest.course(NearDuplicatesAnalyzerTest.topic(
+                "Each other o reflexivos", NearDuplicatesAnalyzerTest.cooked(), NearDuplicatesAnalyzerTest.prepared())),
+                null);
+
+        // marca: cooked and prepared, 0.98 with nomic-embed-text.
+        Finding copy = NearDuplicatesAnalyzerTest.only(NearDuplicatesAnalyzerTest.quiz(root,
+                NearDuplicatesAnalyzerTest.PREPARED));
+        assertEquals("same-meaning", copy.getRule());
+        assertEquals(AnalysisCost.LOCAL_MODEL, copy.getCost());
+        assertEquals("Dice lo mismo que …46ac: parecido 0,98", NearDuplicatesAnalyzerTest.part(copy, "Casi igual"));
+        assertEquals(0.0, NearDuplicatesAnalyzerTest.score(root, NearDuplicatesAnalyzerTest.PREPARED));
+        assertEquals(1.0, NearDuplicatesAnalyzerTest.score(root, NearDuplicatesAnalyzerTest.COOKED));
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → La copia lleva un hallazgo baja para ... [Sin Ollama, el par cambia como mucho 4 de cada 10 palabras y claude -p dice que es el mismo ejercicio] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void path3_sinOllamaElParCambiaComoMucho4DeCada10PalabrasYClaudePDiceQueEsElMismoEjercicio_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr: without Ollama, with a version of claude -p that approved its exam and a budget.
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withoutOllama();
+        world.claude.answers("Offer: I'll wash the dishes for you.", "Offer: I'll wash the dishes.", true,
+                "Piden lo mismo: «'ll wash» en una oferta; sólo sobra «for you»");
+
+        AuditNode root = world.run(NearDuplicatesAnalyzerTest.course(NearDuplicatesAnalyzerTest.topic(
+                "Funciones mixtas", NearDuplicatesAnalyzerTest.washForYou(), NearDuplicatesAnalyzerTest.wash())),
+                NearDuplicatesAnalyzerTest.budget(10));
+
+        // marca_alternativa: low, for the panel, of paid model cost, with both exercises and the words that change.
+        Finding copy = NearDuplicatesAnalyzerTest.only(NearDuplicatesAnalyzerTest.quiz(root,
+                NearDuplicatesAnalyzerTest.WASH));
+        assertEquals("same-exercise", copy.getRule());
+        assertEquals(AnalysisCost.PAID_MODEL, copy.getCost());
+        assertEquals(FindingSeverity.LOW, copy.getSeverity());
+        assertEquals("Offer: I ___ (wash) the dishes.", NearDuplicatesAnalyzerTest.part(copy, "Copia"));
+        assertEquals("Offer: I ___ (wash) the dishes for you.", NearDuplicatesAnalyzerTest.part(copy, "Queda"));
+        assertEquals("Para claude -p es el mismo ejercicio que …2725: cambian 2 de 7 palabras",
+                NearDuplicatesAnalyzerTest.part(copy, "Casi igual"));
+        assertEquals(List.of(), NearDuplicatesAnalyzerTest.findings(NearDuplicatesAnalyzerTest.quiz(root,
+                NearDuplicatesAnalyzerTest.WASH_FOR_YOU)));
     }
 
     @Test
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → El ejercicio queda evaluado a medias ... [Sin Ollama y sin tope, el par cambia como mucho 4 de cada 10 palabras y el comodín no lo resuelve] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void path4_sinOllamaYSinTopeElParCambiaComoMucho4DeCada10PalabrasYElComodnNoLoResuelve_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr: without Ollama and without --budget near-duplicates=N.
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withoutOllama();
+
+        AuditNode root = world.run(NearDuplicatesAnalyzerTest.course(NearDuplicatesAnalyzerTest.topic(
+                "Afirmativas con be", NearDuplicatesAnalyzerTest.sorry(), NearDuplicatesAnalyzerTest.hot())), null);
+
+        // a_medias: «I am hot.» keeps 2 of its 3 words with «I am sorry.» and nothing judges it.
+        assertTrue(NearDuplicatesAnalyzerTest.halfway(root, NearDuplicatesAnalyzerTest.HOT));
+        assertEquals(1.0, NearDuplicatesAnalyzerTest.score(root, NearDuplicatesAnalyzerTest.HOT));
+        assertEquals(List.of(), NearDuplicatesAnalyzerTest.findings(NearDuplicatesAnalyzerTest.quiz(root,
+                NearDuplicatesAnalyzerTest.HOT)));
+        assertTrue(NearDuplicatesAnalyzerTest.runOf(root).getReason().endsWith("quedan 1 par sin juzgar"),
+                NearDuplicatesAnalyzerTest.runOf(root).getReason());
+        assertEquals(0, world.claude.calls());
     }
 
     @Test
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → Ningún ejercicio del tema tiene halla... [Ningún par del tema cumple las condiciones] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void path5_ningnParDelTemaCumpleLasCondiciones_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
+
+        AuditNode root = world.run(NearDuplicatesAnalyzerTest.course(
+                NearDuplicatesAnalyzerTest.topic("Acción completa o parcial", NearDuplicatesAnalyzerTest.clean(),
+                        NearDuplicatesAnalyzerTest.cleaning()),
+                NearDuplicatesAnalyzerTest.topic("Participios irregulares: repaso 1", NearDuplicatesAnalyzerTest.heardNews(),
+                        NearDuplicatesAnalyzerTest.heardMyNews())), null);
+
+        // sin_hallazgo: another answer, and 0.94; every exercise scores 1, evaluated whole.
+        for (String id : List.of(NearDuplicatesAnalyzerTest.CLEAN, NearDuplicatesAnalyzerTest.CLEANING,
+                NearDuplicatesAnalyzerTest.HEARD_NEWS, NearDuplicatesAnalyzerTest.HEARD_MY_NEWS)) {
+            assertEquals(List.of(), NearDuplicatesAnalyzerTest.findings(NearDuplicatesAnalyzerTest.quiz(root, id)), id);
+            assertEquals(1.0, NearDuplicatesAnalyzerTest.score(root, id), id);
+            assertFalse(NearDuplicatesAnalyzerTest.halfway(root, id), id);
+        }
+        assertEquals(0, NearDuplicatesAnalyzerTest.errorCountsOf(root).getWithError());
     }
 }
