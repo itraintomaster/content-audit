@@ -5,6 +5,9 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — Bug 08 al fusionar: `qa-B2/tools/restaurar.py <parche del arquitecto> <fusionado> <salida>`
+  copia domainLinks y glossarySuggestions perdidos y se vuelve a proponer con --replace; `comparar.py` da 0 perdidos.
+
 2026-09-30 — analyst — LanguageTool 6.x con Java 24 o más no carga su grammar.xml: «JAXP00010004 … jdk.xml.totalEntitySizeLimit».
   Arranca con -Djdk.xml.totalEntitySizeLimit=50000000 (0 o valores de 2.000 millones dan «Invalid setting»).
   why: el JDK nuevo bajó el límite de entidades XML; el proyecto usa Java 17, pero la Mac tiene 25 por omisión.

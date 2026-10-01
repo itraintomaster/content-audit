@@ -4,6 +4,17 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (de analista y arquitecto) — R001 inv. 5 escrita (REQUIREMENT, TECH_SPEC y la descripción
+  de `finishedsentence`), R003 y el Contexto con la lectura nueva; 4 pruebas más (48): la respuesta en el lugar de la
+  lista, su mayúscula, los 40 iguales al audio y …396f sin signo final falso. Backup, `patch propose --replace` (sin
+  pérdidas), `tech-spec write` y `patch validate -i` contra mi B02 y M02: exit 0. Simulado en `qa-B2/sim2`. Sin aplicar.
+
+2026-10-01 — qa-tester — 44 handwrittenTests nuevas, las 7 reglas [covered]; F-GRAMA-J001 en audit-domain, paquete
+  grammar (3 caminos). `patch propose` con fusión; el bug 08 se llevó domainLinks y glossarySuggestions de
+  DefaultFinishedSentenceReader: devueltos desde el parche del arquitecto y re-propuesto con --replace (lo demás, igual).
+  `tech-spec write` (+1 fragmento) y `patch validate -i` contra M02 del integrador y contra el modelo con las pruebas de
+  MLOCAL: exit 0. Sin aplicar.
+
 2026-09-30 — architect — Sin cambios por la alternativa: Gramática no la necesita (LanguageTool corre en el proceso).
   `patch validate -i` contra el sentinel.yaml de `ronda1/integracion`: exit 0.
 

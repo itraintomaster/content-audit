@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — 38 handwrittenTests nuevas, las 8 reglas [covered]; F-DUPAR-J001 en audit-domain, paquete
+  nearduplicates (5 caminos). `patch propose` con fusión sin pérdidas, `tech-spec write` (+1 fragmento) y `patch validate
+  -i` contra M04 del integrador y contra el modelo con las pruebas de MLOCAL, GRAMA y NATUR: exit 0. Sin aplicar.
+
 2026-09-30 — architect — Parche y TECH_SPEC con la alternativa (6 fragmentos), rebasados sobre `ronda1/integracion`;
   propose, tech-spec y validate en exit 0. Next: integrador de la ronda 2; José contesta DOUBT-DUPAR-PARECIDO-TEXTO y
   DOUBT-DUPAR-A-MEDIAS.

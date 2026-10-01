@@ -108,8 +108,10 @@ modules:
 José eligió un umbral fijo por nivel, el que marcaba el 5 % en la base del 29/9, para que arreglar una oración rara no
 haga marcar otra que no cambió. Un umbral sólo vale para el modelo y la pregunta que dieron los números, así que la
 configuración los guarda por versión examinada: para «llama3:8b@365c0bd3c000» con la pregunta del prototipo, 9,07 en A1
-(116 de 2.334) y 10,2 en A2 (120 de 2.403). Los de B1 y B2 se calculan con la misma regla sobre la base antes de
-registrar el examen, unos 9 minutos de modelo (B-19); un nivel sin umbral publica sus números y no marca. claude -p no
+(116 de 2.334) y 10,0 en A2 (118 de 2.364). El de A2 se midió sin los 40 ejercicios de la lista «a / b», que la oración
+terminada lee con la respuesta en su lugar (F-GRAMA-R001 inv. 5): el número del prototipo era el de una oración sin la
+respuesta (coordinador, 1/10). Esos 40, B1 y B2 se calculan con la misma regla sobre la base antes de registrar el
+examen, unos 9 minutos de modelo (B-19); un nivel sin umbral publica sus números y no marca. claude -p no
 tiene umbral: marca su «no» (R008). La pregunta y el mensaje de sistema son los de
 `scratchpad/ronda2-B/nat/judge_yesno.py`, se ven en `config analyzer naturalness` y son los que lee también claude -p.
 
@@ -251,4 +253,52 @@ modules:
 features:
   - id: FEAT-NATUR
     code: F-NATUR
+```
+
+## Declarar las 39 pruebas y ubicar el journey
+
+Las 39 son nuevas: no hay pruebas previas de estas reglas que portar. Cada una traza a una regla de FEAT-NATUR (R001 4,
+R002 8, R003 8, R004 2, R005 3, R006 3, R007 2, R008 9). Los números son los del prototipo
+(`scratchpad/ronda2-B/nat/yn-a1a2.jsonl`), que el doble de `YesNoModel` devuelve tal cual: «They don't like people.»
+(`…1f4a`, 9,0752) queda por encima del umbral de A1 y «Are these your feet?» (`…22fb`, 9,0664) no; «She is an engineer
+of hers.» (`…2c0d`, 14,68) es el más dudoso de A2, y el umbral de A2 es 10,0. Ninguno de los casos es del examen.
+
+- **Las dos rutas**, en el proveedor: con llama3, su evaluador y la política sin tope de la decisión, nunca claude -p;
+  sin llama3, claude -p con la política de la corrida tal cual, que sin `--budget` tiene tope 0. La ficha, sus dos
+  tarjetas y que no tiene ligadura al plan.
+- **El analizador**: la primera respuesta aceptada (`…2fd3`), lo que no alcanza (`…2305`), la contraída como se lee
+  (`…1f4a`), la lista «a / b» con la respuesta en su lugar («He did something to help.», `…396b`), la marca por encima del umbral y no en él, el hallazgo bajo que sólo ordena con puntaje 1, el umbral fijo, el
+  nivel sin umbral, las dos evidencias, la lista por nivel y sus empates, el freno del examen y la corrida de examen; y
+  con claude -p, la misma pregunta, la marca por su «no», el diagnóstico sin número, la lista en el orden del curso, el
+  tope pedido y el «falta el tope» con su costo, sin consultar.
+- **Las cuentas y la configuración**: el número como ln(P(no)/P(sí)), 0 en el empate y sin número si no dijo ni sí ni no;
+  la lectura del sí o el no de claude -p; los umbrales por versión examinada; la pregunta del prototipo; y la versión
+  del evaluador, que es la del examen.
+- **Fuera del paquete**: la suma de las formas de «yes» y «no» en `OllamaYesNoModel` (de FEAT-MLOCAL) y la lista de un
+  nivel como conjunto declarado de un juez en `DefaultReevaluationQuizSetResolver`.
+
+**El journey** va a `audit-domain`, paquete `naturalness`: el analizador y sus piezas son package-private ahí y los
+puertos se simulan, con el runtime de los jueces y libros en memoria, como F-TRSEN-J001. `generate` crearía
+`FNaturJ001JourneyTest` con 5 caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: naturalness
+        _change: add
+        implementations:
+          - name: NaturalnessAnalyzer
+            _change: add
+            handwrittenTests:
+              - name: "should mark «They don't like people.», 9.0752 above the threshold of A1, 9.07, and not «Are these your feet?», 9.0664"
+                traceability: { feature: FEAT-NATUR, rule: F-NATUR-R003 }
+              - name: "should mark an exercise to which claude -p answers no with a low finding of native-says-no that only ranks, and leave none when it answers yes"
+                traceability: { feature: FEAT-NATUR, rule: F-NATUR-R008 }
+features:
+  - id: FEAT-NATUR
+    code: F-NATUR
+    journeys:
+      - { id: F-NATUR-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.naturalness }
 ```

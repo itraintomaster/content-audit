@@ -10,7 +10,15 @@ description: "FEAT-NATUR, paquete B de la ronda 2: el analizador naturalness. Le
   \ de FEAT-GRAMA y JudgeRuntime de FEAT-JEXAM: se aplica después de los tres. Rebasado\
   \ por el integrador de la ronda 2 sobre el sentinel.yaml de ronda1/integracion (la\
   \ ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; orden\
-  \ de la cadena: FEAT-RONDA2, B, F y E, sin cambios de estructura."
+  \ de la cadena: FEAT-RONDA2, B, F y E, sin cambios de estructura.; qa-tester de\
+  \ la ronda 2 (B): traza las 8 reglas de FEAT-NATUR a 39 handwrittenTests nuevas\
+  \ (no hay pruebas previas que portar), con las probabilidades que grabó el prototipo\
+  \ del analista para oraciones reales del curso del 29/9, y ubica F-NATUR-J001 en\
+  \ audit-domain, paquete naturalness, como F-TRSEN-J001. Las dos rutas se prueban\
+  \ con dobles de YesNoModel y del evaluador de claude -p sobre el runtime de los\
+  \ jueces con libros en memoria. El umbral de A2 es 10,0 (coordinador, 1/10): medido\
+  \ sin los 40 ejercicios de la lista «a / b», que se leen con la respuesta en su\
+  \ lugar (F-GRAMA-R001 inv. 5)."
 modules:
 - name: audit-domain
   packages:
@@ -118,6 +126,36 @@ modules:
       - name: localToolGate
         type: LocalToolGate
       visibility: public
+      handwrittenTests:
+      - name: "should open naturalness through the judges' runtime with the evaluator\
+          \ of llama3 and the policy without limit of the local tool decision when\
+          \ llama3 is available, never with the claude -p alternative"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R008
+      - name: "should open naturalness through the judges' runtime with the claude\
+          \ -p alternative and the run's policy as it comes when llama3 is not available,\
+          \ so without --budget naturalness=N it has budget 0"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R008
+      - name: "should describe naturalness as an errors analyzer that evaluates exercises\
+          \ and only ranks, asking «¿Un nativo diría así esta oración?», with the\
+          \ rule unlikely-sentence of local model cost, the rule native-says-no of\
+          \ paid model cost and paid model as the cost of its card"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R007
+      - name: "should carry in its card two tools, llama3:8b in Ollama and claude\
+          \ -p, each with its version and the result of its exam"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R007
+      - name: "should declare no plan binding, so a naturalness finding never becomes\
+          \ a task"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R003
       implements:
       - AnalyzerProvider
       _change: add
@@ -138,6 +176,120 @@ modules:
         type: NaturalnessConfig
       - name: gateDecision
         type: LocalToolGateDecision
+      handwrittenTests:
+      - name: "should ask about the finished sentence with the first accepted answer\
+          \ only, «Promise: I'll visit you tomorrow.» and not «Promise: I will visit\
+          \ you tomorrow.»"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R001
+      - name: "should ask no model about an exercise whose finished sentence has no\
+          \ verb, as «hard work uncountable», leaving it without number nor finding"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R001
+      - name: "should ask about a contracted sentence as it reads, «They don't like\
+          \ people.», without expanding it"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R001
+      - name: "should ask about «He did something to help.», with the answer in the\
+          \ place of the «a / b» list, and never about «He did to help.»"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R001
+      - name: "should reuse in a second run the answer recorded for an unchanged sentence\
+          \ under the same examined version, without asking llama3 again"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R002
+      - name: "should mark «They don't like people.», 9.0752 above the threshold of\
+          \ A1, 9.07, and not «Are these your feet?», 9.0664"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R003
+      - name: should not mark an exercise whose number equals the threshold of its
+          level
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R003
+      - name: "should give a marked exercise a low finding that only ranks, keeping\
+          \ its score at 1 and counting it as marked, never as an error"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R003
+      - name: "should keep the mark of «She is an engineer of hers.» in A2 when another\
+          \ exercise of A2 changes, since the threshold of a level is fixed"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R003
+      - name: "should publish the numbers of a level without threshold and mark none\
+          \ of them, as B1 before its threshold is calibrated"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R003
+      - name: "should give as evidence with llama3 «El modelo local duda que un nativo\
+          \ diga «She is an engineer of hers.» (14,7; umbral de A2: 10,0)»"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R004
+      - name: "should give as evidence with claude -p «claude -p contesta que un nativo\
+          \ no diría «She is an engineer of hers.» (sin Ollama)», without a number"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R004
+      - name: "should publish per level the marked exercises from the most to the\
+          \ least doubtful, «She is an engineer of hers.», 14.68, first in A2"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R005
+      - name: should order the marked exercises of a level that have the same number
+          in the order of the course
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R005
+      - name: "should publish no mark while the examined version llama3:8b@365c0bd3c000\
+          \ · native-yes-no-1 has no approved exam, leaving its exercises unevaluated\
+          \ with the reason"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R006
+      - name: should ask in an EXAM run about every exercise of the exam file that
+          reaches and about no other exercise of the photo
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R006
+      - name: "should ask claude -p the system message and the question it asks llama3,\
+          \ with the same finished sentence"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R008
+      - name: "should mark an exercise to which claude -p answers no with a low finding\
+          \ of native-says-no that only ranks, and leave none when it answers yes"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R008
+      - name: should leave the diagnosis of an exercise answered by claude -p without
+          number nor threshold and say that claude -p answered
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R008
+      - name: should list the exercises that claude -p marks in each level in the
+          order of the course
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R008
+      - name: "should ask claude -p once per exercise that reaches and stop at the\
+          \ budget of --budget naturalness=N, leaving the rest unevaluated"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R008
+      - name: "should leave unevaluated with «falta el tope» what needs claude -p\
+          \ when the run asks no budget for naturalness, declaring how many consultations\
+          \ and hours it would cost, without consulting"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R008
       implements:
       - ContentAnalyzer
       _change: add
@@ -149,19 +301,101 @@ modules:
         type: NaturalnessConfig
       - name: examinedVersion
         type: String
+      handwrittenTests:
+      - name: "should record the two probabilities llama3 gives a sentence, not its\
+          \ number, under an evaluator id that carries the examined version"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R002
+      - name: "should not reuse what another examined version recorded, so llama3:8b\
+          \ with another digest asks again"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R002
+      - name: "should state as its version the examined version, llama3:8b@365c0bd3c000\
+          \ · native-yes-no-1, so the judges' runtime brakes it on the same exam as\
+          \ LocalToolGate"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R006
       implements:
       - Evaluator
       _change: add
     - name: DefaultNaturalnessScorer
+      handwrittenTests:
+      - name: "should give as number the logarithm of P(no) over P(yes), 14.68 for\
+          \ «She is an engineer of hers.»"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R002
+      - name: should give 0 when the model sees yes and no equally likely
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R002
+      - name: "should give no number when llama3 said neither yes nor no, both probabilities\
+          \ in 0, so the exercise stays unevaluated"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R002
+      - name: should read the yes or the no of claude -p and take any other answer
+          as unusable
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R008
       implements:
       - NaturalnessScorer
       _change: add
     - name: DefaultNaturalnessConfig
+      handwrittenTests:
+      - name: should hold for llama3:8b@365c0bd3c000 with the question of the prototype
+          the thresholds 9.07 for A1 and 10.0 for A2
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R003
+      - name: "should hold no threshold for another examined version, so another llama3\
+          \ needs thresholds of its own"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R003
+      - name: "should ask whether a native speaker would say the sentence with that\
+          \ meaning and those words, «Would a native English speaker naturally say\
+          \ or write this exact sentence, with this meaning and these words? Sentence:\
+          \ …»"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R002
       implements:
       - NaturalnessConfig
       _change: add
     _change: add
   _change: modify
+- name: local-language-infrastructure
+  packages:
+  - name: ollama
+    implementations:
+    - name: OllamaYesNoModel
+      handwrittenTests:
+      - name: "should add up the forms of yes of the first token, «yes», «Yes», «\
+          \ yes» and «y», and the same for no, out of the 20 alternatives Ollama gives"
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R002
+- name: audit-cli
+  packages:
+  - name: bootstrap
+    implementations:
+    - name: DefaultReevaluationQuizSetResolver
+      handwrittenTests:
+      - name: should read the A2 queue of naturalness written one id per line as the
+          declared set of a judge
+        traceability:
+          feature: FEAT-NATUR
+          rule: F-NATUR-R005
 features:
 - id: FEAT-NATUR
   code: F-NATUR
+  journeys:
+  - id: F-NATUR-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-domain
+    testPackage: com.learney.contentaudit.auditdomain.naturalness

@@ -4,6 +4,28 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — Simulación rehecha con GRAMA R001 inv. 5 y el umbral de A2 en 10,0 (`qa-B2/sim2`, `qa-B2/dry2`):
+  FEAT-RONDA2 + B sin errores de definición, de traza ni de ubicación; `generate` crearía los 4 journeys y 157 stubs (22
+  clases nuevas y 11 stubs en 6 que ya existen). Con F y E encima, 9 journeys sin ubicar, todos de E y F; ninguna prueba
+  de B se pierde. Contra M14 del integrador sólo cambia la descripción de `finishedsentence`.
+
+2026-10-01 — qa-tester — PENDIENTE PARA DESPUÉS DEL APPLY de los cuatro de B (no antes): segundo parche de pruebas de
+  MLOCAL en esta carpeta, sólo handwrittenTests trazadas a FEAT-MLOCAL sobre GrammarAnalyzer, NaturalnessAnalyzer y
+  NearDuplicatesAnalyzer (la fila de la corrida en el curso con herramienta, versión examinada, si publicó, si usó la
+  alternativa y el motivo: sin herramienta, sin examen o «falta el tope»), backup antes del propose (bug 08) y `patch
+  apply --as=qa-tester`. Lo decidió el coordinador (OG1).
+
+2026-10-01 — qa-tester — Cadena B con pruebas simulada en memoria (`qa-B2/sim/B01..B14`, librería del jar): FEAT-RONDA2
+  + los cuatro de B, y encima F y E tal como están; ninguna prueba de B se pierde. `generate` simulado (DryRunGenerate)
+  con FEAT-RONDA2 + B: 0 errores de definición, de traza y de ubicación, crearía los 4 journeys (5 + 3 + 5 + 5 caminos)
+  y los 152 stubs. Con la cadena entera, 9 journeys sin ubicar, todos de E y F: B ya no lo hace abortar.
+
+2026-10-01 — qa-tester — 32 handwrittenTests nuevas, las 8 reglas [covered]; F-MLOCAL-J001 en audit-cli,
+  `com.learney.contentaudit.auditcli.commands` (5 caminos). `patch propose` con fusión (sin pérdidas), `tech-spec write`
+  (+1 fragmento) y `patch validate -i` contra el modelo con FEAT-RONDA2 (`integrador-2/sim/real/M01`): exit 0. Simulado
+  en memoria en `qa-B2/sim`. Sin aplicar.
+  Next: el integrador toma B desde el commit del qa-tester (`rebase.py`, ORIGEN["B"]) y rehace la cadena.
+
 2026-09-30 — architect — Parche y TECH_SPEC rebasados sobre `ronda1/integracion` con la alternativa: `patch propose
   --replace`, `tech-spec write --replace` (10 fragmentos) y `patch validate -i` contra su sentinel.yaml en exit 0; la cadena
   MLOCAL → GRAMA → NATUR → DUPAR simulada sobre ese modelo, válida. Ganchos nuevos B-21 a B-24 en ittm `…/ronda2/ganchos-B.md`.
