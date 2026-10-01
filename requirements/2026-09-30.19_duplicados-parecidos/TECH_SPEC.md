@@ -254,3 +254,56 @@ features:
   - id: FEAT-DUPAR
     code: F-DUPAR
 ```
+
+## Declarar las 38 pruebas y ubicar el journey
+
+Las 38 son nuevas: no hay pruebas previas de estas reglas que portar. Cada una traza a una regla de FEAT-DUPAR (R001 5,
+R002 8, R003 3, R004 3, R005 3, R006 2, R007 3, R008 11) y lleva un par del curso del 29/9 con los parecidos que midió el
+prototipo (`scratchpad/ronda2-B/dup/pares.json`, `marcados-0.95.json` y `arq-B2/candidatos-lex-0.6.json`); el doble de
+`EmbeddingModel` devuelve sus vectores y el de claude -p, un veredicto fijo por par.
+
+- **El par candidato (R001)**: el pronombre copiado del enunciado no cuenta (`…1ea1` / `…1eac`), otra respuesta no es
+  candidato (`…41cb` / `…41cc`, el contraste a propósito de 0,995), «'ll wash» = «will wash», sólo dentro del tema, y el
+  par exacto de Práctica mixta (`…224b` / `…2260`) queda para `exact-duplicates` mientras los dos son copias casi
+  iguales de `…2231`.
+- **Las dos condiciones (R002)**: el comodín con «he → she» (`…208f` / `…2097`) y con el tiempo del auxiliar (`…2b6b` /
+  `…2b7f`), que no ve otro verbo (`…46ac` / `…46b0`); el parecido 0,98 marca ese par y 0,94 no (`…3083` / `…30a5`); el
+  vector con «clustering: » y la versión en el id del evaluador.
+- **La copia y su hallazgo (R003 a R005)**: el primero del tema queda, n − 1 en un grupo (Respuestas cortas, `…251c` a
+  `…251e`), las mismas copias en dos corridas, bajo, a la mesa, 0 y 1, el costo de la regla que lo encontró —si lo
+  encuentran el comodín y el vector, el comodín (`…1f5e` / `…25e8`)— y las tres evidencias.
+- **La ficha y el examen (R006, R007)**: tres reglas y dos tarjetas, todo sin evaluar sin examen aprobado, comodín
+  incluido, el mismo resultado al rendir dos veces y que otro prefijo es otra versión.
+- **Sin Ollama (R008)**: el parecido de palabras (0,67 en `…355e` / `…4242`), qué se consulta y qué no (`…1e61` /
+  `…1e64` sí, 0,67; `…23f9` / `…23fe` no, 0,50), el «sí» y el «no» de claude -p (`…2725` / `…2fd5`), el comodín siempre,
+  a medias sin tope, una consulta por par hasta el tope, el contenido y el veredicto ilegible.
+
+Algunos pares son del examen del 077 (`…2b6b`, `…355e`, `…25e8`, los de Respuestas cortas, `…224b` y `…2260`): son los
+del REQUIREMENT o del prototipo, y las pruebas los usan con dobles. **No se declara** su tipo de tarea
+`NEAR_DUPLICATES`, que prueba FEAT-RONDA2 después de aplicar (F-RONDA2-R008).
+
+**El journey** va a `audit-domain`, paquete `nearduplicates`: el analizador y sus piezas son package-private ahí y los
+puertos se simulan, como F-DUPEX-J001. `generate` crearía `FDuparJ001JourneyTest` con 5 caminos (`marca` llega por dos
+salidas).
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: nearduplicates
+        _change: add
+        implementations:
+          - name: NearDuplicatesAnalyzer
+            _change: add
+            handwrittenTests:
+              - name: "should leave the two exact «They weren't at the park.» of Práctica mixta to exact-duplicates and still mark both as near copies of «You weren't at the park.»"
+                traceability: { feature: FEAT-DUPAR, rule: F-DUPAR-R001 }
+              - name: "should leave half evaluated an exercise with a candidate left unjudged for lack of budget, keeping its wildcard findings and saying how many pairs are missing"
+                traceability: { feature: FEAT-DUPAR, rule: F-DUPAR-R008 }
+features:
+  - id: FEAT-DUPAR
+    code: F-DUPAR
+    journeys:
+      - { id: F-DUPAR-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.nearduplicates }
+```

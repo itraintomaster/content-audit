@@ -5,6 +5,14 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — F-DUPAR-J001 en audit-domain, `com.learney.contentaudit.auditdomain.nearduplicates`: el
+  analizador y sus piezas son package-private ahí y los puertos se simulan, como F-DUPEX-J001.
+2026-10-01 — qa-tester — «Si lo encuentran el comodín y el vector, gana el comodín» (decisión del arquitecto) se prueba bajo
+  R004, que fija el costo por la regla que lo encontró. «Con nomic-embed-text nunca se consulta a claude -p», bajo R008.
+2026-10-01 — qa-tester — Para el analista: en Práctica mixta, …2260 es copia exacta de …224b (exact-duplicates) y además
+  casi igual a …2231 por el comodín: con R001 inv. 3 y R003 lleva dos hallazgos, uno de cada analizador. Es lo que cuenta
+  el prototipo (44 copias); la prueba lo sigue. ¿Es lo esperado o la copia exacta no debería contar acá?
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): sin cambios de estructura. NearDuplicatesCorrection la suma TAREA; NEAR_DUPLICATES es tipo de tarea (F-RONDA2-R008); no entra en la corrida base por su regla de modelo local (F-RONDA2-R003, B-10).
 
 2026-09-30 — architect — Las dos rutas abren por `JudgeRuntime`: un vector por ejercicio, o un juicio por par
