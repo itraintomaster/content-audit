@@ -57,11 +57,21 @@ London» («live» B1, «live in/at» A1, 44 veces). Dudas: [DOUBT-REBAJA-EN-CON
 
 <a id="F-NIVFR-R002"></a>
 ### Rule[F-NIVFR-R002] - Cuenta como error sólo lo que queda lejos del nivel
-**Severity**: critical | **Validation**: VALIDATED
+**Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > Una palabra de contenido es de otro nivel cuando: 1. su nivel del catálogo está dos o más niveles arriba del ejercicio
 > (C1 = 5 y C2 = 6, como [F-LABS-R033](#F-LABS-R033)); o 2. no está en el catálogo y cae en la banda de descuento fuerte
 > de [F-LABS-R034](#F-LABS-R034) para ese nivel. Una palabra un solo nivel arriba nunca es de otro nivel para este analizador.
+> Tampoco la que una lectura regular deja a menos de dos niveles, medida con el mismo puntuador de R001: a. la flexión
+> regular de un lema del catálogo cuando la del lematizador es absurda («hoped» no sale de «hop», que daría «hopped»: es
+> «hope», A2; «partied» es «party»); b. el mismo lema en otra categoría («run» en «run - running» es el verbo, A1); c. un
+> nombre propio, un gentilicio o un idioma, con mayúscula en medio de la oración («Portuguese», «Argentinian»); d. su
+> forma británica, la que escribe el EVP, por los patrones de ortografía (color, colour) o por una lista cerrada de pares
+> del inglés americano y británico («takeout» es «takeaway», B1); e. fuera del catálogo, un compuesto de dos palabras de
+> tres letras o más, cada una del nivel del ejercicio o de antes («hairbrush», «headphones», «lifeguard»); f. fuera del
+> catálogo, un derivado con un afijo transparente (-y, -ing, -ed, -er, -ful, -less, -ness, -ist, -ian, un-, mal-), que
+> toma el nivel de su base («creamy», «calming», «stimulating», «dietitian»), o un adverbio en -ly, que toma dos niveles
+> más, como hace el EVP (beautiful A1, beautifully B1): «bitterly» en B2, nunca «soundly» ni «awfully» en A2.
 
 <details><summary>Detalle: por qué el umbral, con datos</summary>
 
@@ -72,10 +82,20 @@ pasó a A1 (el 14/8, A1 tenía 56 marcados de 1.868). Las más marcadas son úti
 |---|---:|---:|---:|---:|---:|
 | `lemma-absence`, palabra de otro nivel | 337 | 185 | 225 | 1 | 748 |
 | El 077, nivel | 17 | 35 | 50 | 23 | 125 |
-| `off-level-words`, con R003 y R004 | 18 | 33 | 81 | 38 | 170 |
+| `off-level-words`, con R003 y R004 (30/9) | 18 | 33 | 81 | 38 | 170 |
+| `off-level-words`, con las lecturas de a. a f. y R003 y R004 ampliadas (1/10) | 9 | 25 | 42 | 19 | 95 |
 
 En A1 marca 11 palabras fuera del EVP y 9 de B1 o B2; en B1 y B2, casi todo es fuera del EVP. Umbral:
-[DOUBT-UMBRAL-DE-ERROR](#DOUBT-UMBRAL-DE-ERROR), que José resolvió el 30/9: dos niveles.
+[DOUBT-UMBRAL-DE-ERROR](#DOUBT-UMBRAL-DE-ERROR), que José resolvió el 30/9: dos niveles; esa parte sigue validada.
+
+**Las lecturas (1/10).** Un verificador independiente revisó 25 marcas fuera del examen y sólo 5 eran errores: el resto
+eran lecturas absurdas del lematizador (partied, hoped), compuestos y derivados transparentes, variantes americanas y
+préstamos, vocabulario que el tema enseña y metalenguaje del curso. Las lecturas a. a f. salen de reglas generales del
+inglés y de los datos del curso; la única lista cerrada es la de pares del inglés americano y británico. El compuesto pide
+sus dos partes del nivel o de antes porque hay compuestos opacos: «sideboard» (side A2, board A1) sigue siendo error en
+A1, como marcó el 077. El adverbio en -ly toma dos niveles más porque el EVP lo pone así sobre su adjetivo (nice A1 y
+nicely B2, bright A2 y brightly B2) y porque el 077 marcó los de A2 que no están en el EVP. Ninguna lectura sube un nivel
+ni marca una palabra que `lexis` no marque ([R001](#F-NIVFR-R001), invariante 3).
 
 </details>
 
@@ -84,23 +104,48 @@ En A1 marca 11 palabras fuera del EVP y 9 de B1 o B2; en B1 y B2, casi todo es f
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
 > Una palabra no cuenta en un ejercicio cuando su tema la enseña: 1. figura entre los términos en inglés del título del
-> tema, los que van entre `$`; o 2. es parte de la respuesta de al menos 3 ejercicios del tema y del 20 % o más de ellos.
+> tema, los que van entre `$`; o 2. es parte de la respuesta de al menos 3 ejercicios del tema y del 20 % o más de ellos;
+> o 3. la miniteoría de un ejercicio del tema la nombra sola entre `$` («$headphones$, $pants$ y $pajamas$ van siempre en
+> plural»): un término más largo, como «$a warranty for$», enseña la combinación y no la palabra; o 4. un sufijo que el
+> tema enseña entre `$`, en su título o sus miniteorías («Adjetivo + $-ly$», «$+ing$»), la forma desde una palabra del
+> nivel del ejercicio o de antes («nicely» en A1, por «nice»); o 5. es parte del nombre de un tema del curso, su propio
+> metalenguaje («modal» en «modal verbs», por «Modal Verbs»), sin los ejemplos que ese nombre cite entre `$`.
 > Sale de los datos del curso, nunca de una lista escrita a mano.
 
 Saca 9 ejercicios de A2 («$Invest time$ + gerundio»: invest es B2) y 28 de B1 («Orden o simultaneidad», con sequence y
 simultaneous como respuesta; «¿Con coma o sin coma?», con non-defining), y ninguno del 077. El semáforo usa la misma
-excepción ([F-SEMAF-R004](#F-SEMAF-R004)).
+excepción en 1 y 2 ([F-SEMAF-R004](#F-SEMAF-R004)); 3 a 5 son, por ahora, sólo de este analizador.
+
+<details><summary>Detalle: la miniteoría, el sufijo y el metalenguaje (1/10)</summary>
+
+En «Siempre plurales» las respuestas son «correct» y «not correct», así que 2 no encuentra las palabras del tema; la
+miniteoría sí: «$headphones$», «$pajamas$», «$couscous$», «$spaghetti$», «$veritable$», «$Apprehend$». Sólo cuenta el
+término de una palabra: «$a warranty for$» (A2) enseña la preposición, y el 077 marcó warranty como error; lo mismo
+«$an invoice for$», «$a knack for$». La teoría del tema, que también enseña palabras («Los más frecuentes: … tweezers»,
+«concur with: coincidir con»), no la lee content-audit: vive en `ittm/content/theory` y el ejercicio la nombra con un
+`theoryId` que el modelo auditable no trae; sumarla pide un parche ([decisiones](memory/decisions.md)). El sufijo:
+«Adverbios de modo» enseña «$-ly$» y saca nicely, sadly, warmly y beautifully en A1; «Doble consonante y e» enseña
+«$+ing$» y saca smoking. El metalenguaje: «modal verbs» en un ejercicio de B1, porque el curso tiene temas «Modal Verbs».
+
+</details>
 
 <a id="F-NIVFR-R004"></a>
 ### Rule[F-NIVFR-R004] - La palabra que la traducción repite no es error
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
 > Una palabra fuera del catálogo no cuenta cuando aparece igual, entera y sin tildes, en la [traducción](glossary:Traducción)
-> del ejercicio: un préstamo o un nombre que el alumno lee en castellano.
+> del ejercicio: un préstamo o un nombre que el alumno lee en castellano. Si no es un verbo, tampoco cuenta cuando la
+> traducción la trae adaptada a la ortografía del castellano, como se escriben los préstamos: igual una vez plegadas las
+> dos (ph y f, th y t, y e i, ou y u, una consonante por la doble, el «es» de «espaguetis», sin vocales finales ni
+> plural), o una el comienzo de la otra desde cinco letras («meteor», «meteoritos»), o, si es un sustantivo, con una
+> letra de diferencia («porcelain», «porcelana»); siempre desde la misma primera letra.
 
 Saca 19 ejercicios: «We make sushi and pizza.», «on a USB», «Is Emily walking?», tango, polo, paella, Frodo. Pierde uno
-del 077, «Do any of your relatives reside in Germany?», porque «reside» también es castellano. No es parecido de
-cognados: «adore» y «adoran» siguen marcando, como pidió el 077.
+del 077, «Do any of your relatives reside in Germany?», porque «reside» también es castellano. Un verbo no es préstamo:
+«adore» y «adoran» siguen marcando, como pidió el 077, y «reside» y «residimos» también. La adaptación (1/10) saca
+hamburger, limousine, pollen, spaghetti, triathlon, porcelain, ceramic, allergic, autograph, dynamite, doctorate y
+binoculars, y deja warranty («garantía» empieza con otra letra) y hydrated («hidratado» no es «hydrated» plegado), que
+el 077 marcó.
 
 ### Grupo B — Qué deja y qué no toca
 
@@ -126,7 +171,8 @@ múltiple, sobre la oración que mide `lemma-absence`.
 > Con y sin este analizador, `lemma-absence` da los mismos puntajes, diagnósticos y tareas en cada nodo, el puntaje de
 > vocabulario del curso sigue en 73,9 % y el plan en 4.036 tareas. El analizador no entra al promedio de vocabulario.
 
-Mantiene [F-HALL-R007](#F-HALL-R007), [F-HALL-R009](#F-HALL-R009) y [F-HALL-R013](#F-HALL-R013). Los 170 ya tienen tarea
+Mantiene [F-HALL-R007](#F-HALL-R007), [F-HALL-R009](#F-HALL-R009) y [F-HALL-R013](#F-HALL-R013). Los 170 del 30/9, y
+los 95 que quedan con las lecturas del 1/10, ya tienen tarea
 LEMMA_ABSENCE: el plan abre una en cada uno de los 950 ejercicios con alguna marca de `lemma-absence`. Quién corrige
 cuando los dos marcan la misma palabra: [DOUBT-TAREA-COMPARTIDA](#DOUBT-TAREA-COMPARTIDA), resuelta el 30/9: la tarea
 LEMMA_ABSENCE que ya existe. El plan no abre tarea de `off-level-words` y declara sus ejercicios con error como cubiertos
@@ -137,8 +183,9 @@ por esa tarea, nunca como descartados ([F-HALL-R004](#F-HALL-R004), invariante 3
 **Severity**: major | **Validation**: AUTO_VALIDATED
 
 > `off-level-words` figura en `get analyzers` con su ficha ([F-HALL-R006](#F-HALL-R006)): pregunta «¿Hay palabras que el
-> alumno de este nivel no puede conocer?»; lee la oración terminada, el título y las respuestas del tema y la traducción;
-> familia errores, evalúa el ejercicio, meta 0, resolución mesa, costo instantáneo.
+> alumno de este nivel no puede conocer?»; lee la oración terminada, el título, las respuestas y las miniteorías del tema,
+> los nombres de los temas del curso y la traducción; familia errores, evalúa el ejercicio, meta 0, resolución mesa,
+> costo instantáneo.
 
 ## Contexto
 
@@ -151,15 +198,19 @@ se ven por palabra: 9 son un sentido o una categoría que el EVP no distingue (s
 «fail to», «wish to», remain, locate); 5, un nivel curado o una forma derivada (labor A2, concerned, packed); 4, el
 tokenizador («implies'hope», singed → sing); y 1, la excepción de R004. Marca 25 que el 077 no tiene: a mi lectura, unos
 9 son reales (disorganized, smelly, takeout, bedtime) y el resto cognados o internacionales (ceramic, spaghetti) o
-adverbios del tema «Adverbios de modo» (nicely, sadly).
+adverbios del tema «Adverbios de modo» (nicely, sadly). Con las lecturas de R002 y R003 y R004 ampliadas (1/10) sigue en
+26 de 52, con 34 marcas en la parte y 8 fuera del oro (chopstick, smile, snail, stew, smoothie, doughnut, disorganized,
+brightly).
 
 **Cómo se mide.** Se corre `analyze` pidiendo sólo `off-level-words` sobre el curso del 29/9; cada ejercicio con un
-hallazgo suyo es una marca de la categoría «nivel» del examen, y `medir.py marcas.json --parte escribir --categoria
-nivel` tiene que dar 26 de 52. Reproducido el 30/9 con un prototipo sobre el análisis 2026-09-30T11-54-02: 26 de 52, con
-51 marcas dentro de la parte y 25 fuera del oro.
+hallazgo suyo es una marca de la categoría «nivel» del examen, y `medir.py <resumen del informe> --parte escribir
+--categoria nivel` da 26 de 52. Reproducido el 30/9 con un prototipo sobre el análisis 2026-09-30T11-54-02: 26 de 52, con
+51 marcas dentro de la parte y 25 fuera del oro. La precisión se mide a mano, sobre una muestra al azar (semilla 87) de
+30 marcas del curso fuera del oro de `escribir/` y fuera de las que ya revisó el verificador: el 1/10, 24 de 30 reales.
 
-**El lematizador compartido** (anotado, no se arregla en esta ronda): de los 170, uno es falso por él. En «We especially
-hoped to see the concert.» (B1) «hoped» queda como «hop», que es C1; con el verbo bien leído, «hope» es A2 y no es error.
+**El lematizador compartido** (no se arregla en esta ronda): «hoped» queda como «hop», C1, y «partied» como «partie»;
+desde el 1/10 la lectura absurda no dispara una marca (R002, lectura a.), pero el lema sigue mal en `lemma-absence` y en
+`lexis`: el arreglo de fondo es de la ronda 2.
 
 **Meta propuesta** en `examinar/` (B1 y B2, 73 casos): encontrar al menos 4 de cada 10, y que en la muestra de marcas
 nuevas al menos 6 de cada 10 sean reales. **Costo**: segundos, en la pasada de `lemma-absence`, sin modelo.
@@ -167,8 +218,10 @@ nuevas al menos 6 de cada 10 sean reales. **Costo**: segundos, en la pasada de `
 ## Alcance
 
 - **Adentro**: R001 a R007, sobre la oración terminada de cada ejercicio.
-- **Afuera**: el sentido de una palabra (juez de traducción y sentido, paquete C); la pista, las opciones incorrectas y
-  la miniteoría; el tipo de tarea (paquete E); cambiar `lemma-absence`, el catálogo o sus curaciones.
+- **Afuera**: el sentido de una palabra (juez de traducción y sentido, paquete C); buscar palabras de otro nivel en la
+  pista, las opciones incorrectas y la miniteoría (la miniteoría sí se lee para saber qué enseña el tema, R003); el tipo
+  de tarea (paquete E); cambiar `lemma-absence`, el catálogo o sus curaciones; la teoría del tema, que content-audit no
+  lee.
 
 ## User Journeys
 

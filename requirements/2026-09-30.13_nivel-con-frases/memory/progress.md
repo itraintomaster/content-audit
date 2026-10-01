@@ -4,6 +4,15 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer + analyst (paquete D, precisión) — Un verificador vio 5 reales en 25 marcas fuera del examen.
+  off-level-words suma lecturas regulares (R002 a–f), miniteoría, sufijo del tema y metalenguaje (R003 3–5) y el
+  préstamo adaptado (R004), todo en el cuerpo de OffLevelWordsAnalyzer y medido con el puntuador compartido.
+  Curso: 170 → 95 ejercicios (9 · 25 · 42 · 19), 175 → 97 palabras; escribir/nivel: 26 de 52 igual, con 34 marcas en la
+  parte y 8 fuera del oro (antes 51 y 25); muestra nueva de 30 (semilla 87, fuera del oro de escribir y de las 25 del
+  verificador), revisada a mano: 24 reales, 3 falsas (las tres las enseña la teoría del tema) y 3 dudosas. De las 25 del
+  verificador quedan 7: mop, plier, rake, mow, wax, lavender, toolbox. Vocabulario 73,92 % y 4.036 tareas igual (J001).
+  Next: la teoría del tema pide un parche (ver decisions); @qa-tester declara pruebas para las lecturas nuevas.
+
 2026-09-30 — developer + test-writer (paquete D) — FEAT-NIVFR construido: 39 pruebas sin @Disabled (37 + J001).
   off-level-words puntúa con el SentenceLexicalScorer compartido, cuenta dos niveles arriba (C1=5, C2=6) o fuera del
   EVP en la banda fuerte de LemmaAbsenceConfig, exceptúa lo que el tema enseña (DefaultTopicTeachingResolver) y lo
