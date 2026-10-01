@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): sin cambios de estructura. NearDuplicatesCorrection la suma TAREA; NEAR_DUPLICATES es tipo de tarea (F-RONDA2-R008); no entra en la corrida base por su regla de modelo local (F-RONDA2-R003, B-10).
+
 2026-09-30 — architect — Las dos rutas abren por `JudgeRuntime`: un vector por ejercicio, o un juicio por par
   (`SameExerciseQuestion`: los dos ejercicios de `QuizStudentViewRenderer`; veredicto {sameExercise, reason}). onKnowledge
   arma pares, comodín y pedidos; onCourseComplete resuelve todo junto y decide. Regla `same-exercise` (modelo pago),

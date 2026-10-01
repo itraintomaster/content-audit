@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): sin cambios de estructura. Lo compartido de B (tarjetas en la ficha, ranuras en QuizDiagnoses y CourseDiagnoses) va en FEAT-RONDA2; el tope por omisión según la ruta es F-RONDA2-R002; localtoolsengine recupera [audit-cli] en el paso de los allowedClients (B-23).
+
 2026-09-30 — architect — La alternativa usa el runtime de C sin duplicarlo: los dos de modelo abren SIEMPRE con
   `JudgeRuntime.open(nombre, [evaluador], política)` —local con `LocalToolGateDecision.localPolicy` (la de la corrida o, sin
   pedido, sin tope y de a una); claude -p con la política de la corrida, que sin pedido es tope 0—. El evaluador de claude -p

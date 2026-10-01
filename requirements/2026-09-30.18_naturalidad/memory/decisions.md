@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): sin cambios de estructura. naturalness no tiene tipo de tarea (sólo ordena, F-RONDA2-R008) y no entra en la corrida base (F-RONDA2-R003).
+
 2026-09-30 — architect — Las dos rutas abren por `JudgeRuntime` y resuelven en lote (onQuiz junta, onCourseComplete
   resuelve), como los jueces; el proveedor ya no recibe la fábrica de sesiones sino `judgeRuntime` y `alternativeJudge`.
   El contenido de claude -p es {system, question} de `NaturalnessConfig`: la misma pregunta por construcción. `number` pasa

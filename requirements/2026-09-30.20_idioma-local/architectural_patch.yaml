@@ -1,6 +1,21 @@
 code: FEAT-MLOCAL
-description: |
-  FEAT-MLOCAL, paquete B de la ronda 2: las herramientas de idioma que corren en la máquina, lo común a grammar, naturalness y near-duplicates, y la alternativa sin Ollama (José, 30/9 a la noche). En audit-domain, el paquete localtools (la herramienta, su versión y si se puede usar, los tres puertos —LanguageTool, pregunta de sí o no y vector de una oración—, la decisión de publicar con la política del modelo local, la tarjeta de la ficha —la local y la de claude -p— y lo que queda en el informe) y localtoolsengine (la decisión, con el examen que lee el runtime de los jueces de C). La alternativa no se declara acá: es un evaluador de claude -p hecho con AgentJudgeFactory (C) y abierto con JudgeRuntime (C), con su tope 0 sin pedido, sus 4 a la vez, su sesión verificada y su costo declarado. Un módulo nuevo, local-language-infrastructure, con LanguageTool 6.8 dentro del proceso y los modelos de Ollama detrás de una fábrica que sólo habla con esta máquina. Lo compartido (ficha, ranuras de diagnóstico, runner, Main, agentes) está en ganchos-B.md.
+description: "FEAT-MLOCAL, paquete B de la ronda 2: las herramientas de idioma que\
+  \ corren en la máquina, lo común a grammar, naturalness y near-duplicates, y la\
+  \ alternativa sin Ollama (José, 30/9 a la noche). En audit-domain, el paquete localtools\
+  \ (la herramienta, su versión y si se puede usar, los tres puertos —LanguageTool,\
+  \ pregunta de sí o no y vector de una oración—, la decisión de publicar con la polí\
+  tica del modelo local, la tarjeta de la ficha —la local y la de claude -p— y lo\
+  \ que queda en el informe) y localtoolsengine (la decisión, con el examen que lee\
+  \ el runtime de los jueces de C). La alternativa no se declara acá: es un evaluador\
+  \ de claude -p hecho con AgentJudgeFactory (C) y abierto con JudgeRuntime (C), con\
+  \ su tope 0 sin pedido, sus 4 a la vez, su sesión verificada y su costo declarado.\
+  \ Un módulo nuevo, local-language-infrastructure, con LanguageTool 6.8 dentro del\
+  \ proceso y los modelos de Ollama detrás de una fábrica que sólo habla con esta\
+  \ máquina. Lo compartido (ficha, ranuras de diagnóstico, runner, Main, agentes)\
+  \ está en ganchos-B.md. Rebasado por el integrador de la ronda 2 sobre el sentinel.yaml\
+  \ de ronda1/integracion (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2,\
+  \ que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E, sin cambios de\
+  \ estructura."
 modules:
 - name: audit-domain
   packages:

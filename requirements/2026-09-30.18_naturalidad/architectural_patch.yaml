@@ -1,6 +1,16 @@
 code: FEAT-NATUR
-description: |
-  FEAT-NATUR, paquete B de la ronda 2: el analizador naturalness. Le pregunta a llama3 8B en Ollama, por cada oración terminada, si un nativo la diría, guarda el número en el libro de evaluaciones con la versión del modelo, marca lo que pasa el umbral fijo de su nivel con un hallazgo que sólo ordena y publica la lista de cada nivel para los jueces. Sin Ollama le hace la misma pregunta a claude -p, un evaluador de los jueces de C, y marca su «no». Las dos rutas abren por el runtime de los jueces (JudgeRuntime): el modelo local sin tope ni pedido, claude -p con el tope 0 de los jueces. Usa YesNoModel y LocalToolGate de FEAT-MLOCAL, FinishedSentenceReader de FEAT-GRAMA y JudgeRuntime de FEAT-JEXAM: se aplica después de los tres.
+description: "FEAT-NATUR, paquete B de la ronda 2: el analizador naturalness. Le pregunta\
+  \ a llama3 8B en Ollama, por cada oración terminada, si un nativo la diría, guarda\
+  \ el número en el libro de evaluaciones con la versión del modelo, marca lo que\
+  \ pasa el umbral fijo de su nivel con un hallazgo que sólo ordena y publica la lista\
+  \ de cada nivel para los jueces. Sin Ollama le hace la misma pregunta a claude -p,\
+  \ un evaluador de los jueces de C, y marca su «no». Las dos rutas abren por el runtime\
+  \ de los jueces (JudgeRuntime): el modelo local sin tope ni pedido, claude -p con\
+  \ el tope 0 de los jueces. Usa YesNoModel y LocalToolGate de FEAT-MLOCAL, FinishedSentenceReader\
+  \ de FEAT-GRAMA y JudgeRuntime de FEAT-JEXAM: se aplica después de los tres. Rebasado\
+  \ por el integrador de la ronda 2 sobre el sentinel.yaml de ronda1/integracion (la\
+  \ ronda 1 aplicada y construida) y sobre FEAT-RONDA2, que se aplica antes; orden\
+  \ de la cadena: FEAT-RONDA2, B, F y E, sin cambios de estructura."
 modules:
 - name: audit-domain
   packages:

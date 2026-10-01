@@ -1,6 +1,13 @@
 code: FEAT-GRAMA
-description: |
-  FEAT-GRAMA, paquete B de la ronda 2: el analizador grammar. La oración terminada que lee (paquete finishedsentence, que también lee naturalness), el filtro de R002, el signo final de R003, la gravedad y la resolución de R004 y R005, su diagnóstico tipado y su proveedor con ficha. El puerto GrammarChecker, su adaptador de LanguageTool 6.8 y la dependencia son de FEAT-MLOCAL: este parche se aplica después del suyo.
+description: "FEAT-GRAMA, paquete B de la ronda 2: el analizador grammar. La oració\
+  n terminada que lee (paquete finishedsentence, que también lee naturalness), el\
+  \ filtro de R002, el signo final de R003, la gravedad y la resolución de R004 y\
+  \ R005, su diagnóstico tipado y su proveedor con ficha. El puerto GrammarChecker,\
+  \ su adaptador de LanguageTool 6.8 y la dependencia son de FEAT-MLOCAL: este parche\
+  \ se aplica después del suyo. Rebasado por el integrador de la ronda 2 sobre el\
+  \ sentinel.yaml de ronda1/integracion (la ronda 1 aplicada y construida) y sobre\
+  \ FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E, sin\
+  \ cambios de estructura."
 modules:
 - name: audit-domain
   packages:

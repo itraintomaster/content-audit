@@ -5,6 +5,8 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): sin cambios de estructura. GrammarCorrection y GrammarRuleFix, en grammar, los suman TAREA y TANDA (F-RONDA2-R009); GRAMMAR es tipo de tarea (F-RONDA2-R008, DOUBT-RONDA2-TAREAS-B con A).
+
 2026-09-30 — analyst — Verificados los dos números de B: 3 bloqueantes (…320a, …4009, …408e) con `arq-B2/bloqueantes.py`; el
   cuarto que da ese chequeo, …3529, es la lista «is / are» de la pista y SINGULAR_AGREEMENT_SENT_START, excluida. Y 17 «gone
   to» en `escribir/gramatica.json` (todos A2). El REQUIREMENT ya los tenía bien desde 884355c2; sin cambios.

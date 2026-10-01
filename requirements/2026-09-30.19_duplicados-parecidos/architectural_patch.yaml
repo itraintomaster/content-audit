@@ -1,6 +1,18 @@
 code: FEAT-DUPAR
-description: |
-  FEAT-DUPAR, paquete B de la ronda 2: el analizador near-duplicates. Dentro de cada tema junta los pares que piden la misma respuesta como el corrector y no son iguales tal cual, los marca por el comodín o por un parecido de 0,95 o más con nomic-embed-text en Ollama, y deja un hallazgo bajo, a la mesa, en cada copia. Sin Ollama, los pares que el comodín no resuelve y cambian como mucho 4 de cada 10 palabras los juzga claude -p, un evaluador de los jueces de C; el comodín corre siempre y lo que falta juzgar queda a medias. Las dos rutas abren por el runtime de los jueces (JudgeRuntime). Usa EmbeddingModel y LocalToolGate de FEAT-MLOCAL, y CorrectorMatcher (FEAT-RESPC), QuizStudentViewRenderer (gancho A-01) y JudgeRuntime (FEAT-JEXAM) de la ronda 1: se aplica después de FEAT-MLOCAL y de la integración de la ronda 1.
+description: "FEAT-DUPAR, paquete B de la ronda 2: el analizador near-duplicates.\
+  \ Dentro de cada tema junta los pares que piden la misma respuesta como el corrector\
+  \ y no son iguales tal cual, los marca por el comodín o por un parecido de 0,95\
+  \ o más con nomic-embed-text en Ollama, y deja un hallazgo bajo, a la mesa, en cada\
+  \ copia. Sin Ollama, los pares que el comodín no resuelve y cambian como mucho 4\
+  \ de cada 10 palabras los juzga claude -p, un evaluador de los jueces de C; el comodí\
+  n corre siempre y lo que falta juzgar queda a medias. Las dos rutas abren por el\
+  \ runtime de los jueces (JudgeRuntime). Usa EmbeddingModel y LocalToolGate de FEAT-MLOCAL,\
+  \ y CorrectorMatcher (FEAT-RESPC), QuizStudentViewRenderer (gancho A-01) y JudgeRuntime\
+  \ (FEAT-JEXAM) de la ronda 1: se aplica después de FEAT-MLOCAL y de la integració\
+  n de la ronda 1. Rebasado por el integrador de la ronda 2 sobre el sentinel.yaml\
+  \ de ronda1/integracion (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2,\
+  \ que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E, sin cambios de\
+  \ estructura."
 modules:
 - name: audit-domain
   packages:
