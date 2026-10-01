@@ -42,17 +42,13 @@ public class FileSystemBatchStore implements BatchStore {
 
     private final ObjectMapper mapper;
 
-    public FileSystemBatchStore() {
-        this(Path.of(System.getProperty("user.dir")));
-    }
-
-    public FileSystemBatchStore(Path baseDir) {
-        this.baseDir = baseDir;
-        this.mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-    }
+public FileSystemBatchStore(Path baseDir) {
+    this.baseDir = baseDir;
+    this.mapper = new ObjectMapper();
+    mapper.registerModule(new JavaTimeModule());
+    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+}
 
     @Override
     public synchronized void save(CorrectionBatch batch) {

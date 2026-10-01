@@ -38,18 +38,14 @@ public class FileSystemTrayDecisionStore implements TrayDecisionStore {
 
     private final ObjectMapper mapper;
 
-    public FileSystemTrayDecisionStore() {
-        this(Path.of(System.getProperty("user.dir")));
-    }
-
-    public FileSystemTrayDecisionStore(Path baseDir) {
-        this.baseDir = baseDir;
-        this.mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        mapper.disable(SerializationFeature.INDENT_OUTPUT);
-        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-    }
+public FileSystemTrayDecisionStore(Path baseDir) {
+    this.baseDir = baseDir;
+    this.mapper = new ObjectMapper();
+    mapper.registerModule(new JavaTimeModule());
+    mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    mapper.disable(SerializationFeature.INDENT_OUTPUT);
+    mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+}
 
     @Override
     public synchronized void remember(RememberedDecision decision) {

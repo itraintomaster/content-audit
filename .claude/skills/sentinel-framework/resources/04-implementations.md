@@ -2770,11 +2770,23 @@ public FileSystemBlindSampleStore(Path baseDir) {
 **Visibility:** internal
 **Implements:** BatchStore
 
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `baseDir` | `Path` |
+
 #### FileSystemTrayDecisionStore (package: traystore)
 
 **Package:** `com.learney.contentaudit.auditinfrastructure.traystore`
 **Visibility:** internal
 **Implements:** TrayDecisionStore
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `baseDir` | `Path` |
 
 ### Module: revision-domain
 
@@ -3576,6 +3588,13 @@ public FileSystemBlindSampleStore(Path baseDir) {
 **Package:** `com.learney.contentaudit.revisiondomain.panelengine`
 **Visibility:** internal
 **Implements:** QueryAllowance
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `cap` | `Integer` |
+| `queriesAtOnce` | `int` |
 
 #### DefaultBatchServiceFactory (package: batchengine)
 
