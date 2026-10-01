@@ -106,7 +106,12 @@ y porque la mesa revalida contra el ejercicio ya arreglado ([F-MESA-R002](#F-MES
 
 > Aplicadas las reglas, la tanda abre una mesa por cada tema del nivel con tareas de resolución *mesa*
 > ([F-MESA-R001](#F-MESA-R001)), con los temas y consultas a la vez elegidos ([F-MESA-R010](#F-MESA-R010)), y cada tarea
-> termina con un desenlace: resuelta, ya no se sostiene, sin ganador, desempate o sin intentar.
+> termina con un desenlace: resuelta, ya no se sostiene, sin ganador, desempate, sin alcance declarado o sin intentar.
+> Una tarea cuyo tipo no declara lo que su arreglo puede tocar no se intenta: queda «sin alcance declarado», sin
+> candidato ni intento gastado ([F-TAREA-R006](#F-TAREA-R006)).
+
+Es el desenlace que ya cuenta [F-TANDA-R010](#F-TANDA-R010); nombrarlo acá deja probar en la tanda la parte de
+[F-TAREA-R006](#F-TAREA-R006) que no se podía probar en FEAT-TAREA.
 
 <a id="F-TANDA-R006"></a>
 ### Rule[F-TANDA-R006] - Al cerrar, se recalcula el curso entero y se pasa la compuerta

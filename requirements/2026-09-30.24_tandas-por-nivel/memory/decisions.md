@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (como analista) — R005 nombra el desenlace «sin alcance declarado», que R010 ya contaba: una tarea cuyo
+  tipo no declara su alcance no se intenta (F-TAREA-R006). Decisión del orquestador del 1/10.
+  why: así la parte de F-TAREA-R006 que vive en la mesa se prueba en la tanda, con su regla, y no espera al apply.
+
 2026-10-01 — qa-tester — F-TANDA-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands` (2 caminos).
   why: sus pasos son batch open, estimate, run y close y el OK de tray publish; BatchCmd y TrayCmd son package-private ahí,
   como ExamCmd en F-JEXAM-J001, que es el molde del verbo.
