@@ -18,7 +18,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 import javax.annotation.processing.Generated;
 
@@ -128,7 +127,7 @@ class DefaultChangeGate implements ChangeGate {
             }
             SpokenText was = spokenBefore.get(quizId);
             List<String> now = list(entry.getValue().getTexts());
-            if (was != null && !Objects.equals(new ArrayList<>(list(was.getTexts())), new ArrayList<>(now))) {
+            if (was != null && !GateRules.heardAlike(list(was.getTexts()), now)) {
                 rerecords.add(new AudioRerecordRequest(quizId, entry.getValue().getAudioKey(), new ArrayList<>(now)));
                 requested.add(quizId + "\u0000" + entry.getValue().getAudioKey());
             }

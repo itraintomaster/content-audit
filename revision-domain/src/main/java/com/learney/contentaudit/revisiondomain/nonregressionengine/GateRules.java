@@ -3,6 +3,7 @@ package com.learney.contentaudit.revisiondomain.nonregressionengine;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -64,6 +65,30 @@ final class GateRules {
         String marker = finding != null && finding.getIdentity() != null ? finding.getIdentity().getMarker() : null;
         return finding != null && "data-coherence".equals(finding.getAnalyzer()) && marker != null
                 && (marker.equals(mark) || marker.startsWith(mark + " ("));
+    }
+
+    /**
+     * F-NOEMP-R004, inv. 1: what the audio says changes when the words heard change, not when only what is not heard
+     * does -- the capitals, the spaces, the shape of the apostrophe. A rule that capitalizes the options of a multiple
+     * choice («is he» → «Is he») leaves the sentence the audio says as it was, so it asks for no re-recording; in the
+     * control of 1/10 over the copy of 29/9 the recordings of 61 of those 62 exercises already said the capitalized text.
+     * A contraction, a word or a sign that ends the sentence are heard, and still ask for one.
+     */
+    static boolean heardAlike(List<String> before, List<String> after) {
+        if (before.size() != after.size()) {
+            return false;
+        }
+        for (int i = 0; i < before.size(); i++) {
+            if (!heard(before.get(i)).equals(heard(after.get(i)))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static String heard(String text) {
+        return text == null ? "" : text.replace('\u2019', '\'').replace('\u2018', '\'').replaceAll("\\s+", " ").trim()
+                .toLowerCase(Locale.ROOT);
     }
 
     static String identity(Finding finding) {
