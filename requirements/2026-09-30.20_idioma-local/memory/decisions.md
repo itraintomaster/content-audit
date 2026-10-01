@@ -5,6 +5,14 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — F-MLOCAL-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`: su paso es
+  `analyze` (AnalyzeCmd, package-private ahí) y lo recorren el runner, la compuerta, los adaptadores y el evaluador de
+  claude -p de C, que sólo audit-cli ve. Mismo criterio que F-JEXAM-J001 y F-HALL-J001.
+2026-10-01 — qa-tester — Lo común que realizan los tres analizadores se prueba en GRAMA, NATUR y DUPAR con sus propias
+  reglas: `patch propose` exige trazar a la feature del parche y esos parches se aplican después. Sin prueba propia: la
+  fila de cada corrida (R002 inv. 3, R003 inv. 3) y qué agrega o saca un candidato (R005, lo calcula la mesa de E).
+  why: duda de traza para el orquestador (OG1); se cierra con un parche de pruebas de MLOCAL después de aplicar los cuatro.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): sin cambios de estructura. Lo compartido de B (tarjetas en la ficha, ranuras en QuizDiagnoses y CourseDiagnoses) va en FEAT-RONDA2; el tope por omisión según la ruta es F-RONDA2-R002; localtoolsengine recupera [audit-cli] en el paso de los allowedClients (B-23).
 
 2026-09-30 — architect — La alternativa usa el runtime de C sin duplicarlo: los dos de modelo abren SIEMPRE con

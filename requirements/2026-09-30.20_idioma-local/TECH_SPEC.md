@@ -456,3 +456,69 @@ features:
   - id: FEAT-MLOCAL
     code: F-MLOCAL
 ```
+
+## Declarar las 32 pruebas y ubicar el journey
+
+Las 32 son nuevas: no hay pruebas previas de estas reglas que portar. Cada nombre lleva un caso real o un número del
+prototipo del analista, y cada una traza a una regla de FEAT-MLOCAL (R001 3, R002 6, R003 10, R004 2, R005 1, R006 8,
+R007 1, R008 1). Van en lo que trae este parche y en lo que ya existe y cambia por él:
+
+- **`DefaultLocalToolGate`** (15): el freno del examen con el registro de los jueces —aprobado, sin examen, reprobado,
+  la corrida de examen, otro `methodId` es otra versión, la alternativa rinde aparte—, la herramienta que falta con su
+  indicación de instalación, cuándo está disponible claude -p, la política sin tope del modelo local, las dos tarjetas
+  y que un candidato de la mesa se decide como el curso.
+- **Los adaptadores**: `LanguageToolGrammarChecker` con LanguageTool de verdad (lleva `herramienta-real`, como pide la
+  sección anterior) y su versión sin cargar reglas; `HttpOllamaApi` contra un `HttpServer` del JDK: ninguna conexión a
+  una dirección que no es de esta máquina ni con «off», la huella como versión, el modelo sin bajar y el sondeo de 2 s.
+- **Lo que ya existe**: el runner rechaza antes de cargar el curso sólo lo pedido por nombre sin herramienta ni
+  alternativa, y sin selección corre los tres (`DefaultAuditRunner`); `analyze` sale con error y sin informe
+  (`AnalyzeCmd`); `get analyzer` muestra las dos herramientas (`GetCmd`); el examen de la alternativa queda con su
+  versión (`DefaultJudgeExamService`); y el runtime de los jueces declara el costo sin tope y corta las consultas, no la
+  corrida, ante la primera falla de claude -p (`DefaultJudgeRuntime`).
+
+**Lo que se prueba en los otros tres parches.** `patch propose` exige que cada prueba trace a la feature de su propio
+parche, y GRAMA, NATUR y DUPAR se aplican después de éste. Lo común que realizan sus analizadores se prueba ahí, con sus
+reglas: con Ollama nunca consultan a claude -p y sin él preguntan lo mismo (R001 inv. 3 y R007 inv. 1 y 2, en
+F-NATUR-R008 y F-DUPAR-R008), el número guardado y reusado por versión (R002 inv. 2, en F-NATUR-R002 y F-DUPAR-R003), el
+«falta el tope» por analizador (R008, en F-NATUR-R008 y F-DUPAR-R008) y el examen de cada uno (R006, en F-GRAMA-R007,
+F-NATUR-R006 y F-DUPAR-R007). Quedan sin prueba propia la fila de cada corrida en el curso (R002 inv. 3 y R003 inv. 3),
+que escriben los analizadores y ninguna de sus reglas pide, y qué hallazgos agrega o saca un candidato (R005), que
+calcula la mesa de E: son dudas de traza para el orquestador.
+
+**El journey** va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: su paso es `analyze`, que entra por
+`AnalyzeCmd` (package-private ahí), y lo recorren el runner, la compuerta, los adaptadores de
+`local-language-infrastructure` y el evaluador de claude -p de C, que sólo `audit-cli` ve. Es el criterio de
+F-JEXAM-J001 y F-HALL-J001. `generate` crearía `FMlocalJ001JourneyTest` con 5 caminos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: localtoolsengine
+        _change: add
+        implementations:
+          - name: DefaultLocalToolGate
+            _change: add
+            handwrittenTests:
+              - name: "should publish in an EXAM run although the examined version has no approved exam, since that run is what the exam measures"
+                traceability: { feature: FEAT-MLOCAL, rule: F-MLOCAL-R006 }
+              - name: "should hand the local model a policy without limit and one consultation at a time when the run declares no budget for its analyzer"
+                traceability: { feature: FEAT-MLOCAL, rule: F-MLOCAL-R004 }
+  - name: local-language-infrastructure
+    _change: add
+    packages:
+      - name: ollama
+        _change: add
+        implementations:
+          - name: HttpOllamaApi
+            _change: add
+            handwrittenTests:
+              - name: "should open no connection and report the model not available, with the reason, when the Ollama address is not of this machine, as http://192.168.0.10:11434"
+                traceability: { feature: FEAT-MLOCAL, rule: F-MLOCAL-R001 }
+features:
+  - id: FEAT-MLOCAL
+    code: F-MLOCAL
+    journeys:
+      - { id: F-MLOCAL-J001, testModule: audit-cli, testPackage: com.learney.contentaudit.auditcli.commands }
+```

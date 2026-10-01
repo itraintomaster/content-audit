@@ -5,6 +5,10 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — El aviso «reglas sin prueba en el parche» de la simulación (TestCoverageValidator) cuenta
+  sólo pruebas declarativas, no handwrittenTests: la cobertura real la da `tool listModules --with-coverage --root
+  <modelo simulado>` (las 8 reglas [covered]).
+
 2026-09-30 — architect — `patch propose --replace -i <sentinel.yaml de ronda1/integracion>` no fusiona: domainLinks y
   glossarySuggestions quedan (comparado con `arq-B2/comparar.py`); sólo agrega `suppressed: false` en patterns.
   why: el bug 08 de Sentinel pierde domainLinks al fusionar; con --replace no hay fusión.

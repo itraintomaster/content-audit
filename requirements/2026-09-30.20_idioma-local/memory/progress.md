@@ -4,6 +4,12 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — 32 handwrittenTests nuevas, las 8 reglas [covered]; F-MLOCAL-J001 en audit-cli,
+  `com.learney.contentaudit.auditcli.commands` (5 caminos). `patch propose` con fusión (sin pérdidas), `tech-spec write`
+  (+1 fragmento) y `patch validate -i` contra el modelo con FEAT-RONDA2 (`integrador-2/sim/real/M01`): exit 0. Simulado
+  en memoria en `qa-B2/sim`. Sin aplicar.
+  Next: el integrador toma B desde el commit del qa-tester (`rebase.py`, ORIGEN["B"]) y rehace la cadena.
+
 2026-09-30 — architect — Parche y TECH_SPEC rebasados sobre `ronda1/integracion` con la alternativa: `patch propose
   --replace`, `tech-spec write --replace` (10 fragmentos) y `patch validate -i` contra su sentinel.yaml en exit 0; la cadena
   MLOCAL → GRAMA → NATUR → DUPAR simulada sobre ese modelo, válida. Ganchos nuevos B-21 a B-24 en ittm `…/ronda2/ganchos-B.md`.

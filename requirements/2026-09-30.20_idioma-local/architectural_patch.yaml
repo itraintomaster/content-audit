@@ -15,7 +15,12 @@ description: "FEAT-MLOCAL, paquete B de la ronda 2: las herramientas de idioma q
   \ está en ganchos-B.md. Rebasado por el integrador de la ronda 2 sobre el sentinel.yaml\
   \ de ronda1/integracion (la ronda 1 aplicada y construida) y sobre FEAT-RONDA2,\
   \ que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E, sin cambios de\
-  \ estructura."
+  \ estructura.; qa-tester de la ronda 2 (B): traza las 8 reglas de FEAT-MLOCAL a\
+  \ 32 handwrittenTests nuevas (no hay pruebas previas que portar), con casos reales\
+  \ del curso del 29/9 y los números de los prototipos del analista, y ubica F-MLOCAL-J001\
+  \ en audit-cli, paquete commands, como F-JEXAM-J001 y F-HALL-J001. Las reglas comunes\
+  \ que realizan los tres analizadores se prueban en sus parches, trazadas a sus propias\
+  \ reglas."
 modules:
 - name: audit-domain
   packages:
@@ -263,16 +268,135 @@ modules:
           \ standing(nombre del analizador, versión examinada) da el examen de la\
           \ herramienta local y el de la alternativa."
       visibility: public
+      handwrittenTests:
+      - name: "should publish with the local tool when its examined version, llama3:8b@365c0bd3c000\
+          \ · native-yes-no-1, has an approved exam in the judges' registry"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should not publish with a local tool whose examined version never took\
+          \ the exam, giving the judges' reason «sin examen», as LanguageTool 6.8\
+          \ with the filter of grammar before its exam is recorded"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should not publish with a local tool whose examined version failed\
+          \ its last exam, giving «reprobada» as the reason"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should publish in an EXAM run although the examined version has no\
+          \ approved exam, since that run is what the exam measures"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should take another methodId of the same model as a new examined version,\
+          \ so llama3:8b@365c0bd3c000 with another question does not publish on the\
+          \ exam of native-yes-no-1"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should read the exam of the claude -p alternative of naturalness apart\
+          \ from the exam of llama3, so an approved llama3 does not enable claude\
+          \ -p"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should not publish when the local tool is not available and give the\
+          \ reason with its install hint, «ollama pull nomic-embed-text» for near-duplicates\
+          \ without its model"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R003
+      - name: "should take the claude -p alternative as available when its evaluator\
+          \ states a version, even with the claude-cli session expired"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R003
+      - name: "should take the claude -p alternative as not available when its evaluator\
+          \ states no version, as a judge without version"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R003
+      - name: should hand the local model a policy without limit and one consultation
+          at a time when the run declares no budget for its analyzer
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R004
+      - name: "should name in the card of naturalness the tool «llama3:8b en Ollama»\
+          , its version llama3:8b@365c0bd3c000 and its examined version llama3:8b@365c0bd3c000\
+          \ · native-yes-no-1"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
+      - name: "should put in the card, next to the examined version, its exam state\
+          \ and its result in one line, «51 de 186 en la cola del 5 %, aprobado el\
+          \ 30/9», and no result when it never took the exam"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R006
+      - name: "should name in the alternative card of near-duplicates claude -p with\
+          \ the version of its judge, marked as the alternative and read without consulting\
+          \ it"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
+      - name: "should carry in the decision of a run the probed status of the tool\
+          \ and its examined version, so the report of the run names the tool and\
+          \ the version that measured"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
+      - name: "should decide for a run on a candidate of the mesa what it decides\
+          \ for the run on the course, the same tool, examined version and exam, so\
+          \ a candidate is read as an exercise of the course"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R005
       implements:
       - LocalToolGate
       _change: add
     allowedClients:
     - audit-cli
     _change: add
+  - name: judgingengine
+    implementations:
+    - name: DefaultJudgeRuntime
+      handwrittenTests:
+      - name: "should declare, for the claude -p alternative of naturalness opened\
+          \ without budget, how many consultations its pending sentences would cost\
+          \ and their hours one at a time and four at a time, consulting none"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R008
+      - name: should stop the consultations of the claude -p alternative of near-duplicates
+          at the first failure of the service and let the run finish
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R007
   _change: modify
 - name: audit-cli
   dependsOn:
   - local-language-infrastructure
+  packages:
+  - name: commands
+    implementations:
+    - name: AnalyzeCmd
+      handwrittenTests:
+      - name: "should print what is missing and how to install it, exit non-zero and\
+          \ save no analysis when asked to run naturalness without Ollama nor claude\
+          \ -p"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R003
+    - name: GetCmd
+      handwrittenTests:
+      - name: "should show in get analyzer naturalness its two tools, llama3:8b in\
+          \ Ollama and claude -p, each with its version, whether it is available and\
+          \ its exam"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
   _change: modify
 - name: local-language-infrastructure
   description: |
@@ -320,6 +444,18 @@ modules:
     implementations:
     - name: LanguageToolGrammarChecker
       visibility: public
+      handwrittenTests:
+      - name: "should check «Ana was teached a lesson by my brother.» with the real\
+          \ LanguageTool 6.8 inside the process and without network, marking «teached»\
+          \ in American and in British English"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R001
+      - name: "should state LanguageTool and the version of its library, 6.8, without\
+          \ creating a checker nor loading a rule"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
       implements:
       - GrammarChecker
       _change: add
@@ -358,6 +494,32 @@ modules:
       requiresInject:
       - name: endpoint
         type: OllamaEndpoint
+      handwrittenTests:
+      - name: "should open no connection and report the model not available, with\
+          \ the reason, when the Ollama address is not of this machine, as http://192.168.0.10:11434"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R001
+      - name: should open no connection and report the local models not available
+          when the Ollama address is «off»
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R001
+      - name: "should read in /api/tags that llama3:8b is pulled and give as its version\
+          \ the model with its digest, llama3:8b@365c0bd3c000"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
+      - name: should report llama3:8b not available with «ollama pull llama3:8b» when
+          Ollama answers but the model is not pulled
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R003
+      - name: should report Ollama not available within 2 seconds when nothing answers
+          at 127.0.0.1:11434
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R003
       implements:
       - OllamaApi
       _change: add
@@ -381,9 +543,53 @@ modules:
       _change: add
     _change: add
   _change: add
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    handwrittenTests:
+    - name: "should reject before loading the course a run that asks for naturalness\
+        \ by name when neither llama3:8b in Ollama nor claude -p is available, with\
+        \ «Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is\
+        \ not available: ollama pull llama3:8b.»"
+      traceability:
+        feature: FEAT-MLOCAL
+        rule: F-MLOCAL-R003
+    - name: "should reject before loading the course a run that asks for grammar by\
+        \ name when LanguageTool is not available, since grammar has no alternative"
+      traceability:
+        feature: FEAT-MLOCAL
+        rule: F-MLOCAL-R003
+    - name: should not reject a run that asks for near-duplicates by name without
+        Ollama when the claude -p alternative is available
+      traceability:
+        feature: FEAT-MLOCAL
+        rule: F-MLOCAL-R003
+    - name: "should not reject a run without selection when LanguageTool is not available,\
+        \ leaving every exercise unevaluated by grammar with the reason in view while\
+        \ the other analyzers run"
+      traceability:
+        feature: FEAT-MLOCAL
+        rule: F-MLOCAL-R003
+    - name: "should run grammar, naturalness and near-duplicates in an analyze without\
+        \ selection"
+      traceability:
+        feature: FEAT-MLOCAL
+        rule: F-MLOCAL-R004
+  - name: DefaultJudgeExamService
+    handwrittenTests:
+    - name: "should record the exam that naturalness takes without its local model\
+        \ under the version of claude -p, leaving the version of llama3 without exam"
+      traceability:
+        feature: FEAT-MLOCAL
+        rule: F-MLOCAL-R006
 features:
 - id: FEAT-MLOCAL
   code: F-MLOCAL
+  journeys:
+  - id: F-MLOCAL-J001
+    validation: AUTO_VALIDATED
+    testModule: audit-cli
+    testPackage: com.learney.contentaudit.auditcli.commands
 dependencies:
 - alias: languagetool
   artifact: org.languagetool:language-en:6.8
