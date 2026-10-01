@@ -195,9 +195,9 @@ modules:
       visibility: public
       handwrittenTests:
       - name: "should let a rule fix of data-coherence touch the stored sentence and\
-          \ the «/» of the answers, and a panel fix also ask to rerecord the audio,\
-          \ as for «This idea ___ (not / sound) very good.» whose audio says «This\
-          \ idea does not sound very good.»"
+          \ the «/» of the answers or only ask to rerecord the audio with what the\
+          \ exercise says today, and a panel fix also the statement and the answers,\
+          \ with the audio following the exercise"
         traceability:
           feature: FEAT-TAREA
           rule: F-TAREA-R006

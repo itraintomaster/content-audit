@@ -5,6 +5,9 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — Lo que esperaba al apply de R006 («un tipo sin declaración nunca se intenta», en DefaultTopicPanel)
+  ya no espera: F-TANDA-R005 nombra ese desenlace (orquestador, 1/10) y la prueba va en TANDA.
+
 2026-10-01 — qa-tester — F-TAREA-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands` (3 caminos).
   why: sus pasos son plan, get tasks y get task; PlanCmd y GetCmd son package-private ahí, como F-HALL-J001 y F-JEXAM-J001.
 2026-10-01 — qa-tester — Pruebas sólo sobre lo que existe al aplicar este parche. Se prueban en su feature, con su regla:

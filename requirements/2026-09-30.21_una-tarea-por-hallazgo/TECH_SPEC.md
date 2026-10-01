@@ -402,9 +402,11 @@ tareas de vocabulario del 29/9, iguales una por una.
 tiene regla: no lleva prueba. Las declaraciones de `grammar` y `near-duplicates` son de F-RONDA2-R009 y esperan al apply,
 como dejó el integrador. Tres partes de reglas de este parche las cumplen piezas de parches posteriores y se prueban allí
 con su propia regla: lo que cubre una tarea se da por resuelto en la tanda (F-TANDA-R006, inv. 2), el desacuerdo de los
-jueces aparece en la bandeja (F-BANDEJA-R002) y la mesa recibe el mismo detalle (F-MESA-R003). Una sola queda sin regla
-propia donde vive: que un tipo sin declaración «nunca se intenta» lo cumple `DefaultTopicPanel`, que crea FEAT-MESA; su
-prueba, trazada a F-TAREA-R006, va después de aplicar.
+jueces aparece en la bandeja (F-BANDEJA-R002) y la mesa recibe el mismo detalle (F-MESA-R003). La cuarta, que un tipo
+sin declaración «nunca se intenta», la cumple `DefaultTopicPanel`, que crea FEAT-MESA: desde el 1/10 se prueba en la
+tanda con F-TANDA-R005, que nombra ese desenlace. Y desde ese día la declaración de `data-coherence` deja que su arreglo
+por regla sea sólo un pedido de regrabar el audio con lo que el ejercicio dice (el audio sigue al ejercicio,
+F-NOEMP-R004 y F-TANDA-R004): su prueba lo dice.
 
 **El journey** va a `audit-cli`, en `com.learney.contentaudit.auditcli.commands`: sus pasos son `plan`, `get tasks` y
 `get task`, y `PlanCmd` y `GetCmd` son package-private ahí, como en F-HALL-J001 y F-JEXAM-J001. `generate` crearía

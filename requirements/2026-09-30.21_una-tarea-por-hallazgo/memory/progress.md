@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — Segunda vuelta (orquestador, 1/10): la prueba de la declaración de data-coherence ahora dice que su
+  arreglo por regla puede ser sólo un pedido de regrabar (el audio sigue al ejercicio); `propose --replace` desde lo
+  commiteado, comparado con la copia de antes (sólo ese nombre cambia), `tech-spec write` y `validate -i` contra M09:
+  exit 0, 0 conflictos. Sigue en 49 pruebas.
+
 2026-10-01 — qa-tester — `patch propose` (fusión con el parche rebasado): 49 handwrittenTests (R001 6, R002 3, R003 4,
   R004 4, R005 2, R006 16, R007 3, R008 5, R009 6) y F-TAREA-J001 en audit-cli, paquete commands. Copia antes del propose y
   comparada después: nada perdido. `tech-spec write` (+1 fence) y `patch validate -i` contra M09 del integrador y contra la
