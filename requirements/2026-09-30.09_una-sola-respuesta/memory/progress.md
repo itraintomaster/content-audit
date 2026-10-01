@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (C) — Implementado en `ronda1/impl-jueces-unica` (desde e0ad1746): proveedor, analizador (junta CLOZE, plan + resolveAll + cobertura común), clasificador, constructor del sujeto y `DefaultSingleAnswerConfig`. 31 pruebas encendidas y en verde (clasificador 11, sujeto 3, analizador 8, proveedor 4, J001 4, config 1), sin ninguna consulta paga; `mvn -o test` completo en verde: 1.894 pasan, 476 apagadas, VERIFY OK.
+  Next: el lector Jackson (otro equipo), el `CorrectorMatcher` real (paquete A) y descomentar la línea 16 de `Main` al integrar.
+
 2026-09-30 — qa-tester — `patch propose` exit 0 (5 altas, 3 cambios); `tech-spec write` exit 0 (+1 fragmento). 28 handwrittenTests nuevas, las 7 reglas [covered]; F-UNICA-J001 en audit-domain, paquete singleanswerengine (4 caminos). Simulado en memoria sobre hoy, sobre 0.2 + 0.3 y sobre 0.2 + 0.3 + A (scratchpad qa-C/sim, sin apply ni generate): las 202 pruebas de C aterrizan, 0 errores de traza, 0 choques de nombre, 36 clases nuevas. No aplicado.
   Next: José aplica sin --as (el parche lleva la estructura del arquitecto), después de 0.2 y 0.3 y con FEAT-JEXAM antes que TRSEN, UNICA, MINIT y MCVALE; feature sync; generate; @test-writer.
 
