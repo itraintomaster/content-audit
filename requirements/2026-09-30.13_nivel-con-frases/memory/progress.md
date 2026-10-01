@@ -4,6 +4,16 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 (noche) — developer + analyst (paquete D) — El orquestador aprobó el parche de la forma derivada y
+  decidió que el sufijo del tema cubre la palabra que el EVP trae (92bf8a21): nicely, sadly, warmly, beautifully y
+  smoking dejan de marcar. Curso: 99 (9 · 27 · 43 · 20), y no 100: rewarding (C1) está en «-ed vs -ing», que enseña
+  $-ing$, así que el mismo criterio la cubre; con o sin el parche son las mismas 99 marcas. Respecto de las 95 vuelven
+  allergic, ceramic, recess y diligently, las 4 reales; escribir/nivel 26 de 52, 36 en la parte, 10 fuera del oro.
+  Revisión a mano de las 43 marcas fuera del oro que nadie había visto: 38 reales y 5 dudosas; con la muestra
+  anterior, 62 de 73 (85 %). La línea principal pasa a ronda2/integracion: el parche se valida contra su sentinel.yaml.
+  Next: el orquestador junta la rama en ronda2/integracion, aplica y genera; después, lookupDerivedFormLevel en
+  FileSystemEvpCatalog, su uso en el analizador (impl-D2/proto-v2/aplicar.py) y las pruebas declaradas.
+
 2026-10-01 (tarde) — developer + analyst + architect (paquete D, segunda corrección) — Medidas por el orquestador
   contra examinar/, las lecturas perdían casos reales: la base pisaba el nivel propio de la palabra. Sus tres reglas,
   en el cuerpo de OffLevelWordsAnalyzer (3595f477): el sufijo del tema, el par británico, el compuesto y el derivado

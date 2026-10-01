@@ -5,6 +5,13 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — orquestador — El sufijo que el tema enseña cubre también la palabra que el EVP trae con su nivel:
+  cuando el tema enseña justamente a formarla, usarla es el ejercicio, y la excepción del tema gana. La base, la parte
+  y el par británico siguen valiendo sólo para la palabra que el catálogo no trae. Parche de la forma derivada: sí.
+  why: es la misma regla de fondo (el nivel propio del EVP) y no mueve el vocabulario; los 4 adverbios eran el tema.
+2026-10-01 — orquestador — Desde ahora la línea principal es ronda2/integracion (tiene la ronda 1 entera y la ronda 2
+  aplicada): los parches se validan contra su sentinel.yaml y las ramas se juntan ahí.
+
 2026-10-01 — orquestador — El nivel propio del catálogo gana: la base, la parte, el sufijo del tema y el par británico
   valen sólo para la palabra que el catálogo no trae; el préstamo, sólo sustantivos, y no si el EVP la trae en un nivel
   alto; el par americano, sólo misma palabra con otra grafía o sinónimo exacto de uso común.
@@ -24,9 +31,9 @@ should not re-litigate. Newest entries on top.
 2026-10-01 — architect (paquete D) — Una sola propuesta activa por carpeta: el parche de la teoría (en espera hasta
   después de la ronda 2) pasó a en-espera/, con su TECH_SPEC, para que el de la forma derivada no se fusione con él.
   why: propose fusiona con el architectural_patch.yaml que haya, y tech-spec valida contra ése.
-2026-10-01 — developer (paquete D) — nicely, sadly, warmly y beautifully vuelven en A1 por la regla del nivel propio
+2026-10-01 — developer (paquete D) — nicely, sadly, warmly y beautifully volvían en A1 por la regla del nivel propio
   (EVP B1 y B2), aunque «Adverbios de modo» enseña -ly sobre su adjetivo y el 077 no las marcó: dudosas en la revisión.
-  why: el sufijo del tema toma el nivel de la base; que cubra una palabra que el EVP trae lo decide el orquestador.
+  why: el sufijo del tema toma el nivel de la base. (Resuelto por el orquestador: el sufijo del tema las cubre.)
 
 2026-10-01 — developer (paquete D) — Toda lectura nueva se mide con el SentenceLexicalScorer compartido sobre un token
   suelto (sin puerto nuevo): el nivel de la lectura es el que daría lemma-absence, con su repliegue por lema (R036).
