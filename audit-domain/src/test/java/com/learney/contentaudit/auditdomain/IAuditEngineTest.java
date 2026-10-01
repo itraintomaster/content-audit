@@ -623,7 +623,7 @@ public class IAuditEngineTest {
         AnalyzerDescriptor card = new AnalyzerDescriptor("pista-coherente", "Checks the hint", AuditTarget.QUIZ, "¿La pista coincide?",
                 "La pista y la respuesta", List.of(new AnalyzerRuleCard("hint-matches", "La pista coincide", AnalysisCost.INSTANT)),
                 "Ninguna pista incoherente", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
-                List.of(FindingResolution.RULE), AnalysisCost.INSTANT, "pista-coherente");
+                List.of(FindingResolution.RULE), AnalysisCost.INSTANT, "pista-coherente", java.util.List.of());
         AnalyzerProvider fixable = scriptedProvider(card, (node, drafts) -> {
             node.getScores().put("pista-coherente", "q1".equals(node.getEntity().getId()) ? 0.0 : 1.0);
             if ("q1".equals(node.getEntity().getId())) {
@@ -671,7 +671,7 @@ public class IAuditEngineTest {
                 "-", judge ? com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.ERRORS
                         : com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily.VOCABULARY,
                 java.util.List.of(target), java.util.List.of(com.learney.contentaudit.auditdomain.finding.FindingResolution.PANEL),
-                cost, analyzer.getName());
+                cost, analyzer.getName(), java.util.List.of());
         return new com.learney.contentaudit.auditdomain.AnalyzerProvider() {
             @Override
             public String analyzerName() {

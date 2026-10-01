@@ -83,7 +83,7 @@ public class FRevaprJ002JourneyTest {
     private RefinementPlan buildPlan() {
         RefinementTask task = new RefinementTask(
                 TASK_ID, AuditTarget.QUIZ, QUIZ_ID, "Quiz about sentence length",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         return new RefinementPlan(PLAN_ID, AUDIT_ID, Instant.now(), List.of(task));
     }
 

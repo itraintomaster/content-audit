@@ -434,7 +434,7 @@ public class PlanCmdTest {
                         "Animals Quiz",
                         com.learney.contentaudit.refinerdomain.DiagnosisKind.LEMMA_ABSENCE,
                         1,
-                        com.learney.contentaudit.refinerdomain.RefinementTaskStatus.PENDING);
+                        com.learney.contentaudit.refinerdomain.RefinementTaskStatus.PENDING, null);
 
         RefinementPlan planWithLemmaAbsence = new RefinementPlan(
                 "plan-slem-r008", auditId, java.time.Instant.now(), List.of(lemmaAbsenceTask));
@@ -472,7 +472,7 @@ public class PlanCmdTest {
         when(store.load("2026-09-30T11-54-02")).thenReturn(Optional.of(report));
         RefinementPlanStore plans = mock(RefinementPlanStore.class);
         when(plans.save(any())).thenReturn("plan-2026-09-30");
-        PlanCmd plan = new PlanCmd(store, new DefaultRefinerEngine(catalog), plans, mock(EphemeralPlanRenderer.class));
+        PlanCmd plan = new PlanCmd(store, new DefaultRefinerEngine(catalog, null), plans, mock(EphemeralPlanRenderer.class));
 
         Base299.Captured run = Base299.run(plan, "--audit", "2026-09-30T11-54-02");
 

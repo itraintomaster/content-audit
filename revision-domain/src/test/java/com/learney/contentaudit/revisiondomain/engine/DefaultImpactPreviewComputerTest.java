@@ -54,7 +54,7 @@ public class DefaultImpactPreviewComputerTest {
     @Mock private AuditReportStore auditReportStore;
 
     private ImpactPreviewComputer buildComputer() {
-        return new DefaultImpactPreviewComputer(courseMapper, auditEngine, elementLocator, auditReportStore);
+        return new DefaultImpactPreviewComputer(courseMapper, auditEngine, elementLocator, auditReportStore, null, null);
     }
 
     /**

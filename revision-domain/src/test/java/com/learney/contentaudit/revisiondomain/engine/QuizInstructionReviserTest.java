@@ -80,7 +80,7 @@ public class QuizInstructionReviserTest {
     private static RefinementTask buildTask() {
         return new RefinementTask(TASK_ID, AuditTarget.QUIZ, QUIZ_ID,
                 "Present Simple Third Person Singular", DiagnosisKind.QUIZ_INSTRUCTION, 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     private static QuizInstructionCorrectionContext buildContext() {

@@ -247,7 +247,7 @@ public class FLapsJ001JourneyTest {
     private RefinementPlan buildPlan() {
         RefinementTask task = new RefinementTask(
                 TASK_ID, AuditTarget.QUIZ, QUIZ_ID, "Quiz about advanced topics",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
         return new RefinementPlan(PLAN_ID, AUDIT_ID, Instant.now(), List.of(task));
     }
 

@@ -81,7 +81,7 @@ public class FRevaprJ003JourneyTest {
     private RefinementPlan buildPlan(String planId, String taskId) {
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, "quiz-001", "Quiz about verbs",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         return new RefinementPlan(planId, "audit-001", Instant.now(), List.of(task));
     }
 

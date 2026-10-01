@@ -85,7 +85,7 @@ public class ReviseCmdTest {
                 "Sample Quiz",
                 DiagnosisKind.SENTENCE_LENGTH,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
     }
 
@@ -507,7 +507,7 @@ public class ReviseCmdTest {
                 "Animals Quiz — LEMMA_ABSENCE",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
 
         RefinementPlan latestPlan = plan(planId, "audit-slem-r009", List.of(lemmaAbsenceTask));

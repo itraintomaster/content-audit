@@ -124,7 +124,7 @@ public class DefaultRevisionEngineTest {
     }
 
     private static RefinementTask task(String id, String nodeId, DiagnosisKind kind) {
-        return new RefinementTask(id, AuditTarget.QUIZ, nodeId, "Be", kind, 1, RefinementTaskStatus.PENDING);
+        return new RefinementTask(id, AuditTarget.QUIZ, nodeId, "Be", kind, 1, RefinementTaskStatus.PENDING, null);
     }
 
     private DefaultRevisionEngine buildEngine() {
@@ -157,7 +157,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about verbs",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -211,7 +211,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about adjectives",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -265,7 +265,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about nouns",
-                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -329,7 +329,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about prepositions",
-                DiagnosisKind.SENTENCE_LENGTH, 3, RefinementTaskStatus.PENDING
+                DiagnosisKind.SENTENCE_LENGTH, 3, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -384,7 +384,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about tenses",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -442,7 +442,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about conditionals",
-                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -505,7 +505,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about modals",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -545,7 +545,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about lemma absence",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -610,7 +610,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about lemma absence B",
-                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -676,7 +676,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about lemma absence R010",
-                DiagnosisKind.LEMMA_ABSENCE, 3, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 3, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -759,7 +759,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about lemma absence override",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -824,7 +824,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz zero derivation",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -887,7 +887,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz identity mismatch",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -932,7 +932,7 @@ public class DefaultRevisionEngineTest {
         // COCA_BUCKETS falls to the bypass — no context contract
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz COCA_BUCKETS no context",
-                DiagnosisKind.COCA_BUCKETS, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.COCA_BUCKETS, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -976,7 +976,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask persistedTask = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz persisted task",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(persistedTask));
 
@@ -1042,7 +1042,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz human approval with override",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -1111,7 +1111,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz auditability override",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -1176,7 +1176,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz auditability derived",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -1237,7 +1237,7 @@ public class DefaultRevisionEngineTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.KNOWLEDGE, nodeId, "Present Simple knowledge",
-                DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 

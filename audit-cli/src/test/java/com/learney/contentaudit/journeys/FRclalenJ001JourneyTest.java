@@ -175,7 +175,7 @@ public class FRclalenJ001JourneyTest {
         String quizId = "quiz-014";
         RefinementTask task = new RefinementTask(
                 "task-014", AuditTarget.QUIZ, quizId, "Quiz 14 - L1.T2.K3",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Step: construir_contexto_base (gate F-RCLA) — quiz has LemmaPlacementDiagnosis
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
@@ -239,7 +239,7 @@ public class FRclalenJ001JourneyTest {
         String quizId = "quiz-015";
         RefinementTask task = new RefinementTask(
                 "task-015", AuditTarget.QUIZ, quizId, "Quiz 15 - L1.T2.K3",
-                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING, null);
 
         // Step: construir_contexto_base — quiz has LemmaPlacementDiagnosis
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
@@ -293,7 +293,7 @@ public class FRclalenJ001JourneyTest {
         String quizId = "quiz-016";
         RefinementTask task = new RefinementTask(
                 "task-016", AuditTarget.QUIZ, quizId, "Quiz 16 - L1.T2.K3",
-                DiagnosisKind.LEMMA_ABSENCE, 3, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 3, RefinementTaskStatus.PENDING, null);
 
         // Step: construir_contexto_base — quiz has LemmaPlacementDiagnosis
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();
@@ -346,7 +346,7 @@ public class FRclalenJ001JourneyTest {
         String quizId = "quiz-017";
         RefinementTask task = new RefinementTask(
                 "task-017", AuditTarget.QUIZ, quizId, "Quiz 17 - L1.T2.K3",
-                DiagnosisKind.LEMMA_ABSENCE, 4, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 4, RefinementTaskStatus.PENDING, null);
 
         // Step: construir_contexto_base — quiz has LemmaPlacementDiagnosis only
         DefaultQuizDiagnoses quizDiagnoses = new DefaultQuizDiagnoses();

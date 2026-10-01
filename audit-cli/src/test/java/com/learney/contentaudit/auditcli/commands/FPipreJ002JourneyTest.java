@@ -72,7 +72,7 @@ public class FPipreJ002JourneyTest {
     void setUp() throws Exception {
         SuggestedLemmaQueryPort suggestedLemmaQueryPort = mock(SuggestedLemmaQueryPort.class);
         cmd = new GetCmd(auditReportStore, refinementPlanStore, analyzerRegistry,
-                correctionContextResolver, null, null, null, suggestedLemmaQueryPort, null, null, null);
+                correctionContextResolver, null, null, null, suggestedLemmaQueryPort, null, null, null, null);
         cmd.setRevisionArtifactStore(revisionArtifactStore);
         try {
             Method setImpactPreviewStore = GetCmd.class.getDeclaredMethod(
@@ -132,7 +132,7 @@ public class FPipreJ002JourneyTest {
         // Act
         GetTasksFilter noFilter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outBuf));
@@ -194,7 +194,7 @@ public class FPipreJ002JourneyTest {
         // Act
         GetTasksFilter noFilter = new GetTasksFilter(
                 Optional.empty(), Optional.empty(), false,
-                Optional.empty(), Optional.empty(), Optional.empty());
+                Optional.empty(), Optional.empty(), Optional.empty(), null);
         ByteArrayOutputStream outBuf = new ByteArrayOutputStream();
         PrintStream originalOut = System.out;
         System.setOut(new PrintStream(outBuf));

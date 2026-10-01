@@ -50,7 +50,7 @@ public class BoundSuggestedLemmaQuerySessionTest {
                 "Quiz label",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
 
         SuggestedLemmaQueryPort queryPort = Mockito.mock(SuggestedLemmaQueryPort.class);
 

@@ -116,7 +116,7 @@ public class FRclaJ002JourneyTest {
         AuditReport report = new AuditReport(courseNode);
 
         // Step: verificar_tareas (gate F-RCLA-R001) — run the refiner engine
-        DefaultRefinerEngine engine = new DefaultRefinerEngine(realCatalog());
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(realCatalog(), null);
         RefinementPlan plan = engine.plan(report, "audit-j002-001");
 
         // Assert: LEMMA_ABSENCE tasks exist and all target QUIZ (re-routing applied)

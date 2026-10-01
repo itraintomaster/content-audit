@@ -39,7 +39,7 @@ public class DeleteCmdTest {
 
     @BeforeEach
     void setUp() {
-        cmd = new DeleteCmd(auditReportStore, refinementPlanStore);
+        cmd = new DeleteCmd(auditReportStore, refinementPlanStore, null, null);
     }
 
     // -------------------------------------------------------------------------

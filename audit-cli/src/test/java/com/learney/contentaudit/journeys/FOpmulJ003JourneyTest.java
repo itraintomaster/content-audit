@@ -247,9 +247,9 @@ public class FOpmulJ003JourneyTest {
         RefinementPlanStore planStore = mock(RefinementPlanStore.class);
         when(planStore.load(PLAN_ID)).thenReturn(Optional.of(new RefinementPlan(PLAN_ID, AUDIT_ID, Instant.now(),
                 List.of(new RefinementTask("t-cloze", AuditTarget.QUIZ, CLOZE_ID, "Be", DiagnosisKind.LEMMA_ABSENCE,
-                                1, RefinementTaskStatus.PENDING),
+                                1, RefinementTaskStatus.PENDING, null),
                         new RefinementTask("t-label", AuditTarget.KNOWLEDGE, KNOWLEDGE_ID, "Be",
-                                DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, 1, RefinementTaskStatus.PENDING)))));
+                                DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, 1, RefinementTaskStatus.PENDING, null)))));
         RevisionEngineConfig config = new RevisionEngineConfig();
         config.setArtifactStore(artifactStore);
         config.setCourseRepository(repository);

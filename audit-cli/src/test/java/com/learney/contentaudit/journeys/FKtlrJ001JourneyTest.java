@@ -152,7 +152,7 @@ public class FKtlrJ001JourneyTest {
     private RefinementPlan buildPlan() {
         RefinementTask task = new RefinementTask(
                 TASK_ID, AuditTarget.KNOWLEDGE, KNOWLEDGE_ID, "Present Simple knowledge",
-                DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, 1, RefinementTaskStatus.PENDING, null);
         return new RefinementPlan(PLAN_ID, AUDIT_ID, Instant.now(), List.of(task));
     }
 

@@ -74,7 +74,7 @@ public class KnowledgeTitleContextResolverTest {
                 "Knowledge label",
                 DiagnosisKind.KNOWLEDGE_TITLE_LENGTH,
                 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     @Test

@@ -57,12 +57,12 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
     private static final Path COURSE_PATH = Path.of("db/english-course");
 
     private static RefinementTask task(String id, String nodeId, DiagnosisKind kind) {
-        return new RefinementTask(id, AuditTarget.QUIZ, nodeId, "Be", kind, 1, RefinementTaskStatus.PENDING);
+        return new RefinementTask(id, AuditTarget.QUIZ, nodeId, "Be", kind, 1, RefinementTaskStatus.PENDING, null);
     }
 
     private static RefinementTask task(String id, int priority, DiagnosisKind kind) {
         return new RefinementTask(id, AuditTarget.QUIZ, "quiz-" + id, "Quiz " + id, kind, priority,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     private static RefinementPlan plan(List<RefinementTask> tasks) {

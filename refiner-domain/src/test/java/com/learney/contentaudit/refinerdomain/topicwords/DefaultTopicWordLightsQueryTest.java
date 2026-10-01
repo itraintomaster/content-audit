@@ -950,7 +950,7 @@ public class DefaultTopicWordLightsQueryTest {
                 report = null;
             }
             RefinementTask task = new RefinementTask("task-other", AuditTarget.QUIZ, other.getEntity().getId(), "Otro",
-                    DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                    DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
             return keys(port().query(report(), task, criteria).getSuggestedLemmas());
         }
 

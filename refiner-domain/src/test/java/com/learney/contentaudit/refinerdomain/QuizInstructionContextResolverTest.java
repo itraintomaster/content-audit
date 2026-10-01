@@ -122,7 +122,7 @@ public class QuizInstructionContextResolverTest {
     private RefinementTask buildTask(String quizId) {
         return new RefinementTask(
                 "task-qicor-1", AuditTarget.QUIZ, quizId, "Quiz label",
-                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.QUIZ_INSTRUCTION, 1, RefinementTaskStatus.PENDING, null);
     }
 
     private DefaultQuizDiagnoses buildQuizDiagnoses(QuizInstructionVerdict verdict) {

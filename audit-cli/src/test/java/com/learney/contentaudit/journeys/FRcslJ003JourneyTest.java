@@ -132,7 +132,7 @@ public class FRcslJ003JourneyTest {
                 "Quiz label",
                 DiagnosisKind.SENTENCE_LENGTH,
                 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     // ------------------------------------------------------------------

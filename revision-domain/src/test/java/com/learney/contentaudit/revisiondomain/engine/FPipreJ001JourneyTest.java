@@ -102,7 +102,7 @@ public class FPipreJ001JourneyTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about lemma absence",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -184,7 +184,7 @@ public class FPipreJ001JourneyTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about lemma absence path2",
-                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 2, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 

@@ -68,7 +68,7 @@ public class LemmaAbsenceMvpStrategyTest {
                 "Morning Routine Quiz",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING
+                RefinementTaskStatus.PENDING, null
         );
     }
 

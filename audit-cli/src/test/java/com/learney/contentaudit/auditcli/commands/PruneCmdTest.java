@@ -34,7 +34,7 @@ public class PruneCmdTest {
 
     @BeforeEach
     void setUp() {
-        cmd = new PruneCmd(auditReportStore, refinementPlanStore);
+        cmd = new PruneCmd(auditReportStore, refinementPlanStore, null, null);
     }
 
     // -------------------------------------------------------------------------

@@ -102,7 +102,7 @@ public class FRevbypJ001JourneyTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about bypass",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -174,7 +174,7 @@ public class FRevbypJ001JourneyTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about bypass write failure",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -244,7 +244,7 @@ public class FRevbypJ001JourneyTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz about validator rejection",
-                DiagnosisKind.SENTENCE_LENGTH, 2, RefinementTaskStatus.PENDING
+                DiagnosisKind.SENTENCE_LENGTH, 2, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -311,7 +311,7 @@ public class FRevbypJ001JourneyTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz with unhandled diagnosis",
-                DiagnosisKind.COCA_BUCKETS, 3, RefinementTaskStatus.PENDING
+                DiagnosisKind.COCA_BUCKETS, 3, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -362,7 +362,7 @@ public class FRevbypJ001JourneyTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz not present in course",
-                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.SENTENCE_LENGTH, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 
@@ -411,7 +411,7 @@ public class FRevbypJ001JourneyTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, nodeId, "Quiz with unavailable context",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId, Instant.now(), List.of(task));
 

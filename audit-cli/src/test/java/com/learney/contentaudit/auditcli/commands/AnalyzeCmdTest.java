@@ -1134,7 +1134,7 @@ public class AnalyzeCmdTest {
         static GetCmd getCmd(AuditReportStore store, AnalyzerCatalog catalog) {
             GetCmd get = new GetCmd(store, mock(RefinementPlanStore.class), new DefaultAnalyzerRegistry(catalog),
                     mock(CorrectionContextResolver.class), null, null, new DefaultCorrectionContextJsonMapper(),
-                    mock(SuggestedLemmaQueryPort.class), null, null, null);
+                    mock(SuggestedLemmaQueryPort.class), null, null, null, null);
             get.setRevisionArtifactStore(mock(RevisionArtifactStore.class));
             return get;
         }
@@ -1460,7 +1460,7 @@ public class AnalyzeCmdTest {
                                 new AnalyzerRuleCard(RANKS, "El ejercicio baja en la lista, sin error",
                                         AnalysisCost.INSTANT)),
                         "Ningún ejercicio rompe la regla", AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ),
-                        List.of(FindingResolution.RULE, FindingResolution.RANK_ONLY), AnalysisCost.INSTANT, NAME);
+                        List.of(FindingResolution.RULE, FindingResolution.RANK_ONLY), AnalysisCost.INSTANT, NAME, java.util.List.of());
             }
 
             @Override

@@ -133,7 +133,7 @@ public class FRcslJ002JourneyTest {
                 "Short sentence quiz",
                 DiagnosisKind.SENTENCE_LENGTH,
                 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     private DefaultLevelDiagnoses buildMilestoneDiagnosesWithLemmas(List<AbsentLemma> absentLemmas) {

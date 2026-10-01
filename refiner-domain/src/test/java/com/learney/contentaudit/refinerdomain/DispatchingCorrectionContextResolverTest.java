@@ -43,7 +43,7 @@ public class DispatchingCorrectionContextResolverTest {
                 "label",
                 kind,
                 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     @Test
@@ -187,7 +187,7 @@ public class DispatchingCorrectionContextResolverTest {
                 "label",
                 DiagnosisKind.KNOWLEDGE_TITLE_LENGTH,
                 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
 
         Optional<CorrectionContext> result = sut.resolve(report, task);
 

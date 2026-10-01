@@ -181,7 +181,7 @@ public class FSlemJ002JourneyTest {
         AuditReport report = new AuditReport(courseNode);
         RefinementTask task = new RefinementTask(
                 "task-j002", AuditTarget.QUIZ, "quiz-j002",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // --- Step 2: get_tasks — both PlanCommand and GetCommand use the same resolver ---
         // Simulate PlanCommand.plan(..., true): resolves correctionContext via resolver

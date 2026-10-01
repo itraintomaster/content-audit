@@ -35,7 +35,7 @@ public class IdentityReviserTest {
                 "Test quiz node",
                 kind,
                 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     /** Builds a minimal CourseElementSnapshot representing a QUIZ node. */

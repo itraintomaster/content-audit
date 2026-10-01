@@ -154,7 +154,7 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPortTest {
                 "Quiz label",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
     }
 
     private AuditableQuiz buildQuiz(String id) {

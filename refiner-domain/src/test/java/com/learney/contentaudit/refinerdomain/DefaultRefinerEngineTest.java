@@ -49,7 +49,7 @@ public class DefaultRefinerEngineTest {
 
     @BeforeEach
     void setUp() {
-        sut = new DefaultRefinerEngine(realCatalog());
+        sut = new DefaultRefinerEngine(realCatalog(), null);
     }
 
     /**
@@ -363,7 +363,7 @@ public class DefaultRefinerEngineTest {
         // R004 inv. 3: before F-QINST-R017 the plan had no task kind for the judge and dropped its
         // scores without a word. An errors analyzer without a task kind is declared, not dropped.
         DefaultRefinerEngine engine = new DefaultRefinerEngine(new DefaultAnalyzerCatalog(List.of(
-                provider(errorsCard("quiz-instruction"), Optional.empty()))));
+                provider(errorsCard("quiz-instruction"), Optional.empty()))), null);
         AuditReport report = reportWithQuizScores("quiz-instruction", 0.3, 0.0, 0.6, 1.0);
 
         List<UnconvertedScoreCount> unconverted = engine.unconvertedScores(report);
@@ -381,10 +381,11 @@ public class DefaultRefinerEngineTest {
     @Tag("F-HALL-R004")
     public void shouldDeclareAsUnconvertedTheScoresBelow1OfAnAnalyzerWhosePlanBindingNamesATaskKindThePlanDoesNotKnow() {
         // R004 inv. 3: a binding whose task kind is not a DiagnosisKind of the plan (a new analyzer
-        // whose constant was not added) is declared too.
+        // whose constant was not added) is declared too. HINT_COHERENCE exists since FEAT-RONDA2
+        // (R008), so the unknown kind is one no analyzer has.
         DefaultRefinerEngine engine = new DefaultRefinerEngine(new DefaultAnalyzerCatalog(List.of(
-                provider(errorsCard("pista-coherente"), Optional.of(new AnalyzerPlanBinding("HINT_COHERENCE",
-                        List.of(AuditTarget.QUIZ)))))));
+                provider(errorsCard("pista-coherente"), Optional.of(new AnalyzerPlanBinding("PISTA_COHERENTE",
+                        List.of(AuditTarget.QUIZ)))))), null);
         AuditReport report = reportWithQuizScores("pista-coherente", 0.0, 0.5);
 
         List<UnconvertedScoreCount> unconverted = engine.unconvertedScores(report);
@@ -393,7 +394,7 @@ public class DefaultRefinerEngineTest {
         Assertions.assertEquals(1, unconverted.size());
         Assertions.assertEquals("pista-coherente", unconverted.get(0).getAnalyzer());
         Assertions.assertEquals(2, unconverted.get(0).getNodeCount());
-        Assertions.assertTrue(unconverted.get(0).getReason().contains("HINT_COHERENCE"),
+        Assertions.assertTrue(unconverted.get(0).getReason().contains("PISTA_COHERENTE"),
                 "R004: the reason names the unknown task kind: " + unconverted.get(0).getReason());
     }
 
@@ -406,7 +407,7 @@ public class DefaultRefinerEngineTest {
         // pista-coherente is a name the plan never heard of; its binding names a task kind it knows.
         DefaultRefinerEngine engine = new DefaultRefinerEngine(new DefaultAnalyzerCatalog(List.of(
                 provider(errorsCard("pista-coherente"), Optional.of(new AnalyzerPlanBinding("QUIZ_INSTRUCTION",
-                        List.of(AuditTarget.QUIZ)))))));
+                        List.of(AuditTarget.QUIZ)))))), null);
         AuditReport report = reportWithQuizScores("pista-coherente", 0.0, 1.0, 0.5);
 
         RefinementPlan plan = engine.plan(report, "a1");
@@ -514,7 +515,7 @@ public class DefaultRefinerEngineTest {
     private static AnalyzerDescriptor errorsCard(String name) {
         return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿" + name + "?", "El ejercicio",
                 List.of(new AnalyzerRuleCard("rule-" + name, "La regla", AnalysisCost.INSTANT)), "Ningun error",
-                AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, name);
+                AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, name, java.util.List.of());
     }
 
     private static AnalyzerProvider provider(AnalyzerDescriptor card, Optional<AnalyzerPlanBinding> binding) {
@@ -571,7 +572,7 @@ public class DefaultRefinerEngineTest {
         }
         DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(seventeen);
         Assertions.assertEquals(17, catalog.list().size(), "the seventeen of round 1");
-        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalog);
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalog, null);
 
         AuditNode tree = baseTree();
         List<AuditNode> quizzes = new ArrayList<>();
@@ -630,7 +631,7 @@ public class DefaultRefinerEngineTest {
         // F-NIVFR-R006 (DOUBT-TAREA-COMPARTIDA, A): «We reside in London with our granddad.» has
         // off-level-words 0 and lemma-absence below 1: the plan opens only its LEMMA_ABSENCE task and
         // declares off-level-words covered by it, never as a score without task kind.
-        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalogWithOffLevelWords());
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalogWithOffLevelWords(), null);
         AuditReport report = reportWithQuizScores("lemma-absence", 0.7);
         report.getRoot().getChildren().get(0).getScores().put(OFF_LEVEL_WORDS, 0.0);
 
@@ -653,7 +654,7 @@ public class DefaultRefinerEngineTest {
         // F-NIVFR-R006: the analysis of 29/9 with the 170 quizzes off-level-words marks (18 · 33 · 81 ·
         // 38, measured by the analyst's prototype) plans the same 4,036 tasks as without it, and each of
         // the 170 has its LEMMA_ABSENCE task, which covers it.
-        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalogWithOffLevelWords());
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalogWithOffLevelWords(), null);
         AuditNode without = baseTree();
         AuditNode with = baseTree();
         Set<String> marked = new HashSet<>(readResource("/nivfr-2026-09-30/off-level-quizzes.txt"));

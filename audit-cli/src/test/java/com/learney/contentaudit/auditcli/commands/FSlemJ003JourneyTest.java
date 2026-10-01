@@ -188,7 +188,7 @@ public class FSlemJ003JourneyTest {
         AuditReport report = new AuditReport(courseNode);
         RefinementTask task = new RefinementTask(
                 "task-j003", AuditTarget.QUIZ, "quiz-j003",
-                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "Quiz label", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // --- Step 2: revise_without_override — system-derived correctionContext is resolved ---
         // (In production: RevisionEngine calls LemmaAbsenceContextResolver when override is null)

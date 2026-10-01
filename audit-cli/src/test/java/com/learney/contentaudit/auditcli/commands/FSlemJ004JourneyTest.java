@@ -76,7 +76,7 @@ public class FSlemJ004JourneyTest {
                 "Animals Quiz — LEMMA_ABSENCE",
                 DiagnosisKind.LEMMA_ABSENCE,
                 1,
-                RefinementTaskStatus.PENDING);
+                RefinementTaskStatus.PENDING, null);
         plan = new RefinementPlan("plan-j004", "audit-j004", Instant.now(), List.of(lemmaAbsenceTask));
     }
 

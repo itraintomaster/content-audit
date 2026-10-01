@@ -72,7 +72,7 @@ public class DefaultSuggestedLemmaQuerySessionFactoryTest {
         // Task whose source analysis is A
         RefinementTask task = new RefinementTask(
                 TASK_ID, AuditTarget.QUIZ, "quiz-r015-1", "Quiz R015",
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // Criteria for the query (explicit level to keep the test focused on R015, not level inference)
         SuggestedLemmaQueryCriteria criteria = new SuggestedLemmaQueryCriteria(

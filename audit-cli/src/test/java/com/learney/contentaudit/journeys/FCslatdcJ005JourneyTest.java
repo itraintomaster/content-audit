@@ -69,7 +69,7 @@ public class FCslatdcJ005JourneyTest {
     private RefinementTask buildLemmaAbsenceTask(String taskId) {
         return new RefinementTask(
                 taskId, AuditTarget.QUIZ, "quiz-" + taskId, "Quiz " + taskId,
-                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
     }
 
     private SuggestedLemmaQueryCriteria buildCriteria() {

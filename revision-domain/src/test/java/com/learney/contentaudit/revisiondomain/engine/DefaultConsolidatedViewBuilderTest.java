@@ -92,7 +92,7 @@ public class DefaultConsolidatedViewBuilderTest {
                 courseElementLocator,
                 courseMapper,
                 auditEngine,
-                nodeFieldDiffer);
+                nodeFieldDiffer, null);
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -1319,7 +1319,7 @@ public class DefaultConsolidatedViewBuilderTest {
         DefaultConsolidatedViewBuilder realDiff = new DefaultConsolidatedViewBuilder(revisionArtifactStore,
                 activeAnalysisSelectionStore, auditReportStore, refinementPlanStore, courseRepository,
                 courseElementLocator, courseMapper, auditEngine,
-                new com.learney.contentaudit.revisiondomain.fielddiff.DefaultNodeFieldDifferFactory().create());
+                new com.learney.contentaudit.revisiondomain.fielddiff.DefaultNodeFieldDifferFactory().create(), null);
 
         ConsolidatedView view = realDiff.build(COURSE_PATH);
 

@@ -218,7 +218,7 @@ public class FCslatdcJ004JourneyTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, quizId,
-                "A1 nouns quiz", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+                "A1 nouns quiz", DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING, null);
 
         // The static correctionContext had only 3 suggestedLemmas — insufficient for the agent's need.
         List<SuggestedLemma> staticSuggestedLemmas = buildStaticSuggestedLemmas();

@@ -63,7 +63,7 @@ public class LevelWideLemmaInventoryTest {
 
         List<SuggestedLemma> lemmas = new LevelWideLemmaInventory(evp, bands).lemmasFor(report,
                 new RefinementTask("task-1", AuditTarget.QUIZ, "q-0", "Quiz", DiagnosisKind.LEMMA_ABSENCE, 1,
-                        RefinementTaskStatus.PENDING), CefrLevel.A1, Optional.empty());
+                        RefinementTaskStatus.PENDING, null), CefrLevel.A1, Optional.empty());
 
         Map<String, String> byLemma = new TreeMap<>();
         lemmas.forEach(l -> byLemma.put(l.getLemma(), l.getLemmaCount() + "/" + l.getLemmaCountThreshold() + " "

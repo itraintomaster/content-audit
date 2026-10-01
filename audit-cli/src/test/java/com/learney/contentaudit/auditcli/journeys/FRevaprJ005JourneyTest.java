@@ -106,11 +106,12 @@ public class FRevaprJ005JourneyTest {
                 Class.forName("com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort"),
                 Class.forName("com.learney.contentaudit.refinerdomain.topicwords.TopicWordLightsQuery"),
                 Class.forName("com.learney.contentaudit.auditdomain.TopicStudentViewQuery"),
-                Class.forName("com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore"));
+                Class.forName("com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore"),
+                Class.forName("com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBriefer"));
         ctor.setAccessible(true);
         Object getCmdInstance = ctor.newInstance(
                 auditReportStore, refinementPlanStore, analyzerRegistry, contextResolver, null, null, null, null,
-                null, null, null);
+                null, null, null, null);
 
         // Inject formatName (picocli @Option default)
         try {
@@ -158,7 +159,7 @@ public class FRevaprJ005JourneyTest {
         try {
             GetTasksFilter pendingFilter = new GetTasksFilter(
                     Optional.empty(), Optional.of("pending"), false, Optional.empty(),
-                    Optional.empty(), Optional.empty());
+                    Optional.empty(), Optional.empty(), null);
             exit1 = cmd.get("proposals", null, pendingFilter);
         } finally {
             System.setOut(originalOut);
@@ -180,7 +181,7 @@ public class FRevaprJ005JourneyTest {
         try {
             GetTasksFilter approvedFilter = new GetTasksFilter(
                     Optional.empty(), Optional.of("approved"), false, Optional.empty(),
-                    Optional.empty(), Optional.empty());
+                    Optional.empty(), Optional.empty(), null);
             exit2 = cmd.get("proposals", null, approvedFilter);
         } finally {
             System.setOut(originalOut);
@@ -202,7 +203,7 @@ public class FRevaprJ005JourneyTest {
         try {
             GetTasksFilter rejectedFilter = new GetTasksFilter(
                     Optional.empty(), Optional.of("rejected"), false, Optional.empty(),
-                    Optional.empty(), Optional.empty());
+                    Optional.empty(), Optional.empty(), null);
             exit3 = cmd.get("proposals", null, rejectedFilter);
         } finally {
             System.setOut(originalOut);
@@ -235,7 +236,7 @@ public class FRevaprJ005JourneyTest {
         try {
             GetTasksFilter badFilter = new GetTasksFilter(
                     Optional.empty(), Optional.of("bogus"), false, Optional.empty(),
-                    Optional.empty(), Optional.empty());
+                    Optional.empty(), Optional.empty(), null);
             exit = cmd.get("proposals", null, badFilter);
         } finally {
             System.setErr(originalErr);

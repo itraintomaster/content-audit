@@ -59,7 +59,7 @@ public class FRevctxJ002JourneyTest {
 
         RefinementTask task = new RefinementTask(
                 taskId, AuditTarget.QUIZ, "quiz-j002", "Quiz J002 COCA_BUCKETS",
-                DiagnosisKind.COCA_BUCKETS, 1, RefinementTaskStatus.PENDING
+                DiagnosisKind.COCA_BUCKETS, 1, RefinementTaskStatus.PENDING, null
         );
         RefinementPlan plan = new RefinementPlan(planId, auditId,
                 Instant.parse("2026-05-09T10:00:00Z"), List.of(task));
@@ -76,7 +76,7 @@ public class FRevctxJ002JourneyTest {
         when(engine.revise(eq(planId), eq(taskId), any(Path.class), eq(overridePayload)))
                 .thenReturn(outcome);
 
-        ReviseCmd cmd = new ReviseCmd(engine, planStore);
+        ReviseCmd cmd = new ReviseCmd(engine, planStore, null);
         for (Field f : cmd.getClass().getDeclaredFields()) {
             f.setAccessible(true);
             if (f.getType() == String.class && f.get(cmd) == null) {

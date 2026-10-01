@@ -226,7 +226,7 @@ public class DefaultAnalyzerCatalogTest {
         return new AnalyzerDescriptor(name, "Checks " + name, AuditTarget.QUIZ, "¿Pregunta de " + name + "?",
                 "La oracion como la ve el alumno", new ArrayList<>(List.of(new AnalyzerRuleCard("rule-" + name,
                         "La regla de " + name, cost))), "Meta de " + name, family, List.of(AuditTarget.QUIZ),
-                List.of(FindingResolution.PANEL), cost, name);
+                List.of(FindingResolution.PANEL), cost, name, java.util.List.of());
     }
 
     static AnalyzerProvider providerOf(AnalyzerDescriptor card) {
