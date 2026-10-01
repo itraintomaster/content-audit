@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — Construido (rama ronda2/impl-antes-y-despues): `DefaultPendingApplier` (orden de creación, nodo y elementBefore, escribe como approve), `DefaultProjectionMeasurer` (los analizadores de las medidas del análisis de partida; tope sólo para los nombrados; sin medidas, corrida base declarada en la raíz), `DefaultCourseProjector` y su fábrica; la vista consolidada y la vista previa sobre esas piezas (inyecciones 10 → 2 y 6 → 3, las 8 pruebas viejas adaptadas); almacenes de línea base y proyecciones con `load` que cae a `projections/` (F-05); `set-baseline`, `save-projection`, `--budget` en `get-consolidated`; delete y prune protegen el activo y la base. 46 pruebas y F-PROYU-J001 (2 caminos) en verde.
+  Control sobre copia (29/9 + 17 analizadores de hoy, base 2026-10-01T08-31-54): la proyección con el arreglo de las verduras guarda `proyeccion-<audit>-<plan>`, `plan --audit` la acepta efímero, `get audits` y el curso de la copia no cambian, 0 consultas a claude.
+  Next: G pasa «Antes y después» a `compare -f json` y el plan proyectado a save-projection + plan --audit (F-16).
+
 2026-10-01 — architect — Descripciones de analyzerBudgets y de la inyección auditEngine alineadas con R003, por `patch propose` fusionado contra M05 (17 altas, 14 cambios): cambian esas dos y nada más. `tech-spec write` exit 0 (13 → 13); `patch validate -i M05` exit 0; simular.sh: las 148 pruebas de F aterrizan y el modelo final difiere del M14 del integrador sólo en pruebas, ubicación de journeys y esas dos descripciones. F queda cerrado.
 
 2026-10-01 — qa-tester — R003 ajustada (analista) y 47 pruebas: se restauró el parche del arquitecto (f46f4da3) y se volvió a proponer entero contra M05, para no duplicar la descripción. Contra el de 46: sólo la prueba nueva. `requirement validate` [OK] (en copia), `tech-spec write` exit 0 (13 → 13), `patch validate -i M05` exit 0; la cadena simulada (qa-F2/simular.sh) aterriza las 148 de F.

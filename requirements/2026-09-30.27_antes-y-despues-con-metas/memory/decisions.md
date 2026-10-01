@@ -5,6 +5,13 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — Piso contra el inicio de la tanda: lo abierto son los ejercicios que la tanda cambió y un analizador dejó sin evaluar en la proyección; contra la base o como valor, todo lo sin evaluar. Un cambio que un analizador no evaluó deja el veredicto en «no se puede decidir» si nada falla.
+  why: un ejercicio que la tanda no tocó no puede ganar un error; con «todo lo sin evaluar» ninguna tanda se decidiría mientras los jueces con claude -p no corran.
+
+2026-10-01 — developer — `ChangeOutcome.newFindings` son los hallazgos nuevos que cuentan (los motivos); el texto del motivo lo arma el formateador de audit-cli. Un piso de familia sólo lo reemplaza un piso declarado sin nodo para el mismo sujeto y tipo; una meta de un nodo gana a la general.
+
+2026-10-01 — developer — Cambio de medida: sólo los analizadores medidos en las dos fotos con distinta huella; se re-mide la base una vez con sus analizadores sobre las entidades de su informe, y usan esa base la fila del analizador y la de «vocabulario» o «algún error» según su familia. La atribución nombra sólo los cambios que mueven el número, el que más empeora primero, una corrida por pendiente.
+
 2026-10-01 — qa-tester — R001: las filas de un analizador que no corrió en la línea base salen vacías, no en cero (decidido por el orquestador el 1/10). La prueba ya lo fijaba así; R001 no cambia.
   why: un analizador que no corrió no midió nada; un 0 se leería como «ningún error».
 
