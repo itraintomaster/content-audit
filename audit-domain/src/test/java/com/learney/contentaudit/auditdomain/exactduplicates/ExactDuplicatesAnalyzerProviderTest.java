@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditdomain.exactduplicates;
 
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,7 +30,7 @@ public class ExactDuplicatesAnalyzerProviderTest {
     @Tag("F-DUPEX-R005")
     public void shouldDescribeExactduplicatesInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesAtThePanelAndCostsInstantAskingDosEjerciciosDelMismoTemaDicenLoMismo(
             ) {
-        // R005 and F-HALL-R006: the card the catalog validates at startup; no task kind and no configuration.
+        // R005 and F-HALL-R006: the card the catalog validates at startup; its task kind since F-RONDA2-R008, and no configuration.
         ExactDuplicatesAnalyzerProvider provider = new ExactDuplicatesAnalyzerProvider(
                 ExactDuplicatesAnalyzerTest.productionCorrector(), ExactDuplicatesAnalyzerTest.renderer());
         AnalyzerDescriptor card = provider.describe();
@@ -42,7 +45,8 @@ public class ExactDuplicatesAnalyzerProviderTest {
         assertEquals(AnalysisCost.INSTANT, card.getCost());
         assertEquals(List.of("exact-duplicate"), card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
         assertTrue(card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
-        assertTrue(provider.planBinding().isEmpty());
+        assertEquals(Optional.of(new AnalyzerPlanBinding("EXACT_DUPLICATES", List.of(AuditTarget.QUIZ))), provider.planBinding(),
+                "F-RONDA2-R008: its task kind, on the exercise");
         assertTrue(provider.config().isEmpty());
         assertEquals("exact-duplicates", provider.create(null).getName());
 
@@ -54,7 +58,17 @@ public class ExactDuplicatesAnalyzerProviderTest {
     @DisplayName("should bind exact-duplicates to the plan with the task kind EXACT_DUPLICATES on the exercise")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R008")
-    public void shouldBindExactduplicatesToThePlanWithTheTaskKindEXACTDUPLICATESOnTheExercise() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldBindExactduplicatesToThePlanWithTheTaskKindEXACTDUPLICATESOnTheExercise()  {
+        // F-RONDA2-R008 (hook E-02): its findings that count become EXACT_DUPLICATES tasks, one on the exercise
+        // where it found them; the catalog accepts the binding, since the card evaluates exercises.
+        ExactDuplicatesAnalyzerProvider provider = new ExactDuplicatesAnalyzerProvider(
+                ExactDuplicatesAnalyzerTest.productionCorrector(), ExactDuplicatesAnalyzerTest.renderer());
+        AnalyzerPlanBinding expected = new AnalyzerPlanBinding("EXACT_DUPLICATES", List.of(AuditTarget.QUIZ));
+
+        assertEquals(Optional.of(expected), provider.planBinding(), "R008: its task kind, on the exercise");
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(Optional.of(expected), catalog.planBinding("exact-duplicates"), "the catalog serves it to the plan");
+        assertTrue(provider.describe().getEvaluatedTargets().contains(AuditTarget.QUIZ),
+                "its tasks go on a level the card evaluates");
     }
 }

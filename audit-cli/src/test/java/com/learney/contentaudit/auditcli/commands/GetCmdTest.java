@@ -4831,8 +4831,31 @@ public class GetCmdTest {
     @DisplayName("should show in get analyzers the twenty analyzers with twenty different Spanish names, the three of package B last")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R001")
-    public void shouldShowInGetAnalyzersTheTwentyAnalyzersWithTwentyDifferentSpanishNamesTheThreeOfPackageBLast() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    @org.junit.jupiter.api.Disabled("FEAT-RONDA2: espera a B, que construya los proveedores de grammar, naturalness y near-duplicates")
+    public void shouldShowInGetAnalyzersTheTwentyAnalyzersWithTwentyDifferentSpanishNamesTheThreeOfPackageBLast(@org.junit.jupiter.api.io.TempDir Path workdir) throws IOException {
+        // F-RONDA2-R001: get analyzers of the catalog Main builds lists the twenty, each next to its
+        // Spanish name -- twenty different ones, none empty --, the three of package B last.
+        AnalyzerCatalog catalog = new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(
+                AnalyzeCmdTest.Base299.roundTwoProviders(
+                        new com.learney.contentaudit.evaluationledgerinfrastructure.FileSystemEvaluationLedger(workdir),
+                        workdir));
+
+        AnalyzeCmdTest.Base299.Captured json = AnalyzeCmdTest.Base299.run(
+                AnalyzeCmdTest.Base299.getCmd(auditReportStore, catalog), "analyzers", "-f", "json");
+
+        assertEquals(0, json.exit(), json.err());
+        JsonNode listed = new ObjectMapper().readTree(json.out());
+        List<String> names = new java.util.ArrayList<>();
+        List<String> spanish = new java.util.ArrayList<>();
+        listed.forEach(card -> {
+            names.add(card.get("name").asText());
+            spanish.add(card.get("displayName").asText());
+        });
+        assertEquals(AnalyzeCmdTest.Base299.ROUND_TWO, names, "R001: the twenty, the three of package B last");
+        assertEquals(20, new java.util.HashSet<>(spanish).size(), "R001 inv. 1: twenty different Spanish names");
+        assertTrue(spanish.stream().noneMatch(String::isBlank), "R001 inv. 1: none empty");
+        assertEquals(List.of("Gramática", "Naturalidad", "Duplicados parecidos"), spanish.subList(17, 20),
+                "R001: «Gramática», «Naturalidad» and «Duplicados parecidos»");
     }
 
     @Test

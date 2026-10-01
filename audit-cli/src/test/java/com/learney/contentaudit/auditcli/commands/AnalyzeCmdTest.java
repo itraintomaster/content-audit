@@ -1104,6 +1104,98 @@ public class AnalyzeCmdTest {
             return providers;
         }
 
+        /** The twenty analyzers of rounds 1 and 2, in the order of the catalog (F-RONDA2-R001). */
+        static final List<String> ROUND_TWO = roundTwoNames();
+
+        private static List<String> roundTwoNames() {
+            List<String> names = new ArrayList<>(ROUND_ONE);
+            names.addAll(List.of("grammar", "naturalness", "near-duplicates"));
+            return names;
+        }
+
+        /**
+         * Main's twenty providers: the seventeen of round 1 and the three of package B as Main builds
+         * them (hook B-07), over tools that leave nothing -- LanguageTool marking no error, Ollama
+         * off -- and with the alternatives with claude -p faked: with no budget they consult nothing.
+         */
+        static List<AnalyzerProvider> roundTwoProviders(
+                com.learney.contentaudit.evaluationledgerinfrastructure.FileSystemEvaluationLedger ledger, Path workdir) {
+            List<AnalyzerProvider> providers = new ArrayList<>(roundOneProviders(ledger, workdir));
+            com.learney.contentaudit.auditdomain.QuizStudentViewRenderer renderer =
+                    new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                            DefaultQuizSentenceConverter.create());
+            com.learney.contentaudit.auditdomain.CorrectorMatcher corrector =
+                    new com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher(
+                            new com.learney.contentaudit.vocabularyinfrastructure.correctortable.FileSystemFormEquivalenceTableSource(
+                                    Path.of("../analysis/recursos-compartidos/corrector/formas-equivalentes.json")).load());
+            com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory sessions =
+                    new DefaultEvaluationSessionFactory(ledger, new Sha256ContentFingerprinter());
+            com.learney.contentaudit.auditdomain.judging.JudgeRuntime runtime =
+                    new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime(sessions,
+                            new com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory(
+                                    ledger, new Sha256ContentFingerprinter()),
+                            new com.learney.contentaudit.auditinfrastructure.FileSystemJudgeExamRegistry(workdir), ledger,
+                            new com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig());
+            com.learney.contentaudit.auditdomain.localtools.LocalToolGate gate =
+                    new com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate(runtime);
+            com.learney.contentaudit.auditdomain.finishedsentence.FinishedSentenceReader sentences =
+                    new com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader();
+            FakeJudge alternative = new FakeJudge();
+            providers.add(new com.learney.contentaudit.auditdomain.grammar.GrammarAnalyzerProvider(new NoErrorsGrammar(),
+                    sentences, gate));
+            providers.add(new com.learney.contentaudit.auditdomain.naturalness.NaturalnessAnalyzerProvider(
+                    new OllamaOffYesNo(), alternative, runtime, sentences, gate));
+            providers.add(new com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicatesAnalyzerProvider(
+                    new OllamaOffEmbedding(), alternative, runtime, corrector, renderer, gate));
+            return providers;
+        }
+
+        private static com.learney.contentaudit.auditdomain.localtools.LocalToolStatus ollamaOff(String model) {
+            return new com.learney.contentaudit.auditdomain.localtools.LocalToolStatus(model + " en Ollama", null, false,
+                    "CONTENT_AUDIT_OLLAMA_URL=off", "ollama pull " + model);
+        }
+
+        /** LanguageTool that finds no error in any sentence. */
+        static final class NoErrorsGrammar implements com.learney.contentaudit.auditdomain.localtools.GrammarChecker {
+            @Override
+            public com.learney.contentaudit.auditdomain.localtools.LocalToolStatus status() {
+                return new com.learney.contentaudit.auditdomain.localtools.LocalToolStatus("LanguageTool", "6.8", true,
+                        null, "viene con content-audit");
+            }
+
+            @Override
+            public List<com.learney.contentaudit.auditdomain.localtools.GrammarMatch> check(String sentence,
+                    com.learney.contentaudit.auditdomain.localtools.EnglishVariant variant) {
+                return List.of();
+            }
+        }
+
+        /** llama3:8b with Ollama off. */
+        static final class OllamaOffYesNo implements com.learney.contentaudit.auditdomain.localtools.YesNoModel {
+            @Override
+            public com.learney.contentaudit.auditdomain.localtools.LocalToolStatus status() {
+                return ollamaOff("llama3:8b");
+            }
+
+            @Override
+            public com.learney.contentaudit.auditdomain.localtools.YesNoProbabilities ask(String system, String question) {
+                throw new AssertionError("Ollama is off: nothing is asked");
+            }
+        }
+
+        /** nomic-embed-text with Ollama off. */
+        static final class OllamaOffEmbedding implements com.learney.contentaudit.auditdomain.localtools.EmbeddingModel {
+            @Override
+            public com.learney.contentaudit.auditdomain.localtools.LocalToolStatus status() {
+                return ollamaOff("nomic-embed-text");
+            }
+
+            @Override
+            public com.learney.contentaudit.auditdomain.localtools.SentenceEmbedding embed(String text) {
+                throw new AssertionError("Ollama is off: nothing is embedded");
+            }
+        }
+
         static CourseToAuditableMapper mapper() {
             return new CourseToAuditableMapper(tokenizer(), DefaultQuizSentenceConverter.create());
         }
@@ -1625,31 +1717,96 @@ public class AnalyzeCmdTest {
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R002")
     public void shouldPassBudgetNaturalness50ToNaturalnessAsItsRunPolicyTheSameAsAJudgesBudget() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-RONDA2-R002: --budget naturalness=N limits the route naturalness touches; analyze hands it
+        // to naturalness as its run policy, exactly as it hands a judge its budget.
+        AuditRunner runner = mock(AuditRunner.class);
+        when(runner.runAudit(any(Path.class), any(AuditRunRequest.class))).thenReturn(new AuditReport(new AuditNode()));
+
+        Base299.Captured analyzed = Base299.run(Base299.analyzeCmd(runner, mock(AuditReportStore.class)), "english-course",
+                "--budget", "naturalness=50", "--budget", "quiz-instruction=50", "-f", "raw");
+
+        assertEquals(0, analyzed.exit(), analyzed.err());
+        ArgumentCaptor<AuditRunRequest> request = ArgumentCaptor.forClass(AuditRunRequest.class);
+        verify(runner).runAudit(any(Path.class), request.capture());
+        EvaluationRunPolicy naturalness = request.getValue().getAnalyzerPolicies().get("naturalness");
+        assertEquals(50, naturalness.getMaxNewEvaluations(), "R002: the budget reaches naturalness");
+        assertEquals(request.getValue().getAnalyzerPolicies().get("quiz-instruction"), naturalness,
+                "the same run policy a judge gets for the same budget");
     }
 
     @Test
     @DisplayName("should print «Falta la lista de lemas en '<path>'» and exit with code 1 without writing a report when the lemma list is missing")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R007")
-    public void shouldPrintFaltaLaListaDeLemasEnPathAndExitWithCode1WithoutWritingAReportWhenTheLemmaListIsMissing() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldPrintFaltaLaListaDeLemasEnPathAndExitWithCode1WithoutWritingAReportWhenTheLemmaListIsMissing(@org.junit.jupiter.api.io.TempDir Path workdir) throws IOException {
+        // F-RONDA2-R007 inv. 1 and 2: analyze in a copy without ../ittm next to it stops before
+        // measuring: it says what is missing and where it looked for it, exits with 1 and writes no
+        // report -- instead of publishing A1 and A2 at 50,0 %.
+        Path missing = workdir.resolve("ittm/pipeline/src/main/resources/vocabulary/lemmas_20k_words.txt");
+        NlpTokenizer tokenizer = new com.learney.contentaudit.nlpinfrastructure.spacy.SpacyNlpTokenizerFactory().create(
+                new com.learney.contentaudit.nlpinfrastructure.NlpTokenizerConfig(SPACY_PROCESSOR.toString(),
+                        missing.toString(), 60));
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir, null);
+
+        Base299.Captured analyzed = Base299.run(Base299.analyzeCmd(tokenizingRunner(tokenizer), store),
+                Base299.COURSE.toString());
+
+        assertEquals(1, analyzed.exit(), "R007 inv. 1: exit 1");
+        assertTrue(analyzed.err().contains("Falta la lista de lemas en '" + missing.toAbsolutePath().normalize() + "'"),
+                "R007 inv. 2: what is missing and where: " + analyzed.err());
+        assertEquals(List.of(), store.list(), "R007 inv. 1: no report");
+        assertFalse(Files.exists(workdir.resolve(".content-audit")), "nothing written");
     }
 
     @Test
     @DisplayName("should exit with code 1 without writing a report when a sentence is not cached and spaCy does not run")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R007")
-    public void shouldExitWithCode1WithoutWritingAReportWhenASentenceIsNotCachedAndSpaCyDoesNotRun() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldExitWithCode1WithoutWritingAReportWhenASentenceIsNotCachedAndSpaCyDoesNotRun(@org.junit.jupiter.api.io.TempDir Path workdir) throws IOException {
+        // F-RONDA2-R007: with the list and the processor in place, a sentence that is not in the cache
+        // and a spaCy that does not run -- python without spaCy -- stop analyze too: exit 1, no report,
+        // never basic tokens.
+        Path lemmaList = Files.writeString(workdir.resolve("lemmas_20k_words.txt"), "rank\tlemma\n");
+        Path processor = Files.writeString(workdir.resolve("sample_processor.py"), "import sys\n"
+                + "print(\"ModuleNotFoundError: No module named 'spacy'\", file=sys.stderr)\n"
+                + "sys.exit(1)\n");
+        NlpTokenizer tokenizer = new com.learney.contentaudit.nlpinfrastructure.spacy.SpacyNlpTokenizerFactory().create(
+                new com.learney.contentaudit.nlpinfrastructure.NlpTokenizerConfig(processor.toString(),
+                        lemmaList.toString(), 60));
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir, null);
+
+        Base299.Captured analyzed = Base299.run(Base299.analyzeCmd(tokenizingRunner(tokenizer), store),
+                Base299.COURSE.toString());
+
+        assertEquals(1, analyzed.exit(), "R007 inv. 1: exit 1");
+        assertTrue(analyzed.err().contains("Falta spaCy en '" + processor.toAbsolutePath().normalize() + "'"),
+                "R007: spaCy did not run: " + analyzed.err());
+        assertTrue(analyzed.err().contains("No module named 'spacy'"), "and why: " + analyzed.err());
+        assertEquals(List.of(), store.list(), "R007 inv. 1: no report");
     }
 
     @Test
     @DisplayName("should leave the 886 files of the 29/9 course identical byte for byte after analyzing it with the twenty analyzers")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R010")
-    public void shouldLeaveThe886FilesOfThe299CourseIdenticalByteForByteAfterAnalyzingItWithTheTwentyAnalyzers() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    @org.junit.jupiter.api.Disabled("FEAT-RONDA2: espera a B, que construya los proveedores de grammar, naturalness y near-duplicates")
+    public void shouldLeaveThe886FilesOfThe299CourseIdenticalByteForByteAfterAnalyzingItWithTheTwentyAnalyzers(@org.junit.jupiter.api.io.TempDir Path workdir) {
+        // F-RONDA2-R010 inv. 3 (F-HALL-R015): analyze reads the course and writes only its analysis --
+        // with the twenty analyzers, the 886 files of the 29/9 course stay byte for byte.
+        Path course = workdir.resolve("english-course");
+        Base299.copyTree(Base299.COURSE, course);
+        Map<String, String> before = Base299.hashes(course);
+        FileSystemEvaluationLedger ledger = new FileSystemEvaluationLedger(workdir);
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(Base299.roundTwoProviders(ledger, workdir));
+        assertEquals(Base299.ROUND_TWO, catalog.list().stream().map(AnalyzerDescriptor::getName).toList(),
+                "the twenty, in the order of F-RONDA2-R001");
+
+        Base299.Captured analyzed = Base299.run(Base299.analyzeCmd(Base299.runner(catalog),
+                new FileSystemAuditReportStore(workdir, null)), course.toString(), "-f", "json");
+
+        assertEquals(0, analyzed.exit(), analyzed.err());
+        assertEquals(Base299.FILES, before.size(), "the 886 files of the course");
+        assertEquals(before, Base299.hashes(course), "R010 inv. 3: the course, byte for byte");
     }
 
     @Test
@@ -1659,5 +1816,19 @@ public class AnalyzeCmdTest {
     @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldPrintWhatIsMissingAndHowToInstallItExitNonzeroAndSaveNoAnalysisWhenAskedToRunNaturalnessWithoutOllamaNorClaudeP() {
         throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-RONDA2: analyze over the real tokenizer, without its resources
+    // -----------------------------------------------------------------------
+
+    /** The processor of spaCy of the repository. */
+    static final Path SPACY_PROCESSOR = Path.of("../analysis/recursos-compartidos/spacy/sample_processor.py");
+
+    /** The runner of the seven classics over the 29/9 course, tokenizing with the given tokenizer. */
+    private static DefaultAuditRunner tokenizingRunner(NlpTokenizer tokenizer) {
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(Base299.classicProviders());
+        return Base299.runner(catalog, new FileSystemCourseRepository(new CourseValidatorImpl()),
+                new CourseToAuditableMapper(tokenizer, DefaultQuizSentenceConverter.create()));
     }
 }

@@ -1,5 +1,9 @@
 package com.learney.contentaudit.nlpinfrastructure.spacy;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,9 +41,12 @@ public class SpacyProcessRunnerTest {
         Files.writeString(tempScript, "import time; time.sleep(60)\n");
 
         int timeoutSeconds = 1;
+        // F-RONDA2-R007: the lemma list has to be there before spaCy is launched.
+        Path lemmaList = Files.createTempFile("lemmas-", ".txt");
+        Files.writeString(lemmaList, "rank\tlemma\n");
         NlpTokenizerConfig config = new NlpTokenizerConfig(
                 tempScript.toString(),
-                "/nonexistent/lemmas_20k_words.txt",
+                lemmaList.toString(),
                 timeoutSeconds);
 
         SpacyProcessRunner runner = new SpacyProcessRunner(config);
@@ -58,6 +65,7 @@ public class SpacyProcessRunnerTest {
                             + "); got: " + ex.getMessage());
         } finally {
             Files.deleteIfExists(tempScript);
+            Files.deleteIfExists(lemmaList);
         }
     }
 
@@ -65,55 +73,239 @@ public class SpacyProcessRunnerTest {
     @DisplayName("should launch spaCy once per batch with only the sentences that are not in the cache")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R005")
-    public void shouldLaunchSpaCyOncePerBatchWithOnlyTheSentencesThatAreNotInTheCache() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldLaunchSpaCyOncePerBatchWithOnlyTheSentencesThatAreNotInTheCache(@org.junit.jupiter.api.io.TempDir Path dir) throws Exception {
+        // R005 inv. 1: spaCy runs once per batch, and only with the sentences the cache does not
+        // have: after a run that tokenized two sentences, a batch of four launches it once, with
+        // the two that are new.
+        FakeSpacy spacy = new FakeSpacy(dir);
+        spacy.runner().run(List.of("She runs every morning.", "He walks to school."));
+
+        spacy.runner().run(List.of("She runs every morning.", "They swim in the sea.", "He walks to school.",
+                "I read a book."));
+
+        assertEquals(List.of(List.of("She runs every morning.", "He walks to school."),
+                List.of("They swim in the sea.", "I read a book.")), spacy.launches(),
+                "R005: one launch per batch, with only what is missing");
     }
 
     @Test
     @DisplayName("should not launch spaCy for a batch whose sentences are all in the cache")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R005")
-    public void shouldNotLaunchSpaCyForABatchWhoseSentencesAreAllInTheCache() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldNotLaunchSpaCyForABatchWhoseSentencesAreAllInTheCache(@org.junit.jupiter.api.io.TempDir Path dir) throws Exception {
+        // R005 inv. 2: a batch whose sentences are all in the cache does not run spaCy, in any order.
+        FakeSpacy spacy = new FakeSpacy(dir);
+        spacy.runner().run(List.of("She runs every morning.", "He walks to school."));
+
+        String output = spacy.runner().run(List.of("He walks to school.", "She runs every morning."));
+
+        assertEquals(1, spacy.launches().size(), "R005 inv. 2: no launch for a batch the cache has");
+        assertEquals(List.of("He walks to school.", "She runs every morning."), sentencesOf(output),
+                "both, from the cache");
     }
 
     @Test
     @DisplayName("should return the sentences of a batch in the order they were asked, cached or not")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R005")
-    public void shouldReturnTheSentencesOfABatchInTheOrderTheyWereAskedCachedOrNot() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldReturnTheSentencesOfABatchInTheOrderTheyWereAskedCachedOrNot(@org.junit.jupiter.api.io.TempDir Path dir) throws Exception {
+        // R005 inv. 4: the batch comes back in the order it was asked, whatever came from the cache
+        // and whatever spaCy tokenized now.
+        FakeSpacy spacy = new FakeSpacy(dir);
+        spacy.runner().run(List.of("He walks to school.", "I read a book."));
+
+        String output = spacy.runner().run(List.of("She runs every morning.", "He walks to school.",
+                "They swim in the sea.", "I read a book."));
+
+        assertEquals(List.of("She runs every morning.", "He walks to school.", "They swim in the sea.", "I read a book."),
+                sentencesOf(output), "R005 inv. 4: in the order asked");
+        assertEquals(List.of("She runs every morning.", "They swim in the sea."), spacy.launches().get(1),
+                "the two new ones, in that order too");
     }
 
     @Test
     @DisplayName("should not reuse a cached sentence after the lemma list changes")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R006")
-    public void shouldNotReuseACachedSentenceAfterTheLemmaListChanges() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldNotReuseACachedSentenceAfterTheLemmaListChanges(@org.junit.jupiter.api.io.TempDir Path dir) throws Exception {
+        // R006 inv. 2: the key of a sentence carries the fingerprint of the lemma list; when the list
+        // changes, no sentence stored before is reused, and the new tokens rank with the new list.
+        FakeSpacy spacy = new FakeSpacy(dir);
+        String before = spacy.runner().run(List.of("She runs every morning."));
+        spacy.addToLemmaList("rank\tlemma");
+
+        String after = spacy.runner().run(List.of("She runs every morning."));
+
+        assertEquals(2, spacy.launches().size(), "R006: tokenized again with the new list");
+        assertEquals(3, firstRankOf(before), "the old list had three lines");
+        assertEquals(4, firstRankOf(after), "R006: the tokens of the new list, never those of the old one");
     }
 
     @Test
     @DisplayName("should not reuse a cached sentence after the spaCy processor changes")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R006")
-    public void shouldNotReuseACachedSentenceAfterTheSpaCyProcessorChanges() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldNotReuseACachedSentenceAfterTheSpaCyProcessorChanges(@org.junit.jupiter.api.io.TempDir Path dir) throws Exception {
+        // R006 inv. 2: the key carries the fingerprint of the processor too: a changed processor
+        // tokenizes again, and its tokens are the ones that come back.
+        FakeSpacy spacy = new FakeSpacy(dir);
+        String before = spacy.runner().run(List.of("She runs every morning."));
+        spacy.writeProcessor("v2");
+
+        String after = spacy.runner().run(List.of("She runs every morning."));
+
+        assertEquals(2, spacy.launches().size(), "R006: tokenized again by the new processor");
+        assertEquals("v1", firstPosOf(before));
+        assertEquals("v2", firstPosOf(after), "R006: the tokens of the new processor");
     }
 
     @Test
     @DisplayName("should reuse a cached sentence when the same lemma list is read from another path")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R006")
-    public void shouldReuseACachedSentenceWhenTheSameLemmaListIsReadFromAnotherPath() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldReuseACachedSentenceWhenTheSameLemmaListIsReadFromAnotherPath(@org.junit.jupiter.api.io.TempDir Path dir) throws Exception {
+        // R006 inv. 1: the fingerprint is that of the content of the list, not its path nor its date:
+        // the same list copied elsewhere reuses what was tokenized with it.
+        FakeSpacy spacy = new FakeSpacy(dir);
+        String before = spacy.runner().run(List.of("She runs every morning."));
+        Path copy = Files.createDirectories(dir.resolve("otra-ittm/vocabulary")).resolve("lemmas_20k_words.txt");
+        Files.copy(spacy.lemmaList, copy);
+        Files.setLastModifiedTime(copy, java.nio.file.attribute.FileTime.fromMillis(0));
+
+        String after = spacy.runner(copy).run(List.of("She runs every morning."));
+
+        assertEquals(1, spacy.launches().size(), "R006 inv. 1: the same list, wherever it is, reuses its tokens");
+        assertEquals(before, after);
     }
 
     @Test
     @DisplayName("should never read an entry saved with the old key of the whole batch")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R006")
-    public void shouldNeverReadAnEntrySavedWithTheOldKeyOfTheWholeBatch() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldNeverReadAnEntrySavedWithTheOldKeyOfTheWholeBatch(@org.junit.jupiter.api.io.TempDir Path dir) throws Exception {
+        // R006 inv. 3: what was stored with today's key -- the whole batch, without fingerprints, as
+        // a run without the lemma list left it -- is never read again.
+        FakeSpacy spacy = new FakeSpacy(dir);
+        List<String> batch = List.of("She runs every morning.");
+        Files.createDirectories(spacy.cache);
+        Files.writeString(spacy.cache.resolve(oldKeyOf(batch) + ".json"), "{\"processed_sentences\": [{"
+                + "\"original_sentence\": \"She runs every morning.\", \"processed_words\": [{\"word\": \"She\", "
+                + "\"lemma\": \"she\", \"pos_tag\": \"POISONED\", \"frequency_rank\": null, "
+                + "\"is_stop_word\": true, \"is_punctuation\": false}]}]}");
+
+        String output = spacy.runner().run(batch);
+
+        assertEquals(List.of(batch), spacy.launches(), "R006 inv. 3: the old entry is not read; spaCy runs");
+        assertEquals("v1", firstPosOf(output), "the tokens are spaCy's, not the old entry's");
+        assertEquals(3, firstRankOf(output), "with the rank of the list");
+    }
+
+    // -------------------------------------------------------------------------
+    // FEAT-RONDA2: the processor stood in, the cache of the test
+    // -------------------------------------------------------------------------
+
+    /**
+     * A processor that speaks the protocol of sample_processor.py -- the sentences in, the
+     * processed sentences out -- without spaCy: each word is a token whose posTag is the version of
+     * the processor and whose frequency rank is the number of lines of the lemma list it was given.
+     * It writes each launch, with its sentences, next to itself.
+     */
+    static final class FakeSpacy {
+        final Path dir;
+        final Path processor;
+        final Path lemmaList;
+        final Path cache;
+
+        FakeSpacy(Path dir) throws IOException {
+            this.dir = dir;
+            this.processor = dir.resolve("analysis/spacy/sample_processor.py");
+            this.lemmaList = dir.resolve("ittm/vocabulary/lemmas_20k_words.txt");
+            this.cache = dir.resolve(".cache/spacy-nlp");
+            Files.createDirectories(processor.getParent());
+            Files.createDirectories(lemmaList.getParent());
+            writeProcessor("v1");
+            Files.writeString(lemmaList, "rank\tlemma\n1\tbe\n2\thave\n");
+        }
+
+        void writeProcessor(String version) throws IOException {
+            Files.writeString(processor, String.join("\n",
+                    "import json, os, sys",
+                    "VERSION = '" + version + "'",
+                    "here = os.path.dirname(os.path.abspath(__file__))",
+                    "with open(sys.argv[1], encoding='utf-8') as f:",
+                    "    sentences = json.load(f)['sentences']",
+                    "with open(os.path.join(here, 'launches.log'), 'a', encoding='utf-8') as log:",
+                    "    log.write(json.dumps(sentences) + '\\n')",
+                    "with open(os.environ['COCA_DATA_PATH'], encoding='utf-8') as lemmas:",
+                    "    rank = len(lemmas.read().splitlines())",
+                    "words = lambda s: [{'word': w, 'lemma': w.lower(), 'pos_tag': VERSION, 'frequency_rank': rank,",
+                    "                    'is_stop_word': False, 'is_punctuation': False} for w in s.split()]",
+                    "out = {'processed_sentences': [{'original_sentence': s, 'processed_words': words(s)} for s in sentences]}",
+                    "with open(sys.argv[2], 'w', encoding='utf-8') as f:",
+                    "    json.dump(out, f)",
+                    ""));
+        }
+
+        void addToLemmaList(String line) throws IOException {
+            Files.writeString(lemmaList, line + "\n", java.nio.file.StandardOpenOption.APPEND);
+        }
+
+        NlpTokenizerConfig config() {
+            return new NlpTokenizerConfig(processor.toString(), lemmaList.toString(), 60);
+        }
+
+        /** A runner of a new run, over the cache of the test. */
+        SpacyProcessRunner runner() {
+            return new SpacyProcessRunner(config(), cache);
+        }
+
+        SpacyProcessRunner runner(Path otherLemmaList) {
+            return new SpacyProcessRunner(new NlpTokenizerConfig(processor.toString(), otherLemmaList.toString(), 60),
+                    cache);
+        }
+
+        /** The sentences of each launch of the processor, in order. */
+        List<List<String>> launches() throws IOException {
+            Path log = processor.getParent().resolve("launches.log");
+            if (!Files.exists(log)) {
+                return List.of();
+            }
+            List<List<String>> launches = new java.util.ArrayList<>();
+            for (String line : Files.readAllLines(log)) {
+                List<String> sentences = new java.util.ArrayList<>();
+                new ObjectMapper().readTree(line).forEach(sentence -> sentences.add(sentence.asText()));
+                launches.add(sentences);
+            }
+            return launches;
+        }
+    }
+
+    static List<String> sentencesOf(String output) throws IOException {
+        List<String> sentences = new java.util.ArrayList<>();
+        new ObjectMapper().readTree(output).get("processed_sentences")
+                .forEach(entry -> sentences.add(entry.get("original_sentence").asText()));
+        return sentences;
+    }
+
+    private static JsonNode firstWordOf(String output) throws IOException {
+        return new ObjectMapper().readTree(output).get("processed_sentences").get(0).get("processed_words").get(0);
+    }
+
+    private static int firstRankOf(String output) throws IOException {
+        return firstWordOf(output).get("frequency_rank").asInt();
+    }
+
+    private static String firstPosOf(String output) throws IOException {
+        return firstWordOf(output).get("pos_tag").asText();
+    }
+
+    /** The key the cache used until FEAT-RONDA2: the SHA-256 of the whole batch, without fingerprints. */
+    private static String oldKeyOf(List<String> sentences) throws Exception {
+        java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
+        for (String sentence : sentences) {
+            digest.update(sentence.getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            digest.update((byte) 0);
+        }
+        return java.util.HexFormat.of().formatHex(digest.digest());
     }
 }

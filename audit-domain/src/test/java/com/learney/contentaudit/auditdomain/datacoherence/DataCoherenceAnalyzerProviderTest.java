@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,7 +30,7 @@ public class DataCoherenceAnalyzerProviderTest {
     @Tag("F-DATOS-R005")
     public void shouldDescribeDatacoherenceInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleOrAtThePanelAndCostsInstantAskingTodasLasCopiasDelEjercicioDicenLoMismo(
             ) {
-        // R005 and F-HALL-R006: the card the catalog validates at startup; no task kind and no configuration.
+        // R005 and F-HALL-R006: the card the catalog validates at startup; its task kind since F-RONDA2-R008, and no configuration.
         DataCoherenceAnalyzerTest.Copies copies = new DataCoherenceAnalyzerTest.Copies();
         DataCoherenceAnalyzerProvider provider = new DataCoherenceAnalyzerProvider(DataCoherenceAnalyzerTest.productionCorrector(),
                 copies, copies, DataCoherenceAnalyzerTest.renderer());
@@ -44,7 +47,8 @@ public class DataCoherenceAnalyzerProviderTest {
         assertEquals(List.of("saved-sentence", "no-slash", "audio-matches", "audio-known"),
                 card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
         assertTrue(card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
-        assertTrue(provider.planBinding().isEmpty());
+        assertEquals(Optional.of(new AnalyzerPlanBinding("DATA_COHERENCE", List.of(AuditTarget.QUIZ))), provider.planBinding(),
+                "F-RONDA2-R008: its task kind, on the exercise");
         assertTrue(provider.config().isEmpty());
         assertEquals("data-coherence", provider.create(null).getName());
 
@@ -56,7 +60,18 @@ public class DataCoherenceAnalyzerProviderTest {
     @DisplayName("should bind data-coherence to the plan with the task kind DATA_COHERENCE on the exercise")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R008")
-    public void shouldBindDatacoherenceToThePlanWithTheTaskKindDATACOHERENCEOnTheExercise() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldBindDatacoherenceToThePlanWithTheTaskKindDATACOHERENCEOnTheExercise()  {
+        // F-RONDA2-R008 (hook E-02): its findings that count become DATA_COHERENCE tasks, one on the exercise
+        // where it found them; the catalog accepts the binding, since the card evaluates exercises.
+        DataCoherenceAnalyzerTest.Copies copies = new DataCoherenceAnalyzerTest.Copies();
+        DataCoherenceAnalyzerProvider provider = new DataCoherenceAnalyzerProvider(
+                DataCoherenceAnalyzerTest.productionCorrector(), copies, copies, DataCoherenceAnalyzerTest.renderer());
+        AnalyzerPlanBinding expected = new AnalyzerPlanBinding("DATA_COHERENCE", List.of(AuditTarget.QUIZ));
+
+        assertEquals(Optional.of(expected), provider.planBinding(), "R008: its task kind, on the exercise");
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(Optional.of(expected), catalog.planBinding("data-coherence"), "the catalog serves it to the plan");
+        assertTrue(provider.describe().getEvaluatedTargets().contains(AuditTarget.QUIZ),
+                "its tasks go on a level the card evaluates");
     }
 }

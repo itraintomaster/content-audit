@@ -180,7 +180,16 @@ public class MiniTheoryAnalyzerProviderTest {
     @DisplayName("should bind mini-theory to the plan with the task kind MINI_THEORY on the exercise")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R008")
-    public void shouldBindMinitheoryToThePlanWithTheTaskKindMINITHEORYOnTheExercise() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldBindMinitheoryToThePlanWithTheTaskKindMINITHEORYOnTheExercise()  {
+        // F-RONDA2-R008 (hook E-02): its findings that count become MINI_THEORY tasks, one on the exercise
+        // where it found them; the catalog accepts the binding, since the card evaluates exercises.
+        MiniTheoryAnalyzerProvider provider = World.approved().provider;
+        AnalyzerPlanBinding expected = new AnalyzerPlanBinding("MINI_THEORY", List.of(AuditTarget.QUIZ));
+
+        assertEquals(Optional.of(expected), provider.planBinding(), "R008: its task kind, on the exercise");
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(Optional.of(expected), catalog.planBinding("mini-theory"), "the catalog serves it to the plan");
+        assertTrue(provider.describe().getEvaluatedTargets().contains(AuditTarget.QUIZ),
+                "its tasks go on a level the card evaluates");
     }
 }

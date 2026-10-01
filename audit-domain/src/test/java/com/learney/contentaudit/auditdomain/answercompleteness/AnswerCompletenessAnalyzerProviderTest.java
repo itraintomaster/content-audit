@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -28,7 +31,7 @@ public class AnswerCompletenessAnalyzerProviderTest {
     public void shouldDescribeAnswercompletenessInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleAtThePanelOrByRankingOnlyAndCostsInstantAskingElCorrectorAceptaTodasLasFormasDeLaRespuestaYNingunaConsignaPideUna(
             ) {
         // R006 and F-HALL-R006: the card the catalog validates at startup, with the Spanish name of F-RONDA1-R004;
-        // no task kind (package E's) and no configuration.
+        // its task kind since F-RONDA2-R008, and no configuration.
         AnswerCompletenessAnalyzerProvider provider = new AnswerCompletenessAnalyzerProvider(
                 AnswerCompletenessAnalyzerTest.productionCorrector(), AnswerCompletenessAnalyzerTest.participles(),
                 AnswerCompletenessAnalyzerTest.renderer());
@@ -47,7 +50,8 @@ public class AnswerCompletenessAnalyzerProviderTest {
         assertEquals(List.of("contracted-and-long-forms", "be-short-negations", "spellings-and-till", "form-request"),
                 card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
         assertTrue(card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
-        assertTrue(provider.planBinding().isEmpty());
+        assertEquals(Optional.of(new AnalyzerPlanBinding("ANSWER_COMPLETENESS", List.of(AuditTarget.QUIZ))), provider.planBinding(),
+                "F-RONDA2-R008: its task kind, on the exercise");
         assertTrue(provider.config().isEmpty());
         assertEquals("answer-completeness", provider.create(null).getName());
 
@@ -59,7 +63,18 @@ public class AnswerCompletenessAnalyzerProviderTest {
     @DisplayName("should bind answer-completeness to the plan with the task kind ANSWER_COMPLETENESS on the exercise")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R008")
-    public void shouldBindAnswercompletenessToThePlanWithTheTaskKindANSWERCOMPLETENESSOnTheExercise() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldBindAnswercompletenessToThePlanWithTheTaskKindANSWERCOMPLETENESSOnTheExercise()  {
+        // F-RONDA2-R008 (hook E-02): its findings that count become ANSWER_COMPLETENESS tasks, one on the exercise
+        // where it found them; the catalog accepts the binding, since the card evaluates exercises.
+        AnswerCompletenessAnalyzerProvider provider = new AnswerCompletenessAnalyzerProvider(
+                AnswerCompletenessAnalyzerTest.productionCorrector(), AnswerCompletenessAnalyzerTest.participles(),
+                AnswerCompletenessAnalyzerTest.renderer());
+        AnalyzerPlanBinding expected = new AnalyzerPlanBinding("ANSWER_COMPLETENESS", List.of(AuditTarget.QUIZ));
+
+        assertEquals(Optional.of(expected), provider.planBinding(), "R008: its task kind, on the exercise");
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(Optional.of(expected), catalog.planBinding("answer-completeness"), "the catalog serves it to the plan");
+        assertTrue(provider.describe().getEvaluatedTargets().contains(AuditTarget.QUIZ),
+                "its tasks go on a level the card evaluates");
     }
 }
