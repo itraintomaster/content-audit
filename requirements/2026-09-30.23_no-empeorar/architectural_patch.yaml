@@ -7,13 +7,16 @@ description: "FEAT-NOEMP: la compuerta de no empeorar en dos niveles. Por cambio
   \ el sentinel.yaml de ronda1/integracion (la ronda 1 aplicada y construida) y sobre\
   \ FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2, B, F y E: revision-domain\
   \ lleva la lista entera de patrones, 3 (el apply reemplaza, no suma).; qa-tester:\
-  \ 34 handwrittenTests trazan las 10 reglas de FEAT-NOEMP sobre las dos compuertas,\
+  \ 36 handwrittenTests trazan las 10 reglas de FEAT-NOEMP sobre las dos compuertas,\
   \ con los casos medidos del 30/9 (las cuatro propuestas de Afirmativas regulares:\
   \ grandmother A2 vuelve y Winter pasa, cuatro pedidos de regrabar, A1 de 351 a 352\
   \ ejercicios con palabras rojas, ningún número de vocabulario movido), y F-NOEMP-J001\
   \ va a revision-domain, paquete batchengine: el cierre que recalcula, compara, devuelve\
   \ y vuelve a recalcular es DefaultBatchCloser, package-private ahí, y la compuerta\
-  \ se obtiene por su fábrica pública."
+  \ se obtiene por su fábrica pública.; orquestador, 1/10 (el audio sigue al ejercicio):\
+  \ ChangeProbe suma requestedRerecords, el pedido de regrabar de un arreglo que no\
+  \ cambia el ejercicio (F-NOEMP-R004, inv. 3 y 4), con dos pruebas sobre …399b, cuyo\
+  \ audio lee la pista."
 modules:
 - name: revision-domain
   patterns:
@@ -146,6 +149,13 @@ modules:
         type: UnitMeasurement
       - name: after
         type: UnitMeasurement
+      - name: requestedRerecords
+        type: List<AudioRerecordRequest>
+        description: "Pedidos de regrabar que trae el arreglo aunque no cambie lo\
+          \ que se escucha del ejercicio: el audio que lee la «/» o la pista, o el\
+          \ que nadie sabe con qué se grabó (F-NOEMP-R004, inv. 3). Cada uno tiene\
+          \ que decir lo que el ejercicio dice como queda, sin la «/» ni la pista\
+          \ (inv. 4)."
       _change: add
     - name: ChangeGateVerdict
       type: record
@@ -365,6 +375,19 @@ modules:
         traceability:
           feature: FEAT-NOEMP
           rule: F-NOEMP-R010
+      - name: "should pass a rule fix that leaves «I learned ___ me / myself to drive\
+          \ a car.» (…399b) as it is and only asks to rerecord its audio with «I learned\
+          \ myself to drive a car.», listing the request although what the exercise\
+          \ says did not change"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R004
+      - name: "should not pass a request to rerecord …399b with «I learned myself\
+          \ me / myself to drive a car.», which reads the hint and is not what the\
+          \ exercise says"
+        traceability:
+          feature: FEAT-NOEMP
+          rule: F-NOEMP-R004
       implements:
       - ChangeGate
       _change: add

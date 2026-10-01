@@ -247,9 +247,36 @@ modules:
     _change: modify
 ```
 
-## Declarar las 34 pruebas y ubicar el journey
-Las 34 son nuevas y cubren las diez reglas (R001 5, R002 5, R003 3, R004 2, R005 5, R006 4, R007 1, R008 3, R009 4,
-R010 2), sobre las dos compuertas: 17 en `DefaultChangeGate` (el grupo A, R009 y R010) y 17 en `DefaultBatchGate` (el
+## Pedir regrabar sin cambiar el ejercicio
+El audio sigue al ejercicio, nunca al revés (orquestador, 1/10). Un arreglo por regla puede dejar el ejercicio como
+está y pedir regrabar su audio con lo que dice hoy: el que lee la «/» o la pista (F-DATOS-R002, inv. 2, 85 audios) o el
+que nadie sabe con qué se grabó (F-DATOS-R004). Como lo que se escucha del ejercicio no cambia, las dos mediciones no
+traen ese pedido: lo trae el arreglo, en un campo propio de la unidad que se juzga. La compuerta lo deja pasar y lo lista
+con los demás (R004, inv. 3), y rechaza un pedido que no diga lo que el ejercicio dice como queda, sin la «/» ni la pista
+(inv. 4): así ninguna tanda graba un audio con algo que el ejercicio no dice.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: nonregression
+        _change: add
+        models:
+          - name: ChangeProbe
+            _change: add
+            type: record
+            fields:
+              - { name: changedQuizIds, type: "List<String>" }
+              - { name: topicLevelChange, type: boolean }
+              - { name: before, type: UnitMeasurement }
+              - { name: after, type: UnitMeasurement }
+              - { name: requestedRerecords, type: "List<AudioRerecordRequest>" }
+```
+
+## Declarar las 36 pruebas y ubicar el journey
+Las 36 son nuevas y cubren las diez reglas (R001 5, R002 5, R003 3, R004 4, R005 5, R006 4, R007 1, R008 3, R009 4,
+R010 2), sobre las dos compuertas: 19 en `DefaultChangeGate` (el grupo A, R009 y R010) y 17 en `DefaultBatchGate` (el
 grupo B, R008 a R010). Ninguna consulta un modelo: la compuerta por cambio recibe dos mediciones armadas a mano, y la de la
 tanda una `BatchComparison` de F armada a mano. La fábrica no lleva prueba: ninguna regla la pide.
 
@@ -260,7 +287,9 @@ every year.» pasa; los cuatro cambian lo que se escucha y piden cuatro regrabac
 A1 ni del curso (73,923) se mueve. Además: spread y quilt, que ya eran rojas en «She spread the warm blue quilt on the
 bed.»; reside, fuera del catálogo; «All the sheep in the field are still ___ (alive / living).» (B2), que con 9 tokens
 queda uno abajo del rango de 10 a 25 y no vuelve; la miniteoría de «Contraste inicial» en sus nueve ejercicios, para un
-cambio del tema; y «aren't» después de «'re not» en «They ___ (not / be) from Ireland.», que no cambia lo que se escucha.
+cambio del tema; «aren't» después de «'re not» en «They ___ (not / be) from Ireland.», que no cambia lo que se escucha;
+y «I learned ___ me / myself to drive a car.» (`…399b`), cuyo audio lee la pista: el pedido de regrabar con «I learned
+myself to drive a car.» pasa sin cambiar el ejercicio, y uno que repite la pista no pasa.
 
 **Lo que cumplen otras piezas.** La compuerta decide; mover lo que decide es de quien la llama, y se prueba allí con su
 regla: que un cambio devuelto gaste un intento y, sin intentos, vaya a la bandeja como sin ganador (R008), en el cierre

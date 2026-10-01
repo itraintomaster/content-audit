@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (como arquitecto) — El pedido de regrabar de un arreglo que no cambia el ejercicio viaja en la
+  unidad que se juzga (ChangeProbe.requestedRerecords), no en las mediciones: lo que se escucha del ejercicio no cambia.
+  why: la compuerta tiene que listarlo (inv. 3) y rechazarlo si no dice lo que el ejercicio dice (inv. 4).
+
 2026-10-01 — qa-tester (como analista) — R004 reescrita con la decisión del orquestador del 1/10: el audio sigue al
   ejercicio, nunca al revés. Inv. 3: un arreglo que sólo pide regrabar con lo que el ejercicio dice hoy (F-DATOS-R002
   inv. 2, F-DATOS-R004) pasa y su pedido se lista; inv. 4: todo pedido dice lo que el ejercicio dice como queda, sin la
