@@ -5,6 +5,9 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — R001: las filas de un analizador que no corrió en la línea base salen vacías, no en cero (decidido por el orquestador el 1/10). La prueba ya lo fijaba así; R001 no cambia.
+  why: un analizador que no corrió no midió nada; un 0 se leería como «ningún error».
+
 2026-10-01 — analyst — R006: la parte «abrir una tanda también las fija» se prueba en FEAT-TANDA (decidido por el orquestador el 1/10); anotado en la regla («Dónde se prueba») y en References. La regla no cambia.
   why: el servicio que abre la tanda es de TANDA y no existe cuando se aplica METAS; lo toma el qa-tester de E.
 
