@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (paquete D) — La respuesta de un ejercicio (R003) son todas las variantes «|» de sus huecos o la
+  etiqueta de la opción correcta (incidencia > 0, como correctItem de 0.2); se cruza con el texto de los tokens. Un
+  término del título con apóstrofo enseña además la palabra antes del apóstrofo. El diagnóstico tipado se escribe en
+  todo ejercicio evaluado, con la lista vacía si no hay palabras: el semáforo distingue «no es error» de «sin dato».
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): OffLevelWordsAnalyzerProvider implements AnalyzerProvider (D-01); proveedor y analizador inyectan QuizStudentViewRenderer (D-14).
 
 2026-09-30 — qa-tester — F-NIVFR-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.

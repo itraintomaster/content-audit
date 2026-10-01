@@ -1156,18 +1156,54 @@ public class IAuditEngineTest {
     @DisplayName("should give lemma-absence the same scores and typed diagnoses in every node whether or not off-level-words runs in the same analysis")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldGiveLemmaabsenceTheSameScoresAndTypedDiagnosesInEveryNodeWhetherOrNotOfflevelwordsRunsInTheSameAnalysis() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-NIVFR-R006: with and without off-level-words in the same analysis, lemma-absence leaves the
+        // same score, typed diagnosis and findings on every node.
+        AuditableCourse course = offLevelCourse();
+        AuditReport alone = realEngine(List.of(lemmaAbsenceOfOffLevelCourse())).runAudit(course);
+        AuditReport together = realEngine(List.of(lemmaAbsenceOfOffLevelCourse(), offLevelWordsOfOffLevelCourse()))
+                .runAudit(course);
+
+        List<AuditNode> before = new ArrayList<>();
+        walk(alone.getRoot(), before::add);
+        List<AuditNode> after = new ArrayList<>();
+        walk(together.getRoot(), after::add);
+        assertEquals(before.size(), after.size(), "the same tree");
+        for (int i = 0; i < before.size(); i++) {
+            AuditNode a = before.get(i);
+            AuditNode b = after.get(i);
+            assertEquals(a.getScores().get("lemma-absence"), b.getScores().get("lemma-absence"),
+                    "R006: the score of lemma-absence on node " + i);
+            assertEquals(lemmaAbsenceDiagnosisOf(a), lemmaAbsenceDiagnosisOf(b), "R006: its typed diagnosis on node " + i);
+            assertEquals(findingKeys(a, "lemma-absence"), findingKeys(b, "lemma-absence"), "R006: its findings on node " + i);
+        }
+        assertTrue(after.stream().anyMatch(n -> n.getScores().getOrDefault("off-level-words", 1.0) < 1.0),
+                "off-level-words did run and mark a quiz");
+        assertTrue(after.stream().anyMatch(n -> n.getScores().getOrDefault("lemma-absence", 1.0) < 1.0),
+                "and lemma-absence marked too");
     }
 
     @Test
     @DisplayName("should keep the vocabulary score of every node when off-level-words runs, 73.92% in the course and 96.54, 94.16, 79.45 and 63.51 from A1 to B2 on the published scores of the analysis of 29/9")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldKeepTheVocabularyScoreOfEveryNodeWhenOfflevelwordsRuns7392InTheCourseAnd965494167945And6351FromA1ToB2OnThePublishedScoresOfTheAnalysisOf299() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-NIVFR-R006: off-level-words, of the errors family, never enters a vocabulary average: on
+        // the published scores of 29/9 every node keeps its vocabulary, 73,92 % in the course and
+        // 96,54 · 94,16 · 79,45 · 63,51 in the levels.
+        AuditableCourse course = offLevelCourse();
+        AuditReport without = realEngine(onPublished299()).runAudit(course);
+        AuditReport with = realEngine(onPublished299(offLevelWordsOfOffLevelCourse())).runAudit(course);
+
+        assertEquals("73,92", percent2(with.getRoot().getNumbers().getVocabularyScore()), "R006: the course");
+        assertEquals(List.of("96,54", "94,16", "79,45", "63,51"), levelVocabulary(with), "R006: A1 to B2");
+        List<Double> expected = new ArrayList<>();
+        walk(without.getRoot(), node -> expected.add(node.getNumbers().getVocabularyScore()));
+        List<Double> actual = new ArrayList<>();
+        walk(with.getRoot(), node -> actual.add(node.getNumbers().getVocabularyScore()));
+        assertEquals(expected, actual, "R006: the vocabulary of every node, as without it");
+        assertTrue(with.getRoot().getChildren().stream().anyMatch(level ->
+                level.getScores().getOrDefault("off-level-words", 1.0) < 1.0), "off-level-words found errors");
     }
 
     @Test
@@ -1429,5 +1465,105 @@ public class IAuditEngineTest {
     private static String percent2(Double fraction) {
         assertNotNull(fraction, "a vocabulary score");
         return String.format(java.util.Locale.ROOT, "%.2f", fraction * 100).replace('.', ',');
+    }
+
+    // ------------------------------------------------------------------
+    // Package D: off-level-words next to lemma-absence
+    // ------------------------------------------------------------------
+
+    /** A course of the four levels where «quilt» (B2) and «reside» (out of the EVP) appear low. */
+    private static AuditableCourse offLevelCourse() {
+        List<AuditableMilestone> milestones = new ArrayList<>();
+        for (String level : LEVELS_299) {
+            AuditableKnowledge knowledge = new AuditableKnowledge(List.of(
+                    offLevelQuiz("q-quilt-" + level, "She|she|PRON spread|spread|VERB the|the|DET quilt|quilt|NOUN "
+                            + ".|.|PUNCT"),
+                    offLevelQuiz("q-reside-" + level, "We|we|PRON reside|reside|VERB|5333 in|in|ADP the|the|DET "
+                            + "city|city|NOUN .|.|PUNCT"),
+                    offLevelQuiz("q-cat-" + level, "The|the|DET cat|cat|NOUN sleeps|sleep|VERB .|.|PUNCT")),
+                    "Tema " + level, "Completa.", true, "k-" + level, "Tema " + level, "K", null, "T");
+            milestones.add(new AuditableMilestone(List.of(new AuditableTopic(List.of(knowledge), "t-" + level, "T", "T")),
+                    "m-" + level, level, level));
+        }
+        return new AuditableCourse(milestones);
+    }
+
+    private static AuditableQuiz offLevelQuiz(String id, String tokens) {
+        List<NlpToken> parsed = new ArrayList<>();
+        StringBuilder sentence = new StringBuilder();
+        for (String token : tokens.split(" ")) {
+            String[] f = token.split("\\|", -1);
+            parsed.add(new NlpToken(f[0], f[1], f[2], f.length > 3 ? Integer.valueOf(f[3]) : null, false,
+                    "PUNCT".equals(f[2])));
+            sentence.append(sentence.length() > 0 ? " " : "").append(f[0]);
+        }
+        return new AuditableQuiz(parsed, id, sentence.toString(), "Q", "Una traducción.", List.of(sentence.toString()),
+                null, null, null, null, null, null);
+    }
+
+    /** The EVP of that course: spread and quilt B2, cat, city and sleep A1, reside out of it. */
+    private static EvpCatalogPort offLevelEvp() {
+        Map<String, CefrLevel> levels = Map.of("spread", CefrLevel.B2, "quilt", CefrLevel.B2, "cat", CefrLevel.A1,
+                "city", CefrLevel.A1, "sleep", CefrLevel.A1);
+        EvpCatalogPort evp = Mockito.mock(EvpCatalogPort.class);
+        Mockito.when(evp.getExpectedLemmas(any())).thenReturn(Set.of());
+        Mockito.when(evp.lookupLevel(any())).thenAnswer(i -> Optional.ofNullable(levels.get(
+                i.<LemmaAndPos>getArgument(0).getLemma())));
+        Mockito.when(evp.lookupLevelByLemma(any())).thenAnswer(i -> Optional.ofNullable(levels.get(
+                i.<String>getArgument(0))));
+        return evp;
+    }
+
+    private static LemmaAbsenceConfig offLevelConfig() {
+        LemmaAbsenceConfig config = Mockito.mock(LemmaAbsenceConfig.class);
+        Mockito.when(config.getDiscountPerLevel()).thenReturn(0.1);
+        Mockito.when(config.getOutOfCatalogNoPenaltyRankBound(any())).thenReturn(1000);
+        Mockito.when(config.getOutOfCatalogMildDiscountRankBound(any())).thenReturn(5000);
+        Mockito.when(config.getOutOfCatalogMildDiscount()).thenReturn(0.1);
+        Mockito.when(config.getOutOfCatalogStrongDiscount()).thenReturn(0.3);
+        return config;
+    }
+
+    private static AnalyzerProvider lemmaAbsenceOfOffLevelCourse() {
+        EvpCatalogPort evp = offLevelEvp();
+        LemmaAbsenceConfig config = offLevelConfig();
+        return new LemmaAbsenceAnalyzerProvider(evp, config,
+                new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), config));
+    }
+
+    private static AnalyzerProvider offLevelWordsOfOffLevelCourse() {
+        EvpCatalogPort evp = offLevelEvp();
+        LemmaAbsenceConfig config = offLevelConfig();
+        return new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(
+                new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), config), config,
+                new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(),
+                new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
+                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create()));
+    }
+
+    /** The typed diagnosis lemma-absence leaves on a node, whatever its level. */
+    private static Object lemmaAbsenceDiagnosisOf(AuditNode node) {
+        NodeDiagnoses diagnoses = node.getDiagnoses();
+        if (diagnoses instanceof QuizDiagnoses quiz) {
+            return quiz.getLemmaAbsenceDiagnosis();
+        }
+        if (diagnoses instanceof KnowledgeDiagnoses knowledge) {
+            return knowledge.getLemmaAbsenceDiagnosis();
+        }
+        if (diagnoses instanceof TopicDiagnoses topic) {
+            return topic.getLemmaAbsenceDiagnosis();
+        }
+        if (diagnoses instanceof LevelDiagnoses level) {
+            return level.getLemmaAbsenceDiagnosis();
+        }
+        if (diagnoses instanceof CourseDiagnoses course) {
+            return course.getLemmaAbsenceDiagnosis();
+        }
+        return null;
+    }
+
+    private static List<String> findingKeys(AuditNode node, String analyzer) {
+        return node.getFindings().stream().filter(f -> analyzer.equals(f.getAnalyzer()))
+                .map(f -> f.getIdentity().getKey() + " " + f.getEvidence().getObservation()).toList();
     }
 }

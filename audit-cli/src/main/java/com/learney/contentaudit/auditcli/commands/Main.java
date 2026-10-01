@@ -565,7 +565,7 @@ class Main {
 
         analyzerProviders.add(new LemmaAbsenceAnalyzerProvider(evpCatalog, lemmaAbsenceConfig, sentenceLexicalScorer)); //  6
 
-        // analyzerProviders.add(offLevelWordsProvider);          //  7 · D · FEAT-NIVFR, pendiente
+        analyzerProviders.add(offLevelWordsProvider);                                                     //  7 · D · FEAT-NIVFR
 
         analyzerProviders.add(new LemmaCountAnalyzerProvider(evpCatalog, lemmaCountConfig));               //  8
 

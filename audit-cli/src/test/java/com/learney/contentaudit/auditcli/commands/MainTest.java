@@ -97,8 +97,23 @@ public class MainTest {
     @DisplayName("should list off-level-words with its card in get analyzers, registered in the catalog right after lemma-absence")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R007")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
-    public void shouldListOfflevelwordsWithItsCardInGetAnalyzersRegisteredInTheCatalogRightAfterLemmaabsence() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldListOfflevelwordsWithItsCardInGetAnalyzersRegisteredInTheCatalogRightAfterLemmaabsence(@org.junit.jupiter.api.io.TempDir java.nio.file.Path workdir) throws Exception {
+        // R007 and F-RONDA1-R004: get analyzers of the real Main lists off-level-words with its card,
+        // right after lemma-absence.
+        com.fasterxml.jackson.databind.JsonNode cards = analyzersOfMain(workdir);
+
+        java.util.List<String> names = new java.util.ArrayList<>();
+        cards.forEach(card -> names.add(card.get("name").asText()));
+        int offLevel = names.indexOf("off-level-words");
+        org.junit.jupiter.api.Assertions.assertTrue(offLevel > 0, "R007: off-level-words is in the catalog: " + names);
+        org.junit.jupiter.api.Assertions.assertEquals("lemma-absence", names.get(offLevel - 1),
+                "R007: right after lemma-absence");
+        com.fasterxml.jackson.databind.JsonNode card = cards.get(offLevel);
+        org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("Palabras de otro nivel",
+                "¿Hay palabras que el alumno de este nivel no puede conocer?", "ERRORS", "[\"QUIZ\"]", "[\"PANEL\"]",
+                "INSTANT", "F-NIVFR-R002"), java.util.List.of(card.get("displayName").asText(),
+                card.get("question").asText(), card.get("family").asText(), card.get("evaluatedTargets").toString(),
+                card.get("resolutions").toString(), card.get("cost").asText(),
+                card.get("rules").get(0).get("id").asText()), "R007: its card");
     }
 }
