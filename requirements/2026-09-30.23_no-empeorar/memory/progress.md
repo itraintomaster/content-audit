@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (construcción E) — Control sobre la copia del 29/9: la compuerta de la tanda de A1 pasa en 1
+  vuelta, sin cambios devueltos ni fuera del alcance; arreglado el pedido de regrabar por sólo mayúsculas (ver fix-log).
+
 2026-10-01 — developer — Cableado el audio pendiente en F (e5d49e18): `PendingCopies`, comparador, atributor y las dos
   compuertas; `PendingRerecordingIntegrationTest` (motor real + data-coherence real sobre las verduras, 2 pruebas) y
   `PendingCopiesGateIntegrationTest` (3). Contraprueba: sin asentar, A1 sube a 1 y el atributor no nombra a nadie.

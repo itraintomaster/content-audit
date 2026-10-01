@@ -4,6 +4,16 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (construcción E) — Control sobre una copia (foto del 29/9, 17 analizadores, el parche de
+  construcción simulado sólo en la copia; scratchpad impl-E2/control): plan de 5.382 tareas (1.346 de error); la tanda de
+  A1 toma 749 (621 por regla, 128 de la mesa), estima 580 consultas (0,77 h); `batch run` sin tope: 621 resueltas por
+  regla, 128 sin intentar, 0 consultas; `batch close`: la compuerta pasa en 1 vuelta, veredicto UNDECIDABLE (los cuatro
+  jueces sin evaluar), algún error en A1 711 → 116, vocabulario del curso 73,86 → 73,86 y de los niveles sin cambio;
+  muestra ciega de 100 pares; `tray show` sólo la ciega. Sin publicar; el curso de la copia idéntico a la foto; 0
+  consultas a claude. Arreglados en el camino: el pedido de regrabar por mayúsculas (NOEMP), `tray show` con el ejercicio
+  entero (BANDEJA) y el nivel de cada fila del informe.
+  Next: aplicar el parche de construcción (a4544a85) para que `batch` y `tray` corran fuera de la copia.
+
 2026-10-01 — developer (construcción E) — TANDA construida: las 66 pruebas en verde (ledger 4, selección 7, costo 1,
   reglas 5, mesa 5, cierre 7, informe 5, publicación 7, servicio 16, almacén 2, BatchCmd 5, FTandaJ001 2) y F-NOEMP-J001
   (3). `batch` registrado en Main a pedido (E-09); falla con un mensaje claro hasta que se aplique el parche de
