@@ -3,5 +3,6 @@
  "descripcion": "La tabla del corrector viejo, el que estuvo en producción hasta el 1/10/2026: no tenía tabla, comparaba letra por letra, sin mayúsculas, espacios, signos, apóstrofos ni tildes, así que «aren't», «are not» y «'re not» eran tres formas distintas. Queda sólo como dato de prueba: con ella los casos de oro de casos-de-oro/ tienen que dar lo que dice su columna «hoy». content-audit no la lee al analizar: lee formas-equivalentes.json.",
  "contracciones": [],
  "palabrasEquivalentes": [],
- "invierteNegativas": false
+ "invierteNegativas": false,
+ "reglas": []
 }
