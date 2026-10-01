@@ -5,6 +5,14 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — Revisión a mano de las 23 marcas fuera del oro de escribir/ (filtro-99bd09ee): 11
+  de 20 reales en la muestra (semilla 87), 13 de 23 con las tres que quedaron afuera. Las falsas eran patrones y salieron
+  (71a54d6f): AT_TIME, AGREEMENT_SENT_START_2, SOME_FACULTY, SINGED_CONTRACT y THESE_ONES fuera del filtro, y el signo
+  final v2 (FINAL_SIGN_VERSION en la huella): sólo la solución, «?.» tras la pista ya está cerrado, «Have …» imperativo
+  no abre pregunta y el signo que falta es «.» aunque un diálogo traiga un «?» antes.
+  why: cada regla excluida marcaba en el curso sólo inglés correcto; las respuestas aceptadas que siguen a la primera no
+  las lee el alumno, y su signo no es un error del curso.
+
 2026-10-01 — analista y arquitecto (qa-tester B, por el coordinador) — R001 inv. 5: la lista «a / b» dentro de una
   oración ya cerrada, con el hueco después, se lee con la respuesta en el lugar de la lista y su mayúscula: «Something
   was wrong with the telephone.». Son 40 de A2 y en los 40 es el texto con que se grabó el audio. El arreglo vive sólo en

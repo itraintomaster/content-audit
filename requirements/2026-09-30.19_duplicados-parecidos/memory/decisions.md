@@ -5,6 +5,14 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — La muestra ciega del modelo local (`armar_muestra_ciega.py` de la carpeta del
+  examen): marcados = las copias de una corrida del curso entero por el camino del examen (siempre publica), con el que
+  queda; no marcados = pares del mismo tema con la misma respuesta y coseno de 0,90 a 0,95 de los vectores de esa
+  corrida, sin una copia marcada entre los dos. «La misma respuesta» se lee más estricta que el analizador (primeras
+  respuestas en minúscula y sin signo final, o tapando pronombres y demostrativos; nunca una copia exacta): 19 de 19
+  same-meaning con vector salen con la misma respuesta y su parecido. El revisor escribe sus respuestas antes de abrir
+  la clave; `puntuar_muestra_ciega.py` cruza las dos.
+
 2026-10-01 — developer — «Pide lo mismo» compara todos los huecos (el prototipo, sólo el primero) con
   CorrectorMatcher.sameAnswer, también tapando pronombres y demostrativos de la respuesta (todos, como el prototipo,
   no sólo los copiados del enunciado). Contra pares.json: 24.800 de 24.889 (89 de varios huecos con otro segundo hueco)

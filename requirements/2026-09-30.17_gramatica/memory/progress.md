@@ -4,6 +4,16 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — Examen rendido y registrado en `~/projects/learney/content-audit-corridas/2026-10-01-examen-idioma/` (copia de esta rama en cf34c054):
+  «LanguageTool 6.8 · filtro-031b0555» REPROBADO. escribir/ 4 de 47 (8,5 %); examinar/ 6 de 75 (8,0 %), uno menos de
+  los 7 que pide «la misma proporción»; a mano, fuera del oro, 28 de 37 reales: escribir 13 de 13 (sesgado: el arreglo
+  salió de esas marcas) y examinar 15 de 24 (62 %, revisadas sin saber cuáles están en su oro). La versión de integración
+  (filtro-99bd09ee) también daba 6 de 75: el arreglo no tocó B1–B2 (las mismas 30 marcas). Las 9 falsas de B1–B2 quedan
+  sin corregir, para no ajustar sobre la mitad que no se mira: «enquired» ×4 (grafía británica que marcan en-US y en-GB),
+  «My local association have» (el colectivo en plural del tema «Colectivos»), «a water», «gave → give», «in the city →
+  with the city», «have the dinner prepared» → «have dinner».
+  Next: José decide si 6 de 75 alcanza o la gramática queda afuera; las 9 son la próxima versión del filtro, con su examen.
+
 2026-10-01 — developer (paquete B) — GRAMA implementado (26bb9c25 la oración terminada, 90d59f69 el analizador,
   94f7dcb8 el @Generated del journey). Control sobre una copia, LanguageTool 6.8 aprobado sólo en la copia: LanguageTool
   sobre las 12.223 oraciones en unos 21 s; 57 ejercicios con hallazgo (A1 17, A2 10, B1 16, B2 14): english-error 3 bloqueantes,

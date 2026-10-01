@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — B1 y B2 con la regla de A1 y A2 (B-19): k = int(n · 0,05) de los ejercicios
+  del nivel con número en la base del 29/9 (la corrida de control), y un umbral con dos decimales que deja marcados
+  exactamente k (marca el número mayor que el umbral). A1 y A2 no se tocaron.
+  why: umbral fijo por nivel (DOUBT-NATUR-UMBRAL, A); la calibración no mira el oro, así que examinar/ sigue sin verse.
+
 2026-10-01 — developer — Llega a naturalness la primera oración terminada con dos palabras o más y algún token VERB
   o AUX de spaCy. Con llama3 se guardan en el libro las dos probabilidades, nunca el número; con claude -p, la misma
   pregunta y el mismo mensaje de sistema, y su «no» marca sin número ni umbral. Una respuesta que no se lee deja el
