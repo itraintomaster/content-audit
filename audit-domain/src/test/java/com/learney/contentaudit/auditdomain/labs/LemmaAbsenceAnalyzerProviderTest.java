@@ -1,4 +1,23 @@
 package com.learney.contentaudit.auditdomain.labs;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.DefaultLevelDiagnoses;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProviderTest;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.EvpCatalogPort;
@@ -11,7 +30,6 @@ import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -69,8 +87,91 @@ public class LemmaAbsenceAnalyzerProviderTest {
     @DisplayName("should create for every run an analyzer that sees only the lemmas of the course it measures, not those of an earlier course")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldCreateForEveryRunAnAnalyzerThatSeesOnlyTheLemmasOfTheCourseItMeasuresNotThoseOfAnEarlierCourse() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CERO-R001: the EVP expects quilt in B2; the first course has «She spread the quilt.» in B2, the second
+        // one, as a proposal leaves it, no longer has it. Measured after the first in the same process, the second
+        // course gives what a new invocation gives: quilt is absent from B2, and every node scores the same.
+        LemmaAbsenceAnalyzerProvider provider = provider();
+        IAuditEngine engine = CocaBucketsAnalyzerProviderTest.Coca299.engine(provider);
+
+        AuditReport withQuilt = engine.runAudit(course(true));
+        AuditReport afterIt = engine.runAudit(course(false));
+        AuditReport newInvocation = CocaBucketsAnalyzerProviderTest.Coca299.engine(provider()).runAudit(course(false));
+
+        Assertions.assertEquals(0, absentInB2(withQuilt), "the first course has quilt in B2");
+        Assertions.assertEquals(1, absentInB2(afterIt), "R001: the second sees only its own lemmas: quilt is absent");
+        Assertions.assertEquals(absentInB2(newInvocation), absentInB2(afterIt), "R001: as a new invocation");
+        Assertions.assertEquals(scores(newInvocation), scores(afterIt), "R001: every node, as a new invocation");
+    }
+
+    private static LemmaAbsenceAnalyzerProvider provider() {
+        Map<String, CefrLevel> levels = Map.of("spread", CefrLevel.B2, "quilt", CefrLevel.B2, "cat", CefrLevel.A1,
+                "sleep", CefrLevel.A1);
+        EvpCatalogPort evp = Mockito.mock(EvpCatalogPort.class);
+        Mockito.when(evp.getExpectedLemmas(Mockito.any())).thenReturn(Set.of());
+        Mockito.when(evp.getExpectedLemmas(CefrLevel.B2)).thenReturn(Set.of(new LemmaAndPos("quilt", "NOUN")));
+        Mockito.when(evp.lookupLevel(Mockito.any())).thenAnswer(i -> Optional.ofNullable(levels.get(
+                i.<LemmaAndPos>getArgument(0).getLemma())));
+        Mockito.when(evp.lookupLevelByLemma(Mockito.any())).thenAnswer(i -> Optional.ofNullable(levels.get(
+                i.<String>getArgument(0))));
+        LemmaAbsenceConfig config = Mockito.mock(LemmaAbsenceConfig.class);
+        Mockito.when(config.getDiscountPerLevel()).thenReturn(0.1);
+        Mockito.when(config.getOutOfCatalogNoPenaltyRankBound(Mockito.any())).thenReturn(1000);
+        Mockito.when(config.getOutOfCatalogMildDiscountRankBound(Mockito.any())).thenReturn(5000);
+        Mockito.when(config.getOutOfCatalogMildDiscount()).thenReturn(0.1);
+        Mockito.when(config.getOutOfCatalogStrongDiscount()).thenReturn(0.3);
+        return new LemmaAbsenceAnalyzerProvider(evp, config,
+                new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), config));
+    }
+
+    /** The four levels; B2 with «She spread the quilt.» when asked, and «The cat sleeps.» in every level. */
+    private static AuditableCourse course(boolean withQuilt) {
+        List<AuditableMilestone> milestones = new ArrayList<>();
+        for (String level : List.of("A1", "A2", "B1", "B2")) {
+            List<AuditableQuiz> quizzes = new ArrayList<>();
+            if (withQuilt && "B2".equals(level)) {
+                quizzes.add(quiz("q-quilt", "She|she|PRON spread|spread|VERB the|the|DET quilt|quilt|NOUN .|.|PUNCT"));
+            }
+            quizzes.add(quiz("q-cat-" + level, "The|the|DET cat|cat|NOUN sleeps|sleep|VERB .|.|PUNCT"));
+            AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Tema " + level, "Completa.", true,
+                    "k-" + level, "Tema " + level, "K", null, "T");
+            milestones.add(new AuditableMilestone(List.of(new AuditableTopic(List.of(knowledge), "t-" + level, "T", "T")),
+                    "m-" + level, level, level));
+        }
+        return new AuditableCourse(milestones);
+    }
+
+    private static AuditableQuiz quiz(String id, String tokens) {
+        List<NlpToken> parsed = new ArrayList<>();
+        StringBuilder sentence = new StringBuilder();
+        for (String token : tokens.split(" ")) {
+            String[] f = token.split("\\|", -1);
+            parsed.add(new NlpToken(f[0], f[1], f[2], null, false, "PUNCT".equals(f[2])));
+            sentence.append(sentence.length() > 0 ? " " : "").append(f[0]);
+        }
+        return new AuditableQuiz(parsed, id, sentence.toString(), "Q", "Una traducción.", List.of(sentence.toString()),
+                null, null, null, null, null, null);
+    }
+
+    /** How many of the lemmas the EVP expects in B2 lemma-absence finds absent from it. */
+    private static int absentInB2(AuditReport report) {
+        AuditNode b2 = report.getRoot().getChildren().get(3);
+        return ((DefaultLevelDiagnoses) b2.getDiagnoses()).getLemmaAbsenceDiagnosis()
+                .map(d -> d.getTotalAbsent()).orElseThrow(() -> new AssertionError("B2 has its lemma-absence diagnosis"));
+    }
+
+    /** The scores of every node, by its target and id. */
+    private static Map<String, Map<String, Double>> scores(AuditReport report) {
+        Map<String, Map<String, Double>> scores = new TreeMap<>();
+        collect(report.getRoot(), scores);
+        return scores;
+    }
+
+    private static void collect(AuditNode node, Map<String, Map<String, Double>> scores) {
+        scores.put(node.getTarget() + " " + (node.getEntity() != null ? node.getEntity().getId() : "root"),
+                new TreeMap<>(node.getScores()));
+        for (AuditNode child : node.getChildren()) {
+            collect(child, scores);
+        }
     }
 }
