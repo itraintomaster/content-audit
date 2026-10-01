@@ -4,6 +4,12 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — PENDIENTE PARA DESPUÉS DEL APPLY de los cuatro de B (no antes): segundo parche de pruebas de
+  MLOCAL en esta carpeta, sólo handwrittenTests trazadas a FEAT-MLOCAL sobre GrammarAnalyzer, NaturalnessAnalyzer y
+  NearDuplicatesAnalyzer (la fila de la corrida en el curso con herramienta, versión examinada, si publicó, si usó la
+  alternativa y el motivo: sin herramienta, sin examen o «falta el tope»), backup antes del propose (bug 08) y `patch
+  apply --as=qa-tester`. Lo decidió el coordinador (OG1).
+
 2026-10-01 — qa-tester — Cadena B con pruebas simulada en memoria (`qa-B2/sim/B01..B14`, librería del jar): FEAT-RONDA2
   + los cuatro de B, y encima F y E tal como están; ninguna prueba de B se pierde. `generate` simulado (DryRunGenerate)
   con FEAT-RONDA2 + B: 0 errores de definición, de traza y de ubicación, crearía los 4 journeys (5 + 3 + 5 + 5 caminos)

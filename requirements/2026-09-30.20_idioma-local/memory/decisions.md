@@ -5,6 +5,12 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — coordinador — OG1 resuelto: lo común de MLOCAL que realizan los analizadores (la fila de cada corrida,
+  R002 inv. 3 y R003 inv. 3, y lo que haga falta de R005) se prueba con un segundo parche de pruebas de MLOCAL, después
+  de aplicar los cuatro de B, autoaplicado con `patch apply --as=qa-tester`.
+  why: `patch propose` exige trazar a la feature del parche, y GrammarAnalyzer, NaturalnessAnalyzer y
+  NearDuplicatesAnalyzer no existen cuando se aplica MLOCAL.
+
 2026-10-01 — qa-tester — F-MLOCAL-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`: su paso es
   `analyze` (AnalyzeCmd, package-private ahí) y lo recorren el runner, la compuerta, los adaptadores y el evaluador de
   claude -p de C, que sólo audit-cli ve. Mismo criterio que F-JEXAM-J001 y F-HALL-J001.
