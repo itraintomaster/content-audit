@@ -44,6 +44,7 @@ import org.junit.jupiter.api.Test;
 import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -669,6 +670,51 @@ public class DefaultMiniTheoryDistributorTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R003")
     public void shouldWriteTheFinishedSentenceOfEachExerciseInItsEvidenceWithTheStudentViewRendererItReceives() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R003 inv. 1 and 2: each exercise of the evidence is written by the student view the distributor
+        // receives -- its finished sentence, in the mode of the topic -- never by a rule of its own.
+        QuizStudentViewRenderer otherView = new QuizStudentViewRenderer() {
+            @Override
+            public QuizStudentView render(AuditableQuiz quiz) {
+                return new QuizStudentView("[vista] " + quiz.getId(), List.of(), List.of(), null, null, null);
+            }
+
+            @Override
+            public String finishedSentence(AuditableQuiz quiz, SentenceMode mode) {
+                return "[vista " + mode + "] " + quiz.getId();
+            }
+        };
+        AuditNode topic = contrasteInicial();
+
+        List<EvidencePart> byTheOtherView = new DefaultMiniTheoryDistributor(
+                new Config(MiniTheoryErrorScope.SHOWN_ONLY), otherView).distribute(enjoyIsFalse(), topic, false)
+                .get(19).getFindings().get(0).getEvidence().getExamined();
+
+        assertEquals("[vista FILL] q-ci-20", textOf(byTheOtherView, "Ejercicio E20"), "the exercise of the finding");
+        assertEquals("[vista FILL] q-ci-3", textOf(byTheOtherView, "Ejercicio E3"), "and the ones involved");
+        assertEquals("[vista FILL] q-ci-12", textOf(byTheOtherView, "Ejercicio E12"));
+
+        ((AuditableKnowledge) topic.getEntity()).setSentenceMode(SentenceMode.REWRITE);
+        List<EvidencePart> rewritten = new DefaultMiniTheoryDistributor(
+                new Config(MiniTheoryErrorScope.SHOWN_ONLY), otherView).distribute(enjoyIsFalse(), topic, false)
+                .get(19).getFindings().get(0).getEvidence().getExamined();
+        assertEquals("[vista REWRITE] q-ci-20", textOf(rewritten, "Ejercicio E20"), "in the mode of its topic");
+
+        AuditNode asMainSeesIt = contrasteInicial();
+        List<EvidencePart> byMain = new DefaultMiniTheoryDistributor(
+                new Config(MiniTheoryErrorScope.SHOWN_ONLY), STUDENT_VIEW).distribute(enjoyIsFalse(), asMainSeesIt, false)
+                .get(19).getFindings().get(0).getEvidence().getExamined();
+        AuditableQuiz e20 = (AuditableQuiz) asMainSeesIt.getChildren().get(19).getEntity();
+        assertEquals(STUDENT_VIEW.finishedSentence(e20, SentenceMode.FILL), textOf(byMain, "Ejercicio E20"),
+                "with the view of Main, the finished sentence of the student view, byte by byte");
+    }
+
+    /** The text of the part with this label. */
+    private static String textOf(List<EvidencePart> parts, String label) {
+        for (EvidencePart part : parts) {
+            if (label.equals(part.getLabel())) {
+                return part.getText();
+            }
+        }
+        throw new AssertionError("no part «" + label + "» in " + labels(parts));
     }
 }

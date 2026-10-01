@@ -36,6 +36,9 @@ import org.junit.jupiter.api.Test;
 import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.auditdomain.studentview.StudentGapView;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -522,7 +525,42 @@ public class DefaultSingleAnswerClassifierTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R003")
     public void shouldWriteTheStatementAndTheFinishedSentenceOfItsEvidenceWithTheStudentViewRendererItReceives() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R003 inv. 1 and 2: the evidence writes the exercise as the student view gives it -- the
+        // statement, the finished sentence and the accepted answers -- never with a rule of its own. A view
+        // that says something else shows up as it is; the view of Main shows the exercise byte by byte.
+        QuizStudentViewRenderer otherView = new QuizStudentViewRenderer() {
+            @Override
+            public QuizStudentView render(AuditableQuiz quiz) {
+                return new QuizStudentView("[vista] Does he need water? He ___ .",
+                        List.of(new StudentGapView(0, null, List.of("does", "does [vista]"), "does")), List.of(),
+                        quiz.getInstructions(), quiz.getTranslation(), quiz.getMiniTheory());
+            }
+
+            @Override
+            public String finishedSentence(AuditableQuiz quiz, SentenceMode mode) {
+                return "[vista " + mode + "] Does he need water? He does.";
+            }
+        };
+        SingleAnswerVerdict verdict = verdict(alt("doesn't", 1, AlternativeAnswerKind.DIFFERENT_VALID,
+                FindingSeverity.HIGH, "Sólo la traducción dice que es sí."));
+        FakeCorrector corrector = new FakeCorrector(List.of("doesn't", "does not"));
+
+        FindingDraft shownByTheOtherView = new DefaultSingleAnswerClassifier(corrector, new Scale(), otherView)
+                .classify(verdict, doesHeNeedWater(), false).getFindings().get(0);
+        FindingDraft shownByMain = classifier(corrector).classify(verdict, doesHeNeedWater(), false)
+                .getFindings().get(0);
+
+        assertTrue(parts(shownByTheOtherView).contains(new EvidencePart("Ejercicio",
+                "[vista] Does he need water? He ___ .")), evidenceText(shownByTheOtherView));
+        assertTrue(parts(shownByTheOtherView).contains(new EvidencePart("Oración terminada",
+                "[vista FILL] Does he need water? He does.")), evidenceText(shownByTheOtherView));
+        assertTrue(parts(shownByTheOtherView).contains(new EvidencePart("Respuestas aceptadas", "does | does [vista]")),
+                evidenceText(shownByTheOtherView));
+        AuditableQuiz quiz = doesHeNeedWater();
+        assertTrue(parts(shownByMain).contains(new EvidencePart("Ejercicio", STUDENT_VIEW.render(quiz).getStatement())),
+                evidenceText(shownByMain));
+        assertTrue(parts(shownByMain).contains(new EvidencePart("Oración terminada",
+                STUDENT_VIEW.finishedSentence(quiz, SentenceMode.FILL))), evidenceText(shownByMain));
     }
 
     @Test
@@ -530,6 +568,35 @@ public class DefaultSingleAnswerClassifierTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R003")
     public void shouldKeepTheMarkerOfEachFindingWhateverTextTheStudentViewRendererGivesTheExercise() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R003 inv. 3: the markers that identify each finding are the answers the judge listed, so a
+        // student view that writes the exercise in another way changes the evidence and never the markers.
+        QuizStudentViewRenderer otherView = new QuizStudentViewRenderer() {
+            @Override
+            public QuizStudentView render(AuditableQuiz quiz) {
+                return new QuizStudentView("[otra vista]", List.of(), List.of(), null, null, null);
+            }
+
+            @Override
+            public String finishedSentence(AuditableQuiz quiz, SentenceMode mode) {
+                return "[otra oración]";
+            }
+        };
+        AuditableQuiz italy = italy();
+        SingleAnswerVerdict verdict = verdict(
+                alt("from Friday until Sunday", 1, AlternativeAnswerKind.OFFERED_BY_INSTRUCTION, FindingSeverity.HIGH,
+                        "La consigna ofrece until."),
+                alt("for three days", 1, AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.MEDIUM,
+                        "También dice cuánto estuvo."));
+        FakeCorrector corrector = new FakeCorrector();
+
+        SingleAnswerOutcome withMain = classifier(corrector).classify(verdict, italy, false);
+        SingleAnswerOutcome withOther = new DefaultSingleAnswerClassifier(corrector, new Scale(), otherView)
+                .classify(verdict, italy, false);
+
+        assertEquals(markers(withMain), markers(withOther), "the same markers whatever the view writes");
+        assertEquals(List.of("from Friday until Sunday", "for three days"), markers(withMain));
+        assertEquals(withMain.getFindings().stream().map(FindingDraft::getRule).toList(),
+                withOther.getFindings().stream().map(FindingDraft::getRule).toList());
+        assertEquals(withMain.getScore(), withOther.getScore(), 1e-9);
     }
 }

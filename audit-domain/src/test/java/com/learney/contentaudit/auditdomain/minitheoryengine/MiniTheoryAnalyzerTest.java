@@ -73,6 +73,8 @@ import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
+import java.util.HashSet;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -928,7 +930,27 @@ public class MiniTheoryAnalyzerTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R001")
     public void shouldCountInItsTallyEveryExerciseOfEachTopicUnderTheStateOfThatTopicEvaluatedOrNot() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R001 inv. 2 and 3: the judge holds «Gerundio obligatorio» (5 exercises) and has no verdict for
+        // «Artículos» (3) nor for «Afirmativas regulares» (20): its tally brings each topic's exercises to the
+        // state of the topic -- 28 reached, 5 evaluated, 23 without evaluation.
+        World world = World.approved();
+        Topic gerundio = gerundio();
+        Topic articulos = articulos();
+        Topic afirmativas = afirmativas();
+        world.holds(gerundio);
+
+        JudgeCoverageDiagnosis coverage =
+                coverageOf(world.run(course(gerundio, articulos, afirmativas), budget(10)));
+
+        assertEquals(List.of(3, 1, 2), List.of(coverage.getReached(), coverage.getEvaluated(),
+                coverage.getNotEvaluated()), "the units are the topics");
+        assertEquals(new JudgeQuizTally(28, 5, 23), coverage.getQuizzes(),
+                "each topic brings all its exercises to its state");
+
+        // With no budget nothing is evaluated: all the exercises of the three topics stay without evaluation.
+        JudgeCoverageDiagnosis nothingAsked = coverageOf(World.approved().run(
+                course(gerundio(), articulos(), afirmativas()), budget(0)));
+        assertEquals(new JudgeQuizTally(28, 0, 28), nothingAsked.getQuizzes());
     }
 
     @Test
@@ -936,6 +958,28 @@ public class MiniTheoryAnalyzerTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R001")
     public void shouldDeclareAsExercisesWithoutEvaluationExactlyTheExercisesTheReportMarksAsNotEvaluatedByMinitheory() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R001 inv. 4: the exercises the coverage counts as not evaluated are exactly the ones the report
+        // marks as not evaluated by mini-theory -- all the exercises of the topics without verdict, and no other.
+        World world = World.approved();
+        Topic gerundio = gerundio();
+        Topic articulos = articulos();
+        Topic afirmativas = afirmativas();
+        world.holds(gerundio);
+
+        AuditNode root = world.run(course(gerundio, articulos, afirmativas), budget(10));
+
+        Set<String> marked = new HashSet<>();
+        for (Topic topic : List.of(gerundio, articulos, afirmativas)) {
+            for (AuditNode exercise : exercisesOf(root, topic.id)) {
+                if (exercise.getUnevaluatedBy() != null && exercise.getUnevaluatedBy().contains("mini-theory")) {
+                    marked.add(exercise.getEntity().getId());
+                }
+            }
+        }
+        Set<String> ofTheTopicsWithoutVerdict = new HashSet<>(articulos.exerciseIds);
+        ofTheTopicsWithoutVerdict.addAll(afirmativas.exerciseIds);
+        assertEquals(ofTheTopicsWithoutVerdict, marked, "the report marks every exercise of those topics, no other");
+        assertEquals(marked.size(), coverageOf(root).getQuizzes().getNotEvaluated(),
+                "and the coverage counts exactly those");
     }
 }

@@ -74,6 +74,7 @@ import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -2138,6 +2139,22 @@ public class QuizInstructionAnalyzerTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R001")
     public void shouldDeclareInItsTallyAsManyExercisesAsQuizzesInEachState() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R001 inv. 1: the consigna judge consults by exercise, so its tally counts as many exercises as
+        // quizzes in each state: of four, one reused, one consulted within budget 1 and two left pending.
+        JexamLedger ledger = new JexamLedger();
+        JexamCourse course = JexamCourse.withQuizzes(4);
+        AuditNode judgedBefore = course.quizzes().get(0);
+        ledger.record(CONSIGNA_EVALUATOR, JexamCourse.contentJudgedBefore(judgedBefore), quizId(judgedBefore),
+                COMPLIANT, "v-hoy");
+        CountingJudge judge = new CountingJudge("v-hoy", COMPLIANT);
+        QuizInstructionAnalyzer analyzer = consignaAnalyzer(ledger, judge, approvedExams("v-hoy"), budget(1, null));
+
+        course.run(analyzer);
+
+        JudgeCoverageDiagnosis coverage = course.judgeCoverage();
+        assertEquals(1, judge.calls(), "budget 1: one consultation");
+        assertEquals(List.of(4, 2, 2), List.of(coverage.getReached(), coverage.getEvaluated(),
+                coverage.getNotEvaluated()));
+        assertEquals(new JudgeQuizTally(4, 2, 2), coverage.getQuizzes(), "as many exercises as quizzes, in each state");
     }
 }

@@ -39,6 +39,9 @@ import org.junit.jupiter.api.Test;
 import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.auditdomain.studentview.StudentOptionView;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -368,6 +371,45 @@ public class DefaultChoiceAlternativeClassifierTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R003")
     public void shouldWriteTheStatementTheOptionsAndTheFinishedSentenceOfItsEvidenceWithTheStudentViewRendererItReceives() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R003 inv. 1 and 2: the evidence writes the exercise as the student view gives it -- its
+        // statement, its options in the student's order with the correct one marked, and its finished sentence --
+        // never with a renderer of its own. A view that says something else shows up as it is; the view of Main
+        // shows the exercise byte by byte.
+        QuizStudentViewRenderer otherView = new QuizStudentViewRenderer() {
+            @Override
+            public QuizStudentView render(AuditableQuiz quiz) {
+                return new QuizStudentView("[vista] She wants ___ hot tea.", List.of(),
+                        List.of(new StudentOptionView("some", true), new StudentOptionView("a", false)),
+                        quiz.getInstructions(), quiz.getTranslation(), quiz.getMiniTheory());
+            }
+
+            @Override
+            public String finishedSentence(AuditableQuiz quiz, SentenceMode mode) {
+                return "[vista " + mode + "] She wants some hot tea.";
+            }
+        };
+        AuditableQuiz quiz = quiz("67fab6d59930102295342a59", "She wants ___ hot tea.",
+                "She wants", "hot tea.", "some", "a", "some");
+        ChoiceAlternativeVerdict verdict = new ChoiceAlternativeVerdict(true,
+                List.of(new ChoiceAlternativeOption("a", FindingSeverity.MEDIUM, "«a hot tea» es una taza")), null,
+                "La correcta vale, y «a» también");
+
+        List<EvidencePart> byTheOtherView = new DefaultChoiceAlternativeClassifier(new TableCorrectorMatcher(),
+                scale(), otherView).classify(verdict, quiz, evaluated()).getFindings().get(0).getEvidence()
+                .getExamined();
+        List<EvidencePart> byMain = classifier().classify(verdict, quiz, evaluated()).getFindings().get(0)
+                .getEvidence().getExamined();
+
+        assertTrue(byTheOtherView.contains(new EvidencePart("Ejercicio", "[vista] She wants ___ hot tea.")),
+                byTheOtherView.toString());
+        assertTrue(byTheOtherView.contains(new EvidencePart("Opciones", "some (correcta) · a")),
+                "in the order of the view, not of the course: " + byTheOtherView);
+        assertTrue(byTheOtherView.contains(new EvidencePart("Oración terminada",
+                "[vista FILL] She wants some hot tea.")), byTheOtherView.toString());
+        assertTrue(byMain.contains(new EvidencePart("Ejercicio", STUDENT_VIEW.render(quiz).getStatement())),
+                byMain.toString());
+        assertTrue(byMain.contains(new EvidencePart("Opciones", "a · some (correcta)")), byMain.toString());
+        assertTrue(byMain.contains(new EvidencePart("Oración terminada",
+                STUDENT_VIEW.finishedSentence(quiz, SentenceMode.FILL))), byMain.toString());
     }
 }

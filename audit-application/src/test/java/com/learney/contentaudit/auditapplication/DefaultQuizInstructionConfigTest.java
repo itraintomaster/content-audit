@@ -1,8 +1,12 @@
 package com.learney.contentaudit.auditapplication;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
 import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -50,7 +54,21 @@ public class DefaultQuizInstructionConfigTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R004")
     public void shouldDescribeTheAnalyzeBudgetOfQuizinstructionFromTheJudgesRuntimeConfigAndTheReviseinstructionsBudgetOf500EachNamedWithItsCommand() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R004: config analyzer quiz-instruction shows both budgets, each with the command it applies to:
+        // analyze, from the configuration common to the judges (0 without --budget, F-JEXAM-R010), and
+        // revise-instructions, its own (500). No budget is shown without its command.
+        Map<String, Object> described = new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()).describe();
+
+        assertEquals(0, described.get("analyzeMaxNewEvaluations"), "analyze: the judges' budget");
+        assertEquals(500, described.get("reviseInstructionsMaxNewEvaluations"), "revise-instructions: its own");
+        assertFalse(described.containsKey("defaultMaxNewEvaluations"), "never a budget without its command");
+        for (String key : described.keySet()) {
+            if (key.toLowerCase().contains("maxnewevaluations")) {
+                assertTrue(key.startsWith("analyze") || key.startsWith("reviseInstructions"),
+                        "every budget names its command: " + key);
+            }
+        }
+        assertEquals("quiz-instruction", described.get("analyzerName"));
     }
 
     @Test
@@ -58,6 +76,33 @@ public class DefaultQuizInstructionConfigTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R004")
     public void shouldDescribeADifferentAnalyzeBudgetWhenTheJudgesRuntimeConfigGivesAnotherOneWithoutCopying0() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R004: the budget of analyze is read from the configuration common to the judges, not copied: if
+        // that configuration gives another one for quiz-instruction, that is the one shown.
+        JudgeRuntimeConfig seven = new JudgeRuntimeConfig() {
+            @Override
+            public int getMaxConcurrentEvaluations() {
+                return 4;
+            }
+
+            @Override
+            public int getDefaultMaxNewEvaluations(String judgeName) {
+                return "quiz-instruction".equals(judgeName) ? 7 : 0;
+            }
+
+            @Override
+            public double getDefaultRatePerHour(String judgeName) {
+                return 189.0;
+            }
+
+            @Override
+            public Map<String, Object> describe() {
+                return Map.of();
+            }
+        };
+
+        Map<String, Object> described = new DefaultQuizInstructionConfig(seven).describe();
+
+        assertEquals(7, described.get("analyzeMaxNewEvaluations"), "the judges' budget for quiz-instruction");
+        assertEquals(500, described.get("reviseInstructionsMaxNewEvaluations"), "revise-instructions keeps its own");
     }
 }

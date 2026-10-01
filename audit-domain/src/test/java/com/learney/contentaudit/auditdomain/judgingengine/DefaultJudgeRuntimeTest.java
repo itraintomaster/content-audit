@@ -64,6 +64,7 @@ import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -1065,7 +1066,30 @@ public class DefaultJudgeRuntimeTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R001")
     public void shouldDeclareInTheCoverageOfATopicJudgeTheExercisesItsTopicsHoldUnderTheStateOfEachTopic() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R001 inv. 2: mini-theory consults by topic. Its coverage declares the exercises of its
+        // topics under the state of each topic, as the analyzer counted them: of 3 topics with 80
+        // exercises, the one evaluated holds 20 and the two without evaluation, 60.
+        ScriptedJudge judge = ScriptedJudge.healthy(MINI_THEORY_JUDGE, "mt-v1");
+        JudgeSessions opened = runtime.open(MINI_THEORY, List.of(judge), null);
+        JudgeQuizTally counted = new JudgeQuizTally(80, 20, 60);
+        JudgeUnitTally tally = new JudgeUnitTally(AuditTarget.KNOWLEDGE, 3, 1, 2, Map.of("mt-v1", 1), List.of(),
+                counted);
+
+        JudgeCoverageDiagnosis coverage = runtime.coverage(opened, tally);
+        counted.setNotEvaluated(0); // a later change to the analyzer's count does not reach the coverage
+
+        assertEquals(AuditTarget.KNOWLEDGE, coverage.getUnit());
+        assertEquals(List.of(3, 1, 2), List.of(coverage.getReached(), coverage.getEvaluated(),
+                coverage.getNotEvaluated()), "the units are the topics");
+        assertEquals(new JudgeQuizTally(80, 20, 60), coverage.getQuizzes(),
+                "the exercises their topics hold, under the state of each topic");
+        assertEquals(coverage.getQuizzes().getReached(),
+                coverage.getQuizzes().getEvaluated() + coverage.getQuizzes().getNotEvaluated(),
+                "evaluated plus not evaluated give the reached (inv. 3)");
+        assertNull(runtime.coverage(opened, new JudgeUnitTally(AuditTarget.KNOWLEDGE, 3, 1, 2, Map.of(),
+                        List.of(), null)).getQuizzes(),
+                "a judge by topic has to count its exercises: the runtime does not invent them");
+        assertEquals(0, judge.calls(), "the coverage consults nobody");
     }
 
     @Test
@@ -1073,6 +1097,22 @@ public class DefaultJudgeRuntimeTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R001")
     public void shouldDeclareForAJudgeThatConsultsByExerciseAsManyExercisesAsUnitsInEachState() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R001 inv. 1: a judge that consults by exercise holds one exercise per unit. Its coverage
+        // declares the same numbers in both counts, whether its tally brings them or not.
+        ScriptedJudge judge = ScriptedJudge.healthy(CONSIGNA_JUDGE, "qi-v1");
+        JudgeSessions opened = runtime.open(QUIZ_INSTRUCTION, List.of(judge), null);
+
+        JudgeCoverageDiagnosis broughtByTheJudge = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ,
+                10, 7, 3, Map.of("qi-v1", 7), List.of(), new JudgeQuizTally(10, 7, 3)));
+        JudgeCoverageDiagnosis derived = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ,
+                10, 7, 3, Map.of("qi-v1", 7), List.of(), null));
+
+        for (JudgeCoverageDiagnosis coverage : List.of(broughtByTheJudge, derived)) {
+            assertEquals(AuditTarget.QUIZ, coverage.getUnit());
+            assertEquals(new JudgeQuizTally(coverage.getReached(), coverage.getEvaluated(),
+                    coverage.getNotEvaluated()), coverage.getQuizzes(), "as many exercises as units, in each state");
+            assertEquals(new JudgeQuizTally(10, 7, 3), coverage.getQuizzes());
+        }
+        assertEquals(0, judge.calls(), "the coverage consults nobody");
     }
 }

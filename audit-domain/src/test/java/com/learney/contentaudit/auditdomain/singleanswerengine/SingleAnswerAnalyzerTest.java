@@ -82,6 +82,7 @@ import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -791,6 +792,23 @@ public class SingleAnswerAnalyzerTest {
     @Tag("FEAT-CIERRE")
     @Tag("F-CIERRE-R001")
     public void shouldDeclareInItsTallyAsManyExercisesAsQuizzesInEachState() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CIERRE-R001 inv. 1: single-answer consults by exercise, so its tally counts as many exercises as
+        // quizzes in each state: of three to write, two consulted within the budget and one beyond it.
+        Bench bench = new Bench(true);
+        AuditableQuiz doesHe = doesHeNeedWater();
+        AuditableQuiz verduras = verduras();
+        AuditableQuiz sheWontCome = sheWontCome();
+        bench.answers(doesHe, verdict(alt("doesn't", AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.HIGH)));
+        bench.answers(verduras, verdict(alt("eat", AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.BLOCKING)));
+        bench.answers(sheWontCome,
+                verdict(alt("won't come", AlternativeAnswerKind.DIFFERENT_VALID, FindingSeverity.MEDIUM)));
+        Course course = course(doesHe, verduras, sheWontCome);
+
+        bench.run(budget(2), course);
+
+        JudgeCoverageDiagnosis coverage = coverage(course);
+        assertEquals(List.of(3, 2, 1), List.of(coverage.getReached(), coverage.getEvaluated(),
+                coverage.getNotEvaluated()));
+        assertEquals(new JudgeQuizTally(3, 2, 1), coverage.getQuizzes(), "as many exercises as quizzes, in each state");
     }
 }
