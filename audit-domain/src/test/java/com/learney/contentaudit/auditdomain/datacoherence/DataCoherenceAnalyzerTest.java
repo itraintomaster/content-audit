@@ -1,7 +1,49 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AudioRecordingRegistry;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CorrectorMatcher;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultKnowledgeDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.ProductionSentenceSource;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcherTest;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,149 +57,419 @@ public class DataCoherenceAnalyzerTest {
     @DisplayName("should report the production copy's saved sentence that is not the exercise built with its first answer, as «The tree has not grown/hasn't grown yet.» for «The tree ___ (not / grow) yet.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R001")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldReportTheProductionCopysSavedSentenceThatIsNotTheExerciseBuiltWithItsFirstAnswerAsTheTreeHasNotGrownhasntGrownYetForTheTreeNotGrowYet(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: «The tree ___ (not / grow) yet.» (…287e, A2): the tree is right, the production copy kept the slash.
+        Copies copies = new Copies().recording("A2.04.06.03", "The tree has not grown yet.")
+                .production("67fab6d5993010229534287e", "The tree has not grown/hasn't grown yet.");
+        AuditNode node = analyze(copies, SentenceMode.FILL, treeHasNotGrown("The tree has not grown yet."));
+        assertEquals(List.of(new CopyMismatch("saved-sentence", CopyMismatchKind.SAVED_SENTENCE_DIFFERS,
+                ExerciseCopy.PRODUCTION_SENTENCE, "The tree has not grown yet.", "The tree has not grown/hasn't grown yet.")),
+                diagnosis(node).getIssues());
+        FindingDraft production = only(node, "saved-sentence");
+        assertEquals("produccion", production.getMarker());
+        assertEquals(FindingSeverity.MEDIUM, production.getSeverity());
     }
 
     @Test
     @DisplayName("should report a saved sentence of the tree that is not the exercise built with its first answer, fixed by rule rebuilding it from the parts, as «The tree has not grown/hasn't grown yet.» if the tree kept it")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R001")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldReportASavedSentenceOfTheTreeThatIsNotTheExerciseBuiltWithItsFirstAnswerFixedByRuleRebuildingItFromThePartsAsTheTreeHasNotGrownhasntGrownYetIfTheTreeKeptIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: if the tree had kept the slash, its copy is the one marked, fixed by rule from the parts.
+        Copies copies = new Copies().recording("A2.04.06.03", "The tree has not grown yet.");
+        FindingDraft tree = only(analyze(copies, SentenceMode.FILL, treeHasNotGrown("The tree has not grown/hasn't grown yet.")),
+                "saved-sentence");
+        assertEquals("arbol", tree.getMarker());
+        assertEquals(FindingSeverity.MEDIUM, tree.getSeverity());
+        assertEquals(FindingResolution.RULE, tree.getResolution());
+        assertEquals("The tree has not grown yet.", part(tree, "Hoy"));
+        assertTrue(tree.getEvidence().getObservation().endsWith("Se vuelve a armar desde las partes."));
     }
 
     @Test
     @DisplayName("should not count spaces, punctuation or a rewrite saved as its answer alone as a difference, as «They 're late for the game.» and «Ana was teached a lesson by my brother.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R001")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldNotCountSpacesPunctuationOrARewriteSavedAsItsAnswerAloneAsADifferenceAsTheyReLateForTheGameAndAnaWasTeachedALessonByMyBrother(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 and DOUBT-DATOS-718 (A): «They 're late for the game.» (…1fb1, A1) differs only in a space; the
+        // rewrite «Ana was teached a lesson by my brother.» (…439d, B2) is saved as its answer alone.
+        AuditNode late = analyze(new Copies().recording("A1.01.17.19", "They're late for the game."), SentenceMode.FILL,
+                theyAreLate());
+        assertEquals(List.of(), diagnosis(late).getIssues());
+        AuditNode ana = analyze(new Copies().recording("B2.07.08.07", "Ana was teached a lesson by my brother."),
+                SentenceMode.REWRITE, anaWasTeached());
+        assertEquals(List.of(), diagnosis(ana).getIssues());
     }
 
     @Test
     @DisplayName("should build the sentence of a multiple choice exercise with its correct option in the gap, as «I saw a man.» for «I saw ___ man (the listener doesn't know which man).»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R001")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldBuildTheSentenceOfAMultipleChoiceExerciseWithItsCorrectOptionInTheGapAsISawAManForISawManTheListenerDoesntKnowWhichMan(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 and F-OPMUL-R004: «I saw ___ man (the listener doesn't know which man).» (…2aae, A2) is built with
+        // its correct option, «a»; a saved «I saw the man.» would not be it.
+        Copies copies = new Copies().recording("A2.06.13.19", "I saw a man.");
+        assertEquals(List.of(), diagnosis(analyze(copies, SentenceMode.FILL, iSawAMan("I saw a man."))).getIssues());
+        FindingDraft other = only(analyze(copies, SentenceMode.FILL, iSawAMan("I saw the man.")), "saved-sentence");
+        assertEquals("I saw a man.", part(other, "Hoy"));
     }
 
     @Test
     @DisplayName("should raise a blocking finding on an accepted answer with «/», fixed by rule turning the slash into «|», as «has not cut/hasn't cut» for «He ___ (not / cut) himself.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R002")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldRaiseABlockingFindingOnAnAcceptedAnswerWithFixedByRuleTurningTheSlashIntoAsHasNotCuthasntCutForHeNotCutHimself(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002.1: «He ___ (not / cut) himself.» (…286c, A2) as it was before 27/9, with «has not cut/hasn't cut».
+        AuditableQuiz withSlash = quiz("67fab6d5993010229534286c", "A2.04.05.09", List.of("He has not cut himself."),
+                text("He"), cloze("has not cut/hasn't cut"), text("(not / cut) himself."));
+        AuditNode node = analyze(new Copies().recording("A2.04.05.09", "He has not cut himself."), SentenceMode.FILL, withSlash);
+        assertEquals(List.of(new CopyMismatch("no-slash", CopyMismatchKind.SLASH_IN_ANSWER, ExerciseCopy.ACCEPTED_ANSWER,
+                "has not cut|hasn't cut", "has not cut/hasn't cut")), diagnosis(node).getIssues());
+        FindingDraft slash = only(node, "no-slash");
+        assertEquals("respuesta", slash.getMarker());
+        assertEquals(FindingSeverity.BLOCKING, slash.getSeverity());
+        assertEquals(FindingResolution.RULE, slash.getResolution());
     }
 
     @Test
     @DisplayName("should raise a medium finding on a recorded text that reads a slash, fixed by rule recording again with today's text, as «He has not cut/hasn't cut himself.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R002")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldRaiseAMediumFindingOnARecordedTextThatReadsASlashFixedByRuleRecordingAgainWithTodaysTextAsHeHasNotCuthasntCutHimself(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002.2: the audio of «He ___ (not / cut) himself.» reads «He has not cut/hasn't cut himself.».
+        FindingDraft audio = only(analyze(new Copies().recording("A2.04.05.09", "He has not cut/hasn't cut himself."),
+                SentenceMode.FILL, heHasNotCut()), "no-slash");
+        assertEquals("audio", audio.getMarker());
+        assertEquals(FindingSeverity.MEDIUM, audio.getSeverity());
+        assertEquals(FindingResolution.RULE, audio.getResolution());
+        assertTrue(audio.getEvidence().getObservation().endsWith("se regraba con el texto de hoy."));
     }
 
     @Test
     @DisplayName("should not report the slash of a statement such as «a / an» by itself, but report it when the audio reads it, as in «Don't touch a / an ___ (asleep / resting) dog!»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R002")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldNotReportTheSlashOfAStatementSuchAsAAnByItselfButReportItWhenTheAudioReadsItAsInDontTouchAAnAsleepRestingDog(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «Don't touch a / an ___ (asleep / resting) dog!» (…489e, B2): the slash of the statement is not a
+        // finding by itself; read by the audio, it is.
+        assertEquals(List.of(), diagnosis(analyze(new Copies().recording("B2.13.06.09", "Don't touch a resting dog!"),
+                SentenceMode.FILL, dontTouch())).getIssues());
+        FindingDraft read = only(analyze(new Copies().recording("B2.13.06.09", "Don't touch a / an resting dog!"),
+                SentenceMode.FILL, dontTouch()), "no-slash");
+        assertEquals("audio", read.getMarker());
     }
 
     @Test
     @DisplayName("should send to the panel as medium a recorded text that says something else than the exercise today, as «Ana was taught a lesson» against «Ana was teached a lesson»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R003")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldSendToThePanelAsMediumARecordedTextThatSaysSomethingElseThanTheExerciseTodayAsAnaWasTaughtALessonAgainstAnaWasTeachedALesson(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the audio of «My brother teached Ana a lesson. ___» (…439d, B2) says «Ana was taught a lesson by my
+        // brother.»; the exercise today, «teached»: nobody knows which copy is right.
+        FindingDraft audio = only(analyze(new Copies().recording("B2.07.08.07", "Ana was taught a lesson by my brother."),
+                SentenceMode.REWRITE, anaWasTeached()), "audio-matches");
+        assertEquals(FindingSeverity.MEDIUM, audio.getSeverity());
+        assertEquals(FindingResolution.PANEL, audio.getResolution());
+        assertEquals("Ana was taught a lesson by my brother.", part(audio, "Audio"));
+        assertEquals("Ana was teached a lesson by my brother.", part(audio, "Hoy"));
     }
 
     @Test
     @DisplayName("should accept a recording that says another accepted answer or the long form of a contraction, as «We are very excited.» for «We ___ (be) very excited.» answered «'re»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R003")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldAcceptARecordingThatSaysAnotherAcceptedAnswerOrTheLongFormOfAContractionAsWeAreVeryExcitedForWeBeVeryExcitedAnsweredRe(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «We ___ (be) very excited.» (…25ef, A1) answered «'re» and recorded «We are very excited.»; and an
+        // audio of «He ___ (not / cut) himself.» that says its other accepted answer.
+        assertEquals(List.of(), diagnosis(analyze(new Copies().recording("A2.01.04.04", "We are very excited."),
+                SentenceMode.FILL, weAreExcited())).getIssues());
+        assertEquals(List.of(), diagnosis(analyze(new Copies().recording("A2.04.05.09", "He hasn't cut himself."),
+                SentenceMode.FILL, heHasNotCut())).getIssues());
     }
 
     @Test
     @DisplayName("should accept a recording that contains what the exercise says or is contained in it, as «If not» for «Can you hear me clearly? ___ , I can speak louder.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R003")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldAcceptARecordingThatContainsWhatTheExerciseSaysOrIsContainedInItAsIfNotForCanYouHearMeClearlyICanSpeakLouder(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the audio of «Can you hear me clearly? ___ , I can speak louder.» (…3a69, B1) says only «If not».
+        assertEquals(List.of(), diagnosis(analyze(new Copies().recording("B1.14.08.01", "If not"), SentenceMode.FILL,
+                canYouHearMe())).getIssues());
     }
 
     @Test
     @DisplayName("should raise a low finding on an exercise without audio key, fixed by rule recording it with today's text, as «Are we eating soon?» in Planes y horarios")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R004")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldRaiseALowFindingOnAnExerciseWithoutAudioKeyFixedByRuleRecordingItWithTodaysTextAsAreWeEatingSoonInPlanesYHorarios(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: «We / eat / soon? ___» (…26ac, A2, Planes y horarios) lost its key on 27/9 to be recorded again.
+        FindingDraft noKey = only(analyze(new Copies(), SentenceMode.REWRITE, areWeEatingSoon()), "audio-known");
+        assertEquals("audio-sin-clave", noKey.getMarker());
+        assertEquals(FindingSeverity.LOW, noKey.getSeverity());
+        assertEquals(FindingResolution.RULE, noKey.getResolution());
+        assertEquals("Are we eating soon?", part(noKey, "Hoy"));
     }
 
     @Test
     @DisplayName("should report every exercise that shares its audio key with another once the whole course has been seen and before the scores are aggregated, as two exercises with the key A1.04.08.01")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R004")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldReportEveryExerciseThatSharesItsAudioKeyWithAnotherOnceTheWholeCourseHasBeenSeenAndBeforeTheScoresAreAggregatedAsTwoExercisesWithTheKeyA1040801(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: «___ (he / have) dinner?» (…221f) and «You ___ (see) cats.» given the same key A1.04.08.01: both are
+        // marked once the course went by, and the topic counts both as errors.
+        AuditableQuiz cats = quiz("67fab6d59930102295341ec3", "A1.04.08.01", List.of("You see cats."), text("You"),
+                cloze("see"), text("(see) cats."));
+        Copies copies = new Copies().recording("A1.04.08.01", "Did he have dinner?");
+        AuditNode root = engine(copies, List.of(didHeHaveDinner(), cats));
+        AuditNode knowledge = root.getChildren().get(0).getChildren().get(0).getChildren().get(0);
+        for (AuditNode quiz : knowledge.getChildren()) {
+            Finding shared = quiz.getFindings().stream().filter(f -> f.getRule().equals("audio-known")).findFirst()
+                    .orElseThrow();
+            assertEquals("audio-compartido", shared.getIdentity().getMarker());
+            assertEquals(0.0, quiz.getScores().get("data-coherence"));
+        }
+        assertEquals(2, knowledge.getNumbers().getErrors().getWithAnyError());
     }
 
     @Test
     @DisplayName("should raise a low finding on an exercise whose recording the registry does not know, as «Did he have dinner?» if A1.04.08.01 were not registered")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R004")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldRaiseALowFindingOnAnExerciseWhoseRecordingTheRegistryDoesNotKnowAsDidHeHaveDinnerIfA1040801WereNotRegistered(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: the registry does not know A1.04.08.01.
+        FindingDraft unknown = only(analyze(new Copies(), SentenceMode.FILL, didHeHaveDinner()), "audio-known");
+        assertEquals("audio-desconocido", unknown.getMarker());
+        assertEquals(FindingSeverity.LOW, unknown.getSeverity());
+        assertEquals(FindingResolution.RULE, unknown.getResolution());
+        assertEquals("A1.04.08.01", part(unknown, "Clave"));
     }
 
     @Test
     @DisplayName("should show as evidence the two copies that do not match with their text and name the copy in the identity, as «He ___ (not / cut) himself. → audio: He has not cut/hasn't cut himself.; hoy: He has not cut himself.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R005")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldShowAsEvidenceTheTwoCopiesThatDoNotMatchWithTheirTextAndNameTheCopyInTheIdentityAsHeNotCutHimselfAudioHeHasNotCuthasntCutHimselfHoyHeHasNotCutHimself(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the two copies with their text, and the copy in the identity.
+        FindingDraft audio = only(analyze(new Copies().recording("A2.04.05.09", "He has not cut/hasn't cut himself."),
+                SentenceMode.FILL, heHasNotCut()), "no-slash");
+        assertEquals("He ___ (not / cut) himself.", part(audio, "Ejercicio"));
+        assertEquals("He has not cut/hasn't cut himself.", part(audio, "Audio"));
+        assertEquals("He has not cut himself.", part(audio, "Hoy"));
+        assertTrue(audio.getEvidence().getObservation().startsWith(
+                "He ___ (not / cut) himself. → audio: \"He has not cut/hasn't cut himself.\"; hoy: \"He has not cut himself.\""));
+        assertEquals("audio", audio.getMarker());
     }
 
     @Test
     @DisplayName("should score 0 an exercise with a finding and 1 an exercise whose three copies match, as «You ___ (see) cats.»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R005")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldScore0AnExerciseWithAFindingAnd1AnExerciseWhoseThreeCopiesMatchAsYouSeeCats(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: «You ___ (see) cats.» (…1ec3, A1): parts, saved sentence and audio say the same.
+        AuditNode cats = analyze(new Copies().recording("A1.01.06.01", "You see cats."), SentenceMode.FILL, youSeeCats());
+        assertEquals(1.0, cats.getScores().get("data-coherence"));
+        assertEquals(List.of(), findings(cats));
+        AuditNode cut = analyze(new Copies().recording("A2.04.05.09", "He has not cut/hasn't cut himself."),
+                SentenceMode.FILL, heHasNotCut());
+        assertEquals(0.0, cut.getScores().get("data-coherence"));
+        assertEquals("registro de prueba", diagnosis(cut).getRegistryVersion());
+    }
+
+    // ------------------------------------------------------------------
+    // The other copies of the exercise, in memory
+    // ------------------------------------------------------------------
+
+    /** The registry of recordings and the production copy, as the test says. */
+    static final class Copies implements AudioRecordingRegistry, ProductionSentenceSource {
+        private final Map<String, String> recorded = new HashMap<>();
+        private final Map<String, List<String>> production = new HashMap<>();
+
+        Copies recording(String audioKey, String text) {
+            recorded.put(audioKey, text);
+            return this;
+        }
+
+        Copies production(String quizId, String... sentences) {
+            production.put(quizId, List.of(sentences));
+            return this;
+        }
+
+        @Override
+        public Optional<AudioRecording> recordingOf(String audioKey) {
+            return Optional.ofNullable(recorded.get(audioKey)).map(t -> new AudioRecording(audioKey, t, "prueba"));
+        }
+
+        @Override
+        public String version() {
+            return "registro de prueba";
+        }
+
+        @Override
+        public Optional<List<String>> savedSentences(String quizId) {
+            return Optional.ofNullable(production.get(quizId));
+        }
+    }
+
+    /** The corrector in production since 1/10/2026 (#1191). */
+    static CorrectorMatcher productionCorrector() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.productionTable());
+    }
+
+    static DefaultQuizStudentViewRenderer renderer() {
+        return new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create());
+    }
+
+    /** The analyzer over one exercise of a topic with the given mode, the course closed after it. */
+    static AuditNode analyze(Copies copies, SentenceMode mode, AuditableQuiz quiz) {
+        DataCoherenceAnalyzer analyzer = new DataCoherenceAnalyzer(productionCorrector(), copies, copies,
+                new DefaultSpokenTextBuilder(), renderer());
+        AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, new ArrayList<>(), new LinkedHashMap<>(),
+                new LinkedHashMap<>(), new DefaultCourseDiagnoses());
+        AuditableKnowledge entity = new AuditableKnowledge(List.of(quiz), "Tema", null, true, "k", "Tema", "k", mode,
+                "topic");
+        AuditNode knowledge = new AuditNode(entity, AuditTarget.KNOWLEDGE, root, new ArrayList<>(),
+                new LinkedHashMap<>(), new LinkedHashMap<>(), new DefaultKnowledgeDiagnoses());
+        AuditNode node = new AuditNode(quiz, AuditTarget.QUIZ, knowledge, List.of(), new LinkedHashMap<>(),
+                new LinkedHashMap<>(), new DefaultQuizDiagnoses());
+        knowledge.getChildren().add(node);
+        root.getChildren().add(knowledge);
+        analyzer.onQuiz(node);
+        analyzer.onCourseComplete(root);
+        node.getMetadata().put("findingsAt", analyzer.findingsAt(node));
+        return node;
+    }
+
+    /** analyze with only data-coherence, through the engine. */
+    static AuditNode engine(Copies copies, List<AuditableQuiz> quizzes) {
+        DataCoherenceAnalyzerProvider provider = new DataCoherenceAnalyzerProvider(productionCorrector(), copies, copies,
+                renderer());
+        IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
+                new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+        AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Práctica mixta", null, true,
+                "6814dafa7d73e7209a13d3a0", "Práctica mixta", "6814dafa7d73e7209a13d3a0", SentenceMode.FILL, "Topic");
+        AuditableCourse course = new AuditableCourse(List.of(new AuditableMilestone(List.of(new AuditableTopic(
+                List.of(knowledge), "topic", "Topic", "topic")), "A1", "A1", "A1")));
+        AuditReport report = engine.runAudit(course, new AnalyzerRunSelection(List.of("data-coherence"), Map.of()));
+        return report.getRoot();
+    }
+
+    @SuppressWarnings("unchecked")
+    static List<FindingDraft> findings(AuditNode node) {
+        return (List<FindingDraft>) node.getMetadata().get("findingsAt");
+    }
+
+    static DataCoherenceDiagnosis diagnosis(AuditNode node) {
+        return ((DefaultQuizDiagnoses) node.getDiagnoses()).getDataCoherenceDiagnosis().orElseThrow();
+    }
+
+    static FindingDraft only(AuditNode node, String rule) {
+        List<FindingDraft> drafts = findings(node).stream().filter(d -> d.getRule().equals(rule)).toList();
+        assertEquals(1, drafts.size(), "one finding of " + rule + " in " + findings(node));
+        return drafts.get(0);
+    }
+
+    static String part(FindingDraft draft, String label) {
+        for (EvidencePart part : draft.getEvidence().getExamined()) {
+            if (part.getLabel().equals(label)) {
+                return part.getText();
+            }
+        }
+        return null;
+    }
+
+    // ------------------------------------------------------------------
+    // Exercises of the 29/9 course
+    // ------------------------------------------------------------------
+
+    static AuditableQuiz treeHasNotGrown(String treeSentence) {
+        return quiz("67fab6d5993010229534287e", "A2.04.06.03", List.of(treeSentence, "The tree hasn't grown yet."),
+                text("The tree"), cloze("has not grown|hasn't grown"), text("(not / grow) yet."));
+    }
+
+    static AuditableQuiz heHasNotCut() {
+        return quiz("67fab6d5993010229534286c", "A2.04.05.09", List.of("He has not cut himself.", "He hasn't cut himself."),
+                text("He"), cloze("has not cut|hasn't cut"), text("(not / cut) himself."));
+    }
+
+    static AuditableQuiz theyAreLate() {
+        return quiz("67fab6d59930102295341fb1", "A1.01.17.19", List.of("They 're late for the game."), text("They"),
+                cloze("'re"), text("(be) late for the game."));
+    }
+
+    static AuditableQuiz anaWasTeached() {
+        return quiz("67fab6d5993010229534439d", "B2.07.08.07", List.of("Ana was teached a lesson by my brother."),
+                text("My brother teached Ana a lesson."), cloze("Ana was teached a lesson by my brother."), text(""));
+    }
+
+    static AuditableQuiz iSawAMan(String treeSentence) {
+        AuditableQuiz quiz = quiz("67fab6d59930102295342aae", "A2.06.13.19", List.of(treeSentence), text("I saw"),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", null),
+                text("man (the listener doesn't know which man)."));
+        quiz.setMultipleChoice(new MultipleChoiceEntity("SINGLE", List.of(new MultipleChoiceItemEntity("-", 0.0, "-"),
+                new MultipleChoiceItemEntity("a", 1.0, "a"), new MultipleChoiceItemEntity("the", 0.0, "the"))));
+        return quiz;
+    }
+
+    static AuditableQuiz weAreExcited() {
+        return quiz("67fab6d599301022953425ef", "A2.01.04.04", List.of("We're very excited."), text("We"), cloze("'re"),
+                text("(be) very excited."));
+    }
+
+    static AuditableQuiz canYouHearMe() {
+        AuditableQuiz quiz = quiz("67fab6d59930102295343a69", "B1.14.08.01",
+                List.of("Can you hear me clearly? if not , I can speak louder."), text("Can you hear me clearly?"),
+                new SentencePartEntity(SentencePartKind.CLOZE, "", null), text(", I can speak louder."));
+        quiz.setMultipleChoice(new MultipleChoiceEntity("SINGLE", List.of(
+                new MultipleChoiceItemEntity("if not", 1.0, "if not"), new MultipleChoiceItemEntity("if so", 0.0, "if so"))));
+        return quiz;
+    }
+
+    static AuditableQuiz areWeEatingSoon() {
+        return quiz("67fab6d599301022953426ac", "", List.of("Are we eating soon?", "We're eating soon?",
+                "We are eating soon?"), text("We / eat / soon?"),
+                cloze("Are we eating soon?|We're eating soon?|We are eating soon?"), text(""));
+    }
+
+    static AuditableQuiz didHeHaveDinner() {
+        return quiz("67fab6d5993010229534221f", "A1.04.08.01", List.of("Did he have dinner?"), cloze("Did he have"),
+                text("(he / have) dinner?"));
+    }
+
+    static AuditableQuiz dontTouch() {
+        return quiz("67fab6d5993010229534489e", "B2.13.06.09", List.of("Don't touch a / an resting dog!"),
+                text("Don't touch a / an"), cloze("resting"), text("(asleep / resting) dog!"));
+    }
+
+    static AuditableQuiz youSeeCats() {
+        return quiz("67fab6d59930102295341ec3", "A1.01.06.01", List.of("You see cats."), text("You"), cloze("see"),
+                text("(see) cats."));
+    }
+
+    static AuditableQuiz quiz(String id, String audioKey, List<String> sentences, SentencePartEntity... parts) {
+        return new AuditableQuiz(List.of(), id, "label", "", null, sentences, null, "", List.of(parts), null, null,
+                audioKey);
+    }
+
+    static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    static SentencePartEntity cloze(String... options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(options));
     }
 }

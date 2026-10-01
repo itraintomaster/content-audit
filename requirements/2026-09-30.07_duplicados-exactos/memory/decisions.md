@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (impl A) — Una sola regla en la ficha, exact-duplicate (R001 a R004 describen un mismo hallazgo), con la
+  marca = el id del ejercicio que queda: la identidad es estable entre corridas y nombra «con qué otro nodo». La evidencia
+  trae Copia y Queda como los ve el alumno (con sus opciones si son de opción múltiple), el ejercicio terminado y «Idéntico a
+  <id> del mismo tema»; el que queda va además como nodo relacionado.
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): sin cambios de estructura.
 
 2026-09-30 — qa-tester — F-DUPEX-J001 en audit-domain, paquete exactduplicates: el analizador y sus colaboradores son package-private y los puertos se simulan; mismo criterio que F-QINST-J001/J002 y F-LREC.

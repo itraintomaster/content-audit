@@ -1,7 +1,11 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,58 +19,73 @@ public class DefaultFormRequestDetectorTest {
     @DisplayName("should detect «Usa $short forms$ si es posible.» opening the instructions as a request for the short form that a rule can remove, as in «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldDetectUsaShortFormsSiEsPosibleOpeningTheInstructionsAsARequestForTheShortFormThatARuleCanRemoveAsInTheyNotBeFromIreland(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // «They ___ (not / be) from Ireland.» (…25ac, A1): the standard sentence of #1152 opens the instructions.
+        List<FormRequest> requests = detector.detect(
+                "Usa $short forms$ si es posible. Conjuga el verbo entre paréntesis en negativo.", "");
+        assertEquals(List.of(new FormRequest(FormRequestSource.INSTRUCTIONS, RequestedForm.SHORT,
+                "Usa $short forms$ si es posible.", true)), requests);
     }
 
     @Test
     @DisplayName("should detect «Usa $long forms$.» as a request for the long form, as in «They ___ (not / have) many cars.» of Negativas regulares")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldDetectUsaLongFormsAsARequestForTheLongFormAsInTheyNotHaveManyCarsOfNegativasRegulares(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // «They ___ (not / have) many cars.» (…1ed7, A1, Negativas regulares).
+        List<FormRequest> requests = detector.detect(
+                "Usa $long forms$. Escribe la forma negativa del verbo entre paréntesis.", "");
+        assertEquals(List.of(new FormRequest(FormRequestSource.INSTRUCTIONS, RequestedForm.LONG, "Usa $long forms$.",
+                true)), requests);
     }
 
     @Test
     @DisplayName("should detect the mini-theory that asks for a form, as «Elige $am$, $is$ o $are$ según el sujeto, y usa $short forms$.» of «It ___ (be) hot inside.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldDetectTheMinitheoryThatAsksForAFormAsEligeAmIsOAreSegnElSujetoYUsaShortFormsOfItBeHotInside(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // «It ___ (be) hot inside.» (…1fa5, A1): the request is in the mini theory, and no rule removes it.
+        List<FormRequest> requests = detector.detect("Completa con el verbo be.",
+                "Elige $am$, $is$ o $are$ según el sujeto, y usa $short forms$.");
+        assertEquals(List.of(new FormRequest(FormRequestSource.MINI_THEORY, RequestedForm.SHORT,
+                "Elige $am$, $is$ o $are$ según el sujeto, y usa $short forms$.", false)), requests);
     }
 
     @Test
     @DisplayName("should not take «Escribe la respuesta corta.» as a request for a form, as in «Is it going to matter? No, it ___ .»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldNotTakeEscribeLaRespuestaCortaAsARequestForAFormAsInIsItGoingToMatterNoIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // «Is it going to matter? No, it ___ .» (…26db): the short answer is not a form.
+        assertTrue(detector.detect("Escribe la respuesta corta.", "").isEmpty());
     }
 
     @Test
     @DisplayName("should not take as a request a mini-theory that names a form without asking for it, as «La pregunta negativa arranca con el auxiliar en $short form$: $Doesn't she dance$?» of Sorpresa inicial")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldNotTakeAsARequestAMinitheoryThatNamesAFormWithoutAskingForItAsLaPreguntaNegativaArrancaConElAuxiliarEnShortFormDoesntSheDanceOfSorpresaInicial(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // Sorpresa inicial (…412c, B2): the mini theory names the form, it does not ask for it (DOUBT-RESPC-DESCRIBE, A).
+        assertTrue(detector.detect("Escribe la pregunta negativa.",
+                "La pregunta negativa arranca con el auxiliar en $short form$: $Doesn't she dance$?").isEmpty());
     }
 
     @Test
     @DisplayName("should mark as not removable by rule a request that is the lesson, as «Escribe la $short form$ de lo que está entre paréntesis.» of «You ___ (do not) work at the bank.» in Contracciones")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R007")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldMarkAsNotRemovableByRuleARequestThatIsTheLessonAsEscribeLaShortFormDeLoQueEstEntreParntesisOfYouDoNotWorkAtTheBankInContracciones(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // «You ___ (do not) work at the bank.» (…1f3b, Contracciones): the request is the lesson; it goes to the panel.
+        List<FormRequest> requests = detector.detect("Escribe la $short form$ de lo que está entre paréntesis.", "");
+        assertEquals(1, requests.size());
+        assertEquals(RequestedForm.SHORT, requests.get(0).getRequestedForm());
+        assertFalse(requests.get(0).isRemovableByRule());
     }
+
+    private final FormRequestDetector detector = new DefaultFormRequestDetector();
 }

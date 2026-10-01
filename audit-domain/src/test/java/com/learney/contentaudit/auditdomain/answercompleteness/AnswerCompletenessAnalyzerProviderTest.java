@@ -1,7 +1,17 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +25,31 @@ public class AnswerCompletenessAnalyzerProviderTest {
     @DisplayName("should describe answer-completeness in the catalog as an errors analyzer that evaluates exercises, resolves by rule or at the panel and costs instant, asking «¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R006")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldDescribeAnswercompletenessInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleOrAtThePanelAndCostsInstantAskingElCorrectorAceptaTodasLasFormasDeLaRespuestaYNingunaConsignaPideUna(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 and F-HALL-R006: the card the catalog validates at startup, with the Spanish name of F-RONDA1-R004;
+        // no task kind (package E's) and no configuration.
+        AnswerCompletenessAnalyzerProvider provider = new AnswerCompletenessAnalyzerProvider(
+                AnswerCompletenessAnalyzerTest.productionCorrector(), AnswerCompletenessAnalyzerTest.participles(),
+                AnswerCompletenessAnalyzerTest.renderer());
+        AnalyzerDescriptor card = provider.describe();
+
+        assertEquals("answer-completeness", provider.analyzerName());
+        assertEquals("answer-completeness", card.getName());
+        assertEquals("Respuestas completas", card.getDisplayName());
+        assertEquals("¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?", card.getQuestion());
+        assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
+        assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
+        assertEquals(List.of(FindingResolution.RULE, FindingResolution.PANEL), card.getResolutions());
+        assertEquals(AnalysisCost.INSTANT, card.getCost());
+        assertEquals(List.of("contracted-and-long-forms", "be-short-negations", "spellings-and-till", "form-request"),
+                card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
+        assertTrue(card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
+        assertTrue(provider.planBinding().isEmpty());
+        assertTrue(provider.config().isEmpty());
+        assertEquals("answer-completeness", provider.create(null).getName());
+
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(card, catalog.find("answer-completeness").orElseThrow(), "the catalog accepts the card");
     }
 }

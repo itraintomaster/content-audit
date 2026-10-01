@@ -1,0 +1,1340 @@
+{
+ "version": "corrector en producción, ittm #1191 (30e0efcc0), desplegado el 1/10/2026",
+ "descripcion": "La copia de content-audit de la tabla del corrector de respuestas escritas que está en producción: la de ittm #1191 (30e0efcc0, be/domain/quiz/pkg/shared), desplegada el 1/10/2026 (stack learney-app, sa-east-1). La forma contraída y la larga valen lo mismo, las dos grafías de la lista y till por until. La tabla del corrector es código Go; ésta es su copia como dato, con el formato que espera content-audit, y es la única copia de esa tabla. Los casos de oro de casos-de-oro/ tienen que dar lo que dice su columna «acepta» con esta tabla y lo que dice «hoy» con formas-equivalentes-corrector-viejo.json. Si el corrector cambia, se cambia en el mismo paso: primero el corrector, después esta copia.",
+ "como_se_lee": [
+  "contracciones: lo contraído y sus formas largas. Con palabraEntera, la palabra entera («won't» es «will not»); sin ella, lo que va pegado a la palabra («'s» es is, has o us, según lo que sigue).",
+  "palabrasEquivalentes: grupos de palabras que valen lo mismo; cada una se lee como la última del grupo. CONTRACTION son las contracciones escritas sin apóstrofo, SPELLING las grafías británica y americana de la lista, PREPOSITION till y until.",
+  "invierteNegativas: el corrector lee la pregunta negativa con el not detrás del sujeto («Doesn't she dance?» es «Does she not dance?»)."
+ ],
+ "contracciones": [
+  {
+   "contraida": "'ve",
+   "largas": [
+    " have"
+   ],
+   "palabraEntera": false
+  },
+  {
+   "contraida": "'ll",
+   "largas": [
+    " will"
+   ],
+   "palabraEntera": false
+  },
+  {
+   "contraida": "'re",
+   "largas": [
+    " are"
+   ],
+   "palabraEntera": false
+  },
+  {
+   "contraida": "'s",
+   "largas": [
+    " is",
+    " has",
+    " us"
+   ],
+   "palabraEntera": false
+  },
+  {
+   "contraida": "'d",
+   "largas": [
+    " would",
+    " had"
+   ],
+   "palabraEntera": false
+  },
+  {
+   "contraida": "'m",
+   "largas": [
+    " am"
+   ],
+   "palabraEntera": false
+  },
+  {
+   "contraida": "n't",
+   "largas": [
+    " not"
+   ],
+   "palabraEntera": false
+  },
+  {
+   "contraida": "isn't",
+   "largas": [
+    "is not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "aren't",
+   "largas": [
+    "are not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "wasn't",
+   "largas": [
+    "was not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "weren't",
+   "largas": [
+    "were not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "don't",
+   "largas": [
+    "do not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "doesn't",
+   "largas": [
+    "does not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "didn't",
+   "largas": [
+    "did not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "haven't",
+   "largas": [
+    "have not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "hasn't",
+   "largas": [
+    "has not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "hadn't",
+   "largas": [
+    "had not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "wouldn't",
+   "largas": [
+    "would not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "couldn't",
+   "largas": [
+    "could not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "shouldn't",
+   "largas": [
+    "should not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "mustn't",
+   "largas": [
+    "must not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "needn't",
+   "largas": [
+    "need not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "mightn't",
+   "largas": [
+    "might not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "mayn't",
+   "largas": [
+    "may not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "oughtn't",
+   "largas": [
+    "ought not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "daren't",
+   "largas": [
+    "dare not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "can't",
+   "largas": [
+    "can not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "won't",
+   "largas": [
+    "will not"
+   ],
+   "palabraEntera": true
+  },
+  {
+   "contraida": "shan't",
+   "largas": [
+    "shall not"
+   ],
+   "palabraEntera": true
+  }
+ ],
+ "palabrasEquivalentes": [
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "dont",
+    "don't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "doesnt",
+    "doesn't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "didnt",
+    "didn't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "isnt",
+    "isn't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "arent",
+    "aren't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "wasnt",
+    "wasn't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "werent",
+    "weren't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "havent",
+    "haven't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "hasnt",
+    "hasn't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "hadnt",
+    "hadn't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "wouldnt",
+    "wouldn't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "couldnt",
+    "couldn't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "shouldnt",
+    "shouldn't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "mustnt",
+    "mustn't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "neednt",
+    "needn't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "mightnt",
+    "mightn't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "shant",
+    "shan't"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "im",
+    "i'm"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "ive",
+    "i've"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "youre",
+    "you're"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "youve",
+    "you've"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "youll",
+    "you'll"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "youd",
+    "you'd"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "hes",
+    "he's"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "hed",
+    "he'd"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "shes",
+    "she's"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "itll",
+    "it'll"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "itd",
+    "it'd"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "weve",
+    "we've"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "theyre",
+    "they're"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "theyve",
+    "they've"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "theyll",
+    "they'll"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "theyd",
+    "they'd"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "thats",
+    "that's"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "whats",
+    "what's"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "wheres",
+    "where's"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "whos",
+    "who's"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "theres",
+    "there's"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "heres",
+    "here's"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "couldve",
+    "could've"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "shouldve",
+    "should've"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "wouldve",
+    "would've"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "mustve",
+    "must've"
+   ]
+  },
+  {
+   "clase": "CONTRACTION",
+   "palabras": [
+    "mightve",
+    "might've"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "travelled",
+    "traveled"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "travelling",
+    "traveling"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "traveller",
+    "traveler"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "travellers",
+    "travelers"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "cancelled",
+    "canceled"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "cancelling",
+    "canceling"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "labelled",
+    "labeled"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "labelling",
+    "labeling"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "modelled",
+    "modeled"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "modelling",
+    "modeling"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "fuelled",
+    "fueled"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "fuelling",
+    "fueling"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "levelled",
+    "leveled"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "levelling",
+    "leveling"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "signalled",
+    "signaled"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "signalling",
+    "signaling"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "quarrelled",
+    "quarreled"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "quarrelling",
+    "quarreling"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "marvellous",
+    "marvelous"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "jewellery",
+    "jewelry"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "enrol",
+    "enroll"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "fulfil",
+    "fulfill"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "instalment",
+    "installment"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "skilful",
+    "skillful"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "wilful",
+    "willful"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "colour",
+    "color"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "colours",
+    "colors"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "coloured",
+    "colored"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "colourful",
+    "colorful"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "favour",
+    "favor"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "favours",
+    "favors"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "favourite",
+    "favorite"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "favourites",
+    "favorites"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "flavour",
+    "flavor"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "flavours",
+    "flavors"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "honour",
+    "honor"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "humour",
+    "humor"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "labour",
+    "labor"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "neighbour",
+    "neighbor"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "neighbours",
+    "neighbors"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "neighbourhood",
+    "neighborhood"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "behaviour",
+    "behavior"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "harbour",
+    "harbor"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "rumour",
+    "rumor"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "odour",
+    "odor"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "vapour",
+    "vapor"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "savoury",
+    "savory"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "centre",
+    "center"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "centres",
+    "centers"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "theatre",
+    "theater"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "theatres",
+    "theaters"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "metre",
+    "meter"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "metres",
+    "meters"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "litre",
+    "liter"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "litres",
+    "liters"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "kilometre",
+    "kilometer"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "kilometres",
+    "kilometers"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "centimetre",
+    "centimeter"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "centimetres",
+    "centimeters"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "fibre",
+    "fiber"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "realise",
+    "realize"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "realised",
+    "realized"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "realises",
+    "realizes"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "realising",
+    "realizing"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "organise",
+    "organize"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "organised",
+    "organized"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "organises",
+    "organizes"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "organising",
+    "organizing"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "organisation",
+    "organization"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "apologise",
+    "apologize"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "apologised",
+    "apologized"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "apologises",
+    "apologizes"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "apologising",
+    "apologizing"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "recognise",
+    "recognize"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "recognised",
+    "recognized"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "recognises",
+    "recognizes"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "recognising",
+    "recognizing"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "analyse",
+    "analyze"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "analysed",
+    "analyzed"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "analysing",
+    "analyzing"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "criticise",
+    "criticize"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "criticised",
+    "criticized"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "memorise",
+    "memorize"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "memorised",
+    "memorized"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "emphasise",
+    "emphasize"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "emphasised",
+    "emphasized"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "grey",
+    "gray"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "catalogue",
+    "catalog"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "dialogue",
+    "dialog"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "defence",
+    "defense"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "offence",
+    "offense"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "licence",
+    "license"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "practise",
+    "practice"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "practised",
+    "practiced"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "practises",
+    "practices"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "practising",
+    "practicing"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "pyjamas",
+    "pajamas"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "cosy",
+    "cozy"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "programme",
+    "program"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "programmes",
+    "programs"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "aeroplane",
+    "airplane"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "aeroplanes",
+    "airplanes"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "moustache",
+    "mustache"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "plough",
+    "plow"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "sceptical",
+    "skeptical"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "ageing",
+    "aging"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "judgement",
+    "judgment"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "learnt",
+    "learned"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "dreamt",
+    "dreamed"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "burnt",
+    "burned"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "spilt",
+    "spilled"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "spoilt",
+    "spoiled"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "leapt",
+    "leaped"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "leant",
+    "leaned"
+   ]
+  },
+  {
+   "clase": "SPELLING",
+   "palabras": [
+    "knelt",
+    "kneeled"
+   ]
+  },
+  {
+   "clase": "PREPOSITION",
+   "palabras": [
+    "till",
+    "until"
+   ]
+  }
+ ],
+ "invierteNegativas": true
+}

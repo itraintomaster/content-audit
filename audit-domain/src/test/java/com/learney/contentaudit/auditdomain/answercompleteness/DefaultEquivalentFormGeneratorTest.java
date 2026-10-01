@@ -1,7 +1,15 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import com.learney.contentaudit.auditdomain.IrregularFormsCatalog;
+import com.learney.contentaudit.auditdomain.correctormatch.FormEquivalenceClass;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,79 +23,133 @@ public class DefaultEquivalentFormGeneratorTest {
     @DisplayName("should generate the long form of a contracted negation and the contraction of a long one, as «do not eat» for «don't eat» in «I ___ (not / eat) meat often.» and «don't have» for «do not have» in «They ___ (not / have) many cars.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldGenerateTheLongFormOfAContractedNegationAndTheContractionOfALongOneAsDoNotEatForDontEatInINotEatMeatOftenAndDontHaveForDoNotHaveInTheyNotHaveManyCars(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «I ___ (not / eat) meat often.» (…263c, A2) accepts «don't eat»; «They ___ (not / have) many
+        // cars.» (…1ed7, A1) accepts «do not have». Each gives the other form of its negation.
+        assertEquals(FormEquivalenceClass.CONTRACTION, forms("don't eat", "I").get("do not eat"));
+        assertEquals(FormEquivalenceClass.CONTRACTION, forms("do not have", "They").get("don't have"));
     }
 
     @Test
     @DisplayName("should generate the contraction of an auxiliary attached to the subject, as «There's a house near the school.» for «There is a house near the school.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldGenerateTheContractionOfAnAuxiliaryAttachedToTheSubjectAsTheresAHouseNearTheSchoolForThereIsAHouseNearTheSchool(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «A house is near the school. ___» (…2407, A1) accepts «There is a house near the school.»: its
+        // contraction, «There's…», is the same answer.
+        assertEquals(FormEquivalenceClass.CONTRACTION,
+                forms("There is a house near the school.", "school").get("There's a house near the school."));
+        // «She sells cheese. Someone produces the cheese in Switzerland. ___» (…4393, B2): the form keeps the
+        // capital of the name, as the student would write it.
+        assertEquals(FormEquivalenceClass.CONTRACTION, forms("She sells cheese that is produced in Switzerland.", "")
+                .get("She sells cheese that's produced in Switzerland."));
     }
 
     @Test
     @DisplayName("should read «'s» as has before a past participle and as is otherwise, as «has hated» for «'s hated» in «She ___ (hate) broccoli for ages» and «is» for «'s» in «It ___ (be) hot inside.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldReadSAsHasBeforeAPastParticipleAndAsIsOtherwiseAsHasHatedForSHatedInSheHateBroccoliForAgesAndIsForSInItBeHotInside(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «'s» before a past participle is has: «She ___ (hate) broccoli for ages…» (…3f80, B2) accepts
+        // «'s hated», whose long form is «has hated», never «is hated»; alone, as in «It ___ (be) hot inside.»
+        // (…1fa5, A1), it is is.
+        Map<String, FormEquivalenceClass> hated = forms("'s hated", "She");
+        assertEquals(FormEquivalenceClass.CONTRACTION, hated.get("has hated"));
+        assertFalse(hated.containsKey("is hated"));
+        assertEquals(Map.of("is", FormEquivalenceClass.CONTRACTION), forms("'s", "It"));
     }
 
     @Test
     @DisplayName("should generate the long form when the subject stays outside the gap or is a noun, as «am not» for «'m not» in «I ___ (not / be) forty.» and «Peter is reading a book.» for «Peter's reading a book.»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldGenerateTheLongFormWhenTheSubjectStaysOutsideTheGapOrIsANounAsAmNotForMNotInINotBeFortyAndPeterIsReadingABookForPetersReadingABook(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: the subject outside the gap — «I ___ (not / be) forty.» (…1fa8, A1) accepts «'m not» — and a
+        // noun subject — «Peter / read / a book.» (…20d1, A1) — also have their long form.
+        assertEquals(FormEquivalenceClass.CONTRACTION, forms("'m not", "I").get("am not"));
+        assertEquals(FormEquivalenceClass.CONTRACTION,
+                forms("Peter's reading a book.", "book").get("Peter is reading a book."));
     }
 
     @Test
     @DisplayName("should put the not after the subject in the long form of a negative question, as «Does she not dance?» for «Doesn't she dance?» in Sorpresa inicial")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R002")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldPutTheNotAfterTheSubjectInTheLongFormOfANegativeQuestionAsDoesSheNotDanceForDoesntSheDanceInSorpresaInicial(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: in a negative question the long form puts the not after the subject: «I'm surprised that she
+        // doesn't dance. ___» (…412c, B2, Sorpresa inicial) answered «Doesn't she dance?».
+        Map<String, FormEquivalenceClass> question = forms("Doesn't she dance?", "dance");
+        assertEquals(FormEquivalenceClass.CONTRACTION, question.get("Does she not dance?"));
+        assertFalse(question.containsKey("Does not she dance?"));
     }
 
     @Test
     @DisplayName("should generate the other short negation of be, as «aren't» for «'re not» in «They ___ (not / be) from Ireland.» and «'s not» for «isn't» in «A: Is it hot today? B: No, it ___ .»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R003")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldGenerateTheOtherShortNegationOfBeAsArentForReNotInTheyNotBeFromIrelandAndSNotForIsntInAIsItHotTodayBNoIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «They ___ (not / be) from Ireland.» (…25ac, A1) accepts «'re not»: «aren't» is the other short
+        // negation; «A: Is it hot today? B: No, it ___ .» (…1f5d, A1) accepts «isn't»: «'s not» is.
+        assertEquals(FormEquivalenceClass.BE_NEGATION, forms("'re not", "They").get("aren't"));
+        assertEquals(FormEquivalenceClass.BE_NEGATION, forms("isn't", "it").get("'s not"));
     }
 
     @Test
     @DisplayName("should generate the other spelling of a word on the closed list, as «traveled» for «travelled» in «She ___ (travel) to Europe.» and «travelled» for «traveled» in «___ (you / ever / travel) to Ireland?»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R004")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldGenerateTheOtherSpellingOfAWordOnTheClosedListAsTraveledForTravelledInSheTravelToEuropeAndTravelledForTraveledInYouEverTravelToIreland(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: the course uses both spellings: «She ___ (travel) to Europe.» (…2211, A1) accepts «travelled»;
+        // «___ (you / ever / travel) to Ireland?» (…28dc, A2) accepts «Have you ever traveled».
+        assertEquals(Map.of("traveled", FormEquivalenceClass.SPELLING), forms("travelled", "She"));
+        assertEquals(FormEquivalenceClass.SPELLING, forms("Have you ever traveled", "").get("Have you ever travelled"));
     }
 
     @Test
     @DisplayName("should generate «till» for «until» and «until» for «till», as «Why had she worked there till then?» for «Why had she worked there until then?»")
     @Tag("FEAT-RESPC")
     @Tag("F-RESPC-R004")
-    @Disabled("Stub de FEAT-RESPC (paquete A), sin implementar")
     public void shouldGenerateTillForUntilAndUntilForTillAsWhyHadSheWorkedThereTillThenForWhyHadSheWorkedThereUntilThen(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 (DOUBT-PREPOSICIONES, A): until and till, both ways. «why / she / work there until then? ___»
+        // (…326a, B1) accepts «Why had she worked there until then?».
+        assertEquals(Map.of("Why had she worked there till then?", FormEquivalenceClass.PREPOSITION),
+                forms("Why had she worked there until then?", "then"));
+        Map<String, FormEquivalenceClass> tillFive = forms("I'll wait till five.", "");
+        assertEquals(FormEquivalenceClass.PREPOSITION, tillFive.get("I'll wait until five."));
+        assertEquals(FormEquivalenceClass.CONTRACTION, tillFive.get("I will wait till five."), "and its long form");
+    }
+
+    /** The forms generated for an accepted answer, by form. */
+    private static Map<String, FormEquivalenceClass> forms(String acceptedAnswer, String wordBeforeGap) {
+        Map<String, FormEquivalenceClass> forms = new LinkedHashMap<>();
+        for (EquivalentForm form : new DefaultEquivalentFormGenerator(participles()).generate(acceptedAnswer,
+                wordBeforeGap)) {
+            forms.put(form.getForm(), form.getEquivalenceClass());
+        }
+        return forms;
+    }
+
+    /** The table of irregular forms, as far as these answers need it. */
+    private static IrregularFormsCatalog participles() {
+        Set<String> participles = Set.of("been", "got", "gone", "seen", "done", "swum");
+        return new IrregularFormsCatalog() {
+            @Override
+            public Set<String> formsOf(String baseWord) {
+                return Set.of();
+            }
+
+            @Override
+            public boolean isPastParticiple(String word) {
+                return participles.contains(word);
+            }
+        };
     }
 }

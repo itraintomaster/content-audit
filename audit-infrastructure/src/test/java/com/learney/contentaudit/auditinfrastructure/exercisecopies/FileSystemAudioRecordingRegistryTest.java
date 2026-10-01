@@ -1,10 +1,17 @@
 package com.learney.contentaudit.auditinfrastructure.exercisecopies;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.learney.contentaudit.auditdomain.datacoherence.AudioRecording;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -15,19 +22,44 @@ public class FileSystemAudioRecordingRegistryTest {
     @DisplayName("should give for an audio key the text it was last recorded with and where that text came from, as «He has not cut/hasn't cut himself.» for A2.04.05.09")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R004")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldGiveForAnAudioKeyTheTextItWasLastRecordedWithAndWhereThatTextCameFromAsHeHasNotCuthasntCutHimselfForA2040509(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            ) throws IOException {
+        // F-DATOS-R004 and A-16: the audio of «He ___ (not / cut) himself.» (…286c) was recorded by the generator of
+        // March 2025 reading the slash.
+        FileSystemAudioRecordingRegistry registry = new FileSystemAudioRecordingRegistry(registry());
+        assertEquals(Optional.of(new AudioRecording("A2.04.05.09", "He has not cut/hasn't cut himself.",
+                "generador-2025-03 (2025-03-15)")), registry.recordingOf("A2.04.05.09"));
+        assertEquals("2026-09-30 · prueba", registry.version());
     }
 
     @Test
     @DisplayName("should give nothing for an audio key the registry does not know, as the empty key of «Are we eating soon?»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R004")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldGiveNothingForAnAudioKeyTheRegistryDoesNotKnowAsTheEmptyKeyOfAreWeEatingSoon(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            ) throws IOException {
+        // F-DATOS-R004: «Are we eating soon?» (…26ac) lost its key on 27/9; a key nobody recorded is not known either.
+        FileSystemAudioRecordingRegistry registry = new FileSystemAudioRecordingRegistry(registry());
+        assertEquals(Optional.empty(), registry.recordingOf(""));
+        assertEquals(Optional.empty(), registry.recordingOf(null));
+        assertEquals(Optional.empty(), registry.recordingOf("A2.99.99.99"));
+    }
+
+    @TempDir
+    Path folder;
+
+    /** A registry in the format of db/grabaciones.json, with two of its keys. */
+    private Path registry() throws IOException {
+        Path file = folder.resolve("grabaciones.json");
+        Files.writeString(file, """
+                {
+                 "version": "2026-09-30 · prueba",
+                 "grabaciones": {
+                  "A1.04.08.01": {"texto": "Did he have dinner?", "fuente": "regrabacion-2026-08-24", "fecha": "2026-08-24"},
+                  "A2.04.05.09": {"texto": "He has not cut/hasn't cut himself.", "fuente": "generador-2025-03", "fecha": "2025-03-15"}
+                 }
+                }
+                """);
+        return file;
     }
 }

@@ -1,7 +1,29 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,26 +43,98 @@ public class FPistaJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe lee la pista y la primera ... → Hallazgo alta, con los ejercicios del... [El ejercicio no tiene pista y tres cuartos o más de su tema, del mismo tipo, sí] → success")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void path1_elEjercicioNoTienePistaYTresCuartosOMsDeSuTemaDelMismoTipoS_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr: analyze with only hint-coherence, over Afirmativas regulares (19 of 20 with hint).
+        AuditNode root = analyze(knowledge("6814dafa7d73e7209a13d389", "Afirmativas regulares",
+                HintCoherenceAnalyzerTest.afirmativasRegulares()));
+
+        // leer → falta: «I ___ a lot of vegetables.» has a high finding (R001), with the exercises
+        // of the topic that do carry a hint as evidence (R005).
+        AuditNode vegetables = quiz(root, "67fab6d59930102295341ecd");
+        assertEquals(1, vegetables.getFindings().size());
+        Finding missing = vegetables.getFindings().get(0);
+        assertEquals("missing-hint", missing.getRule());
+        assertEquals(FindingSeverity.HIGH, missing.getSeverity());
+        assertTrue(missing.getEvidence().getExamined().stream()
+                .anyMatch(p -> p.getLabel().equals("Con pista en el tema") && p.getText().equals("You ___ (see) cats.")));
+        assertEquals(0.0, vegetables.getScores().get("hint-coherence"));
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe lee la pista y la primera ... → Hallazgo bloqueante, con la pista y l... [La pista nombra otro verbo, otro sujeto u otra negación que la respuesta] → success")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void path2_laPistaNombraOtroVerboOtroSujetoUOtraNegacinQueLaRespuesta_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → leer → no_coincide: «Who ___ (I / see)?» (…2031) names another subject than its
+        // answer «are you seeing»: a blocking finding with the hint and the answer as evidence,
+        // fixed by rule with the hint drawn from the answer (R003, R005).
+        AuditNode root = analyze(knowledge("6814dafa7d73e7209a13d1b7", "Palabras wh",
+                List.of(HintCoherenceAnalyzerTest.whoAreYouSeeing())));
+
+        Finding subject = quiz(root, "67fab6d59930102295342031").getFindings().get(0);
+        assertEquals("hint-subject", subject.getRule());
+        assertEquals(FindingSeverity.BLOCKING, subject.getSeverity());
+        assertEquals(FindingResolution.RULE, subject.getResolution());
+        assertEquals("(I / see)", part(subject, "Pista"));
+        assertEquals("are you seeing", part(subject, "Respuesta"));
+        assertEquals("(you / see)", part(subject, "Pista propuesta"));
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → El informe lee la pista y la primera ... → Sin hallazgo de este analizador; el e... [La pista coincide con la respuesta] → success")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void path3_laPistaCoincideConLaRespuesta_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → leer → coincide: «You ___ (see) cats.» (…1ec3) has no finding of this analyzer and
+        // scores 1 (R005).
+        AuditNode root = analyze(knowledge("6814dafa7d73e7209a13d389", "Afirmativas regulares",
+                List.of(HintCoherenceAnalyzerTest.youSeeCats())));
+
+        AuditNode cats = quiz(root, "67fab6d59930102295341ec3");
+        assertEquals(List.of(), cats.getFindings());
+        assertEquals(1.0, cats.getScores().get("hint-coherence"));
+    }
+
+    // ------------------------------------------------------------------
+    // analyze with only hint-coherence, through the engine
+    // ------------------------------------------------------------------
+
+    private static AuditNode analyze(AuditableKnowledge knowledge) {
+        HintCoherenceAnalyzerProvider provider = new HintCoherenceAnalyzerProvider(HintCoherenceAnalyzerTest.table(),
+                HintCoherenceAnalyzerTest.renderer());
+        IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
+                new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+        AuditableCourse course = new AuditableCourse(List.of(new AuditableMilestone(List.of(new AuditableTopic(
+                List.of(knowledge), "topic", "Topic", "topic")), "A1", "A1", "A1")));
+        AuditReport report = engine.runAudit(course, new AnalyzerRunSelection(List.of("hint-coherence"), Map.of()));
+        return report.getRoot();
+    }
+
+    private static AuditableKnowledge knowledge(String id, String label, List<AuditableQuiz> quizzes) {
+        return new AuditableKnowledge(quizzes, label, null, true, id, label, id, SentenceMode.FILL, "Topic");
+    }
+
+    private static AuditNode quiz(AuditNode node, String id) {
+        if (node.getEntity() != null && id.equals(node.getEntity().getId())) {
+            return node;
+        }
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                AuditNode found = quiz(child, id);
+                if (found != null) {
+                    return found;
+                }
+            }
+        }
+        return null;
+    }
+
+    private static String part(Finding finding, String label) {
+        for (EvidencePart part : finding.getEvidence().getExamined()) {
+            if (part.getLabel().equals(label)) {
+                return part.getText();
+            }
+        }
+        return null;
     }
 }
