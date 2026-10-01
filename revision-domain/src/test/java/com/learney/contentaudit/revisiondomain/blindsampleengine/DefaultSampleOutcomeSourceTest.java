@@ -1,7 +1,17 @@
 package com.learney.contentaudit.revisiondomain.blindsampleengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSample;
+import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcome;
+import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
+import java.time.Instant;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,18 +25,67 @@ public class DefaultSampleOutcomeSourceTest {
     @DisplayName("should give the verdict of a batch the outcome of its closed sample by the scope id, with its counts and whether it meets its goal")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldGiveTheVerdictOfABatchTheOutcomeOfItsClosedSampleByTheScopeIdWithItsCountsAndWhetherItMeetsItsGoal(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultBlindSampleServiceTest.Tanda tanda = new DefaultBlindSampleServiceTest.Tanda().conCambios(150);
+        ProportionsOf.close(tanda, tanda.service().draw(DefaultBlindSampleServiceTest.Tanda.COURSE,
+                new ProjectionScope("tanda-1", null, Map.of()), 1L), 80, 0, 10, 10);
+        BlindSample latest = tanda.service().draw(DefaultBlindSampleServiceTest.Tanda.COURSE,
+                new ProjectionScope("tanda-1", null, Map.of()), 2L);
+        latest.setDrawnAt(latest.getDrawnAt().plusSeconds(60));
+        ProportionsOf.close(tanda, latest, 90, 5, 1, 4);
+        ProportionsOf.close(tanda, tanda.service().draw(DefaultBlindSampleServiceTest.Tanda.COURSE,
+                new ProjectionScope("tanda-2", null, Map.of()), 3L), 50, 0, 50, 0);
+
+        Optional<SampleOutcome> outcome = new DefaultSampleOutcomeSource(tanda.store, new DefaultSampleStatistics())
+                .outcomeFor("tanda-1");
+
+        assertTrue(outcome.isPresent());
+        assertEquals(latest.getSampleId(), outcome.get().getSampleId(), "R004: the last sample of the batch");
+        assertEquals("tanda-1", outcome.get().getScopeId());
+        assertTrue(outcome.get().isClosed());
+        assertEquals(100, outcome.get().getAnswered());
+        assertEquals(95, outcome.get().getBetterOrEqual(), "R004: with its counts");
+        assertEquals(1, outcome.get().getWorse());
+        assertEquals(4, outcome.get().getBothWrong());
+        assertTrue(outcome.get().isMeetsGoal(), "R004: and whether it meets the goal of José");
+        assertEquals("95 mejor o igual, 1 peor y 4 con error en los dos, de 100 respondidos", outcome.get().getDetail());
+        SampleOutcome other = new DefaultSampleOutcomeSource(tanda.store, new DefaultSampleStatistics())
+                .outcomeFor("tanda-2").orElseThrow();
+        assertFalse(other.isMeetsGoal(), "R004: another batch, another sample: 50 worse");
+        assertTrue(other.getDetail().contains("peores: 50 de 100, la meta es a lo sumo 1 de 100"));
     }
 
     @Test
     @DisplayName("should give an open sample as not closed and a batch without a sample as no outcome")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldGiveAnOpenSampleAsNotClosedAndABatchWithoutASampleAsNoOutcome() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultBlindSampleServiceTest.Tanda tanda = new DefaultBlindSampleServiceTest.Tanda().conCambios(10);
+        BlindSample open = tanda.service().draw(DefaultBlindSampleServiceTest.Tanda.COURSE,
+                new ProjectionScope("tanda-1", null, Map.of()), 1L);
+        tanda.responder(open, "José", 4, 0, 0, 0);
+        DefaultSampleOutcomeSource source = new DefaultSampleOutcomeSource(tanda.store, new DefaultSampleStatistics());
+
+        SampleOutcome outcome = source.outcomeFor("tanda-1").orElseThrow();
+
+        assertFalse(outcome.isClosed(), "R004: drawn and still open");
+        assertFalse(outcome.isMeetsGoal(), "R004: it does not meet a goal yet");
+        assertEquals(4, outcome.getAnswered());
+        assertEquals("abierta: 4 de 10 pares respondidos", outcome.getDetail());
+        assertEquals(Optional.empty(), source.outcomeFor("tanda-sin-muestra"), "R004: a batch without a sample");
+        assertEquals(Optional.empty(), source.outcomeFor(null));
+    }
+
+    /** Answers a sample as José and closes it. */
+    static final class ProportionsOf {
+        private ProportionsOf() {
+        }
+
+        static void close(DefaultBlindSampleServiceTest.Tanda tanda, BlindSample sample, int better, int equal,
+                int worse, int bothWrong) {
+            tanda.responder(sample, "José", better, equal, worse, bothWrong);
+            tanda.service().close(sample.getSampleId());
+        }
     }
 }

@@ -1,7 +1,78 @@
 package com.learney.contentaudit.revisiondomain.blindsampleengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.clearInvocations;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.Baseline;
+import com.learney.contentaudit.auditdomain.BaselineStore;
+import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
+import com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers;
+import com.learney.contentaudit.auditdomain.contextnumbers.ErrorCounts;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.auditdomain.studentview.StudentGapView;
+import com.learney.contentaudit.auditdomain.studentview.StudentOptionView;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.revisiondomain.BlindSampleStore;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindPair;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindPairView;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSample;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSampleResult;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSide;
+import com.learney.contentaudit.revisiondomain.blindsample.ErrorRateSample;
+import com.learney.contentaudit.revisiondomain.blindsample.PairAnswer;
+import com.learney.contentaudit.revisiondomain.blindsample.PairAnswerRecord;
+import com.learney.contentaudit.revisiondomain.blindsample.SampleClosedException;
+import com.learney.contentaudit.revisiondomain.blindsample.StudentSide;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparator;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.BlindSampleGoal;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
+import com.learney.contentaudit.revisiondomain.comparison.EffectiveGoals;
+import com.learney.contentaudit.revisiondomain.comparison.GoalBook;
+import com.learney.contentaudit.revisiondomain.comparison.SampleCriterion;
+import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjection;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjector;
+import com.learney.contentaudit.revisiondomain.projection.ProjectedChange;
+import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
+import java.lang.reflect.Field;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,212 +86,747 @@ public class DefaultBlindSampleServiceTest {
     @DisplayName("should draw the same 100 changes in the same order twice with the same seed, and other changes with another seed")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldDrawTheSame100ChangesInTheSameOrderTwiceWithTheSameSeedAndOtherChangesWithAnotherSeed(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(150);
+
+        BlindSample first = tanda.service().draw(Tanda.COURSE, null, 20261001L);
+        BlindSample again = tanda.service().draw(Tanda.COURSE, null, 20261001L);
+        BlindSample other = tanda.service().draw(Tanda.COURSE, null, 7L);
+
+        assertEquals(100, first.getPairs().size(), "R001: the 100 pairs of the goal");
+        assertEquals(proposals(first), proposals(again), "R001: the same seed, the same changes in the same order");
+        assertEquals(sides(first), sides(again), "R001: and the same sides");
+        assertNotEquals(proposals(first), proposals(other), "R001: another seed, another sample");
+        assertEquals(100, new HashSet<>(proposals(first)).size(), "R001: every change once");
     }
 
     @Test
     @DisplayName("should draw only among the changes the comparison does not return, so «My grandmother ___ (come) every year.» never enters the sample of the four proposals of «Afirmativas regulares»")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldDrawOnlyAmongTheChangesTheComparisonDoesNotReturnSoMyGrandmotherComeEveryYearNeverEntersTheSampleOfTheFourProposalsOfAfirmativasRegulares(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().lasCuatro();
+
+        for (long seed : List.of(1L, 2L, 3L, 20261001L)) {
+            BlindSample sample = tanda.service().draw(Tanda.COURSE, null, seed);
+            assertEquals(Set.of(Tanda.P_OURSELVES, Tanda.P_VEGETABLES, Tanda.P_HATS), new HashSet<>(proposals(sample)),
+                    "R001: «My grandmother ___ (come) every year.» returns: nobody needs to look at it");
+        }
     }
 
     @Test
     @DisplayName("should take every change when the batch has fewer than the 100 pairs of the goal")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldTakeEveryChangeWhenTheBatchHasFewerThanThe100PairsOfTheGoal() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(7);
+
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 5L);
+
+        assertEquals(7, sample.getPairs().size(), "R001: all of them, if there are fewer than 100");
+        assertEquals(new HashSet<>(Tanda.ids("p-", 7)), new HashSet<>(proposals(sample)));
+        assertEquals(List.of(1, 2, 3, 4, 5, 6, 7), sample.getPairs().stream().map(BlindPair::getIndex).toList(),
+                "R001: numbered from 1");
     }
 
     @Test
     @DisplayName("should publish with the sample the seed it drew with, also when the request gives none")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldPublishWithTheSampleTheSeedItDrewWithAlsoWhenTheRequestGivesNone() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(150);
+
+        BlindSample given = tanda.service().draw(Tanda.COURSE, null, 42L);
+        BlindSample drawn = tanda.service().draw(Tanda.COURSE, null, null);
+        BlindSample repeated = tanda.service().draw(Tanda.COURSE, null, drawn.getSeed());
+
+        assertEquals(42L, given.getSeed(), "R001: the seed it was given");
+        assertEquals(proposals(drawn), proposals(repeated), "R001: the seed it drew, published, repeats the sample");
+        assertEquals(sides(drawn), sides(repeated));
+        assertEquals(drawn.getSeed(), tanda.store.loadPairs(drawn.getSampleId()).orElseThrow().getSeed(),
+                "R001: and it is kept with the sample");
     }
 
     @Test
     @DisplayName("should draw from the pending proposals of the batch scope, or from those of the active plan when no batch is open")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldDrawFromThePendingProposalsOfTheBatchScopeOrFromThoseOfTheActivePlanWhenNoBatchIsOpen(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(150);
+        List<String> batch = Tanda.ids("p-", 40).subList(10, 40);
+        ProjectionScope scope = new ProjectionScope("tanda-2", batch, Map.of());
+
+        BlindSample ofTheBatch = tanda.service().draw(Tanda.COURSE, scope, 11L);
+        BlindSample ofThePlan = tanda.service().draw(Tanda.COURSE, null, 11L);
+
+        verify(tanda.projector).project(Tanda.COURSE, scope);
+        verify(tanda.comparator).compare(Tanda.COURSE, scope);
+        assertEquals("tanda-2", ofTheBatch.getScopeId(), "R001: the sample of the batch, by its id");
+        assertEquals(30, ofTheBatch.getPairs().size(), "R001: only the pending proposals of the batch");
+        assertTrue(batch.containsAll(proposals(ofTheBatch)));
+        assertEquals(Tanda.PLAN, ofThePlan.getScopeId(), "R001: without a batch, the active plan");
+        assertEquals(100, ofThePlan.getPairs().size());
+        assertEquals(Tanda.AUDIT, ofThePlan.getActiveAuditId());
+        assertEquals(Tanda.PLAN, ofThePlan.getActivePlanId());
+        assertEquals(Tanda.BASELINE, ofThePlan.getBaselineAuditId());
     }
 
     @Test
     @DisplayName("should show the vegetables pair as the student sees each side, «I ___ (love) vegetables. Me encantan las verduras.» and «I ___ a lot of vegetables. Me gustan mucho las verduras.»")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldShowTheVegetablesPairAsTheStudentSeesEachSideILoveVegetablesMeEncantanLasVerdurasAndIALotOfVegetablesMeGustanMuchoLasVerduras(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().lasCuatro();
+
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 11L);
+
+        BlindPair vegetables = pairOf(sample, Tanda.P_VEGETABLES);
+        StudentSide after = vegetables.getAfterSide() == BlindSide.A ? vegetables.getSideA() : vegetables.getSideB();
+        StudentSide before = vegetables.getAfterSide() == BlindSide.A ? vegetables.getSideB() : vegetables.getSideA();
+        assertEquals("I ___ (love) vegetables. Me encantan las verduras.",
+                after.getView().getStatement() + " " + after.getView().getTranslation(),
+                "R002: the after, as the student sees it");
+        assertEquals("I ___ a lot of vegetables. Me gustan mucho las verduras.",
+                before.getView().getStatement() + " " + before.getView().getTranslation(),
+                "R002: the before, as the student sees it");
     }
 
     @Test
     @DisplayName("should show each side with its instruction, sentence with the gap, hint, options, translation and mini-theory before answering, and the finished sentence after answering")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldShowEachSideWithItsInstructionSentenceWithTheGapHintOptionsTranslationAndMinitheoryBeforeAnsweringAndTheFinishedSentenceAfterAnswering(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().lasCuatro();
+
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 11L);
+
+        BlindPair vegetables = pairOf(sample, Tanda.P_VEGETABLES);
+        StudentSide after = vegetables.getAfterSide() == BlindSide.A ? vegetables.getSideA() : vegetables.getSideB();
+        QuizStudentView view = after.getView();
+        assertEquals(Tanda.INSTRUCTIONS, view.getInstructions(), "R002: the instruction");
+        assertEquals("I ___ (love) vegetables.", view.getStatement(), "R002: the sentence with the gap");
+        assertEquals(List.of(new StudentGapView(0, "(love)", List.of("love"), "love")), view.getGaps(),
+                "R002: the hint of the gap");
+        assertEquals("Me encantan las verduras.", view.getTranslation(), "R002: the translation");
+        assertEquals(Tanda.MINI_THEORY, view.getMiniTheory(), "R002: the mini theory");
+        assertEquals("I love vegetables.", after.getAnswered(), "R002: and the finished sentence, after answering");
+
+        BlindPair hats = pairOf(sample, Tanda.P_HATS);
+        StudentSide hatsAfter = hats.getAfterSide() == BlindSide.A ? hats.getSideA() : hats.getSideB();
+        assertEquals(List.of(new StudentOptionView("wears", true), new StudentOptionView("sports", false)),
+                hatsAfter.getView().getOptions(), "R002: the options of a multiple choice, in the student's order");
+        assertEquals("She wears hats.", hatsAfter.getAnswered());
     }
 
     @Test
     @DisplayName("should draw with the seed the side of the after for each pair, so it changes from one pair to another")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldDrawWithTheSeedTheSideOfTheAfterForEachPairSoItChangesFromOnePairToAnother() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(100);
+
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 3L);
+
+        Set<BlindSide> sides = new HashSet<>(sides(sample));
+        assertEquals(Set.of(BlindSide.A, BlindSide.B), sides, "R002: the side of the after changes from pair to pair");
+        assertEquals(sides(sample), sides(tanda.service().draw(Tanda.COURSE, null, 3L)), "R002: drawn with the seed");
+        for (BlindPair pair : sample.getPairs()) {
+            StudentSide after = pair.getAfterSide() == BlindSide.A ? pair.getSideA() : pair.getSideB();
+            StudentSide before = pair.getAfterSide() == BlindSide.A ? pair.getSideB() : pair.getSideA();
+            assertTrue(after.getView().getStatement().endsWith("(" + Tanda.VERB + ") every day."),
+                    "R002: the after is on its side: " + after.getView().getStatement());
+            assertTrue(before.getView().getStatement().endsWith("every day."));
+            assertFalse(before.getView().getStatement().contains("(" + Tanda.VERB + ")"));
+        }
     }
 
     @Test
     @DisplayName("should hand out while the sample is open only views without the side of the after, analyzer marks, the reason of the change, dates or authors")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldHandOutWhileTheSampleIsOpenOnlyViewsWithoutTheSideOfTheAfterAnalyzerMarksTheReasonOfTheChangeDatesOrAuthors(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().lasCuatro();
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 11L);
+
+        List<BlindPairView> views = tanda.service().pairs(sample.getSampleId());
+
+        assertEquals(sample.getPairs().size(), views.size());
+        for (int i = 0; i < views.size(); i++) {
+            BlindPair pair = sample.getPairs().get(i);
+            assertEquals(new BlindPairView(pair.getIndex(), pair.getSideA(), pair.getSideB()), views.get(i),
+                    "R002: the two sides and nothing else");
+        }
+        assertEquals(List.of("index", "sideA", "sideB"), fields(BlindPairView.class),
+                "R002: no side of the after, no proposal, no node");
+        assertEquals(List.of("view", "answered"), fields(StudentSide.class));
+        assertEquals(List.of("statement", "gaps", "options", "instructions", "translation", "miniTheory"),
+                fields(QuizStudentView.class), "R002: what the student sees: no analyzer marks, reason, dates or authors");
     }
 
     @Test
     @DisplayName("should reveal which side is the before only when the sample is closed")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldRevealWhichSideIsTheBeforeOnlyWhenTheSampleIsClosed() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().lasCuatro();
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 11L);
+
+        assertTrue(tanda.service().result(sample.getSampleId()).isEmpty(), "R002: open, nothing is revealed");
+
+        BlindSampleResult result = tanda.service().close(sample.getSampleId());
+
+        assertEquals(sample.getPairs(), result.getRevealedPairs(), "R002: closed, every pair with its side of the after");
+        assertEquals(Set.of(Tanda.P_OURSELVES, Tanda.P_VEGETABLES, Tanda.P_HATS),
+                new HashSet<>(result.getRevealedPairs().stream().map(BlindPair::getProposalId).toList()));
+        assertEquals(Optional.of(result), tanda.service().result(sample.getSampleId()));
     }
 
     @Test
     @DisplayName("should keep each answer, A better, B better, equal or both wrong, with who answered and when")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R003")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldKeepEachAnswerABetterBBetterEqualOrBothWrongWithWhoAnsweredAndWhen() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(4);
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 1L);
+        Instant from = Instant.now();
+
+        tanda.service().answer(sample.getSampleId(), 1, PairAnswer.A_BETTER, "José");
+        tanda.service().answer(sample.getSampleId(), 2, PairAnswer.B_BETTER, "José");
+        tanda.service().answer(sample.getSampleId(), 3, PairAnswer.EQUAL, "José");
+        tanda.service().answer(sample.getSampleId(), 4, PairAnswer.BOTH_WRONG, "José");
+
+        Instant to = Instant.now();
+        List<PairAnswerRecord> answers = tanda.store.loadPairs(sample.getSampleId()).orElseThrow().getAnswers();
+        assertEquals(List.of(PairAnswer.A_BETTER, PairAnswer.B_BETTER, PairAnswer.EQUAL, PairAnswer.BOTH_WRONG),
+                answers.stream().map(PairAnswerRecord::getAnswer).toList(), "R003: one of the four");
+        assertEquals(List.of(1, 2, 3, 4), answers.stream().map(PairAnswerRecord::getPairIndex).toList());
+        for (PairAnswerRecord answer : answers) {
+            assertEquals("José", answer.getReviewer(), "R003: who answered");
+            assertFalse(answer.getAnsweredAt().isBefore(from), "R003: and when");
+            assertFalse(answer.getAnsweredAt().isAfter(to));
+        }
+        assertThrows(IllegalArgumentException.class,
+                () -> tanda.service().answer(sample.getSampleId(), 5, PairAnswer.EQUAL, "José"), "no pair 5");
     }
 
     @Test
     @DisplayName("should refuse an answer or a change once the sample is closed with «Sample '<id>' is closed: it no longer accepts answers or changes.»")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R003")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldRefuseAnAnswerOrAChangeOnceTheSampleIsClosedWithSampleIdIsClosedItNoLongerAcceptsAnswersOrChanges(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(4);
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 1L);
+        tanda.service().answer(sample.getSampleId(), 1, PairAnswer.EQUAL, "José");
+        BlindSampleResult closed = tanda.service().close(sample.getSampleId());
+
+        SampleClosedException refused = assertThrows(SampleClosedException.class,
+                () -> tanda.service().answer(sample.getSampleId(), 2, PairAnswer.A_BETTER, "José"));
+
+        assertEquals("Sample '" + sample.getSampleId() + "' is closed: it no longer accepts answers or changes.",
+                refused.getMessage());
+        assertThrows(SampleClosedException.class,
+                () -> tanda.service().answer(sample.getSampleId(), 1, PairAnswer.BOTH_WRONG, "José"),
+                "R003: not even a change of an answer");
+        assertEquals(1, tanda.store.loadPairs(sample.getSampleId()).orElseThrow().getAnswers().size());
+        assertEquals(closed, tanda.service().close(sample.getSampleId()), "R003: closing again gives the same result");
     }
 
     @Test
     @DisplayName("should write only the sample and its answers when answering, never the course, the proposals or the analysis history")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R003")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldWriteOnlyTheSampleAndItsAnswersWhenAnsweringNeverTheCourseTheProposalsOrTheAnalysisHistory(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(4);
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 1L);
+        clearInvocations(tanda.projector, tanda.comparator, tanda.baselines, tanda.book);
+        int writes = tanda.store.pairWrites;
+
+        tanda.service().answer(sample.getSampleId(), 1, PairAnswer.A_BETTER, "José");
+        tanda.service().answer(sample.getSampleId(), 2, PairAnswer.EQUAL, "José");
+        tanda.service().close(sample.getSampleId());
+
+        assertEquals(writes + 3, tanda.store.pairWrites, "R003: the sample, once per answer and once to close");
+        assertEquals(0, tanda.store.rateWrites);
+        verifyNoInteractions(tanda.projector, tanda.comparator);
+        verify(tanda.baselines, never()).write(any());
+        verify(tanda.book, never()).seal();
     }
 
     @Test
     @DisplayName("should publish on closing 95 better or equal, 1 worse and 4 both wrong of 100 answered pairs, each with its 95% interval")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldPublishOnClosing95BetterOrEqual1WorseAnd4BothWrongOf100AnsweredPairsEachWithIts95Interval(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(100);
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 9L);
+        tanda.responder(sample, "José", 90, 5, 1, 4);
+
+        BlindSampleResult result = tanda.service().close(sample.getSampleId());
+
+        assertEquals(100, result.getAnswered());
+        assertEquals(95, result.getBetterOrEqual().getCount(), "R004: 95 better or equal");
+        assertEquals(88.8, result.getBetterOrEqual().getLower95() * 100, 0.05);
+        assertEquals(97.8, result.getBetterOrEqual().getUpper95() * 100, 0.05);
+        assertEquals(1, result.getWorse().getCount(), "R004: 1 worse");
+        assertEquals(0.2, result.getWorse().getLower95() * 100, 0.05);
+        assertEquals(5.4, result.getWorse().getUpper95() * 100, 0.05);
+        assertEquals(4, result.getBothWrong().getCount(), "R004: 4 with an error on both sides");
+        assertEquals(1.6, result.getBothWrong().getLower95() * 100, 0.05);
+        assertEquals(9.8, result.getBothWrong().getUpper95() * 100, 0.05);
     }
 
     @Test
     @DisplayName("should count as worse an answer for the side of the before, as better or equal an answer for the after or equal, and both wrong apart")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldCountAsWorseAnAnswerForTheSideOfTheBeforeAsBetterOrEqualAnAnswerForTheAfterOrEqualAndBothWrongApart(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(4);
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 2L);
+        List<BlindPair> pairs = sample.getPairs();
+        tanda.service().answer(sample.getSampleId(), 1, choose(pairs.get(0).getAfterSide()), "José");
+        tanda.service().answer(sample.getSampleId(), 2, PairAnswer.EQUAL, "José");
+        tanda.service().answer(sample.getSampleId(), 3, choose(other(pairs.get(2).getAfterSide())), "José");
+        tanda.service().answer(sample.getSampleId(), 4, PairAnswer.BOTH_WRONG, "José");
+
+        BlindSampleResult result = tanda.service().close(sample.getSampleId());
+
+        assertEquals(2, result.getBetterOrEqual().getCount(), "R004: the after chosen, and equal");
+        assertEquals(1, result.getWorse().getCount(), "R004: the before chosen");
+        assertEquals(1, result.getBothWrong().getCount(), "R004: both wrong, apart");
+        assertEquals(4, result.getAnswered());
     }
 
     @Test
     @DisplayName("should meet the goal José set on 30/9, at least 90 better or equal and at most 1 worse counted, with 95, 1 and 4 of 100")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldMeetTheGoalJosSetOn309AtLeast90BetterOrEqualAndAtMost1WorseCountedWith951And4Of100(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(100);
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 9L);
+        tanda.responder(sample, "José", 90, 5, 1, 4);
+
+        BlindSampleResult result = tanda.service().close(sample.getSampleId());
+
+        assertEquals(Tanda.JOSE, sample.getGoal(), "R004: the goal José set on 30/9, kept with the sample");
+        assertTrue(result.isMeetsGoal(), "R004: 95 ≥ 90 and 1 ≤ 1, counted");
+        assertTrue(result.getUnmetParts().isEmpty());
+        assertEquals("José", result.getResponsible());
     }
 
     @Test
     @DisplayName("should not meet a goal on the bound of the worse below 2% with 100 pairs, whose lowest possible bound is 3.0%, and say which part is not met")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldNotMeetAGoalOnTheBoundOfTheWorseBelow2With100PairsWhoseLowestPossibleBoundIs30AndSayWhichPartIsNotMet(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(100);
+        tanda.goal = new BlindSampleGoal(100, 90, 2, SampleCriterion.BOUND, "José", 30, 0.02);
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 9L);
+        tanda.responder(sample, "José", 99, 0, 0, 1);
+
+        BlindSampleResult result = tanda.service().close(sample.getSampleId());
+
+        assertEquals(0, result.getWorse().getCount(), "not one worse");
+        assertEquals(3.0, result.getWorse().getUpperOneSided95() * 100, 0.05, "R004: and still a bound of 3,0 %");
+        assertFalse(result.isMeetsGoal(), "R004: 3,0 % is above 2 %: 100 pairs cannot show it");
+        assertEquals(List.of("cota de peores: 3,0 %, la meta es a lo sumo 2,0 %"), result.getUnmetParts(),
+                "R004: and it says which part is not met");
     }
 
     @Test
     @DisplayName("should add up the samples closed since the baseline, 300 pairs with 2 worse giving a bound of 2.1% above the goal of 2% and 400 pairs with 2 worse giving 1.6% below it")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldAddUpTheSamplesClosedSinceTheBaseline300PairsWith2WorseGivingABoundOf21AboveTheGoalOf2And400PairsWith2WorseGiving16BelowIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(100);
+        // A sample closed against an older baseline does not add up.
+        when(tanda.baselines.read()).thenReturn(Optional.of(new Baseline("2026-08-01T00-00-00", Instant.now())));
+        BlindSample older = tanda.service().draw(Tanda.COURSE, null, 1L);
+        tanda.responder(older, "José", 50, 0, 50, 0);
+        tanda.service().close(older.getSampleId());
+        when(tanda.baselines.read()).thenReturn(Optional.of(new Baseline(Tanda.BASELINE, Instant.now())));
+
+        BlindSampleResult third = null;
+        for (int worse : List.of(1, 1, 0)) {
+            BlindSample sample = tanda.service().draw(Tanda.COURSE, null, (long) worse + 10);
+            tanda.responder(sample, "José", 100 - worse, 0, worse, 0);
+            third = tanda.service().close(sample.getSampleId());
+        }
+        assertEquals(3, third.getCumulative().getSamples(), "R004: the samples closed since the baseline");
+        assertEquals(300, third.getCumulative().getPairs());
+        assertEquals(2, third.getCumulative().getWorse());
+        assertEquals(2.1, third.getCumulative().getWorseUpperBound() * 100, 0.05, "R004: 2 of 300, a bound of 2,1 %");
+        assertFalse(third.getCumulative().isBelowGoal(), "R004: above the 2 % of the course");
+
+        BlindSample fourth = tanda.service().draw(Tanda.COURSE, null, 40L);
+        tanda.responder(fourth, "José", 100, 0, 0, 0);
+        BlindSampleResult result = tanda.service().close(fourth.getSampleId());
+        assertEquals(400, result.getCumulative().getPairs());
+        assertEquals(2, result.getCumulative().getWorse());
+        assertEquals(1.6, result.getCumulative().getWorseUpperBound() * 100, 0.05, "R004: 2 of 400, 1,6 %");
+        assertTrue(result.getCumulative().isBelowGoal(), "R004: below 2 %");
     }
 
     @Test
     @DisplayName("should compute the result over the answered pairs only")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldComputeTheResultOverTheAnsweredPairsOnly() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(100);
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 9L);
+        tanda.responder(sample, "José", 48, 0, 1, 1);
+
+        BlindSampleResult result = tanda.service().close(sample.getSampleId());
+
+        assertEquals(50, result.getAnswered(), "R004: 50 of the 100 answered");
+        assertEquals(48, result.getBetterOrEqual().getCount());
+        assertEquals(50, result.getBetterOrEqual().getTotal(), "R004: over the answered ones");
+        assertEquals(0.96, result.getBetterOrEqual().getShare(), 1e-9);
+        assertEquals(50, result.getWorse().getTotal());
     }
 
     @Test
     @DisplayName("should compute the result of the batch with the answers of José, the responsible the goal names, and not with those of the tester")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R005")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldComputeTheResultOfTheBatchWithTheAnswersOfJosTheResponsibleTheGoalNamesAndNotWithThoseOfTheTester(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(10);
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 9L);
+        tanda.responder(sample, "José", 10, 0, 0, 0);
+        tanda.responder(sample, "tester", 0, 0, 10, 0);
+
+        BlindSampleResult result = tanda.service().close(sample.getSampleId());
+
+        assertEquals("José", result.getResponsible(), "R005: the responsible of the goal");
+        assertEquals(10, result.getBetterOrEqual().getCount(), "R005: José's answers");
+        assertEquals(0, result.getWorse().getCount(), "R005: not the tester's");
+        assertTrue(result.isMeetsGoal());
     }
 
     @Test
     @DisplayName("should publish in how many of the first 30 pairs José and the tester answered alike, and Cohen's kappa over them")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R005")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldPublishInHowManyOfTheFirst30PairsJosAndTheTesterAnsweredAlikeAndCohensKappaOverThem(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(100);
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 9L);
+        List<PairAnswer> jose = new ArrayList<>();
+        List<PairAnswer> tester = new ArrayList<>();
+        for (BlindPair pair : sample.getPairs()) {
+            PairAnswer mine = pair.getIndex() % 10 == 0 ? PairAnswer.EQUAL : choose(pair.getAfterSide());
+            tanda.service().answer(sample.getSampleId(), pair.getIndex(), mine, "José");
+            if (pair.getIndex() <= 30) {
+                PairAnswer theirs = pair.getIndex() <= 3 ? PairAnswer.BOTH_WRONG : mine;
+                tanda.service().answer(sample.getSampleId(), pair.getIndex(), theirs, "tester");
+                jose.add(mine);
+                tester.add(theirs);
+            }
+        }
+
+        BlindSampleResult result = tanda.service().close(sample.getSampleId());
+
+        assertEquals("José", result.getAgreement().getResponsible());
+        assertEquals("tester", result.getAgreement().getOther());
+        assertEquals(30, result.getAgreement().getCommonPairs(), "R005: the first 30 pairs");
+        assertEquals(27, result.getAgreement().getAgreeing(), "R005: alike in 27");
+        assertEquals(new DefaultSampleStatistics().kappa(jose, tester), result.getAgreement().getKappa(), 1e-12,
+                "R005: Cohen's kappa over those 30");
+        assertTrue(result.getAgreement().getKappa() > 0.5 && result.getAgreement().getKappa() < 1.0,
+                "R005: high, and below 1: they differ in 3");
     }
 
     @Test
     @DisplayName("should keep apart the answers of two reviewers to the same pair, each with who answered and when")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R005")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldKeepApartTheAnswersOfTwoReviewersToTheSamePairEachWithWhoAnsweredAndWhen() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tanda tanda = new Tanda().conCambios(3);
+        BlindSample sample = tanda.service().draw(Tanda.COURSE, null, 9L);
+        BlindSide after = sample.getPairs().get(0).getAfterSide();
+
+        tanda.service().answer(sample.getSampleId(), 1, choose(other(after)), "José");
+        tanda.service().answer(sample.getSampleId(), 1, PairAnswer.EQUAL, "tester");
+        tanda.service().answer(sample.getSampleId(), 1, choose(after), "José");
+
+        List<PairAnswerRecord> answers = tanda.store.loadPairs(sample.getSampleId()).orElseThrow().getAnswers();
+        assertEquals(List.of("José", "tester", "José"), answers.stream().map(PairAnswerRecord::getReviewer).toList(),
+                "R005: every answer kept, with who gave it");
+        assertTrue(answers.stream().allMatch(a -> a.getAnsweredAt() != null), "R005: and when");
+        BlindSampleResult result = tanda.service().close(sample.getSampleId());
+        assertEquals(1, result.getBetterOrEqual().getCount(), "R005: José's last answer counts, not the tester's");
+        assertEquals(0, result.getWorse().getCount());
+        assertEquals(1, result.getAgreement().getCommonPairs());
+        assertEquals(0, result.getAgreement().getAgreeing(), "R005: they did not answer alike");
+    }
+
+    static List<String> proposals(BlindSample sample) {
+        return sample.getPairs().stream().map(BlindPair::getProposalId).toList();
+    }
+
+    static List<BlindSide> sides(BlindSample sample) {
+        return sample.getPairs().stream().map(BlindPair::getAfterSide).toList();
+    }
+
+    static BlindPair pairOf(BlindSample sample, String proposalId) {
+        return sample.getPairs().stream().filter(p -> proposalId.equals(p.getProposalId())).findFirst()
+                .orElseThrow(() -> new AssertionError("no pair of " + proposalId));
+    }
+
+    static PairAnswer choose(BlindSide side) {
+        return side == BlindSide.A ? PairAnswer.A_BETTER : PairAnswer.B_BETTER;
+    }
+
+    static BlindSide other(BlindSide side) {
+        return side == BlindSide.A ? BlindSide.B : BlindSide.A;
+    }
+
+    static List<String> fields(Class<?> type) {
+        return Arrays.stream(type.getDeclaredFields()).filter(f -> !java.lang.reflect.Modifier.isStatic(f.getModifiers()))
+                .map(Field::getName).toList();
+    }
+
+    /** A sample store in memory: the last version of each sample, by id, as the file store keeps it. */
+    static final class Almacen implements BlindSampleStore {
+        final Map<String, BlindSample> pairs = new LinkedHashMap<>();
+        final Map<String, ErrorRateSample> rates = new LinkedHashMap<>();
+        int pairWrites;
+        int rateWrites;
+
+        @Override
+        public void savePairs(BlindSample sample) {
+            pairs.put(sample.getSampleId(), sample);
+            pairWrites++;
+        }
+
+        @Override
+        public Optional<BlindSample> loadPairs(String sampleId) {
+            return Optional.ofNullable(pairs.get(sampleId));
+        }
+
+        @Override
+        public List<BlindSample> listPairs() {
+            return new ArrayList<>(pairs.values());
+        }
+
+        @Override
+        public void saveErrorRate(ErrorRateSample sample) {
+            rates.put(sample.getSampleId(), sample);
+            rateWrites++;
+        }
+
+        @Override
+        public Optional<ErrorRateSample> loadErrorRate(String sampleId) {
+            return Optional.ofNullable(rates.get(sampleId));
+        }
+    }
+
+    /**
+     * A batch over «Afirmativas regulares» (A1 · Present Simple), with the ids of the 29/9 course: the projector
+     * gives the exercises as they are with what is approved and as the batch leaves them, and the comparison says
+     * which ones return. The sides are rendered by the real renderer, «as the student sees it».
+     */
+    static final class Tanda {
+        static final Path COURSE = Path.of("db/english-course");
+        static final String AUDIT = "2026-10-01T06-11-09";
+        static final String PLAN = "2026-10-01T06-11-36";
+        static final String BASELINE = "2026-09-29T08-00-00";
+        static final String A1 = "6814dafa7d73e7209a13d382";
+        static final String PRESENT_SIMPLE = "6814dafa7d73e7209a13d383";
+        static final String REGULAR = "6814dafa7d73e7209a13d389";
+        static final String GRANDMOTHER = "67fab6d59930102295341ec4";
+        static final String OURSELVES = "67fab6d59930102295341ecb";
+        static final String VEGETABLES = "67fab6d59930102295341ecd";
+        static final String HATS = "67fab6d59930102295341ed6";
+        static final String P_GRANDMOTHER = "077-grandmother";
+        static final String P_OURSELVES = "077-ourselves";
+        static final String P_VEGETABLES = "077-vegetables";
+        static final String P_HATS = "077-hats";
+        static final String VERB = "work";
+        static final String INSTRUCTIONS = "Escribe la forma afirmativa en presente simple.";
+        static final String MINI_THEORY = "Con he, she, it el verbo lleva $-s$. Con I, you, we, they va en forma base.";
+        static final BlindSampleGoal JOSE = new BlindSampleGoal(100, 90, 1, SampleCriterion.OBSERVED, "José", 30, 0.02);
+
+        final CourseProjector projector = mock(CourseProjector.class);
+        final BatchComparator comparator = mock(BatchComparator.class);
+        final BaselineStore baselines = mock(BaselineStore.class);
+        final GoalBook book = mock(GoalBook.class);
+        final Almacen store = new Almacen();
+        final QuizStudentViewRenderer renderer = new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create());
+        BlindSampleGoal goal = JOSE;
+        private final Map<String, AuditableQuiz> before = new LinkedHashMap<>();
+        private final Map<String, AuditableQuiz> after = new LinkedHashMap<>();
+        private final List<ProjectedChange> changes = new ArrayList<>();
+        private final Set<String> returning = new HashSet<>();
+
+        Tanda() {
+            when(baselines.read()).thenReturn(Optional.of(new Baseline(BASELINE, Instant.parse("2026-09-30T09:00:00Z"))));
+            when(book.effective()).thenAnswer(call -> new EffectiveGoals("huella", List.of(), goal));
+            when(projector.project(any(), any())).thenAnswer(call -> projection(call.getArgument(1)));
+            when(comparator.compare(any(), any())).thenAnswer(call -> comparison());
+        }
+
+        DefaultBlindSampleService service() {
+            return new DefaultBlindSampleService(projector, comparator, book, baselines, renderer, store,
+                    new DefaultSampleStatistics());
+        }
+
+        /** n exercises, each with a pending change: «You ___ every day.» → «You ___ (work) every day.». */
+        Tanda conCambios(int n) {
+            for (int i = 1; i <= n; i++) {
+                String id = String.format(Locale.ROOT, "67fab6d59930102295342%03d", i);
+                before.put(id, quiz(id, "You", VERB, "every day.", "Trabajás todos los días " + i + "."));
+                after.put(id, quiz(id, "You", VERB, "(" + VERB + ") every day.", "Trabajás todos los días " + i + "."));
+                changes.add(new ProjectedChange("p-" + String.format(Locale.ROOT, "%03d", i), AuditTarget.QUIZ, id, true));
+            }
+            return this;
+        }
+
+        /** The four proposals of the 077 for «Afirmativas regulares»; «grandmother» returns. */
+        Tanda lasCuatro() {
+            before.put(GRANDMOTHER, quiz(GRANDMOTHER, "It", "comes", "(come) every year.", "Viene cada año."));
+            after.put(GRANDMOTHER, quiz(GRANDMOTHER, "My grandmother", "comes", "(come) every year.",
+                    "Mi abuela viene cada año."));
+            before.put(OURSELVES, quiz(OURSELVES, "We", "know", "(know) ourselves.", "Nosotros nos conocemos."));
+            after.put(OURSELVES, quiz(OURSELVES, "We", "know", "(know) each other.", "Nos conocemos."));
+            before.put(VEGETABLES, quiz(VEGETABLES, "I", "love", "a lot of vegetables.", "Me gustan mucho las verduras."));
+            after.put(VEGETABLES, quiz(VEGETABLES, "I", "love", "(love) vegetables.", "Me encantan las verduras."));
+            before.put(HATS, quiz(HATS, "She", "sports", "(sport) hats.", "Ella luce sombreros."));
+            after.put(HATS, multipleChoice(HATS, "She", "hats.", "Ella usa sombreros.", "wears", "sports"));
+            changes.add(new ProjectedChange(P_GRANDMOTHER, AuditTarget.QUIZ, GRANDMOTHER, true));
+            changes.add(new ProjectedChange(P_OURSELVES, AuditTarget.QUIZ, OURSELVES, true));
+            changes.add(new ProjectedChange(P_VEGETABLES, AuditTarget.QUIZ, VEGETABLES, true));
+            changes.add(new ProjectedChange(P_HATS, AuditTarget.QUIZ, HATS, true));
+            returning.add(P_GRANDMOTHER);
+            return this;
+        }
+
+        /** José, or whoever, answers in order: the after, equal, the before, both wrong. */
+        void responder(BlindSample sample, String reviewer, int better, int equal, int worse, int bothWrong) {
+            int index = 0;
+            for (BlindPair pair : sample.getPairs()) {
+                PairAnswer answer;
+                if (index < better) {
+                    answer = choose(pair.getAfterSide());
+                } else if (index < better + equal) {
+                    answer = PairAnswer.EQUAL;
+                } else if (index < better + equal + worse) {
+                    answer = choose(other(pair.getAfterSide()));
+                } else if (index < better + equal + worse + bothWrong) {
+                    answer = PairAnswer.BOTH_WRONG;
+                } else {
+                    break;
+                }
+                service().answer(sample.getSampleId(), pair.getIndex(), answer, reviewer);
+                index++;
+            }
+        }
+
+        static List<String> ids(String prefix, int n) {
+            List<String> ids = new ArrayList<>();
+            for (int i = 1; i <= n; i++) {
+                ids.add(prefix + String.format(Locale.ROOT, "%03d", i));
+            }
+            return ids;
+        }
+
+        private CourseProjection projection(ProjectionScope scope) {
+            List<ProjectedChange> applied = new ArrayList<>();
+            for (ProjectedChange change : changes) {
+                if (scope == null || scope.getProposalIds() == null || scope.getProposalIds().contains(change.getProposalId())) {
+                    applied.add(change);
+                }
+            }
+            Map<String, AuditableQuiz> projected = new LinkedHashMap<>(before);
+            for (ProjectedChange change : applied) {
+                projected.put(change.getNodeId(), after.get(change.getNodeId()));
+            }
+            AuditReport approved = report(before);
+            return new CourseProjection(AUDIT, PLAN, scope != null && scope.getScopeId() != null ? scope.getScopeId() : PLAN,
+                    ConsolidatedViewAvailability.AVAILABLE, null, approved, approved, report(projected), applied,
+                    new ArrayList<>());
+        }
+
+        private BatchComparison comparison() {
+            BatchComparison comparison = new BatchComparison();
+            List<ChangeOutcome> outcomes = new ArrayList<>();
+            for (ProjectedChange change : changes) {
+                outcomes.add(new ChangeOutcome(change.getProposalId(), change.getNodeTarget(), change.getNodeId(),
+                        returning.contains(change.getProposalId()), List.of(), List.of(), List.of()));
+            }
+            comparison.setChanges(outcomes);
+            return comparison;
+        }
+
+        static AuditReport report(Map<String, AuditableQuiz> quizzes) {
+            AuditNode root = node(null, AuditTarget.COURSE, null);
+            AuditNode level = node(new AuditableMilestone(new ArrayList<>(), A1, "A1", "A1"), AuditTarget.MILESTONE, root);
+            AuditNode topic = node(new AuditableTopic(new ArrayList<>(), PRESENT_SIMPLE, "Present Simple", "a1.01"),
+                    AuditTarget.TOPIC, level);
+            AuditNode knowledge = node(new AuditableKnowledge(new ArrayList<>(), "Afirmativas regulares", INSTRUCTIONS,
+                    true, REGULAR, "Afirmativas regulares", REGULAR, SentenceMode.FILL, "Present Simple"),
+                    AuditTarget.KNOWLEDGE, topic);
+            for (AuditableQuiz quiz : quizzes.values()) {
+                node(quiz, AuditTarget.QUIZ, knowledge);
+            }
+            return new AuditReport(root);
+        }
+
+        static AuditNode node(AuditableEntity entity, AuditTarget target, AuditNode parent) {
+            AuditNode node = new AuditNode(entity, target, parent, new ArrayList<>(), new LinkedHashMap<>(),
+                    new LinkedHashMap<>(), null);
+            if (parent != null) {
+                parent.getChildren().add(node);
+            }
+            return node;
+        }
+
+        /** «head ___ tail», the gap answered with «answer». */
+        static AuditableQuiz quiz(String id, String head, String answer, String tail, String translation) {
+            List<SentencePartEntity> parts = List.of(new SentencePartEntity(SentencePartKind.TEXT, head, null),
+                    new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(answer)),
+                    new SentencePartEntity(SentencePartKind.TEXT, tail, null));
+            String sentence = head + " " + answer + " " + tail.replaceAll("\\([^)]*\\) ?", "");
+            return new AuditableQuiz(List.of(), id, head + " ___ " + tail, id, translation, List.of(sentence.trim()),
+                    sentence.trim(), INSTRUCTIONS, parts, null, MINI_THEORY, null);
+        }
+
+        /** «head ___ tail» with the options of a multiple choice, the first one correct. */
+        static AuditableQuiz multipleChoice(String id, String head, String tail, String translation, String correct,
+                String wrong) {
+            List<SentencePartEntity> parts = List.of(new SentencePartEntity(SentencePartKind.TEXT, head, null),
+                    new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(correct)),
+                    new SentencePartEntity(SentencePartKind.TEXT, tail, null));
+            MultipleChoiceEntity choice = new MultipleChoiceEntity("single", List.of(
+                    new MultipleChoiceItemEntity("1", 1.0, correct), new MultipleChoiceItemEntity("2", 0.0, wrong)));
+            String sentence = head + " " + correct + " " + tail;
+            return new AuditableQuiz(List.of(), id, head + " ___ " + tail, id, translation, List.of(sentence), sentence,
+                    INSTRUCTIONS, parts, choice, MINI_THEORY, null);
+        }
+
+        /** The exercises of a photo with the «algún error» the analyzers gave them, by id. */
+        static AuditReport withAnyError(Map<String, AuditableQuiz> quizzes, Set<String> withError) {
+            AuditReport report = report(quizzes);
+            AuditNode knowledge = report.getRoot().getChildren().get(0).getChildren().get(0).getChildren().get(0);
+            for (AuditNode quiz : knowledge.getChildren()) {
+                int error = withError.contains(quiz.getEntity().getId()) ? 1 : 0;
+                quiz.setNumbers(new ContextNumbers(null, List.of(), new ErrorCounts(1, error, error, null, 0, List.of()),
+                        List.of()));
+            }
+            return report;
+        }
     }
 }
