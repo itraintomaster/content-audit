@@ -5,9 +5,33 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — orquestador — El nivel propio del catálogo gana: la base, la parte, el sufijo del tema y el par británico
+  valen sólo para la palabra que el catálogo no trae; el préstamo, sólo sustantivos, y no si el EVP la trae en un nivel
+  alto; el par americano, sólo misma palabra con otra grafía o sinónimo exacto de uso común.
+  why: medido contra examinar/, las lecturas del 1/10 perdían casos reales que antes se encontraban.
+2026-10-01 — developer (paquete D) — La otra categoría (R002 b) vale sólo en una lista de palabras: sin DET, PRON, AUX
+  ni ADP en la oración. why: en una oración el etiquetador acierta, y la otra categoría suele ser otra palabra (fine,
+  multa o fino; train, tren o entrenar), la misma falla de la base; en el curso no cambia nada (run y smoke son listas).
+2026-10-01 — developer (paquete D) — Verbo mal etiquetado (R004): el sustantivo no es préstamo si la oración lo usa como
+  verbo: -ed o -ing sobre su lema, o después de I, he, she, we, they, del «to» (PART) o de una negación, con adverbios
+  en medio. why: you e it también son objeto; después de un auxiliar viene el sujeto en las preguntas («Is Emily
+  walking?»). En el curso no cambia nada: es una guarda.
+2026-10-01 — architect (paquete D) — La forma derivada que el EVP trae aparte se consulta por un método nuevo del
+  puerto, lookupDerivedFormLevel, sólo con las entradas que R040 llama derivadas; lookupLevel y lookupLevelByLemma no
+  cambian. El analizador la usa para dejar o soltar lo que lexis ya marca, nunca para sumar.
+  why: sin puerto no hay forma de saber que rewarding es C1 ni que smoking es A1; sumar por forma era
+  DOUBT-LECTURAS-NUEVAS C, que José no quiso; con todas las palabras encabezado, el adjetivo fine soltaría al sustantivo.
+2026-10-01 — architect (paquete D) — Una sola propuesta activa por carpeta: el parche de la teoría (en espera hasta
+  después de la ronda 2) pasó a en-espera/, con su TECH_SPEC, para que el de la forma derivada no se fusione con él.
+  why: propose fusiona con el architectural_patch.yaml que haya, y tech-spec valida contra ése.
+2026-10-01 — developer (paquete D) — nicely, sadly, warmly y beautifully vuelven en A1 por la regla del nivel propio
+  (EVP B1 y B2), aunque «Adverbios de modo» enseña -ly sobre su adjetivo y el 077 no las marcó: dudosas en la revisión.
+  why: el sufijo del tema toma el nivel de la base; que cubra una palabra que el EVP trae lo decide el orquestador.
+
 2026-10-01 — developer (paquete D) — Toda lectura nueva se mide con el SentenceLexicalScorer compartido sobre un token
   suelto (sin puerto nuevo): el nivel de la lectura es el que daría lemma-absence, con su repliegue por lema (R036).
-  why: R001 inv. 3 sigue por construcción (sólo se sacan marcas) y no hace falta inyectar el catálogo.
+  why: R001 inv. 3 sigue por construcción (sólo se sacan marcas) y no hace falta inyectar el catálogo. (La forma
+  derivada que R040 esconde sí lo pide: parche propuesto en la segunda corrección.)
 2026-10-01 — developer (paquete D) — Umbrales: el derivado toma el nivel de su base (no es error hasta un nivel arriba);
   el adverbio en -ly, dos más (base de un nivel anterior); el compuesto pide sus dos partes del nivel o de antes.
   why: el 077 marcó soundly, awfully, endlessly y gracefully (A2) y sideboard (A1, side A2): con el umbral de R002 en
@@ -16,7 +40,7 @@ should not re-litigate. Newest entries on top.
   why: con cualquier mención se perdían disembark ×2 y warranty, del oro de escribir. Vive en el analizador: TaughtWords
   no tiene campo para ella (el semáforo sigue con 1 y 2); lo mismo el sufijo del tema y el metalenguaje.
 2026-10-01 — developer (paquete D) — Préstamo adaptado (R004.2): nunca un verbo; adjetivo o adverbio, igual plegado o
-  con raíz común de 5 letras; sustantivo, además a una letra. Lista cerrada sólo la de pares americano/británico.
+  con raíz común de 5 letras; sustantivo, además a una letra. (Reemplazada por la segunda corrección: sólo sustantivos.) Lista cerrada sólo la de pares americano/británico.
   why: «adore»/«adoran» y «reside»/«residimos» siguen marcando (077); «hydrated»/«hidratado» (oro) queda a una letra.
 2026-10-01 — developer (paquete D) — La teoría del tema no se lee: vive en ittm/content/theory y el ejercicio la
   nombra por theoryId, que AuditableQuiz no trae. Con un prototipo, sacaría 3 marcas más (tweezers, concur, acquainted:

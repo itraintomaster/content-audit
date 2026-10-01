@@ -4,6 +4,24 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 (tarde) — developer + analyst + architect (paquete D, segunda corrección) — Medidas por el orquestador
+  contra examinar/, las lecturas perdían casos reales: la base pisaba el nivel propio de la palabra. Sus tres reglas,
+  en el cuerpo de OffLevelWordsAnalyzer (3595f477): el sufijo del tema, el par británico, el compuesto y el derivado
+  valen sólo fuera del catálogo; el préstamo, sólo sustantivos y nunca uno que la oración usa como verbo; los pares
+  americanos, sólo los exactos (salen highway, closet, semester, recess, attorney, stove, comforter, pacifier). Además,
+  la otra categoría sólo en una lista de palabras. Curso: 95 → 104 (14 · 27 · 43 · 20), vuelven 9 y no se va ninguna;
+  escribir/nivel 26 de 52, 41 en la parte, 15 fuera del oro. Revisadas a mano las 48 marcas fuera del oro que nadie
+  había visto (scratchpad impl-D2/revision-48.tsv): 38 reales, 9 dudosas, 1 falsa (smoking); con la muestra anterior,
+  62 de 78 (79 %), 66 de 78 si cuentan los 4 adverbios de «Adverbios de modo». Suite completa: 2.408 verdes.
+  Parche propuesto, sin aplicar y para ahora: EvpCatalogPort.lookupDerivedFormLevel (las formas derivadas que R040
+  deja fuera del lema), inyectado en el proveedor y el analizador; validado contra ronda1/integracion (5258cce3).
+  Prototipo: smoking se va, rewarding (C1) entra, 104 igual (13 · 27 · 44 · 20), 63 de 78 (81 %). El parche de la
+  teoría, en espera, pasó a en-espera/ con su TECH_SPEC (validado contra el mismo sentinel.yaml).
+  Next: el orquestador aplica el de la forma derivada y genera; implementar lookupDerivedFormLevel y su uso (el
+  prototipo está en impl-D2/proto-v2/aplicar.py), J001 a 13 · 27 · 44 · 20; @qa-tester declara pruebas para las tres
+  reglas y el método; decidir si el sufijo del tema cubre los 4 adverbios que el EVP trae (nicely, sadly, warmly,
+  beautifully).
+
 2026-10-01 — developer + analyst (paquete D, precisión) — Un verificador vio 5 reales en 25 marcas fuera del examen.
   off-level-words suma lecturas regulares (R002 a–f), miniteoría, sufijo del tema y metalenguaje (R003 3–5) y el
   préstamo adaptado (R004), todo en el cuerpo de OffLevelWordsAnalyzer y medido con el puntuador compartido.
