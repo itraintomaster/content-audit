@@ -26,8 +26,10 @@ public class DefaultNaturalnessConfigTest {
         assertEquals("native-yes-no-1", config.methodId());
         assertEquals(Optional.of(9.07), config.thresholdFor(examined, "A1"));
         assertEquals(Optional.of(10.0), config.thresholdFor(examined, "A2"));
-        assertEquals(Optional.empty(), config.thresholdFor(examined, "B1"), "B1 and B2 are calibrated before publishing");
-        assertEquals(Optional.empty(), config.thresholdFor(examined, "B2"));
+        // B1 and B2, calibrated with the same rule on 1/10 (hook B-19): 226 of 4,534 and 95 of 1,901.
+        assertEquals(Optional.of(9.91), config.thresholdFor(examined, "B1"));
+        assertEquals(Optional.of(10.80), config.thresholdFor(examined, "B2"));
+        assertEquals(Optional.empty(), config.thresholdFor(examined, "C1"), "a level nobody measured");
     }
 
     @Test

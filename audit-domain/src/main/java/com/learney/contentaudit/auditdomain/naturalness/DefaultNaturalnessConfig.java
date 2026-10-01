@@ -16,10 +16,12 @@ import javax.annotation.processing.Generated;
  *   <li>R003 (DOUBT-NATUR-UMBRAL, A): the threshold of each level is fixed and belongs to the
  *       examined version that measured it -- the model with its digest and the method of the
  *       question --: for «llama3:8b@365c0bd3c000 · native-yes-no-1», 9.07 in A1 (116 of 2,334) and
- *       10.0 in A2 (118 of 2,364, measured without the 40 exercises of the «a / b» list). B1 and B2
- *       are calibrated before the exam is recorded (hook B-19); a level without threshold publishes
- *       its numbers and marks none. Another version has no threshold of its own until it is
- *       measured.</li>
+ *       10.0 in A2 (118 of 2,364, measured without the 40 exercises of the «a / b» list); and, with
+ *       the same rule on the same base of 29/9 (hook B-19, 1/10, the reading of content-audit),
+ *       9.91 in B1 (226 of 4,534) and 10.80 in B2 (95 of 1,901). With that reading A1 and A2 mark
+ *       117 and 123: the 40 of the list, now with their sentence, add 30 exercises to A2. A level
+ *       without threshold publishes its numbers and marks none. Another version has no threshold of
+ *       its own until it is measured.</li>
  * </ul>
  *
  * Changing the question is a new method: its {@code methodId} goes up, and with it the examined
@@ -43,7 +45,7 @@ class DefaultNaturalnessConfig implements NaturalnessConfig {
     static final String LLAMA3_EXAMINED = "llama3:8b@365c0bd3c000 · " + METHOD_ID;
 
     private static final Map<String, Map<String, Double>> THRESHOLDS = Map.of(
-            LLAMA3_EXAMINED, Map.of("A1", 9.07, "A2", 10.0));
+            LLAMA3_EXAMINED, Map.of("A1", 9.07, "A2", 10.0, "B1", 9.91, "B2", 10.80));
 
     @Override
     public String methodId() {

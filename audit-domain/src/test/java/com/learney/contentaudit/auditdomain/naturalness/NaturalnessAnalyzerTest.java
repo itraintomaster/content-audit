@@ -248,11 +248,12 @@ public class NaturalnessAnalyzerTest {
     @Tag("F-NATUR-R003")
     public void shouldPublishTheNumbersOfALevelWithoutThresholdAndMarkNoneOfThemAsB1BeforeItsThresholdIsCalibrated(
             ) {
+        // B1 has its threshold since 1/10: a level nobody measured is what B1 was before.
         World world = World.withLlama3();
         AuditableQuiz b1 = cloze("67fab6d59930102295343f02", text("She"), gap("has been"), text("(be) an engineer of hers."));
         world.llama3.answers("She has been an engineer of hers.", 4.2e-7, 0.9999);
 
-        AuditNode root = world.run(course(level("B1", b1)), null);
+        AuditNode root = world.run(course(level("C1", b1)), null);
 
         NaturalnessDiagnosis diagnosis = diagnosis(root, "67fab6d59930102295343f02");
         assertTrue(diagnosis.getNumber() > 14.0, "its number is published: " + diagnosis.getNumber());
@@ -260,7 +261,7 @@ public class NaturalnessAnalyzerTest {
         assertFalse(diagnosis.isMarked());
         assertEquals(List.of(), naturalnessFindings(quiz(root, "67fab6d59930102295343f02")));
         NaturalnessLevelQueue queue = queueOf(root).getLevels().get(0);
-        assertEquals("B1", queue.getLevel());
+        assertEquals("C1", queue.getLevel());
         assertNull(queue.getThreshold());
         assertEquals(List.of(), queue.getMarkedQuizIds());
     }
