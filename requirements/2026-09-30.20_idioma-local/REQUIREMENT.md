@@ -156,14 +156,16 @@ FEAT-JEXAM), contado con scripts y sin consultar:
 
 | Analizador | Qué pregunta | Curso entero | A1 | Horas, curso (de a una · 4 a la vez) | Horas, A1 |
 |---|---|---:|---:|---|---|
-| `naturalness` | una por oración terminada que alcanza | 11.173 | 2.334 | 63,5 · 15,9 | 13,3 · 3,3 |
+| `naturalness` | una por oración terminada que alcanza | 11.174 | 2.334 | 63,5 · 15,9 | 13,3 · 3,3 |
 | `near-duplicates` | una por par candidato | 699 | 276 | 4,0 · 1,0 | 1,6 · 0,4 |
 | `grammar` | nada | 0 | 0 | — | — |
-| **Total** | | **11.872** | **2.610** | **67,5 · 16,9** | **14,8 · 3,7** |
+| **Total** | | **11.873** | **2.610** | **67,5 · 16,9** | **14,8 · 3,7** |
 
-Por nivel, `naturalness`: A1 2.334, A2 2.403, B1 4.535 y B2 1.901; `near-duplicates`: A1 276, A2 110, B1 299 y B2 14.
+Por nivel, `naturalness`: A1 2.334, A2 2.404, B1 4.535 y B2 1.901; `near-duplicates`: A1 276, A2 110, B1 299 y B2 14.
 Rendir el examen de cada alternativa: 586 consultas para Naturalidad y 699 para Duplicados parecidos (sus R006 y R007).
 Después de cada tanda se paga sólo lo que cambió: una consulta por ejercicio tocado y una por par candidato nuevo.
+Naturalidad cuenta la oración terminada de [F-GRAMA-R001](#F-GRAMA-R001) con su invariante 5 (1/10): «Something is
+broken.» alcanza, y por eso A2 son 2.404 y no 2.403.
 Para comparar: los cuatro jueces nuevos sobre A1 son 7.289 consultas (FEAT-JEXAM).
 
 </details>
@@ -318,7 +320,7 @@ el tope 0 no tiene que frenar a los modelos locales (el gancho B-06), o como que
   contestó y dice cuánto costaría; el modelo local nunca tiene tope (R008).
 - [ ] Opción B: la alternativa tiene un tope por omisión propio, por ejemplo el de un nivel de Naturalidad (A1: 2.334
   consultas, 13 h de a una).
-- [ ] Opción C: sin tope: un `analyze` sin Ollama consulta todo el curso (11.872 consultas, 67 h de a una y 17 con 4).
+- [ ] Opción C: sin tope: un `analyze` sin Ollama consulta todo el curso (11.873 consultas, 67 h de a una y 17 con 4).
 
 **Answer**: Pendiente. Recomiendo A, y se diseñó con A: es «sin pedido explícito no se paga nada»
 ([F-JEXAM-R010](#F-JEXAM-R010)) y un `analyze` sin Ollama no puede gastar 67 horas de cupo sin que nadie lo pida. La
