@@ -858,20 +858,9 @@ public final class TandaFixture {
                         + " audio lee la barra: se regraba con el texto de hoy.");
     }
 
-    /**
-     * The real table of parts to fields, {@code DefaultCorrectionScope}: package-private in its engine until the
-     * architect's patch of FEAT-TANDA makes it public (a4544a85); read here by reflection, the class itself.
-     */
+    /** The real table of parts to fields, the one the factory of the batch builds. */
     public static com.learney.contentaudit.revisiondomain.preservation.CorrectionScope correctionScope() {
-        try {
-            Class<?> type = Class.forName(
-                    "com.learney.contentaudit.revisiondomain.preservationengine.DefaultCorrectionScope");
-            java.lang.reflect.Constructor<?> constructor = type.getDeclaredConstructor();
-            constructor.setAccessible(true);
-            return (com.learney.contentaudit.revisiondomain.preservation.CorrectionScope) constructor.newInstance();
-        } catch (ReflectiveOperationException e) {
-            throw new AssertionError("no se pudo leer DefaultCorrectionScope", e);
-        }
+        return new com.learney.contentaudit.revisiondomain.preservationengine.DefaultCorrectionScope();
     }
 
     /** The changes recorded in the batch through the real ledger, with their pending proposals and artifacts. */

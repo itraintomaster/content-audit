@@ -69,7 +69,6 @@ import com.learney.contentaudit.refinerdomain.RefinerEngine;
 import com.learney.contentaudit.refinerdomain.TaskOrigin;
 import com.learney.contentaudit.refinerdomain.UnconvertedScoreCount;
 import com.learney.contentaudit.refinerdomain.errortask.DefaultErrorTaskBriefer;
-import com.learney.contentaudit.revisiondomain.CourseElementLocator;
 import com.learney.contentaudit.revisiondomain.batch.BatchService;
 import com.learney.contentaudit.revisiondomain.batch.BatchServiceConfig;
 import com.learney.contentaudit.revisiondomain.batch.BatchStore;
@@ -103,7 +102,6 @@ import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
 import com.learney.contentaudit.revisiondomain.panel.TopicMeter;
 import com.learney.contentaudit.revisiondomain.panel.TopicWork;
 import com.learney.contentaudit.revisiondomain.panelengine.DefaultPanelRunnerFactory;
-import com.learney.contentaudit.revisiondomain.preservation.CorrectionScope;
 import com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationFactory;
 import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
 import com.learney.contentaudit.revisiondomain.tray.TrayService;
@@ -226,32 +224,16 @@ final class TandaCli {
                 return false;
             }
         }));
+        // The locator of the course and the table of parts to fields go null, as in Main: the factory builds the ones
+        // of revision-domain.
         batchService = new DefaultBatchServiceFactory().create(new BatchServiceConfig(batches, plans, reports, active,
-                artifacts, courses, internal(CourseElementLocator.class,
-                        "com.learney.contentaudit.revisiondomain.engine.DefaultCourseElementLocator"),
-                auditable -> new AuditableCourse(List.of()), engine, refiner,
+                artifacts, courses, null, auditable -> new AuditableCourse(List.of()), engine, refiner,
                 new DefaultErrorTaskBriefer(corrections, new DefaultAuditNodeIndexFactory(), renderer), corrections,
-                fixes, panel, new Meter(), new DefaultPanelRunnerFactory(), comparison, baselines, blind, null,
-                internal(CorrectionScope.class,
-                        "com.learney.contentaudit.revisiondomain.preservationengine.DefaultCorrectionScope"),
+                fixes, panel, new Meter(), new DefaultPanelRunnerFactory(), comparison, baselines, blind, null, null,
                 new DefaultPreservationFactory().createCheck(), workdir.resolve("english-course.json"), new Goals()));
         trayService = new DefaultTrayServiceFactory().create(new TrayServiceConfig(batchService, batches, decisions,
                 blind, panel, new DefaultPanelRunnerFactory(), renderer, new Sha256ContentFingerprinter(), courses,
                 workdir.resolve("english-course.json")));
-    }
-
-    /**
-     * The locator of the course and the table of parts to fields, internal to revision-domain until the patch of
-     * FEAT-TANDA makes them public; read here by reflection, the classes themselves, as Main will build them.
-     */
-    private static <T> T internal(Class<T> type, String className) {
-        try {
-            java.lang.reflect.Constructor<?> constructor = Class.forName(className).getDeclaredConstructor();
-            constructor.setAccessible(true);
-            return type.cast(constructor.newInstance());
-        } catch (ReflectiveOperationException e) {
-            throw new AssertionError("no se pudo leer " + className, e);
-        }
     }
 
     // -------------------------------------------------------------------------
