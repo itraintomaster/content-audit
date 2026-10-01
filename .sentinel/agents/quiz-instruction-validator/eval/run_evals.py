@@ -249,7 +249,7 @@ def validate_fixture(path: Path) -> dict[str, Any]:
     )
     required_ids = {
         "67fab6d59930102295342139",
-        "67fab6d5993010229534213a",
+        "67fab6d59930102295342142",
         "67fab6d5993010229534213b",
         "67fab6d5993010229534213c",
         "67fab6d5993010229534213d",

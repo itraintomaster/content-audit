@@ -94,8 +94,8 @@
       "expectedOutcome": "PASSED"
     },
     {
-      "caseId": "024-range-all-variants-possible",
-      "origin": "production",
+      "caseId": "range-all-variants-possible",
+      "origin": "synthetic",
       "covers": ["R016(f)"],
       "note": "Control positivo de (f): el hueco acepta TRES respuestas y las tres dan una oracion posible. Leerlas una por una no debe reprobar ninguna.",
       "criterion": "REAL_WORLD_SENSE",
@@ -103,10 +103,10 @@
       "knowledgeTitle": "Rangos temporales",
       "knowledgeInstructions": "Crea oraciones con $from$ y $to$, $until$ o $till$.",
       "sentenceMode": "FILL",
-      "originalQuizSentence": "We talked ____ [from 9am to|until|till 11am] .",
-      "originalTranslation": "Hablamos de 9 a 11 de la manana.",
-      "candidateQuizSentence": "We talked ____ [from 9am to 11am|from 9am until 11am|from 9am till 11am] .",
-      "candidateTranslation": "Hablamos de 9 a 11 de la manana.",
+      "originalQuizSentence": "We study from Monday ____ [to|till|until] Friday.",
+      "originalTranslation": "Estudiamos de lunes a viernes.",
+      "candidateQuizSentence": "We study ____ [from Monday to Friday|from Monday till Friday|from Monday until Friday] .",
+      "candidateTranslation": "Estudiamos de lunes a viernes.",
       "expectedOutcome": "PASSED"
     },
     {
