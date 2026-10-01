@@ -4,6 +4,19 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (lo compartido) — FEAT-RONDA2 construido en ronda2/integracion (1e7d5130..405e3de2): compila y
+  verde sobre el generate crudo (dbdf904a). Tests: 3.072, 2.458 en verde, 614 apagados, 0 fallas: los 608 stubs de B
+  (175), E (273) y F (160) con @Disabled("FEAT-RONDA2: espera a …"), 5 de FEAT-RONDA2 que esperan los proveedores de B
+  (Main ×2, get analyzers, el 73,86 % y los 886 archivos con los veinte) y la de F-NLP-R030, que R007 reemplaza. 42 de
+  las 47 de FEAT-RONDA2 pasan. `sentinel verify` OK. Control sobre copias (scratchpad/impl-ronda2-comun/control): los
+  11.760 nodos publican lo mismo que la ronda 1 (puntajes, hallazgos, números, diagnósticos); vocabulario 73,86 % y
+  96,02 · 93,60 · 78,87 · 63,86; 1.364 ejercicios con algún error; plan con las mismas 4.036 tareas de vocabulario y las
+  10 de consigna, una por una, más 1.275 de errores nuevas (R008); el curso, 886 archivos idénticos; 0 consultas. El
+  caché por oración: 40 s en frío, 6,1 s con todo en el caché y 8,4 s con una oración cambiada; sin ../ittm, exit 1 y
+  «Falta la lista de lemas en '…'».
+  Próximo: B, E y F construyen lo suyo, sacan sus @Disabled y encienden sus líneas de Main; el qa-tester da de baja o
+  re-etiqueta la prueba de F-NLP-R030; R009 y la parte de B de R008 se proponen sobre las piezas de B y E.
+
 2026-10-01 — integrador — Entró en ronda1/integracion el cierre de la ronda 1 (FEAT-CIERRE, 2026-09-30.32, aplicado y
   generado hasta 35172b1c): se juntó en ronda2/integracion y la cadena se rehízo encima con `rehacer-ronda-2.sh`, un solo
   comando. La carpeta de esta integración pasó de .32 a .33 (CIERRE tomó la 32 a las 23:36) y su sentinel-baseline.yaml se

@@ -5,6 +5,23 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — R004: la huella sale de la ficha entera menos lo que la decisión de abajo deja afuera (nombre en
+  castellano, pregunta, descripciones de la ficha y de cada regla, meta, estado y resumen del examen, motivo e
+  indicación de instalar); entra `reads`, que no es de esa lista, y de las herramientas sólo la que mide: la local si
+  está, si no la alternativa, con su versión y su versión examinada. La medida se calcula al pedirla y queda guardada
+  en el catálogo; el motor la pide al final de cada corrida.
+2026-10-01 — developer — R007: el procesador se mira antes que la lista, así un pedido sin los dos nombra la ruta del
+  procesador (la prueba de F-NLP-R021 lo espera). El caché nuevo vive en .cache/spacy-nlp/sentences/; lo de la clave
+  vieja queda en .cache/spacy-nlp/ y no se lee. Una oración que spaCy no pudo procesar vuelve como vino y no se guarda.
+2026-10-01 — developer — PROYU sacó de sentinel.yaml ocho inyecciones de DefaultConsolidatedViewBuilder y tres de
+  DefaultImpactPreviewComputer, pero el smart-merge las dejó en el código: las fábricas arman además el proyector, el
+  aplicador y el medidor de F con los mismos campos de su configuración, y la vista y la previa siguen midiendo como
+  antes hasta que F las reescriba (y con ellas las pruebas de CDIFF y PIPRE que las construyen a la vieja).
+2026-10-01 — developer — Main: lo de B, E y F se construye una vez donde no llama a un stub (herramientas, almacenes,
+  servicios de F con el proyector perezoso, arreglos por regla); quedan comentados los tres proveedores de B y sus
+  dos modelos de Ollama, y sin registrar los comandos nuevos (falta su envoltorio picocli); reject recibe la tanda
+  vacía hasta que E la construya.
+
 2026-10-01 — integrador — Número de carpeta: 2026-09-30.33. Al empezar la .32 estaba libre; FEAT-CIERRE la tomó a las 23:36 en
   ronda1/integracion, que ya está junta en ronda2/integracion. El sentinel-baseline.yaml de esta carpeta se rehízo con el
   modelo con FEAT-CIERRE: es la foto de lo que esta integración tiene delante, y aplicar-ronda-2.sh compara contra la

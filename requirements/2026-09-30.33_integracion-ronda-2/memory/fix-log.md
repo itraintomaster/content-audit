@@ -5,6 +5,19 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — Aridades de la ronda 2 en los tests: PadRonda2.java (scratchpad/impl-ronda2-comun, el script
+  de la ronda 1 con la tabla nueva) completa 334 llamadas en 88 archivos, sitio por sitio como el censo; los siete
+  journeys que arman GetCmd por reflexión, a mano a 12.
+2026-10-01 — developer — generate no agregó al stub el método de la interfaz que su interfaz extiende (describe() en las
+  tres configuraciones de B, status() en los tres adaptadores de local-language-infrastructure), ni las sobrecargas
+  nuevas cuando el archivo ya tenía un método con ese nombre (build de la vista consolidada, getConsolidated con topes,
+  changeableFields por partes). Se suman sin implementar, como el resto del stub.
+2026-10-01 — developer — Los tests del caché de tokens corren un procesador de prueba en Python que habla el protocolo
+  de sample_processor.py y anota cada lanzamiento al lado suyo (SpacyProcessRunnerTest.FakeSpacy); el runner y la
+  fábrica tienen un constructor de paquete con el directorio del caché, para que cada prueba use el suyo.
+2026-10-01 — developer — Una prueba que crea un procesador o una lista debe darle a la segunda corrida otro runner: la
+  huella de un archivo se recalcula cuando cambia su tamaño o su fecha, como entre dos procesos.
+
 2026-10-01 — integrador — Rehacer encima de una base nueva: juntar ronda1/integracion en ronda2/integracion y correr
   `integrador-2/rehacer-ronda-2.sh` (specs.py, armar32.py, cadena.sh real y revisar.sh real). Probado con FEAT-CIERRE:
   los 14 parches salen iguales salvo su descripción, y sólo cambian las huellas.
