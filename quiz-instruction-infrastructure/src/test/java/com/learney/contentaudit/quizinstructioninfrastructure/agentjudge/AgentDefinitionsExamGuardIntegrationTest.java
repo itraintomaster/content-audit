@@ -35,9 +35,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * The exam guard. A judge takes a fixed exam, and its practice is measured on `escribir/`, before it judges the course:
  * an exercise of that exam that its definition already shows, with its verdict, measures nothing. So no agent
  * definition under {@code .sentinel/agents/} -- guide, nodes, eval fixtures, scripts -- may name an exam exercise by
- * its id or by «…xxxx», nor carry its statement, finished sentence, translation, options or mini-theory, nor even
- * five English words in a row that, in the whole course, only exam exercises have. The mini-theory judge takes whole
- * topics: its own folder may not show any exercise of a topic of its exam either.
+ * its id or by «…xxxx», nor carry its statement, finished sentence, translation or options, nor even five English
+ * words in a row that, in the whole course, only exam exercises have. The mini-theory judge takes whole topics: its
+ * own folder may not show any exercise of a topic of its exam, nor the mini-theory of one of them or of an exam case.
+ * A mini-theory is the card of its topic, shared by exercises outside the exam too: only the judge of mini-theories
+ * reads it as what it judges.
  *
  * <p>The list of what is guarded is {@code agentguard/examen.json}, ids only, made by
  * {@code scripts/armar_guardia_del_examen.py} from the exam of brief 077. The texts come from the course in
@@ -193,11 +195,13 @@ class AgentDefinitionsExamGuardIntegrationTest {
                         violations.add(where + ": texto del ejercicio del examen " + id + ": «" + t + "»");
                     }
                 });
-                g.miniTheories.forEach((t, id) -> {
-                    if (text.contains(t)) {
-                        violations.add(where + ": miniteoría del ejercicio " + id + ": «" + t + "»");
-                    }
-                });
+                if (miniTheory) {
+                    g.miniTheories.forEach((t, id) -> {
+                        if (text.contains(t)) {
+                            violations.add(where + ": miniteoría del ejercicio " + id + ": «" + t + "»");
+                        }
+                    });
+                }
                 Map<String, String> exclusive = miniTheory ? g.examOrTopicGrams : g.examGrams;
                 Set<String> seenGrams = new TreeSet<>();
                 for (String gram : grams(text)) {
