@@ -139,7 +139,7 @@ public class QuizInstructionAnalyzerTest {
         AuditNode node = buildQuizNode(buildQuiz("q1"));
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(node)).thenReturn(subject);
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1"));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1", null));
 
         InstructionViolation wrongTense = new InstructionViolation("WRONG_TENSE",
                 "El hueco debe completarse con un verbo en pasado", "\"goes\"",
@@ -192,7 +192,7 @@ public class QuizInstructionAnalyzerTest {
         AuditNode node = buildQuizNode(buildQuiz("q1"));
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(node)).thenReturn(subject);
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1"));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1", null));
 
         InstructionCheck grammarCheck = new InstructionCheck("grammar",
                 "El texto debe ser gramaticalmente correcto", InstructionCheckStatus.PASSED, "\"She has gone home\"");
@@ -237,7 +237,7 @@ public class QuizInstructionAnalyzerTest {
         AuditNode node = buildQuizNode(buildQuiz("q1"));
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(node)).thenReturn(subject);
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1"));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1", null));
 
         QuizInstructionVerdict verdict = new QuizInstructionVerdict(false, 0.72, InstructionSeverity.MINOR,
                 "La respuesta esta en presente en vez de pasado", List.of(), List.of());
@@ -275,7 +275,7 @@ public class QuizInstructionAnalyzerTest {
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(node)).thenReturn(subject);
         // El tope de la corrida se agoto para este ejercicio: queda pendiente (R004/R006)
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         resolveNow(analyzer, node);
@@ -304,7 +304,7 @@ public class QuizInstructionAnalyzerTest {
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(node)).thenReturn(subject);
         // El juez no llego a pronunciarse sobre este ejercicio en esta corrida (R004/R007)
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         resolveNow(analyzer, node);
@@ -401,7 +401,7 @@ public class QuizInstructionAnalyzerTest {
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(quizNode)).thenReturn(subject);
         // Veredicto vigente de una corrida anterior: se reutiliza (R008)
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "stored-payload", "v1"));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "stored-payload", "v1", null));
         QuizInstructionVerdict verdict = new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "cumple", List.of(), List.of());
         when(verdictReader.read("stored-payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
@@ -449,11 +449,11 @@ public class QuizInstructionAnalyzerTest {
         when(subjectBuilder.build(beyondBudget)).thenReturn(subj2);
 
         QuizInstructionVerdict verdict = new QuizInstructionVerdict();
-        when(session.resolve(subj1)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1"));
+        when(session.resolve(subj1)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1", null));
         when(verdictReader.read("payload-1")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(0.6);
         // El segundo ejercicio excede el tope de la corrida: queda pendiente, sin error (R006)
-        when(session.resolve(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
+        when(session.resolve(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
@@ -489,7 +489,7 @@ public class QuizInstructionAnalyzerTest {
         EvaluationSubject zeroBudgetSubject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(zeroBudgetNode)).thenReturn(zeroBudgetSubject);
         when(zeroBudgetSession.resolve(zeroBudgetSubject))
-                .thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1"));
+                .thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1", null));
         QuizInstructionAnalyzer zeroBudgetAnalyzer = new QuizInstructionAnalyzer(
                 zeroBudgetSession, subjectBuilder, scorer, scopeMatcher, verdictReader, normalPolicy(0), null, null);
         resolveNow(zeroBudgetAnalyzer, zeroBudgetNode);
@@ -503,7 +503,7 @@ public class QuizInstructionAnalyzerTest {
         EvaluationSubject highBudgetSubject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(highBudgetNode)).thenReturn(highBudgetSubject);
         when(highBudgetSession.resolve(highBudgetSubject))
-                .thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1"));
+                .thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reused-payload", "v1", null));
         QuizInstructionAnalyzer highBudgetAnalyzer = new QuizInstructionAnalyzer(
                 highBudgetSession, subjectBuilder, scorer, scopeMatcher, verdictReader, normalPolicy(500), null, null);
         resolveNow(highBudgetAnalyzer, highBudgetNode);
@@ -533,11 +533,11 @@ public class QuizInstructionAnalyzerTest {
         when(subjectBuilder.build(notReachedAfterFailure)).thenReturn(subj2);
 
         QuizInstructionVerdict verdict = new QuizInstructionVerdict();
-        when(session.resolve(subj1)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1"));
+        when(session.resolve(subj1)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1", null));
         when(verdictReader.read("payload-1")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(0.3);
         // El servicio del juez cae a mitad de corrida: el resto se cuenta como fallido (R007)
-        when(session.resolve(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
+        when(session.resolve(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
@@ -575,11 +575,11 @@ public class QuizInstructionAnalyzerTest {
                 "El hueco debe completarse con un verbo en pasado", "\"goes\"", "La respuesta esta en presente");
         QuizInstructionVerdict verdict = new QuizInstructionVerdict(false, 0.8, InstructionSeverity.MAJOR,
                 "No cumple la consigna", List.of(violation), List.of());
-        when(session.resolve(subj1)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1"));
+        when(session.resolve(subj1)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1", null));
         when(verdictReader.read("payload-1")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(0.3);
         // El servicio del juez cae a mitad de corrida antes de alcanzar el segundo ejercicio (R007)
-        when(session.resolve(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
+        when(session.resolve(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         resolveNow(analyzer, judgedBeforeFailure);
@@ -617,7 +617,7 @@ public class QuizInstructionAnalyzerTest {
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(node)).thenReturn(subject);
         // Veredicto vigente de una corrida anterior: se reutiliza (R008)
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "stored-payload", "v1"));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "stored-payload", "v1", null));
         QuizInstructionVerdict verdict = new QuizInstructionVerdict();
         when(verdictReader.read("stored-payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(0.6);
@@ -658,8 +658,8 @@ public class QuizInstructionAnalyzerTest {
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
 
         // Corrida 1: el tope (1) alcanza para qa; qb queda sin veredicto (pendiente)
-        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1"));
-        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1", null));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null));
         resolveNow(analyzer, quizA);
         resolveNow(analyzer, quizB);
         assertFalse(quizA.getScores().isEmpty(), "qa se evalua en la corrida 1 (R008)");
@@ -671,8 +671,8 @@ public class QuizInstructionAnalyzerTest {
         AuditNode quizBAgain = buildQuizNode(buildQuiz("qb"));
         when(subjectBuilder.build(quizAAgain)).thenReturn(subjA);
         when(subjectBuilder.build(quizBAgain)).thenReturn(subjB);
-        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a", "v1"));
-        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b", "v1"));
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a", "v1", null));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b", "v1", null));
         resolveNow(analyzer, quizAAgain);
         resolveNow(analyzer, quizBAgain);
 
@@ -706,7 +706,7 @@ public class QuizInstructionAnalyzerTest {
         // anterior), no la vigente.
         String previousJudgeVersion = "quiz-instruction-validator@sha256:v1";
         when(session.resolve(subject)).thenReturn(new EvaluationResolution(
-                EvaluationResolutionKind.REUSED, "APPROVED-BY-PREVIOUS-VERSION", previousJudgeVersion));
+                EvaluationResolutionKind.REUSED, "APPROVED-BY-PREVIOUS-VERSION", previousJudgeVersion, null));
         QuizInstructionVerdict verdict = new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "cumple", List.of(), List.of());
         when(verdictReader.read("APPROVED-BY-PREVIOUS-VERSION")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
@@ -754,7 +754,7 @@ public class QuizInstructionAnalyzerTest {
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(node)).thenReturn(subject);
         when(scopeMatcher.matches(node, "all")).thenReturn(true);
-        when(session.resolveForced(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new-payload", "v1"));
+        when(session.resolveForced(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new-payload", "v1", null));
         QuizInstructionVerdict verdict = new QuizInstructionVerdict();
         when(verdictReader.read("new-payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
@@ -790,12 +790,12 @@ public class QuizInstructionAnalyzerTest {
         when(scopeMatcher.matches(beyondBudget, "all")).thenReturn(true);
 
         QuizInstructionVerdict verdict = new QuizInstructionVerdict();
-        when(session.resolveForced(subj1)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1"));
+        when(session.resolveForced(subj1)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-1", "v1", null));
         when(verdictReader.read("payload-1")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(0.6);
         // El tope de la corrida se agota dentro de la propia re-evaluacion: el segundo
         // ejercicio queda pendiente, igual que en una corrida ordinaria (R012)
-        when(session.resolveForced(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
+        when(session.resolveForced(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         resolveNow(analyzer, withinBudget);
@@ -825,7 +825,7 @@ public class QuizInstructionAnalyzerTest {
         when(subjectBuilder.build(node)).thenReturn(subject);
         // El juez respondio con su veredicto conservador de infraestructura (salida invalida);
         // la sesion lo traduce como una resolucion FAILED, no como un juicio legitimo (R013)
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         resolveNow(analyzer, node);
@@ -853,7 +853,7 @@ public class QuizInstructionAnalyzerTest {
         AuditNode firstRunNode = buildQuizNode(buildQuiz("q1"));
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(firstRunNode)).thenReturn(subject);
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         resolveNow(analyzer, firstRunNode);
@@ -864,7 +864,7 @@ public class QuizInstructionAnalyzerTest {
         AuditNode laterRunNode = buildQuizNode(buildQuiz("q1"));
         when(subjectBuilder.build(laterRunNode)).thenReturn(subject);
         QuizInstructionVerdict verdict = new QuizInstructionVerdict();
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-retry", "v1"));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-retry", "v1", null));
         when(verdictReader.read("payload-retry")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
 
@@ -895,7 +895,7 @@ public class QuizInstructionAnalyzerTest {
         AuditNode node = buildQuizNode(quizWithoutInstructions);
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(node)).thenReturn(subject);
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1"));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1", null));
         QuizInstructionVerdict verdict = new QuizInstructionVerdict();
         when(verdictReader.read("payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
@@ -994,7 +994,7 @@ public class QuizInstructionAnalyzerTest {
         // q1: sin veredicto registrado todavia, se consulta al juez en esta corrida bajo la
         // version vigente (la que se declarara como "consultada")
         when(session.resolve(subj1)).thenReturn(new EvaluationResolution(
-                EvaluationResolutionKind.EVALUATED, "payload-new", consultedThisRun));
+                EvaluationResolutionKind.EVALUATED, "payload-new", consultedThisRun, null));
         QuizInstructionVerdict newVerdict = new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "cumple", List.of(), List.of());
         when(verdictReader.read("payload-new")).thenReturn(newVerdict);
         when(scorer.score(newVerdict)).thenReturn(1.0);
@@ -1005,7 +1005,7 @@ public class QuizInstructionAnalyzerTest {
         // q2: veredicto registrado por una version ANTERIOR del juez ("v7"); R006/R010 exigen que
         // se siga reutilizando y puntuando sin consultar al juez, declarando su procedencia REAL
         when(session.resolve(subj2)).thenReturn(new EvaluationResolution(
-                EvaluationResolutionKind.REUSED, "payload-reused", previousProvenance));
+                EvaluationResolutionKind.REUSED, "payload-reused", previousProvenance, null));
         QuizInstructionVerdict reusedVerdict = new QuizInstructionVerdict(true, 0.95, InstructionSeverity.NONE, "cumple", List.of(), List.of());
         when(verdictReader.read("payload-reused")).thenReturn(reusedVerdict);
         when(scorer.score(reusedVerdict)).thenReturn(1.0);
@@ -1081,16 +1081,16 @@ public class QuizInstructionAnalyzerTest {
         when(scopeMatcher.decide(outsideWithoutVerdict, policy)).thenReturn(QuizInstructionReevaluationDecision.OUTSIDE_DECLARED_SET);
 
         QuizInstructionVerdict newVerdict = new QuizInstructionVerdict();
-        when(session.resolvePreferringNew(subjInSet)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", "v1"));
+        when(session.resolvePreferringNew(subjInSet)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", "v1", null));
         when(verdictReader.read("payload-new")).thenReturn(newVerdict);
         when(scorer.score(newVerdict)).thenReturn(1.0);
 
         QuizInstructionVerdict reusedVerdict = new QuizInstructionVerdict();
-        when(session.resolveWithoutConsulting(subjOutsideWithVerdict)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-old", "v1"));
+        when(session.resolveWithoutConsulting(subjOutsideWithVerdict)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-old", "v1", null));
         when(verdictReader.read("payload-old")).thenReturn(reusedVerdict);
         when(scorer.score(reusedVerdict)).thenReturn(0.6);
 
-        when(session.resolveWithoutConsulting(subjOutsideWithoutVerdict)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
+        when(session.resolveWithoutConsulting(subjOutsideWithoutVerdict)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);
         resolveNow(analyzer, inDeclaredSet);
@@ -1133,7 +1133,7 @@ public class QuizInstructionAnalyzerTest {
         // El tope de la corrida ya se agoto en otro ejercicio del conjunto: la sesion resuelve
         // "prefiriendo nuevo" pero cae al veredicto anterior en vez de dejarlo pendiente (R018 inv.2)
         QuizInstructionVerdict verdict = new QuizInstructionVerdict();
-        when(session.resolvePreferringNew(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "previous-payload", "v1"));
+        when(session.resolvePreferringNew(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "previous-payload", "v1", null));
         when(verdictReader.read("previous-payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
 
@@ -1173,7 +1173,7 @@ public class QuizInstructionAnalyzerTest {
         when(scopeMatcher.decide(matchedNode, policy)).thenReturn(QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION);
 
         QuizInstructionVerdict verdict = new QuizInstructionVerdict();
-        when(session.resolvePreferringNew(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1"));
+        when(session.resolvePreferringNew(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload", "v1", null));
         when(verdictReader.read("payload")).thenReturn(verdict);
         when(scorer.score(verdict)).thenReturn(1.0);
 
@@ -1218,12 +1218,12 @@ public class QuizInstructionAnalyzerTest {
         when(scopeMatcher.decide(outsideDeclaredSet, policy)).thenReturn(QuizInstructionReevaluationDecision.OUTSIDE_DECLARED_SET);
 
         QuizInstructionVerdict newVerdict = new QuizInstructionVerdict();
-        when(session.resolvePreferringNew(subj1)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", "v1"));
+        when(session.resolvePreferringNew(subj1)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-new", "v1", null));
         when(verdictReader.read("payload-new")).thenReturn(newVerdict);
         when(scorer.score(newVerdict)).thenReturn(1.0);
 
         QuizInstructionVerdict reusedVerdict = new QuizInstructionVerdict();
-        when(session.resolveWithoutConsulting(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-old", "v1"));
+        when(session.resolveWithoutConsulting(subj2)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-old", "v1", null));
         when(verdictReader.read("payload-old")).thenReturn(reusedVerdict);
         when(scorer.score(reusedVerdict)).thenReturn(0.6);
 
@@ -1464,7 +1464,7 @@ public class QuizInstructionAnalyzerTest {
                 ((AuditNode) invocation.getArgument(0)).getEntity().getId(), Map.of()));
         String payload = kind == EvaluationResolutionKind.PENDING || kind == EvaluationResolutionKind.FAILED
                 ? null : "payload";
-        when(session.resolve(any())).thenReturn(new EvaluationResolution(kind, payload, judgeVersion));
+        when(session.resolve(any())).thenReturn(new EvaluationResolution(kind, payload, judgeVersion, null));
         when(verdictReader.read("payload")).thenReturn(verdict);
         return new QuizInstructionAnalyzer(session, subjectBuilder, new DefaultQuizInstructionScorer(config),
                 mock(QuizInstructionScopeMatcher.class), verdictReader, normalPolicy(500), null, null);

@@ -85,7 +85,10 @@ public class ConfigAnalyzerCmdTest {
         assertEquals(0, run.exit(), run.err());
         assertFalse(run.err().contains("not found"), "R005: the judge is found; got: " + run.err());
         assertTrue(run.out().contains("Analyzer: quiz-instruction"), run.out());
-        assertTrue(run.out().contains("defaultMaxNewEvaluations: 500"), "R005: its configuration: " + run.out());
+        // F-CIERRE-R004: each budget named with its command -- 0 for analyze, 500 for revise-instructions.
+        assertTrue(run.out().contains("analyzeMaxNewEvaluations: 0"), "R005: its configuration: " + run.out());
+        assertTrue(run.out().contains("reviseInstructionsMaxNewEvaluations: 500"),
+                "R005: its configuration: " + run.out());
         assertTrue(run.out().contains("scoresBySeverity: "), "R005: its configuration: " + run.out());
     }
 

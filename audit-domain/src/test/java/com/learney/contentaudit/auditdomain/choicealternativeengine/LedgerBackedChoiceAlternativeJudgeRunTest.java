@@ -78,6 +78,11 @@ import org.junit.jupiter.api.Test;
 )
 public class LedgerBackedChoiceAlternativeJudgeRunTest {
 
+    /** F-CIERRE-R003: the student view the classifiers now receive, as Main builds it. */
+    private static final QuizStudentViewRenderer STUDENT_VIEW =
+            new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create());
+
+
     private static final String HOST = "multiple-choice-validity";
 
     private static final String JUDGE_ID = "choice-alternative-judge";
@@ -593,7 +598,7 @@ public class LedgerBackedChoiceAlternativeJudgeRunTest {
         LedgerBackedChoiceAlternativeJudgeRun open(EvaluationRunPolicy policy) {
             return new LedgerBackedChoiceAlternativeJudgeRun(runtime.open(HOST, List.of(judge), policy), runtime,
                     new DefaultChoiceAlternativeSubjectBuilder(renderer),
-                    new DefaultChoiceAlternativeClassifier(new TableCorrectorMatcher(), new Scale()), reader);
+                    new DefaultChoiceAlternativeClassifier(new TableCorrectorMatcher(), new Scale(), STUDENT_VIEW), reader);
         }
 
         /** A verdict already in the book for exactly what the judge reads of this quiz. */

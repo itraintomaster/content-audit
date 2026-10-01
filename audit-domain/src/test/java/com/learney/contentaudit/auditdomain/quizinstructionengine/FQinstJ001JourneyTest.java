@@ -72,7 +72,7 @@ public class FQinstJ001JourneyTest {
         AuditNode quizNode = buildQuizNode();
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(quizNode)).thenReturn(subject);
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-cumple", "v1"));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-cumple", "v1", null));
 
         // Outcome: "El juez responde que el ejercicio cumple su consigna, con severidad ninguna"
         InstructionCheck grammarCheck = new InstructionCheck("grammar",
@@ -121,7 +121,7 @@ public class FQinstJ001JourneyTest {
         AuditNode quizNode = buildQuizNode();
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(quizNode)).thenReturn(subject);
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-menor", "v1"));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-menor", "v1", null));
 
         // Outcome: "El juez responde que el ejercicio no cumple, con severidad menor"
         InstructionViolation violation = new InstructionViolation("MINOR_FORM",
@@ -169,7 +169,7 @@ public class FQinstJ001JourneyTest {
         AuditNode quizNode = buildQuizNode();
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(quizNode)).thenReturn(subject);
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-mayor", "v1"));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-mayor", "v1", null));
 
         // Outcome: "El juez responde que el ejercicio no cumple, con severidad mayor"
         InstructionViolation violation = new InstructionViolation("WRONG_TENSE",
@@ -216,7 +216,7 @@ public class FQinstJ001JourneyTest {
         AuditNode quizNode = buildQuizNode();
         EvaluationSubject subject = new EvaluationSubject("q1", Map.of());
         when(subjectBuilder.build(quizNode)).thenReturn(subject);
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-critico", "v1"));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-critico", "v1", null));
 
         // Outcome: "El juez responde que el ejercicio no cumple, con severidad critica"
         InstructionViolation violation = new InstructionViolation("UNSOLVABLE",
@@ -269,7 +269,7 @@ public class FQinstJ001JourneyTest {
         // Outcome: "el juez no logra emitir un veredicto valido y responde con su veredicto
         // conservador de infraestructura (confianza nula y violacion de salida invalida)".
         // La sesion traduce esa respuesta en una resolucion FAILED, no en un veredicto legitimo.
-        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
+        when(session.resolve(subject)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null));
 
         QuizInstructionAnalyzer analyzer = new QuizInstructionAnalyzer(
                 session, subjectBuilder, scorer, scopeMatcher, verdictReader, policy, null, null);

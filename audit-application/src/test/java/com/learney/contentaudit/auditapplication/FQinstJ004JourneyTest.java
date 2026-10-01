@@ -486,7 +486,7 @@ public class FQinstJ004JourneyTest {
     private static AnalyzerProvider realQuizInstructionFactory(EvaluationLedger ledger,
             ContentFingerprinter fingerprinter, Evaluator evaluator) {
         return new DefaultQuizInstructionAnalyzerFactory(evaluator, new FakeQuizInstructionVerdictReader(),
-                new DefaultQuizInstructionConfig(),
+                new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()),
                 approvedJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, fingerprinter)));
     }
 

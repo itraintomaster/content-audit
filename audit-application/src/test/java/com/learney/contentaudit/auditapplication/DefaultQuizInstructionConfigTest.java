@@ -20,7 +20,7 @@ public class DefaultQuizInstructionConfigTest {
     public void shouldDefaultTheRunBudgetTo500NewJudgeQueries() {
         // R006: each run bounds new judge queries with a configurable budget that has a
         // default value; the requirement fixes that default (ASSUMPTION) at 500 per run.
-        DefaultQuizInstructionConfig config = new DefaultQuizInstructionConfig();
+        DefaultQuizInstructionConfig config = new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig());
 
         assertEquals(500, config.getDefaultMaxNewEvaluations(),
                 "R006: the run budget must default to 500 new judge queries per run");
@@ -33,7 +33,7 @@ public class DefaultQuizInstructionConfigTest {
     public void shouldMapTheSeveritiesNoneMinorMajorAndCriticalToTheScores100603And00() {
         // R002: the verdict's severity defines the score scale -- 1.0 / 0.6 / 0.3 / 0.0 for
         // none / minor / major / critical, respectively.
-        DefaultQuizInstructionConfig config = new DefaultQuizInstructionConfig();
+        DefaultQuizInstructionConfig config = new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig());
 
         assertEquals(1.0, config.getScoreFor(InstructionSeverity.NONE), 0.0001,
                 "R002: severity NONE must score 1.0");

@@ -1137,21 +1137,21 @@ public class DefaultEvaluationSessionTest {
         List<EvaluationResolution> batch = atATime.resolveAll(requests, 4);
 
         // The scenario really exercises every mode, as one at a time resolves it.
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "kept-old", "v0"), oneByOne.get(0));
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for new-1", "v1"),
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "kept-old", "v0", null), oneByOne.get(0));
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for new-1", "v1", null),
                 oneByOne.get(1));
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for forced", "v1"),
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "new verdict for forced", "v1", null),
                 oneByOne.get(2));
         assertEquals(new EvaluationResolution(EvaluationResolutionKind.EVALUATED,
-                "new verdict for preferred-reached", "v1"), oneByOne.get(3));
+                "new verdict for preferred-reached", "v1", null), oneByOne.get(3));
         assertEquals(EvaluationResolutionKind.FAILED, oneByOne.get(4).getKind());
         assertEquals(EvaluationResolutionKind.PENDING, oneByOne.get(6).getKind(),
                 "a forced request the exhausted budget cannot reach is pending");
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reuse-only-kept-old", "v0"),
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "reuse-only-kept-old", "v0", null),
                 oneByOne.get(7));
         assertEquals(EvaluationResolutionKind.PENDING, oneByOne.get(8).getKind());
         assertEquals(EvaluationResolutionKind.PENDING, oneByOne.get(9).getKind());
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "new verdict for new-1", "v1"),
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, "new verdict for new-1", "v1", null),
                 oneByOne.get(10), "the content asked twice reuses what the run already paid for it");
 
         assertEquals(requests.size(), batch.size(), "one resolution per request");

@@ -188,7 +188,7 @@ public class DefaultJudgeExamVerdictExporterTest {
                 List.of(new JudgeVersionStanding(version, evaluated, JudgeExamStatus.NOT_TAKEN)), null,
                 new JudgeCostEstimate(notEvaluated, notEvaluated, 189.0, false, notEvaluated / 189.0, 4,
                         notEvaluated / 189.0 / 4),
-                List.of());
+                List.of(), null);
     }
 
     private static Map<String, JudgeExamVerdict> byCase(List<JudgeExamVerdict> verdicts) {

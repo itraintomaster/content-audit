@@ -93,8 +93,8 @@ public class FQinstJ002JourneyTest {
 
         // Nodo "primera_corrida"/"evaluar_pendientes" (gate F-QINST-R006): el curso no tiene
         // veredictos previos; el tope de la corrida (1) alcanza solo para qa
-        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1"));
-        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1", null));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null));
         resolveNow(analyzer, quizA);
         resolveNow(analyzer, quizB);
 
@@ -118,8 +118,8 @@ public class FQinstJ002JourneyTest {
         AuditNode quizBAgain = buildQuizNode("qb");
         when(subjectBuilder.build(quizAAgain)).thenReturn(subjA);
         when(subjectBuilder.build(quizBAgain)).thenReturn(subjB);
-        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a", "v1"));
-        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b", "v1"));
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a", "v1", null));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b", "v1", null));
         resolveNow(analyzer, quizAAgain);
         resolveNow(analyzer, quizBAgain);
 
@@ -166,8 +166,8 @@ public class FQinstJ002JourneyTest {
 
         // Nodo "primera_corrida"/"evaluar_pendientes" (gate F-QINST-R006): el tope (1) alcanza
         // solo para qa
-        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1"));
-        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null));
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1", null));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.PENDING, null, null, null));
         resolveNow(analyzer, quizA);
         resolveNow(analyzer, quizB);
 
@@ -189,7 +189,7 @@ public class FQinstJ002JourneyTest {
         when(subjectBuilder.build(quizAChanged)).thenReturn(subjAChanged);
         QuizInstructionVerdict newVerdict = new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE,
                 "Cumple con el contenido corregido", List.of(), List.of());
-        when(session.resolve(subjAChanged)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a-v2", "v1"));
+        when(session.resolve(subjAChanged)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a-v2", "v1", null));
         when(verdictReader.read("payload-a-v2")).thenReturn(newVerdict);
         when(scorer.score(newVerdict)).thenReturn(0.6);
 
@@ -231,8 +231,8 @@ public class FQinstJ002JourneyTest {
 
         // Nodo "primera_corrida"/"evaluar_pendientes" (gate F-QINST-R006): el servicio del juez
         // cae a mitad de corrida, despues de evaluar qa; qb queda sin veredicto
-        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1"));
-        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1", null));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null));
 
         // Nodo "informe_tras_falla" (gate F-QINST-R007): la auditoria termina igual, sin
         // abortar; qb se declara fallido y sin puntaje, qa conserva lo ya obtenido
@@ -251,8 +251,8 @@ public class FQinstJ002JourneyTest {
         AuditNode quizBAgain = buildQuizNode("qb");
         when(subjectBuilder.build(quizAAgain)).thenReturn(subjA);
         when(subjectBuilder.build(quizBAgain)).thenReturn(subjB);
-        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a", "v1"));
-        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b", "v1"));
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.REUSED, "payload-a", "v1", null));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-b", "v1", null));
         resolveNow(analyzer, quizAAgain);
         resolveNow(analyzer, quizBAgain);
 
@@ -299,8 +299,8 @@ public class FQinstJ002JourneyTest {
 
         // Nodo "primera_corrida"/"evaluar_pendientes" (gate F-QINST-R006): el servicio del juez
         // cae a mitad de corrida, despues de evaluar qa; qb queda fallido
-        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1"));
-        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null));
+        when(session.resolve(subjA)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a", "v1", null));
+        when(session.resolve(subjB)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null));
 
         // Nodo "informe_tras_falla" (gate F-QINST-R007): la auditoria termina igual, sin abortar
         assertDoesNotThrow(() -> {
@@ -317,7 +317,7 @@ public class FQinstJ002JourneyTest {
         when(subjectBuilder.build(quizAChanged)).thenReturn(subjAChanged);
         QuizInstructionVerdict newVerdict = new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE,
                 "Cumple con el contenido corregido", List.of(), List.of());
-        when(session.resolve(subjAChanged)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a-v2", "v1"));
+        when(session.resolve(subjAChanged)).thenReturn(new EvaluationResolution(EvaluationResolutionKind.EVALUATED, "payload-a-v2", "v1", null));
         when(verdictReader.read("payload-a-v2")).thenReturn(newVerdict);
         when(scorer.score(newVerdict)).thenReturn(0.6);
 

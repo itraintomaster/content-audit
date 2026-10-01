@@ -365,7 +365,7 @@ public class DefaultJudgeRuntimeTest {
     }
 
     private static JudgeUnitTally pendingTally(AuditTarget unit, int pending) {
-        return new JudgeUnitTally(unit, pending, 0, pending, Map.of(), List.of());
+        return new JudgeUnitTally(unit, pending, 0, pending, Map.of(), List.of(), null);
     }
 
     private static List<EvaluationResolutionKind> kinds(List<EvaluationResolution> resolutions) {
@@ -689,7 +689,7 @@ public class DefaultJudgeRuntimeTest {
         EvaluationResolution onTheCourse = afterItEntered.getSessions().get(0).resolveAll(
                 List.of(new EvaluationRequest(entered, EvaluationRequestMode.REUSE_OR_EVALUATE)), 4).get(0);
 
-        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, judgedAsCandidate.getPayload(), "qi-v1"),
+        assertEquals(new EvaluationResolution(EvaluationResolutionKind.REUSED, judgedAsCandidate.getPayload(), "qi-v1", null),
                 onTheCourse, "the candidate's verdict is reused without consulting once it enters the course");
         assertEquals(1, judge.calls(), "the same content is never paid twice");
     }
@@ -791,7 +791,7 @@ public class DefaultJudgeRuntimeTest {
         JudgeSessions opened = runtime.open(QUIZ_INSTRUCTION, List.of(judge), policy);
         resolve(opened, 0, requestsFrom(plan));
         JudgeCoverageDiagnosis coverage = runtime.coverage(opened,
-                new JudgeUnitTally(AuditTarget.QUIZ, 3, 1, 2, Map.of("qi-v1", 1), plan.getUnmatchedDeclaredIds()));
+                new JudgeUnitTally(AuditTarget.QUIZ, 3, 1, 2, Map.of("qi-v1", 1), plan.getUnmatchedDeclaredIds(), null));
 
         assertEquals(Set.of("q-borrado-1", "q-borrado-2"), new HashSet<>(coverage.getUnmatchedDeclaredIds()),
                 "the coverage of the judge declares them");
@@ -976,7 +976,7 @@ public class DefaultJudgeRuntimeTest {
         JudgeSessions opened = runtime.open(QUIZ_INSTRUCTION, List.of(judge), onTheCourse(0));
 
         JudgeCoverageDiagnosis coverage = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, 20, 14, 6,
-                Map.of("qi-v1", 5, "qi-v2", 7, "qi-v3", 2), List.of()));
+                Map.of("qi-v1", 5, "qi-v2", 7, "qi-v3", 2), List.of(), null));
 
         assertEquals(QUIZ_INSTRUCTION, coverage.getJudgeName());
         assertEquals(20, coverage.getReached());
@@ -1016,7 +1016,7 @@ public class DefaultJudgeRuntimeTest {
         assertEquals(List.of(EvaluationResolutionKind.FAILED, EvaluationResolutionKind.PENDING),
                 kinds(resolve(opened, 1, requests("q-1", "q-2"))));
         JudgeCoverageDiagnosis coverage =
-                runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, 2, 0, 2, Map.of(), List.of()));
+                runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, 2, 0, 2, Map.of(), List.of(), null));
 
         assertEquals(SESSION_EXPIRED, coverage.getUnavailableReason());
         assertEquals(1, fromTranslation.calls(), "the expired session was consulted once");
@@ -1027,7 +1027,7 @@ public class DefaultJudgeRuntimeTest {
                 List.of(ScriptedJudge.healthy(CONSIGNA_JUDGE, "qi-v1")), onTheCourse(1));
         resolve(healthyRun, 0, requests("q-1"));
         assertNull(runtime.coverage(healthyRun,
-                        new JudgeUnitTally(AuditTarget.QUIZ, 1, 1, 0, Map.of("qi-v1", 1), List.of()))
+                        new JudgeUnitTally(AuditTarget.QUIZ, 1, 1, 0, Map.of("qi-v1", 1), List.of(), null))
                 .getUnavailableReason());
     }
 

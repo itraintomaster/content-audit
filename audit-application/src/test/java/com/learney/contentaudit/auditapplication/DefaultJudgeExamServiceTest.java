@@ -376,7 +376,7 @@ public class DefaultJudgeExamServiceTest {
                     : new QuizInstructionVerdict(false, 0.9, InstructionSeverity.MAJOR, "Incumple la consigna",
                             List.of(new InstructionViolation("CALCO", "Natural", "the moment", "calco")), List.of());
             catalog = new DefaultAnalyzerCatalog(List.of(new DefaultQuizInstructionAnalyzerFactory(judge, reader,
-                    new DefaultQuizInstructionConfig(), runtime)));
+                    new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime)));
         }
 
         DefaultAuditRunner runner() {

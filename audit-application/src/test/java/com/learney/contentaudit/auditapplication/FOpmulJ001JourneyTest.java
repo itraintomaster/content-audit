@@ -232,7 +232,7 @@ public class FOpmulJ001JourneyTest {
 
     private static AnalyzerProvider judgeFactory(FakeEvaluationLedger ledger, FakeEvaluator judge) {
         return new DefaultQuizInstructionAnalyzerFactory(judge, new FakeQuizInstructionVerdictReader(),
-                new DefaultQuizInstructionConfig(),
+                new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()),
                 approvedJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, new FakeContentFingerprinter())));
     }
 
