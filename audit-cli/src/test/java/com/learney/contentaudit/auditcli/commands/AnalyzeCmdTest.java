@@ -1074,7 +1074,8 @@ public class AnalyzeCmdTest {
 
             List<AnalyzerProvider> providers = new ArrayList<>(classicProviders().subList(0, 6));
             providers.add(new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(scorer,
-                    absence, new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(), renderer));
+                    absence, new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(), renderer,
+                    evp()));
             providers.add(classicProviders().get(6));
             providers.add(new DefaultQuizInstructionAnalyzerFactory(judge,
                     new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime, new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())));

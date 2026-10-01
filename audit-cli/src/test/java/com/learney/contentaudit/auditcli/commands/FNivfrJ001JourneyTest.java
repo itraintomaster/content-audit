@@ -136,7 +136,7 @@ public class FNivfrJ001JourneyTest {
         List<AnalyzerProvider> providers = new ArrayList<>(Base299.classicProviders().subList(0, 6));
         providers.add(new OffLevelWordsAnalyzerProvider(
                 new DefaultSentenceLexicalScorer(Base299.evp(), new DefaultContentWordFilter(), absence), absence,
-                new DefaultTopicTeachingResolver(), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())));
+                new DefaultTopicTeachingResolver(), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()), Base299.evp()));
         providers.add(Base299.classicProviders().get(6));
         providers.add(Base299.judge(new Base299.FakeJudge(), new Base299.MapLedger()));
         AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);

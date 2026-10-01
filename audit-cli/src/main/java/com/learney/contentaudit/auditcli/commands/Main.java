@@ -596,7 +596,7 @@ class Main {
                 studentViewRenderer, correctorMatcher);
 
         AnalyzerProvider offLevelWordsProvider = new OffLevelWordsAnalyzerProvider(
-                sentenceLexicalScorer, lemmaAbsenceConfig, topicTeachingResolver, studentViewRenderer);
+                sentenceLexicalScorer, lemmaAbsenceConfig, topicTeachingResolver, studentViewRenderer, evpCatalog);
         AnalyzerProvider hintCoherenceProvider = new HintCoherenceAnalyzerProvider(irregularForms, studentViewRenderer);
         AnalyzerProvider answerCompletenessProvider =
                 new AnswerCompletenessAnalyzerProvider(correctorMatcher, irregularForms, studentViewRenderer);

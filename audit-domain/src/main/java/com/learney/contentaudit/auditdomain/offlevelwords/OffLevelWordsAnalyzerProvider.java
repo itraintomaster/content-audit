@@ -78,7 +78,7 @@ public OffLevelWordsAnalyzerProvider(SentenceLexicalScorer sentenceLexicalScorer
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
         return new OffLevelWordsAnalyzer(sentenceLexicalScorer, lemmaAbsenceConfig, topicTeachingResolver,
-                studentViewRenderer);
+                studentViewRenderer, evpCatalogPort);
     }
 
     /**
