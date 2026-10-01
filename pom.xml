@@ -33,7 +33,23 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>5.10.2</junit.version>
     <mockito.version>5.23.0</mockito.version>
+    <!-- Las pruebas con herramientas de verdad (LanguageTool, Ollama) no corren por omisión (gancho B-14):
+         se corren con -Dgroups=herramienta-real, que activa el perfil de abajo. -->
+    <surefire.excludedGroups>herramienta-real</surefire.excludedGroups>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Una sola versión de OpenNLP (gancho B-12): LanguageTool 6.8 carga su agrupador con la 1.9.4 en cada
+           chequeo; langchain4j 1.13.0 trae la 2.5.4 sólo para su separador de oraciones, que content-audit no llama.
+           Las dos no pueden convivir en el classpath de audit-cli. -->
+      <dependency>
+        <groupId>org.apache.opennlp</groupId>
+        <artifactId>opennlp-tools</artifactId>
+        <version>1.9.4</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
@@ -88,6 +104,7 @@
             --add-opens java.base/java.util=ALL-UNNAMED
           </argLine>
           <useManifestOnlyJar>false</useManifestOnlyJar>
+          <excludedGroups>${surefire.excludedGroups}</excludedGroups>
         </configuration>
       </plugin>
       <plugin>
@@ -196,6 +213,22 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <!-- mvn test -Dgroups=herramienta-real: corre las pruebas con las herramientas de verdad (gancho B-14). Cada una
+         se saltea sola si la herramienta no está. -->
+    <profile>
+      <id>herramienta-real</id>
+      <activation>
+        <property>
+          <name>groups</name>
+        </property>
+      </activation>
+      <properties>
+        <surefire.excludedGroups></surefire.excludedGroups>
+      </properties>
+    </profile>
+  </profiles>
 
   <!-- Common dependencies can go here or in modules -->
 </project>
