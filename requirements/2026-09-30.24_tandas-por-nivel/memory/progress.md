@@ -4,6 +4,23 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (construcción E, sobre ronda2/integracion) — Lo que esperaba al parche, hecho después del apply
+  (48434059) y el generate (ede4d327): los dos almacenes sólo con la carpeta de trabajo (las decisiones de la bandeja en
+  `.content-audit/tray-decisions.jsonl`, como dice el contrato), la fábrica de la tanda arma el localizador y la tabla de
+  partes cuando el registro los trae vacíos, `CappedQueryAllowance` recibe sus dos límites en el constructor y las
+  pruebas dejan la reflexión. Suite completa: 3.103 pruebas, 0 fallas, 1 apagada (la de spaCy de FEAT-RONDA2).
+  Control sobre una copia de la integración (20 analizadores; exámenes de B y C de esta foto; Ollama local; scratchpad
+  impl-E2/control2): plan de 5.382 tareas (B no suma: grammar y near-duplicates reprobados, naturalness deja su cola);
+  la tanda de A1 toma 749 (621 por regla, 128 a la mesa; 580 consultas estimadas); sin tope, 601 cambios, 0 consultas
+  a claude, 0 pedidos de regrabar; la compuerta pasa en 1 vuelta; algún error en A1 711 → 116, el resto igual;
+  vocabulario 73,86 → 73,86. Veredicto UNDECIDABLE: 245 filas de piso sin decidir en 6 analizadores + algún error.
+  Next: para decidir hace falta (1) que `batch close` le pase un tope a los jueces: hoy `ProjectionScope` viaja sin
+  `analyzerBudgets` y la proyección consulta claude -p con tope 0 (F-PROYU-R003); con tope, translation-sense 1.202
+  consultas y mini-theory 30 sobre los 601 cambiados en 30 conocimientos (~7 h de a una, ~1,7 h de a 4); (2) que
+  quiz-instruction rinda su examen (601 consultas más) y que single-answer, grammar y near-duplicates aprueben una
+  versión nueva: reprobados no consultan y sus pisos no se deciden nunca. Decide José (y F, si los pisos de un
+  analizador sin examen aprobado dejan de contar).
+
 2026-10-01 — developer (construcción E) — Control sobre una copia (foto del 29/9, 17 analizadores, el parche de
   construcción simulado sólo en la copia; scratchpad impl-E2/control): plan de 5.382 tareas (1.346 de error); la tanda de
   A1 toma 749 (621 por regla, 128 de la mesa), estima 580 consultas (0,77 h); `batch run` sin tope: 621 resueltas por
