@@ -4,6 +4,13 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer + test-writer (paquete D) — FEAT-RECUR construido: 24 pruebas sin @Disabled. lemma-recurrence
+  publica su LemmaRecurrenceCourseDiagnosis (cada lema con hueco más largo, niveles de inicio y fin y niveles; el detalle
+  de cada nivel), deja un hallazgo F-RECUR-R005 por lema fuera de rango y Main enciende su formateador en analyze
+  --detailed y en stats analyzer (D-11, D-15). Fixture audit-domain/src/test/resources/recur-2026-09-30/stream.tsv.gz
+  (11.287 ejercicios, 91.873 posiciones del análisis 2026-09-30T11-54-02): 0,08 con 134 · 1.570 · 46 de 1.750, los
+  niveles 450/178 · 752/155 · 1.139/161 · 819/165 y 1.616 hallazgos, exactos.
+
 2026-09-30 — qa-tester — Ronda 1: `patch propose` exit 0, fusionado con el parche del arquitecto: 24 handwrittenTests nuevos (0 portados) y F-RECUR-J001 en audit-cli, paquete commands; `tech-spec write` exit 0 (+1 sección). No aplicado.
   Simulado en scratch/qa-D (apply en memoria con la librería del jar, sin CLI apply ni generate), sobre el sentinel.yaml de hoy y sobre 0.2 + 0.3 aplicados antes: 24 pruebas aterrizan, 0 errores de traza, J001 ubicado, `feature status` OK, 6/6 reglas [covered]; generate agregaría 24 stubs y FRecurJ001JourneyTest con 2 caminos, sin choques de nombre.
   Hueco para el integrador: D-11 registra el formateador en `analyze --detailed`, pero `stats analyzer` no usa ese mapa; la prueba de StatsAnalyzerCmd (R003) espera ese cableado.

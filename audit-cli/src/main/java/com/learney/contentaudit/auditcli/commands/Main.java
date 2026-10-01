@@ -565,7 +565,7 @@ class Main {
 
         analyzerProviders.add(new LemmaAbsenceAnalyzerProvider(evpCatalog, lemmaAbsenceConfig, sentenceLexicalScorer)); //  6
 
-        // analyzerProviders.add(offLevelWordsProvider);          //  7 · D · FEAT-NIVFR, pendiente
+        analyzerProviders.add(offLevelWordsProvider);                                                     //  7 · D · FEAT-NIVFR
 
         analyzerProviders.add(new LemmaCountAnalyzerProvider(evpCatalog, lemmaCountConfig));               //  8
 
@@ -628,9 +628,9 @@ class Main {
         LemmaRecurrenceDetailedFormatter lemmaRecurrenceDetailedFormatter = new LemmaRecurrenceDetailedFormatter();
         Map<String, DetailedFormatter> statsDetailedFormatters = new HashMap<>();
 
-        // detailedFormatters.put("lemma-recurrence", lemmaRecurrenceDetailedFormatter);       // D · FEAT-RECUR, pendiente
+        detailedFormatters.put("lemma-recurrence", lemmaRecurrenceDetailedFormatter);          // D · FEAT-RECUR
 
-        // statsDetailedFormatters.put("lemma-recurrence", lemmaRecurrenceDetailedFormatter);  // D · FEAT-RECUR, pendiente
+        statsDetailedFormatters.put("lemma-recurrence", lemmaRecurrenceDetailedFormatter);     // D · FEAT-RECUR
 
         // ----------------------------------------------------------------
         // Step 6: Persistence stores — all constructed with resolved baseDir

@@ -5,6 +5,15 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (paquete D) — Lo que la regla no fija, decidido así: el nivel que se muestra de una palabra marcada
+  por lexis en varios ejercicios es el más alto; una sin nivel lleva sus oraciones de la lista de no asignadas y umbral
+  nulo; la marca de error vale null cuando ningún ejercicio del informe trae el diagnóstico de off-level-words; la lista
+  para sumar saca las rojas por lema (shed sustantivo no se ofrece si shed verbo es roja: si no, R007 no agregaría nada a
+  «sacar las que el tema usa»).
+2026-09-30 — developer (paquete D) — Un --regex inválido en get word-lights sale con la excepción del puerto y su traza
+  (código 1): GetCmd.handleWordLights traduce sólo las dos excepciones de topicwords. Es una línea en GetCmd, que es
+  compartido; escalado, no tocado.
+
 2026-09-30 — integrador — Rebasado sobre el sentinel.yaml real y FEAT-RONDA1 (propose --replace, exit 0): sin cambios de estructura (la inyección de GetCmd, D-05, va en la integración).
 
 2026-09-30 — qa-tester — F-SEMAF-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.

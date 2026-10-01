@@ -1,5 +1,56 @@
 package com.learney.contentaudit.auditdomain.offlevelwords;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultKnowledgeDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultLevelDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultTopicDiagnoses;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
+import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.NodeDiagnoses;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer;
+import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
+import com.learney.contentaudit.auditdomain.labs.LemmaPlacementDiagnosis;
+import com.learney.contentaudit.auditdomain.labs.SentenceLexicalScorer;
+import com.learney.contentaudit.auditdomain.lexicalflags.DefaultSentenceLexicalEvaluator;
+import com.learney.contentaudit.auditdomain.lexicalflags.SentenceLexicalFlags;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -15,216 +66,645 @@ public class OffLevelWordsAnalyzerTest {
     @DisplayName("should not mark 'live' (B1) in the A1 quiz 'She lives in London.', because the A1 EVP phrase 'live in/at' lowers its level as it does for lemma-absence")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R001")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNotMarkLiveB1InTheA1QuizSheLivesInLondonBecauseTheA1EVPPhraseLiveInatLowersItsLevelAsItDoesForLemmaabsence(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 and F-LABS-R042: «live» is B1, but the A1 phrase «live in/at» lowers it, so the catalog
+        // the shared scorer reads answers A1 for live/VERB -- for lemma-absence and for this analyzer.
+        Lexicon lexicon = new Lexicon().level("live", "VERB", CefrLevel.A1).level("London", "PROPN", null);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Vivir en", "q-live", "She lives in London.", "Ella vive en Londres.",
+                "She|she|PRON lives|live|VERB in|in|ADP London|London|PROPN .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertTrue(lexicon.scorer().score(entity(quiz).getTokens(), CefrLevel.A1).getMisplacedLemmas().isEmpty(),
+                "the scorer lemma-absence delegates to does not mark live in this A1 sentence");
+        assertEquals(1.0, quiz.getScores().get(NAME), "R001: no word of another level");
+        assertEquals(List.of(), words(quiz), "R001: live keeps the level its phrase gives it");
     }
 
     @Test
     @DisplayName("should not mark 'run' in an A1 quiz because of the B1 EVP phrase 'run out', since a phrase never raises the level of its lemma")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R001")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNotMarkRunInAnA1QuizBecauseOfTheB1EVPPhraseRunOutSinceAPhraseNeverRaisesTheLevelOfItsLemma(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 and F-LABS-R005: «run out» is a B1 phrase, but a phrase never raises its lemma: run stays A1.
+        Lexicon lexicon = new Lexicon().level("run", "VERB", CefrLevel.A1).level("milk", "NOUN", CefrLevel.A1)
+                .phrase("run out");
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Elegir la forma natural", "q-run", "Have we run out of milk?",
+                "¿Nos quedamos sin leche?", "Have|have|AUX we|we|PRON run|run|VERB out|out|ADP of|of|ADP "
+                        + "milk|milk|NOUN ?|?|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(1.0, quiz.getScores().get(NAME), "R001: run is not raised by the B1 phrase");
+        assertEquals(List.of(), words(quiz));
     }
 
     @Test
     @DisplayName("should report 'reside' in an A1 quiz as out of the EVP with its COCA rank 5,333 and no catalog level, never an invented level")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R001")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldReportResideInAnA1QuizAsOutOfTheEVPWithItsCOCARank5333AndNoCatalogLevelNeverAnInventedLevel(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 2: a word out of the catalog never gets a level: reside is out of the EVP, COCA 5,333.
+        Lexicon lexicon = new Lexicon().level("granddad", "NOUN", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Verbos de movimiento", "q-reside", "We reside in London with our granddad.",
+                "Residimos en Londres con nuestro abuelo.", RESIDE_TOKENS);
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(List.of(new OffLevelWord("reside", "VERB", OffLevelReason.OUT_OF_CATALOG, null, 5333)), words(quiz),
+                "R001 inv. 2: out of the EVP with its rank and no catalog level");
     }
 
     @Test
     @DisplayName("should mark in 'She spread the warm blue quilt on the bed.' (A2) only words that lexis also flags for that sentence at A2")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R001")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldMarkInSheSpreadTheWarmBlueQuiltOnTheBedA2OnlyWordsThatLexisAlsoFlagsForThatSentenceAtA2(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 3: every word it marks is one lexis marks for that sentence at that level.
+        Lexicon lexicon = spreadLexicon();
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A2", "Posición del adjetivo", "q-quilt", SPREAD, "Ella extendió la colcha azul "
+                + "y tibia sobre la cama.", SPREAD_TOKENS);
+
+        course.walk(lexicon.analyzer());
+
+        SentenceLexicalFlags lexis = new DefaultSentenceLexicalEvaluator(lexicon.scorer())
+                .evaluate(entity(quiz).getTokens(), CefrLevel.A2);
+        Set<String> flagged = new HashSet<>();
+        lexis.getMisplacedWords().forEach(w -> flagged.add(w.getLemma() + "|" + w.getPos()));
+        lexis.getOutOfCatalogWords().forEach(w -> flagged.add(w.getLemma() + "|" + w.getPos()));
+        assertFalse(words(quiz).isEmpty());
+        for (OffLevelWord word : words(quiz)) {
+            assertTrue(flagged.contains(word.getLemma() + "|" + word.getPos()),
+                    "R001 inv. 3: " + word.getLemma() + " is one lexis flags too: " + flagged);
+        }
     }
 
     @Test
     @DisplayName("should mark 'spread' and 'quilt', B2 words, in the A2 quiz 'She spread the warm blue quilt on the bed.', two levels above it")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R002")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldMarkSpreadAndQuiltB2WordsInTheA2QuizSheSpreadTheWarmBlueQuiltOnTheBedTwoLevelsAboveIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: spread and quilt are B2, two levels above the A2 quiz; warm, blue and bed are A1.
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A2", "Posición del adjetivo", "q-quilt", SPREAD, "Ella extendió la colcha azul "
+                + "y tibia sobre la cama.", SPREAD_TOKENS);
+
+        course.walk(spreadLexicon().analyzer());
+
+        assertEquals(List.of(new OffLevelWord("spread", "VERB", OffLevelReason.ABOVE_LEVEL, CefrLevel.B2, 1500),
+                new OffLevelWord("quilt", "NOUN", OffLevelReason.ABOVE_LEVEL, CefrLevel.B2, 12000)), words(quiz),
+                "R002: the two B2 words, with their catalog level");
     }
 
     @Test
     @DisplayName("should never mark a word only one level above the quiz, like 'let' (A2) in an A1 quiz")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R002")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNeverMarkAWordOnlyOneLevelAboveTheQuizLikeLetA2InAnA1Quiz() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: one level above is never an error for this analyzer: let (A2) in an A1 quiz.
+        Lexicon lexicon = new Lexicon().level("let", "VERB", CefrLevel.A2).level("go", "VERB", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Imperativo", "q-let", "Let's go.", "Vamos.",
+                "Let|let|VERB 's|we|PRON go|go|VERB .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertTrue(lexicon.scorer().score(entity(quiz).getTokens(), CefrLevel.A1).getMisplacedLemmas().stream()
+                .anyMatch(m -> m.getLemmaAndPos().getLemma().equals("let")), "lemma-absence does mark it, one level up");
+        assertEquals(1.0, quiz.getScores().get(NAME), "R002: one level above is not an error");
+        assertEquals(List.of(), words(quiz));
     }
 
     @Test
     @DisplayName("should count C1 as level 5 and C2 as level 6, so a C1 word is marked in a B1 quiz but not in a B2 quiz, and a C2 word is marked in a B2 quiz")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R002")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldCountC1AsLevel5AndC2AsLevel6SoAC1WordIsMarkedInAB1QuizButNotInAB2QuizAndAC2WordIsMarkedInAB2Quiz(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 and F-LABS-R033: C1 is level 5 and C2 level 6.
+        Lexicon lexicon = new Lexicon().level("ubiquitous", "ADJ", CefrLevel.C1).level("quixotic", "ADJ", CefrLevel.C2)
+                .level("phone", "NOUN", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode b1 = course.quiz("B1", "Tecnología", "q-b1", "Phones are ubiquitous.", "Los teléfonos están en todas "
+                + "partes.", "Phones|phone|NOUN are|be|AUX ubiquitous|ubiquitous|ADJ .|.|PUNCT");
+        AuditNode b2 = course.quiz("B2", "Tecnología", "q-b2", "Phones are ubiquitous.", "Los teléfonos están en todas "
+                + "partes.", "Phones|phone|NOUN are|be|AUX ubiquitous|ubiquitous|ADJ .|.|PUNCT");
+        AuditNode b2c2 = course.quiz("B2", "Sueños", "q-b2-c2", "His plan is quixotic.", "Su plan es quijotesco.",
+                "His|his|PRON plan|plan|NOUN is|be|AUX quixotic|quixotic|ADJ .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(List.of("ubiquitous"), lemmas(b1), "R002: C1 (5) is two levels above B1 (3)");
+        assertEquals(List.of(), lemmas(b2), "R002: C1 (5) is one level above B2 (4)");
+        assertEquals(List.of("quixotic"), lemmas(b2c2), "R002: C2 (6) is two levels above B2 (4)");
     }
 
     @Test
     @DisplayName("should mark an out-of-catalog word only in the strong-discount band of the quiz level, like 'reside' (rank 5,333) in an A2 quiz but not in a B1 quiz")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R002")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldMarkAnOutofcatalogWordOnlyInTheStrongdiscountBandOfTheQuizLevelLikeResideRank5333InAnA2QuizButNotInAB1Quiz(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 and F-LABS-R034: reside (out of the EVP, 5,333) is in the strong band of A2 (beyond
+        // 5,000) but in the mild band of B1 (up to 8,000).
+        Lexicon lexicon = new Lexicon().level("granddad", "NOUN", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode a2 = course.quiz("A2", "Lugares", "q-a2", "We reside in London with our granddad.",
+                "Residimos en Londres con nuestro abuelo.", RESIDE_TOKENS);
+        AuditNode b1 = course.quiz("B1", "Lugares", "q-b1", "We reside in London with our granddad.",
+                "Residimos en Londres con nuestro abuelo.", RESIDE_TOKENS);
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(List.of("reside"), lemmas(a2), "R002: strong band in A2");
+        assertEquals(List.of(), lemmas(b1), "R002: only the mild band in B1");
     }
 
     @Test
     @DisplayName("should mark in an A1 quiz an out-of-catalog word ranked 3,001 or without rank but not one ranked 3,000, taking the band bounds from the lemma-absence configuration")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R002")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldMarkInAnA1QuizAnOutofcatalogWordRanked3001OrWithoutRankButNotOneRanked3000TakingTheBandBoundsFromTheLemmaabsenceConfiguration(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: the strong band of A1 starts after 3,000 and takes the words without a rank, as the
+        // lemma-absence configuration says; with another bound in it, the cut moves with it.
+        String tokens = "zorbs|zorb|NOUN|3001 and|and|CCONJ quibs|quib|NOUN and|and|CCONJ flarns|flarn|NOUN|3000 "
+                + ".|.|PUNCT";
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Cosas", "q-bands", "Zorbs and quibs and flarns.", "Cosas.", tokens);
+        course.walk(new Lexicon().analyzer());
+        assertEquals(List.of("zorb", "quib"), lemmas(quiz), "R002: 3,001 and no rank, never 3,000");
+
+        Course other = new Course();
+        AuditNode moved = other.quiz("A1", "Cosas", "q-bands", "Zorbs and quibs and flarns.", "Cosas.", tokens);
+        other.walk(new Lexicon().mildBound(CefrLevel.A1, 2999).analyzer());
+        assertEquals(List.of("zorb", "quib", "flarn"), lemmas(moved), "the bounds are the configuration's");
     }
 
     @Test
     @DisplayName("should not mark 'invest' (B2) in an A2 quiz of '$Invest time$ + gerundio', because its topic teaches it")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNotMarkInvestB2InAnA2QuizOfInvestTimeGerundioBecauseItsTopicTeachesIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «$Invest time$ + gerundio» teaches invest, which is B2: it is not an error there.
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A2", "$Invest time$ + gerundio", "q-invest", INVEST, "Invertí tiempo en "
+                + "aprender.", INVEST_TOKENS);
+
+        course.walk(investLexicon().analyzer());
+
+        assertEquals(1.0, quiz.getScores().get(NAME), "R003: the topic teaches invest");
+        assertEquals(List.of(), words(quiz));
     }
 
     @Test
     @DisplayName("should mark 'invest' (B2) in an A2 quiz of a topic that does not teach it, even though another topic of the course does")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldMarkInvestB2InAnA2QuizOfATopicThatDoesNotTeachItEvenThoughAnotherTopicOfTheCourseDoes(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the exception belongs to the topic that teaches the word, not to the course.
+        Course course = new Course();
+        course.quiz("A2", "$Invest time$ + gerundio", "q-taught", INVEST, "Invertí tiempo en aprender.", INVEST_TOKENS);
+        AuditNode elsewhere = course.quiz("A2", "Planes y proyectos", "q-elsewhere", INVEST, "Invertí tiempo en aprender.",
+                INVEST_TOKENS);
+
+        course.walk(investLexicon().analyzer());
+
+        assertEquals(List.of("invest"), lemmas(elsewhere), "R003: another topic does not teach it");
     }
 
     @Test
     @DisplayName("should not mark 'sushi' in 'We make sushi and pizza.' because the translation repeats it whole")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R004")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNotMarkSushiInWeMakeSushiAndPizzaBecauseTheTranslationRepeatsItWhole() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: «sushi» is out of the EVP, but the translation repeats it whole: a loan the student reads.
+        Lexicon lexicon = new Lexicon().level("make", "VERB", CefrLevel.A1).level("pizza", "NOUN", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Comidas", "q-sushi", "We make sushi and pizza.", "Hacemos sushi y pizza.",
+                "We|we|PRON make|make|VERB sushi|sushi|NOUN and|and|CCONJ pizza|pizza|NOUN .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(1.0, quiz.getScores().get(NAME), "R004: the translation repeats sushi whole");
     }
 
     @Test
     @DisplayName("should keep marking 'adore' when the translation only says 'adoran', because the word has to appear whole")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R004")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldKeepMarkingAdoreWhenTheTranslationOnlySaysAdoranBecauseTheWordHasToAppearWhole(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: «adore» is not in «adoran»: the word has to appear whole, not as a cognate.
+        Lexicon lexicon = new Lexicon().level("Italy", "PROPN", null);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Gustos", "q-adore", "They adore Italy.", "Ellos adoran Italia.",
+                "They|they|PRON adore|adore|VERB|9000 Italy|Italy|PROPN .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(List.of("adore"), lemmas(quiz), "R004: a cognate is not the word");
     }
 
     @Test
     @DisplayName("should ignore accents when it compares with the translation, so an out-of-catalog 'canape' is not marked when the translation writes it with an accent")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R004")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldIgnoreAccentsWhenItComparesWithTheTranslationSoAnOutofcatalogCanapeIsNotMarkedWhenTheTranslationWritesItWithAnAccent(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: the comparison ignores accents: «canape» against «canapé».
+        Lexicon lexicon = new Lexicon().level("eat", "VERB", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A2", "Comidas", "q-canape", "We ate a canape.", "Comimos un canapé.",
+                "We|we|PRON ate|eat|VERB a|a|DET canape|canape|NOUN .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(1.0, quiz.getScores().get(NAME), "R004: canapé, without its accent, is canape");
     }
 
     @Test
     @DisplayName("should keep marking a catalog word two levels above the quiz even when the translation repeats it, since the exception only covers words out of the EVP")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R004")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldKeepMarkingACatalogWordTwoLevelsAboveTheQuizEvenWhenTheTranslationRepeatsItSinceTheExceptionOnlyCoversWordsOutOfTheEVP(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: only a word out of the catalog is excused by the translation; «tango» in the catalog at
+        // B1 is still two levels above an A1 quiz, even if the translation says «tango».
+        Lexicon lexicon = new Lexicon().level("dance", "VERB", CefrLevel.A1).level("tango", "NOUN", CefrLevel.B1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Bailes", "q-tango", "We dance the tango.", "Bailamos el tango.",
+                "We|we|PRON dance|dance|VERB the|the|DET tango|tango|NOUN .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(List.of(new OffLevelWord("tango", "NOUN", OffLevelReason.ABOVE_LEVEL, CefrLevel.B1, null)),
+                words(quiz), "R004: the exception covers only words out of the EVP");
     }
 
     @Test
     @DisplayName("should leave one finding per off-level word, of rule F-NIVFR-R002, medium severity, panel resolution and instant cost: two in 'She spread the warm blue quilt on the bed.' (A2)")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R005")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldLeaveOneFindingPerOfflevelWordOfRuleFNIVFRR002MediumSeverityPanelResolutionAndInstantCostTwoInSheSpreadTheWarmBlueQuiltOnTheBedA2(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: one finding per word, rule F-NIVFR-R002, medium, at the panel and instant.
+        Lexicon lexicon = spreadLexicon();
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A2", "Posición del adjetivo", "q-quilt", SPREAD, "Ella extendió la colcha azul "
+                + "y tibia sobre la cama.", SPREAD_TOKENS);
+        ContentAnalyzer analyzer = lexicon.analyzer();
+        course.walk(analyzer);
+
+        List<FindingDraft> drafts = analyzer.findingsAt(quiz);
+
+        assertEquals(List.of("spread|VERB", "quilt|NOUN"), drafts.stream().map(FindingDraft::getMarker).toList(),
+                "R005: two findings, one per word");
+        for (FindingDraft draft : drafts) {
+            assertEquals("F-NIVFR-R002", draft.getRule());
+            assertEquals(FindingSeverity.MEDIUM, draft.getSeverity(), "R005: medium");
+            assertEquals(FindingResolution.PANEL, draft.getResolution(), "R005: at the panel");
+        }
+        AnalyzerRuleCard rule = lexicon.provider().describe().getRules().get(0);
+        assertEquals(List.of("F-NIVFR-R002", "INSTANT"), List.of(rule.getId(), rule.getCost().name()),
+                "R005: instant, the cost of its rule");
     }
 
     @Test
     @DisplayName("should give as evidence the sentence, the word, its level or out of the EVP with its COCA rank, and the quiz level, like 'reside is out of the EVP (rank 5,333); the quiz is A1'")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R005")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldGiveAsEvidenceTheSentenceTheWordItsLevelOrOutOfTheEVPWithItsCOCARankAndTheQuizLevelLikeResideIsOutOfTheEVPRank5333TheQuizIsA1(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the evidence reads without running anything again: the sentence as the student sees it,
+        // the word, «fuera del EVP» with its rank, and the level of the quiz.
+        Lexicon lexicon = new Lexicon().level("granddad", "NOUN", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Verbos de movimiento", "q-reside", "We reside in London with our granddad.",
+                "Residimos en Londres con nuestro abuelo.", RESIDE_TOKENS);
+        entity(quiz).setSentenceParts(List.of(part(SentencePartKind.TEXT, "We", null),
+                part(SentencePartKind.CLOZE, null, List.of("reside")), part(SentencePartKind.TEXT, "(live)", null),
+                part(SentencePartKind.TEXT, "in London with our granddad.", null)));
+        ContentAnalyzer analyzer = lexicon.analyzer();
+        course.walk(analyzer);
+
+        FindingDraft reside = analyzer.findingsAt(quiz).get(0);
+
+        assertEquals("reside está fuera del EVP (puesto 5.333); el ejercicio es A1",
+                reside.getEvidence().getObservation(), "R005: the observation");
+        Map<String, String> parts = new LinkedHashMap<>();
+        reside.getEvidence().getExamined().forEach(part -> parts.put(part.getLabel(), part.getText()));
+        assertEquals("We reside in London with our granddad.", parts.get("Oración"), "R005: the sentence");
+        assertEquals("We ___ (live) in London with our granddad.", parts.get("Como la ve el alumno"),
+                "R005 and F-RONDA1-R001: as the student sees it, with its gap");
+        assertEquals("reside", parts.get("Palabra"));
+        assertEquals("fuera del EVP", parts.get("Nivel de la palabra"), "R005: out of the EVP");
+        assertEquals("5.333", parts.get("Puesto COCA"), "R005: with its COCA rank");
+        assertEquals("A1", parts.get("Nivel del ejercicio"), "R005: the level of the quiz");
     }
 
     @Test
     @DisplayName("should score 1 a quiz without off-level words, leaving it no finding, and below 1 a quiz with at least one")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R005")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldScore1AQuizWithoutOfflevelWordsLeavingItNoFindingAndBelow1AQuizWithAtLeastOne(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: 1 without words of another level and no finding; below 1 with at least one.
+        Lexicon lexicon = spreadLexicon();
+        Course course = new Course();
+        AuditNode clean = course.quiz("A2", "Posición del adjetivo", "q-clean", "The bed is blue.", "La cama es azul.",
+                "The|the|DET bed|bed|NOUN is|be|AUX blue|blue|ADJ .|.|PUNCT");
+        AuditNode marked = course.quiz("A2", "Posición del adjetivo", "q-quilt", SPREAD, "Ella extendió la colcha azul "
+                + "y tibia sobre la cama.", SPREAD_TOKENS);
+        ContentAnalyzer analyzer = lexicon.analyzer();
+        course.walk(analyzer);
+
+        assertEquals(1.0, clean.getScores().get(NAME), "R005: 1 without words of another level");
+        assertEquals(List.of(), analyzer.findingsAt(clean), "R005: and no finding");
+        assertTrue(marked.getScores().get(NAME) < 1.0, "R005: below 1 with at least one");
+        assertFalse(analyzer.findingsAt(marked).isEmpty());
     }
 
     @Test
     @DisplayName("should leave a single finding for a word repeated in the sentence, identified by its lemma and part of speech")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R005")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldLeaveASingleFindingForAWordRepeatedInTheSentenceIdentifiedByItsLemmaAndPartOfSpeech(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and F-HALL-R014: the identity is lemma and part of speech: spread twice is one finding.
+        Lexicon lexicon = spreadLexicon();
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A2", "Posición del adjetivo", "q-twice", "She spread the bread and spread the jam.",
+                "Untó el pan y untó la mermelada.", "She|she|PRON spread|spread|VERB the|the|DET bread|bread|NOUN "
+                        + "and|and|CCONJ spread|spread|VERB the|the|DET jam|jam|NOUN .|.|PUNCT");
+        ContentAnalyzer analyzer = lexicon.analyzer();
+        course.walk(analyzer);
+
+        assertEquals(List.of("spread|VERB"), analyzer.findingsAt(quiz).stream().map(FindingDraft::getMarker).toList(),
+                "R005: one finding for the word repeated");
     }
 
     @Test
     @DisplayName("should keep the quiz level and its off-level words in the typed diagnosis of the quiz, with the same data as its findings")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R005")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldKeepTheQuizLevelAndItsOfflevelWordsInTheTypedDiagnosisOfTheQuizWithTheSameDataAsItsFindings(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and F-HALL-R001 inv. 3: the typed diagnosis keeps the level and the words, the same data
+        // as the findings.
+        Lexicon lexicon = spreadLexicon();
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A2", "Posición del adjetivo", "q-quilt", SPREAD, "Ella extendió la colcha azul "
+                + "y tibia sobre la cama.", SPREAD_TOKENS);
+        ContentAnalyzer analyzer = lexicon.analyzer();
+        course.walk(analyzer);
+
+        OffLevelWordsDiagnosis diagnosis = ((DefaultQuizDiagnoses) quiz.getDiagnoses()).getOffLevelWordsDiagnosis()
+                .orElseThrow();
+
+        assertEquals(CefrLevel.A2, diagnosis.getLevel(), "the level of the quiz");
+        assertEquals(diagnosis.getWords().stream().map(w -> w.getLemma() + "|" + w.getPos()).toList(),
+                analyzer.findingsAt(quiz).stream().map(FindingDraft::getMarker).toList(), "the same words as its findings");
+        assertEquals(List.of(CefrLevel.B2, CefrLevel.B2), diagnosis.getWords().stream().map(OffLevelWord::getCatalogLevel)
+                .toList());
     }
 
     @Test
     @DisplayName("should measure a multiple choice quiz like a CLOZE one, on the sentence lemma-absence measures with its correct option in the gap")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R005")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldMeasureAMultipleChoiceQuizLikeACLOZEOneOnTheSentenceLemmaabsenceMeasuresWithItsCorrectOptionInTheGap(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: a multiple choice is measured like a CLOZE one, on the finished sentence lemma-absence
+        // measures -- its correct option in the gap; a distractor is never read.
+        Lexicon lexicon = spreadLexicon().level("scatter", "VERB", CefrLevel.C1).level("put", "VERB", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode cloze = course.quiz("A2", "Posición del adjetivo", "q-cloze", SPREAD, "Ella extendió la colcha azul "
+                + "y tibia sobre la cama.", SPREAD_TOKENS);
+        AuditNode choice = course.quiz("A2", "Posición del adjetivo", "q-choice", SPREAD, "Ella extendió la colcha azul "
+                + "y tibia sobre la cama.", SPREAD_TOKENS);
+        entity(choice).setMultipleChoice(new MultipleChoiceEntity("single", List.of(
+                new MultipleChoiceItemEntity("o1", 1.0, "spread"), new MultipleChoiceItemEntity("o2", 0.0, "scatter"))));
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(words(cloze), words(choice), "R005: the same words as the CLOZE one");
+        assertFalse(lemmas(choice).contains("scatter"), "a distractor is never read");
     }
 
     @Test
     @DisplayName("should write only the off-level-words score on the quizzes it evaluates and never touch the score or diagnosis of another analyzer")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldWriteOnlyTheOfflevelwordsScoreOnTheQuizzesItEvaluatesAndNeverTouchTheScoreOrDiagnosisOfAnotherAnalyzer(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: it writes only its own key; lemma-absence's score and diagnosis stay as they were.
+        Lexicon lexicon = spreadLexicon();
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A2", "Posición del adjetivo", "q-quilt", SPREAD, "Ella extendió la colcha azul "
+                + "y tibia sobre la cama.", SPREAD_TOKENS);
+        quiz.getScores().put("lemma-absence", 0.8);
+        LemmaPlacementDiagnosis placement = new LemmaPlacementDiagnosis(0, List.of(), 0, List.of());
+        ((DefaultQuizDiagnoses) quiz.getDiagnoses()).setLemmaAbsenceDiagnosis(placement);
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(Set.of("lemma-absence", NAME), quiz.getScores().keySet(), "R006: only its own key");
+        assertEquals(0.8, quiz.getScores().get("lemma-absence"), "R006: lemma-absence's score untouched");
+        assertSame(placement, ((DefaultQuizDiagnoses) quiz.getDiagnoses()).getLemmaAbsenceDiagnosis().orElseThrow(),
+                "R006: and its diagnosis");
+        for (AuditNode node : List.of(quiz.getParent(), quiz.getParent().getParent(), course.root)) {
+            assertFalse(node.getScores().containsKey(NAME), "it writes only on the quizzes it evaluates");
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-NIVFR fixtures
+    // -----------------------------------------------------------------------
+
+    private static final String NAME = "off-level-words";
+
+    private static final String SPREAD = "She spread the warm blue quilt on the bed.";
+
+    private static final String SPREAD_TOKENS = "She|she|PRON spread|spread|VERB the|the|DET warm|warm|ADJ "
+            + "blue|blue|ADJ quilt|quilt|NOUN on|on|ADP the|the|DET bed|bed|NOUN .|.|PUNCT";
+
+    private static final String RESIDE_TOKENS = "We|we|PRON reside|reside|VERB|5333 in|in|ADP London|London|PROPN "
+            + "with|with|ADP our|our|PRON granddad|granddad|NOUN .|.|PUNCT";
+
+    private static final String INVEST = "I invested time in learning.";
+
+    private static final String INVEST_TOKENS = "I|I|PRON invested|invest|VERB time|time|NOUN in|in|ADP "
+            + "learning|learn|VERB .|.|PUNCT";
+
+    /** The EVP of «She spread the warm blue quilt on the bed.»: spread and quilt B2, the rest A1. */
+    private static Lexicon spreadLexicon() {
+        return new Lexicon().level("spread", "VERB", CefrLevel.B2).rank("spread", "VERB", 1500)
+                .level("quilt", "NOUN", CefrLevel.B2).rank("quilt", "NOUN", 12000)
+                .level("warm", "ADJ", CefrLevel.A1).level("blue", "ADJ", CefrLevel.A1).level("bed", "NOUN", CefrLevel.A1)
+                .level("bread", "NOUN", CefrLevel.A1).level("jam", "NOUN", CefrLevel.A1);
+    }
+
+    private static Lexicon investLexicon() {
+        return new Lexicon().level("invest", "VERB", CefrLevel.B2).level("time", "NOUN", CefrLevel.A1)
+                .level("learn", "VERB", CefrLevel.A1);
+    }
+
+    /**
+     * The EVP as the shared scorer reads it -- the level of each lemma and part of speech (a phrase of
+     * a lower level has already lowered it, F-LABS-R042) and its COCA rank -- and the bands of
+     * lemma-absence for words out of the catalog (F-LABS-R034).
+     */
+    private static final class Lexicon {
+        private final Map<String, CefrLevel> levels = new HashMap<>();
+        private final Map<String, Integer> ranks = new HashMap<>();
+        private final Set<String> phrases = new HashSet<>();
+        private final Map<CefrLevel, Integer> mildBounds = new HashMap<>(Map.of(CefrLevel.A1, 3000, CefrLevel.A2, 5000,
+                CefrLevel.B1, 8000, CefrLevel.B2, 10000));
+
+        Lexicon level(String lemma, String pos, CefrLevel level) {
+            if (level != null) {
+                levels.put(lemma + "|" + pos, level);
+            }
+            return this;
+        }
+
+        Lexicon rank(String lemma, String pos, int rank) {
+            ranks.put(lemma + "|" + pos, rank);
+            return this;
+        }
+
+        Lexicon phrase(String phrase) {
+            phrases.add(phrase);
+            return this;
+        }
+
+        Lexicon mildBound(CefrLevel level, int bound) {
+            mildBounds.put(level, bound);
+            return this;
+        }
+
+        EvpCatalogPort evp() {
+            EvpCatalogPort evp = mock(EvpCatalogPort.class);
+            when(evp.getExpectedLemmas(any())).thenReturn(Set.of());
+            when(evp.lookupLevel(any())).thenAnswer(i -> Optional.ofNullable(levels.get(key(i.getArgument(0)))));
+            when(evp.lookupLevelByLemma(any())).thenAnswer(i -> levels.entrySet().stream()
+                    .filter(e -> e.getKey().startsWith(i.<String>getArgument(0) + "|")).map(Map.Entry::getValue)
+                    .min(Comparator.naturalOrder()));
+            when(evp.getCocaRank(any())).thenAnswer(i -> Optional.ofNullable(ranks.get(key(i.getArgument(0)))));
+            when(evp.getSemanticCategory(any())).thenReturn(Optional.empty());
+            when(evp.isPhrase(any())).thenAnswer(i -> phrases.contains(i.<String>getArgument(0)));
+            return evp;
+        }
+
+        LemmaAbsenceConfig config() {
+            LemmaAbsenceConfig config = mock(LemmaAbsenceConfig.class);
+            when(config.getDiscountPerLevel()).thenReturn(0.1);
+            when(config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A1)).thenReturn(1000);
+            when(config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.A2)).thenReturn(2000);
+            when(config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B1)).thenReturn(3500);
+            when(config.getOutOfCatalogNoPenaltyRankBound(CefrLevel.B2)).thenReturn(5000);
+            mildBounds.forEach((level, bound) -> when(config.getOutOfCatalogMildDiscountRankBound(level)).thenReturn(bound));
+            when(config.getOutOfCatalogMildDiscount()).thenReturn(0.1);
+            when(config.getOutOfCatalogStrongDiscount()).thenReturn(0.3);
+            return config;
+        }
+
+        SentenceLexicalScorer scorer() {
+            return new DefaultSentenceLexicalScorer(evp(), new DefaultContentWordFilter(), config());
+        }
+
+        OffLevelWordsAnalyzerProvider provider() {
+            LemmaAbsenceConfig config = config();
+            return new OffLevelWordsAnalyzerProvider(new DefaultSentenceLexicalScorer(evp(), new DefaultContentWordFilter(),
+                    config), config, new DefaultTopicTeachingResolver(),
+                    new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
+        }
+
+        ContentAnalyzer analyzer() {
+            return provider().create(null);
+        }
+
+        private static String key(Object lemmaAndPos) {
+            LemmaAndPos lp = (LemmaAndPos) lemmaAndPos;
+            return lp.getLemma() + "|" + lp.getPos();
+        }
+    }
+
+    /** A course of levels, each with its topics by title, walked as the engine walks it. */
+    private static final class Course {
+        final AuditNode root = node(AuditTarget.COURSE, null, null, new DefaultCourseDiagnoses());
+        private final Map<String, AuditNode> levels = new LinkedHashMap<>();
+        private final Map<String, AuditNode> knowledges = new LinkedHashMap<>();
+
+        AuditNode quiz(String level, String title, String id, String sentence, String translation, String tokens) {
+            AuditNode levelNode = levels.computeIfAbsent(level, l -> node(AuditTarget.MILESTONE,
+                    new AuditableMilestone(List.of(), "m-" + l, l, l), root, new DefaultLevelDiagnoses()));
+            AuditNode knowledge = knowledges.computeIfAbsent(level + "/" + title, k -> {
+                AuditNode topic = node(AuditTarget.TOPIC, new AuditableTopic(List.of(), "t-" + k, title, "T"), levelNode,
+                        new DefaultTopicDiagnoses());
+                return node(AuditTarget.KNOWLEDGE, new AuditableKnowledge(List.of(), title, "Completa.", true, "k-" + k,
+                        title, "K", null, title), topic, new DefaultKnowledgeDiagnoses());
+            });
+            List<NlpToken> parsed = new ArrayList<>();
+            for (String token : tokens.split(" ")) {
+                String[] f = token.split("\\|", -1);
+                parsed.add(new NlpToken(f[0], f[1], f[2], f.length > 3 ? Integer.valueOf(f[3]) : null, false,
+                        "PUNCT".equals(f[2])));
+            }
+            AuditableQuiz quiz = new AuditableQuiz(parsed, id, sentence, "Q", translation, List.of(sentence), sentence,
+                    null, null, null, null, null);
+            return node(AuditTarget.QUIZ, quiz, knowledge, new DefaultQuizDiagnoses());
+        }
+
+        void walk(ContentAnalyzer analyzer) {
+            for (AuditNode knowledge : knowledges.values()) {
+                analyzer.onKnowledge(knowledge);
+                knowledge.getChildren().forEach(analyzer::onQuiz);
+            }
+            analyzer.onCourseComplete(root);
+        }
+    }
+
+    private static AuditNode node(AuditTarget target, AuditableEntity entity, AuditNode parent, NodeDiagnoses diagnoses) {
+        AuditNode node = new AuditNode();
+        node.setTarget(target);
+        node.setEntity(entity);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        node.setDiagnoses(diagnoses);
+        if (parent != null) {
+            parent.getChildren().add(node);
+        }
+        return node;
+    }
+
+    private static AuditableQuiz entity(AuditNode quiz) {
+        return (AuditableQuiz) quiz.getEntity();
+    }
+
+    private static SentencePartEntity part(SentencePartKind kind, String text, List<String> options) {
+        return new SentencePartEntity(kind, text, options);
+    }
+
+    private static List<OffLevelWord> words(AuditNode quiz) {
+        return ((DefaultQuizDiagnoses) quiz.getDiagnoses()).getOffLevelWordsDiagnosis()
+                .map(OffLevelWordsDiagnosis::getWords).orElse(List.of());
+    }
+
+    private static List<String> lemmas(AuditNode quiz) {
+        return words(quiz).stream().map(OffLevelWord::getLemma).toList();
     }
 }

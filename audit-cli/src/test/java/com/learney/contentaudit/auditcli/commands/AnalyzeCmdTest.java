@@ -988,7 +988,11 @@ public class AnalyzeCmdTest {
             return evp;
         }
 
-        /** The seven classic providers, as Main builds them. */
+        /**
+         * The seven classic providers, as Main builds them, with lemma-count at «4 para todas», the
+         * configuration of the analysis 2026-09-30T11-54-02 (F-POCOV-R001 inv. 1; the default is
+         * 8 · 6 · 4 · 3 since 30/9).
+         */
         static List<AnalyzerProvider> classicProviders() {
             DefaultLemmaAbsenceConfig absence = new DefaultLemmaAbsenceConfig();
             return List.of(
@@ -999,7 +1003,7 @@ public class AnalyzeCmdTest {
                     new LemmaRecurrenceAnalyzerProvider(new DefaultLemmaRecurrenceConfig()),
                     new LemmaAbsenceAnalyzerProvider(evp(), absence,
                             new DefaultSentenceLexicalScorer(evp(), new DefaultContentWordFilter(), absence)),
-                    new LemmaCountAnalyzerProvider(evp(), new DefaultLemmaCountConfigLoader().load(null)));
+                    new LemmaCountAnalyzerProvider(evp(), new DefaultLemmaCountConfigLoader().load("4")));
         }
 
         /** The judge as Main builds it -- its factory, session and verdict reader -- over a fake judge. */

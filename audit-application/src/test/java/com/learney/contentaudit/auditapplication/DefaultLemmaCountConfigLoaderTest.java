@@ -2,7 +2,10 @@ package com.learney.contentaudit.auditapplication;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.learney.contentaudit.auditdomain.LemmaCountBand;
 import com.learney.contentaudit.auditdomain.LemmaCountConfig;
+import java.util.Arrays;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -95,35 +98,69 @@ public class DefaultLemmaCountConfigLoaderTest {
     @DisplayName("should load '4' as four bands that all ask for 4 sentences")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldLoad4AsFourBandsThatAllAskFor4Sentences() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 1: «4» is the same four bands asking for 4 sentences each, so every word keeps
+        // the threshold of before the bands.
+        LemmaCountConfig config = loader.load("4");
+
+        assertEquals(List.of(4, 4, 4, 4), thresholds(config), "R001: four bands that all ask for 4");
+        assertEquals(List.of(1000, 2000, 3000), topRanks(config).subList(0, 3), "R001: the same COCA bands");
+        assertNull(topRanks(config).get(3), "R001: the last band has no top and takes the words without rank");
+        assertEquals(4, config.getThreshold(), "R001: the uniform reference stays at 4");
     }
 
     @Test
     @DisplayName("should load '8/6/4/3' as the 1,000, 2,000 and 3,000 most common words and beyond, asking for 8, 6, 4 and 3 sentences")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldLoad8643AsThe10002000And3000MostCommonWordsAndBeyondAskingFor864And3Sentences() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 2: one threshold per band, by COCA rank: the 1,000 most common words ask for 8
+        // sentences, up to 2,000 for 6, up to 3,000 for 4 and beyond (or without rank) for 3.
+        LemmaCountConfig config = loader.load("8/6/4/3");
+
+        assertEquals(List.of(8, 6, 4, 3), thresholds(config), "R001: 8, 6, 4 and 3 sentences");
+        assertEquals(Arrays.asList(1000, 2000, 3000, null), topRanks(config),
+                "R001: the 1,000, 2,000 and 3,000 most common words and beyond");
+        assertEquals(4, config.getBands().stream().map(LemmaCountBand::getName).distinct().count(),
+                "each band has its own name");
     }
 
     @Test
     @DisplayName("should load the bands 8, 6, 4 and 3 when no threshold is configured, the default José confirmed on 30/9")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldLoadTheBands864And3WhenNoThresholdIsConfiguredTheDefaultJosConfirmedOn309() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 and F-RONDA1-R008: José confirmed on 30/9 the bands 8, 6, 4 and 3 as the default.
+        LemmaCountConfig byDefault = loader.load(null);
+
+        assertEquals(List.of(8, 6, 4, 3), thresholds(byDefault), "R001: the default is 8, 6, 4 and 3");
+        assertEquals(thresholds(loader.load("8/6/4/3")), thresholds(byDefault),
+                "the default is the same table as asking for 8/6/4/3");
+        assertEquals(topRanks(loader.load("8/6/4/3")), topRanks(byDefault));
     }
 
     @Test
     @DisplayName("should reject a band threshold that is not a positive integer, like '8/0/4/3', as it rejects a uniform one")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldRejectABandThresholdThatIsNotAPositiveIntegerLike8043AsItRejectsAUniformOne() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: a band asks for at least one sentence, as the uniform threshold does (F-LCOUNT-R007).
+        IllegalArgumentException zero = assertThrows(IllegalArgumentException.class, () -> loader.load("8/0/4/3"),
+                "R001: a band asking for 0 sentences is rejected");
+        assertTrue(zero.getMessage().contains("mayor que 0"), zero.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> loader.load("8/-6/4/3"), "a negative band");
+        assertThrows(IllegalArgumentException.class, () -> loader.load("8/6.5/4/3"), "a decimal band");
+        assertThrows(IllegalArgumentException.class, () -> loader.load("8/x/4/3"), "a band that is not a number");
+        assertThrows(IllegalArgumentException.class, () -> loader.load("0"), "as it rejects a uniform 0");
+    }
+
+    private static List<Integer> thresholds(LemmaCountConfig config) {
+        return config.getBands().stream().map(LemmaCountBand::getThreshold).toList();
+    }
+
+    private static List<Integer> topRanks(LemmaCountConfig config) {
+        List<Integer> ranks = new java.util.ArrayList<>();
+        config.getBands().forEach(band -> ranks.add(band.getMaxCocaRank()));
+        return ranks;
     }
 }

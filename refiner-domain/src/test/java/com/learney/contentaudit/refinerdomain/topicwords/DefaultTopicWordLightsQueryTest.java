@@ -1,7 +1,55 @@
 package com.learney.contentaudit.refinerdomain.topicwords;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultKnowledgeDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultLevelDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultTopicDiagnoses;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.NodeDiagnoses;
+import com.learney.contentaudit.auditdomain.labs.AbsenceType;
+import com.learney.contentaudit.auditdomain.labs.AbsentLemma;
+import com.learney.contentaudit.auditdomain.labs.LemmaAbsenceLevelDiagnosis;
+import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
+import com.learney.contentaudit.auditdomain.labs.LemmaPlacementDiagnosis;
+import com.learney.contentaudit.auditdomain.labs.PriorityLevel;
+import com.learney.contentaudit.auditdomain.lexicalflags.MisplacedWordFlag;
+import com.learney.contentaudit.auditdomain.lexicalflags.SentenceLexicalEvaluator;
+import com.learney.contentaudit.auditdomain.lexicalflags.SentenceLexicalFlags;
+import com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryCriteria;
+import com.learney.contentaudit.refinerdomain.SuggestedLemmaQueryPort;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
+import org.mockito.Mockito;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,274 +63,921 @@ public class DefaultTopicWordLightsQueryTest {
     @DisplayName("should list each content word of the topic's quizzes once by lemma and part of speech, with its level, its course sentence count and its light")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R001")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldListEachContentWordOfTheTopicsQuizzesOnceByLemmaAndPartOfSpeechWithItsLevelItsCourseSentenceCountAndItsLight(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: each content word of the topic once, by lemma and part of speech, with its level, its
+        // sentences in the course and its light; function words are not words of the topic.
+        World world = adjectives();
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", SPREAD).quiz("q2",
+                "The|the|DET warm|warm|ADJ lamp|lamp|NOUN is|be|AUX blue|blue|ADJ .|.|PUNCT");
+        world.filler("A2", "lamp|NOUN", 3);
+
+        TopicWordLights lights = world.lights("k-adj", criteria());
+
+        assertEquals(List.of("spread|VERB B2 1 RED", "warm|ADJ A1 2 NEUTRAL", "blue|ADJ A1 2 NEUTRAL",
+                "quilt|NOUN B2 1 RED", "bed|NOUN A1 1 NEUTRAL", "lamp|NOUN A2 4 GREEN"), described(lights),
+                "R001: once each, with level, sentences and light");
+        assertEquals(List.of("k-adj", "Posición del adjetivo", "A2", "a-299"), List.of(lights.getKnowledgeId(),
+                lights.getKnowledgeLabel(), lights.getLevel().name(), lights.getAuditId()), "the topic and its analysis");
     }
 
     @Test
     @DisplayName("should show the level lexis gives to a word it flags, out of the EVP with its COCA rank for an out-of-catalog one, and otherwise the level lemma-count assigns")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R001")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldShowTheLevelLexisGivesToAWordItFlagsOutOfTheEVPWithItsCOCARankForAnOutofcatalogOneAndOtherwiseTheLevelLemmacountAssigns(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the level shown is the one lexis gives when it flags the word -- «drum» as a verb is read
+        // B1 by lexis, from the noun, while lemma-count cannot place it --, «fuera del EVP» with its rank
+        // for reside, and otherwise the level lemma-count assigns, as for granddad.
+        World world = movement();
+        world.word("drum", "NOUN", CefrLevel.B1, 2900);
+        world.topic("A1", "Verbos de movimiento", "k-mov").quiz("q1", RESIDE)
+                .quiz("q2", "They|they|PRON drum|drum|VERB .|.|PUNCT");
+
+        Map<String, TopicWord> words = world.words("k-mov", criteria());
+
+        assertEquals(List.of("B1", "false", "RED"), List.of(String.valueOf(words.get("drum|VERB").getLevel()),
+                String.valueOf(words.get("drum|VERB").isOutOfCatalog()), words.get("drum|VERB").getLight().name()),
+                "R001: the level lexis gives to drum");
+        assertEquals(List.of("null", "true", "5333"), List.of(String.valueOf(words.get("reside|VERB").getLevel()),
+                String.valueOf(words.get("reside|VERB").isOutOfCatalog()),
+                String.valueOf(words.get("reside|VERB").getFrequencyRank())), "R001: reside out of the EVP, 5,333");
+        assertEquals(CefrLevel.A1, words.get("granddad|NOUN").getLevel(), "R001: the level lemma-count assigns");
     }
 
     @Test
     @DisplayName("should show without level a word lemma-count cannot place, with its sentences from the unassigned list of lemma-count")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R001")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldShowWithoutLevelAWordLemmacountCannotPlaceWithItsSentencesFromTheUnassignedListOfLemmacount(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: a word lemma-count cannot place shows without level, with the sentences of the unassigned
+        // list of lemma-count: «zorb» (no EVP level, rank 500, not penalized in A1) in 3 sentences.
+        World world = movement();
+        world.topic("A1", "Cosas", "k-things").quiz("q1", "The|the|DET zorb|zorb|NOUN|500 is|be|AUX here|here|ADV .|.|PUNCT");
+        world.filler("A1", "zorb|NOUN", 2);
+
+        TopicWord zorb = world.words("k-things", criteria()).get("zorb|NOUN");
+
+        assertEquals(List.of("null", "false", "3", "null", "NEUTRAL"), List.of(String.valueOf(zorb.getLevel()),
+                String.valueOf(zorb.isOutOfCatalog()), String.valueOf(zorb.getSentenceCount()),
+                String.valueOf(zorb.getThreshold()), zorb.getLight().name()), "R001: without level, its 3 sentences");
     }
 
     @Test
     @DisplayName("should reject a knowledge that is not in the analysis with 'Knowledge <id> not found in the analysis.' and return no list")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R001")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldRejectAKnowledgeThatIsNotInTheAnalysisWithKnowledgeIdNotFoundInTheAnalysisAndReturnNoList(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 and J001 (rechazo): a topic the analysis does not have is rejected with the message of the rule.
+        World world = adjectives();
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", SPREAD);
+
+        KnowledgeNotInAnalysisException rejected = assertThrows(KnowledgeNotInAnalysisException.class,
+                () -> world.lights("k-nowhere", criteria()));
+
+        assertEquals("Knowledge 'k-nowhere' not found in the analysis.", rejected.getMessage(), "R001: the message");
     }
 
     @Test
     @DisplayName("should reject an analysis without lemma-count data with 'The analysis <id> has no lemma-count data. Run content-audit analyze with lemma-count.'")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R001")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldRejectAnAnalysisWithoutLemmacountDataWithTheAnalysisIdHasNoLemmacountDataRunContentauditAnalyzeWithLemmacount(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: without lemma-count there are no sentences to show: the analysis is rejected, never zeros.
+        World world = adjectives();
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", SPREAD);
+        world.withoutLemmaCount();
+
+        LemmaCountDataMissingException rejected = assertThrows(LemmaCountDataMissingException.class,
+                () -> world.lights("k-adj", criteria()));
+
+        assertEquals("The analysis 'a-299' has no lemma-count data. Run 'content-audit analyze' with lemma-count.",
+                rejected.getMessage(), "R001: the message");
     }
 
     @Test
     @DisplayName("should paint green a word lemma-count assigns to the topic's level that the course uses in fewer than 2N sentences, like 'lamp' (A2) in 4 sentences with N 4")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R002")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldPaintGreenAWordLemmacountAssignsToTheTopicsLevelThatTheCourseUsesInFewerThan2NSentencesLikeLampA2In4SentencesWithN4(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: lamp (A2) is in 4 sentences of the course, fewer than 2N = 8: green in an A2 topic.
+        World world = adjectives();
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", "The|the|DET lamp|lamp|NOUN is|be|AUX blue|blue|ADJ "
+                + ".|.|PUNCT");
+        world.filler("A2", "lamp|NOUN", 3);
+
+        TopicWord lamp = world.words("k-adj", criteria()).get("lamp|NOUN");
+
+        assertEquals(List.of("GREEN", "4", "4"), List.of(lamp.getLight().name(), String.valueOf(lamp.getSentenceCount()),
+                String.valueOf(lamp.getThreshold())), "R002: green, 4 sentences against N 4");
     }
 
     @Test
     @DisplayName("should mark a green word under-exposed in 1 to N-1 sentences and scarce in N to 2N-1, so with N 4 'rubber' in 3 sentences is under-exposed and 'lamp' in 4 is scarce")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R002")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldMarkAGreenWordUnderexposedIn1ToN1SentencesAndScarceInNTo2N1SoWithN4RubberIn3SentencesIsUnderexposedAndLampIn4IsScarce(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: with N 4, rubber (3 sentences) is under-exposed and lamp (4) scarce.
+        World world = adjectives();
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", "The|the|DET rubber|rubber|NOUN lamp|lamp|NOUN "
+                + "is|be|AUX blue|blue|ADJ .|.|PUNCT");
+        world.filler("A2", "rubber|NOUN", 2).filler("A2", "lamp|NOUN", 3);
+
+        Map<String, TopicWord> words = world.words("k-adj", criteria());
+
+        assertEquals(GreenState.UNDER_EXPOSED, words.get("rubber|NOUN").getGreenState(), "R002: 3 is in 1..N-1");
+        assertEquals(GreenState.SCARCE, words.get("lamp|NOUN").getGreenState(), "R002: 4 is in N..2N-1");
     }
 
     @Test
     @DisplayName("should not paint green a word of the topic's level used in 2N or more sentences, like 'vegetable' (A1) in 10 sentences with N 4")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R002")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldNotPaintGreenAWordOfTheTopicsLevelUsedIn2NOrMoreSentencesLikeVegetableA1In10SentencesWithN4(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: vegetable (A1) is in 10 sentences, not fewer than 2N = 8: not green, in its A1 topic.
+        World world = movement();
+        world.word("vegetable", "NOUN", CefrLevel.A1, 2422);
+        world.topic("A1", "Afirmativas regulares", "k-veg").quiz("q1", "I|I|PRON eat|eat|VERB vegetables|vegetable|NOUN "
+                + ".|.|PUNCT");
+        world.filler("A1", "vegetable|NOUN", 9);
+
+        TopicWord vegetable = world.words("k-veg", criteria()).get("vegetable|NOUN");
+
+        assertEquals(List.of("10", "NEUTRAL"), List.of(String.valueOf(vegetable.getSentenceCount()),
+                vegetable.getLight().name()), "R002: 10 sentences is not fewer than 8");
     }
 
     @Test
     @DisplayName("should not paint green a word lemma-count assigns to a level other than the topic's")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R002")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldNotPaintGreenAWordLemmacountAssignsToALevelOtherThanTheTopics() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: bed is A1 and in 1 sentence, but the topic is A2: not green there.
+        World world = adjectives();
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", SPREAD);
+
+        TopicWord bed = world.words("k-adj", criteria()).get("bed|NOUN");
+
+        assertEquals(List.of("A1", "1", "NEUTRAL"), List.of(bed.getLevel().name(), String.valueOf(bed.getSentenceCount()),
+                bed.getLight().name()), "R002: another level is never green");
     }
 
     @Test
     @DisplayName("should use the threshold of each word's band, so 'number' (A1) in 5 sentences is green and under-exposed with bands 8, 6, 4 and 3 but scarce with 4 for every band")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R002")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldUseTheThresholdOfEachWordsBandSoNumberA1In5SentencesIsGreenAndUnderexposedWithBands864And3ButScarceWith4ForEveryBand(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 and F-POCOV-R001: number (A1, 5 sentences, COCA 211) is under-exposed with 8 (bands) and
+        // scarce with 4 (4 for every band); green in both.
+        TopicWord withBands = numberWorld(bands(8, 6, 4, 3)).words("k-num", criteria()).get("number|NOUN");
+        TopicWord withFour = numberWorld(bands(4, 4, 4, 4)).words("k-num", criteria()).get("number|NOUN");
+
+        assertEquals(List.of("GREEN", "UNDER_EXPOSED", "8"), List.of(withBands.getLight().name(),
+                withBands.getGreenState().name(), String.valueOf(withBands.getThreshold())), "R002: N of its band, 8");
+        assertEquals(List.of("GREEN", "SCARCE", "4"), List.of(withFour.getLight().name(), withFour.getGreenState().name(),
+                String.valueOf(withFour.getThreshold())), "R002: N 4 for every band");
     }
 
     @Test
     @DisplayName("should never paint green a word lexis flags for the topic's level, even when lemma-count assigns it that level and few sentences")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R002")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldNeverPaintGreenAWordLexisFlagsForTheTopicsLevelEvenWhenLemmacountAssignsItThatLevelAndFewSentences(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: no red word is green. Here lexis flags lamp in the A2 topic while lemma-count gives it A2
+        // and 4 sentences: it is red, never green.
+        World world = adjectives();
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", "The|the|DET lamp|lamp|NOUN is|be|AUX blue|blue|ADJ "
+                + ".|.|PUNCT");
+        world.filler("A2", "lamp|NOUN", 3);
+        SentenceLexicalEvaluator flagsLamp = (tokens, level) -> new SentenceLexicalFlags(
+                List.of(new MisplacedWordFlag("lamp", "NOUN", CefrLevel.B1, level)), List.of());
+
+        TopicWord lamp = world.wordsWith(flagsLamp, "k-adj").get("lamp|NOUN");
+
+        assertEquals(List.of("RED", "null"), List.of(lamp.getLight().name(), String.valueOf(lamp.getGreenState())),
+                "R002: red, never green");
     }
 
     @Test
     @DisplayName("should mark as under-exposed exactly the green words that lemma-count leaves as findings in the topic's level")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R002")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldMarkAsUnderexposedExactlyTheGreenWordsThatLemmacountLeavesAsFindingsInTheTopicsLevel(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: a green word is under-exposed exactly when lemma-count leaves a finding for it in the topic's
+        // level (F-POCOV-R003): rubber (3 of 4) yes; lamp and leather (4 of 4) are scarce, without finding.
+        World world = adjectives();
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", "The|the|DET rubber|rubber|NOUN lamp|lamp|NOUN "
+                + "has|have|VERB leather|leather|NOUN .|.|PUNCT");
+        world.filler("A2", "rubber|NOUN", 2).filler("A2", "lamp|NOUN", 3).filler("A2", "leather|NOUN", 3);
+        Map<String, TopicWord> words = world.words("k-adj", criteria());
+
+        Set<String> findings = new TreeSet<>();
+        world.lemmaCount.findingsAt(world.levelNode("A2")).forEach(draft -> findings.add(draft.getMarker()));
+        Set<String> underExposed = new TreeSet<>();
+        words.forEach((key, word) -> {
+            if (word.getGreenState() == GreenState.UNDER_EXPOSED) {
+                underExposed.add(key);
+            }
+        });
+        Set<String> findingsOfTheTopic = new TreeSet<>(findings);
+        findingsOfTheTopic.retainAll(words.keySet());
+        assertEquals(Set.of("rubber|NOUN"), underExposed, "R002: rubber, the only one in 1..N-1");
+        assertEquals(findingsOfTheTopic, underExposed, "R002: exactly the findings of lemma-count among its words");
     }
 
     @Test
     @DisplayName("should offer to add the suggested words of the topic's level in the order of get suggested-lemmas for a task of that level, without the words the topic already uses")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R003")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldOfferToAddTheSuggestedWordsOfTheTopicsLevelInTheOrderOfGetSuggestedlemmasForATaskOfThatLevelWithoutTheWordsTheTopicAlreadyUses(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the words to add are the suggested words of A2, in the order get suggested-lemmas gives them
+        // for a task of that level, without the ones the topic already uses (lamp).
+        World world = suggestionsWorld();
+
+        TopicWordLights lights = world.lights("k-adj", criteria());
+        List<String> forATask = world.suggestedForATaskOfTheLevel(criteria());
+
+        assertTrue(forATask.contains("lamp|NOUN"), "the level suggests lamp, which the topic uses");
+        List<String> expected = new ArrayList<>(forATask);
+        expected.remove("lamp|NOUN");
+        assertEquals(expected, keys(lights.getToAdd()), "R003: the same order, without the words of the topic");
     }
 
     @Test
     @DisplayName("should apply the limit after removing the words the topic already uses, so asking for 10 returns 10 while enough remain")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R003")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldApplyTheLimitAfterRemovingTheWordsTheTopicAlreadyUsesSoAskingFor10Returns10WhileEnoughRemain(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the limit cuts after removing the words of the topic: asking for 10 gives 10 while there
+        // are enough, and fewer only when the level runs out.
+        World world = suggestionsWorld();
+
+        List<String> ten = keys(world.lights("k-adj", criteria(10)).getToAdd());
+        List<String> all = keys(world.lights("k-adj", criteria()).getToAdd());
+
+        assertTrue(all.size() > 10, "enough suggested words: " + all.size());
+        assertEquals(all.subList(0, 10), ten, "R003: 10 of 10, the first ones, none of the topic");
+        assertEquals(all.size(), keys(world.lights("k-adj", criteria(100)).getToAdd()).size(), "fewer when they run out");
     }
 
     @Test
     @DisplayName("should give the same words to add as get suggested-lemmas with the same part-of-speech, regex and include-exposed filters")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R003")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldGiveTheSameWordsToAddAsGetSuggestedlemmasWithTheSamePartofspeechRegexAndIncludeexposedFilters(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: with the part of speech, the regex and include-exposed of get suggested-lemmas, the same list.
+        World world = suggestionsWorld();
+        SuggestedLemmaQueryCriteria filtered = new SuggestedLemmaQueryCriteria(Optional.empty(), Optional.of("NOUN"),
+                Optional.empty(), true, Optional.of("^[a-p]"));
+
+        List<String> forATask = world.suggestedForATaskOfTheLevel(filtered);
+        List<String> toAdd = keys(world.lights("k-adj", filtered).getToAdd());
+
+        List<String> expected = new ArrayList<>(forATask);
+        expected.removeAll(List.of("lamp|NOUN", "quilt|NOUN", "bed|NOUN", "bench|NOUN"));
+        assertFalse(toAdd.isEmpty());
+        assertEquals(expected, toAdd, "R003: the same filters, the same list, without the words of the topic");
+        assertTrue(toAdd.stream().allMatch(key -> key.endsWith("|NOUN") && key.charAt(0) <= 'p'), "the filters apply");
     }
 
     @Test
     @DisplayName("should never paint red 'invest' (B2) in '$Invest time$ + gerundio' (A2) and show it as taught by the topic")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R004")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldNeverPaintRedInvestB2InInvestTimeGerundioA2AndShowItAsTaughtByTheTopic() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: «$Invest time$ + gerundio» teaches invest (B2): never red there, shown as taught.
+        World world = adjectives();
+        world.word("invest", "VERB", CefrLevel.B2, 1800).word("time", "NOUN", CefrLevel.A1, 50)
+                .word("read", "VERB", CefrLevel.A1, 300).word("book", "NOUN", CefrLevel.A1, 400);
+        world.topic("A2", "$Invest time$ + gerundio", "k-invest").quiz("q1", "He|he|PRON invested|invest|VERB "
+                + "time|time|NOUN reading|read|VERB a|a|DET book|book|NOUN .|.|PUNCT");
+
+        TopicWord invest = world.words("k-invest", criteria()).get("invest|VERB");
+
+        assertEquals(List.of("NEUTRAL", "true"), List.of(invest.getLight().name(), String.valueOf(invest.isTaughtByTopic())),
+                "R004: taught by the topic, never red");
     }
 
     @Test
     @DisplayName("should never paint red 'sequence' and 'simultaneous' in 'Orden o simultaneidad' (B1), answers of at least 3 quizzes and 20% of the topic")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R004")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldNeverPaintRedSequenceAndSimultaneousInOrdenOSimultaneidadB1AnswersOfAtLeast3QuizzesAnd20OfTheTopic(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: in «Orden o simultaneidad» (B1) sequence and simultaneous are the answers of 3 of its 10
+        // quizzes each: never red there.
+        World world = adjectives();
+        world.word("sequence", "NOUN", CefrLevel.C1, 3500).word("simultaneous", "ADJ", CefrLevel.C2, 9000)
+                .word("work", "VERB", CefrLevel.A1, 100).word("happen", "VERB", CefrLevel.A2, 300);
+        Topic topic = world.topic("B1", "Orden o simultaneidad", "k-orden");
+        for (int i = 0; i < 3; i++) {
+            topic.answered("qs" + i, "They|they|PRON work|work|VERB in|in|ADP sequence|sequence|NOUN .|.|PUNCT", "sequence");
+            topic.answered("qm" + i, "They|they|PRON happen|happen|VERB simultaneous|simultaneous|ADJ .|.|PUNCT",
+                    "simultaneous");
+        }
+        for (int i = 0; i < 4; i++) {
+            topic.answered("qw" + i, "They|they|PRON work|work|VERB .|.|PUNCT", "work");
+        }
+
+        Map<String, TopicWord> words = world.words("k-orden", criteria());
+
+        for (String key : List.of("sequence|NOUN", "simultaneous|ADJ")) {
+            assertEquals(List.of("NEUTRAL", "true"), List.of(words.get(key).getLight().name(),
+                    String.valueOf(words.get(key).isTaughtByTopic())), "R004: " + key + " is taught by the topic");
+        }
     }
 
     @Test
     @DisplayName("should take 'let' as taught by a topic whose title term between dollar signs is 'Let's'")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R004")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldTakeLetAsTaughtByATopicWhoseTitleTermBetweenDollarSignsIsLets() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: «$Let's$» teaches let, which lexis flags one level above an A1 topic: never red there.
+        World world = movement();
+        world.word("let", "VERB", CefrLevel.A2, 200).word("dance", "VERB", CefrLevel.A1, 900);
+        world.topic("A1", "Oraciones con $let's$", "k-lets").quiz("q1", "Let|let|VERB 's|we|PRON dance|dance|VERB .|.|PUNCT");
+
+        TopicWord let = world.words("k-lets", criteria()).get("let|VERB");
+
+        assertEquals(List.of("NEUTRAL", "true"), List.of(let.getLight().name(), String.valueOf(let.isTaughtByTopic())),
+                "R004: let's counts as let");
     }
 
     @Test
     @DisplayName("should paint red a word lexis flags as misplaced for the topic's level in any of its quizzes, like 'bench' (B2) in 'Posicion del adjetivo' (A2), with its catalog level")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R005")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldPaintRedAWordLexisFlagsAsMisplacedForTheTopicsLevelInAnyOfItsQuizzesLikeBenchB2InPosicionDelAdjetivoA2WithItsCatalogLevel(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: bench (B2) in one quiz of «Posición del adjetivo» (A2) is red, with its catalog level.
+        World world = adjectives();
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", "The|the|DET bed|bed|NOUN is|be|AUX blue|blue|ADJ "
+                + ".|.|PUNCT").quiz("q2", BENCH);
+
+        TopicWord bench = world.words("k-adj", criteria()).get("bench|NOUN");
+
+        assertEquals(List.of("RED", "B2", "false"), List.of(bench.getLight().name(), bench.getLevel().name(),
+                String.valueOf(bench.isOutOfCatalog())), "R005: red, B2");
     }
 
     @Test
     @DisplayName("should paint red an out-of-catalog word lexis penalizes at the topic's level, shown out of the EVP with its COCA rank, like 'reside' in an A1 topic")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R005")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldPaintRedAnOutofcatalogWordLexisPenalizesAtTheTopicsLevelShownOutOfTheEVPWithItsCOCARankLikeResideInAnA1Topic(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: reside, out of the EVP and penalized in A1, is red, shown «fuera del EVP» with 5,333.
+        World world = movement();
+        world.topic("A1", "Verbos de movimiento", "k-mov").quiz("q1", RESIDE);
+
+        TopicWord reside = world.words("k-mov", criteria()).get("reside|VERB");
+
+        assertEquals(List.of("RED", "true", "5333", "null"), List.of(reside.getLight().name(),
+                String.valueOf(reside.isOutOfCatalog()), String.valueOf(reside.getFrequencyRank()),
+                String.valueOf(reside.getLevel())), "R005: red, out of the EVP with its rank");
     }
 
     @Test
     @DisplayName("should not paint red an out-of-catalog word that lexis does not penalize at the topic's level")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R005")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldNotPaintRedAnOutofcatalogWordThatLexisDoesNotPenalizeAtTheTopicsLevel() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: zorb, out of the EVP with rank 500, is not penalized in A1 (up to 1,000): not red.
+        World world = movement();
+        world.topic("A1", "Cosas", "k-things").quiz("q1", "The|the|DET zorb|zorb|NOUN|500 is|be|AUX here|here|ADV .|.|PUNCT");
+
+        assertEquals(WordLight.NEUTRAL, world.words("k-things", criteria()).get("zorb|NOUN").getLight(),
+                "R005: lexis does not penalize it");
     }
 
     @Test
     @DisplayName("should paint red from the tokens each quiz carries in the report, even when the analysis did not run lemma-absence")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R005")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldPaintRedFromTheTokensEachQuizCarriesInTheReportEvenWhenTheAnalysisDidNotRunLemmaabsence(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the red comes from the tokens each quiz carries, not from lemma-absence: an analysis without
+        // it paints spread and quilt red all the same.
+        World world = adjectives();
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", SPREAD);
+        world.withoutLemmaAbsence();
+
+        Map<String, TopicWord> words = world.words("k-adj", criteria());
+
+        assertEquals(List.of("RED", "RED"), List.of(words.get("spread|VERB").getLight().name(),
+                words.get("quilt|NOUN").getLight().name()), "R005: from the tokens");
+        assertTrue(world.report().getRoot().getChildren().stream().allMatch(level -> ((DefaultLevelDiagnoses)
+                level.getDiagnoses()).getLemmaAbsenceDiagnosis().isEmpty()), "the analysis did not run lemma-absence");
     }
 
     @Test
     @DisplayName("should say that a red word is also an off-level-words error when the analysis has that finding in a quiz of the topic")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R005")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldSayThatARedWordIsAlsoAnOfflevelwordsErrorWhenTheAnalysisHasThatFindingInAQuizOfTheTopic(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: spread and quilt (B2 in A2) are also errors of off-level-words in the analysis; metal (B1,
+        // one level up) is red but not an error.
+        World world = adjectives();
+        world.word("metal", "NOUN", CefrLevel.B1, 2000);
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", SPREAD).quiz("q2",
+                "The|the|DET metal|metal|NOUN bed|bed|NOUN .|.|PUNCT");
+        world.withOffLevelWords();
+
+        Map<String, TopicWord> words = world.words("k-adj", criteria());
+
+        assertEquals(List.of("true", "true", "false"), List.of(String.valueOf(words.get("spread|VERB").getOffLevelError()),
+                String.valueOf(words.get("quilt|NOUN").getOffLevelError()),
+                String.valueOf(words.get("metal|NOUN").getOffLevelError())), "R005: the mark of off-level-words");
+        assertEquals(WordLight.RED, words.get("metal|NOUN").getLight(), "metal is red all the same");
     }
 
     @Test
     @DisplayName("should leave the error mark without data and keep the light when the analysis did not run off-level-words")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R005")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldLeaveTheErrorMarkWithoutDataAndKeepTheLightWhenTheAnalysisDidNotRunOfflevelwords(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: without off-level-words in the analysis the mark is «sin dato» and the light stays.
+        World world = adjectives();
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", SPREAD);
+
+        TopicWord spread = world.words("k-adj", criteria()).get("spread|VERB");
+
+        assertNull(spread.getOffLevelError(), "R005: no data");
+        assertEquals(WordLight.RED, spread.getLight(), "R005: the light does not change");
     }
 
     @Test
     @DisplayName("should leave neutral a word of the topic's level that the course repeats in many sentences, like 'go' (A1) in more than 15")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R006")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldLeaveNeutralAWordOfTheTopicsLevelThatTheCourseRepeatsInManySentencesLikeGoA1InMoreThan15(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: go (A1) is in 20 sentences of the course: neutral in an A1 topic, never red for repeating.
+        World world = movement();
+        world.word("go", "VERB", CefrLevel.A1, 30);
+        world.topic("A1", "Rutinas", "k-go").quiz("q1", "We|we|PRON go|go|VERB home|home|ADV .|.|PUNCT");
+        world.filler("A1", "go|VERB", 19);
+
+        TopicWord go = world.words("k-go", criteria()).get("go|VERB");
+
+        assertEquals(List.of("20", "NEUTRAL"), List.of(String.valueOf(go.getSentenceCount()), go.getLight().name()),
+                "R006: a word the course repeats is neutral");
     }
 
     @Test
     @DisplayName("should not paint red a word of the topic's level that lemma-recurrence finds over-exposed, like 'oven' (B1) in a B1 topic, which returns every 8 words")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R006")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldNotPaintRedAWordOfTheTopicsLevelThatLemmarecurrenceFindsOverexposedLikeOvenB1InAB1TopicWhichReturnsEvery8Words(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: oven (B1) comes back every few words in its B1 topic -- lemma-recurrence finds it over-exposed
+        // -- but nothing is red for how often it returns: it stays green, in its 3 sentences.
+        World world = adjectives();
+        world.word("oven", "NOUN", CefrLevel.B1, 2800).word("hot", "ADJ", CefrLevel.A1, 500);
+        world.topic("B1", "La cocina", "k-oven").quiz("q1", "The|the|DET oven|oven|NOUN is|be|AUX hot|hot|ADJ .|.|PUNCT")
+                .quiz("q2", "The|the|DET oven|oven|NOUN is|be|AUX hot|hot|ADJ .|.|PUNCT")
+                .quiz("q3", "The|the|DET oven|oven|NOUN is|be|AUX hot|hot|ADJ .|.|PUNCT");
+        world.withOverExposedRecurrence("oven");
+
+        TopicWord oven = world.words("k-oven", criteria()).get("oven|NOUN");
+
+        assertEquals(List.of("GREEN", "3"), List.of(oven.getLight().name(), String.valueOf(oven.getSentenceCount())),
+                "R006: never red for returning often");
     }
 
     @Test
     @DisplayName("should never offer to add a word that is red in the topic, even when it is a suggested word of the level")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R007")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldNeverOfferToAddAWordThatIsRedInTheTopicEvenWhenItIsASuggestedWordOfTheLevel(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: «shed» as a noun is a suggested word of A2, but the topic uses shed as a verb, which lexis
+        // flags (C1): red in the topic, so it is never offered to add.
+        World world = adjectives();
+        world.word("shed", "NOUN", CefrLevel.A2, 3200).word("shed", "VERB", CefrLevel.C1, 9500)
+                .word("dog", "NOUN", CefrLevel.A1, 700).word("hair", "NOUN", CefrLevel.A1, 600);
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", "Dogs|dog|NOUN shed|shed|VERB hair|hair|NOUN .|.|PUNCT");
+        world.absent("A2", "shed", "NOUN", 3200).absent("A2", "pillow", "NOUN", 3000);
+
+        TopicWordLights lights = world.lights("k-adj", criteria());
+
+        assertTrue(world.suggestedForATaskOfTheLevel(criteria()).contains("shed|NOUN"), "shed is suggested in A2");
+        assertEquals(WordLight.RED, lights.getWords().stream().filter(w -> w.getLemma().equals("shed")).findFirst()
+                .orElseThrow().getLight(), "shed is red in the topic");
+        assertFalse(keys(lights.getToAdd()).contains("shed|NOUN"), "R007: a red word is never offered");
+        assertTrue(keys(lights.getToAdd()).contains("pillow|NOUN"), "the rest of the suggested words are");
     }
 
     @Test
     @DisplayName("should add no score, finding, diagnosis or task to the report it reads")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R007")
-    @Disabled("Stub de FEAT-SEMAF (paquete D), sin implementar")
     public void shouldAddNoScoreFindingDiagnosisOrTaskToTheReportItReads() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: a read-only query: the report keeps every score, finding and diagnosis as they were.
+        World world = suggestionsWorld();
+        AuditReport report = world.report();
+        List<String> before = snapshot(report.getRoot());
+
+        world.lights("k-adj", criteria());
+        world.lights("k-adj", criteria(3));
+
+        assertEquals(before, snapshot(report.getRoot()), "R007: nothing added to the report it reads");
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-SEMAF fixtures
+    // ------------------------------------------------------------------
+
+    private static final String SPREAD = "She|she|PRON spread|spread|VERB the|the|DET warm|warm|ADJ blue|blue|ADJ "
+            + "quilt|quilt|NOUN on|on|ADP the|the|DET bed|bed|NOUN .|.|PUNCT";
+
+    private static final String RESIDE = "We|we|PRON reside|reside|VERB|5333 with|with|ADP our|our|PRON "
+            + "granddad|granddad|NOUN .|.|PUNCT";
+
+    private static final String BENCH = "The|the|DET bench|bench|NOUN is|be|AUX blue|blue|ADJ .|.|PUNCT";
+
+    /** The EVP of «Posición del adjetivo»: spread, quilt and bench B2; lamp, rubber, leather A2; the rest A1. */
+    private static World adjectives() {
+        return new World(bands(4, 4, 4, 4)).word("spread", "VERB", CefrLevel.B2, 1500).word("quilt", "NOUN", CefrLevel.B2, 12000)
+                .word("bench", "NOUN", CefrLevel.B2, 2100).word("warm", "ADJ", CefrLevel.A1, 900)
+                .word("blue", "ADJ", CefrLevel.A1, 800).word("bed", "NOUN", CefrLevel.A1, 700)
+                .word("lamp", "NOUN", CefrLevel.A2, 4541).word("rubber", "NOUN", CefrLevel.A2, 5713)
+                .word("leather", "NOUN", CefrLevel.A2, 4000).word("have", "VERB", CefrLevel.A1, 10);
+    }
+
+    /** The EVP of «Verbos de movimiento» (A1): granddad A1, reside out of it. */
+    private static World movement() {
+        return new World(bands(4, 4, 4, 4)).word("granddad", "NOUN", CefrLevel.A1, 9000).word("eat", "VERB", CefrLevel.A1, 400);
+    }
+
+    /** An A1 topic with «number» (COCA 211) in 5 sentences of the course. */
+    private static World numberWorld(com.learney.contentaudit.auditdomain.LemmaCountConfig config) {
+        World world = new World(config).word("number", "NOUN", CefrLevel.A1, 211).word("big", "ADJ", CefrLevel.A1, 300);
+        world.topic("A1", "Números", "k-num").quiz("q1", "A|a|DET big|big|ADJ number|number|NOUN .|.|PUNCT");
+        world.filler("A1", "number|NOUN", 4);
+        return world;
+    }
+
+    /** «Posición del adjetivo» with lamp, quilt, bed and bench, and a level that suggests fourteen words. */
+    private static World suggestionsWorld() {
+        World world = adjectives();
+        world.topic("A2", "Posición del adjetivo", "k-adj").quiz("q1", SPREAD).quiz("q2", BENCH)
+                .quiz("q3", "The|the|DET lamp|lamp|NOUN is|be|AUX blue|blue|ADJ .|.|PUNCT");
+        world.filler("A2", "kettle|NOUN", 1).word("kettle", "NOUN", CefrLevel.A2, 3900);
+        world.absent("A2", "lamp", "NOUN", 4541);
+        String[] absent = {"pillow", "silver", "mirror", "candle", "carpet", "basket", "button", "ladder", "napkin",
+                "pencil", "saucer", "towel", "pocket", "brush"};
+        for (int i = 0; i < absent.length; i++) {
+            world.absent("A2", absent[i], "NOUN", 2000 + 100 * i);
+            world.word(absent[i], "NOUN", CefrLevel.A2, 2000 + 100 * i);
+        }
+        world.word("polish", "VERB", CefrLevel.A2, 3300);
+        world.absent("A2", "polish", "VERB", 3300);
+        return world;
+    }
+
+    private static com.learney.contentaudit.auditdomain.LemmaCountConfig bands(int... thresholds) {
+        Integer[] tops = {1000, 2000, 3000, null};
+        String[] names = {"1.000 más comunes", "hasta 2.000", "hasta 3.000", "más allá de 3.000 o sin puesto"};
+        List<com.learney.contentaudit.auditdomain.LemmaCountBand> table = new ArrayList<>();
+        for (int i = 0; i < thresholds.length; i++) {
+            table.add(new com.learney.contentaudit.auditdomain.LemmaCountBand(names[i], tops[i], thresholds[i]));
+        }
+        com.learney.contentaudit.auditdomain.LemmaCountConfig config =
+                Mockito.mock(com.learney.contentaudit.auditdomain.LemmaCountConfig.class);
+        Mockito.when(config.getThreshold()).thenReturn(4);
+        Mockito.when(config.getBands()).thenReturn(table);
+        return config;
+    }
+
+    private static SuggestedLemmaQueryCriteria criteria() {
+        return new SuggestedLemmaQueryCriteria(Optional.empty(), Optional.empty(), Optional.empty(), false, Optional.empty());
+    }
+
+    private static SuggestedLemmaQueryCriteria criteria(int limit) {
+        return new SuggestedLemmaQueryCriteria(Optional.of(limit), Optional.empty(), Optional.empty(), false,
+                Optional.empty());
+    }
+
+    private static List<String> described(TopicWordLights lights) {
+        return lights.getWords().stream().map(w -> w.getLemma() + "|" + w.getPos() + " " + w.getLevel() + " "
+                + w.getSentenceCount() + " " + w.getLight()).toList();
+    }
+
+    private static List<String> keys(List<SuggestedLemma> lemmas) {
+        return lemmas.stream().map(l -> l.getLemma() + "|" + l.getPos()).toList();
+    }
+
+    /** Every score, finding, diagnosis and declaration of every node, as text. */
+    private static List<String> snapshot(AuditNode node) {
+        List<String> lines = new ArrayList<>();
+        lines.add(node.getTarget() + " " + (node.getEntity() != null ? node.getEntity().getId() : "root") + " "
+                + node.getScores() + " " + node.getFindings() + " " + node.getUnevaluatedBy() + " "
+                + System.identityHashCode(node.getDiagnoses()) + " " + diagnosesOf(node));
+        if (node.getChildren() != null) {
+            node.getChildren().forEach(child -> lines.addAll(snapshot(child)));
+        }
+        return lines;
+    }
+
+    private static String diagnosesOf(AuditNode node) {
+        if (node.getDiagnoses() instanceof DefaultQuizDiagnoses quiz) {
+            return quiz.getLemmaAbsenceDiagnosis() + " " + quiz.getOffLevelWordsDiagnosis();
+        }
+        if (node.getDiagnoses() instanceof DefaultLevelDiagnoses level) {
+            return level.getLemmaAbsenceDiagnosis() + " " + level.getLemmaCountDiagnosis();
+        }
+        if (node.getDiagnoses() instanceof DefaultCourseDiagnoses course) {
+            return course.getLemmaCountDiagnosis() + " " + course.getLemmaRecurrenceDiagnosis();
+        }
+        return String.valueOf(node.getDiagnoses());
+    }
+
+    /** A topic under construction: its quizzes, in order. */
+    private static final class Topic {
+        private final World world;
+        private final AuditNode knowledge;
+
+        Topic(World world, AuditNode knowledge) {
+            this.world = world;
+            this.knowledge = knowledge;
+        }
+
+        Topic quiz(String id, String tokens) {
+            world.quizUnder(knowledge, id, tokens, null);
+            return this;
+        }
+
+        /** A quiz whose gap is answered with the given word. */
+        Topic answered(String id, String tokens, String answer) {
+            world.quizUnder(knowledge, id, tokens, answer);
+            return this;
+        }
+    }
+
+    /**
+     * A small analysis: levels with topics and quizzes, the EVP that lexis and lemma-count read, the
+     * real lemma-count over every quiz, the lemma-absence diagnoses get suggested-lemmas reads, and,
+     * when asked, off-level-words and a lemma-recurrence diagnosis.
+     */
+    private static final class World {
+        private final com.learney.contentaudit.auditdomain.LemmaCountConfig config;
+        private final Map<String, CefrLevel> levels = new HashMap<>();
+        private final Map<String, Integer> ranks = new HashMap<>();
+        private final Map<String, List<AbsentLemma>> absents = new LinkedHashMap<>();
+        private final AuditNode root = node(AuditTarget.COURSE, null, null, new DefaultCourseDiagnoses());
+        private final Map<String, AuditNode> topics = new LinkedHashMap<>();
+        private final List<AuditNode> quizzes = new ArrayList<>();
+        private boolean lemmaCountRuns = true;
+        private boolean lemmaAbsenceRuns = true;
+        private boolean offLevelWordsRuns = false;
+        private String overExposed;
+        private int fillers = 0;
+        private AuditReport report;
+        com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer lemmaCount;
+
+        World(com.learney.contentaudit.auditdomain.LemmaCountConfig config) {
+            this.config = config;
+        }
+
+        World word(String lemma, String pos, CefrLevel level, int rank) {
+            levels.put(lemma + "|" + pos, level);
+            ranks.put(lemma + "|" + pos, rank);
+            return this;
+        }
+
+        World absent(String level, String lemma, String pos, int rank) {
+            absents.computeIfAbsent(level, l -> new ArrayList<>()).add(new AbsentLemma(new LemmaAndPos(lemma, pos),
+                    CefrLevel.valueOf(level), AbsenceType.COMPLETELY_ABSENT, List.of(), PriorityLevel.HIGH, rank, null));
+            return this;
+        }
+
+        Topic topic(String level, String title, String id) {
+            AuditNode levelNode = levelNode(level);
+            AuditNode topic = node(AuditTarget.TOPIC, new AuditableTopic(List.of(), "t-" + id, title, "T"), levelNode,
+                    new DefaultTopicDiagnoses());
+            AuditNode knowledge = node(AuditTarget.KNOWLEDGE, new AuditableKnowledge(List.of(), title, "Completa.", true, id,
+                    title, "K", null, title), topic, new DefaultKnowledgeDiagnoses());
+            topics.put(id, knowledge);
+            return new Topic(this, knowledge);
+        }
+
+        /** n quizzes elsewhere in the level, each carrying the word, so the course counts its sentences. */
+        World filler(String level, String word, int n) {
+            if (!topics.containsKey("k-filler-" + level)) {
+                topic(level, "Otros", "k-filler-" + level);
+            }
+            AuditNode knowledge = topics.get("k-filler-" + level);
+            for (int i = 0; i < n; i++) {
+                String[] f = word.split("\\|");
+                quizUnder(knowledge, "filler-" + (fillers++), f[0] + "|" + f[0] + "|" + f[1] + " .|.|PUNCT", null);
+            }
+            return this;
+        }
+
+        void withoutLemmaCount() {
+            lemmaCountRuns = false;
+        }
+
+        void withoutLemmaAbsence() {
+            lemmaAbsenceRuns = false;
+        }
+
+        void withOffLevelWords() {
+            offLevelWordsRuns = true;
+        }
+
+        void withOverExposedRecurrence(String lemma) {
+            overExposed = lemma;
+        }
+
+        AuditNode levelNode(String level) {
+            return root.getChildren().stream().filter(m -> level.equals(m.getEntity().getLabel())).findFirst()
+                    .orElseGet(() -> node(AuditTarget.MILESTONE, new AuditableMilestone(List.of(), "m-" + level, level, level),
+                            root, new DefaultLevelDiagnoses()));
+        }
+
+        void quizUnder(AuditNode knowledge, String id, String tokens, String answer) {
+            List<NlpToken> parsed = new ArrayList<>();
+            for (String token : tokens.split(" ")) {
+                String[] f = token.split("\\|", -1);
+                parsed.add(new NlpToken(f[0], f[1], f[2], f.length > 3 ? Integer.valueOf(f[3]) : null, false,
+                        "PUNCT".equals(f[2])));
+            }
+            AuditableQuiz quiz = new AuditableQuiz(parsed, id, id, "Q", "Una traducción.", List.of(id), id, null,
+                    answer != null ? List.of(new SentencePartEntity(SentencePartKind.TEXT, "…", null),
+                            new SentencePartEntity(SentencePartKind.CLOZE, null, List.of(answer))) : null, null, null, null);
+            quizzes.add(node(AuditTarget.QUIZ, quiz, knowledge, new DefaultQuizDiagnoses()));
+        }
+
+        EvpCatalogPort evp() {
+            EvpCatalogPort evp = Mockito.mock(EvpCatalogPort.class);
+            Mockito.when(evp.lookupLevel(Mockito.any())).thenAnswer(i -> Optional.ofNullable(levels.get(key(i.getArgument(0)))));
+            Mockito.when(evp.lookupLevelByLemma(Mockito.any())).thenAnswer(i -> levels.entrySet().stream()
+                    .filter(e -> e.getKey().startsWith(i.<String>getArgument(0) + "|")).map(Map.Entry::getValue)
+                    .min(java.util.Comparator.naturalOrder()));
+            Mockito.when(evp.getCocaRank(Mockito.any())).thenAnswer(i -> Optional.ofNullable(ranks.get(key(i.getArgument(0)))));
+            Mockito.when(evp.getSemanticCategory(Mockito.any())).thenReturn(Optional.empty());
+            Mockito.when(evp.getExpectedLemmas(Mockito.any())).thenAnswer(i -> {
+                Set<LemmaAndPos> expected = new java.util.LinkedHashSet<>();
+                levels.forEach((k, v) -> {
+                    if (v == i.<CefrLevel>getArgument(0)) {
+                        expected.add(new LemmaAndPos(k.substring(0, k.indexOf('|')), k.substring(k.indexOf('|') + 1)));
+                    }
+                });
+                return expected;
+            });
+            return evp;
+        }
+
+        com.learney.contentaudit.auditdomain.LemmaAbsenceConfig absenceConfig() {
+            com.learney.contentaudit.auditdomain.LemmaAbsenceConfig absence =
+                    Mockito.mock(com.learney.contentaudit.auditdomain.LemmaAbsenceConfig.class);
+            Mockito.when(absence.getDiscountPerLevel()).thenReturn(0.1);
+            Map<CefrLevel, int[]> bounds = Map.of(CefrLevel.A1, new int[] {1000, 3000}, CefrLevel.A2,
+                    new int[] {2000, 5000}, CefrLevel.B1, new int[] {3500, 8000}, CefrLevel.B2, new int[] {5000, 10000});
+            bounds.forEach((level, b) -> {
+                Mockito.when(absence.getOutOfCatalogNoPenaltyRankBound(level)).thenReturn(b[0]);
+                Mockito.when(absence.getOutOfCatalogMildDiscountRankBound(level)).thenReturn(b[1]);
+            });
+            Mockito.when(absence.getOutOfCatalogMildDiscount()).thenReturn(0.1);
+            Mockito.when(absence.getOutOfCatalogStrongDiscount()).thenReturn(0.3);
+            return absence;
+        }
+
+        SentenceLexicalEvaluator lexis() {
+            com.learney.contentaudit.auditdomain.LemmaAbsenceConfig absence = absenceConfig();
+            return new com.learney.contentaudit.auditdomain.lexicalflags.DefaultSentenceLexicalEvaluator(
+                    new com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer(evp(),
+                            new com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter(), absence));
+        }
+
+        SuggestedLemmaQueryPort port() {
+            return com.learney.contentaudit.refinerdomain.lemmasuggestion.LemmaAbsenceContextSuggestedLemmaQueryPort
+                    .create(new com.learney.contentaudit.refinerdomain.LemmaAbsenceContextResolver(), evp(), config);
+        }
+
+        AuditReport report() {
+            if (report != null) {
+                return report;
+            }
+            if (lemmaCountRuns) {
+                lemmaCount = new com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer(
+                        new com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter(),
+                        new com.learney.contentaudit.auditdomain.lemmacount.LemmaCefrLevelResolver() {
+                            @Override
+                            public Optional<CefrLevel> resolve(LemmaAndPos lemmaAndPos, Optional<CefrLevel> nlpCefr) {
+                                return Optional.ofNullable(levels.get(key(lemmaAndPos)));
+                            }
+
+                            @Override
+                            public Optional<Integer> resolveCocaRank(LemmaAndPos lemmaAndPos) {
+                                return Optional.ofNullable(ranks.get(key(lemmaAndPos)));
+                            }
+                        }, config);
+                quizzes.forEach(lemmaCount::onQuiz);
+                lemmaCount.onCourseComplete(root);
+            }
+            if (lemmaAbsenceRuns) {
+                for (AuditNode quiz : quizzes) {
+                    ((DefaultQuizDiagnoses) quiz.getDiagnoses()).setLemmaAbsenceDiagnosis(
+                            new LemmaPlacementDiagnosis(0, List.of(), 0, List.of()));
+                }
+                for (AuditNode level : root.getChildren()) {
+                    CefrLevel cefr = CefrLevel.valueOf(level.getEntity().getLabel());
+                    List<AbsentLemma> absent = absents.getOrDefault(cefr.name(), List.of());
+                    ((DefaultLevelDiagnoses) level.getDiagnoses()).setLemmaAbsenceDiagnosis(new LemmaAbsenceLevelDiagnosis(
+                            cefr, 100, absent.size(), 10.0, 90.0, 0.8, 0.7, 0.5, null, absent, List.of(), 2, 3, 5));
+                }
+            }
+            if (offLevelWordsRuns) {
+                com.learney.contentaudit.auditdomain.LemmaAbsenceConfig absence = absenceConfig();
+                com.learney.contentaudit.auditdomain.ContentAnalyzer offLevel =
+                        new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(
+                                new com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer(evp(),
+                                        new com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter(), absence),
+                                absence, new DefaultTopicTeachingResolver(), null).create(null);
+                quizzes.forEach(offLevel::onQuiz);
+            }
+            if (overExposed != null) {
+                ((DefaultCourseDiagnoses) root.getDiagnoses()).setLemmaRecurrenceDiagnosis(
+                        new com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceCourseDiagnosis(
+                                new com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceResult(List.of(
+                                        new com.learney.contentaudit.auditdomain.lrec.LemmaStats(overExposed, "NOUN", 3, 8.0,
+                                                1.0, com.learney.contentaudit.auditdomain.lrec.ExposureStatus.OVER_EXPOSED,
+                                                List.of(2, 10, 18), 8, CefrLevel.B1, CefrLevel.B1, List.of(CefrLevel.B1))),
+                                        new com.learney.contentaudit.auditdomain.lrec.ExposureSummary(0, 0, 1), 0.0), List.of()));
+            }
+            report = new AuditReport(root);
+            return report;
+        }
+
+        TopicWordLights lights(String knowledgeId, SuggestedLemmaQueryCriteria criteria) {
+            return new DefaultTopicWordLightsQuery(lexis(), port(), new DefaultTopicTeachingResolver())
+                    .lightsFor(report(), "a-299", knowledgeId, criteria);
+        }
+
+        Map<String, TopicWord> words(String knowledgeId, SuggestedLemmaQueryCriteria criteria) {
+            return byKey(lights(knowledgeId, criteria));
+        }
+
+        Map<String, TopicWord> wordsWith(SentenceLexicalEvaluator lexis, String knowledgeId) {
+            return byKey(new DefaultTopicWordLightsQuery(lexis, port(), new DefaultTopicTeachingResolver())
+                    .lightsFor(report(), "a-299", knowledgeId, criteria()));
+        }
+
+        /** What get suggested-lemmas gives for a LEMMA_ABSENCE task of another quiz of the same level. */
+        List<String> suggestedForATaskOfTheLevel(SuggestedLemmaQueryCriteria criteria) {
+            AuditNode other = topics.get("k-filler-A2") != null ? topics.get("k-filler-A2").getChildren().get(0) : null;
+            if (other == null) {
+                filler("A2", "kettle|NOUN", 1);
+                other = topics.get("k-filler-A2").getChildren().get(0);
+                report = null;
+            }
+            RefinementTask task = new RefinementTask("task-other", AuditTarget.QUIZ, other.getEntity().getId(), "Otro",
+                    DiagnosisKind.LEMMA_ABSENCE, 1, RefinementTaskStatus.PENDING);
+            return keys(port().query(report(), task, criteria).getSuggestedLemmas());
+        }
+
+        private static Map<String, TopicWord> byKey(TopicWordLights lights) {
+            Map<String, TopicWord> words = new LinkedHashMap<>();
+            lights.getWords().forEach(word -> words.put(word.getLemma() + "|" + word.getPos(), word));
+            return words;
+        }
+
+        private static String key(Object lemmaAndPos) {
+            LemmaAndPos lp = (LemmaAndPos) lemmaAndPos;
+            return lp.getLemma() + "|" + lp.getPos();
+        }
+    }
+
+    private static AuditNode node(AuditTarget target, AuditableEntity entity, AuditNode parent, NodeDiagnoses diagnoses) {
+        AuditNode node = new AuditNode();
+        node.setTarget(target);
+        node.setEntity(entity);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        node.setDiagnoses(diagnoses);
+        if (parent != null) {
+            parent.getChildren().add(node);
+        }
+        return node;
     }
 }

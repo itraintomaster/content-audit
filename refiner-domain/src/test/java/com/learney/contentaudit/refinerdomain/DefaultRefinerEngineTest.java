@@ -1,5 +1,7 @@
 package com.learney.contentaudit.refinerdomain;
-import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+
+import java.util.HashSet;
+import java.util.Set;import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
@@ -624,44 +626,204 @@ public class DefaultRefinerEngineTest {
     @DisplayName("should open no task for an off-level-words score below 1 and declare it covered by the LEMMA_ABSENCE task of its quiz, never as an unconverted score")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldOpenNoTaskForAnOfflevelwordsScoreBelow1AndDeclareItCoveredByTheLEMMAABSENCETaskOfItsQuizNeverAsAnUnconvertedScore() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-NIVFR-R006 (DOUBT-TAREA-COMPARTIDA, A): «We reside in London with our granddad.» has
+        // off-level-words 0 and lemma-absence below 1: the plan opens only its LEMMA_ABSENCE task and
+        // declares off-level-words covered by it, never as a score without task kind.
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalogWithOffLevelWords());
+        AuditReport report = reportWithQuizScores("lemma-absence", 0.7);
+        report.getRoot().getChildren().get(0).getScores().put(OFF_LEVEL_WORDS, 0.0);
+
+        RefinementPlan plan = engine.plan(report, "2026-09-30T11-54-02");
+
+        Assertions.assertEquals(List.of("q0 LEMMA_ABSENCE"), plan.getTasks().stream()
+                .map(task -> task.getNodeId() + " " + task.getDiagnosisKind()).toList(),
+                "R006: one task, the LEMMA_ABSENCE of the quiz; none of off-level-words");
+        List<UnconvertedScoreCount> declared = engine.unconvertedScores(report);
+        Assertions.assertEquals(List.of("off-level-words 1 cubierto por la tarea LEMMA_ABSENCE del ejercicio"),
+                declared.stream().map(c -> c.getAnalyzer() + " " + c.getNodeCount() + " " + c.getReason()).toList(),
+                "R006: covered by the LEMMA_ABSENCE task of its quiz");
     }
 
     @Test
     @DisplayName("should plan the same 4,036 tasks for the analysis of 29/9 with and without off-level-words: SENTENCE_LENGTH 3,051, LEMMA_ABSENCE 950, KNOWLEDGE_INSTRUCTIONS_LENGTH 25, KNOWLEDGE_TITLE_LENGTH 6, COCA_BUCKETS 3 and LEMMA_RECURRENCE 1")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldPlanTheSame4036TasksForTheAnalysisOf299WithAndWithoutOfflevelwordsSENTENCELENGTH3051LEMMAABSENCE950KNOWLEDGEINSTRUCTIONSLENGTH25KNOWLEDGETITLELENGTH6COCABUCKETS3AndLEMMARECURRENCE1() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-NIVFR-R006: the analysis of 29/9 with the 170 quizzes off-level-words marks (18 · 33 · 81 ·
+        // 38, measured by the analyst's prototype) plans the same 4,036 tasks as without it, and each of
+        // the 170 has its LEMMA_ABSENCE task, which covers it.
+        DefaultRefinerEngine engine = new DefaultRefinerEngine(catalogWithOffLevelWords());
+        AuditNode without = baseTree();
+        AuditNode with = baseTree();
+        Set<String> marked = new HashSet<>(readResource("/nivfr-2026-09-30/off-level-quizzes.txt"));
+        List<AuditNode> quizzes = new ArrayList<>();
+        collectQuizzes(with, quizzes);
+        for (AuditNode quiz : quizzes) {
+            quiz.getScores().put(OFF_LEVEL_WORDS, marked.contains(quiz.getEntity().getId()) ? 0.0 : 1.0);
+        }
+
+        List<String> before = describe(engine.plan(new AuditReport(without), "2026-09-30T11-54-02"));
+        List<String> after = describe(engine.plan(new AuditReport(with), "2026-09-30T11-54-02"));
+
+        Assertions.assertEquals(170, marked.size(), "the 170 quizzes of off-level-words on 29/9");
+        Assertions.assertEquals(4036, after.size(), "R006: the same 4,036 tasks");
+        Assertions.assertEquals(before, after, "R006: task by task, with and without off-level-words");
+        Assertions.assertEquals(readLines("plan.tsv.gz"), after, "the plan of 29/9");
+        Map<DiagnosisKind, Integer> byKind = new TreeMap<>();
+        after.forEach(task -> byKind.merge(DiagnosisKind.valueOf(task.substring(task.lastIndexOf('\t') + 1)), 1,
+                Integer::sum));
+        Assertions.assertEquals(new TreeMap<>(Map.of(DiagnosisKind.SENTENCE_LENGTH, 3051, DiagnosisKind.LEMMA_ABSENCE,
+                950, DiagnosisKind.KNOWLEDGE_INSTRUCTIONS_LENGTH, 25, DiagnosisKind.KNOWLEDGE_TITLE_LENGTH, 6,
+                DiagnosisKind.COCA_BUCKETS, 3, DiagnosisKind.LEMMA_RECURRENCE, 1)), byKind, "3,051 + 950 + 25 + 6 + 3 + 1");
+        Set<String> absenceTasks = new HashSet<>();
+        after.stream().filter(task -> task.endsWith("LEMMA_ABSENCE")).forEach(task -> absenceTasks.add(task.split("\t")[1]));
+        Assertions.assertTrue(absenceTasks.containsAll(marked), "R006: each of the 170 has its LEMMA_ABSENCE task");
+        Assertions.assertEquals(List.of("off-level-words 170 cubierto por la tarea LEMMA_ABSENCE del ejercicio"),
+                engine.unconvertedScores(new AuditReport(with)).stream()
+                        .map(c -> c.getAnalyzer() + " " + c.getNodeCount() + " " + c.getReason()).toList(),
+                "R006: declared covered, never dropped");
     }
 
     @Test
     @DisplayName("should open no task for lemma-count and keep the plan of the analysis of 29/9 at 4,036 tasks, with 4 for every band and with bands 8, 6, 4 and 3")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R002")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldOpenNoTaskForLemmacountAndKeepThePlanOfTheAnalysisOf299At4036TasksWith4ForEveryBandAndWithBands864And3() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-POCOV-R002: lemma-count asks for no task. The analysis of 29/9 with lemma-count at 4 for
+        // every band (as published) and with the bands 8, 6, 4 and 3 (its course at 0,6652835 and its
+        // levels at 0,9077670 · 0,6782407 · 0,4903013 · 0,3612196) plans the same 4,036 tasks, task
+        // by task, and declares nothing about lemma-count.
+        AuditNode withFour = baseTree();
+        AuditNode withBands = baseTree();
+        Map<String, Double> bands = Map.of("A1", 0.9077670, "A2", 0.6782407, "B1", 0.4903013, "B2", 0.3612196);
+        withBands.getScores().put("lemma-count", 0.6652835);
+        for (AuditNode level : withBands.getChildren()) {
+            level.getScores().put("lemma-count", bands.get(level.getEntity().getLabel()));
+        }
+
+        for (AuditNode tree : List.of(withFour, withBands)) {
+            AuditReport report = new AuditReport(tree);
+            RefinementPlan plan = sut.plan(report, "2026-09-30T11-54-02");
+
+            List<String> tasks = plan.getTasks().stream().map(task -> task.getNodeTarget() + "\t" + task.getNodeId()
+                    + "\t" + task.getNodeLabel() + "\t" + task.getDiagnosisKind()).toList();
+            Assertions.assertEquals(4036, tasks.size(), "R002: the same 4,036 tasks");
+            Assertions.assertEquals(readLines("plan.tsv.gz"), tasks, "R002: task by task, none of lemma-count");
+            Assertions.assertTrue(sut.unconvertedScores(report).stream()
+                    .noneMatch(count -> "lemma-count".equals(count.getAnalyzer())),
+                    "R002: its scores below 1 are not declared as tasks it could not make");
+        }
+        Assertions.assertEquals(0.6652835, withBands.getScores().get("lemma-count"), 1e-12,
+                "the plan reads the bands run as it is");
     }
 
     @Test
     @DisplayName("should keep a single LEMMA_RECURRENCE task, on the course, and 4,036 tasks in the plan of the analysis of 29/9 with the new lemma-recurrence diagnosis and findings")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R002")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldKeepASingleLEMMARECURRENCETaskOnTheCourseAnd4036TasksInThePlanOfTheAnalysisOf299WithTheNewLemmarecurrenceDiagnosisAndFindings() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-RECUR-R002: with the course diagnosis of lemma-recurrence and its 1,616 findings on the course,
+        // the analysis of 29/9 plans the same 4,036 tasks, with a single LEMMA_RECURRENCE, on the course.
+        AuditNode tree = baseTree();
+        tree.setDiagnoses(recurrenceDiagnosis());
+        tree.setFindings(recurrenceFindings(1616));
+        AuditReport report = new AuditReport(tree);
+
+        List<String> tasks = describe(sut.plan(report, "2026-09-30T11-54-02"));
+
+        Assertions.assertEquals(4036, tasks.size(), "R002: the same 4,036 tasks");
+        Assertions.assertEquals(readLines("plan.tsv.gz"), tasks, "R002: task by task");
+        Assertions.assertEquals(List.of("COURSE\troot"), tasks.stream().filter(t -> t.endsWith("LEMMA_RECURRENCE"))
+                .map(t -> t.substring(0, t.indexOf('\t', t.indexOf('\t') + 1))).toList(),
+                "R002: a single LEMMA_RECURRENCE task, on the course");
     }
 
     @Test
     @DisplayName("should open no task for lemma-recurrence findings, only the course task when its score is below 1")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R002")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldOpenNoTaskForLemmarecurrenceFindingsOnlyTheCourseTaskWhenItsScoreIsBelow1() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-RECUR-R002: its findings never open tasks; the course below 1 opens its one LEMMA_RECURRENCE
+        // task, and a course at 1 none, findings or not.
+        AuditNode below = buildNode(AuditTarget.COURSE, "root", "Curso", new LinkedHashMap<>(Map.of("lemma-recurrence", 0.08)));
+        below.setChildren(new ArrayList<>());
+        below.setFindings(recurrenceFindings(2));
+        AuditNode withoutFindings = buildNode(AuditTarget.COURSE, "root", "Curso",
+                new LinkedHashMap<>(Map.of("lemma-recurrence", 0.08)));
+        withoutFindings.setChildren(new ArrayList<>());
+        AuditNode atOne = buildNode(AuditTarget.COURSE, "root", "Curso", new LinkedHashMap<>(Map.of("lemma-recurrence", 1.0)));
+        atOne.setChildren(new ArrayList<>());
+
+        Assertions.assertEquals(List.of("COURSE root LEMMA_RECURRENCE"), tasksOf(below), "R002: only the course task");
+        Assertions.assertEquals(tasksOf(withoutFindings), tasksOf(below), "the findings add no task");
+        Assertions.assertEquals(List.of(), tasksOf(atOne), "R002: no task at 1");
+    }
+
+    /** The eight real providers and off-level-words, as Main registers them (its card declares no task). */
+    private static com.learney.contentaudit.auditdomain.AnalyzerCatalog catalogWithOffLevelWords() {
+        List<AnalyzerProvider> providers = new ArrayList<>();
+        com.learney.contentaudit.auditdomain.AnalyzerCatalog real = realCatalog();
+        for (AnalyzerDescriptor card : real.list()) {
+            providers.add(provider(card, real.planBinding(card.getName())));
+            if ("lemma-absence".equals(card.getName())) {
+                providers.add(new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(
+                        null, null, null, null));
+            }
+        }
+        return new DefaultAnalyzerCatalog(providers);
+    }
+
+    private static List<String> describe(RefinementPlan plan) {
+        return plan.getTasks().stream().map(task -> task.getNodeTarget() + "\t" + task.getNodeId() + "\t"
+                + task.getNodeLabel() + "\t" + task.getDiagnosisKind()).toList();
+    }
+
+    private List<String> readResource(String resource) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(resource),
+                StandardCharsets.UTF_8))) {
+            return reader.lines().filter(line -> !line.isBlank()).toList();
+        } catch (IOException e) {
+            throw new AssertionError("fixture " + resource + " unreadable", e);
+        }
+    }
+
+    private List<String> tasksOf(AuditNode course) {
+        return sut.plan(new AuditReport(course), "a").getTasks().stream()
+                .map(t -> t.getNodeTarget() + " " + t.getNodeId() + " " + t.getDiagnosisKind()).toList();
+    }
+
+    /** The course diagnosis lemma-recurrence publishes: here one lemma and one level of detail. */
+    private static com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses recurrenceDiagnosis() {
+        com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses diagnoses =
+                new com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses();
+        diagnoses.setLemmaRecurrenceDiagnosis(new com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceCourseDiagnosis(
+                new com.learney.contentaudit.auditdomain.lrec.LemmaRecurrenceResult(List.of(
+                        new com.learney.contentaudit.auditdomain.lrec.LemmaStats("movie", "NOUN", 90, 1005.02, 1082.57,
+                                com.learney.contentaudit.auditdomain.lrec.ExposureStatus.SUB_EXPOSED, List.of(), 6510,
+                                com.learney.contentaudit.auditdomain.CefrLevel.A1,
+                                com.learney.contentaudit.auditdomain.CefrLevel.A2,
+                                List.of(com.learney.contentaudit.auditdomain.CefrLevel.A1))),
+                        new com.learney.contentaudit.auditdomain.lrec.ExposureSummary(134, 1570, 46), 0.08),
+                List.of(new com.learney.contentaudit.auditdomain.lrec.LevelRecurrence(
+                        com.learney.contentaudit.auditdomain.CefrLevel.A1, 15802, 450, 178, 257, 15, 0.396))));
+        return diagnoses;
+    }
+
+    /** n findings of lemma-recurrence on the course, low and rank-only, as F-RECUR-R005 leaves them. */
+    private static List<com.learney.contentaudit.auditdomain.finding.Finding> recurrenceFindings(int n) {
+        List<com.learney.contentaudit.auditdomain.finding.Finding> findings = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            findings.add(new com.learney.contentaudit.auditdomain.finding.Finding("lemma-recurrence", "F-RECUR-R005",
+                    new com.learney.contentaudit.auditdomain.finding.FindingNodeRef(AuditTarget.COURSE, "root", "Curso"),
+                    com.learney.contentaudit.auditdomain.finding.FindingSeverity.LOW,
+                    new com.learney.contentaudit.auditdomain.finding.FindingEvidence(List.of(
+                            new com.learney.contentaudit.auditdomain.finding.EvidencePart("Palabra", "w" + i)),
+                            "w" + i + " vuelve poco", List.of()),
+                    FindingResolution.RANK_ONLY, AnalysisCost.INSTANT,
+                    new com.learney.contentaudit.auditdomain.finding.FindingIdentity(
+                            "lemma-recurrence|F-RECUR-R005|root|w" + i, "w" + i)));
+        }
+        return findings;
     }
 }

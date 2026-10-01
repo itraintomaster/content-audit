@@ -116,17 +116,29 @@ public class EvpThenNlpLemmaCefrLevelResolverTest {
     @DisplayName("should resolve the COCA rank of a lemma and part of speech from the EVP catalog, the same rank the suggested words show")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldResolveTheCOCARankOfALemmaAndPartOfSpeechFromTheEVPCatalogTheSameRankTheSuggestedWordsShow() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 3: the band of a word comes from the COCA rank of the EVP catalog for its lemma and
+        // part of speech: «hop» (read from «hoped») has the 5,603 of hop/VERB, never the 413 of «hope».
+        LemmaAndPos hop = new LemmaAndPos("hop", "VERB");
+        LemmaAndPos hope = new LemmaAndPos("hope", "VERB");
+        when(evpCatalogPort.getCocaRank(hop)).thenReturn(Optional.of(5603));
+        when(evpCatalogPort.getCocaRank(hope)).thenReturn(Optional.of(413));
+
+        assertEquals(Optional.of(5603), resolver.resolveCocaRank(hop), "R001 inv. 3: the rank of hop/VERB");
+        assertEquals(Optional.of(413), resolver.resolveCocaRank(hope), "R001 inv. 3: the rank of hope/VERB");
+        verify(evpCatalogPort).getCocaRank(hop);
     }
 
     @Test
     @DisplayName("should resolve no COCA rank for a lemma and part of speech the EVP catalog does not have")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R001")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldResolveNoCOCARankForALemmaAndPartOfSpeechTheEVPCatalogDoesNotHave() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 inv. 3: a word the catalog does not rank has no rank, so it falls in the last band.
+        LemmaAndPos reside = new LemmaAndPos("reside", "VERB");
+        when(evpCatalogPort.getCocaRank(reside)).thenReturn(Optional.empty());
+
+        assertEquals(Optional.empty(), resolver.resolveCocaRank(reside),
+                "R001 inv. 3: no rank for a word the EVP catalog does not have");
     }
 }

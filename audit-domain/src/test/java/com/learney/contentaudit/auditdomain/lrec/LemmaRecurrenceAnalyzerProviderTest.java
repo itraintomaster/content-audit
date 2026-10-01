@@ -69,8 +69,27 @@ public class LemmaRecurrenceAnalyzerProviderTest {
     @DisplayName("should describe lemma-recurrence in its card: whether words return at healthy intervals, reading the sentences of the whole course in order, vocabulary family, course target, goal of returning every more than 50 and up to 1,000 words, only ordering and instant cost")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R006")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldDescribeLemmarecurrenceInItsCardWhetherWordsReturnAtHealthyIntervalsReadingTheSentencesOfTheWholeCourseInOrderVocabularyFamilyCourseTargetGoalOfReturningEveryMoreThan50AndUpTo1000WordsOnlyOrderingAndInstantCost() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: the card of lemma-recurrence, with its name of always.
+        LemmaRecurrenceConfig config = Mockito.mock(LemmaRecurrenceConfig.class);
+        Mockito.when(config.getTop()).thenReturn(2000);
+        Mockito.when(config.getOverExposedThreshold()).thenReturn(50.0);
+        Mockito.when(config.getSubExposedThreshold()).thenReturn(1000.0);
+
+        AnalyzerDescriptor card = new LemmaRecurrenceAnalyzerProvider(config).describe();
+
+        assertCompleteCard(card, "lemma-recurrence");
+        Assertions.assertEquals("¿Las palabras vuelven a intervalos sanos?", card.getQuestion(), "R006: its question");
+        Assertions.assertTrue(card.getReads().startsWith("Las oraciones de todo el curso, en orden"),
+                "R006: it reads the sentences of the whole course in order: " + card.getReads());
+        Assertions.assertEquals(AnalyzerFamily.VOCABULARY, card.getFamily(), "R006: vocabulary");
+        Assertions.assertEquals(List.of(AuditTarget.COURSE), card.getEvaluatedTargets(), "R006: it evaluates the course");
+        Assertions.assertEquals("Que cada palabra vuelva cada más de 50 y hasta 1.000 palabras", card.getGoal(),
+                "R006: its goal");
+        Assertions.assertEquals(List.of(FindingResolution.RANK_ONLY), card.getResolutions(), "R006: only ordering");
+        Assertions.assertEquals(AnalysisCost.INSTANT, card.getCost(), "R006: instant");
+        Assertions.assertEquals(List.of("F-RECUR-R005"), card.getRules().stream().map(r -> r.getId()).toList(),
+                "the rule of its findings");
+        Assertions.assertEquals("Recurrencia", card.getDisplayName(), "the name on screen");
     }
 }

@@ -1,13 +1,41 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+
+import com.learney.contentaudit.auditapplication.DefaultLemmaCountConfigLoader;
+import com.learney.contentaudit.auditcli.commands.AnalyzeCmdTest.Base299;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountResult;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaExposure;
+import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore;
+import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.io.TempDir;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -21,17 +49,150 @@ public class FPocovJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze con lemma-c... → El nivel trae un hallazgo por palabra... [El nivel tiene palabras en menos de N oraciones] → El plan no tiene tareas de lemma-coun... → success")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
-    public void path1_elNivelTienePalabrasEnMenosDeNOraciones_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path1_elNivelTienePalabrasEnMenosDeNOraciones_success(@TempDir Path workdir) {
+        // === Node: analizar ===
+        // Gate: F-POCOV-R001 -- analyze over the 29/9 course with the classic analyzers and lemma-count
+        // at 4 for every band: the course keeps its 67,0 %.
+        Analysis analysis = analyze(workdir, "4", "--exclude-analyzers", Base299.JUDGE);
+        AuditNode b1 = analysis.report().getRoot().getChildren().get(2);
+        assertEquals("B1", b1.getEntity().getLabel());
+        assertTrue(b1.getScores().get(LEMMA_COUNT) < 1.0, "the branch: B1 has words in fewer than N sentences");
+
+        // === Node: hallazgos ===
+        // Gate: F-POCOV-R003 -- one finding per under-exposed word of B1, low, only ordering and instant
+        LemmaCountResult result = ((DefaultCourseDiagnoses) analysis.report().getRoot().getDiagnoses())
+                .getLemmaCountDiagnosis().orElseThrow().getResult();
+        List<LemmaExposure> b1Words = result.getExposures().stream()
+                .filter(e -> "B1".equals(e.getAssignedLevel().name())).toList();
+        List<Finding> findings = b1.getFindings().stream().filter(f -> LEMMA_COUNT.equals(f.getAnalyzer())).toList();
+        Set<String> underExposed = new HashSet<>();
+        b1Words.stream().filter(e -> e.getScore() < 1.0)
+                .forEach(e -> underExposed.add(e.getLemmaAndPos().getLemma() + "|" + e.getLemmaAndPos().getPos()));
+        assertEquals(688, findings.size(), "R003: the 688 under-exposed words of B1, one finding each");
+        assertEquals(underExposed, markers(findings), "R003: one per word of the table below its threshold");
+        for (Finding finding : findings) {
+            assertEquals(List.of("F-POCOV-R003", "LOW", "RANK_ONLY", "INSTANT"), List.of(finding.getRule(),
+                    finding.getSeverity().name(), finding.getResolution().name(), finding.getCost().name()),
+                    "R003: low, only ordering and instant");
+        }
+        // Gate: F-POCOV-R004 -- the level publishes its words by band, then fewer sentences, then COCA rank
+        List<String> bandOrder = result.getBands().stream().map(b -> b.getName()).toList();
+        for (int i = 1; i < b1Words.size(); i++) {
+            LemmaExposure before = b1Words.get(i - 1);
+            LemmaExposure after = b1Words.get(i);
+            int byBand = Integer.compare(bandOrder.indexOf(before.getBand()), bandOrder.indexOf(after.getBand()));
+            int bySentences = Integer.compare(before.getCount(), after.getCount());
+            assertTrue(byBand < 0 || (byBand == 0 && (bySentences < 0 || (bySentences == 0
+                    && rank(before) <= rank(after)))), "R004: " + before.getLemmaAndPos().getLemma()
+                    + " goes before " + after.getLemmaAndPos().getLemma());
+        }
+        assertTrue(findings.stream().allMatch(f -> f.getEvidence().getExamined().stream()
+                .anyMatch(p -> "Banda".equals(p.getLabel()))), "R004: every finding carries its band");
+        // Gate: F-POCOV-R005 -- each finding names the topics that use the word, the knowledges of its row
+        Map<String, List<String>> topicsOfRow = new java.util.HashMap<>();
+        b1Words.forEach(e -> topicsOfRow.put(e.getLemmaAndPos().getLemma() + "|" + e.getLemmaAndPos().getPos(),
+                e.getKnowledgeIds()));
+        Set<String> knowledgeIds = new HashSet<>();
+        Base299.walk(analysis.report().getRoot(), n -> {
+            if (n.getTarget() == AuditTarget.KNOWLEDGE) {
+                knowledgeIds.add(n.getEntity().getId());
+            }
+        });
+        for (Finding finding : findings) {
+            List<String> named = finding.getEvidence().getRelatedNodes().stream().map(FindingNodeRef::getNodeId).toList();
+            assertFalse(named.isEmpty(), "R005: a word under-exposed is used by some topic");
+            assertEquals(topicsOfRow.get(finding.getIdentity().getMarker()), named, "R005: the topics of its row");
+            assertTrue(knowledgeIds.containsAll(named), "R005: topics of the course");
+        }
+
+        // === Node: sin_cambios ===
+        // Gate: F-POCOV-R001, F-POCOV-R002 -- no task of lemma-count, the 4,036 of the plan, and with 4
+        // for every band the course stays at 67,0 % and the vocabulary at 73,9 %
+        assertEquals(0.6698448144961168, analysis.report().getRoot().getScores().get(LEMMA_COUNT), 1e-12,
+                "R001 inv. 1: 0,6698448, the lemma-count of today");
+        assertEquals("67,0 %", GetCmd.scoreText(analysis.report().getRoot().getScores().get(LEMMA_COUNT)));
+        assertEquals("73,9 %", GetCmd.scoreText(analysis.report().getRoot().getNumbers().getVocabularyScore()),
+                "R001 inv. 1: the vocabulary of today");
+        PlanRun plan = plan(analysis);
+        assertEquals(4036, plan.tasks().size(), "R002: the 4,036 tasks");
+        assertEquals(Base299.preContractPlan(), plan.tasks(), "R002: task by task, none of lemma-count");
+        assertFalse(plan.err().contains(LEMMA_COUNT), "R002: nothing declared about lemma-count: " + plan.err());
+        // result: success
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze con lemma-c... → El nivel queda con puntaje 1 y sin ha... [Todas las palabras del nivel están en N oraciones o más] → El plan no tiene tareas de lemma-coun... → success")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
-    public void path2_todasLasPalabrasDelNivelEstnEnNOracionesOMs_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path2_todasLasPalabrasDelNivelEstnEnNOracionesOMs_success(@TempDir Path workdir) {
+        // === Node: analizar ===
+        // Gate: F-POCOV-R001 -- analyze with lemma-count alone, every band asking for 1 sentence: every
+        // word of every level is in N sentences or more
+        Analysis analysis = analyze(workdir, "1", "--analyzers", LEMMA_COUNT);
+
+        // === Node: nivel_completo ===
+        // The level stays at 1, without findings of lemma-count
+        for (AuditNode level : analysis.report().getRoot().getChildren()) {
+            assertEquals(1.0, level.getScores().get(LEMMA_COUNT), 1e-12, "level " + level.getEntity().getLabel() + " at 1");
+            assertTrue(level.getFindings().isEmpty(), "no finding on " + level.getEntity().getLabel());
+        }
+        assertTrue(Base299.findings(analysis.report()).isEmpty(), "no finding of lemma-count anywhere");
+
+        // === Node: sin_cambios ===
+        // Gate: F-POCOV-R001, F-POCOV-R002 -- lemma-count makes no task
+        assertEquals(1.0, analysis.report().getRoot().getScores().get(LEMMA_COUNT), 1e-12, "the course at 1");
+        PlanRun plan = plan(analysis);
+        assertTrue(plan.tasks().isEmpty(), "R002: the plan has no task of lemma-count");
+        assertFalse(plan.err().contains(LEMMA_COUNT), "R002: nor declares it: " + plan.err());
+        // result: success
+    }
+
+    private static final String LEMMA_COUNT = "lemma-count";
+
+    private record Analysis(Path workdir, AnalyzerCatalog catalog, FileSystemAuditReportStore store, String id,
+            AuditReport report) {
+    }
+
+    private record PlanRun(List<String> tasks, String err) {
+    }
+
+    /** analyze over the 29/9 course with the classic analyzers, lemma-count configured with the given value. */
+    private static Analysis analyze(Path workdir, String lemmaCountThreshold, String... options) {
+        List<AnalyzerProvider> providers = new ArrayList<>(Base299.classicProviders().subList(0, 6));
+        providers.add(new LemmaCountAnalyzerProvider(Base299.evp(),
+                new DefaultLemmaCountConfigLoader().load(lemmaCountThreshold)));
+        providers.add(Base299.judge(new Base299.FakeJudge(), new Base299.MapLedger()));
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir, null);
+        String[] args = new String[options.length + 1];
+        args[0] = Base299.COURSE.toString();
+        System.arraycopy(options, 0, args, 1, options.length);
+        Base299.Captured output = Base299.run(Base299.analyzeCmd(Base299.runner(catalog), store), args);
+        assertEquals(0, output.exit(), output.err());
+        String id = Base299.savedId(output);
+        return new Analysis(workdir, catalog, store, id, store.load(id).orElseThrow());
+    }
+
+    private static PlanRun plan(Analysis analysis) {
+        FileSystemRefinementPlanStore plans = new FileSystemRefinementPlanStore(analysis.workdir());
+        PlanCmd plan = new PlanCmd(analysis.store(), new DefaultRefinerEngine(analysis.catalog()), plans,
+                mock(EphemeralPlanRenderer.class));
+        Base299.Captured run = Base299.run(plan, "--audit", analysis.id());
+        assertEquals(0, run.exit(), run.err());
+        List<String> tasks = plans.loadLatest().orElseThrow().getTasks().stream()
+                .map(task -> task.getNodeTarget() + "\t" + task.getNodeId() + "\t" + task.getNodeLabel() + "\t"
+                        + task.getDiagnosisKind())
+                .toList();
+        return new PlanRun(tasks, run.err());
+    }
+
+    private static Set<String> markers(List<Finding> findings) {
+        Set<String> markers = new HashSet<>();
+        findings.forEach(f -> markers.add(f.getIdentity().getMarker()));
+        return markers;
+    }
+
+    private static int rank(LemmaExposure exposure) {
+        return exposure.getCocaRank() != null ? exposure.getCocaRank() : Integer.MAX_VALUE;
     }
 }

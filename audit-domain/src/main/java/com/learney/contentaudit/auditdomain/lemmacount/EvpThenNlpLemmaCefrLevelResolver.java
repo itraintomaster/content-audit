@@ -32,9 +32,17 @@ public class EvpThenNlpLemmaCefrLevelResolver implements LemmaCefrLevelResolver 
         return Optional.empty();
     }
 
+    /**
+     * F-POCOV-R001 inv. 3: the band of a word comes from its COCA rank in the EVP catalog for its
+     * lemma and part of speech, the same rank the suggested words and the word lights show. It
+     * never depends on which quiz the word appears in first, nor on its written form.
+     */
     @Override
     public Optional<Integer> resolveCocaRank(LemmaAndPos lemmaAndPos) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (lemmaAndPos == null) {
+            return Optional.empty();
+        }
+        return evpCatalogPort.getCocaRank(lemmaAndPos);
     }
 
 }

@@ -27,6 +27,7 @@ import com.learney.contentaudit.auditdomain.labs.OutOfCatalogWord;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountCourseDiagnosis;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountLevelDiagnosis;
 import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountStats;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaExposure;
 import com.learney.contentaudit.auditdomain.lemmacount.LevelLemmaCountResult;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -143,12 +144,14 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 Map<CefrLevel, Map<LemmaAndPos, LemmaCountStats>> allLevelCountStats =
                         buildAllLevelCountMaps(report.getRoot());
                 Integer threshold = extractThreshold(report.getRoot(), localCountStats, allLevelCountStats);
+                // F-POCOV-R007: the threshold of each word is the one of its band in lemma-count
+                Map<LemmaAndPos, Integer> bandThresholds = extractBandThresholds(report.getRoot());
 
                 // F-RCLA-R003b: build scarceContentWords from quiz tokens + lemma-count signal
                 AuditableEntity quizEntityForScarce = quizNode.getEntity();
                 if (quizEntityForScarce instanceof AuditableQuiz) {
                     scarceContentWords = buildScarceContentWords(
-                            (AuditableQuiz) quizEntityForScarce, localCountStats, threshold);
+                            (AuditableQuiz) quizEntityForScarce, localCountStats, threshold, bandThresholds);
                 }
 
                 Optional<LemmaAbsenceLevelDiagnosis> maybeAbsenceDiagnosis =
@@ -161,7 +164,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                     // F-SLEM: Build enriched suggestedLemmas with lemma-count signal + 6-tier ranking
                     suggestedLemmas = buildEnrichedSuggestedLemmas(
                             absentLemmas, localCountStats, allLevelCountStats, threshold,
-                            report.getRoot(), cefrLevel);
+                            bandThresholds, report.getRoot(), cefrLevel);
                 }
             }
         }
@@ -374,6 +377,37 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
     }
 
     /**
+     * F-POCOV-R007: the threshold of each word, the one of its band, as lemma-count published it in
+     * its table. Empty for a report of before the bands: then every word uses the threshold of the
+     * course, as before.
+     */
+    private Map<LemmaAndPos, Integer> extractBandThresholds(AuditNode courseRoot) {
+        Map<LemmaAndPos, Integer> result = new HashMap<>();
+        if (courseRoot == null || !(courseRoot.getDiagnoses() instanceof CourseDiagnoses)) {
+            return result;
+        }
+        Optional<LemmaCountCourseDiagnosis> maybeCourse =
+                ((CourseDiagnoses) courseRoot.getDiagnoses()).getLemmaCountDiagnosis();
+        if (maybeCourse.isEmpty() || maybeCourse.get().getResult() == null
+                || maybeCourse.get().getResult().getExposures() == null) {
+            return result;
+        }
+        for (LemmaExposure exposure : maybeCourse.get().getResult().getExposures()) {
+            if (exposure.getLemmaAndPos() != null && exposure.getThreshold() > 0) {
+                result.put(exposure.getLemmaAndPos(), exposure.getThreshold());
+            }
+        }
+        return result;
+    }
+
+    /** F-POCOV-R007: the threshold of one word: the one of its band or, without the table, the course's. */
+    private static Integer thresholdOf(LemmaAndPos key, Integer courseThreshold,
+            Map<LemmaAndPos, Integer> bandThresholds) {
+        Integer band = key != null ? bandThresholds.get(key) : null;
+        return band != null ? band : courseThreshold;
+    }
+
+    /**
      * Builds the enriched, ranked, and limited suggestedLemmas list per F-SLEM-R003 through R015.
      *
      * Six-tier priority (first-match-wins, F-SLEM-R003 / R014):
@@ -396,6 +430,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
             Map<LemmaAndPos, LemmaCountStats> localCountStats,
             Map<CefrLevel, Map<LemmaAndPos, LemmaCountStats>> allLevelCountStats,
             Integer threshold,
+            Map<LemmaAndPos, Integer> bandThresholds,
             AuditNode courseRoot,
             CefrLevel quizLevel) {
 
@@ -465,7 +500,9 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                     stats = localCountStats.get(key);
                 }
 
-                int tier = SuggestedLemmaTierRanker.computeTier(stats, threshold, al.getCocaRank(), enrichBands);
+                // F-POCOV-R007: poco vista (1..N-1) and escasa (N..2N-1) with the N of the word's band
+                Integer wordThreshold = thresholdOf(key, threshold, bandThresholds);
+                int tier = SuggestedLemmaTierRanker.computeTier(stats, wordThreshold, al.getCocaRank(), enrichBands);
 
                 Integer lemmaCount = null;
                 Integer lemmaCountThreshold = null;
@@ -474,8 +511,8 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 if (stats != null) {
                     // F-SLEM-R013: triple all-or-nothing; set all three when signal available
                     lemmaCount = stats.getCount();
-                    lemmaCountThreshold = resolveThreshold(threshold, stats);
-                    isUnderexposedFlag = SuggestedLemmaTierRanker.isSubExposed(stats, threshold);
+                    lemmaCountThreshold = resolveThreshold(wordThreshold, stats);
+                    isUnderexposedFlag = SuggestedLemmaTierRanker.isSubExposed(stats, wordThreshold);
                 }
 
                 candidates.add(new SuggestedLemmaEntry(
@@ -492,13 +529,14 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 continue;
             }
             LemmaCountStats stats = entry.getValue();
-            if (!SuggestedLemmaTierRanker.isSubExposed(stats, threshold)) {
+            Integer wordThreshold = thresholdOf(key, threshold, bandThresholds);
+            if (!SuggestedLemmaTierRanker.isSubExposed(stats, wordThreshold)) {
                 // Not sub-exposed (score >= 1.0 or count >= N) — skip from candidate pool
                 continue;
             }
             seen.add(key);
             int count = stats.getCount();
-            Integer lct = resolveThreshold(threshold, stats);
+            Integer lct = resolveThreshold(wordThreshold, stats);
             // No cocaRank available from localCountStats alone (no absence entry)
             int tier = SuggestedLemmaTierRanker.isInEnrichBand(null, enrichBands)
                     ? SuggestedLemmaTierRanker.TIER_1_SUBEXPOSED_BAND
@@ -531,7 +569,8 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
     private List<ScarceContentWord> buildScarceContentWords(
             AuditableQuiz quiz,
             Map<LemmaAndPos, LemmaCountStats> localCountStats,
-            Integer threshold) {
+            Integer threshold,
+            Map<LemmaAndPos, Integer> bandThresholds) {
         if (threshold == null || localCountStats.isEmpty()) {
             // R003c: no exposure signal available
             return Collections.emptyList();
@@ -553,8 +592,10 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
             }
             LemmaAndPos key = new LemmaAndPos(lemma, pos);
             LemmaCountStats stats = localCountStats.get(key);
-            if (stats != null && stats.getCount() < threshold) {
-                result.add(new ScarceContentWord(lemma, pos, stats.getCount(), threshold));
+            // F-POCOV-R007: under the threshold of its own band, which is the one it reports
+            Integer wordThreshold = thresholdOf(key, threshold, bandThresholds);
+            if (stats != null && stats.getCount() < wordThreshold) {
+                result.add(new ScarceContentWord(lemma, pos, stats.getCount(), wordThreshold));
             }
         }
         return result;
@@ -743,12 +784,14 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                 Map<CefrLevel, Map<LemmaAndPos, LemmaCountStats>> allLevelCountStats =
                         buildAllLevelCountMaps(report.getRoot());
                 Integer threshold = extractThreshold(report.getRoot(), localCountStats, allLevelCountStats);
+                // F-POCOV-R007: the threshold of each word is the one of its band in lemma-count
+                Map<LemmaAndPos, Integer> bandThresholds = extractBandThresholds(report.getRoot());
 
                 // F-RCLA-R003b: build scarceContentWords from quiz tokens + lemma-count signal
                 AuditableEntity quizEntityForScarce = quizNode.getEntity();
                 if (quizEntityForScarce instanceof AuditableQuiz) {
                     scarceContentWords = buildScarceContentWords(
-                            (AuditableQuiz) quizEntityForScarce, localCountStats, threshold);
+                            (AuditableQuiz) quizEntityForScarce, localCountStats, threshold, bandThresholds);
                 }
 
                 Optional<LemmaAbsenceLevelDiagnosis> maybeAbsenceDiagnosis =
@@ -761,7 +804,7 @@ public class LemmaAbsenceContextResolver implements CorrectionContextResolver {
                     // F-SLEM: Build enriched suggestedLemmas with lemma-count signal + 6-tier ranking
                     suggestedLemmas = buildEnrichedSuggestedLemmas(
                             absentLemmas, localCountStats, allLevelCountStats, threshold,
-                            report.getRoot(), cefrLevel);
+                            bandThresholds, report.getRoot(), cefrLevel);
                 }
             }
         }

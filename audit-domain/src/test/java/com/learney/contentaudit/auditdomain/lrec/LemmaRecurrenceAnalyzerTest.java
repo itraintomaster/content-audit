@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.lrec;
-import com.learney.contentaudit.auditdomain.AuditableQuiz;
+
+import java.util.Map;import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.NlpToken;
 import com.learney.contentaudit.auditdomain.finding.FindingDraft;
 
@@ -452,7 +453,8 @@ public class LemmaRecurrenceAnalyzerTest {
         List<FindingDraft> drafts = sut.findingsAt(root);
 
         assertEquals(0.08, root.getScores().get("lemma-recurrence"), 1e-9);
-        assertEquals(1, drafts.size(), "one finding for the course");
+        // F-RECUR-R005 split the one finding of the course into one per lemma out of range: 92 here.
+        assertEquals(92, drafts.size(), "one finding of the course per lemma out of range (F-RECUR-R005)");
         StringBuilder evidence = new StringBuilder();
         drafts.get(0).getEvidence().getExamined().forEach(p -> evidence.append(p.getLabel()).append(": ")
                 .append(p.getText()).append('\n'));
@@ -466,143 +468,459 @@ public class LemmaRecurrenceAnalyzerTest {
     @DisplayName("should give the course of 29/9 a lemma-recurrence score of 0.08, with 134 normal, 1,570 under-exposed and 46 over-exposed of its 1,750 returning lemmas")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R001")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldGiveTheCourseOf299ALemmarecurrenceScoreOf008With134Normal1570UnderexposedAnd46OverexposedOfIts1750ReturningLemmas() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the 91,873 positions of the 29/9 course in order A1 → B2 give 0,08: 134 normal, 1,570
+        // under-exposed and 46 over-exposed of its 1,750 returning lemmas.
+        Run299 run = run299();
+
+        assertEquals(0.08, run.root.getScores().get("lemma-recurrence"), 1e-12, "R001: the score of today");
+        LemmaRecurrenceResult result = run.diagnosis().getResult();
+        assertEquals(1750, result.getLemmaStats().size(), "R001: 1,750 returning lemmas");
+        assertEquals(List.of(134, 1570, 46), List.of(result.getExposureSummary().getNormalCount(),
+                result.getExposureSummary().getSubExposedCount(), result.getExposureSummary().getOverExposedCount()),
+                "R001: 134 normal, 1,570 under-exposed, 46 over-exposed");
+        assertEquals(91873, run.positions, "the 91,873 positions of the course");
     }
 
     @Test
     @DisplayName("should score the course as before, normal lemmas over analysed lemmas rounded to two decimals, while it also publishes its course diagnosis")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R001")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldScoreTheCourseAsBeforeNormalLemmasOverAnalysedLemmasRoundedToTwoDecimalsWhileItAlsoPublishesItsCourseDiagnosis() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: 3 normal lemmas of 7 analysed give 3/7 rounded to two decimals, 0,43, as before, and the
+        // same result is the one the course diagnosis publishes.
+        Stream stream = new Stream();
+        for (String normal : List.of("cat", "hat", "map")) {
+            stream.quiz("A1", normal + "/NOUN 99 " + normal + "/NOUN");
+        }
+        for (String rare : List.of("dog", "pen", "cup", "box")) {
+            stream.quiz("A1", rare + "/NOUN 1999 " + rare + "/NOUN");
+        }
+
+        LemmaRecurrenceAnalyzer analyzer = stream.run();
+
+        assertEquals(0.43, stream.root.getScores().get("lemma-recurrence"), 1e-12, "R001: round(3 / 7, 2)");
+        LemmaRecurrenceResult result = stream.diagnosis().getResult();
+        assertEquals(0.43, result.getOverallScore(), 1e-12, "the diagnosis publishes the same score");
+        assertEquals(List.of(3, 4, 0), List.of(result.getExposureSummary().getNormalCount(),
+                result.getExposureSummary().getSubExposedCount(), result.getExposureSummary().getOverExposedCount()));
+        assertEquals(7, result.getLemmaStats().size());
+        assertEquals("lemma-recurrence", analyzer.getName());
     }
 
     @Test
     @DisplayName("should publish in the course diagnosis each analysed lemma with its count, mean interval, status, deviation, longest gap with its start and end levels and its levels, like 'movie': 90 times, every 1,005 words, under-exposed, longest gap 6,510 from A1 to A2")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldPublishInTheCourseDiagnosisEachAnalysedLemmaWithItsCountMeanIntervalStatusDeviationLongestGapWithItsStartAndEndLevelsAndItsLevelsLikeMovie90TimesEvery1005WordsUnderexposedLongestGap6510FromA1ToA2() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «movie» on the 29/9 course: 90 times, every 1,005 words, under-exposed, a deviation of
+        // 1,083, its longest gap 6,510 from A1 to A2, and in the four levels.
+        LemmaStats movie = run299().stats("movie");
+
+        assertEquals(90, movie.getCount(), "R003: its times");
+        assertEquals(1005.02, movie.getMeanInterval(), 0.01, "R003: how often it returns");
+        assertEquals(ExposureStatus.SUB_EXPOSED, movie.getExposureStatus(), "R003: under-exposed");
+        assertEquals(1082.57, movie.getStdDevInterval(), 0.01, "R003: the deviation of its intervals");
+        assertEquals(6510, movie.getLongestGap(), "R003: its longest gap");
+        assertEquals(List.of(CefrLevel.A1, CefrLevel.A2), List.of(movie.getLongestGapFromLevel(),
+                movie.getLongestGapToLevel()), "R003: from A1 to A2");
+        assertEquals(List.of(CefrLevel.A1, CefrLevel.A2, CefrLevel.B1, CefrLevel.B2), movie.getLevels(),
+                "R003: the levels where it appears");
     }
 
     @Test
     @DisplayName("should take a lemma's longest gap as the largest interval between two consecutive occurrences, with the levels of the quizzes where it starts and ends, like 27,379 from B1 to B2 for 'suppose'")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldTakeALemmasLongestGapAsTheLargestIntervalBetweenTwoConsecutiveOccurrencesWithTheLevelsOfTheQuizzesWhereItStartsAndEndsLike27379FromB1ToB2ForSuppose() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «suppose» returns on average every 696 words, but its largest interval between two
+        // consecutive occurrences is 27,379, from a B1 quiz to a B2 one; «vegetable»'s, 27,780, is in B1.
+        Run299 run = run299();
+        LemmaStats suppose = run.stats("suppose");
+        LemmaStats vegetable = run.stats("vegetable");
+
+        assertEquals(696.25, suppose.getMeanInterval(), 1e-9);
+        assertEquals(27379, suppose.getLongestGap(), "R003: the largest interval");
+        assertEquals(List.of(CefrLevel.B1, CefrLevel.B2), List.of(suppose.getLongestGapFromLevel(),
+                suppose.getLongestGapToLevel()), "R003: from B1 to B2");
+        assertEquals(List.of(27780, CefrLevel.B1, CefrLevel.B1), List.of(vegetable.getLongestGap(),
+                vegetable.getLongestGapFromLevel(), vegetable.getLongestGapToLevel()), "R003: within B1");
     }
 
     @Test
     @DisplayName("should list the levels where a lemma appears from A1 to B2 without repeating them")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldListTheLevelsWhereALemmaAppearsFromA1ToB2WithoutRepeatingThem() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: cat appears twice in A1 and once in B1: its levels are A1 and B1, once each.
+        Stream stream = new Stream();
+        stream.quiz("A1", "cat/NOUN 5 cat/NOUN");
+        stream.quiz("B1", "cat/NOUN");
+
+        stream.run();
+
+        assertEquals(List.of(CefrLevel.A1, CefrLevel.B1), stream.stats("cat").getLevels(),
+                "R003: from A1 to B2, without repeating them");
     }
 
     @Test
     @DisplayName("should publish the analysed lemmas from most to least frequent")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldPublishTheAnalysedLemmasFromMostToLeastFrequent() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 and F-LREC-R013: from most to least frequent: go 603, have 579, eat 332, say 328, play 283...
+        List<LemmaStats> stats = run299().diagnosis().getResult().getLemmaStats();
+
+        assertEquals(List.of("go 603", "have 579", "eat 332", "say 328", "play 283"), stats.subList(0, 5).stream()
+                .map(s -> s.getLemma() + " " + s.getCount()).toList(), "R003: the most frequent first");
+        for (int i = 1; i < stats.size(); i++) {
+            assertTrue(stats.get(i - 1).getCount() >= stats.get(i).getCount(), "R003: never more frequent after "
+                    + stats.get(i - 1).getLemma());
+        }
     }
 
     @Test
     @DisplayName("should publish for each level the recurrence measured only with its quizzes and the same thresholds: returning lemmas, normal, under-exposed, over-exposed and the normal share")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldPublishForEachLevelTheRecurrenceMeasuredOnlyWithItsQuizzesAndTheSameThresholdsReturningLemmasNormalUnderexposedOverexposedAndTheNormalShare() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: each level is measured only with its quizzes: «sun» returns every 10 words within A1
+        // (over-exposed there) and every 100 within B1 (normal); «cat», once in A1 and once in B1, returns
+        // in the course but in neither level.
+        Stream stream = new Stream();
+        stream.quiz("A1", "sun/NOUN 9 sun/NOUN cat/NOUN");
+        stream.quiz("B1", "cat/NOUN sun/NOUN 99 sun/NOUN");
+
+        stream.run();
+
+        List<LevelRecurrence> levels = stream.diagnosis().getLevels();
+        assertEquals(List.of("A1 12 1 0 0 1 0.0", "B1 102 1 1 0 0 1.0"), levels.stream().map(l -> l.getLevel() + " "
+                + l.getPositions() + " " + l.getReturningLemmas() + " " + l.getNormalCount() + " " + l.getSubExposedCount()
+                + " " + l.getOverExposedCount() + " " + l.getNormalShare()).toList(),
+                "R004: positions, returning, normal, under, over and the normal share of each level");
+        assertEquals(2, stream.diagnosis().getResult().getLemmaStats().size(), "in the course both return");
     }
 
     @Test
     @DisplayName("should close the sums of every level, so normal plus under-exposed plus over-exposed lemmas equal its returning lemmas")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldCloseTheSumsOfEveryLevelSoNormalPlusUnderexposedPlusOverexposedLemmasEqualItsReturningLemmas() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 and F-LREC-R009: in every level of the 29/9 course, normal + under + over = returning.
+        for (LevelRecurrence level : run299().diagnosis().getLevels()) {
+            assertEquals(level.getReturningLemmas(), level.getNormalCount() + level.getSubExposedCount()
+                    + level.getOverExposedCount(), "R004: the sums of " + level.getLevel() + " close");
+        }
+        assertEquals(4, run299().diagnosis().getLevels().size(), "the four levels");
     }
 
     @Test
     @DisplayName("should publish for the course of 29/9 A1 450 returning lemmas with 178 normal (39.6%), A2 752 with 155 (20.6%), B1 1,139 with 161 (14.1%) and B2 819 with 165 (20.1%)")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldPublishForTheCourseOf299A1450ReturningLemmasWith178Normal396A2752With155206B11139With161141AndB2819With165201() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 on the 29/9 course: A1 450 returning lemmas, 178 normal (39,6 %); A2 752, 155 (20,6 %);
+        // B1 1,139, 161 (14,1 %); B2 819, 165 (20,1 %).
+        List<String> levels = run299().diagnosis().getLevels().stream().map(l -> l.getLevel() + " " + l.getPositions()
+                + " " + l.getReturningLemmas() + " " + l.getNormalCount() + " " + l.getSubExposedCount() + " "
+                + l.getOverExposedCount() + " " + String.format(java.util.Locale.ROOT, "%.1f", 100 * l.getNormalShare()))
+                .toList();
+
+        assertEquals(List.of("A1 15802 450 178 257 15 39.6", "A2 18967 752 155 569 28 20.6",
+                "B1 38949 1139 161 938 40 14.1", "B2 18155 819 165 607 47 20.1"), levels, "R004: the table of the detail");
     }
 
     @Test
     @DisplayName("should keep the recurrence of each level as detail of the course diagnosis and never write a lemma-recurrence score on a milestone")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldKeepTheRecurrenceOfEachLevelAsDetailOfTheCourseDiagnosisAndNeverWriteALemmarecurrenceScoreOnAMilestone() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 (DOUBT-PUNTAJE-POR-NIVEL, A): the recurrence of each level is detail of the course
+        // diagnosis; no milestone gets a lemma-recurrence score, or the plan would open tasks there.
+        Stream stream = new Stream();
+        stream.quiz("A1", "sun/NOUN 9 sun/NOUN dog/NOUN 1999 dog/NOUN");
+        stream.quiz("B1", "sun/NOUN 99 sun/NOUN");
+
+        stream.run();
+
+        assertEquals(List.of(CefrLevel.A1, CefrLevel.B1), stream.diagnosis().getLevels().stream()
+                .map(LevelRecurrence::getLevel).toList(), "R004: inside the course diagnosis");
+        for (AuditNode level : stream.root.getChildren()) {
+            assertTrue(level.getScores().keySet().stream().noneMatch(key -> key.startsWith("lemma-recurrence")),
+                    "R004: no score of lemma-recurrence on " + level.getEntity().getLabel());
+        }
+        assertTrue(stream.root.getScores().containsKey("lemma-recurrence"), "only the course has it");
     }
 
     @Test
     @DisplayName("should leave in the course one finding per under-exposed or over-exposed lemma, of rule F-RECUR-R005, low severity, only ordering and instant cost, and none for a normal one")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldLeaveInTheCourseOneFindingPerUnderexposedOrOverexposedLemmaOfRuleFRECURR005LowSeverityOnlyOrderingAndInstantCostAndNoneForANormalOne() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: sun (every 10 words) and dog (every 2,000) leave one finding each, low and rank-only;
+        // cat (every 100) leaves none.
+        Stream stream = new Stream();
+        stream.quiz("A1", "sun/NOUN 9 sun/NOUN cat/NOUN 99 cat/NOUN dog/NOUN 1999 dog/NOUN");
+        LemmaRecurrenceAnalyzer analyzer = stream.run();
+
+        List<FindingDraft> drafts = analyzer.findingsAt(stream.root);
+
+        assertEquals(List.of("sun", "dog"), drafts.stream().map(FindingDraft::getMarker).sorted(
+                java.util.Comparator.reverseOrder()).toList(), "R005: one per lemma out of range, none for cat");
+        for (FindingDraft draft : drafts) {
+            assertEquals(List.of("F-RECUR-R005", "LOW", "RANK_ONLY"), List.of(draft.getRule(),
+                    draft.getSeverity().name(), draft.getResolution().name()), "R005: low and only ordering");
+        }
+        com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard rule = new LemmaRecurrenceAnalyzerProvider(
+                recurrenceConfig()).describe().getRules().get(0);
+        assertEquals(List.of("F-RECUR-R005", "INSTANT"), List.of(rule.getId(), rule.getCost().name()),
+                "R005: instant, the cost of its rule");
     }
 
     @Test
     @DisplayName("should give as evidence the lemma, its times, how often it returns against the goal and its longest gap, like 'movie: 90 times, returns every 1,005 words (goal: more than 50 and up to 1,000); its longest gap, 6,510, goes from A1 to A2'")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldGiveAsEvidenceTheLemmaItsTimesHowOftenItReturnsAgainstTheGoalAndItsLongestGapLikeMovie90TimesReturnsEvery1005WordsGoalMoreThan50AndUpTo1000ItsLongestGap6510GoesFromA1ToA2() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the evidence of «movie» on the 29/9 course.
+        Run299 run = run299();
+
+        FindingDraft movie = run.analyzer.findingsAt(run.root).stream().filter(d -> "movie".equals(d.getMarker()))
+                .findFirst().orElseThrow();
+
+        assertEquals("movie: 90 veces, vuelve cada 1.005 palabras (meta: más de 50 y hasta 1.000); su hueco más "
+                + "largo, 6.510, va de A1 a A2", movie.getEvidence().getObservation(), "R005: the measure against its goal");
+        Map<String, String> parts = new LinkedHashMap<>();
+        movie.getEvidence().getExamined().forEach(part -> parts.put(part.getLabel(), part.getText()));
+        assertEquals(List.of("movie", "90", "1.005 palabras", "más de 50 y hasta 1.000", "6.510, va de A1 a A2"),
+                List.of(parts.get("Palabra"), parts.get("Veces"), parts.get("Vuelve cada"), parts.get("Meta"),
+                        parts.get("Hueco más largo")), "R005: the lemma, its times, its interval, the goal and its gap");
     }
 
     @Test
     @DisplayName("should leave no finding when the course score is 1")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldLeaveNoFindingWhenTheCourseScoreIs1() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: a course at 1 -- every lemma returns at a healthy interval -- has no finding.
+        Stream stream = new Stream();
+        stream.quiz("A1", "cat/NOUN 99 cat/NOUN hat/NOUN 199 hat/NOUN");
+        LemmaRecurrenceAnalyzer analyzer = stream.run();
+
+        assertEquals(1.0, stream.root.getScores().get("lemma-recurrence"), 1e-12);
+        assertEquals(List.of(), analyzer.findingsAt(stream.root), "R005: nothing at 1");
     }
 
     @Test
     @DisplayName("should leave no finding for a lemma seen only once, which lemma-recurrence does not analyse")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldLeaveNoFindingForALemmaSeenOnlyOnceWhichLemmarecurrenceDoesNotAnalyse() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and F-LREC-R006 (DOUBT-UNA-SOLA-VEZ, A): «pen», seen once, is not analysed and leaves no
+        // finding; it is already a finding of lemma-count.
+        Stream stream = new Stream();
+        stream.quiz("A1", "sun/NOUN 9 sun/NOUN pen/NOUN cat/NOUN 99 cat/NOUN");
+        LemmaRecurrenceAnalyzer analyzer = stream.run();
+
+        assertTrue(stream.diagnosis().getResult().getLemmaStats().stream().noneMatch(s -> s.getLemma().equals("pen")),
+                "pen is not analysed");
+        assertEquals(List.of("sun"), analyzer.findingsAt(stream.root).stream().map(FindingDraft::getMarker).toList(),
+                "R005: only sun, over-exposed; nothing for pen");
     }
 
     @Test
     @DisplayName("should identify each finding by its lemma")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldIdentifyEachFindingByItsLemma() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and F-HALL-R014: the identity is the lemma, as the key of the analyzer: «run» as a verb and
+        // as a noun is one lemma and one finding.
+        Stream stream = new Stream();
+        stream.quiz("A1", "run/VERB 1999 run/NOUN cat/NOUN 99 cat/NOUN");
+        LemmaRecurrenceAnalyzer analyzer = stream.run();
+
+        assertEquals(List.of("run"), analyzer.findingsAt(stream.root).stream().map(FindingDraft::getMarker).toList(),
+                "R005: one finding, marked with the lemma");
     }
 
     @Test
     @DisplayName("should leave 1,616 findings in the course of 29/9, 1,570 for under-exposed and 46 for over-exposed lemmas")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
-    @Disabled("Stub de FEAT-RECUR (paquete D), sin implementar")
     public void shouldLeave1616FindingsInTheCourseOf2991570ForUnderexposedAnd46ForOverexposedLemmas() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 on the 29/9 course: 1,616 findings, 1,570 for under-exposed lemmas and 46 for over-exposed ones.
+        Run299 run = run299();
+
+        List<FindingDraft> drafts = run.analyzer.findingsAt(run.root);
+
+        assertEquals(1616, drafts.size(), "R005: 1,616 findings");
+        Map<String, Integer> byState = new java.util.TreeMap<>();
+        drafts.forEach(d -> d.getEvidence().getExamined().stream().filter(p -> "Estado".equals(p.getLabel()))
+                .forEach(p -> byState.merge(p.getText(), 1, Integer::sum)));
+        assertEquals(Map.of("poco vista", 1570, "sobre-expuesta", 46), byState, "R005: 1,570 and 46");
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-RECUR fixtures
+    // -----------------------------------------------------------------------
+
+    /** The thresholds of today: the 2,000 most used, over-exposed up to 50, under-exposed beyond 1,000. */
+    private static LemmaRecurrenceConfig recurrenceConfig() {
+        return new LemmaRecurrenceConfig() {
+            @Override
+            public int getTop() {
+                return 2000;
+            }
+
+            @Override
+            public double getSubExposedThreshold() {
+                return 1000.0;
+            }
+
+            @Override
+            public double getOverExposedThreshold() {
+                return 50.0;
+            }
+
+            @Override
+            public java.util.Map<String, Object> describe() {
+                return java.util.Map.of();
+            }
+        };
+    }
+
+    private static LemmaRecurrenceAnalyzer realAnalyzer() {
+        return new LemmaRecurrenceAnalyzer(new DefaultContentWordFilter(), recurrenceConfig(),
+                new DefaultIntervalCalculator(), new DefaultExposureClassifier());
+    }
+
+    /**
+     * A course of levels with one quiz per call: «cat/NOUN» is a content token, a number n is n
+     * function words in between, so positions are exact.
+     */
+    private static final class Stream {
+        final AuditNode root = node(AuditTarget.COURSE, null, null);
+        private final Map<String, AuditNode> knowledges = new LinkedHashMap<>();
+        private final List<AuditNode> quizzes = new ArrayList<>();
+
+        Stream() {
+            root.setDiagnoses(new DefaultCourseDiagnoses());
+        }
+
+        void quiz(String level, String spec) {
+            List<NlpToken> tokens = new ArrayList<>();
+            for (String item : spec.split(" ")) {
+                if (item.contains("/")) {
+                    String[] f = item.split("/");
+                    tokens.add(new NlpToken(f[0], f[0], f[1], null, false, false));
+                } else {
+                    for (int i = 0; i < Integer.parseInt(item); i++) {
+                        tokens.add(new NlpToken("the", "the", "DET", 1, true, false));
+                    }
+                }
+            }
+            add(level, "k-" + level, tokens);
+        }
+
+        void add(String level, String knowledgeId, List<NlpToken> tokens) {
+            AuditNode knowledge = knowledges.computeIfAbsent(level + "/" + knowledgeId, k -> {
+                AuditNode milestone = root.getChildren().stream().filter(m -> level.equals(m.getEntity().getLabel()))
+                        .findFirst().orElseGet(() -> node(AuditTarget.MILESTONE,
+                                new AuditableMilestone(List.of(), "m-" + level, level, level), root));
+                AuditNode topic = milestone.getChildren().isEmpty() ? node(AuditTarget.TOPIC,
+                        new AuditableTopic(List.of(), "t-" + level, "Tema", "T"), milestone) : milestone.getChildren().get(0);
+                return node(AuditTarget.KNOWLEDGE, new AuditableKnowledge(List.of(), knowledgeId, "", true, knowledgeId,
+                        knowledgeId, "K", null, "Tema"), topic);
+            });
+            quizzes.add(node(AuditTarget.QUIZ, new AuditableQuiz(tokens, "q" + quizzes.size(), "q", "Q", null, List.of(),
+                    null, null, null, null, null, null), knowledge));
+        }
+
+        LemmaRecurrenceAnalyzer run() {
+            LemmaRecurrenceAnalyzer analyzer = realAnalyzer();
+            quizzes.forEach(analyzer::onQuiz);
+            analyzer.onCourseComplete(root);
+            return analyzer;
+        }
+
+        LemmaRecurrenceCourseDiagnosis diagnosis() {
+            return ((DefaultCourseDiagnoses) root.getDiagnoses()).getLemmaRecurrenceDiagnosis().orElseThrow();
+        }
+
+        LemmaStats stats(String lemma) {
+            return diagnosis().getResult().getLemmaStats().stream().filter(s -> s.getLemma().equals(lemma)).findFirst()
+                    .orElseThrow(() -> new AssertionError("no stats of " + lemma));
+        }
+    }
+
+    /** lemma-recurrence over the 29/9 course, run once for the tests that read it. */
+    private static final class Run299 {
+        final AuditNode root;
+        final LemmaRecurrenceAnalyzer analyzer;
+        final int positions;
+        private final Stream stream;
+
+        Run299(Stream stream, LemmaRecurrenceAnalyzer analyzer, int positions) {
+            this.stream = stream;
+            this.root = stream.root;
+            this.analyzer = analyzer;
+            this.positions = positions;
+        }
+
+        LemmaRecurrenceCourseDiagnosis diagnosis() {
+            return stream.diagnosis();
+        }
+
+        LemmaStats stats(String lemma) {
+            return stream.stats(lemma);
+        }
+    }
+
+    private static Run299 run299;
+
+    /**
+     * The 11,287 quizzes of the 29/9 course in the order the engine walks them (A1 → B2), with the
+     * lemma and part of speech of each of their 91,873 tokens, as the analysis 2026-09-30T11-54-02 had them.
+     */
+    private static synchronized Run299 run299() {
+        if (run299 == null) {
+            Stream stream = new Stream();
+            int positions = 0;
+            try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(
+                    new java.util.zip.GZIPInputStream(LemmaRecurrenceAnalyzerTest.class.getResourceAsStream(
+                            "/recur-2026-09-30/stream.tsv.gz")), java.nio.charset.StandardCharsets.UTF_8))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] fields = line.split("\\t", -1);
+                    List<NlpToken> tokens = new ArrayList<>();
+                    for (int i = 3; i < fields.length; i++) {
+                        int bar = fields[i].lastIndexOf('|');
+                        String lemma = fields[i].substring(0, bar);
+                        String pos = fields[i].substring(bar + 1);
+                        tokens.add(new NlpToken(lemma, lemma, pos, null, false, "PUNCT".equals(pos)));
+                    }
+                    positions += tokens.size();
+                    stream.add(fields[0], fields[2], tokens);
+                }
+            } catch (java.io.IOException e) {
+                throw new AssertionError("the 29/9 stream is unreadable", e);
+            }
+            run299 = new Run299(stream, stream.run(), positions);
+        }
+        return run299;
+    }
+
+    private static AuditNode node(AuditTarget target, AuditableEntity entity, AuditNode parent) {
+        AuditNode node = new AuditNode();
+        node.setTarget(target);
+        node.setEntity(entity);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        if (parent != null) {
+            parent.getChildren().add(node);
+        }
+        return node;
     }
 }

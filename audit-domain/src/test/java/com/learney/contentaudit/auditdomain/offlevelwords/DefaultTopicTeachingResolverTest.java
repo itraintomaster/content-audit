@@ -1,5 +1,20 @@
 package com.learney.contentaudit.auditdomain.offlevelwords;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -15,67 +30,176 @@ public class DefaultTopicTeachingResolverTest {
     @DisplayName("should take as taught the words of the English terms between dollar signs in the knowledge title, like 'invest' and 'time' in '$Invest time$ + gerundio'")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldTakeAsTaughtTheWordsOfTheEnglishTermsBetweenDollarSignsInTheKnowledgeTitleLikeInvestAndTimeInInvestTimeGerundio(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the words of the English terms between $ of the title: invest and time.
+        TaughtWords taught = new DefaultTopicTeachingResolver().taughtWords(topic("$Invest time$ + gerundio"));
+
+        assertEquals(List.of("invest", "time"), taught.getTitleTerms(), "R003: the words between $");
+        assertEquals("k-topic", taught.getKnowledgeId());
     }
 
     @Test
     @DisplayName("should take 'let' as taught when a title term between dollar signs is 'Let's'")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldTakeLetAsTaughtWhenATitleTermBetweenDollarSignsIsLets() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «$Let's$» teaches let, the word before the apostrophe.
+        TaughtWords taught = new DefaultTopicTeachingResolver().taughtWords(topic("$Let's$ para sugerir"));
+
+        assertTrue(taught.getTitleTerms().contains("let"), "R003: let's counts as let: " + taught.getTitleTerms());
     }
 
     @Test
     @DisplayName("should take as taught a lemma that is part of the answer of at least 3 quizzes of the topic and of 20% or more of them, like 'sequence' in 'Orden o simultaneidad'")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldTakeAsTaughtALemmaThatIsPartOfTheAnswerOfAtLeast3QuizzesOfTheTopicAndOf20OrMoreOfThemLikeSequenceInOrdenOSimultaneidad(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: in «Orden o simultaneidad» (10 quizzes) sequence is the answer of 4 and simultaneous of 3:
+        // both are taught; «meanwhile», the answer of 1, is not.
+        AuditNode topic = topic("Orden o simultaneidad");
+        for (int i = 0; i < 4; i++) {
+            answered(topic, "They work in sequence.", "sequence", "They|they|PRON work|work|VERB in|in|ADP "
+                    + "sequence|sequence|NOUN .|.|PUNCT");
+        }
+        for (int i = 0; i < 3; i++) {
+            answered(topic, "The events are simultaneous.", "simultaneous", "The|the|DET events|event|NOUN are|be|AUX "
+                    + "simultaneous|simultaneous|ADJ .|.|PUNCT");
+        }
+        answered(topic, "Meanwhile, he slept.", "Meanwhile", "Meanwhile|meanwhile|ADV ,|,|PUNCT he|he|PRON "
+                + "slept|sleep|VERB .|.|PUNCT");
+        answered(topic, "He slept.", "slept", "He|he|PRON slept|sleep|VERB .|.|PUNCT");
+        answered(topic, "He ran.", "ran", "He|he|PRON ran|run|VERB .|.|PUNCT");
+
+        List<String> frequent = new DefaultTopicTeachingResolver().taughtWords(topic).getFrequentAnswers();
+
+        assertTrue(frequent.containsAll(List.of("sequence", "simultaneous")), "R003: 4 and 3 of 10: " + frequent);
+        assertFalse(frequent.contains("meanwhile"), "R003: the answer of 1 quiz is not taught");
     }
 
     @Test
     @DisplayName("should not take as taught a lemma that is part of the answer of only 2 quizzes, even when they are half of the topic")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNotTakeAsTaughtALemmaThatIsPartOfTheAnswerOfOnly2QuizzesEvenWhenTheyAreHalfOfTheTopic(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: two quizzes are never enough, even when they are half of the topic.
+        AuditNode topic = topic("Orden");
+        for (int i = 0; i < 2; i++) {
+            answered(topic, "They work in sequence.", "sequence", "They|they|PRON work|work|VERB in|in|ADP "
+                    + "sequence|sequence|NOUN .|.|PUNCT");
+        }
+        for (int i = 0; i < 2; i++) {
+            answered(topic, "He slept.", "slept", "He|he|PRON slept|sleep|VERB .|.|PUNCT");
+        }
+
+        List<String> frequent = new DefaultTopicTeachingResolver().taughtWords(topic).getFrequentAnswers();
+
+        assertFalse(frequent.contains("sequence"), "R003: 2 of 4 quizzes is 50 %, but fewer than 3: " + frequent);
     }
 
     @Test
     @DisplayName("should take as taught a lemma in the answer of 3 of the 15 quizzes of a topic but not of 3 of 16, which are less than 20%")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldTakeAsTaughtALemmaInTheAnswerOf3OfThe15QuizzesOfATopicButNotOf3Of16WhichAreLessThan20(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: 3 of 15 is 20 % and is taught; 3 of 16 is 18,75 % and is not.
+        assertTrue(frequentWith(3, 15).contains("sequence"), "R003: 3 of 15 is 20 %");
+        assertFalse(frequentWith(3, 16).contains("sequence"), "R003: 3 of 16 is less than 20 %");
     }
 
     @Test
     @DisplayName("should read the answer of a multiple choice quiz as its correct option and never as its distractors")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldReadTheAnswerOfAMultipleChoiceQuizAsItsCorrectOptionAndNeverAsItsDistractors(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 and 0.2: in a multiple choice the answer is its correct option, never a distractor, even
+        // when the distractor's word is also in the sentence.
+        AuditNode topic = topic("Orden o simultaneidad");
+        for (int i = 0; i < 3; i++) {
+            AuditableQuiz quiz = quiz("The sequential steps are simultaneous.", "The|the|DET sequential|sequential|ADJ "
+                    + "steps|step|NOUN are|be|AUX simultaneous|simultaneous|ADJ .|.|PUNCT");
+            quiz.setMultipleChoice(new MultipleChoiceEntity("single", List.of(
+                    new MultipleChoiceItemEntity("o1", 1.0, "simultaneous"),
+                    new MultipleChoiceItemEntity("o2", 0.0, "sequential"))));
+            child(topic, quiz);
+        }
+
+        List<String> frequent = new DefaultTopicTeachingResolver().taughtWords(topic).getFrequentAnswers();
+
+        assertEquals(List.of("simultaneous"), frequent, "R003: the correct option, never the distractor");
     }
 
     @Test
     @DisplayName("should not take as taught a word that only appears in the sentence outside the answer")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R003")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldNotTakeAsTaughtAWordThatOnlyAppearsInTheSentenceOutsideTheAnswer() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: a word of the sentence outside the answer is not taught, however often it appears.
+        AuditNode topic = topic("Orden o simultaneidad");
+        for (int i = 0; i < 3; i++) {
+            answered(topic, "The simultaneous events happen.", "happen", "The|the|DET simultaneous|simultaneous|ADJ "
+                    + "events|event|NOUN happen|happen|VERB .|.|PUNCT");
+        }
+
+        List<String> frequent = new DefaultTopicTeachingResolver().taughtWords(topic).getFrequentAnswers();
+
+        assertEquals(List.of("happen"), frequent, "R003: only the answer, never the rest of the sentence");
+    }
+
+    private static int counter = 0;
+
+    private static AuditNode topic(String title) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.KNOWLEDGE);
+        node.setEntity(new AuditableKnowledge(List.of(), title, "Completa.", true, "k-topic", title, "K", null, title));
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        return node;
+    }
+
+    private static AuditableQuiz quiz(String sentence, String tokens) {
+        List<NlpToken> parsed = new ArrayList<>();
+        for (String token : tokens.split(" ")) {
+            String[] f = token.split("\\|", -1);
+            parsed.add(new NlpToken(f[0], f[1], f[2], null, false, "PUNCT".equals(f[2])));
+        }
+        return new AuditableQuiz(parsed, "q" + (counter++), sentence, "Q", null, List.of(sentence), sentence, null,
+                null, null, null, null);
+    }
+
+    /** A quiz whose gap accepts the answer, inside the given sentence and tokens. */
+    private static void answered(AuditNode topic, String sentence, String answer, String tokens) {
+        AuditableQuiz quiz = quiz(sentence, tokens);
+        quiz.setSentenceParts(List.of(new SentencePartEntity(SentencePartKind.TEXT, "…", null),
+                new SentencePartEntity(SentencePartKind.CLOZE, null, List.of(answer))));
+        child(topic, quiz);
+    }
+
+    private static void child(AuditNode topic, AuditableQuiz quiz) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.QUIZ);
+        node.setEntity(quiz);
+        node.setParent(topic);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        topic.getChildren().add(node);
+    }
+
+    /** The frequent answers of a topic of n quizzes where «sequence» is the answer of k of them. */
+    private static List<String> frequentWith(int k, int n) {
+        AuditNode topic = topic("Orden");
+        for (int i = 0; i < n; i++) {
+            if (i < k) {
+                answered(topic, "They work in sequence.", "sequence", "They|they|PRON work|work|VERB in|in|ADP "
+                        + "sequence|sequence|NOUN .|.|PUNCT");
+            } else {
+                answered(topic, "He slept.", "slept", "He|he|PRON slept|sleep|VERB .|.|PUNCT");
+            }
+        }
+        return new DefaultTopicTeachingResolver().taughtWords(topic).getFrequentAnswers();
     }
 }

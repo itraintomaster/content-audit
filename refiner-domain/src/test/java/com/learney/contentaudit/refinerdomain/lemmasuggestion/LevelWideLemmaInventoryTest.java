@@ -1,10 +1,39 @@
 package com.learney.contentaudit.refinerdomain.lemmasuggestion;
 
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultLevelDiagnoses;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
+import com.learney.contentaudit.auditdomain.LemmaCountBand;
+import com.learney.contentaudit.auditdomain.LemmaCountConfig;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCefrLevelResolver;
+import com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.refinerdomain.SuggestedLemma;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -15,9 +44,102 @@ public class LevelWideLemmaInventoryTest {
     @DisplayName("should report for each exposed word listed with include-exposed the threshold of its band, marking 'number' (A1, 5 sentences) under-exposed with bands 8, 6, 4 and 3")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R007")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldReportForEachExposedWordListedWithIncludeexposedTheThresholdOfItsBandMarkingNumberA15SentencesUnderexposedWithBands864And3(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007 and F-INCEXP-R002: with --include-exposed every word of the level reports the N of its
+        // band. With 8, 6, 4 and 3 lemma-count marks «number» (5 sentences, COCA 211) under-exposed
+        // with 8; cat (beyond 3,000) and house (1,000 most common) are exposed with 3 and 8; nose and
+        // wife, which no quiz uses, report the band of their rank: 6 (1,720) and 3 (no rank).
+        Map<LemmaAndPos, Integer> sentences = Map.of(lp("number"), 5, lp("cat"), 5, lp("house"), 9);
+        Map<LemmaAndPos, Integer> ranks = Map.of(lp("number"), 211, lp("cat"), 3500, lp("house"), 300,
+                lp("nose"), 1720);
+        LemmaCountConfig bands = bands(8, 6, 4, 3);
+        AuditReport report = analyzedA1Course(sentences, ranks, bands);
+        EvpCatalogPort evp = Mockito.mock(EvpCatalogPort.class);
+        Mockito.when(evp.getExpectedLemmas(CefrLevel.A1)).thenReturn(Set.of(lp("number"), lp("cat"), lp("house"),
+                lp("nose"), lp("wife")));
+        Mockito.when(evp.getCocaRank(Mockito.any())).thenAnswer(invocation ->
+                Optional.ofNullable(ranks.get(invocation.<LemmaAndPos>getArgument(0))));
+
+        List<SuggestedLemma> lemmas = new LevelWideLemmaInventory(evp, bands).lemmasFor(report,
+                new RefinementTask("task-1", AuditTarget.QUIZ, "q-0", "Quiz", DiagnosisKind.LEMMA_ABSENCE, 1,
+                        RefinementTaskStatus.PENDING), CefrLevel.A1, Optional.empty());
+
+        Map<String, String> byLemma = new TreeMap<>();
+        lemmas.forEach(l -> byLemma.put(l.getLemma(), l.getLemmaCount() + "/" + l.getLemmaCountThreshold() + " "
+                + l.getIsUnderexposed()));
+        Assertions.assertEquals(Map.of("number", "5/8 true", "cat", "null/3 false", "house", "null/8 false",
+                "nose", "null/6 false", "wife", "null/3 false"), byLemma,
+                "R007: the threshold of each word's band; number under-exposed with 8");
+    }
+
+    private static LemmaAndPos lp(String lemma) {
+        return new LemmaAndPos(lemma, "NOUN");
+    }
+
+    private static LemmaCountConfig bands(int... thresholds) {
+        Integer[] tops = {1000, 2000, 3000, null};
+        String[] names = {"1.000 más comunes", "hasta 2.000", "hasta 3.000", "más allá de 3.000 o sin puesto"};
+        List<LemmaCountBand> table = new ArrayList<>();
+        for (int i = 0; i < thresholds.length; i++) {
+            table.add(new LemmaCountBand(names[i], tops[i], thresholds[i]));
+        }
+        LemmaCountConfig config = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(config.getThreshold()).thenReturn(4);
+        Mockito.when(config.getBands()).thenReturn(table);
+        return config;
+    }
+
+    /** An A1 course, one quiz per sentence of each word, analyzed by the real lemma-count. */
+    private static AuditReport analyzedA1Course(Map<LemmaAndPos, Integer> sentences, Map<LemmaAndPos, Integer> ranks,
+            LemmaCountConfig config) {
+        AuditNode course = node(AuditTarget.COURSE, null, null);
+        course.setDiagnoses(new DefaultCourseDiagnoses());
+        AuditNode milestone = node(AuditTarget.MILESTONE, new AuditableMilestone(List.of(), "m-a1", "A1", "A1"), course);
+        milestone.setDiagnoses(new DefaultLevelDiagnoses());
+        List<AuditNode> quizzes = new ArrayList<>();
+        int n = 0;
+        for (Map.Entry<LemmaAndPos, Integer> entry : new TreeMap<>(byLemma(sentences)).values()) {
+            for (int i = 0; i < entry.getValue(); i++) {
+                LemmaAndPos lp = entry.getKey();
+                quizzes.add(node(AuditTarget.QUIZ, new AuditableQuiz(List.of(new NlpToken(lp.getLemma(), lp.getLemma(),
+                        lp.getPos(), null, false, false)), "q-" + (n++), null, null, null, List.of("x"), null, null, null,
+                        null, null, null), milestone));
+            }
+        }
+        LemmaCountAnalyzer analyzer = new LemmaCountAnalyzer(new DefaultContentWordFilter(), new LemmaCefrLevelResolver() {
+            @Override
+            public Optional<CefrLevel> resolve(LemmaAndPos lemmaAndPos, Optional<CefrLevel> nlpCefr) {
+                return sentences.containsKey(lemmaAndPos) ? Optional.of(CefrLevel.A1) : Optional.empty();
+            }
+
+            @Override
+            public Optional<Integer> resolveCocaRank(LemmaAndPos lemmaAndPos) {
+                return Optional.ofNullable(ranks.get(lemmaAndPos));
+            }
+        }, config);
+        quizzes.forEach(analyzer::onQuiz);
+        analyzer.onCourseComplete(course);
+        return new AuditReport(course);
+    }
+
+    private static Map<String, Map.Entry<LemmaAndPos, Integer>> byLemma(Map<LemmaAndPos, Integer> sentences) {
+        Map<String, Map.Entry<LemmaAndPos, Integer>> sorted = new TreeMap<>();
+        sentences.entrySet().forEach(e -> sorted.put(e.getKey().getLemma(), e));
+        return sorted;
+    }
+
+    private static AuditNode node(AuditTarget target, AuditableEntity entity, AuditNode parent) {
+        AuditNode node = new AuditNode();
+        node.setTarget(target);
+        node.setEntity(entity);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        if (parent != null) {
+            parent.getChildren().add(node);
+        }
+        return node;
     }
 }

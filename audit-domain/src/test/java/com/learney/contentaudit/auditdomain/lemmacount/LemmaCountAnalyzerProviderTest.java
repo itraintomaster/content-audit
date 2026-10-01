@@ -68,26 +68,70 @@ public class LemmaCountAnalyzerProviderTest {
     @DisplayName("should declare no plan binding for lemma-count")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R002")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldDeclareNoPlanBindingForLemmacount() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: lemma-count asks for no task (José, 30/9), with the bands as with 4 for every band.
+        LemmaCountAnalyzerProvider withBands = new LemmaCountAnalyzerProvider(Mockito.mock(EvpCatalogPort.class),
+                bands(8, 6, 4, 3));
+        LemmaCountAnalyzerProvider withFour = new LemmaCountAnalyzerProvider(Mockito.mock(EvpCatalogPort.class),
+                bands(4, 4, 4, 4));
+
+        Assertions.assertEquals(java.util.Optional.empty(), withBands.planBinding(), "R002: no plan binding");
+        Assertions.assertEquals(java.util.Optional.empty(), withFour.planBinding(), "R002: no plan binding");
     }
 
     @Test
     @DisplayName("should describe lemma-count in its card: whether each word of the level appears in enough sentences, reading the finished sentences of the whole course, vocabulary family, level and course targets, only ordering and instant cost")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R006")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldDescribeLemmacountInItsCardWhetherEachWordOfTheLevelAppearsInEnoughSentencesReadingTheFinishedSentencesOfTheWholeCourseVocabularyFamilyLevelAndCourseTargetsOnlyOrderingAndInstantCost() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: the card of lemma-count, with its name of always.
+        LemmaCountAnalyzerProvider provider = new LemmaCountAnalyzerProvider(Mockito.mock(EvpCatalogPort.class),
+                bands(8, 6, 4, 3));
+
+        AnalyzerDescriptor card = provider.describe();
+
+        assertCompleteCard(card, "lemma-count");
+        Assertions.assertEquals("¿Cada palabra del nivel aparece en suficientes oraciones?", card.getQuestion(),
+                "R006: its question");
+        Assertions.assertTrue(card.getReads().startsWith("Las oraciones terminadas de todo el curso"),
+                "R006: it reads the finished sentences of the whole course: " + card.getReads());
+        Assertions.assertEquals(AnalyzerFamily.VOCABULARY, card.getFamily(), "R006: vocabulary");
+        Assertions.assertEquals(List.of(AuditTarget.MILESTONE, AuditTarget.COURSE), card.getEvaluatedTargets(),
+                "R006: it evaluates the level and the course");
+        Assertions.assertEquals(List.of(FindingResolution.RANK_ONLY), card.getResolutions(), "R006: only ordering");
+        Assertions.assertEquals(AnalysisCost.INSTANT, card.getCost(), "R006: instant");
+        Assertions.assertEquals(List.of("F-POCOV-R003"), card.getRules().stream().map(r -> r.getId()).toList(),
+                "its one rule, the one of its findings");
+        Assertions.assertEquals("Palabras poco vistas", card.getDisplayName(), "the name on screen");
     }
 
     @Test
     @DisplayName("should state in its card goal the threshold of each band it uses, 8, 6, 4 and 3 with the recommended bands")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R006")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldStateInItsCardGoalTheThresholdOfEachBandItUses864And3WithTheRecommendedBands() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: the goal shows the threshold of each band it uses.
+        LemmaCountAnalyzerProvider provider = new LemmaCountAnalyzerProvider(Mockito.mock(EvpCatalogPort.class),
+                bands(8, 6, 4, 3));
+
+        String goal = provider.describe().getGoal();
+
+        Assertions.assertEquals("Cada palabra del nivel en tantas oraciones distintas como pide su banda: 8 de las "
+                + "1.000 más comunes, 6 hasta 2.000, 4 hasta 3.000 y 3 más allá de 3.000 o sin puesto", goal,
+                "R006: the threshold of each band, 8, 6, 4 and 3");
+    }
+
+    /** A configuration with the four bands of F-POCOV-R001 and the given thresholds. */
+    private static LemmaCountConfig bands(int... thresholds) {
+        Integer[] tops = {1000, 2000, 3000, null};
+        String[] names = {"1.000 más comunes", "hasta 2.000", "hasta 3.000", "más allá de 3.000 o sin puesto"};
+        List<com.learney.contentaudit.auditdomain.LemmaCountBand> table = new java.util.ArrayList<>();
+        for (int i = 0; i < thresholds.length; i++) {
+            table.add(new com.learney.contentaudit.auditdomain.LemmaCountBand(names[i], tops[i], thresholds[i]));
+        }
+        LemmaCountConfig config = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(config.getThreshold()).thenReturn(4);
+        Mockito.when(config.getBands()).thenReturn(table);
+        return config;
     }
 }

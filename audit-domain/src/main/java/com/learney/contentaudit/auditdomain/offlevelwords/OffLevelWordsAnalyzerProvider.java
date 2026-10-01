@@ -2,13 +2,19 @@ package com.learney.contentaudit.auditdomain.offlevelwords;
 
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
 import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.labs.SentenceLexicalScorer;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -36,26 +42,51 @@ public class OffLevelWordsAnalyzerProvider implements AnalyzerProvider {
 
     @Override
     public String analyzerName() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return OffLevelWordsAnalyzer.ANALYZER_NAME;
     }
 
+    /**
+     * F-NIVFR-R007: the card of off-level-words, with its one name: whether there are words a
+     * student of the level cannot know; it reads the finished sentence, the title and answers of the
+     * topic and the translation; errors family, evaluates the quiz, goal 0, panel and instant.
+     */
     @Override
     public AnalyzerDescriptor describe() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new AnalyzerDescriptor(
+                OffLevelWordsAnalyzer.ANALYZER_NAME,
+                OffLevelWordsAnalyzer.DESCRIPTION,
+                AuditTarget.QUIZ,
+                "¿Hay palabras que el alumno de este nivel no puede conocer?",
+                "La oración terminada de cada ejercicio, el título y las respuestas de su tema y su traducción",
+                List.of(new AnalyzerRuleCard(OffLevelWordsAnalyzer.RULE_OFF_LEVEL,
+                        "Una palabra está dos o más niveles arriba del ejercicio, o fuera del EVP en la banda de "
+                                + "descuento fuerte de su nivel, y ni el tema la enseña ni la traducción la repite",
+                        AnalysisCost.INSTANT)),
+                "0 palabras de otro nivel en cada ejercicio",
+                AnalyzerFamily.ERRORS,
+                List.of(AuditTarget.QUIZ),
+                List.of(FindingResolution.PANEL),
+                AnalysisCost.INSTANT, "Palabras de otro nivel");
     }
 
+    /** A new analyzer for every run (F-HALL-R014); it consults no model, so no policy applies. */
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return new OffLevelWordsAnalyzer(sentenceLexicalScorer, lemmaAbsenceConfig, topicTeachingResolver,
+                studentViewRenderer);
     }
 
+    /**
+     * F-NIVFR-R006 (DOUBT-TAREA-COMPARTIDA, A): no task of its own -- its errors are covered by the
+     * LEMMA_ABSENCE task of the quiz, which the plan declares.
+     */
     @Override
     public Optional<AnalyzerPlanBinding> planBinding() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.empty();
     }
 
     @Override
     public Optional<SelfDescribingConfig> config() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return Optional.empty();
     }
 }

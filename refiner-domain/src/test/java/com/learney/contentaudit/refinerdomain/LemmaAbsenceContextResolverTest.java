@@ -2995,35 +2995,258 @@ public class LemmaAbsenceContextResolverTest {
     @DisplayName("should mark 'number' (A1, 5 sentences) as an under-exposed suggested word with threshold 8 with bands 8, 6, 4 and 3, and as exposed but scarce with 4 for every band")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R007")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldMarkNumberA15SentencesAsAnUnderexposedSuggestedWordWithThreshold8WithBands864And3AndAsExposedButScarceWith4ForEveryBand() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: «number» (A1, 5 sentences, COCA 211) is a suggested word whose N is the one of its band
+        // in lemma-count: with 8, 6, 4 and 3 it is under-exposed (1..7) with threshold 8 and goes
+        // before a word never used; with 4 for every band it is exposed but scarce (4..7), threshold 4,
+        // and goes after it (F-SLEM-R014). The level carries number's sentences as lemma-count
+        // published them, and the course its row with the threshold of its band.
+        AbsentLemma number = buildAbsentLemma("number", "NOUN", AbsenceType.APPEARS_TOO_LATE, 211);
+        AbsentLemma nose = buildAbsentLemma("nose", "NOUN", AbsenceType.COMPLETELY_ABSENT, 1720);
+
+        LemmaAbsenceCorrectionContext withBands = numberContext(number, nose, 8);
+        LemmaAbsenceCorrectionContext withFour = numberContext(number, nose, 4);
+
+        Assertions.assertEquals(List.of("number 5/8 true", "nose null/null null"), described(withBands.getSuggestedLemmas()),
+                "R007: under-exposed with the N of its band, 8, ahead of a word never used");
+        Assertions.assertEquals(List.of("nose null/null null", "number 5/4 false"), described(withFour.getSuggestedLemmas()),
+                "R007: exposed but scarce with 4, after the word never used");
     }
 
     @Test
     @DisplayName("should list a content word of the sentence as scarce when its sentences are under the threshold of its own band, and report that threshold with it")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R007")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldListAContentWordOfTheSentenceAsScarceWhenItsSentencesAreUnderTheThresholdOfItsOwnBandAndReportThatThresholdWithIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007 and F-RCLA-R003b: a content word of the sentence the correction must not remove is one
+        // under the N of its own band, and it travels with that N: number (5 of 8) and dog (3 of 6);
+        // cat (5, beyond 3,000, asks for 3) and go (20 of 8) are not.
+        Pocov course = new Pocov(bands(8, 6, 4, 3))
+                .word("number|NOUN", 5, 211).word("dog|NOUN", 3, 1500).word("cat|NOUN", 5, 3500).word("go|VERB", 20, 50);
+
+        LemmaAbsenceCorrectionContext context = course.resolve("number|NOUN", "dog|NOUN", "cat|NOUN", "go|VERB");
+
+        Assertions.assertEquals(List.of("number 5/8", "dog 3/6"), context.getScarceContentWords().stream()
+                .map(w -> w.getLemma() + " " + w.getCount() + "/" + w.getThreshold()).toList(),
+                "R007: under the threshold of their own band, reported with it");
     }
 
     @Test
     @DisplayName("should mark a word under-exposed for the suggestions if and only if lemma-count leaves a finding for it in its level")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R007")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldMarkAWordUnderexposedForTheSuggestionsIfAndOnlyIfLemmacountLeavesAFindingForItInItsLevel() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007 inv. 1: under-exposed for the suggestions if and only if lemma-count leaves a finding for
+        // it in its level -- with the bands, number (5 of 8), eye (4 of 8) and dog (2 of 6); never cat
+        // (5 of 3) nor house (9 of 8), not even when lemma-absence lists cat as appearing too late.
+        Pocov course = new Pocov(bands(8, 6, 4, 3))
+                .word("number|NOUN", 5, 211).word("eye|NOUN", 4, 600).word("dog|NOUN", 2, 1500)
+                .word("cat|NOUN", 5, 3500).word("house|NOUN", 9, 300)
+                .absent(buildAbsentLemma("cat", "NOUN", AbsenceType.APPEARS_TOO_LATE, 3500))
+                .absent(buildAbsentLemma("nose", "NOUN", AbsenceType.COMPLETELY_ABSENT, 1720));
+
+        LemmaAbsenceCorrectionContext context = course.resolve("house|NOUN");
+
+        java.util.Set<String> findings = new java.util.TreeSet<>();
+        course.analyzer.findingsAt(course.milestone).forEach(draft -> findings.add(draft.getMarker()));
+        java.util.Set<String> underExposed = new java.util.TreeSet<>();
+        for (SuggestedLemma lemma : context.getSuggestedLemmas()) {
+            if (Boolean.TRUE.equals(lemma.getIsUnderexposed())) {
+                underExposed.add(lemma.getLemma() + "|" + lemma.getPos());
+            }
+            if (lemma.getLemmaCount() != null) {
+                Assertions.assertEquals(lemma.getLemmaCount() < lemma.getLemmaCountThreshold(), lemma.getIsUnderexposed(),
+                        "F-SLEM-R013: the mark agrees with the threshold reported for " + lemma.getLemma());
+            }
+        }
+        Assertions.assertEquals(java.util.Set.of("dog|NOUN", "eye|NOUN", "number|NOUN"), findings,
+                "the findings of lemma-count in A1");
+        Assertions.assertEquals(findings, underExposed, "R007 inv. 1: under-exposed if and only if a finding");
     }
 
     @Test
     @DisplayName("should give the same suggested words, tiers, thresholds and scarce words as today with 4 for every band")
     @Tag("FEAT-POCOV")
     @Tag("F-POCOV-R007")
-    @Disabled("Stub de FEAT-POCOV (paquete D), sin implementar")
     public void shouldGiveTheSameSuggestedWordsTiersThresholdsAndScarceWordsAsTodayWith4ForEveryBand() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007 inv. 2: with 4 for every band the suggested words -- their order, reasons, ranks, counts,
+        // thresholds and marks -- and the scarce words are the ones of today, read from the same
+        // analysis as lemma-count published it before its table of bands.
+        Pocov course = new Pocov(bands(4, 4, 4, 4))
+                .word("number|NOUN", 5, 211).word("eye|NOUN", 3, 600).word("dog|NOUN", 1, 1500)
+                .word("cat|NOUN", 2, 3500).word("house|NOUN", 9, 300).word("wife|NOUN", 2, null)
+                .absent(buildAbsentLemma("eye", "NOUN", AbsenceType.APPEARS_TOO_LATE, 600))
+                .absent(buildAbsentLemma("number", "NOUN", AbsenceType.APPEARS_TOO_LATE, 211))
+                .absent(buildAbsentLemma("nose", "NOUN", AbsenceType.COMPLETELY_ABSENT, 1720))
+                .absent(buildAbsentLemma("face", "NOUN", AbsenceType.COMPLETELY_ABSENT, 369))
+                .enrichBand(1, 1000);
+
+        LemmaAbsenceCorrectionContext withBands = course.resolve("dog|NOUN", "cat|NOUN", "house|NOUN", "wife|NOUN");
+        course.forgetTheBandTable();
+        LemmaAbsenceCorrectionContext today = course.resolve("dog|NOUN", "cat|NOUN", "house|NOUN", "wife|NOUN");
+
+        Assertions.assertEquals(described(today.getSuggestedLemmas()), described(withBands.getSuggestedLemmas()),
+                "R007 inv. 2: the same suggested words, in the same tiers and order, with the same thresholds");
+        Assertions.assertEquals(today.getSuggestedLemmas(), withBands.getSuggestedLemmas(), "field by field");
+        Assertions.assertEquals(today.getScarceContentWords(), withBands.getScarceContentWords(),
+                "R007 inv. 2: the same scarce words");
+        Assertions.assertEquals(List.of("dog 1/4", "cat 2/4", "wife 2/4"), withBands.getScarceContentWords().stream()
+                .map(w -> w.getLemma() + " " + w.getCount() + "/" + w.getThreshold()).toList(), "the ones of today");
+    }
+
+    // ------------------------------------------------------------------
+    // FEAT-POCOV: the threshold of the band of each word
+    // ------------------------------------------------------------------
+
+    private static final Integer[] BAND_TOPS = {1000, 2000, 3000, null};
+    private static final String[] BAND_NAMES = {"1.000 más comunes", "hasta 2.000", "hasta 3.000",
+            "más allá de 3.000 o sin puesto"};
+
+    /** A lemma-count configuration with the four bands of F-POCOV-R001 and the given thresholds. */
+    private static com.learney.contentaudit.auditdomain.LemmaCountConfig bands(int... thresholds) {
+        List<com.learney.contentaudit.auditdomain.LemmaCountBand> table = new ArrayList<>();
+        for (int i = 0; i < thresholds.length; i++) {
+            table.add(new com.learney.contentaudit.auditdomain.LemmaCountBand(BAND_NAMES[i], BAND_TOPS[i], thresholds[i]));
+        }
+        com.learney.contentaudit.auditdomain.LemmaCountConfig config =
+                org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.LemmaCountConfig.class);
+        org.mockito.Mockito.when(config.getThreshold()).thenReturn(4);
+        org.mockito.Mockito.when(config.getBands()).thenReturn(table);
+        return config;
+    }
+
+    /** «number 5/8 true»: the suggested word with its sentences, its threshold and its mark, in order. */
+    private static List<String> described(List<SuggestedLemma> lemmas) {
+        return lemmas.stream().map(l -> l.getLemma() + " " + l.getLemmaCount() + "/" + l.getLemmaCountThreshold()
+                + " " + l.getIsUnderexposed()).toList();
+    }
+
+    /**
+     * The context of an A1 quiz where lemma-absence lists «number» as appearing too late and «nose»
+     * as never used, and lemma-count published number in 5 sentences with the threshold of its band.
+     */
+    private LemmaAbsenceCorrectionContext numberContext(AbsentLemma number, AbsentLemma nose, int numberThreshold) {
+        AuditableQuiz quiz = new AuditableQuiz(List.of(), "quiz-la-1", null, null, "Hay un número.",
+                List.of("There is a number."), null, null, null, null, null, null);
+        DefaultLevelDiagnoses milestoneDiagnoses = buildMilestoneDiagnoses(CefrLevel.A1, List.of(number, nose));
+        LemmaCountStats stats = new LemmaCountStats(new LemmaAndPos("number", "NOUN"), 5,
+                Math.min(5.0 / numberThreshold, 1.0), Optional.of(CefrLevel.A1));
+        LevelLemmaCountResult level = new LevelLemmaCountResult(CefrLevel.A1, 0.9, 10, List.of(stats));
+        milestoneDiagnoses.setLemmaCountDiagnosis(new LemmaCountLevelDiagnosis(level));
+        AuditNode[] tree = buildFullTree(new AuditableMilestone(List.of(), "ms-la-1", "A1", null), milestoneDiagnoses,
+                new AuditableTopic(List.of(), "topic-la-1", "Números", null),
+                new AuditableKnowledge(List.of(), "Números", "Completa.", true, "know-la-1", null, null, null, null),
+                quiz, buildQuizDiagnosesWithPlacement(List.of()));
+        DefaultCourseDiagnoses courseDiagnoses = new DefaultCourseDiagnoses();
+        courseDiagnoses.setLemmaCountDiagnosis(new com.learney.contentaudit.auditdomain.lemmacount.LemmaCountCourseDiagnosis(
+                new com.learney.contentaudit.auditdomain.lemmacount.LemmaCountResult(4, Optional.of(0.9), List.of(level),
+                        List.of(), bands(numberThreshold, 6, 4, 3).getBands(), List.of(
+                        new com.learney.contentaudit.auditdomain.lemmacount.LemmaExposure(
+                                new LemmaAndPos("number", "NOUN"), CefrLevel.A1, 5, 211, BAND_NAMES[0], numberThreshold,
+                                stats.getScore(), List.of("know-la-1"))))));
+        tree[0].setDiagnoses(courseDiagnoses);
+        return sut.resolve(new AuditReport(tree[0]), buildTask("quiz-la-1")).orElseThrow();
+    }
+
+    /**
+     * An A1 course analyzed by the real lemma-count: each word in its sentences (one quiz per
+     * sentence), with its COCA rank, and the quiz of the task carrying the words asked for.
+     */
+    private final class Pocov {
+        private final com.learney.contentaudit.auditdomain.LemmaCountConfig config;
+        private final java.util.Map<LemmaAndPos, Integer> sentences = new LinkedHashMap<>();
+        private final java.util.Map<LemmaAndPos, Integer> ranks = new java.util.HashMap<>();
+        private final List<AbsentLemma> absents = new ArrayList<>();
+        private int[] enrich;
+        AuditNode course;
+        AuditNode milestone;
+        com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer analyzer;
+
+        Pocov(com.learney.contentaudit.auditdomain.LemmaCountConfig config) {
+            this.config = config;
+        }
+
+        Pocov word(String key, int count, Integer rank) {
+            LemmaAndPos lp = new LemmaAndPos(key.substring(0, key.indexOf('|')), key.substring(key.indexOf('|') + 1));
+            sentences.put(lp, count);
+            if (rank != null) {
+                ranks.put(lp, rank);
+            }
+            return this;
+        }
+
+        Pocov absent(AbsentLemma absent) {
+            absents.add(absent);
+            return this;
+        }
+
+        Pocov enrichBand(int from, int to) {
+            enrich = new int[] {from, to};
+            return this;
+        }
+
+        /** Builds the course, runs lemma-count over it and resolves the task of the quiz with these words. */
+        LemmaAbsenceCorrectionContext resolve(String... quizWords) {
+            if (course == null) {
+                build(quizWords);
+            }
+            return sut.resolve(new AuditReport(course), buildTask("quiz-la-1")).orElseThrow();
+        }
+
+        /** The same analysis as lemma-count published it before the bands: no band table, no rows. */
+        void forgetTheBandTable() {
+            DefaultCourseDiagnoses diagnoses = (DefaultCourseDiagnoses) course.getDiagnoses();
+            com.learney.contentaudit.auditdomain.lemmacount.LemmaCountResult result =
+                    diagnoses.getLemmaCountDiagnosis().orElseThrow().getResult();
+            diagnoses.setLemmaCountDiagnosis(new com.learney.contentaudit.auditdomain.lemmacount.LemmaCountCourseDiagnosis(
+                    new com.learney.contentaudit.auditdomain.lemmacount.LemmaCountResult(result.getThresholdN(),
+                            result.getCourseScore(), result.getLevels(), result.getUnassigned(), null, null)));
+        }
+
+        private void build(String... quizWords) {
+            course = enrich != null ? buildCourseNodeWithEnrichBands("A1", new int[][] {enrich}) : buildCourseNode();
+            if (course.getDiagnoses() == null) {
+                course.setDiagnoses(new DefaultCourseDiagnoses());
+            }
+            milestone = buildMilestoneNode(course, new AuditableMilestone(List.of(), "ms-la-1", "A1", null),
+                    buildMilestoneDiagnoses(CefrLevel.A1, absents));
+            AuditNode topic = buildTopicNode(milestone, new AuditableTopic(List.of(), "topic-la-1", "Palabras", null));
+            AuditNode knowledge = buildKnowledgeNode(topic,
+                    new AuditableKnowledge(List.of(), "Palabras", "Completa.", true, "know-la-1", null, null, null, null));
+            List<AuditNode> quizzes = new ArrayList<>();
+            java.util.Map<LemmaAndPos, Integer> pending = new LinkedHashMap<>(sentences);
+            List<NlpToken> own = new ArrayList<>();
+            for (String word : quizWords) {
+                LemmaAndPos lp = new LemmaAndPos(word.substring(0, word.indexOf('|')), word.substring(word.indexOf('|') + 1));
+                own.add(new NlpToken(lp.getLemma(), lp.getLemma(), lp.getPos(), null, false, false));
+                pending.merge(lp, -1, Integer::sum);
+            }
+            quizzes.add(buildQuizNode(knowledge, new AuditableQuiz(own, "quiz-la-1", null, null, "Una oración.",
+                    List.of("A sentence."), null, null, null, null, null, null), buildQuizDiagnosesWithPlacement(List.of())));
+            int n = 0;
+            for (java.util.Map.Entry<LemmaAndPos, Integer> entry : pending.entrySet()) {
+                for (int i = 0; i < entry.getValue(); i++) {
+                    LemmaAndPos lp = entry.getKey();
+                    quizzes.add(buildQuizNode(knowledge, new AuditableQuiz(List.of(new NlpToken(lp.getLemma(), lp.getLemma(),
+                            lp.getPos(), null, false, false)), "q-" + (n++), null, null, null, List.of("x"), null, null, null,
+                            null, null, null), buildQuizDiagnosesWithPlacement(List.of())));
+                }
+            }
+            analyzer = new com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzer(
+                    new com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter(),
+                    new com.learney.contentaudit.auditdomain.lemmacount.LemmaCefrLevelResolver() {
+                        @Override
+                        public Optional<CefrLevel> resolve(LemmaAndPos lemmaAndPos, Optional<CefrLevel> nlpCefr) {
+                            return sentences.containsKey(lemmaAndPos) ? Optional.of(CefrLevel.A1) : Optional.empty();
+                        }
+
+                        @Override
+                        public Optional<Integer> resolveCocaRank(LemmaAndPos lemmaAndPos) {
+                            return Optional.ofNullable(ranks.get(lemmaAndPos));
+                        }
+                    }, config);
+            quizzes.forEach(analyzer::onQuiz);
+            analyzer.onCourseComplete(course);
+        }
     }
 }

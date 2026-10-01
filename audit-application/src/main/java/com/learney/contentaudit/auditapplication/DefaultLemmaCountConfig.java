@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditapplication;
 import com.learney.contentaudit.auditdomain.LemmaCountBand;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import com.learney.contentaudit.auditdomain.LemmaCountConfig;
@@ -18,24 +20,37 @@ private final List<LemmaCountBand> bands;
 
 public DefaultLemmaCountConfig(int threshold, List<LemmaCountBand> bands) {
     this.threshold = threshold;
-    this.bands = bands;
+    this.bands = bands == null ? List.of() : List.copyOf(bands);
 }
 
+    /** The uniform reference threshold; a word uses the threshold of its band (F-POCOV-R001). */
     @Override
     public int getThreshold() {
         return threshold;
     }
 
+    /** F-POCOV-R006: the configuration shows the threshold of each band it uses. */
     @Override
     public Map<String, Object> describe() {
-        return Map.of(
-                "analyzerName", "lemma-count",
-                "threshold", threshold);
+        Map<String, Object> description = new LinkedHashMap<>();
+        description.put("analyzerName", "lemma-count");
+        description.put("threshold", threshold);
+        List<Map<String, Object>> bandRows = new ArrayList<>();
+        for (LemmaCountBand band : bands) {
+            Map<String, Object> row = new LinkedHashMap<>();
+            row.put("name", band.getName());
+            row.put("maxCocaRank", band.getMaxCocaRank());
+            row.put("threshold", band.getThreshold());
+            bandRows.add(row);
+        }
+        description.put("bands", bandRows);
+        return description;
     }
 
+    /** F-POCOV-R001: the band table, by ascending COCA rank; empty only in test configurations. */
     @Override
     public List<LemmaCountBand> getBands() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return bands;
     }
 
 }

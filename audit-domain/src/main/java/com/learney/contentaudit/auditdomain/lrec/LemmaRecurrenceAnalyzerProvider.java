@@ -33,6 +33,12 @@ public class LemmaRecurrenceAnalyzerProvider implements AnalyzerProvider {
         return LemmaRecurrenceAnalyzer.ANALYZER_NAME;
     }
 
+    /**
+     * F-RECUR-R006: the card with its name of always, «Recurrencia» on screen: whether words come back
+     * at healthy intervals, reading the sentences of the whole course in order; vocabulary, evaluating
+     * the course, with the goal of every word coming back every more than 50 and up to 1,000 words,
+     * rank-only and instant.
+     */
     @Override
     public AnalyzerDescriptor describe() {
         return new AnalyzerDescriptor(
@@ -40,13 +46,15 @@ public class LemmaRecurrenceAnalyzerProvider implements AnalyzerProvider {
                 LemmaRecurrenceAnalyzer.DESCRIPTION,
                 AuditTarget.COURSE,
                 "¿Las palabras vuelven a intervalos sanos?",
-                "La posición de cada palabra de contenido en el recorrido del curso, de la primera oración a la última",
+                "Las oraciones de todo el curso, en orden: la posición de cada palabra de contenido, de la primera "
+                        + "oración a la última",
                 List.of(new AnalyzerRuleCard(LemmaRecurrenceAnalyzer.RULE_RECURRENCE,
-                        "Parte de las palabras más usadas vuelve demasiado seguido o demasiado espaciada",
+                        "Una palabra vuelve en promedio cada " + decimal(lemmaRecurrenceConfig.getOverExposedThreshold())
+                                + " palabras o menos, o cada más de "
+                                + decimal(lemmaRecurrenceConfig.getSubExposedThreshold()),
                         AnalysisCost.INSTANT)),
-                "Que las " + lemmaRecurrenceConfig.getTop() + " palabras más usadas vuelvan con un intervalo "
-                        + "medio de más de " + decimal(lemmaRecurrenceConfig.getOverExposedThreshold())
-                        + " y hasta " + decimal(lemmaRecurrenceConfig.getSubExposedThreshold()) + " tokens",
+                "Que cada palabra vuelva cada más de " + decimal(lemmaRecurrenceConfig.getOverExposedThreshold())
+                        + " y hasta " + decimal(lemmaRecurrenceConfig.getSubExposedThreshold()) + " palabras",
                 AnalyzerFamily.VOCABULARY,
                 List.of(AuditTarget.COURSE),
                 List.of(FindingResolution.RANK_ONLY),
@@ -74,9 +82,10 @@ public class LemmaRecurrenceAnalyzerProvider implements AnalyzerProvider {
         return Optional.of(lemmaRecurrenceConfig);
     }
 
+    /** «1.000», «50», «2,5»: as the card reads a threshold. */
     private static String decimal(double value) {
         if (value == Math.rint(value)) {
-            return String.valueOf((long) value);
+            return String.format(Locale.ROOT, "%,d", (long) value).replace(',', '.');
         }
         return String.format(Locale.ROOT, "%.1f", value).replace('.', ',');
     }

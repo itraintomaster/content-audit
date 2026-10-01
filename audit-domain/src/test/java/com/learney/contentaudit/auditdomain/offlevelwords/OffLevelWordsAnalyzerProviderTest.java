@@ -1,5 +1,37 @@
 package com.learney.contentaudit.auditdomain.offlevelwords;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer;
+import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.mockito.Mockito;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -15,28 +47,83 @@ public class OffLevelWordsAnalyzerProviderTest {
     @DisplayName("should describe off-level-words in its card: whether there are words the student of the level cannot know, reading the finished sentence, the topic title and answers and the translation, errors family, quiz target, rule F-NIVFR-R002, goal 0, panel resolution and instant cost")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R007")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldDescribeOfflevelwordsInItsCardWhetherThereAreWordsTheStudentOfTheLevelCannotKnowReadingTheFinishedSentenceTheTopicTitleAndAnswersAndTheTranslationErrorsFamilyQuizTargetRuleFNIVFRR002Goal0PanelResolutionAndInstantCost(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: the card of off-level-words.
+        AnalyzerDescriptor card = provider().describe();
+
+        assertEquals("off-level-words", card.getName());
+        assertEquals("¿Hay palabras que el alumno de este nivel no puede conocer?", card.getQuestion(), "R007: its question");
+        assertEquals("La oración terminada de cada ejercicio, el título y las respuestas de su tema y su traducción",
+                card.getReads(), "R007: what it reads");
+        assertEquals(AnalyzerFamily.ERRORS, card.getFamily(), "R007: errors family");
+        assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets(), "R007: it evaluates the quiz");
+        assertEquals(List.of("F-NIVFR-R002"), card.getRules().stream().map(r -> r.getId()).toList(), "R007: one rule");
+        assertTrue(card.getGoal().startsWith("0 "), "R007: goal 0: " + card.getGoal());
+        assertEquals(List.of(FindingResolution.PANEL), card.getResolutions(), "R007: resolved at the panel");
+        assertEquals(AnalysisCost.INSTANT, card.getCost(), "R007: instant");
+        assertEquals("Palabras de otro nivel", card.getDisplayName(), "F-RONDA1-R004: its Spanish name");
     }
 
     @Test
     @DisplayName("should use the single name off-level-words for its card, the analyzer it creates and every finding of that analyzer")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R007")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldUseTheSingleNameOfflevelwordsForItsCardTheAnalyzerItCreatesAndEveryFindingOfThatAnalyzer(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007 and F-HALL-R005: one name for the card, the analyzer and every finding it leaves.
+        OffLevelWordsAnalyzerProvider provider = provider();
+        IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
+                new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+        List<NlpToken> tokens = List.of(new NlpToken("She", "she", "PRON", null, false, false),
+                new NlpToken("spread", "spread", "VERB", null, false, false),
+                new NlpToken("the", "the", "DET", null, false, false), new NlpToken("quilt", "quilt", "NOUN", null, false, false),
+                new NlpToken(".", ".", "PUNCT", null, false, true));
+        AuditableQuiz quiz = new AuditableQuiz(tokens, "q-quilt", "She spread the quilt.", "Q", "Extendió la colcha.",
+                List.of("She spread the quilt."), null, null, null, null, null, null);
+        AuditableCourse course = new AuditableCourse(List.of(new AuditableMilestone(List.of(new AuditableTopic(List.of(
+                new AuditableKnowledge(List.of(quiz), "Adjetivos", "Completa.", true, "k1", "Adjetivos", "K", null, "T")),
+                "t1", "T", "T")), "m1", "A2", "A2")));
+
+        AuditReport report = engine.runAudit(course);
+
+        List<String> names = new ArrayList<>();
+        walk(report.getRoot(), node -> node.getFindings().forEach(f -> names.add(f.getAnalyzer())));
+        assertEquals("off-level-words", provider.analyzerName());
+        assertEquals("off-level-words", provider.describe().getName(), "the card");
+        assertEquals("off-level-words", provider.create(null).getName(), "the analyzer it creates");
+        assertEquals(List.of("off-level-words", "off-level-words"), names, "every finding: spread and quilt");
     }
 
     @Test
     @DisplayName("should declare no plan binding for off-level-words, so the plan opens no task of its own")
     @Tag("FEAT-NIVFR")
     @Tag("F-NIVFR-R006")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void shouldDeclareNoPlanBindingForOfflevelwordsSoThePlanOpensNoTaskOfItsOwn() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006 (DOUBT-TAREA-COMPARTIDA, A): no task of its own; the LEMMA_ABSENCE task of the quiz covers it.
+        assertEquals(Optional.empty(), provider().planBinding(), "R006: no plan binding");
+    }
+
+    /** The provider over an EVP where spread and quilt are B2 and the rest A1. */
+    private static OffLevelWordsAnalyzerProvider provider() {
+        EvpCatalogPort evp = Mockito.mock(EvpCatalogPort.class);
+        Mockito.when(evp.getExpectedLemmas(Mockito.any())).thenReturn(java.util.Set.of());
+        Mockito.when(evp.lookupLevel(Mockito.any())).thenAnswer(i -> {
+            String lemma = i.<LemmaAndPos>getArgument(0).getLemma();
+            return Optional.of("spread".equals(lemma) || "quilt".equals(lemma) ? CefrLevel.B2 : CefrLevel.A1);
+        });
+        LemmaAbsenceConfig config = Mockito.mock(LemmaAbsenceConfig.class);
+        Mockito.when(config.getDiscountPerLevel()).thenReturn(0.1);
+        Mockito.when(config.getOutOfCatalogMildDiscountRankBound(Mockito.any())).thenReturn(5000);
+        return new OffLevelWordsAnalyzerProvider(new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), config),
+                config, new DefaultTopicTeachingResolver(),
+                new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
+    }
+
+    private static void walk(AuditNode node, java.util.function.Consumer<AuditNode> action) {
+        action.accept(node);
+        if (node.getChildren() != null) {
+            node.getChildren().forEach(child -> walk(child, action));
+        }
     }
 }

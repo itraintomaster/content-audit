@@ -1,13 +1,41 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+
+import com.learney.contentaudit.auditapplication.DefaultLemmaAbsenceConfig;
+import com.learney.contentaudit.auditcli.commands.AnalyzeCmdTest.Base299;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer;
+import com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter;
+import com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver;
+import com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemRefinementPlanStore;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.refinerdomain.DefaultRefinerEngine;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.io.TempDir;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -21,19 +49,144 @@ public class FNivfrJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze con off-lev... → El ejercicio queda con un hallazgo me... [La palabra queda dos niveles arriba o fuera del EVP, y ni el tema la enseña ni la traducción la repite] → lemma-absence, el puntaje de vocabula... → success")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void path1_laPalabraQuedaDosNivelesArribaOFueraDelEVPYNiElTemaLaEnseaNiLaTraduccinLaRepite_success(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            @TempDir Path workdir) {
+        // === Node: leer_palabra ===
+        // Gate: F-NIVFR-R001, F-NIVFR-R003, F-NIVFR-R004 -- analyze over the 29/9 course with off-level-words:
+        // in «She spread the warm blue quilt on the bed.» (A2) spread and quilt are B2, two levels above,
+        // and «Posición del adjetivo» neither teaches them nor does the translation repeat them
+        Analysis analysis = analyze(workdir);
+        AuditNode quilt = Base299.node(analysis.report(), QUILT);
+
+        // === Node: con_error ===
+        // Gate: F-NIVFR-R002, F-NIVFR-R005 -- one medium finding per word, at the panel, a score below 1,
+        // and the quiz counts once in the errors of its theme, topic, level and course
+        List<Finding> findings = offLevelFindings(quilt);
+        assertEquals(List.of("quilt|NOUN", "spread|VERB"), findings.stream().map(f -> f.getIdentity().getMarker())
+                .toList(), "R005: one finding per word of another level");
+        for (Finding finding : findings) {
+            assertEquals(List.of("F-NIVFR-R002", FindingSeverity.MEDIUM, FindingResolution.PANEL), List.of(
+                    finding.getRule(), finding.getSeverity(), finding.getResolution()), "R002 and R005");
+            assertTrue(finding.getEvidence().getObservation().endsWith("es B2; el ejercicio es A2"),
+                    "R005: " + finding.getEvidence().getObservation());
+        }
+        assertTrue(quilt.getScores().get(OFF_LEVEL_WORDS) < 1.0, "R005: below 1");
+        for (AuditNode context : Base299.upwards(quilt).subList(1, 5)) {
+            assertEquals(quizzesWithFindings(context), Base299.countsOf(context, OFF_LEVEL_WORDS).getWithError(),
+                    "R005: each quiz once in the errors of " + Base299.key(context) + ", whatever its words");
+        }
+        assertEquals(170, Base299.countsOf(analysis.report().getRoot(), OFF_LEVEL_WORDS).getWithError(),
+                "the 170 quizzes of the course: 18 · 33 · 81 · 38");
+
+        // === Node: intacto ===
+        // Gate: F-NIVFR-R006
+        assertUntouched(analysis);
+        // result: success
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze con off-lev... → El ejercicio queda con puntaje 1 y si... [La palabra queda en el nivel o uno arriba, la baja una frase, la enseña el tema o la repite la traducción] → lemma-absence, el puntaje de vocabula... → success")
-    @Disabled("Stub de FEAT-NIVFR (paquete D), sin implementar")
     public void path2_laPalabraQuedaEnElNivelOUnoArribaLaBajaUnaFraseLaEnseaElTemaOLaRepiteLaTraduccin_success(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            @TempDir Path workdir) {
+        // === Node: leer_palabra ===
+        // Gate: F-NIVFR-R001, F-NIVFR-R003, F-NIVFR-R004 -- «She lives in London.» (A1: the phrase «live
+        // in/at» lowers live), «He invested time reading a book.» (A2, in the topic that teaches invest)
+        // and «We make sushi and pizza.» (A1, the translation repeats sushi)
+        Analysis analysis = analyze(workdir);
+
+        // === Node: sin_error ===
+        // The quiz scores 1 and has no finding of this analyzer
+        for (String quizId : List.of(LIVES, INVESTED, SUSHI)) {
+            AuditNode quiz = Base299.node(analysis.report(), quizId);
+            assertEquals(1.0, quiz.getScores().get(OFF_LEVEL_WORDS), "a score of 1 for «" + quiz.getEntity().getLabel()
+                    + "»");
+            assertEquals(List.of(), offLevelFindings(quiz), "no finding for «" + quiz.getEntity().getLabel() + "»");
+        }
+
+        // === Node: intacto ===
+        // Gate: F-NIVFR-R006
+        assertUntouched(analysis);
+        // result: success
+    }
+
+    private static final String OFF_LEVEL_WORDS = "off-level-words";
+
+    /** «She spread the warm blue quilt on the bed.», A2, «Posición del adjetivo». */
+    private static final String QUILT = "67fab6d5993010229534484a";
+
+    /** «She lives in London.», A1, «Afirmativas regulares». */
+    private static final String LIVES = "67fab6d59930102295341ed1";
+
+    /** «He invested time reading a book.», A2, «$Invest time$ + gerundio». */
+    private static final String INVESTED = "67fab6d59930102295342985";
+
+    /** «We make sushi and pizza.» («Hacemos sushi y pizza.»), A1. */
+    private static final String SUSHI = "67fab6d59930102295342600";
+
+    private record Analysis(Path workdir, AnalyzerCatalog catalog, FileSystemAuditReportStore store, String id,
+            AuditReport report) {
+    }
+
+    /** analyze over the 29/9 course with the classics, off-level-words after lemma-absence, and no judge. */
+    private static Analysis analyze(Path workdir) {
+        DefaultLemmaAbsenceConfig absence = new DefaultLemmaAbsenceConfig();
+        List<AnalyzerProvider> providers = new ArrayList<>(Base299.classicProviders().subList(0, 6));
+        providers.add(new OffLevelWordsAnalyzerProvider(
+                new DefaultSentenceLexicalScorer(Base299.evp(), new DefaultContentWordFilter(), absence), absence,
+                new DefaultTopicTeachingResolver(), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create())));
+        providers.add(Base299.classicProviders().get(6));
+        providers.add(Base299.judge(new Base299.FakeJudge(), new Base299.MapLedger()));
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(providers);
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(workdir, null);
+        Base299.Captured output = Base299.run(Base299.analyzeCmd(Base299.runner(catalog), store),
+                Base299.COURSE.toString(), "--exclude-analyzers", Base299.JUDGE);
+        assertEquals(0, output.exit(), output.err());
+        String id = Base299.savedId(output);
+        return new Analysis(workdir, catalog, store, id, store.load(id).orElseThrow());
+    }
+
+    /**
+     * F-NIVFR-R006: lemma-absence, the vocabulary score of every node (73,9 % in the course) and the
+     * 4,036 tasks of the plan are the ones of before, and off-level-words is declared covered by the
+     * LEMMA_ABSENCE task of its quizzes.
+     */
+    private static void assertUntouched(Analysis analysis) {
+        Map<String, Double> before = Base299.preContractVocabulary();
+        List<AuditNode> nodes = new ArrayList<>();
+        Base299.walk(analysis.report().getRoot(), nodes::add);
+        for (AuditNode node : nodes) {
+            assertEquals(before.get(Base299.key(node)), node.getNumbers().getVocabularyScore(), 1e-12,
+                    "R006: the vocabulary of " + Base299.key(node));
+        }
+        assertEquals("73,9 %", GetCmd.scoreText(analysis.report().getRoot().getNumbers().getVocabularyScore()),
+                "R006: 73,9 % in the course");
+        FileSystemRefinementPlanStore plans = new FileSystemRefinementPlanStore(analysis.workdir());
+        PlanCmd plan = new PlanCmd(analysis.store(), new DefaultRefinerEngine(analysis.catalog()), plans,
+                mock(EphemeralPlanRenderer.class));
+        Base299.Captured run = Base299.run(plan, "--audit", analysis.id());
+        assertEquals(0, run.exit(), run.err());
+        List<String> tasks = plans.loadLatest().orElseThrow().getTasks().stream()
+                .map(task -> task.getNodeTarget() + "\t" + task.getNodeId() + "\t" + task.getNodeLabel() + "\t"
+                        + task.getDiagnosisKind())
+                .toList();
+        assertEquals(Base299.preContractPlan(), tasks, "R006: the 4,036 tasks of the plan, task by task");
+        assertTrue(run.err().contains("off-level-words") && run.err().contains("cubierto por la tarea LEMMA_ABSENCE"),
+                "R006: declared covered by the LEMMA_ABSENCE task, never dropped: " + run.err());
+    }
+
+    private static List<Finding> offLevelFindings(AuditNode quiz) {
+        return quiz.getFindings().stream().filter(f -> OFF_LEVEL_WORDS.equals(f.getAnalyzer())).toList();
+    }
+
+    private static int quizzesWithFindings(AuditNode context) {
+        int[] count = {0};
+        Base299.walk(context, node -> {
+            if (node.getTarget() == AuditTarget.QUIZ && !offLevelFindings(node).isEmpty()) {
+                count[0]++;
+            }
+        });
+        return count[0];
     }
 }
