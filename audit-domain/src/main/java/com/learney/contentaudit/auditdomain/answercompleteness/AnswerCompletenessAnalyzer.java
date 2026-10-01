@@ -42,10 +42,14 @@ import javax.annotation.processing.Generated;
  * </ul>
  *
  * The severity of a missing form is high if the mini theory or the statement shows it, low if it
- * is the long form of a short answer («No, it isn't»), and medium otherwise. It is fixed by rule:
- * in the corrector, when it is of a class the new corrector equates, or adding it after «|» when
- * the corrector installed already equates the class and still rejects it, a limit as «has
- * trained». The first answer does not change, and neither does its audio.
+ * is the long form of a short answer («No, it isn't»), and medium otherwise. A missing form of
+ * these classes is always fixed in the corrector and never in the course, and never by adding it
+ * after «|» (brief 101, José 30/9: the equivalences are rules of the corrector, and «|» is for
+ * answers that are really different). When the corrector installed does not equate its class,
+ * the new corrector does: a rule. When it equates the class and still rejects the form -- a
+ * limit, as «he's forgotten» -- the finding names the rule the corrector lacks and only ranks:
+ * it changes nothing in the exercise, so it does not lower the score and the plan makes no task
+ * of it (F-HALL-R004 inv. 2). The first answer does not change, and neither does its audio.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -134,7 +138,9 @@ class AnswerCompletenessAnalyzer implements ContentAnalyzer {
             }
         }
         List<FormRequest> requests = requestDetector.detect(quiz.getInstructions(), quiz.getMiniTheory());
-        double score = missing.isEmpty() && requests.isEmpty() ? 1.0 : 0.0;
+        // A limit of the corrector only ranks: it is not an error of the exercise.
+        boolean missingCounts = missing.stream().anyMatch(m -> !equates(m.getEquivalenceClass()));
+        double score = !missingCounts && requests.isEmpty() ? 1.0 : 0.0;
         node.getScores().put(ANALYZER_NAME, score);
         if (!(node.getDiagnoses() instanceof DefaultQuizDiagnoses)) {
             node.setDiagnoses(new DefaultQuizDiagnoses());
@@ -217,12 +223,18 @@ class AnswerCompletenessAnalyzer implements ContentAnalyzer {
         Set<String> markers = new LinkedHashSet<>();
         for (MissingAcceptedForm form : diagnosis.getMissingForms()) {
             String accepted = String.join(" | ", acceptedOf(quiz, form.getGapIndex()));
-            String where = equates(form.getEquivalenceClass())
-                    ? "El corrector instalado ya iguala esta clase y sigue sin aceptarla: se agrega con «|»"
-                            + " después de las que hay"
-                    : "La iguala el corrector nuevo: se arregla en el corrector y no en el curso";
-            List<EvidencePart> examined = List.of(new EvidencePart("Ejercicio", statement),
-                    new EvidencePart("Acepta", accepted), new EvidencePart("Falta", form.getMissingForm()));
+            boolean limit = equates(form.getEquivalenceClass());
+            List<EvidencePart> examined = new ArrayList<>(List.of(new EvidencePart("Ejercicio", statement),
+                    new EvidencePart("Acepta", accepted), new EvidencePart("Falta", form.getMissingForm())));
+            String where;
+            if (limit) {
+                String missingRule = missingCorrectorRule(quiz, form);
+                examined.add(new EvidencePart("Le falta al corrector", missingRule));
+                where = "El corrector ya iguala esta clase y sigue sin aceptarla: se arregla en el corrector y no en"
+                        + " el curso, " + missingRule;
+            } else {
+                where = "La iguala el corrector nuevo: se arregla en el corrector y no en el curso";
+            }
             String observation = statement + " → acepta " + accepted + "; falta " + form.getMissingForm() + ". "
                     + where + "; la primera respuesta y su audio no cambian.";
             // R005: the identity is the form; the same form missing in two gaps gets the second gap's number.
@@ -232,7 +244,8 @@ class AnswerCompletenessAnalyzer implements ContentAnalyzer {
                 marker = marker + " (hueco " + (form.getGapIndex() + 1) + ")";
                 markers.add(rule + "|" + marker);
             }
-            drafts.add(new FindingDraft(rule, marker, form.getSeverity(), FindingResolution.RULE,
+            drafts.add(new FindingDraft(rule, marker, form.getSeverity(),
+                    limit ? FindingResolution.RANK_ONLY : FindingResolution.RULE,
                     new FindingEvidence(examined, observation, List.of())));
         }
         Map<FormRequestSource, Integer> bySource = new EnumMap<>(FormRequestSource.class);
@@ -268,7 +281,7 @@ class AnswerCompletenessAnalyzer implements ContentAnalyzer {
 
     /**
      * Whether the corrector installed already equates a class: then a missing form of it is a
-     * limit of the corrector, added after «|»; if not, the new corrector fixes it.
+     * limit of the corrector, a rule it lacks; if not, the new corrector fixes it.
      */
     private boolean equates(FormEquivalenceClass equivalenceClass) {
         return equated.computeIfAbsent(equivalenceClass, c -> switch (c) {
@@ -277,6 +290,97 @@ class AnswerCompletenessAnalyzer implements ContentAnalyzer {
             case SPELLING -> correctorMatcher.sameAnswer("travelled", "traveled");
             case PREPOSITION -> correctorMatcher.sameAnswer("I'll wait until five.", "I'll wait till five.");
         });
+    }
+
+    // -------------------------------------------------------------------------
+    // The rule the corrector lacks
+    // -------------------------------------------------------------------------
+
+    /** The words the corrector takes as a subject before till: «They till the land». */
+    private static final Set<String> TILL_SUBJECTS = Set.of("i", "you", "he", "she", "it", "we", "they", "there");
+
+    private static final Pattern CLITIC = Pattern.compile("(?i)(\\b[a-z]+)?('s|'d)\\b");
+
+    private static final Pattern WORD = Pattern.compile("[A-Za-z'-]+");
+
+    /**
+     * For a form of a class the corrector equates and still rejects, the rule it lacks, asked to
+     * the corrector itself: «'s» or «'d» left as written because it cannot tell is from has or
+     * had from would; read as the other one because it does not know the participle that
+     * follows («he'd overslept» read «he would overslept»); or till taken as the verb after a word
+     * it takes as a subject («worked there till then»).
+     */
+    private String missingCorrectorRule(AuditableQuiz quiz, MissingAcceptedForm form) {
+        GapContext context = contextOf(quiz, form.getGapIndex());
+        String missing = unify(form.getMissingForm());
+        String accepted = unify(form.getAcceptedAnswer());
+        if (form.getEquivalenceClass() == FormEquivalenceClass.PREPOSITION) {
+            String before = wordBefore(missing, "till");
+            if (before == null) {
+                before = wordBefore(accepted, "till");
+            }
+            if (before != null && TILL_SUBJECTS.contains(before)) {
+                return "la regla de till toma «" + before + "» como sujeto";
+            }
+            return before != null ? "la regla de till no lee «" + before + " till» como until"
+                    : "la regla de till no lo lee como until";
+        }
+        Matcher clitic = CLITIC.matcher(missing);
+        if (clitic.find()) {
+            String which = clitic.group(2).toLowerCase(Locale.ROOT);
+            String read = readingOf(context, missing, clitic, which);
+            String expected = longAuxiliary(accepted, which);
+            Matcher next = WORD.matcher(missing);
+            String participle = next.find(clitic.end()) ? next.group().toLowerCase(Locale.ROOT) : null;
+            if (read != null && expected != null && !read.equals(expected) && participle != null) {
+                return "falta «" + participle + "» en los participios: lee «" + which + "» como " + read;
+            }
+            return "«" + which + "» ambiguo: el corrector tiene que leerlo con la forma larga de la respuesta aceptada";
+        }
+        Matcher inAccepted = CLITIC.matcher(accepted);
+        if (inAccepted.find()) {
+            return "«" + inAccepted.group(2).toLowerCase(Locale.ROOT) + "» ambiguo: el corrector tiene que leer el de la"
+                    + " respuesta aceptada con la forma larga que escribe el alumno";
+        }
+        return "le falta una regla para leer «" + form.getMissingForm() + "» como «" + form.getAcceptedAnswer() + "»";
+    }
+
+    /** How the corrector reads «'s» or «'d» in the written form, asked by comparing it with each long form. */
+    private String readingOf(GapContext context, String written, Matcher clitic, String which) {
+        List<String> longForms = which.equals("'s") ? List.of("has", "is") : List.of("had", "would");
+        for (String longForm : longForms) {
+            String opened = (written.substring(0, clitic.start(2)) + " " + longForm + written.substring(clitic.end(2)))
+                    .strip();
+            if (correctorMatcher.sameAnswer(context, written, opened)) {
+                return longForm;
+            }
+        }
+        return null;
+    }
+
+    /** The auxiliary the accepted answer writes long where the form contracts it. */
+    private static String longAuxiliary(String accepted, String which) {
+        Matcher m = Pattern.compile(which.equals("'s") ? "(?i)\\b(has|is)\\b" : "(?i)\\b(had|would)\\b")
+                .matcher(accepted);
+        return m.find() ? m.group(1).toLowerCase(Locale.ROOT) : null;
+    }
+
+    private static String wordBefore(String text, String word) {
+        Matcher m = Pattern.compile("(?i)([A-Za-z']+)\\s+" + Pattern.quote(word) + "\\b").matcher(text);
+        return m.find() ? m.group(1).toLowerCase(Locale.ROOT) : null;
+    }
+
+    /** The text parts next to a gap, as the corrector reads it. */
+    private static GapContext contextOf(AuditableQuiz quiz, int gapIndex) {
+        List<SentencePartEntity> parts = quiz.getSentenceParts() != null ? quiz.getSentenceParts() : List.of();
+        int g = -1;
+        for (int i = 0; i < parts.size(); i++) {
+            SentencePartEntity part = parts.get(i);
+            if (part != null && part.getKind() == SentencePartKind.CLOZE && ++g == gapIndex) {
+                return new GapContext(textOf(parts, i - 1), textOf(parts, i + 1));
+            }
+        }
+        return new GapContext("", "");
     }
 
     // -------------------------------------------------------------------------

@@ -152,15 +152,42 @@ public class AnswerCompletenessAnalyzerTest {
     public void shouldResolveByAddingItAfterAMissingFormTheNewCorrectorStillRejectsAsHasTrainedIfHeTrainHardTodayOnlyAcceptedSTrainedALimitOfTheCorrector(
             ) {
         // R005: «He ___ (train) hard today.» (…3061, A2) accepts «'s trained|has trained». With only «'s trained»,
-        // the new corrector reads «'s» as is and still rejects «has trained»: it is added after «|».
+        // the corrector in production equates the contractions and still rejects «has trained»: it cannot tell
+        // whether «'s» is is or has. A limit of the corrector is fixed in the corrector and never after «|»
+        // (brief 101, José 30/9): the finding names the rule it lacks and only ranks, so the exercise, its
+        // first answer and its audio do not change, and it scores 1.
         AuditableQuiz onlyContracted = quiz("67fab6d59930102295343061", "", "", text("He"), cloze("'s trained"),
                 text("(train) hard today."));
         FindingDraft hasTrained = byMarker(findings(productionCorrector(), onlyContracted), "has trained");
         assertEquals("contracted-and-long-forms", hasTrained.getRule());
-        assertEquals(FindingResolution.RULE, hasTrained.getResolution());
-        assertTrue(hasTrained.getEvidence().getObservation().contains("se agrega con «|» después de las que hay"));
+        assertEquals(FindingResolution.RANK_ONLY, hasTrained.getResolution());
+        assertEquals(FindingSeverity.MEDIUM, hasTrained.getSeverity());
+        assertTrue(hasTrained.getEvidence().getObservation().contains("se arregla en el corrector y no en el curso"),
+                hasTrained.getEvidence().getObservation());
+        assertFalse(hasTrained.getEvidence().getObservation().contains("|"), "never proposed after «|»");
+        assertEquals("«'s» ambiguo: el corrector tiene que leer el de la respuesta aceptada con la forma larga que"
+                + " escribe el alumno", part(hasTrained, "Le falta al corrector"));
+        AuditNode node = node(onlyContracted);
+        analyzer(productionCorrector()).onQuiz(node);
+        assertEquals(1.0, node.getScores().get("answer-completeness"), "a limit of the corrector only ranks");
         assertTrue(findings(productionCorrector(), quiz("67fab6d59930102295343061", "", "", text("He"),
                 cloze("'s trained|has trained"), text("(train) hard today."))).isEmpty(), "the course accepts both");
+
+        // The other limits of the 29/9 course name the rule the corrector lacks, as asked to the corrector.
+        FindingDraft forgotten = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534283e", "", "",
+                text("He"), cloze("has forgotten"), text("(forget) to pay."))), "'s forgotten");
+        assertEquals("«'s» ambiguo: el corrector tiene que leerlo con la forma larga de la respuesta aceptada",
+                part(forgotten, "Le falta al corrector"));
+        FindingDraft overslept = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534447b", "", "",
+                text("“I overslept this morning” (the boy whispered)"),
+                cloze("The boy whispered that he had overslept that morning."))),
+                "the boy whispered that he'd overslept that morning.");
+        assertEquals("falta «overslept» en los participios: lee «'d» como would", part(overslept, "Le falta al corrector"));
+        FindingDraft till = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534326a", "", "",
+                text("why / she / work there until then?"), cloze("Why had she worked there until then?"), text(""))),
+                "why had she worked there till then?");
+        assertEquals("la regla de till toma «there» como sujeto", part(till, "Le falta al corrector"));
+        assertEquals(FindingResolution.RANK_ONLY, till.getResolution());
     }
 
     @Test
@@ -283,7 +310,7 @@ public class AnswerCompletenessAnalyzerTest {
 
     /** The table of irregular forms, as far as these answers need it. */
     static IrregularFormsCatalog participles() {
-        Set<String> participles = Set.of("been", "got", "gone", "seen", "done", "had");
+        Set<String> participles = Set.of("been", "got", "gone", "seen", "done", "had", "forgotten", "overslept");
         return new IrregularFormsCatalog() {
             @Override
             public Set<String> formsOf(String baseWord) {
