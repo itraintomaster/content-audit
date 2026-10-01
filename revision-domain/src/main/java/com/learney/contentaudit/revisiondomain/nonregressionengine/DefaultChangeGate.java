@@ -32,7 +32,9 @@ import javax.annotation.processing.Generated;
  *   the catalog;</li>
  *   <li>R003: the length is declared with its range and never vetoes;</li>
  *   <li>R004: an exercise whose spoken text changes gets its request to re-record with the new text, and a request the
- *   fix brings has to say what the exercise says as it stays, or the change does not pass;</li>
+ *   fix brings has to say what the exercise says as it stays, or the change does not pass. The audio follows the
+ *   exercise: the audio of an exercise with its request, and the sentence production keeps of an exercise that changed,
+ *   go on saying the old one until they are recorded or taken to production -- pending, not new errors;</li>
  *   <li>R010: an analyzer that did not evaluate an exercise at one end counts there neither as new nor as solved, and is
  *   declared per analyzer.</li>
  * </ul>
@@ -147,6 +149,15 @@ class DefaultChangeGate implements ChangeGate {
                 rerecords.add(request);
             }
         }
+
+        // R004: what data-coherence marks of the copies outside the course -- the audio of an exercise with its request
+        // to re-record, the sentence production keeps of an exercise that changed -- is pending, not a new error.
+        Set<String> rerecorded = new HashSet<>();
+        for (AudioRerecordRequest request : rerecords) {
+            rerecorded.add(request.getQuizId());
+        }
+        newErrors.removeIf(finding -> (GateRules.isAudioToRerecord(finding) && rerecorded.contains(nodeOf(finding)))
+                || (GateRules.isProductionCopy(finding) && inUnit(nodeOf(finding), changed, wholeTopic)));
 
         for (Finding finding : newErrors) {
             reasons.add("F-NOEMP-R001: error nuevo de " + finding.getAnalyzer() + " (" + finding.getRule() + ") en "

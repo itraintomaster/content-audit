@@ -11,8 +11,10 @@ import java.util.Set;
  * its analyzer is not one of the seven of vocabulary; a vocabulary finding of medium severity or more is a red word --
  * a word of another level or out of the catalog, the one of the light of the topic (F-NOEMP-R002, F-METAS-R003) --; a
  * length is declared and never returns a change (F-NOEMP-R003, José 11/8). The audio that no longer matches an exercise
- * listed for re-recording is the mark {@code audio…} of data-coherence, the same rule its declaration of correction
- * reads ({@code DataCoherenceCorrection.concernsAudio}).
+ * listed for re-recording is the mark {@code audio} of data-coherence -- not a shared key, a missing one or a recording
+ * nobody knows, which a change does not bring by rewriting the exercise --; the sentence production keeps, which says the
+ * old one until the course goes to production, is its mark {@code produccion}. Both are copies outside the course that follow the
+ * exercise (orchestrator, 1/10): pending, never an error the change brought.
  */
 final class GateRules {
 
@@ -47,10 +49,21 @@ final class GateRules {
         return finding != null && LENGTH.contains(finding.getAnalyzer());
     }
 
+    /** The audio that no longer says what the exercise says: the mark {@code audio}, not «audio-compartido». */
     static boolean isAudioToRerecord(Finding finding) {
+        return marks(finding, "audio");
+    }
+
+    /** The sentence production keeps, which no longer is the exercise: the mark {@code produccion}. */
+    static boolean isProductionCopy(Finding finding) {
+        return marks(finding, "produccion");
+    }
+
+    /** The mark of data-coherence itself, or with the number it adds to tell two of an exercise apart. */
+    private static boolean marks(Finding finding, String mark) {
         String marker = finding != null && finding.getIdentity() != null ? finding.getIdentity().getMarker() : null;
         return finding != null && "data-coherence".equals(finding.getAnalyzer()) && marker != null
-                && marker.startsWith("audio");
+                && (marker.equals(mark) || marker.startsWith(mark + " ("));
     }
 
     static String identity(Finding finding) {

@@ -171,6 +171,11 @@ public class DefaultBatchComparator implements BatchComparator {
         }
         comparison.setAvailability(ConsolidatedViewAvailability.AVAILABLE);
         List<ProjectedChange> batch = pendingChanges(projection);
+        // The audio follows the exercise (orchestrator, 1/10): the audio and the sentence production keeps that a
+        // change of the batch left saying the old sentence are pending -- to record, to take to production --, not
+        // errors it brought; they are settled in the projection before anything is read from it.
+        Map<String, List<Finding>> pendingCopies = PendingCopies.settle(projection.getApproved(),
+                projection.getProjected(), batch);
         List<String> applied = new ArrayList<>();
         for (ProjectedChange change : batch) {
             applied.add(change.getProposalId());
@@ -248,8 +253,13 @@ public class DefaultBatchComparator implements BatchComparator {
         }
         comparison.setBreaches(breaches);
 
-        // R008: the verdict.
-        comparison.setVerdict(verdict(rows, breaches, outcomes, projection.getScopeId()));
+        // R008: the verdict -- and, after it, what the batch leaves pending outside the course, which does not count.
+        BatchVerdict verdict = verdict(rows, breaches, outcomes, projection.getScopeId());
+        String pending = PendingCopies.describe(pendingCopies);
+        if (pending != null) {
+            verdict.setDetail(verdict.getDetail() != null ? verdict.getDetail() + " " + pending : pending);
+        }
+        comparison.setVerdict(verdict);
         return comparison;
     }
 

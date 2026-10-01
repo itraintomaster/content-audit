@@ -39,9 +39,11 @@ import javax.annotation.processing.Generated;
  *   <li>R007: a node that changed outside the batch stops it, named;</li>
  *   <li>R008: for a broken floor it returns the changes the comparison ranks as worsening it most, from the first on,
  *   until the sum of their effects brings it back within;</li>
- *   <li>the audio that no longer matches an exercise listed for re-recording, and what José approved in the tray
- *   knowing it did not pass, are listed apart and not counted; R010: what an analyzer did not evaluate at one end is
- *   declared per analyzer and counted neither way.</li>
+ *   <li>the audio that no longer matches an exercise listed for re-recording, the sentence production keeps until the
+ *   course goes there, and what José approved in the tray knowing it did not pass, are listed apart and not counted --
+ *   the comparison of F already settles the copies a change of the batch left pending, so they reach the gate only from
+ *   a comparison that did not; R010: what an analyzer did not evaluate at one end is declared per analyzer and counted
+ *   neither way.</li>
  * </ul>
  * {@code passes} is the gate's own; the kind of verdict is the comparison's, the blind sample included. The same
  * comparison gives the same verdict and returns the same changes (R009).
@@ -95,6 +97,11 @@ class DefaultBatchGate implements BatchGate {
                 }
                 if (error && GateRules.isAudioToRerecord(finding)) {
                     listed.add("audio para regrabar: " + change.getNodeId() + " (" + GateRules.identity(finding) + ")");
+                    continue;
+                }
+                if (error && GateRules.isProductionCopy(finding)) {
+                    listed.add("oración de producción por llevar: " + change.getNodeId() + " ("
+                            + GateRules.identity(finding) + ")");
                     continue;
                 }
                 ReturnCause cause = error ? ReturnCause.NEW_ERROR : ReturnCause.NEW_RED_WORD;
