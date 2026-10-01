@@ -8,8 +8,9 @@ generated: 2026-10-01T02:30:00Z
 
 Lo que comparten los trece parches de la ronda 2 —B, idioma con herramientas locales; E, corrección por tandas; F, antes
 y después— en un solo parche contra el `sentinel.yaml` de `ronda1/integracion`: la ronda 1 aplicada y construida, con
-el parche de cierre de la ronda 1 (FEAT-CIERRE, 2026-09-30.32) ya aplicado. Por eso esta carpeta es la 33. Sale de los 56 ganchos de `ronda2/ganchos-{B,E,F}.md` y de dos riesgos de calidad que encontró
-el orquestador al correr `analyze` sobre una copia. Se aplica primero; los trece se rebasaron encima, en el orden de la
+el parche de cierre de la ronda 1 (FEAT-CIERRE, 2026-09-30.32) ya aplicado; por eso esta carpeta es la 33. Sale de los
+56 ganchos de `ronda2/ganchos-{B,E,F}.md` y de dos riesgos de calidad que encontró el orquestador al correr `analyze`
+sobre una copia. Se aplica primero; los trece se rebasaron encima, en el orden de la
 última sección. Lo que no cambia `sentinel.yaml` —el cableado de `Main`, los `pom.xml` y los cuerpos que tocan archivos
 comunes— queda en la sección «Lo que se construye sin tocar sentinel.yaml», para que el que construya la integración lo
 haga una sola vez.
