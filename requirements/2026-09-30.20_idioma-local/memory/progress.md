@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — Cadena B con pruebas simulada en memoria (`qa-B2/sim/B01..B14`, librería del jar): FEAT-RONDA2
+  + los cuatro de B, y encima F y E tal como están; ninguna prueba de B se pierde. `generate` simulado (DryRunGenerate)
+  con FEAT-RONDA2 + B: 0 errores de definición, de traza y de ubicación, crearía los 4 journeys (5 + 3 + 5 + 5 caminos)
+  y los 152 stubs. Con la cadena entera, 9 journeys sin ubicar, todos de E y F: B ya no lo hace abortar.
+
 2026-10-01 — qa-tester — 32 handwrittenTests nuevas, las 8 reglas [covered]; F-MLOCAL-J001 en audit-cli,
   `com.learney.contentaudit.auditcli.commands` (5 caminos). `patch propose` con fusión (sin pérdidas), `tech-spec write`
   (+1 fragmento) y `patch validate -i` contra el modelo con FEAT-RONDA2 (`integrador-2/sim/real/M01`): exit 0. Simulado
