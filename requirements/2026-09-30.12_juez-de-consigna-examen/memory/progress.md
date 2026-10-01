@@ -4,6 +4,14 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (C, líder) — Control sobre una copia (scratchpad impl-C/control), con la base del 29/9 y tope 0:
+  sin libro, vocabulario 73,92 % (96,5 · 94,2 · 79,5 · 63,5) y plan 4.036; con el libro real de consigna (15.351 líneas,
+  huella 00aeeebd… igual antes y después), mismo vocabulario, 3.920 reusados y 7.367 pendientes, plan 4.046 (las 10 de más
+  son QUIZ_INSTRUCTION de veredictos reusados: la base 859e96af da lo mismo, 0 diferencias de puntaje en 11.760 nodos).
+  Los cuatro jueces sin examen («sin evaluar», 0 consultas, claude falso nunca llamado); la base 859e96af, con su tope de
+  500, sí intentó 1 consulta. Agentes de C-26 en .sentinel/agents (5bfc66b1). `mvn -o test`: 2.375, 2.083 pasan, 292 apagadas.
+  Next: el orquestador corre el examen fijo con tope (exam run → medir.py → exam record); José da el OK y el costo.
+
 2026-09-30 — test-writer (C) — Las 46 pruebas de la base común (sesión a la vez, libro y fábrica del examen, tiempos del libro,
   runtime, exportador, registro, config), en verde; la del MARKED destapó que el exportador daba gravedad a un hallazgo que sólo
   ordena: el líder lo arregló (worstSeverity null, como dice el contrato).

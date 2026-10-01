@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (C) — C-26: definición de agente en `.sentinel/agents/single-answer-judge` (evaluate → gate_verdict → emit, el grafo del juez de consigna; `dependencies` en el orden del mapa de contenido; artifact `singleAnswerVerdict`; al agotar intentos emite `{"outputUnusable": true}`). `eval/run_evals.py` en verde sin modelo (33 salidas grabadas) y los 14 veredictos canónicos de sus fixtures los lee el lector Jackson de Java. `eval/` entra en la versión, como en el juez de consigna: tocar una fixture es una versión nueva que rinde el examen.
+  Next: el examen fijo con tope (orquestador) y `exam record`; las guías traen ítems del examen fijo con su veredicto (escalado).
+
 2026-09-30 — developer (C) — Implementado en `ronda1/impl-jueces-unica` (desde e0ad1746): proveedor, analizador (junta CLOZE, plan + resolveAll + cobertura común), clasificador, constructor del sujeto y `DefaultSingleAnswerConfig`. 31 pruebas encendidas y en verde (clasificador 11, sujeto 3, analizador 8, proveedor 4, J001 4, config 1), sin ninguna consulta paga; `mvn -o test` completo en verde: 1.894 pasan, 476 apagadas, VERIFY OK.
   Next: el lector Jackson (otro equipo), el `CorrectorMatcher` real (paquete A) y descomentar la línea 16 de `Main` al integrar.
 
@@ -18,6 +21,3 @@ Current state, last action, next step. Newest entries on top.
   comunes viven en FEAT-JEXAM). `requirement validate` OK.
   Next: José contesta DOUBT-UNICA-MC y DOUBT-UNICA-FORMA; acordar con el analista del paquete A la frontera de «la misma en
   otra forma» y el nombre de su analizador de respuestas completas; `feature sync --feature FEAT-UNICA` (J001) al integrar.
-
-2026-09-30 — developer (C) — C-26: definición de agente en `.sentinel/agents/single-answer-judge` (evaluate → gate_verdict → emit, el grafo del juez de consigna; `dependencies` en el orden del mapa de contenido; artifact `singleAnswerVerdict`; al agotar intentos emite `{"outputUnusable": true}`). `eval/run_evals.py` en verde sin modelo (33 salidas grabadas) y los 14 veredictos canónicos de sus fixtures los lee el lector Jackson de Java. `eval/` entra en la versión, como en el juez de consigna: tocar una fixture es una versión nueva que rinde el examen.
-  Next: el examen fijo con tope (orquestador) y `exam record`; las guías traen ítems del examen fijo con su veredicto (escalado).

@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (C) — C-26: definición de agente en `.sentinel/agents/mini-theory-judge` (evaluate → gate_verdict → emit, el grafo del juez de consigna; `dependencies` en el orden del mapa de contenido; artifact `miniTheoryVerdict`; al agotar intentos emite `{"outputUnusable": true}`). `eval/run_evals.py` en verde sin modelo (43 salidas grabadas) y los 15 veredictos canónicos de sus fixtures los lee el lector Jackson de Java. `eval/` entra en la versión, como en el juez de consigna: tocar una fixture es una versión nueva que rinde el examen.
+  Next: el examen fijo con tope (orquestador) y `exam record`; las guías traen ítems del examen fijo con su veredicto (escalado).
+
 2026-09-30 — developer (C) — FEAT-MINIT implementado en ronda1/impl-jueces-minit: constructor del sujeto (M1…, E1…), repartidor, analizador (una consulta por tema con runtime.plan + resolveAll, puntaje/hallazgo/diagnóstico en cada ejercicio, cobertura por temas), proveedor («Miniteoría», 4 reglas PAID_MODEL a la mesa, MINI_THEORY sobre QUIZ) y DefaultMiniTheoryConfig (SHOWN_ONLY; 0,3/0,6/0,8). Las 30 pruebas encendidas y en verde (28 audit-domain con runtime, motor y render reales; 2 audit-application); `mvn -o test` completo en verde. Main sigue sin registrarlo (línea 17 comentada, la enciende el líder).
   Next: escalaciones al líder (la cobertura no tiene dónde contar los ejercicios; el repartidor no tiene el render del alumno); el lector Jackson es de otro equipo.
 
@@ -18,6 +21,3 @@ Current state, last action, next step. Newest entries on top.
   comunes viven en FEAT-JEXAM). `requirement validate` OK.
   Next: José contesta DOUBT-MINIT-VARIAS (toca su decisión del 30/9) y DOUBT-MINIT-TEMA-GRANDE; el tipo de tarea por tema
   lo define el paquete E; `feature sync --feature FEAT-MINIT` (J001) al integrar.
-
-2026-09-30 — developer (C) — C-26: definición de agente en `.sentinel/agents/mini-theory-judge` (evaluate → gate_verdict → emit, el grafo del juez de consigna; `dependencies` en el orden del mapa de contenido; artifact `miniTheoryVerdict`; al agotar intentos emite `{"outputUnusable": true}`). `eval/run_evals.py` en verde sin modelo (43 salidas grabadas) y los 15 veredictos canónicos de sus fixtures los lee el lector Jackson de Java. `eval/` entra en la versión, como en el juez de consigna: tocar una fixture es una versión nueva que rinde el examen.
-  Next: el examen fijo con tope (orquestador) y `exam record`; las guías traen ítems del examen fijo con su veredicto (escalado).

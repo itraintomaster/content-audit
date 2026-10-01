@@ -4,6 +4,11 @@ Fixes that worked, with a short why. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (C) — `analyze` con el libro real de consigna tardaba 716 s (40 s sin libro): `findLatest`
+  releía y parseaba los 25 MB del archivo por cada ejercicio, 11.287 veces (la base 859e96af igual, 737 s). Cada archivo
+  se lee una vez mientras sea el mismo archivo con el mismo tamaño y fecha; toda escritura lo alarga y se relee. Informe
+  y plan idénticos, 2,8 s. FileSystemEvaluationLedgerReadOnceIntegrationTest: un mutante que nunca relee rompe 4 de 5.
+
 2026-09-30 — test-writer (C) — Probar «a la vez» sin azar: latches para que c2..c5 estén en vuelo juntos y las que siguen en vuelo
   contesten 300 ms después de la falla; un timeout del latch se marca en un flag y no se lanza.
   why: un evaluador que lanza cuenta como falla del servicio y ensuciaría la prueba; repetida 6 veces, estable.
