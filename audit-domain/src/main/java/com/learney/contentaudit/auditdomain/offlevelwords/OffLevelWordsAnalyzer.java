@@ -2,8 +2,11 @@ package com.learney.contentaudit.auditdomain.offlevelwords;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
 import com.learney.contentaudit.auditdomain.AuditableMilestone;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
@@ -30,6 +33,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.annotation.processing.Generated;
 
 /**
@@ -41,9 +46,15 @@ import javax.annotation.processing.Generated;
  *       It scores the sentence itself instead of reading lemma-absence, so it can run alone.</li>
  *   <li>R002: a word counts when its catalog level is two or more levels above the quiz (C1 = 5,
  *       C2 = 6), or when it is out of the catalog in the strong-discount band of the quiz level,
- *       recognized with the lemma-absence configuration. One level above is never an error.</li>
- *   <li>R003 and R004: a word the topic teaches never counts, nor an out-of-catalog word the
- *       translation repeats whole and without accents.</li>
+ *       recognized with the lemma-absence configuration. One level above is never an error, and
+ *       neither is a word that a regular reading brings within reach: the regular inflection of a
+ *       catalog lemma when the lemmatizer's reading is absurd, the same lemma in another category,
+ *       a proper name or a nationality, its British variant, or -- out of the catalog -- a compound
+ *       or a derivative of words of the level. Every reading is measured with the same scorer.</li>
+ *   <li>R003 and R004: a word the topic teaches never counts -- its title, its frequent answers, a
+ *       mini theory that names the word alone, a suffix it teaches on a word of the level, or the
+ *       name of a topic of the course --, nor an out-of-catalog word the translation repeats whole
+ *       and without accents, or adapted to Spanish spelling when it is not a verb.</li>
  *   <li>R005: one medium finding per word, resolved at the panel; the quiz scores 1 without words
  *       and 0 with at least one, and keeps them in its typed diagnosis.</li>
  * </ul>
@@ -65,6 +76,18 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
     /** R002: two levels above the quiz or more is an error; one level above never is. */
     static final int MIN_DISTANCE = 2;
 
+    /** R002: each part of a compound, and the base of a derivative, has at least this many letters. */
+    static final int MIN_PART = 3;
+
+    /** The categories the shared scorer evaluates (the content-word filter of lemma-absence). */
+    private static final List<String> CONTENT_POS = List.of("NOUN", "VERB", "ADJ", "ADV");
+
+    private static final Pattern DOLLAR_TERM = Pattern.compile("\\$([^$]+)\\$");
+
+    private static final Pattern LETTERS = Pattern.compile("[\\p{L}']+");
+
+    private static final Pattern SPANISH_WORD = Pattern.compile("\\p{L}+");
+
     private final SentenceLexicalScorer sentenceLexicalScorer;
 
     private final LemmaAbsenceConfig lemmaAbsenceConfig;
@@ -75,6 +98,15 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
 
     // R003: what each topic teaches, worked out once per knowledge of this run
     private final Map<String, TaughtWords> taughtByKnowledge = new HashMap<>();
+
+    // R003: the words and the suffixes the title and the mini theories of each topic teach
+    private final Map<String, TopicLessons> lessonsByKnowledge = new HashMap<>();
+
+    // R003: the names of the topics of the course, its own metalanguage, worked out once per run
+    private Set<String> courseMetalanguage;
+
+    // R002: the distance the shared scorer gives a lone lemma, per lemma, category and level
+    private final Map<String, Optional<Integer>> distances = new HashMap<>();
 
     public OffLevelWordsAnalyzer(SentenceLexicalScorer sentenceLexicalScorer,
             LemmaAbsenceConfig lemmaAbsenceConfig, TopicTeachingResolver topicTeachingResolver,
@@ -100,8 +132,7 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
         if (level == null) {
             return null;
         }
-        TaughtWords taught = taughtWords(node.ancestor(AuditTarget.KNOWLEDGE).orElse(null));
-        List<OffLevelWord> words = offLevelWords(quiz, level, taught);
+        List<OffLevelWord> words = offLevelWords(node, quiz, level);
         node.getScores().put(ANALYZER_NAME, words.isEmpty() ? 1.0 : 0.0);
         if (node.getDiagnoses() instanceof DefaultQuizDiagnoses quizDiagnoses) {
             quizDiagnoses.setOffLevelWordsDiagnosis(new OffLevelWordsDiagnosis(level, words));
@@ -154,8 +185,7 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
         CefrLevel level = diagnosis.map(OffLevelWordsDiagnosis::getLevel).orElse(levelOf(node));
         List<OffLevelWord> words = diagnosis.map(OffLevelWordsDiagnosis::getWords).orElse(List.of());
         if (words == null || words.isEmpty()) {
-            words = level != null ? offLevelWords(quiz, level,
-                    taughtWords(node.ancestor(AuditTarget.KNOWLEDGE).orElse(null))) : List.of();
+            words = level != null ? offLevelWords(node, quiz, level) : List.of();
         }
         String sentence = sentenceOf(quiz);
         String asTheStudentSeesIt = statementOf(quiz);
@@ -170,12 +200,16 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
     // R001 to R004: the words of another level
     // -------------------------------------------------------------------------
 
-    private List<OffLevelWord> offLevelWords(AuditableQuiz quiz, CefrLevel level, TaughtWords taught) {
+    private List<OffLevelWord> offLevelWords(AuditNode quizNode, AuditableQuiz quiz, CefrLevel level) {
         List<OffLevelWord> words = new ArrayList<>();
         List<NlpToken> tokens = quiz.getTokens();
         if (tokens == null || tokens.isEmpty()) {
             return words;
         }
+        AuditNode knowledgeNode = quizNode.ancestor(AuditTarget.KNOWLEDGE).orElse(null);
+        TaughtWords taught = taughtWords(knowledgeNode);
+        TopicLessons lessons = lessonsOf(knowledgeNode);
+        Set<String> metalanguage = metalanguageOf(quizNode);
         SentenceLexicalScore score = sentenceLexicalScorer.score(tokens, level);
         Set<String> seen = new HashSet<>();
         for (MisplacedLemma misplaced : orEmpty(score.getMisplacedLemmas())) {
@@ -188,7 +222,10 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
             }
             String lemma = misplaced.getLemmaAndPos().getLemma();
             String pos = misplaced.getLemmaAndPos().getPos();
-            if (taught(taught, lemma, textsOf(tokens, lemma, pos)) || !seen.add(lemma + "|" + pos)) {
+            Set<String> texts = textsOf(tokens, lemma, pos);
+            if (teaches(taught, lessons, metalanguage, lemma, texts, level)
+                    || nearerReading(tokens, lemma, pos, texts, level, false)
+                    || !seen.add(lemma + "|" + pos)) {
                 continue;
             }
             Integer rank = misplaced.getCocaRank() != null && misplaced.getCocaRank() > 0
@@ -202,7 +239,10 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
             String lemma = outOfCatalog.getLemma();
             String pos = outOfCatalog.getObservedPos();
             Set<String> texts = textsOf(tokens, lemma, pos);
-            if (taught(taught, lemma, texts) || inTranslation(quiz.getTranslation(), lemma, texts)
+            if (teaches(taught, lessons, metalanguage, lemma, texts, level)
+                    || inTranslation(quiz.getTranslation(), lemma, texts)
+                    || adaptedInTranslation(quiz.getTranslation(), pos, lemma, texts)
+                    || nearerReading(tokens, lemma, pos, texts, level, true)
                     || !seen.add(lemma + "|" + pos)) {
                 continue;
             }
@@ -217,6 +257,23 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
      */
     private boolean inStrongBand(Integer rank, CefrLevel level) {
         return rank == null || rank <= 0 || rank > lemmaAbsenceConfig.getOutOfCatalogMildDiscountRankBound(level);
+    }
+
+    // -------------------------------------------------------------------------
+    // R003: what the topic teaches
+    // -------------------------------------------------------------------------
+
+    /**
+     * R003: the topic teaches the word -- a term of its title or a frequent answer (the resolver the
+     * semaphore shares), a mini theory of the topic that names it alone between {@code $}, a suffix
+     * the topic teaches on a word of the level, or the name of a topic of the course.
+     */
+    private boolean teaches(TaughtWords taught, TopicLessons lessons, Set<String> metalanguage, String lemma,
+            Set<String> texts, CefrLevel level) {
+        return taught(taught, lemma, texts)
+                || lessons.namesAlone(lemma, texts)
+                || namedBy(metalanguage, lemma, texts)
+                || formedWithTaughtSuffix(lessons, lemma, texts, level);
     }
 
     /** R003: the topic teaches it -- a word of its title's terms, or a frequent lemma of its answers. */
@@ -236,6 +293,662 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
         }
         return taught.getFrequentAnswers() != null && taught.getFrequentAnswers().contains(lowerLemma);
     }
+
+    /** R003: the lemma or one of its written forms is among the words. */
+    private static boolean namedBy(Set<String> words, String lemma, Set<String> texts) {
+        if (words.isEmpty() || lemma == null) {
+            return false;
+        }
+        if (words.contains(lower(lemma))) {
+            return true;
+        }
+        for (String text : texts) {
+            if (words.contains(lower(text))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * R003: a suffix the topic teaches ({@code $-ly$}, {@code $+ing$}) forms the word from a word of
+     * the level: «nicely» in «Adjetivo + $-ly$» at A1, since «nice» is A1.
+     */
+    private boolean formedWithTaughtSuffix(TopicLessons lessons, String lemma, Set<String> texts, CefrLevel level) {
+        if (lessons.suffixes.isEmpty()) {
+            return false;
+        }
+        Set<String> forms = new LinkedHashSet<>();
+        forms.add(lower(lemma));
+        for (String text : texts) {
+            forms.add(lower(text));
+        }
+        for (String form : forms) {
+            for (String suffix : lessons.suffixes) {
+                for (String base : basesBySuffix(form, suffix)) {
+                    if (withinLevel(base, level)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private TopicLessons lessonsOf(AuditNode knowledgeNode) {
+        if (knowledgeNode == null || knowledgeNode.getEntity() == null) {
+            return TopicLessons.NONE;
+        }
+        String id = knowledgeNode.getEntity().getId();
+        if (id == null) {
+            return TopicLessons.of(knowledgeNode);
+        }
+        return lessonsByKnowledge.computeIfAbsent(id, k -> TopicLessons.of(knowledgeNode));
+    }
+
+    /**
+     * R003: the words the title and the mini theories of a topic teach on their own. A mini theory
+     * teaches a word when it names it alone between {@code $} (« $headphones$, $pants$ y $pajamas$ »);
+     * a longer term («$a warranty for$») teaches the combination, not the word. A term that is a
+     * suffix ({@code $-ly$}, {@code $+ing$}) teaches the suffix.
+     */
+    private static final class TopicLessons {
+        static final TopicLessons NONE = new TopicLessons(Set.of(), Set.of());
+
+        final Set<String> words;
+        final Set<String> suffixes;
+
+        private TopicLessons(Set<String> words, Set<String> suffixes) {
+            this.words = words;
+            this.suffixes = suffixes;
+        }
+
+        static TopicLessons of(AuditNode knowledgeNode) {
+            Set<String> words = new LinkedHashSet<>();
+            Set<String> suffixes = new LinkedHashSet<>();
+            if (knowledgeNode.getEntity() instanceof AuditableKnowledge knowledge) {
+                read(knowledge.getTitle(), null, suffixes);
+            }
+            for (AuditableQuiz quiz : quizzesOf(knowledgeNode)) {
+                read(quiz.getMiniTheory(), words, suffixes);
+            }
+            return new TopicLessons(words, suffixes);
+        }
+
+        private static void read(String text, Set<String> words, Set<String> suffixes) {
+            if (text == null) {
+                return;
+            }
+            Matcher matcher = DOLLAR_TERM.matcher(text);
+            while (matcher.find()) {
+                String term = matcher.group(1).trim().toLowerCase(Locale.ROOT);
+                if (term.matches("[-+][a-z]+")) {
+                    suffixes.add(term.substring(1));
+                } else if (words != null && term.matches("[a-z]+")) {
+                    words.add(term);
+                }
+            }
+        }
+
+        boolean namesAlone(String lemma, Set<String> texts) {
+            return namedBy(words, lemma, texts);
+        }
+    }
+
+    private static List<AuditableQuiz> quizzesOf(AuditNode knowledgeNode) {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        if (knowledgeNode.getChildren() != null && !knowledgeNode.getChildren().isEmpty()) {
+            for (AuditNode child : knowledgeNode.getChildren()) {
+                if (child.getEntity() instanceof AuditableQuiz quiz) {
+                    quizzes.add(quiz);
+                }
+            }
+            return quizzes;
+        }
+        if (knowledgeNode.getEntity() instanceof AuditableKnowledge knowledge && knowledge.getQuizzes() != null) {
+            quizzes.addAll(knowledge.getQuizzes());
+        }
+        return quizzes;
+    }
+
+    /**
+     * R003: the metalanguage of the course -- the words of the names of its topics, «Modal Verbs»,
+     * «Relative clauses» --, which a quiz may use to talk about the language.
+     */
+    private Set<String> metalanguageOf(AuditNode quizNode) {
+        if (courseMetalanguage != null) {
+            return courseMetalanguage;
+        }
+        Set<String> words = new HashSet<>();
+        AuditNode root = quizNode;
+        while (root != null && root.getParent() != null) {
+            root = root.getParent();
+        }
+        if (root != null) {
+            collectTopicNames(root, words);
+        }
+        courseMetalanguage = words;
+        return words;
+    }
+
+    private static void collectTopicNames(AuditNode node, Set<String> words) {
+        if (node.getEntity() instanceof AuditableTopic topic) {
+            addNameWords(topic.getLabel(), words);
+            return;
+        }
+        if (node.getChildren() != null && !node.getChildren().isEmpty()) {
+            for (AuditNode child : node.getChildren()) {
+                collectTopicNames(child, words);
+            }
+            return;
+        }
+        if (node.getEntity() instanceof AuditableCourse course && course.getMilestones() != null) {
+            for (AuditableMilestone milestone : course.getMilestones()) {
+                if (milestone != null && milestone.getTopics() != null) {
+                    for (AuditableTopic topic : milestone.getTopics()) {
+                        if (topic != null) {
+                            addNameWords(topic.getLabel(), words);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * The words of a topic name -- «Modal Verbs» gives modal, verbs and verb --, leaving out the
+     * examples it quotes between {@code $}: those are what that topic teaches (R003), not the name.
+     */
+    private static void addNameWords(String name, Set<String> words) {
+        if (name == null) {
+            return;
+        }
+        Matcher matcher = LETTERS.matcher(DOLLAR_TERM.matcher(name).replaceAll(" ").toLowerCase(Locale.ROOT));
+        while (matcher.find()) {
+            String word = matcher.group().replace("'", "");
+            if (word.length() >= MIN_PART) {
+                words.add(word);
+                words.addAll(regularBases(word, false));
+            }
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // R002: the readings that bring a word within reach
+    // -------------------------------------------------------------------------
+
+    /**
+     * R002: a regular reading of the word leaves it within reach of the quiz level, so the student
+     * of the level can know it: the lemmatizer misread it, the tagger misread its category or a
+     * proper name, it is the American form of a British word, or -- out of the catalog -- it is a
+     * compound or a derivative of words of the level.
+     */
+    private boolean nearerReading(List<NlpToken> tokens, String lemma, String pos, Set<String> texts,
+            CefrLevel level, boolean outOfCatalog) {
+        return regularInflectionReading(lemma, pos, texts, level, outOfCatalog)
+                || (!outOfCatalog && otherCategoryReading(lemma, pos, level))
+                || properNameReading(tokens, lemma, pos)
+                || britishVariantReading(lemma, pos, texts, level)
+                || (outOfCatalog && (compoundReading(lemma, level) || derivativeReading(lemma, level)));
+    }
+
+    /**
+     * R002: the lemmatizer's reading is absurd -- it does not give the written form by regular
+     * inflection («hoped» is not hop + ed, that is «hopped») or it gives a lemma out of the catalog
+     * («partied» as «partie») -- and the form is the regular inflection of a lemma within reach:
+     * «hope», A2, in a B1 quiz.
+     */
+    private boolean regularInflectionReading(String lemma, String pos, Set<String> texts, CefrLevel level,
+            boolean outOfCatalog) {
+        boolean verb = "VERB".equals(pos);
+        if (!verb && !"NOUN".equals(pos)) {
+            return false;
+        }
+        String lowerLemma = lower(lemma);
+        for (String text : texts) {
+            String form = lower(text);
+            if (form.equals(lowerLemma)) {
+                continue;
+            }
+            Set<String> bases = regularBases(form, verb);
+            if (bases.contains(lowerLemma) && !outOfCatalog) {
+                continue;
+            }
+            for (String base : bases) {
+                if (base.equals(lowerLemma)) {
+                    continue;
+                }
+                Optional<Integer> distance = distance(base, pos, level);
+                if (distance.isPresent() && distance.get() < MIN_DISTANCE) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * R002: the same lemma in another content category is within reach -- the tagger reads «run» in
+     * «run - running» as a noun (B1), and the verb is A1.
+     */
+    private boolean otherCategoryReading(String lemma, String pos, CefrLevel level) {
+        for (String other : CONTENT_POS) {
+            if (other.equals(pos)) {
+                continue;
+            }
+            Optional<Integer> distance = distance(lemma, other, level);
+            if (distance.isPresent() && distance.get() < MIN_DISTANCE) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * R002: a word written with a capital in the middle of the sentence is a proper name, a
+     * nationality or a language («Mary reads Portuguese well», «the new Argentinian restaurant»),
+     * even when the tagger reads it as a common word.
+     */
+    static boolean properNameReading(List<NlpToken> tokens, String lemma, String pos) {
+        NlpToken previous = null;
+        for (NlpToken token : tokens) {
+            if (token == null || token.getText() == null || token.getText().isBlank()
+                    || "SPACE".equals(token.getPosTag())) {
+                continue;
+            }
+            boolean same = token.getLemma() != null && token.getLemma().equalsIgnoreCase(lemma)
+                    && (pos == null || pos.equals(token.getPosTag()));
+            if (same && Character.isUpperCase(token.getText().charAt(0)) && previous != null
+                    && !opensSentence(previous)) {
+                return true;
+            }
+            previous = token;
+        }
+        return false;
+    }
+
+    /** After punctuation other than a comma («.», «!», «/», a quote) a capital opens a sentence. */
+    private static boolean opensSentence(NlpToken previous) {
+        String text = previous.getText();
+        if (text.equals(",")) {
+            return false;
+        }
+        for (int i = 0; i < text.length(); i++) {
+            if (Character.isLetterOrDigit(text.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * R002: the EVP is British; the American form of a word is read as its British one, by the
+     * spelling patterns (color/colour, center/centre, organize/organise, catalog/catalogue,
+     * defense/defence) and by the pairs of {@link #BRITISH_FORMS}: «takeout» is «takeaway», B1, so
+     * it is not an error in an A2 quiz.
+     */
+    private boolean britishVariantReading(String lemma, String pos, Set<String> texts, CefrLevel level) {
+        Set<String> forms = new LinkedHashSet<>();
+        forms.add(lower(lemma));
+        for (String text : texts) {
+            forms.add(lower(text));
+        }
+        for (String form : forms) {
+            for (String variant : britishVariants(form)) {
+                Optional<Integer> distance = CONTENT_POS.contains(pos) ? distance(variant, pos, level)
+                        : lowestDistance(variant, level);
+                if (distance.isPresent() && distance.get() < MIN_DISTANCE) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * R002: a word out of the catalog made of two words of the level, each of three letters or more:
+     * «hairbrush» (hair, brush), «headphones», «lifeguard», «watercolor» (water, colour) in B1.
+     */
+    private boolean compoundReading(String lemma, CefrLevel level) {
+        String word = lower(lemma);
+        if (!isWord(word)) {
+            return false;
+        }
+        for (int cut = MIN_PART; cut <= word.length() - MIN_PART; cut++) {
+            if (withinLevel(word.substring(0, cut), level) && withinLevel(word.substring(cut), level)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * R002: a word out of the catalog derived with a transparent affix takes the level of its base,
+     * and it is an error only when that level is two or more above the quiz: «creamy» (cream A2),
+     * «calming» (calm B1), «stimulating» (stimulate B2) and «dietitian» (diet B1) are not errors in a
+     * B1 quiz. An adverb in -ly takes two levels more, as the EVP puts it above its adjective
+     * (beautiful A1, beautifully B1; bright A2, brightly B2): only the adjective of an earlier level
+     * leaves it within reach -- «bitterly» in B2 (bitter B1), never «soundly» or «awfully» in A2, the
+     * adverbs the 077 marked. The adverb of a derivative out of the EVP looks one step further:
+     * «effortlessly» from «effort», B1.
+     */
+    private boolean derivativeReading(String lemma, CefrLevel level) {
+        String word = lower(lemma);
+        for (String base : derivationBases(word)) {
+            if (withinReach(base, level)) {
+                return true;
+            }
+        }
+        for (String base : basesBySuffix(word, "ly")) {
+            if (belowLevel(base, level)) {
+                return true;
+            }
+            if (lowestDistance(base, level).isEmpty()) {
+                for (String inner : derivationBases(base)) {
+                    if (belowLevel(inner, level)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /** A word of an earlier level than the quiz's: within the level before it. */
+    private boolean belowLevel(String word, CefrLevel level) {
+        return level.ordinal() > 0 && withinLevel(word, CefrLevel.values()[level.ordinal() - 1]);
+    }
+
+    /** A word that would not be an error in the quiz (R002): at most one level above it. */
+    private boolean withinReach(String word, CefrLevel level) {
+        Optional<Integer> distance = lowestDistance(word, level);
+        if (distance.isPresent() && distance.get() < MIN_DISTANCE) {
+            return true;
+        }
+        for (String variant : britishVariants(word)) {
+            Optional<Integer> variantDistance = lowestDistance(variant, level);
+            if (variantDistance.isPresent() && variantDistance.get() < MIN_DISTANCE) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** A word of the level: the scorer resolves it, or its British spelling, at the quiz level or below. */
+    private boolean withinLevel(String word, CefrLevel level) {
+        Optional<Integer> distance = lowestDistance(word, level);
+        if (distance.isPresent() && distance.get() <= 0) {
+            return true;
+        }
+        for (String variant : britishVariants(word)) {
+            Optional<Integer> variantDistance = lowestDistance(variant, level);
+            if (variantDistance.isPresent() && variantDistance.get() <= 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /** The lowest distance of a lone lemma among the content categories. */
+    private Optional<Integer> lowestDistance(String lemma, CefrLevel level) {
+        Optional<Integer> lowest = Optional.empty();
+        for (String pos : CONTENT_POS) {
+            Optional<Integer> distance = distance(lemma, pos, level);
+            if (distance.isPresent() && (lowest.isEmpty() || distance.get() < lowest.get())) {
+                lowest = distance;
+            }
+        }
+        return lowest;
+    }
+
+    /**
+     * R001 for a reading: the levels above the quiz that the shared scorer -- the one lemma-absence
+     * and lexis use, with the same catalog and rules -- gives a lone lemma; 0 or less when it is
+     * within the level, empty when it is out of the catalog.
+     */
+    private Optional<Integer> distance(String lemma, String pos, CefrLevel level) {
+        String key = lemma + "|" + pos + "|" + level;
+        Optional<Integer> known = distances.get(key);
+        if (known != null) {
+            return known;
+        }
+        Optional<Integer> distance = Optional.empty();
+        if (isWord(lemma)) {
+            SentenceLexicalScore score = sentenceLexicalScorer.score(
+                    List.of(new NlpToken(lemma, lemma, pos, null, false, false)), level);
+            if (score != null && score.getMisplacedLemmas() != null && !score.getMisplacedLemmas().isEmpty()) {
+                CefrLevel expected = score.getMisplacedLemmas().get(0).getExpectedLevel();
+                distance = expected != null ? Optional.of(expected.ordinal() - level.ordinal()) : Optional.empty();
+            } else if (score != null && (score.getOutOfCatalogWords() == null || score.getOutOfCatalogWords().isEmpty())) {
+                distance = Optional.of(0);
+            }
+        }
+        distances.put(key, distance);
+        return distance;
+    }
+
+    // -------------------------------------------------------------------------
+    // Regular inflection, derivation and spelling, the general rules of English
+    // -------------------------------------------------------------------------
+
+    /**
+     * The lemmas from which the form comes by regular inflection: -s, -es, -ies for a noun, and also
+     * -ed, -ing for a verb. «hoped» comes from hope (hope + d), not from hop (hopped).
+     */
+    static Set<String> regularBases(String form, boolean verb) {
+        Set<String> bases = new LinkedHashSet<>();
+        List<String> suffixes = verb ? List.of("ied", "ed", "d", "ying", "ing", "ies", "es", "s")
+                : List.of("ies", "es", "s");
+        for (String suffix : suffixes) {
+            if (!form.endsWith(suffix) || form.length() <= suffix.length() + 1) {
+                continue;
+            }
+            String stem = form.substring(0, form.length() - suffix.length());
+            for (String base : List.of(stem, stem + "e", stem + "y", stem + "ie", stem.substring(0, stem.length() - 1))) {
+                if (base.length() < MIN_PART) {
+                    continue;
+                }
+                boolean regular = regularPlural(base).equals(form)
+                        || verb && (regularPast(base).equals(form) || regularGerund(base).equals(form));
+                if (regular) {
+                    bases.add(base);
+                }
+            }
+        }
+        return bases;
+    }
+
+    static String regularPast(String base) {
+        if (base.endsWith("e")) {
+            return base + "d";
+        }
+        if (endsInConsonantY(base)) {
+            return base.substring(0, base.length() - 1) + "ied";
+        }
+        return doublesFinalConsonant(base) ? base + base.charAt(base.length() - 1) + "ed" : base + "ed";
+    }
+
+    static String regularGerund(String base) {
+        if (base.endsWith("ie")) {
+            return base.substring(0, base.length() - 2) + "ying";
+        }
+        if (base.endsWith("e") && !base.endsWith("ee") && !base.endsWith("ye") && !base.endsWith("oe")) {
+            return base.substring(0, base.length() - 1) + "ing";
+        }
+        return doublesFinalConsonant(base) ? base + base.charAt(base.length() - 1) + "ing" : base + "ing";
+    }
+
+    static String regularPlural(String base) {
+        if (base.matches(".*(s|x|z|ch|sh)")) {
+            return base + "es";
+        }
+        if (endsInConsonantY(base)) {
+            return base.substring(0, base.length() - 1) + "ies";
+        }
+        return base + "s";
+    }
+
+    private static boolean endsInConsonantY(String base) {
+        return base.length() > 1 && base.endsWith("y") && !isVowel(base.charAt(base.length() - 2));
+    }
+
+    /** A one-syllable word ending in consonant, vowel, consonant (not w, x, y) doubles it: hop, hopped. */
+    static boolean doublesFinalConsonant(String base) {
+        int n = base.length();
+        if (n < 3 || syllables(base) != 1) {
+            return false;
+        }
+        char last = base.charAt(n - 1);
+        return !isVowel(last) && "wxy".indexOf(last) < 0 && isVowel(base.charAt(n - 2)) && !isVowel(base.charAt(n - 3));
+    }
+
+    private static int syllables(String word) {
+        int groups = 0;
+        boolean inVowel = false;
+        for (int i = 0; i < word.length(); i++) {
+            boolean vowel = isVowel(word.charAt(i)) || word.charAt(i) == 'y' && i > 0;
+            if (vowel && !inVowel) {
+                groups++;
+            }
+            inVowel = vowel;
+        }
+        return groups;
+    }
+
+    private static boolean isVowel(char c) {
+        return "aeiou".indexOf(c) >= 0;
+    }
+
+    /**
+     * The bases of a derivative with a transparent affix: -y, -ing, -ed, -er, -ful, -less, -ness,
+     * -ist, -ian, -ician, -itian, and the negative prefixes un- and mal- before a word of four
+     * letters or more («malice» is not mal + ice). Never -ly (see {@link #derivativeReading}).
+     */
+    static Set<String> derivationBases(String word) {
+        Set<String> bases = new LinkedHashSet<>();
+        for (String suffix : List.of("y", "ing", "ed", "er", "ful", "less", "ness", "ist", "ian", "ician", "itian")) {
+            bases.addAll(basesBySuffix(word, suffix));
+        }
+        for (String prefix : List.of("un", "mal")) {
+            if (word.startsWith(prefix) && word.length() - prefix.length() >= MIN_PART + 1) {
+                bases.add(word.substring(prefix.length()));
+            }
+        }
+        return bases;
+    }
+
+    /** The bases of a word formed with a suffix: undoubled, with its silent e, and y for i. */
+    static Set<String> basesBySuffix(String word, String suffix) {
+        Set<String> bases = new LinkedHashSet<>();
+        if (!word.endsWith(suffix) || word.length() - suffix.length() < MIN_PART) {
+            return bases;
+        }
+        String stem = word.substring(0, word.length() - suffix.length());
+        bases.add(stem);
+        if (!stem.endsWith("e")) {
+            bases.add(stem + "e");
+        }
+        // sunny is sun + y, but awfully is awful + ly, never «awfull» + y: a double l before -y stays
+        boolean doubleL = "y".equals(suffix) && stem.endsWith("ll");
+        if (stem.length() > MIN_PART && stem.charAt(stem.length() - 1) == stem.charAt(stem.length() - 2)
+                && !isVowel(stem.charAt(stem.length() - 1)) && !doubleL) {
+            bases.add(stem.substring(0, stem.length() - 1));
+        }
+        if (stem.endsWith("i")) {
+            bases.add(stem.substring(0, stem.length() - 1) + "y");
+        }
+        if ("ly".equals(suffix) && stem.matches(".*[bptdgkz]")) {
+            bases.add(stem + "le");
+        }
+        if ("ly".equals(suffix) && stem.endsWith("ical")) {
+            bases.add(stem.substring(0, stem.length() - 2));
+        }
+        if (("ian".equals(suffix) || "ist".equals(suffix)) && stem.length() >= MIN_PART) {
+            bases.add(stem + "y");
+        }
+        bases.removeIf(base -> base.length() < MIN_PART);
+        return bases;
+    }
+
+    /**
+     * The form the EVP writes for a word written otherwise: the American vocabulary for a thing that
+     * British English names with another word, and the spellings that do not follow a pattern -- a
+     * closed list of the common pairs the learner's dictionaries give (Cambridge, Oxford Learner's).
+     */
+    static final Map<String, String> BRITISH_FORMS = Map.ofEntries(
+            Map.entry("takeout", "takeaway"), Map.entry("apartment", "flat"), Map.entry("elevator", "lift"),
+            Map.entry("cookie", "biscuit"), Map.entry("candy", "sweet"), Map.entry("vacation", "holiday"),
+            Map.entry("gasoline", "petrol"), Map.entry("sidewalk", "pavement"), Map.entry("subway", "underground"),
+            Map.entry("zipper", "zip"), Map.entry("faucet", "tap"), Map.entry("trash", "rubbish"),
+            Map.entry("garbage", "rubbish"), Map.entry("eraser", "rubber"), Map.entry("cellphone", "mobile"),
+            Map.entry("diaper", "nappy"), Map.entry("flashlight", "torch"), Map.entry("closet", "wardrobe"),
+            Map.entry("mailman", "postman"), Map.entry("mailbox", "postbox"), Map.entry("movie", "film"),
+            Map.entry("soccer", "football"), Map.entry("restroom", "toilet"), Map.entry("drugstore", "chemist"),
+            Map.entry("truck", "lorry"), Map.entry("highway", "motorway"), Map.entry("freeway", "motorway"),
+            Map.entry("windshield", "windscreen"), Map.entry("stove", "cooker"), Map.entry("recess", "break"),
+            Map.entry("sneaker", "trainer"), Map.entry("sweater", "jumper"), Map.entry("math", "maths"),
+            Map.entry("cab", "taxi"), Map.entry("semester", "term"), Map.entry("comforter", "duvet"),
+            Map.entry("fries", "chips"), Map.entry("pacifier", "dummy"), Map.entry("stroller", "pushchair"),
+            Map.entry("attorney", "lawyer"), Map.entry("mom", "mum"), Map.entry("gray", "grey"),
+            Map.entry("pajama", "pyjama"), Map.entry("pajamas", "pyjamas"), Map.entry("tire", "tyre"),
+            Map.entry("aluminum", "aluminium"), Map.entry("plow", "plough"), Map.entry("jewelry", "jewellery"),
+            Map.entry("cozy", "cosy"), Map.entry("donut", "doughnut"), Map.entry("curb", "kerb"),
+            Map.entry("whiskey", "whisky"), Map.entry("grandad", "granddad"), Map.entry("skeptical", "sceptical"),
+            Map.entry("mustache", "moustache"), Map.entry("ax", "axe"));
+
+    /**
+     * The British forms of a word: its pair in {@link #BRITISH_FORMS} and the regular spelling
+     * patterns, -or/-our, -ter/-tre, -ber/-bre, -ize/-ise (both ways, the catalog writes -ize),
+     * -yze/-yse, -og/-ogue, -ense/-ence and the doubled l of a stressless syllable.
+     */
+    static Set<String> britishVariants(String word) {
+        Set<String> variants = new LinkedHashSet<>();
+        String pair = BRITISH_FORMS.get(word);
+        if (pair != null) {
+            variants.add(pair);
+        }
+        replaceEnding(word, "or", "our", variants);
+        replaceEnding(word, "ors", "ours", variants);
+        replaceEnding(word, "ter", "tre", variants);
+        replaceEnding(word, "ber", "bre", variants);
+        replaceEnding(word, "ize", "ise", variants);
+        replaceEnding(word, "ise", "ize", variants);
+        replaceEnding(word, "ized", "ised", variants);
+        replaceEnding(word, "ised", "ized", variants);
+        replaceEnding(word, "yze", "yse", variants);
+        replaceEnding(word, "og", "ogue", variants);
+        replaceEnding(word, "ense", "ence", variants);
+        for (String ending : List.of("ed", "ing", "er")) {
+            if (word.endsWith("l" + ending) && !word.endsWith("ll" + ending) && word.length() > ending.length() + 3
+                    && isVowel(word.charAt(word.length() - ending.length() - 2))) {
+                variants.add(word.substring(0, word.length() - ending.length()) + "l" + ending);
+            }
+        }
+        variants.remove(word);
+        return variants;
+    }
+
+    private static void replaceEnding(String word, String from, String to, Set<String> variants) {
+        if (word.endsWith(from) && word.length() > from.length() + 2) {
+            variants.add(word.substring(0, word.length() - from.length()) + to);
+        }
+    }
+
+    private static boolean isWord(String word) {
+        if (word == null || word.length() < 2) {
+            return false;
+        }
+        for (int i = 0; i < word.length(); i++) {
+            if (!Character.isLetter(word.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // -------------------------------------------------------------------------
+    // R004: what the translation repeats
+    // -------------------------------------------------------------------------
 
     /**
      * R004: the translation repeats the word whole and without accents -- a loan or a name the
@@ -258,10 +971,112 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
         return false;
     }
 
+    /**
+     * R004: a word that is not a verb is repeated by the translation adapted to Spanish spelling, as
+     * loans are written: «hamburger» is «hamburguesas», «limousine» «limusina», «pollen» «polen»,
+     * «ceramic» «cerámica». Both are compared folded (ph f, th t, y i, ou u, one consonant for a
+     * double, the Spanish es- before s and gu for g, no final vowels nor plural), from the same first
+     * letter: the same, or one the start of the other from five letters on («meteor», «meteoritos»);
+     * a noun may also differ in one letter («porcelain», «porcelana»). A verb never: «adore» and
+     * «adoran» keep marking, as the 077 asked.
+     */
+    static boolean adaptedInTranslation(String translation, String pos, String lemma, Set<String> texts) {
+        if (translation == null || translation.isBlank() || pos == null || "VERB".equals(pos) || "AUX".equals(pos)) {
+            return false;
+        }
+        boolean noun = "NOUN".equals(pos);
+        Set<String> english = new LinkedHashSet<>();
+        english.add(foldEnglish(lemma));
+        for (String text : texts) {
+            english.add(foldEnglish(text));
+        }
+        english.removeIf(word -> word.length() < 4);
+        if (english.isEmpty()) {
+            return false;
+        }
+        Matcher matcher = SPANISH_WORD.matcher(translation);
+        while (matcher.find()) {
+            for (String spanish : foldSpanish(matcher.group())) {
+                for (String word : english) {
+                    if (spanish.isEmpty() || word.charAt(0) != spanish.charAt(0)) {
+                        continue;
+                    }
+                    if (word.equals(spanish) || sameStem(word, spanish) || noun && editDistance(word, spanish) <= 1) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    static String foldEnglish(String word) {
+        String folded = plain(word == null ? "" : word);
+        folded = folded.replace("ph", "f").replace("th", "t").replace("gh", "g").replace("ou", "u")
+                .replace("y", "i").replace("k", "c");
+        return stripFinalVowels(singleConsonants(folded));
+    }
+
+    static Set<String> foldSpanish(String word) {
+        String plainWord = plain(word);
+        Set<String> forms = new LinkedHashSet<>();
+        forms.add(plainWord);
+        if (plainWord.length() > 4 && plainWord.endsWith("s")) {
+            forms.add(plainWord.substring(0, plainWord.length() - 1));
+        }
+        if (plainWord.length() > 5 && plainWord.endsWith("es")) {
+            forms.add(plainWord.substring(0, plainWord.length() - 2));
+        }
+        Set<String> folded = new LinkedHashSet<>();
+        for (String form : forms) {
+            String f = form.replaceFirst("^es(?=[b-df-hj-np-tv-z])", "s")
+                    .replace("gue", "ge").replace("gui", "gi").replace("qu", "c");
+            folded.add(stripFinalVowels(singleConsonants(f)));
+        }
+        return folded;
+    }
+
+    /** One folded word is the start of the other, from five letters on: «meteor», «meteorit». */
+    private static boolean sameStem(String english, String spanish) {
+        boolean englishShorter = english.length() <= spanish.length();
+        String shorter = englishShorter ? english : spanish;
+        String longer = englishShorter ? spanish : english;
+        return shorter.length() >= 5 && longer.startsWith(shorter);
+    }
+
+    private static String singleConsonants(String word) {
+        return word.replaceAll("([b-df-hj-np-tv-z])\\1+", "$1");
+    }
+
+    private static String stripFinalVowels(String word) {
+        return word.replaceAll("[aeiou]+$", "");
+    }
+
+    static int editDistance(String a, String b) {
+        int[] previous = new int[b.length() + 1];
+        for (int j = 0; j <= b.length(); j++) {
+            previous[j] = j;
+        }
+        for (int i = 1; i <= a.length(); i++) {
+            int[] current = new int[b.length() + 1];
+            current[0] = i;
+            for (int j = 1; j <= b.length(); j++) {
+                int substitution = previous[j - 1] + (a.charAt(i - 1) == b.charAt(j - 1) ? 0 : 1);
+                current[j] = Math.min(substitution, Math.min(previous[j] + 1, current[j - 1] + 1));
+            }
+            previous = current;
+        }
+        return previous[b.length()];
+    }
+
     /** Lower case, without accents: «Canapé» reads «canape». */
     private static String plain(String text) {
         String decomposed = Normalizer.normalize(text, Normalizer.Form.NFD);
         return decomposed.replaceAll("\\p{M}+", "").toLowerCase(Locale.ROOT);
+    }
+
+    private static String lower(String text) {
+        return text == null ? "" : text.toLowerCase(Locale.ROOT);
     }
 
     /** The written forms of the word in the sentence: «lives» for live. */

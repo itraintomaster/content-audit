@@ -4,6 +4,15 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer + analyst (paquete D) — Opción A del orquestador: sólo entra un lema escrito con letras (con
+  apóstrofo o guion internos); afuera «'», «-», «i.», «1st», «3rd», «4th» y «comic_strip». Las posiciones no cambian
+  (91.873). Curso: 0,08 con 131 · 1.566 · 46 de 1.743 (7,52 %), 1.612 hallazgos; niveles 448/176 · 752/155 ·
+  1.137/161 · 818/165; vocabulario 73,86 % igual (0,738582). Pruebas con esos valores; REQUIREMENT R001, R004, R005.
+  Pendiente @qa-tester: tres nombres declarados en sentinel.yaml llevan los números del 30/9 (134/1.570/46 de 1.750;
+  A1 450/178…; 1.616 hallazgos): el cuerpo ya fija los nuevos.
+  La opción B (sin puntuación en las posiciones: 0,09 y vocabulario 74,00 %) queda en la rama ronda1/recur-posiciones,
+  sin juntar: decide José.
+
 2026-09-30 — developer + test-writer (paquete D) — FEAT-RECUR construido: 24 pruebas sin @Disabled. lemma-recurrence
   publica su LemmaRecurrenceCourseDiagnosis (cada lema con hueco más largo, niveles de inicio y fin y niveles; el detalle
   de cada nivel), deja un hallazgo F-RECUR-R005 por lema fuera de rango y Main enciende su formateador en analyze

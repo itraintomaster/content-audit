@@ -5,6 +5,30 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete D) — Toda lectura nueva se mide con el SentenceLexicalScorer compartido sobre un token
+  suelto (sin puerto nuevo): el nivel de la lectura es el que daría lemma-absence, con su repliegue por lema (R036).
+  why: R001 inv. 3 sigue por construcción (sólo se sacan marcas) y no hace falta inyectar el catálogo.
+2026-10-01 — developer (paquete D) — Umbrales: el derivado toma el nivel de su base (no es error hasta un nivel arriba);
+  el adverbio en -ly, dos más (base de un nivel anterior); el compuesto pide sus dos partes del nivel o de antes.
+  why: el 077 marcó soundly, awfully, endlessly y gracefully (A2) y sideboard (A1, side A2): con el umbral de R002 en
+  compuestos o en -ly se perdían. El repliegue por lema da «sound» A2 aunque el adjetivo no esté en el EVP.
+2026-10-01 — developer (paquete D) — Miniteoría (R003.3): sólo el término de una palabra entre $; «$a warranty for$» no.
+  why: con cualquier mención se perdían disembark ×2 y warranty, del oro de escribir. Vive en el analizador: TaughtWords
+  no tiene campo para ella (el semáforo sigue con 1 y 2); lo mismo el sufijo del tema y el metalenguaje.
+2026-10-01 — developer (paquete D) — Préstamo adaptado (R004.2): nunca un verbo; adjetivo o adverbio, igual plegado o
+  con raíz común de 5 letras; sustantivo, además a una letra. Lista cerrada sólo la de pares americano/británico.
+  why: «adore»/«adoran» y «reside»/«residimos» siguen marcando (077); «hydrated»/«hidratado» (oro) queda a una letra.
+2026-10-01 — developer (paquete D) — La teoría del tema no se lee: vive en ittm/content/theory y el ejercicio la
+  nombra por theoryId, que AuditableQuiz no trae. Con un prototipo, sacaría 3 marcas más (tweezers, concur, acquainted:
+  las 3 falsas de la muestra) y ninguna del oro. Parche propuesto, sin aplicar: AuditableQuiz.theoryId, puerto
+  TopicTheorySource, FileSystemTopicTheorySource (vocabulary-infrastructure), TaughtWords.theoryWords y el resolutor
+  que lo inyecta; validado contra ronda1/integracion (8a3f949c). TECH_SPEC reescrito: el del 30/9 queda en 0998557c.
+  why: es la causa de las 3 falsas que quedan en la muestra; costo, el constructor de AuditableQuiz en ~314 pruebas.
+2026-10-01 — orquestador — El parche de la teoría queda propuesto y EN ESPERA hasta después de la ronda 2: toca
+  AuditableQuiz, que también tocan los parches de la ronda 2, y cuesta ~314 llamadas. No aplicar antes.
+2026-10-01 — test-writer (paquete D) — FNivfrJ001JourneyTest fija 95 (9 · 25 · 42 · 19) en vez de 170 y la prueba de la
+  ficha su nuevo «lee»: valores fijados que cambian con las reglas, no pruebas nuevas.
+
 2026-09-30 — developer (paquete D) — La respuesta de un ejercicio (R003) son todas las variantes «|» de sus huecos o la
   etiqueta de la opción correcta (incidencia > 0, como correctItem de 0.2); se cruza con el texto de los tokens. Un
   término del título con apóstrofo enseña además la palabra antes del apóstrofo. El diagnóstico tipado se escribe en

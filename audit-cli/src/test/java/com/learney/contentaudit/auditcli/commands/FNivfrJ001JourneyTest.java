@@ -75,8 +75,8 @@ public class FNivfrJ001JourneyTest {
             assertEquals(quizzesWithFindings(context), Base299.countsOf(context, OFF_LEVEL_WORDS).getWithError(),
                     "R005: each quiz once in the errors of " + Base299.key(context) + ", whatever its words");
         }
-        assertEquals(170, Base299.countsOf(analysis.report().getRoot(), OFF_LEVEL_WORDS).getWithError(),
-                "the 170 quizzes of the course: 18 · 33 · 81 · 38");
+        assertEquals(95, Base299.countsOf(analysis.report().getRoot(), OFF_LEVEL_WORDS).getWithError(),
+                "the 95 quizzes of the course: 9 · 25 · 42 · 19 (170 before the readings of R002, 1/10)");
 
         // === Node: intacto ===
         // Gate: F-NIVFR-R006
