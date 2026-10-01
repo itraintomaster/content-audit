@@ -5,6 +5,12 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (paquete D) — `patch validate -i <copia>/sentinel.yaml` falla («Patch validation error:
+  .../requirements/.../REQUIREMENT.md») si la copia no trae la carpeta requirements al lado: el validador busca las
+  carpetas junto al sentinel.yaml. Para validar contra otra rama: `git archive <rama> sentinel.yaml requirements`.
+2026-10-01 — architect (paquete D) — propose fusiona con el architectural_patch.yaml que haya en la carpeta: para
+  proponer otro parche sin tocar uno en espera, éste se mueve a en-espera/ (con su TECH_SPEC) y se restaura después.
+
 2026-10-01 — developer (paquete D) — «awfully» (oro) se escapaba por el sufijo -y: «awfull» + y, sin la doble l, daba
   «awful». Antes de -y la doble l no se simplifica (sunny sí es sun + y).
 2026-10-01 — developer (paquete D) — `mvn -o compile -pl audit-domain` solo compila contra los jar viejos de ~/.m2

@@ -4,6 +4,14 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 (noche) — qa-tester (paquete D) — 18 handwrittenTests sumadas al parche de la forma derivada, con
+  backup antes del propose (scratchpad impl-D2/backup-parche-v3): 15 de OffLevelWordsAnalyzer (R002 forma derivada,
+  base, otra categoría en listas y par americano; R003 sufijo del tema; R004 préstamo) y 3 de FileSystemEvpCatalog
+  (R002 el método nuevo, R006 las búsquedas por lema sin cambios). propose fusionado y después --replace sólo para
+  poner la descripción al día (mismo contenido); TECH_SPEC reescrito (2 cercos, +la sección de pruebas). Validado
+  contra ronda2/integracion (d80f7f6a), con y sin el REQUIREMENT de la rama, y contra el de ronda 1: 0 conflictos.
+  Next: el orquestador junta la rama en ronda2/integracion, aplica sin --as (el parche lleva estructura) y genera.
+
 2026-10-01 (noche) — developer + analyst (paquete D) — El orquestador aprobó el parche de la forma derivada y
   decidió que el sufijo del tema cubre la palabra que el EVP trae (92bf8a21): nicely, sadly, warmly, beautifully y
   smoking dejan de marcar. Curso: 99 (9 · 27 · 43 · 20), y no 100: rewarding (C1) está en «-ed vs -ing», que enseña
