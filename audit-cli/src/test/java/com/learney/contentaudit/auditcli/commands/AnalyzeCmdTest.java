@@ -1569,8 +1569,6 @@ public class AnalyzeCmdTest {
     @DisplayName("should leave the 886 files of the 29/9 course identical byte for byte after analyzing it with the seventeen analyzers of round 1")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R008")
-    @org.junit.jupiter.api.Disabled("FEAT-RONDA1: espera a que A, C y D construyan sus nueve analizadores; hoy sus "
-            + "proveedores no dan ficha y el catálogo no arranca con ellos")
     public void shouldLeaveThe886FilesOfThe299CourseIdenticalByteForByteAfterAnalyzingItWithTheSeventeenAnalyzersOfRound1(
             @org.junit.jupiter.api.io.TempDir Path workdir) {
         // R008 inv. 3 (F-HALL-R015): analyze reads the course and writes only its analysis -- with

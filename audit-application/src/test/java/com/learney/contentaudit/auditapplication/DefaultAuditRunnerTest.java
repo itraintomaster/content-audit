@@ -1334,8 +1334,6 @@ public class DefaultAuditRunnerTest {
     @DisplayName("should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels 96.0, 93.6, 78.9 and 63.9")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R008")
-    @org.junit.jupiter.api.Disabled("FEAT-RONDA1: espera los nueve analizadores de A, C y D y las bandas 8 · 6 · 4 · 3 "
-            + "de FEAT-POCOV (D); hoy lemma-count usa 4 para todas y da 73,92 %")
     public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1AndTheDefaultBands864And3AVocabularyScoreOf7386AndLevels960936789And639(
             @org.junit.jupiter.api.io.TempDir Path workdir) {
         // R008 inv. 1: with the seventeen of round 1 and the bands 8 · 6 · 4 · 3, the default since
@@ -1351,8 +1349,6 @@ public class DefaultAuditRunnerTest {
     @DisplayName("should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2, 79.5 and 63.5")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R008")
-    @org.junit.jupiter.api.Disabled("FEAT-RONDA1: espera los nueve analizadores de A, C y D y las bandas de FEAT-POCOV "
-            + "(D), para poder pedir 4 para todas")
     public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1And4ForEveryBandTheNumbersOfToday7392AndLevels965942795And635(
             @org.junit.jupiter.api.io.TempDir Path workdir) {
         // R008 inv. 1: the same seventeen with 4 for every band give the numbers of today, 73,92 %
