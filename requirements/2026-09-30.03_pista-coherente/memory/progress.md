@@ -4,6 +4,20 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Prototipo, sin encender, de «la reescritura pide palabras que no salen de la oración de
+  partida ni de la pista» (scripts/prototipo_pista_reescritura.py). En las oraciones enteras, cada palabra de contenido de la
+  primera respuesta (tokens de spaCy de la oración guardada) tiene que salir del enunciado, la pista o la consigna, por lema,
+  con la flexión regular, la derivación en -ly y las formas irregulares; listas cerradas para lo que la reescritura agrega
+  sola (auxiliares de la respuesta corta, el perfecto, «how long», pronombres indefinidos, los desplazamientos de tiempo del
+  estilo indirecto). Curso del 29/9: 60 marcas entre 3.957 oraciones enteras (A1 10, A2 4, B1 34, B2 12). De los 27 casos
+  sin marca de escribir/pista.json marca 11 (10 que hint-coherence no veía: con los 5 de hoy, 15 de 27). Precisión: dos
+  muestras de desarrollo (8 de 30 reales la primera, 19 de 30 la segunda, de ahí los arreglos genéricos) y una muestra
+  nueva de 30 revisada a mano: 25 reales (83 %); revisadas las 60 marcas finales, 56 reales (93 %). Las 4 falsas: la
+  fórmula del pedido (want → «Could I have…?», ×2), el «did» de una pregunta de objeto y «must → had to» del estilo
+  indirecto. Pasa el 80 %, pero encenderla necesita un parche: un valor nuevo en HintIssueKind (generado; reusar
+  VERB_NOT_ANNOUNCED para sustantivos sería mentir en el diagnóstico) y su prueba declarada. No hace falta un puerto.
+  Next: el coordinador decide el parche; el texto de la regla para el REQUIREMENT quedó en el informe.
+
 2026-10-01 — developer (impl A) — R001 pasa a la unión (tipo o tema entero) y «(100%)» cuenta como pista: hint-coherence marca
   48 ejercicios (A1 13, A2 9, B1 20, B2 6): 13 sin pista, 46 de palabras y 4 de sujeto; 31 por regla y 32 a la mesa.
   Examen escribir: 20 de 46 (43 %), 15 de 15 anotados de pista, 2 marcas fuera del oro. La prueba de El posesivo sigue en
