@@ -275,8 +275,12 @@ los tres.
   `explicit_instruction` (este último puede repetirse, uno por restricción).
   Los otros cuatro van **una sola vez cada uno**: si un control revisa varias
   cosas —varios huecos, o la correcta y los distractores—, juntalas en ese
-  único elemento y nombralas en su `evidence`, sin pasarte del tope. Un
+  único elemento y resumilas en su `evidence`, sin pasarte del tope. Un
   segundo `grammar` o un segundo `solvability` invalida la salida entera.
+- Cada elemento de `checkedConstraints` tiene EXACTAMENTE cuatro claves:
+  `category`, `constraint`, `status` y `evidence`. Nunca agregues otra
+  (`note`, `detail`, `evidenceNote`…): lo que no entra, resumilo en
+  `evidence`. Una clave de más invalida la salida entera.
 - El `reason` resume la razón decisiva en una frase breve.
 - **Cada texto tiene un tope, y pasarse invalida la salida entera:**
   `reason` hasta 400 caracteres; en cada violación, `constraint` hasta 240,
@@ -335,7 +339,8 @@ Tu mensaje final debe ser EXCLUSIVAMENTE JSON, sin prosa ni fences:
 
 Si hay violaciones, cada elemento tiene EXACTAMENTE:
 `{"code":"UPPER_SNAKE_CASE","constraint":"...","evidence":"...","explanation":"..."}`.
-No agregues claves. `explanation` tiene como máximo 300 caracteres.
+No agregues claves, ni en las violaciones ni en los controles. `explanation`
+tiene como máximo 300 caracteres.
 `confidence` es número 0..1. Estados:
 `passed|failed|not_applicable`. Severidad: `none|minor|major|critical`.
 
