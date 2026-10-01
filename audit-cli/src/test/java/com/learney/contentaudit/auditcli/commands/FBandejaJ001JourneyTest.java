@@ -1,7 +1,14 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import java.nio.file.Path;
+import org.junit.jupiter.api.io.TempDir;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,18 +28,84 @@ public class FBandejaJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: José pide la bandeja de la tanda abie... → José responde la muestra ciega par po... → La bandeja muestra ahora los desempat... → José mira la muestra de cada regla → José publica con un solo OK; lo no de... [Las muestras de regla quedan aprobadas y la compuerta pasa con las decisiones incorporadas] → success")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void path1_lasMuestrasDeReglaQuedanAprobadasYLaCompuertaPasaConLasDecisionesIncorporadas_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // J001, path 1: José asks for the tray of the open batch and sees only the blind sample; he answers it pair by pair;
+        // then the decisions -- the tie of the judges on the fruit, the tea without winner --; he says the tie is not an
+        // error and leaves the tea; he approves the sample of the rule of the hint, and publishes with one OK: the tea stays as
+        // it was, its task open, undecided in the report.
+        TandaCli cli = closedBatch(workdir);
+
+        TandaCli.Run blind = cli.tray("show");
+        assertEquals(0, blind.exit(), blind.err());
+        assertTrue(blind.out().contains("1. [BLIND_SAMPLE] ciega-" + TandaCli.SAMPLE + "\n"), blind.out());
+        assertTrue(!blind.out().contains("2. ["), "only the blind sample: " + blind.out());
+
+        assertEquals(0, cli.tray("answer", "ciega-" + TandaCli.SAMPLE, "A", "--pair", "1").exit());
+        assertEquals(0, cli.tray("answer", "ciega-" + TandaCli.SAMPLE, "B", "--pair", "2").exit());
+
+        TandaCli.Run decisions = cli.tray("show");
+        int tea = decisions.out().indexOf("[NO_WINNER] sin-ganador-" + TandaCli.TEA);
+        int fruit = decisions.out().indexOf("[TIE_ON_COURSE] desempate-curso-" + TandaCli.FRUIT);
+        int rule = decisions.out().indexOf("[RULE_SAMPLE] muestra-hint-coherence");
+        assertTrue(fruit > 0 && tea > 0 && rule > Math.max(fruit, tea), "the decisions, then the sample:\n" + decisions.out());
+        assertTrue(decisions.out().contains("Juez desde el inglés: sí: «Comes mucha fruta.» dice lo mismo"), decisions.out());
+
+        assertEquals(0, cli.tray("answer", "desempate-curso-" + TandaCli.FRUIT, "NOT_ERROR").exit());
+        assertEquals(0, cli.tray("answer", "muestra-hint-coherence", "RULE_OK").exit());
+        TandaCli.Run publish = cli.tray("publish");
+
+        assertEquals(0, publish.exit(), publish.err());
+        QuizTemplateEntity teaAfter = exercise(cli, TandaCli.TEA);
+        assertEquals("(drink) tea in the morning.", teaAfter.getForm().getSentenceParts().get(2).getText(), "as it was");
+        assertEquals(RefinementTaskStatus.PENDING, cli.plans.load(TandaCli.PLAN).orElseThrow().getTasks().stream()
+                .filter(t -> t.getId().equals("t-tea")).findFirst().orElseThrow().getStatus(), "its task open");
+        CorrectionBatch published = cli.batches.latestPublished().orElseThrow();
+        TandaCli.Run report = cli.batch("report", published.getId());
+        assertTrue(report.out().contains("  sin ganador: 1\n"), "undecided in the report: " + report.out());
+        assertTrue(cli.tray("show").exit() != 0, "the tray of a published batch is gone: no batch is open");
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: José pide la bandeja de la tanda abie... → José responde la muestra ciega par po... → La bandeja muestra ahora los desempat... → José mira la muestra de cada regla → La tanda saca esos cambios, se recalc... [José saca una regla entera de la tanda] → José publica con un solo OK; lo no de... → success")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void path2_josSacaUnaReglaEnteraDeLaTanda_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // J001, path 2: after the blind sample and the decisions, José drops the whole rule of the hint from the tray: the
+        // batch takes those changes out, compares itself again against the gate, and he publishes the rest with one OK.
+        TandaCli cli = closedBatch(workdir);
+        assertEquals(0, cli.tray("answer", "ciega-" + TandaCli.SAMPLE, "A", "--pair", "1").exit());
+        assertEquals(0, cli.tray("answer", "ciega-" + TandaCli.SAMPLE, "A", "--pair", "2").exit());
+        int comparisons = cli.comparison.scopes.size();
+
+        TandaCli.Run drop = cli.tray("answer", "muestra-hint-coherence", "DROP_RULE", "--note", "la pista va con sujeto");
+
+        assertEquals(0, drop.exit(), drop.err());
+        assertEquals(comparisons + 1, cli.comparison.scopes.size(), "compared again without the rule");
+        TandaCli.Run publish = cli.tray("publish");
+        assertEquals(0, publish.exit(), publish.err());
+        assertEquals("a lot of vegetables.", exercise(cli, TandaCli.VEGETABLES).getForm().getSentenceParts().get(2).getText(),
+                "without the changes of the rule");
+        assertEquals("Winter", exercise(cli, TandaCli.COME).getForm().getSentenceParts().get(0).getText(), "with the rest");
+    }
+
+
+    @TempDir
+    Path workdir;
+
+    /** The batch of A1 opened, run with a cap and closed from the command line, its blind sample drawn. */
+    private static TandaCli closedBatch(Path workdir) {
+        TandaCli cli = new TandaCli(workdir);
+        assertEquals(0, cli.batch("open", "A1").exit());
+        assertEquals(0, cli.batch("run", "--cap", "10").exit());
+        TandaCli.Run close = cli.batch("close");
+        assertEquals(0, close.exit(), close.out() + close.err());
+        return cli;
+    }
+
+    private static QuizTemplateEntity exercise(TandaCli cli, String quizId) {
+        return cli.courses.written.get(cli.courses.written.size() - 1).getRoot().getMilestones().get(0).getTopics().get(0)
+                .getKnowledges().get(0).getQuizTemplates().stream().filter(q -> q.getId().equals(quizId)).findFirst()
+                .orElseThrow();
     }
 }
