@@ -325,4 +325,28 @@ public class DefaultHintAnswerCheckTest {
     static SentencePartEntity cloze(String... options) {
         return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(options));
     }
+
+    @Test
+    @DisplayName("should report a content word of a rewrite that comes neither from the sentence it rewrites nor from its hint or instructions, as «have» in «Polite request: I want to eat some cake. ___» answered «Could I have some cake?»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldReportAContentWordOfARewriteThatComesNeitherFromTheSentenceItRewritesNorFromItsHintOrInstructionsAsHaveInPoliteRequestIWantToEatSomeCakeAnsweredCouldIHaveSomeCake() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should take as announced the words the instructions name, so only «practise» is reported in «The coach encouraged the players to repeat the drill. ___» answered «The coach made the players practise the drill.» under «Crea oraciones utilizando 'let' o 'make'.»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldTakeAsAnnouncedTheWordsTheInstructionsNameSoOnlyPractiseIsReportedInTheCoachEncouragedThePlayersToRepeatTheDrillAnsweredTheCoachMadeThePlayersPractiseTheDrillUnderCreaOracionesUtilizandoLetOMake() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not report the grammar a rewrite brings by itself, as the perfect and the time shift of reported speech in «“I overslept this morning” (the boy whispered) ___» answered «The boy whispered that he had overslept that morning.»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldNotReportTheGrammarARewriteBringsByItselfAsThePerfectAndTheTimeShiftOfReportedSpeechInIOversleptThisMorningTheBoyWhisperedAnsweredTheBoyWhisperedThatHeHadOversleptThatMorning() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

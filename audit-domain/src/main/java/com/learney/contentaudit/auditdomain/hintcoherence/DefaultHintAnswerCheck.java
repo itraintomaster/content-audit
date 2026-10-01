@@ -481,4 +481,10 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
     private static String lower(String text) {
         return text == null ? "" : text.toLowerCase(Locale.ROOT);
     }
+
+    @Override
+    public List<HintIssue> checkRewrite(AuditableQuiz quiz) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

@@ -520,4 +520,20 @@ public class HintCoherenceAnalyzerTest {
     static SentencePartEntity gap() {
         return new SentencePartEntity(SentencePartKind.CLOZE, "", null);
     }
+
+    @Test
+    @DisplayName("should raise a blocking finding for the panel, identified by the word, on a rewrite that asks for a word nothing announces, as «opinion» in «I think it's a good idea for her to see a dentist. ___» answered «She ought to see a dentist, in my opinion.»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldRaiseABlockingFindingForThePanelIdentifiedByTheWordOnARewriteThatAsksForAWordNothingAnnouncesAsOpinionInIThinkItsAGoodIdeaForHerToSeeADentistAnsweredSheOughtToSeeADentistInMyOpinion() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should look for unannounced words only in answers that are the whole sentence, leaving a gap inside the sentence to R002, as «rain» in «It ___ (be) soon.» answered «'s going to rain»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldLookForUnannouncedWordsOnlyInAnswersThatAreTheWholeSentenceLeavingAGapInsideTheSentenceToR002AsRainInItBeSoonAnsweredSGoingToRain() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

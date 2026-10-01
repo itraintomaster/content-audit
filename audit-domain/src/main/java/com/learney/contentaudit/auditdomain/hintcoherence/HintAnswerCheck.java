@@ -10,4 +10,6 @@ import javax.annotation.processing.Generated;
 )
 interface HintAnswerCheck {
     List<HintIssue> check(ExerciseHint hint, AuditableQuiz quiz);
+
+    List<HintIssue> checkRewrite(AuditableQuiz quiz);
 }

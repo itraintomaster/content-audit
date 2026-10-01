@@ -68,6 +68,6 @@ public class FileSystemFormEquivalenceTableSource implements FormEquivalenceTabl
             groups.add(new EquivalentWordGroup(FormEquivalenceClass.valueOf(group.path("clase").asText()), words));
         }
         return new FormEquivalenceTable(root.path("version").asText(null), contractions, groups,
-                root.path("invierteNegativas").asBoolean(false));
+                root.path("invierteNegativas").asBoolean(false), null);
     }
 }
