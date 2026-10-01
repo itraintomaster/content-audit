@@ -8,13 +8,15 @@ description: "FEAT-BANDEJA: la bandeja de la tanda como una vista que content-au
   \ y construida) y sobre FEAT-RONDA2, que se aplica antes; orden de la cadena: FEAT-RONDA2,\
   \ B, F y E: revision-domain lleva la lista entera de patrones, 6 (el apply reemplaza,\
   \ no suma); el paquete tray suma audit-infrastructure a sus clientes: FileSystemTrayDecisionStore\
-  \ implementa TrayDecisionStore.; qa-tester: 39 handwrittenTests trazan las 8 reglas\
+  \ implementa TrayDecisionStore.; qa-tester: 42 handwrittenTests trazan las 9 reglas\
   \ de FEAT-BANDEJA con una tanda armada a mano, un servicio de muestra ciega de mentira\
   \ y la mesa con el proponente guionado, sin consultar modelos: la ciega primero\
   \ y sola, el no es error que no vuelve mientras el ejercicio no cambie, la misma\
   \ muestra de 20 en dos lecturas y el approve de una propuesta de la tanda rechazado.\
   \ F-BANDEJA-J001 va a audit-cli, paquete commands: sus pasos son tray show, answer\
-  \ y publish, y TrayCmd es package-private ahí."
+  \ y publish, y TrayCmd es package-private ahí.; orquestador, 1/10 (el audio sigue\
+  \ al ejercicio): TrayItemKind suma PENDING_RERECORDING y TrayItem suma rerecord,\
+  \ para mostrar al final y sin pregunta lo que hay que regrabar (F-BANDEJA-R009)."
 modules:
 - name: revision-domain
   dependsOn:
@@ -129,6 +131,10 @@ modules:
         type: List<BlindPairView>
         description: "Los pares de la muestra ciega tal como los entrega el paquete\
           \ F mientras está abierta: sin lado, sin motivo, sin autor."
+      - name: rerecord
+        type: AudioRerecordRequest
+        description: "En un audio pendiente de regrabar: la clave y el texto con que\
+          \ hay que grabarlo (F-BANDEJA-R009)."
       _change: add
     - name: TrayItemKind
       type: enum
@@ -138,6 +144,8 @@ modules:
       - name: TIE_ON_CANDIDATE
       - name: NO_WINNER
       - name: RULE_SAMPLE
+      - name: PENDING_RERECORDING
+        description: "Un audio pendiente de regrabar: sin pregunta, al final (F-BANDEJA-R009)."
       _change: add
     - name: TrayAnswer
       type: enum
@@ -431,6 +439,11 @@ modules:
         traceability:
           feature: FEAT-BANDEJA
           rule: F-BANDEJA-R008
+      - name: "should publish the batch with audios pending rerecording, which are\
+          \ never answered and never block the OK"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R009
       implements:
       - TrayService
       _change: add
@@ -449,7 +462,8 @@ modules:
           feature: FEAT-BANDEJA
           rule: F-BANDEJA-R001
       - name: "should list after the closed blind sample the ties and the exercises\
-          \ without winner by severity, and the samples of each rule at the end"
+          \ without winner by severity, then the samples of each rule and at the end\
+          \ the audios to rerecord"
         traceability:
           feature: FEAT-BANDEJA
           rule: F-BANDEJA-R001
@@ -498,6 +512,17 @@ modules:
         traceability:
           feature: FEAT-BANDEJA
           rule: F-BANDEJA-R007
+      - name: "should show at the end, without a question, each audio pending rerecording\
+          \ with its exercise as the student sees it, its key and the text to record,\
+          \ as B1.13.05.15 with «I learned myself to drive a car.»"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R009
+      - name: "should show both the rerecordings the open batch asks and those left\
+          \ pending by published batches, each audio once with the latest text"
+        traceability:
+          feature: FEAT-BANDEJA
+          rule: F-BANDEJA-R009
       implements:
       - TrayAssembler
       _change: add

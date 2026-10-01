@@ -400,9 +400,40 @@ modules:
     _change: modify
 ```
 
-## Declarar las 39 pruebas y ubicar el journey
-Las 39 son nuevas y cubren las ocho reglas (R001 6, R002 5, R003 5, R004 5, R005 3, R006 5, R007 4, R008 6). Van sobre
-el armado de la vista (`DefaultTrayAssembler`, 11), el servicio (`DefaultTrayService`, 18), el sorteo (2), la memoria de
+## Mostrar lo que hay que regrabar
+Lo que una tanda pide regrabar, y lo que quedó pendiente de las publicadas (F-TANDA-R012), es trabajo de José fuera de
+content-audit: la bandeja lo muestra al final, sin pregunta, y no frena la publicación (R009, R007). Una clase más de cosa
+y el pedido en la cosa alcanzan; el pedido es el de la compuerta (`AudioRerecordRequest`, FEAT-NOEMP), con la clave del
+audio y el texto.
+
+```architecture
+modules:
+  - name: revision-domain
+    _change: modify
+    packages:
+      - name: tray
+        _change: add
+        models:
+          - name: TrayItemKind
+            _change: add
+            type: enum
+            fields:
+              - { name: BLIND_SAMPLE }
+              - { name: TIE_ON_COURSE }
+              - { name: TIE_ON_CANDIDATE }
+              - { name: NO_WINNER }
+              - { name: RULE_SAMPLE }
+              - { name: PENDING_RERECORDING }
+          - name: TrayItem
+            _change: add
+            fields:
+              - { name: rerecord, type: AudioRerecordRequest }
+```
+
+## Declarar las 42 pruebas y ubicar el journey
+Las 42 son nuevas y cubren las nueve reglas (R001 6, R002 5, R003 5, R004 5, R005 3, R006 5, R007 4, R008 6, R009 3).
+R009 es nueva (orquestador, 1/10): la bandeja muestra lo que hay que regrabar. Van sobre
+el armado de la vista (`DefaultTrayAssembler`, 13), el servicio (`DefaultTrayService`, 19), el sorteo (2), la memoria de
 lo decidido (2, con su almacén de archivos), `TrayCmd` (3) y lo que ya existía: `ApproveCmd` y `RejectCmd` (3). Ninguna
 consulta un modelo: una tanda armada a mano, un servicio de muestra ciega de mentira y la mesa con el proponente guionado.
 
