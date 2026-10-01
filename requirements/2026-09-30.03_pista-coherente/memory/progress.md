@@ -4,6 +4,49 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (impl A) — Simulación repetida con R001 sobre ronda1/integracion 6cfaa008 (FEAT-CIERRE con sus
+  pruebas a la aridad nueva): validate OK (PISTA 7 cambios, RESPC 3); apply en memoria = apply de la CLI; generate cambia
+  los mismos 5 archivos de hintcoherence y avisa que conserva 4 métodos con nombre viejo (El posesivo, el camino 1 del
+  journey y las 2 de RESPC). Main y pruebas compilan salvo el switch de fault(); con ese caso, la suite entera corre 2.404
+  pruebas y fallan 25: los 5 stubs de R006 y 20 stubs de FEAT-CIERRE que C todavía no llenó. Los nombres exactos que
+  generate les daría a los 4 métodos, para renombrar a mano, quedaron en scratchpad/impl-A/r006/nombres-nuevos.txt.
+
+2026-10-01 — architect y qa-tester (impl A) — R001 entra al mismo parche (backup antes del propose; nada perdido): las
+  descripciones de hintedInTopic y comparableInTopic dicen el grupo que decide, y la prueba de El posesivo se borra con el
+  nombre viejo y se agrega con uno que dice tipo y tema entero, con la misma regla. TECH_SPEC con una sección más.
+  `patch validate -i` contra 859e96af: 0 altas, 7 cambios, 0 conflictos.
+
+2026-10-01 — analyst (impl A) — R001 dice la unión del 1/10, como el código: sin pista es hallazgo si la llevan tres cuartos
+  de su tipo o de todo su tema. Casos: Afirmativas regulares (por tipo), Adverbios de frecuencia 2572 (sólo por tema, 17 de
+  20) y El posesivo (ni el tipo, 0 de 20, ni el tema, 20 de 40). También la condición del camino «falta» de F-PISTA-J001.
+  Lo pidió el coordinador el 1/10: que nada describa algo que el código ya no hace.
+
+2026-10-01 — qa-tester (impl A) — Simulación del apply y del generate, en el scratchpad (impl-A/r006): copia descartable
+  de ronda1/integracion 35172b1c (FEAT-CIERRE ya aplicado) con esta rama encima. `patch validate -i` OK contra 859e96af y
+  contra 35172b1c. El apply en memoria y el de la CLI dan el mismo sentinel.yaml, con cambios sólo en hintcoherence y
+  answercompleteness (C no toca nada de eso). generate cambia HintIssueKind, HintAnswerCheck, DefaultHintAnswerCheck
+  (stub de checkRewrite), DefaultHintAnswerCheckTest (3 stubs), HintCoherenceAnalyzerTest (2) y dos .md de la skill; no
+  toca HintIssue ni los tests de RESPC. Main deja de compilar sólo en HintCoherenceAnalyzer.fault (el switch). Con ese
+  caso: audit-domain 682 pruebas, 5 en rojo (los stubs de R006, UnsupportedOperationException).
+  Next: el coordinador aplica y genera; encender R006 (puerto del prototipo, ficha, onQuiz) y renombrar las 2 de RESPC.
+
+2026-10-01 — qa-tester (impl A) — 5 handwrittenTests de F-PISTA-R006 fusionadas al parche del arquitecto (propose exit 0,
+  backup antes por el bug 08; nada perdido): 3 en DefaultHintAnswerCheck (24f7 have; 4186 sólo practise, made sale de la
+  consigna; 447b nada) y 2 en HintCoherenceAnalyzer (44f8 opinion bloqueante a la mesa; 215c rain sigue siendo de R002).
+  Sin camino nuevo en F-PISTA-J001. Next: el coordinador aplica después de FEAT-CIERRE; generate; encender R006.
+
+2026-10-01 — architect (impl A) — Segundo parche de FEAT-PISTA: REWRITE_WORD_NOT_ANNOUNCED en HintIssueKind,
+  checkRewrite(AuditableQuiz) en HintAnswerCheck (sealed: false), descripciones de HintIssue (rule, word, proposedHint) y
+  del paquete. propose exit 0 (0 altas, 4 cambios) y `patch validate -i` contra 859e96af OK. TECH_SPEC reescrito para
+  este parche (el del primero queda en git), con --replace.
+
+2026-10-01 — analyst (impl A) — F-PISTA-R006 en el REQUIREMENT: la reescritura no pide palabras que no salen de la
+  oración de partida, la pista o la consigna. Casos 24f7 (have), 44f8 (opinion), 4186 (practise; made sale de la
+  consigna) y 455d (moment); pasa 447b (whispered, el perfecto, this → that); los 4 falsos del prototipo como límite
+  conocido (2dd0 y 2ddc, la fórmula del pedido; 329c, el did de la pregunta de objeto; 4473, must → had to). Contexto con
+  los números del prototipo y alcance. `requirement validate` y `glossary validate` OK. Next: @architect, parche nuevo
+  en esta carpeta.
+
 2026-10-01 — developer (impl A) — Prototipo, sin encender, de «la reescritura pide palabras que no salen de la oración de
   partida ni de la pista» (scripts/prototipo_pista_reescritura.py). En las oraciones enteras, cada palabra de contenido de la
   primera respuesta (tokens de spaCy de la oración guardada) tiene que salir del enunciado, la pista o la consigna, por lema,

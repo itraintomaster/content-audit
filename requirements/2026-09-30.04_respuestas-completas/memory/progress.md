@@ -4,6 +4,32 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — architect, qa-tester y developer (impl A) — El corrector de las cuatro reglas del 1/10 (ittm
+  claude/corrector-cuatro-reglas, f54585212), medido al lado del de producción. La tabla dice sus reglas: el parche suma
+  CorrectorRule y FormEquivalenceTable.rules (propose y validate OK, fusionado con los dos nombres; backup antes) y cuatro
+  pruebas declaradas. En el repo: la copia nueva (formas-equivalentes-corrector-nuevo.json, «reglas» con las cuatro) y
+  sus 192 casos de oro tal cual en casos-de-oro-corrector-nuevo/; las otras dos tablas dicen «reglas»: []. El código
+  que imita las reglas depende del campo generado: está probado en una copia aplicada y generada (scratchpad
+  impl-A/corrector4; el diff para encender, encender-corrector.diff). Allí: las 9 pruebas del corrector en verde
+  (192 casos con la tabla nueva, 153 con la de producción, «hoy» de los 345) y la suite entera, 2.408, salvo los 5
+  stubs de R006. Antes y después sobre la foto del 29/9: answer-completeness 710 → 694 (se van los 16 límites del
+  corrector), opción múltiple, datos y duplicados sin cambios; con el censo de los 38 paréntesis, 54 ejercicios que
+  pasan a aceptar, los mismos 54 del corrector de Go.
+  Next: el coordinador aplica y genera; encender (el diff) y renombrar a mano las dos de RESPC.
+
+2026-10-01 — qa-tester (impl A) — Simulado en una copia de la integración: generate no agrega los stubs de los dos nombres
+  nuevos y preserva los métodos viejos, con un aviso para cada uno («DSL no longer declares this name»). Se renombran a mano
+  al encender; las 31 pruebas de answercompleteness siguen en verde mientras tanto.
+
+2026-10-01 — qa-tester (impl A) — Segundo parche de FEAT-RESPC, sólo nombres: «has trained» (R005) y la ficha (R006) se
+  borran con el nombre viejo y se agregan con el que dice lo que hace el código. propose y `patch validate -i` contra
+  859e96af OK (0 altas, 3 cambios). TECH_SPEC reescrito para este parche, con --replace. Después de generate, los dos
+  métodos se renombran a mano: generate no agrega sus stubs (bug 2026-07-22-01).
+
+2026-10-01 — analyst (impl A) — R006 suma «sólo ordena» a las resoluciones de la ficha y dice que el puntaje baja sólo
+  con regla o mesa, como hace el código desde 3a3238ed. Next: qa-tester, los nombres de las dos pruebas que lo
+  contradicen («has trained» y la de la ficha).
+
 2026-10-01 — developer (impl A) — Los límites del corrector ya no proponen «|»: las 12 formas son sólo ordena, media, con la regla
   que le falta al corrector (10 «'s»/«'d» ambiguo, 1 overslept, 1 till después de «there»). Curso del 29/9: 706 ejercicios con
   hallazgo de answer-completeness, 694 con error (los pedidos de forma) y 12 marcados; «algún error» del curso, 1.216

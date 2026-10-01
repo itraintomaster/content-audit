@@ -1,384 +1,189 @@
 ---
-patch: FEAT-RESPC
+patch: FEAT-RESPC-NOMBRES-Y-CORRECTOR-NUEVO
 requirement: 2026-09-30.04_respuestas-completas
-generated: 2026-09-30T21:30:00Z
+generated: 2026-10-01T04:00:00Z
 ---
 
-# Tech Spec: Respuestas completas (FEAT-RESPC), paquete A de la ronda 1
+# Tech Spec: Dos nombres de prueba, y el corrector de las cuatro reglas medido al lado (FEAT-RESPC)
 
-Diseñado contra el modelo que queda después de los parches de 0.2 (FEAT-OPMUL) y 0.3 (FEAT-HALL), aplicados en ese
-orden: `sentinel-baseline.yaml` es ese modelo, armado en memoria sin tocar el `sentinel.yaml` del worktree. De dónde
-sale cada tipo que el parche usa y no declara:
+Segundo parche de FEAT-RESPC. El primero ya está aplicado y su TECH_SPEC queda en la historia de git. Diseñado contra
+el `sentinel.yaml` de 859e96af y validado también contra el de `ronda1/integracion` con FEAT-CIERRE aplicado. Trae dos
+cosas que se aplican juntas:
 
-- **De 0.3 (FEAT-HALL)**: `AnalyzerProvider` (la raíz del catálogo), `ContentAnalyzer.findingsAt`, `FindingDraft`,
-  `FindingEvidence`, `EvidencePart`, `FindingSeverity`, `FindingResolution`, `AnalysisCost`, `AnalyzerRuleCard`,
-  `AnalyzerFamily` y los campos nuevos de `AnalyzerDescriptor` (la ficha).
-- **De 0.2 (FEAT-OPMUL)**: `AuditableQuiz.multipleChoice`, que dice qué ejercicio es de opción múltiple y por eso
-  queda fuera de este analizador.
-- **Del parche de FEAT-PISTA** (este mismo paquete): `IrregularFormsCatalog`.
-- **Del integrador de la ronda 1**: `QuizStudentViewRenderer`, el renderizador del ejercicio como lo ve el alumno que
-  0.3 le dejó; y `AuditableQuiz.miniTheory`. Están en `ronda1/ganchos-A.md` del tablero y en el parche de integración
-  (FEAT-RONDA1), que se aplica antes. Rebasado el 30/9 sobre el `sentinel.yaml` real, con 0.2 y 0.3 aplicados;
-  `sentinel-baseline.yaml` queda como foto del diseño.
+1. Dos nombres de prueba que pasan a decir lo que hace el código.
+2. La copia del corrector de las cuatro reglas del 1/10, al lado del que está en producción, para medir el antes y el
+   después.
 
-## Comparar como el corrector, con su tabla, en un solo lugar
-Cuatro de las cinco reglas del paquete dicen «comparado como el corrector», y José decidió que haya una sola tabla de
-formas equivalentes, la del corrector de Go. `CorrectorMatcher` es esa comparación: la normalización de
-`cloze_sentence_part.go` más la tabla. `canonicalForms` es la primitiva —el conjunto de formas canónicas de un texto—
-porque Datos necesita «uno contiene al otro» y Duplicados agrupa; `accepts` y `sameAnswer` son lo que piden
-Respuestas completas y Opción múltiple. La usan también dos jueces del paquete C (una sola respuesta y opción múltiple),
-así que es compartida, y por eso se aplica antes que ellos. Al integrar, `accepts` pasó a recibir el texto que rodea al
-hueco (`GapContext`, antes y después, sin las pistas), como `ClozeContext` del corrector de Go: sin él «'s» y «'d» no se
-pueden leer por lo que sigue («'s» con participio es *has*, «'d» con participio es *had*). Por lo mismo, comparar dos
-opciones de un mismo hueco tiene su `sameAnswer` con contexto; el de dos textos enteros, que usan Datos y Duplicados,
-queda como estaba.
+## Por qué los dos nombres
+Desde 3a3238ed, una forma de una clase que el corrector en producción ya iguala y que igual rechaza es un límite del
+corrector. El hallazgo sólo ordena, nombra la regla que le falta al corrector y nunca propone «|» (brief 101, José 30/9;
+el coordinador, 1/10), y la ficha sumó *sólo ordena* a sus resoluciones. El código y el cuerpo de las pruebas ya lo
+hacen, pero dos nombres declarados seguían diciendo lo de antes:
+
+| Prueba | Decía | Dice |
+|---|---|---|
+| «has trained», R005 | se resuelve agregándola después de «\|» | sólo ordena y nombra la regla que le falta al corrector |
+| La ficha, R006 | resuelve por regla o en la mesa | por regla, en la mesa o sólo ordenando |
+
+Una prueba declarada se identifica por su nombre: cada una se borra con el nombre viejo y se agrega con el nuevo, con la
+misma regla. R006 del REQUIREMENT ya dice las tres resoluciones; R005 no cambia.
 
 ```architecture
 modules:
-  - name: audit-domain
+- name: audit-domain
+  _change: modify
+  packages:
+  - name: answercompleteness
     _change: modify
-    interfaces:
-      - name: CorrectorMatcher
-        _change: add
-        stereotype: port
-        exposes:
-          - signature: "canonicalForms(String text): Set<String>"
-          - signature: "accepts(GapContext context,List<String> acceptedOptions,String written): boolean"
-          - signature: "sameAnswer(String first,String second): boolean"
-          - signature: "sameAnswer(GapContext context,String first,String second): boolean"
-          - signature: "tableVersion(): String"
-    packages:
-      - name: correctormatch
-        _change: add
-        visibility: public
-        models:
-          - name: GapContext
-            _change: add
-            type: record
-            fields:
-              - { name: before, type: String }
-              - { name: after, type: String }
-        implementations:
-          - name: DefaultCorrectorMatcher
-            _change: add
-            visibility: public
-            implements: [CorrectorMatcher]
-            requiresInject:
-              - { name: table, type: FormEquivalenceTable }
+    implementations:
+    - name: AnswerCompletenessAnalyzer
+      _change: modify
+      handwrittenTests:
+      - name: "should resolve by adding it after «|» a missing form the new corrector still rejects, as «has trained» if «He ___ (train) hard today.» only accepted «'s trained», a limit of the corrector"
+        _change: delete
+      - name: "should only rank a missing form of a class the corrector in production equates and still rejects, naming the rule the corrector lacks instead of adding it after «|», as «has trained» if «He ___ (train) hard today.» only accepted «'s trained»"
+        traceability: { feature: FEAT-RESPC, rule: F-RESPC-R005 }
+    - name: AnswerCompletenessAnalyzerProvider
+      _change: modify
+      handwrittenTests:
+      - name: "should describe answer-completeness in the catalog as an errors analyzer that evaluates exercises, resolves by rule or at the panel and costs instant, asking «¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?»"
+        _change: delete
+      - name: "should describe answer-completeness in the catalog as an errors analyzer that evaluates exercises, resolves by rule, at the panel or by ranking only, and costs instant, asking «¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?»"
+        traceability: { feature: FEAT-RESPC, rule: F-RESPC-R006 }
 ```
 
-## Guardar la tabla del corrector como dato, con el formato que fije Go
-La tabla todavía no existe: la construye en paralelo la rama `claude/corrector-formas-equivalentes` de ittm. Estos
-modelos son la interfaz que content-audit espera —contracciones con sus expansiones, grupos de palabras
-equivalentes, y si el corrector mueve el *not* de una pregunta negativa— y si Go elige otra forma sólo cambian ellos
-y el adaptador. «'s» y «'d» llevan dos expansiones cada uno porque, si el corrector toma «'s» sólo como *is*, quedan
-345 ejercicios sin igualar en vez de 142; y `invertsNegativeQuestions` existe porque esos 142 son preguntas negativas
-y *question tags*. La implementación se prueba con la copia de los casos de oro del corrector
-(`casos-de-oro.json`, al lado de la tabla): el test del qa-tester corre cada caso por `DefaultCorrectorMatcher` y falla
-si la copia de la tabla y los casos no coinciden.
+## La tabla dice qué reglas tiene su corrector
+José aprobó desplegar cuatro reglas nuevas del corrector de Go (ittm `claude/corrector-cuatro-reglas`, f54585212,
+cuatro commits sobre 66b8b2272) si se mide el antes y el después. Las cuatro son código, no tabla. Por eso la copia de
+la tabla dice la versión de su corrector y, en `rules`, cuáles tiene, como ya lo hacía `invertsNegativeQuestions`: el
+código las imita y la tabla dice cuáles van, sin una bandera en el código.
+
+| Regla | Qué hace el corrector | Commit |
+|---|---|---|
+| `AMBIGUOUS_CONTRACTIONS` | «'s» antes de un participio sin objeto y «'d» antes de un participio igual a la base valen por cualquiera de sus formas largas cuando los escribe el alumno; en la aceptada quedan como están escritos | ea7bc4a48 |
+| `STANDARD_IRREGULAR_PARTICIPLES` | 48 participios más (overslept, undergone) y las bases en -ing que no son gerundios (bring) | f837c6267 |
+| `TILL_OWN_SUBJECTS` | till es el verbo sólo después de I, you, he, she, we o they | f6a9a48eb |
+| `OPTIONAL_PARENTHESES` | lo que va entre paréntesis en una aceptada es opcional, entero o nada | f54585212 |
+
+`rules` es una lista de un enum y no de textos: una regla que content-audit no sabe imitar para la corrida al leer la
+tabla, como la falta del archivo. La tabla en producción (`formas-equivalentes.json`, #1191) y la vieja no traen
+ninguna; `formas-equivalentes-corrector-nuevo.json` trae las cuatro y la tabla del #1191 igual. El día que se despliegue,
+la nueva pasa a ser `formas-equivalentes.json`, como pasó con el #1191.
 
 ```architecture
 modules:
-  - name: audit-domain
+- name: audit-domain
+  _change: modify
+  packages:
+  - name: correctormatch
     _change: modify
-    interfaces:
-      - name: FormEquivalenceTableSource
+    models:
+    - name: FormEquivalenceTable
+      type: record
+      _change: modify
+      fields:
+      - name: rules
+        type: List<CorrectorRule>
         _change: add
-        stereotype: port
-        exposes:
-          - signature: "load(): FormEquivalenceTable"
-    packages:
-      - name: correctormatch
-        _change: add
-        visibility: public
-        models:
-          - name: FormEquivalenceTable
-            _change: add
-            type: record
-            fields:
-              - { name: version, type: String }
-              - { name: contractions, type: "List<ContractionExpansion>" }
-              - { name: equivalentWords, type: "List<EquivalentWordGroup>" }
-              - { name: invertsNegativeQuestions, type: boolean }
-          - name: ContractionExpansion
-            _change: add
-            type: record
-            fields:
-              - { name: contracted, type: String }
-              - { name: expansions, type: "List<String>" }
-              - { name: wholeWord, type: boolean }
-          - name: EquivalentWordGroup
-            _change: add
-            type: record
-            fields:
-              - { name: equivalenceClass, type: FormEquivalenceClass }
-              - { name: words, type: "List<String>" }
-          - name: FormEquivalenceClass
-            _change: add
-            type: enum
-            fields:
-              - { name: CONTRACTION }
-              - { name: BE_NEGATION }
-              - { name: SPELLING }
-              - { name: PREPOSITION }
+    - name: CorrectorRule
+      type: enum
+      _change: add
+      fields:
+      - name: AMBIGUOUS_CONTRACTIONS
+      - name: STANDARD_IRREGULAR_PARTICIPLES
+      - name: TILL_OWN_SUBJECTS
+      - name: OPTIONAL_PARENTHESES
 ```
 
-## Leer la copia que corresponde al corrector en producción
-content-audit corre sin red, así que lee una copia versionada, al lado del EVP en `analysis/recursos-compartidos/`
-(`corrector/formas-equivalentes.json` y `corrector/casos-de-oro.json`). La copia es la del corrector que está en
-producción, no la de la rama: el orden de salida es corrector primero y contenido después, y una copia adelantada
-haría sacar consignas antes de que el corrector acepte la otra forma. Hoy la copia es una tabla vacía con versión
-«corrector de hoy»; se reemplaza en el mismo paso en que sale el corrector. Sin archivo la corrida no arranca: la tabla
-vacía es un dato, la falta del archivo es un error de instalación.
+## Cómo imita el corrector las cuatro reglas
+`DefaultCorrectorMatcher` es la copia de `written_answer*.go`, y cada regla entra donde entra en Go:
+
+- **La lectura larga** devuelve también las otras lecturas de las contracciones ambiguas que escribió el alumno, a lo
+  sumo cuatro (`readLongs`). La gramática devuelve dos formas («is» y «has»; «had» y «would») donde el #1191 devolvía
+  ninguna. Sin la regla, las dos quedan como están escritas: es el #1191, igual.
+- **`accepts`** es el `Matches` de Go: el alumno es el receptor. Sus lecturas valen contra la forma larga de la aceptada,
+  y la aceptada, con `OPTIONAL_PARENTHESES`, vale también con cada tramo entre paréntesis entero o sin él.
+- **`sameAnswer`**, que usan la opción múltiple, los datos y los duplicados, pregunta si dos textos son la misma
+  respuesta: lo son si el corrector toma cualquiera de los dos por el otro. Sin las reglas es la comparación simétrica
+  de siempre.
+- **`canonicalForms`** sigue siendo la forma letra por letra y la larga, sin las lecturas ni los paréntesis.
+- **Las listas cerradas nuevas** (los 48 participios, los iguales a la base y los que no son gerundios) y los sujetos de
+  till van al lado de las de siempre, y cada una se mira sólo con su regla.
+
+## Los casos de oro de cada corrector
+Los 192 casos de oro de la rama, en sus seis archivos, se copian tal cual a `casos-de-oro-corrector-nuevo/`. Los 153
+del #1191 siguen en `casos-de-oro/`. Las dos carpetas tienen «hoy», la columna del corrector viejo, letra por letra, y
+«acepta», la del corrector de su carpeta. No hay columna del #1191 en los 192: 326a, por ejemplo, tiene la misma regla
+until-till que los casos de antes, y el #1191 lo rechaza. Por eso cada corrector prueba los suyos.
+
+## Las pruebas
+- **Los casos de oro del corrector nuevo**: los 192, con la copia de su tabla, que nombra las cuatro reglas.
+- **La duda favorece sólo al alumno**: «'s forgotten» vale por «has forgotten», y «is trained» no vale por «'s trained».
+- **La misma respuesta en cualquier orden**: para la opción múltiple y las copias de un ejercicio.
+- **Las reglas que lee la tabla**: las cuatro en la nueva, ninguna en la de producción, y una desconocida para la
+  corrida.
+- La de «hoy», que ya existe, pasa a leer las dos carpetas: su nombre ya dice «every golden case».
 
 ```architecture
 modules:
-  - name: vocabulary-infrastructure
+- name: audit-domain
+  _change: modify
+  packages:
+  - name: correctormatch
     _change: modify
-    packages:
-      - name: correctortable
-        _change: add
-        visibility: internal
-        implementations:
-          - name: FileSystemFormEquivalenceTableSource
-            _change: add
-            visibility: public
-            implements: [FormEquivalenceTableSource]
-            requiresInject:
-              - { name: tablePath, type: Path }
+    implementations:
+    - name: DefaultCorrectorMatcher
+      _change: modify
+      handwrittenTests:
+      - name: "should decide every golden case of the corrector with the four rules of 1/10 as its «acepta» column says with the copy of its table, which names those rules, as «'s forgotten» for «He ___ (forget) to pay.» and «Peter was admired.» for «Peter was admired (by Mary).»"
+        traceability: { feature: FEAT-RESPC, rule: F-RESPC-R001 }
+      - name: "should give the benefit of the doubt only to the student, so an ambiguous contraction counts as any of its long forms when the student writes it and stays as written in the accepted answer, as «'s forgotten» for «has forgotten» but not «is trained» for «'s trained»"
+        traceability: { feature: FEAT-RESPC, rule: F-RESPC-R001 }
+      - name: "should take two texts as the same answer when the corrector matches them in either order, so «He's forgotten to pay.» and «He has forgotten to pay.» are one answer with the four rules and two with the corrector in production"
+        traceability: { feature: FEAT-RESPC, rule: F-RESPC-R001 }
+- name: vocabulary-infrastructure
+  _change: modify
+  packages:
+  - name: correctortable
+    _change: modify
+    implementations:
+    - name: FileSystemFormEquivalenceTableSource
+      _change: modify
+      handwrittenTests:
+      - name: "should read from «reglas» the rules that are code of the version of the corrector, the four in the copy of the new corrector and none in the one in production, and stop at a rule it does not know"
+        traceability: { feature: FEAT-RESPC, rule: F-RESPC-R001 }
 ```
 
-## Armar las formas con reglas propias y preguntarle al corrector
-El analizador genera las formas equivalentes de cada respuesta con reglas propias —las de R002 a R004, con su lista
-cerrada— y le pregunta a `CorrectorMatcher` si están aceptadas. Generar con la tabla del corrector sería más corto
-pero ciego: si un día la tabla pierde una equivalencia, generador y comparación la pierden juntos y nadie se entera;
-así, la forma reaparece como hallazgo, y ése es el control de que nada vuelve atrás que pidió José. Para saber si
-«'s» es *is* o *has* el generador pregunta si la palabra que sigue es participio a la tabla de irregulares, la misma
-que usa la pista, en vez de tener otra lista. Evalúa sólo QUIZ de hueco para escribir: uno con `multipleChoice`
-(0.2) no alcanza.
+## El antes y el después, sobre la foto del 29/9
+Medido en una copia de la integración con este parche aplicado y generado, con el código del párrafo de arriba. Se
+corrió `analyze` sobre `db/english-course` de la foto del 29/9 con `formas-equivalentes.json` (#1191) y con la tabla
+nueva.
 
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-    packages:
-      - name: answercompleteness
-        _change: add
-        visibility: public
-        models:
-          - name: EquivalentForm
-            _change: add
-            type: record
-            visibility: internal
-            fields:
-              - { name: form, type: String }
-              - { name: equivalenceClass, type: FormEquivalenceClass }
-        interfaces:
-          - name: EquivalentFormGenerator
-            _change: add
-            visibility: internal
-            exposes:
-              - signature: "generate(String acceptedAnswer,String wordBeforeGap): List<EquivalentForm>"
-        implementations:
-          - name: AnswerCompletenessAnalyzer
-            _change: add
-            implements: [ContentAnalyzer]
-            requiresInject:
-              - { name: correctorMatcher, type: CorrectorMatcher }
-              - { name: formGenerator, type: EquivalentFormGenerator }
-              - { name: requestDetector, type: FormRequestDetector }
-              - { name: studentViewRenderer, type: QuizStudentViewRenderer }
-          - name: DefaultEquivalentFormGenerator
-            _change: add
-            implements: [EquivalentFormGenerator]
-            requiresInject:
-              - { name: irregularForms, type: IrregularFormsCatalog }
-```
+| Analizador | Ejercicios con hallazgo, antes → después | Qué cambia |
+|---|---|---|
+| answer-completeness | 710 → 694 | Se van los 16 límites del corrector, que sólo ordenaban: 15 de `contracted-and-long-forms` y 1 de `spellings-and-till` (326a). Los que cuentan como error siguen en 694, todos pedidos de forma. |
+| multiple-choice-validity | 354 → 354 | Nada |
+| data-coherence | 102 → 102 | Nada |
+| exact-duplicates | 23 → 23 | Nada |
 
-## Marcar la consigna que pide una forma y decir si una regla la saca
-La regla nueva de José (R007) mira la consigna que ve el alumno y la miniteoría del ejercicio. `removableByRule`
-separa los 654 cuyo pedido es la oración estándar de #1152 —una regla la saca entera— de los 40 de *Contracciones*,
-donde el pedido es la lección y va a la mesa (DOUBT-RESPC-CONTRACCIONES). El arreglo sólo es seguro cuando el
-corrector ya acepta las dos formas: quien lo aplique (paquete E) lo sabe mirando el mismo diagnóstico, porque si
-todavía faltan formas de clase CONTRACTION o BE_NEGATION en ese ejercicio, el corrector no salió.
+Por nivel, answer-completeness pasa de 554 a 554 en A1, de 106 a 100 en A2, de 24 a 20 en B1 y de 26 a 20 en B2.
 
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-    packages:
-      - name: answercompleteness
-        _change: add
-        visibility: public
-        models:
-          - name: FormRequest
-            _change: add
-            type: record
-            fields:
-              - { name: source, type: FormRequestSource }
-              - { name: requestedForm, type: RequestedForm }
-              - { name: phrase, type: String }
-              - { name: removableByRule, type: boolean }
-          - name: FormRequestSource
-            _change: add
-            type: enum
-            fields:
-              - { name: INSTRUCTIONS }
-              - { name: MINI_THEORY }
-          - name: RequestedForm
-            _change: add
-            type: enum
-            fields:
-              - { name: SHORT }
-              - { name: LONG }
-        interfaces:
-          - name: FormRequestDetector
-            _change: add
-            visibility: internal
-            exposes:
-              - signature: "detect(String instructions,String miniTheory): List<FormRequest>"
-        implementations:
-          - name: DefaultFormRequestDetector
-            _change: add
-            implements: [FormRequestDetector]
-```
+**Las 54 cuentas del corrector de Go coinciden.**
+- answer-completeness ve 16:
+  - las 14 contracciones ambiguas: los 10 límites de antes, más 281d, 3ec9, 3ecd y 3ee2, que salen porque el generador
+    ahora contrae have después de not (5b765813);
+  - 447b, por los participios;
+  - 326a, por till.
+- Los 38 de los paréntesis no los ve, porque el generador no escribe formas sin paréntesis: no son una clase de R002 a
+  R004. Un censo con la misma comparación los cuenta: las 38 aceptadas con paréntesis del curso, todas de B1,
+  pasan a aceptar la respuesta con el agente y sin él.
 
-## Dejar lo propio en un diagnóstico tipado
-Lo que el hallazgo común no lleva —la respuesta de la que sale la forma, su clase, la versión de la tabla— va en el
-diagnóstico tipado, nunca como campo extra del hallazgo (F-HALL-R001 inv. 3). La clase dice dónde se arregla: las
-cuatro de hoy las iguala el corrector nuevo, así que esos hallazgos no se aplican al curso y desaparecen cuando se
-actualiza la copia de la tabla. El diagnóstico se cuelga del slot tipado de `QuizDiagnoses`, que es un gancho del
-integrador.
-
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-    packages:
-      - name: answercompleteness
-        _change: add
-        visibility: public
-        models:
-          - name: AnswerCompletenessDiagnosis
-            _change: add
-            type: record
-            fields:
-              - { name: missingForms, type: "List<MissingAcceptedForm>" }
-              - { name: formRequests, type: "List<FormRequest>" }
-              - { name: tableVersion, type: String }
-              - { name: score, type: double }
-          - name: MissingAcceptedForm
-            _change: add
-            type: record
-            fields:
-              - { name: gapIndex, type: int }
-              - { name: acceptedAnswer, type: String }
-              - { name: missingForm, type: String }
-              - { name: equivalenceClass, type: FormEquivalenceClass }
-              - { name: severity, type: FindingSeverity }
-```
-
-## Registrarse en el catálogo con su ficha
-Un analizador nuevo es un proveedor y nada más de lo compartido (0.3). La ficha dice: pregunta «¿El corrector acepta
-todas las formas de la respuesta, y ninguna consigna pide una?», lee las respuestas aceptadas, la consigna y la
-miniteoría, reglas R001 a R007 todas instantáneas, familia errores, evalúa QUIZ, resoluciones regla y mesa, costo
-instantáneo, y como meta cero ejercicios con error. `planBinding()` vuelve vacío: qué tarea crea es del paquete E, y
-hasta entonces el plan declara los puntajes que no convierte (F-HALL-R004 inv. 3) sin cambiar las 4.036 tareas de hoy.
-`config()` también vuelve vacío: la lista cerrada es parte de la regla, no un parámetro.
-
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-    packages:
-      - name: answercompleteness
-        _change: add
-        visibility: public
-        implementations:
-          - name: AnswerCompletenessAnalyzerProvider
-            _change: add
-            visibility: public
-            implements: [AnalyzerProvider]
-            requiresInject:
-              - { name: correctorMatcher, type: CorrectorMatcher }
-              - { name: irregularForms, type: IrregularFormsCatalog }
-              - { name: studentViewRenderer, type: QuizStudentViewRenderer }
-features:
-  - id: FEAT-RESPC
-    code: F-RESPC
-```
-
-## Cómo se mide
-Con el examen de `docs/briefs/077-revision-de-ejercicios/examen/`: sólo `escribir/` y `medir.py`; `examinar/` lo corre
-José. Se copia el curso (`db/english-course`) al scratchpad, porque `analyze` escribe informes, y se corre
-`analyze --analyzers answer-completeness` (F-HALL-R012). Del resumen del informe (`AuditDigest`, 0.3) sale un
-`marcas.json` con un `{quizId, analizador}` por ejercicio con hallazgo que cuenta: las reglas R002 a R005 van como
-`respuestas`, y R007 como `respuestas-consigna`, que `medir.py` no mide porque el 077 no tenía ese criterio. Adaptar
-`leer_marcas()` al resumen es un gancho. Dos corridas:
-
-- **Con la copia de hoy** (tabla vacía): `medir.py marcas.json --parte escribir --categoria respuestas`. Meta: 95 de
-  cada 100 de los 128 (el prototipo encuentra 123; el del analista, 127) y 8 de cada 10 marcas nuevas reales en la
-  muestra. Es el control de que el analizador ve lo que el corrector de hoy rechaza.
-- **Con la tabla del corrector nuevo**: los 128 dejan de ser errores —el corrector arregla 127 y «café» ya da bien—, y
-  la meta es cero marcas de las clases que iguala la tabla. Lo que quede es lo que la tabla no cubre (142 preguntas
-  negativas si el corrector no mueve el *not*).
-- **R007** es un censo y se compara contra él: 694 consignas (A1 554, A2 100, B1 20, B2 20) y 3 ejercicios con
-  miniteoría que pide (43 si José elige B en DOUBT-RESPC-DESCRIBE).
-
-La presentación prometía 122 de 128; con la decisión de José el número pasa a medir el control de la primera corrida,
-y el arreglo de esos 128 lo hace el corrector.
-
-## Lo que no se mueve
-answer-completeness es de la familia de errores: no entra en el puntaje de vocabulario de ningún nodo (F-HALL-R009),
-así que el curso sigue en 73,9 % y los niveles en 96,5 · 94,2 · 79,5 · 63,5; sus números van aparte, como ejercicios
-con error. No cambia ningún analizador existente ni el plan (sin `DiagnosisKind` nueva), y analizar no escribe el
-curso (F-HALL-R015).
-
-## Declarar las 38 pruebas y ubicar el journey
-Las 38 son nuevas: no hay tests previos de estas reglas que portar. Con el criterio del qa-tester de la opción
-múltiple, sólo se declara lo que verifica una regla, y cada nombre lleva un caso real. Las siete reglas quedan
-cubiertas (R001 7, R002 7, R003 2, R004 3, R005 8, R006 3, R007 8). De dónde sale cada una:
-
-- **Los casos del REQUIREMENT**: «They ___ (not / be) from Ireland.», que acepta «'re not» y enseña «aren't»; el
-  «café»; «I ___ (not / eat) meat often.»; «There is a house…»; «travelled», «traveled» y «until then».
-- **El curso del 29/9** (últimos 4 del id): «…cycle to school every day.» 4570; «Usa $long forms$.» en «They ___ (not /
-  have) many cars.» 1ed7; la miniteoría que pide, en «It ___ (be) hot inside.» 1fa5; «I ___ (not / be) forty.» 1fa8;
-  «Peter / read / a book.» 20d1; «Doesn't she dance?» 412c; «No, it ___ .» 1f5d y 26db; Contracciones 1f3b; «'s
-  hated» 3f80; «'s trained» 3061; «___ a child? (He)» 1e87; «You ___ (see) cats.» 1ec3. «Usa $short forms$ si es
-  posible.» es la consigna de 25ac.
-- **Los casos de oro del corrector.** Dos pruebas de `DefaultCorrectorMatcher` corren los casos de `testdata/` de
-  `be/domain/quiz/pkg/shared` (rama `claude/corrector-formas-equivalentes` de ittm, en construcción: hoy cuatro archivos
-  y 153 casos). Con la tabla vacía de hoy tiene que decidir lo que dice su columna «hoy»; con la copia de la tabla del
-  corrector nuevo, lo que dice «acepta». Fallan si la copia de content-audit y los casos de oro no coinciden.
-  Dependen de A-15, que no trae una tabla sino casos (la tabla del corrector es código Go, así que la copia de
-  content-audit es propia y los casos son el único contrato); de A-16, que tiene que copiar los cuatro archivos tal
-  cual; y del contexto del hueco: el corrector lee «'s» y «'d» por lo que sigue (antes y después, sin pistas), y
-  desde la integración `CorrectorMatcher.accepts` lo recibe (`GapContext`).
-- **Lo demás que depende de otros**: la evidencia (A-01); la miniteoría (A-02, A-03) en la gravedad alta y en R007;
-  dos del detector siguen la recomendación de DOUBT-RESPC-CONTRACCIONES y DOUBT-RESPC-DESCRIBE, abiertas; «has trained»
-  lee R005 así: lo que el corrector nuevo sigue rechazando (su clase «límite») se agrega con «|».
-- **No se declara**, porque ninguna regla lo pide, que falte el archivo de la tabla sea un error.
-- **El journey** va a `audit-domain`, paquete `answercompleteness`. `generate` crearía `FRespcJ001JourneyTest` con 5
-  caminos.
-
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-    packages:
-      - name: correctormatch
-        _change: add
-        implementations:
-          - name: DefaultCorrectorMatcher
-            _change: add
-            handwrittenTests:
-              - name: "should decide every golden case of the backend corrector as its «hoy» column says with today's empty table, as «traveled» rejected for «She ___ (travel) to Europe.» answered «travelled»"
-                traceability: { feature: FEAT-RESPC, rule: F-RESPC-R001 }
-              - name: "should decide every golden case of the backend corrector as its «acepta» column says with the copy of the new corrector's table, reading each gap with the sentence around it, as «is» for «It ___ (be) hot inside.» answered «'s»"
-                traceability: { feature: FEAT-RESPC, rule: F-RESPC-R001 }
-features:
-  - id: FEAT-RESPC
-    code: F-RESPC
-    journeys:
-      - { id: F-RESPC-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.answercompleteness }
-```
+## Lo que hay que adaptar después de generate
+- `FileSystemFormEquivalenceTableSource`: generate completa el constructor con `null`. Lo reemplaza la lista leída de
+  «reglas».
+- `DefaultCorrectorMatcher`: las cuatro reglas. No cambia ninguna firma pública.
+- `DefaultCorrectorMatcherTest.table(path)` construye la tabla con cuatro argumentos, así que no compila hasta que lee
+  «reglas».
+- Las cuatro pruebas nuevas se escriben a mano. generate no agrega sus stubs, porque sus etiquetas ya están en esos
+  archivos (bug 2026-07-22-01); tampoco agrega los de los dos nombres nuevos, y avisa que conserva los métodos viejos.
+  Los dos se renombran a mano.

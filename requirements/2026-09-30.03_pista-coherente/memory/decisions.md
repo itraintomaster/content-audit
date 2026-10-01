@@ -5,6 +5,35 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analyst (impl A) — La condición del camino «falta» de F-PISTA-J001 también dice la unión. Cambia el nombre del
+  método generado del journey: generate conserva el viejo, que tiene cuerpo, y avisa; se renombra a mano al encender, como
+  las dos de RESPC. La primera prueba de R001 («…of the same shape carry one…») no se renombra: lo que dice sigue siendo
+  cierto, y su cuerpo ya prueba también la unión (Adverbios de frecuencia).
+
+2026-10-01 — architect (impl A) — R006 es un método más de HintAnswerCheck, checkRewrite(AuditableQuiz), y no un
+  colaborador nuevo: necesita lo que ya tiene DefaultHintAnswerCheck (tokens de la oración guardada, tabla de irregulares,
+  comparación de R002). Sin puerto, sin inyección, sin cambiar constructores. El analizador la llama sólo en WHOLE_SENTENCE;
+  R002 inv. 2 sigue sólo en huecos: las dos nunca miran lo mismo.
+2026-10-01 — architect (impl A) — El valor nuevo es REWRITE_WORD_NOT_ANNOUNCED y no WORD_NOT_FROM_SOURCE (la propuesta
+  del coordinador): sigue a VERB_NOT_ANNOUNCED y SUBJECT_NOT_ANNOUNCED, y la fuente no es sólo la oración de partida (también
+  la pista y la consigna). Reusar VERB_NOT_ANNOUNCED mentiría: R006 marca sustantivos y adverbios. Un hallazgo por palabra,
+  marca = lema; proposedHint null (no hay arreglo por regla).
+2026-10-01 — qa-tester (impl A) — R006 con 5 pruebas y no una: el positivo (24f7), la consigna como fuente (4186), lo que
+  la reescritura agrega sola (447b), el hallazgo del analizador (44f8) y que un hueco dentro de la oración sigue siendo de
+  R002 (215c), que es lo que impide un hallazgo doble. Los 4 falsos no van como prueba: son límite del REQUIREMENT.
+
+2026-10-01 — analyst (impl A) — R006 es AUTO_VALIDATED: el coordinador la aprobó el 1/10 por la precisión medida (56 de
+  60 marcas reales, 25 de 30 en una muestra nueva). Va a la mesa siempre: una regla no sabe si se arregla la respuesta
+  (la reescritura fiel, con audio nuevo) o el enunciado (DOUBT-PISTA-RESPUESTA).
+2026-10-01 — analyst (impl A) — R006 no reabre DOUBT-PISTA-TRANSFORMAR: la oración que se transforma sigue sin ser pista
+  para R002. R006 mira al revés (lo que la respuesta trae sin que nada lo anuncie) y cuenta la consigna; por eso «I want
+  a sandwich.» → «I would like a sandwich.» (2def) pasa, que era el ejemplo de por qué José eligió A.
+2026-10-01 — analyst (impl A) — R006 no entra al journey F-PISTA-J001: un camino nuevo cambiaría el journey generado (un
+  path-4 que escribir) y el validador no exige que cada regla esté en un gate (en FEAT-QINST, R015 a R017 y R019 no lo
+  están). Su prueba son sus handwrittenTests.
+2026-10-01 — analyst (impl A) — Afuera de R006: el tramo opcional entre paréntesis de una respuesta («Peter was admired
+  (by Mary).»); lo arregla el corrector, que va a leer el paréntesis como opcional (coordinador, 1/10).
+
 2026-10-01 — developer (impl A) — R001 es la unión: un ejercicio sin pista tiene hallazgo si su grupo estructural O el
   tema entero (todos los de hueco para escribir) llega a tres cuartos. Medido sobre el curso del 29/9:
     (i) tipo estructural, lo de antes: 7 missing-hint; examen escribir 14 de 46, 9 de 15 anotados, 2 fuera del oro.

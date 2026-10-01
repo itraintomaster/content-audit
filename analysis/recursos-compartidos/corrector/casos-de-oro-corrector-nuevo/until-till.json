@@ -1,0 +1,22 @@
+{
+  "descripcion": "Casos de oro de until y till (written_answer_till.go). Se leen igual que formas-equivalentes.json.",
+  "como_se_lee": [
+    "Decisión de José del 30/9/2026 (077-3): till vale como until. Es la única preposición sinónima de la tabla.",
+    "No cuando till es el sustantivo (la caja registradora) o el verbo (arar): se sabe por la palabra de antes. Es el verbo después de un sujeto (I, you, he, she, we, they), no después de there ni de it: there nunca es el sujeto de un verbo como till, y it antes de till es el objeto («Keep it till Monday»).",
+    "Si José no quiere esta regla, se saca borrando written_answer_till.go, su línea en plainWordReadings y este archivo.",
+    "«clase» agrupa los casos: lo de siempre, negación, auxiliar pegado, inversión, ambiguas, contracción ambigua, sin apóstrofo, grafías, until/till, paréntesis, sigue mal, límite. «sigue mal» y «límite» no aceptan: el primero es una respuesta equivocada que tiene que seguir dando mal; el segundo, una respuesta que estaría bien pero el corrector no puede decidir sola (la otra forma se lista con «|» en el ejercicio). Las demás clases aceptan, salvo «lo de siempre», que muestra lo que no cambia."
+  ],
+  "casos": [
+    {"clase": "until/till", "regla": "until-till", "antes": "", "esperado": "I'll wait until five.", "despues": "", "escrito": "I'll wait till five.", "acepta": true, "hoy": false, "motivo": "till es until."},
+    {"clase": "until/till", "regla": "until-till", "antes": "", "esperado": "I'll wait till five.", "despues": "", "escrito": "I will wait until five.", "acepta": true, "hoy": false, "motivo": "Al revés también, y la contracción también vale."},
+    {"clase": "until/till", "regla": "until-till", "antes": "I woke up at 7 and slept until 11. I slept", "esperado": "from 7 until 11", "despues": ".", "escrito": "from 7 till 11", "acepta": true, "hoy": false, "motivo": "till es until."},
+    {"clase": "until/till", "regla": "until-till", "antes": "", "esperado": "Till tomorrow!", "despues": "", "escrito": "Until tomorrow!", "acepta": true, "hoy": false, "motivo": "Al principio de la oración también."},
+    {"clase": "sigue mal", "regla": "until-till", "antes": "", "esperado": "Put the money in the till.", "despues": "", "escrito": "Put the money in the until.", "acepta": false, "hoy": false, "motivo": "Después de un artículo, till es la caja registradora."},
+    {"clase": "sigue mal", "regla": "until-till", "antes": "", "esperado": "They till the land.", "despues": "", "escrito": "They until the land.", "acepta": false, "hoy": false, "motivo": "Después de un sujeto, till es el verbo."},
+    {"clase": "sigue mal", "regla": "until-till", "antes": "", "esperado": "Did they till the land?", "despues": "", "escrito": "Did they until the land?", "acepta": false, "hoy": false, "motivo": "En la pregunta también: después del sujeto, till es el verbo."},
+    {"clase": "until/till", "regla": "until-till", "antes": "why / she / work there until then?", "esperado": "Why had she worked there until then?", "despues": "", "escrito": "Why had she worked there till then?", "acepta": true, "hoy": false, "motivo": "there no es el sujeto de till: es el adverbio de lugar, y till es until.", "curso": "326a"},
+    {"clase": "until/till", "regla": "until-till", "antes": "why / she / work there until then?", "esperado": "Why had she worked there till then?", "despues": "", "escrito": "Why had she worked there until then?", "acepta": true, "hoy": false, "motivo": "Al revés también.", "curso": "326a"},
+    {"clase": "until/till", "regla": "until-till", "antes": "", "esperado": "Keep it until Monday.", "despues": "", "escrito": "Keep it till Monday.", "acepta": true, "hoy": false, "motivo": "it antes de till es el objeto: de sujeto diría «it tills»."},
+    {"clase": "sigue mal", "regla": "until-till", "antes": "", "esperado": "I'll wait until five.", "despues": "", "escrito": "I'll wait 'til five.", "acepta": false, "hoy": false, "motivo": "'til no está en la decisión: sólo till."}
+  ]
+}

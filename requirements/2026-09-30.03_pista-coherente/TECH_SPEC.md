@@ -1,259 +1,218 @@
 ---
-patch: FEAT-PISTA
+patch: FEAT-PISTA-R006
 requirement: 2026-09-30.03_pista-coherente
-generated: 2026-09-30T19:05:00Z
+generated: 2026-10-01T03:20:00Z
 ---
 
-# Tech Spec: Pista coherente (FEAT-PISTA), paquete A de la ronda 1
+# Tech Spec: La reescritura no pide palabras que nada anuncia (F-PISTA-R006), y R001 dice la unión
 
-Diseñado contra el modelo que queda después de 0.2 (FEAT-OPMUL) y 0.3 (FEAT-HALL); `sentinel-baseline.yaml` es ese
-modelo, armado en memoria. De dónde sale lo que el parche usa y no declara:
+Segundo parche de FEAT-PISTA. El primero (R001 a R005) ya está aplicado y su TECH_SPEC queda en la historia de git.
+Trae R006 y, además, deja a R001 diciendo lo que hace el código desde el 1/10. Diseñado contra el `sentinel.yaml` de
+859e96af (`ronda1/integracion`). Se aplica después del parche de cierre de C
+(FEAT-CIERRE), que toca otros paquetes de audit-domain —`judging` y los motores de los jueces— y ningún elemento de
+`hintcoherence`.
 
-- **De 0.3**: `AnalyzerProvider`, `ContentAnalyzer.findingsAt`, `FindingDraft`, `FindingEvidence`, `FindingSeverity`,
-  `FindingResolution`, `AnalysisCost`, `AnalyzerRuleCard`, `AnalyzerFamily` y la ficha (`AnalyzerDescriptor`).
-- **De 0.2**: `AuditableQuiz.multipleChoice`, para dejar afuera la opción múltiple (R001).
-- **Ya existe**: `AuditableQuiz.tokens` (los `NlpToken` de la oración guardada, con su lema), `sentenceParts`,
-  `AuditableKnowledge.sentenceMode` y `quizzes`. No hay una segunda lectura del curso ni otra tokenización.
-- **Del integrador de la ronda 1**: `QuizStudentViewRenderer`, para la evidencia como la ve el alumno.
+## Una regla más en el mismo chequeo, sin puerto nuevo
+R006 necesita lo mismo que R002: los tokens de la oración guardada con su lema (`AuditableQuiz.tokens`), la tabla de
+formas irregulares y la comparación igual, flexionada o por lema. Todo eso ya vive en `DefaultHintAnswerCheck`, así que
+la regla es un método más de `HintAnswerCheck` y no un colaborador nuevo: no cambia el constructor del analizador ni el
+del proveedor, y no se inyecta nada. Recibe sólo el ejercicio: la oración de partida y la pista son las partes de texto
+del enunciado, y la consigna es `AuditableQuiz.instructions`.
 
-## Comparar la pista con los tokens y lemas que el curso ya trae
-La regla necesita saber si cada palabra de la pista está en la oración terminada, igual, flexionada o por su lema. Los
-lemas ya están: los calcula el tokenizador compartido sobre la oración guardada y viajan en `AuditableQuiz.tokens`.
-El analizador no llama al tokenizador ni lematiza nada nuevo: lee la pista de las partes (`HintReader`), la compara
-con esos tokens (`HintAnswerCheck`) y en `onKnowledge`, que el motor llama antes que a los ejercicios del tema, cuenta
-cuántos del mismo tipo llevan pista para el umbral de tres cuartos que eligió José.
-
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-    packages:
-      - name: hintcoherence
-        _change: add
-        visibility: public
-        models:
-          - name: ExerciseHint
-            _change: add
-            type: record
-            visibility: internal
-            fields:
-              - { name: text, type: String }
-              - { name: words, type: "List<String>" }
-              - { name: subject, type: String }
-              - { name: negated, type: boolean }
-              - { name: choice, type: boolean }
-          - name: ExerciseShape
-            _change: add
-            type: enum
-            fields:
-              - { name: GAP_IN_SENTENCE }
-              - { name: WHOLE_SENTENCE }
-        interfaces:
-          - name: HintReader
-            _change: add
-            visibility: internal
-            exposes:
-              - signature: "read(AuditableQuiz quiz,SentenceMode mode): Optional<ExerciseHint>"
-              - signature: "shapeOf(AuditableQuiz quiz,SentenceMode mode): ExerciseShape"
-          - name: HintAnswerCheck
-            _change: add
-            visibility: internal
-            exposes:
-              - signature: "check(ExerciseHint hint,AuditableQuiz quiz): List<HintIssue>"
-        implementations:
-          - name: HintCoherenceAnalyzer
-            _change: add
-            implements: [ContentAnalyzer]
-            requiresInject:
-              - { name: hintReader, type: HintReader }
-              - { name: answerCheck, type: HintAnswerCheck }
-              - { name: studentViewRenderer, type: QuizStudentViewRenderer }
-          - name: DefaultHintReader
-            _change: add
-            implements: [HintReader]
-          - name: DefaultHintAnswerCheck
-            _change: add
-            implements: [HintAnswerCheck]
-            requiresInject:
-              - { name: irregularForms, type: IrregularFormsCatalog }
-```
-
-## Reconocer los irregulares con una tabla, sin tocar el lematizador compartido
-El lematizador compartido falla con algunos irregulares: *hated* da *hat*, *swum* sale adjetivo. Medido sobre el curso
-del 29/9 con el mismo modelo, de 4.490 palabras de pista 761 se encuentran sólo por el lema, 75 con el lema equivocado
-pero flexionadas regulares y 24 sólo con una tabla de irregulares (*good* → *well*, *better*). Arreglar el lematizador
-mueve los números de vocabulario de todos, así que no se toca en esta ronda (DOUBT-PISTA-LEMATIZADOR): la pista acepta
-la forma flexionada regular y consulta una tabla cerrada de formas irregulares, dato de referencia como el EVP, que no
-lematiza el curso. Respuestas completas la usa también para saber si «'s» es *is* o *has*.
+El analizador la llama sólo cuando `HintReader.shapeOf` dice `WHOLE_SENTENCE`. En un hueco dentro de la oración, el
+verbo sin anunciar sigue siendo de R002, invariante 2, que a su vez nunca mira las oraciones enteras: las dos reglas no
+miran nunca lo mismo.
 
 ```architecture
 modules:
-  - name: audit-domain
+- name: audit-domain
+  _change: modify
+  packages:
+  - name: hintcoherence
     _change: modify
     interfaces:
-      - name: IrregularFormsCatalog
+    - name: HintAnswerCheck
+      sealed: false
+      _change: modify
+      exposes:
+      - signature: "checkRewrite(AuditableQuiz quiz): List<HintIssue>"
         _change: add
-        stereotype: port
-        exposes:
-          - signature: "formsOf(String baseWord): Set<String>"
-          - signature: "isPastParticiple(String word): boolean"
-  - name: vocabulary-infrastructure
-    _change: modify
-    packages:
-      - name: irregularforms
-        _change: add
-        visibility: internal
-        implementations:
-          - name: FileSystemIrregularFormsCatalog
-            _change: add
-            visibility: public
-            implements: [IrregularFormsCatalog]
-            requiresInject:
-              - { name: catalogPath, type: Path }
 ```
 
-## Decidir la resolución por el tipo de falta
-José eligió que la regla arregle la pista por defecto y que la mesa vea cuando lo que está mal es la respuesta. Una
-regla sin modelo no sabe qué enseña el tema, así que la resolución sale del tipo: si la palabra de la pista no está en
-la respuesta (`HINT_WORD_ABSENT`), arreglar la pista cambiaría lo que pide el ejercicio y va a la mesa; el resto se
-arregla completando la pista con el verbo base, el sujeto y el *not* de la primera respuesta, sin tocar el audio. Es
-la opción recomendada de DOUBT-PISTA-CUANDO-MESA y vive en un solo lugar: si José elige otra, cambia ese mapeo. Con el
-prototipo del analista, 60 de los 87 hallazgos irían a la mesa.
+## Un tipo propio para la palabra que nada anuncia
+`VERB_NOT_ANNOUNCED` dice «un verbo de la respuesta no está en la pista». R006 marca también sustantivos, adjetivos y
+adverbios (*opinion*, *moment*), y los busca en la oración de partida y la consigna, no sólo en la pista: reusarlo haría
+mentir al diagnóstico. Va `REWRITE_WORD_NOT_ANNOUNCED`, con *not announced* como los otros dos (lo que el alumno no ve
+anunciado) y *rewrite* por la regla `rewrite-words`. No es `WORD_NOT_FROM_SOURCE`: la fuente no es sólo la oración de
+partida, también la pista y la consigna.
+
+Un hallazgo por palabra, como en R002: la identidad es la regla y el lema (F-HALL-R014). `HintIssue` no cambia de
+forma. Cambian tres descripciones: `rule` y `word` también los llena R006, y `proposedHint` queda en null, porque no hay
+arreglo por regla.
 
 ```architecture
 modules:
-  - name: audit-domain
+- name: audit-domain
+  _change: modify
+  packages:
+  - name: hintcoherence
     _change: modify
-    packages:
-      - name: hintcoherence
+    models:
+    - name: HintIssueKind
+      type: enum
+      _change: modify
+      fields:
+      - name: REWRITE_WORD_NOT_ANNOUNCED
         _change: add
-        visibility: public
-        models:
-          - name: HintIssue
-            _change: add
-            type: record
-            fields:
-              - { name: rule, type: String }
-              - { name: kind, type: HintIssueKind }
-              - { name: word, type: String }
-              - { name: proposedHint, type: String }
-              - { name: resolution, type: FindingResolution }
-          - name: HintIssueKind
-            _change: add
-            type: enum
-            fields:
-              - { name: MISSING_HINT }
-              - { name: HINT_WORD_ABSENT }
-              - { name: VERB_NOT_ANNOUNCED }
-              - { name: SUBJECT_MISMATCH }
-              - { name: SUBJECT_NOT_ANNOUNCED }
-              - { name: NEGATION_WITHOUT_NEGATIVE }
+    - name: HintIssue
+      type: record
+      _change: modify
+      fields:
+      - name: rule
+        type: String
+        _change: modify
+      - name: word
+        type: String
+        _change: modify
+      - name: proposedHint
+        type: String
+        _change: modify
 ```
 
-## Dejar lo propio en un diagnóstico tipado
-Lo que el hallazgo común no lleva —la pista, la primera respuesta, cuántos del tema la llevan, la pista propuesta—
-va en el diagnóstico tipado, colgado del slot de `QuizDiagnoses` que agrega el integrador. La pista propuesta es el
-arreglo por regla ya calculado, así que el paquete E no tiene que volver a leer el ejercicio para aplicarlo.
+## La gravedad, la mesa y la ficha, donde ya se deciden
+- **Gravedad**: `HintCoherenceAnalyzer.severityOf` ya da *bloqueante* a todo lo que no es la pista que falta.
+- **Resolución**: `DefaultHintAnswerCheck.issue` manda a la mesa `HINT_WORD_ABSENT` y ahora también el valor nuevo. Una
+  regla no sabe si se arregla la respuesta —la reescritura fiel, con audio nuevo— o el enunciado (DOUBT-PISTA-RESPUESTA).
+- **Ficha**: suma la regla `rewrite-words`, «F-PISTA-R006: la reescritura no pide palabras que no salen de la oración de
+  partida, la pista o la consigna», de costo instantáneo. Las resoluciones siguen siendo *regla* y *mesa*, y la pregunta,
+  la familia y el nombre de la prueba de la ficha no cambian.
+- **Evidencia**: el ejercicio como lo ve el alumno, la respuesta y la línea ««opinion» no sale de la oración de partida,
+  la pista ni la consigna. Va a la mesa: quien reescribe fiel da mal».
+
+La descripción del paquete lo dice, y de paso cuenta la unión de R001 del 1/10 (por tipo y en el tema entero).
 
 ```architecture
 modules:
-  - name: audit-domain
+- name: audit-domain
+  _change: modify
+  packages:
+  - name: hintcoherence
     _change: modify
-    packages:
-      - name: hintcoherence
-        _change: add
-        visibility: public
-        models:
-          - name: HintCoherenceDiagnosis
-            _change: add
-            type: record
-            fields:
-              - { name: hint, type: String }
-              - { name: firstAnswer, type: String }
-              - { name: shape, type: ExerciseShape }
-              - { name: hintedInTopic, type: int }
-              - { name: comparableInTopic, type: int }
-              - { name: issues, type: "List<HintIssue>" }
-              - { name: score, type: double }
 ```
 
-## Registrarse en el catálogo con su ficha
-Como todo analizador nuevo de 0.3, es un proveedor. Ficha: pregunta «¿La pista le anuncia al alumno lo que tiene que
-escribir?», lee la pista y la primera respuesta, reglas R001 a R004 instantáneas, familia errores, evalúa QUIZ,
-resoluciones regla y mesa, costo instantáneo, meta cero ejercicios con error y el umbral de tres cuartos escrito en
-la meta. Sin `planBinding` ni `config`: las tareas son del paquete E y el plan declara lo que no convierte.
+## Las listas cerradas, portadas del prototipo
+Todo sale de `scripts/prototipo_pista_reescritura.py`, medido el 1/10:
+
+- **Palabra de contenido**: NOUN, PROPN, VERB, ADJ, ADV o NUM según el tokenizador compartido, sin puntuación.
+- **Fuentes**: las palabras de las partes de texto del enunciado (con su paréntesis, como «(the boy whispered)») y de la
+  consigna. «8:00» cuenta como una sola, y un compuesto con guion también por partes, como lo corta el tokenizador.
+- **Desplazamientos del estilo indirecto**: una palabra de la fuente anuncia sus reemplazos: *today* → *that day*,
+  *tonight* → *that night*, *tomorrow* → *the next/following day*, *yesterday* → *the day before/previous*, *last* →
+  *before/previous*, *ago* → *before/earlier*, *now* → *then*, *here* → *there*, *this* → *that*, *these* → *those*,
+  *next* → *following/after*.
+- **Lo que no se anuncia**: una lista cerrada de palabras de función que el tokenizador a veces marca como contenido
+  (la negación, adverbios de grado y de foco como *very* o *just*, los interrogativos, *please*, *there*, *let*, *more* y
+  *than*, *one/ones* y los pronombres indefinidos como *nothing* o *someone*); el auxiliar al final de la respuesta o en
+  una que empieza con *so*, *neither* o *nor* («So had I.»); *have* seguido de participio (el perfecto); y *long*
+  después de *how*.
+- **Comparación**: la de R002, más la base que dejan los sufijos regulares (*drinking* → *drink*, *steadily* →
+  *steady*, *simply* → *simple*) y la base de un irregular de la fuente (*drank* anuncia *drunk*).
+
+## Cómo se mide y lo que no se mueve
+Prototipo, curso del 29/9: 60 marcas entre 3.957 oraciones enteras (A1 10, A2 4, B1 34, B2 12); 56 de 60 reales, y 25 de
+30 en una muestra nueva. En `escribir/pista.json` marca 11 de los 27 imposibles sin anotar como de pista, 10 que
+hint-coherence no veía. Encendida, se mide igual que el primer parche: `analyze --analyzers hint-coherence` sobre una
+copia del curso y `medir.py marcas.json --parte escribir --categoria pista`. La meta es la del REQUIREMENT: 8 de cada
+10 marcas reales en una muestra revisada a mano.
+
+Los 4 falsos del prototipo van a la mesa como límite conocido (la fórmula del pedido, el *did* de la pregunta de objeto
+y *must* → *had to*). R001 a R004 no cambian, ni el journey, ni ningún número de vocabulario. Un ejercicio puede tener
+R002 y R006 a la vez: «She / assist you.» → «She'd help you.» da «assist» por R002 y «help» por R006, y cuenta una sola
+vez como ejercicio con error.
+
+## Declarar las 5 pruebas de R006
+Cada una con un caso real del curso del 29/9:
+
+- **Del chequeo**: «have» en 24f7; sólo «practise» en 4186, porque *made* sale de la consigna; y nada en 447b, que
+  trae el perfecto y *this* → *that*.
+- **Del analizador**: «opinion» en 44f8, *bloqueante*, a la mesa, con la palabra como marca. Y «It ___ (be) soon.» →
+  «'s going to rain», donde *rain* sigue siendo de R002 y no hay hallazgo de `rewrite-words`.
+
+Sin camino nuevo en F-PISTA-J001: el journey generado no cambia.
 
 ```architecture
 modules:
-  - name: audit-domain
+- name: audit-domain
+  _change: modify
+  packages:
+  - name: hintcoherence
     _change: modify
-    packages:
-      - name: hintcoherence
-        _change: add
-        visibility: public
-        implementations:
-          - name: HintCoherenceAnalyzerProvider
-            _change: add
-            visibility: public
-            implements: [AnalyzerProvider]
-            requiresInject:
-              - { name: irregularForms, type: IrregularFormsCatalog }
-              - { name: studentViewRenderer, type: QuizStudentViewRenderer }
-features:
-  - id: FEAT-PISTA
-    code: F-PISTA
+    implementations:
+    - name: DefaultHintAnswerCheck
+      _change: modify
+      handwrittenTests:
+      - name: "should report a content word of a rewrite that comes neither from the sentence it rewrites nor from its hint or instructions, as «have» in «Polite request: I want to eat some cake. ___» answered «Could I have some cake?»"
+        traceability: { feature: FEAT-PISTA, rule: F-PISTA-R006 }
+      - name: "should take as announced the words the instructions name, so only «practise» is reported in «The coach encouraged the players to repeat the drill. ___» answered «The coach made the players practise the drill.» under «Crea oraciones utilizando 'let' o 'make'.»"
+        traceability: { feature: FEAT-PISTA, rule: F-PISTA-R006 }
+      - name: "should not report the grammar a rewrite brings by itself, as the perfect and the time shift of reported speech in «“I overslept this morning” (the boy whispered) ___» answered «The boy whispered that he had overslept that morning.»"
+        traceability: { feature: FEAT-PISTA, rule: F-PISTA-R006 }
+    - name: HintCoherenceAnalyzer
+      _change: modify
+      handwrittenTests:
+      - name: "should raise a blocking finding for the panel, identified by the word, on a rewrite that asks for a word nothing announces, as «opinion» in «I think it's a good idea for her to see a dentist. ___» answered «She ought to see a dentist, in my opinion.»"
+        traceability: { feature: FEAT-PISTA, rule: F-PISTA-R006 }
+      - name: "should look for unannounced words only in answers that are the whole sentence, leaving a gap inside the sentence to R002, as «rain» in «It ___ (be) soon.» answered «'s going to rain»"
+        traceability: { feature: FEAT-PISTA, rule: F-PISTA-R006 }
 ```
 
-## Cómo se mide
-Sobre una copia del curso en el scratchpad, `analyze --analyzers hint-coherence`; del resumen del informe sale
-`marcas.json` con `analizador: pista` por cada ejercicio con hallazgo, y `medir.py marcas.json --parte escribir
---categoria pista`. La categoría del examen son los imposibles del 077 por cualquier causa: en `escribir/` hay 46 (15
-anotados de pista). Metas: 9 de cada 10 de los anotados de pista en `examinar/` (lo corre José), cerca de 4 de cada 10
-de la categoría entera, y 8 de cada 10 marcas nuevas reales en la muestra. El prototipo del analista encontraba los 15
-anotados y 21 de los 46.
-
-## Lo que no se mueve
-hint-coherence es de la familia de errores: el puntaje de vocabulario del curso (73,9 %) y de los niveles (96,5 · 94,2
-· 79,5 · 63,5) queda igual, y sus números van aparte, como ejercicios con error. El lematizador compartido no cambia,
-así que ningún analizador de vocabulario cambia de número.
-
-## Declarar las 28 pruebas y ubicar el journey
-Las 28 son nuevas: content-audit no tiene tests de estas reglas, así que no hay nada que portar. Con el criterio del
-qa-tester de la opción múltiple, sólo se declara lo que verifica una regla, y cada nombre lleva un caso real del curso.
-Las cinco reglas quedan cubiertas (R001 5, R002 11, R003 4, R004 2, R005 6). De dónde sale cada una:
-
-- **Los casos del REQUIREMENT** (con su id ahí): las verduras, «Who ___ (I / see)?», «What ___ (it / be)?», «___ (not /
-  dream) about her.», «This idea ___ (not / sound)…», «It ___ (be) soon.», «That was ___ (bad)…», «This sentence ___
-  (mean) 'hope'.», «You ___ (see) cats.» (1ec3) y los temas El posesivo y One y ones.
-- **El curso del 29/9** (`db/english-course`, sólo lectura; los últimos 4 del id, como en los casos de oro): «She
-  dances ___ (good / well).» 255d, «They ___ (swim) in the ocean» 3f4e, «She ___ (hate) broccoli…» 3f80, «She ___
-  (drink) juice…» 47e3, «(him) ___» 2420, «A: Am I wrong? B: No, you ___ .» 1f53, «She / assist you.» 37ba, «Polite
-  request: I want to eat some cake.» 24f7, «She ___ (live) there. (present simple)» 2069, «Where / you / going? (be
-  extra polite)» 3e0b y «My brother is a ___ (good / well) driver.» 256a.
-- **El umbral de tres cuartos** tiene su propia prueba: tres cuartos exactos alcanzan, y One y ones (12 de 20 huecos
-  para escribir con pista) queda sin hallazgo.
-- **Lo que depende de otros**: la evidencia, del renderizador del integrador (A-01); mandar a la mesa la palabra que no
-  está en la respuesta, de la opción A de DOUBT-PISTA-CUANDO-MESA, abierta; las dos del adaptador, de la tabla instalada
-  (A-16) si la leen en vez de un archivo de prueba. Que «'ve» cuente como auxiliar es lo que ata `isPastParticiple` a R002.
-- **El journey** va a `audit-domain`, paquete `hintcoherence`, junto al analizador y sus colaboradores package-private,
-  como los de F-QINST y F-LREC. `generate` crearía `FPistaJ001JourneyTest` con 3 caminos.
+## R001 dice la unión, como el código
+Desde el 1/10, un ejercicio sin pista tiene hallazgo si la llevan tres cuartos de su tipo o de todo su tema (la unión,
+en `decisions.md`). El REQUIREMENT, la condición del camino «falta» del journey y dos descripciones del diagnóstico
+seguían diciendo «del mismo tipo». `hintedInTopic` y `comparableInTopic` cuentan el grupo que decide: el tipo, salvo
+cuando sólo el tema llega a tres cuartos, y entonces el tema entero. La prueba de El posesivo decía «sólo entre los del
+mismo tipo»; con la unión, sus 20 transformaciones no tienen hallazgo porque no llegan ni su tipo (0 de 20) ni el tema
+(20 de 40). Se renombra borrando el nombre viejo y agregando el nuevo, con la misma regla. El cuerpo no cambia.
 
 ```architecture
 modules:
-  - name: audit-domain
+- name: audit-domain
+  _change: modify
+  packages:
+  - name: hintcoherence
     _change: modify
-    packages:
-      - name: hintcoherence
-        _change: add
-        implementations:
-          - name: HintCoherenceAnalyzer
-            _change: add
-            handwrittenTests:
-              - name: "should take exactly three quarters of the topic as reaching the threshold and leave a topic below it without finding, as «I'd love ___ .» in One y ones, where 12 of 20 carry a hint"
-                traceability: { feature: FEAT-PISTA, rule: F-PISTA-R001 }
-features:
-  - id: FEAT-PISTA
-    code: F-PISTA
-    journeys:
-      - { id: F-PISTA-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.hintcoherence }
+    models:
+    - name: HintCoherenceDiagnosis
+      type: record
+      _change: modify
+      fields:
+      - name: hintedInTopic
+        type: int
+        _change: modify
+      - name: comparableInTopic
+        type: int
+        _change: modify
+    implementations:
+    - name: HintCoherenceAnalyzer
+      _change: modify
+      handwrittenTests:
+      - name: "should count hints only among exercises of the same shape, so the 20 transformations without hint of El posesivo are not measured against its 20 hinted gaps"
+        _change: delete
+      - name: "should count hints by shape and in the whole topic, so the 20 transformations without hint of El posesivo have no finding, since neither their shape (0 of 20) nor the topic (20 of 40) reaches three quarters"
+        traceability: { feature: FEAT-PISTA, rule: F-PISTA-R001 }
 ```
+
+## Lo que hay que adaptar después de generate
+- `HintCoherenceAnalyzer.fault`: el `switch` sobre `HintIssueKind` es exhaustivo; sin un caso para el valor nuevo, no
+  compila. Es lo único que se rompe.
+- `DefaultHintAnswerCheck`: generate le agrega `checkRewrite` con `UnsupportedOperationException`. Se llena con el
+  puerto del prototipo, y `issue()` manda el valor nuevo a la mesa.
+- `HintCoherenceAnalyzer.onQuiz`: llama a `checkRewrite` en `WHOLE_SENTENCE` y suma sus hallazgos a los de `check`.
+- `HintCoherenceAnalyzerProvider`: la ficha suma `rewrite-words`, y su prueba espera cinco reglas.
+- Las 5 pruebas: generate agrega sus stubs en `DefaultHintAnswerCheckTest` y `HintCoherenceAnalyzerTest`, porque su
+  etiqueta F-PISTA-R006 todavía no está en esos archivos.
+- R001: generate no agrega el stub del nombre nuevo de la prueba de El posesivo ni el del camino «falta» del journey,
+  porque sus etiquetas ya están en el archivo (bug 2026-07-22-01). Conserva los métodos viejos, que tienen cuerpo, y
+  avisa. Los dos se renombran a mano, método y `@DisplayName`.
+- La ficha también dice R001 «del mismo tipo» en tres textos del código: la regla `missing-hint`, la meta y lo que lee.
+  Pasan a la unión.

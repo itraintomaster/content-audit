@@ -1,0 +1,134 @@
+code: FEAT-RESPC
+description: "qa-tester, FEAT-RESPC, segundo parche, sólo nombres de pruebas: dos\
+  \ pruebas pasan a decir lo que hace el código desde 3a3238ed, el límite del corrector\
+  \ (brief 101, José 30/9; coordinador, 1/10). La de «has trained» sólo ordena y nombra\
+  \ la regla que le falta al corrector, sin «|» (R005); la de la ficha suma sólo ordena\
+  \ a sus resoluciones (R006). Cada una se renombra borrando el nombre viejo y agregando\
+  \ el nuevo, con la misma regla. Sin cambios de estructura.; arquitecto y qa-tester,\
+  \ el corrector de las cuatro reglas del 1/10 (ittm claude/corrector-cuatro-reglas,\
+  \ f54585212, sin desplegar): la copia de la tabla dice la versión del corrector\
+  \ y, en rules, sus reglas que son código y no tabla (CorrectorRule), como ya lo\
+  \ hacía invertsNegativeQuestions. Vacía en el #1191, que sigue en producción; las\
+  \ cuatro en la copia del corrector nuevo, que va al lado con sus 192 casos de oro\
+  \ copiados tal cual. DefaultCorrectorMatcher las imita y FileSystemFormEquivalenceTableSource\
+  \ las lee de «reglas». Cuatro pruebas nuevas: los casos de oro del corrector nuevo,\
+  \ la duda que favorece sólo al alumno, la misma respuesta en cualquier orden y las\
+  \ reglas que lee la tabla."
+modules:
+- name: audit-domain
+  packages:
+  - name: answercompleteness
+    implementations:
+    - name: AnswerCompletenessAnalyzer
+      handwrittenTests:
+      - name: "should resolve by adding it after «|» a missing form the new corrector\
+          \ still rejects, as «has trained» if «He ___ (train) hard today.» only accepted\
+          \ «'s trained», a limit of the corrector"
+        _change: delete
+      - name: "should only rank a missing form of a class the corrector in production\
+          \ equates and still rejects, naming the rule the corrector lacks instead\
+          \ of adding it after «|», as «has trained» if «He ___ (train) hard today.»\
+          \ only accepted «'s trained»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R005
+      _change: modify
+    - name: AnswerCompletenessAnalyzerProvider
+      handwrittenTests:
+      - name: "should describe answer-completeness in the catalog as an errors analyzer\
+          \ that evaluates exercises, resolves by rule or at the panel and costs instant,\
+          \ asking «¿El corrector acepta todas las formas de la respuesta, y ninguna\
+          \ consigna pide una?»"
+        _change: delete
+      - name: "should describe answer-completeness in the catalog as an errors analyzer\
+          \ that evaluates exercises, resolves by rule, at the panel or by ranking\
+          \ only, and costs instant, asking «¿El corrector acepta todas las formas\
+          \ de la respuesta, y ninguna consigna pide una?»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R006
+      _change: modify
+    _change: modify
+  - name: correctormatch
+    description: "La comparación del corrector del backend (F-RESPC-R001): la normalizació\
+      n de cloze_sentence_part.go más la tabla de formas equivalentes del corrector\
+      \ (José, 30/9: una sola tabla, la de Go) y las reglas del corrector que son\
+      \ código y no tabla, que la tabla nombra. La tabla es dato: una copia versionada\
+      \ de la que está en producción, que content-audit lee al arrancar y que se actualiza\
+      \ cuando sale el corrector; la de un corrector que todavía no salió va al lado,\
+      \ con sus casos de oro, para medir el antes y el después. La implementación\
+      \ imita al corrector y se prueba con los mismos casos de oro que él."
+    models:
+    - name: FormEquivalenceTable
+      type: record
+      fields:
+      - name: rules
+        type: List<CorrectorRule>
+        description: "Las reglas del corrector que son código y no tabla y que tiene\
+          \ esta versión: ninguna en el #1191, las cuatro en el corrector nuevo. El\
+          \ código las imita y la tabla dice cuáles van, sin una bandera en el có\
+          digo."
+        _change: add
+      _change: modify
+    - name: CorrectorRule
+      type: enum
+      fields:
+      - name: AMBIGUOUS_CONTRACTIONS
+        description: "Una contracción ambigua que escribe el alumno («'s» antes de\
+          \ un participio sin objeto, «'d» antes de un participio igual a la base)\
+          \ vale por cualquiera de sus formas largas; en la aceptada queda como está\
+          \ escrita (ittm ea7bc4a48)."
+      - name: STANDARD_IRREGULAR_PARTICIPLES
+        description: "Los participios irregulares de la lista estándar, 48 más que\
+          \ en el #1191 (overslept, undergone), y las bases en -ing que no son gerundios\
+          \ (bring) (ittm f837c6267)."
+      - name: TILL_OWN_SUBJECTS
+        description: "till es el verbo sólo después de I, you, he, she, we o they:\
+          \ después de there o de it es until (ittm f6a9a48eb)."
+      - name: OPTIONAL_PARENTHESES
+        description: "Lo que va entre paréntesis en una respuesta aceptada es opcional:\
+          \ va entero, sin los paréntesis, o no va; lo que escribe el alumno entre\
+          \ paréntesis cuenta como siempre (ittm f54585212)."
+      _change: add
+    implementations:
+    - name: DefaultCorrectorMatcher
+      handwrittenTests:
+      - name: "should decide every golden case of the corrector with the four rules\
+          \ of 1/10 as its «acepta» column says with the copy of its table, which\
+          \ names those rules, as «'s forgotten» for «He ___ (forget) to pay.» and\
+          \ «Peter was admired.» for «Peter was admired (by Mary).»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      - name: "should give the benefit of the doubt only to the student, so an ambiguous\
+          \ contraction counts as any of its long forms when the student writes it\
+          \ and stays as written in the accepted answer, as «'s forgotten» for «has\
+          \ forgotten» but not «is trained» for «'s trained»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      - name: "should take two texts as the same answer when the corrector matches\
+          \ them in either order, so «He's forgotten to pay.» and «He has forgotten\
+          \ to pay.» are one answer with the four rules and two with the corrector\
+          \ in production"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      _change: modify
+    _change: modify
+  _change: modify
+- name: vocabulary-infrastructure
+  packages:
+  - name: correctortable
+    implementations:
+    - name: FileSystemFormEquivalenceTableSource
+      handwrittenTests:
+      - name: "should read from «reglas» the rules that are code of the version of\
+          \ the corrector, the four in the copy of the new corrector and none in the\
+          \ one in production, and stop at a rule it does not know"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      _change: modify
+    _change: modify
+  _change: modify
