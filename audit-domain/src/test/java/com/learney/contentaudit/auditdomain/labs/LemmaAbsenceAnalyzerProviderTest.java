@@ -63,4 +63,12 @@ public class LemmaAbsenceAnalyzerProviderTest {
         org.junit.jupiter.api.Assertions.assertEquals(highest, card.getCost(),
                 "R006 inv. 2: the cost of the card of " + name + " is the highest cost of its rules");
     }
+
+    @Test
+    @DisplayName("should create for every run an analyzer that sees only the lemmas of the course it measures, not those of an earlier course")
+    @Tag("FEAT-CERO")
+    @Tag("F-CERO-R001")
+    public void shouldCreateForEveryRunAnAnalyzerThatSeesOnlyTheLemmasOfTheCourseItMeasuresNotThoseOfAnEarlierCourse() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

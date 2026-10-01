@@ -528,4 +528,20 @@ public class ReviseCmdTest {
                 "R009: revise on LEMMA_ABSENCE task without override must exit 0 (APPROVED_APPLIED)");
         verify(revisionEngine).revise(eq(planId), eq(taskId), any(Path.class), isNull());
     }
+
+    @Test
+    @DisplayName("should revise as today a task that is in no open batch, with the same reviser and the same outcomes")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R014")
+    public void shouldReviseAsTodayATaskThatIsInNoOpenBatchWithTheSameReviserAndTheSameOutcomes() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject 'revise' of a task of the open batch with «La tarea <id> es de la tanda <id> y se decide en su bandeja.» and exit non-zero without calling the revision engine")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R002")
+    public void shouldRejectReviseOfATaskOfTheOpenBatchWithLaTareaIdEsDeLaTandaIdYSeDecideEnSuBandejaAndExitNonzeroWithoutCallingTheRevisionEngine() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 
 import com.learney.contentaudit.auditcli.ApproveCommand;
 import com.learney.contentaudit.revisiondomain.ProposalDecisionOutcome;
@@ -53,9 +54,12 @@ final class ApproveCmd implements ApproveCommand, Callable<Integer> {
             description = "Path to the course directory. Defaults to CONTENT_AUDIT_CONTENT_FOLDER env var.")
     private String coursePath;
 
-    public ApproveCmd(ProposalDecisionService decisionService) {
-        this.decisionService = decisionService;
-    }
+private final BatchStore batchStore;
+
+public ApproveCmd(ProposalDecisionService decisionService, BatchStore batchStore) {
+    this.decisionService = decisionService;
+    this.batchStore = batchStore;
+}
 
     @Override
     public Integer call() {

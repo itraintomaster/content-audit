@@ -514,4 +514,12 @@ public class SingleAnswerAnalyzerProviderTest {
                         new SentencePartEntity(SentencePartKind.TEXT, ".", null)),
                 null, "Se contesta con el auxiliar, no con el verbo.", "A1.01.13.09");
     }
+
+    @Test
+    @DisplayName("should bind single-answer to the plan with the task kind SINGLE_ANSWER on the exercise")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldBindSingleanswerToThePlanWithTheTaskKindSINGLEANSWEROnTheExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

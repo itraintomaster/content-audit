@@ -114,4 +114,20 @@ public class MainTest {
                 card.get("resolutions").toString(), card.get("cost").asText(),
                 card.get("rules").get(0).get("id").asText()), "R007: its card");
     }
+
+    @Test
+    @DisplayName("should register grammar «Gramática», naturalness «Naturalidad» and near-duplicates «Duplicados parecidos» after the seventeen analyzers of round 1, in that order")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R001")
+    public void shouldRegisterGrammarGramticaNaturalnessNaturalidadAndNearduplicatesDuplicadosParecidosAfterTheSeventeenAnalyzersOfRound1InThatOrder() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep each of the seventeen analyzers of round 1 in its place in the catalog once the three of package B are registered")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R001")
+    public void shouldKeepEachOfTheSeventeenAnalyzersOfRound1InItsPlaceInTheCatalogOnceTheThreeOfPackageBAreRegistered() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -1,4 +1,5 @@
 package com.learney.contentaudit.revisiondomain.preservationengine;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;

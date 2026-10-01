@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditdomain.findingengine;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
 
 import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
@@ -195,4 +196,10 @@ public class DefaultAnalyzerCatalog implements AnalyzerCatalog {
     private static boolean isBlank(String value) {
         return value == null || value.isBlank();
     }
+
+    @Override
+    public Optional<AnalyzerMeasure> measure(String analyzerName) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

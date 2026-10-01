@@ -49,4 +49,12 @@ public class ExactDuplicatesAnalyzerProviderTest {
         DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
         assertEquals(card, catalog.find("exact-duplicates").orElseThrow(), "the catalog accepts the card");
     }
+
+    @Test
+    @DisplayName("should bind exact-duplicates to the plan with the task kind EXACT_DUPLICATES on the exercise")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldBindExactduplicatesToThePlanWithTheTaskKindEXACTDUPLICATESOnTheExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

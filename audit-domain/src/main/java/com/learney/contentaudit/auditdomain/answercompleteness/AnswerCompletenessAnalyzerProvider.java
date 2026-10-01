@@ -75,7 +75,7 @@ public class AnswerCompletenessAnalyzerProvider implements AnalyzerProvider {
                 // A limit of the corrector only ranks: the rule it lacks is the corrector's, not the course's.
                 List.of(FindingResolution.RULE, FindingResolution.PANEL, FindingResolution.RANK_ONLY),
                 AnalysisCost.INSTANT,
-                "Respuestas completas");
+                "Respuestas completas", null);
     }
 
     @Override

@@ -124,6 +124,7 @@ Core business logic
 | resolutions | `List<FindingResolution>` |
 | cost | `AnalysisCost` |
 | displayName | `String` |
+| tools | `List<LocalToolCard>` |
 
 ### AuditNode (`record`)
 
@@ -140,6 +141,7 @@ Core business logic
 | numbers | `ContextNumbers` |
 | unevaluatedBy | `List<String>` |
 | partiallyEvaluatedBy | `List<String>` |
+| measures | `List<AnalyzerMeasure>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -214,6 +216,25 @@ Core business logic
 | name | `String` |
 | maxCocaRank | `Integer` |
 | threshold | `int` |
+
+### NlpResourcesUnavailableException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `Falta %s en '%s': %s`
+
+| Field | Type |
+|-------|------|
+| resource | `String` |
+| path | `String` |
+| detail | `String` |
+
+### Baseline (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| fixedAt | `Instant` |
 
 ## Interfaces
 
@@ -355,6 +376,8 @@ Methods:
 - `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
 - `getJudgeCoverages(): List<JudgeCoverageDiagnosis>`
 - `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>`
+- `getLocalToolRuns(): List<LocalToolRunDiagnosis>`
+- `getNaturalnessQueue(): Optional<NaturalnessQueueDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -393,6 +416,9 @@ Methods:
 - `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>`
 - `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>`
 - `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>`
+- `getGrammarDiagnosis(): Optional<GrammarDiagnosis>`
+- `getNaturalnessDiagnosis(): Optional<NaturalnessDiagnosis>`
+- `getNearDuplicateDiagnosis(): Optional<NearDuplicateDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -468,6 +494,7 @@ Methods:
 - `find(String analyzerName): Optional<AnalyzerDescriptor>`
 - `provider(String analyzerName): Optional<AnalyzerProvider>`
 - `planBinding(String analyzerName): Optional<AnalyzerPlanBinding>`
+- `measure(String analyzerName): Optional<AnalyzerMeasure>`
 
 ### FindingCollector (port)
 
@@ -571,6 +598,39 @@ Methods:
 
 - `getScoreFor(FindingSeverity severity): double`
 
+### BaselineStore (port)
+
+Methods:
+
+- `read(): Optional<Baseline>`
+- `write(Baseline baseline): void`
+
+### AnalyzerCorrection (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `editScope(FindingResolution resolution): List<ExercisePart>`
+- `coveringAnalyzer(): Optional<String>`
+- `groupsByTopic(): boolean`
+- `tieRules(): List<String>`
+- `offersTwoFixes(): boolean`
+- `concernsAudio(Finding finding): boolean`
+
+### AnalyzerCorrectionCatalog (port)
+
+Methods:
+
+- `find(String analyzerName): Optional<AnalyzerCorrection>`
+- `list(): List<AnalyzerCorrection>`
+
+### RuleFix (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `fix(RuleFixRequest request): RuleFixResult`
+
 ## Implementations
 
 ### IAuditEngine
@@ -615,6 +675,13 @@ Methods:
 - should publish a course vocabulary score of 73.86% and levels 96.02, 93.60, 78.87 and 63.86 with lemma-count at bands 8, 6, 4 and 3, next to the other six published scores of the analysis of 29/9 → FEAT-POCOV/F-POCOV-R001
 - should keep the course vocabulary score at 73.92% with lemma-recurrence at 0.08 publishing its course diagnosis, on the published scores of the analysis of 29/9 → FEAT-RECUR/F-RECUR-R001
 - should keep the vocabulary score of every level at 96.54, 94.16, 79.45 and 63.51 with the recurrence of each level published as detail → FEAT-RECUR/F-RECUR-R004
+- should leave naturalness and near-duplicates out of the base run, even though near-duplicates has the instant rule same-but-wildcard → FEAT-RONDA2/F-RONDA2-R003
+- should run grammar in the base run because it is instant → FEAT-RONDA2/F-RONDA2-R003
+- should run fourteen of the twenty analyzers in the base run, the thirteen instant ones and multiple-choice-validity with budget 0 → FEAT-RONDA2/F-RONDA2-R003
+- should store at the root one measure per analyzer that ran, in catalog order, and no measure in the nodes below → FEAT-RONDA2/F-RONDA2-R004
+- should give the base of 29/9 on its second run in the same process 73.92% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 8.00 of recurrence, as a new invocation, and not 72.90 → FEAT-CERO/F-CERO-R001
+- should give a run the numbers of a new invocation whatever courses ran before it, so a word only the earlier course used is absent for lemma-absence and lemma-count → FEAT-CERO/F-CERO-R001
+- should leave the first report untouched by a second run in the same process, its 55 topics keeping their COCA diagnosis, A1 · Present Simple with 2,366 tokens in four bands → FEAT-CERO/F-CERO-R002
 
 ### KnowledgeTitleLengthAnalyzer
 

@@ -175,4 +175,12 @@ public class MiniTheoryAnalyzerProviderTest {
     static final String CAN_BASE = "Después de can va el verbo en forma base.";
 
     static final String SHE_HER = "Antes del verbo va she. Después del verbo o de una preposición va her.";
+
+    @Test
+    @DisplayName("should bind mini-theory to the plan with the task kind MINI_THEORY on the exercise")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldBindMinitheoryToThePlanWithTheTaskKindMINITHEORYOnTheExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

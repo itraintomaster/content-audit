@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.preservation;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import java.util.Set;
 import javax.annotation.processing.Generated;
@@ -11,4 +12,6 @@ import javax.annotation.processing.Generated;
 )
 public interface CorrectionScope {
     Set<ScopedField> changeableFields(DiagnosisKind kind, AuditTarget target);
+
+    Set<ScopedField> changeableFields(Set<ExercisePart> parts, AuditTarget target);
 }

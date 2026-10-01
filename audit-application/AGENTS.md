@@ -159,6 +159,14 @@ Methods:
 - should publish on the 29/9 course, with the seven classic analyzers, the same score of each one on each of its 11.760 nodes and the same typed diagnoses as the analysis 2026-09-30T11-54-02 → FEAT-HALL/F-HALL-R013
 - should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels 96.0, 93.6, 78.9 and 63.9 → FEAT-RONDA1/F-RONDA1-R008
 - should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2, 79.5 and 63.5 → FEAT-RONDA1/F-RONDA1-R008
+- should accept a budget for near-duplicates, which consults a model, and keep rejecting a budget for grammar, which is instant → FEAT-RONDA2/F-RONDA2-R002
+- should hand naturalness no run policy when the run declares no budget, so its provider completes it by the route it consults → FEAT-RONDA2/F-RONDA2-R002
+- should publish on the 29/9 course with the twenty analyzers a vocabulary of 73.86 % and levels 96.02, 93.60, 78.87 and 63.86 → FEAT-RONDA2/F-RONDA2-R010
+- should reject before loading the course a run that asks for naturalness by name when neither llama3:8b in Ollama nor claude -p is available, with «Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is not available: ollama pull llama3:8b.» → FEAT-MLOCAL/F-MLOCAL-R003
+- should reject before loading the course a run that asks for grammar by name when LanguageTool is not available, since grammar has no alternative → FEAT-MLOCAL/F-MLOCAL-R003
+- should not reject a run that asks for near-duplicates by name without Ollama when the claude -p alternative is available → FEAT-MLOCAL/F-MLOCAL-R003
+- should not reject a run without selection when LanguageTool is not available, leaving every exercise unevaluated by grammar with the reason in view while the other analyzers run → FEAT-MLOCAL/F-MLOCAL-R003
+- should run grammar, naturalness and near-duplicates in an analyze without selection → FEAT-MLOCAL/F-MLOCAL-R004
 
 ### DefaultCocaBucketsConfig
 
@@ -336,6 +344,7 @@ Methods:
 - should reject with JudgeExamNotTakenException the measured result of a version that did not take the whole exam, recording nothing → FEAT-JEXAM/F-JEXAM-R001
 - should list every exam record of a judge, across its versions, in the order they were recorded → FEAT-JEXAM/F-JEXAM-R001
 - should give one verdict to every exercise of a quiz-instruction exam file that mixes CLOZE and multiple choice exercises, without knowing their groups → FEAT-JEXAM/F-JEXAM-R009
+- should record the exam that naturalness takes without its local model under the version of claude -p, leaving the version of llama3 without exam → FEAT-MLOCAL/F-MLOCAL-R006
 
 ### DefaultJudgeRuntimeConfig
 
@@ -515,6 +524,7 @@ The following models and interfaces are available from dependencies. You can use
 | resolutions | `List<FindingResolution>` |
 | cost | `AnalysisCost` |
 | displayName | `String` |
+| tools | `List<LocalToolCard>` |
 
 ### AuditNode (`record`)
 
@@ -531,6 +541,7 @@ The following models and interfaces are available from dependencies. You can use
 | numbers | `ContextNumbers` |
 | unevaluatedBy | `List<String>` |
 | partiallyEvaluatedBy | `List<String>` |
+| measures | `List<AnalyzerMeasure>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -605,6 +616,25 @@ The following models and interfaces are available from dependencies. You can use
 | name | `String` |
 | maxCocaRank | `Integer` |
 | threshold | `int` |
+
+### NlpResourcesUnavailableException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `Falta %s en '%s': %s`
+
+| Field | Type |
+|-------|------|
+| resource | `String` |
+| path | `String` |
+| detail | `String` |
+
+### Baseline (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| fixedAt | `Instant` |
 
 ### AuditEngine (port)
 
@@ -744,6 +774,8 @@ Methods:
 - `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
 - `getJudgeCoverages(): List<JudgeCoverageDiagnosis>`
 - `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>`
+- `getLocalToolRuns(): List<LocalToolRunDiagnosis>`
+- `getNaturalnessQueue(): Optional<NaturalnessQueueDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -782,6 +814,9 @@ Methods:
 - `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>`
 - `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>`
 - `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>`
+- `getGrammarDiagnosis(): Optional<GrammarDiagnosis>`
+- `getNaturalnessDiagnosis(): Optional<NaturalnessDiagnosis>`
+- `getNearDuplicateDiagnosis(): Optional<NearDuplicateDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -857,6 +892,7 @@ Methods:
 - `find(String analyzerName): Optional<AnalyzerDescriptor>`
 - `provider(String analyzerName): Optional<AnalyzerProvider>`
 - `planBinding(String analyzerName): Optional<AnalyzerPlanBinding>`
+- `measure(String analyzerName): Optional<AnalyzerMeasure>`
 
 ### FindingCollector (port)
 
@@ -959,6 +995,39 @@ Methods:
 Methods:
 
 - `getScoreFor(FindingSeverity severity): double`
+
+### BaselineStore (port)
+
+Methods:
+
+- `read(): Optional<Baseline>`
+- `write(Baseline baseline): void`
+
+### AnalyzerCorrection (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `editScope(FindingResolution resolution): List<ExercisePart>`
+- `coveringAnalyzer(): Optional<String>`
+- `groupsByTopic(): boolean`
+- `tieRules(): List<String>`
+- `offersTwoFixes(): boolean`
+- `concernsAudio(Finding finding): boolean`
+
+### AnalyzerCorrectionCatalog (port)
+
+Methods:
+
+- `find(String analyzerName): Optional<AnalyzerCorrection>`
+- `list(): List<AnalyzerCorrection>`
+
+### RuleFix (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `fix(RuleFixRequest request): RuleFixResult`
 
 ### From course-domain
 
@@ -1314,6 +1383,16 @@ Methods:
 | KNOWLEDGE_TITLE_LENGTH | `null` |
 | KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
 | QUIZ_INSTRUCTION | `null` |
+| HINT_COHERENCE | `null` |
+| ANSWER_COMPLETENESS | `null` |
+| MULTIPLE_CHOICE_VALIDITY | `null` |
+| DATA_COHERENCE | `null` |
+| EXACT_DUPLICATES | `null` |
+| TRANSLATION_SENSE | `null` |
+| SINGLE_ANSWER | `null` |
+| MINI_THEORY | `null` |
+| GRAMMAR | `null` |
+| NEAR_DUPLICATES | `null` |
 
 ### RefinementTaskStatus (`enum`)
 
@@ -1323,6 +1402,7 @@ Methods:
 | COMPLETED | `null` |
 | SKIPPED | `null` |
 | STALE | `null` |
+| IN_BATCH | `null` |
 
 ### RefinementTask (`record`)
 
@@ -1335,6 +1415,7 @@ Methods:
 | diagnosisKind | `DiagnosisKind` |
 | priority | `int` |
 | status | `RefinementTaskStatus` |
+| origin | `TaskOrigin` |
 
 ### RefinementPlan (`record`)
 
@@ -1511,6 +1592,28 @@ Methods:
 | nodeCount | `int` |
 | reason | `String` |
 
+### TaskOrigin (`record`)
+
+| Field | Type |
+|-------|------|
+| finding | `Finding` |
+| cefrLevel | `CefrLevel` |
+| knowledgeId | `String` |
+| knowledgeLabel | `String` |
+| reachedQuizIds | `List<String>` |
+| coveredFindings | `List<Finding>` |
+
+### PlanFindingTally (`record`)
+
+| Field | Type |
+|-------|------|
+| analyzer | `String` |
+| countingFindings | `int` |
+| ownTasks | `int` |
+| covered | `int` |
+| unconverted | `int` |
+| unconvertedReason | `String` |
+
 ### RefinerEngine (port)
 
 Methods:
@@ -1518,6 +1621,7 @@ Methods:
 - `plan(AuditReport report, String auditId): RefinementPlan`
 - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
 - `unconvertedScores(AuditReport report): List<UnconvertedScoreCount>`
+- `findingTally(AuditReport report, RefinementPlan plan): List<PlanFindingTally>`
 
 ### RefinementPlanStore (port)
 
@@ -1979,4 +2083,34 @@ Methods:
 - `load(String runId): Optional<QuizInstructionCorrectionRunReport>`
 - `listByPlan(String planId): List<QuizInstructionCorrectionRunReport>`
 - `latest(): Optional<QuizInstructionCorrectionRunReport>`
+
+### ProjectionStore (port)
+
+Methods:
+
+- `save(CourseProjection projection): SavedProjection`
+- `load(String projectionId): Optional<AuditReport>`
+
+### GoalDeclarationSource (port)
+
+Methods:
+
+- `read(): GoalDeclaration`
+
+### SealedGoalsStore (port)
+
+Methods:
+
+- `read(): Optional<SealedGoals>`
+- `write(SealedGoals sealedGoals): void`
+
+### BlindSampleStore (port)
+
+Methods:
+
+- `savePairs(BlindSample sample): void`
+- `loadPairs(String sampleId): Optional<BlindSample>`
+- `listPairs(): List<BlindSample>`
+- `saveErrorRate(ErrorRateSample sample): void`
+- `loadErrorRate(String sampleId): Optional<ErrorRateSample>`
 

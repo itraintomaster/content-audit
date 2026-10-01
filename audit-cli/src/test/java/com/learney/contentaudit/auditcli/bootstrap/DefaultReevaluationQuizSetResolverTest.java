@@ -149,4 +149,12 @@ public class DefaultReevaluationQuizSetResolverTest {
         assertEquals(originValue, thrown.getOrigin(),
                 "R019: the rejection must echo the origin the request also named");
     }
+
+    @Test
+    @DisplayName("should read the A2 queue of naturalness written one id per line as the declared set of a judge")
+    @Tag("FEAT-NATUR")
+    @Tag("F-NATUR-R005")
+    public void shouldReadTheA2QueueOfNaturalnessWrittenOneIdPerLineAsTheDeclaredSetOfAJudge() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

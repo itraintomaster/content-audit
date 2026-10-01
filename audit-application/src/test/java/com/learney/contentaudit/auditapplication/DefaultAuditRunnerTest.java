@@ -1532,4 +1532,68 @@ public class DefaultAuditRunnerTest {
         return new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime(sessions, sessions, approved,
                 evaluatorId -> java.util.List.of(), new com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig());
     }
+
+    @Test
+    @DisplayName("should accept a budget for near-duplicates, which consults a model, and keep rejecting a budget for grammar, which is instant")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R002")
+    public void shouldAcceptABudgetForNearduplicatesWhichConsultsAModelAndKeepRejectingABudgetForGrammarWhichIsInstant() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should hand naturalness no run policy when the run declares no budget, so its provider completes it by the route it consults")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R002")
+    public void shouldHandNaturalnessNoRunPolicyWhenTheRunDeclaresNoBudgetSoItsProviderCompletesItByTheRouteItConsults() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should publish on the 29/9 course with the twenty analyzers a vocabulary of 73.86 % and levels 96.02, 93.60, 78.87 and 63.86")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R010")
+    public void shouldPublishOnThe299CourseWithTheTwentyAnalyzersAVocabularyOf7386AndLevels960293607887And6386() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject before loading the course a run that asks for naturalness by name when neither llama3:8b in Ollama nor claude -p is available, with «Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is not available: ollama pull llama3:8b.»")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R003")
+    public void shouldRejectBeforeLoadingTheCourseARunThatAsksForNaturalnessByNameWhenNeitherLlama38bInOllamaNorClaudePIsAvailableWithAnalyzerNaturalnessNeedsLlama38bEnOllamaOClaudePWhichIsNotAvailableOllamaPullLlama38b() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject before loading the course a run that asks for grammar by name when LanguageTool is not available, since grammar has no alternative")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R003")
+    public void shouldRejectBeforeLoadingTheCourseARunThatAsksForGrammarByNameWhenLanguageToolIsNotAvailableSinceGrammarHasNoAlternative() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not reject a run that asks for near-duplicates by name without Ollama when the claude -p alternative is available")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R003")
+    public void shouldNotRejectARunThatAsksForNearduplicatesByNameWithoutOllamaWhenTheClaudePAlternativeIsAvailable() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not reject a run without selection when LanguageTool is not available, leaving every exercise unevaluated by grammar with the reason in view while the other analyzers run")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R003")
+    public void shouldNotRejectARunWithoutSelectionWhenLanguageToolIsNotAvailableLeavingEveryExerciseUnevaluatedByGrammarWithTheReasonInViewWhileTheOtherAnalyzersRun() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should run grammar, naturalness and near-duplicates in an analyze without selection")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R004")
+    public void shouldRunGrammarNaturalnessAndNearduplicatesInAnAnalyzeWithoutSelection() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

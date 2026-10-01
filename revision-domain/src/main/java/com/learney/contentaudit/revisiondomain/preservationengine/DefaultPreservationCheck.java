@@ -108,4 +108,10 @@ class DefaultPreservationCheck implements PreservationCheck {
     private static boolean containsPath(Set<ScopedField> scope, String path) {
         return scope.stream().anyMatch(field -> path.equals(field.getPath()));
     }
+
+    @Override
+    public List<PreservationViolation> verifyWithin(CourseEntity courseBefore, CourseEntity courseAfter, CourseElementSnapshot revised, Set<ScopedField> changeable) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

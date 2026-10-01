@@ -147,4 +147,12 @@ public class DefaultSuggestedLemmaQuerySessionFactoryTest {
         // 3. loadLatest() must never have been called (R015 forbids resolving by most recent)
         Mockito.verify(auditReportStore, Mockito.never()).loadLatest();
     }
+
+    @Test
+    @DisplayName("should open the suggested words query of a task planned from a saved projection on that projection, so a lemma a pending proposal already brought into the course is no longer offered")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R005")
+    public void shouldOpenTheSuggestedWordsQueryOfATaskPlannedFromASavedProjectionOnThatProjectionSoALemmaAPendingProposalAlreadyBroughtIntoTheCourseIsNoLongerOffered() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

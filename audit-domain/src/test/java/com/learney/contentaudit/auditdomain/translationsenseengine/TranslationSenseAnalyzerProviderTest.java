@@ -538,4 +538,12 @@ public class TranslationSenseAnalyzerProviderTest {
         assertEquals(1.0, quizNode(report, DINNER_ID).getScores().get(NAME), 1e-9,
                 "El desacuerdo queda en 1: ninguna tarea, sólo la bandeja");
     }
+
+    @Test
+    @DisplayName("should bind translation-sense to the plan with the task kind TRANSLATION_SENSE on the exercise")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldBindTranslationsenseToThePlanWithTheTaskKindTRANSLATIONSENSEOnTheExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -103,4 +103,12 @@ public class CachedNlpTokenizerTest {
         assertEquals(245, cached.get(1).getFrequencyRank(),
                 "R026: cached NlpToken must preserve enriched fields (frequencyRank)");
     }
+
+    @Test
+    @DisplayName("should give a sentence the same tokens alone, inside a batch or from the cache")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R005")
+    public void shouldGiveASentenceTheSameTokensAloneInsideABatchOrFromTheCache() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

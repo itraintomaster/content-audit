@@ -108,7 +108,7 @@ class LemmaAbsenceAgentGenerator implements LemmaAbsenceQuizCandidateGenerator {
                         context.getTaskId(),
                         com.learney.contentaudit.auditdomain.AuditTarget.QUIZ,
                         context.getNodeId(),
-                        null, null, 0, null);
+                        null, null, 0, null, null);
         com.learney.contentaudit.refinerdomain.SuggestedLemmaQuerySession session =
                 sessionFactory.bindForTask(context.getSourceAuditId(), boundTask);
         SuggestedLemmaAgentTool suggestedLemmaTool = new SuggestedLemmaReactTool(session);

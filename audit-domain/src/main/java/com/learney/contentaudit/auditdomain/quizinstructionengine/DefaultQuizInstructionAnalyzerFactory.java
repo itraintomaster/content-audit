@@ -88,7 +88,7 @@ public class DefaultQuizInstructionAnalyzerFactory implements AnalyzerProvider {
                 AnalyzerFamily.ERRORS,
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
-                AnalysisCost.PAID_MODEL, "Consigna");
+                AnalysisCost.PAID_MODEL, "Consigna", null);
     }
 
     /** F-QINST-R017: its scores below 1 become QUIZ_INSTRUCTION tasks on the quiz. */

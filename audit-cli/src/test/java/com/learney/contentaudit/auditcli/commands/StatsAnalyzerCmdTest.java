@@ -311,4 +311,12 @@ public class StatsAnalyzerCmdTest {
         assertEquals(List.of("A1", "A2", "B1", "B2"), java.util.stream.StreamSupport.stream(detail.get("levels")
                 .spliterator(), false).map(level -> level.get("level").asText()).toList(), "R004: the four levels");
     }
+
+    @Test
+    @DisplayName("should exit with code 1 and name the missing spaCy processor when stats analyzer runs without it")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R007")
+    public void shouldExitWithCode1AndNameTheMissingSpaCyProcessorWhenStatsAnalyzerRunsWithoutIt() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

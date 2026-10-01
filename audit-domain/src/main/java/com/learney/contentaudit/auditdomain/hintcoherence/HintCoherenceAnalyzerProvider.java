@@ -78,7 +78,7 @@ public class HintCoherenceAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.RULE, FindingResolution.PANEL),
                 AnalysisCost.INSTANT,
-                "Pista coherente");
+                "Pista coherente", null);
     }
 
     @Override

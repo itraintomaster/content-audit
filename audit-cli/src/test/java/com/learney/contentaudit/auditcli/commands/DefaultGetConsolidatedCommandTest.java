@@ -103,4 +103,12 @@ public class DefaultGetConsolidatedCommandTest {
         verify(formatter).format(any(), any());
         verifyNoMoreInteractions(consolidatedViewBuilder, formatter);
     }
+
+    @Test
+    @DisplayName("should pass to the projection the budget per analyzer that the request names with --budget")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R003")
+    public void shouldPassToTheProjectionTheBudgetPerAnalyzerThatTheRequestNamesWithBudget() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

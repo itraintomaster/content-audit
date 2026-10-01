@@ -826,4 +826,188 @@ public class DefaultRefinerEngineTest {
         }
         return findings;
     }
+
+    @Test
+    @DisplayName("should give each finding of the error family that counts the task kind of its analyzer, from HINT_COHERENCE to NEAR_DUPLICATES")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldGiveEachFindingOfTheErrorFamilyThatCountsTheTaskKindOfItsAnalyzerFromHINTCOHERENCEToNEARDUPLICATES() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should never create a task for a naturalness finding, which only ranks")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldNeverCreateATaskForANaturalnessFindingWhichOnlyRanks() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should cover an off-level-words finding with the LEMMA_ABSENCE task of its exercise instead of a task of its own")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldCoverAnOfflevelwordsFindingWithTheLEMMAABSENCETaskOfItsExerciseInsteadOfATaskOfItsOwn() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep the 4,036 vocabulary tasks of the 29/9 analysis identical one by one with the twenty analyzers")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R010")
+    public void shouldKeepThe4036VocabularyTasksOfThe299AnalysisIdenticalOneByOneWithTheTwentyAnalyzers() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should open one task for each of the three counting findings of «I ___ a lot of vegetables.» (A1, Afirmativas regulares), from hint-coherence, single-answer and translation-sense, all three on the same exercise")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
+    public void shouldOpenOneTaskForEachOfTheThreeCountingFindingsOfIALotOfVegetablesA1AfirmativasRegularesFromHintcoherenceSingleanswerAndTranslationsenseAllThreeOnTheSameExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should add up, for each error analyzer of the plan, its counting findings to its own tasks plus its covered findings plus its unconverted findings in the finding tally")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
+    public void shouldAddUpForEachErrorAnalyzerOfThePlanItsCountingFindingsToItsOwnTasksPlusItsCoveredFindingsPlusItsUnconvertedFindingsInTheFindingTally() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare as unconverted, under its analyzer and with the reason that it has no task kind, every counting finding of an error analyzer without a task kind, and open no task for them")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
+    public void shouldDeclareAsUnconvertedUnderItsAnalyzerAndWithTheReasonThatItHasNoTaskKindEveryCountingFindingOfAnErrorAnalyzerWithoutATaskKindAndOpenNoTaskForThem() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare as unconverted, with the reason that no task covers it, an off-level-words finding whose exercise has no LEMMA_ABSENCE task")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
+    public void shouldDeclareAsUnconvertedWithTheReasonThatNoTaskCoversItAnOfflevelwordsFindingWhoseExerciseHasNoLEMMAABSENCETask() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should never hold an error task without the finding it came from, nor a second task for the same finding")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
+    public void shouldNeverHoldAnErrorTaskWithoutTheFindingItCameFromNorASecondTaskForTheSameFinding() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should carry in the single-answer task of «I ___ a lot of vegetables.» the identity of its finding, its blocking severity, the panel resolution, its paid-model cost, level A1 and the topic Afirmativas regulares")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R002")
+    public void shouldCarryInTheSingleanswerTaskOfIALotOfVegetablesTheIdentityOfItsFindingItsBlockingSeverityThePanelResolutionItsPaidmodelCostLevelA1AndTheTopicAfirmativasRegulares() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should derive from two plans of the same analysis the same error tasks with the same finding identities and in the same order, breaking equal priorities by node and finding identity")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R002")
+    public void shouldDeriveFromTwoPlansOfTheSameAnalysisTheSameErrorTasksWithTheSameFindingIdentitiesAndInTheSameOrderBreakingEqualPrioritiesByNodeAndFindingIdentity() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep the identity of the hint-coherence finding of «I ___ a lot of vegetables.» in its task when the plan is derived from a later analysis of the same course")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R002")
+    public void shouldKeepTheIdentityOfTheHintcoherenceFindingOfIALotOfVegetablesInItsTaskWhenThePlanIsDerivedFromALaterAnalysisOfTheSameCourse() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should turn the forty findings that the mini-theory of «$In time$ u $on time$» (B1) leaves in its forty exercises into one task on the topic that reaches the forty, owns one finding and covers the other thirty-nine")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R003")
+    public void shouldTurnTheFortyFindingsThatTheMinitheoryOfInTimeUOnTimeB1LeavesInItsFortyExercisesIntoOneTaskOnTheTopicThatReachesTheFortyOwnsOneFindingAndCoversTheOtherThirtynine() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should open one topic task per mini-theory with a problem, two for «Contraste inicial» (A1) when two of its eight mini-theories are marked, and never one task per exercise that shows them")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R003")
+    public void shouldOpenOneTopicTaskPerMinitheoryWithAProblemTwoForContrasteInicialA1WhenTwoOfItsEightMinitheoriesAreMarkedAndNeverOneTaskPerExerciseThatShowsThem() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should count the forty mini-theory findings of «$In time$ u $on time$» in its tally as one own task and thirty-nine covered, so they still add up to forty")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R003")
+    public void shouldCountTheFortyMinitheoryFindingsOfInTimeUOnTimeInItsTallyAsOneOwnTaskAndThirtynineCoveredSoTheyStillAddUpToForty() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare the off-level-words findings of spread and quilt in «She spread the warm blue quilt on the bed.» (A2) covered by the LEMMA_ABSENCE task of that exercise, naming that task, and open no task of their own")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R004")
+    public void shouldDeclareTheOfflevelwordsFindingsOfSpreadAndQuiltInSheSpreadTheWarmBlueQuiltOnTheBedA2CoveredByTheLEMMAABSENCETaskOfThatExerciseNamingThatTaskAndOpenNoTaskOfTheirOwn() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should list the covered off-level-words findings in the origin of the LEMMA_ABSENCE task of «She spread the warm blue quilt on the bed.», so the task counts as resolved only when both analyzers stop marking spread and quilt")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R004")
+    public void shouldListTheCoveredOfflevelwordsFindingsInTheOriginOfTheLEMMAABSENCETaskOfSheSpreadTheWarmBlueQuiltOnTheBedSoTheTaskCountsAsResolvedOnlyWhenBothAnalyzersStopMarkingSpreadAndQuilt() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should never declare an off-level-words finding covered by the SENTENCE_LENGTH task of its exercise, because only the task of lemma-absence marks the same word")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R004")
+    public void shouldNeverDeclareAnOfflevelwordsFindingCoveredByTheSENTENCELENGTHTaskOfItsExerciseBecauseOnlyTheTaskOfLemmaabsenceMarksTheSameWord() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should open no task for the rank-only finding «los jueces no coinciden» of translation-sense and leave it out of the counting findings of the tally, for the tray of the batch of its level")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R005")
+    public void shouldOpenNoTaskForTheRankonlyFindingLosJuecesNoCoincidenOfTranslationsenseAndLeaveItOutOfTheCountingFindingsOfTheTallyForTheTrayOfTheBatchOfItsLevel() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep a single LEMMA_ABSENCE task for «She spread the warm blue quilt on the bed.» although lemma-absence marks two words in it, one task per exercise as the vocabulary plan does today")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R007")
+    public void shouldKeepASingleLEMMAABSENCETaskForSheSpreadTheWarmBlueQuiltOnTheBedAlthoughLemmaabsenceMarksTwoWordsInItOneTaskPerExerciseAsTheVocabularyPlanDoesToday() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should derive from the 29/9 analysis, with the error tasks one per finding, the same 4,036 vocabulary tasks with the same kinds and nodes: 3,051 SENTENCE_LENGTH, 950 LEMMA_ABSENCE, 25 KNOWLEDGE_INSTRUCTIONS_LENGTH, 6 KNOWLEDGE_TITLE_LENGTH, 3 COCA_BUCKETS and 1 LEMMA_RECURRENCE")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R007")
+    public void shouldDeriveFromThe299AnalysisWithTheErrorTasksOnePerFindingTheSame4036VocabularyTasksWithTheSameKindsAndNodes3051SENTENCELENGTH950LEMMAABSENCE25KNOWLEDGEINSTRUCTIONSLENGTH6KNOWLEDGETITLELENGTH3COCABUCKETSAnd1LEMMARECURRENCE() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the origin empty in every vocabulary task except a LEMMA_ABSENCE task that covers an error finding")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R007")
+    public void shouldLeaveTheOriginEmptyInEveryVocabularyTaskExceptALEMMAABSENCETaskThatCoversAnErrorFinding() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should never hand out a task IN_BATCH as the next task")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R002")
+    public void shouldNeverHandOutATaskINBATCHAsTheNextTask() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

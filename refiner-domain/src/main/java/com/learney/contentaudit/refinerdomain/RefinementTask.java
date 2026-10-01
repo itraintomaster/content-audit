@@ -23,11 +23,14 @@ public class RefinementTask {
 
     private RefinementTaskStatus status;
 
+    private TaskOrigin origin;
+
     public RefinementTask() {
     }
 
     public RefinementTask(String id, AuditTarget nodeTarget, String nodeId, String nodeLabel,
-            DiagnosisKind diagnosisKind, int priority, RefinementTaskStatus status) {
+            DiagnosisKind diagnosisKind, int priority, RefinementTaskStatus status,
+            TaskOrigin origin) {
         this.id = id;
         this.nodeTarget = nodeTarget;
         this.nodeId = nodeId;
@@ -35,6 +38,7 @@ public class RefinementTask {
         this.diagnosisKind = diagnosisKind;
         this.priority = priority;
         this.status = status;
+        this.origin = origin;
     }
 
     public String getId() {
@@ -93,6 +97,14 @@ public class RefinementTask {
         this.status = status;
     }
 
+    public TaskOrigin getOrigin() {
+        return this.origin;
+    }
+
+    public void setOrigin(TaskOrigin origin) {
+        this.origin = origin;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,11 +116,12 @@ public class RefinementTask {
                     && Objects.equals(this.nodeLabel, that.nodeLabel)
                     && Objects.equals(this.diagnosisKind, that.diagnosisKind)
                     && Objects.equals(this.priority, that.priority)
-                    && Objects.equals(this.status, that.status);
+                    && Objects.equals(this.status, that.status)
+                    && Objects.equals(this.origin, that.origin);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nodeTarget, nodeId, nodeLabel, diagnosisKind, priority, status);
+        return Objects.hash(id, nodeTarget, nodeId, nodeLabel, diagnosisKind, priority, status, origin);
     }
 }

@@ -1618,4 +1618,44 @@ public class AnalyzeCmdTest {
         return new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime(sessions, sessions, approved,
                 evaluatorId -> java.util.List.of(), new com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig());
     }
+
+    @Test
+    @DisplayName("should pass --budget naturalness=50 to naturalness as its run policy, the same as a judge's budget")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R002")
+    public void shouldPassBudgetNaturalness50ToNaturalnessAsItsRunPolicyTheSameAsAJudgesBudget() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should print «Falta la lista de lemas en '<path>'» and exit with code 1 without writing a report when the lemma list is missing")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R007")
+    public void shouldPrintFaltaLaListaDeLemasEnPathAndExitWithCode1WithoutWritingAReportWhenTheLemmaListIsMissing() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should exit with code 1 without writing a report when a sentence is not cached and spaCy does not run")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R007")
+    public void shouldExitWithCode1WithoutWritingAReportWhenASentenceIsNotCachedAndSpaCyDoesNotRun() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the 886 files of the 29/9 course identical byte for byte after analyzing it with the twenty analyzers")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R010")
+    public void shouldLeaveThe886FilesOfThe299CourseIdenticalByteForByteAfterAnalyzingItWithTheTwentyAnalyzers() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should print what is missing and how to install it, exit non-zero and save no analysis when asked to run naturalness without Ollama nor claude -p")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R003")
+    public void shouldPrintWhatIsMissingAndHowToInstallItExitNonzeroAndSaveNoAnalysisWhenAskedToRunNaturalnessWithoutOllamaNorClaudeP() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -75,7 +75,7 @@ public class DataCoherenceAnalyzerProvider implements AnalyzerProvider {
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.RULE, FindingResolution.PANEL),
                 AnalysisCost.INSTANT,
-                "Datos coherentes");
+                "Datos coherentes", null);
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import java.util.List;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -13,4 +14,7 @@ import javax.annotation.processing.Generated;
 public interface PreservationCheck {
     List<PreservationViolation> verify(CourseEntity courseBefore, CourseEntity courseAfter,
             CourseElementSnapshot revised, DiagnosisKind kind);
+
+    List<PreservationViolation> verifyWithin(CourseEntity courseBefore, CourseEntity courseAfter,
+            CourseElementSnapshot revised, Set<ScopedField> changeable);
 }

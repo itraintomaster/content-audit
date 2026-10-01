@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBriefer;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
 import com.learney.contentaudit.auditdomain.TopicStudentViewQuery;
 import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLightsQuery;
@@ -201,7 +202,9 @@ private final TopicStudentViewQuery topicStudentViewQuery;
 
 private final ActiveAnalysisSelectionStore activeAnalysisSelectionStore;
 
-public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver, ImpactPreviewStore impactPreviewStore, ImpactPreviewFormatter impactPreviewFormatter, CorrectionContextJsonMapper correctionContextJsonMapper, SuggestedLemmaQueryPort suggestedLemmaQueryPort, TopicWordLightsQuery topicWordLightsQuery, TopicStudentViewQuery topicStudentViewQuery, ActiveAnalysisSelectionStore activeAnalysisSelectionStore) {
+private final ErrorTaskBriefer errorTaskBriefer;
+
+public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementPlanStore, AnalyzerRegistry analyzerRegistry, CorrectionContextResolver correctionContextResolver, ImpactPreviewStore impactPreviewStore, ImpactPreviewFormatter impactPreviewFormatter, CorrectionContextJsonMapper correctionContextJsonMapper, SuggestedLemmaQueryPort suggestedLemmaQueryPort, TopicWordLightsQuery topicWordLightsQuery, TopicStudentViewQuery topicStudentViewQuery, ActiveAnalysisSelectionStore activeAnalysisSelectionStore, ErrorTaskBriefer errorTaskBriefer) {
     this.auditReportStore = auditReportStore;
     this.refinementPlanStore = refinementPlanStore;
     this.analyzerRegistry = analyzerRegistry;
@@ -213,6 +216,7 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
     this.topicWordLightsQuery = topicWordLightsQuery;
     this.topicStudentViewQuery = topicStudentViewQuery;
     this.activeAnalysisSelectionStore = activeAnalysisSelectionStore;
+    this.errorTaskBriefer = errorTaskBriefer;
 }
 
     /** Called by Main to inject the resolved working directory (needed for plan listing). */
@@ -279,7 +283,7 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                 "priority".equalsIgnoreCase(sort),
                 Optional.ofNullable(limit),
                 targetOpt,
-                diagnosisOpt
+                diagnosisOpt, null
         );
         return get(resource, name, filter);
     }

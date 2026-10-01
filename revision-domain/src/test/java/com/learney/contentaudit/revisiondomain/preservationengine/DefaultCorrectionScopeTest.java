@@ -107,4 +107,20 @@ public class DefaultCorrectionScopeTest {
                 .anyMatch(field -> "form.sentenceParts[].text".equals(field.getPath())
                         && "CLOZE".equals(field.getElementKind())));
     }
+
+    @Test
+    @DisplayName("should translate the hint, the answers and the audio permission of a panel fix of hint-coherence into the changeable fields of the quiz")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R006")
+    public void shouldTranslateTheHintTheAnswersAndTheAudioPermissionOfAPanelFixOfHintcoherenceIntoTheChangeableFieldsOfTheQuiz() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should make changeable only the union of the parts declared by the tasks of an exercise, the hint of hint-coherence and the translation of translation-sense for «I ___ a lot of vegetables.»")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R006")
+    public void shouldMakeChangeableOnlyTheUnionOfThePartsDeclaredByTheTasksOfAnExerciseTheHintOfHintcoherenceAndTheTranslationOfTranslationsenseForIALotOfVegetables() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

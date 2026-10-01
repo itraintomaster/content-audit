@@ -15,4 +15,6 @@ public interface RefinerEngine {
     Optional<RefinementTask> nextTask(RefinementPlan plan);
 
     List<UnconvertedScoreCount> unconvertedScores(AuditReport report);
+
+    List<PlanFindingTally> findingTally(AuditReport report, RefinementPlan plan);
 }

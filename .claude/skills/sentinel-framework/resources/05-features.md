@@ -1943,3 +1943,366 @@ juez no pueden divergir. Y una falla sin causa obliga a adivinar por qué un eje
 | F-CIERRE-R003 | Los clasificadores escriben el ejercicio con la misma vista que lee el juez | critical | - |
 | F-CIERRE-R004 | La configuración del juez de consigna muestra sus dos topes, cada uno con su comando | major | - |
 
+### FEAT-RONDA2: Integración de la ronda 2 - lo que comparten idioma, corrección por tandas y antes y después [F-RONDA2]
+
+> **Qué**: Junta en un solo cambio lo que comparten los trece parches de la ronda 2 —B, idioma con herramientas locales;
+E, corrección por tandas; F, antes y después— y lo que cada uno dejó como «gancho» en archivos comunes: los nombres y el
+orden de las tres fichas nuevas, la corrida base, la medida de cada analizador en el informe, el caché de tokens por
+oración y el tipo de tarea de cada analizador de errores.
+
+**Por qué**: Si cada paquete toca por su cuenta el catálogo, el informe, el plan o el caché, chocan, o uno decide algo
+que el otro contradice. Y hay dos riesgos de calidad que ningún paquete cubre: una corrida sin la lista de lemas publica
+números falsos sin avisar, y el caché de tokens los guarda para las corridas siguientes.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-RONDA2-R001 | Las tres fichas de B traen su nombre en castellano y van después de las diecisiete | major | - |
+| F-RONDA2-R002 | El tope por omisión depende de a quién se consulta | critical | - |
+| F-RONDA2-R003 | La corrida base no corre lo que mide con un modelo local | major | - |
+| F-RONDA2-R004 | Cada informe dice con qué medida midió cada analizador | critical | - |
+| F-RONDA2-R005 | El caché de tokens guarda cada oración por separado | critical | - |
+| F-RONDA2-R006 | La clave del caché incluye la huella de la lista de lemas y la del procesador | critical | - |
+| F-RONDA2-R007 | Sin la lista de lemas o sin el procesador de spaCy, `analyze` frena con un error claro | critical | - |
+| F-RONDA2-R008 | Cada analizador de errores tiene su tipo de tarea, salvo los que sólo ordenan | critical | - |
+| F-RONDA2-R009 | Gramática y Duplicados parecidos declaran lo que su arreglo puede tocar | major | - |
+| F-RONDA2-R010 | Integrar la ronda 2 no mueve ningún número de vocabulario ni el curso | critical | - |
+
+### FEAT-MLOCAL: Idioma local - herramientas y modelos que corren en la máquina [F-MLOCAL]
+
+> **Qué**: Gramática, Naturalidad y Duplicados parecidos corren con su herramienta en la máquina y su versión a la vista;
+sin Ollama, los dos de modelo le preguntan lo mismo a claude -p, sólo con tope; los tres leen candidatos de la mesa.
+
+**Por qué**: Son las primeras dependencias de idioma de content-audit. Sin reglas comunes, cada uno decidiría distinto
+qué pasa cuando falta el modelo, cuándo corre y qué cambia cuando cambia la versión.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-MLOCAL-R001 | Con sus herramientas, nada sale de la máquina; a claude -p, sólo sin Ollama y con tope | critical | - |
+| F-MLOCAL-R002 | Cada herramienta tiene nombre y versión a la vista, y la misma versión da lo mismo | critical | - |
+| F-MLOCAL-R003 | Si falta la herramienta, se sabe antes de empezar | critical | Analyzer '<name>' needs <tool>, which is not available: <how to install>. |
+| F-MLOCAL-R004 | Qué corre sin pedirlo | major | - |
+| F-MLOCAL-R005 | Los tres leen un candidato de la mesa y dicen qué cambia | critical | - |
+| F-MLOCAL-R006 | Cada versión rinde su examen antes de publicar | major | - |
+| F-MLOCAL-R007 | Sin Ollama, Naturalidad y Duplicados parecidos le preguntan lo mismo a claude -p | critical | - |
+| F-MLOCAL-R008 | La alternativa consulta sólo con un tope pedido, y sin tope dice cuánto costaría | critical | - |
+
+**User Journeys:**
+
+- **F-MLOCAL-J001**: Correr un analizador de idioma
+
+### FEAT-GRAMA: Gramática - la oración terminada no tiene errores de inglés [F-GRAMA]
+
+> **Qué**: `grammar`, de la familia de errores, pasa LanguageTool por cada oración terminada, con cada respuesta
+aceptada, y marca gramática y ortografía, nunca estilo; más una regla propia de signo final.
+
+**Por qué**: «He ___ (own) a bike» sólo acepta «'ve had», y «…making noise noise?» sale en verde. Mide el curso en
+segundos y la mesa lo necesita para no meter errores nuevos; del «inglés incorrecto» del 077 ve poco: es uso y sentido.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-GRAMA-R001 | Lee cada oración terminada, con cada respuesta aceptada, como la lee el alumno | critical | - |
+| F-GRAMA-R002 | Sólo gramática y ortografía, y sólo lo que marcan el inglés americano y el británico | critical | - |
+| F-GRAMA-R003 | Toda oración terminada cierra con su signo | major | - |
+| F-GRAMA-R004 | La gravedad depende de dónde está el error | critical | - |
+| F-GRAMA-R005 | Lo mecánico se arregla con una regla; lo demás, en la mesa | major | - |
+| F-GRAMA-R006 | `grammar` es un analizador de errores, instantáneo, que evalúa ejercicios | major | - |
+| F-GRAMA-R007 | El examen de Gramática | major | - |
+
+**User Journeys:**
+
+- **F-GRAMA-J001**: Revisar la gramática de un ejercicio
+
+### FEAT-NATUR: Naturalidad - qué oraciones mirar primero [F-NATUR]
+
+> **Qué**: `naturalness` le pregunta a un modelo local —sin Ollama, a claude -p—, por cada oración terminada, si un nativo
+la diría así, y marca las más dudosas de cada nivel para que los jueces empiecen por ahí. No cuenta errores.
+
+**Por qué**: Juzgar el curso con los cinco jueces son unas 220 horas de a una. Medido con el modelo ya instalado, esa
+cola trae el 27 % de lo que el 077 llamó antinatural o sin sentido, más de cinco veces el azar.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-NATUR-R001 | Lee la oración terminada, y sólo si es una oración | critical | - |
+| F-NATUR-R002 | Un número por ejercicio: qué tan poco probable es que un nativo lo diga así | critical | - |
+| F-NATUR-R003 | Marca el 5 % más dudoso de cada nivel, y no cuenta como error | critical | - |
+| F-NATUR-R004 | La evidencia dice cuánto duda el modelo | major | - |
+| F-NATUR-R005 | El orden y los marcados se pueden pasar a un juez | major | - |
+| F-NATUR-R006 | Se usa sólo si ordena mucho mejor que el azar | critical | - |
+| F-NATUR-R007 | `naturalness` es un analizador de errores que sólo ordena | major | - |
+| F-NATUR-R008 | Sin Ollama, la misma pregunta a claude -p: un «no» marca | critical | - |
+
+**User Journeys:**
+
+- **F-NATUR-J001**: Ordenar qué mirar primero
+
+### FEAT-DUPAR: Duplicados parecidos - dos ejercicios casi iguales del mismo tema [F-DUPAR]
+
+> **Qué**: `near-duplicates`, de la familia de errores, marca cada ejercicio que repite casi igual a otro de su tema: la
+misma respuesta con otro pronombre, otro demostrativo u otro tiempo del auxiliar, o la misma idea con otras palabras.
+
+**Por qué**: El 077 marcó 6 así en la mitad para escribir, como «He is leaving (certainly)» y «She is leaving
+(certainly)»; la regla exacta del paquete A no los ve. Compara con un modelo local; sin Ollama, claude -p juzga los pares.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-DUPAR-R001 | Sólo son casi duplicados dos ejercicios del mismo tema que piden lo mismo | major | - |
+| F-DUPAR-R002 | Casi iguales: cambia sólo el sujeto, el demostrativo, el posesivo o el tiempo, o dicen lo mismo | major | - |
+| F-DUPAR-R003 | Un hallazgo por copia, nunca en el ejercicio que queda | major | - |
+| F-DUPAR-R004 | El hallazgo es de gravedad baja y va a la mesa | major | - |
+| F-DUPAR-R005 | La evidencia muestra los dos ejercicios y qué cambia | major | - |
+| F-DUPAR-R006 | `near-duplicates` es un analizador de errores que evalúa ejercicios | major | - |
+| F-DUPAR-R007 | El examen de Duplicados parecidos | major | - |
+| F-DUPAR-R008 | Sin Ollama, claude -p juzga los pares de texto parecido | major | - |
+
+**User Journeys:**
+
+- **F-DUPAR-J001**: Encontrar las copias casi iguales de un tema
+
+### FEAT-PROYU: Una sola proyección del curso con sus propuestas [F-PROYU]
+
+> **Qué**: El curso con lo aprobado y lo pendiente se proyecta de una sola manera, la de `get consolidated`, que da lo
+mismo que `analyze` sobre ese curso escrito; ninguna proyección entra al historial de análisis, y la línea base la fija
+José y no se mueve cuando el análisis activo avanza.
+
+**Por qué**: Hoy hay tres caminos que no coinciden: sobre el mismo caso, la vista consolidada pone A1 en 92,4 % donde
+el análisis de la copia da 96,5 y no muestra el curso, y el plan proyectado deja su análisis como el último.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-PROYU-R001 | La proyección da lo mismo que analizar el curso escrito | critical | - |
+| F-PROYU-R002 | Las pendientes entran siempre igual | critical | - |
+| F-PROYU-R003 | La proyección mide lo mismo que la línea base y no paga de más | critical | - |
+| F-PROYU-R004 | Ninguna proyección entra al historial de análisis | critical | - |
+| F-PROYU-R005 | Una proyección guardada se pide por su identificador | major | - |
+| F-PROYU-R006 | La línea base la fija José y queda fija; ni ella ni el análisis activo se borran sin querer | critical | Cannot delete audit '<id>': it is the active analysis. Point 'set-active' to another analysis first. |
+| F-PROYU-R007 | El impacto de una propuesta sale de la misma proyección | major | - |
+
+**User Journeys:**
+
+- **F-PROYU-J001**: Proyectar las propuestas del plan activo y leer lo mismo en todas partes
+
+### FEAT-METAS: Antes y después de una tanda contra la línea base, con metas fijadas antes de correr [F-METAS]
+
+> **Qué**: content-audit compara la proyección de una tanda con la línea base y publica, por analizador y en cada tema,
+topic, nivel y el curso, el antes, el después, el cambio, la meta y si se cumple; y dice qué ejercicios vuelven y si la
+tanda pasa.
+
+**Por qué**: Hoy no hay metas ni veredicto, y los números de nivel no alcanzan: «My grandmother ___ (come) every year.»
+mete una palabra de A2 en A1 y A1 sigue en 96,54 %; sólo se ve en su ejercicio.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-METAS-R001 | Una fila por analizador y nodo, con antes, después y cambio | critical | - |
+| F-METAS-R002 | Cada fila dice su meta y si se cumple | critical | - |
+| F-METAS-R003 | Un nodo que la tanda cambió vuelve si gana un error o una palabra de otro nivel | critical | - |
+| F-METAS-R004 | Un piso roto de nivel o de curso nombra a los cambios que lo rompen | major | - |
+| F-METAS-R005 | Las metas se declaran en un solo lugar, y todo analizador tiene la suya | critical | - |
+| F-METAS-R006 | Las metas se fijan antes de correr | critical | - |
+| F-METAS-R007 | Un cambio de medida se muestra aparte | critical | - |
+| F-METAS-R008 | La tanda pasa si cumple todos sus pisos | critical | - |
+| F-METAS-R009 | Comparar no cambia nada | critical | - |
+
+**User Journeys:**
+
+- **F-METAS-J001**: Comparar una tanda con la línea base
+
+### FEAT-CIEGA: Muestra ciega de cada tanda [F-CIEGA]
+
+> **Qué**: Para cada tanda, content-audit sortea pares de antes y después, los muestra sin decir cuál es cuál, guarda lo
+que elige quien revisa y publica el resultado, con su margen, contra la meta.
+
+**Por qué**: Es la única medida que no depende de ningún analizador ni agente: en la tanda de las verduras, tres de los
+cuatro arreglos no los ve ningún analizador de hoy.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-CIEGA-R001 | La muestra se sortea de la tanda y se puede repetir | critical | - |
+| F-CIEGA-R002 | Cada par se ve como lo ve el alumno, sin pistas de cuál es cuál | critical | - |
+| F-CIEGA-R003 | Una respuesta de cuatro, que no se cambia después de revelar | critical | - |
+| F-CIEGA-R004 | El resultado se publica con su margen, contra la meta | critical | - |
+| F-CIEGA-R005 | Con dos personas, cuánto coinciden | major | - |
+| F-CIEGA-R006 | La tasa de error a ciegas mide lo que los analizadores no ven | major | - |
+
+**User Journeys:**
+
+- **F-CIEGA-J001**: Revisar a ciegas los cambios de una tanda
+
+### FEAT-CERO: Cada corrida del motor empieza de cero [F-CERO]
+
+> **Qué**: Toda corrida del motor dentro de una misma invocación da lo mismo que una invocación nueva sobre ese curso, y no
+toca los informes de las corridas anteriores.
+
+**Por qué**: Cuatro analizadores de curso guardan lo que cuentan y nunca lo vacían: el mismo curso corrido dos veces
+seguidas da 72,9 % en vez de 73,9 %, y la segunda corrida vacía los diagnósticos COCA de los 55 topics de la primera.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-CERO-R001 | El resultado de una corrida depende sólo de su curso | critical | - |
+| F-CERO-R002 | Una corrida no cambia los informes anteriores | critical | - |
+
+**User Journeys:**
+
+- **F-CERO-J001**: Pedir la vista consolidada de un par activo
+
+### FEAT-TAREA: Una tarea por hallazgo - el plan de la familia de errores [F-TAREA]
+
+> **Qué**: El plan convierte cada hallazgo de la familia de errores en una tarea propia, o declara qué otra tarea lo
+cubre o por qué no se convirtió; cada tarea nombra su hallazgo, su gravedad, cómo se resuelve y qué puede tocar su arreglo.
+
+**Por qué**: Hoy el plan hace una tarea por analizador y ejercicio y sólo conoce ocho nombres: los once analizadores nuevos
+no tendrían tareas, y un ejercicio con cuatro errores quedaría en una sola tarea que nadie puede dar por cerrada.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-TAREA-R001 | Cada hallazgo que cuenta como error termina en una tarea, cubierto o declarado | critical | - |
+| F-TAREA-R002 | La tarea nombra su hallazgo, y el mismo análisis da las mismas tareas | critical | - |
+| F-TAREA-R003 | Una miniteoría con problema es una sola tarea, del tema | major | - |
+| F-TAREA-R004 | Lo que ya marca otra tarea no abre una segunda | major | - |
+| F-TAREA-R005 | Lo que sólo ordena no es tarea, y el desacuerdo de los jueces va a la bandeja | major | - |
+| F-TAREA-R006 | Cada tipo de tarea declara lo que su arreglo puede tocar | critical | - |
+| F-TAREA-R007 | Las tareas de vocabulario son las de hoy | critical | - |
+| F-TAREA-R008 | Las tareas se buscan por analizador, resolución, gravedad, nivel y tema | major | - |
+| F-TAREA-R009 | Una tarea de errores se ve con su hallazgo y con lo que su arreglo puede tocar | major | - |
+
+**User Journeys:**
+
+- **F-TAREA-J001**: Armar el plan de un análisis con hallazgos de errores
+
+### FEAT-NOEMP: No empeorar - la compuerta de cada cambio y de cada tanda [F-NOEMP]
+
+> **Qué**: «No empeorar» pasa a ser una compuerta medible en dos niveles: ningún cambio suma un error, una palabra roja ni
+un audio distinto sin declararlo; y al cerrar una tanda ningún conteo de errores sube y ningún número de vocabulario baja
+más de medio punto.
+
+**Por qué**: Los promedios no lo ven. Aplicadas a una copia, las cuatro propuestas del 077 para el tema de las verduras
+meten «grandmother» (A2) en un ejercicio de A1, y ningún puntaje de nivel ni de curso se mueve; sólo cambia la cuenta de
+ejercicios con palabras marcadas: 351 → 352 en A1.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-NOEMP-R001 | Un cambio no suma errores | critical | - |
+| F-NOEMP-R002 | Un cambio no suma palabras rojas | critical | - |
+| F-NOEMP-R003 | El largo se mide y se declara, y cuenta en la tanda | major | - |
+| F-NOEMP-R004 | Lo que se escucha sigue al ejercicio, y cambia sólo declarado | critical | - |
+| F-NOEMP-R005 | Al cerrar una tanda, ningún error nuevo y ningún conteo que suba | critical | - |
+| F-NOEMP-R006 | Al cerrar una tanda, el vocabulario baja como mucho medio punto | critical | - |
+| F-NOEMP-R007 | Nada fuera de la tanda cambia | critical | - |
+| F-NOEMP-R008 | Si la tanda frena, lo que empeora vuelve a la mesa y el resto espera | critical | - |
+| F-NOEMP-R009 | La compuerta es determinista y dice por qué | major | - |
+| F-NOEMP-R010 | Sólo se compara lo evaluado en las dos puntas | major | - |
+
+**User Journeys:**
+
+- **F-NOEMP-J001**: Cerrar una tanda contra la compuerta
+
+### FEAT-MESA: La mesa por tema - uno propone, content-audit mide, los jueces juzgan y un script decide [F-MESA]
+
+> **Qué**: Dentro de una tanda, una mesa por tema corrige juntos los ejercicios del tema que necesitan propuesta: revalida,
+uno propone, content-audit mide, los jueces del catálogo juzgan el ejercicio como queda y un script decide; varias mesas
+corren a la vez.
+
+**Por qué**: Hoy se corrige de a una tarea, con criterios que comparan contra el original y lo dan por bueno, a 17–35
+ejercicios por hora; los unos 1.900 ejercicios que necesitan propuesta llevarían semanas y nadie juzgaría lo que queda.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-MESA-R001 | La mesa toma un tema entero, y un tema tiene una sola mesa | critical | - |
+| F-MESA-R002 | Antes de proponer, la mesa revalida | critical | - |
+| F-MESA-R003 | Quien propone ve el tema entero como lo ve el alumno | critical | - |
+| F-MESA-R004 | Content-audit mide cada candidato con la misma vara del análisis | critical | - |
+| F-MESA-R005 | Los jueces juzgan el ejercicio como queda, cada uno solo | critical | - |
+| F-MESA-R006 | Decide un script: resuelve, no empeora y le gana al original | critical | - |
+| F-MESA-R007 | Hasta tres intentos; si nadie gana, queda el original y va a la bandeja | critical | - |
+| F-MESA-R008 | Si los dos jueces de un criterio no coinciden, decide José | major | - |
+| F-MESA-R009 | La mesa no escribe el curso | critical | - |
+| F-MESA-R010 | Varias mesas a la vez, sin pasarse de las consultas pedidas | critical | - |
+| F-MESA-R011 | Una opción múltiple sale de la mesa como opción múltiple, con una sola correcta | critical | - |
+| F-MESA-R012 | La miniteoría se reescribe una vez, en los ejercicios que la muestran | major | - |
+| F-MESA-R013 | Refutan los jueces que ya buscan un contraejemplo | major | - |
+| F-MESA-R014 | Fuera de una tanda, la corrección de hoy no cambia | critical | - |
+| F-MESA-R015 | Un tema que José manda pasar a opción múltiple sale en opción múltiple | major | - |
+
+**User Journeys:**
+
+- **F-MESA-J001**: Corregir un ejercicio en la mesa de su tema
+
+### FEAT-TANDA: Tandas por nivel - reglas, mesas, recálculo del curso y una sola publicación [F-TANDA]
+
+> **Qué**: La corrección va por tandas de un nivel: cada tanda parte del último estado publicado, aplica primero las reglas
+y después las mesas de sus temas, recalcula el curso entero al cerrar, pasa la compuerta de «no empeorar» y se publica
+con un solo OK de José.
+
+**Por qué**: Recalcular el curso después de cada cambio obliga a ir de a uno. Por tanda, los temas van en paralelo y el
+curso se mide una vez, completo —unos 38 segundos—, antes de que ningún cambio entre.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-TANDA-R001 | Una tanda es un nivel y parte del último estado publicado | critical | - |
+| F-TANDA-R002 | Una sola tanda abierta, y cada tarea en una sola tanda | critical | La tarea <id> es de la tanda <id> y se decide en su bandeja. |
+| F-TANDA-R003 | Antes de correr, la tanda dice cuánto cuesta, y no consulta sin tope | critical | - |
+| F-TANDA-R004 | Primero las reglas, sin modelo | critical | - |
+| F-TANDA-R005 | Después, las mesas de sus temas | critical | - |
+| F-TANDA-R006 | Al cerrar, se recalcula el curso entero y se pasa la compuerta | critical | - |
+| F-TANDA-R007 | Una tanda interrumpida se retoma donde quedó | major | - |
+| F-TANDA-R008 | Antes de publicar, cualquier cambio se puede sacar | major | - |
+| F-TANDA-R009 | Publicar aplica todo junto, y sólo así cambia el curso | critical | - |
+| F-TANDA-R010 | El informe de la tanda cierra sus cuentas | major | - |
+| F-TANDA-R011 | Abrir una tanda fija sus metas | critical | - |
+| F-TANDA-R012 | Lo que se pidió regrabar queda pendiente, y no vuelve a la mesa | critical | - |
+
+**User Journeys:**
+
+- **F-TANDA-J001**: Correr y publicar la tanda de un nivel
+
+### FEAT-BANDEJA: La bandeja - lo único que la tanda le deja a José, y un solo OK para publicar [F-BANDEJA]
+
+> **Qué**: Una sola bandeja por tanda junta lo que la tanda no puede decidir sola —desempates de los jueces, ejercicios sin
+ganador y dos muestras para mirar— y José publica la tanda con un solo OK.
+
+**Por qué**: Hoy se aprueba de a una propuesta, en tres lugares que usan planes distintos: unos 2.900 cambios serían
+2.900 aprobaciones, y el criterio de José se gastaría en lo que una regla ya resolvió.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-BANDEJA-R001 | Una sola bandeja por tanda, con todo lo que necesita a José | critical | - |
+| F-BANDEJA-R002 | Un desempate muestra los dos veredictos y lo resuelve José | critical | - |
+| F-BANDEJA-R003 | Un ejercicio sin ganador muestra lo que se intentó y lo decide José | critical | - |
+| F-BANDEJA-R004 | Cada regla se aprueba mirando una muestra | critical | - |
+| F-BANDEJA-R005 | La muestra ciega del paquete F se responde desde la bandeja | critical | - |
+| F-BANDEJA-R006 | Lo que José decide no vuelve mientras el ejercicio no cambie | major | - |
+| F-BANDEJA-R007 | Lo pendiente no frena lo que no lo necesita | major | - |
+| F-BANDEJA-R008 | Publicar es un solo OK, y sólo desde la bandeja | critical | La propuesta <id> es de la tanda <id>: entra al curso al publicar la tanda. |
+| F-BANDEJA-R009 | La bandeja muestra lo que hay que regrabar | major | - |
+
+**User Journeys:**
+
+- **F-BANDEJA-J001**: Vaciar la bandeja y publicar la tanda
+

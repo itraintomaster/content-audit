@@ -51,4 +51,12 @@ public class DataCoherenceAnalyzerProviderTest {
         DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
         assertEquals(card, catalog.find("data-coherence").orElseThrow(), "the catalog accepts the card");
     }
+
+    @Test
+    @DisplayName("should bind data-coherence to the plan with the task kind DATA_COHERENCE on the exercise")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldBindDatacoherenceToThePlanWithTheTaskKindDATACOHERENCEOnTheExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

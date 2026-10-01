@@ -52,13 +52,18 @@ class DefaultImpactPreviewComputer implements ImpactPreviewComputer {
 
     private final AuditReportStore auditReportStore;
 
-    public DefaultImpactPreviewComputer(CourseMapper courseMapper, AuditEngine auditEngine,
-            CourseElementLocator elementLocator, AuditReportStore auditReportStore) {
-        this.courseMapper = courseMapper;
-        this.auditEngine = auditEngine;
-        this.elementLocator = elementLocator;
-        this.auditReportStore = auditReportStore;
-    }
+private final PendingApplier pendingApplier;
+
+private final ProjectionMeasurer projectionMeasurer;
+
+public DefaultImpactPreviewComputer(CourseMapper courseMapper, AuditEngine auditEngine, CourseElementLocator elementLocator, AuditReportStore auditReportStore, PendingApplier pendingApplier, ProjectionMeasurer projectionMeasurer) {
+    this.courseMapper = courseMapper;
+    this.auditEngine = auditEngine;
+    this.elementLocator = elementLocator;
+    this.auditReportStore = auditReportStore;
+    this.pendingApplier = pendingApplier;
+    this.projectionMeasurer = projectionMeasurer;
+}
 
     @Override
     public ImpactPreview compute(CourseEntity currentCourse, RevisionProposal proposal) {

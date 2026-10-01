@@ -485,4 +485,28 @@ public class PlanCmdTest {
         assertEquals(4036, saved.getValue().getTasks().size(), "the plan keeps the 4.036 tasks of the seven classics");
         assertTrue(run.out().contains("4036 improvements identified"), run.out());
     }
+
+    @Test
+    @DisplayName("should derive an ephemeral plan with correction context from a saved projection named with --audit, writing no plan and no analysis")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R005")
+    public void shouldDeriveAnEphemeralPlanWithCorrectionContextFromASavedProjectionNamedWithAuditWritingNoPlanAndNoAnalysis() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should derive the plan without --audit from the latest analysis of the history, not from a projection saved after it")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R004")
+    public void shouldDeriveThePlanWithoutAuditFromTheLatestAnalysisOfTheHistoryNotFromAProjectionSavedAfterIt() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should print after deriving the plan, for each error analyzer, its counting findings, own tasks, covered findings and unconverted findings with their reason")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
+    public void shouldPrintAfterDerivingThePlanForEachErrorAnalyzerItsCountingFindingsOwnTasksCoveredFindingsAndUnconvertedFindingsWithTheirReason() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

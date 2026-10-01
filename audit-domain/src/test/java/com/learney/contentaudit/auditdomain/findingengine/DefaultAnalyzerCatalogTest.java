@@ -331,4 +331,44 @@ public class DefaultAnalyzerCatalogTest {
         Assertions.assertEquals(List.of("Largo de oración", "Largo del título", "Largo de la consigna",
                 "Bandas de frecuencia", "Recurrencia", "Palabras que faltan", "Palabras poco vistas", "Consigna"), names);
     }
+
+    @Test
+    @DisplayName("should give the same measure fingerprint to the same card and configuration in two runs")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldGiveTheSameMeasureFingerprintToTheSameCardAndConfigurationInTwoRuns() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should change the fingerprint of lemma-count when its bands go from 4 for all to 8, 6, 4 and 3, and keep the fingerprints of the other analyzers")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldChangeTheFingerprintOfLemmacountWhenItsBandsGoFrom4ForAllTo864And3AndKeepTheFingerprintsOfTheOtherAnalyzers() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep a fingerprint when only the Spanish name, the question, the descriptions or the goal of the card change")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldKeepAFingerprintWhenOnlyTheSpanishNameTheQuestionTheDescriptionsOrTheGoalOfTheCardChange() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep a fingerprint when only the exam state of a tool or its install hint changes")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldKeepAFingerprintWhenOnlyTheExamStateOfAToolOrItsInstallHintChanges() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should change the fingerprint of naturalness when it measures with claude -p instead of llama3 in Ollama")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldChangeTheFingerprintOfNaturalnessWhenItMeasuresWithClaudePInsteadOfLlama3InOllama() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

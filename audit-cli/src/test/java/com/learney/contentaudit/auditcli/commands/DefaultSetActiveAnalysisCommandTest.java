@@ -71,4 +71,12 @@ public class DefaultSetActiveAnalysisCommandTest {
         // given the declared constructor. This verifies F-CDIFF-R002 non-destructiveness at wiring level.
         verify(activeAnalysisSelectionStore).write(org.mockito.ArgumentMatchers.any());
     }
+
+    @Test
+    @DisplayName("should leave the sealed goals untouched when the active pair changes")
+    @Tag("FEAT-METAS")
+    @Tag("F-METAS-R006")
+    public void shouldLeaveTheSealedGoalsUntouchedWhenTheActivePairChanges() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

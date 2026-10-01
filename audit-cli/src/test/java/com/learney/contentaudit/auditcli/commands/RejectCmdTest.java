@@ -224,4 +224,12 @@ public class RejectCmdTest {
             System.setErr(originalErr);
         }
     }
+
+    @Test
+    @DisplayName("should drop through the batch the changes of the exercise when 'reject proposal' names a proposal of the open batch")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R008")
+    public void shouldDropThroughTheBatchTheChangesOfTheExerciseWhenRejectProposalNamesAProposalOfTheOpenBatch() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

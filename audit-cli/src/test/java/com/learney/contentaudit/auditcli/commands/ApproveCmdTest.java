@@ -375,4 +375,20 @@ public class ApproveCmdTest {
             System.setErr(originalErr);
         }
     }
+
+    @Test
+    @DisplayName("should reject 'approve proposal' of a proposal of the open batch with «La propuesta <id> es de la tanda <id>: entra al curso al publicar la tanda.» and exit non-zero, leaving the course identical")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R008")
+    public void shouldRejectApproveProposalOfAProposalOfTheOpenBatchWithLaPropuestaIdEsDeLaTandaIdEntraAlCursoAlPublicarLaTandaAndExitNonzeroLeavingTheCourseIdentical() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should approve as today a proposal that belongs to no open batch")
+    @Tag("FEAT-BANDEJA")
+    @Tag("F-BANDEJA-R008")
+    public void shouldApproveAsTodayAProposalThatBelongsToNoOpenBatch() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

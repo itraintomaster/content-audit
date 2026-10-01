@@ -575,4 +575,12 @@ public class DefaultQuizInstructionCandidateAssessorTest {
         assertTrue(refused.getReason().contains("opcion multiple"), refused.getReason());
         verifyNoInteractions(assessor, deriver);
     }
+
+    @Test
+    @DisplayName("should keep judging a faithful translation against the original outside a batch, while the panel judges the exercise as it stays")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R014")
+    public void shouldKeepJudgingAFaithfulTranslationAgainstTheOriginalOutsideABatchWhileThePanelJudgesTheExerciseAsItStays() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

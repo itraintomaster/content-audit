@@ -52,4 +52,12 @@ public class HintCoherenceAnalyzerProviderTest {
         DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
         assertEquals(card, catalog.find("hint-coherence").orElseThrow(), "the catalog accepts the card");
     }
+
+    @Test
+    @DisplayName("should bind hint-coherence to the plan with the task kind HINT_COHERENCE on the exercise")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldBindHintcoherenceToThePlanWithTheTaskKindHINTCOHERENCEOnTheExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

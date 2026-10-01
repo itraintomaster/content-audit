@@ -1334,4 +1334,20 @@ public class DefaultConsolidatedViewBuilderTest {
         assertEquals(1, withAnyError.getOriginal());
         assertEquals(0, withAnyError.getConsolidated());
     }
+
+    @Test
+    @DisplayName("should compare the course node too, with the id the digest gives it, so the course of the four pending proposals of «Afirmativas regulares» appears with 73.92%")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R001")
+    public void shouldCompareTheCourseNodeTooWithTheIdTheDigestGivesItSoTheCourseOfTheFourPendingProposalsOfAfirmativasRegularesAppearsWith7392() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare in the consolidated view the same pending proposals not applicable, with their causes, as the projection it reads")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R002")
+    public void shouldDeclareInTheConsolidatedViewTheSamePendingProposalsNotApplicableWithTheirCausesAsTheProjectionItReads() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

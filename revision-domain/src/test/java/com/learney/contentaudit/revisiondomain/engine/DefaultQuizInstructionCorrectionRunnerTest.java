@@ -644,4 +644,20 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
                 "the runner's own save must not put the multiple-choice task back to PENDING");
         assertEquals(RefinementTaskStatus.STALE, saved.getValue().getTasks().get(1).getStatus());
     }
+
+    @Test
+    @DisplayName("should correct a quiz-instruction task outside any batch with the comparative criteria, the three attempts and the outcomes of today")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R014")
+    public void shouldCorrectAQuizinstructionTaskOutsideAnyBatchWithTheComparativeCriteriaTheThreeAttemptsAndTheOutcomesOfToday() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave out of a revise-instructions run the quiz-instruction tasks that are in the open batch")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R002")
+    public void shouldLeaveOutOfAReviseinstructionsRunTheQuizinstructionTasksThatAreInTheOpenBatch() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

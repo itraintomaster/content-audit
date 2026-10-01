@@ -270,4 +270,28 @@ public class PruneCmdTest {
                 "Expected non-zero exit when 'prune proposals --keep N' is invoked: "
                         + "'proposals' is not a prunable resource in this iteration (F-REVAPR-R004)");
     }
+
+    @Test
+    @DisplayName("should keep the baseline 2026-09-30T11-54-02 after three new analyses and prune audits --keep 3, saying «Kept the baseline 2026-09-30T11-54-02»")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R006")
+    public void shouldKeepTheBaseline20260930T115402AfterThreeNewAnalysesAndPruneAuditsKeep3SayingKeptTheBaseline20260930T115402() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep the active analysis although it is among the oldest, saying «Kept the active analysis <id>»")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R006")
+    public void shouldKeepTheActiveAnalysisAlthoughItIsAmongTheOldestSayingKeptTheActiveAnalysisId() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should neither count nor delete saved projections when pruning audits")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R004")
+    public void shouldNeitherCountNorDeleteSavedProjectionsWhenPruningAudits() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

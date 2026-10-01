@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain;
 
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
 import java.util.List;
 import java.util.Optional;
@@ -17,4 +18,6 @@ public interface AnalyzerCatalog {
     Optional<AnalyzerProvider> provider(String analyzerName);
 
     Optional<AnalyzerPlanBinding> planBinding(String analyzerName);
+
+    Optional<AnalyzerMeasure> measure(String analyzerName);
 }

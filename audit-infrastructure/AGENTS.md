@@ -27,6 +27,10 @@ Filesystem persistence adapters for audit reports, refinement plans, revision ar
 - should keep in the digest the labels of the course, the levels, the topic groups and the topics → FEAT-RONDA1/F-RONDA1-R002
 - should keep «Afirmativas regulares» as the exercise label of the saved report, the title the quiz instruction judge reads → FEAT-RONDA1/F-RONDA1-R002
 - should copy into the digest the analyzers that evaluated each node halfway → FEAT-RONDA1/F-RONDA1-R006
+- should keep the measures of the root when a report is saved and loaded again → FEAT-RONDA2/F-RONDA2-R004
+- should load a report saved before round 2 with an empty list of measures, without inventing them → FEAT-RONDA2/F-RONDA2-R004
+- should leave a saved projection out of list and loadLatest even when it was saved after the last analysis → FEAT-PROYU/F-PROYU-R004
+- should load a saved projection by its id when no analysis has that id, so plan --audit and the suggested words query accept it as their source analysis → FEAT-PROYU/F-PROYU-R005
 
 ### FileSystemRefinementPlanStore
 
@@ -111,6 +115,79 @@ Filesystem persistence adapters for audit reports, refinement plans, revision ar
 - should append each exam record of a judge as one line of .content-audit/judge-exams/<judge>.jsonl and never rewrite an earlier one → FEAT-JEXAM/F-JEXAM-R001
 - should give as latest of a version its last record, and nothing for a version that never took the exam → FEAT-JEXAM/F-JEXAM-R001
 - should keep every exam record readable after the analysis reports under the same base directory are deleted → FEAT-JEXAM/F-JEXAM-R001
+
+### FileSystemBaselineStore
+
+**Implements:** BaselineStore
+
+**Types:** Repository
+
+**Dependencies (constructor injection):**
+
+- `baseDir`: `Path`
+
+**Tests that must pass:**
+
+- should keep the baseline in its own file, .content-audit/baseline.json, so changing the active pair or saving a new analysis does not move it → FEAT-PROYU/F-PROYU-R006
+- should read back the fixed baseline with its analysis id and the time it was fixed → FEAT-PROYU/F-PROYU-R006
+
+### FileSystemProjectionStore
+
+**Implements:** ProjectionStore
+
+**Types:** Repository
+
+**Dependencies (constructor injection):**
+
+- `baseDir`: `Path`
+
+**Tests that must pass:**
+
+- should write a saved projection under .content-audit/projections/ and nothing under audits/ → FEAT-PROYU/F-PROYU-R004
+- should keep one saved projection per active pair, so saving another projection of the same pair replaces the previous one → FEAT-PROYU/F-PROYU-R005
+- should load a saved projection by the id it returned when saving it → FEAT-PROYU/F-PROYU-R005
+
+### FileSystemGoalDeclarationSource
+
+**Implements:** GoalDeclarationSource
+
+**Types:** Repository
+
+**Dependencies (constructor injection):**
+
+- `declarationFile`: `Path`
+
+**Tests that must pass:**
+
+- should read from one declaration the family floors, the named goals with node, subject, kind, threshold, unit and reference, and the goal of the blind sample → FEAT-METAS/F-METAS-R005
+
+### FileSystemSealedGoalsStore
+
+**Implements:** SealedGoalsStore
+
+**Types:** Repository
+
+**Dependencies (constructor injection):**
+
+- `baseDir`: `Path`
+
+**Tests that must pass:**
+
+- should keep the sealed goals in .content-audit/metas-fijadas.json and read them back with their values → FEAT-METAS/F-METAS-R006
+
+### FileSystemBlindSampleStore
+
+**Implements:** BlindSampleStore
+
+**Types:** Repository
+
+**Dependencies (constructor injection):**
+
+- `baseDir`: `Path`
+
+**Tests that must pass:**
+
+- should keep samples and their answers under .content-audit/blind-samples/ and write nothing else → FEAT-CIEGA/F-CIEGA-R003
 
 ## Dependency Contracts
 
@@ -237,6 +314,7 @@ The following models and interfaces are available from dependencies. You can use
 | resolutions | `List<FindingResolution>` |
 | cost | `AnalysisCost` |
 | displayName | `String` |
+| tools | `List<LocalToolCard>` |
 
 ### AuditNode (`record`)
 
@@ -253,6 +331,7 @@ The following models and interfaces are available from dependencies. You can use
 | numbers | `ContextNumbers` |
 | unevaluatedBy | `List<String>` |
 | partiallyEvaluatedBy | `List<String>` |
+| measures | `List<AnalyzerMeasure>` |
 
 ### SentenceLengthDiagnosis (`record`)
 
@@ -327,6 +406,25 @@ The following models and interfaces are available from dependencies. You can use
 | name | `String` |
 | maxCocaRank | `Integer` |
 | threshold | `int` |
+
+### NlpResourcesUnavailableException (`exception`)
+
+**Extends:** `RuntimeException`
+
+**Message:** `Falta %s en '%s': %s`
+
+| Field | Type |
+|-------|------|
+| resource | `String` |
+| path | `String` |
+| detail | `String` |
+
+### Baseline (`record`)
+
+| Field | Type |
+|-------|------|
+| auditId | `String` |
+| fixedAt | `Instant` |
 
 ### AuditEngine (port)
 
@@ -466,6 +564,8 @@ Methods:
 - `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>`
 - `getJudgeCoverages(): List<JudgeCoverageDiagnosis>`
 - `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>`
+- `getLocalToolRuns(): List<LocalToolRunDiagnosis>`
+- `getNaturalnessQueue(): Optional<NaturalnessQueueDiagnosis>`
 
 ### LevelDiagnoses (port)
 
@@ -504,6 +604,9 @@ Methods:
 - `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>`
 - `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>`
 - `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>`
+- `getGrammarDiagnosis(): Optional<GrammarDiagnosis>`
+- `getNaturalnessDiagnosis(): Optional<NaturalnessDiagnosis>`
+- `getNearDuplicateDiagnosis(): Optional<NearDuplicateDiagnosis>`
 
 ### AuditReportStore (port)
 
@@ -579,6 +682,7 @@ Methods:
 - `find(String analyzerName): Optional<AnalyzerDescriptor>`
 - `provider(String analyzerName): Optional<AnalyzerProvider>`
 - `planBinding(String analyzerName): Optional<AnalyzerPlanBinding>`
+- `measure(String analyzerName): Optional<AnalyzerMeasure>`
 
 ### FindingCollector (port)
 
@@ -681,6 +785,39 @@ Methods:
 Methods:
 
 - `getScoreFor(FindingSeverity severity): double`
+
+### BaselineStore (port)
+
+Methods:
+
+- `read(): Optional<Baseline>`
+- `write(Baseline baseline): void`
+
+### AnalyzerCorrection (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `editScope(FindingResolution resolution): List<ExercisePart>`
+- `coveringAnalyzer(): Optional<String>`
+- `groupsByTopic(): boolean`
+- `tieRules(): List<String>`
+- `offersTwoFixes(): boolean`
+- `concernsAudio(Finding finding): boolean`
+
+### AnalyzerCorrectionCatalog (port)
+
+Methods:
+
+- `find(String analyzerName): Optional<AnalyzerCorrection>`
+- `list(): List<AnalyzerCorrection>`
+
+### RuleFix (port)
+
+Methods:
+
+- `analyzerName(): String`
+- `fix(RuleFixRequest request): RuleFixResult`
 
 ### From course-domain
 
@@ -1036,6 +1173,16 @@ Methods:
 | KNOWLEDGE_TITLE_LENGTH | `null` |
 | KNOWLEDGE_INSTRUCTIONS_LENGTH | `null` |
 | QUIZ_INSTRUCTION | `null` |
+| HINT_COHERENCE | `null` |
+| ANSWER_COMPLETENESS | `null` |
+| MULTIPLE_CHOICE_VALIDITY | `null` |
+| DATA_COHERENCE | `null` |
+| EXACT_DUPLICATES | `null` |
+| TRANSLATION_SENSE | `null` |
+| SINGLE_ANSWER | `null` |
+| MINI_THEORY | `null` |
+| GRAMMAR | `null` |
+| NEAR_DUPLICATES | `null` |
 
 ### RefinementTaskStatus (`enum`)
 
@@ -1045,6 +1192,7 @@ Methods:
 | COMPLETED | `null` |
 | SKIPPED | `null` |
 | STALE | `null` |
+| IN_BATCH | `null` |
 
 ### RefinementTask (`record`)
 
@@ -1057,6 +1205,7 @@ Methods:
 | diagnosisKind | `DiagnosisKind` |
 | priority | `int` |
 | status | `RefinementTaskStatus` |
+| origin | `TaskOrigin` |
 
 ### RefinementPlan (`record`)
 
@@ -1233,6 +1382,28 @@ Methods:
 | nodeCount | `int` |
 | reason | `String` |
 
+### TaskOrigin (`record`)
+
+| Field | Type |
+|-------|------|
+| finding | `Finding` |
+| cefrLevel | `CefrLevel` |
+| knowledgeId | `String` |
+| knowledgeLabel | `String` |
+| reachedQuizIds | `List<String>` |
+| coveredFindings | `List<Finding>` |
+
+### PlanFindingTally (`record`)
+
+| Field | Type |
+|-------|------|
+| analyzer | `String` |
+| countingFindings | `int` |
+| ownTasks | `int` |
+| covered | `int` |
+| unconverted | `int` |
+| unconvertedReason | `String` |
+
 ### RefinerEngine (port)
 
 Methods:
@@ -1240,6 +1411,7 @@ Methods:
 - `plan(AuditReport report, String auditId): RefinementPlan`
 - `nextTask(RefinementPlan plan): Optional<RefinementTask>`
 - `unconvertedScores(AuditReport report): List<UnconvertedScoreCount>`
+- `findingTally(AuditReport report, RefinementPlan plan): List<PlanFindingTally>`
 
 ### RefinementPlanStore (port)
 
@@ -1683,4 +1855,34 @@ Methods:
 - `load(String runId): Optional<QuizInstructionCorrectionRunReport>`
 - `listByPlan(String planId): List<QuizInstructionCorrectionRunReport>`
 - `latest(): Optional<QuizInstructionCorrectionRunReport>`
+
+### ProjectionStore (port)
+
+Methods:
+
+- `save(CourseProjection projection): SavedProjection`
+- `load(String projectionId): Optional<AuditReport>`
+
+### GoalDeclarationSource (port)
+
+Methods:
+
+- `read(): GoalDeclaration`
+
+### SealedGoalsStore (port)
+
+Methods:
+
+- `read(): Optional<SealedGoals>`
+- `write(SealedGoals sealedGoals): void`
+
+### BlindSampleStore (port)
+
+Methods:
+
+- `savePairs(BlindSample sample): void`
+- `loadPairs(String sampleId): Optional<BlindSample>`
+- `listPairs(): List<BlindSample>`
+- `saveErrorRate(ErrorRateSample sample): void`
+- `loadErrorRate(String sampleId): Optional<ErrorRateSample>`
 

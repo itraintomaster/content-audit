@@ -4825,4 +4825,76 @@ public class GetCmdTest {
         }
         throw new AssertionError("no " + lemma + "|" + pos + " among the words of the topic");
     }
+
+    @Test
+    @DisplayName("should show in get analyzers the twenty analyzers with twenty different Spanish names, the three of package B last")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R001")
+    public void shouldShowInGetAnalyzersTheTwentyAnalyzersWithTwentyDifferentSpanishNamesTheThreeOfPackageBLast() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should show in get analyzer naturalness its two tools, llama3:8b in Ollama and claude -p, each with its version, whether it is available and its exam")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R002")
+    public void shouldShowInGetAnalyzerNaturalnessItsTwoToolsLlama38bInOllamaAndClaudePEachWithItsVersionWhetherItIsAvailableAndItsExam() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should list with 'get tasks' only the panel tasks of the topic Afirmativas regulares when filtered by that topic and the panel resolution, each with its finding: single-answer and translation-sense of «I ___ a lot of vegetables.» but not its hint")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R008")
+    public void shouldListWithGetTasksOnlyThePanelTasksOfTheTopicAfirmativasRegularesWhenFilteredByThatTopicAndThePanelResolutionEachWithItsFindingSingleanswerAndTranslationsenseOfIALotOfVegetablesButNotItsHint() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should combine the filters by analyzer, severity and CEFR level with the sort by priority, as the blocking single-answer tasks of A1 in priority order")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R008")
+    public void shouldCombineTheFiltersByAnalyzerSeverityAndCEFRLevelWithTheSortByPriorityAsTheBlockingSingleanswerTasksOfA1InPriorityOrder() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject 'get tasks' filtered by an analyzer outside the catalog with 'Analyzer 'hint-coherense' not found. Run 'content-audit get analyzers' to see available analyzers.' and exit non-zero")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R008")
+    public void shouldRejectGetTasksFilteredByAnAnalyzerOutsideTheCatalogWithAnalyzerHintcoherenseNotFoundRunContentauditGetAnalyzersToSeeAvailableAnalyzersAndExitNonzero() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reject 'get tasks' filtered by a severity outside blocking, high, medium and low and exit non-zero")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R008")
+    public void shouldRejectGetTasksFilteredByASeverityOutsideBlockingHighMediumAndLowAndExitNonzero() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should list the tasks as today, vocabulary tasks included, when no filter by finding is given")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R008")
+    public void shouldListTheTasksAsTodayVocabularyTasksIncludedWhenNoFilterByFindingIsGiven() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should show 'get task' of the single-answer task of «I ___ a lot of vegetables.» with the exercise as the student sees it, its finding with its evidence (eat, like, buy and want also fit), its blocking severity, its panel resolution and what its fix may touch")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R009")
+    public void shouldShowGetTaskOfTheSingleanswerTaskOfIALotOfVegetablesWithTheExerciseAsTheStudentSeesItItsFindingWithItsEvidenceEatLikeBuyAndWantAlsoFitItsBlockingSeverityItsPanelResolutionAndWhatItsFixMayTouch() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should show 'get task' of the mini-theory task of «$In time$ u $on time$» with the forty exercises it reaches")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R009")
+    public void shouldShowGetTaskOfTheMinitheoryTaskOfInTimeUOnTimeWithTheFortyExercisesItReaches() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

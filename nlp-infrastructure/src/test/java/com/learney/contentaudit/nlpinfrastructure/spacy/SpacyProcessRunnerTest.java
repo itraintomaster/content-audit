@@ -60,4 +60,60 @@ public class SpacyProcessRunnerTest {
             Files.deleteIfExists(tempScript);
         }
     }
+
+    @Test
+    @DisplayName("should launch spaCy once per batch with only the sentences that are not in the cache")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R005")
+    public void shouldLaunchSpaCyOncePerBatchWithOnlyTheSentencesThatAreNotInTheCache() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not launch spaCy for a batch whose sentences are all in the cache")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R005")
+    public void shouldNotLaunchSpaCyForABatchWhoseSentencesAreAllInTheCache() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should return the sentences of a batch in the order they were asked, cached or not")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R005")
+    public void shouldReturnTheSentencesOfABatchInTheOrderTheyWereAskedCachedOrNot() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not reuse a cached sentence after the lemma list changes")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R006")
+    public void shouldNotReuseACachedSentenceAfterTheLemmaListChanges() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not reuse a cached sentence after the spaCy processor changes")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R006")
+    public void shouldNotReuseACachedSentenceAfterTheSpaCyProcessorChanges() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reuse a cached sentence when the same lemma list is read from another path")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R006")
+    public void shouldReuseACachedSentenceWhenTheSameLemmaListIsReadFromAnotherPath() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should never read an entry saved with the old key of the whole batch")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R006")
+    public void shouldNeverReadAnEntrySavedWithTheOldKeyOfTheWholeBatch() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

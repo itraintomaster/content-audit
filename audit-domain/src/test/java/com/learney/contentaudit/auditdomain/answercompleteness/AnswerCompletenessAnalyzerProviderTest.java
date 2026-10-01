@@ -54,4 +54,12 @@ public class AnswerCompletenessAnalyzerProviderTest {
         DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
         assertEquals(card, catalog.find("answer-completeness").orElseThrow(), "the catalog accepts the card");
     }
+
+    @Test
+    @DisplayName("should bind answer-completeness to the plan with the task kind ANSWER_COMPLETENESS on the exercise")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R008")
+    public void shouldBindAnswercompletenessToThePlanWithTheTaskKindANSWERCOMPLETENESSOnTheExercise() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

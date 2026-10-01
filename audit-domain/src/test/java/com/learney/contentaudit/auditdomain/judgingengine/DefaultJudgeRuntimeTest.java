@@ -1115,4 +1115,28 @@ public class DefaultJudgeRuntimeTest {
         }
         assertEquals(0, judge.calls(), "the coverage consults nobody");
     }
+
+    @Test
+    @DisplayName("should open the claude -p alternative of naturalness with the judges' default budget 0 when the run declares none, reusing only what is recorded")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R002")
+    public void shouldOpenTheClaudePAlternativeOfNaturalnessWithTheJudgesDefaultBudget0WhenTheRunDeclaresNoneReusingOnlyWhatIsRecorded() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare, for the claude -p alternative of naturalness opened without budget, how many consultations its pending sentences would cost and their hours one at a time and four at a time, consulting none")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R008")
+    public void shouldDeclareForTheClaudePAlternativeOfNaturalnessOpenedWithoutBudgetHowManyConsultationsItsPendingSentencesWouldCostAndTheirHoursOneAtATimeAndFourAtATimeConsultingNone() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should stop the consultations of the claude -p alternative of near-duplicates at the first failure of the service and let the run finish")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R007")
+    public void shouldStopTheConsultationsOfTheClaudePAlternativeOfNearduplicatesAtTheFirstFailureOfTheServiceAndLetTheRunFinish() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

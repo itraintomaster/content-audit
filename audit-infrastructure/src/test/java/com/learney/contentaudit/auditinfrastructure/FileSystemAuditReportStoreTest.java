@@ -555,4 +555,36 @@ class FileSystemAuditReportStoreTest {
     private static DigestNode digestKnowledge(AuditDigest digest) {
         return digest.getRoot().getChildren().get(0).getChildren().get(0).getChildren().get(0);
     }
+
+    @Test
+    @DisplayName("should keep the measures of the root when a report is saved and loaded again")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldKeepTheMeasuresOfTheRootWhenAReportIsSavedAndLoadedAgain() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should load a report saved before round 2 with an empty list of measures, without inventing them")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldLoadAReportSavedBeforeRound2WithAnEmptyListOfMeasuresWithoutInventingThem() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave a saved projection out of list and loadLatest even when it was saved after the last analysis")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R004")
+    public void shouldLeaveASavedProjectionOutOfListAndLoadLatestEvenWhenItWasSavedAfterTheLastAnalysis() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should load a saved projection by its id when no analysis has that id, so plan --audit and the suggested words query accept it as their source analysis")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R005")
+    public void shouldLoadASavedProjectionByItsIdWhenNoAnalysisHasThatIdSoPlanAuditAndTheSuggestedWordsQueryAcceptItAsTheirSourceAnalysis() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

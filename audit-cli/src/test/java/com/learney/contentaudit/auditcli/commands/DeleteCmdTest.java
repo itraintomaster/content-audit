@@ -268,4 +268,20 @@ public class DeleteCmdTest {
         assertNotEquals(0, exit,
                 "Expected non-zero exit when 'delete proposal <id>' is invoked (F-REVAPR-R004: not deletable in this iteration)");
     }
+
+    @Test
+    @DisplayName("should refuse to delete the active analysis with «Cannot delete audit '<id>': it is the active analysis. Point 'set-active' to another analysis first.»")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R006")
+    public void shouldRefuseToDeleteTheActiveAnalysisWithCannotDeleteAuditIdItIsTheActiveAnalysisPointSetactiveToAnotherAnalysisFirst() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should refuse to delete the baseline with «Cannot delete audit '<id>': it is the baseline. Fix another one with 'set-baseline' first.», even when no plan references it")
+    @Tag("FEAT-PROYU")
+    @Tag("F-PROYU-R006")
+    public void shouldRefuseToDeleteTheBaselineWithCannotDeleteAuditIdItIsTheBaselineFixAnotherOneWithSetbaselineFirstEvenWhenNoPlanReferencesIt() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

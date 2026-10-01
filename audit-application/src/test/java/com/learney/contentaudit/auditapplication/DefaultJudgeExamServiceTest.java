@@ -548,4 +548,12 @@ public class DefaultJudgeExamServiceTest {
             return records().stream().filter(r -> r.getKey().equals(key)).toList();
         }
     }
+
+    @Test
+    @DisplayName("should record the exam that naturalness takes without its local model under the version of claude -p, leaving the version of llama3 without exam")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R006")
+    public void shouldRecordTheExamThatNaturalnessTakesWithoutItsLocalModelUnderTheVersionOfClaudePLeavingTheVersionOfLlama3WithoutExam() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

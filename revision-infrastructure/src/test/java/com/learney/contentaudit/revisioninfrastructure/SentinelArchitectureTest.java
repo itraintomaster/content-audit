@@ -248,5 +248,40 @@ public class SentinelArchitectureTest {
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: SharedRuntimeCandidateJudgmentLauncher - " + e.getMessage());
     }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.panelagent.PanelAgentProposerFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: PanelAgentProposerFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.panelagent.PanelAgentRuntimeLauncher");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: PanelAgentRuntimeLauncher - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.panelagent.PanelAgentProposalParser");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: PanelAgentProposalParser - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.panelagent.DefaultPanelAgentProposerFactory");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultPanelAgentProposerFactory - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.panelagent.AgentPanelProposer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: AgentPanelProposer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.panelagent.DefaultPanelAgentProposalParser");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultPanelAgentProposalParser - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisioninfrastructure.panelagent.SharedRuntimePanelAgentLauncher");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: SharedRuntimePanelAgentLauncher - " + e.getMessage());
+    }
   }
 }

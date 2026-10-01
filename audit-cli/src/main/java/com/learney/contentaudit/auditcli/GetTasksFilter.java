@@ -23,18 +23,21 @@ public class GetTasksFilter {
 
     private Optional<DiagnosisKind> diagnosisKind;
 
+    private TaskFindingFilter findingFilter;
+
     public GetTasksFilter() {
     }
 
     public GetTasksFilter(Optional<String> planId, Optional<String> status, boolean sortByPriority,
             Optional<Integer> limit, Optional<AuditTarget> target,
-            Optional<DiagnosisKind> diagnosisKind) {
+            Optional<DiagnosisKind> diagnosisKind, TaskFindingFilter findingFilter) {
         this.planId = planId;
         this.status = status;
         this.sortByPriority = sortByPriority;
         this.limit = limit;
         this.target = target;
         this.diagnosisKind = diagnosisKind;
+        this.findingFilter = findingFilter;
     }
 
     public Optional<String> getPlanId() {
@@ -85,6 +88,14 @@ public class GetTasksFilter {
         this.diagnosisKind = diagnosisKind;
     }
 
+    public TaskFindingFilter getFindingFilter() {
+        return this.findingFilter;
+    }
+
+    public void setFindingFilter(TaskFindingFilter findingFilter) {
+        this.findingFilter = findingFilter;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,11 +106,12 @@ public class GetTasksFilter {
                     && Objects.equals(this.sortByPriority, that.sortByPriority)
                     && Objects.equals(this.limit, that.limit)
                     && Objects.equals(this.target, that.target)
-                    && Objects.equals(this.diagnosisKind, that.diagnosisKind);
+                    && Objects.equals(this.diagnosisKind, that.diagnosisKind)
+                    && Objects.equals(this.findingFilter, that.findingFilter);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(planId, status, sortByPriority, limit, target, diagnosisKind);
+        return Objects.hash(planId, status, sortByPriority, limit, target, diagnosisKind, findingFilter);
     }
 }

@@ -215,6 +215,8 @@ Examples:
 | `getQuizInstructionCoverage(): Optional<QuizInstructionCoverageDiagnosis>` | (none) |
 | `getJudgeCoverages(): List<JudgeCoverageDiagnosis>` | (none) |
 | `getLemmaRecurrenceDiagnosis(): Optional<LemmaRecurrenceCourseDiagnosis>` | (none) |
+| `getLocalToolRuns(): List<LocalToolRunDiagnosis>` | (none) |
+| `getNaturalnessQueue(): Optional<NaturalnessQueueDiagnosis>` | (none) |
 
 #### LevelDiagnoses (port)
 
@@ -261,6 +263,9 @@ Examples:
 | `getSingleAnswerDiagnosis(): Optional<SingleAnswerDiagnosis>` | (none) |
 | `getMiniTheoryDiagnosis(): Optional<MiniTheoryDiagnosis>` | (none) |
 | `getOffLevelWordsDiagnosis(): Optional<OffLevelWordsDiagnosis>` | (none) |
+| `getGrammarDiagnosis(): Optional<GrammarDiagnosis>` | (none) |
+| `getNaturalnessDiagnosis(): Optional<NaturalnessDiagnosis>` | (none) |
+| `getNearDuplicateDiagnosis(): Optional<NearDuplicateDiagnosis>` | (none) |
 
 #### AuditReportStore (port)
 
@@ -368,6 +373,7 @@ Examples:
 | `find(String analyzerName): Optional<AnalyzerDescriptor>` | (none) |
 | `provider(String analyzerName): Optional<AnalyzerProvider>` | (none) |
 | `planBinding(String analyzerName): Optional<AnalyzerPlanBinding>` | (none) |
+| `measure(String analyzerName): Optional<AnalyzerMeasure>` | (none) |
 
 #### FindingCollector (port)
 
@@ -512,6 +518,49 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `getScoreFor(FindingSeverity severity): double` | (none) |
+
+#### BaselineStore (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+**Implemented by:** FileSystemBaselineStore (audit-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `read(): Optional<Baseline>` | (none) |
+| `write(Baseline baseline): void` | (none) |
+
+#### AnalyzerCorrection (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `analyzerName(): String` | (none) |
+| `editScope(FindingResolution resolution): List<ExercisePart>` | (none) |
+| `coveringAnalyzer(): Optional<String>` | (none) |
+| `groupsByTopic(): boolean` | (none) |
+| `tieRules(): List<String>` | (none) |
+| `offersTwoFixes(): boolean` | (none) |
+| `concernsAudio(Finding finding): boolean` | (none) |
+
+#### AnalyzerCorrectionCatalog (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `find(String analyzerName): Optional<AnalyzerCorrection>` | (none) |
+| `list(): List<AnalyzerCorrection>` | (none) |
+
+#### RuleFix (port)
+
+**Package:** `com.learney.contentaudit.auditdomain`
+
+| Method | Throws |
+|--------|--------|
+| `analyzerName(): String` | (none) |
+| `fix(RuleFixRequest request): RuleFixResult` | (none) |
 
 #### TokenClassifier (package: coca)
 
@@ -860,6 +909,156 @@ Examples:
 |--------|--------|
 | `taughtWords(AuditNode knowledgeNode): TaughtWords` | (none) |
 
+#### LocalTool (package: localtools)
+
+**Package:** `com.learney.contentaudit.auditdomain.localtools`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `status(): LocalToolStatus` | (none) |
+
+#### GrammarChecker (package: localtools)
+
+**Package:** `com.learney.contentaudit.auditdomain.localtools`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `check(String sentence,EnglishVariant variant): List<GrammarMatch>` | (none) |
+
+#### YesNoModel (package: localtools)
+
+**Package:** `com.learney.contentaudit.auditdomain.localtools`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `ask(String system,String question): YesNoProbabilities` | (none) |
+
+#### EmbeddingModel (package: localtools)
+
+**Package:** `com.learney.contentaudit.auditdomain.localtools`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `embed(String text): SentenceEmbedding` | (none) |
+
+#### LocalToolGate (package: localtools)
+
+**Package:** `com.learney.contentaudit.auditdomain.localtools`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `decide(String analyzerName,LocalTool tool,String methodId,EvaluationRunPolicy policy): LocalToolGateDecision` | (none) |
+| `card(String analyzerName,LocalTool tool,String methodId): LocalToolCard` | (none) |
+| `alternativeCard(String analyzerName,Evaluator alternative): LocalToolCard` | (none) |
+
+#### FinishedSentenceReader (package: finishedsentence)
+
+**Package:** `com.learney.contentaudit.auditdomain.finishedsentence`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `read(AuditableQuiz quiz,SentenceMode mode): List<FinishedSentence>` | (none) |
+
+#### GrammarMatchFilter (package: grammar)
+
+**Package:** `com.learney.contentaudit.auditdomain.grammar`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `keep(List<GrammarMatch> american,List<GrammarMatch> british): List<GrammarMatch>` | (none) |
+
+#### FinalPunctuationCheck (package: grammar)
+
+**Package:** `com.learney.contentaudit.auditdomain.grammar`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `check(FinishedSentence sentence,List<NlpToken> tokens): Optional<GrammarIssue>` | (none) |
+
+#### GrammarIssueClassifier (package: grammar)
+
+**Package:** `com.learney.contentaudit.auditdomain.grammar`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `classify(GrammarMatch match,FinishedSentence sentence): GrammarIssue` | (none) |
+
+#### GrammarConfig (package: grammar)
+
+**Package:** `com.learney.contentaudit.auditdomain.grammar`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `methodId(): String` | (none) |
+| `keptCategories(): Set<String>` | (none) |
+| `keptRules(): Set<String>` | (none) |
+| `excludedRules(): Set<String>` | (none) |
+
+#### NaturalnessScorer (package: naturalness)
+
+**Package:** `com.learney.contentaudit.auditdomain.naturalness`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `number(String payload): Optional<Double>` | (none) |
+| `nativeWouldSay(String payload): Optional<Boolean>` | (none) |
+
+#### NaturalnessConfig (package: naturalness)
+
+**Package:** `com.learney.contentaudit.auditdomain.naturalness`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `methodId(): String` | (none) |
+| `system(): String` | (none) |
+| `question(String sentence): String` | (none) |
+| `thresholdFor(String toolVersion,String level): Optional<Double>` | (none) |
+
+#### NearDuplicateRules (package: nearduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.nearduplicates`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `sameRequest(AuditableQuiz first,AuditableQuiz second): boolean` | (none) |
+| `wildcardDifference(AuditableQuiz first,AuditableQuiz second): Optional<String>` | (none) |
+| `wordSimilarity(AuditableQuiz first,AuditableQuiz second): double` | (none) |
+
+#### NearDuplicatesConfig (package: nearduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.nearduplicates`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `methodId(): String` | (none) |
+| `inputPrefix(): String` | (none) |
+| `similarityThreshold(): double` | (none) |
+| `candidateWordSimilarity(): double` | (none) |
+
+#### SameExerciseQuestion (package: nearduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.nearduplicates`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `subjectOf(AuditableQuiz kept,AuditableQuiz copy): EvaluationSubject` | (none) |
+| `read(String payload): Optional<SameExerciseVerdict>` | (none) |
+
 ### Module: course-domain
 
 #### CourseRepository (port)
@@ -907,6 +1106,7 @@ Examples:
 | `plan(AuditReport report, String auditId): RefinementPlan` | (none) |
 | `nextTask(RefinementPlan plan): Optional<RefinementTask>` | (none) |
 | `unconvertedScores(AuditReport report): List<UnconvertedScoreCount>` | (none) |
+| `findingTally(AuditReport report, RefinementPlan plan): List<PlanFindingTally>` | (none) |
 
 #### RefinementPlanStore (port)
 
@@ -977,6 +1177,15 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `lightsFor(AuditReport report, String auditId, String knowledgeId, SuggestedLemmaQueryCriteria criteria): TopicWordLights` | (none) |
+
+#### ErrorTaskBriefer (package: errortask)
+
+**Package:** `com.learney.contentaudit.refinerdomain.errortask`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `brief(AuditReport report, RefinementTask task): Optional<ErrorTaskBrief>` | (none) |
 
 ### Module: audit-application
 
@@ -1117,6 +1326,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `getConsolidated(String coursePath, String format): Integer` | (none) |
+| `getConsolidated(String coursePath, String format, Map<String,Integer> analyzerBudgets): Integer` | (none) |
 
 #### SetActiveAnalysisCommand [SEALED] (port)
 
@@ -1167,6 +1377,85 @@ Examples:
 | `takeExam(String judgeName,String casesFile,String photoCourse,Integer budget,Integer concurrency,String verdictsOut): Integer` | (none) |
 | `recordExam(String resultFile): Integer` | (none) |
 | `showExams(String judgeName): Integer` | (none) |
+
+#### SetBaselineCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `setBaseline(String auditId): Integer` | (none) |
+| `showBaseline(String format): Integer` | (none) |
+
+#### SaveProjectionCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `saveProjection(String coursePath, List<String> proposalIds, Map<String,Integer> analyzerBudgets, String format): Integer` | (none) |
+
+#### CompareCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `compare(String coursePath, List<String> proposalIds, Map<String,Integer> analyzerBudgets, String format): Integer` | (none) |
+
+#### GoalsCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `listGoals(String format): Integer` | (none) |
+| `setGoals(String format): Integer` | (none) |
+
+#### BlindSampleCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `draw(String coursePath, List<String> proposalIds, Long seed, String format): Integer` | (none) |
+| `show(String sampleId, String format): Integer` | (none) |
+| `answer(String sampleId, int pairIndex, String answer, String reviewer): Integer` | (none) |
+| `close(String sampleId, String format): Integer` | (none) |
+
+#### ErrorRateCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `draw(String coursePath, String level, int size, Long seed, String format): Integer` | (none) |
+| `show(String sampleId, String format): Integer` | (none) |
+| `mark(String sampleId, int itemIndex, boolean hasError, String reviewer): Integer` | (none) |
+| `close(String sampleId, String format): Integer` | (none) |
+
+#### BatchCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `openBatch(String level, Integer topicsAtOnce, Integer queriesAtOnce, List<String> convertToMultipleChoice): Integer` | (none) |
+| `estimateBatch(): Integer` | (none) |
+| `runBatch(Integer queryCap): Integer` | (none) |
+| `closeBatch(): Integer` | (none) |
+| `dropFromBatch(String changeId, String ruleId, String reason): Integer` | (none) |
+| `reportBatch(String batchId, String format): Integer` | (none) |
+
+#### TrayCommand [SEALED] (port)
+
+**Package:** `com.learney.contentaudit.auditcli`
+
+| Method | Throws |
+|--------|--------|
+| `showTray(String format): Integer` | (none) |
+| `answerTray(String itemId, String answer, Integer pairIndex, String changeId, String fixFile, String note): Integer` | (none) |
+| `publishTray(String note): Integer` | (none) |
 
 #### EphemeralPlanRenderer (package: commands)
 
@@ -1286,6 +1575,15 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `format(QuizInstructionCorrectionRunReport report): String` | (none) |
+
+#### BatchComparisonFormatter (package: formatting)
+
+**Package:** `com.learney.contentaudit.auditcli.formatting`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `format(BatchComparison comparison, String format): String` | (none) |
 
 #### WorkdirResolver (package: bootstrap) [SEALED]
 
@@ -1606,6 +1904,70 @@ Examples:
 | `listByPlan(String planId): List<QuizInstructionCorrectionRunReport>` | (none) |
 | `latest(): Optional<QuizInstructionCorrectionRunReport>` | (none) |
 
+#### ProjectionStore (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+**Implemented by:** FileSystemProjectionStore (audit-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `save(CourseProjection projection): SavedProjection` | (none) |
+| `load(String projectionId): Optional<AuditReport>` | (none) |
+
+#### GoalDeclarationSource (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+**Implemented by:** FileSystemGoalDeclarationSource (audit-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `read(): GoalDeclaration` | (none) |
+
+#### SealedGoalsStore (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+**Implemented by:** FileSystemSealedGoalsStore (audit-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `read(): Optional<SealedGoals>` | (none) |
+| `write(SealedGoals sealedGoals): void` | (none) |
+
+#### BlindSampleStore (port)
+
+**Package:** `com.learney.contentaudit.revisiondomain`
+
+**Implemented by:** FileSystemBlindSampleStore (audit-infrastructure)
+
+| Method | Throws |
+|--------|--------|
+| `savePairs(BlindSample sample): void` | (none) |
+| `loadPairs(String sampleId): Optional<BlindSample>` | (none) |
+| `listPairs(): List<BlindSample>` | (none) |
+| `saveErrorRate(ErrorRateSample sample): void` | (none) |
+| `loadErrorRate(String sampleId): Optional<ErrorRateSample>` | (none) |
+
+#### PendingApplier (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `apply(CourseEntity course, List<RevisionProposal> proposals): AppliedProposals` | (none) |
+
+#### ProjectionMeasurer (package: engine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.engine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `measure(CourseEntity course, AuditReport startingAnalysis, Map<String,Integer> analyzerBudgets): AuditReport` | (none) |
+
 #### LemmaAbsenceQuizCandidateGenerator (package: lemmaabsence)
 
 **Package:** `com.learney.contentaudit.revisiondomain.lemmaabsence`
@@ -1632,6 +1994,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `build(Path coursePath): ConsolidatedView` | (none) |
+| `build(Path coursePath, ProjectionScope scope): ConsolidatedView` | (none) |
 
 #### ConsolidatedViewBuilderFactory (package: consolidatedview)
 
@@ -1705,6 +2068,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `changeableFields(DiagnosisKind kind, AuditTarget target): Set<ScopedField>` | (none) |
+| `changeableFields(Set<ExercisePart> parts, AuditTarget target): Set<ScopedField>` | (none) |
 
 #### PreservationCheck (package: preservation)
 
@@ -1714,6 +2078,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `verify(CourseEntity courseBefore, CourseEntity courseAfter, CourseElementSnapshot revised, DiagnosisKind kind): List<PreservationViolation>` | (none) |
+| `verifyWithin(CourseEntity courseBefore, CourseEntity courseAfter, CourseElementSnapshot revised, Set<ScopedField> changeable): List<PreservationViolation>` | (none) |
 
 #### PreservationRepair (package: preservation)
 
@@ -1810,6 +2175,384 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `create(QuizInstructionCandidateAssessorConfig config): QuizInstructionCandidateAssessor` | (none) |
+
+#### CourseProjector (package: projection)
+
+**Package:** `com.learney.contentaudit.revisiondomain.projection`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `project(Path coursePath, ProjectionScope scope): CourseProjection` | (none) |
+
+#### CourseProjectorFactory (package: projection)
+
+**Package:** `com.learney.contentaudit.revisiondomain.projection`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(CourseProjectorConfig config): CourseProjector` | (none) |
+
+#### BatchComparator (package: comparison)
+
+**Package:** `com.learney.contentaudit.revisiondomain.comparison`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `compare(Path coursePath, ProjectionScope scope): BatchComparison` | (none) |
+
+#### GoalBook (package: comparison)
+
+**Package:** `com.learney.contentaudit.revisiondomain.comparison`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `effective(): EffectiveGoals` | (none) |
+| `seal(): SealedGoals` | (none) |
+| `sealed(): Optional<SealedGoals>` | (none) |
+
+#### ChangeAttributor (package: comparisonengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.comparisonengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `attribute(CourseProjection projection, List<FloorBreach> breaches): List<FloorBreach>` | (none) |
+
+#### BlindSampleService (package: blindsample)
+
+**Package:** `com.learney.contentaudit.revisiondomain.blindsample`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `draw(Path coursePath, ProjectionScope scope, Long seed): BlindSample` | (none) |
+| `pairs(String sampleId): List<BlindPairView>` | (none) |
+| `answer(String sampleId, int pairIndex, PairAnswer answer, String reviewer): void` | SampleClosedException |
+| `close(String sampleId): BlindSampleResult` | (none) |
+| `result(String sampleId): Optional<BlindSampleResult>` | (none) |
+
+#### SampleOutcomeSource (package: blindsample)
+
+**Package:** `com.learney.contentaudit.revisiondomain.blindsample`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `outcomeFor(String scopeId): Optional<SampleOutcome>` | (none) |
+
+#### BlindErrorRateService (package: blindsample)
+
+**Package:** `com.learney.contentaudit.revisiondomain.blindsample`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `draw(Path coursePath, AuditTarget nodeTarget, String nodeId, int size, Long seed): ErrorRateSample` | (none) |
+| `items(String sampleId): List<ErrorRateItemView>` | (none) |
+| `mark(String sampleId, int itemIndex, boolean hasError, String reviewer): void` | SampleClosedException |
+| `close(String sampleId): ErrorRateResult` | (none) |
+
+#### SampleStatistics (package: blindsampleengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.blindsampleengine`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `proportion(int count, int total): ProportionEstimate` | (none) |
+| `kappa(List<PairAnswer> responsible, List<PairAnswer> other): double` | (none) |
+
+#### ChangeGate (package: nonregression)
+
+**Package:** `com.learney.contentaudit.revisiondomain.nonregression`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `check(ChangeProbe probe): ChangeGateVerdict` | (none) |
+
+#### BatchGate (package: nonregression)
+
+**Package:** `com.learney.contentaudit.revisiondomain.nonregression`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `evaluate(BatchComparison comparison, List<String> changedOutsideScope, List<String> exceptionProposalIds): BatchGateVerdict` | (none) |
+
+#### GateFactory (package: nonregression)
+
+**Package:** `com.learney.contentaudit.revisiondomain.nonregression`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `changeGate(): ChangeGate` | (none) |
+| `batchGate(): BatchGate` | (none) |
+
+#### PanelProposer (package: panel)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panel`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `propose(PanelRequest request): PanelProposal` | (none) |
+
+#### QueryAllowance (package: panel)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panel`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `tryReserve(int queries): boolean` | (none) |
+| `settle(int reserved, int spent): void` | (none) |
+| `trip(String cause): void` | (none) |
+| `tripped(): Optional<String>` | (none) |
+| `spent(): int` | (none) |
+
+#### PanelDecisionSink (package: panel)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panel`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `accept(PanelDecision decision): void` | (none) |
+
+#### TopicMeter (package: panel)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panel`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `measure(TopicWork work, KnowledgeEntity knowledgeState, List<String> analyzers, QueryAllowance allowance): UnitMeasurement` | (none) |
+
+#### PanelRunner (package: panel)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panel`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `runTopics(List<TopicWork> topics, PanelRunSettings settings, QueryAllowance allowance, PanelDecisionSink sink): List<PanelTopicResult>` | (none) |
+| `assessGiven(TopicWork work, String quizId, PanelCandidate candidate, PanelRunSettings settings, QueryAllowance allowance): PanelDecision` | (none) |
+
+#### PanelRunnerFactory (package: panel)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panel`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(PanelRunnerConfig config): PanelRunner` | (none) |
+| `meter(PanelRunnerConfig config): TopicMeter` | (none) |
+| `allowance(Integer cap, int queriesAtOnce): QueryAllowance` | (none) |
+
+#### TopicPanel (package: panelengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panelengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `run(TopicWork work, PanelRunSettings settings, QueryAllowance allowance, PanelDecisionSink sink): PanelTopicResult` | (none) |
+| `assess(TopicWork work, String quizId, PanelCandidate candidate, PanelRunSettings settings, QueryAllowance allowance): PanelDecision` | (none) |
+
+#### CandidateScreen (package: panelengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panelengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `screen(TopicWork work, String quizId, PanelCandidate candidate): List<String>` | (none) |
+
+#### PanelDecisionScript (package: panelengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.panelengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `decide(List<ErrorTaskBrief> tasks, UnitMeasurement original, List<ScoredCandidate> candidates): ScriptDecision` | (none) |
+
+#### BatchService (package: batch)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batch`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `open(BatchOpenRequest request): CorrectionBatch` | (none) |
+| `current(): Optional<CorrectionBatch>` | (none) |
+| `estimate(): BatchEstimate` | (none) |
+| `run(BatchRunRequest request): BatchReport` | (none) |
+| `close(): BatchClosing` | (none) |
+| `adjust(BatchAdjustment adjustment): CorrectionBatch` | (none) |
+| `report(String batchId): BatchReport` | (none) |
+| `publish(BatchPublishRequest request): BatchPublication` | (none) |
+
+#### BatchStore (package: batch)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batch`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `save(CorrectionBatch batch): void` | (none) |
+| `load(String batchId): Optional<CorrectionBatch>` | (none) |
+| `open(): Optional<CorrectionBatch>` | (none) |
+| `list(): List<CorrectionBatch>` | (none) |
+| `latestPublished(): Optional<CorrectionBatch>` | (none) |
+
+#### BatchServiceFactory (package: batch)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batch`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(BatchServiceConfig config): BatchService` | (none) |
+
+#### BatchTaskSelector (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `select(RefinementPlan plan, AuditReport start, CefrLevel level, List<String> conversionTopics, List<AudioRerecordRequest> pendingRerecords): CorrectionBatch` | (none) |
+
+#### BatchCostEstimator (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `estimate(CorrectionBatch batch, List<ErrorTaskBrief> briefs): BatchEstimate` | (none) |
+
+#### RuleStage (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `apply(CorrectionBatch batch, AuditReport start, CourseEntity course): CorrectionBatch` | (none) |
+
+#### PanelStage (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `run(CorrectionBatch batch, AuditReport start, CourseEntity course, QueryAllowance allowance): CorrectionBatch` | (none) |
+
+#### BatchChangeLedger (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `record(CorrectionBatch batch, BatchChange change, CourseEntity startCourse): CorrectionBatch` | (none) |
+| `drop(CorrectionBatch batch, String changeId, String reason, CourseEntity startCourse): CorrectionBatch` | (none) |
+| `composedCourse(CorrectionBatch batch, CourseEntity startCourse): CourseEntity` | (none) |
+
+#### BatchCloser (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `close(CorrectionBatch batch, CourseEntity startCourse): CorrectionBatch` | (none) |
+
+#### BatchPublisher (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `publish(CorrectionBatch batch, BatchPublishRequest request, CourseEntity startCourse): CorrectionBatch` | (none) |
+
+#### BatchReportBuilder (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `build(CorrectionBatch batch): BatchReport` | (none) |
+
+#### TrayService (package: tray)
+
+**Package:** `com.learney.contentaudit.revisiondomain.tray`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `view(): Tray` | (none) |
+| `answer(TrayResponse response): Tray` | (none) |
+| `publish(String approvedBy, String note): BatchPublication` | (none) |
+
+#### TrayDecisionStore (package: tray)
+
+**Package:** `com.learney.contentaudit.revisiondomain.tray`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `remember(RememberedDecision decision): void` | (none) |
+| `recall(String identityKey, String marker, String contentFingerprint): Optional<RememberedDecision>` | (none) |
+
+#### TrayServiceFactory (package: tray)
+
+**Package:** `com.learney.contentaudit.revisiondomain.tray`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(TrayServiceConfig config): TrayService` | (none) |
+
+#### TrayAssembler (package: trayengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.trayengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `assemble(CorrectionBatch batch, List<BlindPairView> blindPairs, boolean blindSampleClosed, CourseEntity course): Tray` | (none) |
+
+#### RuleSampleDrawer (package: trayengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.trayengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `draw(CorrectionBatch batch, String ruleId, int size): List<BatchChange>` | (none) |
+
+#### DecisionMemory (package: trayengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.trayengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `recall(Finding finding, QuizTemplateEntity quiz): Optional<RememberedDecision>` | (none) |
+| `remember(Finding finding, QuizTemplateEntity quiz, TrayAnswer answer, String batchId): void` | (none) |
 
 ### Module: revision-infrastructure
 
@@ -1962,6 +2705,34 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `parse(RunState runState, CorrectionCriterion criterion): CriterionVerdict` | (none) |
+
+#### PanelAgentProposerFactory (package: panelagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.panelagent`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `create(LagenConfig config): PanelProposer` | (none) |
+| `providerIdFor(LagenConfig config): String` | (none) |
+
+#### PanelAgentRuntimeLauncher (package: panelagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.panelagent`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `launch(String agentName, Map<String,String> inputs, ChatModel chatModel): RunState` | (none) |
+
+#### PanelAgentProposalParser (package: panelagent)
+
+**Package:** `com.learney.contentaudit.revisioninfrastructure.panelagent`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `parse(RunState runState, PanelRequest request): PanelProposal` | (none) |
 
 ### Module: evaluation-ledger-domain
 
@@ -2148,4 +2919,26 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `create(AgentJudgeConfig config,LlmProviderResolved provider): ChatModel` | (none) |
+
+### Module: local-language-infrastructure
+
+#### OllamaModelFactory (factory)
+
+**Package:** `com.learney.contentaudit.locallanguageinfrastructure`
+
+| Method | Throws |
+|--------|--------|
+| `yesNoModel(OllamaEndpoint endpoint,String model): YesNoModel` | (none) |
+| `embeddingModel(OllamaEndpoint endpoint,String model): EmbeddingModel` | (none) |
+
+#### OllamaApi (package: ollama)
+
+**Package:** `com.learney.contentaudit.locallanguageinfrastructure.ollama`
+**Visibility:** public
+
+| Method | Throws |
+|--------|--------|
+| `probe(String model): LocalToolStatus` | (none) |
+| `firstTokenProbabilities(String model,String system,String prompt): List<OllamaTokenProbability>` | (none) |
+| `embed(String model,String input): List<Double>` | (none) |
 

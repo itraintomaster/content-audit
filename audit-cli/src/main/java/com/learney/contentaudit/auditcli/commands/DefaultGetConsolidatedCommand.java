@@ -1,4 +1,5 @@
 package com.learney.contentaudit.auditcli.commands;
+import java.util.Map;
 
 import com.learney.contentaudit.auditcli.GetConsolidatedCommand;
 import com.learney.contentaudit.auditcli.formatting.ConsolidatedViewFormatter;

@@ -1660,4 +1660,60 @@ public class IAuditEngineTest {
         });
         return new AuditableCourse(milestones);
     }
+
+    @Test
+    @DisplayName("should leave naturalness and near-duplicates out of the base run, even though near-duplicates has the instant rule same-but-wildcard")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R003")
+    public void shouldLeaveNaturalnessAndNearduplicatesOutOfTheBaseRunEvenThoughNearduplicatesHasTheInstantRuleSamebutwildcard() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should run grammar in the base run because it is instant")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R003")
+    public void shouldRunGrammarInTheBaseRunBecauseItIsInstant() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should run fourteen of the twenty analyzers in the base run, the thirteen instant ones and multiple-choice-validity with budget 0")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R003")
+    public void shouldRunFourteenOfTheTwentyAnalyzersInTheBaseRunTheThirteenInstantOnesAndMultiplechoicevalidityWithBudget0() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should store at the root one measure per analyzer that ran, in catalog order, and no measure in the nodes below")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R004")
+    public void shouldStoreAtTheRootOneMeasurePerAnalyzerThatRanInCatalogOrderAndNoMeasureInTheNodesBelow() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give the base of 29/9 on its second run in the same process 73.92% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 8.00 of recurrence, as a new invocation, and not 72.90")
+    @Tag("FEAT-CERO")
+    @Tag("F-CERO-R001")
+    public void shouldGiveTheBaseOf299OnItsSecondRunInTheSameProcess7392InTheCourse965494167945And6351InTheLevels5793OfCOCAInB1And800OfRecurrenceAsANewInvocationAndNot7290() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give a run the numbers of a new invocation whatever courses ran before it, so a word only the earlier course used is absent for lemma-absence and lemma-count")
+    @Tag("FEAT-CERO")
+    @Tag("F-CERO-R001")
+    public void shouldGiveARunTheNumbersOfANewInvocationWhateverCoursesRanBeforeItSoAWordOnlyTheEarlierCourseUsedIsAbsentForLemmaabsenceAndLemmacount() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave the first report untouched by a second run in the same process, its 55 topics keeping their COCA diagnosis, A1 · Present Simple with 2,366 tokens in four bands")
+    @Tag("FEAT-CERO")
+    @Tag("F-CERO-R002")
+    public void shouldLeaveTheFirstReportUntouchedByASecondRunInTheSameProcessIts55TopicsKeepingTheirCOCADiagnosisA1PresentSimpleWith2366TokensInFourBands() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -105,4 +105,36 @@ public class SpacyNlpTokenizerFactoryTest {
             Files.deleteIfExists(failScript);
         }
     }
+
+    @Test
+    @DisplayName("should build a tokenizer that stops with NlpResourcesUnavailableException naming the lemma list path when the list is missing, before tokenizing any sentence")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R007")
+    public void shouldBuildATokenizerThatStopsWithNlpResourcesUnavailableExceptionNamingTheLemmaListPathWhenTheListIsMissingBeforeTokenizingAnySentence() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should build a tokenizer that stops with NlpResourcesUnavailableException when the spaCy processor script is missing")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R007")
+    public void shouldBuildATokenizerThatStopsWithNlpResourcesUnavailableExceptionWhenTheSpaCyProcessorScriptIsMissing() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should build a tokenizer that stops when a sentence is not cached and spaCy does not run, instead of returning basic tokens")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R007")
+    public void shouldBuildATokenizerThatStopsWhenASentenceIsNotCachedAndSpaCyDoesNotRunInsteadOfReturningBasicTokens() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should build a tokenizer that tokenizes from the cache without launching spaCy when the list and the processor are in place")
+    @Tag("FEAT-RONDA2")
+    @Tag("F-RONDA2-R007")
+    public void shouldBuildATokenizerThatTokenizesFromTheCacheWithoutLaunchingSpaCyWhenTheListAndTheProcessorAreInPlace() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

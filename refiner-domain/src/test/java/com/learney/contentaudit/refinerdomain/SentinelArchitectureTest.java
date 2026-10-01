@@ -128,6 +128,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: UnconvertedScoreCount - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.refinerdomain.TaskOrigin");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: TaskOrigin - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.PlanFindingTally");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: PlanFindingTally - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.refinerdomain.RefinerEngine");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: RefinerEngine - " + e.getMessage());
@@ -261,6 +271,21 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.refinerdomain.topicwords.DefaultTopicWordLightsQuery");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultTopicWordLightsQuery - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ErrorTaskBrief - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBriefer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: ErrorTaskBriefer - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.refinerdomain.errortask.DefaultErrorTaskBriefer");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultErrorTaskBriefer - " + e.getMessage());
     }
   }
 }

@@ -1,4 +1,5 @@
 package com.learney.contentaudit.refinerdomain;
+import com.learney.contentaudit.auditdomain.AnalyzerCorrectionCatalog;
 import javax.annotation.processing.Generated;
 import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
@@ -38,9 +39,12 @@ public class DefaultRefinerEngine implements RefinerEngine {
 
     private final AnalyzerCatalog analyzerCatalog;
 
-    public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog) {
-        this.analyzerCatalog = analyzerCatalog;
-    }
+private final AnalyzerCorrectionCatalog analyzerCorrectionCatalog;
+
+public DefaultRefinerEngine(AnalyzerCatalog analyzerCatalog, AnalyzerCorrectionCatalog analyzerCorrectionCatalog) {
+    this.analyzerCatalog = analyzerCatalog;
+    this.analyzerCorrectionCatalog = analyzerCorrectionCatalog;
+}
 
     private static final DateTimeFormatter TIMESTAMP_FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss").withZone(ZoneOffset.UTC);
@@ -80,7 +84,7 @@ public class DefaultRefinerEngine implements RefinerEngine {
                     st.nodeLabel,
                     st.diagnosisKind,
                     i + 1,
-                    RefinementTaskStatus.PENDING
+                    RefinementTaskStatus.PENDING, null
             ));
         }
 
@@ -286,4 +290,10 @@ public class DefaultRefinerEngine implements RefinerEngine {
             this.diagnosisKind = diagnosisKind;
         }
     }
+
+    @Override
+    public List<PlanFindingTally> findingTally(AuditReport report, RefinementPlan plan) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

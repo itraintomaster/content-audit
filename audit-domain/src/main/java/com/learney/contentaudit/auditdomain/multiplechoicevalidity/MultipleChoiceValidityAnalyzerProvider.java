@@ -86,7 +86,7 @@ public class MultipleChoiceValidityAnalyzerProvider implements AnalyzerProvider 
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.RULE, FindingResolution.PANEL),
                 cost,
-                "Opción múltiple válida");
+                "Opción múltiple válida", null);
     }
 
     @Override
