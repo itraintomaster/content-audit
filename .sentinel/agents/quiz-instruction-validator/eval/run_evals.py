@@ -25,11 +25,16 @@ from typing import Any
 AGENT_DIR = Path(__file__).resolve().parents[1]
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 DEFAULT_FIXTURES = Path(__file__).with_name("fixtures.json")
-# The quizzes of the corpus that do not follow their instructions in the course of today (the 29/9
-# photo plus 0.2). There is none: «I will stay» (…2145), the one that used to fail, was corrected on
-# 11/8 to «I 'll stay», and the instructions now ask for short forms «si es posible».
+# The real quizzes of the corpus that do not follow their instructions in the course of today (the
+# 29/9 photo plus 0.2). There is none: «I will stay» (…2145), the one that used to fail, was
+# corrected on 11/8 to «I 'll stay», and the instructions now ask for short forms «si es posible».
 EXPECTED_FAIL_IDS: frozenset = frozenset()
 CONTRACTED_AFFIRMATIVE_ID = "67fab6d59930102295342145"
+# So the corpus also carries invented quizzes of the same topic that do not follow it: built like the
+# real ones, absent from the course, never taken from an exam. Every one of them must fail.
+INVENTED_PREFIX = "inventado-"
+MIN_INVENTED = 2
+CASE_KEYS = {"caseId", "cefrLevel", "topic", "title", "instructions", "quiz", "expected"}
 
 TOP_KEYS = {
     "schemaVersion",
@@ -175,8 +180,8 @@ def validate_fixture(path: Path) -> dict[str, Any]:
     fixture = load_json(path)
     require(isinstance(fixture, dict), "fixture root must be an object")
     require(
-        set(fixture) == {"name", "source", "cases"},
-        "fixture root must contain exactly name/source/cases",
+        set(fixture) == {"name", "source", "cases", "invented"},
+        "fixture root must contain exactly name/source/cases/invented",
     )
     cases = fixture["cases"]
     require(isinstance(cases, list) and len(cases) == 10, "fixture needs 10 cases")
@@ -192,17 +197,7 @@ def validate_fixture(path: Path) -> dict[str, Any]:
     for index, case in enumerate(cases):
         prefix = f"cases[{index}]"
         require(
-            isinstance(case, dict)
-            and set(case)
-            == {
-                "caseId",
-                "cefrLevel",
-                "topic",
-                "title",
-                "instructions",
-                "quiz",
-                "expected",
-            },
+            isinstance(case, dict) and set(case) == CASE_KEYS,
             f"{prefix} has invalid keys",
         )
         require(case["caseId"] not in case_ids, f"{prefix} duplicate caseId")
@@ -264,6 +259,57 @@ def validate_fixture(path: Path) -> dict[str, Any]:
         required_ids <= quiz_ids,
         "corpus is missing required nominal-subject/direct-question edge cases",
     )
+
+    invented = fixture["invented"]
+    require(
+        isinstance(invented, list) and len(invented) >= MIN_INVENTED,
+        f"fixture needs at least {MIN_INVENTED} invented failing cases",
+    )
+    for index, case in enumerate(invented):
+        prefix = f"invented[{index}]"
+        require(
+            isinstance(case, dict) and set(case) == CASE_KEYS,
+            f"{prefix} has invalid keys",
+        )
+        require(case["caseId"] not in case_ids, f"{prefix} duplicate caseId")
+        case_ids.add(case["caseId"])
+        require(case["cefrLevel"] == "A1", f"{prefix} must use CEFR A1")
+        quiz = case["quiz"]
+        require(isinstance(quiz, dict), f"{prefix}.quiz must be a full object")
+        quiz_id = quiz.get("id")
+        require(
+            isinstance(quiz_id, str) and quiz_id.startswith(INVENTED_PREFIX),
+            f"{prefix}.quiz id must start with {INVENTED_PREFIX}",
+        )
+        require(quiz_id not in source_by_id and quiz_id not in quiz_ids,
+                f"{prefix}.quiz id must be new")
+        quiz_ids.add(quiz_id)
+        require(
+            set(quiz) == set(source_by_id[next(iter(source_by_id))]),
+            f"{prefix}.quiz must have the fields of a quiz of the course",
+        )
+        require(
+            case["topic"] == quiz["topicName"]
+            and case["title"] == quiz["title"]
+            and case["instructions"] == quiz["instructions"],
+            f"{prefix} context disagrees with full quiz",
+        )
+        sentences = quiz.get("form", {}).get("sentences") or []
+        require(
+            bool(sentences)
+            and all(sentence not in {s for q in source_quizzes for s in q.get("form", {}).get("sentences") or []}
+                    for sentence in sentences),
+            f"{prefix} must not repeat a sentence of the course",
+        )
+        expected = case["expected"]
+        require(
+            isinstance(expected, dict)
+            and set(expected) == {"followsInstructions", "rationale"}
+            and expected["followsInstructions"] is False
+            and isinstance(expected["rationale"], str)
+            and bool(expected["rationale"].strip()),
+            f"{prefix}.expected must be a failure with its rationale",
+        )
     return fixture
 
 
@@ -479,8 +525,9 @@ def main() -> int:
         )
         fails = sorted(EXPECTED_FAIL_IDS)
         print(
-            "fixture: OK (10 real quizzes, %d pass, %d fail%s)"
-            % (10 - len(fails), len(fails), (": " + ", ".join(fails)) if fails else "")
+            "fixture: OK (10 real quizzes, %d pass, %d fail%s; %d invented, all fail)"
+            % (10 - len(fails), len(fails), (": " + ", ".join(fails)) if fails else "",
+               len(fixture["invented"]))
         )
         print("schema: OK (closed verdict contract)")
         validate_scripts(fixture)
@@ -494,7 +541,8 @@ def main() -> int:
             return 0
 
         mismatches = 0
-        for case in fixture["cases"]:
+        scored = fixture["cases"] + fixture["invented"]
+        for case in scored:
             verdict = run_command(args.command, case, args.timeout)
             expected = case["expected"]["followsInstructions"]
             actual = verdict["followsInstructions"]
@@ -510,7 +558,7 @@ def main() -> int:
                     verdict["confidence"],
                 )
             )
-        print("agent: %d/10 matched" % (10 - mismatches))
+        print("agent: %d/%d matched" % (len(scored) - mismatches, len(scored)))
         return 1 if mismatches else 0
     except (OSError, json.JSONDecodeError, subprocess.TimeoutExpired, ValidationError) as exc:
         print("ERROR: %s" % exc, file=sys.stderr)
