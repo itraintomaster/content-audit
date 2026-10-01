@@ -44,8 +44,10 @@ import com.learney.contentaudit.revisiondomain.comparison.GoalStatus;
 import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
 import com.learney.contentaudit.revisiondomain.comparison.MeasureChange;
 import com.learney.contentaudit.revisiondomain.comparison.RowGoalStatus;
+import com.learney.contentaudit.revisiondomain.comparison.RowSubject;
 import com.learney.contentaudit.revisiondomain.comparison.RowValue;
 import com.learney.contentaudit.revisiondomain.comparison.SealedGoals;
+import com.learney.contentaudit.revisiondomain.comparison.UndecidableFloors;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewUnavailability;
@@ -59,6 +61,7 @@ import java.math.RoundingMode;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -269,7 +272,7 @@ public class DefaultBatchComparator implements BatchComparator {
         comparison.setBreaches(breaches);
 
         // R008: the verdict -- and, after it, what the batch leaves pending outside the course, which does not count.
-        BatchVerdict verdict = verdict(rows, breaches, outcomes, projection.getScopeId());
+        BatchVerdict verdict = verdict(rows, breaches, outcomes, projection.getScopeId(), subjects.keySet());
         String pending = PendingCopies.describe(pendingCopies);
         if (pending != null) {
             verdict.setDetail(verdict.getDetail() != null ? verdict.getDetail() + " " + pending : pending);
@@ -471,7 +474,7 @@ public class DefaultBatchComparator implements BatchComparator {
     }
 
     private static RowValue rowValue(ReportTree.Value value) {
-        return value == null ? null : new RowValue(value.value(), value.share(), value.notEvaluated(), false);
+        return value == null ? null : new RowValue(value.value(), value.share(), value.notEvaluated(), value.evaluated());
     }
 
     /** The change in the unit of the row: points of a score, exercises of a count. */
@@ -850,7 +853,7 @@ public class DefaultBatchComparator implements BatchComparator {
     // -------------------------------------------------------------------------
 
     private BatchVerdict verdict(List<ComparisonRow> rows, List<FloorBreach> breaches, List<ChangeOutcome> outcomes,
-            String scopeId) {
+            String scopeId, Collection<String> rowOrder) {
         List<String> broken = new ArrayList<>();
         for (FloorBreach breach : breaches) {
             if (breach.getGoalId() != null && !broken.contains(breach.getGoalId())) {
@@ -873,6 +876,7 @@ public class DefaultBatchComparator implements BatchComparator {
                 undecidableFloors.add(row.getFloor().getGoalId());
             }
         }
+        UndecidableFloors undecided = undecidableFloors(undecidableFloors, rows, rowOrder);
         SampleOutcome sample = sampleOutcomeSource != null ? sampleOutcomeSource.outcomeFor(scopeId).orElse(null) : null;
         boolean sampleFails = sample != null && sample.isClosed() && !sample.isMeetsGoal();
 
@@ -890,7 +894,8 @@ public class DefaultBatchComparator implements BatchComparator {
                         + (sample.getDetail() != null && !sample.getDetail().isBlank() ? " (" + sample.getDetail() + ")"
                                 : ""));
             }
-            return new BatchVerdict(VerdictKind.FAILS, broken, returning, sample, "No pasa: " + String.join("; ", parts), null);
+            return new BatchVerdict(VerdictKind.FAILS, broken, returning, sample, "No pasa: " + String.join("; ", parts),
+                    undecided);
         }
         if (!undecidableFloors.isEmpty() || !undecidedChanges.isEmpty()) {
             List<String> parts = new ArrayList<>();
@@ -903,21 +908,50 @@ public class DefaultBatchComparator implements BatchComparator {
                         + " sin evaluar por algún analizador: " + listed(undecidedChanges));
             }
             return new BatchVerdict(VerdictKind.UNDECIDABLE, broken, returning, sample,
-                    "No se puede decidir: ningún piso falla, pero " + String.join("; ", parts), null);
+                    "No se puede decidir: ningún piso falla, pero " + String.join("; ", parts), undecided);
         }
         if (sample == null) {
             return new BatchVerdict(VerdictKind.BLIND_SAMPLE_MISSING, broken, returning, null,
                     "Falta la muestra ciega: los pisos se cumplen y no vuelve ningún cambio, pero no hay muestra de '"
-                            + scopeId + "'.", null);
+                            + scopeId + "'.", undecided);
         }
         if (!sample.isClosed()) {
             return new BatchVerdict(VerdictKind.BLIND_SAMPLE_MISSING, broken, returning, sample,
                     "Falta la muestra ciega: los pisos se cumplen y no vuelve ningún cambio, pero la muestra "
-                            + sample.getSampleId() + " sigue abierta (" + sample.getAnswered() + " pares respondidos).", null);
+                            + sample.getSampleId() + " sigue abierta (" + sample.getAnswered() + " pares respondidos).",
+                    undecided);
         }
         return new BatchVerdict(VerdictKind.PASSES, broken, returning, sample,
                 "Pasa: se cumplen los pisos, no vuelve ningún cambio y la muestra ciega " + sample.getSampleId()
-                        + " cumple su meta.", null);
+                        + " cumple su meta.", undecided);
+    }
+
+    /**
+     * F-FILAS-R007: the floors that cannot be decided -- {@code goalIds}, the ones the text of the verdict counts --
+     * and the rows they belong to, each with its key and its visible name, once and in the order of the rows: the
+     * catalog's, then «vocabulario» and «algún error». Null when every floor is decided.
+     */
+    static UndecidableFloors undecidableFloors(List<String> goalIds, List<ComparisonRow> rows,
+            Collection<String> rowOrder) {
+        if (goalIds.isEmpty()) {
+            return null;
+        }
+        Map<String, String> names = new LinkedHashMap<>();
+        for (ComparisonRow row : rows) {
+            if (row.getFloor() != null && row.getFloor().getStatus() == GoalStatus.UNDECIDABLE
+                    && row.getSubject() != null) {
+                names.putIfAbsent(row.getSubject(), row.getDisplayName() != null ? row.getDisplayName()
+                        : row.getSubject());
+            }
+        }
+        List<RowSubject> subjects = new ArrayList<>();
+        for (String subject : rowOrder) {
+            if (names.containsKey(subject)) {
+                subjects.add(new RowSubject(subject, names.remove(subject)));
+            }
+        }
+        names.forEach((subject, name) -> subjects.add(new RowSubject(subject, name)));
+        return new UndecidableFloors(goalIds.size(), subjects);
     }
 
     private static String listed(List<String> ids) {
