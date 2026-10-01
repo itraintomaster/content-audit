@@ -1,7 +1,31 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.IrregularFormsCatalog;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.rulefix.RuleFixRequest;
+import com.learney.contentaudit.auditdomain.rulefix.RuleFixResult;
+import com.learney.contentaudit.coursedomain.FormEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +39,92 @@ public class HintCoherenceRuleFixTest {
     @DisplayName("should take the hint from the first answer, its base verb, its subject and its not, as «(love)» for «I ___ a lot of vegetables.», without changing what is heard")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldTakeTheHintFromTheFirstAnswerItsBaseVerbItsSubjectAndItsNotAsLoveForIALotOfVegetablesWithoutChangingWhatIsHeard(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TANDA-R004 and F-PISTA-R005: «I ___ a lot of vegetables.» carries no hint while its topic asks for one. The rule
+        // writes the hint drawn from the first answer, its verb in base form, right after the gap; the answer, the stored
+        // sentence and the audio do not move.
+        QuizTemplateEntity vegetables = quiz("67fab6d59930102295341ecd", "A1.02.01.07",
+                List.of(text("I"), cloze("love"), text("a lot of vegetables.")), List.of("I love a lot of vegetables."));
+        AuditableQuiz analyzed = analyzed(vegetables,
+                "I|I|PRON love|love|VERB a|a|DET lot|lot|NOUN of|of|ADP vegetables|vegetable|NOUN .|.|PUNCT");
+        Finding missing = hintFinding("67fab6d59930102295341ecd", "missing-hint", null, FindingSeverity.HIGH);
+        HintCoherenceRuleFix fix = new HintCoherenceRuleFix(noIrregularForms());
+
+        RuleFixResult result = fix.fix(new RuleFixRequest(vegetables, analyzed, SentenceMode.FILL, List.of(missing)));
+
+        assertEquals("hint-coherence", fix.analyzerName());
+        assertEquals(List.of(missing.getIdentity()), result.getFixed());
+        assertTrue(result.getDeclined().isEmpty(), result.getDetail());
+        List<SentencePartEntity> parts = result.getQuiz().getForm().getSentenceParts();
+        assertEquals("(love) a lot of vegetables.", parts.get(2).getText(), "the hint right after the gap");
+        assertEquals(List.of("love"), parts.get(1).getOptions(), "the answer does not move");
+        assertEquals(List.of("I love a lot of vegetables."), result.getQuiz().getSentences(), "nor the stored sentence");
+        assertEquals("A1.02.01.07", result.getQuiz().getAnswerAudioUrl(), "nor the audio");
+        assertTrue(result.getRerecordings().isEmpty(), "nothing to record again");
+        assertEquals("a lot of vegetables.", vegetables.getForm().getSentenceParts().get(2).getText(),
+                "the exercise it received stays as it was");
+
+        // Its subject: «Who ___ (I / see)?» answered «are you seeing» gets «(you / see)».
+        QuizTemplateEntity who = quiz("67fab6d599301022953420aa", "A2.01.02.03",
+                List.of(text("Who"), cloze("are you seeing"), text("(I / see)?")), List.of("Who are you seeing?"));
+        Finding subject = hintFinding("67fab6d599301022953420aa", "hint-subject", "i", FindingSeverity.BLOCKING);
+
+        RuleFixResult bySubject = fix.fix(new RuleFixRequest(who, analyzed(who,
+                "Who|who|PRON are|be|AUX you|you|PRON seeing|see|VERB ?|?|PUNCT"), SentenceMode.FILL, List.of(subject)));
+
+        assertEquals(List.of(subject.getIdentity()), bySubject.getFixed());
+        assertEquals("(you / see)?", bySubject.getQuiz().getForm().getSentenceParts().get(2).getText());
+        assertEquals(List.of("Who are you seeing?"), bySubject.getQuiz().getSentences());
+    }
+
+
+    private static QuizTemplateEntity quiz(String id, String audioKey, List<SentencePartEntity> parts,
+            List<String> sentences) {
+        FormEntity form = new FormEntity("CLOZE", 1.0, "", "", new ArrayList<>(parts), null, null);
+        return new QuizTemplateEntity(id, id, "CLOZE", "6814dafa7d73e7209a13d389", "Afirmativas regulares", null,
+                null, null, null, form, 0, 0, 0, null, null, null, audioKey, null, null, null, new ArrayList<>(sentences),
+                null);
+    }
+
+    /** The exercise as the analysis read it, with the tokens of its saved sentence: «text|lemma|POS» each. */
+    private static AuditableQuiz analyzed(QuizTemplateEntity quiz, String tokens) {
+        List<NlpToken> read = new ArrayList<>();
+        for (String token : tokens.split(" ")) {
+            String[] fields = token.split("\\|");
+            read.add(new NlpToken(fields[0], fields[1], fields[2], null, false, fields[2].equals("PUNCT")));
+        }
+        return new AuditableQuiz(read, quiz.getId(), quiz.getTitle(), null, null, quiz.getSentences(), null, null,
+                quiz.getForm().getSentenceParts(), null, null, quiz.getAnswerAudioUrl());
+    }
+
+    private static Finding hintFinding(String quizId, String rule, String marker, FindingSeverity severity) {
+        return new Finding("hint-coherence", rule, new FindingNodeRef(AuditTarget.QUIZ, quizId, quizId), severity,
+                new FindingEvidence(List.of(new EvidencePart("Ejercicio", quizId)), "la pista", List.of()),
+                FindingResolution.RULE, AnalysisCost.INSTANT,
+                new FindingIdentity("hint-coherence|" + rule + "|" + quizId + (marker != null ? "|" + marker : ""),
+                        marker));
+    }
+
+    private static IrregularFormsCatalog noIrregularForms() {
+        return new IrregularFormsCatalog() {
+            @Override
+            public Set<String> formsOf(String baseWord) {
+                return Set.of();
+            }
+
+            @Override
+            public boolean isPastParticiple(String word) {
+                return false;
+            }
+        };
+    }
+
+    private static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    private static SentencePartEntity cloze(String... options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", new ArrayList<>(List.of(options)));
     }
 }
