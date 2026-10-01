@@ -4,6 +4,16 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (impl A) — 5 handwrittenTests de F-PISTA-R006 fusionadas al parche del arquitecto (propose exit 0,
+  backup antes por el bug 08; nada perdido): 3 en DefaultHintAnswerCheck (24f7 have; 4186 sólo practise, made sale de la
+  consigna; 447b nada) y 2 en HintCoherenceAnalyzer (44f8 opinion bloqueante a la mesa; 215c rain sigue siendo de R002).
+  Sin camino nuevo en F-PISTA-J001. Next: el coordinador aplica después de FEAT-CIERRE; generate; encender R006.
+
+2026-10-01 — architect (impl A) — Segundo parche de FEAT-PISTA: REWRITE_WORD_NOT_ANNOUNCED en HintIssueKind,
+  checkRewrite(AuditableQuiz) en HintAnswerCheck (sealed: false), descripciones de HintIssue (rule, word, proposedHint) y
+  del paquete. propose exit 0 (0 altas, 4 cambios) y `patch validate -i` contra 859e96af OK. TECH_SPEC reescrito para
+  este parche (el del primero queda en git), con --replace.
+
 2026-10-01 — analyst (impl A) — F-PISTA-R006 en el REQUIREMENT: la reescritura no pide palabras que no salen de la
   oración de partida, la pista o la consigna. Casos 24f7 (have), 44f8 (opinion), 4186 (practise; made sale de la
   consigna) y 455d (moment); pasa 447b (whispered, el perfecto, this → that); los 4 falsos del prototipo como límite

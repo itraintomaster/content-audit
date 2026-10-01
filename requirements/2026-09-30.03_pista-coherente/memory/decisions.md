@@ -5,6 +5,18 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — architect (impl A) — R006 es un método más de HintAnswerCheck, checkRewrite(AuditableQuiz), y no un
+  colaborador nuevo: necesita lo que ya tiene DefaultHintAnswerCheck (tokens de la oración guardada, tabla de irregulares,
+  comparación de R002). Sin puerto, sin inyección, sin cambiar constructores. El analizador la llama sólo en WHOLE_SENTENCE;
+  R002 inv. 2 sigue sólo en huecos: las dos nunca miran lo mismo.
+2026-10-01 — architect (impl A) — El valor nuevo es REWRITE_WORD_NOT_ANNOUNCED y no WORD_NOT_FROM_SOURCE (la propuesta
+  del coordinador): sigue a VERB_NOT_ANNOUNCED y SUBJECT_NOT_ANNOUNCED, y la fuente no es sólo la oración de partida (también
+  la pista y la consigna). Reusar VERB_NOT_ANNOUNCED mentiría: R006 marca sustantivos y adverbios. Un hallazgo por palabra,
+  marca = lema; proposedHint null (no hay arreglo por regla).
+2026-10-01 — qa-tester (impl A) — R006 con 5 pruebas y no una: el positivo (24f7), la consigna como fuente (4186), lo que
+  la reescritura agrega sola (447b), el hallazgo del analizador (44f8) y que un hueco dentro de la oración sigue siendo de
+  R002 (215c), que es lo que impide un hallazgo doble. Los 4 falsos no van como prueba: son límite del REQUIREMENT.
+
 2026-10-01 — analyst (impl A) — R006 es AUTO_VALIDATED: el coordinador la aprobó el 1/10 por la precisión medida (56 de
   60 marcas reales, 25 de 30 en una muestra nueva). Va a la mesa siempre: una regla no sabe si se arregla la respuesta
   (la reescritura fiel, con audio nuevo) o el enunciado (DOUBT-PISTA-RESPUESTA).

@@ -1,0 +1,113 @@
+code: FEAT-PISTA
+description: "FEAT-PISTA, segundo parche: F-PISTA-R006, la reescritura no pide palabras\
+  \ que no salen de la oración de partida, la pista o la consigna. Suma REWRITE_WORD_NOT_ANNOUNCED\
+  \ a HintIssueKind y checkRewrite(AuditableQuiz) a HintAnswerCheck, que DefaultHintAnswerCheck\
+  \ implementa con lo que ya tiene: los tokens de la oración guardada, la tabla de\
+  \ formas irregulares y la comparación de R002. Sin puerto ni inyección nuevos. El\
+  \ hallazgo es bloqueante y va a la mesa; la ficha suma la regla rewrite-words, de\
+  \ costo instantáneo. Diseñado contra el sentinel.yaml de 859e96af (ronda1/integracion);\
+  \ el parche de cierre de C (FEAT-CIERRE) no toca hintcoherence.; qa-tester: traza\
+  \ F-PISTA-R006 a 5 handwrittenTests nuevas, cada una con un caso real del curso:\
+  \ 3 del chequeo (have en 24f7; sólo practise en 4186, porque made sale de la consigna;\
+  \ nada en 447b, con el perfecto y this → that) y 2 del analizador (opinion en 44f8,\
+  \ bloqueante, a la mesa e identificada por la palabra; y el hueco dentro de la oració\
+  n, que sigue siendo de R002). Sin camino nuevo en F-PISTA-J001: el journey generado\
+  \ no cambia."
+modules:
+- name: audit-domain
+  packages:
+  - name: hintcoherence
+    description: "Analizador hint-coherence (FEAT-PISTA), familia errores, evalúa\
+      \ QUIZ de hueco para escribir. Lee la pista (el paréntesis pegado al hueco;\
+      \ en la respuesta que es la oración entera, el paréntesis y el enunciado con\
+      \ «/»), la compara con la primera respuesta usando los tokens y lemas que el\
+      \ curso ya trae (NlpToken de la oración guardada) más la forma flexionada y\
+      \ la tabla de irregulares, y cuenta en onKnowledge cuántos del tema llevan pista,\
+      \ por tipo y en el tema entero (umbral de tres cuartos, José 30/9). En la respuesta\
+      \ que es la oración entera busca además cada palabra de contenido en la oració\
+      n de partida, la pista y la consigna (R006). La resolución de cada hallazgo\
+      \ sale de su tipo: la palabra de la pista que no está en la respuesta (DOUBT-PISTA-CUANDO-MESA)\
+      \ y la palabra de la reescritura que nada anuncia (R006) van a la mesa; el resto,\
+      \ por regla. Públicos: el proveedor y el diagnóstico."
+    models:
+    - name: HintIssueKind
+      type: enum
+      fields:
+      - name: REWRITE_WORD_NOT_ANNOUNCED
+        description: "Una palabra de contenido de la respuesta que es la oración entera\
+          \ no sale de la oración de partida, de la pista ni de la consigna, ni flexionada\
+          \ ni por su lema (R006). Mesa: quien reescribe fiel da mal, y una regla\
+          \ no sabe si se arregla la respuesta o el enunciado."
+        _change: add
+      _change: modify
+    - name: HintIssue
+      type: record
+      fields:
+      - name: rule
+        type: String
+        description: La regla de FEAT-PISTA que no se cumple (F-PISTA-R001 a R004
+          y R006).
+        _change: modify
+      - name: word
+        type: String
+        description: "Lo que marca: la palabra de la pista, el verbo sin anunciar,\
+          \ el sujeto o, en su lema, la palabra de la reescritura que nada anuncia.\
+          \ Es la marca de la identidad del hallazgo."
+        _change: modify
+      - name: proposedHint
+        type: String
+        description: "La pista que sale de la primera respuesta —verbo en forma base,\
+          \ sujeto y not—: el arreglo por regla. El audio no cambia. Null en R006:\
+          \ la mesa decide si cambia la respuesta o el enunciado."
+        _change: modify
+      _change: modify
+    interfaces:
+    - name: HintAnswerCheck
+      sealed: false
+      exposes:
+      - signature: "checkRewrite(AuditableQuiz quiz): List<HintIssue>"
+        _change: add
+      _change: modify
+    implementations:
+    - name: DefaultHintAnswerCheck
+      handwrittenTests:
+      - name: "should report a content word of a rewrite that comes neither from the\
+          \ sentence it rewrites nor from its hint or instructions, as «have» in «\
+          Polite request: I want to eat some cake. ___» answered «Could I have some\
+          \ cake?»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R006
+      - name: "should take as announced the words the instructions name, so only «\
+          practise» is reported in «The coach encouraged the players to repeat the\
+          \ drill. ___» answered «The coach made the players practise the drill.»\
+          \ under «Crea oraciones utilizando 'let' o 'make'.»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R006
+      - name: "should not report the grammar a rewrite brings by itself, as the perfect\
+          \ and the time shift of reported speech in «“I overslept this morning” (the\
+          \ boy whispered) ___» answered «The boy whispered that he had overslept\
+          \ that morning.»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R006
+      _change: modify
+    - name: HintCoherenceAnalyzer
+      handwrittenTests:
+      - name: "should raise a blocking finding for the panel, identified by the word,\
+          \ on a rewrite that asks for a word nothing announces, as «opinion» in «\
+          I think it's a good idea for her to see a dentist. ___» answered «She ought\
+          \ to see a dentist, in my opinion.»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R006
+      - name: "should look for unannounced words only in answers that are the whole\
+          \ sentence, leaving a gap inside the sentence to R002, as «rain» in «It\
+          \ ___ (be) soon.» answered «'s going to rain»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R006
+      _change: modify
+    _change: modify
+  _change: modify
