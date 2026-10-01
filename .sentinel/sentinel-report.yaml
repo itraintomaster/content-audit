@@ -1,4 +1,4 @@
-generatedAt: 2026-10-01T03:56:55.977300Z
+generatedAt: 2026-10-01T04:28:07.583867Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -4083,11 +4083,11 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-RECUR
-  state: IMPLEMENTED
+  state: IMPLEMENTING
   requirementFile: ./requirements/2026-09-30.16_recurrencia/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RECUR-R001
-    state: PASSING
+    state: FAILING
     tests:
     - name: "should keep the course vocabulary score at 73.92% with lemma-recurrence\
         \ at 0.08 publishing its course diagnosis, on the published scores of the\
@@ -4096,17 +4096,17 @@ features:
       passing: true
       module: audit-domain
       implementation: IAuditEngine
-    - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
-        \ 134 normal, 1,570 under-exposed and 46 over-exposed of its 1,750 returning\
-        \ lemmas"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: LemmaRecurrenceAnalyzer
     - name: "should score the course as before, normal lemmas over analysed lemmas\
         \ rounded to two decimals, while it also publishes its course diagnosis"
       implemented: true
       passing: true
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
+    - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
+        \ 131 normal, 1,566 under-exposed and 46 over-exposed of its 1,743 returning\
+        \ lemmas"
+      implemented: true
+      passing: false
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-RECUR-R002
@@ -4174,7 +4174,7 @@ features:
       module: audit-cli
       implementation: LemmaRecurrenceDetailedFormatter
   - ruleId: F-RECUR-R004
-    state: PASSING
+    state: FAILING
     tests:
     - name: "should keep the vocabulary score of every level at 96.54, 94.16, 79.45\
         \ and 63.51 with the recurrence of each level published as detail"
@@ -4195,21 +4195,21 @@ features:
       passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
-    - name: "should publish for the course of 29/9 A1 450 returning lemmas with 178\
-        \ normal (39.6%), A2 752 with 155 (20.6%), B1 1,139 with 161 (14.1%) and B2\
-        \ 819 with 165 (20.1%)"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: LemmaRecurrenceAnalyzer
     - name: should keep the recurrence of each level as detail of the course diagnosis
         and never write a lemma-recurrence score on a milestone
       implemented: true
       passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
+    - name: "should publish for the course of 29/9 A1 448 returning lemmas with 176\
+        \ normal (39.3%), A2 752 with 155 (20.6%), B1 1,137 with 161 (14.2%) and B2\
+        \ 818 with 165 (20.2%)"
+      implemented: true
+      passing: false
+      module: audit-domain
+      implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-RECUR-R005
-    state: PASSING
+    state: FAILING
     tests:
     - name: "should leave in the course one finding per under-exposed or over-exposed\
         \ lemma, of rule F-RECUR-R005, low severity, only ordering and instant cost,\
@@ -4242,10 +4242,10 @@ features:
       passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
-    - name: "should leave 1,616 findings in the course of 29/9, 1,570 for under-exposed\
+    - name: "should leave 1,612 findings in the course of 29/9, 1,566 for under-exposed\
         \ and 46 for over-exposed lemmas"
       implemented: true
-      passing: true
+      passing: false
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-RECUR-R006
@@ -11060,11 +11060,11 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-PISTA
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-09-30.03_pista-coherente/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PISTA-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should raise a high finding on an exercise without hint when three quarters\
         \ or more of its topic's exercises of the same shape carry one, as «I ___\
@@ -11090,7 +11090,7 @@ features:
         \ without hint of El posesivo have no finding, since neither their shape (0\
         \ of 20) nor the topic (20 of 40) reaches three quarters"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: HintCoherenceAnalyzer
     - name: "should tell a gap inside the sentence, as «She dances ___ (good / well).»\
@@ -11269,28 +11269,28 @@ features:
       module: audit-domain
       implementation: DefaultHintAnswerCheck
   - ruleId: F-PISTA-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should raise a blocking finding for the panel, identified by the word,\
         \ on a rewrite that asks for a word nothing announces, as «opinion» in «I\
         \ think it's a good idea for her to see a dentist. ___» answered «She ought\
         \ to see a dentist, in my opinion.»"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: HintCoherenceAnalyzer
     - name: "should look for unannounced words only in answers that are the whole\
         \ sentence, leaving a gap inside the sentence to R002, as «rain» in «It ___\
         \ (be) soon.» answered «'s going to rain»"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: HintCoherenceAnalyzer
     - name: "should report a content word of a rewrite that comes neither from the\
         \ sentence it rewrites nor from its hint or instructions, as «have» in «Polite\
         \ request: I want to eat some cake. ___» answered «Could I have some cake?»"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultHintAnswerCheck
     - name: "should take as announced the words the instructions name, so only «practise»\
@@ -11298,7 +11298,7 @@ features:
         \ answered «The coach made the players practise the drill.» under «Crea oraciones\
         \ utilizando 'let' o 'make'.»"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultHintAnswerCheck
     - name: "should not report the grammar a rewrite brings by itself, as the perfect\
@@ -11306,20 +11306,20 @@ features:
         \ boy whispered) ___» answered «The boy whispered that he had overslept that\
         \ morning.»"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultHintAnswerCheck
   journeysCoverage:
   - journeyId: F-PISTA-J001
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_elEjercicioNoTienePistaYLaLlevanTresCuartosOMsDeSuTipoODeTodoSuTema_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: audit-domain
         implementation: FPistaJ001JourneyTest
     - pathId: path-2
@@ -11387,6 +11387,7 @@ features:
 - id: FEAT-NIVFR
   state: IMPLEMENTED
   requirementFile: ./requirements/2026-09-30.13_nivel-con-frases/REQUIREMENT.md
+  patchFile: ./requirements/2026-09-30.13_nivel-con-frases/architectural_patch.yaml
   rulesCoverage:
   - ruleId: F-NIVFR-R001
     state: PASSING
@@ -13780,20 +13781,12 @@ features:
       passing: true
       module: audit-domain
       implementation: DefaultCorrectorMatcher
-    - name: "should decide every golden case of the backend corrector as its «acepta»\
-        \ column says with the copy of the new corrector's table, reading each gap\
-        \ with the sentence around it, as «is» for «It ___ (be) hot inside.» answered\
-        \ «'s»"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: DefaultCorrectorMatcher
     - name: "should decide every golden case of the corrector with the four rules\
         \ of 1/10 as its «acepta» column says with the copy of its table, which names\
         \ those rules, as «'s forgotten» for «He ___ (forget) to pay.» and «Peter\
         \ was admired.» for «Peter was admired (by Mary).»"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: DefaultCorrectorMatcher
     - name: "should give the benefit of the doubt only to the student, so an ambiguous\
@@ -13801,12 +13794,19 @@ features:
         \ stays as written in the accepted answer, as «'s forgotten» for «has forgotten»\
         \ but not «is trained» for «'s trained»"
       implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultCorrectorMatcher
+    - name: "should decide every golden case of the corrector #1191 as its «acepta»\
+        \ column says with the copy of its table, reading each gap with the sentence\
+        \ around it, as «is» for «It ___ (be) hot inside.» answered «'s»"
+      implemented: true
       passing: false
       module: audit-domain
       implementation: DefaultCorrectorMatcher
     - name: "should take two texts as the same answer when the corrector matches them\
         \ in either order, so «He's forgotten to pay.» and «He has forgotten to pay.»\
-        \ are one answer with the four rules and two with the corrector in production"
+        \ are one answer with the four rules of #1194 and two with #1191"
       implemented: true
       passing: false
       module: audit-domain
@@ -13819,8 +13819,8 @@ features:
       module: vocabulary-infrastructure
       implementation: FileSystemFormEquivalenceTableSource
     - name: "should read from «reglas» the rules that are code of the version of the\
-        \ corrector, the four in the copy of the new corrector and none in the one\
-        \ in production, and stop at a rule it does not know"
+        \ corrector, the four in the copy of #1194, in production, and none in the\
+        \ copy of #1191, and stop at a rule it does not know"
       implemented: true
       passing: false
       module: vocabulary-infrastructure
@@ -13913,7 +13913,7 @@ features:
       module: audit-domain
       implementation: DefaultEquivalentFormGenerator
   - ruleId: F-RESPC-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should leave one finding per missing form, identified by the form, as\
         \ «aren't» and «are not» for «They ___ (not / be) from Ireland.»"
@@ -13966,18 +13966,18 @@ features:
         \ adding it after «|», as «has trained» if «He ___ (train) hard today.» only\
         \ accepted «'s trained»"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: AnswerCompletenessAnalyzer
   - ruleId: F-RESPC-R006
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should describe answer-completeness in the catalog as an errors analyzer\
         \ that evaluates exercises, resolves by rule, at the panel or by ranking only,\
         \ and costs instant, asking «¿El corrector acepta todas las formas de la respuesta,\
         \ y ninguna consigna pide una?»"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: AnswerCompletenessAnalyzerProvider
     - name: "should leave multiple choice exercises without a finding of its own,\
@@ -21725,8 +21725,8 @@ elements:
 
       then:
         report.getRoot().getScores().get("lemma-recurrence") == 0.08
-        ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaRecurrenceDiagnosis().orElseThrow().getResult().getLemmaStats().size() == 1750
-        report.getRoot().getFindings().stream().filter(f -> "lemma-recurrence".equals(f.getAnalyzer())).count() == 1616
+        ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLemmaRecurrenceDiagnosis().orElseThrow().getResult().getLemmaStats().size() == 1743
+        report.getRoot().getFindings().stream().filter(f -> "lemma-recurrence".equals(f.getAnalyzer())).count() == 1612
         percent2(report.getRoot().getNumbers().getVocabularyScore()) == "73,92"
     - |
       test: "should keep the vocabulary score of every level at 96.54, 94.16, 79.45 and 63.51 with the recurrence of each level published as detail"
@@ -24152,11 +24152,6 @@ elements:
         \ used lemmas that come back at a healthy interval, next to its goal"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
-    - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
-        \ 134 normal, 1,570 under-exposed and 46 over-exposed of its 1,750 returning\
-        \ lemmas"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: "should score the course as before, normal lemmas over analysed lemmas\
         \ rounded to two decimals, while it also publishes its course diagnosis"
       status: EXISTS
@@ -24188,11 +24183,6 @@ elements:
         \ over-exposed lemmas equal its returning lemmas"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
-    - name: "should publish for the course of 29/9 A1 450 returning lemmas with 178\
-        \ normal (39.6%), A2 752 with 155 (20.6%), B1 1,139 with 161 (14.1%) and B2\
-        \ 819 with 165 (20.1%)"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: should keep the recurrence of each level as detail of the course diagnosis
         and never write a lemma-recurrence score on a milestone
       status: EXISTS
@@ -24218,9 +24208,19 @@ elements:
     - name: should identify each finding by its lemma
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
-    - name: "should leave 1,616 findings in the course of 29/9, 1,570 for under-exposed\
+    - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
+        \ 131 normal, 1,566 under-exposed and 46 over-exposed of its 1,743 returning\
+        \ lemmas"
+      status: MISSING
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
+    - name: "should publish for the course of 29/9 A1 448 returning lemmas with 176\
+        \ normal (39.3%), A2 752 with 155 (20.6%), B1 1,137 with 161 (14.2%) and B2\
+        \ 818 with 165 (20.2%)"
+      status: MISSING
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
+    - name: "should leave 1,612 findings in the course of 29/9, 1,566 for under-exposed\
         \ and 46 for over-exposed lemmas"
-      status: EXISTS
+      status: MISSING
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     testCleanViews:
     - |
@@ -24546,8 +24546,8 @@ elements:
 
       then:
         run.root.getScores().get("lemma-recurrence") == 0.08
-        result.getLemmaStats().size() == 1750
-        List.of(result.getExposureSummary().getNormalCount(), result.getExposureSummary().getSubExposedCount(), result.getExposureSummary().getOverExposedCount()) == List.of(134, 1570, 46)
+        result.getLemmaStats().size() == 1743
+        List.of(result.getExposureSummary().getNormalCount(), result.getExposureSummary().getSubExposedCount(), result.getExposureSummary().getOverExposedCount()) == List.of(131, 1566, 46)
         run.positions == 91873
     - |
       test: "should score the course as before, normal lemmas over analysed lemmas rounded to two decimals, while it also publishes its course diagnosis"
@@ -24642,7 +24642,7 @@ elements:
         levels = run299().diagnosis().getLevels().stream().map(l -> l.getLevel() + " " + l.getPositions() + " " + l.getReturningLemmas() + " " + l.getNormalCount() + " " + l.getSubExposedCount() + " " + l.getOverExposedCount() + " " + String.format(java.util.Locale.ROOT, "%.1f", 100 * l.getNormalShare())).toList()
 
       then:
-        levels == List.of("A1 15802 450 178 257 15 39.6", "A2 18967 752 155 569 28 20.6", "B1 38949 1139 161 938 40 14.1", "B2 18155 819 165 607 47 20.1")
+        levels == List.of("A1 15802 448 176 257 15 39.3", "A2 18967 752 155 569 28 20.6", "B1 38949 1137 161 938 38 14.2", "B2 18155 818 165 607 46 20.2")
     - |
       test: "should keep the recurrence of each level as detail of the course diagnosis and never write a lemma-recurrence score on a milestone"
       trace: FEAT-RECUR / F-RECUR-R004
@@ -24741,8 +24741,8 @@ elements:
         sut.forEach(d -> d.getEvidence().getExamined().stream().filter(p -> "Estado".equals(p.getLabel())).forEach(p -> byState.merge(p.getText(), 1, Integer::sum)))
 
       then:
-        drafts.size() == 1616
-        byState == Map.of("poco vista", 1570, "sobre-expuesta", 46)
+        drafts.size() == 1612
+        byState == Map.of("poco vista", 1566, "sobre-expuesta", 46)
   - name: DefaultContentWordFilter
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/lrec/DefaultContentWordFilter.java
@@ -32756,7 +32756,7 @@ elements:
         card.getEvaluatedTargets() == List.of(AuditTarget.QUIZ)
         card.getResolutions() == List.of(FindingResolution.RULE, FindingResolution.PANEL)
         card.getCost() == AnalysisCost.INSTANT
-        card.getRules().stream().map(AnalyzerRuleCard::getId).toList() == List.of("missing-hint", "hint-words", "hint-subject", "hint-negation")
+        card.getRules().stream().map(AnalyzerRuleCard::getId).toList() == List.of("missing-hint", "hint-words", "hint-subject", "hint-negation", "rewrite-words")
         card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT) is true
         card.getGoal().contains("tres cuartos") is true
         provider.planBinding().isEmpty() is true
@@ -32817,7 +32817,7 @@ elements:
     - name: "should count hints by shape and in the whole topic, so the 20 transformations\
         \ without hint of El posesivo have no finding, since neither their shape (0\
         \ of 20) nor the topic (20 of 40) reaches three quarters"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceAnalyzerTest.java
     testCleanViews:
     - |
@@ -32867,7 +32867,7 @@ elements:
         rules(analyzer.findingsAt(loveAgain)) == List.of(HintCoherenceAnalyzer.RULE_MISSING_HINT)
         loveAgain.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME) == 0.0
     - |
-      test: "should count hints only among exercises of the same shape, so the 20 transformations without hint of El posesivo are not measured against its 20 hinted gaps"
+      test: "should count hints by shape and in the whole topic, so the 20 transformations without hint of El posesivo have no finding, since neither their shape (0 of 20) nor the topic (20 of 40) reaches three quarters"
       trace: FEAT-PISTA / F-PISTA-R001
 
       given:
@@ -32971,6 +32971,40 @@ elements:
       then:
         identities.get(1) == identities.get(0)
         identities.get(0) == "hint-coherence|hint-subject|67fab6d59930102295342031|i"
+    - |
+      test: "should raise a blocking finding for the panel, identified by the word, on a rewrite that asks for a word nothing announces, as «opinion» in «I think it's a good idea for her to see a dentist. ___» answered «She ought to see a dentist, in my opinion.»"
+      trace: FEAT-PISTA / F-PISTA-R006
+
+      given:
+        dentist = DefaultHintAnswerCheckTest.rewrite("67fab6d599301022953444f8", "She ought to see a dentist, in my opinion.", "She|she|PRON ought|ought|AUX to|to|PART see|see|VERB a|a|DET dentist|dentist|NOUN ,|,|PUNCT in|in|ADP" + " my|my|PRON opinion|opinion|NOUN .|.|PUNCT", "Transforma las oraciones para que incluyan 'ought to' o 'shouldn't'.", text("I think it's a good idea for her to see a dentist."), cloze("She ought to see a dentist, in my opinion."))
+        topic = run(knowledge("6814dafa7d73e7209a13d47b", "Consejos con $ought to$", SentenceMode.REWRITE, List.of(dentist)))
+        node = quizNode(topic, "44f8")
+        drafts = analyzer.findingsAt(node)
+        opinion = drafts.get(0)
+
+      then:
+        rules(drafts) == List.of(HintCoherenceAnalyzer.RULE_REWRITE_WORDS)
+        opinion.getMarker() == "opinion"
+        opinion.getSeverity() == FindingSeverity.BLOCKING
+        opinion.getResolution() == FindingResolution.PANEL
+        part(opinion, "Respuesta") == "She ought to see a dentist, in my opinion."
+        opinion.getEvidence().getObservation().endsWith("«opinion» no sale de la oración de partida, la" + " pista ni la consigna. Va a la mesa: quien reescribe fiel da mal") is true
+        labels(opinion).contains("Pista propuesta") is false
+        diagnosis(node).getShape() == ExerciseShape.WHOLE_SENTENCE
+        node.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME) == 0.0
+    - |
+      test: "should look for unannounced words only in answers that are the whole sentence, leaving a gap inside the sentence to R002, as «rain» in «It ___ (be) soon.» answered «'s going to rain»"
+      trace: FEAT-PISTA / F-PISTA-R006
+
+      given:
+        rain = quiz("67fab6d5993010229534215c", "It's going to rain soon.", "It|it|PRON 's|be|AUX going|go|VERB to|to|PART rain|rain|VERB soon|soon|ADV .|.|PUNCT", text("It"), cloze("'s going to rain|is going to rain"), text("(be) soon."))
+        topic = run(knowledge("6814dafa7d73e7209a13d1d5", "Futuro con $going to$", SentenceMode.FILL, List.of(rain)))
+        node = quizNode(topic, "215c")
+
+      then:
+        diagnosis(node).getShape() == ExerciseShape.GAP_IN_SENTENCE
+        rules(analyzer.findingsAt(node)) == List.of(HintCoherenceAnalyzer.RULE_HINT_WORDS)
+        diagnosis(node).getIssues().stream().map(HintIssue::getKind).toList() == List.of(HintIssueKind.VERB_NOT_ANNOUNCED)
   - name: DefaultHintReader
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintReader.java
@@ -33259,6 +33293,43 @@ elements:
         issues.get(0).getWord() == "bad"
         issues.get(0).getResolution() == FindingResolution.PANEL
         issues.get(0).getProposedHint() == "(good)"
+    - |
+      test: "should report a content word of a rewrite that comes neither from the sentence it rewrites nor from its hint or instructions, as «have» in «Polite request: I want to eat some cake. ___» answered «Could I have some cake?»"
+      trace: FEAT-PISTA / F-PISTA-R006
+
+      given:
+        cake = rewrite("67fab6d599301022953424f7", "Could I have some cake?", "Could|could|AUX I|I|PRON have|have|VERB some|some|DET cake|cake|NOUN ?|?|PUNCT", "Transforma las oraciones para que incluyan 'can' o 'could'.", text("Polite request: I want to eat some cake."), cloze("Could I have some cake?"))
+        issues = check().checkRewrite(cake)
+
+      then:
+        kinds(issues) == List.of(HintIssueKind.REWRITE_WORD_NOT_ANNOUNCED)
+        issues.get(0).getWord() == "have"
+        issues.get(0).getRule() == HintCoherenceAnalyzer.RULE_REWRITE_WORDS
+        issues.get(0).getResolution() == FindingResolution.PANEL
+        issues.get(0).getProposedHint() is null
+    - |
+      test: "should take as announced the words the instructions name, so only «practise» is reported in «The coach encouraged the players to repeat the drill. ___» answered «The coach made the players practise the drill.» under «Crea oraciones utilizando 'let' o 'make'.»"
+      trace: FEAT-PISTA / F-PISTA-R006
+
+      given:
+        tokens = "The|the|DET coach|coach|NOUN made|make|VERB the|the|DET players|player|NOUN" + " practise|practise|VERB the|the|DET drill|drill|NOUN .|.|PUNCT"
+        drill = rewrite("67fab6d59930102295344186", "The coach made the players practise the drill.", tokens, "Crea oraciones utilizando 'let' o 'make'.", text("The coach encouraged the players to repeat the drill."), cloze("The coach made the players practise the drill."))
+        withoutInstructions = rewrite("67fab6d59930102295344186", "The coach made the players practise the drill.", tokens, null, text("The coach encouraged the players to repeat the drill."), cloze("The coach made the players practise the drill."))
+
+      then:
+        words(check().checkRewrite(drill)) == List.of("practise")
+        words(check().checkRewrite(withoutInstructions)) == List.of("make", "practise")
+    - |
+      test: "should not report the grammar a rewrite brings by itself, as the perfect and the time shift of reported speech in «“I overslept this morning” (the boy whispered) ___» answered «The boy whispered that he had overslept that morning.»"
+      trace: FEAT-PISTA / F-PISTA-R006
+
+      given:
+        overslept = rewrite("67fab6d5993010229534447b", "“I overslept this morning” The boy whispered that he had overslept that morning.", "“|\"|PUNCT I|I|PRON overslept|overslept|ADV this|this|DET morning|morning|NOUN ”|\"|PUNCT The|the|DET" + " boy|boy|NOUN whispered|whisper|VERB that|that|SCONJ he|he|PRON had|have|VERB" + " overslept|overslept|ADV that|that|DET morning|morning|NOUN .|.|PUNCT", "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.", text("“I overslept this morning” (the boy whispered)"), cloze("The boy whispered that he had overslept that morning."))
+        tomorrow = rewrite("67fab6d59930102295343799", "John said that he would call Peter the next day.", "John|John|PROPN said|say|VERB that|that|SCONJ he|he|PRON would|would|AUX call|call|VERB" + " Peter|Peter|PROPN the|the|DET next|next|ADJ day|day|NOUN .|.|PUNCT", "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como" + " lo harías en un examen. Comienza con 'John said that'.", text("I will call Peter tomorrow. "), cloze("John said that he would call Peter the next day."))
+
+      then:
+        check().checkRewrite(overslept) == List.of()
+        check().checkRewrite(tomorrow) == List.of()
   - name: DefaultCorrectorMatcher
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcher.java
@@ -33288,27 +33359,26 @@ elements:
         \ (travel) to Europe.» answered «travelled»"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcherTest.java
-    - name: "should decide every golden case of the backend corrector as its «acepta»\
-        \ column says with the copy of the new corrector's table, reading each gap\
-        \ with the sentence around it, as «is» for «It ___ (be) hot inside.» answered\
-        \ «'s»"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcherTest.java
     - name: "should decide every golden case of the corrector with the four rules\
         \ of 1/10 as its «acepta» column says with the copy of its table, which names\
         \ those rules, as «'s forgotten» for «He ___ (forget) to pay.» and «Peter\
         \ was admired.» for «Peter was admired (by Mary).»"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcherTest.java
     - name: "should give the benefit of the doubt only to the student, so an ambiguous\
         \ contraction counts as any of its long forms when the student writes it and\
         \ stays as written in the accepted answer, as «'s forgotten» for «has forgotten»\
         \ but not «is trained» for «'s trained»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcherTest.java
+    - name: "should decide every golden case of the corrector #1191 as its «acepta»\
+        \ column says with the copy of its table, reading each gap with the sentence\
+        \ around it, as «is» for «It ___ (be) hot inside.» answered «'s»"
       status: MISSING
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcherTest.java
     - name: "should take two texts as the same answer when the corrector matches them\
         \ in either order, so «He's forgotten to pay.» and «He has forgotten to pay.»\
-        \ are one answer with the four rules and two with the corrector in production"
+        \ are one answer with the four rules of #1194 and two with #1191"
       status: MISSING
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcherTest.java
     testCleanViews:
@@ -33370,7 +33440,8 @@ elements:
         next.accepts(they, List.of("'re not"), "'re not") is true
         next.sameAnswer(they, "aren't", "'re not") is true
         next.accepts(they, List.of("'re not"), "are") is false
-        next.tableVersion() == "corrector en producción, ittm #1191 (30e0efcc0), desplegado el 1/10/2026"
+        next.tableVersion() == "corrector en producción, ittm #1194 (9915461ac), desplegado el 1/10/2026"
+        new DefaultCorrectorMatcher(corrector1191Table()).accepts(they, List.of("'re not"), "aren't") is true
     - |
       test: "should decide every golden case of the backend corrector as its «hoy» column says with today's empty table, as «traveled» rejected for «She ___ (travel) to Europe.» answered «travelled»"
       trace: FEAT-RESPC / F-RESPC-R001
@@ -33379,6 +33450,10 @@ elements:
         today = DefaultCorrectorMatcher(oldCorrectorTable())
         wrong = ArrayList<>()
         cases = 0
+        every = ArrayList<>(goldenCases())
+
+      when:
+        sut.addAll(goldenCases(GOLDEN_CASES_1191))
 
       then:
         cases > 0 is true
@@ -33389,7 +33464,7 @@ elements:
       trace: FEAT-RESPC / F-RESPC-R001
 
       given:
-        next = DefaultCorrectorMatcher(productionTable())
+        next = DefaultCorrectorMatcher(corrector1191Table())
         wrong = ArrayList<>()
         cases = 0
         hot = GapContext("It", "(be) hot inside.")
@@ -33399,6 +33474,62 @@ elements:
         wrong == List.of()
         next.accepts(hot, List.of("'s"), "is") is true
         next.accepts(hot, List.of("'s"), "has") is false
+    - |
+      test: "should decide every golden case of the corrector with the four rules of 1/10 as its «acepta» column says with the copy of its table, which names those rules, as «'s forgotten» for «He ___ (forget) to pay.» and «Peter was admired.» for «Peter was admired (by Mary).»"
+      trace: FEAT-RESPC / F-RESPC-R001
+
+      given:
+        table = productionTable()
+        next = DefaultCorrectorMatcher(table)
+        wrong = ArrayList<>()
+        cases = 0
+        before = DefaultCorrectorMatcher(corrector1191Table())
+        forgot = GapContext("He", "(forget) to pay.")
+        peter = GapContext("Mary admired Peter.", "")
+
+      then:
+        table.getRules() == List.of(CorrectorRule.AMBIGUOUS_CONTRACTIONS, CorrectorRule.STANDARD_IRREGULAR_PARTICIPLES, CorrectorRule.TILL_OWN_SUBJECTS, CorrectorRule.OPTIONAL_PARENTHESES)
+        cases == 192
+        wrong == List.of()
+        next.accepts(forgot, List.of("has forgotten"), "'s forgotten") is true
+        before.accepts(forgot, List.of("has forgotten"), "'s forgotten") is false
+        next.accepts(peter, List.of("Peter was admired (by Mary)."), "Peter was admired.") is true
+        next.accepts(peter, List.of("Peter was admired (by Mary)."), "Peter was admired by Mary.") is true
+        before.accepts(peter, List.of("Peter was admired (by Mary)."), "Peter was admired.") is false
+    - |
+      test: "should give the benefit of the doubt only to the student, so an ambiguous contraction counts as any of its long forms when the student writes it and stays as written in the accepted answer, as «'s forgotten» for «has forgotten» but not «is trained» for «'s trained»"
+      trace: FEAT-RESPC / F-RESPC-R001
+
+      given:
+        next = DefaultCorrectorMatcher(productionTable())
+        trained = GapContext("He", "(train) hard today.")
+
+      then:
+        next.accepts(new GapContext("He", "(forget) to pay."), List.of("has forgotten"), "'s forgotten") is true
+        next.accepts(new GapContext("He", "(forget) to pay."), List.of("has forgotten"), "is forgotten") is false
+        next.accepts(trained, List.of("'s trained"), "is trained") is false
+        next.accepts(trained, List.of("'s trained"), "has trained") is false
+        next.accepts(trained, List.of("'s trained"), "'s trained") is true
+        next.accepts(new GapContext("", ""), List.of("Peter has left hand."), "Peter's left hand.") is false
+        next.accepts(new GapContext("A: Has she left? B: Yes,", ""), List.of("she has."), "she's.") is false
+        next.accepts(new GapContext("He's forgotten to pay, so he", "."), List.of("has to"), "is to") is false
+    - |
+      test: "should take two texts as the same answer when the corrector matches them in either order, so «He's forgotten to pay.» and «He has forgotten to pay.» are one answer with the four rules and two with the corrector in production"
+      trace: FEAT-RESPC / F-RESPC-R001
+
+      given:
+        next = DefaultCorrectorMatcher(productionTable())
+        production = DefaultCorrectorMatcher(corrector1191Table())
+
+      then:
+        next.sameAnswer("He's forgotten to pay.", "He has forgotten to pay.") is true
+        next.sameAnswer("He has forgotten to pay.", "He's forgotten to pay.") is true
+        production.sameAnswer("He's forgotten to pay.", "He has forgotten to pay.") is false
+        next.sameAnswer("Peter was admired by Mary.", "Peter was admired (by Mary).") is true
+        next.sameAnswer("Peter was admired (by Mary).", "Peter was admired.") is true
+        production.sameAnswer("Peter was admired by Mary.", "Peter was admired (by Mary).") is false
+        next.sameAnswer("I do not know.", "I don't know.") && production.sameAnswer("I don't know.", "I do not know.") is true
+        next.sameAnswer("Peter was admired by.", "Peter was admired (by Mary).") is false
   - name: AnswerCompletenessAnalyzerProvider
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/answercompleteness/AnswerCompletenessAnalyzerProvider.java
@@ -33407,11 +33538,11 @@ elements:
         \ that evaluates exercises, resolves by rule, at the panel or by ranking only,\
         \ and costs instant, asking «¿El corrector acepta todas las formas de la respuesta,\
         \ y ninguna consigna pide una?»"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/answercompleteness/AnswerCompletenessAnalyzerProviderTest.java
     testCleanViews:
     - |
-      test: "should describe answer-completeness in the catalog as an errors analyzer that evaluates exercises, resolves by rule or at the panel and costs instant, asking «¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?»"
+      test: "should describe answer-completeness in the catalog as an errors analyzer that evaluates exercises, resolves by rule, at the panel or by ranking only, and costs instant, asking «¿El corrector acepta todas las formas de la respuesta, y ninguna consigna pide una?»"
       trace: FEAT-RESPC / F-RESPC-R006
 
       given:
@@ -33508,7 +33639,7 @@ elements:
         \ equates and still rejects, naming the rule the corrector lacks instead of\
         \ adding it after «|», as «has trained» if «He ___ (train) hard today.» only\
         \ accepted «'s trained»"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/answercompleteness/AnswerCompletenessAnalyzerTest.java
     testCleanViews:
     - |
@@ -33601,16 +33732,19 @@ elements:
         arent.getEvidence().getObservation().contains("se arregla en el corrector y no en el curso") is true
         arent.getEvidence().getObservation().contains("la primera respuesta y su audio no cambian") is true
     - |
-      test: "should resolve by adding it after «|» a missing form the new corrector still rejects, as «has trained» if «He ___ (train) hard today.» only accepted «'s trained», a limit of the corrector"
+      test: "should only rank a missing form of a class the corrector in production equates and still rejects, naming the rule the corrector lacks instead of adding it after «|», as «has trained» if «He ___ (train) hard today.» only accepted «'s trained»"
       trace: FEAT-RESPC / F-RESPC-R005
 
       given:
         onlyContracted = quiz("67fab6d59930102295343061", "", "", text("He"), cloze("'s trained"), text("(train) hard today."))
         hasTrained = byMarker(findings(productionCorrector(), onlyContracted), "has trained")
         node = node(onlyContracted)
-        forgotten = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534283e", "", "", text("He"), cloze("has forgotten"), text("(forget) to pay."))), "'s forgotten")
-        overslept = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534447b", "", "", text("“I overslept this morning” (the boy whispered)"), cloze("The boy whispered that he had overslept that morning."))), "the boy whispered that he'd overslept that morning.")
-        till = byMarker(findings(productionCorrector(), quiz("67fab6d5993010229534326a", "", "", text("why / she / work there until then?"), cloze("Why had she worked there until then?"), text(""))), "why had she worked there till then?")
+        forgot = quiz("67fab6d5993010229534283e", "", "", text("He"), cloze("has forgotten"), text("(forget) to pay."))
+        forgotten = byMarker(findings(corrector1191(), forgot), "'s forgotten")
+        boy = quiz("67fab6d5993010229534447b", "", "", text("“I overslept this morning” (the boy whispered)"), cloze("The boy whispered that he had overslept that morning."))
+        overslept = byMarker(findings(corrector1191(), boy), "the boy whispered that he'd overslept that morning.")
+        then = quiz("67fab6d5993010229534326a", "", "", text("why / she / work there until then?"), cloze("Why had she worked there until then?"), text(""))
+        till = byMarker(findings(corrector1191(), then), "why had she worked there till then?")
 
       when:
         sut.onQuiz(node)
@@ -33628,6 +33762,7 @@ elements:
         part(overslept, "Le falta al corrector") == "falta «overslept» en los participios: lee «'d» como would"
         part(till, "Le falta al corrector") == "la regla de till toma «there» como sujeto"
         till.getResolution() == FindingResolution.RANK_ONLY
+        findings(productionCorrector(), forgot).isEmpty() && findings(productionCorrector(), boy).isEmpty() && findings(productionCorrector(), then).isEmpty() is true
     - |
       test: "should stop reporting the forms the new corrector's table equates, reading the gap with the sentence around it, as «is» for «It ___ (be) hot inside.» answered «'s»"
       trace: FEAT-RESPC / F-RESPC-R005
@@ -38573,7 +38708,7 @@ elements:
       then:
         card.getName() == "off-level-words"
         card.getQuestion() == "¿Hay palabras que el alumno de este nivel no puede conocer?"
-        card.getReads() == "La oración terminada de cada ejercicio, el título y las respuestas de su tema y su traducción"
+        card.getReads() == "La oración terminada de cada ejercicio, el título, las respuestas y las miniteorías de su tema, los " + "nombres de los temas del curso y su traducción"
         card.getFamily() == AnalyzerFamily.ERRORS
         card.getEvaluatedTargets() == List.of(AuditTarget.QUIZ)
         card.getRules().stream().map(r -> r.getId()).toList() == List.of("F-NIVFR-R002")
@@ -52939,9 +53074,9 @@ elements:
       then:
         text.exit() == 0
         text.out().matches("(?s).*movie\\s+90\\s+1\\.005\\s+poco vista\\s+1\\.083\\s+6\\.510, de A1 a A2.*") is true
-        text.out().matches("(?s).*A1\\s+15\\.802\\s+450\\s+178\\s+257\\s+15\\s+39,6 %.*") is true
+        text.out().matches("(?s).*A1\\s+15\\.802\\s+448\\s+176\\s+257\\s+15\\s+39,3 %.*") is true
         json.exit() == 0
-        detail.get("lemmas").size() == 1750
+        detail.get("lemmas").size() == 1743
         detail.get("score").asDouble() == 0.08
         java.util.stream.StreamSupport.stream(detail.get("levels").spliterator(), false).map(level -> level.get("level").asText()).toList() == List.of("A1", "A2", "B1", "B2")
   - name: ApproveCmd
@@ -56622,8 +56757,8 @@ elements:
       status: EXISTS
       testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/correctortable/FileSystemFormEquivalenceTableSourceTest.java
     - name: "should read from «reglas» the rules that are code of the version of the\
-        \ corrector, the four in the copy of the new corrector and none in the one\
-        \ in production, and stop at a rule it does not know"
+        \ corrector, the four in the copy of #1194, in production, and none in the\
+        \ copy of #1191, and stop at a rule it does not know"
       status: MISSING
       testFilePath: vocabulary-infrastructure/src/test/java/com/learney/contentaudit/vocabularyinfrastructure/correctortable/FileSystemFormEquivalenceTableSourceTest.java
     testCleanViews:
@@ -56638,7 +56773,7 @@ elements:
         old = FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes-corrector-viejo.json")).load()
 
       then:
-        table.getVersion() == "corrector en producción, ittm #1191 (30e0efcc0), desplegado el 1/10/2026"
+        table.getVersion() == "corrector en producción, ittm #1194 (9915461ac), desplegado el 1/10/2026"
         s.isPresent() is true
         s.get().isWholeWord() is false
         s.get().getExpansions().stream().map(String::strip).toList().containsAll(List.of("is", "has")) is true
@@ -56649,6 +56784,21 @@ elements:
         table.isInvertsNegativeQuestions() is true
         old.getContractions().isEmpty() && old.getEquivalentWords().isEmpty() is true
         old.isInvertsNegativeQuestions() is false
+    - |
+      test: "should read from «reglas» the rules that are code of the version of the corrector, the four in the copy of the new corrector and none in the one in production, and stop at a rule it does not know"
+      trace: FEAT-RESPC / F-RESPC-R001
+
+      given:
+        next = FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes.json")).load()
+        before = FileSystemFormEquivalenceTableSource(CORRECTOR.resolve("formas-equivalentes-corrector-1191.json")).load()
+        unknown = Files.createTempFile("formas-equivalentes", ".json")
+
+      then:
+        next.getRules() == List.of(CorrectorRule.AMBIGUOUS_CONTRACTIONS, CorrectorRule.STANDARD_IRREGULAR_PARTICIPLES, CorrectorRule.TILL_OWN_SUBJECTS, CorrectorRule.OPTIONAL_PARENTHESES)
+        next.getVersion().contains("#1194") is true
+        before.getRules() == List.of()
+        next.getContractions() == before.getContractions()
+        next.getEquivalentWords() == before.getEquivalentWords()
   qualitySummary:
     enforcement: warn
     thresholds:
@@ -70096,9 +70246,9 @@ elements:
     verdict: PASSED
 testSummary:
   total: 2005
-  passing: 1981
+  passing: 1982
   failing: 0
-  notImplemented: 24
+  notImplemented: 23
 qualitySummary:
   enforcement: warn
   thresholds:
