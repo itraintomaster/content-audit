@@ -36,7 +36,9 @@ import javax.annotation.processing.Generated;
  *       mean interval of 50 or less and under-exposed beyond 1,000; the course score is the share of
  *       normal lemmas, as before. No level gets a score of it. Only a lemma written with letters is a
  *       word that returns: the punctuation, the symbols and the numbers in figures the tagger reads as
- *       content («'», «-», «i.», «3rd») keep their position but are never a lemma of the analysis.</li>
+ *       content («'», «-», «i.», «3rd») are never a lemma of the analysis. A position is a word of the
+ *       text, with letters or figures: a punctuation mark or a symbol does not take one, so an interval
+ *       counts the words the student reads in between (option B, ronda1/recur-posiciones).</li>
  *   <li>F-RECUR-R003: the course diagnosis publishes every analysed lemma -- count, mean interval,
  *       status, deviation, its longest gap with the levels where it starts and ends, and its levels --
  *       from most to least frequent.</li>
@@ -66,6 +68,27 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
      * verbs or adjectives, but they are not vocabulary that comes back. «third» is still a word.
      */
     private static final Pattern WORD = Pattern.compile("\\p{L}+(['’-]\\p{L}+)*");
+
+    /**
+     * F-RECUR-R001 (option B): a token takes a position when its text has a letter or a figure -- a
+     * word, «'m», «1900» --; a punctuation mark or a symbol («.», «?», «-», «'») does not, whatever the
+     * tagger calls it.
+     */
+    private static boolean takesPosition(NlpToken token) {
+        if (token == null) {
+            return false;
+        }
+        String text = token.getText() != null ? token.getText() : token.getLemma();
+        if (text == null) {
+            return false;
+        }
+        for (int i = 0; i < text.length(); i++) {
+            if (Character.isLetterOrDigit(text.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private final ContentWordFilter contentWordFilter;
     private final LemmaRecurrenceConfig lemmaRecurrenceConfig;
@@ -110,6 +133,9 @@ public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter, LemmaRecurre
         }
         CefrLevel level = levelOf(node);
         for (NlpToken token : quiz.getTokens()) {
+            if (!takesPosition(token)) {
+                continue;
+            }
             globalPosition++;
             if (level != null) {
                 levelPositionCount.merge(level, 1, Integer::sum);
@@ -328,7 +354,7 @@ public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter, LemmaRecurre
     }
 
     /** «movie: 90 veces, vuelve cada 1.005 palabras (meta: más de 50 y hasta 1.000); su hueco más largo, 6.510, va de A1 a A2». */
-    /** «7,5 % de las 1.743 palabras analizadas vuelve a un intervalo sano»: the measure of the course. */
+    /** «9,2 % de las 1.743 palabras analizadas vuelve a un intervalo sano»: the measure of the course. */
     private static String courseMeasure(LemmaRecurrenceResult result) {
         int measured = result.getLemmaStats().size();
         int normal = result.getExposureSummary() != null ? result.getExposureSummary().getNormalCount() : 0;

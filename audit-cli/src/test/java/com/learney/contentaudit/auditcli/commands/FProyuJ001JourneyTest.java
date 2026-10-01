@@ -162,8 +162,8 @@ public class FProyuJ001JourneyTest {
                 Proyeccion299.BANDS_OF_29_9);
         assertEquals(Proyeccion299.vocabulary(written299), Proyeccion299.vocabulary(projection.getProjected()),
                 "R001: every node, the course included, as analyze on the copy with the four written");
-        assertEquals("73,92", Proyeccion299.percent(projection.getProjected().getRoot().getNumbers()
-                .getVocabularyScore()), "R001: the course at 73,92 %");
+        assertEquals("74,07", Proyeccion299.percent(projection.getProjected().getRoot().getNumbers()
+                .getVocabularyScore()), "R001: the course at 74,07 %"); // (73,92 % before the opción B of F-RECUR-R001, José 1/10: la puntuación no ocupa posición)
         assertEquals(List.of("96,54", "94,16", "79,45", "63,51"), Proyeccion299.levels(projection.getProjected()),
                 "R001: the levels, not 92,38 in A1");
         assertEquals(0.9, Proyeccion299.node(projection.getProjected(), Proyeccion299.GRANDMOTHER).getScores()

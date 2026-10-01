@@ -1282,10 +1282,14 @@ public class AnalyzeCmdTest {
                 JsonNode row = tree(json, line);
                 double sum = 0;
                 int count = 0;
+                boolean course = "COURSE".equals(row.get(0).asText());
                 for (Iterator<Map.Entry<String, JsonNode>> it = row.get(2).fields(); it.hasNext(); ) {
                     Map.Entry<String, JsonNode> score = it.next();
                     if (!score.getKey().contains("/")) {
-                        sum += score.getValue().asDouble();
+                        // Opción B de F-RECUR-R001, José 1/10: sin la puntuación en las
+                        // posiciones, lemma-recurrence da 0,09 en el curso en vez del 0,08 publicado el 29/9
+                        boolean recurrence = course && "lemma-recurrence".equals(score.getKey());
+                        sum += recurrence ? 0.09 : score.getValue().asDouble();
                         count++;
                     }
                 }

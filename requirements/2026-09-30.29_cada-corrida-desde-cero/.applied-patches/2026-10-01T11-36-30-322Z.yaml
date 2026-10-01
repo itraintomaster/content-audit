@@ -1,0 +1,37 @@
+code: FEAT-CERO
+description: "orquestador como qa-tester, FEAT-CERO, sólo nombres de pruebas: con\
+  \ la opción B de FEAT-RECUR (José, 1/10: la puntuación no ocupa posición), la segunda\
+  \ corrida del 29/9 da 74,07 % en el curso y 9,00 de recurrencia (antes 73,92 y 8,00),\
+  \ y el proveedor da 9,0 % por corrida contra 5,0 % si reusa el analizador (antes\
+  \ 8,0 y 4,0). Cada una se borra con el nombre viejo y se agrega con el nuevo, con\
+  \ la misma regla. Sin cambios de estructura."
+modules:
+- name: audit-domain
+  implementations:
+  - name: IAuditEngine
+    handwrittenTests:
+    - name: "should give the base of 29/9 on its second run in the same process 73.92%\
+        \ in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA\
+        \ in B1 and 8.00 of recurrence, as a new invocation, and not 72.90"
+      _change: delete
+    - name: "should give the base of 29/9 on its second run in the same process 74.07%\
+        \ in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA\
+        \ in B1 and 9.00 of recurrence, as a new invocation, and not 72.90"
+      traceability:
+        feature: FEAT-CERO
+        rule: F-CERO-R001
+  packages:
+  - name: lrec
+    implementations:
+    - name: LemmaRecurrenceAnalyzerProvider
+      handwrittenTests:
+      - name: "should create for every run an analyzer that counts positions from\
+          \ the start, so the recurrence of the course stays at 8.0% on a second run\
+          \ instead of falling to 4.0%"
+        _change: delete
+      - name: "should create for every run an analyzer that counts positions from\
+          \ the start, so the recurrence of the course stays at 9.0% on a second run\
+          \ instead of falling to 5.0%"
+        traceability:
+          feature: FEAT-CERO
+          rule: F-CERO-R001

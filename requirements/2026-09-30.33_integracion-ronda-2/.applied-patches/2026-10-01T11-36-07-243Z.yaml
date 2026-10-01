@@ -1,0 +1,19 @@
+code: FEAT-RONDA2
+description: "orquestador como qa-tester, FEAT-RONDA2, sólo nombres de pruebas: con\
+  \ la opción B de FEAT-RECUR (José, 1/10: la puntuación no ocupa posición), los veinte\
+  \ publican 74,00 % en el curso (antes 73,86); los niveles no se mueven. Se borra\
+  \ con el nombre viejo y se agrega con el nuevo, con la misma regla. Sin cambios\
+  \ de estructura."
+modules:
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    handwrittenTests:
+    - name: "should publish on the 29/9 course with the twenty analyzers a vocabulary\
+        \ of 73.86 % and levels 96.02, 93.60, 78.87 and 63.86"
+      _change: delete
+    - name: "should publish on the 29/9 course with the twenty analyzers a vocabulary\
+        \ of 74.00 % and levels 96.02, 93.60, 78.87 and 63.86"
+      traceability:
+        feature: FEAT-RONDA2
+        rule: F-RONDA2-R010

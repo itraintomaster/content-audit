@@ -54,15 +54,15 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should keep the vocabulary score of every node when off-level-words runs, 73.92% in the course and 96.54, 94.16, 79.45 and 63.51 from A1 to B2 on the published scores of the analysis of 29/9 → FEAT-NIVFR/F-NIVFR-R006
 - should publish a course vocabulary score of 73.92% and levels 96.54, 94.16, 79.45 and 63.51 with lemma-count at 4 for every band, next to the other six published scores of the analysis of 29/9 → FEAT-POCOV/F-POCOV-R001
 - should publish a course vocabulary score of 73.86% and levels 96.02, 93.60, 78.87 and 63.86 with lemma-count at bands 8, 6, 4 and 3, next to the other six published scores of the analysis of 29/9 → FEAT-POCOV/F-POCOV-R001
-- should keep the course vocabulary score at 73.92% with lemma-recurrence at 0.08 publishing its course diagnosis, on the published scores of the analysis of 29/9 → FEAT-RECUR/F-RECUR-R001
 - should keep the vocabulary score of every level at 96.54, 94.16, 79.45 and 63.51 with the recurrence of each level published as detail → FEAT-RECUR/F-RECUR-R004
 - should leave naturalness and near-duplicates out of the base run, even though near-duplicates has the instant rule same-but-wildcard → FEAT-RONDA2/F-RONDA2-R003
 - should run grammar in the base run because it is instant → FEAT-RONDA2/F-RONDA2-R003
 - should run fourteen of the twenty analyzers in the base run, the thirteen instant ones and multiple-choice-validity with budget 0 → FEAT-RONDA2/F-RONDA2-R003
 - should store at the root one measure per analyzer that ran, in catalog order, and no measure in the nodes below → FEAT-RONDA2/F-RONDA2-R004
-- should give the base of 29/9 on its second run in the same process 73.92% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 8.00 of recurrence, as a new invocation, and not 72.90 → FEAT-CERO/F-CERO-R001
 - should give a run the numbers of a new invocation whatever courses ran before it, so a word only the earlier course used is absent for lemma-absence and lemma-count → FEAT-CERO/F-CERO-R001
 - should leave the first report untouched by a second run in the same process, its 55 topics keeping their COCA diagnosis, A1 · Present Simple with 2,366 tokens in four bands → FEAT-CERO/F-CERO-R002
+- should keep the course vocabulary score at 74.07% with lemma-recurrence at 0.09 publishing its course diagnosis, on the published scores of the analysis of 29/9 → FEAT-RECUR/F-RECUR-R001
+- should give the base of 29/9 on its second run in the same process 74.07% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 9.00 of recurrence, as a new invocation, and not 72.90 → FEAT-CERO/F-CERO-R001
 
 ### KnowledgeTitleLengthAnalyzer (audit-domain)
 
@@ -377,16 +377,16 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 - should reject before loading the course a run that asks for quiz-instructions, a name get analyzers does not list, with the message that points to get analyzers → FEAT-HALL/F-HALL-R012
 - should reject before loading the course a run that excludes a name get analyzers does not list, instead of ignoring it → FEAT-HALL/F-HALL-R012
 - should publish on the 29/9 course, with the seven classic analyzers, the same score of each one on each of its 11.760 nodes and the same typed diagnoses as the analysis 2026-09-30T11-54-02 → FEAT-HALL/F-HALL-R013
-- should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels 96.0, 93.6, 78.9 and 63.9 → FEAT-RONDA1/F-RONDA1-R008
-- should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2, 79.5 and 63.5 → FEAT-RONDA1/F-RONDA1-R008
 - should accept a budget for near-duplicates, which consults a model, and keep rejecting a budget for grammar, which is instant → FEAT-RONDA2/F-RONDA2-R002
 - should hand naturalness no run policy when the run declares no budget, so its provider completes it by the route it consults → FEAT-RONDA2/F-RONDA2-R002
-- should publish on the 29/9 course with the twenty analyzers a vocabulary of 73.86 % and levels 96.02, 93.60, 78.87 and 63.86 → FEAT-RONDA2/F-RONDA2-R010
 - should reject before loading the course a run that asks for naturalness by name when neither llama3:8b in Ollama nor claude -p is available, with «Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is not available: ollama pull llama3:8b.» → FEAT-MLOCAL/F-MLOCAL-R003
 - should reject before loading the course a run that asks for grammar by name when LanguageTool is not available, since grammar has no alternative → FEAT-MLOCAL/F-MLOCAL-R003
 - should not reject a run that asks for near-duplicates by name without Ollama when the claude -p alternative is available → FEAT-MLOCAL/F-MLOCAL-R003
 - should not reject a run without selection when LanguageTool is not available, leaving every exercise unevaluated by grammar with the reason in view while the other analyzers run → FEAT-MLOCAL/F-MLOCAL-R003
 - should run grammar, naturalness and near-duplicates in an analyze without selection → FEAT-MLOCAL/F-MLOCAL-R004
+- should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 74.00% and levels 96.0, 93.6, 78.9 and 63.9 → FEAT-RONDA1/F-RONDA1-R008
+- should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 74.07% and levels 96.5, 94.2, 79.5 and 63.5 → FEAT-RONDA1/F-RONDA1-R008
+- should publish on the 29/9 course with the twenty analyzers a vocabulary of 74.00 % and levels 96.02, 93.60, 78.87 and 63.86 → FEAT-RONDA2/F-RONDA2-R010
 
 ### DefaultCocaBucketsConfig (audit-application)
 

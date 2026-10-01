@@ -55,7 +55,8 @@ public class FRecurJ001JourneyTest {
         // keeps its 0,08 with the thresholds of today
         Analysis analysis = analyze(workdir, Base299.classicProviders().get(4));
         AuditNode course = analysis.report().getRoot();
-        assertEquals(0.08, course.getScores().get(RECURRENCE), 1e-12, "R001: 0,08");
+        // Opción B, José 1/10: la puntuación no ocupa posición y la recurrencia da 0,09
+        assertEquals(0.09, course.getScores().get(RECURRENCE), 1e-12, "R001: 0,09 with option B");
 
         // === Node: por_palabra ===
         // Gate: F-RECUR-R003 -- each analysed lemma with its times, interval, status, deviation, longest gap
@@ -63,7 +64,7 @@ public class FRecurJ001JourneyTest {
         LemmaRecurrenceCourseDiagnosis diagnosis = diagnosis(course);
         LemmaStats movie = diagnosis.getResult().getLemmaStats().stream().filter(s -> s.getLemma().equals("movie"))
                 .findFirst().orElseThrow();
-        assertEquals(List.of("90", "1005", "SUB_EXPOSED", "6510", "A1", "A2", "[A1, A2, B1, B2]"), List.of(
+        assertEquals(List.of("90", "855", "NORMAL", "5400", "A1", "A2", "[A1, A2, B1, B2]"), List.of(
                 String.valueOf(movie.getCount()), String.valueOf(Math.round(movie.getMeanInterval())),
                 movie.getExposureStatus().name(), String.valueOf(movie.getLongestGap()),
                 movie.getLongestGapFromLevel().name(), movie.getLongestGapToLevel().name(), movie.getLevels().toString()),
@@ -71,13 +72,13 @@ public class FRecurJ001JourneyTest {
         assertTrue(movie.getStdDevInterval() > 0, "R003: its deviation");
         Base299.Captured stats = stats(analysis.catalog());
         assertEquals(0, stats.exit(), stats.err());
-        assertTrue(stats.out().matches("(?s).*movie\\s+90\\s+1\\.005\\s+poco vista\\s+1\\.083\\s+6\\.510, de A1 a A2.*"),
+        assertTrue(stats.out().matches("(?s).*movie\\s+90\\s+855\\s+normal\\s+913\\s+5\\.400, de A1 a A2.*"),
                 "R003: stats analyzer lemma-recurrence shows it");
 
         // === Node: hallazgos ===
         // Gate: F-RECUR-R005 -- below 1, one low finding that only orders per lemma out of range, in the course
         List<Finding> findings = course.getFindings().stream().filter(f -> RECURRENCE.equals(f.getAnalyzer())).toList();
-        assertEquals(1612, findings.size(), "R005: 1,566 under-exposed and 46 over-exposed lemmas");
+        assertEquals(1583, findings.size(), "R005: 1,534 under-exposed and 49 over-exposed lemmas");
         assertTrue(findings.stream().allMatch(f -> "F-RECUR-R005".equals(f.getRule())
                 && "LOW".equals(f.getSeverity().name()) && "RANK_ONLY".equals(f.getResolution().name())),
                 "R005: low and only ordering");
@@ -85,12 +86,12 @@ public class FRecurJ001JourneyTest {
         // === Node: por_nivel ===
         // Gate: F-RECUR-R002, F-RECUR-R004 -- each level brings its recurrence as detail, and the score, the
         // 73,9 % and the 4,036 tasks stay the same
-        assertEquals(List.of("A1 448 176", "A2 752 155", "B1 1137 161", "B2 818 165"), levels(diagnosis),
+        assertEquals(List.of("A1 448 200", "A2 752 203", "B1 1137 187", "B2 818 201"), levels(diagnosis),
                 "R004: the recurrence of each level");
         for (AuditNode level : course.getChildren()) {
             assertFalse(level.getScores().containsKey(RECURRENCE), "R004: detail, never a score of the level");
         }
-        assertEquals("73,9 %", GetCmd.scoreText(course.getNumbers().getVocabularyScore()), "R002: 73,9 %");
+        assertEquals("74,1 %", GetCmd.scoreText(course.getNumbers().getVocabularyScore()), "R002: 74,1 % with option B");
         List<String> tasks = plan(analysis);
         assertEquals(Base299.preContractPlan(), tasks, "R002: the 4,036 tasks of the plan, task by task");
         assertEquals(1, tasks.stream().filter(t -> t.endsWith("LEMMA_RECURRENCE")).count(),

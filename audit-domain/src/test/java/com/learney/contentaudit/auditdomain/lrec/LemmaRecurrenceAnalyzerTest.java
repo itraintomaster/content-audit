@@ -468,22 +468,22 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should give the course of 29/9 a lemma-recurrence score of 0.08, with 131 normal, 1,566 under-exposed and 46 over-exposed of its 1,743 returning lemmas")
+    @DisplayName("should give the course of 29/9 a lemma-recurrence score of 0.09, with 160 normal, 1,534 under-exposed and 49 over-exposed of its 1,743 returning lemmas")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R001")
-    public void shouldGiveTheCourseOf299ALemmarecurrenceScoreOf008With131Normal1566UnderexposedAnd46OverexposedOfIts1743ReturningLemmas() {
-        // R001: the 91,873 positions of the 29/9 course in order A1 → B2 give 0,08: 131 normal, 1,566
-        // under-exposed and 46 over-exposed of its 1,743 returning lemmas (1/10: «'», «-», «i.», «1st»,
-        // «3rd», «4th» and «comic_strip» are not words; before, 134, 1,570 and 46 of 1,750).
+    public void shouldGiveTheCourseOf299ALemmarecurrenceScoreOf009With160Normal1534UnderexposedAnd49OverexposedOfIts1743ReturningLemmas() {
+        // R001 (opción B, José 1/10): la puntuación no ocupa posición. Of the 91,873 tokens of the 29/9 course, the 78,161
+        // with a letter or a figure are positions, in order A1 → B2, and give 0,09: 160 normal, 1,534
+        // under-exposed and 49 over-exposed of its 1,743 returning lemmas (option A: 0,08, 131, 1,566 and 46).
         Run299 run = run299();
 
-        assertEquals(0.08, run.root.getScores().get("lemma-recurrence"), 1e-12, "R001: the score of today");
+        assertEquals(0.09, run.root.getScores().get("lemma-recurrence"), 1e-12, "R001: the score with option B");
         LemmaRecurrenceResult result = run.diagnosis().getResult();
         assertEquals(1743, result.getLemmaStats().size(), "R001: 1,743 returning lemmas");
-        assertEquals(List.of(131, 1566, 46), List.of(result.getExposureSummary().getNormalCount(),
+        assertEquals(List.of(160, 1534, 49), List.of(result.getExposureSummary().getNormalCount(),
                 result.getExposureSummary().getSubExposedCount(), result.getExposureSummary().getOverExposedCount()),
-                "R001: 131 normal, 1,566 under-exposed, 46 over-exposed");
-        assertEquals(91873, run.positions, "the 91,873 positions of the course");
+                "R001: 160 normal, 1,534 under-exposed, 49 over-exposed");
+        assertEquals(91873, run.positions, "the 91,873 tokens of the course");
     }
 
     @Test
@@ -513,19 +513,20 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should publish in the course diagnosis each analysed lemma with its count, mean interval, status, deviation, longest gap with its start and end levels and its levels, like 'movie': 90 times, every 1,005 words, under-exposed, longest gap 6,510 from A1 to A2")
+    @DisplayName("should publish in the course diagnosis each analysed lemma with its count, mean interval, status, deviation, longest gap with its start and end levels and its levels, like 'movie': 90 times, every 855 words, normal, longest gap 5,400 from A1 to A2")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
-    public void shouldPublishInTheCourseDiagnosisEachAnalysedLemmaWithItsCountMeanIntervalStatusDeviationLongestGapWithItsStartAndEndLevelsAndItsLevelsLikeMovie90TimesEvery1005WordsUnderexposedLongestGap6510FromA1ToA2() {
-        // R003: «movie» on the 29/9 course: 90 times, every 1,005 words, under-exposed, a deviation of
-        // 1,083, its longest gap 6,510 from A1 to A2, and in the four levels.
+    public void shouldPublishInTheCourseDiagnosisEachAnalysedLemmaWithItsCountMeanIntervalStatusDeviationLongestGapWithItsStartAndEndLevelsAndItsLevelsLikeMovie90TimesEvery855WordsNormalLongestGap5400FromA1ToA2() {
+        // R003 on the 29/9 course (opción B, José 1/10): la puntuación no ocupa posición: «movie», 90 times, every 855 words,
+        // normal (with option A, every 1,005, under-exposed), a deviation of 913, its longest gap 5,400 from A1
+        // to A2, and in the four levels.
         LemmaStats movie = run299().stats("movie");
 
         assertEquals(90, movie.getCount(), "R003: its times");
-        assertEquals(1005.02, movie.getMeanInterval(), 0.01, "R003: how often it returns");
-        assertEquals(ExposureStatus.SUB_EXPOSED, movie.getExposureStatus(), "R003: under-exposed");
-        assertEquals(1082.57, movie.getStdDevInterval(), 0.01, "R003: the deviation of its intervals");
-        assertEquals(6510, movie.getLongestGap(), "R003: its longest gap");
+        assertEquals(854.83, movie.getMeanInterval(), 0.01, "R003: how often it returns");
+        assertEquals(ExposureStatus.NORMAL, movie.getExposureStatus(), "R003: normal with option B");
+        assertEquals(913.22, movie.getStdDevInterval(), 0.01, "R003: the deviation of its intervals");
+        assertEquals(5400, movie.getLongestGap(), "R003: its longest gap");
         assertEquals(List.of(CefrLevel.A1, CefrLevel.A2), List.of(movie.getLongestGapFromLevel(),
                 movie.getLongestGapToLevel()), "R003: from A1 to A2");
         assertEquals(List.of(CefrLevel.A1, CefrLevel.A2, CefrLevel.B1, CefrLevel.B2), movie.getLevels(),
@@ -533,21 +534,22 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should take a lemma's longest gap as the largest interval between two consecutive occurrences, with the levels of the quizzes where it starts and ends, like 27,379 from B1 to B2 for 'suppose'")
+    @DisplayName("should take a lemma's longest gap as the largest interval between two consecutive occurrences, with the levels of the quizzes where it starts and ends, like 23,684 from B1 to B2 for 'suppose'")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R003")
-    public void shouldTakeALemmasLongestGapAsTheLargestIntervalBetweenTwoConsecutiveOccurrencesWithTheLevelsOfTheQuizzesWhereItStartsAndEndsLike27379FromB1ToB2ForSuppose() {
-        // R003: «suppose» returns on average every 696 words, but its largest interval between two
-        // consecutive occurrences is 27,379, from a B1 quiz to a B2 one; «vegetable»'s, 27,780, is in B1.
+    public void shouldTakeALemmasLongestGapAsTheLargestIntervalBetweenTwoConsecutiveOccurrencesWithTheLevelsOfTheQuizzesWhereItStartsAndEndsLike23684FromB1ToB2ForSuppose() {
+        // R003 (opción B, José 1/10): la puntuación no ocupa posición: «suppose» returns on average every 603 words, but its
+        // largest interval between two consecutive occurrences is 23,684, from a B1 quiz to a B2 one;
+        // «vegetable»'s, 23,825, is in B1 (option A: 696, 27,379 and 27,780; the name keeps those).
         Run299 run = run299();
         LemmaStats suppose = run.stats("suppose");
         LemmaStats vegetable = run.stats("vegetable");
 
-        assertEquals(696.25, suppose.getMeanInterval(), 1e-9);
-        assertEquals(27379, suppose.getLongestGap(), "R003: the largest interval");
+        assertEquals(602.6, suppose.getMeanInterval(), 1e-9);
+        assertEquals(23684, suppose.getLongestGap(), "R003: the largest interval");
         assertEquals(List.of(CefrLevel.B1, CefrLevel.B2), List.of(suppose.getLongestGapFromLevel(),
                 suppose.getLongestGapToLevel()), "R003: from B1 to B2");
-        assertEquals(List.of(27780, CefrLevel.B1, CefrLevel.B1), List.of(vegetable.getLongestGap(),
+        assertEquals(List.of(23825, CefrLevel.B1, CefrLevel.B1), List.of(vegetable.getLongestGap(),
                 vegetable.getLongestGapFromLevel(), vegetable.getLongestGapToLevel()), "R003: within B1");
     }
 
@@ -619,10 +621,10 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should publish for the course of 29/9 A1 448 returning lemmas with 176 normal (39.3%), A2 752 with 155 (20.6%), B1 1,137 with 161 (14.2%) and B2 818 with 165 (20.2%)")
+    @DisplayName("should publish for the course of 29/9 A1 448 returning lemmas with 200 normal (44.6%), A2 752 with 203 (27.0%), B1 1,137 with 187 (16.4%) and B2 818 with 201 (24.6%)")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
-    public void shouldPublishForTheCourseOf299A1448ReturningLemmasWith176Normal393A2752With155206B11137With161142AndB2818With165202() {
+    public void shouldPublishForTheCourseOf299A1448ReturningLemmasWith200Normal446A2752With203270B11137With187164AndB2818With201246() {
         // R004 on the 29/9 course, with only the lemmas written with letters (1/10): A1 448 returning
         // lemmas, 176 normal (39,3 %); A2 752, 155 (20,6 %); B1 1,137, 161 (14,2 %); B2 818, 165 (20,2 %).
         List<String> levels = run299().diagnosis().getLevels().stream().map(l -> l.getLevel() + " " + l.getPositions()
@@ -630,8 +632,10 @@ public class LemmaRecurrenceAnalyzerTest {
                 + l.getOverExposedCount() + " " + String.format(java.util.Locale.ROOT, "%.1f", 100 * l.getNormalShare()))
                 .toList();
 
-        assertEquals(List.of("A1 15802 448 176 257 15 39.3", "A2 18967 752 155 569 28 20.6",
-                "B1 38949 1137 161 938 38 14.2", "B2 18155 818 165 607 46 20.2"), levels, "R004: the table of the detail");
+        // Opción B, José 1/10: la puntuación no ocupa posición: the positions of each level are its words, without the
+        // punctuation (12,934 · 15,996 · 33,439 · 15,792 of 91,873 tokens).
+        assertEquals(List.of("A1 12934 448 200 228 20 44.6", "A2 15996 752 203 521 28 27.0",
+                "B1 33439 1137 187 908 42 16.4", "B2 15792 818 201 566 51 24.6"), levels, "R004: the table of the detail");
     }
 
     @Test
@@ -682,21 +686,22 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should give as evidence the lemma, its times, how often it returns against the goal and its longest gap, like 'movie: 90 times, returns every 1,005 words (goal: more than 50 and up to 1,000); its longest gap, 6,510, goes from A1 to A2'")
+    @DisplayName("should give as evidence the lemma, its times, how often it returns against the goal and its longest gap, like 'vegetable: 10 times, returns every 7,765 words (goal: more than 50 and up to 1,000); its longest gap, 23,825, is in B1'")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
-    public void shouldGiveAsEvidenceTheLemmaItsTimesHowOftenItReturnsAgainstTheGoalAndItsLongestGapLikeMovie90TimesReturnsEvery1005WordsGoalMoreThan50AndUpTo1000ItsLongestGap6510GoesFromA1ToA2() {
-        // R005: the evidence of «movie» on the 29/9 course.
+    public void shouldGiveAsEvidenceTheLemmaItsTimesHowOftenItReturnsAgainstTheGoalAndItsLongestGapLikeVegetable10TimesReturnsEvery7765WordsGoalMoreThan50AndUpTo1000ItsLongestGap23825IsInB1() {
+        // R005: the evidence of «vegetable» on the 29/9 course. Opción B, José 1/10: la puntuación no ocupa posición, «movie»
+        // returns every 855 words and is normal, so it leaves no finding.
         Run299 run = run299();
 
-        FindingDraft movie = run.analyzer.findingsAt(run.root).stream().filter(d -> "movie".equals(d.getMarker()))
+        FindingDraft movie = run.analyzer.findingsAt(run.root).stream().filter(d -> "vegetable".equals(d.getMarker()))
                 .findFirst().orElseThrow();
 
-        assertEquals("movie: 90 veces, vuelve cada 1.005 palabras (meta: más de 50 y hasta 1.000); su hueco más "
-                + "largo, 6.510, va de A1 a A2", movie.getEvidence().getObservation(), "R005: the measure against its goal");
+        assertEquals("vegetable: 10 veces, vuelve cada 7.765 palabras (meta: más de 50 y hasta 1.000); su hueco más "
+                + "largo, 23.825, está en B1", movie.getEvidence().getObservation(), "R005: the measure against its goal");
         Map<String, String> parts = new LinkedHashMap<>();
         movie.getEvidence().getExamined().forEach(part -> parts.put(part.getLabel(), part.getText()));
-        assertEquals(List.of("movie", "90", "1.005 palabras", "más de 50 y hasta 1.000", "6.510, va de A1 a A2"),
+        assertEquals(List.of("vegetable", "10", "7.765 palabras", "más de 50 y hasta 1.000", "23.825, está en B1"),
                 List.of(parts.get("Palabra"), parts.get("Veces"), parts.get("Vuelve cada"), parts.get("Meta"),
                         parts.get("Hueco más largo")), "R005: the lemma, its times, its interval, the goal and its gap");
     }
@@ -748,21 +753,21 @@ public class LemmaRecurrenceAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should leave 1,612 findings in the course of 29/9, 1,566 for under-exposed and 46 for over-exposed lemmas")
+    @DisplayName("should leave 1,583 findings in the course of 29/9, 1,534 for under-exposed and 49 for over-exposed lemmas")
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
-    public void shouldLeave1612FindingsInTheCourseOf2991566ForUnderexposedAnd46ForOverexposedLemmas() {
-        // R005 on the 29/9 course: 1,612 findings, 1,566 for under-exposed lemmas and 46 for over-exposed
-        // ones (1/10, only lemmas written with letters; 1,616 before).
+    public void shouldLeave1583FindingsInTheCourseOf2991534ForUnderexposedAnd49ForOverexposedLemmas() {
+        // R005 on the 29/9 course (opción B, José 1/10): la puntuación no ocupa posición: 1,583 findings, 1,534 for
+        // under-exposed lemmas and 49 for over-exposed ones (option A: 1,612).
         Run299 run = run299();
 
         List<FindingDraft> drafts = run.analyzer.findingsAt(run.root);
 
-        assertEquals(1612, drafts.size(), "R005: 1,612 findings");
+        assertEquals(1583, drafts.size(), "R005: 1,583 findings");
         Map<String, Integer> byState = new java.util.TreeMap<>();
         drafts.forEach(d -> d.getEvidence().getExamined().stream().filter(p -> "Estado".equals(p.getLabel()))
                 .forEach(p -> byState.merge(p.getText(), 1, Integer::sum)));
-        assertEquals(Map.of("poco vista", 1566, "sobre-expuesta", 46), byState, "R005: 1,566 and 46");
+        assertEquals(Map.of("poco vista", 1534, "sobre-expuesta", 49), byState, "R005: 1,534 and 49");
     }
 
     // -----------------------------------------------------------------------

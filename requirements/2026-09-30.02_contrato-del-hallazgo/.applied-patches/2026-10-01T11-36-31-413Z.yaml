@@ -1,0 +1,23 @@
+code: FEAT-HALL
+description: "orquestador como qa-tester, FEAT-HALL, sólo nombres de pruebas: con\
+  \ la opción B de FEAT-RECUR (José, 1/10: la puntuación no ocupa posición), get audit\
+  \ y get audits muestran 74,1 % para la base del 29/9 en vez de 73,5 %, la media\
+  \ de sus once claves (antes 73,9 y 73,4). Se borra con el nombre viejo y se agrega\
+  \ con el nuevo, con la misma regla. Sin cambios de estructura."
+modules:
+- name: audit-cli
+  packages:
+  - name: commands
+    implementations:
+    - name: GetCmd
+      handwrittenTests:
+      - name: "should show in get audit and get audits the vocabulary score published\
+          \ on the course, 73,9 % for the 29/9 base, instead of 73,4 %, the average\
+          \ of its eleven course keys"
+        _change: delete
+      - name: "should show in get audit and get audits the vocabulary score published\
+          \ on the course, 74,1 % for the 29/9 base, instead of 73,5 %, the average\
+          \ of its eleven course keys"
+        traceability:
+          feature: FEAT-HALL
+          rule: F-HALL-R010

@@ -1912,7 +1912,7 @@ recurrence data available», y nadie puede ver qué palabra vuelve poco ni en qu
 
 | ID | Rule | Severity | Error Message |
 |----|------|----------|---------------|
-| F-RECUR-R001 | Umbrales, orden y puntaje son los de hoy | critical | - |
+| F-RECUR-R001 | Umbrales y orden son los de hoy; las posiciones son las palabras del texto | critical | - |
 | F-RECUR-R002 | El plan y las tareas no cambian | critical | - |
 | F-RECUR-R003 | Cada palabra analizada queda en el informe | critical | - |
 | F-RECUR-R004 | La recurrencia dentro de cada nivel, como detalle | critical | - |

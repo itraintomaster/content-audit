@@ -112,27 +112,28 @@ public class LemmaRecurrenceAnalyzerProviderTest {
     }
 
     @Test
-    @DisplayName("should create for every run an analyzer that counts positions from the start, so the recurrence of the course stays at 8.0% on a second run instead of falling to 4.0%")
+    @DisplayName("should create for every run an analyzer that counts positions from the start, so the recurrence of the course stays at 9.0% on a second run instead of falling to 5.0%")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
-    public void shouldCreateForEveryRunAnAnalyzerThatCountsPositionsFromTheStartSoTheRecurrenceOfTheCourseStaysAt80OnASecondRunInsteadOfFallingTo40() {
-        // F-CERO-R001: lemma-recurrence counts the position of every token of the course from the start; with
-        // an analyzer per run, the 29/9 course gives 8,0 % on the second run of the same process too. An analyzer
-        // kept for the second run goes on from where the first ended, and falls to 4,0 %.
+    public void shouldCreateForEveryRunAnAnalyzerThatCountsPositionsFromTheStartSoTheRecurrenceOfTheCourseStaysAt90OnASecondRunInsteadOfFallingTo50() {
+        // F-CERO-R001: lemma-recurrence counts the position of every word of the course from the start; with
+        // an analyzer per run, the 29/9 course gives 9,0 % on the second run of the same process too. An analyzer
+        // kept for the second run goes on from where the first ended, and falls to 5,0 % (8,0 % and 4,0 % with
+        // option A; opción B de F-RECUR-R001, José 1/10: la puntuación no ocupa posición).
         LemmaRecurrenceAnalyzerProvider provider = new LemmaRecurrenceAnalyzerProvider(config299());
         IAuditEngine engine = CocaBucketsAnalyzerProviderTest.Coca299.engine(provider);
 
         AuditReport first = engine.runAudit(streamCourseOf299());
         AuditReport second = engine.runAudit(streamCourseOf299());
 
-        Assertions.assertEquals(0.08, first.getRoot().getScores().get("lemma-recurrence"), 1e-12, "8,0 % the first time");
-        Assertions.assertEquals(0.08, second.getRoot().getScores().get("lemma-recurrence"), 1e-12,
-                "R001: 8,0 % on the second run, as a new invocation");
+        Assertions.assertEquals(0.09, first.getRoot().getScores().get("lemma-recurrence"), 1e-12, "9,0 % the first time");
+        Assertions.assertEquals(0.09, second.getRoot().getScores().get("lemma-recurrence"), 1e-12,
+                "R001: 9,0 % on the second run, as a new invocation");
         IAuditEngine reusing = CocaBucketsAnalyzerProviderTest.Coca299.engine(
                 CocaBucketsAnalyzerProviderTest.Coca299.reusing(provider));
         reusing.runAudit(streamCourseOf299());
-        Assertions.assertEquals(0.04, reusing.runAudit(streamCourseOf299()).getRoot().getScores().get("lemma-recurrence"),
-                1e-12, "an analyzer kept for the second run falls to 4,0 %");
+        Assertions.assertEquals(0.05, reusing.runAudit(streamCourseOf299()).getRoot().getScores().get("lemma-recurrence"),
+                1e-12, "an analyzer kept for the second run falls to 5,0 %");
     }
 
     /** The configuration of lemma-recurrence of the 29/9 analysis: top 2,000, 1,000 and 50 tokens. */

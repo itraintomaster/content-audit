@@ -111,8 +111,9 @@ public class FPocovJ001JourneyTest {
         assertEquals(0.6698448144961168, analysis.report().getRoot().getScores().get(LEMMA_COUNT), 1e-12,
                 "R001 inv. 1: 0,6698448, the lemma-count of today");
         assertEquals("67,0 %", GetCmd.scoreText(analysis.report().getRoot().getScores().get(LEMMA_COUNT)));
-        assertEquals("73,9 %", GetCmd.scoreText(analysis.report().getRoot().getNumbers().getVocabularyScore()),
-                "R001 inv. 1: the vocabulary of today");
+        // Opción B, José 1/10: la recurrencia da 0,09 y el vocabulario del curso, 74,1 %
+        assertEquals("74,1 %", GetCmd.scoreText(analysis.report().getRoot().getNumbers().getVocabularyScore()),
+                "R001 inv. 1: the vocabulary of today, with option B");
         PlanRun plan = plan(analysis);
         assertEquals(4036, plan.tasks().size(), "R002: the 4,036 tasks");
         assertEquals(Base299.preContractPlan(), plan.tasks(), "R002: task by task, none of lemma-count");

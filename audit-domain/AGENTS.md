@@ -674,15 +674,15 @@ Methods:
 - should keep the vocabulary score of every node when off-level-words runs, 73.92% in the course and 96.54, 94.16, 79.45 and 63.51 from A1 to B2 on the published scores of the analysis of 29/9 → FEAT-NIVFR/F-NIVFR-R006
 - should publish a course vocabulary score of 73.92% and levels 96.54, 94.16, 79.45 and 63.51 with lemma-count at 4 for every band, next to the other six published scores of the analysis of 29/9 → FEAT-POCOV/F-POCOV-R001
 - should publish a course vocabulary score of 73.86% and levels 96.02, 93.60, 78.87 and 63.86 with lemma-count at bands 8, 6, 4 and 3, next to the other six published scores of the analysis of 29/9 → FEAT-POCOV/F-POCOV-R001
-- should keep the course vocabulary score at 73.92% with lemma-recurrence at 0.08 publishing its course diagnosis, on the published scores of the analysis of 29/9 → FEAT-RECUR/F-RECUR-R001
 - should keep the vocabulary score of every level at 96.54, 94.16, 79.45 and 63.51 with the recurrence of each level published as detail → FEAT-RECUR/F-RECUR-R004
 - should leave naturalness and near-duplicates out of the base run, even though near-duplicates has the instant rule same-but-wildcard → FEAT-RONDA2/F-RONDA2-R003
 - should run grammar in the base run because it is instant → FEAT-RONDA2/F-RONDA2-R003
 - should run fourteen of the twenty analyzers in the base run, the thirteen instant ones and multiple-choice-validity with budget 0 → FEAT-RONDA2/F-RONDA2-R003
 - should store at the root one measure per analyzer that ran, in catalog order, and no measure in the nodes below → FEAT-RONDA2/F-RONDA2-R004
-- should give the base of 29/9 on its second run in the same process 73.92% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 8.00 of recurrence, as a new invocation, and not 72.90 → FEAT-CERO/F-CERO-R001
 - should give a run the numbers of a new invocation whatever courses ran before it, so a word only the earlier course used is absent for lemma-absence and lemma-count → FEAT-CERO/F-CERO-R001
 - should leave the first report untouched by a second run in the same process, its 55 topics keeping their COCA diagnosis, A1 · Present Simple with 2,366 tokens in four bands → FEAT-CERO/F-CERO-R002
+- should keep the course vocabulary score at 74.07% with lemma-recurrence at 0.09 publishing its course diagnosis, on the published scores of the analysis of 29/9 → FEAT-RECUR/F-RECUR-R001
+- should give the base of 29/9 on its second run in the same process 74.07% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 9.00 of recurrence, as a new invocation, and not 72.90 → FEAT-CERO/F-CERO-R001
 
 ### KnowledgeTitleLengthAnalyzer
 

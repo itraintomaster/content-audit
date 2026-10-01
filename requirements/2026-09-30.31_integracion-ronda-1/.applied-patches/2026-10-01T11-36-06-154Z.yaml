@@ -1,0 +1,31 @@
+code: FEAT-RONDA1
+description: "orquestador como qa-tester, FEAT-RONDA1, sólo nombres de pruebas: con\
+  \ la opción B de FEAT-RECUR (José, 1/10: la puntuación no ocupa posición), los diecisiete\
+  \ de la ronda 1 publican 74,00 % con las bandas 8 · 6 · 4 · 3 y 74,07 % con 4 para\
+  \ todas (antes 73,86 y 73,92); los niveles no se mueven. Cada una se borra con el\
+  \ nombre viejo y se agrega con el nuevo, con la misma regla. Sin cambios de estructura."
+modules:
+- name: audit-application
+  implementations:
+  - name: DefaultAuditRunner
+    handwrittenTests:
+    - name: "should publish on the 29/9 course with the seventeen analyzers of round\
+        \ 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels\
+        \ 96.0, 93.6, 78.9 and 63.9"
+      _change: delete
+    - name: "should publish on the 29/9 course with the seventeen analyzers of round\
+        \ 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 74.00% and levels\
+        \ 96.0, 93.6, 78.9 and 63.9"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R008
+    - name: "should publish on the 29/9 course with the seventeen analyzers of round\
+        \ 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2,\
+        \ 79.5 and 63.5"
+      _change: delete
+    - name: "should publish on the 29/9 course with the seventeen analyzers of round\
+        \ 1 and 4 for every band the numbers of today, 74.07% and levels 96.5, 94.2,\
+        \ 79.5 and 63.5"
+      traceability:
+        feature: FEAT-RONDA1
+        rule: F-RONDA1-R008
