@@ -181,6 +181,19 @@ except OSError as exc:
 if not isinstance(verdict, dict):
     fail("la salida no contiene un objeto JSON parseable")
 
+
+def drop_null_extras(item, allowed):
+    """Descarta las claves de más que vienen en null.
+
+    A veces el juez pone una coma de más después de `evidence` y cierra el
+    objeto con una clave de relleno ("note": null, "status2": null). Esa clave
+    no dice nada: se descarta. Una clave de más con contenido sigue frenando.
+    """
+    if not isinstance(item, dict):
+        return item
+    return {key: value for key, value in item.items() if key in allowed or value is not None}
+
+
 TOP_KEYS = {
     "schemaVersion",
     "quizId",
@@ -191,6 +204,7 @@ TOP_KEYS = {
     "violations",
     "checkedConstraints",
 }
+verdict = drop_null_extras(verdict, TOP_KEYS)
 if set(verdict) != TOP_KEYS:
     missing = sorted(TOP_KEYS - set(verdict))
     extra = sorted(set(verdict) - TOP_KEYS)
@@ -240,6 +254,7 @@ violations = verdict["violations"]
 if not isinstance(violations, list):
     fail("violations debe ser array")
 VIOLATION_KEYS = {"code", "constraint", "evidence", "explanation"}
+violations = [drop_null_extras(item, VIOLATION_KEYS) for item in violations]
 for index, item in enumerate(violations):
     if not isinstance(item, dict) or set(item) != VIOLATION_KEYS:
         fail("violations[%d] no respeta el objeto cerrado" % index)
@@ -260,6 +275,7 @@ checks = verdict["checkedConstraints"]
 if not isinstance(checks, list) or len(checks) < 5:
     fail("checkedConstraints debe contener al menos cinco checks")
 CHECK_KEYS = {"category", "constraint", "status", "evidence"}
+checks = [drop_null_extras(item, CHECK_KEYS) for item in checks]
 CATEGORIES = {
     "answer_reconstruction",
     "grammar",

@@ -8,6 +8,7 @@ description: |
   Valida verdicts.json contra el esquema cerrado y sus invariantes cruzadas.
   Canonicaliza únicamente una salida válida. Ante JSON malformado, campos extra,
   tipos inválidos o contradicciones, vuelve a evaluate para una nueva emisión.
+  Un campo extra que viene en null no dice nada: se descarta antes de validar.
 edges:
   - { to: emit, when: passed }
   - { to: evaluate, when: failed }

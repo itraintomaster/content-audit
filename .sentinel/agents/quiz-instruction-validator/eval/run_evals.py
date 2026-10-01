@@ -406,6 +406,36 @@ def validate_scripts(fixture: dict[str, Any]) -> None:
         canonical = load_json(run_dir / "validated-verdict.json")
         validate_verdict(canonical, quiz["id"])
 
+        # The judge sometimes closes a check with an empty filler key after a stray comma
+        # ("status2": null): it says nothing, so the gate drops it and the canonical verdict
+        # keeps the closed object.
+        null_extra = sample_pass_verdict(quiz["id"])
+        null_extra["checkedConstraints"][0]["status2"] = None
+        verdict_path.write_text(
+            json.dumps(null_extra, ensure_ascii=False), encoding="utf-8"
+        )
+        gate_output = run_script(
+            AGENT_DIR / "scripts" / "gate_verdict.sh", state
+        )
+        require(
+            gate_output.get("route") == "passed",
+            "an extra key with null failed the gate",
+        )
+        validate_verdict(load_json(run_dir / "validated-verdict.json"), quiz["id"])
+
+        # An extra key with content still fails: the object stays closed.
+        noted = sample_pass_verdict(quiz["id"])
+        noted["checkedConstraints"][0]["note"] = "una nota"
+        verdict_path.write_text(json.dumps(noted, ensure_ascii=False), encoding="utf-8")
+        gate_output = run_script(
+            AGENT_DIR / "scripts" / "gate_verdict.sh", state
+        )
+        require(
+            gate_output.get("route") == "failed"
+            and "objeto cerrado" in gate_output.get("error", ""),
+            "an extra key with content did not fail the gate",
+        )
+
         malformed = sample_pass_verdict(quiz["id"])
         malformed["unexpected"] = True
         verdict_path.write_text(
@@ -564,7 +594,7 @@ def main() -> int:
         validate_scripts(fixture)
         print(
             "scripts: OK (state.json UUID resolution, ambiguity rejection, "
-            "gate pass/fail, emit fallback)"
+            "gate pass/fail, null extra keys dropped, emit fallback)"
         )
 
         if not args.command:
