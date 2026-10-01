@@ -114,8 +114,11 @@ modules:
         type: boolean
       - name: reason
         type: String
-        description: "El motivo a la vista cuando no publicó con la herramienta local\
-          \ (F-MLOCAL-R003 inv. 3, R006). Null si publicó."
+        description: "El motivo a la vista de lo que quedó sin evaluar, en castellano:\
+          \ sin la herramienta local y sin alternativa (F-MLOCAL-R003 inv. 3), la\
+          \ versión sin examen aprobado (R006) o, con la alternativa, «falta el tope»\
+          \ si la corrida no le pidió ninguno a claude -p (R008), con lo que costarí\
+          a. Son tres motivos distintos. Null si evaluó todo."
       - name: alternative
         type: boolean
         description: "True si esta corrida usó claude -p porque el modelo local no\

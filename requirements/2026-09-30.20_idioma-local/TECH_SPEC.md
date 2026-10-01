@@ -226,7 +226,9 @@ modules:
 
 R002 inv. 3 pide que, si un hallazgo cambia sin que cambie su ejercicio, el informe muestre que cambió la versión o la
 herramienta. Cada corrida deja, en el curso, una fila por analizador de idioma con la herramienta local, la versión
-examinada, si publicó y por qué no, y si usó la alternativa (gancho B-03). La cobertura salió de esta fila: los dos de
+examinada, si publicó, si usó la alternativa (gancho B-03) y el motivo de lo que quedó sin evaluar, que separa los tres
+que pide el requirement: sin herramienta ni alternativa, sin examen, y «falta el tope» cuando la corrida no le pidió
+ninguno a claude -p (R008), que el analizador lee de la política efectiva de sus sesiones. La cobertura salió de esta fila: los dos de
 modelo abren por el runtime de los jueces, así que su cobertura, el examen de la versión consultada, lo que falta y su
 costo van en la ranura común de C (`CourseDiagnoses.getJudgeCoverages`, C-04), con el mismo nombre; duplicarla acá
 sería tener dos verdades para lo mismo.
