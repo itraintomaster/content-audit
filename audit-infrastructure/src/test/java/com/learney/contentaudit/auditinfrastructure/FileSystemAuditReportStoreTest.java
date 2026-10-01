@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -576,6 +577,7 @@ class FileSystemAuditReportStoreTest {
     @DisplayName("should leave a saved projection out of list and loadLatest even when it was saved after the last analysis")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldLeaveASavedProjectionOutOfListAndLoadLatestEvenWhenItWasSavedAfterTheLastAnalysis() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -584,6 +586,7 @@ class FileSystemAuditReportStoreTest {
     @DisplayName("should load a saved projection by its id when no analysis has that id, so plan --audit and the suggested words query accept it as their source analysis")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldLoadASavedProjectionByItsIdWhenNoAnalysisHasThatIdSoPlanAuditAndTheSuggestedWordsQueryAcceptItAsTheirSourceAnalysis() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

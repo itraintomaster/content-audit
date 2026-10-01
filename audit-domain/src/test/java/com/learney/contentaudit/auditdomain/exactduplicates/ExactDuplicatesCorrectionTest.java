@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.exactduplicates;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class ExactDuplicatesCorrectionTest {
     @DisplayName("should let only the panel touch a duplicate, rewriting the whole exercise with its audio and never deleting it")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldLetOnlyThePanelTouchADuplicateRewritingTheWholeExerciseWithItsAudioAndNeverDeletingIt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

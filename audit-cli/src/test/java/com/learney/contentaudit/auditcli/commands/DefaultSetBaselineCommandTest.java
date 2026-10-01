@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultSetBaselineCommandTest {
     @DisplayName("should fix as the baseline an analysis of the history, as 2026-09-30T11-54-02, and show it with showBaseline")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldFixAsTheBaselineAnAnalysisOfTheHistoryAs20260930T115402AndShowItWithShowBaseline(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultSetBaselineCommandTest {
     @DisplayName("should refuse an id that is not an analysis of the history with «Cannot fix '<id>' as the baseline: it is not an analysis in the history.»")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldRefuseAnIdThatIsNotAnAnalysisOfTheHistoryWithCannotFixIdAsTheBaselineItIsNotAnAnalysisInTheHistory(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultSetBaselineCommandTest {
     @DisplayName("should refuse to fix a saved projection as the baseline, although plan --audit accepts its id")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldRefuseToFixASavedProjectionAsTheBaselineAlthoughPlanAuditAcceptsItsId() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -40,6 +44,7 @@ public class DefaultSetBaselineCommandTest {
     @DisplayName("should leave the active pair as it was when the baseline is fixed")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldLeaveTheActivePairAsItWasWhenTheBaselineIsFixed() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -48,6 +53,7 @@ public class DefaultSetBaselineCommandTest {
     @DisplayName("should leave the sealed goals untouched when the baseline is fixed")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldLeaveTheSealedGoalsUntouchedWhenTheBaselineIsFixed() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

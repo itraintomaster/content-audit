@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.comparisonengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class LeaveOneOutChangeAttributorTest {
     @DisplayName("should put first, with -1 point, the single change that lowers the vocabulary of A1 by one point while the others do not move it")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldPutFirstWith1PointTheSingleChangeThatLowersTheVocabularyOfA1ByOnePointWhileTheOthersDoNotMoveIt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class LeaveOneOutChangeAttributorTest {
     @DisplayName("should order the changes by how much each one worsens the broken number alone, the projection minus the projection without it, in points or in exercises")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldOrderTheChangesByHowMuchEachOneWorsensTheBrokenNumberAloneTheProjectionMinusTheProjectionWithoutItInPointsOrInExercises(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

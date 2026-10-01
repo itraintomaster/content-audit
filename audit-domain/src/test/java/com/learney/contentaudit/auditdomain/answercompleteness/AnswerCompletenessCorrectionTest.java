@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.answercompleteness;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class AnswerCompletenessCorrectionTest {
     @DisplayName("should let the rule fix of answer-completeness touch only the accepted answers, as adding a missing form with «|» to «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldLetTheRuleFixOfAnswercompletenessTouchOnlyTheAcceptedAnswersAsAddingAMissingFormWithToTheyNotBeFromIreland(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

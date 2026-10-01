@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.nearduplicates;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultSameExerciseQuestionTest {
     @DisplayName("should give claude -p both exercises as the student sees them, in the order of the topic, as the content it judges")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldGiveClaudePBothExercisesAsTheStudentSeesThemInTheOrderOfTheTopicAsTheContentItJudges(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultSameExerciseQuestionTest {
     @DisplayName("should read the verdict {sameExercise, reason} of claude -p and leave the pair unjudged when it cannot be read, never as a near duplicate")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldReadTheVerdictSameExerciseReasonOfClaudePAndLeaveThePairUnjudgedWhenItCannotBeReadNeverAsANearDuplicate(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

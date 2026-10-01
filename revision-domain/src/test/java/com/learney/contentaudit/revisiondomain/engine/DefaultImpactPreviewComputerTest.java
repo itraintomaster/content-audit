@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -780,6 +781,7 @@ public class DefaultImpactPreviewComputerTest {
     @DisplayName("should give no impact for a proposal whose elementBefore no longer matches its node, declaring it not applicable with its cause as the projection does")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R002")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldGiveNoImpactForAProposalWhoseElementBeforeNoLongerMatchesItsNodeDeclaringItNotApplicableWithItsCauseAsTheProjectionDoes() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -788,6 +790,7 @@ public class DefaultImpactPreviewComputerTest {
     @DisplayName("should measure the impact against the analysis the task of the proposal came from, never the latest analysis of the history nor a saved projection")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldMeasureTheImpactAgainstTheAnalysisTheTaskOfTheProposalCameFromNeverTheLatestAnalysisOfTheHistoryNorASavedProjection() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -796,6 +799,7 @@ public class DefaultImpactPreviewComputerTest {
     @DisplayName("should report the impact of «My grandmother ___ (come) every year.» on its own knowledge «Afirmativas regulares», from 100.0 to 99.5 in lemma-absence, and not on «Afirmativas con $be$», the first knowledge of the course")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R007")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldReportTheImpactOfMyGrandmotherComeEveryYearOnItsOwnKnowledgeAfirmativasRegularesFrom1000To995InLemmaabsenceAndNotOnAfirmativasConBeTheFirstKnowledgeOfTheCourse() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -804,6 +808,7 @@ public class DefaultImpactPreviewComputerTest {
     @DisplayName("should report the topic, the level and the course that contain the node, walking up from it, so a proposal on a B2 exercise never shows level A1")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R007")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldReportTheTopicTheLevelAndTheCourseThatContainTheNodeWalkingUpFromItSoAProposalOnAB2ExerciseNeverShowsLevelA1() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -812,6 +817,7 @@ public class DefaultImpactPreviewComputerTest {
     @DisplayName("should measure the course of that moment with the approved proposals and that course with the proposal, both with the analyzers of the analysis the task came from")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R007")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldMeasureTheCourseOfThatMomentWithTheApprovedProposalsAndThatCourseWithTheProposalBothWithTheAnalyzersOfTheAnalysisTheTaskCameFrom() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -820,6 +826,7 @@ public class DefaultImpactPreviewComputerTest {
     @DisplayName("should give the impact of the k-th proposal of a revise-instructions batch the same numbers as if it were the first one computed in the process")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldGiveTheImpactOfTheKthProposalOfAReviseinstructionsBatchTheSameNumbersAsIfItWereTheFirstOneComputedInTheProcess() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

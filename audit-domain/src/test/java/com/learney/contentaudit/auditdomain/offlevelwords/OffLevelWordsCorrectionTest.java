@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.offlevelwords;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class OffLevelWordsCorrectionTest {
     @DisplayName("should name lemma-absence as the analyzer whose task covers what off-level-words marks, and declare no edit scope of its own")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldNameLemmaabsenceAsTheAnalyzerWhoseTaskCoversWhatOfflevelwordsMarksAndDeclareNoEditScopeOfItsOwn(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.naturalness;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class NaturalnessAnalyzerProviderTest {
     @DisplayName("should open naturalness through the judges' runtime with the evaluator of llama3 and the policy without limit of the local tool decision when llama3 is available, never with the claude -p alternative")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldOpenNaturalnessThroughTheJudgesRuntimeWithTheEvaluatorOfLlama3AndThePolicyWithoutLimitOfTheLocalToolDecisionWhenLlama3IsAvailableNeverWithTheClaudePAlternative(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class NaturalnessAnalyzerProviderTest {
     @DisplayName("should open naturalness through the judges' runtime with the claude -p alternative and the run's policy as it comes when llama3 is not available, so without --budget naturalness=N it has budget 0")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldOpenNaturalnessThroughTheJudgesRuntimeWithTheClaudePAlternativeAndTheRunsPolicyAsItComesWhenLlama3IsNotAvailableSoWithoutBudgetNaturalnessNItHasBudget0(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class NaturalnessAnalyzerProviderTest {
     @DisplayName("should describe naturalness as an errors analyzer that evaluates exercises and only ranks, asking «¿Un nativo diría así esta oración?», with the rule unlikely-sentence of local model cost, the rule native-says-no of paid model cost and paid model as the cost of its card")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R007")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldDescribeNaturalnessAsAnErrorsAnalyzerThatEvaluatesExercisesAndOnlyRanksAskingUnNativoDiraAsEstaOracinWithTheRuleUnlikelysentenceOfLocalModelCostTheRuleNativesaysnoOfPaidModelCostAndPaidModelAsTheCostOfItsCard(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class NaturalnessAnalyzerProviderTest {
     @DisplayName("should carry in its card two tools, llama3:8b in Ollama and claude -p, each with its version and the result of its exam")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R007")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldCarryInItsCardTwoToolsLlama38bInOllamaAndClaudePEachWithItsVersionAndTheResultOfItsExam(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class NaturalnessAnalyzerProviderTest {
     @DisplayName("should declare no plan binding, so a naturalness finding never becomes a task")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldDeclareNoPlanBindingSoANaturalnessFindingNeverBecomesATask() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

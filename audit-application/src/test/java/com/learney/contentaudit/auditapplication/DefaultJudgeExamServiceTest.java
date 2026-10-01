@@ -72,6 +72,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -553,6 +554,7 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should record the exam that naturalness takes without its local model under the version of claude -p, leaving the version of llama3 without exam")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R006")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldRecordTheExamThatNaturalnessTakesWithoutItsLocalModelUnderTheVersionOfClaudePLeavingTheVersionOfLlama3WithoutExam() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

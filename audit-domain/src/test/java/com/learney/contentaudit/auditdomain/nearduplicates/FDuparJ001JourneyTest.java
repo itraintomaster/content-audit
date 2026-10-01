@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.nearduplicates;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FDuparJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → La copia lleva un hallazgo baja para ... [El par sólo cambia pronombres, demostrativos, posesivos o el tiempo del auxiliar] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void path1_elParSloCambiaPronombresDemostrativosPosesivosOElTiempoDelAuxiliar_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -28,6 +30,7 @@ public class FDuparJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → La copia lleva un hallazgo baja para ... [Con Ollama, el modelo local les da un parecido de 0,95 o más] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void path2_conOllamaElModeloLocalLesDaUnParecidoDe095OMs_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -36,6 +39,7 @@ public class FDuparJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → La copia lleva un hallazgo baja para ... [Sin Ollama, el par cambia como mucho 4 de cada 10 palabras y claude -p dice que es el mismo ejercicio] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void path3_sinOllamaElParCambiaComoMucho4DeCada10PalabrasYClaudePDiceQueEsElMismoEjercicio_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -45,6 +49,7 @@ public class FDuparJ001JourneyTest {
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → El ejercicio queda evaluado a medias ... [Sin Ollama y sin tope, el par cambia como mucho 4 de cada 10 palabras y el comodín no lo resuelve] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void path4_sinOllamaYSinTopeElParCambiaComoMucho4DeCada10PalabrasYElComodnNoLoResuelve_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -54,6 +59,7 @@ public class FDuparJ001JourneyTest {
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → Ningún ejercicio del tema tiene halla... [Ningún par del tema cumple las condiciones] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void path5_ningnParDelTemaCumpleLasCondiciones_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

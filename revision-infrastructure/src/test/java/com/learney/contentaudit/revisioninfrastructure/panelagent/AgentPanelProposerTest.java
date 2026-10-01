@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisioninfrastructure.panelagent;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class AgentPanelProposerTest {
     @DisplayName("should give the agent only what the proposer receives, the topic as the student sees it, the findings, the level, the scope, the word lights, the order and the previous reasons, and never another candidate's verdict")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldGiveTheAgentOnlyWhatTheProposerReceivesTheTopicAsTheStudentSeesItTheFindingsTheLevelTheScopeTheWordLightsTheOrderAndThePreviousReasonsAndNeverAnotherCandidatesVerdict(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class AgentPanelProposerTest {
     @DisplayName("should answer unavailable when the model service fails, so the panel trips its allowance and spends no attempt")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R010")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldAnswerUnavailableWhenTheModelServiceFailsSoThePanelTripsItsAllowanceAndSpendsNoAttempt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

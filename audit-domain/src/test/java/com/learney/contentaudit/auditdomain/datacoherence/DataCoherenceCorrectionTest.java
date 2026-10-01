@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DataCoherenceCorrectionTest {
     @DisplayName("should let a rule fix of data-coherence touch the stored sentence and the «/» of the answers or only ask to rerecord the audio with what the exercise says today, and a panel fix also the statement and the answers, with the audio following the exercise")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldLetARuleFixOfDatacoherenceTouchTheStoredSentenceAndTheOfTheAnswersOrOnlyAskToRerecordTheAudioWithWhatTheExerciseSaysTodayAndAPanelFixAlsoTheStatementAndTheAnswersWithTheAudioFollowingTheExercise(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DataCoherenceCorrectionTest {
     @DisplayName("should say that its findings about the audio concern the audio, the one reading the «/» or the hint, the one saying something else and the one without a known text, and those about the answers or the saved sentence do not")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R012")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldSayThatItsFindingsAboutTheAudioConcernTheAudioTheOneReadingTheOrTheHintTheOneSayingSomethingElseAndTheOneWithoutAKnownTextAndThoseAboutTheAnswersOrTheSavedSentenceDoNot(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

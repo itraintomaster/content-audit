@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -490,6 +491,7 @@ public class PlanCmdTest {
     @DisplayName("should derive an ephemeral plan with correction context from a saved projection named with --audit, writing no plan and no analysis")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldDeriveAnEphemeralPlanWithCorrectionContextFromASavedProjectionNamedWithAuditWritingNoPlanAndNoAnalysis() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -498,6 +500,7 @@ public class PlanCmdTest {
     @DisplayName("should derive the plan without --audit from the latest analysis of the history, not from a projection saved after it")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldDeriveThePlanWithoutAuditFromTheLatestAnalysisOfTheHistoryNotFromAProjectionSavedAfterIt() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -506,6 +509,7 @@ public class PlanCmdTest {
     @DisplayName("should print after deriving the plan, for each error analyzer, its counting findings, own tasks, covered findings and unconverted findings with their reason")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldPrintAfterDerivingThePlanForEachErrorAnalyzerItsCountingFindingsOwnTasksCoveredFindingsAndUnconvertedFindingsWithTheirReason() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

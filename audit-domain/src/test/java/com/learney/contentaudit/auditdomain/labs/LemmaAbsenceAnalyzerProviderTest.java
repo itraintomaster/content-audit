@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -68,6 +69,7 @@ public class LemmaAbsenceAnalyzerProviderTest {
     @DisplayName("should create for every run an analyzer that sees only the lemmas of the course it measures, not those of an earlier course")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldCreateForEveryRunAnAnalyzerThatSeesOnlyTheLemmasOfTheCourseItMeasuresNotThoseOfAnEarlierCourse() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

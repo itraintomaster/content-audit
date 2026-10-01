@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.naturalness;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should ask about the finished sentence with the first accepted answer only, «Promise: I'll visit you tomorrow.» and not «Promise: I will visit you tomorrow.»")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskAboutTheFinishedSentenceWithTheFirstAcceptedAnswerOnlyPromiseIllVisitYouTomorrowAndNotPromiseIWillVisitYouTomorrow(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should ask no model about an exercise whose finished sentence has no verb, as «hard work uncountable», leaving it without number nor finding")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskNoModelAboutAnExerciseWhoseFinishedSentenceHasNoVerbAsHardWorkUncountableLeavingItWithoutNumberNorFinding(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should ask about a contracted sentence as it reads, «They don't like people.», without expanding it")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskAboutAContractedSentenceAsItReadsTheyDontLikePeopleWithoutExpandingIt() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -40,6 +44,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should ask about «He did something to help.», with the answer in the place of the «a / b» list, and never about «He did to help.»")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskAboutHeDidSomethingToHelpWithTheAnswerInThePlaceOfTheABListAndNeverAboutHeDidToHelp(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -49,6 +54,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should reuse in a second run the answer recorded for an unchanged sentence under the same examined version, without asking llama3 again")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldReuseInASecondRunTheAnswerRecordedForAnUnchangedSentenceUnderTheSameExaminedVersionWithoutAskingLlama3Again(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should mark «They don't like people.», 9.0752 above the threshold of A1, 9.07, and not «Are these your feet?», 9.0664")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldMarkTheyDontLikePeople90752AboveTheThresholdOfA1907AndNotAreTheseYourFeet90664(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -67,6 +74,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should not mark an exercise whose number equals the threshold of its level")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldNotMarkAnExerciseWhoseNumberEqualsTheThresholdOfItsLevel() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -75,6 +83,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should give a marked exercise a low finding that only ranks, keeping its score at 1 and counting it as marked, never as an error")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldGiveAMarkedExerciseALowFindingThatOnlyRanksKeepingItsScoreAt1AndCountingItAsMarkedNeverAsAnError(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -84,6 +93,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should keep the mark of «She is an engineer of hers.» in A2 when another exercise of A2 changes, since the threshold of a level is fixed")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldKeepTheMarkOfSheIsAnEngineerOfHersInA2WhenAnotherExerciseOfA2ChangesSinceTheThresholdOfALevelIsFixed(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -93,6 +103,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should publish the numbers of a level without threshold and mark none of them, as B1 before its threshold is calibrated")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldPublishTheNumbersOfALevelWithoutThresholdAndMarkNoneOfThemAsB1BeforeItsThresholdIsCalibrated(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -102,6 +113,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should give as evidence with llama3 «El modelo local duda que un nativo diga «She is an engineer of hers.» (14,7; umbral de A2: 10,0)»")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R004")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldGiveAsEvidenceWithLlama3ElModeloLocalDudaQueUnNativoDigaSheIsAnEngineerOfHers147UmbralDeA2100(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -111,6 +123,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should give as evidence with claude -p «claude -p contesta que un nativo no diría «She is an engineer of hers.» (sin Ollama)», without a number")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R004")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldGiveAsEvidenceWithClaudePClaudePContestaQueUnNativoNoDiraSheIsAnEngineerOfHersSinOllamaWithoutANumber(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -120,6 +133,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should publish per level the marked exercises from the most to the least doubtful, «She is an engineer of hers.», 14.68, first in A2")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R005")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldPublishPerLevelTheMarkedExercisesFromTheMostToTheLeastDoubtfulSheIsAnEngineerOfHers1468FirstInA2(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -129,6 +143,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should order the marked exercises of a level that have the same number in the order of the course")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R005")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldOrderTheMarkedExercisesOfALevelThatHaveTheSameNumberInTheOrderOfTheCourse() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -137,6 +152,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should publish no mark while the examined version llama3:8b@365c0bd3c000 · native-yes-no-1 has no approved exam, leaving its exercises unevaluated with the reason")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R006")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldPublishNoMarkWhileTheExaminedVersionLlama38b365c0bd3c000Nativeyesno1HasNoApprovedExamLeavingItsExercisesUnevaluatedWithTheReason(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -146,6 +162,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should ask in an EXAM run about every exercise of the exam file that reaches and about no other exercise of the photo")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R006")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskInAnEXAMRunAboutEveryExerciseOfTheExamFileThatReachesAndAboutNoOtherExerciseOfThePhoto(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -155,6 +172,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should ask claude -p the system message and the question it asks llama3, with the same finished sentence")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskClaudePTheSystemMessageAndTheQuestionItAsksLlama3WithTheSameFinishedSentence(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -164,6 +182,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should mark an exercise to which claude -p answers no with a low finding of native-says-no that only ranks, and leave none when it answers yes")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldMarkAnExerciseToWhichClaudePAnswersNoWithALowFindingOfNativesaysnoThatOnlyRanksAndLeaveNoneWhenItAnswersYes(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -173,6 +192,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should leave the diagnosis of an exercise answered by claude -p without number nor threshold and say that claude -p answered")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldLeaveTheDiagnosisOfAnExerciseAnsweredByClaudePWithoutNumberNorThresholdAndSayThatClaudePAnswered(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -182,6 +202,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should list the exercises that claude -p marks in each level in the order of the course")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldListTheExercisesThatClaudePMarksInEachLevelInTheOrderOfTheCourse() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -190,6 +211,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should ask claude -p once per exercise that reaches and stop at the budget of --budget naturalness=N, leaving the rest unevaluated")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskClaudePOncePerExerciseThatReachesAndStopAtTheBudgetOfBudgetNaturalnessNLeavingTheRestUnevaluated(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -199,6 +221,7 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should leave unevaluated with «falta el tope» what needs claude -p when the run asks no budget for naturalness, declaring how many consultations and hours it would cost, without consulting")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldLeaveUnevaluatedWithFaltaElTopeWhatNeedsClaudePWhenTheRunAsksNoBudgetForNaturalnessDeclaringHowManyConsultationsAndHoursItWouldCostWithoutConsulting(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

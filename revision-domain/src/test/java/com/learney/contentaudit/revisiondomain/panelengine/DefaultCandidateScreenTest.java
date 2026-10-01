@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.panelengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultCandidateScreenTest {
     @DisplayName("should reject before measuring a candidate of a multiple choice that stops being multiple choice, has other than exactly one correct option or changes the number of options")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R011")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRejectBeforeMeasuringACandidateOfAMultipleChoiceThatStopsBeingMultipleChoiceHasOtherThanExactlyOneCorrectOptionOrChangesTheNumberOfOptions(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultCandidateScreenTest {
     @DisplayName("should let through a candidate of a multiple choice that changes the sentence or the option left over and keeps one correct option among the same number")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R011")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldLetThroughACandidateOfAMultipleChoiceThatChangesTheSentenceOrTheOptionLeftOverAndKeepsOneCorrectOptionAmongTheSameNumber(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultCandidateScreenTest {
     @DisplayName("should reject a mini-theory candidate that misses an exercise of the topic showing the text, or reaches one that does not show it")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R012")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRejectAMinitheoryCandidateThatMissesAnExerciseOfTheTopicShowingTheTextOrReachesOneThatDoesNotShowIt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultCandidateScreenTest {
     @DisplayName("should let through a conversion of «You ___ (do not) work at the bank.» with «don't» as the correct option, two other contractions and three options, and the same translation and mini-theory")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R015")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldLetThroughAConversionOfYouDoNotWorkAtTheBankWithDontAsTheCorrectOptionTwoOtherContractionsAndThreeOptionsAndTheSameTranslationAndMinitheory(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultCandidateScreenTest {
     @DisplayName("should reject a conversion of «She ___ (is not) very happy.» that offers «isn't» next to the correct «'s not», the same answer in another form")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R015")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRejectAConversionOfSheIsNotVeryHappyThatOffersIsntNextToTheCorrectSNotTheSameAnswerInAnotherForm(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -59,6 +65,7 @@ public class DefaultCandidateScreenTest {
     @DisplayName("should reject a conversion whose correct option is not the first accepted answer of today, so what is heard would change")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R015")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRejectAConversionWhoseCorrectOptionIsNotTheFirstAcceptedAnswerOfTodaySoWhatIsHeardWouldChange(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

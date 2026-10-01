@@ -43,6 +43,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -580,6 +581,7 @@ public class DefaultQuizInstructionCandidateAssessorTest {
     @DisplayName("should keep judging a faithful translation against the original outside a batch, while the panel judges the exercise as it stays")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R014")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldKeepJudgingAFaithfulTranslationAgainstTheOriginalOutsideABatchWhileThePanelJudgesTheExerciseAsItStays() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

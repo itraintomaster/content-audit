@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.finishedsentence;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should read one finished sentence per accepted answer, «She's run a marathon» and «She has run a marathon» for «She ___ (run) a marathon (so she's at the finish line now)»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldReadOneFinishedSentencePerAcceptedAnswerShesRunAMarathonAndSheHasRunAMarathonForSheRunAMarathonSoShesAtTheFinishLineNow(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should leave out the parenthesis and the «a / b» list glued to the gap, reading «The agency were very organized.» for «The agency was / were ___ very organized. (UK)»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldLeaveOutTheParenthesisAndTheABListGluedToTheGapReadingTheAgencyWereVeryOrganizedForTheAgencyWasWereVeryOrganizedUK(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should leave no text for the option «-», reading «This is water.» where the plain sentence says «This is - water.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldLeaveNoTextForTheOptionReadingThisIsWaterWhereThePlainSentenceSaysThisIsWater(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should read only the answer when it is the whole sentence, «Ana was teached a lesson by my brother.» without the starting sentence «My brother teached Ana a lesson.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldReadOnlyTheAnswerWhenItIsTheWholeSentenceAnaWasTeachedALessonByMyBrotherWithoutTheStartingSentenceMyBrotherTeachedAnaALesson(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should read a dialogue whole, «A: Is Emily walking? B: Yes, she is»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldReadADialogueWholeAIsEmilyWalkingBYesSheIs() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -58,6 +64,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should glue the contraction to its word and leave no space before a sign, reading «They're late for the game.» where the stored sentence says «They 're late for the game.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldGlueTheContractionToItsWordAndLeaveNoSpaceBeforeASignReadingTheyreLateForTheGameWhereTheStoredSentenceSaysTheyReLateForTheGame(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -67,6 +74,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should read only the sentence when the option is a label put after it, «We checked the location and then crossed the border.» without «Link type: sequence»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldReadOnlyTheSentenceWhenTheOptionIsALabelPutAfterItWeCheckedTheLocationAndThenCrossedTheBorderWithoutLinkTypeSequence(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -76,6 +84,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should not read a judgment exercise whose answer is «not correct», as «Where is the pliers in the garage?», whose sentence is wrong on purpose")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldNotReadAJudgmentExerciseWhoseAnswerIsNotCorrectAsWhereIsThePliersInTheGarageWhoseSentenceIsWrongOnPurpose(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -85,6 +94,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should read a judgment exercise whose answer is «correct» without the label, «My tights are in my drawer.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldReadAJudgmentExerciseWhoseAnswerIsCorrectWithoutTheLabelMyTightsAreInMyDrawer(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -94,6 +104,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should give where each accepted answer sits in its finished sentence, «'ve had» inside «He've had a bike for a while.», so a mark can tell whether it touches an answer")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R004")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldGiveWhereEachAcceptedAnswerSitsInItsFinishedSentenceVeHadInsideHeveHadABikeForAWhileSoAMarkCanTellWhetherItTouchesAnAnswer(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -103,6 +114,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should put the answer in the place of the «a / b» list of a closed sentence when the gap comes after it, reading «Something was wrong with the telephone.» for «Something / anything was wrong with the telephone.» answered «Something»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldPutTheAnswerInThePlaceOfTheABListOfAClosedSentenceWhenTheGapComesAfterItReadingSomethingWasWrongWithTheTelephoneForSomethingAnythingWasWrongWithTheTelephoneAnsweredSomething(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -112,6 +124,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should give the answer the capital of the list it replaces, reading «Something is broken.» for «Something / anything is broken.» answered «something»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldGiveTheAnswerTheCapitalOfTheListItReplacesReadingSomethingIsBrokenForSomethingAnythingIsBrokenAnsweredSomething(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -121,6 +134,7 @@ public class DefaultFinishedSentenceReaderTest {
     @DisplayName("should read the 40 exercises of A2 with the «a / b» list inside a closed sentence as the text their audio was recorded with, as «He did something to help.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldReadThe40ExercisesOfA2WithTheABListInsideAClosedSentenceAsTheTextTheirAudioWasRecordedWithAsHeDidSomethingToHelp(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

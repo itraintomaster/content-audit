@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultCompareCommandTest {
     @DisplayName("should leave the course files byte for byte and get audits listing the same analyses after compare")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R009")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldLeaveTheCourseFilesByteForByteAndGetAuditsListingTheSameAnalysesAfterCompare(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

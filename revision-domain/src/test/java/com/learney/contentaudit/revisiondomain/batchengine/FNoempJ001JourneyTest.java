@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FNoempJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: La tanda recalcula el curso entero co... → La compuerta lee la comparación de la... → La tanda queda en condiciones de publ... [No aparece ninguna identidad nueva, ningún conteo sube y el vocabulario queda dentro de la tolerancia] → success")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void path1_noApareceNingunaIdentidadNuevaNingnConteoSubeYElVocabularioQuedaDentroDeLaTolerancia_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -29,6 +31,7 @@ public class FNoempJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: La tanda recalcula el curso entero co... → La compuerta lee la comparación de la... → La compuerta nombra el número y devue... [Un cambio sumó una palabra roja o un error nuevo] → La tanda se recalcula sin los devuelt... → failure")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void path2_unCambioSumUnaPalabraRojaOUnErrorNuevo_failure() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -37,6 +40,7 @@ public class FNoempJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: La tanda recalcula el curso entero co... → La compuerta lee la comparación de la... → La compuerta nombra el número y devue... [Un número de vocabulario quedó más de medio punto por debajo de la línea base] → La tanda se recalcula sin los devuelt... → failure")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void path3_unNmeroDeVocabularioQuedMsDeMedioPuntoPorDebajoDeLaLneaBase_failure() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

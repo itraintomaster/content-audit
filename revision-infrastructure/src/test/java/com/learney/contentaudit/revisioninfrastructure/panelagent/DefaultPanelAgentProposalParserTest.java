@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisioninfrastructure.panelagent;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultPanelAgentProposalParserTest {
     @DisplayName("should read from the output of the agent the two candidates for «I ___ a lot of vegetables.», the one that changes only the translation and the one that changes the English")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldReadFromTheOutputOfTheAgentTheTwoCandidatesForIALotOfVegetablesTheOneThatChangesOnlyTheTranslationAndTheOneThatChangesTheEnglish(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FCeroJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador pide la vista consolidada... → La foto con pendientes da los mismos ... [El plan activo tiene pendientes aplicables, así que el motor corre dos veces en la misma invocación] → success")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void path1_elPlanActivoTienePendientesAplicablesAsQueElMotorCorreDosVecesEnLaMismaInvocacin_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -29,6 +31,7 @@ public class FCeroJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador pide la vista consolidada... → La foto con lo aprobado da los mismos... [El plan activo no tiene pendientes aplicables] → success")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void path2_elPlanActivoNoTienePendientesAplicables_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditinfrastructure;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class FileSystemGoalDeclarationSourceTest {
     @DisplayName("should read from one declaration the family floors, the named goals with node, subject, kind, threshold, unit and reference, and the goal of the blind sample")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldReadFromOneDeclarationTheFamilyFloorsTheNamedGoalsWithNodeSubjectKindThresholdUnitAndReferenceAndTheGoalOfTheBlindSample(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

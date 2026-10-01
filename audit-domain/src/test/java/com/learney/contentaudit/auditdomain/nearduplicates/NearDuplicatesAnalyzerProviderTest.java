@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.nearduplicates;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class NearDuplicatesAnalyzerProviderTest {
     @DisplayName("should open near-duplicates through the judges' runtime with the vector evaluator and the policy without limit of the local tool decision when nomic-embed-text is available, never with claude -p")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldOpenNearduplicatesThroughTheJudgesRuntimeWithTheVectorEvaluatorAndThePolicyWithoutLimitOfTheLocalToolDecisionWhenNomicembedtextIsAvailableNeverWithClaudeP(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class NearDuplicatesAnalyzerProviderTest {
     @DisplayName("should open near-duplicates through the judges' runtime with the claude -p alternative and the run's policy as it comes when nomic-embed-text is not available, so without --budget near-duplicates=N it has budget 0")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldOpenNearduplicatesThroughTheJudgesRuntimeWithTheClaudePAlternativeAndTheRunsPolicyAsItComesWhenNomicembedtextIsNotAvailableSoWithoutBudgetNearduplicatesNItHasBudget0(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class NearDuplicatesAnalyzerProviderTest {
     @DisplayName("should describe near-duplicates as an errors analyzer that evaluates exercises and resolves at the panel, asking «¿Dos ejercicios del mismo tema piden casi lo mismo?», with the rules same-but-wildcard instant, same-meaning of local model and same-exercise of paid model, and paid model as the cost of its card")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R006")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldDescribeNearduplicatesAsAnErrorsAnalyzerThatEvaluatesExercisesAndResolvesAtThePanelAskingDosEjerciciosDelMismoTemaPidenCasiLoMismoWithTheRulesSamebutwildcardInstantSamemeaningOfLocalModelAndSameexerciseOfPaidModelAndPaidModelAsTheCostOfItsCard(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class NearDuplicatesAnalyzerProviderTest {
     @DisplayName("should carry in its card two tools, nomic-embed-text in Ollama and claude -p, each with its version and its exam")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R006")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldCarryInItsCardTwoToolsNomicembedtextInOllamaAndClaudePEachWithItsVersionAndItsExam(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

@@ -9,6 +9,7 @@ import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView
 import java.nio.file.Path;
 import java.util.List;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -108,6 +109,7 @@ public class DefaultGetConsolidatedCommandTest {
     @DisplayName("should pass to the projection the budget per analyzer that the request names with --budget")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R003")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldPassToTheProjectionTheBudgetPerAnalyzerThatTheRequestNamesWithBudget() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

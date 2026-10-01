@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditinfrastructure;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class FileSystemBlindSampleStoreTest {
     @DisplayName("should keep samples and their answers under .content-audit/blind-samples/ and write nothing else")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R003")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldKeepSamplesAndTheirAnswersUnderContentauditblindsamplesAndWriteNothingElse() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

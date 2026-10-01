@@ -70,6 +70,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -1561,6 +1562,7 @@ public class DefaultAuditRunnerTest {
     @DisplayName("should reject before loading the course a run that asks for naturalness by name when neither llama3:8b in Ollama nor claude -p is available, with «Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is not available: ollama pull llama3:8b.»")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldRejectBeforeLoadingTheCourseARunThatAsksForNaturalnessByNameWhenNeitherLlama38bInOllamaNorClaudePIsAvailableWithAnalyzerNaturalnessNeedsLlama38bEnOllamaOClaudePWhichIsNotAvailableOllamaPullLlama38b() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1569,6 +1571,7 @@ public class DefaultAuditRunnerTest {
     @DisplayName("should reject before loading the course a run that asks for grammar by name when LanguageTool is not available, since grammar has no alternative")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldRejectBeforeLoadingTheCourseARunThatAsksForGrammarByNameWhenLanguageToolIsNotAvailableSinceGrammarHasNoAlternative() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1577,6 +1580,7 @@ public class DefaultAuditRunnerTest {
     @DisplayName("should not reject a run that asks for near-duplicates by name without Ollama when the claude -p alternative is available")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldNotRejectARunThatAsksForNearduplicatesByNameWithoutOllamaWhenTheClaudePAlternativeIsAvailable() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1585,6 +1589,7 @@ public class DefaultAuditRunnerTest {
     @DisplayName("should not reject a run without selection when LanguageTool is not available, leaving every exercise unevaluated by grammar with the reason in view while the other analyzers run")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldNotRejectARunWithoutSelectionWhenLanguageToolIsNotAvailableLeavingEveryExerciseUnevaluatedByGrammarWithTheReasonInViewWhileTheOtherAnalyzersRun() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1593,6 +1598,7 @@ public class DefaultAuditRunnerTest {
     @DisplayName("should run grammar, naturalness and near-duplicates in an analyze without selection")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R004")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldRunGrammarNaturalnessAndNearduplicatesInAnAnalyzeWithoutSelection() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

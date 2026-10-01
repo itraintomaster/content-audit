@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultGoalsCommandTest {
     @DisplayName("should list with get-goals the effective goals, the declared ones and the family floors, each with its origin")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldListWithGetgoalsTheEffectiveGoalsTheDeclaredOnesAndTheFamilyFloorsEachWithItsOrigin(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultGoalsCommandTest {
     @DisplayName("should seal the effective goals with set-goals")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldSealTheEffectiveGoalsWithSetgoals() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

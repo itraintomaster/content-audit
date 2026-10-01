@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditinfrastructure;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class FileSystemProjectionStoreTest {
     @DisplayName("should write a saved projection under .content-audit/projections/ and nothing under audits/")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldWriteASavedProjectionUnderContentauditprojectionsAndNothingUnderAudits() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -22,6 +24,7 @@ public class FileSystemProjectionStoreTest {
     @DisplayName("should keep one saved projection per active pair, so saving another projection of the same pair replaces the previous one")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldKeepOneSavedProjectionPerActivePairSoSavingAnotherProjectionOfTheSamePairReplacesThePreviousOne(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -31,6 +34,7 @@ public class FileSystemProjectionStoreTest {
     @DisplayName("should load a saved projection by the id it returned when saving it")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldLoadASavedProjectionByTheIdItReturnedWhenSavingIt() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

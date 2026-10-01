@@ -48,6 +48,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -1339,6 +1340,7 @@ public class DefaultConsolidatedViewBuilderTest {
     @DisplayName("should compare the course node too, with the id the digest gives it, so the course of the four pending proposals of «Afirmativas regulares» appears with 73.92%")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R001")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldCompareTheCourseNodeTooWithTheIdTheDigestGivesItSoTheCourseOfTheFourPendingProposalsOfAfirmativasRegularesAppearsWith7392() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1347,6 +1349,7 @@ public class DefaultConsolidatedViewBuilderTest {
     @DisplayName("should declare in the consolidated view the same pending proposals not applicable, with their causes, as the projection it reads")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R002")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldDeclareInTheConsolidatedViewTheSamePendingProposalsNotApplicableWithTheirCausesAsTheProjectionItReads() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

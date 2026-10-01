@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -152,6 +153,7 @@ public class DefaultSuggestedLemmaQuerySessionFactoryTest {
     @DisplayName("should open the suggested words query of a task planned from a saved projection on that projection, so a lemma a pending proposal already brought into the course is no longer offered")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldOpenTheSuggestedWordsQueryOfATaskPlannedFromASavedProjectionOnThatProjectionSoALemmaAPendingProposalAlreadyBroughtIntoTheCourseIsNoLongerOffered() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

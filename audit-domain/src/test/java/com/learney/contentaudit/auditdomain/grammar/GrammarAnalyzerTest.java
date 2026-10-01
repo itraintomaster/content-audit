@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.grammar;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class GrammarAnalyzerTest {
     @DisplayName("should check with LanguageTool the finished sentences and never the plain ones, «They're late for the game.» and not «They 're late for the game.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldCheckWithLanguageToolTheFinishedSentencesAndNeverThePlainOnesTheyreLateForTheGameAndNotTheyReLateForTheGame(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class GrammarAnalyzerTest {
     @DisplayName("should leave without finding, with score 1, an exercise whose only marks are of one variant, of style or of casing, as «They walked to the theatre.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldLeaveWithoutFindingWithScore1AnExerciseWhoseOnlyMarksAreOfOneVariantOfStyleOrOfCasingAsTheyWalkedToTheTheatre(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class GrammarAnalyzerTest {
     @DisplayName("should find on the course of 29/9 three blocking findings, the answers that repeat what is glued to the gap: «noise noise», «in August in August» and «the apartment the apartment»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R004")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldFindOnTheCourseOf299ThreeBlockingFindingsTheAnswersThatRepeatWhatIsGluedToTheGapNoiseNoiseInAugustInAugustAndTheApartmentTheApartment(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class GrammarAnalyzerTest {
     @DisplayName("should score 0 an exercise with a finding and 1 an exercise without, as «Ana was teached a lesson by my brother.» and «This is water.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R006")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldScore0AnExerciseWithAFindingAnd1AnExerciseWithoutAsAnaWasTeachedALessonByMyBrotherAndThisIsWater(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class GrammarAnalyzerTest {
     @DisplayName("should make one finding of the same LanguageTool rule and marked text that two accepted answers show, «videogames» in «At 10:30, they were not playing videogames.» and «At 10:30, they weren't playing videogames.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R006")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldMakeOneFindingOfTheSameLanguageToolRuleAndMarkedTextThatTwoAcceptedAnswersShowVideogamesInAt1030TheyWereNotPlayingVideogamesAndAt1030TheyWerentPlayingVideogames(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -59,6 +65,7 @@ public class GrammarAnalyzerTest {
     @DisplayName("should give as evidence the finished sentence, the marked text and one line in Spanish, «teached → taught (ortografía)»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R006")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldGiveAsEvidenceTheFinishedSentenceTheMarkedTextAndOneLineInSpanishTeachedTaughtOrtografa(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -68,6 +75,7 @@ public class GrammarAnalyzerTest {
     @DisplayName("should leave every exercise unevaluated by grammar, without score nor finding, while LanguageTool 6.8 with its filter has no approved exam")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R007")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldLeaveEveryExerciseUnevaluatedByGrammarWithoutScoreNorFindingWhileLanguageTool68WithItsFilterHasNoApprovedExam(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -77,6 +85,7 @@ public class GrammarAnalyzerTest {
     @DisplayName("should read every exercise of the exam file in an EXAM run and publish their findings although the version has no approved exam")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R007")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldReadEveryExerciseOfTheExamFileInAnEXAMRunAndPublishTheirFindingsAlthoughTheVersionHasNoApprovedExam(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -86,6 +95,7 @@ public class GrammarAnalyzerTest {
     @DisplayName("should give no final-punctuation finding to «Something was wrong with the telephone.», which read without its answer was «was wrong with the telephone.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldGiveNoFinalpunctuationFindingToSomethingWasWrongWithTheTelephoneWhichReadWithoutItsAnswerWasWasWrongWithTheTelephone(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

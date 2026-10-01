@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.panelengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class CappedQueryAllowanceTest {
     @DisplayName("should refuse a reservation that would go over the cap of the batch or over the queries at once")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R010")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRefuseAReservationThatWouldGoOverTheCapOfTheBatchOrOverTheQueriesAtOnce() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -22,6 +24,7 @@ public class CappedQueryAllowanceTest {
     @DisplayName("should refuse every reservation once a service failure tripped it, and say why")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R010")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRefuseEveryReservationOnceAServiceFailureTrippedItAndSayWhy() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

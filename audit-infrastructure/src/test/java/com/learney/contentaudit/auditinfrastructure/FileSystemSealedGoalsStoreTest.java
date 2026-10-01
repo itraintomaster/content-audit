@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditinfrastructure;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class FileSystemSealedGoalsStoreTest {
     @DisplayName("should keep the sealed goals in .content-audit/metas-fijadas.json and read them back with their values")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldKeepTheSealedGoalsInContentauditmetasfijadasjsonAndReadThemBackWithTheirValues(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

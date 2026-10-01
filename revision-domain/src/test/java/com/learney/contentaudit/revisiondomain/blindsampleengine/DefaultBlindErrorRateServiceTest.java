@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.blindsampleengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultBlindErrorRateServiceTest {
     @DisplayName("should draw n exercises of a level or of the course, each shown once in its baseline or its projected version, without saying which")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldDrawNExercisesOfALevelOrOfTheCourseEachShownOnceInItsBaselineOrItsProjectedVersionWithoutSayingWhich(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultBlindErrorRateServiceTest {
     @DisplayName("should hand out while open only each exercise as the student sees it, without whether it comes from the baseline")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldHandOutWhileOpenOnlyEachExerciseAsTheStudentSeesItWithoutWhetherItComesFromTheBaseline(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultBlindErrorRateServiceTest {
     @DisplayName("should publish on closing the share with an error before and after with its 95% margin, 4.3 points at 25.7% with 400 exercises")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldPublishOnClosingTheShareWithAnErrorBeforeAndAfterWithIts95Margin43PointsAt257With400Exercises(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultBlindErrorRateServiceTest {
     @DisplayName("should publish next to it the any-error share the analyzers gave those same exercises and say whether it falls within the margin")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldPublishNextToItTheAnyerrorShareTheAnalyzersGaveThoseSameExercisesAndSayWhetherItFallsWithinTheMargin(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultBlindErrorRateServiceTest {
     @DisplayName("should refuse a mark once the error-rate sample is closed")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldRefuseAMarkOnceTheErrorrateSampleIsClosed() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

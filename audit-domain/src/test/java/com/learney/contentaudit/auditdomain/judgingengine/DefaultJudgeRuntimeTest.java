@@ -61,6 +61,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -1128,6 +1129,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should declare, for the claude -p alternative of naturalness opened without budget, how many consultations its pending sentences would cost and their hours one at a time and four at a time, consulting none")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldDeclareForTheClaudePAlternativeOfNaturalnessOpenedWithoutBudgetHowManyConsultationsItsPendingSentencesWouldCostAndTheirHoursOneAtATimeAndFourAtATimeConsultingNone() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1136,6 +1138,7 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should stop the consultations of the claude -p alternative of near-duplicates at the first failure of the service and let the run finish")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R007")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldStopTheConsultationsOfTheClaudePAlternativeOfNearduplicatesAtTheFirstFailureOfTheServiceAndLetTheRunFinish() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

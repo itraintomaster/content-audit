@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.correctionengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultAnalyzerCorrectionCatalogTest {
     @DisplayName("should find by its canonical name the correction declaration of every error analyzer that has a task kind, from hint-coherence to quiz-instruction")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldFindByItsCanonicalNameTheCorrectionDeclarationOfEveryErrorAnalyzerThatHasATaskKindFromHintcoherenceToQuizinstruction(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

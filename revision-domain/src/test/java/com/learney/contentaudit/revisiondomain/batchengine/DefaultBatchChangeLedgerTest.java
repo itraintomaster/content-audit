@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultBatchChangeLedgerTest {
     @DisplayName("should compose the copy of the course with the steps of the batch only, leaving byte for byte every exercise without an accepted change")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldComposeTheCopyOfTheCourseWithTheStepsOfTheBatchOnlyLeavingByteForByteEveryExerciseWithoutAnAcceptedChange(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultBatchChangeLedgerTest {
     @DisplayName("should drop the capital-letters rule change of «___ a child? (He)» and keep a later panel change of the same exercise that touched other parts, recomposing the exercise")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDropTheCapitallettersRuleChangeOfAChildHeAndKeepALaterPanelChangeOfTheSameExerciseThatTouchedOtherPartsRecomposingTheExercise(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultBatchChangeLedgerTest {
     @DisplayName("should drop with a change the later changes of the same exercise that touched the same parts, and name them")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDropWithAChangeTheLaterChangesOfTheSameExerciseThatTouchedTheSamePartsAndNameThem(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultBatchChangeLedgerTest {
     @DisplayName("should keep the rewritten mini-theory of «Contraste inicial» when a change of one of its nine exercises is dropped")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldKeepTheRewrittenMinitheoryOfContrasteInicialWhenAChangeOfOneOfItsNineExercisesIsDropped(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FMlocalJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo gr... → El informe trae sus hallazgos con la ... [Su herramienta local está disponible y su versión aprobó el examen] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void path1_suHerramientaLocalEstDisponibleYSuVersinAprobElExamen_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -28,6 +30,7 @@ public class FMlocalJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo gr... → Sus ejercicios quedan sin evaluar, sa... [La versión que toca usar, la local o sin Ollama la de claude -p, no rindió o reprobó el examen] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void path2_laVersinQueTocaUsarLaLocalOSinOllamaLaDeClaudePNoRindiOReprobElExamen_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -37,6 +40,7 @@ public class FMlocalJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo gr... → El informe trae los hallazgos que con... [Su modelo local no está, la alternativa con claude -p aprobó su examen y la corrida le pide un tope] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void path3_suModeloLocalNoEstLaAlternativaConClaudePAprobSuExamenYLaCorridaLePideUnTope_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -46,6 +50,7 @@ public class FMlocalJ001JourneyTest {
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo gr... → Lo que necesita a claude -p queda sin... [Su modelo local no está, la alternativa con claude -p aprobó su examen y la corrida no le pide tope] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void path4_suModeloLocalNoEstLaAlternativaConClaudePAprobSuExamenYLaCorridaNoLePideTope_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -55,6 +60,7 @@ public class FMlocalJ001JourneyTest {
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: El operador corre analyze pidiendo gr... → La corrida se rechaza antes de empeza... [Ni su herramienta ni la alternativa están disponibles] → failure")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void path5_niSuHerramientaNiLaAlternativaEstnDisponibles_failure() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

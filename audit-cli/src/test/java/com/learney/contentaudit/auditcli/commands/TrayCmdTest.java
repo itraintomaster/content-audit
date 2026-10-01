@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class TrayCmdTest {
     @DisplayName("should print with 'tray show' the items of the tray in their order")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPrintWithTrayShowTheItemsOfTheTrayInTheirOrder() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -22,6 +24,7 @@ public class TrayCmdTest {
     @DisplayName("should read the fix José writes from the file given to 'tray answer', in the notation of the course with its translation, and pass it as a candidate")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldReadTheFixJosWritesFromTheFileGivenToTrayAnswerInTheNotationOfTheCourseWithItsTranslationAndPassItAsACandidate(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -31,6 +34,7 @@ public class TrayCmdTest {
     @DisplayName("should publish the open batch with 'tray publish' as José's single OK")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPublishTheOpenBatchWithTrayPublishAsJossSingleOK() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

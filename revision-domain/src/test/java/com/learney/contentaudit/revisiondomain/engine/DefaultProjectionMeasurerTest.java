@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.engine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultProjectionMeasurerTest {
     @DisplayName("should map and measure a course the way analyze does, so the report of a projected course equals the one analyze gives on that course written to disk")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R001")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldMapAndMeasureACourseTheWayAnalyzeDoesSoTheReportOfAProjectedCourseEqualsTheOneAnalyzeGivesOnThatCourseWrittenToDisk(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultProjectionMeasurerTest {
     @DisplayName("should run exactly the analyzers whose measures the starting analysis keeps at its root, in catalog order, and no other")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R003")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldRunExactlyTheAnalyzersWhoseMeasuresTheStartingAnalysisKeepsAtItsRootInCatalogOrderAndNoOther(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultProjectionMeasurerTest {
     @DisplayName("should fall back to the base run and declare it when the starting analysis keeps no measures, as the base of 29/9, so quiz-instruction, which that base did not run, is not run either")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R003")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldFallBackToTheBaseRunAndDeclareItWhenTheStartingAnalysisKeepsNoMeasuresAsTheBaseOf299SoQuizinstructionWhichThatBaseDidNotRunIsNotRunEither(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultProjectionMeasurerTest {
     @DisplayName("should give budget 0 to the judges that consult claude -p unless the request names a budget for them, so a projection pays no consultation by default")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R003")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldGiveBudget0ToTheJudgesThatConsultClaudePUnlessTheRequestNamesABudgetForThemSoAProjectionPaysNoConsultationByDefault(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultProjectionMeasurerTest {
     @DisplayName("should run without a cap the analyzers that consult a local model, as naturalness and near-duplicates with llama3 in Ollama, the way analyze does")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R003")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldRunWithoutACapTheAnalyzersThatConsultALocalModelAsNaturalnessAndNearduplicatesWithLlama3InOllamaTheWayAnalyzeDoes(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -59,6 +65,7 @@ public class DefaultProjectionMeasurerTest {
     @DisplayName("should reuse the recorded verdicts of the exercises that did not change and consult only the changed ones within the budget of the request, leaving the rest declared unevaluated and never approved")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R003")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldReuseTheRecordedVerdictsOfTheExercisesThatDidNotChangeAndConsultOnlyTheChangedOnesWithinTheBudgetOfTheRequestLeavingTheRestDeclaredUnevaluatedAndNeverApproved(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

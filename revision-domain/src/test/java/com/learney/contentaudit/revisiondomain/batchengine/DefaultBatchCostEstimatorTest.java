@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultBatchCostEstimatorTest {
     @DisplayName("should estimate before any query the tasks of the batch by analyzer and resolution, its exercises and topics, its heaviest topic, and the queries and hours at 19 seconds per query with the topics and queries at once chosen")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldEstimateBeforeAnyQueryTheTasksOfTheBatchByAnalyzerAndResolutionItsExercisesAndTopicsItsHeaviestTopicAndTheQueriesAndHoursAt19SecondsPerQueryWithTheTopicsAndQueriesAtOnceChosen(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

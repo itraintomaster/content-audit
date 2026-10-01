@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FMetasJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: José fija las metas antes de la tanda... → El operador pide la comparación de la... → La comparación muestra el cambio de m... [La medida de un analizador cambió desde la línea base] → La comparación revisa los hallazgos d... → La comparación lista los nodos que vu... [Algún nodo cambiado ganó un hallazgo que cuenta y no tenía] → failure")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void path1_laMedidaDeUnAnalizadorCambiDesdeLaLneaBase_algnNodoCambiadoGanUnHallazgoQueCuentaYNoTena_failure(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -29,6 +31,7 @@ public class FMetasJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: José fija las metas antes de la tanda... → El operador pide la comparación de la... → La comparación muestra el cambio de m... [La medida de un analizador cambió desde la línea base] → La comparación revisa los hallazgos d... → La comparación evalúa los pisos de ca... [Ningún nodo cambiado ganó un hallazgo que cuenta] → La comparación lista los cambios que ... [Un piso de nivel o de curso no se cumple] → failure")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void path2_laMedidaDeUnAnalizadorCambiDesdeLaLneaBase_ningnNodoCambiadoGanUnHallazgoQueCuenta_unPisoDeNivelODeCursoNoSeCumple_failure(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -38,6 +41,7 @@ public class FMetasJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: José fija las metas antes de la tanda... → El operador pide la comparación de la... → La comparación muestra el cambio de m... [La medida de un analizador cambió desde la línea base] → La comparación revisa los hallazgos d... → La comparación evalúa los pisos de ca... [Ningún nodo cambiado ganó un hallazgo que cuenta] → El veredicto es falta la muestra cieg... [Todos los pisos se cumplen] → success")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void path3_laMedidaDeUnAnalizadorCambiDesdeLaLneaBase_ningnNodoCambiadoGanUnHallazgoQueCuenta_todosLosPisosSeCumplen_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -47,6 +51,7 @@ public class FMetasJ001JourneyTest {
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: José fija las metas antes de la tanda... → El operador pide la comparación de la... → La comparación revisa los hallazgos d... [Todas las medidas son las mismas] → La comparación lista los nodos que vu... [Algún nodo cambiado ganó un hallazgo que cuenta y no tenía] → failure")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void path4_todasLasMedidasSonLasMismas_algnNodoCambiadoGanUnHallazgoQueCuentaYNoTena_failure(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -56,6 +61,7 @@ public class FMetasJ001JourneyTest {
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: José fija las metas antes de la tanda... → El operador pide la comparación de la... → La comparación revisa los hallazgos d... [Todas las medidas son las mismas] → La comparación evalúa los pisos de ca... [Ningún nodo cambiado ganó un hallazgo que cuenta] → La comparación lista los cambios que ... [Un piso de nivel o de curso no se cumple] → failure")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void path5_todasLasMedidasSonLasMismas_ningnNodoCambiadoGanUnHallazgoQueCuenta_unPisoDeNivelODeCursoNoSeCumple_failure(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -65,6 +71,7 @@ public class FMetasJ001JourneyTest {
     @Order(6)
     @Tag("path-6")
     @DisplayName("path-6: José fija las metas antes de la tanda... → El operador pide la comparación de la... → La comparación revisa los hallazgos d... [Todas las medidas son las mismas] → La comparación evalúa los pisos de ca... [Ningún nodo cambiado ganó un hallazgo que cuenta] → El veredicto es falta la muestra cieg... [Todos los pisos se cumplen] → success")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void path6_todasLasMedidasSonLasMismas_ningnNodoCambiadoGanUnHallazgoQueCuenta_todosLosPisosSeCumplen_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

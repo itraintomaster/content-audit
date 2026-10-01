@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.panelengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FMesaJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: La tanda abre la mesa de un tema con ... → La mesa vuelve a medir el ejercicio c... → Sus tareas terminan como ya no se sos... [Ninguno de sus hallazgos sigue] → success")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void path1_ningunoDeSusHallazgosSigue_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -28,6 +30,7 @@ public class FMesaJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: La tanda abre la mesa de un tema con ... → La mesa vuelve a medir el ejercicio c... → Quien propone entrega candidatos del ... [Sigue al menos uno] → Los jueces que leen lo que cambió juz... → El candidato queda como propuesta pen... [Un candidato resuelve al menos una tarea y no empeora nada] → success")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void path2_sigueAlMenosUno_unCandidatoResuelveAlMenosUnaTareaYNoEmpeoraNada_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -36,6 +39,7 @@ public class FMesaJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: La tanda abre la mesa de un tema con ... → La mesa vuelve a medir el ejercicio c... → Quien propone entrega candidatos del ... [Sigue al menos uno] → Los jueces que leen lo que cambió juz... → La bandeja recibe los dos veredictos ... [Los dos jueces de traducción y sentido no coinciden] → failure")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void path3_sigueAlMenosUno_losDosJuecesDeTraduccinYSentidoNoCoinciden_failure() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -44,6 +48,7 @@ public class FMesaJ001JourneyTest {
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: La tanda abre la mesa de un tema con ... → La mesa vuelve a medir el ejercicio c... → Quien propone entrega candidatos del ... [Sigue al menos uno] → Los jueces que leen lo que cambió juz... → El ejercicio queda como estaba y la b... [Ningún candidato pasa después del tercer intento] → failure")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void path4_sigueAlMenosUno_ningnCandidatoPasaDespusDelTercerIntento_failure() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

@@ -139,6 +139,7 @@ public class LemmaCountAnalyzerProviderTest {
     @DisplayName("should create for every run an analyzer that counts only the sentences of the course it measures, so a sentence that lost the word in a proposal is no longer counted")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldCreateForEveryRunAnAnalyzerThatCountsOnlyTheSentencesOfTheCourseItMeasuresSoASentenceThatLostTheWordInAProposalIsNoLongerCounted() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -4838,6 +4839,7 @@ public class GetCmdTest {
     @DisplayName("should show in get analyzer naturalness its two tools, llama3:8b in Ollama and claude -p, each with its version, whether it is available and its exam")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldShowInGetAnalyzerNaturalnessItsTwoToolsLlama38bInOllamaAndClaudePEachWithItsVersionWhetherItIsAvailableAndItsExam() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -4846,6 +4848,7 @@ public class GetCmdTest {
     @DisplayName("should list with 'get tasks' only the panel tasks of the topic Afirmativas regulares when filtered by that topic and the panel resolution, each with its finding: single-answer and translation-sense of «I ___ a lot of vegetables.» but not its hint")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldListWithGetTasksOnlyThePanelTasksOfTheTopicAfirmativasRegularesWhenFilteredByThatTopicAndThePanelResolutionEachWithItsFindingSingleanswerAndTranslationsenseOfIALotOfVegetablesButNotItsHint() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -4854,6 +4857,7 @@ public class GetCmdTest {
     @DisplayName("should combine the filters by analyzer, severity and CEFR level with the sort by priority, as the blocking single-answer tasks of A1 in priority order")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldCombineTheFiltersByAnalyzerSeverityAndCEFRLevelWithTheSortByPriorityAsTheBlockingSingleanswerTasksOfA1InPriorityOrder() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -4862,6 +4866,7 @@ public class GetCmdTest {
     @DisplayName("should reject 'get tasks' filtered by an analyzer outside the catalog with 'Analyzer 'hint-coherense' not found. Run 'content-audit get analyzers' to see available analyzers.' and exit non-zero")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldRejectGetTasksFilteredByAnAnalyzerOutsideTheCatalogWithAnalyzerHintcoherenseNotFoundRunContentauditGetAnalyzersToSeeAvailableAnalyzersAndExitNonzero() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -4870,6 +4875,7 @@ public class GetCmdTest {
     @DisplayName("should reject 'get tasks' filtered by a severity outside blocking, high, medium and low and exit non-zero")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldRejectGetTasksFilteredByASeverityOutsideBlockingHighMediumAndLowAndExitNonzero() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -4878,6 +4884,7 @@ public class GetCmdTest {
     @DisplayName("should list the tasks as today, vocabulary tasks included, when no filter by finding is given")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldListTheTasksAsTodayVocabularyTasksIncludedWhenNoFilterByFindingIsGiven() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -4886,6 +4893,7 @@ public class GetCmdTest {
     @DisplayName("should show 'get task' of the single-answer task of «I ___ a lot of vegetables.» with the exercise as the student sees it, its finding with its evidence (eat, like, buy and want also fit), its blocking severity, its panel resolution and what its fix may touch")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldShowGetTaskOfTheSingleanswerTaskOfIALotOfVegetablesWithTheExerciseAsTheStudentSeesItItsFindingWithItsEvidenceEatLikeBuyAndWantAlsoFitItsBlockingSeverityItsPanelResolutionAndWhatItsFixMayTouch() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -4894,6 +4902,7 @@ public class GetCmdTest {
     @DisplayName("should show 'get task' of the mini-theory task of «$In time$ u $on time$» with the forty exercises it reaches")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldShowGetTaskOfTheMinitheoryTaskOfInTimeUOnTimeWithTheFortyExercisesItReaches() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

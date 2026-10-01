@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FTandaJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: José abre la tanda de un nivel sobre ... → La tanda declara sus tareas, sus tema... → La tanda aplica las reglas sin modelo... [José pide un tope de consultas] → La tanda recalcula el curso entero co... → Con el OK de José, los cambios entran... → success")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void path1_josPideUnTopeDeConsultas_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -28,6 +30,7 @@ public class FTandaJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: José abre la tanda de un nivel sobre ... → La tanda declara sus tareas, sus tema... → La tanda no hace ninguna consulta y s... [No hay tope pedido] → failure")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void path2_noHayTopePedido_failure() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

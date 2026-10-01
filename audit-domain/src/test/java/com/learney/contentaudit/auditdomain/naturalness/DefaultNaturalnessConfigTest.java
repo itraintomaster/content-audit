@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.naturalness;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultNaturalnessConfigTest {
     @DisplayName("should hold for llama3:8b@365c0bd3c000 with the question of the prototype the thresholds 9.07 for A1 and 10.0 for A2")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldHoldForLlama38b365c0bd3c000WithTheQuestionOfThePrototypeTheThresholds907ForA1And100ForA2(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultNaturalnessConfigTest {
     @DisplayName("should hold no threshold for another examined version, so another llama3 needs thresholds of its own")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldHoldNoThresholdForAnotherExaminedVersionSoAnotherLlama3NeedsThresholdsOfItsOwn(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultNaturalnessConfigTest {
     @DisplayName("should ask whether a native speaker would say the sentence with that meaning and those words, «Would a native English speaker naturally say or write this exact sentence, with this meaning and these words? Sentence: …»")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskWhetherANativeSpeakerWouldSayTheSentenceWithThatMeaningAndThoseWordsWouldANativeEnglishSpeakerNaturallySayOrWriteThisExactSentenceWithThisMeaningAndTheseWordsSentence(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

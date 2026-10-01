@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class MultipleChoiceValidityCorrectionTest {
     @DisplayName("should let a rule fix of multiple-choice-validity touch only the options, as the capital letters of «___ a child? (He)», and a panel fix also the statement, the translation and the audio")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldLetARuleFixOfMultiplechoicevalidityTouchOnlyTheOptionsAsTheCapitalLettersOfAChildHeAndAPanelFixAlsoTheStatementTheTranslationAndTheAudio(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

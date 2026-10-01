@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -275,6 +276,7 @@ public class PruneCmdTest {
     @DisplayName("should keep the baseline 2026-09-30T11-54-02 after three new analyses and prune audits --keep 3, saying «Kept the baseline 2026-09-30T11-54-02»")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldKeepTheBaseline20260930T115402AfterThreeNewAnalysesAndPruneAuditsKeep3SayingKeptTheBaseline20260930T115402() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -283,6 +285,7 @@ public class PruneCmdTest {
     @DisplayName("should keep the active analysis although it is among the oldest, saying «Kept the active analysis <id>»")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldKeepTheActiveAnalysisAlthoughItIsAmongTheOldestSayingKeptTheActiveAnalysisId() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -291,6 +294,7 @@ public class PruneCmdTest {
     @DisplayName("should neither count nor delete saved projections when pruning audits")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldNeitherCountNorDeleteSavedProjectionsWhenPruningAudits() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

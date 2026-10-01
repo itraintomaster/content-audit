@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -273,6 +274,7 @@ public class DeleteCmdTest {
     @DisplayName("should refuse to delete the active analysis with «Cannot delete audit '<id>': it is the active analysis. Point 'set-active' to another analysis first.»")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldRefuseToDeleteTheActiveAnalysisWithCannotDeleteAuditIdItIsTheActiveAnalysisPointSetactiveToAnotherAnalysisFirst() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -281,6 +283,7 @@ public class DeleteCmdTest {
     @DisplayName("should refuse to delete the baseline with «Cannot delete audit '<id>': it is the baseline. Fix another one with 'set-baseline' first.», even when no plan references it")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldRefuseToDeleteTheBaselineWithCannotDeleteAuditIdItIsTheBaselineFixAnotherOneWithSetbaselineFirstEvenWhenNoPlanReferencesIt() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

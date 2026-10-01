@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.blindsampleengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultSampleStatisticsTest {
     @DisplayName("should give 95 of 100 the share 95% with the 95% Wilson interval [88.8; 97.8], 1 of 100 [0.2; 5.4] and 4 of 100 [1.6; 9.8]")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldGive95Of100TheShare95WithThe95WilsonInterval8889781Of1000254And4Of1001698() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -22,6 +24,7 @@ public class DefaultSampleStatisticsTest {
     @DisplayName("should give 0 of 100 a one-sided 95% upper bound of 3.0%, 2 of 300 a bound of 2.1% and 2 of 400 a bound of 1.6%")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldGive0Of100AOnesided95UpperBoundOf302Of300ABoundOf21And2Of400ABoundOf16() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -30,6 +33,7 @@ public class DefaultSampleStatisticsTest {
     @DisplayName("should give Cohen's kappa 1 to two reviewers who answer every common pair alike and 0 to two who agree only as often as chance")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldGiveCohensKappa1ToTwoReviewersWhoAnswerEveryCommonPairAlikeAnd0ToTwoWhoAgreeOnlyAsOftenAsChance(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -39,6 +43,7 @@ public class DefaultSampleStatisticsTest {
     @DisplayName("should give 400 exercises a 95% margin of 4.3 points at 25.7% and of 2.1 points at 5%")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldGive400ExercisesA95MarginOf43PointsAt257AndOf21PointsAt5() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

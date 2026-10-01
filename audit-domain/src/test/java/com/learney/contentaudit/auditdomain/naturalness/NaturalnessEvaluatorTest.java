@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.naturalness;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class NaturalnessEvaluatorTest {
     @DisplayName("should record the two probabilities llama3 gives a sentence, not its number, under an evaluator id that carries the examined version")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldRecordTheTwoProbabilitiesLlama3GivesASentenceNotItsNumberUnderAnEvaluatorIdThatCarriesTheExaminedVersion(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class NaturalnessEvaluatorTest {
     @DisplayName("should not reuse what another examined version recorded, so llama3:8b with another digest asks again")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldNotReuseWhatAnotherExaminedVersionRecordedSoLlama38bWithAnotherDigestAsksAgain(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class NaturalnessEvaluatorTest {
     @DisplayName("should state as its version the examined version, llama3:8b@365c0bd3c000 · native-yes-no-1, so the judges' runtime brakes it on the same exam as LocalToolGate")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R006")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldStateAsItsVersionTheExaminedVersionLlama38b365c0bd3c000Nativeyesno1SoTheJudgesRuntimeBrakesItOnTheSameExamAsLocalToolGate(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

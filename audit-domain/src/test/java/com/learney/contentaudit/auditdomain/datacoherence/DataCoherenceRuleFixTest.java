@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DataCoherenceRuleFixTest {
     @DisplayName("should turn the «/» of an accepted answer into «|» and rebuild the stored sentence with the first answer, as «has not cut/hasn't cut» in «He ___ (not / cut) himself.»")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldTurnTheOfAnAcceptedAnswerIntoAndRebuildTheStoredSentenceWithTheFirstAnswerAsHasNotCuthasntCutInHeNotCutHimself(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DataCoherenceRuleFixTest {
     @DisplayName("should leave «I learned ___ me / myself to drive a car.» (…399b) as it is and ask to rerecord its audio B1.13.05.15, which reads the hint, with «I learned myself to drive a car.»")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldLeaveILearnedMeMyselfToDriveACar399bAsItIsAndAskToRerecordItsAudioB1130515WhichReadsTheHintWithILearnedMyselfToDriveACar(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DataCoherenceRuleFixTest {
     @DisplayName("should ask to rerecord the audio B1.13.05.20 of «He pinched ___ him / himself on the leg.» (…39a0) with «He pinched him on the leg.», without the hint nor the context in parentheses")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldAskToRerecordTheAudioB1130520OfHePinchedHimHimselfOnTheLeg39a0WithHePinchedHimOnTheLegWithoutTheHintNorTheContextInParentheses(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DataCoherenceRuleFixTest {
     @DisplayName("should ask to rerecord with «He has not cut himself.» the audio of «He ___ (not / cut) himself.», which reads «He has not cut/hasn't cut himself.», without touching the exercise")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldAskToRerecordWithHeHasNotCutHimselfTheAudioOfHeNotCutHimselfWhichReadsHeHasNotCuthasntCutHimselfWithoutTouchingTheExercise(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

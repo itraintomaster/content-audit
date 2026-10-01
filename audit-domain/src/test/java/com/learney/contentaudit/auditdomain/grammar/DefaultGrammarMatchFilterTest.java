@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.grammar;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultGrammarMatchFilterTest {
     @DisplayName("should keep a spelling mark that American and British English give at the same place, «teached» in «Ana was teached a lesson by my brother.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldKeepASpellingMarkThatAmericanAndBritishEnglishGiveAtTheSamePlaceTeachedInAnaWasTeachedALessonByMyBrother(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultGrammarMatchFilterTest {
     @DisplayName("should keep grammar, confused words and collocations, as «explained us» in «The teacher explained us the lesson.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldKeepGrammarConfusedWordsAndCollocationsAsExplainedUsInTheTeacherExplainedUsTheLesson(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultGrammarMatchFilterTest {
     @DisplayName("should drop a mark only one variant gives, «theatre» in «They walked to the theatre.» and «traveled» in «He traveled to the UAE last month.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldDropAMarkOnlyOneVariantGivesTheatreInTheyWalkedToTheTheatreAndTraveledInHeTraveledToTheUAELastMonth(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultGrammarMatchFilterTest {
     @DisplayName("should drop casing, as the lowercase «if» in «Can you hear me clearly? if not, I can speak louder.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldDropCasingAsTheLowercaseIfInCanYouHearMeClearlyIfNotICanSpeakLouder() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -49,6 +54,7 @@ public class DefaultGrammarMatchFilterTest {
     @DisplayName("should drop the lowercase «i» of an option although LanguageTool files it under typos, as in «A: Can you call Miss Green? B: No, i can't.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldDropTheLowercaseIOfAnOptionAlthoughLanguageToolFilesItUnderTyposAsInACanYouCallMissGreenBNoICant(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class DefaultGrammarMatchFilterTest {
     @DisplayName("should drop style, as «really tired» in «He feels really tired if he doesn't drink coffee.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldDropStyleAsReallyTiredInHeFeelsReallyTiredIfHeDoesntDrinkCoffee() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -66,6 +73,7 @@ public class DefaultGrammarMatchFilterTest {
     @DisplayName("should drop compounds, as «any more» in «They don't drink wine any more.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldDropCompoundsAsAnyMoreInTheyDontDrinkWineAnyMore() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -74,6 +82,7 @@ public class DefaultGrammarMatchFilterTest {
     @DisplayName("should drop SINGULAR_AGREEMENT_SENT_START, which contradicts the topic Nombres colectivos, as «are» in «The band are so talented.»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldDropSINGULARAGREEMENTSENTSTARTWhichContradictsTheTopicNombresColectivosAsAreInTheBandAreSoTalented(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -83,6 +92,7 @@ public class DefaultGrammarMatchFilterTest {
     @DisplayName("should keep the two data rules although they are not grammar, the repeated word in «Have the neighbors been making noise noise?» and the missing space in «…slept until 11.I slept…»")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldKeepTheTwoDataRulesAlthoughTheyAreNotGrammarTheRepeatedWordInHaveTheNeighborsBeenMakingNoiseNoiseAndTheMissingSpaceInSleptUntil11ISlept(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

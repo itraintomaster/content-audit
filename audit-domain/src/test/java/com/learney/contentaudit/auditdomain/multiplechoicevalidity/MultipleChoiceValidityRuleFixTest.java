@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.multiplechoicevalidity;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class MultipleChoiceValidityRuleFixTest {
     @DisplayName("should capitalize every option of «___ a child? (He)», whose gap opens the question, «is he» to «Is he» and «am i» to «Am I», in all the options at once")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldCapitalizeEveryOptionOfAChildHeWhoseGapOpensTheQuestionIsHeToIsHeAndAmIToAmIInAllTheOptionsAtOnce(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class BatchCmdTest {
     @DisplayName("should open with 'batch open A1' the batch of A1 with the topics and queries at once and the orders given, and print its tasks")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldOpenWithBatchOpenA1TheBatchOfA1WithTheTopicsAndQueriesAtOnceAndTheOrdersGivenAndPrintItsTasks(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class BatchCmdTest {
     @DisplayName("should print with 'batch estimate' the cost of the open batch without making any query")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldPrintWithBatchEstimateTheCostOfTheOpenBatchWithoutMakingAnyQuery() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -31,6 +34,7 @@ public class BatchCmdTest {
     @DisplayName("should run with 'batch run' and no cap only the rules, and say that the panel tasks stayed not attempted")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldRunWithBatchRunAndNoCapOnlyTheRulesAndSayThatThePanelTasksStayedNotAttempted(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -40,6 +44,7 @@ public class BatchCmdTest {
     @DisplayName("should drop with 'batch drop' one change naming the change, and all the changes of a rule naming the rule")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDropWithBatchDropOneChangeNamingTheChangeAndAllTheChangesOfARuleNamingTheRule(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -49,6 +54,7 @@ public class BatchCmdTest {
     @DisplayName("should print with 'batch report' the report of a batch")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R010")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldPrintWithBatchReportTheReportOfABatch() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

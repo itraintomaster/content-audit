@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.nonregressionengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should reject a change whose after measurement of «I ___ a lot of vegetables.» has a counting finding with an identity the before measurement did not have, naming it as a new error")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldRejectAChangeWhoseAfterMeasurementOfIALotOfVegetablesHasACountingFindingWithAnIdentityTheBeforeMeasurementDidNotHaveNamingItAsANewError(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should pass the change to «I ___ (love) vegetables.», which removes the findings of hint-coherence and single-answer and adds none")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldPassTheChangeToILoveVegetablesWhichRemovesTheFindingsOfHintcoherenceAndSingleanswerAndAddsNone(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should find a new error by identity even when the exercise keeps the same number of counting findings, one gone and another new")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldFindANewErrorByIdentityEvenWhenTheExerciseKeepsTheSameNumberOfCountingFindingsOneGoneAndAnotherNew(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should compare the whole topic for a change of the topic, rejecting a mini-theory rewritten for the nine exercises of «Contraste inicial» that leaves a new error in any exercise of the topic")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldCompareTheWholeTopicForAChangeOfTheTopicRejectingAMinitheoryRewrittenForTheNineExercisesOfContrasteInicialThatLeavesANewErrorInAnyExerciseOfTheTopic(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should not count as a new error a finding that only ranks, as the disagreement of the two translation-sense judges on the candidate")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNotCountAsANewErrorAFindingThatOnlyRanksAsTheDisagreementOfTheTwoTranslationsenseJudgesOnTheCandidate(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -59,6 +65,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should reject «My grandmother ___ (come) every year.» for «It ___ (come) every year.» (A1) because grandmother (A2) is a new red word, naming grandmother and A2 in its reason")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldRejectMyGrandmotherComeEveryYearForItComeEveryYearA1BecauseGrandmotherA2IsANewRedWordNamingGrandmotherAndA2InItsReason(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -68,6 +75,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should pass «Winter ___ (come) every year.» for «It ___ (come) every year.», which adds no red word")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldPassWinterComeEveryYearForItComeEveryYearWhichAddsNoRedWord() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -76,6 +84,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should pass a change that keeps red words that were already red, as spread and quilt when only the translation of «She spread the warm blue quilt on the bed.» changes")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldPassAChangeThatKeepsRedWordsThatWereAlreadyRedAsSpreadAndQuiltWhenOnlyTheTranslationOfSheSpreadTheWarmBlueQuiltOnTheBedChanges(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -85,6 +94,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should check every new option of a multiple choice put in the gap, and reject the change when one of them brings a red word the exercise did not have")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldCheckEveryNewOptionOfAMultipleChoicePutInTheGapAndRejectTheChangeWhenOneOfThemBringsARedWordTheExerciseDidNotHave(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -94,6 +104,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should reject a change that brings into an A1 exercise a word out of the catalog, as reside, and name it out of the catalog instead of a level")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldRejectAChangeThatBringsIntoAnA1ExerciseAWordOutOfTheCatalogAsResideAndNameItOutOfTheCatalogInsteadOfALevel(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -103,6 +114,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should pass and declare, with its measured length and the range, a change that leaves «All the sheep in the field are still ___ (alive / living).» (B2) at 9 tokens, one below the range of 10 to 25")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldPassAndDeclareWithItsMeasuredLengthAndTheRangeAChangeThatLeavesAllTheSheepInTheFieldAreStillAliveLivingB2At9TokensOneBelowTheRangeOf10To25(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -112,6 +124,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should declare the lengths of the four vegetables fixes, 6, 5, 4 and 4 tokens within 3 to 8, without vetoing any of them")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldDeclareTheLengthsOfTheFourVegetablesFixes654And4TokensWithin3To8WithoutVetoingAnyOfThem(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -121,6 +134,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should ask four rerecords, one per exercise and with its new text, for the four vegetables fixes that change what is heard, as «I love vegetables.» and «Winter comes every year.»")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldAskFourRerecordsOnePerExerciseAndWithItsNewTextForTheFourVegetablesFixesThatChangeWhatIsHeardAsILoveVegetablesAndWinterComesEveryYear(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -130,6 +144,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should ask no rerecord for a change that touches only the translation, the hint or an alternative answer, as adding «aren't» after «'re not» in «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldAskNoRerecordForAChangeThatTouchesOnlyTheTranslationTheHintOrAnAlternativeAnswerAsAddingArentAfterReNotInTheyNotBeFromIreland(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -139,6 +154,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should name in each reason the rule that failed and its evidence, as F-NOEMP-R002 with grandmother (A2) in «My grandmother comes every year.»")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNameInEachReasonTheRuleThatFailedAndItsEvidenceAsFNOEMPR002WithGrandmotherA2InMyGrandmotherComesEveryYear(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -148,6 +164,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should give the same verdict and the same reasons for the same before and after measurements")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldGiveTheSameVerdictAndTheSameReasonsForTheSameBeforeAndAfterMeasurements() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -156,6 +173,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should neither count as new nor as solved a finding of an analyzer that did not evaluate the exercise at one end, and declare per analyzer how many changed exercises it left uncompared")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R010")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNeitherCountAsNewNorAsSolvedAFindingOfAnAnalyzerThatDidNotEvaluateTheExerciseAtOneEndAndDeclarePerAnalyzerHowManyChangedExercisesItLeftUncompared(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -165,6 +183,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should pass a rule fix that leaves «I learned ___ me / myself to drive a car.» (…399b) as it is and only asks to rerecord its audio with «I learned myself to drive a car.», listing the request although what the exercise says did not change")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldPassARuleFixThatLeavesILearnedMeMyselfToDriveACar399bAsItIsAndOnlyAsksToRerecordItsAudioWithILearnedMyselfToDriveACarListingTheRequestAlthoughWhatTheExerciseSaysDidNotChange(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -174,6 +193,7 @@ public class DefaultChangeGateTest {
     @DisplayName("should not pass a request to rerecord …399b with «I learned myself me / myself to drive a car.», which reads the hint and is not what the exercise says")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNotPassARequestToRerecord399bWithILearnedMyselfMeMyselfToDriveACarWhichReadsTheHintAndIsNotWhatTheExerciseSays(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

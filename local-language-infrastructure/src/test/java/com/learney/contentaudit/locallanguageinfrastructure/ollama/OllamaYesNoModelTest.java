@@ -1,6 +1,7 @@
 package com.learney.contentaudit.locallanguageinfrastructure.ollama;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class OllamaYesNoModelTest {
     @DisplayName("should add up the forms of yes of the first token, «yes», «Yes», « yes» and «y», and the same for no, out of the 20 alternatives Ollama gives")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAddUpTheFormsOfYesOfTheFirstTokenYesYesYesAndYAndTheSameForNoOutOfThe20AlternativesOllamaGives(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

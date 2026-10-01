@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.trayengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should show only the blind sample, and nothing else of the batch, while the blind sample is not closed")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowOnlyTheBlindSampleAndNothingElseOfTheBatchWhileTheBlindSampleIsNotClosed(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should list after the closed blind sample the ties and the exercises without winner by severity, then the samples of each rule and at the end the audios to rerecord")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldListAfterTheClosedBlindSampleTheTiesAndTheExercisesWithoutWinnerBySeverityThenTheSamplesOfEachRuleAndAtTheEndTheAudiosToRerecord(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should give each item its kind, the exercise as the student sees it, what is asked and the answers it accepts")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldGiveEachItemItsKindTheExerciseAsTheStudentSeesItWhatIsAskedAndTheAnswersItAccepts(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should list only what the batch needs from José, never a change the panel accepted on its own")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldListOnlyWhatTheBatchNeedsFromJosNeverAChangeThePanelAcceptedOnItsOwn() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -49,6 +54,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should show a tie on an exercise of the course with the two verdicts of translation-sense and their evidence, asking whether it is an error")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowATieOnAnExerciseOfTheCourseWithTheTwoVerdictsOfTranslationsenseAndTheirEvidenceAskingWhetherItIsAnError(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should show for an exercise without winner the original, the candidate that failed least with each control it did not pass, and the reasons of its three attempts")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowForAnExerciseWithoutWinnerTheOriginalTheCandidateThatFailedLeastWithEachControlItDidNotPassAndTheReasonsOfItsThreeAttempts(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -67,6 +74,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should show each sampled change of a rule with its before and after as the student sees them")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowEachSampledChangeOfARuleWithItsBeforeAndAfterAsTheStudentSeesThem() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -75,6 +83,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should show the pairs of the blind sample as F gives them, without side, reason or author")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R005")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowThePairsOfTheBlindSampleAsFGivesThemWithoutSideReasonOrAuthor() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -83,6 +92,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should not ask again, in a later batch or analysis, a question José already answered while the exercise did not change")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldNotAskAgainInALaterBatchOrAnalysisAQuestionJosAlreadyAnsweredWhileTheExerciseDidNotChange(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -92,6 +102,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should ask again the question of an exercise whose content changed since José answered it")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldAskAgainTheQuestionOfAnExerciseWhoseContentChangedSinceJosAnsweredIt() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -100,6 +111,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should say whether the tray can be published and, when it cannot, why")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R007")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldSayWhetherTheTrayCanBePublishedAndWhenItCannotWhy() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -108,6 +120,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should show at the end, without a question, each audio pending rerecording with its exercise as the student sees it, its key and the text to record, as B1.13.05.15 with «I learned myself to drive a car.»")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowAtTheEndWithoutAQuestionEachAudioPendingRerecordingWithItsExerciseAsTheStudentSeesItItsKeyAndTheTextToRecordAsB1130515WithILearnedMyselfToDriveACar(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -117,6 +130,7 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should show both the rerecordings the open batch asks and those left pending by published batches, each audio once with the latest text")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowBothTheRerecordingsTheOpenBatchAsksAndThoseLeftPendingByPublishedBatchesEachAudioOnceWithTheLatestText(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

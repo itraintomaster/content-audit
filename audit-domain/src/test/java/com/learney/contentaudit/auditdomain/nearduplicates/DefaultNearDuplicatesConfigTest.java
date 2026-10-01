@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.nearduplicates;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultNearDuplicatesConfigTest {
     @DisplayName("should hold the threshold 0.95, the prefix «clustering: » and the word similarity 0.6 of the candidates for claude -p")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldHoldTheThreshold095ThePrefixClusteringAndTheWordSimilarity06OfTheCandidatesForClaudeP(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultNearDuplicatesConfigTest {
     @DisplayName("should change its methodId when the prefix changes, so the vectors are a new examined version that takes its own exam")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R007")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldChangeItsMethodIdWhenThePrefixChangesSoTheVectorsAreANewExaminedVersionThatTakesItsOwnExam(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

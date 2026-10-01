@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.trayengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class SeededRuleSampleDrawerTest {
     @DisplayName("should draw 20 changes at random from a rule with 170, the same 20 every time the tray of the same batch is opened")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldDraw20ChangesAtRandomFromARuleWith170TheSame20EveryTimeTheTrayOfTheSameBatchIsOpened(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class SeededRuleSampleDrawerTest {
     @DisplayName("should show all the changes of a rule with fewer than 20")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowAllTheChangesOfARuleWithFewerThan20() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

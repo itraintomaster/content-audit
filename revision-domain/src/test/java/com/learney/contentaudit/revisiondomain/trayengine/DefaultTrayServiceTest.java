@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.trayengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should reject an answer the item does not accept, as keeping the original for a tie, naming the answers it accepts")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldRejectAnAnswerTheItemDoesNotAcceptAsKeepingTheOriginalForATieNamingTheAnswersItAccepts(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should open a task of the exercise in the panel of the batch when José answers that a tie on the course is an error")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldOpenATaskOfTheExerciseInThePanelOfTheBatchWhenJosAnswersThatATieOnTheCourseIsAnError(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should open no task and leave the exercise as it is when José answers that a tie on the course is not an error")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldOpenNoTaskAndLeaveTheExerciseAsItIsWhenJosAnswersThatATieOnTheCourseIsNotAnError(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should accept the candidate in the batch when José answers that a tie on a candidate passes")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldAcceptTheCandidateInTheBatchWhenJosAnswersThatATieOnACandidatePasses() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -49,6 +54,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should send the exercise back to the panel with one attempt less when José answers that the candidate does not pass, or end it without winner when no attempt is left")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldSendTheExerciseBackToThePanelWithOneAttemptLessWhenJosAnswersThatTheCandidateDoesNotPassOrEndItWithoutWinnerWhenNoAttemptIsLeft(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should leave the exercise unchanged and its tasks open when José keeps the original")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldLeaveTheExerciseUnchangedAndItsTasksOpenWhenJosKeepsTheOriginal() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -66,6 +73,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should take the candidate into the batch as approved by José when he approves it, declaring what it did not pass as his exception for the batch gate")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldTakeTheCandidateIntoTheBatchAsApprovedByJosWhenHeApprovesItDeclaringWhatItDidNotPassAsHisExceptionForTheBatchGate(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -75,6 +83,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should measure and judge the fix José writes like any candidate of the panel, and send it back to him with the reasons when it does not pass")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R003")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldMeasureAndJudgeTheFixJosWritesLikeAnyCandidateOfThePanelAndSendItBackToHimWithTheReasonsWhenItDoesNotPass(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -84,6 +93,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should approve the changes of a rule when José answers that its sample is fine")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldApproveTheChangesOfARuleWhenJosAnswersThatItsSampleIsFine() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -92,6 +102,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should drop through the batch one change of the sample, or the whole rule, when José asks it")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldDropThroughTheBatchOneChangeOfTheSampleOrTheWholeRuleWhenJosAsksIt() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -100,6 +111,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should pass each answer of the blind sample to the service of F, pair by pair, without touching the batch")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R005")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPassEachAnswerOfTheBlindSampleToTheServiceOfFPairByPairWithoutTouchingTheBatch(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -109,6 +121,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should close the blind sample with F after its last pair, and only then show the rest of the tray")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R005")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldCloseTheBlindSampleWithFAfterItsLastPairAndOnlyThenShowTheRestOfTheTray() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -117,6 +130,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should remember José's answer to a tie or to an exercise without winner as soon as he gives it")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldRememberJossAnswerToATieOrToAnExerciseWithoutWinnerAsSoonAsHeGivesIt() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -125,6 +139,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should publish the rest of the batch with a tie or an exercise without winner unanswered, leaving that exercise as it was, its tasks open and «sin decidir» in the report")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R007")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPublishTheRestOfTheBatchWithATieOrAnExerciseWithoutWinnerUnansweredLeavingThatExerciseAsItWasItsTasksOpenAndSinDecidirInTheReport(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -134,6 +149,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should publish without the changes of a rule whose sample is unanswered, and with the rest of the batch")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R007")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPublishWithoutTheChangesOfARuleWhoseSampleIsUnansweredAndWithTheRestOfTheBatch(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -143,6 +159,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should refuse to publish while the blind sample is not closed, with the verdict «falta la muestra ciega»")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R007")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldRefuseToPublishWhileTheBlindSampleIsNotClosedWithTheVerdictFaltaLaMuestraCiega(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -152,6 +169,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should publish the batch with José's single OK and record who, when and which proposals entered")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPublishTheBatchWithJossSingleOKAndRecordWhoWhenAndWhichProposalsEntered() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -160,6 +178,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should refuse the OK when, with José's decisions incorporated, the verdict of F is not «pasa» or the gate does not pass")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R008")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldRefuseTheOKWhenWithJossDecisionsIncorporatedTheVerdictOfFIsNotPasaOrTheGateDoesNotPass(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -169,6 +188,7 @@ public class DefaultTrayServiceTest {
     @DisplayName("should publish the batch with audios pending rerecording, which are never answered and never block the OK")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldPublishTheBatchWithAudiosPendingRerecordingWhichAreNeverAnsweredAndNeverBlockTheOK(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

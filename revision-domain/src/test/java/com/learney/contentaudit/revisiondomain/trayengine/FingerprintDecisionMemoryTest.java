@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.trayengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class FingerprintDecisionMemoryTest {
     @DisplayName("should recall José's answer to a tie by the identity of the finding and the fingerprint of the exercise as the student sees it, and nothing once the exercise changed")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldRecallJossAnswerToATieByTheIdentityOfTheFindingAndTheFingerprintOfTheExerciseAsTheStudentSeesItAndNothingOnceTheExerciseChanged(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

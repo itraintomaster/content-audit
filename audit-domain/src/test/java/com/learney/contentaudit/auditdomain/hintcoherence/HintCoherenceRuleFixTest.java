@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class HintCoherenceRuleFixTest {
     @DisplayName("should take the hint from the first answer, its base verb, its subject and its not, as «(love)» for «I ___ a lot of vegetables.», without changing what is heard")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldTakeTheHintFromTheFirstAnswerItsBaseVerbItsSubjectAndItsNotAsLoveForIALotOfVegetablesWithoutChangingWhatIsHeard(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

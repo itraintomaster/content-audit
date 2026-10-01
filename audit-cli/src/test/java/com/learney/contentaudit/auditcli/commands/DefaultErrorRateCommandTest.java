@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultErrorRateCommandTest {
     @DisplayName("should draw with error-rate draw from the level it names, as A1, or from the whole course")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldDrawWithErrorrateDrawFromTheLevelItNamesAsA1OrFromTheWholeCourse() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

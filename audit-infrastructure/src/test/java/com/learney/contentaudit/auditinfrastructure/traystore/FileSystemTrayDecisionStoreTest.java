@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditinfrastructure.traystore;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class FileSystemTrayDecisionStoreTest {
     @DisplayName("should keep José's decisions in an append-only file apart from batches and reports, so pruning analyses leaves them")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldKeepJossDecisionsInAnAppendonlyFileApartFromBatchesAndReportsSoPruningAnalysesLeavesThem(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

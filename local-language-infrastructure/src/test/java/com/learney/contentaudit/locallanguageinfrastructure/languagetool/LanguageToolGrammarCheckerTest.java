@@ -1,6 +1,7 @@
 package com.learney.contentaudit.locallanguageinfrastructure.languagetool;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class LanguageToolGrammarCheckerTest {
     @DisplayName("should check «Ana was teached a lesson by my brother.» with the real LanguageTool 6.8 inside the process and without network, marking «teached» in American and in British English")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldCheckAnaWasTeachedALessonByMyBrotherWithTheRealLanguageTool68InsideTheProcessAndWithoutNetworkMarkingTeachedInAmericanAndInBritishEnglish(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class LanguageToolGrammarCheckerTest {
     @DisplayName("should state LanguageTool and the version of its library, 6.8, without creating a checker nor loading a rule")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldStateLanguageToolAndTheVersionOfItsLibrary68WithoutCreatingACheckerNorLoadingARule(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class LanguageToolGrammarCheckerTest {
     @DisplayName("should run only the rules the real LanguageTool 6.8 brings on, so «You prefer Italian food.» gets no ARTICLE_MISSING mark")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldRunOnlyTheRulesTheRealLanguageTool68BringsOnSoYouPreferItalianFoodGetsNoARTICLEMISSINGMark(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class LanguageToolGrammarCheckerTest {
     @DisplayName("should mark «explained us» in «The teacher explained us the lesson.» at the same place in American and in British English with the real LanguageTool 6.8")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
     public void shouldMarkExplainedUsInTheTeacherExplainedUsTheLessonAtTheSamePlaceInAmericanAndInBritishEnglishWithTheRealLanguageTool68(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

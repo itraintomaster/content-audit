@@ -1,6 +1,7 @@
 package com.learney.contentaudit.refinerdomain.errortask;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultErrorTaskBrieferTest {
     @DisplayName("should mark the brief of a task whose analyzer has no correction declaration with scopeDeclared false and an empty edit scope, so the batch leaves it as «sin alcance declarado»")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldMarkTheBriefOfATaskWhoseAnalyzerHasNoCorrectionDeclarationWithScopeDeclaredFalseAndAnEmptyEditScopeSoTheBatchLeavesItAsSinAlcanceDeclarado(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultErrorTaskBrieferTest {
     @DisplayName("should brief the single-answer task of «I ___ a lot of vegetables.» with the exercise as the student sees it, its finding with its evidence and what a panel fix of single-answer may touch")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldBriefTheSingleanswerTaskOfIALotOfVegetablesWithTheExerciseAsTheStudentSeesItItsFindingWithItsEvidenceAndWhatAPanelFixOfSingleanswerMayTouch(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultErrorTaskBrieferTest {
     @DisplayName("should brief the mini-theory task of «$In time$ u $on time$» with the forty exercises it reaches as the student sees them, and no single quiz view")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldBriefTheMinitheoryTaskOfInTimeUOnTimeWithTheFortyExercisesItReachesAsTheStudentSeesThemAndNoSingleQuizView(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultErrorTaskBrieferTest {
     @DisplayName("should brief the LEMMA_ABSENCE task of «She spread the warm blue quilt on the bed.» with the off-level-words findings it covers")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldBriefTheLEMMAABSENCETaskOfSheSpreadTheWarmBlueQuiltOnTheBedWithTheOfflevelwordsFindingsItCovers(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultErrorTaskBrieferTest {
     @DisplayName("should give no brief for a vocabulary task without origin, as a SENTENCE_LENGTH task")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void shouldGiveNoBriefForAVocabularyTaskWithoutOriginAsASENTENCELENGTHTask() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

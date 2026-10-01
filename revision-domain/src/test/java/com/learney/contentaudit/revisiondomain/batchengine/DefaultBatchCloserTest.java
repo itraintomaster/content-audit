@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultBatchCloserTest {
     @DisplayName("should hand F a scope with the pending proposals of the batch, one per exercise, and no other, even when the plan holds a vocabulary correction pending from revise")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldHandFAScopeWithThePendingProposalsOfTheBatchOnePerExerciseAndNoOtherEvenWhenThePlanHoldsAVocabularyCorrectionPendingFromRevise(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultBatchCloserTest {
     @DisplayName("should drop through the ledger the change the gate returns, as «My grandmother ___ (come) every year.», recalculate without it and close when the gate passes")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDropThroughTheLedgerTheChangeTheGateReturnsAsMyGrandmotherComeEveryYearRecalculateWithoutItAndCloseWhenTheGatePasses(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultBatchCloserTest {
     @DisplayName("should count a task as resolved when its finding identity and those it covers no longer appear in the recalculated course, as the LEMMA_ABSENCE task of reside only when lemma-absence and off-level-words both stop marking it")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldCountATaskAsResolvedWhenItsFindingIdentityAndThoseItCoversNoLongerAppearInTheRecalculatedCourseAsTheLEMMAABSENCETaskOfResideOnlyWhenLemmaabsenceAndOfflevelwordsBothStopMarkingIt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultBatchCloserTest {
     @DisplayName("should hand the gate the nodes that changed outside the batch, computed when composing its course")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldHandTheGateTheNodesThatChangedOutsideTheBatchComputedWhenComposingItsCourse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultBatchCloserTest {
     @DisplayName("should ask F for the blind sample of its scope once the gate passes, and keep its id")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldAskFForTheBlindSampleOfItsScopeOnceTheGatePassesAndKeepItsId() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -58,6 +64,7 @@ public class DefaultBatchCloserTest {
     @DisplayName("should spend one attempt of each change the gate returns and send its topic back to the panel with the reason, and end as returned without attempts, for the tray, a change that has none left")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldSpendOneAttemptOfEachChangeTheGateReturnsAndSendItsTopicBackToThePanelWithTheReasonAndEndAsReturnedWithoutAttemptsForTheTrayAChangeThatHasNoneLeft(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -67,6 +74,7 @@ public class DefaultBatchCloserTest {
     @DisplayName("should end as pending rerecording, not resolved, a task of the audio whose audio the batch asked to rerecord with what the exercise says, since its finding stays until it is recorded")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R006")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldEndAsPendingRerecordingNotResolvedATaskOfTheAudioWhoseAudioTheBatchAskedToRerecordWithWhatTheExerciseSaysSinceItsFindingStaysUntilItIsRecorded(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

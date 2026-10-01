@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.naturalness;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FNaturJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe lee la oración terminada d... → El ejercicio queda sin número ni hall... [La oración no tiene verbo o es una sola palabra] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void path1_laOracinNoTieneVerboOEsUnaSolaPalabra_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -28,6 +30,7 @@ public class FNaturJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe lee la oración terminada d... → El ejercicio tiene un hallazgo que só... [Con Ollama, el número queda por encima del umbral de su nivel] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void path2_conOllamaElNmeroQuedaPorEncimaDelUmbralDeSuNivel_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -36,6 +39,7 @@ public class FNaturJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → El informe lee la oración terminada d... → El ejercicio tiene su número publicad... [Con Ollama, el número queda en el umbral o por debajo] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void path3_conOllamaElNmeroQuedaEnElUmbralOPorDebajo_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -44,6 +48,7 @@ public class FNaturJ001JourneyTest {
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo só... → El informe lee la oración terminada d... → El ejercicio tiene un hallazgo de cla... [Sin Ollama, claude -p contesta que un nativo no la diría] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void path4_sinOllamaClaudePContestaQueUnNativoNoLaDira_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -52,6 +57,7 @@ public class FNaturJ001JourneyTest {
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: El operador corre analyze pidiendo só... → El informe lee la oración terminada d... → El ejercicio no tiene hallazgo de nat... [Sin Ollama, claude -p contesta que un nativo sí la diría] → success")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void path5_sinOllamaClaudePContestaQueUnNativoSLaDira_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

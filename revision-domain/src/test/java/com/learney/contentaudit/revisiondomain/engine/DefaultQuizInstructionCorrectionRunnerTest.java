@@ -39,6 +39,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -649,6 +650,7 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
     @DisplayName("should correct a quiz-instruction task outside any batch with the comparative criteria, the three attempts and the outcomes of today")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R014")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldCorrectAQuizinstructionTaskOutsideAnyBatchWithTheComparativeCriteriaTheThreeAttemptsAndTheOutcomesOfToday() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -657,6 +659,7 @@ public class DefaultQuizInstructionCorrectionRunnerTest {
     @DisplayName("should leave out of a revise-instructions run the quiz-instruction tasks that are in the open batch")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldLeaveOutOfAReviseinstructionsRunTheQuizinstructionTasksThatAreInTheOpenBatch() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

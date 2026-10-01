@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.nearduplicates;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultNearDuplicateRulesTest {
     @DisplayName("should take as the same request «Where are you now?» and «Where are they now?», whose answers differ only in the pronoun the student copies from the prompt")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldTakeAsTheSameRequestWhereAreYouNowAndWhereAreTheyNowWhoseAnswersDifferOnlyInThePronounTheStudentCopiesFromThePrompt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultNearDuplicateRulesTest {
     @DisplayName("should not take as the same request «I observed him clean the room.» and «I observed him cleaning the room.», whose answers differ")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldNotTakeAsTheSameRequestIObservedHimCleanTheRoomAndIObservedHimCleaningTheRoomWhoseAnswersDiffer(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultNearDuplicateRulesTest {
     @DisplayName("should compare the answers as the corrector does, taking «'ll wash» and «will wash» as the same answer")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R001")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldCompareTheAnswersAsTheCorrectorDoesTakingLlWashAndWillWashAsTheSameAnswer() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -40,6 +44,7 @@ public class DefaultNearDuplicateRulesTest {
     @DisplayName("should find «Where is he?» and «Where is she?» of Contraste inicial equal under the wildcard and say what changes, he → she")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldFindWhereIsHeAndWhereIsSheOfContrasteInicialEqualUnderTheWildcardAndSayWhatChangesHeShe(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -49,6 +54,7 @@ public class DefaultNearDuplicateRulesTest {
     @DisplayName("should find «I don't have much time.» and «I didn't have much time.» equal under the wildcard, which covers the tense of the auxiliary")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldFindIDontHaveMuchTimeAndIDidntHaveMuchTimeEqualUnderTheWildcardWhichCoversTheTenseOfTheAuxiliary(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -58,6 +64,7 @@ public class DefaultNearDuplicateRulesTest {
     @DisplayName("should not find under the wildcard two exercises that change a verb, «They cooked lunch for each other.» and «They prepared lunch for each other.»")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R002")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldNotFindUnderTheWildcardTwoExercisesThatChangeAVerbTheyCookedLunchForEachOtherAndTheyPreparedLunchForEachOther(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -67,6 +74,7 @@ public class DefaultNearDuplicateRulesTest {
     @DisplayName("should give as word similarity 1 minus the words to change, add or remove over the longer length, 0.67 for «Have you ever been to Rome?» and «Have you ever visited Rome?»")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R008")
+    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldGiveAsWordSimilarity1MinusTheWordsToChangeAddOrRemoveOverTheLongerLength067ForHaveYouEverBeenToRomeAndHaveYouEverVisitedRome(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

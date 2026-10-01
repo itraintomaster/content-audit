@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultBlindSampleCommandTest {
     @DisplayName("should print with sample show only what can be seen while the sample is open")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R002")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldPrintWithSampleShowOnlyWhatCanBeSeenWhileTheSampleIsOpen() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -22,6 +24,7 @@ public class DefaultBlindSampleCommandTest {
     @DisplayName("should accept only the four answers and refuse any other with a non-zero exit")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R003")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldAcceptOnlyTheFourAnswersAndRefuseAnyOtherWithANonzeroExit() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

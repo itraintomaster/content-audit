@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditinfrastructure;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class FileSystemBaselineStoreTest {
     @DisplayName("should keep the baseline in its own file, .content-audit/baseline.json, so changing the active pair or saving a new analysis does not move it")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldKeepTheBaselineInItsOwnFileContentauditbaselinejsonSoChangingTheActivePairOrSavingANewAnalysisDoesNotMoveIt(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class FileSystemBaselineStoreTest {
     @DisplayName("should read back the fixed baseline with its analysis id and the time it was fixed")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldReadBackTheFixedBaselineWithItsAnalysisIdAndTheTimeItWasFixed() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

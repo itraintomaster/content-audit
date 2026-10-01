@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FTareaJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador pide el plan de un anális... → El plan recorre los hallazgos que cue... → El plan tiene una tarea con la identi... [Ninguna tarea marca lo mismo en ese ejercicio y su analizador tiene tipo de tarea] → Las tareas de vocabulario son las mis... → El operador pide las tareas de un tem... → success")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void path1_ningunaTareaMarcaLoMismoEnEseEjercicioYSuAnalizadorTieneTipoDeTarea_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -29,6 +31,7 @@ public class FTareaJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador pide el plan de un anális... → El plan recorre los hallazgos que cue... → El plan declara el hallazgo cubierto ... [Una tarea que ya existe marca la misma palabra en el mismo ejercicio] → Las tareas de vocabulario son las mis... → El operador pide las tareas de un tem... → success")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void path2_unaTareaQueYaExisteMarcaLaMismaPalabraEnElMismoEjercicio_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -37,6 +40,7 @@ public class FTareaJ001JourneyTest {
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador pide el plan de un anális... → El plan recorre los hallazgos que cue... → El plan declara el analizador, cuánto... [El analizador todavía no tiene tipo de tarea] → Las tareas de vocabulario son las mis... → El operador pide las tareas de un tem... → success")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TAREA sin implementar")
     public void path3_elAnalizadorTodavaNoTieneTipoDeTarea_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

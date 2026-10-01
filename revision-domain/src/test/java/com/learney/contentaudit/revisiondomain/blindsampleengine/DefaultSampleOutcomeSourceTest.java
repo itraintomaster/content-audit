@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.blindsampleengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultSampleOutcomeSourceTest {
     @DisplayName("should give the verdict of a batch the outcome of its closed sample by the scope id, with its counts and whether it meets its goal")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldGiveTheVerdictOfABatchTheOutcomeOfItsClosedSampleByTheScopeIdWithItsCountsAndWhetherItMeetsItsGoal(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultSampleOutcomeSourceTest {
     @DisplayName("should give an open sample as not closed and a batch without a sample as no outcome")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R004")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldGiveAnOpenSampleAsNotClosedAndABatchWithoutASampleAsNoOutcome() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

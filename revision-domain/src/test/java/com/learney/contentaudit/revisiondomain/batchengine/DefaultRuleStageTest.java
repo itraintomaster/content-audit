@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultRuleStageTest {
     @DisplayName("should apply the rule fixes before any panel opens and without querying any model, as «(love)» for the hint of «I ___ a lot of vegetables.»")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldApplyTheRuleFixesBeforeAnyPanelOpensAndWithoutQueryingAnyModelAsLoveForTheHintOfIALotOfVegetables(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultRuleStageTest {
     @DisplayName("should join in one change per analyzer and exercise every finding its rule fixes, and keep it as a pending change of the batch marked with its rule")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldJoinInOneChangePerAnalyzerAndExerciseEveryFindingItsRuleFixesAndKeepItAsAPendingChangeOfTheBatchMarkedWithItsRule(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultRuleStageTest {
     @DisplayName("should pass every rule change through the change gate, and send to the panel of its topic, without applying it, the tasks of a change that does not pass")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldPassEveryRuleChangeThroughTheChangeGateAndSendToThePanelOfItsTopicWithoutApplyingItTheTasksOfAChangeThatDoesNotPass(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultRuleStageTest {
     @DisplayName("should send to the panel, declared, the findings a rule fix declines")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldSendToThePanelDeclaredTheFindingsARuleFixDeclines() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -49,6 +54,7 @@ public class DefaultRuleStageTest {
     @DisplayName("should keep as a change of the batch, marked with its rule, a rule fix that only asks to rerecord, passing it through the change gate with its request and listing it to rerecord")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R004")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldKeepAsAChangeOfTheBatchMarkedWithItsRuleARuleFixThatOnlyAsksToRerecordPassingItThroughTheChangeGateWithItsRequestAndListingItToRerecord(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -20,6 +21,7 @@ public class FBandejaJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: José pide la bandeja de la tanda abie... → José responde la muestra ciega par po... → La bandeja muestra ahora los desempat... → José mira la muestra de cada regla → José publica con un solo OK; lo no de... [Las muestras de regla quedan aprobadas y la compuerta pasa con las decisiones incorporadas] → success")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void path1_lasMuestrasDeReglaQuedanAprobadasYLaCompuertaPasaConLasDecisionesIncorporadas_success(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -29,6 +31,7 @@ public class FBandejaJ001JourneyTest {
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: José pide la bandeja de la tanda abie... → José responde la muestra ciega par po... → La bandeja muestra ahora los desempat... → José mira la muestra de cada regla → La tanda saca esos cambios, se recalc... [José saca una regla entera de la tanda] → José publica con un solo OK; lo no de... → success")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void path2_josSacaUnaReglaEnteraDeLaTanda_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

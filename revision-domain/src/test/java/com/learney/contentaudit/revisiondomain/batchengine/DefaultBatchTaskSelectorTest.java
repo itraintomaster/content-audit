@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultBatchTaskSelectorTest {
     @DisplayName("should take into the A1 batch every error task of A1 resolved by rule or by the panel, as the three tasks of «I ___ a lot of vegetables.», and no task of another level")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldTakeIntoTheA1BatchEveryErrorTaskOfA1ResolvedByRuleOrByThePanelAsTheThreeTasksOfIALotOfVegetablesAndNoTaskOfAnotherLevel(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultBatchTaskSelectorTest {
     @DisplayName("should take the LEMMA_ABSENCE task that covers the off-level-words finding of reside in «We reside ___ London with our granddad.» and leave out every other vocabulary task, the 3,051 SENTENCE_LENGTH tasks among them")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldTakeTheLEMMAABSENCETaskThatCoversTheOfflevelwordsFindingOfResideInWeResideLondonWithOurGranddadAndLeaveOutEveryOtherVocabularyTaskThe3051SENTENCELENGTHTasksAmongThem(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultBatchTaskSelectorTest {
     @DisplayName("should carry into the batch José's order to pass «Contracciones» of A1 to multiple choice")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldCarryIntoTheBatchJossOrderToPassContraccionesOfA1ToMultipleChoice() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -40,6 +44,7 @@ public class DefaultBatchTaskSelectorTest {
     @DisplayName("should declare per analyzer how many exercises of A1 went unevaluated when the batch opens")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R001")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDeclarePerAnalyzerHowManyExercisesOfA1WentUnevaluatedWhenTheBatchOpens() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -48,6 +53,7 @@ public class DefaultBatchTaskSelectorTest {
     @DisplayName("should leave out of the batch, and declare, a task that has a pending proposal made outside the batch")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R002")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldLeaveOutOfTheBatchAndDeclareATaskThatHasAPendingProposalMadeOutsideTheBatch(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -57,6 +63,7 @@ public class DefaultBatchTaskSelectorTest {
     @DisplayName("should take neither by rule nor to the panel the data-coherence task about the audio of «I learned ___ me / myself to drive a car.» while its rerecording with «I learned myself to drive a car.» is pending, and declare it pending with its key and text")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R012")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldTakeNeitherByRuleNorToThePanelTheDatacoherenceTaskAboutTheAudioOfILearnedMeMyselfToDriveACarWhileItsRerecordingWithILearnedMyselfToDriveACarIsPendingAndDeclareItPendingWithItsKeyAndText(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -66,6 +73,7 @@ public class DefaultBatchTaskSelectorTest {
     @DisplayName("should declare nothing pending for a published rerecording whose audio data-coherence no longer marks, because the registry already has it with that text")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R012")
+    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldDeclareNothingPendingForAPublishedRerecordingWhoseAudioDatacoherenceNoLongerMarksBecauseTheRegistryAlreadyHasItWithThatText(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");

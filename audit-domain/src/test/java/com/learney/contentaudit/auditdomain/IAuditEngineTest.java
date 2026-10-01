@@ -1697,6 +1697,7 @@ public class IAuditEngineTest {
     @DisplayName("should give the base of 29/9 on its second run in the same process 73.92% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 8.00 of recurrence, as a new invocation, and not 72.90")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldGiveTheBaseOf299OnItsSecondRunInTheSameProcess7392InTheCourse965494167945And6351InTheLevels5793OfCOCAInB1And800OfRecurrenceAsANewInvocationAndNot7290() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1705,6 +1706,7 @@ public class IAuditEngineTest {
     @DisplayName("should give a run the numbers of a new invocation whatever courses ran before it, so a word only the earlier course used is absent for lemma-absence and lemma-count")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldGiveARunTheNumbersOfANewInvocationWhateverCoursesRanBeforeItSoAWordOnlyTheEarlierCourseUsedIsAbsentForLemmaabsenceAndLemmacount() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
@@ -1713,6 +1715,7 @@ public class IAuditEngineTest {
     @DisplayName("should leave the first report untouched by a second run in the same process, its 55 topics keeping their COCA diagnosis, A1 · Present Simple with 2,366 tokens in four bands")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R002")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldLeaveTheFirstReportUntouchedByASecondRunInTheSameProcessIts55TopicsKeepingTheirCOCADiagnosisA1PresentSimpleWith2366TokensInFourBands() {
         throw new UnsupportedOperationException("Not implemented yet");
     }

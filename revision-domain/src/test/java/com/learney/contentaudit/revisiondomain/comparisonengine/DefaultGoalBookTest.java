@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.comparisonengine;
 
 import javax.annotation.processing.Generated;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ public class DefaultGoalBookTest {
     @DisplayName("should give every analyzer of the catalog that the declaration does not name the floor of its family, marked as family default, so an analyzer as hint-coherence is covered without touching the declaration")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldGiveEveryAnalyzerOfTheCatalogThatTheDeclarationDoesNotNameTheFloorOfItsFamilyMarkedAsFamilyDefaultSoAnAnalyzerAsHintcoherenceIsCoveredWithoutTouchingTheDeclaration(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -23,6 +25,7 @@ public class DefaultGoalBookTest {
     @DisplayName("should use the floors José accepted on 30/9 when the declaration lacks a family: errors 0 against the batch start in every node and vocabulary 0.5 points against the baseline in levels and course")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldUseTheFloorsJosAcceptedOn309WhenTheDeclarationLacksAFamilyErrors0AgainstTheBatchStartInEveryNodeAndVocabulary05PointsAgainstTheBaselineInLevelsAndCourse(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -32,6 +35,7 @@ public class DefaultGoalBookTest {
     @DisplayName("should carry the goal of the blind sample of the declaration, 100 pairs with at least 90 better or equal and at most 1 worse, counted")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R005")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldCarryTheGoalOfTheBlindSampleOfTheDeclaration100PairsWithAtLeast90BetterOrEqualAndAtMost1WorseCounted(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -41,6 +45,7 @@ public class DefaultGoalBookTest {
     @DisplayName("should seal the effective goals whole, with their fingerprint, their values and the time they were sealed")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldSealTheEffectiveGoalsWholeWithTheirFingerprintTheirValuesAndTheTimeTheyWereSealed(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
@@ -50,6 +55,7 @@ public class DefaultGoalBookTest {
     @DisplayName("should give the same fingerprint to the same effective goals and another one when a value changes")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R006")
+    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldGiveTheSameFingerprintToTheSameEffectiveGoalsAndAnotherOneWhenAValueChanges(
             ) {
         throw new UnsupportedOperationException("Not implemented yet");
