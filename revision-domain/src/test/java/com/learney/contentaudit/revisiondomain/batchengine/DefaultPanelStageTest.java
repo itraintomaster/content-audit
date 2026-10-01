@@ -1,7 +1,49 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.cloze;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.text;
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.withParts;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.FormKind;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
+import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLights;
+import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLightsQuery;
+import com.learney.contentaudit.revisiondomain.RevisionVerdict;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchSettings;
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchStore;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
+import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
+import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelRunSettings;
+import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
+import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,48 +57,316 @@ public class DefaultPanelStageTest {
     @DisplayName("should open, after the rules, a panel for each topic of the level with panel tasks, with 4 topics and 4 queries at once unless others were asked")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldOpenAfterTheRulesAPanelForEachTopicOfTheLevelWithPanelTasksWith4TopicsAnd4QueriesAtOnceUnlessOthersWereAsked(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: after the rules -- the hint of the vegetables already resolved by its rule --, one panel per topic of A1 with
+        // tasks for the panel: the two of the vegetables, the mini theory of «Contraste inicial», reside, and the task of
+        // «___ a child? (He)» that its rule declined. With 4 topics and 4 queries at once, or with what José asked.
+        Stage stage = new Stage();
+        CorrectionBatch batch = stage.batch();
+        batch.setSettings(new BatchSettings(4, 4, 3));
+
+        stage.run(batch, new Turns(100));
+
+        assertEquals(List.of(MesaFixture.AFIRMATIVAS, MesaFixture.CONTRASTE, TandaFixture.RESIDE_TOPIC, TandaFixture.CHILD_TOPIC),
+                stage.panels.works.stream().map(w -> w.getKnowledge().getId()).toList(), "one panel per topic, in order");
+        assertEquals(List.of("t-respuesta", "t-traduccion"), taskIds(stage.panels.works.get(0)),
+                "the hint resolved by its rule does not go to the panel");
+        assertEquals(List.of("t-nino"), taskIds(stage.panels.works.get(3)), "the task its rule declined does");
+        PanelRunSettings settings = stage.panels.settings.get(0);
+        assertEquals(4, settings.getTopicsAtOnce());
+        assertEquals(4, settings.getQueriesAtOnce());
+        assertEquals(3, settings.getMaxAttempts());
+
+        Stage asked = new Stage();
+        CorrectionBatch other = asked.batch();
+        other.setSettings(new BatchSettings(2, 1, 3));
+        asked.run(other, new Turns(100));
+        assertEquals(2, asked.panels.settings.get(0).getTopicsAtOnce(), "what José asked");
+        assertEquals(1, asked.panels.settings.get(0).getQueriesAtOnce());
     }
 
     @Test
     @DisplayName("should end each panel task of the batch with exactly one outcome, resolved, no longer holds, no winner, tie or not attempted")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldEndEachPanelTaskOfTheBatchWithExactlyOneOutcomeResolvedNoLongerHoldsNoWinnerTieOrNotAttempted(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: «Afirmativas regulares» accepts a candidate that solves another answer but not the translation; «Contraste
+        // inicial» ties; reside no longer holds; the allowance runs out before «___ a child? (He)». Each task, one outcome.
+        Stage stage = new Stage();
+        CorrectionBatch batch = stage.batch();
+        QuizTemplateEntity vegetables = TandaFixture.exercise(stage.course, MesaFixture.VEGETABLES);
+        PanelCandidate rewrite = new PanelCandidate(PanelCandidateKind.ENGLISH_CHANGE, withParts(vegetables, text("I"),
+                cloze("love"), text("vegetables.")), null, null, "sin «a lot of»");
+        stage.panels.decide = work -> switch (work.getKnowledge().getId()) {
+            case MesaFixture.AFIRMATIVAS -> List.of(TandaFixture.decision(MesaFixture.AFIRMATIVAS, MesaFixture.VEGETABLES,
+                    taskIds(work), PanelOutcomeKind.ACCEPTED, rewrite, List.of("t-respuesta"), 1));
+            case MesaFixture.CONTRASTE -> List.of(TandaFixture.decision(MesaFixture.CONTRASTE, null, taskIds(work),
+                    PanelOutcomeKind.TIE, null, List.of(), 1));
+            case TandaFixture.RESIDE_TOPIC -> List.of(TandaFixture.decision(TandaFixture.RESIDE_TOPIC, TandaFixture.RESIDE,
+                    taskIds(work), PanelOutcomeKind.NO_LONGER_HOLDS, null, List.of(), 0));
+            default -> List.of(TandaFixture.decision(work.getKnowledge().getId(), TandaFixture.CHILD, taskIds(work),
+                    PanelOutcomeKind.NO_WINNER, null, List.of(), 3));
+        };
+
+        batch = stage.run(batch, new Turns(3));
+
+        Map<String, BatchTaskOutcomeKind> expected = new LinkedHashMap<>();
+        expected.put("t-pista", BatchTaskOutcomeKind.RESOLVED_BY_RULE);
+        expected.put("t-respuesta", BatchTaskOutcomeKind.RESOLVED_BY_PANEL);
+        expected.put("t-traduccion", BatchTaskOutcomeKind.NO_WINNER);
+        expected.put("t-teoria", BatchTaskOutcomeKind.TIE);
+        expected.put("t-reside", BatchTaskOutcomeKind.NO_LONGER_HOLDS);
+        expected.put("t-nino", BatchTaskOutcomeKind.NOT_ATTEMPTED);
+        for (Map.Entry<String, BatchTaskOutcomeKind> task : expected.entrySet()) {
+            List<BatchTaskOutcome> outcomes = batch.getOutcomes().stream()
+                    .filter(o -> o.getTaskId().equals(task.getKey())).toList();
+            assertEquals(1, outcomes.size(), "exactly one outcome for " + task.getKey() + ": " + outcomes);
+            assertEquals(task.getValue(), outcomes.get(0).getKind(), task.getKey());
+        }
+        assertEquals("mesa-" + MesaFixture.VEGETABLES, BatchBook.outcome(batch, "t-respuesta").orElseThrow().getChangeId(),
+                "the resolved task names its change");
+        assertEquals("el candidato aceptado del ejercicio no la resolvió",
+                BatchBook.outcome(batch, "t-traduccion").orElseThrow().getDetail());
+        assertEquals(3, batch.getQueriesSpent(), "the queries the allowance gave");
     }
 
     @Test
     @DisplayName("should give each topic its panel tasks with their briefs, its word lights and José's order")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldGiveEachTopicItsPanelTasksWithTheirBriefsItsWordLightsAndJossOrder() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: each topic gets, as the batch leaves it, its tasks with their briefs, the lights of its words and José's
+        // order: «Afirmativas regulares» with the hint the rule already wrote, «Contracciones» with its conversion.
+        Stage stage = new Stage();
+        CorrectionBatch batch = stage.batch("t-pista", "t-respuesta", "t-traduccion");
+        QuizTemplateEntity vegetables = TandaFixture.exercise(stage.course, MesaFixture.VEGETABLES);
+        QuizTemplateEntity hinted = TandaFixture.edited(vegetables,
+                q -> q.getForm().getSentenceParts().get(2).setText("(love) a lot of vegetables."));
+        stage.ledger().record(batch, TandaFixture.change("regla-hint-coherence-" + MesaFixture.VEGETABLES,
+                BatchChangeOrigin.RULE, "hint-coherence", List.of("t-pista"), TandaFixture.step(hinted, ExercisePart.HINT)),
+                stage.course);
+        BatchBook.setOutcome(batch, "t-pista", BatchTaskOutcomeKind.RESOLVED_BY_RULE,
+                "regla-hint-coherence-" + MesaFixture.VEGETABLES, 0, null);
+        ConversionOrder order = new ConversionOrder(MesaFixture.CONTRACCIONES, FormKind.MULTIPLE_CHOICE, 3);
+        batch.setConversionOrders(new ArrayList<>(List.of(order)));
+
+        stage.run(batch, new Turns(100));
+
+        assertEquals(2, stage.panels.works.size());
+        TopicWork afirmativas = stage.panels.works.get(0);
+        assertEquals(MesaFixture.AFIRMATIVAS, afirmativas.getKnowledge().getId());
+        assertEquals(List.of("t-respuesta", "t-traduccion"), taskIds(afirmativas), "its tasks, with their briefs");
+        assertEquals(List.of(MesaFixture.anotherAnswer().getIdentity(), MesaFixture.translationDiffers().getIdentity()),
+                afirmativas.getBriefs().stream().map(b -> b.getFinding().getIdentity()).toList());
+        assertEquals(MesaFixture.AFIRMATIVAS, afirmativas.getWordLights().getKnowledgeId(), "its word lights");
+        assertEquals(TandaFixture.START_AUDIT, afirmativas.getWordLights().getAuditId(), "of the analysis the batch started on");
+        assertNull(afirmativas.getConversion());
+        assertEquals("(love) a lot of vegetables.", afirmativas.getKnowledge().getQuizTemplates().stream()
+                .filter(q -> q.getId().equals(MesaFixture.VEGETABLES)).findFirst().orElseThrow().getForm()
+                .getSentenceParts().get(2).getText(), "the topic as the batch leaves it");
+        TopicWork contracciones = stage.panels.works.get(1);
+        assertEquals(MesaFixture.CONTRACCIONES, contracciones.getKnowledge().getId());
+        assertTrue(contracciones.getBriefs().isEmpty());
+        assertEquals(order, contracciones.getConversion(), "José's order");
+        assertEquals(MesaFixture.CONTRACCIONES, contracciones.getWordLights().getKnowledgeId());
     }
 
     @Test
     @DisplayName("should save each outcome as it arrives from the sink of the panel, so a batch cut after the third topic keeps its decisions")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldSaveEachOutcomeAsItArrivesFromTheSinkOfThePanelSoABatchCutAfterTheThirdTopicKeepsItsDecisions(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and R007: each decision is saved the moment it comes out of the sink. The process dies after the third topic:
+        // what is saved has the three decisions and their outcomes; the fourth topic was never decided.
+        Stage stage = new Stage();
+        CorrectionBatch batch = stage.batch();
+        stage.panels.decide = work -> List.of(TandaFixture.decision(work.getKnowledge().getId(), null, taskIds(work),
+                PanelOutcomeKind.TIE, null, List.of(), 1));
+        stage.panels.cutAfterTopics = 3;
+
+        assertThrows(IllegalStateException.class, () -> stage.run(batch, new Turns(100)));
+
+        assertEquals(3, stage.snapshots.size(), "one save per decision");
+        Snapshot last = stage.snapshots.get(2);
+        assertEquals(3, last.decisions());
+        assertEquals(BatchTaskOutcomeKind.TIE, last.outcomes().get("t-respuesta"));
+        assertEquals(BatchTaskOutcomeKind.TIE, last.outcomes().get("t-teoria"));
+        assertEquals(BatchTaskOutcomeKind.TIE, last.outcomes().get("t-reside"));
+        assertEquals(BatchTaskOutcomeKind.PENDING, last.outcomes().get("t-nino"),
+                "the fourth topic was never decided: its task is as the rules left it");
+        assertEquals(1, stage.snapshots.get(0).decisions(), "saved after the first, before the second");
     }
 
     @Test
     @DisplayName("should save each accepted candidate as the pending proposal of its exercise with its artifact before taking the next topic")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldSaveEachAcceptedCandidateAsThePendingProposalOfItsExerciseWithItsArtifactBeforeTakingTheNextTopic(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the accepted vegetables become the pending proposal of their exercise, with its artifact, and the batch is
+        // saved with it before «Contraste inicial» is taken.
+        Stage stage = new Stage();
+        CorrectionBatch batch = stage.batch("t-respuesta", "t-teoria");
+        QuizTemplateEntity vegetables = TandaFixture.exercise(stage.course, MesaFixture.VEGETABLES);
+        PanelCandidate rewrite = new PanelCandidate(PanelCandidateKind.ENGLISH_CHANGE, withParts(vegetables, text("I"),
+                cloze("love"), text("vegetables.")), null, null, "sin «a lot of»");
+        List<String> seenAtTheNextTopic = new ArrayList<>();
+        stage.panels.decide = work -> {
+            if (work.getKnowledge().getId().equals(MesaFixture.AFIRMATIVAS)) {
+                return List.of(TandaFixture.decision(MesaFixture.AFIRMATIVAS, MesaFixture.VEGETABLES, taskIds(work),
+                        PanelOutcomeKind.ACCEPTED, rewrite, List.of("t-respuesta"), 1));
+            }
+            stage.artifacts.load(TandaFixture.PLAN, "tanda-a1-" + MesaFixture.VEGETABLES).ifPresent(a ->
+                    seenAtTheNextTopic.add("artefacto " + a.getVerdict()));
+            Snapshot saved = stage.snapshots.get(stage.snapshots.size() - 1);
+            seenAtTheNextTopic.add("propuestas " + saved.proposals());
+            return List.of(TandaFixture.decision(work.getKnowledge().getId(), null, taskIds(work), PanelOutcomeKind.TIE, null,
+                    List.of(), 1));
+        };
+
+        stage.run(batch, new Turns(100));
+
+        assertEquals(List.of("artefacto " + RevisionVerdict.PENDING_APPROVAL, "propuestas [" + MesaFixture.VEGETABLES + "]"),
+                seenAtTheNextTopic, "the pending proposal and its artifact, saved before the next topic");
+        QuizTemplateEntity proposed = stage.artifacts.load(TandaFixture.PLAN, "tanda-a1-" + MesaFixture.VEGETABLES)
+                .orElseThrow().getProposal().getElementAfter().getQuiz();
+        assertEquals(List.of("I love vegetables."), proposed.getSentences());
+    }
+
+
+    /** A save of the batch as it was at that moment: its decisions, the outcome of each task and its proposals. */
+    record Snapshot(int decisions, Map<String, BatchTaskOutcomeKind> outcomes, List<String> proposals) {
+    }
+
+    /** The panel stage over the course in memory, with every save kept as it was. */
+    private static final class Stage {
+        final TandaFixture.Panels panels = new TandaFixture.Panels();
+
+        final TandaFixture.Artifacts artifacts = new TandaFixture.Artifacts();
+
+        final List<Snapshot> snapshots = new ArrayList<>();
+
+        final CourseEntity course = TandaFixture.course();
+
+        final AuditReport start;
+
+        final TandaFixture.Plans plans;
+
+        final BatchStore store = new TandaFixture.Batches() {
+            @Override
+            public synchronized void save(CorrectionBatch batch) {
+                super.save(batch);
+                Map<String, BatchTaskOutcomeKind> outcomes = new LinkedHashMap<>();
+                for (BatchTaskOutcome outcome : batch.getOutcomes()) {
+                    outcomes.put(outcome.getTaskId(), outcome.getKind());
+                }
+                snapshots.add(new Snapshot(batch.getPanelDecisions().size(), outcomes, batch.getQuizProposals().stream()
+                        .map(r -> r.getQuizId()).toList()));
+            }
+        };
+
+        Stage() {
+            Finding theory = MesaFixture.topicFinding("mini-theory", "theory-fits", MesaFixture.CONTRASTE,
+                    FindingSeverity.HIGH, null, "la miniteoría no habla del contraste");
+            Finding lemma = MesaFixture.finding("lemma-absence", "misplaced-word", TandaFixture.RESIDE,
+                    FindingSeverity.MEDIUM, FindingResolution.PANEL, "reside", "«reside» no es de A1");
+            Finding offLevel = MesaFixture.finding("off-level-words", "far-above-level", TandaFixture.RESIDE,
+                    FindingSeverity.HIGH, FindingResolution.PANEL, "reside", "«reside» es de C1");
+            Finding capitals = MesaFixture.finding("multiple-choice-validity", "capital-letters", TandaFixture.CHILD,
+                    FindingSeverity.MEDIUM, FindingResolution.RULE, null, "las opciones empiezan en minúscula");
+            List<Finding> findings = List.of(MesaFixture.missingHint(), MesaFixture.anotherAnswer(),
+                    MesaFixture.translationDiffers(), theory, lemma, offLevel, capitals);
+            start = TandaFixture.report(course, findings, Map.of(), MesaFixture.ANALYZERS);
+            plans = new TandaFixture.Plans(TandaFixture.plan(
+                    TandaFixture.task("t-pista", MesaFixture.missingHint(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                    TandaFixture.task("t-respuesta", MesaFixture.anotherAnswer(), MesaFixture.AFIRMATIVAS, CefrLevel.A1),
+                    TandaFixture.task("t-traduccion", MesaFixture.translationDiffers(), MesaFixture.AFIRMATIVAS,
+                            CefrLevel.A1),
+                    TandaFixture.topicTask("t-teoria", theory, MesaFixture.CONTRASTE, MesaFixture.stateVerbExercises()),
+                    TandaFixture.covering("t-reside", lemma, List.of(offLevel), TandaFixture.RESIDE_TOPIC),
+                    TandaFixture.task("t-nino", capitals, TandaFixture.CHILD_TOPIC, CefrLevel.A1)));
+        }
+
+        /** The batch after its rules: the hint resolved by its rule, the capital letters declined. */
+        CorrectionBatch batch() {
+            CorrectionBatch batch = batch("t-pista", "t-respuesta", "t-traduccion", "t-teoria", "t-reside", "t-nino");
+            BatchBook.setOutcome(batch, "t-pista", BatchTaskOutcomeKind.RESOLVED_BY_RULE, null, 0, null);
+            BatchBook.setOutcome(batch, "t-nino", BatchTaskOutcomeKind.PENDING, null, null,
+                    "a la mesa, declinada por la regla: «Is he» no es una oración");
+            return batch;
+        }
+
+        CorrectionBatch batch(String... taskIds) {
+            CorrectionBatch batch = TandaFixture.batch("tanda-a1", taskIds);
+            batch.setStatus(BatchStatus.RUNNING);
+            return batch;
+        }
+
+        DefaultBatchChangeLedger ledger() {
+            return new DefaultBatchChangeLedger(artifacts, TandaFixture.locator());
+        }
+
+        CorrectionBatch run(CorrectionBatch batch, QueryAllowance allowance) {
+            TopicWordLightsQuery lights = (report, auditId, knowledgeId, criteria) -> {
+                TopicWordLights topicLights = new TopicWordLights();
+                topicLights.setAuditId(auditId);
+                topicLights.setKnowledgeId(knowledgeId);
+                return topicLights;
+            };
+            return new DefaultPanelStage(panels, TandaFixture.briefer(), MesaFixture.corrections(), lights, ledger(), store)
+                    .withPlans(plans).run(batch, start, course, allowance);
+        }
+    }
+
+    /** An allowance of so many queries, one at a time. */
+    private static final class Turns implements QueryAllowance {
+        private int left;
+
+        private int spent;
+
+        Turns(int queries) {
+            this.left = queries;
+        }
+
+        @Override
+        public boolean tryReserve(int queries) {
+            if (left < queries) {
+                return false;
+            }
+            left -= queries;
+            return true;
+        }
+
+        @Override
+        public void settle(int reserved, int spent) {
+            this.spent += spent;
+            left += reserved - spent;
+        }
+
+        @Override
+        public void trip(String cause) {
+            left = 0;
+        }
+
+        @Override
+        public Optional<String> tripped() {
+            return Optional.empty();
+        }
+
+        @Override
+        public int spent() {
+            return spent;
+        }
+    }
+
+    private static List<String> taskIds(TopicWork work) {
+        List<String> ids = new ArrayList<>();
+        for (ErrorTaskBrief brief : work.getBriefs()) {
+            ids.add(brief.getTask().getId());
+        }
+        return ids;
     }
 }

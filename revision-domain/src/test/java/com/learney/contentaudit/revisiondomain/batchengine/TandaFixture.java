@@ -86,6 +86,10 @@ import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
 import com.learney.contentaudit.revisiondomain.panel.TopicWork;
 import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
 import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
+import com.learney.contentaudit.auditdomain.datacoherence.DefaultSpokenTextBuilder;
+import com.learney.contentaudit.revisiondomain.nonregression.SpokenText;
+import com.learney.contentaudit.revisiondomain.nonregression.UnitMeasurement;
+import com.learney.contentaudit.revisiondomain.panel.TopicMeter;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -283,7 +287,7 @@ public final class TandaFixture {
     // Stores in memory
     // -------------------------------------------------------------------------
 
-    public static final class Batches implements BatchStore {
+    public static class Batches implements BatchStore {
         public final Map<String, CorrectionBatch> saved = new LinkedHashMap<>();
 
         public int saves;
@@ -669,12 +673,18 @@ public final class TandaFixture {
         /** Each decision of a topic costs one query of the allowance; without a turn it ends not attempted. */
         public boolean spendOnePerDecision = true;
 
+        /** The run is cut -- the process dies -- after this many topics; never when negative. */
+        public int cutAfterTopics = -1;
+
         @Override
         public List<PanelTopicResult> runTopics(List<TopicWork> topics, PanelRunSettings settings, QueryAllowance allowance,
                 PanelDecisionSink sink) {
             this.settings.add(settings);
             List<PanelTopicResult> results = new ArrayList<>();
             for (TopicWork work : topics) {
+                if (cutAfterTopics >= 0 && works.size() >= cutAfterTopics) {
+                    throw new IllegalStateException("se cortó la tanda después de " + cutAfterTopics + " temas");
+                }
                 works.add(work);
                 List<PanelDecision> decided = new ArrayList<>();
                 for (PanelDecision decision : decide.apply(work)) {
@@ -757,5 +767,68 @@ public final class TandaFixture {
         QuizTemplateEntity copy = BatchBook.copy(quiz);
         edit.accept(copy);
         return copy;
+    }
+
+    // -------------------------------------------------------------------------
+    // The meter of the panel, by hand
+    // -------------------------------------------------------------------------
+
+    /**
+     * The meter of the panel without an engine: what each exercise says aloud, as the real builder says it, and the
+     * findings a test gives for the topic as it is measured; every call is kept with the allowance it got.
+     */
+    public static final class Meter implements TopicMeter {
+        public final List<KnowledgeEntity> measured = new ArrayList<>();
+
+        public final List<QueryAllowance> allowances = new ArrayList<>();
+
+        public Function<KnowledgeEntity, List<Finding>> findings = topic -> new ArrayList<>();
+
+        @Override
+        public UnitMeasurement measure(TopicWork work, KnowledgeEntity knowledgeState, List<String> analyzers,
+                QueryAllowance allowance) {
+            measured.add(knowledgeState);
+            allowances.add(allowance);
+            List<SpokenText> spoken = new ArrayList<>();
+            for (QuizTemplateEntity quiz : knowledgeState.getQuizTemplates()) {
+                spoken.add(new SpokenText(quiz.getId(), quiz.getAnswerAudioUrl(), new ArrayList<>(
+                        new DefaultSpokenTextBuilder().spokenTexts(auditable(quiz), knowledgeState.getSentenceMode()))));
+            }
+            return new UnitMeasurement(work.getLevel(), new ArrayList<>(findings.apply(knowledgeState)), new ArrayList<>(),
+                    new ArrayList<>(), spoken, new ArrayList<>());
+        }
+    }
+
+    /** The exercise as the analysis reads it. */
+    public static AuditableQuiz auditable(QuizTemplateEntity quiz) {
+        return new AuditableQuiz(tokens(quiz), quiz.getId(), quiz.getTitle(), quiz.getCode(), quiz.getTranslation(),
+                quiz.getSentences(), null, quiz.getInstructions(), quiz.getForm().getSentenceParts(),
+                quiz.getForm().getMultipleChoice(), quiz.getMiniTheory(), quiz.getAnswerAudioUrl());
+    }
+
+    // -------------------------------------------------------------------------
+    // «I learned ___ (me / myself) to drive a car.»
+    // -------------------------------------------------------------------------
+
+    public static final String LEARNED = "67fab6d5993010229534399b";
+
+    public static final String REFLEXIVE = "6814dafa7d73e7209a13d3e0";
+
+    /** The course with «I learned ___ (me / myself) to drive a car.» in a topic of A1. */
+    public static CourseEntity withLearned(CourseEntity course) {
+        QuizTemplateEntity learned = quiz(LEARNED, "Aprendí a manejar solo.", text("I learned"), cloze("myself"),
+                text("(me / myself) to drive a car."));
+        learned.setKnowledgeId(REFLEXIVE);
+        course.getRoot().getMilestones().get(0).getTopics().get(0).getKnowledges()
+                .add(topic(REFLEXIVE, "Pronombres reflexivos", new ArrayList<>(List.of(learned))));
+        return course;
+    }
+
+    /** data-coherence on its audio, which reads the «/» (SLASH_IN_AUDIO): it is recorded again, by rule. */
+    public static Finding audioOfLearned() {
+        return MesaFixture.finding("data-coherence", "no-slash", LEARNED, com.learney.contentaudit.auditdomain.finding
+                        .FindingSeverity.MEDIUM, com.learney.contentaudit.auditdomain.finding.FindingResolution.RULE,
+                "audio", "audio: «I learned me / myself to drive a car.»; hoy: «I learned myself to drive a car.». El"
+                        + " audio lee la barra: se regraba con el texto de hoy.");
     }
 }
