@@ -66,17 +66,18 @@ class DefaultCandidateScreen implements CandidateScreen {
             return violations;
         }
         QuizTemplateEntity original = found.get();
-        QuizTemplateEntity proposed = candidate.getQuiz();
-        if (proposed == null) {
+        if (candidate.getQuiz() == null) {
             violations.add("el candidato no trae el ejercicio");
             return violations;
         }
-        if (proposed.getId() != null && !proposed.getId().equals(quizId)) {
-            violations.add("el candidato es del ejercicio " + proposed.getId() + ", no de " + quizId);
+        if (candidate.getQuiz().getId() != null && !candidate.getQuiz().getId().equals(quizId)) {
+            violations.add("el candidato es del ejercicio " + candidate.getQuiz().getId() + ", no de " + quizId);
             return violations;
         }
+        // What the candidate says over the exercise as it was: the rest of the exercise is kept.
+        QuizTemplateEntity proposed = TopicState.merged(original, candidate.getQuiz());
         if (isConversion(work, original, candidate)) {
-            return conversion(work, original, candidate);
+            return conversion(work, original, candidate, proposed);
         }
         Set<ExercisePart> changed = TopicState.changedParts(original, proposed);
         if (changed.isEmpty() && candidate.getTopicInstructions() == null) {
@@ -175,9 +176,9 @@ class DefaultCandidateScreen implements CandidateScreen {
                 && !TopicState.isMultipleChoice(original) && TopicState.isMultipleChoice(candidate.getQuiz());
     }
 
-    private static List<String> conversion(TopicWork work, QuizTemplateEntity original, PanelCandidate candidate) {
+    private static List<String> conversion(TopicWork work, QuizTemplateEntity original, PanelCandidate candidate,
+            QuizTemplateEntity proposed) {
         List<String> violations = new ArrayList<>();
-        QuizTemplateEntity proposed = candidate.getQuiz();
         ConversionOrder order = work.getConversion();
         int optionCount = order != null && order.getOptionCount() > 0 ? order.getOptionCount() : DEFAULT_OPTION_COUNT;
         if (!TopicState.isMultipleChoice(proposed)) {

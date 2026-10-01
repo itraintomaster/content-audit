@@ -1,7 +1,23 @@
 package com.learney.contentaudit.revisioninfrastructure.panelagent;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelProposal;
+import com.learney.contentaudit.revisiondomain.panel.PanelRequest;
+import com.sentinel.agents.framework.state.ArtifactPointer;
+import com.sentinel.agents.framework.state.RunState;
+import com.sentinel.agents.framework.state.RunStatus;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +31,48 @@ public class DefaultPanelAgentProposalParserTest {
     @DisplayName("should read from the output of the agent the two candidates for «I ___ a lot of vegetables.», the one that changes only the translation and the one that changes the English")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldReadFromTheOutputOfTheAgentTheTwoCandidatesForIALotOfVegetablesTheOneThatChangesOnlyTheTranslationAndTheOneThatChangesTheEnglish(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R003: the agent answers the two fixes of the vegetables; the parser reads the one that changes only the
+        // translation and the one that changes the English, each as the exercise would stay.
+        String output = """
+                {"candidates": [
+                  {"kind": "TRANSLATION_ONLY", "translation": "Me encantan las verduras.",
+                   "rationale": "«love» es encantar"},
+                  {"kind": "ENGLISH_CHANGE",
+                   "sentenceParts": [{"kind": "TEXT", "text": "I"}, {"kind": "CLOZE", "options": ["like"]},
+                                     {"kind": "TEXT", "text": "(like) vegetables a lot."}],
+                   "translation": "Me gustan mucho las verduras.", "rationale": "el inglés dice lo de la traducción"}]}
+                """;
+        PanelRequest request = new PanelRequest("tanda-A1", CefrLevel.A1, "6814dafa7d73e7209a13d389", "67fab6d59930102295341ecd",
+                List.of(), List.of(), null, null, 1, List.of(), true);
+
+        PanelProposal proposal = new DefaultPanelAgentProposalParser().parse(withArtifact(output), request);
+
+        assertTrue(proposal.isAvailable());
+        assertEquals(List.of(PanelCandidateKind.TRANSLATION_ONLY, PanelCandidateKind.ENGLISH_CHANGE),
+                proposal.getCandidates().stream().map(PanelCandidate::getKind).toList());
+        PanelCandidate translation = proposal.getCandidates().get(0);
+        assertEquals("Me encantan las verduras.", translation.getQuiz().getTranslation());
+        assertNull(translation.getQuiz().getForm(), "it says nothing of the English");
+        assertEquals("67fab6d59930102295341ecd", translation.getQuiz().getId());
+        PanelCandidate english = proposal.getCandidates().get(1);
+        assertEquals(List.of(SentencePartKind.TEXT, SentencePartKind.CLOZE, SentencePartKind.TEXT),
+                english.getQuiz().getForm().getSentenceParts().stream().map(p -> p.getKind()).toList());
+        assertEquals(List.of("like"), english.getQuiz().getForm().getSentenceParts().get(1).getOptions());
+        assertEquals("el inglés dice lo de la traducción", english.getRationale());
+    }
+
+
+    private static RunState withArtifact(String json) {
+        try {
+            Path file = Files.createTempFile("panel-proposal", ".json");
+            file.toFile().deleteOnExit();
+            Files.writeString(file, json);
+            return RunState.empty().withRunStatus(RunStatus.COMPLETED).putArtifact("panelProposal",
+                    new ArtifactPointer("panelProposal", "panelProposal", file, Instant.now(), "emit", "hash"));
+        } catch (java.io.IOException e) {
+            throw new java.io.UncheckedIOException(e);
+        }
     }
 }

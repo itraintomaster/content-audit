@@ -1,0 +1,49 @@
+name: panel-proposer
+description: |
+  Quien propone en la mesa por tema (FEAT-MESA). Recibe lo que recibe quien
+  propone (F-MESA-R003) —el tema como lo ve el alumno, los hallazgos del
+  ejercicio con su evidencia, el nivel, lo que cada tarea permite tocar, el
+  semáforo de palabras del tema, el encargo de José y, desde el segundo
+  intento, los motivos del rechazo anterior— y emite candidatos del ejercicio
+  entero como artifact `panelProposal`.
+
+  Es el backend declarativo del puerto PanelProposer: el adaptador Java
+  (revision-infrastructure.panelagent) lanza este grafo, le inyecta el
+  ChatModel y lee el artifact.
+
+  Flujo:
+
+      generate (llm_call: arma la propuesta)
+        ──▶ gate (forma de proposal.json; failed reintenta)
+        ──▶ emit (entrega la propuesta validada)
+      generate --exhausted--▶ emit  (entrega una propuesta sin candidatos)
+
+  **Este grafo no mide ni decide.** Mide content-audit con los analizadores
+  del catálogo, juzgan los jueces y decide un script (F-MESA-R004 a R006).
+  Quien propone nunca juzga lo que propone ni ve veredictos de otro.
+kind: agent
+strategy: graph
+initial_node: generate
+budgets:
+  max_iterations: 12
+nodes:
+  - ./nodes/generate.md
+  - ./nodes/gate.md
+  - ./nodes/emit.md
+goal:
+  required_artifacts:
+    - panelProposal
+  required_nodes_done:
+    - emit
+dependencies:
+  - batchId
+  - level               # nivel CEFR del tema
+  - knowledgeId
+  - quizId              # vacío para una tarea del tema entero (la miniteoría)
+  - attempt
+  - twoFixes            # "true": entregar uno que cambia sólo la traducción y otro que cambia el inglés
+  - topicView           # JSON: el tema como lo ve el alumno, con lo ya aceptado en la tanda
+  - tasks               # JSON: las tareas del ejercicio, su hallazgo, evidencia y lo que pueden tocar
+  - wordLights          # JSON: el semáforo de palabras del tema
+  - conversion          # JSON: el encargo de José (pasar a opción múltiple), o vacío
+  - previousRejections  # JSON: los motivos de los rechazos anteriores de sus propios candidatos

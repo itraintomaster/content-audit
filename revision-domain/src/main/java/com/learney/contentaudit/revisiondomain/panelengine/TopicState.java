@@ -123,12 +123,7 @@ final class TopicState {
             for (int i = 0; i < quizzes.size(); i++) {
                 QuizTemplateEntity old = quizzes.get(i);
                 if (old != null && Objects.equals(old.getId(), target)) {
-                    QuizTemplateEntity rewritten = copy(candidate.getQuiz());
-                    if (!Objects.equals(partsOf(old), partsOf(rewritten))
-                            && Objects.equals(old.getSentences(), rewritten.getSentences())) {
-                        rewritten.setSentences(null);
-                    }
-                    quizzes.set(i, rewritten);
+                    quizzes.set(i, merged(old, candidate.getQuiz()));
                 }
             }
         }
@@ -136,6 +131,43 @@ final class TopicState {
             applied.setInstructions(candidate.getTopicInstructions());
         }
         return applied;
+    }
+
+    /**
+     * The exercise as a candidate leaves it: what the candidate says of its content -- the form, the kind, the
+     * translation, the instructions, the mini theory, the stored sentence -- over the exercise as it was, which keeps
+     * everything else (its ids, its audio key, what the system does not model). A candidate whose parts moved and whose
+     * stored sentence did not loses it, so the measurement builds it again from the parts.
+     */
+    static QuizTemplateEntity merged(QuizTemplateEntity old, QuizTemplateEntity candidate) {
+        QuizTemplateEntity rewritten = copy(old);
+        if (candidate == null) {
+            return rewritten;
+        }
+        QuizTemplateEntity proposed = copy(candidate);
+        if (proposed.getForm() != null) {
+            rewritten.setForm(proposed.getForm());
+        }
+        if (proposed.getKind() != null) {
+            rewritten.setKind(proposed.getKind());
+        }
+        if (proposed.getTranslation() != null) {
+            rewritten.setTranslation(proposed.getTranslation());
+        }
+        if (proposed.getInstructions() != null) {
+            rewritten.setInstructions(proposed.getInstructions());
+        }
+        if (proposed.getMiniTheory() != null) {
+            rewritten.setMiniTheory(proposed.getMiniTheory());
+        }
+        rewritten.setSentences(proposed.getSentences());
+        if (!Objects.equals(partsOf(old), partsOf(rewritten))
+                && (rewritten.getSentences() == null || Objects.equals(old.getSentences(), rewritten.getSentences()))) {
+            rewritten.setSentences(null);
+        } else if (rewritten.getSentences() == null) {
+            rewritten.setSentences(old.getSentences() != null ? new ArrayList<>(old.getSentences()) : null);
+        }
+        return rewritten;
     }
 
     /**

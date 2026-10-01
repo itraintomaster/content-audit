@@ -4,6 +4,12 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — El agente que propone (revision-infrastructure/panelagent: lanzador, lector, fábrica) y su grafo
+  `.sentinel/agents/panel-proposer/` (gancho E-15: generate → gate → emit, artifact `panelProposal`), con sus 3 pruebas;
+  las tres de R014 (revise, revise-instructions y assess-candidate siguen como hoy fuera de una tanda). FEAT-MESA sin
+  pruebas apagadas. El candidato trae sólo lo que dice (partes, opciones, traducción…) y la mesa lo apoya sobre el
+  ejercicio como estaba (`TopicState.merged`).
+
 2026-10-01 — developer — El motor de la mesa implementado (`DefaultTopicPanel`, `DefaultPanelRunner`, `CatalogTopicMeter`,
   `DefaultCandidateScreen`, `DefaultPanelDecisionScript`, `CappedQueryAllowance`, `ScriptedPanelProposer`, la fábrica) con
   54 pruebas en verde (20 + 4 + 10 + 6 + 8 + 2 y F-MESA-J001 con sus 4 caminos), sin ninguna consulta a un modelo: proponen
