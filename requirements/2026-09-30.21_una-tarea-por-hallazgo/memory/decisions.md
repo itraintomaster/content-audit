@@ -5,6 +5,14 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — F-TAREA-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands` (3 caminos).
+  why: sus pasos son plan, get tasks y get task; PlanCmd y GetCmd son package-private ahí, como F-HALL-J001 y F-JEXAM-J001.
+2026-10-01 — qa-tester — Pruebas sólo sobre lo que existe al aplicar este parche. Se prueban en su feature, con su regla:
+  lo cubierto resuelto cuando los dos dejan de marcar (F-TANDA-R006), el desempate en la bandeja (F-BANDEJA-R002) y el mismo
+  detalle para la mesa (F-MESA-R003). Espera al apply: «un tipo sin declaración nunca se intenta» (R006), que cumple
+  DefaultTopicPanel de FEAT-MESA; y las declaraciones de grammar y near-duplicates, que son de F-RONDA2-R009.
+  why: P8 de patch propose rechaza trazar a otra feature, y sobre algo que no existe el apply crearía una implementación vacía.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): suma las once AnalyzerCorrection en los paquetes de cada analizador (E-03 a A, E-04 a C, E-05 a D, y grammar y near-duplicates por F-RONDA2-R009) y GetCmd + errorTaskBriefer (E-07). Las constantes de DiagnosisKind (E-01, más GRAMMAR y NEAR_DUPLICATES) van en FEAT-RONDA2.
 
 2026-09-30 — architect — Declaración de corrección por analizador (`AnalyzerCorrection`, raíz de audit-domain): alcance por
