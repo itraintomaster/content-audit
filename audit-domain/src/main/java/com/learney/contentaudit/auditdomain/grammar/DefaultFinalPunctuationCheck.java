@@ -32,6 +32,9 @@ class DefaultFinalPunctuationCheck implements FinalPunctuationCheck {
 
     private static final Pattern ENDS_IN_PERIOD = Pattern.compile("\\.['\"”’)]*\\s*$");
 
+    /** «boxes? (I'm holding the boxes).» without its hint: the question closed, and the hint's period. */
+    private static final Pattern CLOSED_BEFORE_A_HINT = Pattern.compile("[?!]['\"”’)]*\\s*\\.['\"”’)]*\\s*$");
+
     private static final Set<String> VERB_TAGS = Set.of("VERB", "AUX");
 
     /** What can be the subject right after the auxiliary of a question. */
@@ -49,10 +52,16 @@ class DefaultFinalPunctuationCheck implements FinalPunctuationCheck {
 
     @Override
     public Optional<GrammarIssue> check(FinishedSentence sentence, List<NlpToken> tokens) {
-        if (sentence == null || sentence.getText() == null) {
+        if (sentence == null || sentence.getText() == null || sentence.getAnswerIndex() > 0) {
+            // The corrector ignores the signs, so only the solution -- the first accepted answer,
+            // the one the student reads -- has to close with its own; another accepted form without
+            // its period is no error the student sees.
             return Optional.empty();
         }
         String text = sentence.getText().strip();
+        if (CLOSED_BEFORE_A_HINT.matcher(text).find()) {
+            return Optional.empty();
+        }
         String[] words = text.isEmpty() ? new String[0] : text.split("\\s+");
         if (words.length < 3) {
             return Optional.empty();
@@ -68,7 +77,8 @@ class DefaultFinalPunctuationCheck implements FinalPunctuationCheck {
             if (!Character.isUpperCase(text.charAt(0)) || !hasVerb(tokens)) {
                 return Optional.empty();
             }
-            String sign = question || text.contains("?") ? "?" : ".";
+            // The sign of the last sentence: «A: Is Emily walking? B: Yes, she is» closes with «.».
+            String sign = question ? "?" : ".";
             return Optional.of(issue(text, "falta el signo final: «" + sign + "»"));
         }
         if (question && ENDS_IN_PERIOD.matcher(text).find()) {
@@ -103,7 +113,9 @@ class DefaultFinalPunctuationCheck implements FinalPunctuationCheck {
             return false;
         }
         String firstTag = tagOf(first, tokens);
-        if (firstTag != null && !VERB_TAGS.contains(firstTag)) {
+        if (firstTag != null && !"AUX".equals(firstTag)) {
+            // «Have a glass of water.»: spaCy tags the imperative VERB and the auxiliary of a question
+            // AUX («Have you eaten?», «Did Michael …», «Is it …»).
             return false;
         }
         String secondTag = tagOf(second, tokens);

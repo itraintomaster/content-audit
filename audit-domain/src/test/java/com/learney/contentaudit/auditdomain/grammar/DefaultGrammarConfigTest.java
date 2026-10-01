@@ -27,14 +27,14 @@ public class DefaultGrammarConfigTest {
     public void shouldChangeItsMethodIdWhenOneOfItsListsChangesSoTheFilterIsANewExaminedVersionThatTakesItsOwnExam(
             ) {
         DefaultGrammarConfig current = new DefaultGrammarConfig();
-        Set<String> withAtTime = new HashSet<>(current.excludedRules());
-        withAtTime.add("AT_TIME");
-        DefaultGrammarConfig dropsAtTime = new DefaultGrammarConfig(current.keptCategories(), current.keptRules(),
-                withAtTime);
+        Set<String> withUncountable = new HashSet<>(current.excludedRules());
+        withUncountable.add("A_UNCOUNTABLE");
+        DefaultGrammarConfig dropsUncountable = new DefaultGrammarConfig(current.keptCategories(), current.keptRules(),
+                withUncountable);
 
         assertEquals(new DefaultGrammarConfig().methodId(), current.methodId(), "the same lists, the same method");
         assertTrue(current.methodId().startsWith("filtro-"), current.methodId());
-        assertNotEquals(current.methodId(), dropsAtTime.methodId());
+        assertNotEquals(current.methodId(), dropsUncountable.methodId());
 
         // The judges' registry approved LanguageTool 6.8 with the current filter: the other filter is
         // another examined version, without exam.
@@ -42,12 +42,12 @@ public class DefaultGrammarConfigTest {
         DefaultLocalToolGate gate = world.gate;
         LocalToolStatus languageTool = world.languageTool.status();
         LocalToolGateDecision approved = gate.decide("grammar", () -> languageTool, current.methodId(), null);
-        LocalToolGateDecision another = gate.decide("grammar", () -> languageTool, dropsAtTime.methodId(), null);
+        LocalToolGateDecision another = gate.decide("grammar", () -> languageTool, dropsUncountable.methodId(), null);
 
         assertTrue(approved.isPublishes());
         assertEquals("LanguageTool 6.8 · " + current.methodId(), approved.getExaminedVersion());
         assertFalse(another.isPublishes());
-        assertEquals("LanguageTool 6.8 · " + dropsAtTime.methodId(), another.getExaminedVersion());
+        assertEquals("LanguageTool 6.8 · " + dropsUncountable.methodId(), another.getExaminedVersion());
         assertTrue(another.getReason().startsWith("sin examen"), another.getReason());
     }
 }

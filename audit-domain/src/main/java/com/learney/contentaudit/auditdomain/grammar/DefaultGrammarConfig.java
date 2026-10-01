@@ -22,12 +22,18 @@ import javax.annotation.processing.Generated;
  *   <li>kept rules of other categories, the ones of data: the missing space after a period, the
  *       repeated word, and the prototype's three of punctuation and «a / an»;</li>
  *   <li>excluded rules: the lowercase «i», which in the course is only in options of multiple
- *       choice (F-OMVAL-R003), and SINGULAR_AGREEMENT_SENT_START, which contradicts the topic
- *       «Nombres colectivos».</li>
+ *       choice (F-OMVAL-R003), and the ones that contradict the course (R002 inv. 4):
+ *       SINGULAR_AGREEMENT_SENT_START, against the topic «Nombres colectivos»; and, from the
+ *       review by hand of the marks outside the gold of {@code escribir/} (1/10), the five whose
+ *       only marks in the course are on correct English: AT_TIME («Is it five o'clock?»),
+ *       AGREEMENT_SENT_START_2 («Most physics is clear.»), SOME_FACULTY («We want some staff.»),
+ *       SINGED_CONTRACT («We singed them!», «Las chamuscamos») and THESE_ONES («I prefer those
+ *       ones.», what the topic «One y ones» teaches).</li>
  * </ul>
  *
- * Its {@code methodId} is a fingerprint of the three lists: changing one of them is a new examined
- * version, which takes its own exam (F-MLOCAL-R006).
+ * Its {@code methodId} is a fingerprint of the three lists and of the version of the rule of the
+ * final sign, which is code: changing one of them is a new examined version, which takes its own
+ * exam (F-MLOCAL-R006).
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -41,7 +47,15 @@ class DefaultGrammarConfig implements GrammarConfig {
     static final Set<String> KEPT_RULES = Set.of("SENTENCE_WHITESPACE", "ENGLISH_WORD_REPEAT_RULE", "QUESTION_MARK",
             "PUNCTUATION_PARAGRAPH_END", "EN_A_VS_AN");
 
-    static final Set<String> EXCLUDED_RULES = Set.of("I_LOWERCASE", "SINGULAR_AGREEMENT_SENT_START");
+    static final Set<String> EXCLUDED_RULES = Set.of("I_LOWERCASE", "SINGULAR_AGREEMENT_SENT_START", "AT_TIME",
+            "AGREEMENT_SENT_START_2", "SOME_FACULTY", "SINGED_CONTRACT", "THESE_ONES");
+
+    /**
+     * The version of {@link DefaultFinalPunctuationCheck}: 2 reads only the solution, the first
+     * accepted answer; takes «?.» after a hint as closed; and opens a question only with an auxiliary
+     * tagged as such, never with an imperative («Have a glass of water.»).
+     */
+    static final int FINAL_SIGN_VERSION = 2;
 
     /** The method's name before its fingerprint: «filtro-1a2b3c4d». */
     static final String METHOD_PREFIX = "filtro-";
@@ -97,10 +111,10 @@ class DefaultGrammarConfig implements GrammarConfig {
         return description;
     }
 
-    /** The first eight hex of the SHA-256 of the three lists, each in order. */
+    /** The first eight hex of the SHA-256 of the three lists, each in order, and of the final sign. */
     private static String fingerprint(Set<String> categories, Set<String> rules, Set<String> excluded) {
         String text = "categories:" + String.join(",", categories) + "\nrules:" + String.join(",", rules)
-                + "\nexcluded:" + String.join(",", excluded);
+                + "\nexcluded:" + String.join(",", excluded) + "\nfinal-sign:" + FINAL_SIGN_VERSION;
         try {
             byte[] digest = MessageDigest.getInstance("SHA-256").digest(text.getBytes(StandardCharsets.UTF_8));
             return HexFormat.of().formatHex(digest).substring(0, 8);
