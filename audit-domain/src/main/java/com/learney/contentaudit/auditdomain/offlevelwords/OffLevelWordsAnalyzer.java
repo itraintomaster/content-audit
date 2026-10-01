@@ -51,14 +51,14 @@ import javax.annotation.processing.Generated;
  *       catalog lemma when the lemmatizer's reading is absurd, the same lemma in another category
  *       when the tagger reads a list of words and not a sentence, a proper name or a nationality,
  *       and -- only out of the catalog -- its British variant, a compound or a derivative of words
- *       of the level. The level the catalog gives the word itself always wins: a reading that takes
- *       the level of a base, a part or a British pair is for a word the catalog does not bring.
- *       Every reading is measured with the same scorer.</li>
+ *       of the level. The level the catalog gives the word itself wins over every reading that takes
+ *       the level of a base, a part or a British pair: those are for a word the catalog does not
+ *       bring. Every reading is measured with the same scorer.</li>
  *   <li>R003 and R004: a word the topic teaches never counts -- its title, its frequent answers, a
- *       mini theory that names the word alone, the name of a topic of the course, or, out of the
- *       catalog, a suffix it teaches on a word of the level --, nor an out-of-catalog word the
- *       translation repeats whole and without accents, or, if the sentence uses it as a noun,
- *       adapted to Spanish spelling.</li>
+ *       mini theory that names the word alone, the name of a topic of the course, or a suffix it
+ *       teaches on a word of the level, even on a word the catalog brings, since forming it is the
+ *       exercise --, nor an out-of-catalog word the translation repeats whole and without accents,
+ *       or, if the sentence uses it as a noun, adapted to Spanish spelling.</li>
  *   <li>R005: one medium finding per word, resolved at the panel; the quiz scores 1 without words
  *       and 0 with at least one, and keeps them in its typed diagnosis.</li>
  * </ul>
@@ -234,8 +234,9 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
             String pos = misplaced.getLemmaAndPos().getPos();
             Set<String> texts = textsOf(tokens, lemma, pos);
             // R002: the catalog brings the word with its own level, so no base, part or British pair
-            // decides it: «nicely» is B2 even where the topic teaches -ly on «nice»
-            if (teaches(taught, lessons, metalanguage, lemma, texts)
+            // decides it; only the topic does (R003), its suffix included: in «Adverbios de modo»,
+            // forming «nicely» from «nice» is the exercise
+            if (teaches(taught, lessons, metalanguage, lemma, texts, level)
                     || nearerReading(tokens, lemma, pos, texts, level, false)
                     || !seen.add(lemma + "|" + pos)) {
                 continue;
@@ -251,8 +252,7 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
             String lemma = outOfCatalog.getLemma();
             String pos = outOfCatalog.getObservedPos();
             Set<String> texts = textsOf(tokens, lemma, pos);
-            if (teaches(taught, lessons, metalanguage, lemma, texts)
-                    || formedWithTaughtSuffix(lessons, lemma, texts, level)
+            if (teaches(taught, lessons, metalanguage, lemma, texts, level)
                     || inTranslation(quiz.getTranslation(), lemma, texts)
                     || adaptedInTranslation(quiz.getTranslation(), tokens, pos, lemma, texts)
                     || nearerReading(tokens, lemma, pos, texts, level, true)
@@ -277,17 +277,16 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
     // -------------------------------------------------------------------------
 
     /**
-     * R003: the topic teaches the word itself -- a term of its title or a frequent answer (the
-     * resolver the semaphore shares), a mini theory of the topic that names it alone between
-     * {@code $}, or the name of a topic of the course. A suffix the topic teaches is another matter:
-     * it gives the level of a base, so it only counts out of the catalog (see
-     * {@link #formedWithTaughtSuffix}).
+     * R003: the topic teaches the word -- a term of its title or a frequent answer (the resolver the
+     * semaphore shares), a mini theory of the topic that names it alone between {@code $}, the name
+     * of a topic of the course, or a suffix the topic teaches on a word of the level.
      */
-    private static boolean teaches(TaughtWords taught, TopicLessons lessons, Set<String> metalanguage, String lemma,
-            Set<String> texts) {
+    private boolean teaches(TaughtWords taught, TopicLessons lessons, Set<String> metalanguage, String lemma,
+            Set<String> texts, CefrLevel level) {
         return taught(taught, lemma, texts)
                 || lessons.namesAlone(lemma, texts)
-                || namedBy(metalanguage, lemma, texts);
+                || namedBy(metalanguage, lemma, texts)
+                || formedWithTaughtSuffix(lessons, lemma, texts, level);
     }
 
     /** R003: the topic teaches it -- a word of its title's terms, or a frequent lemma of its answers. */
@@ -325,9 +324,11 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
     }
 
     /**
-     * R003: a suffix the topic teaches ({@code $-ly$}, {@code $+ing$}) forms a word out of the
-     * catalog from a word of the level: «sweetly» in «Adverbios de modo» at A1, since «sweet» is A1.
-     * Never a word the catalog brings with its own level: «nicely» stays B2 there (R002).
+     * R003: a suffix the topic teaches ({@code $-ly$}, {@code $+ing$}) forms the word from a word of
+     * the level: «sweetly» and «nicely» in «Adverbios de modo» at A1, since «sweet» and «nice» are A1.
+     * It covers a word the catalog brings with its own level too, «nicely» (B2): when the topic
+     * teaches precisely how to form it, using it is the exercise. The only base that beats the
+     * catalog's own level (R002), and only where its topic teaches the suffix.
      */
     private boolean formedWithTaughtSuffix(TopicLessons lessons, String lemma, Set<String> texts, CefrLevel level) {
         if (lessons.suffixes.isEmpty()) {
