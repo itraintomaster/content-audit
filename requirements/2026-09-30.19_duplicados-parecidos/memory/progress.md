@@ -4,6 +4,18 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — Prototipo del comodín ampliado, sin examen (lo decide José): en `~/projects/learney/content-audit-corridas/2026-10-01-examen-idioma/prototipo-comodin-ampliado/`
+  (el diff contra DefaultNearDuplicateRules, el corredor y lo medido). Sin extensiones reproduce la corrida del examen
+  (11.287 de 11.287). Con las cuatro, sobre el curso: de 24.813 pares candidatos, 75 nuevos (hoy el comodín agarra 25;
+  ninguno de los 75 llegaba a 0,95); copias 45 → 92 (47 nuevas: A1 14, A2 21, B1 12). Cada extensión, sola / sin ella
+  se pierden: nombres 41 / 46, sujeto 16 / 26, forma de la oración 1 / 13, determinante 2 / 7. escribir/: los 6 casi
+  iguales, igual. Muestra a mano de 20 de las 47 (semilla 87; no es ciega): 19 son el mismo ejercicio; el que no, «Can
+  your brother drive a car?» / «Can I drive your car?» (saber contra pedir permiso). Dudosos: día por mes con «It», y
+  opción múltiple contra escrito. De los 20 no marcados que juzgué iguales en la muestra ciega agarra 4 (los cuatro
+  ejemplos) y de los 20 distintos, 1 (el mismo «Can»): el resto son paráfrasis, así que la parte 2 seguiría lejos (~16
+  de 40, tope 8) con mi lectura.
+  Next: José decide; la versión de verdad cambia R002 inv. 1 y la descripción, y lleva otra versión examinada.
+
 2026-10-01 — developer (paquete B) — Examen rendido y registrado en `~/projects/learney/content-audit-corridas/2026-10-01-examen-idioma/`:
   «nomic-embed-text@0a109f422b47 · clustering-1» REPROBADO por la parte 2. Parte 1: los 6 casi iguales de escribir/ y
   el de examinar/. Parte 3: dos corridas del curso entero, cada una con sus 4.633 vectores, dan los mismos 11.287

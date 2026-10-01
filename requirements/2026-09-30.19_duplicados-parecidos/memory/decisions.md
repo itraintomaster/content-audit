@@ -5,6 +5,19 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — El comodín ampliado del prototipo, todavía sin adoptar. E1: un nombre (PROPN y con
+  mayúscula) vale lo mismo que otro, salvo si la respuesta es un artículo o «-» (ahí el nombre es lo que se pregunta);
+  por un pronombre, sólo como sujeto. E2: el sujeto del principio de cada oración (un pronombre, o determinantes y
+  adjetivos y un sustantivo) cuenta como una palabra si le sigue un verbo y no tiene palabras de la respuesta; nunca
+  un «who/what/…», «there» o «here». E3: fuera «not» y el auxiliar do, y el auxiliar que abre la pregunta vuelve
+  después de su sujeto. E4: fuera artículos, «another», «some», «any» y los posesivos que van con un sustantivo. Lee
+  el POS de spaCy de los tokens del ejercicio (AuditableQuiz.getTokens(), los de la solución).
+  why: con el nombre como pronombre en cualquier lugar «it is Monday» quedaba igual a «it is him!»; con el PROPN de
+  spaCy sin mayúscula, «pencils» y «relatives» (clasificar sustantivos) quedaban iguales; un sujeto con la respuesta
+  adentro tapaba lo que pregunta el ejercicio («that film» / «this phone»). Adoptarlo es otra versión examinada
+  (p. ej. «clustering-1 · comodín-2» en el methodId), con su examen y una muestra ciega nueva, que conviene que
+  revise José: casi todos los no marcados de 0,90 a 0,95 ya los vi.
+
 2026-10-01 — developer (paquete B) — La muestra ciega del modelo local (`armar_muestra_ciega.py` de la carpeta del
   examen): marcados = las copias de una corrida del curso entero por el camino del examen (siempre publica), con el que
   queda; no marcados = pares del mismo tema con la misma respuesta y coseno de 0,90 a 0,95 de los vectores de esa
