@@ -17,7 +17,7 @@
     "Ante la duda, decí que **no**",
     "«I am sorry.» y «I am hot.»"
   ],
-  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado (sameExercise que no es booleano, razón vacía o larga, claves de más o de menos) y que emit produzca sameExerciseVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (title, first, second) que arma DefaultSameExerciseQuestion con QuizStudentViewRenderer para los pares de la guía.",
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado (sameExercise que no es booleano, razón vacía o larga, claves de más o de menos) y que emit produzca sameExerciseVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (title, first, second) que arma DefaultSameExerciseQuestion con QuizStudentViewRenderer para pares de la guía.",
   "inputs": {
     "oferta": {
       "title": "Funciones mixtas",
@@ -29,10 +29,10 @@
       "first": "I ___ sorry. (am · are · is)\nResuelto: I am sorry.",
       "second": "I ___ hot. (am · are · is)\nResuelto: I am hot."
     },
-    "roma": {
-      "title": "Montañas y océanos: ¿$the$?",
-      "first": "Have you ever been to ___ Rome? (- · the)\nResuelto: Have you ever been to Rome?",
-      "second": "Have you ever visited ___ Rome? (- · the)\nResuelto: Have you ever visited Rome?"
+    "almuerzo": {
+      "title": "$Each other$ o reflexivos",
+      "first": "They cooked lunch for ___ . (Amanda cooked lunch for Luke and Luke cooked lunch for Amanda.) (each other · ourselves · themselves · yourselves)\nResuelto: They cooked lunch for each other.",
+      "second": "They prepared lunch for ___ . (Julie prepared lunch for David and David prepared lunch for Julie.) (each other · ourselves · themselves · yourselves)\nResuelto: They prepared lunch for each other."
     }
   },
   "cases": [
@@ -63,12 +63,12 @@
       }
     },
     {
-      "caseId": "roma-mismo",
-      "note": "«Have you ever visited Rome?» (…4242, B1): el mismo, como lo contó el 077.",
-      "inputs": "roma",
+      "caseId": "almuerzo-mismo",
+      "note": "«They prepared lunch for each other.» después de «They cooked lunch…» (…46b0 / …46ac, B1): otro verbo, lo mismo.",
+      "inputs": "almuerzo",
       "verdict": {
         "sameExercise": true,
-        "reason": "La misma pregunta con otro verbo: el alumno decide lo mismo, que Rome va sin artículo."
+        "reason": "Cooked y prepared dicen lo mismo: el alumno elige each other en la misma oración."
       },
       "expect": {
         "route": "passed",

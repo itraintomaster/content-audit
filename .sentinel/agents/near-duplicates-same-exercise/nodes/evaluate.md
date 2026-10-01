@@ -39,9 +39,6 @@ idea dicha de otra manera. El alumno contesta dos veces lo mismo.
 
 - «Offer: I'll wash the dishes for you.» y «Offer: I'll wash the dishes.»: sólo
   sobra *for you*. Es el mismo.
-- «Have you ever been to Rome?» y «Have you ever visited Rome?»: la misma
-  pregunta, y el alumno decide lo mismo, que *Rome* va sin artículo. Es el
-  mismo.
 - «They cooked lunch for each other.» y «They prepared lunch for each other.»:
   *cooked* y *prepared* dicen lo mismo. Es el mismo.
 
@@ -52,8 +49,9 @@ cuando la diferencia es justo lo que el tema enseña:
 
 - «I am sorry.» y «I am hot.»: los dos piden *am*, pero son dos oraciones
   distintas y el alumno practica dos veces, no repite. No es el mismo.
-- «That is his car.» y «That car is his.»: contrasta el adjetivo y el pronombre
-  posesivo, que es lo que enseña el tema. No es el mismo.
+- Dos oraciones que se distinguen justo en lo que el tema contrasta —el orden de
+  las palabras, el adjetivo y el pronombre, el lugar del adverbio— no son el
+  mismo ejercicio aunque pidan la misma respuesta: el contraste es la práctica.
 - «They have spent a lot of time in Paris.» y «They often visit Paris.»: dicen
   cosas distintas. No es el mismo.
 
