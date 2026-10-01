@@ -1,5 +1,11 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import com.learney.contentaudit.auditcli.GetConsolidatedCommand;
+import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
+import java.util.Map;
+import org.mockito.ArgumentCaptor;
+import picocli.CommandLine;
+
 import com.learney.contentaudit.auditcli.formatting.ConsolidatedViewFormatter;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
@@ -9,7 +15,6 @@ import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView
 import java.nio.file.Path;
 import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -18,6 +23,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
@@ -109,8 +115,28 @@ public class DefaultGetConsolidatedCommandTest {
     @DisplayName("should pass to the projection the budget per analyzer that the request names with --budget")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R003")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldPassToTheProjectionTheBudgetPerAnalyzerThatTheRequestNamesWithBudget() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        ConsolidatedView view = new ConsolidatedView("2026-09-30T11-54-02", "2026-09-30T11-54-12",
+                ConsolidatedViewAvailability.AVAILABLE, null, null, List.of(), List.of());
+        when(consolidatedViewBuilder.build(any(Path.class), any(ProjectionScope.class))).thenReturn(view);
+        when(formatter.format(eq(view), eq("json"))).thenReturn("{}");
+        DefaultGetConsolidatedCommand command = new DefaultGetConsolidatedCommand(consolidatedViewBuilder, formatter);
+
+        int exit = command.getConsolidated("db/english-course", "json", Map.of("quiz-instruction", 50));
+
+        ArgumentCaptor<ProjectionScope> scope = ArgumentCaptor.forClass(ProjectionScope.class);
+        verify(consolidatedViewBuilder).build(eq(Path.of("db/english-course")), scope.capture());
+        assertEquals(0, exit);
+        assertEquals(Map.of("quiz-instruction", 50), scope.getValue().getAnalyzerBudgets(),
+                "R003: the budget the request names");
+        assertNull(scope.getValue().getProposalIds(), "R003: every pending proposal of the active plan");
+
+        GetConsolidatedCommand delegate = org.mockito.Mockito.mock(GetConsolidatedCommand.class);
+        when(delegate.getConsolidated(any(), any(), any())).thenReturn(0);
+        int parsed = new CommandLine(new GetConsolidatedCmd(delegate)).execute("db/english-course",
+                "--budget", "quiz-instruction=50", "--budget", "translation-sense=10");
+        assertEquals(0, parsed);
+        verify(delegate).getConsolidated("db/english-course", "json",
+                Map.of("quiz-instruction", 50, "translation-sense", 10));
     }
 }

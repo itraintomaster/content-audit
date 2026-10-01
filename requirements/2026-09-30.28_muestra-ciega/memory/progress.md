@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — Construido: `DefaultSampleStatistics` (Wilson con z = 1,959964, cota exacta a una cola por bisección, kappa de Cohen), `DefaultBlindSampleService`, `DefaultSampleOutcomeSource`, `DefaultBlindErrorRateService` (con `SampleCounts` y `StudentSides` de paquete), `sample` y `error-rate`. 33 pruebas de dominio, 3 de CLI y F-CIEGA-J001 (2 caminos) en verde.
+  Control sobre copia: con sólo el arreglo de las verduras la muestra sale con 0 pares (vuelve); con un cambio sólo de traducción de «We ___ (know) ourselves.», 1 par sorteado con la semilla 20261001 y mostrado como lo ve el alumno, sin lado ni propuesta; 0 consultas a claude.
+  Next: E sortea con el alcance de su tanda (F-09).
+
 2026-10-01 — qa-tester — Ronda 2: `patch propose` exit 0, fusionado con el parche del arquitecto contra el M07 del integrador (8 altas, 3 cambios): 37 handwrittenTests nuevas (0 portadas), las 6 reglas [covered]; F-CIEGA-J001 en audit-cli, paquete commands (2 caminos). `tech-spec write` exit 0 (9 → 10 fragmentos); `patch validate -i M07` exit 0. Simulado en memoria: aterrizan todas. Sin aplicar.
   Next: el orquestador aplica la ronda y genera, después del renderizador de la integración de la ronda 1 (F-15).
 

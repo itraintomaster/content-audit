@@ -1,7 +1,32 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.auditdomain.studentview.StudentGapView;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindPair;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindPairView;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSample;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSampleService;
+import com.learney.contentaudit.revisiondomain.blindsample.BlindSide;
+import com.learney.contentaudit.revisiondomain.blindsample.PairAnswer;
+import com.learney.contentaudit.revisiondomain.blindsample.SampleClosedException;
+import com.learney.contentaudit.revisiondomain.blindsample.StudentSide;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,17 +40,72 @@ public class DefaultBlindSampleCommandTest {
     @DisplayName("should print with sample show only what can be seen while the sample is open")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldPrintWithSampleShowOnlyWhatCanBeSeenWhileTheSampleIsOpen() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        BlindSampleService service = mock(BlindSampleService.class);
+        StudentSide after = side("I ___ (love) vegetables.", "Me encantan las verduras.", "I love vegetables.");
+        StudentSide before = side("I ___ a lot of vegetables.", "Me gustan mucho las verduras.",
+                "I love a lot of vegetables.");
+        BlindSample drawn = new BlindSample("muestra-2026-10-01T10-00-00", "tanda-1", "2026-09-29T08-00-00",
+                "2026-09-30T11-54-02", "2026-09-30T11-54-12", 20261001L, Instant.parse("2026-10-01T10:00:00Z"), null,
+                List.of(new BlindPair(1, "077-vegetables", "67fab6d59930102295341ecd", after, before, BlindSide.A)),
+                new ArrayList<>(), null);
+        when(service.draw(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any(),
+                org.mockito.ArgumentMatchers.any())).thenReturn(drawn);
+        when(service.result("muestra-2026-10-01T10-00-00")).thenReturn(Optional.empty());
+        when(service.pairs("muestra-2026-10-01T10-00-00")).thenReturn(List.of(new BlindPairView(1, after, before)));
+        DefaultBlindSampleCommand command = new DefaultBlindSampleCommand(service);
+
+        FHistorial.Salida draw = FHistorial.run(() -> command.draw("db/english-course", List.of(), 20261001L, "text"));
+        FHistorial.Salida shown = FHistorial.run(() -> command.show("muestra-2026-10-01T10-00-00", "text"));
+        FHistorial.Salida json = FHistorial.run(() -> command.show("muestra-2026-10-01T10-00-00", "json"));
+
+        assertEquals(0, shown.exit(), shown.err());
+        assertTrue(shown.out().contains("A · I ___ (love) vegetables. Me encantan las verduras."), shown.out());
+        assertTrue(shown.out().contains("B · I ___ a lot of vegetables. Me gustan mucho las verduras."), shown.out());
+        for (String output : List.of(draw.out(), shown.out(), json.out())) {
+            assertFalse(output.contains("077-vegetables"), "R002: no proposal: " + output);
+            assertFalse(output.contains("67fab6d59930102295341ecd"), "R002: no node");
+            assertFalse(output.contains("afterSide"), "R002: no side of the after");
+            assertFalse(output.contains("the after is"), "R002: nothing revealed while open");
+        }
+        assertTrue(draw.out().contains("Drew muestra-2026-10-01T10-00-00 with seed 20261001: 1 pairs"), draw.out());
+        assertTrue(json.out().contains("\"statement\" : \"I ___ (love) vegetables.\""), json.out());
     }
 
     @Test
     @DisplayName("should accept only the four answers and refuse any other with a non-zero exit")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R003")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldAcceptOnlyTheFourAnswersAndRefuseAnyOtherWithANonzeroExit() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        BlindSampleService service = mock(BlindSampleService.class);
+        DefaultBlindSampleCommand command = new DefaultBlindSampleCommand(service);
+
+        assertEquals(0, FHistorial.run(() -> command.answer("muestra-1", 1, "A", "José")).exit());
+        assertEquals(0, FHistorial.run(() -> command.answer("muestra-1", 2, "b", "José")).exit());
+        assertEquals(0, FHistorial.run(() -> command.answer("muestra-1", 3, "iguales", "José")).exit());
+        assertEquals(0, FHistorial.run(() -> command.answer("muestra-1", 4, "AMBOS", "José")).exit());
+        assertEquals(0, FHistorial.run(() -> command.answer("muestra-1", 5, "both_wrong", "tester")).exit());
+        FHistorial.Salida other = FHistorial.run(() -> command.answer("muestra-1", 6, "C", "José"));
+
+        verify(service).answer("muestra-1", 1, PairAnswer.A_BETTER, "José");
+        verify(service).answer("muestra-1", 2, PairAnswer.B_BETTER, "José");
+        verify(service).answer("muestra-1", 3, PairAnswer.EQUAL, "José");
+        verify(service).answer("muestra-1", 4, PairAnswer.BOTH_WRONG, "José");
+        verify(service).answer("muestra-1", 5, PairAnswer.BOTH_WRONG, "tester");
+        assertEquals(1, other.exit(), "R003: only the four answers");
+        assertTrue(other.err().contains("Unknown answer 'C'"), other.err());
+        assertTrue(other.err().contains("A (A is better), B (B is better), EQUAL (iguales) or BOTH_WRONG"));
+        verify(service, never()).answer(eq("muestra-1"), eq(6), org.mockito.ArgumentMatchers.any(), anyString());
+
+        doThrow(new SampleClosedException("muestra-1")).when(service).answer(eq("muestra-1"), anyInt(),
+                org.mockito.ArgumentMatchers.any(), anyString());
+        FHistorial.Salida closed = FHistorial.run(() -> command.answer("muestra-1", 1, "A", "José"));
+        assertEquals(1, closed.exit());
+        assertEquals("Sample 'muestra-1' is closed: it no longer accepts answers or changes.", closed.err().strip());
+    }
+
+    private static StudentSide side(String statement, String translation, String answered) {
+        return new StudentSide(new QuizStudentView(statement, List.of(new StudentGapView(0, null, List.of("love"),
+                "love")), List.of(), "Escribe la forma correcta.", translation, null), answered);
     }
 }

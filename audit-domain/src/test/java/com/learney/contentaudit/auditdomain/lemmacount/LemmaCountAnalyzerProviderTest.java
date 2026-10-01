@@ -1,4 +1,22 @@
 package com.learney.contentaudit.auditdomain.lemmacount;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.DefaultLevelDiagnoses;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.LemmaCountBand;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProviderTest;
+import com.learney.contentaudit.auditdomain.labs.LemmaAndPos;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Optional;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.EvpCatalogPort;
@@ -11,7 +29,6 @@ import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -139,8 +156,81 @@ public class LemmaCountAnalyzerProviderTest {
     @DisplayName("should create for every run an analyzer that counts only the sentences of the course it measures, so a sentence that lost the word in a proposal is no longer counted")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldCreateForEveryRunAnAnalyzerThatCountsOnlyTheSentencesOfTheCourseItMeasuresSoASentenceThatLostTheWordInAProposalIsNoLongerCounted() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CERO-R001: in B2, «quilt» is in two sentences; a proposal rewrites the second as «The blanket is warm.».
+        // Measured after the first course in the same process, the course with the proposal counts quilt in the one
+        // sentence that still has it, as a new invocation does, and never the sentence that lost it.
+        LemmaCountAnalyzerProvider provider = provider();
+        IAuditEngine engine = CocaBucketsAnalyzerProviderTest.Coca299.engine(provider);
+
+        AuditReport before = engine.runAudit(course("The|the|DET quilt|quilt|NOUN is|be|AUX warm|warm|ADJ .|.|PUNCT"));
+        AuditReport after = engine.runAudit(course("The|the|DET blanket|blanket|NOUN is|be|AUX warm|warm|ADJ .|.|PUNCT"));
+        AuditReport newInvocation = CocaBucketsAnalyzerProviderTest.Coca299.engine(provider())
+                .runAudit(course("The|the|DET blanket|blanket|NOUN is|be|AUX warm|warm|ADJ .|.|PUNCT"));
+
+        Assertions.assertEquals(2, quiltSentencesInB2(before), "the first course has quilt in two sentences");
+        Assertions.assertEquals(1, quiltSentencesInB2(after), "R001: the sentence that lost the word is not counted");
+        Assertions.assertEquals(quiltSentencesInB2(newInvocation), quiltSentencesInB2(after), "R001: as a new invocation");
+        Assertions.assertEquals(newInvocation.getRoot().getChildren().get(3).getScores(),
+                after.getRoot().getChildren().get(3).getScores(), "R001: B2 scores the same");
+    }
+
+    /** lemma-count with 4 sentences for every band, over an EVP that knows quilt, blanket and spread as B2. */
+    private static LemmaCountAnalyzerProvider provider() {
+        Map<String, CefrLevel> levels = Map.of("quilt", CefrLevel.B2, "blanket", CefrLevel.B2, "spread", CefrLevel.B2,
+                "warm", CefrLevel.A1);
+        Map<String, Integer> ranks = Map.of("quilt", 3500, "blanket", 3400, "spread", 1200, "warm", 900);
+        EvpCatalogPort evp = Mockito.mock(EvpCatalogPort.class);
+        Mockito.when(evp.lookupLevel(Mockito.any())).thenAnswer(i -> Optional.ofNullable(levels.get(
+                i.<LemmaAndPos>getArgument(0).getLemma())));
+        Mockito.when(evp.getCocaRank(Mockito.any())).thenAnswer(i -> Optional.ofNullable(ranks.get(
+                i.<LemmaAndPos>getArgument(0).getLemma())));
+        LemmaCountConfig config = Mockito.mock(LemmaCountConfig.class);
+        Mockito.when(config.getThreshold()).thenReturn(4);
+        Mockito.when(config.getBands()).thenReturn(List.of(new LemmaCountBand("1.000 más comunes", 1000, 4),
+                new LemmaCountBand("hasta 2.000", 2000, 4), new LemmaCountBand("hasta 3.000", 3000, 4),
+                new LemmaCountBand("más allá de 3.000 o sin puesto", null, 4)));
+        return new LemmaCountAnalyzerProvider(evp, config);
+    }
+
+    /** B2 with «She spread the quilt.» and the second sentence given; the other levels with one sentence. */
+    private static AuditableCourse course(String second) {
+        List<AuditableMilestone> milestones = new ArrayList<>();
+        for (String level : List.of("A1", "A2", "B1", "B2")) {
+            List<AuditableQuiz> quizzes = new ArrayList<>();
+            if ("B2".equals(level)) {
+                quizzes.add(quiz("q-spread", "She|she|PRON spread|spread|VERB the|the|DET quilt|quilt|NOUN .|.|PUNCT"));
+                quizzes.add(quiz("q-warm", second));
+            } else {
+                quizzes.add(quiz("q-" + level, "It|it|PRON is|be|AUX warm|warm|ADJ .|.|PUNCT"));
+            }
+            AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Tema " + level, "Completa.", true,
+                    "k-" + level, "Tema " + level, "K", null, "T");
+            milestones.add(new AuditableMilestone(List.of(new AuditableTopic(List.of(knowledge), "t-" + level, "T", "T")),
+                    "m-" + level, level, level));
+        }
+        return new AuditableCourse(milestones);
+    }
+
+    private static AuditableQuiz quiz(String id, String tokens) {
+        List<NlpToken> parsed = new ArrayList<>();
+        StringBuilder sentence = new StringBuilder();
+        for (String token : tokens.split(" ")) {
+            String[] f = token.split("\\|", -1);
+            parsed.add(new NlpToken(f[0], f[1], f[2], null, false, "PUNCT".equals(f[2])));
+            sentence.append(sentence.length() > 0 ? " " : "").append(f[0]);
+        }
+        return new AuditableQuiz(parsed, id, sentence.toString(), "Q", null, List.of(sentence.toString()), null, null,
+                null, null, null, null);
+    }
+
+    /** In how many sentences lemma-count found quilt in B2 (0 when it is not counted at all). */
+    private static int quiltSentencesInB2(AuditReport report) {
+        AuditNode b2 = report.getRoot().getChildren().get(3);
+        return ((DefaultLevelDiagnoses) b2.getDiagnoses()).getLemmaCountDiagnosis()
+                .map(d -> d.getLevelResult().getSubExposedLemmas().stream()
+                        .filter(s -> "quilt".equals(s.getLemmaAndPos().getLemma()))
+                        .mapToInt(s -> s.getCount()).sum())
+                .orElse(0);
     }
 }

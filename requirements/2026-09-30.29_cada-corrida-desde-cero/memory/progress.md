@@ -4,6 +4,8 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — Pruebas de CERO en audit-domain (a6a2b911: COCA, recurrencia, ausencia y cantidad con el analizador nuevo por corrida contra el reutilizado, y el motor) y F-CERO-J001 (2 caminos) en audit-cli, en verde; con el curso del 29/9: 73,92, los niveles, 55 temas y 2366 tokens, sin arrastre.
+
 2026-10-01 — qa-tester — Ronda 2: `patch propose` exit 0, fusionado con el parche del arquitecto contra el M08 del integrador (0 altas, 8 cambios): 11 handwrittenTests nuevas (0 portadas), las 2 reglas [covered]; F-CERO-J001 en audit-cli, paquete commands (2 caminos). `tech-spec write` exit 0 (2 → 3 fragmentos); `patch validate -i M08` exit 0. Simulado en memoria: aterrizan todas. Sin aplicar.
   Next: el orquestador aplica la ronda y genera.
 

@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — El margen de R006 es la semiamplitud normal, 1,959964·√(p(1−p)/n): da ±4,3 al 25,7 % y ±2,1 al 5 % con 400, como el REQUIREMENT; la de Wilson daría 2,17 al 5 %. El intervalo publicado sigue siendo el de Wilson.
+
+2026-10-01 — developer — Tasa de error: el «algún error» de los analizadores del después se lee del análisis activo con que se sorteó (cerrar no recibe el curso para proyectar de nuevo); es exacto cuando lo de las tandas ya está publicado, que es cuando el tester sortea los 400 del final. La meta de la muestra se guarda al sortear; cuenta la última respuesta de cada revisor por par; el acuerdo es con el revisor de más pares en común.
+
 2026-10-01 — qa-tester — F-CIEGA-J001 en audit-cli, `com.learney.contentaudit.auditcli.commands`.
   why: el camino es sample draw, show, answer y close; DefaultBlindSampleCommand es package-private ahí y el servicio está en blindsampleengine, público para audit-cli.
 2026-10-01 — qa-tester — El par de las verduras de las pruebas es el de R002: «I ___ (love) vegetables. Me encantan las verduras.» contra «I ___ a lot of vegetables. Me gustan mucho las verduras.» (el arreglo que cambia el inglés y el audio), no el que cambia sólo la traducción.

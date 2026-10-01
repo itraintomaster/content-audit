@@ -1,7 +1,25 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditinfrastructure.FileSystemGoalDeclarationSource;
+import com.learney.contentaudit.revisiondomain.comparison.SealedGoals;
+import com.learney.contentaudit.revisiondomain.comparisonengine.DefaultGoalBook;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import org.junit.jupiter.api.io.TempDir;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,18 +33,85 @@ public class DefaultGoalsCommandTest {
     @DisplayName("should list with get-goals the effective goals, the declared ones and the family floors, each with its origin")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R005")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldListWithGetgoalsTheEffectiveGoalsTheDeclaredOnesAndTheFamilyFloorsEachWithItsOrigin(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultGoalsCommand command = new DefaultGoalsCommand(book());
+
+        FHistorial.Salida listed = FHistorial.run(() -> command.listGoals("text"));
+        FHistorial.Salida json = FHistorial.run(() -> command.listGoals("json"));
+
+        assertEquals(0, listed.exit(), listed.err());
+        assertTrue(listed.out().contains("Never sealed"), listed.out());
+        assertTrue(listed.out().contains("PROGRESS · hint-coherence · MILESTONE: 0,0 EXERCISES ABSOLUTE · declared · "
+                + "«avance · hint-coherence · niveles»"), "R005: the declared goal, with its origin: " + listed.out());
+        assertTrue(listed.out().contains("FLOOR · hint-coherence · KNOWLEDGE: 0,0 EXERCISES BATCH_START · family floor"
+                + " · «piso de errores · hint-coherence · KNOWLEDGE»"),
+                "R005: the floor of its family for an analyzer it does not name");
+        assertTrue(listed.out().contains("FLOOR · lemma-absence · MILESTONE: 0,5 POINTS BASELINE · family floor"));
+        assertTrue(listed.out().contains("FLOOR · vocabulario · COURSE: 0,5 POINTS BASELINE · family floor"));
+        assertTrue(listed.out().contains("BLIND SAMPLE · 100 pairs, at least 90 better or equal and at most 1 worse, "
+                + "OBSERVED, answered by José"), listed.out());
+        assertTrue(json.out().contains("\"origin\" : \"FAMILY_DEFAULT\""), json.out());
+        assertTrue(json.out().contains("\"origin\" : \"DECLARED\""));
     }
 
     @Test
     @DisplayName("should seal the effective goals with set-goals")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldSealTheEffectiveGoalsWithSetgoals() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(dir);
+        DefaultGoalBook book = book();
+        DefaultGoalsCommand command = new DefaultGoalsCommand(book);
+
+        FHistorial.Salida sealed = FHistorial.run(() -> command.setGoals("text"));
+
+        assertEquals(0, sealed.exit(), sealed.err());
+        SealedGoals kept = historial.sealedGoals.read().orElseThrow();
+        assertEquals(book.effective().getFingerprint(), kept.getGoals().getFingerprint(), "R006: with their fingerprint");
+        assertEquals(book.effective().getGoals(), kept.getGoals().getGoals(), "R006: whole");
+        assertTrue(sealed.out().startsWith("Goals sealed at " + kept.getSealedAt() + ": "), sealed.out());
+        assertTrue(Files.exists(dir.resolve(".content-audit/metas-fijadas.json")));
+        FHistorial.Salida listed = FHistorial.run(() -> command.listGoals("text"));
+        assertTrue(listed.out().contains("Sealed at " + kept.getSealedAt() + " (the same goals)"), listed.out());
+    }
+
+    @TempDir
+    Path dir;
+
+    /** The book over a declaration in its file, as analysis/metas.json, and a catalog of three analyzers. */
+    private DefaultGoalBook book() {
+        try {
+            Path declaration = dir.resolve("metas.json");
+            Files.writeString(declaration, """
+                    {
+                      "familyFloors": [
+                        {"family": "ERRORS", "threshold": 0, "unit": "EXERCISES", "reference": "BATCH_START",
+                         "nodeTargets": ["KNOWLEDGE", "TOPIC", "MILESTONE", "COURSE"]},
+                        {"family": "VOCABULARY", "threshold": 0.5, "unit": "POINTS", "reference": "BASELINE",
+                         "nodeTargets": ["MILESTONE", "COURSE"]}
+                      ],
+                      "goals": [
+                        {"id": "avance · hint-coherence · niveles", "kind": "PROGRESS", "subject": "hint-coherence",
+                         "nodeTarget": "MILESTONE", "threshold": 0, "unit": "EXERCISES", "reference": "ABSOLUTE",
+                         "origin": "DECLARED"}
+                      ],
+                      "blindSample": {"size": 100, "minBetterOrEqual": 90, "maxWorse": 1, "criterion": "OBSERVED",
+                        "responsible": "José", "secondReviewerPairs": 30, "cumulativeMaxWorseShare": 0.02}
+                    }
+                    """, StandardCharsets.UTF_8);
+            AnalyzerCatalog catalog = mock(AnalyzerCatalog.class);
+            when(catalog.list()).thenReturn(List.of(card("lemma-absence", AnalyzerFamily.VOCABULARY),
+                    card("hint-coherence", AnalyzerFamily.ERRORS), card("quiz-instruction", AnalyzerFamily.ERRORS)));
+            return new DefaultGoalBook(new FileSystemGoalDeclarationSource(declaration),
+                    new FHistorial(dir).sealedGoals, catalog);
+        } catch (java.io.IOException e) {
+            throw new java.io.UncheckedIOException(e);
+        }
+    }
+
+    private static AnalyzerDescriptor card(String name, AnalyzerFamily family) {
+        return new AnalyzerDescriptor(name, name, AuditTarget.QUIZ, "¿?", "la oración", List.of(), "1,0", family,
+                List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, name, List.of());
     }
 }

@@ -40,12 +40,24 @@ final class DefaultGetConsolidatedCommand implements GetConsolidatedCommand {
     }
 
     /**
-     * The overload with a budget per analyzer (FEAT-PROYU, package F): generate added it to the
-     * port but not to this implementation, whose file already had a method of the same name.
-     * Left unimplemented, like a stub, for package F to write.
+     * The overload with a budget per analyzer (FEAT-PROYU, F-PROYU-R003): the consolidated view of the same
+     * projection, with the budget of each analyzer the request names with {@code --budget}; the others go
+     * without one, as in {@code analyze}.
      */
     @Override
     public Integer getConsolidated(String coursePath, String format, Map<String, Integer> analyzerBudgets) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        if (analyzerBudgets == null || analyzerBudgets.isEmpty()) {
+            return getConsolidated(coursePath, format);
+        }
+        if (coursePath == null || coursePath.isBlank()) {
+            System.err.println("Error: course path is required.");
+            return 1;
+        }
+        com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedView view =
+                consolidatedViewBuilder.build(java.nio.file.Path.of(coursePath),
+                        new com.learney.contentaudit.revisiondomain.projection.ProjectionScope(null, null,
+                                Map.copyOf(analyzerBudgets)));
+        System.out.println(formatter.format(view, format));
+        return 0;
     }
 }

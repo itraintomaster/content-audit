@@ -1,4 +1,34 @@
 package com.learney.contentaudit.auditdomain.coca;
+
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.DefaultTopicDiagnoses;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.zip.GZIPInputStream;
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.CocaBucketsConfig;
@@ -11,7 +41,6 @@ import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -73,17 +102,205 @@ public class CocaBucketsAnalyzerProviderTest {
     @DisplayName("should create for every run an analyzer without the topics of an earlier run, so measuring the base of 29/9 twice keeps A1 at 100 and B1 at 57.9 in COCA instead of 75 and 76.1")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldCreateForEveryRunAnAnalyzerWithoutTheTopicsOfAnEarlierRunSoMeasuringTheBaseOf299TwiceKeepsA1At100AndB1At579InCOCAInsteadOf75And761() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CERO-R001: measuring the base of 29/9 twice in the same process with the analyzers the provider
+        // creates gives A1 100 and B1 57,9 in COCA both times. An analyzer kept for the second run would
+        // still hold the topics of the first: it counts every topic twice and gives 75 and 76,1.
+        CocaBucketsAnalyzerProvider provider = new CocaBucketsAnalyzerProvider(Mockito.mock(NlpTokenizer.class),
+                Coca299.config());
+        IAuditEngine engine = Coca299.engine(provider);
+
+        AuditReport first = engine.runAudit(Coca299.course());
+        AuditReport second = engine.runAudit(Coca299.course());
+
+        Assertions.assertEquals(List.of("100,0", "100,0", "57,9", "32,2"), Coca299.levels(first), "the first run");
+        Assertions.assertEquals(List.of("100,0", "100,0", "57,9", "32,2"), Coca299.levels(second),
+                "R001: the second run, as a new invocation");
+        IAuditEngine reusing = Coca299.engine(Coca299.reusing(provider));
+        reusing.runAudit(Coca299.course());
+        List<String> carried = Coca299.levels(reusing.runAudit(Coca299.course()));
+        Assertions.assertEquals("75,0", carried.get(0), "what an analyzer kept for a second run gives in A1");
+        Assertions.assertEquals("76,1", carried.get(2), "and in B1");
     }
 
     @Test
     @DisplayName("should give each analyzer it creates its own topics, so a second run writes its COCA diagnosis on its own topic nodes and not on those of the first report")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldGiveEachAnalyzerItCreatesItsOwnTopicsSoASecondRunWritesItsCOCADiagnosisOnItsOwnTopicNodesAndNotOnThoseOfTheFirstReport() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CERO-R002: each analyzer the provider creates keeps the topics of its own run, so the second run
+        // writes its COCA diagnosis on its own topic nodes: the 55 topics of the first report keep theirs,
+        // A1 · Present Simple with 2,366 tokens in four bands.
+        CocaBucketsAnalyzerProvider provider = new CocaBucketsAnalyzerProvider(Mockito.mock(NlpTokenizer.class),
+                Coca299.config());
+        IAuditEngine engine = Coca299.engine(provider);
+        AuditReport first = engine.runAudit(Coca299.course());
+        Map<String, List<Integer>> firstTopics = Coca299.topicBands(first);
+
+        AuditReport second = engine.runAudit(Coca299.course());
+
+        Assertions.assertEquals(55, firstTopics.size(), "the 55 topics of the 29/9 course");
+        Assertions.assertEquals(firstTopics, Coca299.topicBands(first), "R002: the first report keeps its COCA diagnosis");
+        Assertions.assertEquals(List.of(2130, 131, 41, 64), firstTopics.get(Coca299.PRESENT_SIMPLE_A1),
+                "R002: A1 · Present Simple, 2,366 tokens in four bands");
+        Assertions.assertEquals(2366, Coca299.topicTokens(first, Coca299.PRESENT_SIMPLE_A1));
+        Assertions.assertEquals(firstTopics, Coca299.topicBands(second), "the second run writes its own topics");
+    }
+
+    /**
+     * The 29/9 course as COCA reads it -- the COCA rank of every token of its 11,287 exercises, under their
+     * level, topic and knowledge, in course order (resource cero-2026-09-30/coca.tsv.gz, from the analysis of the
+     * 29/9 photo) -- and the configuration of COCA as the application builds it.
+     */
+    public static final class Coca299 {
+        public static final String PRESENT_SIMPLE_A1 = "6814dafa7d73e7209a13d383";
+
+        private Coca299() {
+        }
+
+        public static AuditableCourse course() {
+            Map<String, Map<String, Map<String, List<AuditableQuiz>>>> byLevel = new LinkedHashMap<>();
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(new GZIPInputStream(
+                    CocaBucketsAnalyzerProviderTest.class.getResourceAsStream("/cero-2026-09-30/coca.tsv.gz")),
+                    StandardCharsets.UTF_8))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] f = line.split("\t", -1);
+                    List<NlpToken> tokens = new ArrayList<>();
+                    if (!f[4].isEmpty()) {
+                        for (String rank : f[4].split(",")) {
+                            tokens.add(new NlpToken("w", "w", "NOUN", Integer.valueOf(rank), false, false));
+                        }
+                    }
+                    byLevel.computeIfAbsent(f[0], l -> new LinkedHashMap<>()).computeIfAbsent(f[1], t -> new LinkedHashMap<>())
+                            .computeIfAbsent(f[2], k -> new ArrayList<>())
+                            .add(new AuditableQuiz(tokens, f[3], f[3], "Q", null, List.of(), null, null, null, null, null, null));
+                }
+            } catch (IOException e) {
+                throw new AssertionError("the COCA ranks of 29/9 are unreadable", e);
+            }
+            List<AuditableMilestone> levels = new ArrayList<>();
+            byLevel.forEach((level, topics) -> {
+                List<AuditableTopic> topicList = new ArrayList<>();
+                topics.forEach((topicId, knowledges) -> {
+                    List<AuditableKnowledge> themes = new ArrayList<>();
+                    knowledges.forEach((id, quizzes) -> themes.add(new AuditableKnowledge(quizzes, id, "Consigna", true, id,
+                            id, "K", null, topicId)));
+                    topicList.add(new AuditableTopic(themes, topicId, topicId, "T"));
+                });
+                levels.add(new AuditableMilestone(topicList, "m-" + level, level, level));
+            });
+            return new AuditableCourse(levels);
+        }
+
+        /** The bands, targets and strategy of COCA as the application configures them (DefaultCocaBucketsConfig). */
+        public static CocaBucketsConfig config() {
+            CocaBucketsConfig config = Mockito.mock(CocaBucketsConfig.class);
+            Mockito.when(config.getBandConfiguration()).thenReturn(new BandConfiguration(List.of(
+                    new FrequencyBand("top1k", 1, 1000), new FrequencyBand("top2k", 1001, 2000),
+                    new FrequencyBand("top3k", 2001, 3000), new FrequencyBand("top4k", 3001, 4000)), true));
+            Map<String, List<BucketTarget>> levels = Map.of(
+                    "A1", List.of(new BucketTarget("top1k", 80.0, TargetKind.AT_LEAST), new BucketTarget("top4k", 1.0, TargetKind.AT_MOST)),
+                    "A2", List.of(new BucketTarget("top1k", 70.0, TargetKind.AT_LEAST), new BucketTarget("top4k", 10.0, TargetKind.AT_MOST)),
+                    "B1", List.of(new BucketTarget("top1k", 60.0, TargetKind.AT_MOST), new BucketTarget("top4k", 10.0, TargetKind.AT_LEAST)),
+                    "B2", List.of(new BucketTarget("top1k", 50.0, TargetKind.AT_MOST), new BucketTarget("top4k", 20.0, TargetKind.AT_LEAST)));
+            Map<String, List<QuarterBucketTargets>> quarters = Map.of(
+                    "A1", List.of(quarter("top1k", 90.0, TargetKind.AT_LEAST, 0.0, TargetKind.AT_MOST),
+                            quarter("top1k", 75.0, TargetKind.AT_LEAST, 2.0, TargetKind.AT_MOST)),
+                    "A2", List.of(quarter("top1k", 75.0, TargetKind.AT_LEAST, 2.0, TargetKind.AT_MOST),
+                            quarter("top1k", 65.0, TargetKind.AT_LEAST, 15.0, TargetKind.AT_MOST)),
+                    "B1", List.of(quarter("top1k", 65.0, TargetKind.AT_MOST, 5.0, TargetKind.AT_LEAST),
+                            quarter("top1k", 55.0, TargetKind.AT_MOST, 15.0, TargetKind.AT_LEAST)),
+                    "B2", List.of(quarter("top1k", 55.0, TargetKind.AT_MOST, 15.0, TargetKind.AT_LEAST),
+                            quarter("top1k", 45.0, TargetKind.AT_MOST, 25.0, TargetKind.AT_LEAST)));
+            Mockito.when(config.getTargetsForLevel(Mockito.anyString())).thenAnswer(i -> levels.getOrDefault(
+                    i.<String>getArgument(0), List.of()));
+            Mockito.when(config.getQuarterTargetsForLevel(Mockito.anyString())).thenAnswer(i -> quarters.getOrDefault(
+                    i.<String>getArgument(0), List.of()));
+            Mockito.when(config.getToleranceMargin()).thenReturn(10.0);
+            Mockito.when(config.getAnalysisStrategy()).thenReturn(AnalysisStrategy.QUARTERS);
+            Mockito.when(config.getProgressionExpectations()).thenReturn(List.of(
+                    new ProgressionExpectation("top1k", ProgressionState.DESCENDING),
+                    new ProgressionExpectation("top4k", ProgressionState.ASCENDING)));
+            Mockito.when(config.describe()).thenReturn(Map.of());
+            return config;
+        }
+
+        private static QuarterBucketTargets quarter(String top, double topTarget, TargetKind topKind, double rare,
+                TargetKind rareKind) {
+            return new QuarterBucketTargets(List.of(new BucketTarget(top, topTarget, topKind),
+                    new BucketTarget("top4k", rare, rareKind)));
+        }
+
+        public static IAuditEngine engine(AnalyzerProvider... providers) {
+            return new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(providers)),
+                    new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+        }
+
+        /** The provider as it must not be: the same analyzer for every run. */
+        public static AnalyzerProvider reusing(AnalyzerProvider provider) {
+            ContentAnalyzer kept = provider.create(null);
+            return new AnalyzerProvider() {
+                @Override
+                public String analyzerName() {
+                    return provider.analyzerName();
+                }
+
+                @Override
+                public AnalyzerDescriptor describe() {
+                    return provider.describe();
+                }
+
+                @Override
+                public ContentAnalyzer create(EvaluationRunPolicy policy) {
+                    return kept;
+                }
+
+                @Override
+                public Optional<AnalyzerPlanBinding> planBinding() {
+                    return provider.planBinding();
+                }
+
+                @Override
+                public Optional<SelfDescribingConfig> config() {
+                    return provider.config();
+                }
+            };
+        }
+
+        /** COCA of each level, in percent with one decimal. */
+        public static List<String> levels(AuditReport report) {
+            List<String> levels = new ArrayList<>();
+            for (AuditNode level : report.getRoot().getChildren()) {
+                levels.add(String.format(Locale.ROOT, "%.1f", level.getScores().get("coca-buckets-distribution") * 100)
+                        .replace('.', ','));
+            }
+            return levels;
+        }
+
+        /** The bands of the COCA diagnosis of every topic, by topic id. */
+        public static Map<String, List<Integer>> topicBands(AuditReport report) {
+            Map<String, List<Integer>> bands = new LinkedHashMap<>();
+            for (AuditNode level : report.getRoot().getChildren()) {
+                for (AuditNode topic : level.getChildren()) {
+                    bands.put(topic.getEntity().getId(), ((DefaultTopicDiagnoses) topic.getDiagnoses())
+                            .getCocaBucketsDiagnosis().map(d -> d.getBuckets().stream().map(BucketSummary::getCount).toList())
+                            .orElse(List.of()));
+                }
+            }
+            return bands;
+        }
+
+        public static int topicTokens(AuditReport report, String topicId) {
+            for (AuditNode level : report.getRoot().getChildren()) {
+                for (AuditNode topic : level.getChildren()) {
+                    if (topicId.equals(topic.getEntity().getId())) {
+                        return ((DefaultTopicDiagnoses) topic.getDiagnoses()).getCocaBucketsDiagnosis()
+                                .map(CocaBucketsTopicDiagnosis::getTotalTokens).orElse(0);
+                    }
+                }
+            }
+            throw new AssertionError("no topic " + topicId);
+        }
     }
 }

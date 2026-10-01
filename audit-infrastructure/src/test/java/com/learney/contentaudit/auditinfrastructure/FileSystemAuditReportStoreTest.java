@@ -41,7 +41,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -614,18 +613,50 @@ class FileSystemAuditReportStoreTest {
     @DisplayName("should leave a saved projection out of list and loadLatest even when it was saved after the last analysis")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
-    public void shouldLeaveASavedProjectionOutOfListAndLoadLatestEvenWhenItWasSavedAfterTheLastAnalysis() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldLeaveASavedProjectionOutOfListAndLoadLatestEvenWhenItWasSavedAfterTheLastAnalysis(
+            @TempDir Path tempDir) {
+        // R004: the base of 29/9 is the last analysis of the history; the projection of the four
+        // proposals of «Afirmativas regulares» is saved after it and is still not an analysis:
+        // get audits does not list it and the latest analysis is still the base.
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, null);
+        String base = store.save(FileSystemProjectionStoreTest.report(0.7392, 1.0));
+        String projectionId = new FileSystemProjectionStore(tempDir)
+                .save(FileSystemProjectionStoreTest.fourProposals(0.7391, 0.9)).getProjectionId();
+
+        assertEquals(List.of(base), store.list().stream().map(AuditReportSummary::getId).toList(),
+                "R004: get audits lists the same analyses, without the projection");
+        AuditReport latest = store.loadLatest().orElseThrow();
+        assertEquals(0.7392, latest.getRoot().getNumbers().getVocabularyScore(), 1e-12,
+                "R004: the latest analysis is still the base, not the projection saved after it");
+        assertEquals(1.0, FileSystemProjectionStoreTest.quiz(latest).getScores().get("lemma-absence"), 1e-12);
+        assertEquals(Optional.empty(), store.loadDigest(projectionId), "a projection has no digest of an analysis");
     }
 
     @Test
     @DisplayName("should load a saved projection by its id when no analysis has that id, so plan --audit and the suggested words query accept it as their source analysis")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R005")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
-    public void shouldLoadASavedProjectionByItsIdWhenNoAnalysisHasThatIdSoPlanAuditAndTheSuggestedWordsQueryAcceptItAsTheirSourceAnalysis() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldLoadASavedProjectionByItsIdWhenNoAnalysisHasThatIdSoPlanAuditAndTheSuggestedWordsQueryAcceptItAsTheirSourceAnalysis(
+            @TempDir Path tempDir) {
+        // R005 (hook F-05): plan --audit and the suggested words load their source analysis with
+        // AuditReportStore.load; given the id of a saved projection, the store gives the photo with
+        // the pending proposals, and an analysis id still gives that analysis.
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, null);
+        String base = store.save(FileSystemProjectionStoreTest.report(0.7392, 1.0));
+        String projectionId = new FileSystemProjectionStore(tempDir)
+                .save(FileSystemProjectionStoreTest.fourProposals(0.7391, 0.9)).getProjectionId();
+
+        AuditReport projected = store.load(projectionId).orElseThrow(
+                () -> new AssertionError("R005: the id of the saved projection is accepted as a source analysis"));
+
+        assertEquals(0.7391, projected.getRoot().getNumbers().getVocabularyScore(), 1e-12, "the projected photo");
+        AuditNode grandmother = FileSystemProjectionStoreTest.quiz(projected);
+        assertEquals(0.9, grandmother.getScores().get("lemma-absence"), 1e-12,
+                "«My grandmother ___ (come) every year.» as the pending proposal wrote it");
+        assertEquals(AuditTarget.KNOWLEDGE, grandmother.getParent().getTarget(), "with its tree whole");
+        assertEquals(0.7392, store.load(base).orElseThrow().getRoot().getNumbers().getVocabularyScore(), 1e-12,
+                "an analysis id still loads that analysis");
+        assertEquals(Optional.empty(), store.load("2026-01-01T00-00-00"), "an id that is neither loads nothing");
     }
 
     /** F-RONDA2-R004 inv. 4: only the root keeps measures. */

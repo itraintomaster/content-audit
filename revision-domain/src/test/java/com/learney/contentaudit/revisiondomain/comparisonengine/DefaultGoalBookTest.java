@@ -1,7 +1,36 @@
 package com.learney.contentaudit.revisiondomain.comparisonengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.revisiondomain.GoalDeclarationSource;
+import com.learney.contentaudit.revisiondomain.SealedGoalsStore;
+import com.learney.contentaudit.revisiondomain.comparison.BlindSampleGoal;
+import com.learney.contentaudit.revisiondomain.comparison.EffectiveGoals;
+import com.learney.contentaudit.revisiondomain.comparison.FamilyFloor;
+import com.learney.contentaudit.revisiondomain.comparison.Goal;
+import com.learney.contentaudit.revisiondomain.comparison.GoalDeclaration;
+import com.learney.contentaudit.revisiondomain.comparison.GoalKind;
+import com.learney.contentaudit.revisiondomain.comparison.GoalOrigin;
+import com.learney.contentaudit.revisiondomain.comparison.GoalReference;
+import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
+import com.learney.contentaudit.revisiondomain.comparison.SampleCriterion;
+import com.learney.contentaudit.revisiondomain.comparison.SealedGoals;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,49 +44,234 @@ public class DefaultGoalBookTest {
     @DisplayName("should give every analyzer of the catalog that the declaration does not name the floor of its family, marked as family default, so an analyzer as hint-coherence is covered without touching the declaration")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R005")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldGiveEveryAnalyzerOfTheCatalogThatTheDeclarationDoesNotNameTheFloorOfItsFamilyMarkedAsFamilyDefaultSoAnAnalyzerAsHintcoherenceIsCoveredWithoutTouchingTheDeclaration(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The declaration names a floor of its own for quiz-instruction in the levels, and nothing about
+        // hint-coherence, which entered the catalog after it was written.
+        Goal ownFloor = new Goal("quiz-instruction sin subir en los niveles", GoalKind.FLOOR, "quiz-instruction",
+                AuditTarget.MILESTONE, null, 0.0, GoalUnit.EXERCISES, GoalReference.BATCH_START, GoalOrigin.DECLARED);
+        Libro libro = new Libro(new GoalDeclaration(Libro.floorsOf30Of9(), List.of(ownFloor), Libro.sample()));
+
+        EffectiveGoals effective = libro.book().effective();
+
+        for (AuditTarget target : List.of(AuditTarget.KNOWLEDGE, AuditTarget.TOPIC, AuditTarget.MILESTONE,
+                AuditTarget.COURSE)) {
+            Goal floor = Libro.goal(effective, "piso de errores · hint-coherence · " + target);
+            assertEquals(GoalKind.FLOOR, floor.getKind(), "R005: hint-coherence has a floor in " + target);
+            assertEquals(GoalOrigin.FAMILY_DEFAULT, floor.getOrigin(), "R005: marked as the floor of its family");
+            assertEquals("hint-coherence", floor.getSubject());
+            assertEquals(0.0, floor.getThreshold(), 1e-9, "R005: errors do not grow");
+            assertEquals(GoalUnit.EXERCISES, floor.getUnit());
+            assertEquals(GoalReference.BATCH_START, floor.getReference(), "R005: against the batch start");
+            assertEquals(null, floor.getNodeId(), "R005: in every node of that type");
+        }
+        assertEquals(List.of(ownFloor), Libro.floorsFor(effective, "quiz-instruction", AuditTarget.MILESTONE),
+                "R005: a floor the declaration names is the one that counts, without the family's beside it");
+        assertEquals(GoalOrigin.FAMILY_DEFAULT,
+                Libro.goal(effective, "piso de errores · quiz-instruction · KNOWLEDGE").getOrigin(),
+                "R005: and the family covers the node types the declaration does not name");
+        assertEquals(0.5, Libro.goal(effective, "piso de vocabulario · lemma-count · MILESTONE").getThreshold(), 1e-9,
+                "R005: a vocabulary analyzer gets the vocabulary floor");
+        assertEquals(GoalOrigin.FAMILY_DEFAULT,
+                Libro.goal(effective, "piso de vocabulario · vocabulario · COURSE").getOrigin(),
+                "R005: the vocabulary score has its floor too");
+        assertEquals(GoalOrigin.FAMILY_DEFAULT,
+                Libro.goal(effective, "piso de errores · algún error · TOPIC").getOrigin(),
+                "R005: and «algún error» too");
+        assertTrue(Libro.floorsFor(effective, "lemma-count", AuditTarget.KNOWLEDGE).isEmpty(),
+                "R005: the vocabulary floor is only in levels and the course");
     }
 
     @Test
     @DisplayName("should use the floors José accepted on 30/9 when the declaration lacks a family: errors 0 against the batch start in every node and vocabulary 0.5 points against the baseline in levels and course")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R005")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldUseTheFloorsJosAcceptedOn309WhenTheDeclarationLacksAFamilyErrors0AgainstTheBatchStartInEveryNodeAndVocabulary05PointsAgainstTheBaselineInLevelsAndCourse(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Libro libro = new Libro(new GoalDeclaration(List.of(), List.of(), null));
+
+        EffectiveGoals effective = libro.book().effective();
+
+        assertEquals(List.of(AuditTarget.KNOWLEDGE, AuditTarget.TOPIC, AuditTarget.MILESTONE, AuditTarget.COURSE),
+                Libro.targetsOf(effective, "hint-coherence"), "R005: errors in every node");
+        assertEquals(List.of(AuditTarget.MILESTONE, AuditTarget.COURSE), Libro.targetsOf(effective, "lemma-absence"),
+                "R005: vocabulary in levels and course");
+        Goal errors = Libro.goal(effective, "piso de errores · quiz-instruction · COURSE");
+        assertEquals(0.0, errors.getThreshold(), 1e-9);
+        assertEquals(GoalUnit.EXERCISES, errors.getUnit());
+        assertEquals(GoalReference.BATCH_START, errors.getReference());
+        Goal vocabulary = Libro.goal(effective, "piso de vocabulario · lemma-absence · MILESTONE");
+        assertEquals(0.5, vocabulary.getThreshold(), 1e-9);
+        assertEquals(GoalUnit.POINTS, vocabulary.getUnit());
+        assertEquals(GoalReference.BASELINE, vocabulary.getReference());
+
+        // The same with a declaration that only lacks the errors family: its vocabulary floor stays.
+        Libro onlyVocabulary = new Libro(new GoalDeclaration(List.of(new FamilyFloor(AnalyzerFamily.VOCABULARY, 1.0,
+                GoalUnit.POINTS, GoalReference.BASELINE, List.of(AuditTarget.MILESTONE, AuditTarget.COURSE))),
+                List.of(), null));
+        EffectiveGoals mixed = onlyVocabulary.book().effective();
+        assertEquals(1.0, Libro.goal(mixed, "piso de vocabulario · lemma-absence · COURSE").getThreshold(), 1e-9,
+                "R005: the family the declaration brings is its own");
+        assertEquals(0.0, Libro.goal(mixed, "piso de errores · hint-coherence · KNOWLEDGE").getThreshold(), 1e-9,
+                "R005: the one it lacks is the one of 30/9");
     }
 
     @Test
     @DisplayName("should carry the goal of the blind sample of the declaration, 100 pairs with at least 90 better or equal and at most 1 worse, counted")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R005")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
     public void shouldCarryTheGoalOfTheBlindSampleOfTheDeclaration100PairsWithAtLeast90BetterOrEqualAndAtMost1WorseCounted(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        BlindSampleGoal declared = new BlindSampleGoal(100, 90, 1, SampleCriterion.OBSERVED, "José", 30, 0.02);
+        Libro libro = new Libro(new GoalDeclaration(Libro.floorsOf30Of9(), List.of(), declared));
+
+        BlindSampleGoal sample = libro.book().effective().getBlindSample();
+
+        assertEquals(100, sample.getSize());
+        assertEquals(90, sample.getMinBetterOrEqual());
+        assertEquals(1, sample.getMaxWorse());
+        assertEquals(SampleCriterion.OBSERVED, sample.getCriterion(), "R005: counted, not a bound");
+        assertEquals("José", sample.getResponsible());
+        assertEquals(30, sample.getSecondReviewerPairs());
+        assertEquals(0.02, sample.getCumulativeMaxWorseShare(), 1e-9);
+
+        BlindSampleGoal other = new BlindSampleGoal(50, 45, 0, SampleCriterion.BOUND, "Eva", 10, 0.01);
+        assertEquals(other, new Libro(new GoalDeclaration(List.of(), List.of(), other)).book().effective()
+                .getBlindSample(), "R005: the one of the declaration, whatever it says");
+        assertEquals(declared, new Libro(new GoalDeclaration(List.of(), List.of(), null)).book().effective()
+                .getBlindSample(), "R005: without one, the goal José accepted on 30/9");
     }
 
     @Test
     @DisplayName("should seal the effective goals whole, with their fingerprint, their values and the time they were sealed")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
-    public void shouldSealTheEffectiveGoalsWholeWithTheirFingerprintTheirValuesAndTheTimeTheyWereSealed(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldSealTheEffectiveGoalsWholeWithTheirFingerprintTheirValuesAndTheTimeTheyWereSealed() {
+        Libro libro = new Libro(new GoalDeclaration(Libro.floorsOf30Of9(), List.of(Libro.progressOfTheLevels()),
+                Libro.sample()));
+        assertTrue(libro.book().sealed().isEmpty(), "R006: nothing sealed yet");
+        Instant before = Instant.now();
+
+        SealedGoals sealed = libro.book().seal();
+
+        Instant after = Instant.now();
+        assertEquals(1, libro.written.size(), "R006: sealing writes once");
+        assertEquals(sealed, libro.written.get(0), "R006: what it returns is what it keeps");
+        EffectiveGoals effective = libro.book().effective();
+        assertEquals(effective.getFingerprint(), sealed.getGoals().getFingerprint(), "R006: with their fingerprint");
+        assertEquals(effective.getGoals(), sealed.getGoals().getGoals(), "R006: every goal, with its values");
+        assertEquals(effective.getBlindSample(), sealed.getGoals().getBlindSample(), "R006: and the blind sample");
+        assertTrue(sealed.getGoals().getGoals().contains(Libro.progressOfTheLevels()),
+                "R006: the progress goals José fixed are among them");
+        assertFalse(sealed.getSealedAt().isBefore(before), "R006: the time it was sealed");
+        assertFalse(sealed.getSealedAt().isAfter(after));
+        assertEquals(Optional.of(sealed), libro.book().sealed(), "R006: and reads it back");
     }
 
     @Test
     @DisplayName("should give the same fingerprint to the same effective goals and another one when a value changes")
     @Tag("FEAT-METAS")
     @Tag("F-METAS-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-METAS sin implementar")
-    public void shouldGiveTheSameFingerprintToTheSameEffectiveGoalsAndAnotherOneWhenAValueChanges(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldGiveTheSameFingerprintToTheSameEffectiveGoalsAndAnotherOneWhenAValueChanges() {
+        GoalDeclaration declaration = new GoalDeclaration(Libro.floorsOf30Of9(), List.of(Libro.progressOfTheLevels()),
+                Libro.sample());
+        String first = new Libro(declaration).book().effective().getFingerprint();
+        String again = new Libro(new GoalDeclaration(Libro.floorsOf30Of9(), List.of(Libro.progressOfTheLevels()),
+                Libro.sample())).book().effective().getFingerprint();
+
+        List<FamilyFloor> stricter = new ArrayList<>();
+        for (FamilyFloor floor : Libro.floorsOf30Of9()) {
+            stricter.add(floor.getFamily() == AnalyzerFamily.VOCABULARY
+                    ? new FamilyFloor(AnalyzerFamily.VOCABULARY, 1.0, floor.getUnit(), floor.getReference(),
+                            floor.getNodeTargets())
+                    : floor);
+        }
+        String changedFloor = new Libro(new GoalDeclaration(stricter, List.of(Libro.progressOfTheLevels()),
+                Libro.sample())).book().effective().getFingerprint();
+        String changedSample = new Libro(new GoalDeclaration(Libro.floorsOf30Of9(),
+                List.of(Libro.progressOfTheLevels()), new BlindSampleGoal(100, 85, 1, SampleCriterion.OBSERVED, "José",
+                        30, 0.02))).book().effective().getFingerprint();
+
+        assertEquals(64, first.length(), "R006: a SHA-256 in hex");
+        assertEquals(first, again, "R006: the same goals, the same fingerprint");
+        assertNotEquals(first, changedFloor, "R006: the vocabulary floor at 1,0 is other goals");
+        assertNotEquals(first, changedSample, "R006: and so is another goal of the blind sample");
+    }
+
+    /**
+     * The book with a declaration in memory, a sealed store in memory and a catalog with four of today's
+     * analyzers, two of each family, in the order of the catalog.
+     */
+    static final class Libro {
+        final GoalDeclaration declaration;
+        final List<SealedGoals> written = new ArrayList<>();
+        final AnalyzerCatalog catalog = mock(AnalyzerCatalog.class);
+        final GoalDeclarationSource source;
+        final SealedGoalsStore store = new SealedGoalsStore() {
+            @Override
+            public Optional<SealedGoals> read() {
+                return written.isEmpty() ? Optional.empty() : Optional.of(written.get(written.size() - 1));
+            }
+
+            @Override
+            public void write(SealedGoals sealedGoals) {
+                written.add(sealedGoals);
+            }
+        };
+
+        Libro(GoalDeclaration declaration) {
+            this.declaration = declaration;
+            this.source = () -> declaration;
+            when(catalog.list()).thenReturn(List.of(
+                    card("lemma-absence", AnalyzerFamily.VOCABULARY),
+                    card("lemma-count", AnalyzerFamily.VOCABULARY),
+                    card("quiz-instruction", AnalyzerFamily.ERRORS),
+                    card("hint-coherence", AnalyzerFamily.ERRORS)));
+        }
+
+        DefaultGoalBook book() {
+            return new DefaultGoalBook(source, store, catalog);
+        }
+
+        static AnalyzerDescriptor card(String name, AnalyzerFamily family) {
+            return new AnalyzerDescriptor(name, name, AuditTarget.QUIZ, "¿?", "la oración", List.of(), "1,0", family,
+                    List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), AnalysisCost.INSTANT, name, List.of());
+        }
+
+        static List<FamilyFloor> floorsOf30Of9() {
+            return List.of(
+                    new FamilyFloor(AnalyzerFamily.ERRORS, 0.0, GoalUnit.EXERCISES, GoalReference.BATCH_START,
+                            List.of(AuditTarget.KNOWLEDGE, AuditTarget.TOPIC, AuditTarget.MILESTONE, AuditTarget.COURSE)),
+                    new FamilyFloor(AnalyzerFamily.VOCABULARY, 0.5, GoalUnit.POINTS, GoalReference.BASELINE,
+                            List.of(AuditTarget.MILESTONE, AuditTarget.COURSE)));
+        }
+
+        static Goal progressOfTheLevels() {
+            return new Goal("avance · hint-coherence · niveles", GoalKind.PROGRESS, "hint-coherence",
+                    AuditTarget.MILESTONE, null, 0.0, GoalUnit.EXERCISES, GoalReference.ABSOLUTE, GoalOrigin.DECLARED);
+        }
+
+        static BlindSampleGoal sample() {
+            return new BlindSampleGoal(100, 90, 1, SampleCriterion.OBSERVED, "José", 30, 0.02);
+        }
+
+        static Goal goal(EffectiveGoals goals, String id) {
+            for (Goal goal : goals.getGoals()) {
+                if (id.equals(goal.getId())) {
+                    return goal;
+                }
+            }
+            throw new AssertionError("no goal «" + id + "» among " + goals.getGoals().stream().map(Goal::getId).toList());
+        }
+
+        static List<Goal> floorsFor(EffectiveGoals goals, String subject, AuditTarget target) {
+            return goals.getGoals().stream().filter(g -> g.getKind() == GoalKind.FLOOR
+                    && subject.equals(g.getSubject()) && g.getNodeTarget() == target).toList();
+        }
+
+        static List<AuditTarget> targetsOf(EffectiveGoals goals, String subject) {
+            return goals.getGoals().stream().filter(g -> g.getKind() == GoalKind.FLOOR
+                    && subject.equals(g.getSubject())).map(Goal::getNodeTarget).toList();
+        }
     }
 }

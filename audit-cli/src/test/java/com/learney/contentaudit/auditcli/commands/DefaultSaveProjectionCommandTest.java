@@ -1,7 +1,21 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import com.learney.contentaudit.auditdomain.AuditReportSummary;
+import com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePending;
+import com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePendingReason;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjector;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.io.TempDir;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,29 +29,83 @@ public class DefaultSaveProjectionCommandTest {
     @DisplayName("should save the photo with the pending proposals of the active pair and print the id that plan --audit accepts")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R005")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldSaveThePhotoWithThePendingProposalsOfTheActivePairAndPrintTheIdThatPlanAuditAccepts(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(dir);
+        historial.analysis("2026-09-30T11-54-02", "analisis");
+        CourseProjector projector = mock(CourseProjector.class);
+        when(projector.project(any(), any())).thenReturn(FHistorial.projection("2026-09-30T11-54-02",
+                "2026-09-30T11-54-12", "con-las-pendientes", List.of("task-042"), List.of()));
+        DefaultSaveProjectionCommand command = new DefaultSaveProjectionCommand(projector, historial.projections);
+
+        FHistorial.Salida saved = FHistorial.run(() -> command.saveProjection("db/english-course", List.of(), Map.of(),
+                "text"));
+
+        assertEquals(0, saved.exit(), saved.err());
+        String id = "proyeccion-2026-09-30T11-54-02-2026-09-30T11-54-12";
+        assertTrue(saved.out().startsWith("Saved projection: " + id + "\n"), saved.out());
+        assertTrue(saved.out().contains("plan <course> --audit " + id), "R005: the id plan --audit accepts");
+        assertEquals("con-las-pendientes", historial.audits.load(id).orElseThrow().getRoot().getMetadata().get("marca"),
+                "R005: the photo with the pending proposals, loadable by that id");
+        verify(projector).project(Path.of("db/english-course"), null);
     }
 
     @Test
     @DisplayName("should print with that id the pending proposals applied and those not applicable, each with its cause")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldPrintWithThatIdThePendingProposalsAppliedAndThoseNotApplicableEachWithItsCause(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(dir);
+        CourseProjector projector = mock(CourseProjector.class);
+        when(projector.project(any(), any())).thenReturn(FHistorial.projection("2026-09-30T11-54-02",
+                "2026-09-30T11-54-12", "con-las-pendientes", List.of("task-041", "task-042"),
+                List.of(new NonApplicablePending("task-143-b", NonApplicablePendingReason.ELEMENT_BEFORE_MISMATCH,
+                        "su ejercicio ya no es el que vio: otra propuesta anterior ya lo cambió"))));
+        DefaultSaveProjectionCommand command = new DefaultSaveProjectionCommand(projector, historial.projections);
+
+        FHistorial.Salida saved = FHistorial.run(() -> command.saveProjection("db/english-course",
+                List.of("task-041", "task-042", "task-143-b"), Map.of("quiz-instruction", 0), "text"));
+
+        assertEquals(0, saved.exit(), saved.err());
+        assertTrue(saved.out().contains("Applied pending proposals (2): task-041, task-042"), saved.out());
+        assertTrue(saved.out().contains("Not applicable (1)\n  task-143-b: ELEMENT_BEFORE_MISMATCH — su ejercicio ya "
+                + "no es el que vio: otra propuesta anterior ya lo cambió"), "R002: each with its cause: " + saved.out());
+        org.mockito.ArgumentCaptor<com.learney.contentaudit.revisiondomain.projection.ProjectionScope> scope =
+                org.mockito.ArgumentCaptor.forClass(com.learney.contentaudit.revisiondomain.projection.ProjectionScope.class);
+        verify(projector).project(org.mockito.ArgumentMatchers.eq(Path.of("db/english-course")), scope.capture());
+        assertEquals(List.of("task-041", "task-042", "task-143-b"), scope.getValue().getProposalIds());
+        assertEquals(Map.of("quiz-instruction", 0), scope.getValue().getAnalyzerBudgets());
     }
 
     @Test
     @DisplayName("should leave get audits listing the same analyses, with the same latest one, after saving a projection")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldLeaveGetAuditsListingTheSameAnalysesWithTheSameLatestOneAfterSavingAProjection(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        FHistorial historial = new FHistorial(dir);
+        historial.analysis("2026-09-29T08-00-00", "base");
+        historial.analysis("2026-09-30T11-54-02", "analisis");
+        List<String> before = historial.audits.list().stream().map(AuditReportSummary::getId).toList();
+        CourseProjector projector = mock(CourseProjector.class);
+        when(projector.project(any(), any())).thenReturn(FHistorial.projection("2026-09-30T11-54-02",
+                "2026-09-30T11-54-12", "con-las-pendientes", List.of("task-042"), List.of()));
+        DefaultSaveProjectionCommand command = new DefaultSaveProjectionCommand(projector, historial.projections);
+
+        FHistorial.Salida saved = FHistorial.run(() -> command.saveProjection("db/english-course", List.of(), Map.of(),
+                "json"));
+
+        assertEquals(0, saved.exit(), saved.err());
+        assertTrue(saved.out().contains("\"projectionId\" : \"proyeccion-2026-09-30T11-54-02-2026-09-30T11-54-12\""));
+        assertEquals(before, historial.audits.list().stream().map(AuditReportSummary::getId).toList(),
+                "R004: the same analyses");
+        assertEquals("analisis", historial.audits.loadLatest().orElseThrow().getRoot().getMetadata().get("marca"),
+                "R004: and the same latest one");
+        assertEquals(List.of("audit-2026-09-29T08-00-00.json", "audit-2026-09-30T11-54-02.json"),
+                historial.names("audits"), "R004: nothing new in audits/");
     }
+
+    @TempDir
+    Path dir;
 }

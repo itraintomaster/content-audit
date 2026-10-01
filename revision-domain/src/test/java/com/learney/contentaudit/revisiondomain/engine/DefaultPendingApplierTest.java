@@ -1,7 +1,20 @@
 package com.learney.contentaudit.revisiondomain.engine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
+import com.learney.contentaudit.revisiondomain.RevisionProposal;
+import com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePending;
+import com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePendingReason;
+import java.time.Instant;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,39 +28,121 @@ public class DefaultPendingApplierTest {
     @DisplayName("should write each proposal as approve writes it, replacing the node of its elementBefore with its elementAfter")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldWriteEachProposalAsApproveWritesItReplacingTheNodeOfItsElementBeforeWithItsElementAfter(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: «It ___ (come) every year.» is written as approve writes it: the node of its elementBefore is
+        // replaced by its elementAfter, the rest of the course stays, and the course it was given is not touched.
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        RevisionProposal grandmother = proposal("p-grandmother", DefaultCourseProjectorTest.Curso.GRANDMOTHER,
+                "2026-09-30T12:00:01Z", DiagnosisKind.LEMMA_ABSENCE);
+
+        AppliedProposals applied = applier().apply(course, List.of(grandmother));
+
+        assertEquals(List.of(grandmother), applied.getApplied(), "R001: it enters");
+        assertEquals(DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                DefaultCourseProjectorTest.Curso.find(applied.getCourse(), DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                "R001: the node is its elementAfter");
+        assertEquals(DefaultCourseProjectorTest.Curso.written(course,
+                        DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.GRANDMOTHER)),
+                applied.getCourse(), "R001: as approve writes it, and nothing else changes");
+        assertEquals(DefaultCourseProjectorTest.Curso.before(DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                DefaultCourseProjectorTest.Curso.find(course, DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                "the course it was given is not touched");
+        assertEquals(List.of(), applied.getNonApplicable());
     }
 
     @Test
     @DisplayName("should apply a pending proposal only when its node exists and its elementBefore matches that node in the course with the approved proposals")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldApplyAPendingProposalOnlyWhenItsNodeExistsAndItsElementBeforeMatchesThatNodeInTheCourseWithTheApprovedProposals(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: on the course with what is approved, «I ___ a lot of vegetables.» matches the elementBefore of its
+        // fix and enters; the fix of «She ___ (sport) hats.» was made on another version of the exercise, so it does
+        // not match its node and is declared not applicable.
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        RevisionProposal vegetables = proposal("p-vegetables", DefaultCourseProjectorTest.Curso.VEGETABLES,
+                "2026-09-30T12:00:03Z", DiagnosisKind.LEMMA_ABSENCE);
+        QuizTemplateEntity otherVersion = DefaultCourseProjectorTest.Curso.quiz(DefaultCourseProjectorTest.Curso.HATS,
+                DefaultCourseProjectorTest.Curso.REGULAR, "She", "sport", "(sport) hats.", "She sport hats.",
+                "Ella luce sombreros.");
+        RevisionProposal hats = DefaultCourseProjectorTest.Curso.proposal("p-hats", otherVersion,
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.HATS),
+                Instant.parse("2026-09-30T12:00:04Z"), DiagnosisKind.LEMMA_ABSENCE);
+
+        AppliedProposals applied = applier().apply(course, List.of(vegetables, hats));
+
+        assertEquals(List.of(vegetables), applied.getApplied(), "R002: only the one whose elementBefore matches");
+        assertEquals(List.of("p-hats"), applied.getNonApplicable().stream().map(NonApplicablePending::getProposalId).toList());
+        assertEquals(NonApplicablePendingReason.ELEMENT_BEFORE_MISMATCH, applied.getNonApplicable().get(0).getReason(),
+                "R002: with its cause");
+        assertEquals(DefaultCourseProjectorTest.Curso.before(DefaultCourseProjectorTest.Curso.HATS),
+                DefaultCourseProjectorTest.Curso.find(applied.getCourse(), DefaultCourseProjectorTest.Curso.HATS),
+                "R002: the exercise it did not match stays as it was");
     }
 
     @Test
     @DisplayName("should apply the pending proposals in creation order, so of an exercise with two tasks, SENTENCE_LENGTH and LEMMA_ABSENCE, as 143 of the plan of 29/9, the older enters and the newer is declared not applicable")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldApplyThePendingProposalsInCreationOrderSoOfAnExerciseWithTwoTasksSENTENCELENGTHAndLEMMAABSENCEAs143OfThePlanOf299TheOlderEntersAndTheNewerIsDeclaredNotApplicable(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «I ___ a lot of vegetables.» has two tasks, as 143 exercises of the plan of 29/9: a SENTENCE_LENGTH
+        // proposal, older, and a LEMMA_ABSENCE one, newer, both made on the exercise as it is. They are applied in
+        // order of creation whatever order they come in: the older enters, and the newer no longer matches.
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        QuizTemplateEntity before = DefaultCourseProjectorTest.Curso.before(DefaultCourseProjectorTest.Curso.VEGETABLES);
+        QuizTemplateEntity shorter = DefaultCourseProjectorTest.Curso.quiz(DefaultCourseProjectorTest.Curso.VEGETABLES,
+                DefaultCourseProjectorTest.Curso.REGULAR, "I", "love", "vegetables.", "I love vegetables.",
+                "Me gustan las verduras.");
+        RevisionProposal length = DefaultCourseProjectorTest.Curso.proposal("p-length", before, shorter,
+                Instant.parse("2026-09-30T11:58:00Z"), DiagnosisKind.SENTENCE_LENGTH);
+        RevisionProposal absence = DefaultCourseProjectorTest.Curso.proposal("p-absence", before,
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.VEGETABLES),
+                Instant.parse("2026-09-30T12:00:03Z"), DiagnosisKind.LEMMA_ABSENCE);
+
+        AppliedProposals applied = applier().apply(course, List.of(absence, length));
+
+        assertEquals(List.of(length), applied.getApplied(), "R002: the older, SENTENCE_LENGTH, enters");
+        assertEquals(List.of("p-absence"), applied.getNonApplicable().stream().map(NonApplicablePending::getProposalId)
+                .toList(), "R002: the newer, LEMMA_ABSENCE, is declared not applicable");
+        assertEquals(NonApplicablePendingReason.ELEMENT_BEFORE_MISMATCH, applied.getNonApplicable().get(0).getReason());
+        assertEquals(shorter, DefaultCourseProjectorTest.Curso.find(applied.getCourse(),
+                DefaultCourseProjectorTest.Curso.VEGETABLES), "the exercise has the older one");
     }
 
     @Test
     @DisplayName("should declare not applicable, with its cause, a pending proposal whose node no longer exists in the course")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldDeclareNotApplicableWithItsCauseAPendingProposalWhoseNodeNoLongerExistsInTheCourse(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: a pending proposal on an exercise that is no longer in the course does not enter, and says why.
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        QuizTemplateEntity gone = DefaultCourseProjectorTest.Curso.quiz("67fab6d59930102295349999",
+                DefaultCourseProjectorTest.Curso.REGULAR, "I", "walk", "(walk) to school.", "I walk to school.",
+                "Camino a la escuela.");
+        RevisionProposal proposal = DefaultCourseProjectorTest.Curso.proposal("p-gone", gone, gone,
+                Instant.parse("2026-09-30T12:00:06Z"), DiagnosisKind.LEMMA_ABSENCE);
+
+        AppliedProposals applied = applier().apply(course, List.of(proposal));
+
+        assertEquals(List.of(), applied.getApplied(), "R002: it does not enter");
+        assertEquals(1, applied.getNonApplicable().size());
+        NonApplicablePending declared = applied.getNonApplicable().get(0);
+        assertEquals("p-gone", declared.getProposalId());
+        assertEquals(NonApplicablePendingReason.NODE_ABSENT, declared.getReason(), "R002: its cause, the node is gone");
+        assertTrue(declared.getDetail().contains("67fab6d59930102295349999"), "naming the node: " + declared.getDetail());
+        assertSame(course, applied.getCourse(), "nothing is written");
+    }
+
+    private static DefaultPendingApplier applier() {
+        return new DefaultPendingApplier(new DefaultCourseElementLocator());
+    }
+
+    /** The fix of the 077 of the exercise, made on the exercise as the course has it. */
+    private static RevisionProposal proposal(String proposalId, String quizId, String createdAt, DiagnosisKind kind) {
+        return DefaultCourseProjectorTest.Curso.proposal(proposalId, DefaultCourseProjectorTest.Curso.before(quizId),
+                DefaultCourseProjectorTest.Curso.after(quizId), Instant.parse(createdAt), kind);
     }
 }

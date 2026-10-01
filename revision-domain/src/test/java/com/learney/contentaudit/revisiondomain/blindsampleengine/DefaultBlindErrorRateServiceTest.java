@@ -1,7 +1,42 @@
 package com.learney.contentaudit.revisiondomain.blindsampleengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.Baseline;
+import com.learney.contentaudit.auditdomain.BaselineStore;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.revisiondomain.blindsample.ErrorMark;
+import com.learney.contentaudit.revisiondomain.blindsample.ErrorRateItem;
+import com.learney.contentaudit.revisiondomain.blindsample.ErrorRateItemView;
+import com.learney.contentaudit.revisiondomain.blindsample.ErrorRateResult;
+import com.learney.contentaudit.revisiondomain.blindsample.ErrorRateSample;
+import com.learney.contentaudit.revisiondomain.blindsample.SampleClosedException;
+import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjection;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjector;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,48 +50,228 @@ public class DefaultBlindErrorRateServiceTest {
     @DisplayName("should draw n exercises of a level or of the course, each shown once in its baseline or its projected version, without saying which")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldDrawNExercisesOfALevelOrOfTheCourseEachShownOnceInItsBaselineOrItsProjectedVersionWithoutSayingWhich(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tasa tasa = new Tasa();
+
+        ErrorRateSample a1 = tasa.service().draw(Tasa.COURSE_PATH, AuditTarget.MILESTONE, "A1", 8, 9L);
+        ErrorRateSample again = tasa.service().draw(Tasa.COURSE_PATH, AuditTarget.MILESTONE, Tasa.A1, 8, 9L);
+        ErrorRateSample course = tasa.service().draw(Tasa.COURSE_PATH, AuditTarget.COURSE, null, 400, 9L);
+
+        assertEquals(8, a1.getItems().size(), "R006: n exercises of A1");
+        assertTrue(Tasa.A1_QUIZZES.containsAll(a1.getItems().stream().map(ErrorRateItem::getQuizNodeId).toList()),
+                "R006: of the level, by its name or its id");
+        assertEquals(8, new HashSet<>(a1.getItems().stream().map(ErrorRateItem::getQuizNodeId).toList()).size(),
+                "R006: each one once");
+        assertEquals(a1.getItems(), again.getItems(), "R006: the same seed, the same exercises and versions");
+        assertEquals(Set.of(true, false), new HashSet<>(a1.getItems().stream().map(ErrorRateItem::isFromBaseline)
+                .toList()), "R006: baseline and projection mixed");
+        for (ErrorRateItem item : a1.getItems()) {
+            String statement = item.getSide().getView().getStatement();
+            assertEquals(item.isFromBaseline() ? "You ___ every day." : "You ___ (work) every day.", statement,
+                    "R006: the version it says it is, as the student sees it");
+        }
+        assertEquals(15, course.getItems().size(), "R006: the whole course, all of them when there are fewer");
+        assertEquals(AuditTarget.COURSE, course.getNodeTarget());
+        assertEquals(AuditTarget.MILESTONE, a1.getNodeTarget());
+        assertEquals(Tasa.A1, a1.getNodeId());
+        assertEquals(9L, a1.getSeed());
+        assertEquals(Tasa.BASELINE, a1.getBaselineAuditId());
     }
 
     @Test
     @DisplayName("should hand out while open only each exercise as the student sees it, without whether it comes from the baseline")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldHandOutWhileOpenOnlyEachExerciseAsTheStudentSeesItWithoutWhetherItComesFromTheBaseline(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tasa tasa = new Tasa();
+        ErrorRateSample sample = tasa.service().draw(Tasa.COURSE_PATH, AuditTarget.MILESTONE, "A1", 6, 4L);
+
+        List<ErrorRateItemView> views = tasa.service().items(sample.getSampleId());
+
+        assertEquals(6, views.size());
+        for (int i = 0; i < views.size(); i++) {
+            ErrorRateItem item = sample.getItems().get(i);
+            assertEquals(new ErrorRateItemView(item.getIndex(), item.getSide()), views.get(i),
+                    "R006: the exercise as the student sees it, and nothing else");
+        }
+        assertEquals(List.of("index", "side"), DefaultBlindSampleServiceTest.fields(ErrorRateItemView.class),
+                "R006: without whether it comes from the baseline, nor its id");
     }
 
     @Test
     @DisplayName("should publish on closing the share with an error before and after with its 95% margin, 4.3 points at 25.7% with 400 exercises")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldPublishOnClosingTheShareWithAnErrorBeforeAndAfterWithIts95Margin43PointsAt257With400Exercises(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tasa tasa = new Tasa();
+        ErrorRateSample sample = tasa.stored(400, 400);
+        for (int i = 1; i <= 800; i++) {
+            boolean error = i <= 103 || (i > 400 && i <= 420);
+            tasa.service().mark(sample.getSampleId(), i, error, "tester");
+        }
+
+        ErrorRateResult result = tasa.service().close(sample.getSampleId());
+
+        assertEquals(103, result.getBefore().getCount());
+        assertEquals(400, result.getBefore().getTotal());
+        assertEquals(25.7, result.getBefore().getShare() * 100, 0.06, "R006: 25,7 % with an error before");
+        assertEquals(4.3, DefaultSampleStatistics.margin(result.getBefore()) * 100, 0.05, "R006: ±4,3 points");
+        assertTrue(result.getBefore().getLower95() < 0.2575 && result.getBefore().getUpper95() > 0.2575,
+                "R006: with its interval at 95 %");
+        assertEquals(20, result.getAfter().getCount());
+        assertEquals(5.0, result.getAfter().getShare() * 100, 1e-9, "R006: 5 % after");
+        assertEquals(2.1, DefaultSampleStatistics.margin(result.getAfter()) * 100, 0.05, "R006: ±2,1 points");
     }
 
     @Test
     @DisplayName("should publish next to it the any-error share the analyzers gave those same exercises and say whether it falls within the margin")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldPublishNextToItTheAnyerrorShareTheAnalyzersGaveThoseSameExercisesAndSayWhetherItFallsWithinTheMargin(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tasa tasa = new Tasa();
+        ErrorRateSample sample = tasa.stored(10, 10);
+        tasa.analyzersSay(Set.of(1, 2, 3), Set.of(11));
+        for (int i = 1; i <= 20; i++) {
+            tasa.service().mark(sample.getSampleId(), i, Set.of(1, 2, 3, 11).contains(i), "tester");
+        }
+
+        ErrorRateResult agree = tasa.service().close(sample.getSampleId());
+
+        assertEquals(0.3, agree.getBefore().getShare(), 1e-12);
+        assertEquals(0.3, agree.getAnalyzersBefore().getShare(), 1e-12, "R006: the analyzers on those same exercises");
+        assertEquals(0.1, agree.getAnalyzersAfter().getShare(), 1e-12);
+        assertEquals(10, agree.getAnalyzersAfter().getTotal());
+        assertTrue(agree.isAnalyzersWithinMargin(), "R006: they coincide");
+
+        ErrorRateSample missing = tasa.stored(10, 10);
+        tasa.analyzersSay(Set.of(), Set.of());
+        for (int i = 1; i <= 20; i++) {
+            tasa.service().mark(missing.getSampleId(), i, i <= 6, "tester");
+        }
+        ErrorRateResult blind = tasa.service().close(missing.getSampleId());
+        assertEquals(0.6, blind.getBefore().getShare(), 1e-12, "R006: 6 of 10 with an error, read blind");
+        assertEquals(0.0, blind.getAnalyzersBefore().getShare(), 1e-12, "R006: none, for the analyzers");
+        assertFalse(blind.isAnalyzersWithinMargin(), "R006: the analyzers are missing errors");
     }
 
     @Test
     @DisplayName("should refuse a mark once the error-rate sample is closed")
     @Tag("FEAT-CIEGA")
     @Tag("F-CIEGA-R006")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CIEGA sin implementar")
     public void shouldRefuseAMarkOnceTheErrorrateSampleIsClosed() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Tasa tasa = new Tasa();
+        ErrorRateSample sample = tasa.service().draw(Tasa.COURSE_PATH, AuditTarget.MILESTONE, "A1", 4, 4L);
+        tasa.service().mark(sample.getSampleId(), 1, true, "tester");
+        tasa.service().close(sample.getSampleId());
+
+        SampleClosedException refused = assertThrows(SampleClosedException.class,
+                () -> tasa.service().mark(sample.getSampleId(), 2, false, "tester"));
+
+        assertEquals("Sample '" + sample.getSampleId() + "' is closed: it no longer accepts answers or changes.",
+                refused.getMessage());
+        assertEquals(List.of(1), tasa.store.loadErrorRate(sample.getSampleId()).orElseThrow().getMarks().stream()
+                .map(ErrorMark::getItemIndex).toList(), "R006: the mark it had, and no other");
+    }
+
+    /**
+     * A course of 15 exercises: 10 in A1 and 5 in A2, «You ___ every day.» in the baseline and «You ___ (work) every
+     * day.» in the projection; the error-rate service reads the baseline from its store and the projection from
+     * the projector, and the analyzers' «algún error» from the baseline and from the active analysis.
+     */
+    static final class Tasa {
+        static final java.nio.file.Path COURSE_PATH = java.nio.file.Path.of("db/english-course");
+        static final String A1 = "6814dafa7d73e7209a13d382";
+        static final String A2 = "6814dafa7d73e7209a13d218";
+        static final String BASELINE = "2026-09-29T08-00-00";
+        static final String AUDIT = "2026-10-01T06-11-09";
+        static final List<String> A1_QUIZZES = ids(1, 10);
+        static final List<String> A2_QUIZZES = ids(11, 15);
+
+        final CourseProjector projector = mock(CourseProjector.class);
+        final BaselineStore baselines = mock(BaselineStore.class);
+        final AuditReportStore reports = mock(AuditReportStore.class);
+        final DefaultBlindSampleServiceTest.Almacen store = new DefaultBlindSampleServiceTest.Almacen();
+
+        Tasa() {
+            when(baselines.read()).thenReturn(Optional.of(new Baseline(BASELINE, Instant.parse("2026-09-30T09:00:00Z"))));
+            when(reports.load(BASELINE)).thenReturn(Optional.of(report(false, Set.of())));
+            when(reports.load(AUDIT)).thenReturn(Optional.of(report(true, Set.of())));
+            when(projector.project(any(), any())).thenAnswer(call -> new CourseProjection(AUDIT, "plan", "plan",
+                    ConsolidatedViewAvailability.AVAILABLE, null, report(false, Set.of()), report(false, Set.of()),
+                    report(true, Set.of()), List.of(), List.of()));
+        }
+
+        DefaultBlindErrorRateService service() {
+            return new DefaultBlindErrorRateService(projector, baselines, reports,
+                    new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()), store,
+                    new DefaultSampleStatistics());
+        }
+
+        /** A sample already drawn: first the exercises shown in their baseline version, then in the projection's. */
+        ErrorRateSample stored(int fromBaseline, int fromProjection) {
+            List<ErrorRateItem> items = new ArrayList<>();
+            for (int i = 1; i <= fromBaseline + fromProjection; i++) {
+                String id = String.format(Locale.ROOT, "67fab6d59930102295342%03d", ((i - 1) % 15) + 1);
+                items.add(new ErrorRateItem(i, id, i <= fromBaseline, null));
+            }
+            String sampleId = "tasa-" + (store.rates.size() + 1);
+            ErrorRateSample sample = new ErrorRateSample(sampleId, AuditTarget.COURSE, null, items.size(), 1L,
+                    Instant.now(), BASELINE, AUDIT, items, new ArrayList<>(), null);
+            store.saveErrorRate(sample);
+            return sample;
+        }
+
+        /** The «algún error» the analyzers gave: by item of the baseline and of the projection, as positions 1..15. */
+        void analyzersSay(Set<Integer> before, Set<Integer> after) {
+            Set<String> baselineErrors = new HashSet<>();
+            for (int i : before) {
+                baselineErrors.add(String.format(Locale.ROOT, "67fab6d59930102295342%03d", ((i - 1) % 15) + 1));
+            }
+            Set<String> activeErrors = new HashSet<>();
+            for (int i : after) {
+                activeErrors.add(String.format(Locale.ROOT, "67fab6d59930102295342%03d", ((i - 1) % 15) + 1));
+            }
+            when(reports.load(BASELINE)).thenReturn(Optional.of(report(false, baselineErrors)));
+            when(reports.load(AUDIT)).thenReturn(Optional.of(report(true, activeErrors)));
+        }
+
+        static List<String> ids(int from, int to) {
+            List<String> ids = new ArrayList<>();
+            for (int i = from; i <= to; i++) {
+                ids.add(String.format(Locale.ROOT, "67fab6d59930102295342%03d", i));
+            }
+            return ids;
+        }
+
+        static AuditReport report(boolean projected, Set<String> withError) {
+            Map<String, AuditableQuiz> a1 = new LinkedHashMap<>();
+            for (String id : A1_QUIZZES) {
+                a1.put(id, quiz(id, projected));
+            }
+            AuditReport report = DefaultBlindSampleServiceTest.Tanda.withAnyError(a1, withError);
+            AuditNode root = report.getRoot();
+            AuditNode a2 = DefaultBlindSampleServiceTest.Tanda.node(new AuditableMilestone(new ArrayList<>(), A2, "A2",
+                    "A2"), AuditTarget.MILESTONE, root);
+            Map<String, AuditableQuiz> a2Quizzes = new LinkedHashMap<>();
+            for (String id : A2_QUIZZES) {
+                a2Quizzes.put(id, quiz(id, projected));
+            }
+            AuditNode a2Report = DefaultBlindSampleServiceTest.Tanda.withAnyError(a2Quizzes, withError).getRoot()
+                    .getChildren().get(0);
+            for (AuditNode topic : a2Report.getChildren()) {
+                topic.setParent(a2);
+                a2.getChildren().add(topic);
+            }
+            return report;
+        }
+
+        static AuditableQuiz quiz(String id, boolean projected) {
+            return DefaultBlindSampleServiceTest.Tanda.quiz(id, "You", "work",
+                    projected ? "(work) every day." : "every day.", "Trabajás todos los días.");
+        }
     }
 }

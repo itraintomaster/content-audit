@@ -1,7 +1,43 @@
 package com.learney.contentaudit.revisiondomain.engine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AnalyzerProvider;
+import com.learney.contentaudit.auditdomain.AuditEngine;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.ContentAnalyzer;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerPlanBinding;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import org.mockito.ArgumentCaptor;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,59 +51,300 @@ public class DefaultProjectionMeasurerTest {
     @DisplayName("should map and measure a course the way analyze does, so the report of a projected course equals the one analyze gives on that course written to disk")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldMapAndMeasureACourseTheWayAnalyzeDoesSoTheReportOfAProjectedCourseEqualsTheOneAnalyzeGivesOnThatCourseWrittenToDisk(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the course with «My grandmother ___ (come) every year.» written, measured with the analyzers of the
+        // starting analysis, gives in every node what analyze gives on that course: the same scores, published
+        // numbers, findings and measures.
+        CourseEntity written = DefaultCourseProjectorTest.Curso.written(DefaultCourseProjectorTest.Curso.course(),
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.GRANDMOTHER));
+        AuditReport starting = DefaultCourseProjectorTest.Curso.analyze(DefaultCourseProjectorTest.Curso.course());
+
+        AuditReport measured = new DefaultProjectionMeasurer(DefaultCourseProjectorTest.Curso.mapper(),
+                DefaultCourseProjectorTest.Curso.engine()).measure(written, starting, Map.of());
+
+        AuditReport analyzed = DefaultCourseProjectorTest.Curso.analyze(written);
+        assertEquals(DefaultCourseProjectorTest.Curso.vocabulary(analyzed), DefaultCourseProjectorTest.Curso.vocabulary(measured),
+                "R001: every node, as analyze on the course written");
+        assertEquals(DefaultCourseProjectorTest.Curso.findings(analyzed), DefaultCourseProjectorTest.Curso.findings(measured),
+                "R001: the same findings");
+        assertEquals(analyzed.getRoot().getMeasures(), measured.getRoot().getMeasures(), "R001: measured the same way");
+        assertEquals(0.9, DefaultCourseProjectorTest.Curso.node(measured, DefaultCourseProjectorTest.Curso.GRANDMOTHER)
+                .getScores().get(DefaultCourseProjectorTest.Curso.LEMMA_ABSENCE), 1e-12, "«My grandmother…» at 0,9");
     }
 
     @Test
     @DisplayName("should run exactly the analyzers whose measures the starting analysis keeps at its root, in catalog order, and no other")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R003")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldRunExactlyTheAnalyzersWhoseMeasuresTheStartingAnalysisKeepsAtItsRootInCatalogOrderAndNoOther(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the starting analysis ran lemma-absence only, so the photo runs lemma-absence only, though the
+        // catalog has more; and with the two, it asks them in the order the measures keep, the catalog's.
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        AuditReport onlyAbsence = DefaultCourseProjectorTest.Curso.engine().runAudit(
+                DefaultCourseProjectorTest.Curso.mapper().map(course),
+                new AnalyzerRunSelection(List.of(DefaultCourseProjectorTest.Curso.LEMMA_ABSENCE), Map.of()));
+
+        AuditReport measured = new DefaultProjectionMeasurer(DefaultCourseProjectorTest.Curso.mapper(),
+                DefaultCourseProjectorTest.Curso.engine()).measure(course, onlyAbsence, Map.of());
+
+        assertEquals(List.of(DefaultCourseProjectorTest.Curso.LEMMA_ABSENCE), names(measured),
+                "R003: exactly the analyzers of the starting analysis");
+        assertFalse(DefaultCourseProjectorTest.Curso.node(measured, DefaultCourseProjectorTest.Curso.PRESENT_SIMPLE)
+                .getScores().containsKey(DefaultCourseProjectorTest.Curso.COCA), "R003: and no other");
+
+        AuditEngine engine = mock(AuditEngine.class);
+        when(engine.runAudit(any(), any(AnalyzerRunSelection.class))).thenReturn(onlyAbsence);
+        AuditReport both = DefaultCourseProjectorTest.Curso.analyze(course);
+        new DefaultProjectionMeasurer(DefaultCourseProjectorTest.Curso.mapper(), engine).measure(course, both, Map.of());
+        ArgumentCaptor<AnalyzerRunSelection> selection = ArgumentCaptor.forClass(AnalyzerRunSelection.class);
+        verify(engine).runAudit(any(AuditableCourse.class), selection.capture());
+        assertEquals(List.of(DefaultCourseProjectorTest.Curso.LEMMA_ABSENCE, DefaultCourseProjectorTest.Curso.COCA),
+                selection.getValue().getAnalyzers(), "R003: in catalog order, the order of the measures");
     }
 
     @Test
     @DisplayName("should fall back to the base run and declare it when the starting analysis keeps no measures, as the base of 29/9, so quiz-instruction, which that base did not run, is not run either")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R003")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldFallBackToTheBaseRunAndDeclareItWhenTheStartingAnalysisKeepsNoMeasuresAsTheBaseOf299SoQuizinstructionWhichThatBaseDidNotRunIsNotRunEither(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the base of 29/9 was saved before the contract and keeps no measures; the photo falls back to the
+        // base run -- the instant analyzers --, says so in its root, and quiz-instruction, a judge that base did not
+        // run, is not run either.
+        Judge judge = new Judge(QUIZ_INSTRUCTION, AnalysisCost.PAID_MODEL, false, Set.of());
+        List<AnalyzerProvider> providers = new ArrayList<>(DefaultCourseProjectorTest.Curso.providers());
+        providers.add(judge);
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        AuditReport base299 = DefaultCourseProjectorTest.Curso.analyze(course);
+        base299.getRoot().setMeasures(List.of());
+
+        AuditReport measured = new DefaultProjectionMeasurer(DefaultCourseProjectorTest.Curso.mapper(),
+                DefaultCourseProjectorTest.Curso.engine(providers)).measure(course, base299, Map.of());
+
+        assertEquals("BASE_RUN", measured.getRoot().getMetadata().get(DefaultProjectionMeasurer.MEASURE_KEY),
+                "R003: the photo declares it is the base run");
+        assertEquals(List.of(DefaultCourseProjectorTest.Curso.LEMMA_ABSENCE, DefaultCourseProjectorTest.Curso.COCA),
+                names(measured), "R003: the base run, the instant analyzers");
+        assertEquals(0, judge.created, "R003: quiz-instruction is not even built");
+        assertFalse(DefaultCourseProjectorTest.Curso.node(measured, DefaultCourseProjectorTest.Curso.GRANDMOTHER)
+                .getScores().containsKey(QUIZ_INSTRUCTION), "R003: nor scores any exercise");
     }
 
     @Test
     @DisplayName("should give budget 0 to the judges that consult claude -p unless the request names a budget for them, so a projection pays no consultation by default")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R003")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldGiveBudget0ToTheJudgesThatConsultClaudePUnlessTheRequestNamesABudgetForThemSoAProjectionPaysNoConsultationByDefault(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 and F-RONDA2-R002: a judge consults claude -p; without a budget in the request the measurer leaves
+        // its policy empty, and the judge completes it with 0: nothing is consulted and every exercise it would
+        // have judged stays declared unevaluated. Naming a budget for it, it consults up to that budget.
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        Judge byDefault = new Judge(QUIZ_INSTRUCTION, AnalysisCost.PAID_MODEL, false, Set.of());
+        AuditReport starting = startingWith(byDefault, course);
+
+        AuditReport measured = measurer(byDefault).measure(course, starting, Map.of());
+
+        assertNull(byDefault.policies.get(byDefault.policies.size() - 1), "R003: the request names no budget for it");
+        assertEquals(0, byDefault.consulted, "R003: a projection pays no consultation by default");
+        assertTrue(DefaultCourseProjectorTest.Curso.node(measured, DefaultCourseProjectorTest.Curso.GRANDMOTHER)
+                .getUnevaluatedBy().contains(QUIZ_INSTRUCTION), "R003: what it did not judge is declared unevaluated");
+
+        Judge budgeted = new Judge(QUIZ_INSTRUCTION, AnalysisCost.PAID_MODEL, false, Set.of());
+        measurer(budgeted).measure(course, startingWith(budgeted, course), Map.of(QUIZ_INSTRUCTION, 2));
+        assertEquals(2, budgeted.policies.get(budgeted.policies.size() - 1).getMaxNewEvaluations(),
+                "R003: the budget the request names for it");
+        assertEquals(2, budgeted.consulted, "R003: and it consults up to it");
     }
 
     @Test
     @DisplayName("should run without a cap the analyzers that consult a local model, as naturalness and near-duplicates with llama3 in Ollama, the way analyze does")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R003")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldRunWithoutACapTheAnalyzersThatConsultALocalModelAsNaturalnessAndNearduplicatesWithLlama3InOllamaTheWayAnalyzeDoes(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 and F-RONDA2-R002: naturalness and near-duplicates consult llama3 in Ollama; as in analyze, the
+        // measurer puts no cap on them -- their policy stays empty and the provider runs a local model without
+        // one --, so every exercise is evaluated.
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        List<AnalyzerProvider> before = new ArrayList<>(DefaultCourseProjectorTest.Curso.providers());
+        before.add(new Judge("naturalness", AnalysisCost.LOCAL_MODEL, true, Set.of()));
+        before.add(new Judge("near-duplicates", AnalysisCost.LOCAL_MODEL, true, Set.of()));
+        AuditReport starting = DefaultCourseProjectorTest.Curso.engine(before).runAudit(
+                DefaultCourseProjectorTest.Curso.mapper().map(course),
+                new AnalyzerRunSelection(List.of(DefaultCourseProjectorTest.Curso.LEMMA_ABSENCE,
+                        DefaultCourseProjectorTest.Curso.COCA, "naturalness", "near-duplicates"), Map.of()));
+        int exercises = quizzes(starting);
+        // Another machine, where nothing was consulted yet: what the projection evaluates is what it consults.
+        Judge naturalness = new Judge("naturalness", AnalysisCost.LOCAL_MODEL, true, Set.of());
+        Judge nearDuplicates = new Judge("near-duplicates", AnalysisCost.LOCAL_MODEL, true, Set.of());
+        List<AnalyzerProvider> providers = new ArrayList<>(DefaultCourseProjectorTest.Curso.providers());
+        providers.add(naturalness);
+        providers.add(nearDuplicates);
+
+        AuditReport measured = new DefaultProjectionMeasurer(DefaultCourseProjectorTest.Curso.mapper(),
+                DefaultCourseProjectorTest.Curso.engine(providers)).measure(course, starting, Map.of());
+
+        assertNull(naturalness.policies.get(naturalness.policies.size() - 1), "R003: no cap from the measurer");
+        assertNull(nearDuplicates.policies.get(nearDuplicates.policies.size() - 1), "R003: no cap from the measurer");
+        assertEquals(exercises, naturalness.consulted, "R003: naturalness evaluates every exercise with llama3");
+        assertEquals(exercises, nearDuplicates.consulted, "R003: and so does near-duplicates");
+        assertTrue(DefaultCourseProjectorTest.Curso.node(measured, DefaultCourseProjectorTest.Curso.GRANDMOTHER)
+                .getUnevaluatedBy().isEmpty(), "nothing left unevaluated");
     }
 
     @Test
     @DisplayName("should reuse the recorded verdicts of the exercises that did not change and consult only the changed ones within the budget of the request, leaving the rest declared unevaluated and never approved")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R003")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldReuseTheRecordedVerdictsOfTheExercisesThatDidNotChangeAndConsultOnlyTheChangedOnesWithinTheBudgetOfTheRequestLeavingTheRestDeclaredUnevaluatedAndNeverApproved(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the judge recorded a verdict for every exercise of the course; the projection writes three of them
+        // anew. With a budget of 1, the unchanged exercises reuse their verdict, one changed exercise is consulted
+        // and the other two stay declared unevaluated -- never scored as approved.
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        Set<String> recorded = new HashSet<>();
+        DefaultCourseProjectorTest.Curso.walk(DefaultCourseProjectorTest.Curso.analyze(course).getRoot(), n -> {
+            if (n.getTarget() == AuditTarget.QUIZ) {
+                recorded.add(DefaultCourseProjectorTest.Curso.sentence(n));
+            }
+        });
+        Judge judge = new Judge(QUIZ_INSTRUCTION, AnalysisCost.PAID_MODEL, false, recorded);
+        AuditReport starting = startingWith(judge, course);
+        judge.consulted = 0;
+        CourseEntity written = DefaultCourseProjectorTest.Curso.written(course,
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.OURSELVES),
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.VEGETABLES));
+
+        AuditReport measured = measurer(judge).measure(written, starting, Map.of(QUIZ_INSTRUCTION, 1));
+
+        assertEquals(1, judge.consulted, "R003: only one changed exercise, within the budget of 1");
+        List<String> changed = List.of(DefaultCourseProjectorTest.Curso.GRANDMOTHER, DefaultCourseProjectorTest.Curso.OURSELVES,
+                DefaultCourseProjectorTest.Curso.VEGETABLES);
+        long unevaluated = changed.stream().filter(id -> DefaultCourseProjectorTest.Curso.node(measured, id)
+                .getUnevaluatedBy().contains(QUIZ_INSTRUCTION)).count();
+        assertEquals(2, unevaluated, "R003: the other two changed exercises are declared unevaluated");
+        for (String id : changed) {
+            AuditNode node = DefaultCourseProjectorTest.Curso.node(measured, id);
+            assertFalse(node.getUnevaluatedBy().contains(QUIZ_INSTRUCTION) && node.getScores().containsKey(QUIZ_INSTRUCTION),
+                    "R003: an unevaluated exercise is never scored, so never approved");
+        }
+        assertEquals(1.0, DefaultCourseProjectorTest.Curso.node(measured, DefaultCourseProjectorTest.Curso.HATS)
+                .getScores().get(QUIZ_INSTRUCTION), 1e-12, "R003: an unchanged exercise reuses its recorded verdict");
+    }
+
+    private static final String QUIZ_INSTRUCTION = "quiz-instruction";
+
+    private static List<String> names(AuditReport report) {
+        return report.getRoot().getMeasures().stream().map(AnalyzerMeasure::getAnalyzer).toList();
+    }
+
+    private static int quizzes(AuditReport report) {
+        int[] count = {0};
+        DefaultCourseProjectorTest.Curso.walk(report.getRoot(), n -> {
+            if (n.getTarget() == AuditTarget.QUIZ) {
+                count[0]++;
+            }
+        });
+        return count[0];
+    }
+
+    /** The measurer over the analyzers of the fixture and the judge. */
+    private static DefaultProjectionMeasurer measurer(Judge judge) {
+        List<AnalyzerProvider> providers = new ArrayList<>(DefaultCourseProjectorTest.Curso.providers());
+        providers.add(judge);
+        return new DefaultProjectionMeasurer(DefaultCourseProjectorTest.Curso.mapper(),
+                DefaultCourseProjectorTest.Curso.engine(providers));
+    }
+
+    /** An analysis that ran the analyzers of the fixture and the judge, without consulting it. */
+    private static AuditReport startingWith(Judge judge, CourseEntity course) {
+        List<AnalyzerProvider> providers = new ArrayList<>(DefaultCourseProjectorTest.Curso.providers());
+        providers.add(judge);
+        AuditReport starting = DefaultCourseProjectorTest.Curso.engine(providers).runAudit(
+                DefaultCourseProjectorTest.Curso.mapper().map(course),
+                new AnalyzerRunSelection(List.of(DefaultCourseProjectorTest.Curso.LEMMA_ABSENCE,
+                        DefaultCourseProjectorTest.Curso.COCA, judge.name), Map.of(judge.name,
+                        new EvaluationRunPolicy(0, false, null, null, null, null))));
+        judge.policies.clear();
+        return starting;
+    }
+
+    /**
+     * A double of an analyzer that consults a model per exercise, as F-RONDA2-R002 says a provider completes an
+     * empty policy: a local model without a cap, claude -p with budget 0. A verdict recorded for a sentence is
+     * reused without consulting; an exercise it does not reach is declared unevaluated and left without a score.
+     */
+    private static final class Judge implements AnalyzerProvider {
+        final String name;
+        final AnalysisCost cost;
+        final boolean local;
+        final Set<String> recorded;
+        final List<EvaluationRunPolicy> policies = new ArrayList<>();
+        int created;
+        int consulted;
+
+        Judge(String name, AnalysisCost cost, boolean local, Set<String> recorded) {
+            this.name = name;
+            this.cost = cost;
+            this.local = local;
+            this.recorded = new HashSet<>(recorded);
+        }
+
+        @Override
+        public String analyzerName() {
+            return name;
+        }
+
+        @Override
+        public AnalyzerDescriptor describe() {
+            return new AnalyzerDescriptor(name, "Doble de un juez", AuditTarget.QUIZ, "¿Cumple?", "El ejercicio",
+                    List.of(new AnalyzerRuleCard("verdict", "El veredicto del modelo", cost)), "Ninguno con error",
+                    AnalyzerFamily.ERRORS, List.of(AuditTarget.QUIZ), List.of(FindingResolution.PANEL), cost,
+                    "Juez " + name, List.of());
+        }
+
+        @Override
+        public ContentAnalyzer create(EvaluationRunPolicy policy) {
+            created++;
+            policies.add(policy);
+            int budget = policy != null ? policy.getMaxNewEvaluations() : (local ? Integer.MAX_VALUE : 0);
+            int[] left = {budget};
+            return new DefaultCourseProjectorTest.Curso.Analyzer(describe()) {
+                @Override
+                public Void onQuiz(AuditNode node) {
+                    String sentence = DefaultCourseProjectorTest.Curso.sentence(node);
+                    if (recorded.contains(sentence)) {
+                        node.getScores().put(name, 1.0);
+                    } else if (left[0] > 0) {
+                        left[0]--;
+                        consulted++;
+                        recorded.add(sentence);
+                        node.getScores().put(name, 1.0);
+                    } else {
+                        node.getUnevaluatedBy().add(name);
+                    }
+                    return null;
+                }
+
+                @Override
+                public List<FindingDraft> findingsAt(AuditNode node) {
+                    return List.of();
+                }
+            };
+        }
+
+        @Override
+        public Optional<AnalyzerPlanBinding> planBinding() {
+            return Optional.empty();
+        }
+
+        @Override
+        public Optional<SelfDescribingConfig> config() {
+            return Optional.empty();
+        }
     }
 }

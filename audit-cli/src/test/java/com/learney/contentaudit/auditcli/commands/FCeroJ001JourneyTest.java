@@ -1,13 +1,38 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static com.learney.contentaudit.auditcli.commands.FProyuJ001JourneyTest.Proyeccion299.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditcli.formatting.DefaultConsolidatedViewFormatter;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.DefaultTopicDiagnoses;
+import com.learney.contentaudit.auditdomain.coca.CocaBucketsTopicDiagnosis;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.revisiondomain.projection.CourseProjection;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.io.TempDir;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -17,22 +42,132 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-CERO-J001")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FCeroJ001JourneyTest {
+    /** The topic of the four proposals: A1 · Present Simple, 2,366 tokens in four COCA bands on 29/9. */
+    private static final String PRESENT_SIMPLE_A1 = "6814dafa7d73e7209a13d383";
+
+    @TempDir
+    Path tmp;
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador pide la vista consolidada... → La foto con pendientes da los mismos ... [El plan activo tiene pendientes aplicables, así que el motor corre dos veces en la misma invocación] → success")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void path1_elPlanActivoTienePendientesAplicablesAsQueElMotorCorreDosVecesEnLaMismaInvocacin_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The 29/9 base as the active pair, and its plan with the four pending proposals of «Afirmativas regulares».
+        Workdir work = new Workdir(tmp.resolve("trabajo"));
+        String audit = work.analyze("2026-09-30T11-54-02", BANDS_OF_29_9);
+        String plan = work.plan("2026-09-30T11-54-12", audit);
+        List<QuizTemplateEntity> written = seedTheFourProposals(work, plan, audit);
+        work.activate(audit, plan);
+
+        // pedir: the operator asks the consolidated view; with applicable pending proposals the engine runs twice in
+        // the same invocation, once per photo.
+        AnalyzeCmdTest.Base299.Captured asked = capture(() -> new DefaultGetConsolidatedCommand(
+                work.consolidated(BANDS_OF_29_9), new DefaultConsolidatedViewFormatter())
+                .getConsolidated(COURSE.toString(), "json"));
+        CourseProjection photos = work.projector(BANDS_OF_29_9).project(COURSE, null);
+
+        // dos_fotos, F-CERO-R001: the photo with the pending proposals gives, in every node, what a new invocation
+        // gives on the course with them written -- 73,92 % and 96,54 · 94,16 · 79,45 · 63,51, not 72,90 and 92,38.
+        AuditReport newInvocation = analyze(courseWith(tmp.resolve("copia"), written), BANDS_OF_29_9);
+        assertEquals(0, asked.exit(), asked.err());
+        assertEquals(vocabulary(newInvocation), vocabulary(photos.getProjected()),
+                "R001: every node of the photo with the pending proposals, as a new invocation");
+        assertEquals("73,92", percent(photos.getProjected().getRoot().getNumbers().getVocabularyScore()), "R001: the course");
+        assertEquals(List.of("96,54", "94,16", "79,45", "63,51"), levels(photos.getProjected()), "R001: A1 to B2");
+        assertEquals(0.9, node(photos.getProjected(), GRANDMOTHER).getScores().get("lemma-absence"), 1e-9,
+                "R001: «My grandmother ___ (come) every year.» from 1,0 to 0,9");
+
+        // dos_fotos, F-CERO-R002: measuring the photo with the pending proposals does not touch the photo with what
+        // is approved: its 55 topics keep the COCA diagnosis of the active analysis.
+        Map<String, Integer> active = cocaTokens(work.audits.load(audit).orElseThrow());
+        Map<String, Integer> approved = cocaTokens(photos.getApproved());
+        assertEquals(55, approved.size(), "R002: the 55 topics");
+        assertEquals(active, approved, "R002: every topic keeps its COCA tokens");
+        assertEquals(2366, approved.get(PRESENT_SIMPLE_A1), "R002: A1 · Present Simple, 2,366 tokens");
+        assertEquals(4, bands(photos.getApproved(), PRESENT_SIMPLE_A1), "R002: in four bands");
+
+        // And the view shows no topic as changed but the one of the proposals: the second run left the first alone.
+        Set<String> changedTopics = changed(view(asked.out()), AuditTarget.TOPIC);
+        assertEquals(Set.of(PRESENT_SIMPLE_A1), changedTopics, "R002: of the 55 topics, only the one of the proposals");
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador pide la vista consolidada... → La foto con lo aprobado da los mismos... [El plan activo no tiene pendientes aplicables] → success")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void path2_elPlanActivoNoTienePendientesAplicables_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The 29/9 base as the active pair; its plan has no pending proposal.
+        Workdir work = new Workdir(tmp.resolve("trabajo"));
+        String audit = work.analyze("2026-09-30T11-54-02", BANDS_OF_29_9);
+        String plan = work.plan("2026-09-30T11-54-12", audit);
+        work.activate(audit, plan);
+
+        // pedir
+        AnalyzeCmdTest.Base299.Captured asked = capture(() -> new DefaultGetConsolidatedCommand(
+                work.consolidated(BANDS_OF_29_9), new DefaultConsolidatedViewFormatter())
+                .getConsolidated(COURSE.toString(), "json"));
+        CourseProjection photos = work.projector(BANDS_OF_29_9).project(COURSE, null);
+
+        // una_foto, F-CERO-R001: the photo with what is approved gives what analyze gives on that course.
+        AuditReport analyzed = analyze(COURSE, BANDS_OF_29_9);
+        assertEquals(0, asked.exit(), asked.err());
+        assertEquals(vocabulary(analyzed), vocabulary(photos.getApproved()),
+                "R001: every node of the photo with what is approved, as analyze on the course");
+        assertEquals("73,92", percent(photos.getApproved().getRoot().getNumbers().getVocabularyScore()), "R001: the course");
+        assertEquals(cocaTokens(analyzed), cocaTokens(photos.getApproved()), "R001: the COCA tokens of its 55 topics");
+        assertSame(photos.getApproved(), photos.getProjected(), "nothing pending: the photo with pending proposals is the same");
+        assertTrue(view(asked.out()).get("nodeImpacts").isEmpty(), "nothing changed, so the view shows no node: "
+                + asked.out());
+    }
+
+    private static List<QuizTemplateEntity> seedTheFourProposals(Workdir work, String plan, String audit) {
+        CourseEntity course = repository().load(COURSE);
+        List<QuizTemplateEntity> written = new ArrayList<>();
+        for (String id : List.of(GRANDMOTHER, OURSELVES, VEGETABLES, HATS)) {
+            QuizTemplateEntity before = quiz(course, id);
+            QuizTemplateEntity after = fixed(before);
+            work.seed(pending("p-" + id, plan, audit, before, after, createdAt(id)));
+            written.add(after);
+        }
+        return written;
+    }
+
+    /** The COCA tokens of every topic, by topic id. */
+    private static Map<String, Integer> cocaTokens(AuditReport report) {
+        Map<String, Integer> tokens = new LinkedHashMap<>();
+        AnalyzeCmdTest.Base299.walk(report.getRoot(), n -> {
+            if (n.getTarget() == AuditTarget.TOPIC && n.getDiagnoses() instanceof DefaultTopicDiagnoses topic) {
+                topic.getCocaBucketsDiagnosis().ifPresent(d -> tokens.put(n.getEntity().getId(), d.getTotalTokens()));
+            }
+        });
+        return tokens;
+    }
+
+    private static int bands(AuditReport report, String topicId) {
+        AuditNode topic = node(report, topicId);
+        CocaBucketsTopicDiagnosis diagnosis = ((DefaultTopicDiagnoses) topic.getDiagnoses()).getCocaBucketsDiagnosis()
+                .orElseThrow();
+        return (int) diagnosis.getBuckets().stream().filter(b -> b.getCount() > 0).count();
+    }
+
+    private static JsonNode view(String json) {
+        try {
+            return new ObjectMapper().readTree(json);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    /** The nodes of a level of the tree the consolidated view shows with a changed field. */
+    private static Set<String> changed(JsonNode view, AuditTarget target) {
+        Set<String> ids = new LinkedHashSet<>();
+        for (JsonNode impact : view.get("nodeImpacts")) {
+            if (target.name().equals(impact.get("nodeTarget").asText()) && impact.has("fieldChanges")) {
+                ids.add(impact.get("nodeId").asText());
+            }
+        }
+        return ids;
     }
 }

@@ -1,4 +1,11 @@
 package com.learney.contentaudit.revisiondomain.engine;
+
+import static org.junit.jupiter.api.Assertions.assertSame;
+import com.learney.contentaudit.revisiondomain.impactpreview.DimensionDelta;
+import com.learney.contentaudit.revisiondomain.impactpreview.ImpactPreviewUnavailabilityReason;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import java.util.ArrayList;
+import org.mockito.ArgumentCaptor;
 import com.learney.contentaudit.revisiondomain.impactpreview.LevelImpact;
 
 import com.learney.contentaudit.auditdomain.CourseMapper;
@@ -21,7 +28,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -55,7 +61,7 @@ public class DefaultImpactPreviewComputerTest {
     @Mock private AuditReportStore auditReportStore;
 
     private ImpactPreviewComputer buildComputer() {
-        return new DefaultImpactPreviewComputer(courseMapper, auditEngine, elementLocator, auditReportStore, null, null);
+        return new DefaultImpactPreviewComputer(auditReportStore, new DefaultPendingApplier(elementLocator), new DefaultProjectionMeasurer(courseMapper, auditEngine));
     }
 
     /**
@@ -63,7 +69,7 @@ public class DefaultImpactPreviewComputerTest {
      */
     private static CourseEntity minimalCourse(String courseId) {
         CourseEntity course = mock(CourseEntity.class);
-        when(course.getId()).thenReturn(courseId);
+        org.mockito.Mockito.lenient().when(course.getId()).thenReturn(courseId);
         return course;
     }
 
@@ -88,8 +94,17 @@ public class DefaultImpactPreviewComputerTest {
      * with a given score map at the root.
      */
     private static AuditReport singleNodeReport(String nodeId, Map<String, Double> scores) {
-        AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, List.of(), scores, Map.of(), null);
+        // FEAT-PROYU (F-PROYU-R007): the impact walks up from the node of the proposal, so the report
+        // has the quiz «quiz-001» the proposals of these tests target, under the course.
+        AuditNode quiz = new AuditNode(quizEntity("quiz-001"), AuditTarget.QUIZ, null, List.of(), scores, Map.of(), null);
+        AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, List.of(quiz), scores, Map.of(), null);
         return new AuditReport(root);
+    }
+
+    /** The entity of a quiz node: the impact finds the node of the proposal by its id. */
+    private static com.learney.contentaudit.auditdomain.AuditableQuiz quizEntity(String id) {
+        return new com.learney.contentaudit.auditdomain.AuditableQuiz(List.of(), id, id, null, null, List.of(), null,
+                null, List.of(), null, null, null);
     }
 
     /**
@@ -99,7 +114,7 @@ public class DefaultImpactPreviewComputerTest {
     private static AuditReport twoLevelReport(String courseId, String quizId,
                                                Map<String, Double> courseScores,
                                                Map<String, Double> quizScores) {
-        AuditNode quizNode = new AuditNode(null, AuditTarget.QUIZ, null, List.of(), quizScores, Map.of(), null);
+        AuditNode quizNode = new AuditNode(quizEntity(quizId), AuditTarget.QUIZ, null, List.of(), quizScores, Map.of(), null);
         AuditNode courseNode = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizNode), courseScores, Map.of(), null);
         return new AuditReport(courseNode);
     }
@@ -118,11 +133,11 @@ public class DefaultImpactPreviewComputerTest {
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
         AuditReport simulatedReport = singleNodeReport("course-001", Map.of("lemma-absence", 0.80));
 
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
+        when(auditReportStore.load("audit-001")).thenReturn(Optional.of(baselineReport));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
-        when(elementLocator.replace(any(), any())).thenReturn(course);
+        org.mockito.Mockito.lenient().when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
+        when(auditEngine.runAudit(any())).thenReturn(baselineReport, simulatedReport);
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -141,7 +156,8 @@ public class DefaultImpactPreviewComputerTest {
             ) {
         // Arrange — R003: the 'before' value comes from the AuditReport that corresponds to
         // the course state at proposal-generation time, not a later version.
-        // We give loadLatest() a specific score and verify it appears as 'before' in the result.
+        // FEAT-PROYU (F-PROYU-R007): the course of that moment, measured with the analyzers of the analysis
+        // the task came from, gives 0.60; it appears as before in the result.
         CourseEntity course = minimalCourse("course-001");
         RevisionProposal prop = proposal("proposal-r003-001", "quiz-001");
 
@@ -151,11 +167,11 @@ public class DefaultImpactPreviewComputerTest {
         // Simulated report: lemma-absence score = 0.75 (after state)
         AuditReport simulatedReport = singleNodeReport("course-001", Map.of("lemma-absence", 0.75));
 
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
+        when(auditReportStore.load("audit-001")).thenReturn(Optional.of(baselineReport));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
-        when(elementLocator.replace(any(), any())).thenReturn(course);
+        org.mockito.Mockito.lenient().when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
+        when(auditEngine.runAudit(any())).thenReturn(baselineReport, simulatedReport);
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -172,7 +188,7 @@ public class DefaultImpactPreviewComputerTest {
                 .flatMap(li -> li.getDimensionDeltas().stream())
                 .anyMatch(dd -> Math.abs(dd.getDelta().getBefore() - 0.60) < 0.001);
         assertTrue(baselineFound,
-                "At least one DimensionDelta must have before=0.60 (baseline score from loadLatest)");
+                "At least one DimensionDelta must have before=0.60 (the course of that moment, measured)");
     }
 
     @Test
@@ -188,7 +204,7 @@ public class DefaultImpactPreviewComputerTest {
         RevisionProposal prop = proposal("proposal-r004-chain", quizId);
 
         // Build a 5-level AuditReport tree: COURSE -> MILESTONE -> TOPIC -> KNOWLEDGE -> QUIZ
-        AuditNode quizNode = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizNode = new AuditNode(quizEntity(quizId), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.50), Map.of(), null);
         AuditNode knowledgeNode = new AuditNode(null, AuditTarget.KNOWLEDGE, null, List.of(quizNode),
                 Map.of("lemma-absence", 0.55), Map.of(), null);
@@ -201,7 +217,7 @@ public class DefaultImpactPreviewComputerTest {
 
         AuditReport baselineReport = new AuditReport(courseNode);
         // Simulated report: same structure, slightly improved scores
-        AuditNode quizSim = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizSim = new AuditNode(quizEntity(quizId), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.60), Map.of(), null);
         AuditNode knowledgeSim = new AuditNode(null, AuditTarget.KNOWLEDGE, null, List.of(quizSim),
                 Map.of("lemma-absence", 0.63), Map.of(), null);
@@ -215,11 +231,11 @@ public class DefaultImpactPreviewComputerTest {
 
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
+        when(auditReportStore.load("audit-001")).thenReturn(Optional.of(baselineReport));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
-        when(elementLocator.replace(any(), any())).thenReturn(course);
+        org.mockito.Mockito.lenient().when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
+        when(auditEngine.runAudit(any())).thenReturn(baselineReport, simulatedReport);
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -262,7 +278,7 @@ public class DefaultImpactPreviewComputerTest {
         String quizId = "quiz-r004-flat-001";
         RevisionProposal prop = proposal("proposal-r004-flat", quizId);
 
-        AuditNode quizNode = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizNode = new AuditNode(quizEntity(quizId), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.40), Map.of(), null);
         AuditNode knowledgeNode = new AuditNode(null, AuditTarget.KNOWLEDGE, null, List.of(quizNode),
                 Map.of("lemma-absence", 0.50), Map.of(), null);
@@ -270,7 +286,7 @@ public class DefaultImpactPreviewComputerTest {
                 Map.of("lemma-absence", 0.55), Map.of(), null);
         AuditReport baselineReport = new AuditReport(courseNode);
 
-        AuditNode quizSim = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizSim = new AuditNode(quizEntity(quizId), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.55), Map.of(), null);
         AuditNode knowledgeSim = new AuditNode(null, AuditTarget.KNOWLEDGE, null, List.of(quizSim),
                 Map.of("lemma-absence", 0.58), Map.of(), null);
@@ -280,11 +296,11 @@ public class DefaultImpactPreviewComputerTest {
 
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
+        when(auditReportStore.load("audit-001")).thenReturn(Optional.of(baselineReport));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
-        when(elementLocator.replace(any(), any())).thenReturn(course);
+        org.mockito.Mockito.lenient().when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
+        when(auditEngine.runAudit(any())).thenReturn(baselineReport, simulatedReport);
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -323,14 +339,14 @@ public class DefaultImpactPreviewComputerTest {
         RevisionProposal prop = proposal("proposal-r005-multi", quizId);
 
         // Baseline: QUIZ with two analyzers
-        AuditNode quizBaseline = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizBaseline = new AuditNode(quizEntity(quizId), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.50, "sentence-length", 0.70), Map.of(), null);
         AuditNode courseBaseline = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizBaseline),
                 Map.of("lemma-absence", 0.55, "sentence-length", 0.72), Map.of(), null);
         AuditReport baselineReport = new AuditReport(courseBaseline);
 
         // Simulated: QUIZ with the same two analyzers (both improved)
-        AuditNode quizSim = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizSim = new AuditNode(quizEntity(quizId), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.65, "sentence-length", 0.68), Map.of(), null);
         AuditNode courseSim = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizSim),
                 Map.of("lemma-absence", 0.60, "sentence-length", 0.70), Map.of(), null);
@@ -338,11 +354,11 @@ public class DefaultImpactPreviewComputerTest {
 
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
+        when(auditReportStore.load("audit-001")).thenReturn(Optional.of(baselineReport));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
-        when(elementLocator.replace(any(), any())).thenReturn(course);
+        org.mockito.Mockito.lenient().when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
+        when(auditEngine.runAudit(any())).thenReturn(baselineReport, simulatedReport);
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -380,13 +396,13 @@ public class DefaultImpactPreviewComputerTest {
         String quizId = "quiz-r005-omit-001";
         RevisionProposal prop = proposal("proposal-r005-omit", quizId);
 
-        AuditNode quizBaseline = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizBaseline = new AuditNode(quizEntity(quizId), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.45), Map.of(), null);  // no "coca-buckets" at QUIZ
         AuditNode courseBaseline = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizBaseline),
                 Map.of("lemma-absence", 0.50, "coca-buckets", 0.80), Map.of(), null);
         AuditReport baselineReport = new AuditReport(courseBaseline);
 
-        AuditNode quizSim = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizSim = new AuditNode(quizEntity(quizId), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.60), Map.of(), null);
         AuditNode courseSim = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizSim),
                 Map.of("lemma-absence", 0.55, "coca-buckets", 0.80), Map.of(), null);
@@ -394,11 +410,11 @@ public class DefaultImpactPreviewComputerTest {
 
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
+        when(auditReportStore.load("audit-001")).thenReturn(Optional.of(baselineReport));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
-        when(elementLocator.replace(any(), any())).thenReturn(course);
+        org.mockito.Mockito.lenient().when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
+        when(auditEngine.runAudit(any())).thenReturn(baselineReport, simulatedReport);
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -434,13 +450,13 @@ public class DefaultImpactPreviewComputerTest {
         double simulatedLemmaScore = 0.75;
         double expectedDifference = simulatedLemmaScore - baselineLemmaScore; // 0.15
 
-        AuditNode quizBaseline = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizBaseline = new AuditNode(quizEntity("quiz-r006-001"), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", baselineLemmaScore), Map.of(), null);
         AuditNode courseBaseline = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizBaseline),
                 Map.of("lemma-absence", baselineLemmaScore), Map.of(), null);
         AuditReport baselineReport = new AuditReport(courseBaseline);
 
-        AuditNode quizSim = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizSim = new AuditNode(quizEntity("quiz-r006-001"), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", simulatedLemmaScore), Map.of(), null);
         AuditNode courseSim = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizSim),
                 Map.of("lemma-absence", simulatedLemmaScore), Map.of(), null);
@@ -454,11 +470,11 @@ public class DefaultImpactPreviewComputerTest {
 
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
+        when(auditReportStore.load("audit-001")).thenReturn(Optional.of(baselineReport));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
-        when(elementLocator.replace(any(), any())).thenReturn(course);
+        org.mockito.Mockito.lenient().when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
+        when(auditEngine.runAudit(any())).thenReturn(baselineReport, simulatedReport);
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -511,10 +527,10 @@ public class DefaultImpactPreviewComputerTest {
         RevisionProposal prop = proposal("proposal-r009-absent-001", absentNodeId);
 
         AuditReport baselineReport = singleNodeReport("course-r009-absent-001", Map.of("lemma-absence", 0.50));
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
+        when(auditReportStore.load("audit-001")).thenReturn(Optional.of(baselineReport));
         // elementLocator.snapshot returns empty => node absent in simulated course
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.empty());
-        when(elementLocator.replace(any(), any())).thenReturn(course);
+        org.mockito.Mockito.lenient().when(elementLocator.replace(any(), any())).thenReturn(course);
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -546,8 +562,8 @@ public class DefaultImpactPreviewComputerTest {
         CourseEntity course = minimalCourse("course-r009-noaudit-001");
         RevisionProposal prop = proposal("proposal-r009-noaudit-001", "quiz-r009-001");
 
-        // loadLatest returns empty => no baseline audit available
-        when(auditReportStore.loadLatest()).thenReturn(Optional.empty());
+        // the analysis the task came from cannot be loaded => no starting analysis (F-PROYU-R007)
+        when(auditReportStore.load("audit-001")).thenReturn(Optional.empty());
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -582,9 +598,9 @@ public class DefaultImpactPreviewComputerTest {
         AuditReport baselineReport = singleNodeReport("course-r009-simfail-001", Map.of("lemma-absence", 0.50));
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
+        when(auditReportStore.load("audit-001")).thenReturn(Optional.of(baselineReport));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
-        when(elementLocator.replace(any(), any())).thenReturn(course);
+        org.mockito.Mockito.lenient().when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
         // auditEngine.runAudit throws a RuntimeException during simulation
         when(auditEngine.runAudit(any())).thenThrow(new RuntimeException("AuditEngine failed on simulated course"));
@@ -621,13 +637,13 @@ public class DefaultImpactPreviewComputerTest {
         RevisionProposal prop1 = proposal("proposal-r011-A", "quiz-r011-001");
         RevisionProposal prop2 = proposal("proposal-r011-B", "quiz-r011-001");
 
-        AuditNode quizBaseline = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizBaseline = new AuditNode(quizEntity("quiz-r011-001"), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.50), Map.of(), null);
         AuditNode courseBaseline = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizBaseline),
                 Map.of("lemma-absence", 0.55), Map.of(), null);
         AuditReport baselineReport = new AuditReport(courseBaseline);
 
-        AuditNode quizSim = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizSim = new AuditNode(quizEntity("quiz-r011-001"), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.65), Map.of(), null);
         AuditNode courseSim = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizSim),
                 Map.of("lemma-absence", 0.60), Map.of(), null);
@@ -635,11 +651,11 @@ public class DefaultImpactPreviewComputerTest {
 
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
+        when(auditReportStore.load("audit-001")).thenReturn(Optional.of(baselineReport));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop1.getElementAfter()));
-        when(elementLocator.replace(any(), any())).thenReturn(course);
+        org.mockito.Mockito.lenient().when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
+        when(auditEngine.runAudit(any())).thenReturn(baselineReport, simulatedReport, baselineReport, simulatedReport);
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -682,13 +698,13 @@ public class DefaultImpactPreviewComputerTest {
                 Instant.parse("2026-05-03T10:00:00Z"), null
         , null, null);
 
-        AuditNode quizBaseline = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizBaseline = new AuditNode(quizEntity(stableNodeId), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.45), Map.of(), null);
         AuditNode courseBaseline = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizBaseline),
                 Map.of("lemma-absence", 0.50), Map.of(), null);
         AuditReport baselineReport = new AuditReport(courseBaseline);
 
-        AuditNode quizSim = new AuditNode(null, AuditTarget.QUIZ, null, List.of(),
+        AuditNode quizSim = new AuditNode(quizEntity(stableNodeId), AuditTarget.QUIZ, null, List.of(),
                 Map.of("lemma-absence", 0.65), Map.of(), null);
         AuditNode courseSim = new AuditNode(null, AuditTarget.COURSE, null, List.of(quizSim),
                 Map.of("lemma-absence", 0.58), Map.of(), null);
@@ -696,11 +712,11 @@ public class DefaultImpactPreviewComputerTest {
 
         AuditableCourse auditableCourse = mock(AuditableCourse.class);
 
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(baselineReport));
+        when(auditReportStore.load("audit-r012")).thenReturn(Optional.of(baselineReport));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(snapshotAfter));
-        when(elementLocator.replace(any(), any())).thenReturn(course);
+        org.mockito.Mockito.lenient().when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(auditableCourse);
-        when(auditEngine.runAudit(any())).thenReturn(simulatedReport);
+        when(auditEngine.runAudit(any())).thenReturn(baselineReport, simulatedReport);
 
         ImpactPreviewComputer computer = buildComputer();
 
@@ -751,11 +767,11 @@ public class DefaultImpactPreviewComputerTest {
                 0.74, List.of(), null, null));
         simulated.getRoot().getChildren().get(0).setNumbers(new com.learney.contentaudit.auditdomain.contextnumbers
                 .ContextNumbers(1.0, List.of(), null, null));
-        when(auditReportStore.loadLatest()).thenReturn(Optional.of(base));
+        when(auditReportStore.load("audit-001")).thenReturn(Optional.of(base));
         when(elementLocator.snapshot(any(), any(), any())).thenReturn(Optional.of(prop.getElementAfter()));
-        when(elementLocator.replace(any(), any())).thenReturn(course);
+        org.mockito.Mockito.lenient().when(elementLocator.replace(any(), any())).thenReturn(course);
         when(courseMapper.map(any())).thenReturn(mock(AuditableCourse.class));
-        when(auditEngine.runAudit(any())).thenReturn(simulated);
+        when(auditEngine.runAudit(any())).thenReturn(base, simulated);
 
         ImpactPreview preview = buildComputer().compute(course, prop);
 
@@ -781,53 +797,195 @@ public class DefaultImpactPreviewComputerTest {
     @DisplayName("should give no impact for a proposal whose elementBefore no longer matches its node, declaring it not applicable with its cause as the projection does")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R002")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldGiveNoImpactForAProposalWhoseElementBeforeNoLongerMatchesItsNodeDeclaringItNotApplicableWithItsCauseAsTheProjectionDoes() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «My grandmother…» is already written; «Winter ___ (come) every year.» was made on «It ___ (come)…»,
+        // so it no longer matches its node. The impact does not apply it -- as the projection would not -- and says
+        // why, with the cause the projection declares; nothing is measured.
+        CourseEntity current = DefaultCourseProjectorTest.Curso.written(DefaultCourseProjectorTest.Curso.course(),
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.GRANDMOTHER));
+        RevisionProposal winter = DefaultCourseProjectorTest.Curso.proposal("p-winter",
+                DefaultCourseProjectorTest.Curso.before(DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                DefaultCourseProjectorTest.Curso.winter(), Instant.parse("2026-09-30T12:00:05Z"), DiagnosisKind.LEMMA_ABSENCE);
+        when(auditReportStore.load(DefaultCourseProjectorTest.Curso.AUDIT))
+                .thenReturn(Optional.of(DefaultCourseProjectorTest.Curso.analyze(DefaultCourseProjectorTest.Curso.course())));
+        ProjectionMeasurer measurer = mock(ProjectionMeasurer.class);
+
+        ImpactPreview preview = new DefaultImpactPreviewComputer(auditReportStore,
+                new DefaultPendingApplier(new DefaultCourseElementLocator()), measurer).compute(current, winter);
+
+        assertEquals(ImpactPreviewAvailability.UNAVAILABLE, preview.getAvailability(), "R002: no impact");
+        assertTrue(preview.getUnavailability().getDetail().startsWith("ELEMENT_BEFORE_MISMATCH"),
+                "R002: with the cause the projection declares: " + preview.getUnavailability().getDetail());
+        assertTrue(preview.getLevelImpacts().isEmpty());
+        verify(measurer, never()).measure(any(), any(), any());
     }
 
     @Test
     @DisplayName("should measure the impact against the analysis the task of the proposal came from, never the latest analysis of the history nor a saved projection")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R004")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldMeasureTheImpactAgainstTheAnalysisTheTaskOfTheProposalCameFromNeverTheLatestAnalysisOfTheHistoryNorASavedProjection() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: the latest of the history is a projection somebody saved after the analysis the task came from; the
+        // impact is measured with the analysis of the task, and never asks for the latest. Without that analysis
+        // there is no impact, though the history has a latest one.
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        AuditReport source = DefaultCourseProjectorTest.Curso.analyze(course);
+        AuditReport latest = DefaultCourseProjectorTest.Curso.analyze(DefaultCourseProjectorTest.Curso.written(course,
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.HATS)));
+        when(auditReportStore.load(DefaultCourseProjectorTest.Curso.AUDIT)).thenReturn(Optional.of(source));
+        org.mockito.Mockito.lenient().when(auditReportStore.loadLatest()).thenReturn(Optional.of(latest));
+        ProjectionMeasurer measurer = mock(ProjectionMeasurer.class);
+        when(measurer.measure(any(), any(), any())).thenReturn(source, source);
+        RevisionProposal grandmother = DefaultCourseProjectorTest.Curso.proposal("p-grandmother",
+                DefaultCourseProjectorTest.Curso.before(DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                Instant.parse("2026-09-30T12:00:01Z"), DiagnosisKind.LEMMA_ABSENCE);
+
+        new DefaultImpactPreviewComputer(auditReportStore, new DefaultPendingApplier(new DefaultCourseElementLocator()),
+                measurer).compute(course, grandmother);
+
+        ArgumentCaptor<AuditReport> starts = ArgumentCaptor.forClass(AuditReport.class);
+        verify(measurer, org.mockito.Mockito.times(2)).measure(any(), starts.capture(), any());
+        assertSame(source, starts.getAllValues().get(0), "R004: the analysis the task came from");
+        assertSame(source, starts.getAllValues().get(1), "R004: for both ends");
+        verify(auditReportStore, never()).loadLatest();
+
+        when(auditReportStore.load(DefaultCourseProjectorTest.Curso.AUDIT)).thenReturn(Optional.empty());
+        ImpactPreview without = new DefaultImpactPreviewComputer(auditReportStore,
+                new DefaultPendingApplier(new DefaultCourseElementLocator()), measurer).compute(course, grandmother);
+        assertEquals(ImpactPreviewUnavailabilityReason.BASE_AUDIT_UNAVAILABLE, without.getUnavailability().getReason(),
+                "R004: without the analysis of the task there is no impact, latest or not");
     }
 
     @Test
     @DisplayName("should report the impact of «My grandmother ___ (come) every year.» on its own knowledge «Afirmativas regulares», from 100.0 to 99.5 in lemma-absence, and not on «Afirmativas con $be$», the first knowledge of the course")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R007")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldReportTheImpactOfMyGrandmotherComeEveryYearOnItsOwnKnowledgeAfirmativasRegularesFrom1000To995InLemmaabsenceAndNotOnAfirmativasConBeTheFirstKnowledgeOfTheCourse() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: «My grandmother ___ (come) every year.» lowers its own knowledge, «Afirmativas regulares» (20
+        // exercises), from 100,0 to 99,5 in lemma-absence; «Afirmativas con $be$», the first knowledge of the
+        // course, is not in its impact.
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        when(auditReportStore.load(DefaultCourseProjectorTest.Curso.AUDIT))
+                .thenReturn(Optional.of(DefaultCourseProjectorTest.Curso.analyze(course)));
+        RevisionProposal grandmother = DefaultCourseProjectorTest.Curso.proposal("p-grandmother",
+                DefaultCourseProjectorTest.Curso.before(DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                Instant.parse("2026-09-30T12:00:01Z"), DiagnosisKind.LEMMA_ABSENCE);
+
+        ImpactPreview preview = realComputer().compute(course, grandmother);
+
+        LevelImpact knowledge = preview.getLevelImpacts().stream().filter(li -> li.getNodeTarget() == AuditTarget.KNOWLEDGE)
+                .findFirst().orElseThrow();
+        assertEquals(DefaultCourseProjectorTest.Curso.REGULAR, knowledge.getNodeId(), "R007: its own knowledge");
+        DimensionDelta absence = knowledge.getDimensionDeltas().stream()
+                .filter(d -> DefaultCourseProjectorTest.Curso.LEMMA_ABSENCE.equals(d.getDimension())).findFirst().orElseThrow();
+        assertEquals("100,0", oneDecimal(absence.getDelta().getBefore()), "R007: from 100,0");
+        assertEquals("99,5", oneDecimal(absence.getDelta().getAfter()), "R007: to 99,5");
+        assertTrue(preview.getLevelImpacts().stream().noneMatch(li -> DefaultCourseProjectorTest.Curso.WITH_BE
+                .equals(li.getNodeId())), "R007: never «Afirmativas con $be$»");
     }
 
     @Test
     @DisplayName("should report the topic, the level and the course that contain the node, walking up from it, so a proposal on a B2 exercise never shows level A1")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R007")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldReportTheTopicTheLevelAndTheCourseThatContainTheNodeWalkingUpFromItSoAProposalOnAB2ExerciseNeverShowsLevelA1() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: a proposal on an exercise of B2 reports its knowledge, its topic, B2 and the course, walking up
+        // from the exercise; level A1, the first of the course, never.
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        when(auditReportStore.load(DefaultCourseProjectorTest.Curso.AUDIT))
+                .thenReturn(Optional.of(DefaultCourseProjectorTest.Curso.analyze(course)));
+        QuizTemplateEntity before = DefaultCourseProjectorTest.Curso.before(DefaultCourseProjectorTest.Curso.B2_QUIZ);
+        QuizTemplateEntity after = DefaultCourseProjectorTest.Curso.quiz(DefaultCourseProjectorTest.Curso.B2_QUIZ,
+                DefaultCourseProjectorTest.Curso.PASSIVE_KNOWLEDGE, "My grandmother's house", "was built",
+                "(build) in 1990.", "My grandmother's house was built in 1990.", "La casa de mi abuela fue construida en 1990.");
+        RevisionProposal proposal = DefaultCourseProjectorTest.Curso.proposal("p-b2", before, after,
+                Instant.parse("2026-09-30T12:00:07Z"), DiagnosisKind.LEMMA_ABSENCE);
+
+        ImpactPreview preview = realComputer().compute(course, proposal);
+
+        assertEquals(List.of(AuditTarget.QUIZ + " " + DefaultCourseProjectorTest.Curso.B2_QUIZ,
+                        AuditTarget.KNOWLEDGE + " " + DefaultCourseProjectorTest.Curso.PASSIVE_KNOWLEDGE,
+                        AuditTarget.TOPIC + " " + DefaultCourseProjectorTest.Curso.PASSIVE,
+                        AuditTarget.MILESTONE + " " + DefaultCourseProjectorTest.Curso.B2, AuditTarget.COURSE + " root"),
+                preview.getLevelImpacts().stream().map(li -> li.getNodeTarget() + " " + li.getNodeId()).toList(),
+                "R007: the nodes that contain it, walking up");
+        assertTrue(preview.getLevelImpacts().stream().noneMatch(li -> DefaultCourseProjectorTest.Curso.A1
+                .equals(li.getNodeId())), "R007: never level A1");
     }
 
     @Test
     @DisplayName("should measure the course of that moment with the approved proposals and that course with the proposal, both with the analyzers of the analysis the task came from")
     @Tag("FEAT-PROYU")
     @Tag("F-PROYU-R007")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-PROYU sin implementar")
     public void shouldMeasureTheCourseOfThatMomentWithTheApprovedProposalsAndThatCourseWithTheProposalBothWithTheAnalyzersOfTheAnalysisTheTaskCameFrom() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: the course of that moment -- «She ___ (wear) hats.» already approved and written -- is measured, and
+        // that course with «My grandmother…»; both with the analysis the task came from.
+        CourseEntity current = DefaultCourseProjectorTest.Curso.written(DefaultCourseProjectorTest.Curso.course(),
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.HATS));
+        AuditReport source = DefaultCourseProjectorTest.Curso.analyze(DefaultCourseProjectorTest.Curso.course());
+        when(auditReportStore.load(DefaultCourseProjectorTest.Curso.AUDIT)).thenReturn(Optional.of(source));
+        ProjectionMeasurer measurer = mock(ProjectionMeasurer.class);
+        when(measurer.measure(any(), any(), any())).thenReturn(source, source);
+        RevisionProposal grandmother = DefaultCourseProjectorTest.Curso.proposal("p-grandmother",
+                DefaultCourseProjectorTest.Curso.before(DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                Instant.parse("2026-09-30T12:00:01Z"), DiagnosisKind.LEMMA_ABSENCE);
+
+        new DefaultImpactPreviewComputer(auditReportStore, new DefaultPendingApplier(new DefaultCourseElementLocator()),
+                measurer).compute(current, grandmother);
+
+        ArgumentCaptor<CourseEntity> courses = ArgumentCaptor.forClass(CourseEntity.class);
+        ArgumentCaptor<AuditReport> starts = ArgumentCaptor.forClass(AuditReport.class);
+        verify(measurer, org.mockito.Mockito.times(2)).measure(courses.capture(), starts.capture(), any());
+        assertSame(current, courses.getAllValues().get(0), "R007: the course of that moment, with what is approved");
+        assertEquals(DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.HATS),
+                DefaultCourseProjectorTest.Curso.find(courses.getAllValues().get(1), DefaultCourseProjectorTest.Curso.HATS),
+                "R007: the course with the proposal keeps what is approved");
+        assertEquals(DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                DefaultCourseProjectorTest.Curso.find(courses.getAllValues().get(1), DefaultCourseProjectorTest.Curso.GRANDMOTHER),
+                "R007: and has the proposal written");
+        assertEquals(List.of(source, source), starts.getAllValues(), "R007: both with the analysis of the task");
     }
 
     @Test
     @DisplayName("should give the impact of the k-th proposal of a revise-instructions batch the same numbers as if it were the first one computed in the process")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
-    @Disabled("FEAT-RONDA2: espera a F, stub de FEAT-CERO sin implementar")
     public void shouldGiveTheImpactOfTheKthProposalOfAReviseinstructionsBatchTheSameNumbersAsIfItWereTheFirstOneComputedInTheProcess() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-CERO-R001: revise-instructions computes the impact of several proposals in one invocation; the third
+        // gives the same numbers as when it is the first one computed in a new process.
+        CourseEntity course = DefaultCourseProjectorTest.Curso.course();
+        when(auditReportStore.load(DefaultCourseProjectorTest.Curso.AUDIT))
+                .thenReturn(Optional.of(DefaultCourseProjectorTest.Curso.analyze(course)));
+        ImpactPreviewComputer batch = realComputer();
+        List<ImpactPreview> previews = new ArrayList<>();
+        for (String id : List.of(DefaultCourseProjectorTest.Curso.GRANDMOTHER, DefaultCourseProjectorTest.Curso.OURSELVES,
+                DefaultCourseProjectorTest.Curso.VEGETABLES)) {
+            previews.add(batch.compute(course, DefaultCourseProjectorTest.Curso.proposal("p-" + id,
+                    DefaultCourseProjectorTest.Curso.before(id), DefaultCourseProjectorTest.Curso.after(id),
+                    Instant.parse("2026-09-30T12:00:01Z"), DiagnosisKind.LEMMA_ABSENCE)));
+        }
+
+        ImpactPreview first = realComputer().compute(course, DefaultCourseProjectorTest.Curso.proposal(
+                "p-" + DefaultCourseProjectorTest.Curso.VEGETABLES,
+                DefaultCourseProjectorTest.Curso.before(DefaultCourseProjectorTest.Curso.VEGETABLES),
+                DefaultCourseProjectorTest.Curso.after(DefaultCourseProjectorTest.Curso.VEGETABLES),
+                Instant.parse("2026-09-30T12:00:01Z"), DiagnosisKind.LEMMA_ABSENCE));
+
+        assertEquals(ImpactPreviewAvailability.AVAILABLE, previews.get(2).getAvailability());
+        assertEquals(first.getLevelImpacts(), previews.get(2).getLevelImpacts(),
+                "R001: the third impact, as if it were the first of a new process");
+    }
+
+    /** The computer as the factory builds it, over the fixture's analyzers and a real engine. */
+    private ImpactPreviewComputer realComputer() {
+        return new DefaultImpactPreviewComputer(auditReportStore, new DefaultPendingApplier(new DefaultCourseElementLocator()),
+                new DefaultProjectionMeasurer(DefaultCourseProjectorTest.Curso.mapper(), DefaultCourseProjectorTest.Curso.engine()));
+    }
+
+    private static String oneDecimal(double score) {
+        return String.format(java.util.Locale.ROOT, "%.1f", score * 100).replace('.', ',');
     }
 }

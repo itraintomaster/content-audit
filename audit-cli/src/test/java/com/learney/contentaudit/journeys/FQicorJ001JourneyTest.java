@@ -9,6 +9,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -569,9 +570,11 @@ public class FQicorJ001JourneyTest {
         // it. The quiz delivered to elementLocator.replace(...) — the object that becomes what
         // courseRepository.save(...) persists — must still carry all four parts, the empty one
         // back in its original position.
+        // FEAT-PROYU (package F, round 2): the impact preview simulates the proposal through the same locator
+        // before the approval writes it, so replace(...) is called twice; the write is the last call.
         ArgumentCaptor<CourseElementSnapshot> elementAfterCaptor =
                 ArgumentCaptor.forClass(CourseElementSnapshot.class);
-        verify(elementLocator).replace(eq(course), elementAfterCaptor.capture());
+        verify(elementLocator, atLeastOnce()).replace(eq(course), elementAfterCaptor.capture());
         List<SentencePartEntity> deliveredParts =
                 elementAfterCaptor.getValue().getQuiz().getForm().getSentenceParts();
 
