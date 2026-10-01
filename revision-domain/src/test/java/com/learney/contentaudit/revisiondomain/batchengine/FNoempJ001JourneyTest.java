@@ -260,14 +260,14 @@ public class FNoempJ001JourneyTest {
     }
 
     private static ComparisonRow countRow(String subject, AnalyzerFamily family, int start, int projected) {
-        return new ComparisonRow(subject, family, AuditTarget.MILESTONE, "m-a1", "A1", new RowValue((double) start, null, 0),
-                null, new RowValue((double) start, null, 0), new RowValue((double) projected, null, 0),
+        return new ComparisonRow(subject, family, AuditTarget.MILESTONE, "m-a1", "A1", new RowValue((double) start, null, 0, true),
+                null, new RowValue((double) start, null, 0, true), new RowValue((double) projected, null, 0, true),
                 (double) (projected - start), GoalUnit.EXERCISES, null, null, null, null, null, null, null);
     }
 
     private static ComparisonRow pointsRow(String subject, double baseline, double start, double projected) {
         return new ComparisonRow(subject, AnalyzerFamily.VOCABULARY, AuditTarget.COURSE, "root", "Curso",
-                new RowValue(baseline, null, 0), null, new RowValue(start, null, 0), new RowValue(projected, null, 0),
+                new RowValue(baseline, null, 0, true), null, new RowValue(start, null, 0, true), new RowValue(projected, null, 0, true),
                 projected - baseline, GoalUnit.POINTS, null, null, null, null, null, null, null);
     }
 
