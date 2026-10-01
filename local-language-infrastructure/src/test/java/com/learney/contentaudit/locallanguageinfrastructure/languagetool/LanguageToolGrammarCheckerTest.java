@@ -1,7 +1,16 @@
 package com.learney.contentaudit.locallanguageinfrastructure.languagetool;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+
+import com.learney.contentaudit.auditdomain.localtools.EnglishVariant;
+import com.learney.contentaudit.auditdomain.localtools.GrammarMatch;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,39 +24,90 @@ public class LanguageToolGrammarCheckerTest {
     @DisplayName("should check «Ana was teached a lesson by my brother.» with the real LanguageTool 6.8 inside the process and without network, marking «teached» in American and in British English")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R001")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
+    @Tag("herramienta-real")
     public void shouldCheckAnaWasTeachedALessonByMyBrotherWithTheRealLanguageTool68InsideTheProcessAndWithoutNetworkMarkingTeachedInAmericanAndInBritishEnglish(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        LanguageToolGrammarChecker checker = new LanguageToolGrammarChecker();
+        assumeTrue(checker.status().isAvailable(), "LanguageTool is not on this classpath");
+        String sentence = "Ana was teached a lesson by my brother.";
+
+        // LanguageTool runs inside this process: the checker is a library object, with no server and
+        // no address to talk to.
+        Optional<GrammarMatch> american = marking(checker.check(sentence, EnglishVariant.AMERICAN), sentence, "teached");
+        Optional<GrammarMatch> british = marking(checker.check(sentence, EnglishVariant.BRITISH), sentence, "teached");
+
+        assertTrue(american.isPresent(), "American English marks «teached»");
+        assertTrue(british.isPresent(), "British English marks «teached»");
+        assertEquals("TYPOS", american.get().getCategoryId());
+        assertEquals("TYPOS", british.get().getCategoryId());
+        assertEquals(american.get().getStart(), british.get().getStart(), "at the same place in both variants");
+        assertEquals("taught", american.get().getSuggestions().get(0));
     }
 
     @Test
     @DisplayName("should state LanguageTool and the version of its library, 6.8, without creating a checker nor loading a rule")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldStateLanguageToolAndTheVersionOfItsLibrary68WithoutCreatingACheckerNorLoadingARule(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        LanguageToolGrammarChecker checker = new LanguageToolGrammarChecker();
+
+        LocalToolStatus status = checker.status();
+
+        assertEquals("LanguageTool", status.getTool());
+        assertEquals("6.8", status.getVersion());
+        assertTrue(status.isAvailable());
+        assertFalse(checker.checkersCreated(), "stating the version creates no checker and loads no rule");
     }
 
     @Test
     @DisplayName("should run only the rules the real LanguageTool 6.8 brings on, so «You prefer Italian food.» gets no ARTICLE_MISSING mark")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
+    @Tag("herramienta-real")
     public void shouldRunOnlyTheRulesTheRealLanguageTool68BringsOnSoYouPreferItalianFoodGetsNoARTICLEMISSINGMark(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        LanguageToolGrammarChecker checker = new LanguageToolGrammarChecker();
+        assumeTrue(checker.status().isAvailable(), "LanguageTool is not on this classpath");
+        String sentence = "You prefer Italian food.";
+
+        List<GrammarMatch> american = checker.check(sentence, EnglishVariant.AMERICAN);
+        List<GrammarMatch> british = checker.check(sentence, EnglishVariant.BRITISH);
+
+        assertTrue(american.stream().noneMatch(m -> "ARTICLE_MISSING".equals(m.getRuleId())), american.toString());
+        assertTrue(british.stream().noneMatch(m -> "ARTICLE_MISSING".equals(m.getRuleId())), british.toString());
+        assertEquals(List.of(), american, "a rule that comes off is never run");
     }
 
     @Test
     @DisplayName("should mark «explained us» in «The teacher explained us the lesson.» at the same place in American and in British English with the real LanguageTool 6.8")
     @Tag("FEAT-GRAMA")
     @Tag("F-GRAMA-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-GRAMA sin implementar")
+    @Tag("herramienta-real")
     public void shouldMarkExplainedUsInTheTeacherExplainedUsTheLessonAtTheSamePlaceInAmericanAndInBritishEnglishWithTheRealLanguageTool68(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        LanguageToolGrammarChecker checker = new LanguageToolGrammarChecker();
+        assumeTrue(checker.status().isAvailable(), "LanguageTool is not on this classpath");
+        String sentence = "The teacher explained us the lesson.";
+
+        List<GrammarMatch> american = checker.check(sentence, EnglishVariant.AMERICAN);
+        List<GrammarMatch> british = checker.check(sentence, EnglishVariant.BRITISH);
+
+        assertEquals(1, american.size(), american.toString());
+        assertEquals(1, british.size(), british.toString());
+        GrammarMatch us = american.get(0);
+        GrammarMatch gb = british.get(0);
+        assertEquals("GRAMMAR", us.getCategoryId());
+        assertEquals(us.getRuleId(), gb.getRuleId());
+        assertEquals(us.getStart(), gb.getStart());
+        assertEquals(us.getEnd(), gb.getEnd());
+        assertEquals("us", sentence.substring(us.getStart(), us.getEnd()), "the mark falls on «us» of «explained us»");
+        assertEquals(List.of("to us"), us.getSuggestions());
+    }
+
+    private static Optional<GrammarMatch> marking(List<GrammarMatch> matches, String sentence, String text) {
+        return matches.stream()
+                .filter(m -> sentence.substring(m.getStart(), m.getEnd()).equals(text))
+                .findFirst();
     }
 }

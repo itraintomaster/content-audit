@@ -1,0 +1,316 @@
+{
+  "agent": "naturalness-yes-no",
+  "artifact": "naturalnessAnswer",
+  "gateId": "naturalness_yes_no_gate_verdict",
+  "emitId": "naturalness_yes_no_emit",
+  "dependencies": [
+    "system",
+    "question"
+  ],
+  "topKeys": [
+    "answer"
+  ],
+  "promptMustMention": [
+    "**con ese sentido y esas\npalabras**",
+    "`yes` o `no`",
+    "tal cual las recibe el modelo local que reemplazás"
+  ],
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice la respuesta válida (yes o no, con mayúsculas o un punto), rechace la malformada, la de otra palabra o con claves de más, y que emit produzca naturalnessAnswer o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (system, question) que DefaultNaturalnessConfig le da a llama3 y a este juez.",
+  "inputs": {
+    "ingeniera": {
+      "system": "You check sentences from an English course for Spanish speakers. Answer with one word: yes or no.",
+      "question": "Would a native English speaker naturally say or write this exact sentence, with this meaning and these words? Sentence: \"She is an engineer of hers.\""
+    },
+    "gente": {
+      "system": "You check sentences from an English course for Spanish speakers. Answer with one word: yes or no.",
+      "question": "Would a native English speaker naturally say or write this exact sentence, with this meaning and these words? Sentence: \"They don't like people.\""
+    }
+  },
+  "cases": [
+    {
+      "caseId": "no-de-la-ingeniera",
+      "note": "«She is an engineer of hers.» (…2c0d, A2): un nativo no lo diría.",
+      "inputs": "ingeniera",
+      "verdict": {
+        "answer": "no"
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "si-de-la-gente",
+      "note": "«They don't like people.» (…1f4a, A1): natural.",
+      "inputs": "gente",
+      "verdict": {
+        "answer": "yes"
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "mayusculas-y-punto",
+      "note": "«No.» se lee como no: no se paga otra consulta por la forma.",
+      "inputs": "ingeniera",
+      "verdict": {
+        "answer": " No. "
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "answer": "no"
+        }
+      }
+    },
+    {
+      "caseId": "otra-palabra",
+      "note": "«maybe» no es sí ni no.",
+      "inputs": "gente",
+      "verdict": {
+        "answer": "maybe"
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es yes ni no"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "frase-en-vez-de-palabra",
+      "note": "Una frase no es una palabra.",
+      "inputs": "gente",
+      "verdict": {
+        "answer": "yes, it is natural"
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es yes ni no"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "booleano",
+      "note": "true no es yes.",
+      "inputs": "gente",
+      "verdict": {
+        "answer": true
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "tiene que ser un string"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "con-razon",
+      "note": "Una clave de más: el objeto es cerrado.",
+      "inputs": "ingeniera",
+      "verdict": {
+        "answer": "no",
+        "reason": "of hers sobra"
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no respeta el objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "falta-answer",
+      "note": "Falta la única clave.",
+      "inputs": "ingeniera",
+      "verdict": {},
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan=['answer']"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "run-dir-por-state-json",
+      "note": "Sin run_dir en las entradas: project_root + el run_id (UUID) del state.json, como lo proyecta el CLI.",
+      "inputs": "ingeniera",
+      "verdict": {
+        "answer": "no"
+      },
+      "resolution": "state.json",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "answer": "no"
+        }
+      }
+    },
+    {
+      "caseId": "run-id-ambiguo",
+      "note": "Dos state.json con el mismo runId: el gate no adivina; emit sale conservador.",
+      "inputs": "ingeniera",
+      "verdict": {
+        "answer": "no"
+      },
+      "resolution": "ambiguous",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exactamente uno"
+        ]
+      }
+    },
+    {
+      "caseId": "run-id-inseguro",
+      "note": "Un run_id que escaparía del directorio de runs se rechaza.",
+      "inputs": "ingeniera",
+      "verdict": {
+        "answer": "no"
+      },
+      "resolution": "unsafe-run-id",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "run_id ausente o inseguro"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-run-dir",
+      "note": "Sin run_dir ni project_root no hay dónde leer: falla el gate y emit da outputUnusable.",
+      "inputs": "ingeniera",
+      "verdict": {
+        "answer": "no"
+      },
+      "resolution": "none",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan run_dir"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-salida-de-evaluate",
+      "note": "evaluate no dejó verdicts.json.",
+      "inputs": "ingeniera",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "verdicts.json no existe"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-viejo-se-borra",
+      "note": "Un validated-verdict.json de un intento anterior no sobrevive a un gate que falla.",
+      "inputs": "ingeniera",
+      "raw": "no hay veredicto",
+      "staleValidated": true,
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "no-es-json",
+      "note": "Prosa sin objeto JSON.",
+      "inputs": "ingeniera",
+      "raw": "No puedo contestar.",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "lista-en-vez-de-objeto",
+      "note": "Un array no es el veredicto.",
+      "inputs": "ingeniera",
+      "raw": "[1, 2]",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "output-unusable-del-modelo",
+      "note": "{\"outputUnusable\": true} lo produce emit, nunca el modelo: el gate lo rechaza.",
+      "inputs": "ingeniera",
+      "verdict": {
+        "outputUnusable": true
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "objeto cerrado"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-corrupto-antes-de-emit",
+      "note": "Si validated-verdict.json no se puede leer, emit no inventa: outputUnusable.",
+      "inputs": "ingeniera",
+      "verdict": {
+        "answer": "no"
+      },
+      "corruptValidated": true,
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "answer": "no"
+        }
+      }
+    },
+    {
+      "caseId": "fence-json",
+      "note": "La salida en un fence ```json se acepta sin pagar otra consulta.",
+      "inputs": "ingeniera",
+      "raw": "```json\n{\n  \"answer\": \"no\"\n}\n```",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "answer": "no"
+        }
+      }
+    },
+    {
+      "caseId": "prosa-alrededor",
+      "note": "Prosa antes y una etiqueta después: se toma el objeto.",
+      "inputs": "ingeniera",
+      "raw": "Esta es mi respuesta:\n{\"answer\": \"no\"}\nLABEL: done",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "answer": "no"
+        }
+      }
+    },
+    {
+      "caseId": "json-dentro-de-un-string",
+      "note": "El objeto serializado dentro de un string JSON se desenvuelve.",
+      "inputs": "ingeniera",
+      "raw": "\"{\\\"answer\\\": \\\"no\\\"}\"",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "answer": "no"
+        }
+      }
+    }
+  ]
+}

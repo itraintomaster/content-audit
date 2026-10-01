@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — Llega a naturalness la primera oración terminada con dos palabras o más y algún token VERB
+  o AUX de spaCy. Con llama3 se guardan en el libro las dos probabilidades, nunca el número; con claude -p, la misma
+  pregunta y el mismo mensaje de sistema, y su «no» marca sin número ni umbral. Una respuesta que no se lee deja el
+  ejercicio sin evaluar con su motivo; la cola de cada nivel ordena por número con llama3 y por curso con claude -p.
+
 2026-10-01 — analista (qa-tester B, por el coordinador) — Umbral de A2 vuelto a medir sin los 40 ejercicios de la lista
   «a / b», que F-GRAMA-R001 inv. 5 lee con la respuesta en su lugar: 10,0 (puesto 118 de 2.364 = 10,0364; el 119 =
   9,9814). Con 10,2 marcaba 120, y 15 eran esas oraciones rotas; sobre los 2.364 limpios marcaba 105. Los 40 se miden con

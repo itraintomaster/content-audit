@@ -1,7 +1,77 @@
 package com.learney.contentaudit.auditdomain.naturalness;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.QuizDiagnoses;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerErrorCounts;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judging.JudgeRequestPlan;
+import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
+import com.learney.contentaudit.auditdomain.judging.JudgeSessions;
+import com.learney.contentaudit.auditdomain.judging.JudgeUnitTally;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolRunDiagnosis;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
+import com.learney.contentaudit.auditdomain.localtools.YesNoModel;
+import com.learney.contentaudit.auditdomain.localtools.YesNoProbabilities;
+import com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Consumer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,215 +85,868 @@ public class NaturalnessAnalyzerTest {
     @DisplayName("should ask about the finished sentence with the first accepted answer only, «Promise: I'll visit you tomorrow.» and not «Promise: I will visit you tomorrow.»")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R001")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskAboutTheFinishedSentenceWithTheFirstAcceptedAnswerOnlyPromiseIllVisitYouTomorrowAndNotPromiseIWillVisitYouTomorrow(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withLlama3();
+
+        AuditNode root = world.run(course(level("A2", promise())), null);
+
+        assertEquals(List.of("Promise: I'll visit you tomorrow."), world.llama3.sentences());
+        assertEquals("Promise: I'll visit you tomorrow.", diagnosis(root, PROMISE).getSentence());
     }
 
     @Test
     @DisplayName("should ask no model about an exercise whose finished sentence has no verb, as «hard work uncountable», leaving it without number nor finding")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R001")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskNoModelAboutAnExerciseWhoseFinishedSentenceHasNoVerbAsHardWorkUncountableLeavingItWithoutNumberNorFinding(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withLlama3();
+
+        AuditNode root = world.run(course(level("A1", hardWork())), null);
+
+        assertEquals(List.of(), world.llama3.sentences());
+        assertEquals(0, world.claude.calls());
+        AuditNode quiz = quiz(root, HARD_WORK);
+        assertNull(quiz.getScores().get("naturalness"));
+        assertTrue(((QuizDiagnoses) quiz.getDiagnoses()).getNaturalnessDiagnosis().isEmpty());
+        assertEquals(List.of(), naturalnessFindings(quiz));
+        assertFalse(quiz.getUnevaluatedBy().contains("naturalness"), "it does not reach: it is not left unevaluated");
     }
 
     @Test
     @DisplayName("should ask about a contracted sentence as it reads, «They don't like people.», without expanding it")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R001")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskAboutAContractedSentenceAsItReadsTheyDontLikePeopleWithoutExpandingIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withLlama3();
+
+        world.run(course(level("A1", people())), null);
+
+        assertEquals(List.of("They don't like people."), world.llama3.sentences());
     }
 
     @Test
     @DisplayName("should ask about «He did something to help.», with the answer in the place of the «a / b» list, and never about «He did to help.»")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R001")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskAboutHeDidSomethingToHelpWithTheAnswerInThePlaceOfTheABListAndNeverAboutHeDidToHelp(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withLlama3();
+        // …396b, Indefinidos con some o any (A2): the list inside the closed sentence, the gap after it.
+        AuditableQuiz helped = cloze("67fab6d5993010229534396b", text("He did something / anything to help."),
+                gap("something"));
+
+        world.run(course(level("A2", helped)), null);
+
+        assertEquals(List.of("He did something to help."), world.llama3.sentences());
+        assertFalse(world.llama3.sentences().contains("He did to help."));
     }
 
     @Test
     @DisplayName("should reuse in a second run the answer recorded for an unchanged sentence under the same examined version, without asking llama3 again")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldReuseInASecondRunTheAnswerRecordedForAnUnchangedSentenceUnderTheSameExaminedVersionWithoutAskingLlama3Again(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withLlama3();
+        AuditableCourse course = course(level("A1", people()), level("A2", engineer()));
+
+        AuditNode first = world.run(course, null);
+        AuditNode second = world.run(course, null);
+
+        assertEquals(2, world.llama3.sentences().size(), "asked once per sentence, in the first run");
+        assertFalse(diagnosis(first, PEOPLE).isReused());
+        assertTrue(diagnosis(second, PEOPLE).isReused());
+        assertEquals(diagnosis(first, ENGINEER).getNumber(), diagnosis(second, ENGINEER).getNumber(),
+                "the same version gives the same number");
     }
 
     @Test
     @DisplayName("should mark «They don't like people.», 9.0752 above the threshold of A1, 9.07, and not «Are these your feet?», 9.0664")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
-    public void shouldMarkTheyDontLikePeople90752AboveTheThresholdOfA1907AndNotAreTheseYourFeet90664(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldMarkTheyDontLikePeople90752AboveTheThresholdOfA1907AndNotAreTheseYourFeet90664() {
+        World world = World.withLlama3();
+
+        AuditNode root = world.run(course(level("A1", people(), feet())), null);
+
+        NaturalnessDiagnosis people = diagnosis(root, PEOPLE);
+        NaturalnessDiagnosis feet = diagnosis(root, FEET);
+        assertEquals(9.0752, people.getNumber(), 0.0001);
+        assertEquals(9.0664, feet.getNumber(), 0.0001);
+        assertEquals(9.07, people.getThreshold());
+        assertTrue(people.isMarked());
+        assertFalse(feet.isMarked());
+        assertEquals(1, naturalnessFindings(quiz(root, PEOPLE)).size());
+        assertEquals(List.of(), naturalnessFindings(quiz(root, FEET)));
     }
 
     @Test
     @DisplayName("should not mark an exercise whose number equals the threshold of its level")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldNotMarkAnExerciseWhoseNumberEqualsTheThresholdOfItsLevel() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withLlama3();
+        AuditableQuiz atThreshold = cloze("67fab6d59930102295342f00", text("I"), gap("am"), text("(be) at the threshold."));
+        world.llama3.answers("I am at the threshold.", probabilitiesWithNumber(10.0));
+
+        AuditNode root = world.run(course(level("A2", atThreshold)), null);
+
+        NaturalnessDiagnosis diagnosis = diagnosis(root, "67fab6d59930102295342f00");
+        assertEquals(10.0, diagnosis.getNumber(), "exactly the threshold of A2");
+        assertEquals(10.0, diagnosis.getThreshold());
+        assertFalse(diagnosis.isMarked(), "only above the threshold marks");
+        assertEquals(List.of(), naturalnessFindings(quiz(root, "67fab6d59930102295342f00")));
     }
 
     @Test
     @DisplayName("should give a marked exercise a low finding that only ranks, keeping its score at 1 and counting it as marked, never as an error")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldGiveAMarkedExerciseALowFindingThatOnlyRanksKeepingItsScoreAt1AndCountingItAsMarkedNeverAsAnError(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withLlama3();
+
+        AuditNode root = world.run(course(level("A1", people(), feet())), null);
+
+        Finding finding = naturalnessFindings(quiz(root, PEOPLE)).get(0);
+        assertEquals("unlikely-sentence", finding.getRule());
+        assertEquals(FindingSeverity.LOW, finding.getSeverity());
+        assertEquals(FindingResolution.RANK_ONLY, finding.getResolution());
+        assertEquals(1.0, quiz(root, PEOPLE).getScores().get("naturalness"));
+        AnalyzerErrorCounts counts = errorCountsOf(root);
+        assertEquals(1, counts.getMarked());
+        assertEquals(0, counts.getWithError());
+        assertEquals(2, counts.getEvaluated());
     }
 
     @Test
     @DisplayName("should keep the mark of «She is an engineer of hers.» in A2 when another exercise of A2 changes, since the threshold of a level is fixed")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldKeepTheMarkOfSheIsAnEngineerOfHersInA2WhenAnotherExerciseOfA2ChangesSinceTheThresholdOfALevelIsFixed(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withLlama3();
+        AuditableQuiz before = cloze("67fab6d59930102295342f01", text("I"), gap("am"), text("(be) a teacher."));
+        AuditableQuiz after = cloze("67fab6d59930102295342f01", text("I"), gap("am"), text("(be) a teacher of mine."));
+        world.llama3.answers("I am a teacher.", 0.9, 0.1);
+        world.llama3.answers("I am a teacher of mine.", 1e-8, 0.99999999);
+
+        AuditNode first = world.run(course(level("A2", engineer(), before)), null);
+        AuditNode second = world.run(course(level("A2", engineer(), after)), null);
+
+        assertTrue(diagnosis(first, ENGINEER).isMarked());
+        assertTrue(diagnosis(second, ENGINEER).isMarked(), "a sentence more doubtful in A2 does not take its mark");
+        assertEquals(10.0, diagnosis(second, ENGINEER).getThreshold());
+        assertTrue(diagnosis(second, "67fab6d59930102295342f01").isMarked());
     }
 
     @Test
     @DisplayName("should publish the numbers of a level without threshold and mark none of them, as B1 before its threshold is calibrated")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldPublishTheNumbersOfALevelWithoutThresholdAndMarkNoneOfThemAsB1BeforeItsThresholdIsCalibrated(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withLlama3();
+        AuditableQuiz b1 = cloze("67fab6d59930102295343f02", text("She"), gap("has been"), text("(be) an engineer of hers."));
+        world.llama3.answers("She has been an engineer of hers.", 4.2e-7, 0.9999);
+
+        AuditNode root = world.run(course(level("B1", b1)), null);
+
+        NaturalnessDiagnosis diagnosis = diagnosis(root, "67fab6d59930102295343f02");
+        assertTrue(diagnosis.getNumber() > 14.0, "its number is published: " + diagnosis.getNumber());
+        assertNull(diagnosis.getThreshold());
+        assertFalse(diagnosis.isMarked());
+        assertEquals(List.of(), naturalnessFindings(quiz(root, "67fab6d59930102295343f02")));
+        NaturalnessLevelQueue queue = queueOf(root).getLevels().get(0);
+        assertEquals("B1", queue.getLevel());
+        assertNull(queue.getThreshold());
+        assertEquals(List.of(), queue.getMarkedQuizIds());
     }
 
     @Test
     @DisplayName("should give as evidence with llama3 «El modelo local duda que un nativo diga «She is an engineer of hers.» (14,7; umbral de A2: 10,0)»")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R004")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldGiveAsEvidenceWithLlama3ElModeloLocalDudaQueUnNativoDigaSheIsAnEngineerOfHers147UmbralDeA2100(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withLlama3();
+
+        AuditNode root = world.run(course(level("A2", engineer())), null);
+
+        Finding finding = naturalnessFindings(quiz(root, ENGINEER)).get(0);
+        assertEquals("El modelo local duda que un nativo diga «She is an engineer of hers.» (14,7; umbral de A2: 10,0)",
+                finding.getEvidence().getObservation());
+        assertEquals("She is an engineer of hers.", finding.getEvidence().getExamined().get(0).getText());
     }
 
     @Test
     @DisplayName("should give as evidence with claude -p «claude -p contesta que un nativo no diría «She is an engineer of hers.» (sin Ollama)», without a number")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R004")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldGiveAsEvidenceWithClaudePClaudePContestaQueUnNativoNoDiraSheIsAnEngineerOfHersSinOllamaWithoutANumber(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withoutOllama();
+        world.claude.answers("She is an engineer of hers.", "no");
+
+        AuditNode root = world.run(course(level("A2", engineer())), budget(5));
+
+        Finding finding = naturalnessFindings(quiz(root, ENGINEER)).get(0);
+        assertEquals("claude -p contesta que un nativo no diría «She is an engineer of hers.» (sin Ollama)",
+                finding.getEvidence().getObservation());
+        assertNull(diagnosis(root, ENGINEER).getNumber());
     }
 
     @Test
     @DisplayName("should publish per level the marked exercises from the most to the least doubtful, «She is an engineer of hers.», 14.68, first in A2")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R005")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldPublishPerLevelTheMarkedExercisesFromTheMostToTheLeastDoubtfulSheIsAnEngineerOfHers1468FirstInA2(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withLlama3();
+        AuditableQuiz idea = cloze("67fab6d59930102295342f03", text("This idea"), gap("does not"),
+                text("(not / do) very good."));
+        world.llama3.answers("This idea does not very good.", 2e-6, 0.99999);
+
+        AuditNode root = world.run(course(level("A1", people(), feet()), level("A2", promise(), idea, engineer())),
+                null);
+
+        NaturalnessQueueDiagnosis queue = queueOf(root);
+        assertEquals(List.of("A1", "A2"), queue.getLevels().stream().map(NaturalnessLevelQueue::getLevel).toList());
+        assertEquals(List.of(PEOPLE), queue.getLevels().get(0).getMarkedQuizIds());
+        assertEquals(List.of(ENGINEER, "67fab6d59930102295342f03", PROMISE), queue.getLevels().get(1).getMarkedQuizIds(),
+                "14.68, then 13.1, then 10.28");
+        assertEquals(10.0, queue.getLevels().get(1).getThreshold());
+        assertEquals(DefaultNaturalnessConfig.LLAMA3_EXAMINED, queue.getExaminedVersion());
+        assertFalse(queue.isAlternative());
     }
 
     @Test
     @DisplayName("should order the marked exercises of a level that have the same number in the order of the course")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R005")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldOrderTheMarkedExercisesOfALevelThatHaveTheSameNumberInTheOrderOfTheCourse() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withLlama3();
+        AuditableQuiz first = cloze("67fab6d59930102295342f05", text("He"), gap("goes"), text("(go) to the school of him."));
+        AuditableQuiz second = cloze("67fab6d59930102295342f04", text("She"), gap("goes"), text("(go) to the school of her."));
+        world.llama3.answers("He goes to the school of him.", 1e-6, 0.999);
+        world.llama3.answers("She goes to the school of her.", 1e-6, 0.999);
+
+        AuditNode root = world.run(course(level("A2", first, second)), null);
+
+        assertEquals(List.of("67fab6d59930102295342f05", "67fab6d59930102295342f04"),
+                queueOf(root).getLevels().get(0).getMarkedQuizIds(), "the same number keeps the order of the course");
     }
 
     @Test
     @DisplayName("should publish no mark while the examined version llama3:8b@365c0bd3c000 · native-yes-no-1 has no approved exam, leaving its exercises unevaluated with the reason")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R006")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldPublishNoMarkWhileTheExaminedVersionLlama38b365c0bd3c000Nativeyesno1HasNoApprovedExamLeavingItsExercisesUnevaluatedWithTheReason(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.notExamined();
+
+        AuditNode root = world.run(course(level("A2", engineer())), null);
+
+        AuditNode quiz = quiz(root, ENGINEER);
+        assertNull(quiz.getScores().get("naturalness"));
+        assertEquals(List.of(), naturalnessFindings(quiz));
+        assertTrue(quiz.getUnevaluatedBy().contains("naturalness"));
+        assertEquals(List.of(), world.llama3.sentences(), "a version without exam is not asked");
+        LocalToolRunDiagnosis run = runOf(root);
+        assertEquals(DefaultNaturalnessConfig.LLAMA3_EXAMINED, run.getExaminedVersion());
+        assertFalse(run.isPublished());
+        assertTrue(run.getReason().startsWith("sin examen"), run.getReason());
+        assertFalse(run.isAlternative());
     }
 
     @Test
     @DisplayName("should ask in an EXAM run about every exercise of the exam file that reaches and about no other exercise of the photo")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R006")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskInAnEXAMRunAboutEveryExerciseOfTheExamFileThatReachesAndAboutNoOtherExerciseOfThePhoto(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.notExamined();
+        EvaluationRunPolicy exam = new EvaluationRunPolicy(186, false, null, Set.of(ENGINEER, PEOPLE, HARD_WORK),
+                EvaluationRunPurpose.EXAM, null);
+
+        AuditNode root = world.run(course(level("A1", people(), feet(), hardWork()), level("A2", engineer())), exam);
+
+        assertEquals(List.of("They don't like people.", "She is an engineer of hers."), world.llama3.sentences(),
+                "the exercises of the file that reach; «hard work uncountable» does not reach");
+        assertTrue(diagnosis(root, ENGINEER).isMarked(), "the exam run publishes");
+        assertNull(quiz(root, FEET).getScores().get("naturalness"), "another exercise of the photo is not asked");
+        assertFalse(quiz(root, FEET).getUnevaluatedBy().contains("naturalness"));
     }
 
     @Test
     @DisplayName("should ask claude -p the system message and the question it asks llama3, with the same finished sentence")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
-    public void shouldAskClaudePTheSystemMessageAndTheQuestionItAsksLlama3WithTheSameFinishedSentence(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldAskClaudePTheSystemMessageAndTheQuestionItAsksLlama3WithTheSameFinishedSentence() {
+        World local = World.withLlama3();
+        local.run(course(level("A2", engineer())), null);
+        World alternative = World.withoutOllama();
+        alternative.claude.answers("She is an engineer of hers.", "no");
+
+        alternative.run(course(level("A2", engineer())), budget(5));
+
+        assertEquals(1, alternative.claude.calls());
+        Map<String, String> content = alternative.claude.subjects.get(0).getContent();
+        assertEquals(List.of("system", "question"), new ArrayList<>(content.keySet()), "the dependencies of its agent");
+        assertEquals(local.llama3.systems.get(0), content.get("system"));
+        assertEquals(local.llama3.questions.get(0), content.get("question"));
+        assertTrue(content.get("question").endsWith("Sentence: \"She is an engineer of hers.\""));
+        assertEquals(List.of(), alternative.llama3.sentences(), "without Ollama llama3 is never asked");
     }
 
     @Test
     @DisplayName("should mark an exercise to which claude -p answers no with a low finding of native-says-no that only ranks, and leave none when it answers yes")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldMarkAnExerciseToWhichClaudePAnswersNoWithALowFindingOfNativesaysnoThatOnlyRanksAndLeaveNoneWhenItAnswersYes(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withoutOllama();
+        world.claude.answers("She is an engineer of hers.", "no");
+        world.claude.answers("Promise: I'll visit you tomorrow.", "yes");
+
+        AuditNode root = world.run(course(level("A2", engineer(), promise())), budget(5));
+
+        List<Finding> engineer = naturalnessFindings(quiz(root, ENGINEER));
+        assertEquals(1, engineer.size());
+        assertEquals("native-says-no", engineer.get(0).getRule());
+        assertEquals(FindingSeverity.LOW, engineer.get(0).getSeverity());
+        assertEquals(FindingResolution.RANK_ONLY, engineer.get(0).getResolution());
+        assertEquals(1.0, quiz(root, ENGINEER).getScores().get("naturalness"));
+        assertEquals(List.of(), naturalnessFindings(quiz(root, PROMISE)));
+        assertEquals(1.0, quiz(root, PROMISE).getScores().get("naturalness"));
     }
 
     @Test
     @DisplayName("should leave the diagnosis of an exercise answered by claude -p without number nor threshold and say that claude -p answered")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldLeaveTheDiagnosisOfAnExerciseAnsweredByClaudePWithoutNumberNorThresholdAndSayThatClaudePAnswered(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withoutOllama();
+        world.claude.answers("She is an engineer of hers.", "no");
+
+        AuditNode root = world.run(course(level("A2", engineer())), budget(5));
+
+        NaturalnessDiagnosis diagnosis = diagnosis(root, ENGINEER);
+        assertNull(diagnosis.getNumber());
+        assertNull(diagnosis.getThreshold());
+        assertTrue(diagnosis.isAlternative());
+        assertTrue(diagnosis.isMarked());
+        assertTrue(runOf(root).isAlternative(), "the row of the run names claude -p as the tool used");
     }
 
     @Test
     @DisplayName("should list the exercises that claude -p marks in each level in the order of the course")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldListTheExercisesThatClaudePMarksInEachLevelInTheOrderOfTheCourse() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withoutOllama();
+        world.claude.answers("Promise: I'll visit you tomorrow.", "no");
+        world.claude.answers("She is an engineer of hers.", "no");
+        world.claude.answers("They don't like people.", "no");
+        world.claude.answers("Are these your feet?", "yes");
+
+        AuditNode root = world.run(course(level("A1", feet(), people()), level("A2", promise(), engineer())),
+                budget(10));
+
+        NaturalnessQueueDiagnosis queue = queueOf(root);
+        assertTrue(queue.isAlternative());
+        assertEquals(List.of(PEOPLE), queue.getLevels().get(0).getMarkedQuizIds());
+        assertEquals(List.of(PROMISE, ENGINEER), queue.getLevels().get(1).getMarkedQuizIds(),
+                "the order of the course: without a number there is nothing else to order by");
+        assertNull(queue.getLevels().get(1).getThreshold());
     }
 
     @Test
     @DisplayName("should ask claude -p once per exercise that reaches and stop at the budget of --budget naturalness=N, leaving the rest unevaluated")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAskClaudePOncePerExerciseThatReachesAndStopAtTheBudgetOfBudgetNaturalnessNLeavingTheRestUnevaluated(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withoutOllama();
+        world.claude.answers("They don't like people.", "no");
+        world.claude.answers("Are these your feet?", "yes");
+        world.claude.answers("She is an engineer of hers.", "no");
+
+        AuditNode root = world.run(course(level("A1", people(), feet(), hardWork()), level("A2", engineer())),
+                budget(2));
+
+        assertEquals(2, world.claude.calls(), "--budget naturalness=2; «hard work uncountable» does not reach");
+        assertEquals(1.0, quiz(root, PEOPLE).getScores().get("naturalness"));
+        assertEquals(1.0, quiz(root, FEET).getScores().get("naturalness"));
+        assertTrue(quiz(root, ENGINEER).getUnevaluatedBy().contains("naturalness"));
+        assertTrue(runOf(root).getReason().startsWith("se acabó el tope de naturalness"), runOf(root).getReason());
     }
 
     @Test
     @DisplayName("should leave unevaluated with «falta el tope» what needs claude -p when the run asks no budget for naturalness, declaring how many consultations and hours it would cost, without consulting")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldLeaveUnevaluatedWithFaltaElTopeWhatNeedsClaudePWhenTheRunAsksNoBudgetForNaturalnessDeclaringHowManyConsultationsAndHoursItWouldCostWithoutConsulting(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withoutOllama();
+
+        AuditNode root = world.run(course(level("A1", people(), feet()), level("A2", engineer())), null);
+
+        assertEquals(0, world.claude.calls());
+        for (String id : List.of(PEOPLE, FEET, ENGINEER)) {
+            assertTrue(quiz(root, id).getUnevaluatedBy().contains("naturalness"), id);
+        }
+        LocalToolRunDiagnosis run = runOf(root);
+        assertTrue(run.getReason().startsWith("falta el tope"), run.getReason());
+        assertTrue(run.isAlternative());
+        JudgeCoverageDiagnosis coverage = coverageOf(root);
+        assertEquals(3, coverage.getNotEvaluated());
+        assertEquals(3, coverage.getCost().getPendingConsultations());
+        assertEquals(3 / 189.0, coverage.getCost().getHoursOneAtATime(), 1e-9);
+        assertEquals(3 / 189.0 / 4, coverage.getCost().getHoursConcurrent(), 1e-9);
+    }
+
+    // -------------------------------------------------------------------------
+    // The exercises of the course of 29/9 and llama3 as the prototype recorded it
+    // -------------------------------------------------------------------------
+
+    static final String PEOPLE = "67fab6d59930102295341f4a";
+
+    static final String FEET = "67fab6d599301022953422fb";
+
+    static final String ENGINEER = "67fab6d59930102295342c0d";
+
+    static final String PROMISE = "67fab6d59930102295342fd3";
+
+    static final String HARD_WORK = "67fab6d59930102295342305";
+
+    /** …1f4a, Contracciones (A1). */
+    static AuditableQuiz people() {
+        return cloze(PEOPLE, text("They"), gap("don't"), text("(do not) like people."));
+    }
+
+    /** …22fb, Formar el plural (A1). */
+    static AuditableQuiz feet() {
+        return cloze(FEET, text("Are these your"), gap("feet"), text("(foot)?"));
+    }
+
+    /** …2c0d, Doble posesivo (A2), a rewrite read as its answer. */
+    static AuditableQuiz engineer() {
+        return cloze(ENGINEER, text("She is her engineer."), gap("She is an engineer of hers."));
+    }
+
+    /** …2fd3, Funciones mixtas (A2): two accepted answers. */
+    static AuditableQuiz promise() {
+        return cloze(PROMISE, text("Promise: I"), gap("'ll visit|will visit"), text("(visit) you tomorrow."));
+    }
+
+    /** …2305, Contable o incontable (A1): a multiple choice without a verb. */
+    static AuditableQuiz hardWork() {
+        List<MultipleChoiceItemEntity> items = List.of(new MultipleChoiceItemEntity("uncountable", 1.0, "uncountable"),
+                new MultipleChoiceItemEntity("plural countable", 0.0, "plural countable"));
+        return new AuditableQuiz(tokens("hard/ADJ", "work/NOUN", "uncountable/ADJ"), HARD_WORK, HARD_WORK, "", null,
+                List.of(), null, null, List.of(text("hard work"), gap()), new MultipleChoiceEntity("SINGLE", items),
+                null, null);
+    }
+
+    /** P(yes) and P(no) of the first token, as yn-a1a2.jsonl recorded them. */
+    static final Map<String, double[]> RECORDED = Map.of(
+            "They don't like people.", new double[] {0.00011445552505823684, 0.9998393801432296},
+            "Are these your feet?", new double[] {0.00011546011167637963, 0.9998257043528299},
+            "She is an engineer of hers.", new double[] {4.2077659898691115e-07, 0.9999001273081798},
+            "Promise: I'll visit you tomorrow.", new double[] {3.425844510119001e-05, 0.9999089198814192});
+
+    static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    static SentencePartEntity gap(String... options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", options.length == 0 ? null : List.of(options));
+    }
+
+    /** A cloze whose spaCy tokens carry a verb, so it reaches. */
+    static AuditableQuiz cloze(String id, SentencePartEntity... parts) {
+        return new AuditableQuiz(tokens("It/PRON", "is/AUX", "a/DET", "sentence/NOUN"), id, id, "", null, List.of(), null,
+                null, List.of(parts), null, null, null);
+    }
+
+    static List<NlpToken> tokens(String... tagged) {
+        List<NlpToken> tokens = new ArrayList<>();
+        for (String token : tagged) {
+            int slash = token.lastIndexOf('/');
+            tokens.add(new NlpToken(token.substring(0, slash), token.substring(0, slash).toLowerCase(),
+                    token.substring(slash + 1), null, false, false));
+        }
+        return tokens;
+    }
+
+    /** A level of the course: one area with one topic to fill holding these exercises. */
+    static AuditableMilestone level(String level, AuditableQuiz... quizzes) {
+        AuditableKnowledge topic = new AuditableKnowledge(List.of(quizzes), "Tema de " + level, "Completa.", true,
+                "k-" + level, "Tema de " + level, "K", SentenceMode.FILL, "Área");
+        return new AuditableMilestone(List.of(new AuditableTopic(List.of(topic), "t-" + level, "Área", "T")),
+                "m-" + level, level, level);
+    }
+
+    static AuditableCourse course(AuditableMilestone... levels) {
+        return new AuditableCourse(List.of(levels));
+    }
+
+    /** --budget naturalness=N. */
+    static EvaluationRunPolicy budget(int consultations) {
+        return new EvaluationRunPolicy(consultations, false, null, null, null, null);
+    }
+
+    /** P(yes) and P(no) whose number is exactly this one, as a double. */
+    static double[] probabilitiesWithNumber(double number) {
+        double yes = 1e-6;
+        double no = yes * Math.exp(number);
+        for (int i = 0; i < 1000 && Math.log(no / yes) != number; i++) {
+            no = Math.log(no / yes) < number ? Math.nextUp(no) : Math.nextDown(no);
+        }
+        if (Math.log(no / yes) != number) {
+            throw new AssertionError("no probabilities give exactly " + number);
+        }
+        return new double[] {yes, no};
+    }
+
+    // -------------------------------------------------------------------------
+    // The world: llama3 and claude -p recorded, the judges' runtime over a ledger in memory
+    // -------------------------------------------------------------------------
+
+    /** The version the agent naturalness-yes-no states: its definition, model and provider. */
+    static final String CLAUDE_VERSION = "5d2c41f7a8e3c6d1b0a9f8e7d6c5b4a3928170615243f3e2d1c0b9a876540b9e";
+
+    static final class World {
+        final Ledger ledger = new Ledger();
+        final Exams exams = new Exams();
+        final RecordedLlama3 llama3;
+        final RecordedClaude claude = new RecordedClaude();
+        final DefaultJudgeRuntime runtime;
+        final RecordingRuntime recording;
+        final DefaultLocalToolGate gate;
+        final NaturalnessAnalyzerProvider provider;
+
+        private World(boolean ollama) {
+            this.llama3 = new RecordedLlama3(ollama);
+            Sha256ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
+            this.runtime = new DefaultJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, fingerprinter),
+                    new ExamEvaluationSessionFactory(ledger, fingerprinter), exams, evaluatorId -> List.of(),
+                    new Judges());
+            this.recording = new RecordingRuntime(runtime);
+            this.gate = new DefaultLocalToolGate(runtime);
+            this.provider = new NaturalnessAnalyzerProvider(llama3, claude, recording,
+                    new DefaultFinishedSentenceReader(), gate);
+        }
+
+        /** llama3:8b in Ollama, whose examined version approved its exam. */
+        static World withLlama3() {
+            World world = new World(true);
+            world.exams.approve(DefaultNaturalnessConfig.LLAMA3_EXAMINED);
+            return world;
+        }
+
+        /** llama3:8b in Ollama, without exam. */
+        static World notExamined() {
+            return new World(true);
+        }
+
+        /** Ollama off: the alternative with claude -p, whose version approved its exam. */
+        static World withoutOllama() {
+            World world = new World(false);
+            world.exams.approve(CLAUDE_VERSION);
+            return world;
+        }
+
+        /** analyze asking only naturalness, with this policy (null: the run asks it nothing). */
+        AuditNode run(AuditableCourse course, EvaluationRunPolicy policy) {
+            Map<String, EvaluationRunPolicy> policies = policy != null ? Map.of("naturalness", policy) : Map.of();
+            IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
+                    new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+            return engine.runAudit(course, new AnalyzerRunSelection(List.of("naturalness"), policies)).getRoot();
+        }
+    }
+
+    /** llama3:8b answering the recorded probabilities; it writes down what it is asked. */
+    static final class RecordedLlama3 implements YesNoModel {
+        private static final Pattern SENTENCE = Pattern.compile("Sentence: \"(.*)\"$");
+        private final boolean available;
+        private final Map<String, double[]> answers = new LinkedHashMap<>(RECORDED);
+        final List<String> systems = new ArrayList<>();
+        final List<String> questions = new ArrayList<>();
+
+        RecordedLlama3(boolean available) {
+            this.available = available;
+        }
+
+        void answers(String sentence, double yes, double no) {
+            answers.put(sentence, new double[] {yes, no});
+        }
+
+        void answers(String sentence, double[] yesNo) {
+            answers.put(sentence, yesNo);
+        }
+
+        @Override
+        public LocalToolStatus status() {
+            return available
+                    ? new LocalToolStatus("llama3:8b en Ollama", "llama3:8b@365c0bd3c000", true, null, "ollama pull llama3:8b")
+                    : new LocalToolStatus("llama3:8b en Ollama", null, false,
+                            "CONTENT_AUDIT_OLLAMA_URL=off: los modelos locales están apagados a pedido",
+                            "ollama pull llama3:8b");
+        }
+
+        @Override
+        public synchronized YesNoProbabilities ask(String system, String question) {
+            if (!available) {
+                throw new AssertionError("Ollama is off: nothing is asked");
+            }
+            systems.add(system);
+            questions.add(question);
+            double[] answer = answers.get(sentenceOf(question));
+            return answer != null ? new YesNoProbabilities(answer[0], answer[1]) : new YesNoProbabilities(0.9, 0.1);
+        }
+
+        synchronized List<String> sentences() {
+            List<String> sentences = new ArrayList<>();
+            for (String question : questions) {
+                sentences.add(sentenceOf(question));
+            }
+            return sentences;
+        }
+
+        static String sentenceOf(String question) {
+            Matcher found = SENTENCE.matcher(question);
+            return found.find() ? found.group(1) : question;
+        }
+    }
+
+    /** The agent naturalness-yes-no answering «yes» or «no» per sentence; it counts its consultations. */
+    static final class RecordedClaude implements Evaluator {
+        private final Map<String, String> answers = new LinkedHashMap<>();
+        final List<EvaluationSubject> subjects = new ArrayList<>();
+
+        void answers(String sentence, String answer) {
+            answers.put(sentence, answer);
+        }
+
+        @Override
+        public String evaluatorId() {
+            return "naturalness-yes-no";
+        }
+
+        @Override
+        public synchronized EvaluationOutcome evaluate(EvaluationSubject subject) {
+            subjects.add(subject);
+            String sentence = RecordedLlama3.sentenceOf(subject.getContent().getOrDefault("question", ""));
+            String answer = answers.get(sentence);
+            return answer != null
+                    ? new EvaluationEmitted("{\"answer\":\"" + answer + "\"}")
+                    : new EvaluationNotEmitted(EvaluationFailureKind.OUTPUT_UNUSABLE, "sin respuesta grabada");
+        }
+
+        @Override
+        public Optional<String> evaluatorVersion() {
+            return Optional.of(CLAUDE_VERSION);
+        }
+
+        synchronized int calls() {
+            return subjects.size();
+        }
+    }
+
+    /** The judges' runtime, writing down each open: what the provider decided for the run. */
+    static final class RecordingRuntime implements JudgeRuntime {
+        final JudgeRuntime delegate;
+        final List<String> judges = new ArrayList<>();
+        final List<List<String>> evaluators = new ArrayList<>();
+        final List<EvaluationRunPolicy> policies = new ArrayList<>();
+        final List<JudgeSessions> opened = new ArrayList<>();
+
+        RecordingRuntime(JudgeRuntime delegate) {
+            this.delegate = delegate;
+        }
+
+        @Override
+        public JudgeSessions open(String judgeName, List<Evaluator> list, EvaluationRunPolicy policy) {
+            judges.add(judgeName);
+            evaluators.add(list.stream().map(Evaluator::evaluatorId).toList());
+            policies.add(policy);
+            JudgeSessions sessions = delegate.open(judgeName, list, policy);
+            opened.add(sessions);
+            return sessions;
+        }
+
+        @Override
+        public JudgeRequestPlan plan(List<AuditNode> units, EvaluationRunPolicy policy) {
+            return delegate.plan(units, policy);
+        }
+
+        @Override
+        public JudgeCoverageDiagnosis coverage(JudgeSessions sessions, JudgeUnitTally tally) {
+            return delegate.coverage(sessions, tally);
+        }
+
+        @Override
+        public JudgeExamStanding standing(String judgeName, String judgeVersion) {
+            return delegate.standing(judgeName, judgeVersion);
+        }
+    }
+
+    /** The ledger in memory: the latest with a key wins. */
+    static final class Ledger implements EvaluationLedger {
+        private final List<EvaluationRecord> records = new ArrayList<>();
+
+        @Override
+        public synchronized void append(EvaluationRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public synchronized Optional<EvaluationRecord> findLatest(EvaluationKey key) {
+            EvaluationRecord latest = null;
+            for (EvaluationRecord record : records) {
+                if (record.getKey().equals(key)) {
+                    latest = record;
+                }
+            }
+            return Optional.ofNullable(latest);
+        }
+
+        @Override
+        public synchronized List<EvaluationRecord> history(EvaluationKey key) {
+            return records.stream().filter(r -> r.getKey().equals(key)).toList();
+        }
+
+        synchronized List<EvaluationRecord> all() {
+            return new ArrayList<>(records);
+        }
+    }
+
+    /** The judges' registry in memory: approved versions of naturalness. */
+    static final class Exams implements JudgeExamRegistry {
+        private final List<JudgeExamRecord> records = new ArrayList<>();
+
+        void approve(String version) {
+            records.add(new JudgeExamRecord("naturalness", version, JudgeExamStatus.APPROVED, 186, 0, List.of(),
+                    List.of(), true, "2026-09-29", "medir.py", Instant.parse("2026-10-01T12:00:00Z")));
+        }
+
+        @Override
+        public void record(JudgeExamRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public Optional<JudgeExamRecord> latest(String judgeName, String judgeVersion) {
+            JudgeExamRecord latest = null;
+            for (JudgeExamRecord record : records) {
+                if (record.getJudgeName().equals(judgeName) && record.getJudgeVersion().equals(judgeVersion)) {
+                    latest = record;
+                }
+            }
+            return Optional.ofNullable(latest);
+        }
+
+        @Override
+        public List<JudgeExamRecord> history(String judgeName) {
+            return records.stream().filter(r -> r.getJudgeName().equals(judgeName)).toList();
+        }
+    }
+
+    static final class Judges implements JudgeRuntimeConfig {
+        @Override
+        public int getMaxConcurrentEvaluations() {
+            return 4;
+        }
+
+        @Override
+        public int getDefaultMaxNewEvaluations(String judgeName) {
+            return 0;
+        }
+
+        @Override
+        public double getDefaultRatePerHour(String judgeName) {
+            return 189.0;
+        }
+
+        @Override
+        public Map<String, Object> describe() {
+            return Map.of();
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Reading the report
+    // -------------------------------------------------------------------------
+
+    static AuditNode quiz(AuditNode root, String id) {
+        List<AuditNode> found = new ArrayList<>();
+        walk(root, node -> {
+            if (node.getTarget() == AuditTarget.QUIZ && id.equals(node.getEntity().getId())) {
+                found.add(node);
+            }
+        });
+        if (found.isEmpty()) {
+            throw new AssertionError("no exercise " + id);
+        }
+        return found.get(0);
+    }
+
+    static void walk(AuditNode node, Consumer<AuditNode> visit) {
+        visit.accept(node);
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                walk(child, visit);
+            }
+        }
+    }
+
+    static NaturalnessDiagnosis diagnosis(AuditNode root, String id) {
+        return ((QuizDiagnoses) quiz(root, id).getDiagnoses()).getNaturalnessDiagnosis()
+                .orElseThrow(() -> new AssertionError("no diagnosis of naturalness on " + id));
+    }
+
+    static List<Finding> naturalnessFindings(AuditNode node) {
+        List<Finding> findings = new ArrayList<>();
+        if (node.getFindings() != null) {
+            for (Finding finding : node.getFindings()) {
+                if ("naturalness".equals(finding.getAnalyzer())) {
+                    findings.add(finding);
+                }
+            }
+        }
+        return findings;
+    }
+
+    static NaturalnessQueueDiagnosis queueOf(AuditNode root) {
+        return ((CourseDiagnoses) root.getDiagnoses()).getNaturalnessQueue()
+                .orElseThrow(() -> new AssertionError("no queue of naturalness"));
+    }
+
+    static LocalToolRunDiagnosis runOf(AuditNode root) {
+        return ((CourseDiagnoses) root.getDiagnoses()).getLocalToolRuns().stream()
+                .filter(run -> "naturalness".equals(run.getAnalyzer()))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("no row of the run of naturalness"));
+    }
+
+    static JudgeCoverageDiagnosis coverageOf(AuditNode root) {
+        return ((CourseDiagnoses) root.getDiagnoses()).getJudgeCoverages().stream()
+                .filter(coverage -> "naturalness".equals(coverage.getJudgeName()))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("no coverage of naturalness"));
+    }
+
+    static AnalyzerErrorCounts errorCountsOf(AuditNode node) {
+        for (AnalyzerErrorCounts counts : node.getNumbers().getErrors().getAnalyzers()) {
+            if ("naturalness".equals(counts.getAnalyzer())) {
+                return counts;
+            }
+        }
+        throw new AssertionError("no error counts of naturalness");
     }
 }

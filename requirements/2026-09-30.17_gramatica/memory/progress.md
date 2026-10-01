@@ -4,6 +4,12 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (paquete B) — GRAMA implementado (26bb9c25 la oración terminada, 90d59f69 el analizador,
+  94f7dcb8 el @Generated del journey). Control sobre una copia, LanguageTool 6.8 aprobado sólo en la copia: LanguageTool
+  sobre las 12.223 oraciones en unos 21 s; 57 ejercicios con hallazgo (A1 17, A2 10, B1 16, B2 14): english-error 3 bloqueantes,
+  22 altas, 13 medias y 7 bajas, final-punctuation 13. medir.py en escribir/: 4 de 47 (8,5 %), 27 marcas en la parte,
+  23 fuera del oro: lo que preveía el prototipo.
+
 2026-10-01 — qa-tester (de analista y arquitecto) — R001 inv. 5 escrita (REQUIREMENT, TECH_SPEC y la descripción
   de `finishedsentence`), R003 y el Contexto con la lectura nueva; 4 pruebas más (48): la respuesta en el lugar de la
   lista, su mayúscula, los 40 iguales al audio y …396f sin signo final falso. Backup, `patch propose --replace` (sin

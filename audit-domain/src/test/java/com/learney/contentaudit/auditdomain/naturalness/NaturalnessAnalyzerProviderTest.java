@@ -1,7 +1,22 @@
 package com.learney.contentaudit.auditdomain.naturalness;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolCard;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,48 +30,98 @@ public class NaturalnessAnalyzerProviderTest {
     @DisplayName("should open naturalness through the judges' runtime with the evaluator of llama3 and the policy without limit of the local tool decision when llama3 is available, never with the claude -p alternative")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldOpenNaturalnessThroughTheJudgesRuntimeWithTheEvaluatorOfLlama3AndThePolicyWithoutLimitOfTheLocalToolDecisionWhenLlama3IsAvailableNeverWithTheClaudePAlternative(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NaturalnessAnalyzerTest.World world = NaturalnessAnalyzerTest.World.withLlama3();
+
+        world.provider.create(null);
+
+        assertEquals(List.of("naturalness"), world.recording.judges);
+        assertEquals(List.of(List.of("naturalness · " + DefaultNaturalnessConfig.LLAMA3_EXAMINED)),
+                world.recording.evaluators, "its own evaluator, never naturalness-yes-no");
+        EvaluationRunPolicy policy = world.recording.policies.get(0);
+        assertEquals(Integer.MAX_VALUE, policy.getMaxNewEvaluations(), "without limit: budget 0 is for claude -p");
+        assertEquals(1, policy.getMaxConcurrentEvaluations(), "one at a time");
+        assertEquals(Integer.MAX_VALUE, world.recording.opened.get(0).getEffectivePolicy().getMaxNewEvaluations());
+        assertEquals(0, world.claude.calls());
     }
 
     @Test
     @DisplayName("should open naturalness through the judges' runtime with the claude -p alternative and the run's policy as it comes when llama3 is not available, so without --budget naturalness=N it has budget 0")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldOpenNaturalnessThroughTheJudgesRuntimeWithTheClaudePAlternativeAndTheRunsPolicyAsItComesWhenLlama3IsNotAvailableSoWithoutBudgetNaturalnessNItHasBudget0(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NaturalnessAnalyzerTest.World world = NaturalnessAnalyzerTest.World.withoutOllama();
+        EvaluationRunPolicy fifty = NaturalnessAnalyzerTest.budget(50);
+
+        world.provider.create(null);
+        world.provider.create(fifty);
+
+        assertEquals(List.of(List.of("naturalness-yes-no"), List.of("naturalness-yes-no")), world.recording.evaluators);
+        assertNull(world.recording.policies.get(0), "the run's policy as it comes: none");
+        assertEquals(0, world.recording.opened.get(0).getEffectivePolicy().getMaxNewEvaluations(),
+                "the runtime gives claude -p budget 0 without --budget");
+        assertEquals(fifty, world.recording.policies.get(1));
+        assertEquals(50, world.recording.opened.get(1).getEffectivePolicy().getMaxNewEvaluations(),
+                "--budget naturalness=50 is the budget of claude -p");
     }
 
     @Test
     @DisplayName("should describe naturalness as an errors analyzer that evaluates exercises and only ranks, asking «¿Un nativo diría así esta oración?», with the rule unlikely-sentence of local model cost, the rule native-says-no of paid model cost and paid model as the cost of its card")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R007")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldDescribeNaturalnessAsAnErrorsAnalyzerThatEvaluatesExercisesAndOnlyRanksAskingUnNativoDiraAsEstaOracinWithTheRuleUnlikelysentenceOfLocalModelCostTheRuleNativesaysnoOfPaidModelCostAndPaidModelAsTheCostOfItsCard(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AnalyzerDescriptor card = NaturalnessAnalyzerTest.World.withLlama3().provider.describe();
+
+        assertEquals("naturalness", card.getName());
+        assertEquals("Naturalidad", card.getDisplayName());
+        assertEquals("¿Un nativo diría así esta oración?", card.getQuestion());
+        assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
+        assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
+        assertEquals(List.of(FindingResolution.RANK_ONLY), card.getResolutions());
+        assertEquals(List.of("unlikely-sentence", "native-says-no"),
+                card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
+        assertEquals(List.of(AnalysisCost.LOCAL_MODEL, AnalysisCost.PAID_MODEL),
+                card.getRules().stream().map(AnalyzerRuleCard::getCost).toList());
+        assertEquals(AnalysisCost.PAID_MODEL, card.getCost(), "the highest cost of its rules");
     }
 
     @Test
     @DisplayName("should carry in its card two tools, llama3:8b in Ollama and claude -p, each with its version and the result of its exam")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R007")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
-    public void shouldCarryInItsCardTwoToolsLlama38bInOllamaAndClaudePEachWithItsVersionAndTheResultOfItsExam(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldCarryInItsCardTwoToolsLlama38bInOllamaAndClaudePEachWithItsVersionAndTheResultOfItsExam() {
+        NaturalnessAnalyzerTest.World world = NaturalnessAnalyzerTest.World.withLlama3();
+        world.exams.approve(NaturalnessAnalyzerTest.CLAUDE_VERSION);
+
+        List<LocalToolCard> tools = world.provider.describe().getTools();
+
+        assertEquals(2, tools.size());
+        LocalToolCard llama3 = tools.get(0);
+        assertEquals("llama3:8b en Ollama", llama3.getStatus().getTool());
+        assertEquals("llama3:8b@365c0bd3c000", llama3.getStatus().getVersion());
+        assertEquals(DefaultNaturalnessConfig.LLAMA3_EXAMINED, llama3.getExaminedVersion());
+        assertEquals(JudgeExamStatus.APPROVED, llama3.getExamState());
+        assertEquals("aprobado el 1/10", llama3.getExamSummary());
+        assertFalse(llama3.isAlternative());
+        LocalToolCard claude = tools.get(1);
+        assertEquals("claude -p", claude.getStatus().getTool());
+        assertEquals(NaturalnessAnalyzerTest.CLAUDE_VERSION, claude.getStatus().getVersion());
+        assertEquals(JudgeExamStatus.APPROVED, claude.getExamState());
+        assertTrue(claude.isAlternative());
+        assertEquals(0, world.claude.calls(), "the card reads the version of claude -p without consulting it");
     }
 
     @Test
     @DisplayName("should declare no plan binding, so a naturalness finding never becomes a task")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R003")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldDeclareNoPlanBindingSoANaturalnessFindingNeverBecomesATask() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NaturalnessAnalyzerProvider provider = NaturalnessAnalyzerTest.World.withLlama3().provider;
+
+        assertEquals(Optional.empty(), provider.planBinding());
+        assertTrue(provider.config().isPresent(), "config analyzer naturalness shows its question and thresholds");
     }
 }

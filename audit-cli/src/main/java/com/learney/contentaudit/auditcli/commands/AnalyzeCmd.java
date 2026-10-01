@@ -18,6 +18,7 @@ import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditdomain.NlpResourcesUnavailableException;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolUnavailableException;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -227,6 +228,11 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
             // what is missing and where it was looked for, exit 1 and no report.
             System.err.println("Error: " + e.getMessage());
             return 1;
+        } catch (LocalToolUnavailableException e) {
+            // F-MLOCAL-R003 inv. 1 (hook B-05): asked by name without its tool nor its alternative,
+            // the run is rejected before it starts: what is missing and how to install it, no report.
+            System.err.println("Error: " + e.getMessage());
+            return 1;
         } catch (RuntimeException e) {
             System.err.println("Error running audit: " + e.getMessage());
             return 1;
@@ -327,6 +333,11 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
             // what is missing and where it was looked for, exit 1 and no report.
             System.err.println("Error: " + e.getMessage());
             return 1;
+        } catch (LocalToolUnavailableException e) {
+            // F-MLOCAL-R003 inv. 1 (hook B-05): asked by name without its tool nor its alternative,
+            // the run is rejected before it starts: what is missing and how to install it, no report.
+            System.err.println("Error: " + e.getMessage());
+            return 1;
         } catch (RuntimeException e) {
             System.err.println("Error running audit: " + e.getMessage());
             return 1;
@@ -413,6 +424,11 @@ public AnalyzeCmd(AuditRunner auditRunner, FormatterRegistry formatterRegistry, 
         } catch (NlpResourcesUnavailableException e) {
             // F-RONDA2-R007: without the lemma list, the processor or spaCy, nothing is measured:
             // what is missing and where it was looked for, exit 1 and no report.
+            System.err.println("Error: " + e.getMessage());
+            return 1;
+        } catch (LocalToolUnavailableException e) {
+            // F-MLOCAL-R003 inv. 1 (hook B-05): asked by name without its tool nor its alternative,
+            // the run is rejected before it starts: what is missing and how to install it, no report.
             System.err.println("Error: " + e.getMessage());
             return 1;
         } catch (RuntimeException e) {

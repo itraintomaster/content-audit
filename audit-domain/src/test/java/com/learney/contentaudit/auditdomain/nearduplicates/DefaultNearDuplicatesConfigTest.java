@@ -1,7 +1,13 @@
 package com.learney.contentaudit.auditdomain.nearduplicates;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolGateDecision;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,19 +21,37 @@ public class DefaultNearDuplicatesConfigTest {
     @DisplayName("should hold the threshold 0.95, the prefix «clustering: » and the word similarity 0.6 of the candidates for claude -p")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldHoldTheThreshold095ThePrefixClusteringAndTheWordSimilarity06OfTheCandidatesForClaudeP(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesConfig config = new DefaultNearDuplicatesConfig();
+
+        assertEquals(0.95, config.similarityThreshold());
+        assertEquals("clustering: ", config.inputPrefix());
+        assertEquals(0.6, config.candidateWordSimilarity());
+        assertEquals("clustering-1", config.methodId());
+        assertEquals(0.95, config.describe().get("similarityThreshold"), "in view in config analyzer near-duplicates");
+        assertEquals("clustering: ", config.describe().get("inputPrefix"));
     }
 
     @Test
     @DisplayName("should change its methodId when the prefix changes, so the vectors are a new examined version that takes its own exam")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R007")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldChangeItsMethodIdWhenThePrefixChangesSoTheVectorsAreANewExaminedVersionThatTakesItsOwnExam(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
+        NearDuplicatesConfig other = new DefaultNearDuplicatesConfig("search_document: ", 0.95, 0.6);
+
+        LocalToolGateDecision measured = world.gate.decide("near-duplicates", world.nomic, "clustering-1", null);
+        LocalToolGateDecision otherPrefix = world.gate.decide("near-duplicates", world.nomic, other.methodId(), null);
+
+        assertNotEquals("clustering-1", other.methodId());
+        assertTrue(other.methodId().startsWith("search-document-"), other.methodId());
+        assertEquals(other.methodId(), new DefaultNearDuplicatesConfig("search_document: ", 0.9, 0.5).methodId(),
+                "the thresholds are not the vectors: only the prefix names the method");
+        assertEquals(JudgeExamStatus.APPROVED, measured.getExamState());
+        assertEquals("nomic-embed-text@0a109f422b47 · " + other.methodId(), otherPrefix.getExaminedVersion());
+        assertEquals(JudgeExamStatus.NOT_TAKEN, otherPrefix.getExamState(), "another prefix takes its own exam");
+        assertFalse(otherPrefix.isPublishes());
     }
 }

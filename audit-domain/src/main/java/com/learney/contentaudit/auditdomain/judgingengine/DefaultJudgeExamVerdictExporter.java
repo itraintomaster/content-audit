@@ -4,6 +4,7 @@ import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
@@ -12,6 +13,7 @@ import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamOutcome;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamVerdict;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamVerdictExporter;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolRunDiagnosis;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -30,6 +32,12 @@ import javax.annotation.processing.Generated;
  * {@code MARKED} when they only rank and {@code PASSES} when there is none; an exercise the judge
  * left unevaluated (or never reached, or that is not in the photo) gives {@code NOT_JUDGED}. The
  * findings of the instant rules of the same analyzer never count.
+ *
+ * <p>Hook B-11: an analyzer that measures with a local tool -- its card names tools -- takes its
+ * exam with every rule, since its instant and local-model rules are what is examined (three of the
+ * four hits of grammar in {@code escribir/} are of the final sign). One that does not consult
+ * through the judges' runtime, as grammar, has no coverage: its version and the reason it left
+ * something unevaluated are those of its run's row.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -51,9 +59,11 @@ public class DefaultJudgeExamVerdictExporter implements JudgeExamVerdictExporter
             return verdicts;
         }
         String judgeName = card.getName();
+        LocalToolRunDiagnosis run = runOf(report, judgeName);
         String judgeVersion = coverage != null && coverage.getStanding() != null
                 ? coverage.getStanding().getJudgeVersion()
-                : null;
+                : (run != null ? run.getExaminedVersion() : null);
+        boolean everyRule = card.getTools() != null && !card.getTools().isEmpty();
         Map<String, AuditNode> quizzes = quizzesById(report != null ? report.getRoot() : null);
 
         for (String caseId : caseIds) {
@@ -63,10 +73,10 @@ public class DefaultJudgeExamVerdictExporter implements JudgeExamVerdictExporter
                 continue;
             }
             if (contains(node.getUnevaluatedBy(), judgeName) || contains(node.getPartiallyEvaluatedBy(), judgeName)) {
-                verdicts.add(notJudged(caseId, judgeName, judgeVersion, unevaluatedDetail(coverage)));
+                verdicts.add(notJudged(caseId, judgeName, judgeVersion, unevaluatedDetail(coverage, run)));
                 continue;
             }
-            List<Finding> paid = paidFindingsOf(node, judgeName);
+            List<Finding> paid = examinedFindingsOf(node, judgeName, everyRule);
             boolean scored = node.getScores() != null && node.getScores().get(judgeName) != null;
             if (!scored && paid.isEmpty()) {
                 verdicts.add(notJudged(caseId, judgeName, judgeVersion, NOT_REACHED));
@@ -127,23 +137,42 @@ public class DefaultJudgeExamVerdictExporter implements JudgeExamVerdictExporter
                 detail);
     }
 
-    private static String unevaluatedDetail(JudgeCoverageDiagnosis coverage) {
+    private static String unevaluatedDetail(JudgeCoverageDiagnosis coverage, LocalToolRunDiagnosis run) {
         String reason = coverage != null ? coverage.getUnavailableReason() : null;
+        if ((reason == null || reason.isBlank()) && run != null) {
+            reason = run.getReason();
+        }
         return reason != null && !reason.isBlank() ? NOT_EVALUATED + ": " + reason : NOT_EVALUATED;
     }
 
-    private static List<Finding> paidFindingsOf(AuditNode node, String judgeName) {
-        List<Finding> paid = new ArrayList<>();
+    /** The findings the exam looks at: those of the paid-model rules or, with a local tool, all of them. */
+    private static List<Finding> examinedFindingsOf(AuditNode node, String judgeName, boolean everyRule) {
+        List<Finding> examined = new ArrayList<>();
         if (node.getFindings() == null) {
-            return paid;
+            return examined;
         }
         for (Finding finding : node.getFindings()) {
             if (finding != null && judgeName.equals(finding.getAnalyzer())
-                    && finding.getCost() == AnalysisCost.PAID_MODEL) {
-                paid.add(finding);
+                    && (everyRule || finding.getCost() == AnalysisCost.PAID_MODEL)) {
+                examined.add(finding);
             }
         }
-        return paid;
+        return examined;
+    }
+
+    /** The row of an analyzer with a local tool in the run (hook B-03), if it left one. */
+    private static LocalToolRunDiagnosis runOf(AuditReport report, String analyzerName) {
+        if (report == null || report.getRoot() == null
+                || !(report.getRoot().getDiagnoses() instanceof CourseDiagnoses diagnoses)
+                || diagnoses.getLocalToolRuns() == null) {
+            return null;
+        }
+        for (LocalToolRunDiagnosis run : diagnoses.getLocalToolRuns()) {
+            if (run != null && analyzerName.equals(run.getAnalyzer())) {
+                return run;
+            }
+        }
+        return null;
     }
 
     private static Map<String, AuditNode> quizzesById(AuditNode root) {

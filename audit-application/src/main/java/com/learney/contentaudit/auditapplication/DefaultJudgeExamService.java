@@ -80,7 +80,7 @@ public class DefaultJudgeExamService implements JudgeExamService {
         JudgeCoverageDiagnosis coverage = coverageOf(report, judgeName).orElse(null);
         String judgeVersion = coverage != null && coverage.getStanding() != null
                 ? coverage.getStanding().getJudgeVersion()
-                : null;
+                : examinedVersionOf(report, judgeName);
         List<JudgeExamVerdict> verdicts = exporter.export(report, card, caseIds, coverage);
 
         int judged = 0;
@@ -150,6 +150,25 @@ public class DefaultJudgeExamService implements JudgeExamService {
             }
         }
         return Optional.empty();
+    }
+
+    /**
+     * Hook B-11: an analyzer with a local tool that does not consult through the judges' runtime --
+     * grammar, with LanguageTool -- has no coverage; the version it took the exam with is the
+     * examined version of its run's row («LanguageTool 6.8 · filtro-…»).
+     */
+    private static String examinedVersionOf(AuditReport report, String analyzerName) {
+        if (report == null || report.getRoot() == null
+                || !(report.getRoot().getDiagnoses() instanceof CourseDiagnoses diagnoses)
+                || diagnoses.getLocalToolRuns() == null) {
+            return null;
+        }
+        for (com.learney.contentaudit.auditdomain.localtools.LocalToolRunDiagnosis run : diagnoses.getLocalToolRuns()) {
+            if (run != null && analyzerName.equals(run.getAnalyzer())) {
+                return run.getExaminedVersion();
+            }
+        }
+        return null;
     }
 
     private static String photoOf(JudgeExamRequest request) {

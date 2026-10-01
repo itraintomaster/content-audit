@@ -5,6 +5,15 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — «Pide lo mismo» compara todos los huecos (el prototipo, sólo el primero) con
+  CorrectorMatcher.sameAnswer, también tapando pronombres y demostrativos de la respuesta (todos, como el prototipo,
+  no sólo los copiados del enunciado). Contra pares.json: 24.800 de 24.889 (89 de varios huecos con otro segundo hueco)
+  y 13 nuevos («'re going to» = «are going to»). El comodín es de texto, sin spaCy (lema por raíz): 24 de 24 y uno más
+  (…412e/…415f, they → you). Candidatos de claude -p: 696 de 699.
+2026-10-01 — developer — El plan del runtime va por tema (unidades KNOWLEDGE): un conjunto declarado y el examen traen
+  temas enteros, porque el par necesita a los dos. Vector sólo para los ejercicios de algún par que el comodín no
+  resuelve. Queda el primero del tema con el que es casi igual; un par anterior sin respuesta deja la copia a medias.
+
 2026-10-01 — coordinador — El doble hallazgo de …2260 en Práctica mixta es lo esperado: cada analizador dice su
   relación —copia exacta de …224b en exact-duplicates, casi igual a …2231 en near-duplicates— y la mesa los agrupa.
   La prueba de R001 que lo fija queda como está. Responde la pregunta del qa-tester del 1/10.

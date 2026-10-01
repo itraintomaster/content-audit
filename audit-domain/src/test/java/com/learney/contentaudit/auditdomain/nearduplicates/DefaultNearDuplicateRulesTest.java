@@ -1,7 +1,14 @@
 package com.learney.contentaudit.auditdomain.nearduplicates;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcherTest;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,68 +22,97 @@ public class DefaultNearDuplicateRulesTest {
     @DisplayName("should take as the same request «Where are you now?» and «Where are they now?», whose answers differ only in the pronoun the student copies from the prompt")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R001")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldTakeAsTheSameRequestWhereAreYouNowAndWhereAreTheyNowWhoseAnswersDifferOnlyInThePronounTheStudentCopiesFromThePrompt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // «are you» and «are they»: the pronoun comes from the statement, «(You)» and «(They)».
+        assertTrue(rules.sameRequest(NearDuplicatesAnalyzerTest.youNow(), NearDuplicatesAnalyzerTest.theyNow()));
+        assertTrue(rules.sameRequest(NearDuplicatesAnalyzerTest.whereHe(), NearDuplicatesAnalyzerTest.whereShe()),
+                "«is he» and «is she»");
     }
 
     @Test
     @DisplayName("should not take as the same request «I observed him clean the room.» and «I observed him cleaning the room.», whose answers differ")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R001")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldNotTakeAsTheSameRequestIObservedHimCleanTheRoomAndIObservedHimCleaningTheRoomWhoseAnswersDiffer(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The contrast is on purpose: «clean» and «cleaning» is just what the topic teaches.
+        assertFalse(rules.sameRequest(NearDuplicatesAnalyzerTest.clean(), NearDuplicatesAnalyzerTest.cleaning()));
     }
 
     @Test
     @DisplayName("should compare the answers as the corrector does, taking «'ll wash» and «will wash» as the same answer")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R001")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldCompareTheAnswersAsTheCorrectorDoesTakingLlWashAndWillWashAsTheSameAnswer() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditableQuiz contracted = NearDuplicatesAnalyzerTest.cloze("67fab6d59930102295342725", "Funciones mixtas",
+                NearDuplicatesAnalyzerTest.text("Offer: I"), NearDuplicatesAnalyzerTest.gap("'ll wash|will wash"),
+                NearDuplicatesAnalyzerTest.text("(wash) the dishes for you."));
+        AuditableQuiz longForm = NearDuplicatesAnalyzerTest.cloze("67fab6d59930102295342fd5", "Funciones mixtas",
+                NearDuplicatesAnalyzerTest.text("Offer: I"), NearDuplicatesAnalyzerTest.gap("will wash|'ll wash"),
+                NearDuplicatesAnalyzerTest.text("(wash) the dishes."));
+        DefaultNearDuplicateRules oldCorrector = new DefaultNearDuplicateRules(
+                new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.oldCorrectorTable()),
+                NearDuplicatesAnalyzerTest.renderer());
+
+        assertTrue(rules.sameRequest(contracted, longForm), "the corrector in production: «'ll wash» is «will wash»");
+        assertFalse(oldCorrector.sameRequest(contracted, longForm),
+                "with the empty table of the old corrector they are two answers: the corrector decides");
     }
 
     @Test
     @DisplayName("should find «Where is he?» and «Where is she?» of Contraste inicial equal under the wildcard and say what changes, he → she")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldFindWhereIsHeAndWhereIsSheOfContrasteInicialEqualUnderTheWildcardAndSayWhatChangesHeShe(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        assertEquals(Optional.of("he → she"),
+                rules.wildcardDifference(NearDuplicatesAnalyzerTest.whereHe(), NearDuplicatesAnalyzerTest.whereShe()));
+        assertEquals(Optional.of("they → we"),
+                rules.wildcardDifference(NearDuplicatesAnalyzerTest.theyReady(), NearDuplicatesAnalyzerTest.weReady()),
+                "a change that repeats is said once");
     }
 
     @Test
     @DisplayName("should find «I don't have much time.» and «I didn't have much time.» equal under the wildcard, which covers the tense of the auxiliary")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldFindIDontHaveMuchTimeAndIDidntHaveMuchTimeEqualUnderTheWildcardWhichCoversTheTenseOfTheAuxiliary(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        assertEquals(Optional.of("don't → didn't"),
+                rules.wildcardDifference(NearDuplicatesAnalyzerTest.dontHave(), NearDuplicatesAnalyzerTest.didntHave()));
+        assertEquals(Optional.of("Can → Could"), rules.wildcardDifference(NearDuplicatesAnalyzerTest.canDrive(),
+                NearDuplicatesAnalyzerTest.couldDrive()), "and can and could");
     }
 
     @Test
     @DisplayName("should not find under the wildcard two exercises that change a verb, «They cooked lunch for each other.» and «They prepared lunch for each other.»")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldNotFindUnderTheWildcardTwoExercisesThatChangeAVerbTheyCookedLunchForEachOtherAndTheyPreparedLunchForEachOther(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        assertEquals(Optional.empty(),
+                rules.wildcardDifference(NearDuplicatesAnalyzerTest.cooked(), NearDuplicatesAnalyzerTest.prepared()));
+        assertEquals(Optional.empty(),
+                rules.wildcardDifference(NearDuplicatesAnalyzerTest.hisCar(), NearDuplicatesAnalyzerTest.carHis()),
+                "nor two that change the order: «That is his car.» and «That car is his.»");
     }
 
     @Test
     @DisplayName("should give as word similarity 1 minus the words to change, add or remove over the longer length, 0.67 for «Have you ever been to Rome?» and «Have you ever visited Rome?»")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldGiveAsWordSimilarity1MinusTheWordsToChangeAddOrRemoveOverTheLongerLength067ForHaveYouEverBeenToRomeAndHaveYouEverVisitedRome(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // «been to» becomes «visited»: one word changes and one goes, out of 6. The «-» of no article is no word.
+        assertEquals(1 - 2 / 6.0, rules.wordSimilarity(NearDuplicatesAnalyzerTest.beenToRome(),
+                NearDuplicatesAnalyzerTest.visitedRome()), 1e-12);
+        assertEquals(1 - 2 / 7.0, rules.wordSimilarity(NearDuplicatesAnalyzerTest.washForYou(),
+                NearDuplicatesAnalyzerTest.wash()), 1e-12, "«I'll» is one word");
+        assertEquals(0.5, rules.wordSimilarity(NearDuplicatesAnalyzerTest.hisCar(), NearDuplicatesAnalyzerTest.carHis()),
+                1e-12);
     }
+
+    private final DefaultNearDuplicateRules rules = new DefaultNearDuplicateRules(NearDuplicatesAnalyzerTest.corrector(),
+            NearDuplicatesAnalyzerTest.renderer());
 }

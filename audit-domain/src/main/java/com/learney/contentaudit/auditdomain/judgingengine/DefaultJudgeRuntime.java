@@ -264,6 +264,11 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
     /**
      * F-JEXAM-R001 / R003: the standing of a version is its last exam record. Only an approved
      * version consults on the course; the reason says, in Spanish, why the others do not.
+     *
+     * <p>F-MLOCAL-R006 (hook B-11): a version with a measured result carries it in one line --
+     * «51 de 186 en la cola del 5 %, aprobado el 30/9» --, so the card of an analyzer shows it
+     * next to its version. An approved version has no other reason; a failed one keeps the
+     * reason it does not consult first, and the result after it.
      */
     @Override
     public JudgeExamStanding standing(String judgeName, String judgeVersion) {
@@ -274,13 +279,45 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
         if (latest == null || latest.isEmpty() || latest.get().getStatus() == null) {
             return new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.NOT_TAKEN, false, REASON_NOT_TAKEN);
         }
-        return switch (latest.get().getStatus()) {
-            case APPROVED -> new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.APPROVED, true, null);
-            case FAILED -> new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.FAILED, false, REASON_FAILED);
+        JudgeExamRecord record = latest.get();
+        return switch (record.getStatus()) {
+            case APPROVED -> new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.APPROVED, true,
+                    resultLine(record, "aprobado"));
+            case FAILED -> {
+                String result = resultLine(record, "reprobado");
+                yield new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.FAILED, false,
+                        result != null ? REASON_FAILED + " (" + result + ")" : REASON_FAILED);
+            }
             case TAKEN -> new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.TAKEN, false, REASON_TAKEN);
             default -> new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.NOT_TAKEN, false,
                     REASON_NOT_TAKEN);
         };
+    }
+
+    /**
+     * The measured result of an exam in one line: each group as «51 de 186 en la cola del 5 %»,
+     * joined by «; », and the verdict with its day, «aprobado el 30/9», in this machine's zone.
+     * Null when the record says neither.
+     */
+    static String resultLine(JudgeExamRecord record, String verdict) {
+        List<String> parts = new ArrayList<>();
+        if (record.getGroups() != null) {
+            List<String> groups = new ArrayList<>();
+            for (var group : record.getGroups()) {
+                if (group == null || group.getGroup() == null || group.getGroup().isBlank()) {
+                    continue;
+                }
+                groups.add(group.getAsExpected() + " de " + group.getCases() + " en " + group.getGroup().strip());
+            }
+            if (!groups.isEmpty()) {
+                parts.add(String.join("; ", groups));
+            }
+        }
+        if (record.getRecordedAt() != null) {
+            java.time.LocalDate day = record.getRecordedAt().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+            parts.add(verdict + " el " + day.getDayOfMonth() + "/" + day.getMonthValue());
+        }
+        return parts.isEmpty() ? null : String.join(", ", parts);
     }
 
     // -------------------------------------------------------------------------

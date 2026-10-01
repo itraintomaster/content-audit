@@ -71,13 +71,14 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolRunDiagnosis;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolUnavailableException;
 
 @ExtendWith(MockitoExtension.class)
 public class DefaultAuditRunnerTest {
@@ -1621,7 +1622,6 @@ public class DefaultAuditRunnerTest {
     @DisplayName("should publish on the 29/9 course with the twenty analyzers a vocabulary of 73.86 % and levels 96.02, 93.60, 78.87 and 63.86")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R010")
-    @org.junit.jupiter.api.Disabled("FEAT-RONDA2: espera a B, que construya los proveedores de grammar, naturalness y near-duplicates")
     public void shouldPublishOnThe299CourseWithTheTwentyAnalyzersAVocabularyOf7386AndLevels960293607887And6386(@org.junit.jupiter.api.io.TempDir Path workdir) {
         // F-RONDA2-R010 inv. 1: with the twenty in the catalog -- the three of package B are of the
         // errors family and do not enter the average of vocabulary --, the 29/9 course publishes the
@@ -1637,45 +1637,101 @@ public class DefaultAuditRunnerTest {
     @DisplayName("should reject before loading the course a run that asks for naturalness by name when neither llama3:8b in Ollama nor claude -p is available, with «Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is not available: ollama pull llama3:8b.»")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R003")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldRejectBeforeLoadingTheCourseARunThatAsksForNaturalnessByNameWhenNeitherLlama38bInOllamaNorClaudePIsAvailableWithAnalyzerNaturalnessNeedsLlama38bEnOllamaOClaudePWhichIsNotAvailableOllamaPullLlama38b() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MLOCAL-R003 inv. 1 (hook B-05): Ollama off and an alternative whose definition is missing.
+        DefaultAuditRunner runner = runnerWith(naturalnessOf(new OllamaOffYesNo(), claudeWithoutDefinition()));
+
+        LocalToolUnavailableException rejected = assertThrows(LocalToolUnavailableException.class,
+                () -> runner.runAudit(coursePath, new AuditRunRequest(Set.of("naturalness"), null, null)));
+
+        assertEquals("Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is not available: "
+                + "ollama pull llama3:8b.", rejected.getMessage());
+        verify(courseRepository, never()).load(any());
     }
 
     @Test
     @DisplayName("should reject before loading the course a run that asks for grammar by name when LanguageTool is not available, since grammar has no alternative")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R003")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldRejectBeforeLoadingTheCourseARunThatAsksForGrammarByNameWhenLanguageToolIsNotAvailableSinceGrammarHasNoAlternative() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultAuditRunner runner = runnerWith(grammarOf(new LanguageToolMissing()));
+
+        LocalToolUnavailableException rejected = assertThrows(LocalToolUnavailableException.class,
+                () -> runner.runAudit(coursePath, new AuditRunRequest(Set.of("grammar"), null, null)));
+
+        assertEquals("grammar", rejected.getAnalyzerName());
+        assertEquals("LanguageTool", rejected.getRequiredTool(), "no alternative: only LanguageTool");
+        assertTrue(rejected.getMessage().endsWith("which is not available: viene con content-audit."),
+                rejected.getMessage());
+        assertThrows(LocalToolUnavailableException.class, () -> runner.runAudit(coursePath, Set.of("grammar")),
+                "asked by name through the old door, too");
+        assertThrows(LocalToolUnavailableException.class, () -> runner.runDetailedAudit(coursePath, "grammar"),
+                "and in the detailed view of stats analyzer");
+        verify(courseRepository, never()).load(any());
     }
 
     @Test
     @DisplayName("should not reject a run that asks for near-duplicates by name without Ollama when the claude -p alternative is available")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R003")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldNotRejectARunThatAsksForNearduplicatesByNameWithoutOllamaWhenTheClaudePAlternativeIsAvailable() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MLOCAL-R003 inv. 2: without its local model but with claude -p available it runs; without a
+        // budget, the judges' runtime gives the alternative 0 and declares what is missing.
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithSentences("q1", "q2"));
+        DefaultAuditRunner runner = runnerWith(nearDuplicatesOf(new OllamaOffEmbedding(), roundOneJudge()));
+
+        AuditReport report = assertDoesNotThrow(() -> runner.runAudit(coursePath,
+                new AuditRunRequest(Set.of("near-duplicates"), null, null)));
+
+        verify(courseRepository, times(1)).load(coursePath);
+        LocalToolRunDiagnosis run = localToolRun(report, "near-duplicates");
+        assertTrue(run.isAlternative(), "it ran with claude -p");
+        assertEquals("v1", run.getExaminedVersion());
     }
 
     @Test
     @DisplayName("should not reject a run without selection when LanguageTool is not available, leaving every exercise unevaluated by grammar with the reason in view while the other analyzers run")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R003")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldNotRejectARunWithoutSelectionWhenLanguageToolIsNotAvailableLeavingEveryExerciseUnevaluatedByGrammarWithTheReasonInViewWhileTheOtherAnalyzersRun() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MLOCAL-R003 inv. 3: analyze without selection never rejects for a missing tool.
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithSentences("q1", "q2"));
+        DefaultAuditRunner runner = runnerWith(sentenceLengthStandIn(1.0), grammarOf(new LanguageToolMissing()));
+
+        AuditReport report = assertDoesNotThrow(() -> runner.runAudit(coursePath, new AuditRunRequest(null, null, null)));
+
+        for (String id : List.of("q1", "q2")) {
+            AuditNode quiz = quizNode(report.getRoot(), id);
+            assertTrue(quiz.getUnevaluatedBy().contains("grammar"), id + ": not evaluated by grammar");
+            assertNull(quiz.getScores().get("grammar"), id);
+            assertEquals(1.0, quiz.getScores().get("sentence-length"), id + ": the other analyzers run");
+        }
+        LocalToolRunDiagnosis run = localToolRun(report, "grammar");
+        assertFalse(run.isPublished());
+        assertTrue(run.getReason().startsWith("sin herramienta: LanguageTool no está disponible"), run.getReason());
     }
 
     @Test
     @DisplayName("should run grammar, naturalness and near-duplicates in an analyze without selection")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R004")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldRunGrammarNaturalnessAndNearduplicatesInAnAnalyzeWithoutSelection() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MLOCAL-R004: analyze without selection runs the three, each leaving the row of its run.
+        when(courseRepository.load(coursePath)).thenReturn(courseEntity);
+        when(courseToAuditableMapper.map(courseEntity)).thenReturn(courseWithSentences("q1", "q2"));
+        DefaultAuditRunner runner = runnerWith(grammarOf(new NoErrorsGrammar()),
+                naturalnessOf(new OllamaOffYesNo(), roundOneJudge()),
+                nearDuplicatesOf(new OllamaOffEmbedding(), roundOneJudge()));
+
+        AuditReport report = runner.runAudit(coursePath, new AuditRunRequest(null, null, null));
+
+        assertEquals(List.of("grammar", "naturalness", "near-duplicates"),
+                ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLocalToolRuns().stream()
+                        .map(LocalToolRunDiagnosis::getAnalyzer).toList());
+        assertEquals(1.0, quizNode(report.getRoot(), "q1").getScores().get("grammar"),
+                "LanguageTool, approved here, finds nothing in «She is happy.»");
     }
 
     // -----------------------------------------------------------------------
@@ -1885,5 +1941,117 @@ public class DefaultAuditRunnerTest {
                 return Optional.empty();
             }
         };
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-MLOCAL: the three of package B over tools that are or are not there (hook B-05)
+    // -----------------------------------------------------------------------
+
+    /** The judges' runtime with every version approved, over a ledger in memory. */
+    private static com.learney.contentaudit.auditdomain.judging.JudgeRuntime packageBRuntime() {
+        return approvedJudgeRuntime(new DefaultEvaluationSessionFactory(new RoundOneLedger(),
+                new FakeQuizInstructionContentFingerprinter()));
+    }
+
+    private static AnalyzerProvider grammarOf(com.learney.contentaudit.auditdomain.localtools.GrammarChecker checker) {
+        return new com.learney.contentaudit.auditdomain.grammar.GrammarAnalyzerProvider(checker,
+                new com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader(),
+                new com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate(packageBRuntime()));
+    }
+
+    private static AnalyzerProvider naturalnessOf(com.learney.contentaudit.auditdomain.localtools.YesNoModel model,
+            Evaluator alternative) {
+        com.learney.contentaudit.auditdomain.judging.JudgeRuntime runtime = packageBRuntime();
+        return new com.learney.contentaudit.auditdomain.naturalness.NaturalnessAnalyzerProvider(model, alternative,
+                runtime, new com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader(),
+                new com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate(runtime));
+    }
+
+    private static AnalyzerProvider nearDuplicatesOf(com.learney.contentaudit.auditdomain.localtools.EmbeddingModel model,
+            Evaluator alternative) {
+        com.learney.contentaudit.auditdomain.judging.JudgeRuntime runtime = packageBRuntime();
+        return new com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicatesAnalyzerProvider(model, alternative,
+                runtime, productionCorrector(),
+                new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()),
+                new com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate(runtime));
+    }
+
+    /** An alternative with claude -p whose definition is missing: it states no version. */
+    private static Evaluator claudeWithoutDefinition() {
+        return new Evaluator() {
+            @Override
+            public String evaluatorId() {
+                return "naturalness-yes-no";
+            }
+
+            @Override
+            public Optional<String> evaluatorVersion() {
+                return Optional.empty();
+            }
+
+            @Override
+            public EvaluationOutcome evaluate(EvaluationSubject subject) {
+                throw new AssertionError("an alternative without definition is never consulted");
+            }
+        };
+    }
+
+    /** LanguageTool that is not there. */
+    private static final class LanguageToolMissing implements com.learney.contentaudit.auditdomain.localtools.GrammarChecker {
+        @Override
+        public com.learney.contentaudit.auditdomain.localtools.LocalToolStatus status() {
+            return new com.learney.contentaudit.auditdomain.localtools.LocalToolStatus("LanguageTool", null, false,
+                    "no está org.languagetool en el classpath", "viene con content-audit");
+        }
+
+        @Override
+        public List<com.learney.contentaudit.auditdomain.localtools.GrammarMatch> check(String sentence,
+                com.learney.contentaudit.auditdomain.localtools.EnglishVariant variant) {
+            throw new AssertionError("LanguageTool is not there: nothing is checked");
+        }
+    }
+
+    /** One A1 milestone, one topic and one knowledge with these quizzes, each «She ___ (be) happy.». */
+    private static AuditableCourse courseWithSentences(String... quizIds) {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (String quizId : quizIds) {
+            quizzes.add(new AuditableQuiz(List.of(new NlpToken("She", "she", "PRON", null, true, false),
+                    new NlpToken("is", "be", "AUX", null, true, false), new NlpToken("happy", "happy", "ADJ", null,
+                            false, false), new NlpToken(".", ".", "PUNCT", null, false, true)), quizId, "label", "code",
+                    null, List.of("She is happy."), null, null, List.of(
+                            new com.learney.contentaudit.coursedomain.SentencePartEntity(
+                                    com.learney.contentaudit.coursedomain.SentencePartKind.TEXT, "She", null),
+                            new com.learney.contentaudit.coursedomain.SentencePartEntity(
+                                    com.learney.contentaudit.coursedomain.SentencePartKind.CLOZE, "", List.of("is")),
+                            new com.learney.contentaudit.coursedomain.SentencePartEntity(
+                                    com.learney.contentaudit.coursedomain.SentencePartKind.TEXT, "(be) happy.", null)),
+                    null, null, null));
+        }
+        AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Knowledge", "Instructions", true,
+                "k1", "Knowledge", "K1", com.learney.contentaudit.coursedomain.SentenceMode.FILL, "Topic");
+        AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t1", "Topic", "T1");
+        return new AuditableCourse(List.of(new AuditableMilestone(List.of(topic), "m1", "A1", "A1")));
+    }
+
+    private static AuditNode quizNode(AuditNode node, String id) {
+        if (node.getTarget() == AuditTarget.QUIZ && node.getEntity() != null && id.equals(node.getEntity().getId())) {
+            return node;
+        }
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                AuditNode found = quizNode(child, id);
+                if (found != null) {
+                    return found;
+                }
+            }
+        }
+        return null;
+    }
+
+    private static LocalToolRunDiagnosis localToolRun(AuditReport report, String analyzer) {
+        return ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLocalToolRuns().stream()
+                .filter(run -> analyzer.equals(run.getAnalyzer()))
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("no row of the run of " + analyzer));
     }
 }

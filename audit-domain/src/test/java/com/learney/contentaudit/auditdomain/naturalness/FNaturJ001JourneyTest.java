@@ -1,7 +1,16 @@
 package com.learney.contentaudit.auditdomain.naturalness;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.QuizDiagnoses;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,44 +30,106 @@ public class FNaturJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe lee la oración terminada d... → El ejercicio queda sin número ni hall... [La oración no tiene verbo o es una sola palabra] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void path1_laOracinNoTieneVerboOEsUnaSolaPalabra_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr: naturalness alone, with llama3:8b and its examined version approved.
+        NaturalnessAnalyzerTest.World world = NaturalnessAnalyzerTest.World.withLlama3();
+
+        AuditNode root = world.run(NaturalnessAnalyzerTest.course(
+                NaturalnessAnalyzerTest.level("A1", NaturalnessAnalyzerTest.hardWork())), null);
+
+        // no_alcanza: «hard work uncountable» has no verb.
+        AuditNode quiz = NaturalnessAnalyzerTest.quiz(root, NaturalnessAnalyzerTest.HARD_WORK);
+        assertTrue(((QuizDiagnoses) quiz.getDiagnoses()).getNaturalnessDiagnosis().isEmpty(), "without number");
+        assertEquals(List.of(), NaturalnessAnalyzerTest.naturalnessFindings(quiz), "without finding");
+        assertEquals(List.of(), world.llama3.sentences(), "no model was asked");
+        assertEquals(0, world.claude.calls());
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe lee la oración terminada d... → El ejercicio tiene un hallazgo que só... [Con Ollama, el número queda por encima del umbral de su nivel] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void path2_conOllamaElNmeroQuedaPorEncimaDelUmbralDeSuNivel_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NaturalnessAnalyzerTest.World world = NaturalnessAnalyzerTest.World.withLlama3();
+
+        AuditNode root = world.run(NaturalnessAnalyzerTest.course(
+                NaturalnessAnalyzerTest.level("A2", NaturalnessAnalyzerTest.engineer())), null);
+
+        // marcado: a finding that only ranks, with its number, in the list of the level, not an error.
+        NaturalnessDiagnosis diagnosis = NaturalnessAnalyzerTest.diagnosis(root, NaturalnessAnalyzerTest.ENGINEER);
+        assertEquals(14.68, diagnosis.getNumber(), 0.01);
+        assertTrue(diagnosis.isMarked());
+        List<Finding> findings = NaturalnessAnalyzerTest.naturalnessFindings(
+                NaturalnessAnalyzerTest.quiz(root, NaturalnessAnalyzerTest.ENGINEER));
+        assertEquals("unlikely-sentence", findings.get(0).getRule());
+        assertEquals(FindingResolution.RANK_ONLY, findings.get(0).getResolution());
+        assertEquals(List.of(NaturalnessAnalyzerTest.ENGINEER),
+                NaturalnessAnalyzerTest.queueOf(root).getLevels().get(0).getMarkedQuizIds());
+        assertEquals(0, NaturalnessAnalyzerTest.errorCountsOf(root).getWithError());
+        assertEquals(1, NaturalnessAnalyzerTest.errorCountsOf(root).getMarked());
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → El informe lee la oración terminada d... → El ejercicio tiene su número publicad... [Con Ollama, el número queda en el umbral o por debajo] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void path3_conOllamaElNmeroQuedaEnElUmbralOPorDebajo_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NaturalnessAnalyzerTest.World world = NaturalnessAnalyzerTest.World.withLlama3();
+
+        AuditNode root = world.run(NaturalnessAnalyzerTest.course(
+                NaturalnessAnalyzerTest.level("A1", NaturalnessAnalyzerTest.feet())), null);
+
+        // sin_marca: «Are these your feet?», 9.0664, under the 9.07 of A1.
+        NaturalnessDiagnosis diagnosis = NaturalnessAnalyzerTest.diagnosis(root, NaturalnessAnalyzerTest.FEET);
+        assertEquals(9.0664, diagnosis.getNumber(), 0.0001);
+        assertFalse(diagnosis.isMarked());
+        assertEquals(List.of(), NaturalnessAnalyzerTest.naturalnessFindings(
+                NaturalnessAnalyzerTest.quiz(root, NaturalnessAnalyzerTest.FEET)));
     }
 
     @Test
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo só... → El informe lee la oración terminada d... → El ejercicio tiene un hallazgo de cla... [Sin Ollama, claude -p contesta que un nativo no la diría] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void path4_sinOllamaClaudePContestaQueUnNativoNoLaDira_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr: without Ollama, with a version of claude -p that approved its exam and a budget.
+        NaturalnessAnalyzerTest.World world = NaturalnessAnalyzerTest.World.withoutOllama();
+        world.claude.answers("Promise: I'll visit you tomorrow.", "no");
+        world.claude.answers("She is an engineer of hers.", "no");
+
+        AuditNode root = world.run(NaturalnessAnalyzerTest.course(NaturalnessAnalyzerTest.level("A2",
+                NaturalnessAnalyzerTest.promise(), NaturalnessAnalyzerTest.engineer())),
+                NaturalnessAnalyzerTest.budget(10));
+
+        // marcado_alternativa: a finding of claude -p that only ranks, without number, in the order of
+        // the course, not an error.
+        NaturalnessDiagnosis diagnosis = NaturalnessAnalyzerTest.diagnosis(root, NaturalnessAnalyzerTest.ENGINEER);
+        assertNull(diagnosis.getNumber());
+        assertTrue(diagnosis.isMarked());
+        assertEquals("native-says-no", NaturalnessAnalyzerTest.naturalnessFindings(
+                NaturalnessAnalyzerTest.quiz(root, NaturalnessAnalyzerTest.ENGINEER)).get(0).getRule());
+        assertEquals(List.of(NaturalnessAnalyzerTest.PROMISE, NaturalnessAnalyzerTest.ENGINEER),
+                NaturalnessAnalyzerTest.queueOf(root).getLevels().get(0).getMarkedQuizIds());
+        assertEquals(0, NaturalnessAnalyzerTest.errorCountsOf(root).getWithError());
     }
 
     @Test
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: El operador corre analyze pidiendo só... → El informe lee la oración terminada d... → El ejercicio no tiene hallazgo de nat... [Sin Ollama, claude -p contesta que un nativo sí la diría] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void path5_sinOllamaClaudePContestaQueUnNativoSLaDira_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NaturalnessAnalyzerTest.World world = NaturalnessAnalyzerTest.World.withoutOllama();
+        world.claude.answers("They don't like people.", "yes");
+
+        AuditNode root = world.run(NaturalnessAnalyzerTest.course(
+                NaturalnessAnalyzerTest.level("A1", NaturalnessAnalyzerTest.people())), NaturalnessAnalyzerTest.budget(10));
+
+        // sin_marca_alternativa: no finding, and the diagnosis says claude -p read it.
+        NaturalnessDiagnosis diagnosis = NaturalnessAnalyzerTest.diagnosis(root, NaturalnessAnalyzerTest.PEOPLE);
+        assertTrue(diagnosis.isAlternative());
+        assertFalse(diagnosis.isMarked());
+        assertEquals(List.of(), NaturalnessAnalyzerTest.naturalnessFindings(
+                NaturalnessAnalyzerTest.quiz(root, NaturalnessAnalyzerTest.PEOPLE)));
+        assertEquals(1, world.claude.calls());
     }
 }

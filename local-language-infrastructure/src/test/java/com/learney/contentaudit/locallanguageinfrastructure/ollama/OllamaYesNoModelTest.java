@@ -1,7 +1,12 @@
 package com.learney.contentaudit.locallanguageinfrastructure.ollama;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
+import com.learney.contentaudit.auditdomain.localtools.YesNoProbabilities;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +20,62 @@ public class OllamaYesNoModelTest {
     @DisplayName("should add up the forms of yes of the first token, «yes», «Yes», « yes» and «y», and the same for no, out of the 20 alternatives Ollama gives")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldAddUpTheFormsOfYesOfTheFirstTokenYesYesYesAndYAndTheSameForNoOutOfThe20AlternativesOllamaGives(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The 20 alternatives of the first token, as /api/generate gives them with top_logprobs 20:
+        // the forms of yes and of no, with and without their space and capital, and twelve others.
+        List<OllamaTokenProbability> alternatives = new ArrayList<>();
+        alternatives.add(alternative("No", 0.60));
+        alternatives.add(alternative("no", 0.20));
+        alternatives.add(alternative(" no", 0.05));
+        alternatives.add(alternative("n", 0.01));
+        alternatives.add(alternative("Yes", 0.05));
+        alternatives.add(alternative("yes", 0.03));
+        alternatives.add(alternative(" yes", 0.02));
+        alternatives.add(alternative("y", 0.01));
+        for (String other : List.of("The", "I", "Native", "**", "Not", "Nope", "Yeah", "It", "A", "\"", "Maybe", "N/A")) {
+            alternatives.add(alternative(other, 0.0025));
+        }
+        RecordedApi api = new RecordedApi(alternatives);
+        OllamaYesNoModel model = new OllamaYesNoModel(api, "llama3:8b");
+
+        YesNoProbabilities answer = model.ask("Answer with one word: yes or no.",
+                "Would a native English speaker naturally say or write this exact sentence? Sentence: \"She is an "
+                        + "engineer of hers.\"");
+
+        assertEquals(20, alternatives.size());
+        assertEquals(0.11, answer.getYesProbability(), 1e-9, "Yes + yes + « yes» + y");
+        assertEquals(0.86, answer.getNoProbability(), 1e-9, "No + no + « no» + n; «Nope» and «Not» are not «no»");
+        assertEquals("llama3:8b", api.askedModel);
+    }
+
+    private static OllamaTokenProbability alternative(String token, double probability) {
+        return new OllamaTokenProbability(token, Math.log(probability));
+    }
+
+    /** Ollama answering the recorded alternatives of the first token. */
+    private static final class RecordedApi implements OllamaApi {
+        private final List<OllamaTokenProbability> alternatives;
+        String askedModel;
+
+        RecordedApi(List<OllamaTokenProbability> alternatives) {
+            this.alternatives = alternatives;
+        }
+
+        @Override
+        public LocalToolStatus probe(String model) {
+            return new LocalToolStatus(model + " en Ollama", model + "@365c0bd3c000", true, null, "ollama pull " + model);
+        }
+
+        @Override
+        public List<OllamaTokenProbability> firstTokenProbabilities(String model, String system, String prompt) {
+            askedModel = model;
+            return alternatives;
+        }
+
+        @Override
+        public List<Double> embed(String model, String input) {
+            throw new AssertionError("a question of yes or no asks no vector");
+        }
     }
 }

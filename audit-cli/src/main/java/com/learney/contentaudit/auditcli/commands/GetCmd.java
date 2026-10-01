@@ -1470,7 +1470,58 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
                         + "): " + rule.getDescription());
             }
         }
+        // F-MLOCAL-R002 (hook B-01): the tools of an analyzer that measures with one, each with its
+        // version, whether it is available and its exam; the claude -p alternative, marked as such.
+        if (d.getTools() != null && !d.getTools().isEmpty()) {
+            System.out.println("Tools:");
+            for (com.learney.contentaudit.auditdomain.localtools.LocalToolCard tool : d.getTools()) {
+                System.out.println("  - " + toolLine(tool));
+            }
+        }
         return 0;
+    }
+
+    /** «llama3:8b en Ollama · llama3:8b@365c0bd3c000 · disponible · examen de …: aprobado el 1/10». */
+    private static String toolLine(com.learney.contentaudit.auditdomain.localtools.LocalToolCard tool) {
+        com.learney.contentaudit.auditdomain.localtools.LocalToolStatus status = tool.getStatus();
+        StringBuilder line = new StringBuilder();
+        line.append(status != null ? nullToEmpty(status.getTool()) : "");
+        if (tool.isAlternative()) {
+            line.append(" (alternativa)");
+        }
+        line.append(" · ").append(status != null && status.getVersion() != null ? status.getVersion() : "sin versión");
+        if (status != null && status.isAvailable()) {
+            line.append(" · disponible");
+        } else {
+            line.append(" · no disponible");
+            if (status != null && status.getUnavailableReason() != null) {
+                line.append(": ").append(status.getUnavailableReason());
+            }
+            if (status != null && status.getInstallHint() != null) {
+                line.append("; se instala con: ").append(status.getInstallHint());
+            }
+        }
+        line.append(" · examen");
+        if (tool.getExaminedVersion() != null) {
+            line.append(" de ").append(tool.getExaminedVersion());
+        }
+        line.append(": ").append(tool.getExamSummary() != null && !tool.getExamSummary().isBlank()
+                ? tool.getExamSummary()
+                : examLabel(tool.getExamState()));
+        return line.toString();
+    }
+
+    private static String examLabel(com.learney.contentaudit.auditdomain.judging.JudgeExamStatus state) {
+        if (state == null) {
+            return "sin examen";
+        }
+        return switch (state) {
+            case APPROVED -> "aprobado";
+            case FAILED -> "reprobado";
+            case TAKEN -> "rendido, sin resultado medido";
+            case NO_VERSION -> "sin versión que examinar";
+            default -> "sin examen";
+        };
     }
 
     /** F-HALL-R006: the card as JSON, every field of it. */
@@ -1500,6 +1551,25 @@ public GetCmd(AuditReportStore auditReportStore, RefinementPlanStore refinementP
             }
         }
         m.put("rules", rules);
+        // F-MLOCAL-R002 (hook B-01): each tool with its version, whether it is available and its exam.
+        List<Map<String, Object>> tools = new java.util.ArrayList<>();
+        if (d.getTools() != null) {
+            for (com.learney.contentaudit.auditdomain.localtools.LocalToolCard tool : d.getTools()) {
+                com.learney.contentaudit.auditdomain.localtools.LocalToolStatus status = tool.getStatus();
+                Map<String, Object> t = new LinkedHashMap<>();
+                t.put("tool", status != null ? status.getTool() : null);
+                t.put("version", status != null ? status.getVersion() : null);
+                t.put("available", status != null && status.isAvailable());
+                t.put("unavailableReason", status != null ? status.getUnavailableReason() : null);
+                t.put("installHint", status != null ? status.getInstallHint() : null);
+                t.put("examinedVersion", tool.getExaminedVersion());
+                t.put("examState", tool.getExamState() != null ? tool.getExamState().name() : null);
+                t.put("examSummary", tool.getExamSummary());
+                t.put("alternative", tool.isAlternative());
+                tools.add(t);
+            }
+        }
+        m.put("tools", tools);
         return m;
     }
 

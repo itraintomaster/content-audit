@@ -1,13 +1,73 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import com.learney.contentaudit.auditapplication.CourseToAuditableMapper;
+import com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolRunDiagnosis;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
+import com.learney.contentaudit.auditdomain.localtools.YesNoModel;
+import com.learney.contentaudit.auditdomain.localtools.YesNoProbabilities;
+import com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate;
+import com.learney.contentaudit.auditdomain.naturalness.NaturalnessAnalyzerProvider;
+import com.learney.contentaudit.auditinfrastructure.FileSystemAuditReportStore;
+import com.learney.contentaudit.auditinfrastructure.FileSystemJudgeExamRegistry;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerinfrastructure.FileSystemEvaluationLedger;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -21,47 +81,326 @@ public class FMlocalJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo gr... → El informe trae sus hallazgos con la ... [Su herramienta local está disponible y su versión aprobó el examen] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void path1_suHerramientaLocalEstDisponibleYSuVersinAprobElExamen_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // pedir: analyze --analyzers naturalness, with llama3:8b in Ollama and its examined version approved.
+        Bench bench = new Bench(true, true);
+        bench.approve(Bench.LLAMA3_EXAMINED);
+
+        AnalyzeCmdTest.Base299.Captured first = bench.analyze("--analyzers", "naturalness");
+        AuditReport report = bench.report(first);
+        AnalyzeCmdTest.Base299.Captured second = bench.analyze("--analyzers", "naturalness");
+
+        // corre: its findings, with the tool and the version, nothing sent out of the machine, the same twice.
+        assertEquals(0, first.exit(), first.err());
+        assertEquals(0, second.exit(), second.err());
+        LocalToolRunDiagnosis run = Bench.row(report);
+        assertEquals("llama3:8b en Ollama", run.getStatus().getTool());
+        assertEquals(Bench.LLAMA3_EXAMINED, run.getExaminedVersion());
+        assertTrue(run.isPublished());
+        assertFalse(run.isAlternative());
+        assertEquals(List.of(Bench.ENGINEER + " unlikely-sentence"), Bench.findings(report));
+        assertEquals(Bench.findings(report), Bench.findings(bench.report(second)), "a second run gives the same");
+        assertEquals(2, bench.llama3.calls(), "the second run reuses both answers");
+        assertEquals(0, bench.claude.calls(), "nothing leaves the machine");
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo gr... → Sus ejercicios quedan sin evaluar, sa... [La versión que toca usar, la local o sin Ollama la de claude -p, no rindió o reprobó el examen] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void path2_laVersinQueTocaUsarLaLocalOSinOllamaLaDeClaudePNoRindiOReprobElExamen_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // pedir: llama3:8b is there, but its examined version never took the exam.
+        Bench bench = new Bench(true, true);
+
+        AnalyzeCmdTest.Base299.Captured analyzed = bench.analyze("--analyzers", "naturalness");
+
+        // sin_evaluar: its exercises stay not evaluated, and the report says the version has no exam.
+        assertEquals(0, analyzed.exit(), analyzed.err());
+        AuditReport report = bench.report(analyzed);
+        for (String id : List.of(Bench.ENGINEER, Bench.PEOPLE)) {
+            assertTrue(Bench.quiz(report, id).getUnevaluatedBy().contains("naturalness"), id);
+        }
+        LocalToolRunDiagnosis run = Bench.row(report);
+        assertFalse(run.isPublished());
+        assertEquals(JudgeExamStatus.NOT_TAKEN, run.getExamState());
+        assertTrue(run.getReason().startsWith("sin examen"), run.getReason());
+        assertEquals(0, bench.llama3.calls(), "a version that does not publish asks nothing");
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo gr... → El informe trae los hallazgos que con... [Su modelo local no está, la alternativa con claude -p aprobó su examen y la corrida le pide un tope] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void path3_suModeloLocalNoEstLaAlternativaConClaudePAprobSuExamenYLaCorridaLePideUnTope_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // pedir: Ollama off, the version of claude -p approved and --budget naturalness=1.
+        Bench bench = new Bench(false, true);
+        bench.approve(Bench.CLAUDE_VERSION);
+
+        AnalyzeCmdTest.Base299.Captured analyzed = bench.analyze("--analyzers", "naturalness", "--budget", "naturalness=1");
+
+        // alternativa: what claude -p answered, within its budget, with its version; what is missing and its cost.
+        assertEquals(0, analyzed.exit(), analyzed.err());
+        AuditReport report = bench.report(analyzed);
+        assertEquals(1, bench.claude.calls(), "never past its budget");
+        assertEquals(List.of(Bench.ENGINEER + " native-says-no"), Bench.findings(report));
+        assertTrue(Bench.quiz(report, Bench.PEOPLE).getUnevaluatedBy().contains("naturalness"), "the second waits");
+        LocalToolRunDiagnosis run = Bench.row(report);
+        assertTrue(run.isAlternative());
+        assertEquals(Bench.CLAUDE_VERSION, run.getExaminedVersion());
+        JudgeCoverageDiagnosis coverage = Bench.coverage(report);
+        assertEquals(1, coverage.getCost().getPendingConsultations());
+        assertTrue(coverage.getCost().getHoursOneAtATime() > 0);
     }
 
     @Test
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo gr... → Lo que necesita a claude -p queda sin... [Su modelo local no está, la alternativa con claude -p aprobó su examen y la corrida no le pide tope] → success")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void path4_suModeloLocalNoEstLaAlternativaConClaudePAprobSuExamenYLaCorridaNoLePideTope_success(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // pedir: Ollama off, the version of claude -p approved and no --budget for naturalness.
+        Bench bench = new Bench(false, true);
+        bench.approve(Bench.CLAUDE_VERSION);
+
+        AnalyzeCmdTest.Base299.Captured analyzed = bench.analyze("--analyzers", "naturalness");
+
+        // falta_tope: not evaluated, «falta el tope», no consultation, and how many and how many hours.
+        assertEquals(0, analyzed.exit(), analyzed.err());
+        AuditReport report = bench.report(analyzed);
+        assertEquals(0, bench.claude.calls());
+        for (String id : List.of(Bench.ENGINEER, Bench.PEOPLE)) {
+            assertTrue(Bench.quiz(report, id).getUnevaluatedBy().contains("naturalness"), id);
+        }
+        assertTrue(Bench.row(report).getReason().startsWith("falta el tope"), Bench.row(report).getReason());
+        JudgeCoverageDiagnosis coverage = Bench.coverage(report);
+        assertEquals(2, coverage.getCost().getPendingConsultations());
+        assertEquals(2 / coverage.getCost().getRatePerHour(), coverage.getCost().getHoursOneAtATime(), 1e-9);
     }
 
     @Test
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: El operador corre analyze pidiendo gr... → La corrida se rechaza antes de empeza... [Ni su herramienta ni la alternativa están disponibles] → failure")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void path5_niSuHerramientaNiLaAlternativaEstnDisponibles_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // pedir: Ollama off and an alternative without definition.
+        Bench bench = new Bench(false, false);
+
+        AnalyzeCmdTest.Base299.Captured analyzed = bench.analyze("--analyzers", "naturalness");
+
+        // rechazo: before starting, what is missing and how to install it, and no report.
+        assertEquals(1, analyzed.exit());
+        assertTrue(analyzed.err().contains("Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, which is not "
+                + "available: ollama pull llama3:8b."), analyzed.err());
+        assertEquals(List.of(), bench.store.list());
+        verify(bench.repository, never()).load(any());
+    }
+
+    /**
+     * analyze and get of naturalness as Main builds it -- the gate, the judges' runtime and its exam
+     * registry over a working directory of its own --, with llama3:8b and claude -p recorded and a
+     * course of two exercises of A2.
+     */
+    static final class Bench {
+        static final String ENGINEER = "67fab6d59930102295342c0d";
+        static final String PEOPLE = "67fab6d59930102295341f4a";
+        static final String LLAMA3_EXAMINED = "llama3:8b@365c0bd3c000 · native-yes-no-1";
+        static final String CLAUDE_VERSION = "naturalness-yes-no-v1";
+
+        final Path workdir;
+        final FileSystemJudgeExamRegistry registry;
+        final Llama3 llama3;
+        final Claude claude;
+        private final DefaultJudgeRuntime runtime;
+        private AnalyzerCatalog catalog;
+        final CourseRepository repository = mock(CourseRepository.class);
+        final FileSystemAuditReportStore store;
+
+        Bench(boolean ollama, boolean claudeDefined) {
+            try {
+                workdir = Files.createTempDirectory("mlocal-");
+            } catch (IOException e) {
+                throw new UncheckedIOException(e);
+            }
+            FileSystemEvaluationLedger ledger = new FileSystemEvaluationLedger(workdir);
+            registry = new FileSystemJudgeExamRegistry(workdir);
+            runtime = new DefaultJudgeRuntime(
+                    new DefaultEvaluationSessionFactory(ledger, new Sha256ContentFingerprinter()),
+                    new ExamEvaluationSessionFactory(ledger, new Sha256ContentFingerprinter()), registry, ledger,
+                    new DefaultJudgeRuntimeConfig());
+            llama3 = new Llama3(ollama);
+            claude = new Claude(claudeDefined);
+            store = new FileSystemAuditReportStore(workdir, null);
+        }
+
+        /** The catalog reads the cards once, as Main's at startup: built on first use, after the exams. */
+        AnalyzerCatalog catalog() {
+            if (catalog == null) {
+                catalog = new DefaultAnalyzerCatalog(List.of(new NaturalnessAnalyzerProvider(llama3, claude, runtime,
+                        new DefaultFinishedSentenceReader(), new DefaultLocalToolGate(runtime))));
+            }
+            return catalog;
+        }
+
+        void approve(String version) {
+            registry.record(new JudgeExamRecord("naturalness", version, JudgeExamStatus.APPROVED, 186, 0, List.of(),
+                    List.of(), true, "2026-09-29", "medir.py", Instant.parse("2026-10-01T12:00:00Z")));
+        }
+
+        AnalyzeCmdTest.Base299.Captured analyze(String... options) {
+            CourseToAuditableMapper mapper = mock(CourseToAuditableMapper.class);
+            when(repository.load(any())).thenReturn(new CourseEntity());
+            when(mapper.map(any())).thenReturn(course());
+            List<String> args = new ArrayList<>(List.of("db/english-course"));
+            args.addAll(List.of(options));
+            return AnalyzeCmdTest.Base299.run(AnalyzeCmdTest.Base299.analyzeCmd(
+                    AnalyzeCmdTest.Base299.runner(catalog(), repository, mapper), store), args.toArray(String[]::new));
+        }
+
+        AnalyzeCmdTest.Base299.Captured get(String... args) {
+            return AnalyzeCmdTest.Base299.run(AnalyzeCmdTest.Base299.getCmd(store, catalog()), args);
+        }
+
+        AuditReport report(AnalyzeCmdTest.Base299.Captured analyzed) {
+            return store.load(AnalyzeCmdTest.Base299.savedId(analyzed)).orElseThrow();
+        }
+
+        /** «She is an engineer of hers.» (14,7) and «They don't like people.» (9,1), two exercises of A2. */
+        static AuditableCourse course() {
+            List<NlpToken> verb = List.of(new NlpToken("It", "it", "PRON", null, true, false),
+                    new NlpToken("is", "be", "AUX", null, true, false));
+            List<AuditableQuiz> quizzes = List.of(
+                    new AuditableQuiz(verb, ENGINEER, "Doble posesivo", "", null, List.of(), null, "Reescribe.",
+                            List.of(new SentencePartEntity(SentencePartKind.TEXT, "She is her engineer.", null),
+                                    new SentencePartEntity(SentencePartKind.CLOZE, "",
+                                            List.of("She is an engineer of hers."))), null, null, null),
+                    new AuditableQuiz(verb, PEOPLE, "Contracciones", "", null, List.of(), null, "Completa.",
+                            List.of(new SentencePartEntity(SentencePartKind.TEXT, "They", null),
+                                    new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("don't")),
+                                    new SentencePartEntity(SentencePartKind.TEXT, "(do not) like people.", null)),
+                            null, null, null));
+            AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Mezcla", "Completa.", true, "k-mezcla",
+                    "Mezcla", "A2.01.01", SentenceMode.FILL, "Pronombres");
+            return new AuditableCourse(List.of(new AuditableMilestone(List.of(new AuditableTopic(List.of(knowledge),
+                    "t-pr", "Pronombres", "A2.01")), "m-a2", "A2", "A2")));
+        }
+
+        static LocalToolRunDiagnosis row(AuditReport report) {
+            return ((CourseDiagnoses) report.getRoot().getDiagnoses()).getLocalToolRuns().stream()
+                    .filter(run -> "naturalness".equals(run.getAnalyzer())).findFirst().orElseThrow();
+        }
+
+        static JudgeCoverageDiagnosis coverage(AuditReport report) {
+            return ((CourseDiagnoses) report.getRoot().getDiagnoses()).getJudgeCoverages().stream()
+                    .filter(coverage -> "naturalness".equals(coverage.getJudgeName())).findFirst().orElseThrow();
+        }
+
+        /** «<exercise> <rule>» of every finding of naturalness, in the order of the course. */
+        static List<String> findings(AuditReport report) {
+            List<String> found = new ArrayList<>();
+            walk(report.getRoot(), node -> {
+                if (node.getFindings() != null) {
+                    for (Finding finding : node.getFindings()) {
+                        if ("naturalness".equals(finding.getAnalyzer())) {
+                            found.add(node.getEntity().getId() + " " + finding.getRule());
+                        }
+                    }
+                }
+            });
+            return found;
+        }
+
+        static AuditNode quiz(AuditReport report, String id) {
+            List<AuditNode> found = new ArrayList<>();
+            walk(report.getRoot(), node -> {
+                if (node.getTarget() == AuditTarget.QUIZ && id.equals(node.getEntity().getId())) {
+                    found.add(node);
+                }
+            });
+            return found.get(0);
+        }
+
+        private static void walk(AuditNode node, Consumer<AuditNode> visit) {
+            visit.accept(node);
+            if (node.getChildren() != null) {
+                for (AuditNode child : node.getChildren()) {
+                    walk(child, visit);
+                }
+            }
+        }
+    }
+
+    /** llama3:8b in Ollama with the probabilities of yn-a1a2.jsonl; it counts what it is asked. */
+    static final class Llama3 implements YesNoModel {
+        private static final Map<String, double[]> RECORDED = Map.of(
+                "She is an engineer of hers.", new double[] {4.2077659898691115e-07, 0.9999001273081798},
+                "They don't like people.", new double[] {0.00011445552505823684, 0.9998393801432296});
+        private final boolean available;
+        private final List<String> asked = Collections.synchronizedList(new ArrayList<>());
+
+        Llama3(boolean available) {
+            this.available = available;
+        }
+
+        @Override
+        public LocalToolStatus status() {
+            return available
+                    ? new LocalToolStatus("llama3:8b en Ollama", "llama3:8b@365c0bd3c000", true, null,
+                            "ollama pull llama3:8b")
+                    : new LocalToolStatus("llama3:8b en Ollama", null, false,
+                            "CONTENT_AUDIT_OLLAMA_URL=off: los modelos locales están apagados a pedido",
+                            "ollama pull llama3:8b");
+        }
+
+        @Override
+        public YesNoProbabilities ask(String system, String question) {
+            if (!available) {
+                throw new AssertionError("Ollama is off: nothing is asked");
+            }
+            asked.add(question);
+            for (Map.Entry<String, double[]> recorded : RECORDED.entrySet()) {
+                if (question.endsWith("\"" + recorded.getKey() + "\"")) {
+                    return new YesNoProbabilities(recorded.getValue()[0], recorded.getValue()[1]);
+                }
+            }
+            return new YesNoProbabilities(0.9, 0.1);
+        }
+
+        int calls() {
+            return asked.size();
+        }
+    }
+
+    /** The agent naturalness-yes-no: «no» for the engineer, «yes» for the rest; without definition, no version. */
+    static final class Claude implements Evaluator {
+        private final boolean defined;
+        private final List<String> asked = Collections.synchronizedList(new ArrayList<>());
+
+        Claude(boolean defined) {
+            this.defined = defined;
+        }
+
+        @Override
+        public String evaluatorId() {
+            return "naturalness-yes-no";
+        }
+
+        @Override
+        public Optional<String> evaluatorVersion() {
+            return defined ? Optional.of(Bench.CLAUDE_VERSION) : Optional.empty();
+        }
+
+        @Override
+        public EvaluationOutcome evaluate(EvaluationSubject subject) {
+            String question = subject.getContent().getOrDefault("question", "");
+            asked.add(question);
+            boolean no = question.endsWith("\"She is an engineer of hers.\"");
+            return new EvaluationEmitted("{\"answer\":\"" + (no ? "no" : "yes") + "\"}");
+        }
+
+        int calls() {
+            return asked.size();
+        }
     }
 }

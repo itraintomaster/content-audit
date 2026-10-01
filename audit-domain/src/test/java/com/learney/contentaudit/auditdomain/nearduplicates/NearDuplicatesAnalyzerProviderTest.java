@@ -1,7 +1,21 @@
 package com.learney.contentaudit.auditdomain.nearduplicates;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolCard;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,39 +29,88 @@ public class NearDuplicatesAnalyzerProviderTest {
     @DisplayName("should open near-duplicates through the judges' runtime with the vector evaluator and the policy without limit of the local tool decision when nomic-embed-text is available, never with claude -p")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldOpenNearduplicatesThroughTheJudgesRuntimeWithTheVectorEvaluatorAndThePolicyWithoutLimitOfTheLocalToolDecisionWhenNomicembedtextIsAvailableNeverWithClaudeP(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
+
+        world.provider.create(null);
+
+        assertEquals(List.of("near-duplicates"), world.recording.judges);
+        assertEquals(List.of(List.of("near-duplicates · nomic-embed-text@0a109f422b47 · clustering-1")),
+                world.recording.evaluators, "its own evaluator, never near-duplicates-same-exercise");
+        EvaluationRunPolicy policy = world.recording.policies.get(0);
+        assertEquals(Integer.MAX_VALUE, policy.getMaxNewEvaluations(), "without limit: budget 0 is for claude -p");
+        assertEquals(1, policy.getMaxConcurrentEvaluations());
+        assertEquals(Integer.MAX_VALUE, world.recording.opened.get(0).getEffectivePolicy().getMaxNewEvaluations());
+        assertEquals(0, world.claude.calls());
     }
 
     @Test
     @DisplayName("should open near-duplicates through the judges' runtime with the claude -p alternative and the run's policy as it comes when nomic-embed-text is not available, so without --budget near-duplicates=N it has budget 0")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldOpenNearduplicatesThroughTheJudgesRuntimeWithTheClaudePAlternativeAndTheRunsPolicyAsItComesWhenNomicembedtextIsNotAvailableSoWithoutBudgetNearduplicatesNItHasBudget0(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withoutOllama();
+        EvaluationRunPolicy fifty = NearDuplicatesAnalyzerTest.budget(50);
+
+        world.provider.create(null);
+        world.provider.create(fifty);
+
+        assertEquals(List.of(List.of("near-duplicates-same-exercise"), List.of("near-duplicates-same-exercise")),
+                world.recording.evaluators);
+        assertNull(world.recording.policies.get(0), "the run's policy as it comes: none");
+        assertEquals(0, world.recording.opened.get(0).getEffectivePolicy().getMaxNewEvaluations(),
+                "the runtime gives claude -p budget 0 without --budget");
+        assertEquals(fifty, world.recording.policies.get(1));
+        assertEquals(50, world.recording.opened.get(1).getEffectivePolicy().getMaxNewEvaluations());
     }
 
     @Test
     @DisplayName("should describe near-duplicates as an errors analyzer that evaluates exercises and resolves at the panel, asking «¿Dos ejercicios del mismo tema piden casi lo mismo?», with the rules same-but-wildcard instant, same-meaning of local model and same-exercise of paid model, and paid model as the cost of its card")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R006")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldDescribeNearduplicatesAsAnErrorsAnalyzerThatEvaluatesExercisesAndResolvesAtThePanelAskingDosEjerciciosDelMismoTemaPidenCasiLoMismoWithTheRulesSamebutwildcardInstantSamemeaningOfLocalModelAndSameexerciseOfPaidModelAndPaidModelAsTheCostOfItsCard(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AnalyzerDescriptor card = NearDuplicatesAnalyzerTest.World.withNomic().provider.describe();
+
+        assertEquals("near-duplicates", card.getName());
+        assertEquals("Duplicados parecidos", card.getDisplayName());
+        assertEquals("¿Dos ejercicios del mismo tema piden casi lo mismo?", card.getQuestion());
+        assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
+        assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
+        assertEquals(List.of(FindingResolution.PANEL), card.getResolutions());
+        assertEquals(List.of("same-but-wildcard", "same-meaning", "same-exercise"),
+                card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
+        assertEquals(List.of(AnalysisCost.INSTANT, AnalysisCost.LOCAL_MODEL, AnalysisCost.PAID_MODEL),
+                card.getRules().stream().map(AnalyzerRuleCard::getCost).toList());
+        assertEquals(AnalysisCost.PAID_MODEL, card.getCost(), "the highest cost of its rules");
     }
 
     @Test
     @DisplayName("should carry in its card two tools, nomic-embed-text in Ollama and claude -p, each with its version and its exam")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R006")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldCarryInItsCardTwoToolsNomicembedtextInOllamaAndClaudePEachWithItsVersionAndItsExam(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
+        world.exams.approve(NearDuplicatesAnalyzerTest.CLAUDE_VERSION);
+
+        List<LocalToolCard> tools = world.provider.describe().getTools();
+
+        assertEquals(2, tools.size());
+        LocalToolCard nomic = tools.get(0);
+        assertEquals("nomic-embed-text en Ollama", nomic.getStatus().getTool());
+        assertEquals("nomic-embed-text@0a109f422b47", nomic.getStatus().getVersion());
+        assertEquals(NearDuplicatesAnalyzerTest.NOMIC_EXAMINED, nomic.getExaminedVersion());
+        assertEquals(JudgeExamStatus.APPROVED, nomic.getExamState());
+        assertEquals("aprobado el 1/10", nomic.getExamSummary());
+        assertFalse(nomic.isAlternative());
+        LocalToolCard claude = tools.get(1);
+        assertEquals("claude -p", claude.getStatus().getTool());
+        assertEquals(NearDuplicatesAnalyzerTest.CLAUDE_VERSION, claude.getStatus().getVersion());
+        assertEquals(JudgeExamStatus.APPROVED, claude.getExamState());
+        assertTrue(claude.isAlternative());
+        assertEquals(0, world.claude.calls(), "the card reads the version of claude -p without consulting it");
     }
 }

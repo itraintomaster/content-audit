@@ -1,7 +1,20 @@
 package com.learney.contentaudit.auditdomain.nearduplicates;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,18 +28,48 @@ public class SentenceEmbeddingEvaluatorTest {
     @DisplayName("should ask nomic-embed-text for the vector of the finished exercise with the prefix «clustering: » and record it under an evaluator id that carries the examined version")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldAskNomicembedtextForTheVectorOfTheFinishedExerciseWithThePrefixClusteringAndRecordItUnderAnEvaluatorIdThatCarriesTheExaminedVersion(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.RecordedNomic nomic = new NearDuplicatesAnalyzerTest.RecordedNomic(true);
+        SentenceEmbeddingEvaluator evaluator = new SentenceEmbeddingEvaluator(nomic, new DefaultNearDuplicatesConfig(),
+                NearDuplicatesAnalyzerTest.NOMIC_EXAMINED);
+
+        EvaluationOutcome outcome = evaluator.evaluate(new EvaluationSubject(NearDuplicatesAnalyzerTest.COOKED,
+                Map.of("exercise", "They cooked lunch for each other.")));
+
+        assertEquals(List.of("clustering: They cooked lunch for each other."), nomic.asked());
+        assertEquals("near-duplicates · nomic-embed-text@0a109f422b47 · clustering-1", evaluator.evaluatorId());
+        assertEquals(Optional.of(NearDuplicatesAnalyzerTest.NOMIC_EXAMINED), evaluator.evaluatorVersion());
+        assertTrue(outcome instanceof EvaluationEmitted, outcome.toString());
+        float[] vector = SentenceEmbeddingEvaluator.decode(((EvaluationEmitted) outcome).getPayload()).orElseThrow();
+        assertEquals(NearDuplicatesAnalyzerTest.RecordedNomic.DIMENSIONS, vector.length, "the whole vector, in float32");
+        assertEquals(1.0f, vector[0], "the first of its group, as the double recorded it");
     }
 
     @Test
     @DisplayName("should not reuse the vectors that another examined version recorded")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-DUPAR sin implementar")
     public void shouldNotReuseTheVectorsThatAnotherExaminedVersionRecorded() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.Ledger ledger = new NearDuplicatesAnalyzerTest.Ledger();
+        DefaultEvaluationSessionFactory sessions = new DefaultEvaluationSessionFactory(ledger,
+                new Sha256ContentFingerprinter());
+        NearDuplicatesAnalyzerTest.RecordedNomic nomic = new NearDuplicatesAnalyzerTest.RecordedNomic(true);
+        EvaluationSubject subject = new EvaluationSubject(NearDuplicatesAnalyzerTest.COOKED,
+                Map.of("exercise", "They cooked lunch for each other."));
+        SentenceEmbeddingEvaluator examined = new SentenceEmbeddingEvaluator(nomic, new DefaultNearDuplicatesConfig(),
+                "nomic-embed-text@0a109f422b47 · clustering-1");
+        SentenceEmbeddingEvaluator anotherDigest = new SentenceEmbeddingEvaluator(nomic, new DefaultNearDuplicatesConfig(),
+                "nomic-embed-text@9f8e7d6c5b4a · clustering-1");
+
+        EvaluationResolution first = sessions.open(new EvaluationBudget(10), examined).resolve(subject);
+        EvaluationResolution again = sessions.open(new EvaluationBudget(10), examined).resolve(subject);
+        EvaluationResolution other = sessions.open(new EvaluationBudget(10), anotherDigest).resolve(subject);
+
+        assertEquals(EvaluationResolutionKind.EVALUATED, first.getKind());
+        assertEquals(EvaluationResolutionKind.REUSED, again.getKind(), "the same version reuses its vector");
+        assertEquals(EvaluationResolutionKind.EVALUATED, other.getKind(), "another digest asks again");
+        assertEquals(2, nomic.asked().size());
+        assertEquals(2, ledger.all().stream().map(record -> record.getKey().getEvaluatorId()).distinct().count());
     }
 }

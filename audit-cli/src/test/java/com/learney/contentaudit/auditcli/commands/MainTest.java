@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -62,12 +61,13 @@ public class MainTest {
                 "knowledge-instructions-length", "coca-buckets-distribution", "lemma-recurrence", "lemma-absence",
                 "off-level-words", "lemma-count", "quiz-instruction", "hint-coherence", "answer-completeness",
                 "multiple-choice-validity", "data-coherence", "exact-duplicates", "translation-sense", "single-answer",
-                "mini-theory"), names, "R004: the seventeen, in catalog order");
+                "mini-theory"), names.subList(0, 17),
+                "R004: the seventeen, in catalog order (F-RONDA2-R001 inv. 2: the three of package B go after them)");
         org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("Largo de oración", "Largo del título",
                 "Largo de la consigna", "Bandas de frecuencia", "Recurrencia", "Palabras que faltan",
                 "Palabras de otro nivel", "Palabras poco vistas", "Consigna", "Pista coherente", "Respuestas completas",
                 "Opción múltiple válida", "Datos coherentes", "Duplicados exactos", "Traducción y sentido",
-                "Una sola respuesta", "Miniteoría"), spanish, "R004 inv. 2: the Spanish names of the table");
+                "Una sola respuesta", "Miniteoría"), spanish.subList(0, 17), "R004 inv. 2: the Spanish names of the table");
     }
 
     /**
@@ -119,7 +119,6 @@ public class MainTest {
     @DisplayName("should register grammar «Gramática», naturalness «Naturalidad» and near-duplicates «Duplicados parecidos» after the seventeen analyzers of round 1, in that order")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R001")
-    @org.junit.jupiter.api.Disabled("FEAT-RONDA2: espera a B; sus tres proveedores quedan comentados en Main hasta que construya sus fichas")
     public void shouldRegisterGrammarGramticaNaturalnessNaturalidadAndNearduplicatesDuplicadosParecidosAfterTheSeventeenAnalyzersOfRound1InThatOrder(@org.junit.jupiter.api.io.TempDir java.nio.file.Path workdir) throws Exception {
         // F-RONDA2-R001: the catalog Main builds, read as the command line reads it, lists after the
         // seventeen of round 1 and in this order grammar «Gramática», naturalness «Naturalidad» and
@@ -139,7 +138,6 @@ public class MainTest {
     @DisplayName("should keep each of the seventeen analyzers of round 1 in its place in the catalog once the three of package B are registered")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R001")
-    @org.junit.jupiter.api.Disabled("FEAT-RONDA2: espera a B; sus tres proveedores quedan comentados en Main hasta que construya sus fichas")
     public void shouldKeepEachOfTheSeventeenAnalyzersOfRound1InItsPlaceInTheCatalogOnceTheThreeOfPackageBAreRegistered(@org.junit.jupiter.api.io.TempDir java.nio.file.Path workdir) throws Exception {
         // F-RONDA2-R001 inv. 2: the three new ones are only added at the end -- each of the seventeen of
         // round 1 keeps its place and its Spanish name.

@@ -636,9 +636,9 @@ class Main {
                 new AgentJudgeSpec("near-duplicates-same-exercise", "sameExerciseVerdict",
                         "Duplicados parecidos (claude -p)"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
-        // B · FEAT-MLOCAL turns these two on with its factory, which does not build them yet:
-        // YesNoModel yesNoModel = ollamaModelFactory.yesNoModel(ollamaEndpoint, "llama3:8b");
-        // EmbeddingModel embeddingModel = ollamaModelFactory.embeddingModel(ollamaEndpoint, "nomic-embed-text");
+        // B · FEAT-MLOCAL: the two local models, over the same endpoint (one look at /api/tags per run).
+        YesNoModel yesNoModel = ollamaModelFactory.yesNoModel(ollamaEndpoint, "llama3:8b");
+        EmbeddingModel embeddingModel = ollamaModelFactory.embeddingModel(ollamaEndpoint, "nomic-embed-text");
 
         // ----------------------------------------------------------------
         // Step 4c: FEAT-HALL -- the catalog: one provider per analyzer, and the only list of
@@ -685,14 +685,13 @@ class Main {
         analyzerProviders.add(miniTheoryProvider);                // 17 · C · FEAT-MINIT
 
         // FEAT-RONDA2 (F-RONDA2-R001): the three of package B go after the seventeen, in this
-        // order -- «Gramática», «Naturalidad» and «Duplicados parecidos». The catalog reads every
-        // card at startup, so each stays off until package B builds it.
-        // analyzerProviders.add(new GrammarAnalyzerProvider(grammarChecker, finishedSentenceReader,
-        //         localToolGate));                                                              // 18 · B · FEAT-GRAMA
-        // analyzerProviders.add(new NaturalnessAnalyzerProvider(yesNoModel, naturalnessAlternative, judgeRuntime,
-        //         finishedSentenceReader, localToolGate));                                      // 19 · B · FEAT-NATUR
-        // analyzerProviders.add(new NearDuplicatesAnalyzerProvider(embeddingModel, nearDuplicatesAlternative,
-        //         judgeRuntime, correctorMatcher, studentViewRenderer, localToolGate));         // 20 · B · FEAT-DUPAR
+        // order -- «Gramática», «Naturalidad» and «Duplicados parecidos».
+        analyzerProviders.add(new GrammarAnalyzerProvider(grammarChecker, finishedSentenceReader,
+                localToolGate));                                                              // 18 · B · FEAT-GRAMA
+        analyzerProviders.add(new NaturalnessAnalyzerProvider(yesNoModel, naturalnessAlternative, judgeRuntime,
+                finishedSentenceReader, localToolGate));                                      // 19 · B · FEAT-NATUR
+        analyzerProviders.add(new NearDuplicatesAnalyzerProvider(embeddingModel, nearDuplicatesAlternative,
+                judgeRuntime, correctorMatcher, studentViewRenderer, localToolGate));         // 20 · B · FEAT-DUPAR
 
         AnalyzerCatalog analyzerCatalog = new DefaultAnalyzerCatalog(analyzerProviders);
 
