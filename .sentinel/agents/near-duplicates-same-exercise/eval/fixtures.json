@@ -1,0 +1,358 @@
+{
+  "agent": "near-duplicates-same-exercise",
+  "artifact": "sameExerciseVerdict",
+  "gateId": "near_duplicates_same_exercise_gate_verdict",
+  "emitId": "near_duplicates_same_exercise_emit",
+  "dependencies": [
+    "title",
+    "first",
+    "second"
+  ],
+  "topKeys": [
+    "sameExercise",
+    "reason"
+  ],
+  "promptMustMention": [
+    "**para el alumno es el mismo ejercicio**",
+    "Ante la duda, decí que **no**",
+    "«I am sorry.» y «I am hot.»"
+  ],
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado (sameExercise que no es booleano, razón vacía o larga, claves de más o de menos) y que emit produzca sameExerciseVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (title, first, second) que arma DefaultSameExerciseQuestion con QuizStudentViewRenderer para los pares de la guía.",
+  "inputs": {
+    "oferta": {
+      "title": "Funciones mixtas",
+      "first": "Offer: I ___ (wash) the dishes for you.\nResuelto: Offer: I'll wash the dishes for you.",
+      "second": "Offer: I ___ (wash) the dishes.\nResuelto: Offer: I'll wash the dishes."
+    },
+    "perdon": {
+      "title": "Afirmativas con $be$",
+      "first": "I ___ sorry. (am · are · is)\nResuelto: I am sorry.",
+      "second": "I ___ hot. (am · are · is)\nResuelto: I am hot."
+    },
+    "roma": {
+      "title": "Montañas y océanos: ¿$the$?",
+      "first": "Have you ever been to ___ Rome? (- · the)\nResuelto: Have you ever been to Rome?",
+      "second": "Have you ever visited ___ Rome? (- · the)\nResuelto: Have you ever visited Rome?"
+    }
+  },
+  "cases": [
+    {
+      "caseId": "oferta-mismo",
+      "note": "«Offer: I'll wash the dishes.» después de «… for you.» (…2fd5 / …2725, A2): el mismo.",
+      "inputs": "oferta",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "perdon-distinto",
+      "note": "«I am hot.» después de «I am sorry.» (…1e64 / …1e61, A1): misma respuesta, otra oración.",
+      "inputs": "perdon",
+      "verdict": {
+        "sameExercise": false,
+        "reason": "Las dos piden «am», pero son dos oraciones distintas: el alumno practica dos veces, no repite."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "roma-mismo",
+      "note": "«Have you ever visited Rome?» (…4242, B1): el mismo, como lo contó el 077.",
+      "inputs": "roma",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "La misma pregunta con otro verbo: el alumno decide lo mismo, que Rome va sin artículo."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "razon-en-dos-lineas",
+      "note": "La razón se canonicaliza en una línea.",
+      "inputs": "oferta",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Sólo sobra «for you».\n  El alumno escribe lo mismo."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Sólo sobra «for you». El alumno escribe lo mismo."
+        }
+      }
+    },
+    {
+      "caseId": "si-como-texto",
+      "note": "«yes» no es true: sameExercise es booleano.",
+      "inputs": "oferta",
+      "verdict": {
+        "sameExercise": "yes",
+        "reason": "Sólo sobra «for you»."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "sameExercise tiene que ser true o false"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "razon-vacia",
+      "note": "Sin razón no hay veredicto.",
+      "inputs": "perdon",
+      "verdict": {
+        "sameExercise": false,
+        "reason": "   "
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "reason está vacío"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "razon-larga",
+      "note": "Hasta 400 caracteres.",
+      "inputs": "perdon",
+      "verdict": {
+        "sameExercise": false,
+        "reason": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "el máximo es 400"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "con-puntaje",
+      "note": "Una clave de más: el objeto es cerrado.",
+      "inputs": "oferta",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Sólo sobra «for you».",
+        "confidence": 0.9
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no respeta el objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "falta-reason",
+      "note": "Falta una clave del objeto cerrado.",
+      "inputs": "oferta",
+      "verdict": {
+        "sameExercise": true
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan=['reason']"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "run-dir-por-state-json",
+      "note": "Sin run_dir en las entradas: project_root + el run_id (UUID) del state.json, como lo proyecta el CLI.",
+      "inputs": "oferta",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta."
+      },
+      "resolution": "state.json",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta."
+        }
+      }
+    },
+    {
+      "caseId": "run-id-ambiguo",
+      "note": "Dos state.json con el mismo runId: el gate no adivina; emit sale conservador.",
+      "inputs": "oferta",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta."
+      },
+      "resolution": "ambiguous",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exactamente uno"
+        ]
+      }
+    },
+    {
+      "caseId": "run-id-inseguro",
+      "note": "Un run_id que escaparía del directorio de runs se rechaza.",
+      "inputs": "oferta",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta."
+      },
+      "resolution": "unsafe-run-id",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "run_id ausente o inseguro"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-run-dir",
+      "note": "Sin run_dir ni project_root no hay dónde leer: falla el gate y emit da outputUnusable.",
+      "inputs": "oferta",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta."
+      },
+      "resolution": "none",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan run_dir"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-salida-de-evaluate",
+      "note": "evaluate no dejó verdicts.json.",
+      "inputs": "oferta",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "verdicts.json no existe"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-viejo-se-borra",
+      "note": "Un validated-verdict.json de un intento anterior no sobrevive a un gate que falla.",
+      "inputs": "oferta",
+      "raw": "no hay veredicto",
+      "staleValidated": true,
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "no-es-json",
+      "note": "Prosa sin objeto JSON.",
+      "inputs": "oferta",
+      "raw": "No puedo contestar.",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "lista-en-vez-de-objeto",
+      "note": "Un array no es el veredicto.",
+      "inputs": "oferta",
+      "raw": "[1, 2]",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "output-unusable-del-modelo",
+      "note": "{\"outputUnusable\": true} lo produce emit, nunca el modelo: el gate lo rechaza.",
+      "inputs": "oferta",
+      "verdict": {
+        "outputUnusable": true
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "objeto cerrado"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-corrupto-antes-de-emit",
+      "note": "Si validated-verdict.json no se puede leer, emit no inventa: outputUnusable.",
+      "inputs": "oferta",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta."
+      },
+      "corruptValidated": true,
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta."
+        }
+      }
+    },
+    {
+      "caseId": "fence-json",
+      "note": "La salida en un fence ```json se acepta sin pagar otra consulta.",
+      "inputs": "oferta",
+      "raw": "```json\n{\n  \"sameExercise\": true,\n  \"reason\": \"Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta.\"\n}\n```",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta."
+        }
+      }
+    },
+    {
+      "caseId": "prosa-alrededor",
+      "note": "Prosa antes y una etiqueta después: se toma el objeto.",
+      "inputs": "oferta",
+      "raw": "Esta es mi respuesta:\n{\"sameExercise\": true, \"reason\": \"Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta.\"}\nLABEL: done",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta."
+        }
+      }
+    },
+    {
+      "caseId": "json-dentro-de-un-string",
+      "note": "El objeto serializado dentro de un string JSON se desenvuelve.",
+      "inputs": "oferta",
+      "raw": "\"{\\\"sameExercise\\\": true, \\\"reason\\\": \\\"Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta.\\\"}\"",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Sólo sobra «for you»: el alumno escribe «'ll wash» en la misma oferta."
+        }
+      }
+    }
+  ]
+}

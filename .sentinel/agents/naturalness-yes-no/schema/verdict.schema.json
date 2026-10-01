@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "naturalness-answer.schema.json",
+  "title": "NaturalnessAnswer",
+  "description": "Respuesta canónica que emite el agente como artifact naturalnessAnswer (F-NATUR-R008); la lee DefaultNaturalnessScorer. Si el juez agota sus intentos, el artifact es {\"outputUnusable\": true} en vez de este objeto.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["answer"],
+  "properties": {
+    "answer": { "type": "string", "enum": ["yes", "no"] }
+  }
+}
