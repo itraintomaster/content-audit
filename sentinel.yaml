@@ -605,6 +605,7 @@ modules:
     - signature: "getSemanticCategory(LemmaAndPos lemmaAndPos): Optional<String>"
     - signature: "lookupLevel(LemmaAndPos lemmaAndPos): Optional<CefrLevel>"
     - signature: "lookupLevelByLemma(String lemma): Optional<CefrLevel>"
+    - signature: "lookupDerivedFormLevel(String word): Optional<CefrLevel>"
   - name: AuditableEntity
     stereotype: port
     sealed: false
@@ -4518,6 +4519,9 @@ modules:
         description: "Abre la sesión con el freno del examen (DOUBT-CONSIGNA-HABILITA,\
           \ José 30/9), el tope 0 por omisión (F-JEXAM-R010) y las consultas a la\
           \ vez. El rechazo de un conjunto ininterpretable sigue antes de abrir nada."
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: Para el constructor del sujeto del juez (F-CALUM-R001).
       visibility: public
       handwrittenTests:
       - name: should build the analyzer with the configured default budget when the
@@ -4745,17 +4749,6 @@ modules:
         traceability:
           feature: FEAT-HALL
           rule: F-HALL-R014
-      - name: "should resolve every quiz of a course judged before FEAT-JEXAM from\
-          \ its recorded verdicts without a single consultation, with budget 100 and\
-          \ an approved version"
-        traceability:
-          feature: FEAT-JEXAM
-          rule: F-JEXAM-R007
-      - name: should look up each quiz under the same fingerprint the ledger recorded
-          for it before FEAT-JEXAM
-        traceability:
-          feature: FEAT-JEXAM
-          rule: F-JEXAM-R007
       - name: "should reuse without consulting the recorded verdict of a quiz whose\
           \ translation or mini-theory changed, since the consigna judge reads neither"
         traceability:
@@ -4818,16 +4811,26 @@ modules:
         traceability:
           feature: FEAT-CIERRE
           rule: F-CIERRE-R001
+      - name: "should consult again, with budget and an approved version, every quiz\
+          \ whose verdict was recorded on what the consigna judge read before FEAT-CALUM"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: "should look up each quiz under the fingerprint of the exercise as the\
+          \ student sees it, never under the one recorded before FEAT-CALUM"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
       implements:
       - ContentAnalyzer
     - name: DefaultQuizInstructionSubjectBuilder
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "Las claves y su orden son la huella: cefrLevel, topic, title\
+          \ e instructions de la copia (los que muestra la app), exercise, acceptedAnswers\
+          \ y options."
       handwrittenTests:
-      - name: "should hand the judge the cefr level, the topic, the knowledge label,\
-          \ the knowledge instructions and the whole quiz with all its parts and accepted\
-          \ options"
-        traceability:
-          feature: FEAT-QINST
-          rule: F-QINST-R009
       - name: should leave the quiz identifier out of the judged content
         traceability:
           feature: FEAT-QINST
@@ -4837,36 +4840,17 @@ modules:
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R009
-      - name: should produce different judged content for every quiz of a knowledge
-          when the knowledge instructions change
-        traceability:
-          feature: FEAT-QINST
-          rule: F-QINST-R009
       - name: should produce identical judged content when the same course is reprocessed
           without content changes
         traceability:
           feature: FEAT-QINST
           rule: F-QINST-R009
-      - name: should take the label and the instructions from the knowledge when the
-          quiz carries diverging copies
-        traceability:
-          feature: FEAT-QINST
-          rule: F-QINST-R009
-      - name: should build judged content for a quiz whose knowledge declares no instructions
-        traceability:
-          feature: FEAT-QINST
-          rule: F-QINST-R014
       - name: "should derive from a subject view the same judged content it derives\
           \ from the audited quiz node, so a correction verified as compliant is verified\
           \ with the criterion of the audit itself"
         traceability:
           feature: FEAT-QICOR
           rule: F-QICOR-R005
-      - name: "should show the judge every option of a multiple choice quiz in its\
-          \ gap, in the order the student sees them, with the correct one marked"
-        traceability:
-          feature: FEAT-OPMUL
-          rule: F-OPMUL-R005
       - name: should render a multiple choice quiz for the judge on the revalidation
           and candidate path exactly as on the analysis path
         traceability:
@@ -4877,16 +4861,44 @@ modules:
         traceability:
           feature: FEAT-OPMUL
           rule: F-OPMUL-R005
-      - name: should render a CLOZE quiz for the judge character for character as
-          it did before multiple choice existed
+      - name: "should hand the judge the cefr level, the topic, the title and the\
+          \ instructions the app shows, the statement with its gaps and hints, the\
+          \ accepted answers of each gap and the options, in that order and nothing\
+          \ else"
         traceability:
-          feature: FEAT-OPMUL
-          rule: F-OPMUL-R005
-      - name: "should render a quiz whose gap has no options and that carries no multiple\
-          \ choice options the CLOZE way, as before"
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: "should produce different judged content when the instructions of the\
+          \ quiz copy change, and the same content when only the knowledge instructions\
+          \ change"
         traceability:
-          feature: FEAT-OPMUL
-          rule: F-OPMUL-R005
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: "should take the title and the instructions from the quiz copy, the\
+          \ ones the app shows, when the knowledge carries different ones"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: should build judged content with empty instructions for a quiz whose
+          copy declares none
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: "should show the judge every option of a multiple choice quiz, in the\
+          \ order the student sees them, with the correct one marked"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: "should render a CLOZE quiz for the judge as the student view renders\
+          \ it, never in the internal format of the course"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
+      - name: "should render a quiz whose gap has no options with its gap, an empty\
+          \ line of accepted answers and no options"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R001
       implements:
       - QuizInstructionSubjectBuilder
     - name: DefaultQuizInstructionScorer
@@ -4953,6 +4965,11 @@ modules:
       implements:
       - QuizInstructionScopeMatcher
     - name: DefaultQuizInstructionComplianceCheckerFactory
+      requiresInject:
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: Para el constructor del sujeto con que revise-instructions verifica
+          (F-CALUM-R002).
       visibility: public
       implements:
       - QuizInstructionComplianceCheckerFactory
@@ -9436,6 +9453,12 @@ modules:
         type: QuizStudentViewRenderer
         description: "Para la evidencia: la oración con el hueco, como la ve el alumno\
           \ (gancho D-14, pedido 2 de la UI)."
+      - name: evpCatalogPort
+        type: EvpCatalogPort
+        description: "Para el nivel propio de una forma derivada o compuesta que el\
+          \ EVP trae aparte (lookupDerivedFormLevel, F-NIVFR-R002). El nivel de cada\
+          \ palabra sigue siendo el del puntuador compartido (R001): el catalogo solo\
+          \ decide si una lectura puede soltar lo que lexis ya marca."
       visibility: public
       handwrittenTests:
       - name: "should describe off-level-words in its card: whether there are words\
@@ -9467,6 +9490,8 @@ modules:
         type: TopicTeachingResolver
       - name: studentViewRenderer
         type: QuizStudentViewRenderer
+      - name: evpCatalogPort
+        type: EvpCatalogPort
       visibility: internal
       handwrittenTests:
       - name: "should not mark 'live' (B1) in the A1 quiz 'She lives in London.',\
@@ -9586,6 +9611,88 @@ modules:
         traceability:
           feature: FEAT-NIVFR
           rule: F-NIVFR-R006
+      - name: "should not mark 'smoking' in the A1 list 'smoke - smoking' of a topic\
+          \ that does not teach -ing, because the EVP lists 'smoking' as a form of\
+          \ 'smoke' at A1 although the lemma 'smoking' resolves to B2"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should mark 'rewarding' in a B1 quiz of a topic that does not teach\
+          \ -ing, out of the lemmas of the EVP and with its base 'reward' at B1, because\
+          \ the EVP lists 'rewarding' apart at C1"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should not mark 'terrifying' in a B1 quiz when the EVP lists it as\
+          \ a form of 'terrify' at B2, one level above, even with no reading of its\
+          \ base"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should not mark a derivative out of the EVP that the EVP does not list\
+          \ either and whose base is within reach, like 'creamy' (cream A2) in a B1\
+          \ quiz"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should mark 'nicely' (B2) in an A1 quiz of a topic that does not teach\
+          \ -ly, since a base never beats the level the EVP gives a word"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should mark the noun 'fine' (B1) in the A1 quiz 'He paid a fine.' although\
+          \ the adjective is A1, because another category only counts in a list of\
+          \ words"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should read 'run' as the verb (A1) and not mark it in the A1 list 'run\
+          \ - running', where the tagger reads a noun (B1)"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should not mark 'takeout' (out of the EVP) in an A2 quiz, reading it\
+          \ as its British pair 'takeaway' (B1)"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should mark 'recess' (out of the EVP) in a B1 quiz although 'break'\
+          \ is A1, because recess and break do not name the same thing in common use"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should keep marking 'truck' when the EVP brings it two levels above\
+          \ the A2 quiz, even though its British pair 'lorry' is A2"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should not mark 'nicely' (B2) in an A1 quiz of a topic whose title\
+          \ teaches '$-ly$', because forming it from 'nice' (A1) is the exercise"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R003
+      - name: "should mark 'allergic' in an A2 quiz although the translation adapts\
+          \ it to Spanish, because an adjective that looks Spanish is not a loan"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R004
+      - name: "should not mark 'limousine' in a B2 quiz whose translation says 'limusina',\
+          \ a noun adapted to Spanish spelling"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R004
+      - name: "should keep marking 'adore' when the tagger reads it as a noun after\
+          \ 'They' and the translation says 'adoran', because the sentence uses it\
+          \ as a verb"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R004
+      - name: "should keep marking 'rehabilitation' in a B1 quiz although the translation\
+          \ adapts it to Spanish, because the EVP lists it as a form of 'rehabilitate'\
+          \ at C1"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R004
       implements:
       - ContentAnalyzer
     - name: OffLevelWordsCorrection
@@ -12390,11 +12497,12 @@ modules:
       description: "Oracion canonica en texto plano, baseline de la medicion de longitud."
     - name: knowledgeTitle
       type: String
-      description: Etiqueta del knowledge — mitad de la consigna que el ejercicio
-        incumple.
+      description: "Etiqueta del knowledge: la lección, como contexto. Lo que el ejercicio\
+        \ tiene que cumplir es quizInstructions (F-CALUM-R003)."
     - name: knowledgeInstructions
       type: String
-      description: Instructions del knowledge — la otra mitad de la consigna. Nullable.
+      description: "Instructions del knowledge, como contexto: no es lo que el corrector\
+        \ tiene que cumplir (F-CALUM-R003). Nullable."
     - name: topicLabel
       type: String
     - name: cefrLevel
@@ -12442,6 +12550,11 @@ modules:
         \ y al adaptador del grafo: RefinementTask no lleva plan y Reviser.propose\
         \ tampoco lo recibe, asi que cualquier otra ubicacion obligaria a enhebrar\
         \ un parametro nuevo por un puerto compartido por todos los revisers."
+    - name: quizInstructions
+      type: String
+      description: "La consigna de la copia del ejercicio: la que muestra la app,\
+        \ la que lee el juez de consigna (F-CALUM-R001) y la que tiene que cumplir\
+        \ el corrector (F-CALUM-R003). Nullable."
     visibility: public
     implements:
     - CorrectionContext
@@ -13324,6 +13437,12 @@ modules:
       traceability:
         feature: FEAT-QICOR
         rule: F-QICOR-R002
+    - name: "should resolve a correction context carrying the instructions of the\
+        \ quiz copy, the ones the student sees and the judge reads, apart from the\
+        \ knowledge's"
+      traceability:
+        feature: FEAT-CALUM
+        rule: F-CALUM-R003
     implements:
     - CorrectionContextResolver
   patterns:
@@ -19224,6 +19343,22 @@ modules:
         traceability:
           feature: FEAT-LABS
           rule: F-LABS-R046
+      - name: "should resolve lookupDerivedFormLevel to the lowest level of the entries\
+          \ that list the word as a form of another lemma, like 'rewarding' at C1\
+          \ for 'reward'"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should return empty from lookupDerivedFormLevel for a word listed only\
+          \ as its own lemma, as a plural of its lemma or inside a phrase"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R002
+      - name: "should keep lookupLevel and lookupLevelByLemma as they were when it\
+          \ indexes derived forms, so 'reward' still resolves to B1"
+        traceability:
+          feature: FEAT-NIVFR
+          rule: F-NIVFR-R006
       implements:
       - EvpCatalogPort
   - name: coca
@@ -21749,6 +21884,11 @@ modules:
         traceability:
           feature: FEAT-QICOR
           rule: F-QICOR-R006
+      - name: "should revalidate the original quiz with the title and the instructions\
+          \ of its copy, the ones the student sees"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R002
       implements:
       - Reviser
     - name: DefaultQuizInstructionProposalStrategyRegistry
@@ -23989,17 +24129,17 @@ modules:
         traceability:
           feature: FEAT-QICOR
           rule: F-QICOR-R005
-      - name: "should submit the corrected quiz as a whole to the instruction validation,\
-          \ with its parts, its level and its knowledge instruction, instead of checking\
-          \ the violations one by one"
-        traceability:
-          feature: FEAT-QICOR
-          rule: F-QICOR-R005
       - name: "should refuse a candidate whose instruction validation could not be\
           \ obtained, instead of assuming that it complies"
         traceability:
           feature: FEAT-QICOR
           rule: F-QICOR-R005
+      - name: "should submit the corrected quiz as a whole to the instruction validation,\
+          \ with its parts, its level and the title and instructions of its copy,\
+          \ instead of checking the violations one by one"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R002
       implements:
       - CandidateCriterionEvaluator
     - name: AuditReportQuizCorpus
@@ -28807,6 +28947,11 @@ modules:
         traceability:
           feature: FEAT-QICOR
           rule: F-QICOR-R012
+      - name: "should hand the correction agent, as the instructions it must comply\
+          \ with, those of the quiz copy and never the knowledge's"
+        traceability:
+          feature: FEAT-CALUM
+          rule: F-CALUM-R003
       implements:
       - QuizInstructionCandidateGenerator
     - name: DefaultQuizInstructionAgentCandidateParser
@@ -31078,6 +31223,8 @@ features:
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.commands
+- id: FEAT-CALUM
+  code: F-CALUM
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:1.13.0
