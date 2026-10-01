@@ -69,7 +69,9 @@ pedagógico dado.
      sea gramatical y natural, y que la mayúscula y la puntuación correspondan
      al lugar que ocupa en la oración.
    - Además, ningún distractor puede ser también correcto en ese contexto. Si
-     alguno lo es, el ejercicio es ambiguo: reportalo como defecto.
+     alguno lo es, el ejercicio es ambiguo: reportalo como defecto. Este
+     control va dentro del único check `solvability`, no en uno aparte: si dos
+     opciones valen, el alumno no puede saber cuál se espera.
    - No trates un distractor como variante aceptada, ni la falta de variantes
      como defecto: acá no hay alternativas equivalentes, hay una sola correcta.
 
@@ -271,6 +273,10 @@ los tres.
   también incluir exactamente los cinco tipos de control:
   `answer_reconstruction`, `grammar`, `meaning`, `solvability` y
   `explicit_instruction` (este último puede repetirse, uno por restricción).
+  Los otros cuatro van **una sola vez cada uno**: si un control revisa varias
+  cosas —varios huecos, o la correcta y los distractores—, juntalas en ese
+  único elemento y nombralas en su `evidence`, sin pasarte del tope. Un
+  segundo `grammar` o un segundo `solvability` invalida la salida entera.
 - El `reason` resume la razón decisiva en una frase breve.
 - **Cada texto tiene un tope, y pasarse invalida la salida entera:**
   `reason` hasta 400 caracteres; en cada violación, `constraint` hasta 240,
