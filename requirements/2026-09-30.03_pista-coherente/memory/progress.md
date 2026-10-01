@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — architect y qa-tester (impl A) — R001 entra al mismo parche (backup antes del propose; nada perdido): las
+  descripciones de hintedInTopic y comparableInTopic dicen el grupo que decide, y la prueba de El posesivo se borra con el
+  nombre viejo y se agrega con uno que dice tipo y tema entero, con la misma regla. TECH_SPEC con una sección más.
+  `patch validate -i` contra 859e96af: 0 altas, 7 cambios, 0 conflictos.
+
 2026-10-01 — analyst (impl A) — R001 dice la unión del 1/10, como el código: sin pista es hallazgo si la llevan tres cuartos
   de su tipo o de todo su tema. Casos: Afirmativas regulares (por tipo), Adverbios de frecuencia 2572 (sólo por tema, 17 de
   20) y El posesivo (ni el tipo, 0 de 20, ni el tema, 20 de 40). También la condición del camino «falta» de F-PISTA-J001.

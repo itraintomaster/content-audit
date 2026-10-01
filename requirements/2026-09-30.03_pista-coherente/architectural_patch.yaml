@@ -12,7 +12,12 @@ description: "FEAT-PISTA, segundo parche: F-PISTA-R006, la reescritura no pide p
   \ nada en 447b, con el perfecto y this → that) y 2 del analizador (opinion en 44f8,\
   \ bloqueante, a la mesa e identificada por la palabra; y el hueco dentro de la oració\
   n, que sigue siendo de R002). Sin camino nuevo en F-PISTA-J001: el journey generado\
-  \ no cambia."
+  \ no cambia.; analista, arquitecto y qa-tester, R001: dice la unión del 1/10, su\
+  \ tipo o todo su tema, como el código. Cambian las descripciones de hintedInTopic\
+  \ y comparableInTopic de HintCoherenceDiagnosis, que cuentan el grupo que decide\
+  \ (el tipo, o el tema entero cuando sólo el tema llega a tres cuartos), y la prueba\
+  \ de El posesivo se renombra para decir que cuenta por tipo y en todo el tema, con\
+  \ la misma regla."
 modules:
 - name: audit-domain
   packages:
@@ -59,6 +64,19 @@ modules:
         description: "La pista que sale de la primera respuesta —verbo en forma base,\
           \ sujeto y not—: el arreglo por regla. El audio no cambia. Null en R006:\
           \ la mesa decide si cambia la respuesta o el enunciado."
+        _change: modify
+      _change: modify
+    - name: HintCoherenceDiagnosis
+      type: record
+      fields:
+      - name: hintedInTopic
+        type: int
+        description: "Ejercicios con pista del grupo que decide R001: los de su mismo\
+          \ tipo, o los de todo el tema cuando sólo el tema llega a tres cuartos (F-PISTA-R001)."
+        _change: modify
+      - name: comparableInTopic
+        type: int
+        description: Ejercicios de hueco para escribir de ese mismo grupo.
         _change: modify
       _change: modify
     interfaces:
@@ -108,6 +126,16 @@ modules:
         traceability:
           feature: FEAT-PISTA
           rule: F-PISTA-R006
+      - name: "should count hints only among exercises of the same shape, so the 20\
+          \ transformations without hint of El posesivo are not measured against its\
+          \ 20 hinted gaps"
+        _change: delete
+      - name: "should count hints by shape and in the whole topic, so the 20 transformations\
+          \ without hint of El posesivo have no finding, since neither their shape\
+          \ (0 of 20) nor the topic (20 of 40) reaches three quarters"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R001
       _change: modify
     _change: modify
   _change: modify

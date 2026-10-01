@@ -4,10 +4,11 @@ requirement: 2026-09-30.03_pista-coherente
 generated: 2026-10-01T03:20:00Z
 ---
 
-# Tech Spec: La reescritura no pide palabras que nada anuncia (F-PISTA-R006)
+# Tech Spec: La reescritura no pide palabras que nada anuncia (F-PISTA-R006), y R001 dice la unión
 
 Segundo parche de FEAT-PISTA. El primero (R001 a R005) ya está aplicado y su TECH_SPEC queda en la historia de git.
-Diseñado contra el `sentinel.yaml` de 859e96af (`ronda1/integracion`). Se aplica después del parche de cierre de C
+Trae R006 y, además, deja a R001 diciendo lo que hace el código desde el 1/10. Diseñado contra el `sentinel.yaml` de
+859e96af (`ronda1/integracion`). Se aplica después del parche de cierre de C
 (FEAT-CIERRE), que toca otros paquetes de audit-domain —`judging` y los motores de los jueces— y ningún elemento de
 `hintcoherence`.
 
@@ -165,6 +166,42 @@ modules:
         traceability: { feature: FEAT-PISTA, rule: F-PISTA-R006 }
 ```
 
+## R001 dice la unión, como el código
+Desde el 1/10, un ejercicio sin pista tiene hallazgo si la llevan tres cuartos de su tipo o de todo su tema (la unión,
+en `decisions.md`). El REQUIREMENT, la condición del camino «falta» del journey y dos descripciones del diagnóstico
+seguían diciendo «del mismo tipo». `hintedInTopic` y `comparableInTopic` cuentan el grupo que decide: el tipo, salvo
+cuando sólo el tema llega a tres cuartos, y entonces el tema entero. La prueba de El posesivo decía «sólo entre los del
+mismo tipo»; con la unión, sus 20 transformaciones no tienen hallazgo porque no llegan ni su tipo (0 de 20) ni el tema
+(20 de 40). Se renombra borrando el nombre viejo y agregando el nuevo, con la misma regla. El cuerpo no cambia.
+
+```architecture
+modules:
+- name: audit-domain
+  _change: modify
+  packages:
+  - name: hintcoherence
+    _change: modify
+    models:
+    - name: HintCoherenceDiagnosis
+      type: record
+      _change: modify
+      fields:
+      - name: hintedInTopic
+        type: int
+        _change: modify
+      - name: comparableInTopic
+        type: int
+        _change: modify
+    implementations:
+    - name: HintCoherenceAnalyzer
+      _change: modify
+      handwrittenTests:
+      - name: "should count hints only among exercises of the same shape, so the 20 transformations without hint of El posesivo are not measured against its 20 hinted gaps"
+        _change: delete
+      - name: "should count hints by shape and in the whole topic, so the 20 transformations without hint of El posesivo have no finding, since neither their shape (0 of 20) nor the topic (20 of 40) reaches three quarters"
+        traceability: { feature: FEAT-PISTA, rule: F-PISTA-R001 }
+```
+
 ## Lo que hay que adaptar después de generate
 - `HintCoherenceAnalyzer.fault`: el `switch` sobre `HintIssueKind` es exhaustivo; sin un caso para el valor nuevo, no
   compila. Es lo único que se rompe.
@@ -174,3 +211,8 @@ modules:
 - `HintCoherenceAnalyzerProvider`: la ficha suma `rewrite-words`, y su prueba espera cinco reglas.
 - Las 5 pruebas: generate agrega sus stubs en `DefaultHintAnswerCheckTest` y `HintCoherenceAnalyzerTest`, porque su
   etiqueta F-PISTA-R006 todavía no está en esos archivos.
+- R001: generate no agrega el stub del nombre nuevo de la prueba de El posesivo ni el del camino «falta» del journey,
+  porque sus etiquetas ya están en el archivo (bug 2026-07-22-01). Conserva los métodos viejos, que tienen cuerpo, y
+  avisa. Los dos se renombran a mano, método y `@DisplayName`.
+- La ficha también dice R001 «del mismo tipo» en tres textos del código: la regla `missing-hint`, la meta y lo que lee.
+  Pasan a la unión.
