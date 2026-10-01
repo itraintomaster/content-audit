@@ -10,6 +10,7 @@ import com.learney.contentaudit.auditdomain.finding.FindingDraft;
 import com.learney.contentaudit.auditdomain.judging.JudgeRequestPlan;
 import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
 import com.learney.contentaudit.auditdomain.judging.JudgeSessions;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 import com.learney.contentaudit.auditdomain.judging.JudgeUnitTally;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdict;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdictReader;
@@ -124,6 +125,10 @@ class MiniTheoryAnalyzer implements ContentAnalyzer {
 
         int evaluated = 0;
         int notEvaluated = 0;
+        // F-CIERRE-R001: each topic brings all its exercises to the state of the topic.
+        int quizzesReached = 0;
+        int quizzesEvaluated = 0;
+        int quizzesNotEvaluated = 0;
         Map<String, Integer> verdictsByVersion = new TreeMap<>();
 
         // One subject per topic of the plan; a topic whose content cannot be built stays unevaluated.
@@ -131,13 +136,14 @@ class MiniTheoryAnalyzer implements ContentAnalyzer {
         List<EvaluationRequest> requests = new ArrayList<>();
         for (int i = 0; i < units.size(); i++) {
             AuditNode topic = units.get(i);
+            quizzesReached += DefaultMiniTheorySubjectBuilder.exercisesOf(topic).size();
             EvaluationRequestMode mode = i < modes.size() && modes.get(i) != null
                     ? modes.get(i) : EvaluationRequestMode.REUSE_OR_EVALUATE;
             try {
                 requests.add(new EvaluationRequest(subjectBuilder.build(topic), mode));
                 asked.add(topic);
             } catch (RuntimeException e) {
-                markUnevaluated(topic);
+                quizzesNotEvaluated += markUnevaluated(topic);
                 notEvaluated++;
             }
         }
@@ -151,7 +157,7 @@ class MiniTheoryAnalyzer implements ContentAnalyzer {
             if (kind != EvaluationResolutionKind.REUSED && kind != EvaluationResolutionKind.EVALUATED) {
                 // F-MINIT-R005 / F-QINST-R004: no verdict for this content and no budget, or the
                 // service failed: its exercises count as not evaluated.
-                markUnevaluated(topic);
+                quizzesNotEvaluated += markUnevaluated(topic);
                 notEvaluated++;
                 continue;
             }
@@ -163,18 +169,20 @@ class MiniTheoryAnalyzer implements ContentAnalyzer {
                 checkAligned(outcomes, exercises);
                 apply(exercises, outcomes);
                 evaluated++;
+                quizzesEvaluated += exercises.size();
                 if (resolution.getEvaluatorVersion() != null) {
                     verdictsByVersion.merge(resolution.getEvaluatorVersion(), 1, Integer::sum);
                 }
             } catch (RuntimeException e) {
                 // A verdict that cannot be read or spread leaves its topic unevaluated, never the run.
-                markUnevaluated(topic);
+                quizzesNotEvaluated += markUnevaluated(topic);
                 notEvaluated++;
             }
         }
 
         JudgeUnitTally tally = new JudgeUnitTally(AuditTarget.KNOWLEDGE, units.size(), evaluated, notEvaluated,
-                verdictsByVersion, plan.getUnmatchedDeclaredIds(), null);
+                verdictsByVersion, plan.getUnmatchedDeclaredIds(),
+                new JudgeQuizTally(quizzesReached, quizzesEvaluated, quizzesNotEvaluated));
         if (!(rootNode.getDiagnoses() instanceof DefaultCourseDiagnoses)) {
             rootNode.setDiagnoses(new DefaultCourseDiagnoses());
         }
@@ -276,8 +284,10 @@ class MiniTheoryAnalyzer implements ContentAnalyzer {
      * F-MINIT-R005 / F-HALL-R008: every exercise of the topic reached and not evaluated -- no score,
      * no finding, no diagnosis of mini-theory, and declared so.
      */
-    private void markUnevaluated(AuditNode topic) {
-        for (AuditNode exercise : DefaultMiniTheorySubjectBuilder.exercisesOf(topic)) {
+    /** Marks every exercise of the topic as not evaluated by this judge and says how many they are. */
+    private int markUnevaluated(AuditNode topic) {
+        List<AuditNode> exercises = DefaultMiniTheorySubjectBuilder.exercisesOf(topic);
+        for (AuditNode exercise : exercises) {
             if (exercise.getScores() != null) {
                 exercise.getScores().remove(ANALYZER_NAME);
             }
@@ -292,5 +302,6 @@ class MiniTheoryAnalyzer implements ContentAnalyzer {
                 exercise.getUnevaluatedBy().add(ANALYZER_NAME);
             }
         }
+        return exercises.size();
     }
 }

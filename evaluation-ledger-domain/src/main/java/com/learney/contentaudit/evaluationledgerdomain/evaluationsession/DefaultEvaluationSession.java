@@ -206,7 +206,7 @@ class DefaultEvaluationSession implements EvaluationSession {
                 // consulting it for the remainder of this run.
                 markUnavailable(notEmitted.getReason());
             }
-            return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null);
+            return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, failureOf(notEmitted));
         }
 
         throw new IllegalStateException(
@@ -259,7 +259,7 @@ class DefaultEvaluationSession implements EvaluationSession {
                 if (notEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE) {
                     markUnavailable(notEmitted.getReason());
                 }
-                return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null);
+                return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, failureOf(notEmitted));
             }
 
             throw new IllegalStateException(
@@ -525,7 +525,7 @@ class DefaultEvaluationSession implements EvaluationSession {
             if (notEmitted.getKind() == EvaluationFailureKind.EVALUATOR_UNAVAILABLE) {
                 markUnavailable(notEmitted.getReason());
             }
-            return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, null);
+            return new EvaluationResolution(EvaluationResolutionKind.FAILED, null, null, failureOf(notEmitted));
         }
         throw new IllegalStateException(
                 "Unknown EvaluationOutcome implementation: " + outcome.getClass().getName());
@@ -574,6 +574,15 @@ class DefaultEvaluationSession implements EvaluationSession {
         } finally {
             pool.shutdownNow();
         }
+    }
+
+    /**
+     * F-CIERRE-R002: the cause a FAILED resolution carries -- the kind and reason the evaluator
+     * gave, or the exception it threw as EVALUATOR_UNAVAILABLE. A copy, so no caller can change what
+     * another one reads. Never written to the ledger.
+     */
+    private static EvaluationNotEmitted failureOf(EvaluationNotEmitted notEmitted) {
+        return new EvaluationNotEmitted(notEmitted.getKind(), notEmitted.getReason());
     }
 
     private synchronized void markUnavailable(String reason) {

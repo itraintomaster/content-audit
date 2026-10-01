@@ -12,6 +12,7 @@ import com.learney.contentaudit.auditdomain.judging.JudgeRequestPlan;
 import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
 import com.learney.contentaudit.auditdomain.judging.JudgeSessions;
 import com.learney.contentaudit.auditdomain.judging.JudgeUnitTally;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 import com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerVerdict;
 import com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerVerdictReader;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequest;
@@ -177,8 +178,10 @@ class SingleAnswerAnalyzer implements ContentAnalyzer {
         if (opened == null) {
             return null;
         }
+        // F-CIERRE-R001: by exercise, the exercises are the units.
         JudgeUnitTally tally = new JudgeUnitTally(AuditTarget.QUIZ, units.size(), evaluated, notEvaluated,
-                verdictsByVersion, plan != null ? plan.getUnmatchedDeclaredIds() : null, null);
+                verdictsByVersion, plan != null ? plan.getUnmatchedDeclaredIds() : null,
+                new JudgeQuizTally(units.size(), evaluated, notEvaluated));
         if (!(rootNode.getDiagnoses() instanceof DefaultCourseDiagnoses)) {
             rootNode.setDiagnoses(new DefaultCourseDiagnoses());
         }

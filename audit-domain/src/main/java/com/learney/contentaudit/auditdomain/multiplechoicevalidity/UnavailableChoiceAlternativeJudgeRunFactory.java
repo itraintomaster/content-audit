@@ -11,6 +11,7 @@ import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJ
 import com.learney.contentaudit.auditdomain.choicealternative.ChoiceAlternativeJudgmentStatus;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
 import java.util.List;
@@ -80,7 +81,7 @@ public class UnavailableChoiceAlternativeJudgeRunFactory implements ChoiceAltern
             int reached = requested.size();
             return new JudgeCoverageDiagnosis(MultipleChoiceValidityAnalyzer.ANALYZER_NAME, AuditTarget.QUIZ, reached,
                     0, reached, new ArrayList<>(), null, new ArrayList<>(), UNAVAILABLE_REASON, null,
-                    new ArrayList<>(), null);
+                    new ArrayList<>(), new JudgeQuizTally(reached, 0, reached));
         }
     }
 }

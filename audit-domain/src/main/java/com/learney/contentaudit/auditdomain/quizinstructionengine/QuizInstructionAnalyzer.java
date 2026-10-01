@@ -2,6 +2,7 @@ package com.learney.contentaudit.auditdomain.quizinstructionengine;
 import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
 import com.learney.contentaudit.auditdomain.judging.JudgeSessions;
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 import com.learney.contentaudit.auditdomain.judging.JudgeUnitTally;
 import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
 import com.learney.contentaudit.auditdomain.quizinstruction.InstructionCheck;
@@ -308,9 +309,11 @@ public QuizInstructionAnalyzer(EvaluationSession session, QuizInstructionSubject
         // what it costs, and why it stopped consulting. Also in the common slot of the judges.
         JudgeCoverageDiagnosis judgeCoverage = null;
         if (runtime != null && opened != null) {
+            // F-CIERRE-R001: by exercise, the exercises are the units.
             judgeCoverage = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, reachedQuizzes,
                     evaluatedQuizzes, unevaluatedQuizzes, new TreeMap<>(withoutNullVersion(verdictCountByJudgeVersion)),
-                    unmatchedReevaluationIds, null));
+                    unmatchedReevaluationIds,
+                    new JudgeQuizTally(reachedQuizzes, evaluatedQuizzes, unevaluatedQuizzes)));
             courseDiagnoses.addJudgeCoverage(judgeCoverage);
         }
 

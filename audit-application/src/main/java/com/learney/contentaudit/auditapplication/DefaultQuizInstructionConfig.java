@@ -14,13 +14,11 @@ import javax.annotation.processing.Generated;
 )
 public class DefaultQuizInstructionConfig implements QuizInstructionConfig {
 
-private final JudgeRuntimeConfig judgeRuntimeConfig;
+    /** The name of the judge in the configuration common to the judges. */
+    static final String JUDGE_NAME = "quiz-instruction";
 
-public DefaultQuizInstructionConfig(JudgeRuntimeConfig judgeRuntimeConfig) {
-    this.judgeRuntimeConfig = judgeRuntimeConfig;
-}
-
-    // F-QINST-R006 (ASSUMPTION): default budget of new judge queries per run.
+    // F-QINST-R006 (ASSUMPTION): default budget of new judge queries per run of revise-instructions,
+    // which is an explicit request. The budget of analyze is the judges' one (F-JEXAM-R010).
     private static final int DEFAULT_MAX_NEW_EVALUATIONS = 500;
 
     // F-QINST-R002: graduated score scale by verdict severity -- 1.0 / 0.6 / 0.3 / 0.0.
@@ -31,6 +29,13 @@ public DefaultQuizInstructionConfig(JudgeRuntimeConfig judgeRuntimeConfig) {
         SCORES.put(InstructionSeverity.MINOR, 0.6);
         SCORES.put(InstructionSeverity.MAJOR, 0.3);
         SCORES.put(InstructionSeverity.CRITICAL, 0.0);
+    }
+
+    /** F-CIERRE-R004: where the budget of analyze comes from, so it is shown without copying it. */
+    private final JudgeRuntimeConfig judgeRuntimeConfig;
+
+    public DefaultQuizInstructionConfig(JudgeRuntimeConfig judgeRuntimeConfig) {
+        this.judgeRuntimeConfig = judgeRuntimeConfig;
     }
 
     @Override
@@ -49,9 +54,14 @@ public DefaultQuizInstructionConfig(JudgeRuntimeConfig judgeRuntimeConfig) {
         for (Map.Entry<InstructionSeverity, Double> entry : SCORES.entrySet()) {
             scores.put(entry.getKey().name(), entry.getValue());
         }
-        return Map.of(
-                "analyzerName", "quiz-instruction",
-                "defaultMaxNewEvaluations", DEFAULT_MAX_NEW_EVALUATIONS,
-                "scoresBySeverity", scores);
+        // F-CIERRE-R004: both budgets, each named with the command it applies to.
+        Map<String, Object> description = new LinkedHashMap<>();
+        description.put("analyzerName", JUDGE_NAME);
+        if (judgeRuntimeConfig != null) {
+            description.put("analyzeMaxNewEvaluations", judgeRuntimeConfig.getDefaultMaxNewEvaluations(JUDGE_NAME));
+        }
+        description.put("reviseInstructionsMaxNewEvaluations", DEFAULT_MAX_NEW_EVALUATIONS);
+        description.put("scoresBySeverity", scores);
+        return description;
     }
 }

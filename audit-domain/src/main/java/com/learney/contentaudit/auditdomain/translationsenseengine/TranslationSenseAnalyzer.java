@@ -13,6 +13,7 @@ import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
 import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
 import com.learney.contentaudit.auditdomain.judging.JudgeRequestPlan;
 import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
 import com.learney.contentaudit.auditdomain.judging.JudgeSessions;
@@ -176,8 +177,10 @@ class TranslationSenseAnalyzer implements ContentAnalyzer {
             }
         }
 
+        // F-CIERRE-R001: by exercise, the exercises are the units.
         JudgeUnitTally tally = new JudgeUnitTally(AuditTarget.QUIZ, size, evaluated, size - evaluated,
-                verdictsByVersion, plan.getUnmatchedDeclaredIds(), null);
+                verdictsByVersion, plan.getUnmatchedDeclaredIds(),
+                new JudgeQuizTally(size, evaluated, size - evaluated));
         JudgeCoverageDiagnosis coverage = runtime.coverage(opened, tally);
         if (rootNode != null) {
             if (!(rootNode.getDiagnoses() instanceof DefaultCourseDiagnoses)) {
