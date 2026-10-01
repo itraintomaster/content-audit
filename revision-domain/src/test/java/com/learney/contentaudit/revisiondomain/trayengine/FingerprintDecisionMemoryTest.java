@@ -1,7 +1,14 @@
 package com.learney.contentaudit.revisiondomain.trayengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.revisiondomain.batchengine.TandaFixture;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import com.learney.contentaudit.revisiondomain.tray.RememberedDecision;
+import com.learney.contentaudit.revisiondomain.tray.TrayAnswer;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +22,29 @@ public class FingerprintDecisionMemoryTest {
     @DisplayName("should recall José's answer to a tie by the identity of the finding and the fingerprint of the exercise as the student sees it, and nothing once the exercise changed")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldRecallJossAnswerToATieByTheIdentityOfTheFindingAndTheFingerprintOfTheExerciseAsTheStudentSeesItAndNothingOnceTheExerciseChanged(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: José said the tie on «You ___ (eat) a lot of fruit.» is not an error. The answer is found again by the identity
+        // of the finding and the fingerprint of what the student sees -- another copy of the same exercise, or the exercise with
+        // a field the student does not see changed, finds it --; another finding does not, and neither does the exercise once
+        // what the student sees changed.
+        BandejaFixture.Decisions store = new BandejaFixture.Decisions();
+        FingerprintDecisionMemory memory = BandejaFixture.memory(store);
+        QuizTemplateEntity fruit = TandaFixture.exercise(BandejaFixture.course(), BandejaFixture.FRUIT);
+
+        memory.remember(BandejaFixture.courseTie(), fruit, TrayAnswer.NOT_ERROR, BandejaFixture.BATCH);
+
+        RememberedDecision recalled = memory.recall(BandejaFixture.courseTie(), TandaFixture.edited(fruit, q -> { }))
+                .orElseThrow(() -> new AssertionError("the same exercise, another copy"));
+        assertEquals(TrayAnswer.NOT_ERROR, recalled.getAnswer());
+        assertEquals(BandejaFixture.BATCH, recalled.getBatchId());
+        assertEquals(BandejaFixture.courseTie().getIdentity().getKey(), recalled.getIdentityKey());
+        assertTrue(memory.recall(BandejaFixture.courseTie(), TandaFixture.edited(fruit, q -> q.setCode("A1.02.01.08")))
+                .isPresent(), "a field the student does not see");
+        assertTrue(memory.recall(MesaFixture.missingHint(), fruit).isEmpty(), "another finding");
+        assertTrue(memory.recall(BandejaFixture.courseTie(), TandaFixture.edited(fruit, q -> q.setTranslation("Comés mucha"
+                + " fruta."))).isEmpty(), "the translation changed");
+        assertTrue(memory.recall(BandejaFixture.courseTie(), TandaFixture.edited(fruit,
+                q -> q.getForm().getSentenceParts().get(2).setText("(eat) fruit."))).isEmpty(), "the statement changed");
     }
 }

@@ -1,7 +1,17 @@
 package com.learney.contentaudit.revisiondomain.trayengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batchengine.TandaFixture;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,18 +25,67 @@ public class SeededRuleSampleDrawerTest {
     @DisplayName("should draw 20 changes at random from a rule with 170, the same 20 every time the tray of the same batch is opened")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldDraw20ChangesAtRandomFromARuleWith170TheSame20EveryTimeTheTrayOfTheSameBatchIsOpened(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: the rule of capital letters changed 170 exercises. The tray shows 20 at random -- the same 20 each time José
+        // opens the tray of that batch; another batch shows others. Changes of another rule, or dropped, are not drawn.
+        CorrectionBatch batch = batchWith("tanda-A1-20261001T120000Z", 170, 7);
+
+        List<BatchChange> first = new SeededRuleSampleDrawer().draw(batch, "mayusculas", 20);
+        List<BatchChange> again = new SeededRuleSampleDrawer().draw(batch, "mayusculas", 20);
+
+        assertEquals(20, first.size());
+        assertEquals(20, new HashSet<>(ids(first)).size(), "twenty different changes");
+        assertTrue(first.stream().allMatch(c -> "mayusculas".equals(c.getRuleId()) && c.getDroppedReason() == null),
+                "of the rule, still in the batch");
+        assertEquals(ids(first), ids(again), "the same 20 every time");
+        assertNotEquals(ids(first).subList(0, 20), ids(new ArrayList<>(batch.getChanges()).subList(0, 20)),
+                "at random, not the first 20");
+        List<BatchChange> other = new SeededRuleSampleDrawer().draw(batchWith("tanda-A1-20261008T120000Z", 170, 7),
+                "mayusculas", 20);
+        assertNotEquals(ids(first), ids(other), "another batch, other 20");
     }
 
     @Test
     @DisplayName("should show all the changes of a rule with fewer than 20")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowAllTheChangesOfARuleWithFewerThan20() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: a rule with 7 changes shows them all, in the order of their ids.
+        CorrectionBatch batch = batchWith("tanda-A1-20261001T120000Z", 170, 7);
+
+        List<BatchChange> drawn = new SeededRuleSampleDrawer().draw(batch, "formas", 20);
+
+        assertEquals(7, drawn.size(), "all of them");
+        assertEquals(List.of("regla-formas-01", "regla-formas-02", "regla-formas-03", "regla-formas-04", "regla-formas-05",
+                "regla-formas-06", "regla-formas-07"), ids(drawn));
+    }
+
+
+    /** A batch with the changes of two rules -- one of them dropped from each -- and one of the panel. */
+    private static CorrectionBatch batchWith(String id, int capitals, int forms) {
+        CorrectionBatch batch = TandaFixture.batch(id);
+        List<BatchChange> changes = new ArrayList<>();
+        for (int i = 1; i <= capitals; i++) {
+            changes.add(TandaFixture.change(String.format("regla-mayusculas-%03d", i), BatchChangeOrigin.RULE, "mayusculas",
+                    List.of()));
+        }
+        for (int i = 1; i <= forms; i++) {
+            changes.add(TandaFixture.change(String.format("regla-formas-%02d", i), BatchChangeOrigin.RULE, "formas",
+                    List.of()));
+        }
+        BatchChange dropped = TandaFixture.change("regla-mayusculas-171", BatchChangeOrigin.RULE, "mayusculas", List.of());
+        dropped.setDroppedReason("lo sacó José");
+        changes.add(dropped);
+        BatchChange droppedForm = TandaFixture.change("regla-formas-08", BatchChangeOrigin.RULE, "formas", List.of());
+        droppedForm.setDroppedReason("lo sacó José");
+        changes.add(droppedForm);
+        changes.add(TandaFixture.change("mesa-1", BatchChangeOrigin.PANEL, null, List.of()));
+        batch.setChanges(changes);
+        return batch;
+    }
+
+    private static List<String> ids(List<BatchChange> changes) {
+        return changes.stream().map(BatchChange::getChangeId).toList();
     }
 }

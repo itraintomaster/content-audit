@@ -50,6 +50,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
+import com.learney.contentaudit.refinerdomain.TaskOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
+import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
+import com.learney.contentaudit.revisiondomain.panel.CandidateRejection;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
+import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelRunSettings;
+import com.learney.contentaudit.revisiondomain.panel.PanelRunner;
+import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import java.util.HashMap;
 import javax.annotation.processing.Generated;
 
 /**
@@ -290,27 +305,22 @@ class DefaultBatchService implements BatchService {
                 }
                 recalculate = true;
             }
-            case ACCEPT_CANDIDATE, ACCEPT_AS_EXCEPTION -> {
-                List<BatchChangeStep> steps = BatchBook.stepsFor(changeLedger.composedCourse(batch, course),
-                        adjustment.getCandidate(), adjustment.getQuizId() != null ? List.of(adjustment.getQuizId())
-                                : List.of(), knowledgeOfQuiz(course, adjustment.getQuizId()));
-                if (!steps.isEmpty()) {
-                    String changeId = BatchBook.freeChangeId(batch, "jose-" + adjustment.getQuizId());
-                    batch = changeLedger.record(batch, new BatchChange(changeId, BatchChangeOrigin.JOSE, null,
-                            knowledgeOfQuiz(course, adjustment.getQuizId()), BatchBook.copy(adjustment.getTaskIds()), steps,
-                            null, adjustment.getKind() == com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind
-                                    .ACCEPT_AS_EXCEPTION, Instant.now(), null), course);
-                    for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
-                        BatchBook.setOutcome(batch, taskId, BatchTaskOutcomeKind.RESOLVED_BY_PANEL, changeId, null,
-                                "aceptado por José");
-                    }
-                }
-            }
+            case ACCEPT_CANDIDATE, ACCEPT_AS_EXCEPTION -> batch = accept(batch, adjustment, course,
+                    verdictOf(batch, adjustment.getQuizId(), adjustment.getCandidate()), "aceptado por José");
             case RETURN_TO_PANEL -> {
-                for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
-                    int attempts = BatchBook.outcome(batch, taskId).map(BatchTaskOutcome::getAttempts).orElse(0);
-                    BatchBook.setOutcome(batch, taskId, BatchTaskOutcomeKind.PENDING, null, attempts,
-                            adjustment.getReason() != null ? adjustment.getReason() : "José la devolvió a la mesa");
+                if (adjustment.getCandidate() != null) {
+                    batch = assessJosesFix(batch, adjustment, course); // F-BANDEJA-R003: «escribir el arreglo»
+                } else {
+                    // F-BANDEJA-R002: the candidate does not pass -- back to the panel with one attempt less, or
+                    // without winner when none is left.
+                    int maxAttempts = batch.getSettings() != null && batch.getSettings().getMaxAttempts() > 0
+                            ? batch.getSettings().getMaxAttempts() : DEFAULT_MAX_ATTEMPTS;
+                    String why = adjustment.getReason() != null ? adjustment.getReason() : "José la devolvió a la mesa";
+                    for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
+                        int spent = BatchBook.outcome(batch, taskId).map(BatchTaskOutcome::getAttempts).orElse(0) + 1;
+                        BatchBook.setOutcome(batch, taskId, spent >= maxAttempts ? BatchTaskOutcomeKind.NO_WINNER
+                                : BatchTaskOutcomeKind.PENDING, null, spent, why);
+                    }
                 }
             }
             case KEEP_ORIGINAL -> {
@@ -319,8 +329,9 @@ class DefaultBatchService implements BatchService {
                             "José deja el original");
                 }
             }
-            case TASK_FROM_TIE, APPROVE_RULE_SAMPLE -> {
-                // recorded as José's decision; the batch moves through the other adjustments
+            case TASK_FROM_TIE -> batch = taskFromTie(batch, adjustment, course);
+            case APPROVE_RULE_SAMPLE -> {
+                // recorded as José's decision: the changes of the rule may be published
             }
         }
         List<BatchAdjustment> adjustments = BatchBook.copy(batch.getAdjustments());
@@ -349,6 +360,155 @@ class DefaultBatchService implements BatchService {
         batch = publisher.publish(batch, request, course);
         batchStore.save(batch);
         return batch.getPublication();
+    }
+
+    // -------------------------------------------------------------------------
+    // José's decisions from the tray (FEAT-BANDEJA)
+    // -------------------------------------------------------------------------
+
+    /** [ASSUMPTION] A fix José writes is judged by the judges of a new English: four queries at most. */
+    static final int QUERIES_FOR_A_FIX = 4;
+
+    /** The panel that measures and judges a fix José writes, as any candidate; the factory hands it over. */
+    private PanelRunner panelRunner;
+
+    DefaultBatchService withPanel(PanelRunner panelRunner) {
+        this.panelRunner = panelRunner;
+        return this;
+    }
+
+    /** A candidate into the batch, as José's change, with the verdict of its gate -- and its requests to record. */
+    private CorrectionBatch accept(CorrectionBatch batch, BatchAdjustment adjustment, CourseEntity course,
+            ChangeGateVerdict verdict, String detail) {
+        List<BatchChangeStep> steps = BatchBook.stepsFor(changeLedger.composedCourse(batch, course),
+                adjustment.getCandidate(), adjustment.getQuizId() != null ? List.of(adjustment.getQuizId()) : List.of(),
+                knowledgeOfQuiz(course, adjustment.getQuizId()));
+        if (steps.isEmpty()) {
+            return batch;
+        }
+        String changeId = BatchBook.freeChangeId(batch, "jose-" + adjustment.getQuizId());
+        batch = changeLedger.record(batch, new BatchChange(changeId, BatchChangeOrigin.JOSE, null,
+                knowledgeOfQuiz(course, adjustment.getQuizId()), BatchBook.copy(adjustment.getTaskIds()), steps, verdict,
+                adjustment.getKind() == BatchAdjustmentKind.ACCEPT_AS_EXCEPTION, Instant.now(), null), course);
+        for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
+            int attempts = BatchBook.outcome(batch, taskId).map(BatchTaskOutcome::getAttempts).orElse(0);
+            BatchBook.setOutcome(batch, taskId, BatchTaskOutcomeKind.RESOLVED_BY_PANEL, changeId, attempts, detail);
+        }
+        return batch;
+    }
+
+    /** The verdict of the gate the panel gave a candidate of the exercise: the accepted one, or the one José saw. */
+    private static ChangeGateVerdict verdictOf(CorrectionBatch batch, String quizId, PanelCandidate candidate) {
+        ChangeGateVerdict verdict = null;
+        for (PanelDecision decision : BatchBook.list(batch.getPanelDecisions())) {
+            if (decision == null || !BatchBook.list(decision.getQuizIds()).contains(quizId)) {
+                continue;
+            }
+            if (candidate != null && candidate.equals(decision.getAccepted())) {
+                verdict = decision.getAcceptedVerdict();
+            } else if (candidate != null && candidate.equals(decision.getBestFailing())) {
+                verdict = decision.getBestFailingVerdict();
+            }
+        }
+        return verdict;
+    }
+
+    /**
+     * F-BANDEJA-R003, «escribir el arreglo»: José's version is measured and judged as any candidate of the panel, with
+     * the tasks of the exercise. If it passes it enters the batch as his change; if not, it goes back to him with the
+     * reasons, as the best failing candidate of the exercise.
+     */
+    private CorrectionBatch assessJosesFix(CorrectionBatch batch, BatchAdjustment adjustment, CourseEntity course) {
+        if (panelRunner == null) {
+            throw new IllegalStateException("La tanda no tiene la mesa para medir y juzgar el arreglo de José.");
+        }
+        String quizId = adjustment.getQuizId();
+        Optional<BatchBook.Place> place = BatchBook.place(changeLedger.composedCourse(batch, course), quizId);
+        if (place.isEmpty() || place.get().quiz() == null) {
+            throw new IllegalArgumentException("El ejercicio " + quizId + " no está en el curso de la tanda.");
+        }
+        AuditReport start = start(batch);
+        Map<String, RefinementTask> tasks = refinementPlanStore.load(batch.getPlanId()).map(BatchBook::tasksById)
+                .orElse(Map.of());
+        List<ErrorTaskBrief> briefs = new ArrayList<>();
+        for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
+            RefinementTask task = tasks.get(taskId);
+            if (task != null && briefer != null) {
+                briefer.brief(start, task).ifPresent(briefs::add);
+            }
+        }
+        KnowledgeEntity knowledge = place.get().knowledge();
+        TopicWork work = new TopicWork(batch.getId(), batch.getLevel(), place.get().milestone().getId(),
+                place.get().topic().getId(), knowledge, knowledge.getSentenceMode(), briefs, null, null, new HashMap<>(),
+                new ArrayList<>());
+        BatchSettings settings = batch.getSettings();
+        QueryAllowance allowance = panelRunnerFactory.allowance(QUERIES_FOR_A_FIX,
+                settings != null && settings.getQueriesAtOnce() > 0 ? settings.getQueriesAtOnce() : DEFAULT_AT_ONCE);
+        PanelDecision decision = panelRunner.assessGiven(work, quizId, adjustment.getCandidate(),
+                new PanelRunSettings(settings != null ? settings.getTopicsAtOnce() : DEFAULT_AT_ONCE,
+                        settings != null ? settings.getQueriesAtOnce() : DEFAULT_AT_ONCE,
+                        settings != null ? settings.getMaxAttempts() : DEFAULT_MAX_ATTEMPTS,
+                        BatchBook.copy(batch.getAnalyzers())), allowance);
+        batch.setQueriesSpent(batch.getQueriesSpent() + (allowance != null ? allowance.spent() : 0));
+        List<PanelDecision> decisions = BatchBook.copy(batch.getPanelDecisions());
+        decisions.add(decision);
+        batch.setPanelDecisions(decisions);
+        if (decision.getOutcome() == PanelOutcomeKind.ACCEPTED) {
+            return accept(batch, adjustment, course, decision.getAcceptedVerdict(), "el arreglo de José pasó la mesa");
+        }
+        List<String> reasons = new ArrayList<>();
+        for (CandidateRejection rejection : BatchBook.list(decision.getRejections())) {
+            reasons.addAll(BatchBook.list(rejection.getReasons()));
+        }
+        BatchTaskOutcomeKind kind = decision.getOutcome() == PanelOutcomeKind.TIE ? BatchTaskOutcomeKind.TIE
+                : BatchTaskOutcomeKind.NO_WINNER;
+        for (String taskId : BatchBook.list(adjustment.getTaskIds())) {
+            int attempts = BatchBook.outcome(batch, taskId).map(BatchTaskOutcome::getAttempts).orElse(0);
+            BatchBook.setOutcome(batch, taskId, kind, null, attempts, "el arreglo de José no pasó"
+                    + (reasons.isEmpty() ? "" : ": " + String.join("; ", reasons)));
+        }
+        return batch;
+    }
+
+    /**
+     * F-BANDEJA-R002: José says a tie on an exercise of the course is an error. Its task enters the batch -- one task of
+     * the exercise, with the tie as its finding -- and waits for the panel of its topic.
+     */
+    private CorrectionBatch taskFromTie(CorrectionBatch batch, BatchAdjustment adjustment, CourseEntity course) {
+        Finding tie = adjustment.getFinding();
+        String quizId = adjustment.getQuizId() != null ? adjustment.getQuizId()
+                : tie != null && tie.getNode() != null ? tie.getNode().getNodeId() : null;
+        Optional<BatchBook.Place> place = BatchBook.place(course, quizId);
+        if (tie == null || place.isEmpty()) {
+            throw new IllegalArgumentException("El desempate necesita su hallazgo y un ejercicio del curso.");
+        }
+        RefinementPlan plan = refinementPlanStore.load(batch.getPlanId()).orElseThrow(() -> new IllegalStateException(
+                "No se encuentra el plan " + batch.getPlanId() + " de la tanda."));
+        String taskId = "desempate-" + quizId;
+        for (int n = 2; BatchBook.tasksById(plan).containsKey(taskId); n++) {
+            taskId = "desempate-" + quizId + "-" + n;
+        }
+        DiagnosisKind kind;
+        try {
+            kind = DiagnosisKind.valueOf(tie.getAnalyzer().toUpperCase(java.util.Locale.ROOT).replace('-', '_'));
+        } catch (IllegalArgumentException | NullPointerException e) {
+            kind = null;
+        }
+        KnowledgeEntity knowledge = place.get().knowledge();
+        RefinementTask task = new RefinementTask(taskId, AuditTarget.QUIZ, quizId, quizId, kind, 1,
+                RefinementTaskStatus.IN_BATCH, new TaskOrigin(tie, batch.getLevel(), knowledge.getId(), knowledge.getLabel(),
+                        new ArrayList<>(List.of(quizId)), new ArrayList<>()));
+        List<RefinementTask> planTasks = BatchBook.copy(plan.getTasks());
+        planTasks.add(task);
+        plan.setTasks(planTasks);
+        refinementPlanStore.save(plan);
+        List<String> taskIds = BatchBook.copy(batch.getTaskIds());
+        taskIds.add(taskId);
+        batch.setTaskIds(taskIds);
+        adjustment.setTaskIds(new ArrayList<>(List.of(taskId)));
+        BatchBook.setOutcome(batch, taskId, BatchTaskOutcomeKind.PENDING, null, 0,
+                "José dijo que el desempate es un error: a la mesa de su tema");
+        return batch;
     }
 
     // -------------------------------------------------------------------------

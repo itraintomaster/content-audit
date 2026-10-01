@@ -715,11 +715,28 @@ public final class TandaFixture {
             return results;
         }
 
+        /** Every candidate given to measure and judge, with its work. */
+        public final List<TopicWork> assessedWorks = new ArrayList<>();
+
+        public final List<PanelCandidate> assessed = new ArrayList<>();
+
+        /** What the panel says of a candidate given to it: accepted, resolving every task of its work, by default. */
+        public java.util.function.BiFunction<TopicWork, PanelCandidate, PanelDecision> assess = (work, candidate) -> {
+            List<String> tasks = new ArrayList<>();
+            for (com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief brief : work.getBriefs()) {
+                tasks.add(brief.getTask().getId());
+            }
+            return new PanelDecision(work.getKnowledge().getId(), new ArrayList<>(List.of(candidate.getQuiz() != null
+                    ? candidate.getQuiz().getId() : work.getKnowledge().getId())), tasks, PanelOutcomeKind.ACCEPTED,
+                    candidate, null, new ArrayList<>(tasks), 1, new ArrayList<>(), null, null, new ArrayList<>(), 0);
+        };
+
         @Override
         public PanelDecision assessGiven(TopicWork work, String quizId, PanelCandidate candidate, PanelRunSettings settings,
                 QueryAllowance allowance) {
-            return new PanelDecision(work.getKnowledge().getId(), List.of(quizId), List.of(), PanelOutcomeKind.ACCEPTED,
-                    candidate, null, new ArrayList<>(), 1, new ArrayList<>(), null, null, new ArrayList<>(), 0);
+            assessedWorks.add(work);
+            assessed.add(candidate);
+            return assess.apply(work, candidate);
         }
     }
 
@@ -855,5 +872,21 @@ public final class TandaFixture {
         } catch (ReflectiveOperationException e) {
             throw new AssertionError("no se pudo leer DefaultCorrectionScope", e);
         }
+    }
+
+    /** The changes recorded in the batch through the real ledger, with their pending proposals and artifacts. */
+    public static CorrectionBatch recorded(CorrectionBatch batch, CourseEntity course, RevisionArtifactStore artifacts,
+            BatchChange... changes) {
+        DefaultBatchChangeLedger ledger = new DefaultBatchChangeLedger(artifacts, locator());
+        for (BatchChange change : changes) {
+            ledger.record(batch, change, course);
+        }
+        return batch;
+    }
+
+    /** An outcome of a task, as the stages leave it. */
+    public static void outcome(CorrectionBatch batch, String taskId, com.learney.contentaudit.revisiondomain.batch
+            .BatchTaskOutcomeKind kind, String changeId, int attempts, String detail) {
+        BatchBook.setOutcome(batch, taskId, kind, changeId, attempts, detail);
     }
 }

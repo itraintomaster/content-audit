@@ -124,7 +124,8 @@ class DefaultBatchCloser implements BatchCloser {
             List<BatchClosing> closings = BatchBook.copy(batch.getClosings());
             closings.add(new BatchClosing(Instant.now(), scope, comparison, verdict, returnedIds, rounds));
             batch.setClosings(closings);
-            if (verdict.isPasses() && blindSampleService != null) {
+            if (verdict.isPasses() && blindSampleService != null && batch.getBlindSampleId() == null) {
+                // one sample per batch: closing again with José's decisions keeps the one he answers
                 BlindSample sample = blindSampleService.draw(coursePath, scope, null);
                 batch.setBlindSampleId(sample != null ? sample.getSampleId() : null);
             }

@@ -1,7 +1,29 @@
 package com.learney.contentaudit.revisiondomain.trayengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.batchengine.TandaFixture;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
+import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import com.learney.contentaudit.revisiondomain.tray.Tray;
+import com.learney.contentaudit.revisiondomain.tray.TrayAnswer;
+import com.learney.contentaudit.revisiondomain.tray.TrayItem;
+import com.learney.contentaudit.revisiondomain.tray.TrayItemKind;
+import com.learney.contentaudit.revisiondomain.tray.TraySamplePair;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,124 +37,338 @@ public class DefaultTrayAssemblerTest {
     @DisplayName("should show only the blind sample, and nothing else of the batch, while the blind sample is not closed")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowOnlyTheBlindSampleAndNothingElseOfTheBatchWhileTheBlindSampleIsNotClosed(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 and DOUBT-QUIEN-CIEGA (A): while the blind sample is open, the tray holds its pairs and nothing else of the
+        // batch -- having seen a change elsewhere, José would know which side is the new one.
+        Fixture fixture = new Fixture();
+
+        Tray tray = fixture.assemble(false);
+
+        assertTrue(tray.isBlindSampleOpen());
+        assertEquals(1, tray.getItems().size(), "only the blind sample: " + ids(tray));
+        TrayItem blind = tray.getItems().get(0);
+        assertEquals(TrayItemKind.BLIND_SAMPLE, blind.getKind());
+        assertEquals(BandejaFixture.BLIND_ITEM, blind.getItemId());
+        assertEquals(BandejaFixture.SAMPLE, blind.getBlindSampleId());
+        assertEquals(3, blind.getBlindPairs().size());
+        assertFalse(tray.isPublishable());
+        assertEquals(List.of("falta la muestra ciega: respondé sus 3 pares; se cierra con el último"), tray.getBlockers());
     }
 
     @Test
     @DisplayName("should list after the closed blind sample the ties and the exercises without winner by severity, then the samples of each rule and at the end the audios to rerecord")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldListAfterTheClosedBlindSampleTheTiesAndTheExercisesWithoutWinnerBySeverityThenTheSamplesOfEachRuleAndAtTheEndTheAudiosToRerecord(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: once the blind sample is closed, the decisions by severity -- the tie on «Winter ___ (come) every year.» and
+        // the tea without winner, both high, before the tie on the fruit of the course, medium --; then the sample of the rule of
+        // the hint; at the end, the audios to record.
+        Fixture fixture = new Fixture();
+
+        Tray tray = fixture.assemble(true);
+
+        assertFalse(tray.isBlindSampleOpen());
+        assertEquals(List.of("desempate-" + BandejaFixture.COME, "sin-ganador-" + BandejaFixture.TEA,
+                "desempate-curso-" + BandejaFixture.FRUIT, "muestra-hint-coherence",
+                "regrabar-" + MesaFixture.audioKey(TandaFixture.LEARNED), "regrabar-" + MesaFixture.audioKey(BandejaFixture.VEGETABLES)),
+                ids(tray));
+        assertEquals(List.of(TrayItemKind.TIE_ON_CANDIDATE, TrayItemKind.NO_WINNER, TrayItemKind.TIE_ON_COURSE,
+                TrayItemKind.RULE_SAMPLE, TrayItemKind.PENDING_RERECORDING, TrayItemKind.PENDING_RERECORDING),
+                tray.getItems().stream().map(TrayItem::getKind).toList());
     }
 
     @Test
     @DisplayName("should give each item its kind, the exercise as the student sees it, what is asked and the answers it accepts")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldGiveEachItemItsKindTheExerciseAsTheStudentSeesItWhatIsAskedAndTheAnswersItAccepts(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: each item says its kind, shows the exercise as the student sees it, what is asked and the answers it takes.
+        Fixture fixture = new Fixture();
+
+        Tray tray = fixture.assemble(true);
+
+        TrayItem fruit = item(tray, "desempate-curso-" + BandejaFixture.FRUIT);
+        assertEquals(TrayItemKind.TIE_ON_COURSE, fruit.getKind());
+        assertEquals(fixture.view(BandejaFixture.FRUIT).getStatement(), fruit.getBefore().getStatement(),
+                "the exercise as the student sees it");
+        assertEquals(fixture.view(BandejaFixture.FRUIT).getTranslation(), fruit.getBefore().getTranslation());
+        assertEquals("Los dos jueces de translation-sense no coinciden sobre este ejercicio: ¿es un error?", fruit.getQuestion());
+        assertEquals(List.of(TrayAnswer.IS_ERROR, TrayAnswer.NOT_ERROR), fruit.getAnswers());
+        assertEquals(List.of(TrayAnswer.PASSES, TrayAnswer.DOES_NOT_PASS),
+                item(tray, "desempate-" + BandejaFixture.COME).getAnswers());
+        assertEquals(List.of(TrayAnswer.KEEP_ORIGINAL, TrayAnswer.APPROVE_CANDIDATE, TrayAnswer.WRITE_FIX),
+                item(tray, "sin-ganador-" + BandejaFixture.TEA).getAnswers());
+        assertEquals(List.of(TrayAnswer.RULE_OK, TrayAnswer.DROP_CHANGE, TrayAnswer.DROP_RULE),
+                item(tray, "muestra-hint-coherence").getAnswers());
+        assertTrue(item(tray, "regrabar-" + MesaFixture.audioKey(TandaFixture.LEARNED)).getAnswers().isEmpty(),
+                "an audio to record asks nothing");
     }
 
     @Test
     @DisplayName("should list only what the batch needs from José, never a change the panel accepted on its own")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldListOnlyWhatTheBatchNeedsFromJosNeverAChangeThePanelAcceptedOnItsOwn() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the vegetables were accepted by the panel on their own: no question about them -- only their audio to record,
+        // and the change of the rule of the hint among the sampled ones.
+        Fixture fixture = new Fixture();
+
+        Tray tray = fixture.assemble(true);
+
+        List<TrayItemKind> vegetables = tray.getItems().stream()
+                .filter(i -> BandejaFixture.VEGETABLES.equals(i.getQuizId())).map(TrayItem::getKind).toList();
+        assertEquals(List.of(TrayItemKind.PENDING_RERECORDING), vegetables, "no decision about what the panel accepted");
+        assertTrue(tray.getItems().stream().noneMatch(i -> i.getItemId().contains("mesa-")), ids(tray).toString());
+        assertEquals(3, tray.getItems().stream().filter(i -> i.getKind() == TrayItemKind.TIE_ON_CANDIDATE
+                || i.getKind() == TrayItemKind.TIE_ON_COURSE || i.getKind() == TrayItemKind.NO_WINNER).count(),
+                "the two ties and the tea, nothing more to decide");
     }
 
     @Test
     @DisplayName("should show a tie on an exercise of the course with the two verdicts of translation-sense and their evidence, asking whether it is an error")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowATieOnAnExerciseOfTheCourseWithTheTwoVerdictsOfTranslationsenseAndTheirEvidenceAskingWhetherItIsAnError(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: the judges of translation-sense do not agree on «You ___ (eat) a lot of fruit.» / «Comes mucha fruta.»: the
+        // tray shows both verdicts with their evidence and asks José whether it is an error.
+        Fixture fixture = new Fixture();
+
+        TrayItem tie = item(fixture.assemble(true), "desempate-curso-" + BandejaFixture.FRUIT);
+
+        assertEquals(BandejaFixture.FRUIT, tie.getQuizId());
+        assertEquals(MesaFixture.AFIRMATIVAS, tie.getKnowledgeId());
+        assertEquals(1, tie.getFindings().size());
+        Finding finding = tie.getFindings().get(0);
+        assertEquals("translation-sense", finding.getAnalyzer());
+        List<String> verdicts = new ArrayList<>();
+        for (EvidencePart part : finding.getEvidence().getExamined()) {
+            verdicts.add(part.getLabel() + ": " + part.getText());
+        }
+        assertTrue(verdicts.contains("Juez desde el inglés: sí: «Comes mucha fruta.» dice lo mismo"), verdicts.toString());
+        assertTrue(verdicts.contains("Juez desde la traducción: no: «mucha fruta» no dice «a lot of»"), verdicts.toString());
+        assertTrue(tie.getQuestion().endsWith("¿es un error?"));
+        assertEquals(List.of("los dos jueces de traducción y sentido no coinciden"), tie.getReasons());
     }
 
     @Test
     @DisplayName("should show for an exercise without winner the original, the candidate that failed least with each control it did not pass, and the reasons of its three attempts")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowForAnExerciseWithoutWinnerTheOriginalTheCandidateThatFailedLeastWithEachControlItDidNotPassAndTheReasonsOfItsThreeAttempts(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: nobody fixed «I ___ (drink) tea in the morning.» in three attempts. The tray shows the original, the candidate
+        // that failed least -- «I ___ (drink) tea every morning.» -- with what it did not pass, and why each attempt failed.
+        Fixture fixture = new Fixture();
+
+        TrayItem tea = item(fixture.assemble(true), "sin-ganador-" + BandejaFixture.TEA);
+
+        assertEquals(fixture.view(BandejaFixture.TEA).getStatement(), tea.getBefore().getStatement(), "the original");
+        assertEquals(fixture.render(BandejaFixture.teaEveryMorning(fixture.course).getQuiz()).getStatement(),
+                tea.getAfter().getStatement(), "the candidate that failed least");
+        assertEquals(List.of(BandejaFixture.teaDuplicate().getIdentity()),
+                tea.getFindings().stream().map(Finding::getIdentity).toList(), "each control it did not pass");
+        assertEquals(List.of("no pasó: F-NOEMP-R001: error nuevo de exact-duplicates (same-exercise)",
+                "intento 1: «have» sigue encajando", "intento 2: la traducción no dice lo mismo",
+                "intento 3: F-NOEMP-R001: error nuevo de exact-duplicates"), tea.getReasons());
+        assertTrue(tea.getQuestion().startsWith("Nadie arregló este ejercicio en 3 intentos"), tea.getQuestion());
     }
 
     @Test
     @DisplayName("should show each sampled change of a rule with its before and after as the student sees them")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowEachSampledChangeOfARuleWithItsBeforeAndAfterAsTheStudentSeesThem() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: the rule of the hint changed two exercises; its sample shows both, each with its before and after as the
+        // student sees them.
+        Fixture fixture = new Fixture();
+
+        TrayItem sample = item(fixture.assemble(true), "muestra-hint-coherence");
+
+        assertEquals("hint-coherence", sample.getRuleId());
+        assertEquals(2, sample.getSamplePairs().size(), "all of them: fewer than 20");
+        TraySamplePair vegetables = sample.getSamplePairs().stream()
+                .filter(p -> p.getQuizId().equals(BandejaFixture.VEGETABLES)).findFirst().orElseThrow();
+        assertEquals("regla-hint-coherence-" + BandejaFixture.VEGETABLES, vegetables.getChangeId());
+        assertEquals(fixture.view(BandejaFixture.VEGETABLES).getStatement(), vegetables.getBefore().getStatement());
+        QuizTemplateEntity hinted = TandaFixture.edited(TandaFixture.exercise(fixture.course, BandejaFixture.VEGETABLES),
+                q -> q.getForm().getSentenceParts().get(2).setText("(love) a lot of vegetables."));
+        assertEquals(fixture.render(hinted).getStatement(), vegetables.getAfter().getStatement());
+        assertTrue(sample.getQuestion().startsWith("La regla hint-coherence cambió 2 ejercicios; mirá todos"),
+                sample.getQuestion());
     }
 
     @Test
     @DisplayName("should show the pairs of the blind sample as F gives them, without side, reason or author")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowThePairsOfTheBlindSampleAsFGivesThemWithoutSideReasonOrAuthor() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the pairs of the blind sample, as F gives them -- only their number and the two sides, without saying which
+        // one is the new one, why it changed or who wrote it.
+        Fixture fixture = new Fixture();
+
+        TrayItem blind = fixture.assemble(false).getItems().get(0);
+
+        assertEquals(fixture.ciega.pairs, blind.getBlindPairs(), "as F gives them");
+        assertNull(blind.getQuizId());
+        assertNull(blind.getBefore());
+        assertNull(blind.getAfter());
+        assertTrue(blind.getFindings().isEmpty(), "no reason");
+        assertTrue(blind.getReasons().isEmpty());
+        assertNull(blind.getRuleId(), "no author");
     }
 
     @Test
     @DisplayName("should not ask again, in a later batch or analysis, a question José already answered while the exercise did not change")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldNotAskAgainInALaterBatchOrAnalysisAQuestionJosAlreadyAnsweredWhileTheExerciseDidNotChange(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: José said the tie on the fruit is not an error, in an earlier batch. While the exercise does not change, the
+        // question does not come back -- in this batch or in a later one.
+        Fixture fixture = new Fixture();
+        QuizTemplateEntity fruit = TandaFixture.exercise(fixture.course, BandejaFixture.FRUIT);
+        BandejaFixture.memory(fixture.decisions).remember(BandejaFixture.courseTie(), fruit, TrayAnswer.NOT_ERROR,
+                "tanda-A1-20260930T120000Z");
+
+        Tray tray = fixture.assemble(true);
+
+        assertTrue(tray.getItems().stream().noneMatch(i -> i.getKind() == TrayItemKind.TIE_ON_COURSE), ids(tray).toString());
+        CorrectionBatch later = BandejaFixture.batch(fixture.course, new TandaFixture.Artifacts());
+        later.setId("tanda-A1-20261008T120000Z");
+        assertTrue(BandejaFixture.assembler(fixture.decisions).assemble(later, List.of(), true, fixture.course).getItems()
+                .stream().noneMatch(i -> i.getKind() == TrayItemKind.TIE_ON_COURSE), "nor in a later batch");
     }
 
     @Test
     @DisplayName("should ask again the question of an exercise whose content changed since José answered it")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldAskAgainTheQuestionOfAnExerciseWhoseContentChangedSinceJosAnsweredIt() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R006: José answered on the fruit as it was; its translation changed since: the question may come back.
+        Fixture fixture = new Fixture();
+        QuizTemplateEntity fruit = TandaFixture.exercise(fixture.course, BandejaFixture.FRUIT);
+        BandejaFixture.memory(fixture.decisions).remember(BandejaFixture.courseTie(), fruit, TrayAnswer.NOT_ERROR,
+                "tanda-A1-20260930T120000Z");
+        fruit.setTranslation("Comés mucha fruta.");
+
+        Tray tray = fixture.assemble(true);
+
+        assertTrue(tray.getItems().stream().anyMatch(i -> i.getItemId().equals("desempate-curso-" + BandejaFixture.FRUIT)),
+                "asked again: " + ids(tray));
     }
 
     @Test
     @DisplayName("should say whether the tray can be published and, when it cannot, why")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldSayWhetherTheTrayCanBePublishedAndWhenItCannotWhy() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: with the blind sample closed and the gate passing, it can be published, ties and samples unanswered; without a
+        // closing, or with the gate not passing, it cannot, and says why.
+        Fixture fixture = new Fixture();
+
+        Tray ready = fixture.assemble(true);
+        assertTrue(ready.isPublishable(), ready.getBlockers().toString());
+        assertTrue(ready.getBlockers().isEmpty());
+
+        fixture.batch.setClosings(new ArrayList<>());
+        Tray notClosed = fixture.assemble(true);
+        assertFalse(notClosed.isPublishable());
+        assertEquals(List.of("la tanda no se cerró: content-audit batch close"), notClosed.getBlockers());
+
+        fixture.batch.setClosings(new ArrayList<>(List.of(new BatchClosing(BandejaFixture.CLOSED_AT, null,
+                TandaFixture.comparison(null, List.of(), VerdictKind.FAILS), new BatchGateVerdict(false, VerdictKind.FAILS,
+                List.of(), List.of(), List.of("6814dafa7d73e7209a13d3c1"), List.of(), List.of(),
+                List.of("F-NOEMP-R007: cambió fuera de la tanda: 6814dafa7d73e7209a13d3c1")), List.of(), 1))));
+        Tray stopped = fixture.assemble(true);
+        assertFalse(stopped.isPublishable());
+        assertEquals(List.of("la compuerta de «no empeorar» no pasa: F-NOEMP-R007: cambió fuera de la tanda:"
+                        + " 6814dafa7d73e7209a13d3c1",
+                "el veredicto de la comparación es «FAILS»: falta la muestra ciega"), stopped.getBlockers());
     }
 
     @Test
     @DisplayName("should show at the end, without a question, each audio pending rerecording with its exercise as the student sees it, its key and the text to record, as B1.13.05.15 with «I learned myself to drive a car.»")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowAtTheEndWithoutAQuestionEachAudioPendingRerecordingWithItsExerciseAsTheStudentSeesItItsKeyAndTheTextToRecordAsB1130515WithILearnedMyselfToDriveACar(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: a published batch asked to record the audio of «I learned ___ (me / myself) to drive a car.» with «I learned
+        // myself to drive a car.»: the tray shows it at the end, with the exercise, its key and the text, without a question.
+        Fixture fixture = new Fixture();
+
+        Tray tray = fixture.assemble(true);
+
+        TrayItem last = tray.getItems().get(tray.getItems().size() - 2);
+        assertEquals("regrabar-" + MesaFixture.audioKey(TandaFixture.LEARNED), last.getItemId());
+        assertEquals(TrayItemKind.PENDING_RERECORDING, last.getKind());
+        assertNull(last.getQuestion(), "no question");
+        assertTrue(last.getAnswers().isEmpty());
+        assertEquals(MesaFixture.audioKey(TandaFixture.LEARNED), last.getRerecord().getAudioKey());
+        assertEquals(List.of("I learned myself to drive a car."), last.getRerecord().getNewTexts());
+        assertEquals(fixture.view(TandaFixture.LEARNED).getStatement(), last.getBefore().getStatement(),
+                "the exercise as the student sees it");
     }
 
     @Test
     @DisplayName("should show both the rerecordings the open batch asks and those left pending by published batches, each audio once with the latest text")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-BANDEJA sin implementar")
     public void shouldShowBothTheRerecordingsTheOpenBatchAsksAndThoseLeftPendingByPublishedBatchesEachAudioOnceWithTheLatestText(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: an earlier batch asked to record the vegetables with «I love lots of vegetables.»; the open one asks «I love
+        // vegetables.»: the tray shows that audio once, with the latest text, and the audio of «I learned…» left by another.
+        Fixture fixture = new Fixture();
+        fixture.batch.getPendingRerecords().add(0, new AudioRerecordRequest(BandejaFixture.VEGETABLES,
+                MesaFixture.audioKey(BandejaFixture.VEGETABLES), List.of("I love lots of vegetables.")));
+
+        Tray tray = fixture.assemble(true);
+
+        List<TrayItem> audios = tray.getItems().stream().filter(i -> i.getKind() == TrayItemKind.PENDING_RERECORDING).toList();
+        assertEquals(2, audios.size(), "each audio once");
+        TrayItem vegetables = audios.stream().filter(i -> BandejaFixture.VEGETABLES.equals(i.getQuizId())).findFirst()
+                .orElseThrow();
+        assertEquals(List.of("I love vegetables."), vegetables.getRerecord().getNewTexts(), "the latest text asked");
+        assertTrue(vegetables.getBefore().getStatement().contains("vegetables"), "the exercise as the batch leaves it");
+        assertTrue(audios.stream().anyMatch(i -> TandaFixture.LEARNED.equals(i.getQuizId())), "and the one left pending");
+    }
+
+
+    /** A closed batch of A1 and the assembler over it, with José's decisions in memory. */
+    private static final class Fixture {
+        final CourseEntity course = BandejaFixture.course();
+
+        final CorrectionBatch batch = BandejaFixture.batch(course, new TandaFixture.Artifacts());
+
+        final BandejaFixture.Ciega ciega = new BandejaFixture.Ciega(course);
+
+        final BandejaFixture.Decisions decisions = new BandejaFixture.Decisions();
+
+        Tray assemble(boolean blindClosed) {
+            return BandejaFixture.assembler(decisions).assemble(batch, ciega.pairs, blindClosed, course);
+        }
+
+        com.learney.contentaudit.auditdomain.studentview.QuizStudentView view(String quizId) {
+            return render(TandaFixture.exercise(course, quizId));
+        }
+
+        com.learney.contentaudit.auditdomain.studentview.QuizStudentView render(QuizTemplateEntity quiz) {
+            return BandejaFixture.renderer().render(new com.learney.contentaudit.auditdomain.AuditableQuiz(
+                    new ArrayList<>(), quiz.getId(), quiz.getTitle(), quiz.getCode(), quiz.getTranslation(),
+                    quiz.getSentences(), null, quiz.getInstructions(), quiz.getForm().getSentenceParts(),
+                    quiz.getForm().getMultipleChoice(), quiz.getMiniTheory(), quiz.getAnswerAudioUrl()));
+        }
+    }
+
+    private static List<String> ids(Tray tray) {
+        return tray.getItems().stream().map(TrayItem::getItemId).toList();
+    }
+
+    private static TrayItem item(Tray tray, String itemId) {
+        return tray.getItems().stream().filter(i -> i.getItemId().equals(itemId)).findFirst()
+                .orElseThrow(() -> new AssertionError("no item " + itemId + " in " + ids(tray)));
     }
 }
