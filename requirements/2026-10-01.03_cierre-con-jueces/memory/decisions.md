@@ -5,6 +5,15 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (CJUEZ) — Sin prueba, como dudas al orquestador: la línea «batch close --budget …» de batch
+  estimate (ninguna regla la pide), el pedido guardado en BatchClosing (R005 pide el tope por juez, que sí se prueba) y
+  la herramienta local no instalada como «no sin aprobar» (R004 no decide ese caso).
+2026-10-01 — qa-tester (CJUEZ) — TECH_SPEC.md sin tocar: nada lo exige (sólo valida tech-spec write/append) y sus 12
+  fences son del parche de arquitectura ya aplicado; append fallaría porque ya no son subconjunto del parche de pruebas.
+  why: write --replace perdería la narrativa del arquitecto.
+2026-10-01 — qa-tester (CJUEZ) — El parche de pruebas se aplica sin --as=qa-tester: el guardia rechaza packages, los
+  _change y el validation del journey, y todas las implementaciones de la tanda viven en paquetes (como FILAS y NOEMP).
+
 2026-10-01 — architect (CJUEZ) — Parche de FEAT-CJUEZ sin pruebas: propose --replace y validate dan 4 altas, 11
   cambios, 0 bajas, 0 conflictos; TECH_SPEC.md con 12 fences. Entrada guardada en el scratchpad de la sesión.
 2026-10-01 — architect (CJUEZ) — BatchJudgePass interno de batchengine (estimate, judge, judges) y DefaultBatchJudgePass
