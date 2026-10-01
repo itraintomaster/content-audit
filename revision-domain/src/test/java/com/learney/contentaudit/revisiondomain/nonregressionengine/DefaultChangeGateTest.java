@@ -1,7 +1,32 @@
 package com.learney.contentaudit.revisiondomain.nonregressionengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingEvidence;
+import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.nonregression.ChangeGate;
+import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
+import com.learney.contentaudit.revisiondomain.nonregression.ChangeProbe;
+import com.learney.contentaudit.revisiondomain.nonregression.LengthDeclaration;
+import com.learney.contentaudit.revisiondomain.nonregression.NotComparedCount;
+import com.learney.contentaudit.revisiondomain.nonregression.RedWord;
+import com.learney.contentaudit.revisiondomain.nonregression.SpokenText;
+import com.learney.contentaudit.revisiondomain.nonregression.UnevaluatedMark;
+import com.learney.contentaudit.revisiondomain.nonregression.UnitMeasurement;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,187 +40,428 @@ public class DefaultChangeGateTest {
     @DisplayName("should reject a change whose after measurement of «I ___ a lot of vegetables.» has a counting finding with an identity the before measurement did not have, naming it as a new error")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldRejectAChangeWhoseAfterMeasurementOfIALotOfVegetablesHasACountingFindingWithAnIdentityTheBeforeMeasurementDidNotHaveNamingItAsANewError(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: after the change, «I ___ a lot of vegetables.» has a finding of exact-duplicates it did not have: it counts as
+        // an error, so the change is rejected and the finding is named as new.
+        Finding duplicate = finding("exact-duplicates", "exact-duplicate", VEGETABLES, FindingSeverity.HIGH, FindingResolution.PANEL,
+                null, "repite a «I ___ a lot of fruit.»");
+        UnitMeasurement before = unit(List.of(hint(VEGETABLES)), List.of(), List.of(), List.of());
+        UnitMeasurement after = unit(List.of(duplicate), List.of(), List.of(), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(VEGETABLES), false, before, after));
+
+        assertFalse(verdict.isPasses(), "R001: a new error rejects the change");
+        assertEquals(List.of(duplicate), verdict.getNewErrors(), "named as a new error");
+        assertTrue(verdict.getReasons().get(0).startsWith("F-NOEMP-R001"), verdict.getReasons().toString());
+        assertTrue(verdict.getReasons().get(0).contains("exact-duplicates|exact-duplicate|" + VEGETABLES), verdict.getReasons().toString());
     }
 
     @Test
     @DisplayName("should pass the change to «I ___ (love) vegetables.», which removes the findings of hint-coherence and single-answer and adds none")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldPassTheChangeToILoveVegetablesWhichRemovesTheFindingsOfHintcoherenceAndSingleanswerAndAddsNone(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: «I ___ (love) vegetables.» takes away the findings of hint-coherence and single-answer and adds none: it passes.
+        UnitMeasurement before = unit(List.of(hint(VEGETABLES), single(VEGETABLES)), List.of(), List.of(), List.of());
+        UnitMeasurement after = unit(List.of(), List.of(), List.of(), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(VEGETABLES), false, before, after));
+
+        assertTrue(verdict.isPasses(), verdict.getReasons().toString());
+        assertTrue(verdict.getNewErrors().isEmpty());
+        assertTrue(verdict.getNewRedWords().isEmpty());
+        assertTrue(verdict.getReasons().isEmpty());
     }
 
     @Test
     @DisplayName("should find a new error by identity even when the exercise keeps the same number of counting findings, one gone and another new")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldFindANewErrorByIdentityEvenWhenTheExerciseKeepsTheSameNumberOfCountingFindingsOneGoneAndAnotherNew(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: the comparison is by identity, not by count: the hint finding is gone and one of translation-sense is new, so
+        // the exercise still has one finding that counts, and the change is rejected.
+        Finding translation = finding("translation-sense", "same-meaning", VEGETABLES, FindingSeverity.HIGH,
+                FindingResolution.PANEL, null, "«Amo verduras» no dice lo mismo");
+        UnitMeasurement before = unit(List.of(hint(VEGETABLES)), List.of(), List.of(), List.of());
+        UnitMeasurement after = unit(List.of(translation), List.of(), List.of(), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(VEGETABLES), false, before, after));
+
+        assertFalse(verdict.isPasses());
+        assertEquals(List.of(translation), verdict.getNewErrors(), "the new one, though the count stays at one");
     }
 
     @Test
     @DisplayName("should compare the whole topic for a change of the topic, rejecting a mini-theory rewritten for the nine exercises of «Contraste inicial» that leaves a new error in any exercise of the topic")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldCompareTheWholeTopicForAChangeOfTheTopicRejectingAMinitheoryRewrittenForTheNineExercisesOfContrasteInicialThatLeavesANewErrorInAnyExerciseOfTheTopic(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: a change of the topic -- the mini theory of the state verbs of «Contraste inicial», rewritten for its nine
+        // exercises -- is compared on the whole topic: a new error in an exercise the probe does not list still rejects it.
+        String other = "67fab6d59930102295342099";
+        Finding contradiction = finding("mini-theory", "contradicting-exercise", other, FindingSeverity.HIGH,
+                FindingResolution.PANEL, "Be, want, enjoy…", "el ejercicio contradice la miniteoría nueva");
+        List<String> nine = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            nine.add(String.format("67fab6d599301022953420%02x", 0x7c + i));
+        }
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(), List.of());
+        UnitMeasurement after = unit(List.of(contradiction), List.of(), List.of(), List.of());
+
+        ChangeGateVerdict asTopic = gate().check(probe(nine, true, before, after));
+        ChangeGateVerdict asExercises = gate().check(probe(nine, false, before, after));
+
+        assertFalse(asTopic.isPasses(), "the whole topic is compared");
+        assertEquals(List.of(contradiction), asTopic.getNewErrors());
+        assertTrue(asExercises.isPasses(), "only the changed exercises would not see it");
     }
 
     @Test
     @DisplayName("should not count as a new error a finding that only ranks, as the disagreement of the two translation-sense judges on the candidate")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNotCountAsANewErrorAFindingThatOnlyRanksAsTheDisagreementOfTheTwoTranslationsenseJudgesOnTheCandidate(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: a finding that only ranks does not count: the disagreement of the two judges of translation-sense on the
+        // candidate goes to the tray (F-MESA-R008), never as a new error.
+        Finding tie = finding("translation-sense", "judges-disagree", VEGETABLES, FindingSeverity.LOW, FindingResolution.RANK_ONLY,
+                null, "los jueces no coinciden");
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(), List.of());
+        UnitMeasurement after = unit(List.of(tie), List.of(), List.of(), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(VEGETABLES), false, before, after));
+
+        assertTrue(verdict.isPasses(), verdict.getReasons().toString());
+        assertTrue(verdict.getNewErrors().isEmpty(), "what only ranks is not a new error");
     }
 
     @Test
     @DisplayName("should reject «My grandmother ___ (come) every year.» for «It ___ (come) every year.» (A1) because grandmother (A2) is a new red word, naming grandmother and A2 in its reason")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldRejectMyGrandmotherComeEveryYearForItComeEveryYearA1BecauseGrandmotherA2IsANewRedWordNamingGrandmotherAndA2InItsReason(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «It ___ (come) every year.» (A1) → «My grandmother ___ (come) every year.» brings grandmother (A2), a new red word:
+        // the change goes back, and its reason names grandmother and A2.
+        RedWord grandmother = red(COME, "grandmother", CefrLevel.A2, false, "My grandmother comes every year.");
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(), List.of());
+        UnitMeasurement after = unit(List.of(), List.of(grandmother), List.of(), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(COME), false, before, after));
+
+        assertFalse(verdict.isPasses(), "R002: a new red word rejects the change");
+        assertEquals(List.of(grandmother), verdict.getNewRedWords());
+        assertTrue(verdict.getReasons().get(0).contains("«grandmother» (A2)"), verdict.getReasons().toString());
     }
 
     @Test
     @DisplayName("should pass «Winter ___ (come) every year.» for «It ___ (come) every year.», which adds no red word")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldPassWinterComeEveryYearForItComeEveryYearWhichAddsNoRedWord() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «Winter ___ (come) every year.» adds no red word and passes.
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(), List.of());
+        UnitMeasurement after = unit(List.of(), List.of(), List.of(), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(COME), false, before, after));
+
+        assertTrue(verdict.isPasses());
+        assertTrue(verdict.getNewRedWords().isEmpty());
     }
 
     @Test
     @DisplayName("should pass a change that keeps red words that were already red, as spread and quilt when only the translation of «She spread the warm blue quilt on the bed.» changes")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldPassAChangeThatKeepsRedWordsThatWereAlreadyRedAsSpreadAndQuiltWhenOnlyTheTranslationOfSheSpreadTheWarmBlueQuiltOnTheBedChanges(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: every red word after the change was already red: spread and quilt stay when only the translation of «She
+        // spread the warm blue quilt on the bed.» changes, and the change passes.
+        List<RedWord> red = List.of(red(QUILT, "spread", CefrLevel.B2, false, "She spread the warm blue quilt on the bed."),
+                red(QUILT, "quilt", CefrLevel.B2, false, "She spread the warm blue quilt on the bed."));
+        UnitMeasurement before = unit(List.of(), red, List.of(), List.of());
+        UnitMeasurement after = unit(List.of(), red, List.of(), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(QUILT), false, before, after));
+
+        assertTrue(verdict.isPasses(), verdict.getReasons().toString());
+        assertTrue(verdict.getNewRedWords().isEmpty(), "they were already red");
     }
 
     @Test
     @DisplayName("should check every new option of a multiple choice put in the gap, and reject the change when one of them brings a red word the exercise did not have")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldCheckEveryNewOptionOfAMultipleChoicePutInTheGapAndRejectTheChangeWhenOneOfThemBringsARedWordTheExerciseDidNotHave(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: in a multiple choice every new option, put in the gap, counts: one option of «___ a child? (He)» brings
+        // toddler (B1), a red word the exercise did not have, and the change is rejected.
+        RedWord toddler = red(CHILD, "toddler", CefrLevel.B1, false, "Is he a toddler?");
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(), List.of());
+        UnitMeasurement after = unit(List.of(), List.of(toddler), List.of(), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(CHILD), false, before, after));
+
+        assertFalse(verdict.isPasses());
+        assertEquals(List.of(toddler), verdict.getNewRedWords());
+        assertTrue(verdict.getReasons().get(0).contains("«Is he a toddler?»"), "the option put in the gap: " + verdict.getReasons());
     }
 
     @Test
     @DisplayName("should reject a change that brings into an A1 exercise a word out of the catalog, as reside, and name it out of the catalog instead of a level")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldRejectAChangeThatBringsIntoAnA1ExerciseAWordOutOfTheCatalogAsResideAndNameItOutOfTheCatalogInsteadOfALevel(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: reside, out of the catalog, brought into an A1 exercise, is a new red word named as out of the catalog.
+        RedWord reside = red(RESIDE, "reside", null, true, "We reside in London with our granddad.");
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(), List.of());
+        UnitMeasurement after = unit(List.of(), List.of(reside), List.of(), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(RESIDE), false, before, after));
+
+        assertFalse(verdict.isPasses());
+        assertTrue(verdict.getReasons().get(0).contains("«reside» (fuera del catálogo)"), verdict.getReasons().toString());
+        assertFalse(verdict.getReasons().get(0).contains("null"), verdict.getReasons().toString());
     }
 
     @Test
     @DisplayName("should pass and declare, with its measured length and the range, a change that leaves «All the sheep in the field are still ___ (alive / living).» (B2) at 9 tokens, one below the range of 10 to 25")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldPassAndDeclareWithItsMeasuredLengthAndTheRangeAChangeThatLeavesAllTheSheepInTheFieldAreStillAliveLivingB2At9TokensOneBelowTheRangeOf10To25(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «All the sheep in the field are still ___ (alive / living).» (B2) ends at 9 tokens, one below 10 to 25: the
+        // length is declared with the range and the change passes.
+        LengthDeclaration nine = new LengthDeclaration(SHEEP, 9, 10, 25, false);
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(), List.of(new LengthDeclaration(SHEEP, 10, 10, 25, true)));
+        UnitMeasurement after = unit(List.of(), List.of(), List.of(), List.of(nine));
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(SHEEP), false, before, after));
+
+        assertTrue(verdict.isPasses(), "R003: the length never vetoes");
+        assertEquals(List.of(nine), verdict.getLengths(), "declared with its measured length and the range");
     }
 
     @Test
     @DisplayName("should declare the lengths of the four vegetables fixes, 6, 5, 4 and 4 tokens within 3 to 8, without vetoing any of them")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldDeclareTheLengthsOfTheFourVegetablesFixes654And4TokensWithin3To8WithoutVetoingAnyOfThem(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: the four fixes of the vegetables end at 6, 5, 4 and 4 tokens, within 3 to 8: declared, none vetoed.
+        List<LengthDeclaration> lengths = List.of(new LengthDeclaration(VEGETABLES, 6, 3, 8, true),
+                new LengthDeclaration(COME, 5, 3, 8, true), new LengthDeclaration(FRUIT, 4, 3, 8, true),
+                new LengthDeclaration(TEA, 4, 3, 8, true));
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(), List.of());
+        UnitMeasurement after = unit(List.of(), List.of(), List.of(), lengths);
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(VEGETABLES, COME, FRUIT, TEA), false, before, after));
+
+        assertTrue(verdict.isPasses());
+        assertEquals(List.of(6, 5, 4, 4), verdict.getLengths().stream().map(LengthDeclaration::getTokens).toList());
+        assertTrue(verdict.getLengths().stream().allMatch(l -> l.getTargetMin() == 3 && l.getTargetMax() == 8 && l.isInRange()));
     }
 
     @Test
     @DisplayName("should ask four rerecords, one per exercise and with its new text, for the four vegetables fixes that change what is heard, as «I love vegetables.» and «Winter comes every year.»")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldAskFourRerecordsOnePerExerciseAndWithItsNewTextForTheFourVegetablesFixesThatChangeWhatIsHeardAsILoveVegetablesAndWinterComesEveryYear(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 1: the four fixes change what is heard; each gets its request to re-record, one per exercise, with its new
+        // text -- «I love vegetables.», «Winter comes every year.» --, and the change still passes.
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(spoken(VEGETABLES, "A1.01.06.11", "I love a lot of vegetables."),
+                spoken(COME, "A1.01.06.02", "It comes every year."), spoken(FRUIT, "A1.01.06.04", "I eat fruit every day."),
+                spoken(TEA, "A1.01.06.07", "He drinks tea.")), List.of());
+        UnitMeasurement after = unit(List.of(), List.of(), List.of(spoken(VEGETABLES, "A1.01.06.11", "I love vegetables."),
+                spoken(COME, "A1.01.06.02", "Winter comes every year."), spoken(FRUIT, "A1.01.06.04", "I eat fruit."),
+                spoken(TEA, "A1.01.06.07", "She drinks tea.")), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(VEGETABLES, COME, FRUIT, TEA), false, before, after));
+
+        assertTrue(verdict.isPasses());
+        assertEquals(List.of(VEGETABLES + " A1.01.06.11 [I love vegetables.]", COME + " A1.01.06.02 [Winter comes every year.]",
+                FRUIT + " A1.01.06.04 [I eat fruit.]", TEA + " A1.01.06.07 [She drinks tea.]"),
+                verdict.getRerecords().stream().map(r -> r.getQuizId() + " " + r.getAudioKey() + " " + r.getNewTexts()).toList());
     }
 
     @Test
     @DisplayName("should ask no rerecord for a change that touches only the translation, the hint or an alternative answer, as adding «aren't» after «'re not» in «They ___ (not / be) from Ireland.»")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldAskNoRerecordForAChangeThatTouchesOnlyTheTranslationTheHintOrAnAlternativeAnswerAsAddingArentAfterReNotInTheyNotBeFromIreland(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 2: adding «aren't» after «'re not» in «They ___ (not / be) from Ireland.» does not change what is heard (the
+        // first answer stays), and neither do the translation or the hint: no request.
+        SpokenText heard = spoken(IRELAND, "A1.02.01.05", "They're not from Ireland.");
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(heard), List.of());
+        UnitMeasurement after = unit(List.of(), List.of(), List.of(spoken(IRELAND, "A1.02.01.05", "They're not from Ireland.")), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(IRELAND), false, before, after));
+
+        assertTrue(verdict.isPasses());
+        assertTrue(verdict.getRerecords().isEmpty(), "what is heard did not change: no request");
     }
 
     @Test
     @DisplayName("should name in each reason the rule that failed and its evidence, as F-NOEMP-R002 with grandmother (A2) in «My grandmother comes every year.»")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNameInEachReasonTheRuleThatFailedAndItsEvidenceAsFNOEMPR002WithGrandmotherA2InMyGrandmotherComesEveryYear(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: each reason names the rule that failed and its evidence.
+        RedWord grandmother = red(COME, "grandmother", CefrLevel.A2, false, "My grandmother comes every year.");
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(), List.of());
+        UnitMeasurement after = unit(List.of(), List.of(grandmother), List.of(), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(COME), false, before, after));
+
+        assertEquals(List.of("F-NOEMP-R002: «grandmother» (A2) es una palabra roja nueva en «My grandmother comes every year.» ("
+                + COME + ")"), verdict.getReasons());
     }
 
     @Test
     @DisplayName("should give the same verdict and the same reasons for the same before and after measurements")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldGiveTheSameVerdictAndTheSameReasonsForTheSameBeforeAndAfterMeasurements() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R009: the same before and after give the same verdict and the same reasons, whatever the order they come in.
+        Finding translation = finding("translation-sense", "same-meaning", VEGETABLES, FindingSeverity.HIGH,
+                FindingResolution.PANEL, null, "no dice lo mismo");
+        Finding duplicate = finding("exact-duplicates", "exact-duplicate", VEGETABLES, FindingSeverity.HIGH,
+                FindingResolution.PANEL, null, "repite a otro");
+        RedWord grandmother = red(VEGETABLES, "grandmother", CefrLevel.A2, false, "My grandmother loves vegetables.");
+        RedWord toddler = red(VEGETABLES, "toddler", CefrLevel.B1, false, "My grandmother loves vegetables.");
+        UnitMeasurement before = unit(List.of(hint(VEGETABLES)), List.of(), List.of(), List.of());
+
+        ChangeGateVerdict first = gate().check(probe(List.of(VEGETABLES), false, before,
+                unit(List.of(translation, duplicate), List.of(grandmother, toddler), List.of(), List.of())));
+        ChangeGateVerdict second = gate().check(probe(List.of(VEGETABLES), false, before,
+                unit(List.of(duplicate, translation), List.of(toddler, grandmother), List.of(), List.of())));
+
+        assertEquals(first.isPasses(), second.isPasses());
+        assertEquals(first.getReasons(), second.getReasons(), "R009: the same reasons, in the same order");
+        assertEquals(first.getNewErrors(), second.getNewErrors());
+        assertEquals(first.getNewRedWords(), second.getNewRedWords());
+        assertEquals(4, first.getReasons().size());
     }
 
     @Test
     @DisplayName("should neither count as new nor as solved a finding of an analyzer that did not evaluate the exercise at one end, and declare per analyzer how many changed exercises it left uncompared")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNeitherCountAsNewNorAsSolvedAFindingOfAnAnalyzerThatDidNotEvaluateTheExerciseAtOneEndAndDeclarePerAnalyzerHowManyChangedExercisesItLeftUncompared(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R010: single-answer did not judge the vegetables after the change: its finding there counts neither as new nor as
+        // solved, and the gate declares that single-answer left one changed exercise uncompared.
+        Finding singleAfter = single(VEGETABLES);
+        singleAfter.setIdentity(new FindingIdentity("single-answer|offered-alternative|" + VEGETABLES, null));
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(), List.of());
+        UnitMeasurement after = new UnitMeasurement(CefrLevel.A1, List.of(singleAfter),
+                List.of(new UnevaluatedMark(VEGETABLES, "single-answer")), List.of(), List.of(), List.of());
+
+        ChangeGateVerdict verdict = gate().check(probe(List.of(VEGETABLES), false, before, after));
+
+        assertTrue(verdict.isPasses(), "R010: not counted as new");
+        assertTrue(verdict.getNewErrors().isEmpty());
+        assertEquals(List.of("single-answer 1"), verdict.getNotCompared().stream()
+                .map(n -> n.getAnalyzer() + " " + n.getQuizzes()).toList(), "declared per analyzer");
     }
 
     @Test
     @DisplayName("should pass a rule fix that leaves «I learned ___ me / myself to drive a car.» (…399b) as it is and only asks to rerecord its audio with «I learned myself to drive a car.», listing the request although what the exercise says did not change")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldPassARuleFixThatLeavesILearnedMeMyselfToDriveACar399bAsItIsAndOnlyAsksToRerecordItsAudioWithILearnedMyselfToDriveACarListingTheRequestAlthoughWhatTheExerciseSaysDidNotChange(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 3: the fix leaves «I learned ___ me / myself to drive a car.» as it is and only asks to re-record its audio,
+        // which reads the hint, with «I learned myself to drive a car.»; what the exercise says did not change, the request
+        // passes and is listed.
+        SpokenText says = spoken(LEARNED, "B1.13.05.15", "I learned myself to drive a car.");
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(says), List.of());
+        UnitMeasurement after = unit(List.of(), List.of(), List.of(spoken(LEARNED, "B1.13.05.15", "I learned myself to drive a car.")), List.of());
+        AudioRerecordRequest request = new AudioRerecordRequest(LEARNED, "B1.13.05.15", List.of("I learned myself to drive a car."));
+
+        ChangeGateVerdict verdict = gate().check(new ChangeProbe(List.of(LEARNED), false, before, after, List.of(request)));
+
+        assertTrue(verdict.isPasses(), verdict.getReasons().toString());
+        assertEquals(List.of(request), verdict.getRerecords(), "listed with the others");
     }
 
     @Test
     @DisplayName("should not pass a request to rerecord …399b with «I learned myself me / myself to drive a car.», which reads the hint and is not what the exercise says")
     @Tag("FEAT-NOEMP")
     @Tag("F-NOEMP-R004")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-NOEMP sin implementar")
     public void shouldNotPassARequestToRerecord399bWithILearnedMyselfMeMyselfToDriveACarWhichReadsTheHintAndIsNotWhatTheExerciseSays(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 4: a request with «I learned myself me / myself to drive a car.» repeats the hint, which is not what the
+        // exercise says: it does not pass.
+        UnitMeasurement before = unit(List.of(), List.of(), List.of(spoken(LEARNED, "B1.13.05.15", "I learned myself to drive a car.")), List.of());
+        UnitMeasurement after = unit(List.of(), List.of(), List.of(spoken(LEARNED, "B1.13.05.15", "I learned myself to drive a car.")), List.of());
+        AudioRerecordRequest request = new AudioRerecordRequest(LEARNED, "B1.13.05.15",
+                List.of("I learned myself me / myself to drive a car."));
+
+        ChangeGateVerdict verdict = gate().check(new ChangeProbe(List.of(LEARNED), false, before, after, List.of(request)));
+
+        assertFalse(verdict.isPasses());
+        assertTrue(verdict.getRerecords().isEmpty(), "not listed");
+        assertTrue(verdict.getReasons().get(0).startsWith("F-NOEMP-R004"), verdict.getReasons().toString());
+        assertTrue(verdict.getReasons().get(0).contains("«I learned myself to drive a car.»"), verdict.getReasons().toString());
+    }
+
+
+    private static final String VEGETABLES = "67fab6d59930102295341ecd";
+    private static final String COME = "67fab6d59930102295341ec6";
+    private static final String FRUIT = "67fab6d59930102295341ec8";
+    private static final String TEA = "67fab6d59930102295341ec9";
+    private static final String QUILT = "67fab6d5993010229534484a";
+    private static final String CHILD = "67fab6d59930102295341e87";
+    private static final String RESIDE = "67fab6d59930102295342cd7";
+    private static final String SHEEP = "67fab6d59930102295344b10";
+    private static final String IRELAND = "67fab6d599301022953425ac";
+    private static final String LEARNED = "67fab6d5993010229534399b";
+
+    private static ChangeGate gate() {
+        return new DefaultGateFactory().changeGate();
+    }
+
+    private static ChangeProbe probe(List<String> changed, boolean topic, UnitMeasurement before, UnitMeasurement after) {
+        return new ChangeProbe(changed, topic, before, after, List.of());
+    }
+
+    private static UnitMeasurement unit(List<Finding> findings, List<RedWord> redWords, List<SpokenText> spoken,
+            List<LengthDeclaration> lengths) {
+        return new UnitMeasurement(CefrLevel.A1, findings, List.of(), redWords, spoken, lengths);
+    }
+
+    private static Finding finding(String analyzer, String rule, String quizId, FindingSeverity severity,
+            FindingResolution resolution, String marker, String observation) {
+        return new Finding(analyzer, rule, new FindingNodeRef(AuditTarget.QUIZ, quizId, quizId), severity,
+                new FindingEvidence(List.of(new EvidencePart("Ejercicio", quizId)), observation, List.of()), resolution,
+                AnalysisCost.INSTANT, new FindingIdentity(analyzer + "|" + rule + "|" + quizId
+                        + (marker != null ? "|" + marker : ""), marker));
+    }
+
+    private static Finding hint(String quizId) {
+        return finding("hint-coherence", "missing-hint", quizId, FindingSeverity.HIGH, FindingResolution.RULE, null,
+                "19 de 20 ejercicios del tema llevan pista; éste no");
+    }
+
+    private static Finding single(String quizId) {
+        return finding("single-answer", "different-valid-answer", quizId, FindingSeverity.BLOCKING,
+                FindingResolution.PANEL, null, "eat, like, buy y want también encajan");
+    }
+
+    private static RedWord red(String quizId, String lemma, CefrLevel level, boolean outOfCatalog, String sentence) {
+        return new RedWord(quizId, lemma, level, outOfCatalog, sentence);
+    }
+
+    private static SpokenText spoken(String quizId, String key, String... texts) {
+        return new SpokenText(quizId, key, List.of(texts));
     }
 }

@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — Las dos compuertas implementadas (`GateRules`, `DefaultChangeGate`, `DefaultBatchGate`,
+  `DefaultGateFactory`) y sus 36 pruebas en verde (19 en DefaultChangeGate, 17 en DefaultBatchGate). F-NOEMP-J001 sigue
+  apagada: vive en `batchengine` y espera a DefaultBatchCloser (FEAT-TANDA). Next: TANDA cablea la compuerta en el cierre.
+
 2026-10-01 — qa-tester (como arquitecto) — Segunda vuelta: ChangeProbe suma requestedRerecords (R004 inv. 3 y 4) y
   DefaultChangeGate dos pruebas sobre …399b; 36 pruebas. `propose --replace` desde lo commiteado, comparado con la copia de
   antes (sólo lo pedido), `tech-spec write` (+1 fence) y `validate -i` contra M10 y contra la cadena: exit 0, 0 conflictos.

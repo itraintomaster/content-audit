@@ -5,6 +5,19 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — La compuerta por tanda toma los culpables de un piso roto de las atribuciones que
+  trae la comparación de F (`FloorBreach.attributions`), ordenadas por cuánto empeoran solas, y devuelve desde la primera
+  hasta que la suma de sus efectos vuelve a dejar el número dentro del piso; si la comparación no atribuye, el piso se
+  nombra y no devuelve nada (no adivina). Cada freno sale como «F-NOEMP-R005 (inv. 2/3): ejercicios con <tema> en <nodo>:
+  a → b contra el inicio de la tanda (tolerancia 0)» o «F-NOEMP-R006: <analizador> en <nodo>: a → b contra la línea base
+  (tolerancia 0,5)», con «; devueltos: …» al final.
+  why: R008 y R009 piden nombrar el número, su contexto, antes, después, tolerancia y lo devuelto; la atribución es de F.
+
+2026-10-01 — developer — Las dos excepciones de R005 se listan aparte con prefijo fijo («audio para regrabar: <quizId> …»,
+  «excepción de José: <propuesta> …») y no cuentan; un analizador que no evaluó un ejercicio en un extremo va a
+  `notCompared` (R010) y su hallazgo ahí no cuenta ni como mejor ni como peor.
+  why: R005 y R010; la bandeja muestra esas listas tal cual.
+
 2026-10-01 — qa-tester (como arquitecto) — El pedido de regrabar de un arreglo que no cambia el ejercicio viaja en la
   unidad que se juzga (ChangeProbe.requestedRerecords), no en las mediciones: lo que se escucha del ejercicio no cambia.
   why: la compuerta tiene que listarlo (inv. 3) y rechazarlo si no dice lo que el ejercicio dice (inv. 4).
