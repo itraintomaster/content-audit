@@ -11,7 +11,8 @@ feature:
 ## TL;DR
 
 **Qué**: Un analizador de la familia de errores compara la pista de cada ejercicio con su respuesta —el verbo, el
-sujeto y la negación— y marca los ejercicios sin pista en un tema donde tres cuartos o más la llevan.
+sujeto y la negación—, marca las reescrituras que piden palabras que nada anuncia y marca los ejercicios sin pista en
+un tema donde tres cuartos o más la llevan.
 
 **Por qué**: Una pista que no coincide con la respuesta hace imposible acertar: «Who ___ (I / see)?» sólo acepta «are
 you seeing». El 077 encontró 188 ejercicios imposibles y content-audit los muestra en verde.
@@ -118,6 +119,49 @@ are you seeing: el sujeto I no es you» ([F-HALL-R003](#F-HALL-R003)). La identi
 que regrabar ([DOUBT-PISTA-RESPUESTA](#DOUBT-PISTA-RESPUESTA)); cómo lo sabe una regla instantánea:
 [DOUBT-PISTA-CUANDO-MESA](#DOUBT-PISTA-CUANDO-MESA). El nombre es el del brief 089.
 
+<a id="F-PISTA-R006"></a>
+### Rule[F-PISTA-R006] - La reescritura no pide palabras que no salen de la oración de partida, la pista o la consigna
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> En un ejercicio cuya respuesta es la oración entera, cada palabra de contenido de la primera respuesta sale de la
+> oración de partida, de la pista o de la consigna: igual, [flexionada](glossary:Forma flexionada), por su
+> [lema](glossary:Lema) o por la tabla de formas irregulares. No cuentan las que la reescritura agrega sola: el auxiliar
+> de la respuesta corta, el perfecto, «how long», los pronombres indefinidos y los desplazamientos de tiempo del estilo
+> indirecto (*this* → *that*, *today* → *that day*). Si alguna no sale, hallazgo *bloqueante* que va a la *mesa*: quien
+> reescribe fiel da mal.
+
+<details><summary>Detalle y casos del curso</summary>
+
+- «Polite request: I want to eat some cake.» → «Could I have some cake?» (`67fab6d599301022953424f7`, A1): nada anuncia
+  *have*, y «Could I eat some cake?» da mal.
+- «I think it's a good idea for her to see a dentist.» → «She ought to see a dentist, in my opinion.»
+  (`67fab6d599301022953444f8`, B1): *opinion*.
+- «The coach encouraged the players to repeat the drill.» → «The coach made the players practise the drill.»
+  (`67fab6d59930102295344186`, B1): *practise* en lugar de *repeat*; *made* sale de la consigna, «Crea oraciones
+  utilizando 'let' o 'make'.».
+- «I think that Laura is at school now.» → «Laura will be at school at the moment.» (`67fab6d5993010229534455d`, B2):
+  *moment* en lugar de *now*.
+- Pasa: «“I overslept this morning” (the boy whispered)» → «The boy whispered that he had overslept that morning.»
+  (`67fab6d5993010229534447b`, B2): *whispered* está en el enunciado, *had* es el perfecto y *that* sale de *this*.
+
+Palabra de contenido es la que el tokenizador compartido marca como sustantivo, nombre propio, verbo, adjetivo,
+adverbio o número ([F-NLP-R010](#F-NLP-R010)); se compara como en R002, más la derivación en *-ly* (*simply* →
+*simple*). La consigna cuenta: «I want a sandwich.» → «I would like a sandwich.» (`67fab6d59930102295342def`, A1) pasa
+porque la consigna pide *would like*. La oración que se transforma sigue sin ser pista
+([DOUBT-PISTA-TRANSFORMAR](#DOUBT-PISTA-TRANSFORMAR)): R002 no compara sus palabras con la respuesta; R006 mira al revés,
+lo que la respuesta trae sin que nada lo anuncie. Va a la *mesa* porque una regla no sabe si se arregla la respuesta
+—la reescritura fiel, con audio nuevo— o el enunciado ([DOUBT-PISTA-RESPUESTA](#DOUBT-PISTA-RESPUESTA)).
+
+**Límite conocido**: marca también la palabra que trae la lección. Son 4 de las 60 marcas del prototipo: la fórmula del
+pedido, «Polite request: I want a cookie.» → «Could I have a cookie?» (`67fab6d59930102295342dd0`, A1) y «Normal
+request: I want a glass of water.» → «Can I have a glass of water?» (`67fab6d59930102295342ddc`, A1); el *did* de la
+pregunta de objeto, «The doctors at the hospital shocked the patient. (the patient)» → «Who did the doctors at the
+hospital shock?» (`67fab6d5993010229534329c`, B1); y *must* → *had to* del estilo indirecto, «“They must wash their
+clothes” (she repeated)» → «She repeated that they had to wash their clothes.» (`67fab6d59930102295344473`, B2). En la
+mesa cuestan una mirada; aceptar *want* → *have* taparía también el pedido de 24f7, que es real.
+
+</details>
+
 ## Contexto
 
 Base: curso vivo del 29/9 en `db/english-course`, medido con un prototipo de las reglas en el scratchpad del analista.
@@ -146,12 +190,20 @@ cortadas por la «|» (las marca FEAT-DATOS) y 6 sin pista en temas de menos de 
 cada 10 de los anotados de pista en la otra mitad (142 imposibles); cerca de 4 de cada 10 de la categoría entera; y 8
 de cada 10 marcas nuevas reales en una muestra. **Costo**: segundos, sin modelo.
 
+**La reescritura (R006).** Medida el 1/10 con `scripts/prototipo_pista_reescritura.py`, sobre el mismo curso y la misma
+tokenización: 60 marcas entre 3.957 oraciones enteras (A1 10, A2 4, B1 34, B2 12). Revisadas a mano las 60, 56 son
+reales (93 %); en una muestra nueva de 30, 25 (83 %). De los 27 imposibles de `escribir/pista.json` que el 077 no anotó
+como de pista, hint-coherence encontraba 5; R006 marca 11, 10 nuevos: juntos, 15. **Meta**: 8 de cada 10 marcas reales
+en una muestra revisada a mano.
+
 ## Alcance
 
-- **Adentro**: R001 a R004 sobre la pista y la primera respuesta, sus hallazgos y la ficha.
-- **Afuera**: la consigna que contradice la respuesta (juez de consigna); otra respuesta igual de buena y el enunciado
-  que se transforma ([DOUBT-PISTA-TRANSFORMAR](#DOUBT-PISTA-TRANSFORMAR)); y escribir el curso al analizar
-  ([F-HALL-R015](#F-HALL-R015)).
+- **Adentro**: R001 a R004 sobre la pista y la primera respuesta; R006 sobre lo que la reescritura trae sin que nada lo
+  anuncie; sus hallazgos y la ficha.
+- **Afuera**: la consigna que contradice la respuesta (juez de consigna); otra respuesta igual de buena; que la
+  respuesta use las palabras de la oración que se transforma ([DOUBT-PISTA-TRANSFORMAR](#DOUBT-PISTA-TRANSFORMAR)); el
+  tramo opcional entre paréntesis de una respuesta, como «Peter was admired (by Mary).», que arregla el corrector; y
+  escribir el curso al analizar ([F-HALL-R015](#F-HALL-R015)).
 
 ## User Journeys
 
@@ -252,8 +304,8 @@ y después.
 
 ## References
 
-- **FEAT-HALL** — Hallazgo, gravedad, resolución, costo, ficha, conteo e identidad: R005.
+- **FEAT-HALL** — Hallazgo, gravedad, resolución, costo, ficha, conteo e identidad: R005 y R006.
 - **FEAT-QSENT** — La pista entre paréntesis y la primera respuesta ([F-QSENT-R007](#F-QSENT-R007),
-  [F-QSENT-R018](#F-QSENT-R018)): R001 a R004.
-- **FEAT-NLP** — Una sola tokenización ([F-NLP-R010](#F-NLP-R010)): R002.
+  [F-QSENT-R018](#F-QSENT-R018)): R001 a R004 y R006.
+- **FEAT-NLP** — Una sola tokenización ([F-NLP-R010](#F-NLP-R010)): R002 y R006.
 - **FEAT-DATOS** — Las respuestas cortadas por la «|»: el examen.

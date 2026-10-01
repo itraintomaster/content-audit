@@ -4,6 +4,13 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analyst (impl A) — F-PISTA-R006 en el REQUIREMENT: la reescritura no pide palabras que no salen de la
+  oración de partida, la pista o la consigna. Casos 24f7 (have), 44f8 (opinion), 4186 (practise; made sale de la
+  consigna) y 455d (moment); pasa 447b (whispered, el perfecto, this → that); los 4 falsos del prototipo como límite
+  conocido (2dd0 y 2ddc, la fórmula del pedido; 329c, el did de la pregunta de objeto; 4473, must → had to). Contexto con
+  los números del prototipo y alcance. `requirement validate` y `glossary validate` OK. Next: @architect, parche nuevo
+  en esta carpeta.
+
 2026-10-01 — developer (impl A) — Prototipo, sin encender, de «la reescritura pide palabras que no salen de la oración de
   partida ni de la pista» (scripts/prototipo_pista_reescritura.py). En las oraciones enteras, cada palabra de contenido de la
   primera respuesta (tokens de spaCy de la oración guardada) tiene que salir del enunciado, la pista o la consigna, por lema,

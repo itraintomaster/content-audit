@@ -5,6 +5,18 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analyst (impl A) — R006 es AUTO_VALIDATED: el coordinador la aprobó el 1/10 por la precisión medida (56 de
+  60 marcas reales, 25 de 30 en una muestra nueva). Va a la mesa siempre: una regla no sabe si se arregla la respuesta
+  (la reescritura fiel, con audio nuevo) o el enunciado (DOUBT-PISTA-RESPUESTA).
+2026-10-01 — analyst (impl A) — R006 no reabre DOUBT-PISTA-TRANSFORMAR: la oración que se transforma sigue sin ser pista
+  para R002. R006 mira al revés (lo que la respuesta trae sin que nada lo anuncie) y cuenta la consigna; por eso «I want
+  a sandwich.» → «I would like a sandwich.» (2def) pasa, que era el ejemplo de por qué José eligió A.
+2026-10-01 — analyst (impl A) — R006 no entra al journey F-PISTA-J001: un camino nuevo cambiaría el journey generado (un
+  path-4 que escribir) y el validador no exige que cada regla esté en un gate (en FEAT-QINST, R015 a R017 y R019 no lo
+  están). Su prueba son sus handwrittenTests.
+2026-10-01 — analyst (impl A) — Afuera de R006: el tramo opcional entre paréntesis de una respuesta («Peter was admired
+  (by Mary).»); lo arregla el corrector, que va a leer el paréntesis como opcional (coordinador, 1/10).
+
 2026-10-01 — developer (impl A) — R001 es la unión: un ejercicio sin pista tiene hallazgo si su grupo estructural O el
   tema entero (todos los de hueco para escribir) llega a tres cuartos. Medido sobre el curso del 29/9:
     (i) tipo estructural, lo de antes: 7 missing-hint; examen escribir 14 de 46, 9 de 15 anotados, 2 fuera del oro.
