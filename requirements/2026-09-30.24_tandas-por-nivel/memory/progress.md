@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (como analista) — REQUIREMENT.md: F-TANDA-R011 (abrir fija las metas), pedido del qa-tester de F
+  vía el orquestador; `requirement validate` → [OK]. Sin cambios de estructura: el servicio ya recibe el GoalBook (F-10).
+
 2026-09-30 — architect — Parche (7 altas, 7 cambios, 0 conflictos) y TECH_SPEC (13 fragmentos) en exit 0. Medido para las
   notas: `analyze` con el curso en caché 2,35 s y un lanzamiento de spaCy 2,2 s (scratchpad arq-E/medir). Next: el orquestador revisa; se aplica después de la ronda 1 integrada y de F, en el orden TAREA → NOEMP → MESA → TANDA → BANDEJA; luego `definitions`, `feature sync`, @qa-tester. Ganchos en tablero/ronda2/ganchos-E.md.
 

@@ -5,6 +5,11 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (como analista) — R011 nueva: abrir una tanda fija sus metas (la mitad de F-METAS-R006 que cumple
+  la tanda); entra en la puerta de `abrir` de J001. Invariantes: fija las de la declaración al abrir, la comparación evalúa
+  contra ellas y un pedido de abrir rechazado no fija nada. AUTO_VALIDATED: sale de F-METAS-R006, validada por José.
+  why: el qa-tester de F no la puede probar en METAS: el que abre es DefaultBatchService, que no existe al aplicar METAS.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): BatchServiceConfig y DefaultBatchService reciben el GoalBook de F (abrir fija las metas, F-10); suma los cinco RuleFix (E-06 de A y el de grammar); batch suma audit-infrastructure a sus clientes; RefinementTaskStatus declara type: enum; lista entera de patrones.
 
 2026-09-30 — architect — Una propuesta pendiente por ejercicio, compuesta por pasos con sus partes (`BatchChangeLedger`):

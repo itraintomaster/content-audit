@@ -35,7 +35,7 @@ Cómo quien corrige intenta hoy corregir un nivel entero y medirlo antes de dar 
 junta por nivel ni decide cuándo un conjunto de cambios está en condiciones de entrar al curso.
 
 **Cambio mínimo necesario**: un recurso tanda con cuatro momentos —abrir un nivel, correr, cerrar y publicar— hecho con
-el plan, las propuestas pendientes, la proyección única del paquete F y la aprobación de hoy.
+el plan, las propuestas pendientes, la proyección única y las metas del paquete F, y la aprobación de hoy.
 
 ## Reglas de Negocio
 
@@ -182,6 +182,23 @@ curso a producción y regrabar los audios siguen siendo pasos de José, fuera de
 
 Sigue a [F-QICOR-R008](#F-QICOR-R008), que ya distingue sus desenlaces y los hace cerrar contra lo intentado.
 
+<a id="F-TANDA-R011"></a>
+### Rule[F-TANDA-R011] - Abrir una tanda fija sus metas
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> Abrir una tanda fija las metas como lo hace `set-goals` ([F-METAS-R006](#F-METAS-R006)): content-audit registra en ese
+> momento la huella y los valores de la declaración de metas. Invariantes:
+> 1. las metas fijadas son las de la declaración tal como está al abrir, con la hora de la apertura;
+> 2. la comparación de esa tanda evalúa contra ellas: si alguien cambia una meta después de abrir, lo dice con su valor
+>    de antes y el de ahora;
+> 3. un pedido de abrir que se rechaza —sin línea base fijada, u otra tanda abierta ([F-TANDA-R002](#F-TANDA-R002))— no
+>    fija nada.
+
+Es la mitad de [F-METAS-R006](#F-METAS-R006) que cumple la tanda, y no se puede probar en FEAT-METAS porque el que abre es
+el servicio de la tanda (pedido del qa-tester de F, 1/10). **Criterio**: con el piso de vocabulario en 0,5 puntos
+([F-NOEMP-R006](#F-NOEMP-R006)), abrir la tanda de A1 deja fijo ese 0,5; si alguien lo pasa a 1,0 antes de cerrarla, la
+comparación de la tanda dice «metas cambiadas desde que se fijaron: piso de vocabulario 0,5 → 1,0».
+
 ## Contexto
 
 **El orden.** El brief 089 fija «corregir por tandas, A1 primero»: después de cada tanda se recalcula el curso entero y
@@ -240,7 +257,7 @@ journeys:
     flow:
       - id: abrir
         action: "José abre la tanda de un nivel sobre el último análisis publicado"
-        gate: [F-TANDA-R001, F-TANDA-R002]
+        gate: [F-TANDA-R001, F-TANDA-R002, F-TANDA-R011]
         then: costo
       - id: costo
         action: "La tanda declara sus tareas, sus temas y cuántas consultas y horas estima"
@@ -300,4 +317,4 @@ orden. Hasta que conteste, rige A ([F-TANDA-R008](#F-TANDA-R008)).
   declarado: R003, R006, R010.
 - **FEAT-OMVAL, FEAT-RESPC, FEAT-PISTA, FEAT-DATOS** (ronda 1, paquete A) — Las reglas que se aplican primero: R004.
 - **FEAT-PROYU, FEAT-METAS** (ronda 2, paquete F) — La proyección única, la comparación con la línea base y el veredicto:
-  R006, R009.
+  R006, R009; las metas que abrir fija: R011.
