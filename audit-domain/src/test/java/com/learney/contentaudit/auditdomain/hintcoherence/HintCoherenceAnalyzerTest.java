@@ -578,4 +578,28 @@ public class HintCoherenceAnalyzerTest {
         assertEquals(List.of(HintIssueKind.VERB_NOT_ANNOUNCED),
                 diagnosis(node).getIssues().stream().map(HintIssue::getKind).toList());
     }
+
+    @Test
+    @DisplayName("should raise a high finding at the panel, identified by the hint, when the hint gives away the answer and does not conjugate, as «We ___ (always) eat eggs every morning.» answered «always», scoring 0 with no «Pista propuesta» in its evidence")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldRaiseAHighFindingAtThePanelIdentifiedByTheHintWhenTheHintGivesAwayTheAnswerAndDoesNotConjugateAsWeAlwaysEatEggsEveryMorningAnsweredAlwaysScoring0WithNoPistaPropuestaInItsEvidence() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should raise a high finding by rule proposing the base form when the hint gives away the answer as a conjugated verb, as «Why ___ (is) the beach going to close?» answered «is», proposing «(be)»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldRaiseAHighFindingByRuleProposingTheBaseFormWhenTheHintGivesAwayTheAnswerAsAConjugatedVerbAsWhyIsTheBeachGoingToCloseAnsweredIsProposingBe() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should keep sending the missing hint to the panel without changing which exercises R001 marks, when the only possible hint is the answer itself, as «We ___ eat eggs every morning.» in Adverbios de frecuencia, 17 of 20 of the topic with a hint")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldKeepSendingTheMissingHintToThePanelWithoutChangingWhichExercisesR001MarksWhenTheOnlyPossibleHintIsTheAnswerItselfAsWeEatEggsEveryMorningInAdverbiosDeFrecuencia17Of20OfTheTopicWithAHint() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -412,4 +412,84 @@ public class DefaultHintAnswerCheckTest {
         assertEquals(List.of(), check().checkRewrite(overslept));
         assertEquals(List.of(), check().checkRewrite(tomorrow));
     }
+
+    @Test
+    @DisplayName("should raise a HINT_GIVEAWAY sent to the panel, with no hint to propose, when a hint that is not a verb already says the answer of its gap, as «(always)» in «We ___ (always) eat eggs every morning.» answered «always»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldRaiseAHINTGIVEAWAYSentToThePanelWithNoHintToProposeWhenAHintThatIsNotAVerbAlreadySaysTheAnswerOfItsGapAsAlwaysInWeAlwaysEatEggsEveryMorningAnsweredAlways() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should raise a HINT_GIVEAWAY fixed by rule with the hint's base form when a conjugated verb already says the answer of its gap, as «(is)» in «Why ___ (is) the beach going to close?» answered «is», proposing «(be)»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldRaiseAHINTGIVEAWAYFixedByRuleWithTheHintsBaseFormWhenAConjugatedVerbAlreadySaysTheAnswerOfItsGapAsIsInWhyIsTheBeachGoingToCloseAnsweredIsProposingBe() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should find no HINT_GIVEAWAY when every verb of the hint is already in base form even though it says the answer, as «(love)» in «I ___ (love) a lot of vegetables.» answered «love»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldFindNoHINTGIVEAWAYWhenEveryVerbOfTheHintIsAlreadyInBaseFormEvenThoughItSaysTheAnswerAsLoveInILoveALotOfVegetablesAnsweredLove() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should find no HINT_GIVEAWAY when the hint says something other than the accepted answers of its gap, as «(always)» not matching «am always» in «I ___ in the kitchen. (always)», «(100%)» not matching «always» in «I ___ drink tea in the morning. (100%)», «(always)» not matching the whole sentence in «She does her homework after school. (always) ___», and «(I / am)» not matching «Am I» in «___ (I / am) below you?»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldFindNoHINTGIVEAWAYWhenTheHintSaysSomethingOtherThanTheAcceptedAnswersOfItsGapAsAlwaysNotMatchingAmAlwaysInIInTheKitchenAlways100NotMatchingAlwaysInIDrinkTeaInTheMorning100AlwaysNotMatchingTheWholeSentenceInSheDoesHerHomeworkAfterSchoolAlwaysAndIAmNotMatchingAmIInIAmBelowYou() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should normalize case, punctuation and spacing and match any accepted answer of the gap, not only the first, reading a multi-word hint joined by a slash as one phrase, as «(Is.)» giving away an answer accepted as «'s|is», and «(I / am)» giving away an answer «I am» but not «Am I», where the order differs, proposing «(I / be)» when it gives away")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldNormalizeCasePunctuationAndSpacingAndMatchAnyAcceptedAnswerOfTheGapNotOnlyTheFirstReadingAMultiwordHintJoinedByASlashAsOnePhraseAsIsGivingAwayAnAnswerAcceptedAsSisAndIAmGivingAwayAnAnswerIAmButNotAmIWhereTheOrderDiffersProposingIBeWhenItGivesAway() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should compare the hint of each gap only with the accepted answers of that same gap, as «(are)» giving away the second gap's answer and proposing «(be)», while «(play)» does not give away the first gap's answer «might play», in «We ___ (play) cards again, if we ___ (are) bored.»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldCompareTheHintOfEachGapOnlyWithTheAcceptedAnswersOfThatSameGapAsAreGivingAwayTheSecondGapsAnswerAndProposingBeWhilePlayDoesNotGiveAwayTheFirstGapsAnswerMightPlayInWePlayCardsAgainIfWeAreBored() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should propose the base form of the answer's verb when completing a missing hint, as «(be)» for «Why ___ the beach going to close?» answered «is», and «(I / be)» for «___ below you?» answered «Am I»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldProposeTheBaseFormOfTheAnswersVerbWhenCompletingAMissingHintAsBeForWhyTheBeachGoingToCloseAnsweredIsAndIBeForBelowYouAnsweredAmI() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should propose no hint for a missing hint when the only possible hint is the answer itself, as «We ___ eat eggs every morning.» answered «always»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldProposeNoHintForAMissingHintWhenTheOnlyPossibleHintIsTheAnswerItselfAsWeEatEggsEveryMorningAnsweredAlways() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should find no HINT_GIVEAWAY and leave the hint drawn from the first answer unchanged when every word of an already-complete hint is in base form, as «(you / see)» for «Who ___ (I / see)?» answered «are you seeing», «(that / be)» for «What ___ (it / be)?» answered «is that», and «(be / rain)» for «It ___ (be) soon.» answered «'s going to rain»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldFindNoHINTGIVEAWAYAndLeaveTheHintDrawnFromTheFirstAnswerUnchangedWhenEveryWordOfAnAlreadycompleteHintIsInBaseFormAsYouSeeForWhoISeeAnsweredAreYouSeeingThatBeForWhatItBeAnsweredIsThatAndBeRainForItBeSoonAnsweredSGoingToRain() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should also give away the answer through the whole-sentence statement of slash-separated words, never fixed by rule, as in Invest time + gerundio, whose statement already conjugates «'re» and «going»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldAlsoGiveAwayTheAnswerThroughTheWholesentenceStatementOfSlashseparatedWordsNeverFixedByRuleAsInInvestTimeGerundioWhoseStatementAlreadyConjugatesReAndGoing() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

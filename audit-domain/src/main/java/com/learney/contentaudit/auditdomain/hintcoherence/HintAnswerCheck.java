@@ -12,4 +12,6 @@ interface HintAnswerCheck {
     List<HintIssue> check(ExerciseHint hint, AuditableQuiz quiz);
 
     List<HintIssue> checkRewrite(AuditableQuiz quiz);
+
+    List<HintIssue> checkGiveaway(AuditableQuiz quiz, ExerciseShape shape);
 }

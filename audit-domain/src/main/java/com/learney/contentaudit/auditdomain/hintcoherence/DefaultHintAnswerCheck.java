@@ -777,4 +777,10 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
         return out;
     }
 
+
+    @Override
+    public List<HintIssue> checkGiveaway(AuditableQuiz quiz,ExerciseShape shape) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

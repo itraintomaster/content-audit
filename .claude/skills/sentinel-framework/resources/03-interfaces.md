@@ -744,6 +744,7 @@ Examples:
 |--------|--------|
 | `check(ExerciseHint hint,AuditableQuiz quiz): List<HintIssue>` | (none) |
 | `checkRewrite(AuditableQuiz quiz): List<HintIssue>` | (none) |
+| `checkGiveaway(AuditableQuiz quiz,ExerciseShape shape): List<HintIssue>` | (none) |
 
 #### EquivalentFormGenerator (package: answercompleteness)
 

@@ -127,4 +127,28 @@ public class HintCoherenceRuleFixTest {
     private static SentencePartEntity cloze(String... options) {
         return new SentencePartEntity(SentencePartKind.CLOZE, "", new ArrayList<>(List.of(options)));
     }
+
+    @Test
+    @DisplayName("should fix a giveaway hint with its base form only in its own gap without changing what is heard, as «(are)» becoming «(be)» in the second gap of «We ___ (play) cards again, if we ___ (are) bored.», leaving «(play)» as it was")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldFixAGiveawayHintWithItsBaseFormOnlyInItsOwnGapWithoutChangingWhatIsHeardAsAreBecomingBeInTheSecondGapOfWePlayCardsAgainIfWeAreBoredLeavingPlayAsItWas() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should write the base form of the verb when it adds a missing hint, as «(be)» for «Why ___ the beach going to close?» and «(I / be)» for «___ below you?»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldWriteTheBaseFormOfTheVerbWhenItAddsAMissingHintAsBeForWhyTheBeachGoingToCloseAndIBeForBelowYou() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should decline instead of writing a hint that would give away the answer, leaving the exercise as it was, as «We ___ eat eggs every morning.» answered «always»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldDeclineInsteadOfWritingAHintThatWouldGiveAwayTheAnswerLeavingTheExerciseAsItWasAsWeEatEggsEveryMorningAnsweredAlways() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }
