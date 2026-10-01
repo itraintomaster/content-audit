@@ -592,8 +592,9 @@ class Main {
                 new JacksonChoiceAlternativeVerdictReader(), new DefaultChoiceAlternativeConfig(),
                 studentViewRenderer, correctorMatcher);
 
+        // F-NIVFR-R002: the same catalog as the scorer, for the level of a derived form it brings apart
         AnalyzerProvider offLevelWordsProvider = new OffLevelWordsAnalyzerProvider(
-                sentenceLexicalScorer, lemmaAbsenceConfig, topicTeachingResolver, studentViewRenderer);
+                sentenceLexicalScorer, lemmaAbsenceConfig, topicTeachingResolver, studentViewRenderer, evpCatalog);
         AnalyzerProvider hintCoherenceProvider = new HintCoherenceAnalyzerProvider(irregularForms, studentViewRenderer);
         AnalyzerProvider answerCompletenessProvider =
                 new AnswerCompletenessAnalyzerProvider(correctorMatcher, irregularForms, studentViewRenderer);

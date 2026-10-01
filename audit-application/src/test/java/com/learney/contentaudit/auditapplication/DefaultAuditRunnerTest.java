@@ -1455,7 +1455,7 @@ public class DefaultAuditRunnerTest {
 
         List<AnalyzerProvider> providers = new ArrayList<>(classicProviders(evp).subList(0, 6));
         providers.add(new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(scorer, absence,
-                new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(), renderer));
+                new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(), renderer, evp));
         providers.add(new LemmaCountAnalyzerProvider(evp, lemmaCount));
         providers.add(new DefaultQuizInstructionAnalyzerFactory(judge, mock(QuizInstructionVerdictReader.class),
                 new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime));

@@ -4758,7 +4758,8 @@ public class GetCmdTest {
                         new com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter(), absence),
                 absence, new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(),
                 new com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer(
-                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create())));
+                        com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter.create()),
+                Base299.evp()));
         providers.add(Base299.classicProviders().get(6));
         providers.add(Base299.judge(new Base299.FakeJudge(), new Base299.MapLedger()));
         return new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(providers);

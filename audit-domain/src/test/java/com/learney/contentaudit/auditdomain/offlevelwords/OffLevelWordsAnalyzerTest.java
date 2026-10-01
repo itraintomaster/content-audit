@@ -569,6 +569,7 @@ public class OffLevelWordsAnalyzerTest {
         private final Map<String, CefrLevel> levels = new HashMap<>();
         private final Map<String, Integer> ranks = new HashMap<>();
         private final Set<String> phrases = new HashSet<>();
+        private final Map<String, CefrLevel> derivedForms = new HashMap<>();
         private final Map<CefrLevel, Integer> mildBounds = new HashMap<>(Map.of(CefrLevel.A1, 3000, CefrLevel.A2, 5000,
                 CefrLevel.B1, 8000, CefrLevel.B2, 10000));
 
@@ -589,6 +590,12 @@ public class OffLevelWordsAnalyzerTest {
             return this;
         }
 
+        /** A derived or compound form the EVP brings apart, with its own level (F-LABS-R040). */
+        Lexicon derived(String word, CefrLevel level) {
+            derivedForms.put(word, level);
+            return this;
+        }
+
         Lexicon mildBound(CefrLevel level, int bound) {
             mildBounds.put(level, bound);
             return this;
@@ -604,6 +611,8 @@ public class OffLevelWordsAnalyzerTest {
             when(evp.getCocaRank(any())).thenAnswer(i -> Optional.ofNullable(ranks.get(key(i.getArgument(0)))));
             when(evp.getSemanticCategory(any())).thenReturn(Optional.empty());
             when(evp.isPhrase(any())).thenAnswer(i -> phrases.contains(i.<String>getArgument(0)));
+            when(evp.lookupDerivedFormLevel(any()))
+                    .thenAnswer(i -> Optional.ofNullable(derivedForms.get(i.<String>getArgument(0))));
             return evp;
         }
 
@@ -626,9 +635,10 @@ public class OffLevelWordsAnalyzerTest {
 
         OffLevelWordsAnalyzerProvider provider() {
             LemmaAbsenceConfig config = config();
-            return new OffLevelWordsAnalyzerProvider(new DefaultSentenceLexicalScorer(evp(), new DefaultContentWordFilter(),
+            EvpCatalogPort evp = evp();
+            return new OffLevelWordsAnalyzerProvider(new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(),
                     config), config, new DefaultTopicTeachingResolver(),
-                    new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
+                    new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()), evp);
         }
 
         ContentAnalyzer analyzer() {

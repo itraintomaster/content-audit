@@ -1,5 +1,4 @@
 package com.learney.contentaudit.auditdomain.offlevelwords;
-import com.learney.contentaudit.auditdomain.EvpCatalogPort;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -11,6 +10,7 @@ import com.learney.contentaudit.auditdomain.AuditableTopic;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
+import com.learney.contentaudit.auditdomain.EvpCatalogPort;
 import com.learney.contentaudit.auditdomain.LemmaAbsenceConfig;
 import com.learney.contentaudit.auditdomain.NlpToken;
 import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
@@ -54,7 +54,9 @@ import javax.annotation.processing.Generated;
  *       and -- only out of the catalog -- its British variant, a compound or a derivative of words
  *       of the level. The level the catalog gives the word itself wins over every reading that takes
  *       the level of a base, a part or a British pair: those are for a word the catalog does not
- *       bring. Every reading is measured with the same scorer.</li>
+ *       bring, neither by its lemma nor as a derived or compound form of another lemma (F-LABS-R040
+ *       keeps those out of the level of their base; {@link EvpCatalogPort#lookupDerivedFormLevel}
+ *       gives their own). Every reading is measured with the same scorer.</li>
  *   <li>R003 and R004: a word the topic teaches never counts -- its title, its frequent answers, a
  *       mini theory that names the word alone, the name of a topic of the course, or a suffix it
  *       teaches on a word of the level, even on a word the catalog brings, since forming it is the
@@ -107,6 +109,9 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
 
     private final QuizStudentViewRenderer studentViewRenderer;
 
+    // R002: the level the catalog gives a derived or compound form of another lemma (F-LABS-R040)
+    private final EvpCatalogPort evpCatalogPort;
+
     // R003: what each topic teaches, worked out once per knowledge of this run
     private final Map<String, TaughtWords> taughtByKnowledge = new HashMap<>();
 
@@ -119,15 +124,15 @@ class OffLevelWordsAnalyzer implements ContentAnalyzer {
     // R002: the distance the shared scorer gives a lone lemma, per lemma, category and level
     private final Map<String, Optional<Integer>> distances = new HashMap<>();
 
-private final EvpCatalogPort evpCatalogPort;
-
-public OffLevelWordsAnalyzer(SentenceLexicalScorer sentenceLexicalScorer, LemmaAbsenceConfig lemmaAbsenceConfig, TopicTeachingResolver topicTeachingResolver, QuizStudentViewRenderer studentViewRenderer, EvpCatalogPort evpCatalogPort) {
-    this.sentenceLexicalScorer = sentenceLexicalScorer;
-    this.lemmaAbsenceConfig = lemmaAbsenceConfig;
-    this.topicTeachingResolver = topicTeachingResolver;
-    this.studentViewRenderer = studentViewRenderer;
-    this.evpCatalogPort = evpCatalogPort;
-}
+    public OffLevelWordsAnalyzer(SentenceLexicalScorer sentenceLexicalScorer, LemmaAbsenceConfig lemmaAbsenceConfig,
+            TopicTeachingResolver topicTeachingResolver, QuizStudentViewRenderer studentViewRenderer,
+            EvpCatalogPort evpCatalogPort) {
+        this.sentenceLexicalScorer = sentenceLexicalScorer;
+        this.lemmaAbsenceConfig = lemmaAbsenceConfig;
+        this.topicTeachingResolver = topicTeachingResolver;
+        this.studentViewRenderer = studentViewRenderer;
+        this.evpCatalogPort = evpCatalogPort;
+    }
 
     @Override
     public Void onKnowledge(AuditNode node) {
@@ -235,6 +240,11 @@ public OffLevelWordsAnalyzer(SentenceLexicalScorer sentenceLexicalScorer, LemmaA
             String lemma = misplaced.getLemmaAndPos().getLemma();
             String pos = misplaced.getLemmaAndPos().getPos();
             Set<String> texts = textsOf(tokens, lemma, pos);
+            // R002: the written word is a derived form the catalog brings apart, within reach: «smoking»
+            // is A1 as a form of smoke, though the lemma «smoking» resolves to B2
+            if (withinReach(derivedFormLevel(lemma, texts), level)) {
+                continue;
+            }
             // R002: the catalog brings the word with its own level, so no base, part or British pair
             // decides it; only the topic does (R003), its suffix included: in «Adverbios de modo»,
             // forming «nicely» from «nice» is the exercise
@@ -254,6 +264,22 @@ public OffLevelWordsAnalyzer(SentenceLexicalScorer sentenceLexicalScorer, LemmaA
             String lemma = outOfCatalog.getLemma();
             String pos = outOfCatalog.getObservedPos();
             Set<String> texts = textsOf(tokens, lemma, pos);
+            Optional<CefrLevel> derived = derivedFormLevel(lemma, texts);
+            if (derived.isPresent()) {
+                // R002: the catalog brings it apart, as a form of another lemma, and its own level decides:
+                // within reach it is no error; two levels above, only the topic, a misread lemma or a
+                // proper name lets it go -- never a base, a part, a British pair nor a loan
+                if (withinReach(derived, level)
+                        || teaches(taught, lessons, metalanguage, lemma, texts, level)
+                        || regularInflectionReading(lemma, pos, texts, level, true)
+                        || properNameReading(tokens, lemma, pos)
+                        || !seen.add(lemma + "|" + pos)) {
+                    continue;
+                }
+                words.add(new OffLevelWord(lemma, pos, OffLevelReason.OUT_OF_CATALOG, null,
+                        outOfCatalog.getFrequencyRank()));
+                continue;
+            }
             if (teaches(taught, lessons, metalanguage, lemma, texts, level)
                     || inTranslation(quiz.getTranslation(), lemma, texts)
                     || adaptedInTranslation(quiz.getTranslation(), tokens, pos, lemma, texts)
@@ -264,6 +290,35 @@ public OffLevelWordsAnalyzer(SentenceLexicalScorer sentenceLexicalScorer, LemmaA
             words.add(new OffLevelWord(lemma, pos, OffLevelReason.OUT_OF_CATALOG, null, outOfCatalog.getFrequencyRank()));
         }
         return words;
+    }
+
+    /**
+     * R002: the lowest level at which the catalog brings the lemma or one of its written forms as a
+     * derived or compound form of another lemma -- the entries F-LABS-R040 keeps out of the level of
+     * their base lemma: «rewarding», C1, of reward. Empty when it brings none of them that way.
+     */
+    private Optional<CefrLevel> derivedFormLevel(String lemma, Set<String> texts) {
+        Optional<CefrLevel> lowest = Optional.empty();
+        if (evpCatalogPort == null) {
+            return lowest;
+        }
+        Set<String> forms = new LinkedHashSet<>();
+        forms.add(lower(lemma));
+        for (String text : texts) {
+            forms.add(lower(text));
+        }
+        for (String form : forms) {
+            Optional<CefrLevel> level = form.isBlank() ? Optional.empty() : evpCatalogPort.lookupDerivedFormLevel(form);
+            if (level != null && level.isPresent() && (lowest.isEmpty() || level.get().ordinal() < lowest.get().ordinal())) {
+                lowest = level;
+            }
+        }
+        return lowest;
+    }
+
+    /** R002: a level at most one above the quiz, which is never an error. */
+    private static boolean withinReach(Optional<CefrLevel> wordLevel, CefrLevel level) {
+        return wordLevel.isPresent() && wordLevel.get().ordinal() - level.ordinal() < MIN_DISTANCE;
     }
 
     /**
