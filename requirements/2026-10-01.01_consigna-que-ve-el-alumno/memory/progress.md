@@ -4,6 +4,16 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (C) — Control y junta en seco.
+  - Control, analyze sin tope sobre copias con un claude falso: 0 llamadas y el libro intacto. Contra la misma base
+    con el sujeto viejo, los 8.898 hallazgos de los otros analizadores son idénticos. La consigna pasa de 3.920
+    veredictos reusados (10 hallazgos HIGH) a 0: el sujeto nuevo cambia la huella. Vuelven sólo si se juzga de nuevo.
+  - ronda2/integracion ya trae el cuerpo de NIVFR (27317fa9). 1296e6b2 deja el cableado de prueba de NIVFR igual al
+    suyo, y `git merge-tree` junta sin conflicto.
+  - En ese árbol: 3.096 pruebas, 0 fallas, 0 errores, 614 apagadas; verify sólo MEMORY.md; el parche de seguimiento
+    valida. Son 7 menos que las 3.103 de D: se van las 10 del sujeto viejo, que el parche ya no declara, y entran 3.
+  Next: el coordinador junta la rama y aplica el parche de seguimiento. El examen de consigna espera el OK de José.
+
 2026-10-01 — developer (C) — FEAT-CALUM construido en ronda2/impl-calum, sobre fd91447c (apply b5724f63, generate
   9e93a983, arreglo de SpacyProcessRunner fd91447c). Commits:
   - R001 (32f0228b), R002 (9868302f), R003 (68565266);
