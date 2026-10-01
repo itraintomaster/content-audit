@@ -328,7 +328,7 @@ public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter, LemmaRecurre
     }
 
     /** «movie: 90 veces, vuelve cada 1.005 palabras (meta: más de 50 y hasta 1.000); su hueco más largo, 6.510, va de A1 a A2». */
-    /** «8,0 % de las 1.743 palabras analizadas vuelve a un intervalo sano»: the measure of the course. */
+    /** «7,5 % de las 1.743 palabras analizadas vuelve a un intervalo sano»: the measure of the course. */
     private static String courseMeasure(LemmaRecurrenceResult result) {
         int measured = result.getLemmaStats().size();
         int normal = result.getExposureSummary() != null ? result.getExposureSummary().getNormalCount() : 0;
