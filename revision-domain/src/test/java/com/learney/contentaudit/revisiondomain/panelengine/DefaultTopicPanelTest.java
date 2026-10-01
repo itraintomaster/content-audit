@@ -1,7 +1,39 @@
 package com.learney.contentaudit.revisiondomain.panelengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.correction.ExercisePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.coursedomain.FormKind;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
+import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLights;
+import com.learney.contentaudit.revisiondomain.nonregression.RedWord;
+import com.learney.contentaudit.revisiondomain.panel.CandidateRejection;
+import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
+import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelRequest;
+import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,198 +47,574 @@ public class DefaultTopicPanelTest {
     @DisplayName("should ask candidates of the whole exercise for «I ___ a lot of vegetables.» that try to solve its three tasks at once, never one candidate per task")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldAskCandidatesOfTheWholeExerciseForIALotOfVegetablesThatTryToSolveItsThreeTasksAtOnceNeverOneCandidatePerTask(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R001 inv. 1: the hint, the single answer and the translation of the eleventh exercise of «Afirmativas
+        // regulares» are one candidate of the whole exercise, not three changes that step on each other.
+        KnowledgeEntity topic = afirmativas();
+        List<ErrorTaskBrief> tasks = vegetablesTasks();
+        QuizTemplateEntity fixed = withTranslation(withParts(exercise(topic, VEGETABLES), text("I"), cloze("love"),
+                text("(love) vegetables.")), "Me encantan las verduras.");
+        RecordingProposer proposer = new RecordingProposer(script(VEGETABLES, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                fixed))));
+        RecordingSink sink = new RecordingSink();
+
+        panel(proposer, vegetablesMeter()).run(work(topic, tasks), settings(), allowance(null, 4), sink);
+
+        assertEquals(1, proposer.requests.size(), "one request for the exercise, never one per task");
+        PanelRequest request = proposer.requests.get(0);
+        assertEquals(VEGETABLES, request.getQuizId());
+        assertEquals(List.of("t-hint", "t-single", "t-translation"), taskIdsOf(request.getBriefs()), "the three tasks at once");
+        PanelDecision decision = sink.only();
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(List.of("t-hint", "t-single", "t-translation"), decision.getResolvedTaskIds(), "the one candidate solves the three");
     }
 
     @Test
     @DisplayName("should work the mini-theory task of «Contraste inicial» once for the topic, never once per exercise that shows it")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldWorkTheMinitheoryTaskOfContrasteInicialOnceForTheTopicNeverOncePerExerciseThatShowsIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R001 inv. 2 and R012: the mini theory of the state verbs is shown by nine exercises of «Contraste inicial»;
+        // its task is worked once, for the topic.
+        KnowledgeEntity topic = contraste();
+        ErrorTaskBrief miniTheory = topicBrief("t-mini", miniTheoryFinding(), stateVerbExercises());
+        RecordingProposer proposer = new RecordingProposer(script(CONTRASTE, proposal(new PanelCandidate(PanelCandidateKind.MINI_THEORY,
+                null, NEW_STATE_VERBS, null, "más clara"))));
+        RecordingSink sink = new RecordingSink();
+
+        panel(proposer, miniTheoryMeter()).run(work(topic, List.of(miniTheory)), settings(), allowance(null, 4), sink);
+
+        assertEquals(1, proposer.requests.size(), "once for the topic");
+        assertNull(proposer.requests.get(0).getQuizId(), "a request of the whole topic");
+        assertEquals(CONTRASTE, proposer.requests.get(0).getKnowledgeId());
+        PanelDecision decision = sink.only();
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(stateVerbExercises(), decision.getQuizIds(), "the nine exercises that show it");
     }
 
     @Test
     @DisplayName("should show each later candidate of the topic the topic with what the panel already accepted in the batch")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldShowEachLaterCandidateOfTheTopicTheTopicWithWhatThePanelAlreadyAcceptedInTheBatch(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R001 inv. 3: once «Winter ___ (come) every year.» is accepted, the candidate of the vegetables, later in the
+        // topic, sees it already changed.
+        KnowledgeEntity topic = afirmativas();
+        List<ErrorTaskBrief> tasks = new ArrayList<>(vegetablesTasks());
+        tasks.add(brief("t-come", comeFinding()));
+        QuizTemplateEntity vegetables = withTranslation(withParts(exercise(topic, VEGETABLES), text("I"), cloze("love"),
+                text("(love) vegetables.")), "Me encantan las verduras.");
+        RecordingProposer proposer = new RecordingProposer(script(VEGETABLES, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                vegetables)), COME, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, winter(topic)))));
+
+        panel(proposer, storyMeter()).run(work(topic, tasks), settings(), allowance(null, 4), new RecordingSink());
+
+        assertEquals(2, proposer.requests.size());
+        assertEquals(List.of(COME, VEGETABLES), proposer.requests.stream().map(PanelRequest::getQuizId).toList(), "in topic order");
+        assertTrue(proposer.requests.get(1).getTopicView().stream().anyMatch(v -> v.getStatement().equals("Winter ___ (come) every year.")),
+                "the later candidate sees what the panel accepted");
+        assertFalse(proposer.requests.get(0).getTopicView().stream().anyMatch(v -> v.getStatement().equals("Winter ___ (come) every year.")),
+                "the first one saw the topic as it was");
     }
 
     @Test
     @DisplayName("should end the single-answer task of «I ___ a lot of vegetables.» as no longer holding, without asking a candidate nor spending an attempt, when after the hint rule added «(love)» single-answer no longer marks it")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldEndTheSingleanswerTaskOfIALotOfVegetablesAsNoLongerHoldingWithoutAskingACandidateNorSpendingAnAttemptWhenAfterTheHintRuleAddedLoveSingleanswerNoLongerMarksIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R002: the rule of the batch already put «(love)» after the gap; measured again, single-answer no longer marks
+        // the exercise, and its task ends as no longer holding without a candidate nor an attempt.
+        KnowledgeEntity topic = afirmativas();
+        replace(topic, withParts(exercise(topic, VEGETABLES), text("I"), cloze("love"), text("(love) a lot of vegetables.")));
+        RecordingProposer proposer = new RecordingProposer(Map.of());
+        RecordingSink sink = new RecordingSink();
+
+        panel(proposer, vegetablesMeter()).run(work(topic, List.of(brief("t-single", anotherAnswer()))), settings(), allowance(null, 4),
+                sink);
+
+        assertTrue(proposer.requests.isEmpty(), "no candidate is asked");
+        PanelDecision decision = sink.only();
+        assertEquals(PanelOutcomeKind.NO_LONGER_HOLDS, decision.getOutcome());
+        assertEquals(List.of("t-single"), decision.getTaskIds());
+        assertEquals(0, decision.getAttempts(), "no attempt spent");
     }
 
     @Test
     @DisplayName("should leave an exercise untouched and ask no candidate when none of its findings holds after measuring it again")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldLeaveAnExerciseUntouchedAndAskNoCandidateWhenNoneOfItsFindingsHoldsAfterMeasuringItAgain(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R002: none of the findings of the exercise holds any more: nothing is asked and nothing changes.
+        KnowledgeEntity topic = afirmativas();
+        QuizTemplateEntity fixed = withTranslation(withParts(exercise(topic, VEGETABLES), text("I"), cloze("love"),
+                text("(love) vegetables.")), "Me encantan las verduras.");
+        replace(topic, fixed);
+        RecordingProposer proposer = new RecordingProposer(Map.of());
+        RecordingSink sink = new RecordingSink();
+
+        panel(proposer, vegetablesMeter()).run(work(topic, List.of(brief("t-single", anotherAnswer()),
+                brief("t-translation", translationDiffers()))), settings(), allowance(null, 4), sink);
+
+        assertTrue(proposer.requests.isEmpty());
+        assertEquals(List.of(PanelOutcomeKind.NO_LONGER_HOLDS), sink.decisions.stream().map(PanelDecision::getOutcome).toList());
+        assertEquals(List.of("t-single", "t-translation"), sink.decisions.get(0).getTaskIds());
+        assertNull(sink.decisions.get(0).getAccepted(), "the exercise is not touched");
     }
 
     @Test
     @DisplayName("should measure an exercise again only with the analyzers that read something its tasks may change")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R002")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldMeasureAnExerciseAgainOnlyWithTheAnalyzersThatReadSomethingItsTasksMayChange(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R002: a task that may change only the translation is measured again with the analyzers that read it; one
+        // that may change only the hint, with the ones that read the hint.
+        KnowledgeEntity topic = afirmativas();
+        RulesMeter meter = vegetablesMeter();
+        DefaultTopicPanel panel = panel(new RecordingProposer(Map.of()), meter);
+
+        panel.run(work(topic, List.of(brief("t-translation", translationDiffers(), List.of(ExercisePart.TRANSLATION)))), settings(),
+                allowance(null, 4), new RecordingSink());
+        panel.run(work(topic, List.of(brief("t-hint", missingHint(), List.of(ExercisePart.HINT)))), settings(), allowance(null, 4),
+                new RecordingSink());
+
+        assertEquals(List.of("translation-sense"), meter.analyzersAsked.get(0), "only what reads the translation");
+        assertEquals(List.of("quiz-instruction", "hint-coherence", "multiple-choice-validity", "exact-duplicates", "single-answer"),
+                meter.analyzersAsked.get(1), "only what reads the hint");
     }
 
     @Test
     @DisplayName("should send the proposer the twenty exercises of Afirmativas regulares as the student sees them, the findings of «I ___ a lot of vegetables.» with their evidence, level A1, what each task may touch and the word lights of the topic")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldSendTheProposerTheTwentyExercisesOfAfirmativasRegularesAsTheStudentSeesThemTheFindingsOfIALotOfVegetablesWithTheirEvidenceLevelA1WhatEachTaskMayTouchAndTheWordLightsOfTheTopic(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R003: the proposer gets the topic as the student sees it, the findings with their evidence, the level, what
+        // each task may touch and the word lights of the topic.
+        KnowledgeEntity topic = afirmativas();
+        TopicWordLights lights = new TopicWordLights("auditoria-29-9", AFIRMATIVAS, "Afirmativas regulares", CefrLevel.A1,
+                new ArrayList<>(), new ArrayList<>());
+        TopicWork work = new TopicWork(BATCH, CefrLevel.A1, "m-a1", "t-present", topic, SentenceMode.FILL, vegetablesTasks(), lights,
+                null, Map.of(), List.of());
+        RecordingProposer proposer = new RecordingProposer(Map.of());
+
+        panel(proposer, vegetablesMeter()).run(work, settings(), allowance(null, 4), new RecordingSink());
+
+        PanelRequest request = proposer.requests.get(0);
+        assertEquals(20, request.getTopicView().size(), "the twenty exercises");
+        assertEquals("I ___ a lot of vegetables.", request.getTopicView().get(10).getStatement(), "as the student sees it");
+        assertEquals("«like» también encaja y el corrector la rechaza",
+                request.getBriefs().get(1).getFinding().getEvidence().getObservation(), "the findings with their evidence");
+        assertEquals(CefrLevel.A1, request.getLevel());
+        assertEquals(scopeOf(translationDiffers()), request.getBriefs().get(2).getEditScope(), "what each task may touch");
+        assertEquals(lights, request.getWordLights());
+        assertEquals(1, request.getAttempt());
+        assertTrue(request.getPreviousRejections().isEmpty());
     }
 
     @Test
     @DisplayName("should send the proposer the reasons of its rejected candidate from the second attempt on, and never a verdict on a candidate that is not its own")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldSendTheProposerTheReasonsOfItsRejectedCandidateFromTheSecondAttemptOnAndNeverAVerdictOnACandidateThatIsNotItsOwn(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R003 and R007: from the second attempt on, the proposer gets the reasons why its own candidate was rejected,
+        // and nothing else.
+        KnowledgeEntity topic = afirmativas();
+        RecordingProposer proposer = new RecordingProposer(script(COME, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                grandmother(topic))), COME, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, winter(topic)))));
+
+        panel(proposer, storyMeter()).run(work(topic, List.of(brief("t-come", comeFinding()))), settings(), allowance(null, 4),
+                new RecordingSink());
+
+        assertEquals(2, proposer.requests.size());
+        assertTrue(proposer.requests.get(0).getPreviousRejections().isEmpty(), "nothing on the first attempt");
+        List<CandidateRejection> reasons = proposer.requests.get(1).getPreviousRejections();
+        assertEquals(1, reasons.size(), "only its own rejected candidate");
+        assertEquals(1, reasons.get(0).getAttempt());
+        assertEquals(PanelCandidateKind.WHOLE_EXERCISE, reasons.get(0).getCandidateKind());
+        assertTrue(String.join(" ", reasons.get(0).getReasons()).contains("grandmother"), reasons.get(0).getReasons().toString());
     }
 
     @Test
     @DisplayName("should ask two candidates for an exercise whose English and translation do not say the same, one that changes only the translation and one that changes the English")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldAskTwoCandidatesForAnExerciseWhoseEnglishAndTranslationDoNotSayTheSameOneThatChangesOnlyTheTranslationAndOneThatChangesTheEnglish(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R003: translation-sense declares two fixes; an exercise with its task asks for two candidates, one that only
+        // changes the translation and one that changes the English. One without it asks for one.
+        KnowledgeEntity topic = afirmativas();
+        RecordingProposer proposer = new RecordingProposer(Map.of());
+        DefaultTopicPanel panel = panel(proposer, vegetablesMeter());
+
+        panel.run(work(topic, List.of(brief("t-translation", translationDiffers()))), settings(), allowance(null, 4), new RecordingSink());
+        panel.run(work(topic, List.of(brief("t-single", anotherAnswer()))), settings(), allowance(null, 4), new RecordingSink());
+
+        assertTrue(proposer.requests.get(0).isTwoFixes(), "the English and the translation do not say the same");
+        assertFalse(proposer.requests.get(proposer.requests.size() - 1).isTwoFixes(), "single-answer asks for one");
     }
 
     @Test
     @DisplayName("should send the proposer of «Contracciones» José's order to pass the topic to multiple choice")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R003")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldSendTheProposerOfContraccionesJossOrderToPassTheTopicToMultipleChoice() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R003 and R015: José's order travels to the proposer of «Contracciones».
+        KnowledgeEntity topic = contracciones();
+        ConversionOrder order = new ConversionOrder(CONTRACCIONES, FormKind.MULTIPLE_CHOICE, 3);
+        RecordingProposer proposer = new RecordingProposer(Map.of());
+
+        panel(proposer, new RulesMeter()).run(work(topic, List.of(), order, Map.of(), List.of()), settings(), allowance(null, 4),
+                new RecordingSink());
+
+        assertFalse(proposer.requests.isEmpty());
+        assertEquals(order, proposer.requests.get(0).getConversion());
     }
 
     @Test
     @DisplayName("should end an exercise without winner after three rejected attempts, leaving the original and its tasks open and handing over the candidate that failed least with what it did not pass and the reasons of each attempt")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldEndAnExerciseWithoutWinnerAfterThreeRejectedAttemptsLeavingTheOriginalAndItsTasksOpenAndHandingOverTheCandidateThatFailedLeastWithWhatItDidNotPassAndTheReasonsOfEachAttempt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R007: three candidates rejected; the exercise stays as it was, its task open, and the tray gets the candidate
+        // that failed least, with what it did not pass, and the reasons of each attempt.
+        KnowledgeEntity topic = afirmativas();
+        QuizTemplateEntity sameEnglish = withTranslation(exercise(topic, COME), "Él viene todos los años.");
+        RecordingProposer proposer = new RecordingProposer(script(COME, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                grandmother(topic))), COME, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, sameEnglish)), COME,
+                proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, grandmother(topic)))));
+        RecordingSink sink = new RecordingSink();
+
+        panel(proposer, storyMeter()).run(work(topic, List.of(brief("t-come", comeFinding()))), settings(), allowance(null, 4), sink);
+
+        PanelDecision decision = sink.only();
+        assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
+        assertEquals(3, decision.getAttempts());
+        assertNull(decision.getAccepted(), "the original stays");
+        assertTrue(decision.getResolvedTaskIds().isEmpty(), "its task stays open");
+        assertEquals(List.of(1, 2, 3), decision.getRejections().stream().map(CandidateRejection::getAttempt).toList(),
+                "the reasons of each attempt");
+        assertNotNull(decision.getBestFailing(), "the candidate that failed least");
+        assertEquals(sameEnglish, decision.getBestFailing().getQuiz(), "it solves nothing but adds nothing either");
+        assertNotNull(decision.getBestFailingVerdict(), "with what it did not pass");
     }
 
     @Test
     @DisplayName("should send «My grandmother ___ (come) every year.» back to the proposer with the rule it failed and grandmother (A2) as evidence, and accept «Winter ___ (come) every year.» on the second attempt")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldSendMyGrandmotherComeEveryYearBackToTheProposerWithTheRuleItFailedAndGrandmotherA2AsEvidenceAndAcceptWinterComeEveryYearOnTheSecondAttempt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R007: «My grandmother ___ (come) every year.» solves its task but adds grandmother (A2); it goes back with the
+        // rule and the word, and «Winter ___ (come) every year.» is accepted on the second attempt.
+        KnowledgeEntity topic = afirmativas();
+        RecordingProposer proposer = new RecordingProposer(script(COME, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                grandmother(topic))), COME, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, winter(topic)))));
+        RecordingSink sink = new RecordingSink();
+
+        panel(proposer, storyMeter()).run(work(topic, List.of(brief("t-come", comeFinding()))), settings(), allowance(null, 4), sink);
+
+        String reasons = String.join(" ", proposer.requests.get(1).getPreviousRejections().get(0).getReasons());
+        assertTrue(reasons.contains("F-NOEMP-R002") && reasons.contains("«grandmother» (A2)"), reasons);
+        PanelDecision decision = sink.only();
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(2, decision.getAttempts(), "on the second attempt");
+        assertEquals("Winter comes every year.", decision.getAccepted().getQuiz().getSentences().get(0));
     }
 
     @Test
     @DisplayName("should give an exercise that came back from the batch gate with one attempt spent only two more attempts")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R007")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldGiveAnExerciseThatCameBackFromTheBatchGateWithOneAttemptSpentOnlyTwoMoreAttempts(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R007 and F-NOEMP-R008: a change the batch gate returned already spent one attempt; it gets two more.
+        KnowledgeEntity topic = afirmativas();
+        RecordingProposer proposer = new RecordingProposer(script(COME, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE,
+                grandmother(topic))), COME, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, grandmother(topic))), COME,
+                proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, grandmother(topic)))));
+        CandidateRejection returned = new CandidateRejection(1, PanelCandidateKind.WHOLE_EXERCISE,
+                List.of("F-NOEMP-R005: la tanda subió los ejercicios con palabras rojas de A1"));
+        RecordingSink sink = new RecordingSink();
+
+        panel(proposer, storyMeter()).run(work(topic, List.of(brief("t-come", comeFinding())), null, Map.of(COME, 1),
+                List.of(returned)), settings(), allowance(null, 4), sink);
+
+        assertEquals(List.of(2, 3), proposer.requests.stream().map(PanelRequest::getAttempt).toList(), "two more attempts");
+        assertEquals(returned, proposer.requests.get(0).getPreviousRejections().get(0), "with what the batch gate said");
+        assertEquals(3, sink.only().getAttempts());
+        assertEquals(PanelOutcomeKind.NO_WINNER, sink.only().getOutcome());
     }
 
     @Test
     @DisplayName("should stop the attempts of an exercise whose candidate the two translation-sense judges disagree on, and leave it as a tie for José with both verdicts")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldStopTheAttemptsOfAnExerciseWhoseCandidateTheTwoTranslationsenseJudgesDisagreeOnAndLeaveItAsATieForJosWithBothVerdicts(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R008: the two judges of translation-sense disagree on the candidate: it is neither accepted nor rejected, it
+        // goes to José with both verdicts and no more attempts are spent.
+        KnowledgeEntity topic = afirmativas();
+        QuizTemplateEntity disputed = withTranslation(exercise(topic, VEGETABLES), "Amo un montón de verduras.");
+        RulesMeter meter = vegetablesMeter().rule("translation-sense", (t, quiz) -> quiz.getId().equals(VEGETABLES)
+                && "Amo un montón de verduras.".equals(quiz.getTranslation()) ? List.of(disagreement()) : RulesMeter.none());
+        RecordingProposer proposer = new RecordingProposer(script(VEGETABLES, proposal(candidate(PanelCandidateKind.TRANSLATION_ONLY,
+                disputed)), VEGETABLES, proposal(candidate(PanelCandidateKind.TRANSLATION_ONLY, disputed))));
+        RecordingSink sink = new RecordingSink();
+
+        panel(proposer, meter).run(work(topic, List.of(brief("t-translation", translationDiffers()))), settings(), allowance(null, 4),
+                sink);
+
+        assertEquals(1, proposer.requests.size(), "no more attempts");
+        PanelDecision decision = sink.only();
+        assertEquals(PanelOutcomeKind.TIE, decision.getOutcome());
+        assertEquals(List.of("translation-sense|judges-disagree|" + VEGETABLES), decision.getTieFindings().stream()
+                .map(f -> f.getIdentity().getKey()).toList(), "both verdicts, in the finding of the tie");
+        assertEquals(disputed, decision.getBestFailing().getQuiz(), "the candidate José decides on");
     }
 
     @Test
     @DisplayName("should hand the accepted candidate to the sink as a decision and never write the course, leaving the files of Afirmativas regulares identical byte for byte")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldHandTheAcceptedCandidateToTheSinkAsADecisionAndNeverWriteTheCourseLeavingTheFilesOfAfirmativasRegularesIdenticalByteForByte(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R009: the panel hands its decision to the sink and never writes the course: the files of the topic stay
+        // identical byte for byte.
+        KnowledgeEntity topic = afirmativas();
+        Path file = written(topic);
+        byte[] before = read(file);
+        QuizTemplateEntity fixed = withTranslation(withParts(exercise(topic, VEGETABLES), text("I"), cloze("love"),
+                text("(love) vegetables.")), "Me encantan las verduras.");
+        RecordingSink sink = new RecordingSink();
+
+        panel(new RecordingProposer(script(VEGETABLES, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, fixed)))),
+                vegetablesMeter()).run(work(topic, vegetablesTasks()), settings(), allowance(null, 4), sink);
+
+        assertEquals(PanelOutcomeKind.ACCEPTED, sink.only().getOutcome(), "the decision reached the sink");
+        assertTrue(java.util.Arrays.equals(before, read(file)), "the files are untouched");
+        assertTrue(java.util.Arrays.equals(before, json(topic)), "and the topic it received is the same, byte for byte");
     }
 
     @Test
     @DisplayName("should carry in the decision of an accepted candidate the candidate and its gate verdict, for the batch to keep it as a pending proposal with its artifact")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R009")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldCarryInTheDecisionOfAnAcceptedCandidateTheCandidateAndItsGateVerdictForTheBatchToKeepItAsAPendingProposalWithItsArtifact(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R009: the decision of an accepted candidate carries it and its gate verdict; the batch keeps them as a pending
+        // proposal with its artifact.
+        KnowledgeEntity topic = afirmativas();
+        PanelCandidate winter = candidate(PanelCandidateKind.WHOLE_EXERCISE, winter(topic));
+        RecordingSink sink = new RecordingSink();
+
+        panel(new RecordingProposer(script(COME, proposal(winter))), storyMeter()).run(work(topic, List.of(brief("t-come",
+                comeFinding()))), settings(), allowance(null, 4), sink);
+
+        PanelDecision decision = sink.only();
+        assertEquals(winter, decision.getAccepted());
+        assertNotNull(decision.getAcceptedVerdict());
+        assertTrue(decision.getAcceptedVerdict().isPasses());
+        assertEquals(List.of(COME), decision.getQuizIds());
+        assertEquals(List.of("t-come"), decision.getTaskIds());
     }
 
     @Test
     @DisplayName("should resolve the mini-theory of «Contraste inicial» before the candidates of its exercises, which then see the new text")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R012")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldResolveTheMinitheoryOfContrasteInicialBeforeTheCandidatesOfItsExercisesWhichThenSeeTheNewText(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R012: the mini theory goes first; the candidate of an exercise of the topic then sees the new text.
+        KnowledgeEntity topic = contraste();
+        String first = stateVerbExercises().get(1);
+        Finding single = finding("single-answer", "different-valid-answer", first, FindingSeverity.BLOCKING,
+                FindingResolution.PANEL, null, "«loves» también encaja");
+        RecordingProposer proposer = new RecordingProposer(script(CONTRASTE, proposal(new PanelCandidate(PanelCandidateKind.MINI_THEORY,
+                null, NEW_STATE_VERBS, null, "más clara"))));
+        RulesMeter meter = miniTheoryMeter().rule("single-answer", (t, quiz) -> quiz.getId().equals(first)
+                ? List.of(single) : RulesMeter.none());
+
+        panel(proposer, meter).run(work(topic, List.of(brief("t-single", single), topicBrief("t-mini", miniTheoryFinding(),
+                stateVerbExercises()))), settings(), allowance(null, 4), new RecordingSink());
+
+        assertNull(proposer.requests.get(0).getQuizId(), "the mini theory first");
+        assertEquals(first, proposer.requests.get(1).getQuizId(), "then the exercise");
+        assertEquals(NEW_STATE_VERBS, proposer.requests.get(1).getTopicView().get(1).getMiniTheory(), "which sees the new text");
     }
 
     @Test
     @DisplayName("should deliver, for the order to pass «Contracciones» to multiple choice, one candidate per exercise of the topic and the instructions of the topic rewritten once")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R015")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldDeliverForTheOrderToPassContraccionesToMultipleChoiceOneCandidatePerExerciseOfTheTopicAndTheInstructionsOfTheTopicRewrittenOnce(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R015: with José's order, every exercise of «Contracciones» gets its multiple choice, and the instructions of the
+        // topic are rewritten once.
+        KnowledgeEntity topic = contracciones();
+        List<QuizTemplateEntity> quizzes = topic.getQuizTemplates();
+        RecordingSink sink = new RecordingSink();
+        RecordingProposer proposer = new RecordingProposer(script(
+                quizzes.get(0).getId(), proposal(conversion(quizzes.get(0), "don't", "doesn't", "aren't")),
+                quizzes.get(1).getId(), proposal(conversion(quizzes.get(1), "'s not", "aren't", "don't")),
+                quizzes.get(2).getId(), proposal(conversion(quizzes.get(2), "don't", "doesn't", "isn't"))));
+
+        panel(proposer, new RulesMeter()).run(work(topic, List.of(), new ConversionOrder(CONTRACCIONES, FormKind.MULTIPLE_CHOICE, 3),
+                Map.of(), List.of()), settings(), allowance(null, 4), sink);
+
+        assertEquals(List.of(PanelOutcomeKind.ACCEPTED, PanelOutcomeKind.ACCEPTED, PanelOutcomeKind.ACCEPTED),
+                sink.decisions.stream().map(PanelDecision::getOutcome).toList(), "one per exercise of the topic");
+        assertEquals(1, sink.decisions.stream().filter(d -> d.getAccepted().getTopicInstructions() != null).count(),
+                "the instructions of the topic, once");
+        assertEquals("Elige la opción correcta para completar cada oración.", sink.decisions.get(0).getAccepted().getTopicInstructions());
     }
 
     @Test
     @DisplayName("should leave as it was, for the tray without winner, an exercise of «Contracciones» whose conversion no candidate passed")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R015")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldLeaveAsItWasForTheTrayWithoutWinnerAnExerciseOfContraccionesWhoseConversionNoCandidatePassed(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R015: «She ___ (is not) very happy.» gets «isn't» next to the correct «'s not» on every attempt: it stays as it
+        // was and goes to the tray without a winner.
+        KnowledgeEntity topic = contracciones();
+        QuizTemplateEntity she = topic.getQuizTemplates().get(1);
+        PanelCandidate wrong = conversion(she, "'s not", "isn't", "don't");
+        RecordingSink sink = new RecordingSink();
+
+        panel(new RecordingProposer(script(she.getId(), proposal(wrong), she.getId(), proposal(wrong), she.getId(), proposal(wrong))),
+                new RulesMeter()).run(work(topic, List.of(), new ConversionOrder(CONTRACCIONES, FormKind.MULTIPLE_CHOICE, 3), Map.of(),
+                List.of()), settings(), allowance(null, 4), sink);
+
+        PanelDecision decision = sink.decisions.stream().filter(d -> d.getQuizIds().contains(she.getId())).findFirst().orElseThrow();
+        assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
+        assertNull(decision.getAccepted(), "it stays as it was");
+        assertEquals(3, decision.getAttempts());
+        assertTrue(String.join(" ", decision.getRejections().get(0).getReasons()).contains("«isn't» es la correcta «'s not» en otra forma"),
+                decision.getRejections().get(0).getReasons().toString());
     }
 
     @Test
     @DisplayName("should end as no declared scope, without asking any candidate nor spending an attempt, a task whose analyzer declares no edit scope")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R005")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-TANDA sin implementar")
     public void shouldEndAsNoDeclaredScopeWithoutAskingAnyCandidateNorSpendingAnAttemptATaskWhoseAnalyzerDeclaresNoEditScope(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-TAREA-R006 through F-TANDA-R005: a task whose analyzer declares no edit scope is never attempted.
+        KnowledgeEntity topic = afirmativas();
+        Finding unknown = finding("naturalness", "unnatural", VEGETABLES, FindingSeverity.MEDIUM, FindingResolution.PANEL, null,
+                "no suena natural");
+        RecordingProposer proposer = new RecordingProposer(Map.of());
+        RecordingSink sink = new RecordingSink();
+
+        panel(proposer, vegetablesMeter()).run(work(topic, List.of(brief("t-natural", unknown, List.of()))), settings(),
+                allowance(null, 4), sink);
+
+        assertTrue(proposer.requests.isEmpty(), "no candidate");
+        assertEquals(PanelOutcomeKind.NO_DECLARED_SCOPE, sink.only().getOutcome());
+        assertEquals(0, sink.only().getAttempts(), "no attempt");
+    }
+
+
+    /** The exercises of the topic written as the course keeps them, in a file of a directory of its own. */
+    static Path written(KnowledgeEntity topic) {
+        try {
+            Path file = Files.createTempDirectory("afirmativas").resolve("quizzes.json");
+            Files.write(file, json(topic));
+            return file;
+        } catch (java.io.IOException e) {
+            throw new java.io.UncheckedIOException(e);
+        }
+    }
+
+    static byte[] read(Path file) {
+        try {
+            return Files.readAllBytes(file);
+        } catch (java.io.IOException e) {
+            throw new java.io.UncheckedIOException(e);
+        }
+    }
+
+    static byte[] json(KnowledgeEntity topic) {
+        try {
+            return new ObjectMapper().writeValueAsBytes(topic.getQuizTemplates());
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    private static final String NEW_STATE_VERBS = "Los verbos de estado (like, love, want) dicen cómo es algo, no lo que"
+            + " pasa ahora: van en presente simple.";
+
+    /** The three tasks of «I ___ a lot of vegetables.» at the panel: the hint, the single answer and the translation. */
+    static List<ErrorTaskBrief> vegetablesTasks() {
+        return List.of(brief("t-hint", missingHint(), scopeFor("hint-coherence")), brief("t-single", anotherAnswer()),
+                brief("t-translation", translationDiffers()));
+    }
+
+    static List<ExercisePart> scopeFor(String analyzer) {
+        return corrections().find(analyzer).orElseThrow().editScope(FindingResolution.PANEL);
+    }
+
+    static List<String> taskIdsOf(List<ErrorTaskBrief> briefs) {
+        return briefs.stream().map(b -> b.getTask().getId()).toList();
+    }
+
+    static void replace(KnowledgeEntity topic, QuizTemplateEntity quiz) {
+        List<QuizTemplateEntity> quizzes = topic.getQuizTemplates();
+        for (int i = 0; i < quizzes.size(); i++) {
+            if (quizzes.get(i).getId().equals(quiz.getId())) {
+                quizzes.set(i, quiz);
+            }
+        }
+    }
+
+    /** «He ___ (come) every year.»: another answer fits, «'s coming». */
+    static Finding comeFinding() {
+        return finding("single-answer", "different-valid-answer", COME, FindingSeverity.BLOCKING, FindingResolution.PANEL,
+                null, "«'s coming» también encaja");
+    }
+
+    static QuizTemplateEntity grandmother(KnowledgeEntity topic) {
+        return withTranslation(withParts(exercise(topic, COME), text("My grandmother"), cloze("comes"),
+                text("(come) every year.")), "Mi abuela viene cada año.");
+    }
+
+    static QuizTemplateEntity winter(KnowledgeEntity topic) {
+        return withTranslation(withParts(exercise(topic, COME), text("Winter"), cloze("comes"), text("(come) every year.")),
+                "El invierno llega cada año.");
+    }
+
+    /** The vegetables and «He ___ (come) every year.»: single-answer marks it while «He» opens it; grandmother is A2. */
+    static RulesMeter storyMeter() {
+        return vegetablesMeter()
+                .rule("single-answer", (t, quiz) -> quiz.getId().equals(COME) && stored(quiz).startsWith("He ")
+                        ? List.of(comeFinding()) : RulesMeter.none())
+                .redWord(quiz -> stored(quiz).contains("grandmother")
+                        ? List.of(new RedWord(quiz.getId(), "grandmother", CefrLevel.A2, false, stored(quiz)))
+                        : List.of());
+    }
+
+    static Finding miniTheoryFinding() {
+        return topicFinding("mini-theory", "explains-the-lesson", CONTRASTE, FindingSeverity.HIGH, null,
+                "la miniteoría no explica por qué los verbos de estado no van en -ing");
+    }
+
+    /** mini-theory marks the topic while its nine exercises show the old text of the state verbs. */
+    static RulesMeter miniTheoryMeter() {
+        return new RulesMeter().rule("mini-theory", (topic, quiz) -> quiz.getId().equals(stateVerbExercises().get(0))
+                && STATE_VERBS.equals(quiz.getMiniTheory()) ? List.of(miniTheoryFinding()) : RulesMeter.none());
+    }
+
+    static Finding disagreement() {
+        return finding("translation-sense", "judges-disagree", VEGETABLES, FindingSeverity.MEDIUM, FindingResolution.PANEL,
+                null, "un juez dice que sí y el otro que no");
     }
 }

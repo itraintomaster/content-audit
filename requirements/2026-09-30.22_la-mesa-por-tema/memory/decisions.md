@@ -5,6 +5,29 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — La traducción sigue al inglés: si las tareas de un ejercicio permiten cambiar el enunciado o las
+  respuestas, el filtro permite también la traducción, aunque la declaración del analizador no la nombre.
+  why: «He» → «Winter» con la traducción vieja la marca translation-sense como error nuevo; sin esto ningún candidato de
+  una sola respuesta podía pasar la compuerta. Es la misma razón por la que el audio sigue al ejercicio.
+
+2026-10-01 — developer — Lo que lee cada analizador (R002) es una tabla en `AnalyzerReads`, en las partes de FEAT-TAREA,
+  sacada del «Lee» de cada ficha; un analizador que la tabla no conoce se mide siempre. La medición del original y la de
+  cada candidato usan el mismo conjunto, así la compuerta compara igual con igual.
+  why: la ficha trae «Lee» como texto libre y la declaración de corrección dice qué toca el arreglo, no qué lee.
+
+2026-10-01 — developer — El medidor paga de a una consulta: una corrida con presupuesto 0 dice qué falta (lo grabado por
+  huella no cuesta) y después, juez por juez, turno en el cupo, corrida con presupuesto 1, liquidación con lo que dice
+  la cobertura (`evaluatedInRun`). Un juez sin examen aprobado no se consulta; uno que gasta 0 con motivo de falla corta
+  el cupo. Quien propone también toma turno (1 consulta por pedido). El cupo se corta solo al llegar al tope sin nada en
+  curso; el constructor con tope y C espera el parche del arquitecto (hoy `limitTo`, que llama la fábrica).
+  why: R010 (N y C) y F-TANDA-R003 (tope) con un solo cupo, sin que la mesa sepa cuánto cuesta cada juez de antemano.
+
+2026-10-01 — developer — Desenlaces: aceptado si alguno se acepta (aunque otro empate); empate si ninguno se acepta y
+  alguno tiene la regla de desempate de su analizador; si no, sin ganador. La consigna del tema la reescribe una sola vez
+  el primer pase a opción múltiple aceptado; los siguientes llegan sin ella. Un candidato que cambia las partes sin
+  rearmar la oración guardada la pierde, y la medición la arma desde las partes.
+  why: R006 a R008 y R015; que José no tenga que desempatar lo que ya tiene ganador.
+
 2026-10-01 — qa-tester — Sin cambios de parche por el audio (orquestador, 1/10): la mesa nunca recibe la tarea de un audio
   pendiente de regrabar (F-TANDA-R012). Lo de F-TAREA-R006 en DefaultTopicPanel se prueba con F-TANDA-R005.
   why: las 7 diferencias de audio de hoy (F-DATOS-R003) tienen el ejercicio mal; siguen en la mesa, que juzga el ejercicio.

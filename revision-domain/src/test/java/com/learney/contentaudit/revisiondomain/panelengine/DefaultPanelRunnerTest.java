@@ -1,7 +1,31 @@
 package com.learney.contentaudit.revisiondomain.panelengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
+import com.learney.contentaudit.revisiondomain.panel.PanelDecisionSink;
+import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelProposal;
+import com.learney.contentaudit.revisiondomain.panel.PanelRunSettings;
+import com.learney.contentaudit.revisiondomain.panel.PanelTopicResult;
+import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
+import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,38 +39,195 @@ public class DefaultPanelRunnerTest {
     @DisplayName("should never open two panels on the same topic at once")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R001")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldNeverOpenTwoPanelsOnTheSameTopicAtOnce() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R001 inv. 3: the same topic twice in a batch run never has two panels open at once; the second runs after the
+        // first, in its lane.
+        CountingPanel panel = new CountingPanel(null, 30);
+        List<TopicWork> works = List.of(emptyWork("tema-a"), emptyWork("tema-b"), emptyWork("tema-a"), emptyWork("tema-c"),
+                emptyWork("tema-a"));
+
+        List<PanelTopicResult> results = new DefaultPanelRunner(panel).runTopics(works, new PanelRunSettings(4, 4, 3, List.of()),
+                allowance(null, 4), new RecordingSink());
+
+        assertEquals(1, panel.maxOpenOf("tema-a"), "never two panels on the same topic");
+        assertEquals(5, results.size(), "one result per work, in its order");
+        assertEquals(List.of("tema-a", "tema-b", "tema-a", "tema-c", "tema-a"), results.stream().map(PanelTopicResult::getKnowledgeId)
+                .toList());
     }
 
     @Test
     @DisplayName("should never keep more than N topics open nor more than C queries in flight, with 4 and 4 when nothing else is asked")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldNeverKeepMoreThanNTopicsOpenNorMoreThanCQueriesInFlightWith4And4WhenNothingElseIsAsked(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R010 inv. 1 and 4: with nothing asked, at most 4 topics open and 4 queries in flight; asked 4 topics and 2
+        // queries, the panels wait their turn and never more than 2 queries are in flight.
+        CountingPanel idle = new CountingPanel(null, 40);
+        List<TopicWork> eight = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            eight.add(emptyWork("tema-" + i));
+        }
+        new DefaultPanelRunner(idle).runTopics(eight, new PanelRunSettings(0, 0, 0, List.of()), new DefaultPanelRunnerFactory()
+                .allowance(null, 0), new RecordingSink());
+
+        RulesMeter meter = translationJudge();
+        meter.latencyMillis = 15;
+        CountingPanel panels = new CountingPanel(panel(new RecordingProposer(translationScript(6)), meter), 0);
+        new DefaultPanelRunner(panels).runTopics(translationTopics(6), new PanelRunSettings(4, 2, 3, List.of("translation-sense")),
+                allowance(null, 2), new RecordingSink());
+
+        assertTrue(idle.maxOpen.get() <= 4, "at most 4 topics open by default: " + idle.maxOpen.get());
+        assertTrue(idle.maxOpen.get() > 1, "they do run at once: " + idle.maxOpen.get());
+        assertTrue(panels.maxOpen.get() <= 4, "at most N topics open: " + panels.maxOpen.get());
+        assertTrue(meter.maxInFlight.get() <= 2, "at most C queries in flight: " + meter.maxInFlight.get());
+        assertEquals(12, meter.consultations.get(), "each topic judged before and after its candidate");
     }
 
     @Test
     @DisplayName("should start no query after a service failure, keep the answers of the queries in flight and leave the exercises without decision as not attempted, without spending attempts")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldStartNoQueryAfterAServiceFailureKeepTheAnswersOfTheQueriesInFlightAndLeaveTheExercisesWithoutDecisionAsNotAttemptedWithoutSpendingAttempts(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R010 inv. 2: the service fails on the third query. The first topic was already decided and keeps its answers;
+        // no query starts after the failure, and the exercises without a decision stay not attempted, with no attempt spent.
+        RulesMeter meter = translationJudge();
+        meter.failAt = 3;
+        QueryAllowance allowance = allowance(null, 1);
+        RecordingSink sink = new RecordingSink();
+
+        new DefaultPanelRunner(panel(new RecordingProposer(translationScript(4)), meter)).runTopics(translationTopics(4),
+                new PanelRunSettings(1, 1, 3, List.of("translation-sense")), allowance, sink);
+
+        assertEquals(3, meter.consultations.get(), "no query after the failure");
+        assertEquals("el servicio del modelo no responde", allowance.tripped().orElseThrow());
+        assertEquals(PanelOutcomeKind.ACCEPTED, sink.decisions.get(0).getOutcome(), "what was decided stays");
+        assertEquals(List.of(PanelOutcomeKind.NOT_ATTEMPTED, PanelOutcomeKind.NOT_ATTEMPTED, PanelOutcomeKind.NOT_ATTEMPTED),
+                sink.decisions.subList(1, sink.decisions.size()).stream().map(PanelDecision::getOutcome).toList());
+        assertTrue(sink.decisions.subList(1, sink.decisions.size()).stream().allMatch(d -> d.getAttempts() == 0),
+                "no attempt spent");
     }
 
     @Test
     @DisplayName("should make the same decisions with 1 and 1, 4 and 4, and 8 and 8 topics and queries at once for the same candidates and verdicts")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R010")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldMakeTheSameDecisionsWith1And14And4And8And8TopicsAndQueriesAtOnceForTheSameCandidatesAndVerdicts(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R010 inv. 3: the same candidates and verdicts give the same decisions with 1 and 1, 4 and 4, and 8 and 8.
+        Map<Integer, List<String>> decisions = new LinkedHashMap<>();
+        for (int atOnce : List.of(1, 4, 8)) {
+            RulesMeter meter = translationJudge();
+            meter.latencyMillis = 2;
+            RecordingSink sink = new RecordingSink();
+            new DefaultPanelRunner(panel(new RecordingProposer(translationScript(8)), meter)).runTopics(translationTopics(8),
+                    new PanelRunSettings(atOnce, atOnce, 3, List.of("translation-sense")), allowance(null, atOnce), sink);
+            decisions.put(atOnce, sink.decisions.stream().map(d -> d.getKnowledgeId() + " " + d.getQuizIds() + " " + d.getOutcome()
+                    + " " + d.getAttempts() + " " + (d.getAccepted() != null ? d.getAccepted().getQuiz().getTranslation() : "-"))
+                    .sorted().toList());
+        }
+
+        assertEquals(8, decisions.get(1).size());
+        assertEquals(decisions.get(1), decisions.get(4), "4 and 4");
+        assertEquals(decisions.get(1), decisions.get(8), "8 and 8");
+        assertTrue(decisions.get(1).stream().anyMatch(d -> d.contains("NO_WINNER")), "rejections included: " + decisions.get(1));
+    }
+
+
+    /** A topic panel that counts how many are open, by topic and in all, and does nothing else (or the given one). */
+    static final class CountingPanel implements TopicPanel {
+        private final TopicPanel delegate;
+
+        private final long millis;
+
+        final AtomicInteger open = new AtomicInteger();
+
+        final AtomicInteger maxOpen = new AtomicInteger();
+
+        private final Map<String, AtomicInteger> openByTopic = new ConcurrentHashMap<>();
+
+        private final Map<String, AtomicInteger> maxByTopic = new ConcurrentHashMap<>();
+
+        CountingPanel(TopicPanel delegate, long millis) {
+            this.delegate = delegate;
+            this.millis = millis;
+        }
+
+        int maxOpenOf(String topic) {
+            return maxByTopic.getOrDefault(topic, new AtomicInteger()).get();
+        }
+
+        @Override
+        public PanelTopicResult run(TopicWork work, PanelRunSettings settings, QueryAllowance allowance,
+                PanelDecisionSink sink) {
+            String topic = work.getKnowledge().getId();
+            maxOpen.accumulateAndGet(open.incrementAndGet(), Math::max);
+            int mine = openByTopic.computeIfAbsent(topic, t -> new AtomicInteger()).incrementAndGet();
+            maxByTopic.computeIfAbsent(topic, t -> new AtomicInteger()).accumulateAndGet(mine, Math::max);
+            try {
+                if (millis > 0) {
+                    Thread.sleep(millis);
+                }
+                return delegate != null ? delegate.run(work, settings, allowance, sink)
+                        : new PanelTopicResult(topic, new ArrayList<>(), 0, false);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new IllegalStateException(e);
+            } finally {
+                openByTopic.get(topic).decrementAndGet();
+                open.decrementAndGet();
+            }
+        }
+
+        @Override
+        public PanelDecision assess(TopicWork work, String quizId, PanelCandidate candidate, PanelRunSettings settings,
+                QueryAllowance allowance) {
+            return delegate.assess(work, quizId, candidate, settings, allowance);
+        }
+    }
+
+    static TopicWork emptyWork(String topicId) {
+        return work(topic(topicId, topicId, new ArrayList<>()), List.of());
+    }
+
+    static String quizOf(int i) {
+        return String.format("67fab6d5993010229535%04x", i);
+    }
+
+    /** n topics of one exercise each, whose translation does not say what the English says. */
+    static List<TopicWork> translationTopics(int n) {
+        List<TopicWork> works = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            QuizTemplateEntity quiz = quiz(quizOf(i), "Me gustan mucho las cosas " + i + ".", text("I"), cloze("love"),
+                    text("(love) thing " + i + "."));
+            KnowledgeEntity topic = topic(String.format("6814dafa7d73e7209a14%04x", i), "Tema " + i, List.of(quiz));
+            works.add(work(topic, List.of(brief("t-" + i, wrongTranslation(i)))));
+        }
+        return works;
+    }
+
+    static Finding wrongTranslation(int i) {
+        return finding("translation-sense", "same-meaning", quizOf(i), FindingSeverity.HIGH, FindingResolution.PANEL, null,
+                "no dice lo mismo");
+    }
+
+    /** translation-sense, a judge: it marks the exercise while its translation says «Me gustan mucho…». */
+    static RulesMeter translationJudge() {
+        return new RulesMeter().judge("translation-sense", (topic, quiz) -> quiz.getTranslation() != null
+                && quiz.getTranslation().startsWith("Me gustan mucho") ? List.of(wrongTranslation(
+                Integer.parseInt(quiz.getId().substring(20), 16))) : RulesMeter.none());
+    }
+
+    /** One candidate per topic; the third of every three keeps the wrong translation and is rejected. */
+    static Map<String, List<PanelProposal>> translationScript(int n) {
+        Map<String, List<PanelProposal>> script = new LinkedHashMap<>();
+        for (int i = 0; i < n; i++) {
+            QuizTemplateEntity quiz = translationTopics(n).get(i).getKnowledge().getQuizTemplates().get(0);
+            String translation = i % 3 == 2 ? "Me gustan mucho las cosas " + i + " de verdad." : "Me encantan las cosas " + i + ".";
+            PanelProposal proposal = proposal(candidate(PanelCandidateKind.TRANSLATION_ONLY, withTranslation(quiz, translation)));
+            script.put(quiz.getId(), List.of(proposal, proposal, proposal));
+        }
+        return script;
     }
 }

@@ -4,6 +4,12 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer — El motor de la mesa implementado (`DefaultTopicPanel`, `DefaultPanelRunner`, `CatalogTopicMeter`,
+  `DefaultCandidateScreen`, `DefaultPanelDecisionScript`, `CappedQueryAllowance`, `ScriptedPanelProposer`, la fábrica) con
+  54 pruebas en verde (20 + 4 + 10 + 6 + 8 + 2 y F-MESA-J001 con sus 4 caminos), sin ninguna consulta a un modelo: proponen
+  `ScriptedPanelProposer` y los jueces son de mentira (`MesaFixture.RulesMeter`) o con libro de veredictos sobre el motor
+  real (`MeterBench`). Next: el agente que propone (revision-infrastructure) y las tres de R014.
+
 2026-10-01 — qa-tester — `patch propose` (fusión): 55 handwrittenTests (R001 4, R002 4, R003 6, R004 3, R005 5, R006 5,
   R007 3, R008 2, R009 2, R010 6, R011 3, R012 2, R013 2, R014 3, R015 5) y F-MESA-J001 en revision-domain, paquete
   panelengine. Los cuatro patrones de revision-domain intactos. `tech-spec write` y `patch validate -i` contra M11 del

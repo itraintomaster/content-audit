@@ -1,7 +1,28 @@
 package com.learney.contentaudit.revisiondomain.panelengine;
 
+import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
+import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
+import com.learney.contentaudit.revisiondomain.nonregression.ChangeProbe;
+import com.learney.contentaudit.revisiondomain.nonregression.LengthDeclaration;
+import com.learney.contentaudit.revisiondomain.nonregression.RedWord;
+import com.learney.contentaudit.revisiondomain.nonregression.SpokenText;
+import com.learney.contentaudit.revisiondomain.nonregression.UnitMeasurement;
+import com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
+import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,75 +36,202 @@ public class DefaultPanelDecisionScriptTest {
     @DisplayName("should accept «Winter ___ (come) every year.» because it solves its task and the change gate passes")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldAcceptWinterComeEveryYearBecauseItSolvesItsTaskAndTheChangeGatePasses() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R006: «Winter ___ (come) every year.» solves the single-answer task of «He ___ (come) every year.» and worsens
+        // nothing: accepted.
+        UnitMeasurement original = measured(List.of(come()), List.of(), "He comes every year.", true);
+        ScoredCandidate winter = scored("winter", measured(List.of(), List.of(), "Winter comes every year.", true), original);
+
+        ScriptDecision decision = script().decide(List.of(comeTask()), original, List.of(winter));
+
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(0, decision.getWinnerIndex());
+        assertEquals(List.of("t-come"), decision.getResolvedTaskIds());
     }
 
     @Test
     @DisplayName("should reject a candidate that solves no task of the exercise even if it worsens nothing")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRejectACandidateThatSolvesNoTaskOfTheExerciseEvenIfItWorsensNothing() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R006 inv. 1: a candidate that worsens nothing but solves nothing is not accepted.
+        UnitMeasurement original = measured(List.of(come()), List.of(), "He comes every year.", true);
+        ScoredCandidate same = scored("same", measured(List.of(come()), List.of(), "He comes every year.", true), original);
+
+        ScriptDecision decision = script().decide(List.of(comeTask()), original, List.of(same));
+
+        assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
+        assertEquals(-1, decision.getWinnerIndex());
+        assertTrue(same.getGate().isPasses(), "it worsens nothing");
+        assertTrue(decision.getReasons().get(0).endsWith("no resuelve ninguna tarea del ejercicio"), decision.getReasons().toString());
     }
 
     @Test
     @DisplayName("should reject «My grandmother ___ (come) every year.», which solves its task but adds grandmother (A2)")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRejectMyGrandmotherComeEveryYearWhichSolvesItsTaskButAddsGrandmotherA2() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R006 inv. 2: «My grandmother ___ (come) every year.» solves its task but adds grandmother (A2), a red word.
+        UnitMeasurement original = measured(List.of(come()), List.of(), "He comes every year.", true);
+        RedWord grandmother = new RedWord(COME, "grandmother", CefrLevel.A2, false, "My grandmother comes every year.");
+        ScoredCandidate candidate = scored("grandmother", measured(List.of(), List.of(grandmother),
+                "My grandmother comes every year.", true), original);
+
+        ScriptDecision decision = script().decide(List.of(comeTask()), original, List.of(candidate));
+
+        assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
+        assertTrue(decision.getReasons().get(0).contains("F-NOEMP-R002: «grandmother» (A2) es una palabra roja nueva"),
+                decision.getReasons().toString());
     }
 
     @Test
     @DisplayName("should pick among the accepted candidates the one that leaves fewer findings by severity, then the one that does not change what is heard, then the one within the length range, then the first")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldPickAmongTheAcceptedCandidatesTheOneThatLeavesFewerFindingsBySeverityThenTheOneThatDoesNotChangeWhatIsHeardThenTheOneWithinTheLengthRangeThenTheFirst(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R006: five candidates solve the task and worsen nothing. The first leaves a low finding; the second changes what
+        // is heard; the third is out of the length range; the fourth and fifth are equal: the fourth wins, the first of them.
+        UnitMeasurement original = measured(List.of(come(), low()), List.of(), "He comes every year.", true);
+        List<ScoredCandidate> candidates = List.of(
+                scored("low", measured(List.of(low()), List.of(), "He comes every year.", true), original),
+                scored("heard", measured(List.of(), List.of(), "Winter comes every year.", true), original),
+                scored("long", measured(List.of(), List.of(), "He comes every year.", false), original),
+                scored("best", measured(List.of(), List.of(), "He comes every year.", true), original),
+                scored("twin", measured(List.of(), List.of(), "He comes every year.", true), original));
+
+        ScriptDecision decision = script().decide(List.of(comeTask(), lowTask()), original, candidates);
+
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(3, decision.getWinnerIndex(), decision.getReasons().toString());
+        assertFalse(candidates.get(1).getGate().getRerecords().isEmpty(), "the second changes what is heard");
     }
 
     @Test
     @DisplayName("should give the same decision and the same reasons for the same measurements and verdicts")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R006")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldGiveTheSameDecisionAndTheSameReasonsForTheSameMeasurementsAndVerdicts() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R006: the same measurements and verdicts give the same decision with the same reasons.
+        UnitMeasurement original = measured(List.of(come()), List.of(), "He comes every year.", true);
+        List<ScoredCandidate> candidates = List.of(
+                scored("grandmother", measured(List.of(), List.of(new RedWord(COME, "grandmother", CefrLevel.A2, false, "s")),
+                        "My grandmother comes every year.", true), original),
+                scored("winter", measured(List.of(), List.of(), "Winter comes every year.", true), original));
+
+        ScriptDecision first = script().decide(List.of(comeTask()), original, candidates);
+        ScriptDecision second = script().decide(List.of(comeTask()), original, candidates);
+
+        assertEquals(first.getOutcome(), second.getOutcome());
+        assertEquals(first.getWinnerIndex(), second.getWinnerIndex());
+        assertEquals(first.getReasons(), second.getReasons());
+        assertEquals(1, first.getWinnerIndex());
     }
 
     @Test
     @DisplayName("should decide a tie, neither accepting nor rejecting, when the two translation-sense judges disagree on the candidate, with both verdicts as its findings")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R008")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldDecideATieNeitherAcceptingNorRejectingWhenTheTwoTranslationsenseJudgesDisagreeOnTheCandidateWithBothVerdictsAsItsFindings(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R008: the two judges of translation-sense disagree on the candidate: a tie for José, with the finding that
+        // carries both verdicts.
+        UnitMeasurement original = measured(List.of(translationDiffers()), List.of(), "I love a lot of vegetables.", true);
+        Finding disagree = finding("translation-sense", "judges-disagree", VEGETABLES, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, null, "desde el inglés: no; desde la traducción: sí");
+        ScoredCandidate candidate = scored("disputed", measured(List.of(disagree), List.of(), "I love a lot of vegetables.", true),
+                original);
+
+        ScriptDecision decision = script().decide(List.of(brief("t-translation", translationDiffers())), original, List.of(candidate));
+
+        assertEquals(PanelOutcomeKind.TIE, decision.getOutcome());
+        assertEquals(-1, decision.getWinnerIndex(), "neither accepted");
+        assertEquals(List.of(disagree), decision.getTieFindings(), "both verdicts in its finding");
     }
 
     @Test
     @DisplayName("should reject the translation-only candidate of «I ___ a lot of vegetables.» that translation-sense finds unnatural and accept the one that changes the English, which asks to rerecord")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R013")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRejectTheTranslationonlyCandidateOfIALotOfVegetablesThatTranslationsenseFindsUnnaturalAndAcceptTheOneThatChangesTheEnglishWhichAsksToRerecord(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R013: the translation-only fix of the vegetables does not sound natural to translation-sense, a counterexample
+        // the original did not have; the one that changes the English passes and asks to record the audio again.
+        UnitMeasurement original = measured(List.of(translationDiffers()), List.of(), "I love a lot of vegetables.", true);
+        Finding unnatural = finding("translation-sense", "natural", VEGETABLES, FindingSeverity.HIGH, FindingResolution.PANEL, null,
+                "«Me encantan las verduras.» no suena natural");
+        ScoredCandidate translationOnly = scored("translation", measured(List.of(unnatural), List.of(),
+                "I love a lot of vegetables.", true), original);
+        ScoredCandidate english = scored("english", measured(List.of(), List.of(), "I love vegetables.", true), original);
+
+        ScriptDecision decision = script().decide(List.of(brief("t-translation", translationDiffers())), original,
+                List.of(translationOnly, english));
+
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(1, decision.getWinnerIndex(), "the one that changes the English");
+        assertTrue(decision.getReasons().get(0).contains("F-NOEMP-R001: error nuevo de translation-sense"), decision.getReasons().toString());
+        assertEquals(List.of("I love vegetables."), english.getGate().getRerecords().get(0).getNewTexts(), "it asks to rerecord");
     }
 
     @Test
     @DisplayName("should reject a candidate for which the single-answer judge finds another answer that also fits and the original did not have")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R013")
-    @Disabled("FEAT-RONDA2: espera a E, stub de FEAT-MESA sin implementar")
     public void shouldRejectACandidateForWhichTheSingleanswerJudgeFindsAnotherAnswerThatAlsoFitsAndTheOriginalDidNotHave(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MESA-R013: the judge of one answer finds, in the candidate, another answer that also fits; the original did not have
+        // it: a counterexample that rejects the candidate.
+        UnitMeasurement original = measured(List.of(missingHint()), List.of(), "I love a lot of vegetables.", true);
+        ScoredCandidate candidate = scored("hinted", measured(List.of(anotherAnswer()), List.of(), "I love a lot of vegetables.", true),
+                original);
+
+        ScriptDecision decision = script().decide(List.of(brief("t-hint", missingHint())), original, List.of(candidate));
+
+        assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
+        assertTrue(decision.getReasons().get(0).contains("F-NOEMP-R001: error nuevo de single-answer"), decision.getReasons().toString());
+    }
+
+
+    private static DefaultPanelDecisionScript script() {
+        return new DefaultPanelDecisionScript(corrections());
+    }
+
+    private static Finding come() {
+        return finding("single-answer", "different-valid-answer", COME, FindingSeverity.BLOCKING, FindingResolution.PANEL,
+                null, "«'s coming» también encaja");
+    }
+
+    private static ErrorTaskBrief comeTask() {
+        return brief("t-come", come());
+    }
+
+    private static Finding low() {
+        return finding("data-coherence", "saved-sentence", COME, FindingSeverity.LOW, FindingResolution.PANEL, "arbol",
+                "la oración guardada no es la de hoy");
+    }
+
+    private static ErrorTaskBrief lowTask() {
+        return brief("t-low", finding("exact-duplicates", "same-exercise", COME, FindingSeverity.LOW, FindingResolution.PANEL,
+                null, "duplicado"));
+    }
+
+    /** The topic measured: its findings, its red words, what its exercise says and whether it is within its range. */
+    private static UnitMeasurement measured(List<Finding> findings, List<RedWord> red, String says, boolean inRange) {
+        String quiz = findings.isEmpty() ? COME : findings.get(0).getNode().getNodeId();
+        if (says.startsWith("I love")) {
+            quiz = VEGETABLES;
+        }
+        return new UnitMeasurement(CefrLevel.A1, new ArrayList<>(findings), new ArrayList<>(), new ArrayList<>(red),
+                new ArrayList<>(List.of(new SpokenText(quiz, audioKey(quiz), new ArrayList<>(List.of(says))))),
+                new ArrayList<>(List.of(new LengthDeclaration(quiz, inRange ? 5 : 12, 3, 8, inRange))));
+    }
+
+    /** A candidate measured and passed through the real change gate against the original. */
+    private static ScoredCandidate scored(String name, UnitMeasurement after, UnitMeasurement original) {
+        String quiz = after.getSpokenTexts().get(0).getQuizId();
+        ChangeGateVerdict gate = new DefaultGateFactory().changeGate().check(new ChangeProbe(List.of(quiz), false, original,
+                after, new ArrayList<>()));
+        PanelCandidate candidate = new PanelCandidate(PanelCandidateKind.WHOLE_EXERCISE, null, null, null, name);
+        return new ScoredCandidate(candidate, after, gate, new ArrayList<>());
     }
 }
