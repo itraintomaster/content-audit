@@ -5,6 +5,15 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — developer (impl A) — Formas falsas del generador que daban hallazgos de más: «let isn't», «are I not», «has supposed»,
+  «is ever watched», «would already eaten», «which's», «they've» después de un auxiliar invertido, «'s john not there?». Un salteo
+  demasiado ancho para las preguntas negativas bajó el examen de 123 a 113 de 128; se acotó a la negación seguida de un sintagma
+  nominal («Isn't John there?») y volvió a 123.
+  why: medir contra escribir después de cada ajuste; el salteo ancho tapaba formas que sí faltan.
+
+2026-09-30 — developer (impl A) — El hueco se compara con el texto de al lado (las partes TEXT vecinas, como contextOf de
+  evaluation_cloze.go): sin eso «'s» no se lee como «It's» y el corrector nuevo parecía rechazar «is».
+
 2026-09-30 — qa-tester — Para sumar una prueba después del primer propose sin duplicar la descripción (PatchMerger la concatena con «; »), se restauró el parche del arquitecto con `git checkout --` y se volvió a proponer entero: quedó byte a byte igual al ensayo.
 
 2026-09-30 — architect — `patch propose` rechaza `implements: [AnalyzerProvider]` porque el puerto es de 0.3 y no está en sentinel.yaml

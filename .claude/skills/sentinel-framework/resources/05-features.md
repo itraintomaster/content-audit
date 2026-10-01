@@ -1590,7 +1590,8 @@ pedidos, la UI tendría que inventar nombres, oraciones y conteos, que es lo que
 ### FEAT-PISTA: Pista coherente - la pista anuncia lo que el alumno tiene que escribir [F-PISTA]
 
 > **Qué**: Un analizador de la familia de errores compara la pista de cada ejercicio con su respuesta —el verbo, el
-sujeto y la negación— y marca los ejercicios sin pista en un tema donde tres cuartos o más la llevan.
+sujeto y la negación—, marca las reescrituras que piden palabras que nada anuncia y marca los ejercicios sin pista en
+un tema donde tres cuartos o más la llevan.
 
 **Por qué**: Una pista que no coincide con la respuesta hace imposible acertar: «Who ___ (I / see)?» sólo acepta «are
 you seeing». El 077 encontró 188 ejercicios imposibles y content-audit los muestra en verde.
@@ -1604,6 +1605,7 @@ you seeing». El 077 encontró 188 ejercicios imposibles y content-audit los mue
 | F-PISTA-R003 | El sujeto de la pista es el de la respuesta, y ninguno queda sin anunciar | critical | - |
 | F-PISTA-R004 | La pista lleva «not» sólo si la respuesta es negativa | major | - |
 | F-PISTA-R005 | `hint-coherence` es un analizador de errores con arreglo por regla | major | - |
+| F-PISTA-R006 | La reescritura no pide palabras que no salen de la oración de partida, la pista o la consigna | critical | - |
 
 **User Journeys:**
 
@@ -1920,4 +1922,24 @@ recurrence data available», y nadie puede ver qué palabra vuelve poco ni en qu
 **User Journeys:**
 
 - **F-RECUR-J001**: Ver qué palabras vuelven poco, en el curso y en cada nivel
+
+### FEAT-CIERRE: Cierre de la ronda 1 - lo que les falta a los jueces antes de la primera corrida paga [F-CIERRE]
+
+> **Qué**: Cierra los cuatro huecos del contrato que dejó la construcción de los jueces con modelo (paquete C):
+- la cobertura de un juez por tema no cuenta los ejercicios que abarca;
+- una consulta fallida no dice por qué;
+- dos clasificadores y un repartidor escriben el ejercicio a su manera, en vez de con la vista del alumno;
+- la configuración del juez de consigna muestra un solo tope, sin decir de qué comando es.
+
+**Por qué**: Todo esto tiene que quedar fijo antes de la primera corrida paga. Lo que se ve de un hallazgo y lo que lee el
+juez no pueden divergir. Y una falla sin causa obliga a adivinar por qué un ejercicio quedó sin evaluar después de pagar.
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-CIERRE-R001 | La cobertura de un juez cuenta también los ejercicios que abarca | critical | - |
+| F-CIERRE-R002 | Una consulta que falla dice por qué, ejercicio por ejercicio | critical | - |
+| F-CIERRE-R003 | Los clasificadores escriben el ejercicio con la misma vista que lee el juez | critical | - |
+| F-CIERRE-R004 | La configuración del juez de consigna muestra sus dos topes, cada uno con su comando | major | - |
 

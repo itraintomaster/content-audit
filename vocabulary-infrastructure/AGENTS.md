@@ -829,6 +829,7 @@ Methods:
 | kind | `EvaluationResolutionKind` |
 | payload | `String` |
 | evaluatorVersion | `String` |
+| failure | `EvaluationNotEmitted` |
 
 ### EvaluationCoverage (`record`)
 

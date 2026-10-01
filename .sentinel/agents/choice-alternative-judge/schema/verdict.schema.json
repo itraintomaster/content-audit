@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "choice-alternative-verdict.schema.json",
+  "title": "ChoiceAlternativeVerdict",
+  "description": "Veredicto canónico que emite el agente como artifact choiceAlternativeVerdict (F-MCVALE-R002, R003); lo lee JacksonChoiceAlternativeVerdictReader. Si el juez agota sus intentos, el artifact es {\"outputUnusable\": true} en vez de este objeto.",
+  "$comment": "El gate además exige que cada label sea una de las opciones de la entrada options, copiada tal cual, que no sea la correcta y que no se repita; JSON Schema no puede expresarlo.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["correctIsValid", "validAlternatives", "correctProblem", "rationale"],
+  "properties": {
+    "correctIsValid": { "type": "boolean" },
+    "validAlternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "severity", "reason"],
+        "properties": {
+          "label": { "type": "string", "minLength": 1 },
+          "severity": { "type": "string", "enum": ["HIGH", "MEDIUM"] },
+          "reason": { "type": "string", "minLength": 1, "maxLength": 400 }
+        }
+      }
+    },
+    "correctProblem": { "type": ["string", "null"], "minLength": 1, "maxLength": 400 },
+    "rationale": { "type": "string", "minLength": 1, "maxLength": 800 }
+  },
+  "if": { "required": ["correctIsValid"], "properties": { "correctIsValid": { "const": true } } },
+  "then": { "properties": { "correctProblem": { "type": "null" } } },
+  "else": { "properties": { "correctProblem": { "type": "string" } } }
+}

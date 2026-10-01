@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
 
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
@@ -37,6 +38,13 @@ class DefaultQuizInstructionScopeMatcher implements QuizInstructionScopeMatcher 
         // in the declared set decides everything; the quiz's own id is the only
         // stable name by which it can be singled out.
         Set<String> declaredSet = policy.getReevaluationSubjectIds();
+        if (policy.getPurpose() == EvaluationRunPurpose.EXAM) {
+            // F-JEXAM-R001: an exam asks only the exercises of its file; any other quiz of the
+            // photo is neither asked nor counted.
+            return declaredSet != null && declaredSet.contains(quizId(quizNode))
+                    ? QuizInstructionReevaluationDecision.EXAM_CASE
+                    : QuizInstructionReevaluationDecision.NOT_REQUESTED;
+        }
         if (declaredSet != null) {
             return declaredSet.contains(quizId(quizNode))
                     ? QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION

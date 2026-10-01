@@ -1262,6 +1262,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: FormEquivalenceClass - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.correctormatch.CorrectorRule");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: CorrectorRule - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultCorrectorMatcher - " + e.getMessage());
@@ -1490,6 +1495,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeExamVerdict");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: JudgeExamVerdict - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeQuizTally");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: JudgeQuizTally - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.auditdomain.judging.JudgeRuntime");

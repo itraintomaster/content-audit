@@ -1,0 +1,1732 @@
+{
+ "version": "2026-09-30.1",
+ "descripcion": "Tabla cerrada de formas irregulares del inglés: el pasado y el participio de los verbos irregulares, las formas de be, have y do, los comparativos y superlativos irregulares y algunos plurales irregulares. Es un dato de referencia, como el EVP: no lematiza el curso ni cambia el lematizador compartido (DOUBT-PISTA-LEMATIZADOR). La usan hint-coherence, para reconocer en la respuesta las formas de la palabra de la pista que el lematizador no reconoce (swum por swim, drunk por drink), y answer-completeness, para saber si «'s» es is o has por el participio que sigue.",
+ "como_se_lee": [
+  "verbos: la forma base, el pasado y el participio; cuando hay dos, las dos (burnt y burned).",
+  "otras: una palabra y sus formas irregulares que no son pasado ni participio (am, is y are de be; better, best y well de good; men de man).",
+  "Un participio es una palabra de alguna lista «participio»."
+ ],
+ "verbos": [
+  {
+   "base": "arise",
+   "pasado": [
+    "arose"
+   ],
+   "participio": [
+    "arisen"
+   ]
+  },
+  {
+   "base": "awake",
+   "pasado": [
+    "awoke"
+   ],
+   "participio": [
+    "awoken"
+   ]
+  },
+  {
+   "base": "be",
+   "pasado": [
+    "was",
+    "were"
+   ],
+   "participio": [
+    "been"
+   ]
+  },
+  {
+   "base": "bear",
+   "pasado": [
+    "bore"
+   ],
+   "participio": [
+    "born",
+    "borne"
+   ]
+  },
+  {
+   "base": "beat",
+   "pasado": [
+    "beat"
+   ],
+   "participio": [
+    "beaten"
+   ]
+  },
+  {
+   "base": "become",
+   "pasado": [
+    "became"
+   ],
+   "participio": [
+    "become"
+   ]
+  },
+  {
+   "base": "begin",
+   "pasado": [
+    "began"
+   ],
+   "participio": [
+    "begun"
+   ]
+  },
+  {
+   "base": "bend",
+   "pasado": [
+    "bent"
+   ],
+   "participio": [
+    "bent"
+   ]
+  },
+  {
+   "base": "bet",
+   "pasado": [
+    "bet"
+   ],
+   "participio": [
+    "bet"
+   ]
+  },
+  {
+   "base": "bid",
+   "pasado": [
+    "bid"
+   ],
+   "participio": [
+    "bid"
+   ]
+  },
+  {
+   "base": "bind",
+   "pasado": [
+    "bound"
+   ],
+   "participio": [
+    "bound"
+   ]
+  },
+  {
+   "base": "bite",
+   "pasado": [
+    "bit"
+   ],
+   "participio": [
+    "bitten"
+   ]
+  },
+  {
+   "base": "bleed",
+   "pasado": [
+    "bled"
+   ],
+   "participio": [
+    "bled"
+   ]
+  },
+  {
+   "base": "blow",
+   "pasado": [
+    "blew"
+   ],
+   "participio": [
+    "blown"
+   ]
+  },
+  {
+   "base": "break",
+   "pasado": [
+    "broke"
+   ],
+   "participio": [
+    "broken"
+   ]
+  },
+  {
+   "base": "breed",
+   "pasado": [
+    "bred"
+   ],
+   "participio": [
+    "bred"
+   ]
+  },
+  {
+   "base": "bring",
+   "pasado": [
+    "brought"
+   ],
+   "participio": [
+    "brought"
+   ]
+  },
+  {
+   "base": "broadcast",
+   "pasado": [
+    "broadcast"
+   ],
+   "participio": [
+    "broadcast"
+   ]
+  },
+  {
+   "base": "build",
+   "pasado": [
+    "built"
+   ],
+   "participio": [
+    "built"
+   ]
+  },
+  {
+   "base": "burn",
+   "pasado": [
+    "burnt",
+    "burned"
+   ],
+   "participio": [
+    "burnt",
+    "burned"
+   ]
+  },
+  {
+   "base": "burst",
+   "pasado": [
+    "burst"
+   ],
+   "participio": [
+    "burst"
+   ]
+  },
+  {
+   "base": "buy",
+   "pasado": [
+    "bought"
+   ],
+   "participio": [
+    "bought"
+   ]
+  },
+  {
+   "base": "cast",
+   "pasado": [
+    "cast"
+   ],
+   "participio": [
+    "cast"
+   ]
+  },
+  {
+   "base": "catch",
+   "pasado": [
+    "caught"
+   ],
+   "participio": [
+    "caught"
+   ]
+  },
+  {
+   "base": "choose",
+   "pasado": [
+    "chose"
+   ],
+   "participio": [
+    "chosen"
+   ]
+  },
+  {
+   "base": "cling",
+   "pasado": [
+    "clung"
+   ],
+   "participio": [
+    "clung"
+   ]
+  },
+  {
+   "base": "come",
+   "pasado": [
+    "came"
+   ],
+   "participio": [
+    "come"
+   ]
+  },
+  {
+   "base": "cost",
+   "pasado": [
+    "cost"
+   ],
+   "participio": [
+    "cost"
+   ]
+  },
+  {
+   "base": "creep",
+   "pasado": [
+    "crept"
+   ],
+   "participio": [
+    "crept"
+   ]
+  },
+  {
+   "base": "cut",
+   "pasado": [
+    "cut"
+   ],
+   "participio": [
+    "cut"
+   ]
+  },
+  {
+   "base": "deal",
+   "pasado": [
+    "dealt"
+   ],
+   "participio": [
+    "dealt"
+   ]
+  },
+  {
+   "base": "dig",
+   "pasado": [
+    "dug"
+   ],
+   "participio": [
+    "dug"
+   ]
+  },
+  {
+   "base": "dive",
+   "pasado": [
+    "dove",
+    "dived"
+   ],
+   "participio": [
+    "dived"
+   ]
+  },
+  {
+   "base": "do",
+   "pasado": [
+    "did"
+   ],
+   "participio": [
+    "done"
+   ]
+  },
+  {
+   "base": "draw",
+   "pasado": [
+    "drew"
+   ],
+   "participio": [
+    "drawn"
+   ]
+  },
+  {
+   "base": "dream",
+   "pasado": [
+    "dreamt",
+    "dreamed"
+   ],
+   "participio": [
+    "dreamt",
+    "dreamed"
+   ]
+  },
+  {
+   "base": "drink",
+   "pasado": [
+    "drank"
+   ],
+   "participio": [
+    "drunk"
+   ]
+  },
+  {
+   "base": "drive",
+   "pasado": [
+    "drove"
+   ],
+   "participio": [
+    "driven"
+   ]
+  },
+  {
+   "base": "eat",
+   "pasado": [
+    "ate"
+   ],
+   "participio": [
+    "eaten"
+   ]
+  },
+  {
+   "base": "fall",
+   "pasado": [
+    "fell"
+   ],
+   "participio": [
+    "fallen"
+   ]
+  },
+  {
+   "base": "feed",
+   "pasado": [
+    "fed"
+   ],
+   "participio": [
+    "fed"
+   ]
+  },
+  {
+   "base": "feel",
+   "pasado": [
+    "felt"
+   ],
+   "participio": [
+    "felt"
+   ]
+  },
+  {
+   "base": "fight",
+   "pasado": [
+    "fought"
+   ],
+   "participio": [
+    "fought"
+   ]
+  },
+  {
+   "base": "find",
+   "pasado": [
+    "found"
+   ],
+   "participio": [
+    "found"
+   ]
+  },
+  {
+   "base": "flee",
+   "pasado": [
+    "fled"
+   ],
+   "participio": [
+    "fled"
+   ]
+  },
+  {
+   "base": "fling",
+   "pasado": [
+    "flung"
+   ],
+   "participio": [
+    "flung"
+   ]
+  },
+  {
+   "base": "fly",
+   "pasado": [
+    "flew"
+   ],
+   "participio": [
+    "flown"
+   ]
+  },
+  {
+   "base": "forbid",
+   "pasado": [
+    "forbade"
+   ],
+   "participio": [
+    "forbidden"
+   ]
+  },
+  {
+   "base": "forecast",
+   "pasado": [
+    "forecast"
+   ],
+   "participio": [
+    "forecast"
+   ]
+  },
+  {
+   "base": "foresee",
+   "pasado": [
+    "foresaw"
+   ],
+   "participio": [
+    "foreseen"
+   ]
+  },
+  {
+   "base": "forget",
+   "pasado": [
+    "forgot"
+   ],
+   "participio": [
+    "forgotten"
+   ]
+  },
+  {
+   "base": "forgive",
+   "pasado": [
+    "forgave"
+   ],
+   "participio": [
+    "forgiven"
+   ]
+  },
+  {
+   "base": "freeze",
+   "pasado": [
+    "froze"
+   ],
+   "participio": [
+    "frozen"
+   ]
+  },
+  {
+   "base": "get",
+   "pasado": [
+    "got"
+   ],
+   "participio": [
+    "got",
+    "gotten"
+   ]
+  },
+  {
+   "base": "give",
+   "pasado": [
+    "gave"
+   ],
+   "participio": [
+    "given"
+   ]
+  },
+  {
+   "base": "go",
+   "pasado": [
+    "went"
+   ],
+   "participio": [
+    "gone"
+   ]
+  },
+  {
+   "base": "grind",
+   "pasado": [
+    "ground"
+   ],
+   "participio": [
+    "ground"
+   ]
+  },
+  {
+   "base": "grow",
+   "pasado": [
+    "grew"
+   ],
+   "participio": [
+    "grown"
+   ]
+  },
+  {
+   "base": "hang",
+   "pasado": [
+    "hung"
+   ],
+   "participio": [
+    "hung"
+   ]
+  },
+  {
+   "base": "have",
+   "pasado": [
+    "had"
+   ],
+   "participio": [
+    "had"
+   ]
+  },
+  {
+   "base": "hear",
+   "pasado": [
+    "heard"
+   ],
+   "participio": [
+    "heard"
+   ]
+  },
+  {
+   "base": "hide",
+   "pasado": [
+    "hid"
+   ],
+   "participio": [
+    "hidden"
+   ]
+  },
+  {
+   "base": "hit",
+   "pasado": [
+    "hit"
+   ],
+   "participio": [
+    "hit"
+   ]
+  },
+  {
+   "base": "hold",
+   "pasado": [
+    "held"
+   ],
+   "participio": [
+    "held"
+   ]
+  },
+  {
+   "base": "hurt",
+   "pasado": [
+    "hurt"
+   ],
+   "participio": [
+    "hurt"
+   ]
+  },
+  {
+   "base": "keep",
+   "pasado": [
+    "kept"
+   ],
+   "participio": [
+    "kept"
+   ]
+  },
+  {
+   "base": "kneel",
+   "pasado": [
+    "knelt"
+   ],
+   "participio": [
+    "knelt"
+   ]
+  },
+  {
+   "base": "know",
+   "pasado": [
+    "knew"
+   ],
+   "participio": [
+    "known"
+   ]
+  },
+  {
+   "base": "lay",
+   "pasado": [
+    "laid"
+   ],
+   "participio": [
+    "laid"
+   ]
+  },
+  {
+   "base": "lead",
+   "pasado": [
+    "led"
+   ],
+   "participio": [
+    "led"
+   ]
+  },
+  {
+   "base": "lean",
+   "pasado": [
+    "leant",
+    "leaned"
+   ],
+   "participio": [
+    "leant",
+    "leaned"
+   ]
+  },
+  {
+   "base": "leap",
+   "pasado": [
+    "leapt",
+    "leaped"
+   ],
+   "participio": [
+    "leapt",
+    "leaped"
+   ]
+  },
+  {
+   "base": "learn",
+   "pasado": [
+    "learnt",
+    "learned"
+   ],
+   "participio": [
+    "learnt",
+    "learned"
+   ]
+  },
+  {
+   "base": "leave",
+   "pasado": [
+    "left"
+   ],
+   "participio": [
+    "left"
+   ]
+  },
+  {
+   "base": "lend",
+   "pasado": [
+    "lent"
+   ],
+   "participio": [
+    "lent"
+   ]
+  },
+  {
+   "base": "let",
+   "pasado": [
+    "let"
+   ],
+   "participio": [
+    "let"
+   ]
+  },
+  {
+   "base": "lie",
+   "pasado": [
+    "lay"
+   ],
+   "participio": [
+    "lain"
+   ]
+  },
+  {
+   "base": "light",
+   "pasado": [
+    "lit"
+   ],
+   "participio": [
+    "lit"
+   ]
+  },
+  {
+   "base": "lose",
+   "pasado": [
+    "lost"
+   ],
+   "participio": [
+    "lost"
+   ]
+  },
+  {
+   "base": "make",
+   "pasado": [
+    "made"
+   ],
+   "participio": [
+    "made"
+   ]
+  },
+  {
+   "base": "mean",
+   "pasado": [
+    "meant"
+   ],
+   "participio": [
+    "meant"
+   ]
+  },
+  {
+   "base": "meet",
+   "pasado": [
+    "met"
+   ],
+   "participio": [
+    "met"
+   ]
+  },
+  {
+   "base": "mislead",
+   "pasado": [
+    "misled"
+   ],
+   "participio": [
+    "misled"
+   ]
+  },
+  {
+   "base": "mistake",
+   "pasado": [
+    "mistook"
+   ],
+   "participio": [
+    "mistaken"
+   ]
+  },
+  {
+   "base": "misunderstand",
+   "pasado": [
+    "misunderstood"
+   ],
+   "participio": [
+    "misunderstood"
+   ]
+  },
+  {
+   "base": "overcome",
+   "pasado": [
+    "overcame"
+   ],
+   "participio": [
+    "overcome"
+   ]
+  },
+  {
+   "base": "oversleep",
+   "pasado": [
+    "overslept"
+   ],
+   "participio": [
+    "overslept"
+   ]
+  },
+  {
+   "base": "overtake",
+   "pasado": [
+    "overtook"
+   ],
+   "participio": [
+    "overtaken"
+   ]
+  },
+  {
+   "base": "pay",
+   "pasado": [
+    "paid"
+   ],
+   "participio": [
+    "paid"
+   ]
+  },
+  {
+   "base": "prove",
+   "pasado": [
+    "proved"
+   ],
+   "participio": [
+    "proven",
+    "proved"
+   ]
+  },
+  {
+   "base": "put",
+   "pasado": [
+    "put"
+   ],
+   "participio": [
+    "put"
+   ]
+  },
+  {
+   "base": "quit",
+   "pasado": [
+    "quit"
+   ],
+   "participio": [
+    "quit"
+   ]
+  },
+  {
+   "base": "read",
+   "pasado": [
+    "read"
+   ],
+   "participio": [
+    "read"
+   ]
+  },
+  {
+   "base": "rewrite",
+   "pasado": [
+    "rewrote"
+   ],
+   "participio": [
+    "rewritten"
+   ]
+  },
+  {
+   "base": "rid",
+   "pasado": [
+    "rid"
+   ],
+   "participio": [
+    "rid"
+   ]
+  },
+  {
+   "base": "ride",
+   "pasado": [
+    "rode"
+   ],
+   "participio": [
+    "ridden"
+   ]
+  },
+  {
+   "base": "ring",
+   "pasado": [
+    "rang"
+   ],
+   "participio": [
+    "rung"
+   ]
+  },
+  {
+   "base": "rise",
+   "pasado": [
+    "rose"
+   ],
+   "participio": [
+    "risen"
+   ]
+  },
+  {
+   "base": "run",
+   "pasado": [
+    "ran"
+   ],
+   "participio": [
+    "run"
+   ]
+  },
+  {
+   "base": "say",
+   "pasado": [
+    "said"
+   ],
+   "participio": [
+    "said"
+   ]
+  },
+  {
+   "base": "see",
+   "pasado": [
+    "saw"
+   ],
+   "participio": [
+    "seen"
+   ]
+  },
+  {
+   "base": "seek",
+   "pasado": [
+    "sought"
+   ],
+   "participio": [
+    "sought"
+   ]
+  },
+  {
+   "base": "sell",
+   "pasado": [
+    "sold"
+   ],
+   "participio": [
+    "sold"
+   ]
+  },
+  {
+   "base": "send",
+   "pasado": [
+    "sent"
+   ],
+   "participio": [
+    "sent"
+   ]
+  },
+  {
+   "base": "set",
+   "pasado": [
+    "set"
+   ],
+   "participio": [
+    "set"
+   ]
+  },
+  {
+   "base": "sew",
+   "pasado": [
+    "sewed"
+   ],
+   "participio": [
+    "sewn"
+   ]
+  },
+  {
+   "base": "shake",
+   "pasado": [
+    "shook"
+   ],
+   "participio": [
+    "shaken"
+   ]
+  },
+  {
+   "base": "shed",
+   "pasado": [
+    "shed"
+   ],
+   "participio": [
+    "shed"
+   ]
+  },
+  {
+   "base": "shine",
+   "pasado": [
+    "shone"
+   ],
+   "participio": [
+    "shone"
+   ]
+  },
+  {
+   "base": "shoot",
+   "pasado": [
+    "shot"
+   ],
+   "participio": [
+    "shot"
+   ]
+  },
+  {
+   "base": "show",
+   "pasado": [
+    "showed"
+   ],
+   "participio": [
+    "shown"
+   ]
+  },
+  {
+   "base": "shrink",
+   "pasado": [
+    "shrank"
+   ],
+   "participio": [
+    "shrunk"
+   ]
+  },
+  {
+   "base": "shut",
+   "pasado": [
+    "shut"
+   ],
+   "participio": [
+    "shut"
+   ]
+  },
+  {
+   "base": "sing",
+   "pasado": [
+    "sang"
+   ],
+   "participio": [
+    "sung"
+   ]
+  },
+  {
+   "base": "sink",
+   "pasado": [
+    "sank"
+   ],
+   "participio": [
+    "sunk"
+   ]
+  },
+  {
+   "base": "sit",
+   "pasado": [
+    "sat"
+   ],
+   "participio": [
+    "sat"
+   ]
+  },
+  {
+   "base": "sleep",
+   "pasado": [
+    "slept"
+   ],
+   "participio": [
+    "slept"
+   ]
+  },
+  {
+   "base": "slide",
+   "pasado": [
+    "slid"
+   ],
+   "participio": [
+    "slid"
+   ]
+  },
+  {
+   "base": "smell",
+   "pasado": [
+    "smelt",
+    "smelled"
+   ],
+   "participio": [
+    "smelt",
+    "smelled"
+   ]
+  },
+  {
+   "base": "speak",
+   "pasado": [
+    "spoke"
+   ],
+   "participio": [
+    "spoken"
+   ]
+  },
+  {
+   "base": "speed",
+   "pasado": [
+    "sped"
+   ],
+   "participio": [
+    "sped"
+   ]
+  },
+  {
+   "base": "spell",
+   "pasado": [
+    "spelt",
+    "spelled"
+   ],
+   "participio": [
+    "spelt",
+    "spelled"
+   ]
+  },
+  {
+   "base": "spend",
+   "pasado": [
+    "spent"
+   ],
+   "participio": [
+    "spent"
+   ]
+  },
+  {
+   "base": "spill",
+   "pasado": [
+    "spilt",
+    "spilled"
+   ],
+   "participio": [
+    "spilt",
+    "spilled"
+   ]
+  },
+  {
+   "base": "spin",
+   "pasado": [
+    "spun"
+   ],
+   "participio": [
+    "spun"
+   ]
+  },
+  {
+   "base": "spit",
+   "pasado": [
+    "spat"
+   ],
+   "participio": [
+    "spat"
+   ]
+  },
+  {
+   "base": "split",
+   "pasado": [
+    "split"
+   ],
+   "participio": [
+    "split"
+   ]
+  },
+  {
+   "base": "spoil",
+   "pasado": [
+    "spoilt",
+    "spoiled"
+   ],
+   "participio": [
+    "spoilt",
+    "spoiled"
+   ]
+  },
+  {
+   "base": "spread",
+   "pasado": [
+    "spread"
+   ],
+   "participio": [
+    "spread"
+   ]
+  },
+  {
+   "base": "spring",
+   "pasado": [
+    "sprang"
+   ],
+   "participio": [
+    "sprung"
+   ]
+  },
+  {
+   "base": "stand",
+   "pasado": [
+    "stood"
+   ],
+   "participio": [
+    "stood"
+   ]
+  },
+  {
+   "base": "steal",
+   "pasado": [
+    "stole"
+   ],
+   "participio": [
+    "stolen"
+   ]
+  },
+  {
+   "base": "stick",
+   "pasado": [
+    "stuck"
+   ],
+   "participio": [
+    "stuck"
+   ]
+  },
+  {
+   "base": "sting",
+   "pasado": [
+    "stung"
+   ],
+   "participio": [
+    "stung"
+   ]
+  },
+  {
+   "base": "stink",
+   "pasado": [
+    "stank"
+   ],
+   "participio": [
+    "stunk"
+   ]
+  },
+  {
+   "base": "stride",
+   "pasado": [
+    "strode"
+   ],
+   "participio": [
+    "stridden"
+   ]
+  },
+  {
+   "base": "strike",
+   "pasado": [
+    "struck"
+   ],
+   "participio": [
+    "struck"
+   ]
+  },
+  {
+   "base": "strive",
+   "pasado": [
+    "strove"
+   ],
+   "participio": [
+    "striven"
+   ]
+  },
+  {
+   "base": "swear",
+   "pasado": [
+    "swore"
+   ],
+   "participio": [
+    "sworn"
+   ]
+  },
+  {
+   "base": "sweep",
+   "pasado": [
+    "swept"
+   ],
+   "participio": [
+    "swept"
+   ]
+  },
+  {
+   "base": "swell",
+   "pasado": [
+    "swelled"
+   ],
+   "participio": [
+    "swollen"
+   ]
+  },
+  {
+   "base": "swim",
+   "pasado": [
+    "swam"
+   ],
+   "participio": [
+    "swum"
+   ]
+  },
+  {
+   "base": "swing",
+   "pasado": [
+    "swung"
+   ],
+   "participio": [
+    "swung"
+   ]
+  },
+  {
+   "base": "take",
+   "pasado": [
+    "took"
+   ],
+   "participio": [
+    "taken"
+   ]
+  },
+  {
+   "base": "teach",
+   "pasado": [
+    "taught"
+   ],
+   "participio": [
+    "taught"
+   ]
+  },
+  {
+   "base": "tear",
+   "pasado": [
+    "tore"
+   ],
+   "participio": [
+    "torn"
+   ]
+  },
+  {
+   "base": "tell",
+   "pasado": [
+    "told"
+   ],
+   "participio": [
+    "told"
+   ]
+  },
+  {
+   "base": "think",
+   "pasado": [
+    "thought"
+   ],
+   "participio": [
+    "thought"
+   ]
+  },
+  {
+   "base": "throw",
+   "pasado": [
+    "threw"
+   ],
+   "participio": [
+    "thrown"
+   ]
+  },
+  {
+   "base": "thrust",
+   "pasado": [
+    "thrust"
+   ],
+   "participio": [
+    "thrust"
+   ]
+  },
+  {
+   "base": "tread",
+   "pasado": [
+    "trod"
+   ],
+   "participio": [
+    "trodden"
+   ]
+  },
+  {
+   "base": "undergo",
+   "pasado": [
+    "underwent"
+   ],
+   "participio": [
+    "undergone"
+   ]
+  },
+  {
+   "base": "understand",
+   "pasado": [
+    "understood"
+   ],
+   "participio": [
+    "understood"
+   ]
+  },
+  {
+   "base": "undertake",
+   "pasado": [
+    "undertook"
+   ],
+   "participio": [
+    "undertaken"
+   ]
+  },
+  {
+   "base": "undo",
+   "pasado": [
+    "undid"
+   ],
+   "participio": [
+    "undone"
+   ]
+  },
+  {
+   "base": "upset",
+   "pasado": [
+    "upset"
+   ],
+   "participio": [
+    "upset"
+   ]
+  },
+  {
+   "base": "wake",
+   "pasado": [
+    "woke"
+   ],
+   "participio": [
+    "woken"
+   ]
+  },
+  {
+   "base": "wear",
+   "pasado": [
+    "wore"
+   ],
+   "participio": [
+    "worn"
+   ]
+  },
+  {
+   "base": "weave",
+   "pasado": [
+    "wove"
+   ],
+   "participio": [
+    "woven"
+   ]
+  },
+  {
+   "base": "weep",
+   "pasado": [
+    "wept"
+   ],
+   "participio": [
+    "wept"
+   ]
+  },
+  {
+   "base": "wet",
+   "pasado": [
+    "wet"
+   ],
+   "participio": [
+    "wet"
+   ]
+  },
+  {
+   "base": "win",
+   "pasado": [
+    "won"
+   ],
+   "participio": [
+    "won"
+   ]
+  },
+  {
+   "base": "wind",
+   "pasado": [
+    "wound"
+   ],
+   "participio": [
+    "wound"
+   ]
+  },
+  {
+   "base": "withdraw",
+   "pasado": [
+    "withdrew"
+   ],
+   "participio": [
+    "withdrawn"
+   ]
+  },
+  {
+   "base": "wring",
+   "pasado": [
+    "wrung"
+   ],
+   "participio": [
+    "wrung"
+   ]
+  },
+  {
+   "base": "write",
+   "pasado": [
+    "wrote"
+   ],
+   "participio": [
+    "written"
+   ]
+  }
+ ],
+ "otras": [
+  {
+   "base": "be",
+   "formas": [
+    "am",
+    "is",
+    "are",
+    "being"
+   ]
+  },
+  {
+   "base": "have",
+   "formas": [
+    "has",
+    "having"
+   ]
+  },
+  {
+   "base": "do",
+   "formas": [
+    "does",
+    "doing"
+   ]
+  },
+  {
+   "base": "go",
+   "formas": [
+    "goes"
+   ]
+  },
+  {
+   "base": "die",
+   "formas": [
+    "dying"
+   ]
+  },
+  {
+   "base": "lie",
+   "formas": [
+    "lying"
+   ]
+  },
+  {
+   "base": "tie",
+   "formas": [
+    "tying"
+   ]
+  },
+  {
+   "base": "good",
+   "formas": [
+    "better",
+    "best",
+    "well"
+   ]
+  },
+  {
+   "base": "well",
+   "formas": [
+    "better",
+    "best"
+   ]
+  },
+  {
+   "base": "bad",
+   "formas": [
+    "worse",
+    "worst",
+    "badly"
+   ]
+  },
+  {
+   "base": "far",
+   "formas": [
+    "farther",
+    "further",
+    "farthest",
+    "furthest"
+   ]
+  },
+  {
+   "base": "little",
+   "formas": [
+    "less",
+    "least"
+   ]
+  },
+  {
+   "base": "much",
+   "formas": [
+    "more",
+    "most"
+   ]
+  },
+  {
+   "base": "many",
+   "formas": [
+    "more",
+    "most"
+   ]
+  },
+  {
+   "base": "man",
+   "formas": [
+    "men"
+   ]
+  },
+  {
+   "base": "woman",
+   "formas": [
+    "women"
+   ]
+  },
+  {
+   "base": "child",
+   "formas": [
+    "children"
+   ]
+  },
+  {
+   "base": "person",
+   "formas": [
+    "people"
+   ]
+  },
+  {
+   "base": "foot",
+   "formas": [
+    "feet"
+   ]
+  },
+  {
+   "base": "tooth",
+   "formas": [
+    "teeth"
+   ]
+  },
+  {
+   "base": "mouse",
+   "formas": [
+    "mice"
+   ]
+  },
+  {
+   "base": "goose",
+   "formas": [
+    "geese"
+   ]
+  },
+  {
+   "base": "fish",
+   "formas": [
+    "fish"
+   ]
+  },
+  {
+   "base": "sheep",
+   "formas": [
+    "sheep"
+   ]
+  },
+  {
+   "base": "knife",
+   "formas": [
+    "knives"
+   ]
+  },
+  {
+   "base": "wife",
+   "formas": [
+    "wives"
+   ]
+  },
+  {
+   "base": "life",
+   "formas": [
+    "lives"
+   ]
+  },
+  {
+   "base": "leaf",
+   "formas": [
+    "leaves"
+   ]
+  },
+  {
+   "base": "half",
+   "formas": [
+    "halves"
+   ]
+  },
+  {
+   "base": "shelf",
+   "formas": [
+    "shelves"
+   ]
+  },
+  {
+   "base": "wolf",
+   "formas": [
+    "wolves"
+   ]
+  }
+ ]
+}

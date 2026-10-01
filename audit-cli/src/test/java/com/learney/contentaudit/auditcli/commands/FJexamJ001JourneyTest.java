@@ -1,13 +1,81 @@
 package com.learney.contentaudit.auditcli.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditapplication.CourseToAuditableMapper;
+import com.learney.contentaudit.auditapplication.DefaultAuditRunner;
+import com.learney.contentaudit.auditapplication.DefaultJudgeExamService;
+import com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig;
+import com.learney.contentaudit.auditapplication.DefaultQuizInstructionConfig;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditReportStore;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeExamVerdictExporter;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
+import com.learney.contentaudit.auditdomain.quizinstructionengine.DefaultQuizInstructionAnalyzerFactory;
+import com.learney.contentaudit.auditinfrastructure.FileSystemJudgeExamRegistry;
+import com.learney.contentaudit.coursedomain.CourseEntity;
+import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
+import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory;
+import com.learney.contentaudit.quizinstructioninfrastructure.instructionverdict.JacksonQuizInstructionVerdictReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.io.TempDir;
+import org.mockito.ArgumentCaptor;
+import picocli.CommandLine;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -17,21 +85,265 @@ import org.junit.jupiter.api.TestMethodOrder;
 @Tag("F-JEXAM-J001")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FJexamJ001JourneyTest {
+
+    @TempDir
+    Path workdir;
+
     @Test
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador pide que un juez rinda el... → El operador registra para esa versión... → El operador corre analyze sobre el cu... → La corrida reusa lo registrado, consu... [La versión aprobó su examen] → success")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
-    public void path1_laVersinAprobSuExamen_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path1_laVersinAprobSuExamen_success() throws IOException {
+        Stage stage = new Stage(workdir);
+
+        // Step rendir (gates R001, R002): the judge takes the exam over the photo, one verdict per exercise.
+        String version = stage.takeExam();
+
+        // Step registrar (gate R001): whoever holds the gold standard records APROBADO for that version.
+        Captured recorded = run(new ExamCmd(stage.service()), "record", stage.measured(version, "APROBADO").toString());
+        assertEquals(0, recorded.exit(), recorded.err());
+        assertEquals(JudgeExamStatus.APPROVED,
+                stage.registry.latest("quiz-instruction", version).orElseThrow().getStatus());
+
+        // Step corrida → consulta (gates R001, R004, R006): analyze asks the judge a budget of 2.
+        int examConsultations = stage.judge.asked.size();
+        AuditReport report = stage.analyze("--budget", "quiz-instruction=2", "--concurrency", "4");
+
+        assertEquals(2, stage.judge.asked.size() - examConsultations,
+                "R003/R006: an approved version consults on the course, up to its budget");
+        assertEquals(1.0, stage.quizScore(report, "q-0"), 1e-9, "it reuses what the course had recorded");
+        JudgeCoverageDiagnosis coverage = stage.judgeCoverage(report);
+        assertEquals(version, coverage.getStanding().getJudgeVersion(), "R001: it declares the version");
+        assertEquals(JudgeExamStatus.APPROVED, coverage.getStanding().getStatus(), "R001: and its exam");
+        assertEquals(2, coverage.getCost().getPendingUnits(), "R004: what is still missing");
+        assertEquals(2, coverage.getCost().getPendingConsultations(), "R004: and what it costs");
+        assertEquals(4, coverage.getCost().getMaxConcurrentEvaluations(), "R006: with the consultations at a time");
+        assertEquals(3, stage.courseRecords().size(), "the August verdict and the two of this run, on the course");
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador pide que un juez rinda el... → El operador registra para esa versión... → El operador corre analyze sobre el cu... → La corrida no consulta, reusa lo regi... [La versión no rindió o reprobó] → failure")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
-    public void path2_laVersinNoRindiOReprob_failure() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void path2_laVersinNoRindiOReprob_failure() throws IOException {
+        Stage stage = new Stage(workdir);
+
+        // Step rendir and step registrar: the version took the exam and failed it.
+        String version = stage.takeExam();
+        Captured recorded = run(new ExamCmd(stage.service()), "record", stage.measured(version, "REPROBADO").toString());
+        assertEquals(0, recorded.exit(), recorded.err());
+
+        // Step corrida → solo_reusa (gates R003, R004): even asked a budget, it does not consult.
+        int examConsultations = stage.judge.asked.size();
+        AuditReport report = stage.analyze("--budget", "quiz-instruction=2");
+
+        assertEquals(examConsultations, stage.judge.asked.size(),
+                "R003: a version that failed its exam is not consulted on the course");
+        assertEquals(1.0, stage.quizScore(report, "q-0"), 1e-9, "R003: what was recorded is still reused");
+        JudgeCoverageDiagnosis coverage = stage.judgeCoverage(report);
+        assertEquals(JudgeExamStatus.FAILED, coverage.getStanding().getStatus(), "R003: it declares the failed exam");
+        assertFalse(coverage.getStanding().isConsultsOnCourse(), "R003: the version is not enabled");
+        assertTrue(coverage.getStanding().getReason().startsWith("reprobada"), coverage.getStanding().getReason());
+        assertEquals(4, coverage.getCost().getPendingUnits(), "R004: and how much is missing");
+        assertEquals(1, stage.courseRecords().size(), "the course's ledger only has the August verdict");
+    }
+
+    // -------------------------------------------------------------------------
+    // The stage: exam and analyze as Main builds them, the quiz-instruction judge in the catalog over
+    // the real runtime, the exam registry on disk and a ledger in memory. The judge is never a model.
+    // -------------------------------------------------------------------------
+
+    private static final String COURSE = "db/fotos/2026-09-29/english-course";
+
+    private static final String EVALUATOR = "quiz-instruction-validator";
+
+    private static final class Stage {
+        final Path workdir;
+        final MemoryLedger ledger = new MemoryLedger();
+        final JudgeExamRegistry registry;
+        final FakeJudge judge = new FakeJudge();
+        final DefaultJudgeRuntime runtime;
+        final AnalyzerCatalog catalog;
+        final DefaultAuditRunner runner;
+
+        Stage(Path workdir) {
+            this.workdir = workdir;
+            Sha256ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
+            registry = new FileSystemJudgeExamRegistry(workdir);
+            runtime = new DefaultJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, fingerprinter),
+                    new ExamEvaluationSessionFactory(ledger, fingerprinter), registry, evaluatorId -> List.of(),
+                    new DefaultJudgeRuntimeConfig());
+            catalog = new DefaultAnalyzerCatalog(List.of(new DefaultQuizInstructionAnalyzerFactory(judge,
+                    new JacksonQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime)));
+            CourseRepository repository = mock(CourseRepository.class);
+            CourseToAuditableMapper mapper = mock(CourseToAuditableMapper.class);
+            CourseEntity entity = new CourseEntity();
+            when(repository.load(any())).thenReturn(entity);
+            when(mapper.map(entity)).thenReturn(course());
+            runner = new DefaultAuditRunner(repository, mapper, new IAuditEngine(new IScoreAggregator(), catalog,
+                    new DefaultFindingCollector(), new DefaultContextNumbersCalculator()), catalog);
+            // What the course's ledger had: the August verdict of q-0, by the version of today.
+            ledger.append(new EvaluationRecord(new EvaluationKey(EVALUATOR, fingerprinter.fingerprint(Map.of(
+                    "cefrLevel", "A1", "topic", "Present Simple", "title", "Afirmativas regulares",
+                    "instructions", "Escribe la forma correcta del verbo.",
+                    "quiz", "TEXT:You:|CLOZE:____:see|TEXT:(see) cats.:|"))), FakeJudge.COMPLIANT, "q-0",
+                    Instant.parse("2026-08-14T14:39:40Z"), FakeJudge.VERSION));
+        }
+
+        DefaultJudgeExamService service() {
+            return new DefaultJudgeExamService(runner, catalog, new DefaultJudgeExamVerdictExporter(), registry,
+                    runtime);
+        }
+
+        /** exam run over the photo with a budget; returns the version that took it. */
+        String takeExam() throws IOException {
+            Path cases = workdir.resolve("examen.json");
+            Files.writeString(cases, "[{\"ejercicio\": \"q-1\"}, {\"ejercicio\": \"q-2\"}, {\"ejercicio\": \"q-3\"}]");
+            Path out = workdir.resolve("veredictos.jsonl");
+            Captured taken = run(new ExamCmd(service()), "run", "quiz-instruction", "--cases", cases.toString(),
+                    "--course", COURSE, "--budget", "10", "--out", out.toString());
+            assertEquals(0, taken.exit(), taken.err());
+            List<String> lines = Files.readAllLines(out);
+            assertEquals(3, lines.size(), "R001: one verdict per exercise of the file");
+            assertEquals(Set.of("q-1", "q-2", "q-3"), Set.copyOf(judge.asked), "R001: the exercises of the file");
+            assertEquals(1, courseRecords().size(), "R002: the exam leaves the course's ledger as it was");
+            assertTrue(taken.out().contains("Rindió el examen completo"), taken.out());
+            return new ObjectMapper().readTree(lines.get(0)).get("version").asText();
+        }
+
+        Path measured(String version, String state) throws IOException {
+            Path file = workdir.resolve("resultado-" + state + ".json");
+            Files.writeString(file, "{\"juez\": \"quiz-instruction\", \"version\": \"" + version + "\", \"estado\": \""
+                    + state + "\", \"grupos\": [{\"grupo\": \"c\", \"casos\": 3, \"comoSeEspera\": 3, "
+                    + "\"noComoSeEspera\": 0}], \"noDieronLoEsperado\": [], \"alcanzoLaMeta\": "
+                    + "APROBADO".equals(state) + ", \"foto\": \"2026-09-29\", \"medidoPor\": \"medir.py\"}");
+            return file;
+        }
+
+        AuditReport analyze(String... options) {
+            AuditReportStore store = mock(AuditReportStore.class);
+            List<String> args = new ArrayList<>(List.of(COURSE, "--analyzers", "quiz-instruction", "-f", "raw"));
+            args.addAll(List.of(options));
+            Captured analyzed = run(AnalyzeCmdTest.Base299.analyzeCmd(runner, store), args.toArray(String[]::new));
+            assertEquals(0, analyzed.exit(), analyzed.err());
+            ArgumentCaptor<AuditReport> saved = ArgumentCaptor.forClass(AuditReport.class);
+            verify(store).save(saved.capture());
+            return saved.getValue();
+        }
+
+        JudgeCoverageDiagnosis judgeCoverage(AuditReport report) {
+            return ((CourseDiagnoses) report.getRoot().getDiagnoses()).getJudgeCoverages().get(0);
+        }
+
+        double quizScore(AuditReport report, String quizId) {
+            for (AuditNode milestone : report.getRoot().getChildren()) {
+                for (AuditNode topic : milestone.getChildren()) {
+                    for (AuditNode knowledge : topic.getChildren()) {
+                        for (AuditNode quiz : knowledge.getChildren()) {
+                            if (quiz.getTarget() == AuditTarget.QUIZ && quizId.equals(quiz.getEntity().getId())) {
+                                return quiz.getScores().get("quiz-instruction");
+                            }
+                        }
+                    }
+                }
+            }
+            throw new AssertionError("no quiz " + quizId);
+        }
+
+        List<EvaluationRecord> courseRecords() {
+            return ledger.records().stream().filter(r -> EVALUATOR.equals(r.getKey().getEvaluatorId())).toList();
+        }
+
+        /** «Afirmativas regulares» (A1) with five quizzes, each with its own content. */
+        private static AuditableCourse course() {
+            List<AuditableQuiz> quizzes = new ArrayList<>();
+            List<String> nouns = List.of("cats", "dogs", "birds", "horses", "cows");
+            for (int i = 0; i < nouns.size(); i++) {
+                quizzes.add(new AuditableQuiz(List.of(), "q-" + i, "Afirmativas regulares", "A1.01.06." + i,
+                        "Ves algo.", List.of("You see " + nouns.get(i) + "."), null,
+                        "Escribe la forma correcta del verbo.",
+                        List.of(new SentencePartEntity(SentencePartKind.TEXT, "You", null),
+                                new SentencePartEntity(SentencePartKind.CLOZE, "____", List.of("see")),
+                                new SentencePartEntity(SentencePartKind.TEXT, "(see) " + nouns.get(i) + ".", null)),
+                        null, null, null));
+            }
+            AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Afirmativas regulares",
+                    "Escribe la forma correcta del verbo.", false, "6814dafa7d73e7209a13d389", "Afirmativas regulares",
+                    "A1.01.06", SentenceMode.FILL, "Present Simple");
+            AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t-ps", "Present Simple", "A1.01");
+            return new AuditableCourse(List.of(new AuditableMilestone(List.of(topic), "m-a1", "A1", "A1")));
+        }
+    }
+
+    /** The quiz-instruction judge, faked: payloads shaped as the real judge's, never a model. */
+    private static final class FakeJudge implements Evaluator {
+        static final String VERSION = "v-consigna";
+        static final String COMPLIANT = "{\"schemaVersion\":\"1.0\",\"followsInstructions\":true,\"confidence\":0.92,"
+                + "\"severity\":\"none\",\"reason\":\"Cumple la consigna.\",\"violations\":[],\"checkedConstraints\":[]}";
+        final List<String> asked = Collections.synchronizedList(new ArrayList<>());
+
+        @Override
+        public String evaluatorId() {
+            return EVALUATOR;
+        }
+
+        @Override
+        public Optional<String> evaluatorVersion() {
+            return Optional.of(VERSION);
+        }
+
+        @Override
+        public EvaluationOutcome evaluate(EvaluationSubject subject) {
+            asked.add(subject.getSubjectRef());
+            return new EvaluationEmitted(COMPLIANT);
+        }
+    }
+
+    private static final class MemoryLedger implements EvaluationLedger {
+        private final List<EvaluationRecord> records = Collections.synchronizedList(new ArrayList<>());
+
+        List<EvaluationRecord> records() {
+            return List.copyOf(records);
+        }
+
+        @Override
+        public void append(EvaluationRecord record) {
+            records.add(record);
+        }
+
+        @Override
+        public Optional<EvaluationRecord> findLatest(EvaluationKey key) {
+            EvaluationRecord latest = null;
+            for (EvaluationRecord record : records()) {
+                if (record.getKey().equals(key)) {
+                    latest = record;
+                }
+            }
+            return Optional.ofNullable(latest);
+        }
+
+        @Override
+        public List<EvaluationRecord> history(EvaluationKey key) {
+            return records().stream().filter(r -> r.getKey().equals(key)).toList();
+        }
+    }
+
+    record Captured(int exit, String out, String err) {
+    }
+
+    private static Captured run(Object command, String... args) {
+        PrintStream out = System.out;
+        PrintStream err = System.err;
+        ByteArrayOutputStream outBytes = new ByteArrayOutputStream();
+        ByteArrayOutputStream errBytes = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outBytes, true, StandardCharsets.UTF_8));
+        System.setErr(new PrintStream(errBytes, true, StandardCharsets.UTF_8));
+        try {
+            int exit = new CommandLine(command).execute(args);
+            return new Captured(exit, outBytes.toString(StandardCharsets.UTF_8), errBytes.toString(StandardCharsets.UTF_8));
+        } finally {
+            System.setOut(out);
+            System.setErr(err);
+        }
     }
 }

@@ -1,0 +1,56 @@
+name: choice-alternative-judge
+description: |
+  Juez de opción múltiple «¿otra opción también vale?» (FEAT-MCVALE). Recibe
+  UN ejercicio de opción múltiple como lo ve el alumno antes de contestar
+  —título del tema, consigna, enunciado con su pista y las opciones en el orden
+  en que se muestran, con la correcta marcada— y dice qué opciones marcadas
+  como incorrectas también valen, cada una con su gravedad (alta si vale igual,
+  media si es defendible pero menos natural), y si la correcta vale y, si no,
+  por qué (F-MCVALE-R002, R003). La clave invertida —la correcta no vale— la
+  vuelve bloqueante el clasificador de Java.
+
+  Deja afuera lo que difiere de la correcta sólo en la forma —mayúscula, a o
+  an, singular o plural, contraída o larga—, que son reglas del paquete A; si
+  igual lo lista, el clasificador lo descarta con la comparación del corrector
+  (F-JEXAM-R012). Lo aloja el analizador de opción múltiple del paquete A: su
+  nombre, su tope y su examen son los de ese analizador (F-MCVALE-R004).
+
+  Flujo:
+
+      evaluate (llm_call: el juicio)
+        ──▶ gate_verdict (gate: esquema cerrado + invariantes; failed reintenta)
+        ──▶ emit (script: artifact choiceAlternativeVerdict)
+
+  max_attempts de evaluate acota el reintento. Si el juez agota sus intentos
+  sin un veredicto válido, emit produce {"outputUnusable": true}: el evaluador
+  lo devuelve como OUTPUT_UNUSABLE, nunca llega al lector ni al libro y el
+  ejercicio queda sin evaluar (F-MCVALE-R005). Una falla del modelo en evaluate
+  no tiene arista: corta la corrida del agente y el evaluador la informa como
+  EVALUATOR_UNAVAILABLE.
+
+  Todo archivo de esta carpeta, eval/ incluido, entra en la versión del juez
+  (la del juez de consigna: definición, modelo y proveedor). Tocar la guía, un
+  script o una fixture es una versión nueva, que rinde su examen antes de
+  consultar sobre el curso (F-JEXAM-R003).
+kind: agent
+strategy: graph
+initial_node: evaluate
+budgets:
+  # Pase limpio: 3 visitas. Con los 3 intentos de evaluate agotados son 8
+  # (evaluate y gate_verdict tres veces, el desvío exhausted y emit); el resto
+  # es margen para que un reintento nunca termine en una falla de servicio.
+  max_iterations: 10
+nodes:
+  - ./nodes/evaluate.md
+  - ./nodes/gate_verdict.md
+  - ./nodes/emit.md
+goal:
+  required_artifacts:
+    - choiceAlternativeVerdict
+  required_nodes_done:
+    - emit
+dependencies:
+  - title
+  - instructions
+  - exercise
+  - options

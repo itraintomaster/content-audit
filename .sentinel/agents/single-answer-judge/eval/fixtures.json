@@ -1,0 +1,797 @@
+{
+  "agent": "single-answer-judge",
+  "artifact": "singleAnswerVerdict",
+  "gateId": "single_answer_judge_gate_verdict",
+  "emitId": "single_answer_judge_emit",
+  "dependencies": [
+    "title",
+    "instructions",
+    "exercise",
+    "acceptedAnswers"
+  ],
+  "topKeys": [
+    "alternatives",
+    "rationale"
+  ],
+  "promptMustMention": [
+    "OFFERED_BY_INSTRUCTION",
+    "DIFFERENT_VALID",
+    "BLOCKING",
+    "**Nunca listes una respuesta que difiere de una aceptada sólo en eso**",
+    "*until* y *till*",
+    "**antes de contestar**",
+    "Nunca\nsugerís que la consigna pida una forma"
+  ],
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (gap fuera de los huecos de acceptedAnswers, respuesta repetida, LOW), y que emit produzca singleAnswerVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (title, instructions, exercise, acceptedAnswers) de los ejemplos de la guía.",
+  "inputs": {
+    "gente": {
+      "title": "Después de adjetivos",
+      "instructions": "Completa con la preposición correcta.",
+      "exercise": "He is very good ___ people.",
+      "acceptedAnswers": "Hueco 1: with"
+    },
+    "conmigo": {
+      "title": "Verbos con preposición 2",
+      "instructions": "Coloca las preposiciones correctas.",
+      "exercise": "She goes ___ me.",
+      "acceptedAnswers": "Hueco 1: with"
+    },
+    "almuerzo": {
+      "title": "$Before$ y $after$",
+      "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+      "exercise": "She ate lunch before she went to work. ___",
+      "acceptedAnswers": "Hueco 1: She ate lunch before going to work."
+    },
+    "abuela": {
+      "title": "$Can$ o $be able to$",
+      "instructions": "Usa 'can' o 'be able to'. Escribe la forma negativa.",
+      "exercise": "My grandmother ___ (not / drive).",
+      "acceptedAnswers": "Hueco 1: isn't able to drive | is not able to drive"
+    },
+    "siempre": {
+      "title": "Frecuencia: parte 2",
+      "instructions": "Si es posible, coloca los adverbios en medio de las oraciones. Si no es posible, colócalos al final.",
+      "exercise": "I ___ drink tea in the morning. (100%)",
+      "acceptedAnswers": "Hueco 1: always"
+    },
+    "dos-huecos": {
+      "title": "Pasado simple",
+      "instructions": "Escribe los verbos en 'past simple'.",
+      "exercise": "We ___ (go) to the park and ___ (play) football.",
+      "acceptedAnswers": "Hueco 1: went\nHueco 2: played"
+    },
+    "sin-entrada-de-huecos": {
+      "title": "Después de adjetivos",
+      "instructions": "Completa con la preposición correcta.",
+      "exercise": "He is very good ___ people."
+    }
+  },
+  "cases": [
+    {
+      "caseId": "gente-to-alta",
+      "note": "«He is very good ___ people.» (…24ce): «to» vale igual. F-UNICA-R004.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "conmigo-bloqueante",
+      "note": "«She goes ___ me.» (…2d91): sin pista, without, after, before y behind encajan igual que with.",
+      "inputs": "conmigo",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "without",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "Sin pista, «without» encaja igual que «with»."
+          },
+          {
+            "answer": "after",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "Sin pista, «after» encaja igual que «with»."
+          },
+          {
+            "answer": "before",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "Sin pista, «before» encaja igual que «with»."
+          },
+          {
+            "answer": "behind",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "Sin pista, «behind» encaja igual que «with»."
+          }
+        ],
+        "rationale": "El hueco no tiene pista y la aceptada es una entre muchas."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "almuerzo-media",
+      "note": "«She ate lunch before she went to work. ___» (…246b): con la cláusula adelante es correcta pero menos esperable.",
+      "inputs": "almuerzo",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "Before going to work, she ate lunch.",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "Con la cláusula adelante la oración también es correcta."
+          }
+        ],
+        "rationale": "La transformación admite otro orden correcto, menos esperable."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "abuela-ofrecida-por-la-consigna",
+      "note": "«My grandmother ___ (not / drive).» (inventado): la consigna ofrece can y el corrector rechaza «can't drive». F-UNICA-R003.",
+      "inputs": "abuela",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "can't drive",
+            "gap": 1,
+            "kind": "OFFERED_BY_INSTRUCTION",
+            "severity": "HIGH",
+            "reason": "La consigna ofrece «can» o «be able to» y el corrector sólo acepta «be able to»."
+          }
+        ],
+        "rationale": "Una opción que ofrece la consigna, no una respuesta distinta."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "lista-vacia-pasa",
+      "note": "Sin otra respuesta, el ejercicio pasa.",
+      "inputs": "siempre",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "La pista deja una sola respuesta."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "segundo-hueco",
+      "note": "gap es el número de «Hueco 2».",
+      "inputs": "dos-huecos",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "watched",
+            "gap": 2,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«watched football» también es correcta."
+          }
+        ],
+        "rationale": "En el segundo hueco vale otro verbo."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "misma-respuesta-en-dos-huecos",
+      "note": "La misma respuesta en huecos distintos no es una repetición.",
+      "inputs": "dos-huecos",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "ran",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "Es correcta y el alumno la podría escribir."
+          },
+          {
+            "answer": "ran",
+            "gap": 2,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "Dos huecos, cada uno con la suya."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "enums-en-minusculas",
+      "note": "Mayúsculas de los enums y espacios de los textos se canonicalizan.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": " to ",
+            "gap": 1,
+            "kind": "different_valid",
+            "severity": "high",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "sin-entrada-de-huecos",
+      "note": "Si no llega acceptedAnswers (uso fuera de content-audit) no hay contra qué comparar gap.",
+      "inputs": "sin-entrada-de-huecos",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 3,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "hueco-fuera-de-rango",
+      "note": "gap tiene que ser uno de los huecos de acceptedAnswers; el esquema no lo sabe.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 2,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un hueco del ejercicio"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "hueco-cero",
+      "note": "Los huecos empiezan en 1, como «Hueco 1».",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 0,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "entero desde 1"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "hueco-booleano",
+      "note": "true no es un número de hueco.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": true,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "entero desde 1"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "hueco-como-texto",
+      "note": "\"1\" no es un número.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": "1",
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "entero desde 1"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "severidad-baja",
+      "note": "single-answer no usa LOW (F-UNICA-R004).",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "LOW",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "LOW no existe en este juez"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "clase-desconocida",
+      "note": "Sólo las dos clases de F-UNICA-R002.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "SAME_FORM",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "fuera del enum"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "respuesta-repetida",
+      "note": "La misma respuesta dos veces en el mismo hueco, comparada como el corrector (mayúsculas y signos no cuentan).",
+      "inputs": "almuerzo",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "Before going to work, she ate lunch.",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "Es correcta y el alumno la podría escribir."
+          },
+          {
+            "answer": "before going to work, she ate lunch",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "Repetida."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "ya está listada para el hueco 1"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "alternativa-con-clave-de-mas",
+      "note": "Cada alternativa es un objeto cerrado.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».",
+            "confidence": 0.8
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "alternatives[0] no respeta el objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "respuesta-vacia",
+      "note": "answer no va vacía.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "Es correcta y el alumno la podría escribir."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "answer está vacío"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "alternatives-no-es-array",
+      "note": "alternatives es un array.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": {
+          "answer": "to"
+        },
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "alternatives tiene que ser un array"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "falta-rationale",
+      "note": "Falta una clave del objeto cerrado.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan=['rationale']"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "run-dir-por-state-json",
+      "note": "Sin run_dir en las entradas: project_root + el run_id (UUID) del state.json, como lo proyecta el CLI.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "resolution": "state.json",
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "run-id-ambiguo",
+      "note": "Dos state.json con el mismo runId: el gate no adivina; emit sale conservador.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "resolution": "ambiguous",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exactamente uno"
+        ]
+      }
+    },
+    {
+      "caseId": "run-id-inseguro",
+      "note": "Un run_id que escaparía del directorio de runs se rechaza.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "resolution": "unsafe-run-id",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "run_id ausente o inseguro"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-run-dir",
+      "note": "Sin run_dir ni project_root no hay dónde leer: falla el gate y emit da outputUnusable.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "resolution": "none",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan run_dir"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-salida-de-evaluate",
+      "note": "evaluate no dejó verdicts.json.",
+      "inputs": "gente",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "verdicts.json no existe"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-viejo-se-borra",
+      "note": "Un validated-verdict.json de un intento anterior no sobrevive a un gate que falla.",
+      "inputs": "gente",
+      "raw": "no hay veredicto",
+      "staleValidated": true,
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "no-es-json",
+      "note": "Prosa sin objeto JSON.",
+      "inputs": "gente",
+      "raw": "No puedo juzgar este ejercicio.",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "lista-en-vez-de-objeto",
+      "note": "Un array no es el veredicto.",
+      "inputs": "gente",
+      "raw": "[1, 2]",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "output-unusable-del-modelo",
+      "note": "{\"outputUnusable\": true} lo produce emit, nunca el modelo: el gate lo rechaza.",
+      "inputs": "gente",
+      "verdict": {
+        "outputUnusable": true
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "objeto cerrado"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-corrupto-antes-de-emit",
+      "note": "Si validated-verdict.json no se puede leer, emit no inventa: outputUnusable.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "corruptValidated": true,
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "fence-json",
+      "note": "La salida en un fence ```json se acepta sin pagar otra consulta.",
+      "inputs": "gente",
+      "raw": "```json\n{\n  \"alternatives\": [\n    {\n      \"answer\": \"to\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"HIGH\",\n      \"reason\": \"La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».\"\n    }\n  ],\n  \"rationale\": \"La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.\"\n}\n```",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "prosa-alrededor",
+      "note": "Prosa antes y una etiqueta después: se toma el objeto.",
+      "inputs": "gente",
+      "raw": "Este es mi veredicto:\n{\"alternatives\": [{\"answer\": \"to\", \"gap\": 1, \"kind\": \"DIFFERENT_VALID\", \"severity\": \"HIGH\", \"reason\": \"La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».\"}], \"rationale\": \"La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.\"}\nLABEL: done",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "json-dentro-de-un-string",
+      "note": "El objeto serializado dentro de un string JSON se desenvuelve.",
+      "inputs": "gente",
+      "raw": "\"{\\\"alternatives\\\": [{\\\"answer\\\": \\\"to\\\", \\\"gap\\\": 1, \\\"kind\\\": \\\"DIFFERENT_VALID\\\", \\\"severity\\\": \\\"HIGH\\\", \\\"reason\\\": \\\"La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».\\\"}], \\\"rationale\\\": \\\"La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.\\\"}\"",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    }
+  ]
+}

@@ -33,6 +33,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -125,7 +126,7 @@ public class DefaultReportViewModelTransformerTest {
                 new LemmaRecurrenceAnalyzerProvider(new DefaultLemmaRecurrenceConfig()),
                 new LemmaAbsenceAnalyzerProvider(null, absence, null),
                 new LemmaCountAnalyzerProvider(null, new DefaultLemmaCountConfigLoader().load(null)),
-                new DefaultQuizInstructionAnalyzerFactory(null, null, null, new DefaultQuizInstructionConfig(), null)))
+                new DefaultQuizInstructionAnalyzerFactory(null, null, new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), null)))
                 .list();
     }
 

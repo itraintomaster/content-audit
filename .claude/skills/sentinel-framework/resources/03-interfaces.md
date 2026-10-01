@@ -693,6 +693,7 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `check(ExerciseHint hint,AuditableQuiz quiz): List<HintIssue>` | (none) |
+| `checkRewrite(AuditableQuiz quiz): List<HintIssue>` | (none) |
 
 #### EquivalentFormGenerator (package: answercompleteness)
 

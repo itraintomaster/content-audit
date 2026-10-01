@@ -1,7 +1,11 @@
 package com.learney.contentaudit.auditapplication;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import java.util.Map;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,8 +19,30 @@ public class DefaultSingleAnswerConfigTest {
     @DisplayName("should score a quiz 0 for a blocking, 0.3 for a high and 0.6 for a medium worst severity")
     @Tag("FEAT-UNICA")
     @Tag("F-UNICA-R004")
-    @Disabled("Stub de FEAT-UNICA (paquete C), sin implementar")
     public void shouldScoreAQuiz0ForABlocking03ForAHighAnd06ForAMediumWorstSeverity() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        DefaultSingleAnswerConfig config = new DefaultSingleAnswerConfig();
+
+        // R004: «bloqueante» -- the student cannot know which one the corrector takes.
+        assertEquals(0.0, config.getScoreFor(FindingSeverity.BLOCKING), 1e-9);
+        // R004: «alta» -- it rejects another one just as good.
+        assertEquals(0.3, config.getScoreFor(FindingSeverity.HIGH), 1e-9);
+        // R004: «media» -- it rejects another correct one, less expected.
+        assertEquals(0.6, config.getScoreFor(FindingSeverity.MEDIUM), 1e-9);
+        // The judge never gives «baja»; if it arrives it weighs as a medium one, never as passing.
+        assertEquals(0.6, config.getScoreFor(FindingSeverity.LOW), 1e-9);
+
+        // The graver, the lower: the scale never inverts.
+        assertTrue(config.getScoreFor(FindingSeverity.BLOCKING) < config.getScoreFor(FindingSeverity.HIGH));
+        assertTrue(config.getScoreFor(FindingSeverity.HIGH) < config.getScoreFor(FindingSeverity.MEDIUM));
+        assertTrue(config.getScoreFor(FindingSeverity.MEDIUM) < 1.0,
+                "a quiz with a different valid answer never passes");
+
+        // config analyzer single-answer shows that same scale, readable.
+        Map<String, Object> described = config.describe();
+        assertEquals("single-answer", described.get("analyzerName"));
+        assertEquals(1.0, described.get("scoreWithoutErrors"));
+        @SuppressWarnings("unchecked")
+        Map<String, Object> scale = (Map<String, Object>) described.get("scoresByGravestSeverity");
+        assertEquals(Map.of("BLOCKING", 0.0, "HIGH", 0.3, "MEDIUM", 0.6, "LOW", 0.6), scale);
     }
 }

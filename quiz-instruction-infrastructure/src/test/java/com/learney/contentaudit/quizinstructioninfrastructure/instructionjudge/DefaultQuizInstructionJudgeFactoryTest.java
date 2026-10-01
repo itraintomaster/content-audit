@@ -27,19 +27,24 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadinessProbe;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
+import com.learney.contentaudit.quizinstructioninfrastructure.agentjudge.DefaultJudgeProviderReadinessProbe;
 import com.sentinel.agents.framework.state.ArtifactPointer;
 import com.sentinel.agents.framework.state.RunState;
 import com.sentinel.agents.framework.state.RunStatus;
 import dev.langchain4j.model.chat.ChatModel;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -321,21 +326,143 @@ public class DefaultQuizInstructionJudgeFactoryTest {
         assertNotNull(emitted.getPayload());
     }
 
+    /**
+     * F-JEXAM-R007: the version the consigna judge derived before FEAT-JEXAM for the definition
+     * written by {@link #writeConsignaDefinition}, model «claude-sonnet-4-5» and provider claude-cli.
+     * Computed on 30/9 with the resolver as it was before the session check was built (and checked
+     * against an independent sha-256 of the same inputs); its ~3.900 recorded verdicts carry it.
+     */
+    private static final String CONSIGNA_VERSION_BEFORE_FEAT_JEXAM =
+            "e3a546dc9fa68df3103360637ffda1754d8ac3688b81403f19b520bfd0d5e2f2";
+
+    /** `claude auth status` (Claude Code 2.1.270) with nobody logged in: it exits with 1. */
+    private static final String STATUS_NOT_LOGGED_IN = """
+            {
+              "loggedIn": false,
+              "authMethod": "none",
+              "apiProvider": "firstParty",
+              "analyticsDisabled": false,
+              "projectsDirectory": "/home/operadora/.claude/projects",
+              "configDirectory": "/home/operadora/.claude"
+            }
+            """;
+
+    /** `claude auth status` logged in with claude.ai: it exits with 0. The account is made up. */
+    private static final String STATUS_LOGGED_IN = """
+            {
+              "loggedIn": true,
+              "authMethod": "claude.ai",
+              "apiProvider": "firstParty",
+              "analyticsDisabled": false,
+              "projectsDirectory": "/home/operadora/.claude/projects",
+              "configDirectory": "/home/operadora/.claude",
+              "email": "operadora@example.com",
+              "orgId": "00000000-0000-4000-8000-000000000000",
+              "orgName": "Organización de prueba",
+              "subscriptionType": "max"
+            }
+            """;
+
+    /**
+     * A fake `claude auth status`: prints a recorded output, exits with the recorded code and
+     * appends one line to {@code runLog} per run. It never runs `claude`.
+     */
+    private static List<String> recordedAuthStatus(Path dir, String name, String output, int exitCode,
+            Path runLog) throws IOException {
+        Path recorded = dir.resolve(name + ".out");
+        Files.writeString(recorded, output, StandardCharsets.UTF_8);
+        return List.of("sh", "-c", "echo run >> \"$0\"; cat \"$1\"; exit " + exitCode,
+                runLog.toString(), recorded.toString());
+    }
+
+    /** A fixed definition of quiz-instruction-validator: its bytes are part of the pinned version. */
+    private static Path writeConsignaDefinition(Path dir) throws IOException {
+        Path definition = Files.createDirectories(dir.resolve("quiz-instruction-validator").resolve("nodes"))
+                .getParent();
+        Files.writeString(definition.resolve("agent.yaml"),
+                "name: quiz-instruction-validator\n"
+                        + "kind: agent\n"
+                        + "strategy: graph\n"
+                        + "initial_node: evaluate\n"
+                        + "nodes:\n"
+                        + "  - ./nodes/evaluate.md\n",
+                StandardCharsets.UTF_8);
+        Files.writeString(definition.resolve("nodes").resolve("evaluate.md"),
+                "Juzga si el ejercicio respeta literalmente cada restriccion de su consigna.\n",
+                StandardCharsets.UTF_8);
+        return definition;
+    }
+
     @Test
     @DisplayName("should give the consigna judge the same session check, so an expired claude-cli session leaves it unavailable with «renovala con claude auth login» before any consultation")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
-    public void shouldGiveTheConsignaJudgeTheSameSessionCheckSoAnExpiredClaudecliSessionLeavesItUnavailableWithRenovalaConClaudeAuthLoginBeforeAnyConsultation() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldGiveTheConsignaJudgeTheSameSessionCheckSoAnExpiredClaudecliSessionLeavesItUnavailableWithRenovalaConClaudeAuthLoginBeforeAnyConsultation(
+            @TempDir Path dir) throws IOException {
+        Path statusRuns = dir.resolve("auth-status-runs.log");
+        DefaultQuizInstructionJudgeFactory factory = new DefaultQuizInstructionJudgeFactory(
+                new DefaultLlmProviderResolver(),
+                new DefaultJudgeProviderReadinessProbe(
+                        recordedAuthStatus(dir, "not-logged-in", STATUS_NOT_LOGGED_IN, 1, statusRuns)));
+        QuizInstructionJudgeConfig claudeCli = new QuizInstructionJudgeConfig(
+                null, null, "claude-sonnet-4-5", null, null, null, "claude-cli");
+        AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
+        AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
+        when(agentDefinitionLocator.locate(anyString()))
+                .thenReturn(new AgentDefinitionFound(writeConsignaDefinition(dir)));
+
+        Evaluator evaluator = factory.create(claudeCli, agentGraphRunner, agentDefinitionLocator);
+
+        for (String quizId : List.of("quiz-1", "quiz-2", "quiz-3")) {
+            EvaluationNotEmitted notEmitted = assertInstanceOf(EvaluationNotEmitted.class,
+                    assertDoesNotThrow(() -> evaluator.evaluate(subjectFor(quizId))),
+                    "with the claude-cli session expired the consigna judge emits nothing for " + quizId);
+            assertEquals(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, notEmitted.getKind());
+            assertEquals("sesión vencida: renovala con claude auth login", notEmitted.getReason(),
+                    "F-JEXAM-R011: the same cause and remedy the new judges give");
+        }
+        verifyNoInteractions(agentGraphRunner);
+        assertEquals(1, Files.readAllLines(statusRuns).size(),
+                "the session is checked once, before the first consultation");
     }
 
     @Test
     @DisplayName("should derive for the consigna judge the same version it derived before FEAT-JEXAM, so its recorded verdicts keep being reused")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R007")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
-    public void shouldDeriveForTheConsignaJudgeTheSameVersionItDerivedBeforeFEATJEXAMSoItsRecordedVerdictsKeepBeingReused() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldDeriveForTheConsignaJudgeTheSameVersionItDerivedBeforeFEATJEXAMSoItsRecordedVerdictsKeepBeingReused(
+            @TempDir Path dir) throws IOException {
+        Path definition = writeConsignaDefinition(dir);
+        AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
+        when(agentDefinitionLocator.locate("quiz-instruction-validator"))
+                .thenReturn(new AgentDefinitionFound(definition));
+        QuizInstructionJudgeConfig claudeCli = new QuizInstructionJudgeConfig(
+                null, null, "claude-sonnet-4-5", null, null, null, "claude-cli");
+        Path statusRuns = dir.resolve("auth-status-runs.log");
+
+        // Without the session check (as before FEAT-JEXAM), with it and a session, and with it and
+        // the session expired: the judge is the same, so is its version.
+        List<JudgeProviderReadinessProbe> checks = Arrays.asList(
+                null,
+                new DefaultJudgeProviderReadinessProbe(
+                        recordedAuthStatus(dir, "logged-in", STATUS_LOGGED_IN, 0, statusRuns)),
+                new DefaultJudgeProviderReadinessProbe(
+                        recordedAuthStatus(dir, "not-logged-in", STATUS_NOT_LOGGED_IN, 1, statusRuns)));
+        for (JudgeProviderReadinessProbe check : checks) {
+            AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
+            Evaluator judge = new DefaultQuizInstructionJudgeFactory(new DefaultLlmProviderResolver(), check)
+                    .create(claudeCli, agentGraphRunner, agentDefinitionLocator);
+
+            assertEquals("quiz-instruction-validator", judge.evaluatorId(),
+                    "F-JEXAM-R007: the consigna judge keeps its evaluator id, the first half of its ledger key");
+            assertEquals(Optional.of(CONSIGNA_VERSION_BEFORE_FEAT_JEXAM), judge.evaluatorVersion(),
+                    "F-JEXAM-R007: the consigna judge keeps the version its recorded verdicts carry");
+
+            if (check != null) {
+                judge.evaluate(subjectFor("quiz-1"));
+                assertEquals(Optional.of(CONSIGNA_VERSION_BEFORE_FEAT_JEXAM), judge.evaluatorVersion(),
+                        "checking the session does not change the version");
+            }
+        }
     }
 }

@@ -443,6 +443,8 @@ Running `sentinel generate` again adds new stub methods for new test names witho
 
 - should default the run budget to 500 new judge queries → FEAT-QINST/F-QINST-R006
 - should map the severities none, minor, major and critical to the scores 1.0, 0.6, 0.3 and 0.0 → FEAT-QINST/F-QINST-R002
+- should describe the analyze budget of quiz-instruction from the judges runtime config and the revise-instructions budget of 500, each named with its command → FEAT-CIERRE/F-CIERRE-R004
+- should describe a different analyze budget when the judges runtime config gives another one, without copying 0 → FEAT-CIERRE/F-CIERRE-R004
 
 ### DefaultJudgeExamService (audit-application)
 

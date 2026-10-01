@@ -1,6 +1,15 @@
 package com.learney.contentaudit.auditdomain.quizinstructionengine;
 import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
 import com.learney.contentaudit.auditdomain.judging.JudgeSessions;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
+import com.learney.contentaudit.auditdomain.judging.JudgeUnitTally;
+import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionCheck;
+import com.learney.contentaudit.auditdomain.quizinstruction.InstructionCheckStatus;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequest;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequestMode;
+import java.util.Locale;
 import com.learney.contentaudit.auditdomain.AuditableKnowledge;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.finding.EvidencePart;
@@ -84,6 +93,22 @@ class QuizInstructionAnalyzer implements ContentAnalyzer {
     // of the course).
     private final Set<String> matchedDeclaredSetIds = new HashSet<>();
 
+    /**
+     * F-JEXAM-R006: what onQuiz asked, in the order of the traversal, waiting to be resolved
+     * together in onCourseComplete with up to N consultations at a time. What the judge reads
+     * and its fingerprint do not change (F-JEXAM-R007): the subject is built exactly as before.
+     */
+    private final List<AuditNode> pendingNodes = new ArrayList<>();
+
+    private final List<EvaluationRequest> pendingRequests = new ArrayList<>();
+
+    /** F-JEXAM-R001/R004: the quizzes this judge was asked about in this run, and their fate. */
+    private int reachedQuizzes = 0;
+
+    private int evaluatedQuizzes = 0;
+
+    private int unevaluatedQuizzes = 0;
+
 private final JudgeSessions opened;
 
 private final JudgeRuntime runtime;
@@ -104,45 +129,112 @@ public QuizInstructionAnalyzer(EvaluationSession session, QuizInstructionSubject
         return null;
     }
 
+    /**
+     * Decides what this quiz asks, exactly as before -- the declared set (F-QINST-R018), the
+     * re-evaluation by area (R012), the exam file (F-JEXAM-R001) -- builds its subject with the
+     * same builder, and leaves the question for onCourseComplete, where every question of the run
+     * is resolved together (F-JEXAM-R006). A quiz outside an exam file is neither asked nor
+     * counted.
+     */
     @Override
     public Void onQuiz(AuditNode node) {
-        EvaluationSubject subject = subjectBuilder.build(node);
-
-        EvaluationResolution resolution;
-        if (policy.getReevaluationSubjectIds() != null) {
-            // F-QINST-R018: a declared set of quizzes IS the re-evaluation request --
-            // every quiz of the set is consulted regardless of any current verdict
-            // (inv.1), every quiz outside it keeps being reused without ever
-            // consulting the judge, tenga o no veredicto (inv.1), and the run's
-            // budget is reserved for the set (inv.2, enforced inside the session).
-            QuizInstructionReevaluationDecision decision = scopeMatcher.decide(node, policy);
-            if (decision == QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION) {
-                // Matched regardless of what the resolution below turns out to be --
-                // this id DID correspond to a real quiz of the course.
-                matchedDeclaredSetIds.add(subject.getSubjectRef());
-                resolution = session.resolvePreferringNew(subject);
-            } else {
-                resolution = session.resolveWithoutConsulting(subject);
-            }
-        } else {
-            // R012: an explicit, scoped re-evaluation forces a fresh judge query even for a quiz
-            // that already has a current verdict. Outside the requested scope (or absent an
-            // explicit re-evaluation request), the ordinary reuse/budget path applies (R008/R006).
-            boolean forceReevaluation = policy.isReevaluate()
-                    && scopeMatcher.matches(node, policy.getReevaluationScope());
-            resolution = forceReevaluation ? session.resolveForced(subject) : session.resolve(subject);
+        QuizInstructionReevaluationDecision decision = decide(node);
+        if (decision == QuizInstructionReevaluationDecision.NOT_REQUESTED) {
+            return null;
         }
+        EvaluationSubject subject = subjectBuilder.build(node);
+        if (decision == QuizInstructionReevaluationDecision.DECLARED_SET_REEVALUATION
+                || decision == QuizInstructionReevaluationDecision.EXAM_CASE) {
+            // Matched regardless of what the resolution turns out to be -- this id DID
+            // correspond to a real quiz of the course (or of the exam's photo).
+            matchedDeclaredSetIds.add(subject.getSubjectRef());
+        }
+        pendingNodes.add(node);
+        pendingRequests.add(new EvaluationRequest(subject, modeOf(decision)));
+        return null;
+    }
 
+    private QuizInstructionReevaluationDecision decide(AuditNode node) {
+        if (policy.getPurpose() == EvaluationRunPurpose.EXAM && policy.getReevaluationSubjectIds() == null) {
+            // An exam without a file asks nothing.
+            return QuizInstructionReevaluationDecision.NOT_REQUESTED;
+        }
+        if (policy.getReevaluationSubjectIds() != null) {
+            // F-QINST-R018 / F-JEXAM-R001: the declared set (or the exam's file) decides everything.
+            return scopeMatcher.decide(node, policy);
+        }
+        // R012: an explicit, scoped re-evaluation forces a fresh judge query even for a quiz
+        // that already has a current verdict; outside it, the ordinary reuse/budget path applies.
+        boolean forceReevaluation = policy.isReevaluate()
+                && scopeMatcher.matches(node, policy.getReevaluationScope());
+        return forceReevaluation
+                ? QuizInstructionReevaluationDecision.AREA_REEVALUATION
+                : QuizInstructionReevaluationDecision.ORDINARY;
+    }
+
+    private static EvaluationRequestMode modeOf(QuizInstructionReevaluationDecision decision) {
+        return switch (decision) {
+            case AREA_REEVALUATION -> EvaluationRequestMode.FORCE;
+            case DECLARED_SET_REEVALUATION -> EvaluationRequestMode.PREFER_NEW;
+            case OUTSIDE_DECLARED_SET -> EvaluationRequestMode.REUSE_ONLY;
+            default -> EvaluationRequestMode.REUSE_OR_EVALUATE;
+        };
+    }
+
+    /**
+     * Resolves what onQuiz asked, all together: the session decides in order exactly what it
+     * would decide one at a time and runs up to N consultations at a time (F-JEXAM-R006). Each
+     * quiz is then scored as before; a failure of one quiz leaves only that quiz unevaluated
+     * (F-QINST-R007), as the engine's per-node guard did when this ran inside onQuiz.
+     */
+    private void resolvePending() {
+        if (pendingRequests.isEmpty()) {
+            return;
+        }
+        List<AuditNode> nodes = new ArrayList<>(pendingNodes);
+        List<EvaluationRequest> requests = new ArrayList<>(pendingRequests);
+        pendingNodes.clear();
+        pendingRequests.clear();
+        reachedQuizzes += nodes.size();
+
+        List<EvaluationResolution> resolutions = session.resolveAll(requests, maxConcurrentEvaluations());
+        for (int i = 0; i < nodes.size(); i++) {
+            AuditNode node = nodes.get(i);
+            EvaluationResolution resolution = resolutions != null && i < resolutions.size() ? resolutions.get(i) : null;
+            try {
+                if (apply(node, resolution)) {
+                    evaluatedQuizzes++;
+                } else {
+                    unevaluatedQuizzes++;
+                }
+            } catch (RuntimeException e) {
+                if (node.getScores() != null) {
+                    node.getScores().remove(ANALYZER_NAME);
+                }
+                markUnevaluated(node);
+                unevaluatedQuizzes++;
+            }
+        }
+    }
+
+    private int maxConcurrentEvaluations() {
+        Integer configured = policy.getMaxConcurrentEvaluations();
+        return configured != null && configured > 0 ? configured : 1;
+    }
+
+    /** Scores one quiz from its resolution; false when it stays without a verdict. */
+    private boolean apply(AuditNode node, EvaluationResolution resolution) {
         // R004/R007/R013: pending (budget exhausted or stale judge version) and failed
         // (judge unavailable or its own infrastructure verdict) resolutions leave the quiz
         // without score and without diagnosis. The key must not exist in the scores map so
         // the aggregator never averages an unevaluated quiz.
-        if (resolution.getKind() == EvaluationResolutionKind.PENDING
+        if (resolution == null
+                || resolution.getKind() == EvaluationResolutionKind.PENDING
                 || resolution.getKind() == EvaluationResolutionKind.FAILED) {
             // F-HALL-R008: reached but not evaluated -- the only way to tell it apart from a
             // quiz the judge never reached, and what lets "algún error" read as a floor.
             markUnevaluated(node);
-            return null;
+            return false;
         }
 
         QuizInstructionVerdict verdict = verdictReader.read(resolution.getPayload());
@@ -160,8 +252,7 @@ public QuizInstructionAnalyzer(EvaluationSession session, QuizInstructionSubject
         boolean reusedFromPreviousRun = resolution.getKind() == EvaluationResolutionKind.REUSED;
         quizDiagnoses.setQuizInstructionDiagnosis(
                 new QuizInstructionDiagnosis(verdict, score, reusedFromPreviousRun));
-
-        return null;
+        return true;
     }
 
     @Override
@@ -176,6 +267,9 @@ public QuizInstructionAnalyzer(EvaluationSession session, QuizInstructionSubject
 
     @Override
     public Void onCourseComplete(AuditNode rootNode) {
+        // F-JEXAM-R006: every question of the run, resolved together.
+        resolvePending();
+
         // R005/R014: the run's coverage over all reached quizzes is declared on the course
         // node, regardless of how many of them were pending, failed or judged in this run.
         EvaluationCoverage coverage = session.coverage();
@@ -210,8 +304,21 @@ public QuizInstructionAnalyzer(EvaluationSession session, QuizInstructionSubject
                         .sorted()
                         .collect(Collectors.toList());
 
+        // F-JEXAM-R001 inv. 2, R004, R011: next to today's counts, what every judge declares -- the
+        // exam of its version and of every version whose verdicts it used, what is pending and
+        // what it costs, and why it stopped consulting. Also in the common slot of the judges.
+        JudgeCoverageDiagnosis judgeCoverage = null;
+        if (runtime != null && opened != null) {
+            // F-CIERRE-R001: by exercise, the exercises are the units.
+            judgeCoverage = runtime.coverage(opened, new JudgeUnitTally(AuditTarget.QUIZ, reachedQuizzes,
+                    evaluatedQuizzes, unevaluatedQuizzes, new TreeMap<>(withoutNullVersion(verdictCountByJudgeVersion)),
+                    unmatchedReevaluationIds,
+                    new JudgeQuizTally(reachedQuizzes, evaluatedQuizzes, unevaluatedQuizzes)));
+            courseDiagnoses.addJudgeCoverage(judgeCoverage);
+        }
+
         courseDiagnoses.setQuizInstructionCoverage(new QuizInstructionCoverageDiagnosis(
-                coverage, consultedJudgeVersion, verdictsByJudgeVersion, unmatchedReevaluationIds, null));
+                coverage, consultedJudgeVersion, verdictsByJudgeVersion, unmatchedReevaluationIds, judgeCoverage));
 
         return null;
     }
@@ -267,10 +374,53 @@ public QuizInstructionAnalyzer(EvaluationSession session, QuizInstructionSubject
                 }
             }
         }
+        // F-JEXAM-R008: the whole verdict -- besides each violation, each checked constraint that
+        // did not fail, with its state, and the confidence of the judge (which never touches the
+        // score).
+        if (verdict != null && verdict.getCheckedConstraints() != null) {
+            for (InstructionCheck check : verdict.getCheckedConstraints()) {
+                if (check == null || check.getStatus() == InstructionCheckStatus.FAILED) {
+                    continue;
+                }
+                examined.add(new EvidencePart("Revisado (" + stateOf(check.getStatus()) + ")",
+                        describeCheck(check)));
+            }
+        }
+        if (verdict != null) {
+            examined.add(new EvidencePart("Confianza del juez",
+                    String.format(Locale.ROOT, "%.2f", verdict.getConfidence())));
+        }
         String observation = firstNonBlank(verdict != null ? verdict.getReason() : null,
                 String.join("; ", explanations), "El ejercicio no cumple su consigna");
         return List.of(new FindingDraft(RULE_INSTRUCTION_BREACH, null, severityOf(verdict), FindingResolution.PANEL,
                 new FindingEvidence(examined, observation, List.of())));
+    }
+
+    private static String stateOf(InstructionCheckStatus status) {
+        if (status == null) {
+            return "sin estado";
+        }
+        return switch (status) {
+            case PASSED -> "cumple";
+            case NOT_APPLICABLE -> "no aplica";
+            case FAILED -> "no cumple";
+        };
+    }
+
+    private static String describeCheck(InstructionCheck check) {
+        String constraint = firstNonBlank(check.getConstraint(), check.getCategory(), "Restricción revisada");
+        String evidence = check.getEvidence();
+        return evidence != null && !evidence.isBlank() ? constraint + ": " + evidence : constraint;
+    }
+
+    private static Map<String, Integer> withoutNullVersion(Map<String, Integer> byVersion) {
+        Map<String, Integer> result = new TreeMap<>();
+        for (Map.Entry<String, Integer> entry : byVersion.entrySet()) {
+            if (entry.getKey() != null) {
+                result.put(entry.getKey(), entry.getValue());
+            }
+        }
+        return result;
     }
 
     private void markUnevaluated(AuditNode node) {

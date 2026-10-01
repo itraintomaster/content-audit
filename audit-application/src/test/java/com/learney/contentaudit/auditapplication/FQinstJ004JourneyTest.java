@@ -73,6 +73,11 @@ import org.junit.jupiter.api.TestMethodOrder;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FQinstJ004JourneyTest {
 
+    /** F-JEXAM-R010: the priming run asks the judge a budget, so it is consulted and its verdicts recorded. */
+    private static final Map<String, EvaluationRunPolicy> PRIMING_BUDGET =
+            Map.of("quiz-instruction", new EvaluationRunPolicy(500, false, null, null, null, null));
+
+
     // R018 lives on EvaluationRunPolicy.reevaluationSubjectIds: a declared set of quiz ids the
     // run must re-judge, mutually exclusive with reevaluate/reevaluationScope (F-QINST-R012).
     // Its rejection (empty set / set + area at once) is raised by
@@ -120,7 +125,7 @@ public class FQinstJ004JourneyTest {
         // Prime the course: an ordinary run gives every quiz a current verdict.
         DefaultAuditRunner primingRunner = runnerWith(courseRepository, courseToAuditableMapper, realQuizInstructionFactory(ledger, fingerprinter,
                         new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION)));
-        primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, null));
+        primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, PRIMING_BUDGET));
         assertEquals(1, ledger.historyBySubjectRef("quiz-in-set").size(),
                 "setup: quiz-in-set must start with a current verdict");
         assertEquals(1, ledger.historyBySubjectRef("quiz-outside-set").size(),
@@ -173,7 +178,7 @@ public class FQinstJ004JourneyTest {
 
         DefaultAuditRunner primingRunner = runnerWith(courseRepository, courseToAuditableMapper, realQuizInstructionFactory(ledger, fingerprinter,
                         new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION)));
-        primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, null));
+        primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, PRIMING_BUDGET));
 
         FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION);
         AnalyzerProvider quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
@@ -231,7 +236,7 @@ public class FQinstJ004JourneyTest {
 
         DefaultAuditRunner primingRunner = runnerWith(courseRepository, courseToAuditableMapper, realQuizInstructionFactory(ledger, fingerprinter,
                         new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION)));
-        primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, null));
+        primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, PRIMING_BUDGET));
 
         FakeEvaluator evaluator = new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION);
         AnalyzerProvider quizInstructionFactory = realQuizInstructionFactory(ledger, fingerprinter,
@@ -331,7 +336,7 @@ public class FQinstJ004JourneyTest {
 
         DefaultAuditRunner primingRunner = runnerWith(courseRepository, courseToAuditableMapper, realQuizInstructionFactory(ledger, fingerprinter,
                         new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION)));
-        primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, null));
+        primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, PRIMING_BUDGET));
         assertEquals(1, ledger.historyBySubjectRef("quiz-1").size(),
                 "setup: quiz-1 must start with a current verdict");
 
@@ -379,7 +384,7 @@ public class FQinstJ004JourneyTest {
 
         DefaultAuditRunner primingRunner = runnerWith(courseRepository, courseToAuditableMapper, realQuizInstructionFactory(ledger, fingerprinter,
                         new FakeEvaluator(EVALUATOR_ID, JUDGE_VERSION)));
-        primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, null));
+        primingRunner.runAudit(coursePath, new AuditRunRequest(null, null, PRIMING_BUDGET));
         assertEquals(1, ledger.historyBySubjectRef("quiz-1").size(),
                 "setup: quiz-1 must start with a current verdict");
 
@@ -480,9 +485,9 @@ public class FQinstJ004JourneyTest {
      */
     private static AnalyzerProvider realQuizInstructionFactory(EvaluationLedger ledger,
             ContentFingerprinter fingerprinter, Evaluator evaluator) {
-        return new DefaultQuizInstructionAnalyzerFactory(
-                new DefaultEvaluationSessionFactory(ledger, fingerprinter), evaluator,
-                new FakeQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(), null);
+        return new DefaultQuizInstructionAnalyzerFactory(evaluator, new FakeQuizInstructionVerdictReader(),
+                new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()),
+                approvedJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, fingerprinter)));
     }
 
     /** Deterministic fake fingerprinter: same content map always yields the same fingerprint. */
@@ -538,7 +543,8 @@ public class FQinstJ004JourneyTest {
     private static final class FakeEvaluator implements Evaluator {
         private final String id;
         private final String version;
-        private final List<EvaluationSubject> evaluatedSubjects = new ArrayList<>();
+        // F-JEXAM-R006: the judge is consulted up to four at a time, so what it records must be thread-safe.
+        private final List<EvaluationSubject> evaluatedSubjects = java.util.Collections.synchronizedList(new ArrayList<>());
 
         private FakeEvaluator(String id, String version) {
             this.id = id;
@@ -578,5 +584,34 @@ public class FQinstJ004JourneyTest {
             return new QuizInstructionVerdict(true, 1.0, InstructionSeverity.NONE, "compliant", List.of(),
                     List.of());
         }
+    }
+
+    /**
+     * FEAT-JEXAM: the judges runtime over this test's sessions, with every judge version approved,
+     * so a run that asks the judge a budget may consult it (F-JEXAM-R003); without a budget it
+     * consults nothing (F-JEXAM-R010).
+     */
+    private static com.learney.contentaudit.auditdomain.judging.JudgeRuntime approvedJudgeRuntime(
+            com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory sessions) {
+        com.learney.contentaudit.auditdomain.JudgeExamRegistry approved = new com.learney.contentaudit.auditdomain.JudgeExamRegistry() {
+            @Override
+            public void record(com.learney.contentaudit.auditdomain.judging.JudgeExamRecord record) {
+            }
+
+            @Override
+            public java.util.Optional<com.learney.contentaudit.auditdomain.judging.JudgeExamRecord> latest(
+                    String judgeName, String judgeVersion) {
+                return java.util.Optional.of(new com.learney.contentaudit.auditdomain.judging.JudgeExamRecord(
+                        judgeName, judgeVersion, com.learney.contentaudit.auditdomain.judging.JudgeExamStatus.APPROVED,
+                        0, 0, java.util.List.of(), java.util.List.of(), true, null, null, null));
+            }
+
+            @Override
+            public java.util.List<com.learney.contentaudit.auditdomain.judging.JudgeExamRecord> history(String judgeName) {
+                return java.util.List.of();
+            }
+        };
+        return new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime(sessions, sessions, approved,
+                evaluatorId -> java.util.List.of(), new com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig());
     }
 }

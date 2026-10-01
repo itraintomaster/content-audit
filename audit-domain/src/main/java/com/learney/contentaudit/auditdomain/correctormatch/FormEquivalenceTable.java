@@ -17,15 +17,19 @@ public class FormEquivalenceTable {
 
     private boolean invertsNegativeQuestions;
 
+    private List<CorrectorRule> rules;
+
     public FormEquivalenceTable() {
     }
 
     public FormEquivalenceTable(String version, List<ContractionExpansion> contractions,
-            List<EquivalentWordGroup> equivalentWords, boolean invertsNegativeQuestions) {
+            List<EquivalentWordGroup> equivalentWords, boolean invertsNegativeQuestions,
+            List<CorrectorRule> rules) {
         this.version = version;
         this.contractions = contractions;
         this.equivalentWords = equivalentWords;
         this.invertsNegativeQuestions = invertsNegativeQuestions;
+        this.rules = rules;
     }
 
     public String getVersion() {
@@ -60,6 +64,14 @@ public class FormEquivalenceTable {
         this.invertsNegativeQuestions = invertsNegativeQuestions;
     }
 
+    public List<CorrectorRule> getRules() {
+        return this.rules;
+    }
+
+    public void setRules(List<CorrectorRule> rules) {
+        this.rules = rules;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,11 +80,12 @@ public class FormEquivalenceTable {
         return Objects.equals(this.version, that.version)
                     && Objects.equals(this.contractions, that.contractions)
                     && Objects.equals(this.equivalentWords, that.equivalentWords)
-                    && Objects.equals(this.invertsNegativeQuestions, that.invertsNegativeQuestions);
+                    && Objects.equals(this.invertsNegativeQuestions, that.invertsNegativeQuestions)
+                    && Objects.equals(this.rules, that.rules);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(version, contractions, equivalentWords, invertsNegativeQuestions);
+        return Objects.hash(version, contractions, equivalentWords, invertsNegativeQuestions, rules);
     }
 }

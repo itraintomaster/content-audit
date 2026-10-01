@@ -9,6 +9,7 @@ import static org.mockito.ArgumentMatchers.anyMap;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.when;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -21,6 +22,9 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadiness;
+import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadinessProbe;
+import com.learney.contentaudit.quizinstructioninfrastructure.JudgeUnavailabilityCause;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
 import com.sentinel.agents.framework.state.ArtifactPointer;
 import com.sentinel.agents.framework.state.RunState;
@@ -31,9 +35,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -244,12 +249,53 @@ public class QuizInstructionAgentJudgeTest {
                         + "juzgado (cefrLevel, topic, title, instructions, quiz), sin agregar ni quitar nada");
     }
 
+    /** A session check that finds the claude-cli session expired and counts how often it is asked. */
+    private static final class ExpiredSessionProbe implements JudgeProviderReadinessProbe {
+        private final AtomicInteger probes = new AtomicInteger();
+
+        @Override
+        public JudgeProviderReadiness probe(LlmProviderResolved provider) {
+            probes.incrementAndGet();
+            return new JudgeProviderReadiness(false, JudgeUnavailabilityCause.SESSION_EXPIRED, "sesión vencida",
+                    "renovala con claude auth login");
+        }
+
+        @Override
+        public JudgeProviderReadiness explain(LlmProviderResolved provider, String failure) {
+            return new JudgeProviderReadiness(false, JudgeUnavailabilityCause.UNKNOWN, failure,
+                    "revisá el registro de la corrida");
+        }
+    }
+
     @Test
     @DisplayName("should answer unavailable with the cause and the remedy, without running its agent, when the provider session expired")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R011")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
     public void shouldAnswerUnavailableWithTheCauseAndTheRemedyWithoutRunningItsAgentWhenTheProviderSessionExpired() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
+        QuizInstructionJudgeVersionResolver versionResolver = mock(QuizInstructionJudgeVersionResolver.class);
+        AtomicInteger chatModels = new AtomicInteger();
+        JudgeChatModelFactory countingChatModels = (config, provider) -> {
+            chatModels.incrementAndGet();
+            return mock(ChatModel.class);
+        };
+        ExpiredSessionProbe expired = new ExpiredSessionProbe();
+
+        QuizInstructionAgentJudge judge = new QuizInstructionAgentJudge(buildConfig(), agentGraphRunner,
+                versionResolver, countingChatModels, PROVIDER, expired);
+
+        for (String quizId : List.of("quiz-77", "quiz-78")) {
+            EvaluationOutcome outcome = assertDoesNotThrow(
+                    () -> judge.evaluate(new EvaluationSubject(quizId, buildDeclaredInputs())));
+            EvaluationNotEmitted notEmitted = assertInstanceOf(EvaluationNotEmitted.class, outcome,
+                    "without a session the consigna judge emits nothing for " + quizId);
+            assertEquals(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, notEmitted.getKind(),
+                    "an expired session is a service failure: the run stops consulting");
+            assertEquals("sesión vencida: renovala con claude auth login", notEmitted.getReason(),
+                    "F-JEXAM-R011: the cause and the remedy, as the report shows them");
+        }
+        verifyNoInteractions(agentGraphRunner);
+        assertEquals(0, chatModels.get(), "not even its model is built without a session");
+        assertEquals(1, expired.probes.get(), "the session is checked once, before the first consultation");
     }
 }

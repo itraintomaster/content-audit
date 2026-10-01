@@ -1,0 +1,861 @@
+{
+  "agent": "choice-alternative-judge",
+  "artifact": "choiceAlternativeVerdict",
+  "gateId": "choice_alternative_judge_gate_verdict",
+  "emitId": "choice_alternative_judge_emit",
+  "dependencies": [
+    "title",
+    "instructions",
+    "exercise",
+    "options"
+  ],
+  "topKeys": [
+    "correctIsValid",
+    "validAlternatives",
+    "correctProblem",
+    "rationale"
+  ],
+  "promptMustMention": [
+    "correctIsValid",
+    "correctProblem",
+    "`HIGH` — vale igual que la correcta",
+    "mayúscula (*am i* / *Am I*), *a* o *an*, singular o plural",
+    "**antes de contestar**"
+  ],
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (una label que no es opción o que es la correcta, BLOCKING o LOW en una alternativa, correctIsValid sin su correctProblem), y que emit produzca choiceAlternativeVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (title, instructions, exercise, options), armado como DefaultChoiceAlternativeSubjectBuilder, de ejercicios A1/A2 del curso que no están en el examen; los de «manzanas» (la clave invertida) y «verano» (HIGH) son inventados y no están en el curso.",
+  "inputs": {
+    "manzanas": {
+      "title": "$Before$ y $after$",
+      "instructions": "Elige 'before' o 'after'.",
+      "exercise": "Wash the apples ___ you eat them.",
+      "options": "- after (correcta)\n- before"
+    },
+    "verano": {
+      "title": "$For$ o $during$",
+      "instructions": "Elige 'for' o 'during'.",
+      "exercise": "I stayed with my grandparents ___ the summer.",
+      "options": "- during\n- for (correcta)"
+    },
+    "musica": {
+      "title": "$Some$ y $any$",
+      "instructions": "Elige 'some' o 'any'.",
+      "exercise": "Did you hear ___ music?",
+      "options": "- any (correcta)\n- some"
+    },
+    "champu": {
+      "title": "Información nueva",
+      "instructions": "Elige 'a' o '-' (sin artículo). En este ejercicio, todo es algo que el oyente NO conoce.",
+      "exercise": "He ordered ___ shampoo.",
+      "options": "- - (correcta)\n- a"
+    },
+    "articulo": {
+      "title": "General o particular",
+      "instructions": "Elige 'the' o usa – si no necesitamos ningún artículo.",
+      "exercise": "Whose are ___ bikes in the garage?",
+      "options": "- -\n- the (correcta)"
+    },
+    "roma": {
+      "title": "$For$ o $during$",
+      "instructions": "Elige 'for' o 'during'.",
+      "exercise": "I studied in Rome ___ five years.",
+      "options": "- during\n- for (correcta)"
+    },
+    "sin-entrada-de-opciones": {
+      "title": "$Some$ y $any$",
+      "instructions": "Elige 'some' o 'any'.",
+      "exercise": "Did you hear ___ music?"
+    }
+  },
+  "cases": [
+    {
+      "caseId": "manzanas-clave-invertida",
+      "note": "«Wash the apples ___ you eat them.» (inventado): la correcta no vale, «before» sí.",
+      "inputs": "manzanas",
+      "verdict": {
+        "correctIsValid": false,
+        "validAlternatives": [
+          {
+            "label": "before",
+            "severity": "HIGH",
+            "reason": "«Wash the apples before you eat them.» es la que tiene sentido."
+          }
+        ],
+        "correctProblem": "«After» pide lavar las manzanas después de comerlas, y eso no tiene sentido.",
+        "rationale": "La clave está invertida: la correcta no vale y la otra sí."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "verano-during-alta",
+      "note": "«I stayed with my grandparents ___ the summer.» (inventado): «during» vale igual que «for».",
+      "inputs": "verano",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "during",
+            "severity": "HIGH",
+            "reason": "Con un período como «the summer», «during» es tan correcto como «for»."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "Hay dos opciones correctas."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "musica-some-media",
+      "note": "«Did you hear ___ music?» (…2392): «some» es defendible.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "champu-a-media",
+      "note": "«He ordered ___ shampoo.» (…2a59): «a shampoo» es un frasco o un lavado.",
+      "inputs": "champu",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "a",
+            "severity": "MEDIUM",
+            "reason": "«a shampoo» también se dice: un frasco de champú, o un lavado en la peluquería."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«a» también vale."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "solo-la-correcta",
+      "note": "«I studied in Rome ___ five years.» (…2d1e): sólo vale la correcta; lista vacía y correctProblem null.",
+      "inputs": "roma",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "Sólo la correcta encaja."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "label-con-mayusculas",
+      "note": "La label vuelve tal cual está en las opciones.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "Some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "label-entre-comillas",
+      "note": "Comillas alrededor de la label no hacen reintentar.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "«some»",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "label-guion-largo",
+      "note": "Prueba de forma, no de juicio: «–» por la opción «-» (nada) se resuelve a la opción tal cual.",
+      "inputs": "articulo",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "–",
+            "severity": "MEDIUM",
+            "reason": "Sólo para probar la label."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "Prueba de forma."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "-",
+              "severity": "MEDIUM",
+              "reason": "Sólo para probar la label."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "Prueba de forma."
+        }
+      }
+    },
+    {
+      "caseId": "guion-que-es-la-correcta",
+      "note": "Con «the» correcta, la opción «-» es la incorrecta y «the» no puede ir en la lista.",
+      "inputs": "articulo",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": " The ",
+            "severity": "MEDIUM",
+            "reason": "Puesta en la oración, también es correcta."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "Prueba de forma."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "es la opción correcta"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "correcta-valida-con-motivo-vacio",
+      "note": "Con correctIsValid true, un correctProblem vacío se canonicaliza a null.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": "  ",
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "enums-en-minusculas",
+      "note": "Mayúsculas de los enums y espacios de los textos se canonicalizan.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "medium",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "sin-entrada-de-opciones",
+      "note": "Si no llega options (uso fuera de content-audit) no hay contra qué comparar la label.",
+      "inputs": "sin-entrada-de-opciones",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "label-que-es-la-correcta",
+      "note": "La correcta nunca va en validAlternatives; el esquema no sabe cuál es.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "any",
+            "severity": "HIGH",
+            "reason": "Puesta en la oración, también es correcta."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "es la opción correcta"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "label-que-no-es-opcion",
+      "note": "La label es una de las opciones del ejercicio.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "much",
+            "severity": "HIGH",
+            "reason": "Puesta en la oración, también es correcta."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es una de las opciones del ejercicio"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "label-repetida",
+      "note": "Una entrada por opción.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "HIGH",
+            "reason": "Puesta en la oración, también es correcta."
+          },
+          {
+            "label": "Some",
+            "severity": "MEDIUM",
+            "reason": "Puesta en la oración, también es correcta."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "aparece dos veces"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "severidad-bloqueante",
+      "note": "La clave invertida se dice con correctIsValid; las alternativas son HIGH o MEDIUM.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "BLOCKING",
+            "reason": "Puesta en la oración, también es correcta."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "BLOCKING no va en una alternativa"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "severidad-baja",
+      "note": "LOW no va en una alternativa.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "LOW",
+            "reason": "Puesta en la oración, también es correcta."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "LOW no va en una alternativa"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "invalida-sin-motivo",
+      "note": "correctIsValid false exige correctProblem.",
+      "inputs": "manzanas",
+      "verdict": {
+        "correctIsValid": false,
+        "validAlternatives": [
+          {
+            "label": "before",
+            "severity": "HIGH",
+            "reason": "«Wash the apples before you eat them.» es la que tiene sentido."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "La clave está invertida: la correcta no vale y la otra sí."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "correctIsValid es false"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "valida-con-motivo",
+      "note": "correctIsValid true lleva correctProblem null.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": "No vale.",
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "correctIsValid es true pero correctProblem no es null"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "correct-is-valid-como-texto",
+      "note": "correctIsValid es boolean.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": "true",
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "correctIsValid tiene que ser true o false"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "alternativa-con-clave-de-mas",
+      "note": "Cada alternativa es un objeto cerrado.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.",
+            "confidence": 0.7
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "validAlternatives[0] no respeta el objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "falta-correct-problem",
+      "note": "correctProblem es parte del objeto cerrado aunque vaya null.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan=['correctProblem']"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "run-dir-por-state-json",
+      "note": "Sin run_dir en las entradas: project_root + el run_id (UUID) del state.json, como lo proyecta el CLI.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "resolution": "state.json",
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "run-id-ambiguo",
+      "note": "Dos state.json con el mismo runId: el gate no adivina; emit sale conservador.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "resolution": "ambiguous",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exactamente uno"
+        ]
+      }
+    },
+    {
+      "caseId": "run-id-inseguro",
+      "note": "Un run_id que escaparía del directorio de runs se rechaza.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "resolution": "unsafe-run-id",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "run_id ausente o inseguro"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-run-dir",
+      "note": "Sin run_dir ni project_root no hay dónde leer: falla el gate y emit da outputUnusable.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "resolution": "none",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan run_dir"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-salida-de-evaluate",
+      "note": "evaluate no dejó verdicts.json.",
+      "inputs": "musica",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "verdicts.json no existe"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-viejo-se-borra",
+      "note": "Un validated-verdict.json de un intento anterior no sobrevive a un gate que falla.",
+      "inputs": "musica",
+      "raw": "no hay veredicto",
+      "staleValidated": true,
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "no-es-json",
+      "note": "Prosa sin objeto JSON.",
+      "inputs": "musica",
+      "raw": "No puedo juzgar este ejercicio.",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "lista-en-vez-de-objeto",
+      "note": "Un array no es el veredicto.",
+      "inputs": "musica",
+      "raw": "[1, 2]",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "output-unusable-del-modelo",
+      "note": "{\"outputUnusable\": true} lo produce emit, nunca el modelo: el gate lo rechaza.",
+      "inputs": "musica",
+      "verdict": {
+        "outputUnusable": true
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "objeto cerrado"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-corrupto-antes-de-emit",
+      "note": "Si validated-verdict.json no se puede leer, emit no inventa: outputUnusable.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "corruptValidated": true,
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "fence-json",
+      "note": "La salida en un fence ```json se acepta sin pagar otra consulta.",
+      "inputs": "musica",
+      "raw": "```json\n{\n  \"correctIsValid\": true,\n  \"validAlternatives\": [\n    {\n      \"label\": \"some\",\n      \"severity\": \"MEDIUM\",\n      \"reason\": \"«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.\"\n    }\n  ],\n  \"correctProblem\": null,\n  \"rationale\": \"«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».\"\n}\n```",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "prosa-alrededor",
+      "note": "Prosa antes y una etiqueta después: se toma el objeto.",
+      "inputs": "musica",
+      "raw": "Este es mi veredicto:\n{\"correctIsValid\": true, \"validAlternatives\": [{\"label\": \"some\", \"severity\": \"MEDIUM\", \"reason\": \"«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.\"}], \"correctProblem\": null, \"rationale\": \"«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».\"}\nLABEL: done",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "json-dentro-de-un-string",
+      "note": "El objeto serializado dentro de un string JSON se desenvuelve.",
+      "inputs": "musica",
+      "raw": "\"{\\\"correctIsValid\\\": true, \\\"validAlternatives\\\": [{\\\"label\\\": \\\"some\\\", \\\"severity\\\": \\\"MEDIUM\\\", \\\"reason\\\": \\\"«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.\\\"}], \\\"correctProblem\\\": null, \\\"rationale\\\": \\\"«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».\\\"}\"",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    }
+  ]
+}

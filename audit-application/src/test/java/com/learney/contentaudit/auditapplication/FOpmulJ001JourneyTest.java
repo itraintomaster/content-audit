@@ -224,13 +224,16 @@ public class FOpmulJ001JourneyTest {
                 new IAuditEngine(new IScoreAggregator(), catalog, new DefaultFindingCollector(),
                         new DefaultContextNumbersCalculator()),
                 catalog);
-        return runner.runAudit(COURSE_PATH, new AuditRunRequest(null, null, null));
+        // F-JEXAM-R010: the judge of the run is consulted only when the run asks it a budget.
+        return runner.runAudit(COURSE_PATH, new AuditRunRequest(null, null, judges.isEmpty() ? null
+                : Map.of("quiz-instruction", new com.learney.contentaudit.auditdomain.EvaluationRunPolicy(
+                        500, false, null, null, null, null))));
     }
 
     private static AnalyzerProvider judgeFactory(FakeEvaluationLedger ledger, FakeEvaluator judge) {
-        return new DefaultQuizInstructionAnalyzerFactory(
-                new DefaultEvaluationSessionFactory(ledger, new FakeContentFingerprinter()), judge,
-                new FakeQuizInstructionVerdictReader(), new DefaultQuizInstructionConfig(), null);
+        return new DefaultQuizInstructionAnalyzerFactory(judge, new FakeQuizInstructionVerdictReader(),
+                new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()),
+                approvedJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, new FakeContentFingerprinter())));
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -385,7 +388,8 @@ public class FOpmulJ001JourneyTest {
 
     /** The judge -- never a real model. Records what it was asked to judge. */
     private static final class FakeEvaluator implements Evaluator {
-        private final List<EvaluationSubject> judged = new ArrayList<>();
+        // F-JEXAM-R006: the judge is consulted up to four at a time, so what it records must be thread-safe.
+        private final List<EvaluationSubject> judged = java.util.Collections.synchronizedList(new ArrayList<>());
 
         @Override
         public String evaluatorId() {
@@ -419,5 +423,34 @@ public class FOpmulJ001JourneyTest {
             return new QuizInstructionVerdict(true, 1.0, InstructionSeverity.NONE, "compliant", List.of(),
                     List.of());
         }
+    }
+
+    /**
+     * FEAT-JEXAM: the judges runtime over this test's sessions, with every judge version approved,
+     * so a run that asks the judge a budget may consult it (F-JEXAM-R003); without a budget it
+     * consults nothing (F-JEXAM-R010).
+     */
+    private static com.learney.contentaudit.auditdomain.judging.JudgeRuntime approvedJudgeRuntime(
+            com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory sessions) {
+        com.learney.contentaudit.auditdomain.JudgeExamRegistry approved = new com.learney.contentaudit.auditdomain.JudgeExamRegistry() {
+            @Override
+            public void record(com.learney.contentaudit.auditdomain.judging.JudgeExamRecord record) {
+            }
+
+            @Override
+            public java.util.Optional<com.learney.contentaudit.auditdomain.judging.JudgeExamRecord> latest(
+                    String judgeName, String judgeVersion) {
+                return java.util.Optional.of(new com.learney.contentaudit.auditdomain.judging.JudgeExamRecord(
+                        judgeName, judgeVersion, com.learney.contentaudit.auditdomain.judging.JudgeExamStatus.APPROVED,
+                        0, 0, java.util.List.of(), java.util.List.of(), true, null, null, null));
+            }
+
+            @Override
+            public java.util.List<com.learney.contentaudit.auditdomain.judging.JudgeExamRecord> history(String judgeName) {
+                return java.util.List.of();
+            }
+        };
+        return new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime(sessions, sessions, approved,
+                evaluatorId -> java.util.List.of(), new com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig());
     }
 }

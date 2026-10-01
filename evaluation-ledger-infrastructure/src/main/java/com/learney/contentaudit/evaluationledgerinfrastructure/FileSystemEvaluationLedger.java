@@ -11,15 +11,22 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import javax.annotation.processing.Generated;
 
 /**
@@ -48,6 +55,13 @@ import javax.annotation.processing.Generated;
  *       time — never interleave their bytes or clobber each other's line. The
  *       worst case two concurrent runs can produce is evaluating (and paying
  *       for) the same content twice, never a corrupted or lost record.</li>
+ *   <li><b>Read once while unchanged</b>: an analysis asks for one result per
+ *       exercise, so each file is parsed once and kept for as long as it is
+ *       the same file with the same size and modification time. Every append
+ *       -- from this instance or from another run -- makes the file longer, so
+ *       the next question reads it again: nothing written is ever missed, and
+ *       a run no longer re-reads the whole file for each of its 11,287
+ *       exercises. Callers always get their own copies of the records.</li>
  * </ul>
  */
 @Generated(
@@ -63,24 +77,23 @@ public class FileSystemEvaluationLedger implements EvaluationLedger, EvaluationT
 
     private final Path baseDir;
 
+    /** What each evaluator file held when it was last read, while it stays the same file. */
+    private final ConcurrentMap<Path, Snapshot> snapshots = new ConcurrentHashMap<>();
+
     public FileSystemEvaluationLedger(Path baseDir) {
         this.baseDir = baseDir;
     }
 
     @Override
     public Optional<EvaluationRecord> findLatest(EvaluationKey key) {
-        Optional<EvaluationRecord> latest = Optional.empty();
-        for (EvaluationRecord candidate : readAll(key.getEvaluatorId())) {
-            if (Objects.equals(candidate.getKey(), key)) {
-                // F-EVCOST-R006: a key can legitimately be recorded more than
-                // once (an explicit re-evaluation, F-EVCOST-R008, appends a
-                // new entry without destroying the earlier one). Lines are
-                // read in append order, so the last match is the most
-                // recently registered one — the one that applies.
-                latest = Optional.of(candidate);
-            }
-        }
-        return latest;
+        // F-EVCOST-R006: a key can legitimately be recorded more than once (an
+        // explicit re-evaluation, F-EVCOST-R008, appends a new entry without
+        // destroying the earlier one). Lines are kept in append order, so the
+        // last match is the most recently registered one — the one that applies.
+        List<EvaluationRecord> matches = snapshot(key.getEvaluatorId()).matching(key);
+        return matches.isEmpty()
+                ? Optional.empty()
+                : Optional.of(copyOf(matches.get(matches.size() - 1)));
     }
 
     @Override
@@ -118,10 +131,8 @@ public class FileSystemEvaluationLedger implements EvaluationLedger, EvaluationT
     @Override
     public List<EvaluationRecord> history(EvaluationKey key) {
         List<EvaluationRecord> matches = new ArrayList<>();
-        for (EvaluationRecord candidate : readAll(key.getEvaluatorId())) {
-            if (Objects.equals(candidate.getKey(), key)) {
-                matches.add(candidate);
-            }
+        for (EvaluationRecord candidate : snapshot(key.getEvaluatorId()).matching(key)) {
+            matches.add(copyOf(candidate));
         }
         return matches;
     }
@@ -138,12 +149,52 @@ public class FileSystemEvaluationLedger implements EvaluationLedger, EvaluationT
         return evaluatorId.replaceAll("[^A-Za-z0-9._-]", "_");
     }
 
-    private List<EvaluationRecord> readAll(String evaluatorId) {
+    /**
+     * The records of this evaluator's file, parsed once and kept while the file is the same file
+     * with the same size and modification time. The attributes are taken before reading, so a
+     * line appended while reading only makes the next question read the file again; an append
+     * always makes the file longer, so it is never missed. A file that is gone has no records.
+     */
+    private Snapshot snapshot(String evaluatorId) {
         Path file = resolveFile(evaluatorId);
-        if (!Files.exists(file)) {
-            return List.of();
+        BasicFileAttributes attributes;
+        try {
+            attributes = Files.readAttributes(file, BasicFileAttributes.class);
+        } catch (NoSuchFileException e) {
+            snapshots.remove(file);
+            return Snapshot.EMPTY;
+        } catch (IOException e) {
+            throw new EvaluationLedgerPersistenceException(
+                    "Failed to read evaluation ledger " + file + ": " + e.getMessage(), e);
         }
+        Snapshot cached = snapshots.get(file);
+        if (cached != null && cached.describes(attributes)) {
+            return cached;
+        }
+        List<EvaluationRecord> records;
+        try {
+            records = readAll(file);
+        } catch (EvaluationLedgerPersistenceException e) {
+            if (!Files.exists(file)) {
+                // Removed between the two reads: it has nothing registered.
+                snapshots.remove(file);
+                return Snapshot.EMPTY;
+            }
+            throw e;
+        }
+        Snapshot fresh = new Snapshot(attributes, records);
+        snapshots.put(file, fresh);
+        return fresh;
+    }
 
+    private static EvaluationRecord copyOf(EvaluationRecord record) {
+        EvaluationKey key = record.getKey();
+        return new EvaluationRecord(new EvaluationKey(key.getEvaluatorId(), key.getContentFingerprint()),
+                record.getPayload(), record.getSubjectRef(), record.getRecordedAt(),
+                record.getEvaluatorVersion());
+    }
+
+    private List<EvaluationRecord> readAll(Path file) {
         byte[] bytes;
         try {
             bytes = Files.readAllBytes(file);
@@ -222,9 +273,66 @@ public class FileSystemEvaluationLedger implements EvaluationLedger, EvaluationT
     }
 
 
+    /**
+     * F-JEXAM-R004: when each result of this evaluator was recorded, in the order the lines were
+     * appended -- what the judge runtime measures the judge's rate with. A record of the exam
+     * space ({@code exam:<evaluator>}) lives in its own file and never shows up here.
+     */
     @Override
     public List<Instant> recordedTimes(String evaluatorId) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        List<Instant> times = new ArrayList<>();
+        if (evaluatorId == null) {
+            return times;
+        }
+        for (EvaluationRecord record : snapshot(evaluatorId).records) {
+            if (record.getRecordedAt() != null && evaluatorId.equals(record.getKey().getEvaluatorId())) {
+                times.add(record.getRecordedAt());
+            }
+        }
+        return times;
+    }
+
+    /**
+     * One evaluator file as it was read: its records in append order, grouped by key for the
+     * lookups, and the attributes that say whether the file is still the same. Never changed
+     * after it is built; callers get copies of its records.
+     */
+    private static final class Snapshot {
+
+        static final Snapshot EMPTY = new Snapshot(null, List.of());
+
+        private final Object fileKey;
+        private final long size;
+        private final FileTime lastModified;
+        private final List<EvaluationRecord> records;
+        private final Map<EvaluationKey, List<EvaluationRecord>> byKey;
+
+        Snapshot(BasicFileAttributes attributes, List<EvaluationRecord> records) {
+            this.fileKey = attributes != null ? attributes.fileKey() : null;
+            this.size = attributes != null ? attributes.size() : -1L;
+            this.lastModified = attributes != null ? attributes.lastModifiedTime() : null;
+            this.records = Collections.unmodifiableList(new ArrayList<>(records));
+            Map<EvaluationKey, List<EvaluationRecord>> grouped = new HashMap<>();
+            for (EvaluationRecord record : this.records) {
+                // Keyed by a copy, so no caller can ever move a record to another key.
+                EvaluationKey key = new EvaluationKey(record.getKey().getEvaluatorId(),
+                        record.getKey().getContentFingerprint());
+                grouped.computeIfAbsent(key, k -> new ArrayList<>()).add(record);
+            }
+            this.byKey = grouped;
+        }
+
+        boolean describes(BasicFileAttributes attributes) {
+            return size == attributes.size()
+                    && Objects.equals(lastModified, attributes.lastModifiedTime())
+                    && Objects.equals(fileKey, attributes.fileKey());
+        }
+
+        /** The records of exactly this key, in append order. */
+        List<EvaluationRecord> matching(EvaluationKey key) {
+            List<EvaluationRecord> matches = byKey.get(key);
+            return matches != null ? matches : List.of();
+        }
     }
 
 }

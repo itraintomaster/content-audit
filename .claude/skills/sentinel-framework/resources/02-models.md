@@ -1735,6 +1735,7 @@ new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 | `SUBJECT_MISMATCH` | `null` |
 | `SUBJECT_NOT_ANNOUNCED` | `null` |
 | `NEGATION_WITHOUT_NEGATIVE` | `null` |
+| `REWRITE_WORD_NOT_ANNOUNCED` | `null` |
 
 #### ExerciseShape (package: hintcoherence)
 
@@ -1784,6 +1785,7 @@ new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 | `contractions` | `List<ContractionExpansion>` |
 | `equivalentWords` | `List<EquivalentWordGroup>` |
 | `invertsNegativeQuestions` | `boolean` |
+| `rules` | `List<CorrectorRule>` |
 
 #### ContractionExpansion (package: correctormatch)
 
@@ -1820,6 +1822,19 @@ new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 | `BE_NEGATION` | `null` |
 | `SPELLING` | `null` |
 | `PREPOSITION` | `null` |
+
+#### CorrectorRule (package: correctormatch)
+
+**Package:** `com.learney.contentaudit.auditdomain.correctormatch`
+**Visibility:** public
+**Type:** enum
+
+| Field | Type |
+|-------|------|
+| `AMBIGUOUS_CONTRACTIONS` | `null` |
+| `STANDARD_IRREGULAR_PARTICIPLES` | `null` |
+| `TILL_OWN_SUBJECTS` | `null` |
+| `OPTIONAL_PARENTHESES` | `null` |
 
 #### AnswerCompletenessDiagnosis (package: answercompleteness)
 
@@ -2136,6 +2151,7 @@ new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 | `unavailableReason` | `String` |
 | `cost` | `JudgeCostEstimate` |
 | `unmatchedDeclaredIds` | `List<String>` |
+| `quizzes` | `JudgeQuizTally` |
 
 #### JudgeSessions (package: judging)
 
@@ -2178,6 +2194,7 @@ new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 | `notEvaluated` | `int` |
 | `verdictsByVersion` | `Map<String,Integer>` |
 | `unmatchedDeclaredIds` | `List<String>` |
+| `quizzes` | `JudgeQuizTally` |
 
 #### JudgeExamOutcome (package: judging)
 
@@ -2207,6 +2224,18 @@ new LemmaCountBand(String name, Integer maxCocaRank, int threshold)
 | `worstSeverity` | `FindingSeverity` |
 | `rules` | `List<String>` |
 | `detail` | `String` |
+
+#### JudgeQuizTally (package: judging)
+
+**Package:** `com.learney.contentaudit.auditdomain.judging`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `reached` | `int` |
+| `evaluated` | `int` |
+| `notEvaluated` | `int` |
 
 #### TranslationSenseCondition (package: translationsense)
 
@@ -4925,10 +4954,11 @@ new EvaluationResolutionKind(null REUSED, null EVALUATED, null PENDING, null FAI
 | `kind` | `EvaluationResolutionKind` |  |
 | `payload` | `String` |  |
 | `evaluatorVersion` | `String` |  |
+| `failure` | `EvaluationNotEmitted` |  |
 
 **Generated constructor:**
 ```java
-new EvaluationResolution(EvaluationResolutionKind kind, String payload, String evaluatorVersion)
+new EvaluationResolution(EvaluationResolutionKind kind, String payload, String evaluatorVersion, EvaluationNotEmitted failure)
 ```
 
 #### EvaluationCoverage

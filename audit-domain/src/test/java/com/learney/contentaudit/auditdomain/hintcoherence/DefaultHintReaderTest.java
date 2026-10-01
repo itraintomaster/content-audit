@@ -1,7 +1,16 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,39 +24,107 @@ public class DefaultHintReaderTest {
     @DisplayName("should tell a gap inside the sentence, as «She dances ___ (good / well).», from an answer that is the whole sentence, as «Polite request: I want to eat some cake. ___»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R001")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldTellAGapInsideTheSentenceAsSheDancesGoodWellFromAnAnswerThatIsTheWholeSentenceAsPoliteRequestIWantToEatSomeCake(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 compares exercises of the same shape. «She dances ___ (good / well).» (…255d, A1,
+        // Adjetivo o adverbio, FILL) is a gap inside the sentence; «Polite request: I want to eat
+        // some cake. ___» (…24f7, A1, Pedidos: formal o informal, REWRITE) is answered with the whole
+        // sentence «Could I have some cake?».
+        DefaultHintReader reader = new DefaultHintReader();
+
+        assertEquals(ExerciseShape.GAP_IN_SENTENCE, reader.shapeOf(sheDancesWell(), SentenceMode.FILL));
+        assertEquals(ExerciseShape.WHOLE_SENTENCE, reader.shapeOf(politeRequest(), SentenceMode.REWRITE));
     }
 
     @Test
     @DisplayName("should not take as a hint a tense name, an instruction or a context note between parentheses, as «(present simple)» in «She ___ (live) there. (present simple)» or «(be extra polite)» in «Where / you / going? (be extra polite) ___»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldNotTakeAsAHintATenseNameAnInstructionOrAContextNoteBetweenParenthesesAsPresentSimpleInSheLiveTherePresentSimpleOrBeExtraPoliteInWhereYouGoingBeExtraPolite(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // «She ___ (live) there. (present simple)» (…2069, A1, Contraste inicial): the hint is
+        // «(live)»; «(present simple)» names a tense. «Where / you / going? (be extra polite) ___»
+        // (…3e0b, B2, Sonar cortés, REWRITE): the hint is the statement of words; «(be extra
+        // polite)» is an instruction. A context note («(the listener doesn't know which man)») is
+        // not a hint either.
+        DefaultHintReader reader = new DefaultHintReader();
+
+        ExerciseHint lives = reader.read(quiz("67fab6d59930102295342069", text("She"), cloze("lives"),
+                text("(live) there. (present simple)")), SentenceMode.FILL).orElseThrow();
+        assertEquals("(live)", lives.getText());
+        assertEquals(List.of("live"), lives.getWords());
+
+        ExerciseHint going = reader.read(quiz("67fab6d59930102295343e0b",
+                text("Where / you / going? (be extra polite)"), cloze("Where will you be going?")),
+                SentenceMode.REWRITE).orElseThrow();
+        assertEquals("Where / you / going", going.getText());
+        assertFalse(going.getText().contains("polite"));
+        assertEquals(List.of("where", "going"), going.getWords());
+
+        Optional<ExerciseHint> man = reader.read(quiz("67fab6d59930102295342aae", text("I saw"), cloze("a"),
+                text("man (the listener doesn't know which man).")), SentenceMode.FILL);
+        assertTrue(man.isEmpty(), "a context note is not a hint");
+
+        // A percentage is a hint without words to compare: «I ___ drink tea in the morning. (100%)» (…2596, A1,
+        // Frecuencia: parte 2) announces «always».
+        ExerciseHint hundred = reader.read(quiz("67fab6d59930102295342596", text("I"), cloze("always"),
+                text("drink tea in the morning. (100%)")), SentenceMode.REWRITE).orElseThrow();
+        assertEquals(List.of(), hundred.getWords());
     }
 
     @Test
     @DisplayName("should read as the hint of an answer that is the whole sentence its statement of words separated by «/», as «She / assist you. ___» answered «She'd help you.»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldReadAsTheHintOfAnAnswerThatIsTheWholeSentenceItsStatementOfWordsSeparatedByAsSheAssistYouAnsweredShedHelpYou(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // «She / assist you. ___» (…37ba, A2, Oraciones hipotéticas, REWRITE) answered «She'd help
+        // you.»: its statement of words is the hint, with She as its subject; the words to find in
+        // the answer are the others but the pronouns.
+        ExerciseHint hint = new DefaultHintReader().read(quiz("67fab6d599301022953437ba",
+                text("She / assist you."), cloze("She'd help you.")), SentenceMode.REWRITE).orElseThrow();
+
+        assertEquals("She / assist you", hint.getText());
+        assertEquals("She", hint.getSubject());
+        assertEquals(List.of("assist"), hint.getWords());
+        assertFalse(hint.isNegated());
+        assertFalse(hint.isChoice());
     }
 
     @Test
     @DisplayName("should never read as a hint the sentence to be transformed, as «I want to eat some cake.» in «Polite request: I want to eat some cake. ___» answered «Could I have some cake?»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldNeverReadAsAHintTheSentenceToBeTransformedAsIWantToEatSomeCakeInPoliteRequestIWantToEatSomeCakeAnsweredCouldIHaveSomeCake(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // DOUBT-PISTA-TRANSFORMAR (A, José 30/9): the sentence to transform is not a hint, so «eat»
+        // is never asked of «Could I have some cake?».
+        assertTrue(new DefaultHintReader().read(politeRequest(), SentenceMode.REWRITE).isEmpty());
+    }
+
+    // ------------------------------------------------------------------
+    // Exercises of the 29/9 course
+    // ------------------------------------------------------------------
+
+    private static AuditableQuiz sheDancesWell() {
+        return quiz("67fab6d5993010229534255d", text("She dances"), cloze("well"), text("(good / well)."));
+    }
+
+    private static AuditableQuiz politeRequest() {
+        return quiz("67fab6d599301022953424f7", text("Polite request: I want to eat some cake."),
+                cloze("Could I have some cake?"));
+    }
+
+    private static AuditableQuiz quiz(String id, SentencePartEntity... parts) {
+        return new AuditableQuiz(List.of(), id, "label", "", null, List.of(), null, null, List.of(parts), null,
+                null, null);
+    }
+
+    private static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    private static SentencePartEntity cloze(String... options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(options));
     }
 }

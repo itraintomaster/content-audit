@@ -68,6 +68,7 @@ FEAT-EVCOST. Capacidad general de resultados de evaluacion costosa reutilizables
 | kind | `EvaluationResolutionKind` |
 | payload | `String` |
 | evaluatorVersion | `String` |
+| failure | `EvaluationNotEmitted` |
 
 ### EvaluationCoverage (`record`)
 

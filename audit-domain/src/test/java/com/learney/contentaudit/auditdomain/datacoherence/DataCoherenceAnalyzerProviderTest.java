@@ -1,7 +1,17 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +25,30 @@ public class DataCoherenceAnalyzerProviderTest {
     @DisplayName("should describe data-coherence in the catalog as an errors analyzer that evaluates exercises, resolves by rule or at the panel and costs instant, asking «¿Todas las copias del ejercicio dicen lo mismo?»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R005")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldDescribeDatacoherenceInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleOrAtThePanelAndCostsInstantAskingTodasLasCopiasDelEjercicioDicenLoMismo(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and F-HALL-R006: the card the catalog validates at startup; no task kind and no configuration.
+        DataCoherenceAnalyzerTest.Copies copies = new DataCoherenceAnalyzerTest.Copies();
+        DataCoherenceAnalyzerProvider provider = new DataCoherenceAnalyzerProvider(DataCoherenceAnalyzerTest.productionCorrector(),
+                copies, copies, DataCoherenceAnalyzerTest.renderer());
+        AnalyzerDescriptor card = provider.describe();
+
+        assertEquals("data-coherence", provider.analyzerName());
+        assertEquals("data-coherence", card.getName());
+        assertEquals("Datos coherentes", card.getDisplayName());
+        assertEquals("¿Todas las copias del ejercicio dicen lo mismo?", card.getQuestion());
+        assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
+        assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
+        assertEquals(List.of(FindingResolution.RULE, FindingResolution.PANEL), card.getResolutions());
+        assertEquals(AnalysisCost.INSTANT, card.getCost());
+        assertEquals(List.of("saved-sentence", "no-slash", "audio-matches", "audio-known"),
+                card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
+        assertTrue(card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
+        assertTrue(provider.planBinding().isEmpty());
+        assertTrue(provider.config().isEmpty());
+        assertEquals("data-coherence", provider.create(null).getName());
+
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(card, catalog.find("data-coherence").orElseThrow(), "the catalog accepts the card");
     }
 }

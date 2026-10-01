@@ -720,7 +720,7 @@ public class DefaultAuditRunnerTest {
 
     /** The judge's provider under the name the report publishes, with the judge's real card. */
     private static AnalyzerProvider judgeProvider() {
-        AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null, null,
+        AnalyzerDescriptor card = new DefaultQuizInstructionAnalyzerFactory(null, null,
                 mock(QuizInstructionConfig.class), null).describe();
         AnalyzerProvider provider = mock(AnalyzerProvider.class);
         lenient().when(provider.analyzerName()).thenReturn(ANALYZER_NAME);
@@ -812,7 +812,7 @@ public class DefaultAuditRunnerTest {
                 new LemmaRecurrenceAnalyzerProvider(mock(LemmaRecurrenceConfig.class)),
                 new LemmaAbsenceAnalyzerProvider(null, mock(LemmaAbsenceConfig.class), null),
                 new LemmaCountAnalyzerProvider(null, mock(LemmaCountConfig.class)),
-                new DefaultQuizInstructionAnalyzerFactory(null, null, null, mock(QuizInstructionConfig.class), null)));
+                new DefaultQuizInstructionAnalyzerFactory(null, null, mock(QuizInstructionConfig.class), null)));
     }
 
     // -----------------------------------------------------------------------
@@ -934,7 +934,8 @@ public class DefaultAuditRunnerTest {
     private static final class FakeQuizInstructionEvaluator implements Evaluator {
         private final String id;
         private final String version;
-        private final List<EvaluationSubject> evaluatedSubjects = new ArrayList<>();
+        // F-JEXAM-R006: the judge is consulted up to four at a time, so what it records must be thread-safe.
+        private final List<EvaluationSubject> evaluatedSubjects = java.util.Collections.synchronizedList(new ArrayList<>());
 
         private FakeQuizInstructionEvaluator(String id, String version) {
             this.id = id;
@@ -1000,7 +1001,9 @@ public class DefaultAuditRunnerTest {
         providers.add(breachingJudge());
         DefaultAuditRunner runner = realRunnerWith(providers);
 
-        AuditReport report = runner.runAudit(coursePath, new AuditRunRequest(Set.of("quiz-instruction"), null, null));
+        // F-JEXAM-R010: the judge is consulted only when the run asks it a budget.
+        AuditReport report = runner.runAudit(coursePath, new AuditRunRequest(Set.of("quiz-instruction"), null,
+                Map.of("quiz-instruction", new EvaluationRunPolicy(500, false, null, null, null, null))));
 
         walkTree(report.getRoot(), node -> {
             assertTrue(Set.of("quiz-instruction").containsAll(node.getScores().keySet()),
@@ -1149,9 +1152,9 @@ public class DefaultAuditRunnerTest {
                         List.of(new com.learney.contentaudit.auditdomain.quizinstruction.InstructionViolation(
                                 "TENSE", "Pasado", "goes", "Esta en presente")), List.of())
                 : new QuizInstructionVerdict(true, 0.9, InstructionSeverity.NONE, "Cumple", List.of(), List.of());
-        return new DefaultQuizInstructionAnalyzerFactory(new DefaultEvaluationSessionFactory(
-                new FakeQuizInstructionEvaluationLedger(), new FakeQuizInstructionContentFingerprinter()), evaluator,
-                reader, new DefaultQuizInstructionConfig(), null);
+        return new DefaultQuizInstructionAnalyzerFactory(evaluator, reader, new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()),
+                approvedJudgeRuntime(new DefaultEvaluationSessionFactory(
+                        new FakeQuizInstructionEvaluationLedger(), new FakeQuizInstructionContentFingerprinter())));
     }
 
     private static void walkTree(AuditNode node, Consumer<AuditNode> action) {
@@ -1331,8 +1334,6 @@ public class DefaultAuditRunnerTest {
     @DisplayName("should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels 96.0, 93.6, 78.9 and 63.9")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R008")
-    @org.junit.jupiter.api.Disabled("FEAT-RONDA1: espera los nueve analizadores de A, C y D y las bandas 8 · 6 · 4 · 3 "
-            + "de FEAT-POCOV (D); hoy lemma-count usa 4 para todas y da 73,92 %")
     public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1AndTheDefaultBands864And3AVocabularyScoreOf7386AndLevels960936789And639(
             @org.junit.jupiter.api.io.TempDir Path workdir) {
         // R008 inv. 1: with the seventeen of round 1 and the bands 8 · 6 · 4 · 3, the default since
@@ -1348,8 +1349,6 @@ public class DefaultAuditRunnerTest {
     @DisplayName("should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2, 79.5 and 63.5")
     @Tag("FEAT-RONDA1")
     @Tag("F-RONDA1-R008")
-    @org.junit.jupiter.api.Disabled("FEAT-RONDA1: espera los nueve analizadores de A, C y D y las bandas de FEAT-POCOV "
-            + "(D), para poder pedir 4 para todas")
     public void shouldPublishOnThe299CourseWithTheSeventeenAnalyzersOfRound1And4ForEveryBandTheNumbersOfToday7392AndLevels965942795And635(
             @org.junit.jupiter.api.io.TempDir Path workdir) {
         // R008 inv. 1: the same seventeen with 4 for every band give the numbers of today, 73,92 %
@@ -1423,8 +1422,8 @@ public class DefaultAuditRunnerTest {
         providers.add(new com.learney.contentaudit.auditdomain.offlevelwords.OffLevelWordsAnalyzerProvider(scorer, absence,
                 new com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver(), renderer));
         providers.add(new LemmaCountAnalyzerProvider(evp, lemmaCount));
-        providers.add(new DefaultQuizInstructionAnalyzerFactory(sessions, judge, mock(QuizInstructionVerdictReader.class),
-                new DefaultQuizInstructionConfig(), runtime));
+        providers.add(new DefaultQuizInstructionAnalyzerFactory(judge, mock(QuizInstructionVerdictReader.class),
+                new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), runtime));
         providers.add(new com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzerProvider(irregularForms,
                 renderer));
         providers.add(new com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessAnalyzerProvider(
@@ -1503,5 +1502,34 @@ public class DefaultAuditRunnerTest {
         public List<Instant> recordedTimes(String evaluatorId) {
             return List.of();
         }
+    }
+
+    /**
+     * FEAT-JEXAM: the judges runtime over this test's sessions, with every judge version approved,
+     * so a run that asks the judge a budget may consult it (F-JEXAM-R003); without a budget it
+     * consults nothing (F-JEXAM-R010).
+     */
+    private static com.learney.contentaudit.auditdomain.judging.JudgeRuntime approvedJudgeRuntime(
+            com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory sessions) {
+        com.learney.contentaudit.auditdomain.JudgeExamRegistry approved = new com.learney.contentaudit.auditdomain.JudgeExamRegistry() {
+            @Override
+            public void record(com.learney.contentaudit.auditdomain.judging.JudgeExamRecord record) {
+            }
+
+            @Override
+            public java.util.Optional<com.learney.contentaudit.auditdomain.judging.JudgeExamRecord> latest(
+                    String judgeName, String judgeVersion) {
+                return java.util.Optional.of(new com.learney.contentaudit.auditdomain.judging.JudgeExamRecord(
+                        judgeName, judgeVersion, com.learney.contentaudit.auditdomain.judging.JudgeExamStatus.APPROVED,
+                        0, 0, java.util.List.of(), java.util.List.of(), true, null, null, null));
+            }
+
+            @Override
+            public java.util.List<com.learney.contentaudit.auditdomain.judging.JudgeExamRecord> history(String judgeName) {
+                return java.util.List.of();
+            }
+        };
+        return new com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime(sessions, sessions, approved,
+                evaluatorId -> java.util.List.of(), new com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig());
     }
 }

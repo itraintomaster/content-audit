@@ -1,7 +1,32 @@
 package com.learney.contentaudit.auditdomain.minitheoryengine;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableEntity;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,39 +40,240 @@ public class DefaultMiniTheorySubjectBuilderTest {
     @DisplayName("should build one content per topic with cefrLevel, topic, the topic's instructions, its mini-theories and its exercises, in that order and nothing else")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldBuildOneContentPerTopicWithCefrLevelTopicTheTopicsInstructionsItsMinitheoriesAndItsExercisesInThatOrderAndNothingElse(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // A1 > Present Simple > Afirmativas regulares, three of its exercises as the 29/9 course has them.
+        AuditNode topic = topic("A1", AFIRMATIVAS_REGULARES, "Afirmativas regulares",
+                "Escribe la forma correcta del verbo.", List.of(
+                        cloze("67fab6d59930102295341ec3", "You", "see", "(see) cats.", "Ves gatos.", VERDURAS_MINI_THEORY,
+                                "A1.01.06.01"),
+                        cloze("67fab6d59930102295341ec4", "It", "comes", "(come) every year.", "Viene cada año.",
+                                VERDURAS_MINI_THEORY, "A1.01.06.02"),
+                        cloze(VERDURAS, "I", "love", "a lot of vegetables.", "Me gustan mucho las verduras.",
+                                VERDURAS_MINI_THEORY, "A1.01.06.11")));
+
+        EvaluationSubject subject = builder().build(topic);
+
+        assertEquals(AFIRMATIVAS_REGULARES, subject.getSubjectRef(), "the subject is the topic, by its id");
+        Map<String, String> content = subject.getContent();
+        assertInstanceOf(LinkedHashMap.class, content, "the keys keep their order");
+        assertEquals(List.of("cefrLevel", "topic", "instructions", "miniTheories", "exercises"),
+                new ArrayList<>(content.keySet()), "these five keys, in this order, and nothing else");
+        assertEquals("A1", content.get("cefrLevel"));
+        assertEquals("Afirmativas regulares", content.get("topic"));
+        assertEquals("Escribe la forma correcta del verbo.", content.get("instructions"),
+                "the instructions of the topic, never the copy of the exercise");
+        assertEquals("M1: " + VERDURAS_MINI_THEORY + " (ejercicios: E1, E2, E3)", content.get("miniTheories"));
+        assertEquals("E1: You ___ (see) cats. → see\n"
+                        + "E2: It ___ (come) every year. → comes\n"
+                        + "E3: I ___ a lot of vegetables. → love",
+                content.get("exercises"));
+
+        // Nothing it does not read: the translation, the audio, the copy of the instructions.
+        for (String value : content.values()) {
+            assertFalse(value.contains("Ves gatos.") || value.contains("Me gustan mucho las verduras."),
+                    "the translation is not read: " + value);
+            assertFalse(value.contains("A1.01.06"), "the audio is not read: " + value);
+            assertFalse(value.contains("Escribe la forma afirmativa en presente simple."),
+                    "the instructions of the exercise's copy are not read: " + value);
+        }
     }
 
     @Test
     @DisplayName("should list each distinct mini-theory once, numbered by first appearance with the exercises that show it, as the they/them one of 16 exercises of «Sujeto u objeto» and the she/her one of 12")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldListEachDistinctMinitheoryOnceNumberedByFirstAppearanceWithTheExercisesThatShowItAsTheTheythemOneOf16ExercisesOfSujetoUObjetoAndTheSheherOneOf12(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AuditNode topic = sujetoUObjeto();
+
+        String miniTheories = builder().build(topic).getContent().get("miniTheories");
+
+        List<String> they = new ArrayList<>();
+        List<String> she = new ArrayList<>();
+        for (int e = 1; e <= 28; e++) {
+            (SHE_HER_AT.contains(e) ? she : they).add("E" + e);
+        }
+        assertEquals(16, they.size());
+        assertEquals(12, she.size());
+        // E1 shows they/them, so it is M1; she/her first appears in E3, so it is M2.
+        assertEquals("M1: " + THEY_THEM + " (ejercicios: " + String.join(", ", they) + ")\n"
+                        + "M2: " + SHE_HER + " (ejercicios: " + String.join(", ", she) + ")",
+                miniTheories);
+        assertEquals(1, occurrences(miniTheories, THEY_THEM), "the they/them one, once for its 16 exercises");
+        assertEquals(1, occurrences(miniTheories, SHE_HER), "the she/her one, once for its 12 exercises");
     }
 
     @Test
     @DisplayName("should number the exercises in topic order, each with its statement, hint and accepted answers, or its options with the correct one marked")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldNumberTheExercisesInTopicOrderEachWithItsStatementHintAndAcceptedAnswersOrItsOptionsWithTheCorrectOneMarked(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        String presentPerfect = "Con has o have va el participio.";
+        String inOnTime = "$on time$ es puntual. $in time$ es a tiempo, con margen de sobra.";
+        AuditNode topic = topic("B1", "k-mix", "Repaso mixto", "Completa.", List.of(
+                // A cloze with two accepted answers, «|» splits them and «/» is part of the hint.
+                quiz("67fab6d5993010229534286c", List.of(text("He"), gap("hasn't cut|has not cut"),
+                        text("(not / cut) himself.")), null, "Él no se ha cortado.", presentPerfect, "A2.04.05.09"),
+                // Two gaps, each with its hint.
+                quiz("q-two-gaps", List.of(text("I"), gap("am"), text("(be) tired and I"), gap("want"),
+                        text("(want) to sleep.")), null, "Estoy cansado y quiero dormir.", presentPerfect, "A1.x"),
+                // An exercise without mini theory keeps its number.
+                quiz("q-no-mini-theory", List.of(text("She"), gap("is"), text("(be) here.")), null,
+                        "Ella está aquí.", null, "A1.y"),
+                // A multiple choice: its options in the student's order, the correct one marked.
+                quiz("67fab6d59930102295343d28", List.of(text("The show started"), gap(), text("time.")),
+                        new MultipleChoiceEntity("SINGLE", List.of(new MultipleChoiceItemEntity("in", 0.0, "in"),
+                                new MultipleChoiceItemEntity("on", 1.0, "on"))),
+                        "El programa empezó a tiempo.", inOnTime, "B1.17.13.04")));
+
+        Map<String, String> content = builder().build(topic).getContent();
+
+        assertEquals("E1: He ___ (not / cut) himself. → hasn't cut | has not cut\n"
+                        + "E2: I ___ (be) tired and I ___ (want) to sleep. → am · want\n"
+                        + "E3: She ___ (be) here. → is\n"
+                        + "E4: The show started ___ time. → opciones: in, on (correcta)",
+                content.get("exercises"));
+        assertEquals("M1: " + presentPerfect + " (ejercicios: E1, E2)\n"
+                        + "M2: " + inOnTime + " (ejercicios: E4)",
+                content.get("miniTheories"), "E3 has no mini theory: it is numbered, never listed");
+        assertFalse(content.get("exercises").contains("[") || content.get("exercises").contains("____"),
+                "never the internal format of the course");
     }
 
     @Test
     @DisplayName("should build the same content when only a translation or an audio of the topic changes, and a different one when a mini-theory or an exercise changes")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
-    @Disabled("Stub de FEAT-MINIT (paquete C), sin implementar")
     public void shouldBuildTheSameContentWhenOnlyATranslationOrAnAudioOfTheTopicChangesAndADifferentOneWhenAMinitheoryOrAnExerciseChanges(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Sha256ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
+        EvaluationSubject original = builder().build(afirmativas(VERDURAS_MINI_THEORY, "love", "Me gustan mucho las verduras.",
+                "A1.01.06.11"));
+
+        EvaluationSubject otherTranslation = builder().build(afirmativas(VERDURAS_MINI_THEORY, "love",
+                "Amo muchas verduras.", "A1.01.06.11"));
+        EvaluationSubject otherAudio = builder().build(afirmativas(VERDURAS_MINI_THEORY, "love",
+                "Me gustan mucho las verduras.", "A1.01.06.99"));
+        assertEquals(original.getContent(), otherTranslation.getContent(), "a translation is not read");
+        assertEquals(original.getContent(), otherAudio.getContent(), "an audio is not read");
+        assertEquals(fingerprinter.fingerprint(original.getContent()),
+                fingerprinter.fingerprint(otherTranslation.getContent()), "its verdict is reused");
+
+        EvaluationSubject otherMiniTheory = builder().build(afirmativas(
+                "Con he, she, it el verbo lleva $-s$ o $-es$. Con I, you, we, they va en forma base.", "love",
+                "Me gustan mucho las verduras.", "A1.01.06.11"));
+        EvaluationSubject otherExercise = builder().build(afirmativas(VERDURAS_MINI_THEORY, "love|like",
+                "Me gustan mucho las verduras.", "A1.01.06.11"));
+        assertNotEquals(original.getContent(), otherMiniTheory.getContent(), "a mini theory is read");
+        assertNotEquals(original.getContent(), otherExercise.getContent(), "an exercise is read");
+        assertNotEquals(fingerprinter.fingerprint(original.getContent()),
+                fingerprinter.fingerprint(otherMiniTheory.getContent()), "the whole topic is judged again");
+        assertNotEquals(fingerprinter.fingerprint(original.getContent()),
+                fingerprinter.fingerprint(otherExercise.getContent()), "the whole topic is judged again");
+        assertTrue(otherExercise.getContent().get("exercises").contains("E3: I ___ a lot of vegetables. → love | like"));
+    }
+
+    // ------------------------------------------------------------------
+    // The course of 29/9
+    // ------------------------------------------------------------------
+
+    static final String AFIRMATIVAS_REGULARES = "6814dafa7d73e7209a13d389";
+
+    static final String VERDURAS = "67fab6d59930102295341ecd";
+
+    static final String VERDURAS_MINI_THEORY =
+            "Con he, she, it el verbo lleva $-s$. Con I, you, we, they va en forma base.";
+
+    static final String THEY_THEM = "Antes del verbo va they. Después del verbo o de una preposición va them.";
+
+    static final String SHE_HER = "Antes del verbo va she. Después del verbo o de una preposición va her.";
+
+    /** The exercises of «Sujeto u objeto» that show the she/her mini theory; the other 16 show they/them. */
+    static final List<Integer> SHE_HER_AT = List.of(3, 5, 8, 10, 13, 15, 18, 20, 23, 25, 27, 28);
+
+    private static DefaultMiniTheorySubjectBuilder builder() {
+        return new DefaultMiniTheorySubjectBuilder(new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
+    }
+
+    /** «Afirmativas regulares» with E1 «You see cats.», E2 «It comes…» and E3, the verduras, as given. */
+    private static AuditNode afirmativas(String miniTheory, String verdurasAnswers, String verdurasTranslation,
+            String verdurasAudio) {
+        return topic("A1", AFIRMATIVAS_REGULARES, "Afirmativas regulares", "Escribe la forma correcta del verbo.",
+                List.of(cloze("67fab6d59930102295341ec3", "You", "see", "(see) cats.", "Ves gatos.", miniTheory,
+                                "A1.01.06.01"),
+                        cloze("67fab6d59930102295341ec4", "It", "comes", "(come) every year.", "Viene cada año.",
+                                miniTheory, "A1.01.06.02"),
+                        cloze(VERDURAS, "I", verdurasAnswers, "a lot of vegetables.", verdurasTranslation, miniTheory,
+                                verdurasAudio)));
+    }
+
+    /** A1 «Sujeto u objeto»: 28 exercises, 16 with the they/them mini theory and 12 with the she/her one. */
+    private static AuditNode sujetoUObjeto() {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (int e = 1; e <= 28; e++) {
+            boolean she = SHE_HER_AT.contains(e);
+            quizzes.add(cloze("q-suj-" + e, "I saw", she ? "her" : "them", (she ? "(she)" : "(they)") + " yesterday.",
+                    she ? "La vi ayer." : "Los vi ayer.", she ? SHE_HER : THEY_THEM, "A1.03.02." + e));
+        }
+        return topic("A1", "k-sujeto-u-objeto", "Sujeto u objeto", "Elige el pronombre.", quizzes);
+    }
+
+    private static AuditableQuiz cloze(String id, String before, String answers, String after, String translation,
+            String miniTheory, String audio) {
+        return quiz(id, List.of(text(before), gap(answers), text(after)), null, translation, miniTheory, audio);
+    }
+
+    private static AuditableQuiz quiz(String id, List<SentencePartEntity> parts, MultipleChoiceEntity multipleChoice,
+            String translation, String miniTheory, String audio) {
+        return new AuditableQuiz(List.of(), id, "Título de la copia", "", translation, List.of(), null,
+                "Escribe la forma afirmativa en presente simple.", parts, multipleChoice, miniTheory, audio);
+    }
+
+    private static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    private static SentencePartEntity gap(String... answers) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", answers.length == 0 ? null : List.of(answers));
+    }
+
+    /** A level > topic > knowledge > exercises tree, as the engine builds it; returns the knowledge. */
+    private static AuditNode topic(String level, String knowledgeId, String name, String instructions,
+            List<AuditableQuiz> quizzes) {
+        AuditNode root = node(AuditTarget.COURSE, null, null);
+        AuditNode milestone = node(AuditTarget.MILESTONE, new AuditableMilestone(List.of(), "m-" + level, level, level),
+                root);
+        AuditNode topic = node(AuditTarget.TOPIC, new AuditableTopic(List.of(), "t-" + knowledgeId, "Tema", "T"),
+                milestone);
+        AuditNode knowledge = node(AuditTarget.KNOWLEDGE, new AuditableKnowledge(quizzes, name, instructions, true,
+                knowledgeId, name, "K", SentenceMode.FILL, "Tema"), topic);
+        for (AuditableQuiz quiz : quizzes) {
+            node(AuditTarget.QUIZ, quiz, knowledge);
+        }
+        return knowledge;
+    }
+
+    private static AuditNode node(AuditTarget target, AuditableEntity entity, AuditNode parent) {
+        AuditNode node = new AuditNode();
+        node.setTarget(target);
+        node.setEntity(entity);
+        node.setParent(parent);
+        node.setChildren(new ArrayList<>());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        if (parent != null) {
+            parent.getChildren().add(node);
+        }
+        return node;
+    }
+
+    private static int occurrences(String text, String part) {
+        int count = 0;
+        for (int at = text.indexOf(part); at >= 0; at = text.indexOf(part, at + part.length())) {
+            count++;
+        }
+        return count;
     }
 }

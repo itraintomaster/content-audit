@@ -35,6 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import com.learney.contentaudit.auditapplication.DefaultJudgeRuntimeConfig;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -87,7 +88,7 @@ public class RawJsonReportFormatterTest {
                 new LemmaRecurrenceAnalyzerProvider(new DefaultLemmaRecurrenceConfig()),
                 new LemmaAbsenceAnalyzerProvider(null, absence, null),
                 new LemmaCountAnalyzerProvider(null, new DefaultLemmaCountConfigLoader().load(null)),
-                new DefaultQuizInstructionAnalyzerFactory(null, null, null, new DefaultQuizInstructionConfig(), null)))
+                new DefaultQuizInstructionAnalyzerFactory(null, null, new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()), null)))
                 .list();
     }
 

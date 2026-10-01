@@ -1,7 +1,10 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,18 +18,23 @@ public class DefaultSpokenTextBuilderTest {
     @DisplayName("should say only the answer of B in a dialogue, without its label, as «No, you aren't.» for «A: Am I wrong? B: No, you ___ .»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R003")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldSayOnlyTheAnswerOfBInADialogueWithoutItsLabelAsNoYouArentForAAmIWrongBNoYou(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-DATOS-R003, by the rule of 24/8: «A: Am I wrong? B: No, you ___ .» (…1f53, A1) says only what B says.
+        assertEquals(List.of("No, you aren't."), new DefaultSpokenTextBuilder().spokenTexts(DataCoherenceAnalyzerTest.quiz(
+                "67fab6d59930102295341f53", "A1.01.13.05", List.of("A: Am I wrong? B: No, you aren't."),
+                DataCoherenceAnalyzerTest.text("A: Am I wrong? B: No, you"), DataCoherenceAnalyzerTest.cloze("aren't"),
+                DataCoherenceAnalyzerTest.text(".")), SentenceMode.FILL));
     }
 
     @Test
     @DisplayName("should say only the answer of a word form prompt, as «stopping» for «stop - ___»")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R003")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldSayOnlyTheAnswerOfAWordFormPromptAsStoppingForStop() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-DATOS-R003, by the rule of 24/8: «stop - ___» (…1fc7, A1) says only «stopping».
+        assertEquals(List.of("stopping"), new DefaultSpokenTextBuilder().spokenTexts(DataCoherenceAnalyzerTest.quiz(
+                "67fab6d59930102295341fc7", "A1.02.01.01", List.of("stop - stopping"), DataCoherenceAnalyzerTest.text("stop -"),
+                DataCoherenceAnalyzerTest.cloze("stopping")), SentenceMode.FILL));
     }
 }

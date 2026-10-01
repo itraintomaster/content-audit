@@ -1,0 +1,43 @@
+code: FEAT-RECUR
+description: "qa-tester, FEAT-RECUR, sólo nombres de pruebas: desde la opción A del\
+  \ 1/10 (sólo entra a la recurrencia un lema escrito con letras), tres nombres declarados\
+  \ de LemmaRecurrenceAnalyzer dejaron de decir lo que fija la prueba. El puntaje\
+  \ sigue en 0,08, pero son 131 normales, 1.566 poco vistas y 46 sobre-expuestas de\
+  \ 1.743 (antes 134, 1.570 y 46 de 1.750); los niveles A1 448/176 y B1 1.137 y B2\
+  \ 818 con 14,2 % y 20,2 %; y 1.612 hallazgos (antes 1.616). Cada una se borra con\
+  \ el nombre viejo y se agrega con el nuevo, con la misma regla. Sin cambios de estructura."
+modules:
+- name: audit-domain
+  packages:
+  - name: lrec
+    implementations:
+    - name: LemmaRecurrenceAnalyzer
+      handwrittenTests:
+      - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
+          \ 134 normal, 1,570 under-exposed and 46 over-exposed of its 1,750 returning\
+          \ lemmas"
+        _change: delete
+      - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
+          \ 131 normal, 1,566 under-exposed and 46 over-exposed of its 1,743 returning\
+          \ lemmas"
+        traceability:
+          feature: FEAT-RECUR
+          rule: F-RECUR-R001
+      - name: "should publish for the course of 29/9 A1 450 returning lemmas with\
+          \ 178 normal (39.6%), A2 752 with 155 (20.6%), B1 1,139 with 161 (14.1%)\
+          \ and B2 819 with 165 (20.1%)"
+        _change: delete
+      - name: "should publish for the course of 29/9 A1 448 returning lemmas with\
+          \ 176 normal (39.3%), A2 752 with 155 (20.6%), B1 1,137 with 161 (14.2%)\
+          \ and B2 818 with 165 (20.2%)"
+        traceability:
+          feature: FEAT-RECUR
+          rule: F-RECUR-R004
+      - name: "should leave 1,616 findings in the course of 29/9, 1,570 for under-exposed\
+          \ and 46 for over-exposed lemmas"
+        _change: delete
+      - name: "should leave 1,612 findings in the course of 29/9, 1,566 for under-exposed\
+          \ and 46 for over-exposed lemmas"
+        traceability:
+          feature: FEAT-RECUR
+          rule: F-RECUR-R005

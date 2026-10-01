@@ -1,7 +1,51 @@
 package com.learney.contentaudit.auditdomain.exactduplicates;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditableCourse;
+import com.learney.contentaudit.auditdomain.AuditableKnowledge;
+import com.learney.contentaudit.auditdomain.AuditableMilestone;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.AuditableTopic;
+import com.learney.contentaudit.auditdomain.CorrectorMatcher;
+import com.learney.contentaudit.auditdomain.DefaultKnowledgeDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
+import com.learney.contentaudit.auditdomain.IAuditEngine;
+import com.learney.contentaudit.auditdomain.IScoreAggregator;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcher;
+import com.learney.contentaudit.auditdomain.correctormatch.DefaultCorrectorMatcherTest;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingDraft;
+import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
+import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
+import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,129 +59,451 @@ public class ExactDuplicatesAnalyzerTest {
     @DisplayName("should find the 23 exact copies of the course of 29/9 inside their 14 topics, 17 in A1, 2 in A2 and 4 in B1, as «They weren't at the park.» twice in Práctica mixta")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R001")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldFindThe23ExactCopiesOfTheCourseOf299InsideTheir14Topics17InA12InA2And4InB1AsTheyWerentAtTheParkTwiceInPrcticaMixta(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001 and R002: the 14 topics of the course of 29/9 where the 23 copies are, read from db/english-course;
+        // a finding on each copy and none on its twin. That the other 399 topics have none is measured by medir.py.
+        Map<String, String> found = new TreeMap<>();
+        Map<String, Integer> byLevel = new TreeMap<>();
+        for (String folder : TOPICS_WITH_COPIES) {
+            AuditNode knowledge = analyze(productionCorrector(), topic(folder));
+            for (AuditNode quiz : knowledge.getChildren()) {
+                if (!findings(quiz).isEmpty()) {
+                    found.put(quiz.getEntity().getId(), findings(quiz).get(0).getMarker());
+                    byLevel.merge(folder.substring(0, 2), 1, Integer::sum);
+                }
+            }
+        }
+        assertEquals(new TreeMap<>(COPIES), found);
+        assertEquals(Map.of("a1", 17, "a2", 2, "b1", 4), byLevel);
+        assertEquals("67fab6d5993010229534224b", found.get("67fab6d59930102295342260"), "They weren't at the park.");
     }
 
     @Test
     @DisplayName("should take as duplicates two exercises that finish the same although their options differ, as «The show started on time.» twice in In time u on time")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R001")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldTakeAsDuplicatesTwoExercisesThatFinishTheSameAlthoughTheirOptionsDifferAsTheShowStartedOnTimeTwiceInInTimeUOnTime(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001.1: «The show started ___ time.» (in / on, …3d28) and «The show started ___ .» (in time / on time, …4a4c),
+        // B1, In time u on time: both finish «The show started on time.».
+        AuditNode knowledge = analyze(productionCorrector(), List.of(
+                mc("67fab6d59930102295343d28", List.of(text("The show started"), gap(), text("time.")), item("in", 0.0),
+                        item("on", 1.0)),
+                mc("67fab6d59930102295344a4c", List.of(text("The show started"), gap(), text(".")), item("in time", 0.0),
+                        item("on time", 1.0))));
+        assertEquals(List.of(), findings(quiz(knowledge, "67fab6d59930102295343d28")));
+        assertEquals("67fab6d59930102295343d28", only(quiz(knowledge, "67fab6d59930102295344a4c")).getMarker());
     }
 
     @Test
     @DisplayName("should leave the hint out of the comparison, taking as duplicates «rice ___ (no plural form)» and «rice ___» of Contable o incontable")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R001")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldLeaveTheHintOutOfTheComparisonTakingAsDuplicatesRiceNoPluralFormAndRiceOfContableOIncontable(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001.1 (DOUBT-DUPEX-PISTA): «rice ___ (no plural form)» (…2313) and «rice ___» (…2314), A1, Contable o
+        // incontable: the hint does not count.
+        AuditNode knowledge = analyze(productionCorrector(), List.of(riceWithHint(), rice()));
+        assertEquals(List.of(), findings(quiz(knowledge, "67fab6d59930102295342313")));
+        assertEquals("67fab6d59930102295342313", only(quiz(knowledge, "67fab6d59930102295342314")).getMarker());
     }
 
     @Test
     @DisplayName("should keep the starting sentence in the comparison, so the eleven «So am I.» of Presente simple: so/neither that answer different sentences are not duplicates")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R001")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldKeepTheStartingSentenceInTheComparisonSoTheElevenSoAmIOfPresenteSimpleSoneitherThatAnswerDifferentSentencesAreNotDuplicates(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001.2: in Presente simple: so/neither (B1) eleven exercises answer «So am I.», each to another sentence.
+        List<AuditableQuiz> quizzes = topic("b1/questions-and-short-answers/present-simple-so-and-neither-short-answers");
+        long soAmI = quizzes.stream().filter(q -> q.getSentenceParts().stream()
+                .anyMatch(p -> p.getKind() == SentencePartKind.CLOZE && p.getOptions() != null
+                        && p.getOptions().get(0).startsWith("So am I."))).count();
+        assertEquals(11, soAmI);
+        AuditNode knowledge = analyze(productionCorrector(), quizzes);
+        assertTrue(knowledge.getChildren().stream().allMatch(q -> findings(q).isEmpty()));
     }
 
     @Test
     @DisplayName("should not compare exercises of different topics, leaving «She dances ___ (good / well).» of Adjetivo o adverbio without finding although ¿Good o well? has the same exercise")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R001")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldNotCompareExercisesOfDifferentTopicsLeavingSheDancesGoodWellOfAdjetivoOAdverbioWithoutFindingAlthoughGoodOWellHasTheSameExercise(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001.3 (DOUBT-DUPEX-ENTRE-TEMAS): «She dances ___ (good / well).» is in Adjetivo o adverbio (…255d) and twice in
+        // ¿Good o well? (…2566, …2eeb): only the second of ¿Good o well? is a copy.
+        AuditableQuiz adverb = quiz("67fab6d5993010229534255d", text("She dances"), cloze("well"), text("(good / well)."));
+        AuditNode root = engine(List.of(List.of(adverb), List.of(sheDancesWell("67fab6d59930102295342566"),
+                sheDancesWell("67fab6d59930102295342eeb"))));
+        assertEquals(List.of(), engineQuiz(root, "67fab6d5993010229534255d").getFindings());
+        assertEquals(List.of(), engineQuiz(root, "67fab6d59930102295342566").getFindings());
+        assertEquals(1, engineQuiz(root, "67fab6d59930102295342eeb").getFindings().size());
     }
 
     @Test
     @DisplayName("should not take as exact duplicates two exercises that differ in a word, as «I don't have ___ time.» and «I didn't have ___ time.»")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R001")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldNotTakeAsExactDuplicatesTwoExercisesThatDifferInAWordAsIDontHaveTimeAndIDidntHaveTime(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: «I didn't have ___ time.» (…2b6b) and «I don't have ___ time.» (…2b7f), A2: a similar one, package B's.
+        AuditNode knowledge = analyze(productionCorrector(), List.of(
+                mc("67fab6d59930102295342b6b", List.of(text("I didn't have"), gap(), text("time.")), item("much", 1.0),
+                        item("much of", 0.0)),
+                mc("67fab6d59930102295342b7f", List.of(text("I don't have"), gap(), text("time.")), item("much", 1.0),
+                        item("much of", 0.0))));
+        assertTrue(knowledge.getChildren().stream().allMatch(q -> findings(q).isEmpty()));
     }
 
     @Test
     @DisplayName("should leave without finding the first exercise in the order of the topic and mark the one that comes after it, as 67fab6d59930102295342260 after 67fab6d5993010229534224b in Práctica mixta")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R002")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldLeaveWithoutFindingTheFirstExerciseInTheOrderOfTheTopicAndMarkTheOneThatComesAfterItAs67fab6d59930102295342260After67fab6d5993010229534224bInPrcticaMixta(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 (DOUBT-DUPEX-CUAL-QUEDA): 224b comes before 2260 in Práctica mixta (A1): 224b stays.
+        AuditNode knowledge = analyze(productionCorrector(), List.of(theyWerent("67fab6d5993010229534224b"),
+                theyWerent("67fab6d59930102295342260")));
+        assertEquals(List.of(), findings(quiz(knowledge, "67fab6d5993010229534224b")));
+        assertEquals(1, findings(quiz(knowledge, "67fab6d59930102295342260")).size());
     }
 
     @Test
     @DisplayName("should mark n minus 1 exercises in a group of n equal exercises of a topic, as two copies if «stop - ___» appeared three times in Doble consonante y e")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R002")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldMarkNMinus1ExercisesInAGroupOfNEqualExercisesOfATopicAsTwoCopiesIfStopAppearedThreeTimesInDobleConsonanteYE(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002.1: «stop - ___» three times in Doble consonante y e: two copies, both of the first one.
+        AuditNode root = engine(List.of(List.of(stop("67fab6d59930102295341fc7"), stop("67fab6d59930102295341fe6"),
+                stop("67fab6d59930102295341fe7"))));
+        assertEquals(List.of(), engineQuiz(root, "67fab6d59930102295341fc7").getFindings());
+        assertEquals("67fab6d59930102295341fc7", engineQuiz(root, "67fab6d59930102295341fe6").getFindings().get(0)
+                .getIdentity().getMarker());
+        assertEquals("67fab6d59930102295341fc7", engineQuiz(root, "67fab6d59930102295341fe7").getFindings().get(0)
+                .getIdentity().getMarker());
+        AuditNode knowledge = root.getChildren().get(0).getChildren().get(0).getChildren().get(0);
+        assertEquals(2, knowledge.getNumbers().getErrors().getWithAnyError());
     }
 
     @Test
     @DisplayName("should name in each finding the exercise that stays, as 67fab6d5993010229534224b in the finding of 67fab6d59930102295342260")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R002")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldNameInEachFindingTheExerciseThatStaysAs67fab6d5993010229534224bInTheFindingOf67fab6d59930102295342260(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002.2 and F-HALL-R003: the finding of 2260 names 224b as its other node.
+        AuditNode knowledge = analyze(productionCorrector(), List.of(theyWerent("67fab6d5993010229534224b"),
+                theyWerent("67fab6d59930102295342260")));
+        FindingDraft copy = only(quiz(knowledge, "67fab6d59930102295342260"));
+        assertEquals(List.of(new FindingNodeRef(AuditTarget.QUIZ, "67fab6d5993010229534224b", "label")),
+                copy.getEvidence().getRelatedNodes());
+        assertEquals("67fab6d5993010229534224b", ((DefaultQuizDiagnoses) quiz(knowledge, "67fab6d59930102295342260")
+                .getDiagnoses()).getExactDuplicateDiagnosis().orElseThrow().getKeptQuizId());
     }
 
     @Test
     @DisplayName("should mark the same copies in two runs of the same course, as the second «stop - stopping» of Doble consonante y e")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R002")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldMarkTheSameCopiesInTwoRunsOfTheSameCourseAsTheSecondStopStoppingOfDobleConsonanteYE(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002.3 and F-HALL-R014: the order of the topic is the course's: two runs mark the same copy, the same way.
+        List<List<AuditableQuiz>> course = List.of(List.of(stop("67fab6d59930102295341fc7"), stop("67fab6d59930102295341fe6")));
+        Finding first = engineQuiz(engine(course), "67fab6d59930102295341fe6").getFindings().get(0);
+        Finding second = engineQuiz(engine(course), "67fab6d59930102295341fe6").getFindings().get(0);
+        assertEquals(first.getIdentity(), second.getIdentity());
+        assertEquals("exact-duplicates|exact-duplicate|67fab6d59930102295341fe6|67fab6d59930102295341fc7",
+                first.getIdentity().getKey());
     }
 
     @Test
     @DisplayName("should give every copy a low finding for the panel that counts as an error, as the second «rice ___» of Contable o incontable")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R003")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldGiveEveryCopyALowFindingForThePanelThatCountsAsAnErrorAsTheSecondRiceOfContableOIncontable(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: low, for the panel, instant and counted as an error.
+        AuditNode root = engine(List.of(List.of(riceWithHint(), rice())));
+        Finding copy = engineQuiz(root, "67fab6d59930102295342314").getFindings().get(0);
+        assertEquals(FindingSeverity.LOW, copy.getSeverity());
+        assertEquals(FindingResolution.PANEL, copy.getResolution());
+        assertEquals(com.learney.contentaudit.auditdomain.finding.AnalysisCost.INSTANT, copy.getCost());
+        assertEquals(1, root.getNumbers().getErrors().getWithAnyError());
     }
 
     @Test
     @DisplayName("should show as evidence both exercises as the student sees them, the finished exercise they share and «Idéntico a 67fab6d5993010229534224b del mismo tema», never the internal format «They ____ [weren't] (not / be)»")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R004")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldShowAsEvidenceBothExercisesAsTheStudentSeesThemTheFinishedExerciseTheyShareAndIdnticoA67fab6d5993010229534224bDelMismoTemaNeverTheInternalFormatTheyWerentNotBe(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: both exercises as the student sees them, the finished exercise and the line «Idéntico a …».
+        AuditNode knowledge = analyze(productionCorrector(), List.of(theyWerent("67fab6d5993010229534224b"),
+                theyWerent("67fab6d59930102295342260")));
+        FindingDraft copy = only(quiz(knowledge, "67fab6d59930102295342260"));
+        assertEquals("They ___ (not / be) at the park.", part(copy, "Copia"));
+        assertEquals("They ___ (not / be) at the park.", part(copy, "Queda"));
+        assertEquals("They weren't at the park.", part(copy, "Ejercicio terminado"));
+        assertEquals("Idéntico a 67fab6d5993010229534224b del mismo tema", part(copy, "Idéntico"));
+        for (EvidencePart part : copy.getEvidence().getExamined()) {
+            assertFalse(part.getText().contains("____") || part.getText().contains("["), part.getText());
+        }
+        assertFalse(copy.getEvidence().getObservation().contains("["));
     }
 
     @Test
     @DisplayName("should score 0 the copy and 1 the exercise that stays and every exercise without a twin, as in Práctica mixta")
     @Tag("FEAT-DUPEX")
     @Tag("F-DUPEX-R005")
-    @Disabled("Stub de FEAT-DUPEX (paquete A), sin implementar")
     public void shouldScore0TheCopyAnd1TheExerciseThatStaysAndEveryExerciseWithoutATwinAsInPrcticaMixta(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: in Práctica mixta (A1, 80 exercises of the course of 29/9) only 2260 scores 0.
+        AuditNode knowledge = analyze(productionCorrector(), topic("a1/past-simple/past-simple-mixed-practice-1"));
+        assertEquals(80, knowledge.getChildren().size());
+        for (AuditNode quiz : knowledge.getChildren()) {
+            double expected = quiz.getEntity().getId().equals("67fab6d59930102295342260") ? 0.0 : 1.0;
+            assertEquals(expected, quiz.getScores().get("exact-duplicates"), quiz.getEntity().getId());
+        }
+    }
+
+    // ------------------------------------------------------------------
+    // The 23 copies of the course of 29/9, copy → the exercise that stays
+    // ------------------------------------------------------------------
+
+    static final List<String> TOPICS_WITH_COPIES = List.of(
+            "a1/adjetives-and-adverbs/good-or-well",
+            "a1/nouns/countable-vs-uncountable-nouns-set-1",
+            "a1/past-simple/past-simple-mixed-practice-1",
+            "a1/present-continuous/present-simple-vs-continuous-mixed-practice-1",
+            "a1/present-continuous/spelling-changes-with-verb-ing-set-1",
+            "a1/present-simple/mixed-practice-with-the-present-simple-forms-1",
+            "a1/present-simple/wh-questions-with-be-in-the-present-simple",
+            "a1/pronouns/choosing-the-right-possessive-form",
+            "a2/adverbs/adverb-placement-exercise-2",
+            "a2/modal-verbs/making-offers-and-suggestions-using-shall",
+            "b1/modal-verbs/logical-necessity-with-must-and-cant",
+            "b1/prepositions/learn-to-differentiate-in-time-from-on-time",
+            "b1/prepositions/practice-distinguishing-as-and-like",
+            "b1/the-passive/introduction-to-passive-infinitive-constructions");
+
+    static final Map<String, String> COPIES = Map.ofEntries(
+            Map.entry("67fab6d59930102295342f80", "67fab6d59930102295342f62"),
+            Map.entry("67fab6d599301022953437f3", "67fab6d59930102295342e3a"),
+            Map.entry("67fab6d59930102295344367", "67fab6d599301022953436a2"),
+            Map.entry("67fab6d59930102295344a4c", "67fab6d59930102295343d28"),
+            Map.entry("67fab6d59930102295344a00", "67fab6d59930102295343cea"),
+            Map.entry("67fab6d599301022953444b3", "67fab6d599301022953437fd"),
+            Map.entry("67fab6d59930102295341ea8", "67fab6d59930102295341e9c"),
+            Map.entry("67fab6d599301022953425ff", "67fab6d59930102295341fbc"),
+            Map.entry("67fab6d599301022953420a5", "67fab6d5993010229534207e"),
+            Map.entry("67fab6d59930102295341fdf", "67fab6d59930102295341fcd"),
+            Map.entry("67fab6d59930102295341fe0", "67fab6d59930102295341fd3"),
+            Map.entry("67fab6d59930102295341fe1", "67fab6d59930102295341fcc"),
+            Map.entry("67fab6d59930102295341fe2", "67fab6d59930102295341fca"),
+            Map.entry("67fab6d59930102295341fe4", "67fab6d59930102295341fd7"),
+            Map.entry("67fab6d59930102295341fe5", "67fab6d59930102295341fda"),
+            Map.entry("67fab6d59930102295341fe6", "67fab6d59930102295341fc7"),
+            Map.entry("67fab6d59930102295341fe8", "67fab6d59930102295341fc8"),
+            Map.entry("67fab6d59930102295341fec", "67fab6d59930102295341fc9"),
+            Map.entry("67fab6d59930102295341fee", "67fab6d59930102295341fd1"),
+            Map.entry("67fab6d59930102295342314", "67fab6d59930102295342313"),
+            Map.entry("67fab6d59930102295342405", "67fab6d599301022953423fe"),
+            Map.entry("67fab6d59930102295342eeb", "67fab6d59930102295342566"),
+            Map.entry("67fab6d59930102295342260", "67fab6d5993010229534224b"));
+
+    // ------------------------------------------------------------------
+    // The analyzer over one topic, and the engine over a course
+    // ------------------------------------------------------------------
+
+    /** The corrector in production since 1/10/2026 (#1191): with its table the copies are the same 23. */
+    static CorrectorMatcher productionCorrector() {
+        return new DefaultCorrectorMatcher(DefaultCorrectorMatcherTest.productionTable());
+    }
+
+    static DefaultQuizStudentViewRenderer renderer() {
+        return new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create());
+    }
+
+    /** onKnowledge over one topic, then findingsAt on each exercise, kept in its metadata. */
+    static AuditNode analyze(CorrectorMatcher corrector, List<AuditableQuiz> quizzes) {
+        ExactDuplicatesAnalyzer analyzer = new ExactDuplicatesAnalyzer(corrector, renderer());
+        AuditableKnowledge entity = new AuditableKnowledge(quizzes, "Tema", null, true, "k", "Tema", "k",
+                SentenceMode.FILL, "topic");
+        AuditNode knowledge = new AuditNode(entity, AuditTarget.KNOWLEDGE, null, new ArrayList<>(),
+                new LinkedHashMap<>(), new LinkedHashMap<>(), new DefaultKnowledgeDiagnoses());
+        for (AuditableQuiz quiz : quizzes) {
+            knowledge.getChildren().add(new AuditNode(quiz, AuditTarget.QUIZ, knowledge, List.of(),
+                    new LinkedHashMap<>(), new LinkedHashMap<>(), new DefaultQuizDiagnoses()));
+        }
+        analyzer.onKnowledge(knowledge);
+        for (AuditNode quiz : knowledge.getChildren()) {
+            analyzer.onQuiz(quiz);
+        }
+        analyzer.onCourseComplete(knowledge);
+        for (AuditNode quiz : knowledge.getChildren()) {
+            quiz.getMetadata().put("findingsAt", analyzer.findingsAt(quiz));
+        }
+        return knowledge;
+    }
+
+    @SuppressWarnings("unchecked")
+    static List<FindingDraft> findings(AuditNode quiz) {
+        return (List<FindingDraft>) quiz.getMetadata().get("findingsAt");
+    }
+
+    static AuditNode quiz(AuditNode knowledge, String id) {
+        return knowledge.getChildren().stream().filter(q -> q.getEntity().getId().equals(id)).findFirst()
+                .orElseThrow();
+    }
+
+    static FindingDraft only(AuditNode quiz) {
+        assertEquals(1, findings(quiz).size(), findings(quiz).toString());
+        return findings(quiz).get(0);
+    }
+
+    static String part(FindingDraft draft, String label) {
+        for (EvidencePart part : draft.getEvidence().getExamined()) {
+            if (part.getLabel().equals(label)) {
+                return part.getText();
+            }
+        }
+        return null;
+    }
+
+    /** analyze with only exact-duplicates, one topic per list, through the engine. */
+    static AuditNode engine(List<List<AuditableQuiz>> topics) {
+        ExactDuplicatesAnalyzerProvider provider = new ExactDuplicatesAnalyzerProvider(productionCorrector(), renderer());
+        IAuditEngine engine = new IAuditEngine(new IScoreAggregator(), new DefaultAnalyzerCatalog(List.of(provider)),
+                new DefaultFindingCollector(), new DefaultContextNumbersCalculator());
+        List<AuditableKnowledge> knowledges = new ArrayList<>();
+        int n = 0;
+        for (List<AuditableQuiz> quizzes : topics) {
+            n++;
+            knowledges.add(new AuditableKnowledge(quizzes, "Tema " + n, null, true, "k" + n, "Tema " + n, "k" + n,
+                    SentenceMode.FILL, "Topic"));
+        }
+        AuditableCourse course = new AuditableCourse(List.of(new AuditableMilestone(List.of(new AuditableTopic(
+                knowledges, "topic", "Topic", "topic")), "A1", "A1", "A1")));
+        AuditReport report = engine.runAudit(course, new AnalyzerRunSelection(List.of("exact-duplicates"), Map.of()));
+        return report.getRoot();
+    }
+
+    static AuditNode engineQuiz(AuditNode node, String id) {
+        if (node.getEntity() != null && id.equals(node.getEntity().getId())) {
+            return node;
+        }
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                AuditNode found = engineQuiz(child, id);
+                if (found != null) {
+                    return found;
+                }
+            }
+        }
+        return null;
+    }
+
+    // ------------------------------------------------------------------
+    // Exercises of the 29/9 course
+    // ------------------------------------------------------------------
+
+    static AuditableQuiz theyWerent(String id) {
+        return quiz(id, text("They"), cloze("weren't"), text("(not / be) at the park."));
+    }
+
+    static AuditableQuiz stop(String id) {
+        return quiz(id, text("stop -"), cloze("stopping"));
+    }
+
+    static AuditableQuiz riceWithHint() {
+        return mc("67fab6d59930102295342313", List.of(text("rice"), gap(), text("(no plural form)")),
+                item("plural countable", 0.0), item("singular countable", 0.0), item("uncountable", 1.0));
+    }
+
+    static AuditableQuiz rice() {
+        return mc("67fab6d59930102295342314", List.of(text("rice"), gap(), text("")), item("plural countable", 0.0),
+                item("singular countable", 0.0), item("uncountable", 1.0));
+    }
+
+    static AuditableQuiz sheDancesWell(String id) {
+        return mc(id, List.of(text("She dances"), gap(), text("(good / well).")), item("good", 0.0), item("well", 1.0));
+    }
+
+    static AuditableQuiz quiz(String id, SentencePartEntity... parts) {
+        return new AuditableQuiz(List.of(), id, "label", "", null, List.of(), null, "", List.of(parts), null, null, null);
+    }
+
+    static AuditableQuiz mc(String id, List<SentencePartEntity> parts, MultipleChoiceItemEntity... items) {
+        return new AuditableQuiz(List.of(), id, "label", "", null, List.of(), null, "", parts,
+                new MultipleChoiceEntity("SINGLE", List.of(items)), null, null);
+    }
+
+    static MultipleChoiceItemEntity item(String label, double incidence) {
+        return new MultipleChoiceItemEntity(label, incidence, label);
+    }
+
+    static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    static SentencePartEntity cloze(String... options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(options));
+    }
+
+    static SentencePartEntity gap() {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", null);
+    }
+
+    /** A topic of the course of 29/9, as db/english-course keeps it, in the order of the course. */
+    @SuppressWarnings("unchecked")
+    static List<AuditableQuiz> topic(String folder) {
+        String json;
+        try {
+            json = Files.readString(Path.of("../db/english-course", folder, "quizzes.json"));
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (Object o : (List<Object>) DefaultCorrectorMatcherTest.parseJson(json)) {
+            Map<String, Object> q = (Map<String, Object>) o;
+            Map<String, Object> form = (Map<String, Object>) q.get("form");
+            List<SentencePartEntity> parts = new ArrayList<>();
+            for (Object p : (List<Object>) form.get("sentenceParts")) {
+                Map<String, Object> part = (Map<String, Object>) p;
+                parts.add(new SentencePartEntity(SentencePartKind.valueOf((String) part.get("kind")),
+                        (String) part.get("text"), (List<String>) (List<?>) part.get("options")));
+            }
+            MultipleChoiceEntity multipleChoice = null;
+            if ("MULTIPLE_CHOICE".equals(form.get("kind"))) {
+                List<MultipleChoiceItemEntity> items = new ArrayList<>();
+                for (Object i : (List<Object>) form.get("items")) {
+                    Map<String, Object> item = (Map<String, Object>) i;
+                    items.add(new MultipleChoiceItemEntity((String) item.get("id"), number(item.get("incidence")),
+                            (String) item.get("label")));
+                }
+                multipleChoice = new MultipleChoiceEntity((String) form.get("selection"), items);
+            }
+            quizzes.add(new AuditableQuiz(List.of(), (String) q.get("id"), (String) q.get("title"), "",
+                    (String) q.get("translation"), (List<String>) (List<?>) form.get("sentences"), null,
+                    (String) q.get("instructions"), parts, multipleChoice, (String) q.get("miniTheory"),
+                    (String) q.get("answerAudioUrl")));
+        }
+        return quizzes;
+    }
+
+    @SuppressWarnings("unchecked")
+    private static double number(Object value) {
+        if (value instanceof Number n) {
+            return n.doubleValue();
+        }
+        Map<String, Object> wrapped = (Map<String, Object>) value;
+        for (String key : List.of("$numberDouble", "$numberInt", "$numberLong")) {
+            if (wrapped.containsKey(key)) {
+                return Double.parseDouble((String) wrapped.get(key));
+            }
+        }
+        throw new IllegalArgumentException("número sin formato conocido: " + value);
     }
 }

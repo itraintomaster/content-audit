@@ -1,7 +1,15 @@
 package com.learney.contentaudit.auditdomain.datacoherence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.learney.contentaudit.auditdomain.AuditNode;
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.finding.EvidencePart;
+import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -21,44 +29,108 @@ public class FDatosJ001JourneyTest {
     @Order(1)
     @Tag("path-1")
     @DisplayName("path-1: El operador corre analyze pidiendo só... → El informe compara, en cada ejercicio... → Hallazgo bloqueante si la barra está ... [Una respuesta aceptada o el texto grabado llevan «/»] → success")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void path1_unaRespuestaAceptadaOElTextoGrabadoLlevan_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr: analyze with only data-coherence and the registry loaded → comparar → barra: the audio of «He ___
+        // (not / cut) himself.» reads the slash: medium, recorded again by rule (R002).
+        AuditNode root = DataCoherenceAnalyzerTest.engine(new DataCoherenceAnalyzerTest.Copies()
+                .recording("A2.04.05.09", "He has not cut/hasn't cut himself."), List.of(DataCoherenceAnalyzerTest.heHasNotCut()));
+        Finding slash = only(quiz(root, "67fab6d5993010229534286c"));
+        assertEquals("no-slash", slash.getRule());
+        assertEquals(FindingSeverity.MEDIUM, slash.getSeverity());
+        assertEquals(FindingResolution.RULE, slash.getResolution());
     }
 
     @Test
     @Order(2)
     @Tag("path-2")
     @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe compara, en cada ejercicio... → Hallazgo media que se arregla volvien... [La oración guardada no es el ejercicio armado con su primera respuesta] → success")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void path2_laOracinGuardadaNoEsElEjercicioArmadoConSuPrimeraRespuesta_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → comparar → oracion: the production copy of «The tree ___ (not / grow) yet.» kept the slash:
+        // medium, rebuilt from the parts (R001).
+        AuditNode root = DataCoherenceAnalyzerTest.engine(new DataCoherenceAnalyzerTest.Copies()
+                .recording("A2.04.06.03", "The tree has not grown yet.")
+                .production("67fab6d5993010229534287e", "The tree has not grown/hasn't grown yet."),
+                List.of(DataCoherenceAnalyzerTest.treeHasNotGrown("The tree has not grown yet.")));
+        Finding saved = only(quiz(root, "67fab6d5993010229534287e"));
+        assertEquals("saved-sentence", saved.getRule());
+        assertEquals("produccion", saved.getIdentity().getMarker());
+        assertEquals(FindingSeverity.MEDIUM, saved.getSeverity());
+        assertEquals(FindingResolution.RULE, saved.getResolution());
     }
 
     @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → El informe compara, en cada ejercicio... → Hallazgo media para la mesa, con el t... [El audio dice otra cosa que el ejercicio de hoy] → success")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void path3_elAudioDiceOtraCosaQueElEjercicioDeHoy_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → comparar → audio: the audio of «So I everyone.» (…33a1, B1) says «So is everyone.»: medium for the
+        // panel, with the recorded text and today's as evidence (R003).
+        AuditableQuiz soIs = DataCoherenceAnalyzerTest.quiz("67fab6d599301022953433a1", "B1.05.14.14",
+                List.of("So I everyone."), DataCoherenceAnalyzerTest.text("A: She's choosing her clothers. (everyone) B:"),
+                DataCoherenceAnalyzerTest.cloze("So I everyone."), DataCoherenceAnalyzerTest.text(""));
+        AuditNode root = DataCoherenceAnalyzerTest.engine(new DataCoherenceAnalyzerTest.Copies()
+                .recording("B1.05.14.14", "So is everyone."), List.of(soIs));
+        Finding audio = only(quiz(root, "67fab6d599301022953433a1"));
+        assertEquals("audio-matches", audio.getRule());
+        assertEquals(FindingResolution.PANEL, audio.getResolution());
+        assertEquals("So is everyone.", part(audio, "Audio"));
+        assertEquals("So I everyone.", part(audio, "Hoy"));
     }
 
     @Test
     @Order(4)
     @Tag("path-4")
     @DisplayName("path-4: El operador corre analyze pidiendo só... → El informe compara, en cada ejercicio... → Hallazgo baja que se arregla grabando... [El ejercicio no tiene audio, o nadie sabe con qué se grabó] → success")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void path4_elEjercicioNoTieneAudioONadieSabeConQuSeGrab_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → comparar → sin_audio: «Are we eating soon?» has no key: low, recorded by rule (R004).
+        AuditNode root = DataCoherenceAnalyzerTest.engine(new DataCoherenceAnalyzerTest.Copies(),
+                List.of(DataCoherenceAnalyzerTest.areWeEatingSoon()));
+        Finding noKey = only(quiz(root, "67fab6d599301022953426ac"));
+        assertEquals("audio-known", noKey.getRule());
+        assertEquals(FindingSeverity.LOW, noKey.getSeverity());
+        assertEquals(FindingResolution.RULE, noKey.getResolution());
     }
 
     @Test
     @Order(5)
     @Tag("path-5")
     @DisplayName("path-5: El operador corre analyze pidiendo só... → El informe compara, en cada ejercicio... → Sin hallazgo de este analizador; el e... [Las tres copias coinciden] → success")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void path5_lasTresCopiasCoinciden_success() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // correr → comparar → coincide: «You ___ (see) cats.» says the same in its three copies: no finding, score 1.
+        AuditNode root = DataCoherenceAnalyzerTest.engine(new DataCoherenceAnalyzerTest.Copies()
+                .recording("A1.01.06.01", "You see cats.").production("67fab6d59930102295341ec3", "You see cats."),
+                List.of(DataCoherenceAnalyzerTest.youSeeCats()));
+        AuditNode cats = quiz(root, "67fab6d59930102295341ec3");
+        assertEquals(List.of(), cats.getFindings());
+        assertEquals(1.0, cats.getScores().get("data-coherence"));
+    }
+
+    private static AuditNode quiz(AuditNode node, String id) {
+        if (node.getEntity() != null && id.equals(node.getEntity().getId())) {
+            return node;
+        }
+        if (node.getChildren() != null) {
+            for (AuditNode child : node.getChildren()) {
+                AuditNode found = quiz(child, id);
+                if (found != null) {
+                    return found;
+                }
+            }
+        }
+        return null;
+    }
+
+    private static Finding only(AuditNode node) {
+        assertEquals(1, node.getFindings().size(), node.getFindings().toString());
+        return node.getFindings().get(0);
+    }
+
+    private static String part(Finding finding, String label) {
+        for (EvidencePart part : finding.getEvidence().getExamined()) {
+            if (part.getLabel().equals(label)) {
+                return part.getText();
+            }
+        }
+        return null;
     }
 }

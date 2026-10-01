@@ -1,8 +1,12 @@
 package com.learney.contentaudit.auditapplication;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.learney.contentaudit.auditdomain.JudgeRuntimeConfig;
 import com.learney.contentaudit.auditdomain.quizinstruction.InstructionSeverity;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -20,7 +24,7 @@ public class DefaultQuizInstructionConfigTest {
     public void shouldDefaultTheRunBudgetTo500NewJudgeQueries() {
         // R006: each run bounds new judge queries with a configurable budget that has a
         // default value; the requirement fixes that default (ASSUMPTION) at 500 per run.
-        DefaultQuizInstructionConfig config = new DefaultQuizInstructionConfig();
+        DefaultQuizInstructionConfig config = new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig());
 
         assertEquals(500, config.getDefaultMaxNewEvaluations(),
                 "R006: the run budget must default to 500 new judge queries per run");
@@ -33,7 +37,7 @@ public class DefaultQuizInstructionConfigTest {
     public void shouldMapTheSeveritiesNoneMinorMajorAndCriticalToTheScores100603And00() {
         // R002: the verdict's severity defines the score scale -- 1.0 / 0.6 / 0.3 / 0.0 for
         // none / minor / major / critical, respectively.
-        DefaultQuizInstructionConfig config = new DefaultQuizInstructionConfig();
+        DefaultQuizInstructionConfig config = new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig());
 
         assertEquals(1.0, config.getScoreFor(InstructionSeverity.NONE), 0.0001,
                 "R002: severity NONE must score 1.0");
@@ -43,5 +47,62 @@ public class DefaultQuizInstructionConfigTest {
                 "R002: severity MAJOR must score 0.3");
         assertEquals(0.0, config.getScoreFor(InstructionSeverity.CRITICAL), 0.0001,
                 "R002: severity CRITICAL must score 0.0");
+    }
+
+    @Test
+    @DisplayName("should describe the analyze budget of quiz-instruction from the judges runtime config and the revise-instructions budget of 500, each named with its command")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R004")
+    public void shouldDescribeTheAnalyzeBudgetOfQuizinstructionFromTheJudgesRuntimeConfigAndTheReviseinstructionsBudgetOf500EachNamedWithItsCommand() {
+        // F-CIERRE-R004: config analyzer quiz-instruction shows both budgets, each with the command it applies to:
+        // analyze, from the configuration common to the judges (0 without --budget, F-JEXAM-R010), and
+        // revise-instructions, its own (500). No budget is shown without its command.
+        Map<String, Object> described = new DefaultQuizInstructionConfig(new DefaultJudgeRuntimeConfig()).describe();
+
+        assertEquals(0, described.get("analyzeMaxNewEvaluations"), "analyze: the judges' budget");
+        assertEquals(500, described.get("reviseInstructionsMaxNewEvaluations"), "revise-instructions: its own");
+        assertFalse(described.containsKey("defaultMaxNewEvaluations"), "never a budget without its command");
+        for (String key : described.keySet()) {
+            if (key.toLowerCase().contains("maxnewevaluations")) {
+                assertTrue(key.startsWith("analyze") || key.startsWith("reviseInstructions"),
+                        "every budget names its command: " + key);
+            }
+        }
+        assertEquals("quiz-instruction", described.get("analyzerName"));
+    }
+
+    @Test
+    @DisplayName("should describe a different analyze budget when the judges runtime config gives another one, without copying 0")
+    @Tag("FEAT-CIERRE")
+    @Tag("F-CIERRE-R004")
+    public void shouldDescribeADifferentAnalyzeBudgetWhenTheJudgesRuntimeConfigGivesAnotherOneWithoutCopying0() {
+        // F-CIERRE-R004: the budget of analyze is read from the configuration common to the judges, not copied: if
+        // that configuration gives another one for quiz-instruction, that is the one shown.
+        JudgeRuntimeConfig seven = new JudgeRuntimeConfig() {
+            @Override
+            public int getMaxConcurrentEvaluations() {
+                return 4;
+            }
+
+            @Override
+            public int getDefaultMaxNewEvaluations(String judgeName) {
+                return "quiz-instruction".equals(judgeName) ? 7 : 0;
+            }
+
+            @Override
+            public double getDefaultRatePerHour(String judgeName) {
+                return 189.0;
+            }
+
+            @Override
+            public Map<String, Object> describe() {
+                return Map.of();
+            }
+        };
+
+        Map<String, Object> described = new DefaultQuizInstructionConfig(seven).describe();
+
+        assertEquals(7, described.get("analyzeMaxNewEvaluations"), "the judges' budget for quiz-instruction");
+        assertEquals(500, described.get("reviseInstructionsMaxNewEvaluations"), "revise-instructions keeps its own");
     }
 }

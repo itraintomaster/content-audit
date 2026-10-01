@@ -47,14 +47,14 @@ public class LedgerBackedQuizInstructionComplianceCheckerTest {
         // The ledger already holds an old verdict recorded under this content's fingerprint:
         // whatever criterion produced it judged the quiz as NOT following its instructions.
         EvaluationResolution recorded = new EvaluationResolution(
-                EvaluationResolutionKind.REUSED, "stale-payload", "judge-v1");
+                EvaluationResolutionKind.REUSED, "stale-payload", "judge-v1", null);
         Mockito.when(session.resolve(subject)).thenReturn(recorded);
 
         // Asking the judge again — the only thing revalidate() is supposed to do — produces
         // a fresh, different verdict: the criterion improved and the untouched quiz now
         // complies. This is the exact scenario F-QICOR-R009 exists for.
         EvaluationResolution fresh = new EvaluationResolution(
-                EvaluationResolutionKind.EVALUATED, "fresh-payload", "judge-v2");
+                EvaluationResolutionKind.EVALUATED, "fresh-payload", "judge-v2", null);
         Mockito.when(session.resolveForced(subject)).thenReturn(fresh);
 
         QuizInstructionVerdictReader verdictReader = Mockito.mock(QuizInstructionVerdictReader.class);

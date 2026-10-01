@@ -218,7 +218,7 @@ public class DefaultAnalyzerCatalogTest {
                 new LemmaAbsenceAnalyzerProvider(evp, absence,
                         new DefaultSentenceLexicalScorer(evp, new DefaultContentWordFilter(), absence)),
                 new LemmaCountAnalyzerProvider(evp, count),
-                new DefaultQuizInstructionAnalyzerFactory(null, null, null, Mockito.mock(QuizInstructionConfig.class), null));
+                new DefaultQuizInstructionAnalyzerFactory(null, null, Mockito.mock(QuizInstructionConfig.class), null));
     }
 
     /** A complete card for an analyzer that does not exist yet, evaluating the quiz. */

@@ -1,7 +1,21 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AuditableQuiz;
+import com.learney.contentaudit.auditdomain.IrregularFormsCatalog;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.coursedomain.SentenceMode;
+import com.learney.contentaudit.coursedomain.SentencePartEntity;
+import com.learney.contentaudit.coursedomain.SentencePartKind;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,117 +29,387 @@ public class DefaultHintAnswerCheckTest {
     @DisplayName("should find no issue when every hint word is in the answer as written, inflected or through its lemma, as «You ___ (see) cats.» answered «see» and «He ___ (not / cut) himself.» answered «has not cut»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldFindNoIssueWhenEveryHintWordIsInTheAnswerAsWrittenInflectedOrThroughItsLemmaAsYouSeeCatsAnsweredSeeAndHeNotCutHimselfAnsweredHasNotCut(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 inv. 1: «You ___ (see) cats.» (…1ec3, A1) and «He ___ (not / cut) himself.» (…286c, A2):
+        // every word of the hint, but «not», is in the finished sentence.
+        DefaultHintAnswerCheck check = check();
+
+        assertEquals(List.of(), check.check(hint("(see)", List.of("see"), null, false), youSeeCats()));
+        assertEquals(List.of(), check.check(hint("(not / cut)", List.of("cut"), null, true),
+                quiz("67fab6d5993010229534286c", "He has not cut himself .",
+                        "He|he|PRON has|have|AUX not|not|PART cut|cut|VERB himself|himself|PRON .|.|PUNCT",
+                        text("He"), cloze("has not cut|hasn't cut"), text("(not / cut) himself."))));
     }
 
     @Test
     @DisplayName("should report a hint word that is in the answer neither inflected nor through its lemma, as «mean» in «This sentence ___ (mean) 'hope'.» answered «implies»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldReportAHintWordThatIsInTheAnswerNeitherInflectedNorThroughItsLemmaAsMeanInThisSentenceMeanHopeAnsweredImplies(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 inv. 1: «This sentence ___ (mean) 'hope'.» (…20c7, A1) only accepts «implies»: whoever
+        // follows the hint writes «means» and the corrector rejects it.
+        AuditableQuiz implies = quiz("67fab6d599301022953420c7", "This sentence implies'hope'.",
+                "This|this|DET sentence|sentence|NOUN implies'hope|implies'hope|NOUN '|'|PUNCT .|.|PUNCT",
+                text("This sentence"), cloze("implies"), text("(mean) 'hope'."));
+
+        List<HintIssue> issues = check().check(hint("(mean)", List.of("mean"), null, false), implies);
+
+        assertEquals(List.of(HintIssueKind.HINT_WORD_ABSENT), kinds(issues));
+        assertEquals("mean", issues.get(0).getWord());
+        assertEquals(HintCoherenceAnalyzer.RULE_HINT_WORDS, issues.get(0).getRule());
     }
 
     @Test
     @DisplayName("should recognize through the table of irregular forms the inflected forms the shared lemmatizer misses, as swum in «They ___ (swim) in the ocean» and hated in «She ___ (hate) broccoli for ages»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldRecognizeThroughTheTableOfIrregularFormsTheInflectedFormsTheSharedLemmatizerMissesAsSwumInTheySwimInTheOceanAndHatedInSheHateBroccoliForAges(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // DOUBT-PISTA-LEMATIZADOR (A): the shared lemmatizer leaves «swum» as an adjective without its
+        // verb and reads «hated» as «hat». The table of irregular forms finds swum; the regular
+        // inflection finds hated.
+        AuditableQuiz swum = quiz("67fab6d59930102295343f4e", "They've swum in the ocean .",
+                "They|they|PRON 've|have|AUX swum|swum|ADJ in|in|ADP the|the|DET ocean|ocean|NOUN .|.|PUNCT",
+                text("They"), cloze("'ve swum|have swum"), text("(swim) in the ocean (in their lives)."));
+        AuditableQuiz hated = quiz("67fab6d59930102295343f80",
+                "She 's hated broccoli for ages, even in her favorite dishes.",
+                "She|she|PRON 's|be|AUX hated|hat|VERB broccoli|broccoli|NOUN for|for|ADP ages|age|NOUN ,|,|PUNCT"
+                        + " even|even|ADV in|in|ADP her|her|PRON favorite|favorite|ADJ dishes|dish|NOUN .|.|PUNCT",
+                text("She"), cloze("'s hated|has hated"), text("(hate) broccoli for ages, even in her favorite dishes."));
+
+        assertEquals(List.of(), check().check(hint("(swim)", List.of("swim"), null, false), swum));
+        assertEquals(List.of(), check().check(hint("(hate)", List.of("hate"), null, false), hated));
+        assertEquals(List.of(HintIssueKind.HINT_WORD_ABSENT),
+                kinds(new DefaultHintAnswerCheck(withoutTable()).check(hint("(swim)", List.of("swim"), null, false),
+                        swum)), "without the table, swum is not swim");
     }
 
     @Test
     @DisplayName("should report a verb of the answer that is not an auxiliary and that the hint does not announce, as «rain» in «It ___ (be) soon.» answered «'s going to rain»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldReportAVerbOfTheAnswerThatIsNotAnAuxiliaryAndThatTheHintDoesNotAnnounceAsRainInItBeSoonAnsweredSGoingToRain(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002 inv. 2: «It ___ (be) soon.» (…215c, A1) accepts «'s going to rain»: nothing announces
+        // rain. «'s» is an auxiliary and «going» builds the tense; neither is reported.
+        AuditableQuiz rain = quiz("67fab6d5993010229534215c", "It's going to rain soon.",
+                "It|it|PRON 's|be|AUX going|go|VERB to|to|PART rain|rain|VERB soon|soon|ADV .|.|PUNCT",
+                text("It"), cloze("'s going to rain|is going to rain"), text("(be) soon."));
+
+        List<HintIssue> issues = check().check(hint("(be)", List.of("be"), null, false), rain);
+
+        assertEquals(List.of(HintIssueKind.VERB_NOT_ANNOUNCED), kinds(issues));
+        assertEquals("rain", issues.get(0).getWord());
+        assertEquals(FindingResolution.RULE, issues.get(0).getResolution());
     }
 
     @Test
     @DisplayName("should take the answer as one of the options of a choice hint instead of comparing it word by word, as «She dances ___ (good / well).» answered «well»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R002")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldTakeTheAnswerAsOneOfTheOptionsOfAChoiceHintInsteadOfComparingItWordByWordAsSheDancesGoodWellAnsweredWell(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: «(good / well)» (…255d, A1, Adjetivo o adverbio) is a choice: the answer is one of
+        // its options, so «good» is never asked of «well».
+        AuditableQuiz well = quiz("67fab6d5993010229534255d", "She dances well.",
+                "She|she|PRON dances|dance|VERB well|well|ADV .|.|PUNCT",
+                text("She dances"), cloze("well"), text("(good / well)."));
+        ExerciseHint choice = new DefaultHintReader().read(well, SentenceMode.FILL).orElseThrow();
+
+        assertTrue(choice.isChoice());
+        assertEquals(List.of(), check().check(choice, well));
     }
 
     @Test
     @DisplayName("should report a subject pronoun of the hint that is not the subject of the answer, as «I» in «Who ___ (I / see)?» answered «are you seeing»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R003")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldReportASubjectPronounOfTheHintThatIsNotTheSubjectOfTheAnswerAsIInWhoISeeAnsweredAreYouSeeing(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 inv. 1: «Who ___ (I / see)?» (…2031, A1) only accepts «are you seeing».
+        List<HintIssue> issues = check().check(hint("(I / see)", List.of("see"), "I", false), whoAreYouSeeing());
+
+        assertEquals(List.of(HintIssueKind.SUBJECT_MISMATCH), kinds(issues));
+        assertEquals("I", issues.get(0).getWord());
+        assertEquals(HintCoherenceAnalyzer.RULE_HINT_SUBJECT, issues.get(0).getRule());
     }
 
     @Test
     @DisplayName("should report a subject pronoun that opens the answer when neither the hint nor the rest of the statement names it, as «___ (not / dream) about her.» answered «I haven't dreamt»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R003")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldReportASubjectPronounThatOpensTheAnswerWhenNeitherTheHintNorTheRestOfTheStatementNamesItAsNotDreamAboutHerAnsweredIHaventDreamt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 inv. 2: «___ (not / dream) about her.» (…2857, A2): the gap opens the sentence and
+        // the answer brings «I», which nothing in the statement names.
+        AuditableQuiz dreamt = quiz("67fab6d59930102295342857", "I haven't dreamt about her.",
+                "I|I|PRON have|have|AUX n't|not|PART dreamt|dream|VERB about|about|ADP her|she|PRON .|.|PUNCT",
+                text(""), cloze("I haven't dreamt|I have not dreamt"), text("(not / dream) about her."));
+
+        List<HintIssue> issues = check().check(hint("(not / dream)", List.of("dream"), null, true), dreamt);
+
+        assertEquals(List.of(HintIssueKind.SUBJECT_NOT_ANNOUNCED), kinds(issues));
+        assertEquals("I", issues.get(0).getWord());
     }
 
     @Test
     @DisplayName("should not take an empty it or there as an unannounced subject, as «(him) ___» answered «It's him.»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R003")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldNotTakeAnEmptyItOrThereAsAnUnannouncedSubjectAsHimAnsweredItsHim() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: «(him) ___» (…2420, A1, It's como sujeto) is answered «It's him.»: that it is the
+        // lesson, not a subject the hint forgot.
+        AuditableQuiz itsHim = quiz("67fab6d59930102295342420", "It's him.",
+                "It|it|PRON 's|be|AUX him|he|PRON .|.|PUNCT", text("(him)"), cloze("It's him."));
+        ExerciseHint him = new DefaultHintReader().read(itsHim, SentenceMode.FILL).orElseThrow();
+
+        assertEquals(List.of(), check().check(him, itsHim));
     }
 
     @Test
     @DisplayName("should report a hint with «not» whose answer does not negate, as «He ___ (not / cut) himself.» answered «has cut»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R004")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldReportAHintWithNotWhoseAnswerDoesNotNegateAsHeNotCutHimselfAnsweredHasCut() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004: if «He ___ (not / cut) himself.» (…286c) accepted «has cut», the student would negate
+        // and the corrector would expect an affirmative.
+        AuditableQuiz hasCut = quiz("67fab6d5993010229534286c", "He has cut himself.",
+                "He|he|PRON has|have|AUX cut|cut|VERB himself|himself|PRON .|.|PUNCT",
+                text("He"), cloze("has cut"), text("(not / cut) himself."));
+
+        List<HintIssue> issues = check().check(hint("(not / cut)", List.of("cut"), null, true), hasCut);
+
+        assertEquals(List.of(HintIssueKind.NEGATION_WITHOUT_NEGATIVE), kinds(issues));
+        assertEquals(HintCoherenceAnalyzer.RULE_HINT_NEGATION, issues.get(0).getRule());
     }
 
     @Test
     @DisplayName("should not ask for «not» in the hint of a negative answer whose negation comes from the dialogue, as «A: Am I wrong? B: No, you ___ .» answered «aren't»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R004")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldNotAskForNotInTheHintOfANegativeAnswerWhoseNegationComesFromTheDialogueAsAAmIWrongBNoYouAnsweredArent(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 goes one way only: «A: Am I wrong? B: No, you ___ .» (…1f53, A1) negates because of
+        // the dialogue; with a hint «(be)», without «not», nothing is missing.
+        AuditableQuiz arent = quiz("67fab6d59930102295341f53", "A: Am I wrong? B: No, you aren't.",
+                "A|a|NOUN :|:|PUNCT Am|be|AUX I|I|PRON wrong|wrong|ADJ ?|?|PUNCT B|b|NOUN :|:|PUNCT No|no|INTJ"
+                        + " ,|,|PUNCT you|you|PRON are|be|AUX n't|not|PART .|.|PUNCT",
+                text("A: Am I wrong? B: No, you"), cloze("aren't"), text("(be) ."));
+
+        assertEquals(List.of(), check().check(hint("(be)", List.of("be"), null, false), arent));
     }
 
     @Test
     @DisplayName("should propose as the fix by rule the hint drawn from the first answer, with its base verb, its subject and its not, leaving the answer and its audio as they are, as «(you / see)» for «Who ___ (I / see)?»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldProposeAsTheFixByRuleTheHintDrawnFromTheFirstAnswerWithItsBaseVerbItsSubjectAndItsNotLeavingTheAnswerAndItsAudioAsTheyAreAsYouSeeForWhoISee(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the fix by rule completes the hint from the first answer and never touches the
+        // answer: «Who ___ (I / see)?» gets «(you / see)»; «___ (not / dream) about her.» gets its
+        // subject, «(I / not / dream)».
+        HintIssue who = check().check(hint("(I / see)", List.of("see"), "I", false), whoAreYouSeeing()).get(0);
+        assertEquals("(you / see)", who.getProposedHint());
+        assertEquals(FindingResolution.RULE, who.getResolution());
+
+        AuditableQuiz dreamt = quiz("67fab6d59930102295342857", "I haven't dreamt about her.",
+                "I|I|PRON have|have|AUX n't|not|PART dreamt|dream|VERB about|about|ADP her|she|PRON .|.|PUNCT",
+                text(""), cloze("I haven't dreamt|I have not dreamt"), text("(not / dream) about her."));
+        HintIssue i = check().check(hint("(not / dream)", List.of("dream"), null, true), dreamt).get(0);
+        assertEquals("(I / not / dream)", i.getProposedHint());
     }
 
     @Test
     @DisplayName("should send to the panel instead of fixing by rule a hint word that is not in the answer, as «bad» in «That was ___ (bad) holiday ever!» answered «the best»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldSendToThePanelInsteadOfFixingByRuleAHintWordThatIsNotInTheAnswerAsBadInThatWasBadHolidayEverAnsweredTheBest(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // DOUBT-PISTA-CUANDO-MESA (A): «That was ___ (bad) holiday ever!» (…3af4, A2) answered «the
+        // best»: fixing the hint to «(good)» changes what a superlatives topic asks, so the panel
+        // decides whether the hint or the answer is wrong.
+        AuditableQuiz best = quiz("67fab6d59930102295343af4", "That was the best holiday ever!",
+                "That|that|PRON was|be|AUX the|the|DET best|good|ADJ holiday|holiday|NOUN ever|ever|ADV !|!|PUNCT",
+                text("That was"), cloze("the best"), text("(bad) holiday ever!"));
+
+        List<HintIssue> issues = check().check(hint("(bad)", List.of("bad"), null, false), best);
+
+        assertEquals(List.of(HintIssueKind.HINT_WORD_ABSENT), kinds(issues));
+        assertEquals("bad", issues.get(0).getWord());
+        assertEquals(FindingResolution.PANEL, issues.get(0).getResolution());
+        assertEquals("(good)", issues.get(0).getProposedHint(), "the hint the answer gives, for the panel to weigh");
+    }
+
+    // ------------------------------------------------------------------
+    // Exercises of the 29/9 course, with the tokens the shared tokenizer gave their saved sentence
+    // ------------------------------------------------------------------
+
+    private static AuditableQuiz youSeeCats() {
+        return quiz("67fab6d59930102295341ec3", "You see cats.", "You|you|PRON see|see|VERB cats|cat|NOUN .|.|PUNCT",
+                text("You"), cloze("see"), text("(see) cats."));
+    }
+
+    private static AuditableQuiz whoAreYouSeeing() {
+        return quiz("67fab6d59930102295342031", "Who are you seeing?",
+                "Who|who|PRON are|be|AUX you|you|PRON seeing|see|VERB ?|?|PUNCT",
+                text("Who"), cloze("are you seeing"), text("(I / see)?"));
+    }
+
+    private static DefaultHintAnswerCheck check() {
+        return new DefaultHintAnswerCheck(table());
+    }
+
+    private static ExerciseHint hint(String text, List<String> words, String subject, boolean negated) {
+        return new ExerciseHint(text, words, subject, negated, false);
+    }
+
+    private static List<HintIssueKind> kinds(List<HintIssue> issues) {
+        return issues.stream().map(HintIssue::getKind).toList();
+    }
+
+    /** The forms these cases need from the closed table of irregular forms. */
+    private static IrregularFormsCatalog table() {
+        Map<String, Set<String>> forms = Map.of(
+                "swim", Set.of("swam", "swum"), "be", Set.of("was", "were", "been", "am", "is", "are", "being"),
+                "good", Set.of("better", "best", "well"), "bad", Set.of("worse", "worst", "badly"),
+                "dream", Set.of("dreamt", "dreamed"), "see", Set.of("saw", "seen"), "mean", Set.of("meant"),
+                "have", Set.of("had", "has", "having"));
+        Set<String> participles = Set.of("swum", "been", "dreamt", "dreamed", "seen", "meant", "had", "cut", "overslept");
+        return new IrregularFormsCatalog() {
+            @Override
+            public Set<String> formsOf(String baseWord) {
+                return forms.getOrDefault(baseWord, Set.of());
+            }
+
+            @Override
+            public boolean isPastParticiple(String word) {
+                return participles.contains(word);
+            }
+        };
+    }
+
+    private static IrregularFormsCatalog withoutTable() {
+        return new IrregularFormsCatalog() {
+            @Override
+            public Set<String> formsOf(String baseWord) {
+                return Set.of();
+            }
+
+            @Override
+            public boolean isPastParticiple(String word) {
+                return false;
+            }
+        };
+    }
+
+    static AuditableQuiz quiz(String id, String sentence, String tokens, SentencePartEntity... parts) {
+        return new AuditableQuiz(tokens(tokens), id, "label", "", null, List.of(sentence), null, null,
+                List.of(parts), null, null, null);
+    }
+
+    /** A rewrite of the course: its saved sentence with the tokens the shared tokenizer gave it, and its instructions. */
+    static AuditableQuiz rewrite(String id, String sentence, String tokens, String instructions,
+            SentencePartEntity... parts) {
+        return new AuditableQuiz(tokens(tokens), id, "label", "", null, List.of(sentence), null, instructions,
+                List.of(parts), null, null, null);
+    }
+
+    private static List<String> words(List<HintIssue> issues) {
+        return issues.stream().map(HintIssue::getWord).toList();
+    }
+
+    /** «word|lemma|POS» tokens separated by spaces, as the shared tokenizer gave them. */
+    static List<NlpToken> tokens(String spec) {
+        List<NlpToken> tokens = new ArrayList<>();
+        for (String token : spec.split(" ")) {
+            String[] fields = token.split("\\|");
+            tokens.add(new NlpToken(fields[0], fields[1], fields[2], null, false, fields[2].equals("PUNCT")));
+        }
+        return tokens;
+    }
+
+    static SentencePartEntity text(String text) {
+        return new SentencePartEntity(SentencePartKind.TEXT, text, null);
+    }
+
+    static SentencePartEntity cloze(String... options) {
+        return new SentencePartEntity(SentencePartKind.CLOZE, "", List.of(options));
+    }
+
+    @Test
+    @DisplayName("should report a content word of a rewrite that comes neither from the sentence it rewrites nor from its hint or instructions, as «have» in «Polite request: I want to eat some cake. ___» answered «Could I have some cake?»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldReportAContentWordOfARewriteThatComesNeitherFromTheSentenceItRewritesNorFromItsHintOrInstructionsAsHaveInPoliteRequestIWantToEatSomeCakeAnsweredCouldIHaveSomeCake() {
+        // R006: «Polite request: I want to eat some cake. ___» (…24f7, A1) accepts «Could I have some cake?».
+        // Nothing announces have, neither the sentence it rewrites nor the instructions, so the faithful
+        // rewrite, «Could I eat some cake?», is wrong. Could and I are no words with meaning; cake comes from
+        // the sentence. It goes to the panel, without a hint to propose.
+        AuditableQuiz cake = rewrite("67fab6d599301022953424f7", "Could I have some cake?",
+                "Could|could|AUX I|I|PRON have|have|VERB some|some|DET cake|cake|NOUN ?|?|PUNCT",
+                "Transforma las oraciones para que incluyan 'can' o 'could'.",
+                text("Polite request: I want to eat some cake."), cloze("Could I have some cake?"));
+
+        List<HintIssue> issues = check().checkRewrite(cake);
+
+        assertEquals(List.of(HintIssueKind.REWRITE_WORD_NOT_ANNOUNCED), kinds(issues));
+        assertEquals("have", issues.get(0).getWord());
+        assertEquals(HintCoherenceAnalyzer.RULE_REWRITE_WORDS, issues.get(0).getRule());
+        assertEquals(FindingResolution.PANEL, issues.get(0).getResolution());
+        assertNull(issues.get(0).getProposedHint(), "the panel decides: there is no fix by rule");
+    }
+
+    @Test
+    @DisplayName("should take as announced the words the instructions name, so only «practise» is reported in «The coach encouraged the players to repeat the drill. ___» answered «The coach made the players practise the drill.» under «Crea oraciones utilizando 'let' o 'make'.»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldTakeAsAnnouncedTheWordsTheInstructionsNameSoOnlyPractiseIsReportedInTheCoachEncouragedThePlayersToRepeatTheDrillAnsweredTheCoachMadeThePlayersPractiseTheDrillUnderCreaOracionesUtilizandoLetOMake() {
+        // R006: «The coach encouraged the players to repeat the drill. ___» (…4186, B1) accepts «The coach made the
+        // players practise the drill.». made comes from the instructions, that ask for make; practise, in place of
+        // repeat, comes from nowhere. Without the instructions, made would be reported too.
+        String tokens = "The|the|DET coach|coach|NOUN made|make|VERB the|the|DET players|player|NOUN"
+                + " practise|practise|VERB the|the|DET drill|drill|NOUN .|.|PUNCT";
+        AuditableQuiz drill = rewrite("67fab6d59930102295344186", "The coach made the players practise the drill.",
+                tokens, "Crea oraciones utilizando 'let' o 'make'.",
+                text("The coach encouraged the players to repeat the drill."),
+                cloze("The coach made the players practise the drill."));
+        AuditableQuiz withoutInstructions = rewrite("67fab6d59930102295344186",
+                "The coach made the players practise the drill.", tokens, null,
+                text("The coach encouraged the players to repeat the drill."),
+                cloze("The coach made the players practise the drill."));
+
+        assertEquals(List.of("practise"), words(check().checkRewrite(drill)));
+        assertEquals(List.of("make", "practise"), words(check().checkRewrite(withoutInstructions)));
+    }
+
+    @Test
+    @DisplayName("should not report the grammar a rewrite brings by itself, as the perfect and the time shift of reported speech in «“I overslept this morning” (the boy whispered) ___» answered «The boy whispered that he had overslept that morning.»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R006")
+    public void shouldNotReportTheGrammarARewriteBringsByItselfAsThePerfectAndTheTimeShiftOfReportedSpeechInIOversleptThisMorningTheBoyWhisperedAnsweredTheBoyWhisperedThatHeHadOversleptThatMorning() {
+        // R006: «“I overslept this morning” (the boy whispered) ___» (…447b, B2) accepts «The boy whispered that he
+        // had overslept that morning.». whispered comes from the parentheses of the statement, had is the perfect
+        // before its participle and that comes from this. In «I will call Peter tomorrow. ___» (…3799, B1),
+        // answered «John said that he would call Peter the next day.», tomorrow announces the next day, and the
+        // instructions bring John and said.
+        AuditableQuiz overslept = rewrite("67fab6d5993010229534447b",
+                "“I overslept this morning” The boy whispered that he had overslept that morning.",
+                "“|\"|PUNCT I|I|PRON overslept|overslept|ADV this|this|DET morning|morning|NOUN ”|\"|PUNCT The|the|DET"
+                        + " boy|boy|NOUN whispered|whisper|VERB that|that|SCONJ he|he|PRON had|have|VERB"
+                        + " overslept|overslept|ADV that|that|DET morning|morning|NOUN .|.|PUNCT",
+                "Transforma a 'reported speech'. Usa 'that' + 'clause' con 'backshifting'.",
+                text("“I overslept this morning” (the boy whispered)"),
+                cloze("The boy whispered that he had overslept that morning."));
+        AuditableQuiz tomorrow = rewrite("67fab6d59930102295343799", "John said that he would call Peter the next day.",
+                "John|John|PROPN said|say|VERB that|that|SCONJ he|he|PRON would|would|AUX call|call|VERB"
+                        + " Peter|Peter|PROPN the|the|DET next|next|ADJ day|day|NOUN .|.|PUNCT",
+                "Transforma las oraciones a estilo indirecto (reported speech) y cambia las 'time expressions' como"
+                        + " lo harías en un examen. Comienza con 'John said that'.",
+                text("I will call Peter tomorrow. "), cloze("John said that he would call Peter the next day."));
+
+        assertEquals(List.of(), check().checkRewrite(overslept));
+        assertEquals(List.of(), check().checkRewrite(tomorrow));
     }
 }

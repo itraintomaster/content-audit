@@ -2260,12 +2260,6 @@ modules:
         traceability:
           feature: FEAT-HALL
           rule: F-HALL-R003
-      - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
-          \ 134 normal, 1,570 under-exposed and 46 over-exposed of its 1,750 returning\
-          \ lemmas"
-        traceability:
-          feature: FEAT-RECUR
-          rule: F-RECUR-R001
       - name: "should score the course as before, normal lemmas over analysed lemmas\
           \ rounded to two decimals, while it also publishes its course diagnosis"
         traceability:
@@ -2304,12 +2298,6 @@ modules:
         traceability:
           feature: FEAT-RECUR
           rule: F-RECUR-R004
-      - name: "should publish for the course of 29/9 A1 450 returning lemmas with\
-          \ 178 normal (39.6%), A2 752 with 155 (20.6%), B1 1,139 with 161 (14.1%)\
-          \ and B2 819 with 165 (20.1%)"
-        traceability:
-          feature: FEAT-RECUR
-          rule: F-RECUR-R004
       - name: should keep the recurrence of each level as detail of the course diagnosis
           and never write a lemma-recurrence score on a milestone
         traceability:
@@ -2341,7 +2329,19 @@ modules:
         traceability:
           feature: FEAT-RECUR
           rule: F-RECUR-R005
-      - name: "should leave 1,616 findings in the course of 29/9, 1,570 for under-exposed\
+      - name: "should give the course of 29/9 a lemma-recurrence score of 0.08, with\
+          \ 131 normal, 1,566 under-exposed and 46 over-exposed of its 1,743 returning\
+          \ lemmas"
+        traceability:
+          feature: FEAT-RECUR
+          rule: F-RECUR-R001
+      - name: "should publish for the course of 29/9 A1 448 returning lemmas with\
+          \ 176 normal (39.3%), A2 752 with 155 (20.6%), B1 1,137 with 161 (14.2%)\
+          \ and B2 818 with 165 (20.2%)"
+        traceability:
+          feature: FEAT-RECUR
+          rule: F-RECUR-R004
+      - name: "should leave 1,612 findings in the course of 29/9, 1,566 for under-exposed\
           \ and 46 for over-exposed lemmas"
         traceability:
           feature: FEAT-RECUR
@@ -4645,6 +4645,10 @@ modules:
         traceability:
           feature: FEAT-JEXAM
           rule: F-JEXAM-R002
+      - name: "should declare in its tally as many exercises as quizzes, in each state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
       implements:
       - ContentAnalyzer
     - name: DefaultQuizInstructionSubjectBuilder
@@ -5816,11 +5820,13 @@ modules:
       \ en la respuesta que es la oración entera, el paréntesis y el enunciado con\
       \ «/»), la compara con la primera respuesta usando los tokens y lemas que el\
       \ curso ya trae (NlpToken de la oración guardada) más la forma flexionada y\
-      \ la tabla de irregulares, y cuenta en onKnowledge cuántos del tema y del mismo\
-      \ tipo llevan pista (umbral de tres cuartos, José 30/9). La resolución de cada\
-      \ hallazgo sale de su tipo: la palabra de la pista que no está en la respuesta\
-      \ va a la mesa y el resto por regla (DOUBT-PISTA-CUANDO-MESA). Públicos: el\
-      \ proveedor y el diagnóstico."
+      \ la tabla de irregulares, y cuenta en onKnowledge cuántos del tema llevan pista,\
+      \ por tipo y en el tema entero (umbral de tres cuartos, José 30/9). En la respuesta\
+      \ que es la oración entera busca además cada palabra de contenido en la oració\
+      n de partida, la pista y la consigna (R006). La resolución de cada hallazgo\
+      \ sale de su tipo: la palabra de la pista que no está en la respuesta (DOUBT-PISTA-CUANDO-MESA)\
+      \ y la palabra de la reescritura que nada anuncia (R006) van a la mesa; el resto,\
+      \ por regla. Públicos: el proveedor y el diagnóstico."
     visibility: public
     models:
     - name: HintCoherenceDiagnosis
@@ -5836,10 +5842,11 @@ modules:
         type: ExerciseShape
       - name: hintedInTopic
         type: int
-        description: Ejercicios del tema y del mismo tipo que llevan pista (F-PISTA-R001).
+        description: "Ejercicios con pista del grupo que decide R001: los de su mismo\
+          \ tipo, o los de todo el tema cuando sólo el tema llega a tres cuartos (F-PISTA-R001)."
       - name: comparableInTopic
         type: int
-        description: Ejercicios del tema y del mismo tipo.
+        description: Ejercicios de hueco para escribir de ese mismo grupo.
       - name: issues
         type: List<HintIssue>
         description: "Una por cosa que no coincide, en orden de regla y de palabra."
@@ -5851,17 +5858,20 @@ modules:
       fields:
       - name: rule
         type: String
-        description: La regla de FEAT-PISTA que no se cumple (F-PISTA-R001 a R004).
+        description: La regla de FEAT-PISTA que no se cumple (F-PISTA-R001 a R004
+          y R006).
       - name: kind
         type: HintIssueKind
       - name: word
         type: String
-        description: "Lo que marca: la palabra de la pista, el verbo sin anunciar\
-          \ o el sujeto. Es la marca de la identidad del hallazgo."
+        description: "Lo que marca: la palabra de la pista, el verbo sin anunciar,\
+          \ el sujeto o, en su lema, la palabra de la reescritura que nada anuncia.\
+          \ Es la marca de la identidad del hallazgo."
       - name: proposedHint
         type: String
         description: "La pista que sale de la primera respuesta —verbo en forma base,\
-          \ sujeto y not—: el arreglo por regla. El audio no cambia."
+          \ sujeto y not—: el arreglo por regla. El audio no cambia. Null en R006:\
+          \ la mesa decide si cambia la respuesta o el enunciado."
       - name: resolution
         type: FindingResolution
         description: RULE o PANEL según el tipo (DOUBT-PISTA-CUANDO-MESA).
@@ -5885,6 +5895,11 @@ modules:
           \ (R003, invariante 2). Regla."
       - name: NEGATION_WITHOUT_NEGATIVE
         description: La pista trae not y la respuesta no niega (R004). Regla.
+      - name: REWRITE_WORD_NOT_ANNOUNCED
+        description: "Una palabra de contenido de la respuesta que es la oración entera\
+          \ no sale de la oración de partida, de la pista ni de la consigna, ni flexionada\
+          \ ni por su lema (R006). Mesa: quien reescribe fiel da mal, y una regla\
+          \ no sabe si se arregla la respuesta o el enunciado."
     - name: ExerciseShape
       type: enum
       fields:
@@ -5922,6 +5937,7 @@ modules:
       sealed: false
       exposes:
       - signature: "check(ExerciseHint hint,AuditableQuiz quiz): List<HintIssue>"
+      - signature: "checkRewrite(AuditableQuiz quiz): List<HintIssue>"
       visibility: internal
     implementations:
     - name: HintCoherenceAnalyzerProvider
@@ -5961,12 +5977,6 @@ modules:
         traceability:
           feature: FEAT-PISTA
           rule: F-PISTA-R001
-      - name: "should count hints only among exercises of the same shape, so the 20\
-          \ transformations without hint of El posesivo are not measured against its\
-          \ 20 hinted gaps"
-        traceability:
-          feature: FEAT-PISTA
-          rule: F-PISTA-R001
       - name: "should neither count nor mark multiple choice exercises, as «My brother\
           \ is a ___ (good / well) driver.» in ¿Good o well?"
         traceability:
@@ -5999,6 +6009,25 @@ modules:
         traceability:
           feature: FEAT-PISTA
           rule: F-PISTA-R005
+      - name: "should raise a blocking finding for the panel, identified by the word,\
+          \ on a rewrite that asks for a word nothing announces, as «opinion» in «\
+          I think it's a good idea for her to see a dentist. ___» answered «She ought\
+          \ to see a dentist, in my opinion.»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R006
+      - name: "should look for unannounced words only in answers that are the whole\
+          \ sentence, leaving a gap inside the sentence to R002, as «rain» in «It\
+          \ ___ (be) soon.» answered «'s going to rain»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R006
+      - name: "should count hints by shape and in the whole topic, so the 20 transformations\
+          \ without hint of El posesivo have no finding, since neither their shape\
+          \ (0 of 20) nor the topic (20 of 40) reaches three quarters"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R001
       implements:
       - ContentAnalyzer
     - name: DefaultHintReader
@@ -6104,17 +6133,38 @@ modules:
         traceability:
           feature: FEAT-PISTA
           rule: F-PISTA-R005
+      - name: "should report a content word of a rewrite that comes neither from the\
+          \ sentence it rewrites nor from its hint or instructions, as «have» in «\
+          Polite request: I want to eat some cake. ___» answered «Could I have some\
+          \ cake?»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R006
+      - name: "should take as announced the words the instructions name, so only «\
+          practise» is reported in «The coach encouraged the players to repeat the\
+          \ drill. ___» answered «The coach made the players practise the drill.»\
+          \ under «Crea oraciones utilizando 'let' o 'make'.»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R006
+      - name: "should not report the grammar a rewrite brings by itself, as the perfect\
+          \ and the time shift of reported speech in «“I overslept this morning” (the\
+          \ boy whispered) ___» answered «The boy whispered that he had overslept\
+          \ that morning.»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R006
       implements:
       - HintAnswerCheck
   - name: correctormatch
     description: "La comparación del corrector del backend (F-RESPC-R001): la normalizació\
       n de cloze_sentence_part.go más la tabla de formas equivalentes del corrector\
-      \ (José, 30/9: una sola tabla, la de Go). La tabla es dato: una copia versionada\
+      \ (José, 30/9: una sola tabla, la de Go) y las reglas del corrector que son\
+      \ código y no tabla, que la tabla nombra. La tabla es dato: una copia versionada\
       \ de la que está en producción, que content-audit lee al arrancar y que se actualiza\
-      \ cuando sale el corrector. La implementación imita al corrector y se prueba\
-      \ con los mismos casos de oro que él. El formato de la tabla lo fija la rama\
-      \ claude/corrector-formas-equivalentes de ittm; mientras no exista, estos modelos\
-      \ son la interfaz esperada."
+      \ cuando sale el corrector; la de un corrector que todavía no salió va al lado,\
+      \ con sus casos de oro, para medir el antes y el después. La implementación\
+      \ imita al corrector y se prueba con los mismos casos de oro que él."
     visibility: public
     models:
     - name: GapContext
@@ -6148,6 +6198,12 @@ modules:
         type: boolean
         description: Si iguala «Doesn't she dance?» y «Does she not dance?». Sin eso
           quedan 142 preguntas negativas y question tags de B1 y B2.
+      - name: rules
+        type: List<CorrectorRule>
+        description: "Las reglas del corrector que son código y no tabla y que tiene\
+          \ esta versión: ninguna en el #1191, las cuatro en el corrector nuevo. El\
+          \ código las imita y la tabla dice cuáles van, sin una bandera en el có\
+          digo."
     - name: ContractionExpansion
       type: record
       fields:
@@ -6185,6 +6241,25 @@ modules:
       - name: PREPOSITION
         description: "until y till, la única preposición sinónima que entra (José\
           , 30/9)."
+    - name: CorrectorRule
+      type: enum
+      fields:
+      - name: AMBIGUOUS_CONTRACTIONS
+        description: "Una contracción ambigua que escribe el alumno («'s» antes de\
+          \ un participio sin objeto, «'d» antes de un participio igual a la base)\
+          \ vale por cualquiera de sus formas largas; en la aceptada queda como está\
+          \ escrita (ittm ea7bc4a48)."
+      - name: STANDARD_IRREGULAR_PARTICIPLES
+        description: "Los participios irregulares de la lista estándar, 48 más que\
+          \ en el #1191 (overslept, undergone), y las bases en -ing que no son gerundios\
+          \ (bring) (ittm f837c6267)."
+      - name: TILL_OWN_SUBJECTS
+        description: "till es el verbo sólo después de I, you, he, she, we o they:\
+          \ después de there o de it es until (ittm f6a9a48eb)."
+      - name: OPTIONAL_PARENTHESES
+        description: "Lo que va entre paréntesis en una respuesta aceptada es opcional:\
+          \ va entero, sin los paréntesis, o no va; lo que escribe el alumno entre\
+          \ paréntesis cuenta como siempre (ittm f54585212)."
     implementations:
     - name: DefaultCorrectorMatcher
       requiresInject:
@@ -6222,10 +6297,29 @@ modules:
         traceability:
           feature: FEAT-RESPC
           rule: F-RESPC-R001
-      - name: "should decide every golden case of the backend corrector as its «acepta»\
-          \ column says with the copy of the new corrector's table, reading each gap\
-          \ with the sentence around it, as «is» for «It ___ (be) hot inside.» answered\
-          \ «'s»"
+      - name: "should decide every golden case of the corrector with the four rules\
+          \ of 1/10 as its «acepta» column says with the copy of its table, which\
+          \ names those rules, as «'s forgotten» for «He ___ (forget) to pay.» and\
+          \ «Peter was admired.» for «Peter was admired (by Mary).»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      - name: "should give the benefit of the doubt only to the student, so an ambiguous\
+          \ contraction counts as any of its long forms when the student writes it\
+          \ and stays as written in the accepted answer, as «'s forgotten» for «has\
+          \ forgotten» but not «is trained» for «'s trained»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      - name: "should decide every golden case of the corrector #1191 as its «acepta»\
+          \ column says with the copy of its table, reading each gap with the sentence\
+          \ around it, as «is» for «It ___ (be) hot inside.» answered «'s»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      - name: "should take two texts as the same answer when the corrector matches\
+          \ them in either order, so «He's forgotten to pay.» and «He has forgotten\
+          \ to pay.» are one answer with the four rules of #1194 and two with #1191"
         traceability:
           feature: FEAT-RESPC
           rule: F-RESPC-R001
@@ -6337,9 +6431,9 @@ modules:
       visibility: public
       handwrittenTests:
       - name: "should describe answer-completeness in the catalog as an errors analyzer\
-          \ that evaluates exercises, resolves by rule or at the panel and costs instant,\
-          \ asking «¿El corrector acepta todas las formas de la respuesta, y ninguna\
-          \ consigna pide una?»"
+          \ that evaluates exercises, resolves by rule, at the panel or by ranking\
+          \ only, and costs instant, asking «¿El corrector acepta todas las formas\
+          \ de la respuesta, y ninguna consigna pide una?»"
         traceability:
           feature: FEAT-RESPC
           rule: F-RESPC-R006
@@ -6403,12 +6497,6 @@ modules:
         traceability:
           feature: FEAT-RESPC
           rule: F-RESPC-R005
-      - name: "should resolve by adding it after «|» a missing form the new corrector\
-          \ still rejects, as «has trained» if «He ___ (train) hard today.» only accepted\
-          \ «'s trained», a limit of the corrector"
-        traceability:
-          feature: FEAT-RESPC
-          rule: F-RESPC-R005
       - name: "should stop reporting the forms the new corrector's table equates,\
           \ reading the gap with the sentence around it, as «is» for «It ___ (be)\
           \ hot inside.» answered «'s»"
@@ -6443,6 +6531,13 @@ modules:
         traceability:
           feature: FEAT-RESPC
           rule: F-RESPC-R007
+      - name: "should only rank a missing form of a class the corrector in production\
+          \ equates and still rejects, naming the rule the corrector lacks instead\
+          \ of adding it after «|», as «has trained» if «He ___ (train) hard today.»\
+          \ only accepted «'s trained»"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R005
       implements:
       - ContentAnalyzer
     - name: DefaultEquivalentFormGenerator
@@ -7303,6 +7398,12 @@ modules:
         type: JudgeCostEstimate
       - name: unmatchedDeclaredIds
         type: List<String>
+      - name: quizzes
+        type: JudgeQuizTally
+        description: "Los ejercicios que abarcan las unidades alcanzadas, evaluadas\
+          \ y sin evaluar (F-CIERRE-R001, F-MINIT-R005 inv. 4). Los copia de la cuenta\
+          \ que le pasa el analizador; para los cuatro jueces por ejercicio coinciden\
+          \ con reached, evaluated y notEvaluated."
     - name: JudgeSessions
       type: record
       fields:
@@ -7349,6 +7450,11 @@ modules:
         type: "Map<String,Integer>"
       - name: unmatchedDeclaredIds
         type: List<String>
+      - name: quizzes
+        type: JudgeQuizTally
+        description: "Los ejercicios que abarcan las unidades de esta cuenta (F-CIERRE-R001).\
+          \ Con la unidad QUIZ, los mismos números que las unidades; con KNOWLEDGE,\
+          \ cada tema suma todos sus ejercicios al estado del tema."
     - name: JudgeExamOutcome
       type: enum
       fields:
@@ -7379,6 +7485,20 @@ modules:
         type: String
         description: "La observación de cada hallazgo, en castellano, para revisar\
           \ a mano."
+    - name: JudgeQuizTally
+      type: record
+      fields:
+      - name: reached
+        type: int
+        description: Ejercicios que abarcan las unidades alcanzadas.
+      - name: evaluated
+        type: int
+        description: "Ejercicios de las unidades evaluadas, con resultado reusado\
+          \ o nuevo."
+      - name: notEvaluated
+        type: int
+        description: "Ejercicios de las unidades sin evaluar: los mismos que el informe\
+          \ marca con el nombre del juez en su unevaluatedBy (F-CIERRE-R001 inv. 4)."
     interfaces:
     - name: JudgeRuntime
       stereotype: port
@@ -7540,6 +7660,16 @@ modules:
         traceability:
           feature: FEAT-JEXAM
           rule: F-JEXAM-R001
+      - name: "should declare in the coverage of a topic judge the exercises its topics\
+          \ hold, under the state of each topic"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      - name: "should declare for a judge that consults by exercise as many exercises\
+          \ as units, in each state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
       implements:
       - JudgeRuntime
     - name: DefaultJudgeExamVerdictExporter
@@ -7813,6 +7943,10 @@ modules:
         traceability:
           feature: FEAT-TRSEN
           rule: F-TRSEN-R007
+      - name: "should declare in its tally as many exercises as quizzes, in each state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
       implements:
       - ContentAnalyzer
     - name: DefaultTranslationSenseSubjectBuilder
@@ -8083,6 +8217,10 @@ modules:
         traceability:
           feature: FEAT-UNICA
           rule: F-UNICA-R007
+      - name: "should declare in its tally as many exercises as quizzes, in each state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
       implements:
       - ContentAnalyzer
     - name: DefaultSingleAnswerSubjectBuilder
@@ -8116,6 +8254,11 @@ modules:
         type: CorrectorMatcher
       - name: config
         type: SingleAnswerConfig
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "La vista del alumno que lee el juez (F-RONDA1-R001): el enunciado\
+          \ y la oración terminada de la evidencia salen de acá, no de una regla propia\
+          \ (F-CIERRE-R003)."
       handwrittenTests:
       - name: "should drop «is not» listed by the judge for a quiz that accepts «\
           isn't», leaving it without single-answer finding"
@@ -8173,6 +8316,16 @@ modules:
         traceability:
           feature: FEAT-UNICA
           rule: F-UNICA-R007
+      - name: should write the statement and the finished sentence of its evidence
+          with the student view renderer it receives
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R003
+      - name: should keep the marker of each finding whatever text the student view
+          renderer gives the exercise
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R003
       implements:
       - SingleAnswerClassifier
   - name: minitheory
@@ -8394,6 +8547,16 @@ modules:
         traceability:
           feature: FEAT-MINIT
           rule: F-MINIT-R007
+      - name: "should count in its tally every exercise of each topic under the state\
+          \ of that topic, evaluated or not"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      - name: should declare as exercises without evaluation exactly the exercises
+          the report marks as not evaluated by mini-theory
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
       implements:
       - ContentAnalyzer
     - name: DefaultMiniTheorySubjectBuilder
@@ -8434,6 +8597,10 @@ modules:
       - name: config
         type: MiniTheoryConfig
         description: "De acá sale el alcance del error: SHOWN_ONLY o WHOLE_TOPIC."
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "La vista del alumno (F-RONDA1-R001): la oración terminada de\
+          \ cada ejercicio en la evidencia sale de acá, como la lee el juez (F-CIERRE-R003)."
       handwrittenTests:
       - name: should put a finding of the false «enjoy» mini-theory in the 9 exercises
           of «Contraste inicial» that show it and in none of its other 71
@@ -8477,6 +8644,11 @@ modules:
         traceability:
           feature: FEAT-MINIT
           rule: F-MINIT-R006
+      - name: should write the finished sentence of each exercise in its evidence
+          with the student view renderer it receives
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R003
       implements:
       - MiniTheoryDistributor
   - name: choicealternativeengine
@@ -8599,6 +8771,16 @@ modules:
         traceability:
           feature: FEAT-MCVALE
           rule: F-MCVALE-R007
+      - name: "should declare in its coverage as many exercises as quizzes, in each\
+          \ state"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R001
+      - name: "should name in a judgment that failed the cause of its own consultation,\
+          \ not the first failure of the run"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
       implements:
       - ChoiceAlternativeJudgeRun
     - name: DefaultChoiceAlternativeSubjectBuilder
@@ -8634,6 +8816,11 @@ modules:
           la correcta (isn't / is not). Es el CorrectorMatcher del paquete A (FEAT-RESPC).
       - name: config
         type: ChoiceAlternativeConfig
+      - name: studentViewRenderer
+        type: QuizStudentViewRenderer
+        description: "La vista del alumno que lee el juez (F-RONDA1-R001): el enunciado,\
+          \ las opciones y la oración terminada de la evidencia salen de acá, no de\
+          \ un renderizador armado adentro (F-CIERRE-R003)."
       handwrittenTests:
       - name: "should drop «is not» listed as also valid for a quiz whose correct\
           \ option is «isn't», leaving it without finding of another-option-valid"
@@ -8670,6 +8857,11 @@ modules:
         traceability:
           feature: FEAT-MCVALE
           rule: F-MCVALE-R007
+      - name: "should write the statement, the options and the finished sentence of\
+          \ its evidence with the student view renderer it receives"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R003
       implements:
       - ChoiceAlternativeClassifier
   - name: offlevelwords
@@ -12181,6 +12373,13 @@ modules:
     implements:
     - LemmaCountConfigLoader
   - name: DefaultQuizInstructionConfig
+    requiresInject:
+    - name: judgeRuntimeConfig
+      type: JudgeRuntimeConfig
+      description: "De acá sale el tope por omisión de analyze para quiz-instruction\
+        \ (0, F-JEXAM-R010), que describe() muestra junto al de revise-instructions\
+        \ (F-CIERRE-R004). El tope propio de esta configuración sigue siendo el de\
+        \ revise-instructions."
     types:
     - Component
     visibility: public
@@ -12194,6 +12393,17 @@ modules:
       traceability:
         feature: FEAT-QINST
         rule: F-QINST-R002
+    - name: "should describe the analyze budget of quiz-instruction from the judges\
+        \ runtime config and the revise-instructions budget of 500, each named with\
+        \ its command"
+      traceability:
+        feature: FEAT-CIERRE
+        rule: F-CIERRE-R004
+    - name: "should describe a different analyze budget when the judges runtime config\
+        \ gives another one, without copying 0"
+      traceability:
+        feature: FEAT-CIERRE
+        rule: F-CIERRE-R004
     implements:
     - QuizInstructionConfig
   - name: DefaultJudgeExamService
@@ -16087,6 +16297,12 @@ modules:
       - name: "should read from the copy of the corrector's table its version, each\
           \ contraction with all its long forms, as «'s» with is and has, and each\
           \ group of equivalent words with its class, as travelled and traveled"
+        traceability:
+          feature: FEAT-RESPC
+          rule: F-RESPC-R001
+      - name: "should read from «reglas» the rules that are code of the version of\
+          \ the corrector, the four in the copy of #1194, in production, and none\
+          \ in the copy of #1191, and stop at a rule it does not know"
         traceability:
           feature: FEAT-RESPC
           rule: F-RESPC-R001
@@ -21377,6 +21593,13 @@ modules:
       description: "Version que produjo el resultado devuelto (F-EVCOST-R001, F-EVCOST-R003).\
         \ Poblada exactamente cuando kind es REUSED o EVALUATED; null cuando no hay\
         \ resultado (PENDING, FAILED)."
+    - name: failure
+      type: EvaluationNotEmitted
+      description: "La causa cuando kind es FAILED: el tipo (EVALUATOR_UNAVAILABLE\
+        \ u OUTPUT_UNUSABLE) y el motivo que dio el evaluador; una excepción del evaluador\
+        \ llega como EVALUATOR_UNAVAILABLE con su mensaje (F-CIERRE-R002). Null en\
+        \ REUSED, EVALUATED y PENDING, también en el pendiente por la parada del servicio.\
+        \ Nunca se registra en el libro."
   - name: EvaluationCoverage
     type: record
     fields:
@@ -21634,6 +21857,30 @@ modules:
         traceability:
           feature: FEAT-JEXAM
           rule: F-JEXAM-R011
+      - name: should return a failed resolution carrying the kind and reason the evaluator
+          gave when its output is unusable
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      - name: "should return a failed resolution as evaluator unavailable, with the\
+          \ exception message as its reason, when the evaluator throws"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      - name: "should give each failed resolution of a batch the cause of its own\
+          \ consultation, not the first failure of the run"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      - name: "should leave without cause every resolution that is reused, evaluated\
+          \ or pending, including the pending left by a stopped service"
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
+      - name: should never write the cause of a failed consultation into the ledger
+        traceability:
+          feature: FEAT-CIERRE
+          rule: F-CIERRE-R002
       implements:
       - EvaluationSession
     - name: ExamEvaluationSessionFactory
@@ -23128,6 +23375,8 @@ features:
     validation: AUTO_VALIDATED
     testModule: audit-cli
     testPackage: com.learney.contentaudit.auditcli.commands
+- id: FEAT-CIERRE
+  code: F-CIERRE
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:1.13.0

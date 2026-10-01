@@ -1,7 +1,17 @@
 package com.learney.contentaudit.auditdomain.hintcoherence;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
+import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
+import java.util.List;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,9 +25,31 @@ public class HintCoherenceAnalyzerProviderTest {
     @DisplayName("should describe hint-coherence in the catalog as an errors analyzer that evaluates exercises, resolves by rule or at the panel and costs instant, asking «¿La pista le anuncia al alumno lo que tiene que escribir?»")
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R005")
-    @Disabled("Stub de FEAT-PISTA (paquete A), sin implementar")
     public void shouldDescribeHintcoherenceInTheCatalogAsAnErrorsAnalyzerThatEvaluatesExercisesResolvesByRuleOrAtThePanelAndCostsInstantAskingLaPistaLeAnunciaAlAlumnoLoQueTieneQueEscribir(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005 and F-HALL-R006: the card the catalog validates at startup, with the Spanish name of
+        // F-RONDA1-R004; no task kind and no configuration in this round.
+        HintCoherenceAnalyzerProvider provider =
+                new HintCoherenceAnalyzerProvider(HintCoherenceAnalyzerTest.table(), HintCoherenceAnalyzerTest.renderer());
+        AnalyzerDescriptor card = provider.describe();
+
+        assertEquals("hint-coherence", provider.analyzerName());
+        assertEquals("hint-coherence", card.getName());
+        assertEquals("Pista coherente", card.getDisplayName());
+        assertEquals("¿La pista le anuncia al alumno lo que tiene que escribir?", card.getQuestion());
+        assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
+        assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
+        assertEquals(List.of(FindingResolution.RULE, FindingResolution.PANEL), card.getResolutions());
+        assertEquals(AnalysisCost.INSTANT, card.getCost());
+        assertEquals(List.of("missing-hint", "hint-words", "hint-subject", "hint-negation", "rewrite-words"),
+                card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
+        assertTrue(card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
+        assertTrue(card.getGoal().contains("tres cuartos"), "the threshold of José is written in the goal");
+        assertTrue(provider.planBinding().isEmpty());
+        assertTrue(provider.config().isEmpty());
+        assertEquals("hint-coherence", provider.create(null).getName());
+
+        DefaultAnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(provider));
+        assertEquals(card, catalog.find("hint-coherence").orElseThrow(), "the catalog accepts the card");
     }
 }

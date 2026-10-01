@@ -1,10 +1,17 @@
 package com.learney.contentaudit.auditinfrastructure.exercisecopies;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -15,9 +22,30 @@ public class FileSystemProductionSentenceSourceTest {
     @DisplayName("should read by quiz id the saved sentences of the production copy the importer leaves, as «The tree has not grown/hasn't grown yet.» for 67fab6d5993010229534287e")
     @Tag("FEAT-DATOS")
     @Tag("F-DATOS-R001")
-    @Disabled("Stub de FEAT-DATOS (paquete A), sin implementar")
     public void shouldReadByQuizIdTheSavedSentencesOfTheProductionCopyTheImporterLeavesAsTheTreeHasNotGrownhasntGrownYetFor67fab6d5993010229534287e(
-            ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+            ) throws IOException {
+        // F-DATOS-R001 (DOUBT-DATOS-PRODUCCION, A): of each document of db/quiz-templates.json only _id and
+        // form.sentences; a document without saved sentences, as most of them, gives nothing.
+        Path export = folder.resolve("quiz-templates.json");
+        Files.writeString(export, """
+                [
+                 {"_id": {"$oid": "67fab6d5993010229534287e"}, "kind": "CLOZE",
+                  "form": {"kind": "CLOZE", "sentences": ["The tree has not grown/hasn't grown yet."],
+                           "sentenceParts": [{"kind": "TEXT", "text": "The tree", "options": null}]},
+                  "answerAudioUrl": "A2.04.06.03"},
+                 {"_id": {"$oid": "67fab6d5993010229534286c"}, "kind": "CLOZE",
+                  "form": {"kind": "CLOZE", "sentenceParts": []}}
+                ]
+                """);
+        FileSystemProductionSentenceSource source = new FileSystemProductionSentenceSource(export);
+        assertEquals(Optional.of(List.of("The tree has not grown/hasn't grown yet.")),
+                source.savedSentences("67fab6d5993010229534287e"));
+        assertEquals(Optional.empty(), source.savedSentences("67fab6d5993010229534286c"));
+        assertEquals(Optional.empty(), source.savedSentences("67fab6d599301022953426ac"));
+        assertEquals(Optional.empty(), new FileSystemProductionSentenceSource(folder.resolve("no-existe.json"))
+                .savedSentences("67fab6d5993010229534287e"));
     }
+
+    @TempDir
+    Path folder;
 }

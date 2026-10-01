@@ -3,6 +3,7 @@ import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadi
 import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolved;
 import java.util.Optional;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
@@ -12,6 +13,8 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadiness;
+import com.learney.contentaudit.quizinstructioninfrastructure.JudgeUnavailabilityCause;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
 import com.sentinel.agents.framework.state.ArtifactPointer;
 import com.sentinel.agents.framework.state.RunState;
@@ -46,6 +49,14 @@ class QuizInstructionAgentJudge implements Evaluator {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
+    private final Object readinessLock = new Object();
+
+    /**
+     * F-JEXAM-R011: the answer of the session check, asked once before the first consultation of
+     * this instance -- the same check the new judges make.
+     */
+    private volatile JudgeProviderReadiness readiness;
+
 private final JudgeChatModelFactory chatModelFactory;
 
 private final LlmProviderResolved provider;
@@ -75,6 +86,13 @@ public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRu
     @Override
     public EvaluationOutcome evaluate(EvaluationSubject subject) {
         try {
+            // F-JEXAM-R011: before the first consultation, once, the free check of the provider's
+            // session. Without a session the agent never runs, now or on any later consultation.
+            JudgeProviderReadiness checked = readinessBeforeFirstConsultation();
+            if (!checked.isReady()) {
+                return unavailable(checked);
+            }
+
             // Lazy construction: the ChatModel is only ever built at the moment we
             // actually need to talk to the judge, never at composition-root wiring
             // time, so a bad credential surfaces here -- as EVALUATOR_UNAVAILABLE --
@@ -86,19 +104,35 @@ public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRu
             // agent.yaml's `dependencies`) travel to the graph exactly as they arrive in
             // EvaluationSubject.content: no key added, removed or reordered. The
             // fingerprint that makes a verdict reusable is computed over this same
-            // map, so any change here would silently break reuse.
+            // map, so any change here would silently break reuse (F-JEXAM-R007).
             Map<String, String> inputs = subject.getContent();
 
             RunState runState = agentGraphRunner.run(evaluatorId(), inputs, chatModel, Map.of());
 
-            ArtifactPointer verdictArtifact = runState.artifacts().get(VERDICT_ARTIFACT_KEY);
+            ArtifactPointer verdictArtifact = runState != null && runState.artifacts() != null
+                    ? runState.artifacts().get(VERDICT_ARTIFACT_KEY)
+                    : null;
             if (verdictArtifact == null) {
-                return new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE,
-                        "El juez de consigna no produjo el artifact quizInstructionVerdict en esta corrida");
+                // A run that halts carries why in its termination reason: an expired session
+                // or an exhausted quota of the first consultation arrives here, not as an
+                // exception, and the probe names it (F-JEXAM-R011).
+                return unavailable(explain(withoutVerdict(runState)));
             }
 
             String payload = Files.readString(verdictArtifact.location());
-            JsonNode verdictNode = objectMapper.readTree(payload);
+            JsonNode verdictNode;
+            try {
+                verdictNode = objectMapper.readTree(payload);
+            } catch (JsonProcessingException e) {
+                // Only the parser's own words: the artifact's text is the judge's free prose and
+                // must never be read as the cause of a service failure.
+                return unavailable(explain("El artifact " + VERDICT_ARTIFACT_KEY
+                        + " del juez de consigna no es un JSON legible: " + e.getOriginalMessage()));
+            }
+            if (verdictNode == null || !verdictNode.isObject()) {
+                return unavailable(explain("El artifact " + VERDICT_ARTIFACT_KEY
+                        + " del juez de consigna no trae un veredicto"));
+            }
 
             if (isConservativeInfrastructureVerdict(verdictNode)) {
                 // F-QINST-R013: confidence nula + violacion JUDGE_OUTPUT_INVALID es una
@@ -117,9 +151,101 @@ public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRu
             // F-QINST-R007: any judge service disruption -- down service, timed-out
             // call, rejected auth, exhausted credit, or even a malformed/missing
             // artifact -- is reported as an unavailable evaluator, never propagated.
-            return new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE,
-                    "El juez de consigna no esta disponible: " + e.getMessage());
+            // F-JEXAM-R011: with its cause and its remedy, as the probe explains them.
+            return unavailable(explain(describe(e)));
         }
+    }
+
+    /**
+     * F-JEXAM-R011: asks the probe once per instance; the consultations that arrive at the same
+     * time wait for that answer and reuse it.
+     */
+    private JudgeProviderReadiness readinessBeforeFirstConsultation() {
+        JudgeProviderReadiness checked = readiness;
+        if (checked != null) {
+            return checked;
+        }
+        synchronized (readinessLock) {
+            if (readiness == null) {
+                readiness = checkProvider();
+            }
+            return readiness;
+        }
+    }
+
+    private JudgeProviderReadiness checkProvider() {
+        if (readinessProbe == null) {
+            return new JudgeProviderReadiness(true, null, "sin verificación de sesión", null);
+        }
+        try {
+            JudgeProviderReadiness probed = readinessProbe.probe(provider);
+            return probed != null
+                    ? probed
+                    : new JudgeProviderReadiness(true, null, "la verificación no respondió", null);
+        } catch (RuntimeException e) {
+            return explain(describe(e));
+        }
+    }
+
+    /** The probe's reading of a failure; never throws, even with no probe or a broken one. */
+    private JudgeProviderReadiness explain(String failure) {
+        if (readinessProbe != null) {
+            try {
+                JudgeProviderReadiness explained = readinessProbe.explain(provider, failure);
+                if (explained != null) {
+                    return explained;
+                }
+            } catch (RuntimeException ignored) {
+                // Fall back to the raw failure below.
+            }
+        }
+        return new JudgeProviderReadiness(false, JudgeUnavailabilityCause.UNKNOWN,
+                "El juez de consigna no esta disponible: " + failure, null);
+    }
+
+    /** F-JEXAM-R011: the report shows the cause and the remedy as «detail: remedy». */
+    private static EvaluationOutcome unavailable(JudgeProviderReadiness why) {
+        String detail = why != null ? why.getDetail() : null;
+        String remedy = why != null ? why.getRemedy() : null;
+        boolean hasDetail = detail != null && !detail.isBlank();
+        boolean hasRemedy = remedy != null && !remedy.isBlank();
+        String reason;
+        if (hasDetail && hasRemedy) {
+            reason = detail + ": " + remedy;
+        } else if (hasDetail) {
+            reason = detail;
+        } else if (hasRemedy) {
+            reason = remedy;
+        } else {
+            reason = "El juez de consigna no esta disponible";
+        }
+        return new EvaluationNotEmitted(EvaluationFailureKind.EVALUATOR_UNAVAILABLE, reason);
+    }
+
+    private static String withoutVerdict(RunState runState) {
+        String failure = "El juez de consigna no produjo el artifact " + VERDICT_ARTIFACT_KEY
+                + " en esta corrida";
+        String termination = runState != null ? runState.terminationReason() : null;
+        return termination != null && !termination.isBlank()
+                ? failure + ": " + termination.strip()
+                : failure;
+    }
+
+    /** The failure and its causes, with their class names: «UnknownHostException» names a cause. */
+    private static String describe(Throwable failure) {
+        StringBuilder text = new StringBuilder();
+        Throwable current = failure;
+        for (int depth = 0; current != null && depth < 5; depth++) {
+            if (text.length() > 0) {
+                text.append(" <- ");
+            }
+            text.append(current.getClass().getSimpleName());
+            if (current.getMessage() != null) {
+                text.append(": ").append(current.getMessage());
+            }
+            current = current.getCause() != current ? current.getCause() : null;
+        }
+        return text.toString();
     }
 
     private static boolean isConservativeInfrastructureVerdict(JsonNode verdict) {

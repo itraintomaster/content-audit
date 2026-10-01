@@ -1,0 +1,790 @@
+{
+  "agent": "translation-sense-from-translation",
+  "artifact": "translationSenseVerdict",
+  "gateId": "translation_sense_from_translation_gate_verdict",
+  "emitId": "translation_sense_from_translation_emit",
+  "dependencies": [
+    "cefrLevel",
+    "instructions",
+    "exercise",
+    "acceptedSentences",
+    "translation"
+  ],
+  "topKeys": [
+    "passes",
+    "failures",
+    "rationale"
+  ],
+  "promptMustMention": [
+    "**Partís de la traducción.**",
+    "SAME_MEANING",
+    "NATIVE_WOULD_SAY",
+    "WORDS_GO_TOGETHER",
+    "LEVEL_REGISTER",
+    "Nunca\nuses `BLOCKING`",
+    "*until* / *till*",
+    "corta, simple, artificial o sin contexto"
+  ],
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes, y que emit produzca translationSenseVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (cefrLevel, instructions, exercise, acceptedSentences, translation) de los ejemplos de la guía y de un ejercicio del curso con tres respuestas aceptadas.",
+  "inputs": {
+    "casa": {
+      "cefrLevel": "A1",
+      "instructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+      "exercise": "We ___ (live) in a large house.",
+      "acceptedSentences": "We live in a large house.",
+      "translation": "Vivimos en una casa larga."
+    },
+    "cine": {
+      "cefrLevel": "A1",
+      "instructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+      "exercise": "The cinema ___ (be) full tonight.",
+      "acceptedSentences": "The cinema is full tonight.",
+      "translation": "El cine es lleno esta noche."
+    },
+    "arana": {
+      "cefrLevel": "A1",
+      "instructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+      "exercise": "A spider ___ (have) six legs.",
+      "acceptedSentences": "A spider has six legs.",
+      "translation": "Una araña tiene seis patas."
+    },
+    "familia": {
+      "cefrLevel": "A1",
+      "instructions": "Conjuga el verbo en presente simple. ¡Asegúrate de que la ortografía sea correcta!",
+      "exercise": "We ___ (be) five in my family.",
+      "acceptedSentences": "We are five in my family.",
+      "translation": "Somos cinco en mi familia."
+    },
+    "lunes-a-viernes": {
+      "cefrLevel": "A1",
+      "instructions": "Crea oraciones usando 'from' ... 'to / until / till'.",
+      "exercise": "We study from Monday ___ Friday.",
+      "acceptedSentences": "We study from Monday to Friday.\nWe study from Monday till Friday.\nWe study from Monday until Friday.",
+      "translation": "Estudiamos de lunes a viernes."
+    }
+  },
+  "cases": [
+    {
+      "caseId": "casa-reprueba-con-alta",
+      "note": "La casa (inventado): «large» es grande y «larga» es long. F-TRSEN-R002 cond. 1.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "HIGH",
+            "fragment": "larga",
+            "evidence": "«large» es grande; «larga» es long: la traducción dice otra cosa."
+          }
+        ],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cine-ser-por-estar-media",
+      "note": "«El cine es lleno esta noche.» usa ser donde va estar (inventado): se entiende pero está mal.",
+      "inputs": "cine",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "MEDIUM",
+            "fragment": "es lleno",
+            "evidence": "Usa «ser» donde el castellano pide «estar»: el cine está lleno."
+          }
+        ],
+        "rationale": "La traducción no dice cómo está el cine."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "arana-dato-falso-alta",
+      "note": "La oración terminada afirma un dato falso (inventado): las arañas tienen ocho patas.",
+      "inputs": "arana",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "NATIVE_WOULD_SAY",
+            "severity": "HIGH",
+            "fragment": "A spider has six legs.",
+            "evidence": "Dato falso: las arañas tienen ocho patas, no seis."
+          }
+        ],
+        "rationale": "Enseña un dato falso, en inglés y en castellano."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "familia-calco-media",
+      "note": "«We ___ (be) five in my family.» (inventado): calco; un nativo dice «There are five of us in my family».",
+      "inputs": "familia",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "NATIVE_WOULD_SAY",
+            "severity": "MEDIUM",
+            "fragment": "We are five in my family.",
+            "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
+          }
+        ],
+        "rationale": "La oración se entiende pero un nativo no la diría así."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "pasa-con-tres-formas",
+      "note": "Las tres formas aceptadas (to, till, until) no son un problema: pasa (…2469).",
+      "inputs": "lunes-a-viernes",
+      "verdict": {
+        "passes": true,
+        "failures": [],
+        "rationale": "Dice lo mismo que el inglés; que la oración tenga tres formas aceptadas no es un problema."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cuatro-condiciones",
+      "note": "Una entrada por condición, con LOW sólo en LEVEL_REGISTER.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "HIGH",
+            "fragment": "larga",
+            "evidence": "Una línea que dice qué está mal."
+          },
+          {
+            "condition": "NATIVE_WOULD_SAY",
+            "severity": "MEDIUM",
+            "fragment": "a large house",
+            "evidence": "Una línea que dice qué está mal."
+          },
+          {
+            "condition": "WORDS_GO_TOGETHER",
+            "severity": "MEDIUM",
+            "fragment": "live in a large house",
+            "evidence": "Una línea que dice qué está mal."
+          },
+          {
+            "condition": "LEVEL_REGISTER",
+            "severity": "LOW",
+            "fragment": "casa larga",
+            "evidence": "Una línea que dice qué está mal."
+          }
+        ],
+        "rationale": "Cuatro fallas, una por condición."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "enums-en-minusculas-y-texto-en-varias-lineas",
+      "note": "Mayúsculas de los enums y espacios de los textos se canonicalizan sin reintentar.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "same_meaning",
+            "severity": " High ",
+            "fragment": "  larga ",
+            "evidence": "«large» es grande;\n«larga» es   long."
+          }
+        ],
+        "rationale": "  No dicen\nlo mismo. "
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "passes": false,
+          "failures": [
+            {
+              "condition": "SAME_MEANING",
+              "severity": "HIGH",
+              "fragment": "larga",
+              "evidence": "«large» es grande; «larga» es long."
+            }
+          ],
+          "rationale": "No dicen lo mismo."
+        }
+      }
+    },
+    {
+      "caseId": "clave-de-mas",
+      "note": "Sin campos extra: confidence no es parte del veredicto.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "HIGH",
+            "fragment": "larga",
+            "evidence": "«large» es grande; «larga» es long: la traducción dice otra cosa."
+          }
+        ],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga.",
+        "confidence": 0.9
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "sobran=['confidence']"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "falta-rationale",
+      "note": "Falta una clave del objeto cerrado.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "HIGH",
+            "fragment": "larga",
+            "evidence": "«large» es grande; «larga» es long: la traducción dice otra cosa."
+          }
+        ]
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan=['rationale']"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "falla-con-clave-de-mas",
+      "note": "Cada falla es un objeto cerrado: suggestion sobra.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "HIGH",
+            "fragment": "larga",
+            "evidence": "«large» es grande; «larga» es long: la traducción dice otra cosa.",
+            "suggestion": "Vivimos en una casa grande."
+          }
+        ],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "failures[0] no respeta el objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "pasa-con-fallas",
+      "note": "passes true con fallas: contradicción.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": true,
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "HIGH",
+            "fragment": "larga",
+            "evidence": "«large» es grande; «larga» es long: la traducción dice otra cosa."
+          }
+        ],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "passes es true"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "reprueba-sin-fallas",
+      "note": "passes false sin fallas: no dice qué falla.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "passes es false"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "bloqueante",
+      "note": "translation-sense nunca es BLOCKING: la traducción se ve después de contestar (F-TRSEN-R004).",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "BLOCKING",
+            "fragment": "larga",
+            "evidence": "Una línea que dice qué está mal."
+          }
+        ],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "BLOCKING no existe en este juez"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "condicion-desconocida",
+      "note": "Sólo las cuatro condiciones.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "GRAMMAR",
+            "severity": "HIGH",
+            "fragment": "larga",
+            "evidence": "Una línea que dice qué está mal."
+          }
+        ],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "fuera del enum"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "registro-que-no-es-baja",
+      "note": "LEVEL_REGISTER es siempre LOW.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "LEVEL_REGISTER",
+            "severity": "MEDIUM",
+            "fragment": "larga",
+            "evidence": "Una línea que dice qué está mal."
+          }
+        ],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "LEVEL_REGISTER es siempre LOW"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "baja-fuera-del-registro",
+      "note": "LOW es sólo para LEVEL_REGISTER.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "LOW",
+            "fragment": "larga",
+            "evidence": "Una línea que dice qué está mal."
+          }
+        ],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "LOW es sólo para LEVEL_REGISTER"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "condicion-repetida",
+      "note": "Una sola entrada por condición; JSON Schema no lo puede decir, el gate sí.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "HIGH",
+            "fragment": "larga",
+            "evidence": "Una línea que dice qué está mal."
+          },
+          {
+            "condition": "SAME_MEANING",
+            "severity": "MEDIUM",
+            "fragment": "una casa larga",
+            "evidence": "Una línea que dice qué está mal."
+          }
+        ],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "aparece dos veces"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "passes-como-texto",
+      "note": "passes es boolean, no el texto \"false\".",
+      "inputs": "casa",
+      "verdict": {
+        "passes": "false",
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "HIGH",
+            "fragment": "larga",
+            "evidence": "«large» es grande; «larga» es long: la traducción dice otra cosa."
+          }
+        ],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "passes tiene que ser true o false"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "evidencia-vacia",
+      "note": "La evidencia no va vacía.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "HIGH",
+            "fragment": "larga",
+            "evidence": ""
+          }
+        ],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "evidence está vacío"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "fragmento-demasiado-largo",
+      "note": "El fragmento es un pedazo, hasta 300 caracteres.",
+      "inputs": "casa",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "SAME_MEANING",
+            "severity": "HIGH",
+            "fragment": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            "evidence": "Una línea que dice qué está mal."
+          }
+        ],
+        "rationale": "La traducción cambia el tamaño por la forma: el inglés dice que la casa es grande y el castellano, que es larga."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "fragment tiene 301 caracteres"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "run-dir-por-state-json",
+      "note": "Sin run_dir en las entradas: project_root + el run_id (UUID) del state.json, como lo proyecta el CLI.",
+      "inputs": "familia",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "NATIVE_WOULD_SAY",
+            "severity": "MEDIUM",
+            "fragment": "We are five in my family.",
+            "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
+          }
+        ],
+        "rationale": "La oración se entiende pero un nativo no la diría así."
+      },
+      "resolution": "state.json",
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "run-id-ambiguo",
+      "note": "Dos state.json con el mismo runId: el gate no adivina; emit sale conservador.",
+      "inputs": "familia",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "NATIVE_WOULD_SAY",
+            "severity": "MEDIUM",
+            "fragment": "We are five in my family.",
+            "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
+          }
+        ],
+        "rationale": "La oración se entiende pero un nativo no la diría así."
+      },
+      "resolution": "ambiguous",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exactamente uno"
+        ]
+      }
+    },
+    {
+      "caseId": "run-id-inseguro",
+      "note": "Un run_id que escaparía del directorio de runs se rechaza.",
+      "inputs": "familia",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "NATIVE_WOULD_SAY",
+            "severity": "MEDIUM",
+            "fragment": "We are five in my family.",
+            "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
+          }
+        ],
+        "rationale": "La oración se entiende pero un nativo no la diría así."
+      },
+      "resolution": "unsafe-run-id",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "run_id ausente o inseguro"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-run-dir",
+      "note": "Sin run_dir ni project_root no hay dónde leer: falla el gate y emit da outputUnusable.",
+      "inputs": "familia",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "NATIVE_WOULD_SAY",
+            "severity": "MEDIUM",
+            "fragment": "We are five in my family.",
+            "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
+          }
+        ],
+        "rationale": "La oración se entiende pero un nativo no la diría así."
+      },
+      "resolution": "none",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan run_dir"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-salida-de-evaluate",
+      "note": "evaluate no dejó verdicts.json.",
+      "inputs": "familia",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "verdicts.json no existe"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-viejo-se-borra",
+      "note": "Un validated-verdict.json de un intento anterior no sobrevive a un gate que falla.",
+      "inputs": "familia",
+      "raw": "no hay veredicto",
+      "staleValidated": true,
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "no-es-json",
+      "note": "Prosa sin objeto JSON.",
+      "inputs": "familia",
+      "raw": "No puedo juzgar este ejercicio.",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "lista-en-vez-de-objeto",
+      "note": "Un array no es el veredicto.",
+      "inputs": "familia",
+      "raw": "[1, 2]",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "output-unusable-del-modelo",
+      "note": "{\"outputUnusable\": true} lo produce emit, nunca el modelo: el gate lo rechaza.",
+      "inputs": "familia",
+      "verdict": {
+        "outputUnusable": true
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "objeto cerrado"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-corrupto-antes-de-emit",
+      "note": "Si validated-verdict.json no se puede leer, emit no inventa: outputUnusable.",
+      "inputs": "familia",
+      "verdict": {
+        "passes": false,
+        "failures": [
+          {
+            "condition": "NATIVE_WOULD_SAY",
+            "severity": "MEDIUM",
+            "fragment": "We are five in my family.",
+            "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
+          }
+        ],
+        "rationale": "La oración se entiende pero un nativo no la diría así."
+      },
+      "corruptValidated": true,
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "fence-json",
+      "note": "La salida en un fence ```json se acepta sin pagar otra consulta.",
+      "inputs": "familia",
+      "raw": "```json\n{\n  \"passes\": false,\n  \"failures\": [\n    {\n      \"condition\": \"NATIVE_WOULD_SAY\",\n      \"severity\": \"MEDIUM\",\n      \"fragment\": \"We are five in my family.\",\n      \"evidence\": \"Calco de «somos cinco»: un nativo dice «There are five of us in my family».\"\n    }\n  ],\n  \"rationale\": \"La oración se entiende pero un nativo no la diría así.\"\n}\n```",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "passes": false,
+          "failures": [
+            {
+              "condition": "NATIVE_WOULD_SAY",
+              "severity": "MEDIUM",
+              "fragment": "We are five in my family.",
+              "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
+            }
+          ],
+          "rationale": "La oración se entiende pero un nativo no la diría así."
+        }
+      }
+    },
+    {
+      "caseId": "prosa-alrededor",
+      "note": "Prosa antes y una etiqueta después: se toma el objeto.",
+      "inputs": "familia",
+      "raw": "Este es mi veredicto:\n{\"passes\": false, \"failures\": [{\"condition\": \"NATIVE_WOULD_SAY\", \"severity\": \"MEDIUM\", \"fragment\": \"We are five in my family.\", \"evidence\": \"Calco de «somos cinco»: un nativo dice «There are five of us in my family».\"}], \"rationale\": \"La oración se entiende pero un nativo no la diría así.\"}\nLABEL: done",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "passes": false,
+          "failures": [
+            {
+              "condition": "NATIVE_WOULD_SAY",
+              "severity": "MEDIUM",
+              "fragment": "We are five in my family.",
+              "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
+            }
+          ],
+          "rationale": "La oración se entiende pero un nativo no la diría así."
+        }
+      }
+    },
+    {
+      "caseId": "json-dentro-de-un-string",
+      "note": "El objeto serializado dentro de un string JSON se desenvuelve.",
+      "inputs": "familia",
+      "raw": "\"{\\\"passes\\\": false, \\\"failures\\\": [{\\\"condition\\\": \\\"NATIVE_WOULD_SAY\\\", \\\"severity\\\": \\\"MEDIUM\\\", \\\"fragment\\\": \\\"We are five in my family.\\\", \\\"evidence\\\": \\\"Calco de «somos cinco»: un nativo dice «There are five of us in my family».\\\"}], \\\"rationale\\\": \\\"La oración se entiende pero un nativo no la diría así.\\\"}\"",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "passes": false,
+          "failures": [
+            {
+              "condition": "NATIVE_WOULD_SAY",
+              "severity": "MEDIUM",
+              "fragment": "We are five in my family.",
+              "evidence": "Calco de «somos cinco»: un nativo dice «There are five of us in my family»."
+            }
+          ],
+          "rationale": "La oración se entiende pero un nativo no la diría así."
+        }
+      }
+    }
+  ]
+}
