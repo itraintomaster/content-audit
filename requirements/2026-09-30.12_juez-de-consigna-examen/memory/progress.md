@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — test-writer (C) — Las 46 pruebas de la base común (sesión a la vez, libro y fábrica del examen, tiempos del libro,
+  runtime, exportador, registro, config), en verde; la del MARKED destapó que el exportador daba gravedad a un hallazgo que sólo
+  ordena: el líder lo arregló (worstSeverity null, como dice el contrato).
+
 2026-09-30 — developer (C, líder) — Base común y juez de consigna construidos en ronda1/impl-jueces (e0ad1746..): sesión en lote
   (resolveAll, recorded, unavailableReason), libro y sesiones del examen, DefaultJudgeRuntime, configuración (4 a la vez, tope 0,
   189/h y 60/h), registro de exámenes en .content-audit/judge-exams/<juez>.jsonl, exportador, DefaultJudgeExamService, ExamCmd

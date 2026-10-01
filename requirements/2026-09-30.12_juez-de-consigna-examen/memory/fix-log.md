@@ -4,6 +4,10 @@ Fixes that worked, with a short why. Newest entries on top.
 
 <!-- entries below -->
 
+2026-09-30 — test-writer (C) — Probar «a la vez» sin azar: latches para que c2..c5 estén en vuelo juntos y las que siguen en vuelo
+  contesten 300 ms después de la falla; un timeout del latch se marca en un flag y no se lanza.
+  why: un evaluador que lanza cuenta como falla del servicio y ensuciaría la prueba; repetida 6 veces, estable.
+
 2026-09-30 — developer (C, líder) — Sin `mvn clean` offline (falta el plugin): tras cambiar un constructor, borrar
   */target/classes, */target/test-classes y */target/maven-status; la compilación incremental no recompila a los que lo llaman.
 2026-09-30 — developer (C, líder) — Con 4 consultas a la vez los jueces falsos de las pruebas tienen que guardar lo que se les

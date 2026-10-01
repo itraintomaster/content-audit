@@ -81,7 +81,10 @@ public class DefaultJudgeExamVerdictExporter implements JudgeExamVerdictExporter
             if (!counting.isEmpty()) {
                 verdicts.add(verdict(caseId, judgeName, judgeVersion, JudgeExamOutcome.FAILS, counting));
             } else if (!paid.isEmpty()) {
-                verdicts.add(verdict(caseId, judgeName, judgeVersion, JudgeExamOutcome.MARKED, paid));
+                // A finding that only ranks (judges-disagree) is not one that counts: no worst severity.
+                JudgeExamVerdict marked = verdict(caseId, judgeName, judgeVersion, JudgeExamOutcome.MARKED, paid);
+                marked.setWorstSeverity(null);
+                verdicts.add(marked);
             } else {
                 verdicts.add(new JudgeExamVerdict(caseId, judgeName, judgeVersion, JudgeExamOutcome.PASSES, null,
                         List.of(), ""));

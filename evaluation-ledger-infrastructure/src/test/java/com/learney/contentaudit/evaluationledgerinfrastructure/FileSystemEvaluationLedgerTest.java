@@ -3,6 +3,7 @@ package com.learney.contentaudit.evaluationledgerinfrastructure;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.nio.file.Files;
@@ -17,7 +18,6 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 import java.util.stream.Collectors;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -285,17 +285,66 @@ public class FileSystemEvaluationLedgerTest {
     @DisplayName("should return the recorded times of an evaluator in the order they were appended, and none of another evaluator")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R004")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
-    public void shouldReturnTheRecordedTimesOfAnEvaluatorInTheOrderTheyWereAppendedAndNoneOfAnotherEvaluator() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldReturnTheRecordedTimesOfAnEvaluatorInTheOrderTheyWereAppendedAndNoneOfAnotherEvaluator(
+            @TempDir Path tempDir) {
+        // R004: the rate of a judge is measured between consecutive verdicts of its own evaluator,
+        // so the timeline gives the times of that evaluator as they were appended -- here two runs
+        // interleaved, so the append order is not the chronological one -- and nothing of another
+        // evaluator, not even of its own exam space.
+        FileSystemEvaluationLedger ledger = new FileSystemEvaluationLedger(tempDir);
+        Instant firstAppended = Instant.parse("2026-08-03T10:00:40Z");
+        Instant secondAppended = Instant.parse("2026-08-03T10:00:00Z");
+        Instant thirdAppended = Instant.parse("2026-08-03T10:00:20Z");
+        Instant otherJudge = Instant.parse("2026-08-03T10:00:10Z");
+        Instant examOfTheSameJudge = Instant.parse("2026-09-30T09:00:00Z");
+
+        ledger.append(record("fp-1", "verdict-1", "quiz-1", firstAppended));
+        ledger.append(new EvaluationRecord(new EvaluationKey("translation-sense-from-english", "fp-1"),
+                "verdict of another judge", "quiz-1", otherJudge, EVALUATOR_VERSION));
+        ledger.append(record("fp-2", "verdict-2", "quiz-2", secondAppended));
+        ledger.append(new EvaluationRecord(new EvaluationKey("exam:" + EVALUATOR_ID, "fp-3"),
+                "exam verdict", "quiz-3", examOfTheSameJudge, EVALUATOR_VERSION));
+        ledger.append(record("fp-3", "verdict-3", "quiz-3", thirdAppended));
+
+        EvaluationTimeline timeline = new FileSystemEvaluationLedger(tempDir);
+
+        assertEquals(List.of(firstAppended, secondAppended, thirdAppended), timeline.recordedTimes(EVALUATOR_ID),
+                "the times of the evaluator, in the order they were appended");
+        assertEquals(List.of(otherJudge), timeline.recordedTimes("translation-sense-from-english"));
+        assertEquals(List.of(), timeline.recordedTimes("mini-theory-judge"),
+                "an evaluator that never recorded anything has no times");
     }
 
     @Test
     @DisplayName("should not return to the course evaluator a verdict recorded for the same content under its exam: evaluator")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R002")
-    @Disabled("Stub de FEAT-JEXAM (paquete C), sin implementar")
-    public void shouldNotReturnToTheCourseEvaluatorAVerdictRecordedForTheSameContentUnderItsExamEvaluator() {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void shouldNotReturnToTheCourseEvaluatorAVerdictRecordedForTheSameContentUnderItsExamEvaluator(
+            @TempDir Path tempDir) {
+        // R002 inv. 1: an exam verdict never becomes a verdict of the course, even when it is more
+        // recent than the course's one on the same content (on the course the most recent wins).
+        String verduras = "67fab6d59930102295341ecd";
+        FileSystemEvaluationLedger ledger = new FileSystemEvaluationLedger(tempDir);
+        EvaluationRecord courseVerdict = new EvaluationRecord(new EvaluationKey(EVALUATOR_ID, "fp-verduras"),
+                "course verdict: cumple", verduras, Instant.parse("2026-08-07T10:00:00Z"), "v1");
+        EvaluationRecord examVerdict = new EvaluationRecord(new EvaluationKey("exam:" + EVALUATOR_ID, "fp-verduras"),
+                "exam verdict: incumple", verduras, Instant.parse("2026-09-30T10:00:00Z"), "v2");
+        EvaluationRecord examOnly = new EvaluationRecord(new EvaluationKey("exam:" + EVALUATOR_ID, "fp-exam-only"),
+                "exam verdict on a content the course never judged", "quiz-exam-only",
+                Instant.parse("2026-09-30T10:00:20Z"), "v2");
+        ledger.append(courseVerdict);
+        ledger.append(examVerdict);
+        ledger.append(examOnly);
+
+        EvaluationLedger reader = new FileSystemEvaluationLedger(tempDir);
+
+        assertEquals(Optional.of(courseVerdict), reader.findLatest(courseVerdict.getKey()),
+                "the course evaluator still finds its own verdict, not the more recent exam one");
+        assertEquals(List.of(courseVerdict), reader.history(courseVerdict.getKey()),
+                "the exam verdict is not part of the course history either");
+        assertEquals(Optional.empty(), reader.findLatest(new EvaluationKey(EVALUATOR_ID, "fp-exam-only")),
+                "a content only the exam judged has nothing for the course evaluator");
+        assertEquals(Optional.of(examVerdict), reader.findLatest(examVerdict.getKey()),
+                "the exam verdict stays readable under its exam: evaluator");
     }
 }
