@@ -20,9 +20,15 @@
     "**Nunca listes una respuesta que difiere de una aceptada sólo en eso**",
     "*until* y *till*",
     "**antes de contestar**",
-    "Nunca\nsugerís que la consigna pida una forma"
+    "Nunca\nsugerís que la consigna pida una forma",
+    "**igual de buenas**",
+    "**Funciona en la oración tal como se lee.**",
+    "**Es igual de natural.**",
+    "**Es igual de esperable para este alumno.**",
+    "«Igual de buena» no quiere decir igual de frecuente",
+    "**La prueba de la razón.**"
   ],
-  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (gap fuera de los huecos de acceptedAnswers, respuesta repetida, LOW), y que emit produzca singleAnswerVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (title, instructions, exercise, acceptedAnswers) de los ejemplos de la guía.",
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (gap fuera de los huecos de acceptedAnswers, respuesta repetida, LOW), y que emit produzca singleAnswerVerdict o {\"outputUnusable\": true}. Las entradas gente, conmigo y almuerzo son los ejemplos de la guía anterior al 1/10 y sólo prueban la forma. Las cal-* son los casos inventados de la recalibración del 1/10, que no están en el curso, con la salida que grabó la guía nueva (claude-cli, modelo por omisión): los defendibles que no se listan y los que sí. El gate no juzga el contenido: documentan el criterio y prueban la forma con esas entradas.",
   "inputs": {
     "gente": {
       "title": "Después de adjetivos",
@@ -64,12 +70,72 @@
       "title": "Después de adjetivos",
       "instructions": "Completa con la preposición correcta.",
       "exercise": "He is very good ___ people."
+    },
+    "cal-problemas": {
+      "title": "$Some$ y $any$",
+      "instructions": "Completa con 'some' o 'any'.",
+      "exercise": "Did they find ___ problems with the car?",
+      "acceptedAnswers": "Hueco 1: any"
+    },
+    "cal-cena": {
+      "title": "Antes y después con $verb-ing$",
+      "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+      "exercise": "She called her mum after she finished dinner. ___",
+      "acceptedAnswers": "Hueco 1: She called her mum after finishing dinner."
+    },
+    "cal-insistir": {
+      "title": "Verbos y sus preposiciones",
+      "instructions": "Completa con la preposición correcta.",
+      "exercise": "She insisted ___ paying for dinner.",
+      "acceptedAnswers": "Hueco 1: on"
+    },
+    "cal-pierna": {
+      "title": "Present perfect",
+      "instructions": "Completa la oración con el verbo entre paréntesis.",
+      "exercise": "She ___ (hurt) her leg, so she can't play tennis today.",
+      "acceptedAnswers": "Hueco 1: has hurt | 's hurt"
+    },
+    "cal-bolso": {
+      "title": "Ofrecimientos con $shall$",
+      "instructions": "Transforma las oraciones para que incluyan 'shall'.",
+      "exercise": "Would you like me to carry your bag? ___",
+      "acceptedAnswers": "Hueco 1: Shall I carry your bag?"
+    },
+    "cal-cine": {
+      "title": "Preposiciones de lugar",
+      "instructions": "Completa con la preposición correcta.",
+      "exercise": "I'll meet you ___ the cinema.",
+      "acceptedAnswers": "Hueco 1: at"
+    },
+    "cal-futbol": {
+      "title": "Present simple",
+      "instructions": "Completa la oración.",
+      "exercise": "They ___ football every Saturday.",
+      "acceptedAnswers": "Hueco 1: play"
+    },
+    "cal-cenar": {
+      "title": "Present simple",
+      "instructions": "Completa la oración.",
+      "exercise": "We usually ___ dinner at eight.",
+      "acceptedAnswers": "Hueco 1: have"
+    },
+    "cal-bici": {
+      "title": "Respuestas cortas",
+      "instructions": "Escribe la respuesta corta.",
+      "exercise": "Has he got a bike? He ___ .",
+      "acceptedAnswers": "Hueco 1: hasn't"
+    },
+    "cal-trepar": {
+      "title": "$Could$ o $was able to$",
+      "instructions": "Usa 'could' o 'was able to'. Escribe la forma negativa.",
+      "exercise": "My brother ___ (not / climb) trees when he was little.",
+      "acceptedAnswers": "Hueco 1: couldn't climb | could not climb"
     }
   },
   "cases": [
     {
       "caseId": "gente-to-alta",
-      "note": "«He is very good ___ people.» (…24ce): «to» vale igual. F-UNICA-R004.",
+      "note": "«He is very good ___ people.» (…24ce): ejemplo de la guía anterior al 1/10; acá sólo prueba la forma de un HIGH.",
       "inputs": "gente",
       "verdict": {
         "alternatives": [
@@ -90,7 +156,7 @@
     },
     {
       "caseId": "conmigo-bloqueante",
-      "note": "«She goes ___ me.» (…2d91): sin pista, without, after, before y behind encajan igual que with.",
+      "note": "«She goes ___ me.» (…2d91): ejemplo de la guía anterior al 1/10; acá sólo prueba la forma de varios BLOCKING.",
       "inputs": "conmigo",
       "verdict": {
         "alternatives": [
@@ -132,7 +198,7 @@
     },
     {
       "caseId": "almuerzo-media",
-      "note": "«She ate lunch before she went to work. ___» (…246b): con la cláusula adelante es correcta pero menos esperable.",
+      "note": "Prueba de forma: el gate sigue aceptando MEDIUM, porque el esquema no cambió. Desde el 1/10 la guía no lista lo menos esperable, como esta oración con la cláusula adelante (…246b).",
       "inputs": "almuerzo",
       "verdict": {
         "alternatives": [
@@ -791,6 +857,187 @@
           ],
           "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
         }
+      }
+    },
+    {
+      "caseId": "cal-some-que-supone-no-se-lista",
+      "note": "Calibración 1/10 (inventado): *some* en la pregunta sólo vale si el que pregunta espera que sí, y eso no se lee; la consigna lo ofrece pero no encaja. La guía anterior tampoco lo listó.",
+      "inputs": "cal-problemas",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "En una pregunta sin indicio de expectativa afirmativa, 'any' es la respuesta esperable; 'some' exigiría suponer que el hablante ya espera que sí hubo problemas, algo que el ejercicio no dice."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-oracion-reordenada-no-se-lista",
+      "note": "Calibración 1/10 (inventado): «After finishing dinner, she called her mum.» es correcta pero reordena; no es igual de esperable. La guía anterior la listaba MEDIUM: falsa alarma.",
+      "inputs": "cal-cena",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "La transformación mínima y esperable es sustituir «she finished» por «finishing» manteniendo el orden del enunciado, que es justo lo que acepta el corrector; otras versiones (reordenar con «After finishing dinner, she called her mum») cambian el orden y no son igual de esperables."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-variante-formal-no-se-lista",
+      "note": "Calibración 1/10 (inventado): *upon* es correcta pero más formal; el alumno del tema escribe *on*.",
+      "inputs": "cal-insistir",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "«Insist on» es la colocación fija y la única preposición natural con este verbo; «upon» es la variante más formal y menos esperable para un alumno que practica el tema."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-el-titulo-elige-no-se-lista",
+      "note": "Calibración 1/10 (inventado): *hurt* en past simple se usa, pero el título «Present perfect» elige.",
+      "inputs": "cal-pierna",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "El título «Present perfect» y el resultado presente («so she can't play tennis today») llevan directamente a «has hurt»; la forma contraída «'s hurt» ya está aceptada y «hurt» en past simple no es lo que practica el tema."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-agregar-palabras-no-se-lista",
+      "note": "Calibración 1/10 (inventado): agregar «for you» a la transformación no es igual de esperable.",
+      "inputs": "cal-bolso",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "La transformación es directa y única: el sujeto y el verbo del enunciado se mantienen, así que «Shall I carry your bag?» es la única respuesta esperable con 'shall'."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-menos-esperable-no-se-lista",
+      "note": "Calibración 1/10 (inventado): *outside* o *in front of* son naturales, pero para un punto de encuentro el alumno escribe *at* de primera: no son igual de esperables. Caso de borde: la guía anterior lo habría dado por bloqueante.",
+      "inputs": "cal-cine",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "Para un lugar de encuentro como el cine, «at» es la preposición estándar y es la que escribe de primera un alumno que practica preposiciones de lugar; «in» (dentro de la sala) o «outside» suponen una ubicación precisa que la oración no da y son menos esperables."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-sin-pista-se-lista",
+      "note": "Calibración 1/10 (inventado): sin pista, *watch* es tan natural y esperable como *play*: BLOCKING. Salida grabada con la coma de más corregida (ver cal-coma-de-mas).",
+      "inputs": "cal-futbol",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "watch",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "«They watch football every Saturday.» es tan natural y tan esperable como «play»: el hueco no tiene pista de verbo y nada en la oración indica si juegan o miran el partido."
+          }
+        ],
+        "rationale": "El hueco no tiene pista que elija el verbo, así que «play» es una opción entre varias igual de buenas en present simple; «watch» con 'football every Saturday' es una colocación igual de corriente y el alumno no tiene cómo saber cuál quería el corrector."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-otro-verbo-igual-se-lista",
+      "note": "Calibración 1/10 (inventado): *eat* y *cook* valen igual que *have*, sin pista que elija: BLOCKING.",
+      "inputs": "cal-cenar",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "eat",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "«We usually eat dinner at eight» es tan natural y corriente como «have dinner at eight», y el hueco no tiene pista de verbo: nada le dice al alumno que el corrector quería «have»."
+          },
+          {
+            "answer": "cook",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "«We usually cook dinner at eight» es una oración que un nativo diría sin dudar y encaja igual en el present simple con «usually»; sin pista, el alumno no puede saber qué verbo esperaba el corrector."
+          }
+        ],
+        "rationale": "El hueco no tiene pista que elija el verbo, así que cualquier verbo que combine con «dinner at eight» es igual de bueno: «eat» y «cook» son tan naturales y esperables como «have»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-si-o-no-se-lista",
+      "note": "Calibración 1/10 (inventado): la pregunta se puede contestar que sí o que no; *has* vale igual que *hasn't*: HIGH.",
+      "inputs": "cal-bici",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "has",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "«Has he got a bike? He has.» es la respuesta corta afirmativa, igual de natural y correcta que «He hasn't», y nada de lo que ve el alumno indica si la respuesta debe ser sí o no."
+          }
+        ],
+        "rationale": "La pregunta queda abierta a sí o no y la consigna sólo pide la respuesta corta, así que la afirmativa «has» es tan buena como la negativa que acepta el corrector."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-ofrecida-por-la-consigna-se-lista",
+      "note": "Calibración 1/10 (inventado): la consigna ofrece *was able to* y el corrector sólo acepta *couldn't*: OFFERED_BY_INSTRUCTION, HIGH.",
+      "inputs": "cal-trepar",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "wasn't able to climb",
+            "gap": 1,
+            "kind": "OFFERED_BY_INSTRUCTION",
+            "severity": "HIGH",
+            "reason": "La consigna ofrece 'was able to' y en negativo funciona igual que 'couldn't': «My brother wasn't able to climb trees when he was little» es natural y correcta, y nada en la oración descarta esa opción."
+          }
+        ],
+        "rationale": "La consigna ofrece explícitamente las dos formas y, en la negativa, 'wasn't able to' es tan natural y correcta como 'couldn't' para hablar de habilidad en la infancia; el corrector sólo acepta 'couldn't'."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-coma-de-mas",
+      "note": "Salida real de la guía nueva sobre cal-futbol: el juicio era el correcto, pero con una coma de más el JSON no parsea; el gate la rechaza y evaluate reintenta.",
+      "inputs": "cal-futbol",
+      "raw": "{\n  \"alternatives\": [\n    {\n      \"answer\": \"watch\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"BLOCKING\",\n      \"reason\": \"«They watch football every Saturday.» es tan natural y tan esperable como «play»: el hueco no tiene pista de verbo y nada en la oración indica si juegan o miran el partido.\",\n    }\n  ],\n  \"rationale\": \"El hueco no tiene pista que elija el verbo, así que «play» es una opción entre varias igual de buenas en present simple; «watch» con 'football every Saturday' es una colocación igual de corriente y el alumno no tiene cómo saber cuál quería el corrector.\"\n}",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
       }
     }
   ]
