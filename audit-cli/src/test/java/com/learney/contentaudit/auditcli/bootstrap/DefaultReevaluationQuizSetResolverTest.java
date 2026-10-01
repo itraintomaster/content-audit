@@ -10,11 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import java.util.List;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -155,8 +155,21 @@ public class DefaultReevaluationQuizSetResolverTest {
     @DisplayName("should read the A2 queue of naturalness written one id per line as the declared set of a judge")
     @Tag("FEAT-NATUR")
     @Tag("F-NATUR-R005")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-NATUR sin implementar")
     public void shouldReadTheA2QueueOfNaturalnessWrittenOneIdPerLineAsTheDeclaredSetOfAJudge() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-NATUR-R005: the queue of a level, from the most to the least doubtful, as an operator copies it
+        // out of the report -- one id per line -- is the declared set of any judge (--reevaluate-file).
+        List<String> a2Queue = List.of("67fab6d59930102295342c0d", "67fab6d59930102295342fd3",
+                "67fab6d59930102295341f4a");
+        Path origin;
+        try {
+            origin = Files.createTempFile("cola-naturalidad-A2-", ".txt");
+            Files.writeString(origin, String.join("\n", a2Queue) + "\n");
+        } catch (IOException e) {
+            throw new java.io.UncheckedIOException(e);
+        }
+
+        Set<String> declared = resolver.resolve(null, origin.toString());
+
+        assertEquals(Set.copyOf(a2Queue), declared, "the three of the queue, and nothing else");
     }
 }

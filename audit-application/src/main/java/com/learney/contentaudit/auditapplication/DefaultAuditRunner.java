@@ -6,9 +6,13 @@ import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 import com.learney.contentaudit.auditdomain.catalog.UnknownAnalyzerException;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolCard;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolUnavailableException;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
 import java.nio.file.Path;
@@ -58,6 +62,7 @@ public class DefaultAuditRunner implements AuditRunner {
         if (analyzerNames == null || analyzerNames.isEmpty()) {
             return auditEngine.runAudit(loadCourse(coursePath));
         }
+        requireToolsAvailable(analyzerNames);
         List<String> instant = new ArrayList<>();
         for (AnalyzerDescriptor card : analyzerCatalog.list()) {
             if (analyzerNames.contains(card.getName()) && card.getCost() == AnalysisCost.INSTANT) {
@@ -82,7 +87,8 @@ public class DefaultAuditRunner implements AuditRunner {
         requireKnown(included);
         requireKnown(excluded);
         requireKnown(policies != null ? policies.keySet() : null);
-        requireModelBacked(policies != null ? policies.keySet() : null);
+        requireModelBacked(policies);
+        requireToolsAvailable(included);
 
         List<String> selected = new ArrayList<>();
         for (AnalyzerDescriptor card : analyzerCatalog.list()) {
@@ -113,7 +119,8 @@ public class DefaultAuditRunner implements AuditRunner {
         requireKnown(included);
         requireKnown(excluded);
         requireKnown(policies != null ? policies.keySet() : null);
-        requireModelBacked(policies != null ? policies.keySet() : null);
+        requireModelBacked(policies);
+        requireToolsAvailable(included);
 
         String analyzerName = (included != null && included.size() == 1)
                 ? included.iterator().next()
@@ -135,6 +142,7 @@ public class DefaultAuditRunner implements AuditRunner {
     public AuditNode runDetailedAudit(Path coursePath, String analyzerName) {
         if (analyzerName != null) {
             requireKnown(List.of(analyzerName));
+            requireToolsAvailable(List.of(analyzerName));
         }
         AnalyzerDescriptor card = analyzerName != null ? analyzerCatalog.find(analyzerName).orElse(null) : null;
         AuditableCourse course = loadCourse(coursePath);
@@ -157,17 +165,63 @@ public class DefaultAuditRunner implements AuditRunner {
 
     /**
      * A run policy -- a budget, a re-evaluation -- only means something to an analyzer that
-     * consults a model; asking it of an instant one is rejected instead of ignored.
+     * consults a model; asking it of an instant one is rejected instead of ignored. The exam is
+     * the exception for an analyzer with a local tool (hook B-11): grammar is instant and takes its
+     * exam with the policy of the exam, which is what makes its examined version publish there.
      */
-    private void requireModelBacked(Collection<String> names) {
+    private void requireModelBacked(Map<String, EvaluationRunPolicy> policies) {
+        if (policies == null) {
+            return;
+        }
+        for (Map.Entry<String, EvaluationRunPolicy> asked : policies.entrySet()) {
+            String name = asked.getKey();
+            AnalyzerDescriptor card = analyzerCatalog.find(name).orElseThrow(() -> new UnknownAnalyzerException(name));
+            boolean examWithTools = asked.getValue() != null
+                    && asked.getValue().getPurpose() == EvaluationRunPurpose.EXAM
+                    && card.getTools() != null && !card.getTools().isEmpty();
+            if (card.getCost() == AnalysisCost.INSTANT && !examWithTools) {
+                throw new IllegalArgumentException("Analyzer '" + name + "' does not consult a model: a budget "
+                        + "only applies to analyzers that do. Run 'content-audit get analyzers' to see their cost.");
+            }
+        }
+    }
+
+    /**
+     * F-MLOCAL-R003 inv. 1 and 2 (hook B-05): an analyzer asked for by its name whose card names
+     * tools of which none is available -- neither its local tool nor, when it has one, the claude -p
+     * alternative -- rejects the run before the course is loaded, saying what is missing and how to
+     * install it. With the alternative available it runs: without a budget the judges' runtime
+     * reuses and declares the cost. A run without selection never gets here: what is missing stays
+     * not evaluated, with its reason in view (inv. 3).
+     */
+    private void requireToolsAvailable(Collection<String> names) {
         if (names == null) {
             return;
         }
         for (String name : names) {
-            AnalyzerDescriptor card = analyzerCatalog.find(name).orElseThrow(() -> new UnknownAnalyzerException(name));
-            if (card.getCost() == AnalysisCost.INSTANT) {
-                throw new IllegalArgumentException("Analyzer '" + name + "' does not consult a model: a budget "
-                        + "only applies to analyzers that do. Run 'content-audit get analyzers' to see their cost.");
+            AnalyzerDescriptor card = analyzerCatalog.find(name).orElse(null);
+            if (card == null || card.getTools() == null || card.getTools().isEmpty()) {
+                continue;
+            }
+            List<String> missing = new ArrayList<>();
+            String installHint = null;
+            boolean available = false;
+            for (LocalToolCard tool : card.getTools()) {
+                LocalToolStatus status = tool != null ? tool.getStatus() : null;
+                if (status == null) {
+                    continue;
+                }
+                if (status.isAvailable()) {
+                    available = true;
+                    break;
+                }
+                missing.add(status.getTool() + (status.getVersion() != null ? " " + status.getVersion() : ""));
+                if (installHint == null) {
+                    installHint = status.getInstallHint();
+                }
+            }
+            if (!available) {
+                throw new LocalToolUnavailableException(name, String.join(" o ", missing), installHint);
             }
         }
     }

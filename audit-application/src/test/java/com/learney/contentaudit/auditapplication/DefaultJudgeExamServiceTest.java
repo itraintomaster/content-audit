@@ -76,12 +76,18 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.ArgumentCaptor;
+import com.learney.contentaudit.auditdomain.NlpToken;
+import com.learney.contentaudit.auditdomain.finishedsentence.DefaultFinishedSentenceReader;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
+import com.learney.contentaudit.auditdomain.localtools.YesNoModel;
+import com.learney.contentaudit.auditdomain.localtools.YesNoProbabilities;
+import com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate;
+import com.learney.contentaudit.auditdomain.naturalness.NaturalnessAnalyzerProvider;
 
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -569,8 +575,113 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should record the exam that naturalness takes without its local model under the version of claude -p, leaving the version of llama3 without exam")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R006")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldRecordTheExamThatNaturalnessTakesWithoutItsLocalModelUnderTheVersionOfClaudePLeavingTheVersionOfLlama3WithoutExam() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MLOCAL-R006 and R007 (hook B-11): with CONTENT_AUDIT_OLLAMA_URL=off, naturalness takes its exam with
+        // claude -p; what gets recorded is the version of claude -p, and llama3's stays without exam.
+        Sha256ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
+        MemoryLedger ledger = new MemoryLedger();
+        JudgeExamRegistry registry = new FileSystemJudgeExamRegistry(workdir);
+        DefaultJudgeRuntime runtime = new DefaultJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, fingerprinter),
+                new ExamEvaluationSessionFactory(ledger, fingerprinter), registry, evaluatorId -> List.of(),
+                new DefaultJudgeRuntimeConfig());
+        NativeSaysNo claude = new NativeSaysNo("She is an engineer of hers.");
+        AnalyzerCatalog catalog = new DefaultAnalyzerCatalog(List.of(new NaturalnessAnalyzerProvider(new Llama3Off(),
+                claude, runtime, new DefaultFinishedSentenceReader(), new DefaultLocalToolGate(runtime))));
+        CourseRepository repository = mock(CourseRepository.class);
+        CourseToAuditableMapper mapper = mock(CourseToAuditableMapper.class);
+        when(repository.load(PHOTO)).thenReturn(new CourseEntity());
+        when(mapper.map(any())).thenReturn(naturalnessPhoto());
+        DefaultAuditRunner runner = new DefaultAuditRunner(repository, mapper, new IAuditEngine(new IScoreAggregator(),
+                catalog, new DefaultFindingCollector(), new DefaultContextNumbersCalculator()), catalog);
+        DefaultJudgeExamService service = new DefaultJudgeExamService(runner, catalog,
+                new DefaultJudgeExamVerdictExporter(), registry, runtime);
+
+        JudgeExamTaken taken = service.take(new JudgeExamRequest("naturalness", PHOTO,
+                new LinkedHashSet<>(List.of(ENGINEER, PEOPLE)), 10, 1));
+
+        assertEquals("naturalness-yes-no-v1", taken.getJudgeVersion(), "the version of claude -p took it");
+        assertTrue(taken.isRecordedAsTaken());
+        assertEquals(List.of(JudgeExamOutcome.MARKED, JudgeExamOutcome.PASSES),
+                taken.getVerdicts().stream().map(JudgeExamVerdict::getOutcome).toList(),
+                "«no» only ranks: marked; «yes» passes");
+        assertEquals(JudgeExamStatus.TAKEN, registry.latest("naturalness", "naturalness-yes-no-v1").orElseThrow()
+                .getStatus());
+        assertTrue(registry.latest("naturalness", "llama3:8b@365c0bd3c000 · native-yes-no-1").isEmpty(),
+                "llama3's version did not take it");
+        assertEquals(2, claude.calls(), "the exam publishes and asks the two sentences of the file");
+    }
+
+    // -----------------------------------------------------------------------
+    // FEAT-MLOCAL: naturalness without Ollama, with claude -p
+    // -----------------------------------------------------------------------
+
+    private static final String ENGINEER = "67fab6d59930102295342c0d";
+
+    private static final String PEOPLE = "67fab6d59930102295341f4a";
+
+    /** Two exercises of the photo that reach naturalness: a sentence with a verb each. */
+    private static AuditableCourse naturalnessPhoto() {
+        List<NlpToken> verb = List.of(new NlpToken("It", "it", "PRON", null, true, false),
+                new NlpToken("is", "be", "AUX", null, true, false));
+        List<AuditableQuiz> quizzes = List.of(
+                new AuditableQuiz(verb, ENGINEER, "Doble posesivo", "", null, List.of(), null, "Reescribe.",
+                        List.of(new SentencePartEntity(SentencePartKind.TEXT, "She is her engineer.", null),
+                                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("She is an engineer of hers."))),
+                        null, null, null),
+                new AuditableQuiz(verb, PEOPLE, "Contracciones", "", null, List.of(), null, "Completa.",
+                        List.of(new SentencePartEntity(SentencePartKind.TEXT, "They", null),
+                                new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("don't")),
+                                new SentencePartEntity(SentencePartKind.TEXT, "(do not) like people.", null)),
+                        null, null, null));
+        AuditableKnowledge knowledge = new AuditableKnowledge(quizzes, "Mezcla", "Completa.", true, "k-mezcla",
+                "Mezcla", "A2.01.01", SentenceMode.FILL, "Pronombres");
+        AuditableTopic topic = new AuditableTopic(List.of(knowledge), "t-pr", "Pronombres", "A2.01");
+        return new AuditableCourse(List.of(new AuditableMilestone(List.of(topic), "m-a2", "A2", "A2")));
+    }
+
+    /** llama3:8b with Ollama off, as CONTENT_AUDIT_OLLAMA_URL=off leaves it. */
+    private static final class Llama3Off implements YesNoModel {
+        @Override
+        public LocalToolStatus status() {
+            return new LocalToolStatus("llama3:8b en Ollama", null, false,
+                    "CONTENT_AUDIT_OLLAMA_URL=off: los modelos locales están apagados a pedido", "ollama pull llama3:8b");
+        }
+
+        @Override
+        public YesNoProbabilities ask(String system, String question) {
+            throw new AssertionError("Ollama is off: nothing is asked");
+        }
+    }
+
+    /** The agent naturalness-yes-no: «no» for the sentences it is given, «yes» for the rest; it counts its calls. */
+    private static final class NativeSaysNo implements Evaluator {
+        private final Set<String> unnatural;
+        private final List<String> asked = Collections.synchronizedList(new ArrayList<>());
+
+        NativeSaysNo(String... unnatural) {
+            this.unnatural = Set.of(unnatural);
+        }
+
+        @Override
+        public String evaluatorId() {
+            return "naturalness-yes-no";
+        }
+
+        @Override
+        public Optional<String> evaluatorVersion() {
+            return Optional.of("naturalness-yes-no-v1");
+        }
+
+        @Override
+        public EvaluationOutcome evaluate(EvaluationSubject subject) {
+            String question = subject.getContent().getOrDefault("question", "");
+            asked.add(question);
+            boolean no = unnatural.stream().anyMatch(sentence -> question.endsWith("\"" + sentence + "\""));
+            return new EvaluationEmitted("{\"answer\":\"" + (no ? "no" : "yes") + "\"}");
+        }
+
+        int calls() {
+            return asked.size();
+        }
     }
 }

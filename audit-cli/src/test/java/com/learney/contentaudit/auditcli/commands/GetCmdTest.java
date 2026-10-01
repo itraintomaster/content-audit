@@ -4832,7 +4832,6 @@ public class GetCmdTest {
     @DisplayName("should show in get analyzers the twenty analyzers with twenty different Spanish names, the three of package B last")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R001")
-    @org.junit.jupiter.api.Disabled("FEAT-RONDA2: espera a B, que construya los proveedores de grammar, naturalness y near-duplicates")
     public void shouldShowInGetAnalyzersTheTwentyAnalyzersWithTwentyDifferentSpanishNamesTheThreeOfPackageBLast(@org.junit.jupiter.api.io.TempDir Path workdir) throws IOException {
         // F-RONDA2-R001: get analyzers of the catalog Main builds lists the twenty, each next to its
         // Spanish name -- twenty different ones, none empty --, the three of package B last.
@@ -4863,9 +4862,37 @@ public class GetCmdTest {
     @DisplayName("should show in get analyzer naturalness its two tools, llama3:8b in Ollama and claude -p, each with its version, whether it is available and its exam")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R002")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldShowInGetAnalyzerNaturalnessItsTwoToolsLlama38bInOllamaAndClaudePEachWithItsVersionWhetherItIsAvailableAndItsExam() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MLOCAL-R002 (hook B-01): the card of naturalness names both tools; llama3's examined version
+        // passed its exam, the version of claude -p never took it.
+        FMlocalJ001JourneyTest.Bench bench = new FMlocalJ001JourneyTest.Bench(true, true);
+        bench.approve(FMlocalJ001JourneyTest.Bench.LLAMA3_EXAMINED);
+
+        AnalyzeCmdTest.Base299.Captured text = bench.get("analyzer", "naturalness");
+        AnalyzeCmdTest.Base299.Captured json = bench.get("analyzer", "naturalness", "-f", "json");
+
+        assertEquals(0, text.exit(), text.err());
+        assertTrue(text.out().contains("Tools:\n  - llama3:8b en Ollama · llama3:8b@365c0bd3c000 · disponible · "
+                + "examen de llama3:8b@365c0bd3c000 · native-yes-no-1: aprobado el 1/10\n"), text.out());
+        assertTrue(text.out().contains("  - claude -p (alternativa) · naturalness-yes-no-v1 · disponible · examen de "
+                + "naturalness-yes-no-v1: sin examen\n"), text.out());
+        assertEquals(0, json.exit(), json.err());
+        JsonNode tools;
+        try {
+            tools = new ObjectMapper().readTree(json.out()).get("tools");
+        } catch (IOException e) {
+            throw new java.io.UncheckedIOException(e);
+        }
+        assertEquals(2, tools.size());
+        assertEquals(List.of("llama3:8b en Ollama", "llama3:8b@365c0bd3c000", "true", "APPROVED", "false"),
+                List.of(tools.get(0).get("tool").asText(), tools.get(0).get("version").asText(),
+                        tools.get(0).get("available").asText(), tools.get(0).get("examState").asText(),
+                        tools.get(0).get("alternative").asText()));
+        assertEquals(List.of("claude -p", "naturalness-yes-no-v1", "true", "NOT_TAKEN", "true"),
+                List.of(tools.get(1).get("tool").asText(), tools.get(1).get("version").asText(),
+                        tools.get(1).get("available").asText(), tools.get(1).get("examState").asText(),
+                        tools.get(1).get("alternative").asText()));
+        assertEquals(0, bench.llama3.calls() + bench.claude.calls(), "the card consults no one");
     }
 
     @Test

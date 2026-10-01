@@ -61,7 +61,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -1148,17 +1147,47 @@ public class DefaultJudgeRuntimeTest {
     @DisplayName("should declare, for the claude -p alternative of naturalness opened without budget, how many consultations its pending sentences would cost and their hours one at a time and four at a time, consulting none")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R008")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldDeclareForTheClaudePAlternativeOfNaturalnessOpenedWithoutBudgetHowManyConsultationsItsPendingSentencesWouldCostAndTheirHoursOneAtATimeAndFourAtATimeConsultingNone() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MLOCAL-R008: without Ollama, naturalness opens its claude -p alternative with the run's policy;
+        // without --budget naturalness=N that is budget 0, and what is pending is a declared cost.
+        approved("naturalness", "naturalness-yes-no-v1");
+        ScriptedJudge alternative = ScriptedJudge.healthy("naturalness-yes-no", "naturalness-yes-no-v1");
+        JudgeSessions opened = runtime.open("naturalness", List.of(alternative), null);
+
+        assertEquals(0, opened.getEffectivePolicy().getMaxNewEvaluations(), "no --budget, no consultation");
+        List<EvaluationResolution> resolved = resolve(opened, 0, pendingRequests("s", 378));
+        JudgeCostEstimate cost = runtime.coverage(opened, pendingTally(AuditTarget.QUIZ, 378)).getCost();
+
+        assertTrue(resolved.stream().allMatch(r -> r.getKind() == EvaluationResolutionKind.PENDING));
+        assertEquals(378, cost.getPendingUnits());
+        assertEquals(378, cost.getPendingConsultations(), "one consultation per pending sentence");
+        assertEquals(189.0, cost.getRatePerHour(), 1e-9, "without history, the configured rate");
+        assertEquals(2.0, cost.getHoursOneAtATime(), 1e-6);
+        assertEquals(4, cost.getMaxConcurrentEvaluations());
+        assertEquals(0.5, cost.getHoursConcurrent(), 1e-6);
+        assertEquals(0, alternative.calls(), "declaring the cost consults nothing");
     }
 
     @Test
     @DisplayName("should stop the consultations of the claude -p alternative of near-duplicates at the first failure of the service and let the run finish")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R007")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldStopTheConsultationsOfTheClaudePAlternativeOfNearduplicatesAtTheFirstFailureOfTheServiceAndLetTheRunFinish() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MLOCAL-R007 inv. 4: the alternative is a judge like any other; a service that fails stops its
+        // consultations at the first failure and the run ends with the cause in view (F-JEXAM-R011).
+        approved("near-duplicates", "near-duplicates-same-exercise-v1");
+        ScriptedJudge alternative = ScriptedJudge.unavailable("near-duplicates-same-exercise",
+                "near-duplicates-same-exercise-v1", SESSION_EXPIRED);
+        JudgeSessions opened = runtime.open("near-duplicates", List.of(alternative), onTheCourse(699));
+
+        List<EvaluationResolution> resolved = resolve(opened, 0, pendingRequests("par", 5));
+        JudgeCoverageDiagnosis coverage = runtime.coverage(opened, pendingTally(AuditTarget.KNOWLEDGE, 1));
+
+        assertEquals(List.of(EvaluationResolutionKind.FAILED, EvaluationResolutionKind.PENDING,
+                EvaluationResolutionKind.PENDING, EvaluationResolutionKind.PENDING, EvaluationResolutionKind.PENDING),
+                kinds(resolved));
+        assertEquals(1, alternative.calls(), "the first failure stops the rest");
+        assertEquals(SESSION_EXPIRED, coverage.getUnavailableReason());
+        assertEquals(5, coverage.getCost().getPendingConsultations(), "the failed pair is still to be judged");
     }
 }

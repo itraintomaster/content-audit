@@ -40,7 +40,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.annotation.processing.Generated;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -1791,7 +1790,6 @@ public class AnalyzeCmdTest {
     @DisplayName("should leave the 886 files of the 29/9 course identical byte for byte after analyzing it with the twenty analyzers")
     @Tag("FEAT-RONDA2")
     @Tag("F-RONDA2-R010")
-    @org.junit.jupiter.api.Disabled("FEAT-RONDA2: espera a B, que construya los proveedores de grammar, naturalness y near-duplicates")
     public void shouldLeaveThe886FilesOfThe299CourseIdenticalByteForByteAfterAnalyzingItWithTheTwentyAnalyzers(@org.junit.jupiter.api.io.TempDir Path workdir) {
         // F-RONDA2-R010 inv. 3 (F-HALL-R015): analyze reads the course and writes only its analysis --
         // with the twenty analyzers, the 886 files of the 29/9 course stay byte for byte.
@@ -1815,9 +1813,19 @@ public class AnalyzeCmdTest {
     @DisplayName("should print what is missing and how to install it, exit non-zero and save no analysis when asked to run naturalness without Ollama nor claude -p")
     @Tag("FEAT-MLOCAL")
     @Tag("F-MLOCAL-R003")
-    @Disabled("FEAT-RONDA2: espera a B, stub de FEAT-MLOCAL sin implementar")
     public void shouldPrintWhatIsMissingAndHowToInstallItExitNonzeroAndSaveNoAnalysisWhenAskedToRunNaturalnessWithoutOllamaNorClaudeP() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // F-MLOCAL-R003 inv. 1 (hook B-05): Ollama off and the alternative without its definition.
+        FMlocalJ001JourneyTest.Bench bench = new FMlocalJ001JourneyTest.Bench(false, false);
+
+        Base299.Captured analyzed = bench.analyze("--analyzers", "naturalness", "-f", "json");
+
+        assertEquals(1, analyzed.exit(), "a code other than 0");
+        assertTrue(analyzed.err().contains("Error: Analyzer 'naturalness' needs llama3:8b en Ollama o claude -p, "
+                + "which is not available: ollama pull llama3:8b."), "what is missing and how to install it: "
+                + analyzed.err());
+        assertEquals("", analyzed.out(), "no report printed");
+        assertEquals(List.of(), bench.store.list(), "no analysis saved");
+        verify(bench.repository, never()).load(any());
     }
 
     // -----------------------------------------------------------------------
