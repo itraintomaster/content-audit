@@ -214,6 +214,7 @@ class AnswerCompletenessAnalyzer implements ContentAnalyzer {
         AnswerCompletenessDiagnosis diagnosis = found.get();
         String statement = studentViewRenderer.render(quiz).getStatement();
         List<FindingDraft> drafts = new ArrayList<>();
+        Set<String> markers = new LinkedHashSet<>();
         for (MissingAcceptedForm form : diagnosis.getMissingForms()) {
             String accepted = String.join(" | ", acceptedOf(quiz, form.getGapIndex()));
             String where = equates(form.getEquivalenceClass())
@@ -224,8 +225,14 @@ class AnswerCompletenessAnalyzer implements ContentAnalyzer {
                     new EvidencePart("Acepta", accepted), new EvidencePart("Falta", form.getMissingForm()));
             String observation = statement + " → acepta " + accepted + "; falta " + form.getMissingForm() + ". "
                     + where + "; la primera respuesta y su audio no cambian.";
-            drafts.add(new FindingDraft(ruleOf(form.getEquivalenceClass()),
-                    form.getMissingForm().toLowerCase(Locale.ROOT), form.getSeverity(), FindingResolution.RULE,
+            // R005: the identity is the form; the same form missing in two gaps gets the second gap's number.
+            String rule = ruleOf(form.getEquivalenceClass());
+            String marker = form.getMissingForm().toLowerCase(Locale.ROOT);
+            if (!markers.add(rule + "|" + marker)) {
+                marker = marker + " (hueco " + (form.getGapIndex() + 1) + ")";
+                markers.add(rule + "|" + marker);
+            }
+            drafts.add(new FindingDraft(rule, marker, form.getSeverity(), FindingResolution.RULE,
                     new FindingEvidence(examined, observation, List.of())));
         }
         Map<FormRequestSource, Integer> bySource = new EnumMap<>(FormRequestSource.class);
