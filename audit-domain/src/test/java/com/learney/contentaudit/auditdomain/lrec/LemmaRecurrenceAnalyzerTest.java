@@ -439,9 +439,12 @@ public class LemmaRecurrenceAnalyzerTest {
         org.mockito.Mockito.lenient().when(exposureClassifier.classify(org.mockito.ArgumentMatchers.anyDouble(),
                 org.mockito.ArgumentMatchers.any())).thenAnswer(invocation ->
                 (double) invocation.getArgument(0) <= 8 ? ExposureStatus.NORMAL : ExposureStatus.SUB_EXPOSED);
+        // 100 different words written with letters (waa, wab, ...): since 1/10 a lemma with figures, as
+        // «w0», is not a word of the analysis (F-RECUR-R001).
         List<NlpToken> words = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
-            words.add(new NlpToken("w" + i, "w" + i, "NOUN", 1, false, false));
+            String word = "w" + (char) ('a' + i / 26) + (char) ('a' + i % 26);
+            words.add(new NlpToken(word, word, "NOUN", 1, false, false));
         }
         AuditNode root = makeNode(AuditTarget.COURSE, null);
         for (String id : List.of("q1", "q2")) {
@@ -469,16 +472,18 @@ public class LemmaRecurrenceAnalyzerTest {
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R001")
     public void shouldGiveTheCourseOf299ALemmarecurrenceScoreOf008With134Normal1570UnderexposedAnd46OverexposedOfIts1750ReturningLemmas() {
-        // R001: the 91,873 positions of the 29/9 course in order A1 → B2 give 0,08: 134 normal, 1,570
-        // under-exposed and 46 over-exposed of its 1,750 returning lemmas.
+        // R001: the 91,873 positions of the 29/9 course in order A1 → B2 give 0,08: 131 normal, 1,566
+        // under-exposed and 46 over-exposed of its 1,743 returning lemmas (1/10: «'», «-», «i.», «1st»,
+        // «3rd», «4th» and «comic_strip» are not words; before, 134, 1,570 and 46 of 1,750). The name of
+        // this test still carries the numbers of 30/9: it comes from sentinel.yaml (pending, @qa-tester).
         Run299 run = run299();
 
         assertEquals(0.08, run.root.getScores().get("lemma-recurrence"), 1e-12, "R001: the score of today");
         LemmaRecurrenceResult result = run.diagnosis().getResult();
-        assertEquals(1750, result.getLemmaStats().size(), "R001: 1,750 returning lemmas");
-        assertEquals(List.of(134, 1570, 46), List.of(result.getExposureSummary().getNormalCount(),
+        assertEquals(1743, result.getLemmaStats().size(), "R001: 1,743 returning lemmas");
+        assertEquals(List.of(131, 1566, 46), List.of(result.getExposureSummary().getNormalCount(),
                 result.getExposureSummary().getSubExposedCount(), result.getExposureSummary().getOverExposedCount()),
-                "R001: 134 normal, 1,570 under-exposed, 46 over-exposed");
+                "R001: 131 normal, 1,566 under-exposed, 46 over-exposed");
         assertEquals(91873, run.positions, "the 91,873 positions of the course");
     }
 
@@ -619,15 +624,16 @@ public class LemmaRecurrenceAnalyzerTest {
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R004")
     public void shouldPublishForTheCourseOf299A1450ReturningLemmasWith178Normal396A2752With155206B11139With161141AndB2819With165201() {
-        // R004 on the 29/9 course: A1 450 returning lemmas, 178 normal (39,6 %); A2 752, 155 (20,6 %);
-        // B1 1,139, 161 (14,1 %); B2 819, 165 (20,1 %).
+        // R004 on the 29/9 course, with only the lemmas written with letters (1/10): A1 448 returning
+        // lemmas, 176 normal (39,3 %); A2 752, 155 (20,6 %); B1 1,137, 161 (14,2 %); B2 818, 165 (20,2 %).
+        // The name of this test still carries the numbers of 30/9 (pending, @qa-tester).
         List<String> levels = run299().diagnosis().getLevels().stream().map(l -> l.getLevel() + " " + l.getPositions()
                 + " " + l.getReturningLemmas() + " " + l.getNormalCount() + " " + l.getSubExposedCount() + " "
                 + l.getOverExposedCount() + " " + String.format(java.util.Locale.ROOT, "%.1f", 100 * l.getNormalShare()))
                 .toList();
 
-        assertEquals(List.of("A1 15802 450 178 257 15 39.6", "A2 18967 752 155 569 28 20.6",
-                "B1 38949 1139 161 938 40 14.1", "B2 18155 819 165 607 47 20.1"), levels, "R004: the table of the detail");
+        assertEquals(List.of("A1 15802 448 176 257 15 39.3", "A2 18967 752 155 569 28 20.6",
+                "B1 38949 1137 161 938 38 14.2", "B2 18155 818 165 607 46 20.2"), levels, "R004: the table of the detail");
     }
 
     @Test
@@ -748,16 +754,17 @@ public class LemmaRecurrenceAnalyzerTest {
     @Tag("FEAT-RECUR")
     @Tag("F-RECUR-R005")
     public void shouldLeave1616FindingsInTheCourseOf2991570ForUnderexposedAnd46ForOverexposedLemmas() {
-        // R005 on the 29/9 course: 1,616 findings, 1,570 for under-exposed lemmas and 46 for over-exposed ones.
+        // R005 on the 29/9 course: 1,612 findings, 1,566 for under-exposed lemmas and 46 for over-exposed
+        // ones (1/10, only lemmas written with letters; the name keeps the 1,616 of 30/9, pending @qa-tester).
         Run299 run = run299();
 
         List<FindingDraft> drafts = run.analyzer.findingsAt(run.root);
 
-        assertEquals(1616, drafts.size(), "R005: 1,616 findings");
+        assertEquals(1612, drafts.size(), "R005: 1,612 findings");
         Map<String, Integer> byState = new java.util.TreeMap<>();
         drafts.forEach(d -> d.getEvidence().getExamined().stream().filter(p -> "Estado".equals(p.getLabel()))
                 .forEach(p -> byState.merge(p.getText(), 1, Integer::sum)));
-        assertEquals(Map.of("poco vista", 1570, "sobre-expuesta", 46), byState, "R005: 1,570 and 46");
+        assertEquals(Map.of("poco vista", 1566, "sobre-expuesta", 46), byState, "R005: 1,566 and 46");
     }
 
     // -----------------------------------------------------------------------

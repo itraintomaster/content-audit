@@ -25,6 +25,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Pattern;
 import javax.annotation.processing.Generated;
 
 /**
@@ -33,7 +34,9 @@ import javax.annotation.processing.Generated;
  * <ul>
  *   <li>F-RECUR-R001: the positions in order A1 → B2, the 2,000 most used lemmas, over-exposed at a
  *       mean interval of 50 or less and under-exposed beyond 1,000; the course score is the share of
- *       normal lemmas, as before. No level gets a score of it.</li>
+ *       normal lemmas, as before. No level gets a score of it. Only a lemma written with letters is a
+ *       word that returns: the punctuation, the symbols and the numbers in figures the tagger reads as
+ *       content («'», «-», «i.», «3rd») keep their position but are never a lemma of the analysis.</li>
  *   <li>F-RECUR-R003: the course diagnosis publishes every analysed lemma -- count, mean interval,
  *       status, deviation, its longest gap with the levels where it starts and ends, and its levels --
  *       from most to least frequent.</li>
@@ -55,6 +58,14 @@ public class LemmaRecurrenceAnalyzer implements ContentAnalyzer {
 
     /** F-RECUR-R005: the one rule of this analyzer, as its card declares it. */
     static final String RULE_RECURRENCE = "F-RECUR-R005";
+
+    /**
+     * F-RECUR-R001: a lemma written with letters, joined at most by an apostrophe or a hyphen
+     * («o'clock», «well-known»). Not «'» («I 'm»), «-» («in - Spain»), «i.» («Neither am I.»), «a.m.»
+     * nor a number in figures, ordinal or not («3rd», «1900»): the shared tagger reads them as nouns,
+     * verbs or adjectives, but they are not vocabulary that comes back. «third» is still a word.
+     */
+    private static final Pattern WORD = Pattern.compile("\\p{L}+(['’-]\\p{L}+)*");
 
     private final ContentWordFilter contentWordFilter;
     private final LemmaRecurrenceConfig lemmaRecurrenceConfig;
@@ -105,7 +116,7 @@ public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter, LemmaRecurre
             }
             if (token != null && contentWordFilter.isContentWord(token)) {
                 String lemma = token.getLemma();
-                if (lemma != null && !lemma.isEmpty()) {
+                if (lemma != null && WORD.matcher(lemma).matches()) {
                     lemmaPositions.computeIfAbsent(lemma, k -> new ArrayList<>()).add(globalPosition);
                     lemmaPositionLevels.computeIfAbsent(lemma, k -> new ArrayList<>()).add(level);
                     lemmaPosTag.putIfAbsent(lemma, token.getPosTag());
@@ -317,7 +328,7 @@ public LemmaRecurrenceAnalyzer(ContentWordFilter contentWordFilter, LemmaRecurre
     }
 
     /** «movie: 90 veces, vuelve cada 1.005 palabras (meta: más de 50 y hasta 1.000); su hueco más largo, 6.510, va de A1 a A2». */
-    /** «8,0 % de las 1.750 palabras analizadas vuelve a un intervalo sano»: the measure of the course. */
+    /** «8,0 % de las 1.743 palabras analizadas vuelve a un intervalo sano»: the measure of the course. */
     private static String courseMeasure(LemmaRecurrenceResult result) {
         int measured = result.getLemmaStats().size();
         int normal = result.getExposureSummary() != null ? result.getExposureSummary().getNormalCount() : 0;

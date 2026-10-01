@@ -77,7 +77,7 @@ public class FRecurJ001JourneyTest {
         // === Node: hallazgos ===
         // Gate: F-RECUR-R005 -- below 1, one low finding that only orders per lemma out of range, in the course
         List<Finding> findings = course.getFindings().stream().filter(f -> RECURRENCE.equals(f.getAnalyzer())).toList();
-        assertEquals(1616, findings.size(), "R005: 1,570 under-exposed and 46 over-exposed lemmas");
+        assertEquals(1612, findings.size(), "R005: 1,566 under-exposed and 46 over-exposed lemmas");
         assertTrue(findings.stream().allMatch(f -> "F-RECUR-R005".equals(f.getRule())
                 && "LOW".equals(f.getSeverity().name()) && "RANK_ONLY".equals(f.getResolution().name())),
                 "R005: low and only ordering");
@@ -85,7 +85,7 @@ public class FRecurJ001JourneyTest {
         // === Node: por_nivel ===
         // Gate: F-RECUR-R002, F-RECUR-R004 -- each level brings its recurrence as detail, and the score, the
         // 73,9 % and the 4,036 tasks stay the same
-        assertEquals(List.of("A1 450 178", "A2 752 155", "B1 1139 161", "B2 819 165"), levels(diagnosis),
+        assertEquals(List.of("A1 448 176", "A2 752 155", "B1 1137 161", "B2 818 165"), levels(diagnosis),
                 "R004: the recurrence of each level");
         for (AuditNode level : course.getChildren()) {
             assertFalse(level.getScores().containsKey(RECURRENCE), "R004: detail, never a score of the level");
@@ -113,7 +113,7 @@ public class FRecurJ001JourneyTest {
         // === Node: por_palabra ===
         // Gate: F-RECUR-R003 -- every analysed lemma, normal, with its data
         LemmaRecurrenceCourseDiagnosis diagnosis = diagnosis(course);
-        assertEquals(1750, diagnosis.getResult().getLemmaStats().size(), "R003: the 1,750 returning lemmas");
+        assertEquals(1743, diagnosis.getResult().getLemmaStats().size(), "R003: the 1,743 returning lemmas");
         assertTrue(diagnosis.getResult().getLemmaStats().stream().allMatch(s -> "NORMAL".equals(s.getExposureStatus().name())
                 && s.getLongestGap() > 0 && !s.getLevels().isEmpty()), "R003: each with its data, all normal");
         assertTrue(course.getFindings().stream().noneMatch(f -> RECURRENCE.equals(f.getAnalyzer())),
@@ -122,7 +122,7 @@ public class FRecurJ001JourneyTest {
         // === Node: por_nivel ===
         // Gate: F-RECUR-R002, F-RECUR-R004 -- each level brings its recurrence as detail; at 1 the plan opens
         // no LEMMA_RECURRENCE task, and the rest of the plan is the one of before
-        assertEquals(List.of("A1 450 450", "A2 752 752", "B1 1139 1139", "B2 819 819"), levels(diagnosis),
+        assertEquals(List.of("A1 448 448", "A2 752 752", "B1 1137 1137", "B2 818 818"), levels(diagnosis),
                 "R004: every returning lemma of each level is normal");
         for (AuditNode level : course.getChildren()) {
             assertFalse(level.getScores().containsKey(RECURRENCE), "R004: detail, never a score of the level");
