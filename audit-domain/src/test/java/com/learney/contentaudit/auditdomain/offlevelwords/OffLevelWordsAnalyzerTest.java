@@ -529,6 +529,308 @@ public class OffLevelWordsAnalyzerTest {
     }
 
     // -----------------------------------------------------------------------
+    // F-NIVFR-R002 to R004: the catalog's own level first (1/10)
+    // -----------------------------------------------------------------------
+
+    @Test
+    @DisplayName("should not mark 'smoking' in the A1 list 'smoke - smoking' of a topic that does not teach -ing, because the EVP lists 'smoking' as a form of 'smoke' at A1 although the lemma 'smoking' resolves to B2")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R002")
+    public void shouldNotMarkSmokingInTheA1ListSmokeSmokingOfATopicThatDoesNotTeachIngBecauseTheEVPListsSmokingAsAFormOfSmokeAtA1AlthoughTheLemmaSmokingResolvesToB2(
+            ) {
+        // R002: the lemma «smoking» resolves to B2 (a curated entry), but the EVP also lists «smoking»
+        // as a form of smoke at A1 (F-LABS-R040 keeps it out of smoke's level): its own level wins.
+        String tokens = "smoke|smoke|NOUN -|-|PUNCT smoking|smoking|NOUN";
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Listas de palabras", "q-smoking", "smoke - smoking", "fumando", tokens);
+        course.walk(smokingLexicon().derived("smoking", CefrLevel.A1).analyzer());
+        assertEquals(List.of(), lemmas(quiz), "R002: smoking is A1 as a form of smoke");
+
+        Course without = new Course();
+        AuditNode marked = without.quiz("A1", "Listas de palabras", "q-smoking", "smoke - smoking", "fumando", tokens);
+        without.walk(smokingLexicon().analyzer());
+        assertEquals(List.of("smoking"), lemmas(marked), "without the form, the lemma's B2 marks it");
+    }
+
+    @Test
+    @DisplayName("should mark 'rewarding' in a B1 quiz of a topic that does not teach -ing, out of the lemmas of the EVP and with its base 'reward' at B1, because the EVP lists 'rewarding' apart at C1")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R002")
+    public void shouldMarkRewardingInAB1QuizOfATopicThatDoesNotTeachIngOutOfTheLemmasOfTheEVPAndWithItsBaseRewardAtB1BecauseTheEVPListsRewardingApartAtC1(
+            ) {
+        // R002: out of the lemmas of the EVP, «rewarding» would take the level of its base, reward (B1);
+        // but the EVP lists «rewarding» apart at C1, two levels above the quiz, and that level wins.
+        String tokens = "Gardening|garden|VERB is|be|AUX quite|quite|ADV rewarding|rewarding|ADJ|9447 .|.|PUNCT";
+        Course course = new Course();
+        AuditNode quiz = course.quiz("B1", "Trabajo y tiempo libre", "q-rewarding", "Gardening is quite rewarding.",
+                "La jardinería es bastante gratificante.", tokens);
+        course.walk(rewardingLexicon().derived("rewarding", CefrLevel.C1).analyzer());
+        assertEquals(List.of("rewarding"), lemmas(quiz), "R002: the EVP's C1 wins over the base");
+
+        Course without = new Course();
+        AuditNode cleared = without.quiz("B1", "Trabajo y tiempo libre", "q-rewarding", "Gardening is quite rewarding.",
+                "La jardinería es bastante gratificante.", tokens);
+        without.walk(rewardingLexicon().analyzer());
+        assertEquals(List.of(), lemmas(cleared), "a derivative the EVP does not list takes the level of its base");
+    }
+
+    @Test
+    @DisplayName("should not mark 'terrifying' in a B1 quiz when the EVP lists it as a form of 'terrify' at B2, one level above, even with no reading of its base")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R002")
+    public void shouldNotMarkTerrifyingInAB1QuizWhenTheEVPListsItAsAFormOfTerrifyAtB2OneLevelAboveEvenWithNoReadingOfItsBase(
+            ) {
+        // R002: «terrify» is not among the lemmas, so no reading of the base can bring «terrifying» within
+        // reach; the EVP lists it at B2, one level above the quiz, which is never an error.
+        String tokens = "The|the|DET storm|storm|NOUN was|be|AUX terrifying|terrifying|ADJ|8327 .|.|PUNCT";
+        Lexicon lexicon = new Lexicon().level("storm", "NOUN", CefrLevel.A2);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("B1", "El clima", "q-terrifying", "The storm was terrifying.",
+                "La tormenta fue aterradora.", tokens);
+        course.walk(lexicon.derived("terrifying", CefrLevel.B2).analyzer());
+        assertEquals(List.of(), lemmas(quiz), "R002: B2 is one level above B1");
+
+        Course without = new Course();
+        AuditNode marked = without.quiz("B1", "El clima", "q-terrifying", "The storm was terrifying.",
+                "La tormenta fue aterradora.", tokens);
+        without.walk(new Lexicon().level("storm", "NOUN", CefrLevel.A2).analyzer());
+        assertEquals(List.of("terrifying"), lemmas(marked), "without the form, it is out of the EVP in the strong band");
+    }
+
+    @Test
+    @DisplayName("should not mark a derivative out of the EVP that the EVP does not list either and whose base is within reach, like 'creamy' (cream A2) in a B1 quiz")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R002")
+    public void shouldNotMarkADerivativeOutOfTheEVPThatTheEVPDoesNotListEitherAndWhoseBaseIsWithinReachLikeCreamyCreamA2InAB1Quiz(
+            ) {
+        // R002 f.: a derivative the EVP lists neither by its lemma nor apart takes the level of its base:
+        // creamy is cream (A2) + y, within reach of a B1 quiz.
+        Lexicon lexicon = new Lexicon().level("soup", "NOUN", CefrLevel.A1).level("cream", "NOUN", CefrLevel.A2);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("B1", "Comidas", "q-creamy", "The soup is creamy.", "La sopa es cremosa.",
+                "The|the|DET soup|soup|NOUN is|be|AUX creamy|creamy|ADJ|8799 .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(List.of(), lemmas(quiz), "R002: creamy takes the level of cream");
+    }
+
+    @Test
+    @DisplayName("should mark 'nicely' (B2) in an A1 quiz of a topic that does not teach -ly, since a base never beats the level the EVP gives a word")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R002")
+    public void shouldMarkNicelyB2InAnA1QuizOfATopicThatDoesNotTeachLySinceABaseNeverBeatsTheLevelTheEVPGivesAWord(
+            ) {
+        // R002: the EVP brings «nicely» at B2; outside a topic that teaches -ly, its base «nice» (A1)
+        // does not decide its level.
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Rutinas", "q-nicely", "She writes nicely.", "Ella escribe bien.",
+                NICELY_TOKENS);
+
+        course.walk(nicelyLexicon().analyzer());
+
+        assertEquals(List.of("nicely"), lemmas(quiz), "R002: the EVP's B2 wins over nice");
+    }
+
+    @Test
+    @DisplayName("should mark the noun 'fine' (B1) in the A1 quiz 'He paid a fine.' although the adjective is A1, because another category only counts in a list of words")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R002")
+    public void shouldMarkTheNounFineB1InTheA1QuizHePaidAFineAlthoughTheAdjectiveIsA1BecauseAnotherCategoryOnlyCountsInAListOfWords(
+            ) {
+        // R002 b.: in a sentence the tagger reads the category well, and the adjective fine (A1) is
+        // another word than the noun fine (a penalty, B1).
+        Lexicon lexicon = new Lexicon().level("fine", "NOUN", CefrLevel.B1).level("fine", "ADJ", CefrLevel.A1)
+                .level("pay", "VERB", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Dinero", "q-fine", "He paid a fine.", "Pagó una multa.",
+                "He|he|PRON paid|pay|VERB a|a|DET fine|fine|NOUN .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(List.of("fine"), lemmas(quiz), "R002: the noun is B1 in a sentence");
+    }
+
+    @Test
+    @DisplayName("should read 'run' as the verb (A1) and not mark it in the A1 list 'run - running', where the tagger reads a noun (B1)")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R002")
+    public void shouldReadRunAsTheVerbA1AndNotMarkItInTheA1ListRunRunningWhereTheTaggerReadsANounB1() {
+        // R002 b.: a list of words, with no determiner, pronoun, auxiliary nor preposition, gives the tagger
+        // no sentence to read the category from: «run» there is the verb, A1.
+        Lexicon lexicon = new Lexicon().level("run", "NOUN", CefrLevel.B1).level("run", "VERB", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Listas de palabras", "q-run", "run - running", "corriendo",
+                "run|run|NOUN -|-|PUNCT running|run|VERB");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(List.of(), lemmas(quiz), "R002: the verb run is A1");
+    }
+
+    @Test
+    @DisplayName("should not mark 'takeout' (out of the EVP) in an A2 quiz, reading it as its British pair 'takeaway' (B1)")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R002")
+    public void shouldNotMarkTakeoutOutOfTheEVPInAnA2QuizReadingItAsItsBritishPairTakeawayB1() {
+        // R002 d.: takeout and takeaway name the same thing in common use; the EVP is British and brings
+        // takeaway at B1, one level above an A2 quiz.
+        String tokens = "We|we|PRON order|order|VERB takeout|takeout|NOUN|14617 for|for|ADP dinner|dinner|NOUN .|.|PUNCT";
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A2", "Comidas", "q-takeout", "We order takeout for dinner.",
+                "Pedimos comida para llevar para la cena.", tokens);
+        course.walk(dinnerLexicon().level("takeaway", "NOUN", CefrLevel.B1).analyzer());
+        assertEquals(List.of(), lemmas(quiz), "R002: takeout reads as takeaway, B1");
+
+        Course without = new Course();
+        AuditNode marked = without.quiz("A2", "Comidas", "q-takeout", "We order takeout for dinner.",
+                "Pedimos comida para llevar para la cena.", tokens);
+        without.walk(dinnerLexicon().analyzer());
+        assertEquals(List.of("takeout"), lemmas(marked), "without takeaway in the EVP, nothing brings it within reach");
+    }
+
+    @Test
+    @DisplayName("should mark 'recess' (out of the EVP) in a B1 quiz although 'break' is A1, because recess and break do not name the same thing in common use")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R002")
+    public void shouldMarkRecessOutOfTheEVPInAB1QuizAlthoughBreakIsA1BecauseRecessAndBreakDoNotNameTheSameThingInCommonUse(
+            ) {
+        // R002 d.: a pair that only overlaps is not a variant: «break» is any pause, «recess» the
+        // school's (or a parliament's), so its A1 does not reach recess.
+        Lexicon lexicon = new Lexicon().level("break", "NOUN", CefrLevel.A1).level("student", "NOUN", CefrLevel.A1)
+                .level("play", "VERB", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("B1", "La escuela", "q-recess", "The students play during recess.",
+                "Los estudiantes juegan durante el recreo.",
+                "The|the|DET students|student|NOUN play|play|VERB during|during|ADP recess|recess|NOUN|8060 .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(List.of("recess"), lemmas(quiz), "R002: recess is not break");
+    }
+
+    @Test
+    @DisplayName("should keep marking 'truck' when the EVP brings it two levels above the A2 quiz, even though its British pair 'lorry' is A2")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R002")
+    public void shouldKeepMarkingTruckWhenTheEVPBringsItTwoLevelsAboveTheA2QuizEvenThoughItsBritishPairLorryIsA2(
+            ) {
+        // R002 d.: the British pair is for a word the EVP does not bring; when it brings the American
+        // word with its own level, that level wins.
+        Lexicon lexicon = new Lexicon().level("truck", "NOUN", CefrLevel.B2).level("lorry", "NOUN", CefrLevel.A2)
+                .level("red", "ADJ", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A2", "Colores", "q-truck", "The truck is red.", "El camión es rojo.",
+                "The|the|DET truck|truck|NOUN is|be|AUX red|red|ADJ .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(List.of("truck"), lemmas(quiz), "R002: the EVP's B2 for truck wins over lorry");
+    }
+
+    @Test
+    @DisplayName("should not mark 'nicely' (B2) in an A1 quiz of a topic whose title teaches '$-ly$', because forming it from 'nice' (A1) is the exercise")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R003")
+    public void shouldNotMarkNicelyB2InAnA1QuizOfATopicWhoseTitleTeachesLyBecauseFormingItFromNiceA1IsTheExercise(
+            ) {
+        // R003 4.: the topic teaches -ly on adjectives of the level; there, forming «nicely» from «nice»
+        // is the exercise, even though the EVP brings nicely at B2.
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Adjetivo + $-ly$", "q-nicely-ly", "She writes nicely.",
+                "Ella escribe de manera agradable.", NICELY_TOKENS);
+
+        course.walk(nicelyLexicon().analyzer());
+
+        assertEquals(1.0, quiz.getScores().get(NAME), "R003: the topic teaches the suffix");
+        assertEquals(List.of(), lemmas(quiz));
+    }
+
+    @Test
+    @DisplayName("should mark 'allergic' in an A2 quiz although the translation adapts it to Spanish, because an adjective that looks Spanish is not a loan")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R004")
+    public void shouldMarkAllergicInAnA2QuizAlthoughTheTranslationAdaptsItToSpanishBecauseAnAdjectiveThatLooksSpanishIsNotALoan(
+            ) {
+        // R004: only a noun is a loan; «alérgica» looks like «allergic», a cognate the A2 student
+        // still has to know.
+        Lexicon lexicon = new Lexicon().level("coconut", "NOUN", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A2", "Salud", "q-allergic", "She is allergic to coconuts.",
+                "Es alérgica a los cocos.",
+                "She|she|PRON is|be|AUX allergic|allergic|ADJ|8217 to|to|ADP coconuts|coconut|NOUN .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(List.of("allergic"), lemmas(quiz), "R004: an adjective is not a loan");
+    }
+
+    @Test
+    @DisplayName("should not mark 'limousine' in a B2 quiz whose translation says 'limusina', a noun adapted to Spanish spelling")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R004")
+    public void shouldNotMarkLimousineInAB2QuizWhoseTranslationSaysLimusinaANounAdaptedToSpanishSpelling() {
+        // R004: «limousine» and «limusina» are the same once folded (ou is u, no final vowels): a loan.
+        Lexicon lexicon = new Lexicon().level("order", "VERB", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("B2", "Viajes", "q-limousine", "She ordered a limousine.",
+                "Ella pidió una limusina.",
+                "She|she|PRON ordered|order|VERB a|a|DET limousine|limousine|NOUN|12204 .|.|PUNCT");
+
+        course.walk(lexicon.analyzer());
+
+        assertEquals(List.of(), lemmas(quiz), "R004: a noun adapted to Spanish spelling");
+    }
+
+    @Test
+    @DisplayName("should keep marking 'adore' when the tagger reads it as a noun after 'They' and the translation says 'adoran', because the sentence uses it as a verb")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R004")
+    public void shouldKeepMarkingAdoreWhenTheTaggerReadsItAsANounAfterTheyAndTheTranslationSaysAdoranBecauseTheSentenceUsesItAsAVerb(
+            ) {
+        // R004: a verb is never a loan, not even one the tagger reads as a noun. The translation also has
+        // «adoro», which folds as «adore» does: only the place of the word, after a subject pronoun,
+        // keeps it from passing as a loan.
+        String english = "They adore Italy and I adore it too.";
+        String spanish = "Ellos adoran Italia y yo también la adoro.";
+        String tokens = "They|they|PRON adore|adore|NOUN|9000 Italy|Italy|PROPN and|and|CCONJ I|I|PRON "
+                + "adore|adore|NOUN|9000 it|it|PRON too|too|ADV .|.|PUNCT";
+        Lexicon lexicon = new Lexicon().level("too", "ADV", CefrLevel.A1);
+        Course course = new Course();
+        AuditNode quiz = course.quiz("A1", "Gustos", "q-adore-noun", english, spanish, tokens);
+        course.walk(lexicon.analyzer());
+        assertEquals(List.of("adore"), lemmas(quiz), "R004: the sentence uses it as a verb");
+
+        Course asNoun = new Course();
+        AuditNode loan = asNoun.quiz("A1", "Gustos", "q-adore-noun", "Italy is my adore.", spanish,
+                "Italy|Italy|PROPN is|be|AUX my|my|PRON adore|adore|NOUN|9000 .|.|PUNCT");
+        asNoun.walk(lexicon.analyzer());
+        assertEquals(List.of(), lemmas(loan), "after a determiner the same noun would pass as a loan (adoro)");
+    }
+
+    @Test
+    @DisplayName("should keep marking 'rehabilitation' in a B1 quiz although the translation adapts it to Spanish, because the EVP lists it as a form of 'rehabilitate' at C1")
+    @Tag("FEAT-NIVFR")
+    @Tag("F-NIVFR-R004")
+    public void shouldKeepMarkingRehabilitationInAB1QuizAlthoughTheTranslationAdaptsItToSpanishBecauseTheEVPListsItAsAFormOfRehabilitateAtC1(
+            ) {
+        // R004: «rehabilitación» is «rehabilitation» adapted, but the EVP lists the word as a form of
+        // rehabilitate at C1, two levels above the quiz: a cognate it puts that high is not a loan.
+        String tokens = "He|he|PRON needs|need|VERB rehabilitation|rehabilitation|NOUN|9800 .|.|PUNCT";
+        Course course = new Course();
+        AuditNode quiz = course.quiz("B1", "Salud", "q-rehabilitation", "He needs rehabilitation.",
+                "Él necesita rehabilitación.", tokens);
+        course.walk(needLexicon().derived("rehabilitation", CefrLevel.C1).analyzer());
+        assertEquals(List.of("rehabilitation"), lemmas(quiz), "R004: the EVP's C1 wins over the loan");
+
+        Course without = new Course();
+        AuditNode loan = without.quiz("B1", "Salud", "q-rehabilitation", "He needs rehabilitation.",
+                "Él necesita rehabilitación.", tokens);
+        without.walk(needLexicon().analyzer());
+        assertEquals(List.of(), lemmas(loan), "a noun the EVP does not list is a loan when the translation adapts it");
+    }
+
+    // -----------------------------------------------------------------------
     // FEAT-NIVFR fixtures
     // -----------------------------------------------------------------------
 
@@ -558,6 +860,34 @@ public class OffLevelWordsAnalyzerTest {
     private static Lexicon investLexicon() {
         return new Lexicon().level("invest", "VERB", CefrLevel.B2).level("time", "NOUN", CefrLevel.A1)
                 .level("learn", "VERB", CefrLevel.A1);
+    }
+
+    private static final String NICELY_TOKENS = "She|she|PRON writes|write|VERB nicely|nicely|ADV .|.|PUNCT";
+
+    /** nicely is B2 in the EVP and nice A1. */
+    private static Lexicon nicelyLexicon() {
+        return new Lexicon().level("nicely", "ADV", CefrLevel.B2).level("nice", "ADJ", CefrLevel.A1)
+                .level("write", "VERB", CefrLevel.A1);
+    }
+
+    /** The lemma smoking resolves to B2 (a curated entry); smoke is a B1 noun and an A1 verb. */
+    private static Lexicon smokingLexicon() {
+        return new Lexicon().level("smoking", "NOUN", CefrLevel.B2).level("smoke", "NOUN", CefrLevel.B1)
+                .level("smoke", "VERB", CefrLevel.A1);
+    }
+
+    /** reward is a B1 noun; rewarding is not among the lemmas. */
+    private static Lexicon rewardingLexicon() {
+        return new Lexicon().level("reward", "NOUN", CefrLevel.B1).level("garden", "VERB", CefrLevel.A2)
+                .level("quite", "ADV", CefrLevel.A2);
+    }
+
+    private static Lexicon dinnerLexicon() {
+        return new Lexicon().level("order", "VERB", CefrLevel.A1).level("dinner", "NOUN", CefrLevel.A1);
+    }
+
+    private static Lexicon needLexicon() {
+        return new Lexicon().level("need", "VERB", CefrLevel.A1);
     }
 
     /**
