@@ -5,6 +5,13 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester — F-MESA-J001 en revision-domain, `com.learney.contentaudit.revisiondomain.panelengine` (4 caminos).
+  why: el corredor, la mesa, el medidor, el filtro y el guion son package-private ahí; quien propone y la compuerta se
+  arman con sus piezas públicas (ScriptedPanelProposer, DefaultGateFactory). Pasos del sistema, como F-PIPRE-J001.
+2026-10-01 — qa-tester — R014 se prueba sobre lo que ya existía (ReviseCmd, DefaultQuizInstructionCorrectionRunner y
+  DefaultQuizInstructionCandidateAssessor). La propuesta pendiente con su artefacto (R009) la guarda la tanda: se prueba
+  en F-TANDA-R007. «Un tipo sin declaración nunca se intenta» (F-TAREA-R006) vive en DefaultTopicPanel y espera al apply.
+
 2026-10-01 — integrador — Rebasado sobre ronda1/integracion y FEAT-RONDA2 (propose --replace, tech-spec write y validate en exit 0): lleva la lista entera de patrones de revision-domain. SpokenTextBuilder, interna de datacoherence, la abre FEAT-RONDA2 (sin eso la mesa no compilaba); B-08 (DOUBT-MLOCAL-MESA) con A, sin cambios de estructura.
 
 2026-09-30 — architect — La mesa mide con el motor y los analizadores del análisis de partida sobre el curso recortado
