@@ -4,6 +4,15 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (impl A) — Simulación del apply y del generate, en el scratchpad (impl-A/r006): copia descartable
+  de ronda1/integracion 35172b1c (FEAT-CIERRE ya aplicado) con esta rama encima. `patch validate -i` OK contra 859e96af y
+  contra 35172b1c. El apply en memoria y el de la CLI dan el mismo sentinel.yaml, con cambios sólo en hintcoherence y
+  answercompleteness (C no toca nada de eso). generate cambia HintIssueKind, HintAnswerCheck, DefaultHintAnswerCheck
+  (stub de checkRewrite), DefaultHintAnswerCheckTest (3 stubs), HintCoherenceAnalyzerTest (2) y dos .md de la skill; no
+  toca HintIssue ni los tests de RESPC. Main deja de compilar sólo en HintCoherenceAnalyzer.fault (el switch). Con ese
+  caso: audit-domain 682 pruebas, 5 en rojo (los stubs de R006, UnsupportedOperationException).
+  Next: el coordinador aplica y genera; encender R006 (puerto del prototipo, ficha, onQuiz) y renombrar las 2 de RESPC.
+
 2026-10-01 — qa-tester (impl A) — 5 handwrittenTests de F-PISTA-R006 fusionadas al parche del arquitecto (propose exit 0,
   backup antes por el bug 08; nada perdido): 3 en DefaultHintAnswerCheck (24f7 have; 4186 sólo practise, made sale de la
   consigna; 447b nada) y 2 en HintCoherenceAnalyzer (44f8 opinion bloqueante a la mesa; 215c rain sigue siendo de R002).

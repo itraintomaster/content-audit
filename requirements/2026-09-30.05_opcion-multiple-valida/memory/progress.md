@@ -4,6 +4,11 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — developer (impl A) — Visto al simular el parche de R006 sobre ronda1/integracion 35172b1c: FEAT-CIERRE
+  rompe la compilación de MultipleChoiceValidityAnalyzerTest:330, porque JudgeCoverageDiagnosis suma JudgeQuizTally
+  (12 argumentos). Con «, null» compila y las pruebas de la opción múltiple pasan (probado en la copia). No se arregla en
+  esta rama: su sentinel.yaml es el de 859e96af, sin FEAT-CIERRE.
+
 2026-10-01 — developer (impl A) — Con la tabla del corrector en producción (#1191, desde el 1/10/2026) R002 cuenta los 28
   ejercicios con dos incorrectas que son la misma respuesta (38 pares: A1 20 en Elegir la forma natural, A2 8 en
   Obligación): 354 ejercicios con hallazgo (A1 109, A2 115, B1 87, B2 43), 344 de mayúscula, 38 de opciones iguales y 2 de

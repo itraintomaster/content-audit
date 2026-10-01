@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — qa-tester (impl A) — Simulado en una copia de la integración: generate no agrega los stubs de los dos nombres
+  nuevos y preserva los métodos viejos, con un aviso para cada uno («DSL no longer declares this name»). Se renombran a mano
+  al encender; las 31 pruebas de answercompleteness siguen en verde mientras tanto.
+
 2026-10-01 — qa-tester (impl A) — Segundo parche de FEAT-RESPC, sólo nombres: «has trained» (R005) y la ficha (R006) se
   borran con el nombre viejo y se agregan con el que dice lo que hace el código. propose y `patch validate -i` contra
   859e96af OK (0 altas, 3 cambios). TECH_SPEC reescrito para este parche, con --replace. Después de generate, los dos
