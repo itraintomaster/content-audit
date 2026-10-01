@@ -73,9 +73,11 @@ con la alternativa no hay número ([F-NATUR-R008](#F-NATUR-R008)).
 Fijo, para que cambiar un ejercicio no mueva la marca de otro ([F-HALL-R014](#F-HALL-R014)); lo decidió José el 30/9
 ([DOUBT-NATUR-UMBRAL](#DOUBT-NATUR-UMBRAL)). Con llama3 8B en la versión medida, 9,07 en A1 (116 de 2.334) y 10,0 en A2
 (118 de 2.364). A2 se midió sin los 40 ejercicios de la lista «a / b» ([F-GRAMA-R001](#F-GRAMA-R001) inv. 5): su número
-era el de una oración sin la respuesta, y 15 pasaban el umbral de antes, 10,2 (coordinador, 1/10). Esos 40 se miden con
-su oración junto con B1 y B2, que se calculan igual sobre la base del 29/9 antes de publicar: unos 9 minutos de modelo.
-Un modelo en otra versión da otros números, así que sus umbrales se vuelven a calcular con su examen
+era el de una oración sin la respuesta, y 15 pasaban el umbral de antes, 10,2 (coordinador, 1/10); esos 40 ya se leen
+con la respuesta en su lugar, y el umbral de A2 quedó en 10,0. B1 y B2 se midieron con la misma regla sobre la base del
+29/9, con la corrida de content-audit del curso entero (1/10): de los ejercicios del nivel con número quedan marcados
+los k = int(n × 0,05) más altos, y el umbral es el número con dos decimales que deja marcados exactamente esos k (marca
+lo que queda por encima). Dan 9,91 en B1 (226 de 4.534) y 10,80 en B2 (95 de 1.901). Un modelo en otra versión da otros números, así que sus umbrales se vuelven a calcular con su examen
 ([F-MLOCAL-R006](#F-MLOCAL-R006)). Con claude -p no hay umbral: marca su «no» ([F-NATUR-R008](#F-NATUR-R008)).
 
 <a id="F-NATUR-R004"></a>

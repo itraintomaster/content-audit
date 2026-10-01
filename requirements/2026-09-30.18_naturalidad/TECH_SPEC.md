@@ -110,9 +110,11 @@ haga marcar otra que no cambió. Un umbral sólo vale para el modelo y la pregun
 configuración los guarda por versión examinada: para «llama3:8b@365c0bd3c000» con la pregunta del prototipo, 9,07 en A1
 (116 de 2.334) y 10,0 en A2 (118 de 2.364). El de A2 se midió sin los 40 ejercicios de la lista «a / b», que la oración
 terminada lee con la respuesta en su lugar (F-GRAMA-R001 inv. 5): el número del prototipo era el de una oración sin la
-respuesta (coordinador, 1/10). Esos 40, B1 y B2 se calculan con la misma regla sobre la base antes de registrar el
-examen, unos 9 minutos de modelo (B-19); un nivel sin umbral publica sus números y no marca. claude -p no
-tiene umbral: marca su «no» (R008). La pregunta y el mensaje de sistema son los de
+respuesta (coordinador, 1/10). B1 y B2 se calcularon con la misma regla sobre la base antes de registrar el examen
+(B-19, 1/10), con la corrida de content-audit del curso entero: de cada nivel, los k = int(n × 0,05) números más altos,
+y el umbral con dos decimales que deja marcados exactamente esos k. Dan 9,91 en B1 (226 de 4.534) y 10,80 en B2 (95 de
+1.901), en `DefaultNaturalnessConfig` junto a los de A1 y A2; un nivel sin umbral (C1, o uno nuevo) publica sus números
+y no marca. claude -p no tiene umbral: marca su «no» (R008). La pregunta y el mensaje de sistema son los de
 `scratchpad/ronda2-B/nat/judge_yesno.py`, se ven en `config analyzer naturalness` y son los que lee también claude -p.
 
 ```architecture
