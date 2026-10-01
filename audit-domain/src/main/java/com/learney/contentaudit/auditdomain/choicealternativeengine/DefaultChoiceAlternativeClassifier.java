@@ -16,6 +16,7 @@ import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
 import com.learney.contentaudit.auditdomain.studentview.StudentOptionView;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
 import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
@@ -143,7 +144,8 @@ class DefaultChoiceAlternativeClassifier implements ChoiceAlternativeClassifier 
         boolean correctInvalid = correct != null && !verdict.isCorrectIsValid();
 
         QuizStudentView view = quiz != null ? studentViewRenderer.render(quiz) : null;
-        List<EvidencePart> seen = exerciseAsSeen(quiz, view, items, correct);
+        String finished = quiz != null ? studentViewRenderer.finishedSentence(quiz, SentenceMode.FILL) : null;
+        List<EvidencePart> seen = exerciseAsSeen(quiz, view, finished, items, correct);
         List<FindingDraft> findings = new ArrayList<>();
         if (correctInvalid) {
             findings.add(correctNotValid(seen, correctLabel, verdict, alsoValid));
@@ -243,13 +245,15 @@ class DefaultChoiceAlternativeClassifier implements ChoiceAlternativeClassifier 
     // The exercise as the student sees it
     // -------------------------------------------------------------------------
 
-    private static List<EvidencePart> exerciseAsSeen(AuditableQuiz quiz, QuizStudentView view,
+    private static List<EvidencePart> exerciseAsSeen(AuditableQuiz quiz, QuizStudentView view, String finished,
             List<MultipleChoiceItemEntity> items, MultipleChoiceItemEntity correct) {
         List<EvidencePart> parts = new ArrayList<>();
         addIfPresent(parts, "Consigna", quiz != null ? quiz.getInstructions() : null);
         String statement = firstNonBlank(view != null ? view.getStatement() : null,
                 quiz != null ? quiz.getLabel() : null, quiz != null ? quiz.getId() : null, "(sin enunciado)");
         parts.add(new EvidencePart("Ejercicio", statement));
+        // A multiple choice is always a fill-in: the correct option in the gap, without the hint.
+        addIfPresent(parts, "Oración terminada", finished);
         List<String> shown = new ArrayList<>();
         if (view != null && view.getOptions() != null && !view.getOptions().isEmpty()) {
             // F-CIERRE-R003: the options as the student view shows them, the same the judge read.

@@ -15,6 +15,7 @@ import com.learney.contentaudit.auditdomain.singleanswer.AlternativeAnswerKind;
 import com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerDiagnosis;
 import com.learney.contentaudit.auditdomain.singleanswer.SingleAnswerVerdict;
 import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
+import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import java.util.ArrayList;
@@ -92,6 +93,9 @@ class DefaultSingleAnswerClassifier implements SingleAnswerClassifier {
         List<Gap> gaps = gapsOf(quiz, view);
         boolean severalGaps = gaps.size() > 1;
         String statement = view != null && view.getStatement() != null ? view.getStatement() : "";
+        // The classifier does not know the topic's mode, so it finishes the sentence mode-blind, as
+        // a fill-in, like the exact duplicates do (F-RONDA1-R001).
+        String finished = quiz != null ? studentViewRenderer.finishedSentence(quiz, SentenceMode.FILL) : null;
 
         List<AlternativeAnswer> counted = new ArrayList<>();
         List<String> droppedAsAccepted = new ArrayList<>();
@@ -129,7 +133,8 @@ class DefaultSingleAnswerClassifier implements SingleAnswerClassifier {
             String reason = alternative.getReason() != null ? alternative.getReason().strip() : "";
             counted.add(new AlternativeAnswer(answer, gapNumber, kind, severity, reason));
 
-            FindingEvidence evidence = evidence(quiz, statement, gap, gaps, severalGaps, answer, kind, reason);
+            FindingEvidence evidence = evidence(quiz, statement, finished, gap, gaps, severalGaps, answer, kind,
+                    reason);
             if (kind == AlternativeAnswerKind.OFFERED_BY_INSTRUCTION) {
                 drafts.add(new FindingDraft(SingleAnswerAnalyzer.RULE_OFFERED_ALTERNATIVE, marker, severity,
                         FindingResolution.RANK_ONLY, evidence));
@@ -233,12 +238,13 @@ class DefaultSingleAnswerClassifier implements SingleAnswerClassifier {
     // The evidence (F-HALL-R003): the exercise as the student sees it, never the course's format
     // -------------------------------------------------------------------------
 
-    private static FindingEvidence evidence(AuditableQuiz quiz, String statement, Gap gap, List<Gap> gaps,
-            boolean severalGaps, String answer, AlternativeAnswerKind kind, String reason) {
+    private static FindingEvidence evidence(AuditableQuiz quiz, String statement, String finished, Gap gap,
+            List<Gap> gaps, boolean severalGaps, String answer, AlternativeAnswerKind kind, String reason) {
         List<EvidencePart> examined = new ArrayList<>();
         addPart(examined, "Título", quiz != null ? quiz.getLabel() : null);
         addPart(examined, "Consigna", quiz != null ? quiz.getInstructions() : null);
         addPart(examined, "Ejercicio", statement);
+        addPart(examined, "Oración terminada", finished);
         if (gap != null) {
             addPart(examined, severalGaps ? "Respuestas aceptadas del hueco " + gap.number() : "Respuestas aceptadas",
                     String.join(" | ", gap.accepted()));
