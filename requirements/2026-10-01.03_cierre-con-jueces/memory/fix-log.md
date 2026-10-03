@@ -5,6 +5,20 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — developer (CJUEZ) — Cómo leer el paso de los jueces cuando una prueba falla: (1) el ensayo corre TODOS los
+  jueces de la tanda sobre los cuatro recortes con tope 0 explícito, y de cada juez se lee sólo el recorte de su `unit`
+  (la cobertura del recorte ajeno se ignora); (2) `reusadas` y `units` salen siempre del ensayo, `faltan` del ensayo
+  salvo en el lado que se pagó (ahí, de la corrida de pago) y `gastadas` de Σ `evaluatedInRun` de las corridas de pago;
+  (3) el cierre toma `gastadas/reusadas/units/tope` del paso previo a la compuerta y `faltan` de un ensayo nuevo sobre la
+  composición que quedó, más los pisos de las filas de la última comparación.
+  why: son los tres lugares donde mezclar de qué corrida sale cada número rompe las pruebas del cierre, del servicio y del
+  camino 3 del journey sin que el compilador diga nada.
+2026-10-03 — developer (CJUEZ) — picocli entrega `--cap -5` a `closeBatch` como un entero negativo (la prueba de CLI lo
+  muestra), así que el rechazo con «El tope tiene que ser 0 o más: --cap -5.» sale del propio `BatchCmd`, sin depender de
+  que el servicio lo atrape; el servicio lo repite igual porque `BatchService.close` es el puerto y valida su propio
+  pedido, con el mismo texto.
+  why: evitar dos mensajes distintos para el mismo error según por dónde entre el pedido.
+
 2026-10-03 — test-writer (CJUEZ) — Lo que `FCjuezJ001JourneyTest` da por sentado, medido con una prueba descartable
   sobre el comparador, la compuerta y la publicación de hoy (sin leer su código): (1) con jueces que dejan sin evaluar lo
   que la tanda cambió, el comparador real da UNDECIDABLE con los pisos de «curso, A1, Present Simple y Afirmativas

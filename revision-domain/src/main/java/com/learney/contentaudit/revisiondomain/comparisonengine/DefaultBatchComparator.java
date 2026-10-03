@@ -84,7 +84,8 @@ import javax.annotation.processing.Generated;
  * break it; a measure that changed since the baseline is shown apart and the batch is counted from the baseline
  * measured again with it. The verdict reads the floors, what returns and the blind sample, never a progress goal.
  * Every row also says what it is (F-FILAS): its visible name and explanation, which way is better, whether its
- * change improved, worsened, stayed or was not evaluated, and a real finding of the analysis as its example.
+ * change improved, worsened, stayed or was not evaluated, and a real finding of the analysis as its example. A judge
+ * whose exam is not approved decides nothing over what the batch changed and the verdict names it (F-CJUEZ-R004).
  * Comparing writes nothing.
  */
 @Generated(
@@ -220,7 +221,9 @@ public class DefaultBatchComparator implements BatchComparator {
 
         // R001, R002: the rows, with their goals -- and, F-FILAS, the name, the direction, the verdict, the
         // explanation and the example each one shows.
-        Map<String, Map<String, Integer>> changedUnevaluated = changedUnevaluated(batch, projectedIndex, subjects);
+        UnapprovedJudges unapproved = UnapprovedJudges.of(projection.getProjected());
+        Map<String, Map<String, Integer>> changedUnevaluated = changedUnevaluated(batch, projectedIndex, subjects,
+                unapproved);
         List<Goal> goalList = goals != null && goals.getGoals() != null ? goals.getGoals() : List.of();
         Legend legend = new Legend(cards(), RowExamples.index(projection.getApproved(), projection.getProjected(),
                 projectedIndex, subjects));
@@ -244,7 +247,7 @@ public class DefaultBatchComparator implements BatchComparator {
         comparison.setRows(rows);
 
         // R003: what returns.
-        List<ChangeOutcome> outcomes = outcomes(batch, startIndex, projectedIndex, projection, subjects);
+        List<ChangeOutcome> outcomes = outcomes(batch, startIndex, projectedIndex, projection, subjects, unapproved);
         comparison.setChanges(outcomes);
 
         // R004, R005: the broken floors, and who breaks a level or the course.
@@ -277,8 +280,44 @@ public class DefaultBatchComparator implements BatchComparator {
         if (pending != null) {
             verdict.setDetail(verdict.getDetail() != null ? verdict.getDetail() + " " + pending : pending);
         }
+        nameUnapprovedJudges(verdict, unapproved, batch, projectedIndex, legend);
         comparison.setVerdict(verdict);
         return comparison;
+    }
+
+    /**
+     * F-CJUEZ-R004: the verdict names, at the very end of its detail, the judges without an approved exam that read an
+     * exercise the batch changed -- «juez sin aprobar: …», by the visible name of its card, each once and in the order of
+     * the catalog --, whatever else the verdict says; a detail that ends in a full stop loses it. A judge that reads nothing
+     * the batch changed is not named: it blocks nothing.
+     */
+    private void nameUnapprovedJudges(BatchVerdict verdict, UnapprovedJudges unapproved, List<ProjectedChange> batch,
+            Map<String, AuditNode> projectedIndex, Legend legend) {
+        Set<String> readers = new LinkedHashSet<>();
+        if (!unapproved.isEmpty()) {
+            for (ProjectedChange change : batch) {
+                for (AuditNode quiz : quizzesUnder(projectedIndex.get(ReportTree.key(change.getNodeTarget(),
+                        change.getNodeId())))) {
+                    readers.addAll(unapproved.reading(quiz));
+                }
+            }
+        }
+        if (readers.isEmpty()) {
+            return;
+        }
+        List<String> names = new ArrayList<>();
+        List<AnalyzerDescriptor> catalog = analyzerCatalog != null ? analyzerCatalog.list() : null;
+        for (AnalyzerDescriptor card : catalog != null ? catalog : List.<AnalyzerDescriptor>of()) {
+            if (card != null && readers.remove(card.getName())) {
+                names.add(legend.displayName(card.getName()));
+            }
+        }
+        for (String judge : readers) {
+            names.add(legend.displayName(judge));
+        }
+        String detail = verdict.getDetail() != null ? verdict.getDetail() : "";
+        verdict.setDetail((detail.endsWith(".") ? detail.substring(0, detail.length() - 1) : detail)
+                + "; juez sin aprobar: " + String.join(", ", names));
     }
 
     // -------------------------------------------------------------------------
@@ -641,10 +680,11 @@ public class DefaultBatchComparator implements BatchComparator {
 
     /**
      * How many exercises the batch changed and an analyzer left unevaluated in the projection, per context node
-     * and analyzer -- and per «algún error», when any analyzer of the errors family left it open.
+     * and analyzer -- and per «algún error», when any analyzer of the errors family left it open. F-CJUEZ-R004: a judge
+     * without an approved exam leaves open every changed exercise it reads, though its ledger had a verdict for it.
      */
     private Map<String, Map<String, Integer>> changedUnevaluated(List<ProjectedChange> batch,
-            Map<String, AuditNode> projectedIndex, Map<String, AnalyzerFamily> subjects) {
+            Map<String, AuditNode> projectedIndex, Map<String, AnalyzerFamily> subjects, UnapprovedJudges unapproved) {
         Map<String, Map<String, Integer>> counts = new HashMap<>();
         Set<String> seen = new HashSet<>();
         for (ProjectedChange change : batch) {
@@ -658,6 +698,7 @@ public class DefaultBatchComparator implements BatchComparator {
                 }
                 Set<String> open = new LinkedHashSet<>(listOrEmpty(quiz.getUnevaluatedBy()));
                 quiz.ancestor(AuditTarget.KNOWLEDGE).ifPresent(k -> open.addAll(listOrEmpty(k.getUnevaluatedBy())));
+                open.addAll(unapproved.reading(quiz));
                 if (open.isEmpty()) {
                     continue;
                 }
@@ -694,7 +735,8 @@ public class DefaultBatchComparator implements BatchComparator {
      * return: its reasons.
      */
     private List<ChangeOutcome> outcomes(List<ProjectedChange> batch, Map<String, AuditNode> startIndex,
-            Map<String, AuditNode> projectedIndex, CourseProjection projection, Map<String, AnalyzerFamily> subjects) {
+            Map<String, AuditNode> projectedIndex, CourseProjection projection, Map<String, AnalyzerFamily> subjects,
+            UnapprovedJudges unapproved) {
         List<ChangeOutcome> outcomes = new ArrayList<>();
         if (batch.isEmpty()) {
             return outcomes;
@@ -754,6 +796,9 @@ public class DefaultBatchComparator implements BatchComparator {
             Set<String> undecided = new LinkedHashSet<>();
             for (AuditNode node : nodesUnder(after)) {
                 undecided.addAll(listOrEmpty(node.getUnevaluatedBy()));
+                if (node.getTarget() == AuditTarget.QUIZ) {
+                    undecided.addAll(unapproved.reading(node));
+                }
             }
             outcomes.add(new ChangeOutcome(change.getProposalId(), change.getNodeTarget(), change.getNodeId(),
                     !gained.isEmpty(), gained, fixed, new ArrayList<>(undecided)));

@@ -4,6 +4,19 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — developer (CJUEZ) — Comportamiento implementado: las 57 pruebas de F-CJUEZ en verde (54 `@Tag("FEAT-CJUEZ")`
+  y los 3 caminos de F-CJUEZ-J001) y las suites completas de revision-domain (709) y audit-cli (540) sin una falla, con
+  el reactor completo en BUILD SUCCESS (`-pl revision-domain,audit-cli -am test`, ~5 min). Producción tocada:
+  `DefaultBatchJudgePass`, `DefaultBatchCloser`, `DefaultBatchService`, `DefaultBatchReportBuilder`,
+  `DefaultBatchCostEstimator`, `DefaultBatchComparator` (sólo R004) y `BatchCmd`; nuevos, package-private y sin
+  @Generated: `BatchChanges` («lo que cambia», lo usan el paso y el servicio) y `ChangedCourseCuts` (los cuatro recortes)
+  en `batchengine`, y `UnapprovedJudges` en `comparisonengine`. Sin tocar sentinel.yaml, contratos @Generated, pruebas ni
+  `.sentinel/agents/`; sin commit.
+  Next: una corrida en vivo de `batch estimate` y `batch close --budget …` sobre una tanda real: ningún modelo real se
+  consultó (las pruebas usan jueces de mentira y el `claude` falso); lo que no queda cubierto es la lectura de las
+  coberturas de los jueces reales (unidad, `reached`, `cost.pendingConsultations`) y el costo de mapear los cuatro
+  recortes de A1 con spaCy (la estimación y el cierre lo hacen una vez cada uno, el cierre dos).
+
 2026-10-03 — test-writer (CJUEZ) — Los 3 caminos de `FCjuezJ001JourneyTest` (path-1 ensayo, path-2 bloqueo, path-3
   informe) implementados. Compilan; los 3 fallan sólo por comportamiento que falta (`BatchEstimate.getChangedQuizzes()`
   da 0: ni el servicio ni el cierre llaman todavía al paso de los jueces, y el comparador no nombra al juez sin aprobar).

@@ -5,6 +5,32 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — developer (CJUEZ) — En el lado «después» del recorte de ejercicios sólo entra el ejercicio que difiere de
+  su versión de partida (`!Objects.equals`), sin mirar si cambió la consigna de su tema; el recorte de temas sí cuenta el
+  tema o cualquiera de sus ejercicios (G al pie de la letra).
+  why: el juez de consigna lee la consigna propia del ejercicio (`AuditableQuiz.instructions`) y el libro de cambios, al
+  componer una propuesta del tema, sólo reemplaza la del tema; incluir de más sólo infla la estimación, que ya avisa que
+  puede sobrar.
+2026-10-03 — developer (CJUEZ) — `BatchJudgeAccount.budget` es lo que el pedido le da al juez cuando le toca, haya o no
+  algo que pagar: su `--budget`, lo que queda de `--cap`, o el menor de los dos (puede ser 0). Un juez sin aprobar sólo
+  muestra el `--budget` con que se lo nombró, sin tocar el `--cap`; uno local, nulo. Sin pedido (estimación), nulo.
+  why: es lo que lee el informe como «el tope que tuvo»; un sin aprobar nombrado con 600 muestra «tope 600» y «sin
+  aprobar», que explica por qué no gastó.
+2026-10-03 — developer (CJUEZ) — Un juez sin cobertura de juez (grammar) cuenta como unidades los ejercicios del recorte
+  con una marca suya (puntaje, sin evaluar o evaluado en parte); su examen y su motivo salen de la corrida de su
+  herramienta (`examState`, y `reason` si no publicó), y es local si esa corrida no es la alternativa de claude -p. Una
+  herramienta sin examen (no instalada) queda `approved = true` y sin unidades: no entra en la cuenta ni bloquea.
+  why: es la lectura del diseño (A.3 y G); el comparador usa la misma regla para decidir si un juez lee un ejercicio.
+2026-10-03 — developer (CJUEZ) — `DefaultBatchCloser` guarda la tanda apenas el paso gastó algo, antes de la compuerta, y
+  no guarda defensas para un `judgePass` nulo: un cableado roto tiene que fallar fuerte, no cerrar sin jueces.
+  why: lo gastado ya está pagado y en el libro de veredictos; si la compuerta falla después, la tanda no puede perder la
+  cuenta de lo que costó.
+2026-10-03 — developer (CJUEZ) — El servicio valida primero los topes negativos y después los nombres de `--budget`
+  (contra `judges(batch)`, que sólo se pide si hay `--budget`); si la tanda no tiene jueces el mensaje dice «Sus jueces:
+  ninguno.». El CLI valida también los negativos antes de llamar al servicio. El bloque «Jueces (n)» no se imprime si no
+  hay cuentas.
+  why: F define los textos pero no el orden ni los casos vacíos; no hay prueba que los fije.
+
 2026-10-03 — test-writer (CJUEZ) — F-CJUEZ-J001 va por el comparador REAL (`DefaultBatchComparator` con su libro de
   metas), no por uno escrito a mano como el de FNOEMP J001 ni como sugería el pedido.
   why: con uno de mentira el veredicto que nombra al juez sin aprobar (R004) y los pisos por juez (R005) los escribiría la

@@ -23,6 +23,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
+import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
@@ -200,7 +201,34 @@ class DefaultBatchService implements BatchService {
                 briefer.brief(start, task).ifPresent(briefs::add);
             }
         }
-        return costEstimator.estimate(batch, briefs);
+        return withJudges(costEstimator.estimate(batch, briefs), batch);
+    }
+
+    /**
+     * F-CJUEZ-R002: what the closing would ask of the judges, before any query: the exercises the batch changes today and,
+     * per judge, what it judges, what the ledger has and what it misses -- on the course the batch started from and on the
+     * course composed with its changes. Only the approved judges that are paid add to the queries and the hours: a judge
+     * without an approved exam consults nothing, and a local one costs nothing (F-MLOCAL-R008). The hours follow the pace
+     * of the estimate of the panel: 19 seconds a query, with the queries at once of the batch.
+     */
+    private BatchEstimate withJudges(BatchEstimate estimate, CorrectionBatch batch) {
+        CourseEntity course = courseRepository.load(coursePath);
+        List<BatchJudgeAccount> judges = BatchBook.copy(judgePass.estimate(batch, course,
+                changeLedger.composedCourse(batch, course)));
+        int queries = 0;
+        for (BatchJudgeAccount judge : judges) {
+            if (judge != null && judge.isApproved() && !judge.isLocal()) {
+                queries += judge.getQueriesMissing();
+            }
+        }
+        BatchSettings settings = batch.getSettings();
+        int atOnce = settings != null && settings.getQueriesAtOnce() > 0 ? settings.getQueriesAtOnce() : DEFAULT_AT_ONCE;
+        estimate.setChangedQuizzes(BatchChanges.of(batch, course).quizCount());
+        estimate.setJudges(judges);
+        estimate.setJudgeQueries(queries);
+        estimate.setJudgeHours(Math.round(queries * DefaultBatchCostEstimator.SECONDS_PER_QUERY / atOnce / 3600.0 * 100.0)
+                / 100.0);
+        return estimate;
     }
 
     @Override
@@ -242,8 +270,10 @@ class DefaultBatchService implements BatchService {
     @Override
     public BatchClosing close(BatchCloseRequest request) {
         CorrectionBatch batch = requireOpen();
+        BatchCloseRequest asked = request != null ? request : new BatchCloseRequest(new LinkedHashMap<>(), null);
+        validate(batch, asked);
         CourseEntity course = courseRepository.load(coursePath);
-        batch = closer.close(batch, course, request);
+        batch = closer.close(batch, course, asked);
         batchStore.save(batch);
         List<BatchClosing> closings = BatchBook.list(batch.getClosings());
         return closings.isEmpty() ? null : closings.get(closings.size() - 1);
@@ -514,6 +544,34 @@ public DefaultBatchService(BatchStore batchStore, RefinementPlanStore refinement
     private CorrectionBatch requireOpen() {
         return batchStore.open().orElseThrow(() -> new NoOpenBatchException(
                 "No hay una tanda abierta: abrila con 'content-audit batch open <nivel>'."));
+    }
+
+    /**
+     * F-CJUEZ-R003 inv. 4: a request is refused, before the course is read or a judge consulted, when a tope is negative or
+     * names something that is not a judge of the batch -- the judges of the batch, in the order of the catalog, are the ones
+     * its analyzers that ask a model or bring a local tool.
+     */
+    private void validate(CorrectionBatch batch, BatchCloseRequest request) {
+        Map<String, Integer> budgets = request.getJudgeBudgets() != null ? request.getJudgeBudgets() : Map.of();
+        for (Map.Entry<String, Integer> budget : budgets.entrySet()) {
+            if (budget.getValue() != null && budget.getValue() < 0) {
+                throw new IllegalArgumentException("El tope tiene que ser 0 o más: --budget " + budget.getKey() + "="
+                        + budget.getValue() + ".");
+            }
+        }
+        if (request.getQueryCap() != null && request.getQueryCap() < 0) {
+            throw new IllegalArgumentException("El tope tiene que ser 0 o más: --cap " + request.getQueryCap() + ".");
+        }
+        if (budgets.isEmpty()) {
+            return;
+        }
+        List<String> judges = judgePass.judges(batch);
+        for (String name : budgets.keySet()) {
+            if (!judges.contains(name)) {
+                throw new IllegalArgumentException("«" + name + "» no es un juez de la tanda " + batch.getId()
+                        + ". Sus jueces: " + (judges.isEmpty() ? "ninguno" : String.join(", ", judges)) + ".");
+            }
+        }
     }
 
     private AuditReport start(CorrectionBatch batch) {
