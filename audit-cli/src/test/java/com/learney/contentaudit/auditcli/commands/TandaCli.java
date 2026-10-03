@@ -538,7 +538,7 @@ final class TandaCli {
             comparison.setRows(new ArrayList<>());
             comparison.setBreaches(new ArrayList<>());
             comparison.setVerdict(new BatchVerdict(VerdictKind.PASSES, new ArrayList<>(), new ArrayList<>(), null,
-                    "Pasa: se cumplen los pisos y no vuelve ningún cambio."));
+                    "Pasa: se cumplen los pisos y no vuelve ningún cambio.", null));
             return comparison;
         }
     }

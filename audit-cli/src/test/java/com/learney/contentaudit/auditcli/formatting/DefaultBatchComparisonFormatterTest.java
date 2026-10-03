@@ -20,7 +20,9 @@ import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
 import com.learney.contentaudit.revisiondomain.comparison.MeasureChange;
 import com.learney.contentaudit.revisiondomain.comparison.RowExample;
 import com.learney.contentaudit.revisiondomain.comparison.RowGoalStatus;
+import com.learney.contentaudit.revisiondomain.comparison.RowSubject;
 import com.learney.contentaudit.revisiondomain.comparison.RowValue;
+import com.learney.contentaudit.revisiondomain.comparison.UndecidableFloors;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
 import java.time.Instant;
@@ -134,15 +136,15 @@ public class DefaultBatchComparisonFormatterTest {
         comparison.setChanges(new ArrayList<>());
         comparison.setBreaches(new ArrayList<>());
         comparison.setVerdict(new BatchVerdict(VerdictKind.BLIND_SAMPLE_MISSING, List.of(), List.of(), null,
-                "Falta la muestra ciega"));
+                "Falta la muestra ciega", null));
         return comparison;
     }
 
     private static ComparisonRow row(String subject, AnalyzerFamily family, AuditTarget target, String label,
             Double baseline, Double remeasured, Double projected, Double change, RowGoalStatus floor) {
-        return new ComparisonRow(subject, family, target, label, label, new RowValue(baseline, null, 0),
-                remeasured != null ? new RowValue(remeasured, null, 0) : null, new RowValue(baseline, null, 0),
-                new RowValue(projected, null, 0), change, GoalUnit.POINTS, floor, null, null, null, null, null, null);
+        return new ComparisonRow(subject, family, target, label, label, new RowValue(baseline, null, 0, true),
+                remeasured != null ? new RowValue(remeasured, null, 0, true) : null, new RowValue(baseline, null, 0, true),
+                new RowValue(projected, null, 0, true), change, GoalUnit.POINTS, floor, null, null, null, null, null, null);
     }
 
     private static RowGoalStatus floor(GoalStatus status) {
@@ -236,5 +238,53 @@ public class DefaultBatchComparisonFormatterTest {
         assertTrue(row.get("example").isNull(), "R006 inv. 2: as null");
         assertTrue(text.contains("\"example\" : null"), text);
         assertEquals("NOT_EVALUATED", row.get("changeVerdict").asText());
+    }
+
+    @Test
+    @DisplayName("should write the undecidable floors of the verdict in the JSON, and null when there are none")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R007")
+    public void shouldWriteTheUndecidableFloorsOfTheVerdictInTheJSONAndNullWhenThereAreNone() throws Exception {
+        BatchComparison undecided = comparison(List.of());
+        undecided.setVerdict(new BatchVerdict(VerdictKind.UNDECIDABLE, List.of(), List.of(), null,
+                "No se puede decidir: ningún piso falla, pero 8 pisos sin decidir", new UndecidableFloors(8, List.of(
+                        new RowSubject("quiz-instruction", "Consigna que no se cumple"),
+                        new RowSubject("algún error", "Ejercicios con algún error")))));
+        BatchComparison decided = comparison(List.of());
+
+        DefaultBatchComparisonFormatter formatter = new DefaultBatchComparisonFormatter();
+        JsonNode floors = new ObjectMapper().readTree(formatter.format(undecided, "json")).get("verdict")
+                .get("undecidableFloors");
+        String none = formatter.format(decided, "json");
+
+        assertEquals(8, floors.get("count").asInt(), "R007: how many");
+        assertEquals("quiz-instruction", floors.get("analyzers").get(0).get("subject").asText(), "R007: which rows");
+        assertEquals("Consigna que no se cumple", floors.get("analyzers").get(0).get("displayName").asText());
+        assertEquals("algún error", floors.get("analyzers").get(1).get("subject").asText());
+        assertEquals("Ejercicios con algún error", floors.get("analyzers").get(1).get("displayName").asText());
+        JsonNode verdict = new ObjectMapper().readTree(none).get("verdict");
+        assertTrue(verdict.has("undecidableFloors") && verdict.get("undecidableFloors").isNull(),
+                "R007: null when every floor is decided, never left out: " + verdict);
+    }
+
+    @Test
+    @DisplayName("should write in the JSON whether each value of a row was evaluated")
+    @Tag("FEAT-FILAS")
+    @Tag("F-FILAS-R008")
+    public void shouldWriteInTheJSONWhetherEachValueOfARowWasEvaluated() throws Exception {
+        ComparisonRow instruction = new ComparisonRow("quiz-instruction", AnalyzerFamily.ERRORS, AuditTarget.KNOWLEDGE,
+                "6814dafa7d73e7209a13d389", "Afirmativas regulares", new RowValue(0.0, 0.0, 0, true),
+                new RowValue(0.0, 0.0, 4, false), new RowValue(0.0, 0.0, 0, true), new RowValue(0.0, 0.0, 0, true), 0.0,
+                GoalUnit.EXERCISES, null, null, "Consigna que no se cumple", BetterDirection.LOWER,
+                ChangeVerdict.NOT_EVALUATED, "Ejercicios que no cumplen lo que pide su consigna.", null);
+
+        JsonNode row = new ObjectMapper().readTree(new DefaultBatchComparisonFormatter().format(
+                comparison(List.of(instruction)), "json")).get("rows").get(0);
+
+        assertTrue(row.get("baseline").get("evaluated").asBoolean(), "R008: the baseline was evaluated");
+        assertFalse(row.get("remeasuredBaseline").get("evaluated").asBoolean(), "R008: the remeasured one was not");
+        assertTrue(row.get("approved").get("evaluated").asBoolean());
+        assertTrue(row.get("projected").get("evaluated").asBoolean());
+        assertTrue(row.get("projected").get("evaluated").isBoolean(), "R008: true or false");
     }
 }

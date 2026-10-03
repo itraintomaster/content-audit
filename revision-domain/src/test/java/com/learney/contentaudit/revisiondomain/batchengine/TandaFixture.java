@@ -541,7 +541,7 @@ public final class TandaFixture {
         comparison.setRows(new ArrayList<>());
         comparison.setBreaches(new ArrayList<>());
         comparison.setVerdict(new BatchVerdict(kind, new ArrayList<>(), new ArrayList<>(), null,
-                kind == VerdictKind.PASSES ? null : "falta la muestra ciega"));
+                kind == VerdictKind.PASSES ? null : "falta la muestra ciega", null));
         return comparison;
     }
 

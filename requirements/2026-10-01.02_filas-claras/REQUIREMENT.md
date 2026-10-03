@@ -244,6 +244,37 @@ que queda, y un ejercicio que el analizador dejó sin evaluar en la proyección 
 **Criterio**: el JSON de muestra contra el que se hace la app trae al menos una fila de cada familia, una no evaluada y
 una con ejemplo. Lo produce una prueba con el comando de verdad, sobre una tanda de dos ejercicios.
 
+<a id="F-FILAS-R007"></a>
+### Rule[F-FILAS-R007] - El veredicto dice cuántos pisos no se pueden decidir y de qué filas
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> Cuando algún piso no se puede decidir ([F-METAS-R002](#F-METAS-R002)), el veredicto lo dice aparte de su texto:
+> - cuántos son, los mismos que cuenta el texto del veredicto;
+> - de qué filas, cada una con su clave y su nombre visible ([F-FILAS-R001](#F-FILAS-R001)), sin repetir y en el orden de
+>   las filas: el del catálogo, y después «vocabulario» y «algún error».
+>
+> Si no hay ninguno, lo dice vacío. Invariantes:
+> 1. lo trae con cualquier veredicto, también con «no pasa»;
+> 2. el texto del veredicto y su tipo no cambian ([F-METAS-R008](#F-METAS-R008)).
+
+**Criterio**: en `compare -f json` es `verdict.undecidableFloors`, como
+`{"count": 32, "analyzers": [{"subject": "quiz-instruction", "displayName": "Consigna que no se cumple"}, …]}`, y `null`
+cuando todos los pisos se deciden. Lo pidió la app el 1/10: hasta entonces sólo tenía el texto largo del veredicto.
+
+<a id="F-FILAS-R008"></a>
+### Rule[F-FILAS-R008] - Cada número de la fila dice si su foto se evaluó
+**Severity**: major | **Validation**: AUTO_VALIDATED
+
+> Cada número de una fila dice si el analizador evaluó algún ejercicio del nodo en su foto, con el mismo criterio que
+> [F-FILAS-R003](#F-FILAS-R003). Vale para el de la línea base, el de la línea base re-medida si la hay, el del inicio de
+> la tanda y el de la proyección. Invariantes:
+> 1. una foto sin evaluar no tapa los números de las otras: cada una dice lo suyo;
+> 2. el veredicto del cambio no cambia ([F-FILAS-R003](#F-FILAS-R003)).
+
+**Criterio**: en `compare -f json`, cada uno de `baseline`, `remeasuredBaseline`, `approved` y `projected` lleva
+`evaluated` en `true` o `false`. Con `quiz-instruction` sin tope sólo en la proyección, la fila dice «no evaluado», pero la
+línea base y el inicio de la tanda siguen diciendo que se evaluaron. Lo pidió la app el 1/10.
+
 ## Contexto
 
 - **El criterio y los nombres** los aprobó José el 1/10: las filas de problemas dicen el problema y las de puntaje, lo
@@ -258,7 +289,7 @@ una con ejemplo. Lo produce una prueba con el comando de verdad, sobre una tanda
 
 ## Alcance
 
-- **Adentro**: R001 a R006.
+- **Adentro**: R001 a R008.
 - **Afuera**:
   - cómo pinta la app las filas;
   - el texto de `compare` en la terminal, que sigue igual;

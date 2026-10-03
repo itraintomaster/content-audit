@@ -20,16 +20,20 @@ public class BatchVerdict {
 
     private String detail;
 
+    private UndecidableFloors undecidableFloors;
+
     public BatchVerdict() {
     }
 
     public BatchVerdict(VerdictKind kind, List<String> brokenFloorGoalIds,
-            List<String> returningProposalIds, SampleOutcome sample, String detail) {
+            List<String> returningProposalIds, SampleOutcome sample, String detail,
+            UndecidableFloors undecidableFloors) {
         this.kind = kind;
         this.brokenFloorGoalIds = brokenFloorGoalIds;
         this.returningProposalIds = returningProposalIds;
         this.sample = sample;
         this.detail = detail;
+        this.undecidableFloors = undecidableFloors;
     }
 
     public VerdictKind getKind() {
@@ -72,6 +76,14 @@ public class BatchVerdict {
         this.detail = detail;
     }
 
+    public UndecidableFloors getUndecidableFloors() {
+        return this.undecidableFloors;
+    }
+
+    public void setUndecidableFloors(UndecidableFloors undecidableFloors) {
+        this.undecidableFloors = undecidableFloors;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,11 +93,12 @@ public class BatchVerdict {
                     && Objects.equals(this.brokenFloorGoalIds, that.brokenFloorGoalIds)
                     && Objects.equals(this.returningProposalIds, that.returningProposalIds)
                     && Objects.equals(this.sample, that.sample)
-                    && Objects.equals(this.detail, that.detail);
+                    && Objects.equals(this.detail, that.detail)
+                    && Objects.equals(this.undecidableFloors, that.undecidableFloors);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(kind, brokenFloorGoalIds, returningProposalIds, sample, detail);
+        return Objects.hash(kind, brokenFloorGoalIds, returningProposalIds, sample, detail, undecidableFloors);
     }
 }

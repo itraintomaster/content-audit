@@ -447,7 +447,7 @@ public class DefaultBatchPublisherTest {
         publishing.comparator.answer = scope -> {
             BatchComparison comparison = TandaFixture.comparison(scope, List.of(), VerdictKind.FAILS);
             comparison.setVerdict(new BatchVerdict(VerdictKind.FAILS, new ArrayList<>(), new ArrayList<>(), null,
-                    "juez sin aprobar: Consigna que no se cumple"));
+                    "juez sin aprobar: Consigna que no se cumple", null));
             return comparison;
         };
 

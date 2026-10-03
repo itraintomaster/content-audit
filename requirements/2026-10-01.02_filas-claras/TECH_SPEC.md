@@ -169,3 +169,53 @@ modules:
 El resto de los nombres está en `architectural_patch.yaml`. Las cuatro pruebas cuyo nombre citaba un nombre viejo se
 renombran en dos parches aparte, uno de FEAT-RONDA1 y otro de FEAT-RONDA2, porque Sentinel acepta un solo feature por
 parche. Conservan su trazabilidad.
+
+## Add the undecidable floors to the verdict and evaluated to every value of a row
+
+Seguimiento del 1/10, pedido por la app (F-FILAS-R007, R008). El veredicto sólo traía su texto: para decir «32 pisos sin
+decidir, de estas filas» la app tenía que leerlo. Ahora lo trae aparte, con la misma cuenta que el texto y las filas por
+su clave y su nombre visible. El nombre de cada fila sale del mismo lugar que `displayName`.
+
+`evaluated` va en cada `RowValue` y no sólo en la fila. Con un solo booleano por fila, una foto sin evaluar tapaba los
+números reales de las otras tres. Sale de `ReportTree.Value.evaluated`, el mismo criterio que decide `NOT_EVALUATED`, y
+`changeVerdict` no cambia.
+
+```architecture
+modules:
+- name: revision-domain
+  packages:
+  - name: comparison
+    models:
+    - name: RowSubject
+      type: record
+      fields:
+      - name: subject
+        type: String
+      - name: displayName
+        type: String
+      _change: add
+    - name: UndecidableFloors
+      type: record
+      fields:
+      - name: count
+        type: int
+      - name: analyzers
+        type: List<RowSubject>
+      _change: add
+    - name: RowValue
+      type: record
+      fields:
+      - name: evaluated
+        type: boolean
+        _change: add
+      _change: modify
+    - name: BatchVerdict
+      type: record
+      fields:
+      - name: undecidableFloors
+        type: UndecidableFloors
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+```

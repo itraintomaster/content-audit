@@ -100,7 +100,8 @@ public class DefaultCompareCommandTest {
                 historial.audits, new DefaultGoalBook(() -> new GoalDeclaration(List.of(), List.of(), null),
                         historial.sealedGoals, catalog), catalog, engine, new LeaveOneOutChangeAttributor(engine),
                 new DefaultSampleOutcomeSource(historial.samples, new DefaultSampleStatistics()),
-                new DefaultTopicTeachingResolver(), new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
+                new DefaultTopicTeachingResolver(),
+                new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
         DefaultCompareCommand command = new DefaultCompareCommand(comparator, new DefaultBatchComparisonFormatter());
         Map<String, byte[]> before = historial.files();
         List<String> analyses = historial.audits.list().stream().map(AuditReportSummary::getId).toList();
@@ -150,6 +151,7 @@ public class DefaultCompareCommandTest {
         Map<String, Integer> verdicts = new java.util.TreeMap<>();
         java.util.Set<String> families = new java.util.TreeSet<>();
         int withExample = 0;
+        int mixed = 0;
         for (com.fasterxml.jackson.databind.JsonNode row : rows) {
             for (String field : List.of("displayName", "betterWhen", "changeVerdict", "explanation", "example")) {
                 assertTrue(row.has(field), "R006: every row brings " + field + ": " + row);
@@ -157,12 +159,17 @@ public class DefaultCompareCommandTest {
             verdicts.merge(row.get("changeVerdict").asText(), 1, Integer::sum);
             families.add(row.get("family").asText() + " " + row.get("betterWhen").asText());
             withExample += row.get("example").isNull() ? 0 : 1;
+            mixed += row.get("baseline").get("evaluated").asBoolean() != row.get("projected").get("evaluated")
+                    .asBoolean() ? 1 : 0;
         }
         assertEquals(java.util.Set.of("ERRORS LOWER", "VOCABULARY HIGHER"), families,
                 "R006: rows of both families, each with its direction");
         assertTrue(verdicts.keySet().containsAll(List.of("IMPROVED", "WORSENED", "UNCHANGED", "NOT_EVALUATED")),
                 "R006: the four verdicts: " + verdicts);
         assertTrue(withExample > 0 && withExample < rows.size(), "R006: rows with an example and rows with null");
+        assertTrue(mixed > 0, "F-FILAS-R008: rows whose baseline was evaluated and whose projection was not");
+        assertTrue(new com.fasterxml.jackson.databind.ObjectMapper().readTree(json).get("verdict")
+                .get("undecidableFloors").get("count").asInt() > 0, "F-FILAS-R007: the floors that cannot be decided");
         String sample = new String(DefaultCompareCommandTest.class.getResourceAsStream(SAMPLE).readAllBytes(),
                 StandardCharsets.UTF_8);
         assertEquals(sample, json, "R006: the sample the review app is built against; this run left its output in "
@@ -175,8 +182,9 @@ public class DefaultCompareCommandTest {
     /**
      * The course of the sample in three photos -- the baseline, the batch start and the projection --, with the
      * numbers the engine publishes in each node: A1, Present Simple, «Afirmativas regulares» and its two
-     * exercises. lemma-absence and sentence-length score; grammar and single-answer count errors, and
-     * single-answer ran without a budget, so it left every exercise open.
+     * exercises. lemma-absence and sentence-length score; grammar and single-answer count errors. single-answer
+     * judged every exercise of the baseline and found none with an error, and ran without a budget at the batch
+     * start and in the projection, so it left every exercise of those two photos open.
      */
     static final class Muestra {
         static final String BASELINE = "2026-09-29T08-00-00";
@@ -220,11 +228,13 @@ public class DefaultCompareCommandTest {
                     .filter(card -> card.getName().equals(call.getArgument(0))).findFirst());
             when(catalog.measure(anyString())).thenReturn(Optional.empty());
             when(samples.outcomeFor(any())).thenReturn(Optional.empty());
-            when(baselines.read()).thenReturn(Optional.of(new Baseline(BASELINE, Instant.parse("2026-09-30T09:00:00Z"))));
-            when(reports.load(BASELINE)).thenReturn(Optional.of(photo(false)));
-            AuditReport start = photo(false);
+            when(baselines.read()).thenReturn(Optional.of(new Baseline(BASELINE,
+                    Instant.parse("2026-09-30T09:00:00Z"))));
+            when(reports.load(BASELINE)).thenReturn(Optional.of(photo(false, true)));
+            AuditReport start = photo(false, false);
             when(projector.project(any(), any())).thenReturn(new CourseProjection(AUDIT, PLAN, PLAN,
-                    ConsolidatedViewAvailability.AVAILABLE, null, start, start, photo(true), new ArrayList<>(List.of(
+                    ConsolidatedViewAvailability.AVAILABLE, null, start, start, photo(true, false),
+                    new ArrayList<>(List.of(
                             new ProjectedChange("077-afirmativas-regulares-grandmother", AuditTarget.QUIZ, GRANDMOTHER,
                                     true),
                             new ProjectedChange("077-afirmativas-regulares-hat", AuditTarget.QUIZ, HAT, true))),
@@ -259,10 +269,10 @@ public class DefaultCompareCommandTest {
 
         /**
          * A photo of the course: the baseline and the batch start as they were, or the projection with the two
-         * changes. Every node publishes its own numbers -- the level and the course hardly move with two
-         * exercises.
+         * changes; single-answer judged it or left it open. Every node publishes its own numbers -- the level and
+         * the course hardly move with two exercises.
          */
-        static AuditReport photo(boolean projected) {
+        static AuditReport photo(boolean projected, boolean judged) {
             AuditNode root = node(null, AuditTarget.COURSE, null);
             AuditNode level = node(new AuditableMilestone(new ArrayList<>(), A1, "A1", "A1"), AuditTarget.MILESTONE,
                     root);
@@ -273,17 +283,20 @@ public class DefaultCompareCommandTest {
                     SentenceMode.FILL, "Present Simple"), AuditTarget.KNOWLEDGE, topic);
             AuditNode grandmother = node(quiz(GRANDMOTHER, projected ? "My grandmother" : "It", "comes",
                     "(come) every year."), AuditTarget.QUIZ, knowledge);
-            AuditNode hat = node(quiz(HAT, "She", "wears", projected ? "(wear) a hat every day." : "(wear) hat every day."),
-                    AuditTarget.QUIZ, knowledge);
-            for (AuditNode exercise : List.of(grandmother, hat)) {
-                exercise.getUnevaluatedBy().add(SINGLE_ANSWER);
+            AuditNode hat = node(quiz(HAT, "She", "wears",
+                    projected ? "(wear) a hat every day." : "(wear) hat every day."), AuditTarget.QUIZ, knowledge);
+            if (!judged) {
+                for (AuditNode exercise : List.of(grandmother, hat)) {
+                    exercise.getUnevaluatedBy().add(SINGLE_ANSWER);
+                }
             }
             if (projected) {
                 grandmother.getFindings().add(new Finding(LEMMA_ABSENCE, "misplaced-word",
                         new FindingNodeRef(AuditTarget.QUIZ, GRANDMOTHER, "My grandmother comes every year."),
                         FindingSeverity.MEDIUM, new FindingEvidence(List.of(
                                 new EvidencePart("Oración", "My grandmother comes every year."),
-                                new EvidencePart("Palabra", "grandmother"), new EvidencePart("Nivel de la palabra", "A2"),
+                                new EvidencePart("Palabra", "grandmother"),
+                                new EvidencePart("Nivel de la palabra", "A2"),
                                 new EvidencePart("Nivel del ejercicio", "A1")),
                                 "grandmother es una palabra de A2 en un ejercicio de A1", List.of()),
                         FindingResolution.PANEL, AnalysisCost.INSTANT, new FindingIdentity(
@@ -297,10 +310,10 @@ public class DefaultCompareCommandTest {
                         new FindingIdentity(GRAMMAR + "|english-error|" + HAT + "|hat", "hat")));
             }
             // node: lemma-absence, sentence-length, vocabulary (their average), exercises, with a grammar error
-            numbers(root, 0.8650, 0.9136, 0.7392, 11287, 61, projected);
-            numbers(level, 0.9871, 0.9480, 0.9654, 1450, 9, projected);
-            numbers(topic, 0.9960, 0.9500, 0.9712, 120, 3, projected);
-            numbers(knowledge, 1.0, 0.9000, 0.9500, 2, 1, projected);
+            numbers(root, 0.8650, 0.9136, 0.7392, 11287, 61, projected, judged);
+            numbers(level, 0.9871, 0.9480, 0.9654, 1450, 9, projected, judged);
+            numbers(topic, 0.9960, 0.9500, 0.9712, 120, 3, projected, judged);
+            numbers(knowledge, 1.0, 0.9000, 0.9500, 2, 1, projected, judged);
             if (projected) {
                 score(knowledge, LEMMA_ABSENCE, 0.95, 0.925);
                 score(topic, LEMMA_ABSENCE, 0.9955, 0.97095);
@@ -312,18 +325,22 @@ public class DefaultCompareCommandTest {
             return new AuditReport(root);
         }
 
-        /** What a node publishes: the two scores and their average, and the errors -- one fewer once projected. */
+        /**
+         * What a node publishes: the two scores and their average, and the errors -- one fewer once projected;
+         * single-answer, none in what it judged, or every exercise open.
+         */
         private static void numbers(AuditNode node, double absence, double length, double vocabulary, int quizzes,
-                int grammarErrors, boolean projected) {
+                int grammarErrors, boolean projected, boolean judged) {
             int errors = projected ? grammarErrors - 1 : grammarErrors;
             List<AnalyzerScore> scores = new ArrayList<>(List.of(
                     new AnalyzerScore(SENTENCE_LENGTH, AnalyzerFamily.VOCABULARY, length, List.of()),
                     new AnalyzerScore(LEMMA_ABSENCE, AnalyzerFamily.VOCABULARY, absence, List.of())));
             List<AnalyzerErrorCounts> counts = new ArrayList<>(List.of(
-                    new AnalyzerErrorCounts(SINGLE_ANSWER, quizzes, 0, quizzes, 0, 0.0, 0, 0),
+                    new AnalyzerErrorCounts(SINGLE_ANSWER, quizzes, judged ? quizzes : 0, judged ? 0 : quizzes, 0, 0.0,
+                            0, 0),
                     new AnalyzerErrorCounts(GRAMMAR, quizzes, quizzes, 0, errors, (double) errors / quizzes, 0, 0)));
             node.setNumbers(new ContextNumbers(vocabulary, scores, new ErrorCounts(quizzes, errors,
-                    (double) errors / quizzes, null, quizzes, counts), List.of()));
+                    (double) errors / quizzes, null, judged ? 0 : quizzes, counts), List.of()));
         }
 
         private static void score(AuditNode node, String analyzer, double value, double vocabulary) {

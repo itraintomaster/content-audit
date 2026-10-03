@@ -353,7 +353,7 @@ public class BatchCmdTest {
             comparison.setChanges(new ArrayList<>());
             comparison.setBreaches(new ArrayList<>());
             comparison.setVerdict(new BatchVerdict(VerdictKind.PASSES, new ArrayList<>(), new ArrayList<>(), null,
-                    null));
+                    null, null));
             BatchGateVerdict gate = new BatchGateVerdict(true, VerdictKind.PASSES, new ArrayList<>(), new ArrayList<>(),
                     new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
             return new BatchClosing(CLOSED_AT, new ProjectionScope(batch.getId(), new ArrayList<>(),

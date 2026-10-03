@@ -1146,6 +1146,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: RowExample - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.comparison.RowSubject");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: RowSubject - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.comparison.UndecidableFloors");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: UndecidableFloors - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.comparison.BatchComparator");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: BatchComparator - " + e.getMessage());

@@ -9,6 +9,7 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeAttribution;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
 import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
@@ -20,6 +21,7 @@ import com.learney.contentaudit.revisiondomain.comparison.MeasureChange;
 import com.learney.contentaudit.revisiondomain.comparison.RowExample;
 import com.learney.contentaudit.revisiondomain.comparison.RowGoalStatus;
 import com.learney.contentaudit.revisiondomain.comparison.RowValue;
+import com.learney.contentaudit.revisiondomain.comparison.UndecidableFloors;
 import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
 import com.learney.contentaudit.revisiondomain.consolidatedview.NonApplicablePending;
 import java.math.BigDecimal;
@@ -39,7 +41,8 @@ import javax.annotation.processing.Generated;
  * do not hold. The change of a score is written in points with its sign and the word, «−0,5 puntos», never with
  * «%»; a measure change, «cambio de medida: 73,92 → 73,86». In JSON every row carries, F-FILAS-R006, its visible
  * name, which way is better, the verdict of its change, its explanation and its example -- the example written as
- * null when there is none, so the app never guesses whether it is missing.
+ * null when there is none, so the app never guesses whether it is missing --, every value of a row whether its
+ * photo was evaluated, and the verdict its undecidable floors (F-FILAS-R007, R008).
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -51,7 +54,8 @@ public class DefaultBatchComparisonFormatter implements BatchComparisonFormatter
             .registerModule(new Jdk8Module())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
             .setSerializationInclusion(JsonInclude.Include.NON_NULL)
-            .addMixIn(ComparisonRow.class, RowFields.class);
+            .addMixIn(ComparisonRow.class, RowFields.class)
+            .addMixIn(BatchVerdict.class, VerdictFields.class);
 
     /** F-FILAS-R006: the explanation and the example of a row are written even when they are null. */
     abstract static class RowFields {
@@ -60,6 +64,12 @@ public class DefaultBatchComparisonFormatter implements BatchComparisonFormatter
 
         @JsonInclude(JsonInclude.Include.ALWAYS)
         public abstract RowExample getExample();
+    }
+
+    /** F-FILAS-R007: the undecidable floors of the verdict are written even when there are none, as null. */
+    abstract static class VerdictFields {
+        @JsonInclude(JsonInclude.Include.ALWAYS)
+        public abstract UndecidableFloors getUndecidableFloors();
     }
 
     /** The minus sign of a number, not the hyphen. */

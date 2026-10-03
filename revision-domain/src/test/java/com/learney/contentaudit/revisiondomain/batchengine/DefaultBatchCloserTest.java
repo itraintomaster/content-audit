@@ -530,7 +530,7 @@ public class DefaultBatchCloserTest {
         RowGoalStatus floor = status == null ? null : new RowGoalStatus("piso-" + subject, 0.5, GoalUnit.POINTS,
                 GoalReference.BASELINE, status);
         return new ComparisonRow(subject, AnalyzerFamily.ERRORS, AuditTarget.QUIZ, "t-present", "A1",
-                new RowValue(0.0, null, 0), null, new RowValue(0.0, null, 0), new RowValue(0.0, null, 0), 0.0,
+                new RowValue(0.0, null, 0, true), null, new RowValue(0.0, null, 0, true), new RowValue(0.0, null, 0, true), 0.0,
                 GoalUnit.EXERCISES, floor, null, null, null, null, null, null);
     }
 

@@ -10,6 +10,8 @@ description: |
   tipos inválidos o contradicciones, vuelve a evaluate para una nueva emisión.
   Un campo extra que viene vacío (null o texto vacío) no dice nada: se descarta
   antes de validar.
+  Una coma colgante antes de cerrar un objeto o una lista tampoco: se lee el
+  JSON sin ella.
 edges:
   - { to: emit, when: passed }
   - { to: evaluate, when: failed }

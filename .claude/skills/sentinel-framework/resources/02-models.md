@@ -5493,6 +5493,7 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `value` | `Double` |
 | `share` | `Double` |
 | `notEvaluated` | `int` |
+| `evaluated` | `boolean` |
 
 #### RowGoalStatus (package: comparison)
 
@@ -5616,6 +5617,7 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `returningProposalIds` | `List<String>` |
 | `sample` | `SampleOutcome` |
 | `detail` | `String` |
+| `undecidableFloors` | `UndecidableFloors` |
 
 #### BatchComparison (package: comparison)
 
@@ -5678,6 +5680,28 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `quizId` | `String` |
 | `exercise` | `String` |
 | `detail` | `String` |
+
+#### RowSubject (package: comparison)
+
+**Package:** `com.learney.contentaudit.revisiondomain.comparison`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `subject` | `String` |
+| `displayName` | `String` |
+
+#### UndecidableFloors (package: comparison)
+
+**Package:** `com.learney.contentaudit.revisiondomain.comparison`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `count` | `int` |
+| `analyzers` | `List<RowSubject>` |
 
 #### PairAnswer (package: blindsample)
 
