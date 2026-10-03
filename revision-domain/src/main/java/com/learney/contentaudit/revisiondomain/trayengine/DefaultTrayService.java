@@ -19,6 +19,7 @@ import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 import com.learney.contentaudit.revisiondomain.batch.NoOpenBatchException;
 import com.learney.contentaudit.revisiondomain.blindsample.BlindPairView;
 import com.learney.contentaudit.revisiondomain.blindsample.BlindSampleService;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
 import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
@@ -49,7 +50,9 @@ import javax.annotation.processing.Generated;
  * answers of the blind sample go to F, pair by pair, without touching the batch, and the last one closes it (R005). What
  * José answers on a tie or an exercise without winner is remembered at once by its finding and the fingerprint of the
  * exercise (R006). Publishing needs the blind sample closed; the batch is compared again with every decision in, the
- * rules whose sample José did not approve stay out, and the batch publishes only with «pasa» (R007, R008).
+ * rules whose sample José did not approve stay out, and the batch publishes only with «pasa» (R007, R008). The refusal
+ * for the blind sample also names the judges without approval that the verdict of the last closing names, so José does
+ * not answer the whole sample to learn afterwards that the batch cannot be published anyway (F-CJUEZ-R004).
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -75,6 +78,9 @@ class DefaultTrayService implements TrayService {
     private final Path coursePath;
 
     static final String JOSE = "José";
+
+    /** What the verdict of the comparison ends its detail with to name the judges whose exam is not approved. */
+    static final String JUDGES_WITHOUT_APPROVAL = "juez sin aprobar: ";
 
     public DefaultTrayService(BatchService batchService, BatchStore batchStore,
             BlindSampleService blindSampleService, PanelRunner panelRunner,
@@ -135,8 +141,14 @@ class DefaultTrayService implements TrayService {
     public BatchPublication publish(String approvedBy, String note) {
         CorrectionBatch batch = open();
         if (!blindClosed(batch)) {
-            throw new BatchNotPublishableException(batch.getId(), "el veredicto de la tanda es «falta la muestra ciega»:"
-                    + " respondela desde la bandeja, par por par");
+            // F-CJUEZ-R004 inv. 3: the last closing already says which judges without approval keep the batch from
+            // publishing -- compared again it would say it too, but closing a batch of A1 takes minutes --; the refusal
+            // copies them, so José does not answer the sample first to find out.
+            String judges = judgesWithoutApproval(batch);
+            throw new BatchNotPublishableException(batch.getId(), judges != null
+                    ? "el veredicto de su último cierre dice «" + judges + "»: no pasa mientras sigan así, aunque se"
+                            + " responda la muestra ciega (que además falta: respondela desde la bandeja, par por par)"
+                    : "el veredicto de la tanda es «falta la muestra ciega»: respondela desde la bandeja, par por par");
         }
         // R004 and R007: a rule whose sample José did not approve stays out.
         List<String> excluded = TrayBook.rulesToSample(batch);
@@ -284,6 +296,20 @@ class DefaultTrayService implements TrayService {
     }
 
     // -------------------------------------------------------------------------
+
+    /**
+     * F-CJUEZ-R004: the judges without approval that the verdict of the last closing names, as the comparison ends its
+     * detail with them -- «juez sin aprobar: A, B» --, copied as it says them; null when the batch was never closed or its
+     * last verdict names none.
+     */
+    private static String judgesWithoutApproval(CorrectionBatch batch) {
+        List<BatchClosing> closings = TrayBook.list(batch.getClosings());
+        BatchClosing last = closings.isEmpty() ? null : closings.get(closings.size() - 1);
+        BatchVerdict verdict = last != null && last.getComparison() != null ? last.getComparison().getVerdict() : null;
+        String detail = verdict != null ? verdict.getDetail() : null;
+        int at = detail != null ? detail.lastIndexOf(JUDGES_WITHOUT_APPROVAL) : -1;
+        return at >= 0 ? detail.substring(at) : null;
+    }
 
     private CorrectionBatch open() {
         Optional<CorrectionBatch> open = batchStore != null ? batchStore.open() : batchService.current();

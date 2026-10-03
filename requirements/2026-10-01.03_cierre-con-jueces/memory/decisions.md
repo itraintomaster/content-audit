@@ -5,6 +5,14 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — developer (CJUEZ) — El rechazo de `DefaultTrayService.publish` por la muestra ciega sin responder lee el
+  veredicto del último cierre guardado, sin cerrar de nuevo, y si su detalle termina con «juez sin aprobar: …» lo copia
+  tal cual y dice que el veredicto no pasa mientras sigan así aunque se responda la muestra, que además falta; sin jueces
+  nombrados queda el texto de siempre («el veredicto de la tanda es «falta la muestra ciega»…»).
+  why: cerrar A1 tarda unos 2,5 minutos y el último cierre ya dice qué jueces bloquean; José no tiene que responder los
+  100 pares para enterarse. Queda sin tocar `Tray.blockers` con la muestra abierta (sólo dice la muestra): hueco anotado,
+  no pedido.
+
 2026-10-03 — developer (CJUEZ) — En el lado «después» del recorte de ejercicios sólo entra el ejercicio que difiere de
   su versión de partida (`!Objects.equals`), sin mirar si cambió la consigna de su tema; el recorte de temas sí cuenta el
   tema o cualquiera de sus ejercicios (G al pie de la letra).

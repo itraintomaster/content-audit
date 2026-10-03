@@ -4,6 +4,46 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — orquestador (CJUEZ) — FEAT-CJUEZ terminada en `ronda2/cierre-con-jueces` (13 commits sobre
+  `ronda2/integracion` 780f1203, sin push): 59 pruebas de F-CJUEZ en verde; suite completa 3.190, 0 fallas, 1 apagada
+  (spaCy); `sentinel verify` OK. Control de punta a punta sin cupo sobre una copia (foto del 29/9, 20 analizadores,
+  exámenes de B y C de hoy, claude falso, Ollama local), en el scratchpad de la sesión (`control/`, guiones `fase1.sh`,
+  `fase2.sh`, `fase2b.sh`; `vuelta1/` es la anterior al arreglo de R004): la tanda A1 cambia 611 ejercicios en 33 temas
+  tras las reglas; `batch estimate` pide 2.444 consultas de translation-sense y 66 de mini-theory (2.510, ~3,3 h a 4 a
+  la vez); el cierre sin tope da UNDECIDABLE con 24 pisos sin decidir y termina en «juez sin aprobar: Consigna que no
+  se cumple, Opción múltiple mal armada, Más de una respuesta válida, Ejercicio casi repetido» (grammar aprobó su
+  examen el 1/10 a la tarde); `tray publish` se rechaza copiando eso; 0 consultas, curso igual a la foto, historial
+  igual. La primera vuelta encontró dos huecos de R004 (near-duplicates no se nombraba; la bandeja rechazaba sólo por la
+  muestra ciega): dos pruebas más (qa-tester), sus cuerpos y el arreglo, en 762d8815..f97182bd.
+  Next: que `tray show` nombre a los jueces sin aprobar mientras la muestra ciega está abierta (FEAT-BANDEJA, no
+  pedido); una corrida con consultas reales (`batch close --budget …`) con los jueces aprobados.
+
+2026-10-03 — developer (CJUEZ) — Los 2 arreglos de R004 del control de A1 hechos, sin tocar las pruebas: `UnapprovedJudges.reading`
+  lee también las marcas del propio ejercicio para un juez de temas (near-duplicates), y `DefaultTrayService.publish` copia el
+  «juez sin aprobar: …» del veredicto del último cierre en el rechazo por la muestra ciega. Las 59 de F-CJUEZ en verde y las
+  suites completas sin fallas: revision-domain 711 y audit-cli 540, reactor en BUILD SUCCESS.
+  Next: en la bandeja, `Tray.blockers` con la muestra abierta sigue diciendo sólo «falta la muestra ciega» (la
+  `DefaultTrayAssemblerTest` lo fija sin jueces); si José quiere verlo también al mirar la bandeja y no sólo al publicar,
+  falta ese bloqueo.
+
+2026-10-03 — test-writer (CJUEZ) — Los 2 esbozos nuevos de F-CJUEZ-R004 (huecos del control de A1) implementados:
+  `DefaultBatchComparatorTest` (near-duplicates reprobado, cobertura en KNOWLEDGE, marcas en los ejercicios) y
+  `DefaultTrayServiceTest` (publicar desde la bandeja copia «juez sin aprobar: …» del último cierre). Compilan; fallan sólo
+  por el comportamiento que falta (el comparador deja los pisos sin decidir pero no nombra al juez; la bandeja rechaza con
+  «falta la muestra ciega» sin nombrarlo); las otras 82 de las dos clases siguen verdes.
+  Next: el developer: para un juez de temas el comparador tiene que leer también las marcas del nodo del ejercicio, y la
+  bandeja tiene que copiar el «juez sin aprobar: …» del veredicto del último cierre en su rechazo; ver fix-log.
+
+2026-10-03 — qa-tester (CJUEZ) — Parche sólo de pruebas propuesto (--replace) y validado: 2 handwrittenTests nuevas de
+  F-CJUEZ-R004 por los huecos del control de A1. DefaultBatchComparator: near-duplicates reprobado, con cobertura por temas
+  y sus marcas (puntaje o sin evaluar) en los ejercicios que compara, bloquea sus pisos sobre lo que cambió y el veredicto lo
+  nombra («Ejercicio casi repetido»). DefaultTrayService: publicar desde la bandeja copia «juez sin aprobar: …» del veredicto
+  del último cierre aunque la muestra ciega no esté respondida. propose y validate: 0 altas, 3 cambios, 0 bajas, 0 conflictos.
+  Next: el orquestador aplica sin --as y genera. generate saltea el esbozo del comparador (`hasMatchingTaggedTest`: el archivo
+  ya tiene "FEAT-CJUEZ" y "F-CJUEZ-R004" entre comillas) y hay que traerlo del generado fresco; el de la bandeja sale solo (la
+  clase no tenía R004). `sentinel verify` no detecta el faltante (de las clases de prueba sólo mira que exista el archivo):
+  verificar con grep del nombre del método.
+
 2026-10-03 — developer (CJUEZ) — Comportamiento implementado: las 57 pruebas de F-CJUEZ en verde (54 `@Tag("FEAT-CJUEZ")`
   y los 3 caminos de F-CJUEZ-J001) y las suites completas de revision-domain (709) y audit-cli (540) sin una falla, con
   el reactor completo en BUILD SUCCESS (`-pl revision-domain,audit-cli -am test`, ~5 min). Producción tocada:

@@ -1,4 +1,4 @@
-generatedAt: 2026-10-03T20:08:20.513438Z
+generatedAt: 2026-10-03T20:14:06.363832Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -4777,6 +4777,14 @@ features:
       passing: true
       module: revision-domain
       implementation: DefaultBatchComparator
+    - name: "should block and name near-duplicates, failed, a judge whose coverage\
+        \ counts topics but that marks the exercises it compares, with a score or\
+        \ as unevaluated, when it marks an exercise the batch changed, ending the\
+        \ detail of the verdict with «juez sin aprobar: Ejercicio casi repetido»"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultBatchComparator
     - name: "should refuse to publish a batch whose verdict names a judge without\
         \ approval, copying «juez sin aprobar: Consigna que no se cumple» into the\
         \ refusal and writing no course"
@@ -4791,6 +4799,14 @@ features:
       passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
+    - name: "should refuse to publish from the tray while a judge without approval\
+        \ reads what the A1 batch changed, copying «juez sin aprobar: Consigna que\
+        \ no se cumple, …» from the verdict of its last closing, although its blind\
+        \ sample is not answered yet"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultTrayService
   - ruleId: F-CJUEZ-R005
     state: PASSING
     tests:
@@ -83109,6 +83125,12 @@ elements:
         \ of the node, so a photo left open hides none of the others"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/comparisonengine/DefaultBatchComparatorTest.java
+    - name: "should block and name near-duplicates, failed, a judge whose coverage\
+        \ counts topics but that marks the exercises it compares, with a score or\
+        \ as unevaluated, when it marks an exercise the batch changed, ending the\
+        \ detail of the verdict with «juez sin aprobar: Ejercicio casi repetido»"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/comparisonengine/DefaultBatchComparatorTest.java
     testCleanViews:
     - |
       test: "should publish for every analyzer that ran in the baseline a row in each knowledge, topic, level and the course, plus a vocabulary row and an any-error row per node"
@@ -84259,6 +84281,36 @@ elements:
         open.getChangeVerdict() == ChangeVerdict.NOT_EVALUATED
         List.of(row.getBaseline().isEvaluated(), row.getRemeasuredBaseline().isEvaluated(), row.getApproved().isEvaluated(), row.getProjected().isEvaluated()) == List.of(true, false, true, true)
         row(remeasured.compare(), LEMMA_ABSENCE, REGULAR).getProjected().isEvaluated() is true
+    - |
+      test: "should block and name near-duplicates, failed, a judge whose coverage counts topics but that marks the exercises it compares, with a score or as unevaluated, when it marks an exercise the batch changed, ending the detail of the verdict with «juez sin aprobar: Ejercicio casi repetido»"
+      trace: FEAT-CJUEZ / F-CJUEZ-R004
+
+      given:
+        approvedUnevaluated = compareVegetablesWithNearDuplicates(JudgeExamStatus.APPROVED, REGULAR_QUIZZES, true)
+        everythingElse = approvedUnevaluated.getVerdict().getDetail()
+        unevaluated = compareVegetablesWithNearDuplicates(JudgeExamStatus.FAILED, REGULAR_QUIZZES, true)
+        approvedScored = compareVegetablesWithNearDuplicates(JudgeExamStatus.APPROVED, REGULAR_QUIZZES, false)
+        scored = compareVegetablesWithNearDuplicates(JudgeExamStatus.FAILED, REGULAR_QUIZZES, false)
+        detail = scored.getVerdict().getDetail()
+        elsewhere = compareVegetablesWithNearDuplicates(JudgeExamStatus.FAILED, WITH_BE_QUIZZES, true)
+
+      then:
+        approvedUnevaluated.getVerdict().getKind() == VerdictKind.UNDECIDABLE
+        everythingElse.contains("juez sin aprobar") is false
+        assertBlocksWhatTheBatchChanged(unevaluated)
+        unevaluated.getVerdict().getDetail() == everythingElse + "; juez sin aprobar: Ejercicio casi repetido"
+        assertFloors(approvedScored)
+        assertFloors(approvedScored)
+        approvedScored.getVerdict().getKind() == VerdictKind.PASSES
+        assertBlocksWhatTheBatchChanged(scored)
+        detail.startsWith("No se puede decidir: ningún piso falla") is true
+        detail.endsWith("; juez sin aprobar: Ejercicio casi repetido") is true
+        detail.split("juez sin aprobar", -1).length - 1 == 1
+        assertFloors(elsewhere)
+        assertFloors(elsewhere)
+        change(elsewhere, P_VEGETABLES).getUndecidedAnalyzers() == List.of()
+        elsewhere.getVerdict().getKind() == VerdictKind.PASSES
+        elsewhere.getVerdict().getDetail().contains("juez sin aprobar") is false
   - name: DefaultGoalBook
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/comparisonengine/DefaultGoalBook.java
@@ -89279,6 +89331,12 @@ elements:
         \ the tray, paying no judge"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/trayengine/DefaultTrayServiceTest.java
+    - name: "should refuse to publish from the tray while a judge without approval\
+        \ reads what the A1 batch changed, copying «juez sin aprobar: Consigna que\
+        \ no se cumple, …» from the verdict of its last closing, although its blind\
+        \ sample is not answered yet"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/trayengine/DefaultTrayServiceTest.java
     testCleanViews:
     - |
       test: "should reject an answer the item does not accept, as keeping the original for a tie, naming the answers it accepts"
@@ -89649,6 +89707,26 @@ elements:
         order == List.of("close", "publish")
         closeRequests.size() == 1
         closeRequests.get(0) == new BatchCloseRequest(new LinkedHashMap<>(), null)
+    - |
+      test: "should refuse to publish from the tray while a judge without approval reads what the A1 batch changed, copying «juez sin aprobar: Consigna que no se cumple, …» from the verdict of its last closing, although its blind sample is not answered yet"
+      trace: FEAT-CJUEZ / F-CJUEZ-R004
+
+      given:
+        bandeja = BandejaFixture.Bandeja()
+        batch = bandeja.saved()
+        closings = ArrayList<>(batch.getClosings())
+        refused = assertThrows(BatchNotPublishableException.class, () -> bandeja.tray.publish("José", null))
+
+      when:
+        sut.add(new BatchClosing(BandejaFixture.CLOSED_AT.plusSeconds(60), null, undecidableNamingTheJudgesWithoutApproval(null), new BatchGateVerdict(true, VerdictKind.UNDECIDABLE, List.of(), List.of(), List.of(), List.of(), List.of(), List.of()), List.of(), 1, new BatchCloseRequest(new LinkedHashMap<>(), null), judgesOfTheA1Batch()))
+
+      then:
+        bandeja.ciega.answers.isEmpty() is true
+        refused.getBatchId() == BandejaFixture.BATCH
+        refused.getMessage().contains(JUDGES_WITHOUT_APPROVAL) is true
+        bandeja.courses.written.isEmpty() is true
+        bandeja.saved().getStatus() == BatchStatus.CLOSED
+        bandeja.saved().getPublication() is null
   - name: DefaultTrayAssembler
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/trayengine/DefaultTrayAssembler.java
@@ -93639,8 +93717,8 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 2755
-  passing: 2738
+  total: 2757
+  passing: 2740
   failing: 0
   notImplemented: 17
 qualitySummary:
