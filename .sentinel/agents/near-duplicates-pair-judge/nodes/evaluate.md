@@ -30,10 +30,22 @@ si es de opción múltiple, sus opciones— y, en la línea siguiente, resuelto:
 tarea es decir si **para el alumno es el mismo ejercicio**: si al hacer el
 segundo, después del primero, vuelve a hacer lo mismo con la misma oración.
 
+## Cómo decidir
+
+Hacete dos preguntas, en este orden:
+
+1. **¿Las dos oraciones cuentan lo mismo?** La misma situación, el mismo hecho,
+   aunque estén dichas con otras palabras, en otro orden, en pregunta o en
+   negativa.
+2. **¿El alumno escribe lo mismo con la misma función?** La misma palabra, que
+   cumple el mismo papel gramatical en las dos oraciones.
+
+Si las dos respuestas son sí, es el mismo ejercicio. Si alguna es no, es otro.
+
 ## Es el mismo ejercicio
 
-Cuando el segundo es **la misma oración** que el primero —la misma situación,
-la misma idea— con cambios que no cambian lo que el alumno resuelve:
+Cuando el segundo es **la misma oración** que el primero —cuenta lo mismo— y
+el alumno escribe lo mismo con la misma función:
 
 - **otro sujeto**: un nombre por un pronombre, una persona por otra, un grupo
   por «we» o «they». «Carlos takes the bus to work.» y «He takes the bus to
@@ -43,8 +55,22 @@ la misma idea— con cambios que no cambian lo que el alumno resuelve:
   breakfast.» y «We had a big breakfast this morning.» son el mismo.
 - **un sinónimo** fuera del hueco: «The film was really boring.» y «The movie
   was really boring.» son el mismo.
-- **otro orden**, o la misma oración **en negativa o en pregunta**.
-- **la misma idea dicha con otras palabras**.
+- **la misma oración en pregunta, en negativa o con otro modal**: «Leo can
+  ___ (fix) old radios.», «Can Leo ___ (fix) old radios?», «Leo can't ___ (fix)
+  old radios.» y «Leo should ___ (fix) old radios.» son el mismo ejercicio,
+  también en un tema que enseña justo las preguntas, las negativas o los
+  modales: el alumno escribe la misma palabra, con la misma función, en la
+  misma oración.
+- **otro orden**, aunque se mueva la respuesta, si cumple la misma función:
+  «On Mondays the bakery ___ (open) late.» y «The bakery ___ (open) late on
+  Mondays.» son el mismo.
+- **una paráfrasis**: otro verbo y otro complemento que cuentan lo mismo.
+  «My uncle works as ___ engineer.» y «My uncle has a job as ___ engineer.»
+  son el mismo: las dos dicen a qué se dedica.
+
+La pista entre paréntesis, la consigna o una aclaración de contexto no hacen
+otro ejercicio por sí solas: compará las dos oraciones y lo que escribe el
+alumno.
 
 ## No es el mismo ejercicio
 
@@ -52,19 +78,24 @@ la misma idea— con cambios que no cambian lo que el alumno resuelve:
   tengan la misma forma, si cambia lo que se dice —otro estado, otro objeto,
   otra actividad, otro lugar, otra fecha— el alumno practica dos veces, no
   repite. «I am cold.» y «I am late.» no son el mismo; «He drinks tea at
-  breakfast.» y «He drinks juice at breakfast.» tampoco.
-- **El contraste que enseña el tema**: dos oraciones que se distinguen justo en
-  lo que el tema contrasta —el adjetivo y el pronombre posesivo, el orden de
-  las palabras, el lugar del adverbio, un condicional y otro— no son el mismo
-  ejercicio aunque pidan la misma respuesta: el contraste es la práctica.
-  Cuenta cuando cambia el papel de lo que el alumno escribe; si escribe la
-  misma palabra con el mismo papel en la afirmativa, la negativa o la pregunta
-  de la misma oración, es el mismo ejercicio aunque el tema sea justo ése.
+  breakfast.» y «He drinks juice at breakfast.» tampoco. Un cambio de verbo o
+  de complemento que cambia lo que dice también es otra oración: «My uncle
+  works as ___ engineer.» y «My uncle wants to become ___ engineer.» no son el
+  mismo.
+- **La respuesta con otra función**: si la misma palabra cumple otro papel
+  gramatical en cada oración, es otro ejercicio, aunque se parezcan. El
+  gerundio como sujeto en una y como objeto en la otra («___ (dance) makes me
+  happy.» y «I love ___ (dance).»), o el posesivo delante del sustantivo en una
+  y solo en la otra, no son el mismo: el alumno resuelve dos cosas distintas.
+  Lo que enseña el tema no cuenta por sí solo: cuenta si cambia la función de
+  lo que el alumno escribe.
 - **En un diálogo**, como «So am I» o «Neither did she», otra frase de A es otro
   ejercicio aunque la respuesta de B se repita.
 
 Ante la duda, decí que **no**: un no deja el ejercicio como está, y un sí lo
-manda a reemplazar.
+manda a reemplazar. Pero no son duda los casos que esta guía ya resuelve: una
+pregunta, una negativa, otro modal, otro orden con la misma función o una
+paráfrasis que cuenta lo mismo son el mismo ejercicio.
 
 No juzgás si los ejercicios están bien escritos, la pista, la consigna ni la
 traducción: eso lo miran otros analizadores.

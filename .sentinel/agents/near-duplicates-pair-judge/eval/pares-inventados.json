@@ -1,5 +1,5 @@
 {
- "why": "Corpus del modo en vivo (--claude): pares inventados, ninguno del curso, con lo que el juez lee de cada uno (title, first, second, como los arma DefaultSameExerciseQuestion). Los dos ejercicios de cada par piden la misma respuesta, no son iguales tal cual y el comodín no los resuelve. expected true: el mismo ejercicio para el alumno (otro sujeto, una palabra de más o de menos, un sinónimo fuera del hueco, otro orden, la negativa y la pregunta de la misma oración, la misma idea con otras palabras); false: otra oración que pide lo mismo, la misma plantilla con otra palabra de contenido, o el contraste del tema; null: dudoso, se muestra y no cuenta. cosine es el de nomic-embed-text («clustering: » + el ejercicio terminado), para ver que los pares caen donde caen los candidatos del curso.",
+ "why": "Corpus del modo en vivo (--claude): pares inventados, ninguno del curso, con lo que el juez lee de cada uno (title, first, second, como los arma DefaultSameExerciseQuestion). Los dos ejercicios de cada par piden la misma respuesta, no son iguales tal cual y el comodín no los resuelve. expected true: el mismo ejercicio para el alumno (otro sujeto, una palabra de más o de menos, un sinónimo fuera del hueco, otro orden, la negativa y la pregunta de la misma oración, la misma idea con otras palabras); false: otra oración que pide lo mismo, la misma plantilla con otra palabra de contenido, o el contraste del tema; null: dudoso, se muestra y no cuenta. cosine es el de nomic-embed-text («clustering: » + el ejercicio terminado), para ver que los pares caen donde caen los candidatos del curso. Desde el 3/10 suma 24 pares de la recalibración con el criterio de José: la misma oración en pregunta, en negativa o con otro modal; otro orden con la respuesta en la misma función (el mismo) contra otra función gramatical (otro); y la paráfrasis que cuenta lo mismo (el mismo) contra el cambio de verbo o de complemento que cambia lo que dice (otro). Ninguna oración comparte un tramo de cinco palabras con un ejercicio del curso.",
  "cases": [
   {
    "caseId": "s01-nombre-por-pronombre",
@@ -33,9 +33,9 @@
    "expected": true,
    "category": "sinónimo",
    "title": "Pasado continuo",
-   "first": "I ___ (read) a book when the lights went out.\nResuelto: I was reading a book when the lights went out.",
-   "second": "I ___ (read) a novel when the lights went out.\nResuelto: I was reading a novel when the lights went out.",
-   "cosine": 0.979
+   "first": "I ___ (read) a long book during the blackout.\nResuelto: I was reading a long book during the blackout.",
+   "second": "I ___ (read) a long novel during the blackout.\nResuelto: I was reading a long novel during the blackout.",
+   "cosine": 0.981
   },
   {
    "caseId": "s05-sobra-please",
@@ -69,9 +69,9 @@
    "expected": true,
    "category": "paráfrasis",
    "title": "Presente perfecto: experiencias",
-   "first": "Have you ever ___ (be) to Japan?\nResuelto: Have you ever been to Japan?",
-   "second": "Have you ___ (be) to Japan before?\nResuelto: Have you been to Japan before?",
-   "cosine": 0.989
+   "first": "Has your sister ever ___ (be) to Japan?\nResuelto: Has your sister ever been to Japan?",
+   "second": "Has your sister ___ (be) to Japan before?\nResuelto: Has your sister been to Japan before?",
+   "cosine": 0.995
   },
   {
    "caseId": "s09-adjetivo-de-mas",
@@ -141,9 +141,9 @@
    "expected": true,
    "category": "paráfrasis",
    "title": "Primer condicional",
-   "first": "If it ___ (rain) tomorrow, we will stay at home.\nResuelto: If it rains tomorrow, we will stay at home.",
-   "second": "If it ___ (rain) tomorrow, we'll stay home.\nResuelto: If it rains tomorrow, we'll stay home.",
-   "cosine": 0.99
+   "first": "If it ___ (rain) tomorrow, we will stay inside and play cards.\nResuelto: If it rains tomorrow, we will stay inside and play cards.",
+   "second": "If it ___ (rain) tomorrow, we'll stay indoors and play cards.\nResuelto: If it rains tomorrow, we'll stay indoors and play cards.",
+   "cosine": 0.994
   },
   {
    "caseId": "s17-piano",
@@ -254,22 +254,22 @@
    "cosine": 0.659
   },
   {
-   "caseId": "n09-rusia-y-mi-casa",
+   "caseId": "n09-rusia-y-mi-jardin",
    "expected": false,
    "category": "otra oración",
    "title": "Comparativos",
    "first": "Russia is ___ (big) than France.\nResuelto: Russia is bigger than France.",
-   "second": "My house is ___ (big) than my brother's flat.\nResuelto: My house is bigger than my brother's flat.",
-   "cosine": 0.671
+   "second": "My garden is ___ (big) than my brother's yard.\nResuelto: My garden is bigger than my brother's yard.",
+   "cosine": 0.628
   },
   {
    "caseId": "n10-tia-y-museo",
    "expected": false,
    "category": "otra oración",
    "title": "Futuro con $going to$: planes",
-   "first": "I ___ (visit) my aunt next weekend.\nResuelto: I am going to visit my aunt next weekend.",
-   "second": "I ___ (visit) the science museum with my class.\nResuelto: I am going to visit the science museum with my class.",
-   "cosine": 0.731
+   "first": "Rosa ___ (visit) her aunt next weekend.\nResuelto: Rosa is going to visit her aunt next weekend.",
+   "second": "Rosa ___ (visit) the science museum with her class.\nResuelto: Rosa is going to visit the science museum with her class.",
+   "cosine": 0.836
   },
   {
    "caseId": "n11-cancion-y-carta",
@@ -353,13 +353,13 @@
    "cosine": 0.769
   },
   {
-   "caseId": "n20-paris-y-medico",
+   "caseId": "n20-lisboa-y-medico",
    "expected": false,
    "category": "otra oración",
    "title": "Pasado simple: verbos irregulares",
-   "first": "She ___ (go) to Paris in 2019.\nResuelto: She went to Paris in 2019.",
+   "first": "She ___ (go) to Lisbon in 2019.\nResuelto: She went to Lisbon in 2019.",
    "second": "She ___ (go) to the doctor yesterday.\nResuelto: She went to the doctor yesterday.",
-   "cosine": 0.714
+   "cosine": 0.715
   },
   {
    "caseId": "h01-cansado-y-con-hambre",
@@ -380,13 +380,13 @@
    "cosine": 0.888
   },
   {
-   "caseId": "h03-playa-y-montana",
+   "caseId": "h03-lago-y-montana",
    "expected": false,
    "category": "una palabra de contenido",
    "title": "Pasado simple: verbos irregulares",
-   "first": "We ___ (go) to the beach last summer.\nResuelto: We went to the beach last summer.",
+   "first": "We ___ (go) to the lake last summer.\nResuelto: We went to the lake last summer.",
    "second": "We ___ (go) to the mountains last summer.\nResuelto: We went to the mountains last summer.",
-   "cosine": 0.881
+   "cosine": 0.869
   },
   {
    "caseId": "h04-nadar-y-bailar",
@@ -452,31 +452,247 @@
    "cosine": 0.708
   },
   {
-   "caseId": "d01-teatro-los-sabados-o-con-primos",
+   "caseId": "r1-negativa-y-pregunta",
+   "expected": true,
+   "category": "pregunta, negativa o modal",
+   "title": "Presente simple: negativas y preguntas",
+   "first": "Nora doesn't ___ (enjoy) loud music.\nResuelto: Nora doesn't enjoy loud music.",
+   "second": "Does Nora ___ (enjoy) loud music?\nResuelto: Does Nora enjoy loud music?",
+   "cosine": 0.985
+  },
+  {
+   "caseId": "r1-otro-modal",
+   "expected": true,
+   "category": "pregunta, negativa o modal",
+   "title": "Modales: $can$ y $must$",
+   "first": "You can ___ (park) your van behind the hotel.\nResuelto: You can park your van behind the hotel.",
+   "second": "You must ___ (park) your van behind the hotel.\nResuelto: You must park your van behind the hotel.",
+   "cosine": 0.989
+  },
+  {
+   "caseId": "r1-pregunta-con-contexto",
+   "expected": true,
+   "category": "pregunta, negativa o modal",
+   "title": "Futuro con $will$: preguntas",
+   "first": "Kim will ___ (call) you tonight.\nResuelto: Kim will call you tonight.",
+   "second": "Will Kim ___ (call) you tonight? (Preguntás porque no estás seguro.)\nResuelto: Will Kim call you tonight?",
+   "cosine": 0.988
+  },
+  {
+   "caseId": "r1-negativa-a-pregunta-con-modal",
+   "expected": true,
+   "category": "pregunta, negativa o modal",
+   "title": "Modales: $should$",
+   "first": "You shouldn't ___ (touch) the paintings in this room.\nResuelto: You shouldn't touch the paintings in this room.",
+   "second": "Should we ___ (touch) the paintings in this room?\nResuelto: Should we touch the paintings in this room?",
+   "cosine": 0.959
+  },
+  {
+   "caseId": "r1x-pregunta-con-otra-idea",
+   "expected": false,
+   "category": "contrario: pregunta con otra idea",
+   "title": "Presente simple: negativas y preguntas",
+   "first": "Does Pedro ___ (enjoy) jazz concerts?\nResuelto: Does Pedro enjoy jazz concerts?",
+   "second": "Does Pedro ___ (enjoy) cooking for his friends?\nResuelto: Does Pedro enjoy cooking for his friends?",
+   "cosine": 0.833
+  },
+  {
+   "caseId": "r1x-modal-con-otra-situacion",
+   "expected": false,
+   "category": "contrario: modal con otra situación",
+   "title": "Modales: $can$ y $must$",
+   "first": "You can ___ (leave) your bags at reception.\nResuelto: You can leave your bags at reception.",
+   "second": "You must ___ (leave) the room before eleven.\nResuelto: You must leave the room before eleven.",
+   "cosine": 0.758
+  },
+  {
+   "caseId": "r2-otro-orden-misma-funcion",
+   "expected": true,
+   "category": "otro orden, misma función",
+   "title": "Presente simple: rutinas",
+   "first": "Every summer, my cousins ___ (visit) us.\nResuelto: Every summer, my cousins visit us.",
+   "second": "My cousins ___ (visit) us every summer.\nResuelto: My cousins visit us every summer.",
+   "cosine": 0.994
+  },
+  {
+   "caseId": "r2-la-respuesta-se-mueve",
+   "expected": true,
+   "category": "otro orden, misma función",
+   "title": "Adverbios de frecuencia",
+   "first": "Ana ___ takes the train to work. (often · ever)\nResuelto: Ana often takes the train to work.",
+   "second": "___, Ana takes the train to work. (Often · Ever)\nResuelto: Often, Ana takes the train to work.",
+   "cosine": 0.995
+  },
+  {
+   "caseId": "r2-complemento-adelante",
+   "expected": true,
+   "category": "otro orden, misma función",
+   "title": "Pasado simple",
+   "first": "In the evening we ___ (watch) an old film.\nResuelto: In the evening we watched an old film.",
+   "second": "We ___ (watch) an old film in the evening.\nResuelto: We watched an old film in the evening.",
+   "cosine": 0.996
+  },
+  {
+   "caseId": "r2x-gerundio-sujeto-y-objeto",
+   "expected": false,
+   "category": "contrario: otra función",
+   "title": "Gerundios",
+   "first": "___ (swim) in the lake relaxes me.\nResuelto: Swimming in the lake relaxes me.",
+   "second": "I really enjoy ___ (swim) in the lake.\nResuelto: I really enjoy swimming in the lake.",
+   "cosine": 0.938
+  },
+  {
+   "caseId": "r2x-posesivo-delante-y-solo",
+   "expected": false,
+   "category": "contrario: otra función",
+   "title": "Posesivos: adjetivo y pronombre",
+   "first": "This is ___ bicycle. (his · him · he)\nResuelto: This is his bicycle.",
+   "second": "This bicycle is ___ . (his · him · he)\nResuelto: This bicycle is his.",
+   "cosine": 0.977
+  },
+  {
+   "caseId": "r2x-adjetivo-y-adverbio",
+   "expected": false,
+   "category": "contrario: otra función",
+   "title": "Adjetivos y adverbios",
+   "first": "Lucia is a ___ (fast) runner.\nResuelto: Lucia is a fast runner.",
+   "second": "Lucia runs very ___ (fast).\nResuelto: Lucia runs very fast.",
+   "cosine": 0.979
+  },
+  {
+   "caseId": "r3-parafrasis-del-oficio",
+   "expected": true,
+   "category": "paráfrasis que cuenta lo mismo",
+   "title": "Artículos $a$ y $an$",
+   "first": "Pablo works as ___ electrician. (a · an)\nResuelto: Pablo works as an electrician.",
+   "second": "Pablo earns his living as ___ electrician. (a · an)\nResuelto: Pablo earns his living as an electrician.",
+   "cosine": 0.982
+  },
+  {
+   "caseId": "r3-parafrasis-del-piso",
+   "expected": true,
+   "category": "paráfrasis que cuenta lo mismo",
+   "title": "Preposiciones de lugar",
+   "first": "Our apartment is ___ the seventh floor. (on · in · at)\nResuelto: Our apartment is on the seventh floor.",
+   "second": "We live ___ the seventh floor of the building. (on · in · at)\nResuelto: We live on the seventh floor of the building.",
+   "cosine": 0.964
+  },
+  {
+   "caseId": "r3-parafrasis-de-desde-cuando",
+   "expected": true,
+   "category": "paráfrasis que cuenta lo mismo",
+   "title": "Presente perfecto: $for$ y $since$",
+   "first": "I have lived in this town ___ 2015. (for · since)\nResuelto: I have lived in this town since 2015.",
+   "second": "I have been a resident of this town ___ 2015. (for · since)\nResuelto: I have been a resident of this town since 2015.",
+   "cosine": 0.976
+  },
+  {
+   "caseId": "r3-parafrasis-del-hambre",
+   "expected": true,
+   "category": "paráfrasis que cuenta lo mismo",
+   "title": "Pasado de $be$",
+   "first": "We ___ (be) really hungry after the long walk.\nResuelto: We were really hungry after the long walk.",
+   "second": "We ___ (be) starving after the long hike.\nResuelto: We were starving after the long hike.",
+   "cosine": 0.932
+  },
+  {
+   "caseId": "r3x-oficio-que-todavia-no-es",
+   "expected": false,
+   "category": "contrario: cambia lo que dice",
+   "title": "Artículos $a$ y $an$",
+   "first": "Pablo works as ___ electrician. (a · an)\nResuelto: Pablo works as an electrician.",
+   "second": "Pablo is training to become ___ electrician. (a · an)\nResuelto: Pablo is training to become an electrician.",
+   "cosine": 0.951
+  },
+  {
+   "caseId": "r3x-otro-hecho-en-el-piso",
+   "expected": false,
+   "category": "contrario: cambia lo que dice",
+   "title": "Preposiciones de lugar",
+   "first": "Our apartment is ___ the seventh floor. (on · in · at)\nResuelto: Our apartment is on the seventh floor.",
+   "second": "We waited ___ the seventh floor for an hour. (on · in · at)\nResuelto: We waited on the seventh floor for an hour.",
+   "cosine": 0.852
+  },
+  {
+   "caseId": "r3x-desde-cuando-otra-cosa",
+   "expected": false,
+   "category": "contrario: cambia lo que dice",
+   "title": "Presente perfecto: $for$ y $since$",
+   "first": "I have lived in this town ___ 2015. (for · since)\nResuelto: I have lived in this town since 2015.",
+   "second": "I have known Marta ___ 2015. (for · since)\nResuelto: I have known Marta since 2015.",
+   "cosine": 0.721
+  },
+  {
+   "caseId": "r3x-hambre-y-frio",
+   "expected": false,
+   "category": "contrario: cambia lo que dice",
+   "title": "Pasado de $be$",
+   "first": "We ___ (be) really hungry after the long walk.\nResuelto: We were really hungry after the long walk.",
+   "second": "We ___ (be) really cold after the long walk.\nResuelto: We were really cold after the long walk.",
+   "cosine": 0.877
+  },
+  {
+   "caseId": "g-otro-sujeto",
+   "expected": true,
+   "category": "control: otro sujeto",
+   "title": "Presente simple: tercera persona",
+   "first": "Mr Diaz ___ (teach) chemistry at our school.\nResuelto: Mr Diaz teaches chemistry at our school.",
+   "second": "He ___ (teach) chemistry at our school.\nResuelto: He teaches chemistry at our school.",
+   "cosine": 0.908
+  },
+  {
+   "caseId": "g-palabra-de-mas",
+   "expected": true,
+   "category": "control: palabra de más",
+   "title": "$There is$ y $there are$",
+   "first": "There ___ three chairs in the kitchen. (is · are)\nResuelto: There are three chairs in the kitchen.",
+   "second": "There ___ three wooden chairs in the kitchen. (is · are)\nResuelto: There are three wooden chairs in the kitchen.",
+   "cosine": 0.973
+  },
+  {
+   "caseId": "g-otra-palabra-de-contenido",
+   "expected": false,
+   "category": "control: otra palabra de contenido",
+   "title": "Afirmativas con $be$",
+   "first": "My brother ___ bored. (am · is · are)\nResuelto: My brother is bored.",
+   "second": "My brother ___ sick. (am · is · are)\nResuelto: My brother is sick.",
+   "cosine": 0.831
+  },
+  {
+   "caseId": "g-dialogo-con-otra-frase",
+   "expected": false,
+   "category": "control: diálogo con otra frase de A",
+   "title": "$So$ y $neither$",
+   "first": "A: I like horror films. (I) B: ___\nResuelto: A: I like horror films. B: So do I.",
+   "second": "A: I like spicy soup. (I) B: ___\nResuelto: A: I like spicy soup. B: So do I.",
+   "cosine": 0.789
+  },
+  {
+   "caseId": "d01-opera-los-sabados-o-con-primos",
    "expected": null,
    "category": "dudoso",
    "title": "Adverbios de frecuencia",
-   "first": "We ___ (often / go) to the theatre on Saturdays.\nResuelto: We often go to the theatre on Saturdays.",
-   "second": "We ___ (often / go) to the theatre with our cousins.\nResuelto: We often go to the theatre with our cousins.",
-   "cosine": 0.882
+   "first": "We ___ (often / go) to the opera on Saturdays.\nResuelto: We often go to the opera on Saturdays.",
+   "second": "We ___ (often / go) to the opera with our cousins.\nResuelto: We often go to the opera with our cousins.",
+   "cosine": 0.881
   },
   {
    "caseId": "d02-japon-o-tokio",
    "expected": null,
    "category": "dudoso",
    "title": "Presente perfecto: experiencias",
-   "first": "Have you ever ___ (be) to Japan?\nResuelto: Have you ever been to Japan?",
-   "second": "Have you ever ___ (be) to Tokyo?\nResuelto: Have you ever been to Tokyo?",
-   "cosine": 0.954
+   "first": "Has Tom ever ___ (be) to Japan?\nResuelto: Has Tom ever been to Japan?",
+   "second": "Has Tom ever ___ (be) to Tokyo?\nResuelto: Has Tom ever been to Tokyo?",
+   "cosine": 0.978
   },
   {
-   "caseId": "d03-tienda-o-banco",
+   "caseId": "d03-farmacia-o-correo",
    "expected": null,
    "category": "dudoso",
    "title": "Preposiciones de tiempo",
-   "first": "The shop opens ___ 9 o'clock. (at · on · in)\nResuelto: The shop opens at 9 o'clock.",
-   "second": "The bank opens ___ 9 o'clock. (at · on · in)\nResuelto: The bank opens at 9 o'clock.",
-   "cosine": 0.878
+   "first": "The pharmacy opens ___ 9 o'clock. (at · on · in)\nResuelto: The pharmacy opens at 9 o'clock.",
+   "second": "The post office opens ___ 9 o'clock. (at · on · in)\nResuelto: The post office opens at 9 o'clock.",
+   "cosine": 0.855
   }
  ]
 }

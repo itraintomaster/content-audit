@@ -16,7 +16,10 @@
     "**para el alumno es el mismo ejercicio**",
     "Ante la duda, decí que **no**",
     "**otro sujeto**",
-    "**El contraste que enseña el tema**",
+    "**la misma oración en pregunta, en negativa o con otro modal**",
+    "**otro orden**, aunque se mueva la respuesta, si cumple la misma función",
+    "**una paráfrasis**",
+    "**La respuesta con otra función**",
     "**En un diálogo**"
   ],
   "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado (sameExercise que no es booleano, razón vacía o larga, claves de más o de menos) y que emit produzca sameExerciseVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido (title, first, second) con la forma que arma DefaultSameExerciseQuestion con QuizStudentViewRenderer, para pares inventados: ninguno es del curso.",
