@@ -5,6 +5,18 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — developer (pista que regala) — Criterios de R007 que el REQUIREMENT no fija, tal como quedaron en el código:
+  - GapHint(text, parenthesized, gaps): la pista pegada es de su hueco; la que cierra el enunciado y las de una oración
+    entera son de todos los huecos. read() y gapHints() comparten los candidatos, así no se separan.
+  - issue() manda a la mesa todo hallazgo sin propuesta, también uno de R002 a R004 (no sólo MISSING_HINT y HINT_GIVEAWAY): una
+    pista que sólo podría ser la respuesta no se escribe. Por eso howItIsFixed dice «la única pista que sale de la respuesta es
+    la respuesta misma» para cualquier tipo a la mesa sin propuesta, salvo R006 y HINT_GIVEAWAY, que tienen su línea.
+  - La regla de arreglo cambia la pista de cada hueco cuyo texto normalizado es la marca Y dice una respuesta de ese mismo
+    hueco: con dos «(is)» en huecos distintos, sólo cambia el que regala.
+  - Si la regla no tiene qué escribir, el detalle de declinar es «la única pista que sale de la respuesta es la respuesta misma:
+    va a la mesa» (reemplaza a «la primera respuesta no da una pista»). Una petición de R007 sin los tokens de la oración guardada
+    también declina así: sin tokens no se sabe qué es verbo y R007 no marca nada.
+
 2026-10-01 — architect (pista que regala) — R007 es un método más de HintAnswerCheck, checkGiveaway(AuditableQuiz,
   ExerciseShape), como checkRewrite para R006: usa lo que ya tiene DefaultHintAnswerCheck (tokens, tabla, ayudantes de
   DefaultHintReader para leer la pista de cada hueco). Recibe la forma porque, a diferencia de R006, mira las dos: el

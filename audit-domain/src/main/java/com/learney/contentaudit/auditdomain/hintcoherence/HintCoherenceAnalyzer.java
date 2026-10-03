@@ -41,6 +41,10 @@ import javax.annotation.processing.Generated;
  *   <li>R006: where the answer is the whole sentence, the words of the rewrite that come neither from
  *       the sentence it rewrites nor from the hint or the instructions, also by {@link HintAnswerCheck}:
  *       a blocking finding per word, at the panel.</li>
+ *   <li>R007: the hint of each gap that says what the answers of that gap say and leaves nothing to decide
+ *       (no verb, or one already conjugated), also by {@link HintAnswerCheck}: a high finding, marked with the
+ *       hint; fixed by rule with the verb in base form, or at the panel when what gives the answer away does
+ *       not conjugate.</li>
  * </ul>
  *
  * An exercise with a finding scores 0, one without any scores 1. The evidence is the exercise as
@@ -72,6 +76,9 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
 
     /** R006: the rewrite asks for no word that the sentence it rewrites, the hint or the instructions do not bring. */
     static final String RULE_REWRITE_WORDS = "rewrite-words";
+
+    /** R007: the hint does not give the answer away when the student still has something to decide. */
+    static final String RULE_HINT_GIVEAWAY = "hint-giveaway";
 
     private final HintReader hintReader;
 
@@ -170,7 +177,10 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
         }
         List<HintIssue> issues;
         if (reading.hint().isPresent()) {
-            issues = answerCheck.check(reading.hint().get(), quiz);
+            // R007 joins R002 to R004: the hint of each gap against the answers of that same gap.
+            List<HintIssue> withHint = new ArrayList<>(answerCheck.check(reading.hint().get(), quiz));
+            withHint.addAll(answerCheck.checkGiveaway(quiz, reading.shape()));
+            issues = withHint;
         } else if (topic.asksForHint(reading.shape())) {
             issues = answerCheck.check(new ExerciseHint(null, List.of(), null, false, false), quiz);
         } else {
@@ -269,19 +279,36 @@ class HintCoherenceAnalyzer implements ContentAnalyzer {
         return drafts;
     }
 
-    /** Where the finding goes: the panel when a rule cannot tell what to fix, and otherwise the hint. */
+    /**
+     * Where the finding goes: the panel when a rule cannot tell what to fix, or has no hint to write because the only
+     * one that comes out of the answer would give it away; and otherwise the hint, completed or in base form.
+     */
     private static String howItIsFixed(HintIssue issue) {
+        boolean panel = issue.getResolution() == FindingResolution.PANEL;
         if (issue.getKind() == HintIssueKind.REWRITE_WORD_NOT_ANNOUNCED) {
             return ". Va a la mesa: quien reescribe fiel da mal";
         }
-        return issue.getResolution() == FindingResolution.PANEL
+        if (issue.getKind() == HintIssueKind.HINT_GIVEAWAY) {
+            return panel
+                    ? ". Va a la mesa: no se conjuga, y sacar la pista dejaría sin pista un tema que la lleva"
+                    : ". Se arregla con el verbo en forma base; la respuesta y su audio no cambian";
+        }
+        if (panel && issue.getProposedHint() == null) {
+            return ". Va a la mesa: la única pista que sale de la respuesta es la respuesta misma";
+        }
+        return panel
                 ? ". Va a la mesa: arreglar la pista cambiaría lo que pide el ejercicio"
                 : ". Se arregla completando la pista; la respuesta y su audio no cambian";
     }
 
-    /** R001 is high; a hint that does not match its answer makes the exercise impossible. */
+    /**
+     * R001 and R007 are high: the exercise does not become impossible, it stops teaching (F-HALL-R002); a hint that does not
+     * match its answer makes the exercise impossible.
+     */
     static FindingSeverity severityOf(HintIssueKind kind) {
-        return kind == HintIssueKind.MISSING_HINT ? FindingSeverity.HIGH : FindingSeverity.BLOCKING;
+        return kind == HintIssueKind.MISSING_HINT || kind == HintIssueKind.HINT_GIVEAWAY
+                ? FindingSeverity.HIGH
+                : FindingSeverity.BLOCKING;
     }
 
     /** Whether the missing hint of this exercise was asked by the whole topic and not by its shape. */

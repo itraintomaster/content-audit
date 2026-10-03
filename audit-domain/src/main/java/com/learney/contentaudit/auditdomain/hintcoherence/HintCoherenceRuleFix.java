@@ -35,6 +35,13 @@ import javax.annotation.processing.Generated;
  * first gap when the exercise has none. A finding the new hint does not settle comes back declined, and so does every
  * finding when the hint is not between parentheses («Our / ours ___») or when the answer is the whole sentence and has no
  * hint: there is no place to write one without rewriting the statement, which is the panel's.
+ *
+ * <p>R007: a hint that gives the answer away by a conjugated verb goes back to its base form -- the hint the analyzer
+ * proposes, «(is)» → «(be)», «(I / am)» → «(I / be)» -- and only the hint of the gap that gives it away changes: in «We ___
+ * (play) cards again, if we ___ (are) bored.» it is «(are)» that becomes «(be)», and «(play)», already in base form, stays.
+ * The answers, the stored sentence and the audio do not move. It never writes a hint that would give the answer away: when
+ * the only hint that comes out of the answer is the answer itself («(always)»), it writes nothing and declines for the
+ * panel.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -48,6 +55,10 @@ public class HintCoherenceRuleFix implements RuleFix {
     private static final Pattern TRAILING_HINT = Pattern.compile("\\(([^)]*)\\)\\s*$");
 
     private static final Pattern CLOSING_HINT = Pattern.compile("\\(([^)]*)\\)([\\s.?!]*)$");
+
+    /** Why the rule writes nothing: the only hint that comes out of the answer is the answer itself, which gives it away. */
+    private static final String ONLY_THE_ANSWER =
+            "la única pista que sale de la respuesta es la respuesta misma: va a la mesa";
 
     public HintCoherenceRuleFix(IrregularFormsCatalog irregularForms) {
         this.irregularForms = irregularForms;
@@ -74,22 +85,54 @@ public class HintCoherenceRuleFix implements RuleFix {
         DefaultHintAnswerCheck check = new DefaultHintAnswerCheck(irregularForms);
 
         AuditableQuiz view = viewOf(quiz, parts, request.getAuditQuiz());
+        ExerciseShape shape = reader.shapeOf(view, mode);
         Optional<ExerciseHint> hint = reader.read(view, mode);
-        String proposed = proposedHint(check.check(hint.orElse(noHint()), view));
-        if (proposed == null) {
-            return declinedAll(quiz, mine, "la primera respuesta no da una pista");
+        List<HintIssue> issues = issuesOf(check, hint, view, shape);
+
+        // R007: the hint that gives the answer away goes to its base form, in the hint of its own gap and in no other.
+        List<SentencePartEntity> written = copy(parts);
+        List<String> changes = new ArrayList<>();
+        String lastHint = null;
+        for (Finding finding : mine) {
+            HintIssue giveaway = HintCoherenceAnalyzer.RULE_HINT_GIVEAWAY.equals(finding.getRule())
+                    ? giveawayOf(issues, finding) : null;
+            if (giveaway != null) {
+                List<String> replaced = inBaseForm(written, shape, giveaway);
+                changes.addAll(replaced);
+                lastHint = replaced.isEmpty() ? lastHint : giveaway.getProposedHint();
+            }
         }
-        List<SentencePartEntity> written = withHint(parts, proposed, reader.shapeOf(view, mode));
-        if (written == null) {
-            return declinedAll(quiz, mine, hint.isPresent()
-                    ? "la pista no va entre paréntesis: cambiarla es reescribir el enunciado"
-                    : "la respuesta es la oración entera y no hay dónde escribir la pista sin cambiar el enunciado");
+
+        // The rest of what was asked -- the hint that is missing, R002 to R004 -- on the parts R007 already touched.
+        String notWritten = null;
+        if (mine.stream().anyMatch(finding -> !HintCoherenceAnalyzer.RULE_HINT_GIVEAWAY.equals(finding.getRule()))) {
+            String proposed = proposedHint(issues);
+            Optional<ExerciseHint> current = reader.read(viewOf(quiz, written, request.getAuditQuiz()), mode);
+            if (proposed == null) {
+                notWritten = ONLY_THE_ANSWER;
+            } else {
+                List<SentencePartEntity> withHint = withHint(written, proposed, shape);
+                if (withHint == null) {
+                    notWritten = current.isPresent()
+                            ? "la pista no va entre paréntesis: cambiarla es reescribir el enunciado"
+                            : "la respuesta es la oración entera y no hay dónde escribir la pista sin cambiar"
+                                    + " el enunciado";
+                } else {
+                    written = withHint;
+                    lastHint = proposed;
+                    changes.add(current.isEmpty() ? "pista «" + proposed + "» después del hueco"
+                            : "la pista pasa de «" + current.get().getText() + "» a «" + proposed + "»");
+                }
+            }
+        }
+        if (changes.isEmpty()) {
+            return declinedAll(quiz, mine, notWritten != null ? notWritten : ONLY_THE_ANSWER);
         }
 
         // What the new hint settles: every finding whose fault the analyzer no longer sees.
         AuditableQuiz after = viewOf(quiz, written, request.getAuditQuiz());
         Set<String> remaining = new HashSet<>();
-        for (HintIssue issue : check.check(reader.read(after, mode).orElse(noHint()), after)) {
+        for (HintIssue issue : issuesOf(check, reader.read(after, mode), after, reader.shapeOf(after, mode))) {
             remaining.add(issue.getRule() + "|" + markerOf(issue.getWord()));
         }
         List<FindingIdentity> fixed = new ArrayList<>();
@@ -102,14 +145,16 @@ public class HintCoherenceRuleFix implements RuleFix {
             }
         }
         if (fixed.isEmpty()) {
-            return result(quiz, List.of(), declined, "la pista «" + proposed + "» no resuelve lo que marca el analizador");
+            return result(quiz, List.of(), declined, "la pista «" + lastHint + "» no resuelve lo que marca el analizador");
         }
         QuizTemplateEntity changed = QuizTemplateEntities.copyOf(quiz);
         FormEntity form = FormEntities.copyOf(quiz.getForm());
         form.setSentenceParts(written);
         changed.setForm(form);
-        String detail = hint.isEmpty() ? "pista «" + proposed + "» después del hueco"
-                : "la pista pasa de «(" + hint.get().getText() + ")» a «" + proposed + "»";
+        String detail = String.join("; ", changes);
+        if (notWritten != null) {
+            detail = detail + "; " + notWritten;
+        }
         if (!declined.isEmpty()) {
             detail = detail + "; no resuelve " + declined.size() + " de los hallazgos";
         }
@@ -133,14 +178,100 @@ public class HintCoherenceRuleFix implements RuleFix {
         return new ExerciseHint(null, List.of(), null, false, false);
     }
 
-    /** The hint the answer gives, as the analyzer proposes it for the faults a rule fixes. */
+    /**
+     * The hint the answer gives, as the analyzer proposes it for the faults a rule fixes by writing the hint: the first of
+     * the missing hint and R002 to R004. R007 is not one of them: it only changes the hint that is there, in its own gap.
+     */
     private static String proposedHint(List<HintIssue> issues) {
         for (HintIssue issue : issues) {
-            if (issue.getResolution() == FindingResolution.RULE && issue.getProposedHint() != null) {
+            if (!HintCoherenceAnalyzer.RULE_HINT_GIVEAWAY.equals(issue.getRule())
+                    && issue.getResolution() == FindingResolution.RULE && issue.getProposedHint() != null) {
                 return issue.getProposedHint();
             }
         }
         return null;
+    }
+
+    /**
+     * What the analyzer finds in the exercise: the missing hint and R002 to R004, and when it has a hint, R007 -- the
+     * hint of each gap against the answers of that same gap.
+     */
+    private static List<HintIssue> issuesOf(DefaultHintAnswerCheck check, Optional<ExerciseHint> hint, AuditableQuiz view,
+            ExerciseShape shape) {
+        List<HintIssue> issues = new ArrayList<>(check.check(hint.orElse(noHint()), view));
+        if (hint.isPresent()) {
+            issues.addAll(check.checkGiveaway(view, shape));
+        }
+        return issues;
+    }
+
+    /** The issue of R007 a finding asks to fix by rule: the one with its marker and a hint in base form to write. */
+    private static HintIssue giveawayOf(List<HintIssue> issues, Finding finding) {
+        for (HintIssue issue : issues) {
+            if (HintCoherenceAnalyzer.RULE_HINT_GIVEAWAY.equals(issue.getRule())
+                    && issue.getResolution() == FindingResolution.RULE && issue.getProposedHint() != null
+                    && markerOf(issue.getWord()).equals(markerOf(finding.getIdentity().getMarker()))) {
+                return issue;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * R007: writes the base form, the inside of the proposal, in the hint of every gap that says the marker -- the one
+     * attached after the gap or before it, or the one closing the statement. Only the hint of a gap whose answers say it
+     * changes: any other hint stays as it was, as «(play)» next to the «(are)» that gives the answer away. Returns, for
+     * each hint it changed, what the student saw and what he sees now.
+     */
+    private static List<String> inBaseForm(List<SentencePartEntity> written, ExerciseShape shape, HintIssue giveaway) {
+        String marker = markerOf(giveaway.getWord());
+        String proposed = giveaway.getProposedHint();
+        String inner = proposed.substring(1, proposed.length() - 1);
+        List<String> changes = new ArrayList<>();
+        for (DefaultHintReader.GapHint hint : DefaultHintReader.gapHints(written, shape)) {
+            if (!hint.parenthesized() || !marker.equals(DefaultHintAnswerCheck.normalized(hint.text()))
+                    || !DefaultHintAnswerCheck.saysAnAnswer(hint, written)) {
+                continue;
+            }
+            String before = replacedGiveaway(written, hint, marker, inner);
+            if (before != null) {
+                changes.add("la pista pasa de «(" + before + ")» a «" + proposed + "»");
+            }
+        }
+        return changes;
+    }
+
+    /** Where a hint of its gaps is written: after the gap, before it or closing the statement; what it said, or null. */
+    private static String replacedGiveaway(List<SentencePartEntity> written, DefaultHintReader.GapHint hint, String marker,
+            String inner) {
+        for (int gap : hint.gaps()) {
+            if (gap + 1 < written.size() && isText(written.get(gap + 1))) {
+                String before = replacedSaying(written.get(gap + 1), LEADING_HINT, marker, inner);
+                if (before != null) {
+                    return before;
+                }
+            }
+            if (gap > 0 && isText(written.get(gap - 1))) {
+                String before = replacedSaying(written.get(gap - 1), TRAILING_HINT, marker, inner);
+                if (before != null) {
+                    return before;
+                }
+            }
+        }
+        int last = written.size() - 1;
+        return last >= 0 && isText(written.get(last))
+                ? replacedSaying(written.get(last), CLOSING_HINT, marker, inner)
+                : null;
+    }
+
+    /** Replaces the hint a pattern finds in the part by the inner text if it says the marker; what it said, or null. */
+    private static String replacedSaying(SentencePartEntity part, Pattern where, String marker, String inner) {
+        Matcher m = where.matcher(part.getText());
+        if (!m.find() || !marker.equals(DefaultHintAnswerCheck.normalized(m.group(1)))) {
+            return null;
+        }
+        String before = m.group(1).strip();
+        return replaced(part, where, inner) ? before : null;
     }
 
     private static String markerOf(String word) {

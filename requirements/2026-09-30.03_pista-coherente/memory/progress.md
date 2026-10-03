@@ -4,6 +4,14 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — developer (pista que regala) — R007 encendida en hintcoherence: 5 archivos de main, ni pruebas ni contratos tocados.
+  Lector (GapHint + gapHints + acceptedAnswers; read() da lo mismo), chequeo (checkGiveaway; issue() manda a la mesa todo lo que
+  no tiene propuesta; propose() nunca regala), analizador (hint-giveaway, gravedad alta), regla de arreglo (R007 sólo en el hueco
+  que regala; el detalle ya no dice «((I / see))») y la ficha con seis tarjetas (sólo la lista). Las 16 pruebas de R007 y la de la
+  ficha, en verde a la primera. Suite entera desde la raíz: 3.119 pruebas, 0 fallas, 1 salteada (línea base 3.103 + 16). Sin commit.
+  Next: correr el analizador sobre el curso vivo y contar contra los 28 del prototipo (A2 23, B1 3, B2 2); el javadoc del
+  proveedor sigue diciendo «R001 a R004 y R006» (no se tocó a pedido: otra sesión lo cambia).
+
 2026-10-01 — developer (ronda2/pista-que-regala) — Agregado sólo el case HINT_GIVEAWAY al switch de fault() en
   HintCoherenceAnalyzer (volvía a compilar main; checkGiveaway sigue UnsupportedOperationException, sin tocar).
   Ojo: `mvn -o test-compile -pl audit-domain` solo toma course-domain y evaluation-ledger-domain de los .jar viejos
