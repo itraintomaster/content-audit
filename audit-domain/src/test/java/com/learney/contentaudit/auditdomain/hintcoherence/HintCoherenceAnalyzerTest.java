@@ -584,7 +584,30 @@ public class HintCoherenceAnalyzerTest {
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R007")
     public void shouldRaiseAHighFindingAtThePanelIdentifiedByTheHintWhenTheHintGivesAwayTheAnswerAndDoesNotConjugateAsWeAlwaysEatEggsEveryMorningAnsweredAlwaysScoring0WithNoPistaPropuestaInItsEvidence() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: «We ___ (always) eat eggs every morning.» (…2572, A1, Adverbios de frecuencia) carries the hint the batch
+        // of 1/10 wrote: the answer itself. «always» is no verb, so nothing is left to decide and nothing can be
+        // conjugated: the finding goes to the panel and proposes no hint.
+        AuditableQuiz eggs = quiz("67fab6d59930102295342572", "We always eat eggs every morning.",
+                "We|we|PRON always|always|ADV eat|eat|VERB eggs|egg|NOUN every|every|DET morning|morning|NOUN .|.|PUNCT",
+                text("We"), cloze("always"), text("(always) eat eggs every morning."));
+        AuditNode topic = run(knowledge("6814dafa7d73e7209a13d3c4", "Adverbios de frecuencia", SentenceMode.REWRITE,
+                List.of(eggs)));
+        AuditNode node = quizNode(topic, "2572");
+
+        List<FindingDraft> drafts = analyzer.findingsAt(node);
+
+        assertEquals(List.of("hint-giveaway"), rules(drafts));
+        FindingDraft giveaway = drafts.get(0);
+        assertEquals("always", giveaway.getMarker());
+        assertEquals(FindingSeverity.HIGH, giveaway.getSeverity());
+        assertEquals(FindingResolution.PANEL, giveaway.getResolution());
+        String observation = giveaway.getEvidence().getObservation();
+        assertTrue(observation.startsWith("We ___ (always) eat eggs every morning. → always: la pista «always» es la"
+                + " respuesta: el alumno sólo la copia"), observation);
+        assertTrue(observation.endsWith(". Va a la mesa: no se conjuga, y sacar la pista dejaría sin pista un tema que"
+                + " la lleva"), observation);
+        assertFalse(labels(giveaway).contains("Pista propuesta"), "no hint to propose: the panel decides");
+        assertEquals(0.0, node.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME));
     }
 
     @Test
@@ -592,7 +615,30 @@ public class HintCoherenceAnalyzerTest {
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R007")
     public void shouldRaiseAHighFindingByRuleProposingTheBaseFormWhenTheHintGivesAwayTheAnswerAsAConjugatedVerbAsWhyIsTheBeachGoingToCloseAnsweredIsProposingBe() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007: «Why ___ (is) the beach going to close?» (…2170, A1, Preguntas $yes/no$ y $wh$) carries «(is)», the answer
+        // itself, and «is» is a conjugated verb (its lemma is be): the finding goes by rule, which proposes the base form.
+        AuditableQuiz beach = quiz("67fab6d59930102295342170", "Why is the beach going to close?",
+                "Why|why|SCONJ is|be|AUX the|the|DET beach|beach|NOUN going|go|VERB to|to|PART close|close|VERB ?|?|PUNCT",
+                text("Why"), cloze("is"), text("(is) the beach going to close?"));
+        AuditNode topic = run(knowledge("6814dafa7d73e7209a13d3ad", "Preguntas $yes/no$ y $wh$", SentenceMode.FILL,
+                List.of(beach)));
+        AuditNode node = quizNode(topic, "2170");
+
+        List<FindingDraft> drafts = analyzer.findingsAt(node);
+
+        assertEquals(List.of("hint-giveaway"), rules(drafts));
+        FindingDraft giveaway = drafts.get(0);
+        assertEquals("is", giveaway.getMarker());
+        assertEquals(FindingSeverity.HIGH, giveaway.getSeverity());
+        assertEquals(FindingResolution.RULE, giveaway.getResolution());
+        assertEquals("(be)", part(giveaway, "Pista propuesta"));
+        assertEquals("(be)", diagnosis(node).getIssues().get(0).getProposedHint());
+        String observation = giveaway.getEvidence().getObservation();
+        assertTrue(observation.startsWith("Why ___ (is) the beach going to close? → is: la pista «is» es la respuesta:"
+                + " el alumno sólo la copia"), observation);
+        assertTrue(observation.endsWith(". Se arregla con el verbo en forma base; la respuesta y su audio no cambian"),
+                observation);
+        assertEquals(0.0, node.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME));
     }
 
     @Test
@@ -600,6 +646,52 @@ public class HintCoherenceAnalyzerTest {
     @Tag("FEAT-PISTA")
     @Tag("F-PISTA-R007")
     public void shouldKeepSendingTheMissingHintToThePanelWithoutChangingWhichExercisesR001MarksWhenTheOnlyPossibleHintIsTheAnswerItselfAsWeEatEggsEveryMorningInAdverbiosDeFrecuencia17Of20OfTheTopicWithAHint() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R007 and R001: in Adverbios de frecuencia (A1, REWRITE) the gaps without hint, «We ___ eat eggs every morning.»
+        // (…2572) and «He ___ drinks juice in the morning.» (…2575), are still the ones R001 marks, with the same
+        // numbers of the topic. But the only hint that comes out of their answers is the answer itself, «(always)» and
+        // «(never)», which gives it away: the finding goes to the panel and proposes none.
+        AuditNode adverbs = run(knowledge("6814dafa7d73e7209a13d3c4", "Adverbios de frecuencia", SentenceMode.REWRITE,
+                adverbiosDeFrecuenciaConTokens()));
+
+        List<String> marked = adverbs.getChildren().stream()
+                .filter(quiz -> rules(analyzer.findingsAt(quiz)).contains(HintCoherenceAnalyzer.RULE_MISSING_HINT))
+                .map(HintCoherenceAnalyzerTest::id).toList();
+        assertEquals(List.of("67fab6d59930102295342572", "67fab6d59930102295342575"), marked,
+                "R001 marks the same exercises as before");
+        for (String suffix : List.of("2572", "2575")) {
+            AuditNode gap = quizNode(adverbs, suffix);
+            List<FindingDraft> drafts = analyzer.findingsAt(gap);
+            assertEquals(List.of(HintCoherenceAnalyzer.RULE_MISSING_HINT), rules(drafts), suffix);
+            FindingDraft missing = drafts.get(0);
+            assertEquals(FindingSeverity.HIGH, missing.getSeverity(), suffix);
+            assertEquals(FindingResolution.PANEL, missing.getResolution(), suffix);
+            assertFalse(labels(missing).contains("Pista propuesta"), suffix);
+            assertEquals(6, diagnosis(gap).getHintedInTopic(), suffix);
+            assertEquals(8, diagnosis(gap).getComparableInTopic(), suffix);
+            String observation = missing.getEvidence().getObservation();
+            assertTrue(observation.contains("6 de 8 ejercicios del tema la llevan"), observation);
+            assertTrue(observation.endsWith(". Va a la mesa: la única pista que sale de la respuesta es la respuesta"
+                    + " misma"), observation);
+            assertEquals(0.0, gap.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME), suffix);
+        }
+    }
+
+    /** Adverbios de frecuencia as the first test builds it, with the tokens of its two gaps without hint. */
+    static List<AuditableQuiz> adverbiosDeFrecuenciaConTokens() {
+        List<AuditableQuiz> quizzes = new ArrayList<>();
+        for (AuditableQuiz built : adverbiosDeFrecuencia()) {
+            if (built.getId().endsWith("2572")) {
+                quizzes.add(quiz("67fab6d59930102295342572", "We always eat eggs every morning.",
+                        "We|we|PRON always|always|ADV eat|eat|VERB eggs|egg|NOUN every|every|DET morning|morning|NOUN .|.|PUNCT",
+                        text("We"), cloze("always"), text("eat eggs every morning.")));
+            } else if (built.getId().endsWith("2575")) {
+                quizzes.add(quiz("67fab6d59930102295342575", "He never drinks juice in the morning.",
+                        "He|he|PRON never|never|ADV drinks|drink|VERB juice|juice|NOUN in|in|ADP the|the|DET morning|morning|NOUN .|.|PUNCT",
+                        text("He"), cloze("never"), text("drinks juice in the morning.")));
+            } else {
+                quizzes.add(built);
+            }
+        }
+        return quizzes;
     }
 }
