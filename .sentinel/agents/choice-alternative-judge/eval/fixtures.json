@@ -916,6 +916,48 @@
       }
     },
     {
+      "caseId": "clave-de-relleno-undefined",
+      "note": "Una clave de relleno con undefined, que no es JSON: se lee como null y la clave se descarta.",
+      "inputs": "musica",
+      "raw": "{\n  \"correctIsValid\": true,\n  \"validAlternatives\": [\n    {\n      \"label\": \"some\",\n      \"severity\": \"MEDIUM\",\n      \"reason_note\": undefined,\n        \"reason\": \"«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.\"\n    }\n  ],\n  \"correctProblem\": null,\n  \"rationale\": \"«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».\"\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "undefined-adentro-de-un-texto",
+      "note": "La palabra undefined adentro de un texto no se toca.",
+      "inputs": "musica",
+      "raw": "{\n  \"correctIsValid\": true,\n  \"validAlternatives\": [\n    {\n      \"label\": \"some\",\n      \"severity\": \"MEDIUM\",\n      \"reason_note\": undefined,\n        \"reason\": \"Dice undefined adentro del texto y queda como está.\"\n    }\n  ],\n  \"correctProblem\": null,\n  \"rationale\": \"«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».\"\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "Dice undefined adentro del texto y queda como está."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
       "caseId": "falta-correct-problem",
       "note": "correctProblem es parte del objeto cerrado aunque vaya null.",
       "inputs": "musica",

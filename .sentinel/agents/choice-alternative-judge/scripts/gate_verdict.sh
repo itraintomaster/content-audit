@@ -146,8 +146,44 @@ def without_trailing_commas(text):
     return "".join(kept)
 
 
+def without_undefined(text):
+    """El texto con cada `undefined` suelto cambiado por null, fuera de los textos.
+
+    A veces el juez cierra un objeto con una clave de relleno que ni siquiera
+    tiene un valor de JSON ("status_": undefined). Como null, la clave queda
+    vacía y la descarta el filtro de claves vacías. Adentro de un texto, la
+    palabra no se toca.
+    """
+    kept = []
+    in_string = False
+    escaped = False
+    index = 0
+    while index < len(text):
+        char = text[index]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                in_string = False
+        elif char == '"':
+            in_string = True
+        elif (
+            text.startswith("undefined", index)
+            and not (index and (text[index - 1].isalnum() or text[index - 1] == "_"))
+            and not re.match(r"[A-Za-z0-9_]", text[index + 9:index + 10])
+        ):
+            kept.append("null")
+            index += len("undefined")
+            continue
+        kept.append(char)
+        index += 1
+    return "".join(kept)
+
+
 def loads_lenient(text):
-    """json.loads que perdona la coma colgante.
+    """json.loads que perdona la coma colgante y el `undefined` suelto.
 
     A veces el juez deja una coma después de la última clave ("evidence": "…",
     y en la línea siguiente }). Esa coma no dice nada: si el texto no parsea,
@@ -156,7 +192,7 @@ def loads_lenient(text):
     try:
         return json.loads(text)
     except ValueError:
-        cleaned = without_trailing_commas(text)
+        cleaned = without_undefined(without_trailing_commas(text))
         if cleaned == text:
             raise
         return json.loads(cleaned)

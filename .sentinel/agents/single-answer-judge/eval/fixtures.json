@@ -777,6 +777,48 @@
       }
     },
     {
+      "caseId": "clave-de-relleno-undefined",
+      "note": "Una clave de relleno con undefined, que no es JSON: se lee como null y la clave se descarta.",
+      "inputs": "gente",
+      "raw": "{\n  \"alternatives\": [\n    {\n      \"answer\": \"to\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"HIGH\",\n      \"reason_note\": undefined,\n        \"reason\": \"La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».\"\n    }\n  ],\n  \"rationale\": \"La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.\"\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "undefined-adentro-de-un-texto",
+      "note": "La palabra undefined adentro de un texto no se toca.",
+      "inputs": "gente",
+      "raw": "{\n  \"alternatives\": [\n    {\n      \"answer\": \"to\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"HIGH\",\n      \"reason_note\": undefined,\n        \"reason\": \"Dice undefined adentro del texto y queda como está.\"\n    }\n  ],\n  \"rationale\": \"La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.\"\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "Dice undefined adentro del texto y queda como está."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
       "caseId": "respuesta-vacia",
       "note": "answer no va vacía.",
       "inputs": "gente",

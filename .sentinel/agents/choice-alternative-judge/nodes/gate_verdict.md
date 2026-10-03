@@ -22,6 +22,8 @@ description: |
   JSON sin ella.
   Un elemento de relleno en una lista, sin texto y con lo demás vacío o NONE,
   tampoco: se descarta.
+  Un `undefined` suelto, que no es JSON, se lee como null, y la clave de
+  relleno que lo traía se descarta.
 edges:
   - { to: emit, when: passed }
   - { to: evaluate, when: failed }
