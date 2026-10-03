@@ -8,7 +8,7 @@ Medición del 1/10/2026 para FEAT-DUPAR v3 (el paso por pares). Nada de esto con
 | `src/…/PairViews.java` | Lo que leería el juez (`DefaultSameExerciseQuestion.subjectOf`) para una lista de pares: sirvió para la calibración a mano. |
 | `contar_candidatos.py` | Candidatos por umbral de coseno y por nivel, sobre la salida del censo. Resultado en `candidatos-por-umbral.txt`. |
 | `calibracion-etiquetas.tsv` | 165 pares al azar por debajo de 0,90 y fuera de la zona de la muestra ciega, con mi lectura: S el mismo ejercicio, D dudoso, N otro. |
-| `evaluar_llama3.py`, `llama3-resultados.json` | llama3:8b con la mecánica de sí o no de Naturalidad sobre el corpus inventado del juez: dice «sí» a todo. |
+| `evaluar_llama3.py`, `llama3-resultados.json` | llama3:8b con la mecánica de sí o no de Naturalidad sobre el corpus inventado del juez: dice «sí» a todo. Los resultados son del corpus del 1/10; después se reemplazaron tres pares (`s05`, `s12`, `d01`) porque la guardia del examen los encontró en ejercicios del examen del 077. |
 
 Cómo correr el censo (desde la raíz, con el proyecto compilado):
 

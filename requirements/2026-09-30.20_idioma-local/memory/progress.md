@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — test-writer (FEAT-DUPAR v3) — Una de las 2 altas de F-MLOCAL-R002 escrita: SentenceEmbeddingEvaluatorTest,
+  «reuse the vectors that the same version recorded and not those that another version recorded» (libro en memoria, dos
+  digests de nomic-embed-text). La otra, la de NearDuplicatesAnalyzerTest, es del otro test-writer.
+
 2026-10-03 — qa-tester (FEAT-DUPAR v3) — Parche de sólo pruebas propuesto acá, sin aplicar: 2 altas de F-MLOCAL-R002
   inv. 2 sobre near-duplicates (vectores con la versión de nomic-embed-text y su prefijo, reusados entre versiones del
   paso por pares). Acompaña al de FEAT-DUPAR en 2026-09-30.19_duplicados-parecidos. validate exit 0.

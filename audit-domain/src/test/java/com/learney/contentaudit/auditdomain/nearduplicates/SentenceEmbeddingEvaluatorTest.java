@@ -31,7 +31,22 @@ public class SentenceEmbeddingEvaluatorTest {
     @Tag("F-DUPAR-R010")
     public void shouldAskNomicembedtextForTheVectorOfTheFinishedExerciseWithThePrefixClusteringUnderTheVersionOfNomicembedtextWithThatPrefix(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.RecordedNomic nomic = new NearDuplicatesAnalyzerTest.RecordedNomic(true);
+        SentenceEmbeddingEvaluator evaluator = new SentenceEmbeddingEvaluator(nomic, new DefaultNearDuplicatesConfig(),
+                VECTORS_VERSION);
+
+        EvaluationOutcome outcome = evaluator.evaluate(new EvaluationSubject(NearDuplicatesAnalyzerTest.COOKED,
+                Map.of(SentenceEmbeddingEvaluator.EXERCISE, "They cooked lunch for each other.")));
+
+        assertEquals(List.of("clustering: They cooked lunch for each other."), nomic.asked());
+        assertEquals("near-duplicates · nomic-embed-text@0a109f422b47 · clustering-1", evaluator.evaluatorId(),
+                "the version of the vectors alone: neither the candidate similarity nor the judge are in it");
+        assertEquals(Optional.of(VECTORS_VERSION), evaluator.evaluatorVersion());
+        assertTrue(outcome instanceof EvaluationEmitted, outcome.toString());
+        float[] vector = SentenceEmbeddingEvaluator.decode(((EvaluationEmitted) outcome).getPayload()).orElseThrow();
+        assertEquals(NearDuplicatesAnalyzerTest.RecordedNomic.DIMENSIONS, vector.length,
+                "the whole vector, in float32");
+        assertEquals(1.0f, vector[0], "the first of its group, as the double recorded it");
     }
 
     @Test
@@ -40,6 +55,31 @@ public class SentenceEmbeddingEvaluatorTest {
     @Tag("F-MLOCAL-R002")
     public void shouldReuseTheVectorsThatTheSameVersionOfNomicembedtextRecordedAndNotThoseThatAnotherVersionRecorded(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.Ledger ledger = new NearDuplicatesAnalyzerTest.Ledger();
+        DefaultEvaluationSessionFactory sessions = new DefaultEvaluationSessionFactory(ledger,
+                new Sha256ContentFingerprinter());
+        NearDuplicatesAnalyzerTest.RecordedNomic nomic = new NearDuplicatesAnalyzerTest.RecordedNomic(true);
+        EvaluationSubject subject = new EvaluationSubject(NearDuplicatesAnalyzerTest.COOKED,
+                Map.of(SentenceEmbeddingEvaluator.EXERCISE, "They cooked lunch for each other."));
+        SentenceEmbeddingEvaluator recorded = new SentenceEmbeddingEvaluator(nomic, new DefaultNearDuplicatesConfig(),
+                VECTORS_VERSION);
+        // The model pulled again: another digest of nomic-embed-text, the same prefix.
+        SentenceEmbeddingEvaluator anotherDigest = new SentenceEmbeddingEvaluator(nomic,
+                new DefaultNearDuplicatesConfig(), "nomic-embed-text@9f8e7d6c5b4a · clustering-1");
+
+        EvaluationResolution first = sessions.open(new EvaluationBudget(10), recorded).resolve(subject);
+        EvaluationResolution again = sessions.open(new EvaluationBudget(10), recorded).resolve(subject);
+        EvaluationResolution other = sessions.open(new EvaluationBudget(10), anotherDigest).resolve(subject);
+
+        assertEquals(EvaluationResolutionKind.EVALUATED, first.getKind());
+        assertEquals(EvaluationResolutionKind.REUSED, again.getKind(), "the same version reuses its vector");
+        assertEquals(first.getPayload(), again.getPayload(), "the vector it recorded, not a new one");
+        assertEquals(EvaluationResolutionKind.EVALUATED, other.getKind(), "another digest asks again");
+        assertEquals(2, nomic.asked().size(), "nomic-embed-text is asked once per version");
+        assertEquals(2, ledger.all().stream().map(record -> record.getKey().getEvaluatorId()).distinct().count(),
+                "each version records under its own evaluator id");
     }
+
+    /** The version of the vectors alone: nomic-embed-text as Ollama lists it, and the method of its prefix. */
+    private static final String VECTORS_VERSION = "nomic-embed-text@0a109f422b47 · clustering-1";
 }

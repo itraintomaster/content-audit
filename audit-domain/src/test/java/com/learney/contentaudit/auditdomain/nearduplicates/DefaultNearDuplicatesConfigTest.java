@@ -4,9 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
 
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
 import com.learney.contentaudit.auditdomain.localtools.LocalToolGateDecision;
+import com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -24,7 +29,17 @@ public class DefaultNearDuplicatesConfigTest {
     @Tag("F-DUPAR-R002")
     public void shouldHoldTheSimilaritiesThatOnlyChooseTheCandidatesOfTheJudge080ForTheVectorsWithThePrefixClusteringAnd06ForTheWords(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesConfig config = new DefaultNearDuplicatesConfig();
+
+        assertEquals(0.80, config.candidateSimilarity(), "the vectors only choose the candidates of the judge");
+        assertEquals("clustering: ", config.inputPrefix());
+        assertEquals(0.6, config.candidateWordSimilarity(), "the words choose them without Ollama");
+        assertEquals("clustering-1", config.methodId(),
+                "the method of the vectors alone: neither the similarity nor the judge are in it");
+        assertTrue(config.describe().containsValue("clustering-1"), "in view in config analyzer near-duplicates");
+        assertTrue(config.describe().containsValue("clustering: "));
+        assertTrue(config.describe().containsValue(0.80));
+        assertTrue(config.describe().containsValue(0.6));
     }
 
     @Test
@@ -33,7 +48,14 @@ public class DefaultNearDuplicatesConfigTest {
     @Tag("F-DUPAR-R010")
     public void shouldNameTheVersionWithOllamaByTheMethodOfTheVectorsTheCandidateSimilarityAndTheFirst12HexOfTheVersionOfTheJudgeClustering1Candidatos080Juezc3a9e1f07b5d(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesConfig config = new DefaultNearDuplicatesConfig();
+
+        assertEquals("clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d", config.vectorRouteMethodId(JUDGE_VERSION));
+        assertEquals(config.vectorRouteMethodId(JUDGE_VERSION),
+                config.vectorRouteMethodId(JUDGE_VERSION.substring(0, 12) + "0000"),
+                "only the first 12 characters of the version of the judge name it");
+        assertEquals("clustering-1 · candidatos-0,80 · juez-sin-versión", config.vectorRouteMethodId(null),
+                "a judge that states no version");
     }
 
     @Test
@@ -42,7 +64,39 @@ public class DefaultNearDuplicatesConfigTest {
     @Tag("F-DUPAR-R010")
     public void shouldNameAnotherVersionWithOllamaWhenThePrefixTheCandidateSimilarityOrTheVersionOfTheJudgeChangesSoItTakesItsOwnExam(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The exam that passed is the one of the version as it is named today: the vectors, the candidate
+        // similarity and the judge, with the version of nomic-embed-text that the tool puts in front.
+        NearDuplicatesAnalyzerTest.RecordedNomic nomic = new NearDuplicatesAnalyzerTest.RecordedNomic(true);
+        NearDuplicatesAnalyzerTest.Exams exams = new NearDuplicatesAnalyzerTest.Exams();
+        exams.approve("nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d");
+        DefaultLocalToolGate gate = new DefaultLocalToolGate(new DefaultJudgeRuntime(
+                mock(EvaluationSessionFactory.class), mock(EvaluationSessionFactory.class), exams,
+                evaluatorId -> List.of(), new NearDuplicatesAnalyzerTest.Judges()));
+        NearDuplicatesConfig measured = new DefaultNearDuplicatesConfig();
+        NearDuplicatesConfig otherPrefix = new DefaultNearDuplicatesConfig("search_document: ", 0.80, 0.6);
+        NearDuplicatesConfig otherSimilarity = new DefaultNearDuplicatesConfig("clustering: ", 0.85, 0.6);
+
+        LocalToolGateDecision same = gate.decide("near-duplicates", nomic,
+                measured.vectorRouteMethodId(JUDGE_VERSION), null);
+        LocalToolGateDecision prefix = gate.decide("near-duplicates", nomic,
+                otherPrefix.vectorRouteMethodId(JUDGE_VERSION), null);
+        LocalToolGateDecision similarity = gate.decide("near-duplicates", nomic,
+                otherSimilarity.vectorRouteMethodId(JUDGE_VERSION), null);
+        LocalToolGateDecision judge = gate.decide("near-duplicates", nomic,
+                measured.vectorRouteMethodId(OTHER_JUDGE_VERSION), null);
+
+        assertEquals("nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d",
+                same.getExaminedVersion());
+        assertEquals(JudgeExamStatus.APPROVED, same.getExamState());
+        assertTrue(same.isPublishes());
+        List<LocalToolGateDecision> changed = List.of(prefix, similarity, judge);
+        assertEquals(3, changed.stream().map(LocalToolGateDecision::getExaminedVersion).distinct().count(),
+                "each change is a version of its own");
+        for (LocalToolGateDecision other : changed) {
+            assertNotEquals(same.getExaminedVersion(), other.getExaminedVersion());
+            assertEquals(JudgeExamStatus.NOT_TAKEN, other.getExamState(), "another version takes its own exam");
+            assertFalse(other.isPublishes());
+        }
     }
 
     @Test
@@ -51,6 +105,22 @@ public class DefaultNearDuplicatesConfigTest {
     @Tag("F-DUPAR-R007")
     public void shouldNameTheVersionWithoutOllamaByTheWordSimilarityAndTheVersionOfTheJudgePalabras060Juezc3a9e1f07b5dAndAnotherOneWhenEitherChanges(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesConfig config = new DefaultNearDuplicatesConfig();
+        NearDuplicatesConfig otherWords = new DefaultNearDuplicatesConfig("clustering: ", 0.80, 0.65);
+
+        assertEquals("palabras-0,60 · juez-c3a9e1f07b5d", config.wordRouteVersion(JUDGE_VERSION));
+        assertNotEquals(config.wordRouteVersion(JUDGE_VERSION), otherWords.wordRouteVersion(JUDGE_VERSION),
+                "another word similarity is another version");
+        assertEquals("palabras-0,60 · juez-9b2d4f6a8c1e", config.wordRouteVersion(OTHER_JUDGE_VERSION),
+                "and so is another version of the judge");
+        assertEquals("palabras-0,60 · juez-sin-versión", config.wordRouteVersion(null),
+                "a judge that states no version");
     }
+
+    /** The version the judge of pairs states for itself: its definition, model and provider. */
+    private static final String JUDGE_VERSION = "c3a9e1f07b5d42c8a6e0f9d8c7b6a5948372615043f2e1d0c9b8a7f6e5d4c3b2";
+
+    /** Another version of that judge: the guide changed. */
+    private static final String OTHER_JUDGE_VERSION =
+            "9b2d4f6a8c1e7305d9f1b3a5c7e90214638b5d7f9a1c3e5072849b6d8f0a2c4e";
 }

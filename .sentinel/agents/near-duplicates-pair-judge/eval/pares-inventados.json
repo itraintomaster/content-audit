@@ -42,9 +42,9 @@
    "expected": true,
    "category": "palabra de más",
    "title": "Pedidos con $can$",
-   "first": "___ I have a glass of water, please? (Can · Do · Am)\nResuelto: Can I have a glass of water, please?",
-   "second": "___ I have a glass of water? (Can · Do · Am)\nResuelto: Can I have a glass of water?",
-   "cosine": 0.99
+   "first": "___ I borrow a pencil, please? (Can · Do · Am)\nResuelto: Can I borrow a pencil, please?",
+   "second": "___ I borrow a pencil? (Can · Do · Am)\nResuelto: Can I borrow a pencil?",
+   "cosine": 0.993
   },
   {
    "caseId": "s06-otro-orden",
@@ -101,13 +101,13 @@
    "cosine": 0.994
   },
   {
-   "caseId": "s12-nubes-oscuras",
+   "caseId": "s12-ferry-tarde",
    "expected": true,
    "category": "palabra de más",
    "title": "Futuro con $going to$: predicciones",
-   "first": "Look at those clouds! It ___ (rain).\nResuelto: Look at those clouds! It is going to rain.",
-   "second": "Look at those dark clouds! It ___ (rain) soon.\nResuelto: Look at those dark clouds! It is going to rain soon.",
-   "cosine": 0.968
+   "first": "Look at those grey clouds! The ferry ___ (leave) late.\nResuelto: Look at those grey clouds! The ferry is going to leave late.",
+   "second": "Look at those grey clouds over the harbour! The ferry ___ (leave) late.\nResuelto: Look at those grey clouds over the harbour! The ferry is going to leave late.",
+   "cosine": 0.975
   },
   {
    "caseId": "s13-help-por-assist",
@@ -452,13 +452,13 @@
    "cosine": 0.708
   },
   {
-   "caseId": "d01-cine-los-viernes-o-con-amigos",
+   "caseId": "d01-teatro-los-sabados-o-con-primos",
    "expected": null,
    "category": "dudoso",
    "title": "Adverbios de frecuencia",
-   "first": "We ___ (often / go) to the cinema on Fridays.\nResuelto: We often go to the cinema on Fridays.",
-   "second": "We ___ (often / go) to the cinema with friends.\nResuelto: We often go to the cinema with friends.",
-   "cosine": 0.899
+   "first": "We ___ (often / go) to the theatre on Saturdays.\nResuelto: We often go to the theatre on Saturdays.",
+   "second": "We ___ (often / go) to the theatre with our cousins.\nResuelto: We often go to the theatre with our cousins.",
+   "cosine": 0.882
   },
   {
    "caseId": "d02-japon-o-tokio",

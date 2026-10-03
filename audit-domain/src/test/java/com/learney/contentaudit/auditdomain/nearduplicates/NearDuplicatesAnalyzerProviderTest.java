@@ -6,15 +6,19 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.learney.contentaudit.auditdomain.AnalyzerDescriptor;
+import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard;
 import com.learney.contentaudit.auditdomain.finding.AnalysisCost;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.auditdomain.localtools.LocalToolCard;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolRunDiagnosis;
 import java.util.List;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -53,7 +57,41 @@ public class NearDuplicatesAnalyzerProviderTest {
     @Tag("F-DUPAR-R009")
     public void shouldOpenNearduplicatesThroughTheJudgesRuntimeWhenNomicembedtextIsAvailableWithTheVectorsWithoutLimitEvenIfTheRunAsksBudgetNearduplicatesNAndThePairJudgeWithTheRunsPolicyAsItComesSoWithoutThatRequestClaudePHasBudget0(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
+        EvaluationRunPolicy fifty = NearDuplicatesAnalyzerTest.budget(50);
+
+        world.provider.create(null);
+        world.provider.create(fifty);
+
+        List<List<String>> evaluators = world.recording.evaluators;
+        assertEquals(List.of("near-duplicates", "near-duplicates", "near-duplicates", "near-duplicates"),
+                world.recording.judges, "each run opens two sessions under the name of the analyzer");
+        Set<List<String>> both = Set.of(List.of(NearDuplicatesAnalyzerTest.VECTORS_ID),
+                List.of(NearDuplicatesAnalyzerTest.JUDGE_ID));
+        assertEquals(both, Set.copyOf(evaluators.subList(0, 2)), "the vectors and the pair judge, each its own evaluator");
+        assertEquals(both, Set.copyOf(evaluators.subList(2, 4)));
+        int vectors = evaluators.indexOf(List.of(NearDuplicatesAnalyzerTest.VECTORS_ID));
+        int judge = evaluators.indexOf(List.of(NearDuplicatesAnalyzerTest.JUDGE_ID));
+        int vectorsAgain = evaluators.lastIndexOf(List.of(NearDuplicatesAnalyzerTest.VECTORS_ID));
+        int judgeAgain = evaluators.lastIndexOf(List.of(NearDuplicatesAnalyzerTest.JUDGE_ID));
+
+        // Without --budget near-duplicates=N: the vectors have no limit, and claude -p gets the run's policy as it
+        // comes, none, so budget 0.
+        EvaluationRunPolicy local = world.recording.policies.get(vectors);
+        assertEquals(Integer.MAX_VALUE, local.getMaxNewEvaluations(), "without limit: budget 0 is for claude -p");
+        assertEquals(EvaluationRunPurpose.COURSE, local.getPurpose());
+        assertEquals(Integer.MAX_VALUE, world.recording.opened.get(vectors).getEffectivePolicy().getMaxNewEvaluations());
+        assertNull(world.recording.policies.get(judge), "the run's policy as it comes: none");
+        assertEquals(0, world.recording.opened.get(judge).getEffectivePolicy().getMaxNewEvaluations(),
+                "the runtime gives claude -p budget 0 without --budget");
+        // With --budget near-duplicates=50: the limit is claude -p's alone.
+        assertEquals(Integer.MAX_VALUE, world.recording.policies.get(vectorsAgain).getMaxNewEvaluations(),
+                "--budget near-duplicates=50 never reaches the vectors");
+        assertEquals(Integer.MAX_VALUE,
+                world.recording.opened.get(vectorsAgain).getEffectivePolicy().getMaxNewEvaluations());
+        assertEquals(fifty, world.recording.policies.get(judgeAgain));
+        assertEquals(50, world.recording.opened.get(judgeAgain).getEffectivePolicy().getMaxNewEvaluations());
+        assertEquals(0, world.claude.calls(), "opening a session consults nothing");
     }
 
     @Test
@@ -62,7 +100,19 @@ public class NearDuplicatesAnalyzerProviderTest {
     @Tag("F-DUPAR-R006")
     public void shouldDescribeNearduplicatesAsAnErrorsAnalyzerThatEvaluatesExercisesAndResolvesAtThePanelAskingDosEjerciciosDelMismoTemaPidenCasiLoMismoWithTheRulesSamebutwildcardInstantSimilarcandidatesOfLocalModelAndSameexerciseOfPaidModelAndPaidModelAsTheCostOfItsCard(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        AnalyzerDescriptor card = NearDuplicatesAnalyzerTest.World.withNomic().provider.describe();
+
+        assertEquals("near-duplicates", card.getName());
+        assertEquals("Duplicados parecidos", card.getDisplayName());
+        assertEquals("¿Dos ejercicios del mismo tema piden casi lo mismo?", card.getQuestion());
+        assertEquals(AnalyzerFamily.ERRORS, card.getFamily());
+        assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
+        assertEquals(List.of(FindingResolution.PANEL), card.getResolutions());
+        assertEquals(List.of("same-but-wildcard", "similar-candidates", "same-exercise"),
+                card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
+        assertEquals(List.of(AnalysisCost.INSTANT, AnalysisCost.LOCAL_MODEL, AnalysisCost.PAID_MODEL),
+                card.getRules().stream().map(AnalyzerRuleCard::getCost).toList());
+        assertEquals(AnalysisCost.PAID_MODEL, card.getCost(), "the highest cost of its rules");
     }
 
     @Test
@@ -71,7 +121,28 @@ public class NearDuplicatesAnalyzerProviderTest {
     @Tag("F-DUPAR-R006")
     public void shouldCarryInItsCardNomicembedtextWhichProposesThePairsWithOllamaAndClaudePWhichDecidesThemEachWithItsVersionNextToTheExamOfTheVersionWithOllamaAndOfTheVersionWithoutIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
+        world.exams.approve(NearDuplicatesAnalyzerTest.WITHOUT_OLLAMA_EXAMINED);
+
+        List<LocalToolCard> tools = world.provider.describe().getTools();
+
+        assertEquals(2, tools.size());
+        LocalToolCard nomic = tools.get(0);
+        assertEquals("nomic-embed-text en Ollama", nomic.getStatus().getTool());
+        assertEquals("nomic-embed-text@0a109f422b47", nomic.getStatus().getVersion());
+        assertEquals(NearDuplicatesAnalyzerTest.WITH_OLLAMA_EXAMINED, nomic.getExaminedVersion(),
+                "the version of the whole step: the vectors, the candidate similarity and the judge");
+        assertEquals(JudgeExamStatus.APPROVED, nomic.getExamState());
+        assertEquals("aprobado el 1/10", nomic.getExamSummary());
+        assertFalse(nomic.isAlternative());
+        LocalToolCard claude = tools.get(1);
+        assertEquals("claude -p", claude.getStatus().getTool());
+        assertEquals(NearDuplicatesAnalyzerTest.WITHOUT_OLLAMA_EXAMINED, claude.getStatus().getVersion());
+        assertEquals(NearDuplicatesAnalyzerTest.WITHOUT_OLLAMA_EXAMINED, claude.getExaminedVersion(),
+                "the version without Ollama: the word similarity and the judge");
+        assertEquals(JudgeExamStatus.APPROVED, claude.getExamState());
+        assertTrue(claude.isAlternative());
+        assertEquals(0, world.claude.calls(), "the card reads the version of claude -p without consulting it");
     }
 
     @Test
@@ -80,6 +151,25 @@ public class NearDuplicatesAnalyzerProviderTest {
     @Tag("F-DUPAR-R010")
     public void shouldConsultNeitherNomicembedtextNorClaudePWithOllamaWhenThePairJudgeStatesNoVersionLeavingTheJudgesReasonInView(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomicAndAJudgeWithoutVersion();
+
+        AuditNode root = world.run(NearDuplicatesAnalyzerTest.course(
+                NearDuplicatesAnalyzerTest.topic("Contraste inicial", NearDuplicatesAnalyzerTest.whereHe(),
+                        NearDuplicatesAnalyzerTest.whereShe()),
+                NearDuplicatesAnalyzerTest.topic("Each other o reflexivos", NearDuplicatesAnalyzerTest.cooked(),
+                        NearDuplicatesAnalyzerTest.prepared())), NearDuplicatesAnalyzerTest.budget(10));
+
+        assertEquals(List.of(), world.nomic.asked(), "not even a vector: the version with Ollama has no name to examine");
+        assertEquals(0, world.claude.calls());
+        for (String id : List.of(NearDuplicatesAnalyzerTest.WHERE_HE, NearDuplicatesAnalyzerTest.WHERE_SHE,
+                NearDuplicatesAnalyzerTest.COOKED, NearDuplicatesAnalyzerTest.PREPARED)) {
+            AuditNode quiz = NearDuplicatesAnalyzerTest.quiz(root, id);
+            assertNull(quiz.getScores().get("near-duplicates"), id);
+            assertTrue(quiz.getUnevaluatedBy().contains("near-duplicates"), id + ": the wildcard included");
+            assertEquals(List.of(), NearDuplicatesAnalyzerTest.findings(quiz), id);
+        }
+        LocalToolRunDiagnosis run = NearDuplicatesAnalyzerTest.runOf(root);
+        assertFalse(run.isPublished());
+        assertTrue(run.getReason().startsWith("sin versión"), "the reason of the judge, in view: " + run.getReason());
     }
 }

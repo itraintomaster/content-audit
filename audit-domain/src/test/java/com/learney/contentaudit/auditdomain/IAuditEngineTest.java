@@ -1915,11 +1915,16 @@ public class IAuditEngineTest {
                 new AnalyzerRuleCard("native-says-no", "claude -p no la diría", AnalysisCost.PAID_MODEL)));
     }
 
-    /** near-duplicates: same-but-wildcard instant, same-meaning of local model, same-exercise of paid model (FEAT-DUPAR). */
+    /**
+     * near-duplicates: same-but-wildcard instant, similar-candidates of local model, which only proposes the pairs and
+     * never marks, same-exercise of paid model (FEAT-DUPAR).
+     */
     private static AnalyzerDescriptor nearDuplicatesCard() {
         return cardOfPackageB("near-duplicates", AnalysisCost.PAID_MODEL, List.of(
                 new AnalyzerRuleCard("same-but-wildcard", "Lo mismo salvo el comodín", AnalysisCost.INSTANT),
-                new AnalyzerRuleCard("same-meaning", "Casi lo mismo para nomic-embed-text", AnalysisCost.LOCAL_MODEL),
+                new AnalyzerRuleCard("similar-candidates",
+                        "Con Ollama, el modelo local que compara oraciones propone los pares desde 0,80 de parecido; "
+                                + "nunca marca solo", AnalysisCost.LOCAL_MODEL),
                 new AnalyzerRuleCard("same-exercise", "El mismo ejercicio para claude -p", AnalysisCost.PAID_MODEL)));
     }
 

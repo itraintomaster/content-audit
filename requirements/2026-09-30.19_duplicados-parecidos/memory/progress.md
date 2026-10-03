@@ -4,6 +4,43 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — developer — v3 implementada, sólo cuerpos y `Main`: DefaultNearDuplicatesConfig (0,80 y las dos versiones por
+  piezas), PairStepEvaluator, el proveedor (con Ollama dos `open`, vectores sin tope y juez con la política tal cual, y una
+  sola JudgeSessions; sin Ollama el juez envuelto bajo wordRouteVersion; la ficha con las tres reglas), el analizador (dos
+  tandas, candidatos por coseno, filtro del examen, cobertura con la sesión del juez sola) y `Main` con
+  near-duplicates-pair-judge. `sentinel verify` OK. Compila `-pl audit-domain,audit-cli -am`. Las 53 pruebas de
+  nearduplicates verdes (J001, config, pair-step, embedding, proveedor y analizador); audit-domain 1159, audit-application
+  169 y audit-cli 523 verdes. Elecciones que no dice el parche: (1) el motivo del juez cuenta como «quedan N pares sin
+  juzgar» los pares sin respuesta, los que fallaron y los ilegibles, la misma cuenta que el costo pendiente de la
+  cobertura, y «falló la consulta de N pares» / los ilegibles llevan ese cierre; (2) los vectores se piden con las
+  consultas a la vez de la política que decidió la compuerta (la de la corrida o, sin pedido, una: B-06), no con las del
+  juez; (3) con Ollama y sin versión del juez la fila lleva el motivo del juez, no el de la compuerta; (4) en un examen,
+  los temas de la cobertura son los planeados que tienen algún ejercicio del archivo.
+  Next: `AgentDefinitionsExamGuardIntegrationTest` (quiz-instruction-infrastructure) falla por
+  `.sentinel/agents/near-duplicates-pair-judge/eval/pares-inventados.json`, con textos que sólo están en ejercicios del
+  examen (viene del commit del agente, no de este cambio); y rendir los dos exámenes.
+
+2026-10-03 — test-writer — Cuerpos escritos: NearDuplicatesAnalyzerTest (los 18 stubs y los dos que se reescriben, el
+  grupo de «Could I» y el examen dos veces), NearDuplicatesAnalyzerProviderTest (4) y FDuparJ001JourneyTest (caminos 2,
+  6 y 7). El camino 5 cambió de fixture: «Have you heard…» a 0,94 ahora es candidato del juez, así que «ningún par
+  cumple las condiciones» usa «I am sorry.» / «I am hot.» (0,71). `World` con las dos versiones nuevas
+  (WITH_OLLAMA_EXAMINED, WITHOUT_OLLAMA_EXAMINED; NOMIC_EXAMINED queda como la de los vectores solos), `Timeline`, un
+  juez sin versión (`withNomicAndAJudgeWithoutVersion`) y `turned(ollama)` (mismo libro, exámenes y juez). Todo el
+  paquete nearduplicates, 62 de 62 verdes, con la producción de ese momento (corrida aparte, sin Maven).
+  Next: el comando de Maven con el módulo entero y `sentinel verify`; la prueba de «la respuesta del juez no sirve»
+  pide sólo la cuenta («1 par»), no el texto del motivo.
+
+2026-10-03 — test-writer — Cuerpos escritos: DefaultNearDuplicatesConfigTest (4), SentenceEmbeddingEvaluatorTest (2,
+  una de F-MLOCAL-R002), PairStepEvaluatorTest (3) y la ficha de IAuditEngineTest (`same-meaning` → `similar-candidates`,
+  con el texto de R006). Dependen de helpers de NearDuplicatesAnalyzerTest (RecordedNomic, Ledger, Exams, Judges, COOKED,
+  renderer(), washForYou(), wash()): si el otro test-writer los renombra, se rompen. Verificadas, 45 verdes, en una copia
+  fuera del repo con la producción del desarrollador de ese momento; en el repo todavía no compila el módulo.
+  Next: el desarrollador termina el analizador y el proveedor; correr el comando de las cuatro clases con el módulo
+  entero. La ficha de near-duplicates de DefaultAuditRunnerTest (audit-application) también pasó a `similar-candidates`
+  (pedido del coordinador), y `shouldNotRejectARunThatAsksForNearduplicatesByNameWithoutOllama…` (línea ~1698) ya no
+  espera «v1» sino «palabras-0,60 · juez-» + la versión del juez (R007: la versión sin Ollama es la de la ruta, no la del
+  juez solo). 36 de 36 verdes en la copia aparte, con la producción de ese momento.
+
 2026-10-03 — qa-tester — Pruebas de la v3 propuestas, sin aplicar: `patch propose --replace` en esta carpeta (14 bajas
   y 29 altas, sólo handwrittenTests en 5 implementaciones) y `patch validate` exit 0; en la carpeta de FEAT-MLOCAL, otro
   parche con 2 altas de F-MLOCAL-R002 (reuso de vectores), validate exit 0. R009 (8) y R010 (9) quedan cubiertas; J001

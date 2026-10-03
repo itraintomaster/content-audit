@@ -35,6 +35,8 @@ import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog;
 import com.learney.contentaudit.auditdomain.findingengine.DefaultContextNumbersCalculator;
 import com.learney.contentaudit.auditdomain.findingengine.DefaultFindingCollector;
+import com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage;
+import com.learney.contentaudit.auditdomain.judging.JudgeCostEstimate;
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
@@ -56,6 +58,7 @@ import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
@@ -63,7 +66,10 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
 import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
@@ -148,12 +154,20 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R003")
     public void shouldMarkNMinus1ExercisesInAGroupOfNNearDuplicatesTheTwoCouldIAfterACanIDriveYourCarBNoYouCantInRespuestasCortasBothNamingIt(
             ) {
-        AuditNode root = World.withNomic().run(course(topic("Respuestas cortas", canDrive(), couldHave(), couldDrive())),
-                null);
+        World world = World.withNomic();
+        // «Could I have your car?» is a candidate of its vectors, 0.9565, and since 1/10 needs the yes of claude -p.
+        world.claude.answers("A: Can I drive your car? B: No, you can't.", "A: Could I have your car? B: No, you can't.",
+                true, "Piden lo mismo: permiso para usar el auto, y el alumno escribe «you can't» igual");
+        world.claude.answers("A: Could I have your car? B: No, you can't.", "A: Could I drive your car? B: No, you can't.",
+                true, "Piden lo mismo: permiso para usar el auto, y el alumno escribe «you can't» igual");
+
+        AuditNode root = world.run(course(topic("Respuestas cortas", canDrive(), couldHave(), couldDrive())),
+                budget(10));
 
         assertEquals(List.of(), findings(quiz(root, CAN_DRIVE)));
         assertEquals(CAN_DRIVE, only(quiz(root, COULD_HAVE)).getIdentity().getMarker());
-        assertEquals("same-meaning", only(quiz(root, COULD_HAVE)).getRule(), "0.9565 with «Can I drive…»");
+        assertEquals("same-exercise", only(quiz(root, COULD_HAVE)).getRule(),
+                "0.9565 with «Can I drive…», and claude -p says yes");
         assertEquals(CAN_DRIVE, only(quiz(root, COULD_DRIVE)).getIdentity().getMarker(), "the first, never …251d");
         assertEquals("same-but-wildcard", only(quiz(root, COULD_DRIVE)).getRule(), "Can → Could");
         assertEquals(2, errorCountsOf(root).getWithError(), "2 copies in a group of 3");
@@ -223,18 +237,27 @@ public class NearDuplicatesAnalyzerTest {
     public void shouldMarkTheSameCopiesWhenTheSameExaminedVersionTakesTheExamTwiceWithoutASingleNewConsultation(
             ) {
         World world = World.notExamined();
+        world.claude.answers("They cooked lunch for each other.", "They prepared lunch for each other.", true,
+                "Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración");
+        world.claude.answers("A: Can I drive your car? B: No, you can't.", "A: Could I have your car? B: No, you can't.",
+                true, "Piden lo mismo: permiso para usar el auto, y el alumno escribe «you can't» igual");
+        world.claude.answers("A: Could I have your car? B: No, you can't.", "A: Could I drive your car? B: No, you can't.",
+                true, "Piden lo mismo: permiso para usar el auto, y el alumno escribe «you can't» igual");
         // The exam asks only the topics of its file -- here two of the three -- and publishes without approval.
         EvaluationRunPolicy exam = new EvaluationRunPolicy(100, false, null, Set.of(PREPARED, COULD_HAVE, COULD_DRIVE),
                 EvaluationRunPurpose.EXAM, 1);
 
         AuditNode first = world.run(examCourse(), exam);
         List<String> asked = List.copyOf(world.nomic.asked());
+        int consultations = world.claude.calls();
         AuditNode second = world.run(examCourse(), exam);
 
         assertEquals(Map.of(PREPARED, COOKED, COULD_HAVE, CAN_DRIVE, COULD_DRIVE, CAN_DRIVE), copies(first));
         assertEquals(copies(first), copies(second));
         assertEquals(5, asked.size(), "two vectors of Each other and three of Respuestas cortas");
-        assertEquals(asked, world.nomic.asked(), "the second exam asks nothing new");
+        assertEquals(asked, world.nomic.asked(), "the second exam asks nothing new of nomic-embed-text");
+        assertTrue(consultations > 0, "the first exam asked claude -p");
+        assertEquals(consultations, world.claude.calls(), "nor of claude -p");
         assertNull(quiz(first, WHERE_SHE).getScores().get("near-duplicates"),
                 "a topic outside the file is neither asked nor counted");
     }
@@ -658,50 +681,81 @@ public class NearDuplicatesAnalyzerTest {
     // The world: nomic-embed-text and claude -p recorded, the judges' runtime over a ledger in memory
     // -------------------------------------------------------------------------
 
-    /** The examined version of nomic-embed-text in Ollama with the prefix «clustering: ». */
+    /** The examined version of the vectors alone, nomic-embed-text with «clustering: »: the ledger stores them under it. */
     static final String NOMIC_EXAMINED = "nomic-embed-text@0a109f422b47 · clustering-1";
 
-    /** The version the agent near-duplicates-same-exercise states: its definition, model and provider. */
+    /** The version the pair judge states: its definition, model and provider. */
     static final String CLAUDE_VERSION = "c3a9e1f07b5d42c8a6e0f9d8c7b6a5948372615043f2e1d0c9b8a7f6e5d4c3b2";
 
+    /** The version with Ollama, in its three pieces: the vectors, the candidate similarity and 12 hex of the judge's. */
+    static final String WITH_OLLAMA_EXAMINED =
+            "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d";
+
+    /** The version without Ollama: the word similarity and the first 12 hex of the judge's. */
+    static final String WITHOUT_OLLAMA_EXAMINED = "palabras-0,60 · juez-c3a9e1f07b5d";
+
+    /** The evaluator of the vectors in the ledger: «near-duplicates · » and the version of the vectors alone. */
+    static final String VECTORS_ID = "near-duplicates · " + NOMIC_EXAMINED;
+
+    /** The evaluator of the pair judge: the same with Ollama and without it. */
+    static final String JUDGE_ID = "near-duplicates-same-exercise";
+
     static final class World {
-        final Ledger ledger = new Ledger();
-        final Exams exams = new Exams();
+        final Ledger ledger;
+        final Exams exams;
+        final Timeline timeline;
         final RecordedNomic nomic;
-        final RecordedClaude claude = new RecordedClaude();
+        final RecordedClaude claude;
         final DefaultJudgeRuntime runtime;
         final RecordingRuntime recording;
         final DefaultLocalToolGate gate;
         final NearDuplicatesAnalyzerProvider provider;
 
-        private World(boolean ollama) {
+        private World(boolean ollama, boolean judgeStatesVersion) {
+            this(ollama, new Ledger(), new Exams(), new Timeline(), new RecordedClaude(judgeStatesVersion));
+        }
+
+        private World(boolean ollama, Ledger ledger, Exams exams, Timeline timeline, RecordedClaude claude) {
+            this.ledger = ledger;
+            this.exams = exams;
+            this.timeline = timeline;
             this.nomic = new RecordedNomic(ollama);
+            this.claude = claude;
             Sha256ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
             this.runtime = new DefaultJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, fingerprinter),
-                    new ExamEvaluationSessionFactory(ledger, fingerprinter), exams, evaluatorId -> List.of(),
-                    new Judges());
+                    new ExamEvaluationSessionFactory(ledger, fingerprinter), exams, timeline, new Judges());
             this.recording = new RecordingRuntime(runtime);
             this.gate = new DefaultLocalToolGate(runtime);
             this.provider = new NearDuplicatesAnalyzerProvider(nomic, claude, recording, corrector(), renderer(), gate);
         }
 
-        /** nomic-embed-text in Ollama, whose examined version approved its exam. */
+        /** nomic-embed-text in Ollama, whose version with the judge, in its three pieces, approved its exam. */
         static World withNomic() {
-            World world = new World(true);
-            world.exams.approve(NOMIC_EXAMINED);
+            World world = new World(true, true);
+            world.exams.approve(WITH_OLLAMA_EXAMINED);
             return world;
         }
 
         /** nomic-embed-text in Ollama, without exam. */
         static World notExamined() {
-            return new World(true);
+            return new World(true, true);
         }
 
-        /** Ollama off: the alternative with claude -p, whose version approved its exam. */
+        /** nomic-embed-text in Ollama and a pair judge that states no version: its definition or configuration is missing. */
+        static World withNomicAndAJudgeWithoutVersion() {
+            return new World(true, false);
+        }
+
+        /** Ollama off: the alternative with claude -p, whose version, word similarity and judge, approved its exam. */
         static World withoutOllama() {
-            World world = new World(false);
-            world.exams.approve(CLAUDE_VERSION);
+            World world = new World(false, true);
+            world.exams.approve(WITHOUT_OLLAMA_EXAMINED);
             return world;
+        }
+
+        /** The same ledger, exams and claude -p with Ollama on or off: what an earlier run left is what this one finds. */
+        World turned(boolean ollama) {
+            return new World(ollama, ledger, exams, timeline, claude);
         }
 
         /** analyze asking only near-duplicates, with this policy (null: the run asks it nothing). */
@@ -807,11 +861,23 @@ public class NearDuplicatesAnalyzerTest {
         }
     }
 
-    /** The agent near-duplicates-same-exercise with a recorded verdict per pair; it counts its consultations. */
+    /**
+     * The pair judge with a recorded verdict per pair; it counts its consultations and answers nothing that serves
+     * to a pair it has no verdict for. It may state no version.
+     */
     static final class RecordedClaude implements Evaluator {
+        private final boolean statesVersion;
         private final Map<String, String> verdicts = new LinkedHashMap<>();
         private final List<String> pairs = new ArrayList<>();
         final List<EvaluationSubject> subjects = new ArrayList<>();
+
+        RecordedClaude() {
+            this(true);
+        }
+
+        RecordedClaude(boolean statesVersion) {
+            this.statesVersion = statesVersion;
+        }
 
         void answers(String kept, String copy, boolean sameExercise, String reason) {
             verdicts.put(kept + " || " + copy, "{\"sameExercise\": " + sameExercise + ", \"reason\": \""
@@ -820,7 +886,7 @@ public class NearDuplicatesAnalyzerTest {
 
         @Override
         public String evaluatorId() {
-            return "near-duplicates-same-exercise";
+            return JUDGE_ID;
         }
 
         @Override
@@ -836,7 +902,7 @@ public class NearDuplicatesAnalyzerTest {
 
         @Override
         public Optional<String> evaluatorVersion() {
-            return Optional.of(CLAUDE_VERSION);
+            return statesVersion ? Optional.of(CLAUDE_VERSION) : Optional.empty();
         }
 
         synchronized int calls() {
@@ -889,6 +955,16 @@ public class NearDuplicatesAnalyzerTest {
         @Override
         public JudgeExamStanding standing(String judgeName, String judgeVersion) {
             return delegate.standing(judgeName, judgeVersion);
+        }
+    }
+
+    /** The times at which each evaluator recorded its verdicts: what the runtime measures its rate with. */
+    static final class Timeline implements EvaluationTimeline {
+        final Map<String, List<Instant>> times = new LinkedHashMap<>();
+
+        @Override
+        public List<Instant> recordedTimes(String evaluatorId) {
+            return times.getOrDefault(evaluatorId, List.of());
         }
     }
 
@@ -1028,6 +1104,22 @@ public class NearDuplicatesAnalyzerTest {
         return findings.get(0);
     }
 
+    /** The rule of every finding of near-duplicates in the report, in the order of the course. */
+    static List<String> rules(AuditNode root) {
+        List<String> rules = new ArrayList<>();
+        walk(root, node -> {
+            for (Finding finding : findings(node)) {
+                rules.add(finding.getRule());
+            }
+        });
+        return rules;
+    }
+
+    /** What was asked of a recorded evaluator, in a fixed order: the consultations of a run may be concurrent. */
+    static List<String> sorted(List<String> asked) {
+        return asked.stream().sorted().toList();
+    }
+
     /** Each copy of the run with the exercise that stays, by their ids. */
     static Map<String, String> copies(AuditNode root) {
         Map<String, String> copies = new TreeMap<>();
@@ -1084,7 +1176,27 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R002")
     public void shouldMakeANearDuplicateOfACandidateOfItsVectorsThatClaudePCallsTheSameExerciseTheyPreparedLunchForEachOtherAfterTheyCookedLunchForEachOther098WithTheRuleSameexercise(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withNomic();
+        world.claude.answers("They cooked lunch for each other.", "They prepared lunch for each other.", true,
+                "Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración");
+
+        AuditNode root = world.run(course(topic("Each other o reflexivos", cooked(), prepared())), budget(10));
+
+        Finding copy = only(quiz(root, PREPARED));
+        assertEquals("same-exercise", copy.getRule(), "the wildcard does not settle them: cooked and prepared");
+        assertEquals(COOKED, copy.getIdentity().getMarker());
+        NearDuplicateDiagnosis diagnosis = diagnosis(root, PREPARED);
+        assertEquals(NearDuplicateCondition.JUDGED, diagnosis.getCondition());
+        assertEquals(0.9759, diagnosis.getSimilarity(), 1e-5, "the cosine of the vectors that proposed the pair");
+        assertEquals("Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración",
+                diagnosis.getJudgeReason());
+        assertEquals(List.of(), findings(quiz(root, COOKED)), "the first of the topic stays");
+        assertEquals(1.0, score(root, COOKED));
+        assertEquals(0.0, score(root, PREPARED));
+        assertEquals(List.of("They cooked lunch for each other. || They prepared lunch for each other."),
+                world.claude.pairs());
+        assertEquals(List.of("clustering: They cooked lunch for each other.",
+                "clustering: They prepared lunch for each other."), sorted(world.nomic.asked()));
     }
 
     @Test
@@ -1093,7 +1205,25 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R003")
     public void shouldMarkTheSameCopiesInTwoRunsOfTheSameCourseReusingEveryVectorAndEveryVerdictOfClaudePWithoutAskingEitherAgain(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withNomic();
+        world.claude.answers("A: Can I drive your car? B: No, you can't.", "A: Could I have your car? B: No, you can't.",
+                true, "Piden lo mismo: permiso para usar el auto, y el alumno escribe «you can't» igual");
+        world.claude.answers("A: Could I have your car? B: No, you can't.", "A: Could I drive your car? B: No, you can't.",
+                true, "Piden lo mismo: permiso para usar el auto, y el alumno escribe «you can't» igual");
+
+        AuditNode first = world.run(course(topic("Respuestas cortas", canDrive(), couldHave(), couldDrive())),
+                budget(10));
+        List<String> vectors = List.copyOf(world.nomic.asked());
+        int consultations = world.claude.calls();
+        AuditNode second = world.run(course(topic("Respuestas cortas", canDrive(), couldHave(), couldDrive())),
+                budget(10));
+
+        assertEquals(Map.of(COULD_HAVE, CAN_DRIVE, COULD_DRIVE, CAN_DRIVE), copies(first));
+        assertEquals(copies(first), copies(second));
+        assertEquals(3, vectors.size());
+        assertEquals(vectors, world.nomic.asked(), "the second run reuses every vector");
+        assertTrue(consultations > 0, "the first run asked claude -p");
+        assertEquals(consultations, world.claude.calls(), "and every verdict of claude -p");
     }
 
     @Test
@@ -1102,7 +1232,25 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R004")
     public void shouldGiveEachFindingTheCostOfTheRuleThatFoundItInstantForSamebutwildcardAndPaidModelForSameexerciseWithOllamaAndWithoutItAndNoneToSimilarcandidatesWhichOnlyProposesPairs(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World withOllama = World.withNomic();
+        withOllama.claude.answers("They cooked lunch for each other.", "They prepared lunch for each other.", true,
+                "Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración");
+        withOllama.claude.answers("That is his car.", "That car is his.", false,
+                "Contrastan adjetivo y pronombre: el alumno escribe «his» con otro papel");
+        AuditNode proposed = withOllama.run(course(topic("Contraste inicial", whereHe(), whereShe()),
+                topic("Each other o reflexivos", cooked(), prepared()), topic("Adjetivo o pronombre", hisCar(), carHis())),
+                budget(10));
+        World alternative = World.withoutOllama();
+        alternative.claude.answers("Offer: I'll wash the dishes for you.", "Offer: I'll wash the dishes.", true,
+                "Piden lo mismo: «'ll wash» en una oferta; sólo sobra «for you»");
+        AuditNode withoutOllama = alternative.run(course(topic("Funciones mixtas", washForYou(), wash())), budget(10));
+
+        assertEquals(AnalysisCost.INSTANT, only(quiz(proposed, WHERE_SHE)).getCost());
+        assertEquals(AnalysisCost.PAID_MODEL, only(quiz(proposed, PREPARED)).getCost(), "with Ollama too");
+        assertEquals(AnalysisCost.PAID_MODEL, only(quiz(withoutOllama, WASH)).getCost(), "and without it");
+        assertEquals(List.of("same-but-wildcard", "same-exercise"), rules(proposed),
+                "«That car is his.», 0.97, is proposed by its vectors and gives no finding: that rule only proposes");
+        assertEquals(List.of("same-exercise"), rules(withoutOllama));
     }
 
     @Test
@@ -1111,7 +1259,26 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R004")
     public void shouldGiveAPairThatTheWildcardSettlesTheInstantRuleSamebutwildcardWithoutAskingClaudePEvenWhenItsVectorsReach080AAreWeReadyBYesWeAreAfterAAreTheyReadyBYesTheyAre(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withNomic();
+        world.claude.answers("A: Are we happy? B: Yes, we are.", "A: Are they ready? B: Yes, they are.", false,
+                "Otra pregunta: happy y ready");
+        world.claude.answers("A: Are we happy? B: Yes, we are.", "A: Are we ready? B: Yes, we are.", false,
+                "Otra pregunta: happy y ready");
+
+        // «Are they ready?» and «Are we ready?» reach 0.965 with their vectors, but the wildcard settles them first.
+        AuditNode root = world.run(course(topic("Respuestas cortas", weHappy(), theyReady(), weReady())), budget(10));
+
+        Finding copy = only(quiz(root, WE_READY));
+        assertEquals("same-but-wildcard", copy.getRule());
+        assertEquals(AnalysisCost.INSTANT, copy.getCost());
+        assertEquals(THEY_READY, copy.getIdentity().getMarker());
+        NearDuplicateDiagnosis diagnosis = diagnosis(root, WE_READY);
+        assertEquals(NearDuplicateCondition.WILDCARD, diagnosis.getCondition());
+        assertEquals("they → we", diagnosis.getDifference());
+        assertEquals(List.of("A: Are we happy? B: Yes, we are. || A: Are they ready? B: Yes, they are.",
+                "A: Are we happy? B: Yes, we are. || A: Are we ready? B: Yes, we are."), sorted(world.claude.pairs()),
+                "the two candidates of «Are we happy?»: the wildcard pair is never asked");
+        assertEquals(List.of(), findings(quiz(root, THEY_READY)), "claude -p says it is another question");
     }
 
     @Test
@@ -1120,7 +1287,21 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R005")
     public void shouldSayInTheEvidenceOfAPairThatItsVectorsProposedAndClaudePJudgedParaClaudePEsElMismoEjercicioQue355eParecido099AndTheReasonClaudePGave(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withNomic();
+        world.claude.answers("Have you ever been to Rome?", "Have you ever visited Rome?", true,
+                "La misma idea con otras palabras: «been to» por «visited», y el alumno elige «-» igual");
+
+        AuditNode root = world.run(course(topic("Montañas y océanos", beenToRome(), visitedRome())), budget(10));
+
+        Finding copy = only(quiz(root, VISITED_ROME));
+        assertEquals("Para claude -p es el mismo ejercicio que …355e: parecido 0,99", part(copy, "Casi igual"));
+        assertEquals("La misma idea con otras palabras: «been to» por «visited», y el alumno elige «-» igual",
+                part(copy, "Razón de claude -p"));
+        assertEquals("Have you ever visited Rome?", part(copy, "Copia terminada"));
+        assertEquals("Have you ever been to Rome?", part(copy, "Queda terminado"));
+        for (EvidencePart part : copy.getEvidence().getExamined()) {
+            assertFalse(part.getText().contains("[") || part.getText().contains("____"), part.getText());
+        }
     }
 
     @Test
@@ -1129,7 +1310,27 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R007")
     public void shouldAskClaudePInAnExamRunWithOllamaOnlyAboutTheCandidatesWhoseCopyIsAnExerciseOfTheExamsFileEvenWhenTheExerciseThatStaysIsNotInIt(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.notExamined();
+        world.claude.answers("They cooked lunch for each other.", "They prepared lunch for each other.", true,
+                "Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración");
+        world.claude.answers("Offer: I'll wash the dishes for you.", "Offer: I'll wash the dishes.", true,
+                "Piden lo mismo: «'ll wash» en una oferta; sólo sobra «for you»");
+        // The file has «They prepared…», a copy whose exercise that stays is not in it, and «…for you.», the
+        // exercise that stays of a copy that is outside it.
+        EvaluationRunPolicy exam = new EvaluationRunPolicy(100, false, null, Set.of(PREPARED, WASH_FOR_YOU),
+                EvaluationRunPurpose.EXAM, 1);
+
+        AuditNode root = world.run(course(topic("Each other o reflexivos", cooked(), prepared()),
+                topic("Funciones mixtas", washForYou(), wash())), exam);
+
+        assertEquals(List.of("They cooked lunch for each other. || They prepared lunch for each other."),
+                world.claude.pairs(), "its copy is in the file, though «They cooked…», the one that stays, is not");
+        assertEquals(Map.of(PREPARED, COOKED), copies(root), "«…the dishes.» is outside the file: its pair is not asked");
+        assertNull(score(root, WASH));
+        assertEquals(List.of("clustering: They cooked lunch for each other.",
+                "clustering: They prepared lunch for each other."), sorted(world.nomic.asked()),
+                "and no vector is asked for a pair whose copy is outside the file");
+        assertTrue(runOf(root).isPublished(), "the exam run publishes what it measures");
     }
 
     @Test
@@ -1138,7 +1339,24 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R007")
     public void shouldAskClaudePInAnExamRunWithoutOllamaOnlyAboutTheCandidatesWhoseCopyIsAnExerciseOfTheExamsFile(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withoutOllama();
+        world.claude.answers("Offer: I'll wash the dishes for you.", "Offer: I'll wash the dishes.", true,
+                "Piden lo mismo: «'ll wash» en una oferta; sólo sobra «for you»");
+        world.claude.answers("Have you ever been to Rome?", "Have you ever visited Rome?", true,
+                "La misma idea con otras palabras: «been to» por «visited», y el alumno elige «-» igual");
+        world.claude.answers("I am sorry.", "I am hot.", false, "Dos oraciones distintas: sorry y hot");
+        // The file has «…the dishes.», a copy, and «Have you ever been to Rome?», the exercise that stays of a copy
+        // that is outside it. «I am hot.» is in a topic the file does not reach.
+        EvaluationRunPolicy exam = new EvaluationRunPolicy(100, false, null, Set.of(WASH, BEEN_TO_ROME),
+                EvaluationRunPurpose.EXAM, 1);
+
+        AuditNode root = world.run(course(topic("Funciones mixtas", washForYou(), wash()),
+                topic("Montañas y océanos", beenToRome(), visitedRome()), topic("Afirmativas con be", sorry(), hot())),
+                exam);
+
+        assertEquals(List.of("Offer: I'll wash the dishes for you. || Offer: I'll wash the dishes."),
+                world.claude.pairs(), "only the pair whose copy is in the file");
+        assertEquals(Map.of(WASH, WASH_FOR_YOU), copies(root), "«Have you ever visited Rome?» is outside: no finding");
     }
 
     @Test
@@ -1147,7 +1365,24 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R007")
     public void shouldGiveAnExerciseOutsideTheExamsFileNeitherScoreNorFindingInAnExamRunNorCountThePairsWhoseCopyItIsAmongTheConsultationsTheExamSaysAreMissing(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withoutOllama();
+        // An exam without budget is a rehearsal: it consults nothing and says how many consultations are missing.
+        EvaluationRunPolicy exam = new EvaluationRunPolicy(0, false, null, Set.of(WASH), EvaluationRunPurpose.EXAM, 1);
+
+        AuditNode root = world.run(course(topic("Funciones mixtas", washForYou(), wash()),
+                topic("Montañas y océanos", beenToRome(), visitedRome()), topic("Afirmativas con be", sorry(), hot())),
+                exam);
+
+        assertTrue(halfway(root, WASH), "its pair with «…for you.» is in the file and nobody judged it");
+        assertEquals(1.0, score(root, WASH));
+        for (String outside : List.of(WASH_FOR_YOU, BEEN_TO_ROME, VISITED_ROME, SORRY, HOT)) {
+            assertNull(score(root, outside), outside);
+            assertEquals(List.of(), findings(quiz(root, outside)), outside);
+        }
+        assertEquals(1, coverageOf(root).getCost().getPendingConsultations(),
+                "the pairs of «Have you ever visited Rome?» and «I am hot.» are not counted: their copy is outside");
+        assertTrue(runOf(root).getReason().endsWith("quedan 1 par sin juzgar"), runOf(root).getReason());
+        assertEquals(0, world.claude.calls());
     }
 
     @Test
@@ -1156,7 +1391,25 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R009")
     public void shouldAskClaudePWithOllamaOnlyAboutTheCandidatesThatTheWildcardDoesNotSettleAndWhoseVectorsReach080AsHaveYouHeardAboutMyNewsAfterHaveYouHeardTheNews094AndNotAboutIAmHotAfterIAmSorry071(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withNomic();
+        world.claude.answers("Have you heard the news?", "Have you heard about my news?", false,
+                "Otra oración: «about my news» cambia lo que se cuenta, aunque el alumno escriba lo mismo");
+
+        AuditNode root = world.run(course(topic("Participios irregulares: repaso 1", heardNews(), heardMyNews()),
+                topic("Afirmativas con be", sorry(), hot()), topic("Contraste inicial", whereHe(), whereShe())),
+                budget(10));
+
+        assertEquals(List.of("Have you heard the news? || Have you heard about my news?"), world.claude.pairs(),
+                "0.94 reaches 0.80: asked; «I am hot.», 0.71, and the wildcard pair are not");
+        assertEquals(List.of("clustering: Have you heard about my news?", "clustering: Have you heard the news?",
+                "clustering: I am hot.", "clustering: I am sorry."), sorted(world.nomic.asked()),
+                "the vectors of every pair the wildcard does not settle, and none of «Where is he?»");
+        assertEquals(List.of(), findings(quiz(root, HEARD_MY_NEWS)), "0.94 alone marks nothing: claude -p said no");
+        assertEquals(1.0, score(root, HEARD_MY_NEWS));
+        assertFalse(halfway(root, HEARD_MY_NEWS), "judged: nothing is missing");
+        assertEquals(1.0, score(root, HOT));
+        assertFalse(halfway(root, HOT), "below 0.80 there is no candidate, so nothing is missing");
+        assertEquals("same-but-wildcard", only(quiz(root, WHERE_SHE)).getRule());
     }
 
     @Test
@@ -1165,7 +1418,20 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R009")
     public void shouldNotMarkWithOllamaACandidateWhoseVectorsReach097WhenClaudePCallsItADifferentExerciseThatCarIsHisAfterThatIsHisCar(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withNomic();
+        world.claude.answers("That is his car.", "That car is his.", false,
+                "Contrastan adjetivo y pronombre: el alumno escribe «his» con otro papel");
+
+        AuditNode root = world.run(course(topic("Adjetivo o pronombre", hisCar(), carHis())), budget(10));
+
+        assertEquals(List.of("That is his car. || That car is his."), world.claude.pairs(),
+                "its vectors, 0.97, propose the pair and claude -p decides it");
+        assertEquals(List.of(), findings(quiz(root, CAR_HIS)), "the similarity alone marks nothing");
+        assertEquals(1.0, score(root, CAR_HIS));
+        assertEquals(1.0, score(root, HIS_CAR));
+        assertFalse(halfway(root, CAR_HIS), "judged: nothing is missing");
+        assertTrue(((QuizDiagnoses) quiz(root, CAR_HIS).getDiagnoses()).getNearDuplicateDiagnosis().isEmpty());
+        assertEquals(0, errorCountsOf(root).getWithError());
     }
 
     @Test
@@ -1174,7 +1440,24 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R009")
     public void shouldAskNomicembedtextForEveryVectorAndStopOnlyClaudePAtTheBudgetOfBudgetNearduplicates1(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withNomic();
+        world.claude.answers("A: Are we happy? B: Yes, we are.", "A: Are they ready? B: Yes, they are.", false,
+                "Otra pregunta: happy y ready");
+        world.claude.answers("A: Are we happy? B: Yes, we are.", "A: Are we ready? B: Yes, we are.", false,
+                "Otra pregunta: happy y ready");
+
+        AuditNode root = world.run(course(topic("Respuestas cortas", weHappy(), theyReady(), weReady())), budget(1));
+
+        assertEquals(List.of("clustering: A: Are they ready? B: Yes, they are.",
+                "clustering: A: Are we happy? B: Yes, we are.", "clustering: A: Are we ready? B: Yes, we are."),
+                sorted(world.nomic.asked()), "--budget near-duplicates=1 does not reach the vectors: every one is asked");
+        assertEquals(List.of("A: Are we happy? B: Yes, we are. || A: Are they ready? B: Yes, they are."),
+                world.claude.pairs(), "claude -p stops at the budget: the first pair in the order of the topic");
+        assertFalse(halfway(root, THEY_READY));
+        assertTrue(halfway(root, WE_READY), "its pair with «Are we happy?» is the one the budget left");
+        String reason = runOf(root).getReason();
+        assertTrue(reason.startsWith("se acabó el tope"), reason);
+        assertTrue(reason.endsWith("quedan 1 par sin juzgar"), reason);
     }
 
     @Test
@@ -1183,7 +1466,25 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R009")
     public void shouldLeaveHalfEvaluatedWithOllamaAndWithoutBudgetNearduplicatesNAnExerciseWithACandidateOfItsVectorsConsultingNoClaudePKeepingItsWildcardFindingsAndSayingFaltaElTopeWithThePairsLeftToJudge(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withNomic();
+
+        // Without --budget near-duplicates=N: «Are we happy?» against the other two, 0.82 and 0.87, waits.
+        AuditNode root = world.run(course(topic("Respuestas cortas", weHappy(), theyReady(), weReady())), null);
+
+        AuditNode weReady = quiz(root, WE_READY);
+        assertEquals("same-but-wildcard", only(weReady).getRule(), "its wildcard finding counts");
+        assertEquals(THEY_READY, only(weReady).getIdentity().getMarker());
+        assertEquals(0.0, score(root, WE_READY));
+        assertTrue(halfway(root, WE_READY), "its pair with «Are we happy?» comes first and is missing");
+        assertTrue(halfway(root, THEY_READY));
+        assertEquals(1.0, score(root, THEY_READY));
+        assertFalse(halfway(root, WE_HAPPY), "the first of the topic has nothing before it");
+        assertEquals(3, world.nomic.asked().size(), "the vectors have no limit: they are asked without --budget");
+        assertEquals(0, world.claude.calls());
+        String reason = runOf(root).getReason();
+        assertTrue(reason.startsWith("falta el tope"), reason);
+        assertTrue(reason.endsWith("quedan 2 pares sin juzgar"), reason);
+        assertEquals(2, coverageOf(root).getCost().getPendingConsultations());
     }
 
     @Test
@@ -1192,7 +1493,24 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R009")
     public void shouldLeaveHalfEvaluatedWithOllamaAnExerciseWhoseCandidateGotNoUsableAnswerFromClaudePKeepingItsWildcardFindingsAndSayingHowManyPairsAreLeftToJudge(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withNomic();
+        // Only the pair of «Are they ready?» has an answer: for the pair of «Are we ready?» none serves.
+        world.claude.answers("A: Are we happy? B: Yes, we are.", "A: Are they ready? B: Yes, they are.", false,
+                "Otra pregunta: happy y ready");
+
+        AuditNode root = world.run(course(topic("Respuestas cortas", weHappy(), theyReady(), weReady())), budget(10));
+
+        AuditNode weReady = quiz(root, WE_READY);
+        assertEquals("same-but-wildcard", only(weReady).getRule(), "its wildcard finding counts");
+        assertEquals(THEY_READY, only(weReady).getIdentity().getMarker());
+        assertEquals(0.0, score(root, WE_READY));
+        assertTrue(halfway(root, WE_READY), "its pair with «Are we happy?» got no answer that serves");
+        assertFalse(halfway(root, THEY_READY), "its only candidate was judged");
+        assertEquals(Set.of("A: Are we happy? B: Yes, we are. || A: Are they ready? B: Yes, they are.",
+                "A: Are we happy? B: Yes, we are. || A: Are we ready? B: Yes, we are."), Set.copyOf(world.claude.pairs()),
+                "claude -p was asked about both candidates");
+        assertTrue(runOf(root).getReason().contains("1 par"), "the report says how many pairs are left: "
+                + runOf(root).getReason());
     }
 
     @Test
@@ -1201,7 +1519,30 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R009")
     public void shouldDeclareAsMissingForNearduplicatesOnlyThePairsLeftForClaudePWithTheirHoursAtTheRateOfTheJudgeOneAtATimeAndFourAtATimeNeverTheVectorsOfNomicembedtext(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withNomic();
+        Instant start = Instant.parse("2026-10-02T10:00:00Z");
+        // claude -p answered 20 seconds apart, 180 an hour; the vectors of nomic-embed-text, a second apart.
+        world.timeline.times.put(JUDGE_ID, List.of(start, start.plusSeconds(20), start.plusSeconds(40),
+                start.plusSeconds(60), start.plusSeconds(80), start.plusSeconds(100)));
+        List<Instant> vectors = new ArrayList<>();
+        for (int second = 0; second < 40; second++) {
+            vectors.add(start.plusSeconds(second));
+        }
+        world.timeline.times.put(VECTORS_ID, vectors);
+
+        AuditNode root = world.run(course(topic("Respuestas cortas", weHappy(), theyReady(), weReady())), null);
+
+        JudgeCoverageDiagnosis coverage = coverageOf(root);
+        assertEquals(List.of(JUDGE_ID), coverage.getEvaluators().stream().map(EvaluatorCoverage::getEvaluatorId).toList(),
+                "the coverage is the one of claude -p alone");
+        JudgeCostEstimate cost = coverage.getCost();
+        assertEquals(2, cost.getPendingConsultations(), "the two pairs left for claude -p, not the vectors");
+        assertEquals(180.0, cost.getRatePerHour(), 1e-6, "at the rate of the judge, not mixed with the vectors'");
+        assertTrue(cost.isRateMeasured());
+        assertEquals(2 / 180.0, cost.getHoursOneAtATime(), 1e-9);
+        assertEquals(4, cost.getMaxConcurrentEvaluations());
+        assertEquals(2 / 180.0 / 4, cost.getHoursConcurrent(), 1e-9);
+        assertEquals(0, world.claude.calls());
     }
 
     @Test
@@ -1210,7 +1551,24 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R009")
     public void shouldEvaluateWholeATopicOutsideTheSetThatARunDeclaresForClaudePWhenItsVectorsStayBelow080IAmHotAfterIAmSorrySinceTheVectorsAlwaysRun(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withNomic();
+        world.claude.answers("Offer: I'll wash the dishes for you.", "Offer: I'll wash the dishes.", true,
+                "Piden lo mismo: «'ll wash» en una oferta; sólo sobra «for you»");
+        // The run declares the two exercises of Funciones mixtas for claude -p, as a re-evaluation of that pair.
+        EvaluationRunPolicy declared = new EvaluationRunPolicy(10, false, null, Set.of(WASH_FOR_YOU, WASH),
+                EvaluationRunPurpose.COURSE, null);
+
+        AuditNode root = world.run(course(topic("Funciones mixtas", washForYou(), wash()),
+                topic("Afirmativas con be", sorry(), hot())), declared);
+
+        assertEquals(List.of("Offer: I'll wash the dishes for you. || Offer: I'll wash the dishes."), world.claude.pairs(),
+                "the set chooses what is asked to claude -p again");
+        assertEquals(1.0, score(root, HOT));
+        assertFalse(halfway(root, HOT), "its pair stays at 0.71, below 0.80: nothing is missing");
+        assertEquals(List.of(), findings(quiz(root, HOT)));
+        assertEquals(List.of("clustering: I am hot.", "clustering: I am sorry.",
+                "clustering: Offer: I'll wash the dishes for you.", "clustering: Offer: I'll wash the dishes."),
+                sorted(world.nomic.asked()), "the set never chooses the vectors: the topic outside it is asked too");
     }
 
     @Test
@@ -1219,7 +1577,26 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R010")
     public void shouldLeaveAllOfNearduplicatesUnevaluatedTheWildcardIncludedWhileTheVersionWithOllamaNamedByItsThreePiecesHasNoApprovedExamEvenIfNomicembedtextWithItsPrefixAloneApprovedOne(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.notExamined();
+        // The exam of 30/9 approved nomic-embed-text with its prefix alone: no candidate threshold, no judge.
+        world.exams.approve(NOMIC_EXAMINED);
+
+        AuditNode root = world.run(course(topic("Contraste inicial", whereHe(), whereShe()),
+                topic("Each other o reflexivos", cooked(), prepared())), budget(10));
+
+        for (String id : List.of(WHERE_HE, WHERE_SHE, COOKED, PREPARED)) {
+            AuditNode quiz = quiz(root, id);
+            assertNull(quiz.getScores().get("near-duplicates"), id);
+            assertTrue(quiz.getUnevaluatedBy().contains("near-duplicates"), id);
+            assertEquals(List.of(), findings(quiz), id);
+        }
+        assertEquals(List.of(), world.nomic.asked(), "nothing is asked for a version that does not publish");
+        assertEquals(0, world.claude.calls());
+        LocalToolRunDiagnosis run = runOf(root);
+        assertFalse(run.isPublished());
+        assertEquals(WITH_OLLAMA_EXAMINED, run.getExaminedVersion());
+        assertEquals(JudgeExamStatus.NOT_TAKEN, run.getExamState());
+        assertTrue(run.getReason().startsWith("sin examen"), run.getReason());
     }
 
     @Test
@@ -1228,7 +1605,22 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-DUPAR-R010")
     public void shouldNotAskClaudePAgainWithOllamaAboutAPairItAlreadyJudgedWithoutOllamaOfferIllWashTheDishesAfterOfferIllWashTheDishesForYou(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World without = World.withoutOllama();
+        without.exams.approve(WITH_OLLAMA_EXAMINED);
+        without.claude.answers("Offer: I'll wash the dishes for you.", "Offer: I'll wash the dishes.", true,
+                "Piden lo mismo: «'ll wash» en una oferta; sólo sobra «for you»");
+        without.run(course(topic("Funciones mixtas", washForYou(), wash())), budget(10));
+        assertEquals(1, without.claude.calls(), "claude -p judged the pair once, without Ollama");
+
+        // The same ledger, the same exams and the same claude -p, with Ollama on.
+        World with = without.turned(true);
+        AuditNode root = with.run(course(topic("Funciones mixtas", washForYou(), wash())), budget(10));
+
+        assertEquals(1, with.claude.calls(), "its verdict is reused: not a single new consultation");
+        Finding copy = only(quiz(root, WASH));
+        assertEquals("same-exercise", copy.getRule());
+        assertEquals(WASH_FOR_YOU, copy.getIdentity().getMarker());
+        assertEquals(0.9937, diagnosis(root, WASH).getSimilarity(), 1e-5, "now it was proposed by its vectors");
     }
 
     @Test
@@ -1237,6 +1629,25 @@ public class NearDuplicatesAnalyzerTest {
     @Tag("F-MLOCAL-R002")
     public void shouldReuseWithOllamaTheVectorsThatTheVersionOf309RecordedWithoutAskingNomicembedtextAgainSinceNeitherTheCandidateThresholdNorTheJudgeEntersTheirRecord(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        World world = World.withNomic();
+        // What the version of 30/9 left in the ledger: the vector of each exercise, under the version of the vectors
+        // alone, «nomic-embed-text@0a109f422b47 · clustering-1», without a threshold or a judge in it.
+        EvaluationSession recorded = new DefaultEvaluationSessionFactory(world.ledger, new Sha256ContentFingerprinter())
+                .open(new EvaluationBudget(10), new SentenceEmbeddingEvaluator(new RecordedNomic(true),
+                        new DefaultNearDuplicatesConfig(), NOMIC_EXAMINED));
+        assertEquals(EvaluationResolutionKind.EVALUATED, recorded.resolve(new EvaluationSubject(COOKED,
+                Map.of("exercise", "They cooked lunch for each other."))).getKind());
+        assertEquals(EvaluationResolutionKind.EVALUATED, recorded.resolve(new EvaluationSubject(PREPARED,
+                Map.of("exercise", "They prepared lunch for each other."))).getKind());
+        world.claude.answers("They cooked lunch for each other.", "They prepared lunch for each other.", true,
+                "Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración");
+
+        AuditNode root = world.run(course(topic("Each other o reflexivos", cooked(), prepared())), budget(10));
+
+        assertEquals(List.of(), world.nomic.asked(), "every vector is reused: nomic-embed-text is not asked again");
+        assertEquals("same-exercise", only(quiz(root, PREPARED)).getRule());
+        assertEquals(0.9759, diagnosis(root, PREPARED).getSimilarity(), 1e-5,
+                "the cosine is the one of the recorded vectors");
+        assertEquals(1, world.claude.calls(), "claude -p is asked, within its budget: what is reused is the vectors");
     }
 }

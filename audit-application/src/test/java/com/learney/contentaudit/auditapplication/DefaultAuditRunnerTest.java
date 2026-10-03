@@ -1695,7 +1695,10 @@ public class DefaultAuditRunnerTest {
         verify(courseRepository, times(1)).load(coursePath);
         LocalToolRunDiagnosis run = localToolRun(report, "near-duplicates");
         assertTrue(run.isAlternative(), "it ran with claude -p");
-        assertEquals("v1", run.getExaminedVersion());
+        // F-DUPAR-R007: without Ollama the version that takes the exam is the one of the route -- the word similarity
+        // and the version of the judge --, not the judge's alone.
+        assertEquals("palabras-0,60 · juez-" + roundOneJudge().evaluatorVersion().orElseThrow(),
+                run.getExaminedVersion());
     }
 
     @Test
@@ -1845,13 +1848,17 @@ public class DefaultAuditRunnerTest {
                         "claude -p no la diría", AnalysisCostOf.PAID_MODEL)));
     }
 
-    /** near-duplicates' card as package B describes it: instant, local model and paid model (FEAT-DUPAR). */
+    /**
+     * near-duplicates' card as package B describes it: instant, local model -- similar-candidates only proposes the
+     * pairs and never marks -- and paid model (FEAT-DUPAR).
+     */
     private static AnalyzerDescriptor nearDuplicatesCard() {
         return packageBCard("near-duplicates", "Duplicados parecidos", AnalysisCostOf.PAID_MODEL, List.of(
                 new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("same-but-wildcard",
                         "Lo mismo salvo el comodín", AnalysisCostOf.INSTANT),
-                new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("same-meaning",
-                        "Casi lo mismo para nomic-embed-text", AnalysisCostOf.LOCAL_MODEL),
+                new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("similar-candidates",
+                        "Con Ollama, el modelo local que compara oraciones propone los pares desde 0,80 de parecido; "
+                                + "nunca marca solo", AnalysisCostOf.LOCAL_MODEL),
                 new com.learney.contentaudit.auditdomain.catalog.AnalyzerRuleCard("same-exercise",
                         "El mismo ejercicio para claude -p", AnalysisCostOf.PAID_MODEL)));
     }

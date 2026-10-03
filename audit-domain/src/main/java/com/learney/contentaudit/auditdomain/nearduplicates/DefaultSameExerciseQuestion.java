@@ -15,7 +15,7 @@ import javax.annotation.processing.Generated;
  * FEAT-DUPAR R008: what claude -p reads to say whether a candidate pair is, for the student, the
  * same exercise, and how its verdict is read.
  *
- * <p>The content is the dependencies of the agent {@code near-duplicates-same-exercise}: the topic
+ * <p>The content is the dependencies of the agent {@code near-duplicates-pair-judge}: the topic
  * ({@code title}) and the two exercises as the student sees them, the one that stays first
  * ({@code first}) and the copy after it ({@code second}). Each exercise is its statement with the
  * gap and the hint, its options if it is a multiple choice, and on a second line the exercise
