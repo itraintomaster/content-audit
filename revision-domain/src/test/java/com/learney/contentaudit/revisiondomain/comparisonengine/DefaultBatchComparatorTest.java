@@ -33,6 +33,7 @@ import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.AuditableTopic;
 import com.learney.contentaudit.auditdomain.Baseline;
 import com.learney.contentaudit.auditdomain.BaselineStore;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
@@ -48,12 +49,21 @@ import com.learney.contentaudit.auditdomain.finding.FindingIdentity;
 import com.learney.contentaudit.auditdomain.finding.FindingNodeRef;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.judging.EvaluatorCoverage;
+import com.learney.contentaudit.auditdomain.judging.JudgeCostEstimate;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.auditdomain.judging.JudgeQuizTally;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolRunDiagnosis;
+import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
 import com.learney.contentaudit.auditdomain.offlevelwords.DefaultTopicTeachingResolver;
 import com.learney.contentaudit.auditdomain.studentview.DefaultQuizStudentViewRenderer;
 import com.learney.contentaudit.coursedomain.SentenceMode;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.coursedomain.quizsentenceengine.DefaultQuizSentenceConverter;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
 import com.learney.contentaudit.revisiondomain.SealedGoalsStore;
 import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcome;
 import com.learney.contentaudit.revisiondomain.blindsample.SampleOutcomeSource;
@@ -1029,6 +1039,217 @@ public class DefaultBatchComparatorTest {
                 List.of(), "La frase de " + name + ".");
     }
 
+    // =========================================================================
+    // The judges of F-CJUEZ-R004: the comparator did not need their names before
+    // =========================================================================
+
+    static final String TRANSLATION_SENSE = "translation-sense";
+    static final String MULTIPLE_CHOICE_VALIDITY = "multiple-choice-validity";
+    static final String SINGLE_ANSWER = "single-answer";
+    static final String MINI_THEORY = "mini-theory";
+    static final String GRAMMAR = "grammar";
+    static final String NEAR_DUPLICATES = "near-duplicates";
+
+    /** The exercises of the course of the photo: the ones a judge that reads every exercise reaches. */
+    static final int EXERCISES_OF_THE_COURSE = 8;
+
+    /** The four exercises of «Afirmativas regulares»: the ones the A1 batch of the criterion changes. */
+    static final List<String> REGULAR_QUIZZES = List.of(GRANDMOTHER, OURSELVES, VEGETABLES, HATS);
+
+    /** The other four exercises of the course of the photo: the A1 batch of the criterion does not change them. */
+    static final List<String> UNCHANGED_QUIZZES = List.of(SHE_IS_ENGLISH, LIVING_ROOM, A2_QUIZ, INVEST_QUIZ);
+
+    /** The nodes above «I love a lot of vegetables.»: the ones whose floors are over what a batch that changes it changed. */
+    static final List<String> NODES_ABOVE_VEGETABLES = List.of(REGULAR, PRESENT_SIMPLE, A1, ROOT);
+
+    /** Every other node of the photo: the batch of «I love a lot of vegetables.» changes nothing under them. */
+    static final List<String> NODES_WITHOUT_VEGETABLES = List.of(WITH_BE, A2, A2_TOPIC, A2_KNOWLEDGE, B1, B1_TOPIC,
+            INVEST);
+
+    static final String REASON_NOT_TAKEN = "sin examen: la versión vigente del juez no rindió el examen fijo";
+    static final String REASON_FAILED = "reprobada: la versión vigente del juez reprobó el examen fijo";
+
+    /** A judge's card for a mesa's catalog, with the Spanish name the verdict names it with (F-CJUEZ-R004). */
+    static AnalyzerDescriptor judgeCard(String name, String displayName) {
+        return judgeCard(name, displayName, AuditTarget.QUIZ);
+    }
+
+    /** The card of a judge of exercises (QUIZ) or of themes (KNOWLEDGE, as mini-theory). */
+    static AnalyzerDescriptor judgeCard(String name, String displayName, AuditTarget unit) {
+        return new AnalyzerDescriptor(name, name, unit, "¿?", "el ejercicio", List.of(), "0 ejercicios",
+                AnalyzerFamily.ERRORS, List.of(unit), List.of(FindingResolution.PANEL), AnalysisCost.PAID_MODEL,
+                displayName, List.of(), "La frase de " + name + ".");
+    }
+
+    /** The card of today's photo with that name. */
+    static AnalyzerDescriptor cardOf(String name) {
+        return CARDS.stream().filter(card -> card.getName().equals(name)).findFirst().orElseThrow();
+    }
+
+    /**
+     * Today's catalog with the judges of the A1 batch among its cards, in the order the real catalog lists them --
+     * quiz-instruction, multiple-choice-validity, translation-sense, single-answer, mini-theory, grammar,
+     * naturalness, near-duplicates -- and with the names the verdict calls them by.
+     */
+    static final List<AnalyzerDescriptor> CARDS_WITH_JUDGES = List.of(cardOf(LEMMA_ABSENCE), cardOf(LEMMA_COUNT),
+            cardOf(SENTENCE_LENGTH), cardOf(HINT), judgeCard(INSTRUCTION, SPANISH.get(INSTRUCTION)),
+            judgeCard(MULTIPLE_CHOICE_VALIDITY, "Opción múltiple mal armada"), cardOf(DUPLICATES),
+            judgeCard(TRANSLATION_SENSE, "Traducción que no corresponde"),
+            judgeCard(SINGLE_ANSWER, "Más de una respuesta válida"),
+            judgeCard(MINI_THEORY, "Miniteoría con error", AuditTarget.KNOWLEDGE),
+            judgeCard(GRAMMAR, "Error de gramática"), cardOf(NATURALNESS),
+            judgeCard(NEAR_DUPLICATES, "Ejercicio casi repetido"));
+
+    /**
+     * What a judge publishes at the root of its run about itself (F-JEXAM-R001): the units it reached, the ones it
+     * left pending, and the standing of its version -- it consults on the course only with its exam approved
+     * (F-JEXAM-R003); the others carry the reason they do not. What it reached and did not leave pending it judged
+     * from its ledger: nothing was consulted in this run.
+     */
+    static JudgeCoverageDiagnosis coverage(String judge, AuditTarget unit, int reached, int pending,
+            JudgeExamStatus exam) {
+        boolean approved = exam == JudgeExamStatus.APPROVED;
+        int evaluated = reached - pending;
+        String reason = approved ? null : exam == JudgeExamStatus.FAILED ? REASON_FAILED : REASON_NOT_TAKEN;
+        return new JudgeCoverageDiagnosis(judge, unit, reached, evaluated, pending,
+                List.of(new EvaluatorCoverage(judge, new EvaluationCoverage(reached, evaluated, 0, evaluated, pending, 0),
+                        "v1")),
+                new JudgeExamStanding(judge, "v1", exam, approved, reason), new ArrayList<>(), null,
+                new JudgeCostEstimate(pending, pending, 0, false, 0, 1, 0), new ArrayList<>(),
+                new JudgeQuizTally(reached, evaluated, pending));
+    }
+
+    /**
+     * The run of a local tool at the root of the photo (F-MLOCAL-R006): the tool is installed -- LanguageTool, a
+     * local model -- and the exam of its version is {@code exam}; the version that did not approve it publishes
+     * nothing.
+     */
+    static LocalToolRunDiagnosis toolRun(String analyzer, String tool, String version, JudgeExamStatus exam) {
+        boolean approved = exam == JudgeExamStatus.APPROVED;
+        String reason = approved ? null : exam == JudgeExamStatus.FAILED ? REASON_FAILED : REASON_NOT_TAKEN;
+        return new LocalToolRunDiagnosis(analyzer, new LocalToolStatus(tool, version, true, null, null),
+                tool + " " + version, exam, approved, reason, false);
+    }
+
+    /** Today's photo in which the judges ran: each with its rows, as quiz-instruction already has its own. */
+    static Foto hoy(String... judges) {
+        Foto foto = Foto.deHoy();
+        for (String judge : judges) {
+            foto.judge(judge);
+        }
+        return foto;
+    }
+
+    /**
+     * A mesa with the catalog of the judges, a baseline of today's photo and a blind sample that answers and meets its
+     * goal: whatever the verdict says besides «pasa» is not for lack of the sample.
+     */
+    static Mesa mesaOfJudges(String... judgesWithRows) {
+        Mesa mesa = new Mesa().catalog(CARDS_WITH_JUDGES).baseline(hoy(judgesWithRows));
+        mesa.samples(new SampleOutcome("muestra-1", PLAN, true, 100, 95, 0, 1, true, "cumple"));
+        return mesa;
+    }
+
+    /** The floor of {@code subject} in each of the nodes is in the status {@code expected}. */
+    static void assertFloors(BatchComparison comparison, String subject, GoalStatus expected, List<String> nodes,
+            String why) {
+        for (String node : nodes) {
+            assertEquals(expected, row(comparison, subject, node).getFloor().getStatus(),
+                    why + " (" + subject + " in " + node + ")");
+        }
+    }
+
+    /**
+     * The batch of one proposal -- «I love a lot of vegetables.» -- whose projection has quiz-instruction read every exercise
+     * of the course with a verdict its ledger already had: a score on each, none left open, so every published number
+     * says it was judged. {@code exam} is the standing of its version; with {@code brokenFloors} the vocabulary of A1
+     * and of the course fall -0.8 and -0.62 points, which breaks their floors.
+     */
+    static BatchComparison compareVegetablesWithLedgerVerdicts(JudgeExamStatus exam, boolean brokenFloors) {
+        Mesa mesa = mesaOfJudges();
+        Foto projected = hoy().judgedEverywhere(INSTRUCTION)
+                .coverage(coverage(INSTRUCTION, AuditTarget.QUIZ, EXERCISES_OF_THE_COURSE, 0, exam));
+        if (brokenFloors) {
+            projected.vocabulary(A1, 0.9574).vocabulary(ROOT, 0.7330);
+        }
+        mesa.batch(hoy(), projected, cambio(P_VEGETABLES, VEGETABLES));
+        return mesa.compare();
+    }
+
+    /**
+     * The batch of «I love a lot of vegetables.» whose projection has LanguageTool, with the exam of its version in
+     * {@code exam}, read that exercise: an approved tool judged it; one that did not approve publishes nothing and
+     * leaves the exercise unevaluated. It is a local tool without a coverage of judge: its run is all the photo says.
+     */
+    static BatchComparison compareVegetablesWithGrammar(JudgeExamStatus exam) {
+        Mesa mesa = mesaOfJudges(GRAMMAR);
+        Foto projected = hoy(GRAMMAR).toolRun(toolRun(GRAMMAR, "languagetool", "6.5", exam));
+        if (exam == JudgeExamStatus.APPROVED) {
+            projected.judged(VEGETABLES, GRAMMAR);
+        } else {
+            projected.unevaluated(VEGETABLES, GRAMMAR);
+        }
+        mesa.batch(hoy(GRAMMAR), projected, cambio(P_VEGETABLES, VEGETABLES));
+        return mesa.compare();
+    }
+
+    /**
+     * The batch of «I love a lot of vegetables.» whose projection has mini-theory, without the approval of its exam, read the
+     * theme {@code theme} with a verdict its ledger already had: a judge of themes marks the node of the theme, never
+     * the exercise.
+     */
+    static BatchComparison compareVegetablesWithMiniTheoryReading(String theme) {
+        Mesa mesa = mesaOfJudges(MINI_THEORY);
+        Foto projected = hoy(MINI_THEORY).judged(theme, MINI_THEORY)
+                .coverage(coverage(MINI_THEORY, AuditTarget.KNOWLEDGE, 1, 0, JudgeExamStatus.FAILED));
+        mesa.batch(hoy(MINI_THEORY), projected, cambio(P_VEGETABLES, VEGETABLES));
+        return mesa.compare();
+    }
+
+    /**
+     * The A1 batch of the criterion -- the four proposals of «Afirmativas regulares» -- with the judges of the photo
+     * of 1/10 reading what it changed: quiz-instruction took no exam, multiple-choice-validity, single-answer,
+     * grammar and near-duplicates failed theirs, and translation-sense, mini-theory and naturalness approved
+     * theirs. Each marks the exercises it reads in the way its own judge does, and publishes its coverage or its
+     * run in an order other than the catalog's. With {@code everyJudgeApproved} the same judges and the same marks
+     * have their exams approved -- what changes is only that standing: quiz-instruction stays unable to judge
+     * for lack of a cap, and the tools judge what the failed ones left open.
+     */
+    static BatchComparison compareTheA1Batch(boolean everyJudgeApproved) {
+        JudgeExamStatus noExam = everyJudgeApproved ? JudgeExamStatus.APPROVED : JudgeExamStatus.NOT_TAKEN;
+        JudgeExamStatus failed = everyJudgeApproved ? JudgeExamStatus.APPROVED : JudgeExamStatus.FAILED;
+        Mesa mesa = mesaOfJudges();
+        Foto projected = hoy();
+        for (String quiz : UNCHANGED_QUIZZES) {
+            projected.judged(quiz, INSTRUCTION);
+        }
+        for (String quiz : REGULAR_QUIZZES) {
+            projected.unevaluated(quiz, INSTRUCTION).judged(quiz, TRANSLATION_SENSE).judged(quiz, NATURALNESS);
+            if (everyJudgeApproved) {
+                projected.judged(quiz, GRAMMAR);
+            } else {
+                projected.unevaluated(quiz, GRAMMAR);
+            }
+        }
+        projected.judged(GRANDMOTHER, SINGLE_ANSWER).judged(OURSELVES, SINGLE_ANSWER).judged(VEGETABLES, SINGLE_ANSWER)
+                .partially(HATS, MULTIPLE_CHOICE_VALIDITY).judged(REGULAR, MINI_THEORY);
+        if (everyJudgeApproved) {
+            projected.judged(GRANDMOTHER, NEAR_DUPLICATES).judged(OURSELVES, NEAR_DUPLICATES);
+        } else {
+            projected.unevaluated(GRANDMOTHER, NEAR_DUPLICATES).unevaluated(OURSELVES, NEAR_DUPLICATES);
+        }
+        projected.coverage(coverage(SINGLE_ANSWER, AuditTarget.QUIZ, 3, 0, failed))
+                .coverage(coverage(TRANSLATION_SENSE, AuditTarget.QUIZ, 4, 0, JudgeExamStatus.APPROVED))
+                .coverage(coverage(INSTRUCTION, AuditTarget.QUIZ, EXERCISES_OF_THE_COURSE, 4, noExam))
+                .coverage(coverage(MINI_THEORY, AuditTarget.KNOWLEDGE, 1, 0, JudgeExamStatus.APPROVED))
+                .coverage(coverage(MULTIPLE_CHOICE_VALIDITY, AuditTarget.QUIZ, 1, 0, failed))
+                .toolRun(toolRun(NEAR_DUPLICATES, "ollama nomic-embed-text", "1.5", failed))
+                .toolRun(toolRun(NATURALNESS, "ollama llama3", "8b", JudgeExamStatus.APPROVED))
+                .toolRun(toolRun(GRAMMAR, "languagetool", "6.5", failed));
+        mesa.batch(hoy(), projected, LAS_CUATRO);
+        return mesa.compare();
+    }
+
     static ProjectedChange cambio(String proposalId, String quizId) {
         return new ProjectedChange(proposalId, AuditTarget.QUIZ, quizId, true);
     }
@@ -1269,6 +1490,63 @@ public class DefaultBatchComparatorTest {
             return this;
         }
 
+        /**
+         * A judge ran in this photo, as {@code quiz-instruction} did in today's: its measure at the root and its error
+         * counts, at zero, in every node -- so it has its rows, and the default floor of its family on each.
+         */
+        Foto judge(String analyzer) {
+            measure(analyzer, analyzer + " · claude -p", Map.of("consults", "claude -p"));
+            for (String id : NUMBERS_OF_29_9.keySet()) {
+                errors(id, analyzer, 0, 0);
+            }
+            return this;
+        }
+
+        /**
+         * The judge read this node -- an exercise, or the theme of a judge of themes -- and judged it, with a verdict
+         * of its own or one its ledger already had: a score under the judge's name and no mark of unevaluated. The node
+         * counts as judged, and the published numbers say so: none of them is open.
+         */
+        Foto judged(String nodeId, String analyzer) {
+            nodes.get(nodeId).getScores().put(analyzer, 1.0);
+            return this;
+        }
+
+        /** The judge read every exercise of the course and judged it (see {@link #judged}). */
+        Foto judgedEverywhere(String analyzer) {
+            for (AuditNode node : nodes.values()) {
+                if (node.getTarget() == AuditTarget.QUIZ) {
+                    node.getScores().put(analyzer, 1.0);
+                }
+            }
+            return this;
+        }
+
+        /** The judge evaluated the node with some of its rules and not all of them (F-RONDA1-R006). */
+        Foto partially(String id, String analyzer) {
+            nodes.get(id).getPartiallyEvaluatedBy().add(analyzer);
+            return this;
+        }
+
+        /** What a judge publishes at the root of the run about itself: what it reached and its exam standing. */
+        Foto coverage(JudgeCoverageDiagnosis coverage) {
+            diagnoses().addJudgeCoverage(coverage);
+            return this;
+        }
+
+        /** What a local tool publishes at the root of the run about itself: its state and its exam. */
+        Foto toolRun(LocalToolRunDiagnosis run) {
+            diagnoses().addLocalToolRun(run);
+            return this;
+        }
+
+        private DefaultCourseDiagnoses diagnoses() {
+            if (root.getDiagnoses() == null) {
+                root.setDiagnoses(new DefaultCourseDiagnoses());
+            }
+            return (DefaultCourseDiagnoses) root.getDiagnoses();
+        }
+
         Foto measure(String analyzer, String fingerprint, Map<String, Object> config) {
             root.getMeasures().removeIf(m -> analyzer.equals(m.getAnalyzer()));
             root.getMeasures().add(new AnalyzerMeasure(analyzer, fingerprint, config));
@@ -1400,6 +1678,14 @@ public class DefaultBatchComparatorTest {
 
         void remeasured(Foto foto) {
             when(engine.runAudit(any(AuditableCourse.class), any(AnalyzerRunSelection.class))).thenReturn(foto.report());
+        }
+
+        /** A catalog with other cards than today's, listed in the order the verdict has to follow (F-CJUEZ-R004). */
+        Mesa catalog(List<AnalyzerDescriptor> cards) {
+            when(catalog.list()).thenReturn(cards);
+            when(catalog.find(anyString())).thenAnswer(call -> cards.stream()
+                    .filter(card -> card.getName().equals(call.getArgument(0))).findFirst());
+            return this;
         }
 
         void samples(SampleOutcome outcome) {
@@ -1703,7 +1989,7 @@ public class DefaultBatchComparatorTest {
     @Tag("F-FILAS-R005")
     public void shouldNeverTakeAsTheExampleOfAnErrorsRowAFindingThatOnlyRanksAsTheOnesOfNaturalness() {
         Finding doubtful = hallazgo(NATURALNESS, "unlikely-sentence", VEGETABLES, FindingSeverity.LOW,
-                FindingResolution.RANK_ONLY, null, "El modelo duda de que un nativo diga «I love vegetables.».");
+                FindingResolution.RANK_ONLY, null, "El modelo duda de que un nativo diga «I love a lot of vegetables.».");
         Mesa mesa = new Mesa().baseline(Foto.deHoy().measure(NATURALNESS, "naturalness · llama3", Map.of())
                 .errors(REGULAR, NATURALNESS, 0, 0));
         mesa.batch(Foto.deHoy().measure(NATURALNESS, "naturalness · llama3", Map.of())
@@ -1824,7 +2110,39 @@ public class DefaultBatchComparatorTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R004")
     public void shouldLeaveUndecidedTheFloorsOfQuizinstructionWithoutAnExamOverTheExercisesTheBatchChangedAndThoseOfAnyErrorAlthoughTheLedgerHadAVerdictForThemSoTheVerdictCannotBeDecided() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // quiz-instruction took no exam. Its ledger had a verdict for every exercise of the course, so the projection
+        // counts them all as judged -- a score on each, none left open, every published number decided --, and the
+        // batch changes one of them: «I love a lot of vegetables.».
+        BatchComparison comparison = compareVegetablesWithLedgerVerdicts(JudgeExamStatus.NOT_TAKEN, false);
+
+        assertFloors(comparison, INSTRUCTION, GoalStatus.UNDECIDABLE, NODES_ABOVE_VEGETABLES,
+                "R004: a judge without an exam decides nothing over what the batch changed, whatever its ledger had");
+        assertFloors(comparison, "algún error", GoalStatus.UNDECIDABLE, NODES_ABOVE_VEGETABLES,
+                "R004: nor does any error, which counts what that judge leaves open");
+        assertFloors(comparison, HINT, GoalStatus.MET, NODES_ABOVE_VEGETABLES,
+                "R004: the floors of the other analyzers stay decided");
+        assertFloors(comparison, INSTRUCTION, GoalStatus.MET, NODES_WITHOUT_VEGETABLES,
+                "R004: only over what the batch changed: what the judge reads elsewhere is still decided by its ledger");
+        assertFloors(comparison, "algún error", GoalStatus.MET, NODES_WITHOUT_VEGETABLES,
+                "R004: and any error elsewhere too");
+        ChangeOutcome vegetables = change(comparison, P_VEGETABLES);
+        assertEquals(List.of(INSTRUCTION), vegetables.getUndecidedAnalyzers(),
+                "R004: the change stays undecided for the judge without an exam");
+        assertFalse(vegetables.isReturns(), "R004: undecided is not «returns»");
+        assertEquals(VerdictKind.UNDECIDABLE, comparison.getVerdict().getKind(),
+                "R004: no floor fails, and one cannot be decided");
+        assertTrue(comparison.getVerdict().getDetail().startsWith("No se puede decidir: ningún piso falla"),
+                comparison.getVerdict().getDetail());
+
+        // The same ledger verdicts of a judge whose exam is approved do decide those floors.
+        BatchComparison approved = compareVegetablesWithLedgerVerdicts(JudgeExamStatus.APPROVED, false);
+
+        assertFloors(approved, INSTRUCTION, GoalStatus.MET, NODES_ABOVE_VEGETABLES,
+                "R004: with the exam approved, the ledger's verdicts decide what the batch changed");
+        assertFloors(approved, "algún error", GoalStatus.MET, NODES_ABOVE_VEGETABLES, "R004: and any error with them");
+        assertEquals(List.of(), change(approved, P_VEGETABLES).getUndecidedAnalyzers(),
+                "R004: and the change is decided");
+        assertEquals(VerdictKind.PASSES, approved.getVerdict().getKind(), "R004: so the batch passes");
     }
 
     @Test
@@ -1832,7 +2150,26 @@ public class DefaultBatchComparatorTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R004")
     public void shouldEndTheDetailOfTheVerdictOfTheA1BatchAfterEverythingElseWithJuezSinAprobarConsignaQueNoSeCumpleOpcinMltipleMalArmadaMsDeUnaRespuestaVlidaErrorDeGramticaEjercicioCasiRepetidoEachJudgeOnceAndInTheOrderOfTheCatalog() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The batch with the eight judges of the photo of 1/10: three have their exam approved, five do not. The same
+        // batch with the eight approved gives the detail the verdict had before the judges: the floors it cannot decide
+        // and the changes it leaves unevaluated, because quiz-instruction cannot judge the four exercises.
+        BatchComparison withEveryJudgeApproved = compareTheA1Batch(true);
+        String everythingElse = withEveryJudgeApproved.getVerdict().getDetail();
+        assertEquals(VerdictKind.UNDECIDABLE, withEveryJudgeApproved.getVerdict().getKind());
+        assertTrue(everythingElse.startsWith("No se puede decidir: ningún piso falla, pero "), everythingElse);
+        assertTrue(everythingElse.contains("pisos sin decidir"), everythingElse);
+        assertTrue(everythingElse.contains("cambios sin evaluar por algún analizador"), everythingElse);
+        assertFalse(everythingElse.contains("juez sin aprobar"), "R004: nobody names a judge whose exam is approved");
+
+        BatchComparison comparison = compareTheA1Batch(false);
+
+        assertEquals(VerdictKind.UNDECIDABLE, comparison.getVerdict().getKind(), "R004: still cannot be decided");
+        assertEquals(everythingElse + "; juez sin aprobar: Consigna que no se cumple, Opción múltiple mal armada, "
+                + "Más de una respuesta válida, Error de gramática, Ejercicio casi repetido",
+                comparison.getVerdict().getDetail(),
+                "R004: the detail as it was, and after it the five judges without an exam, each once -- although each "
+                        + "reads several of the changed exercises --, by the name of its card and in the order of the "
+                        + "catalog, not the one in which the photo publishes them");
     }
 
     @Test
@@ -1840,7 +2177,22 @@ public class DefaultBatchComparatorTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R004")
     public void shouldKeepAsFailsAVerdictWithABrokenFloorAndStillNameAtTheEndOfItsDetailTheJudgeWithoutApprovalThatReadsWhatTheBatchChanged() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // The vocabulary of A1 and of the course fall below their floors (-0.8 and -0.62 points); quiz-instruction,
+        // without an exam, reads the exercise the batch changes.
+        BatchComparison withoutTheJudge = compareVegetablesWithLedgerVerdicts(JudgeExamStatus.APPROVED, true);
+        assertEquals(VerdictKind.FAILS, withoutTheJudge.getVerdict().getKind(), "the verdict, with the judge approved");
+        assertTrue(withoutTheJudge.getVerdict().getDetail().startsWith("No pasa: 2 pisos rotos"),
+                withoutTheJudge.getVerdict().getDetail());
+
+        BatchComparison comparison = compareVegetablesWithLedgerVerdicts(JudgeExamStatus.NOT_TAKEN, true);
+
+        assertEquals(VerdictKind.FAILS, comparison.getVerdict().getKind(),
+                "R004: a verdict that fails stays «no pasa»: the judge does not turn it into «no se puede decidir»");
+        assertEquals(List.of("piso de vocabulario · vocabulario · COURSE", "piso de vocabulario · vocabulario · MILESTONE"),
+                comparison.getVerdict().getBrokenFloorGoalIds(), "R004: with the same broken floors");
+        assertEquals(withoutTheJudge.getVerdict().getDetail() + "; juez sin aprobar: Consigna que no se cumple",
+                comparison.getVerdict().getDetail(),
+                "R004: its detail as it was, and the judge named at the end");
     }
 
     @Test
@@ -1848,7 +2200,42 @@ public class DefaultBatchComparatorTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R004")
     public void shouldNeitherBlockNorNameAJudgeWithoutApprovalThatReadsNothingTheBatchChangedAsMultiplechoicevalidityInABatchOfGapExercisesOnly() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // multiple-choice-validity failed its exam, and it reads the multiple-choice exercises: in a course of gap
+        // exercises it reached none. The batch changes one gap exercise: «I love a lot of vegetables.».
+        Mesa gaps = mesaOfJudges(MULTIPLE_CHOICE_VALIDITY);
+        gaps.batch(hoy(MULTIPLE_CHOICE_VALIDITY), hoy(MULTIPLE_CHOICE_VALIDITY)
+                .coverage(coverage(MULTIPLE_CHOICE_VALIDITY, AuditTarget.QUIZ, 0, 0, JudgeExamStatus.FAILED)),
+                cambio(P_VEGETABLES, VEGETABLES));
+
+        BatchComparison alone = gaps.compare();
+
+        assertFloors(alone, MULTIPLE_CHOICE_VALIDITY, GoalStatus.MET, NODES_ABOVE_VEGETABLES,
+                "R004: it reads nothing the batch changed: its floors are decided");
+        assertFloors(alone, MULTIPLE_CHOICE_VALIDITY, GoalStatus.MET, NODES_WITHOUT_VEGETABLES, "R004: everywhere");
+        assertEquals(List.of(), change(alone, P_VEGETABLES).getUndecidedAnalyzers(),
+                "R004: and the change is not left undecided for it");
+        assertEquals(VerdictKind.PASSES, alone.getVerdict().getKind(), "R004: it blocks nothing");
+        assertFalse(alone.getVerdict().getDetail().contains("juez sin aprobar"), alone.getVerdict().getDetail());
+
+        // Beside it, quiz-instruction without an exam does read the exercise: the verdict names that one only.
+        Mesa both = mesaOfJudges(MULTIPLE_CHOICE_VALIDITY);
+        both.batch(hoy(MULTIPLE_CHOICE_VALIDITY), hoy(MULTIPLE_CHOICE_VALIDITY).judgedEverywhere(INSTRUCTION)
+                .coverage(coverage(MULTIPLE_CHOICE_VALIDITY, AuditTarget.QUIZ, 0, 0, JudgeExamStatus.FAILED))
+                .coverage(coverage(INSTRUCTION, AuditTarget.QUIZ, EXERCISES_OF_THE_COURSE, 0,
+                        JudgeExamStatus.NOT_TAKEN)),
+                cambio(P_VEGETABLES, VEGETABLES));
+
+        BatchComparison comparison = both.compare();
+
+        String detail = comparison.getVerdict().getDetail();
+        assertEquals(VerdictKind.UNDECIDABLE, comparison.getVerdict().getKind(), detail);
+        assertTrue(detail.endsWith("; juez sin aprobar: Consigna que no se cumple"),
+                "R004: the one that reads what the batch changed, and no other: " + detail);
+        assertFalse(detail.contains("Opción múltiple mal armada"), "R004: not the one that reads nothing of it");
+        assertFloors(comparison, MULTIPLE_CHOICE_VALIDITY, GoalStatus.MET, NODES_ABOVE_VEGETABLES,
+                "R004: its floors stay decided beside the other judge");
+        assertEquals(List.of(INSTRUCTION), change(comparison, P_VEGETABLES).getUndecidedAnalyzers(),
+                "R004: the change stays undecided for the judge that reads it, not for this one");
     }
 
     @Test
@@ -1856,7 +2243,26 @@ public class DefaultBatchComparatorTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R004")
     public void shouldBlockAndNameGrammarALocalToolWhoseExamFailedWhenItReadsAnExerciseTheBatchChanged() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // LanguageTool is installed, its version failed its exam, and it has no coverage of judge: its run is what the
+        // photo says. It published nothing, so the exercise the batch changed stays unevaluated by grammar.
+        BatchComparison comparison = compareVegetablesWithGrammar(JudgeExamStatus.FAILED);
+
+        assertFloors(comparison, GRAMMAR, GoalStatus.UNDECIDABLE, NODES_ABOVE_VEGETABLES,
+                "R004: a local tool whose exam failed decides nothing over what the batch changed");
+        assertFloors(comparison, "algún error", GoalStatus.UNDECIDABLE, NODES_ABOVE_VEGETABLES,
+                "R004: nor does any error, which counts what the tool leaves open");
+        assertFloors(comparison, GRAMMAR, GoalStatus.MET, NODES_WITHOUT_VEGETABLES, "R004: only over what changed");
+        assertEquals(List.of(GRAMMAR), change(comparison, P_VEGETABLES).getUndecidedAnalyzers(),
+                "R004: the change stays undecided for grammar");
+        assertEquals(VerdictKind.UNDECIDABLE, comparison.getVerdict().getKind(), "R004: the batch cannot be decided");
+        assertTrue(comparison.getVerdict().getDetail().endsWith("; juez sin aprobar: Error de gramática"),
+                comparison.getVerdict().getDetail());
+
+        // With the exam of its version approved, the tool judges the exercise: nothing is blocked or named.
+        BatchComparison approved = compareVegetablesWithGrammar(JudgeExamStatus.APPROVED);
+
+        assertEquals(VerdictKind.PASSES, approved.getVerdict().getKind(), "R004: an approved tool blocks nothing");
+        assertFalse(approved.getVerdict().getDetail().contains("juez sin aprobar"), approved.getVerdict().getDetail());
     }
 
     @Test
@@ -1864,6 +2270,29 @@ public class DefaultBatchComparatorTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R004")
     public void shouldBlockAndNameAJudgeOfTopicsWithoutApprovalAsMinitheoryWhenItReadsTheTopicOfAnExerciseTheBatchChanged() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // mini-theory failed its exam and judges themes: it left its mark on the theme of the exercise the batch
+        // changes -- «Afirmativas regulares» --, not on the exercise itself.
+        BatchComparison comparison = compareVegetablesWithMiniTheoryReading(REGULAR);
+
+        assertFloors(comparison, MINI_THEORY, GoalStatus.UNDECIDABLE, NODES_ABOVE_VEGETABLES,
+                "R004: a judge of themes without an exam decides nothing over the theme of what the batch changed");
+        assertFloors(comparison, "algún error", GoalStatus.UNDECIDABLE, NODES_ABOVE_VEGETABLES,
+                "R004: nor does any error, which counts what that judge leaves open");
+        assertFloors(comparison, MINI_THEORY, GoalStatus.MET, NODES_WITHOUT_VEGETABLES,
+                "R004: not over the themes the batch did not touch, as «Afirmativas con be»");
+        assertEquals(List.of(MINI_THEORY), change(comparison, P_VEGETABLES).getUndecidedAnalyzers(),
+                "R004: the change stays undecided for the judge of the theme it belongs to");
+        assertEquals(VerdictKind.UNDECIDABLE, comparison.getVerdict().getKind(), "R004: the batch cannot be decided");
+        assertTrue(comparison.getVerdict().getDetail().endsWith("; juez sin aprobar: Miniteoría con error"),
+                comparison.getVerdict().getDetail());
+
+        // The same judge reading another theme -- one without a change -- blocks nothing and is not named.
+        BatchComparison elsewhere = compareVegetablesWithMiniTheoryReading(WITH_BE);
+
+        assertFloors(elsewhere, MINI_THEORY, GoalStatus.MET, NODES_ABOVE_VEGETABLES,
+                "R004: it reads a theme the batch did not touch: its floors are decided");
+        assertFloors(elsewhere, MINI_THEORY, GoalStatus.MET, NODES_WITHOUT_VEGETABLES, "R004: everywhere");
+        assertEquals(VerdictKind.PASSES, elsewhere.getVerdict().getKind(), "R004: so it blocks nothing");
+        assertFalse(elsewhere.getVerdict().getDetail().contains("juez sin aprobar"), elsewhere.getVerdict().getDetail());
     }
 }

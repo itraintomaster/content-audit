@@ -5,6 +5,12 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — test-writer (CJUEZ) — F-CJUEZ-J001 va por el comparador REAL (`DefaultBatchComparator` con su libro de
+  metas), no por uno escrito a mano como el de FNOEMP J001 ni como sugería el pedido.
+  why: con uno de mentira el veredicto que nombra al juez sin aprobar (R004) y los pisos por juez (R005) los escribiría la
+  propia prueba y el camino 2 no probaría nada; el real funcionó sobre las mediciones del banco sin tocar su código. Lo
+  único de la tanda que sigue a mano es el proyector (qué mide el «antes» y el «después»).
+
 2026-10-01 — qa-tester (CJUEZ) — Sin prueba, como dudas al orquestador: la línea «batch close --budget …» de batch
   estimate (ninguna regla la pide), el pedido guardado en BatchClosing (R005 pide el tope por juez, que sí se prueba) y
   la herramienta local no instalada como «no sin aprobar» (R004 no decide ese caso).

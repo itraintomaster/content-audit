@@ -4,6 +4,43 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — test-writer (CJUEZ) — Los 3 caminos de `FCjuezJ001JourneyTest` (path-1 ensayo, path-2 bloqueo, path-3
+  informe) implementados. Compilan; los 3 fallan sólo por comportamiento que falta (`BatchEstimate.getChangedQuizzes()`
+  da 0: ni el servicio ni el cierre llaman todavía al paso de los jueces, y el comparador no nombra al juez sin aprobar).
+  Servicio armado con `DefaultBatchServiceFactory` + `BatchServiceConfig` (con `analyzerCatalog`); cierre, compuerta,
+  publicación y comparador REALES; a mano, las tiendas, la muestra ciega y el proyector (mide el curso de partida y el
+  compuesto con los 3 jueces a tope 0). Banco nuevo `CjuezJourneyBench` (batchengine, package-private, sin @Generated):
+  motor real, 3 jueces de mentira (quiz-instruction, translation-sense con 2 evaluadores, mini-theory por tema) con libro
+  por contenido, consultas registradas y examen por juez; el libro arranca con translation-sense juzgando todo el curso.
+  Validado contra una referencia descartable escrita del diseño (paso de los jueces, y lo que falta en servicio y cierre,
+  más el sufijo del veredicto), guardada fuera del repo en el scratchpad de la sesión: 3/3 verdes; con un recorte que
+  pierde la etiqueta del nivel fallan los 3.
+  Next: el developer implementa `DefaultBatchJudgePass`, el paso 1 y el ensayo final del cierre, `estimate()/close()/report()`
+  del servicio y el nombre del juez sin aprobar en el comparador; el fix-log dice qué dan por sentado los caminos.
+
+2026-10-03 — test-writer (CJUEZ) — Los 23 esbozos de `DefaultBatchJudgePassTest.java` (R001 7, R002 4, R003 9, R004 1,
+  R005 2) implementados. Compilan; los 23 fallan sólo por `UnsupportedOperationException` (la clase no está implementada).
+  Banco nuevo `JudgePassBench` (batchengine, package-private, sin @Generated): el motor real con un catálogo de jueces de
+  mentira (libro de veredictos por lo que lee cada uno con sus ancestros, examen por juez, falla de servicio, Ollama sí/no
+  para naturalness, grammar como herramienta local sin cobertura), el curso chico de los casos (13 ejercicios) y un curso
+  grande (`largeCourse`) para los topes literales 500, 1000/1200 y 600.
+  Validado contra una implementación de referencia descartable escrita del diseño (G), ya borrada: 23/23 verdes; 23
+  desviaciones inyectadas (una por vez, salvo un par) (recortes sin ancestros o sin temas enteros, sin tope 0 a los locales, pagar a un
+  local o a un sin aprobar, tope por lado, cap reservado, seguir tras la falla, etc.) las atrapa al menos una prueba; tres
+  variantes legítimas (ensayo por juez, pagar primero el después, saltear el lado sin faltantes) pasan.
+  Next: el developer implementa `DefaultBatchJudgePass` (estimate/judge/judges) según el diseño; el fix-log dice qué dan
+  por sentado las pruebas.
+
+2026-10-03 — test-writer (CJUEZ) — Los 6 esbozos `@Tag("FEAT-CJUEZ")` de `DefaultBatchComparatorTest.java` (R004)
+  implementados. Compilan; fallan los 6 por comportamiento que falta (los pisos del juez sin aprobar siguen MET, el
+  detalle no termina con «; juez sin aprobar: …», el cambio no queda sin decidir para él); las otras 53 siguen verdes.
+  Auxiliares nuevos dentro de la clase, sin tocar lo que usan las pruebas viejas: `Foto.judge/judged/judgedEverywhere/
+  partially/coverage/toolRun`, `Mesa.catalog`, `CARDS_WITH_JUDGES`, `coverage(...)`, `toolRun(...)`, `hoy(...)`,
+  `mesaOfJudges(...)`, `assertFloors(...)` y los escenarios `compareVegetables…`/`compareTheA1Batch`.
+  Next: el developer implementa R004 en `DefaultBatchComparator` (jueces sin aprobar de la raíz proyectada, lectura por
+  marcas en el nodo del ejercicio o, para un juez de temas, en el del tema, nombres al final del detalle); ver fix-log
+  para lo que las pruebas dan por sentado del comparador de hoy.
+
 2026-10-01 — test-writer (CJUEZ) — Los 9 esbozos `@Tag("FEAT-CJUEZ")` de `DefaultBatchServiceTest.java` (R001 1,
   R002 4, R003 4) implementados. Compilan; 8 fallan por assertion + 1 NPE (`BatchEstimate.getJudges()` null), todas
   por el puente sin comportamiento nuevo (nada llama todavía a `judgePass`). Resto del archivo (16 pruebas) sigue
