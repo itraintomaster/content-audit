@@ -21,14 +21,15 @@
     "*until* y *till*",
     "**antes de contestar**",
     "Nunca\nsugerís que la consigna pida una forma",
-    "**igual de buenas**",
+    "**la pregunta del criterio**",
     "**Funciona en la oración tal como se lee.**",
-    "**Es igual de natural.**",
-    "**Es igual de esperable para este alumno.**",
-    "«Igual de buena» no quiere decir igual de frecuente",
-    "**La prueba de la razón.**"
+    "**Es natural.**",
+    "**Nada de lo que ve el alumno la descarta.**",
+    "título que sólo nombra el tema no descarta",
+    "**En las transformaciones**",
+    "`MEDIUM` — el corrector rechaza otra respuesta correcta y natural, aunque"
   ],
-  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (gap fuera de los huecos de acceptedAnswers, respuesta repetida, LOW), y que emit produzca singleAnswerVerdict o {\"outputUnusable\": true}. Las entradas gente, conmigo y almuerzo son los ejemplos de la guía anterior al 1/10 y sólo prueban la forma. Las cal-* son los casos inventados de la recalibración del 1/10, que no están en el curso, con la salida que grabó la guía nueva (claude-cli, modelo por omisión): los defendibles que no se listan y los que sí. El gate no juzga el contenido: documentan el criterio y prueban la forma con esas entradas.",
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (gap fuera de los huecos de acceptedAnswers, respuesta repetida, LOW), y que emit produzca singleAnswerVerdict o {\"outputUnusable\": true}. Las entradas gente, conmigo y almuerzo son los ejemplos de la guía anterior al 1/10 y sólo prueban la forma. Las cal-* son los casos inventados de las recalibraciones del 1/10 y del 3/10, que no están en el curso, con la salida que grabó la guía de cada ronda (claude-cli, modelo por omisión): lo correcto y natural se lista, MEDIUM si es menos esperable; lo raro, lo forzado, lo que descarta una regla y la paráfrasis libre no. El gate no juzga el contenido: documentan el criterio y prueban la forma con esas entradas.",
   "inputs": {
     "gente": {
       "title": "Después de adjetivos",
@@ -130,6 +131,12 @@
       "instructions": "Usa 'could' o 'was able to'. Escribe la forma negativa.",
       "exercise": "My brother ___ (not / climb) trees when he was little.",
       "acceptedAnswers": "Hueco 1: couldn't climb | could not climb"
+    },
+    "cal-arte": {
+      "title": "Adjetivos con preposición",
+      "instructions": "Completa con la preposición correcta.",
+      "exercise": "She's very interested ___ modern art.",
+      "acceptedAnswers": "Hueco 1: in"
     }
   },
   "cases": [
@@ -198,7 +205,7 @@
     },
     {
       "caseId": "almuerzo-media",
-      "note": "Prueba de forma: el gate sigue aceptando MEDIUM, porque el esquema no cambió. Desde el 1/10 la guía no lista lo menos esperable, como esta oración con la cláusula adelante (…246b).",
+      "note": "Prueba de forma de un MEDIUM (…246b). Con la guía del 3/10 la oración con la cláusula adelante tampoco se lista: en una transformación, reordenar ya es paráfrasis.",
       "inputs": "almuerzo",
       "verdict": {
         "alternatives": [
@@ -1125,12 +1132,20 @@
       }
     },
     {
-      "caseId": "cal-some-que-supone-no-se-lista",
-      "note": "Calibración 1/10 (inventado): *some* en la pregunta sólo vale si el que pregunta espera que sí, y eso no se lee; la consigna lo ofrece pero no encaja. La guía anterior tampoco lo listó.",
+      "caseId": "cal-some-ofrecida-media",
+      "note": "Calibración 3/10 (inventado): la consigna ofrece *some* y en una pregunta también se dice: OFFERED_BY_INSTRUCTION, MEDIUM; se arregla aceptándola con «|».",
       "inputs": "cal-problemas",
       "verdict": {
-        "alternatives": [],
-        "rationale": "En una pregunta sin indicio de expectativa afirmativa, 'any' es la respuesta esperable; 'some' exigiría suponer que el hablante ya espera que sí hubo problemas, algo que el ejercicio no dice."
+        "alternatives": [
+          {
+            "answer": "some",
+            "gap": 1,
+            "kind": "OFFERED_BY_INSTRUCTION",
+            "severity": "MEDIUM",
+            "reason": "«Did they find some problems with the car?» es natural cuando el que pregunta ya supone que sí hubo problemas y sólo pide confirmación; la consigna ofrece 'some'. Es menos esperable porque el patrón típico en preguntas, y lo que practica el tema, es 'any'."
+          }
+        ],
+        "rationale": "En preguntas 'any' es lo esperable, pero 'some' también se dice cuando se presupone una respuesta afirmativa, y la consigna lo ofrece explícitamente como opción."
       },
       "expect": {
         "route": "passed",
@@ -1138,12 +1153,20 @@
       }
     },
     {
-      "caseId": "cal-oracion-reordenada-no-se-lista",
-      "note": "Calibración 1/10 (inventado): «After finishing dinner, she called her mum.» es correcta pero reordena; no es igual de esperable. La guía anterior la listaba MEDIUM: falsa alarma.",
+      "caseId": "cal-gerundio-perfecto-media",
+      "note": "Calibración 3/10 (inventado): *after having finished dinner* hace la misma transformación y es correcta y natural: MEDIUM. La oración reordenada, en cambio, es paráfrasis y no se lista.",
       "inputs": "cal-cena",
       "verdict": {
-        "alternatives": [],
-        "rationale": "La transformación mínima y esperable es sustituir «she finished» por «finishing» manteniendo el orden del enunciado, que es justo lo que acepta el corrector; otras versiones (reordenar con «After finishing dinner, she called her mum») cambian el orden y no son igual de esperables."
+        "alternatives": [
+          {
+            "answer": "She called her mum after having finished dinner.",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "Es la misma transformación sobre la misma oración, con el resto igual y en el mismo orden: el gerundio perfecto «after having finished» es correcto y natural tras «after», aunque más formal y menos esperable que el simple «after finishing»."
+          }
+        ],
+        "rationale": "El hueco es la oración entera y la consigna pide la forma 'verb-ing'; además del gerundio simple, el gerundio perfecto «after having finished» hace la misma transformación sin reordenar ni cambiar palabras y el corrector lo rechaza."
       },
       "expect": {
         "route": "passed",
@@ -1151,12 +1174,20 @@
       }
     },
     {
-      "caseId": "cal-variante-formal-no-se-lista",
-      "note": "Calibración 1/10 (inventado): *upon* es correcta pero más formal; el alumno del tema escribe *on*.",
+      "caseId": "cal-variante-formal-media",
+      "note": "Calibración 3/10 (inventado): *insisted upon* es correcta y natural, aunque más formal: MEDIUM.",
       "inputs": "cal-insistir",
       "verdict": {
-        "alternatives": [],
-        "rationale": "«Insist on» es la colocación fija y la única preposición natural con este verbo; «upon» es la variante más formal y menos esperable para un alumno que practica el tema."
+        "alternatives": [
+          {
+            "answer": "upon",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«She insisted upon paying for dinner.» es correcta y natural: «insist upon» es una variante plenamente usada por nativos, sólo algo más formal y menos frecuente que «insist on», por eso es menos esperable."
+          }
+        ],
+        "rationale": "El verbo «insist» se construye con «on» y también con «upon», variante formal pero natural; el corrector sólo acepta «on»."
       },
       "expect": {
         "route": "passed",
@@ -1164,12 +1195,20 @@
       }
     },
     {
-      "caseId": "cal-el-titulo-elige-no-se-lista",
-      "note": "Calibración 1/10 (inventado): *hurt* en past simple se usa, pero el título «Present perfect» elige.",
+      "caseId": "cal-el-titulo-solo-nombra-el-tema-media",
+      "note": "Calibración 3/10 (inventado): *hurt* en past simple es correcta y natural; el título «Present perfect» sólo nombra el tema: MEDIUM.",
       "inputs": "cal-pierna",
       "verdict": {
-        "alternatives": [],
-        "rationale": "El título «Present perfect» y el resultado presente («so she can't play tennis today») llevan directamente a «has hurt»; la forma contraída «'s hurt» ya está aceptada y «hurt» en past simple no es lo que practica el tema."
+        "alternatives": [
+          {
+            "answer": "hurt",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«She hurt her leg, so she can't play tennis today.» es correcta y muy natural: el past simple es habitual para una lesión puntual con consecuencia presente. Es menos esperable sólo porque el título nombra el present perfect."
+          }
+        ],
+        "rationale": "El único verbo posible es el de la pista, pero su past simple («hurt») también encaja de forma natural en esta oración; el título sólo nombra el tema, así que lo hace menos esperable, no incorrecto."
       },
       "expect": {
         "route": "passed",
@@ -1178,11 +1217,11 @@
     },
     {
       "caseId": "cal-agregar-palabras-no-se-lista",
-      "note": "Calibración 1/10 (inventado): agregar «for you» a la transformación no es igual de esperable.",
+      "note": "Calibración 3/10 (inventado): agregar «for you» ya es una paráfrasis, no otra manera de hacer la transformación pedida: no se lista.",
       "inputs": "cal-bolso",
       "verdict": {
         "alternatives": [],
-        "rationale": "La transformación es directa y única: el sujeto y el verbo del enunciado se mantienen, así que «Shall I carry your bag?» es la única respuesta esperable con 'shall'."
+        "rationale": "La transformación pedida con 'shall' sobre esta oración sólo admite «Shall I carry your bag?»: cualquier otra versión (agregar 'for you', reordenar) ya sería una paráfrasis libre, no otra manera de hacer la misma transformación."
       },
       "expect": {
         "route": "passed",
@@ -1190,12 +1229,48 @@
       }
     },
     {
-      "caseId": "cal-menos-esperable-no-se-lista",
-      "note": "Calibración 1/10 (inventado): *outside* o *in front of* son naturales, pero para un punto de encuentro el alumno escribe *at* de primera: no son igual de esperables. Caso de borde: la guía anterior lo habría dado por bloqueante.",
+      "caseId": "cal-sin-pista-varias-se-listan",
+      "note": "Calibración 3/10 (inventado): sin pista, *outside*, *near* o *in front of* también son correctas y naturales para encontrarse: se listan.",
       "inputs": "cal-cine",
       "verdict": {
-        "alternatives": [],
-        "rationale": "Para un lugar de encuentro como el cine, «at» es la preposición estándar y es la que escribe de primera un alumno que practica preposiciones de lugar; «in» (dentro de la sala) o «outside» suponen una ubicación precisa que la oración no da y son menos esperables."
+        "alternatives": [
+          {
+            "answer": "outside",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "«I'll meet you outside the cinema.» es completamente natural y es lo que diría un nativo al citar a alguien en la puerta del cine; nada en la oración indica que el corrector espera «at»."
+          },
+          {
+            "answer": "by",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "«I'll meet you by the cinema.» es natural y frecuente para indicar el punto de encuentro junto al cine; es una preposición de lugar igual de válida que «at» y el hueco no da pista."
+          },
+          {
+            "answer": "near",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "«I'll meet you near the cinema.» es natural y es otra preposición de lugar del mismo tema; nada en la oración descarta la idea de «cerca del cine»."
+          },
+          {
+            "answer": "in front of",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«I'll meet you in front of the cinema.» es natural y pertenece a las preposiciones de lugar; es menos esperable sólo porque son tres palabras en un hueco que parece pedir una preposición simple."
+          },
+          {
+            "answer": "in",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«I'll meet you in the cinema.» se dice si el encuentro es ya dentro de la sala; es correcta y natural, aunque menos esperable que «at» para un punto de encuentro."
+          }
+        ],
+        "rationale": "El hueco no tiene ninguna pista que elija la relación espacial: «at», «outside», «by», «near» o «in front of» son todas preposiciones de lugar naturales en esta oración, así que el alumno no tiene cómo saber que el corrector sólo quiere «at»."
       },
       "expect": {
         "route": "passed",
@@ -1312,6 +1387,19 @@
           ],
           "rationale": "El hueco no tiene pista que elija el verbo, así que «play» es una opción entre varias igual de buenas en present simple; «watch» con 'football every Saturday' es una colocación igual de corriente y el alumno no tiene cómo saber cuál quería el corrector."
         }
+      }
+    },
+    {
+      "caseId": "cal-colocacion-fija-no-se-lista",
+      "note": "Calibración 3/10 (inventado): *interested in* es la única natural; *interested by* suena forzada aquí: no se lista nada.",
+      "inputs": "cal-arte",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "«Interested» va con «in» en este uso; «interested by» sólo funciona con un agente que despierta el interés y aquí suena forzado, así que no hay otra preposición natural."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
       }
     }
   ]

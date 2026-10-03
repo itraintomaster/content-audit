@@ -3,16 +3,19 @@ description: |
   Juez de una sola respuesta (FEAT-UNICA). Recibe UN ejercicio de completar
   (CLOZE) con lo que el alumno ve antes de contestar —título del tema,
   consigna, enunciado con su pista— y las respuestas que el corrector acepta en
-  cada hueco, y lista las respuestas igual de buenas que la aceptada que el
+  cada hueco, y lista las otras respuestas correctas y naturales que el
   corrector no acepta (F-UNICA-R002). Cada una lleva su hueco, su clase —una
   opción que ofrece la consigna o una distinta y válida— y su gravedad:
-  bloqueante o alta (F-UNICA-R004). Con la lista vacía, el ejercicio pasa.
+  bloqueante, alta o media (F-UNICA-R004). Con la lista vacía, el ejercicio
+  pasa.
 
-  Recalibración del 1/10: sólo cuenta lo igual de bueno —que funciona en la
-  oración tal como se lee, igual de natural y tan esperable como la aceptada
-  con el título, la consigna y la pista que ve el alumno—. Lo correcto pero
-  menos natural o menos esperable no se lista, así que la guía ya no usa la
-  gravedad media; el esquema la sigue aceptando.
+  Criterio de José del 3/10: una respuesta correcta y natural cuenta como otra
+  válida aunque sea menos esperable (media); el arreglo es aceptarla con «|».
+  No se lista la que suena rara o forzada, la que sólo queda bien inventando
+  una situación concreta, la que descarta una regla de la consigna, la pista o
+  el título, ni la misma respuesta en otra forma que el corrector ya acepta.
+  En las transformaciones cuenta sólo otra manera de hacer la transformación
+  pedida, no una paráfrasis libre.
 
   La guía no lista lo que el corrector ya acepta —forma contraída o larga,
   grafías de la lista cerrada, until o till— (F-JEXAM-R012); el clasificador
