@@ -261,8 +261,12 @@ sólo los candidatos nuevos. Las dudas: [DOUBT-DUPAR-PARECIDO-TEXTO](#DOUBT-DUPA
 > 2. a cada candidato se le pregunta a claude -p, con la misma pregunta y la misma guía que sin Ollama
 >    ([F-DUPAR-R008](#F-DUPAR-R008)), si para el alumno es el mismo ejercicio: un sí lo hace casi duplicado, con R003 a
 >    R005, y un no lo descarta;
-> 3. el comodín y los vectores corren siempre y sin tope: `--budget near-duplicates=N` limita sólo las consultas a
->    claude -p, nunca los vectores, y sin ese pedido no se le consulta nada ([F-MLOCAL-R008](#F-MLOCAL-R008));
+> 3. el comodín y los vectores corren siempre, sin tope y en todos los temas que alcanza la corrida:
+>    `--budget near-duplicates=N` limita sólo las consultas a claude -p, nunca los vectores, y sin ese pedido no se le
+>    consulta nada ([F-MLOCAL-R008](#F-MLOCAL-R008)); y si la corrida declara un conjunto de ejercicios para el juez
+>    —una re-evaluación ([F-JEXAM-R005](#F-JEXAM-R005))—, ese conjunto elige qué pares se le vuelven a preguntar a
+>    claude -p, nunca qué vectores se calculan: un tema fuera del conjunto cuyos pares quedan todos por debajo de 0,80
+>    se evalúa entero;
 > 4. sin tope o sin respuesta del juez —tope agotado, sesión vencida, servicio caído o una respuesta que no sirve—, el
 >    ejercicio con algún candidato sin juzgar queda evaluado a medias ([F-RONDA1-R006](#F-RONDA1-R006)): valen sus
 >    hallazgos del comodín, y el informe dice cuántos pares faltan y cuántas horas llevan, de a una y a la vez
@@ -306,7 +310,11 @@ mismo que en `analyze` ([F-PROYU-R003](#F-PROYU-R003)): los vectores, sin tope; 
 > 1. cambiar cualquiera de las tres es otra versión, que vuelve a rendir antes de publicar
 >    ([F-MLOCAL-R006](#F-MLOCAL-R006));
 > 2. lo que el juez ya contestó sobre un par se reusa con Ollama y sin él, mientras no cambie lo que se le preguntó
->    ([F-MLOCAL-R002](#F-MLOCAL-R002)).
+>    ([F-MLOCAL-R002](#F-MLOCAL-R002));
+> 3. si el juez de pares no enuncia su versión —falta su definición o su configuración—, la versión con Ollama no se
+>    puede nombrar entera ni rendir examen: no se le consulta nada ni a nomic-embed-text ni a claude -p,
+>    `near-duplicates` queda sin evaluar —el comodín incluido, como toda versión sin examen aprobado
+>    ([F-MLOCAL-R006](#F-MLOCAL-R006))— y el informe muestra el motivo del juez.
 
 La versión reprobada era nomic-embed-text con «clustering: » y 0,95, sin juez: la nueva no hereda su examen. Hoy serían
 nomic-embed-text en su versión instalada, con «clustering: », 0,80 y la versión vigente del juez. La versión sin Ollama

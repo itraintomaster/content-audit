@@ -5,6 +5,14 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — analyst — Precisa las trazas de dos pruebas del qa-tester (pedido del coordinador): R010 suma la inv. 3
+  (si el juez de pares no enuncia su versión, la de Ollama no se nombra ni rinde, no se consulta ni a nomic-embed-text
+  ni a claude -p, y near-duplicates queda sin evaluar, comodín incluido, con el motivo del juez); R009 inv. 3 dice que
+  comodín y vectores corren en todos los temas de la corrida aunque haya un conjunto declarado para el juez, que sólo
+  elige qué pares se le vuelven a preguntar a claude -p.
+  why: «juez sin versión» (R010) y «vectores con conjunto declarado» (R009 inv. 3) trazaban a algo que la regla no
+  decía literalmente.
+
 2026-10-03 — qa-tester — El reuso de vectores entre versiones del paso traza a F-MLOCAL-R002 inv. 2, no a R010 inv. 2,
   que habla sólo de lo que contestó el juez; va en un parche aparte de FEAT-MLOCAL (propose rechaza otro feature).
   why: forzar R010 sería la regla «más cercana»; si se quiere en DUPAR, el analista suma una invariante a R010.
