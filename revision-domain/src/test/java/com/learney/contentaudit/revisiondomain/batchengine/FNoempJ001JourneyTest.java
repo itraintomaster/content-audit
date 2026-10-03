@@ -17,6 +17,7 @@ import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchReport;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
@@ -40,6 +41,7 @@ import com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFa
 import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
 import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.annotation.processing.Generated;
@@ -76,7 +78,7 @@ public class FNoempJ001JourneyTest {
                         countRow("palabras rojas", AnalyzerFamily.VOCABULARY, 351, 351),
                         pointsRow("vocabulario", 73.92, 73.92, 73.92)), List.of());
 
-        batch = journey.closer().close(batch, journey.course);
+        batch = journey.closer().close(batch, journey.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         BatchClosing closed = batch.getClosings().get(batch.getClosings().size() - 1);
         assertTrue(closed.getGate().isPasses(), closed.getGate().getReasons().toString());
@@ -116,7 +118,7 @@ public class FNoempJ001JourneyTest {
                     List.of(countRow("palabras rojas", AnalyzerFamily.VOCABULARY, 351, 351)), List.of());
         };
 
-        batch = journey.closer().close(batch, journey.course);
+        batch = journey.closer().close(batch, journey.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         BatchGateVerdict stopped = journey.verdicts.get(0);
         assertFalse(stopped.isPasses());
@@ -155,7 +157,7 @@ public class FNoempJ001JourneyTest {
                 : journey.comparison(scope, List.of(outcome(P_COME, MesaFixture.COME, List.of())),
                         List.of(pointsRow("vocabulario", 73.92, 73.92, 73.62)), List.of());
 
-        batch = journey.closer().close(batch, journey.course);
+        batch = journey.closer().close(batch, journey.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         BatchGateVerdict stopped = journey.verdicts.get(0);
         assertEquals(1, stopped.getReturned().size(), "only what brings it back within");
@@ -207,7 +209,7 @@ public class FNoempJ001JourneyTest {
                 return verdict;
             };
             return new DefaultBatchCloser(comparator, watched, samples, ledger(), new TandaFixture.Batches(),
-                    TandaFixture.COURSE_PATH).withPlans(plans, MesaFixture.corrections());
+                    TandaFixture.COURSE_PATH, new NoJudgesPass()).withPlans(plans, MesaFixture.corrections());
         }
 
         /**

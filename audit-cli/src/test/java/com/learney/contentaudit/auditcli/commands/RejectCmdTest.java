@@ -5,6 +5,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
 import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
@@ -340,7 +341,7 @@ public class RejectCmdTest {
         }
 
         @Override
-        public BatchClosing close() {
+        public BatchClosing close(BatchCloseRequest request) {
             throw new AssertionError("not here");
         }
 

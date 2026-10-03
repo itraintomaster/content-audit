@@ -2362,3 +2362,25 @@ mejor; las de puntaje dicen lo bueno, y más es mejor. Además, cada fila de `co
 | F-FILAS-R007 | El veredicto dice cuántos pisos no se pueden decidir y de qué filas | major | - |
 | F-FILAS-R008 | Cada número de la fila dice si su foto se evaluó | major | - |
 
+### FEAT-CJUEZ: Cierre con jueces - al cerrar, la tanda juzga lo que cambió, antes y después [F-CJUEZ]
+
+> **Qué**: Al cerrar, la tanda juzga con cada juez lo que cambió, antes y después: avisa antes cuántas consultas faltan,
+paga sólo con un tope pedido, y un juez sin examen aprobado deja la tanda sin publicar y con su nombre en el veredicto.
+
+**Por qué**: Hoy cerrar no le paga a ningún juez: la tanda de A1 cambió 601 ejercicios y quedó «no se puede decidir»,
+con 28 pisos sin decidir y sin decir qué juez falta. José, 1/10: «no publiques sin los jueces».
+
+**Business Rules:**
+
+| ID | Rule | Severity | Error Message |
+|----|------|----------|---------------|
+| F-CJUEZ-R001 | Al cerrar, se juzga lo que la tanda cambia, antes y después | critical | - |
+| F-CJUEZ-R002 | Antes de pagar, la tanda dice cuántas consultas faltan por juez | critical | - |
+| F-CJUEZ-R003 | Se paga sólo con un tope pedido, y nunca más | critical | «consigna» no es un juez de la tanda <id>. Sus jueces: <lista>. |
+| F-CJUEZ-R004 | Un juez sin examen aprobado bloquea, y el veredicto lo nombra | critical | - |
+| F-CJUEZ-R005 | El informe dice, por juez, lo gastado, lo reusado y los pisos decididos | major | - |
+
+**User Journeys:**
+
+- **F-CJUEZ-J001**: Cerrar la tanda con los jueces
+

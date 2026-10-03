@@ -38,6 +38,8 @@ public class BatchReport {
 
     private List<BatchAdjustment> joseDecisions;
 
+    private List<BatchJudgeAccount> judges;
+
     public BatchReport() {
     }
 
@@ -45,7 +47,7 @@ public class BatchReport {
             List<OutcomeCount> outcomes, int totalTasks, int conversionDone, int conversionNoWinner,
             List<AnalyzerLevelErrors> errorsByAnalyzer, List<AudioRerecordRequest> rerecords,
             List<LengthDeclaration> lengths, QueriesByRole queries, double hours,
-            List<BatchAdjustment> joseDecisions) {
+            List<BatchAdjustment> joseDecisions, List<BatchJudgeAccount> judges) {
         this.batchId = batchId;
         this.level = level;
         this.status = status;
@@ -59,6 +61,7 @@ public class BatchReport {
         this.queries = queries;
         this.hours = hours;
         this.joseDecisions = joseDecisions;
+        this.judges = judges;
     }
 
     public String getBatchId() {
@@ -165,6 +168,14 @@ public class BatchReport {
         this.joseDecisions = joseDecisions;
     }
 
+    public List<BatchJudgeAccount> getJudges() {
+        return this.judges;
+    }
+
+    public void setJudges(List<BatchJudgeAccount> judges) {
+        this.judges = judges;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -182,11 +193,12 @@ public class BatchReport {
                     && Objects.equals(this.lengths, that.lengths)
                     && Objects.equals(this.queries, that.queries)
                     && Objects.equals(this.hours, that.hours)
-                    && Objects.equals(this.joseDecisions, that.joseDecisions);
+                    && Objects.equals(this.joseDecisions, that.joseDecisions)
+                    && Objects.equals(this.judges, that.judges);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(batchId, level, status, outcomes, totalTasks, conversionDone, conversionNoWinner, errorsByAnalyzer, rerecords, lengths, queries, hours, joseDecisions);
+        return Objects.hash(batchId, level, status, outcomes, totalTasks, conversionDone, conversionNoWinner, errorsByAnalyzer, rerecords, lengths, queries, hours, joseDecisions, judges);
     }
 }

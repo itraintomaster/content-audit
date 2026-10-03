@@ -1,14 +1,17 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import com.learney.contentaudit.auditcli.BatchCommand;
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.revisiondomain.batch.AnalyzerLevelErrors;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchAlreadyOpenException;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
+import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchReport;
 import com.learney.contentaudit.revisiondomain.batch.BatchRunRequest;
@@ -27,6 +30,7 @@ import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -43,7 +47,10 @@ import picocli.CommandLine.Parameters;
  * {@link BatchService}. There is no {@code batch publish}: publishing is José's single OK in the tray (F-BANDEJA-R008).
  * Running without {@code --cap} applies the rules only, which query nothing; the panels need an explicit cap of queries
  * (F-TANDA-R003). Dropping goes through the service, so the change -- or every change of a rule -- leaves through the
- * ledger and the batch is compared again (F-TANDA-R008).
+ * ledger and the batch is compared again (F-TANDA-R008). Closing pays the judges only under an explicit tope, {@code
+ * --budget juez=N,…} for each or {@code --cap N} for the batch, and says per judge what it spent, reused and still misses;
+ * the estimate says it before (F-CJUEZ). A tope that is not 0 or more, or a name that is not a judge of the batch, is
+ * refused with exit 2 and nothing is closed.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -55,11 +62,12 @@ import picocli.CommandLine.Parameters;
                 + "  batch open <level> [--topics-at-once N] [--queries-at-once N] [--to-multiple-choice <topic>]...%n"
                 + "  batch estimate%n"
                 + "  batch run [--cap N]%n"
-                + "  batch close%n"
+                + "  batch close [--budget juez=N[,juez=N…]] [--cap N]%n"
                 + "  batch drop (--change <id> | --rule <rule>) [--reason <text>]%n"
                 + "  batch report [<batchId>] [-f text|json]%n%n"
                 + "Without --cap, batch run applies the rules only, which query no model; the panels open only under a"
-                + " cap of queries. Publishing is the single OK of the tray: content-audit tray publish.",
+                + " cap of queries. Without --budget nor --cap, batch close pays no judge: it says how many queries each"
+                + " one still misses. Publishing is the single OK of the tray: content-audit tray publish.",
         mixinStandardHelpOptions = true,
         footer = {
                 "",
@@ -69,6 +77,8 @@ import picocli.CommandLine.Parameters;
                 "  content-audit batch run",
                 "  content-audit batch run --cap 300",
                 "  content-audit batch close",
+                "  content-audit batch close --budget translation-sense=500,mini-theory=60",
+                "  content-audit batch close --cap 600",
                 "  content-audit batch drop --rule mayusculas --reason \"las opciones van en minúscula\"",
                 "  content-audit batch report",
         }
@@ -92,8 +102,13 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
             + " name or id (repeatable)")
     private List<String> convertToMultipleChoice = new ArrayList<>();
 
-    @Option(names = "--cap", description = "The cap of queries of this run; without it only the rules run")
+    @Option(names = "--cap", description = "The cap of queries: of the panels in batch run -- without it only the rules"
+            + " run --, of the judges in batch close -- without it nothing is paid")
     private Integer queryCap;
+
+    @Option(names = "--budget", split = ",", description = "El tope de consultas de cada juez al cerrar: juez=N,"
+            + " separados por coma")
+    private Map<String, Integer> judgeBudgets = new LinkedHashMap<>();
 
     @Option(names = "--change", description = "The change to drop")
     private String changeId;
@@ -205,6 +220,7 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
                 .append(hours(estimate.getEstimatedHours())).append(" horas a 19 s por consulta con ")
                 .append(estimate.getTopicsAtOnce()).append(" temas y ").append(estimate.getQueriesAtOnce())
                 .append(" consultas a la vez.\n");
+        out.append(estimatedJudges(estimate));
         out.append("Para correr la mesa: content-audit batch run --cap ").append(estimate.getEstimatedQueries());
         System.out.println(out);
         return 0;
@@ -239,13 +255,23 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
     }
 
     @Override
-    public Integer closeBatch() {
+    public Integer closeBatch(Map<String, Integer> judgeBudgets, Integer queryCap) {
+        String refused = refusedTope(judgeBudgets, queryCap);
+        if (refused != null) {
+            System.err.println("Error: " + refused);
+            return 2;
+        }
         BatchClosing closing;
         try {
-            closing = batchService.close();
+            closing = batchService.close(new BatchCloseRequest(
+                    judgeBudgets != null ? judgeBudgets : new LinkedHashMap<>(), queryCap));
         } catch (NoOpenBatchException e) {
             System.err.println("Error: " + e.getMessage());
             return 1;
+        } catch (IllegalArgumentException e) {
+            // F-CJUEZ-R003 inv. 4: a name that is not a judge of the batch, said by the service before it closes anything
+            System.err.println("Error: " + e.getMessage());
+            return 2;
         }
         BatchGateVerdict gate = closing != null ? closing.getGate() : null;
         if (gate == null) {
@@ -274,6 +300,7 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
             out.append("Veredicto de la comparación: ").append(closing.getComparison().getVerdict().getKind())
                     .append(detail != null && !detail.isBlank() ? " — " + detail : "").append('\n');
         }
+        out.append(judgesBlock(closing.getJudges()));
         if (batch != null && batch.getBlindSampleId() != null) {
             out.append("Muestra ciega: ").append(batch.getBlindSampleId()).append(" (content-audit sample show ")
                     .append(batch.getBlindSampleId()).append(").\n");
@@ -367,6 +394,7 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
                     .append(report.getQueries().getJudges()).append(" de los jueces; ").append(hours(report.getHours()))
                     .append(" horas.\n");
         }
+        out.append(judgesBlock(report.getJudges()));
         List<BatchAdjustment> decisions = list(report.getJoseDecisions());
         if (!decisions.isEmpty()) {
             out.append("Decisiones de José (").append(decisions.size()).append("):\n");
@@ -401,7 +429,7 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
             case "open" -> openBatch(target, topicsAtOnce, queriesAtOnce, convertToMultipleChoice);
             case "estimate" -> estimateBatch();
             case "run" -> runBatch(queryCap);
-            case "close" -> closeBatch();
+            case "close" -> closeBatch(judgeBudgets, queryCap);
             case "drop" -> dropFromBatch(changeId, ruleId, reason);
             case "report" -> reportBatch(target, format);
             default -> {
@@ -454,6 +482,113 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
 
     private static String spanish(BatchTaskOutcomeKind kind) {
         return SPANISH.getOrDefault(kind, String.valueOf(kind));
+    }
+
+    // -------------------------------------------------------------------------
+    // The judges (F-CJUEZ)
+    // -------------------------------------------------------------------------
+
+    /**
+     * R003 inv. 4: a tope that is not 0 or more, as the service refuses it, so nothing is closed; the request as José typed
+     * it -- {@code --budget judge=N} or {@code --cap N}. Null when every tope is fine.
+     */
+    private static String refusedTope(Map<String, Integer> judgeBudgets, Integer queryCap) {
+        for (Map.Entry<String, Integer> budget : judgeBudgets != null ? judgeBudgets.entrySet()
+                : Map.<String, Integer>of().entrySet()) {
+            if (budget.getValue() != null && budget.getValue() < 0) {
+                return "El tope tiene que ser 0 o más: --budget " + budget.getKey() + "=" + budget.getValue() + ".";
+            }
+        }
+        if (queryCap != null && queryCap < 0) {
+            return "El tope tiene que ser 0 o más: --cap " + queryCap + ".";
+        }
+        return null;
+    }
+
+    /**
+     * R005: what the closing -- and the report of its last one -- says of the judges: a line each, in the order of the
+     * catalog, and, when an approved judge still misses queries, the request that completes them. Nothing when no judge
+     * reads what the batch changed.
+     */
+    private static String judgesBlock(List<BatchJudgeAccount> judges) {
+        List<BatchJudgeAccount> accounts = list(judges);
+        if (accounts.isEmpty()) {
+            return "";
+        }
+        StringBuilder out = new StringBuilder("Jueces (").append(accounts.size()).append("):\n");
+        for (BatchJudgeAccount judge : accounts) {
+            out.append(judgeLine(judge, true)).append('\n');
+        }
+        return out.append(completion(accounts)).toString();
+    }
+
+    /**
+     * R002: what the estimate says of the judges at closing: over the exercises the batch changes today, a line each with
+     * what it judges, reuses and misses, and the queries and hours of the approved ones that are paid -- or that nothing
+     * changed yet and the judges are estimated after {@code batch run}.
+     */
+    private static String estimatedJudges(BatchEstimate estimate) {
+        if (estimate.getChangedQuizzes() <= 0) {
+            return "Jueces al cerrar: la tanda todavía no cambió ningún ejercicio: los jueces se estiman después de"
+                    + " batch run.\n";
+        }
+        StringBuilder out = new StringBuilder("Jueces al cerrar, sobre los ").append(estimate.getChangedQuizzes())
+                .append(" ejercicios que la tanda cambia hoy:\n");
+        for (BatchJudgeAccount judge : list(estimate.getJudges())) {
+            out.append(judgeLine(judge, false)).append('\n');
+        }
+        out.append("Consultas de los jueces aprobados que se pagan: ").append(estimate.getJudgeQueries()).append(", unas ")
+                .append(hours(estimate.getJudgeHours())).append(" horas a 19 s por consulta con ")
+                .append(estimate.getQueriesAtOnce()).append(" consultas a la vez.\n");
+        return out.append(completion(list(estimate.getJudges()))).toString();
+    }
+
+    /**
+     * The line of a judge: its visible name and its unique one, what it judges -- exercises, or topics --, what it spent,
+     * reused and misses, the tope it had and its floors decided of all its floors -- the estimate, which has paid and decided
+     * nothing, leaves those out --, and, in this order, whether it is local and costs nothing, why it is without an approved
+     * exam, and why it stopped.
+     */
+    private static String judgeLine(BatchJudgeAccount judge, boolean closed) {
+        StringBuilder line = new StringBuilder("  ")
+                .append(judge.getDisplayName() != null && !judge.getDisplayName().isBlank() ? judge.getDisplayName()
+                        : judge.getJudge())
+                .append(" (").append(judge.getJudge()).append("): ").append(judge.getUnits()).append(' ')
+                .append(judge.getUnit() == AuditTarget.KNOWLEDGE ? "temas" : "ejercicios").append("; ");
+        if (closed) {
+            line.append("gastadas ").append(judge.getQueriesSpent()).append(", ");
+        }
+        line.append("reusadas ").append(judge.getQueriesReused()).append(", faltan ").append(judge.getQueriesMissing());
+        if (closed) {
+            line.append("; ").append(judge.getBudget() != null ? "tope " + judge.getBudget() : "sin tope")
+                    .append("; pisos decididos ").append(judge.getFloorsDecided()).append(" de ")
+                    .append(judge.getFloorsDecided() + judge.getFloorsUndecided());
+        }
+        if (judge.isLocal()) {
+            line.append(" — local, sin costo");
+        }
+        if (!judge.isApproved()) {
+            line.append(" — sin aprobar").append(judge.getReason() != null ? ": " + judge.getReason() : "");
+        }
+        if (judge.getUnavailableReason() != null) {
+            line.append(" — se cortó: ").append(judge.getUnavailableReason());
+        }
+        return line.toString();
+    }
+
+    /**
+     * R003: the request that pays what the approved judges still miss -- the ones that are paid: a local judge costs
+     * nothing and one without an approved exam cannot consult --, in the order of the catalog; empty when none misses any.
+     */
+    private static String completion(List<BatchJudgeAccount> judges) {
+        List<String> missing = new ArrayList<>();
+        for (BatchJudgeAccount judge : judges) {
+            if (judge.isApproved() && !judge.isLocal() && judge.getQueriesMissing() > 0) {
+                missing.add(judge.getJudge() + "=" + judge.getQueriesMissing());
+            }
+        }
+        return missing.isEmpty() ? "" : "Para decidir lo que falta: content-audit batch close --budget "
+                + String.join(",", missing) + "\n";
     }
 
     private static String resolution(BatchTaskCount count) {

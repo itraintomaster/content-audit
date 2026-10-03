@@ -3644,6 +3644,7 @@ public FileSystemBlindSampleStore(Path baseDir) {
 | `reportBuilder` | `BatchReportBuilder` |
 | `coursePath` | `Path` |
 | `goalBook` | `GoalBook` |
+| `judgePass` | `BatchJudgePass` |
 
 #### DefaultBatchTaskSelector (package: batchengine)
 
@@ -3726,6 +3727,7 @@ public FileSystemBlindSampleStore(Path baseDir) {
 | `changeLedger` | `BatchChangeLedger` |
 | `batchStore` | `BatchStore` |
 | `coursePath` | `Path` |
+| `judgePass` | `BatchJudgePass` |
 
 #### DefaultBatchPublisher (package: batchengine)
 
@@ -3756,6 +3758,20 @@ public FileSystemBlindSampleStore(Path baseDir) {
 **Package:** `com.learney.contentaudit.revisiondomain.batchengine`
 **Visibility:** internal
 **Implements:** BatchReportBuilder
+
+#### DefaultBatchJudgePass (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+**Implements:** BatchJudgePass
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `auditEngine` | `AuditEngine` |
+| `courseMapper` | `CourseMapper` |
+| `analyzerCatalog` | `AnalyzerCatalog` |
 
 #### DefaultTrayServiceFactory (package: trayengine)
 

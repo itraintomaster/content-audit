@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.learney.contentaudit.auditdomain.AuditEngine;
 import com.learney.contentaudit.auditdomain.AuditReport;
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.Baseline;
 import com.learney.contentaudit.auditdomain.CefrLevel;
@@ -17,6 +18,7 @@ import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceRuleFix;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.refinerdomain.PlanFindingTally;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
@@ -30,9 +32,13 @@ import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchAlreadyOpenException;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
+import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchNotPublishableException;
 import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchProposalRef;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchRunRequest;
@@ -54,6 +60,7 @@ import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
 import com.learney.contentaudit.revisiondomain.preservationengine.DefaultPreservationFactory;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -192,7 +199,7 @@ public class DefaultBatchServiceTest {
 
         service.service().run(new BatchRunRequest(null));
         service.service().run(new BatchRunRequest(null));
-        service.service().close();
+        service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         assertEquals(1, service.goals.seals.size(), "only the opening sealed");
     }
@@ -346,7 +353,7 @@ public class DefaultBatchServiceTest {
         Service service = new Service();
         service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
         service.service().run(new BatchRunRequest(null));
-        service.service().close();
+        service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), null));
         CorrectionBatch opened = service.batches.open().orElseThrow();
         String changeId = opened.getChanges().get(0).getChangeId();
         String proposalId = opened.getQuizProposals().get(0).getProposalId();
@@ -406,7 +413,7 @@ public class DefaultBatchServiceTest {
         service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
         service.service().run(new BatchRunRequest(null));
         service.comparator.answer = scope -> TandaFixture.comparison(scope, List.of(), VerdictKind.BLIND_SAMPLE_MISSING);
-        service.service().close();
+        service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
                 () -> service.service().publish(new BatchPublishRequest("José", null, List.of())));
@@ -482,6 +489,9 @@ public class DefaultBatchServiceTest {
 
         final List<List<Integer>> allowances = new ArrayList<>();
 
+        /** The judges' pass the batch gets; a test overrides it before calling {@link #service()} to script it. */
+        BatchJudgePass judgePass = new NoJudgesPass();
+
         final TandaFixture.Plans plans;
 
         Service() {
@@ -525,7 +535,7 @@ public class DefaultBatchServiceTest {
             DefaultPanelStage panelStage = new DefaultPanelStage(panels, TandaFixture.briefer(), MesaFixture.corrections(),
                     null, ledger, batches).withPlans(plans);
             DefaultBatchCloser closer = new DefaultBatchCloser(comparator, new DefaultGateFactory().batchGate(), samples,
-                    ledger, batches, TandaFixture.COURSE_PATH).withPlans(plans, MesaFixture.corrections());
+                    ledger, batches, TandaFixture.COURSE_PATH, judgePass).withPlans(plans, MesaFixture.corrections());
             AuditEngine engine = new AuditEngine() {
                 @Override
                 public AuditReport runAudit(AuditableCourse course) {
@@ -564,7 +574,7 @@ public class DefaultBatchServiceTest {
                     TandaFixture.COURSE_PATH);
             return new DefaultBatchService(batches, plans, reports, active, baselines, courses, factory,
                     TandaFixture.briefer(), selector, new DefaultBatchCostEstimator(), rules, panelStage, ledger, closer,
-                    publisher, new DefaultBatchReportBuilder(), TandaFixture.COURSE_PATH, goals);
+                    publisher, new DefaultBatchReportBuilder(), TandaFixture.COURSE_PATH, goals, judgePass);
         }
     }
 
@@ -598,5 +608,221 @@ public class DefaultBatchServiceTest {
                 return false;
             }
         };
+    }
+
+    @Test
+    @DisplayName("should count in the estimate as changed today the exercises with a pending proposal of the batch and every exercise of a topic whose instruction changes")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R002")
+    public void shouldCountInTheEstimateAsChangedTodayTheExercisesWithAPendingProposalOfTheBatchAndEveryExerciseOfATopicWhoseInstructionChanges() {
+        // R002: changedQuizzes is the exercises with their own pending proposal plus, for a topic whose own
+        // instruction changes, every exercise of that topic -- here vegetables on its own and the ten exercises of
+        // «Contraste inicial».
+        Service service = new Service();
+        CorrectionBatch batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        batch.setQuizProposals(new ArrayList<>(List.of(new BatchProposalRef(MesaFixture.VEGETABLES, "p-vegetables"),
+                new BatchProposalRef(MesaFixture.CONTRASTE, "p-contraste"))));
+
+        BatchEstimate estimate = service.service().estimate();
+
+        assertEquals(11, estimate.getChangedQuizzes(),
+                "1 exercise of its own (vegetables) plus the 10 exercises of the topic whose instruction changes");
+    }
+
+    @Test
+    @DisplayName("should add to the estimate the account of each judge, estimated without any query on the start course and on the course composed with the changes of the batch")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R002")
+    public void shouldAddToTheEstimateTheAccountOfEachJudgeEstimatedWithoutAnyQueryOnTheStartCourseAndOnTheCourseComposedWithTheChangesOfTheBatch() {
+        // R002: the estimate calls the judges' pass once, with the start course and the course composed with the
+        // batch's changes, and never judge(): batch estimate makes no query.
+        Service service = new Service();
+        ScriptedJudgePass judges = new ScriptedJudgePass();
+        BatchJudgeAccount account = new BatchJudgeAccount("translation-sense", "Sentido de la traducción",
+                AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null, 2, null, 0, 0, 2, 0, 0, null, false);
+        judges.estimateAccounts = List.of(account);
+        service.judgePass = judges;
+        CorrectionBatch batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        QuizTemplateEntity edited = TandaFixture.edited(TandaFixture.exercise(service.courses.course,
+                MesaFixture.VEGETABLES), q -> q.setTranslation("Me encantan mucho las verduras."));
+        TandaFixture.recorded(batch, service.courses.course, service.artifacts, TandaFixture.change("mesa-veg",
+                BatchChangeOrigin.PANEL, null, List.of(), TandaFixture.step(edited, ExercisePart.TRANSLATION)));
+
+        BatchEstimate estimate = service.service().estimate();
+
+        assertTrue(judges.judgeRequests.isEmpty(), "batch estimate makes no query: judge() is never called");
+        assertEquals(1, judges.estimateStartCourses.size(), "the pass is asked once");
+        assertEquals("Me gustan mucho las verduras.",
+                TandaFixture.exercise(judges.estimateStartCourses.get(0), MesaFixture.VEGETABLES).getTranslation(),
+                "the start course as the batch opened");
+        assertEquals("Me encantan mucho las verduras.",
+                TandaFixture.exercise(judges.estimateComposedCourses.get(0), MesaFixture.VEGETABLES).getTranslation(),
+                "the course composed with the batch's change");
+        assertEquals(List.of(account), estimate.getJudges(), "the account of the judge is added to the estimate");
+    }
+
+    @Test
+    @DisplayName("should total in the estimate the missing queries of the approved judges that are paid, as 2404 of translation-sense and 60 of mini-theory, without those of quiz-instruction without an exam or of naturalness with Ollama, and their hours at 19 s per query with 4 at once")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R002")
+    public void shouldTotalInTheEstimateTheMissingQueriesOfTheApprovedJudgesThatArePaidAs2404OfTranslationsenseAnd60OfMinitheoryWithoutThoseOfQuizinstructionWithoutAnExamOrOfNaturalnessWithOllamaAndTheirHoursAt19SPerQueryWith4AtOnce() {
+        // R002: judgeQueries sums the missing queries of the approved, non-local judges only -- translation-sense and
+        // mini-theory, not quiz-instruction (no exam) nor naturalness (local, Ollama) -- and judgeHours is that total
+        // at 19 s per query with the batch's 4 queries at once: 2464 * 19 / 4 / 3600 = 3.25.
+        Service service = new Service();
+        ScriptedJudgePass judges = new ScriptedJudgePass();
+        judges.estimateAccounts = List.of(
+                new BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true,
+                        JudgeExamStatus.APPROVED, null, 1202, null, 0, 0, 2404, 0, 0, null, false),
+                new BatchJudgeAccount("mini-theory", "Miniteoría", AuditTarget.KNOWLEDGE, true,
+                        JudgeExamStatus.APPROVED, null, 60, null, 0, 0, 60, 0, 0, null, false),
+                new BatchJudgeAccount("quiz-instruction", "Consigna", AuditTarget.QUIZ, false,
+                        JudgeExamStatus.NOT_TAKEN, "no rindió su examen", 601, null, 0, 0, 999, 0, 0, null, false),
+                new BatchJudgeAccount("naturalness", "Naturalidad", AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED,
+                        null, 601, null, 0, 0, 777, 0, 0, null, true));
+        service.judgePass = judges;
+        CorrectionBatch batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, 4, List.of()));
+        batch.setQuizProposals(new ArrayList<>(List.of(new BatchProposalRef(MesaFixture.VEGETABLES, "p-vegetables"))));
+
+        BatchEstimate estimate = service.service().estimate();
+
+        assertEquals(2464, estimate.getJudgeQueries(),
+                "2404 of translation-sense and 60 of mini-theory, without quiz-instruction nor naturalness");
+        assertEquals(3.25, estimate.getJudgeHours(), 1e-9, "2464 queries at 19 s with 4 at once");
+    }
+
+    @Test
+    @DisplayName("should estimate no judge, with 0 changed exercises, while the batch has not changed any exercise")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R002")
+    public void shouldEstimateNoJudgeWith0ChangedExercisesWhileTheBatchHasNotChangedAnyExercise() {
+        // R002: freshly opened, before any run, the batch has not changed anything: the estimate counts 0 changed
+        // exercises and lists no judge, with nothing missing and no hours.
+        Service service = new Service();
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+
+        BatchEstimate estimate = service.service().estimate();
+
+        assertEquals(0, estimate.getChangedQuizzes());
+        assertTrue(estimate.getJudges().isEmpty(), "no judge reads what has not changed");
+        assertEquals(0, estimate.getJudgeQueries());
+        assertEquals(0.0, estimate.getJudgeHours(), 1e-9);
+    }
+
+    @Test
+    @DisplayName("should refuse a request that budgets «consigna», which is not a judge of the batch, naming its judges, before closing or querying anything")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldRefuseARequestThatBudgetsConsignaWhichIsNotAJudgeOfTheBatchNamingItsJudgesBeforeClosingOrQueryingAnything() {
+        // R003 inv. 4: a budget that names a judge the batch does not have is rejected, naming its real judges,
+        // before touching the comparator, the course or the judges' pass.
+        Service service = new Service();
+        ScriptedJudgePass judges = new ScriptedJudgePass();
+        judges.judgeNames = List.of("quiz-instruction", "translation-sense", "mini-theory");
+        service.judgePass = judges;
+        CorrectionBatch batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+
+        IllegalArgumentException refused = assertThrows(IllegalArgumentException.class, () -> service.service()
+                .close(new BatchCloseRequest(new LinkedHashMap<>(Map.of("consigna", 100)), null)));
+
+        assertEquals("«consigna» no es un juez de la tanda " + batch.getId()
+                + ". Sus jueces: quiz-instruction, translation-sense, mini-theory.", refused.getMessage());
+        assertTrue(judges.judgeRequests.isEmpty(), "no consulta nada");
+        assertTrue(service.comparator.scopes.isEmpty(), "no cierra nada");
+        assertTrue(service.courses.written.isEmpty());
+    }
+
+    @Test
+    @DisplayName("should refuse a request with a negative budget or a negative cap, before closing or querying anything")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldRefuseARequestWithANegativeBudgetOrANegativeCapBeforeClosingOrQueryingAnything() {
+        // R003 inv. 4: a negative budget for a judge, or a negative cap for the batch, is rejected before touching
+        // the comparator, the course or the judges' pass.
+        Service service = new Service();
+        ScriptedJudgePass judges = new ScriptedJudgePass();
+        judges.judgeNames = List.of("translation-sense");
+        service.judgePass = judges;
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+
+        IllegalArgumentException negativeBudget = assertThrows(IllegalArgumentException.class, () -> service.service()
+                .close(new BatchCloseRequest(new LinkedHashMap<>(Map.of("translation-sense", -1)), null)));
+        IllegalArgumentException negativeCap = assertThrows(IllegalArgumentException.class,
+                () -> service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), -5)));
+
+        assertEquals("El tope tiene que ser 0 o más: --budget translation-sense=-1.", negativeBudget.getMessage());
+        assertEquals("El tope tiene que ser 0 o más: --cap -5.", negativeCap.getMessage());
+        assertTrue(judges.judgeRequests.isEmpty(), "no consulta nada");
+        assertTrue(service.comparator.scopes.isEmpty(), "no cierra nada");
+        assertTrue(service.courses.written.isEmpty());
+    }
+
+    @Test
+    @DisplayName("should accept a request that budgets quiz-instruction with 600, a judge of the batch although it cannot query, and hand it to the closing as asked")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldAcceptARequestThatBudgetsQuizinstructionWith600AJudgeOfTheBatchAlthoughItCannotQueryAndHandItToTheClosingAsAsked() {
+        // R003: quiz-instruction is a judge of the batch, so its budget is accepted even though it cannot query (no
+        // approved exam, F-CJUEZ-R004): the service hands the request to the pass and keeps it in the closing.
+        Service service = new Service();
+        ScriptedJudgePass judges = new ScriptedJudgePass();
+        judges.judgeNames = List.of("quiz-instruction", "translation-sense");
+        service.judgePass = judges;
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        BatchCloseRequest request = new BatchCloseRequest(new LinkedHashMap<>(Map.of("quiz-instruction", 600)), null);
+
+        BatchClosing closing = service.service().close(request);
+
+        assertEquals(List.of(request), judges.judgeRequests, "handed to the judges' pass as asked");
+        assertEquals(request, closing.getRequest(), "kept in the closing");
+    }
+
+    @Test
+    @DisplayName("should close again with an empty request, paying no judge, when José drops a change of a batch closed with a budget")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldCloseAgainWithAnEmptyRequestPayingNoJudgeWhenJosDropsAChangeOfABatchClosedWithABudget() {
+        // R003: José's readjustment (batch drop) recalculates with an empty request -- it never carries over the
+        // budget of an earlier closing.
+        Service service = new Service();
+        ScriptedJudgePass judges = new ScriptedJudgePass();
+        judges.judgeNames = List.of("translation-sense");
+        service.judgePass = judges;
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        service.service().run(new BatchRunRequest(null));
+        service.service().close(new BatchCloseRequest(new LinkedHashMap<>(Map.of("translation-sense", 500)), null));
+        CorrectionBatch opened = service.batches.open().orElseThrow();
+        String changeId = opened.getChanges().get(0).getChangeId();
+
+        service.service().adjust(new BatchAdjustment(BatchAdjustmentKind.DROP_CHANGE, MesaFixture.VEGETABLES,
+                List.of(), changeId, null, null, null, "la pista va en la mesa", "José", null));
+
+        assertEquals(2, judges.judgeRequests.size(), "the closing and José's readjustment both call the judges' pass");
+        assertEquals(new BatchCloseRequest(new LinkedHashMap<>(Map.of("translation-sense", 500)), null),
+                judges.judgeRequests.get(0), "the closing paid with its budget");
+        assertEquals(new BatchCloseRequest(new LinkedHashMap<>(), null), judges.judgeRequests.get(1),
+                "José's drop recalculates without paying any judge");
+    }
+
+    @Test
+    @DisplayName("should write neither the course nor any analysis of the history when closing with a budget, keeping the closing only in the batch")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R001")
+    public void shouldWriteNeitherTheCourseNorAnyAnalysisOfTheHistoryWhenClosingWithABudgetKeepingTheClosingOnlyInTheBatch() {
+        // R001 inv. 4: closing -- even paying judges with a budget -- never writes the course nor the analysis
+        // history; outside the batch itself, only the judges' verdicts stay, in the ledger.
+        Service service = new Service();
+        ScriptedJudgePass judges = new ScriptedJudgePass();
+        judges.judgeNames = List.of("translation-sense");
+        service.judgePass = judges;
+        service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        service.service().run(new BatchRunRequest(null));
+        int reportsBefore = service.reports.saved.size();
+
+        service.service().close(new BatchCloseRequest(new LinkedHashMap<>(Map.of("translation-sense", 500)), null));
+
+        assertEquals(1, judges.judgeRequests.size(), "the closing did pay through the judges' pass");
+        assertTrue(service.courses.written.isEmpty(), "the course stays untouched");
+        assertEquals(reportsBefore, service.reports.saved.size(), "no analysis added to the history");
     }
 }

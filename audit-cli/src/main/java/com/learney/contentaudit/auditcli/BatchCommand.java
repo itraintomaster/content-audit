@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditcli;
 
 import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -15,9 +16,9 @@ public interface BatchCommand {
 
     Integer runBatch(Integer queryCap);
 
-    Integer closeBatch();
-
     Integer dropFromBatch(String changeId, String ruleId, String reason);
 
     Integer reportBatch(String batchId, String format);
+
+    Integer closeBatch(Map<String, Integer> judgeBudgets, Integer queryCap);
 }

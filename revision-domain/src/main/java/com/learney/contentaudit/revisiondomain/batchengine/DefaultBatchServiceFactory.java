@@ -36,8 +36,10 @@ public class DefaultBatchServiceFactory implements BatchServiceFactory {
         PanelStage panels = new DefaultPanelStage(config.getPanelRunner(), config.getBriefer(),
                 config.getCorrectionCatalog(), config.getWordLightsQuery(), ledger, config.getBatchStore())
                 .withPlans(config.getRefinementPlanStore());
+        BatchJudgePass judgePass = new DefaultBatchJudgePass(config.getAuditEngine(), config.getCourseMapper(),
+                config.getAnalyzerCatalog());
         BatchCloser closer = new DefaultBatchCloser(config.getBatchComparator(), gates.batchGate(),
-                config.getBlindSampleService(), ledger, config.getBatchStore(), config.getCoursePath())
+                config.getBlindSampleService(), ledger, config.getBatchStore(), config.getCoursePath(), judgePass)
                 .withPlans(config.getRefinementPlanStore(), config.getCorrectionCatalog());
         BatchPublisher publisher = new DefaultBatchPublisher(ledger, config.getArtifactStore(),
                 config.getCourseRepository(), config.getCourseMapper(), config.getAuditEngine(),
@@ -48,6 +50,6 @@ public class DefaultBatchServiceFactory implements BatchServiceFactory {
                 config.getAuditReportStore(), config.getActiveAnalysisSelectionStore(), config.getBaselineStore(),
                 config.getCourseRepository(), config.getPanelRunnerFactory(), config.getBriefer(), selector,
                 new DefaultBatchCostEstimator(), rules, panels, ledger, closer, publisher, new DefaultBatchReportBuilder(),
-                config.getCoursePath(), config.getGoalBook()).withPanel(config.getPanelRunner());
+                config.getCoursePath(), config.getGoalBook(), judgePass).withPanel(config.getPanelRunner());
     }
 }

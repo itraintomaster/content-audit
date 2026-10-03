@@ -1447,9 +1447,9 @@ Examples:
 | `openBatch(String level, Integer topicsAtOnce, Integer queriesAtOnce, List<String> convertToMultipleChoice): Integer` | (none) |
 | `estimateBatch(): Integer` | (none) |
 | `runBatch(Integer queryCap): Integer` | (none) |
-| `closeBatch(): Integer` | (none) |
 | `dropFromBatch(String changeId, String ruleId, String reason): Integer` | (none) |
 | `reportBatch(String batchId, String format): Integer` | (none) |
+| `closeBatch(Map<String,Integer> judgeBudgets, Integer queryCap): Integer` | (none) |
 
 #### TrayCommand [SEALED] (port)
 
@@ -2399,10 +2399,10 @@ Examples:
 | `current(): Optional<CorrectionBatch>` | (none) |
 | `estimate(): BatchEstimate` | (none) |
 | `run(BatchRunRequest request): BatchReport` | (none) |
-| `close(): BatchClosing` | (none) |
 | `adjust(BatchAdjustment adjustment): CorrectionBatch` | (none) |
 | `report(String batchId): BatchReport` | (none) |
 | `publish(BatchPublishRequest request): BatchPublication` | (none) |
+| `close(BatchCloseRequest request): BatchClosing` | (none) |
 
 #### BatchStore (package: batch)
 
@@ -2480,7 +2480,7 @@ Examples:
 
 | Method | Throws |
 |--------|--------|
-| `close(CorrectionBatch batch, CourseEntity startCourse): CorrectionBatch` | (none) |
+| `close(CorrectionBatch batch, CourseEntity startCourse, BatchCloseRequest request): CorrectionBatch` | (none) |
 
 #### BatchPublisher (package: batchengine)
 
@@ -2499,6 +2499,17 @@ Examples:
 | Method | Throws |
 |--------|--------|
 | `build(CorrectionBatch batch): BatchReport` | (none) |
+
+#### BatchJudgePass (package: batchengine)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batchengine`
+**Visibility:** internal
+
+| Method | Throws |
+|--------|--------|
+| `estimate(CorrectionBatch batch, CourseEntity startCourse, CourseEntity composedCourse): List<BatchJudgeAccount>` | (none) |
+| `judge(CorrectionBatch batch, CourseEntity startCourse, CourseEntity composedCourse, BatchCloseRequest request): List<BatchJudgeAccount>` | (none) |
+| `judges(CorrectionBatch batch): List<String>` | (none) |
 
 #### TrayService (package: tray)
 

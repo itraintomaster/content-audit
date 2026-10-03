@@ -39,7 +39,7 @@ public class BatchReportLevelsIntegrationTest {
                 milestone("algún error", "m-b1", "b1", 246.0, 246.0),
                 milestone("algún error", "m-extra", "Repaso", 4.0, 4.0))));
         batch.setClosings(new ArrayList<>(List.of(new BatchClosing(TandaFixture.OPENED_AT, null, comparison, null,
-                List.of(), 1))));
+                List.of(), 1, null, null))));
 
         BatchReport report = new DefaultBatchReportBuilder().build(batch);
 

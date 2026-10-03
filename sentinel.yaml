@@ -16328,9 +16328,10 @@ modules:
         \ List<String> convertToMultipleChoice): Integer"
     - signature: "estimateBatch(): Integer"
     - signature: "runBatch(Integer queryCap): Integer"
-    - signature: "closeBatch(): Integer"
     - signature: "dropFromBatch(String changeId, String ruleId, String reason): Integer"
     - signature: "reportBatch(String batchId, String format): Integer"
+    - signature: "closeBatch(Map<String,Integer> judgeBudgets, Integer queryCap):\
+        \ Integer"
   - name: TrayCommand
     stereotype: port
     sealed: true
@@ -18256,6 +18257,53 @@ modules:
         traceability:
           feature: FEAT-TANDA
           rule: F-TANDA-R010
+      - name: "should hand the service with 'batch close --budget translation-sense=500,mini-theory=60\
+          \ --cap 600' the budget of each judge and the cap of the batch"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should exit with 2 and «El tope tiene que ser 0 o más» when 'batch\
+          \ close' asks a negative budget or cap, without closing"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: should exit with 2 and the message of the service when 'batch close
+          --budget consigna=100' names what is not a judge of the batch
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should print with 'batch close' a line per judge with its visible name,\
+          \ its exercises or topics, its queries spent, reused and missing, its budget\
+          \ and its floors decided of the total, and the reason of one without approval"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R005
+      - name: should print with 'batch report' the same line per judge as the last
+          closing
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R005
+      - name: "should print with 'batch close' the request 'batch close --budget translation-sense=…\
+          ,mini-theory=…' that completes what the approved judges still miss"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: should print with 'batch close' why a judge stopped after a failure
+          of its service
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should print with 'batch estimate' the judges at closing over the exercises\
+          \ the batch changes today, a line per judge with what it judges, reuses\
+          \ and misses, and the total queries and hours of the approved ones"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R002
+      - name: should say with 'batch estimate' that the batch has not changed any
+          exercise yet and that the judges are estimated after batch run
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R002
       externalImplements:
       - java.util.concurrent.Callable<Integer>
       implements:
@@ -25830,6 +25878,41 @@ modules:
         traceability:
           feature: FEAT-FILAS
           rule: F-FILAS-R005
+      - name: "should leave undecided the floors of quiz-instruction, without an exam,\
+          \ over the exercises the batch changed, and those of any error, although\
+          \ the ledger had a verdict for them, so the verdict cannot be decided"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R004
+      - name: "should end the detail of the verdict of the A1 batch, after everything\
+          \ else, with «juez sin aprobar: Consigna que no se cumple, Opción múltiple\
+          \ mal armada, Más de una respuesta válida, Error de gramática, Ejercicio\
+          \ casi repetido», each judge once and in the order of the catalog"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R004
+      - name: should keep as fails a verdict with a broken floor and still name at
+          the end of its detail the judge without approval that reads what the batch
+          changed
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R004
+      - name: "should neither block nor name a judge without approval that reads nothing\
+          \ the batch changed, as multiple-choice-validity in a batch of gap exercises\
+          \ only"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R004
+      - name: "should block and name grammar, a local tool whose exam failed, when\
+          \ it reads an exercise the batch changed"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R004
+      - name: "should block and name a judge of topics without approval, as mini-theory,\
+          \ when it reads the topic of an exercise the batch changed"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R004
       - name: "should say in the verdict how many floors cannot be decided, as many\
           \ as its text counts, and the rows they belong to, once each and in the\
           \ order of the rows"
@@ -27741,6 +27824,25 @@ modules:
         type: int
       - name: queriesAtOnce
         type: int
+      - name: changedQuizzes
+        type: int
+        description: "Los ejercicios que la tanda cambia hoy: los que tienen una propuesta\
+          \ pendiente de la tanda, y todos los de un tema cuya consigna cambia (F-CJUEZ-R001,\
+          \ R002). Es la misma cuenta del paso de los jueces. 0: la tanda todavía\
+          \ no cambió ninguno, y los jueces se estiman después de batch run."
+      - name: judges
+        type: List<BatchJudgeAccount>
+        description: "La cuenta de cada juez que lee lo que la tanda cambia hoy, en\
+          \ el orden del catálogo, hecha sin consultar nada: lo que juzga, lo que\
+          \ reusa del libro y lo que falta; los sin aprobar, con su motivo (F-CJUEZ-R002)."
+      - name: judgeQueries
+        type: int
+        description: El total de consultas que faltan de los jueces aprobados que
+          se pagan; las de un juez sin aprobar o local no suman (F-CJUEZ-R002).
+      - name: judgeHours
+        type: double
+        description: "Lo que tardan esas consultas, a 19 s cada una con las consultas\
+          \ a la vez de la tanda, como estimatedHours (F-CJUEZ-R002, F-TANDA-R003)."
     - name: BatchTaskCount
       type: record
       fields:
@@ -27883,6 +27985,16 @@ modules:
         type: List<String>
       - name: rounds
         type: int
+      - name: request
+        type: BatchCloseRequest
+        description: "El pedido con que se cerró, con sus topes (F-CJUEZ-R003). El\
+          \ reajuste de José (batch drop) y el cierre de la bandeja cierran con el\
+          \ pedido vacío, sin tope."
+      - name: judges
+        type: List<BatchJudgeAccount>
+        description: "La cuenta de cada juez que lee lo que la tanda cambió, en el\
+          \ orden del catálogo: lo gastado en este cierre, lo reusado, lo que falta,\
+          \ el tope que tuvo y sus pisos (F-CJUEZ-R005)."
     - name: BatchReport
       type: record
       fields:
@@ -27913,6 +28025,10 @@ modules:
         type: double
       - name: joseDecisions
         type: List<BatchAdjustment>
+      - name: judges
+        type: List<BatchJudgeAccount>
+        description: Las cuentas por juez del último cierre de la tanda (F-CJUEZ-R005);
+          vacío si todavía no se cerró.
     - name: OutcomeCount
       type: record
       fields:
@@ -28025,6 +28141,11 @@ modules:
         type: GoalBook
         description: "El libro de metas de F: abrir una tanda fija sus metas (F-METAS-R006,\
           \ gancho F-10)."
+      - name: analyzerCatalog
+        type: AnalyzerCatalog
+        description: "El catálogo de analizadores para el paso de los jueces: quié\
+          nes de la tanda son jueces, su orden y su nombre visible (F-CJUEZ-R002,\
+          \ R003, R005). Main pasa el mismo que usa la mesa."
     - name: BatchAlreadyOpenException
       type: exception
       fields:
@@ -28057,6 +28178,105 @@ modules:
         type: String
       message: "La tanda %s no se puede publicar: %s"
       extends: RuntimeException
+    - name: BatchCloseRequest
+      type: record
+      fields:
+      - name: judgeBudgets
+        type: "Map<String,Integer>"
+        description: "El tope de cada juez que nombra --budget, por su nombre único\
+          \ (F-CJUEZ-R003). Vacío o nulo: ninguno. Un nombre que no es de un juez\
+          \ de la tanda, o un tope negativo, se rechaza sin consultar nada (R003 inv.\
+          \ 4). Un juez local se puede nombrar, pero no tiene nada que pagar."
+      - name: queryCap
+        type: Integer
+        description: "El tope de la tanda (--cap): lo comparten, en el orden del catá\
+          logo, los jueces que judgeBudgets no nombra, y con los dos el total nunca\
+          \ lo pasa (F-CJUEZ-R003). Nulo: ninguno. Sin ningún tope el cierre es un\
+          \ ensayo y no le paga ninguna consulta a ningún juez (R003 inv. 1)."
+    - name: BatchJudgeAccount
+      type: record
+      fields:
+      - name: judge
+        type: String
+        description: "El nombre único del analizador juez (F-HALL-R005): el que nombra\
+          \ --budget."
+      - name: displayName
+        type: String
+        description: "Su nombre visible, el de la ficha (F-FILAS-R001); el nombre\
+          \ único si la ficha no tiene."
+      - name: unit
+        type: AuditTarget
+        description: "Lo que juzga: QUIZ, los ejercicios que la tanda cambia; KNOWLEDGE,\
+          \ los temas que tienen un ejercicio que cambia, como la miniteoría (F-CJUEZ-R001)."
+      - name: approved
+        type: boolean
+        description: "False si el juez está sin aprobar: su versión vigente reprobó\
+          \ su examen o no lo rindió (F-JEXAM-R003). No consulta con ningún tope y,\
+          \ si lee lo que la tanda cambió, sus pisos no se deciden y la tanda no se\
+          \ publica (F-CJUEZ-R004). Una herramienta local que no está instalada no\
+          \ está sin aprobar: no evaluó, y lo dice reason."
+      - name: examStatus
+        type: JudgeExamStatus
+        description: "El examen de su versión vigente: el de su cobertura de juez\
+          \ o, en una herramienta local sin cobertura, el de su corrida (F-JEXAM-R001,\
+          \ F-MLOCAL-R006). Nulo si no se conoce."
+      - name: reason
+        type: String
+        description: "Por qué no consulta, en castellano: sin examen, reprobado, rendido\
+          \ sin medir o sin versión (F-JEXAM-R003), o la herramienta local que no\
+          \ está (F-MLOCAL-R003). Nulo si está aprobado y consulta."
+      - name: units
+        type: int
+        description: "Cuántos ejercicios —o temas, en un juez de temas— juzga, sumando\
+          \ el antes y el después (F-CJUEZ-R001, R002)."
+      - name: budget
+        type: Integer
+        description: "El tope que tuvo en este cierre: el suyo de --budget o lo que\
+          \ le quedó del de la tanda cuando le tocó (F-CJUEZ-R003, R005). Nulo sin\
+          \ tope, en la estimación y en un juez local."
+      - name: queriesSpent
+        type: int
+        description: "Las consultas que se le pagaron en este cierre, dentro de su\
+          \ tope; se suman a las consultas de la tanda (F-CJUEZ-R003 inv. 2). 0 en\
+          \ la estimación y en el cierre sin tope."
+      - name: queriesReused
+        type: int
+        description: "Las consultas que el libro ya tenía de ese juez para ese mismo\
+          \ contenido al empezar: se reusan y no se pagan (F-CJUEZ-R001 inv. 2, R002,\
+          \ R005)."
+      - name: queriesMissing
+        type: int
+        description: "Las consultas que faltan para decidir sus pisos: en la estimació\
+          n, antes de pagar (F-CJUEZ-R002); en el cierre, después de comparar, donde\
+          \ lo que un juez local juzgó al comparar ya no falta (R003 inv. 3, R005)."
+      - name: floorsDecided
+        type: int
+        description: "Sus pisos decididos en la última comparación del cierre: las\
+          \ filas del juez con un piso cumplido o no cumplido (F-METAS-R002, F-CJUEZ-R005).\
+          \ 0 en la estimación."
+      - name: floorsUndecided
+        type: int
+        description: "Sus pisos sin decidir en la última comparación del cierre (F-METAS-R008,\
+          \ F-CJUEZ-R005). 0 en la estimación."
+      - name: unavailableReason
+        type: String
+        description: "La falla del servicio tras la cual el juez no empezó ninguna\
+          \ consulta más, con la causa y cómo se resuelve (F-CJUEZ-R003 inv. 5, F-JEXAM-R011).\
+          \ Nulo si no hubo."
+      - name: local
+        type: boolean
+        description: "True si consultó su modelo o su herramienta local, como Ollama\
+          \ o LanguageTool: es gratis, no gasta ningún tope y no suma al total de\
+          \ consultas ni de horas; lo juzga la comparación al cerrar, sin tope (F-CJUEZ-R002,\
+          \ R003, F-MLOCAL-R008, F-RONDA2-R002). Un juez que va por su alternativa\
+          \ de claude -p se paga como cualquiera."
+      glossarySuggestions:
+      - name: Cuenta del juez
+        technicalName: BatchJudgeAccount
+        kind: value-object-candidate
+        basedOn: revision-domain/batch/BatchJudgeAccount
+        rationale: "Lo que un juez de la tanda juzga, gasta, reusa, le falta y decide\
+          \ en un cierre o en una estimación (F-CJUEZ-R002, R005)."
     interfaces:
     - name: BatchService
       stereotype: port
@@ -28066,10 +28286,10 @@ modules:
       - signature: "current(): Optional<CorrectionBatch>"
       - signature: "estimate(): BatchEstimate"
       - signature: "run(BatchRunRequest request): BatchReport"
-      - signature: "close(): BatchClosing"
       - signature: "adjust(BatchAdjustment adjustment): CorrectionBatch"
       - signature: "report(String batchId): BatchReport"
       - signature: "publish(BatchPublishRequest request): BatchPublication"
+      - signature: "close(BatchCloseRequest request): BatchClosing"
     - name: BatchStore
       stereotype: port
       sealed: false
@@ -28127,7 +28347,8 @@ modules:
     - name: BatchCloser
       sealed: false
       exposes:
-      - signature: "close(CorrectionBatch batch, CourseEntity startCourse): CorrectionBatch"
+      - signature: "close(CorrectionBatch batch, CourseEntity startCourse, BatchCloseRequest\
+          \ request): CorrectionBatch"
       visibility: internal
     - name: BatchPublisher
       sealed: false
@@ -28140,6 +28361,23 @@ modules:
       exposes:
       - signature: "build(CorrectionBatch batch): BatchReport"
       visibility: internal
+    - name: BatchJudgePass
+      sealed: false
+      exposes:
+      - signature: "estimate(CorrectionBatch batch, CourseEntity startCourse, CourseEntity\
+          \ composedCourse): List<BatchJudgeAccount>"
+      - signature: "judge(CorrectionBatch batch, CourseEntity startCourse, CourseEntity\
+          \ composedCourse, BatchCloseRequest request): List<BatchJudgeAccount>"
+      - signature: "judges(CorrectionBatch batch): List<String>"
+      visibility: internal
+      glossarySuggestions:
+      - name: Paso de los jueces
+        technicalName: BatchJudgePass
+        kind: process-candidate
+        basedOn: revision-domain/batchengine/BatchJudgePass
+        rationale: "Al cerrar, la tanda juzga con cada juez lo que cambió, antes y\
+          \ después, dentro del tope pedido; antes de pagar, dice cuánto falta (F-CJUEZ-R001\
+          \ a R003)."
     implementations:
     - name: DefaultBatchServiceFactory
       visibility: public
@@ -28185,6 +28423,11 @@ modules:
         type: GoalBook
         description: "Al abrir la tanda llama a seal(): fija las metas con que se\
           \ la va a comparar (F-METAS-R006, gancho F-10)."
+      - name: judgePass
+        type: BatchJudgePass
+        description: "Estima por juez sin consultar, sobre lo que la tanda cambia\
+          \ hoy (F-CJUEZ-R002); al cerrar, da los jueces de la tanda para rechazar\
+          \ un --budget que nombra a otro, sin consultar nada (R003 inv. 4)."
       handwrittenTests:
       - name: should open the first batch on the baseline fixed in the registry of
           F and set the active pair to that analysis and its plan
@@ -28265,6 +28508,54 @@ modules:
         traceability:
           feature: FEAT-TANDA
           rule: F-TANDA-R012
+      - name: should count in the estimate as changed today the exercises with a pending
+          proposal of the batch and every exercise of a topic whose instruction changes
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R002
+      - name: "should add to the estimate the account of each judge, estimated without\
+          \ any query on the start course and on the course composed with the changes\
+          \ of the batch"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R002
+      - name: "should total in the estimate the missing queries of the approved judges\
+          \ that are paid, as 2404 of translation-sense and 60 of mini-theory, without\
+          \ those of quiz-instruction without an exam or of naturalness with Ollama,\
+          \ and their hours at 19 s per query with 4 at once"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R002
+      - name: "should estimate no judge, with 0 changed exercises, while the batch\
+          \ has not changed any exercise"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R002
+      - name: "should refuse a request that budgets «consigna», which is not a judge\
+          \ of the batch, naming its judges, before closing or querying anything"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should refuse a request with a negative budget or a negative cap, before\
+          \ closing or querying anything"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should accept a request that budgets quiz-instruction with 600, a judge\
+          \ of the batch although it cannot query, and hand it to the closing as asked"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should close again with an empty request, paying no judge, when José\
+          \ drops a change of a batch closed with a budget"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should write neither the course nor any analysis of the history when\
+          \ closing with a budget, keeping the closing only in the batch"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R001
       implements:
       - BatchService
     - name: DefaultBatchTaskSelector
@@ -28456,6 +28747,12 @@ modules:
         type: BatchStore
       - name: coursePath
         type: Path
+      - name: judgePass
+        type: BatchJudgePass
+        description: "Antes del bucle de la compuerta paga a los jueces dentro del\
+          \ tope pedido y suma lo gastado a la tanda (F-CJUEZ-R001, R003); al final,\
+          \ un ensayo sin consultas sobre lo que quedó dice lo que falta de cada juez,\
+          \ y sus pisos salen de la última comparación (R005)."
       handwrittenTests:
       - name: "should hand F a scope with the pending proposals of the batch, one\
           \ per exercise, and no other, even when the plan holds a vocabulary correction\
@@ -28498,6 +28795,30 @@ modules:
         traceability:
           feature: FEAT-TANDA
           rule: F-TANDA-R006
+      - name: "should judge, before comparing, the exercises the batch changes on\
+          \ the start course and on the course composed with its changes, with the\
+          \ request of the closing"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R001
+      - name: should add the queries the judges were paid at closing to the queries
+          of the batch
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should give each judge of the closing the queries paid to it, the ones\
+          \ the ledger had at the start of the closing and the ones still missing\
+          \ after the last comparison, where what naturalness judged with Ollama when\
+          \ comparing no longer counts"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R005
+      - name: "should count as decided the floors of the rows of a judge in the last\
+          \ comparison that are met or not met, and as undecided those that cannot\
+          \ be decided"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R005
       implements:
       - BatchCloser
     - name: DefaultBatchPublisher
@@ -28565,6 +28886,12 @@ modules:
         traceability:
           feature: FEAT-TANDA
           rule: F-TANDA-R012
+      - name: "should refuse to publish a batch whose verdict names a judge without\
+          \ approval, copying «juez sin aprobar: Consigna que no se cumple» into the\
+          \ refusal and writing no course"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R004
       implements:
       - BatchPublisher
     - name: DefaultBatchReportBuilder
@@ -28595,8 +28922,159 @@ modules:
         traceability:
           feature: FEAT-TANDA
           rule: F-TANDA-R010
+      - name: "should give in the report the accounts of the judges of the last closing\
+          \ of the batch, and none while it was never closed"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R005
       implements:
       - BatchReportBuilder
+    - name: DefaultBatchJudgePass
+      requiresInject:
+      - name: auditEngine
+        type: AuditEngine
+        description: "Corre a cada juez sobre recortes del curso con los ancestros\
+          \ reales —los ejercicios que cambian y los temas tocados, antes y despué\
+          s— con AnalyzerRunSelection y EvaluationRunPolicy, como CatalogTopicMeter:\
+          \ con tope 0 para estimar (F-CJUEZ-R002) y con lo que le queda a cada juez\
+          \ aprobado y no local para pagar (R001, R003)."
+      - name: courseMapper
+        type: CourseMapper
+        description: "Pasa cada recorte, el del curso de partida (antes) y el del\
+          \ curso compuesto (después), a lo que lee el motor."
+      - name: analyzerCatalog
+        type: AnalyzerCatalog
+        description: "Quiénes de los analizadores de la tanda son jueces —su ficha\
+          \ o alguna regla consulta un modelo, o trae una herramienta local—, en qué\
+          \ orden y con qué nombre visible (F-CJUEZ-R003, R005, F-FILAS-R001)."
+      handwrittenTests:
+      - name: "should judge each exercise the batch changes twice, as the start course\
+          \ has it and as the composed course leaves it, and no other exercise of\
+          \ the course"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R001
+      - name: "should keep in its cuts the real level and topic of each exercise,\
+          \ with their labels and the instruction of the topic, so the comparison\
+          \ finds in the ledger what the closing judged"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R001
+      - name: "should judge with mini-theory each topic that has a changed exercise,\
+          \ whole, before and after, and no other topic of the course"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R001
+      - name: should count a change of the instruction of a topic as a change of every
+          exercise of that topic
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R001
+      - name: "should leave out of the after side an exercise its change leaves identical,\
+          \ as a rule fix that only asks to rerecord its audio, so it is judged once"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R001
+      - name: "should judge only with the judges that read the kind of exercise that\
+          \ changed, leaving out multiple-choice-validity in a batch that only changed\
+          \ gap exercises"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R001
+      - name: "should not pay a judge whose verdicts on what the batch changed are\
+          \ all in the ledger, and count them as reused"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R001
+      - name: "should make no query when estimating, running every judge, the local\
+          \ ones included, with a cap of 0 on both sides"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R002
+      - name: "should give in the estimate per judge the exercises or topics it judges\
+          \ before and after, the queries the ledger already has and the ones missing,\
+          \ as translation-sense with two queries per exercise and mini-theory with\
+          \ one per topic"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R002
+      - name: "should list in the estimate a judge without an approved exam with the\
+          \ reason of its exam, as quiz-instruction that never took it and single-answer\
+          \ that failed it"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R002
+      - name: "should mark naturalness as local in the estimate when it asks its model\
+          \ in Ollama, and not when it goes by its claude -p alternative"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R002
+      - name: "should pay no judge when the request asks no budget and no cap, a dry\
+          \ run as today"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should pay with --budget translation-sense=500 only translation-sense,\
+          \ never more than 500 between its before and after cuts"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should share the cap of the batch among the approved judges in the\
+          \ order of the catalog, each with what the previous ones left of it"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should never pass the cap with --budget translation-sense=1000 --cap\
+          \ 1200, where translation-sense spends up to 1000 and mini-theory gets what\
+          \ is left of the 1200"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should start no further query of a judge after a failure of its service,\
+          \ not even on its after cut, and give the failure in its account"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should never pay naturalness asking its model in Ollama, even when\
+          \ --budget names it, nor spend any cap on it"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: should pay naturalness like any other judge when it goes by its claude
+          -p alternative because Ollama is not there
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should pay nothing when judging again with the same budget what an\
+          \ earlier closing paid, and count it as reused"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should name as the judges of the batch, in the order of the catalog,\
+          \ its analyzers that ask a model or bring a local tool, as translation-sense,\
+          \ mini-theory and grammar, and not an analyzer of instant rules, as hint-coherence"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
+      - name: "should not pay a judge without an approved exam with any cap, neither\
+          \ quiz-instruction named with --budget quiz-instruction=600 nor single-answer,\
+          \ failed, from the cap of the batch, which goes to the approved ones"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R004
+      - name: "should give the accounts in the order of the catalog, each with the\
+          \ visible name of the card of the judge, or its unique name when the card\
+          \ has none"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R005
+      - name: "should record as the budget of each judge its own --budget, what was\
+          \ left of the cap of the batch when its turn came, or none"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R005
+      implements:
+      - BatchJudgePass
   - name: tray
     description: "Contrato de la bandeja (FEAT-BANDEJA). Público sólo para audit-cli.\
       \ La muestra ciega es del paquete F (FEAT-CIEGA): la bandeja la presenta con\
@@ -28967,6 +29445,11 @@ modules:
         traceability:
           feature: FEAT-BANDEJA
           rule: F-BANDEJA-R009
+      - name: "should close the batch with an empty request before publishing it from\
+          \ the tray, paying no judge"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R003
       implements:
       - TrayService
     - name: DefaultTrayAssembler
@@ -31801,6 +32284,13 @@ features:
   code: F-CALUM
 - id: FEAT-FILAS
   code: F-FILAS
+- id: FEAT-CJUEZ
+  code: F-CJUEZ
+  journeys:
+  - id: F-CJUEZ-J001
+    validation: AUTO_VALIDATED
+    testModule: revision-domain
+    testPackage: com.learney.contentaudit.revisiondomain.batchengine
 dependencies:
 - alias: langchain4j-openai
   artifact: dev.langchain4j:langchain4j-open-ai:1.13.0

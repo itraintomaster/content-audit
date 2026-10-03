@@ -230,7 +230,8 @@ final class TandaCli {
                 artifacts, courses, null, auditable -> new AuditableCourse(List.of()), engine, refiner,
                 new DefaultErrorTaskBriefer(corrections, new DefaultAuditNodeIndexFactory(), renderer), corrections,
                 fixes, panel, new Meter(), new DefaultPanelRunnerFactory(), comparison, baselines, blind, null, null,
-                new DefaultPreservationFactory().createCheck(), workdir.resolve("english-course.json"), new Goals()));
+                new DefaultPreservationFactory().createCheck(), workdir.resolve("english-course.json"), new Goals(),
+                null));
         trayService = new DefaultTrayServiceFactory().create(new TrayServiceConfig(batchService, batches, decisions,
                 blind, panel, new DefaultPanelRunnerFactory(), renderer, new Sha256ContentFingerprinter(), courses,
                 workdir.resolve("english-course.json")));

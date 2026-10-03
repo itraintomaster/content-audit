@@ -7,12 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
@@ -24,12 +28,21 @@ import com.learney.contentaudit.revisiondomain.RevisionVerdict;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
+import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
+import com.learney.contentaudit.revisiondomain.comparison.GoalReference;
+import com.learney.contentaudit.revisiondomain.comparison.GoalStatus;
+import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
+import com.learney.contentaudit.revisiondomain.comparison.RowGoalStatus;
+import com.learney.contentaudit.revisiondomain.comparison.RowValue;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
 import com.learney.contentaudit.revisiondomain.nonregression.BatchGate;
@@ -41,6 +54,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
@@ -70,7 +84,7 @@ public class DefaultBatchCloserTest {
                 Instant.parse("2026-09-30T18:00:00Z"), null, new ArrayList<>(), null), RevisionVerdict.PENDING_APPROVAL, null,
                 RevisionOutcomeKind.PENDING_APPROVAL_PERSISTED, null, null, null, null));
 
-        closing.closer().close(batch, closing.course);
+        closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         assertEquals(List.of(TandaFixture.COURSE_PATH), closing.comparator.paths, "the copy of the course");
         ProjectionScope scope = closing.comparator.scopes.get(0);
@@ -94,7 +108,7 @@ public class DefaultBatchCloserTest {
                 : TandaFixture.passing(scope, List.of(outcome(P_VEGETABLES, MesaFixture.VEGETABLES, false, List.of(),
                         List.of())));
 
-        batch = closing.closer().close(batch, closing.course);
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         BatchChange come = change(batch, "mesa-" + MesaFixture.COME);
         assertTrue(come.getDroppedReason().startsWith("la compuerta de la tanda lo devolvió: F-NOEMP-R005: " + MesaFixture.COME
@@ -132,7 +146,7 @@ public class DefaultBatchCloserTest {
             closing.comparator.answer = scope -> TandaFixture.passing(scope, List.of(outcome("tanda-a1-" + TandaFixture.RESIDE,
                     TandaFixture.RESIDE, false, List.of(), fixed)));
 
-            batch = closing.closer().close(batch, closing.course);
+            batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
             BatchTaskOutcome outcome = BatchBook.outcome(batch, "t-reside").orElseThrow();
             if (both) {
@@ -161,7 +175,7 @@ public class DefaultBatchCloserTest {
         closing.record(batch, "mesa-" + MesaFixture.VEGETABLES, List.of("t-respuesta"),
                 TandaFixture.step(vegetables, ExercisePart.STATEMENT), TandaFixture.step(child, ExercisePart.TRANSLATION));
 
-        batch = closing.closer().close(batch, closing.course);
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         assertEquals(List.of(List.of(TandaFixture.CHILD)), closing.outsides, "the node outside, computed from the composition");
         BatchClosing closed = batch.getClosings().get(0);
@@ -181,7 +195,7 @@ public class DefaultBatchCloserTest {
         Closing closing = new Closing();
         CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
 
-        batch = closing.closer().close(batch, closing.course);
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         assertEquals(List.of(closing.comparator.scopes.get(0)), closing.samples.drawn, "the sample of the scope compared");
         assertEquals("muestra-1", batch.getBlindSampleId());
@@ -191,7 +205,7 @@ public class DefaultBatchCloserTest {
         stopped.record(outside, "mesa-" + MesaFixture.VEGETABLES, List.of("t-respuesta"), TandaFixture.step(
                 TandaFixture.edited(TandaFixture.exercise(stopped.course, TandaFixture.CHILD), q -> q.setTranslation("¿Niño?")),
                 ExercisePart.TRANSLATION));
-        outside = stopped.closer().close(outside, stopped.course);
+        outside = stopped.closer().close(outside, stopped.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
         assertTrue(stopped.samples.drawn.isEmpty(), "no sample for a batch the gate stops");
         assertNull(outside.getBlindSampleId());
     }
@@ -214,7 +228,7 @@ public class DefaultBatchCloserTest {
                 : TandaFixture.comparison(scope, List.of(outcome(P_COME, MesaFixture.COME, true, List.of(grandmother()), List.of()),
                         outcome(P_VEGETABLES, MesaFixture.VEGETABLES, true, List.of(duplicate), List.of())), VerdictKind.FAILS);
 
-        batch = closing.closer().close(batch, closing.course);
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         BatchTaskOutcome come = BatchBook.outcome(batch, "t-come").orElseThrow();
         assertEquals(BatchTaskOutcomeKind.PENDING, come.getKind(), "back to the panel");
@@ -262,7 +276,7 @@ public class DefaultBatchCloserTest {
                 outcome("tanda-a1-" + TandaFixture.LEARNED, TandaFixture.LEARNED, false, List.of(), List.of()),
                 outcome(P_VEGETABLES, MesaFixture.VEGETABLES, false, List.of(), List.of())));
 
-        batch = closing.closer().close(batch, closing.course);
+        batch = closing.closer().close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
 
         BatchTaskOutcome waiting = BatchBook.outcome(batch, "t-audio").orElseThrow();
         assertEquals(BatchTaskOutcomeKind.PENDING_RERECORDING, waiting.getKind(), "not resolved: its audio is not recorded yet");
@@ -324,8 +338,8 @@ public class DefaultBatchCloserTest {
                 outsides.add(new ArrayList<>(outside));
                 return real.evaluate(comparison, outside, exceptions);
             };
-            return new DefaultBatchCloser(comparator, watched, samples, ledger(), batches, TandaFixture.COURSE_PATH)
-                    .withPlans(plans, MesaFixture.corrections());
+            return new DefaultBatchCloser(comparator, watched, samples, ledger(), batches, TandaFixture.COURSE_PATH,
+                    new NoJudgesPass()).withPlans(plans, MesaFixture.corrections());
         }
 
         CorrectionBatch batch(String... taskIds) {
@@ -371,5 +385,160 @@ public class DefaultBatchCloserTest {
 
     private static BatchChange change(CorrectionBatch batch, String changeId) {
         return batch.getChanges().stream().filter(c -> c.getChangeId().equals(changeId)).findFirst().orElseThrow();
+    }
+
+    @Test
+    @DisplayName("should judge, before comparing, the exercises the batch changes on the start course and on the course composed with its changes, with the request of the closing")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R001")
+    public void shouldJudgeBeforeComparingTheExercisesTheBatchChangesOnTheStartCourseAndOnTheCourseComposedWithItsChangesWithTheRequestOfTheClosing() {
+        // R001: before comparing with F, the closer hands the judges' pass the exercises the batch changes -- on the start
+        // course and on the course composed with the batch's changes -- together with the request of this closing.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        CourseEntity composed = closing.ledger().composedCourse(batch, closing.course);
+        List<String> order = new ArrayList<>();
+        closing.comparator.answer = scope -> {
+            order.add("compare");
+            return TandaFixture.passing(scope, List.of());
+        };
+        RecordingJudgePass judgePass = new RecordingJudgePass(order);
+        DefaultBatchCloser closer = new DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(),
+                closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judgePass)
+                .withPlans(closing.plans, MesaFixture.corrections());
+        BatchCloseRequest request = new BatchCloseRequest(new LinkedHashMap<>(Map.of("translation-sense", 500)), 1000);
+
+        closer.close(batch, closing.course, request);
+
+        assertEquals(1, judgePass.judgeCalls.size(), "judges once, before the gate loop");
+        RecordingJudgePass.JudgeCall call = judgePass.judgeCalls.get(0);
+        assertEquals(batch.getId(), call.batch().getId());
+        assertEquals(json(closing.course), json(call.startCourse()), "the start course, as it was");
+        assertEquals(json(composed), json(call.composedCourse()), "the course composed with the batch's changes");
+        assertEquals(request, call.request(), "the request of the closing");
+        assertTrue(order.contains("judge") && order.contains("compare"), order.toString());
+        assertTrue(order.indexOf("judge") < order.indexOf("compare"), "judges before comparing: " + order);
+    }
+
+    @Test
+    @DisplayName("should add the queries the judges were paid at closing to the queries of the batch")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldAddTheQueriesTheJudgesWerePaidAtClosingToTheQueriesOfTheBatch() {
+        // R003 inv. 2: what the judges' pass spent paying at this closing adds to the queries the batch already had.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        batch.setQueriesSpent(100);
+        RecordingJudgePass judgePass = new RecordingJudgePass();
+        judgePass.judgeAnswer = List.of(
+                new BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true,
+                        JudgeExamStatus.APPROVED, null, 4, 500, 500, 50, 0, 0, 0, null, false),
+                new BatchJudgeAccount("mini-theory", "Miniteoría", AuditTarget.KNOWLEDGE, true, JudgeExamStatus.APPROVED,
+                        null, 2, 37, 37, 5, 0, 0, 0, null, false));
+        DefaultBatchCloser closer = new DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(),
+                closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judgePass)
+                .withPlans(closing.plans, MesaFixture.corrections());
+        BatchCloseRequest request = new BatchCloseRequest(new LinkedHashMap<>(Map.of("translation-sense", 500,
+                "mini-theory", 37)), null);
+
+        batch = closer.close(batch, closing.course, request);
+
+        assertEquals(637, batch.getQueriesSpent(), "100 the batch already had, plus 500 and 37 paid to the judges");
+    }
+
+    @Test
+    @DisplayName("should give each judge of the closing the queries paid to it, the ones the ledger had at the start of the closing and the ones still missing after the last comparison, where what naturalness judged with Ollama when comparing no longer counts")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R005")
+    public void shouldGiveEachJudgeOfTheClosingTheQueriesPaidToItTheOnesTheLedgerHadAtTheStartOfTheClosingAndTheOnesStillMissingAfterTheLastComparisonWhereWhatNaturalnessJudgedWithOllamaWhenComparingNoLongerCounts() {
+        // R005: the closing's account of each judge keeps what was paid and reused from the judges' pass (before
+        // comparing), but its missing queries come from the trial after the last comparison: what naturalness -- local,
+        // no tope -- judged while comparing is already in the ledger, and no longer counts as missing.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        RecordingJudgePass judgePass = new RecordingJudgePass();
+        judgePass.judgeAnswer = List.of(
+                new BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true,
+                        JudgeExamStatus.APPROVED, null, 4, 500, 500, 50, 20, 0, 0, null, false),
+                new BatchJudgeAccount("naturalness", "Naturalidad", AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null,
+                        2, null, 0, 10, 8, 0, 0, null, true));
+        judgePass.estimateAnswer = List.of(
+                new BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true,
+                        JudgeExamStatus.APPROVED, null, 4, null, 0, 0, 5, 0, 0, null, false),
+                new BatchJudgeAccount("naturalness", "Naturalidad", AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null,
+                        2, null, 0, 0, 0, 0, 0, null, true));
+        DefaultBatchCloser closer = new DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(),
+                closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judgePass)
+                .withPlans(closing.plans, MesaFixture.corrections());
+
+        batch = closer.close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
+
+        BatchClosing closed = batch.getClosings().get(batch.getClosings().size() - 1);
+        BatchJudgeAccount translation = judgeNamed(closed, "translation-sense");
+        assertEquals(500, translation.getQueriesSpent(), "paid at this closing, from the judges' pass");
+        assertEquals(50, translation.getQueriesReused(), "what the ledger already had when the closing started");
+        assertEquals(5, translation.getQueriesMissing(), "the last comparison's trial, not the 20 of the judges' pass");
+        BatchJudgeAccount naturalness = judgeNamed(closed, "naturalness");
+        assertEquals(0, naturalness.getQueriesSpent(), "local: never paid");
+        assertEquals(10, naturalness.getQueriesReused());
+        assertEquals(0, naturalness.getQueriesMissing(), "what it judged with Ollama while comparing no longer counts");
+    }
+
+    @Test
+    @DisplayName("should count as decided the floors of the rows of a judge in the last comparison that are met or not met, and as undecided those that cannot be decided")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R005")
+    public void shouldCountAsDecidedTheFloorsOfTheRowsOfAJudgeInTheLastComparisonThatAreMetOrNotMetAndAsUndecidedThoseThatCannotBeDecided() {
+        // R005: from the rows of the last comparison, the account of a judge counts its own rows (subject = the judge)
+        // with a floor: MET or NOT_MET decided, UNDECIDABLE undecided. A row of another subject, or with no floor, does
+        // not count.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        RecordingJudgePass judgePass = new RecordingJudgePass();
+        judgePass.judgeAnswer = List.of(new BatchJudgeAccount("translation-sense", "Sentido de la traducción",
+                AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null, 4, 500, 500, 0, 0, 0, 0, null, false));
+        judgePass.estimateAnswer = judgePass.judgeAnswer;
+        closing.comparator.answer = scope -> {
+            BatchComparison comparison = TandaFixture.passing(scope, List.of());
+            comparison.setRows(new ArrayList<>(List.of(
+                    floorRow("translation-sense", GoalStatus.MET),
+                    floorRow("translation-sense", GoalStatus.NOT_MET),
+                    floorRow("translation-sense", GoalStatus.UNDECIDABLE),
+                    floorRow("translation-sense", null),
+                    floorRow("mini-theory", GoalStatus.UNDECIDABLE))));
+            return comparison;
+        };
+        DefaultBatchCloser closer = new DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(),
+                closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judgePass)
+                .withPlans(closing.plans, MesaFixture.corrections());
+
+        batch = closer.close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
+
+        BatchClosing closed = batch.getClosings().get(batch.getClosings().size() - 1);
+        BatchJudgeAccount translation = judgeNamed(closed, "translation-sense");
+        assertEquals(2, translation.getFloorsDecided(), "MET and NOT_MET, not the row without a floor nor mini-theory's");
+        assertEquals(1, translation.getFloorsUndecided(), "its own UNDECIDABLE row");
+    }
+
+    private static BatchJudgeAccount judgeNamed(BatchClosing closing, String judge) {
+        List<BatchJudgeAccount> judges = closing.getJudges() != null ? closing.getJudges() : List.of();
+        return judges.stream().filter(j -> j.getJudge().equals(judge)).findFirst()
+                .orElseThrow(() -> new AssertionError("no judge " + judge + " in " + judges));
+    }
+
+    private static ComparisonRow floorRow(String subject, GoalStatus status) {
+        RowGoalStatus floor = status == null ? null : new RowGoalStatus("piso-" + subject, 0.5, GoalUnit.POINTS,
+                GoalReference.BASELINE, status);
+        return new ComparisonRow(subject, AnalyzerFamily.ERRORS, AuditTarget.QUIZ, "t-present", "A1",
+                new RowValue(0.0, null, 0, true), null, new RowValue(0.0, null, 0, true), new RowValue(0.0, null, 0, true), 0.0,
+                GoalUnit.EXERCISES, floor, null, null, null, null, null, null);
+    }
+
+    private static String json(Object value) {
+        try {
+            return new ObjectMapper().writeValueAsString(value);
+        } catch (JsonProcessingException e) {
+            throw new AssertionError(e);
+        }
     }
 }

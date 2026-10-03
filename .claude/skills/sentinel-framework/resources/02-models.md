@@ -6439,6 +6439,10 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `estimatedHours` | `double` |
 | `topicsAtOnce` | `int` |
 | `queriesAtOnce` | `int` |
+| `changedQuizzes` | `int` |
+| `judges` | `List<BatchJudgeAccount>` |
+| `judgeQueries` | `int` |
+| `judgeHours` | `double` |
 
 #### BatchTaskCount (package: batch)
 
@@ -6591,6 +6595,8 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `gate` | `BatchGateVerdict` |
 | `returnedChangeIds` | `List<String>` |
 | `rounds` | `int` |
+| `request` | `BatchCloseRequest` |
+| `judges` | `List<BatchJudgeAccount>` |
 
 #### BatchReport (package: batch)
 
@@ -6613,6 +6619,7 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `queries` | `QueriesByRole` |
 | `hours` | `double` |
 | `joseDecisions` | `List<BatchAdjustment>` |
+| `judges` | `List<BatchJudgeAccount>` |
 
 #### OutcomeCount (package: batch)
 
@@ -6711,6 +6718,7 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 | `preservationCheck` | `PreservationCheck` |
 | `coursePath` | `Path` |
 | `goalBook` | `GoalBook` |
+| `analyzerCatalog` | `AnalyzerCatalog` |
 
 #### BatchAlreadyOpenException (package: batch)
 
@@ -6753,6 +6761,41 @@ new NoAcceptableCandidateException(String quizId, List<CorrectionCriterion> fail
 |-------|------|
 | `batchId` | `String` |
 | `reasons` | `String` |
+
+#### BatchCloseRequest (package: batch)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batch`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `judgeBudgets` | `Map<String,Integer>` |
+| `queryCap` | `Integer` |
+
+#### BatchJudgeAccount (package: batch)
+
+**Package:** `com.learney.contentaudit.revisiondomain.batch`
+**Visibility:** public
+**Type:** record
+
+| Field | Type |
+|-------|------|
+| `judge` | `String` |
+| `displayName` | `String` |
+| `unit` | `AuditTarget` |
+| `approved` | `boolean` |
+| `examStatus` | `JudgeExamStatus` |
+| `reason` | `String` |
+| `units` | `int` |
+| `budget` | `Integer` |
+| `queriesSpent` | `int` |
+| `queriesReused` | `int` |
+| `queriesMissing` | `int` |
+| `floorsDecided` | `int` |
+| `floorsUndecided` | `int` |
+| `unavailableReason` | `String` |
+| `local` | `boolean` |
 
 #### Tray (package: tray)
 

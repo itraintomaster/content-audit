@@ -22,7 +22,8 @@ import javax.annotation.processing.Generated;
  * topics, its heaviest topic -- the line of how long a batch lasts, since a topic works one query at a time -- and the
  * queries and hours with the topics and queries at once chosen, at the measured pace of 19 seconds a query. A task by rule
  * costs nothing; an exercise at the panel costs, per attempt, its proposal and the four judges that read a new English
- * (package C); a task of the whole topic, its proposal and its judge.
+ * (package C); a task of the whole topic, its proposal and its judge. What the judges would ask when the batch closes is
+ * not its business: it leaves them empty -- an empty list, never null --, for the service to fill (F-CJUEZ-R002).
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -94,6 +95,7 @@ class DefaultBatchCostEstimator implements BatchCostEstimator {
         int lanes = Math.max(1, Math.min(topicsAtOnce, queriesAtOnce));
         double hours = Math.max(queries * SECONDS_PER_QUERY / lanes, heaviestQueries * SECONDS_PER_QUERY) / 3600.0;
         return new BatchEstimate(batch.getId(), tasks, quizzes.size(), quizzesByTopic.size(), heaviest,
-                conversionQuizzes.size(), queries, Math.round(hours * 100.0) / 100.0, topicsAtOnce, queriesAtOnce);
+                conversionQuizzes.size(), queries, Math.round(hours * 100.0) / 100.0, topicsAtOnce, queriesAtOnce, 0,
+                new ArrayList<>(), 0, 0.0);
     }
 }

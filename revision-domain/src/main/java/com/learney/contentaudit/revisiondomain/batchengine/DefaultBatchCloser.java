@@ -1,4 +1,5 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 
 import com.learney.contentaudit.auditdomain.AnalyzerCorrectionCatalog;
 import com.learney.contentaudit.auditdomain.finding.Finding;
@@ -14,6 +15,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchProposalRef;
 import com.learney.contentaudit.revisiondomain.batch.BatchSettings;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
@@ -26,6 +28,8 @@ import com.learney.contentaudit.revisiondomain.blindsample.BlindSampleService;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparator;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
+import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
+import com.learney.contentaudit.revisiondomain.comparison.GoalStatus;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
 import com.learney.contentaudit.revisiondomain.nonregression.BatchGate;
 import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
@@ -54,6 +58,13 @@ import javax.annotation.processing.Generated;
  * id. A task is resolved when its finding, and the ones it covers, no longer appear in the recalculated course; a task of
  * the audio whose audio the batch asked to record again stays «pending re-recording», since its finding lasts until it is
  * recorded.
+ *
+ * <p>F-CJUEZ-R001, R003 and R005: before the gate loop the judges' pass judges what the batch changes, before and after,
+ * within the request of the closing -- with none it only counts what the ledger has and what is missing --, so the
+ * comparison finds in the ledger what was paid; what it spent adds to the queries of the batch. When the closing is
+ * recorded a trial, with no query, over the composition that is left says what is really missing -- what a local judge
+ * judged when comparing, or what the gate sent back, no longer counts --, and the account of each judge adds its floors,
+ * decided and undecided, from the last comparison. The readjustment of José and the tray close with an empty request.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -77,21 +88,22 @@ class DefaultBatchCloser implements BatchCloser {
 
     private AnalyzerCorrectionCatalog corrections;
 
+private final BatchJudgePass judgePass;
+
+public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, BlindSampleService blindSampleService, BatchChangeLedger changeLedger, BatchStore batchStore, Path coursePath, BatchJudgePass judgePass) {
+    this.batchComparator = batchComparator;
+    this.batchGate = batchGate;
+    this.blindSampleService = blindSampleService;
+    this.changeLedger = changeLedger;
+    this.batchStore = batchStore;
+    this.coursePath = coursePath;
+    this.judgePass = judgePass;
+}
+
     /** A guard: the gate returns at least one change each round, so the rounds end; this only stops a broken comparator. */
     static final int MAX_ROUNDS = 20;
 
     static final int DEFAULT_MAX_ATTEMPTS = 3;
-
-    public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate,
-            BlindSampleService blindSampleService, BatchChangeLedger changeLedger,
-            BatchStore batchStore, Path coursePath) {
-        this.batchComparator = batchComparator;
-        this.batchGate = batchGate;
-        this.blindSampleService = blindSampleService;
-        this.changeLedger = changeLedger;
-        this.batchStore = batchStore;
-        this.coursePath = coursePath;
-    }
 
     DefaultBatchCloser withPlans(RefinementPlanStore plans, AnalyzerCorrectionCatalog corrections) {
         this.plans = plans;
@@ -100,9 +112,11 @@ class DefaultBatchCloser implements BatchCloser {
     }
 
     @Override
-    public CorrectionBatch close(CorrectionBatch batch, CourseEntity startCourse) {
+    public CorrectionBatch close(CorrectionBatch batch, CourseEntity startCourse, BatchCloseRequest request) {
+        BatchCloseRequest asked = request != null ? request : new BatchCloseRequest(new LinkedHashMap<>(), null);
         Map<String, RefinementTask> tasks = plans != null && batch.getPlanId() != null
                 ? plans.load(batch.getPlanId()).map(BatchBook::tasksById).orElse(Map.of()) : Map.of();
+        List<BatchJudgeAccount> paid = payJudges(batch, startCourse, asked);
         List<String> returnedIds = new ArrayList<>();
         int rounds = 0;
         while (true) {
@@ -122,7 +136,8 @@ class DefaultBatchCloser implements BatchCloser {
                 continue;
             }
             List<BatchClosing> closings = BatchBook.copy(batch.getClosings());
-            closings.add(new BatchClosing(Instant.now(), scope, comparison, verdict, returnedIds, rounds));
+            closings.add(new BatchClosing(Instant.now(), scope, comparison, verdict, returnedIds, rounds, asked,
+                    judgeAccounts(batch, startCourse, paid, comparison)));
             batch.setClosings(closings);
             if (verdict.isPasses() && blindSampleService != null && batch.getBlindSampleId() == null) {
                 // one sample per batch: closing again with José's decisions keeps the one he answers
@@ -149,6 +164,70 @@ class DefaultBatchCloser implements BatchCloser {
             }
         }
         return new ProjectionScope(batch.getId(), proposals, new LinkedHashMap<>());
+    }
+
+    /**
+     * F-CJUEZ-R001, R003: the judges' pass over the exercises the batch changes -- as the start course has them and as the
+     * composition of the batch leaves them --, within the request; what it spent adds to the queries of the batch, and is
+     * saved at once, since it was paid whatever comes after. The accounts it gives -- with what the ledger had when the
+     * closing began -- are the ones the closing keeps.
+     */
+    private List<BatchJudgeAccount> payJudges(CorrectionBatch batch, CourseEntity startCourse, BatchCloseRequest request) {
+        List<BatchJudgeAccount> paid = BatchBook.copy(judgePass.judge(batch, startCourse,
+                changeLedger.composedCourse(batch, startCourse), request));
+        int spent = 0;
+        for (BatchJudgeAccount judge : paid) {
+            if (judge != null && !judge.isLocal()) {
+                spent += judge.getQueriesSpent();
+            }
+        }
+        if (spent > 0) {
+            batch.setQueriesSpent(batch.getQueriesSpent() + spent);
+            if (batchStore != null) {
+                batchStore.save(batch);
+            }
+        }
+        return paid;
+    }
+
+    /**
+     * F-CJUEZ-R005: the account of each judge of the closing. What it spent, what the ledger had and what it paid for come
+     * from the pass, which ran before comparing; what it still misses comes from a trial over the composition that is left,
+     * since what a local judge judged when comparing, or what the gate sent back, no longer counts; and its floors, from the
+     * rows of the last comparison that are its own and have a floor -- met or not met are decided, undecidable is not.
+     */
+    private List<BatchJudgeAccount> judgeAccounts(CorrectionBatch batch, CourseEntity startCourse,
+            List<BatchJudgeAccount> paid, BatchComparison comparison) {
+        List<BatchJudgeAccount> left = paid.isEmpty() ? new ArrayList<>()
+                : BatchBook.list(judgePass.estimate(batch, startCourse, changeLedger.composedCourse(batch, startCourse)));
+        Map<String, int[]> floors = floors(comparison);
+        List<BatchJudgeAccount> accounts = new ArrayList<>();
+        for (BatchJudgeAccount judge : paid) {
+            if (judge == null) {
+                continue;
+            }
+            int missing = left.stream().filter(each -> each != null && Objects.equals(each.getJudge(), judge.getJudge()))
+                    .mapToInt(BatchJudgeAccount::getQueriesMissing).findFirst().orElse(0);
+            int[] own = floors.getOrDefault(judge.getJudge(), new int[2]);
+            accounts.add(new BatchJudgeAccount(judge.getJudge(), judge.getDisplayName(), judge.getUnit(),
+                    judge.isApproved(), judge.getExamStatus(), judge.getReason(), judge.getUnits(), judge.getBudget(),
+                    judge.getQueriesSpent(), judge.getQueriesReused(), missing, own[0], own[1],
+                    judge.getUnavailableReason(), judge.isLocal()));
+        }
+        return accounts;
+    }
+
+    /** The floors of each subject in the rows of a comparison: decided (met or not met) and undecided, in that order. */
+    private static Map<String, int[]> floors(BatchComparison comparison) {
+        Map<String, int[]> floors = new LinkedHashMap<>();
+        for (ComparisonRow row : comparison != null ? BatchBook.list(comparison.getRows()) : List.<ComparisonRow>of()) {
+            if (row == null || row.getFloor() == null || row.getFloor().getStatus() == null) {
+                continue;
+            }
+            int[] own = floors.computeIfAbsent(row.getSubject(), subject -> new int[2]);
+            own[row.getFloor().getStatus() == GoalStatus.UNDECIDABLE ? 1 : 0]++;
+        }
+        return floors;
     }
 
     /** What José approved in the tray knowing it did not pass: its proposals are exceptions of the gate. */

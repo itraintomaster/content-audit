@@ -1696,6 +1696,16 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: BatchNotPublishableException - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BatchCloseRequest - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BatchJudgeAccount - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.batch.BatchService");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: BatchService - " + e.getMessage());
@@ -1751,6 +1761,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: BatchReportBuilder - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.revisiondomain.batchengine.BatchJudgePass");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: BatchJudgePass - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchServiceFactory");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultBatchServiceFactory - " + e.getMessage());
@@ -1799,6 +1814,11 @@ public class SentinelArchitectureTest {
       Class.forName("com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchReportBuilder");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultBatchReportBuilder - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchJudgePass");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultBatchJudgePass - " + e.getMessage());
     }
     try {
       Class.forName("com.learney.contentaudit.revisiondomain.tray.Tray");

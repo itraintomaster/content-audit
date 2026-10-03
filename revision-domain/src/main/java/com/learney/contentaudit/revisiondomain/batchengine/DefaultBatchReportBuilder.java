@@ -6,6 +6,7 @@ import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.revisiondomain.batch.AnalyzerLevelErrors;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchReport;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
@@ -32,7 +33,8 @@ import javax.annotation.processing.Generated;
  * F-TANDA-R010: the accounts of a batch. Each task has one outcome at a time and the outcomes add up to its tasks;
  * José's orders count apart, because they are not tasks (F-MESA-R015). The exercises with an error per analyzer and
  * level, before and after, come from the comparison of F, never recalculated; the audios to record again and the
- * lengths, from the verdicts of its changes; the queries by role, from what the panels spent; and José's decisions.
+ * lengths, from the verdicts of its changes; the queries by role, from what the panels spent; José's decisions; and, per
+ * judge, the accounts of the last closing (F-CJUEZ-R005).
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -121,7 +123,12 @@ class DefaultBatchReportBuilder implements BatchReportBuilder {
                 BatchBook.list(batch.getTaskIds()).size(), conversionDone, conversionNoWinner, errors,
                 new ArrayList<>(rerecords.values()), new ArrayList<>(lengths.values()),
                 new QueriesByRole(Math.min(proposerQueries, batch.getQueriesSpent()), judges), hours,
-                BatchBook.copy(batch.getAdjustments()));
+                BatchBook.copy(batch.getAdjustments()), judgeAccountsOf(last));
+    }
+
+    /** F-CJUEZ-R005: the accounts of the judges of the last closing, copied as they were kept; none if never closed. */
+    private static List<BatchJudgeAccount> judgeAccountsOf(BatchClosing last) {
+        return last != null ? BatchBook.copy(last.getJudges()) : new ArrayList<>();
     }
 
     private static int value(Double value) {

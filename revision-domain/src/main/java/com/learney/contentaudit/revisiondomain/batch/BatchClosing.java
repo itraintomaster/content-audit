@@ -25,17 +25,24 @@ public class BatchClosing {
 
     private int rounds;
 
+    private BatchCloseRequest request;
+
+    private List<BatchJudgeAccount> judges;
+
     public BatchClosing() {
     }
 
     public BatchClosing(Instant closedAt, ProjectionScope scope, BatchComparison comparison,
-            BatchGateVerdict gate, List<String> returnedChangeIds, int rounds) {
+            BatchGateVerdict gate, List<String> returnedChangeIds, int rounds,
+            BatchCloseRequest request, List<BatchJudgeAccount> judges) {
         this.closedAt = closedAt;
         this.scope = scope;
         this.comparison = comparison;
         this.gate = gate;
         this.returnedChangeIds = returnedChangeIds;
         this.rounds = rounds;
+        this.request = request;
+        this.judges = judges;
     }
 
     public Instant getClosedAt() {
@@ -86,6 +93,22 @@ public class BatchClosing {
         this.rounds = rounds;
     }
 
+    public BatchCloseRequest getRequest() {
+        return this.request;
+    }
+
+    public void setRequest(BatchCloseRequest request) {
+        this.request = request;
+    }
+
+    public List<BatchJudgeAccount> getJudges() {
+        return this.judges;
+    }
+
+    public void setJudges(List<BatchJudgeAccount> judges) {
+        this.judges = judges;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,11 +119,13 @@ public class BatchClosing {
                     && Objects.equals(this.comparison, that.comparison)
                     && Objects.equals(this.gate, that.gate)
                     && Objects.equals(this.returnedChangeIds, that.returnedChangeIds)
-                    && Objects.equals(this.rounds, that.rounds);
+                    && Objects.equals(this.rounds, that.rounds)
+                    && Objects.equals(this.request, that.request)
+                    && Objects.equals(this.judges, that.judges);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(closedAt, scope, comparison, gate, returnedChangeIds, rounds);
+        return Objects.hash(closedAt, scope, comparison, gate, returnedChangeIds, rounds, request, judges);
     }
 }

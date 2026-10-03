@@ -1,0 +1,89 @@
+# Progress
+
+Current state, last action, next step. Newest entries on top.
+
+<!-- entries below -->
+
+2026-10-03 — developer (CJUEZ) — Comportamiento implementado: las 57 pruebas de F-CJUEZ en verde (54 `@Tag("FEAT-CJUEZ")`
+  y los 3 caminos de F-CJUEZ-J001) y las suites completas de revision-domain (709) y audit-cli (540) sin una falla, con
+  el reactor completo en BUILD SUCCESS (`-pl revision-domain,audit-cli -am test`, ~5 min). Producción tocada:
+  `DefaultBatchJudgePass`, `DefaultBatchCloser`, `DefaultBatchService`, `DefaultBatchReportBuilder`,
+  `DefaultBatchCostEstimator`, `DefaultBatchComparator` (sólo R004) y `BatchCmd`; nuevos, package-private y sin
+  @Generated: `BatchChanges` («lo que cambia», lo usan el paso y el servicio) y `ChangedCourseCuts` (los cuatro recortes)
+  en `batchengine`, y `UnapprovedJudges` en `comparisonengine`. Sin tocar sentinel.yaml, contratos @Generated, pruebas ni
+  `.sentinel/agents/`; sin commit.
+  Next: una corrida en vivo de `batch estimate` y `batch close --budget …` sobre una tanda real: ningún modelo real se
+  consultó (las pruebas usan jueces de mentira y el `claude` falso); lo que no queda cubierto es la lectura de las
+  coberturas de los jueces reales (unidad, `reached`, `cost.pendingConsultations`) y el costo de mapear los cuatro
+  recortes de A1 con spaCy (la estimación y el cierre lo hacen una vez cada uno, el cierre dos).
+
+2026-10-03 — test-writer (CJUEZ) — Los 3 caminos de `FCjuezJ001JourneyTest` (path-1 ensayo, path-2 bloqueo, path-3
+  informe) implementados. Compilan; los 3 fallan sólo por comportamiento que falta (`BatchEstimate.getChangedQuizzes()`
+  da 0: ni el servicio ni el cierre llaman todavía al paso de los jueces, y el comparador no nombra al juez sin aprobar).
+  Servicio armado con `DefaultBatchServiceFactory` + `BatchServiceConfig` (con `analyzerCatalog`); cierre, compuerta,
+  publicación y comparador REALES; a mano, las tiendas, la muestra ciega y el proyector (mide el curso de partida y el
+  compuesto con los 3 jueces a tope 0). Banco nuevo `CjuezJourneyBench` (batchengine, package-private, sin @Generated):
+  motor real, 3 jueces de mentira (quiz-instruction, translation-sense con 2 evaluadores, mini-theory por tema) con libro
+  por contenido, consultas registradas y examen por juez; el libro arranca con translation-sense juzgando todo el curso.
+  Validado contra una referencia descartable escrita del diseño (paso de los jueces, y lo que falta en servicio y cierre,
+  más el sufijo del veredicto), guardada fuera del repo en el scratchpad de la sesión: 3/3 verdes; con un recorte que
+  pierde la etiqueta del nivel fallan los 3.
+  Next: el developer implementa `DefaultBatchJudgePass`, el paso 1 y el ensayo final del cierre, `estimate()/close()/report()`
+  del servicio y el nombre del juez sin aprobar en el comparador; el fix-log dice qué dan por sentado los caminos.
+
+2026-10-03 — test-writer (CJUEZ) — Los 23 esbozos de `DefaultBatchJudgePassTest.java` (R001 7, R002 4, R003 9, R004 1,
+  R005 2) implementados. Compilan; los 23 fallan sólo por `UnsupportedOperationException` (la clase no está implementada).
+  Banco nuevo `JudgePassBench` (batchengine, package-private, sin @Generated): el motor real con un catálogo de jueces de
+  mentira (libro de veredictos por lo que lee cada uno con sus ancestros, examen por juez, falla de servicio, Ollama sí/no
+  para naturalness, grammar como herramienta local sin cobertura), el curso chico de los casos (13 ejercicios) y un curso
+  grande (`largeCourse`) para los topes literales 500, 1000/1200 y 600.
+  Validado contra una implementación de referencia descartable escrita del diseño (G), ya borrada: 23/23 verdes; 23
+  desviaciones inyectadas (una por vez, salvo un par) (recortes sin ancestros o sin temas enteros, sin tope 0 a los locales, pagar a un
+  local o a un sin aprobar, tope por lado, cap reservado, seguir tras la falla, etc.) las atrapa al menos una prueba; tres
+  variantes legítimas (ensayo por juez, pagar primero el después, saltear el lado sin faltantes) pasan.
+  Next: el developer implementa `DefaultBatchJudgePass` (estimate/judge/judges) según el diseño; el fix-log dice qué dan
+  por sentado las pruebas.
+
+2026-10-03 — test-writer (CJUEZ) — Los 6 esbozos `@Tag("FEAT-CJUEZ")` de `DefaultBatchComparatorTest.java` (R004)
+  implementados. Compilan; fallan los 6 por comportamiento que falta (los pisos del juez sin aprobar siguen MET, el
+  detalle no termina con «; juez sin aprobar: …», el cambio no queda sin decidir para él); las otras 53 siguen verdes.
+  Auxiliares nuevos dentro de la clase, sin tocar lo que usan las pruebas viejas: `Foto.judge/judged/judgedEverywhere/
+  partially/coverage/toolRun`, `Mesa.catalog`, `CARDS_WITH_JUDGES`, `coverage(...)`, `toolRun(...)`, `hoy(...)`,
+  `mesaOfJudges(...)`, `assertFloors(...)` y los escenarios `compareVegetables…`/`compareTheA1Batch`.
+  Next: el developer implementa R004 en `DefaultBatchComparator` (jueces sin aprobar de la raíz proyectada, lectura por
+  marcas en el nodo del ejercicio o, para un juez de temas, en el del tema, nombres al final del detalle); ver fix-log
+  para lo que las pruebas dan por sentado del comparador de hoy.
+
+2026-10-01 — test-writer (CJUEZ) — Los 9 esbozos `@Tag("FEAT-CJUEZ")` de `DefaultBatchServiceTest.java` (R001 1,
+  R002 4, R003 4) implementados. Compilan; 8 fallan por assertion + 1 NPE (`BatchEstimate.getJudges()` null), todas
+  por el puente sin comportamiento nuevo (nada llama todavía a `judgePass`). Resto del archivo (16 pruebas) sigue
+  verde. Nuevo doble `ScriptedJudgePass` (batchengine, package-private) graba estimate/judge/judges y devuelve
+  cuentas/jueces preparados; se agregó un campo mutable `Service.judgePass` (default `NoJudgesPass`) para poder
+  inyectarlo sin tocar las pruebas existentes.
+  Next: developer debe implementar `DefaultBatchJudgePass` (hoy 3x UnsupportedOperationException) y cablear sus
+  llamadores en `DefaultBatchService.estimate()/close()` y `DefaultBatchCloser.close()` (validación de --budget/--cap,
+  changedQuizzes, judgeQueries/judgeHours) para que estos 9 pasen a verde.
+
+2026-10-01 — developer (CJUEZ) — Puente de compilación tras `sentinel generate`: todo el reactor compila (main y
+  test), 18 archivos tocados (6 de producción + 12 de pruebas) más `NoJudgesPass.java` nuevo (fixture de prueba,
+  package-private, sin @Generated). `DefaultBatchJudgePass` queda con sus 3 `UnsupportedOperationException`, sin
+  llamador todavía. 3126/3183 pruebas del reactor completo pasan; fallan exactamente los 57 esbozos de F-CJUEZ (54
+  `@Tag("FEAT-CJUEZ")` + 3 de `FCjuezJ001JourneyTest`), todos con «Not implemented yet» y nada más.
+  Next: implementar `DefaultBatchJudgePass` (estimate/judge/judges) y el paso 1 del cierre en `DefaultBatchCloser`
+  (hoy `close(batch, startCourse, request)` ignora `request`); recién ahí los 57 esbozos dejan de tirar
+  UnsupportedOperationException.
+
+2026-10-01 — qa-tester (CJUEZ) — Parche sólo de pruebas propuesto (--replace) y validado: 54 handwrittenTests
+  (R001 9, R002 10, R003 20, R004 8, R005 7; 23 en DefaultBatchJudgePass, el resto en el cierre, el servicio, la
+  publicación, el informe, DefaultBatchComparator, DefaultTrayService y BatchCmd) y F-CJUEZ-J001 en revision-domain,
+  com.learney.contentaudit.revisiondomain.batchengine. propose y validate: 0 altas, 11 cambios, 0 bajas, 0 conflictos.
+  Next: el orquestador aplica sin --as y genera; verificar en sentinel.yaml los 54 nombres y la ubicación del journey,
+  y que generate materialice los 54 stubs y FCjuezJ001JourneyTest (3 caminos).
+
+2026-10-01 — architect (CJUEZ) — Parche propuesto y validado (0 conflictos) y TECH_SPEC.md escrito, sin pruebas.
+  Next: el orquestador aplica y genera; después, @qa-tester declara las pruebas de R001 a R005 y J001.
+2026-10-01 — analyst (CJUEZ) — REQUIREMENT.md escrito: R001 a R005, F-CJUEZ-J001 (5 nodos, 3 caminos) y
+  DOUBT-CJUEZ-VERSION (abierta, rige A). `feature validate`: OK. `requirement validate`: OK, con un solo aviso
+  propio, el término de glosario «Translation», que sale del nombre `translation-sense` (FEAT-FILAS tiene el mismo).
+  Next: el arquitecto propone el parche sobre el diseño compartido. José contesta DOUBT-CJUEZ-VERSION y confirma las
+  interpretaciones anotadas en decisions.md.

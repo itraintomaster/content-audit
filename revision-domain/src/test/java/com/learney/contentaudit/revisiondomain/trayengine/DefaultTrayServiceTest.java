@@ -14,13 +14,20 @@ import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
 import com.learney.contentaudit.revisiondomain.batch.BatchNotPublishableException;
+import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
+import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchReport;
+import com.learney.contentaudit.revisiondomain.batch.BatchRunRequest;
+import com.learney.contentaudit.revisiondomain.batch.BatchService;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
@@ -31,11 +38,13 @@ import com.learney.contentaudit.revisiondomain.blindsample.PairAnswer;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
 import com.learney.contentaudit.revisiondomain.panel.CandidateRejection;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
 import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
 import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
+import com.learney.contentaudit.revisiondomain.panelengine.DefaultPanelRunnerFactory;
 import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
 import com.learney.contentaudit.revisiondomain.tray.RememberedDecision;
 import com.learney.contentaudit.revisiondomain.tray.Tray;
@@ -46,7 +55,9 @@ import com.learney.contentaudit.revisiondomain.tray.TrayResponse;
 import com.learney.contentaudit.revisiondomain.tray.UnexpectedTrayAnswerException;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
@@ -208,7 +219,7 @@ public class DefaultTrayServiceTest {
         String proposal = BandejaFixture.BATCH + "-" + BandejaFixture.TEA;
         bandeja.comparator.answer = scope -> TandaFixture.passing(scope, List.of(new ChangeOutcome(proposal, AuditTarget.QUIZ,
                 BandejaFixture.TEA, true, List.of(BandejaFixture.teaDuplicate()), List.of(BandejaFixture.teaAnswer()), List.of())));
-        BatchClosing closing = bandeja.batchService.close();
+        BatchClosing closing = bandeja.batchService.close(new BatchCloseRequest(new LinkedHashMap<>(), null));
         assertTrue(closing.getGate().isPasses(), closing.getGate().getReasons().toString());
         assertTrue(closing.getGate().getReturned().isEmpty(), "not returned");
         assertTrue(closing.getGate().getListedExceptions().stream().anyMatch(e -> e.startsWith("excepción de José: " + proposal)),
@@ -546,5 +557,74 @@ public class DefaultTrayServiceTest {
         } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
             throw new AssertionError(e);
         }
+    }
+
+    @Test
+    @DisplayName("should close the batch with an empty request before publishing it from the tray, paying no judge")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R003")
+    public void shouldCloseTheBatchWithAnEmptyRequestBeforePublishingItFromTheTrayPayingNoJudge() {
+        // R003 inv. 1: the tray closes the batch before publishing, with an empty request -- no --budget, no --cap --
+        // so that closing is a trial that pays no judge; only José's own `batch close` carries a tope.
+        BandejaFixture.Bandeja bandeja = opened();
+        answer(bandeja, RULE_ITEM, TrayAnswer.RULE_OK);
+        List<String> order = new ArrayList<>();
+        List<BatchCloseRequest> closeRequests = new ArrayList<>();
+        BatchService recording = new BatchService() {
+            @Override
+            public CorrectionBatch open(BatchOpenRequest request) {
+                throw new AssertionError("publishing from the tray does not open a batch");
+            }
+
+            @Override
+            public Optional<CorrectionBatch> current() {
+                throw new AssertionError("publishing from the tray does not ask for the current batch");
+            }
+
+            @Override
+            public BatchEstimate estimate() {
+                throw new AssertionError("publishing from the tray does not estimate");
+            }
+
+            @Override
+            public BatchReport run(BatchRunRequest request) {
+                throw new AssertionError("publishing from the tray does not run the batch");
+            }
+
+            @Override
+            public CorrectionBatch adjust(BatchAdjustment adjustment) {
+                throw new AssertionError("publishing from the tray does not adjust");
+            }
+
+            @Override
+            public BatchReport report(String batchId) {
+                throw new AssertionError("publishing from the tray does not ask for the report");
+            }
+
+            @Override
+            public BatchPublication publish(BatchPublishRequest request) {
+                order.add("publish");
+                return bandeja.batchService.publish(request);
+            }
+
+            @Override
+            public BatchClosing close(BatchCloseRequest request) {
+                order.add("close");
+                closeRequests.add(request);
+                return new BatchClosing(Instant.now(), null, TandaFixture.passing(null, List.of()),
+                        new BatchGateVerdict(true, VerdictKind.PASSES, List.of(), List.of(), List.of(), List.of(),
+                                List.of(), List.of()), List.of(), 1, request, List.of());
+            }
+        };
+        DefaultTrayService tray = new DefaultTrayService(recording, bandeja.batches, bandeja.ciega, bandeja.panels,
+                new DefaultPanelRunnerFactory(), BandejaFixture.assembler(bandeja.decisions),
+                BandejaFixture.memory(bandeja.decisions), bandeja.courses, TandaFixture.COURSE_PATH);
+
+        tray.publish("José", null);
+
+        assertEquals(List.of("close", "publish"), order, "closes once, before publishing");
+        assertEquals(1, closeRequests.size());
+        assertEquals(new BatchCloseRequest(new LinkedHashMap<>(), null), closeRequests.get(0),
+                "an empty request: paying no judge");
     }
 }

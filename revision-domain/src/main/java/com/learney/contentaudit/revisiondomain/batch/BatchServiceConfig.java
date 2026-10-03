@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.batch;
 
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
+import com.learney.contentaudit.auditdomain.AnalyzerCatalog;
 import com.learney.contentaudit.auditdomain.AnalyzerCorrectionCatalog;
 import com.learney.contentaudit.auditdomain.AuditEngine;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
@@ -80,6 +81,8 @@ public class BatchServiceConfig {
 
     private GoalBook goalBook;
 
+    private AnalyzerCatalog analyzerCatalog;
+
     public BatchServiceConfig() {
     }
 
@@ -94,7 +97,7 @@ public class BatchServiceConfig {
             BatchComparator batchComparator, BaselineStore baselineStore,
             BlindSampleService blindSampleService, TopicWordLightsQuery wordLightsQuery,
             CorrectionScope correctionScope, PreservationCheck preservationCheck, Path coursePath,
-            GoalBook goalBook) {
+            GoalBook goalBook, AnalyzerCatalog analyzerCatalog) {
         this.batchStore = batchStore;
         this.refinementPlanStore = refinementPlanStore;
         this.auditReportStore = auditReportStore;
@@ -119,6 +122,7 @@ public class BatchServiceConfig {
         this.preservationCheck = preservationCheck;
         this.coursePath = coursePath;
         this.goalBook = goalBook;
+        this.analyzerCatalog = analyzerCatalog;
     }
 
     public BatchStore getBatchStore() {
@@ -314,6 +318,14 @@ public class BatchServiceConfig {
         this.goalBook = goalBook;
     }
 
+    public AnalyzerCatalog getAnalyzerCatalog() {
+        return this.analyzerCatalog;
+    }
+
+    public void setAnalyzerCatalog(AnalyzerCatalog analyzerCatalog) {
+        this.analyzerCatalog = analyzerCatalog;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -342,11 +354,12 @@ public class BatchServiceConfig {
                     && Objects.equals(this.correctionScope, that.correctionScope)
                     && Objects.equals(this.preservationCheck, that.preservationCheck)
                     && Objects.equals(this.coursePath, that.coursePath)
-                    && Objects.equals(this.goalBook, that.goalBook);
+                    && Objects.equals(this.goalBook, that.goalBook)
+                    && Objects.equals(this.analyzerCatalog, that.analyzerCatalog);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(batchStore, refinementPlanStore, auditReportStore, activeAnalysisSelectionStore, artifactStore, courseRepository, elementLocator, courseMapper, auditEngine, refinerEngine, briefer, correctionCatalog, ruleFixes, panelRunner, topicMeter, panelRunnerFactory, batchComparator, baselineStore, blindSampleService, wordLightsQuery, correctionScope, preservationCheck, coursePath, goalBook);
+        return Objects.hash(batchStore, refinementPlanStore, auditReportStore, activeAnalysisSelectionStore, artifactStore, courseRepository, elementLocator, courseMapper, auditEngine, refinerEngine, briefer, correctionCatalog, ruleFixes, panelRunner, topicMeter, panelRunnerFactory, batchComparator, baselineStore, blindSampleService, wordLightsQuery, correctionScope, preservationCheck, coursePath, goalBook, analyzerCatalog);
     }
 }

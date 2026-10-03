@@ -43,6 +43,8 @@ import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
 import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
@@ -375,7 +377,8 @@ public class DefaultBatchPublisherTest {
         void close(CorrectionBatch batch) {
             batch.setClosings(new ArrayList<>(List.of(new BatchClosing(CLOSED_AT, DefaultBatchCloser.scope(batch),
                     TandaFixture.passing(DefaultBatchCloser.scope(batch), List.of()), new BatchGateVerdict(true,
-                    VerdictKind.PASSES, List.of(), List.of(), List.of(), List.of(), List.of(), List.of()), List.of(), 1))));
+                    VerdictKind.PASSES, List.of(), List.of(), List.of(), List.of(), List.of(), List.of()), List.of(), 1,
+                    null, null))));
             batch.setStatus(BatchStatus.CLOSED);
         }
 
@@ -427,5 +430,31 @@ public class DefaultBatchPublisherTest {
         } catch (JsonProcessingException e) {
             throw new AssertionError(e);
         }
+    }
+
+    @Test
+    @DisplayName("should refuse to publish a batch whose verdict names a judge without approval, copying «juez sin aprobar: Consigna que no se cumple» into the refusal and writing no course")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R004")
+    public void shouldRefuseToPublishABatchWhoseVerdictNamesAJudgeWithoutApprovalCopyingJuezSinAprobarConsignaQueNoSeCumpleIntoTheRefusalAndWritingNoCourse() {
+        // R004 inv. 3: when F's verdict names a judge without approval, the tanda cannot publish while that stands, and
+        // the refusal copies that detail -- as the publisher already refuses on any verdict that is not «pasa»
+        // (F-TANDA-R009) -- and nothing is written.
+        Publishing publishing = new Publishing();
+        CorrectionBatch batch = publishing.closedBatch();
+        batch.setAdjustments(new ArrayList<>(List.of(new BatchAdjustment(BatchAdjustmentKind.DROP_CHANGE, MesaFixture.COME,
+                List.of(), "mesa-otro", null, null, null, "no", "José", CLOSED_AT.plusSeconds(60)))));
+        publishing.comparator.answer = scope -> {
+            BatchComparison comparison = TandaFixture.comparison(scope, List.of(), VerdictKind.FAILS);
+            comparison.setVerdict(new BatchVerdict(VerdictKind.FAILS, new ArrayList<>(), new ArrayList<>(), null,
+                    "juez sin aprobar: Consigna que no se cumple", null));
+            return comparison;
+        };
+
+        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
+                () -> publishing.publisher().publish(batch, new BatchPublishRequest("José", null, List.of()), publishing.start));
+
+        assertTrue(refused.getMessage().contains("juez sin aprobar: Consigna que no se cumple"), refused.getMessage());
+        assertTrue(publishing.courses.written.isEmpty(), "nothing is written");
     }
 }
