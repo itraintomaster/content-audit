@@ -125,6 +125,51 @@ if run_dir_error:
     fail(run_dir_error)
 
 
+def without_trailing_commas(text):
+    """El texto sin las comas colgantes antes de } o ], fuera de los strings.
+
+    El modelo a veces cierra un objeto con «"reason": "…",» y en la línea
+    siguiente «}»: no es JSON, pero el veredicto está completo, y rechazarlo
+    paga otra consulta (o, en un examen, lo frena por un motivo repetido).
+    """
+    out = []
+    in_string = False
+    escaped = False
+    index = 0
+    while index < len(text):
+        char = text[index]
+        if in_string:
+            out.append(char)
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                in_string = False
+            index += 1
+            continue
+        if char == '"':
+            in_string = True
+        elif char == ",":
+            following = index + 1
+            while following < len(text) and text[following] in " \t\r\n":
+                following += 1
+            if following < len(text) and text[following] in "}]":
+                index += 1
+                continue
+        out.append(char)
+        index += 1
+    return "".join(out)
+
+
+def loads_lenient(text):
+    """json.loads, y si falla, otra vez sin las comas colgantes."""
+    try:
+        return json.loads(text)
+    except ValueError:
+        return json.loads(without_trailing_commas(text))
+
+
 def parse_json_value(value):
     """Desenvuelve hasta 3 niveles de JSON serializado en un string.
 
@@ -141,7 +186,7 @@ def parse_json_value(value):
             text = re.sub(r"^```[a-zA-Z0-9_-]*\s*", "", text)
             text = re.sub(r"\s*```$", "", text).strip()
         try:
-            current = json.loads(text)
+            current = loads_lenient(text)
             continue
         except ValueError:
             start = text.find("{")
@@ -168,7 +213,7 @@ def parse_json_value(value):
                     depth -= 1
                     if depth == 0:
                         try:
-                            current = json.loads(text[start:index + 1])
+                            current = loads_lenient(text[start:index + 1])
                         except ValueError:
                             return None
                         break

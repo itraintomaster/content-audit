@@ -355,6 +355,45 @@
           "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
         }
       }
+    },
+    {
+      "caseId": "coma-colgante",
+      "note": "Una coma antes de cerrar el objeto no es JSON, pero el veredicto está completo: se acepta sin pagar otra consulta.",
+      "inputs": "colectivo",
+      "raw": "{\n  \"sameExercise\": true,\n  \"reason\": \"Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración.\",\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+        }
+      }
+    },
+    {
+      "caseId": "coma-colgante-en-un-fence",
+      "note": "La coma colgante dentro de un fence ```json, con prosa antes.",
+      "inputs": "colectivo",
+      "raw": "Mi veredicto:\n```json\n{\"sameExercise\": true, \"reason\": \"Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración.\",}\n```",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+        }
+      }
+    },
+    {
+      "caseId": "coma-y-llave-dentro-de-la-razon",
+      "note": "Una «, }» dentro de un string es texto: no se toca.",
+      "inputs": "frio",
+      "raw": "{\"sameExercise\": false, \"reason\": \"Las dos piden «are», pero dicen otra cosa, } aunque se parezcan: el alumno practica dos veces.\",\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": false,
+          "reason": "Las dos piden «are», pero dicen otra cosa, } aunque se parezcan: el alumno practica dos veces."
+        }
+      }
     }
   ]
 }
