@@ -5,6 +5,18 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — qa-tester — El reuso de vectores entre versiones del paso traza a F-MLOCAL-R002 inv. 2, no a R010 inv. 2,
+  que habla sólo de lo que contestó el juez; va en un parche aparte de FEAT-MLOCAL (propose rechaza otro feature).
+  why: forzar R010 sería la regla «más cercana»; si se quiere en DUPAR, el analista suma una invariante a R010.
+2026-10-03 — qa-tester — La versión sin Ollama («palabras-0,60 · juez-…») traza a R007, que la nombra; R010 nombra sólo
+  la de Ollama. «Todo sin evaluar sin examen aprobado» pasa de R007 a R010: la de tres piezas no hereda el del 30/9.
+2026-10-03 — qa-tester — Un sí del juez con Ollama, bajo R002 (condición 2); el no de «That car is his.», 0,97, bajo R009
+  (el parecido solo no marca). El comodín gana sin preguntarle al juez, bajo R004, que lo dice. Juez sin versión y
+  PairStepEvaluator, bajo R010. Los vectores con conjunto declarado, bajo R009 inv. 3 («corren siempre»).
+2026-10-03 — qa-tester — Se quedan con su nombre y el cuerpo a reescribir: el grupo de n de «Could I» (R003, ahora con
+  veredicto del juez) y el examen dos veces sin consultas (R007). Ninguna prueba depende del id same-meaning de la ficha
+  de IAuditEngineTest: las dos de F-RONDA2-R003 sólo necesitan una regla de modelo local.
+
 2026-10-01 — architect — v3, el paso por pares: PairStepEvaluator (interno) envuelve al juez de pares en las dos rutas
   y, con Ollama, a los vectores: mismo evaluatorId que el envuelto; enuncia la versión de la ruta si el envuelto enuncia
   la suya. Con Ollama, dos sesiones (vectores sin tope aunque haya --budget; juez con la política de la corrida) en un

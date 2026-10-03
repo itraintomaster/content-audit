@@ -1,0 +1,27 @@
+code: FEAT-MLOCAL
+description: "qa-tester, v3 de FEAT-DUPAR: sólo handwrittenTests. Dos pruebas de F-MLOCAL-R002\
+  \ inv. 2 sobre near-duplicates: los vectores se guardan con la versión de nomic-embed-text\
+  \ y su prefijo, nunca con el umbral de candidatos ni el juez, así que se reusan\
+  \ entre versiones del paso por pares (sirven los de la versión del 30/9) y no entre\
+  \ versiones de nomic-embed-text. Acompaña al parche de pruebas de FEAT-DUPAR (requirements/2026-09-30.19_duplicados-parecidos),\
+  \ que borra las dos del evaluador de vectores que trazaban a F-DUPAR-R002."
+modules:
+- name: audit-domain
+  packages:
+  - name: nearduplicates
+    implementations:
+    - name: NearDuplicatesAnalyzer
+      handwrittenTests:
+      - name: "should reuse, with Ollama, the vectors that the version of 30/9 recorded,\
+          \ without asking nomic-embed-text again, since neither the candidate threshold\
+          \ nor the judge enters their record"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
+    - name: SentenceEmbeddingEvaluator
+      handwrittenTests:
+      - name: should reuse the vectors that the same version of nomic-embed-text recorded
+          and not those that another version recorded
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002

@@ -4,6 +4,14 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — qa-tester — Pruebas de la v3 propuestas, sin aplicar: `patch propose --replace` en esta carpeta (14 bajas
+  y 29 altas, sólo handwrittenTests en 5 implementaciones) y `patch validate` exit 0; en la carpeta de FEAT-MLOCAL, otro
+  parche con 2 altas de F-MLOCAL-R002 (reuso de vectores), validate exit 0. R009 (8) y R010 (9) quedan cubiertas; J001
+  no se declara: ya tiene testModule/testPackage y `generate` ya puso los caminos 6 y 7.
+  Next: aplicar los dos parches; el test-writer borra los 14 métodos viejos antes de `generate` (7 stubs nuevos de
+  NearDuplicatesAnalyzerTest pueden saltearse por el @Tag repetido); reescribe el grupo «Could I» (R003), el examen dos
+  veces (R007), el camino 2 de J001, los World con las versiones nuevas y la ficha de IAuditEngineTest (similar-candidates).
+
 2026-10-01 — architect — Parche v3 (el paso por pares) propuesto, sin aplicar: `patch propose --replace` (1 alta, 6
   cambios, 0 bajas, 0 conflictos), `patch validate` exit 0 y TECH_SPEC.md reescrito con 8 fragmentos (`tech-spec write
   --replace`: todos subconjunto del parche). Alta PairStepEvaluator; NearDuplicatesConfig pierde similarityThreshold y

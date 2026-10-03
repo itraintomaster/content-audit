@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — qa-tester (FEAT-DUPAR v3) — Parche de sólo pruebas propuesto acá, sin aplicar: 2 altas de F-MLOCAL-R002
+  inv. 2 sobre near-duplicates (vectores con la versión de nomic-embed-text y su prefijo, reusados entre versiones del
+  paso por pares). Acompaña al de FEAT-DUPAR en 2026-09-30.19_duplicados-parecidos. validate exit 0.
+
 2026-10-01 — developer (paquete B) — Los tres exámenes de las herramientas locales rendidos y registrados, gratis y
   sin una llamada a claude (el falso del PATH no dejó registro), en `~/projects/learney/content-audit-corridas/2026-10-01-examen-idioma/`: una copia de ronda2/impl-idioma cf34c054
   (ronda2/integracion a06e5a60 más el arreglo de gramática y los umbrales de B1 y B2) sobre la foto del 29/9.
