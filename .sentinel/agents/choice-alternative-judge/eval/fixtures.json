@@ -29,7 +29,7 @@
     "**La pregunta del criterio.**",
     "el cartón de «a milk»"
   ],
-  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (una label que no es opción o que es la correcta, BLOCKING o LOW en una alternativa, correctIsValid sin su correctProblem), y que emit produzca choiceAlternativeVerdict o {\"outputUnusable\": true}. Las entradas manzanas a sin-entrada-de-opciones son el mapa de contenido congelado (title, instructions, exercise, options), armado como DefaultChoiceAlternativeSubjectBuilder, de ejercicios A1/A2 del curso que no están en el examen; los de «manzanas» (la clave invertida) y «verano» (HIGH) son inventados y no están en el curso. musica y champu llevan el juicio de la guía anterior al 1/10 y sólo prueban la forma. Las cal-* son los casos inventados de las dos recalibraciones del 1/10, que no están en el curso, con la salida que grabó la guía de cada ronda (claude-cli, modelo por omisión): lo raro, lo forzado y lo que pide un contexto que no está no se lista; lo correcto y natural se lista HIGH o, si es menos esperable para el tema, MEDIUM. El gate no juzga el contenido: documentan el criterio y prueban la forma con esas entradas.",
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (una label que no es opción o que es la correcta, BLOCKING o LOW en una alternativa, correctIsValid sin su correctProblem), y que emit produzca choiceAlternativeVerdict o {\"outputUnusable\": true}. Las entradas manzanas a sin-entrada-de-opciones son el mapa de contenido congelado (title, instructions, exercise, options), armado como DefaultChoiceAlternativeSubjectBuilder, de ejercicios A1/A2 del curso que no están en el examen; los de «manzanas» (la clave invertida) y «verano» (HIGH) son inventados y no están en el curso. musica y champu llevan el juicio de la guía anterior al 1/10 y sólo prueban la forma. Las cal-* son los casos inventados de las recalibraciones del 1/10 y del 3/10, que no están en el curso, con la salida que grabó la guía de cada ronda (claude-cli, modelo por omisión): lo raro, lo forzado y lo que pide una situación concreta que no está no se lista; lo correcto y natural se lista HIGH o, si es menos esperable para el tema, MEDIUM. El gate no juzga el contenido: documentan el criterio y prueban la forma con esas entradas.",
   "inputs": {
     "manzanas": {
       "title": "$Before$ y $after$",
@@ -208,7 +208,7 @@
     },
     {
       "caseId": "musica-some-media",
-      "note": "«Did you hear ___ music?» (…2392): juicio de la guía anterior al 1/10, que listaba «some» MEDIUM; la guía nueva no lo lista porque supone que el que pregunta espera que sí. Acá sólo prueba la forma.",
+      "note": "«Did you hear ___ music?» (…2392): *some* MEDIUM, que es lo que pide la guía desde el 3/10 (decisión de José: *some* en una pregunta neutra cuenta).",
       "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
@@ -1222,14 +1222,20 @@
       }
     },
     {
-      "caseId": "cal-some-que-supone-no-se-lista",
-      "note": "Calibración 1/10 (inventado): *some* sólo si el que pregunta espera que sí. La guía anterior lo listó MEDIUM: falsa alarma.",
+      "caseId": "cal-some-en-pregunta-neutra-media",
+      "note": "Calibración 3/10 (inventado): *some* en una pregunta neutra también se dice; es correcta y natural, aunque el tema enseñe *any*: MEDIUM (decisión de José).",
       "inputs": "cal-mensajes",
       "verdict": {
         "correctIsValid": true,
-        "validAlternatives": [],
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you get some messages while I was out?» también se dice cuando el que pregunta da por hecho o espera que sí hayan llegado mensajes; es correcta y natural, aunque lo esperable en una pregunta —y lo que practica el tema— sea 'any'."
+          }
+        ],
         "correctProblem": null,
-        "rationale": "En una pregunta neutral como esta, lo natural es «any»; «some» sólo funcionaría si el que pregunta ya diera por hecho que sí llegaron mensajes, y el ejercicio no plantea nada de eso."
+        "rationale": "La clave 'any' es la opción esperable en una pregunta, pero 'some' en preguntas con expectativa afirmativa es igualmente gramatical y natural, y ni la consigna ni el título la descartan: queda como segunda correcta menos esperable."
       },
       "expect": {
         "route": "passed",

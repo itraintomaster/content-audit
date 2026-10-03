@@ -6,10 +6,10 @@ description: |
   Prueba cada opción de UN ejercicio de opción múltiple en su oración y dice qué
   opciones marcadas como incorrectas también son correctas y naturales, con su
   gravedad, y si la correcta vale (F-MCVALE-R002, R003). Lo que suena raro o
-  forzado, o sólo queda bien inventando un contexto que el ejercicio no da, no
-  se lista. El gate siguiente valida la forma, que cada opción nombrada sea una
-  de las del ejercicio y no la correcta, y reintenta este nodo si el JSON sale
-  malformado o incoherente.
+  forzado, o sólo queda bien inventando una situación concreta que el
+  ejercicio no da, no se lista. El gate siguiente valida la forma, que cada
+  opción nombrada sea una de las del ejercicio y no la correcta, y reintenta
+  este nodo si el JSON sale malformado o incoherente.
 budgets:
   max_tokens: 1500
   max_attempts: 3
@@ -38,8 +38,9 @@ Buscás un defecto del ejercicio: dos opciones correctas, o una clave que no
 vale. Si una opción marcada como incorrecta también es correcta y natural, el
 ejercicio tiene dos correctas: el alumno que la elige no se equivoca, aunque
 sea menos esperable que la correcta. Sólo no cuenta la opción que suena rara o
-forzada, la que sólo queda bien inventando algo que el ejercicio no da, y la que
-descartan la consigna, el título o una indicación del ítem.
+forzada, la que sólo queda bien inventando una situación concreta que el
+ejercicio no da, y la que descartan la consigna, el título o una indicación del
+ítem.
 
 No ves la traducción ni la miniteoría: la app las muestra recién al corregir,
 así que no le sirven al alumno para elegir. Que tampoco te sirvan a vos. El
@@ -65,9 +66,9 @@ vale.
 1. Poné cada opción en el hueco y leé la oración terminada en su lectura más
    directa, sin agregarle nada.
 2. Una incorrecta **también vale** si cumple las tres cosas:
-   - **funciona en la oración tal como se lee**: no hace falta inventar algo
-     que el ejercicio no da —qué espera el que habla, dónde están, un envase,
-     un sentido especial de la palabra— para que quede bien;
+   - **funciona en la oración tal como se lee**: no hace falta inventar una
+     situación concreta que el ejercicio no da —dónde están, un envase, un
+     sentido especial de la palabra— para que quede bien;
    - **es natural**: un nativo la diría así, en esta oración, sin que suene
      rara o forzada. Que sea menos común o menos esperable que la correcta no
      la descarta: la hace `MEDIUM`;
@@ -89,8 +90,9 @@ vale.
 **La pregunta del criterio.** Para cada incorrecta, preguntate: ¿un nativo la
 diría así, en esta oración, sin que suene rara? Si la respuesta es sí, se
 lista: `HIGH` si además es igual de esperable que la correcta, `MEDIUM` si es
-menos esperable. Si suena rara o forzada, no se lista; tampoco si sólo queda
-bien inventando algo que el ejercicio no da, como el cartón de «a milk».
+menos esperable. Si suena rara o forzada, no se lista. Tampoco se lista si
+sólo queda bien inventando una situación concreta que el ejercicio no da, como
+el cartón de «a milk».
 
 **Lo que no contás acá**, aunque encaje: una opción que difiere de la correcta
 sólo en la forma —mayúscula (*am i* / *Am I*), *a* o *an*, singular o plural
@@ -120,6 +122,10 @@ Se listan:
 - «I'm so tired ___ waiting.», opciones *at* / *from* / *of* (correcta).
   *tired from waiting* (cansado de tanto esperar) es correcta y natural, aunque
   lo esperable sea *tired of* (harto) → `from`, `MEDIUM`.
+- «Are there ___ museums in your town?», título «$Some$ y $any$», consigna
+  «Elige 'some' o 'any'.», opciones *any* (correcta) / *some*. *some* en una
+  pregunta también se dice, sobre todo si el que pregunta espera que sí: es
+  correcta y natural, aunque el tema enseñe *any* → `some`, `MEDIUM`.
 - «Wash the apples ___ you eat them.», opciones *after* (correcta) / *before*.
   *After* deja la oración sin sentido: las manzanas no se pueden lavar después
   de comerlas. La que vale es *before* → `correctIsValid` false, con su
@@ -130,10 +136,6 @@ No se listan (sólo vale la correcta):
 - «She has lived in Madrid ___ three years.», opciones *during* / *for*
   (correcta). *during three years* es un calco del castellano y en inglés suena
   forzada.
-- «Are there ___ museums in your town?», título «$Some$ y $any$», consigna
-  «Elige 'some' o 'any'.», opciones *any* (correcta) / *some*. En una pregunta
-  neutra *some* suena rara: sólo queda bien si el que pregunta ya supone que sí,
-  y eso el ejercicio no lo da.
 - «She bought ___ milk on her way home.», consigna «Elige 'a' o '-' (sin
   artículo).», opciones *-* (correcta) / *a*. *a milk* sólo queda bien
   inventando un cartón o un vaso, y nada en la oración lo plantea.
@@ -171,7 +173,7 @@ Cuando sólo vale la correcta:
   "correctIsValid": true,
   "validAlternatives": [],
   "correctProblem": null,
-  "rationale": "Sólo la correcta queda natural en la oración tal como se lee; las demás suenan raras o necesitan un contexto que el ejercicio no da."
+  "rationale": "Sólo la correcta queda natural en la oración tal como se lee; las demás suenan raras o necesitan una situación que el ejercicio no da."
 }
 ```
 
