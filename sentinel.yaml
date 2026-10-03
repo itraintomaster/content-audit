@@ -10804,7 +10804,7 @@ modules:
       - NaturalnessConfig
   - name: nearduplicates
     description: |
-      El analizador near-duplicates (FEAT-DUPAR): compara cada ejercicio con los anteriores de su tema, como exact-duplicates. Un par es candidato si pide la misma respuesta comparada como el corrector y no es un duplicado exacto (R001); es casi duplicado si queda igual al tapar pronombres, demostrativos, posesivos y el tiempo del auxiliar, o si el parecido de sus vectores llega a 0,95 (R002); sin Ollama, si cambia como mucho 4 de cada 10 palabras y claude -p dice que es el mismo ejercicio (R008). Las consultas —un vector por ejercicio, o un juicio por par— van por el runtime de los jueces, que las guarda en el libro y las reusa, aplica el freno del examen, el tope y las consultas a la vez, y declara la cobertura y el costo. Familia errores, evalúa el ejercicio, costo de la ficha modelo pago: no entra en la corrida base. Sólo los registros y el proveedor son públicos.
+      El analizador near-duplicates (FEAT-DUPAR): compara cada ejercicio con los anteriores de su tema, como exact-duplicates. Un par es candidato si pide la misma respuesta comparada como el corrector y no es un duplicado exacto (R001); es casi duplicado si queda igual al tapar pronombres, demostrativos, posesivos y el tiempo del auxiliar, o si el juez de pares —claude -p con la guía de near-duplicates-pair-judge, el mismo con Ollama y sin él— dice que para el alumno es el mismo ejercicio (R002). Ningún parecido marca solo: sólo elige los candidatos del juez. Con Ollama, los vectores de nomic-embed-text desde un coseno de 0,80, que corren siempre y sin tope: --budget near-duplicates=N limita sólo a claude -p (R009); sin Ollama, el parecido de palabras desde 0,6 (R008). Las consultas —un vector por ejercicio y un juicio por par candidato— van por el runtime de los jueces, que las guarda en el libro y las reusa, aplica el freno del examen, el tope y las consultas a la vez, y declara la cobertura y el costo. Cada ruta es una versión examinada que rinde su examen: con Ollama, nomic-embed-text con su versión y su prefijo, el umbral y la versión del juez (R010); sin Ollama, el parecido de palabras y la versión del juez (R007). PairStepEvaluator hace que el juez y los vectores enuncien esa versión sin cambiar su id: el freno es el del paso entero, y el libro reusa lo que el juez ya contestó con Ollama y sin él. En un examen sólo se juzgan los pares cuya copia es un ejercicio del archivo (R007). Familia errores, evalúa el ejercicio, costo de la ficha modelo pago, con una regla de modelo local que sólo propone, similar-candidates: no entra en la corrida base. Sólo los registros y el proveedor son públicos.
     visibility: public
     models:
     - name: NearDuplicateCondition
@@ -10815,11 +10815,15 @@ modules:
           \ y el tiempo del auxiliar (F-DUPAR-R002 inv. 1). Regla same-but-wildcard,\
           \ instantánea."
       - name: SIMILARITY
-        description: "El parecido de sus vectores llega al umbral, 0,95 (F-DUPAR-R002\
-          \ inv. 2). Regla same-meaning, modelo local."
+        description: "Ya no la produce ninguna versión: desde la v3 los vectores só\
+          lo proponen candidatos (F-DUPAR-R009). Queda para leer los informes de la\
+          \ versión del 30/9, en la que el parecido de 0,95 marcaba solo con la regla\
+          \ same-meaning, que salió de la ficha."
       - name: JUDGED
-        description: "Sin Ollama, claude -p dice que para el alumno es el mismo ejercicio\
-          \ (F-DUPAR-R008). Regla same-exercise, modelo pago."
+        description: "El juez de pares, claude -p, dice que para el alumno es el mismo\
+          \ ejercicio (F-DUPAR-R002 inv. 2), con Ollama o sin él: el candidato lo\
+          \ propusieron los vectores (R009) o el parecido de palabras (R008). Regla\
+          \ same-exercise, modelo pago."
     - name: NearDuplicateDiagnosis
       type: record
       fields:
@@ -10837,13 +10841,17 @@ modules:
           \ el comodín."
       - name: similarity
         type: double
-        description: "El parecido de los dos vectores (SIMILARITY), redondeado a dos\
-          \ decimales en la evidencia («parecido 0,99»). 0 si no se calculó."
+        description: "Con Ollama, el coseno de los vectores con que el par fue candidato\
+          \ del juez (JUDGED), redondeado a dos decimales en la evidencia: «Para claude\
+          \ -p es el mismo ejercicio que …355e: parecido 0,87». 0 si no se calculó\
+          : sin Ollama o por el comodín. En los informes de la versión del 30/9, el\
+          \ parecido con que marcó SIMILARITY."
       - name: wordSimilarity
         type: double
-        description: "El parecido de palabras de los dos ejercicios terminados, con\
-          \ el que se eligió el candidato de claude -p (JUDGED): «cambian 2 de 6 palabras»\
-          ."
+        description: "El parecido de palabras de los dos ejercicios terminados. Sin\
+          \ Ollama es el que hizo al par candidato del juez (JUDGED), y la evidencia\
+          \ lo dice en palabras: «Para claude -p es el mismo ejercicio que …355e:\
+          \ cambian 2 de 6 palabras». Con Ollama la evidencia no lo usa."
       - name: judgeReason
         type: String
         description: "La razón de claude -p en una línea, tal como la dio (JUDGED).\
@@ -10880,8 +10888,10 @@ modules:
       exposes:
       - signature: "methodId(): String"
       - signature: "inputPrefix(): String"
-      - signature: "similarityThreshold(): double"
       - signature: "candidateWordSimilarity(): double"
+      - signature: "candidateSimilarity(): double"
+      - signature: "vectorRouteMethodId(String judgeVersion): String"
+      - signature: "wordRouteVersion(String judgeVersion): String"
       visibility: internal
       extends:
       - SelfDescribingConfig
@@ -10898,9 +10908,13 @@ modules:
         type: EmbeddingModel
       - name: alternativeJudge
         type: Evaluator
-        description: "El evaluador de claude -p de la alternativa, hecho con AgentJudgeFactory\
-          \ de C (agente near-duplicates-same-exercise). Sólo se usa sin el modelo\
-          \ local."
+        description: "El juez de pares de claude -p: AgentJudgeFactory con el agente\
+          \ near-duplicates-pair-judge (artifact sameExerciseVerdict), cableado en\
+          \ el cuerpo de Main. Decide los candidatos de las dos rutas, envuelto en\
+          \ PairStepEvaluator bajo la versión examinada de cada una: con Ollama, la\
+          \ del paso entero; sin Ollama, wordRouteVersion. Su versión se lee sin consultarlo,\
+          \ y su evaluatorId no cambia con la ruta: lo que contestó de un par se reusa\
+          \ con Ollama y sin él (R010 inv. 2)."
       - name: judgeRuntime
         type: JudgeRuntime
       - name: correctorMatcher
@@ -10909,6 +10923,13 @@ modules:
         type: QuizStudentViewRenderer
       - name: localToolGate
         type: LocalToolGate
+        description: "Con vectorRouteMethodId —el método de los vectores, el umbral\
+          \ y la versión del juez— decide la ruta y da la tarjeta local, así el freno\
+          \ y el examen son los del paso entero (R010). Con methodId solo, su tarjeta\
+          \ da la versión con que los vectores se guardan en el libro, que no cambia\
+          \ con el umbral ni con el juez (F-MLOCAL-R002 inv. 2). La tarjeta de claude\
+          \ -p la arma con el juez envuelto bajo wordRouteVersion. Su política local\
+          \ no sirve para los vectores: con --budget near-duplicates=N trae ese tope."
       visibility: public
       handwrittenTests:
       - name: "should open near-duplicates through the judges' runtime with the vector\
@@ -10943,9 +10964,17 @@ modules:
       requiresInject:
       - name: opened
         type: JudgeSessions
-        description: "Las sesiones que abrió el runtime de los jueces con el evaluador\
-          \ de la ruta elegida: el de vectores con su política sin tope, o el de claude\
-          \ -p con la de la corrida."
+        description: "Las sesiones que abrió el runtime de los jueces bajo el nombre\
+          \ near-duplicates y la versión examinada de la ruta. Con Ollama, dos y en\
+          \ este orden: los vectores, sin tope aunque la corrida pida --budget near-duplicates=N,\
+          \ y el juez de pares, con la política de la corrida (tope 0 sin pedido);\
+          \ el registro lleva la versión, el examen y la política efectiva del juez.\
+          \ Sin Ollama, una: el juez, con la política de la corrida. El juez es siempre\
+          \ la última sesión, y la cobertura del informe se pide con ella sola: el\
+          \ runtime suma lo pendiente de todas las sesiones y mide el ritmo con todos\
+          \ sus evaluadores, y los vectores falsearían el costo de lo que falta de\
+          \ claude -p (R009 inv. 4). Los modos del plan son del juez: los vectores\
+          \ se piden siempre para reusar o calcular."
       - name: runtime
         type: JudgeRuntime
       - name: rules
@@ -10958,6 +10987,10 @@ modules:
         type: NearDuplicatesConfig
       - name: gateDecision
         type: LocalToolGateDecision
+        description: "La decisión de LocalToolGate sobre nomic-embed-text con vectorRouteMethodId:\
+          \ si está, si la versión examinada del paso entero —vectores, umbral y juez\
+          \ (R010)— publica, o por qué no. Sin Ollama sólo dice por qué falta la herramienta;\
+          \ la versión es la del juez envuelto, la de opened."
       handwrittenTests:
       - name: "should compare an exercise only with the earlier exercises of its own\
           \ topic, never with an exercise of another topic"
@@ -11182,6 +11215,35 @@ modules:
       visibility: public
       implements:
       - AnalyzerCorrection
+    - name: PairStepEvaluator
+      requiresInject:
+      - name: evaluator
+        type: Evaluator
+        description: "El que consulta de verdad: el juez de pares o, con Ollama, tambié\
+          n SentenceEmbeddingEvaluator con la versión de los vectores solos. Su evaluatorId\
+          \ es el del envoltorio: el libro identifica por id y huella del contenido,\
+          \ no por versión, así que lo que ya está registrado se reusa con cualquier\
+          \ versión del paso (R010 inv. 2, F-MLOCAL-R002 inv. 2)."
+      - name: examinedVersion
+        type: String
+        description: "La versión examinada de la ruta, la que enuncia: con Ollama,\
+          \ la que LocalToolGate da al paso entero, «nomic-embed-text@0a109f422b47\
+          \ · clustering-1 · candidatos-0,80 · juez-…»; sin Ollama, wordRouteVersion,\
+          \ «palabras-0,60 · juez-…». Con ella frena el runtime y fija el examen lo\
+          \ que reusa. No enuncia ninguna si es nula o si el envuelto no enuncia la\
+          \ suya."
+      glossarySuggestions:
+      - name: Paso por pares
+        technicalName: PairStep
+        kind: process-candidate
+        basedOn: audit-domain/nearduplicates/PairStepEvaluator
+        rationale: "El requirement llama «el paso por pares» al cambio mínimo de la\
+          \ v3: los candidatos que propone cada ruta —los vectores con Ollama, las\
+          \ palabras sin él— y el juez de pares que decide cada uno. Es lo que rinde\
+          \ examen como una sola versión (F-DUPAR-R007, R010); PairStepEvaluator es\
+          \ la pieza que lo hace visible al freno del runtime."
+      implements:
+      - Evaluator
   - name: correction
     description: "Vocabulario cerrado de las partes de un ejercicio que un arreglo\
       \ puede tocar (FEAT-TAREA R006). Público porque lo leen refiner-domain, revision-domain\

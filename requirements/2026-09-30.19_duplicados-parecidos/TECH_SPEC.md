@@ -1,66 +1,29 @@
 ---
 patch: FEAT-DUPAR
 requirement: 2026-09-30.19_duplicados-parecidos
-generated: 2026-10-01T00:05:00Z
+generated: 2026-10-01T15:30:00Z
 ---
 
-# Tech Spec: Duplicados parecidos, dos ejercicios casi iguales del mismo tema (FEAT-DUPAR)
+# Tech Spec: Duplicados parecidos, el paso por pares (FEAT-DUPAR, v3)
 
-Paquete B de la ronda 2, rebasado el 30/9 a la noche sobre el `sentinel.yaml` de `ronda1/integracion`. Este parche trae
-sólo el analizador `near-duplicates`. El modelo —`EmbeddingModel`, con su adaptador de Ollama— y la decisión de publicar
-son de FEAT-MLOCAL, que se aplica antes. De la ronda 1 usa, sin declarar otras, `CorrectorMatcher` (FEAT-RESPC) para «la
-misma respuesta, comparada como el corrector», `QuizStudentViewRenderer` (gancho A-01) para el ejercicio terminado y la
-evidencia como la ve el alumno, y el runtime de los jueces (`JudgeRuntime`) con el evaluador de claude -p de FEAT-JEXAM.
-Lo decidido por José el 30/9: cuenta como error de gravedad baja, con umbral 0,95; y, esa noche, sin Ollama claude -p
-juzga los pares candidatos por parecido de texto.
+La v1 y la v2 de este requirement —el comodín, el parecido de 0,95 que marcaba solo y, sin Ollama, claude -p sobre los
+pares de texto parecido— se aplicaron el 1/10 (`.applied-patches/2026-10-01T04-35-17-018Z.yaml`; su TECH_SPEC queda en
+la historia de git). Esa versión reprobó su examen: de 40 pares que no marcó, 20 eran el mismo ejercicio. Este parche es
+la v3, el paso por pares: el parecido ya no marca, sólo elige qué pares se le preguntan al juez de pares —claude -p con la
+guía de `near-duplicates-pair-judge`, el mismo con Ollama y sin él—. No cambian el par candidato ni el comodín
+(`NearDuplicateRules`), la pregunta y su veredicto (`SameExerciseQuestion`), el hallazgo en la copia (R003 a R005), ni lo
+que comparten otros analizadores: `SentenceEmbeddingEvaluator`, `LocalToolGate`, `JudgeRuntime` y el libro. Tampoco los
+constructores del proveedor y del analizador, que construyen las pruebas de audit-application y audit-cli. Se diseñó con
+la opción A de las cuatro dudas abiertas.
 
-## Comparar sólo lo que pide la misma respuesta, dentro del tema
+## Elegir los candidatos con el coseno, nunca marcar con él
 
-Sin esa condición, los pares más parecidos del curso son contrastes a propósito: «I observed him clean the room.» y
-«…cleaning the room.» dan 0,995 y la diferencia es justo lo que se enseña (R001). La misma respuesta es la del corrector,
-con la contraída igual a la larga: `CorrectorMatcher.sameAnswer`, la única tabla de equivalencias (decisión 1 de José),
-sin contar el pronombre o el demostrativo que el alumno copia del enunciado. Los iguales tal cual son de
-`exact-duplicates`, y se descartan con la misma comparación que usa FEAT-DUPEX, así que ningún par cuenta en los dos. El
-comodín tapa pronombres, demostrativos, posesivos y el tiempo del auxiliar, y devuelve qué cambió para la evidencia
-(«He → She»): solo, encuentra 24 pares y 5 de los 6 del 077. `wordSimilarity` es el parecido de palabras de R008 —1 menos
-la distancia de edición por palabras sobre el largo mayor—, texto puro y barato: los 24.865 pares que el comodín no
-resuelve se recorren en segundos.
-
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-    packages:
-      - name: nearduplicates
-        _change: add
-        visibility: public
-        interfaces:
-          - name: NearDuplicateRules
-            _change: add
-            visibility: internal
-            sealed: false
-            exposes:
-              - signature: "sameRequest(AuditableQuiz first,AuditableQuiz second): boolean"
-              - signature: "wildcardDifference(AuditableQuiz first,AuditableQuiz second): Optional<String>"
-              - signature: "wordSimilarity(AuditableQuiz first,AuditableQuiz second): double"
-        implementations:
-          - name: DefaultNearDuplicateRules
-            _change: add
-            implements: [NearDuplicateRules]
-            requiresInject:
-              - { name: correctorMatcher, type: CorrectorMatcher }
-              - { name: studentViewRenderer, type: QuizStudentViewRenderer }
-```
-
-## Un vector por ejercicio, guardado con su versión
-
-El parecido de R002 inv. 2 es el coseno de dos vectores de nomic-embed-text, cada uno del ejercicio terminado con el
-prefijo «clustering: », que el modelo pide y con el que se midió. Cada vector se guarda en el libro de evaluaciones con
-la versión examinada —el modelo con su huella y el `methodId` del prefijo— en el id del evaluador: el curso entero
-cuesta unos 4 minutos la primera vez y después sólo se pide el de lo que cambió (F-MLOCAL-R002 inv. 2), y el coseno sale
-siempre de los mismos vectores, así que dos corridas marcan lo mismo. Su `evaluatorVersion()` es esa versión examinada:
-el runtime frena con la misma clave de examen que `LocalToolGate`. El umbral, 0,95, el prefijo y el parecido de
-palabras de los candidatos de claude -p, 0,6, quedan en la configuración, a la vista en `config analyzer near-duplicates`.
+El parecido de 0,95 marcaba solo, y los vectores no separan la misma oración dicha de otro modo de otra oración que pide
+la misma respuesta; bajar el umbral tampoco alcanza: de 0,85 a 0,90, 4 iguales en 30 pares. Por eso
+`candidateSimilarity()`, 0,80, reemplaza a `similarityThreshold()`: el coseno sólo decide qué se le pregunta al juez (R009
+inv. 1), y 0,80 está pensado para no perder ninguna copia, aunque la franja de 0,80 a 0,85 tenga 1.028 pares con 1 igual
+y 5 dudosos en 70 revisados. `methodId()` sigue nombrando sólo el método de los vectores, «clustering-1», y `config
+analyzer near-duplicates` muestra el método, el prefijo y los dos umbrales de candidatos.
 
 ```architecture
 modules:
@@ -68,41 +31,101 @@ modules:
     _change: modify
     packages:
       - name: nearduplicates
-        _change: add
-        visibility: public
+        _change: modify
         interfaces:
           - name: NearDuplicatesConfig
-            _change: add
-            visibility: internal
+            _change: modify
             sealed: false
-            extends: [SelfDescribingConfig]
+            visibility: internal
             exposes:
-              - signature: "methodId(): String"
-              - signature: "inputPrefix(): String"
               - signature: "similarityThreshold(): double"
-              - signature: "candidateWordSimilarity(): double"
+                _change: delete
+              - signature: "candidateSimilarity(): double"
+                _change: add
+```
+
+## Nombrar cada versión por sus piezas
+
+Cada ruta es una versión que rinde su examen antes de publicar (R007, F-MLOCAL-R006): con Ollama, nomic-embed-text con
+su versión y su prefijo, el umbral y el juez (R010); sin Ollama, el parecido de palabras y el juez. En la v2 el método
+nombraba sólo el prefijo, y cambiar el 0,95 no hacía otra versión. `vectorRouteMethodId(judgeVersion)` arma
+«clustering-1 · candidatos-0,80 · juez-» con los 12 primeros caracteres de la versión del juez, y `LocalToolGate` le
+antepone nomic-embed-text con su versión: «nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 ·
+juez-1a2b3c4d5e6f». `wordRouteVersion(judgeVersion)` es la versión entera de la ruta sin Ollama, «palabras-0,60 ·
+juez-1a2b3c4d5e6f»: cambiar el 0,6, todavía abierto en DOUBT-DUPAR-PARECIDO-TEXTO, también obliga a rendir, y una guía
+nueva del juez cambia las dos. Sin versión del juez la pieza es «juez-sin-versión»: `exam run` toma la versión del examen
+del juez, que no la tiene, así que esa versión nunca aprueba ni publica.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: nearduplicates
+        _change: modify
+        interfaces:
+          - name: NearDuplicatesConfig
+            _change: modify
+            sealed: false
+            visibility: internal
+            exposes:
+              - signature: "vectorRouteMethodId(String judgeVersion): String"
+                _change: add
+              - signature: "wordRouteVersion(String judgeVersion): String"
+                _change: add
+```
+
+## Enunciar la versión del paso sin cambiar el id
+
+El runtime frena con la versión que enuncia cada evaluador —`open` la compone y busca su examen— y el examen sólo reusa
+lo que enunció esa misma versión (F-JEXAM-R002 inv. 2). Con el juez «pelado», la ruta con Ollama quedaría frenada por el
+examen del juez solo y no por el del paso entero, su examen reusaría lo que el juez contestó en otra ruta, y `exam run`
+registraría el examen del paso con la versión del juez. `PairStepEvaluator` envuelve al juez y, con Ollama, también a los
+vectores: consulta al envuelto tal cual y con su mismo `evaluatorId`, y enuncia la versión de la ruta si el envuelto
+enuncia la suya. Como el libro identifica por `evaluatorId` y la huella del contenido, no por la versión (F-EVCOST-R001),
+en el curso lo que el juez contestó de un par se reusa con Ollama y sin él (R010 inv. 2), y los vectores, guardados con
+la versión de los vectores solos, se reusan mientras no cambien el modelo, el prefijo ni el ejercicio, aunque cambien el
+umbral o el juez (F-MLOCAL-R002 inv. 2): sirven los de la v2. En un examen, en cambio, cada versión se rinde de verdad: el
+de la ruta con Ollama vuelve a preguntar los pares que ya juzgó el de la otra y recalcula los vectores de los temas del
+examen, en segundos.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: nearduplicates
+        _change: modify
         implementations:
-          - name: SentenceEmbeddingEvaluator
+          - name: PairStepEvaluator
             _change: add
             implements: [Evaluator]
             requiresInject:
-              - { name: embeddingModel, type: EmbeddingModel }
-              - { name: config, type: NearDuplicatesConfig }
-              - { name: examinedVersion, type: String }
-          - name: DefaultNearDuplicatesConfig
-            _change: add
-            implements: [NearDuplicatesConfig]
+              - name: evaluator
+                type: Evaluator
+                description: "El que consulta de verdad: el juez de pares o, con Ollama, también SentenceEmbeddingEvaluator con la versión de los vectores solos. Su evaluatorId es el del envoltorio: el libro identifica por id y huella del contenido, no por versión, así que lo que ya está registrado se reusa con cualquier versión del paso (R010 inv. 2, F-MLOCAL-R002 inv. 2)."
+              - name: examinedVersion
+                type: String
+                description: "La versión examinada de la ruta, la que enuncia: con Ollama, la que LocalToolGate da al paso entero, «nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-…»; sin Ollama, wordRouteVersion, «palabras-0,60 · juez-…». Con ella frena el runtime y fija el examen lo que reusa. No enuncia ninguna si es nula o si el envuelto no enuncia la suya."
 ```
 
-## Sin Ollama, claude -p juzga los pares de texto parecido
+## Abrir con Ollama dos sesiones bajo una sola versión
 
-Sin el modelo local no hay vectores, así que la condición 2 la decide claude -p (R008): se le pregunta por cada par que
-pide la misma respuesta, que el comodín no resuelve y que cambia como mucho 4 de cada 10 palabras —699 pares en el curso,
-276 en A1—, si para el alumno es el mismo ejercicio. `SameExerciseQuestion` es esa pregunta: arma lo que lee el juez,
-los dos ejercicios como los ve el alumno en el orden del tema, y lee su veredicto, `{"sameExercise", "reason"}`. El
-contenido sale de `QuizStudentViewRenderer`, cuyo formato ya congelan cuatro jueces (C-07): ahora son cinco, y cambiarlo
-después de pagar vuelve a cobrar también estos pares (gancho B-22). Un veredicto que no se puede leer deja el par sin
-juzgar, nunca lo da por casi duplicado.
+En `create(policy)` el proveedor lee la versión del juez sin consultarlo y le pide la decisión a `LocalToolGate` con
+`vectorRouteMethodId`. Con nomic-embed-text disponible abre por el runtime dos sesiones, las dos bajo la versión examinada
+de esa decisión:
+- los vectores: `SentenceEmbeddingEvaluator` con la versión de los vectores solos —la que da la tarjeta de `methodId()`,
+  la misma clave que en la v2— y la política de la corrida sin tope, que conserva propósito, alcance, conjunto declarado y
+  consultas a la vez; sin política, una de curso sin tope;
+- el juez, con la política de la corrida tal cual: tope 0 sin `--budget near-duplicates=N`, así que sin pedido nada sale
+  de la máquina (F-MLOCAL-R001 inv. 2).
+
+La política local de la decisión no sirve para los vectores: con `--budget` trae ese tope, y el tope es sólo de claude -p
+(R009 inv. 3, F-MLOCAL-R008). Al analizador le da un solo `JudgeSessions` —vectores primero, juez último; la versión, el
+examen y la política efectiva del juez—: una fila de cobertura y una sola versión para `exam run`. Sin Ollama abre sólo al
+juez, envuelto bajo `wordRouteVersion`, con la política de la corrida, y con ese mismo juez envuelto arma la tarjeta de
+claude -p. Si el juez no enuncia versión, los envoltorios no reciben ninguna y nada consulta; el motivo a la vista es el
+del juez.
 
 ```architecture
 modules:
@@ -110,181 +133,30 @@ modules:
     _change: modify
     packages:
       - name: nearduplicates
-        _change: add
-        visibility: public
-        models:
-          - name: SameExerciseVerdict
-            _change: add
-            type: record
-            visibility: internal
-            fields:
-              - { name: sameExercise, type: boolean }
-              - { name: reason, type: String }
-        interfaces:
-          - name: SameExerciseQuestion
-            _change: add
-            visibility: internal
-            sealed: false
-            exposes:
-              - signature: "subjectOf(AuditableQuiz kept,AuditableQuiz copy): EvaluationSubject"
-              - signature: "read(String payload): Optional<SameExerciseVerdict>"
-        implementations:
-          - name: DefaultSameExerciseQuestion
-            _change: add
-            implements: [SameExerciseQuestion]
-            requiresInject:
-              - { name: studentViewRenderer, type: QuizStudentViewRenderer }
-```
-
-## La copia lleva el hallazgo; el primero del tema queda
-
-La comparación es entre hermanos: en `onKnowledge`, que el motor llama con los ejercicios del tema en el orden del curso,
-como `exact-duplicates`, se arman los pares de cada ejercicio con los anteriores, se resuelve el comodín y se piden las
-consultas —un vector por ejercicio con Ollama, un juicio por par candidato sin él—; en `onCourseComplete` se resuelven
-todas juntas con el plan y `resolveAll` del runtime, como los jueces de C, y se decide: el primero con el que un
-ejercicio es casi igual es el que queda (R003), así que hay un hallazgo por copia, nunca en el que queda, y su identidad
-—la regla y el ejercicio que queda— no cambia entre corridas. Si se cumplen varias condiciones gana el comodín, que no
-depende de ningún modelo. Es bajo, a la mesa y cuenta como error (R004), con el costo de su regla: `same-but-wildcard`,
-`same-meaning` o `same-exercise`. El comodín corre siempre; un ejercicio con alguna consulta que el tope o una falla
-dejaron sin resolver queda a medias (`partiallyEvaluatedBy`, F-RONDA1-R006), y una versión sin examen aprobado deja todo
-sin evaluar (F-MLOCAL-R006). La evidencia trae los dos ejercicios como los ve el alumno, el que queda como nodo
-relacionado y una línea con qué cambia, cuánto se parecen o cuántas palabras cambian y la razón de claude -p (R005).
-
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-    packages:
-      - name: nearduplicates
-        _change: add
-        visibility: public
-        models:
-          - name: NearDuplicateCondition
-            _change: add
-            type: enum
-            fields:
-              - { name: WILDCARD }
-              - { name: SIMILARITY }
-              - { name: JUDGED }
-          - name: NearDuplicateDiagnosis
-            _change: add
-            type: record
-            fields:
-              - { name: keptQuizId, type: String }
-              - { name: condition, type: NearDuplicateCondition }
-              - { name: difference, type: String }
-              - { name: similarity, type: double }
-              - { name: wordSimilarity, type: double }
-              - { name: judgeReason, type: String }
-              - { name: finishedExercise, type: String }
-              - { name: keptFinishedExercise, type: String }
-              - { name: score, type: double }
-        implementations:
-          - name: NearDuplicatesAnalyzer
-            _change: add
-            implements: [ContentAnalyzer]
-            requiresInject:
-              - { name: opened, type: JudgeSessions }
-              - { name: runtime, type: JudgeRuntime }
-              - { name: rules, type: NearDuplicateRules }
-              - { name: question, type: SameExerciseQuestion }
-              - { name: studentViewRenderer, type: QuizStudentViewRenderer }
-              - { name: config, type: NearDuplicatesConfig }
-              - { name: gateDecision, type: LocalToolGateDecision }
-```
-
-## El proveedor elige la ruta y arma la ficha
-
-En `create(policy)` el proveedor pide la decisión a `LocalToolGate` y abre por el runtime de los jueces: con
-nomic-embed-text disponible, su `SentenceEmbeddingEvaluator` con la política sin tope ni pedido de la decisión; sin él,
-la alternativa de claude -p que recibe hecha, con la política de la corrida, que sin `--budget near-duplicates=N` tiene
-tope 0. Ya no recibe la fábrica de sesiones. La ficha: pregunta «¿Dos ejercicios del mismo tema piden casi lo mismo?»,
-lee el ejercicio terminado y la respuesta de cada ejercicio del tema, reglas `same-but-wildcard` instantánea,
-`same-meaning` de modelo local y `same-exercise` de modelo pago, meta 0 copias por tema, familia errores, evalúa QUIZ,
-resolución mesa y costo modelo pago, el mayor de sus reglas. Lleva dos tarjetas, nomic-embed-text y claude -p, con su
-examen (B-01), y no tiene ligadura al plan: qué tarea crea lo decide E (B-18). No entra en la corrida base, como decidió
-José; si se adopta A-09 tal como está, lo metería por su regla instantánea (B-10).
-
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-    packages:
-      - name: nearduplicates
-        _change: add
-        visibility: public
+        _change: modify
         implementations:
           - name: NearDuplicatesAnalyzerProvider
-            _change: add
-            visibility: public
-            implements: [AnalyzerProvider]
+            _change: modify
             requiresInject:
-              - { name: embeddingModel, type: EmbeddingModel }
-              - { name: alternativeJudge, type: Evaluator }
-              - { name: judgeRuntime, type: JudgeRuntime }
-              - { name: correctorMatcher, type: CorrectorMatcher }
-              - { name: studentViewRenderer, type: QuizStudentViewRenderer }
-              - { name: localToolGate, type: LocalToolGate }
+              - name: alternativeJudge
+                type: Evaluator
+                _change: modify
+                description: "El juez de pares de claude -p: AgentJudgeFactory con el agente near-duplicates-pair-judge (artifact sameExerciseVerdict), cableado en el cuerpo de Main. Decide los candidatos de las dos rutas, envuelto en PairStepEvaluator bajo la versión examinada de cada una: con Ollama, la del paso entero; sin Ollama, wordRouteVersion. Su versión se lee sin consultarlo, y su evaluatorId no cambia con la ruta: lo que contestó de un par se reusa con Ollama y sin él (R010 inv. 2)."
+              - name: localToolGate
+                type: LocalToolGate
+                _change: modify
+                description: "Con vectorRouteMethodId —el método de los vectores, el umbral y la versión del juez— decide la ruta y da la tarjeta local, así el freno y el examen son los del paso entero (R010). Con methodId solo, su tarjeta da la versión con que los vectores se guardan en el libro, que no cambia con el umbral ni con el juez (F-MLOCAL-R002 inv. 2). La tarjeta de claude -p la arma con el juez envuelto bajo wordRouteVersion. Su política local no sirve para los vectores: con --budget near-duplicates=N trae ese tope."
 ```
 
-## Cómo se prueba y cómo se mide
+## Sacar same-meaning: tres reglas en la ficha
 
-Las pruebas no llaman a Ollama ni a claude: usan un doble de `EmbeddingModel` con los vectores que grabó el prototipo
-(`scratchpad/ronda2-B/dup/emb-nomic.json`, sólo los de los casos), un `Evaluator` doble para la alternativa que contesta
-`{"sameExercise", "reason"}` y cuenta cuántas veces lo llaman, y el runtime de C con libros en memoria. Casos reales:
-«He is certainly leaving.» / «She is certainly leaving.» (A2, en el 077), por el comodín; «Have you ever been to Rome?» /
-«Have you ever visited Rome?» (B1, en el 077), por parecido 0,99 o, sin Ollama, candidato de 0,67 que claude -p juzga;
-«I am sorry.» / «I am hot.» (A1), candidato que claude -p descarta; «That is his car.» / «That car is his.» (A1, 0,50),
-que sin Ollama ni se consulta; «I observed him clean the room.» / «…cleaning the room.», otra respuesta, sin marca; y un
-par exacto, que queda para `exact-duplicates`. Fijan además que sin tope no se consulta y el ejercicio queda a medias
-con los hallazgos del comodín. La prueba con nomic-embed-text de verdad lleva la etiqueta `herramienta-real`. El examen
-(R007) se rinde con `exam run near-duplicates` y se mide con `medir.py`; el de claude -p, con `CONTENT_AUDIT_OLLAMA_URL=off`:
-los candidatos de los temas de cada mitad, 437 en `escribir/` y 262 en `examinar/`.
-
-## Registrar FEAT-DUPAR
-
-El parche registra la feature con su código para que `feature sync --feature FEAT-DUPAR` anote J001 después de aplicar;
-la ubicación del journey es del qa-tester.
-
-```architecture
-modules:
-  - name: audit-domain
-    _change: modify
-features:
-  - id: FEAT-DUPAR
-    code: F-DUPAR
-```
-
-## Declarar las 38 pruebas y ubicar el journey
-
-Las 38 son nuevas: no hay pruebas previas de estas reglas que portar. Cada una traza a una regla de FEAT-DUPAR (R001 5,
-R002 8, R003 3, R004 3, R005 3, R006 2, R007 3, R008 11) y lleva un par del curso del 29/9 con los parecidos que midió el
-prototipo (`scratchpad/ronda2-B/dup/pares.json`, `marcados-0.95.json` y `arq-B2/candidatos-lex-0.6.json`); el doble de
-`EmbeddingModel` devuelve sus vectores y el de claude -p, un veredicto fijo por par.
-
-- **El par candidato (R001)**: el pronombre copiado del enunciado no cuenta (`…1ea1` / `…1eac`), otra respuesta no es
-  candidato (`…41cb` / `…41cc`, el contraste a propósito de 0,995), «'ll wash» = «will wash», sólo dentro del tema, y el
-  par exacto de Práctica mixta (`…224b` / `…2260`) queda para `exact-duplicates` mientras los dos son copias casi
-  iguales de `…2231`.
-- **Las dos condiciones (R002)**: el comodín con «he → she» (`…208f` / `…2097`) y con el tiempo del auxiliar (`…2b6b` /
-  `…2b7f`), que no ve otro verbo (`…46ac` / `…46b0`); el parecido 0,98 marca ese par y 0,94 no (`…3083` / `…30a5`); el
-  vector con «clustering: » y la versión en el id del evaluador.
-- **La copia y su hallazgo (R003 a R005)**: el primero del tema queda, n − 1 en un grupo (Respuestas cortas, `…251c` a
-  `…251e`), las mismas copias en dos corridas, bajo, a la mesa, 0 y 1, el costo de la regla que lo encontró —si lo
-  encuentran el comodín y el vector, el comodín (`…1f5e` / `…25e8`)— y las tres evidencias.
-- **La ficha y el examen (R006, R007)**: tres reglas y dos tarjetas, todo sin evaluar sin examen aprobado, comodín
-  incluido, el mismo resultado al rendir dos veces y que otro prefijo es otra versión.
-- **Sin Ollama (R008)**: el parecido de palabras (0,67 en `…355e` / `…4242`), qué se consulta y qué no (`…1e61` /
-  `…1e64` sí, 0,67; `…23f9` / `…23fe` no, 0,50), el «sí» y el «no» de claude -p (`…2725` / `…2fd5`), el comodín siempre,
-  a medias sin tope, una consulta por par hasta el tope, el contenido y el veredicto ilegible.
-
-Algunos pares son del examen del 077 (`…2b6b`, `…355e`, `…25e8`, los de Respuestas cortas, `…224b` y `…2260`): son los
-del REQUIREMENT o del prototipo, y las pruebas los usan con dobles. **No se declara** su tipo de tarea
-`NEAR_DUPLICATES`, que prueba FEAT-RONDA2 después de aplicar (F-RONDA2-R008).
-
-**El journey** va a `audit-domain`, paquete `nearduplicates`: el analizador y sus piezas son package-private ahí y los
-puertos se simulan, como F-DUPEX-J001. `generate` crearía `FDuparJ001JourneyTest` con 5 caminos (`marca` llega por dos
-salidas).
+`same-meaning` sale de la ficha porque cambió lo que hace, de marcar a proponer (R006), y entra `similar-candidates`, de
+modelo local, que sólo propone y no da hallazgos (R004). Es la verdad —los vectores eligen qué se le pregunta al juez—, y
+la regla de modelo local deja a `near-duplicates` fuera de la corrida base, como decidió José el 30/9, sin tocar
+F-RONDA2-R003. Quedan `same-but-wildcard` instantánea y `same-exercise` de modelo pago, que ahora marca con Ollama y sin
+él; el costo de la ficha sigue siendo modelo pago. Las dos tarjetas son las dos versiones: nomic-embed-text con la versión
+del paso entero y su examen, y claude -p con la de la ruta sin Ollama y el suyo (F-MLOCAL-R002). `SIMILARITY` queda en el
+enum sólo para leer los informes de la v2: sin ella no se podrían leer.
 
 ```architecture
 modules:
@@ -292,18 +164,117 @@ modules:
     _change: modify
     packages:
       - name: nearduplicates
-        _change: add
+        _change: modify
+        models:
+          - name: NearDuplicateCondition
+            _change: modify
+            type: enum
+            fields:
+              - name: SIMILARITY
+                _change: modify
+                description: "Ya no la produce ninguna versión: desde la v3 los vectores sólo proponen candidatos (F-DUPAR-R009). Queda para leer los informes de la versión del 30/9, en la que el parecido de 0,95 marcaba solo con la regla same-meaning, que salió de la ficha."
+              - name: JUDGED
+                _change: modify
+                description: "El juez de pares, claude -p, dice que para el alumno es el mismo ejercicio (F-DUPAR-R002 inv. 2), con Ollama o sin él: el candidato lo propusieron los vectores (R009) o el parecido de palabras (R008). Regla same-exercise, modelo pago."
+```
+
+## El analizador pide los vectores, elige los candidatos y pregunta
+
+`onKnowledge` no cambia: arma los pares, el comodín y el parecido de palabras. En `onCourseComplete`, con Ollama, una
+primera tanda pide los vectores de los ejercicios de los pares que el comodín no resuelve; con los cosenos elige los
+candidatos, de 0,80 o más, y una segunda tanda se los pregunta al juez. Sin Ollama, una sola tanda, la de la v2. Un sí
+marca la copia (`JUDGED`, regla `same-exercise`); un no la descarta aunque el parecido llegue a 0,80; un candidato sin
+respuesta —sin tope, sesión vencida, servicio caído, veredicto ilegible— o un vector que falta deja el ejercicio a medias
+con sus hallazgos del comodín, y la fila de la corrida dice cuántos pares faltan: «falta el tope» vale ahora también con
+Ollama. Tres cuidados, porque `JudgeRuntime` no cambia:
+- **La cobertura, con el juez solo.** El runtime suma lo pendiente de todas las sesiones y mide el ritmo con los tiempos
+  de todos sus evaluadores; con los vectores adentro —unos 4.600 en un minuto— el informe diría que 1.468 pares llevan
+  minutos y no 8,3 horas (R009 inv. 4, F-JEXAM-R004). Se le pide con un `JudgeSessions` que sólo trae la sesión del juez,
+  y en los veredictos por versión cuentan sólo los del juez, cada uno con la versión con que quedó registrado.
+- **Los modos del plan son del juez.** Re-evaluación y conjunto declarado eligen a quién se le vuelve a preguntar; los
+  vectores se piden siempre para reusar o calcular, o un conjunto declarado dejaría a medias los temas de afuera.
+- **El examen mira sólo su archivo.** En una corrida de examen el archivo es el conjunto declarado de la política
+  efectiva: sólo cuentan los pares cuya copia está en él, se piden sólo los vectores de esos pares, y un ejercicio fuera
+  del archivo no lleva puntaje ni hallazgo ni cuenta en la cobertura (R007). Con Ollama, rendir son unas 255 consultas
+  como mucho, no 978.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: nearduplicates
+        _change: modify
         implementations:
           - name: NearDuplicatesAnalyzer
-            _change: add
-            handwrittenTests:
-              - name: "should leave the two exact «They weren't at the park.» of Práctica mixta to exact-duplicates and still mark both as near copies of «You weren't at the park.»"
-                traceability: { feature: FEAT-DUPAR, rule: F-DUPAR-R001 }
-              - name: "should leave half evaluated an exercise with a candidate left unjudged for lack of budget, keeping its wildcard findings and saying how many pairs are missing"
-                traceability: { feature: FEAT-DUPAR, rule: F-DUPAR-R008 }
-features:
-  - id: FEAT-DUPAR
-    code: F-DUPAR
-    journeys:
-      - { id: F-DUPAR-J001, testModule: audit-domain, testPackage: com.learney.contentaudit.auditdomain.nearduplicates }
+            _change: modify
+            requiresInject:
+              - name: opened
+                type: JudgeSessions
+                _change: modify
+                description: "Las sesiones que abrió el runtime de los jueces bajo el nombre near-duplicates y la versión examinada de la ruta. Con Ollama, dos y en este orden: los vectores, sin tope aunque la corrida pida --budget near-duplicates=N, y el juez de pares, con la política de la corrida (tope 0 sin pedido); el registro lleva la versión, el examen y la política efectiva del juez. Sin Ollama, una: el juez, con la política de la corrida. El juez es siempre la última sesión, y la cobertura del informe se pide con ella sola: el runtime suma lo pendiente de todas las sesiones y mide el ritmo con todos sus evaluadores, y los vectores falsearían el costo de lo que falta de claude -p (R009 inv. 4). Los modos del plan son del juez: los vectores se piden siempre para reusar o calcular."
+              - name: gateDecision
+                type: LocalToolGateDecision
+                _change: modify
+                description: "La decisión de LocalToolGate sobre nomic-embed-text con vectorRouteMethodId: si está, si la versión examinada del paso entero —vectores, umbral y juez (R010)— publica, o por qué no. Sin Ollama sólo dice por qué falta la herramienta; la versión es la del juez envuelto, la de opened."
 ```
+
+## La evidencia dice con qué parecido llegó el par al juez
+
+R005 pide el parecido que propuso el par y la razón del juez: con Ollama, «Para claude -p es el mismo ejercicio que
+…355e: parecido 0,87»; sin Ollama, «… cambian 2 de 6 palabras». `similarity` pasa a ser el coseno con que el par fue
+candidato, y `wordSimilarity`, el parecido de palabras que lo propuso sin Ollama. No hace falta un campo para la ruta: un
+`JUDGED` con coseno 0 es de la ruta sin Ollama, y cada corrida nombra sus herramientas en su fila.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: nearduplicates
+        _change: modify
+        models:
+          - name: NearDuplicateDiagnosis
+            _change: modify
+            type: record
+            fields:
+              - name: similarity
+                type: double
+                _change: modify
+                description: "Con Ollama, el coseno de los vectores con que el par fue candidato del juez (JUDGED), redondeado a dos decimales en la evidencia: «Para claude -p es el mismo ejercicio que …355e: parecido 0,87». 0 si no se calculó: sin Ollama o por el comodín. En los informes de la versión del 30/9, el parecido con que marcó SIMILARITY."
+              - name: wordSimilarity
+                type: double
+                _change: modify
+                description: "El parecido de palabras de los dos ejercicios terminados. Sin Ollama es el que hizo al par candidato del juez (JUDGED), y la evidencia lo dice en palabras: «Para claude -p es el mismo ejercicio que …355e: cambian 2 de 6 palabras». Con Ollama la evidencia no lo usa."
+```
+
+## Poner al día la descripción del paquete
+
+La descripción de `nearduplicates` decía que el parecido de 0,95 marcaba; ahora cuenta el paso por pares, las dos
+versiones con sus piezas y el filtro del examen, que es lo que lee primero quien abre el paquete.
+
+```architecture
+modules:
+  - name: audit-domain
+    _change: modify
+    packages:
+      - name: nearduplicates
+        _change: modify
+        description: |
+          El analizador near-duplicates (FEAT-DUPAR): compara cada ejercicio con los anteriores de su tema, como exact-duplicates. Un par es candidato si pide la misma respuesta comparada como el corrector y no es un duplicado exacto (R001); es casi duplicado si queda igual al tapar pronombres, demostrativos, posesivos y el tiempo del auxiliar, o si el juez de pares —claude -p con la guía de near-duplicates-pair-judge, el mismo con Ollama y sin él— dice que para el alumno es el mismo ejercicio (R002). Ningún parecido marca solo: sólo elige los candidatos del juez. Con Ollama, los vectores de nomic-embed-text desde un coseno de 0,80, que corren siempre y sin tope: --budget near-duplicates=N limita sólo a claude -p (R009); sin Ollama, el parecido de palabras desde 0,6 (R008). Las consultas —un vector por ejercicio y un juicio por par candidato— van por el runtime de los jueces, que las guarda en el libro y las reusa, aplica el freno del examen, el tope y las consultas a la vez, y declara la cobertura y el costo. Cada ruta es una versión examinada que rinde su examen: con Ollama, nomic-embed-text con su versión y su prefijo, el umbral y la versión del juez (R010); sin Ollama, el parecido de palabras y la versión del juez (R007). PairStepEvaluator hace que el juez y los vectores enuncien esa versión sin cambiar su id: el freno es el del paso entero, y el libro reusa lo que el juez ya contestó con Ollama y sin él. En un examen sólo se juzgan los pares cuya copia es un ejercicio del archivo (R007). Familia errores, evalúa el ejercicio, costo de la ficha modelo pago, con una regla de modelo local que sólo propone, similar-candidates: no entra en la corrida base. Sólo los registros y el proveedor son públicos.
+```
+
+## Lo que se toca a mano y lo que espera al qa-tester
+
+- `Main` arma el juez con `AgentJudgeSpec("near-duplicates-pair-judge", "sameExerciseVerdict", …)`; el agente viejo,
+  `near-duplicates-same-exercise`, queda en disco sin uso.
+- Cuerpos después del `generate`: `DefaultNearDuplicatesConfig` (0,80 y las dos versiones; su constructor de prueba pasa
+  a recibir el umbral de candidatos), `PairStepEvaluator`, el proveedor (las dos sesiones y la ficha) y el analizador (las
+  dos tandas, el filtro del examen y la cobertura con el juez solo).
+- Pruebas: este parche no declara ninguna. Dejan de valer las que fijan que el 0,95 marca y su evidencia «Dice lo mismo
+  que …», la regla `same-meaning` en la ficha y en el costo de los hallazgos, la ruta con Ollama «nunca con claude -p» y
+  el 0,95 de la configuración; `DefaultNearDuplicatesConfigTest` llama a `similarityThreshold()`, que sale, y la ficha de
+  prueba de `IAuditEngineTest` todavía dice `same-meaning`. F-DUPAR-J001 cambia el camino 2 y suma el 6 y el 7. Faltan
+  R009, R010 y el filtro del examen.
+- Exámenes: las dos versiones son nuevas y no tienen examen; hasta que rindan y aprueben, `near-duplicates` no publica en
+  el curso. Este parche se aplica antes de que el qa-tester proponga sus nombres, que van en un parche sólo de pruebas.
