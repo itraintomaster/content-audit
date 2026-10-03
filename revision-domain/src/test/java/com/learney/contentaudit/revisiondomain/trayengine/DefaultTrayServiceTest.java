@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.auditdomain.finding.Finding;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
@@ -21,6 +22,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
+import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchNotPublishableException;
 import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
@@ -35,6 +37,8 @@ import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 import com.learney.contentaudit.revisiondomain.batch.OutcomeCount;
 import com.learney.contentaudit.revisiondomain.batchengine.TandaFixture;
 import com.learney.contentaudit.revisiondomain.blindsample.PairAnswer;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
@@ -46,6 +50,7 @@ import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
 import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
 import com.learney.contentaudit.revisiondomain.panelengine.DefaultPanelRunnerFactory;
 import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
+import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
 import com.learney.contentaudit.revisiondomain.tray.RememberedDecision;
 import com.learney.contentaudit.revisiondomain.tray.Tray;
 import com.learney.contentaudit.revisiondomain.tray.TrayAnswer;
@@ -559,6 +564,48 @@ public class DefaultTrayServiceTest {
         }
     }
 
+    /** What the verdict of the A1 batch ends with: the five judges of the photo of 1/10 without approval (F-CJUEZ-R004). */
+    private static final String JUDGES_WITHOUT_APPROVAL = "juez sin aprobar: Consigna que no se cumple, Opción múltiple "
+            + "mal armada, Más de una respuesta válida, Error de gramática, Ejercicio casi repetido";
+
+    private static final String NOT_TAKEN_REASON = "sin examen: la versión vigente del juez no rindió el examen fijo";
+
+    private static final String FAILED_REASON = "reprobada: la versión vigente del juez reprobó el examen fijo";
+
+    /** The comparison of the A1 batch that cannot be decided, with its verdict ending by naming the judges without approval. */
+    private static BatchComparison undecidableNamingTheJudgesWithoutApproval(ProjectionScope scope) {
+        BatchComparison comparison = TandaFixture.comparison(scope, List.of(), VerdictKind.UNDECIDABLE);
+        comparison.setVerdict(new BatchVerdict(VerdictKind.UNDECIDABLE, new ArrayList<>(), new ArrayList<>(), null,
+                "No se puede decidir: ningún piso falla, pero 28 pisos sin decidir y 601 cambios sin evaluar por algún "
+                        + "analizador; " + JUDGES_WITHOUT_APPROVAL, null));
+        return comparison;
+    }
+
+    /**
+     * The account of a judge in a closing of the A1 batch without a tope: it reads what the batch changed -- 601
+     * exercises before and after, or its 30 themes --, spent nothing, and decided its floors only if its exam is approved.
+     */
+    private static BatchJudgeAccount account(String judge, String displayName, AuditTarget unit, JudgeExamStatus exam) {
+        boolean approved = exam == JudgeExamStatus.APPROVED;
+        String reason = approved ? null : exam == JudgeExamStatus.FAILED ? FAILED_REASON : NOT_TAKEN_REASON;
+        int units = unit == AuditTarget.KNOWLEDGE ? 60 : 1202;
+        return new BatchJudgeAccount(judge, displayName, unit, approved, exam, reason, units, null, 0, 0, units,
+                approved ? 11 : 7, approved ? 0 : 4, null, false);
+    }
+
+    /** The eight judges of the photo of 1/10 that read what the A1 batch changed, in the order of the catalog. */
+    private static List<BatchJudgeAccount> judgesOfTheA1Batch() {
+        return List.of(
+                account("quiz-instruction", "Consigna que no se cumple", AuditTarget.QUIZ, JudgeExamStatus.NOT_TAKEN),
+                account("multiple-choice-validity", "Opción múltiple mal armada", AuditTarget.QUIZ, JudgeExamStatus.FAILED),
+                account("translation-sense", "Traducción que no corresponde", AuditTarget.QUIZ, JudgeExamStatus.APPROVED),
+                account("single-answer", "Más de una respuesta válida", AuditTarget.QUIZ, JudgeExamStatus.FAILED),
+                account("mini-theory", "Miniteoría con error", AuditTarget.KNOWLEDGE, JudgeExamStatus.APPROVED),
+                account("grammar", "Error de gramática", AuditTarget.QUIZ, JudgeExamStatus.FAILED),
+                account("naturalness", "Oración poco natural", AuditTarget.QUIZ, JudgeExamStatus.APPROVED),
+                account("near-duplicates", "Ejercicio casi repetido", AuditTarget.KNOWLEDGE, JudgeExamStatus.FAILED));
+    }
+
     @Test
     @DisplayName("should close the batch with an empty request before publishing it from the tray, paying no judge")
     @Tag("FEAT-CJUEZ")
@@ -633,6 +680,36 @@ public class DefaultTrayServiceTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R004")
     public void shouldRefuseToPublishFromTheTrayWhileAJudgeWithoutApprovalReadsWhatTheA1BatchChangedCopyingJuezSinAprobarConsignaQueNoSeCumpleFromTheVerdictOfItsLastClosingAlthoughItsBlindSampleIsNotAnsweredYet() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R004 inv. 3: the A1 batch was closed twice. The verdict of the first only lacked its blind sample; the verdict of
+        // the last cannot be decided because five judges without approval read what the batch changed, and ends by naming
+        // them. José has not answered the blind sample yet. The OK from the tray is refused, and the refusal copies from
+        // the verdict of the last closing which judges are without approval, instead of asking only for the blind sample.
+        BandejaFixture.Bandeja bandeja = new BandejaFixture.Bandeja();
+        CorrectionBatch batch = bandeja.saved();
+        List<BatchClosing> closings = new ArrayList<>(batch.getClosings());
+        closings.add(new BatchClosing(BandejaFixture.CLOSED_AT.plusSeconds(60), null,
+                undecidableNamingTheJudgesWithoutApproval(null),
+                new BatchGateVerdict(true, VerdictKind.UNDECIDABLE, List.of(), List.of(), List.of(), List.of(), List.of(),
+                        List.of()), List.of(), 1, new BatchCloseRequest(new LinkedHashMap<>(), null), judgesOfTheA1Batch()));
+        batch.setClosings(closings);
+        bandeja.batches.save(batch);
+        // Compared again, the batch says the same: those judges are still without approval.
+        bandeja.comparator.answer = DefaultTrayServiceTest::undecidableNamingTheJudgesWithoutApproval;
+        assertTrue(bandeja.ciega.answers.isEmpty(), "its blind sample is not answered yet");
+
+        BatchNotPublishableException refused = assertThrows(BatchNotPublishableException.class,
+                () -> bandeja.tray.publish("José", null));
+
+        assertEquals(BandejaFixture.BATCH, refused.getBatchId());
+        assertTrue(refused.getMessage().contains(JUDGES_WITHOUT_APPROVAL),
+                "the refusal copies from the verdict of the last closing the judges without approval: " + refused.getMessage());
+        for (String judgeWithItsExamApproved : List.of("Traducción que no corresponde", "Miniteoría con error",
+                "Oración poco natural")) {
+            assertFalse(refused.getMessage().contains(judgeWithItsExamApproved),
+                    "a judge with its exam approved is not named: " + refused.getMessage());
+        }
+        assertTrue(bandeja.courses.written.isEmpty(), "nothing is written");
+        assertEquals(BatchStatus.CLOSED, bandeja.saved().getStatus(), "and nothing is published");
+        assertNull(bandeja.saved().getPublication(), "the batch has no publication");
     }
 }

@@ -5,6 +5,18 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — test-writer (CJUEZ) — Lo que los 2 esbozos nuevos de R004 dan por sentado, medido con pruebas descartables
+  (ya borradas) sobre el comparador y la bandeja de hoy, sin leer su código: (1) con la cobertura de near-duplicates en
+  KNOWLEDGE y las marcas en los ejercicios, hoy «sin evaluar» deja los pisos sin decidir pero sin nombrar al juez, y un puntaje
+  no bloquea (PASSES) aunque el examen esté reprobado; (2) las mismas marcas con la cobertura en QUIZ ya dan lo que la prueba
+  pide para temas (pisos sin decidir sobre el ejercicio y decididos en el resto, cambio sin decidir para el juez, UNDECIDABLE y
+  «; juez sin aprobar: Ejercicio casi repetido» una vez al final): el arreglo mínimo es leer también el nodo del ejercicio para
+  un juez de temas; (3) marcas sólo en ejercicios de otro tema no bloquean ni nombran, hoy y con QUIZ; (4) hoy `tray.publish`
+  rechaza con «el veredicto de la tanda es «falta la muestra ciega»…» sin cerrar; si cerrara antes, con el comparador de mano
+  diciendo UNDECIDABLE y el nombre, `batchService.publish` ya copia el detalle, así que la prueba vale para las dos formas.
+  why: son los puntos donde una implementación razonable se desvía sin que el compilador lo diga; la bandeja arma el último
+  cierre con el comparador de mano para que «el último cierre» diga lo mismo con o sin cierre nuevo.
+
 2026-10-03 — developer (CJUEZ) — Cómo leer el paso de los jueces cuando una prueba falla: (1) el ensayo corre TODOS los
   jueces de la tanda sobre los cuatro recortes con tope 0 explícito, y de cada juez se lee sólo el recorte de su `unit`
   (la cobertura del recorte ajeno se ignora); (2) `reusadas` y `units` salen siempre del ensayo, `faltan` del ensayo

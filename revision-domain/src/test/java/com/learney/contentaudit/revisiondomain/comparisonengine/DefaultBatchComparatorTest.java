@@ -1253,6 +1253,52 @@ public class DefaultBatchComparatorTest {
         return mesa.compare();
     }
 
+    /** The two exercises of «Afirmativas con be»: the theme the batch of «I love a lot of vegetables.» does not touch. */
+    static final List<String> WITH_BE_QUIZZES = List.of(SHE_IS_ENGLISH, LIVING_ROOM);
+
+    /**
+     * The batch of «I love a lot of vegetables.» whose projection has near-duplicates, with the exam of its version in
+     * {@code exam}, compare the exercises {@code compared} of one theme as the real analyzer does: its coverage counts
+     * topics -- it reached that one --, but its marks are on the exercises it compares, never on the theme. With
+     * {@code leftUnevaluated} it marks each of them as unevaluated, because it could not compare it; without it, with a
+     * score, the verdict its ledger already had.
+     */
+    static BatchComparison compareVegetablesWithNearDuplicates(JudgeExamStatus exam, List<String> compared,
+            boolean leftUnevaluated) {
+        Mesa mesa = mesaOfJudges(NEAR_DUPLICATES);
+        Foto projected = hoy(NEAR_DUPLICATES)
+                .coverage(coverage(NEAR_DUPLICATES, AuditTarget.KNOWLEDGE, 1, leftUnevaluated ? 1 : 0, exam));
+        for (String quiz : compared) {
+            if (leftUnevaluated) {
+                projected.unevaluated(quiz, NEAR_DUPLICATES);
+            } else {
+                projected.judged(quiz, NEAR_DUPLICATES);
+            }
+        }
+        mesa.batch(hoy(NEAR_DUPLICATES), projected, cambio(P_VEGETABLES, VEGETABLES));
+        return mesa.compare();
+    }
+
+    /**
+     * What a judge without approval that marks the exercise the batch changed does to the comparison of
+     * {@link #compareVegetablesWithNearDuplicates}: its floors and those of any error stay undecided over that exercise
+     * and are decided elsewhere, the change stays undecided for it, and the verdict cannot be decided.
+     */
+    static void assertBlocksWhatTheBatchChanged(BatchComparison comparison, String how) {
+        assertFloors(comparison, NEAR_DUPLICATES, GoalStatus.UNDECIDABLE, NODES_ABOVE_VEGETABLES,
+                "R004: a judge without approval that marks what the batch changed decides nothing over it, " + how);
+        assertFloors(comparison, "algún error", GoalStatus.UNDECIDABLE, NODES_ABOVE_VEGETABLES,
+                "R004: nor does any error, which counts what that judge leaves open, " + how);
+        assertFloors(comparison, NEAR_DUPLICATES, GoalStatus.MET, NODES_WITHOUT_VEGETABLES,
+                "R004: only over what the batch changed, " + how);
+        assertFloors(comparison, "algún error", GoalStatus.MET, NODES_WITHOUT_VEGETABLES,
+                "R004: and any error elsewhere too, " + how);
+        assertEquals(List.of(NEAR_DUPLICATES), change(comparison, P_VEGETABLES).getUndecidedAnalyzers(),
+                "R004: the change stays undecided for that judge, " + how);
+        assertEquals(VerdictKind.UNDECIDABLE, comparison.getVerdict().getKind(),
+                "R004: no floor fails, and one cannot be decided, " + how);
+    }
+
     static ProjectedChange cambio(String proposalId, String quizId) {
         return new ProjectedChange(proposalId, AuditTarget.QUIZ, quizId, true);
     }
@@ -2386,6 +2432,54 @@ public class DefaultBatchComparatorTest {
     @Tag("F-CJUEZ-R004")
     public void shouldBlockAndNameNearduplicatesFailedAJudgeWhoseCoverageCountsTopicsButThatMarksTheExercisesItComparesWithAScoreOrAsUnevaluatedWhenItMarksAnExerciseTheBatchChangedEndingTheDetailOfTheVerdictWithJuezSinAprobarEjercicioCasiRepetido(
             ) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // near-duplicates failed its exam. Its coverage counts topics -- it compares the exercises of one theme --, but,
+        // as the coverage says, its marks go on the exercises it compares, never on the theme. The batch changes one of
+        // them: «I love a lot of vegetables.», in «Afirmativas regulares», whose four exercises it compares.
+
+        // As unevaluated: it could not compare them. The same marks with its exam approved give the detail the verdict
+        // has before anyone is named.
+        BatchComparison approvedUnevaluated = compareVegetablesWithNearDuplicates(JudgeExamStatus.APPROVED,
+                REGULAR_QUIZZES, true);
+        String everythingElse = approvedUnevaluated.getVerdict().getDetail();
+        assertEquals(VerdictKind.UNDECIDABLE, approvedUnevaluated.getVerdict().getKind(),
+                "the exercise it left unevaluated already leaves the verdict undecided");
+        assertFalse(everythingElse.contains("juez sin aprobar"), "R004: nobody names a judge whose exam is approved");
+
+        BatchComparison unevaluated = compareVegetablesWithNearDuplicates(JudgeExamStatus.FAILED, REGULAR_QUIZZES, true);
+
+        assertBlocksWhatTheBatchChanged(unevaluated, "as unevaluated");
+        assertEquals(everythingElse + "; juez sin aprobar: Ejercicio casi repetido", unevaluated.getVerdict().getDetail(),
+                "R004: the detail as it was, and after it the judge by the name of its card, once -- although it marks "
+                        + "four exercises and not the theme");
+
+        // With a score: the verdict its ledger already had of those exercises. With its exam approved, it decides them.
+        BatchComparison approvedScored = compareVegetablesWithNearDuplicates(JudgeExamStatus.APPROVED, REGULAR_QUIZZES,
+                false);
+        assertFloors(approvedScored, NEAR_DUPLICATES, GoalStatus.MET, NODES_ABOVE_VEGETABLES,
+                "R004: with the exam approved, the ledger's verdicts decide what the batch changed");
+        assertFloors(approvedScored, "algún error", GoalStatus.MET, NODES_ABOVE_VEGETABLES,
+                "R004: and any error with them");
+        assertEquals(VerdictKind.PASSES, approvedScored.getVerdict().getKind(), "R004: so the batch passes");
+
+        BatchComparison scored = compareVegetablesWithNearDuplicates(JudgeExamStatus.FAILED, REGULAR_QUIZZES, false);
+
+        assertBlocksWhatTheBatchChanged(scored, "with a score");
+        String detail = scored.getVerdict().getDetail();
+        assertTrue(detail.startsWith("No se puede decidir: ningún piso falla"), detail);
+        assertTrue(detail.endsWith("; juez sin aprobar: Ejercicio casi repetido"),
+                "R004: after everything else, by the name of its card: " + detail);
+        assertEquals(1, detail.split("juez sin aprobar", -1).length - 1, "R004: once: " + detail);
+
+        // Marking the exercises of another theme -- «Afirmativas con be» --, it reads nothing the batch changed.
+        BatchComparison elsewhere = compareVegetablesWithNearDuplicates(JudgeExamStatus.FAILED, WITH_BE_QUIZZES, true);
+
+        assertFloors(elsewhere, NEAR_DUPLICATES, GoalStatus.MET, NODES_ABOVE_VEGETABLES,
+                "R004: it reads nothing the batch changed: its floors are decided");
+        assertFloors(elsewhere, NEAR_DUPLICATES, GoalStatus.MET, NODES_WITHOUT_VEGETABLES, "R004: everywhere");
+        assertEquals(List.of(), change(elsewhere, P_VEGETABLES).getUndecidedAnalyzers(),
+                "R004: and the change is not left undecided for it");
+        assertEquals(VerdictKind.PASSES, elsewhere.getVerdict().getKind(), "R004: it blocks nothing");
+        assertFalse(elsewhere.getVerdict().getDetail().contains("juez sin aprobar"),
+                elsewhere.getVerdict().getDetail());
     }
 }

@@ -4,6 +4,14 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — test-writer (CJUEZ) — Los 2 esbozos nuevos de F-CJUEZ-R004 (huecos del control de A1) implementados:
+  `DefaultBatchComparatorTest` (near-duplicates reprobado, cobertura en KNOWLEDGE, marcas en los ejercicios) y
+  `DefaultTrayServiceTest` (publicar desde la bandeja copia «juez sin aprobar: …» del último cierre). Compilan; fallan sólo
+  por el comportamiento que falta (el comparador deja los pisos sin decidir pero no nombra al juez; la bandeja rechaza con
+  «falta la muestra ciega» sin nombrarlo); las otras 82 de las dos clases siguen verdes.
+  Next: el developer: para un juez de temas el comparador tiene que leer también las marcas del nodo del ejercicio, y la
+  bandeja tiene que copiar el «juez sin aprobar: …» del veredicto del último cierre en su rechazo; ver fix-log.
+
 2026-10-03 — qa-tester (CJUEZ) — Parche sólo de pruebas propuesto (--replace) y validado: 2 handwrittenTests nuevas de
   F-CJUEZ-R004 por los huecos del control de A1. DefaultBatchComparator: near-duplicates reprobado, con cobertura por temas
   y sus marcas (puntaje o sin evaluar) en los ejercicios que compara, bloquea sus pisos sobre lo que cambió y el veredicto lo
