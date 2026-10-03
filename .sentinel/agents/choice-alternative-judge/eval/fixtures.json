@@ -890,6 +890,32 @@
       }
     },
     {
+      "caseId": "elemento-de-relleno",
+      "note": "Sin nada que listar, el juez deja un elemento vacío o con NONE en vez de la lista vacía: no dice nada y se descarta.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "",
+            "severity": "NONE",
+            "reason": ""
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "Sólo la correcta queda natural en la oración tal como se lee."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [],
+          "correctProblem": null,
+          "rationale": "Sólo la correcta queda natural en la oración tal como se lee."
+        }
+      }
+    },
+    {
       "caseId": "falta-correct-problem",
       "note": "correctProblem es parte del objeto cerrado aunque vaya null.",
       "inputs": "musica",

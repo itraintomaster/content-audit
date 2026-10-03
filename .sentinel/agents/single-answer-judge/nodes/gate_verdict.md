@@ -18,6 +18,8 @@ description: |
   cuenta; con contenido, frena.
   Una coma colgante antes de cerrar un objeto o una lista tampoco: se lee el
   JSON sin ella.
+  Un elemento de relleno en una lista, sin texto y con lo demás vacío o NONE,
+  tampoco: se descarta.
 edges:
   - { to: emit, when: passed }
   - { to: evaluate, when: failed }

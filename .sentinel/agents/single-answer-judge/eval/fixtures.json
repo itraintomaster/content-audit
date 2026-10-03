@@ -753,6 +753,30 @@
       }
     },
     {
+      "caseId": "elemento-de-relleno",
+      "note": "Sin nada que listar, el juez deja un elemento vacío o con NONE en vez de la lista vacía: no dice nada y se descarta.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "",
+            "gap": 1,
+            "kind": "NONE",
+            "severity": "",
+            "reason": ""
+          }
+        ],
+        "rationale": "Sólo la respuesta aceptada encaja con la pista y el contexto."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [],
+          "rationale": "Sólo la respuesta aceptada encaja con la pista y el contexto."
+        }
+      }
+    },
+    {
       "caseId": "respuesta-vacia",
       "note": "answer no va vacía.",
       "inputs": "gente",

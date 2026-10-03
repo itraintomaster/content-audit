@@ -236,6 +236,34 @@ def is_empty(value):
     return isinstance(value, (list, dict)) and not value
 
 
+NOTHING = ("NONE", "N/A", "NA", "NULL")
+
+
+def says_nothing(value):
+    """Vacío, una marca de «nada» (NONE) o un número suelto."""
+    if is_empty(value):
+        return True
+    if isinstance(value, str):
+        return value.strip().upper() in NOTHING
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
+def is_placeholder(item, texts):
+    """Un elemento de relleno: sin ningún texto en `texts` y con el resto sin
+    decir nada.
+
+    A veces el juez, sin nada que listar, deja en la lista un elemento así
+    ({"code": "NONE", "constraint": "", …}) en vez de dejarla vacía. No dice
+    nada: se descarta. Un elemento con algún texto sigue pasando por todas las
+    validaciones.
+    """
+    return (
+        isinstance(item, dict)
+        and all(is_empty(item.get(key)) for key in texts)
+        and all(says_nothing(value) for key, value in item.items() if key not in texts)
+    )
+
+
 def closed_object(value, keys, where):
     """Exactamente esas claves.
 
@@ -365,6 +393,7 @@ correct_is_valid = boolean(verdict["correctIsValid"], "correctIsValid")
 alternatives = verdict["validAlternatives"]
 if not isinstance(alternatives, list):
     fail("validAlternatives tiene que ser un array")
+alternatives = [item for item in alternatives if not is_placeholder(item, ('label', 'reason'))]
 
 options = options_from_inputs()
 correct_labels = {label for label, correct in options if correct} if options is not None else set()
