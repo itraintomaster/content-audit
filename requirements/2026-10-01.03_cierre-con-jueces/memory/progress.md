@@ -4,6 +4,14 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — developer (CJUEZ) — Los 2 arreglos de R004 del control de A1 hechos, sin tocar las pruebas: `UnapprovedJudges.reading`
+  lee también las marcas del propio ejercicio para un juez de temas (near-duplicates), y `DefaultTrayService.publish` copia el
+  «juez sin aprobar: …» del veredicto del último cierre en el rechazo por la muestra ciega. Las 59 de F-CJUEZ en verde y las
+  suites completas sin fallas: revision-domain 711 y audit-cli 540, reactor en BUILD SUCCESS.
+  Next: en la bandeja, `Tray.blockers` con la muestra abierta sigue diciendo sólo «falta la muestra ciega» (la
+  `DefaultTrayAssemblerTest` lo fija sin jueces); si José quiere verlo también al mirar la bandeja y no sólo al publicar,
+  falta ese bloqueo.
+
 2026-10-03 — test-writer (CJUEZ) — Los 2 esbozos nuevos de F-CJUEZ-R004 (huecos del control de A1) implementados:
   `DefaultBatchComparatorTest` (near-duplicates reprobado, cobertura en KNOWLEDGE, marcas en los ejercicios) y
   `DefaultTrayServiceTest` (publicar desde la bandeja copia «juez sin aprobar: …» del último cierre). Compilan; fallan sólo

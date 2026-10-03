@@ -5,6 +5,13 @@ symptom read this before trying new approaches. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — developer (CJUEZ) — near-duplicates reprobado dejaba sus pisos sin decidir pero el veredicto no lo nombraba:
+  su cobertura es de temas (KNOWLEDGE) pero marca los ejercicios que compara, y `UnapprovedJudges.reading` sólo miraba el
+  nodo del tema para un juez de temas. Ahora un juez de temas lee un ejercicio si marcó el ejercicio o su tema; uno de
+  ejercicios, sólo el ejercicio; marcas sólo en ejercicios de otro tema, sin cambios, siguen sin bloquear ni nombrar.
+  why: el mismo `reading` alimenta los pisos, el cambio sin decidir y el nombre del veredicto, así que un solo arreglo
+  cubre los tres.
+
 2026-10-03 — test-writer (CJUEZ) — Lo que los 2 esbozos nuevos de R004 dan por sentado, medido con pruebas descartables
   (ya borradas) sobre el comparador y la bandeja de hoy, sin leer su código: (1) con la cobertura de near-duplicates en
   KNOWLEDGE y las marcas en los ejercicios, hoy «sin evaluar» deja los pisos sin decidir pero sin nombrar al juez, y un puntaje

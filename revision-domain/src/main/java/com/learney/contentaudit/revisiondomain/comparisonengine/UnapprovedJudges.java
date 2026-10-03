@@ -22,8 +22,10 @@ import java.util.Set;
  * here -- its exercises are already left unevaluated, as always.
  *
  * <p>A judge of exercises reads an exercise when it left a mark on it -- a score, a «not evaluated» or an evaluation in
- * part --; a judge of topics, when it left it on the topic of the exercise. A judge that left none reads nothing the batch
- * changed, so it blocks nothing.
+ * part --; a judge of topics, when it left it on the topic of the exercise or on the exercise itself: the coverage of
+ * near-duplicates counts topics -- it compares the exercises of one theme --, but, as the real analyzer does, it marks
+ * the exercises it compares, never the theme. A judge that left none reads nothing the batch changed, so it blocks
+ * nothing: one that marks only the exercises of another topic, with no change, is not read.
  */
 final class UnapprovedJudges {
 
@@ -63,13 +65,17 @@ final class UnapprovedJudges {
         return units.isEmpty();
     }
 
-    /** The judges without an approved exam that read this exercise, in the order of the photo. */
+    /**
+     * The judges without an approved exam that read this exercise, in the order of the photo: the ones that marked the
+     * exercise and, among the judges of topics, the ones that marked its topic.
+     */
     Set<String> reading(AuditNode quiz) {
         Set<String> readers = new LinkedHashSet<>();
+        AuditNode topic = quiz.ancestor(AuditTarget.KNOWLEDGE).orElse(null);
         for (Map.Entry<String, AuditTarget> judge : units.entrySet()) {
-            AuditNode read = judge.getValue() == AuditTarget.KNOWLEDGE ? quiz.ancestor(AuditTarget.KNOWLEDGE).orElse(null)
-                    : quiz;
-            if (read != null && marks(read, judge.getKey())) {
+            boolean reads = marks(quiz, judge.getKey())
+                    || judge.getValue() == AuditTarget.KNOWLEDGE && topic != null && marks(topic, judge.getKey());
+            if (reads) {
                 readers.add(judge.getKey());
             }
         }
