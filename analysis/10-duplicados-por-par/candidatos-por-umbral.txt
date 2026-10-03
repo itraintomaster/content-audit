@@ -1,0 +1,23 @@
+same-request pairs 24813 wildcard pairs 25 not settled by wildcard 24788
+wildcard pairs by level {'A1': 16, 'A2': 6, 'B1': 2, 'B2': 1}
+current version copies {'A1': 23, 'A2': 9, 'B1': 12, 'B2': 1} 45 {'W': 25, 'S': 20}
+
+candidates for the pair judge (not wildcard), by cosine threshold
+thr       A1     A2     B1     B2  total | union with ws>=0.6
+0.95      8      3     10      0     21 |   703
+0.92     18     12     17      2     49 |   719
+0.90     41     24     27      2     94 |   743
+0.88     81     33     56      7    177 |   796
+0.86    139     51    137      8    335 |   896
+0.85    174     65    190     11    440 |   962
+0.84    237     77    266     17    597 |  1063
+0.82    379    123    430     27    959 |  1340
+0.80    513    200    710     45   1468 |  1755
+0.78    732    319   1045     71   2167 |  2381
+0.75   1223    618   1646    141   3628 |  3757
+0.70   2636   1727   3478    364   8205 |  8252
+ws>=0.6 (route without Ollama): {'A1': 276, 'A2': 110, 'B1': 297, 'B2': 13} 696
+pairs in [0.90,0.95): 73 {'A1': 33, 'A2': 21, 'B1': 17, 'B2': 2}
+0.9 topics with a candidate 51 copies that would be judged 89
+0.85 topics with a candidate 102 copies that would be judged 328
+0.8 topics with a candidate 146 copies that would be judged 798
