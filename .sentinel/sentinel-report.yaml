@@ -1,4 +1,4 @@
-generatedAt: 2026-10-01T15:12:06.717480Z
+generatedAt: 2026-10-03T19:40:51.860967Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -2512,6 +2512,42 @@ features:
       passing: true
       module: audit-cli
       implementation: DefaultBatchComparisonFormatter
+  - ruleId: F-FILAS-R007
+    state: PASSING
+    tests:
+    - name: "should write the undecidable floors of the verdict in the JSON, and null\
+        \ when there are none"
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultBatchComparisonFormatter
+    - name: "should say in the verdict how many floors cannot be decided, as many\
+        \ as its text counts, and the rows they belong to, once each and in the order\
+        \ of the rows"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultBatchComparator
+    - name: "should leave the undecidable floors of the verdict null when every floor\
+        \ is decided, and bring them with a verdict that fails too"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultBatchComparator
+  - ruleId: F-FILAS-R008
+    state: PASSING
+    tests:
+    - name: should write in the JSON whether each value of a row was evaluated
+      implemented: true
+      passing: true
+      module: audit-cli
+      implementation: DefaultBatchComparisonFormatter
+    - name: "should say in each value of a row whether its photo evaluated an exercise\
+        \ of the node, so a photo left open hides none of the others"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultBatchComparator
   quality:
     classes:
     - com.learney.contentaudit.auditcli.commands.DefaultCompareCommand
@@ -4428,93 +4464,93 @@ features:
   requirementFile: ./requirements/2026-10-01.03_cierre-con-jueces/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CJUEZ-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should write neither the course nor any analysis of the history when\
         \ closing with a budget, keeping the closing only in the batch"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchService
     - name: "should judge, before comparing, the exercises the batch changes on the\
         \ start course and on the course composed with its changes, with the request\
         \ of the closing"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchCloser
     - name: "should judge each exercise the batch changes twice, as the start course\
         \ has it and as the composed course leaves it, and no other exercise of the\
         \ course"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should keep in its cuts the real level and topic of each exercise, with\
         \ their labels and the instruction of the topic, so the comparison finds in\
         \ the ledger what the closing judged"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should judge with mini-theory each topic that has a changed exercise,\
         \ whole, before and after, and no other topic of the course"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: should count a change of the instruction of a topic as a change of every
         exercise of that topic
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should leave out of the after side an exercise its change leaves identical,\
         \ as a rule fix that only asks to rerecord its audio, so it is judged once"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should judge only with the judges that read the kind of exercise that\
         \ changed, leaving out multiple-choice-validity in a batch that only changed\
         \ gap exercises"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should not pay a judge whose verdicts on what the batch changed are all\
         \ in the ledger, and count them as reused"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
   - ruleId: F-CJUEZ-R002
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should print with 'batch estimate' the judges at closing over the exercises\
         \ the batch changes today, a line per judge with what it judges, reuses and\
         \ misses, and the total queries and hours of the approved ones"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: BatchCmd
     - name: should say with 'batch estimate' that the batch has not changed any exercise
         yet and that the judges are estimated after batch run
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: BatchCmd
     - name: should count in the estimate as changed today the exercises with a pending
         proposal of the batch and every exercise of a topic whose instruction changes
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchService
     - name: "should add to the estimate the account of each judge, estimated without\
         \ any query on the start course and on the course composed with the changes\
         \ of the batch"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchService
     - name: "should total in the estimate the missing queries of the approved judges\
@@ -4522,19 +4558,19 @@ features:
         \ those of quiz-instruction without an exam or of naturalness with Ollama,\
         \ and their hours at 19 s per query with 4 at once"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchService
     - name: "should estimate no judge, with 0 changed exercises, while the batch has\
         \ not changed any exercise"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchService
     - name: "should make no query when estimating, running every judge, the local\
         \ ones included, with a cap of 0 on both sides"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should give in the estimate per judge the exercises or topics it judges\
@@ -4542,145 +4578,145 @@ features:
         \ as translation-sense with two queries per exercise and mini-theory with\
         \ one per topic"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should list in the estimate a judge without an approved exam with the\
         \ reason of its exam, as quiz-instruction that never took it and single-answer\
         \ that failed it"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should mark naturalness as local in the estimate when it asks its model\
         \ in Ollama, and not when it goes by its claude -p alternative"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
   - ruleId: F-CJUEZ-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should hand the service with 'batch close --budget translation-sense=500,mini-theory=60\
         \ --cap 600' the budget of each judge and the cap of the batch"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: BatchCmd
     - name: "should exit with 2 and «El tope tiene que ser 0 o más» when 'batch close'\
         \ asks a negative budget or cap, without closing"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: BatchCmd
     - name: should exit with 2 and the message of the service when 'batch close --budget
         consigna=100' names what is not a judge of the batch
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: BatchCmd
     - name: "should print with 'batch close' the request 'batch close --budget translation-sense=…\
         ,mini-theory=…' that completes what the approved judges still miss"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: BatchCmd
     - name: should print with 'batch close' why a judge stopped after a failure of
         its service
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: BatchCmd
     - name: "should refuse a request that budgets «consigna», which is not a judge\
         \ of the batch, naming its judges, before closing or querying anything"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchService
     - name: "should refuse a request with a negative budget or a negative cap, before\
         \ closing or querying anything"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchService
     - name: "should accept a request that budgets quiz-instruction with 600, a judge\
         \ of the batch although it cannot query, and hand it to the closing as asked"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchService
     - name: "should close again with an empty request, paying no judge, when José\
         \ drops a change of a batch closed with a budget"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchService
     - name: should add the queries the judges were paid at closing to the queries
         of the batch
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchCloser
     - name: "should pay no judge when the request asks no budget and no cap, a dry\
         \ run as today"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should pay with --budget translation-sense=500 only translation-sense,\
         \ never more than 500 between its before and after cuts"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should share the cap of the batch among the approved judges in the order\
         \ of the catalog, each with what the previous ones left of it"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should never pass the cap with --budget translation-sense=1000 --cap\
         \ 1200, where translation-sense spends up to 1000 and mini-theory gets what\
         \ is left of the 1200"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should start no further query of a judge after a failure of its service,\
         \ not even on its after cut, and give the failure in its account"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should never pay naturalness asking its model in Ollama, even when --budget\
         \ names it, nor spend any cap on it"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: should pay naturalness like any other judge when it goes by its claude
         -p alternative because Ollama is not there
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should pay nothing when judging again with the same budget what an earlier\
         \ closing paid, and count it as reused"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should name as the judges of the batch, in the order of the catalog,\
         \ its analyzers that ask a model or bring a local tool, as translation-sense,\
         \ mini-theory and grammar, and not an analyzer of instant rules, as hint-coherence"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should close the batch with an empty request before publishing it from\
         \ the tray, paying no judge"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultTrayService
   - ruleId: F-CJUEZ-R004
@@ -4690,7 +4726,7 @@ features:
         \ over the exercises the batch changed, and those of any error, although the\
         \ ledger had a verdict for them, so the verdict cannot be decided"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchComparator
     - name: "should end the detail of the verdict of the A1 batch, after everything\
@@ -4698,30 +4734,38 @@ features:
         \ mal armada, Más de una respuesta válida, Error de gramática, Ejercicio casi\
         \ repetido», each judge once and in the order of the catalog"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchComparator
     - name: should keep as fails a verdict with a broken floor and still name at the
         end of its detail the judge without approval that reads what the batch changed
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchComparator
     - name: "should neither block nor name a judge without approval that reads nothing\
         \ the batch changed, as multiple-choice-validity in a batch of gap exercises\
         \ only"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchComparator
     - name: "should block and name grammar, a local tool whose exam failed, when it\
         \ reads an exercise the batch changed"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchComparator
     - name: "should block and name a judge of topics without approval, as mini-theory,\
         \ when it reads the topic of an exercise the batch changed"
+      implemented: true
+      passing: true
+      module: revision-domain
+      implementation: DefaultBatchComparator
+    - name: "should block and name near-duplicates, failed, a judge whose coverage\
+        \ counts topics but that marks the exercises it compares, with a score or\
+        \ as unevaluated, when it marks an exercise the batch changed, ending the\
+        \ detail of the verdict with «juez sin aprobar: Ejercicio casi repetido»"
       implemented: true
       passing: false
       module: revision-domain
@@ -4730,29 +4774,37 @@ features:
         \ approval, copying «juez sin aprobar: Consigna que no se cumple» into the\
         \ refusal and writing no course"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchPublisher
     - name: "should not pay a judge without an approved exam with any cap, neither\
         \ quiz-instruction named with --budget quiz-instruction=600 nor single-answer,\
         \ failed, from the cap of the batch, which goes to the approved ones"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
+    - name: "should refuse to publish from the tray while a judge without approval\
+        \ reads what the A1 batch changed, copying «juez sin aprobar: Consigna que\
+        \ no se cumple, …» from the verdict of its last closing, although its blind\
+        \ sample is not answered yet"
+      implemented: true
+      passing: false
+      module: revision-domain
+      implementation: DefaultTrayService
   - ruleId: F-CJUEZ-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should print with 'batch close' a line per judge with its visible name,\
         \ its exercises or topics, its queries spent, reused and missing, its budget\
         \ and its floors decided of the total, and the reason of one without approval"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: BatchCmd
     - name: should print with 'batch report' the same line per judge as the last closing
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: BatchCmd
     - name: "should give each judge of the closing the queries paid to it, the ones\
@@ -4760,63 +4812,63 @@ features:
         \ the last comparison, where what naturalness judged with Ollama when comparing\
         \ no longer counts"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchCloser
     - name: "should count as decided the floors of the rows of a judge in the last\
         \ comparison that are met or not met, and as undecided those that cannot be\
         \ decided"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchCloser
     - name: "should give in the report the accounts of the judges of the last closing\
         \ of the batch, and none while it was never closed"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchReportBuilder
     - name: "should give the accounts in the order of the catalog, each with the visible\
         \ name of the card of the judge, or its unique name when the card has none"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
     - name: "should record as the budget of each judge its own --budget, what was\
         \ left of the cap of the batch when its turn came, or none"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchJudgePass
   journeysCoverage:
   - journeyId: F-CJUEZ-J001
-    state: DECLARED
+    state: PASSING
     pathsCoverage:
     - pathId: path-1
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path1_josCierraSinTope_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCjuezJ001JourneyTest
     - pathId: path-2
       result: failure
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path2_josCierraConUnTopePorJuezODeLaTanda_unJuezQueLeeLoQueLaTandaCambiNoTieneSuExamenAprobado_failure
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCjuezJ001JourneyTest
     - pathId: path-3
       result: success
-      state: DECLARED
+      state: PASSING
       tests:
       - name: path3_josCierraConUnTopePorJuezODeLaTanda_todosLosJuecesQueLeenLoQueCambiEstnAprobados_success
-        implemented: false
-        passing: false
+        implemented: true
+        passing: true
         module: revision-domain
         implementation: FCjuezJ001JourneyTest
   quality:
@@ -66699,6 +66751,7 @@ elements:
         verdicts = java.util.TreeMap<>()
         families = java.util.TreeSet<>()
         withExample = 0
+        mixed = 0
         sample = String(DefaultCompareCommandTest.class.getResourceAsStream(SAMPLE).readAllBytes(), StandardCharsets.UTF_8)
 
       when:
@@ -66709,6 +66762,8 @@ elements:
         families == java.util.Set.of("ERRORS LOWER", "VOCABULARY HIGHER")
         verdicts.keySet().containsAll(List.of("IMPROVED", "WORSENED", "UNCHANGED", "NOT_EVALUATED")) is true
         withExample > 0 && withExample < rows.size() is true
+        mixed > 0 is true
+        new com.fasterxml.jackson.databind.ObjectMapper().readTree(json).get("verdict").get("undecidableFloors").get("count").asInt() > 0 is true
         json == sample
   - name: DefaultGoalsCommand
     status: EXISTS
@@ -67010,6 +67065,132 @@ elements:
         json.exit() == 0
         service.reported.get(1) == "tanda-A1-20261001T120000Z"
         json.out().contains("\"batchId\" : \"tanda-A1-20261001T120000Z\"") is true
+    - |
+      test: "should hand the service with 'batch close --budget translation-sense=500,mini-theory=60 --cap 600' the budget of each judge and the cap of the batch"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        service = Service()
+        run = run(service, "close", "--budget", "translation-sense=500,mini-theory=60", "--cap", "600")
+        asked = service.closeRequests.get(0)
+
+      then:
+        run.exit() == 0
+        service.closeRequests.size() == 1
+        asked.getJudgeBudgets() == Map.of("translation-sense", 500, "mini-theory", 60)
+        asked.getQueryCap() == Integer.valueOf(600)
+    - |
+      test: "should exit with 2 and «El tope tiene que ser 0 o más» when 'batch close' asks a negative budget or cap, without closing"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        service = Service()
+        negativeBudget = run(service, "close", "--budget", "translation-sense=-1")
+        negativeCap = run(service, "close", "--cap", "-5")
+
+      then:
+        negativeBudget.exit() == 2
+        negativeBudget.err().contains("Error: El tope tiene que ser 0 o más: --budget translation-sense=-1.") is true
+        service.closeRequests.isEmpty() is true
+        negativeCap.exit() == 2
+        negativeCap.err().contains("Error: El tope tiene que ser 0 o más: --cap -5.") is true
+        service.closeRequests.isEmpty() is true
+    - |
+      test: "should exit with 2 and the message of the service when 'batch close --budget consigna=100' names what is not a judge of the batch"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        service = Service()
+        run = run(service, "close", "--budget", "consigna=100")
+
+      then:
+        run.exit() == 2
+        run.err().contains("Error: «consigna» no es un juez de la tanda tanda-A1-20261001T120000Z. Sus" + " jueces: translation-sense, mini-theory, quiz-instruction.") is true
+        service.closeRequests.isEmpty() is true
+    - |
+      test: "should print with 'batch close' a line per judge with its visible name, its exercises or topics, its queries spent, reused and missing, its budget and its floors decided of the total, and the reason of one without approval"
+      trace: FEAT-CJUEZ / F-CJUEZ-R005
+
+      given:
+        service = Service()
+        run = run(service, "close")
+
+      then:
+        run.exit() == 0
+        run.out().contains("Jueces (3):") is true
+        run.out().contains("  Sentido de la traducción (translation-sense): 4 ejercicios; gastadas 0," + " reusadas 3, faltan 1; sin tope; pisos decididos 1 de 2") is true
+        run.out().contains("  Miniteoría (mini-theory): 2 temas; gastadas 0, reusadas 2, faltan 0; sin" + " tope; pisos decididos 1 de 1") is true
+        run.out().contains("  Consigna que no se cumple (quiz-instruction): 4 ejercicios; gastadas 0," + " reusadas 0, faltan 4; sin tope; pisos decididos 0 de 2 — sin aprobar: sin examen") is true
+    - |
+      test: "should print with 'batch report' the same line per judge as the last closing"
+      trace: FEAT-CJUEZ / F-CJUEZ-R005
+
+      given:
+        service = Service()
+        run = run(service, "report")
+
+      then:
+        run.exit() == 0
+        run.out().contains("Jueces (3):") is true
+        run.out().contains("  Sentido de la traducción (translation-sense): 4 ejercicios; gastadas 0," + " reusadas 3, faltan 1; sin tope; pisos decididos 1 de 2") is true
+        run.out().contains("  Miniteoría (mini-theory): 2 temas; gastadas 0, reusadas 2, faltan 0; sin" + " tope; pisos decididos 1 de 1") is true
+        run.out().contains("  Consigna que no se cumple (quiz-instruction): 4 ejercicios; gastadas 0," + " reusadas 0, faltan 4; sin tope; pisos decididos 0 de 2 — sin aprobar: sin examen") is true
+    - |
+      test: "should print with 'batch close' the request 'batch close --budget translation-sense=…,mini-theory=…' that completes what the approved judges still miss"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        service = Service()
+        translationSense = BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null, 1202, null, 0, 2004, 400, 0, 1, null, false)
+        miniTheory = BatchJudgeAccount("mini-theory", "Miniteoría", AuditTarget.KNOWLEDGE, true, JudgeExamStatus.APPROVED, null, 60, null, 0, 40, 20, 0, 1, null, false)
+        run = run(service, "close")
+
+      then:
+        run.exit() == 0
+        run.out().contains("Para decidir lo que falta: content-audit batch close --budget" + " translation-sense=400,mini-theory=20") is true
+    - |
+      test: "should print with 'batch close' why a judge stopped after a failure of its service"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        service = Service()
+        translationSense = BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null, 4, 100, 37, 0, 3, 1, 1, "el servicio de modelos no respondió (529)", false)
+        run = run(service, "close", "--cap", "100")
+
+      then:
+        run.exit() == 0
+        run.out().contains("  Sentido de la traducción (translation-sense): 4 ejercicios; gastadas 37," + " reusadas 0, faltan 3; tope 100; pisos decididos 1 de 2 — se cortó: el servicio de modelos no" + " respondió (529)") is true
+    - |
+      test: "should print with 'batch estimate' the judges at closing over the exercises the batch changes today, a line per judge with what it judges, reuses and misses, and the total queries and hours of the approved ones"
+      trace: FEAT-CJUEZ / F-CJUEZ-R002
+
+      given:
+        service = Service()
+        translationSense = BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null, 1202, null, 0, 2004, 400, 0, 0, null, false)
+        miniTheory = BatchJudgeAccount("mini-theory", "Miniteoría", AuditTarget.KNOWLEDGE, true, JudgeExamStatus.APPROVED, null, 60, null, 0, 40, 20, 0, 0, null, false)
+        quizInstruction = BatchJudgeAccount("quiz-instruction", "Consigna que no se cumple", AuditTarget.QUIZ, false, JudgeExamStatus.NOT_TAKEN, "sin examen", 1202, null, 0, 0, 1202, 0, 0, null, false)
+        run = run(service, "estimate")
+
+      then:
+        run.exit() == 0
+        run.out().contains("Jueces al cerrar, sobre los 601 ejercicios que la tanda cambia hoy:") is true
+        run.out().contains("  Sentido de la traducción (translation-sense): 1202 ejercicios; reusadas" + " 2004, faltan 400") is true
+        run.out().contains("  Miniteoría (mini-theory): 60 temas; reusadas 40, faltan 20") is true
+        run.out().contains("  Consigna que no se cumple (quiz-instruction): 1202 ejercicios; reusadas 0," + " faltan 1202 — sin aprobar: sin examen") is true
+        run.out().contains("Consultas de los jueces aprobados que se pagan: 420, unas 0,55 horas a 19 s" + " por consulta con 4 consultas a la vez.") is true
+        service.runs.isEmpty() is true
+    - |
+      test: "should say with 'batch estimate' that the batch has not changed any exercise yet and that the judges are estimated after batch run"
+      trace: FEAT-CJUEZ / F-CJUEZ-R002
+
+      given:
+        service = Service()
+        run = run(service, "estimate")
+
+      then:
+        run.exit() == 0
+        run.out().contains("Jueces al cerrar: la tanda todavía no cambió ningún ejercicio: los jueces se" + " estiman después de batch run.") is true
+        run.out().contains("Jueces al cerrar, sobre los") is false
   - name: TrayCmd
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/commands/TrayCmd.java
@@ -67820,6 +68001,13 @@ elements:
         \ leave it out"
       status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultBatchComparisonFormatterTest.java
+    - name: "should write the undecidable floors of the verdict in the JSON, and null\
+        \ when there are none"
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultBatchComparisonFormatterTest.java
+    - name: should write in the JSON whether each value of a row was evaluated
+      status: EXISTS
+      testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/formatting/DefaultBatchComparisonFormatterTest.java
     testCleanViews:
     - |
       test: "should write the change of a score in points with its sign and the word, «−0,5 puntos», never with «%»"
@@ -67921,6 +68109,42 @@ elements:
         row.get("example").isNull() is true
         text.contains("\"example\" : null") is true
         row.get("changeVerdict").asText() == "NOT_EVALUATED"
+    - |
+      test: "should write the undecidable floors of the verdict in the JSON, and null when there are none"
+      trace: FEAT-FILAS / F-FILAS-R007
+
+      given:
+        undecided = comparison(List.of())
+        decided = comparison(List.of())
+        formatter = DefaultBatchComparisonFormatter()
+        floors = ObjectMapper().readTree(formatter.format(undecided, "json")).get("verdict").get("undecidableFloors")
+        none = formatter.format(decided, "json")
+        verdict = ObjectMapper().readTree(none).get("verdict")
+
+      when:
+        sut.setVerdict(new BatchVerdict(VerdictKind.UNDECIDABLE, List.of(), List.of(), null, "No se puede decidir: ningún piso falla, pero 8 pisos sin decidir", new UndecidableFloors(8, List.of(new RowSubject("quiz-instruction", "Consigna que no se cumple"), new RowSubject("algún error", "Ejercicios con algún error")))))
+
+      then:
+        floors.get("count").asInt() == 8
+        floors.get("analyzers").get(0).get("subject").asText() == "quiz-instruction"
+        floors.get("analyzers").get(0).get("displayName").asText() == "Consigna que no se cumple"
+        floors.get("analyzers").get(1).get("subject").asText() == "algún error"
+        floors.get("analyzers").get(1).get("displayName").asText() == "Ejercicios con algún error"
+        verdict.has("undecidableFloors") && verdict.get("undecidableFloors").isNull() is true
+    - |
+      test: "should write in the JSON whether each value of a row was evaluated"
+      trace: FEAT-FILAS / F-FILAS-R008
+
+      given:
+        instruction = ComparisonRow("quiz-instruction", AnalyzerFamily.ERRORS, AuditTarget.KNOWLEDGE, "6814dafa7d73e7209a13d389", "Afirmativas regulares", new RowValue(0.0, 0.0, 0, true), new RowValue(0.0, 0.0, 4, false), new RowValue(0.0, 0.0, 0, true), new RowValue(0.0, 0.0, 0, true), 0.0, GoalUnit.EXERCISES, null, null, "Consigna que no se cumple", BetterDirection.LOWER, ChangeVerdict.NOT_EVALUATED, "Ejercicios que no cumplen lo que pide su consigna.", null)
+        row = ObjectMapper().readTree(new DefaultBatchComparisonFormatter().format(comparison(List.of(instruction)), "json")).get("rows").get(0)
+
+      then:
+        row.get("baseline").get("evaluated").asBoolean() is true
+        row.get("remeasuredBaseline").get("evaluated").asBoolean() is false
+        row.get("approved").get("evaluated").asBoolean() is true
+        row.get("projected").get("evaluated").asBoolean() is true
+        row.get("projected").get("evaluated").isBoolean() is true
   - name: DefaultWorkdirResolver
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolver.java
@@ -81798,985 +82022,25 @@ elements:
         \ when it reads the topic of an exercise the batch changed"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/comparisonengine/DefaultBatchComparatorTest.java
-    testCleanViews:
-    - |
-      test: "should publish for every analyzer that ran in the baseline a row in each knowledge, topic, level and the course, plus a vocabulary row and an any-error row per node"
-      trace: FEAT-METAS / F-METAS-R001
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        subjects = List.of(LEMMA_ABSENCE, LEMMA_COUNT, HINT, INSTRUCTION, "vocabulario", "algún error")
-        byNode = LinkedHashMap<>()
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy())
-
-      then:
-        new ArrayList<>(byNode.keySet()) == List.of("COURSE|root", "MILESTONE|" + A1, "TOPIC|" + PRESENT_SIMPLE, "KNOWLEDGE|" + WITH_BE, "KNOWLEDGE|" + REGULAR, "MILESTONE|" + A2, "TOPIC|" + A2_TOPIC, "KNOWLEDGE|" + A2_KNOWLEDGE, "MILESTONE|" + B1, "TOPIC|" + B1_TOPIC, "KNOWLEDGE|" + INVEST)
-        row(comparison, "vocabulario", ROOT).getLabel() == "Curso"
-        row(comparison, LEMMA_ABSENCE, REGULAR).getLabel() == "Afirmativas regulares"
-        row(comparison, "algún error", A1).getFamily() == AnalyzerFamily.ERRORS
-        row(comparison, "vocabulario", A1).getFamily() == AnalyzerFamily.VOCABULARY
-    - |
-      test: "should copy into each row the number of the baseline, of the batch start and of the projection from their reports, without computing it again"
-      trace: FEAT-METAS / F-METAS-R001
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy().vocabulary(A1, 0.9654).errors(A1, HINT, 3, 0).anyError(A1, 6, 4, 0))
-        comparison = mesa.compare()
-        vocabulary = row(comparison, "vocabulario", A1)
-        hint = row(comparison, HINT, A1)
-        any = row(comparison, "algún error", A1)
-
-      when:
-        sut.batch(Foto.deHoy().vocabulary(A1, 0.9650).errors(A1, HINT, 2, 0).anyError(A1, 6, 3, 0), Foto.deHoy().vocabulary(A1, 0.9611).errors(A1, HINT, 1, 1).anyError(A1, 6, 2, 1), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        vocabulary.getBaseline() == new RowValue(0.9654, null, 0)
-        vocabulary.getApproved() == new RowValue(0.9650, null, 0)
-        vocabulary.getProjected() == new RowValue(0.9611, null, 0)
-        hint.getBaseline().getValue() == 3.0
-        hint.getApproved().getValue() == 2.0
-        hint.getProjected().getValue() == 1.0
-        hint.getProjected().getNotEvaluated() == 1
-        any.getBaseline().getValue() == 4.0
-        any.getApproved().getValue() == 3.0
-        any.getProjected().getValue() == 2.0
-        any.getProjected().getNotEvaluated() == 1
-    - |
-      test: "should give lemma-absence on «Afirmativas regulares» 100.0 before, 99.5 after and -0.5 points, and on the topic Present Simple 99.55, 99.52 and -0.03 points, with the four pending proposals"
-      trace: FEAT-METAS / F-METAS-R001
-
-      given:
-        mesa = Mesa().baseline(Foto.del299())
-        comparison = mesa.compare()
-        knowledge = row(comparison, LEMMA_ABSENCE, REGULAR)
-        topic = row(comparison, LEMMA_ABSENCE, PRESENT_SIMPLE)
-
-      when:
-        sut.batch(Foto.del299(), Foto.del299().conLasCuatro(), LAS_CUATRO)
-
-      then:
-        comparison.getAppliedProposalIds() == List.of(P_GRANDMOTHER, P_OURSELVES, P_VEGETABLES, P_HATS)
-        knowledge.getBaseline().getValue() * 100 == 100.0
-        knowledge.getProjected().getValue() * 100 == 99.5
-        knowledge.getChange() == -0.5
-        knowledge.getUnit() == GoalUnit.POINTS
-        topic.getBaseline().getValue() * 100 == 99.55
-        topic.getProjected().getValue() * 100 == 99.52
-        topic.getChange() == -0.03
-        topic.getUnit() == GoalUnit.POINTS
-    - |
-      test: "should give the vocabulary rows of A1 and of the course 96.54 and 73.92 before and after, a change of 0.0 points, with the four pending proposals"
-      trace: FEAT-METAS / F-METAS-R001
-
-      given:
-        mesa = Mesa().baseline(Foto.del299())
-        comparison = mesa.compare()
-        a1 = row(comparison, "vocabulario", A1)
-        course = row(comparison, "vocabulario", ROOT)
-
-      when:
-        sut.batch(Foto.del299(), Foto.del299().conLasCuatro(), LAS_CUATRO)
-
-      then:
-        a1.getBaseline().getValue() * 100 == 96.54
-        a1.getProjected().getValue() * 100 == 96.54
-        a1.getChange() == 0.0
-        course.getBaseline().getValue() * 100 == 73.92
-        course.getProjected().getValue() * 100 == 73.92
-        course.getChange() == 0.0
-        course.getUnit() == GoalUnit.POINTS
-        course.getFloor().getStatus() == GoalStatus.MET
-    - |
-      test: "should count in an error row the exercises with an error, in number and in share, and give its change in exercises"
-      trace: FEAT-METAS / F-METAS-R001
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy().errors(REGULAR, HINT, 3, 0))
-        comparison = mesa.compare()
-        hint = row(comparison, HINT, REGULAR)
-
-      when:
-        sut.batch(Foto.deHoy().errors(REGULAR, HINT, 2, 0), Foto.deHoy().errors(REGULAR, HINT, 1, 0), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        hint.getBaseline() == new RowValue(3.0, 0.75, 0)
-        hint.getApproved() == new RowValue(2.0, 0.5, 0)
-        hint.getProjected() == new RowValue(1.0, 0.25, 0)
-        hint.getChange() == -2.0
-        hint.getUnit() == GoalUnit.EXERCISES
-    - |
-      test: "should leave empty, and not at zero, the error rows of a baseline that ran no error analyzer, as the base of 29/9"
-      trace: FEAT-METAS / F-METAS-R001
-
-      given:
-        mesa = Mesa().baseline(Foto.del299())
-        comparison = mesa.compare()
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy(), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        row(comparison, "vocabulario", A1).getBaseline() == new RowValue(0.9654, null, 0)
-    - |
-      test: "should attach to each row the floor and the progress goal that apply to it, with their threshold, unit and reference"
-      trace: FEAT-METAS / F-METAS-R002
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        vocabulary = row(comparison, "vocabulario", A1)
-        hint = row(comparison, HINT, A1)
-        course = row(comparison, "algún error", ROOT)
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().errors(A1, HINT, 2, 0).anyError(ROOT, 100, 26, 0), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        vocabulary.getFloor().getGoalId() == "piso de vocabulario · vocabulario · MILESTONE"
-        vocabulary.getFloor().getThreshold() == 0.5
-        vocabulary.getFloor().getUnit() == GoalUnit.POINTS
-        vocabulary.getFloor().getReference() == GoalReference.BASELINE
-        vocabulary.getFloor().getStatus() == GoalStatus.MET
-        vocabulary.getProgress() is null
-        hint.getFloor().getGoalId() == "piso de errores · hint-coherence · MILESTONE"
-        hint.getFloor().getThreshold() == 0.0
-        hint.getFloor().getUnit() == GoalUnit.EXERCISES
-        hint.getFloor().getReference() == GoalReference.BATCH_START
-        hint.getFloor().getStatus() == GoalStatus.NOT_MET
-        hint.getProgress().getGoalId() == "avance · hint-coherence · niveles"
-        hint.getProgress().getReference() == GoalReference.ABSOLUTE
-        hint.getProgress().getStatus() == GoalStatus.NOT_MET
-        course.getProgress().getGoalId() == "avance · algún error · curso"
-        course.getProgress().getThreshold() == 5.0
-        course.getProgress().getUnit() == GoalUnit.PERCENT
-        course.getProgress().getStatus() == GoalStatus.NOT_MET
-        row(comparison, "vocabulario", REGULAR).getFloor() is null
-        row(comparison, "algún error", REGULAR).getFloor().getGoalId() == "piso de errores · algún error · KNOWLEDGE"
-    - |
-      test: "should mark undecidable the any-error row of A1 with goal 0 when 30 exercises of A1 are unjudged and none of the judged ones has an error"
-      trace: FEAT-METAS / F-METAS-R002
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        row = row(comparison, "algún error", A1)
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().anyError(A1, 120, 0, 30), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        row.getFloor().getGoalId() == "algún error en A1: 0"
-        row.getProjected().getNotEvaluated() == 30
-        row.getFloor().getStatus() == GoalStatus.UNDECIDABLE
-    - |
-      test: "should mark met that row once those 30 exercises are judged and none has an error"
-      trace: FEAT-METAS / F-METAS-R002
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        row = row(comparison, "algún error", A1)
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().anyError(A1, 120, 0, 0), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        row.getProjected().getNotEvaluated() == 0
-        row.getFloor().getStatus() == GoalStatus.MET
-    - |
-      test: "should mark not met a floor that the evaluated exercises already break, whatever the unevaluated ones would give"
-      trace: FEAT-METAS / F-METAS-R002
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        a2 = row(comparison, "algún error", A2)
-
-      when:
-        sut.batch(Foto.deHoy().anyError(A1, 120, 2, 10).anyError(A2, 40, 2, 10), Foto.deHoy().anyError(A1, 120, 1, 30).anyError(A2, 40, 3, 10).unevaluated(VEGETABLES, INSTRUCTION), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        row(comparison, "algún error", A1).getFloor().getStatus() == GoalStatus.NOT_MET
-        a2.getFloor().getGoalId() == "piso de errores · algún error · MILESTONE"
-        a2.getFloor().getStatus() == GoalStatus.NOT_MET
-    - |
-      test: "should return «My grandmother ___ (come) every year.» with the reason «lemma-absence · palabra de otro nivel: grandmother es A2», and none of the other three proposals of «Afirmativas regulares»"
-      trace: FEAT-METAS / F-METAS-R003
-
-      given:
-        mesa = Mesa().baseline(Foto.del299())
-        comparison = mesa.compare()
-        grandmother = change(comparison, P_GRANDMOTHER)
-        reason = grandmother.getNewFindings().get(0)
-
-      when:
-        sut.batch(Foto.del299(), Foto.del299().conLasCuatro(), LAS_CUATRO)
-
-      then:
-        comparison.getChanges().size() == 4
-        grandmother.isReturns() is true
-        grandmother.getNodeTarget() == AuditTarget.QUIZ
-        grandmother.getNodeId() == GRANDMOTHER
-        grandmother.getNewFindings().size() == 1
-        reason.getAnalyzer() == LEMMA_ABSENCE
-        reason.getRule() == "misplaced-word"
-        reason.getIdentity().getMarker() == "grandmother"
-        part(reason, "Nivel de la palabra") == "A2"
-    - |
-      test: "should never return a change whose only new finding is of sentence length, as «He isn't in the living-room.» with 9 tokens against 3 to 8 in A1"
-      trace: FEAT-METAS / F-METAS-R003
-
-      given:
-        sentence = "He isn't in the living-room."
-        mesa = Mesa().baseline(Foto.deHoy())
-        medium = Mesa().baseline(Foto.deHoy())
-        outcome = medium.compare().getChanges().get(0)
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().rewrite(LIVING_ROOM, sentence).finding(largo(LIVING_ROOM, sentence, FindingSeverity.LOW)), cambio(P_LIVING_ROOM, LIVING_ROOM))
-
-      then:
-        mesa.compare().getChanges().get(0).isReturns() is false
-        outcome.isReturns() is false
-        outcome.getNewFindings().isEmpty() is true
-    - |
-      test: "should not return a change for a word its knowledge teaches, as invest in «$Invest time$ + gerundio», although invest is B2"
-      trace: FEAT-METAS / F-METAS-R003
-
-      given:
-        invest = "I invest time reading."
-        mesa = Mesa().baseline(Foto.deHoy())
-        taught = mesa.compare().getChanges().get(0)
-        fortnight = "I spend a fortnight reading."
-        other = Mesa().baseline(Foto.deHoy())
-        notTaught = other.compare().getChanges().get(0)
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().rewrite(INVEST_QUIZ, invest).finding(palabraDeOtroNivel(INVEST_QUIZ, invest, "invest", "B2", "B1")), cambio(P_INVEST, INVEST_QUIZ))
-
-      then:
-        taught.isReturns() is false
-        notTaught.isReturns() is true
-        notTaught.getNewFindings().get(0).getIdentity().getMarker() == "fortnight"
-    - |
-      test: "should return a change that gains a finding of the errors family, and not one that gains a finding of an analyzer that only orders, as naturalness"
-      trace: FEAT-METAS / F-METAS-R003
-
-      given:
-        hint = hallazgo(HINT, "hint-mismatch", OURSELVES, FindingSeverity.HIGH, FindingResolution.PANEL, null, "La pista no corresponde a la respuesta")
-        natural = hallazgo(NATURALNESS, "unnatural", VEGETABLES, FindingSeverity.LOW, FindingResolution.RANK_ONLY, null, "Suena poco natural")
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        errors = change(comparison, P_OURSELVES)
-        orders = change(comparison, P_VEGETABLES)
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().finding(hint).finding(natural), cambio(P_OURSELVES, OURSELVES), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        errors.isReturns() is true
-        errors.getNewFindings() == List.of(hint)
-        orders.isReturns() is false
-        orders.getNewFindings().isEmpty() is true
-    - |
-      test: "should not return a change for a new vocabulary finding of low severity, below an off-level or an out-of-catalog word"
-      trace: FEAT-METAS / F-METAS-R003
-
-      given:
-        low = hallazgo(LEMMA_COUNT, "lemma-overuse", HATS, FindingSeverity.LOW, FindingResolution.RANK_ONLY, "wear", "wear aparece más de lo esperado en A1")
-        outOfCatalog = hallazgo(LEMMA_ABSENCE, "out-of-catalog-word", OURSELVES, FindingSeverity.MEDIUM, FindingResolution.PANEL, "selfie", "selfie no está en el catálogo EVP y es poco frecuente para A1")
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().finding(low).finding(outOfCatalog), cambio(P_HATS, HATS), cambio(P_OURSELVES, OURSELVES))
-
-      then:
-        change(comparison, P_HATS).isReturns() is false
-        change(comparison, P_OURSELVES).isReturns() is true
-        change(comparison, P_OURSELVES).getNewFindings() == List.of(outOfCatalog)
-    - |
-      test: "should return a change when another node gains a finding that counts and names it as related in its evidence, as a duplicate does"
-      trace: FEAT-METAS / F-METAS-R003
-
-      given:
-        duplicate = hallazgo(DUPLICATES, "same-sentence", SHE_IS_ENGLISH, FindingSeverity.HIGH, FindingResolution.RULE, null, "La oración se repite en otro ejercicio", new FindingNodeRef(AuditTarget.QUIZ, HATS, "She is English."))
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        hats = change(comparison, P_HATS)
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().rewrite(HATS, "She is English.").finding(duplicate), cambio(P_HATS, HATS), cambio(P_OURSELVES, OURSELVES))
-
-      then:
-        hats.isReturns() is true
-        hats.getNewFindings() == List.of(duplicate)
-        change(comparison, P_OURSELVES).isReturns() is false
-    - |
-      test: "should list as fixed the findings a change made disappear, matched by their identity of analyzer, rule, node and what they mark"
-      trace: FEAT-METAS / F-METAS-R003
-
-      given:
-        gone = hallazgo(HINT, "hint-mismatch", VEGETABLES, FindingSeverity.HIGH, FindingResolution.PANEL, null, "La pista no sirve para «a lot of»")
-        stays = hallazgo(INSTRUCTION, "instruction-mismatch", VEGETABLES, FindingSeverity.MEDIUM, FindingResolution.PANEL, null, "La consigna no pide la forma")
-        staysReworded = hallazgo(INSTRUCTION, "instruction-mismatch", VEGETABLES, FindingSeverity.MEDIUM, FindingResolution.PANEL, null, "La consigna sigue sin pedir la forma")
-        mesa = Mesa().baseline(Foto.deHoy())
-        outcome = mesa.compare().getChanges().get(0)
-
-      when:
-        sut.batch(Foto.deHoy().finding(gone).finding(stays), Foto.deHoy().finding(staysReworded), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        outcome.getFixedFindings() == List.of(gone)
-        outcome.getNewFindings().isEmpty() is true
-        outcome.isReturns() is false
-    - |
-      test: "should leave a change undecided for an analyzer that did not evaluate it in the projection, instead of not returning it"
-      trace: FEAT-METAS / F-METAS-R003
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        outcome = comparison.getChanges().get(0)
-
-      when:
-        sut.samples(new SampleOutcome("muestra-1", PLAN, true, 100, 95, 0, 1, true, "cumple"))
-
-      then:
-        outcome.getUndecidedAnalyzers() == List.of(INSTRUCTION)
-        outcome.isReturns() is false
-        comparison.getVerdict().getKind() == VerdictKind.UNDECIDABLE
-        row(comparison, INSTRUCTION, REGULAR).getFloor().getStatus() == GoalStatus.UNDECIDABLE
-    - |
-      test: "should attribute a broken floor of a level or of the course to the changes of the batch, and attribute nothing while every floor holds"
-      trace: FEAT-METAS / F-METAS-R004
-
-      given:
-        holds = Mesa().baseline(Foto.del299())
-        breaks = Mesa().baseline(Foto.del299())
-        projection = breaks.batch(Foto.del299(), Foto.del299().conLasCuatro().vocabulary(A1, 0.9554).vocabulary(REGULAR, 0.80), LAS_CUATRO)
-        comparison = breaks.compare()
-        given = ArgumentCaptor.forClass((Class) List.class)
-        a1 = comparison.getBreaches().get(0)
-
-      when:
-        sut.batch(Foto.del299(), Foto.del299().conLasCuatro(), LAS_CUATRO)
-
-      then:
-        holds.compare().getBreaches().isEmpty() is true
-        given.getValue().stream().map(FloorBreach::getGoalId).toList() == List.of("piso de vocabulario · vocabulario · MILESTONE")
-        given.getValue().get(0).getRow().getNodeId() == A1
-        a1.getRow().getNodeId() == A1
-        a1.getAttributions() == List.of(new ChangeAttribution(P_GRANDMOTHER, GRANDMOTHER, -1.0, GoalUnit.POINTS))
-        verify: holds.attributor.attribute(any(), any()) x 0
-        verify: breaks.attributor.attribute(same(projection), given.capture())
-    - |
-      test: "should check the vocabulary floor against the baseline, accumulated, so a second batch of -0.4 points after another one of -0.4 breaks the floor of 0.5"
-      trace: FEAT-METAS / F-METAS-R005
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        row = row(mesa.compare(), "vocabulario", A1)
-
-      when:
-        sut.batch(Foto.deHoy().vocabulary(A1, 0.9614), Foto.deHoy().vocabulary(A1, 0.9574), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        row.getChange() == -0.8
-        row.getFloor().getReference() == GoalReference.BASELINE
-        row.getFloor().getStatus() == GoalStatus.NOT_MET
-    - |
-      test: "should check the error floor against the batch start, so a batch cannot add an error to a level already below the baseline"
-      trace: FEAT-METAS / F-METAS-R005
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy().anyError(A1, 120, 10, 0))
-        row = row(mesa.compare(), "algún error", A1)
-
-      when:
-        sut.batch(Foto.deHoy().anyError(A1, 120, 4, 0), Foto.deHoy().anyError(A1, 120, 5, 0), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        row.getChange() == -5.0
-        row.getFloor().getReference() == GoalReference.BATCH_START
-        row.getFloor().getStatus() == GoalStatus.NOT_MET
-    - |
-      test: "should evaluate with the current goals and say «metas cambiadas desde que se fijaron: piso de vocabulario 0,5 → 1,0» when the vocabulary floor sealed at 0.5 is now 1.0"
-      trace: FEAT-METAS / F-METAS-R006
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        sealed = mesa.book().seal()
-        comparison = mesa.compare()
-        row = row(comparison, "vocabulario", A1)
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().vocabulary(A1, 0.9574), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        comparison.getGoalsSealedAt() == sealed.getSealedAt()
-        comparison.getGoalChanges() == List.of(new GoalChange("piso de vocabulario", "0,5", "1,0"))
-        row.getFloor().getThreshold() == 1.0
-        row.getFloor().getStatus() == GoalStatus.MET
-        sealed.getGoals().getFingerprint() != null
-    - |
-      test: "should say that the goals were never sealed when there is no sealed version of them"
-      trace: FEAT-METAS / F-METAS-R006
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy(), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        comparison.getGoalsSealedAt() is null
-        comparison.getGoalChanges().isEmpty() is true
-        comparison.getGoals() == mesa.book().effective()
-        mesa.compare().getGoalsSealedAt() is not null
-    - |
-      test: "should show the vocabulary row of the course as a measure change 73.92 → 73.86 with the lemma-count bands 8, 6, 4 and 3, and count the batch from 73.86"
-      trace: FEAT-METAS / F-METAS-R007
-
-      given:
-        mesa = Mesa().baseline(Foto.del299().measure(LEMMA_COUNT, BANDS_OF_29_9, Map.of("bands", "1 · 2 · 4 · 8")))
-        comparison = mesa.compare()
-        course = row(comparison, "vocabulario", ROOT)
-
-      when:
-        sut.remeasured(Foto.del299().conLasBandasNuevas())
-
-      then:
-        comparison.getMeasureChanges() == List.of(new MeasureChange(LEMMA_COUNT, BANDS_OF_29_9, BANDS_8_6_4_3, Map.of("bands", "1 · 2 · 4 · 8"), Map.of("bands", "8 · 6 · 4 · 3")))
-        course.getBaseline().getValue() * 100 == 73.92
-        course.getRemeasuredBaseline().getValue() * 100 == 73.86
-        course.getChange() == -0.02
-        course.getFloor().getStatus() == GoalStatus.MET
-    - |
-      test: "should show A1 as 96.54 → 96.02 and lemma-count on the course as 67.0 → 66.5 with those bands, so the first batch after them breaks no vocabulary floor in A1, A2 or B1"
-      trace: FEAT-METAS / F-METAS-R007
-
-      given:
-        mesa = Mesa().baseline(Foto.del299().measure(LEMMA_COUNT, BANDS_OF_29_9, Map.of("bands", "1 · 2 · 4 · 8")))
-        comparison = mesa.compare()
-        a1 = row(comparison, "vocabulario", A1)
-        lemmaCount = row(comparison, LEMMA_COUNT, ROOT)
-
-      when:
-        sut.remeasured(Foto.del299().conLasBandasNuevas())
-
-      then:
-        a1.getBaseline().getValue() * 100 == 96.54
-        a1.getRemeasuredBaseline().getValue() * 100 == 96.02
-        lemmaCount.getBaseline().getValue() * 100 == 67.0
-        lemmaCount.getRemeasuredBaseline().getValue() * 100 == 66.5
-        comparison.getBreaches().isEmpty() is true
-    - |
-      test: "should re-measure the baseline with the new measure on the same course of the baseline report before counting the batch"
-      trace: FEAT-METAS / F-METAS-R007
-
-      given:
-        base = Foto.del299().measure(LEMMA_COUNT, BANDS_OF_29_9, Map.of("bands", "1 · 2 · 4 · 8"))
-        mesa = Mesa().baseline(base)
-        course = ArgumentCaptor.forClass(AuditableCourse.class)
-        selection = ArgumentCaptor.forClass(AnalyzerRunSelection.class)
-        levels = course.getValue().getMilestones().stream().map(AuditableMilestone::getId).toList()
-        grandmother = course.getValue().getMilestones().get(0).getTopics().get(0).getKnowledge().get(1).getQuizzes().get(0)
-
-      when:
-        sut.remeasured(Foto.del299().conLasBandasNuevas())
-
-      then:
-        selection.getValue().getAnalyzers() == List.of(LEMMA_ABSENCE, LEMMA_COUNT)
-        levels == List.of(A1, A2, B1)
-        assertSame(base.entity(GRANDMOTHER))
-        grandmother.getSentences().get(0) == "It comes every year."
-        verify: mesa.engine.runAudit(course.capture(), selection.capture())
-    - |
-      test: "should leave undecidable the rows of an analyzer with a new measure when the baseline cannot be measured again"
-      trace: FEAT-METAS / F-METAS-R007
-
-      given:
-        mesa = Mesa().baseline(Foto.del299().measure(LEMMA_COUNT, BANDS_OF_29_9, Map.of("bands", "1 · 2 · 4 · 8")))
-        comparison = mesa.compare()
-
-      mock:
-        mesa.engine.runAudit(any(AuditableCourse.class), any(AnalyzerRunSelection.class)) -> throws IllegalStateException("el motor no pudo medir")
-
-      when:
-        sut.batch(Foto.del299().conLasBandasNuevas(), Foto.del299().conLasBandasNuevas(), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        comparison.getMeasureChanges().size() == 1
-        row(comparison, LEMMA_ABSENCE, A1).getFloor().getStatus() == GoalStatus.MET
-        comparison.getVerdict().getKind() == VerdictKind.UNDECIDABLE
-    - |
-      test: "should show as a measure change, and not as a change of the course, naturalness measured with claude -p in the projection and with llama3 in Ollama in the baseline"
-      trace: FEAT-METAS / F-METAS-R007
-
-      given:
-        llama = Map.of("consults", "ollama · llama3")
-        claude = Map.of("consults", "claude -p")
-        mesa = Mesa().baseline(Foto.deHoy().measure(NATURALNESS, "naturalness-llama3", llama).errors(ROOT, NATURALNESS, 12, 0).anyError(ROOT, 11287, 1368, 0))
-        withClaude = Foto.deHoy().measure(NATURALNESS, "naturalness-claude-p", claude).errors(ROOT, NATURALNESS, 0, 0).anyError(ROOT, 11287, 1356, 0)
-        comparison = mesa.compare()
-        naturalness = row(comparison, NATURALNESS, ROOT)
-        any = row(comparison, "algún error", ROOT)
-
-      when:
-        sut.remeasured(withClaude)
-
-      then:
-        comparison.getMeasureChanges() == List.of(new MeasureChange(NATURALNESS, "naturalness-llama3", "naturalness-claude-p", llama, claude))
-        naturalness.getBaseline().getValue() == 12.0
-        naturalness.getRemeasuredBaseline().getValue() == 0.0
-        naturalness.getChange() == 0.0
-        any.getRemeasuredBaseline().getValue() == 1356.0
-        any.getChange() == 0.0
-        row(comparison, "vocabulario", ROOT).getRemeasuredBaseline() is null
-    - |
-      test: "should give the batch of the four proposals of «Afirmativas regulares» the verdict fails, with «My grandmother ___ (come) every year.» as the node that returns"
-      trace: FEAT-METAS / F-METAS-R008
-
-      given:
-        mesa = Mesa().baseline(Foto.del299())
-        comparison = mesa.compare()
-
-      when:
-        sut.samples(new SampleOutcome("muestra-1", PLAN, true, 100, 95, 0, 1, true, "cumple"))
-
-      then:
-        comparison.getVerdict().getKind() == VerdictKind.FAILS
-        comparison.getVerdict().getReturningProposalIds() == List.of(P_GRANDMOTHER)
-        comparison.getVerdict().getBrokenFloorGoalIds().isEmpty() is true
-        comparison.getVerdict().getDetail() == "No pasa: vuelve 1 cambio: " + P_GRANDMOTHER
-    - |
-      test: "should give that batch without the grandmother proposal the verdict passes once its blind sample is answered and meets its goal"
-      trace: FEAT-METAS / F-METAS-R008
-
-      given:
-        answered = SampleOutcome("muestra-2026-10-01T10-00-00", PLAN, true, 100, 94, 1, 5, true, "94 mejor o igual y 1 peor de 100")
-        mesa = Mesa().baseline(Foto.del299())
-        comparison = mesa.compare()
-
-      when:
-        sut.samples(answered)
-
-      then:
-        comparison.getVerdict().getKind() == VerdictKind.PASSES
-        assertSame(answered)
-        comparison.getVerdict().getReturningProposalIds().isEmpty() is true
-        verify: mesa.samples.outcomeFor(PLAN)
-    - |
-      test: "should give the verdict blind sample missing when every floor holds and the blind sample is missing or still open"
-      trace: FEAT-METAS / F-METAS-R008
-
-      given:
-        missing = Mesa().baseline(Foto.del299())
-        none = missing.compare()
-        open = Mesa().baseline(Foto.del299())
-        halfway = SampleOutcome("muestra-1", PLAN, false, 40, 0, 0, 0, false, null)
-        stillOpen = open.compare()
-
-      when:
-        sut.batch(Foto.del299(), Foto.del299(), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        none.getVerdict().getKind() == VerdictKind.BLIND_SAMPLE_MISSING
-        none.getVerdict().getSample() is null
-        stillOpen.getVerdict().getKind() == VerdictKind.BLIND_SAMPLE_MISSING
-        assertSame(halfway)
-        stillOpen.getVerdict().getDetail().contains("muestra-1 sigue abierta") is true
-    - |
-      test: "should give the verdict undecidable when no floor fails but one of them cannot be decided"
-      trace: FEAT-METAS / F-METAS-R008
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-
-      when:
-        sut.samples(new SampleOutcome("muestra-1", PLAN, true, 100, 95, 0, 1, true, "cumple"))
-
-      then:
-        row(comparison, "algún error", A1).getFloor().getStatus() == GoalStatus.UNDECIDABLE
-        comparison.getBreaches().isEmpty() is true
-        comparison.getVerdict().getKind() == VerdictKind.UNDECIDABLE
-        comparison.getVerdict().getDetail().startsWith("No se puede decidir: ningún piso falla") is true
-    - |
-      test: "should give the verdict fails with the list of broken floors when a floor fails, even if the blind sample meets its goal"
-      trace: FEAT-METAS / F-METAS-R008
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-
-      when:
-        sut.samples(new SampleOutcome("muestra-1", PLAN, true, 100, 95, 0, 1, true, "cumple"))
-
-      then:
-        comparison.getVerdict().getKind() == VerdictKind.FAILS
-        comparison.getVerdict().getBrokenFloorGoalIds() == List.of("piso de vocabulario · vocabulario · COURSE", "piso de vocabulario · vocabulario · MILESTONE")
-        comparison.getBreaches().size() == 2
-        comparison.getVerdict().getDetail().contains("2 pisos rotos") is true
-    - |
-      test: "should give the verdict fails when the closed blind sample does not meet its goal"
-      trace: FEAT-METAS / F-METAS-R008
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-
-      when:
-        sut.samples(new SampleOutcome("muestra-1", PLAN, true, 100, 85, 4, 2, false, "85 mejor o igual de 100: la meta es 90; 4 peores: la meta es 1"))
-
-      then:
-        comparison.getBreaches().isEmpty() is true
-        comparison.getVerdict().getKind() == VerdictKind.FAILS
-        comparison.getVerdict().getDetail().contains("la muestra ciega muestra-1 no cumple su meta") is true
-    - |
-      test: "should never let a progress goal decide the verdict, as any error above 5% in the course"
-      trace: FEAT-METAS / F-METAS-R008
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy().anyError(ROOT, 11287, 2900, 0))
-        comparison = mesa.compare()
-        course = row(comparison, "algún error", ROOT)
-
-      when:
-        sut.samples(new SampleOutcome("muestra-1", PLAN, true, 100, 95, 0, 1, true, "cumple"))
-
-      then:
-        course.getProgress().getStatus() == GoalStatus.NOT_MET
-        comparison.getVerdict().getKind() == VerdictKind.PASSES
-    - |
-      test: "should write nothing when comparing: no course, proposal, plan, sealed goals or analysis of the history"
-      trace: FEAT-METAS / F-METAS-R009
-
-      given:
-        course = tmp.resolve("english-course")
-        file = course.resolve("quiz-templates.json")
-        before = Files.readAllBytes(file)
-        mesa = Mesa().baseline(Foto.del299())
-        sealedBefore = mesa.sealed.size()
-        projection = mesa.batch(Foto.del299(), Foto.del299().conLasCuatro(), LAS_CUATRO)
-
-      when:
-        sut.createDirectories(course)
-
-      then:
-        assertArrayEquals(before)
-        mesa.sealed.size() == sealedBefore
-        projection.getChanges().size() == 4
-        verify: mesa.baselines.read()
-        verify: mesa.reports.load(BASELINE)
-        verify: mesa.projector.project(course, null)
-    - |
-      test: "should show the vocabulary row as «Vocabulario, puntaje total» and the any-error row as «Ejercicios con algún error», keeping their subjects, the keys the goals name"
-      trace: FEAT-FILAS / F-FILAS-R001
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy())
-
-      then:
-        row(comparison, "algún error", A1).getFloor().getGoalId() == "algún error en A1: 0"
-        row(comparison, "algún error", REGULAR).getFloor().getGoalId() == "piso de errores · algún error · KNOWLEDGE"
-        row(comparison, "vocabulario", ROOT).getFloor().getGoalId() == "piso de vocabulario · vocabulario · COURSE"
-    - |
-      test: "should show each analyzer row with the Spanish name of its card, and with its unique name when today's catalog does not know it"
-      trace: FEAT-FILAS / F-FILAS-R001
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy().measure("dictado", "dictado · v1", Map.of()).score(ROOT, "dictado", 0.5))
-        comparison = mesa.compare()
-        unknown = row(comparison, "dictado", ROOT)
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().measure("dictado", "dictado · v1", Map.of()).score(ROOT, "dictado", 0.5))
-
-      then:
-        row(comparison, LEMMA_ABSENCE, REGULAR).getDisplayName() == "Vocabulario del nivel presente"
-        row(comparison, LEMMA_COUNT, A1).getDisplayName() == "Palabras vistas suficientes veces"
-        row(comparison, HINT, A1).getDisplayName() == "Pista que falta, confunde o regala la respuesta"
-        row(comparison, INSTRUCTION, ROOT).getDisplayName() == "Consigna que no se cumple"
-        unknown.getDisplayName() == "dictado"
-        unknown.getExplanation() is null
-    - |
-      test: "should say that lower is better in every row of the errors family and in the any-error row, and higher in every row of the vocabulary family and in the vocabulary row"
-      trace: FEAT-FILAS / F-FILAS-R002
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy())
-
-      then:
-        row(comparison, HINT, REGULAR).getBetterWhen() == BetterDirection.LOWER
-        row(comparison, INSTRUCTION, ROOT).getBetterWhen() == BetterDirection.LOWER
-        row(comparison, "algún error", A1).getBetterWhen() == BetterDirection.LOWER
-        row(comparison, LEMMA_ABSENCE, REGULAR).getBetterWhen() == BetterDirection.HIGHER
-        row(comparison, LEMMA_COUNT, A1).getBetterWhen() == BetterDirection.HIGHER
-        row(comparison, "vocabulario", ROOT).getBetterWhen() == BetterDirection.HIGHER
-    - |
-      test: "should mark a drop of an errors row as improved and a rise as worsened, and a rise of a vocabulary row as improved and a drop as worsened"
-      trace: FEAT-FILAS / F-FILAS-R003
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy().errors(REGULAR, HINT, 2, 0))
-        comparison = mesa.compare()
-        hint = row(comparison, HINT, REGULAR)
-        absence = row(comparison, LEMMA_ABSENCE, REGULAR)
-
-      when:
-        sut.batch(Foto.deHoy().errors(REGULAR, HINT, 2, 0), Foto.deHoy().errors(REGULAR, HINT, 1, 0).errors(REGULAR, INSTRUCTION, 1, 0).score(REGULAR, LEMMA_ABSENCE, 0.995).score(A1, LEMMA_COUNT, 0.95), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        hint.getChange() == -1.0
-        hint.getChangeVerdict() == ChangeVerdict.IMPROVED
-        row(comparison, INSTRUCTION, REGULAR).getChangeVerdict() == ChangeVerdict.WORSENED
-        absence.getChange() == -0.5
-        absence.getChangeVerdict() == ChangeVerdict.WORSENED
-        row(comparison, LEMMA_COUNT, A1).getChangeVerdict() == ChangeVerdict.IMPROVED
-    - |
-      test: "should mark as unchanged a row whose change rounds to zero as it is shown, to two decimals in points and to whole exercises in errors"
-      trace: FEAT-FILAS / F-FILAS-R003
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        topic = row(comparison, LEMMA_ABSENCE, PRESENT_SIMPLE)
-        hint = row(comparison, HINT, REGULAR)
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().score(PRESENT_SIMPLE, LEMMA_ABSENCE, 0.99549).score(WITH_BE, LEMMA_ABSENCE, 0.98994), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        topic.getChange() == -0.003
-        topic.getChangeVerdict() == ChangeVerdict.UNCHANGED
-        row(comparison, LEMMA_ABSENCE, WITH_BE).getChangeVerdict() == ChangeVerdict.WORSENED
-        hint.getChange() == 0.0
-        hint.getChangeVerdict() == ChangeVerdict.UNCHANGED
-        row(comparison, "vocabulario", ROOT).getChangeVerdict() == ChangeVerdict.UNCHANGED
-    - |
-      test: "should mark as not evaluated a row whose analyzer evaluated no exercise of the node, instead of reading its zero as a real zero"
-      trace: FEAT-FILAS / F-FILAS-R003
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        instruction = row(comparison, INSTRUCTION, REGULAR)
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().errors(REGULAR, INSTRUCTION, 0, 4), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        instruction.getProjected() == new RowValue(0.0, 0.0, 4)
-        instruction.getChange() == 0.0
-        instruction.getChangeVerdict() == ChangeVerdict.NOT_EVALUATED
-        row(comparison, HINT, REGULAR).getChangeVerdict() == ChangeVerdict.UNCHANGED
-    - |
-      test: "should mark as not evaluated a row without a number in the baseline, as the error rows of the base of 29/9"
-      trace: FEAT-FILAS / F-FILAS-R003
-
-      given:
-        mesa = Mesa().baseline(Foto.del299())
-        comparison = mesa.compare()
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy(), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        row(comparison, "vocabulario", A1).getChangeVerdict() == ChangeVerdict.UNCHANGED
-    - |
-      test: "should mark as not evaluated the any-error row of a node where no errors analyzer evaluated an exercise"
-      trace: FEAT-FILAS / F-FILAS-R003
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        regular = row(comparison, "algún error", REGULAR)
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().errors(REGULAR, HINT, 0, 4).errors(REGULAR, INSTRUCTION, 0, 4).anyError(REGULAR, 4, 0, 4).errors(WITH_BE, INSTRUCTION, 0, 2).anyError(WITH_BE, 2, 0, 2), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        regular.getProjected() == new RowValue(0.0, 0.0, 4)
-        regular.getChangeVerdict() == ChangeVerdict.NOT_EVALUATED
-        row(comparison, "algún error", WITH_BE).getChangeVerdict() == ChangeVerdict.UNCHANGED
-    - |
-      test: "should give each analyzer row the explanation of its card, and the vocabulary and any-error rows their own"
-      trace: FEAT-FILAS / F-FILAS-R004
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy())
-
-      then:
-        row(comparison, LEMMA_ABSENCE, REGULAR).getExplanation() == "La frase de lemma-absence."
-        row(comparison, HINT, A1).getExplanation() == "La frase de hint-coherence."
-        row(comparison, "vocabulario", ROOT).getExplanation() == "El puntaje de vocabulario de 0 a 100: el promedio de las filas de puntaje de arriba."
-        row(comparison, "algún error", ROOT).getExplanation() == "Ejercicios con al menos uno de los problemas de arriba; cada ejercicio cuenta una vez."
-    - |
-      test: "should take as the example of a row a finding the batch fixes before one that stays in the projection, and say in its line that the batch fixes it"
-      trace: FEAT-FILAS / F-FILAS-R005
-
-      given:
-        fixed = hallazgo(HINT, "hint-words", HATS, FindingSeverity.HIGH, FindingResolution.PANEL, null, "La pista «(sport)» no anuncia «wears».")
-        stays = hallazgo(HINT, "hint-words", OURSELVES, FindingSeverity.HIGH, FindingResolution.PANEL, null, "La pista no anuncia «each other».")
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        example = row(comparison, HINT, REGULAR).getExample()
-        without = Mesa().baseline(Foto.deHoy())
-        staying = row(without.compare(), HINT, REGULAR).getExample()
-
-      when:
-        sut.batch(Foto.deHoy().finding(fixed).finding(stays), Foto.deHoy().finding(stays), cambio(P_HATS, HATS))
-
-      then:
-        example.getQuizId() == HATS
-        example.getDetail() == "La pista «(sport)» no anuncia «wears» — la tanda lo arregla"
-        row(comparison, HINT, PRESENT_SIMPLE).getExample() == example
-        staying.getQuizId() == OURSELVES
-        staying.getDetail() == "La pista no anuncia «each other»."
-    - |
-      test: "should take as the example the finding of the lowest quiz id under the node, so the same comparison always gives the same example"
-      trace: FEAT-FILAS / F-FILAS-R005
-
-      given:
-        hats = hallazgo(HINT, "hint-words", HATS, FindingSeverity.HIGH, FindingResolution.PANEL, null, "La pista no anuncia «wears».")
-        vegetables = hallazgo(HINT, "hint-words", VEGETABLES, FindingSeverity.HIGH, FindingResolution.PANEL, null, "La pista no anuncia «a lot of».")
-        ofTheKnowledge = Finding(HINT, "hint-share", new FindingNodeRef(AuditTarget.KNOWLEDGE, REGULAR, "Afirmativas regulares"), FindingSeverity.HIGH, new FindingEvidence(List.of(), "Tres de cuatro llevan pista.", List.of()), FindingResolution.PANEL, AnalysisCost.INSTANT, new FindingIdentity(HINT + "|hint-share|" + REGULAR, null))
-        mesa = Mesa().baseline(Foto.deHoy())
-        example = row(mesa.compare(), HINT, REGULAR).getExample()
-        reordered = Mesa().baseline(Foto.deHoy())
-
-      when:
-        sut.batch(Foto.deHoy().finding(ofTheKnowledge).finding(hats).finding(vegetables), Foto.deHoy().finding(ofTheKnowledge).finding(hats).finding(vegetables))
-
-      then:
-        example.getQuizId() == VEGETABLES
-        example.getDetail() == "La pista no anuncia «a lot of»."
-        row(mesa.compare(), HINT, REGULAR).getExample() == example
-        row(reordered.compare(), HINT, REGULAR).getExample() == example
-        row(mesa.compare(), HINT, ROOT).getExample().getQuizId() == VEGETABLES
-    - |
-      test: "should leave the example null when the analyzer has no finding under the node"
-      trace: FEAT-FILAS / F-FILAS-R005
-
-      given:
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-
-      when:
-        sut.batch(Foto.deHoy(), Foto.deHoy().conLasCuatro(), LAS_CUATRO)
-
-      then:
-        row(comparison, LEMMA_ABSENCE, REGULAR).getExample() is not null
-        row(comparison, LEMMA_ABSENCE, A2).getExample() is null
-        row(comparison, LEMMA_ABSENCE, WITH_BE).getExample() is null
-        row(comparison, HINT, REGULAR).getExample() is null
-        row(comparison, "algún error", ROOT).getExample() is null
-    - |
-      test: "should never take as the example of an errors row a finding that only ranks, as the ones of naturalness"
-      trace: FEAT-FILAS / F-FILAS-R005
-
-      given:
-        doubtful = hallazgo(NATURALNESS, "unlikely-sentence", VEGETABLES, FindingSeverity.LOW, FindingResolution.RANK_ONLY, null, "El modelo duda de que un nativo diga «I love vegetables.».")
-        mesa = Mesa().baseline(Foto.deHoy().measure(NATURALNESS, "naturalness · llama3", Map.of()).errors(REGULAR, NATURALNESS, 0, 0))
-        comparison = mesa.compare()
-
-      when:
-        sut.batch(Foto.deHoy().measure(NATURALNESS, "naturalness · llama3", Map.of()).errors(REGULAR, NATURALNESS, 0, 0).finding(doubtful), Foto.deHoy().measure(NATURALNESS, "naturalness · llama3", Map.of()).errors(REGULAR, NATURALNESS, 0, 0).finding(doubtful))
-
-      then:
-        row(comparison, NATURALNESS, REGULAR).getExample() is null
-        row(comparison, "algún error", REGULAR).getExample() is null
-    - |
-      test: "should show the exercise of the example as the student sees it, with its gap and its hint, and say in one line what it has"
-      trace: FEAT-FILAS / F-FILAS-R005
-
-      given:
-        projected = Foto.deHoy().conLasCuatro()
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        example = row(comparison, LEMMA_ABSENCE, REGULAR).getExample()
-
-      when:
-        sut.setEntity(new AuditableQuiz(List.of(), GRANDMOTHER, "My grandmother comes every year.", GRANDMOTHER, "Mi abuela viene todos los años.", List.of("My grandmother comes every year."), "My grandmother comes every year.", "Escribe la forma correcta.", List.of(new SentencePartEntity(SentencePartKind.TEXT, "My grandmother", null), new SentencePartEntity(SentencePartKind.CLOZE, "", List.of("comes")), new SentencePartEntity(SentencePartKind.TEXT, "(come) every year.", null)), null, null, null))
-
-      then:
-        example == new RowExample(GRANDMOTHER, "My grandmother ___ (come) every year.", "grandmother es una palabra de A2 en un ejercicio de A1")
-    - |
-      test: "should take as the example of a score row a concrete finding of the analyzer, as a word of the level, with no exercise"
-      trace: FEAT-FILAS / F-FILAS-R005
-
-      given:
-        butter = Finding(LEMMA_COUNT, "under-exposed", new FindingNodeRef(AuditTarget.MILESTONE, A1, "A1"), FindingSeverity.LOW, new FindingEvidence(List.of(new EvidencePart("Palabra", "butter"), new EvidencePart("Oraciones", "2 de 6")), "butter (A1): 2 oraciones de 6", List.of()), FindingResolution.RANK_ONLY, AnalysisCost.INSTANT, new FindingIdentity(LEMMA_COUNT + "|under-exposed|" + A1 + "|butter|NOUN", "butter|NOUN"))
-        ofTheCourse = Finding(LEMMA_COUNT, "under-exposed", new FindingNodeRef(AuditTarget.COURSE, ROOT, "Curso"), FindingSeverity.LOW, new FindingEvidence(List.of(new EvidencePart("Nivel", "A1")), "A1 da 94,37 %: 12 de sus 300 palabras aparecen en menos oraciones que las que pide su banda", List.of()), FindingResolution.RANK_ONLY, AnalysisCost.INSTANT, new FindingIdentity(LEMMA_COUNT + "|under-exposed|root|A1", "A1"))
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        word = RowExample(null, null, "butter (A1): 2 oraciones de 6")
-
-      when:
-        sut.batch(Foto.deHoy().finding(ofTheCourse).finding(butter), Foto.deHoy().finding(ofTheCourse).finding(butter))
-
-      then:
-        row(comparison, LEMMA_COUNT, A1).getExample() == word
-        row(comparison, LEMMA_COUNT, ROOT).getExample() == word
-        row(comparison, "vocabulario", ROOT).getExample() == new RowExample(null, null, "Palabras vistas suficientes veces: butter (A1): 2 oraciones de 6")
-    - |
-      test: "should not take as fixed a finding the projection lost only because its analyzer left the exercise unevaluated"
-      trace: FEAT-FILAS / F-FILAS-R005
-
-      given:
-        open = hallazgo(INSTRUCTION, "instruction-breach", VEGETABLES, FindingSeverity.MEDIUM, FindingResolution.PANEL, null, "No cumple la consigna.")
-        stays = hallazgo(INSTRUCTION, "instruction-breach", HATS, FindingSeverity.MEDIUM, FindingResolution.PANEL, null, "Tampoco cumple la consigna.")
-        mesa = Mesa().baseline(Foto.deHoy())
-        example = row(mesa.compare(), INSTRUCTION, REGULAR).getExample()
-        judged = Mesa().baseline(Foto.deHoy())
-        fixed = row(judged.compare(), INSTRUCTION, REGULAR).getExample()
-
-      when:
-        sut.batch(Foto.deHoy().finding(open).finding(stays), Foto.deHoy().unevaluated(VEGETABLES, INSTRUCTION).finding(stays), cambio(P_VEGETABLES, VEGETABLES))
-
-      then:
-        example.getQuizId() == HATS
-        example.getDetail() == "Tampoco cumple la consigna."
-        fixed.getQuizId() == VEGETABLES
-        fixed.getDetail() == "No cumple la consigna — la tanda lo arregla"
-    - |
-      test: "should take as the example of the any-error row an error of any analyzer, and name the analyzer in its line"
-      trace: FEAT-FILAS / F-FILAS-R005
-
-      given:
-        hint = hallazgo(HINT, "hint-words", HATS, FindingSeverity.HIGH, FindingResolution.PANEL, null, "La pista no anuncia «wears».")
-        instruction = hallazgo(INSTRUCTION, "instruction-breach", VEGETABLES, FindingSeverity.MEDIUM, FindingResolution.PANEL, null, "No cumple la consigna.")
-        mesa = Mesa().baseline(Foto.deHoy())
-        comparison = mesa.compare()
-        anyError = row(comparison, "algún error", REGULAR).getExample()
-        own = row(comparison, HINT, REGULAR).getExample()
-
-      when:
-        sut.batch(Foto.deHoy().finding(hint).finding(instruction), Foto.deHoy().finding(hint).finding(instruction))
-
-      then:
-        anyError.getQuizId() == VEGETABLES
-        anyError.getDetail() == "Consigna que no se cumple: No cumple la consigna."
-        own.getQuizId() == HATS
-        own.getDetail() == "La pista no anuncia «wears»."
+    - name: "should say in the verdict how many floors cannot be decided, as many\
+        \ as its text counts, and the rows they belong to, once each and in the order\
+        \ of the rows"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/comparisonengine/DefaultBatchComparatorTest.java
+    - name: "should leave the undecidable floors of the verdict null when every floor\
+        \ is decided, and bring them with a verdict that fails too"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/comparisonengine/DefaultBatchComparatorTest.java
+    - name: "should say in each value of a row whether its photo evaluated an exercise\
+        \ of the node, so a photo left open hides none of the others"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/comparisonengine/DefaultBatchComparatorTest.java
+    - name: "should block and name near-duplicates, failed, a judge whose coverage\
+        \ counts topics but that marks the exercises it compares, with a score or\
+        \ as unevaluated, when it marks an exercise the batch changed, ending the\
+        \ detail of the verdict with «juez sin aprobar: Ejercicio casi repetido»"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/comparisonengine/DefaultBatchComparatorTest.java
   - name: DefaultGoalBook
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/comparisonengine/DefaultGoalBook.java
@@ -85813,6 +85077,156 @@ elements:
 
       then:
         service.handed == List.of(List.of(second, learned))
+    - |
+      test: "should count in the estimate as changed today the exercises with a pending proposal of the batch and every exercise of a topic whose instruction changes"
+      trace: FEAT-CJUEZ / F-CJUEZ-R002
+
+      given:
+        service = Service()
+        batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()))
+        estimate = service.service().estimate()
+
+      when:
+        sut.setQuizProposals(new ArrayList<>(List.of(new BatchProposalRef(MesaFixture.VEGETABLES, "p-vegetables"), new BatchProposalRef(MesaFixture.CONTRASTE, "p-contraste"))))
+
+      then:
+        estimate.getChangedQuizzes() == 11
+    - |
+      test: "should add to the estimate the account of each judge, estimated without any query on the start course and on the course composed with the changes of the batch"
+      trace: FEAT-CJUEZ / F-CJUEZ-R002
+
+      given:
+        service = Service()
+        judges = ScriptedJudgePass()
+        account = BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null, 2, null, 0, 0, 2, 0, 0, null, false)
+        batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()))
+        edited = TandaFixture.edited(TandaFixture.exercise(service.courses.course, MesaFixture.VEGETABLES), q -> q.setTranslation("Me encantan mucho las verduras."))
+        estimate = service.service().estimate()
+
+      when:
+        sut.recorded(batch, service.courses.course, service.artifacts, TandaFixture.change("mesa-veg", BatchChangeOrigin.PANEL, null, List.of(), TandaFixture.step(edited, ExercisePart.TRANSLATION)))
+
+      then:
+        judges.judgeRequests.isEmpty() is true
+        judges.estimateStartCourses.size() == 1
+        TandaFixture.exercise(judges.estimateStartCourses.get(0), MesaFixture.VEGETABLES).getTranslation() == "Me gustan mucho las verduras."
+        TandaFixture.exercise(judges.estimateComposedCourses.get(0), MesaFixture.VEGETABLES).getTranslation() == "Me encantan mucho las verduras."
+        estimate.getJudges() == List.of(account)
+    - |
+      test: "should total in the estimate the missing queries of the approved judges that are paid, as 2404 of translation-sense and 60 of mini-theory, without those of quiz-instruction without an exam or of naturalness with Ollama, and their hours at 19 s per query with 4 at once"
+      trace: FEAT-CJUEZ / F-CJUEZ-R002
+
+      given:
+        service = Service()
+        judges = ScriptedJudgePass()
+        batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, 4, List.of()))
+        estimate = service.service().estimate()
+
+      when:
+        sut.setQuizProposals(new ArrayList<>(List.of(new BatchProposalRef(MesaFixture.VEGETABLES, "p-vegetables"))))
+
+      then:
+        estimate.getJudgeQueries() == 2464
+        estimate.getJudgeHours() == 3.25
+    - |
+      test: "should estimate no judge, with 0 changed exercises, while the batch has not changed any exercise"
+      trace: FEAT-CJUEZ / F-CJUEZ-R002
+
+      given:
+        service = Service()
+        estimate = service.service().estimate()
+
+      when:
+        sut.open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()))
+
+      then:
+        estimate.getChangedQuizzes() == 0
+        estimate.getJudges().isEmpty() is true
+        estimate.getJudgeQueries() == 0
+        estimate.getJudgeHours() == 0.0
+    - |
+      test: "should refuse a request that budgets «consigna», which is not a judge of the batch, naming its judges, before closing or querying anything"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        service = Service()
+        judges = ScriptedJudgePass()
+        batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()))
+        refused = assertThrows(IllegalArgumentException.class, () -> service.service().close(new BatchCloseRequest(new LinkedHashMap<>(Map.of("consigna", 100)), null)))
+
+      then:
+        refused.getMessage() == "«consigna» no es un juez de la tanda " + batch.getId() + ". Sus jueces: quiz-instruction, translation-sense, mini-theory."
+        judges.judgeRequests.isEmpty() is true
+        service.comparator.scopes.isEmpty() is true
+        service.courses.written.isEmpty() is true
+    - |
+      test: "should refuse a request with a negative budget or a negative cap, before closing or querying anything"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        service = Service()
+        judges = ScriptedJudgePass()
+        negativeBudget = assertThrows(IllegalArgumentException.class, () -> service.service().close(new BatchCloseRequest(new LinkedHashMap<>(Map.of("translation-sense", -1)), null)))
+        negativeCap = assertThrows(IllegalArgumentException.class, () -> service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), -5)))
+
+      when:
+        sut.open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()))
+
+      then:
+        negativeBudget.getMessage() == "El tope tiene que ser 0 o más: --budget translation-sense=-1."
+        negativeCap.getMessage() == "El tope tiene que ser 0 o más: --cap -5."
+        judges.judgeRequests.isEmpty() is true
+        service.comparator.scopes.isEmpty() is true
+        service.courses.written.isEmpty() is true
+    - |
+      test: "should accept a request that budgets quiz-instruction with 600, a judge of the batch although it cannot query, and hand it to the closing as asked"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        service = Service()
+        judges = ScriptedJudgePass()
+        request = BatchCloseRequest(new LinkedHashMap<>(Map.of("quiz-instruction", 600)), null)
+        closing = service.service().close(request)
+
+      when:
+        sut.open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()))
+
+      then:
+        judges.judgeRequests == List.of(request)
+        closing.getRequest() == request
+    - |
+      test: "should close again with an empty request, paying no judge, when José drops a change of a batch closed with a budget"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        service = Service()
+        judges = ScriptedJudgePass()
+        opened = service.batches.open().orElseThrow()
+        changeId = opened.getChanges().get(0).getChangeId()
+
+      when:
+        sut.open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()))
+
+      then:
+        judges.judgeRequests.size() == 2
+        judges.judgeRequests.get(0) == new BatchCloseRequest(new LinkedHashMap<>(Map.of("translation-sense", 500)), null)
+        judges.judgeRequests.get(1) == new BatchCloseRequest(new LinkedHashMap<>(), null)
+    - |
+      test: "should write neither the course nor any analysis of the history when closing with a budget, keeping the closing only in the batch"
+      trace: FEAT-CJUEZ / F-CJUEZ-R001
+
+      given:
+        service = Service()
+        judges = ScriptedJudgePass()
+        reportsBefore = service.reports.saved.size()
+
+      when:
+        sut.open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()))
+
+      then:
+        judges.judgeRequests.size() == 1
+        service.courses.written.isEmpty() is true
+        service.reports.saved.size() == reportsBefore
   - name: DefaultBatchTaskSelector
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/batchengine/DefaultBatchTaskSelector.java
@@ -86571,6 +85985,82 @@ elements:
         waiting.getDetail() == "su hallazgo sigue hasta que se grabe el audio pedido"
         waiting.getChangeId() == change.getChangeId()
         BatchBook.kind(batch, "t-traduccion") == BatchTaskOutcomeKind.PENDING
+    - |
+      test: "should judge, before comparing, the exercises the batch changes on the start course and on the course composed with its changes, with the request of the closing"
+      trace: FEAT-CJUEZ / F-CJUEZ-R001
+
+      given:
+        closing = Closing()
+        batch = closing.batchWithVegetablesAndGrandmother()
+        composed = closing.ledger().composedCourse(batch, closing.course)
+        order = ArrayList<>()
+        judgePass = RecordingJudgePass(order)
+        closer = DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(), closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judgePass).withPlans(closing.plans, MesaFixture.corrections())
+        request = BatchCloseRequest(new LinkedHashMap<>(Map.of("translation-sense", 500)), 1000)
+        call = judgePass.judgeCalls.get(0)
+
+      when:
+        sut.close(batch, closing.course, request)
+
+      then:
+        judgePass.judgeCalls.size() == 1
+        call.batch().getId() == batch.getId()
+        json(call.startCourse()) == json(closing.course)
+        json(call.composedCourse()) == json(composed)
+        call.request() == request
+        order.contains("judge") && order.contains("compare") is true
+        order.indexOf("judge") < order.indexOf("compare") is true
+    - |
+      test: "should add the queries the judges were paid at closing to the queries of the batch"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        closing = Closing()
+        batch = closing.batchWithVegetablesAndGrandmother()
+        judgePass = RecordingJudgePass()
+        closer = DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(), closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judgePass).withPlans(closing.plans, MesaFixture.corrections())
+        request = BatchCloseRequest(new LinkedHashMap<>(Map.of("translation-sense", 500, "mini-theory", 37)), null)
+
+      when:
+        sut.setQueriesSpent(100)
+
+      then:
+        batch.getQueriesSpent() == 637
+    - |
+      test: "should give each judge of the closing the queries paid to it, the ones the ledger had at the start of the closing and the ones still missing after the last comparison, where what naturalness judged with Ollama when comparing no longer counts"
+      trace: FEAT-CJUEZ / F-CJUEZ-R005
+
+      given:
+        closing = Closing()
+        batch = closing.batchWithVegetablesAndGrandmother()
+        judgePass = RecordingJudgePass()
+        closer = DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(), closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judgePass).withPlans(closing.plans, MesaFixture.corrections())
+        closed = batch.getClosings().get(batch.getClosings().size() - 1)
+        translation = judgeNamed(closed, "translation-sense")
+        naturalness = judgeNamed(closed, "naturalness")
+
+      then:
+        translation.getQueriesSpent() == 500
+        translation.getQueriesReused() == 50
+        translation.getQueriesMissing() == 5
+        naturalness.getQueriesSpent() == 0
+        naturalness.getQueriesReused() == 10
+        naturalness.getQueriesMissing() == 0
+    - |
+      test: "should count as decided the floors of the rows of a judge in the last comparison that are met or not met, and as undecided those that cannot be decided"
+      trace: FEAT-CJUEZ / F-CJUEZ-R005
+
+      given:
+        closing = Closing()
+        batch = closing.batchWithVegetablesAndGrandmother()
+        judgePass = RecordingJudgePass()
+        closer = DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(), closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judgePass).withPlans(closing.plans, MesaFixture.corrections())
+        closed = batch.getClosings().get(batch.getClosings().size() - 1)
+        translation = judgeNamed(closed, "translation-sense")
+
+      then:
+        translation.getFloorsDecided() == 2
+        translation.getFloorsUndecided() == 1
   - name: DefaultBatchPublisher
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/batchengine/DefaultBatchPublisher.java
@@ -86738,6 +86228,21 @@ elements:
 
       then:
         batch.getPublication().getRerecords() == List.of(VEGETABLES_AUDIO, learned)
+    - |
+      test: "should refuse to publish a batch whose verdict names a judge without approval, copying «juez sin aprobar: Consigna que no se cumple» into the refusal and writing no course"
+      trace: FEAT-CJUEZ / F-CJUEZ-R004
+
+      given:
+        publishing = Publishing()
+        batch = publishing.closedBatch()
+        refused = assertThrows(BatchNotPublishableException.class, () -> publishing.publisher().publish(batch, new BatchPublishRequest("José", null, List.of()), publishing.start))
+
+      when:
+        sut.setAdjustments(new ArrayList<>(List.of(new BatchAdjustment(BatchAdjustmentKind.DROP_CHANGE, MesaFixture.COME, List.of(), "mesa-otro", null, null, null, "no", "José", CLOSED_AT.plusSeconds(60)))))
+
+      then:
+        refused.getMessage().contains("juez sin aprobar: Consigna que no se cumple") is true
+        publishing.courses.written.isEmpty() is true
   - name: DefaultBatchReportBuilder
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/batchengine/DefaultBatchReportBuilder.java
@@ -86850,6 +86355,23 @@ elements:
 
       then:
         report.getJoseDecisions() == decisions
+    - |
+      test: "should give in the report the accounts of the judges of the last closing of the batch, and none while it was never closed"
+      trace: FEAT-CJUEZ / F-CJUEZ-R005
+
+      given:
+        neverClosed = TandaFixture.batch("tanda-a1")
+        beforeClosing = DefaultBatchReportBuilder().build(neverClosed)
+        judges = List.of(new BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null, 4, 500, 500, 50, 5, 2, 0, null, false), new BatchJudgeAccount("quiz-instruction", "Consigna que no se cumple", AuditTarget.QUIZ, false, JudgeExamStatus.NOT_TAKEN, "sin examen", 601, null, 0, 0, 601, 0, 0, null, false))
+        closed = TandaFixture.batch("tanda-a1")
+        report = DefaultBatchReportBuilder().build(closed)
+
+      when:
+        sut.setClosings(new ArrayList<>(List.of(new BatchClosing(TandaFixture.OPENED_AT, null, TandaFixture.passing(null, List.of()), null, List.of(), 1, new BatchCloseRequest(new LinkedHashMap<>(), null), judges))))
+
+      then:
+        beforeClosing.getJudges() == List.of()
+        report.getJudges() == judges
   - name: DefaultBatchJudgePass
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/batchengine/DefaultBatchJudgePass.java
@@ -86955,6 +86477,500 @@ elements:
         \ left of the cap of the batch when its turn came, or none"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/batchengine/DefaultBatchJudgePassTest.java
+    testCleanViews:
+    - |
+      test: "should judge each exercise the batch changes twice, as the start course has it and as the composed course leaves it, and no other exercise of the course"
+      trace: FEAT-CJUEZ / F-CJUEZ-R001
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.startCourse()
+        composed = composedOfTheChanged()
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, SINGLE_ANSWER), CHANGED)
+        request = BatchCloseRequest(Map.of(TRANSLATION_SENSE, 1000, SINGLE_ANSWER, 1000), null)
+        accounts = bench.pass().judge(batch, start, composed, request)
+        translation = account(accounts, TRANSLATION_SENSE)
+        single = account(accounts, SINGLE_ANSWER)
+
+      then:
+        bench.consulted(TRANSLATION_SENSE) == both(bench.keys(TRANSLATION_SENSE, start, AFIRM_2, AFIRM_3, CONTR_1), bench.keys(TRANSLATION_SENSE, composed, AFIRM_2, AFIRM_3, CONTR_1))
+        bench.consulted(SINGLE_ANSWER) == both(bench.keys(SINGLE_ANSWER, start, AFIRM_2, AFIRM_3, CONTR_1), bench.keys(SINGLE_ANSWER, composed, AFIRM_2, AFIRM_3, CONTR_1))
+        translation.getUnits() == 6
+        translation.getQueriesSpent() == 12
+        single.getUnits() == 6
+        single.getQueriesSpent() == 6
+        bench.queries.size() == 18
+    - |
+      test: "should keep in its cuts the real level and topic of each exercise, with their labels and the instruction of the topic, so the comparison finds in the ledger what the closing judged"
+      trace: FEAT-CJUEZ / F-CJUEZ-R001
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.startCourse()
+        composed = composedOfTheChanged()
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, MINI_THEORY), CHANGED)
+        real = JudgePassBench.ancestors(bench.mapper().map(start))
+        held = TreeSet<>()
+
+      when:
+        sut.judge(batch, start, composed, new BatchCloseRequest(Map.of(TRANSLATION_SENSE, 1000, MINI_THEORY, 1000), null))
+
+      then:
+        real.get(AFIRM_2) == List.of("A1", "Present Simple", "Afirmativas regulares", "Usa el presente simple en afirmativas.")
+        held.containsAll(CHANGED) is true
+        reused(bench.wholeCourseCoverage(start, TRANSLATION_SENSE)) == 6
+        reused(bench.wholeCourseCoverage(composed, TRANSLATION_SENSE)) == 6
+        reused(bench.wholeCourseCoverage(start, MINI_THEORY)) == 2
+        reused(bench.wholeCourseCoverage(composed, MINI_THEORY)) == 2
+    - |
+      test: "should judge with mini-theory each topic that has a changed exercise, whole, before and after, and no other topic of the course"
+      trace: FEAT-CJUEZ / F-CJUEZ-R001
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.startCourse()
+        composed = composedOfTheChanged()
+        batch = JudgePassBench.batch(List.of(MINI_THEORY), CHANGED)
+        accounts = bench.pass().judge(batch, start, composed, new BatchCloseRequest(Map.of(MINI_THEORY, 1000), null))
+        theory = account(accounts, MINI_THEORY)
+
+      then:
+        bench.readOf(MINI_THEORY, start, TEMA_AFIRMATIVAS).contains("She works in a bank.") is true
+        bench.consulted(MINI_THEORY) == both(bench.keys(MINI_THEORY, start, TEMA_AFIRMATIVAS, TEMA_CONTRASTE), bench.keys(MINI_THEORY, composed, TEMA_AFIRMATIVAS, TEMA_CONTRASTE))
+        theory.getUnit() == AuditTarget.KNOWLEDGE
+        theory.getUnits() == 4
+        theory.getQueriesSpent() == 4
+    - |
+      test: "should count a change of the instruction of a topic as a change of every exercise of that topic"
+      trace: FEAT-CJUEZ / F-CJUEZ-R001
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.startCourse()
+        composed = JudgePassBench.composedCourse(Set.of(), Map.of(TEMA_CONTRACCIONES, "Escribe la $short form$ de lo que está entre paréntesis."))
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, MINI_THEORY), List.of(TEMA_CONTRACCIONES))
+        accounts = bench.pass().judge(batch, start, composed, new BatchCloseRequest(Map.of(TRANSLATION_SENSE, 1000, MINI_THEORY, 1000), null))
+
+      then:
+        bench.consulted(TRANSLATION_SENSE) == both(bench.keys(TRANSLATION_SENSE, start, CONTRAC_1, CONTRAC_2, CONTRAC_3), bench.keys(TRANSLATION_SENSE, composed, CONTRAC_1, CONTRAC_2, CONTRAC_3))
+        bench.consulted(MINI_THEORY) == both(bench.keys(MINI_THEORY, start, TEMA_CONTRACCIONES), bench.keys(MINI_THEORY, composed, TEMA_CONTRACCIONES))
+        account(accounts, TRANSLATION_SENSE).getUnits() == 6
+        account(accounts, TRANSLATION_SENSE).getQueriesSpent() == 12
+        account(accounts, MINI_THEORY).getUnits() == 2
+        account(accounts, MINI_THEORY).getQueriesSpent() == 2
+    - |
+      test: "should leave out of the after side an exercise its change leaves identical, as a rule fix that only asks to rerecord its audio, so it is judged once"
+      trace: FEAT-CJUEZ / F-CJUEZ-R001
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.startCourse()
+        composed = JudgePassBench.composedCourse(Set.of(AFIRM_2), Map.of())
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, MINI_THEORY), List.of(AFIRM_2, AFIRM_3, CONTR_2))
+        request = BatchCloseRequest(Map.of(TRANSLATION_SENSE, 1000, MINI_THEORY, 1000), null)
+        estimated = bench.pass().estimate(batch, start, composed)
+        paid = bench.pass().judge(batch, start, composed, request)
+
+      then:
+        JudgePassBench.exercise(composed, AFIRM_3) == JudgePassBench.exercise(start, AFIRM_3)
+        JudgePassBench.exercise(composed, CONTR_2) == JudgePassBench.exercise(start, CONTR_2)
+        account(estimated, TRANSLATION_SENSE).getUnits() == 4
+        account(estimated, TRANSLATION_SENSE).getQueriesMissing() == 8
+        account(estimated, MINI_THEORY).getUnits() == 3
+        account(estimated, MINI_THEORY).getQueriesMissing() == 3
+        account(paid, TRANSLATION_SENSE).getUnits() == 4
+        account(paid, TRANSLATION_SENSE).getQueriesSpent() == 8
+        bench.consulted(TRANSLATION_SENSE) == both(bench.keys(TRANSLATION_SENSE, start, AFIRM_2, AFIRM_3, CONTR_2), bench.keys(TRANSLATION_SENSE, composed, AFIRM_2))
+        account(paid, MINI_THEORY).getQueriesSpent() == 3
+        bench.consulted(MINI_THEORY) == both(bench.keys(MINI_THEORY, start, TEMA_AFIRMATIVAS, TEMA_CONTRASTE), bench.keys(MINI_THEORY, composed, TEMA_AFIRMATIVAS))
+    - |
+      test: "should judge only with the judges that read the kind of exercise that changed, leaving out multiple-choice-validity in a batch that only changed gap exercises"
+      trace: FEAT-CJUEZ / F-CJUEZ-R001
+
+      given:
+        bench = JudgePassBench()
+        analyzers = List.of(HINT_COHERENCE, MULTIPLE_CHOICE, TRANSLATION_SENSE, SINGLE_ANSWER, MINI_THEORY)
+        start = JudgePassBench.startCourse()
+        gaps = bench.pass().estimate(JudgePassBench.batch(analyzers, CHANGED), start, composedOfTheChanged())
+        withChoice = bench.pass().estimate(JudgePassBench.batch(analyzers, List.of(AFIRM_2, CONTR_MC)), start, JudgePassBench.composedCourse(Set.of(AFIRM_2, CONTR_MC), Map.of()))
+        choice = account(withChoice, MULTIPLE_CHOICE)
+
+      then:
+        judgesOf(gaps) == List.of(TRANSLATION_SENSE, SINGLE_ANSWER, MINI_THEORY)
+        judgesOf(withChoice) == List.of(MULTIPLE_CHOICE, TRANSLATION_SENSE, SINGLE_ANSWER, MINI_THEORY)
+        choice.getUnits() == 2
+        choice.getQueriesMissing() == 2
+        account(withChoice, TRANSLATION_SENSE).getUnits() == 2
+    - |
+      test: "should not pay a judge whose verdicts on what the batch changed are all in the ledger, and count them as reused"
+      trace: FEAT-CJUEZ / F-CJUEZ-R001
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.startCourse()
+        composed = composedOfTheChanged()
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, SINGLE_ANSWER), CHANGED)
+        accounts = bench.pass().judge(batch, start, composed, new BatchCloseRequest(Map.of(TRANSLATION_SENSE, 1000, SINGLE_ANSWER, 1000), null))
+        translation = account(accounts, TRANSLATION_SENSE)
+        single = account(accounts, SINGLE_ANSWER)
+
+      when:
+        sut.earlierAudit(start, TRANSLATION_SENSE, SINGLE_ANSWER)
+
+      then:
+        translation.getQueriesSpent() == 0
+        translation.getQueriesReused() == 12
+        translation.getQueriesMissing() == 0
+        translation.getUnits() == 6
+        bench.consulted(TRANSLATION_SENSE).isEmpty() is true
+        single.getQueriesReused() == 3
+        single.getQueriesSpent() == 3
+        single.getQueriesMissing() == 0
+        bench.consulted(SINGLE_ANSWER) == bench.keys(SINGLE_ANSWER, composed, AFIRM_2, AFIRM_3, CONTR_1).stream().sorted().toList()
+        bench.queries.size() == 3
+    - |
+      test: "should make no query when estimating, running every judge, the local ones included, with a cap of 0 on both sides"
+      trace: FEAT-CJUEZ / F-CJUEZ-R002
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.startCourse()
+        composed = composedOfTheChanged()
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, SINGLE_ANSWER, MINI_THEORY, GRAMMAR, NATURALNESS), CHANGED)
+        ledger = bench.book.size()
+        accounts = bench.pass().estimate(batch, start, composed)
+        selected = TreeSet<>()
+        translations = ArrayList<>()
+
+      then:
+        bench.queries.isEmpty() is true
+        bench.book.size() == ledger
+        selected.containsAll(List.of(TRANSLATION_SENSE, SINGLE_ANSWER, MINI_THEORY, GRAMMAR, NATURALNESS)) is true
+        translations.contains(JudgePassBench.exercise(start, AFIRM_2).getTranslation()) is true
+        translations.contains(JudgePassBench.exercise(composed, AFIRM_2).getTranslation()) is true
+    - |
+      test: "should give in the estimate per judge the exercises or topics it judges before and after, the queries the ledger already has and the ones missing, as translation-sense with two queries per exercise and mini-theory with one per topic"
+      trace: FEAT-CJUEZ / F-CJUEZ-R002
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.startCourse()
+        ledger = bench.book.size()
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, MINI_THEORY), CHANGED)
+        accounts = bench.pass().estimate(batch, start, composedOfTheChanged())
+        translation = account(accounts, TRANSLATION_SENSE)
+        theory = account(accounts, MINI_THEORY)
+
+      when:
+        sut.earlierAudit(start, TRANSLATION_SENSE)
+
+      then:
+        translation.getUnit() == AuditTarget.QUIZ
+        translation.getUnits() == 6
+        translation.getQueriesReused() == 6
+        translation.getQueriesMissing() == 6
+        theory.getUnit() == AuditTarget.KNOWLEDGE
+        theory.getUnits() == 4
+        theory.getQueriesReused() == 0
+        theory.getQueriesMissing() == 4
+        translation.getQueriesSpent() + theory.getQueriesSpent() == 0
+        bench.book.size() == ledger
+        bench.queries.isEmpty() is true
+    - |
+      test: "should list in the estimate a judge without an approved exam with the reason of its exam, as quiz-instruction that never took it and single-answer that failed it"
+      trace: FEAT-CJUEZ / F-CJUEZ-R002
+
+      given:
+        bench = JudgePassBench()
+        notTaken = "sin examen: la versión vigente del juez no rindió el examen fijo"
+        failed = "reprobada: la versión vigente del juez reprobó el examen fijo (12 de 20 en la cola del 5 %, reprobado el 30/9)"
+        tool = "reprobada: la versión «LanguageTool 6.8 · filtro-1» reprobó el examen fijo"
+        batch = JudgePassBench.batch(List.of(QUIZ_INSTRUCTION, TRANSLATION_SENSE, SINGLE_ANSWER, GRAMMAR), CHANGED)
+        accounts = bench.pass().estimate(batch, JudgePassBench.startCourse(), composedOfTheChanged())
+        instruction = account(accounts, QUIZ_INSTRUCTION)
+        single = account(accounts, SINGLE_ANSWER)
+        grammar = account(accounts, GRAMMAR)
+        translation = account(accounts, TRANSLATION_SENSE)
+
+      when:
+        sut.withoutApprovedExam(QUIZ_INSTRUCTION, JudgeExamStatus.NOT_TAKEN, notTaken)
+
+      then:
+        judgesOf(accounts) == List.of(QUIZ_INSTRUCTION, TRANSLATION_SENSE, SINGLE_ANSWER, GRAMMAR)
+        instruction.isApproved() is false
+        instruction.getExamStatus() == JudgeExamStatus.NOT_TAKEN
+        instruction.getReason() == notTaken
+        instruction.getUnits() == 6
+        single.isApproved() is false
+        single.getExamStatus() == JudgeExamStatus.FAILED
+        single.getReason() == failed
+        grammar.isApproved() is false
+        grammar.getExamStatus() == JudgeExamStatus.FAILED
+        grammar.getReason() == tool
+        grammar.getUnits() == 6
+        translation.isApproved() is true
+        translation.getExamStatus() == JudgeExamStatus.APPROVED
+        translation.getReason() is null
+    - |
+      test: "should mark naturalness as local in the estimate when it asks its model in Ollama, and not when it goes by its claude -p alternative"
+      trace: FEAT-CJUEZ / F-CJUEZ-R002
+
+      given:
+        start = JudgePassBench.startCourse()
+        composed = composedOfTheChanged()
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, NATURALNESS), CHANGED)
+        withOllama = JudgePassBench()
+        withoutOllama = JudgePassBench()
+        local = withOllama.pass().estimate(batch, start, composed)
+        viaClaude = withoutOllama.pass().estimate(batch, start, composed)
+
+      when:
+        sut.naturalnessGoesByClaude()
+
+      then:
+        account(local, NATURALNESS).isLocal() is true
+        account(local, TRANSLATION_SENSE).isLocal() is false
+        account(viaClaude, NATURALNESS).isLocal() is false
+        account(viaClaude, NATURALNESS).getUnits() == 6
+        account(viaClaude, NATURALNESS).getQueriesMissing() == 6
+        account(viaClaude, NATURALNESS).isApproved() is true
+    - |
+      test: "should pay no judge when the request asks no budget and no cap, a dry run as today"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.startCourse()
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, SINGLE_ANSWER, MINI_THEORY, NATURALNESS), CHANGED)
+        ledger = bench.book.size()
+        accounts = bench.pass().judge(batch, start, composedOfTheChanged(), new BatchCloseRequest(Map.of(), null))
+
+      when:
+        sut.earlierAudit(start, TRANSLATION_SENSE)
+
+      then:
+        bench.queries.isEmpty() is true
+        bench.book.size() == ledger
+        account(accounts, TRANSLATION_SENSE).getQueriesReused() == 6
+        account(accounts, TRANSLATION_SENSE).getQueriesMissing() == 6
+        account(accounts, SINGLE_ANSWER).getQueriesReused() == 0
+        account(accounts, SINGLE_ANSWER).getQueriesMissing() == 6
+        account(accounts, MINI_THEORY).getQueriesMissing() == 4
+        account(accounts, NATURALNESS).getQueriesMissing() == 6
+    - |
+      test: "should pay with --budget translation-sense=500 only translation-sense, never more than 500 between its before and after cuts"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.largeCourse(100, 2, false)
+        composed = JudgePassBench.largeCourse(100, 2, true)
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, SINGLE_ANSWER, MINI_THEORY), JudgePassBench.largeExerciseIds(100, 2))
+        accounts = bench.pass().judge(batch, start, composed, new BatchCloseRequest(Map.of(TRANSLATION_SENSE, 500), null))
+        translation = account(accounts, TRANSLATION_SENSE)
+
+      then:
+        translation.getUnits() == 400
+        translation.getQueriesSpent() == 500
+        bench.consulted(TRANSLATION_SENSE).size() == 500
+        translation.getQueriesMissing() == 300
+        translation.getBudget() == Integer.valueOf(500)
+        bench.queries.size() == 500
+    - |
+      test: "should share the cap of the batch among the approved judges in the order of the catalog, each with what the previous ones left of it"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.largeCourse(100, 2, false)
+        composed = JudgePassBench.largeCourse(100, 2, true)
+        batch = JudgePassBench.batch(List.of(MINI_THEORY, SINGLE_ANSWER, TRANSLATION_SENSE), JudgePassBench.largeExerciseIds(100, 2))
+        accounts = bench.pass().judge(batch, start, composed, new BatchCloseRequest(Map.of(), 900))
+        translation = account(accounts, TRANSLATION_SENSE)
+        single = account(accounts, SINGLE_ANSWER)
+        theory = account(accounts, MINI_THEORY)
+
+      then:
+        judgesOf(accounts) == List.of(TRANSLATION_SENSE, SINGLE_ANSWER, MINI_THEORY)
+        translation.getQueriesSpent() == 800
+        translation.getQueriesMissing() == 0
+        translation.getBudget() == Integer.valueOf(900)
+        single.getQueriesSpent() == 100
+        single.getQueriesMissing() == 300
+        single.getBudget() == Integer.valueOf(100)
+        theory.getQueriesSpent() == 0
+        theory.getQueriesMissing() == 200
+        bench.queries.size() == 900
+    - |
+      test: "should never pass the cap with --budget translation-sense=1000 --cap 1200, where translation-sense spends up to 1000 and mini-theory gets what is left of the 1200"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.largeCourse(150, 2, false)
+        composed = JudgePassBench.largeCourse(150, 2, true)
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, MINI_THEORY), JudgePassBench.largeExerciseIds(150, 2))
+        accounts = bench.pass().judge(batch, start, composed, new BatchCloseRequest(Map.of(TRANSLATION_SENSE, 1000), 1200))
+        translation = account(accounts, TRANSLATION_SENSE)
+        theory = account(accounts, MINI_THEORY)
+
+      then:
+        translation.getQueriesSpent() == 1000
+        translation.getQueriesMissing() == 200
+        translation.getBudget() == Integer.valueOf(1000)
+        theory.getQueriesSpent() == 200
+        theory.getQueriesMissing() == 100
+        theory.getBudget() == Integer.valueOf(200)
+        bench.queries.size() == 1200
+    - |
+      test: "should start no further query of a judge after a failure of its service, not even on its after cut, and give the failure in its account"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        bench = JudgePassBench()
+        failure = "claude -p no respondió: se cortó la conexión"
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, MINI_THEORY), CHANGED)
+        accounts = bench.pass().judge(batch, JudgePassBench.startCourse(), composedOfTheChanged(), new BatchCloseRequest(Map.of(TRANSLATION_SENSE, 1000, MINI_THEORY, 1000), null))
+        translation = account(accounts, TRANSLATION_SENSE)
+        theory = account(accounts, MINI_THEORY)
+
+      when:
+        sut.serviceDown(TRANSLATION_SENSE, failure)
+
+      then:
+        bench.attempts(TRANSLATION_SENSE).size() == 1
+        bench.consulted(TRANSLATION_SENSE).isEmpty() is true
+        translation.getUnavailableReason() == failure
+        translation.getQueriesSpent() == 0
+        translation.getQueriesMissing() == 12
+        theory.getQueriesSpent() == 4
+        theory.getUnavailableReason() is null
+    - |
+      test: "should never pay naturalness asking its model in Ollama, even when --budget names it, nor spend any cap on it"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        bench = JudgePassBench()
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, NATURALNESS), CHANGED)
+        accounts = bench.pass().judge(batch, JudgePassBench.startCourse(), composedOfTheChanged(), new BatchCloseRequest(Map.of(NATURALNESS, 300), 1000))
+        naturalness = account(accounts, NATURALNESS)
+
+      then:
+        naturalness.isLocal() is true
+        naturalness.getQueriesSpent() == 0
+        naturalness.getBudget() is null
+        naturalness.getQueriesMissing() == 6
+        bench.consulted(NATURALNESS).isEmpty() is true
+        bench.maxBudgetGiven(NATURALNESS) == 0
+        account(accounts, TRANSLATION_SENSE).getQueriesSpent() == 12
+        bench.queries.size() == 12
+    - |
+      test: "should pay naturalness like any other judge when it goes by its claude -p alternative because Ollama is not there"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        bench = JudgePassBench()
+        batch = JudgePassBench.batch(List.of(NATURALNESS), CHANGED)
+        naturalness = account(bench.pass().judge(batch, JudgePassBench.startCourse(), composedOfTheChanged(), new BatchCloseRequest(Map.of(NATURALNESS, 4), null)), NATURALNESS)
+
+      when:
+        sut.naturalnessGoesByClaude()
+
+      then:
+        naturalness.isLocal() is false
+        naturalness.getQueriesSpent() == 4
+        bench.consulted(NATURALNESS).size() == 4
+        naturalness.getQueriesMissing() == 2
+        naturalness.getBudget() == Integer.valueOf(4)
+    - |
+      test: "should pay nothing when judging again with the same budget what an earlier closing paid, and count it as reused"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        bench = JudgePassBench()
+        start = JudgePassBench.startCourse()
+        composed = composedOfTheChanged()
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, MINI_THEORY), CHANGED)
+        request = BatchCloseRequest(Map.of(TRANSLATION_SENSE, 1000, MINI_THEORY, 1000), null)
+        first = bench.pass().judge(batch, start, composed, request)
+        second = bench.pass().judge(batch, start, composed, request)
+        translation = account(second, TRANSLATION_SENSE)
+        theory = account(second, MINI_THEORY)
+
+      then:
+        account(first, TRANSLATION_SENSE).getQueriesSpent() == 12
+        account(first, MINI_THEORY).getQueriesSpent() == 4
+        bench.queries.size() == 16
+        bench.queries.size() == 16
+        translation.getQueriesSpent() == 0
+        translation.getQueriesReused() == 12
+        translation.getQueriesMissing() == 0
+        theory.getQueriesSpent() == 0
+        theory.getQueriesReused() == 4
+        theory.getQueriesMissing() == 0
+    - |
+      test: "should name as the judges of the batch, in the order of the catalog, its analyzers that ask a model or bring a local tool, as translation-sense, mini-theory and grammar, and not an analyzer of instant rules, as hint-coherence"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        bench = JudgePassBench()
+        batch = JudgePassBench.batch(List.of(GRAMMAR, MINI_THEORY, HINT_COHERENCE, TRANSLATION_SENSE), List.of())
+        judges = bench.pass().judges(batch)
+
+      then:
+        judges == List.of(TRANSLATION_SENSE, MINI_THEORY, GRAMMAR)
+    - |
+      test: "should not pay a judge without an approved exam with any cap, neither quiz-instruction named with --budget quiz-instruction=600 nor single-answer, failed, from the cap of the batch, which goes to the approved ones"
+      trace: FEAT-CJUEZ / F-CJUEZ-R004
+
+      given:
+        bench = JudgePassBench()
+        batch = JudgePassBench.batch(List.of(QUIZ_INSTRUCTION, TRANSLATION_SENSE, SINGLE_ANSWER, MINI_THEORY), CHANGED)
+        accounts = bench.pass().judge(batch, JudgePassBench.startCourse(), composedOfTheChanged(), new BatchCloseRequest(Map.of(QUIZ_INSTRUCTION, 600), 16))
+
+      when:
+        sut.withoutApprovedExam(QUIZ_INSTRUCTION, JudgeExamStatus.NOT_TAKEN, "sin examen: la versión vigente del juez no rindió el examen fijo")
+
+      then:
+        account(accounts, QUIZ_INSTRUCTION).getExamStatus() == JudgeExamStatus.NOT_TAKEN
+        account(accounts, SINGLE_ANSWER).getExamStatus() == JudgeExamStatus.FAILED
+        account(accounts, TRANSLATION_SENSE).isApproved() is true
+        account(accounts, TRANSLATION_SENSE).getQueriesSpent() == 12
+        account(accounts, MINI_THEORY).isApproved() is true
+        account(accounts, MINI_THEORY).getQueriesSpent() == 4
+        bench.queries.size() == 16
+    - |
+      test: "should give the accounts in the order of the catalog, each with the visible name of the card of the judge, or its unique name when the card has none"
+      trace: FEAT-CJUEZ / F-CJUEZ-R005
+
+      given:
+        bench = JudgePassBench()
+        batch = JudgePassBench.batch(List.of(MINI_THEORY, SINGLE_ANSWER, HINT_COHERENCE, TRANSLATION_SENSE, QUIZ_INSTRUCTION), CHANGED)
+        start = JudgePassBench.startCourse()
+        composed = composedOfTheChanged()
+        pass = bench.pass(bench.catalogWithoutDisplayName(SINGLE_ANSWER))
+        both = List.of(pass.estimate(batch, start, composed), pass.judge(batch, start, composed, new BatchCloseRequest(Map.of(), null)))
+    - |
+      test: "should record as the budget of each judge its own --budget, what was left of the cap of the batch when its turn came, or none"
+      trace: FEAT-CJUEZ / F-CJUEZ-R005
+
+      given:
+        start = JudgePassBench.startCourse()
+        composed = composedOfTheChanged()
+        batch = JudgePassBench.batch(List.of(TRANSLATION_SENSE, SINGLE_ANSWER, MINI_THEORY), CHANGED)
+        withCap = JudgePassBench().pass().judge(batch, start, composed, new BatchCloseRequest(Map.of(TRANSLATION_SENSE, 5), 14))
+        budgetAlone = JudgePassBench().pass().judge(batch, start, composed, new BatchCloseRequest(Map.of(TRANSLATION_SENSE, 5), null))
+
+      then:
+        account(withCap, TRANSLATION_SENSE).getBudget() == Integer.valueOf(5)
+        account(withCap, SINGLE_ANSWER).getBudget() == Integer.valueOf(9)
+        account(withCap, MINI_THEORY).getBudget() == Integer.valueOf(3)
+        account(withCap, TRANSLATION_SENSE).getQueriesSpent() == 5
+        account(withCap, SINGLE_ANSWER).getQueriesSpent() == 6
+        account(withCap, MINI_THEORY).getQueriesSpent() == 3
+        account(budgetAlone, TRANSLATION_SENSE).getBudget() == Integer.valueOf(5)
+        account(budgetAlone, SINGLE_ANSWER).getBudget() is null
+        account(budgetAlone, MINI_THEORY).getBudget() is null
   - name: DefaultTrayServiceFactory
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/trayengine/DefaultTrayServiceFactory.java
@@ -87043,6 +87059,12 @@ elements:
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/trayengine/DefaultTrayServiceTest.java
     - name: "should close the batch with an empty request before publishing it from\
         \ the tray, paying no judge"
+      status: EXISTS
+      testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/trayengine/DefaultTrayServiceTest.java
+    - name: "should refuse to publish from the tray while a judge without approval\
+        \ reads what the A1 batch changed, copying «juez sin aprobar: Consigna que\
+        \ no se cumple, …» from the verdict of its last closing, although its blind\
+        \ sample is not answered yet"
       status: EXISTS
       testFilePath: revision-domain/src/test/java/com/learney/contentaudit/revisiondomain/trayengine/DefaultTrayServiceTest.java
     testCleanViews:
@@ -87152,7 +87174,7 @@ elements:
         batch = bandeja.saved()
         change = change(batch, "jose-" + BandejaFixture.TEA)
         proposal = BandejaFixture.BATCH + "-" + BandejaFixture.TEA
-        closing = bandeja.batchService.close()
+        closing = bandeja.batchService.close(new BatchCloseRequest(new LinkedHashMap<>(), null))
 
       then:
         change.isJoseException() is true
@@ -87353,6 +87375,68 @@ elements:
         tray.getItems().stream().filter(i -> i.getKind() == TrayItemKind.PENDING_RERECORDING).count() == 2
         tray.isPublishable() is true
         publication.getRerecords() == List.of(BandejaFixture.vegetablesAudio())
+    - |
+      test: "should close the batch with an empty request before publishing it from the tray, paying no judge"
+      trace: FEAT-CJUEZ / F-CJUEZ-R003
+
+      given:
+        bandeja = opened()
+        order = ArrayList<>()
+        closeRequests = ArrayList<>()
+        recording = BatchService() {
+
+          @Override
+          public CorrectionBatch open(BatchOpenRequest request) {
+              throw new AssertionError("publishing from the tray does not open a batch");
+          }
+
+          @Override
+          public Optional<CorrectionBatch> current() {
+              throw new AssertionError("publishing from the tray does not ask for the current batch");
+          }
+
+          @Override
+          public BatchEstimate estimate() {
+              throw new AssertionError("publishing from the tray does not estimate");
+          }
+
+          @Override
+          public BatchReport run(BatchRunRequest request) {
+              throw new AssertionError("publishing from the tray does not run the batch");
+          }
+
+          @Override
+          public CorrectionBatch adjust(BatchAdjustment adjustment) {
+              throw new AssertionError("publishing from the tray does not adjust");
+          }
+
+          @Override
+          public BatchReport report(String batchId) {
+              throw new AssertionError("publishing from the tray does not ask for the report");
+          }
+
+          @Override
+          public BatchPublication publish(BatchPublishRequest request) {
+              order.add("publish");
+              return bandeja.batchService.publish(request);
+          }
+
+          @Override
+          public BatchClosing close(BatchCloseRequest request) {
+              order.add("close");
+              closeRequests.add(request);
+              return new BatchClosing(Instant.now(), null, TandaFixture.passing(null, List.of()), new BatchGateVerdict(true, VerdictKind.PASSES, List.of(), List.of(), List.of(), List.of(), List.of(), List.of()), List.of(), 1, request, List.of());
+          }
+      }
+        tray = DefaultTrayService(recording, bandeja.batches, bandeja.ciega, bandeja.panels, new DefaultPanelRunnerFactory(), BandejaFixture.assembler(bandeja.decisions), BandejaFixture.memory(bandeja.decisions), bandeja.courses, TandaFixture.COURSE_PATH)
+
+      when:
+        sut.publish("José", null)
+
+      then:
+        order == List.of("close", "publish")
+        closeRequests.size() == 1
+        closeRequests.get(0) == new BatchCloseRequest(new LinkedHashMap<>(), null)
   - name: DefaultTrayAssembler
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/trayengine/DefaultTrayAssembler.java
@@ -91343,8 +91427,8 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 2717
-  passing: 2700
+  total: 2724
+  passing: 2707
   failing: 0
   notImplemented: 17
 qualitySummary:

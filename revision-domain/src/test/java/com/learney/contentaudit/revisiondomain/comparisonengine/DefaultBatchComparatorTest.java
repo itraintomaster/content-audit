@@ -2379,4 +2379,13 @@ public class DefaultBatchComparatorTest {
         assertTrue(row(remeasured.compare(), LEMMA_ABSENCE, REGULAR).getProjected().isEvaluated(),
                 "R008: a score is always evaluated where it is published");
     }
+
+    @Test
+    @DisplayName("should block and name near-duplicates, failed, a judge whose coverage counts topics but that marks the exercises it compares, with a score or as unevaluated, when it marks an exercise the batch changed, ending the detail of the verdict with «juez sin aprobar: Ejercicio casi repetido»")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R004")
+    public void shouldBlockAndNameNearduplicatesFailedAJudgeWhoseCoverageCountsTopicsButThatMarksTheExercisesItComparesWithAScoreOrAsUnevaluatedWhenItMarksAnExerciseTheBatchChangedEndingTheDetailOfTheVerdictWithJuezSinAprobarEjercicioCasiRepetido(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

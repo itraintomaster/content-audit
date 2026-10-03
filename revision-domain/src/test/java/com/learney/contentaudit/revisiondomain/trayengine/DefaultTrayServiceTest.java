@@ -627,4 +627,12 @@ public class DefaultTrayServiceTest {
         assertEquals(new BatchCloseRequest(new LinkedHashMap<>(), null), closeRequests.get(0),
                 "an empty request: paying no judge");
     }
+
+    @Test
+    @DisplayName("should refuse to publish from the tray while a judge without approval reads what the A1 batch changed, copying «juez sin aprobar: Consigna que no se cumple, …» from the verdict of its last closing, although its blind sample is not answered yet")
+    @Tag("FEAT-CJUEZ")
+    @Tag("F-CJUEZ-R004")
+    public void shouldRefuseToPublishFromTheTrayWhileAJudgeWithoutApprovalReadsWhatTheA1BatchChangedCopyingJuezSinAprobarConsignaQueNoSeCumpleFromTheVerdictOfItsLastClosingAlthoughItsBlindSampleIsNotAnsweredYet() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }
