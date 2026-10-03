@@ -33,7 +33,11 @@ resolviendo todas sus tareas a la vez.
 2. Las palabras tienen que ser del nivel del tema (`wordLights`): ninguna
    palabra de un nivel más alto que el tema no enseñe.
 3. Una opción múltiple sigue siendo opción múltiple, con una sola correcta y la
-   misma cantidad de opciones.
+   misma cantidad de opciones. Cada incorrecta que escribas o cambies tiene que
+   quedar mal en la oración, no ser sólo menos esperable: si también es correcta
+   y natural, son dos correctas. Elegí una que no encaje —otro tiempo, otra
+   persona, otra forma del verbo— y que no sea la correcta en otra forma
+   (contraída o larga, mayúscula, *a* o *an*).
 4. Si `twoFixes` es `true`, el inglés y la traducción no dicen lo mismo:
    entregá **dos** candidatos, uno `TRANSLATION_ONLY` que cambia sólo la
    traducción y otro `ENGLISH_CHANGE` que cambia el inglés.
@@ -41,9 +45,9 @@ resolviendo todas sus tareas a la vez.
    `MINI_THEORY` con el texto nuevo.
 6. Si `conversion` pide opción múltiple, entregá un `MULTIPLE_CHOICE_CONVERSION`:
    la correcta es la primera respuesta aceptada de hoy, las otras son
-   contracciones distintas que no son la correcta en otra forma, con la cantidad
-   de opciones pedida; la traducción y la miniteoría no cambian; la consigna pide
-   elegir sin pedir una forma.
+   contracciones distintas que no son la correcta en otra forma ni quedan bien
+   en la oración (regla 3), con la cantidad de opciones pedida; la traducción y
+   la miniteoría no cambian; la consigna pide elegir sin pedir una forma.
 7. Desde el segundo intento, `previousRejections` dice por qué se rechazó lo
    anterior: no vuelvas a proponer lo mismo.
 

@@ -20,9 +20,16 @@
     "correctProblem",
     "`HIGH` — vale igual que la correcta",
     "mayúscula (*am i* / *Am I*), *a* o *an*, singular o plural",
-    "**antes de contestar**"
+    "**antes de contestar**",
+    "**funciona en la oración tal como se lee**",
+    "**es natural**",
+    "**nada de lo que ve el alumno la descarta**",
+    "nombra el tema no descarta",
+    "`MEDIUM` — también es correcta y natural, aunque menos esperable para el",
+    "**La pregunta del criterio.**",
+    "el cartón de «a milk»"
   ],
-  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (una label que no es opción o que es la correcta, BLOCKING o LOW en una alternativa, correctIsValid sin su correctProblem), y que emit produzca choiceAlternativeVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (title, instructions, exercise, options), armado como DefaultChoiceAlternativeSubjectBuilder, de ejercicios A1/A2 del curso que no están en el examen; los de «manzanas» (la clave invertida) y «verano» (HIGH) son inventados y no están en el curso.",
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (una label que no es opción o que es la correcta, BLOCKING o LOW en una alternativa, correctIsValid sin su correctProblem), y que emit produzca choiceAlternativeVerdict o {\"outputUnusable\": true}. Las entradas manzanas a sin-entrada-de-opciones son el mapa de contenido congelado (title, instructions, exercise, options), armado como DefaultChoiceAlternativeSubjectBuilder, de ejercicios A1/A2 del curso que no están en el examen; los de «manzanas» (la clave invertida) y «verano» (HIGH) son inventados y no están en el curso. musica y champu llevan el juicio de la guía anterior al 1/10 y sólo prueban la forma. Las cal-* son los casos inventados de las recalibraciones del 1/10 y del 3/10, que no están en el curso, con la salida que grabó la guía de cada ronda (claude-cli, modelo por omisión): lo raro, lo forzado y lo que pide una situación concreta que no está no se lista; lo correcto y natural se lista HIGH o, si es menos esperable para el tema, MEDIUM. El gate no juzga el contenido: documentan el criterio y prueban la forma con esas entradas.",
   "inputs": {
     "manzanas": {
       "title": "$Before$ y $after$",
@@ -64,6 +71,96 @@
       "title": "$Some$ y $any$",
       "instructions": "Elige 'some' o 'any'.",
       "exercise": "Did you hear ___ music?"
+    },
+    "cal-mensajes": {
+      "title": "$Some$ y $any$",
+      "instructions": "Elige 'some' o 'any'.",
+      "exercise": "Did you get ___ messages while I was out?",
+      "options": "- any (correcta)\n- some"
+    },
+    "cal-queso": {
+      "title": "Contables e incontables",
+      "instructions": "Elige 'a' o '-' (sin artículo).",
+      "exercise": "She put ___ cheese in the sandwich.",
+      "options": "- - (correcta)\n- a"
+    },
+    "cal-curso": {
+      "title": "$Going to$ o $will$",
+      "instructions": "Elige 'be going to' para planes ya decididos o 'will' para decisiones del momento.",
+      "exercise": "I've decided: I ___ start a cooking course in May.",
+      "options": "- 'll\n- 'm going to (correcta)"
+    },
+    "cal-hablar": {
+      "title": "Verbos y preposiciones",
+      "instructions": "Elige la preposición correcta.",
+      "exercise": "Can I talk ___ you for a minute?",
+      "options": "- about\n- for\n- to (correcta)"
+    },
+    "cal-taza": {
+      "title": "Artículos: $a$ o $the$",
+      "instructions": "Elige 'a' o 'the'.",
+      "exercise": "Would you like ___ cup of tea?",
+      "options": "- a (correcta)\n- the"
+    },
+    "cal-londres": {
+      "title": "Preposiciones con $arrive$",
+      "instructions": "Elige la preposición correcta.",
+      "exercise": "We arrived ___ London at midnight.",
+      "options": "- at\n- in (correcta)\n- to"
+    },
+    "cal-playa": {
+      "title": "Superlativos",
+      "instructions": "Elige la opción correcta.",
+      "exercise": "It's the most beautiful beach ___ the world.",
+      "options": "- in (correcta)\n- of"
+    },
+    "cal-casa": {
+      "title": "Preposiciones de tiempo",
+      "instructions": "Elige la opción correcta.",
+      "exercise": "I'll be home ___ six o'clock.",
+      "options": "- at\n- by (correcta)\n- until"
+    },
+    "cal-te": {
+      "title": "Artículos",
+      "instructions": "Elige 'a' o '-' (sin artículo).",
+      "exercise": "She had ___ tea after lunch.",
+      "options": "- -\n- a (correcta)"
+    },
+    "cal-abrigo": {
+      "title": "Adjetivos",
+      "instructions": "Elige la opción correcta.",
+      "exercise": "Put on your coat. It's ___ outside.",
+      "options": "- cold\n- warm (correcta)"
+    },
+    "cal-tele": {
+      "title": "$Much$, $many$ y $a lot of$",
+      "instructions": "Elige la opción correcta.",
+      "exercise": "They don't watch ___ TV during the week.",
+      "options": "- a lot of\n- many\n- much (correcta)"
+    },
+    "cal-cafe": {
+      "title": "Preposiciones de lugar",
+      "instructions": "Elige la preposición correcta.",
+      "exercise": "We had lunch ___ a small café near the station.",
+      "options": "- at (correcta)\n- in\n- on"
+    },
+    "cal-casa-nueva": {
+      "title": "$For$ y $since$",
+      "instructions": "Elige la opción correcta.",
+      "exercise": "We have been in this house ___ six weeks.",
+      "options": "- during\n- for (correcta)\n- since"
+    },
+    "cal-pasaje": {
+      "title": "Present perfect",
+      "instructions": "Elige la opción correcta.",
+      "exercise": "He ___ his ticket, so he can't get on the plane.",
+      "options": "- 's lost (correcta)\n- lost\n- loses"
+    },
+    "cal-autos": {
+      "title": "$Much$, $many$ y $a lot of$",
+      "instructions": "Elige la opción correcta.",
+      "exercise": "There were ___ cars on the road this morning.",
+      "options": "- a lot of (correcta)\n- many\n- much"
     }
   },
   "cases": [
@@ -111,7 +208,7 @@
     },
     {
       "caseId": "musica-some-media",
-      "note": "«Did you hear ___ music?» (…2392): «some» es defendible.",
+      "note": "«Did you hear ___ music?» (…2392): *some* MEDIUM, que es lo que pide la guía desde el 3/10 (decisión de José: *some* en una pregunta neutra cuenta).",
       "inputs": "musica",
       "verdict": {
         "correctIsValid": true,
@@ -132,7 +229,7 @@
     },
     {
       "caseId": "champu-a-media",
-      "note": "«He ordered ___ shampoo.» (…2a59): «a shampoo» es un frasco o un lavado.",
+      "note": "«He ordered ___ shampoo.» (…2a59): juicio de la guía anterior al 1/10, que listaba «a» MEDIUM; la guía nueva no lo lista porque supone un frasco o un lavado. Acá sólo prueba la forma.",
       "inputs": "champu",
       "verdict": {
         "correctIsValid": true,
@@ -594,6 +691,273 @@
       }
     },
     {
+      "caseId": "alternativa-con-clave-vacia-null",
+      "note": "Una clave de más en null, de relleno después de la última, no dice nada: se descarta.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.",
+            "severity_note": null
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "alternativa-con-clave-de-texto-vacio",
+      "note": "Lo mismo con texto vacío: se descarta.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.",
+            "note": ""
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "veredicto-con-clave-en-blanco",
+      "note": "Arriba de todo también: una clave de más en blanco se descarta.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».",
+        "confidence": "  "
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "veredicto-con-lista-vacia-de-mas",
+      "note": "Una lista vacía de más tampoco dice nada.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».",
+        "notes": []
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "alternativa-con-nota-con-texto",
+      "note": "Una clave de más con contenido sigue frenando.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.",
+            "note": "una nota"
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "validAlternatives[0] no respeta el objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "coma-colgante-antes-de-cerrar",
+      "note": "El juez deja una coma sin clave antes de cada } y cada ]: no es JSON, pero la coma no dice nada y se lee sin ella.",
+      "inputs": "musica",
+      "raw": "{\n  \"correctIsValid\": true,\n  \"validAlternatives\": [\n    {\n      \"label\": \"some\",\n      \"severity\": \"MEDIUM\",\n      \"reason\": \"«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.\",\n    }\n  ],\n  \"correctProblem\": null,\n  \"rationale\": \"«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».\",\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "coma-adentro-de-un-texto",
+      "note": "Las comas de adentro de un texto no se tocan, aunque vengan antes de un } o un ].",
+      "inputs": "musica",
+      "raw": "{\n  \"correctIsValid\": true,\n  \"validAlternatives\": [\n    {\n      \"label\": \"some\",\n      \"severity\": \"MEDIUM\",\n      \"reason\": \"La coma de «good, }» y la de «[a, ]» quedan como están.\",\n    }\n  ],\n  \"correctProblem\": null,\n  \"rationale\": \"«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».\",\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "La coma de «good, }» y la de «[a, ]» quedan como están."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "elemento-de-relleno",
+      "note": "Sin nada que listar, el juez deja un elemento vacío o con NONE en vez de la lista vacía: no dice nada y se descarta.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "",
+            "severity": "NONE",
+            "reason": ""
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "Sólo la correcta queda natural en la oración tal como se lee."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [],
+          "correctProblem": null,
+          "rationale": "Sólo la correcta queda natural en la oración tal como se lee."
+        }
+      }
+    },
+    {
+      "caseId": "clave-de-relleno-undefined",
+      "note": "Una clave de relleno con undefined, que no es JSON: se lee como null y la clave se descarta.",
+      "inputs": "musica",
+      "raw": "{\n  \"correctIsValid\": true,\n  \"validAlternatives\": [\n    {\n      \"label\": \"some\",\n      \"severity\": \"MEDIUM\",\n      \"reason_note\": undefined,\n        \"reason\": \"«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.\"\n    }\n  ],\n  \"correctProblem\": null,\n  \"rationale\": \"«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».\"\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "undefined-adentro-de-un-texto",
+      "note": "La palabra undefined adentro de un texto no se toca.",
+      "inputs": "musica",
+      "raw": "{\n  \"correctIsValid\": true,\n  \"validAlternatives\": [\n    {\n      \"label\": \"some\",\n      \"severity\": \"MEDIUM\",\n      \"reason_note\": undefined,\n        \"reason\": \"Dice undefined adentro del texto y queda como está.\"\n    }\n  ],\n  \"correctProblem\": null,\n  \"rationale\": \"«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».\"\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "Dice undefined adentro del texto y queda como está."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
       "caseId": "falta-correct-problem",
       "note": "correctProblem es parte del objeto cerrado aunque vaya null.",
       "inputs": "musica",
@@ -855,6 +1219,284 @@
           "correctProblem": null,
           "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
         }
+      }
+    },
+    {
+      "caseId": "cal-some-en-pregunta-neutra-media",
+      "note": "Calibración 3/10 (inventado): *some* en una pregunta neutra también se dice; es correcta y natural, aunque el tema enseñe *any*: MEDIUM (decisión de José).",
+      "inputs": "cal-mensajes",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you get some messages while I was out?» también se dice cuando el que pregunta da por hecho o espera que sí hayan llegado mensajes; es correcta y natural, aunque lo esperable en una pregunta —y lo que practica el tema— sea 'any'."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "La clave 'any' es la opción esperable en una pregunta, pero 'some' en preguntas con expectativa afirmativa es igualmente gramatical y natural, y ni la consigna ni el título la descartan: queda como segunda correcta menos esperable."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-a-con-incontable-no-se-lista",
+      "note": "Calibración 1/10 (inventado): *a cheese* pide pensar en una pieza o una variedad, que la oración no plantea.",
+      "inputs": "cal-queso",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«Cheese» es incontable acá: «She put cheese in the sandwich.» es la lectura directa. «A cheese» obligaría a pensar en un tipo o una pieza de queso, algo que la oración no plantea, así que no vale igual."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-la-consigna-elige-no-se-lista",
+      "note": "Calibración 1/10 (inventado): «I've decided» es un plan y la consigna dice usar 'be going to': *'ll* no vale igual.",
+      "inputs": "cal-curso",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«I've decided» indica que el plan ya está decidido, y la consigna manda usar 'be going to' justamente en ese caso; «'ll» expresaría una decisión tomada en el momento, lo que contradice el contexto del ítem."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-cambia-el-sentido-no-se-lista",
+      "note": "Calibración 1/10 (inventado): *about* y *for* cambian el sentido del pedido.",
+      "inputs": "cal-hablar",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«Talk to someone» es la combinación que pide la oración; «talk about you» cambia el sentido a hablar acerca de la persona y no encaja con el pedido de hablarle un minuto, y «talk for you» significaría hablar en su nombre, lo que la oración no plantea."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-the-que-supone-no-se-lista",
+      "note": "Calibración 1/10 (inventado): *the cup of tea* supone una taza ya identificada.",
+      "inputs": "cal-taza",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "Al ofrecer algo por primera vez, «Would you like a cup of tea?» es la forma natural; «the cup of tea» exigiría una taza ya identificada, y el ejercicio no presenta ninguna."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-menos-natural-no-se-lista",
+      "note": "Calibración 1/10 (inventado): con una ciudad, *arrive in*; *at* es para un punto y *to* no va con arrive.",
+      "inputs": "cal-londres",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "Con ciudades se dice «arrive in London»; «arrive to» no existe en inglés y «arrive at» se reserva para lugares puntuales (edificios, estaciones), justo la distinción que practica el tema."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-no-idiomatica-no-se-lista",
+      "note": "Calibración 1/10 (inventado): con superlativo y lugar, *in the world*; *of the world* no es lo que dice un nativo.",
+      "inputs": "cal-playa",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "Con superlativos y un lugar, el inglés usa «in the world»; «of the world» no es lo que diría un nativo en esta oración."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-dos-correctas-se-listan",
+      "note": "Calibración 1/10 (inventado): *at six* y *until six* son tan naturales como *by six* y nada elige: HIGH.",
+      "inputs": "cal-casa",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "at",
+            "severity": "HIGH",
+            "reason": "«I'll be home at six o'clock.» es tan natural y común como con «by»: con una hora puntual, «at» es la preposición típica y nada en la oración indica que se trate de un plazo máximo en vez de la hora exacta de llegada."
+          },
+          {
+            "label": "until",
+            "severity": "HIGH",
+            "reason": "«I'll be home until six o'clock.» es una oración igual de natural y corriente, con el sentido de «estaré en casa hasta las seis»; nada en el enunciado descarta esa lectura."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "La oración está sin contexto y admite las tres preposiciones con lecturas distintas pero todas idiomáticas: «at six» (hora exacta de llegada), «by six» (a más tardar) y «until six» (permanencia en casa). El alumno no tiene ninguna pista para preferir «by»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-sin-articulo-igual-se-lista",
+      "note": "Calibración 1/10 (inventado): *had tea* es tan natural como *had a tea*, sin suponer nada: HIGH.",
+      "inputs": "cal-te",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "-",
+            "severity": "HIGH",
+            "reason": "«She had tea after lunch.» es la lectura más directa y natural: 'tea' como incontable no lleva artículo, que es justamente lo que enseña el tema de artículos."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "Las dos opciones dan una oración natural: sin artículo es el uso incontable estándar de 'tea' y es al menos tan natural como 'a tea' (una taza de té), así que el alumno que elige '-' tiene tanta razón como el que elige 'a'."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-clave-invertida",
+      "note": "Calibración 1/10 (inventado): el abrigo pide frío: la correcta no vale y *cold* sí.",
+      "inputs": "cal-abrigo",
+      "verdict": {
+        "correctIsValid": false,
+        "validAlternatives": [
+          {
+            "label": "cold",
+            "severity": "HIGH",
+            "reason": "«Put on your coat. It's cold outside.» es la lectura lógica: uno se pone el abrigo porque hace frío afuera."
+          }
+        ],
+        "correctProblem": "«Warm» contradice la indicación de ponerse el abrigo: si hace calorcito afuera, no hay razón para abrigarse.",
+        "rationale": "La clave está invertida: la primera oración («Put on your coat.») exige un adjetivo de frío, así que «cold» es la que vale y «warm» choca con el contexto."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-cuantificador-igual-se-lista",
+      "note": "Calibración 1/10 (inventado): *a lot of TV* es tan natural como *much TV* en la negativa: HIGH.",
+      "inputs": "cal-tele",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "a lot of",
+            "severity": "HIGH",
+            "reason": "«They don't watch a lot of TV during the week.» es igual de natural y corriente que con «much»: «a lot of» también se usa en oraciones negativas con incontables, y la consigna no restringe a «much»."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«TV» es incontable, así que «many» queda descartado, pero tanto «much» como «a lot of» funcionan sin esfuerzo en esta negativa y la consigna no da ninguna regla que privilegie una de las dos."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-dos-preposiciones-se-listan",
+      "note": "Calibración 1/10 (inventado): *in a small café* es tan natural como *at*, aunque *at* sea la de libro: con las dos a la vista, el alumno no tiene cómo elegir. HIGH.",
+      "inputs": "cal-cafe",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "in",
+            "severity": "HIGH",
+            "reason": "«We had lunch in a small café near the station.» es igual de natural: con un local como un café o un restaurante, «in» (dentro del lugar) se usa tanto como «at», y nada en la consigna ni en el enunciado descarta esa lectura."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«At» y «in» son ambas naturales y habituales con «a small café» para decir dónde se almorzó, sin necesidad de suponer nada extra; sólo «on» queda descartada."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-calco-forzado-no-se-lista",
+      "note": "Calibración 1/10, segunda ronda (inventado): *during six weeks* es un calco del castellano y suena forzado; *since* no va con una duración.",
+      "inputs": "cal-casa-nueva",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "Con una duración como «six weeks» y un present perfect continuo, sólo «for» es natural: «during six weeks» es un calco del castellano que suena forzado en inglés, y «since» pide un punto de inicio, no una cantidad de tiempo."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-el-titulo-solo-nombra-el-tema-media",
+      "note": "Calibración 1/10, segunda ronda (inventado): *He lost his ticket* es correcta y natural; el título «Present perfect» sólo nombra el tema, así que la hace menos esperable, no incorrecta: MEDIUM.",
+      "inputs": "cal-pasaje",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "lost",
+            "severity": "MEDIUM",
+            "reason": "«He lost his ticket, so he can't get on the plane.» es correcta y natural: el pasado simple narra el hecho y la consecuencia presente se expresa en la segunda parte. Es menos esperable sólo porque el título nombra el present perfect."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«'s lost» es la forma esperable para el tema, pero «lost» en pasado simple es igualmente gramatical y muy usada en esta misma oración, así que queda como MEDIUM; «loses» en presente simple no encaja con la consecuencia puntual."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-many-en-afirmativa-se-lista",
+      "note": "Calibración 1/10, segunda ronda (inventado): *many cars* en una afirmativa es correcta y natural, así que se lista.",
+      "inputs": "cal-autos",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "many",
+            "severity": "HIGH",
+            "reason": "«There were many cars on the road this morning.» es correcta y natural: «cars» es contable plural y «many» funciona sin problema en afirmativa, sobre todo con «there were»; es tan esperable como «a lot of» en este tema."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«Cars» es contable plural, así que tanto «a lot of» como «many» quedan correctas y naturales en la afirmativa; nada en la consigna ni en el enunciado descarta «many». Sólo «much» queda afuera por ir con incontables."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
       }
     }
   ]

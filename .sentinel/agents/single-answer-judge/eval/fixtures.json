@@ -20,9 +20,16 @@
     "**Nunca listes una respuesta que difiere de una aceptada sólo en eso**",
     "*until* y *till*",
     "**antes de contestar**",
-    "Nunca\nsugerís que la consigna pida una forma"
+    "Nunca\nsugerís que la consigna pida una forma",
+    "**la pregunta del criterio**",
+    "**Funciona en la oración tal como se lee.**",
+    "**Es natural.**",
+    "**Nada de lo que ve el alumno la descarta.**",
+    "título que sólo nombra el tema no descarta",
+    "**En las transformaciones**",
+    "`MEDIUM` — el corrector rechaza otra respuesta correcta y natural, aunque"
   ],
-  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (gap fuera de los huecos de acceptedAnswers, respuesta repetida, LOW), y que emit produzca singleAnswerVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (title, instructions, exercise, acceptedAnswers) de los ejemplos de la guía.",
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (gap fuera de los huecos de acceptedAnswers, respuesta repetida, LOW), y que emit produzca singleAnswerVerdict o {\"outputUnusable\": true}. Las entradas gente, conmigo y almuerzo son los ejemplos de la guía anterior al 1/10 y sólo prueban la forma. Las cal-* son los casos inventados de las recalibraciones del 1/10 y del 3/10, que no están en el curso, con la salida que grabó la guía de cada ronda (claude-cli, modelo por omisión): lo correcto y natural se lista, MEDIUM si es menos esperable; lo raro, lo forzado, lo que descarta una regla y la paráfrasis libre no. El gate no juzga el contenido: documentan el criterio y prueban la forma con esas entradas.",
   "inputs": {
     "gente": {
       "title": "Después de adjetivos",
@@ -64,12 +71,78 @@
       "title": "Después de adjetivos",
       "instructions": "Completa con la preposición correcta.",
       "exercise": "He is very good ___ people."
+    },
+    "cal-problemas": {
+      "title": "$Some$ y $any$",
+      "instructions": "Completa con 'some' o 'any'.",
+      "exercise": "Did they find ___ problems with the car?",
+      "acceptedAnswers": "Hueco 1: any"
+    },
+    "cal-cena": {
+      "title": "Antes y después con $verb-ing$",
+      "instructions": "Transforma las oraciones para que incluyan la forma 'verb-ing'.",
+      "exercise": "She called her mum after she finished dinner. ___",
+      "acceptedAnswers": "Hueco 1: She called her mum after finishing dinner."
+    },
+    "cal-insistir": {
+      "title": "Verbos y sus preposiciones",
+      "instructions": "Completa con la preposición correcta.",
+      "exercise": "She insisted ___ paying for dinner.",
+      "acceptedAnswers": "Hueco 1: on"
+    },
+    "cal-pierna": {
+      "title": "Present perfect",
+      "instructions": "Completa la oración con el verbo entre paréntesis.",
+      "exercise": "She ___ (hurt) her leg, so she can't play tennis today.",
+      "acceptedAnswers": "Hueco 1: has hurt | 's hurt"
+    },
+    "cal-bolso": {
+      "title": "Ofrecimientos con $shall$",
+      "instructions": "Transforma las oraciones para que incluyan 'shall'.",
+      "exercise": "Would you like me to carry your bag? ___",
+      "acceptedAnswers": "Hueco 1: Shall I carry your bag?"
+    },
+    "cal-cine": {
+      "title": "Preposiciones de lugar",
+      "instructions": "Completa con la preposición correcta.",
+      "exercise": "I'll meet you ___ the cinema.",
+      "acceptedAnswers": "Hueco 1: at"
+    },
+    "cal-futbol": {
+      "title": "Present simple",
+      "instructions": "Completa la oración.",
+      "exercise": "They ___ football every Saturday.",
+      "acceptedAnswers": "Hueco 1: play"
+    },
+    "cal-cenar": {
+      "title": "Present simple",
+      "instructions": "Completa la oración.",
+      "exercise": "We usually ___ dinner at eight.",
+      "acceptedAnswers": "Hueco 1: have"
+    },
+    "cal-bici": {
+      "title": "Respuestas cortas",
+      "instructions": "Escribe la respuesta corta.",
+      "exercise": "Has he got a bike? He ___ .",
+      "acceptedAnswers": "Hueco 1: hasn't"
+    },
+    "cal-trepar": {
+      "title": "$Could$ o $was able to$",
+      "instructions": "Usa 'could' o 'was able to'. Escribe la forma negativa.",
+      "exercise": "My brother ___ (not / climb) trees when he was little.",
+      "acceptedAnswers": "Hueco 1: couldn't climb | could not climb"
+    },
+    "cal-arte": {
+      "title": "Adjetivos con preposición",
+      "instructions": "Completa con la preposición correcta.",
+      "exercise": "She's very interested ___ modern art.",
+      "acceptedAnswers": "Hueco 1: in"
     }
   },
   "cases": [
     {
       "caseId": "gente-to-alta",
-      "note": "«He is very good ___ people.» (…24ce): «to» vale igual. F-UNICA-R004.",
+      "note": "«He is very good ___ people.» (…24ce): ejemplo de la guía anterior al 1/10; acá sólo prueba la forma de un HIGH.",
       "inputs": "gente",
       "verdict": {
         "alternatives": [
@@ -90,7 +163,7 @@
     },
     {
       "caseId": "conmigo-bloqueante",
-      "note": "«She goes ___ me.» (…2d91): sin pista, without, after, before y behind encajan igual que with.",
+      "note": "«She goes ___ me.» (…2d91): ejemplo de la guía anterior al 1/10; acá sólo prueba la forma de varios BLOCKING.",
       "inputs": "conmigo",
       "verdict": {
         "alternatives": [
@@ -132,7 +205,7 @@
     },
     {
       "caseId": "almuerzo-media",
-      "note": "«She ate lunch before she went to work. ___» (…246b): con la cláusula adelante es correcta pero menos esperable.",
+      "note": "Prueba de forma de un MEDIUM (…246b). Con la guía del 3/10 la oración con la cláusula adelante tampoco se lista: en una transformación, reordenar ya es paráfrasis.",
       "inputs": "almuerzo",
       "verdict": {
         "alternatives": [
@@ -488,6 +561,271 @@
       }
     },
     {
+      "caseId": "alternativa-con-clave-vacia-null",
+      "note": "Una clave de más en null, de relleno después de la última, no dice nada: se descarta.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».",
+            "severity_note": null
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "alternativa-con-clave-de-texto-vacio",
+      "note": "Lo mismo con texto vacío: se descarta.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».",
+            "note": ""
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "veredicto-con-clave-en-blanco",
+      "note": "Arriba de todo también: una clave de más en blanco se descarta.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.",
+        "confidence": "  "
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "veredicto-con-lista-vacia-de-mas",
+      "note": "Una lista vacía de más tampoco dice nada.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.",
+        "notes": []
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "alternativa-con-nota-con-texto",
+      "note": "Una clave de más con contenido sigue frenando.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».",
+            "note": "una nota"
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "alternatives[0] no respeta el objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "coma-colgante-antes-de-cerrar",
+      "note": "El juez deja una coma sin clave antes de cada } y cada ]: no es JSON, pero la coma no dice nada y se lee sin ella.",
+      "inputs": "gente",
+      "raw": "{\n  \"alternatives\": [\n    {\n      \"answer\": \"to\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"HIGH\",\n      \"reason\": \"La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».\",\n    }\n  ],\n  \"rationale\": \"La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.\",\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "coma-adentro-de-un-texto",
+      "note": "Las comas de adentro de un texto no se tocan, aunque vengan antes de un } o un ].",
+      "inputs": "gente",
+      "raw": "{\n  \"alternatives\": [\n    {\n      \"answer\": \"to\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"HIGH\",\n      \"reason\": \"La coma de «good, }» y la de «[a, ]» quedan como están.\",\n    }\n  ],\n  \"rationale\": \"La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.\",\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La coma de «good, }» y la de «[a, ]» quedan como están."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "elemento-de-relleno",
+      "note": "Sin nada que listar, el juez deja un elemento vacío o con NONE en vez de la lista vacía: no dice nada y se descarta.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "",
+            "gap": 1,
+            "kind": "NONE",
+            "severity": "",
+            "reason": ""
+          }
+        ],
+        "rationale": "Sólo la respuesta aceptada encaja con la pista y el contexto."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [],
+          "rationale": "Sólo la respuesta aceptada encaja con la pista y el contexto."
+        }
+      }
+    },
+    {
+      "caseId": "clave-de-relleno-undefined",
+      "note": "Una clave de relleno con undefined, que no es JSON: se lee como null y la clave se descarta.",
+      "inputs": "gente",
+      "raw": "{\n  \"alternatives\": [\n    {\n      \"answer\": \"to\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"HIGH\",\n      \"reason_note\": undefined,\n        \"reason\": \"La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».\"\n    }\n  ],\n  \"rationale\": \"La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.\"\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "undefined-adentro-de-un-texto",
+      "note": "La palabra undefined adentro de un texto no se toca.",
+      "inputs": "gente",
+      "raw": "{\n  \"alternatives\": [\n    {\n      \"answer\": \"to\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"HIGH\",\n      \"reason_note\": undefined,\n        \"reason\": \"Dice undefined adentro del texto y queda como está.\"\n    }\n  ],\n  \"rationale\": \"La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.\"\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "Dice undefined adentro del texto y queda como está."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
       "caseId": "respuesta-vacia",
       "note": "answer no va vacía.",
       "inputs": "gente",
@@ -791,6 +1129,277 @@
           ],
           "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
         }
+      }
+    },
+    {
+      "caseId": "cal-some-ofrecida-media",
+      "note": "Calibración 3/10 (inventado): la consigna ofrece *some* y en una pregunta también se dice: OFFERED_BY_INSTRUCTION, MEDIUM; se arregla aceptándola con «|».",
+      "inputs": "cal-problemas",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "some",
+            "gap": 1,
+            "kind": "OFFERED_BY_INSTRUCTION",
+            "severity": "MEDIUM",
+            "reason": "«Did they find some problems with the car?» es natural cuando el que pregunta ya supone que sí hubo problemas y sólo pide confirmación; la consigna ofrece 'some'. Es menos esperable porque el patrón típico en preguntas, y lo que practica el tema, es 'any'."
+          }
+        ],
+        "rationale": "En preguntas 'any' es lo esperable, pero 'some' también se dice cuando se presupone una respuesta afirmativa, y la consigna lo ofrece explícitamente como opción."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-gerundio-perfecto-media",
+      "note": "Calibración 3/10 (inventado): *after having finished dinner* hace la misma transformación y es correcta y natural: MEDIUM. La oración reordenada, en cambio, es paráfrasis y no se lista.",
+      "inputs": "cal-cena",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "She called her mum after having finished dinner.",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "Es la misma transformación sobre la misma oración, con el resto igual y en el mismo orden: el gerundio perfecto «after having finished» es correcto y natural tras «after», aunque más formal y menos esperable que el simple «after finishing»."
+          }
+        ],
+        "rationale": "El hueco es la oración entera y la consigna pide la forma 'verb-ing'; además del gerundio simple, el gerundio perfecto «after having finished» hace la misma transformación sin reordenar ni cambiar palabras y el corrector lo rechaza."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-variante-formal-media",
+      "note": "Calibración 3/10 (inventado): *insisted upon* es correcta y natural, aunque más formal: MEDIUM.",
+      "inputs": "cal-insistir",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "upon",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«She insisted upon paying for dinner.» es correcta y natural: «insist upon» es una variante plenamente usada por nativos, sólo algo más formal y menos frecuente que «insist on», por eso es menos esperable."
+          }
+        ],
+        "rationale": "El verbo «insist» se construye con «on» y también con «upon», variante formal pero natural; el corrector sólo acepta «on»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-el-titulo-solo-nombra-el-tema-media",
+      "note": "Calibración 3/10 (inventado): *hurt* en past simple es correcta y natural; el título «Present perfect» sólo nombra el tema: MEDIUM.",
+      "inputs": "cal-pierna",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "hurt",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«She hurt her leg, so she can't play tennis today.» es correcta y muy natural: el past simple es habitual para una lesión puntual con consecuencia presente. Es menos esperable sólo porque el título nombra el present perfect."
+          }
+        ],
+        "rationale": "El único verbo posible es el de la pista, pero su past simple («hurt») también encaja de forma natural en esta oración; el título sólo nombra el tema, así que lo hace menos esperable, no incorrecto."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-agregar-palabras-no-se-lista",
+      "note": "Calibración 3/10 (inventado): agregar «for you» ya es una paráfrasis, no otra manera de hacer la transformación pedida: no se lista.",
+      "inputs": "cal-bolso",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "La transformación pedida con 'shall' sobre esta oración sólo admite «Shall I carry your bag?»: cualquier otra versión (agregar 'for you', reordenar) ya sería una paráfrasis libre, no otra manera de hacer la misma transformación."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-sin-pista-varias-se-listan",
+      "note": "Calibración 3/10 (inventado): sin pista, *outside*, *near* o *in front of* también son correctas y naturales para encontrarse: se listan.",
+      "inputs": "cal-cine",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "outside",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "«I'll meet you outside the cinema.» es completamente natural y es lo que diría un nativo al citar a alguien en la puerta del cine; nada en la oración indica que el corrector espera «at»."
+          },
+          {
+            "answer": "by",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "«I'll meet you by the cinema.» es natural y frecuente para indicar el punto de encuentro junto al cine; es una preposición de lugar igual de válida que «at» y el hueco no da pista."
+          },
+          {
+            "answer": "near",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "«I'll meet you near the cinema.» es natural y es otra preposición de lugar del mismo tema; nada en la oración descarta la idea de «cerca del cine»."
+          },
+          {
+            "answer": "in front of",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«I'll meet you in front of the cinema.» es natural y pertenece a las preposiciones de lugar; es menos esperable sólo porque son tres palabras en un hueco que parece pedir una preposición simple."
+          },
+          {
+            "answer": "in",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«I'll meet you in the cinema.» se dice si el encuentro es ya dentro de la sala; es correcta y natural, aunque menos esperable que «at» para un punto de encuentro."
+          }
+        ],
+        "rationale": "El hueco no tiene ninguna pista que elija la relación espacial: «at», «outside», «by», «near» o «in front of» son todas preposiciones de lugar naturales en esta oración, así que el alumno no tiene cómo saber que el corrector sólo quiere «at»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-sin-pista-se-lista",
+      "note": "Calibración 1/10 (inventado): sin pista, *watch* es tan natural y esperable como *play*: BLOCKING. Salida grabada con la coma de más corregida (ver cal-coma-de-mas).",
+      "inputs": "cal-futbol",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "watch",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "«They watch football every Saturday.» es tan natural y tan esperable como «play»: el hueco no tiene pista de verbo y nada en la oración indica si juegan o miran el partido."
+          }
+        ],
+        "rationale": "El hueco no tiene pista que elija el verbo, así que «play» es una opción entre varias igual de buenas en present simple; «watch» con 'football every Saturday' es una colocación igual de corriente y el alumno no tiene cómo saber cuál quería el corrector."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-otro-verbo-igual-se-lista",
+      "note": "Calibración 1/10 (inventado): *eat* y *cook* valen igual que *have*, sin pista que elija: BLOCKING.",
+      "inputs": "cal-cenar",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "eat",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "«We usually eat dinner at eight» es tan natural y corriente como «have dinner at eight», y el hueco no tiene pista de verbo: nada le dice al alumno que el corrector quería «have»."
+          },
+          {
+            "answer": "cook",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "«We usually cook dinner at eight» es una oración que un nativo diría sin dudar y encaja igual en el present simple con «usually»; sin pista, el alumno no puede saber qué verbo esperaba el corrector."
+          }
+        ],
+        "rationale": "El hueco no tiene pista que elija el verbo, así que cualquier verbo que combine con «dinner at eight» es igual de bueno: «eat» y «cook» son tan naturales y esperables como «have»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-si-o-no-se-lista",
+      "note": "Calibración 1/10 (inventado): la pregunta se puede contestar que sí o que no; *has* vale igual que *hasn't*: HIGH.",
+      "inputs": "cal-bici",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "has",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "«Has he got a bike? He has.» es la respuesta corta afirmativa, igual de natural y correcta que «He hasn't», y nada de lo que ve el alumno indica si la respuesta debe ser sí o no."
+          }
+        ],
+        "rationale": "La pregunta queda abierta a sí o no y la consigna sólo pide la respuesta corta, así que la afirmativa «has» es tan buena como la negativa que acepta el corrector."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-ofrecida-por-la-consigna-se-lista",
+      "note": "Calibración 1/10 (inventado): la consigna ofrece *was able to* y el corrector sólo acepta *couldn't*: OFFERED_BY_INSTRUCTION, HIGH.",
+      "inputs": "cal-trepar",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "wasn't able to climb",
+            "gap": 1,
+            "kind": "OFFERED_BY_INSTRUCTION",
+            "severity": "HIGH",
+            "reason": "La consigna ofrece 'was able to' y en negativo funciona igual que 'couldn't': «My brother wasn't able to climb trees when he was little» es natural y correcta, y nada en la oración descarta esa opción."
+          }
+        ],
+        "rationale": "La consigna ofrece explícitamente las dos formas y, en la negativa, 'wasn't able to' es tan natural y correcta como 'couldn't' para hablar de habilidad en la infancia; el corrector sólo acepta 'couldn't'."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-coma-de-mas",
+      "note": "Salida real de la guía nueva sobre cal-futbol: el juicio era el correcto y la coma de más no dice nada; el gate la lee sin ella y no hace falta reintentar.",
+      "inputs": "cal-futbol",
+      "raw": "{\n  \"alternatives\": [\n    {\n      \"answer\": \"watch\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"BLOCKING\",\n      \"reason\": \"«They watch football every Saturday.» es tan natural y tan esperable como «play»: el hueco no tiene pista de verbo y nada en la oración indica si juegan o miran el partido.\",\n    }\n  ],\n  \"rationale\": \"El hueco no tiene pista que elija el verbo, así que «play» es una opción entre varias igual de buenas en present simple; «watch» con 'football every Saturday' es una colocación igual de corriente y el alumno no tiene cómo saber cuál quería el corrector.\"\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "watch",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "BLOCKING",
+              "reason": "«They watch football every Saturday.» es tan natural y tan esperable como «play»: el hueco no tiene pista de verbo y nada en la oración indica si juegan o miran el partido."
+            }
+          ],
+          "rationale": "El hueco no tiene pista que elija el verbo, así que «play» es una opción entre varias igual de buenas en present simple; «watch» con 'football every Saturday' es una colocación igual de corriente y el alumno no tiene cómo saber cuál quería el corrector."
+        }
+      }
+    },
+    {
+      "caseId": "cal-colocacion-fija-no-se-lista",
+      "note": "Calibración 3/10 (inventado): *interested in* es la única natural; *interested by* suena forzada aquí: no se lista nada.",
+      "inputs": "cal-arte",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "«Interested» va con «in» en este uso; «interested by» sólo funciona con un agente que despierta el interés y aquí suena forzado, así que no hay otra preposición natural."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
       }
     }
   ]

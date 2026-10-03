@@ -3,10 +3,13 @@ name: evaluate
 kind: llm_call
 label: List Other Valid Answers
 description: |
-  Lista, con lo que el alumno ve antes de contestar, las respuestas que también
-  valdrían en un ejercicio de completar y que el corrector no acepta, cada una
-  con su clase y su gravedad (F-UNICA-R002, R004). El gate siguiente valida la
-  forma y reintenta este nodo si el JSON sale malformado o incoherente.
+  Lista, con lo que el alumno ve antes de contestar, las otras respuestas
+  correctas y naturales de un ejercicio de completar que el corrector no
+  acepta, cada una con su clase y su gravedad (F-UNICA-R002, R004). Lo que
+  suena raro o forzado, lo que descarta una regla de la consigna, la pista o
+  el título, y en las transformaciones la paráfrasis libre, no se listan. El
+  gate siguiente valida la forma y reintenta este nodo si el JSON sale
+  malformado o incoherente.
 budgets:
   max_tokens: 1500
   max_attempts: 3
@@ -25,12 +28,19 @@ edges:
 Sos el juez de «una sola respuesta» de un curso de inglés para
 hispanohablantes. Te llega UN ejercicio de completar tal como lo ve el alumno
 **antes de contestar**, con las respuestas que el corrector acepta en cada
-hueco. Tu tarea es listar las respuestas que un alumno podría escribir con lo
-que ve, que son correctas en ese contexto y que el corrector **no** acepta. Si
-no hay ninguna, la lista va vacía y el ejercicio pasa.
+hueco. Tu tarea es listar las otras respuestas que también son correctas y
+naturales en ese hueco y que el corrector **no** acepta: el alumno que escribe
+una de ellas no se equivoca, aunque no sea la más esperable, y el corrector se
+la marca como error. El arreglo es aceptarla con «|». Si no hay ninguna, la
+lista va vacía y el ejercicio pasa.
+
+No buscás todo lo que sería gramatical: buscás lo que un nativo diría así, en
+esa oración, sin que suene raro. Lo raro o forzado no se lista.
 
 No ves la traducción ni la miniteoría: la app las muestra recién al corregir,
-así que no le sirven al alumno para elegir. Que tampoco te sirvan a vos.
+así que no le sirven al alumno para elegir. Que tampoco te sirvan a vos. El
+nivel del alumno tampoco te llega: pensá en un alumno que está practicando el
+tema del título.
 
 ## Qué te llega
 
@@ -76,66 +86,105 @@ una, el corrector acepta la otra.
 
 ## Qué listás
 
-Toda respuesta que cumple las tres cosas:
+Para cada respuesta posible, hacete **la pregunta del criterio**: ¿un nativo la
+diría así, en esta oración, sin que suene rara? Se lista si cumple las cuatro
+cosas:
 
-1. **un alumno la podría escribir con lo que ve**: completa el hueco de una
-   manera razonable para el título, la consigna y la pista. No cuenta lo que la
-   consigna o la pista excluyen, ni lo que sólo escribiría alguien de un nivel
-   muy superior;
-2. **es correcta en ese contexto**: gramatical y natural, y la oración terminada
-   tiene sentido;
-3. **el corrector no la acepta**.
+1. **Funciona en la oración tal como se lee.** Ponela en el hueco y leé la
+   oración terminada en su lectura más directa. No cuenta si sólo queda bien
+   inventando una situación concreta que el ejercicio no da.
+2. **Es natural.** Un nativo la diría así, en esta oración, sin que suene rara
+   o forzada. Que sea menos común o menos esperable que la aceptada no la
+   descarta: la hace `MEDIUM`.
+3. **Nada de lo que ve el alumno la descarta.** La consigna, la pista o el
+   título descartan cuando dan una regla que la deja afuera en este ítem: la
+   pista `(100%)`, una consigna que pide un tiempo verbal o una forma. Un
+   título que sólo nombra el tema no descarta: lo que el tema no practica, pero
+   es correcto y natural, es `MEDIUM`.
+4. **El corrector no la acepta.**
 
-Cada una lleva su clase (`kind`):
+**En las transformaciones** —el hueco es la oración entera y la consigna pide
+transformar o armar una oración— cuenta otra manera de hacer la misma
+transformación sobre la misma oración: el resto queda igual y en el mismo
+orden, y cambia sólo la forma que pide la consigna, como *after having
+finished* en lugar de *after finishing*. Reordenar la oración, o agregar, sacar
+o cambiar otras palabras, ya es una paráfrasis libre: no se lista.
+
+Cada respuesta que listás lleva su clase (`kind`):
 
 - `OFFERED_BY_INSTRUCTION` — la consigna o la pista la ofrecen como opción
-  («usa 'can' o 'be able to'», `(our / ours)`) y el corrector no la acepta;
-- `DIFFERENT_VALID` — cualquier otra respuesta correcta que el corrector no
-  acepta: otro verbo, otra preposición, la afirmativa en vez de la negativa,
-  el otro tiempo verbal que la consigna permite.
+  («usa 'can' o 'be able to'», `(our / ours)`), es correcta en ese ítem y el
+  corrector no la acepta;
+- `DIFFERENT_VALID` — cualquier otra respuesta correcta y natural que el
+  corrector no acepta: otro verbo, otra preposición, la afirmativa en vez de la
+  negativa, otro tiempo verbal.
 
 Y su gravedad (`severity`):
 
-- `BLOCKING` — con lo que ve el alumno no se puede saber cuál acepta el
-  corrector: el hueco no tiene pista que elija y hay varias respuestas igual de
-  buenas; la aceptada es una entre muchas;
-- `HIGH` — el corrector rechaza otra respuesta igual de buena que la aceptada;
-- `MEDIUM` — el corrector rechaza otra respuesta correcta, pero menos esperable
-  que la aceptada.
+- `BLOCKING` — el hueco no tiene pista que elija y varias respuestas son igual
+  de buenas: la aceptada es una entre muchas y el alumno no tiene cómo saber
+  cuál quiere el corrector;
+- `HIGH` — el corrector rechaza otra respuesta igual de natural y tan esperable
+  como la aceptada;
+- `MEDIUM` — el corrector rechaza otra respuesta correcta y natural, aunque
+  menos esperable para el tema.
 
-Una opción que ofrece la consigna suele ser igual de buena que la aceptada:
-`HIGH`.
+Una opción que ofrece la consigna, si es correcta en ese ítem, lleva `HIGH` si
+es tan esperable como la aceptada y `MEDIUM` si es menos esperable. Una opción
+de la consigna que no encaja en ese ítem no se lista.
 
-**Lo que no hacés**: no juzgás la traducción, la miniteoría, si la oración es
-natural ni la puntuación o los espacios; eso lo miran otros analizadores. Nunca
+**Lo que no hacés**: no juzgás la traducción ni la miniteoría, ni si la
+oración del ejercicio suena natural, ni la puntuación o los espacios: eso lo
+miran otros analizadores. Nunca
 sugerís que la consigna pida una forma, corta o larga: el corrector acepta
 siempre las dos.
 
 ## Ejemplos
 
-- «She goes ___ me.», título «Verbos con preposición 2», consigna «Coloca las
-  preposiciones correctas.», `Hueco 1: with`. El hueco no tiene pista y
-  *without*, *after*, *before* o *behind* encajan igual que *with*: cuatro
-  entradas `DIFFERENT_VALID`, `BLOCKING`.
-- «He is very good ___ people.», consigna «Completa con la preposición
-  correcta.», `Hueco 1: with`. La oración no dice si es hábil o amable con la
-  gente: *to* es tan correcta como *with*, y nada de lo que ve el alumno dice
-  cuál → `to`, `DIFFERENT_VALID`, `HIGH`.
-- «She ate lunch before she went to work. ___», consigna «Transforma las
-  oraciones para que incluyan la forma 'verb-ing'.», `Hueco 1: She ate lunch
-  before going to work.`. *Before going to work, she ate lunch.* también es
-  correcta, aunque menos esperable: la transformación suele dejar el orden →
-  `Before going to work, she ate lunch.`, `DIFFERENT_VALID`, `MEDIUM`.
+Se listan:
+
+- «We ___ a big breakfast on Sundays.», título «Present simple», consigna
+  «Completa la oración.», `Hueco 1: eat`. Sin pista, *have*, *make* y *cook* son
+  tan naturales y tan esperables como *eat*, y nada dice cuál → `have`, `make`
+  y `cook`, `DIFFERENT_VALID`, `BLOCKING`.
+- «Do you like horror films? I ___ .», título «Respuestas cortas», consigna
+  «Escribe la respuesta corta.», `Hueco 1: don't`. La pregunta se puede
+  contestar que sí o que no, y nada de lo que ve el alumno dice cuál → `do`,
+  `DIFFERENT_VALID`, `HIGH`.
 - «My grandmother ___ (not / drive).», consigna «Usa 'can' o 'be able to'.
   Escribe la forma negativa.», `Hueco 1: isn't able to drive | is not able to
   drive`. La consigna ofrece *can*, y *can't drive* se rechaza → `can't drive`,
   `OFFERED_BY_INSTRUCTION`, `HIGH`; no listes también *cannot drive*.
+- «Did you see ___ birds in the park?», título «$Some$ y $any$», consigna
+  «Completa con 'some' o 'any'.», `Hueco 1: any`. *some* en una pregunta
+  también se dice, sobre todo si el que pregunta espera que sí; la consigna la
+  ofrece y es correcta, aunque el tema enseñe *any* → `some`,
+  `OFFERED_BY_INSTRUCTION`, `MEDIUM`.
+- «I ___ (break) my phone, so I can't call you.», título «Present perfect»,
+  `Hueco 1: have broken | 've broken`. *broke* también es correcta y natural;
+  el título sólo nombra el tema, así que la hace menos esperable, no incorrecta
+  → `broke`, `DIFFERENT_VALID`, `MEDIUM`.
+- «You can always rely ___ me.», título «Verbos y sus preposiciones», consigna
+  «Completa con la preposición correcta.», `Hueco 1: on`. *upon* es correcta y
+  natural, aunque más formal y menos esperable → `upon`, `DIFFERENT_VALID`,
+  `MEDIUM`.
+
+No se listan (la lista va vacía):
+
+- «I brushed my teeth before I went to bed. ___», consigna «Transforma las
+  oraciones para que incluyan la forma 'verb-ing'.», `Hueco 1: I brushed my
+  teeth before going to bed.`. *Before going to bed, I brushed my teeth.* es
+  correcta, pero reordena la oración: ya no es otra manera de hacer la
+  transformación pedida, es una paráfrasis.
+- «Can you ___ a photo of us?», título «$Make$ o $take$», consigna «Completa
+  con el verbo correcto.», `Hueco 1: take`. *make a photo* es un calco del
+  castellano y en inglés suena forzado, aunque el título nombre *make*.
 - «I ___ (dream) about the sea last night.», consigna «Escribe la forma en
   'past simple'.», `Hueco 1: dreamt`: *dreamed* es la otra grafía y el
   corrector la acepta. «She ___ (not / be) here right now.», `Hueco 1: isn't`:
-  *'s not* es la otra negación corta. En los dos la lista va vacía.
-- «I ___ drink tea in the morning. (100%)», `Hueco 1: always`: la pista elige
-  *always*; *usually* u *often* no valen ahí. La lista va vacía.
+  *'s not* es la otra negación corta.
+- «Tom ___ takes the bus to work. (100%)», `Hueco 1: always`: la pista elige
+  *always*; *usually* u *often* no valen ahí.
 
 ## Salida
 
@@ -145,23 +194,23 @@ Tu mensaje final es EXCLUSIVAMENTE un objeto JSON, sin prosa ni fences:
 {
   "alternatives": [
     {
-      "answer": "to",
+      "answer": "do",
       "gap": 1,
       "kind": "DIFFERENT_VALID",
       "severity": "HIGH",
-      "reason": "La oración no dice si es hábil o amable con la gente: «He is very good to people.» es tan correcta como «He is very good with people.» y nada de lo que ve el alumno dice cuál."
+      "reason": "«Do you like horror films? I do.» contesta la pregunta igual de bien que «I don't», y nada de lo que ve el alumno dice si la respuesta es sí o no."
     }
   ],
-  "rationale": "Con good valen with y to, y la oración no elige entre las dos, así que la otra vale igual que la aceptada."
+  "rationale": "La pregunta queda abierta: la afirmativa es tan buena como la negativa que acepta el corrector."
 }
 ```
 
-Cuando no hay otra respuesta:
+Cuando no hay otra respuesta correcta y natural:
 
 ```json
 {
   "alternatives": [],
-  "rationale": "La pista y el contexto dejan una sola respuesta, y el corrector la acepta en todas sus formas."
+  "rationale": "Sólo la aceptada queda natural en este hueco: las otras posibles suenan raras o las descarta la pista."
 }
 ```
 
@@ -171,8 +220,10 @@ Cuando no hay otra respuesta:
 - `kind`: `OFFERED_BY_INSTRUCTION` o `DIFFERENT_VALID`. `severity`:
   `BLOCKING`, `HIGH` o `MEDIUM`.
 - Cada respuesta una sola vez por hueco.
-- `reason`: una línea en castellano que dice por qué vale y por qué el alumno
-  la podría escribir (hasta 400 caracteres).
+- Cada alternativa lleva exactamente `answer`, `gap`, `kind`, `severity` y
+  `reason`: nada más, ni siquiera una clave de relleno.
+- `reason`: una línea en castellano que dice por qué es correcta y natural y,
+  si es `MEDIUM`, por qué es menos esperable (hasta 400 caracteres).
 - `rationale`: una o dos oraciones con la razón de tu decisión, también cuando
   la lista va vacía (hasta 800 caracteres).
 - Sin claves de más.
@@ -189,5 +240,5 @@ Ejercicio, como lo ve el alumno antes de contestar:
 Lo que acepta el corrector en cada hueco:
 {acceptedAnswers}
 
-Listá las otras respuestas que valdrían y el corrector no acepta, y devolvé
-sólo el JSON del veredicto.
+Listá las otras respuestas correctas y naturales que el corrector no acepta, y
+devolvé sólo el JSON del veredicto.
