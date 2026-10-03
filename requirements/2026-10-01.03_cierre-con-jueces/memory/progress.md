@@ -4,6 +4,20 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — orquestador (CJUEZ) — FEAT-CJUEZ terminada en `ronda2/cierre-con-jueces` (13 commits sobre
+  `ronda2/integracion` 780f1203, sin push): 59 pruebas de F-CJUEZ en verde; suite completa 3.190, 0 fallas, 1 apagada
+  (spaCy); `sentinel verify` OK. Control de punta a punta sin cupo sobre una copia (foto del 29/9, 20 analizadores,
+  exámenes de B y C de hoy, claude falso, Ollama local), en el scratchpad de la sesión (`control/`, guiones `fase1.sh`,
+  `fase2.sh`, `fase2b.sh`; `vuelta1/` es la anterior al arreglo de R004): la tanda A1 cambia 611 ejercicios en 33 temas
+  tras las reglas; `batch estimate` pide 2.444 consultas de translation-sense y 66 de mini-theory (2.510, ~3,3 h a 4 a
+  la vez); el cierre sin tope da UNDECIDABLE con 24 pisos sin decidir y termina en «juez sin aprobar: Consigna que no
+  se cumple, Opción múltiple mal armada, Más de una respuesta válida, Ejercicio casi repetido» (grammar aprobó su
+  examen el 1/10 a la tarde); `tray publish` se rechaza copiando eso; 0 consultas, curso igual a la foto, historial
+  igual. La primera vuelta encontró dos huecos de R004 (near-duplicates no se nombraba; la bandeja rechazaba sólo por la
+  muestra ciega): dos pruebas más (qa-tester), sus cuerpos y el arreglo, en 762d8815..f97182bd.
+  Next: que `tray show` nombre a los jueces sin aprobar mientras la muestra ciega está abierta (FEAT-BANDEJA, no
+  pedido); una corrida con consultas reales (`batch close --budget …`) con los jueces aprobados.
+
 2026-10-03 — developer (CJUEZ) — Los 2 arreglos de R004 del control de A1 hechos, sin tocar las pruebas: `UnapprovedJudges.reading`
   lee también las marcas del propio ejercicio para un juez de temas (near-duplicates), y `DefaultTrayService.publish` copia el
   «juez sin aprobar: …» del veredicto del último cierre en el rechazo por la muestra ciega. Las 59 de F-CJUEZ en verde y las
