@@ -349,7 +349,7 @@ for index, item in enumerate(alternatives):
     if upper_or_none(item["severity"]) in ("BLOCKING", "LOW"):
         fail(
             "%s.severity %s no va en una alternativa: HIGH si vale igual que la correcta, "
-            "MEDIUM si es defendible pero menos natural"
+            "MEDIUM si también es correcta y natural, aunque menos esperable"
             % (where, upper_or_none(item["severity"]))
         )
     severity = enum_value(item["severity"], SEVERITIES, where + ".severity")
