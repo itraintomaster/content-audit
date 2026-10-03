@@ -4,6 +4,18 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — analyst (pista que regala) — Los números de R007 en el REQUIREMENT son los medidos, no los del prototipo
+  (pedido del coordinador; el texto de la regla no cambió). Analizador sobre el curso del 29/9, antes de la tanda: 27
+  ejercicios marcados (A1 0, A2 23, B1 2, B2 2), 26 a la mesa y 1 por regla («(are)» → «(be)», …4797); de los 23 de A2,
+  20 de Posición del adjetivo y 3 de Invest time + gerundio. Pistas que faltan sin arreglo posible: 6 (los 5 adverbios
+  de A1 y «spoon», …2a02). Tanda de A1 rearmada (sólo reglas): hint-coherence en A1 23 → 16; 7 pistas por regla en
+  lugar de 12, los 5 adverbios a la mesa. Límite conocido: 3 falsas, no 4 (close, dance, knock): «The cats / sleep…»
+  (…3da4) ya no sale, el tokenizador lee sleep como verbo en la oración guardada. Salieron los 167 / 139 del prototipo
+  y la frase «Es el número del prototipo…»; sumé una cláusula que une las cuentas (de los 4 de B1 y B2, 1 por regla y
+  3 falsas). `requirement validate` y `feature validate` en exit 0.
+  Ojo, sin tocar por pedido: el detalle de R007 dice «de las 12 pistas que la tanda agregó en A1, en 7 la pista fue la
+  respuesta misma»; por la tabla de la propia regla son 6 (is y los 5 adverbios; «(I / am)» no regala: cambia el orden).
+
 2026-10-03 — developer (pista que regala) — R007 encendida en hintcoherence: 5 archivos de main, ni pruebas ni contratos tocados.
   Lector (GapHint + gapHints + acceptedAnswers; read() da lo mismo), chequeo (checkGiveaway; issue() manda a la mesa todo lo que
   no tiene propuesta; propose() nunca regala), analizador (hint-giveaway, gravedad alta), regla de arreglo (R007 sólo en el hueco

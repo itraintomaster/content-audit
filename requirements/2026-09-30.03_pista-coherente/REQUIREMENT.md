@@ -239,12 +239,13 @@ misma, porque no se conjuga, no propone ninguna: ese hallazgo de pista que falta
 **El hallazgo**: gravedad *alta* —como la pista que falta: el ejercicio no se vuelve imposible, pero deja de enseñar
 ([F-HALL-R002](#F-HALL-R002))—, familia *errores*, marca = la pista normalizada.
 
-**Límite conocido**: 4 marcas falsas del prototipo, cuando el tokenizador compartido lee como sustantivo o adjetivo
-un verbo que está en forma base y la pista parece no conjugable: «If it ___ (snow) heavily, the roads ___ (close).»
-→ «close» (`67fab6d599301022953439e0`, B1, *Condicional cero*), «The cats / sleep / on the bed every day.»
-(`67fab6d59930102295343da4`, B1, *Quejas habituales*), «We observed the girls ___ (dance) ballet.»
-(`67fab6d599301022953441d9`) y «He heard her ___ (knock).» (`67fab6d599301022953441dd`, B2, *Acción completa o
-parcial*, donde el alumno elige entre el infinitivo y el gerundio). Van a la mesa y cuestan una mirada.
+**Límite conocido**: 3 de las 27 marcas del analizador son falsas, cuando el tokenizador compartido lee como
+sustantivo o adjetivo un verbo que está en forma base y la pista parece no conjugable: «If it ___ (snow) heavily, the
+roads ___ (close).» → «close» (`67fab6d599301022953439e0`, B1, *Condicional cero*), «We observed the girls ___
+(dance) ballet.» (`67fab6d599301022953441d9`) y «He heard her ___ (knock).» (`67fab6d599301022953441dd`, B2, *Acción
+completa o parcial*, donde el alumno elige entre el infinitivo y el gerundio). Van a la mesa y cuestan una mirada.
+«The cats / sleep / on the bed every day.» (`67fab6d59930102295343da4`, B1, *Quejas habituales*) ya no sale: en la
+oración guardada el tokenizador lee *sleep* como verbo.
 
 </details>
 
@@ -282,12 +283,17 @@ reales (93 %); en una muestra nueva de 30, 25 (83 %). De los 27 imposibles de `e
 como de pista, hint-coherence encontraba 5; R006 marca 11, 10 nuevos: juntos, 15. **Meta**: 8 de cada 10 marcas reales
 en una muestra revisada a mano.
 
-**La pista que regala (R007).** Medida el 1/10 sobre el mismo curso, antes de la tanda: con la regla tal cual, el
-prototipo encuentra 167 pistas iguales a alguna respuesta aceptada de su hueco; 139 están en forma base y no regalan
-(casi todas en los condicionales de B1: «If you ___ (freeze) water…» → «freeze») y 28 regalan: A1 0, A2 23, B1 3, B2
-2. De esas 28, 20 son de *Posición del adjetivo* (A2), con los adjetivos ya en el orden de la respuesta; 3 de
-*Invest time + gerundio* (A2), con el enunciado con «/» igual a la respuesta; y 1 es un verbo conjugado, que la
-regla arregla sola. Es el número del prototipo; lo reemplaza el del analizador cuando corra.
+**La pista que regala (R007).** Medida el 3/10 con el analizador sobre el curso del 29/9, antes de la tanda: R007 marca
+27 ejercicios (A1 0, A2 23, B1 2, B2 2). De los 23 de A2, 20 son de *Posición del adjetivo*, con los adjetivos ya en el
+orden de la respuesta, y 3 de *Invest time + gerundio*, con el enunciado con «/» igual a la respuesta. De los 4 de B1 y
+B2, 1 es un verbo conjugado que la regla arregla, «(are)» → «(be)» (`67fab6d59930102295344797`, B1), y 3 son marcas
+falsas, el límite conocido. En total, 26 van a la *mesa* y 1 por *regla*. Además, 6 hallazgos de pista que falta
+([F-PISTA-R001](#F-PISTA-R001)) no tienen arreglo posible, porque la única pista sería la respuesta: los 5 adverbios de
+A1 (`67fab6d59930102295342572` always, `…2575` never, `…257d` often, `…2589` always y `…2591` sometimes) y «She put a
+___ of sugar in her tea.» → «spoon» (`67fab6d59930102295342a02`, A2, *Palabras de cantidad*). Con la tanda de A1
+rearmada, sólo con reglas y sin consultas, hint-coherence en A1 pasa de 23 a 16 marcas: la tanda escribe 7 pistas por
+regla en lugar de 12 —«(love)», «(I / be)» en lugar de «(I / am)», «(be)» en lugar de «(is)» y las 4 que ya estaban en
+forma base— y los 5 adverbios quedan para la *mesa*.
 
 ## Alcance
 
