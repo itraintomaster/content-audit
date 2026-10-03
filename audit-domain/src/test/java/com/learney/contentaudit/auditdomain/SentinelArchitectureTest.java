@@ -2167,6 +2167,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: NearDuplicatesCorrection - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.auditdomain.nearduplicates.PairStepEvaluator");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: PairStepEvaluator - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.auditdomain.correction.ExercisePart");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: ExercisePart - " + e.getMessage());

@@ -1345,6 +1345,19 @@ public SentenceLengthAnalyzerProvider(NlpTokenizer nlpTokenizer, SentenceLengthC
 **Visibility:** public
 **Implements:** AnalyzerCorrection
 
+#### PairStepEvaluator (package: nearduplicates)
+
+**Package:** `com.learney.contentaudit.auditdomain.nearduplicates`
+**Visibility:** public
+**Implements:** Evaluator
+
+**Constructor dependencies:**
+
+| Name | Type |
+|------|------|
+| `evaluator` | `Evaluator` |
+| `examinedVersion` | `String` |
+
 #### DefaultAnalyzerCorrectionCatalog (package: correctionengine)
 
 **Package:** `com.learney.contentaudit.auditdomain.correctionengine`

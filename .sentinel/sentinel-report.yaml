@@ -1,4 +1,4 @@
-generatedAt: 2026-10-01T11:36:52.707385Z
+generatedAt: 2026-10-01T15:34:14.065017Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -4797,17 +4797,17 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-RECUR
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-09-30.16_recurrencia/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RECUR-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should keep the course vocabulary score at 74.07% with lemma-recurrence\
         \ at 0.09 publishing its course diagnosis, on the published scores of the\
         \ analysis of 29/9"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: IAuditEngine
     - name: "should score the course as before, normal lemmas over analysed lemmas\
@@ -4820,7 +4820,7 @@ features:
         \ 160 normal, 1,534 under-exposed and 49 over-exposed of its 1,743 returning\
         \ lemmas"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-RECUR-R002
@@ -4840,7 +4840,7 @@ features:
       module: refiner-domain
       implementation: DefaultRefinerEngine
   - ruleId: F-RECUR-R003
-    state: FAILING
+    state: PASSING
     tests:
     - name: should list the levels where a lemma appears from A1 to B2 without repeating
         them
@@ -4858,14 +4858,14 @@ features:
         \ and its levels, like 'movie': 90 times, every 855 words, normal, longest\
         \ gap 5,400 from A1 to A2"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
     - name: "should take a lemma's longest gap as the largest interval between two\
         \ consecutive occurrences, with the levels of the quizzes where it starts\
         \ and ends, like 23,684 from B1 to B2 for 'suppose'"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
     - name: should show with stats analyzer lemma-recurrence the data of each lemma
@@ -4888,7 +4888,7 @@ features:
       module: audit-cli
       implementation: LemmaRecurrenceDetailedFormatter
   - ruleId: F-RECUR-R004
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should keep the vocabulary score of every level at 96.54, 94.16, 79.45\
         \ and 63.51 with the recurrence of each level published as detail"
@@ -4919,11 +4919,11 @@ features:
         \ normal (44.6%), A2 752 with 203 (27.0%), B1 1,137 with 187 (16.4%) and B2\
         \ 818 with 201 (24.6%)"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-RECUR-R005
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should leave in the course one finding per under-exposed or over-exposed\
         \ lemma, of rule F-RECUR-R005, low severity, only ordering and instant cost,\
@@ -4953,13 +4953,13 @@ features:
         \ words (goal: more than 50 and up to 1,000); its longest gap, 23,825, is\
         \ in B1'"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
     - name: "should leave 1,583 findings in the course of 29/9, 1,534 for under-exposed\
         \ and 49 for over-exposed lemmas"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzer
   - ruleId: F-RECUR-R006
@@ -7619,7 +7619,7 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-SEMAF
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-09-30.14_semaforo-por-tema/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SEMAF-R001
@@ -7822,7 +7822,7 @@ features:
       module: refiner-domain
       implementation: DefaultTopicWordLightsQuery
   - ruleId: F-SEMAF-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should never offer to add a word that is red in the topic, even when\
         \ it is a suggested word of the level"
@@ -7838,7 +7838,7 @@ features:
     - name: "should leave the stored analysis of 29/9 and its plan byte for byte identical\
         \ after get word-lights, at 74.07% and 4,036 tasks"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: GetCmd
   journeysCoverage:
@@ -10634,7 +10634,7 @@ features:
   - ruleId: F-RONDA2-R009
     state: NO_TESTS
   - ruleId: F-RONDA2-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should keep the 4,036 vocabulary tasks of the 29/9 analysis identical\
         \ one by one with the twenty analyzers"
@@ -10645,7 +10645,7 @@ features:
     - name: "should publish on the 29/9 course with the twenty analyzers a vocabulary\
         \ of 74.00 % and levels 96.02, 93.60, 78.87 and 63.86"
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultAuditRunner
     - name: should leave the 886 files of the 29/9 course identical byte for byte
@@ -17172,11 +17172,11 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-CERO
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-09-30.29_cada-corrida-desde-cero/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CERO-R001
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should give a run the numbers of a new invocation whatever courses ran\
         \ before it, so a word only the earlier course used is absent for lemma-absence\
@@ -17189,7 +17189,7 @@ features:
         \ in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA\
         \ in B1 and 9.00 of recurrence, as a new invocation, and not 72.90"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: IAuditEngine
     - name: "should create for every run an analyzer without the topics of an earlier\
@@ -17203,7 +17203,7 @@ features:
         \ start, so the recurrence of the course stays at 9.0% on a second run instead\
         \ of falling to 5.0%"
       implemented: true
-      passing: false
+      passing: true
       module: audit-domain
       implementation: LemmaRecurrenceAnalyzerProvider
     - name: "should create for every run an analyzer that sees only the lemmas of\
@@ -17959,7 +17959,7 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-DUPAR
-  state: IMPLEMENTED
+  state: IMPLEMENTING
   requirementFile: ./requirements/2026-09-30.19_duplicados-parecidos/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DUPAR-R001
@@ -18232,9 +18232,13 @@ features:
       passing: true
       module: audit-domain
       implementation: DefaultSameExerciseQuestion
+  - ruleId: F-DUPAR-R009
+    state: NO_TESTS
+  - ruleId: F-DUPAR-R010
+    state: NO_TESTS
   journeysCoverage:
   - journeyId: F-DUPAR-J001
-    state: PASSING
+    state: DECLARED
     pathsCoverage:
     - pathId: path-1
       result: success
@@ -18247,11 +18251,11 @@ features:
         implementation: FDuparJ001JourneyTest
     - pathId: path-2
       result: success
-      state: PASSING
+      state: DECLARED
       tests:
-      - name: path2_conOllamaElModeloLocalLesDaUnParecidoDe095OMs_success
-        implemented: true
-        passing: true
+      - name: path2_conOllamaElParLlegaA080DeParecidoYElJuezDiceQueEsElMismoEjercicio_success
+        implemented: false
+        passing: false
         module: audit-domain
         implementation: FDuparJ001JourneyTest
     - pathId: path-3
@@ -18279,6 +18283,24 @@ features:
       - name: path5_ningnParDelTemaCumpleLasCondiciones_success
         implemented: true
         passing: true
+        module: audit-domain
+        implementation: FDuparJ001JourneyTest
+    - pathId: path-6
+      result: success
+      state: DECLARED
+      tests:
+      - name: path6_conOllamaElParLlegaA080DeParecidoYElJuezDiceQueNoEsElMismoEjercicio_success
+        implemented: false
+        passing: false
+        module: audit-domain
+        implementation: FDuparJ001JourneyTest
+    - pathId: path-7
+      result: success
+      state: DECLARED
+      tests:
+      - name: path7_conOllamaYSinTopeElParLlegaA080DeParecidoYElComodnNoLoResuelve_success
+        implemented: false
+        passing: false
         module: audit-domain
         implementation: FDuparJ001JourneyTest
   quality:
@@ -18920,7 +18942,7 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-HALL
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-09-30.02_contrato-del-hallazgo/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-HALL-R001
@@ -19363,7 +19385,7 @@ features:
       module: audit-domain
       implementation: DefaultContextNumbersCalculator
   - ruleId: F-HALL-R010
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should publish the four COCA quarters as sub-metrics of coca-buckets-distribution\
         \ and keep them out of every average, 73,9 % on the course of the 29/9 base\
@@ -19376,7 +19398,7 @@ features:
         \ on the course, 74,1 % for the 29/9 base, instead of 73,5 %, the average\
         \ of its eleven course keys"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: GetCmd
     - name: "should show in stats analyzer coca-buckets-distribution the course score\
@@ -25228,7 +25250,7 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-RONDA1
-  state: IMPLEMENTING
+  state: IMPLEMENTED
   requirementFile: ./requirements/2026-09-30.31_integracion-ronda-1/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RONDA1-R001
@@ -25495,7 +25517,7 @@ features:
       module: audit-domain
       implementation: IAuditEngine
   - ruleId: F-RONDA1-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should derive from the 29/9 analysis with the seventeen analyzers of\
         \ round 1 the same 4,036 tasks, declaring the scores below 1 of the new errors\
@@ -25509,14 +25531,14 @@ features:
         \ 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 74.00% and levels\
         \ 96.0, 93.6, 78.9 and 63.9"
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultAuditRunner
     - name: "should publish on the 29/9 course with the seventeen analyzers of round\
         \ 1 and 4 for every band the numbers of today, 74.07% and levels 96.5, 94.2,\
         \ 79.5 and 63.5"
       implemented: true
-      passing: false
+      passing: true
       module: audit-application
       implementation: DefaultAuditRunner
     - name: should leave the 886 files of the 29/9 course identical byte for byte
@@ -26964,12 +26986,12 @@ elements:
     - name: "should keep the course vocabulary score at 74.07% with lemma-recurrence\
         \ at 0.09 publishing its course diagnosis, on the published scores of the\
         \ analysis of 29/9"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
     - name: "should give the base of 29/9 on its second run in the same process 74.07%\
         \ in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA\
         \ in B1 and 9.00 of recurrence, as a new invocation, and not 72.90"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/IAuditEngineTest.java
     testCleanViews:
     - |
@@ -27440,7 +27462,7 @@ elements:
         percent2(report.getRoot().getNumbers().getVocabularyScore()) == "73,86"
         levelVocabulary(report) == List.of("96,02", "93,60", "78,87", "63,86")
     - |
-      test: "should keep the course vocabulary score at 73.92% with lemma-recurrence at 0.08 publishing its course diagnosis, on the published scores of the analysis of 29/9"
+      test: "should keep the course vocabulary score at 74.07% with lemma-recurrence at 0.09 publishing its course diagnosis, on the published scores of the analysis of 29/9"
       trace: FEAT-RECUR / F-RECUR-R001
 
       given:
@@ -27523,7 +27545,7 @@ elements:
       then:
         measures.stream().map(com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure::getAnalyzer).toList() == List.of("sentence-length", "coca-buckets-distribution", "lemma-count")
     - |
-      test: "should give the base of 29/9 on its second run in the same process 73.92% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 8.00 of recurrence, as a new invocation, and not 72.90"
+      test: "should give the base of 29/9 on its second run in the same process 74.07% in the course, 96.54, 94.16, 79.45 and 63.51 in the levels, 57.93 of COCA in B1 and 9.00 of recurrence, as a new invocation, and not 72.90"
       trace: FEAT-CERO / F-CERO-R001
 
       given:
@@ -30084,33 +30106,33 @@ elements:
     - name: "should give the course of 29/9 a lemma-recurrence score of 0.09, with\
         \ 160 normal, 1,534 under-exposed and 49 over-exposed of its 1,743 returning\
         \ lemmas"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: "should publish in the course diagnosis each analysed lemma with its count,\
         \ mean interval, status, deviation, longest gap with its start and end levels\
         \ and its levels, like 'movie': 90 times, every 855 words, normal, longest\
         \ gap 5,400 from A1 to A2"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: "should take a lemma's longest gap as the largest interval between two\
         \ consecutive occurrences, with the levels of the quizzes where it starts\
         \ and ends, like 23,684 from B1 to B2 for 'suppose'"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: "should publish for the course of 29/9 A1 448 returning lemmas with 200\
         \ normal (44.6%), A2 752 with 203 (27.0%), B1 1,137 with 187 (16.4%) and B2\
         \ 818 with 201 (24.6%)"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: "should give as evidence the lemma, its times, how often it returns against\
         \ the goal and its longest gap, like 'vegetable: 10 times, returns every 7,765\
         \ words (goal: more than 50 and up to 1,000); its longest gap, 23,825, is\
         \ in B1'"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     - name: "should leave 1,583 findings in the course of 29/9, 1,534 for under-exposed\
         \ and 49 for over-exposed lemmas"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerTest.java
     testCleanViews:
     - |
@@ -30427,7 +30449,7 @@ elements:
         evidence.toString().contains("100") is true
         evidence.toString().contains("más de 2 y hasta 50") is true
     - |
-      test: "should give the course of 29/9 a lemma-recurrence score of 0.08, with 131 normal, 1,566 under-exposed and 46 over-exposed of its 1,743 returning lemmas"
+      test: "should give the course of 29/9 a lemma-recurrence score of 0.09, with 160 normal, 1,534 under-exposed and 49 over-exposed of its 1,743 returning lemmas"
       trace: FEAT-RECUR / F-RECUR-R001
 
       given:
@@ -30455,7 +30477,7 @@ elements:
         result.getLemmaStats().size() == 7
         analyzer.getName() == "lemma-recurrence"
     - |
-      test: "should publish in the course diagnosis each analysed lemma with its count, mean interval, status, deviation, longest gap with its start and end levels and its levels, like 'movie': 90 times, every 1,005 words, under-exposed, longest gap 6,510 from A1 to A2"
+      test: "should publish in the course diagnosis each analysed lemma with its count, mean interval, status, deviation, longest gap with its start and end levels and its levels, like 'movie': 90 times, every 855 words, normal, longest gap 5,400 from A1 to A2"
       trace: FEAT-RECUR / F-RECUR-R003
 
       given:
@@ -30470,7 +30492,7 @@ elements:
         List.of(movie.getLongestGapFromLevel(), movie.getLongestGapToLevel()) == List.of(CefrLevel.A1, CefrLevel.A2)
         movie.getLevels() == List.of(CefrLevel.A1, CefrLevel.A2, CefrLevel.B1, CefrLevel.B2)
     - |
-      test: "should take a lemma's longest gap as the largest interval between two consecutive occurrences, with the levels of the quizzes where it starts and ends, like 27,379 from B1 to B2 for 'suppose'"
+      test: "should take a lemma's longest gap as the largest interval between two consecutive occurrences, with the levels of the quizzes where it starts and ends, like 23,684 from B1 to B2 for 'suppose'"
       trace: FEAT-RECUR / F-RECUR-R003
 
       given:
@@ -30525,7 +30547,7 @@ elements:
       then:
         run299().diagnosis().getLevels().size() == 4
     - |
-      test: "should publish for the course of 29/9 A1 448 returning lemmas with 176 normal (39.3%), A2 752 with 155 (20.6%), B1 1,137 with 161 (14.2%) and B2 818 with 165 (20.2%)"
+      test: "should publish for the course of 29/9 A1 448 returning lemmas with 200 normal (44.6%), A2 752 with 203 (27.0%), B1 1,137 with 187 (16.4%) and B2 818 with 201 (24.6%)"
       trace: FEAT-RECUR / F-RECUR-R004
 
       given:
@@ -30563,7 +30585,7 @@ elements:
         drafts.stream().map(FindingDraft::getMarker).sorted(java.util.Comparator.reverseOrder()).toList() == List.of("sun", "dog")
         List.of(rule.getId(), rule.getCost().name()) == List.of("F-RECUR-R005", "INSTANT")
     - |
-      test: "should give as evidence the lemma, its times, how often it returns against the goal and its longest gap, like 'movie: 90 times, returns every 1,005 words (goal: more than 50 and up to 1,000); its longest gap, 6,510, goes from A1 to A2'"
+      test: "should give as evidence the lemma, its times, how often it returns against the goal and its longest gap, like 'vegetable: 10 times, returns every 7,765 words (goal: more than 50 and up to 1,000); its longest gap, 23,825, is in B1'"
       trace: FEAT-RECUR / F-RECUR-R005
 
       given:
@@ -30619,7 +30641,7 @@ elements:
       then:
         analyzer.findingsAt(stream.root).stream().map(FindingDraft::getMarker).toList() == List.of("run")
     - |
-      test: "should leave 1,612 findings in the course of 29/9, 1,566 for under-exposed and 46 for over-exposed lemmas"
+      test: "should leave 1,583 findings in the course of 29/9, 1,534 for under-exposed and 49 for over-exposed lemmas"
       trace: FEAT-RECUR / F-RECUR-R005
 
       given:
@@ -30793,7 +30815,7 @@ elements:
     - name: "should create for every run an analyzer that counts positions from the\
         \ start, so the recurrence of the course stays at 9.0% on a second run instead\
         \ of falling to 5.0%"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/lrec/LemmaRecurrenceAnalyzerProviderTest.java
     testCleanViews:
     - |
@@ -30841,7 +30863,7 @@ elements:
         card.getRules().stream().map(r -> r.getId()).toList() == List.of("F-RECUR-R005")
         card.getDisplayName() == "Recurrencia"
     - |
-      test: "should create for every run an analyzer that counts positions from the start, so the recurrence of the course stays at 8.0% on a second run instead of falling to 4.0%"
+      test: "should create for every run an analyzer that counts positions from the start, so the recurrence of the course stays at 9.0% on a second run instead of falling to 5.0%"
       trace: FEAT-CERO / F-CERO-R001
 
       given:
@@ -48835,6 +48857,9 @@ elements:
   - name: NearDuplicatesCorrection
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesCorrection.java
+  - name: PairStepEvaluator
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/nearduplicates/PairStepEvaluator.java
   - name: DefaultAnalyzerCorrectionCatalog
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/correctionengine/DefaultAnalyzerCorrectionCatalog.java
@@ -56618,16 +56643,16 @@ elements:
     - name: "should publish on the 29/9 course with the seventeen analyzers of round\
         \ 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 74.00% and levels\
         \ 96.0, 93.6, 78.9 and 63.9"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     - name: "should publish on the 29/9 course with the seventeen analyzers of round\
         \ 1 and 4 for every band the numbers of today, 74.07% and levels 96.5, 94.2,\
         \ 79.5 and 63.5"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     - name: "should publish on the 29/9 course with the twenty analyzers a vocabulary\
         \ of 74.00 % and levels 96.02, 93.60, 78.87 and 63.86"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-application/src/test/java/com/learney/contentaudit/auditapplication/DefaultAuditRunnerTest.java
     testCleanViews:
     - |
@@ -57116,7 +57141,7 @@ elements:
         nodes.size() == expectedNodes.size()
         new HashSet<>(report.getRoot().getNumbers().getAnalyzerScores().stream().map(AnalyzerScore::getAnalyzer).toList()) == new HashSet<>(List.of("sentence-length", "knowledge-title-length", "knowledge-instructions-length", "coca-buckets-distribution", "lemma-recurrence", "lemma-absence", "lemma-count"))
     - |
-      test: "should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 73.86% and levels 96.0, 93.6, 78.9 and 63.9"
+      test: "should publish on the 29/9 course with the seventeen analyzers of round 1 and the default bands 8, 6, 4 and 3 a vocabulary score of 74.00% and levels 96.0, 93.6, 78.9 and 63.9"
       trace: FEAT-RONDA1 / F-RONDA1-R008
 
       given:
@@ -57126,7 +57151,7 @@ elements:
         percent2(report.getRoot().getNumbers().getVocabularyScore()) == "74,00"
         report.getRoot().getChildren().stream().map(level -> percent1(level.getNumbers().getVocabularyScore())).toList() == List.of("96,0", "93,6", "78,9", "63,9")
     - |
-      test: "should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 73.92% and levels 96.5, 94.2, 79.5 and 63.5"
+      test: "should publish on the 29/9 course with the seventeen analyzers of round 1 and 4 for every band the numbers of today, 74.07% and levels 96.5, 94.2, 79.5 and 63.5"
       trace: FEAT-RONDA1 / F-RONDA1-R008
 
       given:
@@ -57174,7 +57199,7 @@ elements:
       then:
         naturalnessPolicies == List.of(Optional.empty(), Optional.empty())
     - |
-      test: "should publish on the 29/9 course with the twenty analyzers a vocabulary of 73.86 % and levels 96.02, 93.60, 78.87 and 63.86"
+      test: "should publish on the 29/9 course with the twenty analyzers a vocabulary of 74.00 % and levels 96.02, 93.60, 78.87 and 63.86"
       trace: FEAT-RONDA2 / F-RONDA2-R010
 
       given:
@@ -60606,11 +60631,11 @@ elements:
     - name: "should show in get audit and get audits the vocabulary score published\
         \ on the course, 74,1 % for the 29/9 base, instead of 73,5 %, the average\
         \ of its eleven course keys"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
     - name: "should leave the stored analysis of 29/9 and its plan byte for byte identical\
         \ after get word-lights, at 74.07% and 4,036 tasks"
-      status: MISSING
+      status: EXISTS
       testFilePath: audit-cli/src/test/java/com/learney/contentaudit/auditcli/commands/GetCmdTest.java
     testCleanViews:
     - |
@@ -62611,7 +62636,7 @@ elements:
         judge.out().contains("Family:      ERRORS") && judge.out().contains("Cost:        PAID_MODEL") is true
         listed.size() == cards.size()
     - |
-      test: "should show in get audit and get audits the vocabulary score published on the course, 73,9 % for the 29/9 base, instead of 73,4 %, the average of its eleven course keys"
+      test: "should show in get audit and get audits the vocabulary score published on the course, 74,1 % for the 29/9 base, instead of 73,5 %, the average of its eleven course keys"
       trace: FEAT-HALL / F-HALL-R010
 
       given:
@@ -62778,7 +62803,7 @@ elements:
         without.exit() == 0
         new ObjectMapper().readTree(without.out()).get("level").asText() == "A2"
     - |
-      test: "should leave the stored analysis of 29/9 and its plan byte for byte identical after get word-lights, at 73.92% and 4,036 tasks"
+      test: "should leave the stored analysis of 29/9 and its plan byte for byte identical after get word-lights, at 74.07% and 4,036 tasks"
       trace: FEAT-SEMAF / F-SEMAF-R007
 
       given:
@@ -89928,9 +89953,9 @@ elements:
     verdict: PASSED
 testSummary:
   total: 2640
-  passing: 2609
+  passing: 2623
   failing: 0
-  notImplemented: 31
+  notImplemented: 17
 qualitySummary:
   enforcement: warn
   thresholds:

@@ -101,4 +101,22 @@ class DefaultNearDuplicatesConfig implements NearDuplicatesConfig {
             throw new IllegalStateException("SHA-256 no está disponible", e);
         }
     }
+
+    @Override
+    public double candidateSimilarity() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+
+    @Override
+    public String vectorRouteMethodId(String judgeVersion) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+
+    @Override
+    public String wordRouteVersion(String judgeVersion) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
 }

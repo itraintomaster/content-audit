@@ -12,7 +12,11 @@ interface NearDuplicatesConfig extends SelfDescribingConfig {
 
     String inputPrefix();
 
-    double similarityThreshold();
-
     double candidateWordSimilarity();
+
+    double candidateSimilarity();
+
+    String vectorRouteMethodId(String judgeVersion);
+
+    String wordRouteVersion(String judgeVersion);
 }

@@ -143,4 +143,20 @@ public class FDuparJ001JourneyTest {
         }
         assertEquals(0, NearDuplicatesAnalyzerTest.errorCountsOf(root).getWithError());
     }
+
+    @Test
+    @org.junit.jupiter.api.Order(6)
+    @Tag("path-6")
+    @DisplayName("path-6: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → El par no deja ningún hallazgo de nea... [Con Ollama, el par llega a 0,80 de parecido y el juez dice que no es el mismo ejercicio] → success")
+    public void path6_conOllamaElParLlegaA080DeParecidoYElJuezDiceQueNoEsElMismoEjercicio_success() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @org.junit.jupiter.api.Order(7)
+    @Tag("path-7")
+    @DisplayName("path-7: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → El ejercicio queda evaluado a medias ... [Con Ollama y sin tope, el par llega a 0,80 de parecido y el comodín no lo resuelve] → success")
+    public void path7_conOllamaYSinTopeElParLlegaA080DeParecidoYElComodnNoLoResuelve_success() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -1981,7 +1981,7 @@ qué pasa cuando falta el modelo, cuándo corre y qué cambia cuando cambia la v
 
 | ID | Rule | Severity | Error Message |
 |----|------|----------|---------------|
-| F-MLOCAL-R001 | Con sus herramientas, nada sale de la máquina; a claude -p, sólo sin Ollama y con tope | critical | - |
+| F-MLOCAL-R001 | Con sus herramientas, nada sale de la máquina salvo los pares de Duplicados parecidos; a claude -p, sólo con tope | critical | - |
 | F-MLOCAL-R002 | Cada herramienta tiene nombre y versión a la vista, y la misma versión da lo mismo | critical | - |
 | F-MLOCAL-R003 | Si falta la herramienta, se sabe antes de empezar | critical | Analyzer '<name>' needs <tool>, which is not available: <how to install>. |
 | F-MLOCAL-R004 | Qué corre sin pedirlo | major | - |
@@ -2045,24 +2045,26 @@ cola trae el 27 % de lo que el 077 llamó antinatural o sin sentido, más de cin
 
 ### FEAT-DUPAR: Duplicados parecidos - dos ejercicios casi iguales del mismo tema [F-DUPAR]
 
-> **Qué**: `near-duplicates`, de la familia de errores, marca cada ejercicio que repite casi igual a otro de su tema: la
-misma respuesta con otro pronombre, otro demostrativo u otro tiempo del auxiliar, o la misma idea con otras palabras.
+> **Qué**: `near-duplicates` marca cada ejercicio que repite casi igual a otro de su tema: lo que iguala el comodín y lo
+que claude -p, como juez, dice que es el mismo ejercicio; con Ollama, los vectores sólo le proponen los pares.
 
-**Por qué**: El 077 marcó 6 así en la mitad para escribir, como «He is leaving (certainly)» y «She is leaving
-(certainly)»; la regla exacta del paquete A no los ve. Compara con un modelo local; sin Ollama, claude -p juzga los pares.
+**Por qué**: Con el parecido de 0,95 marcando solo, reprobó su examen: de 40 pares que no marcó, 20 eran el mismo
+ejercicio. Y desde el 1/10 ninguna tanda de correcciones se publica sin todos los jueces aprobados.
 
 **Business Rules:**
 
 | ID | Rule | Severity | Error Message |
 |----|------|----------|---------------|
 | F-DUPAR-R001 | Sólo son casi duplicados dos ejercicios del mismo tema que piden lo mismo | major | - |
-| F-DUPAR-R002 | Casi iguales: cambia sólo el sujeto, el demostrativo, el posesivo o el tiempo, o dicen lo mismo | major | - |
+| F-DUPAR-R002 | Casi iguales: el comodín los iguala o el juez dice que son el mismo ejercicio | major | - |
 | F-DUPAR-R003 | Un hallazgo por copia, nunca en el ejercicio que queda | major | - |
 | F-DUPAR-R004 | El hallazgo es de gravedad baja y va a la mesa | major | - |
 | F-DUPAR-R005 | La evidencia muestra los dos ejercicios y qué cambia | major | - |
 | F-DUPAR-R006 | `near-duplicates` es un analizador de errores que evalúa ejercicios | major | - |
-| F-DUPAR-R007 | El examen de Duplicados parecidos | major | - |
+| F-DUPAR-R007 | El examen de cada versión de Duplicados parecidos | major | - |
 | F-DUPAR-R008 | Sin Ollama, claude -p juzga los pares de texto parecido | major | - |
+| F-DUPAR-R009 | Con Ollama, los vectores sólo proponen y claude -p decide cada par | major | - |
+| F-DUPAR-R010 | La versión con Ollama nombra sus tres piezas y rinde un solo examen | major | - |
 
 **User Journeys:**
 
