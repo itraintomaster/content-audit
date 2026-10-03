@@ -6058,10 +6058,13 @@ modules:
       \ la tabla de irregulares, y cuenta en onKnowledge cuántos del tema llevan pista,\
       \ por tipo y en el tema entero (umbral de tres cuartos, José 30/9). En la respuesta\
       \ que es la oración entera busca además cada palabra de contenido en la oració\
-      n de partida, la pista y la consigna (R006). La resolución de cada hallazgo\
-      \ sale de su tipo: la palabra de la pista que no está en la respuesta (DOUBT-PISTA-CUANDO-MESA)\
+      n de partida, la pista y la consigna (R006). También compara, hueco por hueco,\
+      \ la pista con todas sus respuestas aceptadas para marcar la que regala la respuesta\
+      \ sin dejar nada para decidir (R007). La resolución de cada hallazgo sale de\
+      \ su tipo: la palabra de la pista que no está en la respuesta (DOUBT-PISTA-CUANDO-MESA)\
       \ y la palabra de la reescritura que nada anuncia (R006) van a la mesa; el resto,\
-      \ por regla. Públicos: el proveedor y el diagnóstico."
+      \ por regla, salvo que no haya una pista para proponer sin regalar (R007), que\
+      \ también va a la mesa. Públicos: el proveedor y el diagnóstico."
     visibility: public
     models:
     - name: HintCoherenceDiagnosis
@@ -6093,29 +6096,33 @@ modules:
       fields:
       - name: rule
         type: String
-        description: La regla de FEAT-PISTA que no se cumple (F-PISTA-R001 a R004
-          y R006).
+        description: "La regla de FEAT-PISTA que no se cumple (F-PISTA-R001 a R004,\
+          \ R006 y R007)."
       - name: kind
         type: HintIssueKind
       - name: word
         type: String
         description: "Lo que marca: la palabra de la pista, el verbo sin anunciar,\
-          \ el sujeto o, en su lema, la palabra de la reescritura que nada anuncia.\
-          \ Es la marca de la identidad del hallazgo."
+          \ el sujeto, en su lema la palabra de la reescritura que nada anuncia, o\
+          \ la pista que regala, normalizada. Es la marca de la identidad del hallazgo."
       - name: proposedHint
         type: String
-        description: "La pista que sale de la primera respuesta —verbo en forma base,\
-          \ sujeto y not—: el arreglo por regla. El audio no cambia. Null en R006:\
-          \ la mesa decide si cambia la respuesta o el enunciado."
+        description: "La pista que arregla el hallazgo por regla —para R001 a R004,\
+          \ la que sale de la primera respuesta; para R007, la misma pista—, siempre\
+          \ con los verbos en forma base: nunca una que regale la respuesta. El audio\
+          \ no cambia. Null en R006, y en R001 y R007 cuando la única pista posible\
+          \ regala la respuesta."
       - name: resolution
         type: FindingResolution
-        description: RULE o PANEL según el tipo (DOUBT-PISTA-CUANDO-MESA).
+        description: RULE o PANEL según el tipo (DOUBT-PISTA-CUANDO-MESA); un tipo
+          por regla puede resolver PANEL igual cuando no hay pista que proponer sin
+          regalar (R007).
     - name: HintIssueKind
       type: enum
       fields:
       - name: MISSING_HINT
         description: Sin pista en un tema donde tres cuartos o más la llevan (R001).
-          Regla.
+          Regla; mesa si la única pista que sale de la respuesta la regala (R007).
       - name: HINT_WORD_ABSENT
         description: "Una palabra de la pista no está en la respuesta, ni flexionada\
           \ ni por su lema (R002, invariante 1). Mesa: puede estar mal la respuesta."
@@ -6135,6 +6142,11 @@ modules:
           \ no sale de la oración de partida, de la pista ni de la consigna, ni flexionada\
           \ ni por su lema (R006). Mesa: quien reescribe fiel da mal, y una regla\
           \ no sabe si se arregla la respuesta o el enunciado."
+      - name: HINT_GIVEAWAY
+        description: "La pista dice lo mismo que una respuesta aceptada de su hueco\
+          \ y no deja nada para decidir: sin verbo, o con alguno conjugado (R007).\
+          \ Regla si el verbo se puede llevar a forma base; mesa si no se conjuga,\
+          \ o es el enunciado con «/» de una respuesta que es la oración entera."
     - name: ExerciseShape
       type: enum
       fields:
@@ -6173,6 +6185,7 @@ modules:
       exposes:
       - signature: "check(ExerciseHint hint,AuditableQuiz quiz): List<HintIssue>"
       - signature: "checkRewrite(AuditableQuiz quiz): List<HintIssue>"
+      - signature: "checkGiveaway(AuditableQuiz quiz,ExerciseShape shape): List<HintIssue>"
       visibility: internal
     implementations:
     - name: HintCoherenceAnalyzerProvider
@@ -6268,6 +6281,26 @@ modules:
         traceability:
           feature: FEAT-PISTA
           rule: F-PISTA-R001
+      - name: "should raise a high finding at the panel, identified by the hint, when\
+          \ the hint gives away the answer and does not conjugate, as «We ___ (always)\
+          \ eat eggs every morning.» answered «always», scoring 0 with no «Pista propuesta»\
+          \ in its evidence"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should raise a high finding by rule proposing the base form when the\
+          \ hint gives away the answer as a conjugated verb, as «Why ___ (is) the\
+          \ beach going to close?» answered «is», proposing «(be)»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should keep sending the missing hint to the panel without changing\
+          \ which exercises R001 marks, when the only possible hint is the answer\
+          \ itself, as «We ___ eat eggs every morning.» in Adverbios de frecuencia,\
+          \ 17 of 20 of the topic with a hint"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
       implements:
       - ContentAnalyzer
     - name: DefaultHintReader
@@ -6394,6 +6427,73 @@ modules:
         traceability:
           feature: FEAT-PISTA
           rule: F-PISTA-R006
+      - name: "should raise a HINT_GIVEAWAY sent to the panel, with no hint to propose,\
+          \ when a hint that is not a verb already says the answer of its gap, as\
+          \ «(always)» in «We ___ (always) eat eggs every morning.» answered «always»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should raise a HINT_GIVEAWAY fixed by rule with the hint's base form\
+          \ when a conjugated verb already says the answer of its gap, as «(is)» in\
+          \ «Why ___ (is) the beach going to close?» answered «is», proposing «(be)»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should find no HINT_GIVEAWAY when every verb of the hint is already\
+          \ in base form even though it says the answer, as «(love)» in «I ___ (love)\
+          \ a lot of vegetables.» answered «love»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should find no HINT_GIVEAWAY when the hint says something other than\
+          \ the accepted answers of its gap, as «(always)» not matching «am always»\
+          \ in «I ___ in the kitchen. (always)», «(100%)» not matching «always» in\
+          \ «I ___ drink tea in the morning. (100%)», «(always)» not matching the\
+          \ whole sentence in «She does her homework after school. (always) ___»,\
+          \ and «(I / am)» not matching «Am I» in «___ (I / am) below you?»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should normalize case, punctuation and spacing and match any accepted\
+          \ answer of the gap, not only the first, reading a multi-word hint joined\
+          \ by a slash as one phrase, as «(Is.)» giving away an answer accepted as\
+          \ «'s|is», and «(I / am)» giving away an answer «I am» but not «Am I», where\
+          \ the order differs, proposing «(I / be)» when it gives away"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should compare the hint of each gap only with the accepted answers\
+          \ of that same gap, as «(are)» giving away the second gap's answer and proposing\
+          \ «(be)», while «(play)» does not give away the first gap's answer «might\
+          \ play», in «We ___ (play) cards again, if we ___ (are) bored.»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should propose the base form of the answer's verb when completing a\
+          \ missing hint, as «(be)» for «Why ___ the beach going to close?» answered\
+          \ «is», and «(I / be)» for «___ below you?» answered «Am I»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should propose no hint for a missing hint when the only possible hint\
+          \ is the answer itself, as «We ___ eat eggs every morning.» answered «always»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should find no HINT_GIVEAWAY and leave the hint drawn from the first\
+          \ answer unchanged when every word of an already-complete hint is in base\
+          \ form, as «(you / see)» for «Who ___ (I / see)?» answered «are you seeing»\
+          , «(that / be)» for «What ___ (it / be)?» answered «is that», and «(be /\
+          \ rain)» for «It ___ (be) soon.» answered «'s going to rain»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should also give away the answer through the whole-sentence statement\
+          \ of slash-separated words, never fixed by rule, as in Invest time + gerundio,\
+          \ whose statement already conjugates «'re» and «going»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
       implements:
       - HintAnswerCheck
     - name: HintCoherenceCorrection
@@ -6418,6 +6518,25 @@ modules:
         traceability:
           feature: FEAT-TANDA
           rule: F-TANDA-R004
+      - name: "should fix a giveaway hint with its base form only in its own gap without\
+          \ changing what is heard, as «(are)» becoming «(be)» in the second gap of\
+          \ «We ___ (play) cards again, if we ___ (are) bored.», leaving «(play)»\
+          \ as it was"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should write the base form of the verb when it adds a missing hint,\
+          \ as «(be)» for «Why ___ the beach going to close?» and «(I / be)» for «\
+          ___ below you?»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
+      - name: "should decline instead of writing a hint that would give away the answer,\
+          \ leaving the exercise as it was, as «We ___ eat eggs every morning.» answered\
+          \ «always»"
+        traceability:
+          feature: FEAT-PISTA
+          rule: F-PISTA-R007
       implements:
       - RuleFix
   - name: correctormatch

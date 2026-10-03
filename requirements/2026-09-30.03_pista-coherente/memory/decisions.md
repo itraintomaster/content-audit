@@ -5,6 +5,49 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — developer (pista que regala) — Criterios de R007 que el REQUIREMENT no fija, tal como quedaron en el código:
+  - GapHint(text, parenthesized, gaps): la pista pegada es de su hueco; la que cierra el enunciado y las de una oración
+    entera son de todos los huecos. read() y gapHints() comparten los candidatos, así no se separan.
+  - issue() manda a la mesa todo hallazgo sin propuesta, también uno de R002 a R004 (no sólo MISSING_HINT y HINT_GIVEAWAY): una
+    pista que sólo podría ser la respuesta no se escribe. Por eso howItIsFixed dice «la única pista que sale de la respuesta es
+    la respuesta misma» para cualquier tipo a la mesa sin propuesta, salvo R006 y HINT_GIVEAWAY, que tienen su línea.
+  - La regla de arreglo cambia la pista de cada hueco cuyo texto normalizado es la marca Y dice una respuesta de ese mismo
+    hueco: con dos «(is)» en huecos distintos, sólo cambia el que regala.
+  - Si la regla no tiene qué escribir, el detalle de declinar es «la única pista que sale de la respuesta es la respuesta misma:
+    va a la mesa» (reemplaza a «la primera respuesta no da una pista»). Una petición de R007 sin los tokens de la oración guardada
+    también declina así: sin tokens no se sabe qué es verbo y R007 no marca nada.
+
+2026-10-01 — architect (pista que regala) — R007 es un método más de HintAnswerCheck, checkGiveaway(AuditableQuiz,
+  ExerciseShape), como checkRewrite para R006: usa lo que ya tiene DefaultHintAnswerCheck (tokens, tabla, ayudantes de
+  DefaultHintReader para leer la pista de cada hueco). Recibe la forma porque, a diferencia de R006, mira las dos: el
+  hueco dentro de la oración y el enunciado con «/» de la oración entera. Sin modelo nuevo, sin tocar HintReader ni
+  ningún constructor, y nada del proveedor en el contrato (otra sesión le cambia el nombre visible).
+2026-10-01 — architect (pista que regala) — El valor nuevo es HINT_GIVEAWAY y la regla de la ficha hint-giveaway (no
+  HINT_GIVES_ANSWER / hint-gives-answer): los otros valores nombran un estado, no una cláusula; GIVEAWAY es sustantivo
+  como MISMATCH o ABSENT. Gravedad alta, como MISSING_HINT: no vuelve imposible el ejercicio, deja de enseñar.
+2026-10-01 — architect (pista que regala) — La resolución sigue saliendo del tipo, con una excepción: un hallazgo de
+  tipo «regla» sin pista que proponer sin regalar (proposedHint null) va a la mesa. Así MISSING_HINT de los adverbios
+  de frecuencia y HINT_GIVEAWAY de lo que no se conjuga quedan para la mesa sin un tipo nuevo.
+
+2026-10-01 — analyst (pista que regala) — R007 compara contra cualquiera de las respuestas aceptadas del hueco, no
+  sólo la primera (lo que usan R002 a R004): cita [F-QSENT-R001] (variantes equivalentes de una misma respuesta).
+  Es la única regla de la feature que se aparta del "primera respuesta, la que dice el audio" del encabezado de
+  Reglas de Negocio; no toqué ese encabezado (fuera de lo pedido), la salvedad queda sólo en el cuerpo de R007.
+  why: el segundo hueco de "We ___ (play) cards again, if we ___ (are) bored." y el enunciado con «/» de "Invest
+  time + gerundio" sólo regalan si se mira la respuesta de su propio hueco, no la primera del ejercicio.
+2026-10-01 — analyst (pista que regala) — En una pista de varias palabras, "en forma base" exige que todos sus
+  verbos lo estén: un sólo verbo conjugado alcanza para que la pista cuente como "no forma base".
+  why: sigue la letra de José sobre (you / see) y (that / be); el ejemplo "We're going to invest time / learning /
+  about History / next year." regala porque 're y going ya están conjugados.
+2026-10-01 — analyst (pista que regala) — R007 queda fuera de F-PISTA-J001, igual que R006: un camino nuevo
+  cambiaría el journey generado. Su prueba son los handwrittenTests, no el journey.
+2026-10-01 — analyst (pista que regala) — Sumé un párrafo de Contexto, "La pista que regala (R007)", con los
+  números del prototipo (167 encontradas, 139 en forma base, 28 regalan), espejando el de R006.
+  why: no estaba en la lista explícita de qué tocar; lo agregué por consistencia con cómo quedó R006 y lo marco
+  para que se revise si no era lo que se quería.
+2026-10-01 — analyst (pista que regala) — Gravedad de la regla (encabezado) = critical, por pedido explícito;
+  gravedad del hallazgo = alta, como la pista que falta ([F-HALL-R002]). Son dos ejes distintos, igual que en R001.
+
 2026-10-01 — developer (impl A) — Una contracción de la fuente anuncia lo que dice («There's» → be, have): sin eso,
   R006 marcaba «be» en 38cf, 38d8 y 4730, porque el puerto ubica el «'s» de la respuesta (el prototipo no lo veía).
   La única marca de más contra el prototipo es 437a («drank» → «got drunk»): la tabla de irregulares de content-audit

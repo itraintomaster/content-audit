@@ -71,6 +71,9 @@ public class HintCoherenceAnalyzerProvider implements AnalyzerProvider {
                         new AnalyzerRuleCard(HintCoherenceAnalyzer.RULE_REWRITE_WORDS,
                                 "F-PISTA-R006: la reescritura no pide palabras que no salen de la oración de partida,"
                                         + " la pista o la consigna",
+                                AnalysisCost.INSTANT),
+                        new AnalyzerRuleCard(HintCoherenceAnalyzer.RULE_HINT_GIVEAWAY,
+                                "F-PISTA-R007: la pista no regala la respuesta si el alumno todavía tiene que decidir algo",
                                 AnalysisCost.INSTANT)),
                 "0 ejercicios con error. Un ejercicio sin pista es error cuando la llevan tres cuartos o más de los"
                         + " de su tipo, o de todo su tema",

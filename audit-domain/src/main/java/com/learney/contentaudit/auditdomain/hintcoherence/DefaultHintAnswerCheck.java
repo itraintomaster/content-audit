@@ -40,6 +40,17 @@ import javax.annotation.processing.Generated;
  * compared as R002 compares plus the bases the regular suffixes leave; the grammar a rewrite
  * brings by itself does not count. Each word that comes from nowhere goes to the panel: a rule
  * cannot tell whether the answer or the statement is the one to fix (DOUBT-PISTA-RESPUESTA).
+ *
+ * <p>{@link #checkGiveaway} is R007, for the hint of a gap that says what one of the answers of that
+ * gap says -- compared without case, signs or extra spaces, the «/» counting as a sign -- and leaves
+ * nothing to decide: it has no verb, or it has one already conjugated. If every verb of the hint is
+ * in base form it gives nothing away, because the student still decides whether to conjugate it.
+ * Whether a word is a verb, and whether it is in base form, comes from the tokens of the saved
+ * sentence (the verb and its lemma), with the table of irregular forms for the form the saved
+ * sentence does not bring («is» against «'s»); without those tokens it is not known what is a verb
+ * and nothing is marked. A conjugated verb is fixed by rule with its base form, in its own gap
+ * («(is)» → «(be)»); what does not conjugate goes to the panel, and so does a missing hint whose
+ * only possible hint is the answer itself: the hint the rule proposes never gives the answer away.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -77,7 +88,7 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
     public List<HintIssue> check(ExerciseHint hint, AuditableQuiz quiz) {
         List<String> answers = DefaultHintReader.firstAnswers(quiz);
         Answer answer = new Answer(answers, tokens(quiz));
-        String proposed = propose(hint, answer);
+        String proposed = propose(hint, answer, quiz);
 
         List<HintIssue> issues = new ArrayList<>();
         if (hint == null || hint.getText() == null || hint.getText().isBlank()) {
@@ -137,9 +148,14 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
         return deduplicated(issues);
     }
 
+    /**
+     * The panel for a hint word the answer does not have and for a rewrite word nothing announces; and for any kind when
+     * there is no hint to propose, because the only one that comes out of the answer would give it away (R007). The rest is
+     * fixed by rule with the hint proposed.
+     */
     private static HintIssue issue(String rule, HintIssueKind kind, String word, String proposed) {
         FindingResolution resolution = kind == HintIssueKind.HINT_WORD_ABSENT
-                || kind == HintIssueKind.REWRITE_WORD_NOT_ANNOUNCED
+                || kind == HintIssueKind.REWRITE_WORD_NOT_ANNOUNCED || proposed == null
                 ? FindingResolution.PANEL
                 : FindingResolution.RULE;
         return new HintIssue(rule, kind, word, proposed, resolution);
@@ -179,8 +195,12 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
      * «(you / see)» for «Who ___ (I / see)?» answered «are you seeing»: the subject of the
      * answer, its «not», the words of the hint that are in it and the base form of every verb the
      * hint did not announce; an answer without verbs gives the base form of its words («(spoon)»).
+     *
+     * <p>The hint never gives the answer away (R007): a verb that is conjugated in the answer goes as its lemma
+     * («(be)» and not «(is)», «(I / be)» and not «(I / am)»), and when what is left is the answer itself and says
+     * everything -- «(always)» for «always» -- there is no hint to propose, and the result is null.
      */
-    private String propose(ExerciseHint hint, Answer answer) {
+    private String propose(ExerciseHint hint, Answer answer, AuditableQuiz quiz) {
         List<String> slots = new ArrayList<>();
         List<String> subjects = answer.subjects();
         if (!subjects.isEmpty()) {
@@ -193,8 +213,9 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
         int fixed = slots.size();
         if (hint != null && hint.getWords() != null && !hint.isChoice()) {
             for (String word : hint.getWords()) {
-                if (answer.contains(word) && !slots.contains(word)) {
-                    slots.add(word);
+                String written = baseForm(word, answer.said());
+                if (answer.contains(word) && !slots.contains(written)) {
+                    slots.add(written);
                 }
             }
         }
@@ -216,12 +237,36 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
         }
         if (slots.size() == fixed) {
             for (String word : answer.plainWords()) {
-                if (!slots.contains(word)) {
-                    slots.add(word);
+                String written = baseForm(word, answer.said());
+                if (!slots.contains(written)) {
+                    slots.add(written);
                 }
             }
         }
-        return slots.isEmpty() ? null : "(" + String.join(" / ", slots) + ")";
+        if (slots.isEmpty() || givesAwayTheAnswer(String.join(" / ", slots), answer.said(), quiz)) {
+            return null;
+        }
+        return "(" + String.join(" / ", slots) + ")";
+    }
+
+    /**
+     * Whether a hint, without its parentheses, would say what an answer of some gap says and leave nothing to decide (R007).
+     * Without the tokens of the answer it is not known what is a verb, and then it does not.
+     */
+    private boolean givesAwayTheAnswer(String hint, List<NlpToken> said, AuditableQuiz quiz) {
+        if (said.isEmpty()) {
+            return false;
+        }
+        String normalized = normalized(hint);
+        List<SentencePartEntity> parts = DefaultHintReader.parts(quiz);
+        for (int gap : DefaultHintReader.gaps(parts)) {
+            for (String accepted : DefaultHintReader.acceptedAnswers(parts, gap)) {
+                if (!normalized.isEmpty() && normalized.equals(normalized(accepted))) {
+                    return !inBaseForm(hint, said);
+                }
+            }
+        }
+        return false;
     }
 
     // -------------------------------------------------------------------------
@@ -245,6 +290,7 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
         private final List<String> texts;
         private final List<NlpToken> sentence;
         private final Set<String> words = new LinkedHashSet<>();
+        private List<NlpToken> saidTokens;
 
         Answer(List<String> texts, List<NlpToken> sentence) {
             this.texts = texts;
@@ -305,11 +351,14 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
 
         /** The tokens of the saved sentence that are the answer, in their order. */
         List<NlpToken> said() {
-            List<NlpToken> said = new ArrayList<>();
-            for (int i : answerIndexes()) {
-                said.add(sentence.get(i));
+            if (saidTokens == null) {
+                List<NlpToken> said = new ArrayList<>();
+                for (int i : answerIndexes()) {
+                    said.add(sentence.get(i));
+                }
+                saidTokens = said;
             }
-            return said;
+            return saidTokens;
         }
 
         /** Whether a hint word is in the answer: written, inflected, by lemma or irregular form. */
@@ -775,6 +824,162 @@ class DefaultHintAnswerCheck implements HintAnswerCheck {
             out.add(word.substring(0, word.length() - 2) + "le"); // simply → simple
         }
         return out;
+    }
+
+
+    // -------------------------------------------------------------------------
+    // R007: the hint that gives the answer away
+    // -------------------------------------------------------------------------
+
+    /**
+     * R007: for each hint the student sees, the one of a gap says what one of the answers accepted by that gap says --
+     * never the answers of another gap -- and it is not in base form: it has no verb, or some verb conjugated. The issue is
+     * marked with the hint normalized; when the hint is a verb conjugated it carries the same hint in base form, to be
+     * fixed by rule.
+     */
+    @Override
+    public List<HintIssue> checkGiveaway(AuditableQuiz quiz,ExerciseShape shape) {
+        List<HintIssue> issues = new ArrayList<>();
+        if (quiz == null) {
+            return issues;
+        }
+        List<NlpToken> said = new Answer(DefaultHintReader.firstAnswers(quiz), tokens(quiz)).said();
+        if (said.isEmpty()) {
+            return issues; // without the tokens of the answer it is not known what is a verb: nothing is marked
+        }
+        List<SentencePartEntity> parts = DefaultHintReader.parts(quiz);
+        for (DefaultHintReader.GapHint hint : DefaultHintReader.gapHints(parts, shape)) {
+            if (saysAnAnswer(hint, parts) && !inBaseForm(hint.text(), said)) {
+                issues.add(issue(HintCoherenceAnalyzer.RULE_HINT_GIVEAWAY, HintIssueKind.HINT_GIVEAWAY,
+                        normalized(hint.text()), baseFormOf(hint, said)));
+            }
+        }
+        return deduplicated(issues);
+    }
+
+    /**
+     * Lower case, everything that is not a letter or a digit turned into a space -- the «/», the straight and the
+     * curved apostrophes, «%», the quotes --, single spaces and no edges: «(I / am)» is «i am», «We're going» is
+     * «we re going».
+     */
+    static String normalized(String text) {
+        return text == null ? "" : text.toLowerCase(Locale.ROOT).replaceAll("[^\\p{L}\\p{Nd}]+", " ").strip();
+    }
+
+    /** Whether the hint, normalized, is equal to some answer accepted by one of its own gaps, normalized. */
+    static boolean saysAnAnswer(DefaultHintReader.GapHint hint, List<SentencePartEntity> parts) {
+        String text = normalized(hint.text());
+        if (text.isEmpty()) {
+            return false;
+        }
+        for (int gap : hint.gaps()) {
+            for (String accepted : DefaultHintReader.acceptedAnswers(parts, gap)) {
+                if (text.equals(normalized(accepted))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /** A verb for the shared tokenizer: a full verb or an auxiliary. */
+    private static boolean isVerb(NlpToken token) {
+        return "VERB".equals(token.getPosTag()) || "AUX".equals(token.getPosTag());
+    }
+
+    /**
+     * The token of the answer that a word of a hint is: the one written as the word; if there is none, the one whose
+     * lemma is the word; if there is none, the one whose lemma has the word among its irregular forms («is» against
+     * «'s», whose lemma is be). Null when the answer has none.
+     */
+    private NlpToken tokenOf(String word, List<NlpToken> said) {
+        for (NlpToken token : said) {
+            if (lower(token.getText()).equals(word)) {
+                return token;
+            }
+        }
+        for (NlpToken token : said) {
+            if (lower(token.getLemma()).equals(word)) {
+                return token;
+            }
+        }
+        for (NlpToken token : said) {
+            String lemma = lower(token.getLemma());
+            if (!lemma.isEmpty() && irregularForms.formsOf(lemma).contains(word)) {
+                return token;
+            }
+        }
+        return null;
+    }
+
+    /** The words of a hint as the shared tokenizer cuts them, the curved apostrophe as the straight one. */
+    private static List<String> hintWords(String hint) {
+        return tokenizerWords(hint == null ? "" : hint.replace('’', '\''));
+    }
+
+    /**
+     * Whether a hint is in base form: it has at least one verb and every verb it has is in base form -- its word is the
+     * lemma of its token in the answer. A hint without any verb is not in base form: «(always)» leaves nothing to decide.
+     */
+    private boolean inBaseForm(String hint, List<NlpToken> said) {
+        boolean verb = false;
+        for (String word : hintWords(hint)) {
+            NlpToken token = tokenOf(word, said);
+            if (token != null && isVerb(token)) {
+                if (!word.equals(lower(token.getLemma()))) {
+                    return false;
+                }
+                verb = true;
+            }
+        }
+        return verb;
+    }
+
+    /** A word as a hint writes it: the lemma of its token when it is a verb conjugated in the answer; otherwise as it is. */
+    private String baseForm(String word, List<NlpToken> said) {
+        NlpToken token = tokenOf(word, said);
+        if (token != null && isVerb(token) && !word.equals(lower(token.getLemma()))) {
+            return lower(token.getLemma());
+        }
+        return word;
+    }
+
+    /**
+     * The hint that fixes a giveaway: the same hint with every conjugated word as the lemma of its token and the rest
+     * as it is written, slot by slot -- «(is)» → «(be)», «(I / am)» → «(I / be)». Only for a hint between parentheses,
+     * without an apostrophe, whose words are all verbs, subject pronouns or «not», with at least one verb conjugated;
+     * any other has no base form to fall back to (an adverb, an adjective, a statement of words) and is left to the
+     * panel: null.
+     */
+    private String baseFormOf(DefaultHintReader.GapHint hint, List<NlpToken> said) {
+        String text = hint.text() == null ? "" : hint.text().strip();
+        if (!hint.parenthesized() || text.isEmpty() || text.indexOf('\'') >= 0 || text.indexOf('’') >= 0) {
+            return null;
+        }
+        List<String> slots = new ArrayList<>();
+        boolean conjugated = false;
+        for (String slot : text.split("/", -1)) {
+            List<String> words = DefaultHintReader.words(slot);
+            if (words.isEmpty() || !String.join(" ", words).equals(slot.strip().replaceAll("\\s+", " "))) {
+                return null; // a digit or a sign is no verb, pronoun or «not»
+            }
+            List<String> written = new ArrayList<>();
+            for (String word : words) {
+                String lower = word.toLowerCase(Locale.ROOT);
+                NlpToken token = tokenOf(lower, said);
+                if (token != null && isVerb(token)) {
+                    String base = baseForm(lower, said);
+                    conjugated |= !base.equals(lower);
+                    written.add(base.equals(lower) ? word : base);
+                } else if (DefaultHintReader.SUBJECT_PRONOUNS.contains(lower) || lower.equals("not")) {
+                    written.add(word);
+                } else {
+                    return null;
+                }
+            }
+            slots.add(String.join(" ", written));
+        }
+        return conjugated ? "(" + String.join(" / ", slots) + ")" : null;
     }
 
 }

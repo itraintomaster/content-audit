@@ -1784,6 +1784,7 @@ new Baseline(String auditId, Instant fixedAt)
 | `SUBJECT_NOT_ANNOUNCED` | `null` |
 | `NEGATION_WITHOUT_NEGATIVE` | `null` |
 | `REWRITE_WORD_NOT_ANNOUNCED` | `null` |
+| `HINT_GIVEAWAY` | `null` |
 
 #### ExerciseShape (package: hintcoherence)
 

@@ -1,4 +1,4 @@
-generatedAt: 2026-10-03T19:59:16.146740Z
+generatedAt: 2026-10-03T20:04:15.412896Z
 system: ContentAudit
 version: 0.0.1
 features:
@@ -14117,6 +14117,131 @@ features:
       passing: true
       module: audit-domain
       implementation: DefaultHintAnswerCheck
+  - ruleId: F-PISTA-R007
+    state: PASSING
+    tests:
+    - name: "should raise a high finding at the panel, identified by the hint, when\
+        \ the hint gives away the answer and does not conjugate, as «We ___ (always)\
+        \ eat eggs every morning.» answered «always», scoring 0 with no «Pista propuesta»\
+        \ in its evidence"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: HintCoherenceAnalyzer
+    - name: "should raise a high finding by rule proposing the base form when the\
+        \ hint gives away the answer as a conjugated verb, as «Why ___ (is) the beach\
+        \ going to close?» answered «is», proposing «(be)»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: HintCoherenceAnalyzer
+    - name: "should keep sending the missing hint to the panel without changing which\
+        \ exercises R001 marks, when the only possible hint is the answer itself,\
+        \ as «We ___ eat eggs every morning.» in Adverbios de frecuencia, 17 of 20\
+        \ of the topic with a hint"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: HintCoherenceAnalyzer
+    - name: "should raise a HINT_GIVEAWAY sent to the panel, with no hint to propose,\
+        \ when a hint that is not a verb already says the answer of its gap, as «\
+        (always)» in «We ___ (always) eat eggs every morning.» answered «always»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
+    - name: "should raise a HINT_GIVEAWAY fixed by rule with the hint's base form\
+        \ when a conjugated verb already says the answer of its gap, as «(is)» in\
+        \ «Why ___ (is) the beach going to close?» answered «is», proposing «(be)»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
+    - name: "should find no HINT_GIVEAWAY when every verb of the hint is already in\
+        \ base form even though it says the answer, as «(love)» in «I ___ (love) a\
+        \ lot of vegetables.» answered «love»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
+    - name: "should find no HINT_GIVEAWAY when the hint says something other than\
+        \ the accepted answers of its gap, as «(always)» not matching «am always»\
+        \ in «I ___ in the kitchen. (always)», «(100%)» not matching «always» in «\
+        I ___ drink tea in the morning. (100%)», «(always)» not matching the whole\
+        \ sentence in «She does her homework after school. (always) ___», and «(I\
+        \ / am)» not matching «Am I» in «___ (I / am) below you?»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
+    - name: "should normalize case, punctuation and spacing and match any accepted\
+        \ answer of the gap, not only the first, reading a multi-word hint joined\
+        \ by a slash as one phrase, as «(Is.)» giving away an answer accepted as «\
+        's|is», and «(I / am)» giving away an answer «I am» but not «Am I», where\
+        \ the order differs, proposing «(I / be)» when it gives away"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
+    - name: "should compare the hint of each gap only with the accepted answers of\
+        \ that same gap, as «(are)» giving away the second gap's answer and proposing\
+        \ «(be)», while «(play)» does not give away the first gap's answer «might\
+        \ play», in «We ___ (play) cards again, if we ___ (are) bored.»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
+    - name: "should propose the base form of the answer's verb when completing a missing\
+        \ hint, as «(be)» for «Why ___ the beach going to close?» answered «is», and\
+        \ «(I / be)» for «___ below you?» answered «Am I»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
+    - name: "should propose no hint for a missing hint when the only possible hint\
+        \ is the answer itself, as «We ___ eat eggs every morning.» answered «always»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
+    - name: "should find no HINT_GIVEAWAY and leave the hint drawn from the first\
+        \ answer unchanged when every word of an already-complete hint is in base\
+        \ form, as «(you / see)» for «Who ___ (I / see)?» answered «are you seeing»\
+        , «(that / be)» for «What ___ (it / be)?» answered «is that», and «(be / rain)»\
+        \ for «It ___ (be) soon.» answered «'s going to rain»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
+    - name: "should also give away the answer through the whole-sentence statement\
+        \ of slash-separated words, never fixed by rule, as in Invest time + gerundio,\
+        \ whose statement already conjugates «'re» and «going»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultHintAnswerCheck
+    - name: "should fix a giveaway hint with its base form only in its own gap without\
+        \ changing what is heard, as «(are)» becoming «(be)» in the second gap of\
+        \ «We ___ (play) cards again, if we ___ (are) bored.», leaving «(play)» as\
+        \ it was"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: HintCoherenceRuleFix
+    - name: "should write the base form of the verb when it adds a missing hint, as\
+        \ «(be)» for «Why ___ the beach going to close?» and «(I / be)» for «___ below\
+        \ you?»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: HintCoherenceRuleFix
+    - name: "should decline instead of writing a hint that would give away the answer,\
+        \ leaving the exercise as it was, as «We ___ eat eggs every morning.» answered\
+        \ «always»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: HintCoherenceRuleFix
   journeysCoverage:
   - journeyId: F-PISTA-J001
     state: PASSING
@@ -14154,6 +14279,7 @@ features:
     - com.learney.contentaudit.auditdomain.hintcoherence.DefaultHintReader
     - com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzer
     - com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceAnalyzerProvider
+    - com.learney.contentaudit.auditdomain.hintcoherence.HintCoherenceRuleFix
     - com.learney.contentaudit.vocabularyinfrastructure.irregularforms.FileSystemIrregularFormsCatalog
     thresholds:
       lineCoverage: 70
@@ -39198,7 +39324,7 @@ elements:
         card.getEvaluatedTargets() == List.of(AuditTarget.QUIZ)
         card.getResolutions() == List.of(FindingResolution.RULE, FindingResolution.PANEL)
         card.getCost() == AnalysisCost.INSTANT
-        card.getRules().stream().map(AnalyzerRuleCard::getId).toList() == List.of("missing-hint", "hint-words", "hint-subject", "hint-negation", "rewrite-words")
+        card.getRules().stream().map(AnalyzerRuleCard::getId).toList() == List.of("missing-hint", "hint-words", "hint-subject", "hint-negation", "rewrite-words", "hint-giveaway")
         card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT) is true
         card.getGoal().contains("tres cuartos") is true
         provider.planBinding() == Optional.of(new AnalyzerPlanBinding("HINT_COHERENCE", List.of(AuditTarget.QUIZ)))
@@ -39272,6 +39398,23 @@ elements:
     - name: "should count hints by shape and in the whole topic, so the 20 transformations\
         \ without hint of El posesivo have no finding, since neither their shape (0\
         \ of 20) nor the topic (20 of 40) reaches three quarters"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceAnalyzerTest.java
+    - name: "should raise a high finding at the panel, identified by the hint, when\
+        \ the hint gives away the answer and does not conjugate, as «We ___ (always)\
+        \ eat eggs every morning.» answered «always», scoring 0 with no «Pista propuesta»\
+        \ in its evidence"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceAnalyzerTest.java
+    - name: "should raise a high finding by rule proposing the base form when the\
+        \ hint gives away the answer as a conjugated verb, as «Why ___ (is) the beach\
+        \ going to close?» answered «is», proposing «(be)»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceAnalyzerTest.java
+    - name: "should keep sending the missing hint to the panel without changing which\
+        \ exercises R001 marks, when the only possible hint is the answer itself,\
+        \ as «We ___ eat eggs every morning.» in Adverbios de frecuencia, 17 of 20\
+        \ of the topic with a hint"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceAnalyzerTest.java
     testCleanViews:
@@ -39460,6 +39603,59 @@ elements:
         diagnosis(node).getShape() == ExerciseShape.GAP_IN_SENTENCE
         rules(analyzer.findingsAt(node)) == List.of(HintCoherenceAnalyzer.RULE_HINT_WORDS)
         diagnosis(node).getIssues().stream().map(HintIssue::getKind).toList() == List.of(HintIssueKind.VERB_NOT_ANNOUNCED)
+    - |
+      test: "should raise a high finding at the panel, identified by the hint, when the hint gives away the answer and does not conjugate, as «We ___ (always) eat eggs every morning.» answered «always», scoring 0 with no «Pista propuesta» in its evidence"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        eggs = quiz("67fab6d59930102295342572", "We always eat eggs every morning.", "We|we|PRON always|always|ADV eat|eat|VERB eggs|egg|NOUN every|every|DET morning|morning|NOUN .|.|PUNCT", text("We"), cloze("always"), text("(always) eat eggs every morning."))
+        topic = run(knowledge("6814dafa7d73e7209a13d3c4", "Adverbios de frecuencia", SentenceMode.REWRITE, List.of(eggs)))
+        node = quizNode(topic, "2572")
+        drafts = analyzer.findingsAt(node)
+        giveaway = drafts.get(0)
+        observation = giveaway.getEvidence().getObservation()
+
+      then:
+        rules(drafts) == List.of("hint-giveaway")
+        giveaway.getMarker() == "always"
+        giveaway.getSeverity() == FindingSeverity.HIGH
+        giveaway.getResolution() == FindingResolution.PANEL
+        observation.startsWith("We ___ (always) eat eggs every morning. → always: la pista «always» es la" + " respuesta: el alumno sólo la copia") is true
+        observation.endsWith(". Va a la mesa: no se conjuga, y sacar la pista dejaría sin pista un tema que" + " la lleva") is true
+        labels(giveaway).contains("Pista propuesta") is false
+        node.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME) == 0.0
+    - |
+      test: "should raise a high finding by rule proposing the base form when the hint gives away the answer as a conjugated verb, as «Why ___ (is) the beach going to close?» answered «is», proposing «(be)»"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        beach = quiz("67fab6d59930102295342170", "Why is the beach going to close?", "Why|why|SCONJ is|be|AUX the|the|DET beach|beach|NOUN going|go|VERB to|to|PART close|close|VERB ?|?|PUNCT", text("Why"), cloze("is"), text("(is) the beach going to close?"))
+        topic = run(knowledge("6814dafa7d73e7209a13d3ad", "Preguntas $yes/no$ y $wh$", SentenceMode.FILL, List.of(beach)))
+        node = quizNode(topic, "2170")
+        drafts = analyzer.findingsAt(node)
+        giveaway = drafts.get(0)
+        observation = giveaway.getEvidence().getObservation()
+
+      then:
+        rules(drafts) == List.of("hint-giveaway")
+        giveaway.getMarker() == "is"
+        giveaway.getSeverity() == FindingSeverity.HIGH
+        giveaway.getResolution() == FindingResolution.RULE
+        part(giveaway, "Pista propuesta") == "(be)"
+        diagnosis(node).getIssues().get(0).getProposedHint() == "(be)"
+        observation.startsWith("Why ___ (is) the beach going to close? → is: la pista «is» es la respuesta:" + " el alumno sólo la copia") is true
+        observation.endsWith(". Se arregla con el verbo en forma base; la respuesta y su audio no cambian") is true
+        node.getScores().get(HintCoherenceAnalyzer.ANALYZER_NAME) == 0.0
+    - |
+      test: "should keep sending the missing hint to the panel without changing which exercises R001 marks, when the only possible hint is the answer itself, as «We ___ eat eggs every morning.» in Adverbios de frecuencia, 17 of 20 of the topic with a hint"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        adverbs = run(knowledge("6814dafa7d73e7209a13d3c4", "Adverbios de frecuencia", SentenceMode.REWRITE, adverbiosDeFrecuenciaConTokens()))
+        marked = adverbs.getChildren().stream().filter(quiz -> rules(analyzer.findingsAt(quiz)).contains(HintCoherenceAnalyzer.RULE_MISSING_HINT)).map(HintCoherenceAnalyzerTest::id).toList()
+
+      then:
+        marked == List.of("67fab6d59930102295342572", "67fab6d59930102295342575")
   - name: DefaultHintReader
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintReader.java
@@ -39610,6 +39806,63 @@ elements:
         \ and the time shift of reported speech in «“I overslept this morning” (the\
         \ boy whispered) ___» answered «The boy whispered that he had overslept that\
         \ morning.»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should raise a HINT_GIVEAWAY sent to the panel, with no hint to propose,\
+        \ when a hint that is not a verb already says the answer of its gap, as «\
+        (always)» in «We ___ (always) eat eggs every morning.» answered «always»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should raise a HINT_GIVEAWAY fixed by rule with the hint's base form\
+        \ when a conjugated verb already says the answer of its gap, as «(is)» in\
+        \ «Why ___ (is) the beach going to close?» answered «is», proposing «(be)»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should find no HINT_GIVEAWAY when every verb of the hint is already in\
+        \ base form even though it says the answer, as «(love)» in «I ___ (love) a\
+        \ lot of vegetables.» answered «love»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should find no HINT_GIVEAWAY when the hint says something other than\
+        \ the accepted answers of its gap, as «(always)» not matching «am always»\
+        \ in «I ___ in the kitchen. (always)», «(100%)» not matching «always» in «\
+        I ___ drink tea in the morning. (100%)», «(always)» not matching the whole\
+        \ sentence in «She does her homework after school. (always) ___», and «(I\
+        \ / am)» not matching «Am I» in «___ (I / am) below you?»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should normalize case, punctuation and spacing and match any accepted\
+        \ answer of the gap, not only the first, reading a multi-word hint joined\
+        \ by a slash as one phrase, as «(Is.)» giving away an answer accepted as «\
+        's|is», and «(I / am)» giving away an answer «I am» but not «Am I», where\
+        \ the order differs, proposing «(I / be)» when it gives away"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should compare the hint of each gap only with the accepted answers of\
+        \ that same gap, as «(are)» giving away the second gap's answer and proposing\
+        \ «(be)», while «(play)» does not give away the first gap's answer «might\
+        \ play», in «We ___ (play) cards again, if we ___ (are) bored.»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should propose the base form of the answer's verb when completing a missing\
+        \ hint, as «(be)» for «Why ___ the beach going to close?» answered «is», and\
+        \ «(I / be)» for «___ below you?» answered «Am I»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should propose no hint for a missing hint when the only possible hint\
+        \ is the answer itself, as «We ___ eat eggs every morning.» answered «always»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should find no HINT_GIVEAWAY and leave the hint drawn from the first\
+        \ answer unchanged when every word of an already-complete hint is in base\
+        \ form, as «(you / see)» for «Who ___ (I / see)?» answered «are you seeing»\
+        , «(that / be)» for «What ___ (it / be)?» answered «is that», and «(be / rain)»\
+        \ for «It ___ (be) soon.» answered «'s going to rain»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
+    - name: "should also give away the answer through the whole-sentence statement\
+        \ of slash-separated words, never fixed by rule, as in Invest time + gerundio,\
+        \ whose statement already conjugates «'re» and «going»"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/DefaultHintAnswerCheckTest.java
     testCleanViews:
@@ -39785,6 +40038,147 @@ elements:
       then:
         check().checkRewrite(overslept) == List.of()
         check().checkRewrite(tomorrow) == List.of()
+    - |
+      test: "should raise a HINT_GIVEAWAY sent to the panel, with no hint to propose, when a hint that is not a verb already says the answer of its gap, as «(always)» in «We ___ (always) eat eggs every morning.» answered «always»"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        eggs = quiz("67fab6d59930102295342572", "We always eat eggs every morning.", "We|we|PRON always|always|ADV eat|eat|VERB eggs|egg|NOUN every|every|DET morning|morning|NOUN" + " .|.|PUNCT", text("We"), cloze("always"), text("(always) eat eggs every morning."))
+        issues = check().checkGiveaway(eggs, ExerciseShape.GAP_IN_SENTENCE)
+
+      then:
+        kinds(issues) == List.of(HintIssueKind.HINT_GIVEAWAY)
+        issues.get(0).getWord() == "always"
+        issues.get(0).getRule() == "hint-giveaway"
+        issues.get(0).getResolution() == FindingResolution.PANEL
+        issues.get(0).getProposedHint() is null
+    - |
+      test: "should raise a HINT_GIVEAWAY fixed by rule with the hint's base form when a conjugated verb already says the answer of its gap, as «(is)» in «Why ___ (is) the beach going to close?» answered «is», proposing «(be)»"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        beach = quiz("67fab6d59930102295342170", "Why is the beach going to close?", "Why|why|SCONJ is|be|AUX the|the|DET beach|beach|NOUN going|go|VERB to|to|PART close|close|VERB" + " ?|?|PUNCT", text("Why"), cloze("is"), text("(is) the beach going to close?"))
+        issues = check().checkGiveaway(beach, ExerciseShape.GAP_IN_SENTENCE)
+
+      then:
+        kinds(issues) == List.of(HintIssueKind.HINT_GIVEAWAY)
+        issues.get(0).getWord() == "is"
+        issues.get(0).getRule() == "hint-giveaway"
+        issues.get(0).getResolution() == FindingResolution.RULE
+        issues.get(0).getProposedHint() == "(be)"
+    - |
+      test: "should find no HINT_GIVEAWAY when every verb of the hint is already in base form even though it says the answer, as «(love)» in «I ___ (love) a lot of vegetables.» answered «love»"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        vegetables = quiz("67fab6d59930102295341ecd", "I love a lot of vegetables.", "I|I|PRON love|love|VERB a|a|DET lot|lot|NOUN of|of|ADP vegetables|vegetable|NOUN .|.|PUNCT", text("I"), cloze("love"), text("(love) a lot of vegetables."))
+
+      then:
+        check().checkGiveaway(vegetables, ExerciseShape.GAP_IN_SENTENCE) == List.of()
+    - |
+      test: "should find no HINT_GIVEAWAY when the hint says something other than the accepted answers of its gap, as «(always)» not matching «am always» in «I ___ in the kitchen. (always)», «(100%)» not matching «always» in «I ___ drink tea in the morning. (100%)», «(always)» not matching the whole sentence in «She does her homework after school. (always) ___», and «(I / am)» not matching «Am I» in «___ (I / am) below you?»"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        kitchen = quiz("67fab6d59930102295342580", "I am always in the kitchen.", "I|I|PRON am|be|AUX always|always|ADV in|in|ADP the|the|DET kitchen|kitchen|NOUN .|.|PUNCT", text("I"), cloze("am always"), text("in the kitchen. (always)"))
+        tea = quiz("67fab6d59930102295342596", "I always drink tea in the morning.", "I|I|PRON always|always|ADV drink|drink|VERB tea|tea|NOUN in|in|ADP the|the|DET morning|morning|NOUN" + " .|.|PUNCT", text("I"), cloze("always"), text("drink tea in the morning. (100%)"))
+        homework = quiz("67fab6d5993010229534256f", "She always does her homework after school.", "She|she|PRON always|always|ADV does|do|VERB her|her|PRON homework|homework|NOUN after|after|ADP" + " school|school|NOUN .|.|PUNCT", text("She does her homework after school. (always)"), cloze("She always does her homework after school."))
+        below = quiz("67fab6d59930102295342021", "Am I below you?", "Am|be|AUX I|I|PRON below|below|ADP you|you|PRON ?|?|PUNCT", cloze("Am I"), text("(I / am) below you?"))
+
+      then:
+        check().checkGiveaway(kitchen, ExerciseShape.GAP_IN_SENTENCE) == List.of()
+        check().checkGiveaway(tea, ExerciseShape.GAP_IN_SENTENCE) == List.of()
+        check().checkGiveaway(homework, ExerciseShape.WHOLE_SENTENCE) == List.of()
+        check().checkGiveaway(below, ExerciseShape.GAP_IN_SENTENCE) == List.of()
+    - |
+      test: "should normalize case, punctuation and spacing and match any accepted answer of the gap, not only the first, reading a multi-word hint joined by a slash as one phrase, as «(Is.)» giving away an answer accepted as «'s|is», and «(I / am)» giving away an answer «I am» but not «Am I», where the order differs, proposing «(I / be)» when it gives away"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        doctor = quiz("67fab6d59930102295340001", "He's a doctor.", "He|he|PRON 's|be|AUX a|a|DET doctor|doctor|NOUN .|.|PUNCT", text("He"), cloze("'s|is"), text("(Is) a doctor."))
+        late = quiz("67fab6d59930102295340002", "I am late.", "I|I|PRON am|be|AUX late|late|ADJ .|.|PUNCT", cloze("I am"), text("(I / am) late."))
+        below = quiz("67fab6d59930102295342021", "Am I below you?", "Am|be|AUX I|I|PRON below|below|ADP you|you|PRON ?|?|PUNCT", cloze("Am I"), text("(I / am) below you?"))
+        capitalised = check().checkGiveaway(doctor, ExerciseShape.GAP_IN_SENTENCE)
+        slashed = check().checkGiveaway(late, ExerciseShape.GAP_IN_SENTENCE)
+
+      then:
+        kinds(capitalised) == List.of(HintIssueKind.HINT_GIVEAWAY)
+        capitalised.get(0).getWord() == "is"
+        capitalised.get(0).getProposedHint() == "(be)"
+        kinds(slashed) == List.of(HintIssueKind.HINT_GIVEAWAY)
+        slashed.get(0).getWord() == "i am"
+        slashed.get(0).getProposedHint() == "(I / be)"
+        check().checkGiveaway(below, ExerciseShape.GAP_IN_SENTENCE) == List.of()
+    - |
+      test: "should compare the hint of each gap only with the accepted answers of that same gap, as «(are)» giving away the second gap's answer and proposing «(be)», while «(play)» does not give away the first gap's answer «might play», in «We ___ (play) cards again, if we ___ (are) bored.»"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        cards = quiz("67fab6d59930102295344797", "We might play cards again, if we are bored.", "We|we|PRON might|might|AUX play|play|VERB cards|card|NOUN again|again|ADV ,|,|PUNCT if|if|SCONJ" + " we|we|PRON are|be|AUX bored|bored|ADJ .|.|PUNCT", text("We"), cloze("might play"), text("(play) cards again, if we"), cloze("are"), text("(are) bored."))
+        issues = check().checkGiveaway(cards, ExerciseShape.GAP_IN_SENTENCE)
+        swapped = quiz("67fab6d59930102295340003", "He was tired and she is sad.", "He|he|PRON was|be|AUX tired|tired|ADJ and|and|CCONJ she|she|PRON is|be|AUX sad|sad|ADJ .|.|PUNCT", text("He"), cloze("was"), text("(is) tired and she"), cloze("is"), text("(was) sad."))
+
+      then:
+        kinds(issues) == List.of(HintIssueKind.HINT_GIVEAWAY)
+        issues.get(0).getWord() == "are"
+        issues.get(0).getResolution() == FindingResolution.RULE
+        issues.get(0).getProposedHint() == "(be)"
+        check().checkGiveaway(swapped, ExerciseShape.GAP_IN_SENTENCE) == List.of()
+    - |
+      test: "should propose the base form of the answer's verb when completing a missing hint, as «(be)» for «Why ___ the beach going to close?» answered «is», and «(I / be)» for «___ below you?» answered «Am I»"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        none = ExerciseHint(null, List.of(), null, false, false)
+        beach = quiz("67fab6d59930102295342170", "Why is the beach going to close?", "Why|why|SCONJ is|be|AUX the|the|DET beach|beach|NOUN going|go|VERB to|to|PART close|close|VERB" + " ?|?|PUNCT", text("Why"), cloze("is"), text("the beach going to close?"))
+        below = quiz("67fab6d59930102295342021", "Am I below you?", "Am|be|AUX I|I|PRON below|below|ADP you|you|PRON ?|?|PUNCT", cloze("Am I"), text("below you?"))
+        why = check().check(none, beach)
+        amI = check().check(none, below)
+
+      then:
+        kinds(why) == List.of(HintIssueKind.MISSING_HINT)
+        why.get(0).getProposedHint() == "(be)"
+        why.get(0).getResolution() == FindingResolution.RULE
+        kinds(amI) == List.of(HintIssueKind.MISSING_HINT)
+        amI.get(0).getProposedHint() == "(I / be)"
+        amI.get(0).getResolution() == FindingResolution.RULE
+    - |
+      test: "should propose no hint for a missing hint when the only possible hint is the answer itself, as «We ___ eat eggs every morning.» answered «always»"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        none = ExerciseHint(null, List.of(), null, false, false)
+        eggs = quiz("67fab6d59930102295342572", "We always eat eggs every morning.", "We|we|PRON always|always|ADV eat|eat|VERB eggs|egg|NOUN every|every|DET morning|morning|NOUN" + " .|.|PUNCT", text("We"), cloze("always"), text("eat eggs every morning."))
+        juice = quiz("67fab6d59930102295342575", "He never drinks juice in the morning.", "He|he|PRON never|never|ADV drinks|drink|VERB juice|juice|NOUN in|in|ADP the|the|DET morning|morning|NOUN" + " .|.|PUNCT", text("He"), cloze("never"), text("drinks juice in the morning."))
+    - |
+      test: "should find no HINT_GIVEAWAY and leave the hint drawn from the first answer unchanged when every word of an already-complete hint is in base form, as «(you / see)» for «Who ___ (I / see)?» answered «are you seeing», «(that / be)» for «What ___ (it / be)?» answered «is that», and «(be / rain)» for «It ___ (be) soon.» answered «'s going to rain»"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        who = check().check(hint("(I / see)", List.of("see"), "I", false), whoAreYouSeeing()).get(0)
+        what = check().check(hint("(it / be)", List.of("be"), "it", false), whatIsThat("(it / be)")).get(0)
+        rain = check().check(hint("(be)", List.of("be"), null, false), itIsGoingToRain("(be)")).get(0)
+
+      then:
+        who.getProposedHint() == "(you / see)"
+        what.getProposedHint() == "(that / be)"
+        rain.getProposedHint() == "(be / rain)"
+        check().checkGiveaway(whoAreYouSeeingHinted(who.getProposedHint()), ExerciseShape.GAP_IN_SENTENCE) == List.of()
+        check().checkGiveaway(whatIsThat(what.getProposedHint()), ExerciseShape.GAP_IN_SENTENCE) == List.of()
+        check().checkGiveaway(itIsGoingToRain(rain.getProposedHint()), ExerciseShape.GAP_IN_SENTENCE) == List.of()
+    - |
+      test: "should also give away the answer through the whole-sentence statement of slash-separated words, never fixed by rule, as in Invest time + gerundio, whose statement already conjugates «'re» and «going»"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        invest = rewrite("67fab6d5993010229534298b", "We're going to invest time learning about History next year.", "We|we|PRON 're|be|AUX going|go|VERB to|to|PART invest|invest|VERB time|time|NOUN learning|learn|VERB" + " about|about|ADP History|history|NOUN next|next|ADJ year|year|NOUN .|.|PUNCT", "Crea oraciones usando 'invest time'.", text("We're going to invest time / learning / about History / next year."), cloze("We're going to invest time learning about History next year."))
+        issues = check().checkGiveaway(invest, ExerciseShape.WHOLE_SENTENCE)
+
+      then:
+        kinds(issues) == List.of(HintIssueKind.HINT_GIVEAWAY)
+        issues.get(0).getResolution() == FindingResolution.PANEL
+        issues.get(0).getProposedHint() is null
+        issues.get(0).getWord().endsWith("invest time learning about history next year") is true
   - name: HintCoherenceCorrection
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceCorrection.java
@@ -39816,6 +40210,22 @@ elements:
         \ what is heard"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceRuleFixTest.java
+    - name: "should fix a giveaway hint with its base form only in its own gap without\
+        \ changing what is heard, as «(are)» becoming «(be)» in the second gap of\
+        \ «We ___ (play) cards again, if we ___ (are) bored.», leaving «(play)» as\
+        \ it was"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceRuleFixTest.java
+    - name: "should write the base form of the verb when it adds a missing hint, as\
+        \ «(be)» for «Why ___ the beach going to close?» and «(I / be)» for «___ below\
+        \ you?»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceRuleFixTest.java
+    - name: "should decline instead of writing a hint that would give away the answer,\
+        \ leaving the exercise as it was, as «We ___ eat eggs every morning.» answered\
+        \ «always»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/hintcoherence/HintCoherenceRuleFixTest.java
     testCleanViews:
     - |
       test: "should take the hint from the first answer, its base verb, its subject and its not, as «(love)» for «I ___ a lot of vegetables.», without changing what is heard"
@@ -39845,6 +40255,77 @@ elements:
         bySubject.getFixed() == List.of(subject.getIdentity())
         bySubject.getQuiz().getForm().getSentenceParts().get(2).getText() == "(you / see)?"
         bySubject.getQuiz().getSentences() == List.of("Who are you seeing?")
+    - |
+      test: "should fix a giveaway hint with its base form only in its own gap without changing what is heard, as «(are)» becoming «(be)» in the second gap of «We ___ (play) cards again, if we ___ (are) bored.», leaving «(play)» as it was"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        cards = quiz("67fab6d59930102295344797", "B2.12.04.16", List.of(text("We"), cloze("might play"), text("(play) cards again, if we"), cloze("are"), text("(are) bored.")), List.of("We might play cards again, if we are bored."))
+        analyzed = analyzed(cards, "We|we|PRON might|might|AUX play|play|VERB cards|card|NOUN again|again|ADV ,|,|PUNCT if|if|SCONJ" + " we|we|PRON are|be|AUX bored|bored|ADJ .|.|PUNCT")
+        giveaway = hintFinding("67fab6d59930102295344797", "hint-giveaway", "are", FindingSeverity.HIGH)
+        result = HintCoherenceRuleFix(noIrregularForms()).fix(new RuleFixRequest(cards, analyzed, SentenceMode.FILL, List.of(giveaway)))
+        parts = result.getQuiz().getForm().getSentenceParts()
+
+      then:
+        result.getFixed() == List.of(giveaway.getIdentity())
+        result.getDeclined().isEmpty() is true
+        parts.get(4).getText() == "(be) bored."
+        parts.get(2).getText() == "(play) cards again, if we"
+        parts.get(1).getOptions() == List.of("might play")
+        parts.get(3).getOptions() == List.of("are")
+        result.getQuiz().getSentences() == List.of("We might play cards again, if we are bored.")
+        result.getQuiz().getAnswerAudioUrl() == "B2.12.04.16"
+        result.getRerecordings().isEmpty() is true
+        cards.getForm().getSentenceParts().get(4).getText() == "(are) bored."
+    - |
+      test: "should write the base form of the verb when it adds a missing hint, as «(be)» for «Why ___ the beach going to close?» and «(I / be)» for «___ below you?»"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        beach = quiz("67fab6d59930102295342170", "A1.03.06.16", List.of(text("Why"), cloze("is"), text("the beach going to close?")), List.of("Why is the beach going to close?"))
+        missingBeach = hintFinding("67fab6d59930102295342170", "missing-hint", null, FindingSeverity.HIGH)
+        fix = HintCoherenceRuleFix(noIrregularForms())
+        byVerb = fix.fix(new RuleFixRequest(beach, analyzed(beach, "Why|why|SCONJ is|be|AUX the|the|DET beach|beach|NOUN going|go|VERB to|to|PART close|close|VERB ?|?|PUNCT"), SentenceMode.FILL, List.of(missingBeach)))
+        beachParts = byVerb.getQuiz().getForm().getSentenceParts()
+        below = quiz("67fab6d59930102295342021", "A1.02.05.11", List.of(cloze("Am I"), text("below you?")), List.of("Am I below you?"))
+        missingBelow = hintFinding("67fab6d59930102295342021", "missing-hint", null, FindingSeverity.HIGH)
+        bySubject = fix.fix(new RuleFixRequest(below, analyzed(below, "Am|be|AUX I|I|PRON below|below|ADP you|you|PRON ?|?|PUNCT"), SentenceMode.FILL, List.of(missingBelow)))
+        belowParts = bySubject.getQuiz().getForm().getSentenceParts()
+
+      then:
+        byVerb.getFixed() == List.of(missingBeach.getIdentity())
+        byVerb.getDeclined().isEmpty() is true
+        beachParts.get(2).getText() == "(be) the beach going to close?"
+        beachParts.get(1).getOptions() == List.of("is")
+        byVerb.getQuiz().getSentences() == List.of("Why is the beach going to close?")
+        byVerb.getQuiz().getAnswerAudioUrl() == "A1.03.06.16"
+        byVerb.getRerecordings().isEmpty() is true
+        bySubject.getFixed() == List.of(missingBelow.getIdentity())
+        bySubject.getDeclined().isEmpty() is true
+        belowParts.get(1).getText() == "(I / be) below you?"
+        belowParts.get(0).getOptions() == List.of("Am I")
+        bySubject.getQuiz().getSentences() == List.of("Am I below you?")
+        bySubject.getQuiz().getAnswerAudioUrl() == "A1.02.05.11"
+    - |
+      test: "should decline instead of writing a hint that would give away the answer, leaving the exercise as it was, as «We ___ eat eggs every morning.» answered «always»"
+      trace: FEAT-PISTA / F-PISTA-R007
+
+      given:
+        eggs = quiz("67fab6d59930102295342572", "A1.11.04.04", List.of(text("We"), cloze("always"), text("eat eggs every morning.")), List.of("We always eat eggs every morning."))
+        missing = hintFinding("67fab6d59930102295342572", "missing-hint", null, FindingSeverity.HIGH)
+        result = HintCoherenceRuleFix(noIrregularForms()).fix(new RuleFixRequest(eggs, analyzed(eggs, "We|we|PRON always|always|ADV eat|eat|VERB eggs|egg|NOUN every|every|DET morning|morning|NOUN .|.|PUNCT"), SentenceMode.FILL, List.of(missing)))
+        parts = result.getQuiz().getForm().getSentenceParts()
+
+      then:
+        result.getFixed().isEmpty() is true
+        result.getDeclined() == List.of(missing.getIdentity())
+        parts.size() == 3
+        parts.get(0).getText() == "We"
+        parts.get(1).getOptions() == List.of("always")
+        parts.get(2).getText() == "eat eggs every morning."
+        result.getQuiz().getSentences() == List.of("We always eat eggs every morning.")
+        result.getQuiz().getAnswerAudioUrl() == "A1.11.04.04"
+        result.getRerecordings().isEmpty() is true
   - name: DefaultCorrectorMatcher
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/correctormatch/DefaultCorrectorMatcher.java
@@ -91417,8 +91898,8 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 2685
-  passing: 2668
+  total: 2701
+  passing: 2684
   failing: 0
   notImplemented: 17
 qualitySummary:

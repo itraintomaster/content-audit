@@ -4,6 +4,59 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — analyst (pista que regala) — Los números de R007 en el REQUIREMENT son los medidos, no los del prototipo
+  (pedido del coordinador; el texto de la regla no cambió). Analizador sobre el curso del 29/9, antes de la tanda: 27
+  ejercicios marcados (A1 0, A2 23, B1 2, B2 2), 26 a la mesa y 1 por regla («(are)» → «(be)», …4797); de los 23 de A2,
+  20 de Posición del adjetivo y 3 de Invest time + gerundio. Pistas que faltan sin arreglo posible: 6 (los 5 adverbios
+  de A1 y «spoon», …2a02). Tanda de A1 rearmada (sólo reglas): hint-coherence en A1 23 → 16; 7 pistas por regla en
+  lugar de 12, los 5 adverbios a la mesa. Límite conocido: 3 falsas, no 4 (close, dance, knock): «The cats / sleep…»
+  (…3da4) ya no sale, el tokenizador lee sleep como verbo en la oración guardada. Salieron los 167 / 139 del prototipo
+  y la frase «Es el número del prototipo…»; sumé una cláusula que une las cuentas (de los 4 de B1 y B2, 1 por regla y
+  3 falsas). `requirement validate` y `feature validate` en exit 0.
+  Cómo se cuentan: de las 12 pistas que la tanda agregó en A1, en 7 la pista es la respuesta misma (love, is y los 5
+  adverbios) y en 6 la regala («(love)» no, porque está en forma base). El detalle de R007 ya lo dice así.
+
+2026-10-03 — developer (pista que regala) — R007 encendida en hintcoherence: 5 archivos de main, ni pruebas ni contratos tocados.
+  Lector (GapHint + gapHints + acceptedAnswers; read() da lo mismo), chequeo (checkGiveaway; issue() manda a la mesa todo lo que
+  no tiene propuesta; propose() nunca regala), analizador (hint-giveaway, gravedad alta), regla de arreglo (R007 sólo en el hueco
+  que regala; el detalle ya no dice «((I / see))») y la ficha con seis tarjetas (sólo la lista). Las 16 pruebas de R007 y la de la
+  ficha, en verde a la primera. Suite entera desde la raíz: 3.119 pruebas, 0 fallas, 1 salteada (línea base 3.103 + 16). Sin commit.
+  Next: correr el analizador sobre el curso vivo y contar contra los 28 del prototipo (A2 23, B1 3, B2 2); el javadoc del
+  proveedor sigue diciendo «R001 a R004 y R006» (no se tocó a pedido: otra sesión lo cambia).
+
+2026-10-01 — developer (ronda2/pista-que-regala) — Agregado sólo el case HINT_GIVEAWAY al switch de fault() en
+  HintCoherenceAnalyzer (volvía a compilar main; checkGiveaway sigue UnsupportedOperationException, sin tocar).
+  Ojo: `mvn -o test-compile -pl audit-domain` solo toma course-domain y evaluation-ledger-domain de los .jar viejos
+  de ~/.m2 (sin FormEntities, QuizTemplateEntities, EvaluationRequestMode ni EvaluationTimeline) y no compila. No
+  hace falta `mvn install` (prohibido): con `-am` el reactor arma esas dependencias desde el fuente
+  (`mvn -o test-compile -pl audit-domain -am -Dexec.skip=true`), y la suite entera se corre desde la raíz.
+  Next: @test-writer implementa los handwrittenTests de F-PISTA-R007.
+
+2026-10-01 — qa-tester (pista que regala) — 16 handwrittenTests de F-PISTA-R007 fusionadas al parche del arquitecto
+  (propose sin --replace, exit 0: 0 altas, 7 cambios = 4 del arquitecto + 3 implementaciones; patch validate OK).
+  10 en DefaultHintAnswerCheck (checkGiveaway y el propose de R001 cuando falta pista), 3 en HintCoherenceAnalyzer
+  (el hallazgo), 3 en HintCoherenceRuleFix (el arreglo de la tanda, F-TANDA aparte: traceability igual queda en
+  F-PISTA-R007 por pedido explícito). Sumé una prueba que el coordinador no había listado, el enunciado con «/»
+  de una respuesta que es la oración entera (Invest time + gerundio): es la razón de que checkGiveaway reciba
+  ExerciseShape; el coordinador la aceptó. La prueba del proveedor (5→6 reglas) no se tocó: es cuerpo de prueba
+  existente, no una declaración nueva. architectural_patch.yaml conserva intacto lo del arquitecto (checkGiveaway,
+  HINT_GIVEAWAY, las 4 descripciones). Next: aplicar el parche y generate; después @test-writer implementa.
+
+2026-10-01 — architect (pista que regala) — Tercer parche de FEAT-PISTA: checkGiveaway(AuditableQuiz,ExerciseShape)
+  en HintAnswerCheck, HINT_GIVEAWAY en HintIssueKind, descripciones de MISSING_HINT, de HintIssue (rule, word,
+  proposedHint, resolution) y del paquete. propose --replace exit 0 (0 altas, 4 cambios, 0 conflictos), patch
+  validate OK; baseline nuevo sacado del sentinel.yaml de c10506d3. TECH_SPEC reescrito con --replace (el de R006
+  queda en git). Next: @qa-tester declara los handwrittenTests de R007 en este mismo parche.
+
+2026-10-01 — analyst (pista que regala) — F-PISTA-R007 en el REQUIREMENT: la pista regala la respuesta cuando dice
+  lo mismo que una respuesta aceptada del hueco (cualquiera, no sólo la primera) y no deja nada para decidir (sin
+  verbo, o conjugado; en forma base no regala). Casos de la tanda de A1 (is, always ×5; los 4 ya en forma base) y
+  4 falsas del prototipo como límite conocido. Arreglo por regla (forma base, sólo su hueco) o a la mesa (no
+  conjuga, o enunciado con «/» de oración entera: no se borra, pelea con R001); la pista que R001 propone tampoco
+  regala. Alcance, TL;DR, Contexto y Referencias al día; R001 a R006 y el journey sin tocar. Las tres validaciones
+  (`requirement validate`, `feature validate`, `glossary validate`) en exit 0.
+  Next: @architect, ve si hace falta parche (contrato nuevo o reuso de hint-coherence).
+
 2026-10-01 — developer (impl A) — R006 encendida en ronda1/integracion (f95bd811), con las 5 pruebas llenas y los
   nombres de El posesivo y del camino 1 del journey al día. Control sobre una copia (primer-analisis/correr.sh, sin
   jueces y con el claude falso, que no se llamó nunca): vocabulario 73,86 %, igual; rewrite-words marca 61 ejercicios

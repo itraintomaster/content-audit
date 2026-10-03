@@ -44,7 +44,7 @@ public class HintCoherenceAnalyzerProviderTest {
         assertEquals(List.of(AuditTarget.QUIZ), card.getEvaluatedTargets());
         assertEquals(List.of(FindingResolution.RULE, FindingResolution.PANEL), card.getResolutions());
         assertEquals(AnalysisCost.INSTANT, card.getCost());
-        assertEquals(List.of("missing-hint", "hint-words", "hint-subject", "hint-negation", "rewrite-words"),
+        assertEquals(List.of("missing-hint", "hint-words", "hint-subject", "hint-negation", "rewrite-words", "hint-giveaway"),
                 card.getRules().stream().map(AnalyzerRuleCard::getId).toList());
         assertTrue(card.getRules().stream().allMatch(r -> r.getCost() == AnalysisCost.INSTANT));
         assertTrue(card.getGoal().contains("tres cuartos"), "the threshold of José is written in the goal");

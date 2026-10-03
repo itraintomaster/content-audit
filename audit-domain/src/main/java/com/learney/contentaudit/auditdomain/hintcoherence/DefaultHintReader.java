@@ -29,6 +29,10 @@ import javax.annotation.processing.Generated;
  * that belongs to his sister)») or that points at a part of the sentence to transform («(the
  * fish)» in «The cats ate the fish.») is a hint, so it counts for R001, but has no words to
  * compare.
+ *
+ * <p>{@link #gapHints} reads the same hints for R007 with the gaps each one belongs to: the hint attached to a gap is the
+ * one of that gap alone; the one that closes the statement, and the ones of an answer that is the whole sentence, are the
+ * ones of every gap.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -84,7 +88,12 @@ class DefaultHintReader implements HintReader {
 
     private enum Kind { WORDS, DESCRIPTIVE, POINTER }
 
-    private record Candidate(String text, boolean parenthesized) {
+    /**
+     * A hint as the student sees it, with the gaps it belongs to: the one attached to a gap is for that gap alone;
+     * the one closing the statement, and what an answer that is the whole sentence carries, are for every gap.
+     * R007 compares each one only with the answers of its own gaps.
+     */
+    record GapHint(String text, boolean parenthesized, List<Integer> gaps) {
     }
 
     private record Read(String text, boolean parenthesized, Kind kind) {
@@ -98,9 +107,7 @@ class DefaultHintReader implements HintReader {
             return Optional.empty();
         }
         ExerciseShape shape = shapeOf(quiz, mode);
-        List<Candidate> candidates = shape == ExerciseShape.GAP_IN_SENTENCE
-                ? gapCandidates(parts, gaps)
-                : wholeSentenceCandidates(parts, gaps);
+        List<GapHint> candidates = candidates(parts, gaps, shape);
 
         Set<String> sourceWords = new LinkedHashSet<>();
         for (SentencePartEntity part : parts) {
@@ -112,7 +119,7 @@ class DefaultHintReader implements HintReader {
         }
 
         List<Read> hints = new ArrayList<>();
-        for (Candidate candidate : candidates) {
+        for (GapHint candidate : candidates) {
             Kind kind = classify(candidate.text());
             if (kind == null) {
                 continue;
@@ -161,18 +168,18 @@ class DefaultHintReader implements HintReader {
      * it; if no gap has one, a short one closing the statement («I ___ in the kitchen.
      * (always)»); and if not, the options of a choice written next to the gap («Our / ours ___»).
      */
-    private static List<Candidate> gapCandidates(List<SentencePartEntity> parts, List<Integer> gaps) {
-        List<Candidate> candidates = new ArrayList<>();
+    private static List<GapHint> gapCandidates(List<SentencePartEntity> parts, List<Integer> gaps) {
+        List<GapHint> candidates = new ArrayList<>();
         for (int gap : gaps) {
             String attached = attachedHint(parts, gap);
             if (attached != null) {
-                candidates.add(new Candidate(attached, true));
+                candidates.add(new GapHint(attached, true, List.of(gap)));
             }
         }
         if (candidates.isEmpty()) {
             String closing = closingHint(parts);
             if (closing != null) {
-                candidates.add(new Candidate(closing, true));
+                candidates.add(new GapHint(closing, true, gaps));
             }
         }
         if (candidates.isEmpty()) {
@@ -180,7 +187,7 @@ class DefaultHintReader implements HintReader {
                 if (gap + 1 < parts.size() && isText(parts.get(gap + 1))) {
                     Matcher m = SLASH_CUE_AFTER.matcher(withoutHints(parts.get(gap + 1).getText()));
                     if (m.find()) {
-                        candidates.add(new Candidate(m.group(1), false));
+                        candidates.add(new GapHint(m.group(1), false, List.of(gap)));
                     }
                 }
             }
@@ -190,7 +197,7 @@ class DefaultHintReader implements HintReader {
                 if (gap > 0 && isText(parts.get(gap - 1))) {
                     Matcher m = SLASH_CUE_BEFORE.matcher(withoutHints(parts.get(gap - 1).getText()));
                     if (m.find()) {
-                        candidates.add(new Candidate(m.group(1), false));
+                        candidates.add(new GapHint(m.group(1), false, List.of(gap)));
                     }
                 }
             }
@@ -243,15 +250,15 @@ class DefaultHintReader implements HintReader {
      * the statement of words separated by «/» before the gap, without the label that may open it.
      * The sentence to transform is never one: it has no «/».
      */
-    private static List<Candidate> wholeSentenceCandidates(List<SentencePartEntity> parts, List<Integer> gaps) {
-        List<Candidate> candidates = new ArrayList<>();
+    private static List<GapHint> wholeSentenceCandidates(List<SentencePartEntity> parts, List<Integer> gaps) {
+        List<GapHint> candidates = new ArrayList<>();
         for (SentencePartEntity part : parts) {
             if (!isText(part)) {
                 continue;
             }
             Matcher m = HINT.matcher(text(part));
             while (m.find()) {
-                candidates.add(new Candidate(m.group(1), true));
+                candidates.add(new GapHint(m.group(1), true, gaps));
             }
         }
         for (int i = 0; i < gaps.get(0); i++) {
@@ -262,10 +269,59 @@ class DefaultHintReader implements HintReader {
             if (statement.contains("/")) {
                 statement = LABEL.matcher(statement).replaceFirst("");
                 statement = statement.replaceAll("[\\s.?!]+$", "");
-                candidates.add(new Candidate(statement, false));
+                candidates.add(new GapHint(statement, false, gaps));
             }
         }
         return candidates;
+    }
+
+    /** What the exercise shows next to its gaps, by its shape: what {@link #read} and {@link #gapHints} classify. */
+    private static List<GapHint> candidates(List<SentencePartEntity> parts, List<Integer> gaps, ExerciseShape shape) {
+        return shape == ExerciseShape.GAP_IN_SENTENCE
+                ? gapCandidates(parts, gaps)
+                : wholeSentenceCandidates(parts, gaps);
+    }
+
+    /**
+     * The hints the student sees, each with the gaps it belongs to (R007): the candidates {@link #read} reads, only the ones
+     * {@link #classify} takes as a hint -- not a tense name, an instruction or a note. Empty when the exercise has no gap.
+     */
+    static List<GapHint> gapHints(List<SentencePartEntity> parts, ExerciseShape shape) {
+        List<GapHint> hints = new ArrayList<>();
+        List<Integer> gaps = gaps(parts);
+        if (gaps.isEmpty()) {
+            return hints;
+        }
+        for (GapHint candidate : candidates(parts, gaps, shape)) {
+            if (classify(candidate.text()) != null) {
+                hints.add(candidate);
+            }
+        }
+        return hints;
+    }
+
+    /**
+     * Every answer a gap accepts (F-QSENT-R001): each entry of its options cut by «|», without edge spaces and without the
+     * empty ones. Unlike {@link #firstAnswers}, which is what the audio says, these are all the variants of the same answer.
+     */
+    static List<String> acceptedAnswers(List<SentencePartEntity> parts, int gap) {
+        List<String> accepted = new ArrayList<>();
+        List<String> options = gap >= 0 && gap < parts.size() && parts.get(gap) != null ? parts.get(gap).getOptions() : null;
+        if (options == null) {
+            return accepted;
+        }
+        for (String option : options) {
+            if (option == null) {
+                continue;
+            }
+            for (String answer : option.split("\\|", -1)) {
+                String stripped = answer.strip();
+                if (!stripped.isEmpty()) {
+                    accepted.add(stripped);
+                }
+            }
+        }
+        return accepted;
     }
 
     // -------------------------------------------------------------------------

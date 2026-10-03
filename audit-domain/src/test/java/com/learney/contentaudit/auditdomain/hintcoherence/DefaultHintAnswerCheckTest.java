@@ -412,4 +412,277 @@ public class DefaultHintAnswerCheckTest {
         assertEquals(List.of(), check().checkRewrite(overslept));
         assertEquals(List.of(), check().checkRewrite(tomorrow));
     }
+
+    @Test
+    @DisplayName("should raise a HINT_GIVEAWAY sent to the panel, with no hint to propose, when a hint that is not a verb already says the answer of its gap, as «(always)» in «We ___ (always) eat eggs every morning.» answered «always»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldRaiseAHINTGIVEAWAYSentToThePanelWithNoHintToProposeWhenAHintThatIsNotAVerbAlreadySaysTheAnswerOfItsGapAsAlwaysInWeAlwaysEatEggsEveryMorningAnsweredAlways() {
+        // R007: «We ___ (always) eat eggs every morning.» (…2572, A1, Adverbios de frecuencia; the batch of 1/10
+        // added the hint) says what its gap says. An adverb has no base form to fall back to: the rule has no
+        // hint to propose and the finding goes to the panel.
+        AuditableQuiz eggs = quiz("67fab6d59930102295342572", "We always eat eggs every morning.",
+                "We|we|PRON always|always|ADV eat|eat|VERB eggs|egg|NOUN every|every|DET morning|morning|NOUN"
+                        + " .|.|PUNCT",
+                text("We"), cloze("always"), text("(always) eat eggs every morning."));
+
+        List<HintIssue> issues = check().checkGiveaway(eggs, ExerciseShape.GAP_IN_SENTENCE);
+
+        assertEquals(List.of(HintIssueKind.HINT_GIVEAWAY), kinds(issues));
+        assertEquals("always", issues.get(0).getWord());
+        assertEquals("hint-giveaway", issues.get(0).getRule());
+        assertEquals(FindingResolution.PANEL, issues.get(0).getResolution());
+        assertNull(issues.get(0).getProposedHint(), "the panel decides: an adverb has no base form to propose");
+    }
+
+    @Test
+    @DisplayName("should raise a HINT_GIVEAWAY fixed by rule with the hint's base form when a conjugated verb already says the answer of its gap, as «(is)» in «Why ___ (is) the beach going to close?» answered «is», proposing «(be)»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldRaiseAHINTGIVEAWAYFixedByRuleWithTheHintsBaseFormWhenAConjugatedVerbAlreadySaysTheAnswerOfItsGapAsIsInWhyIsTheBeachGoingToCloseAnsweredIsProposingBe() {
+        // R007: «Why ___ (is) the beach going to close?» (…2170, A1, Preguntas yes/no y wh; the batch of 1/10 added the
+        // hint) is the answer itself, conjugated: the rule brings the hint back to the base form of its verb.
+        AuditableQuiz beach = quiz("67fab6d59930102295342170", "Why is the beach going to close?",
+                "Why|why|SCONJ is|be|AUX the|the|DET beach|beach|NOUN going|go|VERB to|to|PART close|close|VERB"
+                        + " ?|?|PUNCT",
+                text("Why"), cloze("is"), text("(is) the beach going to close?"));
+
+        List<HintIssue> issues = check().checkGiveaway(beach, ExerciseShape.GAP_IN_SENTENCE);
+
+        assertEquals(List.of(HintIssueKind.HINT_GIVEAWAY), kinds(issues));
+        assertEquals("is", issues.get(0).getWord());
+        assertEquals("hint-giveaway", issues.get(0).getRule());
+        assertEquals(FindingResolution.RULE, issues.get(0).getResolution());
+        assertEquals("(be)", issues.get(0).getProposedHint());
+    }
+
+    @Test
+    @DisplayName("should find no HINT_GIVEAWAY when every verb of the hint is already in base form even though it says the answer, as «(love)» in «I ___ (love) a lot of vegetables.» answered «love»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldFindNoHINTGIVEAWAYWhenEveryVerbOfTheHintIsAlreadyInBaseFormEvenThoughItSaysTheAnswerAsLoveInILoveALotOfVegetablesAnsweredLove() {
+        // R007: «I ___ (love) a lot of vegetables.» (…1ecd, A1, Afirmativas regulares) is answered «love», what the
+        // hint says; but love is a verb in base form and the student still decides whether to conjugate it.
+        AuditableQuiz vegetables = quiz("67fab6d59930102295341ecd", "I love a lot of vegetables.",
+                "I|I|PRON love|love|VERB a|a|DET lot|lot|NOUN of|of|ADP vegetables|vegetable|NOUN .|.|PUNCT",
+                text("I"), cloze("love"), text("(love) a lot of vegetables."));
+
+        assertEquals(List.of(), check().checkGiveaway(vegetables, ExerciseShape.GAP_IN_SENTENCE));
+    }
+
+    @Test
+    @DisplayName("should find no HINT_GIVEAWAY when the hint says something other than the accepted answers of its gap, as «(always)» not matching «am always» in «I ___ in the kitchen. (always)», «(100%)» not matching «always» in «I ___ drink tea in the morning. (100%)», «(always)» not matching the whole sentence in «She does her homework after school. (always) ___», and «(I / am)» not matching «Am I» in «___ (I / am) below you?»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldFindNoHINTGIVEAWAYWhenTheHintSaysSomethingOtherThanTheAcceptedAnswersOfItsGapAsAlwaysNotMatchingAmAlwaysInIInTheKitchenAlways100NotMatchingAlwaysInIDrinkTeaInTheMorning100AlwaysNotMatchingTheWholeSentenceInSheDoesHerHomeworkAfterSchoolAlwaysAndIAmNotMatchingAmIInIAmBelowYou() {
+        // R007: the hint has to say what the gap says. «I ___ in the kitchen. (always)» (…2580) is answered «am
+        // always»; «I ___ drink tea in the morning. (100%)» (…2596), «always», which «100» does not say; «She does
+        // her homework after school. (always) ___» (…256f) with the whole sentence, where the adverb is to be
+        // placed; «___ (I / am) below you?» (…2021), «Am I»: the order changes.
+        AuditableQuiz kitchen = quiz("67fab6d59930102295342580", "I am always in the kitchen.",
+                "I|I|PRON am|be|AUX always|always|ADV in|in|ADP the|the|DET kitchen|kitchen|NOUN .|.|PUNCT",
+                text("I"), cloze("am always"), text("in the kitchen. (always)"));
+        AuditableQuiz tea = quiz("67fab6d59930102295342596", "I always drink tea in the morning.",
+                "I|I|PRON always|always|ADV drink|drink|VERB tea|tea|NOUN in|in|ADP the|the|DET morning|morning|NOUN"
+                        + " .|.|PUNCT",
+                text("I"), cloze("always"), text("drink tea in the morning. (100%)"));
+        AuditableQuiz homework = quiz("67fab6d5993010229534256f", "She always does her homework after school.",
+                "She|she|PRON always|always|ADV does|do|VERB her|her|PRON homework|homework|NOUN after|after|ADP"
+                        + " school|school|NOUN .|.|PUNCT",
+                text("She does her homework after school. (always)"),
+                cloze("She always does her homework after school."));
+        AuditableQuiz below = quiz("67fab6d59930102295342021", "Am I below you?",
+                "Am|be|AUX I|I|PRON below|below|ADP you|you|PRON ?|?|PUNCT",
+                cloze("Am I"), text("(I / am) below you?"));
+
+        assertEquals(List.of(), check().checkGiveaway(kitchen, ExerciseShape.GAP_IN_SENTENCE));
+        assertEquals(List.of(), check().checkGiveaway(tea, ExerciseShape.GAP_IN_SENTENCE));
+        assertEquals(List.of(), check().checkGiveaway(homework, ExerciseShape.WHOLE_SENTENCE));
+        assertEquals(List.of(), check().checkGiveaway(below, ExerciseShape.GAP_IN_SENTENCE));
+    }
+
+    @Test
+    @DisplayName("should normalize case, punctuation and spacing and match any accepted answer of the gap, not only the first, reading a multi-word hint joined by a slash as one phrase, as «(Is.)» giving away an answer accepted as «'s|is», and «(I / am)» giving away an answer «I am» but not «Am I», where the order differs, proposing «(I / be)» when it gives away")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldNormalizeCasePunctuationAndSpacingAndMatchAnyAcceptedAnswerOfTheGapNotOnlyTheFirstReadingAMultiwordHintJoinedByASlashAsOnePhraseAsIsGivingAwayAnAnswerAcceptedAsSisAndIAmGivingAwayAnAnswerIAmButNotAmIWhereTheOrderDiffersProposingIBeWhenItGivesAway() {
+        // R007: the comparison ignores case, punctuation and spacing and looks at every accepted answer of the gap.
+        // «He ___ (Is) a doctor.» (invented over the form «He's a doctor.») accepts «'s» or «is»: the hint, with its
+        // capital, only says the second one, and is is a conjugated be. «___ (I / am) late.» (invented) accepts «I
+        // am»: the slash counts as a space. «___ (I / am) below you?» (…2021) accepts «Am I»: the order changes.
+        AuditableQuiz doctor = quiz("67fab6d59930102295340001", "He's a doctor.",
+                "He|he|PRON 's|be|AUX a|a|DET doctor|doctor|NOUN .|.|PUNCT",
+                text("He"), cloze("'s|is"), text("(Is) a doctor."));
+        AuditableQuiz late = quiz("67fab6d59930102295340002", "I am late.",
+                "I|I|PRON am|be|AUX late|late|ADJ .|.|PUNCT", cloze("I am"), text("(I / am) late."));
+        AuditableQuiz below = quiz("67fab6d59930102295342021", "Am I below you?",
+                "Am|be|AUX I|I|PRON below|below|ADP you|you|PRON ?|?|PUNCT",
+                cloze("Am I"), text("(I / am) below you?"));
+
+        List<HintIssue> capitalised = check().checkGiveaway(doctor, ExerciseShape.GAP_IN_SENTENCE);
+        List<HintIssue> slashed = check().checkGiveaway(late, ExerciseShape.GAP_IN_SENTENCE);
+
+        assertEquals(List.of(HintIssueKind.HINT_GIVEAWAY), kinds(capitalised));
+        assertEquals("is", capitalised.get(0).getWord());
+        assertEquals("(be)", capitalised.get(0).getProposedHint());
+        assertEquals(List.of(HintIssueKind.HINT_GIVEAWAY), kinds(slashed));
+        assertEquals("i am", slashed.get(0).getWord());
+        assertEquals("(I / be)", slashed.get(0).getProposedHint());
+        assertEquals(List.of(), check().checkGiveaway(below, ExerciseShape.GAP_IN_SENTENCE));
+    }
+
+    @Test
+    @DisplayName("should compare the hint of each gap only with the accepted answers of that same gap, as «(are)» giving away the second gap's answer and proposing «(be)», while «(play)» does not give away the first gap's answer «might play», in «We ___ (play) cards again, if we ___ (are) bored.»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldCompareTheHintOfEachGapOnlyWithTheAcceptedAnswersOfThatSameGapAsAreGivingAwayTheSecondGapsAnswerAndProposingBeWhilePlayDoesNotGiveAwayTheFirstGapsAnswerMightPlayInWePlayCardsAgainIfWeAreBored() {
+        // R007: «We ___ (play) cards again, if we ___ (are) bored.» (…4797, B1, Condicionales y modales) accepts
+        // «might play» and «are». Each hint is only compared with the answers of its own gap: «(play)» says
+        // nothing of «might play»; «(are)» says the second gap in full, and are is a conjugated be.
+        AuditableQuiz cards = quiz("67fab6d59930102295344797", "We might play cards again, if we are bored.",
+                "We|we|PRON might|might|AUX play|play|VERB cards|card|NOUN again|again|ADV ,|,|PUNCT if|if|SCONJ"
+                        + " we|we|PRON are|be|AUX bored|bored|ADJ .|.|PUNCT",
+                text("We"), cloze("might play"), text("(play) cards again, if we"), cloze("are"),
+                text("(are) bored."));
+
+        List<HintIssue> issues = check().checkGiveaway(cards, ExerciseShape.GAP_IN_SENTENCE);
+
+        assertEquals(List.of(HintIssueKind.HINT_GIVEAWAY), kinds(issues));
+        assertEquals("are", issues.get(0).getWord());
+        assertEquals(FindingResolution.RULE, issues.get(0).getResolution());
+        assertEquals("(be)", issues.get(0).getProposedHint());
+
+        // Invented, so that the hint of each gap is the answer of the other one: «He ___ (is) tired and she ___
+        // (was) sad.» accepts «was» and «is». Against its own gap neither hint says anything; against the answers
+        // of all the gaps together both would.
+        AuditableQuiz swapped = quiz("67fab6d59930102295340003", "He was tired and she is sad.",
+                "He|he|PRON was|be|AUX tired|tired|ADJ and|and|CCONJ she|she|PRON is|be|AUX sad|sad|ADJ .|.|PUNCT",
+                text("He"), cloze("was"), text("(is) tired and she"), cloze("is"), text("(was) sad."));
+
+        assertEquals(List.of(), check().checkGiveaway(swapped, ExerciseShape.GAP_IN_SENTENCE));
+    }
+
+    @Test
+    @DisplayName("should propose the base form of the answer's verb when completing a missing hint, as «(be)» for «Why ___ the beach going to close?» answered «is», and «(I / be)» for «___ below you?» answered «Am I»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldProposeTheBaseFormOfTheAnswersVerbWhenCompletingAMissingHintAsBeForWhyTheBeachGoingToCloseAnsweredIsAndIBeForBelowYouAnsweredAmI() {
+        // R007: the hint the rule proposes for an exercise without one never says the answer. «Why ___ the beach
+        // going to close?» (…2170) answered «is» gets «(be)», and «___ below you?» (…2021) answered «Am I» gets
+        // «(I / be)»: the base form of the verb, not «(is)» or «(I / am)».
+        ExerciseHint none = new ExerciseHint(null, List.of(), null, false, false);
+        AuditableQuiz beach = quiz("67fab6d59930102295342170", "Why is the beach going to close?",
+                "Why|why|SCONJ is|be|AUX the|the|DET beach|beach|NOUN going|go|VERB to|to|PART close|close|VERB"
+                        + " ?|?|PUNCT",
+                text("Why"), cloze("is"), text("the beach going to close?"));
+        AuditableQuiz below = quiz("67fab6d59930102295342021", "Am I below you?",
+                "Am|be|AUX I|I|PRON below|below|ADP you|you|PRON ?|?|PUNCT", cloze("Am I"), text("below you?"));
+
+        List<HintIssue> why = check().check(none, beach);
+        List<HintIssue> amI = check().check(none, below);
+
+        assertEquals(List.of(HintIssueKind.MISSING_HINT), kinds(why));
+        assertEquals("(be)", why.get(0).getProposedHint());
+        assertEquals(FindingResolution.RULE, why.get(0).getResolution());
+        assertEquals(List.of(HintIssueKind.MISSING_HINT), kinds(amI));
+        assertEquals("(I / be)", amI.get(0).getProposedHint());
+        assertEquals(FindingResolution.RULE, amI.get(0).getResolution());
+    }
+
+    @Test
+    @DisplayName("should propose no hint for a missing hint when the only possible hint is the answer itself, as «We ___ eat eggs every morning.» answered «always»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldProposeNoHintForAMissingHintWhenTheOnlyPossibleHintIsTheAnswerItselfAsWeEatEggsEveryMorningAnsweredAlways() {
+        // R007: when the only hint that comes out of the answer is the word itself, the rule proposes none and the
+        // finding goes to the panel. «We ___ eat eggs every morning.» (…2572) is answered «always» and «He ___
+        // drinks juice in the morning.» (…2575), «never»: neither is a verb, so «(always)» or «(never)» would say it.
+        ExerciseHint none = new ExerciseHint(null, List.of(), null, false, false);
+        AuditableQuiz eggs = quiz("67fab6d59930102295342572", "We always eat eggs every morning.",
+                "We|we|PRON always|always|ADV eat|eat|VERB eggs|egg|NOUN every|every|DET morning|morning|NOUN"
+                        + " .|.|PUNCT",
+                text("We"), cloze("always"), text("eat eggs every morning."));
+        AuditableQuiz juice = quiz("67fab6d59930102295342575", "He never drinks juice in the morning.",
+                "He|he|PRON never|never|ADV drinks|drink|VERB juice|juice|NOUN in|in|ADP the|the|DET morning|morning|NOUN"
+                        + " .|.|PUNCT",
+                text("He"), cloze("never"), text("drinks juice in the morning."));
+
+        for (AuditableQuiz exercise : List.of(eggs, juice)) {
+            List<HintIssue> issues = check().check(none, exercise);
+
+            assertEquals(List.of(HintIssueKind.MISSING_HINT), kinds(issues));
+            assertNull(issues.get(0).getProposedHint(), "the only hint that comes out of the answer says the answer");
+            assertEquals(FindingResolution.PANEL, issues.get(0).getResolution());
+        }
+    }
+
+    @Test
+    @DisplayName("should find no HINT_GIVEAWAY and leave the hint drawn from the first answer unchanged when every word of an already-complete hint is in base form, as «(you / see)» for «Who ___ (I / see)?» answered «are you seeing», «(that / be)» for «What ___ (it / be)?» answered «is that», and «(be / rain)» for «It ___ (be) soon.» answered «'s going to rain»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldFindNoHINTGIVEAWAYAndLeaveTheHintDrawnFromTheFirstAnswerUnchangedWhenEveryWordOfAnAlreadycompleteHintIsInBaseFormAsYouSeeForWhoISeeAnsweredAreYouSeeingThatBeForWhatItBeAnsweredIsThatAndBeRainForItBeSoonAnsweredSGoingToRain() {
+        // R007: a hint already in base form is left as it is. «Who ___ (I / see)?» (…2031), «What ___ (it / be)?»
+        // (…20ad) and «It ___ (be) soon.» (…215c) keep the hint their fix proposed, and that hint, written in
+        // its place, gives nothing away.
+        HintIssue who = check().check(hint("(I / see)", List.of("see"), "I", false), whoAreYouSeeing()).get(0);
+        HintIssue what = check().check(hint("(it / be)", List.of("be"), "it", false), whatIsThat("(it / be)")).get(0);
+        HintIssue rain = check().check(hint("(be)", List.of("be"), null, false), itIsGoingToRain("(be)")).get(0);
+
+        assertEquals("(you / see)", who.getProposedHint());
+        assertEquals("(that / be)", what.getProposedHint());
+        assertEquals("(be / rain)", rain.getProposedHint());
+        assertEquals(List.of(), check().checkGiveaway(whoAreYouSeeingHinted(who.getProposedHint()),
+                ExerciseShape.GAP_IN_SENTENCE));
+        assertEquals(List.of(), check().checkGiveaway(whatIsThat(what.getProposedHint()),
+                ExerciseShape.GAP_IN_SENTENCE));
+        assertEquals(List.of(), check().checkGiveaway(itIsGoingToRain(rain.getProposedHint()),
+                ExerciseShape.GAP_IN_SENTENCE));
+    }
+
+    @Test
+    @DisplayName("should also give away the answer through the whole-sentence statement of slash-separated words, never fixed by rule, as in Invest time + gerundio, whose statement already conjugates «'re» and «going»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldAlsoGiveAwayTheAnswerThroughTheWholesentenceStatementOfSlashseparatedWordsNeverFixedByRuleAsInInvestTimeGerundioWhoseStatementAlreadyConjugatesReAndGoing() {
+        // R007: «We're going to invest time / learning / about History / next year. ___» (…298b, A2, Invest time +
+        // gerundio) is answered with the whole sentence, and its statement of words joined by «/» is that same
+        // sentence, with 're and going already conjugated. The rule must not take the statement away, so the
+        // finding goes to the panel, with no hint to propose.
+        AuditableQuiz invest = rewrite("67fab6d5993010229534298b",
+                "We're going to invest time learning about History next year.",
+                "We|we|PRON 're|be|AUX going|go|VERB to|to|PART invest|invest|VERB time|time|NOUN learning|learn|VERB"
+                        + " about|about|ADP History|history|NOUN next|next|ADJ year|year|NOUN .|.|PUNCT",
+                "Crea oraciones usando 'invest time'.",
+                text("We're going to invest time / learning / about History / next year."),
+                cloze("We're going to invest time learning about History next year."));
+
+        List<HintIssue> issues = check().checkGiveaway(invest, ExerciseShape.WHOLE_SENTENCE);
+
+        assertEquals(List.of(HintIssueKind.HINT_GIVEAWAY), kinds(issues));
+        assertEquals(FindingResolution.PANEL, issues.get(0).getResolution());
+        assertNull(issues.get(0).getProposedHint(), "the statement is never fixed by rule");
+        assertTrue(issues.get(0).getWord().endsWith("invest time learning about history next year"),
+                "the slashes count as punctuation: " + issues.get(0).getWord());
+    }
+
+    /** «Who ___ (I / see)?» (…2031, A1, Palabras wh) with the hint it carries. */
+    private static AuditableQuiz whoAreYouSeeingHinted(String hintText) {
+        return quiz("67fab6d59930102295342031", "Who are you seeing?",
+                "Who|who|PRON are|be|AUX you|you|PRON seeing|see|VERB ?|?|PUNCT",
+                text("Who"), cloze("are you seeing"), text(hintText + "?"));
+    }
+
+    /** «What ___ (it / be)? (present simple)» (…20ad, A1, Contraste inicial) with the hint it carries. */
+    private static AuditableQuiz whatIsThat(String hintText) {
+        return quiz("67fab6d599301022953420ad", "What is that?",
+                "What|what|PRON is|be|AUX that|that|PRON ?|?|PUNCT",
+                text("What"), cloze("is that"), text(hintText + "? (present simple)"));
+    }
+
+    /** «It ___ (be) soon.» (…215c, A1, Afirmativa y negativa) with the hint it carries. */
+    private static AuditableQuiz itIsGoingToRain(String hintText) {
+        return quiz("67fab6d5993010229534215c", "It's going to rain soon.",
+                "It|it|PRON 's|be|AUX going|go|VERB to|to|PART rain|rain|VERB soon|soon|ADV .|.|PUNCT",
+                text("It"), cloze("'s going to rain|is going to rain"), text(hintText + " soon."));
+    }
 }

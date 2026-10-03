@@ -127,4 +127,111 @@ public class HintCoherenceRuleFixTest {
     private static SentencePartEntity cloze(String... options) {
         return new SentencePartEntity(SentencePartKind.CLOZE, "", new ArrayList<>(List.of(options)));
     }
+
+    @Test
+    @DisplayName("should fix a giveaway hint with its base form only in its own gap without changing what is heard, as «(are)» becoming «(be)» in the second gap of «We ___ (play) cards again, if we ___ (are) bored.», leaving «(play)» as it was")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldFixAGiveawayHintWithItsBaseFormOnlyInItsOwnGapWithoutChangingWhatIsHeardAsAreBecomingBeInTheSecondGapOfWePlayCardsAgainIfWeAreBoredLeavingPlayAsItWas() {
+        // R007: «We ___ (play) cards again, if we ___ (are) bored.» (…4797) has «(are)» in its second gap, the answer
+        // itself, a conjugated verb. The rule writes its base form in that gap only: «(play)», which is already in base
+        // form, stays; the answers, the stored sentence and the audio do not move.
+        QuizTemplateEntity cards = quiz("67fab6d59930102295344797", "B2.12.04.16",
+                List.of(text("We"), cloze("might play"), text("(play) cards again, if we"), cloze("are"),
+                        text("(are) bored.")),
+                List.of("We might play cards again, if we are bored."));
+        AuditableQuiz analyzed = analyzed(cards,
+                "We|we|PRON might|might|AUX play|play|VERB cards|card|NOUN again|again|ADV ,|,|PUNCT if|if|SCONJ"
+                        + " we|we|PRON are|be|AUX bored|bored|ADJ .|.|PUNCT");
+        Finding giveaway = hintFinding("67fab6d59930102295344797", "hint-giveaway", "are", FindingSeverity.HIGH);
+
+        RuleFixResult result = new HintCoherenceRuleFix(noIrregularForms())
+                .fix(new RuleFixRequest(cards, analyzed, SentenceMode.FILL, List.of(giveaway)));
+
+        assertEquals(List.of(giveaway.getIdentity()), result.getFixed());
+        assertTrue(result.getDeclined().isEmpty(), result.getDetail());
+        List<SentencePartEntity> parts = result.getQuiz().getForm().getSentenceParts();
+        assertEquals("(be) bored.", parts.get(4).getText(), "the hint of its own gap, in base form");
+        assertEquals("(play) cards again, if we", parts.get(2).getText(), "the other one was already in base form");
+        assertEquals(List.of("might play"), parts.get(1).getOptions(), "the answers do not move");
+        assertEquals(List.of("are"), parts.get(3).getOptions());
+        assertEquals(List.of("We might play cards again, if we are bored."), result.getQuiz().getSentences(),
+                "nor the stored sentence");
+        assertEquals("B2.12.04.16", result.getQuiz().getAnswerAudioUrl(), "nor the audio");
+        assertTrue(result.getRerecordings().isEmpty(), "nothing to record again");
+        assertEquals("(are) bored.", cards.getForm().getSentenceParts().get(4).getText(),
+                "the exercise it received stays as it was");
+    }
+
+    @Test
+    @DisplayName("should write the base form of the verb when it adds a missing hint, as «(be)» for «Why ___ the beach going to close?» and «(I / be)» for «___ below you?»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldWriteTheBaseFormOfTheVerbWhenItAddsAMissingHintAsBeForWhyTheBeachGoingToCloseAndIBeForBelowYou() {
+        // R007 and R001: when the rule adds a missing hint it writes the verb in base form, never the conjugated
+        // answer. «Why ___ the beach going to close?» (…2170) answered «is» gets «(be)», right after the gap.
+        QuizTemplateEntity beach = quiz("67fab6d59930102295342170", "A1.03.06.16",
+                List.of(text("Why"), cloze("is"), text("the beach going to close?")),
+                List.of("Why is the beach going to close?"));
+        Finding missingBeach = hintFinding("67fab6d59930102295342170", "missing-hint", null, FindingSeverity.HIGH);
+        HintCoherenceRuleFix fix = new HintCoherenceRuleFix(noIrregularForms());
+
+        RuleFixResult byVerb = fix.fix(new RuleFixRequest(beach, analyzed(beach,
+                "Why|why|SCONJ is|be|AUX the|the|DET beach|beach|NOUN going|go|VERB to|to|PART close|close|VERB ?|?|PUNCT"),
+                SentenceMode.FILL, List.of(missingBeach)));
+
+        assertEquals(List.of(missingBeach.getIdentity()), byVerb.getFixed());
+        assertTrue(byVerb.getDeclined().isEmpty(), byVerb.getDetail());
+        List<SentencePartEntity> beachParts = byVerb.getQuiz().getForm().getSentenceParts();
+        assertEquals("(be) the beach going to close?", beachParts.get(2).getText(), "the base form right after the gap");
+        assertEquals(List.of("is"), beachParts.get(1).getOptions(), "the answer does not move");
+        assertEquals(List.of("Why is the beach going to close?"), byVerb.getQuiz().getSentences());
+        assertEquals("A1.03.06.16", byVerb.getQuiz().getAnswerAudioUrl());
+        assertTrue(byVerb.getRerecordings().isEmpty(), "nothing to record again");
+
+        // Its subject comes with it: «___ below you?» (…2021) answered «Am I» gets «(I / be)», not «(I / am)».
+        QuizTemplateEntity below = quiz("67fab6d59930102295342021", "A1.02.05.11",
+                List.of(cloze("Am I"), text("below you?")), List.of("Am I below you?"));
+        Finding missingBelow = hintFinding("67fab6d59930102295342021", "missing-hint", null, FindingSeverity.HIGH);
+
+        RuleFixResult bySubject = fix.fix(new RuleFixRequest(below, analyzed(below,
+                "Am|be|AUX I|I|PRON below|below|ADP you|you|PRON ?|?|PUNCT"), SentenceMode.FILL, List.of(missingBelow)));
+
+        assertEquals(List.of(missingBelow.getIdentity()), bySubject.getFixed());
+        assertTrue(bySubject.getDeclined().isEmpty(), bySubject.getDetail());
+        List<SentencePartEntity> belowParts = bySubject.getQuiz().getForm().getSentenceParts();
+        assertEquals("(I / be) below you?", belowParts.get(1).getText(), "its subject and the base form after the gap");
+        assertEquals(List.of("Am I"), belowParts.get(0).getOptions(), "the answer does not move");
+        assertEquals(List.of("Am I below you?"), bySubject.getQuiz().getSentences());
+        assertEquals("A1.02.05.11", bySubject.getQuiz().getAnswerAudioUrl());
+    }
+
+    @Test
+    @DisplayName("should decline instead of writing a hint that would give away the answer, leaving the exercise as it was, as «We ___ eat eggs every morning.» answered «always»")
+    @Tag("FEAT-PISTA")
+    @Tag("F-PISTA-R007")
+    public void shouldDeclineInsteadOfWritingAHintThatWouldGiveAwayTheAnswerLeavingTheExerciseAsItWasAsWeEatEggsEveryMorningAnsweredAlways() {
+        // R007 and R001: «We ___ eat eggs every morning.» (…2572) answered «always»: «always» is no verb, so the only
+        // hint that comes out of the answer is the answer itself, which gives it away. The rule does not write it: it
+        // declines, for the panel, and the exercise stays as it was.
+        QuizTemplateEntity eggs = quiz("67fab6d59930102295342572", "A1.11.04.04",
+                List.of(text("We"), cloze("always"), text("eat eggs every morning.")),
+                List.of("We always eat eggs every morning."));
+        Finding missing = hintFinding("67fab6d59930102295342572", "missing-hint", null, FindingSeverity.HIGH);
+
+        RuleFixResult result = new HintCoherenceRuleFix(noIrregularForms()).fix(new RuleFixRequest(eggs, analyzed(eggs,
+                "We|we|PRON always|always|ADV eat|eat|VERB eggs|egg|NOUN every|every|DET morning|morning|NOUN .|.|PUNCT"),
+                SentenceMode.FILL, List.of(missing)));
+
+        assertTrue(result.getFixed().isEmpty(), "nothing fixed");
+        assertEquals(List.of(missing.getIdentity()), result.getDeclined(), "it goes to the panel");
+        List<SentencePartEntity> parts = result.getQuiz().getForm().getSentenceParts();
+        assertEquals(3, parts.size());
+        assertEquals("We", parts.get(0).getText());
+        assertEquals(List.of("always"), parts.get(1).getOptions());
+        assertEquals("eat eggs every morning.", parts.get(2).getText(), "no hint written after the gap");
+        assertEquals(List.of("We always eat eggs every morning."), result.getQuiz().getSentences());
+        assertEquals("A1.11.04.04", result.getQuiz().getAnswerAudioUrl());
+        assertTrue(result.getRerecordings().isEmpty(), "nothing to record again");
+    }
 }
