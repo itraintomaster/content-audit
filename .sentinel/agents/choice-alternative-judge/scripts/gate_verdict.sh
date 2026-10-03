@@ -125,6 +125,43 @@ if run_dir_error:
     fail(run_dir_error)
 
 
+def without_trailing_commas(text):
+    """El texto sin las comas que quedan justo antes de un } o un ], fuera de los textos."""
+    kept = []
+    in_string = False
+    escaped = False
+    for index, char in enumerate(text):
+        if in_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                in_string = False
+        elif char == '"':
+            in_string = True
+        elif char == "," and text[index + 1:].lstrip()[:1] in ("}", "]"):
+            continue
+        kept.append(char)
+    return "".join(kept)
+
+
+def loads_lenient(text):
+    """json.loads que perdona la coma colgante.
+
+    A veces el juez deja una coma después de la última clave ("evidence": "…",
+    y en la línea siguiente }). Esa coma no dice nada: si el texto no parsea,
+    se prueba sin ella. Las comas de adentro de los textos no se tocan.
+    """
+    try:
+        return json.loads(text)
+    except ValueError:
+        cleaned = without_trailing_commas(text)
+        if cleaned == text:
+            raise
+        return json.loads(cleaned)
+
+
 def parse_json_value(value):
     """Desenvuelve hasta 3 niveles de JSON serializado en un string.
 
@@ -141,7 +178,7 @@ def parse_json_value(value):
             text = re.sub(r"^```[a-zA-Z0-9_-]*\s*", "", text)
             text = re.sub(r"\s*```$", "", text).strip()
         try:
-            current = json.loads(text)
+            current = loads_lenient(text)
             continue
         except ValueError:
             start = text.find("{")
@@ -168,7 +205,7 @@ def parse_json_value(value):
                     depth -= 1
                     if depth == 0:
                         try:
-                            current = json.loads(text[start:index + 1])
+                            current = loads_lenient(text[start:index + 1])
                         except ValueError:
                             return None
                         break

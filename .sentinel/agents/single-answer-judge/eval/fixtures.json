@@ -711,6 +711,48 @@
       }
     },
     {
+      "caseId": "coma-colgante-antes-de-cerrar",
+      "note": "El juez deja una coma sin clave antes de cada } y cada ]: no es JSON, pero la coma no dice nada y se lee sin ella.",
+      "inputs": "gente",
+      "raw": "{\n  \"alternatives\": [\n    {\n      \"answer\": \"to\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"HIGH\",\n      \"reason\": \"La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».\",\n    }\n  ],\n  \"rationale\": \"La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.\",\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "coma-adentro-de-un-texto",
+      "note": "Las comas de adentro de un texto no se tocan, aunque vengan antes de un } o un ].",
+      "inputs": "gente",
+      "raw": "{\n  \"alternatives\": [\n    {\n      \"answer\": \"to\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"HIGH\",\n      \"reason\": \"La coma de «good, }» y la de «[a, ]» quedan como están.\",\n    }\n  ],\n  \"rationale\": \"La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.\",\n}",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La coma de «good, }» y la de «[a, ]» quedan como están."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
       "caseId": "respuesta-vacia",
       "note": "answer no va vacía.",
       "inputs": "gente",
@@ -1187,14 +1229,23 @@
     },
     {
       "caseId": "cal-coma-de-mas",
-      "note": "Salida real de la guía nueva sobre cal-futbol: el juicio era el correcto, pero con una coma de más el JSON no parsea; el gate la rechaza y evaluate reintenta.",
+      "note": "Salida real de la guía nueva sobre cal-futbol: el juicio era el correcto y la coma de más no dice nada; el gate la lee sin ella y no hace falta reintentar.",
       "inputs": "cal-futbol",
       "raw": "{\n  \"alternatives\": [\n    {\n      \"answer\": \"watch\",\n      \"gap\": 1,\n      \"kind\": \"DIFFERENT_VALID\",\n      \"severity\": \"BLOCKING\",\n      \"reason\": \"«They watch football every Saturday.» es tan natural y tan esperable como «play»: el hueco no tiene pista de verbo y nada en la oración indica si juegan o miran el partido.\",\n    }\n  ],\n  \"rationale\": \"El hueco no tiene pista que elija el verbo, así que «play» es una opción entre varias igual de buenas en present simple; «watch» con 'football every Saturday' es una colocación igual de corriente y el alumno no tiene cómo saber cuál quería el corrector.\"\n}",
       "expect": {
-        "route": "failed",
-        "errorContains": [
-          "no es un objeto JSON"
-        ]
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "watch",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "BLOCKING",
+              "reason": "«They watch football every Saturday.» es tan natural y tan esperable como «play»: el hueco no tiene pista de verbo y nada en la oración indica si juegan o miran el partido."
+            }
+          ],
+          "rationale": "El hueco no tiene pista que elija el verbo, así que «play» es una opción entre varias igual de buenas en present simple; «watch» con 'football every Saturday' es una colocación igual de corriente y el alumno no tiene cómo saber cuál quería el corrector."
+        }
       }
     }
   ]

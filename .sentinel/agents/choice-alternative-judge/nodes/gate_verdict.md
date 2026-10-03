@@ -18,6 +18,8 @@ description: |
   contradicciones vuelve a evaluate, que recibe el motivo.
   Una clave de más que viene vacía (null o texto en blanco) no dice nada y no
   cuenta; con contenido, frena.
+  Una coma colgante antes de cerrar un objeto o una lista tampoco: se lee el
+  JSON sin ella.
 edges:
   - { to: emit, when: passed }
   - { to: evaluate, when: failed }
