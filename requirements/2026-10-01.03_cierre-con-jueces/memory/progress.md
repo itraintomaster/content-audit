@@ -4,6 +4,16 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — qa-tester (CJUEZ) — Parche sólo de pruebas propuesto (--replace) y validado: 2 handwrittenTests nuevas de
+  F-CJUEZ-R004 por los huecos del control de A1. DefaultBatchComparator: near-duplicates reprobado, con cobertura por temas
+  y sus marcas (puntaje o sin evaluar) en los ejercicios que compara, bloquea sus pisos sobre lo que cambió y el veredicto lo
+  nombra («Ejercicio casi repetido»). DefaultTrayService: publicar desde la bandeja copia «juez sin aprobar: …» del veredicto
+  del último cierre aunque la muestra ciega no esté respondida. propose y validate: 0 altas, 3 cambios, 0 bajas, 0 conflictos.
+  Next: el orquestador aplica sin --as y genera. generate saltea el esbozo del comparador (`hasMatchingTaggedTest`: el archivo
+  ya tiene "FEAT-CJUEZ" y "F-CJUEZ-R004" entre comillas) y hay que traerlo del generado fresco; el de la bandeja sale solo (la
+  clase no tenía R004). `sentinel verify` no detecta el faltante (de las clases de prueba sólo mira que exista el archivo):
+  verificar con grep del nombre del método.
+
 2026-10-03 — developer (CJUEZ) — Comportamiento implementado: las 57 pruebas de F-CJUEZ en verde (54 `@Tag("FEAT-CJUEZ")`
   y los 3 caminos de F-CJUEZ-J001) y las suites completas de revision-domain (709) y audit-cli (540) sin una falla, con
   el reactor completo en BUILD SUCCESS (`-pl revision-domain,audit-cli -am test`, ~5 min). Producción tocada:

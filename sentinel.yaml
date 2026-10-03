@@ -25641,6 +25641,13 @@ modules:
         traceability:
           feature: FEAT-FILAS
           rule: F-FILAS-R008
+      - name: "should block and name near-duplicates, failed, a judge whose coverage\
+          \ counts topics but that marks the exercises it compares, with a score or\
+          \ as unevaluated, when it marks an exercise the batch changed, ending the\
+          \ detail of the verdict with «juez sin aprobar: Ejercicio casi repetido»"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R004
       implements:
       - BatchComparator
     - name: DefaultGoalBook
@@ -29162,6 +29169,13 @@ modules:
         traceability:
           feature: FEAT-CJUEZ
           rule: F-CJUEZ-R003
+      - name: "should refuse to publish from the tray while a judge without approval\
+          \ reads what the A1 batch changed, copying «juez sin aprobar: Consigna que\
+          \ no se cumple, …» from the verdict of its last closing, although its blind\
+          \ sample is not answered yet"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R004
       implements:
       - TrayService
     - name: DefaultTrayAssembler

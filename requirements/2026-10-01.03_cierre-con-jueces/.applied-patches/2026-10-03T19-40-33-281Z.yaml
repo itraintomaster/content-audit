@@ -1,0 +1,42 @@
+code: FEAT-CJUEZ
+description: "qa-tester (FEAT-CJUEZ): dos handwrittenTests nuevas de F-CJUEZ-R004\
+  \ por los huecos que encontró el control de punta a punta sobre la tanda A1. (1)\
+  \ DefaultBatchComparator: near-duplicates, reprobado, cuenta temas en su cobertura\
+  \ pero deja sus marcas (puntaje o sin evaluar) en los ejercicios que compara; si\
+  \ marca un ejercicio que la tanda cambió, lo lee: sus pisos sobre eso no se deciden\
+  \ y el veredicto lo nombra («Ejercicio casi repetido»). Hoy el comparador sólo mira\
+  \ el nodo del tema para un juez de temas. (2) DefaultTrayService: publicar desde\
+  \ la bandeja mientras un juez sin aprobar lee lo que la tanda A1 cambió se rechaza\
+  \ copiando «juez sin aprobar: …» del veredicto del último cierre, aunque la muestra\
+  \ ciega todavía no esté respondida (R004 inv. 3; la publicación sólo se hace desde\
+  \ la bandeja, F-BANDEJA-R008)."
+modules:
+- name: revision-domain
+  packages:
+  - name: comparisonengine
+    implementations:
+    - name: DefaultBatchComparator
+      handwrittenTests:
+      - name: "should block and name near-duplicates, failed, a judge whose coverage\
+          \ counts topics but that marks the exercises it compares, with a score or\
+          \ as unevaluated, when it marks an exercise the batch changed, ending the\
+          \ detail of the verdict with «juez sin aprobar: Ejercicio casi repetido»"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R004
+      _change: modify
+    _change: modify
+  - name: trayengine
+    implementations:
+    - name: DefaultTrayService
+      handwrittenTests:
+      - name: "should refuse to publish from the tray while a judge without approval\
+          \ reads what the A1 batch changed, copying «juez sin aprobar: Consigna que\
+          \ no se cumple, …» from the verdict of its last closing, although its blind\
+          \ sample is not answered yet"
+        traceability:
+          feature: FEAT-CJUEZ
+          rule: F-CJUEZ-R004
+      _change: modify
+    _change: modify
+  _change: modify
