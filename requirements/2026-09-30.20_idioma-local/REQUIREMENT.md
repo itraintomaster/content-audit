@@ -44,12 +44,13 @@ Acá **herramienta** es LanguageTool (FEAT-GRAMA) o un modelo local (FEAT-NATUR,
 claude -p, la sesión local de claude-cli con que consultan los jueces (FEAT-JEXAM).
 
 <a id="F-MLOCAL-R001"></a>
-### Rule[F-MLOCAL-R001] - Con sus herramientas, nada sale de la máquina; a claude -p, sólo sin Ollama y con tope
-**Severity**: critical | **Validation**: VALIDATED
+### Rule[F-MLOCAL-R001] - Con sus herramientas, nada sale de la máquina salvo los pares de Duplicados parecidos; a claude -p, sólo con tope
+**Severity**: critical | **Validation**: ASSUMPTION
 
 > 1. Correr `grammar` no manda ningún texto del curso fuera de la máquina ni necesita red.
-> 2. Con su modelo local disponible, `naturalness` y `near-duplicates` tampoco: con la red cortada dan los mismos
->    hallazgos y números.
+> 2. Con su modelo local disponible, `naturalness` tampoco: con la red cortada da los mismos hallazgos y números.
+>    `near-duplicates`, tampoco sin tope; con tope, manda a claude -p sólo los dos ejercicios de cada par candidato que
+>    proponen sus vectores ([F-DUPAR-R009](#F-DUPAR-R009)).
 > 3. Sin su modelo local, mandan a claude -p sólo lo que le preguntan —la oración terminada o los dos ejercicios del
 >    par—, y sólo dentro del tope que la corrida les pide por su nombre ([F-MLOCAL-R008](#F-MLOCAL-R008)).
 
@@ -57,6 +58,10 @@ Es lo que José aprobó para el paquete B en el brief 089, «sin servicios exter
 noche: «sin Ollama no se deja sin evaluar; recordá que tenemos claude -p». LanguageTool tiene un servicio público; no se
 usa. claude -p es el mismo proveedor que eligió para los jueces ([DOUBT-JUECES-PROVEEDOR](#DOUBT-JUECES-PROVEEDOR)): no
 cobra por consulta, pero gasta cupo de la suscripción y horas.
+
+La excepción de `near-duplicates` en la invariante 2 es del 1/10 [ASSUMPTION]: su versión con el parecido de 0,95
+reprobó el examen, y llama3 no sirve de juez local ([F-DUPAR-R009](#F-DUPAR-R009)). José validó el resto de la regla el
+30/9; la excepción espera su respuesta en [DOUBT-DUPAR-MLOCAL-EXCEPCION](#DOUBT-DUPAR-MLOCAL-EXCEPCION).
 
 <a id="F-MLOCAL-R002"></a>
 ### Rule[F-MLOCAL-R002] - Cada herramienta tiene nombre y versión a la vista, y la misma versión da lo mismo
@@ -113,10 +118,11 @@ tienen tope de consultas: son gratis, y el tope 0 por omisión de los jueces es 
 > cuáles saca respecto del ejercicio al que reemplaza.
 
 Es lo que [F-JEXAM-R005](#F-JEXAM-R005) pide a los jueces. Si un hallazgo nuevo frena el candidato lo decide el paquete
-E («qué significa no empeorar»); acá sólo se garantiza que se sepa: con Ollama, en segundos y gratis; sin Ollama, con una
-consulta de claude -p por oración nueva y por par candidato nuevo, dentro del tope de la mesa. Hoy la mesa de E mide los
-candidatos sólo con los analizadores instantáneos ([F-MESA-R004](#F-MESA-R004)), que deja afuera a `naturalness` y
-`near-duplicates`: [DOUBT-MLOCAL-MESA](#DOUBT-MLOCAL-MESA).
+E («qué significa no empeorar»); acá sólo se garantiza que se sepa: con Ollama, en segundos y gratis, salvo los pares
+candidatos nuevos de `near-duplicates`, que juzga claude -p dentro del tope de la mesa ([F-DUPAR-R009](#F-DUPAR-R009));
+sin Ollama, con una consulta de claude -p por oración nueva y por par candidato nuevo, dentro del tope de la mesa. Hoy la
+mesa de E mide los candidatos sólo con los analizadores instantáneos ([F-MESA-R004](#F-MESA-R004)), que deja afuera a
+`naturalness` y `near-duplicates`: [DOUBT-MLOCAL-MESA](#DOUBT-MLOCAL-MESA).
 
 <a id="F-MLOCAL-R006"></a>
 ### Rule[F-MLOCAL-R006] - Cada versión rinde su examen antes de publicar
@@ -130,15 +136,18 @@ candidatos sólo con los analizadores instantáneos ([F-MESA-R004](#F-MESA-R004)
 Rendir con la herramienta local es gratis: minutos. Rendir con la alternativa se paga en consultas, como el examen de un
 juez, y por el mismo camino (`ExamCommand.takeExam`). Es el «rinde un examen fijo antes de usarse» de los jueces
 ([F-JEXAM-R003](#F-JEXAM-R003)), y es lo que pide la propuesta para Naturalidad: si no sirve, se saca. Las dos versiones
-de un analizador —la local y la de claude -p— rinden por separado.
+de un analizador —la local y la de claude -p— rinden por separado; en `near-duplicates`, la local lleva también al juez
+de claude -p ([F-DUPAR-R010](#F-DUPAR-R010)).
 
 <a id="F-MLOCAL-R007"></a>
 ### Rule[F-MLOCAL-R007] - Sin Ollama, Naturalidad y Duplicados parecidos le preguntan lo mismo a claude -p
-**Severity**: critical | **Validation**: VALIDATED
+**Severity**: critical | **Validation**: ASSUMPTION
 
 > Si su modelo local no está disponible, `naturalness` y `near-duplicates` le hacen su pregunta a claude -p, con las
 > reglas de los jueces (FEAT-JEXAM). Invariantes:
-> 1. con su modelo local disponible, nunca consultan a claude -p;
+> 1. con su modelo local disponible, `naturalness` nunca consulta a claude -p; `near-duplicates` le manda sólo los dos
+>    ejercicios de cada par candidato que proponen sus vectores, dentro de su tope, y el informe nombra las dos
+>    herramientas ([F-DUPAR-R009](#F-DUPAR-R009));
 > 2. `naturalness` pregunta lo mismo que al modelo local ([F-NATUR-R008](#F-NATUR-R008)); `near-duplicates` pregunta
 >    por los pares de texto parecido que su comodín no resuelve ([F-DUPAR-R008](#F-DUPAR-R008));
 > 3. consultan como un juez: hasta 4 a la vez, con la sesión verificada antes de la primera consulta, y una falla del
@@ -150,19 +159,24 @@ de un analizador —la local y la de claude -p— rinden por separado.
 
 José, 30/9 a la noche: «sin Ollama no se deja sin evaluar; recordá que tenemos claude -p»
 ([DOUBT-MLOCAL-SIN-OLLAMA](#DOUBT-MLOCAL-SIN-OLLAMA)). Sin Ollama, Gramática no cambia: LanguageTool corre en el proceso.
+La excepción de `near-duplicates` en la invariante 1 es del 1/10 y espera a José [ASSUMPTION]
+([DOUBT-DUPAR-MLOCAL-EXCEPCION](#DOUBT-DUPAR-MLOCAL-EXCEPCION)); el resto de la regla lo validó el 30/9.
 
-Lo que costaría la alternativa sobre la base del 29/9, al ritmo medido de los jueces (176 consultas por hora de a una,
-FEAT-JEXAM), contado con scripts y sin consultar:
+Lo que costaría consultar a claude -p sobre la base del 29/9, al ritmo medido de los jueces (176 consultas por hora de a
+una, FEAT-JEXAM), contado con scripts y sin consultar:
 
 | Analizador | Qué pregunta | Curso entero | A1 | Horas, curso (de a una · 4 a la vez) | Horas, A1 |
 |---|---|---:|---:|---|---|
-| `naturalness` | una por oración terminada que alcanza | 11.174 | 2.334 | 63,5 · 15,9 | 13,3 · 3,3 |
-| `near-duplicates` | una por par candidato | 699 | 276 | 4,0 · 1,0 | 1,6 · 0,4 |
+| `naturalness`, sin Ollama | una por oración terminada que alcanza | 11.174 | 2.334 | 63,5 · 15,9 | 13,3 · 3,3 |
+| `near-duplicates`, sin Ollama | una por par candidato de texto parecido | 696 | 276 | 4,0 · 1,0 | 1,6 · 0,4 |
 | `grammar` | nada | 0 | 0 | — | — |
-| **Total** | | **11.873** | **2.610** | **67,5 · 16,9** | **14,8 · 3,7** |
+| **Total, sin Ollama** | | **11.870** | **2.610** | **67,4 · 16,9** | **14,8 · 3,7** |
+| `near-duplicates`, con Ollama | una por par candidato de sus vectores, desde 0,80 | 1.468 | 513 | 8,3 · 2,1 | 2,9 · 0,7 |
 
-Por nivel, `naturalness`: A1 2.334, A2 2.404, B1 4.535 y B2 1.901; `near-duplicates`: A1 276, A2 110, B1 299 y B2 14.
-Rendir el examen de cada alternativa: 586 consultas para Naturalidad y 699 para Duplicados parecidos (sus R006 y R007).
+Por nivel, `naturalness`: A1 2.334, A2 2.404, B1 4.535 y B2 1.901; `near-duplicates`, sin Ollama: A1 276, A2 110, B1 297
+y B2 13, y con Ollama: A1 513, A2 200, B1 710 y B2 45. Rendir el examen: 586 consultas para la alternativa de
+Naturalidad; para Duplicados parecidos, 699 la versión sin Ollama, sin el filtro del examen
+([F-DUPAR-R007](#F-DUPAR-R007)) y sin recontar, y unas 255 como mucho la de Ollama ([F-DUPAR-R007](#F-DUPAR-R007)).
 Después de cada tanda se paga sólo lo que cambió: una consulta por ejercicio tocado y una por par candidato nuevo.
 Naturalidad cuenta la oración terminada de [F-GRAMA-R001](#F-GRAMA-R001) con su invariante 5 (1/10): «Something is
 broken.» alcanza, y por eso A2 son 2.404 y no 2.403.
@@ -320,7 +334,7 @@ el tope 0 no tiene que frenar a los modelos locales (el gancho B-06), o como que
   contestó y dice cuánto costaría; el modelo local nunca tiene tope (R008).
 - [ ] Opción B: la alternativa tiene un tope por omisión propio, por ejemplo el de un nivel de Naturalidad (A1: 2.334
   consultas, 13 h de a una).
-- [ ] Opción C: sin tope: un `analyze` sin Ollama consulta todo el curso (11.873 consultas, 67 h de a una y 17 con 4).
+- [ ] Opción C: sin tope: un `analyze` sin Ollama consulta todo el curso (11.870 consultas, 67 h de a una y 17 con 4).
 
 **Answer**: Pendiente. Recomiendo A, y se diseñó con A: es «sin pedido explícito no se paga nada»
 ([F-JEXAM-R010](#F-JEXAM-R010)) y un `analyze` sin Ollama no puede gastar 67 horas de cupo sin que nadie lo pida. La
@@ -332,14 +346,16 @@ pedirla para los niveles que los jueces no van a juzgar enteros.
 **Status**: OPEN
 
 - [ ] Opción A (recomendada): sí: la mesa mide cada candidato con los instantáneos y con los de modelo local. Con Ollama
-  suma una consulta de un token y un vector por oración nueva, en la Mac y gratis; sin Ollama, una consulta de claude -p
-  por oración y por par candidato nuevo, con el tope de la mesa. Así ve el candidato que copia a un hermano del tema,
-  que es justo lo que puede pasar al reescribir una copia.
+  suma una consulta de un token y un vector por oración nueva, en la Mac y gratis, y una consulta de claude -p por par
+  candidato nuevo de `near-duplicates` ([F-DUPAR-R009](#F-DUPAR-R009)); sin Ollama, una consulta de claude -p por
+  oración y por par candidato nuevo, con el tope de la mesa. Así ve el candidato que copia a un hermano del tema, que es
+  justo lo que puede pasar al reescribir una copia.
 - [ ] Opción B: no: la mesa mide sólo con los instantáneos ([F-MESA-R004](#F-MESA-R004)), y R005 queda sólo para
   `grammar`; `naturalness` y `near-duplicates` vuelven a mirar el ejercicio en el análisis siguiente.
 
-**Answer**: Pendiente. Recomiendo A: con Ollama cuesta menos de un segundo por candidato y no paga nada; con B, un
-candidato que queda casi igual a otro del tema entra al curso y recién el análisis siguiente lo marca como copia.
+**Answer**: Pendiente. Recomiendo A: con Ollama cuesta menos de un segundo por candidato y sólo paga los pares nuevos
+que proponen los vectores de `near-duplicates`; con B, un candidato que queda casi igual a otro del tema entra al curso
+y recién el análisis siguiente lo marca como copia.
 
 ## References
 
@@ -348,4 +364,5 @@ candidato que queda casi igual a otro del tema entra al curso y recién el anál
   costo declarado de los jueces, que la alternativa usa tal cual: R003, R005 a R008.
 - **FEAT-EVCOST** — El libro de evaluaciones, donde quedan los números y las respuestas de claude -p: R002.
 - **FEAT-MESA** — La mesa de E, que mide los candidatos: R005 y DOUBT-MLOCAL-MESA.
-- **FEAT-GRAMA, FEAT-NATUR, FEAT-DUPAR** — Los tres analizadores de idioma; NATUR y DUPAR definen su alternativa: R007.
+- **FEAT-GRAMA, FEAT-NATUR, FEAT-DUPAR** — Los tres analizadores de idioma; NATUR y DUPAR definen su alternativa, y
+  DUPAR la excepción de su juez de pares con Ollama: R001, R005 a R007.

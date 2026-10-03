@@ -5,6 +5,14 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — analyst — Excepción de near-duplicates (FEAT-DUPAR v3, F-DUPAR-R009): con su modelo local, manda a claude -p
+  sólo los dos ejercicios de cada par candidato que proponen sus vectores, dentro de su tope; naturalness no cambia.
+  Escrita en R001 (título e inv. 2) y R007 (inv. 1), que pasan de VALIDATED a ASSUMPTION hasta que José conteste
+  DOUBT-DUPAR-MLOCAL-EXCEPCION. Al día la tabla de R007 (con Ollama, a 0,80: 1.468 y A1 513; sin Ollama: 696 y 276;
+  total sin Ollama 11.870) y las frases de R005, R006 y DOUBT-MLOCAL-MESA que decían que con Ollama no se paga nada.
+  why: la versión con el parecido solo reprobó; no hay juez local que separe pares (llama3:8b, AUC 0,49–0,67), y José
+  puso claude -p sobre la mesa («llama3 local, gratis y más flojo, o claude -p, cupo de José»).
+
 2026-10-01 — developer (paquete B) — Cómo se rinde el examen de una herramienta local: en una carpeta aparte, con una
   copia compilada y un claude falso primero en el PATH; los casos son el oro del 077 de las dos mitades que el analizador
   alcanza (`armar_casos.py`, que sólo cuenta); lo medido (`medir_idioma.py`) imprime sólo números, la meta se fija antes de

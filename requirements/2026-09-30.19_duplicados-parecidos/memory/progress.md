@@ -4,6 +4,31 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — architect — Parche v3 (el paso por pares) propuesto, sin aplicar: `patch propose --replace` (1 alta, 6
+  cambios, 0 bajas, 0 conflictos), `patch validate` exit 0 y TECH_SPEC.md reescrito con 8 fragmentos (`tech-spec write
+  --replace`: todos subconjunto del parche). Alta PairStepEvaluator; NearDuplicatesConfig pierde similarityThreshold y
+  suma candidateSimilarity, vectorRouteMethodId y wordRouteVersion; descripciones de condición, diagnóstico, proveedor,
+  analizador y paquete.
+  Next: coordinador/José revisan las dos diferencias con el pedido (decisions); aplicar y `generate`; @qa-tester
+  re-declara las pruebas del 0,95, same-meaning y la ruta con Ollama, y suma R009, R010 y el filtro del examen, en un
+  parche sólo de pruebas; @developer: Main con near-duplicates-pair-judge y los cuerpos; rendir los dos exámenes.
+
+2026-10-01 — analyst — Dos ajustes del coordinador a la v3: R006 con tres reglas (vuelve una de modelo local,
+  `similar-candidates`, que sólo propone; F-RONDA2-R003 queda igual) y R004 al día; el filtro del examen pasa de R009 a
+  R007 y vale con Ollama y sin él. `requirement validate` [OK].
+  Next: José contesta las tres dudas; @architect ajusta parche y TECH_SPEC (tres reglas en la ficha, un juez para las
+  dos rutas, filtro del examen en las dos); `feature sync` de FEAT-DUPAR y FEAT-MLOCAL; @qa-tester rehace F-DUPAR-J001.
+
+2026-10-01 — analyst — REQUIREMENT v3, el paso por pares: R002 reescrita (ASSUMPTION); R004 a R008, J001, TL;DR,
+  recorrido y contexto al día; R009 (con Ollama, los vectores sólo proponen desde 0,80 y claude -p decide; comodín y
+  vectores sin tope; sin tope o sin respuesta, a medias; el examen juzga sólo las copias de su archivo) y R010 (la
+  versión con Ollama nombra vectores, umbral y juez, y rinde un examen) nuevas. Tres dudas OPEN con A aplicada
+  (UMBRAL-CANDIDATOS, MLOCAL-EXCEPCION, MUESTRA-NUEVA); DOUBT-DUPAR-UMBRAL queda RESOLVED como historia. En FEAT-MLOCAL,
+  la excepción (R001 inv. 2, R007 inv. 1). `requirement validate` [OK] en las dos carpetas.
+  Next: José contesta las tres dudas; @architect ajusta parche y TECH_SPEC (un juez para las dos rutas, candidatos por
+  coseno, filtro del examen, versión de tres piezas) y lleva al coordinador F-RONDA2-R002 y R003 (ver decisions);
+  `feature sync` de FEAT-DUPAR y FEAT-MLOCAL; @qa-tester rehace F-DUPAR-J001 (cambia el camino 2; 6 y 7 son nuevos).
+
 2026-10-01 — developer (paquete B) — Prototipo del comodín ampliado, sin examen (lo decide José): en `~/projects/learney/content-audit-corridas/2026-10-01-examen-idioma/prototipo-comodin-ampliado/`
   (el diff contra DefaultNearDuplicateRules, el corredor y lo medido). Sin extensiones reproduce la corrida del examen
   (11.287 de 11.287). Con las cuatro, sobre el curso: de 24.813 pares candidatos, 75 nuevos (hoy el comodín agarra 25;
