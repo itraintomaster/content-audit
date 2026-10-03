@@ -554,6 +554,163 @@
       }
     },
     {
+      "caseId": "alternativa-con-clave-vacia-null",
+      "note": "Una clave de más en null, de relleno después de la última, no dice nada: se descarta.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».",
+            "severity_note": null
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "alternativa-con-clave-de-texto-vacio",
+      "note": "Lo mismo con texto vacío: se descarta.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».",
+            "note": ""
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "veredicto-con-clave-en-blanco",
+      "note": "Arriba de todo también: una clave de más en blanco se descarta.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.",
+        "confidence": "  "
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "veredicto-con-lista-vacia-de-mas",
+      "note": "Una lista vacía de más tampoco dice nada.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige.",
+        "notes": []
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "alternatives": [
+            {
+              "answer": "to",
+              "gap": 1,
+              "kind": "DIFFERENT_VALID",
+              "severity": "HIGH",
+              "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people»."
+            }
+          ],
+          "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+        }
+      }
+    },
+    {
+      "caseId": "alternativa-con-nota-con-texto",
+      "note": "Una clave de más con contenido sigue frenando.",
+      "inputs": "gente",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "to",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "HIGH",
+            "reason": "La oración no dice si es amable o hábil: «good to people» es tan correcta como «good with people».",
+            "note": "una nota"
+          }
+        ],
+        "rationale": "La otra preposición vale igual que la aceptada y nada de lo que ve el alumno elige."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "alternatives[0] no respeta el objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
       "caseId": "respuesta-vacia",
       "note": "answer no va vacía.",
       "inputs": "gente",

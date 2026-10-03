@@ -16,6 +16,8 @@ description: |
   en una línea, correctProblem null cuando la correcta vale— en
   validated-verdict.json. Ante JSON malformado, tipos inválidos o
   contradicciones vuelve a evaluate, que recibe el motivo.
+  Una clave de más que viene vacía (null o texto en blanco) no dice nada y no
+  cuenta; con contenido, frena.
 edges:
   - { to: emit, when: passed }
   - { to: evaluate, when: failed }

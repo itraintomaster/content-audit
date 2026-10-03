@@ -672,6 +672,163 @@
       }
     },
     {
+      "caseId": "alternativa-con-clave-vacia-null",
+      "note": "Una clave de más en null, de relleno después de la última, no dice nada: se descarta.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.",
+            "severity_note": null
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "alternativa-con-clave-de-texto-vacio",
+      "note": "Lo mismo con texto vacío: se descarta.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.",
+            "note": ""
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "veredicto-con-clave-en-blanco",
+      "note": "Arriba de todo también: una clave de más en blanco se descarta.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».",
+        "confidence": "  "
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "veredicto-con-lista-vacia-de-mas",
+      "note": "Una lista vacía de más tampoco dice nada.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any».",
+        "notes": []
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "correctIsValid": true,
+          "validAlternatives": [
+            {
+              "label": "some",
+              "severity": "MEDIUM",
+              "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí."
+            }
+          ],
+          "correctProblem": null,
+          "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+        }
+      }
+    },
+    {
+      "caseId": "alternativa-con-nota-con-texto",
+      "note": "Una clave de más con contenido sigue frenando.",
+      "inputs": "musica",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "some",
+            "severity": "MEDIUM",
+            "reason": "«Did you hear some music?» también se dice, si el que pregunta espera que la respuesta sea sí.",
+            "note": "una nota"
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«some» también vale, aunque para preguntar sin suponer nada lo más esperado es «any»."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "validAlternatives[0] no respeta el objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
       "caseId": "falta-correct-problem",
       "note": "correctProblem es parte del objeto cerrado aunque vaya null.",
       "inputs": "musica",

@@ -190,10 +190,25 @@ if not isinstance(verdict, dict):
     fail("la salida no es un objeto JSON: devolvé sólo el objeto del veredicto, sin prosa")
 
 
+def is_empty(value):
+    """null, texto vacío o en blanco, lista u objeto vacíos."""
+    if value is None:
+        return True
+    if isinstance(value, str):
+        return not value.strip()
+    return isinstance(value, (list, dict)) and not value
+
+
 def closed_object(value, keys, where):
+    """Exactamente esas claves.
+
+    A veces el juez cierra un objeto con una clave de relleno después de la
+    última ("severity_note": null, "note": ""). Esa clave no dice nada: no
+    cuenta. Una clave de más con contenido sigue frenando.
+    """
     if not isinstance(value, dict):
         fail("%s tiene que ser un objeto JSON" % where)
-    present = set(value)
+    present = {key for key, item in value.items() if key in keys or not is_empty(item)}
     if present != set(keys):
         missing = sorted(set(keys) - present)
         extra = sorted(present - set(keys))
