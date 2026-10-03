@@ -1,9 +1,12 @@
 package com.learney.contentaudit.auditcli.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
@@ -11,6 +14,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
+import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
@@ -24,15 +28,24 @@ import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 import com.learney.contentaudit.revisiondomain.batch.OutcomeCount;
 import com.learney.contentaudit.revisiondomain.batch.QueriesByRole;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
+import com.learney.contentaudit.revisiondomain.comparison.EffectiveGoals;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
+import com.learney.contentaudit.revisiondomain.consolidatedview.ConsolidatedViewAvailability;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
 import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
+import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
 import com.learney.contentaudit.coursedomain.FormKind;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import picocli.CommandLine;
 
@@ -174,6 +187,21 @@ public class BatchCmdTest {
     }
 
 
+    /**
+     * The accounts of a closing with its eight judges cut down to three: translation-sense and mini-theory
+     * approved (one of exercises, one of topics), quiz-instruction without its exam -- the case of F-CJUEZ-R004/R005's
+     * own criterio, with the display names Legend gives them ([F-FILAS-R001]).
+     */
+    private static List<BatchJudgeAccount> closingSample() {
+        BatchJudgeAccount translationSense = new BatchJudgeAccount("translation-sense", "Sentido de la traducción",
+                AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null, 4, null, 0, 3, 1, 1, 1, null, false);
+        BatchJudgeAccount miniTheory = new BatchJudgeAccount("mini-theory", "Miniteoría", AuditTarget.KNOWLEDGE, true,
+                JudgeExamStatus.APPROVED, null, 2, null, 0, 2, 0, 1, 0, null, false);
+        BatchJudgeAccount quizInstruction = new BatchJudgeAccount("quiz-instruction", "Consigna que no se cumple",
+                AuditTarget.QUIZ, false, JudgeExamStatus.NOT_TAKEN, "sin examen", 4, null, 0, 0, 4, 0, 2, null, false);
+        return List.of(translationSense, miniTheory, quizInstruction);
+    }
+
     record Run(int exit, String out, String err) {
     }
 
@@ -196,6 +224,11 @@ public class BatchCmdTest {
 
     /** The service of the batch, by hand: what it was asked, and a batch of A1 as it answers. */
     static final class Service implements BatchService {
+        /** The judges of the batch, in catalog order (what {@code judges(batch)} would answer). */
+        static final List<String> JUDGE_NAMES = List.of("translation-sense", "mini-theory", "quiz-instruction");
+
+        static final Instant CLOSED_AT = Instant.parse("2026-10-01T13:00:00Z");
+
         final List<BatchOpenRequest> opened = new ArrayList<>();
 
         final List<BatchRunRequest> runs = new ArrayList<>();
@@ -203,6 +236,23 @@ public class BatchCmdTest {
         final List<BatchAdjustment> adjustments = new ArrayList<>();
 
         final List<String> reported = new ArrayList<>();
+
+        final List<BatchCloseRequest> closeRequests = new ArrayList<>();
+
+        /** What {@code close} hands back as the judges' accounts: the test sets the scenario before calling. */
+        List<BatchJudgeAccount> judgeAccounts = List.of();
+
+        /** The accounts of the last closing, as {@code report} would copy them ("lista vacía si no hay"). */
+        List<BatchJudgeAccount> lastClosingJudges = List.of();
+
+        /** What {@code estimate} hands back: the exercises the batch changes today and the judges on them. */
+        int changedQuizzes;
+
+        List<BatchJudgeAccount> estimateJudges = List.of();
+
+        int judgeQueries;
+
+        double judgeHours;
 
         final CorrectionBatch batch = new CorrectionBatch();
 
@@ -247,8 +297,8 @@ public class BatchCmdTest {
         @Override
         public BatchEstimate estimate() {
             return new BatchEstimate(batch.getId(), List.of(new BatchTaskCount("hint-coherence", FindingResolution.RULE, 1),
-                    new BatchTaskCount("single-answer", FindingResolution.PANEL, 2)), 12, 3, 9, 0, 17, 0.05, 4, 4, 0, null,
-                    0, 0.0);
+                    new BatchTaskCount("single-answer", FindingResolution.PANEL, 2)), 12, 3, 9, 0, 17, 0.05, 4, 4,
+                    changedQuizzes, estimateJudges, judgeQueries, judgeHours);
         }
 
         @Override
@@ -259,7 +309,55 @@ public class BatchCmdTest {
 
         @Override
         public BatchClosing close(BatchCloseRequest request) {
-            throw new AssertionError("not in these tests");
+            validateCloseRequest(request);
+            closeRequests.add(request);
+            lastClosingJudges = judgeAccounts;
+            return closing(request, judgeAccounts);
+        }
+
+        /** What the real service does in {@code close(request)} before cerrando: F-CJUEZ-R003 inv. 4, with F's texts. */
+        private void validateCloseRequest(BatchCloseRequest request) {
+            Map<String, Integer> budgets = request.getJudgeBudgets() != null ? request.getJudgeBudgets() : Map.of();
+            for (Map.Entry<String, Integer> entry : budgets.entrySet()) {
+                if (!JUDGE_NAMES.contains(entry.getKey())) {
+                    throw new IllegalArgumentException("«" + entry.getKey() + "» no es un juez de la tanda "
+                            + batch.getId() + ". Sus jueces: " + String.join(", ", JUDGE_NAMES) + ".");
+                }
+                if (entry.getValue() != null && entry.getValue() < 0) {
+                    throw new IllegalArgumentException("El tope tiene que ser 0 o más: --budget " + entry.getKey()
+                            + "=" + entry.getValue() + ".");
+                }
+            }
+            if (request.getQueryCap() != null && request.getQueryCap() < 0) {
+                throw new IllegalArgumentException("El tope tiene que ser 0 o más: --cap " + request.getQueryCap()
+                        + ".");
+            }
+        }
+
+        /** A closing safe to print: today's fields filled with harmless, non-null values; the pedido and the judges'
+         * accounts are what the test is actually about. */
+        private BatchClosing closing(BatchCloseRequest request, List<BatchJudgeAccount> judges) {
+            BatchComparison comparison = new BatchComparison();
+            comparison.setBaselineAuditId(batch.getBaselineAuditId());
+            comparison.setActiveAuditId(batch.getStartAuditId());
+            comparison.setActivePlanId(batch.getPlanId());
+            comparison.setScopeId(batch.getId());
+            comparison.setAvailability(ConsolidatedViewAvailability.AVAILABLE);
+            comparison.setComputedAt(CLOSED_AT);
+            comparison.setGoals(new EffectiveGoals("huella-metas", new ArrayList<>(), null));
+            comparison.setGoalChanges(new ArrayList<>());
+            comparison.setMeasureChanges(new ArrayList<>());
+            comparison.setAppliedProposalIds(new ArrayList<>());
+            comparison.setNonApplicablePendings(new ArrayList<>());
+            comparison.setRows(new ArrayList<>());
+            comparison.setChanges(new ArrayList<>());
+            comparison.setBreaches(new ArrayList<>());
+            comparison.setVerdict(new BatchVerdict(VerdictKind.PASSES, new ArrayList<>(), new ArrayList<>(), null,
+                    null));
+            BatchGateVerdict gate = new BatchGateVerdict(true, VerdictKind.PASSES, new ArrayList<>(), new ArrayList<>(),
+                    new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+            return new BatchClosing(CLOSED_AT, new ProjectionScope(batch.getId(), new ArrayList<>(),
+                    new LinkedHashMap<>()), comparison, gate, new ArrayList<>(), 1, request, judges);
         }
 
         @Override
@@ -294,7 +392,8 @@ public class BatchCmdTest {
             }
             return new BatchReport(batch.getId(), CefrLevel.A1, BatchStatus.CLOSED, outcomes, 3, 0, 0, List.of(),
                     List.of(new AudioRerecordRequest("67fab6d59930102295341ecd", "A1.02.01.cd",
-                            List.of("I love vegetables."))), List.of(), new QueriesByRole(8, 30), 0.2, List.of(), null);
+                            List.of("I love vegetables."))), List.of(), new QueriesByRole(8, 30), 0.2, List.of(),
+                    lastClosingJudges);
         }
 
         @Override
@@ -308,7 +407,17 @@ public class BatchCmdTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R003")
     public void shouldHandTheServiceWithBatchCloseBudgetTranslationsense500minitheory60Cap600TheBudgetOfEachJudgeAndTheCapOfTheBatch() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: 'batch close --budget translation-sense=500,mini-theory=60 --cap 600' hands the service the budget
+        // of each named judge and the cap of the batch, as a single BatchCloseRequest.
+        Service service = new Service();
+
+        Run run = run(service, "close", "--budget", "translation-sense=500,mini-theory=60", "--cap", "600");
+
+        assertEquals(0, run.exit(), run.err());
+        assertEquals(1, service.closeRequests.size());
+        BatchCloseRequest asked = service.closeRequests.get(0);
+        assertEquals(Map.of("translation-sense", 500, "mini-theory", 60), asked.getJudgeBudgets());
+        assertEquals(Integer.valueOf(600), asked.getQueryCap());
     }
 
     @Test
@@ -316,7 +425,22 @@ public class BatchCmdTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R003")
     public void shouldExitWith2AndElTopeTieneQueSer0OMsWhenBatchCloseAsksANegativeBudgetOrCapWithoutClosing() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 inv. 4: a negative budget for a judge, or a negative cap of the batch, is rejected without consulting
+        // anything and without closing -- the service never records the request.
+        Service service = new Service();
+
+        Run negativeBudget = run(service, "close", "--budget", "translation-sense=-1");
+
+        assertEquals(2, negativeBudget.exit(), negativeBudget.err());
+        assertTrue(negativeBudget.err().contains("Error: El tope tiene que ser 0 o más: --budget translation-sense=-1."),
+                negativeBudget.err());
+        assertTrue(service.closeRequests.isEmpty(), "no closing happened");
+
+        Run negativeCap = run(service, "close", "--cap", "-5");
+
+        assertEquals(2, negativeCap.exit(), negativeCap.err());
+        assertTrue(negativeCap.err().contains("Error: El tope tiene que ser 0 o más: --cap -5."), negativeCap.err());
+        assertTrue(service.closeRequests.isEmpty(), "no closing happened");
     }
 
     @Test
@@ -324,7 +448,16 @@ public class BatchCmdTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R003")
     public void shouldExitWith2AndTheMessageOfTheServiceWhenBatchCloseBudgetConsigna100NamesWhatIsNotAJudgeOfTheBatch() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 inv. 4: a name that is not a judge of the batch is rejected with the service's message (its
+        // IllegalArgumentException, without consulting anything), and no closing is recorded.
+        Service service = new Service();
+
+        Run run = run(service, "close", "--budget", "consigna=100");
+
+        assertEquals(2, run.exit(), run.err());
+        assertTrue(run.err().contains("Error: «consigna» no es un juez de la tanda tanda-A1-20261001T120000Z. Sus"
+                + " jueces: translation-sense, mini-theory, quiz-instruction."), run.err());
+        assertTrue(service.closeRequests.isEmpty(), "no closing happened");
     }
 
     @Test
@@ -332,7 +465,22 @@ public class BatchCmdTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R005")
     public void shouldPrintWithBatchCloseALinePerJudgeWithItsVisibleNameItsExercisesOrTopicsItsQueriesSpentReusedAndMissingItsBudgetAndItsFloorsDecidedOfTheTotalAndTheReasonOfOneWithoutApproval() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: an ensayo close ('batch close', no budget) prints one line per judge: translation-sense (exercises),
+        // mini-theory (topics), both approved with their spent/reused/missing, no budget and their floors; and
+        // quiz-instruction, without its exam, with the reason.
+        Service service = new Service();
+        service.judgeAccounts = closingSample();
+
+        Run run = run(service, "close");
+
+        assertEquals(0, run.exit(), run.err());
+        assertTrue(run.out().contains("Jueces (3):"), run.out());
+        assertTrue(run.out().contains("  Sentido de la traducción (translation-sense): 4 ejercicios; gastadas 0,"
+                + " reusadas 3, faltan 1; sin tope; pisos decididos 1 de 2"), run.out());
+        assertTrue(run.out().contains("  Miniteoría (mini-theory): 2 temas; gastadas 0, reusadas 2, faltan 0; sin"
+                + " tope; pisos decididos 1 de 1"), run.out());
+        assertTrue(run.out().contains("  Consigna que no se cumple (quiz-instruction): 4 ejercicios; gastadas 0,"
+                + " reusadas 0, faltan 4; sin tope; pisos decididos 0 de 2 — sin aprobar: sin examen"), run.out());
     }
 
     @Test
@@ -340,7 +488,21 @@ public class BatchCmdTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R005")
     public void shouldPrintWithBatchReportTheSameLinePerJudgeAsTheLastClosing() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: 'batch report' gives the accounts of the last closing -- the same three lines 'batch close' printed.
+        Service service = new Service();
+        service.judgeAccounts = closingSample();
+        run(service, "close");
+
+        Run run = run(service, "report");
+
+        assertEquals(0, run.exit(), run.err());
+        assertTrue(run.out().contains("Jueces (3):"), run.out());
+        assertTrue(run.out().contains("  Sentido de la traducción (translation-sense): 4 ejercicios; gastadas 0,"
+                + " reusadas 3, faltan 1; sin tope; pisos decididos 1 de 2"), run.out());
+        assertTrue(run.out().contains("  Miniteoría (mini-theory): 2 temas; gastadas 0, reusadas 2, faltan 0; sin"
+                + " tope; pisos decididos 1 de 1"), run.out());
+        assertTrue(run.out().contains("  Consigna que no se cumple (quiz-instruction): 4 ejercicios; gastadas 0,"
+                + " reusadas 0, faltan 4; sin tope; pisos decididos 0 de 2 — sin aprobar: sin examen"), run.out());
     }
 
     @Test
@@ -348,7 +510,20 @@ public class BatchCmdTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R003")
     public void shouldPrintWithBatchCloseTheRequestBatchCloseBudgetTranslationsenseminitheoryThatCompletesWhatTheApprovedJudgesStillMiss() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003: when approved, non-local judges still miss queries after an ensayo close, the output proposes the
+        // request that completes them, in catalog order.
+        Service service = new Service();
+        BatchJudgeAccount translationSense = new BatchJudgeAccount("translation-sense", "Sentido de la traducción",
+                AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null, 1202, null, 0, 2004, 400, 0, 1, null, false);
+        BatchJudgeAccount miniTheory = new BatchJudgeAccount("mini-theory", "Miniteoría", AuditTarget.KNOWLEDGE, true,
+                JudgeExamStatus.APPROVED, null, 60, null, 0, 40, 20, 0, 1, null, false);
+        service.judgeAccounts = List.of(translationSense, miniTheory);
+
+        Run run = run(service, "close");
+
+        assertEquals(0, run.exit(), run.err());
+        assertTrue(run.out().contains("Para decidir lo que falta: content-audit batch close --budget"
+                + " translation-sense=400,mini-theory=20"), run.out());
     }
 
     @Test
@@ -356,7 +531,20 @@ public class BatchCmdTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R003")
     public void shouldPrintWithBatchCloseWhyAJudgeStoppedAfterAFailureOfItsService() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 inv. 5: after a failure of its service while paying, a judge starts no further query and its line
+        // says why, with its unavailableReason.
+        Service service = new Service();
+        BatchJudgeAccount translationSense = new BatchJudgeAccount("translation-sense", "Sentido de la traducción",
+                AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null, 4, 100, 37, 0, 3, 1, 1,
+                "el servicio de modelos no respondió (529)", false);
+        service.judgeAccounts = List.of(translationSense);
+
+        Run run = run(service, "close", "--cap", "100");
+
+        assertEquals(0, run.exit(), run.err());
+        assertTrue(run.out().contains("  Sentido de la traducción (translation-sense): 4 ejercicios; gastadas 37,"
+                + " reusadas 0, faltan 3; tope 100; pisos decididos 1 de 2 — se cortó: el servicio de modelos no"
+                + " respondió (529)"), run.out());
     }
 
     @Test
@@ -364,7 +552,34 @@ public class BatchCmdTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R002")
     public void shouldPrintWithBatchEstimateTheJudgesAtClosingOverTheExercisesTheBatchChangesTodayALinePerJudgeWithWhatItJudgesReusesAndMissesAndTheTotalQueriesAndHoursOfTheApprovedOnes() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002, the A1 criterio: 601 changed exercises, translation-sense and mini-theory approved with what they
+        // reuse and miss, quiz-instruction without its exam (and its missing queries excluded from the total), and
+        // the total queries and hours of the approved, non-local judges, without making any query.
+        Service service = new Service();
+        service.changedQuizzes = 601;
+        BatchJudgeAccount translationSense = new BatchJudgeAccount("translation-sense", "Sentido de la traducción",
+                AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null, 1202, null, 0, 2004, 400, 0, 0, null, false);
+        BatchJudgeAccount miniTheory = new BatchJudgeAccount("mini-theory", "Miniteoría", AuditTarget.KNOWLEDGE, true,
+                JudgeExamStatus.APPROVED, null, 60, null, 0, 40, 20, 0, 0, null, false);
+        BatchJudgeAccount quizInstruction = new BatchJudgeAccount("quiz-instruction", "Consigna que no se cumple",
+                AuditTarget.QUIZ, false, JudgeExamStatus.NOT_TAKEN, "sin examen", 1202, null, 0, 0, 1202, 0, 0, null,
+                false);
+        service.estimateJudges = List.of(translationSense, miniTheory, quizInstruction);
+        service.judgeQueries = 420;
+        service.judgeHours = 0.55;
+
+        Run run = run(service, "estimate");
+
+        assertEquals(0, run.exit(), run.err());
+        assertTrue(run.out().contains("Jueces al cerrar, sobre los 601 ejercicios que la tanda cambia hoy:"), run.out());
+        assertTrue(run.out().contains("  Sentido de la traducción (translation-sense): 1202 ejercicios; reusadas"
+                + " 2004, faltan 400"), run.out());
+        assertTrue(run.out().contains("  Miniteoría (mini-theory): 60 temas; reusadas 40, faltan 20"), run.out());
+        assertTrue(run.out().contains("  Consigna que no se cumple (quiz-instruction): 1202 ejercicios; reusadas 0,"
+                + " faltan 1202 — sin aprobar: sin examen"), run.out());
+        assertTrue(run.out().contains("Consultas de los jueces aprobados que se pagan: 420, unas 0,55 horas a 19 s"
+                + " por consulta con 4 consultas a la vez."), run.out());
+        assertTrue(service.runs.isEmpty(), "estimate makes no query");
     }
 
     @Test
@@ -372,6 +587,15 @@ public class BatchCmdTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R002")
     public void shouldSayWithBatchEstimateThatTheBatchHasNotChangedAnyExerciseYetAndThatTheJudgesAreEstimatedAfterBatchRun() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R002: a freshly open batch has not changed any exercise yet (changedQuizzes is 0): no judge line, and the
+        // estimate points to 'batch run' instead.
+        Service service = new Service();
+
+        Run run = run(service, "estimate");
+
+        assertEquals(0, run.exit(), run.err());
+        assertTrue(run.out().contains("Jueces al cerrar: la tanda todavía no cambió ningún ejercicio: los jueces se"
+                + " estiman después de batch run."), run.out());
+        assertFalse(run.out().contains("Jueces al cerrar, sobre los"), run.out());
     }
 }

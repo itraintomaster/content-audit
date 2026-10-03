@@ -4,6 +4,16 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-01 — test-writer (CJUEZ) — Los 9 esbozos `@Tag("FEAT-CJUEZ")` de `DefaultBatchServiceTest.java` (R001 1,
+  R002 4, R003 4) implementados. Compilan; 8 fallan por assertion + 1 NPE (`BatchEstimate.getJudges()` null), todas
+  por el puente sin comportamiento nuevo (nada llama todavía a `judgePass`). Resto del archivo (16 pruebas) sigue
+  verde. Nuevo doble `ScriptedJudgePass` (batchengine, package-private) graba estimate/judge/judges y devuelve
+  cuentas/jueces preparados; se agregó un campo mutable `Service.judgePass` (default `NoJudgesPass`) para poder
+  inyectarlo sin tocar las pruebas existentes.
+  Next: developer debe implementar `DefaultBatchJudgePass` (hoy 3x UnsupportedOperationException) y cablear sus
+  llamadores en `DefaultBatchService.estimate()/close()` y `DefaultBatchCloser.close()` (validación de --budget/--cap,
+  changedQuizzes, judgeQueries/judgeHours) para que estos 9 pasen a verde.
+
 2026-10-01 — developer (CJUEZ) — Puente de compilación tras `sentinel generate`: todo el reactor compila (main y
   test), 18 archivos tocados (6 de producción + 12 de pruebas) más `NoJudgesPass.java` nuevo (fixture de prueba,
   package-private, sin @Generated). `DefaultBatchJudgePass` queda con sus 3 `UnsupportedOperationException`, sin

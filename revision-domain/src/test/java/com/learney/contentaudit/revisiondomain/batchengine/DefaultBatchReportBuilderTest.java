@@ -6,13 +6,16 @@ import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.coursedomain.FormKind;
 import com.learney.contentaudit.revisiondomain.batch.AnalyzerLevelErrors;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchReport;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
@@ -32,6 +35,7 @@ import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
 import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.annotation.processing.Generated;
@@ -204,6 +208,25 @@ public class DefaultBatchReportBuilderTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R005")
     public void shouldGiveInTheReportTheAccountsOfTheJudgesOfTheLastClosingOfTheBatchAndNoneWhileItWasNeverClosed() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the report copies the judges' accounts of the batch's last closing; none while it was never closed.
+        CorrectionBatch neverClosed = TandaFixture.batch("tanda-a1");
+
+        BatchReport beforeClosing = new DefaultBatchReportBuilder().build(neverClosed);
+
+        assertEquals(List.of(), beforeClosing.getJudges(), "never closed: no judge");
+
+        List<BatchJudgeAccount> judges = List.of(
+                new BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true,
+                        JudgeExamStatus.APPROVED, null, 4, 500, 500, 50, 5, 2, 0, null, false),
+                new BatchJudgeAccount("quiz-instruction", "Consigna que no se cumple", AuditTarget.QUIZ, false,
+                        JudgeExamStatus.NOT_TAKEN, "sin examen", 601, null, 0, 0, 601, 0, 0, null, false));
+        CorrectionBatch closed = TandaFixture.batch("tanda-a1");
+        closed.setClosings(new ArrayList<>(List.of(new BatchClosing(TandaFixture.OPENED_AT, null,
+                TandaFixture.passing(null, List.of()), null, List.of(), 1,
+                new BatchCloseRequest(new LinkedHashMap<>(), null), judges))));
+
+        BatchReport report = new DefaultBatchReportBuilder().build(closed);
+
+        assertEquals(judges, report.getJudges());
     }
 }

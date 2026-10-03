@@ -7,12 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.CefrLevel;
+import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
@@ -26,11 +30,19 @@ import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
 import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
+import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
+import com.learney.contentaudit.revisiondomain.comparison.GoalReference;
+import com.learney.contentaudit.revisiondomain.comparison.GoalStatus;
+import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
+import com.learney.contentaudit.revisiondomain.comparison.RowGoalStatus;
+import com.learney.contentaudit.revisiondomain.comparison.RowValue;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
 import com.learney.contentaudit.revisiondomain.nonregression.BatchGate;
@@ -42,6 +54,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
@@ -379,7 +392,32 @@ public class DefaultBatchCloserTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R001")
     public void shouldJudgeBeforeComparingTheExercisesTheBatchChangesOnTheStartCourseAndOnTheCourseComposedWithItsChangesWithTheRequestOfTheClosing() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R001: before comparing with F, the closer hands the judges' pass the exercises the batch changes -- on the start
+        // course and on the course composed with the batch's changes -- together with the request of this closing.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        CourseEntity composed = closing.ledger().composedCourse(batch, closing.course);
+        List<String> order = new ArrayList<>();
+        closing.comparator.answer = scope -> {
+            order.add("compare");
+            return TandaFixture.passing(scope, List.of());
+        };
+        RecordingJudgePass judgePass = new RecordingJudgePass(order);
+        DefaultBatchCloser closer = new DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(),
+                closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judgePass)
+                .withPlans(closing.plans, MesaFixture.corrections());
+        BatchCloseRequest request = new BatchCloseRequest(new LinkedHashMap<>(Map.of("translation-sense", 500)), 1000);
+
+        closer.close(batch, closing.course, request);
+
+        assertEquals(1, judgePass.judgeCalls.size(), "judges once, before the gate loop");
+        RecordingJudgePass.JudgeCall call = judgePass.judgeCalls.get(0);
+        assertEquals(batch.getId(), call.batch().getId());
+        assertEquals(json(closing.course), json(call.startCourse()), "the start course, as it was");
+        assertEquals(json(composed), json(call.composedCourse()), "the course composed with the batch's changes");
+        assertEquals(request, call.request(), "the request of the closing");
+        assertTrue(order.contains("judge") && order.contains("compare"), order.toString());
+        assertTrue(order.indexOf("judge") < order.indexOf("compare"), "judges before comparing: " + order);
     }
 
     @Test
@@ -387,7 +425,25 @@ public class DefaultBatchCloserTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R003")
     public void shouldAddTheQueriesTheJudgesWerePaidAtClosingToTheQueriesOfTheBatch() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R003 inv. 2: what the judges' pass spent paying at this closing adds to the queries the batch already had.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        batch.setQueriesSpent(100);
+        RecordingJudgePass judgePass = new RecordingJudgePass();
+        judgePass.judgeAnswer = List.of(
+                new BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true,
+                        JudgeExamStatus.APPROVED, null, 4, 500, 500, 50, 0, 0, 0, null, false),
+                new BatchJudgeAccount("mini-theory", "Miniteoría", AuditTarget.KNOWLEDGE, true, JudgeExamStatus.APPROVED,
+                        null, 2, 37, 37, 5, 0, 0, 0, null, false));
+        DefaultBatchCloser closer = new DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(),
+                closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judgePass)
+                .withPlans(closing.plans, MesaFixture.corrections());
+        BatchCloseRequest request = new BatchCloseRequest(new LinkedHashMap<>(Map.of("translation-sense", 500,
+                "mini-theory", 37)), null);
+
+        batch = closer.close(batch, closing.course, request);
+
+        assertEquals(637, batch.getQueriesSpent(), "100 the batch already had, plus 500 and 37 paid to the judges");
     }
 
     @Test
@@ -395,7 +451,37 @@ public class DefaultBatchCloserTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R005")
     public void shouldGiveEachJudgeOfTheClosingTheQueriesPaidToItTheOnesTheLedgerHadAtTheStartOfTheClosingAndTheOnesStillMissingAfterTheLastComparisonWhereWhatNaturalnessJudgedWithOllamaWhenComparingNoLongerCounts() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: the closing's account of each judge keeps what was paid and reused from the judges' pass (before
+        // comparing), but its missing queries come from the trial after the last comparison: what naturalness -- local,
+        // no tope -- judged while comparing is already in the ledger, and no longer counts as missing.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        RecordingJudgePass judgePass = new RecordingJudgePass();
+        judgePass.judgeAnswer = List.of(
+                new BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true,
+                        JudgeExamStatus.APPROVED, null, 4, 500, 500, 50, 20, 0, 0, null, false),
+                new BatchJudgeAccount("naturalness", "Naturalidad", AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null,
+                        2, null, 0, 10, 8, 0, 0, null, true));
+        judgePass.estimateAnswer = List.of(
+                new BatchJudgeAccount("translation-sense", "Sentido de la traducción", AuditTarget.QUIZ, true,
+                        JudgeExamStatus.APPROVED, null, 4, null, 0, 0, 5, 0, 0, null, false),
+                new BatchJudgeAccount("naturalness", "Naturalidad", AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null,
+                        2, null, 0, 0, 0, 0, 0, null, true));
+        DefaultBatchCloser closer = new DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(),
+                closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judgePass)
+                .withPlans(closing.plans, MesaFixture.corrections());
+
+        batch = closer.close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
+
+        BatchClosing closed = batch.getClosings().get(batch.getClosings().size() - 1);
+        BatchJudgeAccount translation = judgeNamed(closed, "translation-sense");
+        assertEquals(500, translation.getQueriesSpent(), "paid at this closing, from the judges' pass");
+        assertEquals(50, translation.getQueriesReused(), "what the ledger already had when the closing started");
+        assertEquals(5, translation.getQueriesMissing(), "the last comparison's trial, not the 20 of the judges' pass");
+        BatchJudgeAccount naturalness = judgeNamed(closed, "naturalness");
+        assertEquals(0, naturalness.getQueriesSpent(), "local: never paid");
+        assertEquals(10, naturalness.getQueriesReused());
+        assertEquals(0, naturalness.getQueriesMissing(), "what it judged with Ollama while comparing no longer counts");
     }
 
     @Test
@@ -403,6 +489,56 @@ public class DefaultBatchCloserTest {
     @Tag("FEAT-CJUEZ")
     @Tag("F-CJUEZ-R005")
     public void shouldCountAsDecidedTheFloorsOfTheRowsOfAJudgeInTheLastComparisonThatAreMetOrNotMetAndAsUndecidedThoseThatCannotBeDecided() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        // R005: from the rows of the last comparison, the account of a judge counts its own rows (subject = the judge)
+        // with a floor: MET or NOT_MET decided, UNDECIDABLE undecided. A row of another subject, or with no floor, does
+        // not count.
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        RecordingJudgePass judgePass = new RecordingJudgePass();
+        judgePass.judgeAnswer = List.of(new BatchJudgeAccount("translation-sense", "Sentido de la traducción",
+                AuditTarget.QUIZ, true, JudgeExamStatus.APPROVED, null, 4, 500, 500, 0, 0, 0, 0, null, false));
+        judgePass.estimateAnswer = judgePass.judgeAnswer;
+        closing.comparator.answer = scope -> {
+            BatchComparison comparison = TandaFixture.passing(scope, List.of());
+            comparison.setRows(new ArrayList<>(List.of(
+                    floorRow("translation-sense", GoalStatus.MET),
+                    floorRow("translation-sense", GoalStatus.NOT_MET),
+                    floorRow("translation-sense", GoalStatus.UNDECIDABLE),
+                    floorRow("translation-sense", null),
+                    floorRow("mini-theory", GoalStatus.UNDECIDABLE))));
+            return comparison;
+        };
+        DefaultBatchCloser closer = new DefaultBatchCloser(closing.comparator, new DefaultGateFactory().batchGate(),
+                closing.samples, closing.ledger(), closing.batches, TandaFixture.COURSE_PATH, judgePass)
+                .withPlans(closing.plans, MesaFixture.corrections());
+
+        batch = closer.close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
+
+        BatchClosing closed = batch.getClosings().get(batch.getClosings().size() - 1);
+        BatchJudgeAccount translation = judgeNamed(closed, "translation-sense");
+        assertEquals(2, translation.getFloorsDecided(), "MET and NOT_MET, not the row without a floor nor mini-theory's");
+        assertEquals(1, translation.getFloorsUndecided(), "its own UNDECIDABLE row");
+    }
+
+    private static BatchJudgeAccount judgeNamed(BatchClosing closing, String judge) {
+        List<BatchJudgeAccount> judges = closing.getJudges() != null ? closing.getJudges() : List.of();
+        return judges.stream().filter(j -> j.getJudge().equals(judge)).findFirst()
+                .orElseThrow(() -> new AssertionError("no judge " + judge + " in " + judges));
+    }
+
+    private static ComparisonRow floorRow(String subject, GoalStatus status) {
+        RowGoalStatus floor = status == null ? null : new RowGoalStatus("piso-" + subject, 0.5, GoalUnit.POINTS,
+                GoalReference.BASELINE, status);
+        return new ComparisonRow(subject, AnalyzerFamily.ERRORS, AuditTarget.QUIZ, "t-present", "A1",
+                new RowValue(0.0, null, 0), null, new RowValue(0.0, null, 0), new RowValue(0.0, null, 0), 0.0,
+                GoalUnit.EXERCISES, floor, null, null, null, null, null, null);
+    }
+
+    private static String json(Object value) {
+        try {
+            return new ObjectMapper().writeValueAsString(value);
+        } catch (JsonProcessingException e) {
+            throw new AssertionError(e);
+        }
     }
 }
