@@ -4,6 +4,17 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — coordinador — v3 cerrada en `ronda2/duplicados-por-par`, sin push: suite 3.122 tests, 0 fallas, 1
+  salteado; `sentinel verify` OK; la guardia del examen pasa (el corpus en vivo del juez cambió tres pares que coincidían
+  con ejercicios del examen del 077). Punta a punta con la CLI real (`exam run near-duplicates` sobre un mini-curso
+  inventado, workdir aparte con la definición del juez copiada): versión «nomic-embed-text@0a109f422b47 · clustering-1 ·
+  candidatos-0,80 · juez-bbba37bd5fae»; «She works in a hospital.» copia de «Laura works…» (same-exercise, parecido
+  0,91) y «She works at night.» no. Consultas pagas en total: 29 de 30, todas sobre pares inventados.
+  Ojo: con `--workdir`, la CLI busca los agentes en `<workdir>/.sentinel/agents`; sin la definición, el juez no tiene
+  versión y no se consulta nada (R010 inv. 3).
+  Next: José decide las dudas abiertas (umbral, excepción a MLOCAL, muestra nueva); rendir el examen con Ollama
+  (muestra ciega del paquete B + escribir/ + examinar/; `exam run` sin `--budget` da la cuenta exacta gratis).
+
 2026-10-03 — developer — v3 implementada, sólo cuerpos y `Main`: DefaultNearDuplicatesConfig (0,80 y las dos versiones por
   piezas), PairStepEvaluator, el proveedor (con Ollama dos `open`, vectores sin tope y juez con la política tal cual, y una
   sola JudgeSessions; sin Ollama el juez envuelto bajo wordRouteVersion; la ficha con las tres reglas), el analizador (dos
