@@ -50,27 +50,6 @@ public class FDuparJ001JourneyTest {
     }
 
     @Test
-    @Order(2)
-    @Tag("path-2")
-    @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → La copia lleva un hallazgo baja para ... [Con Ollama, el modelo local les da un parecido de 0,95 o más] → success")
-    public void path2_conOllamaElModeloLocalLesDaUnParecidoDe095OMs_success() {
-        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
-
-        AuditNode root = world.run(NearDuplicatesAnalyzerTest.course(NearDuplicatesAnalyzerTest.topic(
-                "Each other o reflexivos", NearDuplicatesAnalyzerTest.cooked(), NearDuplicatesAnalyzerTest.prepared())),
-                null);
-
-        // marca: cooked and prepared, 0.98 with nomic-embed-text.
-        Finding copy = NearDuplicatesAnalyzerTest.only(NearDuplicatesAnalyzerTest.quiz(root,
-                NearDuplicatesAnalyzerTest.PREPARED));
-        assertEquals("same-meaning", copy.getRule());
-        assertEquals(AnalysisCost.LOCAL_MODEL, copy.getCost());
-        assertEquals("Dice lo mismo que …46ac: parecido 0,98", NearDuplicatesAnalyzerTest.part(copy, "Casi igual"));
-        assertEquals(0.0, NearDuplicatesAnalyzerTest.score(root, NearDuplicatesAnalyzerTest.PREPARED));
-        assertEquals(1.0, NearDuplicatesAnalyzerTest.score(root, NearDuplicatesAnalyzerTest.COOKED));
-    }
-
-    @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → La copia lleva un hallazgo baja para ... [Sin Ollama, el par cambia como mucho 4 de cada 10 palabras y claude -p dice que es el mismo ejercicio] → success")
@@ -157,6 +136,14 @@ public class FDuparJ001JourneyTest {
     @Tag("path-7")
     @DisplayName("path-7: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → El ejercicio queda evaluado a medias ... [Con Ollama y sin tope, el par llega a 0,80 de parecido y el comodín no lo resuelve] → success")
     public void path7_conOllamaYSinTopeElParLlegaA080DeParecidoYElComodnNoLoResuelve_success() {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @Order(2)
+    @Tag("path-2")
+    @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → La copia lleva un hallazgo baja para ... [Con Ollama, el par llega a 0,80 de parecido y el juez dice que es el mismo ejercicio] → success")
+    public void path2_conOllamaElParLlegaA080DeParecidoYElJuezDiceQueEsElMismoEjercicio_success() {
         throw new UnsupportedOperationException("Not implemented yet");
     }
 }

@@ -127,43 +127,6 @@ public class NearDuplicatesAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should mark as near duplicates two candidates whose vectors reach 0.95, «They prepared lunch for each other.» after «They cooked lunch for each other.», 0.98")
-    @Tag("FEAT-DUPAR")
-    @Tag("F-DUPAR-R002")
-    public void shouldMarkAsNearDuplicatesTwoCandidatesWhoseVectorsReach095TheyPreparedLunchForEachOtherAfterTheyCookedLunchForEachOther098(
-            ) {
-        World world = World.withNomic();
-
-        AuditNode root = world.run(course(topic("Each other o reflexivos", cooked(), prepared())), null);
-
-        Finding copy = only(quiz(root, PREPARED));
-        assertEquals("same-meaning", copy.getRule());
-        assertEquals(COOKED, copy.getIdentity().getMarker());
-        NearDuplicateDiagnosis diagnosis = diagnosis(root, PREPARED);
-        assertEquals(NearDuplicateCondition.SIMILARITY, diagnosis.getCondition());
-        assertEquals(0.9759, diagnosis.getSimilarity(), 1e-5);
-        assertNull(diagnosis.getDifference(), "the wildcard does not settle them: cooked and prepared");
-        assertEquals(List.of("clustering: They cooked lunch for each other.",
-                "clustering: They prepared lunch for each other."), world.nomic.asked());
-    }
-
-    @Test
-    @DisplayName("should not mark a candidate whose vectors stay below 0.95 and that the wildcard does not settle, «Have you heard about my news?» after «Have you heard the news?», 0.94")
-    @Tag("FEAT-DUPAR")
-    @Tag("F-DUPAR-R002")
-    public void shouldNotMarkACandidateWhoseVectorsStayBelow095AndThatTheWildcardDoesNotSettleHaveYouHeardAboutMyNewsAfterHaveYouHeardTheNews094(
-            ) {
-        World world = World.withNomic();
-
-        AuditNode root = world.run(course(topic("Participios irregulares: repaso 1", heardNews(), heardMyNews())), null);
-
-        assertEquals(List.of(), findings(quiz(root, HEARD_MY_NEWS)));
-        assertEquals(1.0, score(root, HEARD_MY_NEWS));
-        assertFalse(halfway(root, HEARD_MY_NEWS), "both vectors came: it is evaluated whole");
-        assertEquals(2, world.nomic.asked().size());
-    }
-
-    @Test
     @DisplayName("should leave without finding the first exercise in the order of the topic and give the one after it a finding that names it, «Where is she?» naming «Where is he?» in Contraste inicial")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R003")
@@ -197,24 +160,6 @@ public class NearDuplicatesAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should mark the same copies in two runs of the same course, reusing every vector without asking nomic-embed-text again")
-    @Tag("FEAT-DUPAR")
-    @Tag("F-DUPAR-R003")
-    public void shouldMarkTheSameCopiesInTwoRunsOfTheSameCourseReusingEveryVectorWithoutAskingNomicembedtextAgain(
-            ) {
-        World world = World.withNomic();
-
-        AuditNode first = world.run(course(topic("Respuestas cortas", canDrive(), couldHave(), couldDrive())), null);
-        List<String> asked = List.copyOf(world.nomic.asked());
-        AuditNode second = world.run(course(topic("Respuestas cortas", canDrive(), couldHave(), couldDrive())), null);
-
-        assertEquals(Map.of(COULD_HAVE, CAN_DRIVE, COULD_DRIVE, CAN_DRIVE), copies(first));
-        assertEquals(copies(first), copies(second));
-        assertEquals(3, asked.size());
-        assertEquals(asked, world.nomic.asked(), "the second run reuses every vector");
-    }
-
-    @Test
     @DisplayName("should give every copy a low finding for the panel that counts as an error and scores 0, and keep 1 in the exercise that stays")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R004")
@@ -228,47 +173,6 @@ public class NearDuplicatesAnalyzerTest {
         assertEquals(0.0, score(root, WHERE_SHE));
         assertEquals(1.0, score(root, WHERE_HE));
         assertEquals(1, errorCountsOf(root).getWithError(), "it counts as an error, it does not only rank");
-    }
-
-    @Test
-    @DisplayName("should give each finding the cost of the rule that found it: instant for same-but-wildcard, local model for same-meaning and paid model for same-exercise")
-    @Tag("FEAT-DUPAR")
-    @Tag("F-DUPAR-R004")
-    public void shouldGiveEachFindingTheCostOfTheRuleThatFoundItInstantForSamebutwildcardLocalModelForSamemeaningAndPaidModelForSameexercise(
-            ) {
-        AuditNode withOllama = World.withNomic().run(course(topic("Contraste inicial", whereHe(), whereShe()),
-                topic("Each other o reflexivos", cooked(), prepared())), null);
-        World alternative = World.withoutOllama();
-        alternative.claude.answers("Offer: I'll wash the dishes for you.", "Offer: I'll wash the dishes.", true,
-                "Piden lo mismo: «'ll wash» en una oferta; sólo sobra «for you»");
-        AuditNode withoutOllama = alternative.run(course(topic("Funciones mixtas", washForYou(), wash())), budget(10));
-
-        assertEquals(AnalysisCost.INSTANT, only(quiz(withOllama, WHERE_SHE)).getCost());
-        assertEquals(AnalysisCost.LOCAL_MODEL, only(quiz(withOllama, PREPARED)).getCost());
-        assertEquals(AnalysisCost.PAID_MODEL, only(quiz(withoutOllama, WASH)).getCost());
-    }
-
-    @Test
-    @DisplayName("should give a pair found both by the wildcard and by its vectors the instant rule same-but-wildcard, «A: Are we ready? B: Yes, we are.» after «A: Are they ready? B: Yes, they are.»")
-    @Tag("FEAT-DUPAR")
-    @Tag("F-DUPAR-R004")
-    public void shouldGiveAPairFoundBothByTheWildcardAndByItsVectorsTheInstantRuleSamebutwildcardAAreWeReadyBYesWeAreAfterAAreTheyReadyBYesTheyAre(
-            ) {
-        World world = World.withNomic();
-
-        // «Are we happy?» before them asks for the three vectors: …1f5e and …25e8 also reach 0.965.
-        AuditNode root = world.run(course(topic("Respuestas cortas", weHappy(), theyReady(), weReady())), null);
-
-        Finding copy = only(quiz(root, WE_READY));
-        assertEquals("same-but-wildcard", copy.getRule());
-        assertEquals(AnalysisCost.INSTANT, copy.getCost());
-        assertEquals(THEY_READY, copy.getIdentity().getMarker());
-        NearDuplicateDiagnosis diagnosis = diagnosis(root, WE_READY);
-        assertEquals(NearDuplicateCondition.WILDCARD, diagnosis.getCondition());
-        assertEquals("they → we", diagnosis.getDifference());
-        assertEquals(0.965, diagnosis.getSimilarity(), 1e-5, "its vectors reach 0.95 as well");
-        assertEquals(3, world.nomic.asked().size());
-        assertEquals(List.of(), findings(quiz(root, THEY_READY)), "0.82 with «Are we happy?»");
     }
 
     @Test
@@ -294,19 +198,6 @@ public class NearDuplicatesAnalyzerTest {
     }
 
     @Test
-    @DisplayName("should say in the evidence of a pair found by its vectors «Dice lo mismo que …46ac: parecido 0,98»")
-    @Tag("FEAT-DUPAR")
-    @Tag("F-DUPAR-R005")
-    public void shouldSayInTheEvidenceOfAPairFoundByItsVectorsDiceLoMismoQue46acParecido098() {
-        AuditNode root = World.withNomic().run(course(topic("Each other o reflexivos", cooked(), prepared())), null);
-
-        Finding copy = only(quiz(root, PREPARED));
-        assertEquals("Dice lo mismo que …46ac: parecido 0,98", part(copy, "Casi igual"));
-        assertEquals("They prepared lunch for ___ . (Julie prepared lunch for David and David prepared lunch for Julie.) "
-                + "(each other · ourselves · themselves · yourselves)", part(copy, "Copia"));
-    }
-
-    @Test
     @DisplayName("should say in the evidence of a pair judged by claude -p «Para claude -p es el mismo ejercicio que …2725: cambian 2 de 7 palabras»")
     @Tag("FEAT-DUPAR")
     @Tag("F-DUPAR-R005")
@@ -323,31 +214,6 @@ public class NearDuplicatesAnalyzerTest {
         assertEquals("Piden lo mismo: «'ll wash» en una oferta; sólo sobra «for you»",
                 part(copy, "Razón de claude -p"));
         assertEquals("Offer: I ___ (wash) the dishes.", part(copy, "Copia"));
-    }
-
-    @Test
-    @DisplayName("should leave all of near-duplicates unevaluated, the wildcard included, while the examined version of nomic-embed-text with its prefix has no approved exam")
-    @Tag("FEAT-DUPAR")
-    @Tag("F-DUPAR-R007")
-    public void shouldLeaveAllOfNearduplicatesUnevaluatedTheWildcardIncludedWhileTheExaminedVersionOfNomicembedtextWithItsPrefixHasNoApprovedExam(
-            ) {
-        World world = World.notExamined();
-
-        AuditNode root = world.run(course(topic("Contraste inicial", whereHe(), whereShe()),
-                topic("Each other o reflexivos", cooked(), prepared())), null);
-
-        for (String id : List.of(WHERE_HE, WHERE_SHE, COOKED, PREPARED)) {
-            AuditNode quiz = quiz(root, id);
-            assertNull(quiz.getScores().get("near-duplicates"), id);
-            assertTrue(quiz.getUnevaluatedBy().contains("near-duplicates"), id);
-            assertEquals(List.of(), findings(quiz), id);
-        }
-        assertEquals(List.of(), world.nomic.asked(), "nothing is asked for a version that does not publish");
-        LocalToolRunDiagnosis run = runOf(root);
-        assertFalse(run.isPublished());
-        assertEquals(NOMIC_EXAMINED, run.getExaminedVersion());
-        assertEquals(JudgeExamStatus.NOT_TAKEN, run.getExamState());
-        assertTrue(run.getReason().startsWith("sin examen"), run.getReason());
     }
 
     @Test
@@ -1210,5 +1076,167 @@ public class NearDuplicatesAnalyzerTest {
             }
         }
         throw new AssertionError("no error counts of near-duplicates");
+    }
+
+    @Test
+    @DisplayName("should make a near duplicate of a candidate of its vectors that claude -p calls the same exercise, «They prepared lunch for each other.» after «They cooked lunch for each other.», 0.98, with the rule same-exercise")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R002")
+    public void shouldMakeANearDuplicateOfACandidateOfItsVectorsThatClaudePCallsTheSameExerciseTheyPreparedLunchForEachOtherAfterTheyCookedLunchForEachOther098WithTheRuleSameexercise(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should mark the same copies in two runs of the same course, reusing every vector and every verdict of claude -p without asking either again")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R003")
+    public void shouldMarkTheSameCopiesInTwoRunsOfTheSameCourseReusingEveryVectorAndEveryVerdictOfClaudePWithoutAskingEitherAgain(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give each finding the cost of the rule that found it, instant for same-but-wildcard and paid model for same-exercise with Ollama and without it, and none to similar-candidates, which only proposes pairs")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R004")
+    public void shouldGiveEachFindingTheCostOfTheRuleThatFoundItInstantForSamebutwildcardAndPaidModelForSameexerciseWithOllamaAndWithoutItAndNoneToSimilarcandidatesWhichOnlyProposesPairs(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give a pair that the wildcard settles the instant rule same-but-wildcard without asking claude -p, even when its vectors reach 0.80, «A: Are we ready? B: Yes, we are.» after «A: Are they ready? B: Yes, they are.»")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R004")
+    public void shouldGiveAPairThatTheWildcardSettlesTheInstantRuleSamebutwildcardWithoutAskingClaudePEvenWhenItsVectorsReach080AAreWeReadyBYesWeAreAfterAAreTheyReadyBYesTheyAre(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should say in the evidence of a pair that its vectors proposed and claude -p judged «Para claude -p es el mismo ejercicio que …355e: parecido 0,99» and the reason claude -p gave")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R005")
+    public void shouldSayInTheEvidenceOfAPairThatItsVectorsProposedAndClaudePJudgedParaClaudePEsElMismoEjercicioQue355eParecido099AndTheReasonClaudePGave(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should ask claude -p in an exam run with Ollama only about the candidates whose copy is an exercise of the exam's file, even when the exercise that stays is not in it")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R007")
+    public void shouldAskClaudePInAnExamRunWithOllamaOnlyAboutTheCandidatesWhoseCopyIsAnExerciseOfTheExamsFileEvenWhenTheExerciseThatStaysIsNotInIt(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should ask claude -p in an exam run without Ollama only about the candidates whose copy is an exercise of the exam's file")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R007")
+    public void shouldAskClaudePInAnExamRunWithoutOllamaOnlyAboutTheCandidatesWhoseCopyIsAnExerciseOfTheExamsFile(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should give an exercise outside the exam's file neither score nor finding in an exam run, nor count the pairs whose copy it is among the consultations the exam says are missing")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R007")
+    public void shouldGiveAnExerciseOutsideTheExamsFileNeitherScoreNorFindingInAnExamRunNorCountThePairsWhoseCopyItIsAmongTheConsultationsTheExamSaysAreMissing(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should ask claude -p, with Ollama, only about the candidates that the wildcard does not settle and whose vectors reach 0.80, as «Have you heard about my news?» after «Have you heard the news?», 0.94, and not about «I am hot.» after «I am sorry.», 0.71")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R009")
+    public void shouldAskClaudePWithOllamaOnlyAboutTheCandidatesThatTheWildcardDoesNotSettleAndWhoseVectorsReach080AsHaveYouHeardAboutMyNewsAfterHaveYouHeardTheNews094AndNotAboutIAmHotAfterIAmSorry071(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not mark, with Ollama, a candidate whose vectors reach 0.97 when claude -p calls it a different exercise, «That car is his.» after «That is his car.»")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R009")
+    public void shouldNotMarkWithOllamaACandidateWhoseVectorsReach097WhenClaudePCallsItADifferentExerciseThatCarIsHisAfterThatIsHisCar(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should ask nomic-embed-text for every vector and stop only claude -p at the budget of --budget near-duplicates=1")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R009")
+    public void shouldAskNomicembedtextForEveryVectorAndStopOnlyClaudePAtTheBudgetOfBudgetNearduplicates1(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave half evaluated, with Ollama and without --budget near-duplicates=N, an exercise with a candidate of its vectors, consulting no claude -p, keeping its wildcard findings and saying «falta el tope» with the pairs left to judge")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R009")
+    public void shouldLeaveHalfEvaluatedWithOllamaAndWithoutBudgetNearduplicatesNAnExerciseWithACandidateOfItsVectorsConsultingNoClaudePKeepingItsWildcardFindingsAndSayingFaltaElTopeWithThePairsLeftToJudge(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave half evaluated, with Ollama, an exercise whose candidate got no usable answer from claude -p, keeping its wildcard findings and saying how many pairs are left to judge")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R009")
+    public void shouldLeaveHalfEvaluatedWithOllamaAnExerciseWhoseCandidateGotNoUsableAnswerFromClaudePKeepingItsWildcardFindingsAndSayingHowManyPairsAreLeftToJudge(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should declare as missing for near-duplicates only the pairs left for claude -p, with their hours at the rate of the judge one at a time and four at a time, never the vectors of nomic-embed-text")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R009")
+    public void shouldDeclareAsMissingForNearduplicatesOnlyThePairsLeftForClaudePWithTheirHoursAtTheRateOfTheJudgeOneAtATimeAndFourAtATimeNeverTheVectorsOfNomicembedtext(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should evaluate whole a topic outside the set that a run declares for claude -p when its vectors stay below 0.80, «I am hot.» after «I am sorry.», since the vectors always run")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R009")
+    public void shouldEvaluateWholeATopicOutsideTheSetThatARunDeclaresForClaudePWhenItsVectorsStayBelow080IAmHotAfterIAmSorrySinceTheVectorsAlwaysRun(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should leave all of near-duplicates unevaluated, the wildcard included, while the version with Ollama, named by its three pieces, has no approved exam, even if nomic-embed-text with its prefix alone approved one")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R010")
+    public void shouldLeaveAllOfNearduplicatesUnevaluatedTheWildcardIncludedWhileTheVersionWithOllamaNamedByItsThreePiecesHasNoApprovedExamEvenIfNomicembedtextWithItsPrefixAloneApprovedOne(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should not ask claude -p again, with Ollama, about a pair it already judged without Ollama, «Offer: I'll wash the dishes.» after «Offer: I'll wash the dishes for you.»")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R010")
+    public void shouldNotAskClaudePAgainWithOllamaAboutAPairItAlreadyJudgedWithoutOllamaOfferIllWashTheDishesAfterOfferIllWashTheDishesForYou(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    @Test
+    @DisplayName("should reuse, with Ollama, the vectors that the version of 30/9 recorded, without asking nomic-embed-text again, since neither the candidate threshold nor the judge enters their record")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R002")
+    public void shouldReuseWithOllamaTheVectorsThatTheVersionOf309RecordedWithoutAskingNomicembedtextAgainSinceNeitherTheCandidateThresholdNorTheJudgeEntersTheirRecord(
+            ) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }
