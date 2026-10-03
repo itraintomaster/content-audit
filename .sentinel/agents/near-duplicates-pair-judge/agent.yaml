@@ -1,0 +1,54 @@
+name: near-duplicates-pair-judge
+description: |
+  El paso por pares de near-duplicates (FEAT-DUPAR). Recibe un par candidato de
+  un tema —dos ejercicios que piden la misma respuesta, no son iguales tal cual
+  y el comodín no los resuelve—, cada uno como lo ve el alumno y resuelto, el
+  que queda primero, y dice si para el alumno es el mismo ejercicio. Un sí hace
+  de la copia un casi duplicado, con un hallazgo bajo para la mesa que cuenta
+  como error; un no lo descarta.
+
+  Quién propone el par no cambia la pregunta: con Ollama, los vectores de
+  nomic-embed-text (coseno desde el umbral de candidatos); sin Ollama, el
+  parecido de palabras. Los vectores nunca deciden solos: sólo eligen qué pares
+  se le preguntan a este juez.
+
+  Flujo:
+
+      evaluate (llm_call: el juicio)
+        ──▶ gate_verdict (gate: esquema cerrado; failed reintenta)
+        ──▶ emit (script: artifact sameExerciseVerdict)
+
+  max_attempts de evaluate acota el reintento. Si agota sus intentos sin un
+  veredicto válido, emit produce {"outputUnusable": true}: el evaluador lo
+  devuelve como OUTPUT_UNUSABLE, el par queda sin juzgar y el ejercicio a
+  medias, nunca casi duplicado. Una falla del modelo en evaluate no tiene
+  arista: corta la corrida del agente y el evaluador la informa como
+  EVALUATOR_UNAVAILABLE.
+
+  Todo archivo de esta carpeta, eval/ incluido, entra en la versión del juez
+  (definición, modelo y proveedor). Tocar la guía, un script o una fixture es
+  una versión nueva, que rinde su examen antes de consultar sobre el curso
+  (F-DUPAR-R007). Lo que lee sale de QuizStudentViewRenderer y su salida es
+  determinista: el JSON canónico no depende de la corrida ni de la hora (gancho
+  B-22). Los ejemplos de la guía son inventados: ninguno es del curso ni del
+  corpus de eval/, para que el examen no se rinda con la respuesta a la vista.
+kind: agent
+strategy: graph
+initial_node: evaluate
+budgets:
+  # Pase limpio: 3 visitas. Con los 3 intentos de evaluate agotados son 8; el
+  # resto es margen para que un reintento nunca termine en una falla de servicio.
+  max_iterations: 10
+nodes:
+  - ./nodes/evaluate.md
+  - ./nodes/gate_verdict.md
+  - ./nodes/emit.md
+goal:
+  required_artifacts:
+    - sameExerciseVerdict
+  required_nodes_done:
+    - emit
+dependencies:
+  - title
+  - first
+  - second

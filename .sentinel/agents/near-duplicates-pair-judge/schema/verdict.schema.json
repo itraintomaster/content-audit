@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "same-exercise-verdict.schema.json",
+  "title": "SameExerciseVerdict",
+  "description": "Veredicto canónico que emite el agente como artifact sameExerciseVerdict (FEAT-DUPAR, el paso por pares); lo lee DefaultSameExerciseQuestion. Si el juez agota sus intentos, el artifact es {\"outputUnusable\": true} en vez de este objeto.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sameExercise", "reason"],
+  "properties": {
+    "sameExercise": { "type": "boolean" },
+    "reason": { "type": "string", "minLength": 1, "maxLength": 400 }
+  }
+}

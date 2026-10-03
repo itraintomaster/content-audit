@@ -1,0 +1,360 @@
+{
+  "agent": "near-duplicates-pair-judge",
+  "artifact": "sameExerciseVerdict",
+  "gateId": "near_duplicates_pair_judge_gate_verdict",
+  "emitId": "near_duplicates_pair_judge_emit",
+  "dependencies": [
+    "title",
+    "first",
+    "second"
+  ],
+  "topKeys": [
+    "sameExercise",
+    "reason"
+  ],
+  "promptMustMention": [
+    "**para el alumno es el mismo ejercicio**",
+    "Ante la duda, decí que **no**",
+    "**otro sujeto**",
+    "**El contraste que enseña el tema**",
+    "**En un diálogo**"
+  ],
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado (sameExercise que no es booleano, razón vacía o larga, claves de más o de menos) y que emit produzca sameExerciseVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido (title, first, second) con la forma que arma DefaultSameExerciseQuestion con QuizStudentViewRenderer, para pares inventados: ninguno es del curso.",
+  "inputs": {
+    "colectivo": {
+      "title": "Presente simple: tercera persona",
+      "first": "Carmen ___ (take) the bus to school.\nResuelto: Carmen takes the bus to school.",
+      "second": "She ___ (take) the bus to school.\nResuelto: She takes the bus to school."
+    },
+    "frio": {
+      "title": "Afirmativas con $be$",
+      "first": "We ___ cold. (am · are · is)\nResuelto: We are cold.",
+      "second": "We ___ at home. (am · are · is)\nResuelto: We are at home."
+    },
+    "pelicula": {
+      "title": "Pasado simple: verbos irregulares",
+      "first": "We ___ (see) a funny film last night.\nResuelto: We saw a funny film last night.",
+      "second": "We ___ (see) a funny movie last night.\nResuelto: We saw a funny movie last night."
+    }
+  },
+  "cases": [
+    {
+      "caseId": "colectivo-mismo",
+      "note": "«She takes the bus to school.» después de «Carmen takes…»: otro sujeto, el mismo.",
+      "inputs": "colectivo",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "frio-distinto",
+      "note": "«We are at home.» después de «We are cold.»: misma respuesta, otra oración.",
+      "inputs": "frio",
+      "verdict": {
+        "sameExercise": false,
+        "reason": "Las dos piden «are», pero dicen otra cosa: el alumno practica dos veces, no repite."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "pelicula-mismo",
+      "note": "«a funny movie» después de «a funny film»: un sinónimo fuera del hueco.",
+      "inputs": "pelicula",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Film y movie dicen lo mismo: el alumno escribe «saw» en la misma oración."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "razon-en-dos-lineas",
+      "note": "La razón se canonicaliza en una línea.",
+      "inputs": "colectivo",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Cambia sólo el sujeto.\n  El alumno escribe lo mismo."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Cambia sólo el sujeto. El alumno escribe lo mismo."
+        }
+      }
+    },
+    {
+      "caseId": "si-como-texto",
+      "note": "«yes» no es true: sameExercise es booleano.",
+      "inputs": "colectivo",
+      "verdict": {
+        "sameExercise": "yes",
+        "reason": "Cambia sólo el sujeto."
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "sameExercise tiene que ser true o false"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "razon-vacia",
+      "note": "Sin razón no hay veredicto.",
+      "inputs": "frio",
+      "verdict": {
+        "sameExercise": false,
+        "reason": "   "
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "reason está vacío"
+        ],
+        "schemaRejects": false
+      }
+    },
+    {
+      "caseId": "razon-larga",
+      "note": "Hasta 400 caracteres.",
+      "inputs": "frio",
+      "verdict": {
+        "sameExercise": false,
+        "reason": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "el máximo es 400"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "con-puntaje",
+      "note": "Una clave de más: el objeto es cerrado.",
+      "inputs": "colectivo",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Cambia sólo el sujeto.",
+        "confidence": 0.9
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no respeta el objeto cerrado"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "falta-reason",
+      "note": "Falta una clave del objeto cerrado.",
+      "inputs": "colectivo",
+      "verdict": {
+        "sameExercise": true
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan=['reason']"
+        ],
+        "schemaRejects": true
+      }
+    },
+    {
+      "caseId": "run-dir-por-state-json",
+      "note": "Sin run_dir en las entradas: project_root + el run_id (UUID) del state.json, como lo proyecta el CLI.",
+      "inputs": "colectivo",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+      },
+      "resolution": "state.json",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+        }
+      }
+    },
+    {
+      "caseId": "run-id-ambiguo",
+      "note": "Dos state.json con el mismo runId: el gate no adivina; emit sale conservador.",
+      "inputs": "colectivo",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+      },
+      "resolution": "ambiguous",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "exactamente uno"
+        ]
+      }
+    },
+    {
+      "caseId": "run-id-inseguro",
+      "note": "Un run_id que escaparía del directorio de runs se rechaza.",
+      "inputs": "colectivo",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+      },
+      "resolution": "unsafe-run-id",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "run_id ausente o inseguro"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-run-dir",
+      "note": "Sin run_dir ni project_root no hay dónde leer: falla el gate y emit da outputUnusable.",
+      "inputs": "colectivo",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+      },
+      "resolution": "none",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "faltan run_dir"
+        ]
+      }
+    },
+    {
+      "caseId": "sin-salida-de-evaluate",
+      "note": "evaluate no dejó verdicts.json.",
+      "inputs": "colectivo",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "verdicts.json no existe"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-viejo-se-borra",
+      "note": "Un validated-verdict.json de un intento anterior no sobrevive a un gate que falla.",
+      "inputs": "colectivo",
+      "raw": "no hay veredicto",
+      "staleValidated": true,
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "no-es-json",
+      "note": "Prosa sin objeto JSON.",
+      "inputs": "colectivo",
+      "raw": "No puedo contestar.",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "lista-en-vez-de-objeto",
+      "note": "Un array no es el veredicto.",
+      "inputs": "colectivo",
+      "raw": "[1, 2]",
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "no es un objeto JSON"
+        ]
+      }
+    },
+    {
+      "caseId": "output-unusable-del-modelo",
+      "note": "{\"outputUnusable\": true} lo produce emit, nunca el modelo: el gate lo rechaza.",
+      "inputs": "colectivo",
+      "verdict": {
+        "outputUnusable": true
+      },
+      "expect": {
+        "route": "failed",
+        "errorContains": [
+          "objeto cerrado"
+        ]
+      }
+    },
+    {
+      "caseId": "validated-corrupto-antes-de-emit",
+      "note": "Si validated-verdict.json no se puede leer, emit no inventa: outputUnusable.",
+      "inputs": "colectivo",
+      "verdict": {
+        "sameExercise": true,
+        "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+      },
+      "corruptValidated": true,
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+        }
+      }
+    },
+    {
+      "caseId": "fence-json",
+      "note": "La salida en un fence ```json se acepta sin pagar otra consulta.",
+      "inputs": "colectivo",
+      "raw": "```json\n{\n  \"sameExercise\": true,\n  \"reason\": \"Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración.\"\n}\n```",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+        }
+      }
+    },
+    {
+      "caseId": "prosa-alrededor",
+      "note": "Prosa antes y una etiqueta después: se toma el objeto.",
+      "inputs": "colectivo",
+      "raw": "Esta es mi respuesta:\n{\"sameExercise\": true, \"reason\": \"Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración.\"}\nLABEL: done",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+        }
+      }
+    },
+    {
+      "caseId": "json-dentro-de-un-string",
+      "note": "El objeto serializado dentro de un string JSON se desenvuelve.",
+      "inputs": "colectivo",
+      "raw": "\"{\\\"sameExercise\\\": true, \\\"reason\\\": \\\"Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración.\\\"}\"",
+      "expect": {
+        "route": "passed",
+        "canonical": {
+          "sameExercise": true,
+          "reason": "Cambia sólo el sujeto, Carmen por She: el alumno escribe «takes» en la misma oración."
+        }
+      }
+    }
+  ]
+}
