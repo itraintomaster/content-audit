@@ -216,9 +216,10 @@ oración guardada («is» frente a «'s»). Sin listas armadas a mano.
 | `67fab6d59930102295342021` A1, Preguntas sí/no, «___ (I / am) below you?» | I / am → «Am I» | no regala: el orden cambia; si la regla propone esa pista, propone «(I / be)» |
 | `67fab6d59930102295342031` «(you / see)»; `67fab6d599301022953420ad` y `67fab6d599301022953420b1` «(that / be)»; `67fab6d5993010229534215c` «(be / rain)» | — | sin cambios: ya están en forma base |
 
-Las filas 2, 3 y 7 no tenían pista en el curso del 29/9: se la agregó la regla de arreglo de la pista que falta
+Las filas 1, 2, 3 y 7 no tenían pista en el curso del 29/9: se la agregó la regla de arreglo de la pista que falta
 ([F-PISTA-R001](#F-PISTA-R001)) en la tanda del 1/10, y en 2 y 3 la pista que agregó regalaba. Es el motivo de esta
-regla: de las 12 pistas que la tanda agregó en A1, en 7 la pista fue la respuesta misma.
+regla: de las 12 pistas que la tanda agregó en A1, en 7 la pista fue la respuesta misma, y en 6 la regalaba: «(love)»
+no, porque está en forma base.
 
 **Arreglo por regla.** Cuando lo que regala es un verbo conjugado, la regla cambia sólo la pista, en el mismo
 hueco, por su forma base —con su sujeto y su «not» si los traía—: «(is)» → «(be)»; «(I / am)» → «(I / be)»; en «We
