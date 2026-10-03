@@ -4,13 +4,17 @@ description: |
   UN ejercicio de opción múltiple como lo ve el alumno antes de contestar
   —título del tema, consigna, enunciado con su pista y las opciones en el orden
   en que se muestran, con la correcta marcada— y dice qué opciones marcadas
-  como incorrectas valen igual que la correcta, con gravedad alta, y si la
-  correcta vale y, si no, por qué (F-MCVALE-R002, R003). La clave invertida
-  —la correcta no vale— la vuelve bloqueante el clasificador de Java.
+  como incorrectas también son correctas y naturales, cada una con su gravedad
+  (alta si vale igual y es igual de esperable, media si es correcta y natural
+  pero menos esperable para el tema), y si la correcta vale y, si no, por qué
+  (F-MCVALE-R002, R003). La clave invertida —la correcta no vale— la vuelve
+  bloqueante el clasificador de Java.
 
-  Recalibración del 1/10: lo defendible pero menos natural, o lo que sólo vale
-  suponiendo un contexto que el ejercicio no da, no se lista, así que la guía
-  ya no usa la gravedad media; el esquema la sigue aceptando.
+  Criterio de José del 1/10: si una opción marcada como incorrecta también es
+  correcta y natural, el ejercicio tiene dos correctas, aunque sea menos
+  esperable. No se lista la que suena rara o forzada, la que sólo queda bien
+  inventando un contexto que el ejercicio no da ni la que descartan una regla
+  de la consigna o del título o una indicación del ítem.
 
   Deja afuera lo que difiere de la correcta sólo en la forma —mayúscula, a o
   an, singular o plural, contraída o larga—, que son reglas del paquete A; si

@@ -22,13 +22,14 @@
     "mayúscula (*am i* / *Am I*), *a* o *an*, singular o plural",
     "**antes de contestar**",
     "**funciona en la oración tal como se lee**",
-    "**es igual de natural**",
-    "**respeta lo que ve el alumno**",
-    "«Vale igual» no quiere decir igual de frecuente",
-    "No hay gravedad para lo defendible pero menos natural",
-    "**La prueba de la razón.**"
+    "**es natural**",
+    "**nada de lo que ve el alumno la descarta**",
+    "nombra el tema no descarta",
+    "`MEDIUM` — también es correcta y natural, aunque menos esperable para el",
+    "**La pregunta del criterio.**",
+    "el cartón de «a milk»"
   ],
-  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (una label que no es opción o que es la correcta, BLOCKING o LOW en una alternativa, correctIsValid sin su correctProblem), y que emit produzca choiceAlternativeVerdict o {\"outputUnusable\": true}. Las entradas manzanas a sin-entrada-de-opciones son el mapa de contenido congelado (title, instructions, exercise, options), armado como DefaultChoiceAlternativeSubjectBuilder, de ejercicios A1/A2 del curso que no están en el examen; los de «manzanas» (la clave invertida) y «verano» (HIGH) son inventados y no están en el curso. Las que llevan MEDIUM son de la guía anterior al 1/10 y sólo prueban la forma. Las cal-* son los casos inventados de la recalibración del 1/10, que no están en el curso, con la salida que grabó la guía nueva (claude-cli, modelo por omisión): los defendibles que no se listan y los que sí. El gate no juzga el contenido: documentan el criterio y prueban la forma con esas entradas.",
+  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (una label que no es opción o que es la correcta, BLOCKING o LOW en una alternativa, correctIsValid sin su correctProblem), y que emit produzca choiceAlternativeVerdict o {\"outputUnusable\": true}. Las entradas manzanas a sin-entrada-de-opciones son el mapa de contenido congelado (title, instructions, exercise, options), armado como DefaultChoiceAlternativeSubjectBuilder, de ejercicios A1/A2 del curso que no están en el examen; los de «manzanas» (la clave invertida) y «verano» (HIGH) son inventados y no están en el curso. musica y champu llevan el juicio de la guía anterior al 1/10 y sólo prueban la forma. Las cal-* son los casos inventados de las dos recalibraciones del 1/10, que no están en el curso, con la salida que grabó la guía de cada ronda (claude-cli, modelo por omisión): lo raro, lo forzado y lo que pide un contexto que no está no se lista; lo correcto y natural se lista HIGH o, si es menos esperable para el tema, MEDIUM. El gate no juzga el contenido: documentan el criterio y prueban la forma con esas entradas.",
   "inputs": {
     "manzanas": {
       "title": "$Before$ y $after$",
@@ -142,6 +143,24 @@
       "instructions": "Elige la preposición correcta.",
       "exercise": "We had lunch ___ a small café near the station.",
       "options": "- at (correcta)\n- in\n- on"
+    },
+    "cal-casa-nueva": {
+      "title": "$For$ y $since$",
+      "instructions": "Elige la opción correcta.",
+      "exercise": "We have been in this house ___ six weeks.",
+      "options": "- during\n- for (correcta)\n- since"
+    },
+    "cal-pasaje": {
+      "title": "Present perfect",
+      "instructions": "Elige la opción correcta.",
+      "exercise": "He ___ his ticket, so he can't get on the plane.",
+      "options": "- 's lost (correcta)\n- lost\n- loses"
+    },
+    "cal-autos": {
+      "title": "$Much$, $many$ y $a lot of$",
+      "instructions": "Elige la opción correcta.",
+      "exercise": "There were ___ cars on the road this morning.",
+      "options": "- a lot of (correcta)\n- many\n- much"
     }
   },
   "cases": [
@@ -1301,6 +1320,63 @@
         ],
         "correctProblem": null,
         "rationale": "«At» y «in» son ambas naturales y habituales con «a small café» para decir dónde se almorzó, sin necesidad de suponer nada extra; sólo «on» queda descartada."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-calco-forzado-no-se-lista",
+      "note": "Calibración 1/10, segunda ronda (inventado): *during six weeks* es un calco del castellano y suena forzado; *since* no va con una duración.",
+      "inputs": "cal-casa-nueva",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "Con una duración como «six weeks» y un present perfect continuo, sólo «for» es natural: «during six weeks» es un calco del castellano que suena forzado en inglés, y «since» pide un punto de inicio, no una cantidad de tiempo."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-el-titulo-solo-nombra-el-tema-media",
+      "note": "Calibración 1/10, segunda ronda (inventado): *He lost his ticket* es correcta y natural; el título «Present perfect» sólo nombra el tema, así que la hace menos esperable, no incorrecta: MEDIUM.",
+      "inputs": "cal-pasaje",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "lost",
+            "severity": "MEDIUM",
+            "reason": "«He lost his ticket, so he can't get on the plane.» es correcta y natural: el pasado simple narra el hecho y la consecuencia presente se expresa en la segunda parte. Es menos esperable sólo porque el título nombra el present perfect."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«'s lost» es la forma esperable para el tema, pero «lost» en pasado simple es igualmente gramatical y muy usada en esta misma oración, así que queda como MEDIUM; «loses» en presente simple no encaja con la consecuencia puntual."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-many-en-afirmativa-se-lista",
+      "note": "Calibración 1/10, segunda ronda (inventado): *many cars* en una afirmativa es correcta y natural, así que se lista.",
+      "inputs": "cal-autos",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "many",
+            "severity": "HIGH",
+            "reason": "«There were many cars on the road this morning.» es correcta y natural: «cars» es contable plural y «many» funciona sin problema en afirmativa, sobre todo con «there were»; es tan esperable como «a lot of» en este tema."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "«Cars» es contable plural, así que tanto «a lot of» como «many» quedan correctas y naturales en la afirmativa; nada en la consigna ni en el enunciado descarta «many». Sólo «much» queda afuera por ir con incontables."
       },
       "expect": {
         "route": "passed",
