@@ -498,6 +498,29 @@ def validate_scripts(fixture: dict[str, Any]) -> None:
             "a coded violation without text passed the gate",
         )
 
+        # Sometimes the filler key has no JSON value at all ("status_": undefined). The
+        # gate reads it as null and drops the key; the word inside a text stays.
+        undefined = sample_pass_verdict(quiz["id"])
+        undefined["checkedConstraints"][0]["evidence"] = "dice undefined adentro del texto"
+        raw = json.dumps(undefined, ensure_ascii=False, indent=2).replace(
+            '"status": "passed",', '"status": "passed",\n      "status_": undefined,', 1
+        )
+        verdict_path.write_text(raw, encoding="utf-8")
+        gate_output = run_script(
+            AGENT_DIR / "scripts" / "gate_verdict.sh", state
+        )
+        require(
+            gate_output.get("route") == "passed",
+            "a filler key with undefined failed the gate",
+        )
+        canonical = load_json(run_dir / "validated-verdict.json")
+        validate_verdict(canonical, quiz["id"])
+        require(
+            canonical["checkedConstraints"][0]["evidence"]
+            == "dice undefined adentro del texto",
+            "the gate touched undefined inside a text",
+        )
+
         malformed = sample_pass_verdict(quiz["id"])
         malformed["unexpected"] = True
         verdict_path.write_text(
@@ -656,7 +679,7 @@ def main() -> int:
         validate_scripts(fixture)
         print(
             "scripts: OK (state.json UUID resolution, ambiguity rejection, "
-            "gate pass/fail, empty extra keys dropped, dangling commas read, filler dropped, "
+            "gate pass/fail, empty extra keys dropped, dangling commas and undefined read, filler dropped, "
             "emit fallback)"
         )
 
