@@ -227,6 +227,34 @@ def is_empty(value):
     return isinstance(value, (list, dict)) and not value
 
 
+NOTHING = ("NONE", "N/A", "NA", "NULL")
+
+
+def says_nothing(value):
+    """Vacío, una marca de «nada» (NONE) o un número suelto."""
+    if is_empty(value):
+        return True
+    if isinstance(value, str):
+        return value.strip().upper() in NOTHING
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
+def is_placeholder(item, texts):
+    """Un elemento de relleno: sin ningún texto en `texts` y con el resto sin
+    decir nada.
+
+    A veces el juez, sin nada que listar, deja en la lista un elemento así
+    ({"code": "NONE", "constraint": "", …}) en vez de dejarla vacía. No dice
+    nada: se descarta. Un elemento con algún texto sigue pasando por todas las
+    validaciones.
+    """
+    return (
+        isinstance(item, dict)
+        and all(is_empty(item.get(key)) for key in texts)
+        and all(says_nothing(value) for key, value in item.items() if key not in texts)
+    )
+
+
 def drop_empty_extras(item, allowed):
     """Descarta las claves de más que vienen vacías.
 
@@ -301,6 +329,10 @@ if not isinstance(violations, list):
     fail("violations debe ser array")
 VIOLATION_KEYS = {"code", "constraint", "evidence", "explanation"}
 violations = [drop_empty_extras(item, VIOLATION_KEYS) for item in violations]
+violations = [
+    item for item in violations
+    if not is_placeholder(item, ("constraint", "evidence", "explanation"))
+]
 for index, item in enumerate(violations):
     if not isinstance(item, dict) or set(item) != VIOLATION_KEYS:
         fail("violations[%d] no respeta el objeto cerrado" % index)

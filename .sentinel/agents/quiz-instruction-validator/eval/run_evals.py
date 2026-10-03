@@ -465,6 +465,39 @@ def validate_scripts(fixture: dict[str, Any]) -> None:
             "the gate touched a comma inside a text",
         )
 
+        # An approving judge sometimes fills the list with an empty element instead of
+        # leaving it empty ({"code": "NONE", "constraint": "", …}). It says nothing: the
+        # gate drops it and the verdict passes with violations empty.
+        filler = sample_pass_verdict(quiz["id"])
+        filler["violations"] = [
+            {"code": "NONE", "constraint": "", "evidence": "", "explanation": ""}
+        ]
+        verdict_path.write_text(json.dumps(filler, ensure_ascii=False), encoding="utf-8")
+        gate_output = run_script(
+            AGENT_DIR / "scripts" / "gate_verdict.sh", state
+        )
+        require(
+            gate_output.get("route") == "passed",
+            "an empty filler violation failed the gate",
+        )
+        canonical = load_json(run_dir / "validated-verdict.json")
+        validate_verdict(canonical, quiz["id"])
+        require(canonical["violations"] == [], "the filler violation was kept")
+
+        # A violation with a real code but no text is not filler: it still fails.
+        coded = sample_pass_verdict(quiz["id"])
+        coded["violations"] = [
+            {"code": "WRONG_FORM", "constraint": "", "evidence": "", "explanation": ""}
+        ]
+        verdict_path.write_text(json.dumps(coded, ensure_ascii=False), encoding="utf-8")
+        gate_output = run_script(
+            AGENT_DIR / "scripts" / "gate_verdict.sh", state
+        )
+        require(
+            gate_output.get("route") == "failed",
+            "a coded violation without text passed the gate",
+        )
+
         malformed = sample_pass_verdict(quiz["id"])
         malformed["unexpected"] = True
         verdict_path.write_text(
@@ -623,7 +656,7 @@ def main() -> int:
         validate_scripts(fixture)
         print(
             "scripts: OK (state.json UUID resolution, ambiguity rejection, "
-            "gate pass/fail, empty extra keys dropped, dangling commas read, "
+            "gate pass/fail, empty extra keys dropped, dangling commas read, filler dropped, "
             "emit fallback)"
         )
 
