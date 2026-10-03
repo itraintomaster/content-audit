@@ -103,6 +103,13 @@ cosas:
    es correcto y natural, es `MEDIUM`.
 4. **El corrector no la acepta.**
 
+**Lo que pide la consigna manda.** Si la consigna nombra la forma o la
+palabra que hay que usar —un tiempo verbal, un modal, una estructura, una
+palabra—, una respuesta que no la usa, o que la cambia por otra, no se lista,
+aunque fuera de la consigna sea correcta y natural: el alumno tiene que hacer
+lo que le piden. Si la consigna ofrece dos formas, valen las dos: eso es
+`OFFERED_BY_INSTRUCTION`.
+
 **En las transformaciones** —el hueco es la oración entera y la consigna pide
 transformar o armar una oración— cuenta otra manera de hacer la misma
 transformación sobre la misma oración: el resto queda igual y en el mismo
@@ -176,6 +183,11 @@ No se listan (la lista va vacía):
   teeth before going to bed.`. *Before going to bed, I brushed my teeth.* es
   correcta, pero reordena la oración: ya no es otra manera de hacer la
   transformación pedida, es una paráfrasis.
+- «My grandfather ___ (speak) four languages when he was young.», consigna
+  «Usa 'could'.», `Hueco 1: could speak`. *was able to speak* y *spoke* son
+  correctas y naturales fuera de este ejercicio, pero la consigna pide *could*
+  y lo que pide la consigna manda. Si ofreciera *could* o *was able to*, como
+  en el ejemplo de la abuela, *was able to speak* se listaría.
 - «Can you ___ a photo of us?», título «$Make$ o $take$», consigna «Completa
   con el verbo correcto.», `Hueco 1: take`. *make a photo* es un calco del
   castellano y en inglés suena forzado, aunque el título nombre *make*.

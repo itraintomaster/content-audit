@@ -27,7 +27,8 @@
     "**Nada de lo que ve el alumno la descarta.**",
     "título que sólo nombra el tema no descarta",
     "**En las transformaciones**",
-    "`MEDIUM` — el corrector rechaza otra respuesta correcta y natural, aunque"
+    "`MEDIUM` — el corrector rechaza otra respuesta correcta y natural, aunque",
+    "**Lo que pide la consigna manda.**"
   ],
   "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (gap fuera de los huecos de acceptedAnswers, respuesta repetida, LOW), y que emit produzca singleAnswerVerdict o {\"outputUnusable\": true}. Las entradas gente, conmigo y almuerzo son los ejemplos de la guía anterior al 1/10 y sólo prueban la forma. Las cal-* son los casos inventados de las recalibraciones del 1/10 y del 3/10, que no están en el curso, con la salida que grabó la guía de cada ronda (claude-cli, modelo por omisión): lo correcto y natural se lista, MEDIUM si es menos esperable; lo raro, lo forzado, lo que descarta una regla y la paráfrasis libre no. El gate no juzga el contenido: documentan el criterio y prueban la forma con esas entradas.",
   "inputs": {
@@ -137,6 +138,24 @@
       "instructions": "Completa con la preposición correcta.",
       "exercise": "She's very interested ___ modern art.",
       "acceptedAnswers": "Hueco 1: in"
+    },
+    "cal-recreo": {
+      "title": "$Used to$",
+      "instructions": "Usa 'used to'.",
+      "exercise": "When we were kids, we ___ (play) in the park after school.",
+      "acceptedAnswers": "Hueco 1: used to play"
+    },
+    "cal-tia": {
+      "title": "Present perfect y past simple",
+      "instructions": "Escribe el verbo en 'present perfect'.",
+      "exercise": "She ___ (visit) her aunt twice this year.",
+      "acceptedAnswers": "Hueco 1: has visited | 's visited"
+    },
+    "cal-cena-present-simple": {
+      "title": "Present simple",
+      "instructions": "Completa con el 'present simple'.",
+      "exercise": "We usually ___ dinner at eight.",
+      "acceptedAnswers": "Hueco 1: have"
     }
   },
   "cases": [
@@ -1396,6 +1415,60 @@
       "verdict": {
         "alternatives": [],
         "rationale": "«Interested» va con «in» en este uso; «interested by» sólo funciona con un agente que despierta el interés y aquí suena forzado, así que no hay otra preposición natural."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-la-consigna-nombra-la-forma-no-se-lista",
+      "note": "Calibración 3/10, segunda vuelta (inventado): la consigna pide *used to*; *played* o *would play* son correctas fuera del ejercicio, pero lo que pide la consigna manda: no se listan.",
+      "inputs": "cal-recreo",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "La consigna pide explícitamente 'used to', así que alternativas como «played» o «would play», correctas fuera del ejercicio, no se listan; con 'used to' y el verbo dado sólo queda «used to play»."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-la-consigna-nombra-el-tiempo-no-se-lista",
+      "note": "Calibración 3/10, segunda vuelta (inventado): la consigna pide el present perfect; *visited* en past simple no se lista.",
+      "inputs": "cal-tia",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "La consigna fija el tiempo ('present perfect') y la pista fija el verbo (visit), con sujeto en tercera persona del singular: sólo queda «has visited», cuya forma contraída el corrector ya acepta."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-la-consigna-nombra-el-tiempo-y-se-lista",
+      "note": "Calibración 3/10, segunda vuelta (inventado): la consigna pide el present simple y el hueco no tiene pista de verbo; *eat* y *cook* usan la forma pedida y también valen: se listan.",
+      "inputs": "cal-cena-present-simple",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "eat",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "BLOCKING",
+            "reason": "«We usually eat dinner at eight.» es tan natural y tan esperable como «have dinner»; el hueco no tiene pista de verbo, así que el alumno no tiene cómo saber que el corrector quiere «have»."
+          },
+          {
+            "answer": "cook",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«We usually cook dinner at eight.» es correcta y natural en present simple; es algo menos esperable que «have/eat» porque habla de preparar la comida y no de cenar."
+          }
+        ],
+        "rationale": "El hueco no da ninguna pista de verbo y «dinner» admite varios colocados habituales: «eat» es tan esperable como «have», y «cook» también es natural, así que la respuesta única del corrector deja al alumno adivinando."
       },
       "expect": {
         "route": "passed",
