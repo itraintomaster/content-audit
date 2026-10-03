@@ -13,8 +13,8 @@ Current state, last action, next step. Newest entries on top.
   (…3da4) ya no sale, el tokenizador lee sleep como verbo en la oración guardada. Salieron los 167 / 139 del prototipo
   y la frase «Es el número del prototipo…»; sumé una cláusula que une las cuentas (de los 4 de B1 y B2, 1 por regla y
   3 falsas). `requirement validate` y `feature validate` en exit 0.
-  Ojo, sin tocar por pedido: el detalle de R007 dice «de las 12 pistas que la tanda agregó en A1, en 7 la pista fue la
-  respuesta misma»; por la tabla de la propia regla son 6 (is y los 5 adverbios; «(I / am)» no regala: cambia el orden).
+  Cómo se cuentan: de las 12 pistas que la tanda agregó en A1, en 7 la pista es la respuesta misma (love, is y los 5
+  adverbios) y en 6 la regala («(love)» no, porque está en forma base). El detalle de R007 ya lo dice así.
 
 2026-10-03 — developer (pista que regala) — R007 encendida en hintcoherence: 5 archivos de main, ni pruebas ni contratos tocados.
   Lector (GapHint + gapHints + acceptedAnswers; read() da lo mismo), chequeo (checkGiveaway; issue() manda a la mesa todo lo que
