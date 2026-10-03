@@ -14,14 +14,20 @@ import javax.annotation.processing.Generated;
  * near-duplicates}.
  *
  * <ul>
- *   <li>R002 inv. 2: two candidates say the same when the cosine of their vectors reaches 0.95
- *       (José, 30/9: DOUBT-DUPAR-UMBRAL A).</li>
+ *   <li>R009 inv. 1: with Ollama, the vectors only choose the candidates the pair judge is asked
+ *       about, from a cosine of 0.80: no similarity marks a pair by itself.</li>
  *   <li>The vector of an exercise is the one nomic-embed-text gives its finished exercise with the
  *       task prefix «clustering: », the one the prototype measured with. The prefix names the
  *       method: «clustering-1» for that one and, for any other, its name with the first 8 hex of
  *       its SHA-256, so other vectors are another examined version with an exam of its own
- *       (R007).</li>
- *   <li>R008 inv. 1: without Ollama, claude -p is asked only about the candidates whose finished
+ *       (R007). {@link #methodId()} names only that: it is the version the vectors are recorded
+ *       under in the ledger, so it does not change with the threshold nor with the judge
+ *       (F-MLOCAL-R002 inv. 2).</li>
+ *   <li>R010: each route is a version that takes its own exam, named by its pieces -- with Ollama
+ *       {@link #vectorRouteMethodId}, the method, the candidate similarity and the judge; without
+ *       it {@link #wordRouteVersion}, the word similarity and the judge --, so changing any piece
+ *       is another version.</li>
+ *   <li>R008 inv. 1: without Ollama, the judge is asked only about the candidates whose finished
  *       exercises keep at least 0.6 of their words (DOUBT-DUPAR-PARECIDO-TEXTO, A as
  *       designed).</li>
  * </ul>
@@ -37,24 +43,35 @@ class DefaultNearDuplicatesConfig implements NearDuplicatesConfig {
 
     static final String CLUSTERING_METHOD = "clustering-1";
 
-    static final double SIMILARITY_THRESHOLD = 0.95;
+    /** R009 inv. 1: the cosine from which a pair is a candidate of the judge (DOUBT-DUPAR-UMBRAL-CANDIDATOS, A). */
+    static final double CANDIDATE_SIMILARITY = 0.80;
 
     static final double CANDIDATE_WORD_SIMILARITY = 0.6;
 
+    /** Between the pieces of a version: «clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d». */
+    private static final String PIECE_SEPARATOR = " · ";
+
+    /** How many characters of the version of the judge name it in the version of a route. */
+    private static final int JUDGE_VERSION_LENGTH = 12;
+
+    private static final String JUDGE_PIECE = "juez-";
+
+    private static final String NO_JUDGE_VERSION = "juez-sin-versión";
+
     private final String inputPrefix;
 
-    private final double similarityThreshold;
+    private final double candidateSimilarity;
 
     private final double candidateWordSimilarity;
 
     public DefaultNearDuplicatesConfig() {
-        this(CLUSTERING_PREFIX, SIMILARITY_THRESHOLD, CANDIDATE_WORD_SIMILARITY);
+        this(CLUSTERING_PREFIX, CANDIDATE_SIMILARITY, CANDIDATE_WORD_SIMILARITY);
     }
 
     /** Another prefix or other thresholds, as a test or a calibration asks. */
-    DefaultNearDuplicatesConfig(String inputPrefix, double similarityThreshold, double candidateWordSimilarity) {
+    DefaultNearDuplicatesConfig(String inputPrefix, double candidateSimilarity, double candidateWordSimilarity) {
         this.inputPrefix = inputPrefix != null ? inputPrefix : "";
-        this.similarityThreshold = similarityThreshold;
+        this.candidateSimilarity = candidateSimilarity;
         this.candidateWordSimilarity = candidateWordSimilarity;
     }
 
@@ -73,8 +90,8 @@ class DefaultNearDuplicatesConfig implements NearDuplicatesConfig {
     }
 
     @Override
-    public double similarityThreshold() {
-        return similarityThreshold;
+    public double candidateSimilarity() {
+        return candidateSimilarity;
     }
 
     @Override
@@ -82,15 +99,45 @@ class DefaultNearDuplicatesConfig implements NearDuplicatesConfig {
         return candidateWordSimilarity;
     }
 
-    /** What config analyzer near-duplicates shows: the method, its prefix and the two thresholds. */
+    /**
+     * R010: the version with Ollama, without the name of the tool ({@code LocalToolGate} puts it in
+     * front): the method of the vectors, the candidate similarity and the judge,
+     * «clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d».
+     */
+    @Override
+    public String vectorRouteMethodId(String judgeVersion) {
+        return methodId() + PIECE_SEPARATOR + "candidatos-" + withComma(candidateSimilarity) + PIECE_SEPARATOR
+                + judgePiece(judgeVersion);
+    }
+
+    /** R007: the version without Ollama, the word similarity and the judge, «palabras-0,60 · juez-c3a9e1f07b5d». */
+    @Override
+    public String wordRouteVersion(String judgeVersion) {
+        return "palabras-" + withComma(candidateWordSimilarity) + PIECE_SEPARATOR + judgePiece(judgeVersion);
+    }
+
+    /** What config analyzer near-duplicates shows: the method, its prefix and the two thresholds of candidates. */
     @Override
     public Map<String, Object> describe() {
         Map<String, Object> description = new LinkedHashMap<>();
         description.put("methodId", methodId());
         description.put("inputPrefix", inputPrefix);
-        description.put("similarityThreshold", similarityThreshold);
+        description.put("candidateSimilarity", candidateSimilarity);
         description.put("candidateWordSimilarity", candidateWordSimilarity);
         return description;
+    }
+
+    /** The first 12 characters of the version of the judge, or the piece that says it has none. */
+    private static String judgePiece(String judgeVersion) {
+        if (judgeVersion == null || judgeVersion.isBlank()) {
+            return NO_JUDGE_VERSION;
+        }
+        return JUDGE_PIECE + judgeVersion.substring(0, Math.min(JUDGE_VERSION_LENGTH, judgeVersion.length()));
+    }
+
+    /** Two decimals and a comma, as the report reads them: 0.8 is «0,80». */
+    private static String withComma(double value) {
+        return String.format(Locale.ROOT, "%.2f", value).replace('.', ',');
     }
 
     private static String sha256(String text) {

@@ -5,6 +5,72 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — analyst — Precisa las trazas de dos pruebas del qa-tester (pedido del coordinador): R010 suma la inv. 3
+  (si el juez de pares no enuncia su versión, la de Ollama no se nombra ni rinde, no se consulta ni a nomic-embed-text
+  ni a claude -p, y near-duplicates queda sin evaluar, comodín incluido, con el motivo del juez); R009 inv. 3 dice que
+  comodín y vectores corren en todos los temas de la corrida aunque haya un conjunto declarado para el juez, que sólo
+  elige qué pares se le vuelven a preguntar a claude -p.
+  why: «juez sin versión» (R010) y «vectores con conjunto declarado» (R009 inv. 3) trazaban a algo que la regla no
+  decía literalmente.
+
+2026-10-03 — qa-tester — El reuso de vectores entre versiones del paso traza a F-MLOCAL-R002 inv. 2, no a R010 inv. 2,
+  que habla sólo de lo que contestó el juez; va en un parche aparte de FEAT-MLOCAL (propose rechaza otro feature).
+  why: forzar R010 sería la regla «más cercana»; si se quiere en DUPAR, el analista suma una invariante a R010.
+2026-10-03 — qa-tester — La versión sin Ollama («palabras-0,60 · juez-…») traza a R007, que la nombra; R010 nombra sólo
+  la de Ollama. «Todo sin evaluar sin examen aprobado» pasa de R007 a R010: la de tres piezas no hereda el del 30/9.
+2026-10-03 — qa-tester — Un sí del juez con Ollama, bajo R002 (condición 2); el no de «That car is his.», 0,97, bajo R009
+  (el parecido solo no marca). El comodín gana sin preguntarle al juez, bajo R004, que lo dice. Juez sin versión y
+  PairStepEvaluator, bajo R010. Los vectores con conjunto declarado, bajo R009 inv. 3 («corren siempre»).
+2026-10-03 — qa-tester — Se quedan con su nombre y el cuerpo a reescribir: el grupo de n de «Could I» (R003, ahora con
+  veredicto del juez) y el examen dos veces sin consultas (R007). Ninguna prueba depende del id same-meaning de la ficha
+  de IAuditEngineTest: las dos de F-RONDA2-R003 sólo necesitan una regla de modelo local.
+
+2026-10-01 — architect — v3, el paso por pares: PairStepEvaluator (interno) envuelve al juez de pares en las dos rutas
+  y, con Ollama, a los vectores: mismo evaluatorId que el envuelto; enuncia la versión de la ruta si el envuelto enuncia
+  la suya. Con Ollama, dos sesiones (vectores sin tope aunque haya --budget; juez con la política de la corrida) en un
+  solo JudgeSessions, vectores primero y juez último.
+  why: el freno del runtime y el examen (ExamScopedEvaluationLedger fija la versión) miran la versión de cada evaluador;
+  el libro identifica por id + huella, así lo que contestó el juez se reusa entre rutas (R010 inv. 2).
+2026-10-01 — architect — Distinto del pedido del coordinador: methodId() sigue siendo sólo «clustering-1»; umbral y juez
+  van en vectorRouteMethodId(judgeVersion), y los vectores se guardan con la versión de los vectores solos. Sin Ollama el
+  juez también va envuelto, bajo wordRouteVersion «palabras-0,60 · juez-…».
+  why: cambiar el umbral o el juez no recalcula vectores (F-MLOCAL-R002 inv. 2) y sirven los de la v2; R007 nombra la
+  versión sin Ollama «parecido de palabras y juez», y con el juez pelado cambiar el 0,6 no obligaba a rendir.
+2026-10-01 — architect — La cobertura se pide con la sesión del juez sola; los modos del plan son del juez (vectores
+  siempre «reusar o calcular»); en EXAM sólo los pares cuya copia está en el archivo, y los de afuera ni cuentan.
+  why: DefaultJudgeRuntime.coverage suma lo pendiente de todas las sesiones y mide el ritmo con todos los evaluatorIds;
+  con los vectores (~4.600 en un minuto) diría minutos en vez de 8,3 h para 1.468 pares.
+
+2026-10-01 — analyst — Ajuste del coordinador (verificado en el código): la ficha conserva una regla de modelo local.
+  R006: tres reglas, `same-but-wildcard` (instantáneo), `similar-candidates` (modelo local: con Ollama propone los pares
+  desde 0,80 y nunca marca solo) y `same-exercise` (modelo pago); `same-meaning` sale porque cambió lo que hace. R004:
+  la regla de modelo local no da hallazgos. Reemplaza la entrada de «dos reglas» de más abajo: F-RONDA2-R003 queda igual.
+  why: la corrida base deja afuera a un analizador con modelo sólo si su ficha tiene una regla de modelo local, y es la
+  verdad: los vectores eligen qué se le pregunta al juez.
+2026-10-01 — analyst — Ajuste del coordinador: el filtro del examen vale para las dos versiones. Pasa de R009 (sale su
+  inv. 5) a R007, como invariante del examen de cualquier versión. El 699 sin Ollama queda como costo sin el filtro y sin
+  recontar con las reglas de producción. Reemplaza la entrada «sólo de la versión con Ollama» de más abajo.
+
+2026-10-01 — analyst — v3, el paso por pares (diseño del orquestador, con números): el parecido ya no marca. Con Ollama,
+  candidatos = pares de R001 que el comodín no resuelve con coseno ≥ 0,80 (nomic-embed-text, «clustering: »); los decide
+  claude -p con `near-duplicates-pair-judge`, el mismo juez y la misma pregunta que sin Ollama (R008, palabras ≥ 0,6).
+  Comodín y vectores siempre y sin tope; `--budget near-duplicates=N` sólo para claude -p. Examen: sólo los pares cuya
+  copia está en su archivo (≤ 255 consultas, no 978).
+  why: nomic-embed-text ≥ 0,95 reprobó (20 de 40 no marcados de 0,90–0,95 eran el mismo ejercicio); llama3:8b no separa
+  pares (dijo sí a 50 de 50, AUC 0,49–0,67); claude -p con la guía, 23 de 24 inventados.
+2026-10-01 — analyst — R002 pasa a ASSUMPTION (cambia lo validado el 30/9); R004 sigue VALIDATED (sólo sale el costo
+  *modelo local*). Ficha (R006): dos reglas, el comodín instantáneo y el juez modelo pago; sale `same-meaning`.
+  why: sin regla de modelo local, F-RONDA2-R003 dejaría entrar a near-duplicates en la corrida base, contra
+  F-MLOCAL-R004 (José, 30/9). Queda escrito en R006 y en el informe al coordinador; FEAT-RONDA2 no se tocó. Lo mismo con
+  F-RONDA2-R002 («--budget limita la ruta que toque»): con Ollama, el tope es sólo de claude -p (R009, detalle).
+2026-10-01 — analyst — J001: las dos salidas nuevas con Ollama (el juez dice que no; sin tope) van al final, y la segunda
+  pasa de «0,95» a «0,80 y el juez dice que sí» (nodo marca_juez): los caminos 1, 3, 4 y 5 conservan su número.
+2026-10-01 — analyst — El filtro del examen (R009 inv. 5) es sólo de la versión con Ollama, como lo pidió el orquestador;
+  la de sin Ollama sigue rindiendo 699. Si vale para las dos, es una invariante más en R008.
+2026-10-01 — analyst — Los ejemplos de «el mismo ejercicio» (R002) son los inventados de la guía y los del 077 en
+  escribir/; ninguno sale de la zona de la muestra ciega ni se leyó nada de content-audit-corridas ni de examinar/.
+  why: el examen lo rinde otro equipo a ciegas.
+
 2026-10-01 — developer (paquete B) — El comodín ampliado del prototipo, todavía sin adoptar. E1: un nombre (PROPN y con
   mayúscula) vale lo mismo que otro, salvo si la respuesta es un artículo o «-» (ahí el nombre es lo que se pregunta);
   por un pronombre, sólo como sujeto. E2: el sujeto del principio de cada oración (un pronombre, o determinantes y

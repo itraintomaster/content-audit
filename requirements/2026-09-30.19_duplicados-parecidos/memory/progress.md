@@ -4,6 +4,87 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-03 — coordinador — v3 cerrada en `ronda2/duplicados-por-par`, sin push: suite 3.122 tests, 0 fallas, 1
+  salteado; `sentinel verify` OK; la guardia del examen pasa (el corpus en vivo del juez cambió tres pares que coincidían
+  con ejercicios del examen del 077). Punta a punta con la CLI real (`exam run near-duplicates` sobre un mini-curso
+  inventado, workdir aparte con la definición del juez copiada): versión «nomic-embed-text@0a109f422b47 · clustering-1 ·
+  candidatos-0,80 · juez-bbba37bd5fae»; «She works in a hospital.» copia de «Laura works…» (same-exercise, parecido
+  0,91) y «She works at night.» no. Consultas pagas en total: 29 de 30, todas sobre pares inventados.
+  Ojo: con `--workdir`, la CLI busca los agentes en `<workdir>/.sentinel/agents`; sin la definición, el juez no tiene
+  versión y no se consulta nada (R010 inv. 3).
+  Next: José decide las dudas abiertas (umbral, excepción a MLOCAL, muestra nueva); rendir el examen con Ollama
+  (muestra ciega del paquete B + escribir/ + examinar/; `exam run` sin `--budget` da la cuenta exacta gratis).
+
+2026-10-03 — developer — v3 implementada, sólo cuerpos y `Main`: DefaultNearDuplicatesConfig (0,80 y las dos versiones por
+  piezas), PairStepEvaluator, el proveedor (con Ollama dos `open`, vectores sin tope y juez con la política tal cual, y una
+  sola JudgeSessions; sin Ollama el juez envuelto bajo wordRouteVersion; la ficha con las tres reglas), el analizador (dos
+  tandas, candidatos por coseno, filtro del examen, cobertura con la sesión del juez sola) y `Main` con
+  near-duplicates-pair-judge. `sentinel verify` OK. Compila `-pl audit-domain,audit-cli -am`. Las 53 pruebas de
+  nearduplicates verdes (J001, config, pair-step, embedding, proveedor y analizador); audit-domain 1159, audit-application
+  169 y audit-cli 523 verdes. Elecciones que no dice el parche: (1) el motivo del juez cuenta como «quedan N pares sin
+  juzgar» los pares sin respuesta, los que fallaron y los ilegibles, la misma cuenta que el costo pendiente de la
+  cobertura, y «falló la consulta de N pares» / los ilegibles llevan ese cierre; (2) los vectores se piden con las
+  consultas a la vez de la política que decidió la compuerta (la de la corrida o, sin pedido, una: B-06), no con las del
+  juez; (3) con Ollama y sin versión del juez la fila lleva el motivo del juez, no el de la compuerta; (4) en un examen,
+  los temas de la cobertura son los planeados que tienen algún ejercicio del archivo.
+  Next: `AgentDefinitionsExamGuardIntegrationTest` (quiz-instruction-infrastructure) falla por
+  `.sentinel/agents/near-duplicates-pair-judge/eval/pares-inventados.json`, con textos que sólo están en ejercicios del
+  examen (viene del commit del agente, no de este cambio); y rendir los dos exámenes.
+
+2026-10-03 — test-writer — Cuerpos escritos: NearDuplicatesAnalyzerTest (los 18 stubs y los dos que se reescriben, el
+  grupo de «Could I» y el examen dos veces), NearDuplicatesAnalyzerProviderTest (4) y FDuparJ001JourneyTest (caminos 2,
+  6 y 7). El camino 5 cambió de fixture: «Have you heard…» a 0,94 ahora es candidato del juez, así que «ningún par
+  cumple las condiciones» usa «I am sorry.» / «I am hot.» (0,71). `World` con las dos versiones nuevas
+  (WITH_OLLAMA_EXAMINED, WITHOUT_OLLAMA_EXAMINED; NOMIC_EXAMINED queda como la de los vectores solos), `Timeline`, un
+  juez sin versión (`withNomicAndAJudgeWithoutVersion`) y `turned(ollama)` (mismo libro, exámenes y juez). Todo el
+  paquete nearduplicates, 62 de 62 verdes, con la producción de ese momento (corrida aparte, sin Maven).
+  Next: el comando de Maven con el módulo entero y `sentinel verify`; la prueba de «la respuesta del juez no sirve»
+  pide sólo la cuenta («1 par»), no el texto del motivo.
+
+2026-10-03 — test-writer — Cuerpos escritos: DefaultNearDuplicatesConfigTest (4), SentenceEmbeddingEvaluatorTest (2,
+  una de F-MLOCAL-R002), PairStepEvaluatorTest (3) y la ficha de IAuditEngineTest (`same-meaning` → `similar-candidates`,
+  con el texto de R006). Dependen de helpers de NearDuplicatesAnalyzerTest (RecordedNomic, Ledger, Exams, Judges, COOKED,
+  renderer(), washForYou(), wash()): si el otro test-writer los renombra, se rompen. Verificadas, 45 verdes, en una copia
+  fuera del repo con la producción del desarrollador de ese momento; en el repo todavía no compila el módulo.
+  Next: el desarrollador termina el analizador y el proveedor; correr el comando de las cuatro clases con el módulo
+  entero. La ficha de near-duplicates de DefaultAuditRunnerTest (audit-application) también pasó a `similar-candidates`
+  (pedido del coordinador), y `shouldNotRejectARunThatAsksForNearduplicatesByNameWithoutOllama…` (línea ~1698) ya no
+  espera «v1» sino «palabras-0,60 · juez-» + la versión del juez (R007: la versión sin Ollama es la de la ruta, no la del
+  juez solo). 36 de 36 verdes en la copia aparte, con la producción de ese momento.
+
+2026-10-03 — qa-tester — Pruebas de la v3 propuestas, sin aplicar: `patch propose --replace` en esta carpeta (14 bajas
+  y 29 altas, sólo handwrittenTests en 5 implementaciones) y `patch validate` exit 0; en la carpeta de FEAT-MLOCAL, otro
+  parche con 2 altas de F-MLOCAL-R002 (reuso de vectores), validate exit 0. R009 (8) y R010 (9) quedan cubiertas; J001
+  no se declara: ya tiene testModule/testPackage y `generate` ya puso los caminos 6 y 7.
+  Next: aplicar los dos parches; el test-writer borra los 14 métodos viejos antes de `generate` (7 stubs nuevos de
+  NearDuplicatesAnalyzerTest pueden saltearse por el @Tag repetido); reescribe el grupo «Could I» (R003), el examen dos
+  veces (R007), el camino 2 de J001, los World con las versiones nuevas y la ficha de IAuditEngineTest (similar-candidates).
+
+2026-10-01 — architect — Parche v3 (el paso por pares) propuesto, sin aplicar: `patch propose --replace` (1 alta, 6
+  cambios, 0 bajas, 0 conflictos), `patch validate` exit 0 y TECH_SPEC.md reescrito con 8 fragmentos (`tech-spec write
+  --replace`: todos subconjunto del parche). Alta PairStepEvaluator; NearDuplicatesConfig pierde similarityThreshold y
+  suma candidateSimilarity, vectorRouteMethodId y wordRouteVersion; descripciones de condición, diagnóstico, proveedor,
+  analizador y paquete.
+  Next: coordinador/José revisan las dos diferencias con el pedido (decisions); aplicar y `generate`; @qa-tester
+  re-declara las pruebas del 0,95, same-meaning y la ruta con Ollama, y suma R009, R010 y el filtro del examen, en un
+  parche sólo de pruebas; @developer: Main con near-duplicates-pair-judge y los cuerpos; rendir los dos exámenes.
+
+2026-10-01 — analyst — Dos ajustes del coordinador a la v3: R006 con tres reglas (vuelve una de modelo local,
+  `similar-candidates`, que sólo propone; F-RONDA2-R003 queda igual) y R004 al día; el filtro del examen pasa de R009 a
+  R007 y vale con Ollama y sin él. `requirement validate` [OK].
+  Next: José contesta las tres dudas; @architect ajusta parche y TECH_SPEC (tres reglas en la ficha, un juez para las
+  dos rutas, filtro del examen en las dos); `feature sync` de FEAT-DUPAR y FEAT-MLOCAL; @qa-tester rehace F-DUPAR-J001.
+
+2026-10-01 — analyst — REQUIREMENT v3, el paso por pares: R002 reescrita (ASSUMPTION); R004 a R008, J001, TL;DR,
+  recorrido y contexto al día; R009 (con Ollama, los vectores sólo proponen desde 0,80 y claude -p decide; comodín y
+  vectores sin tope; sin tope o sin respuesta, a medias; el examen juzga sólo las copias de su archivo) y R010 (la
+  versión con Ollama nombra vectores, umbral y juez, y rinde un examen) nuevas. Tres dudas OPEN con A aplicada
+  (UMBRAL-CANDIDATOS, MLOCAL-EXCEPCION, MUESTRA-NUEVA); DOUBT-DUPAR-UMBRAL queda RESOLVED como historia. En FEAT-MLOCAL,
+  la excepción (R001 inv. 2, R007 inv. 1). `requirement validate` [OK] en las dos carpetas.
+  Next: José contesta las tres dudas; @architect ajusta parche y TECH_SPEC (un juez para las dos rutas, candidatos por
+  coseno, filtro del examen, versión de tres piezas) y lleva al coordinador F-RONDA2-R002 y R003 (ver decisions);
+  `feature sync` de FEAT-DUPAR y FEAT-MLOCAL; @qa-tester rehace F-DUPAR-J001 (cambia el camino 2; 6 y 7 son nuevos).
+
 2026-10-01 — developer (paquete B) — Prototipo del comodín ampliado, sin examen (lo decide José): en `~/projects/learney/content-audit-corridas/2026-10-01-examen-idioma/prototipo-comodin-ampliado/`
   (el diff contra DefaultNearDuplicateRules, el corredor y lo medido). Sin extensiones reproduce la corrida del examen
   (11.287 de 11.287). Con las cuatro, sobre el curso: de 24.813 pares candidatos, 75 nuevos (hoy el comodín agarra 25;

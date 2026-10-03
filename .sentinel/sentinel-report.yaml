@@ -1,10 +1,10 @@
-generatedAt: 2026-10-01T14:26:39.052577Z
+generatedAt: 2026-10-03T19:59:16.146740Z
 system: ContentAudit
 version: 0.0.1
 features:
 - id: FEAT-DUPEX
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.07_duplicados-exactos/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.07_duplicados-exactos/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DUPEX-R001
     state: PASSING
@@ -187,7 +187,7 @@ features:
     verdict: PASSED
 - id: FEAT-DLABS
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
+  requirementFile: requirements/2026-04-04.01_typed-diagnostics-lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DLABS-R001
     state: PASSING
@@ -437,7 +437,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVCTX
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-09.01_revise-correction-context-override/REQUIREMENT.md
+  requirementFile: requirements/2026-05-09.01_revise-correction-context-override/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVCTX-R001
     state: PASSING
@@ -699,7 +699,7 @@ features:
     verdict: PASSED
 - id: FEAT-POCOV
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.15_palabras-poco-vistas/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.15_palabras-poco-vistas/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-POCOV-R001
     state: PASSING
@@ -1023,7 +1023,7 @@ features:
     verdict: PASSED
 - id: FEAT-MLOCAL
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-09-30.20_idioma-local/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.20_idioma-local/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-MLOCAL-R001
     state: FAILING
@@ -1071,6 +1071,19 @@ features:
       passing: true
       module: audit-domain
       implementation: DefaultLocalToolGate
+    - name: "should reuse, with Ollama, the vectors that the version of 30/9 recorded,\
+        \ without asking nomic-embed-text again, since neither the candidate threshold\
+        \ nor the judge enters their record"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+    - name: should reuse the vectors that the same version of nomic-embed-text recorded
+        and not those that another version recorded
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceEmbeddingEvaluator
     - name: "should show in get analyzer naturalness its two tools, llama3:8b in Ollama\
         \ and claude -p, each with its version, whether it is available and its exam"
       implemented: true
@@ -1312,6 +1325,8 @@ features:
     - com.learney.contentaudit.auditcli.commands.GetCmd
     - com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime
     - com.learney.contentaudit.auditdomain.localtoolsengine.DefaultLocalToolGate
+    - com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicatesAnalyzer
+    - com.learney.contentaudit.auditdomain.nearduplicates.SentenceEmbeddingEvaluator
     - com.learney.contentaudit.locallanguageinfrastructure.languagetool.LanguageToolGrammarChecker
     - com.learney.contentaudit.locallanguageinfrastructure.ollama.HttpOllamaApi
     thresholds:
@@ -1353,7 +1368,7 @@ features:
     verdict: PASSED
 - id: FEAT-CLIRV
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
+  requirementFile: requirements/2026-04-19.01_cli-resource-verb-restructure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLIRV-R001
     state: PASSING
@@ -1949,7 +1964,7 @@ features:
     verdict: PASSED
 - id: FEAT-GRAMA
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-09-30.17_gramatica/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.17_gramatica/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-GRAMA-R001
     state: PASSING
@@ -2350,8 +2365,8 @@ features:
     healthScore: 0
     verdict: PASSED
 - id: FEAT-FILAS
-  state: IMPLEMENTING
-  requirementFile: ./requirements/2026-10-01.02_filas-claras/REQUIREMENT.md
+  state: IMPLEMENTED
+  requirementFile: requirements/2026-10-01.02_filas-claras/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-FILAS-R001
     state: PASSING
@@ -2513,39 +2528,39 @@ features:
       module: audit-cli
       implementation: DefaultBatchComparisonFormatter
   - ruleId: F-FILAS-R007
-    state: FAILING
+    state: PASSING
     tests:
     - name: "should write the undecidable floors of the verdict in the JSON, and null\
         \ when there are none"
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultBatchComparisonFormatter
     - name: "should say in the verdict how many floors cannot be decided, as many\
         \ as its text counts, and the rows they belong to, once each and in the order\
         \ of the rows"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchComparator
     - name: "should leave the undecidable floors of the verdict null when every floor\
         \ is decided, and bring them with a verdict that fails too"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchComparator
   - ruleId: F-FILAS-R008
-    state: FAILING
+    state: PASSING
     tests:
     - name: should write in the JSON whether each value of a row was evaluated
       implemented: true
-      passing: false
+      passing: true
       module: audit-cli
       implementation: DefaultBatchComparisonFormatter
     - name: "should say in each value of a row whether its photo evaluated an exercise\
         \ of the node, so a photo left open hides none of the others"
       implemented: true
-      passing: false
+      passing: true
       module: revision-domain
       implementation: DefaultBatchComparator
   quality:
@@ -2594,7 +2609,7 @@ features:
     verdict: PASSED
 - id: FEAT-OPMUL
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.01_opcion-multiple/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.01_opcion-multiple/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-OPMUL-R001
     state: PASSING
@@ -2980,7 +2995,7 @@ features:
     verdict: PASSED
 - id: FEAT-LREC
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
+  requirementFile: requirements/2026-03-28.01_lemma-recurrence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LREC-R001
     state: PASSING
@@ -3274,7 +3289,7 @@ features:
     verdict: PASSED
 - id: FEAT-RPRES
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md
+  requirementFile: requirements/2026-07-29.01_preservacion-del-contenido-no-revisado/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RPRES-R001
     state: PASSING
@@ -3594,7 +3609,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLAQS
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
+  requirementFile: requirements/2026-04-22.02_rcla-quiz-sentence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLAQS-R001
     state: PASSING
@@ -3758,7 +3773,7 @@ features:
     verdict: PASSED
 - id: FEAT-DCOCA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
+  requirementFile: requirements/2026-04-04.02_typed-diagnostics-coca-buckets/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DCOCA-R001
     state: PASSING
@@ -3915,7 +3930,7 @@ features:
     verdict: PASSED
 - id: FEAT-CSLATDC
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-21.05_consultar-suggested-lemmas-a-trav-s-del-cli/REQUIREMENT.md
+  requirementFile: requirements/2026-05-21.05_consultar-suggested-lemmas-a-trav-s-del-cli/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CSLATDC-R001
     state: PASSING
@@ -4181,7 +4196,7 @@ features:
     verdict: PASSED
 - id: FEAT-UNICA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.09_una-sola-respuesta/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.09_una-sola-respuesta/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-UNICA-R001
     state: PASSING
@@ -4461,7 +4476,7 @@ features:
     verdict: PASSED
 - id: FEAT-QSENT
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
+  requirementFile: requirements/2026-04-22.01_quiz-sentence-dsl/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QSENT-R001
     state: PASSING
@@ -4762,7 +4777,7 @@ features:
     verdict: PASSED
 - id: FEAT-COURSE
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-15.01_course-structure/REQUIREMENT.md
+  requirementFile: requirements/2026-03-15.01_course-structure/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COURSE-R001
     state: PASSING
@@ -5041,7 +5056,7 @@ features:
     verdict: PASSED
 - id: FEAT-RECUR
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.16_recurrencia/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.16_recurrencia/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RECUR-R001
     state: PASSING
@@ -5285,7 +5300,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLALEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
+  requirementFile: requirements/2026-04-28.02_rcla-length-aware-context/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLALEN-R001
     state: PASSING
@@ -5530,7 +5545,7 @@ features:
     verdict: PASSED
 - id: FEAT-LAGAG
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-05-29.01_generacion-interactiva-suggested-lemmas/REQUIREMENT.md
+  requirementFile: requirements/2026-05-29.01_generacion-interactiva-suggested-lemmas/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAGAG-R001
     state: NO_TESTS
@@ -5593,7 +5608,7 @@ features:
     verdict: PASSED
 - id: FEAT-NOEMP
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.23_no-empeorar/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.23_no-empeorar/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NOEMP-R001
     state: PASSING
@@ -5936,7 +5951,7 @@ features:
     verdict: PASSED
 - id: FEAT-SMODE
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-06-25.01_sentence-mode-canonical-sentence/REQUIREMENT.md
+  requirementFile: requirements/2026-06-25.01_sentence-mode-canonical-sentence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SMODE-R001
     state: NO_TESTS
@@ -6123,7 +6138,7 @@ features:
     verdict: PASSED
 - id: FEAT-BANDEJA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.25_la-bandeja/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.25_la-bandeja/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-BANDEJA-R001
     state: PASSING
@@ -6478,7 +6493,7 @@ features:
     verdict: PASSED
 - id: FEAT-QINST
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md
+  requirementFile: requirements/2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QINST-R001
     state: PASSING
@@ -7378,7 +7393,7 @@ features:
     verdict: PASSED
 - id: FEAT-MESA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.22_la-mesa-por-tema/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.22_la-mesa-por-tema/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-MESA-R001
     state: PASSING
@@ -7863,7 +7878,7 @@ features:
     verdict: PASSED
 - id: FEAT-SEMAF
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.14_semaforo-por-tema/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.14_semaforo-por-tema/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SEMAF-R001
     state: PASSING
@@ -8149,7 +8164,7 @@ features:
     verdict: PASSED
 - id: FEAT-INCEXP
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-06-18.01_incluir-lemas-ya-expuestos-en-suggested-lemmas/REQUIREMENT.md
+  requirementFile: requirements/2026-06-18.01_incluir-lemas-ya-expuestos-en-suggested-lemmas/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-INCEXP-R001
     state: PASSING
@@ -8337,7 +8352,7 @@ features:
     verdict: PASSED
 - id: FEAT-COCA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
+  requirementFile: requirements/2026-03-25.01_coca-buckets-distribution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-COCA-R001
     state: PASSING
@@ -8775,7 +8790,7 @@ features:
     verdict: PASSED
 - id: FEAT-DBSENT
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-20.01_plain-sentences-from-db/REQUIREMENT.md
+  requirementFile: requirements/2026-05-20.01_plain-sentences-from-db/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DBSENT-R001
     state: PASSING
@@ -8887,7 +8902,7 @@ features:
     verdict: PASSED
 - id: FEAT-LASAG
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md
+  requirementFile: requirements/2026-06-18.01_lemma-absence-agent-migration/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LASAG-R001
     state: PASSING
@@ -9151,7 +9166,7 @@ features:
     verdict: PASSED
 - id: FEAT-QICOR
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-08-04.01_correccion-de-consigna-de-quiz/REQUIREMENT.md
+  requirementFile: requirements/2026-08-04.01_correccion-de-consigna-de-quiz/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-QICOR-R001
     state: PASSING
@@ -9918,7 +9933,7 @@ features:
     verdict: PASSED
 - id: FEAT-EVCOST
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md
+  requirementFile: requirements/2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-EVCOST-R001
     state: PASSING
@@ -10222,7 +10237,7 @@ features:
     verdict: PASSED
 - id: FEAT-NLP
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
+  requirementFile: requirements/2026-03-25.02_nlp-tokenizer-evolution/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NLP-R001
     state: PASSING
@@ -10588,7 +10603,7 @@ features:
     verdict: PASSED
 - id: FEAT-RONDA2
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-09-30.33_integracion-ronda-2/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.33_integracion-ronda-2/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RONDA2-R001
     state: PASSING
@@ -10959,7 +10974,7 @@ features:
     verdict: PASSED
 - id: FEAT-LABS
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
+  requirementFile: requirements/2026-03-28.03_lemma-absence/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LABS-R001
     state: PASSING
@@ -12487,7 +12502,7 @@ features:
     verdict: PASSED
 - id: FEAT-MINIT
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.10_miniteoria/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.10_miniteoria/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-MINIT-R001
     state: PASSING
@@ -12760,7 +12775,7 @@ features:
     verdict: PASSED
 - id: FEAT-OMVAL
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.05_opcion-multiple-valida/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.05_opcion-multiple-valida/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-OMVAL-R001
     state: PASSING
@@ -13037,7 +13052,7 @@ features:
     verdict: PASSED
 - id: FEAT-CLI
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
+  requirementFile: requirements/2026-03-21.01_cli-audit-runner/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLI-R001
     state: PASSING
@@ -13233,7 +13248,7 @@ features:
     verdict: PASSED
 - id: FEAT-PIPRE
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
+  requirementFile: requirements/2026-05-03.01_proposal-impact-preview/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PIPRE-R001
     state: PASSING
@@ -13541,7 +13556,7 @@ features:
     verdict: PASSED
 - id: FEAT-CIEGA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.28_muestra-ciega/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.28_muestra-ciega/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CIEGA-R001
     state: PASSING
@@ -13854,7 +13869,7 @@ features:
     verdict: PASSED
 - id: FEAT-PISTA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.03_pista-coherente/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.03_pista-coherente/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PISTA-R001
     state: PASSING
@@ -14179,7 +14194,7 @@ features:
     verdict: PASSED
 - id: FEAT-NIVFR
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.13_nivel-con-frases/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.13_nivel-con-frases/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NIVFR-R001
     state: PASSING
@@ -14619,7 +14634,7 @@ features:
     verdict: PASSED
 - id: FEAT-CLEX
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-07-22.01_consulta-lexica-de-oracion-por-cli/REQUIREMENT.md
+  requirementFile: requirements/2026-07-22.01_consulta-lexica-de-oracion-por-cli/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CLEX-R001
     state: PASSING
@@ -14793,7 +14808,7 @@ features:
     verdict: PASSED
 - id: FEAT-DATOS
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.06_datos-coherentes/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.06_datos-coherentes/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DATOS-R001
     state: PASSING
@@ -15045,7 +15060,7 @@ features:
     verdict: PASSED
 - id: FEAT-NATUR
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.18_naturalidad/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.18_naturalidad/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-NATUR-R001
     state: PASSING
@@ -15410,7 +15425,7 @@ features:
     verdict: PASSED
 - id: FEAT-KTLEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
+  requirementFile: requirements/2026-03-22.01_knowledge-titles-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-KTLEN-R001
     state: PASSING
@@ -15779,7 +15794,7 @@ features:
     verdict: PASSED
 - id: FEAT-CDIFF
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
+  requirementFile: requirements/2026-05-06.01_consolidated-differential-view/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CDIFF-R001
     state: PASSING
@@ -16548,7 +16563,7 @@ features:
     verdict: PASSED
 - id: FEAT-PLANEF
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md
+  requirementFile: requirements/2026-05-07.01_plan-efimero-no-persistido/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PLANEF-R001
     state: PASSING
@@ -16793,7 +16808,7 @@ features:
     verdict: PASSED
 - id: FEAT-KTLR
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-07-06.01_revisar-knowledge-title-length-con-agente/REQUIREMENT.md
+  requirementFile: requirements/2026-07-06.01_revisar-knowledge-title-length-con-agente/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-KTLR-R001
     state: PASSING
@@ -17013,7 +17028,7 @@ features:
     verdict: PASSED
 - id: FEAT-RESPC
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.04_respuestas-completas/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.04_respuestas-completas/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RESPC-R001
     state: PASSING
@@ -17416,7 +17431,7 @@ features:
     verdict: PASSED
 - id: FEAT-CERO
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.29_cada-corrida-desde-cero/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.29_cada-corrida-desde-cero/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CERO-R001
     state: PASSING
@@ -17568,7 +17583,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVAPR
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
+  requirementFile: requirements/2026-04-20.01_refiner-revision-approval/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVAPR-R001
     state: PASSING
@@ -18203,7 +18218,7 @@ features:
     verdict: PASSED
 - id: FEAT-DUPAR
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.19_duplicados-parecidos/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.19_duplicados-parecidos/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DUPAR-R001
     state: PASSING
@@ -18243,32 +18258,13 @@ features:
   - ruleId: F-DUPAR-R002
     state: PASSING
     tests:
-    - name: "should mark as near duplicates two candidates whose vectors reach 0.95,\
-        \ «They prepared lunch for each other.» after «They cooked lunch for each\
-        \ other.», 0.98"
+    - name: "should make a near duplicate of a candidate of its vectors that claude\
+        \ -p calls the same exercise, «They prepared lunch for each other.» after\
+        \ «They cooked lunch for each other.», 0.98, with the rule same-exercise"
       implemented: true
       passing: true
       module: audit-domain
       implementation: NearDuplicatesAnalyzer
-    - name: "should not mark a candidate whose vectors stay below 0.95 and that the\
-        \ wildcard does not settle, «Have you heard about my news?» after «Have you\
-        \ heard the news?», 0.94"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: NearDuplicatesAnalyzer
-    - name: "should ask nomic-embed-text for the vector of the finished exercise with\
-        \ the prefix «clustering: » and record it under an evaluator id that carries\
-        \ the examined version"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: SentenceEmbeddingEvaluator
-    - name: should not reuse the vectors that another examined version recorded
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: SentenceEmbeddingEvaluator
     - name: "should find «Where is he?» and «Where is she?» of Contraste inicial equal\
         \ under the wildcard and say what changes, he → she"
       implemented: true
@@ -18287,8 +18283,8 @@ features:
       passing: true
       module: audit-domain
       implementation: DefaultNearDuplicateRules
-    - name: "should hold the threshold 0.95, the prefix «clustering: » and the word\
-        \ similarity 0.6 of the candidates for claude -p"
+    - name: "should hold the similarities that only choose the candidates of the judge,\
+        \ 0.80 for the vectors with the prefix «clustering: » and 0.6 for the words"
       implemented: true
       passing: true
       module: audit-domain
@@ -18311,7 +18307,7 @@ features:
       module: audit-domain
       implementation: NearDuplicatesAnalyzer
     - name: "should mark the same copies in two runs of the same course, reusing every\
-        \ vector without asking nomic-embed-text again"
+        \ vector and every verdict of claude -p without asking either again"
       implemented: true
       passing: true
       module: audit-domain
@@ -18325,15 +18321,16 @@ features:
       passing: true
       module: audit-domain
       implementation: NearDuplicatesAnalyzer
-    - name: "should give each finding the cost of the rule that found it: instant\
-        \ for same-but-wildcard, local model for same-meaning and paid model for same-exercise"
+    - name: "should give each finding the cost of the rule that found it, instant\
+        \ for same-but-wildcard and paid model for same-exercise with Ollama and without\
+        \ it, and none to similar-candidates, which only proposes pairs"
       implemented: true
       passing: true
       module: audit-domain
       implementation: NearDuplicatesAnalyzer
-    - name: "should give a pair found both by the wildcard and by its vectors the\
-        \ instant rule same-but-wildcard, «A: Are we ready? B: Yes, we are.» after\
-        \ «A: Are they ready? B: Yes, they are.»"
+    - name: "should give a pair that the wildcard settles the instant rule same-but-wildcard\
+        \ without asking claude -p, even when its vectors reach 0.80, «A: Are we ready?\
+        \ B: Yes, we are.» after «A: Are they ready? B: Yes, they are.»"
       implemented: true
       passing: true
       module: audit-domain
@@ -18348,14 +18345,15 @@ features:
       passing: true
       module: audit-domain
       implementation: NearDuplicatesAnalyzer
-    - name: "should say in the evidence of a pair found by its vectors «Dice lo mismo\
-        \ que …46ac: parecido 0,98»"
+    - name: "should say in the evidence of a pair judged by claude -p «Para claude\
+        \ -p es el mismo ejercicio que …2725: cambian 2 de 7 palabras»"
       implemented: true
       passing: true
       module: audit-domain
       implementation: NearDuplicatesAnalyzer
-    - name: "should say in the evidence of a pair judged by claude -p «Para claude\
-        \ -p es el mismo ejercicio que …2725: cambian 2 de 7 palabras»"
+    - name: "should say in the evidence of a pair that its vectors proposed and claude\
+        \ -p judged «Para claude -p es el mismo ejercicio que …355e: parecido 0,99»\
+        \ and the reason claude -p gave"
       implemented: true
       passing: true
       module: audit-domain
@@ -18365,15 +18363,16 @@ features:
     tests:
     - name: "should describe near-duplicates as an errors analyzer that evaluates\
         \ exercises and resolves at the panel, asking «¿Dos ejercicios del mismo tema\
-        \ piden casi lo mismo?», with the rules same-but-wildcard instant, same-meaning\
+        \ piden casi lo mismo?», with the rules same-but-wildcard instant, similar-candidates\
         \ of local model and same-exercise of paid model, and paid model as the cost\
         \ of its card"
       implemented: true
       passing: true
       module: audit-domain
       implementation: NearDuplicatesAnalyzerProvider
-    - name: "should carry in its card two tools, nomic-embed-text in Ollama and claude\
-        \ -p, each with its version and its exam"
+    - name: "should carry in its card nomic-embed-text, which proposes the pairs with\
+        \ Ollama, and claude -p, which decides them, each with its version, next to\
+        \ the exam of the version with Ollama and of the version without it"
       implemented: true
       passing: true
       module: audit-domain
@@ -18381,21 +18380,35 @@ features:
   - ruleId: F-DUPAR-R007
     state: PASSING
     tests:
-    - name: "should leave all of near-duplicates unevaluated, the wildcard included,\
-        \ while the examined version of nomic-embed-text with its prefix has no approved\
-        \ exam"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: NearDuplicatesAnalyzer
     - name: "should mark the same copies when the same examined version takes the\
         \ exam twice, without a single new consultation"
       implemented: true
       passing: true
       module: audit-domain
       implementation: NearDuplicatesAnalyzer
-    - name: "should change its methodId when the prefix changes, so the vectors are\
-        \ a new examined version that takes its own exam"
+    - name: "should ask claude -p in an exam run with Ollama only about the candidates\
+        \ whose copy is an exercise of the exam's file, even when the exercise that\
+        \ stays is not in it"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+    - name: should ask claude -p in an exam run without Ollama only about the candidates
+        whose copy is an exercise of the exam's file
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+    - name: "should give an exercise outside the exam's file neither score nor finding\
+        \ in an exam run, nor count the pairs whose copy it is among the consultations\
+        \ the exam says are missing"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+    - name: "should name the version without Ollama by the word similarity and the\
+        \ version of the judge, «palabras-0,60 · juez-c3a9e1f07b5d», and another one\
+        \ when either changes"
       implemented: true
       passing: true
       module: audit-domain
@@ -18403,13 +18416,6 @@ features:
   - ruleId: F-DUPAR-R008
     state: PASSING
     tests:
-    - name: "should open near-duplicates through the judges' runtime with the vector\
-        \ evaluator and the policy without limit of the local tool decision when nomic-embed-text\
-        \ is available, never with claude -p"
-      implemented: true
-      passing: true
-      module: audit-domain
-      implementation: NearDuplicatesAnalyzerProvider
     - name: "should open near-duplicates through the judges' runtime with the claude\
         \ -p alternative and the run's policy as it comes when nomic-embed-text is\
         \ not available, so without --budget near-duplicates=N it has budget 0"
@@ -18475,6 +18481,130 @@ features:
       passing: true
       module: audit-domain
       implementation: DefaultSameExerciseQuestion
+  - ruleId: F-DUPAR-R009
+    state: PASSING
+    tests:
+    - name: "should open near-duplicates through the judges' runtime, when nomic-embed-text\
+        \ is available, with the vectors without limit even if the run asks --budget\
+        \ near-duplicates=N, and the pair judge with the run's policy as it comes,\
+        \ so without that request claude -p has budget 0"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzerProvider
+    - name: "should ask claude -p, with Ollama, only about the candidates that the\
+        \ wildcard does not settle and whose vectors reach 0.80, as «Have you heard\
+        \ about my news?» after «Have you heard the news?», 0.94, and not about «\
+        I am hot.» after «I am sorry.», 0.71"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+    - name: "should not mark, with Ollama, a candidate whose vectors reach 0.97 when\
+        \ claude -p calls it a different exercise, «That car is his.» after «That\
+        \ is his car.»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+    - name: should ask nomic-embed-text for every vector and stop only claude -p at
+        the budget of --budget near-duplicates=1
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+    - name: "should leave half evaluated, with Ollama and without --budget near-duplicates=N,\
+        \ an exercise with a candidate of its vectors, consulting no claude -p, keeping\
+        \ its wildcard findings and saying «falta el tope» with the pairs left to\
+        \ judge"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+    - name: "should leave half evaluated, with Ollama, an exercise whose candidate\
+        \ got no usable answer from claude -p, keeping its wildcard findings and saying\
+        \ how many pairs are left to judge"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+    - name: "should declare as missing for near-duplicates only the pairs left for\
+        \ claude -p, with their hours at the rate of the judge one at a time and four\
+        \ at a time, never the vectors of nomic-embed-text"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+    - name: "should evaluate whole a topic outside the set that a run declares for\
+        \ claude -p when its vectors stay below 0.80, «I am hot.» after «I am sorry.»\
+        , since the vectors always run"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+  - ruleId: F-DUPAR-R010
+    state: PASSING
+    tests:
+    - name: "should consult neither nomic-embed-text nor claude -p, with Ollama, when\
+        \ the pair judge states no version, leaving the judge's reason in view"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzerProvider
+    - name: "should leave all of near-duplicates unevaluated, the wildcard included,\
+        \ while the version with Ollama, named by its three pieces, has no approved\
+        \ exam, even if nomic-embed-text with its prefix alone approved one"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+    - name: "should not ask claude -p again, with Ollama, about a pair it already\
+        \ judged without Ollama, «Offer: I'll wash the dishes.» after «Offer: I'll\
+        \ wash the dishes for you.»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: NearDuplicatesAnalyzer
+    - name: "should ask nomic-embed-text for the vector of the finished exercise with\
+        \ the prefix «clustering: », under the version of nomic-embed-text with that\
+        \ prefix"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: SentenceEmbeddingEvaluator
+    - name: "should name the version with Ollama by the method of the vectors, the\
+        \ candidate similarity and the first 12 hex of the version of the judge, «\
+        clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d»"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultNearDuplicatesConfig
+    - name: "should name another version with Ollama when the prefix, the candidate\
+        \ similarity or the version of the judge changes, so it takes its own exam"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: DefaultNearDuplicatesConfig
+    - name: "should ask the wrapped evaluator exactly the pair it receives, under\
+        \ the wrapped evaluator's own id, so what the judge answered is reused under\
+        \ the version with Ollama and without it"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: PairStepEvaluator
+    - name: "should state the version of its route, «nomic-embed-text@0a109f422b47\
+        \ · clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d», when the wrapped\
+        \ evaluator states its own"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: PairStepEvaluator
+    - name: "should state no version when the wrapped evaluator states none, whatever\
+        \ the version of its route"
+      implemented: true
+      passing: true
+      module: audit-domain
+      implementation: PairStepEvaluator
   journeysCoverage:
   - journeyId: F-DUPAR-J001
     state: PASSING
@@ -18492,7 +18622,7 @@ features:
       result: success
       state: PASSING
       tests:
-      - name: path2_conOllamaElModeloLocalLesDaUnParecidoDe095OMs_success
+      - name: path2_conOllamaElParLlegaA080DeParecidoYElJuezDiceQueEsElMismoEjercicio_success
         implemented: true
         passing: true
         module: audit-domain
@@ -18524,6 +18654,24 @@ features:
         passing: true
         module: audit-domain
         implementation: FDuparJ001JourneyTest
+    - pathId: path-6
+      result: success
+      state: PASSING
+      tests:
+      - name: path6_conOllamaElParLlegaA080DeParecidoYElJuezDiceQueNoEsElMismoEjercicio_success
+        implemented: true
+        passing: true
+        module: audit-domain
+        implementation: FDuparJ001JourneyTest
+    - pathId: path-7
+      result: success
+      state: PASSING
+      tests:
+      - name: path7_conOllamaYSinTopeElParLlegaA080DeParecidoYElComodnNoLoResuelve_success
+        implemented: true
+        passing: true
+        module: audit-domain
+        implementation: FDuparJ001JourneyTest
   quality:
     classes:
     - com.learney.contentaudit.auditdomain.nearduplicates.DefaultNearDuplicateRules
@@ -18531,6 +18679,7 @@ features:
     - com.learney.contentaudit.auditdomain.nearduplicates.DefaultSameExerciseQuestion
     - com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicatesAnalyzer
     - com.learney.contentaudit.auditdomain.nearduplicates.NearDuplicatesAnalyzerProvider
+    - com.learney.contentaudit.auditdomain.nearduplicates.PairStepEvaluator
     - com.learney.contentaudit.auditdomain.nearduplicates.SentenceEmbeddingEvaluator
     thresholds:
       lineCoverage: 70
@@ -18571,7 +18720,7 @@ features:
     verdict: PASSED
 - id: FEAT-LAPS
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
+  requirementFile: requirements/2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAPS-R001
     state: PASSING
@@ -19052,7 +19201,7 @@ features:
     verdict: PASSED
 - id: FEAT-DSLEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
+  requirementFile: requirements/2026-04-05.01_typed-diagnostics-sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-DSLEN-R001
     state: PASSING
@@ -19164,7 +19313,7 @@ features:
     verdict: PASSED
 - id: FEAT-HALL
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.02_contrato-del-hallazgo/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.02_contrato-del-hallazgo/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-HALL-R001
     state: PASSING
@@ -19998,7 +20147,7 @@ features:
     verdict: PASSED
 - id: FEAT-LEMMA-SUGGESTIONS
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto/REQUIREMENT.md
+  requirementFile: requirements/2026-05-15.04_agregar-lemmacount-como-variable-de-suggestedlemmas-en-el-contexto/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLEM-R001
     state: PASSING
@@ -20329,7 +20478,7 @@ features:
     verdict: PASSED
 - id: FEAT-SLEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
+  requirementFile: requirements/2026-03-18.01_sentence-length/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLEN-R001
     state: PASSING
@@ -20561,7 +20710,7 @@ features:
     verdict: PASSED
 - id: FEAT-TANDA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.24_tandas-por-nivel/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.24_tandas-por-nivel/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-TANDA-R001
     state: PASSING
@@ -21167,7 +21316,7 @@ features:
     verdict: PASSED
 - id: FEAT-CIERRE
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.32_cierre-ronda-1/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.32_cierre-ronda-1/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CIERRE-R001
     state: PASSING
@@ -21350,7 +21499,7 @@ features:
     verdict: PASSED
 - id: FEAT-SLREGEX
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-06-26.01_filtrar-suggested-lemmas-por-regex/REQUIREMENT.md
+  requirementFile: requirements/2026-06-26.01_filtrar-suggested-lemmas-por-regex/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-SLREGEX-R001
     state: PASSING
@@ -21528,7 +21677,7 @@ features:
     verdict: PASSED
 - id: FEAT-LCOUNT
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
+  requirementFile: requirements/2026-03-28.02_lemma-count/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LCOUNT-R001
     state: PASSING
@@ -21847,7 +21996,7 @@ features:
     verdict: PASSED
 - id: FEAT-REVBYP
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
+  requirementFile: requirements/2026-04-17.01_refiner-revision-bypass/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-REVBYP-R001
     state: PASSING
@@ -22097,7 +22246,7 @@ features:
     verdict: PASSED
 - id: FEAT-LAGEN
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
+  requirementFile: requirements/2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-LAGEN-R001
     state: PASSING
@@ -22345,7 +22494,7 @@ features:
     verdict: PASSED
 - id: FEAT-CALUM
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-10-01.01_consigna-que-ve-el-alumno/REQUIREMENT.md
+  requirementFile: requirements/2026-10-01.01_consigna-que-ve-el-alumno/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-CALUM-R001
     state: PASSING
@@ -22507,7 +22656,7 @@ features:
     verdict: PASSED
 - id: FEAT-METAS
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.27_antes-y-despues-con-metas/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.27_antes-y-despues-con-metas/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-METAS-R001
     state: PASSING
@@ -22971,7 +23120,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCLA
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
+  requirementFile: requirements/2026-04-13.01_refiner-correction-context-labs/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCLA-R001
     state: PASSING
@@ -23425,7 +23574,7 @@ features:
     verdict: PASSED
 - id: FEAT-JEXAM
   state: IMPLEMENTING
-  requirementFile: ./requirements/2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-JEXAM-R001
     state: PASSING
@@ -24087,7 +24236,7 @@ features:
     verdict: PASSED
 - id: FEAT-RCSL
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
+  requirementFile: requirements/2026-04-05.02_refiner-correction-context-slen/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RCSL-R001
     state: PASSING
@@ -24462,7 +24611,7 @@ features:
     verdict: PASSED
 - id: FEAT-TAREA
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.21_una-tarea-por-hallazgo/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.21_una-tarea-por-hallazgo/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-TAREA-R001
     state: PASSING
@@ -24910,7 +25059,7 @@ features:
     verdict: PASSED
 - id: FEAT-MCVALE
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.11_opcion-multiple-otra-vale/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.11_opcion-multiple-otra-vale/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-MCVALE-R001
     state: PASSING
@@ -25165,7 +25314,7 @@ features:
     verdict: PASSED
 - id: FEAT-TRSEN
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.08_traduccion-y-sentido/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.08_traduccion-y-sentido/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-TRSEN-R001
     state: PASSING
@@ -25472,7 +25621,7 @@ features:
     verdict: PASSED
 - id: FEAT-RONDA1
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.31_integracion-ronda-1/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.31_integracion-ronda-1/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-RONDA1-R001
     state: PASSING
@@ -25823,7 +25972,7 @@ features:
     verdict: PASSED
 - id: FEAT-PROYU
   state: IMPLEMENTED
-  requirementFile: ./requirements/2026-09-30.26_una-sola-proyeccion/REQUIREMENT.md
+  requirementFile: requirements/2026-09-30.26_una-sola-proyeccion/REQUIREMENT.md
   rulesCoverage:
   - ruleId: F-PROYU-R001
     state: PASSING
@@ -48311,46 +48460,34 @@ elements:
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerProvider.java
     tests:
-    - name: "should open near-duplicates through the judges' runtime with the vector\
-        \ evaluator and the policy without limit of the local tool decision when nomic-embed-text\
-        \ is available, never with claude -p"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerProviderTest.java
     - name: "should open near-duplicates through the judges' runtime with the claude\
         \ -p alternative and the run's policy as it comes when nomic-embed-text is\
         \ not available, so without --budget near-duplicates=N it has budget 0"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerProviderTest.java
+    - name: "should open near-duplicates through the judges' runtime, when nomic-embed-text\
+        \ is available, with the vectors without limit even if the run asks --budget\
+        \ near-duplicates=N, and the pair judge with the run's policy as it comes,\
+        \ so without that request claude -p has budget 0"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerProviderTest.java
     - name: "should describe near-duplicates as an errors analyzer that evaluates\
         \ exercises and resolves at the panel, asking «¿Dos ejercicios del mismo tema\
-        \ piden casi lo mismo?», with the rules same-but-wildcard instant, same-meaning\
+        \ piden casi lo mismo?», with the rules same-but-wildcard instant, similar-candidates\
         \ of local model and same-exercise of paid model, and paid model as the cost\
         \ of its card"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerProviderTest.java
-    - name: "should carry in its card two tools, nomic-embed-text in Ollama and claude\
-        \ -p, each with its version and its exam"
+    - name: "should carry in its card nomic-embed-text, which proposes the pairs with\
+        \ Ollama, and claude -p, which decides them, each with its version, next to\
+        \ the exam of the version with Ollama and of the version without it"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerProviderTest.java
+    - name: "should consult neither nomic-embed-text nor claude -p, with Ollama, when\
+        \ the pair judge states no version, leaving the judge's reason in view"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerProviderTest.java
     testCleanViews:
-    - |
-      test: "should open near-duplicates through the judges' runtime with the vector evaluator and the policy without limit of the local tool decision when nomic-embed-text is available, never with claude -p"
-      trace: FEAT-DUPAR / F-DUPAR-R008
-
-      given:
-        world = NearDuplicatesAnalyzerTest.World.withNomic()
-        policy = world.recording.policies.get(0)
-
-      when:
-        sut.create(null)
-
-      then:
-        world.recording.judges == List.of("near-duplicates")
-        world.recording.evaluators == List.of(List.of("near-duplicates · nomic-embed-text@0a109f422b47 · clustering-1"))
-        policy.getMaxNewEvaluations() == Integer.MAX_VALUE
-        policy.getMaxConcurrentEvaluations() == 1
-        world.recording.opened.get(0).getEffectivePolicy().getMaxNewEvaluations() == Integer.MAX_VALUE
-        world.claude.calls() == 0
     - |
       test: "should open near-duplicates through the judges' runtime with the claude -p alternative and the run's policy as it comes when nomic-embed-text is not available, so without --budget near-duplicates=N it has budget 0"
       trace: FEAT-DUPAR / F-DUPAR-R008
@@ -48369,7 +48506,39 @@ elements:
         world.recording.policies.get(1) == fifty
         world.recording.opened.get(1).getEffectivePolicy().getMaxNewEvaluations() == 50
     - |
-      test: "should describe near-duplicates as an errors analyzer that evaluates exercises and resolves at the panel, asking «¿Dos ejercicios del mismo tema piden casi lo mismo?», with the rules same-but-wildcard instant, same-meaning of local model and same-exercise of paid model, and paid model as the cost of its card"
+      test: "should open near-duplicates through the judges' runtime, when nomic-embed-text is available, with the vectors without limit even if the run asks --budget near-duplicates=N, and the pair judge with the run's policy as it comes, so without that request claude -p has budget 0"
+      trace: FEAT-DUPAR / F-DUPAR-R009
+
+      given:
+        world = NearDuplicatesAnalyzerTest.World.withNomic()
+        fifty = NearDuplicatesAnalyzerTest.budget(50)
+        evaluators = world.recording.evaluators
+        both = Set.of(List.of(NearDuplicatesAnalyzerTest.VECTORS_ID), List.of(NearDuplicatesAnalyzerTest.JUDGE_ID))
+        vectors = evaluators.indexOf(List.of(NearDuplicatesAnalyzerTest.VECTORS_ID))
+        judge = evaluators.indexOf(List.of(NearDuplicatesAnalyzerTest.JUDGE_ID))
+        vectorsAgain = evaluators.lastIndexOf(List.of(NearDuplicatesAnalyzerTest.VECTORS_ID))
+        judgeAgain = evaluators.lastIndexOf(List.of(NearDuplicatesAnalyzerTest.JUDGE_ID))
+        local = world.recording.policies.get(vectors)
+
+      when:
+        sut.create(null)
+
+      then:
+        world.recording.judges == List.of("near-duplicates", "near-duplicates", "near-duplicates", "near-duplicates")
+        Set.copyOf(evaluators.subList(0, 2)) == both
+        Set.copyOf(evaluators.subList(2, 4)) == both
+        local.getMaxNewEvaluations() == Integer.MAX_VALUE
+        local.getPurpose() == EvaluationRunPurpose.COURSE
+        world.recording.opened.get(vectors).getEffectivePolicy().getMaxNewEvaluations() == Integer.MAX_VALUE
+        world.recording.policies.get(judge) is null
+        world.recording.opened.get(judge).getEffectivePolicy().getMaxNewEvaluations() == 0
+        world.recording.policies.get(vectorsAgain).getMaxNewEvaluations() == Integer.MAX_VALUE
+        world.recording.opened.get(vectorsAgain).getEffectivePolicy().getMaxNewEvaluations() == Integer.MAX_VALUE
+        world.recording.policies.get(judgeAgain) == fifty
+        world.recording.opened.get(judgeAgain).getEffectivePolicy().getMaxNewEvaluations() == 50
+        world.claude.calls() == 0
+    - |
+      test: "should describe near-duplicates as an errors analyzer that evaluates exercises and resolves at the panel, asking «¿Dos ejercicios del mismo tema piden casi lo mismo?», with the rules same-but-wildcard instant, similar-candidates of local model and same-exercise of paid model, and paid model as the cost of its card"
       trace: FEAT-DUPAR / F-DUPAR-R006
 
       given:
@@ -48382,11 +48551,11 @@ elements:
         card.getFamily() == AnalyzerFamily.ERRORS
         card.getEvaluatedTargets() == List.of(AuditTarget.QUIZ)
         card.getResolutions() == List.of(FindingResolution.PANEL)
-        card.getRules().stream().map(AnalyzerRuleCard::getId).toList() == List.of("same-but-wildcard", "same-meaning", "same-exercise")
+        card.getRules().stream().map(AnalyzerRuleCard::getId).toList() == List.of("same-but-wildcard", "similar-candidates", "same-exercise")
         card.getRules().stream().map(AnalyzerRuleCard::getCost).toList() == List.of(AnalysisCost.INSTANT, AnalysisCost.LOCAL_MODEL, AnalysisCost.PAID_MODEL)
         card.getCost() == AnalysisCost.PAID_MODEL
     - |
-      test: "should carry in its card two tools, nomic-embed-text in Ollama and claude -p, each with its version and its exam"
+      test: "should carry in its card nomic-embed-text, which proposes the pairs with Ollama, and claude -p, which decides them, each with its version, next to the exam of the version with Ollama and of the version without it"
       trace: FEAT-DUPAR / F-DUPAR-R006
 
       given:
@@ -48396,21 +48565,36 @@ elements:
         claude = tools.get(1)
 
       when:
-        sut.approve(NearDuplicatesAnalyzerTest.CLAUDE_VERSION)
+        sut.approve(NearDuplicatesAnalyzerTest.WITHOUT_OLLAMA_EXAMINED)
 
       then:
         tools.size() == 2
         nomic.getStatus().getTool() == "nomic-embed-text en Ollama"
         nomic.getStatus().getVersion() == "nomic-embed-text@0a109f422b47"
-        nomic.getExaminedVersion() == NearDuplicatesAnalyzerTest.NOMIC_EXAMINED
+        nomic.getExaminedVersion() == NearDuplicatesAnalyzerTest.WITH_OLLAMA_EXAMINED
         nomic.getExamState() == JudgeExamStatus.APPROVED
         nomic.getExamSummary() == "aprobado el 1/10"
         nomic.isAlternative() is false
         claude.getStatus().getTool() == "claude -p"
-        claude.getStatus().getVersion() == NearDuplicatesAnalyzerTest.CLAUDE_VERSION
+        claude.getStatus().getVersion() == NearDuplicatesAnalyzerTest.WITHOUT_OLLAMA_EXAMINED
+        claude.getExaminedVersion() == NearDuplicatesAnalyzerTest.WITHOUT_OLLAMA_EXAMINED
         claude.getExamState() == JudgeExamStatus.APPROVED
         claude.isAlternative() is true
         world.claude.calls() == 0
+    - |
+      test: "should consult neither nomic-embed-text nor claude -p, with Ollama, when the pair judge states no version, leaving the judge's reason in view"
+      trace: FEAT-DUPAR / F-DUPAR-R010
+
+      given:
+        world = NearDuplicatesAnalyzerTest.World.withNomicAndAJudgeWithoutVersion()
+        root = world.run(NearDuplicatesAnalyzerTest.course(NearDuplicatesAnalyzerTest.topic("Contraste inicial", NearDuplicatesAnalyzerTest.whereHe(), NearDuplicatesAnalyzerTest.whereShe()), NearDuplicatesAnalyzerTest.topic("Each other o reflexivos", NearDuplicatesAnalyzerTest.cooked(), NearDuplicatesAnalyzerTest.prepared())), NearDuplicatesAnalyzerTest.budget(10))
+        run = NearDuplicatesAnalyzerTest.runOf(root)
+
+      then:
+        world.nomic.asked() == List.of()
+        world.claude.calls() == 0
+        run.isPublished() is false
+        run.getReason().startsWith("sin versión") is true
   - name: NearDuplicatesAnalyzer
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzer.java
@@ -48424,16 +48608,6 @@ elements:
         the park.»
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
-    - name: "should mark as near duplicates two candidates whose vectors reach 0.95,\
-        \ «They prepared lunch for each other.» after «They cooked lunch for each\
-        \ other.», 0.98"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
-    - name: "should not mark a candidate whose vectors stay below 0.95 and that the\
-        \ wildcard does not settle, «Have you heard about my news?» after «Have you\
-        \ heard the news?», 0.94"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
     - name: "should leave without finding the first exercise in the order of the topic\
         \ and give the one after it a finding that names it, «Where is she?» naming\
         \ «Where is he?» in Contraste inicial"
@@ -48444,21 +48618,8 @@ elements:
         \ cortas, both naming it"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
-    - name: "should mark the same copies in two runs of the same course, reusing every\
-        \ vector without asking nomic-embed-text again"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
     - name: "should give every copy a low finding for the panel that counts as an\
         \ error and scores 0, and keep 1 in the exercise that stays"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
-    - name: "should give each finding the cost of the rule that found it: instant\
-        \ for same-but-wildcard, local model for same-meaning and paid model for same-exercise"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
-    - name: "should give a pair found both by the wildcard and by its vectors the\
-        \ instant rule same-but-wildcard, «A: Are we ready? B: Yes, we are.» after\
-        \ «A: Are they ready? B: Yes, they are.»"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
     - name: "should show as evidence both exercises as the student sees them and «\
@@ -48466,17 +48627,8 @@ elements:
         \ format of the exercise"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
-    - name: "should say in the evidence of a pair found by its vectors «Dice lo mismo\
-        \ que …46ac: parecido 0,98»"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
     - name: "should say in the evidence of a pair judged by claude -p «Para claude\
         \ -p es el mismo ejercicio que …2725: cambian 2 de 7 palabras»"
-      status: EXISTS
-      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
-    - name: "should leave all of near-duplicates unevaluated, the wildcard included,\
-        \ while the examined version of nomic-embed-text with its prefix has no approved\
-        \ exam"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
     - name: "should mark the same copies when the same examined version takes the\
@@ -48510,6 +48662,95 @@ elements:
         --budget near-duplicates=N
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should make a near duplicate of a candidate of its vectors that claude\
+        \ -p calls the same exercise, «They prepared lunch for each other.» after\
+        \ «They cooked lunch for each other.», 0.98, with the rule same-exercise"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should mark the same copies in two runs of the same course, reusing every\
+        \ vector and every verdict of claude -p without asking either again"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should give each finding the cost of the rule that found it, instant\
+        \ for same-but-wildcard and paid model for same-exercise with Ollama and without\
+        \ it, and none to similar-candidates, which only proposes pairs"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should give a pair that the wildcard settles the instant rule same-but-wildcard\
+        \ without asking claude -p, even when its vectors reach 0.80, «A: Are we ready?\
+        \ B: Yes, we are.» after «A: Are they ready? B: Yes, they are.»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should say in the evidence of a pair that its vectors proposed and claude\
+        \ -p judged «Para claude -p es el mismo ejercicio que …355e: parecido 0,99»\
+        \ and the reason claude -p gave"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should ask claude -p in an exam run with Ollama only about the candidates\
+        \ whose copy is an exercise of the exam's file, even when the exercise that\
+        \ stays is not in it"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: should ask claude -p in an exam run without Ollama only about the candidates
+        whose copy is an exercise of the exam's file
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should give an exercise outside the exam's file neither score nor finding\
+        \ in an exam run, nor count the pairs whose copy it is among the consultations\
+        \ the exam says are missing"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should ask claude -p, with Ollama, only about the candidates that the\
+        \ wildcard does not settle and whose vectors reach 0.80, as «Have you heard\
+        \ about my news?» after «Have you heard the news?», 0.94, and not about «\
+        I am hot.» after «I am sorry.», 0.71"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should not mark, with Ollama, a candidate whose vectors reach 0.97 when\
+        \ claude -p calls it a different exercise, «That car is his.» after «That\
+        \ is his car.»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: should ask nomic-embed-text for every vector and stop only claude -p at
+        the budget of --budget near-duplicates=1
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should leave half evaluated, with Ollama and without --budget near-duplicates=N,\
+        \ an exercise with a candidate of its vectors, consulting no claude -p, keeping\
+        \ its wildcard findings and saying «falta el tope» with the pairs left to\
+        \ judge"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should leave half evaluated, with Ollama, an exercise whose candidate\
+        \ got no usable answer from claude -p, keeping its wildcard findings and saying\
+        \ how many pairs are left to judge"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should declare as missing for near-duplicates only the pairs left for\
+        \ claude -p, with their hours at the rate of the judge one at a time and four\
+        \ at a time, never the vectors of nomic-embed-text"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should evaluate whole a topic outside the set that a run declares for\
+        \ claude -p when its vectors stay below 0.80, «I am hot.» after «I am sorry.»\
+        , since the vectors always run"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should leave all of near-duplicates unevaluated, the wildcard included,\
+        \ while the version with Ollama, named by its three pieces, has no approved\
+        \ exam, even if nomic-embed-text with its prefix alone approved one"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should not ask claude -p again, with Ollama, about a pair it already\
+        \ judged without Ollama, «Offer: I'll wash the dishes.» after «Offer: I'll\
+        \ wash the dishes for you.»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
+    - name: "should reuse, with Ollama, the vectors that the version of 30/9 recorded,\
+        \ without asking nomic-embed-text again, since neither the candidate threshold\
+        \ nor the judge enters their record"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesAnalyzerTest.java
     testCleanViews:
     - |
       test: "should compare an exercise only with the earlier exercises of its own topic, never with an exercise of another topic"
@@ -48541,36 +48782,6 @@ elements:
         diagnosis(root, THEY_PARK_AGAIN).getDifference() == "You → They"
         world.nomic.asked() == List.of()
     - |
-      test: "should mark as near duplicates two candidates whose vectors reach 0.95, «They prepared lunch for each other.» after «They cooked lunch for each other.», 0.98"
-      trace: FEAT-DUPAR / F-DUPAR-R002
-
-      given:
-        world = World.withNomic()
-        root = world.run(course(topic("Each other o reflexivos", cooked(), prepared())), null)
-        copy = only(quiz(root, PREPARED))
-        diagnosis = diagnosis(root, PREPARED)
-
-      then:
-        copy.getRule() == "same-meaning"
-        copy.getIdentity().getMarker() == COOKED
-        diagnosis.getCondition() == NearDuplicateCondition.SIMILARITY
-        diagnosis.getSimilarity() == 0.9759
-        diagnosis.getDifference() is null
-        world.nomic.asked() == List.of("clustering: They cooked lunch for each other.", "clustering: They prepared lunch for each other.")
-    - |
-      test: "should not mark a candidate whose vectors stay below 0.95 and that the wildcard does not settle, «Have you heard about my news?» after «Have you heard the news?», 0.94"
-      trace: FEAT-DUPAR / F-DUPAR-R002
-
-      given:
-        world = World.withNomic()
-        root = world.run(course(topic("Participios irregulares: repaso 1", heardNews(), heardMyNews())), null)
-
-      then:
-        findings(quiz(root, HEARD_MY_NEWS)) == List.of()
-        score(root, HEARD_MY_NEWS) == 1.0
-        halfway(root, HEARD_MY_NEWS) is false
-        world.nomic.asked().size() == 2
-    - |
       test: "should leave without finding the first exercise in the order of the topic and give the one after it a finding that names it, «Where is she?» naming «Where is he?» in Contraste inicial"
       trace: FEAT-DUPAR / F-DUPAR-R003
 
@@ -48588,30 +48799,19 @@ elements:
       trace: FEAT-DUPAR / F-DUPAR-R003
 
       given:
-        root = World.withNomic().run(course(topic("Respuestas cortas", canDrive(), couldHave(), couldDrive())), null)
+        world = World.withNomic()
+        root = world.run(course(topic("Respuestas cortas", canDrive(), couldHave(), couldDrive())), budget(10))
+
+      when:
+        sut.answers("A: Can I drive your car? B: No, you can't.", "A: Could I have your car? B: No, you can't.", true, "Piden lo mismo: permiso para usar el auto, y el alumno escribe «you can't» igual")
 
       then:
         findings(quiz(root, CAN_DRIVE)) == List.of()
         only(quiz(root, COULD_HAVE)).getIdentity().getMarker() == CAN_DRIVE
-        only(quiz(root, COULD_HAVE)).getRule() == "same-meaning"
+        only(quiz(root, COULD_HAVE)).getRule() == "same-exercise"
         only(quiz(root, COULD_DRIVE)).getIdentity().getMarker() == CAN_DRIVE
         only(quiz(root, COULD_DRIVE)).getRule() == "same-but-wildcard"
         errorCountsOf(root).getWithError() == 2
-    - |
-      test: "should mark the same copies in two runs of the same course, reusing every vector without asking nomic-embed-text again"
-      trace: FEAT-DUPAR / F-DUPAR-R003
-
-      given:
-        world = World.withNomic()
-        first = world.run(course(topic("Respuestas cortas", canDrive(), couldHave(), couldDrive())), null)
-        asked = List.copyOf(world.nomic.asked())
-        second = world.run(course(topic("Respuestas cortas", canDrive(), couldHave(), couldDrive())), null)
-
-      then:
-        copies(first) == Map.of(COULD_HAVE, CAN_DRIVE, COULD_DRIVE, CAN_DRIVE)
-        copies(second) == copies(first)
-        asked.size() == 3
-        world.nomic.asked() == asked
     - |
       test: "should give every copy a low finding for the panel that counts as an error and scores 0, and keep 1 in the exercise that stays"
       trace: FEAT-DUPAR / F-DUPAR-R004
@@ -48627,41 +48827,6 @@ elements:
         score(root, WHERE_HE) == 1.0
         errorCountsOf(root).getWithError() == 1
     - |
-      test: "should give each finding the cost of the rule that found it: instant for same-but-wildcard, local model for same-meaning and paid model for same-exercise"
-      trace: FEAT-DUPAR / F-DUPAR-R004
-
-      given:
-        withOllama = World.withNomic().run(course(topic("Contraste inicial", whereHe(), whereShe()), topic("Each other o reflexivos", cooked(), prepared())), null)
-        alternative = World.withoutOllama()
-        withoutOllama = alternative.run(course(topic("Funciones mixtas", washForYou(), wash())), budget(10))
-
-      when:
-        sut.answers("Offer: I'll wash the dishes for you.", "Offer: I'll wash the dishes.", true, "Piden lo mismo: «'ll wash» en una oferta; sólo sobra «for you»")
-
-      then:
-        only(quiz(withOllama, WHERE_SHE)).getCost() == AnalysisCost.INSTANT
-        only(quiz(withOllama, PREPARED)).getCost() == AnalysisCost.LOCAL_MODEL
-        only(quiz(withoutOllama, WASH)).getCost() == AnalysisCost.PAID_MODEL
-    - |
-      test: "should give a pair found both by the wildcard and by its vectors the instant rule same-but-wildcard, «A: Are we ready? B: Yes, we are.» after «A: Are they ready? B: Yes, they are.»"
-      trace: FEAT-DUPAR / F-DUPAR-R004
-
-      given:
-        world = World.withNomic()
-        root = world.run(course(topic("Respuestas cortas", weHappy(), theyReady(), weReady())), null)
-        copy = only(quiz(root, WE_READY))
-        diagnosis = diagnosis(root, WE_READY)
-
-      then:
-        copy.getRule() == "same-but-wildcard"
-        copy.getCost() == AnalysisCost.INSTANT
-        copy.getIdentity().getMarker() == THEY_READY
-        diagnosis.getCondition() == NearDuplicateCondition.WILDCARD
-        diagnosis.getDifference() == "they → we"
-        diagnosis.getSimilarity() == 0.965
-        world.nomic.asked().size() == 3
-        findings(quiz(root, THEY_READY)) == List.of()
-    - |
       test: "should show as evidence both exercises as the student sees them and «Casi igual a …208f del mismo tema: cambia he por she», never the internal format of the exercise"
       trace: FEAT-DUPAR / F-DUPAR-R005
 
@@ -48676,17 +48841,6 @@ elements:
         part(copy, "Queda terminado") == "Where is he?"
         part(copy, "Casi igual") == "Casi igual a …208f del mismo tema: cambia he por she"
         copy.getEvidence().getObservation().startsWith("Where ___ (she / be)? (present simple) · casi igual a …208f del mismo tema: cambia he por she.") is true
-    - |
-      test: "should say in the evidence of a pair found by its vectors «Dice lo mismo que …46ac: parecido 0,98»"
-      trace: FEAT-DUPAR / F-DUPAR-R005
-
-      given:
-        root = World.withNomic().run(course(topic("Each other o reflexivos", cooked(), prepared())), null)
-        copy = only(quiz(root, PREPARED))
-
-      then:
-        part(copy, "Casi igual") == "Dice lo mismo que …46ac: parecido 0,98"
-        part(copy, "Copia") == "They prepared lunch for ___ . (Julie prepared lunch for David and David prepared lunch for Julie.) " + "(each other · ourselves · themselves · yourselves)"
     - |
       test: "should say in the evidence of a pair judged by claude -p «Para claude -p es el mismo ejercicio que …2725: cambian 2 de 7 palabras»"
       trace: FEAT-DUPAR / F-DUPAR-R005
@@ -48704,21 +48858,6 @@ elements:
         part(copy, "Razón de claude -p") == "Piden lo mismo: «'ll wash» en una oferta; sólo sobra «for you»"
         part(copy, "Copia") == "Offer: I ___ (wash) the dishes."
     - |
-      test: "should leave all of near-duplicates unevaluated, the wildcard included, while the examined version of nomic-embed-text with its prefix has no approved exam"
-      trace: FEAT-DUPAR / F-DUPAR-R007
-
-      given:
-        world = World.notExamined()
-        root = world.run(course(topic("Contraste inicial", whereHe(), whereShe()), topic("Each other o reflexivos", cooked(), prepared())), null)
-        run = runOf(root)
-
-      then:
-        world.nomic.asked() == List.of()
-        run.isPublished() is false
-        run.getExaminedVersion() == NOMIC_EXAMINED
-        run.getExamState() == JudgeExamStatus.NOT_TAKEN
-        run.getReason().startsWith("sin examen") is true
-    - |
       test: "should mark the same copies when the same examined version takes the exam twice, without a single new consultation"
       trace: FEAT-DUPAR / F-DUPAR-R007
 
@@ -48727,13 +48866,19 @@ elements:
         exam = EvaluationRunPolicy(100, false, null, Set.of(PREPARED, COULD_HAVE, COULD_DRIVE), EvaluationRunPurpose.EXAM, 1)
         first = world.run(examCourse(), exam)
         asked = List.copyOf(world.nomic.asked())
+        consultations = world.claude.calls()
         second = world.run(examCourse(), exam)
+
+      when:
+        sut.answers("They cooked lunch for each other.", "They prepared lunch for each other.", true, "Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración")
 
       then:
         copies(first) == Map.of(PREPARED, COOKED, COULD_HAVE, CAN_DRIVE, COULD_DRIVE, CAN_DRIVE)
         copies(second) == copies(first)
         asked.size() == 5
         world.nomic.asked() == asked
+        consultations > 0 is true
+        world.claude.calls() == consultations
         quiz(first, WHERE_SHE).getScores().get("near-duplicates") is null
     - |
       test: "should ask claude -p only about candidates that the wildcard does not settle and whose word similarity reaches 0.6, as «I am sorry.» and «I am hot.», 0.67, and not about «That is his car.» and «That car is his.», 0.50"
@@ -48848,54 +48993,406 @@ elements:
         world.claude.calls() == 2
         halfway(all, WE_READY) is false
         only(quiz(all, WE_READY)).getIdentity().getMarker() == THEY_READY
+    - |
+      test: "should make a near duplicate of a candidate of its vectors that claude -p calls the same exercise, «They prepared lunch for each other.» after «They cooked lunch for each other.», 0.98, with the rule same-exercise"
+      trace: FEAT-DUPAR / F-DUPAR-R002
+
+      given:
+        world = World.withNomic()
+        root = world.run(course(topic("Each other o reflexivos", cooked(), prepared())), budget(10))
+        copy = only(quiz(root, PREPARED))
+        diagnosis = diagnosis(root, PREPARED)
+
+      when:
+        sut.answers("They cooked lunch for each other.", "They prepared lunch for each other.", true, "Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración")
+
+      then:
+        copy.getRule() == "same-exercise"
+        copy.getIdentity().getMarker() == COOKED
+        diagnosis.getCondition() == NearDuplicateCondition.JUDGED
+        diagnosis.getSimilarity() == 0.9759
+        diagnosis.getJudgeReason() == "Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración"
+        findings(quiz(root, COOKED)) == List.of()
+        score(root, COOKED) == 1.0
+        score(root, PREPARED) == 0.0
+        world.claude.pairs() == List.of("They cooked lunch for each other. || They prepared lunch for each other.")
+        sorted(world.nomic.asked()) == List.of("clustering: They cooked lunch for each other.", "clustering: They prepared lunch for each other.")
+    - |
+      test: "should mark the same copies in two runs of the same course, reusing every vector and every verdict of claude -p without asking either again"
+      trace: FEAT-DUPAR / F-DUPAR-R003
+
+      given:
+        world = World.withNomic()
+        first = world.run(course(topic("Respuestas cortas", canDrive(), couldHave(), couldDrive())), budget(10))
+        vectors = List.copyOf(world.nomic.asked())
+        consultations = world.claude.calls()
+        second = world.run(course(topic("Respuestas cortas", canDrive(), couldHave(), couldDrive())), budget(10))
+
+      when:
+        sut.answers("A: Can I drive your car? B: No, you can't.", "A: Could I have your car? B: No, you can't.", true, "Piden lo mismo: permiso para usar el auto, y el alumno escribe «you can't» igual")
+
+      then:
+        copies(first) == Map.of(COULD_HAVE, CAN_DRIVE, COULD_DRIVE, CAN_DRIVE)
+        copies(second) == copies(first)
+        vectors.size() == 3
+        world.nomic.asked() == vectors
+        consultations > 0 is true
+        world.claude.calls() == consultations
+    - |
+      test: "should give each finding the cost of the rule that found it, instant for same-but-wildcard and paid model for same-exercise with Ollama and without it, and none to similar-candidates, which only proposes pairs"
+      trace: FEAT-DUPAR / F-DUPAR-R004
+
+      given:
+        withOllama = World.withNomic()
+        proposed = withOllama.run(course(topic("Contraste inicial", whereHe(), whereShe()), topic("Each other o reflexivos", cooked(), prepared()), topic("Adjetivo o pronombre", hisCar(), carHis())), budget(10))
+        alternative = World.withoutOllama()
+        withoutOllama = alternative.run(course(topic("Funciones mixtas", washForYou(), wash())), budget(10))
+
+      when:
+        sut.answers("They cooked lunch for each other.", "They prepared lunch for each other.", true, "Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración")
+
+      then:
+        only(quiz(proposed, WHERE_SHE)).getCost() == AnalysisCost.INSTANT
+        only(quiz(proposed, PREPARED)).getCost() == AnalysisCost.PAID_MODEL
+        only(quiz(withoutOllama, WASH)).getCost() == AnalysisCost.PAID_MODEL
+        rules(proposed) == List.of("same-but-wildcard", "same-exercise")
+        rules(withoutOllama) == List.of("same-exercise")
+    - |
+      test: "should give a pair that the wildcard settles the instant rule same-but-wildcard without asking claude -p, even when its vectors reach 0.80, «A: Are we ready? B: Yes, we are.» after «A: Are they ready? B: Yes, they are.»"
+      trace: FEAT-DUPAR / F-DUPAR-R004
+
+      given:
+        world = World.withNomic()
+        root = world.run(course(topic("Respuestas cortas", weHappy(), theyReady(), weReady())), budget(10))
+        copy = only(quiz(root, WE_READY))
+        diagnosis = diagnosis(root, WE_READY)
+
+      when:
+        sut.answers("A: Are we happy? B: Yes, we are.", "A: Are they ready? B: Yes, they are.", false, "Otra pregunta: happy y ready")
+
+      then:
+        copy.getRule() == "same-but-wildcard"
+        copy.getCost() == AnalysisCost.INSTANT
+        copy.getIdentity().getMarker() == THEY_READY
+        diagnosis.getCondition() == NearDuplicateCondition.WILDCARD
+        diagnosis.getDifference() == "they → we"
+        sorted(world.claude.pairs()) == List.of("A: Are we happy? B: Yes, we are. || A: Are they ready? B: Yes, they are.", "A: Are we happy? B: Yes, we are. || A: Are we ready? B: Yes, we are.")
+        findings(quiz(root, THEY_READY)) == List.of()
+    - |
+      test: "should say in the evidence of a pair that its vectors proposed and claude -p judged «Para claude -p es el mismo ejercicio que …355e: parecido 0,99» and the reason claude -p gave"
+      trace: FEAT-DUPAR / F-DUPAR-R005
+
+      given:
+        world = World.withNomic()
+        root = world.run(course(topic("Montañas y océanos", beenToRome(), visitedRome())), budget(10))
+        copy = only(quiz(root, VISITED_ROME))
+
+      when:
+        sut.answers("Have you ever been to Rome?", "Have you ever visited Rome?", true, "La misma idea con otras palabras: «been to» por «visited», y el alumno elige «-» igual")
+
+      then:
+        part(copy, "Casi igual") == "Para claude -p es el mismo ejercicio que …355e: parecido 0,99"
+        part(copy, "Razón de claude -p") == "La misma idea con otras palabras: «been to» por «visited», y el alumno elige «-» igual"
+        part(copy, "Copia terminada") == "Have you ever visited Rome?"
+        part(copy, "Queda terminado") == "Have you ever been to Rome?"
+    - |
+      test: "should ask claude -p in an exam run with Ollama only about the candidates whose copy is an exercise of the exam's file, even when the exercise that stays is not in it"
+      trace: FEAT-DUPAR / F-DUPAR-R007
+
+      given:
+        world = World.notExamined()
+        exam = EvaluationRunPolicy(100, false, null, Set.of(PREPARED, WASH_FOR_YOU), EvaluationRunPurpose.EXAM, 1)
+        root = world.run(course(topic("Each other o reflexivos", cooked(), prepared()), topic("Funciones mixtas", washForYou(), wash())), exam)
+
+      when:
+        sut.answers("They cooked lunch for each other.", "They prepared lunch for each other.", true, "Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración")
+
+      then:
+        world.claude.pairs() == List.of("They cooked lunch for each other. || They prepared lunch for each other.")
+        copies(root) == Map.of(PREPARED, COOKED)
+        score(root, WASH) is null
+        sorted(world.nomic.asked()) == List.of("clustering: They cooked lunch for each other.", "clustering: They prepared lunch for each other.")
+        runOf(root).isPublished() is true
+    - |
+      test: "should ask claude -p in an exam run without Ollama only about the candidates whose copy is an exercise of the exam's file"
+      trace: FEAT-DUPAR / F-DUPAR-R007
+
+      given:
+        world = World.withoutOllama()
+        exam = EvaluationRunPolicy(100, false, null, Set.of(WASH, BEEN_TO_ROME), EvaluationRunPurpose.EXAM, 1)
+        root = world.run(course(topic("Funciones mixtas", washForYou(), wash()), topic("Montañas y océanos", beenToRome(), visitedRome()), topic("Afirmativas con be", sorry(), hot())), exam)
+
+      when:
+        sut.answers("Offer: I'll wash the dishes for you.", "Offer: I'll wash the dishes.", true, "Piden lo mismo: «'ll wash» en una oferta; sólo sobra «for you»")
+
+      then:
+        world.claude.pairs() == List.of("Offer: I'll wash the dishes for you. || Offer: I'll wash the dishes.")
+        copies(root) == Map.of(WASH, WASH_FOR_YOU)
+    - |
+      test: "should give an exercise outside the exam's file neither score nor finding in an exam run, nor count the pairs whose copy it is among the consultations the exam says are missing"
+      trace: FEAT-DUPAR / F-DUPAR-R007
+
+      given:
+        world = World.withoutOllama()
+        exam = EvaluationRunPolicy(0, false, null, Set.of(WASH), EvaluationRunPurpose.EXAM, 1)
+        root = world.run(course(topic("Funciones mixtas", washForYou(), wash()), topic("Montañas y océanos", beenToRome(), visitedRome()), topic("Afirmativas con be", sorry(), hot())), exam)
+
+      then:
+        halfway(root, WASH) is true
+        score(root, WASH) == 1.0
+        coverageOf(root).getCost().getPendingConsultations() == 1
+        runOf(root).getReason().endsWith("quedan 1 par sin juzgar") is true
+        world.claude.calls() == 0
+    - |
+      test: "should ask claude -p, with Ollama, only about the candidates that the wildcard does not settle and whose vectors reach 0.80, as «Have you heard about my news?» after «Have you heard the news?», 0.94, and not about «I am hot.» after «I am sorry.», 0.71"
+      trace: FEAT-DUPAR / F-DUPAR-R009
+
+      given:
+        world = World.withNomic()
+        root = world.run(course(topic("Participios irregulares: repaso 1", heardNews(), heardMyNews()), topic("Afirmativas con be", sorry(), hot()), topic("Contraste inicial", whereHe(), whereShe())), budget(10))
+
+      when:
+        sut.answers("Have you heard the news?", "Have you heard about my news?", false, "Otra oración: «about my news» cambia lo que se cuenta, aunque el alumno escriba lo mismo")
+
+      then:
+        world.claude.pairs() == List.of("Have you heard the news? || Have you heard about my news?")
+        sorted(world.nomic.asked()) == List.of("clustering: Have you heard about my news?", "clustering: Have you heard the news?", "clustering: I am hot.", "clustering: I am sorry.")
+        findings(quiz(root, HEARD_MY_NEWS)) == List.of()
+        score(root, HEARD_MY_NEWS) == 1.0
+        halfway(root, HEARD_MY_NEWS) is false
+        score(root, HOT) == 1.0
+        halfway(root, HOT) is false
+        only(quiz(root, WHERE_SHE)).getRule() == "same-but-wildcard"
+    - |
+      test: "should not mark, with Ollama, a candidate whose vectors reach 0.97 when claude -p calls it a different exercise, «That car is his.» after «That is his car.»"
+      trace: FEAT-DUPAR / F-DUPAR-R009
+
+      given:
+        world = World.withNomic()
+        root = world.run(course(topic("Adjetivo o pronombre", hisCar(), carHis())), budget(10))
+
+      when:
+        sut.answers("That is his car.", "That car is his.", false, "Contrastan adjetivo y pronombre: el alumno escribe «his» con otro papel")
+
+      then:
+        world.claude.pairs() == List.of("That is his car. || That car is his.")
+        findings(quiz(root, CAR_HIS)) == List.of()
+        score(root, CAR_HIS) == 1.0
+        score(root, HIS_CAR) == 1.0
+        halfway(root, CAR_HIS) is false
+        ((QuizDiagnoses) quiz(root, CAR_HIS).getDiagnoses()).getNearDuplicateDiagnosis().isEmpty() is true
+        errorCountsOf(root).getWithError() == 0
+    - |
+      test: "should ask nomic-embed-text for every vector and stop only claude -p at the budget of --budget near-duplicates=1"
+      trace: FEAT-DUPAR / F-DUPAR-R009
+
+      given:
+        world = World.withNomic()
+        root = world.run(course(topic("Respuestas cortas", weHappy(), theyReady(), weReady())), budget(1))
+        reason = runOf(root).getReason()
+
+      when:
+        sut.answers("A: Are we happy? B: Yes, we are.", "A: Are they ready? B: Yes, they are.", false, "Otra pregunta: happy y ready")
+
+      then:
+        sorted(world.nomic.asked()) == List.of("clustering: A: Are they ready? B: Yes, they are.", "clustering: A: Are we happy? B: Yes, we are.", "clustering: A: Are we ready? B: Yes, we are.")
+        world.claude.pairs() == List.of("A: Are we happy? B: Yes, we are. || A: Are they ready? B: Yes, they are.")
+        halfway(root, THEY_READY) is false
+        halfway(root, WE_READY) is true
+        reason.startsWith("se acabó el tope") is true
+        reason.endsWith("quedan 1 par sin juzgar") is true
+    - |
+      test: "should leave half evaluated, with Ollama and without --budget near-duplicates=N, an exercise with a candidate of its vectors, consulting no claude -p, keeping its wildcard findings and saying «falta el tope» with the pairs left to judge"
+      trace: FEAT-DUPAR / F-DUPAR-R009
+
+      given:
+        world = World.withNomic()
+        root = world.run(course(topic("Respuestas cortas", weHappy(), theyReady(), weReady())), null)
+        weReady = quiz(root, WE_READY)
+        reason = runOf(root).getReason()
+
+      then:
+        only(weReady).getRule() == "same-but-wildcard"
+        only(weReady).getIdentity().getMarker() == THEY_READY
+        score(root, WE_READY) == 0.0
+        halfway(root, WE_READY) is true
+        halfway(root, THEY_READY) is true
+        score(root, THEY_READY) == 1.0
+        halfway(root, WE_HAPPY) is false
+        world.nomic.asked().size() == 3
+        world.claude.calls() == 0
+        reason.startsWith("falta el tope") is true
+        reason.endsWith("quedan 2 pares sin juzgar") is true
+        coverageOf(root).getCost().getPendingConsultations() == 2
+    - |
+      test: "should leave half evaluated, with Ollama, an exercise whose candidate got no usable answer from claude -p, keeping its wildcard findings and saying how many pairs are left to judge"
+      trace: FEAT-DUPAR / F-DUPAR-R009
+
+      given:
+        world = World.withNomic()
+        root = world.run(course(topic("Respuestas cortas", weHappy(), theyReady(), weReady())), budget(10))
+        weReady = quiz(root, WE_READY)
+
+      when:
+        sut.answers("A: Are we happy? B: Yes, we are.", "A: Are they ready? B: Yes, they are.", false, "Otra pregunta: happy y ready")
+
+      then:
+        only(weReady).getRule() == "same-but-wildcard"
+        only(weReady).getIdentity().getMarker() == THEY_READY
+        score(root, WE_READY) == 0.0
+        halfway(root, WE_READY) is true
+        halfway(root, THEY_READY) is false
+        Set.copyOf(world.claude.pairs()) == Set.of("A: Are we happy? B: Yes, we are. || A: Are they ready? B: Yes, they are.", "A: Are we happy? B: Yes, we are. || A: Are we ready? B: Yes, we are.")
+        runOf(root).getReason().contains("1 par") is true
+    - |
+      test: "should declare as missing for near-duplicates only the pairs left for claude -p, with their hours at the rate of the judge one at a time and four at a time, never the vectors of nomic-embed-text"
+      trace: FEAT-DUPAR / F-DUPAR-R009
+
+      given:
+        world = World.withNomic()
+        start = Instant.parse("2026-10-02T10:00:00Z")
+        vectors = ArrayList<>()
+        root = world.run(course(topic("Respuestas cortas", weHappy(), theyReady(), weReady())), null)
+        coverage = coverageOf(root)
+        cost = coverage.getCost()
+
+      when:
+        sut.put(JUDGE_ID, List.of(start, start.plusSeconds(20), start.plusSeconds(40), start.plusSeconds(60), start.plusSeconds(80), start.plusSeconds(100)))
+
+      then:
+        coverage.getEvaluators().stream().map(EvaluatorCoverage::getEvaluatorId).toList() == List.of(JUDGE_ID)
+        cost.getPendingConsultations() == 2
+        cost.getRatePerHour() == 180.0
+        cost.isRateMeasured() is true
+        cost.getHoursOneAtATime() == 2 / 180.0
+        cost.getMaxConcurrentEvaluations() == 4
+        cost.getHoursConcurrent() == 2 / 180.0 / 4
+        world.claude.calls() == 0
+    - |
+      test: "should evaluate whole a topic outside the set that a run declares for claude -p when its vectors stay below 0.80, «I am hot.» after «I am sorry.», since the vectors always run"
+      trace: FEAT-DUPAR / F-DUPAR-R009
+
+      given:
+        world = World.withNomic()
+        declared = EvaluationRunPolicy(10, false, null, Set.of(WASH_FOR_YOU, WASH), EvaluationRunPurpose.COURSE, null)
+        root = world.run(course(topic("Funciones mixtas", washForYou(), wash()), topic("Afirmativas con be", sorry(), hot())), declared)
+
+      when:
+        sut.answers("Offer: I'll wash the dishes for you.", "Offer: I'll wash the dishes.", true, "Piden lo mismo: «'ll wash» en una oferta; sólo sobra «for you»")
+
+      then:
+        world.claude.pairs() == List.of("Offer: I'll wash the dishes for you. || Offer: I'll wash the dishes.")
+        score(root, HOT) == 1.0
+        halfway(root, HOT) is false
+        findings(quiz(root, HOT)) == List.of()
+        sorted(world.nomic.asked()) == List.of("clustering: I am hot.", "clustering: I am sorry.", "clustering: Offer: I'll wash the dishes for you.", "clustering: Offer: I'll wash the dishes.")
+    - |
+      test: "should leave all of near-duplicates unevaluated, the wildcard included, while the version with Ollama, named by its three pieces, has no approved exam, even if nomic-embed-text with its prefix alone approved one"
+      trace: FEAT-DUPAR / F-DUPAR-R010
+
+      given:
+        world = World.notExamined()
+        root = world.run(course(topic("Contraste inicial", whereHe(), whereShe()), topic("Each other o reflexivos", cooked(), prepared())), budget(10))
+        run = runOf(root)
+
+      when:
+        sut.approve(NOMIC_EXAMINED)
+
+      then:
+        world.nomic.asked() == List.of()
+        world.claude.calls() == 0
+        run.isPublished() is false
+        run.getExaminedVersion() == WITH_OLLAMA_EXAMINED
+        run.getExamState() == JudgeExamStatus.NOT_TAKEN
+        run.getReason().startsWith("sin examen") is true
+    - |
+      test: "should not ask claude -p again, with Ollama, about a pair it already judged without Ollama, «Offer: I'll wash the dishes.» after «Offer: I'll wash the dishes for you.»"
+      trace: FEAT-DUPAR / F-DUPAR-R010
+
+      given:
+        without = World.withoutOllama()
+        with = without.turned(true)
+        root = with.run(course(topic("Funciones mixtas", washForYou(), wash())), budget(10))
+        copy = only(quiz(root, WASH))
+
+      when:
+        sut.approve(WITH_OLLAMA_EXAMINED)
+
+      then:
+        without.claude.calls() == 1
+        with.claude.calls() == 1
+        copy.getRule() == "same-exercise"
+        copy.getIdentity().getMarker() == WASH_FOR_YOU
+        diagnosis(root, WASH).getSimilarity() == 0.9937
+    - |
+      test: "should reuse, with Ollama, the vectors that the version of 30/9 recorded, without asking nomic-embed-text again, since neither the candidate threshold nor the judge enters their record"
+      trace: FEAT-MLOCAL / F-MLOCAL-R002
+
+      given:
+        world = World.withNomic()
+        recorded = DefaultEvaluationSessionFactory(world.ledger, new Sha256ContentFingerprinter()).open(new EvaluationBudget(10), new SentenceEmbeddingEvaluator(new RecordedNomic(true), new DefaultNearDuplicatesConfig(), NOMIC_EXAMINED))
+        root = world.run(course(topic("Each other o reflexivos", cooked(), prepared())), budget(10))
+
+      when:
+        sut.answers("They cooked lunch for each other.", "They prepared lunch for each other.", true, "Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración")
+
+      then:
+        recorded.resolve(new EvaluationSubject(COOKED, Map.of("exercise", "They cooked lunch for each other."))).getKind() == EvaluationResolutionKind.EVALUATED
+        recorded.resolve(new EvaluationSubject(PREPARED, Map.of("exercise", "They prepared lunch for each other."))).getKind() == EvaluationResolutionKind.EVALUATED
+        world.nomic.asked() == List.of()
+        only(quiz(root, PREPARED)).getRule() == "same-exercise"
+        diagnosis(root, PREPARED).getSimilarity() == 0.9759
+        world.claude.calls() == 1
   - name: SentenceEmbeddingEvaluator
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/nearduplicates/SentenceEmbeddingEvaluator.java
     tests:
     - name: "should ask nomic-embed-text for the vector of the finished exercise with\
-        \ the prefix «clustering: » and record it under an evaluator id that carries\
-        \ the examined version"
+        \ the prefix «clustering: », under the version of nomic-embed-text with that\
+        \ prefix"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/SentenceEmbeddingEvaluatorTest.java
-    - name: should not reuse the vectors that another examined version recorded
+    - name: should reuse the vectors that the same version of nomic-embed-text recorded
+        and not those that another version recorded
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/SentenceEmbeddingEvaluatorTest.java
     testCleanViews:
     - |
-      test: "should ask nomic-embed-text for the vector of the finished exercise with the prefix «clustering: » and record it under an evaluator id that carries the examined version"
-      trace: FEAT-DUPAR / F-DUPAR-R002
+      test: "should ask nomic-embed-text for the vector of the finished exercise with the prefix «clustering: », under the version of nomic-embed-text with that prefix"
+      trace: FEAT-DUPAR / F-DUPAR-R010
 
       given:
         nomic = NearDuplicatesAnalyzerTest.RecordedNomic(true)
-        evaluator = SentenceEmbeddingEvaluator(nomic, new DefaultNearDuplicatesConfig(), NearDuplicatesAnalyzerTest.NOMIC_EXAMINED)
-        outcome = evaluator.evaluate(new EvaluationSubject(NearDuplicatesAnalyzerTest.COOKED, Map.of("exercise", "They cooked lunch for each other.")))
+        evaluator = SentenceEmbeddingEvaluator(nomic, new DefaultNearDuplicatesConfig(), VECTORS_VERSION)
+        outcome = evaluator.evaluate(new EvaluationSubject(NearDuplicatesAnalyzerTest.COOKED, Map.of(SentenceEmbeddingEvaluator.EXERCISE, "They cooked lunch for each other.")))
         vector = SentenceEmbeddingEvaluator.decode(((EvaluationEmitted) outcome).getPayload()).orElseThrow()
 
       then:
         nomic.asked() == List.of("clustering: They cooked lunch for each other.")
         evaluator.evaluatorId() == "near-duplicates · nomic-embed-text@0a109f422b47 · clustering-1"
-        evaluator.evaluatorVersion() == Optional.of(NearDuplicatesAnalyzerTest.NOMIC_EXAMINED)
+        evaluator.evaluatorVersion() == Optional.of(VECTORS_VERSION)
         outcome instanceof EvaluationEmitted is true
         vector.length == NearDuplicatesAnalyzerTest.RecordedNomic.DIMENSIONS
         vector[0] == 1.0f
     - |
-      test: "should not reuse the vectors that another examined version recorded"
-      trace: FEAT-DUPAR / F-DUPAR-R002
+      test: "should reuse the vectors that the same version of nomic-embed-text recorded and not those that another version recorded"
+      trace: FEAT-MLOCAL / F-MLOCAL-R002
 
       given:
         ledger = NearDuplicatesAnalyzerTest.Ledger()
         sessions = DefaultEvaluationSessionFactory(ledger, new Sha256ContentFingerprinter())
         nomic = NearDuplicatesAnalyzerTest.RecordedNomic(true)
-        subject = EvaluationSubject(NearDuplicatesAnalyzerTest.COOKED, Map.of("exercise", "They cooked lunch for each other."))
-        examined = SentenceEmbeddingEvaluator(nomic, new DefaultNearDuplicatesConfig(), "nomic-embed-text@0a109f422b47 · clustering-1")
+        subject = EvaluationSubject(NearDuplicatesAnalyzerTest.COOKED, Map.of(SentenceEmbeddingEvaluator.EXERCISE, "They cooked lunch for each other."))
+        recorded = SentenceEmbeddingEvaluator(nomic, new DefaultNearDuplicatesConfig(), VECTORS_VERSION)
         anotherDigest = SentenceEmbeddingEvaluator(nomic, new DefaultNearDuplicatesConfig(), "nomic-embed-text@9f8e7d6c5b4a · clustering-1")
-        first = sessions.open(new EvaluationBudget(10), examined).resolve(subject)
-        again = sessions.open(new EvaluationBudget(10), examined).resolve(subject)
+        first = sessions.open(new EvaluationBudget(10), recorded).resolve(subject)
+        again = sessions.open(new EvaluationBudget(10), recorded).resolve(subject)
         other = sessions.open(new EvaluationBudget(10), anotherDigest).resolve(subject)
 
       then:
         first.getKind() == EvaluationResolutionKind.EVALUATED
         again.getKind() == EvaluationResolutionKind.REUSED
+        again.getPayload() == first.getPayload()
         other.getKind() == EvaluationResolutionKind.EVALUATED
         nomic.asked().size() == 2
         ledger.all().stream().map(record -> record.getKey().getEvaluatorId()).distinct().count() == 2
@@ -48992,47 +49489,90 @@ elements:
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/nearduplicates/DefaultNearDuplicatesConfig.java
     tests:
-    - name: "should hold the threshold 0.95, the prefix «clustering: » and the word\
-        \ similarity 0.6 of the candidates for claude -p"
+    - name: "should hold the similarities that only choose the candidates of the judge,\
+        \ 0.80 for the vectors with the prefix «clustering: » and 0.6 for the words"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/DefaultNearDuplicatesConfigTest.java
-    - name: "should change its methodId when the prefix changes, so the vectors are\
-        \ a new examined version that takes its own exam"
+    - name: "should name the version with Ollama by the method of the vectors, the\
+        \ candidate similarity and the first 12 hex of the version of the judge, «\
+        clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d»"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/DefaultNearDuplicatesConfigTest.java
+    - name: "should name another version with Ollama when the prefix, the candidate\
+        \ similarity or the version of the judge changes, so it takes its own exam"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/DefaultNearDuplicatesConfigTest.java
+    - name: "should name the version without Ollama by the word similarity and the\
+        \ version of the judge, «palabras-0,60 · juez-c3a9e1f07b5d», and another one\
+        \ when either changes"
       status: EXISTS
       testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/DefaultNearDuplicatesConfigTest.java
     testCleanViews:
     - |
-      test: "should hold the threshold 0.95, the prefix «clustering: » and the word similarity 0.6 of the candidates for claude -p"
+      test: "should hold the similarities that only choose the candidates of the judge, 0.80 for the vectors with the prefix «clustering: » and 0.6 for the words"
       trace: FEAT-DUPAR / F-DUPAR-R002
 
       given:
         config = DefaultNearDuplicatesConfig()
 
       then:
-        config.similarityThreshold() == 0.95
+        config.candidateSimilarity() == 0.80
         config.inputPrefix() == "clustering: "
         config.candidateWordSimilarity() == 0.6
         config.methodId() == "clustering-1"
-        config.describe().get("similarityThreshold") == 0.95
-        config.describe().get("inputPrefix") == "clustering: "
+        config.describe().containsValue("clustering-1") is true
+        config.describe().containsValue("clustering: ") is true
+        config.describe().containsValue(0.80) is true
+        config.describe().containsValue(0.6) is true
     - |
-      test: "should change its methodId when the prefix changes, so the vectors are a new examined version that takes its own exam"
+      test: "should name the version with Ollama by the method of the vectors, the candidate similarity and the first 12 hex of the version of the judge, «clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d»"
+      trace: FEAT-DUPAR / F-DUPAR-R010
+
+      given:
+        config = DefaultNearDuplicatesConfig()
+
+      then:
+        config.vectorRouteMethodId(JUDGE_VERSION) == "clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d"
+        config.vectorRouteMethodId(JUDGE_VERSION.substring(0, 12) + "0000") == config.vectorRouteMethodId(JUDGE_VERSION)
+        config.vectorRouteMethodId(null) == "clustering-1 · candidatos-0,80 · juez-sin-versión"
+    - |
+      test: "should name another version with Ollama when the prefix, the candidate similarity or the version of the judge changes, so it takes its own exam"
+      trace: FEAT-DUPAR / F-DUPAR-R010
+
+      given:
+        nomic = NearDuplicatesAnalyzerTest.RecordedNomic(true)
+        exams = NearDuplicatesAnalyzerTest.Exams()
+        gate = DefaultLocalToolGate(new DefaultJudgeRuntime(mock(EvaluationSessionFactory.class), mock(EvaluationSessionFactory.class), exams, evaluatorId -> List.of(), new NearDuplicatesAnalyzerTest.Judges()))
+        measured = DefaultNearDuplicatesConfig()
+        otherPrefix = DefaultNearDuplicatesConfig("search_document: ", 0.80, 0.6)
+        otherSimilarity = DefaultNearDuplicatesConfig("clustering: ", 0.85, 0.6)
+        same = gate.decide("near-duplicates", nomic, measured.vectorRouteMethodId(JUDGE_VERSION), null)
+        prefix = gate.decide("near-duplicates", nomic, otherPrefix.vectorRouteMethodId(JUDGE_VERSION), null)
+        similarity = gate.decide("near-duplicates", nomic, otherSimilarity.vectorRouteMethodId(JUDGE_VERSION), null)
+        judge = gate.decide("near-duplicates", nomic, measured.vectorRouteMethodId(OTHER_JUDGE_VERSION), null)
+        changed = List.of(prefix, similarity, judge)
+
+      when:
+        sut.approve("nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d")
+
+      then:
+        same.getExaminedVersion() == "nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d"
+        same.getExamState() == JudgeExamStatus.APPROVED
+        same.isPublishes() is true
+        changed.stream().map(LocalToolGateDecision::getExaminedVersion).distinct().count() == 3
+    - |
+      test: "should name the version without Ollama by the word similarity and the version of the judge, «palabras-0,60 · juez-c3a9e1f07b5d», and another one when either changes"
       trace: FEAT-DUPAR / F-DUPAR-R007
 
       given:
-        world = NearDuplicatesAnalyzerTest.World.withNomic()
-        other = DefaultNearDuplicatesConfig("search_document: ", 0.95, 0.6)
-        measured = world.gate.decide("near-duplicates", world.nomic, "clustering-1", null)
-        otherPrefix = world.gate.decide("near-duplicates", world.nomic, other.methodId(), null)
+        config = DefaultNearDuplicatesConfig()
+        otherWords = DefaultNearDuplicatesConfig("clustering: ", 0.80, 0.65)
 
       then:
-        "clustering-1" != null
-        other.methodId().startsWith("search-document-") is true
-        new DefaultNearDuplicatesConfig("search_document: ", 0.9, 0.5).methodId() == other.methodId()
-        measured.getExamState() == JudgeExamStatus.APPROVED
-        otherPrefix.getExaminedVersion() == "nomic-embed-text@0a109f422b47 · " + other.methodId()
-        otherPrefix.getExamState() == JudgeExamStatus.NOT_TAKEN
-        otherPrefix.isPublishes() is false
+        config.wordRouteVersion(JUDGE_VERSION) == "palabras-0,60 · juez-c3a9e1f07b5d"
+        config.wordRouteVersion(JUDGE_VERSION) != null
+        config.wordRouteVersion(OTHER_JUDGE_VERSION) == "palabras-0,60 · juez-9b2d4f6a8c1e"
+        config.wordRouteVersion(null) == "palabras-0,60 · juez-sin-versión"
   - name: DefaultSameExerciseQuestion
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/nearduplicates/DefaultSameExerciseQuestion.java
@@ -49080,6 +49620,75 @@ elements:
   - name: NearDuplicatesCorrection
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/nearduplicates/NearDuplicatesCorrection.java
+  - name: PairStepEvaluator
+    status: EXISTS
+    filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/nearduplicates/PairStepEvaluator.java
+    tests:
+    - name: "should ask the wrapped evaluator exactly the pair it receives, under\
+        \ the wrapped evaluator's own id, so what the judge answered is reused under\
+        \ the version with Ollama and without it"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/PairStepEvaluatorTest.java
+    - name: "should state the version of its route, «nomic-embed-text@0a109f422b47\
+        \ · clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d», when the wrapped\
+        \ evaluator states its own"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/PairStepEvaluatorTest.java
+    - name: "should state no version when the wrapped evaluator states none, whatever\
+        \ the version of its route"
+      status: EXISTS
+      testFilePath: audit-domain/src/test/java/com/learney/contentaudit/auditdomain/nearduplicates/PairStepEvaluatorTest.java
+    testCleanViews:
+    - |
+      test: "should ask the wrapped evaluator exactly the pair it receives, under the wrapped evaluator's own id, so what the judge answered is reused under the version with Ollama and without it"
+      trace: FEAT-DUPAR / F-DUPAR-R010
+
+      given:
+        pair = offerPair()
+        judge = Wrapped("near-duplicates-pair-judge", Optional.of(JUDGE_VERSION))
+        withOllama = PairStepEvaluator(judge, WITH_OLLAMA)
+        withoutOllama = PairStepEvaluator(judge, WITHOUT_OLLAMA)
+        outcome = withOllama.evaluate(pair)
+        ledger = NearDuplicatesAnalyzerTest.Ledger()
+        sessions = DefaultEvaluationSessionFactory(ledger, new Sha256ContentFingerprinter())
+        asked = sessions.open(new EvaluationBudget(10), withOllama).resolve(pair)
+        reused = sessions.open(new EvaluationBudget(10), withoutOllama).resolve(pair)
+
+      then:
+        outcome == VERDICT
+        judge.asked == List.of(pair)
+        withOllama.evaluatorId() == "near-duplicates-pair-judge"
+        withoutOllama.evaluatorId() == "near-duplicates-pair-judge"
+        asked.getKind() == EvaluationResolutionKind.EVALUATED
+        reused.getKind() == EvaluationResolutionKind.REUSED
+        reused.getPayload() == VERDICT.getPayload()
+        judge.asked.size() == 2
+        ledger.all().stream().map(record -> record.getKey().getEvaluatorId()).toList() == List.of("near-duplicates-pair-judge")
+    - |
+      test: "should state the version of its route, «nomic-embed-text@0a109f422b47 · clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d», when the wrapped evaluator states its own"
+      trace: FEAT-DUPAR / F-DUPAR-R010
+
+      given:
+        judge = Wrapped("near-duplicates-pair-judge", Optional.of(JUDGE_VERSION))
+        vectors = SentenceEmbeddingEvaluator(new NearDuplicatesAnalyzerTest.RecordedNomic(true), new DefaultNearDuplicatesConfig(), VECTORS_VERSION)
+
+      then:
+        new PairStepEvaluator(judge, WITH_OLLAMA).evaluatorVersion() == Optional.of(WITH_OLLAMA)
+        new PairStepEvaluator(vectors, WITH_OLLAMA).evaluatorVersion() == Optional.of(WITH_OLLAMA)
+        new PairStepEvaluator(judge, WITHOUT_OLLAMA).evaluatorVersion() == Optional.of(WITHOUT_OLLAMA)
+    - |
+      test: "should state no version when the wrapped evaluator states none, whatever the version of its route"
+      trace: FEAT-DUPAR / F-DUPAR-R010
+
+      given:
+        mute = Wrapped("near-duplicates-pair-judge", Optional.empty())
+        stating = Wrapped("near-duplicates-pair-judge", Optional.of(JUDGE_VERSION))
+
+      then:
+        new PairStepEvaluator(mute, WITH_OLLAMA).evaluatorVersion() == Optional.empty()
+        new PairStepEvaluator(mute, WITHOUT_OLLAMA).evaluatorVersion() == Optional.empty()
+        new PairStepEvaluator(mute, null).evaluatorVersion() == Optional.empty()
+        new PairStepEvaluator(stating, null).evaluatorVersion() == Optional.empty()
   - name: DefaultAnalyzerCorrectionCatalog
     status: EXISTS
     filePath: audit-domain/src/main/java/com/learney/contentaudit/auditdomain/correctionengine/DefaultAnalyzerCorrectionCatalog.java
@@ -57470,7 +58079,7 @@ elements:
 
       then:
         run.isAlternative() is true
-        run.getExaminedVersion() == "v1"
+        run.getExaminedVersion() == "palabras-0,60 · juez-" + roundOneJudge().evaluatorVersion().orElseThrow()
         verify: courseRepository.load(coursePath)
     - |
       test: "should not reject a run without selection when LanguageTool is not available, leaving every exercise unevaluated by grammar with the reason in view while the other analyzers run"
@@ -66291,6 +66900,7 @@ elements:
         verdicts = java.util.TreeMap<>()
         families = java.util.TreeSet<>()
         withExample = 0
+        mixed = 0
         sample = String(DefaultCompareCommandTest.class.getResourceAsStream(SAMPLE).readAllBytes(), StandardCharsets.UTF_8)
 
       when:
@@ -66301,6 +66911,8 @@ elements:
         families == java.util.Set.of("ERRORS LOWER", "VOCABULARY HIGHER")
         verdicts.keySet().containsAll(List.of("IMPROVED", "WORSENED", "UNCHANGED", "NOT_EVALUATED")) is true
         withExample > 0 && withExample < rows.size() is true
+        mixed > 0 is true
+        new com.fasterxml.jackson.databind.ObjectMapper().readTree(json).get("verdict").get("undecidableFloors").get("count").asInt() > 0 is true
         json == sample
   - name: DefaultGoalsCommand
     status: EXISTS
@@ -67483,6 +68095,42 @@ elements:
         row.get("example").isNull() is true
         text.contains("\"example\" : null") is true
         row.get("changeVerdict").asText() == "NOT_EVALUATED"
+    - |
+      test: "should write the undecidable floors of the verdict in the JSON, and null when there are none"
+      trace: FEAT-FILAS / F-FILAS-R007
+
+      given:
+        undecided = comparison(List.of())
+        decided = comparison(List.of())
+        formatter = DefaultBatchComparisonFormatter()
+        floors = ObjectMapper().readTree(formatter.format(undecided, "json")).get("verdict").get("undecidableFloors")
+        none = formatter.format(decided, "json")
+        verdict = ObjectMapper().readTree(none).get("verdict")
+
+      when:
+        sut.setVerdict(new BatchVerdict(VerdictKind.UNDECIDABLE, List.of(), List.of(), null, "No se puede decidir: ningún piso falla, pero 8 pisos sin decidir", new UndecidableFloors(8, List.of(new RowSubject("quiz-instruction", "Consigna que no se cumple"), new RowSubject("algún error", "Ejercicios con algún error")))))
+
+      then:
+        floors.get("count").asInt() == 8
+        floors.get("analyzers").get(0).get("subject").asText() == "quiz-instruction"
+        floors.get("analyzers").get(0).get("displayName").asText() == "Consigna que no se cumple"
+        floors.get("analyzers").get(1).get("subject").asText() == "algún error"
+        floors.get("analyzers").get(1).get("displayName").asText() == "Ejercicios con algún error"
+        verdict.has("undecidableFloors") && verdict.get("undecidableFloors").isNull() is true
+    - |
+      test: "should write in the JSON whether each value of a row was evaluated"
+      trace: FEAT-FILAS / F-FILAS-R008
+
+      given:
+        instruction = ComparisonRow("quiz-instruction", AnalyzerFamily.ERRORS, AuditTarget.KNOWLEDGE, "6814dafa7d73e7209a13d389", "Afirmativas regulares", new RowValue(0.0, 0.0, 0, true), new RowValue(0.0, 0.0, 4, false), new RowValue(0.0, 0.0, 0, true), new RowValue(0.0, 0.0, 0, true), 0.0, GoalUnit.EXERCISES, null, null, "Consigna que no se cumple", BetterDirection.LOWER, ChangeVerdict.NOT_EVALUATED, "Ejercicios que no cumplen lo que pide su consigna.", null)
+        row = ObjectMapper().readTree(new DefaultBatchComparisonFormatter().format(comparison(List.of(instruction)), "json")).get("rows").get(0)
+
+      then:
+        row.get("baseline").get("evaluated").asBoolean() is true
+        row.get("remeasuredBaseline").get("evaluated").asBoolean() is false
+        row.get("approved").get("evaluated").asBoolean() is true
+        row.get("projected").get("evaluated").asBoolean() is true
+        row.get("projected").get("evaluated").isBoolean() is true
   - name: DefaultWorkdirResolver
     status: EXISTS
     filePath: audit-cli/src/main/java/com/learney/contentaudit/auditcli/bootstrap/DefaultWorkdirResolver.java
@@ -81380,9 +82028,9 @@ elements:
         sut.batch(Foto.deHoy().vocabulary(A1, 0.9650).errors(A1, HINT, 2, 0).anyError(A1, 6, 3, 0), Foto.deHoy().vocabulary(A1, 0.9611).errors(A1, HINT, 1, 1).anyError(A1, 6, 2, 1), cambio(P_VEGETABLES, VEGETABLES))
 
       then:
-        vocabulary.getBaseline() == new RowValue(0.9654, null, 0)
-        vocabulary.getApproved() == new RowValue(0.9650, null, 0)
-        vocabulary.getProjected() == new RowValue(0.9611, null, 0)
+        vocabulary.getBaseline() == new RowValue(0.9654, null, 0, true)
+        vocabulary.getApproved() == new RowValue(0.9650, null, 0, true)
+        vocabulary.getProjected() == new RowValue(0.9611, null, 0, true)
         hint.getBaseline().getValue() == 3.0
         hint.getApproved().getValue() == 2.0
         hint.getProjected().getValue() == 1.0
@@ -81449,9 +82097,9 @@ elements:
         sut.batch(Foto.deHoy().errors(REGULAR, HINT, 2, 0), Foto.deHoy().errors(REGULAR, HINT, 1, 0), cambio(P_VEGETABLES, VEGETABLES))
 
       then:
-        hint.getBaseline() == new RowValue(3.0, 0.75, 0)
-        hint.getApproved() == new RowValue(2.0, 0.5, 0)
-        hint.getProjected() == new RowValue(1.0, 0.25, 0)
+        hint.getBaseline() == new RowValue(3.0, 0.75, 0, true)
+        hint.getApproved() == new RowValue(2.0, 0.5, 0, true)
+        hint.getProjected() == new RowValue(1.0, 0.25, 0, true)
         hint.getChange() == -2.0
         hint.getUnit() == GoalUnit.EXERCISES
     - |
@@ -81466,7 +82114,7 @@ elements:
         sut.batch(Foto.deHoy(), Foto.deHoy(), cambio(P_VEGETABLES, VEGETABLES))
 
       then:
-        row(comparison, "vocabulario", A1).getBaseline() == new RowValue(0.9654, null, 0)
+        row(comparison, "vocabulario", A1).getBaseline() == new RowValue(0.9654, null, 0, true)
     - |
       test: "should attach to each row the floor and the progress goal that apply to it, with their threshold, unit and reference"
       trace: FEAT-METAS / F-METAS-R002
@@ -82127,7 +82775,7 @@ elements:
         sut.batch(Foto.deHoy(), Foto.deHoy().errors(REGULAR, INSTRUCTION, 0, 4), cambio(P_VEGETABLES, VEGETABLES))
 
       then:
-        instruction.getProjected() == new RowValue(0.0, 0.0, 4)
+        instruction.getProjected() == new RowValue(0.0, 0.0, 4, false)
         instruction.getChange() == 0.0
         instruction.getChangeVerdict() == ChangeVerdict.NOT_EVALUATED
         row(comparison, HINT, REGULAR).getChangeVerdict() == ChangeVerdict.UNCHANGED
@@ -82157,7 +82805,7 @@ elements:
         sut.batch(Foto.deHoy(), Foto.deHoy().errors(REGULAR, HINT, 0, 4).errors(REGULAR, INSTRUCTION, 0, 4).anyError(REGULAR, 4, 0, 4).errors(WITH_BE, INSTRUCTION, 0, 2).anyError(WITH_BE, 2, 0, 2), cambio(P_VEGETABLES, VEGETABLES))
 
       then:
-        regular.getProjected() == new RowValue(0.0, 0.0, 4)
+        regular.getProjected() == new RowValue(0.0, 0.0, 4, false)
         regular.getChangeVerdict() == ChangeVerdict.NOT_EVALUATED
         row(comparison, "algún error", WITH_BE).getChangeVerdict() == ChangeVerdict.UNCHANGED
     - |
@@ -82324,6 +82972,62 @@ elements:
         anyError.getDetail() == "Consigna que no se cumple: No cumple la consigna."
         own.getQuizId() == HATS
         own.getDetail() == "La pista no anuncia «wears»."
+    - |
+      test: "should say in the verdict how many floors cannot be decided, as many as its text counts, and the rows they belong to, once each and in the order of the rows"
+      trace: FEAT-FILAS / F-FILAS-R007
+
+      given:
+        mesa = Mesa().baseline(Foto.deHoy())
+        comparison = mesa.compare()
+        verdict = comparison.getVerdict()
+        undecided = verdict.getUndecidableFloors()
+
+      when:
+        sut.batch(Foto.deHoy(), Foto.deHoy().unevaluated(VEGETABLES, INSTRUCTION).errors(REGULAR, INSTRUCTION, 0, 1).anyError(REGULAR, 4, 0, 1).unevaluated(LIVING_ROOM, INSTRUCTION).errors(WITH_BE, INSTRUCTION, 0, 1).anyError(WITH_BE, 2, 0, 1), cambio(P_VEGETABLES, VEGETABLES), cambio(P_LIVING_ROOM, LIVING_ROOM))
+
+      then:
+        verdict.getKind() == VerdictKind.UNDECIDABLE
+        undecided is not null
+        undecided.getCount() == 8
+        verdict.getDetail().contains("8 pisos sin decidir") is true
+        undecided.getAnalyzers() == List.of(new RowSubject(INSTRUCTION, "Consigna que no se cumple"), new RowSubject("algún error", "Ejercicios con algún error"))
+    - |
+      test: "should leave the undecidable floors of the verdict null when every floor is decided, and bring them with a verdict that fails too"
+      trace: FEAT-FILAS / F-FILAS-R007
+
+      given:
+        decided = Mesa().baseline(Foto.deHoy())
+        failing = Mesa().baseline(Foto.deHoy())
+        verdict = failing.compare().getVerdict()
+
+      when:
+        sut.batch(Foto.deHoy(), Foto.deHoy(), cambio(P_VEGETABLES, VEGETABLES))
+
+      then:
+        decided.compare().getVerdict().getUndecidableFloors() is null
+        verdict.getKind() == VerdictKind.FAILS
+        verdict.getUndecidableFloors() is not null
+        verdict.getUndecidableFloors().getAnalyzers().stream().map(RowSubject::getSubject).toList() == List.of(INSTRUCTION, "algún error")
+    - |
+      test: "should say in each value of a row whether its photo evaluated an exercise of the node, so a photo left open hides none of the others"
+      trace: FEAT-FILAS / F-FILAS-R008
+
+      given:
+        mesa = Mesa().baseline(Foto.deHoy())
+        open = row(mesa.compare(), INSTRUCTION, REGULAR)
+        remeasured = Mesa().baseline(Foto.deHoy().measure(INSTRUCTION, "quiz-instruction · v0", Map.of()))
+        row = row(remeasured.compare(), INSTRUCTION, REGULAR)
+
+      when:
+        sut.batch(Foto.deHoy(), Foto.deHoy().errors(REGULAR, INSTRUCTION, 0, 4), cambio(P_VEGETABLES, VEGETABLES))
+
+      then:
+        open.getBaseline().isEvaluated() is true
+        open.getApproved().isEvaluated() is true
+        open.getProjected().isEvaluated() is false
+        open.getChangeVerdict() == ChangeVerdict.NOT_EVALUATED
+        List.of(row.getBaseline().isEvaluated(), row.getRemeasuredBaseline().isEvaluated(), row.getApproved().isEvaluated(), row.getProjected().isEvaluated()) == List.of(true, false, true, true)
+        row(remeasured.compare(), LEMMA_ABSENCE, REGULAR).getProjected().isEvaluated() is true
   - name: DefaultGoalBook
     status: EXISTS
     filePath: revision-domain/src/main/java/com/learney/contentaudit/revisiondomain/comparisonengine/DefaultGoalBook.java
@@ -90713,8 +91417,8 @@ elements:
     healthScore: 0
     verdict: PASSED
 testSummary:
-  total: 2668
-  passing: 2651
+  total: 2685
+  passing: 2668
   failing: 0
   notImplemented: 17
 qualitySummary:

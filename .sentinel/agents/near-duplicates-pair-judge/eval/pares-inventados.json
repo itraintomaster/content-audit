@@ -1,0 +1,482 @@
+{
+ "why": "Corpus del modo en vivo (--claude): pares inventados, ninguno del curso, con lo que el juez lee de cada uno (title, first, second, como los arma DefaultSameExerciseQuestion). Los dos ejercicios de cada par piden la misma respuesta, no son iguales tal cual y el comodín no los resuelve. expected true: el mismo ejercicio para el alumno (otro sujeto, una palabra de más o de menos, un sinónimo fuera del hueco, otro orden, la negativa y la pregunta de la misma oración, la misma idea con otras palabras); false: otra oración que pide lo mismo, la misma plantilla con otra palabra de contenido, o el contraste del tema; null: dudoso, se muestra y no cuenta. cosine es el de nomic-embed-text («clustering: » + el ejercicio terminado), para ver que los pares caen donde caen los candidatos del curso.",
+ "cases": [
+  {
+   "caseId": "s01-nombre-por-pronombre",
+   "expected": true,
+   "category": "otro sujeto",
+   "title": "Presente simple: tercera persona",
+   "first": "Laura ___ (work) in a hospital.\nResuelto: Laura works in a hospital.",
+   "second": "She ___ (work) in a hospital.\nResuelto: She works in a hospital.",
+   "cosine": 0.907
+  },
+  {
+   "caseId": "s02-sujeto-largo-por-pronombre",
+   "expected": true,
+   "category": "otro sujeto",
+   "title": "Presente simple: afirmativas",
+   "first": "My parents ___ (live) near the beach.\nResuelto: My parents live near the beach.",
+   "second": "They ___ (live) near the beach.\nResuelto: They live near the beach.",
+   "cosine": 0.908
+  },
+  {
+   "caseId": "s03-otro-sujeto",
+   "expected": true,
+   "category": "otro sujeto",
+   "title": "Pasado simple: verbos irregulares",
+   "first": "My neighbours ___ (buy) a new car last week.\nResuelto: My neighbours bought a new car last week.",
+   "second": "We ___ (buy) a new car last week.\nResuelto: We bought a new car last week.",
+   "cosine": 0.898
+  },
+  {
+   "caseId": "s04-sinonimo-fuera-del-hueco",
+   "expected": true,
+   "category": "sinónimo",
+   "title": "Pasado continuo",
+   "first": "I ___ (read) a book when the lights went out.\nResuelto: I was reading a book when the lights went out.",
+   "second": "I ___ (read) a novel when the lights went out.\nResuelto: I was reading a novel when the lights went out.",
+   "cosine": 0.979
+  },
+  {
+   "caseId": "s05-sobra-please",
+   "expected": true,
+   "category": "palabra de más",
+   "title": "Pedidos con $can$",
+   "first": "___ I borrow a pencil, please? (Can · Do · Am)\nResuelto: Can I borrow a pencil, please?",
+   "second": "___ I borrow a pencil? (Can · Do · Am)\nResuelto: Can I borrow a pencil?",
+   "cosine": 0.993
+  },
+  {
+   "caseId": "s06-otro-orden",
+   "expected": true,
+   "category": "otro orden",
+   "title": "Pasado simple: verbos irregulares",
+   "first": "We ___ (eat) fish for lunch yesterday.\nResuelto: We ate fish for lunch yesterday.",
+   "second": "Yesterday we ___ (eat) fish for lunch.\nResuelto: Yesterday we ate fish for lunch.",
+   "cosine": 0.996
+  },
+  {
+   "caseId": "s07-negativa-y-pregunta",
+   "expected": true,
+   "category": "negativa y pregunta",
+   "title": "Presente simple: negativas y preguntas",
+   "first": "Tom doesn't ___ (like) spicy food.\nResuelto: Tom doesn't like spicy food.",
+   "second": "Does Tom ___ (like) spicy food?\nResuelto: Does Tom like spicy food?",
+   "cosine": 0.982
+  },
+  {
+   "caseId": "s08-ever-por-before",
+   "expected": true,
+   "category": "paráfrasis",
+   "title": "Presente perfecto: experiencias",
+   "first": "Have you ever ___ (be) to Japan?\nResuelto: Have you ever been to Japan?",
+   "second": "Have you ___ (be) to Japan before?\nResuelto: Have you been to Japan before?",
+   "cosine": 0.989
+  },
+  {
+   "caseId": "s09-adjetivo-de-mas",
+   "expected": true,
+   "category": "palabra de más",
+   "title": "$There is$ y $there are$",
+   "first": "There ___ two cats in the garden. (is · are)\nResuelto: There are two cats in the garden.",
+   "second": "There ___ two black cats in the garden. (is · are)\nResuelto: There are two black cats in the garden.",
+   "cosine": 0.954
+  },
+  {
+   "caseId": "s10-complemento-reformulado",
+   "expected": true,
+   "category": "paráfrasis",
+   "title": "Voz pasiva en pasado",
+   "first": "The bridge ___ (build) in 1890.\nResuelto: The bridge was built in 1890.",
+   "second": "This bridge ___ (build) in the year 1890.\nResuelto: This bridge was built in the year 1890.",
+   "cosine": 0.988
+  },
+  {
+   "caseId": "s11-yours-por-your-bike",
+   "expected": true,
+   "category": "paráfrasis",
+   "title": "Comparativos",
+   "first": "My bike is ___ (cheap) than yours.\nResuelto: My bike is cheaper than yours.",
+   "second": "My bike is ___ (cheap) than your bike.\nResuelto: My bike is cheaper than your bike.",
+   "cosine": 0.994
+  },
+  {
+   "caseId": "s12-ferry-tarde",
+   "expected": true,
+   "category": "palabra de más",
+   "title": "Futuro con $going to$: predicciones",
+   "first": "Look at those grey clouds! The ferry ___ (leave) late.\nResuelto: Look at those grey clouds! The ferry is going to leave late.",
+   "second": "Look at those grey clouds over the harbour! The ferry ___ (leave) late.\nResuelto: Look at those grey clouds over the harbour! The ferry is going to leave late.",
+   "cosine": 0.975
+  },
+  {
+   "caseId": "s13-help-por-assist",
+   "expected": true,
+   "category": "sinónimo",
+   "title": "$Each other$ o reflexivos",
+   "first": "Anna and Ben help ___ with their homework. (each other · themselves)\nResuelto: Anna and Ben help each other with their homework.",
+   "second": "Anna and Ben assist ___ with their homework. (each other · themselves)\nResuelto: Anna and Ben assist each other with their homework.",
+   "cosine": 0.997
+  },
+  {
+   "caseId": "s14-mi-amigo-peter",
+   "expected": true,
+   "category": "otro sujeto",
+   "title": "Presente de $be$",
+   "first": "Peter ___ from Canada. (is · are · am)\nResuelto: Peter is from Canada.",
+   "second": "My friend Peter ___ from Canada. (is · are · am)\nResuelto: My friend Peter is from Canada.",
+   "cosine": 0.967
+  },
+  {
+   "caseId": "s15-pregunta-indirecta",
+   "expected": true,
+   "category": "paráfrasis",
+   "title": "Preguntas indirectas",
+   "first": "Do you know where the station ___ ? (is · are)\nResuelto: Do you know where the station is?",
+   "second": "Can you tell me where the station ___ ? (is · are)\nResuelto: Can you tell me where the station is?",
+   "cosine": 0.991
+  },
+  {
+   "caseId": "s16-stay-home",
+   "expected": true,
+   "category": "paráfrasis",
+   "title": "Primer condicional",
+   "first": "If it ___ (rain) tomorrow, we will stay at home.\nResuelto: If it rains tomorrow, we will stay at home.",
+   "second": "If it ___ (rain) tomorrow, we'll stay home.\nResuelto: If it rains tomorrow, we'll stay home.",
+   "cosine": 0.99
+  },
+  {
+   "caseId": "s17-piano",
+   "expected": true,
+   "category": "paráfrasis",
+   "title": "Segundo condicional",
+   "first": "If I ___ (have) more time, I would learn to play the piano.\nResuelto: If I had more time, I would learn to play the piano.",
+   "second": "If I ___ (have) more free time, I'd learn the piano.\nResuelto: If I had more free time, I'd learn the piano.",
+   "cosine": 0.976
+  },
+  {
+   "caseId": "s18-said-por-told-us",
+   "expected": true,
+   "category": "sinónimo",
+   "title": "Estilo indirecto",
+   "first": "She said she ___ (be) very tired.\nResuelto: She said she was very tired.",
+   "second": "She told us she ___ (be) very tired.\nResuelto: She told us she was very tired.",
+   "cosine": 0.98
+  },
+  {
+   "caseId": "s19-parada-del-colectivo",
+   "expected": true,
+   "category": "paráfrasis",
+   "title": "Presente perfecto continuo",
+   "first": "I ___ (wait) for the bus for twenty minutes.\nResuelto: I have been waiting for the bus for twenty minutes.",
+   "second": "I ___ (wait) at the bus stop for twenty minutes.\nResuelto: I have been waiting at the bus stop for twenty minutes.",
+   "cosine": 0.968
+  },
+  {
+   "caseId": "s20-entradas-por-adelantado",
+   "expected": true,
+   "category": "paráfrasis",
+   "title": "Pasiva con modales",
+   "first": "Tickets ___ (must / buy) in advance.\nResuelto: Tickets must be bought in advance.",
+   "second": "The tickets ___ (must / buy) before the day of the show.\nResuelto: The tickets must be bought before the day of the show.",
+   "cosine": 0.934
+  },
+  {
+   "caseId": "n01-cansado-y-estudiante",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Afirmativas con $be$",
+   "first": "I ___ tired. (am · is · are)\nResuelto: I am tired.",
+   "second": "I ___ a student. (am · is · are)\nResuelto: I am a student.",
+   "cosine": 0.742
+  },
+  {
+   "caseId": "n02-adjetivo-y-pronombre",
+   "expected": false,
+   "category": "contraste del tema",
+   "title": "Posesivos: adjetivo y pronombre",
+   "first": "Is this ___ jacket? (his · him · he)\nResuelto: Is this his jacket?",
+   "second": "Is this jacket ___ ? (his · him · he)\nResuelto: Is this jacket his?",
+   "cosine": 0.986
+  },
+  {
+   "caseId": "n03-habilidad-y-permiso",
+   "expected": false,
+   "category": "contraste del tema",
+   "title": "$Can$: habilidad y permiso",
+   "first": "___ you play the guitar? (Can · Do · Are)\nResuelto: Can you play the guitar?",
+   "second": "___ I borrow your guitar? (Can · Do · Are)\nResuelto: Can I borrow your guitar?",
+   "cosine": 0.841
+  },
+  {
+   "caseId": "n04-museo-y-clase",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Preposiciones de tiempo",
+   "first": "The museum opens ___ 10 o'clock. (at · on · in)\nResuelto: The museum opens at 10 o'clock.",
+   "second": "My English class starts ___ 10 o'clock. (at · on · in)\nResuelto: My English class starts at 10 o'clock.",
+   "cosine": 0.807
+  },
+  {
+   "caseId": "n05-cafe-y-agua",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Presente simple: tercera persona",
+   "first": "She ___ (drink) coffee every morning.\nResuelto: She drinks coffee every morning.",
+   "second": "She ___ (drink) a lot of water after running.\nResuelto: She drinks a lot of water after running.",
+   "cosine": 0.813
+  },
+  {
+   "caseId": "n06-tele-y-pajaros",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Pasado continuo",
+   "first": "I ___ (watch) TV when you called.\nResuelto: I was watching TV when you called.",
+   "second": "I ___ (watch) the birds in the park all afternoon.\nResuelto: I was watching the birds in the park all afternoon.",
+   "cosine": 0.72
+  },
+  {
+   "caseId": "n07-vecina-y-mecanico",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Pronombres relativos",
+   "first": "The woman ___ lives next door is a doctor. (who · which)\nResuelto: The woman who lives next door is a doctor.",
+   "second": "The man ___ fixed my car was very kind. (who · which)\nResuelto: The man who fixed my car was very kind.",
+   "cosine": 0.643
+  },
+  {
+   "caseId": "n08-banco-y-computadora",
+   "expected": false,
+   "category": "otra oración",
+   "title": "$There is$ y $there are$",
+   "first": "There ___ a bank on this street. (is · are)\nResuelto: There is a bank on this street.",
+   "second": "There ___ a problem with my computer. (is · are)\nResuelto: There is a problem with my computer.",
+   "cosine": 0.659
+  },
+  {
+   "caseId": "n09-rusia-y-mi-casa",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Comparativos",
+   "first": "Russia is ___ (big) than France.\nResuelto: Russia is bigger than France.",
+   "second": "My house is ___ (big) than my brother's flat.\nResuelto: My house is bigger than my brother's flat.",
+   "cosine": 0.671
+  },
+  {
+   "caseId": "n10-tia-y-museo",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Futuro con $going to$: planes",
+   "first": "I ___ (visit) my aunt next weekend.\nResuelto: I am going to visit my aunt next weekend.",
+   "second": "I ___ (visit) the science museum with my class.\nResuelto: I am going to visit the science museum with my class.",
+   "cosine": 0.731
+  },
+  {
+   "caseId": "n11-cancion-y-carta",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Voz pasiva en pasado",
+   "first": "This song ___ (write) by a famous singer.\nResuelto: This song was written by a famous singer.",
+   "second": "The letter ___ (write) in pencil.\nResuelto: The letter was written in pencil.",
+   "cosine": 0.649
+  },
+  {
+   "caseId": "n12-condicional-cero-y-primero",
+   "expected": false,
+   "category": "contraste del tema",
+   "title": "Condicional cero y primer condicional",
+   "first": "If you ___ (heat) ice, it melts.\nResuelto: If you heat ice, it melts.",
+   "second": "If you ___ (heat) the soup now, we can eat at six.\nResuelto: If you heat the soup now, we can eat at six.",
+   "cosine": 0.691
+  },
+  {
+   "caseId": "n13-se-quieren-y-se-escriben",
+   "expected": false,
+   "category": "otra oración",
+   "title": "$Each other$ o reflexivos",
+   "first": "Mark and Julia love ___ . (each other · themselves)\nResuelto: Mark and Julia love each other.",
+   "second": "Mark and Julia write to ___ every week. (each other · themselves)\nResuelto: Mark and Julia write to each other every week.",
+   "cosine": 0.916
+  },
+  {
+   "caseId": "n14-pizza-y-frances",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Preguntas con $do$",
+   "first": "___ you like pizza? (Do · Does · Are)\nResuelto: Do you like pizza?",
+   "second": "___ you speak French? (Do · Does · Are)\nResuelto: Do you speak French?",
+   "cosine": 0.702
+  },
+  {
+   "caseId": "n15-cuarto-y-hermano",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Adjetivos posesivos",
+   "first": "This is ___ (I) bedroom.\nResuelto: This is my bedroom.",
+   "second": "___ (I) brother is ten years old.\nResuelto: My brother is ten years old.",
+   "cosine": 0.656
+  },
+  {
+   "caseId": "n16-hambre-y-tren",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Estilo indirecto",
+   "first": "He said he ___ (be) hungry.\nResuelto: He said he was hungry.",
+   "second": "He said the train ___ (be) late.\nResuelto: He said the train was late.",
+   "cosine": 0.772
+  },
+  {
+   "caseId": "n17-consejo-e-hipotesis",
+   "expected": false,
+   "category": "contraste del tema",
+   "title": "Segundo condicional",
+   "first": "If I ___ (be) you, I would call her.\nResuelto: If I were you, I would call her.",
+   "second": "If I ___ (be) rich, I would travel the world.\nResuelto: If I were rich, I would travel the world.",
+   "cosine": 0.684
+  },
+  {
+   "caseId": "n18-actor-y-auto-viejo",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Artículos $a$ y $an$",
+   "first": "He is ___ actor. (a · an)\nResuelto: He is an actor.",
+   "second": "She has ___ old car. (a · an)\nResuelto: She has an old car.",
+   "cosine": 0.649
+  },
+  {
+   "caseId": "n19-hambre-y-tarde",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Afirmativas con $be$",
+   "first": "We ___ hungry. (am · is · are)\nResuelto: We are hungry.",
+   "second": "We ___ late. (am · is · are)\nResuelto: We are late.",
+   "cosine": 0.769
+  },
+  {
+   "caseId": "n20-paris-y-medico",
+   "expected": false,
+   "category": "otra oración",
+   "title": "Pasado simple: verbos irregulares",
+   "first": "She ___ (go) to Paris in 2019.\nResuelto: She went to Paris in 2019.",
+   "second": "She ___ (go) to the doctor yesterday.\nResuelto: She went to the doctor yesterday.",
+   "cosine": 0.714
+  },
+  {
+   "caseId": "h01-cansado-y-con-hambre",
+   "expected": false,
+   "category": "una palabra de contenido",
+   "title": "Afirmativas con $be$",
+   "first": "I ___ tired. (am · is · are)\nResuelto: I am tired.",
+   "second": "I ___ hungry. (am · is · are)\nResuelto: I am hungry.",
+   "cosine": 0.827
+  },
+  {
+   "caseId": "h02-tenis-y-ajedrez",
+   "expected": false,
+   "category": "una palabra de contenido",
+   "title": "Presente simple: tercera persona",
+   "first": "She ___ (play) tennis on Sundays.\nResuelto: She plays tennis on Sundays.",
+   "second": "She ___ (play) chess on Sundays.\nResuelto: She plays chess on Sundays.",
+   "cosine": 0.888
+  },
+  {
+   "caseId": "h03-playa-y-montana",
+   "expected": false,
+   "category": "una palabra de contenido",
+   "title": "Pasado simple: verbos irregulares",
+   "first": "We ___ (go) to the beach last summer.\nResuelto: We went to the beach last summer.",
+   "second": "We ___ (go) to the mountains last summer.\nResuelto: We went to the mountains last summer.",
+   "cosine": 0.881
+  },
+  {
+   "caseId": "h04-nadar-y-bailar",
+   "expected": false,
+   "category": "una palabra de contenido",
+   "title": "$Can$ para habilidades",
+   "first": "___ you swim? (Can · Do · Are)\nResuelto: Can you swim?",
+   "second": "___ you dance? (Can · Do · Are)\nResuelto: Can you dance?",
+   "cosine": 0.821
+  },
+  {
+   "caseId": "h05-libro-y-museo",
+   "expected": false,
+   "category": "una palabra de contenido",
+   "title": "Comparativos largos",
+   "first": "This book is ___ (interesting) than the film.\nResuelto: This book is more interesting than the film.",
+   "second": "This museum is ___ (interesting) than the park.\nResuelto: This museum is more interesting than the park.",
+   "cosine": 0.707
+  },
+  {
+   "caseId": "h06-cena-y-desayuno",
+   "expected": false,
+   "category": "una palabra de contenido",
+   "title": "Pasado continuo",
+   "first": "I ___ (cook) dinner when you called.\nResuelto: I was cooking dinner when you called.",
+   "second": "I ___ (cook) breakfast when you called.\nResuelto: I was cooking breakfast when you called.",
+   "cosine": 0.943
+  },
+  {
+   "caseId": "h07-sushi-y-caracoles",
+   "expected": false,
+   "category": "una palabra de contenido",
+   "title": "Presente perfecto: experiencias",
+   "first": "I have never ___ (eat) sushi.\nResuelto: I have never eaten sushi.",
+   "second": "I have never ___ (eat) snails.\nResuelto: I have never eaten snails.",
+   "cosine": 0.751
+  },
+  {
+   "caseId": "h08-llaves-y-gato",
+   "expected": false,
+   "category": "una palabra de contenido",
+   "title": "Preposiciones de lugar",
+   "first": "The keys are ___ the table. (on · in · at)\nResuelto: The keys are on the table.",
+   "second": "The cat is ___ the table. (on · in · at)\nResuelto: The cat is on the table.",
+   "cosine": 0.808
+  },
+  {
+   "caseId": "h09-pollo-y-pescado",
+   "expected": false,
+   "category": "una palabra de contenido",
+   "title": "Futuro con $will$: decisiones",
+   "first": "I ___ (have) the chicken, please.\nResuelto: I'll have the chicken, please.",
+   "second": "I ___ (have) the fish, please.\nResuelto: I'll have the fish, please.",
+   "cosine": 0.824
+  },
+  {
+   "caseId": "h10-lunes-y-viernes",
+   "expected": false,
+   "category": "una palabra de contenido",
+   "title": "Preposiciones de tiempo",
+   "first": "My dentist appointment is ___ Monday. (on · in · at)\nResuelto: My dentist appointment is on Monday.",
+   "second": "My birthday party is ___ Friday. (on · in · at)\nResuelto: My birthday party is on Friday.",
+   "cosine": 0.708
+  },
+  {
+   "caseId": "d01-teatro-los-sabados-o-con-primos",
+   "expected": null,
+   "category": "dudoso",
+   "title": "Adverbios de frecuencia",
+   "first": "We ___ (often / go) to the theatre on Saturdays.\nResuelto: We often go to the theatre on Saturdays.",
+   "second": "We ___ (often / go) to the theatre with our cousins.\nResuelto: We often go to the theatre with our cousins.",
+   "cosine": 0.882
+  },
+  {
+   "caseId": "d02-japon-o-tokio",
+   "expected": null,
+   "category": "dudoso",
+   "title": "Presente perfecto: experiencias",
+   "first": "Have you ever ___ (be) to Japan?\nResuelto: Have you ever been to Japan?",
+   "second": "Have you ever ___ (be) to Tokyo?\nResuelto: Have you ever been to Tokyo?",
+   "cosine": 0.954
+  },
+  {
+   "caseId": "d03-tienda-o-banco",
+   "expected": null,
+   "category": "dudoso",
+   "title": "Preposiciones de tiempo",
+   "first": "The shop opens ___ 9 o'clock. (at · on · in)\nResuelto: The shop opens at 9 o'clock.",
+   "second": "The bank opens ___ 9 o'clock. (at · on · in)\nResuelto: The bank opens at 9 o'clock.",
+   "cosine": 0.878
+  }
+ ]
+}

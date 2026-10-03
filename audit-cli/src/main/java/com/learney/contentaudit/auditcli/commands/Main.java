@@ -634,7 +634,7 @@ class Main {
                 new AgentJudgeSpec("naturalness-yes-no", "naturalnessAnswer", "Naturalidad (claude -p)"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
         Evaluator nearDuplicatesAlternative = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
-                new AgentJudgeSpec("near-duplicates-same-exercise", "sameExerciseVerdict",
+                new AgentJudgeSpec("near-duplicates-pair-judge", "sameExerciseVerdict",
                         "Duplicados parecidos (claude -p)"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
         // B · FEAT-MLOCAL: the two local models, over the same endpoint (one look at /api/tags per run).

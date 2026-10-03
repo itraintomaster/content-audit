@@ -1047,8 +1047,10 @@ Examples:
 |--------|--------|
 | `methodId(): String` | (none) |
 | `inputPrefix(): String` | (none) |
-| `similarityThreshold(): double` | (none) |
 | `candidateWordSimilarity(): double` | (none) |
+| `candidateSimilarity(): double` | (none) |
+| `vectorRouteMethodId(String judgeVersion): String` | (none) |
+| `wordRouteVersion(String judgeVersion): String` | (none) |
 
 #### SameExerciseQuestion (package: nearduplicates)
 

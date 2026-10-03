@@ -6,6 +6,7 @@ import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.ContentAnalyzer;
 import com.learney.contentaudit.auditdomain.CorrectorMatcher;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.auditdomain.EvaluationRunPurpose;
 import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
 import com.learney.contentaudit.auditdomain.SelfDescribingConfig;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
@@ -19,6 +20,7 @@ import com.learney.contentaudit.auditdomain.localtools.EmbeddingModel;
 import com.learney.contentaudit.auditdomain.localtools.LocalToolGate;
 import com.learney.contentaudit.auditdomain.localtools.LocalToolGateDecision;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
@@ -26,12 +28,24 @@ import javax.annotation.processing.Generated;
 /**
  * FEAT-DUPAR R006: the card of near-duplicates and the route of each run.
  *
- * <p>In {@link #create} it asks {@link LocalToolGate} for the decision and opens through the
- * judges' runtime: with nomic-embed-text available, its {@link SentenceEmbeddingEvaluator} with the
- * policy of the decision, without request nor limit; without it, the claude -p alternative it
- * receives made, with the run's policy, which without {@code --budget near-duplicates=N} has
- * budget 0 (F-JEXAM-R010). Its card carries both tools with their exam (hook B-01) and its
- * findings become NEAR_DUPLICATES tasks on the exercise (F-RONDA2-R008).
+ * <p>The version of the pair judge is read without consulting it. In {@link #create} it asks
+ * {@link LocalToolGate} for the decision with the version of the whole route -- the method of the
+ * vectors, the candidate similarity and that of the judge (R010) -- and opens through the judges'
+ * runtime:
+ * <ul>
+ *   <li>with nomic-embed-text available, two sessions under that version: the vectors, with the
+ *       run's policy without limit (the cap of {@code --budget near-duplicates=N} is only
+ *       claude -p's, R009 inv. 3), recorded under the version of the vectors alone; and the pair
+ *       judge, with the run's policy as it comes, which without that request has budget 0
+ *       (F-JEXAM-R010). The analyzer gets one {@link JudgeSessions}: the vectors first, the judge
+ *       last;</li>
+ *   <li>without it, the pair judge alone, under the version of the route without Ollama (R007),
+ *       with the run's policy as it comes.</li>
+ * </ul>
+ * Both go wrapped in {@link PairStepEvaluator}, so the brake and the exam are those of the whole
+ * step and the ledger still reuses what each already answered. Its card carries both tools with
+ * their exam (hook B-01) and its findings become NEAR_DUPLICATES tasks on the exercise
+ * (F-RONDA2-R008).
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -70,6 +84,7 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
 
     @Override
     public AnalyzerDescriptor describe() {
+        String judgeVersion = judgeVersion();
         return new AnalyzerDescriptor(
                 NearDuplicatesAnalyzer.ANALYZER_NAME,
                 NearDuplicatesAnalyzer.DESCRIPTION,
@@ -82,12 +97,14 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
                                 "Quedan iguales al cambiar por un comodín los pronombres, los demostrativos, los "
                                         + "posesivos y el tiempo del auxiliar",
                                 AnalysisCost.INSTANT),
-                        new AnalyzerRuleCard(NearDuplicatesAnalyzer.RULE_SAME_MEANING,
-                                "El modelo local que compara oraciones les da un parecido de 0,95 o más",
+                        new AnalyzerRuleCard(NearDuplicatesAnalyzer.RULE_SIMILAR_CANDIDATES,
+                                "Con Ollama, el modelo local que compara oraciones propone los pares desde 0,80 de "
+                                        + "parecido; nunca marca solo",
                                 AnalysisCost.LOCAL_MODEL),
                         new AnalyzerRuleCard(NearDuplicatesAnalyzer.RULE_SAME_EXERCISE,
-                                "Sin Ollama, cambian como mucho 4 de cada 10 palabras y claude -p dice que para el "
-                                        + "alumno es el mismo ejercicio",
+                                "El juez de pares, claude -p, dice que para el alumno es el mismo ejercicio; los "
+                                        + "candidatos los proponen los vectores con Ollama y el parecido de palabras "
+                                        + "sin Ollama",
                                 AnalysisCost.PAID_MODEL)),
                 "0 copias por tema",
                 AnalyzerFamily.ERRORS,
@@ -95,27 +112,97 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
                 List.of(FindingResolution.PANEL),
                 AnalysisCost.PAID_MODEL,
                 NearDuplicatesAnalyzer.DISPLAY_NAME,
-                List.of(localToolGate.card(NearDuplicatesAnalyzer.ANALYZER_NAME, embeddingModel, config.methodId()),
-                        localToolGate.alternativeCard(NearDuplicatesAnalyzer.ANALYZER_NAME, alternativeJudge)),
+                List.of(localToolGate.card(NearDuplicatesAnalyzer.ANALYZER_NAME, embeddingModel,
+                                config.vectorRouteMethodId(judgeVersion)),
+                        localToolGate.alternativeCard(NearDuplicatesAnalyzer.ANALYZER_NAME,
+                                judgeWithoutOllama(judgeVersion))),
                 "Ejercicios que piden la misma respuesta y casi lo mismo que otro anterior del mismo tema: otro "
                         + "pronombre, otro tiempo o la misma idea con otras palabras.");
     }
 
     @Override
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
+        String judgeVersion = judgeVersion();
         LocalToolGateDecision decision = localToolGate.decide(NearDuplicatesAnalyzer.ANALYZER_NAME, embeddingModel,
-                config.methodId(), policy);
+                config.vectorRouteMethodId(judgeVersion), policy);
         JudgeSessions opened;
         if (decision.getStatus() != null && decision.getStatus().isAvailable()) {
-            opened = judgeRuntime.open(NearDuplicatesAnalyzer.ANALYZER_NAME,
-                    List.of(new SentenceEmbeddingEvaluator(embeddingModel, config, decision.getExaminedVersion())),
-                    decision.getLocalPolicy());
+            opened = openWithOllama(policy, decision, judgeVersion);
         } else {
-            opened = judgeRuntime.open(NearDuplicatesAnalyzer.ANALYZER_NAME, List.of(alternativeJudge), policy);
+            opened = judgeRuntime.open(NearDuplicatesAnalyzer.ANALYZER_NAME,
+                    List.of(judgeWithoutOllama(judgeVersion)), policy);
         }
         return new NearDuplicatesAnalyzer(opened, judgeRuntime,
                 new DefaultNearDuplicateRules(correctorMatcher, studentViewRenderer),
                 new DefaultSameExerciseQuestion(studentViewRenderer), studentViewRenderer, config, decision);
+    }
+
+    /**
+     * R009, R010: the two sessions of the route with Ollama, both under the examined version of the
+     * whole step -- none if the judge states none, so nothing is consulted, neither the vectors nor
+     * claude -p (R010 inv. 3). The vectors go recorded under the version of the vectors alone, the
+     * same key as before the step (F-MLOCAL-R002 inv. 2), with the run's policy without limit; the
+     * judge, with the run's policy as it comes. The analyzer gets them as one: the vectors first,
+     * the judge last, and the version, the standing and the policy of the judge.
+     */
+    private JudgeSessions openWithOllama(EvaluationRunPolicy policy, LocalToolGateDecision decision,
+            String judgeVersion) {
+        String stepVersion = judgeVersion != null ? decision.getExaminedVersion() : null;
+        String vectorsVersion = localToolGate.card(NearDuplicatesAnalyzer.ANALYZER_NAME, embeddingModel,
+                config.methodId()).getExaminedVersion();
+        JudgeSessions vectors = judgeRuntime.open(NearDuplicatesAnalyzer.ANALYZER_NAME,
+                List.of(new PairStepEvaluator(new SentenceEmbeddingEvaluator(embeddingModel, config, vectorsVersion),
+                        stepVersion)),
+                withoutLimit(policy));
+        JudgeSessions judge = judgeRuntime.open(NearDuplicatesAnalyzer.ANALYZER_NAME,
+                List.of(new PairStepEvaluator(alternativeJudge, stepVersion)), policy);
+        return new JudgeSessions(NearDuplicatesAnalyzer.ANALYZER_NAME, judge.getJudgeVersion(),
+                joined(vectors.getEvaluatorIds(), judge.getEvaluatorIds()),
+                joined(vectors.getSessions(), judge.getSessions()), judge.getStanding(), judge.getEffectivePolicy());
+    }
+
+    /**
+     * R009 inv. 3: the policy of the vectors is the run's -- its purpose, re-evaluation, scope, declared
+     * set and consultations at a time -- without limit, because {@code --budget near-duplicates=N} caps
+     * only claude -p; without a policy, a course run without limit, one at a time. Never the policy
+     * the gate decided, which carries that cap.
+     */
+    private static EvaluationRunPolicy withoutLimit(EvaluationRunPolicy policy) {
+        if (policy == null) {
+            return new EvaluationRunPolicy(Integer.MAX_VALUE, false, null, null, EvaluationRunPurpose.COURSE, 1);
+        }
+        return new EvaluationRunPolicy(Integer.MAX_VALUE, policy.isReevaluate(), policy.getReevaluationScope(),
+                policy.getReevaluationSubjectIds(), policy.getPurpose(), policy.getMaxConcurrentEvaluations());
+    }
+
+    /** The pair judge as it runs without Ollama: under the version of that route (R007), if it states its own. */
+    private Evaluator judgeWithoutOllama(String judgeVersion) {
+        return new PairStepEvaluator(alternativeJudge,
+                judgeVersion != null ? config.wordRouteVersion(judgeVersion) : null);
+    }
+
+    /**
+     * R010: the version of the pair judge, read without consulting it; none when it states none --
+     * its definition or its configuration are missing -- or when stating it fails.
+     */
+    private String judgeVersion() {
+        try {
+            Optional<String> version = alternativeJudge != null ? alternativeJudge.evaluatorVersion() : null;
+            return version != null && version.isPresent() && !version.get().isBlank() ? version.get() : null;
+        } catch (RuntimeException e) {
+            return null;
+        }
+    }
+
+    private static <T> List<T> joined(List<T> first, List<T> second) {
+        List<T> all = new ArrayList<>();
+        if (first != null) {
+            all.addAll(first);
+        }
+        if (second != null) {
+            all.addAll(second);
+        }
+        return all;
     }
 
     /** F-RONDA2-R008: each copy is a NEAR_DUPLICATES task on its exercise. */

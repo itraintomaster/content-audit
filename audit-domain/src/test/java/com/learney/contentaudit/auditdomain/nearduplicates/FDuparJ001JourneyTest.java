@@ -50,27 +50,6 @@ public class FDuparJ001JourneyTest {
     }
 
     @Test
-    @Order(2)
-    @Tag("path-2")
-    @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → La copia lleva un hallazgo baja para ... [Con Ollama, el modelo local les da un parecido de 0,95 o más] → success")
-    public void path2_conOllamaElModeloLocalLesDaUnParecidoDe095OMs_success() {
-        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
-
-        AuditNode root = world.run(NearDuplicatesAnalyzerTest.course(NearDuplicatesAnalyzerTest.topic(
-                "Each other o reflexivos", NearDuplicatesAnalyzerTest.cooked(), NearDuplicatesAnalyzerTest.prepared())),
-                null);
-
-        // marca: cooked and prepared, 0.98 with nomic-embed-text.
-        Finding copy = NearDuplicatesAnalyzerTest.only(NearDuplicatesAnalyzerTest.quiz(root,
-                NearDuplicatesAnalyzerTest.PREPARED));
-        assertEquals("same-meaning", copy.getRule());
-        assertEquals(AnalysisCost.LOCAL_MODEL, copy.getCost());
-        assertEquals("Dice lo mismo que …46ac: parecido 0,98", NearDuplicatesAnalyzerTest.part(copy, "Casi igual"));
-        assertEquals(0.0, NearDuplicatesAnalyzerTest.score(root, NearDuplicatesAnalyzerTest.PREPARED));
-        assertEquals(1.0, NearDuplicatesAnalyzerTest.score(root, NearDuplicatesAnalyzerTest.COOKED));
-    }
-
-    @Test
     @Order(3)
     @Tag("path-3")
     @DisplayName("path-3: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → La copia lleva un hallazgo baja para ... [Sin Ollama, el par cambia como mucho 4 de cada 10 palabras y claude -p dice que es el mismo ejercicio] → success")
@@ -131,16 +110,119 @@ public class FDuparJ001JourneyTest {
         AuditNode root = world.run(NearDuplicatesAnalyzerTest.course(
                 NearDuplicatesAnalyzerTest.topic("Acción completa o parcial", NearDuplicatesAnalyzerTest.clean(),
                         NearDuplicatesAnalyzerTest.cleaning()),
-                NearDuplicatesAnalyzerTest.topic("Participios irregulares: repaso 1", NearDuplicatesAnalyzerTest.heardNews(),
-                        NearDuplicatesAnalyzerTest.heardMyNews())), null);
+                NearDuplicatesAnalyzerTest.topic("Afirmativas con be", NearDuplicatesAnalyzerTest.sorry(),
+                        NearDuplicatesAnalyzerTest.hot())), null);
 
-        // sin_hallazgo: another answer, and 0.94; every exercise scores 1, evaluated whole.
+        // sin_hallazgo: another answer in the first topic, and 0.71 in the second, below 0.80: nothing is a candidate,
+        // nothing is asked to claude -p, and every exercise scores 1, evaluated whole.
         for (String id : List.of(NearDuplicatesAnalyzerTest.CLEAN, NearDuplicatesAnalyzerTest.CLEANING,
-                NearDuplicatesAnalyzerTest.HEARD_NEWS, NearDuplicatesAnalyzerTest.HEARD_MY_NEWS)) {
+                NearDuplicatesAnalyzerTest.SORRY, NearDuplicatesAnalyzerTest.HOT)) {
             assertEquals(List.of(), NearDuplicatesAnalyzerTest.findings(NearDuplicatesAnalyzerTest.quiz(root, id)), id);
             assertEquals(1.0, NearDuplicatesAnalyzerTest.score(root, id), id);
             assertFalse(NearDuplicatesAnalyzerTest.halfway(root, id), id);
         }
         assertEquals(0, NearDuplicatesAnalyzerTest.errorCountsOf(root).getWithError());
+        assertEquals(0, world.claude.calls());
+        assertEquals(List.of("clustering: I am hot.", "clustering: I am sorry."),
+                NearDuplicatesAnalyzerTest.sorted(world.nomic.asked()), "only the pair that asks the same needs its vectors");
+    }
+
+    @Test
+    @org.junit.jupiter.api.Order(6)
+    @Tag("path-6")
+    @DisplayName("path-6: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → El par no deja ningún hallazgo de nea... [Con Ollama, el par llega a 0,80 de parecido y el juez dice que no es el mismo ejercicio] → success")
+    public void path6_conOllamaElParLlegaA080DeParecidoYElJuezDiceQueNoEsElMismoEjercicio_success() {
+        // correr: with Ollama, near-duplicates alone, with its version of three pieces approved and a budget for claude -p.
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
+        world.claude.answers("Have you heard the news?", "Have you heard about my news?", false,
+                "Otra oración: «about my news» cambia lo que se cuenta, aunque el alumno escriba lo mismo");
+
+        AuditNode root = world.run(NearDuplicatesAnalyzerTest.course(NearDuplicatesAnalyzerTest.topic(
+                "Participios irregulares: repaso 1", NearDuplicatesAnalyzerTest.heardNews(),
+                NearDuplicatesAnalyzerTest.heardMyNews())), NearDuplicatesAnalyzerTest.budget(10));
+
+        // candidatos: the same answer, the wildcard does not settle them and their vectors reach 0.94, over 0.80.
+        assertEquals(List.of("Have you heard the news? || Have you heard about my news?"), world.claude.pairs(),
+                "the vectors propose the pair and claude -p decides it");
+        // descartado: claude -p says it is not the same exercise: no finding although it reaches 0.80, and both score 1.
+        assertEquals(List.of(), NearDuplicatesAnalyzerTest.findings(NearDuplicatesAnalyzerTest.quiz(root,
+                NearDuplicatesAnalyzerTest.HEARD_MY_NEWS)));
+        assertEquals(1.0, NearDuplicatesAnalyzerTest.score(root, NearDuplicatesAnalyzerTest.HEARD_NEWS));
+        assertEquals(1.0, NearDuplicatesAnalyzerTest.score(root, NearDuplicatesAnalyzerTest.HEARD_MY_NEWS));
+        assertFalse(NearDuplicatesAnalyzerTest.halfway(root, NearDuplicatesAnalyzerTest.HEARD_MY_NEWS),
+                "judged: nothing is missing");
+        assertEquals(0, NearDuplicatesAnalyzerTest.errorCountsOf(root).getWithError());
+    }
+
+    @Test
+    @org.junit.jupiter.api.Order(7)
+    @Tag("path-7")
+    @DisplayName("path-7: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → El ejercicio queda evaluado a medias ... [Con Ollama y sin tope, el par llega a 0,80 de parecido y el comodín no lo resuelve] → success")
+    public void path7_conOllamaYSinTopeElParLlegaA080DeParecidoYElComodnNoLoResuelve_success() {
+        // correr: with Ollama and without --budget near-duplicates=N.
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
+
+        AuditNode root = world.run(NearDuplicatesAnalyzerTest.course(NearDuplicatesAnalyzerTest.topic(
+                "Respuestas cortas", NearDuplicatesAnalyzerTest.weHappy(), NearDuplicatesAnalyzerTest.theyReady(),
+                NearDuplicatesAnalyzerTest.weReady())), null);
+
+        // a_medias_juez: «Are we happy?» reaches 0.82 and 0.87 with the other two, and nobody judges either pair;
+        // the vectors do run, and claude -p is not asked.
+        assertEquals(3, world.nomic.asked().size());
+        assertEquals(0, world.claude.calls());
+        assertTrue(NearDuplicatesAnalyzerTest.halfway(root, NearDuplicatesAnalyzerTest.THEY_READY));
+        assertTrue(NearDuplicatesAnalyzerTest.halfway(root, NearDuplicatesAnalyzerTest.WE_READY));
+        // «Are we ready?» keeps its wildcard finding.
+        Finding copy = NearDuplicatesAnalyzerTest.only(NearDuplicatesAnalyzerTest.quiz(root,
+                NearDuplicatesAnalyzerTest.WE_READY));
+        assertEquals("same-but-wildcard", copy.getRule());
+        assertEquals(NearDuplicatesAnalyzerTest.THEY_READY, copy.getIdentity().getMarker());
+        // the report says how many pairs are missing and how many hours they take, one at a time and four at a time.
+        assertTrue(NearDuplicatesAnalyzerTest.runOf(root).getReason().endsWith("quedan 2 pares sin juzgar"),
+                NearDuplicatesAnalyzerTest.runOf(root).getReason());
+        assertEquals(2, NearDuplicatesAnalyzerTest.coverageOf(root).getCost().getPendingConsultations());
+        assertEquals(2 / 189.0, NearDuplicatesAnalyzerTest.coverageOf(root).getCost().getHoursOneAtATime(), 1e-9);
+        assertEquals(2 / 189.0 / 4, NearDuplicatesAnalyzerTest.coverageOf(root).getCost().getHoursConcurrent(), 1e-9);
+    }
+
+    @Test
+    @Order(2)
+    @Tag("path-2")
+    @DisplayName("path-2: El operador corre analyze pidiendo só... → El informe junta los pares del tema q... → La copia lleva un hallazgo baja para ... [Con Ollama, el par llega a 0,80 de parecido y el juez dice que es el mismo ejercicio] → success")
+    public void path2_conOllamaElParLlegaA080DeParecidoYElJuezDiceQueEsElMismoEjercicio_success() {
+        // correr: with Ollama, near-duplicates alone, with its version of three pieces approved and a budget for claude -p.
+        NearDuplicatesAnalyzerTest.World world = NearDuplicatesAnalyzerTest.World.withNomic();
+        world.claude.answers("They cooked lunch for each other.", "They prepared lunch for each other.", true,
+                "Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración");
+
+        AuditNode root = world.run(NearDuplicatesAnalyzerTest.course(NearDuplicatesAnalyzerTest.topic(
+                "Each other o reflexivos", NearDuplicatesAnalyzerTest.cooked(), NearDuplicatesAnalyzerTest.prepared())),
+                NearDuplicatesAnalyzerTest.budget(10));
+
+        // candidatos: the same answer, the wildcard does not settle them and their vectors reach 0.98.
+        assertEquals(0.9759, NearDuplicatesAnalyzerTest.diagnosis(root, NearDuplicatesAnalyzerTest.PREPARED)
+                .getSimilarity(), 1e-5);
+        // marca_juez: claude -p says it is the same exercise. Low, for the panel, of paid model cost, with both
+        // exercises, the similarity of the vectors and the reason of the judge.
+        Finding copy = NearDuplicatesAnalyzerTest.only(NearDuplicatesAnalyzerTest.quiz(root,
+                NearDuplicatesAnalyzerTest.PREPARED));
+        assertEquals("same-exercise", copy.getRule());
+        assertEquals(AnalysisCost.PAID_MODEL, copy.getCost());
+        assertEquals(FindingSeverity.LOW, copy.getSeverity());
+        assertEquals(FindingResolution.PANEL, copy.getResolution());
+        assertEquals("They prepared lunch for each other.", NearDuplicatesAnalyzerTest.part(copy, "Copia terminada"));
+        assertEquals("They cooked lunch for each other.", NearDuplicatesAnalyzerTest.part(copy, "Queda terminado"));
+        assertEquals("Para claude -p es el mismo ejercicio que …46ac: parecido 0,98",
+                NearDuplicatesAnalyzerTest.part(copy, "Casi igual"));
+        assertEquals("Cambia sólo el verbo, cooked por prepared: el alumno escribe «each other» en la misma oración",
+                NearDuplicatesAnalyzerTest.part(copy, "Razón de claude -p"));
+        assertEquals(0.0, NearDuplicatesAnalyzerTest.score(root, NearDuplicatesAnalyzerTest.PREPARED));
+        assertEquals(1, NearDuplicatesAnalyzerTest.errorCountsOf(root).getWithError(), "it counts as an error");
+        // the first of the topic stays without a finding, and the report names the version by its three pieces.
+        assertEquals(List.of(), NearDuplicatesAnalyzerTest.findings(NearDuplicatesAnalyzerTest.quiz(root,
+                NearDuplicatesAnalyzerTest.COOKED)));
+        assertEquals(1.0, NearDuplicatesAnalyzerTest.score(root, NearDuplicatesAnalyzerTest.COOKED));
+        assertEquals(NearDuplicatesAnalyzerTest.WITH_OLLAMA_EXAMINED,
+                NearDuplicatesAnalyzerTest.runOf(root).getExaminedVersion());
     }
 }

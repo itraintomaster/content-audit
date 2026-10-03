@@ -10812,7 +10812,7 @@ modules:
       - NaturalnessConfig
   - name: nearduplicates
     description: |
-      El analizador near-duplicates (FEAT-DUPAR): compara cada ejercicio con los anteriores de su tema, como exact-duplicates. Un par es candidato si pide la misma respuesta comparada como el corrector y no es un duplicado exacto (R001); es casi duplicado si queda igual al tapar pronombres, demostrativos, posesivos y el tiempo del auxiliar, o si el parecido de sus vectores llega a 0,95 (R002); sin Ollama, si cambia como mucho 4 de cada 10 palabras y claude -p dice que es el mismo ejercicio (R008). Las consultas —un vector por ejercicio, o un juicio por par— van por el runtime de los jueces, que las guarda en el libro y las reusa, aplica el freno del examen, el tope y las consultas a la vez, y declara la cobertura y el costo. Familia errores, evalúa el ejercicio, costo de la ficha modelo pago: no entra en la corrida base. Sólo los registros y el proveedor son públicos.
+      El analizador near-duplicates (FEAT-DUPAR): compara cada ejercicio con los anteriores de su tema, como exact-duplicates. Un par es candidato si pide la misma respuesta comparada como el corrector y no es un duplicado exacto (R001); es casi duplicado si queda igual al tapar pronombres, demostrativos, posesivos y el tiempo del auxiliar, o si el juez de pares —claude -p con la guía de near-duplicates-pair-judge, el mismo con Ollama y sin él— dice que para el alumno es el mismo ejercicio (R002). Ningún parecido marca solo: sólo elige los candidatos del juez. Con Ollama, los vectores de nomic-embed-text desde un coseno de 0,80, que corren siempre y sin tope: --budget near-duplicates=N limita sólo a claude -p (R009); sin Ollama, el parecido de palabras desde 0,6 (R008). Las consultas —un vector por ejercicio y un juicio por par candidato— van por el runtime de los jueces, que las guarda en el libro y las reusa, aplica el freno del examen, el tope y las consultas a la vez, y declara la cobertura y el costo. Cada ruta es una versión examinada que rinde su examen: con Ollama, nomic-embed-text con su versión y su prefijo, el umbral y la versión del juez (R010); sin Ollama, el parecido de palabras y la versión del juez (R007). PairStepEvaluator hace que el juez y los vectores enuncien esa versión sin cambiar su id: el freno es el del paso entero, y el libro reusa lo que el juez ya contestó con Ollama y sin él. En un examen sólo se juzgan los pares cuya copia es un ejercicio del archivo (R007). Familia errores, evalúa el ejercicio, costo de la ficha modelo pago, con una regla de modelo local que sólo propone, similar-candidates: no entra en la corrida base. Sólo los registros y el proveedor son públicos.
     visibility: public
     models:
     - name: NearDuplicateCondition
@@ -10823,11 +10823,15 @@ modules:
           \ y el tiempo del auxiliar (F-DUPAR-R002 inv. 1). Regla same-but-wildcard,\
           \ instantánea."
       - name: SIMILARITY
-        description: "El parecido de sus vectores llega al umbral, 0,95 (F-DUPAR-R002\
-          \ inv. 2). Regla same-meaning, modelo local."
+        description: "Ya no la produce ninguna versión: desde la v3 los vectores só\
+          lo proponen candidatos (F-DUPAR-R009). Queda para leer los informes de la\
+          \ versión del 30/9, en la que el parecido de 0,95 marcaba solo con la regla\
+          \ same-meaning, que salió de la ficha."
       - name: JUDGED
-        description: "Sin Ollama, claude -p dice que para el alumno es el mismo ejercicio\
-          \ (F-DUPAR-R008). Regla same-exercise, modelo pago."
+        description: "El juez de pares, claude -p, dice que para el alumno es el mismo\
+          \ ejercicio (F-DUPAR-R002 inv. 2), con Ollama o sin él: el candidato lo\
+          \ propusieron los vectores (R009) o el parecido de palabras (R008). Regla\
+          \ same-exercise, modelo pago."
     - name: NearDuplicateDiagnosis
       type: record
       fields:
@@ -10845,13 +10849,17 @@ modules:
           \ el comodín."
       - name: similarity
         type: double
-        description: "El parecido de los dos vectores (SIMILARITY), redondeado a dos\
-          \ decimales en la evidencia («parecido 0,99»). 0 si no se calculó."
+        description: "Con Ollama, el coseno de los vectores con que el par fue candidato\
+          \ del juez (JUDGED), redondeado a dos decimales en la evidencia: «Para claude\
+          \ -p es el mismo ejercicio que …355e: parecido 0,87». 0 si no se calculó\
+          : sin Ollama o por el comodín. En los informes de la versión del 30/9, el\
+          \ parecido con que marcó SIMILARITY."
       - name: wordSimilarity
         type: double
-        description: "El parecido de palabras de los dos ejercicios terminados, con\
-          \ el que se eligió el candidato de claude -p (JUDGED): «cambian 2 de 6 palabras»\
-          ."
+        description: "El parecido de palabras de los dos ejercicios terminados. Sin\
+          \ Ollama es el que hizo al par candidato del juez (JUDGED), y la evidencia\
+          \ lo dice en palabras: «Para claude -p es el mismo ejercicio que …355e:\
+          \ cambian 2 de 6 palabras». Con Ollama la evidencia no lo usa."
       - name: judgeReason
         type: String
         description: "La razón de claude -p en una línea, tal como la dio (JUDGED).\
@@ -10888,8 +10896,10 @@ modules:
       exposes:
       - signature: "methodId(): String"
       - signature: "inputPrefix(): String"
-      - signature: "similarityThreshold(): double"
       - signature: "candidateWordSimilarity(): double"
+      - signature: "candidateSimilarity(): double"
+      - signature: "vectorRouteMethodId(String judgeVersion): String"
+      - signature: "wordRouteVersion(String judgeVersion): String"
       visibility: internal
       extends:
       - SelfDescribingConfig
@@ -10906,9 +10916,13 @@ modules:
         type: EmbeddingModel
       - name: alternativeJudge
         type: Evaluator
-        description: "El evaluador de claude -p de la alternativa, hecho con AgentJudgeFactory\
-          \ de C (agente near-duplicates-same-exercise). Sólo se usa sin el modelo\
-          \ local."
+        description: "El juez de pares de claude -p: AgentJudgeFactory con el agente\
+          \ near-duplicates-pair-judge (artifact sameExerciseVerdict), cableado en\
+          \ el cuerpo de Main. Decide los candidatos de las dos rutas, envuelto en\
+          \ PairStepEvaluator bajo la versión examinada de cada una: con Ollama, la\
+          \ del paso entero; sin Ollama, wordRouteVersion. Su versión se lee sin consultarlo,\
+          \ y su evaluatorId no cambia con la ruta: lo que contestó de un par se reusa\
+          \ con Ollama y sin él (R010 inv. 2)."
       - name: judgeRuntime
         type: JudgeRuntime
       - name: correctorMatcher
@@ -10917,14 +10931,15 @@ modules:
         type: QuizStudentViewRenderer
       - name: localToolGate
         type: LocalToolGate
+        description: "Con vectorRouteMethodId —el método de los vectores, el umbral\
+          \ y la versión del juez— decide la ruta y da la tarjeta local, así el freno\
+          \ y el examen son los del paso entero (R010). Con methodId solo, su tarjeta\
+          \ da la versión con que los vectores se guardan en el libro, que no cambia\
+          \ con el umbral ni con el juez (F-MLOCAL-R002 inv. 2). La tarjeta de claude\
+          \ -p la arma con el juez envuelto bajo wordRouteVersion. Su política local\
+          \ no sirve para los vectores: con --budget near-duplicates=N trae ese tope."
       visibility: public
       handwrittenTests:
-      - name: "should open near-duplicates through the judges' runtime with the vector\
-          \ evaluator and the policy without limit of the local tool decision when\
-          \ nomic-embed-text is available, never with claude -p"
-        traceability:
-          feature: FEAT-DUPAR
-          rule: F-DUPAR-R008
       - name: "should open near-duplicates through the judges' runtime with the claude\
           \ -p alternative and the run's policy as it comes when nomic-embed-text\
           \ is not available, so without --budget near-duplicates=N it has budget\
@@ -10932,28 +10947,50 @@ modules:
         traceability:
           feature: FEAT-DUPAR
           rule: F-DUPAR-R008
+      - name: "should open near-duplicates through the judges' runtime, when nomic-embed-text\
+          \ is available, with the vectors without limit even if the run asks --budget\
+          \ near-duplicates=N, and the pair judge with the run's policy as it comes,\
+          \ so without that request claude -p has budget 0"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R009
       - name: "should describe near-duplicates as an errors analyzer that evaluates\
           \ exercises and resolves at the panel, asking «¿Dos ejercicios del mismo\
           \ tema piden casi lo mismo?», with the rules same-but-wildcard instant,\
-          \ same-meaning of local model and same-exercise of paid model, and paid\
-          \ model as the cost of its card"
+          \ similar-candidates of local model and same-exercise of paid model, and\
+          \ paid model as the cost of its card"
         traceability:
           feature: FEAT-DUPAR
           rule: F-DUPAR-R006
-      - name: "should carry in its card two tools, nomic-embed-text in Ollama and\
-          \ claude -p, each with its version and its exam"
+      - name: "should carry in its card nomic-embed-text, which proposes the pairs\
+          \ with Ollama, and claude -p, which decides them, each with its version,\
+          \ next to the exam of the version with Ollama and of the version without\
+          \ it"
         traceability:
           feature: FEAT-DUPAR
           rule: F-DUPAR-R006
+      - name: "should consult neither nomic-embed-text nor claude -p, with Ollama,\
+          \ when the pair judge states no version, leaving the judge's reason in view"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R010
       implements:
       - AnalyzerProvider
     - name: NearDuplicatesAnalyzer
       requiresInject:
       - name: opened
         type: JudgeSessions
-        description: "Las sesiones que abrió el runtime de los jueces con el evaluador\
-          \ de la ruta elegida: el de vectores con su política sin tope, o el de claude\
-          \ -p con la de la corrida."
+        description: "Las sesiones que abrió el runtime de los jueces bajo el nombre\
+          \ near-duplicates y la versión examinada de la ruta. Con Ollama, dos y en\
+          \ este orden: los vectores, sin tope aunque la corrida pida --budget near-duplicates=N,\
+          \ y el juez de pares, con la política de la corrida (tope 0 sin pedido);\
+          \ el registro lleva la versión, el examen y la política efectiva del juez.\
+          \ Sin Ollama, una: el juez, con la política de la corrida. El juez es siempre\
+          \ la última sesión, y la cobertura del informe se pide con ella sola: el\
+          \ runtime suma lo pendiente de todas las sesiones y mide el ritmo con todos\
+          \ sus evaluadores, y los vectores falsearían el costo de lo que falta de\
+          \ claude -p (R009 inv. 4). Los modos del plan son del juez: los vectores\
+          \ se piden siempre para reusar o calcular."
       - name: runtime
         type: JudgeRuntime
       - name: rules
@@ -10966,6 +11003,10 @@ modules:
         type: NearDuplicatesConfig
       - name: gateDecision
         type: LocalToolGateDecision
+        description: "La decisión de LocalToolGate sobre nomic-embed-text con vectorRouteMethodId:\
+          \ si está, si la versión examinada del paso entero —vectores, umbral y juez\
+          \ (R010)— publica, o por qué no. Sin Ollama sólo dice por qué falta la herramienta;\
+          \ la versión es la del juez envuelto, la de opened."
       handwrittenTests:
       - name: "should compare an exercise only with the earlier exercises of its own\
           \ topic, never with an exercise of another topic"
@@ -10978,18 +11019,6 @@ modules:
         traceability:
           feature: FEAT-DUPAR
           rule: F-DUPAR-R001
-      - name: "should mark as near duplicates two candidates whose vectors reach 0.95,\
-          \ «They prepared lunch for each other.» after «They cooked lunch for each\
-          \ other.», 0.98"
-        traceability:
-          feature: FEAT-DUPAR
-          rule: F-DUPAR-R002
-      - name: "should not mark a candidate whose vectors stay below 0.95 and that\
-          \ the wildcard does not settle, «Have you heard about my news?» after «\
-          Have you heard the news?», 0.94"
-        traceability:
-          feature: FEAT-DUPAR
-          rule: F-DUPAR-R002
       - name: "should leave without finding the first exercise in the order of the\
           \ topic and give the one after it a finding that names it, «Where is she?»\
           \ naming «Where is he?» in Contraste inicial"
@@ -11002,25 +11031,8 @@ modules:
         traceability:
           feature: FEAT-DUPAR
           rule: F-DUPAR-R003
-      - name: "should mark the same copies in two runs of the same course, reusing\
-          \ every vector without asking nomic-embed-text again"
-        traceability:
-          feature: FEAT-DUPAR
-          rule: F-DUPAR-R003
       - name: "should give every copy a low finding for the panel that counts as an\
           \ error and scores 0, and keep 1 in the exercise that stays"
-        traceability:
-          feature: FEAT-DUPAR
-          rule: F-DUPAR-R004
-      - name: "should give each finding the cost of the rule that found it: instant\
-          \ for same-but-wildcard, local model for same-meaning and paid model for\
-          \ same-exercise"
-        traceability:
-          feature: FEAT-DUPAR
-          rule: F-DUPAR-R004
-      - name: "should give a pair found both by the wildcard and by its vectors the\
-          \ instant rule same-but-wildcard, «A: Are we ready? B: Yes, we are.» after\
-          \ «A: Are they ready? B: Yes, they are.»"
         traceability:
           feature: FEAT-DUPAR
           rule: F-DUPAR-R004
@@ -11030,22 +11042,11 @@ modules:
         traceability:
           feature: FEAT-DUPAR
           rule: F-DUPAR-R005
-      - name: "should say in the evidence of a pair found by its vectors «Dice lo\
-          \ mismo que …46ac: parecido 0,98»"
-        traceability:
-          feature: FEAT-DUPAR
-          rule: F-DUPAR-R005
       - name: "should say in the evidence of a pair judged by claude -p «Para claude\
           \ -p es el mismo ejercicio que …2725: cambian 2 de 7 palabras»"
         traceability:
           feature: FEAT-DUPAR
           rule: F-DUPAR-R005
-      - name: "should leave all of near-duplicates unevaluated, the wildcard included,\
-          \ while the examined version of nomic-embed-text with its prefix has no\
-          \ approved exam"
-        traceability:
-          feature: FEAT-DUPAR
-          rule: F-DUPAR-R007
       - name: "should mark the same copies when the same examined version takes the\
           \ exam twice, without a single new consultation"
         traceability:
@@ -11085,6 +11086,113 @@ modules:
         traceability:
           feature: FEAT-DUPAR
           rule: F-DUPAR-R008
+      - name: "should make a near duplicate of a candidate of its vectors that claude\
+          \ -p calls the same exercise, «They prepared lunch for each other.» after\
+          \ «They cooked lunch for each other.», 0.98, with the rule same-exercise"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R002
+      - name: "should mark the same copies in two runs of the same course, reusing\
+          \ every vector and every verdict of claude -p without asking either again"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R003
+      - name: "should give each finding the cost of the rule that found it, instant\
+          \ for same-but-wildcard and paid model for same-exercise with Ollama and\
+          \ without it, and none to similar-candidates, which only proposes pairs"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R004
+      - name: "should give a pair that the wildcard settles the instant rule same-but-wildcard\
+          \ without asking claude -p, even when its vectors reach 0.80, «A: Are we\
+          \ ready? B: Yes, we are.» after «A: Are they ready? B: Yes, they are.»"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R004
+      - name: "should say in the evidence of a pair that its vectors proposed and\
+          \ claude -p judged «Para claude -p es el mismo ejercicio que …355e: parecido\
+          \ 0,99» and the reason claude -p gave"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R005
+      - name: "should ask claude -p in an exam run with Ollama only about the candidates\
+          \ whose copy is an exercise of the exam's file, even when the exercise that\
+          \ stays is not in it"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R007
+      - name: should ask claude -p in an exam run without Ollama only about the candidates
+          whose copy is an exercise of the exam's file
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R007
+      - name: "should give an exercise outside the exam's file neither score nor finding\
+          \ in an exam run, nor count the pairs whose copy it is among the consultations\
+          \ the exam says are missing"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R007
+      - name: "should ask claude -p, with Ollama, only about the candidates that the\
+          \ wildcard does not settle and whose vectors reach 0.80, as «Have you heard\
+          \ about my news?» after «Have you heard the news?», 0.94, and not about\
+          \ «I am hot.» after «I am sorry.», 0.71"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R009
+      - name: "should not mark, with Ollama, a candidate whose vectors reach 0.97\
+          \ when claude -p calls it a different exercise, «That car is his.» after\
+          \ «That is his car.»"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R009
+      - name: should ask nomic-embed-text for every vector and stop only claude -p
+          at the budget of --budget near-duplicates=1
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R009
+      - name: "should leave half evaluated, with Ollama and without --budget near-duplicates=N,\
+          \ an exercise with a candidate of its vectors, consulting no claude -p,\
+          \ keeping its wildcard findings and saying «falta el tope» with the pairs\
+          \ left to judge"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R009
+      - name: "should leave half evaluated, with Ollama, an exercise whose candidate\
+          \ got no usable answer from claude -p, keeping its wildcard findings and\
+          \ saying how many pairs are left to judge"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R009
+      - name: "should declare as missing for near-duplicates only the pairs left for\
+          \ claude -p, with their hours at the rate of the judge one at a time and\
+          \ four at a time, never the vectors of nomic-embed-text"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R009
+      - name: "should evaluate whole a topic outside the set that a run declares for\
+          \ claude -p when its vectors stay below 0.80, «I am hot.» after «I am sorry.»\
+          , since the vectors always run"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R009
+      - name: "should leave all of near-duplicates unevaluated, the wildcard included,\
+          \ while the version with Ollama, named by its three pieces, has no approved\
+          \ exam, even if nomic-embed-text with its prefix alone approved one"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R010
+      - name: "should not ask claude -p again, with Ollama, about a pair it already\
+          \ judged without Ollama, «Offer: I'll wash the dishes.» after «Offer: I'll\
+          \ wash the dishes for you.»"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R010
+      - name: "should reuse, with Ollama, the vectors that the version of 30/9 recorded,\
+          \ without asking nomic-embed-text again, since neither the candidate threshold\
+          \ nor the judge enters their record"
+        traceability:
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
       implements:
       - ContentAnalyzer
     - name: SentenceEmbeddingEvaluator
@@ -11097,15 +11205,16 @@ modules:
         type: String
       handwrittenTests:
       - name: "should ask nomic-embed-text for the vector of the finished exercise\
-          \ with the prefix «clustering: » and record it under an evaluator id that\
-          \ carries the examined version"
+          \ with the prefix «clustering: », under the version of nomic-embed-text\
+          \ with that prefix"
         traceability:
           feature: FEAT-DUPAR
-          rule: F-DUPAR-R002
-      - name: should not reuse the vectors that another examined version recorded
+          rule: F-DUPAR-R010
+      - name: should reuse the vectors that the same version of nomic-embed-text recorded
+          and not those that another version recorded
         traceability:
-          feature: FEAT-DUPAR
-          rule: F-DUPAR-R002
+          feature: FEAT-MLOCAL
+          rule: F-MLOCAL-R002
       implements:
       - Evaluator
     - name: DefaultNearDuplicateRules
@@ -11157,13 +11266,26 @@ modules:
       - NearDuplicateRules
     - name: DefaultNearDuplicatesConfig
       handwrittenTests:
-      - name: "should hold the threshold 0.95, the prefix «clustering: » and the word\
-          \ similarity 0.6 of the candidates for claude -p"
+      - name: "should hold the similarities that only choose the candidates of the\
+          \ judge, 0.80 for the vectors with the prefix «clustering: » and 0.6 for\
+          \ the words"
         traceability:
           feature: FEAT-DUPAR
           rule: F-DUPAR-R002
-      - name: "should change its methodId when the prefix changes, so the vectors\
-          \ are a new examined version that takes its own exam"
+      - name: "should name the version with Ollama by the method of the vectors, the\
+          \ candidate similarity and the first 12 hex of the version of the judge,\
+          \ «clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d»"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R010
+      - name: "should name another version with Ollama when the prefix, the candidate\
+          \ similarity or the version of the judge changes, so it takes its own exam"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R010
+      - name: "should name the version without Ollama by the word similarity and the\
+          \ version of the judge, «palabras-0,60 · juez-c3a9e1f07b5d», and another\
+          \ one when either changes"
         traceability:
           feature: FEAT-DUPAR
           rule: F-DUPAR-R007
@@ -11190,6 +11312,53 @@ modules:
       visibility: public
       implements:
       - AnalyzerCorrection
+    - name: PairStepEvaluator
+      requiresInject:
+      - name: evaluator
+        type: Evaluator
+        description: "El que consulta de verdad: el juez de pares o, con Ollama, tambié\
+          n SentenceEmbeddingEvaluator con la versión de los vectores solos. Su evaluatorId\
+          \ es el del envoltorio: el libro identifica por id y huella del contenido,\
+          \ no por versión, así que lo que ya está registrado se reusa con cualquier\
+          \ versión del paso (R010 inv. 2, F-MLOCAL-R002 inv. 2)."
+      - name: examinedVersion
+        type: String
+        description: "La versión examinada de la ruta, la que enuncia: con Ollama,\
+          \ la que LocalToolGate da al paso entero, «nomic-embed-text@0a109f422b47\
+          \ · clustering-1 · candidatos-0,80 · juez-…»; sin Ollama, wordRouteVersion,\
+          \ «palabras-0,60 · juez-…». Con ella frena el runtime y fija el examen lo\
+          \ que reusa. No enuncia ninguna si es nula o si el envuelto no enuncia la\
+          \ suya."
+      handwrittenTests:
+      - name: "should ask the wrapped evaluator exactly the pair it receives, under\
+          \ the wrapped evaluator's own id, so what the judge answered is reused under\
+          \ the version with Ollama and without it"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R010
+      - name: "should state the version of its route, «nomic-embed-text@0a109f422b47\
+          \ · clustering-1 · candidatos-0,80 · juez-c3a9e1f07b5d», when the wrapped\
+          \ evaluator states its own"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R010
+      - name: "should state no version when the wrapped evaluator states none, whatever\
+          \ the version of its route"
+        traceability:
+          feature: FEAT-DUPAR
+          rule: F-DUPAR-R010
+      glossarySuggestions:
+      - name: Paso por pares
+        technicalName: PairStep
+        kind: process-candidate
+        basedOn: audit-domain/nearduplicates/PairStepEvaluator
+        rationale: "El requirement llama «el paso por pares» al cambio mínimo de la\
+          \ v3: los candidatos que propone cada ruta —los vectores con Ollama, las\
+          \ palabras sin él— y el juez de pares que decide cada uno. Es lo que rinde\
+          \ examen como una sola versión (F-DUPAR-R007, R010); PairStepEvaluator es\
+          \ la pieza que lo hace visible al freno del runtime."
+      implements:
+      - Evaluator
   - name: correction
     description: "Vocabulario cerrado de las partes de un ejercicio que un arreglo\
       \ puede tocar (FEAT-TAREA R006). Público porque lo leen refiner-domain, revision-domain\
