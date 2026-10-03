@@ -437,6 +437,34 @@ def validate_scripts(fixture: dict[str, Any]) -> None:
             "an extra key with content did not fail the gate",
         )
 
+        # Other times the judge leaves the comma with no key after it ("evidence": "…",
+        # and then }). That is not JSON, but the comma says nothing: the gate reads the
+        # verdict without it. A comma inside a text stays as it is.
+        commas = sample_pass_verdict(quiz["id"])
+        commas["checkedConstraints"][0]["evidence"] = "queda igual: «a, }» y «b, ]»"
+        verdict_path.write_text(
+            re.sub(
+                r'([^\s,{\[])(\n\s*[}\]])',
+                r"\1,\2",
+                json.dumps(commas, ensure_ascii=False, indent=2),
+            ),
+            encoding="utf-8",
+        )
+        gate_output = run_script(
+            AGENT_DIR / "scripts" / "gate_verdict.sh", state
+        )
+        require(
+            gate_output.get("route") == "passed",
+            "a dangling comma before } or ] failed the gate",
+        )
+        canonical = load_json(run_dir / "validated-verdict.json")
+        validate_verdict(canonical, quiz["id"])
+        require(
+            canonical["checkedConstraints"][0]["evidence"]
+            == "queda igual: «a, }» y «b, ]»",
+            "the gate touched a comma inside a text",
+        )
+
         malformed = sample_pass_verdict(quiz["id"])
         malformed["unexpected"] = True
         verdict_path.write_text(
@@ -595,7 +623,8 @@ def main() -> int:
         validate_scripts(fixture)
         print(
             "scripts: OK (state.json UUID resolution, ambiguity rejection, "
-            "gate pass/fail, empty extra keys dropped, emit fallback)"
+            "gate pass/fail, empty extra keys dropped, dangling commas read, "
+            "emit fallback)"
         )
 
         if not args.command:
