@@ -10,8 +10,8 @@ feature:
 
 ## TL;DR
 
-**Qué**: Todo juez con modelo rinde un examen fijo por versión antes de juzgar el curso y dice cuánto le falta y cuánto
-cuesta; el juez de consigna, además, muestra su veredicto entero sin cambiar lo que lee.
+**Qué**: Todo juez con modelo rinde un examen fijo por versión y runtime efectivo antes de juzgar el curso; cobertura y
+examen se muestran separados, sin mezclar ni pisar los resultados de Claude, Codex u otros runtimes.
 
 **Por qué**: El juez de consigna se afinó para marcar menos y nunca se midió lo que deja pasar: da por buenos 178 de los
 187 imposibles. Con cuatro jueces nuevos, pagar sin medir se multiplica por cinco.
@@ -42,16 +42,17 @@ FEAT-TRSEN, FEAT-UNICA, FEAT-MINIT y FEAT-MCVALE (R012, sólo para los cuatro nu
 consigna.
 
 <a id="F-JEXAM-R001"></a>
-### Rule[F-JEXAM-R001] - Cada versión de un juez rinde el examen fijo y su resultado queda a la vista
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+### Rule[F-JEXAM-R001] - Cada versión y runtime de un juez rinden su propio examen
+**Severity**: critical | **Validation**: VALIDATED
 
 > Pedirle a un juez que rinda el examen juzga, con su versión vigente, los ejercicios del archivo del examen —que trae
 > sólo los ejercicios, nunca lo esperado—, tal como están en la foto del 29/9 y leídos igual que en el curso, y deja un
 > veredicto por ejercicio para que se mida afuera. Invariantes:
-> 1. el resultado medido afuera queda guardado para esa versión: cuántos reprobó y aprobó por grupo, cuáles no dieron lo
->    esperado y si alcanzó su meta; sólo se acepta para una versión que rindió;
-> 2. junto a los números del juez, el informe declara el resultado del examen de la versión consultada y de cada versión
->    que aporta veredictos: aprobada, reprobada o sin examen.
+> 1. el resultado medido afuera queda guardado para la identidad examinada —versión del proceso más proveedor, modelo y
+>    esfuerzo efectivos—: cuántos reprobó y aprobó por grupo, cuáles no dieron lo esperado y si alcanzó su meta; sólo se
+>    acepta para esa identidad si fue la que rindió;
+> 2. junto a los números del juez, el informe declara por separado la cobertura del análisis y el resultado del examen de
+>    cada runtime y versión que aporta veredictos: aprobada, reprobada o sin examen.
 
 Son 238: **a**, las verduras (`67fab6d59930102295341ecd`); **b**, 188 imposibles del 077 (187 CLOZE, uno de opción
 múltiple); **c**, 50 buenos (38 CLOZE, 12 de opción múltiple). Lo que le toca a cada juez: [F-JEXAM-R009](#F-JEXAM-R009),
@@ -61,35 +62,47 @@ así el juez no puede aprenderlo y el examen no cambia aunque cambie el curso.
 
 <a id="F-JEXAM-R002"></a>
 ### Rule[F-JEXAM-R002] - El examen no toca el curso y no paga dos veces lo mismo
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+**Severity**: critical | **Validation**: VALIDATED
 
 > 1. Ningún veredicto del examen queda como veredicto del curso: `analyze` da lo mismo antes y después de rendir, y rendir
 >    no gasta el tope de ninguna corrida.
-> 2. El examen reusa un veredicto sólo si lo emitió esa misma versión sobre el mismo contenido: una versión que ya rindió
->    vuelve a rendir sin consultar.
+> 2. El examen reusa un veredicto sólo si lo emitió la misma identidad examinada —versión del proceso, proveedor, modelo y
+>    esfuerzo de razonamiento efectivos— sobre el mismo contenido. Un registro de otro runtime o legacy sin procedencia
+>    permanece visible, pero no evita una consulta del examen actual.
 
-En el curso gana el más reciente ([F-EVCOST-R006](#F-EVCOST-R006)): si el examen escribiera ahí, una versión reprobada
-quedaría vigente en 238 ejercicios. En el examen la versión es lo que se mide; el libro del curso no cambia.
+En el curso gana el más reciente **dentro del runtime elegido** ([F-EVCOST-R006](#F-EVCOST-R006)): si el examen escribiera
+ahí, una identidad reprobada quedaría vigente en 238 ejercicios. El libro del curso no cambia y Claude, Codex y cualquier
+otro runtime conservan libros de examen comparables sin prestarse veredictos.
 
 <a id="F-JEXAM-R003"></a>
-### Rule[F-JEXAM-R003] - Una versión sin examen aprobado no consulta sobre el curso
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+### Rule[F-JEXAM-R003] - Un runtime y versión sin examen aprobado no consultan sobre el curso
+**Severity**: critical | **Validation**: VALIDATED
 
-> Mientras la versión vigente de un juez nuevo no aprobó su examen, ninguna corrida sobre el curso le hace consultas, con
-> cualquier tope: reusa lo registrado, deja sin evaluar lo que falta y el informe dice por qué (sin examen o reprobada).
+> Mientras la identidad vigente de un juez —versión del proceso, proveedor, modelo y esfuerzo efectivos— no aprobó su
+> examen, ninguna corrida sobre el curso le hace consultas, con cualquier tope: reusa sólo lo registrado para ese runtime,
+> deja sin evaluar lo que falta y dice por qué (sin examen o reprobada).
 
 Es el «rinde un examen fijo antes de usarse» de la propuesta. Mantiene [F-QINST-R004](#F-QINST-R004) y
 [F-QINST-R007](#F-QINST-R007). Vale también para el de consigna (José, 30/9: «sin aprobar, no paga»,
-[DOUBT-CONSIGNA-HABILITA](#DOUBT-CONSIGNA-HABILITA)): sus veredictos ya registrados se siguen reusando, con su versión
-reprobada a la vista.
+[DOUBT-CONSIGNA-HABILITA](#DOUBT-CONSIGNA-HABILITA)): sus veredictos ya registrados se siguen reusando sólo cuando su
+runtime efectivo coincide, con la identidad reprobada a la vista.
+
+**Cobertura no es examen.** La cobertura responde cuántos ejercicios o temas tienen
+veredicto reutilizable para el runtime elegido; el examen responde si esa identidad
+está habilitada para pagar consultas nuevas. Un juez puede tener cobertura parcial o
+completa y examen reprobado, o examen aprobado y cobertura todavía incompleta. La UI
+muestra ambos estados por separado y por runtime; cuando existen resultados
+atribuibles a Claude y Codex, los presenta lado a lado. Los registros legacy sin
+procedencia aparecen en una categoría histórica propia y no se muestran como
+Claude ni como Codex.
 
 <a id="F-JEXAM-R004"></a>
 ### Rule[F-JEXAM-R004] - Cada juez dice cuánto le falta y cuánto cuesta, sin consultar
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> El informe de `analyze` y `stats analyzer <nombre>` —que usa sólo lo registrado— declaran, para cada juez y sin ninguna
-> consulta, cuántos ejercicios o temas quedan sin veredicto para lo que lee hoy, cuántas consultas cuesta juzgarlos y
-> cuántas horas lleva al ritmo medido del juez, de a una y con las que se pidan a la vez.
+> El informe de `analyze` y `stats analyzer <nombre>` —que usa sólo lo registrado— declaran, para cada juez y runtime
+> efectivo, cuántos ejercicios o temas quedan sin veredicto reutilizable para lo que lee hoy, cuántas consultas cuesta
+> juzgarlos y cuántas horas lleva al ritmo medido del juez, de a una y con las que se pidan a la vez.
 
 Ritmo: el promedio entre veredictos seguidos dentro de una misma corrida (se corta en pausas de más de 10 minutos); sin
 historia, 189 por hora (el de miniteoría, que lee temas enteros, 60 por hora). Sobre los 15.351 veredictos del juez de
@@ -208,7 +221,8 @@ el corrector acepta se descarta aunque el juez lo liste. La guía del juez de co
 > Todo proceso que hasta ahora consultaba a Claude mediante la sesión local —los cinco jueces, las alternativas de
 > Naturalidad y Duplicados parecidos, los generadores de propuestas y los agentes de la mesa— usa por omisión
 > `codex-cli`, autenticado con la sesión local de ChatGPT. El operador puede elegir explícitamente otro proveedor que el
-> sistema sepa consultar y el modelo que corresponda; una corrida nunca cambia sola de proveedor o modelo.
+> sistema sepa consultar, el modelo y el esfuerzo que correspondan; una corrida nunca cambia sola de proveedor, modelo
+> o esfuerzo.
 
 José reemplazó el 4/10 la decisión del 30/9 porque dispone de más cupo en ChatGPT. Los modelos locales que un proceso
 elige deliberadamente —por ejemplo, los que corren en Ollama— no cambian por esta regla. Toda mención anterior a
@@ -219,16 +233,28 @@ deriva a otra vía de cobro ni a otro proveedor. Una vía con clave, cobro o ses
 operador la selecciona expresamente.
 
 <a id="F-JEXAM-R014"></a>
-### Rule[F-JEXAM-R014] - Proveedor, modelo y versión forman la procedencia y obligan a reexaminar
+### Rule[F-JEXAM-R014] - Runtime efectivo y versión forman una identidad examinable
 **Severity**: critical | **Validation**: VALIDATED
 
-> Cada resultado producido por un modelo identifica el proveedor realmente elegido, el modelo exacto y la versión
-> completa del proceso que lo obtuvo. Cambiar cualquiera de esas tres piezas produce una versión distinta; los jueces y demás
-> procesos que ya exigen examen deben volver a aprobarlo con esa versión antes de consultar el curso.
+> Cada resultado producido por un modelo identifica el proveedor realmente elegido,
+> el modelo exacto, el esfuerzo de razonamiento efectivo y la versión completa del
+> proceso que lo obtuvo. Esas cuatro piezas forman la identidad examinable: cambiar
+> cualquiera exige un examen propio antes de consultar el curso.
 
-Los veredictos y propuestas anteriores no se borran ni se atribuyen a la versión nueva: conservan su procedencia. El
-cambio de Claude a Codex, por sí solo, crea versiones nuevas y deja sin vigencia las aprobaciones de examen anteriores;
-lo ya registrado sólo se reutiliza cuando las reglas de huella y versión lo permiten. Esta regla resuelve para las
+Si un proveedor no ofrece esfuerzo configurable, la identidad registra
+explícitamente "no aplica"; no deja el dato ausente ni lo convierte en comodín.
+
+El runtime efectivo es proveedor + modelo + esfuerzo. Sus veredictos sólo se
+reutilizan dentro de esa combinación ([F-EVCOST-R001](#F-EVCOST-R001)); la versión
+del proceso, además, determina qué examen habilita consultas nuevas. Por eso una
+aprobación con Claude no aprueba Codex, y una aprobación con un esfuerzo no aprueba
+otro. Los resultados y exámenes de cada identidad conviven y se comparan lado a
+lado: registrar Codex no pisa Claude.
+
+Los veredictos, propuestas y exámenes anteriores no se borran ni se atribuyen a la
+identidad nueva. Si un registro legacy no declara proveedor, modelo o esfuerzo,
+queda visible como "procedencia desconocida", pero no habilita, no cubre y no se
+presenta como resultado de un runtime concreto. Esta regla resuelve para las
 propuestas la granularidad pendiente de
 [F-LAGEN-R009](../2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md#F-LAGEN-R009) y, para los jueces, refuerza
 [F-JEXAM-R001](#F-JEXAM-R001) y [F-JEXAM-R003](#F-JEXAM-R003).
@@ -248,11 +274,12 @@ se paga sólo lo que cambió: cuatro consultas por ejercicio tocado y una por te
 
 ## Alcance
 
-- **Adentro**: examen por versión; costo pendiente, conjunto, candidato, consultas a la vez, tope 0 por omisión, sesión
-  vencida y formas que el corrector acepta para todo juez; proveedor por sesión local y procedencia para todo proceso
-  con modelo que antes usaba Claude; veredicto entero y examen del juez de consigna.
+- **Adentro**: examen por versión y runtime efectivo; costo y cobertura pendientes por runtime; presentación separada de
+  cobertura y examen; comparación lado a lado sin mezclar Claude, Codex, otros runtimes ni legacy; conjunto, candidato,
+  consultas a la vez, tope 0 por omisión, sesión vencida y formas que el corrector acepta para todo juez; procedencia para
+  todo proceso con modelo; veredicto entero y examen del juez de consigna.
 - **Afuera**: qué pregunta cada juez nuevo; armar el examen, su oro y medir sobre `examinar/` (0.4); mesa y tandas (E);
-  pantallas (G); cambiar lo que lee el juez de consigna o su guía; igualar la consigna del tema con la del alumno (un
+  otras pantallas de operación (G); cambiar lo que lee el juez de consigna o su guía; igualar la consigna del tema con la del alumno (un
   arreglo de datos, [DOUBT-CONSIGNA-QUE-VE-EL-ALUMNO](#DOUBT-CONSIGNA-QUE-VE-EL-ALUMNO)); la tabla de equivalencias del
   corrector (paquete A).
 
@@ -282,12 +309,12 @@ journeys:
           - when: "La versión no rindió o reprobó"
             then: solo_reusa
       - id: consulta
-        action: "La corrida reusa lo registrado, consulta hasta el tope y declara la versión, su examen, cuánto falta y cuánto cuesta"
-        gate: [F-JEXAM-R001, F-JEXAM-R004, F-JEXAM-R006]
+        action: "La corrida reusa sólo veredictos del runtime elegido, consulta hasta el tope y muestra por separado su cobertura, su examen, cuánto falta y cuánto cuesta"
+        gate: [F-JEXAM-R001, F-JEXAM-R004, F-JEXAM-R006, F-JEXAM-R014]
         result: success
       - id: solo_reusa
-        action: "La corrida no consulta, reusa lo registrado y declara que la versión no está habilitada y cuánto falta"
-        gate: [F-JEXAM-R003, F-JEXAM-R004]
+        action: "La corrida no consulta, reusa sólo lo compatible con el runtime elegido y declara por separado que su identidad no está habilitada y qué cobertura le falta"
+        gate: [F-JEXAM-R003, F-JEXAM-R004, F-JEXAM-R014]
         result: failure
 ```
 

@@ -26,6 +26,7 @@ import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.AuditableTopic;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.DefaultKnowledgeDiagnoses;
+import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
 import com.learney.contentaudit.auditdomain.DefaultQuizDiagnoses;
 import com.learney.contentaudit.auditdomain.NlpToken;
 import com.learney.contentaudit.auditdomain.SentenceLengthDiagnosis;
@@ -33,6 +34,11 @@ import com.learney.contentaudit.auditdomain.catalog.AnalyzerFamily;
 import com.learney.contentaudit.auditdomain.contextnumbers.AnalyzerScore;
 import com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers;
 import com.learney.contentaudit.auditdomain.labs.LemmaPlacementDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeCostEstimate;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
+import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -423,6 +429,39 @@ class FileSystemAuditReportStoreTest {
             assertFalse(json.contains("¿Dónde está mi billetera?") || json.contains("sentenceParts")
                     || json.contains("\"tokens\""), "the digest carries no course entity");
         }
+    }
+
+    @Test
+    @DisplayName("should keep judge coverage, exam standing and explicit runtime outside node score maps")
+    @Tag("F-JEXAM-R014")
+    void shouldKeepJudgeCoverageExamStandingAndExplicitRuntimeOutsideNodeScoreMaps(@TempDir Path tempDir) {
+        EvaluationRuntimeIdentity codex = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "high");
+        JudgeExamStanding standing = new JudgeExamStanding("quiz-instruction", "process-v2",
+                JudgeExamStatus.APPROVED, true, "approved for this exact runtime", codex,
+                java.util.Set.of("process-v2", "legacy-runtime-coupled-v1"));
+        JudgeCoverageDiagnosis coverage = new JudgeCoverageDiagnosis("quiz-instruction", AuditTarget.QUIZ,
+                12, 9, 3, List.of(), standing, List.of(), null,
+                new JudgeCostEstimate(3, 3, 18.0, true, 0.5, 3, 0.2), List.of(), null);
+        DefaultCourseDiagnoses diagnoses = new DefaultCourseDiagnoses();
+        diagnoses.addJudgeCoverage(coverage);
+        AuditNode root = new AuditNode(null, AuditTarget.COURSE, null, List.of(),
+                Map.of("lemma-count", 0.91), Map.of(), diagnoses);
+        root.setNumbers(new ContextNumbers(0.91, List.of(), null, null));
+        FileSystemAuditReportStore store = new FileSystemAuditReportStore(tempDir, null);
+
+        String id = store.save(new AuditReport(root));
+        AuditDigest digest = store.loadDigest(id).orElseThrow();
+
+        assertEquals(0.91, digest.getRoot().getNumbers().getVocabularyScore(), 1e-12);
+        assertFalse(digest.getRoot().getNumbers().toString().contains("APPROVED"),
+                "exam standing is not smuggled into the numeric score map");
+        assertEquals(1, digest.getJudgeCoverages().size());
+        JudgeCoverageDiagnosis loaded = digest.getJudgeCoverages().get(0);
+        assertEquals(List.of(12, 9, 3), List.of(loaded.getReached(), loaded.getEvaluated(), loaded.getNotEvaluated()));
+        assertEquals(JudgeExamStatus.APPROVED, loaded.getStanding().getStatus());
+        assertEquals(codex, loaded.getStanding().getRuntimeIdentity());
+        assertEquals(java.util.Set.of("process-v2", "legacy-runtime-coupled-v1"),
+                loaded.getStanding().getCompatibleJudgeVersions());
     }
 
     @Test

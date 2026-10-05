@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.judging;
 
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
@@ -174,6 +175,35 @@ public class JudgeExamRecord {
 
     public void setReasoningEffort(String reasoningEffort) {
         this.reasoningEffort = reasoningEffort;
+    }
+
+    /**
+     * Runtime identity of this historical record. A line written before runtime provenance was
+     * introduced, or a partially populated line, remains legacy-unknown: missing values are never
+     * guessed and therefore can never approve an explicit runtime (F-JEXAM-R014).
+     */
+    public EvaluationRuntimeIdentity getRuntimeIdentity() {
+        if (providerName == null || providerName.isBlank()
+                || modelName == null || modelName.isBlank()
+                || reasoningEffort == null || reasoningEffort.isBlank()) {
+            return EvaluationRuntimeIdentity.legacyUnknown();
+        }
+        return EvaluationRuntimeIdentity.explicit(providerName, modelName, reasoningEffort);
+    }
+
+    public void setRuntimeIdentity(EvaluationRuntimeIdentity runtimeIdentity) {
+        EvaluationRuntimeIdentity effective = runtimeIdentity != null
+                ? runtimeIdentity
+                : EvaluationRuntimeIdentity.legacyUnknown();
+        if (!effective.isExplicit()) {
+            this.providerName = null;
+            this.modelName = null;
+            this.reasoningEffort = null;
+            return;
+        }
+        this.providerName = effective.getProviderName();
+        this.modelName = effective.getModelName();
+        this.reasoningEffort = effective.getReasoningEffort();
     }
 
     public Instant getRecordedAt() {

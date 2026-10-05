@@ -11,6 +11,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadiness;
@@ -21,6 +22,8 @@ import com.sentinel.agents.framework.state.RunState;
 import dev.langchain4j.model.chat.ChatModel;
 import java.nio.file.Files;
 import java.util.Map;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -81,6 +84,29 @@ public QuizInstructionAgentJudge(QuizInstructionJudgeConfig config, AgentGraphRu
     @Override
     public Optional<String> evaluatorVersion() {
         return versionResolver.resolve(config, provider);
+    }
+
+    @Override
+    public EvaluationRuntimeIdentity runtimeIdentity() {
+        String providerName = provider != null ? provider.getProviderName() : null;
+        String modelName = config != null ? config.getModelName() : null;
+        if (providerName == null || providerName.isBlank() || modelName == null || modelName.isBlank()) {
+            return EvaluationRuntimeIdentity.legacyUnknown();
+        }
+        String reasoning = config != null ? config.getReasoningEffort() : null;
+        return EvaluationRuntimeIdentity.explicit(providerName, modelName,
+                reasoning != null && !reasoning.isBlank()
+                        ? reasoning
+                        : EvaluationRuntimeIdentity.NOT_APPLICABLE);
+    }
+
+    @Override
+    public Set<String> compatibleEvaluatorVersions() {
+        Set<String> versions = new LinkedHashSet<>();
+        versionResolver.resolve(config, provider).ifPresent(versions::add);
+        // Schema-only alias: the previous digest coupled this exact runtime to the process.
+        versionResolver.legacyRuntimeCoupledVersion(config, provider).ifPresent(versions::add);
+        return Set.copyOf(versions);
     }
 
     @Override

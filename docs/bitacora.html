@@ -80,15 +80,24 @@
 <body>
 <div class="shell">
   <div class="topline">
-    <div class="live"><span class="pulse"></span><span>Examen cerrado · tanda detenida</span></div>
-    <div class="updated">Actualizado <time id="updatedAgo">recién</time> · acta registrada</div>
+    <div class="live"><span class="pulse"></span><span>Base de jueces verificada · preparando ensayos gratis</span></div>
+    <div class="updated">Actualizado <time id="updatedAgo">recién</time> · tanda detenida</div>
   </div>
 
   <header>
     <div class="eyebrow">Bitácora viva · Codex + content-audit</div>
-    <h1>El juez todavía no está para corregir A1.</h1>
-    <p class="lede"><strong>El examen terminó y el resultado honesto es reprobado.</strong> El juez es muy preciso cuando acusa un duplicado, pero deja pasar demasiados. La tanda principal no se reanudó.</p>
+    <h1>Claude y Codex deben tener cuentas separadas.</h1>
+    <p class="lede"><strong>El examen ya separaba modelos de forma indirecta; el libro del curso no.</strong> Estamos haciendo explícita esa identidad en ambos lugares antes de rendir los otros cinco jueces con Codex. La tanda principal sigue detenida.</p>
   </header>
+
+  <section>
+    <h2>Ahora: medir los cinco exámenes sin gastar</h2>
+    <div class="card now">
+      <div class="statusline"><span class="pill ok">3.260 pruebas verdes</span><span class="pill ok">11 pruebas UI verdes</span><span class="pill">Claude preservado</span></div>
+      <div><h3>Claude y Codex ya no pueden compartir resultados por accidente</h3><p>El libro separa proveedor, modelo y esfuerzo; el examen conserva el resultado Codex ya pagado mediante un alias de migración. La app muestra cobertura y examen como estados distintos, con cada runtime lado a lado.</p></div>
+      <div class="facts"><div class="fact"><b>5</b><span>jueces LLM por ensayar a costo cero</span></div><div class="fact"><b>443</b><span>consultas: techo teórico a confirmar</span></div><div class="fact"><b>0</b><span>consultas durante esta preparación</span></div></div>
+    </div>
+  </section>
 
   <section>
     <h2>Resultado cerrado</h2>
@@ -128,6 +137,10 @@
     <h2>Últimos movimientos, con evidencia</h2>
     <div class="timeline-tools"><button class="active" data-filter="all">Todo</button><button data-filter="live">Sólo ejecución</button></div>
     <div class="timeline">
+      <article class="event live-event" data-scope="live"><time>12:32</time><div class="event-body"><h3>La base completa quedó verde</h3><p>3.260 pruebas Java y 11 de Flutter; 0 fallas. Cobertura, examen y runtime ya viajan separados. Siguiente: copiar, compilar y ensayar los cinco exámenes con presupuesto cero.</p></div></article>
+      <article class="event live-event" data-scope="live"><time>12:01</time><div class="event-body"><h3>La separación pasó sus pruebas propias</h3><p>66 pruebas verdes; la compatibilidad histórica bajó de 48 regresiones a una y ya fue corregida. Suite completa relanzada, sin modelos.</p></div></article>
+      <article class="event live-event" data-scope="live"><time>11:19</time><div class="event-body"><h3>Requisitos y pruebas ya están definidos</h3><p>Claude y Codex conservarán libros, exámenes y ritmos separados. La implementación empezó en dos frentes; todavía sin consultas.</p></div></article>
+      <article class="event live-event" data-scope="live"><time>10:54</time><div class="event-body"><h3>Localizada la fuga exacta</h3><p>El libro sí reutilizaba entre Claude y Codex. El examen ya los separaba mediante una huella, aunque no lo hacía visible ni comparable.</p></div></article>
       <article class="event live-event" data-scope="live"><time>10:27</time><div class="event-body"><h3>Resultado reprobado registrado</h3><p>118 casos medidos, 0 sin juzgar; procedencia: codex-cli · gpt-6.1-sol · medium.</p></div></article>
       <article class="event" data-scope="live"><time>10:26</time><div class="event-body"><h3>La medición congelada encontró el límite</h3><p>25/25 aciertos al marcar; 27/46 duplicados omitidos; estabilidad de copias 37/40.</p></div></article>
       <article class="event" data-scope="live"><time>10:24</time><div class="event-body"><h3>Las cuatro partes quedaron completas</h3><p>1.099 consultas reales de 1.147 autorizadas; 4.887 ejercicios; ningún veredicto pendiente.</p></div></article>
@@ -161,15 +174,15 @@
   </section>
 
   <section>
-    <h2>El próximo trabajo ya está acotado</h2>
-    <div class="next"><div class="step"><div class="num">LISTO</div><b>Examen</b><span>resultado registrado</span></div><div class="step current"><div class="num">SIGUE</div><b>Diagnosticar cobertura</b><span>por qué omite 27 pares</span></div><div class="step"><div class="num">03</div><b>Ajustar el juez</b><span>sin perder el 25/25</span></div><div class="step"><div class="num">04</div><b>Reexaminar</b><span>mismo contrato, nueva versión</span></div></div>
-    <p class="caption">No se retoca el oro ni se continúa la tanda con un juez reprobado. El siguiente ciclo debe preservar la precisión y recuperar los duplicados omitidos.</p>
+    <h2>Dos carriles, sin mezclarlos</h2>
+    <div class="next"><div class="step"><div class="num">LISTO</div><b>Identidad</b><span>Claude y Codex aislados</span></div><div class="step current"><div class="num">AHORA</div><b>Ensayar cinco jueces</b><span>presupuesto cero</span></div><div class="step"><div class="num">DESPUÉS</div><b>Pedir autorización</b><span>con número exacto</span></div><div class="step"><div class="num">EN PARALELO</div><b>Duplicados</b><span>diagnosticar 27 omisiones</span></div></div>
+    <p class="caption">Los cinco exámenes no se ejecutarán con gasto hasta mostrar el costo exacto. El juez de duplicados sigue reprobado y se mejora en un carril aparte, sin retocar el oro.</p>
   </section>
 
   <footer><span>Fuente: logs de corrida, content-audit y UI local.</span><span class="mono">docs/bitacora.html · estado vivo</span></footer>
 </div>
 <script>
-  const state={used:1099,total:1147,updatedAt:'2026-10-05T10:28:29-03:00'};
+  const state={used:1099,total:1147,updatedAt:'2026-10-05T12:32:10-03:00'};
   const pct=state.used/state.total*100;
   document.querySelector('#ring').style.setProperty('--p',`${pct*3.6}deg`);
   document.querySelector('#pct').textContent=pct.toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';

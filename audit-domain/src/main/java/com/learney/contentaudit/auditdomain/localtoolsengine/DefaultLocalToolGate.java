@@ -124,7 +124,9 @@ public class DefaultLocalToolGate implements LocalToolGate {
         LocalToolStatus status = new LocalToolStatus(ALTERNATIVE_TOOL, version, available,
                 available ? null : REASON_ALTERNATIVE_NO_VERSION,
                 String.format(ALTERNATIVE_INSTALL_HINT, evaluatorId != null ? evaluatorId : analyzerName));
-        JudgeExamStanding standing = judgeRuntime.standing(analyzerName, version);
+        JudgeExamStanding standing = judgeRuntime.standing(analyzerName, version,
+                alternative != null ? alternative.runtimeIdentity() : null,
+                alternative != null ? alternative.compatibleEvaluatorVersions() : java.util.Set.of());
         return new LocalToolCard(status, version, standing != null ? standing.getStatus() : null,
                 summaryOf(standing), true);
     }

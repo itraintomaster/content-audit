@@ -49,7 +49,7 @@ public class DefaultAgentJudgeVersionResolverTest {
     }
 
     @Test
-    @DisplayName("should derive a new version when the agent definition, the model or the provider of a judge changes, and the same version otherwise, so a changed judge takes the exam again")
+    @DisplayName("should keep process version independent from runtime while preserving the old runtime-coupled digest as a migration alias")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
     public void shouldDeriveANewVersionWhenTheAgentDefinitionTheModelOrTheProviderOfAJudgeChangesAndTheSameVersionOtherwiseSoAChangedJudgeTakesTheExamAgain(
@@ -74,18 +74,19 @@ public class DefaultAgentJudgeVersionResolverTest {
                         new LlmProviderResolved("claude-cli", LlmProviderClass.LOCAL_SESSION)).orElseThrow(),
                 "its display name, address, credential, temperature and timeout are not its way of asking");
 
-        // A changed judge is a new version, which has not taken the exam.
-        assertNotEquals(version, resolver.resolve(FROM_ENGLISH,
-                        new AgentJudgeConfig("claude-cli", null, null, "claude-opus-4-1", 0.0, 120, "medium"),
-                        CLAUDE_CLI)
-                .orElseThrow(), "another model is another judge");
-        assertNotEquals(version, resolver.resolve(FROM_ENGLISH,
-                        new AgentJudgeConfig("claude-cli", null, null, "claude-sonnet-4-5", 0.0, 120, "high"),
-                        CLAUDE_CLI).orElseThrow(),
-                "another reasoning effort is another judge");
-        assertNotEquals(version, resolver.resolve(FROM_ENGLISH, config,
-                        new LlmProviderResolved("openai", LlmProviderClass.REMOTE_SERVICE)).orElseThrow(),
-                "another provider is another way of asking");
+        AgentJudgeConfig anotherModel =
+                new AgentJudgeConfig("claude-cli", null, null, "claude-opus-4-1", 0.0, 120, "medium");
+        AgentJudgeConfig anotherReasoning =
+                new AgentJudgeConfig("claude-cli", null, null, "claude-sonnet-4-5", 0.0, 120, "high");
+        LlmProviderResolved anotherProvider =
+                new LlmProviderResolved("openai", LlmProviderClass.REMOTE_SERVICE);
+        assertEquals(version, resolver.resolve(FROM_ENGLISH, anotherModel, CLAUDE_CLI).orElseThrow());
+        assertEquals(version, resolver.resolve(FROM_ENGLISH, anotherReasoning, CLAUDE_CLI).orElseThrow());
+        assertEquals(version, resolver.resolve(FROM_ENGLISH, config, anotherProvider).orElseThrow());
+        assertNotEquals(
+                resolver.legacyRuntimeCoupledVersion(FROM_ENGLISH, config, CLAUDE_CLI).orElseThrow(),
+                resolver.legacyRuntimeCoupledVersion(FROM_ENGLISH, anotherReasoning, CLAUDE_CLI).orElseThrow(),
+                "the schema migration alias stays exact to its old runtime");
         assertNotEquals(version, resolver.resolve(new AgentJudgeSpec("translation-sense-from-translation",
                         "translationSenseVerdict", "juez de traducción y sentido, desde la traducción"),
                         config, CLAUDE_CLI).orElseThrow(),

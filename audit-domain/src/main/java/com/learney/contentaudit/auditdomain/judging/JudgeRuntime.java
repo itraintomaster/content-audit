@@ -3,7 +3,9 @@ package com.learney.contentaudit.auditdomain.judging;
 import com.learney.contentaudit.auditdomain.AuditNode;
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.util.List;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -18,4 +20,14 @@ public interface JudgeRuntime {
     JudgeCoverageDiagnosis coverage(JudgeSessions opened, JudgeUnitTally tally);
 
     JudgeExamStanding standing(String judgeName, String judgeVersion);
+
+    default JudgeExamStanding standing(String judgeName, String judgeVersion,
+            EvaluationRuntimeIdentity runtimeIdentity) {
+        return standing(judgeName, judgeVersion);
+    }
+
+    default JudgeExamStanding standing(String judgeName, String judgeVersion,
+            EvaluationRuntimeIdentity runtimeIdentity, Set<String> compatibleJudgeVersions) {
+        return standing(judgeName, judgeVersion, runtimeIdentity);
+    }
 }

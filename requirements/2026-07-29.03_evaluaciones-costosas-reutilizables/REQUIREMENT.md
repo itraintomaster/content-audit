@@ -11,8 +11,8 @@ feature:
 ## TL;DR
 
 **Que**: El sistema registra el resultado de cada evaluacion costosa bajo la
-huella del contenido evaluado, lo reutiliza en analisis posteriores y lo
-conserva aunque la corrida se interrumpa.
+huella del contenido y el runtime que lo produjo, lo reutiliza solo dentro de esa
+identidad efectiva y conserva toda la historia aunque la corrida se interrumpa.
 
 **Por que**: Sin esto, cada analisis que se apoya en un evaluador lento y pagado
 lo vuelve a pagar entero, y una caida a mitad de camino pierde todo el trabajo.
@@ -20,15 +20,15 @@ lo vuelve a pagar entero, y una caida a mitad de camino pierde todo el trabajo.
 ## Reglas de Negocio
 
 <a id="F-EVCOST-R001"></a>
-### Rule[F-EVCOST-R001] - La identidad de un resultado es evaluador + huella del contenido; la version es procedencia
+### Rule[F-EVCOST-R001] - La identidad de un resultado incluye evaluador, huella y runtime efectivo
 **Severity**: critical | **Validation**: VALIDATED
 
-> Cada resultado registrado se identifica por dos datos: **que evaluador** lo
-> produjo y la **huella del contenido** que se le entrego. La **version** del
-> evaluador se registra **junto a** cada resultado y se devuelve con el cada vez
-> que se lo consulta, pero **no** integra la identidad y **no** decide si un
-> resultado aplica: es procedencia, no vigencia. El identificador del elemento del
-> curso al que el contenido pertenece tampoco integra la identidad.
+> Cada resultado registrado se identifica por **que evaluador** lo produjo, la
+> **huella del contenido** que se le entrego y la identidad del **runtime
+> efectivo**: proveedor, modelo exacto y esfuerzo de razonamiento. Solo aplica a
+> consultas con esa misma identidad efectiva. La version del proceso se conserva
+> como procedencia consultable; el identificador del elemento del curso no integra
+> la identidad.
 
 <details><summary>Detalle</summary>
 
@@ -47,32 +47,44 @@ sobre un contenido no es intercambiable con el de un evaluador de cumplimiento d
 consigna sobre ese mismo contenido: son dos preguntas distintas y sus respuestas no
 se sustituyen. Confundirlas devolveria la respuesta de una pregunta que nadie hizo.
 
-**Por que la version NO integra la identidad.** Que un contenido cumpla o no lo que
-se le pregunta es una propiedad **del contenido**, no de quien la juzgo. Cambiar de
-modelo —por costo, por disponibilidad, por una migracion de proveedor— no puede
-invalidar de un plumazo miles de resultados ya pagados. Por eso la version se
-registra como **procedencia**: dice con que version se obtuvo cada resultado, queda
-consultable junto a el y permite comparar como juzgo cada version, pero ningun
-cambio de version vuelve inaplicable un resultado ya registrado. El unico modo de
-rehacer un resultado es pedirlo explicitamente
-([F-EVCOST-R008](#F-EVCOST-R008)). La alternativa —version dentro de la identidad—
-se evaluo y se descarto; ver
-[DOUBT-IDENTIDAD-VERSION](#DOUBT-IDENTIDAD-VERSION).
+**Por que el runtime efectivo SI integra la identidad.** Cambiar de Claude a Codex,
+de un modelo a otro o de un esfuerzo de razonamiento a otro puede cambiar el juicio
+sobre el mismo contenido. Un resultado producido con una de esas combinaciones no
+demuestra que la otra combinacion juzgue igual. Por eso proveedor, modelo exacto y
+esfuerzo de razonamiento se resuelven antes de consultar el registro y deben
+coincidir los tres para reutilizar.
 
-**La procedencia es obligatoria, no opcional.** Un resultado registrado sin la
-version que lo produjo rompe todo lo que la decision anterior deja en pie:
-consultarla, compararla y declararla en un informe
-([F-QINST-R005](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R005)).
+Un proveedor que no ofrece una perilla de esfuerzo registra un valor explicito
+equivalente a "no aplica"; no omite el dato. Omitirlo convierte al registro en
+legacy de procedencia incompleta, no en compatible con cualquier esfuerzo.
+
+**Por que la version del proceso sigue siendo procedencia.** Dentro de un mismo
+runtime efectivo, la version de la guia, definicion o proceso que produjo el juicio
+queda registrada y permite comparar resultados, pero no invalida por si sola lo ya
+pagado. Rehacer esos resultados sigue siendo una accion explicita
+([F-EVCOST-R008](#F-EVCOST-R008)). Esta separacion revisa de manera acotada la
+decision original de [DOUBT-IDENTIDAD-VERSION](#DOUBT-IDENTIDAD-VERSION): la version
+del proceso queda fuera de la identidad; el runtime que efectivamente juzgo, no.
+
+**Los registros legacy no se inventan.** Un resultado anterior sin proveedor,
+modelo o esfuerzo de razonamiento permanece visible como historia con
+"procedencia desconocida". No se atribuye retroactivamente a Claude, Codex ni a
+ningun runtime concreto, no cuenta como cobertura de ellos y no se reutiliza para
+una corrida que resolvio una identidad efectiva. La procedencia incompleta se
+conserva precisamente para que la historia no desaparezca ni se vuelva una certeza
+falsa.
 
 **Criterio de aceptacion**: (a) dos contenidos identicos evaluados por el mismo
-evaluador encuentran el mismo resultado registrado, aunque pertenezcan a elementos
-distintos del curso; (b) un elemento cuyo contenido cambio no encuentra resultado
-registrado, aunque conserve su identificador; (c) un resultado registrado bajo la
-version A se encuentra igual cuando la version vigente es B, y la consulta informa
-que lo produjo la version A; (d) un resultado registrado por el evaluador X nunca
-se devuelve como resultado del evaluador Y para la misma huella.
+evaluador y runtime efectivo encuentran el mismo resultado registrado, aunque
+pertenezcan a elementos distintos del curso; (b) un elemento cuyo contenido cambio
+no encuentra resultado registrado, aunque conserve su identificador; (c) dentro
+del mismo runtime efectivo, un resultado de la version A se encuentra cuando la
+version del proceso vigente es B y declara que lo produjo A; (d) un resultado del
+runtime Claude/modelo X/esfuerzo Y nunca se devuelve a Codex, a otro modelo ni a
+otro esfuerzo; (e) un registro legacy sin procedencia sigue visible, pero ninguna
+corrida concreta lo reutiliza.
 
-**Error**: "El resultado registrado para el evaluador '{evaluador}' no corresponde al contenido consultado" / "Se registro un resultado del evaluador '{evaluador}' sin la version que lo produjo"
+**Error**: "El resultado registrado para el evaluador '{evaluador}' no corresponde al contenido o al runtime efectivo consultado"
 
 </details>
 
@@ -113,10 +125,11 @@ el mismo contenido, en otro momento y en otra corrida, produce la misma huella.
 **Severity**: critical | **Validation**: VALIDATED
 
 > Ante un contenido a evaluar, el sistema consulta primero si existe un resultado
-> registrado para ese evaluador y esa huella, **cualquiera sea la version del
-> evaluador que lo produjo**. Si existe, lo devuelve —junto con la version que lo
-> produjo ([F-EVCOST-R001](#F-EVCOST-R001))— y **no** consulta al evaluador. Si no
-> existe, el contenido queda **pendiente** de evaluacion.
+> registrado para ese evaluador, esa huella y el **mismo runtime efectivo**. Si
+> existe, lo devuelve —junto con su procedencia
+> ([F-EVCOST-R001](#F-EVCOST-R001))— y **no** consulta al evaluador. Si solo hay
+> resultados de otro runtime o legacy sin procedencia, no los reutiliza y el
+> contenido queda **pendiente** para el runtime elegido.
 
 <details><summary>Detalle</summary>
 
@@ -126,21 +139,23 @@ los pendientes —evaluarlos ahora, dejarlos para la corrida siguiente, informar
 como cobertura faltante— lo decide cada consumidor de esta capacidad, no esta
 regla.
 
-**Pendiente significa "nunca se registro un resultado para esta huella", y nada
-mas.** No hay ninguna otra via por la que un contenido con resultado registrado
-vuelva a estar pendiente: ni cambiar la version del evaluador, ni el paso del
-tiempo, ni borrar informes. El unico modo de volver a evaluarlo es pedirlo
-explicitamente ([F-EVCOST-R008](#F-EVCOST-R008)).
+**Pendiente siempre se lee dentro de un runtime efectivo.** Significa "no existe un
+resultado reutilizable para esta huella bajo el proveedor, modelo y esfuerzo hoy
+elegidos". Puede haber historia de otro runtime —o legacy sin procedencia— y seguir
+pendiente para el actual. Dentro del mismo runtime, cambiar solo la version del
+proceso, el paso del tiempo o borrar informes no lo vuelve pendiente; rehacerlo
+requiere un pedido explicito ([F-EVCOST-R008](#F-EVCOST-R008)).
 
 La reutilizacion **no tiene tope**: cualquier cantidad de resultados registrados
 se reutiliza sin costo. Los limites que un consumidor imponga se aplican sobre
 las evaluaciones nuevas, nunca sobre la reutilizacion.
 
 **Criterio de aceptacion**: (a) con un resultado ya registrado para la huella
-consultada, la consulta lo devuelve —con la version que lo produjo— y el evaluador
-no recibe ninguna solicitud; (b) eso vale tambien cuando la version vigente del
-evaluador es distinta de la que produjo el resultado; (c) sin resultado registrado
-para esa huella, la consulta informa que el contenido esta pendiente.
+consultada y el mismo runtime efectivo, la consulta lo devuelve —con la procedencia
+que lo produjo— y el evaluador no recibe ninguna solicitud; (b) eso vale tambien
+cuando la version del proceso vigente es distinta; (c) con resultados solo de otro
+runtime o legacy sin procedencia, la consulta informa que el contenido esta
+pendiente para el runtime elegido y no consume esos resultados.
 
 **Error**: N/A (esta regla describe una consulta, no una condicion de error)
 
@@ -218,32 +233,31 @@ vuelve a consultar.
 </details>
 
 <a id="F-EVCOST-R006"></a>
-### Rule[F-EVCOST-R006] - Conviven resultados de distintas versiones del evaluador; todos se reutilizan y nada se borra solo
+### Rule[F-EVCOST-R006] - Los runtimes conviven sin mezclar resultados ni borrar historia
 **Severity**: critical | **Validation**: VALIDATED
 
-> Los resultados producidos por versiones distintas del mismo evaluador
-> **conviven** en el registro y **todos** se reutilizan, sea cual sea la version
-> que los produjo. Cambiar la version del evaluador **no borra**, **no invalida** y
-> **no dispara** ninguna re-evaluacion. Cuando hay mas de un resultado para el
-> mismo evaluador y la misma huella, se reutiliza el **registrado mas
-> recientemente**; los anteriores quedan como historia consultable, cada uno con la
-> version que lo produjo.
+> Los resultados de distintos proveedores, modelos, esfuerzos y versiones del
+> proceso **conviven** sin sobrescribirse ni borrarse. Una corrida reutiliza solo
+> los del runtime efectivo elegido; dentro de ese runtime, si hay mas de uno para
+> el mismo evaluador y huella, aplica el registrado mas recientemente. Los demas
+> quedan como historia consultable, incluida la historia legacy sin procedencia.
 
 <details><summary>Detalle</summary>
 
-Cambiar un evaluador —su forma de preguntar, la estructura de lo que devuelve, su
-criterio, el modelo que lo respalda— es una operacion frecuente y barata; volver a
-evaluar todo el contenido con la version nueva es lenta y cara. Si lo primero
-disparara lo segundo, cada ajuste menor del evaluador se convertiria en una factura
-sorpresa.
+Cambiar la guia o la definicion de un evaluador dentro del mismo runtime es una
+operacion frecuente y barata; volver a evaluar todo el contenido con la version
+nueva es lenta y cara. Por eso el cambio de version del proceso no dispara por si
+solo una re-evaluacion. Cambiar proveedor, modelo o esfuerzo es distinto: selecciona
+otro runtime y, por lo tanto, otra cobertura; no borra ni invalida la historia del
+anterior, pero tampoco la usa como si la hubiera producido el nuevo.
 
-Por eso cambiar la version **no tiene ningun efecto sobre los resultados ya
-registrados**: se siguen consultando y reutilizando exactamente igual, y lo unico
-que cambia es la version que se registrara junto a los resultados **nuevos**.
-Cuando y con que alcance se vuelve a evaluar lo decide el usuario
-([F-EVCOST-R008](#F-EVCOST-R008)); no volver a evaluar nunca es una opcion valida.
+La convivencia permite comparar Claude y Codex —o dos modelos o esfuerzos— lado a
+lado sin que el mas reciente pise al otro. Un resultado legacy sin identidad
+efectiva ocupa una categoria separada de historia: no se lo reclasifica a partir de
+suposiciones externas y nunca gana frente a un resultado atribuible al runtime
+elegido.
 
-**Por que gana el mas reciente.** Es lo unico compatible con
+**Por que gana el mas reciente dentro del mismo runtime.** Es lo unico compatible con
 [F-EVCOST-R008](#F-EVCOST-R008): si tras una re-evaluacion explicita la consulta
 siguiera devolviendo el resultado viejo, pedir la re-evaluacion no tendria efecto
 observable y el usuario habria pagado por nada. La regla no borra el anterior —lo
@@ -255,13 +269,15 @@ lo mejoro. Esa comparacion solo es posible porque cada resultado lleva registrad
 su procedencia ([F-EVCOST-R001](#F-EVCOST-R001)).
 
 **Criterio de aceptacion**: (a) registrados resultados con la version A, se pasa a
-la version B: los resultados de A se siguen reutilizando, el evaluador no recibe
-ninguna consulta por ellos, ninguno queda pendiente, y la consulta informa que los
-produjo la version A; (b) tras una re-evaluacion explicita del mismo contenido bajo
-la version B, la consulta devuelve el resultado de B y el de A sigue siendo
-consultable como historia.
+la version B sin cambiar runtime: los resultados de A se siguen reutilizando y la
+consulta declara su version; (b) al pasar de Claude a Codex, de modelo o de esfuerzo,
+los resultados anteriores siguen visibles pero el contenido queda pendiente para
+el runtime nuevo; (c) tras una re-evaluacion explicita dentro de un mismo runtime,
+la consulta devuelve el resultado mas reciente y el anterior sigue consultable;
+(d) los legacy permanecen visibles como "procedencia desconocida" y no se cuentan
+ni reutilizan como Claude o Codex.
 
-**Error**: "El cambio de version del evaluador '{evaluador}' elimino {cantidad} resultados de la version anterior" / "El cambio de version del evaluador '{evaluador}' dejo de reutilizar {cantidad} resultados ya registrados"
+**Error**: "Se intento reutilizar para '{runtimeActual}' un resultado producido por '{runtimeRegistrado}'" / "El cambio de runtime elimino resultados historicos del evaluador '{evaluador}'"
 
 </details>
 
@@ -285,8 +301,8 @@ sigue diciendo que se observo en esa corrida; el registro solo dice que resultad
 tiene cada contenido evaluado.
 
 **Criterio de aceptacion**: tras eliminar los informes de analisis anteriores, un
-analisis nuevo sobre el mismo contenido reutiliza los resultados registrados y no
-consulta al evaluador.
+analisis nuevo sobre el mismo contenido y runtime reutiliza los resultados
+registrados y no consulta al evaluador.
 
 **Error**: "Los resultados registrados del evaluador '{evaluador}' se perdieron al eliminar informes de analisis"
 
@@ -298,9 +314,11 @@ consulta al evaluador.
 
 > Un resultado ya registrado se rehace **unicamente** cuando el usuario pide
 > explicitamente volver a evaluar ese contenido: es el **unico** mecanismo, y no
-> existe ningun otro. Ningun hecho del sistema —cambiar la version del evaluador,
-> borrar informes, cambiar la configuracion del analisis, el paso del tiempo— lo
-> dispara, lo invalida ni lo vuelve a dejar pendiente. La re-evaluacion registra el
+> existe ningun otro **dentro del mismo runtime efectivo**. Ningun hecho del
+> sistema —cambiar la version del proceso, borrar informes, cambiar la configuracion
+> del analisis, el paso del tiempo— lo dispara, lo invalida ni lo vuelve a dejar
+> pendiente en ese runtime. Elegir otro proveedor, modelo o esfuerzo no rehace ni
+> invalida el resultado: consulta otra cobertura. La re-evaluacion registra el
 > resultado nuevo **sin destruir** los anteriores, y a partir de entonces la
 > consulta devuelve el nuevo ([F-EVCOST-R006](#F-EVCOST-R006)). El **alcance** lo
 > acota el consumidor, contenido por contenido: esta capacidad vuelve a evaluar el
@@ -314,12 +332,13 @@ por su cuenta volver a evaluar, el ahorro deja de ser predecible y el gasto deja
 de ser gobernable. Un usuario tiene que poder cambiar el evaluador, limpiar
 informes y correr analisis sin miedo a desatar una factura.
 
-**Que sea el unico mecanismo es una exigencia, no una consecuencia.** Con la
-version fuera de la identidad ([F-EVCOST-R001](#F-EVCOST-R001)) no queda ninguna
-otra via por la cual un resultado registrado pueda dejar de aplicar: no hay
-invalidacion automatica, no hay caducidad, no hay efecto colateral. Todo lo que se
-vuelve a pagar se vuelve a pagar porque alguien lo pidio, y eso hace que el gasto
-sea siempre atribuible a una decision.
+**Que sea el unico mecanismo es una exigencia, no una consecuencia.** Dentro del
+mismo runtime, con la version del proceso fuera de la identidad
+([F-EVCOST-R001](#F-EVCOST-R001)), no queda otra via por la cual un resultado
+registrado deje de aplicar: no hay invalidacion automatica ni caducidad. Seleccionar
+otro runtime es una decision explicita distinta: sus resultados faltantes se pagan
+porque el operador eligio evaluarlos con esa combinacion, no porque la historia
+anterior haya sido borrada.
 
 La re-evaluacion explicita puede alcanzar a todo el contenido de un evaluador o a
 una parte acotada de el; en ambos casos respeta los limites de gasto que imponga
@@ -342,12 +361,11 @@ componga cualquier alcance —uno, un grupo, todo— sin que esta capacidad teng
 conocer ninguno de los tres.
 
 **Criterio de aceptacion**: (a) sin pedido explicito, ninguna corrida vuelve a
-consultar al evaluador por contenido con resultado registrado, **cualquiera sea la
-version que lo produjo y aunque la version vigente sea otra**; (b) con pedido
-explicito sobre un contenido, ese contenido se vuelve a evaluar, la consulta pasa a
-devolver el resultado nuevo, los resultados anteriores siguen consultables, y el
-resto del contenido con resultado registrado se reutiliza sin consultar al
-evaluador en esa misma corrida.
+consultar al evaluador por contenido con resultado registrado para el **mismo
+runtime efectivo**, cualquiera sea la version del proceso que lo produjo; (b) con
+pedido explicito sobre un contenido, ese contenido se vuelve a evaluar, la consulta
+pasa a devolver el resultado nuevo, los anteriores siguen consultables, y el resto
+del contenido reutilizable bajo ese runtime no se consulta.
 
 **Error**: "Se re-evaluo contenido con resultado registrado sin pedido explicito del usuario"
 
@@ -470,24 +488,21 @@ identificador**. Un ejercicio revisado por el refinador conserva su identificado
 y cambia su contenido; con identidad por identificador, seguiria mostrando para
 siempre el juicio emitido sobre su version anterior.
 
-Por eso la identidad es la huella del contenido efectivamente evaluado
+Por eso el componente de contenido de la identidad es la huella de lo
+efectivamente evaluado
 ([F-EVCOST-R001](#F-EVCOST-R001), [F-EVCOST-R002](#F-EVCOST-R002)): describe
 **que se juzgo**, no **sobre que elemento**. Trae ademas un beneficio no buscado:
-dos elementos con contenido identico comparten resultado y se pagan una sola vez.
+dos elementos con contenido identico bajo el mismo runtime comparten resultado y se
+pagan una sola vez.
 
-### La version del evaluador: procedencia, no vigencia
+### Runtime efectivo y version del proceso
 
-Queda una segunda pregunta, independiente de la anterior: si cambia **el
-evaluador** —su forma de preguntar, la estructura de lo que devuelve, el modelo que
-lo respalda—, ¿siguen aplicando los resultados que emitio antes?
-
-La respuesta especificada es **si**. Que un contenido cumpla o no lo que se le
-pregunta es una propiedad del contenido, no de quien la juzgo; una migracion de
-proveedor o un ajuste de costo no puede invalidar de golpe miles de resultados ya
-pagados. La version se registra como **procedencia** —queda junto al resultado,
-viaja con el al consultarlo y permite comparar como juzgo cada version— pero no
-gobierna la vigencia. Nada se invalida solo: lo unico que rehace un resultado es un
-pedido explicito ([F-EVCOST-R008](#F-EVCOST-R008)).
+Queda una segunda pregunta, independiente de la huella: si cambia quien ejecuta el
+juicio, ¿siguen aplicando los resultados? La respuesta ahora separa dos cambios.
+Cambiar la version de la guia o proceso dentro del mismo runtime no invalida lo ya
+pagado; esa version queda como procedencia. Cambiar proveedor, modelo exacto o
+esfuerzo de razonamiento selecciona otro runtime efectivo: la historia anterior
+permanece visible, pero no cubre al runtime nuevo ni se reutiliza como si fuera suya.
 
 Lo que si sigue dentro de la identidad es **que evaluador** produjo el resultado, y
 no contradice el criterio anterior: no identifica quien juzga sino **que pregunta se
@@ -495,33 +510,30 @@ hizo**. El juicio de un futuro evaluador de calidad de traduccion sobre un conte
 no sustituye al de un evaluador de cumplimiento de consigna sobre el mismo
 contenido.
 
-La contra de esta eleccion es real y se acepta a conciencia: al corregir un
-evaluador que juzgaba mal, los resultados ya emitidos siguen aplicando aunque se los
-sepa incorrectos, hasta que alguien pida re-evaluarlos. Ver
+Esta decision permite comparar runtimes sin mezclarlos y, a la vez, evita que cada
+retoque de una guia dispare una factura sorpresa. Ver la revision de
 [DOUBT-IDENTIDAD-VERSION](#DOUBT-IDENTIDAD-VERSION).
 
 ## Alcance
 
 - **En alcance**:
-  - Registro de resultados de evaluacion costosa por evaluador y huella de
-    contenido, con la version del evaluador como procedencia consultable.
+  - Registro de resultados de evaluacion costosa por evaluador, huella de contenido
+    e identidad efectiva de runtime, con la version del proceso como procedencia.
   - Consulta del resultado registrado y estado "pendiente" cuando no lo hay.
   - Disponibilidad inmediata de cada resultado y tolerancia a interrupcion.
   - Distincion entre resultado definitivo y falla transitoria del evaluador.
   - Distincion, dentro de la falla transitoria, entre la que afecta a un contenido
     puntual y la que afecta al servicio, con corte de consultas ante la segunda y
     sin abortar el analisis.
-  - Convivencia, reuso e historia de resultados de versiones distintas del
-    evaluador, con la regla de cual aplica cuando hay mas de uno para la misma
-    huella.
+  - Convivencia e historia de runtimes y versiones distintas, con reuso limitado al
+    runtime elegido y la regla de cual aplica cuando hay mas de uno para la huella.
   - Independencia respecto de los informes de analisis.
   - Re-evaluacion explicita del usuario, contenido por contenido, como unico
     mecanismo por el que un resultado se rehace.
 - **Fuera de alcance**:
-  - **Cualquier invalidacion automatica de resultados registrados**: por cambio de
-    version del evaluador, por antiguedad o por cualquier otro hecho del sistema;
-    ver [F-EVCOST-R008](#F-EVCOST-R008) y
-    [DOUBT-IDENTIDAD-VERSION](#DOUBT-IDENTIDAD-VERSION).
+  - **Cualquier invalidacion automatica de resultados registrados dentro de un
+    mismo runtime**: por cambio de version del proceso, antiguedad u otro hecho;
+    ver [F-EVCOST-R008](#F-EVCOST-R008).
   - **Que contenido alcanza una re-evaluacion** (todo, un grupo, uno solo). El
     recorte esta expresado en el vocabulario del consumidor y lo decide el
     consumidor; ver [F-EVCOST-R008](#F-EVCOST-R008).
@@ -548,9 +560,10 @@ sepa incorrectos, hasta que alguien pida re-evaluarlos. Ver
 ### Journey[F-EVCOST-J001] - Reutilizar, o no, un resultado ya registrado
 **Validation**: VALIDATED
 
-Cubre las cuatro respuestas posibles a "ya tengo este resultado?": reuso,
-contenido cambiado, resultado producido por otra version del evaluador (que se
-reutiliza igual, declarando su procedencia) y contenido nunca evaluado.
+Cubre las cinco respuestas posibles a "ya tengo este resultado?": reuso, contenido
+cambiado, resultado de otra version del proceso dentro del mismo runtime (se
+reutiliza), resultado de otro runtime o legacy (no se reutiliza) y contenido nunca
+evaluado.
 Cubre R001, R002, R003, R004 y R006.
 
 ```yaml
@@ -562,17 +575,19 @@ journeys:
         action: "Un analisis solicita el resultado de un evaluador costoso para un contenido del curso"
         gate: [F-EVCOST-R003]
         outcomes:
-          - when: "Hay un resultado registrado para ese evaluador y para la misma huella de contenido, producido por la version vigente"
+          - when: "Hay un resultado registrado para ese evaluador, huella y runtime efectivo"
             then: reusa
           - when: "Hay un resultado registrado, pero el contenido cambio desde que se lo evaluo (el elemento conserva su identificador)"
             then: contenido_cambiado
           - when: "Hay un resultado registrado para la misma huella, pero fue producido por una version anterior del evaluador"
             then: version_anterior
+          - when: "Hay un resultado para la misma huella, pero pertenece a otro runtime o no declara su procedencia"
+            then: otro_runtime
           - when: "No hay ningun resultado registrado para esa huella"
             then: primera_vez
 
       - id: reusa
-        action: "El analisis obtiene el resultado registrado, junto con la version del evaluador que lo produjo, y el evaluador no recibe ninguna solicitud por ese contenido"
+        action: "El analisis obtiene el resultado registrado, junto con su runtime y version del proceso, y el evaluador no recibe ninguna solicitud por ese contenido"
         gate: [F-EVCOST-R001, F-EVCOST-R003]
         result: success
 
@@ -582,8 +597,13 @@ journeys:
         result: success
 
       - id: version_anterior
-        action: "El resultado se reutiliza igual —el evaluador no recibe ninguna solicitud y el contenido no queda pendiente— y la consulta informa que lo produjo la version anterior"
+        action: "Como pertenece al mismo runtime, el resultado se reutiliza igual y la consulta informa que lo produjo la version anterior"
         gate: [F-EVCOST-R006]
+        result: success
+
+      - id: otro_runtime
+        action: "El resultado historico sigue visible, pero no cubre al runtime elegido; el contenido queda pendiente para ese runtime"
+        gate: [F-EVCOST-R001, F-EVCOST-R003, F-EVCOST-R006]
         result: success
 
       - id: primera_vez
@@ -678,14 +698,22 @@ journeys:
 
 <a id="DOUBT-IDENTIDAD-VERSION"></a>
 ### Doubt[DOUBT-IDENTIDAD-VERSION] - La version del evaluador, integra la identidad de un resultado o es solo procedencia?
-**Status**: RESOLVED
+**Status**: RESOLVED — REVISADA 2026-10-05
+
+**Revision 2026-10-05**: la decision original se conserva abajo como historia,
+pero ya no alcanza para distinguir resultados de Claude y Codex. José resolvio que
+la identidad efectiva **si** incluye proveedor, modelo exacto y esfuerzo de
+razonamiento; la version de la guia o proceso sigue siendo procedencia dentro de
+ese runtime. Los registros legacy sin esos datos permanecen visibles, pero no se
+atribuyen ni reutilizan para un runtime concreto
+([F-EVCOST-R001](#F-EVCOST-R001)).
 
 Es la pregunta que decide **que invalida** un resultado ya pagado. Con la version
 dentro de la identidad, retocar el evaluador deja pendientes de golpe todos sus
 resultados; con la version afuera, ningun cambio del evaluador invalida nada y solo
 un pedido explicito rehace un resultado.
 
-- [x] Opcion A: **Solo el contenido determina la identidad** (evaluador + huella).
+- [ ] Opcion A (decision original, reemplazada el 5/10): **Solo el contenido determina la identidad** (evaluador + huella).
   La version se registra como procedencia consultable. Nada se invalida
   automaticamente; re-evaluar es siempre una accion explicita.
 - [ ] Opcion B: **La version integra la identidad.** Cambiarla deja pendientes
@@ -697,9 +725,12 @@ un pedido explicito rehace un resultado.
   resultados sigan aplicando.
 - [ ] Opcion D: **Intermedia** — los resultados de versiones anteriores se reutilizan
   pero se marcan como "de otra version", y el consumidor decide si los puntua.
+- [x] Opcion E (vigente): **El runtime efectivo integra la identidad** — proveedor,
+  modelo exacto y esfuerzo deben coincidir; la version del proceso es procedencia.
 
-**Answer**: **Opcion A**, elegida por el usuario a conciencia y con la contra sobre
-la mesa.
+**Answer vigente**: **Opcion E** (José, 5/10). Reemplaza la Opcion A solo en cuanto
+a quien ejecuta el juicio: no mezcla runtimes, conserva el reuso entre versiones
+del proceso dentro de uno y mantiene toda la historia separada.
 
 **El argumento a favor**: *"me interesa lo que se testea, no quien lo hace"*. Si un
 contenido cumple o no lo que se le pregunta es una propiedad **del contenido**, no
@@ -722,10 +753,9 @@ version que acaba de corregir. Del lado del primer consumidor, esa procedencia s
 declara en el informe
 ([F-QINST-R005](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#F-QINST-R005)).
 
-**No reabrir sin leer este bloque.** La decision es deliberada; lo que la haria
-revisable es evidencia de que en la practica nadie pide la re-evaluacion tras
-corregir un evaluador y los informes se llenan de resultados de versiones que se
-sabe malas.
+**Historia de la decision original.** Los parrafos anteriores documentan por que se
+eligio A el 29/7. No autorizan a atribuir un registro sin procedencia a un runtime ni
+a mezclar proveedores, modelos o esfuerzos despues de la revision del 5/10.
 
 <a id="DOUBT-PRESUPUESTO-GENERAL"></a>
 ### Doubt[DOUBT-PRESUPUESTO-GENERAL] - El limite de evaluaciones por corrida, es parte de esta capacidad o de cada consumidor?

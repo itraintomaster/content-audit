@@ -1,5 +1,9 @@
 # Decisions — FEAT-EVCOST
 
+2026-10-05 — analyst — Identidad vigente = evaluador + huella + runtime efectivo (proveedor, modelo exacto y esfuerzo);
+  la version del proceso es procedencia dentro del runtime. Legacy sin runtime se conserva, pero no se atribuye ni reusa.
+  why: una aprobacion o un veredicto de Claude no demuestra el comportamiento de Codex, ni viceversa.
+
 2026-07-29 — analyst — Feature propia en vez de escribir la capacidad dentro del analizador de consigna.
   why: pedido del usuario, y el patron (resultado costoso, reutilizable, reanudable, compartido entre analisis) reaparece con cualquier evaluador basado en juicio. Dentro del primer analizador quedaria invisible para el segundo, que lo reinventaria con criterios distintos (uno identificando por id de elemento y otro por huella, uno guardando las fallas y otro no).
 

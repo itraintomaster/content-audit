@@ -12,12 +12,23 @@ public class EvaluationKey {
 
     private String contentFingerprint;
 
+    private EvaluationRuntimeIdentity runtimeIdentity;
+
     public EvaluationKey() {
+        this.runtimeIdentity = EvaluationRuntimeIdentity.legacyUnknown();
     }
 
     public EvaluationKey(String evaluatorId, String contentFingerprint) {
+        this(evaluatorId, contentFingerprint, EvaluationRuntimeIdentity.legacyUnknown());
+    }
+
+    public EvaluationKey(String evaluatorId, String contentFingerprint,
+            EvaluationRuntimeIdentity runtimeIdentity) {
         this.evaluatorId = evaluatorId;
         this.contentFingerprint = contentFingerprint;
+        this.runtimeIdentity = runtimeIdentity != null
+                ? runtimeIdentity
+                : EvaluationRuntimeIdentity.legacyUnknown();
     }
 
     public String getEvaluatorId() {
@@ -36,17 +47,28 @@ public class EvaluationKey {
         this.contentFingerprint = contentFingerprint;
     }
 
+    public EvaluationRuntimeIdentity getRuntimeIdentity() {
+        return runtimeIdentity != null ? runtimeIdentity : EvaluationRuntimeIdentity.legacyUnknown();
+    }
+
+    public void setRuntimeIdentity(EvaluationRuntimeIdentity runtimeIdentity) {
+        this.runtimeIdentity = runtimeIdentity != null
+                ? runtimeIdentity
+                : EvaluationRuntimeIdentity.legacyUnknown();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EvaluationKey that = (EvaluationKey) o;
         return Objects.equals(this.evaluatorId, that.evaluatorId)
-                    && Objects.equals(this.contentFingerprint, that.contentFingerprint);
+                    && Objects.equals(this.contentFingerprint, that.contentFingerprint)
+                    && Objects.equals(this.getRuntimeIdentity(), that.getRuntimeIdentity());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(evaluatorId, contentFingerprint);
+        return Objects.hash(evaluatorId, contentFingerprint, getRuntimeIdentity());
     }
 }

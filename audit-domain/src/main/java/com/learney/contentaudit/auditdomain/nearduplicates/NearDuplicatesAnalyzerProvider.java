@@ -158,7 +158,8 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
                 List.of(new PairStepEvaluator(alternativeJudge, stepVersion)), policy);
         return new JudgeSessions(NearDuplicatesAnalyzer.ANALYZER_NAME, judge.getJudgeVersion(),
                 joined(vectors.getEvaluatorIds(), judge.getEvaluatorIds()),
-                joined(vectors.getSessions(), judge.getSessions()), judge.getStanding(), judge.getEffectivePolicy());
+                joined(vectors.getSessions(), judge.getSessions()), judge.getStanding(), judge.getEffectivePolicy(),
+                judge.getRuntimeIdentity(), judge.getCompatibleJudgeVersions());
     }
 
     /**

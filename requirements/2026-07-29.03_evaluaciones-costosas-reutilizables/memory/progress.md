@@ -1,5 +1,9 @@
 # Progress — FEAT-EVCOST
 
+2026-10-05 — analyst — R001, R003 y R006 revisadas: el reuso exige igual proveedor, modelo y esfuerzo; legacy queda
+  visible sin atribucion ni cobertura; J001 agrega el camino de otro runtime. R008 se acoto al mismo runtime.
+  why: el usuario aprobo volver a examinar con Codex sin heredar veredictos de Claude ni borrar la comparacion historica.
+
 2026-07-29 — analyst — REQUIREMENT.md creado: 8 reglas, 3 journeys de flujo (J001 reuso/invalidacion, J002 interrupcion y falla transitoria, J003 independencia de los informes y re-evaluacion) y 3 doubts abiertos. `requirement validate` [OK]; `feature list` = FEAT-EVCOST 8 reglas / 3 journeys.
   why: capacidad general extraida del primer consumidor (FEAT-QINST, requirements/2026-07-29.02_validacion-de-consigna-de-quiz) por pedido explicito del usuario: el patron se repite con cualquier evaluador costoso basado en juicio.
 

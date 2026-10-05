@@ -7,6 +7,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
@@ -14,6 +15,7 @@ import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.Default
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -42,6 +44,8 @@ public class PairStepEvaluatorTest {
         assertEquals("near-duplicates-pair-judge", withOllama.evaluatorId(),
                 "the id of the judge, not the one of the route");
         assertEquals("near-duplicates-pair-judge", withoutOllama.evaluatorId());
+        assertEquals(judge.runtimeIdentity(), withOllama.runtimeIdentity(),
+                "the route version never hides the runtime that effectively judged the pair");
 
         // The ledger knows an answer by the evaluator id and the content, so what one route recorded is the other's.
         NearDuplicatesAnalyzerTest.Ledger ledger = new NearDuplicatesAnalyzerTest.Ledger();
@@ -77,6 +81,9 @@ public class PairStepEvaluatorTest {
                 "the vectors too: with Ollama both are steps of one version");
         assertEquals(Optional.of(WITHOUT_OLLAMA), new PairStepEvaluator(judge, WITHOUT_OLLAMA).evaluatorVersion(),
                 "and the judge without Ollama, that of its own route");
+        assertEquals(Set.of(WITHOUT_OLLAMA, "palabras-0,60 · juez-9b2d4f6a8c1e"),
+                new PairStepEvaluator(judge, WITHOUT_OLLAMA).compatibleEvaluatorVersions(),
+                "the exact legacy digest alias follows the judge through the composite route version");
     }
 
     @Test
@@ -106,8 +113,12 @@ public class PairStepEvaluatorTest {
     /** The version of the vectors alone, the one they are recorded under. */
     private static final String VECTORS_VERSION = "nomic-embed-text@0a109f422b47 · clustering-1";
 
-    /** The version the judge of pairs states for itself: its definition, model and provider. */
+    /** The process-only version the judge of pairs states for itself. */
     private static final String JUDGE_VERSION = "c3a9e1f07b5d42c8a6e0f9d8c7b6a5948372615043f2e1d0c9b8a7f6e5d4c3b2";
+
+    /** The former schema's digest for the same judge and exact runtime. */
+    private static final String LEGACY_JUDGE_VERSION =
+            "9b2d4f6a8c1e42c8a6e0f9d8c7b6a5948372615043f2e1d0c9b8a7f6e5d4c3b2";
 
     /** What the judge answers about the pair of the 077 in escribir/. */
     private static final EvaluationEmitted VERDICT = new EvaluationEmitted("{\"sameExercise\": true, \"reason\": "
@@ -144,6 +155,16 @@ public class PairStepEvaluatorTest {
         @Override
         public Optional<String> evaluatorVersion() {
             return version;
+        }
+
+        @Override
+        public EvaluationRuntimeIdentity runtimeIdentity() {
+            return EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        }
+
+        @Override
+        public Set<String> compatibleEvaluatorVersions() {
+            return version.isPresent() ? Set.of(version.get(), LEGACY_JUDGE_VERSION) : Set.of();
         }
     }
 }

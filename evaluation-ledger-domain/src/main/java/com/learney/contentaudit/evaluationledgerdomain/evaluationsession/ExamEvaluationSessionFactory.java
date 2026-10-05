@@ -6,6 +6,9 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import java.util.LinkedHashSet;
+import java.util.Optional;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -36,8 +39,13 @@ public class ExamEvaluationSessionFactory implements EvaluationSessionFactory {
                     "EvaluationBudget must not be null: the caller of ExamEvaluationSessionFactory.open(...) "
                             + "is responsible for providing a non-null budget.");
         }
-        String pinnedVersion = evaluator.evaluatorVersion().orElse(null);
-        return new DefaultEvaluationSession(new ExamScopedEvaluationLedger(ledger, pinnedVersion),
+        Optional<String> currentVersion = evaluator.evaluatorVersion();
+        Set<String> compatibleVersions = new LinkedHashSet<>(evaluator.compatibleEvaluatorVersions());
+        currentVersion.ifPresent(compatibleVersions::add);
+        Set<String> runtimeCoupledLegacyAliases = new LinkedHashSet<>(compatibleVersions);
+        currentVersion.ifPresent(runtimeCoupledLegacyAliases::remove);
+        return new DefaultEvaluationSession(new ExamScopedEvaluationLedger(
+                ledger, compatibleVersions, runtimeCoupledLegacyAliases),
                 fingerprinter, evaluator, budget);
     }
 }

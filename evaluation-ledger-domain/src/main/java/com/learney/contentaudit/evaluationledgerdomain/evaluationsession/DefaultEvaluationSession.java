@@ -24,6 +24,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
@@ -87,6 +88,8 @@ class DefaultEvaluationSession implements EvaluationSession {
 
     private final Optional<String> evaluatorVersion;
 
+    private final EvaluationRuntimeIdentity runtimeIdentity;
+
     private int newEvaluationsUsed = 0;
 
     private volatile boolean evaluatorUnavailable = false;
@@ -112,6 +115,10 @@ class DefaultEvaluationSession implements EvaluationSession {
         this.fingerprinter = fingerprinter;
         this.evaluator = evaluator;
         this.budget = budget;
+        EvaluationRuntimeIdentity declaredRuntime = evaluator.runtimeIdentity();
+        this.runtimeIdentity = declaredRuntime != null
+                ? declaredRuntime
+                : EvaluationRuntimeIdentity.legacyUnknown();
         // The version is asked exactly once, right when the session opens,
         // and frozen for the rest of the run.
         this.evaluatorVersion = evaluator.evaluatorVersion();
@@ -146,13 +153,14 @@ class DefaultEvaluationSession implements EvaluationSession {
         // second representation built independently.
         Map<String, String> content = subject.getContent();
         String contentFingerprint = fingerprinter.fingerprint(content);
-        // R001: identity is evaluator + fingerprint only; the version is no
-        // longer part of the key.
-        EvaluationKey key = new EvaluationKey(evaluator.evaluatorId(), contentFingerprint);
+        // R001: identity is evaluator + fingerprint + effective runtime; the process version is
+        // provenance only and no longer part of the key.
+        EvaluationKey key = new EvaluationKey(
+                evaluator.evaluatorId(), contentFingerprint, runtimeIdentity);
 
         // R003 + R006: whatever is currently the most recently registered
-        // result for this evaluator+fingerprint is consulted first,
-        // regardless of which version produced it. R008: it is only bypassed
+        // result for this evaluator+fingerprint+runtime is consulted first,
+        // regardless of which process version produced it. R008: it is only bypassed
         // when re-evaluation was explicitly requested.
         if (!forceReevaluation) {
             Optional<EvaluationRecord> current = ledger.findLatest(key);
@@ -231,7 +239,8 @@ class DefaultEvaluationSession implements EvaluationSession {
         // from exactly the map that would be handed to the evaluator.
         Map<String, String> content = subject.getContent();
         String contentFingerprint = fingerprinter.fingerprint(content);
-        EvaluationKey key = new EvaluationKey(evaluator.evaluatorId(), contentFingerprint);
+        EvaluationKey key = new EvaluationKey(
+                evaluator.evaluatorId(), contentFingerprint, runtimeIdentity);
 
         // F-QINST-R018 inv.1: every subject in the declared re-evaluation set is
         // consulted in this run regardless of whether it already has a registered
@@ -293,7 +302,8 @@ class DefaultEvaluationSession implements EvaluationSession {
         // for the declared set (F-QINST-R018 inv.2).
         Map<String, String> content = subject.getContent();
         String contentFingerprint = fingerprinter.fingerprint(content);
-        EvaluationKey key = new EvaluationKey(evaluator.evaluatorId(), contentFingerprint);
+        EvaluationKey key = new EvaluationKey(
+                evaluator.evaluatorId(), contentFingerprint, runtimeIdentity);
 
         Optional<EvaluationRecord> current = ledger.findLatest(key);
         if (current.isPresent()) {
@@ -435,7 +445,8 @@ class DefaultEvaluationSession implements EvaluationSession {
     // -------------------------------------------------------------------------
 
     private EvaluationKey keyOf(EvaluationSubject subject) {
-        return new EvaluationKey(evaluator.evaluatorId(), fingerprinter.fingerprint(subject.getContent()));
+        return new EvaluationKey(evaluator.evaluatorId(),
+                fingerprinter.fingerprint(subject.getContent()), runtimeIdentity);
     }
 
     private static EvaluationRequestMode modeOf(EvaluationRequest request) {

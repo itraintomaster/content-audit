@@ -10,4 +10,15 @@ import javax.annotation.processing.Generated;
 )
 public interface EvaluationTimeline {
     List<Instant> recordedTimes(String evaluatorId);
+
+    /**
+     * Runtime-scoped view of the timeline. Runtime-aware ledgers override this
+     * method; the default keeps legacy timeline implementations source
+     * compatible while they expose only evaluator-level history.
+     */
+    default List<Instant> recordedTimes(
+            String evaluatorId,
+            EvaluationRuntimeIdentity runtimeIdentity) {
+        return recordedTimes(evaluatorId);
+    }
 }

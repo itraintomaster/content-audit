@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditdomain.judging;
 
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -14,13 +15,23 @@ public class JudgeVersionStanding {
 
     private JudgeExamStatus examStatus;
 
+    private EvaluationRuntimeIdentity runtimeIdentity;
+
     public JudgeVersionStanding() {
     }
 
     public JudgeVersionStanding(String judgeVersion, int verdictCount, JudgeExamStatus examStatus) {
+        this(judgeVersion, verdictCount, examStatus, EvaluationRuntimeIdentity.legacyUnknown());
+    }
+
+    public JudgeVersionStanding(String judgeVersion, int verdictCount, JudgeExamStatus examStatus,
+            EvaluationRuntimeIdentity runtimeIdentity) {
         this.judgeVersion = judgeVersion;
         this.verdictCount = verdictCount;
         this.examStatus = examStatus;
+        this.runtimeIdentity = runtimeIdentity != null
+                ? runtimeIdentity
+                : EvaluationRuntimeIdentity.legacyUnknown();
     }
 
     public String getJudgeVersion() {
@@ -47,6 +58,14 @@ public class JudgeVersionStanding {
         this.examStatus = examStatus;
     }
 
+    public EvaluationRuntimeIdentity getRuntimeIdentity() {
+        return runtimeIdentity != null ? runtimeIdentity : EvaluationRuntimeIdentity.legacyUnknown();
+    }
+
+    public void setRuntimeIdentity(EvaluationRuntimeIdentity runtimeIdentity) {
+        this.runtimeIdentity = runtimeIdentity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,11 +73,12 @@ public class JudgeVersionStanding {
         JudgeVersionStanding that = (JudgeVersionStanding) o;
         return Objects.equals(this.judgeVersion, that.judgeVersion)
                     && Objects.equals(this.verdictCount, that.verdictCount)
-                    && Objects.equals(this.examStatus, that.examStatus);
+                    && Objects.equals(this.examStatus, that.examStatus)
+                    && Objects.equals(this.getRuntimeIdentity(), that.getRuntimeIdentity());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(judgeVersion, verdictCount, examStatus);
+        return Objects.hash(judgeVersion, verdictCount, examStatus, getRuntimeIdentity());
     }
 }

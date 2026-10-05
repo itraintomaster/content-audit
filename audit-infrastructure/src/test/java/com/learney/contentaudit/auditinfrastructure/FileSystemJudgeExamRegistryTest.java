@@ -11,6 +11,7 @@ import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamGroupResult;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -149,6 +150,39 @@ public class FileSystemJudgeExamRegistryTest {
         assertEquals(claude, history.get(1));
         assertEquals(codex, history.get(2));
         assertEquals(3, nonBlankLines(file).size(), "no historical result was overwritten");
+    }
+
+    @Test
+    @DisplayName("should isolate the standing of Claude, Codex and legacy for the same process version")
+    @Tag("F-JEXAM-R001")
+    @Tag("F-JEXAM-R003")
+    @Tag("F-JEXAM-R014")
+    void shouldIsolateClaudeCodexAndLegacyForTheSameProcessVersion(@TempDir Path tempDir) {
+        EvaluationRuntimeIdentity claude = EvaluationRuntimeIdentity.explicit("claude-cli", "sonnet-4.5", "high");
+        EvaluationRuntimeIdentity codex = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        JudgeExamRecord legacyApproved = measured(QUIZ_INSTRUCTION, "process-v2", JudgeExamStatus.APPROVED,
+                "2026-10-05T09:00:00Z");
+        JudgeExamRecord claudeApproved = measured(QUIZ_INSTRUCTION, "process-v2", JudgeExamStatus.APPROVED,
+                "2026-10-05T10:00:00Z");
+        claudeApproved.setRuntimeIdentity(claude);
+        JudgeExamRecord codexTaken = taken(QUIZ_INSTRUCTION, "legacy-runtime-digest", "2026-10-05T11:00:00Z");
+        codexTaken.setRuntimeIdentity(codex);
+        JudgeExamRegistry registry = new FileSystemJudgeExamRegistry(tempDir);
+        registry.record(legacyApproved);
+        registry.record(claudeApproved);
+        registry.record(codexTaken);
+
+        assertEquals(Optional.of(legacyApproved), registry.latest(QUIZ_INSTRUCTION, "process-v2"),
+                "the legacy API sees only legacy records");
+        assertEquals(Optional.of(claudeApproved), registry.latest(QUIZ_INSTRUCTION, "process-v2", claude));
+        assertEquals(Optional.empty(), registry.latest(QUIZ_INSTRUCTION, "process-v2", codex),
+                "neither legacy nor Claude approval enables Codex");
+        assertEquals(Optional.of(codexTaken), registry.latestCompatible(QUIZ_INSTRUCTION,
+                List.of("process-v2", "legacy-runtime-digest"), codex),
+                "the append-only schema alias is accepted only under the exact Codex runtime");
+        assertEquals(Optional.of(claudeApproved), registry.latestCompatible(QUIZ_INSTRUCTION,
+                List.of("process-v2", "legacy-runtime-digest"), claude),
+                "the version alias does not cross from Claude to the Codex record");
     }
 
     @Test

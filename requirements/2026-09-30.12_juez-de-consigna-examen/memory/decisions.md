@@ -4,6 +4,9 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-05 — analyst — Una identidad examinable es version del proceso + proveedor + modelo exacto + esfuerzo; cambiar
+  cualquiera exige examen propio. Cobertura y examen son estados independientes por runtime; legacy no habilita ni cubre.
+
 2026-10-04 — analyst — `codex-cli` con ChatGPT reemplaza a `claude-cli` como selección actual y por omisión; el operador
   puede elegir otro proveedor/modelo explícitamente, sin fallback; la elección real forma procedencia y obliga a examen.
 

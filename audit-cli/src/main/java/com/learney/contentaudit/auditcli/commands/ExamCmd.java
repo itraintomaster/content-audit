@@ -16,6 +16,7 @@ import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStanding;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamVerdict;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -164,7 +165,7 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         }
 
         try {
-            writeVerdicts(output, taken.getVerdicts(), provenance);
+            writeVerdicts(output, taken.getVerdicts(), taken.getRuntimeIdentity());
         } catch (IOException e) {
             System.err.println("Error: the verdicts cannot be written to " + verdictsOut + ": " + e.getMessage());
             return 1;
@@ -189,6 +190,7 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         try {
             JudgeExamStanding standing = examService.record(measured);
             System.out.println("Registrado: " + measured.getJudgeName() + " versión " + measured.getJudgeVersion()
+                    + " · " + runtimeLabel(standing.getRuntimeIdentity())
                     + " → " + spanish(standing.getStatus())
                     + (standing.isConsultsOnCourse()
                             ? ". Puede consultar sobre el curso cuando se le pida tope."
@@ -280,15 +282,18 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
 
     /** One JSON line per exercise, including the effective provenance (F-JEXAM-R014). */
     private static void writeVerdicts(Path file, List<JudgeExamVerdict> verdicts,
-            ExamProvenance provenance) throws IOException {
+            EvaluationRuntimeIdentity runtimeIdentity) throws IOException {
+        EvaluationRuntimeIdentity runtime = runtimeIdentity != null
+                ? runtimeIdentity
+                : EvaluationRuntimeIdentity.legacyUnknown();
         StringBuilder lines = new StringBuilder();
         for (JudgeExamVerdict verdict : verdicts) {
             ObjectNode line = MAPPER.createObjectNode();
             line.put("ejercicio", verdict.getCaseId());
             line.put("juez", verdict.getJudgeName());
-            line.put("proveedor", provenance.providerName());
-            line.put("modelo", provenance.modelName());
-            line.put("esfuerzo", provenance.reasoningEffort());
+            line.put("proveedor", runtime.isExplicit() ? runtime.getProviderName() : null);
+            line.put("modelo", runtime.isExplicit() ? runtime.getModelName() : null);
+            line.put("esfuerzo", runtime.isExplicit() ? runtime.getReasoningEffort() : null);
             line.put("version", verdict.getJudgeVersion());
             line.put("resultado", verdict.getOutcome() != null ? verdict.getOutcome().name() : null);
             line.put("gravedad", verdict.getWorstSeverity() != null ? verdict.getWorstSeverity().name() : null);
@@ -339,8 +344,22 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         for (JsonNode id : root.path("noDieronLoEsperado")) {
             mismatched.add(id.asText());
         }
-        return new JudgeExamRecord(judge.trim(), version.trim(), status, cases, 0, groups, mismatched,
-                root.path("alcanzoLaMeta").asBoolean(false), text(root, "foto"), text(root, "medidoPor"), null);
+        JudgeExamRecord measured = new JudgeExamRecord(judge.trim(), version.trim(), status, cases, 0,
+                groups, mismatched, root.path("alcanzoLaMeta").asBoolean(false), text(root, "foto"),
+                text(root, "medidoPor"), null);
+        String provider = firstText(root, "proveedor", "providerName");
+        String model = firstText(root, "modelo", "modelName");
+        String effort = firstText(root, "esfuerzo", "reasoningEffort");
+        int provenanceParts = (isBlank(provider) ? 0 : 1) + (isBlank(model) ? 0 : 1)
+                + (isBlank(effort) ? 0 : 1);
+        if (provenanceParts != 0 && provenanceParts != 3) {
+            throw new IllegalArgumentException(
+                    "la identidad medida debe declarar proveedor, modelo y esfuerzo juntos");
+        }
+        if (provenanceParts == 3) {
+            measured.setRuntimeIdentity(EvaluationRuntimeIdentity.explicit(provider, model, effort));
+        }
+        return measured;
     }
 
     private static void printSummary(JudgeExamTaken taken, boolean rehearsal) {
@@ -351,8 +370,9 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             }
         }
         int total = taken.getVerdicts().size();
-        System.out.println("Examen de " + taken.getJudgeName() + " (versión "
-                + (taken.getJudgeVersion() != null ? taken.getJudgeVersion() : "sin versión") + "): " + total
+        System.out.println("Identidad examinada: " + runtimeLabel(taken.getRuntimeIdentity())
+                + " · versión " + (taken.getJudgeVersion() != null ? taken.getJudgeVersion() : "sin versión") + ".");
+        System.out.println("Cobertura del examen: " + total
                 + " ejercicios, " + judged + " con veredicto, " + (total - judged) + " sin veredicto.");
         if (rehearsal) {
             System.out.println("Ensayo sin --budget: no se consultó al juez; se reusó lo que esa versión ya juzgó.");
@@ -369,9 +389,9 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         if (reason != null) {
             System.out.println("El juez dejó de consultar: " + reason);
         }
-        System.out.println(taken.isRecordedAsTaken()
-                ? "Rindió el examen completo: ya se puede registrar su resultado con exam record."
-                : "No rindió el examen completo: su resultado todavía no se puede registrar.");
+        System.out.println("Estado del examen: " + (taken.isRecordedAsTaken()
+                ? "RENDIDO completo; ya se puede registrar su resultado con exam record."
+                : "INCOMPLETO; su resultado todavía no se puede registrar."));
     }
 
     private static String spanish(JudgeExamStatus status) {
@@ -388,21 +408,39 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
     }
 
     private static String provenanceLabel(JudgeExamRecord record) {
-        if (isBlank(record.getProviderName()) && isBlank(record.getModelName())
-                && isBlank(record.getReasoningEffort())) {
-            return "procedencia no registrada";
+        EvaluationRuntimeIdentity runtime = record.getRuntimeIdentity();
+        if (runtime.isExplicit()) {
+            return runtimeLabel(runtime);
         }
-        StringBuilder label = new StringBuilder();
-        label.append(!isBlank(record.getProviderName()) ? record.getProviderName() : "proveedor no registrado");
-        label.append('/').append(!isBlank(record.getModelName()) ? record.getModelName() : "modelo no registrado");
-        if (!isBlank(record.getReasoningEffort())) {
-            label.append(" (esfuerzo ").append(record.getReasoningEffort()).append(')');
+        // Historical lines may name only provider/model. They remain visible for comparison, but
+        // the "legacy incompleta" label makes clear that they cannot enable an explicit runtime.
+        if (!isBlank(record.getProviderName()) || !isBlank(record.getModelName())
+                || !isBlank(record.getReasoningEffort())) {
+            String provider = !isBlank(record.getProviderName()) ? record.getProviderName() : "proveedor desconocido";
+            String model = !isBlank(record.getModelName()) ? record.getModelName() : "modelo desconocido";
+            String effort = !isBlank(record.getReasoningEffort())
+                    ? " (esfuerzo " + record.getReasoningEffort() + ")"
+                    : "";
+            return provider + "/" + model + effort + " (procedencia legacy incompleta)";
         }
-        return label.toString();
+        return runtimeLabel(runtime);
     }
 
     record ExamProvenance(String providerName, String modelName, String reasoningEffort) {
         static final ExamProvenance NONE = new ExamProvenance(null, null, null);
+    }
+
+    private static String runtimeLabel(EvaluationRuntimeIdentity runtimeIdentity) {
+        if (runtimeIdentity == null || !runtimeIdentity.isExplicit()) {
+            return "procedencia legacy desconocida";
+        }
+        return runtimeIdentity.getProviderName() + "/" + runtimeIdentity.getModelName()
+                + " (esfuerzo " + runtimeIdentity.getReasoningEffort() + ")";
+    }
+
+    private static String firstText(JsonNode node, String first, String second) {
+        String value = text(node, first);
+        return !isBlank(value) ? value : text(node, second);
     }
 
     private static String text(JsonNode node, String field) {

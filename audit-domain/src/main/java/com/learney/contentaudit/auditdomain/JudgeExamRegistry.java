@@ -1,6 +1,8 @@
 package com.learney.contentaudit.auditdomain;
 
 import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
@@ -13,6 +15,69 @@ public interface JudgeExamRegistry {
     void record(JudgeExamRecord record);
 
     Optional<JudgeExamRecord> latest(String judgeName, String judgeVersion);
+
+    /** Latest record for one exact process-version and runtime identity. */
+    default Optional<JudgeExamRecord> latest(String judgeName, String judgeVersion,
+            EvaluationRuntimeIdentity runtimeIdentity) {
+        if (judgeVersion == null) {
+            return Optional.empty();
+        }
+        EvaluationRuntimeIdentity expected = runtimeIdentity != null
+                ? runtimeIdentity
+                : EvaluationRuntimeIdentity.legacyUnknown();
+        // Preserve the pre-identity adapter contract only for a legacy query. In particular, an
+        // explicit Codex/Claude runtime never falls through to an unqualified legacy approval.
+        if (!expected.isExplicit()) {
+            return latest(judgeName, judgeVersion);
+        }
+        return latestCompatible(judgeName, List.of(judgeVersion), expected);
+    }
+
+    /**
+     * Latest record for the current process-version or one of its schema-migration aliases, always
+     * under the exact runtime. Aliases are not general compatibility between judge definitions.
+     */
+    default Optional<JudgeExamRecord> latestCompatible(String judgeName,
+            Collection<String> compatibleJudgeVersions,
+            EvaluationRuntimeIdentity runtimeIdentity) {
+        EvaluationRuntimeIdentity expected = runtimeIdentity != null
+                ? runtimeIdentity
+                : EvaluationRuntimeIdentity.legacyUnknown();
+        if (!expected.isExplicit()) {
+            JudgeExamRecord latest = null;
+            if (compatibleJudgeVersions != null) {
+                for (String version : compatibleJudgeVersions) {
+                    Optional<JudgeExamRecord> candidate = latest(judgeName, version);
+                    if (candidate != null && candidate.isPresent()
+                            && laterThan(candidate.get(), latest)) {
+                        latest = candidate.get();
+                    }
+                }
+            }
+            return Optional.ofNullable(latest);
+        }
+        JudgeExamRecord latest = null;
+        for (JudgeExamRecord candidate : history(judgeName)) {
+            if (candidate != null
+                    && compatibleJudgeVersions != null
+                    && compatibleJudgeVersions.contains(candidate.getJudgeVersion())
+                    && expected.equals(candidate.getRuntimeIdentity())) {
+                latest = candidate;
+            }
+        }
+        return Optional.ofNullable(latest);
+    }
+
+    private static boolean laterThan(JudgeExamRecord candidate, JudgeExamRecord current) {
+        if (current == null) {
+            return true;
+        }
+        if (candidate.getRecordedAt() == null) {
+            return current.getRecordedAt() == null;
+        }
+        return current.getRecordedAt() == null
+                || candidate.getRecordedAt().isAfter(current.getRecordedAt());
+    }
 
     List<JudgeExamRecord> history(String judgeName);
 }

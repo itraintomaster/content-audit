@@ -50,7 +50,7 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
     }
 
     @Test
-    @DisplayName("should derive a different judge version when the agent definition or the model changes")
+    @DisplayName("should derive process version only from the agent definition and retain runtime in the legacy alias")
     @Tag("FEAT-QINST")
     @Tag("F-QINST-R010")
     public void shouldDeriveADifferentJudgeVersionWhenTheAgentDefinitionOrTheModelChanges() {
@@ -68,12 +68,16 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
 
         String baselineVersion = resolver.resolve(baseline, PROVIDER).orElseThrow();
 
-        assertNotEquals(baselineVersion, resolver.resolve(differentModel, PROVIDER).orElseThrow(),
-                "F-QINST-R010: cambiar el modelo del juez tiene que cambiar la version derivada");
+        assertEquals(baselineVersion, resolver.resolve(differentModel, PROVIDER).orElseThrow(),
+                "the exact model belongs to runtime identity, not process provenance");
         assertNotEquals(baselineVersion, resolver.resolve(differentAgentDefinition, PROVIDER).orElseThrow(),
                 "F-QINST-R010: cambiar la definicion del agente (su forma de preguntar) tiene que cambiar la version derivada");
-        assertNotEquals(baselineVersion, resolver.resolve(differentReasoning, PROVIDER).orElseThrow(),
-                "cambiar el esfuerzo de razonamiento tiene que cambiar la version derivada");
+        assertEquals(baselineVersion, resolver.resolve(differentReasoning, PROVIDER).orElseThrow(),
+                "reasoning effort belongs to runtime identity, not process provenance");
+        assertNotEquals(
+                resolver.legacyRuntimeCoupledVersion(baseline, PROVIDER).orElseThrow(),
+                resolver.legacyRuntimeCoupledVersion(differentReasoning, PROVIDER).orElseThrow(),
+                "the old digest remains available only as an exact migration alias");
     }
 
     @Test

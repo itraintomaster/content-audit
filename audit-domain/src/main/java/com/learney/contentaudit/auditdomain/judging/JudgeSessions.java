@@ -2,8 +2,10 @@ package com.learney.contentaudit.auditdomain.judging;
 
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -23,18 +25,37 @@ public class JudgeSessions {
 
     private EvaluationRunPolicy effectivePolicy;
 
+    private EvaluationRuntimeIdentity runtimeIdentity;
+
+    private Set<String> compatibleJudgeVersions;
+
     public JudgeSessions() {
     }
 
     public JudgeSessions(String judgeName, String judgeVersion, List<String> evaluatorIds,
             List<EvaluationSession> sessions, JudgeExamStanding standing,
             EvaluationRunPolicy effectivePolicy) {
+        this(judgeName, judgeVersion, evaluatorIds, sessions, standing, effectivePolicy,
+                EvaluationRuntimeIdentity.legacyUnknown(),
+                judgeVersion != null ? Set.of(judgeVersion) : Set.of());
+    }
+
+    public JudgeSessions(String judgeName, String judgeVersion, List<String> evaluatorIds,
+            List<EvaluationSession> sessions, JudgeExamStanding standing,
+            EvaluationRunPolicy effectivePolicy, EvaluationRuntimeIdentity runtimeIdentity,
+            Set<String> compatibleJudgeVersions) {
         this.judgeName = judgeName;
         this.judgeVersion = judgeVersion;
         this.evaluatorIds = evaluatorIds;
         this.sessions = sessions;
         this.standing = standing;
         this.effectivePolicy = effectivePolicy;
+        this.runtimeIdentity = runtimeIdentity != null
+                ? runtimeIdentity
+                : EvaluationRuntimeIdentity.legacyUnknown();
+        this.compatibleJudgeVersions = compatibleJudgeVersions != null
+                ? Set.copyOf(compatibleJudgeVersions)
+                : Set.of();
     }
 
     public String getJudgeName() {
@@ -85,6 +106,22 @@ public class JudgeSessions {
         this.effectivePolicy = effectivePolicy;
     }
 
+    public EvaluationRuntimeIdentity getRuntimeIdentity() {
+        return runtimeIdentity != null ? runtimeIdentity : EvaluationRuntimeIdentity.legacyUnknown();
+    }
+
+    public void setRuntimeIdentity(EvaluationRuntimeIdentity runtimeIdentity) {
+        this.runtimeIdentity = runtimeIdentity;
+    }
+
+    public Set<String> getCompatibleJudgeVersions() {
+        return compatibleJudgeVersions != null ? compatibleJudgeVersions : Set.of();
+    }
+
+    public void setCompatibleJudgeVersions(Set<String> compatibleJudgeVersions) {
+        this.compatibleJudgeVersions = compatibleJudgeVersions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,11 +132,14 @@ public class JudgeSessions {
                     && Objects.equals(this.evaluatorIds, that.evaluatorIds)
                     && Objects.equals(this.sessions, that.sessions)
                     && Objects.equals(this.standing, that.standing)
-                    && Objects.equals(this.effectivePolicy, that.effectivePolicy);
+                    && Objects.equals(this.effectivePolicy, that.effectivePolicy)
+                    && Objects.equals(this.getRuntimeIdentity(), that.getRuntimeIdentity())
+                    && Objects.equals(this.getCompatibleJudgeVersions(), that.getCompatibleJudgeVersions());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(judgeName, judgeVersion, evaluatorIds, sessions, standing, effectivePolicy);
+        return Objects.hash(judgeName, judgeVersion, evaluatorIds, sessions, standing, effectivePolicy,
+                getRuntimeIdentity(), getCompatibleJudgeVersions());
     }
 }

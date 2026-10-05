@@ -1,5 +1,6 @@
 package com.learney.contentaudit.auditapplication;
 
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.nio.file.Path;
 import java.util.Objects;
 import java.util.Set;
@@ -110,6 +111,15 @@ public class JudgeExamRequest {
 
     public void setReasoningEffort(String reasoningEffort) {
         this.reasoningEffort = reasoningEffort;
+    }
+
+    public EvaluationRuntimeIdentity getRuntimeIdentity() {
+        if (providerName == null || providerName.isBlank()
+                || modelName == null || modelName.isBlank()
+                || reasoningEffort == null || reasoningEffort.isBlank()) {
+            return EvaluationRuntimeIdentity.legacyUnknown();
+        }
+        return EvaluationRuntimeIdentity.explicit(providerName, modelName, reasoningEffort);
     }
 
     @Override

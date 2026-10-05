@@ -1,6 +1,7 @@
 package com.learney.contentaudit.evaluationledgerdomain;
 
 import java.util.Optional;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -13,4 +14,20 @@ public interface Evaluator {
     EvaluationOutcome evaluate(EvaluationSubject subject);
 
     Optional<String> evaluatorVersion();
+
+    /**
+     * Effective runtime identity. Legacy evaluators keep their historical namespace until they
+     * explicitly declare provider, exact model and reasoning effort.
+     */
+    default EvaluationRuntimeIdentity runtimeIdentity() {
+        return EvaluationRuntimeIdentity.legacyUnknown();
+    }
+
+    /**
+     * Process-version aliases accepted only to bridge the runtime-coupled legacy digest schema.
+     * This is not general functional compatibility between different judge definitions.
+     */
+    default Set<String> compatibleEvaluatorVersions() {
+        return evaluatorVersion().map(Set::of).orElseGet(Set::of);
+    }
 }

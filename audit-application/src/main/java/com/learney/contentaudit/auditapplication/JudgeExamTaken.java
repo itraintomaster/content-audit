@@ -2,6 +2,7 @@ package com.learney.contentaudit.auditapplication;
 
 import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamVerdict;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
@@ -21,16 +22,28 @@ public class JudgeExamTaken {
 
     private boolean recordedAsTaken;
 
+    private EvaluationRuntimeIdentity runtimeIdentity;
+
     public JudgeExamTaken() {
     }
 
     public JudgeExamTaken(String judgeName, String judgeVersion, List<JudgeExamVerdict> verdicts,
             JudgeCoverageDiagnosis coverage, boolean recordedAsTaken) {
+        this(judgeName, judgeVersion, verdicts, coverage, recordedAsTaken,
+                EvaluationRuntimeIdentity.legacyUnknown());
+    }
+
+    public JudgeExamTaken(String judgeName, String judgeVersion, List<JudgeExamVerdict> verdicts,
+            JudgeCoverageDiagnosis coverage, boolean recordedAsTaken,
+            EvaluationRuntimeIdentity runtimeIdentity) {
         this.judgeName = judgeName;
         this.judgeVersion = judgeVersion;
         this.verdicts = verdicts;
         this.coverage = coverage;
         this.recordedAsTaken = recordedAsTaken;
+        this.runtimeIdentity = runtimeIdentity != null
+                ? runtimeIdentity
+                : EvaluationRuntimeIdentity.legacyUnknown();
     }
 
     public String getJudgeName() {
@@ -73,6 +86,14 @@ public class JudgeExamTaken {
         this.recordedAsTaken = recordedAsTaken;
     }
 
+    public EvaluationRuntimeIdentity getRuntimeIdentity() {
+        return runtimeIdentity != null ? runtimeIdentity : EvaluationRuntimeIdentity.legacyUnknown();
+    }
+
+    public void setRuntimeIdentity(EvaluationRuntimeIdentity runtimeIdentity) {
+        this.runtimeIdentity = runtimeIdentity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -82,11 +103,13 @@ public class JudgeExamTaken {
                     && Objects.equals(this.judgeVersion, that.judgeVersion)
                     && Objects.equals(this.verdicts, that.verdicts)
                     && Objects.equals(this.coverage, that.coverage)
-                    && Objects.equals(this.recordedAsTaken, that.recordedAsTaken);
+                    && Objects.equals(this.recordedAsTaken, that.recordedAsTaken)
+                    && Objects.equals(this.getRuntimeIdentity(), that.getRuntimeIdentity());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(judgeName, judgeVersion, verdicts, coverage, recordedAsTaken);
+        return Objects.hash(judgeName, judgeVersion, verdicts, coverage, recordedAsTaken,
+                getRuntimeIdentity());
     }
 }

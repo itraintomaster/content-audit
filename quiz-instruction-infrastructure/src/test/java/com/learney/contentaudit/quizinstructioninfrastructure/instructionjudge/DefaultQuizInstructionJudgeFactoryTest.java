@@ -427,10 +427,10 @@ public class DefaultQuizInstructionJudgeFactoryTest {
     }
 
     @Test
-    @DisplayName("should derive for the consigna judge the same version it derived before FEAT-JEXAM, so its recorded verdicts keep being reused")
+    @DisplayName("should expose the pre-runtime consigna version as a schema alias, so its recorded verdicts keep being reused")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R007")
-    public void shouldDeriveForTheConsignaJudgeTheSameVersionItDerivedBeforeFEATJEXAMSoItsRecordedVerdictsKeepBeingReused(
+    public void shouldExposeThePreRuntimeConsignaVersionAsASchemaAliasSoItsRecordedVerdictsKeepBeingReused(
             @TempDir Path dir) throws IOException {
         Path definition = writeConsignaDefinition(dir);
         AgentDefinitionLocator agentDefinitionLocator = mock(AgentDefinitionLocator.class);
@@ -448,6 +448,7 @@ public class DefaultQuizInstructionJudgeFactoryTest {
                         recordedAuthStatus(dir, "logged-in", STATUS_LOGGED_IN, 0, statusRuns)),
                 new DefaultJudgeProviderReadinessProbe(
                         recordedAuthStatus(dir, "not-logged-in", STATUS_NOT_LOGGED_IN, 1, statusRuns)));
+        String processVersion = null;
         for (JudgeProviderReadinessProbe check : checks) {
             AgentGraphRunner agentGraphRunner = mock(AgentGraphRunner.class);
             Evaluator judge = new DefaultQuizInstructionJudgeFactory(new DefaultLlmProviderResolver(), check)
@@ -455,12 +456,19 @@ public class DefaultQuizInstructionJudgeFactoryTest {
 
             assertEquals("quiz-instruction-validator", judge.evaluatorId(),
                     "F-JEXAM-R007: the consigna judge keeps its evaluator id, the first half of its ledger key");
-            assertEquals(Optional.of(CONSIGNA_VERSION_BEFORE_FEAT_JEXAM), judge.evaluatorVersion(),
-                    "F-JEXAM-R007: the consigna judge keeps the version its recorded verdicts carry");
+            Optional<String> current = judge.evaluatorVersion();
+            assertTrue(current.isPresent(), "the process definition produces a version");
+            if (processVersion == null) {
+                processVersion = current.orElseThrow();
+            }
+            assertEquals(Optional.of(processVersion), current,
+                    "checking provider readiness does not change the process version");
+            assertTrue(judge.compatibleEvaluatorVersions().contains(CONSIGNA_VERSION_BEFORE_FEAT_JEXAM),
+                    "F-JEXAM-R007: the runtime-coupled historical digest remains a schema alias");
 
             if (check != null) {
                 judge.evaluate(subjectFor("quiz-1"));
-                assertEquals(Optional.of(CONSIGNA_VERSION_BEFORE_FEAT_JEXAM), judge.evaluatorVersion(),
+                assertEquals(Optional.of(processVersion), judge.evaluatorVersion(),
                         "checking the session does not change the version");
             }
         }

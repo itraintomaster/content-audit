@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-05 — analyst — R001–R004 y R014 precisadas: examen por version+runtime efectivo, reuso aislado por runtime y
+  presentacion separada de cobertura vs examen; Claude, Codex y legacy conviven sin atribucion retroactiva.
+  why: el usuario aprobo rendir de nuevo los jueces con Codex y conservar comparables los resultados anteriores.
+
 2026-10-05 — orchestrator — Bloqueo cerrado al retirar Sentinel del ciclo Maven y declarar las
   fuentes como mantenimiento manual. Codex queda por omisión; proveedor y modelo explícitos se
   preservan. El launcher ya no usa un classpath fijo ni `mvn install`: pasan sus 24 pruebas, las 46

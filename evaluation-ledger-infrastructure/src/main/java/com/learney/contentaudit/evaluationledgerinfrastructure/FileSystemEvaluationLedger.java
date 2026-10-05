@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationKey;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationLedger;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeKind;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
@@ -189,7 +191,8 @@ public class FileSystemEvaluationLedger implements EvaluationLedger, EvaluationT
 
     private static EvaluationRecord copyOf(EvaluationRecord record) {
         EvaluationKey key = record.getKey();
-        return new EvaluationRecord(new EvaluationKey(key.getEvaluatorId(), key.getContentFingerprint()),
+        return new EvaluationRecord(new EvaluationKey(key.getEvaluatorId(), key.getContentFingerprint(),
+                key.getRuntimeIdentity()),
                 record.getPayload(), record.getSubjectRef(), record.getRecordedAt(),
                 record.getEvaluatorVersion());
     }
@@ -222,6 +225,11 @@ public class FileSystemEvaluationLedger implements EvaluationLedger, EvaluationT
         Map<String, String> line = new LinkedHashMap<>();
         line.put("evaluatorId", key.getEvaluatorId());
         line.put("contentFingerprint", key.getContentFingerprint());
+        EvaluationRuntimeIdentity runtime = key.getRuntimeIdentity();
+        line.put("runtimeKind", runtime.getKind().name());
+        line.put("providerName", runtime.getProviderName());
+        line.put("modelName", runtime.getModelName());
+        line.put("reasoningEffort", runtime.getReasoningEffort());
         line.put("payload", record.getPayload());
         line.put("subjectRef", record.getSubjectRef());
         line.put("recordedAt", record.getRecordedAt() != null ? record.getRecordedAt().toString() : null);
@@ -261,8 +269,9 @@ public class FileSystemEvaluationLedger implements EvaluationLedger, EvaluationT
             }
             String recordedAtRaw = line.get("recordedAt");
             Instant recordedAt = recordedAtRaw != null ? Instant.parse(recordedAtRaw) : null;
+            EvaluationRuntimeIdentity runtimeIdentity = parseRuntime(line);
             EvaluationRecord record = new EvaluationRecord(
-                    new EvaluationKey(evaluatorId, contentFingerprint),
+                    new EvaluationKey(evaluatorId, contentFingerprint, runtimeIdentity),
                     line.get("payload"),
                     line.get("subjectRef"),
                     recordedAt, evaluatorVersion);
@@ -270,6 +279,36 @@ public class FileSystemEvaluationLedger implements EvaluationLedger, EvaluationT
         } catch (Exception e) {
             return Optional.empty();
         }
+    }
+
+    private static EvaluationRuntimeIdentity parseRuntime(Map<String, String> line) {
+        String kindValue = line.get("runtimeKind");
+        if (kindValue == null || kindValue.isBlank()) {
+            // Historical JSONL remains visible in its own non-reusable namespace. It is never
+            // attributed retroactively to a concrete provider, model or reasoning effort.
+            return EvaluationRuntimeIdentity.legacyUnknown();
+        }
+        EvaluationRuntimeKind kind;
+        try {
+            kind = EvaluationRuntimeKind.valueOf(kindValue);
+        } catch (IllegalArgumentException invalidKind) {
+            return EvaluationRuntimeIdentity.legacyUnknown();
+        }
+        if (kind == EvaluationRuntimeKind.LEGACY_UNKNOWN) {
+            return EvaluationRuntimeIdentity.legacyUnknown();
+        }
+        if (isBlank(line.get("providerName")) || isBlank(line.get("modelName"))
+                || isBlank(line.get("reasoningEffort"))) {
+            // Partially migrated provenance is evidence that the runtime is unknown, not a reason
+            // to make the historical record disappear from the ledger.
+            return EvaluationRuntimeIdentity.legacyUnknown();
+        }
+        return EvaluationRuntimeIdentity.explicit(
+                line.get("providerName"), line.get("modelName"), line.get("reasoningEffort"));
+    }
+
+    private static boolean isBlank(String value) {
+        return value == null || value.isBlank();
     }
 
 
@@ -280,12 +319,20 @@ public class FileSystemEvaluationLedger implements EvaluationLedger, EvaluationT
      */
     @Override
     public List<Instant> recordedTimes(String evaluatorId) {
+        return recordedTimes(evaluatorId, null);
+    }
+
+    @Override
+    public List<Instant> recordedTimes(String evaluatorId, EvaluationRuntimeIdentity runtimeIdentity) {
         List<Instant> times = new ArrayList<>();
         if (evaluatorId == null) {
             return times;
         }
         for (EvaluationRecord record : snapshot(evaluatorId).records) {
-            if (record.getRecordedAt() != null && evaluatorId.equals(record.getKey().getEvaluatorId())) {
+            if (record.getRecordedAt() != null
+                    && evaluatorId.equals(record.getKey().getEvaluatorId())
+                    && (runtimeIdentity == null
+                            || runtimeIdentity.equals(record.getKey().getRuntimeIdentity()))) {
                 times.add(record.getRecordedAt());
             }
         }
@@ -316,7 +363,7 @@ public class FileSystemEvaluationLedger implements EvaluationLedger, EvaluationT
             for (EvaluationRecord record : this.records) {
                 // Keyed by a copy, so no caller can ever move a record to another key.
                 EvaluationKey key = new EvaluationKey(record.getKey().getEvaluatorId(),
-                        record.getKey().getContentFingerprint());
+                        record.getKey().getContentFingerprint(), record.getKey().getRuntimeIdentity());
                 grouped.computeIfAbsent(key, k -> new ArrayList<>()).add(record);
             }
             this.byKey = grouped;

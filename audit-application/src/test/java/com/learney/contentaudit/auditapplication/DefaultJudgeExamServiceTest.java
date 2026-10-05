@@ -62,6 +62,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.contentfingerprint.Sha256ContentFingerprinter;
 import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.DefaultEvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory;
@@ -171,11 +172,13 @@ public class DefaultJudgeExamServiceTest {
 
         // Every exercise with its verdict: TAKEN for the version, the condition to accept a measurement.
         Bench whole = new Bench(workdir.resolve("whole"));
+        EvaluationRuntimeIdentity codex = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        whole.judge.useRuntime(codex);
         JudgeExamTaken complete = whole.service(whole.runner()).take(new JudgeExamRequest(QUIZ_INSTRUCTION, PHOTO,
                 new LinkedHashSet<>(List.of(VERDURAS, OK_1)), 10, null,
                 "codex-cli", "gpt-6.1-sol", "medium"));
         assertTrue(complete.isRecordedAsTaken());
-        JudgeExamRecord taken = whole.registry.latest(QUIZ_INSTRUCTION, "v-consigna").orElseThrow();
+        JudgeExamRecord taken = whole.registry.latest(QUIZ_INSTRUCTION, "v-consigna", codex).orElseThrow();
         assertEquals(JudgeExamStatus.TAKEN, taken.getStatus(), "R001: the version is recorded as having taken it");
         assertEquals(2, taken.getCasesJudged());
         assertEquals(0, taken.getCasesNotJudged());
@@ -212,6 +215,8 @@ public class DefaultJudgeExamServiceTest {
     @Tag("F-JEXAM-R002")
     public void shouldLetAVersionThatAlreadyTookTheExamTakeItAgainWithoutASingleConsultation() {
         Bench bench = new Bench(workdir);
+        EvaluationRuntimeIdentity codex = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        bench.judge.useRuntime(codex);
         DefaultJudgeExamService service = bench.service(bench.runner());
         Set<String> file = new LinkedHashSet<>(List.of(VERDURAS, OK_1, BREACH_1, MC_47CC));
 
@@ -258,25 +263,63 @@ public class DefaultJudgeExamServiceTest {
     public void shouldRecordTheResultMeasuredOutsideForAVersionThatTookTheWholeExamAndMakeItTheStandingOfThatVersion(
             ) {
         Bench bench = new Bench(workdir);
+        EvaluationRuntimeIdentity codex = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        bench.judge.useRuntime(codex);
         DefaultJudgeExamService service = bench.service(bench.runner());
         service.take(new JudgeExamRequest(QUIZ_INSTRUCTION, PHOTO, new LinkedHashSet<>(List.of(VERDURAS, OK_1)), 10,
                 null, "codex-cli", "gpt-6.1-sol", "medium"));
         JudgeExamRecord measured = new JudgeExamRecord(QUIZ_INSTRUCTION, "v-consigna", JudgeExamStatus.APPROVED, 2, 0,
                 List.of(new JudgeExamGroupResult("a", 1, 1, 0), new JudgeExamGroupResult("c", 1, 1, 0)), List.of(), true,
-                "2026-09-29", "orquestador", "claude-cli", "modelo-falsificado", "max", null);
+                "2026-09-29", "orquestador", null);
 
         JudgeExamStanding standing = service.record(measured);
 
         assertEquals(JudgeExamStatus.APPROVED, standing.getStatus(), "R001: the measured result is its standing");
         assertTrue(standing.isConsultsOnCourse(), "R003: an approved version may consult on the course");
-        JudgeExamRecord kept = bench.registry.latest(QUIZ_INSTRUCTION, "v-consigna").orElseThrow();
+        JudgeExamRecord kept = bench.registry.latest(QUIZ_INSTRUCTION, "v-consigna", codex).orElseThrow();
         assertEquals(JudgeExamStatus.APPROVED, kept.getStatus());
         assertEquals(measured.getGroups(), kept.getGroups(), "R001: with its groups, as measured outside");
         assertEquals("orquestador", kept.getMeasuredBy());
         assertEquals("codex-cli", kept.getProviderName(), "R014: inherited from TAKEN, not the measured file");
-        assertEquals("gpt-6.1-sol", kept.getModelName(), "R014: measured input cannot forge the model");
-        assertEquals("medium", kept.getReasoningEffort(), "R014: measured input cannot forge the effort");
+        assertEquals("gpt-6.1-sol", kept.getModelName(), "R014: missing measured provenance comes from TAKEN");
+        assertEquals("medium", kept.getReasoningEffort(), "R014: missing measured effort comes from TAKEN");
         assertEquals(PHOTO.toString(), kept.getPhoto(), "R014: measured input cannot forge the examined photo");
+    }
+
+    @Test
+    @DisplayName("should require an exact runtime selector when Claude and Codex took the same process version")
+    @Tag("F-JEXAM-R001")
+    @Tag("F-JEXAM-R014")
+    void shouldRequireAnExactRuntimeSelectorWhenClaudeAndCodexTookTheSameProcessVersion() {
+        Bench bench = new Bench(workdir);
+        DefaultJudgeExamService service = bench.service(bench.runner());
+        Set<String> file = new LinkedHashSet<>(List.of(VERDURAS, OK_1));
+        EvaluationRuntimeIdentity codex = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        EvaluationRuntimeIdentity claude = EvaluationRuntimeIdentity.explicit("claude-cli", "sonnet-4.5", "high");
+
+        bench.judge.useRuntime(codex);
+        service.take(new JudgeExamRequest(QUIZ_INSTRUCTION, PHOTO, file, 10, 1));
+        bench.judge.useRuntime(claude);
+        service.take(new JudgeExamRequest(QUIZ_INSTRUCTION, PHOTO, file, 10, 1));
+
+        JudgeExamRecord withoutRuntime = new JudgeExamRecord(QUIZ_INSTRUCTION, "v-consigna",
+                JudgeExamStatus.APPROVED, 2, 0, List.of(), List.of(), true, "ignored", "orquestador", null);
+        IllegalArgumentException ambiguous = assertThrows(IllegalArgumentException.class,
+                () -> service.record(withoutRuntime));
+        assertTrue(ambiguous.getMessage().contains("más de un runtime"));
+
+        JudgeExamRecord codexMeasured = new JudgeExamRecord(QUIZ_INSTRUCTION, "v-consigna",
+                JudgeExamStatus.APPROVED, 2, 0, List.of(), List.of(), true, "ignored", "orquestador",
+                "codex-cli", "gpt-6.1-sol", "medium", null);
+        JudgeExamStanding codexStanding = service.record(codexMeasured);
+
+        assertEquals(JudgeExamStatus.APPROVED, codexStanding.getStatus());
+        assertEquals(codex, codexStanding.getRuntimeIdentity());
+        assertEquals(JudgeExamStatus.APPROVED,
+                bench.registry.latest(QUIZ_INSTRUCTION, "v-consigna", codex).orElseThrow().getStatus());
+        assertEquals(JudgeExamStatus.TAKEN,
+                bench.registry.latest(QUIZ_INSTRUCTION, "v-consigna", claude).orElseThrow().getStatus(),
+                "measuring Codex does not overwrite or approve Claude");
     }
 
     @Test
@@ -519,6 +562,7 @@ public class DefaultJudgeExamServiceTest {
         final List<String> asked = Collections.synchronizedList(new ArrayList<>());
         final List<Map<String, String>> contents = Collections.synchronizedList(new ArrayList<>());
         private final Set<String> breaching;
+        private EvaluationRuntimeIdentity runtimeIdentity = EvaluationRuntimeIdentity.legacyUnknown();
 
         CountingJudge(Set<String> breaching) {
             this.breaching = breaching;
@@ -538,6 +582,15 @@ public class DefaultJudgeExamServiceTest {
         @Override
         public Optional<String> evaluatorVersion() {
             return Optional.of("v-consigna");
+        }
+
+        @Override
+        public EvaluationRuntimeIdentity runtimeIdentity() {
+            return runtimeIdentity;
+        }
+
+        void useRuntime(EvaluationRuntimeIdentity runtimeIdentity) {
+            this.runtimeIdentity = runtimeIdentity;
         }
 
         @Override

@@ -527,7 +527,8 @@ class NearDuplicatesAnalyzer implements ContentAnalyzer {
         return new JudgeSessions(opened.getJudgeName(), opened.getJudgeVersion(),
                 ids != null && !ids.isEmpty() ? List.of(ids.get(ids.size() - 1)) : List.of(),
                 judgeSession != null ? List.of(judgeSession) : List.of(), opened.getStanding(),
-                opened.getEffectivePolicy());
+                opened.getEffectivePolicy(), opened.getRuntimeIdentity(),
+                opened.getCompatibleJudgeVersions());
     }
 
     // -------------------------------------------------------------------------

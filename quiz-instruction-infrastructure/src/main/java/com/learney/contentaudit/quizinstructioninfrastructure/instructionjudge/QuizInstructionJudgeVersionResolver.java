@@ -11,4 +11,9 @@ import javax.annotation.processing.Generated;
 )
 interface QuizInstructionJudgeVersionResolver {
     Optional<String> resolve(QuizInstructionJudgeConfig config, LlmProviderResolved provider);
+
+    default Optional<String> legacyRuntimeCoupledVersion(QuizInstructionJudgeConfig config,
+            LlmProviderResolved provider) {
+        return Optional.empty();
+    }
 }

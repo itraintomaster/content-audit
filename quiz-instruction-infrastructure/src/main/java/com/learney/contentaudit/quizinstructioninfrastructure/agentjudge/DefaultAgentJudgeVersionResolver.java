@@ -21,10 +21,10 @@ import java.util.stream.Stream;
 import javax.annotation.processing.Generated;
 
 /**
- * F-JEXAM-R001: the version of a new judge is its way of asking -- every file of its located agent
- * definition --, its model, reasoning effort and provider, exactly as the quiz-instruction judge derives its own
- * (same digest), with the agent named by the spec. A changed judge is a new version and takes the
- * exam again; retouching the address, the credential, the temperature or the timeout is not.
+ * F-JEXAM-R001: the process version of a judge is its way of asking -- every file of its located
+ * agent definition -- with the agent named by the spec. Provider, exact model and reasoning effort
+ * belong to the separate runtime identity. The legacy resolver reproduces the former
+ * runtime-coupled digest only as an append-only schema migration alias for the same exact runtime.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -44,15 +44,11 @@ class DefaultAgentJudgeVersionResolver implements AgentJudgeVersionResolver {
         if (agentName == null || agentName.isBlank()) {
             return Optional.empty();
         }
-        String modelName = config != null ? config.getModelName() : null;
-        String reasoningEffort = config != null ? config.getReasoningEffort() : null;
-        String providerName = provider != null ? provider.getProviderName() : null;
-
         // The same locator the runner loads the graph with, so the directory digested here and the
         // one that runs can never diverge.
         AgentDefinitionLocation location = agentDefinitionLocator.locate(agentName);
         if (location instanceof AgentDefinitionFound found && found.getDirectory() != null) {
-            return digest(agentName, modelName, reasoningEffort, providerName, found.getDirectory());
+            return digest(agentName, found.getDirectory(), null, null, null, false);
         }
 
         // F-JEXAM-R003 / F-QINST-R010 inv. 3: without a definition there is nothing to derive from,
@@ -61,30 +57,47 @@ class DefaultAgentJudgeVersionResolver implements AgentJudgeVersionResolver {
         return Optional.empty();
     }
 
-    private static Optional<String> digest(String agentName, String modelName, String reasoningEffort,
-            String providerName, Path agentDir) {
+    @Override
+    public Optional<String> legacyRuntimeCoupledVersion(AgentJudgeSpec spec,
+            AgentJudgeConfig config, LlmProviderResolved provider) {
+        String agentName = spec != null ? spec.getEvaluatorId() : null;
+        if (agentName == null || agentName.isBlank()) {
+            return Optional.empty();
+        }
+        AgentDefinitionLocation location = agentDefinitionLocator.locate(agentName);
+        if (!(location instanceof AgentDefinitionFound found) || found.getDirectory() == null) {
+            return Optional.empty();
+        }
+        return digest(agentName, found.getDirectory(),
+                config != null ? config.getModelName() : null,
+                config != null ? config.getReasoningEffort() : null,
+                provider != null ? provider.getProviderName() : null, true);
+    }
+
+    private static Optional<String> digest(String agentName, Path agentDir, String modelName,
+            String reasoningEffort, String providerName, boolean includeLegacyRuntime) {
         try {
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
             sha256.update("agent:".getBytes(StandardCharsets.UTF_8));
             sha256.update(agentName.getBytes(StandardCharsets.UTF_8));
             sha256.update((byte) '\n');
-            sha256.update("model:".getBytes(StandardCharsets.UTF_8));
-            if (modelName != null) {
-                sha256.update(modelName.getBytes(StandardCharsets.UTF_8));
-            }
-            sha256.update((byte) '\n');
-            // Backward compatibility: configurations recorded before reasoning effort existed
-            // keep their exact digest. Once effort is explicit, it becomes part of provenance.
-            if (reasoningEffort != null && !reasoningEffort.isBlank()) {
-                sha256.update("reasoning:".getBytes(StandardCharsets.UTF_8));
-                sha256.update(reasoningEffort.getBytes(StandardCharsets.UTF_8));
+            if (includeLegacyRuntime) {
+                sha256.update("model:".getBytes(StandardCharsets.UTF_8));
+                if (modelName != null) {
+                    sha256.update(modelName.getBytes(StandardCharsets.UTF_8));
+                }
+                sha256.update((byte) '\n');
+                if (reasoningEffort != null && !reasoningEffort.isBlank()) {
+                    sha256.update("reasoning:".getBytes(StandardCharsets.UTF_8));
+                    sha256.update(reasoningEffort.getBytes(StandardCharsets.UTF_8));
+                    sha256.update((byte) '\n');
+                }
+                sha256.update("provider:".getBytes(StandardCharsets.UTF_8));
+                if (providerName != null) {
+                    sha256.update(providerName.getBytes(StandardCharsets.UTF_8));
+                }
                 sha256.update((byte) '\n');
             }
-            sha256.update("provider:".getBytes(StandardCharsets.UTF_8));
-            if (providerName != null) {
-                sha256.update(providerName.getBytes(StandardCharsets.UTF_8));
-            }
-            sha256.update((byte) '\n');
 
             for (Path file : sortedFilesUnder(agentDir)) {
                 sha256.update(agentDir.relativize(file).toString().getBytes(StandardCharsets.UTF_8));

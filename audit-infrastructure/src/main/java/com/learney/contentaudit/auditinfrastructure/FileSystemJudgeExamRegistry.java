@@ -8,6 +8,7 @@ import com.learney.contentaudit.auditdomain.JudgeExamRegistry;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamGroupResult;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamRecord;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.ByteBuffer;
@@ -18,6 +19,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
@@ -69,9 +71,29 @@ public class FileSystemJudgeExamRegistry implements JudgeExamRegistry {
 
     @Override
     public Optional<JudgeExamRecord> latest(String judgeName, String judgeVersion) {
+        return latest(judgeName, judgeVersion, EvaluationRuntimeIdentity.legacyUnknown());
+    }
+
+    @Override
+    public Optional<JudgeExamRecord> latest(String judgeName, String judgeVersion,
+            EvaluationRuntimeIdentity runtimeIdentity) {
+        return judgeVersion == null
+                ? Optional.empty()
+                : latestCompatible(judgeName, List.of(judgeVersion), runtimeIdentity);
+    }
+
+    @Override
+    public Optional<JudgeExamRecord> latestCompatible(String judgeName,
+            Collection<String> compatibleJudgeVersions,
+            EvaluationRuntimeIdentity runtimeIdentity) {
+        EvaluationRuntimeIdentity expected = runtimeIdentity != null
+                ? runtimeIdentity
+                : EvaluationRuntimeIdentity.legacyUnknown();
         JudgeExamRecord latest = null;
         for (JudgeExamRecord record : history(judgeName)) {
-            if (judgeVersion != null && judgeVersion.equals(record.getJudgeVersion())) {
+            if (compatibleJudgeVersions != null
+                    && compatibleJudgeVersions.contains(record.getJudgeVersion())
+                    && expected.equals(record.getRuntimeIdentity())) {
                 latest = record;
             }
         }

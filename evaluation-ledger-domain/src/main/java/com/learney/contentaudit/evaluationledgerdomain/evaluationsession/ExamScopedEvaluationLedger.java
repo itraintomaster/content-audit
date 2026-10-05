@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -16,11 +17,22 @@ import javax.annotation.processing.Generated;
 class ExamScopedEvaluationLedger implements EvaluationLedger {
     private final EvaluationLedger ledger;
 
-    private final String pinnedVersion;
+    private final Set<String> compatibleVersions;
+
+    /** Runtime-coupled legacy digests that can safely identify an otherwise legacy ledger line. */
+    private final Set<String> runtimeCoupledLegacyAliases;
 
     public ExamScopedEvaluationLedger(EvaluationLedger ledger, String pinnedVersion) {
+        this(ledger, pinnedVersion != null ? Set.of(pinnedVersion) : Set.of(), Set.of());
+    }
+
+    public ExamScopedEvaluationLedger(EvaluationLedger ledger, Set<String> compatibleVersions,
+            Set<String> runtimeCoupledLegacyAliases) {
         this.ledger = ledger;
-        this.pinnedVersion = pinnedVersion;
+        this.compatibleVersions = compatibleVersions != null ? Set.copyOf(compatibleVersions) : Set.of();
+        this.runtimeCoupledLegacyAliases = runtimeCoupledLegacyAliases != null
+                ? Set.copyOf(runtimeCoupledLegacyAliases)
+                : Set.of();
     }
 
     /**
@@ -47,7 +59,11 @@ class ExamScopedEvaluationLedger implements EvaluationLedger {
         if (fromExam.isPresent()) {
             return fromExam;
         }
-        return latestOfPinnedVersion(ledger.history(key));
+        Optional<EvaluationRecord> fromCourse = latestOfPinnedVersion(ledger.history(key));
+        if (fromCourse.isPresent()) {
+            return fromCourse;
+        }
+        return latestLegacyAlias(key);
     }
 
     /** Every record of the taking version for this content, course and exam spaces, oldest first. */
@@ -56,6 +72,8 @@ class ExamScopedEvaluationLedger implements EvaluationLedger {
         List<EvaluationRecord> records = new ArrayList<>();
         records.addAll(ofPinnedVersion(ledger.history(key)));
         records.addAll(ofPinnedVersion(ledger.history(examKey(key))));
+        records.addAll(legacyAliases(ledger.history(legacyKey(key))));
+        records.addAll(legacyAliases(ledger.history(examKey(legacyKey(key)))));
         records.sort(Comparator.comparing(EvaluationRecord::getRecordedAt,
                 Comparator.nullsFirst(Comparator.naturalOrder())));
         return records;
@@ -68,7 +86,11 @@ class ExamScopedEvaluationLedger implements EvaluationLedger {
         String examId = evaluatorId != null && evaluatorId.startsWith(EXAM_PREFIX)
                 ? evaluatorId
                 : EXAM_PREFIX + evaluatorId;
-        return new EvaluationKey(examId, key.getContentFingerprint());
+        return new EvaluationKey(examId, key.getContentFingerprint(), key.getRuntimeIdentity());
+    }
+
+    private static EvaluationKey legacyKey(EvaluationKey key) {
+        return new EvaluationKey(key.getEvaluatorId(), key.getContentFingerprint());
     }
 
     private Optional<EvaluationRecord> latestOfPinnedVersion(List<EvaluationRecord> records) {
@@ -78,11 +100,36 @@ class ExamScopedEvaluationLedger implements EvaluationLedger {
 
     private List<EvaluationRecord> ofPinnedVersion(List<EvaluationRecord> records) {
         List<EvaluationRecord> matching = new ArrayList<>();
-        if (records == null || pinnedVersion == null) {
+        if (records == null || compatibleVersions.isEmpty()) {
             return matching;
         }
         for (EvaluationRecord record : records) {
-            if (record != null && pinnedVersion.equals(record.getEvaluatorVersion())) {
+            if (record != null && compatibleVersions.contains(record.getEvaluatorVersion())) {
+                matching.add(record);
+            }
+        }
+        return matching;
+    }
+
+    private Optional<EvaluationRecord> latestLegacyAlias(EvaluationKey key) {
+        List<EvaluationRecord> records = new ArrayList<>();
+        records.addAll(legacyAliases(ledger.history(examKey(legacyKey(key)))));
+        records.addAll(legacyAliases(ledger.history(legacyKey(key))));
+        if (records.isEmpty()) {
+            return Optional.empty();
+        }
+        records.sort(Comparator.comparing(EvaluationRecord::getRecordedAt,
+                Comparator.nullsFirst(Comparator.naturalOrder())));
+        return Optional.of(records.get(records.size() - 1));
+    }
+
+    private List<EvaluationRecord> legacyAliases(List<EvaluationRecord> records) {
+        List<EvaluationRecord> matching = new ArrayList<>();
+        if (records == null || runtimeCoupledLegacyAliases.isEmpty()) {
+            return matching;
+        }
+        for (EvaluationRecord record : records) {
+            if (record != null && runtimeCoupledLegacyAliases.contains(record.getEvaluatorVersion())) {
                 matching.add(record);
             }
         }

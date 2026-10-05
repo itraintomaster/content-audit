@@ -13,4 +13,9 @@ import javax.annotation.processing.Generated;
 interface AgentJudgeVersionResolver {
     Optional<String> resolve(AgentJudgeSpec spec, AgentJudgeConfig config,
             LlmProviderResolved provider);
+
+    default Optional<String> legacyRuntimeCoupledVersion(AgentJudgeSpec spec,
+            AgentJudgeConfig config, LlmProviderResolved provider) {
+        return Optional.empty();
+    }
 }

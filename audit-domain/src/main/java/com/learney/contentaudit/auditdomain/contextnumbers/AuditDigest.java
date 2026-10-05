@@ -1,5 +1,8 @@
 package com.learney.contentaudit.auditdomain.contextnumbers;
 
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.annotation.processing.Generated;
 
@@ -12,12 +15,23 @@ public class AuditDigest {
 
     private DigestNode root;
 
+    /**
+     * The judge result belongs to the audit as a whole, not to the numeric score map of any node.
+     * Keeping this projection explicit lets clients tell coverage from exam standing and runtime.
+     */
+    private List<JudgeCoverageDiagnosis> judgeCoverages = new ArrayList<>();
+
     public AuditDigest() {
     }
 
     public AuditDigest(String auditId, DigestNode root) {
+        this(auditId, root, List.of());
+    }
+
+    public AuditDigest(String auditId, DigestNode root, List<JudgeCoverageDiagnosis> judgeCoverages) {
         this.auditId = auditId;
         this.root = root;
+        setJudgeCoverages(judgeCoverages);
     }
 
     public String getAuditId() {
@@ -36,17 +50,26 @@ public class AuditDigest {
         this.root = root;
     }
 
+    public List<JudgeCoverageDiagnosis> getJudgeCoverages() {
+        return judgeCoverages;
+    }
+
+    public void setJudgeCoverages(List<JudgeCoverageDiagnosis> judgeCoverages) {
+        this.judgeCoverages = judgeCoverages != null ? new ArrayList<>(judgeCoverages) : new ArrayList<>();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AuditDigest that = (AuditDigest) o;
         return Objects.equals(this.auditId, that.auditId)
-                    && Objects.equals(this.root, that.root);
+                    && Objects.equals(this.root, that.root)
+                    && Objects.equals(this.judgeCoverages, that.judgeCoverages);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(auditId, root);
+        return Objects.hash(auditId, root, judgeCoverages);
     }
 }

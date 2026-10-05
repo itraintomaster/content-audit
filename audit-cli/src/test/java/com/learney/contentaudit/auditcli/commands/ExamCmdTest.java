@@ -99,6 +99,10 @@ public class ExamCmdTest {
         assertEquals("codex-cli", service.taken.get(0).getProviderName(), "the service receives effective provider");
         assertEquals("gpt-6.1-sol", service.taken.get(0).getModelName(), "the service receives exact model");
         assertEquals("medium", service.taken.get(0).getReasoningEffort(), "the service receives explicit effort");
+        assertTrue(run.out().contains("Identidad examinada: codex-cli/gpt-6.1-sol (esfuerzo medium)"), run.out());
+        assertTrue(run.out().contains("Cobertura del examen: 6 ejercicios, 5 con veredicto, 1 sin veredicto."),
+                run.out());
+        assertTrue(run.out().contains("Estado del examen: INCOMPLETO"), run.out());
     }
 
     @Test
@@ -217,14 +221,16 @@ public class ExamCmdTest {
         assertEquals(0, run.exit(), run.err());
         List<String> lines = run.out().lines().filter(l -> l.startsWith("2026-")).toList();
         assertEquals(5, lines.size(), "one line per record: " + run.out());
-        assertTrue(lines.get(0).startsWith("2026-10-01T10:00:00Z  u1  claude-cli/sonnet-4.5  RENDIDO"), lines.get(0));
+        assertTrue(lines.get(0).startsWith("2026-10-01T10:00:00Z  u1  claude-cli/sonnet-4.5 "
+                + "(procedencia legacy incompleta)  RENDIDO"), lines.get(0));
         assertTrue(lines.get(0).contains("pendiente de medición"), lines.get(0));
-        assertTrue(lines.get(1).startsWith("2026-10-01T11:00:00Z  u1  claude-cli/sonnet-4.5  REPROBADO"), lines.get(1));
+        assertTrue(lines.get(1).startsWith("2026-10-01T11:00:00Z  u1  claude-cli/sonnet-4.5 "
+                + "(procedencia legacy incompleta)  REPROBADO"), lines.get(1));
         assertTrue(lines.get(2).startsWith("2026-10-02T09:00:00Z  u2  codex-cli/gpt-6.1-sol (esfuerzo medium)  RENDIDO"), lines.get(2));
         assertTrue(lines.get(3).contains("foto 2026-09-29"), lines.get(3));
         assertTrue(lines.get(3).contains("grupos b 37/39 como se esperaba"), lines.get(3));
         assertTrue(lines.get(3).contains("no coincidieron [caso-7, caso-9]"), lines.get(3));
-        assertTrue(lines.get(4).contains("procedencia no registrada"),
+        assertTrue(lines.get(4).contains("procedencia legacy desconocida"),
                 "legacy history is explicit, never assigned a default: " + lines.get(4));
     }
 
@@ -291,7 +297,8 @@ public class ExamCmdTest {
                             JudgeExamOutcome.PASSES, null, List.of(), ""));
                 }
             }
-            return new JudgeExamTaken(request.getJudgeName(), "v-consigna", verdicts, null, false);
+            return new JudgeExamTaken(request.getJudgeName(), "v-consigna", verdicts, null, false,
+                    request.getRuntimeIdentity());
         }
 
         @Override

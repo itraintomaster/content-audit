@@ -1,8 +1,10 @@
 package com.learney.contentaudit.auditinfrastructure;
 import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
+import com.learney.contentaudit.auditdomain.CourseDiagnoses;
 import com.learney.contentaudit.auditdomain.contextnumbers.AuditDigest;
 import com.learney.contentaudit.auditdomain.contextnumbers.ContextNumbers;
 import com.learney.contentaudit.auditdomain.contextnumbers.DigestNode;
+import com.learney.contentaudit.auditdomain.judging.JudgeCoverageDiagnosis;
 import javax.annotation.processing.Generated;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -113,7 +115,16 @@ public class FileSystemAuditReportStore implements AuditReportStore {
      * (F-RONDA1-R002); the course, the levels, the topic groups and the topics keep theirs.
      */
     AuditDigest toDigest(String id, AuditReport report) {
-        return new AuditDigest(id, report.getRoot() != null ? toDigestNode(report.getRoot()) : null);
+        AuditNode root = report.getRoot();
+        return new AuditDigest(id, root != null ? toDigestNode(root) : null, judgeCoverages(root));
+    }
+
+    private List<JudgeCoverageDiagnosis> judgeCoverages(AuditNode root) {
+        if (root == null || !(root.getDiagnoses() instanceof CourseDiagnoses diagnoses)
+                || diagnoses.getJudgeCoverages() == null) {
+            return List.of();
+        }
+        return new ArrayList<>(diagnoses.getJudgeCoverages());
     }
 
     private DigestNode toDigestNode(AuditNode node) {

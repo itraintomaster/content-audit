@@ -16,6 +16,7 @@ import com.learney.contentaudit.auditdomain.judging.JudgeExamStatus;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamVerdict;
 import com.learney.contentaudit.auditdomain.judging.JudgeExamVerdictExporter;
 import com.learney.contentaudit.auditdomain.judging.JudgeRuntime;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -81,6 +82,12 @@ public class DefaultJudgeExamService implements JudgeExamService {
         String judgeVersion = coverage != null && coverage.getStanding() != null
                 ? coverage.getStanding().getJudgeVersion()
                 : examinedVersionOf(report, judgeName);
+        EvaluationRuntimeIdentity runtimeIdentity = coverage != null && coverage.getStanding() != null
+                ? coverage.getStanding().getRuntimeIdentity()
+                : request.getRuntimeIdentity();
+        Set<String> compatibleVersions = coverage != null && coverage.getStanding() != null
+                ? coverage.getStanding().getCompatibleJudgeVersions()
+                : (judgeVersion != null ? Set.of(judgeVersion) : Set.of());
         List<JudgeExamVerdict> verdicts = exporter.export(report, card, caseIds, coverage);
 
         int judged = 0;
@@ -90,14 +97,28 @@ public class DefaultJudgeExamService implements JudgeExamService {
             }
         }
         boolean tookItAll = judgeVersion != null && !caseIds.isEmpty() && judged == caseIds.size();
-        if (tookItAll && examRegistry.latest(judgeName, judgeVersion).isEmpty()) {
+        Optional<JudgeExamRecord> exact = tookItAll
+                ? examRegistry.latest(judgeName, judgeVersion, runtimeIdentity)
+                : Optional.empty();
+        Optional<JudgeExamRecord> compatible = tookItAll
+                ? examRegistry.latestCompatible(judgeName, compatibleVersions, runtimeIdentity)
+                : Optional.empty();
+        boolean alreadyMeasuredByAlias = compatible.isPresent()
+                && (compatible.get().getStatus() == JudgeExamStatus.APPROVED
+                    || compatible.get().getStatus() == JudgeExamStatus.FAILED);
+        if (tookItAll && exact.isEmpty() && !alreadyMeasuredByAlias) {
             // The condition for accepting a measured result: nobody can approve a version that did
-            // not judge every exercise of the file. A version already recorded keeps its standing.
-            examRegistry.record(new JudgeExamRecord(judgeName, judgeVersion, JudgeExamStatus.TAKEN, judged, 0,
-                    List.of(), List.of(), false, photoOf(request), null, request.getProviderName(),
-                    request.getModelName(), request.getReasoningEffort(), Instant.now()));
+            // not judge every exercise of the file. A TAKEN alias is copied forward append-only so
+            // the current process-version can be measured; an already measured alias keeps its
+            // standing without being rewritten or paid again.
+            JudgeExamRecord taken = new JudgeExamRecord(judgeName, judgeVersion, JudgeExamStatus.TAKEN, judged, 0,
+                    List.of(), List.of(), false, photoOf(request), null,
+                    Instant.now());
+            taken.setRuntimeIdentity(runtimeIdentity);
+            examRegistry.record(taken);
         }
-        return new JudgeExamTaken(judgeName, judgeVersion, verdicts, coverage, tookItAll);
+        return new JudgeExamTaken(judgeName, judgeVersion, verdicts, coverage, tookItAll,
+                runtimeIdentity);
     }
 
     /**
@@ -115,25 +136,27 @@ public class DefaultJudgeExamService implements JudgeExamService {
         }
         String judgeName = measured.getJudgeName();
         String judgeVersion = measured.getJudgeVersion();
-        JudgeExamRecord taken = null;
+        List<JudgeExamRecord> takenCandidates = new ArrayList<>();
         for (JudgeExamRecord earlier : examRegistry.history(judgeName)) {
             if (judgeVersion.equals(earlier.getJudgeVersion()) && earlier.getStatus() == JudgeExamStatus.TAKEN) {
-                taken = earlier;
+                takenCandidates.add(earlier);
             }
         }
+        JudgeExamRecord taken = selectTakenIdentity(measured, takenCandidates);
         if (taken == null) {
             throw new JudgeExamNotTakenException(judgeName, judgeVersion);
         }
         // F-JEXAM-R014: the measured file is intentionally untrusted for provenance. The
         // provider/model/effort belong to the run that actually took this version's exam.
-        examRegistry.record(new JudgeExamRecord(judgeName, judgeVersion, measured.getStatus(),
+        JudgeExamRecord recorded = new JudgeExamRecord(judgeName, judgeVersion, measured.getStatus(),
                 measured.getCasesJudged(), measured.getCasesNotJudged(),
                 measured.getGroups() != null ? new ArrayList<>(measured.getGroups()) : List.of(),
                 measured.getMismatchedCaseIds() != null ? new ArrayList<>(measured.getMismatchedCaseIds()) : List.of(),
                 measured.isGoalMet(), taken.getPhoto(), measured.getMeasuredBy(),
-                taken.getProviderName(), taken.getModelName(), taken.getReasoningEffort(),
-                measured.getRecordedAt() != null ? measured.getRecordedAt() : Instant.now()));
-        return runtime.standing(judgeName, judgeVersion);
+                measured.getRecordedAt() != null ? measured.getRecordedAt() : Instant.now());
+        recorded.setRuntimeIdentity(taken.getRuntimeIdentity());
+        examRegistry.record(recorded);
+        return runtime.standing(judgeName, judgeVersion, taken.getRuntimeIdentity());
     }
 
     @Override
@@ -176,5 +199,35 @@ public class DefaultJudgeExamService implements JudgeExamService {
 
     private static String photoOf(JudgeExamRequest request) {
         return request.getPhotoCourse() != null ? request.getPhotoCourse().toString() : null;
+    }
+
+    /**
+     * Selects the TAKEN record by exact runtime when the measured file names it. Historical files
+     * without provenance remain accepted only when a single runtime took that process-version;
+     * once Claude and Codex coexist, omitting runtime is ambiguous and therefore rejected.
+     */
+    private static JudgeExamRecord selectTakenIdentity(JudgeExamRecord measured,
+            List<JudgeExamRecord> candidates) {
+        Map<EvaluationRuntimeIdentity, JudgeExamRecord> byRuntime = new java.util.LinkedHashMap<>();
+        for (JudgeExamRecord candidate : candidates) {
+            byRuntime.put(candidate.getRuntimeIdentity(), candidate);
+        }
+        EvaluationRuntimeIdentity requested = measured.getRuntimeIdentity();
+        if (requested.isExplicit()) {
+            JudgeExamRecord selected = byRuntime.get(requested);
+            if (selected == null && !byRuntime.isEmpty()) {
+                throw new IllegalArgumentException("El runtime declarado por el resultado medido de '"
+                        + measured.getJudgeName() + "' versión " + measured.getJudgeVersion()
+                        + " no coincide con ninguno de los que rindieron el examen");
+            }
+            return selected;
+        }
+
+        if (byRuntime.size() > 1) {
+            throw new IllegalArgumentException("El resultado medido de '" + measured.getJudgeName()
+                    + "' versión " + measured.getJudgeVersion()
+                    + " debe declarar proveedor, modelo y esfuerzo: más de un runtime rindió esa versión");
+        }
+        return byRuntime.values().stream().findFirst().orElse(null);
     }
 }

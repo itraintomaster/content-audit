@@ -23,6 +23,7 @@ import com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationBudget;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationCoverage;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequestMode;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline;
@@ -116,6 +117,11 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
             evaluatorIds.add(evaluator.evaluatorId());
         }
         String judgeVersion = composeVersion(judges);
+        EvaluationRuntimeIdentity runtimeIdentity = composeRuntimeIdentity(judges);
+        Set<String> compatibleJudgeVersions = composeCompatibleVersions(judges);
+        if (judgeVersion != null) {
+            compatibleJudgeVersions.add(judgeVersion);
+        }
 
         EvaluationRunPurpose purpose = purposeOf(policy);
         int maxConcurrent = policy != null && policy.getMaxConcurrentEvaluations() != null
@@ -126,7 +132,8 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                 ? policy.getMaxNewEvaluations()
                 : config.getDefaultMaxNewEvaluations(judgeName);
 
-        JudgeExamStanding standing = standing(judgeName, judgeVersion);
+        JudgeExamStanding standing = standing(judgeName, judgeVersion, runtimeIdentity,
+                compatibleJudgeVersions);
         int effective = Math.max(0, requested);
         if (judgeVersion == null) {
             // No version: nothing to consult with, on the course or in an exam.
@@ -147,7 +154,8 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                 policy != null ? policy.getReevaluationScope() : null,
                 policy != null ? policy.getReevaluationSubjectIds() : null,
                 purpose, maxConcurrent);
-        return new JudgeSessions(judgeName, judgeVersion, evaluatorIds, sessions, standing, effectivePolicy);
+        return new JudgeSessions(judgeName, judgeVersion, evaluatorIds, sessions, standing, effectivePolicy,
+                runtimeIdentity, compatibleJudgeVersions);
     }
 
     @Override
@@ -226,9 +234,10 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                 ? withoutNullKeys(tally.getVerdictsByVersion())
                 : Map.of();
         for (Map.Entry<String, Integer> entry : byVersion.entrySet()) {
-            JudgeExamStatus status = standing(opened.getJudgeName(), entry.getKey()).getStatus();
+            JudgeExamStatus status = standing(opened.getJudgeName(), entry.getKey(),
+                    opened.getRuntimeIdentity()).getStatus();
             versions.add(new JudgeVersionStanding(entry.getKey(), entry.getValue() != null ? entry.getValue() : 0,
-                    status));
+                    status, opened.getRuntimeIdentity()));
         }
 
         EvaluationRunPolicy effective = opened.getEffectivePolicy();
@@ -236,7 +245,7 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                 ? Math.max(1, effective.getMaxConcurrentEvaluations())
                 : Math.max(1, config.getMaxConcurrentEvaluations());
         JudgeCostEstimate cost = cost(opened.getJudgeName(), evaluatorIds, tally.getNotEvaluated(),
-                pendingConsultations, maxConcurrent);
+                pendingConsultations, maxConcurrent, opened.getRuntimeIdentity());
 
         return new JudgeCoverageDiagnosis(opened.getJudgeName(), tally.getUnit(), tally.getReached(),
                 tally.getEvaluated(), tally.getNotEvaluated(), evaluators, opened.getStanding(), versions,
@@ -272,26 +281,77 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
      */
     @Override
     public JudgeExamStanding standing(String judgeName, String judgeVersion) {
+        return standing(judgeName, judgeVersion, EvaluationRuntimeIdentity.legacyUnknown());
+    }
+
+    @Override
+    public JudgeExamStanding standing(String judgeName, String judgeVersion,
+            EvaluationRuntimeIdentity runtimeIdentity) {
+        return standing(judgeName, judgeVersion, runtimeIdentity,
+                judgeVersion != null ? Set.of(judgeVersion) : Set.of());
+    }
+
+    @Override
+    public JudgeExamStanding standing(String judgeName, String judgeVersion,
+            EvaluationRuntimeIdentity runtimeIdentity, Set<String> compatibleJudgeVersions) {
+        EvaluationRuntimeIdentity effectiveRuntime = runtimeIdentity != null
+                ? runtimeIdentity
+                : EvaluationRuntimeIdentity.legacyUnknown();
         if (judgeVersion == null) {
-            return new JudgeExamStanding(judgeName, null, JudgeExamStatus.NO_VERSION, false, REASON_NO_VERSION);
+            return new JudgeExamStanding(judgeName, null, JudgeExamStatus.NO_VERSION, false,
+                    REASON_NO_VERSION, effectiveRuntime, acceptedVersions(compatibleJudgeVersions, null));
         }
-        Optional<JudgeExamRecord> latest = examRegistry.latest(judgeName, judgeVersion);
+        Set<String> acceptedVersions = acceptedVersions(compatibleJudgeVersions, judgeVersion);
+        Optional<JudgeExamRecord> latest = effectiveRuntime.isExplicit()
+                ? examRegistry.latestCompatible(judgeName, acceptedVersions, effectiveRuntime)
+                : latestLegacyExam(judgeName, acceptedVersions);
         if (latest == null || latest.isEmpty() || latest.get().getStatus() == null) {
-            return new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.NOT_TAKEN, false, REASON_NOT_TAKEN);
+            return new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.NOT_TAKEN, false,
+                    REASON_NOT_TAKEN, effectiveRuntime, acceptedVersions);
         }
         JudgeExamRecord record = latest.get();
         return switch (record.getStatus()) {
             case APPROVED -> new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.APPROVED, true,
-                    resultLine(record, "aprobado"));
+                    resultLine(record, "aprobado"), effectiveRuntime, acceptedVersions);
             case FAILED -> {
                 String result = resultLine(record, "reprobado");
                 yield new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.FAILED, false,
-                        result != null ? REASON_FAILED + " (" + result + ")" : REASON_FAILED);
+                        result != null ? REASON_FAILED + " (" + result + ")" : REASON_FAILED,
+                        effectiveRuntime, acceptedVersions);
             }
-            case TAKEN -> new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.TAKEN, false, REASON_TAKEN);
+            case TAKEN -> new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.TAKEN, false,
+                    REASON_TAKEN, effectiveRuntime, acceptedVersions);
             default -> new JudgeExamStanding(judgeName, judgeVersion, JudgeExamStatus.NOT_TAKEN, false,
-                    REASON_NOT_TAKEN);
+                    REASON_NOT_TAKEN, effectiveRuntime, acceptedVersions);
         };
+    }
+
+    /**
+     * Keeps adapters and fakes written before runtime identity source-compatible, but only for an
+     * explicitly legacy query. An explicit runtime always uses the scoped registry API above.
+     */
+    private Optional<JudgeExamRecord> latestLegacyExam(String judgeName, Set<String> acceptedVersions) {
+        JudgeExamRecord latest = null;
+        for (String version : acceptedVersions) {
+            Optional<JudgeExamRecord> candidate = examRegistry.latest(judgeName, version);
+            if (candidate == null || candidate.isEmpty()) {
+                continue;
+            }
+            if (latest == null || latest.getRecordedAt() == null
+                    || (candidate.get().getRecordedAt() != null
+                        && candidate.get().getRecordedAt().isAfter(latest.getRecordedAt()))) {
+                latest = candidate.get();
+            }
+        }
+        return Optional.ofNullable(latest);
+    }
+
+    private static Set<String> acceptedVersions(Set<String> compatibleJudgeVersions,
+            String judgeVersion) {
+        if (compatibleJudgeVersions != null && !compatibleJudgeVersions.isEmpty()) {
+            return Set.copyOf(compatibleJudgeVersions);
+        }
+        return judgeVersion != null ? Set.of(judgeVersion) : Set.of();
     }
 
     /**
@@ -366,6 +426,64 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
         return String.join(VERSION_JOINER, versions);
     }
 
+    /** Every evaluator in one judge must name the same effective runtime. */
+    private static EvaluationRuntimeIdentity composeRuntimeIdentity(List<Evaluator> evaluators) {
+        EvaluationRuntimeIdentity composed = null;
+        for (Evaluator evaluator : evaluators) {
+            EvaluationRuntimeIdentity candidate;
+            try {
+                candidate = evaluator.runtimeIdentity();
+            } catch (RuntimeException e) {
+                return EvaluationRuntimeIdentity.legacyUnknown();
+            }
+            if (candidate == null) {
+                candidate = EvaluationRuntimeIdentity.legacyUnknown();
+            }
+            if (composed == null) {
+                composed = candidate;
+            } else if (!composed.equals(candidate)) {
+                // A composite judge whose evaluators disagree on runtime cannot borrow any exam.
+                return EvaluationRuntimeIdentity.legacyUnknown();
+            }
+        }
+        return composed != null ? composed : EvaluationRuntimeIdentity.legacyUnknown();
+    }
+
+    /**
+     * Cartesian composition of the migration aliases declared by each evaluator. The aliases are
+     * accepted only with the exact runtime above; they preserve the pre-split digest without
+     * making different judge definitions generally interchangeable.
+     */
+    private static Set<String> composeCompatibleVersions(List<Evaluator> evaluators) {
+        if (evaluators.isEmpty()) {
+            return new LinkedHashSet<>();
+        }
+        Set<String> composed = new LinkedHashSet<>();
+        composed.add("");
+        for (Evaluator evaluator : evaluators) {
+            Set<String> evaluatorVersions;
+            try {
+                evaluatorVersions = evaluator.compatibleEvaluatorVersions();
+            } catch (RuntimeException e) {
+                return new LinkedHashSet<>();
+            }
+            if (evaluatorVersions == null || evaluatorVersions.isEmpty()) {
+                return new LinkedHashSet<>();
+            }
+            Set<String> next = new LinkedHashSet<>();
+            for (String prefix : composed) {
+                for (String version : evaluatorVersions) {
+                    if (version == null || version.isBlank()) {
+                        continue;
+                    }
+                    next.add(prefix.isEmpty() ? version : prefix + VERSION_JOINER + version);
+                }
+            }
+            composed = next;
+        }
+        return composed;
+    }
+
     /**
      * The declared ids a unit answers to: its own id and, for a topic (mini-theory), the id of
      * each of its exercises.
@@ -416,8 +534,9 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
      * hours divide by N.
      */
     private JudgeCostEstimate cost(String judgeName, List<String> evaluatorIds, int pendingUnits,
-            int pendingConsultations, int maxConcurrent) {
-        Double measured = measuredRatePerHour(evaluatorIds);
+            int pendingConsultations, int maxConcurrent,
+            EvaluationRuntimeIdentity runtimeIdentity) {
+        Double measured = measuredRatePerHour(evaluatorIds, runtimeIdentity);
         boolean rateMeasured = measured != null;
         double rate = rateMeasured ? measured : config.getDefaultRatePerHour(judgeName);
         double hoursOneAtATime = rate > 0 ? pendingConsultations / rate : 0.0;
@@ -426,7 +545,8 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
                 maxConcurrent, hoursConcurrent);
     }
 
-    private Double measuredRatePerHour(List<String> evaluatorIds) {
+    private Double measuredRatePerHour(List<String> evaluatorIds,
+            EvaluationRuntimeIdentity runtimeIdentity) {
         if (timeline == null) {
             return null;
         }
@@ -437,7 +557,7 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
             if (evaluatorId == null) {
                 continue;
             }
-            List<Instant> recorded = timeline.recordedTimes(evaluatorId);
+            List<Instant> recorded = timeline.recordedTimes(evaluatorId, runtimeIdentity);
             if (recorded == null || recorded.size() < 2) {
                 continue;
             }

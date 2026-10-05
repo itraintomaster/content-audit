@@ -1,9 +1,12 @@
 package com.learney.contentaudit.auditdomain.nearduplicates;
 
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import java.util.LinkedHashSet;
 import java.util.Optional;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 /**
@@ -64,5 +67,71 @@ class PairStepEvaluator implements Evaluator {
         } catch (RuntimeException e) {
             return Optional.empty();
         }
+    }
+
+    /** The route changes process provenance, never the provider/model/effort that did the work. */
+    @Override
+    public EvaluationRuntimeIdentity runtimeIdentity() {
+        EvaluationRuntimeIdentity runtime = evaluator.runtimeIdentity();
+        return runtime != null ? runtime : EvaluationRuntimeIdentity.legacyUnknown();
+    }
+
+    /**
+     * Carries the judge's narrowly-scoped schema aliases through the route version. Near-duplicate
+     * route ids embed the first twelve characters of the judge version; replacing only that token
+     * keeps the previously examined route reachable without declaring unrelated process versions
+     * compatible.
+     */
+    @Override
+    public Set<String> compatibleEvaluatorVersions() {
+        Optional<String> current = evaluatorVersion();
+        if (current.isEmpty()) {
+            return Set.of();
+        }
+        LinkedHashSet<String> compatible = new LinkedHashSet<>();
+        compatible.add(current.get());
+        try {
+            Optional<String> wrappedCurrent = evaluator.evaluatorVersion();
+            Set<String> wrappedCompatible = evaluator.compatibleEvaluatorVersions();
+            if (wrappedCurrent == null || wrappedCurrent.isEmpty()
+                    || wrappedCompatible == null || wrappedCompatible.isEmpty()) {
+                return Set.copyOf(compatible);
+            }
+            String currentJudgeVersion = wrappedCurrent.get();
+            for (String alias : wrappedCompatible) {
+                String routeAlias = replaceEmbeddedJudgeVersion(
+                        current.get(), currentJudgeVersion, alias);
+                if (routeAlias != null) {
+                    compatible.add(routeAlias);
+                }
+            }
+        } catch (RuntimeException ignored) {
+            // Version discovery is provenance only; never make the evaluator unusable because of it.
+        }
+        return Set.copyOf(compatible);
+    }
+
+    private static String replaceEmbeddedJudgeVersion(
+            String routeVersion,
+            String currentJudgeVersion,
+            String compatibleJudgeVersion) {
+        if (compatibleJudgeVersion == null || compatibleJudgeVersion.isBlank()
+                || currentJudgeVersion == null || currentJudgeVersion.isBlank()) {
+            return null;
+        }
+        if (compatibleJudgeVersion.equals(currentJudgeVersion)) {
+            return routeVersion;
+        }
+        if (routeVersion.contains(currentJudgeVersion)) {
+            return routeVersion.replace(currentJudgeVersion, compatibleJudgeVersion);
+        }
+        int prefixLength = Math.min(12, Math.min(currentJudgeVersion.length(), compatibleJudgeVersion.length()));
+        if (prefixLength == 0) {
+            return null;
+        }
+        String currentPrefix = currentJudgeVersion.substring(0, prefixLength);
+        return routeVersion.contains(currentPrefix)
+                ? routeVersion.replace(currentPrefix, compatibleJudgeVersion.substring(0, prefixLength))
+                : null;
     }
 }

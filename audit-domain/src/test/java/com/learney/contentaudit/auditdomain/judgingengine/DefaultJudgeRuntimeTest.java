@@ -36,6 +36,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequest;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRequestMode;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolution;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
@@ -162,10 +163,17 @@ public class DefaultJudgeRuntimeTest {
 
     private static final class RecordedTimeline implements EvaluationTimeline {
         private final Map<String, List<Instant>> times = new HashMap<>();
+        private EvaluationRuntimeIdentity lastRequestedRuntime;
 
         @Override
         public List<Instant> recordedTimes(String evaluatorId) {
             return times.getOrDefault(evaluatorId, List.of());
+        }
+
+        @Override
+        public List<Instant> recordedTimes(String evaluatorId, EvaluationRuntimeIdentity runtimeIdentity) {
+            lastRequestedRuntime = runtimeIdentity;
+            return recordedTimes(evaluatorId);
         }
     }
 
@@ -217,17 +225,34 @@ public class DefaultJudgeRuntimeTest {
         private final String id;
         private final String version;
         private final Function<String, EvaluationOutcome> script;
+        private final EvaluationRuntimeIdentity runtimeIdentity;
+        private final Set<String> compatibleVersions;
         private final List<String> consulted = Collections.synchronizedList(new ArrayList<>());
 
         private ScriptedJudge(String id, String version, Function<String, EvaluationOutcome> script) {
+            this(id, version, script, EvaluationRuntimeIdentity.legacyUnknown(),
+                    version != null ? Set.of(version) : Set.of());
+        }
+
+        private ScriptedJudge(String id, String version, Function<String, EvaluationOutcome> script,
+                EvaluationRuntimeIdentity runtimeIdentity, Set<String> compatibleVersions) {
             this.id = id;
             this.version = version;
             this.script = script;
+            this.runtimeIdentity = runtimeIdentity;
+            this.compatibleVersions = compatibleVersions;
         }
 
         static ScriptedJudge healthy(String id, String version) {
             return new ScriptedJudge(id, version,
                     unitId -> new EvaluationEmitted(id + " " + version + " judged " + unitId));
+        }
+
+        static ScriptedJudge healthy(String id, String version, EvaluationRuntimeIdentity runtimeIdentity,
+                Set<String> compatibleVersions) {
+            return new ScriptedJudge(id, version,
+                    unitId -> new EvaluationEmitted(id + " " + version + " judged " + unitId),
+                    runtimeIdentity, compatibleVersions);
         }
 
         static ScriptedJudge unavailable(String id, String version, String reason) {
@@ -243,6 +268,16 @@ public class DefaultJudgeRuntimeTest {
         @Override
         public Optional<String> evaluatorVersion() {
             return Optional.ofNullable(version);
+        }
+
+        @Override
+        public EvaluationRuntimeIdentity runtimeIdentity() {
+            return runtimeIdentity;
+        }
+
+        @Override
+        public Set<String> compatibleEvaluatorVersions() {
+            return compatibleVersions;
         }
 
         @Override
@@ -502,6 +537,43 @@ public class DefaultJudgeRuntimeTest {
         assertEquals(0, openedNewer.getEffectivePolicy().getMaxNewEvaluations());
         assertEquals(List.of(EvaluationResolutionKind.PENDING), kinds(resolve(openedNewer, 0, requests("q-4"))));
         assertEquals(0, newerVersion.calls());
+    }
+
+    @Test
+    @DisplayName("should gate by exact runtime while accepting the append-only process-version alias")
+    @Tag("F-JEXAM-R003")
+    @Tag("F-JEXAM-R014")
+    void shouldGateByExactRuntimeWhileAcceptingTheAppendOnlyProcessVersionAlias() {
+        String currentVersion = "process-v2";
+        String runtimeCoupledAlias = "process-and-runtime-v1";
+        EvaluationRuntimeIdentity codex = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        ScriptedJudge judge = ScriptedJudge.healthy(CONSIGNA_JUDGE, currentVersion, codex,
+                Set.of(currentVersion, runtimeCoupledAlias));
+
+        approved(QUIZ_INSTRUCTION, currentVersion);
+        JudgeSessions blockedByLegacyApproval = runtime.open(QUIZ_INSTRUCTION, List.of(judge), onTheCourse(3));
+        assertEquals(JudgeExamStatus.NOT_TAKEN, blockedByLegacyApproval.getStanding().getStatus());
+        assertEquals(0, blockedByLegacyApproval.getEffectivePolicy().getMaxNewEvaluations(),
+                "a legacy approval never enables an explicit Codex runtime");
+
+        JudgeExamRecord codexAliasApproval = new JudgeExamRecord(QUIZ_INSTRUCTION, runtimeCoupledAlias,
+                JudgeExamStatus.APPROVED, 238, 0, List.of(), List.of(), true,
+                "db/english-course@2026-09-29", "medir-examen.py", Instant.parse("2026-10-05T10:00:00Z"));
+        codexAliasApproval.setRuntimeIdentity(codex);
+        registry.record(codexAliasApproval);
+
+        JudgeSessions enabledByAlias = runtime.open(QUIZ_INSTRUCTION, List.of(judge), onTheCourse(3));
+        assertEquals(JudgeExamStatus.APPROVED, enabledByAlias.getStanding().getStatus());
+        assertEquals(currentVersion, enabledByAlias.getStanding().getJudgeVersion(),
+                "the UI keeps naming the current process version");
+        assertEquals(codex, enabledByAlias.getStanding().getRuntimeIdentity());
+        assertEquals(Set.of(currentVersion, runtimeCoupledAlias),
+                enabledByAlias.getStanding().getCompatibleJudgeVersions());
+        assertEquals(3, enabledByAlias.getEffectivePolicy().getMaxNewEvaluations(),
+                "the approved exact runtime can consult without rewriting its historical exam record");
+        runtime.coverage(enabledByAlias, pendingTally(AuditTarget.QUIZ, 1));
+        assertEquals(codex, timeline.lastRequestedRuntime,
+                "the cost estimate samples the timeline of the selected runtime only");
     }
 
     @Test

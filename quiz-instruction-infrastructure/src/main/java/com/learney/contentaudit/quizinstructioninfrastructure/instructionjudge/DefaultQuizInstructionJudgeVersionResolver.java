@@ -37,18 +37,13 @@ public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDe
     public Optional<String> resolve(QuizInstructionJudgeConfig config,
             LlmProviderResolved provider) {
         String agentName = resolveAgentName(config);
-        String modelName = config != null ? config.getModelName() : null;
-        String reasoningEffort = config != null ? config.getReasoningEffort() : null;
-        String providerName = provider != null ? provider.getProviderName() : null;
-
         // Delegates to the very same locator DefaultAgentGraphRunner is built
         // with (see DefaultAgentGraphRunnerFactory), so the directory this
         // digest is computed over and the directory the runner actually loads
         // the graph from can never diverge.
         AgentDefinitionLocation location = agentDefinitionLocator.locate(agentName);
         if (location instanceof AgentDefinitionFound found) {
-            return Optional.of(digest(agentName, modelName, reasoningEffort, providerName,
-                    found.getDirectory()));
+            return Optional.of(digest(agentName, found.getDirectory(), null, null, null, false));
         }
 
         // AgentDefinitionUnresolved: no definition was accessible to derive
@@ -61,48 +56,56 @@ public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDe
         return Optional.empty();
     }
 
+    @Override
+    public Optional<String> legacyRuntimeCoupledVersion(QuizInstructionJudgeConfig config,
+            LlmProviderResolved provider) {
+        String agentName = resolveAgentName(config);
+        AgentDefinitionLocation location = agentDefinitionLocator.locate(agentName);
+        if (!(location instanceof AgentDefinitionFound found)) {
+            return Optional.empty();
+        }
+        return Optional.of(digest(agentName, found.getDirectory(),
+                config != null ? config.getModelName() : null,
+                config != null ? config.getReasoningEffort() : null,
+                provider != null ? provider.getProviderName() : null, true));
+    }
+
     private static String resolveAgentName(QuizInstructionJudgeConfig config) {
         String agentName = config != null ? config.getAgentName() : null;
         return (agentName != null && !agentName.isBlank()) ? agentName : DEFAULT_AGENT_NAME;
     }
 
     /**
-     * F-QINST-R010: the derived version depends only on the agent definition
-     * (its way of asking, i.e. every file under the located agent directory),
-     * the model name, reasoning effort and the effective provider — never on baseUrl, apiKey,
-     * temperature or timeoutSeconds, so retouching those never invalidates
-     * verdicts already recorded.
-     *
-     * <p>The provider belongs here because two queries to the same model through
-     * different routes are not the same way of asking. Since the version no
-     * longer invalidates anything (F-EVCOST-R001), including it costs no
-     * re-evaluations and makes the provenance reported by F-QINST-R005 tell the
-     * whole truth.
+     * F-QINST-R010: the current derived version depends only on the agent definition (its way of
+     * asking, i.e. every file under the located agent directory). Provider, exact model and
+     * reasoning effort form the separate runtime identity. When requested for migration, the same
+     * function can reproduce the former runtime-coupled digest; that value is only a schema alias
+     * for the exact runtime and never general process compatibility.
      */
-    private static String digest(String agentName, String modelName, String reasoningEffort,
-            String providerName, Path agentDir) {
+    private static String digest(String agentName, Path agentDir, String modelName,
+            String reasoningEffort, String providerName, boolean includeLegacyRuntime) {
         try {
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
             sha256.update("agent:".getBytes(StandardCharsets.UTF_8));
             sha256.update(agentName.getBytes(StandardCharsets.UTF_8));
             sha256.update((byte) '\n');
-            sha256.update("model:".getBytes(StandardCharsets.UTF_8));
-            if (modelName != null) {
-                sha256.update(modelName.getBytes(StandardCharsets.UTF_8));
-            }
-            sha256.update((byte) '\n');
-            // Backward compatibility: configurations recorded before reasoning effort existed
-            // keep their exact digest. Once effort is explicit, it becomes part of provenance.
-            if (reasoningEffort != null && !reasoningEffort.isBlank()) {
-                sha256.update("reasoning:".getBytes(StandardCharsets.UTF_8));
-                sha256.update(reasoningEffort.getBytes(StandardCharsets.UTF_8));
+            if (includeLegacyRuntime) {
+                sha256.update("model:".getBytes(StandardCharsets.UTF_8));
+                if (modelName != null) {
+                    sha256.update(modelName.getBytes(StandardCharsets.UTF_8));
+                }
+                sha256.update((byte) '\n');
+                if (reasoningEffort != null && !reasoningEffort.isBlank()) {
+                    sha256.update("reasoning:".getBytes(StandardCharsets.UTF_8));
+                    sha256.update(reasoningEffort.getBytes(StandardCharsets.UTF_8));
+                    sha256.update((byte) '\n');
+                }
+                sha256.update("provider:".getBytes(StandardCharsets.UTF_8));
+                if (providerName != null) {
+                    sha256.update(providerName.getBytes(StandardCharsets.UTF_8));
+                }
                 sha256.update((byte) '\n');
             }
-            sha256.update("provider:".getBytes(StandardCharsets.UTF_8));
-            if (providerName != null) {
-                sha256.update(providerName.getBytes(StandardCharsets.UTF_8));
-            }
-            sha256.update((byte) '\n');
 
             for (Path file : sortedFilesUnder(agentDir)) {
                 sha256.update(agentDir.relativize(file).toString().getBytes(StandardCharsets.UTF_8));
@@ -111,9 +114,13 @@ public DefaultQuizInstructionJudgeVersionResolver(AgentDefinitionLocator agentDe
 
             return HexFormat.of().formatHex(sha256.digest());
         } catch (NoSuchAlgorithmException | IOException e) {
-            String fallback = "agent:" + agentName + "|model:" + modelName;
-            if (reasoningEffort != null && !reasoningEffort.isBlank()) {
-                fallback += "|reasoning:" + reasoningEffort;
+            String fallback = "agent:" + agentName;
+            if (includeLegacyRuntime) {
+                fallback += "|model:" + modelName;
+                if (reasoningEffort != null && !reasoningEffort.isBlank()) {
+                    fallback += "|reasoning:" + reasoningEffort;
+                }
+                fallback += "|provider:" + providerName;
             }
             return HexFormat.of().formatHex(
                     fallback.getBytes(StandardCharsets.UTF_8));

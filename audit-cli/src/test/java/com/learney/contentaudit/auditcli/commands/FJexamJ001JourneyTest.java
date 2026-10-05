@@ -211,7 +211,7 @@ public class FJexamJ001JourneyTest {
             assertEquals(3, lines.size(), "R001: one verdict per exercise of the file");
             assertEquals(Set.of("q-1", "q-2", "q-3"), Set.copyOf(judge.asked), "R001: the exercises of the file");
             assertEquals(1, courseRecords().size(), "R002: the exam leaves the course's ledger as it was");
-            assertTrue(taken.out().contains("Rindió el examen completo"), taken.out());
+            assertTrue(taken.out().contains("Estado del examen: RENDIDO completo"), taken.out());
             return new ObjectMapper().readTree(lines.get(0)).get("version").asText();
         }
 
