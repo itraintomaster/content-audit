@@ -22,7 +22,7 @@ import javax.annotation.processing.Generated;
 
 /**
  * F-JEXAM-R001: the version of a new judge is its way of asking -- every file of its located agent
- * definition --, its model and its provider, exactly as the quiz-instruction judge derives its own
+ * definition --, its model, reasoning effort and provider, exactly as the quiz-instruction judge derives its own
  * (same digest), with the agent named by the spec. A changed judge is a new version and takes the
  * exam again; retouching the address, the credential, the temperature or the timeout is not.
  */
@@ -45,13 +45,14 @@ class DefaultAgentJudgeVersionResolver implements AgentJudgeVersionResolver {
             return Optional.empty();
         }
         String modelName = config != null ? config.getModelName() : null;
+        String reasoningEffort = config != null ? config.getReasoningEffort() : null;
         String providerName = provider != null ? provider.getProviderName() : null;
 
         // The same locator the runner loads the graph with, so the directory digested here and the
         // one that runs can never diverge.
         AgentDefinitionLocation location = agentDefinitionLocator.locate(agentName);
         if (location instanceof AgentDefinitionFound found && found.getDirectory() != null) {
-            return digest(agentName, modelName, providerName, found.getDirectory());
+            return digest(agentName, modelName, reasoningEffort, providerName, found.getDirectory());
         }
 
         // F-JEXAM-R003 / F-QINST-R010 inv. 3: without a definition there is nothing to derive from,
@@ -60,8 +61,8 @@ class DefaultAgentJudgeVersionResolver implements AgentJudgeVersionResolver {
         return Optional.empty();
     }
 
-    private static Optional<String> digest(String agentName, String modelName, String providerName,
-            Path agentDir) {
+    private static Optional<String> digest(String agentName, String modelName, String reasoningEffort,
+            String providerName, Path agentDir) {
         try {
             MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
             sha256.update("agent:".getBytes(StandardCharsets.UTF_8));
@@ -72,6 +73,13 @@ class DefaultAgentJudgeVersionResolver implements AgentJudgeVersionResolver {
                 sha256.update(modelName.getBytes(StandardCharsets.UTF_8));
             }
             sha256.update((byte) '\n');
+            // Backward compatibility: configurations recorded before reasoning effort existed
+            // keep their exact digest. Once effort is explicit, it becomes part of provenance.
+            if (reasoningEffort != null && !reasoningEffort.isBlank()) {
+                sha256.update("reasoning:".getBytes(StandardCharsets.UTF_8));
+                sha256.update(reasoningEffort.getBytes(StandardCharsets.UTF_8));
+                sha256.update((byte) '\n');
+            }
             sha256.update("provider:".getBytes(StandardCharsets.UTF_8));
             if (providerName != null) {
                 sha256.update(providerName.getBytes(StandardCharsets.UTF_8));

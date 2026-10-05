@@ -22,11 +22,19 @@ public class QuizInstructionJudgeConfig {
 
     private String providerName;
 
+    private String reasoningEffort;
+
     public QuizInstructionJudgeConfig() {
     }
 
     public QuizInstructionJudgeConfig(String baseUrl, String apiKey, String modelName,
             Double temperature, Integer timeoutSeconds, String agentName, String providerName) {
+        this(baseUrl, apiKey, modelName, temperature, timeoutSeconds, agentName, providerName, null);
+    }
+
+    public QuizInstructionJudgeConfig(String baseUrl, String apiKey, String modelName,
+            Double temperature, Integer timeoutSeconds, String agentName, String providerName,
+            String reasoningEffort) {
         this.baseUrl = baseUrl;
         this.apiKey = apiKey;
         this.modelName = modelName;
@@ -34,6 +42,7 @@ public class QuizInstructionJudgeConfig {
         this.timeoutSeconds = timeoutSeconds;
         this.agentName = agentName;
         this.providerName = providerName;
+        this.reasoningEffort = reasoningEffort;
     }
 
     public String getBaseUrl() {
@@ -92,6 +101,14 @@ public class QuizInstructionJudgeConfig {
         this.providerName = providerName;
     }
 
+    public String getReasoningEffort() {
+        return this.reasoningEffort;
+    }
+
+    public void setReasoningEffort(String reasoningEffort) {
+        this.reasoningEffort = reasoningEffort;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -103,11 +120,13 @@ public class QuizInstructionJudgeConfig {
                     && Objects.equals(this.temperature, that.temperature)
                     && Objects.equals(this.timeoutSeconds, that.timeoutSeconds)
                     && Objects.equals(this.agentName, that.agentName)
-                    && Objects.equals(this.providerName, that.providerName);
+                    && Objects.equals(this.providerName, that.providerName)
+                    && Objects.equals(this.reasoningEffort, that.reasoningEffort);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(baseUrl, apiKey, modelName, temperature, timeoutSeconds, agentName, providerName);
+        return Objects.hash(baseUrl, apiKey, modelName, temperature, timeoutSeconds, agentName,
+                providerName, reasoningEffort);
     }
 }

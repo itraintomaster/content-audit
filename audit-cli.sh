@@ -5,6 +5,35 @@ PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
 AUDIT_CLI_CLASSES="$PROJECT_DIR/audit-cli/target/classes"
 RUNTIME_CLASSPATH_FILE="$PROJECT_DIR/audit-cli/target/runtime-classpath.txt"
 CLASSPATH_REFRESHER="$PROJECT_DIR/scripts/refresh-audit-cli-classpath.sh"
+CODEX_RUNTIME_DIR="$PROJECT_DIR/scripts/codex-runtime"
+CODEX_WRAPPER="$CODEX_RUNTIME_DIR/codex"
+
+resolve_real_codex() {
+    local path_entry candidate candidate_dir
+    local -a path_entries
+    IFS=: read -r -a path_entries <<< "${PATH:-}"
+    for path_entry in "${path_entries[@]}"; do
+        candidate="${path_entry:-.}/codex"
+        if [[ -x "$candidate" ]]; then
+            candidate_dir="$(cd -- "$(dirname -- "$candidate")" && pwd -P)"
+            candidate="$candidate_dir/$(basename -- "$candidate")"
+            if [[ "$candidate" != "$CODEX_WRAPPER" ]]; then
+                printf '%s' "$candidate"
+                return 0
+            fi
+        fi
+    done
+    return 1
+}
+
+# sentinel-agents shells out to a binary literally named `codex` and currently has no
+# reasoning-effort input. Resolve the user's real CLI before shadowing that name with our thin
+# adapter. Non-exec Codex commands remain byte-for-byte pass-through.
+REAL_CODEX_BINARY="$(resolve_real_codex || true)"
+if [[ -n "$REAL_CODEX_BINARY" ]]; then
+    export CONTENT_AUDIT_CODEX_REAL_BINARY="$REAL_CODEX_BINARY"
+fi
+export PATH="$CODEX_RUNTIME_DIR:$PATH"
 
 needs_classpath_refresh() {
     [[ ! -s "$RUNTIME_CLASSPATH_FILE" ]] && return 0

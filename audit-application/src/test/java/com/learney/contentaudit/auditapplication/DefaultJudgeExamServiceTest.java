@@ -151,6 +151,7 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should record TAKEN for the version when every exercise of the file got a verdict, and not when one stayed without verdict or is not in the photo")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Tag("F-JEXAM-R014")
     public void shouldRecordTAKENForTheVersionWhenEveryExerciseOfTheFileGotAVerdictAndNotWhenOneStayedWithoutVerdictOrIsNotInThePhoto(
             ) {
         // An id that is not in the photo: the version does not take the exam.
@@ -171,12 +172,16 @@ public class DefaultJudgeExamServiceTest {
         // Every exercise with its verdict: TAKEN for the version, the condition to accept a measurement.
         Bench whole = new Bench(workdir.resolve("whole"));
         JudgeExamTaken complete = whole.service(whole.runner()).take(new JudgeExamRequest(QUIZ_INSTRUCTION, PHOTO,
-                new LinkedHashSet<>(List.of(VERDURAS, OK_1)), 10, null));
+                new LinkedHashSet<>(List.of(VERDURAS, OK_1)), 10, null,
+                "codex-cli", "gpt-6.1-sol", "medium"));
         assertTrue(complete.isRecordedAsTaken());
         JudgeExamRecord taken = whole.registry.latest(QUIZ_INSTRUCTION, "v-consigna").orElseThrow();
         assertEquals(JudgeExamStatus.TAKEN, taken.getStatus(), "R001: the version is recorded as having taken it");
         assertEquals(2, taken.getCasesJudged());
         assertEquals(0, taken.getCasesNotJudged());
+        assertEquals("codex-cli", taken.getProviderName(), "R014: effective provider stays with TAKEN");
+        assertEquals("gpt-6.1-sol", taken.getModelName(), "R014: exact model stays with TAKEN");
+        assertEquals("medium", taken.getReasoningEffort(), "R014: explicit effort stays with TAKEN");
     }
 
     @Test
@@ -249,15 +254,16 @@ public class DefaultJudgeExamServiceTest {
     @DisplayName("should record the result measured outside for a version that took the whole exam and make it the standing of that version")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Tag("F-JEXAM-R014")
     public void shouldRecordTheResultMeasuredOutsideForAVersionThatTookTheWholeExamAndMakeItTheStandingOfThatVersion(
             ) {
         Bench bench = new Bench(workdir);
         DefaultJudgeExamService service = bench.service(bench.runner());
         service.take(new JudgeExamRequest(QUIZ_INSTRUCTION, PHOTO, new LinkedHashSet<>(List.of(VERDURAS, OK_1)), 10,
-                null));
+                null, "codex-cli", "gpt-6.1-sol", "medium"));
         JudgeExamRecord measured = new JudgeExamRecord(QUIZ_INSTRUCTION, "v-consigna", JudgeExamStatus.APPROVED, 2, 0,
                 List.of(new JudgeExamGroupResult("a", 1, 1, 0), new JudgeExamGroupResult("c", 1, 1, 0)), List.of(), true,
-                "2026-09-29", "orquestador", null);
+                "2026-09-29", "orquestador", "claude-cli", "modelo-falsificado", "max", null);
 
         JudgeExamStanding standing = service.record(measured);
 
@@ -267,6 +273,10 @@ public class DefaultJudgeExamServiceTest {
         assertEquals(JudgeExamStatus.APPROVED, kept.getStatus());
         assertEquals(measured.getGroups(), kept.getGroups(), "R001: with its groups, as measured outside");
         assertEquals("orquestador", kept.getMeasuredBy());
+        assertEquals("codex-cli", kept.getProviderName(), "R014: inherited from TAKEN, not the measured file");
+        assertEquals("gpt-6.1-sol", kept.getModelName(), "R014: measured input cannot forge the model");
+        assertEquals("medium", kept.getReasoningEffort(), "R014: measured input cannot forge the effort");
+        assertEquals(PHOTO.toString(), kept.getPhoto(), "R014: measured input cannot forge the examined photo");
     }
 
     @Test

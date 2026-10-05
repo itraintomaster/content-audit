@@ -258,6 +258,33 @@ public class DefaultLagenConfigResolverTest {
     }
 
     @Test
+    @DisplayName("Codex uses the shared model and otherwise defaults to GPT-6.1 Sol")
+    void codexUsesSharedModelThenItsDefault() {
+        Map<String, String> sharedEnv = fullEnv();
+        sharedEnv.remove(KEY_PROVIDER);
+        sharedEnv.remove(KEY_MODEL);
+        sharedEnv.put(DefaultLagenConfigResolver.KEY_SHARED_MODEL, "shared-model");
+
+        Map<String, String> defaultEnv = new HashMap<>(sharedEnv);
+        defaultEnv.remove(DefaultLagenConfigResolver.KEY_SHARED_MODEL);
+
+        assertEquals("shared-model", resolver.resolve(sharedEnv).getModelId());
+        assertEquals("gpt-6.1-sol", resolver.resolve(defaultEnv).getModelId());
+    }
+
+    @Test
+    @DisplayName("a non-Codex provider still requires its own specific or shared model")
+    void nonCodexProviderStillRequiresAModel() {
+        Map<String, String> env = fullEnv();
+        env.remove(KEY_MODEL);
+
+        InvalidLagenConfigException thrown = assertThrows(
+                InvalidLagenConfigException.class, () -> resolver.resolve(env));
+
+        assertEquals(KEY_MODEL, thrown.getKey());
+    }
+
+    @Test
     @DisplayName("should resolve maxEvalRetries to the default of 3 when no eval-retries env var is present")
     @Tag("FEAT-LASAG")
     @Tag("F-LASAG-R011")

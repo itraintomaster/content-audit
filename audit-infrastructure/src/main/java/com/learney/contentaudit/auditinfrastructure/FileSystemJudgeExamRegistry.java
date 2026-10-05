@@ -136,6 +136,9 @@ public class FileSystemJudgeExamRegistry implements JudgeExamRegistry {
         node.put("goalMet", record.isGoalMet());
         node.put("photo", record.getPhoto());
         node.put("measuredBy", record.getMeasuredBy());
+        node.put("providerName", record.getProviderName());
+        node.put("modelName", record.getModelName());
+        node.put("reasoningEffort", record.getReasoningEffort());
         node.put("recordedAt", record.getRecordedAt() != null ? record.getRecordedAt().toString() : null);
         try {
             return MAPPER.writeValueAsString(node);
@@ -166,6 +169,7 @@ public class FileSystemJudgeExamRegistry implements JudgeExamRegistry {
                     status != null ? JudgeExamStatus.valueOf(status) : null,
                     node.path("casesJudged").asInt(), node.path("casesNotJudged").asInt(), groups, mismatched,
                     node.path("goalMet").asBoolean(false), text(node, "photo"), text(node, "measuredBy"),
+                    text(node, "providerName"), text(node, "modelName"), text(node, "reasoningEffort"),
                     recordedAt != null ? Instant.parse(recordedAt) : null);
         } catch (IOException | RuntimeException e) {
             return null;

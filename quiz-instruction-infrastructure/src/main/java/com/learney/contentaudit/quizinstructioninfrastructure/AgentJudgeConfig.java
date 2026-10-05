@@ -20,17 +20,25 @@ public class AgentJudgeConfig {
 
     private Integer timeoutSeconds;
 
+    private String reasoningEffort;
+
     public AgentJudgeConfig() {
     }
 
     public AgentJudgeConfig(String providerName, String baseUrl, String apiKey, String modelName,
             Double temperature, Integer timeoutSeconds) {
+        this(providerName, baseUrl, apiKey, modelName, temperature, timeoutSeconds, null);
+    }
+
+    public AgentJudgeConfig(String providerName, String baseUrl, String apiKey, String modelName,
+            Double temperature, Integer timeoutSeconds, String reasoningEffort) {
         this.providerName = providerName;
         this.baseUrl = baseUrl;
         this.apiKey = apiKey;
         this.modelName = modelName;
         this.temperature = temperature;
         this.timeoutSeconds = timeoutSeconds;
+        this.reasoningEffort = reasoningEffort;
     }
 
     public String getProviderName() {
@@ -81,6 +89,14 @@ public class AgentJudgeConfig {
         this.timeoutSeconds = timeoutSeconds;
     }
 
+    public String getReasoningEffort() {
+        return this.reasoningEffort;
+    }
+
+    public void setReasoningEffort(String reasoningEffort) {
+        this.reasoningEffort = reasoningEffort;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,11 +107,13 @@ public class AgentJudgeConfig {
                     && Objects.equals(this.apiKey, that.apiKey)
                     && Objects.equals(this.modelName, that.modelName)
                     && Objects.equals(this.temperature, that.temperature)
-                    && Objects.equals(this.timeoutSeconds, that.timeoutSeconds);
+                    && Objects.equals(this.timeoutSeconds, that.timeoutSeconds)
+                    && Objects.equals(this.reasoningEffort, that.reasoningEffort);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(providerName, baseUrl, apiKey, modelName, temperature, timeoutSeconds);
+        return Objects.hash(providerName, baseUrl, apiKey, modelName, temperature, timeoutSeconds,
+                reasoningEffort);
     }
 }

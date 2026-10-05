@@ -1,7 +1,6 @@
 package com.learney.contentaudit.auditcli.bootstrap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLocalSessionProviderCatalog;
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeConfig;
@@ -20,7 +19,8 @@ class DefaultAgentJudgeConfigResolverTest {
         AgentJudgeConfig config = resolver.resolve(Map.of());
 
         assertEquals("codex-cli", config.getProviderName());
-        assertNull(config.getModelName(), "the model remains selectable by the runtime default");
+        assertEquals("gpt-6.1-sol", config.getModelName());
+        assertEquals("medium", config.getReasoningEffort());
     }
 
     @Test
@@ -41,5 +41,37 @@ class DefaultAgentJudgeConfigResolverTest {
 
         assertEquals("claude-cli", config.getProviderName());
         assertEquals("claude-sonnet-4-5", config.getModelName());
+    }
+
+    @Test
+    @DisplayName("uses the judge model before the shared model and keeps reasoning selectable")
+    void usesSpecificModelBeforeSharedModel() {
+        AgentJudgeConfig config = resolver.resolve(Map.of(
+                DefaultAgentJudgeConfigResolver.KEY_MODEL, "judge-model",
+                DefaultAgentJudgeConfigResolver.KEY_SHARED_MODEL, "shared-model",
+                DefaultAgentJudgeConfigResolver.KEY_REASONING_EFFORT, " high "));
+
+        assertEquals("judge-model", config.getModelName());
+        assertEquals("high", config.getReasoningEffort());
+    }
+
+    @Test
+    @DisplayName("uses the shared model before the Codex default")
+    void usesSharedModelBeforeCodexDefault() {
+        AgentJudgeConfig config = resolver.resolve(Map.of(
+                DefaultAgentJudgeConfigResolver.KEY_SHARED_MODEL, "shared-model"));
+
+        assertEquals("shared-model", config.getModelName());
+    }
+
+    @Test
+    @DisplayName("does not invent a Codex model or reasoning default for another provider")
+    void doesNotInventCodexDefaultsForAnotherProvider() {
+        AgentJudgeConfig config = resolver.resolve(Map.of(
+                DefaultAgentJudgeConfigResolver.KEY_PROVIDER, "claude-cli"));
+
+        assertEquals("claude-cli", config.getProviderName());
+        org.junit.jupiter.api.Assertions.assertNull(config.getModelName());
+        org.junit.jupiter.api.Assertions.assertNull(config.getReasoningEffort());
     }
 }

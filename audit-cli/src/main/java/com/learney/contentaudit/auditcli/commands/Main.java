@@ -1304,8 +1304,24 @@ class Main {
 
         // exam -- hook C-18 (FEAT-JEXAM, package C): exam run / record / status, the fixed exam of the
         // judges. Without --budget, exam run is a rehearsal that pays nothing (F-JEXAM-R010).
-
-        cmd.addSubcommand("exam", new picocli.CommandLine(new ExamCmd(judgeExamService)));   // C · FEAT-JEXAM
+        // F-JEXAM-R014: feed the command the already-resolved configs; it records the effective
+        // provider/model/effort without re-reading environment variables or inventing defaults.
+        ExamCmd.ExamProvenance quizInstructionExamProvenance = new ExamCmd.ExamProvenance(
+                quizInstructionJudgeConfig.getProviderName(), quizInstructionJudgeConfig.getModelName(),
+                quizInstructionJudgeConfig.getReasoningEffort());
+        ExamCmd.ExamProvenance agentExamProvenance = new ExamCmd.ExamProvenance(
+                agentJudgeConfig.getProviderName(), agentJudgeConfig.getModelName(),
+                agentJudgeConfig.getReasoningEffort());
+        Map<String, ExamCmd.ExamProvenance> examProvenance = Map.ofEntries(
+                Map.entry("quiz-instruction", quizInstructionExamProvenance),
+                Map.entry("translation-sense", agentExamProvenance),
+                Map.entry("single-answer", agentExamProvenance),
+                Map.entry("mini-theory", agentExamProvenance),
+                Map.entry("multiple-choice-validity", agentExamProvenance),
+                Map.entry("naturalness", agentExamProvenance),
+                Map.entry("near-duplicates", agentExamProvenance));
+        cmd.addSubcommand("exam", new picocli.CommandLine(
+                new ExamCmd(judgeExamService, examProvenance)));   // C · FEAT-JEXAM
 
         // FEAT-RONDA2 (hooks F-06 and E-09): the commands of packages F and E, each registered by
         // its package with its picocli wrapper: set-baseline, save-projection, compare, get-goals

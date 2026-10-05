@@ -20,16 +20,32 @@ public class JudgeExamRequest {
 
     private Integer maxConcurrentEvaluations;
 
+    private String providerName;
+
+    private String modelName;
+
+    private String reasoningEffort;
+
     public JudgeExamRequest() {
     }
 
     public JudgeExamRequest(String judgeName, Path photoCourse, Set<String> caseIds,
             int maxNewEvaluations, Integer maxConcurrentEvaluations) {
+        this(judgeName, photoCourse, caseIds, maxNewEvaluations, maxConcurrentEvaluations,
+                null, null, null);
+    }
+
+    public JudgeExamRequest(String judgeName, Path photoCourse, Set<String> caseIds,
+            int maxNewEvaluations, Integer maxConcurrentEvaluations, String providerName,
+            String modelName, String reasoningEffort) {
         this.judgeName = judgeName;
         this.photoCourse = photoCourse;
         this.caseIds = caseIds;
         this.maxNewEvaluations = maxNewEvaluations;
         this.maxConcurrentEvaluations = maxConcurrentEvaluations;
+        this.providerName = providerName;
+        this.modelName = modelName;
+        this.reasoningEffort = reasoningEffort;
     }
 
     public String getJudgeName() {
@@ -72,6 +88,30 @@ public class JudgeExamRequest {
         this.maxConcurrentEvaluations = maxConcurrentEvaluations;
     }
 
+    public String getProviderName() {
+        return this.providerName;
+    }
+
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
+    }
+
+    public String getModelName() {
+        return this.modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+    public String getReasoningEffort() {
+        return this.reasoningEffort;
+    }
+
+    public void setReasoningEffort(String reasoningEffort) {
+        this.reasoningEffort = reasoningEffort;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,11 +121,15 @@ public class JudgeExamRequest {
                     && Objects.equals(this.photoCourse, that.photoCourse)
                     && Objects.equals(this.caseIds, that.caseIds)
                     && Objects.equals(this.maxNewEvaluations, that.maxNewEvaluations)
-                    && Objects.equals(this.maxConcurrentEvaluations, that.maxConcurrentEvaluations);
+                    && Objects.equals(this.maxConcurrentEvaluations, that.maxConcurrentEvaluations)
+                    && Objects.equals(this.providerName, that.providerName)
+                    && Objects.equals(this.modelName, that.modelName)
+                    && Objects.equals(this.reasoningEffort, that.reasoningEffort);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(judgeName, photoCourse, caseIds, maxNewEvaluations, maxConcurrentEvaluations);
+        return Objects.hash(judgeName, photoCourse, caseIds, maxNewEvaluations,
+                maxConcurrentEvaluations, providerName, modelName, reasoningEffort);
     }
 }

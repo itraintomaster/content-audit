@@ -94,7 +94,8 @@ public class DefaultJudgeExamService implements JudgeExamService {
             // The condition for accepting a measured result: nobody can approve a version that did
             // not judge every exercise of the file. A version already recorded keeps its standing.
             examRegistry.record(new JudgeExamRecord(judgeName, judgeVersion, JudgeExamStatus.TAKEN, judged, 0,
-                    List.of(), List.of(), false, photoOf(request), null, Instant.now()));
+                    List.of(), List.of(), false, photoOf(request), null, request.getProviderName(),
+                    request.getModelName(), request.getReasoningEffort(), Instant.now()));
         }
         return new JudgeExamTaken(judgeName, judgeVersion, verdicts, coverage, tookItAll);
     }
@@ -114,21 +115,23 @@ public class DefaultJudgeExamService implements JudgeExamService {
         }
         String judgeName = measured.getJudgeName();
         String judgeVersion = measured.getJudgeVersion();
-        boolean took = false;
+        JudgeExamRecord taken = null;
         for (JudgeExamRecord earlier : examRegistry.history(judgeName)) {
             if (judgeVersion.equals(earlier.getJudgeVersion()) && earlier.getStatus() == JudgeExamStatus.TAKEN) {
-                took = true;
-                break;
+                taken = earlier;
             }
         }
-        if (!took) {
+        if (taken == null) {
             throw new JudgeExamNotTakenException(judgeName, judgeVersion);
         }
+        // F-JEXAM-R014: the measured file is intentionally untrusted for provenance. The
+        // provider/model/effort belong to the run that actually took this version's exam.
         examRegistry.record(new JudgeExamRecord(judgeName, judgeVersion, measured.getStatus(),
                 measured.getCasesJudged(), measured.getCasesNotJudged(),
                 measured.getGroups() != null ? new ArrayList<>(measured.getGroups()) : List.of(),
                 measured.getMismatchedCaseIds() != null ? new ArrayList<>(measured.getMismatchedCaseIds()) : List.of(),
-                measured.isGoalMet(), measured.getPhoto(), measured.getMeasuredBy(),
+                measured.isGoalMet(), taken.getPhoto(), measured.getMeasuredBy(),
+                taken.getProviderName(), taken.getModelName(), taken.getReasoningEffort(),
                 measured.getRecordedAt() != null ? measured.getRecordedAt() : Instant.now()));
         return runtime.standing(judgeName, judgeVersion);
     }

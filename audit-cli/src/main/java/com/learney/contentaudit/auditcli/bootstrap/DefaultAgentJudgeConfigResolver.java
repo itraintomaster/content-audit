@@ -40,19 +40,32 @@ public class DefaultAgentJudgeConfigResolver implements AgentJudgeConfigResolver
     static final String KEY_TEMPERATURE = "CONTENT_AUDIT_JUDGE_TEMPERATURE";
     static final String KEY_TIMEOUT_SECONDS = "CONTENT_AUDIT_JUDGE_TIMEOUT_SECONDS";
 
+    static final String KEY_SHARED_MODEL = ModelRuntimeSelection.KEY_MODEL;
+    static final String KEY_REASONING_EFFORT = ModelRuntimeSelection.KEY_REASONING_EFFORT;
+
     static final String DEFAULT_PROVIDER = "codex-cli";
 
     @Override
     public AgentJudgeConfig resolve(Map<String, String> env) {
         Map<String, String> source = env != null ? env : Map.of();
         String provider = nonBlank(source.get(KEY_PROVIDER));
+        String effectiveProvider = canonicalProvider(provider != null
+                ? provider
+                : localSessionProviderCatalog.defaultProfile().getProviderName());
         return new AgentJudgeConfig(
-                provider != null ? provider : localSessionProviderCatalog.defaultProfile().getProviderName(),
+                effectiveProvider,
                 nonBlank(source.get(KEY_BASE_URL)),
                 nonBlank(source.get(KEY_API_KEY)),
-                nonBlank(source.get(KEY_MODEL)),
+                ModelRuntimeSelection.model(source, KEY_MODEL, effectiveProvider),
                 parseDouble(source.get(KEY_TEMPERATURE)),
-                parseInt(source.get(KEY_TIMEOUT_SECONDS)));
+                parseInt(source.get(KEY_TIMEOUT_SECONDS)),
+                ModelRuntimeSelection.reasoningEffort(source, effectiveProvider));
+    }
+
+    private String canonicalProvider(String provider) {
+        return localSessionProviderCatalog.find(provider)
+                .map(profile -> profile.getProviderName())
+                .orElse(provider);
     }
 
     private static String nonBlank(String value) {

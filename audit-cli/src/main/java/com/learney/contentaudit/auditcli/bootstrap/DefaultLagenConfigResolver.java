@@ -30,6 +30,7 @@ public DefaultLagenConfigResolver(LlmProviderResolver llmProviderResolver) {
     static final String KEY_MAX_TOKENS = "CONTENT_AUDIT_LAGEN_MAX_TOKENS";
     static final String KEY_TIMEOUT = "CONTENT_AUDIT_LAGEN_TIMEOUT";
     static final String KEY_MAX_EVAL_RETRIES = "CONTENT_AUDIT_LAGEN_MAX_EVAL_RETRIES";
+    static final String KEY_SHARED_MODEL = ModelRuntimeSelection.KEY_MODEL;
 
     private static final int DEFAULT_MAX_EVAL_RETRIES = 3;
 
@@ -70,7 +71,12 @@ public DefaultLagenConfigResolver(LlmProviderResolver llmProviderResolver) {
         config.setProviderName(resolvedProvider.getProviderName());
         config.setEndpoint(endpointValue != null && !endpointValue.isBlank() ? endpointValue.trim() : null);
 
-        config.setModelId(requireString(env, KEY_MODEL));
+        String model = ModelRuntimeSelection.model(env, KEY_MODEL, resolvedProvider.getProviderName());
+        if (model == null) {
+            throw new InvalidLagenConfigException(KEY_MODEL,
+                    "required environment variable is missing or empty");
+        }
+        config.setModelId(model);
 
         // Optional fields
         String apiKey = env.get(KEY_API_KEY);
@@ -107,14 +113,6 @@ public DefaultLagenConfigResolver(LlmProviderResolver llmProviderResolver) {
         }
 
         return config;
-    }
-
-    private static String requireString(Map<String, String> env, String key) {
-        String value = env.get(key);
-        if (value == null || value.isBlank()) {
-            throw new InvalidLagenConfigException(key, "required environment variable is missing or empty");
-        }
-        return value.trim();
     }
 
     private static double parseDouble(String key, String value) {

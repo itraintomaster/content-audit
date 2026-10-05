@@ -20,10 +20,12 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import javax.annotation.processing.Generated;
@@ -69,6 +71,8 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
 
     private final JudgeExamService examService;
 
+    private final Map<String, ExamProvenance> provenanceByJudge;
+
     @Parameters(index = "0", description = "run, record or status")
     private String action;
 
@@ -92,7 +96,14 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
     private String verdictsOut;
 
     public ExamCmd(JudgeExamService examService) {
+        this(examService, Map.of());
+    }
+
+    ExamCmd(JudgeExamService examService, Map<String, ExamProvenance> provenanceByJudge) {
         this.examService = examService;
+        this.provenanceByJudge = provenanceByJudge != null
+                ? Map.copyOf(provenanceByJudge)
+                : Map.of();
     }
 
     @Override
@@ -128,6 +139,11 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             System.err.println("Error: --concurrency needs a number of consultations at a time, 1 or more");
             return 2;
         }
+        Path output = Path.of(verdictsOut);
+        if (Files.exists(output)) {
+            System.err.println("Error: the verdicts file already exists and will not be overwritten: " + verdictsOut);
+            return 2;
+        }
         Set<String> caseIds;
         try {
             caseIds = readCases(Path.of(casesFile));
@@ -137,16 +153,18 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         }
 
         JudgeExamTaken taken;
+        ExamProvenance provenance = provenanceByJudge.getOrDefault(judgeName, ExamProvenance.NONE);
         try {
             taken = examService.take(new JudgeExamRequest(judgeName, Path.of(photoCourse), caseIds,
-                    budget != null ? budget : 0, concurrency));
+                    budget != null ? budget : 0, concurrency, provenance.providerName(),
+                    provenance.modelName(), provenance.reasoningEffort()));
         } catch (IllegalArgumentException e) {
             System.err.println("Error: " + e.getMessage());
             return 1;
         }
 
         try {
-            writeVerdicts(Path.of(verdictsOut), taken.getVerdicts());
+            writeVerdicts(output, taken.getVerdicts(), provenance);
         } catch (IOException e) {
             System.err.println("Error: the verdicts cannot be written to " + verdictsOut + ": " + e.getMessage());
             return 1;
@@ -201,15 +219,37 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             StringBuilder line = new StringBuilder();
             line.append(record.getRecordedAt() != null ? record.getRecordedAt().toString() : "(sin fecha)")
                     .append("  ").append(record.getJudgeVersion())
-                    .append("  ").append(spanish(record.getStatus()))
-                    .append("  juzgados ").append(record.getCasesJudged());
+                    .append("  ").append(provenanceLabel(record))
+                    .append("  ").append(spanish(record.getStatus()));
+            if (!isBlank(record.getPhoto())) {
+                line.append("  foto ").append(record.getPhoto());
+            }
+            line.append("  juzgados ").append(record.getCasesJudged());
             if (record.getCasesNotJudged() > 0) {
                 line.append(", sin juzgar ").append(record.getCasesNotJudged());
+            }
+            if (record.getStatus() == JudgeExamStatus.TAKEN) {
+                line.append(", pendiente de medición");
             }
             if (record.getStatus() == JudgeExamStatus.APPROVED || record.getStatus() == JudgeExamStatus.FAILED) {
                 line.append(record.isGoalMet() ? ", alcanzó la meta" : ", no alcanzó la meta");
                 if (record.getMeasuredBy() != null) {
                     line.append(", medido por ").append(record.getMeasuredBy());
+                }
+                if (record.getGroups() != null && !record.getGroups().isEmpty()) {
+                    line.append(", grupos ");
+                    for (int i = 0; i < record.getGroups().size(); i++) {
+                        JudgeExamGroupResult group = record.getGroups().get(i);
+                        if (i > 0) {
+                            line.append("; ");
+                        }
+                        line.append(group.getGroup()).append(' ')
+                                .append(group.getAsExpected()).append('/').append(group.getCases())
+                                .append(" como se esperaba");
+                    }
+                }
+                if (record.getMismatchedCaseIds() != null && !record.getMismatchedCaseIds().isEmpty()) {
+                    line.append(", no coincidieron ").append(record.getMismatchedCaseIds());
                 }
             }
             System.out.println(line);
@@ -238,13 +278,17 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         return ids;
     }
 
-    /** One JSON line per exercise: ejercicio, juez, version, resultado, gravedad, reglas and detalle. */
-    private static void writeVerdicts(Path file, List<JudgeExamVerdict> verdicts) throws IOException {
+    /** One JSON line per exercise, including the effective provenance (F-JEXAM-R014). */
+    private static void writeVerdicts(Path file, List<JudgeExamVerdict> verdicts,
+            ExamProvenance provenance) throws IOException {
         StringBuilder lines = new StringBuilder();
         for (JudgeExamVerdict verdict : verdicts) {
             ObjectNode line = MAPPER.createObjectNode();
             line.put("ejercicio", verdict.getCaseId());
             line.put("juez", verdict.getJudgeName());
+            line.put("proveedor", provenance.providerName());
+            line.put("modelo", provenance.modelName());
+            line.put("esfuerzo", provenance.reasoningEffort());
             line.put("version", verdict.getJudgeVersion());
             line.put("resultado", verdict.getOutcome() != null ? verdict.getOutcome().name() : null);
             line.put("gravedad", verdict.getWorstSeverity() != null ? verdict.getWorstSeverity().name() : null);
@@ -258,7 +302,8 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         if (file.getParent() != null) {
             Files.createDirectories(file.getParent());
         }
-        Files.writeString(file, lines.toString(), StandardCharsets.UTF_8);
+        Files.writeString(file, lines.toString(), StandardCharsets.UTF_8, StandardOpenOption.CREATE_NEW,
+                StandardOpenOption.WRITE);
     }
 
     /**
@@ -340,6 +385,24 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             case NOT_TAKEN -> "SIN EXAMEN";
             case NO_VERSION -> "SIN VERSIÓN";
         };
+    }
+
+    private static String provenanceLabel(JudgeExamRecord record) {
+        if (isBlank(record.getProviderName()) && isBlank(record.getModelName())
+                && isBlank(record.getReasoningEffort())) {
+            return "procedencia no registrada";
+        }
+        StringBuilder label = new StringBuilder();
+        label.append(!isBlank(record.getProviderName()) ? record.getProviderName() : "proveedor no registrado");
+        label.append('/').append(!isBlank(record.getModelName()) ? record.getModelName() : "modelo no registrado");
+        if (!isBlank(record.getReasoningEffort())) {
+            label.append(" (esfuerzo ").append(record.getReasoningEffort()).append(')');
+        }
+        return label.toString();
+    }
+
+    record ExamProvenance(String providerName, String modelName, String reasoningEffort) {
+        static final ExamProvenance NONE = new ExamProvenance(null, null, null);
     }
 
     private static String text(JsonNode node, String field) {

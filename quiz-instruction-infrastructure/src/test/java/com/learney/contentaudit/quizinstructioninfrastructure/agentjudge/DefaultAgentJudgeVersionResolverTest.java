@@ -59,7 +59,8 @@ public class DefaultAgentJudgeVersionResolverTest {
         writeDefinition(agentsDir, "translation-sense-from-translation",
                 "Leé la traducción y decí si el inglés dice lo mismo.");
         DefaultAgentJudgeVersionResolver resolver = new DefaultAgentJudgeVersionResolver(locatorOver(agentsDir));
-        AgentJudgeConfig config = new AgentJudgeConfig("claude-cli", null, null, "claude-sonnet-4-5", 0.0, 120);
+        AgentJudgeConfig config = new AgentJudgeConfig(
+                "claude-cli", null, null, "claude-sonnet-4-5", 0.0, 120, "medium");
 
         String version = resolver.resolve(FROM_ENGLISH, config, CLAUDE_CLI).orElseThrow();
 
@@ -69,14 +70,19 @@ public class DefaultAgentJudgeVersionResolverTest {
         assertEquals(version, resolver.resolve(
                         new AgentJudgeSpec("translation-sense-from-english", "translationSenseVerdict", "otro nombre"),
                         new AgentJudgeConfig("claude-cli", "http://localhost:9999/v1", "otra-clave",
-                                "claude-sonnet-4-5", 0.7, 30),
+                                "claude-sonnet-4-5", 0.7, 30, "medium"),
                         new LlmProviderResolved("claude-cli", LlmProviderClass.LOCAL_SESSION)).orElseThrow(),
                 "its display name, address, credential, temperature and timeout are not its way of asking");
 
         // A changed judge is a new version, which has not taken the exam.
         assertNotEquals(version, resolver.resolve(FROM_ENGLISH,
-                        new AgentJudgeConfig("claude-cli", null, null, "claude-opus-4-1", 0.0, 120), CLAUDE_CLI)
+                        new AgentJudgeConfig("claude-cli", null, null, "claude-opus-4-1", 0.0, 120, "medium"),
+                        CLAUDE_CLI)
                 .orElseThrow(), "another model is another judge");
+        assertNotEquals(version, resolver.resolve(FROM_ENGLISH,
+                        new AgentJudgeConfig("claude-cli", null, null, "claude-sonnet-4-5", 0.0, 120, "high"),
+                        CLAUDE_CLI).orElseThrow(),
+                "another reasoning effort is another judge");
         assertNotEquals(version, resolver.resolve(FROM_ENGLISH, config,
                         new LlmProviderResolved("openai", LlmProviderClass.REMOTE_SERVICE)).orElseThrow(),
                 "another provider is another way of asking");

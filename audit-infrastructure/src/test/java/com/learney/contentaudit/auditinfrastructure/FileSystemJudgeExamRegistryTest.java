@@ -117,6 +117,41 @@ public class FileSystemJudgeExamRegistryTest {
     }
 
     @Test
+    @DisplayName("should append Claude and Codex exam records with explicit provenance and still read legacy lines without inventing it")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R001")
+    @Tag("F-JEXAM-R014")
+    public void shouldAppendClaudeAndCodexExamRecordsWithExplicitProvenanceAndStillReadLegacyLinesWithoutInventingIt(
+            @TempDir Path tempDir) throws IOException {
+        Path file = examFileOf(tempDir, QUIZ_INSTRUCTION);
+        Files.createDirectories(file.getParent());
+        Files.writeString(file, "{\"judgeName\":\"quiz-instruction\",\"judgeVersion\":\"legacy-v\"," +
+                "\"status\":\"APPROVED\",\"casesJudged\":238,\"casesNotJudged\":0," +
+                "\"groups\":[],\"mismatchedCaseIds\":[],\"goalMet\":true," +
+                "\"photo\":\"2026-09-29\",\"measuredBy\":\"medir.py\"," +
+                "\"recordedAt\":\"2026-09-30T17:00:00Z\"}\n", StandardCharsets.UTF_8);
+        JudgeExamRecord claude = new JudgeExamRecord(QUIZ_INSTRUCTION, "claude-v", JudgeExamStatus.TAKEN,
+                238, 0, List.of(), List.of(), false, PHOTO, null, "claude-cli", "sonnet-4.5", null,
+                Instant.parse("2026-09-30T18:00:00Z"));
+        JudgeExamRecord codex = new JudgeExamRecord(QUIZ_INSTRUCTION, "codex-v", JudgeExamStatus.TAKEN,
+                238, 0, List.of(), List.of(), false, PHOTO, null, "codex-cli", "gpt-6.1-sol", "medium",
+                Instant.parse("2026-10-05T10:00:00Z"));
+
+        JudgeExamRegistry registry = new FileSystemJudgeExamRegistry(tempDir);
+        registry.record(claude);
+        registry.record(codex);
+
+        List<JudgeExamRecord> history = new FileSystemJudgeExamRegistry(tempDir).history(QUIZ_INSTRUCTION);
+        assertEquals(3, history.size(), "legacy, Claude and Codex coexist append-only");
+        assertEquals(null, history.get(0).getProviderName(), "legacy provenance stays unknown");
+        assertEquals(null, history.get(0).getModelName(), "legacy model is not guessed");
+        assertEquals(null, history.get(0).getReasoningEffort(), "legacy effort is not guessed");
+        assertEquals(claude, history.get(1));
+        assertEquals(codex, history.get(2));
+        assertEquals(3, nonBlankLines(file).size(), "no historical result was overwritten");
+    }
+
+    @Test
     @DisplayName("should give as latest of a version its last record, and nothing for a version that never took the exam")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")

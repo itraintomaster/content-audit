@@ -30,6 +30,15 @@ public class JudgeExamRecord {
 
     private String measuredBy;
 
+    /** Provider actually selected for this exam run (F-JEXAM-R014). */
+    private String providerName;
+
+    /** Exact model actually selected for this exam run (F-JEXAM-R014). */
+    private String modelName;
+
+    /** Explicit reasoning effort, when the provider exposes one (F-JEXAM-R014). */
+    private String reasoningEffort;
+
     private Instant recordedAt;
 
     public JudgeExamRecord() {
@@ -39,6 +48,14 @@ public class JudgeExamRecord {
             int casesJudged, int casesNotJudged, List<JudgeExamGroupResult> groups,
             List<String> mismatchedCaseIds, boolean goalMet, String photo, String measuredBy,
             Instant recordedAt) {
+        this(judgeName, judgeVersion, status, casesJudged, casesNotJudged, groups,
+                mismatchedCaseIds, goalMet, photo, measuredBy, null, null, null, recordedAt);
+    }
+
+    public JudgeExamRecord(String judgeName, String judgeVersion, JudgeExamStatus status,
+            int casesJudged, int casesNotJudged, List<JudgeExamGroupResult> groups,
+            List<String> mismatchedCaseIds, boolean goalMet, String photo, String measuredBy,
+            String providerName, String modelName, String reasoningEffort, Instant recordedAt) {
         this.judgeName = judgeName;
         this.judgeVersion = judgeVersion;
         this.status = status;
@@ -49,6 +66,9 @@ public class JudgeExamRecord {
         this.goalMet = goalMet;
         this.photo = photo;
         this.measuredBy = measuredBy;
+        this.providerName = providerName;
+        this.modelName = modelName;
+        this.reasoningEffort = reasoningEffort;
         this.recordedAt = recordedAt;
     }
 
@@ -132,6 +152,30 @@ public class JudgeExamRecord {
         this.measuredBy = measuredBy;
     }
 
+    public String getProviderName() {
+        return this.providerName;
+    }
+
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
+    }
+
+    public String getModelName() {
+        return this.modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+    public String getReasoningEffort() {
+        return this.reasoningEffort;
+    }
+
+    public void setReasoningEffort(String reasoningEffort) {
+        this.reasoningEffort = reasoningEffort;
+    }
+
     public Instant getRecordedAt() {
         return this.recordedAt;
     }
@@ -155,11 +199,16 @@ public class JudgeExamRecord {
                     && Objects.equals(this.goalMet, that.goalMet)
                     && Objects.equals(this.photo, that.photo)
                     && Objects.equals(this.measuredBy, that.measuredBy)
+                    && Objects.equals(this.providerName, that.providerName)
+                    && Objects.equals(this.modelName, that.modelName)
+                    && Objects.equals(this.reasoningEffort, that.reasoningEffort)
                     && Objects.equals(this.recordedAt, that.recordedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(judgeName, judgeVersion, status, casesJudged, casesNotJudged, groups, mismatchedCaseIds, goalMet, photo, measuredBy, recordedAt);
+        return Objects.hash(judgeName, judgeVersion, status, casesJudged, casesNotJudged, groups,
+                mismatchedCaseIds, goalMet, photo, measuredBy, providerName, modelName,
+                reasoningEffort, recordedAt);
     }
 }

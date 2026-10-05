@@ -30,6 +30,7 @@ import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -50,6 +51,7 @@ public class ExamCmdTest {
     @DisplayName("should read a synthetic exam file of the form [{ejercicio}] and write one JSON line per exercise with ejercicio, juez, version, resultado, gravedad, reglas and detalle")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Tag("F-JEXAM-R014")
     public void shouldReadASyntheticExamFileOfTheFormEjercicioAndWriteOneJSONLinePerExerciseWithEjercicioJuezVersionResultadoGravedadReglasAndDetalle(
             ) throws IOException {
         // A synthetic exam, never the fixed one: the verduras, four exercises of escribir/ and an id that
@@ -64,7 +66,10 @@ public class ExamCmdTest {
         RecordingService service = new RecordingService();
         Path out = workdir.resolve("veredictos.jsonl");
 
-        Captured run = run(new ExamCmd(service), "run", "quiz-instruction", "--cases", cases.toString(), "--course",
+        ExamCmd.ExamProvenance provenance = new ExamCmd.ExamProvenance(
+                "codex-cli", "gpt-6.1-sol", "medium");
+        Captured run = run(new ExamCmd(service, Map.of("quiz-instruction", provenance)),
+                "run", "quiz-instruction", "--cases", cases.toString(), "--course",
                 PHOTO, "--budget", "6", "--out", out.toString());
 
         assertEquals(0, run.exit(), run.err());
@@ -75,10 +80,14 @@ public class ExamCmdTest {
         List<String> lines = Files.readAllLines(out, StandardCharsets.UTF_8);
         assertEquals(6, lines.size(), "R001: one JSON line per exercise");
         JsonNode first = new ObjectMapper().readTree(lines.get(2));
-        assertEquals(List.of("ejercicio", "juez", "version", "resultado", "gravedad", "reglas", "detalle"),
-                fieldNames(first), "C-24: exactly these keys, in this order");
+        assertEquals(List.of("ejercicio", "juez", "proveedor", "modelo", "esfuerzo", "version", "resultado",
+                        "gravedad", "reglas", "detalle"),
+                fieldNames(first), "R014: every verdict declares its full provenance");
         assertEquals("67fab6d599301022953424f7", first.get("ejercicio").asText());
         assertEquals("quiz-instruction", first.get("juez").asText());
+        assertEquals("codex-cli", first.get("proveedor").asText());
+        assertEquals("gpt-6.1-sol", first.get("modelo").asText());
+        assertEquals("medium", first.get("esfuerzo").asText());
         assertEquals("v-consigna", first.get("version").asText());
         assertEquals("FAILS", first.get("resultado").asText());
         assertEquals("HIGH", first.get("gravedad").asText());
@@ -87,6 +96,27 @@ public class ExamCmdTest {
         JsonNode absent = new ObjectMapper().readTree(lines.get(5));
         assertEquals("NOT_JUDGED", absent.get("resultado").asText(), "the id that is not in the photo");
         assertTrue(absent.get("gravedad").isNull());
+        assertEquals("codex-cli", service.taken.get(0).getProviderName(), "the service receives effective provider");
+        assertEquals("gpt-6.1-sol", service.taken.get(0).getModelName(), "the service receives exact model");
+        assertEquals("medium", service.taken.get(0).getReasoningEffort(), "the service receives explicit effort");
+    }
+
+    @Test
+    @DisplayName("should reject an existing --out before taking the exam and leave its bytes untouched")
+    @Tag("FEAT-JEXAM")
+    @Tag("F-JEXAM-R001")
+    public void shouldRejectAnExistingOutBeforeTakingTheExamAndLeaveItsBytesUntouched() throws IOException {
+        Path cases = write("examen.json", "[{\"ejercicio\": \"" + VERDURAS + "\"}]");
+        Path out = write("claude-veredictos.jsonl", "resultado histórico de Claude\n");
+        RecordingService service = new RecordingService();
+
+        Captured run = run(new ExamCmd(service), "run", "quiz-instruction", "--cases", cases.toString(),
+                "--course", PHOTO, "--budget", "1", "--out", out.toString());
+
+        assertEquals(2, run.exit(), run.err());
+        assertTrue(run.err().contains("will not be overwritten"), run.err());
+        assertTrue(service.taken.isEmpty(), "the potentially paid exam service was never called");
+        assertEquals("resultado histórico de Claude\n", Files.readString(out), "Claude's result stays byte-for-byte");
     }
 
     @Test
@@ -166,23 +196,36 @@ public class ExamCmdTest {
     @DisplayName("should show the exam history of a judge, one line per record with its version, its status and when it was recorded")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R001")
+    @Tag("F-JEXAM-R014")
     public void shouldShowTheExamHistoryOfAJudgeOneLinePerRecordWithItsVersionItsStatusAndWhenItWasRecorded(
             ) {
         JudgeExamRegistry registry = new FileSystemJudgeExamRegistry(workdir);
-        registry.record(record("u1", JudgeExamStatus.TAKEN, "2026-10-01T10:00:00Z"));
-        registry.record(record("u1", JudgeExamStatus.FAILED, "2026-10-01T11:00:00Z"));
-        registry.record(record("u2", JudgeExamStatus.TAKEN, "2026-10-02T09:00:00Z"));
-        registry.record(record("u2", JudgeExamStatus.APPROVED, "2026-10-02T10:30:00Z"));
+        registry.record(record("u1", JudgeExamStatus.TAKEN, "2026-10-01T10:00:00Z",
+                "claude-cli", "sonnet-4.5", null));
+        registry.record(record("u1", JudgeExamStatus.FAILED, "2026-10-01T11:00:00Z",
+                "claude-cli", "sonnet-4.5", null));
+        registry.record(record("u2", JudgeExamStatus.TAKEN, "2026-10-02T09:00:00Z",
+                "codex-cli", "gpt-6.1-sol", "medium"));
+        registry.record(new JudgeExamRecord("single-answer", "u2", JudgeExamStatus.APPROVED, 39, 0,
+                List.of(new JudgeExamGroupResult("b", 39, 37, 2)), List.of("caso-7", "caso-9"), true,
+                "2026-09-29", "medir.py", "codex-cli", "gpt-6.1-sol", "medium",
+                Instant.parse("2026-10-02T10:30:00Z")));
+        registry.record(record("legacy", JudgeExamStatus.APPROVED, "2026-10-03T10:30:00Z"));
 
         Captured run = run(new ExamCmd(realRecordingService(registry)), "status", "single-answer");
 
         assertEquals(0, run.exit(), run.err());
         List<String> lines = run.out().lines().filter(l -> l.startsWith("2026-")).toList();
-        assertEquals(4, lines.size(), "one line per record: " + run.out());
-        assertTrue(lines.get(0).startsWith("2026-10-01T10:00:00Z  u1  RENDIDO"), lines.get(0));
-        assertTrue(lines.get(1).startsWith("2026-10-01T11:00:00Z  u1  REPROBADO"), lines.get(1));
-        assertTrue(lines.get(2).startsWith("2026-10-02T09:00:00Z  u2  RENDIDO"), lines.get(2));
-        assertTrue(lines.get(3).startsWith("2026-10-02T10:30:00Z  u2  APROBADO"), lines.get(3));
+        assertEquals(5, lines.size(), "one line per record: " + run.out());
+        assertTrue(lines.get(0).startsWith("2026-10-01T10:00:00Z  u1  claude-cli/sonnet-4.5  RENDIDO"), lines.get(0));
+        assertTrue(lines.get(0).contains("pendiente de medición"), lines.get(0));
+        assertTrue(lines.get(1).startsWith("2026-10-01T11:00:00Z  u1  claude-cli/sonnet-4.5  REPROBADO"), lines.get(1));
+        assertTrue(lines.get(2).startsWith("2026-10-02T09:00:00Z  u2  codex-cli/gpt-6.1-sol (esfuerzo medium)  RENDIDO"), lines.get(2));
+        assertTrue(lines.get(3).contains("foto 2026-09-29"), lines.get(3));
+        assertTrue(lines.get(3).contains("grupos b 37/39 como se esperaba"), lines.get(3));
+        assertTrue(lines.get(3).contains("no coincidieron [caso-7, caso-9]"), lines.get(3));
+        assertTrue(lines.get(4).contains("procedencia no registrada"),
+                "legacy history is explicit, never assigned a default: " + lines.get(4));
     }
 
     // -------------------------------------------------------------------------
@@ -210,6 +253,13 @@ public class ExamCmdTest {
     private static JudgeExamRecord record(String version, JudgeExamStatus status, String at) {
         return new JudgeExamRecord("single-answer", version, status, 39, 0, List.of(), List.of(),
                 status == JudgeExamStatus.APPROVED, "2026-09-29", "medir.py", Instant.parse(at));
+    }
+
+    private static JudgeExamRecord record(String version, JudgeExamStatus status, String at,
+            String provider, String model, String effort) {
+        return new JudgeExamRecord("single-answer", version, status, 39, 0, List.of(), List.of(),
+                status == JudgeExamStatus.APPROVED, "2026-09-29", "medir.py",
+                provider, model, effort, Instant.parse(at));
     }
 
     /** The real service where only its records are used: the registry on disk and the runtime's standing. */

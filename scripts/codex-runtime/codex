@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REAL_CODEX="${CONTENT_AUDIT_CODEX_REAL_BINARY:-}"
+if [[ -z "$REAL_CODEX" || ! -x "$REAL_CODEX" ]]; then
+    echo "ContentAudit no encontró el binario real de Codex antes de preparar el runtime." >&2
+    exit 127
+fi
+
+if [[ "${1:-}" != "exec" ]]; then
+    exec "$REAL_CODEX" "$@"
+fi
+
+REASONING_EFFORT="${CONTENT_AUDIT_REASONING_EFFORT:-medium}"
+case "$REASONING_EFFORT" in
+    none|minimal|low|medium|high|xhigh|max|ultra) ;;
+    *)
+        echo "CONTENT_AUDIT_REASONING_EFFORT inválido: '$REASONING_EFFORT'." >&2
+        echo "Valores permitidos: none, minimal, low, medium, high, xhigh, max, ultra." >&2
+        exit 64
+        ;;
+esac
+
+shift
+exec "$REAL_CODEX" exec \
+    -c "model_reasoning_effort=\"$REASONING_EFFORT\"" \
+    "$@"

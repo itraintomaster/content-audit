@@ -33,6 +33,8 @@ class DefaultQuizInstructionJudgeConfigResolver implements QuizInstructionJudgeC
     static final String KEY_TIMEOUT_SECONDS = "CONTENT_AUDIT_QINST_JUDGE_TIMEOUT_SECONDS";
     static final String KEY_AGENT_NAME = "CONTENT_AUDIT_QINST_JUDGE_AGENT_NAME";
     static final String KEY_PROVIDER = "CONTENT_AUDIT_QINST_JUDGE_PROVIDER";
+    static final String KEY_SHARED_MODEL = ModelRuntimeSelection.KEY_MODEL;
+    static final String KEY_REASONING_EFFORT = ModelRuntimeSelection.KEY_REASONING_EFFORT;
 
     @Override
     public QuizInstructionJudgeConfig resolve() {
@@ -47,11 +49,14 @@ class DefaultQuizInstructionJudgeConfigResolver implements QuizInstructionJudgeC
         // No env var exists to override the judge version: the version is now
         // provenance (F-QINST-R010, invariant 3), and it must derive from the
         // judge definition itself, never be stamped by hand.
-        Map<String, String> env = System.getenv();
+        return resolve(System.getenv());
+    }
+
+    QuizInstructionJudgeConfig resolve(Map<String, String> environment) {
+        Map<String, String> env = environment != null ? environment : Map.of();
 
         String baseUrl = nonBlank(env.get(KEY_BASE_URL));
         String apiKey = nonBlank(env.get(KEY_API_KEY));
-        String modelName = nonBlank(env.get(KEY_MODEL));
         String agentName = nonBlank(env.get(KEY_AGENT_NAME));
         Double temperature = parseDouble(env.get(KEY_TEMPERATURE));
         Integer timeoutSeconds = parseInt(env.get(KEY_TIMEOUT_SECONDS));
@@ -64,8 +69,14 @@ class DefaultQuizInstructionJudgeConfigResolver implements QuizInstructionJudgeC
             providerName = localSessionProviderCatalog.defaultProfile().getProviderName();
         }
 
+        String effectiveProvider = localSessionProviderCatalog.find(providerName)
+                .map(profile -> profile.getProviderName())
+                .orElse(providerName);
+        String modelName = ModelRuntimeSelection.model(env, KEY_MODEL, effectiveProvider);
+        String reasoningEffort = ModelRuntimeSelection.reasoningEffort(env, effectiveProvider);
+
         return new QuizInstructionJudgeConfig(baseUrl, apiKey, modelName, temperature,
-                timeoutSeconds, agentName, providerName);
+                timeoutSeconds, agentName, effectiveProvider, reasoningEffort);
     }
 
     private static String nonBlank(String value) {

@@ -45,7 +45,8 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
                 0.0,
                 30,
                 agentName,
-                null);
+                null,
+                "medium");
     }
 
     @Test
@@ -61,6 +62,9 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
         QuizInstructionJudgeConfig baseline = config("gpt-4o-mini", "quiz-instruction-validator");
         QuizInstructionJudgeConfig differentModel = config("gpt-4o", "quiz-instruction-validator");
         QuizInstructionJudgeConfig differentAgentDefinition = config("gpt-4o-mini", "lemma-absence-agent");
+        QuizInstructionJudgeConfig differentReasoning = new QuizInstructionJudgeConfig(
+                "http://localhost:1234/v1", "test-api-key", "gpt-4o-mini", 0.0, 30,
+                "quiz-instruction-validator", null, "high");
 
         String baselineVersion = resolver.resolve(baseline, PROVIDER).orElseThrow();
 
@@ -68,6 +72,8 @@ public class DefaultQuizInstructionJudgeVersionResolverTest {
                 "F-QINST-R010: cambiar el modelo del juez tiene que cambiar la version derivada");
         assertNotEquals(baselineVersion, resolver.resolve(differentAgentDefinition, PROVIDER).orElseThrow(),
                 "F-QINST-R010: cambiar la definicion del agente (su forma de preguntar) tiene que cambiar la version derivada");
+        assertNotEquals(baselineVersion, resolver.resolve(differentReasoning, PROVIDER).orElseThrow(),
+                "cambiar el esfuerzo de razonamiento tiene que cambiar la version derivada");
     }
 
     @Test
