@@ -3,65 +3,68 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>439 cerradas · faltan 105 comparables</title>
+  <title>Frenar medición; empezar contenido</title>
   <style>
-    :root{color-scheme:light dark;--ink:#17211c;--muted:#68736d;--paper:#f5f1e8;--card:#fffdf8;--line:#d8d3c8;--green:#167453;--green-soft:#dceee5;--red:#ae3f32;--red-soft:#f5dfdb;--amber:#a96809;--amber-soft:#f6e8ca;--blue:#315ea8;--blue-soft:#dfe8f7}
-    @media(prefers-color-scheme:dark){:root{--ink:#edf3ef;--muted:#a9b4ae;--paper:#111714;--card:#19211d;--line:#334039;--green:#72d5ad;--green-soft:#183b2f;--red:#ff9a8d;--red-soft:#472723;--amber:#f1bc64;--amber-soft:#44351e;--blue:#9dbcf5;--blue-soft:#24344f}}
-    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.page{width:min(1100px,calc(100% - 32px));margin:auto;padding:24px 0 64px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font:700 12px ui-monospace,SFMono-Regular,monospace;letter-spacing:.05em;text-transform:uppercase}.top .signal{color:var(--green)}.top .meta{color:var(--muted)}
-    header{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(250px,.6fr);gap:48px;align-items:end;padding:68px 0 44px}.eyebrow{font:800 12px ui-monospace,SFMono-Regular,monospace;color:var(--blue);letter-spacing:.08em;text-transform:uppercase}h1{font-size:clamp(44px,8vw,92px);line-height:.91;letter-spacing:-.065em;margin:13px 0 0;max-width:10ch}.lede{font-size:clamp(17px,2.2vw,22px);line-height:1.45;color:var(--muted);margin:0}.lede strong{color:var(--ink)}
-    .sub{max-width:54ch;color:var(--muted);font-size:14px;line-height:1.45;margin:18px 0 0}.scoreboard{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);background:var(--card)}.score{padding:24px;border-right:1px solid var(--line)}.score:last-child{border:0}.score b{display:block;font-size:clamp(36px,6vw,72px);line-height:.9;letter-spacing:-.06em}.score span{display:block;color:var(--muted);margin-top:10px;font-size:13px}.score.warning b{color:var(--amber)}
-    section{padding:52px 0;border-bottom:1px solid var(--line)}h2{font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin:0 0 22px;color:var(--muted)}.results{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.result{background:var(--card);border:1px solid var(--line);padding:23px;min-height:220px}.result .status{font:800 11px ui-monospace,SFMono-Regular,monospace;letter-spacing:.08em}.result.pass .status{color:var(--green)}.result.fail .status{color:var(--red)}.result h3{font-size:24px;line-height:1.04;margin:42px 0 9px;letter-spacing:-.035em}.result p{color:var(--muted);font-size:14px;line-height:1.5;margin:0}.meter{height:7px;background:var(--line);margin-top:24px;overflow:hidden}.meter i{display:block;height:100%;background:currentColor;width:var(--w)}.pass .meter{color:var(--green)}.fail .meter{color:var(--red)}
-    .mismatch{display:grid;grid-template-columns:1fr 60px 1fr;align-items:stretch}.side{padding:28px;border:1px solid var(--line);background:var(--card)}.side.old{background:var(--amber-soft);border-color:color-mix(in srgb,var(--amber) 35%,var(--line))}.side.current{background:var(--blue-soft);border-color:color-mix(in srgb,var(--blue) 35%,var(--line))}.side .tag{font:800 11px ui-monospace,SFMono-Regular,monospace;letter-spacing:.08em;color:var(--muted)}.side strong{display:block;font-size:clamp(26px,4vw,44px);line-height:1;margin:24px 0 8px;letter-spacing:-.045em}.side p{margin:0;color:var(--muted);line-height:1.5}.arrow{display:grid;place-items:center;font-size:28px;color:var(--muted)}
-    .decision{display:grid;grid-template-columns:.85fr 1.15fr;gap:28px;align-items:stretch}.number{background:var(--ink);color:var(--paper);padding:30px;display:flex;flex-direction:column;justify-content:space-between;min-height:260px}.number b{font-size:clamp(80px,13vw,150px);line-height:.72;letter-spacing:-.08em}.number span{font-size:14px}.plan{border:1px solid var(--line);background:var(--card);padding:28px}.plan h3{font-size:30px;letter-spacing:-.04em;margin:0 0 22px}.steps{display:grid;gap:13px}.step{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}.step i{font:800 12px ui-monospace,SFMono-Regular,monospace;color:var(--blue);font-style:normal}.step b{display:block;font-size:14px}.step span{display:block;color:var(--muted);font-size:13px;margin-top:3px}.note{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;line-height:1.5}
-    footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;color:var(--muted);font-size:11px}.mono{font-family:ui-monospace,SFMono-Regular,monospace}
-    @media(max-width:760px){header{grid-template-columns:1fr;gap:26px;padding-top:48px}.scoreboard,.results{grid-template-columns:1fr}.score{border-right:0;border-bottom:1px solid var(--line)}.score:last-child{border:0}.mismatch{grid-template-columns:1fr}.arrow{height:54px;transform:rotate(90deg)}.decision{grid-template-columns:1fr}.number{min-height:210px}}
+    :root{color-scheme:light dark;--bg:#f4f0e8;--paper:#fffdf8;--ink:#19221d;--muted:#66716a;--line:#d8d3c8;--accent:#b6532a;--accent-soft:#f5e4d7;--good:#176d50;--good-soft:#dcece4;--warn:#9a650d;--warn-soft:#f5e7c8;--bad:#a83e34;--bad-soft:#f3ddda;--blue:#315d9c;--blue-soft:#dfe7f4}
+    @media(prefers-color-scheme:dark){:root{--bg:#111714;--paper:#19211d;--ink:#edf3ef;--muted:#a8b4ad;--line:#334039;--accent:#ed9a6d;--accent-soft:#402a20;--good:#73d2ab;--good-soft:#18392e;--warn:#efbd66;--warn-soft:#41331d;--bad:#ff9d91;--bad-soft:#452622;--blue:#a3c1f5;--blue-soft:#25344d}}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{width:min(1000px,calc(100% - 32px));margin:auto;padding:24px 0 64px}.top{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line);font:700 11px ui-monospace,SFMono-Regular,monospace;text-transform:uppercase;letter-spacing:.08em}.top .state{color:var(--bad)}.top .meta{color:var(--muted)}
+    header{display:grid;grid-template-columns:1.35fr .65fr;gap:42px;align-items:end;padding:64px 0 42px}.eyebrow{font:800 11px ui-monospace,SFMono-Regular,monospace;color:var(--accent);letter-spacing:.09em;text-transform:uppercase}h1{font-size:clamp(46px,8vw,86px);line-height:.92;letter-spacing:-.065em;margin:12px 0 0;max-width:10ch}.sub{margin:18px 0 0;color:var(--muted);font-size:14px;line-height:1.45;max-width:54ch}.lede{font-size:clamp(17px,2.1vw,21px);line-height:1.45;color:var(--muted);margin:0}.lede strong{color:var(--ink)}
+    section{padding:48px 0;border-bottom:1px solid var(--line)}h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 20px}.kpis{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);background:var(--paper)}.kpi{padding:24px;border-right:1px solid var(--line)}.kpi:last-child{border:0}.kpi b{display:block;font-size:clamp(44px,7vw,76px);line-height:.85;letter-spacing:-.065em}.kpi span{display:block;color:var(--muted);font-size:13px;margin-top:12px}.kpi.used b{color:var(--bad)}.kpi.left b{color:var(--good)}
+    .flow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.st{position:relative;padding:22px;background:var(--paper);border:1px solid var(--line);min-height:190px}.st:after{content:"→";position:absolute;right:-20px;top:50%;z-index:2;color:var(--muted);font-size:24px}.st:last-child:after{display:none}.st .n{font:800 11px ui-monospace,SFMono-Regular,monospace;color:var(--accent)}.st strong{display:block;font-size:31px;letter-spacing:-.045em;margin:34px 0 8px}.st p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+    .heat{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.cell{padding:18px 15px;min-height:150px;border:1px solid var(--line);background:var(--paper)}.cell.good{background:var(--good-soft)}.cell.bad{background:var(--bad-soft)}.cell.wait{background:var(--warn-soft)}.cell .tag{font:800 10px ui-monospace,SFMono-Regular,monospace;letter-spacing:.07em}.cell.good .tag{color:var(--good)}.cell.bad .tag{color:var(--bad)}.cell.wait .tag{color:var(--warn)}.cell strong{display:block;font-size:17px;line-height:1.05;margin:30px 0 8px}.cell p{font-size:12px;line-height:1.4;color:var(--muted);margin:0}
+    .opts{display:grid;grid-template-columns:1fr 1.25fr;gap:12px}.opt{border:1px solid var(--line);background:var(--paper);padding:24px;min-height:230px}.opt.rec{border:2px solid var(--good);background:var(--good-soft)}.opt .tag{font:800 10px ui-monospace,SFMono-Regular,monospace;letter-spacing:.08em;color:var(--muted)}.opt.rec .tag{color:var(--good)}.opt h3{font-size:27px;line-height:1.05;letter-spacing:-.04em;margin:40px 0 10px}.opt p{color:var(--muted);font-size:14px;line-height:1.45;margin:0}.opt .impact{display:block;border-top:1px solid var(--line);margin-top:20px;padding-top:13px;font-size:12px;color:var(--muted)}
+    .note{margin:18px 0 0;color:var(--muted);font-size:13px;line-height:1.45}.mono{font-family:ui-monospace,SFMono-Regular,monospace}footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:20px;color:var(--muted);font-size:11px}
+    @media(max-width:760px){header{grid-template-columns:1fr;gap:24px;padding-top:48px}.kpis,.flow,.heat,.opts{grid-template-columns:1fr}.kpi{border-right:0;border-bottom:1px solid var(--line)}.kpi:last-child{border:0}.st:after{content:"↓";right:auto;left:50%;top:auto;bottom:-24px}.cell{min-height:120px}.opt{min-height:0}}
   </style>
 </head>
 <body>
-<main class="page">
-  <div class="top"><span class="signal">● ejecución cerrada</span><span class="meta">Jueces Codex · 5 octubre 2026</span></div>
+<main class="wrap">
+  <div class="top"><span class="state">● nada corriendo</span><span class="meta">Estado y cambio de rumbo · 5 octubre 2026</span></div>
   <header>
-    <div><div class="eyebrow">Brief de decisión · jueces</div><h1>439 no alcanzan para comparar cinco.</h1><p class="sub">Tres jueces ya son comparables; opción múltiple y respuesta única necesitan rendir sus versiones vigentes.</p></div>
-    <p class="lede"><strong>La corrida salió limpia.</strong> La base no era pareja en dos jueces: Codex rindió el examen fijo del 1/10 y Claude había aprobado versiones ampliadas del 3/10.</p>
+    <div><div class="eyebrow">Brief 028 · rendición de cuentas</div><h1>Medimos mucho. Mejoramos cero.</h1><p class="sub">La infraestructura ya alcanza; seguir examinando ahora posterga el objetivo que importa.</p></div>
+    <p class="lede"><strong>Se usó 38% del límite semanal y no se corrigió contenido.</strong> Queda 62%; la recomendación es preservar las 105 consultas pendientes y empezar una mejora acotada.</p>
   </header>
 
-  <div class="scoreboard" aria-label="Resumen">
-    <div class="score"><b>439</b><span>consultas exactas · 0 rechazos</span></div>
-    <div class="score"><b>3</b><span>comparaciones vigentes</span></div>
-    <div class="score warning"><b>105</b><span>consultas para igualar las otras 2</span></div>
-  </div>
-
   <section>
-    <h2>Lo que ya sabemos con justicia</h2>
-    <div class="results diagram">
-      <article class="result pass"><div class="status">APROBADO</div><h3>Traducción y sentido</h3><p>1 falsa alarma entre 49 buenos. Puede consultar el curso cuando se le dé presupuesto.</p><div class="meter"><i style="--w:100%"></i></div></article>
-      <article class="result fail"><div class="status">REPROBADO</div><h3>Miniteoría</h3><p>Encontró 7 de 8 temas reales, pero marcó 7 de 38 buenos. El tope era 2.</p><div class="meter"><i style="--w:38%"></i></div></article>
-      <article class="result fail"><div class="status">REPROBADO</div><h3>Consigna</h3><p>Encontró 145 de 149 imposibles, pero reprobó 7 de 50 buenos. El tope era 2.</p><div class="meter"><i style="--w:86%"></i></div></article>
+    <h2>El costo quedó delante del resultado</h2>
+    <div class="kpis">
+      <div class="kpi used"><b>38%</b><span>del límite semanal consumido</span></div>
+      <div class="kpi left"><b>62%</b><span>disponible hasta el 11/10</span></div>
+      <div class="kpi"><b>0</b><span>cambios aplicados al contenido</span></div>
     </div>
   </section>
 
   <section>
-    <h2>La diferencia que invalida dos comparaciones</h2>
-    <div class="mismatch diagram">
-      <div class="side old"><div class="tag">CODEX RINDIÓ · 1/10</div><strong>13 + 39</strong><p>Opción múltiple y respuesta única del examen fijo anterior.</p></div>
-      <div class="arrow">→</div>
-      <div class="side current"><div class="tag">CLAUDE APROBÓ · 3/10</div><strong>43 + 62</strong><p>Exámenes ampliados, con oro v2/v3 congelado. Los 52 casos viejos fueron excluidos.</p></div>
+    <h2>La demora tuvo tres bloques concretos</h2>
+    <div class="flow">
+      <div class="st"><span class="n">01</span><strong>1.099</strong><p>Consultas para medir el detector de duplicados. Reprobó por omitir casos reales.</p></div>
+      <div class="st"><span class="n">02</span><strong>439</strong><p>Consultas para cinco jueces. Tres quedaron comparables y dos usaron bases viejas.</p></div>
+      <div class="st"><span class="n">03</span><strong>105</strong><p>Consultas adicionales preparadas, pero detenidas antes de ejecutarse.</p></div>
+    </div>
+    <p class="note">Además se separaron los registros de Claude y Codex para que una corrida no borre la otra.</p>
+  </section>
+
+  <section>
+    <h2>La evaluación produjo evidencia, no mejoras</h2>
+    <div class="heat">
+      <div class="cell bad"><span class="tag">REPROBADO</span><strong>Duplicados</strong><p>Preciso al marcar; dejó pasar demasiados pares.</p></div>
+      <div class="cell good"><span class="tag">APROBADO</span><strong>Traducción</strong><p>Una falsa alarma entre 49 casos buenos.</p></div>
+      <div class="cell bad"><span class="tag">REPROBADO</span><strong>Miniteoría</strong><p>Siete falsas alarmas; el máximo era dos.</p></div>
+      <div class="cell bad"><span class="tag">REPROBADO</span><strong>Consigna</strong><p>Siete falsas alarmas; el máximo era dos.</p></div>
+      <div class="cell wait"><span class="tag">NO COMPARABLE</span><strong>Dos jueces</strong><p>Rindieron exámenes anteriores; no entran a la UI.</p></div>
     </div>
   </section>
 
   <section>
-    <h2>Decisión pendiente</h2>
-    <div class="decision">
-      <div class="number"><b>105</b><span>consultas adicionales máximas</span></div>
-      <div class="plan"><h3>Repetir sólo lo que quedó desigual.</h3><div class="steps">
-        <div class="step"><i>01</i><div><b>Opción múltiple · 43</b><span>Cortar ante incompleto, formato inválido o exceso.</span></div></div>
-        <div class="step"><i>02</i><div><b>Respuesta única · 62</b><span>Misma guardia; medir con el oro v3 ya congelado.</span></div></div>
-        <div class="step"><i>03</i><div><b>Refrescar la UI</b><span>Importar recién los cinco resultados comparables y mostrar Claude/Codex lado a lado.</span></div></div>
-      </div><p class="note">No hay consultas en curso. Los resultados preliminares quedan preservados como evidencia, pero no se presentarán como equivalentes.</p></div>
+    <h2>Ahora conviene tocar el curso</h2>
+    <div class="opts">
+      <div class="opt"><span class="tag">PAUSADO</span><h3>Completar los 105 exámenes</h3><p>Cierra la comparación de dos jueces, pero no mejora ningún ejercicio.</p><span class="impact">Costo inmediato: hasta 105 consultas.</span></div>
+      <div class="opt rec"><span class="tag">RECOMENDADO</span><h3>Una primera tanda pequeña de contenido</h3><p>Partir de los análisis ya existentes —incluidos lemma-count y lemma-absence—, corregir pocos casos y medir antes/después.</p><span class="impact">Resultado esperado: cambios reales, reversibles y visibles en la UI.</span></div>
     </div>
+    <p class="note">No iniciar otra evaluación amplia hasta que exista una mejora concreta y verificada.</p>
   </section>
 
-  <footer><span>Fuente: registros, veredictos y ensayos locales.</span><span class="mono">docs/briefs/027-439-cerradas-105-para-comparar.html</span></footer>
+  <footer><span>Fuente: límite de cuenta, bitácora y registros locales.</span><span class="mono">Brief 028 · content-audit</span></footer>
 </main>
 </body>
 </html>

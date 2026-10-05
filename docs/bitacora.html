@@ -80,23 +80,23 @@
 <body>
 <div class="shell">
   <div class="topline">
-    <div class="live"><span class="pulse"></span><span>Primera corrida Codex cerrada · falta igualar 2 bases</span></div>
-    <div class="updated">Actualizado <time id="updatedAgo">recién</time> · sin consultas en curso</div>
+    <div class="live"><span class="pulse"></span><span>Evaluaciones detenidas · próximo foco: mejorar contenido</span></div>
+    <div class="updated">Actualizado <time id="updatedAgo">recién</time> · nada corriendo</div>
   </div>
 
   <header>
     <div class="eyebrow">Bitácora viva · Codex + content-audit</div>
-    <h1>439 respuestas después, apareció una base desigual.</h1>
-    <p class="lede"><strong>La separación Claude/Codex funcionó y ningún resultado se pisó.</strong> Traducción, miniteoría y consigna ya se pueden comparar.</p>
-    <p class="lede">Opción múltiple y respuesta única rindieron el examen fijo del 1/10. Claude había aprobado versiones ampliadas del 3/10: faltan 105 consultas para una comparación justa.</p>
+    <h1>Gastamos en medir; todavía no mejoramos contenido.</h1>
+    <p class="lede"><strong>El límite semanal marca 38% usado y queda 62%.</strong> Las evaluaciones dejaron evidencia útil, pero ninguna corrección del curso.</p>
+    <p class="lede">No hay procesos activos. Las 105 consultas pendientes quedan detenidas; la recomendación es pasar ahora a una mejora pequeña, medible y reversible.</p>
   </header>
 
   <section>
-    <h2>Ahora: cerrar la comparación correcta</h2>
+    <h2>Ahora: dejar de ampliar la evaluación</h2>
     <div class="card now">
-      <div class="statusline"><span class="pill ok">439/439 cerradas</span><span class="pill">3 comparables</span><span class="pill running">2 bases por igualar</span></div>
-      <div><h3>Un aprobado, dos reprobados y dos resultados preliminares</h3><p>Con <span class="mono">codex-cli · gpt-6.1-sol · medium</span>, traducción aprobó; miniteoría y consigna reprobaron. Los otros dos resultados no deben enfrentarse a Claude todavía: usaron el examen viejo y quedan rotulados como preliminares.</p></div>
-      <div class="facts"><div class="fact"><b>439</b><span>consultas completadas</span></div><div class="fact"><b>0</b><span>rechazos de formato</span></div><div class="fact"><b>105</b><span>consultas vigentes pendientes</span></div></div>
+      <div class="statusline"><span class="pill fail">38% semanal usado</span><span class="pill ok">62% disponible</span><span class="pill">0 procesos activos</span></div>
+      <div><h3>La base ya alcanza para empezar a corregir</h3><p>Tenemos diagnósticos previos, separación de runtimes y tres jueces comparables. Repetir ahora los otros dos exámenes consumiría más límite sin tocar una sola palabra del curso.</p></div>
+      <div class="facts"><div class="fact"><b>1.538</b><span>consultas de examen ejecutadas hoy</span></div><div class="fact"><b>0</b><span>cambios de contenido</span></div><div class="fact"><b>105</b><span>consultas detenidas</span></div></div>
     </div>
   </section>
 
@@ -150,6 +150,7 @@
     <h2>Últimos movimientos, con evidencia</h2>
     <div class="timeline-tools"><button class="active" data-filter="all">Todo</button><button data-filter="live">Sólo ejecución</button></div>
     <div class="timeline">
+      <article class="event live-event" data-scope="live"><time>14:20</time><div class="event-body"><h3>Evaluación detenida; el costo queda visible</h3><p>El límite semanal marca 38% usado y no hay procesos activos. Las 105 consultas pendientes no se ejecutarán: el próximo trabajo recomendado es una mejora acotada de contenido.</p></div></article>
       <article class="event live-event" data-scope="live"><time>14:04</time><div class="event-body"><h3>439 cerradas; el ensayo vigente descubre 105 pendientes</h3><p>Los cinco archivos terminaron completos y sin rechazos. Al cotejar contra la UI activa apareció que opción múltiple ahora rinde 43 casos y respuesta única 62; el ensayo gratis confirmó que Codex no juzgó ninguno de esos 105.</p></div></article>
       <article class="event live-event" data-scope="live"><time>13:53</time><div class="event-body"><h3>Tres comparaciones válidas ya tienen resultado</h3><p>Traducción aprobó. Miniteoría y consigna reprobaron por falsas alarmas. Todos quedaron registrados con proveedor, modelo y esfuerzo exactos; Claude sigue intacto.</p></div></article>
       <article class="event live-event" data-scope="live"><time>13:25</time><div class="event-body"><h3>Cuatro jueces listos; corre el último</h3><p>Miniteoría 47/47 y traducción 102/102 se sumaron sin rechazos. Consigna va 50/238; acumulado 251/439.</p></div></article>
@@ -201,7 +202,7 @@
   <footer><span>Fuente: logs de corrida, content-audit y UI local.</span><span class="mono">docs/bitacora.html · estado vivo</span></footer>
 </div>
 <script>
-  const state={used:1099,total:1147,updatedAt:'2026-10-05T14:04:42-03:00'};
+  const state={used:1099,total:1147,updatedAt:'2026-10-05T14:20:24-03:00'};
   const pct=state.used/state.total*100;
   document.querySelector('#ring').style.setProperty('--p',`${pct*3.6}deg`);
   document.querySelector('#pct').textContent=pct.toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';
