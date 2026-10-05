@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sentinel salió del build; Codex quedó listo</title>
+<title>Primero rendir; después decidir</title>
 <!--
   TEMPLATE DE BRIEF · visual-brief
   1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
@@ -267,82 +267,67 @@
 
   <header>
     <div class="kicker">
-      <span class="num">025</span>
-      <span class="badge">Cierre · Estado</span>
+      <span class="num">026</span>
+      <span class="badge">Plan · Próximo paso</span>
       <span class="meta">Corregir sin empeorar · 5 octubre 2026</span>
     </div>
-    <h1>Sentinel salió del build; Codex quedó listo</h1>
-    <p class="sub">El bloqueo anterior está cerrado y la elección explícita sigue disponible.</p>
+    <h1>Primero rendir; después decidir</h1>
+    <p class="sub">La base técnica está lista. Ahora falta saber cuáles jueces Codex merecen entrar al curso.</p>
   </header>
 
-  <div class="lede"><p><strong>Sentinel ya no se ejecuta ni regenera fuentes.</strong> Codex quedó como opción predeterminada, sin quitar la elección explícita, y la suite completa pasa.</p></div>
+  <div class="lede"><p><strong>Lo inmediato es ejecutar cinco exámenes por 439 consultas.</strong> Después se miden gratis, se registran por modelo y sólo los aprobados quedan habilitados.</p></div>
 
   <section>
-    <h2>El cierre es verificable y no consumió tokens de modelo</h2>
+    <h2>El próximo bloque ya tiene precio y duración</h2>
     <div class="kpis">
-      <div class="kpi dest"><div class="n">0</div><div class="l">invocaciones de Sentinel desde Maven</div></div>
-      <div class="kpi"><div class="n">✓</div><div class="l">el reactor completo compila</div></div>
-      <div class="kpi"><div class="n">70</div><div class="l">pruebas focales en verde</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">consultas o exámenes ejecutados</div></div>
+      <div class="kpi dest"><div class="n">439</div><div class="l">consultas máximas del bloque</div></div>
+      <div class="kpi"><div class="n">5</div><div class="l">jueces que rinden</div></div>
+      <div class="kpi"><div class="n">≈43<small>min</small></div><div class="l">con cuatro consultas simultáneas</div></div>
+      <div class="kpi"><div class="n">0</div><div class="l">consultas gastadas al prepararlo</div></div>
     </div>
-    <p class="pie">PIT y JaCoCo siguen disponibles bajo invocación explícita, pero ya no encarecen cada <code>verify</code>.</p>
+    <p class="pie">El juez de duplicados no está incluido: ya rindió con Codex, reprobó y necesita otro ciclo.</p>
   </section>
 
   <section>
-    <h2>Maven vuelve a construir el producto, no a gobernarlo</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">Antes</span><ol><li>Maven verificaba Sentinel.</li><li>La generación podía reescribir fuentes.</li><li>PIT y JaCoCo corrían automáticamente.</li></ol><span class="res">Desarrollar implicaba atravesar el framework.</span></div>
-      <div class="lado despues"><span class="rot">Ahora</span><ol><li>Las fuentes Java son manuales.</li><li>Compilar y probar no regenera.</li><li>Las auditorías se ejecutan a demanda.</li></ol><span class="res">El build vuelve a ser previsible.</span></div>
+    <h2>Tu autorización dispara un bloque controlado</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Autorizar</span><span class="d">Tope total: 439</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Rendir</span><span class="d">Codex, Sol 6.1, medium</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Medir</span><span class="d">Contra el oro congelado</span></div>
+      <div class="st"><span class="i">4</span><span class="h">Registrar</span><span class="d">Resultado y modelo juntos</span></div>
+      <div class="st end"><span class="i">5</span><span class="h">Mostrar</span><span class="d">Claude y Codex separados</span></div>
     </div>
-    <p class="pie">Las anotaciones <code>@Generated</code> existentes quedan como legado textual; ya no determinan ownership ni activan herramientas.</p>
+    <p class="pie">Medir, registrar y refrescar la interfaz son pasos locales: no agregan consultas.</p>
   </section>
 
   <section>
-    <h2>Codex es el default; Claude y el modelo siguen elegibles</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Por omisión</div><ul>
-        <li>Jueces y generadores usan <code>codex-cli</code>.</li>
-        <li>La sesión se verifica con <code>codex login status</code>.</li>
-        <li>No hay fallback silencioso a otro proveedor.</li>
-      </ul></div>
-      <div class="no"><div class="ptl">Elección explícita</div><ul>
-        <li><code>CONTENT_AUDIT_LAGEN_PROVIDER</code> y <code>…_MODEL</code></li>
-        <li><code>CONTENT_AUDIT_JUDGE_PROVIDER</code> y <code>…_MODEL</code></li>
-        <li><code>CONTENT_AUDIT_QINST_JUDGE_PROVIDER</code> y <code>…_MODEL</code></li>
-      </ul></div>
-      <div class="no"><div class="ptl">Se preserva</div><ul>
-        <li><code>claude-cli</code> si se declara.</li>
-        <li>Ollama y proveedores remotos.</li>
-        <li>La procedencia por proveedor, modelo y versión.</li>
-      </ul></div>
-    </div>
-    <p class="pie">Si no se declara modelo, Codex usa su configuración local; para procedencia exacta conviene declararlo por proceso.</p>
-  </section>
-
-  <section>
-    <h2>La suite completa y el launcher quedaron verdes</h2>
-    <div class="hb">
-      <div class="r"><span class="t">Compilación<small>reactor completo</small></span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">verde</span></div>
-      <div class="r"><span class="t">OpenAI configurable<small>catálogo, resolución y readiness</small></span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">46 / 46</span></div>
-      <div class="r"><span class="t">Launcher real<small>sin classpath fijo ni <code>mvn install</code></small></span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">24 / 24</span></div>
-      <div class="r"><span class="t">Suite Maven<small>todos los módulos</small></span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">verde</span></div>
-    </div>
-    <p class="pie">La suite completa necesitó sockets locales fuera del sandbox; no ejecutó jueces ni consultas de modelo.</p>
-  </section>
-
-  <section>
-    <h2>Lo que sigue ya es preparación operativa</h2>
+    <h2>El resultado abre dos caminos honestos</h2>
     <div class="opts">
-      <div class="opt rec"><div class="oh"><span class="ol">1</span><strong>Preparar las corridas</strong></div><p>Regenerar las copias A1 y adaptar su control histórico de Claude para Codex.</p><ul><li class="si">Evita ejecutar el proveedor viejo</li><li class="no">Requiere reexaminar jueces</li></ul></div>
-      <div class="opt"><div class="oh"><span class="ol">2</span><strong>Limpiar el legado</strong></div><p>Retirar anotaciones y artefactos históricos de Sentinel mecánicamente.</p><ul><li class="si">Reduce ruido</li><li class="no">No bloquea hoy</li></ul></div>
-      <div class="opt"><div class="oh"><span class="ol">3</span><strong>Reemplazar runtime</strong></div><p>Sustituir más adelante <code>sentinel-agents</code>, hoy usado para ejecutar agentes.</p><ul><li class="si">Elimina la dependencia final</li><li class="no">Requiere diseño propio</li></ul></div>
+      <div class="opt"><div class="oh"><span class="ol">A</span><strong>El juez aprueba</strong></div><p>Su identidad Codex queda habilitada para analizar el curso.</p><ul><li class="si">Se conserva junto a Claude</li><li class="si">Puede entrar a la tanda</li></ul></div>
+      <div class="opt"><div class="oh"><span class="ol">B</span><strong>El juez reprueba</strong></div><p>No toca el curso. Se revisan sus errores, se ajusta y rinde una versión nueva.</p><ul><li class="si">El fallo queda visible</li><li class="no">No se rebaja el examen</li></ul></div>
     </div>
-    <p class="pie">La recomendación es preparar primero una corrida corta y controlada; ningún paso pago se ejecutó todavía.</p>
+    <p class="pie">Los cinco pueden terminar en estados distintos; no se fuerza una aprobación conjunta.</p>
+  </section>
+
+  <section>
+    <h2>Después queda cerrar duplicados</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Hoy</span><ol><li>Cinco jueces esperan examen.</li><li>Duplicados omitió 27 pares.</li><li>La tanda sigue detenida.</li></ol><span class="res">Todavía no se corrige contenido.</span></div>
+      <div class="lado despues"><span class="rot">Próximo cierre</span><ol><li>Los cinco quedan medidos.</li><li>Duplicados mejora y reexamina.</li><li>Se estima la tanda restante.</li></ol><span class="res">Recién ahí se pide el próximo presupuesto.</span></div>
+    </div>
+    <p class="pie">No se reanuda A1 hasta que todos los jueces necesarios estén aprobados.</p>
+  </section>
+
+  <section>
+    <h2>Ahora necesito una sola decisión</h2>
+    <div class="asks">
+      <div class="ask"><div class="q">¿Autorizás hasta 439 consultas para los cinco exámenes Codex?</div><div class="ops"><span class="op rec">Sí, ejecutar</span><span class="op">No todavía</span></div><div class="why">Recomendación: sí. La copia, la identidad, los topes y la guardia ya fueron ensayados sin gasto.</div></div>
+    </div>
   </section>
 
   <footer>
-    <span>Fuentes: POM raíz, implementación, pruebas focales y ejecución completa de Maven.</span>
-    <span>brief 025 · docs/briefs/025-sentinel-fuera-codex-listo.html</span>
+    <span>Fuentes: ensayos con presupuesto cero, registros de examen y bitácora de ejecución.</span>
+    <span>brief 026 · docs/briefs/026-que-sigue-despues-del-ensayo.html</span>
   </footer>
 
 </div>
