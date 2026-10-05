@@ -20,8 +20,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * Journey J001: Full happy-path pipeline end-to-end with the new grammar.
  *
- * NOTE: The project must be built before running these tests:
- *   mvn install -pl audit-cli -am -DskipTests
+ * NOTE: The project must be compiled before running these tests:
+ *   mvn compile -pl audit-cli -am -DskipTests
+ * The launcher resolves runtime dependencies from the packaged reactor without installing the
+ * project modules into the local Maven repository.
  *
  * Each test takes ~5-30 seconds (JVM startup + processing).
  * The full journey test suite takes ~3-5 minutes.

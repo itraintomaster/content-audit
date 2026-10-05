@@ -1,2 +1,39 @@
 #!/usr/bin/env bash
-exec java -cp "/Users/josecullen/projects/learney/content-audit/quiz-instruction-infrastructure/target/classes:/Users/josecullen/projects/learney/content-audit/agent-runtime-infrastructure/target/classes:/Users/josecullen/projects/learney/content-audit/evaluation-ledger-infrastructure/target/classes:/Users/josecullen/projects/learney/content-audit/evaluation-ledger-domain/target/classes:/Users/josecullen/projects/learney/content-audit/revision-infrastructure/target/classes:/Users/josecullen/projects/learney/content-audit/revision-domain/target/classes:/Users/josecullen/projects/learney/content-audit/refiner-domain/target/classes:/Users/josecullen/projects/learney/content-audit/audit-infrastructure/target/classes:/Users/josecullen/projects/learney/content-audit/vocabulary-infrastructure/target/classes:/Users/josecullen/projects/learney/content-audit/nlp-infrastructure/target/classes:/Users/josecullen/projects/learney/content-audit/course-infrastructure/target/classes:/Users/josecullen/projects/learney/content-audit/course-domain/target/classes:/Users/josecullen/projects/learney/content-audit/audit-domain/target/classes:/Users/josecullen/projects/learney/content-audit/audit-application/target/classes:/Users/josecullen/projects/learney/content-audit/audit-cli/target/classes:/Users/josecullen/.m2/repository/info/picocli/picocli/4.7.6/picocli-4.7.6.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/audit-application/0.0.1/audit-application-0.0.1.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/audit-domain/0.0.1/audit-domain-0.0.1.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/course-domain/0.0.1/course-domain-0.0.1.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/course-infrastructure/0.0.1/course-infrastructure-0.0.1.jar:/Users/josecullen/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.18.4/jackson-databind-2.18.4.jar:/Users/josecullen/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.18.4/jackson-annotations-2.18.4.jar:/Users/josecullen/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.18.4/jackson-core-2.18.4.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/nlp-infrastructure/0.0.1/nlp-infrastructure-0.0.1.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/vocabulary-infrastructure/0.0.1/vocabulary-infrastructure-0.0.1.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/audit-infrastructure/0.0.1/audit-infrastructure-0.0.1.jar:/Users/josecullen/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.18.4/jackson-datatype-jsr310-2.18.4.jar:/Users/josecullen/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.18.4/jackson-datatype-jdk8-2.18.4.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/refiner-domain/0.0.1/refiner-domain-0.0.1.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/revision-domain/0.0.1/revision-domain-0.0.1.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/revision-infrastructure/0.0.1/revision-infrastructure-0.0.1.jar:/Users/josecullen/.m2/repository/dev/langchain4j/langchain4j-open-ai/1.13.0/langchain4j-open-ai-1.13.0.jar:/Users/josecullen/.m2/repository/dev/langchain4j/langchain4j-http-client/1.13.0/langchain4j-http-client-1.13.0.jar:/Users/josecullen/.m2/repository/dev/langchain4j/langchain4j-http-client-jdk/1.13.0/langchain4j-http-client-jdk-1.13.0.jar:/Users/josecullen/.m2/repository/com/knuddels/jtokkit/1.1.0/jtokkit-1.1.0.jar:/Users/josecullen/.m2/repository/dev/langchain4j/langchain4j-core/1.13.0/langchain4j-core-1.13.0.jar:/Users/josecullen/.m2/repository/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar:/Users/josecullen/.m2/repository/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar:/Users/josecullen/.m2/repository/com/sentinel/sentinel-agents/0.0.1-SNAPSHOT/sentinel-agents-0.0.1-SNAPSHOT.jar:/Users/josecullen/.m2/repository/org/bsc/langgraph4j/langgraph4j-core/1.8.15/langgraph4j-core-1.8.15.jar:/Users/josecullen/.m2/repository/org/bsc/async/async-generator/4.3.1/async-generator-4.3.1.jar:/Users/josecullen/.m2/repository/org/bsc/langgraph4j/langgraph4j-agent-executor/1.8.15/langgraph4j-agent-executor-1.8.15.jar:/Users/josecullen/.m2/repository/org/bsc/langgraph4j/langgraph4j-langchain4j/1.8.15/langgraph4j-langchain4j-1.8.15.jar:/Users/josecullen/.m2/repository/dev/langchain4j/langchain4j-skills/1.12.1-beta21/langchain4j-skills-1.12.1-beta21.jar:/Users/josecullen/.m2/repository/org/commonmark/commonmark/0.26.0/commonmark-0.26.0.jar:/Users/josecullen/.m2/repository/org/commonmark/commonmark-ext-yaml-front-matter/0.26.0/commonmark-ext-yaml-front-matter-0.26.0.jar:/Users/josecullen/.m2/repository/dev/langchain4j/langchain4j/1.13.0/langchain4j-1.13.0.jar:/Users/josecullen/.m2/repository/org/apache/opennlp/opennlp-tools/2.5.4/opennlp-tools-2.5.4.jar:/Users/josecullen/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.17.0/jackson-dataformat-yaml-2.17.0.jar:/Users/josecullen/.m2/repository/org/yaml/snakeyaml/2.2/snakeyaml-2.2.jar:/Users/josecullen/.m2/repository/com/sentinel/langgraph4j-trace/0.0.1-SNAPSHOT/langgraph4j-trace-0.0.1-SNAPSHOT.jar:/Users/josecullen/.m2/repository/org/slf4j/slf4j-simple/2.0.12/slf4j-simple-2.0.12.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/evaluation-ledger-domain/0.0.1/evaluation-ledger-domain-0.0.1.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/evaluation-ledger-infrastructure/0.0.1/evaluation-ledger-infrastructure-0.0.1.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/agent-runtime-infrastructure/0.0.1/agent-runtime-infrastructure-0.0.1.jar:/Users/josecullen/.m2/repository/com/learney/contentaudit/quiz-instruction-infrastructure/0.0.1/quiz-instruction-infrastructure-0.0.1.jar" com.learney.contentaudit.auditcli.commands.Main "$@"
+set -euo pipefail
+
+PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
+AUDIT_CLI_CLASSES="$PROJECT_DIR/audit-cli/target/classes"
+RUNTIME_CLASSPATH_FILE="$PROJECT_DIR/audit-cli/target/runtime-classpath.txt"
+CLASSPATH_REFRESHER="$PROJECT_DIR/scripts/refresh-audit-cli-classpath.sh"
+
+needs_classpath_refresh() {
+    [[ ! -s "$RUNTIME_CLASSPATH_FILE" ]] && return 0
+    [[ ! -d "$AUDIT_CLI_CLASSES" ]] && return 0
+    find "$PROJECT_DIR" -name pom.xml -newer "$RUNTIME_CLASSPATH_FILE" -print -quit \
+        | grep -q .
+}
+
+if needs_classpath_refresh; then
+    bash "$CLASSPATH_REFRESHER"
+fi
+
+if [[ ! -d "$AUDIT_CLI_CLASSES" ]]; then
+    echo "ContentAudit no está compilado: falta $AUDIT_CLI_CLASSES" >&2
+    echo "Ejecutá: mvn -pl audit-cli -am -DskipTests compile" >&2
+    exit 1
+fi
+
+# target/classes always precedes the packaged reactor jars. This makes a normal `mvn compile`
+# immediately runnable without installing local modules into ~/.m2 or rebuilding the launcher.
+REACTOR_CLASSES=("$AUDIT_CLI_CLASSES")
+for classes_dir in "$PROJECT_DIR"/*/target/classes; do
+    if [[ -d "$classes_dir" && "$classes_dir" != "$AUDIT_CLI_CLASSES" ]]; then
+        REACTOR_CLASSES+=("$classes_dir")
+    fi
+done
+
+REACTOR_CLASSPATH="$(IFS=:; printf '%s' "${REACTOR_CLASSES[*]}")"
+RUNTIME_CLASSPATH="$(<"$RUNTIME_CLASSPATH_FILE")"
+
+exec java -cp "$REACTOR_CLASSPATH:$RUNTIME_CLASSPATH" \
+    com.learney.contentaudit.auditcli.commands.Main "$@"
