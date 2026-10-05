@@ -3,357 +3,184 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bitácora viva · Exámenes y corridas con Codex</title>
-<!--
-  TEMPLATE DE BRIEF · visual-brief
-  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
-  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
-     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
-  3. BORRAR el catálogo entero (<section class="cat">) y las secciones que no se usan.
-  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
-  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
-  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
-  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
--->
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="refresh" content="30">
+<title>Bitácora viva · Examen Codex</title>
 <style>
-  /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
-    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
-    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
-    --accent:#b4531f; --accent-soft:#fdf1e7;
-    --ok:#2f6b46; --ok-soft:#e9f4ed;
-    --warn:#8a6314; --warn-soft:#fbf2dd;
-    --bad:#a3342c; --bad-soft:#fbecea;
-    --info:#2a5b8f; --info-soft:#e9f1f9;
-    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+    --bg:#f4f1eb;--paper:#fffdf9;--ink:#201d19;--muted:#6f685f;--faint:#9d958a;
+    --line:#ddd6cc;--line2:#eee9e2;--accent:#d15f32;--accent2:#8d351e;
+    --accent-soft:#fbe8dc;--ok:#277451;--ok-soft:#e3f3ea;--warn:#98630d;
+    --warn-soft:#fbefd2;--info:#295f91;--info-soft:#e2eef9;--fail:#b53f35;--fail-soft:#fae5e1;--shadow:0 18px 55px -40px rgba(42,31,22,.55);
   }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
-      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
-      --accent:#e08b4f; --accent-soft:#2a1f16;
-      --ok:#7fc79c; --ok-soft:#16241c;
-      --warn:#e0b657; --warn-soft:#272013;
-      --bad:#e58b82; --bad-soft:#2a1917;
-      --info:#8ab6e5; --info-soft:#141f2b;
-      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
-    }
-  }
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    margin:0; background:var(--bg); color:var(--fg);
-    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
-    font-feature-settings:"kern","liga","cv05";
-    padding:40px 24px 80px;
-  }
-  .wrap{max-width:940px;margin:0 auto}
-  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
-  a{color:var(--accent)}
-  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
-
-  /* ============ encabezado ============ */
-  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
-  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
-    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
-  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
-    border-radius:100px;background:var(--accent-soft);color:var(--accent);
-    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
-  .meta{font-size:12.5px;color:var(--fg-3)}
-  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
-  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
-
-  /* ============ el lede: la conclusión, dos renglones ============ */
-  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
-    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
-  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
-  .lede strong{font-weight:650}
-
-  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
-  section{margin:0 0 38px}
-  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
-  p{margin:0 0 12px}
-  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
-  .grid{display:grid;gap:12px}
-  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
-    box-shadow:var(--shadow);min-width:0}
-  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
-
-  /* ============ KPIs: el número grande, su comparación abajo ============ */
-  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
-  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
-  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
-  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
-  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
-  .kpi.dest .n{color:var(--accent)}
-
-  /* ============ barras horizontales con etiqueta ============ */
-  .hb{display:grid;gap:10px}
-  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
-  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
-  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
-  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
-  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
-  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
-  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
-  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
-  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
-  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
-  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
-  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
-  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
-
-  /* ============ flujo en pasos ============ */
-  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
-  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
-    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
-  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
-    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
-  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
-    background:var(--accent-soft);color:var(--accent)}
-  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
-  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
-  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
-  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
-
-  /* ============ antes y después ============ */
-  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
-  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
-    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
-  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
-  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
-  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
-  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
-    font-size:19px;color:var(--fg-3)}
-  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
-  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
-  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
-
-  /* ============ mapa de calor ============ */
-  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
-  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
-  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
-  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
-  .heat .h0{color:var(--fg-3)}
-  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
-  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
-  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
-
-  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
-  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
-  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
-    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
-  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
-  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
-  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
-    background:var(--line-soft);flex:none}
-  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
-  .opt p{font-size:13px;color:var(--fg-2);margin:0}
-  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
-  .opt li::before{font-weight:800;margin-right:6px}
-  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
-
-  /* ============ ejemplo real ============ */
-  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
-    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
-  .ex .cons{font-size:12px;color:var(--fg-3)}
-  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
-  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
-  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
-  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
-    border-top:1px dashed var(--line);padding-top:7px}
-  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
-    border-radius:8px;padding:8px 10px}
-  .mark .x{color:var(--bad);font-weight:800}
-  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
-  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
-  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
-  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
-
-  /* ============ preguntas, con la recomendación ============ */
-  .asks{display:grid;gap:10px}
-  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
-    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
-  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
-  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
-  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
-  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
-  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
-
-  /* ============ qué cambia y qué no ============ */
-  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
-  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
-  .cambia li{position:relative;padding-left:22px}
-  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
-  .cambia .si li::before{content:"✓";color:var(--ok)}
-  .cambia .no li::before{content:"=";color:var(--fg-3)}
-
-  /* ============ captura real, con su pie ============ */
-  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
-    box-shadow:var(--shadow);min-width:0}
-  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
-  .captura.cel img{max-width:300px;margin:0 auto}
-  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
-
-  /* ============ pills de estado ============ */
-  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
-  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
-  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
-  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
-  .p-idle{background:var(--line-soft);color:var(--fg-3)}
-
-  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
-  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
-  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
-  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
-    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
-  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
-  tr:last-child td{border-bottom:0}
-  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
-
-  /* ============ diagrama SVG a mano ============ */
-  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
-    overflow-x:auto;box-shadow:var(--shadow)}
-  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
-  svg .box{fill:var(--bg);stroke:var(--line)}
-  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
-  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
-  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
-  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
-  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
-  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
-
-  /* ============ comandos · aviso de lo que no sé ============ */
-  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
-    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
-  pre code{color:var(--fg)}
-  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
-  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
-  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
-  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
-  .call b:first-child{margin-right:4px}
-
-  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
-    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-  /* ============ celular ============ */
-  @media (max-width:640px){
-    body{padding:24px 16px 60px}
-    h2{font-size:17px}
-    .flow{grid-auto-flow:row}
-    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
-    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
-    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
-    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
-    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
-    .kpi .n{font-size:28px}
-  }
-
-  /* ============ CATÁLOGO · se borra entero al generar ============ */
-  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
-  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
-  .cat-g{display:grid;gap:16px}
-  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
-  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
-  .cat-i>.n b{color:var(--fg-2)}
+  @media(prefers-color-scheme:dark){:root{
+    --bg:#12110f;--paper:#1b1916;--ink:#f3eee7;--muted:#b1a89d;--faint:#80776d;
+    --line:#39342e;--line2:#292622;--accent:#f08b5d;--accent2:#ffc0a1;
+    --accent-soft:#321e16;--ok:#7ed0a4;--ok-soft:#16291f;--warn:#edbd63;
+    --warn-soft:#2c2414;--info:#8fc1ef;--info-soft:#162534;--fail:#ff9187;--fail-soft:#341b19;--shadow:0 20px 60px -38px rgba(0,0,0,.9);
+  }}
+  *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.55 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",sans-serif;letter-spacing:-.005em}
+  button{font:inherit;color:inherit} code,.mono{font-family:ui-monospace,"SF Mono",Menlo,monospace}
+  .shell{max-width:1080px;margin:auto;padding:0 24px 80px}.topline{position:sticky;top:0;z-index:10;
+    margin:0 -24px;padding:10px 24px;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(18px);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;align-items:center}
+  .live{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:750;letter-spacing:.07em;text-transform:uppercase}
+  .pulse{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:pulse 2s infinite}
+  @keyframes pulse{60%{box-shadow:0 0 0 8px transparent}} .updated{font-size:12px;color:var(--muted)}
+  header{padding:46px 0 28px}.eyebrow{font:700 12px ui-monospace,monospace;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+  h1{font-size:clamp(34px,6vw,68px);line-height:.98;letter-spacing:-.055em;margin:12px 0 18px;max-width:13ch;font-weight:760}
+  .lede{font-size:clamp(17px,2.2vw,22px);line-height:1.4;color:var(--muted);max-width:62ch;margin:0}
+  .lede strong{color:var(--ink)} section{margin:0 0 56px} h2{font-size:clamp(21px,3vw,30px);line-height:1.15;
+    letter-spacing:-.035em;margin:0 0 18px;max-width:24ch} .caption{color:var(--muted);font-size:13px;margin:12px 0 0;max-width:72ch}
+  .hero{display:grid;grid-template-columns:250px 1fr;gap:18px;align-items:stretch}.card{background:var(--paper);border:1px solid var(--line);
+    border-radius:20px;box-shadow:var(--shadow)}.ring-card{padding:24px;display:grid;place-items:center;text-align:center}
+  .ring{--p:3.77deg;width:174px;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
+    background:conic-gradient(var(--accent) var(--p),var(--line2) 0);position:relative}
+  .ring:before{content:"";position:absolute;inset:15px;border-radius:50%;background:var(--paper)}
+  .ring-inner{position:relative}.ring .big{font-size:38px;font-weight:780;line-height:1;letter-spacing:-.05em}.ring .small{font-size:12px;color:var(--muted);margin-top:5px}
+  .now{padding:22px 24px;display:flex;flex-direction:column;justify-content:space-between;gap:22px}.statusline{display:flex;gap:8px;flex-wrap:wrap}
+  .pill{font-size:11px;font-weight:740;padding:5px 9px;border-radius:999px;background:var(--line2);color:var(--muted)}
+  .pill.running{background:var(--accent-soft);color:var(--accent2)}.pill.ok{background:var(--ok-soft);color:var(--ok)}.pill.fail{background:var(--fail-soft);color:var(--fail)}
+  .now h3{font-size:25px;line-height:1.15;letter-spacing:-.035em;margin:0}.now p{color:var(--muted);margin:7px 0 0;max-width:58ch}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.fact{padding-top:11px;border-top:1px solid var(--line2)}
+  .fact b{display:block;font-size:18px}.fact span{font-size:11px;color:var(--muted)}
+  .parts{display:grid;gap:10px}.part{display:grid;grid-template-columns:160px 1fr 92px;gap:14px;align-items:center;padding:12px 14px;
+    background:var(--paper);border:1px solid var(--line);border-radius:14px}.part-name{font-weight:690}.part-name small{display:block;font-weight:450;color:var(--muted)}
+  .track{height:12px;border-radius:99px;background:var(--line2);overflow:hidden}.fill{height:100%;width:var(--w);border-radius:inherit;background:var(--accent);min-width:2px}
+  .done .fill{background:var(--ok)}.running-row{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));background:var(--accent-soft)}.part-num{text-align:right;font:700 13px ui-monospace,monospace}.part-num small{display:block;color:var(--muted);font-weight:450}
+  .timeline-tools{display:flex;gap:8px;margin:-4px 0 14px}.timeline-tools button{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 11px;font-size:12px;cursor:pointer}
+  .timeline-tools button.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}.timeline{position:relative;display:grid;gap:10px}
+  .timeline:before{content:"";position:absolute;left:72px;top:18px;bottom:18px;width:1px;background:var(--line)}
+  .event{display:grid;grid-template-columns:58px 1fr;gap:28px;align-items:start}.event time{font:650 12px ui-monospace,monospace;color:var(--faint);padding-top:14px;text-align:right}
+  .event-body{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:12px 15px}
+  .event-body:before{content:"";position:absolute;left:-24px;top:17px;width:9px;height:9px;border-radius:50%;background:var(--faint);border:4px solid var(--bg)}
+  .event.live-event .event-body{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));background:var(--accent-soft)}.event.live-event .event-body:before{background:var(--accent)}
+  .event h3{font-size:14px;margin:0 0 3px}.event p{font-size:12.5px;color:var(--muted);margin:0}.event[data-scope="history"].hidden{display:none}
+  .switch{display:grid;grid-template-columns:1fr 46px 1fr;align-items:stretch}.side{padding:20px;background:var(--paper);border:1px solid var(--line)}
+  .side.old{border-radius:18px 0 0 18px}.side.new{border-radius:0 18px 18px 0;border-color:color-mix(in srgb,var(--ok) 45%,var(--line));background:var(--ok-soft)}
+  .arrow{display:grid;place-items:center;color:var(--faint);font-size:24px}.label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:750}
+  .side strong{display:block;font-size:22px;margin:8px 0 3px}.side p{font-size:13px;color:var(--muted);margin:0}.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:13px}
+  .mini{border-top:1px solid var(--line);padding-top:8px}.mini b{font-size:16px}.mini span{display:block;font-size:10.5px;color:var(--muted)}
+  .guards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.guard{padding:16px;background:var(--paper);border:1px solid var(--line);border-radius:16px}
+  .guard .icon{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:var(--ok-soft);color:var(--ok);font-weight:800;margin-bottom:13px}
+  .guard h3{font-size:14px;margin:0 0 4px}.guard p{font-size:12px;color:var(--muted);margin:0}
+  .result-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px}.result{padding:20px;border-radius:18px;border:1px solid var(--line);background:var(--paper)}
+  .result.primary{border-color:color-mix(in srgb,var(--fail) 52%,var(--line));background:var(--fail-soft)}.result .kicker{font:750 11px ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .result strong{display:block;font-size:clamp(28px,5vw,48px);line-height:1;letter-spacing:-.05em;margin:15px 0 7px}.result p{font-size:13px;color:var(--muted);margin:0;max-width:48ch}
+  .split-stat{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:17px}.split-stat div{border-top:1px solid color-mix(in srgb,var(--fail) 28%,var(--line));padding-top:9px}.split-stat b{display:block;font-size:18px}.split-stat span{font-size:11px;color:var(--muted)}
+  .next{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .step{padding:16px;border-right:1px solid var(--line);position:relative}.step:last-child{border:0}.step .num{font:700 11px ui-monospace,monospace;color:var(--faint)}
+  .step b{display:block;font-size:13px;margin-top:8px}.step span{display:block;font-size:11px;color:var(--muted);margin-top:3px}.step.current{background:var(--accent-soft)}
+  footer{border-top:1px solid var(--line);padding-top:16px;color:var(--faint);font-size:11px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  @media(max-width:720px){.shell{padding:0 16px 60px}.topline{margin:0 -16px;padding:9px 16px}.hero{grid-template-columns:1fr}.ring-card{grid-template-columns:150px 1fr;text-align:left}
+    .ring{width:132px}.part{grid-template-columns:1fr 72px}.track{grid-column:1/-1;grid-row:2}.facts{grid-template-columns:1fr}.switch{grid-template-columns:1fr}.arrow{height:38px}.side.old,.side.new{border-radius:16px}.guards,.result-grid{grid-template-columns:1fr}.next{grid-template-columns:1fr 1fr}.step:nth-child(2){border-right:0}.step:nth-child(-n+2){border-bottom:1px solid var(--line)}}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="shell">
+  <div class="topline">
+    <div class="live"><span class="pulse"></span><span>Examen cerrado · tanda detenida</span></div>
+    <div class="updated">Actualizado <time id="updatedAgo">recién</time> · acta registrada</div>
+  </div>
 
   <header>
-    <div class="kicker">
-      <span class="num">VIVA</span>
-      <span class="badge">Bitácora · Último arriba</span>
-      <span class="meta">Corregir sin empeorar · 5 octubre 2026</span>
-    </div>
-    <h1>Preparar exámenes y corridas con Codex</h1>
-    <p class="sub">Estado vivo de las bases, las decisiones y el próximo paso seguro.</p>
+    <div class="eyebrow">Bitácora viva · Codex + content-audit</div>
+    <h1>El juez todavía no está para corregir A1.</h1>
+    <p class="lede"><strong>El examen terminó y el resultado honesto es reprobado.</strong> El juez es muy preciso cuando acusa un duplicado, pero deja pasar demasiados. La tanda principal no se reanudó.</p>
   </header>
 
-  <div class="lede"><p><strong>El examen Codex necesita exactamente 1.147 consultas.</strong> Las bases están verificadas, Claude queda intacto y no se consumió ninguna consulta paga.</p></div>
-
   <section>
-    <h2>09:26 · Ensayo completo terminado con Codex bloqueado</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">1147</div><div class="l">consultas pendientes medidas</div></div>
-      <div class="kpi"><div class="n">4</div><div class="l">partes ensayadas sin presupuesto</div></div>
-      <div class="kpi"><div class="n">3249</div><div class="l">pruebas verdes de punta a punta</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">consultas pagas realizadas</div></div>
+    <h2>Resultado cerrado</h2>
+    <div class="hero">
+      <div class="card ring-card">
+        <div class="ring" id="ring"><div class="ring-inner"><div class="big" id="pct">95,8%</div><div class="small"><b id="used">1.099</b> de <b id="total">1.147</b></div></div></div>
+      </div>
+      <div class="card now">
+        <div class="statusline"><span class="pill fail">Reprobado</span><span class="pill ok">4 de 4 completos</span><span class="pill">Claude intacto</span></div>
+        <div><h3>Muy preciso; no suficientemente sensible</h3><p>Acertó todos los duplicados que marcó, pero omitió 27 casos verdaderos. Mejorar esto exige trabajar la cobertura del juez, no rebajar el examen.</p></div>
+        <div class="facts"><div class="fact"><b>1.099</b><span>consultas reales</span></div><div class="fact"><b>4.887</b><span>ejercicios recorridos</span></div><div class="fact"><b>0</b><span>sin veredicto</span></div></div>
+      </div>
     </div>
-    <p class="pie">Desglose: 2 + 119 para precisión, 513 + 513 para estabilidad. La cifra histórica era aproximada: el ensayo manda.</p>
   </section>
 
   <section>
-    <h2>Avance anterior · Las tres brechas quedaron cerradas</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Identidad visible</span><span class="d">Proveedor, modelo y esfuerzo legibles.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Medium explícito</span><span class="d">No hereda High de la cuenta.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Salida protegida</span><span class="d"><code>--out</code> existente se rechaza intacto.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Historia compatible</span><span class="d">Claude previo conserva sus versiones.</span></div>
+    <h2>El total se reparte en cuatro controles</h2>
+    <div class="parts" id="parts">
+      <div class="part done"><div class="part-name">Precisión corta<small>14 ejercicios</small></div><div class="track"><div class="fill" style="--w:100%"></div></div><div class="part-num">2 / 2<small>completa</small></div></div>
+      <div class="part done"><div class="part-name">Muestra A′<small>69 ejercicios</small></div><div class="track"><div class="fill" style="--w:100%"></div></div><div class="part-num">119 / 119<small>completa</small></div></div>
+      <div class="part done"><div class="part-name">Estabilidad 1<small>foto A1</small></div><div class="track"><div class="fill" style="--w:100%"></div></div><div class="part-num">468 / ≤513<small>completa</small></div></div>
+      <div class="part done"><div class="part-name">Estabilidad 2<small>copia aislada</small></div><div class="track"><div class="fill" style="--w:100%"></div></div><div class="part-num">510 / ≤513<small>completa</small></div></div>
     </div>
-    <p class="pie">La medición hereda la procedencia de la toma original: el archivo medido no puede atribuirse un modelo distinto.</p>
+    <p class="caption">Se usaron 1.099 consultas reales: 48 menos que el techo autorizado gracias a decisiones reutilizables. Una consulta decide un par, no necesariamente un ejercicio entero.</p>
   </section>
 
   <section>
-    <h2>Los análisis importantes ya están en la tanda A1</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">19</div><div class="l">analizadores congelados en la tanda</div></div>
-      <div class="kpi"><div class="n">8</div><div class="l">medidas léxicas y locales verificadas</div></div>
-      <div class="kpi"><div class="n">1</div><div class="l">único faltante: near-duplicates</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">consultas Codex consumidas</div></div>
+    <h2>Qué aprendimos del juez</h2>
+    <div class="result-grid">
+      <div class="result primary"><div class="kicker">Problema decisivo · cobertura</div><strong>27 de 46</strong><p>Entre los pares que el juez dejó sin marcar, 27 sí eran el mismo ejercicio. El contrato permitía como máximo 2 de cada 10; aquí fueron casi 6 de cada 10.</p><div class="split-stat"><div><b>25 / 25</b><span>marcados correctos</span></div><div><b>0</b><span>falsas alarmas</span></div></div></div>
+      <div class="result"><div class="kicker">Estabilidad · casi, pero no</div><strong>2.399 / 2.402</strong><p>Las decisiones globales coincidieron un 99,88%. Aun así, 3 de las 40 copias marcadas cambiaron entre corridas y el umbral congelado exigía más.</p><div class="split-stat"><div><b>37 / 40</b><span>copias iguales</span></div><div><b>6 + 1</b><span>casos cortos encontrados</span></div></div></div>
     </div>
-    <p class="pie"><code>lemma-count</code>, <code>lemma-absence</code>, recurrencia, nivel, COCA y largos coinciden entre análisis activo, baseline y tanda.</p>
+    <p class="caption">Conclusión: conviene mejorar el recuerdo de candidatos sin perder la precisión actual. No hay evidencia para soltar todavía este juez sobre la tanda.</p>
   </section>
 
   <section>
-    <h2>El modelo equilibrado queda fijado y registrado</h2>
-    <div class="kpis">
-      <div class="kpi dest"><div class="n">6.1</div><div class="l">Sol: equilibrio entre calidad y costo</div></div>
-      <div class="kpi"><div class="n">M</div><div class="l">esfuerzo medio para juicios consistentes</div></div>
-      <div class="kpi"><div class="n">91<small>%</small></div><div class="l">límite semanal disponible informado</div></div>
-      <div class="kpi"><div class="n">0</div><div class="l">consultas Codex consumidas</div></div>
+    <h2>Últimos movimientos, con evidencia</h2>
+    <div class="timeline-tools"><button class="active" data-filter="all">Todo</button><button data-filter="live">Sólo ejecución</button></div>
+    <div class="timeline">
+      <article class="event live-event" data-scope="live"><time>10:27</time><div class="event-body"><h3>Resultado reprobado registrado</h3><p>118 casos medidos, 0 sin juzgar; procedencia: codex-cli · gpt-6.1-sol · medium.</p></div></article>
+      <article class="event" data-scope="live"><time>10:26</time><div class="event-body"><h3>La medición congelada encontró el límite</h3><p>25/25 aciertos al marcar; 27/46 duplicados omitidos; estabilidad de copias 37/40.</p></div></article>
+      <article class="event" data-scope="live"><time>10:24</time><div class="event-body"><h3>Las cuatro partes quedaron completas</h3><p>1.099 consultas reales de 1.147 autorizadas; 4.887 ejercicios; ningún veredicto pendiente.</p></div></article>
+      <article class="event" data-scope="live"><time>10:02</time><div class="event-body"><h3>Estabilidad 1 completa</h3><p>2.402 de 2.402 ejercicios; 468 consultas nuevas; identidad correcta.</p></div></article>
+      <article class="event" data-scope="live"><time>09:44</time><div class="event-body"><h3>Muestra A′ completa</h3><p>69 de 69 ejercicios; 4:15; proveedor y modelo correctos.</p></div></article>
+      <article class="event" data-scope="live"><time>09:38</time><div class="event-body"><h3>Precisión corta completa</h3><p>14 de 14 ejercicios con veredicto; las 2 consultas pendientes cerraron bien.</p></div></article>
+      <article class="event" data-scope="live"><time>09:33</time><div class="event-body"><h3>Piloto aprobado</h3><p>10 consultas, 52 segundos, 0 errores; Sol 6.1 con esfuerzo Medium.</p></div></article>
+      <article class="event" data-scope="history"><time>09:36</time><div class="event-body"><h3>La app ya mira la tanda correcta</h3><p>Pasó de la copia del 1/10 a la copia Codex del 5/10, sin inferencias desde UI.</p></div></article>
+      <article class="event" data-scope="history"><time>09:26</time><div class="event-body"><h3>Ensayo gratis: 1.147</h3><p>Se midieron las cuatro partes con presupuesto cero antes de pedir autorización.</p></div></article>
+      <article class="event" data-scope="history"><time>09:21</time><div class="event-body"><h3>Base verificada</h3><p>3.249 pruebas; 17 módulos; ninguna falla ni error.</p></div></article>
     </div>
-    <p class="pie">La CLI acepta el modelo exacto y el wrapper fija esfuerzo por proceso, sin cambiar la configuración personal.</p>
   </section>
 
   <section>
-    <h2>Estas decisiones ya no están abiertas</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Se garantiza</div><ul>
-        <li>Los exámenes Claude quedan intactos.</li>
-        <li>Codex guarda proveedor y modelo exactos.</li>
-        <li>Ambos resultados se podrán comparar.</li>
-      </ul></div>
-      <div class="no"><div class="ptl">Siempre entra</div><ul>
-        <li>Conteo y ausencia de lemas.</li>
-        <li>Recurrencia, nivel y distribución.</li>
-        <li>Largos, consignas y análisis locales.</li>
-      </ul></div>
+    <h2>La UI dejó de mostrar una foto vieja</h2>
+    <div class="switch">
+      <div class="side old"><div class="label">Antes · copia 1/10</div><strong>1.403 con error</strong><p>La ventana abierta no reflejaba la tanda actual.</p></div>
+      <div class="arrow">→</div>
+      <div class="side new"><div class="label">Ahora · análisis 3/10</div><strong>2.732 con error</strong><p>La app quedó conectada a la copia A1 Codex.</p><div class="mini-grid"><div class="mini"><b>1.096</b><span>A1 con error</span></div><div class="mini"><b>130</b><span>traducciones A1</span></div><div class="mini"><b>992</b><span>tareas de tanda</span></div></div></div>
     </div>
-    <p class="pie">La comparación usará la misma muestra y foto; proveedor, modelo, esfuerzo, versión y métricas quedarán juntos.</p>
+    <p class="caption">El aumento no es un retroceso: ahora se ve el análisis más completo y reciente.</p>
   </section>
 
   <section>
-    <h2>Lo próximo requiere autorización explícita</h2>
-    <div class="flow">
-      <div class="st"><span class="i">A</span><span class="h">Auditado</span><span class="d">Evidencia y riesgos identificados.</span></div>
-      <div class="st"><span class="i">B</span><span class="h">Implementado</span><span class="d">Identidad, effort y archivos seguros.</span></div>
-      <div class="st"><span class="i">C</span><span class="h">Ensayado gratis</span><span class="d">1.147 consultas medidas.</span></div>
-      <div class="st end"><span class="i">D</span><span class="h">Esperando OK</span><span class="d">No gastar antes de aprobar.</span></div>
+    <h2>Tres seguros protegen la corrida</h2>
+    <div class="guards">
+      <div class="guard"><div class="icon">1</div><h3>Claude no se pisa</h3><p>Carpetas y resultados quedan separados por versión.</p></div>
+      <div class="guard"><div class="icon">2</div><h3>La identidad viaja</h3><p>Proveedor, modelo y esfuerzo quedan en cada salida.</p></div>
+      <div class="guard"><div class="icon">3</div><h3>La UI no gasta</h3><p>Su lanzador bloquea inferencias aunque se toque una acción.</p></div>
     </div>
-    <p class="pie">La corrida real se habilita sólo después de informar el total exacto de consultas y recibir autorización explícita.</p>
   </section>
 
-  <footer>
-    <span>Fuentes: código local, requisitos, OpenAI Docs y auditorías en curso.</span>
-    <span>bitácora viva · docs/bitacora.html</span>
-  </footer>
+  <section>
+    <h2>El próximo trabajo ya está acotado</h2>
+    <div class="next"><div class="step"><div class="num">LISTO</div><b>Examen</b><span>resultado registrado</span></div><div class="step current"><div class="num">SIGUE</div><b>Diagnosticar cobertura</b><span>por qué omite 27 pares</span></div><div class="step"><div class="num">03</div><b>Ajustar el juez</b><span>sin perder el 25/25</span></div><div class="step"><div class="num">04</div><b>Reexaminar</b><span>mismo contrato, nueva versión</span></div></div>
+    <p class="caption">No se retoca el oro ni se continúa la tanda con un juez reprobado. El siguiente ciclo debe preservar la precisión y recuperar los duplicados omitidos.</p>
+  </section>
 
+  <footer><span>Fuente: logs de corrida, content-audit y UI local.</span><span class="mono">docs/bitacora.html · estado vivo</span></footer>
 </div>
+<script>
+  const state={used:1099,total:1147,updatedAt:'2026-10-05T10:28:29-03:00'};
+  const pct=state.used/state.total*100;
+  document.querySelector('#ring').style.setProperty('--p',`${pct*3.6}deg`);
+  document.querySelector('#pct').textContent=pct.toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';
+  document.querySelector('#used').textContent=state.used.toLocaleString('es-AR');
+  document.querySelector('#total').textContent=state.total.toLocaleString('es-AR');
+  function updateAge(){const minutes=Math.max(0,Math.floor((Date.now()-new Date(state.updatedAt))/60000));document.querySelector('#updatedAgo').textContent=minutes<1?'recién':`hace ${minutes} min`;}
+  updateAge();setInterval(updateAge,30000);
+  document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{
+    document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b===button));
+    document.querySelectorAll('.event').forEach(event=>event.classList.toggle('hidden',button.dataset.filter==='live'&&event.dataset.scope!=='live'));
+  }));
+</script>
 </body>
 </html>
