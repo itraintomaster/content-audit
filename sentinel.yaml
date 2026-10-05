@@ -18900,8 +18900,12 @@ modules:
       implements:
       - BatchComparisonFormatter
   - name: bootstrap
-    description: |
-      Env-var -> domain-object parsing plus composition-root helpers translating external inputs (workdir, approval mode, proposal strategy selection, LAGEN mode + LLM config, conjunto de ejercicios a re-evaluar declarado enumerado o por origen externo) into typed values consumed by the engine factories.
+    description: "Raíz de composición. Resuelve un solo default de proveedor por sesió\
+      n local —codex-cli autenticado con ChatGPT— para jueces, generadores, alternativas\
+      \ de idioma y agentes de mesa; inyecta [codex, login, status] en la verificació\
+      n de disponibilidad. El modelo exacto se toma de configuración explícita y nunca\
+      \ del default del CLI, para que provider+model+version gobiernen examen y procedencia.\
+      \ Los modelos locales deliberados, como Ollama, conservan su cableado."
     visibility: internal
     models:
     - name: InvalidWorkdirException
@@ -19263,6 +19267,10 @@ modules:
       implements:
       - LagenConfigResolver
     - name: DefaultQuizInstructionJudgeConfigResolver
+      requiresInject:
+      - name: localSessionProviderCatalog
+        type: LocalSessionProviderCatalog
+        description: Aporta codex-cli como proveedor por omisión sin fijar un modelo.
       implements:
       - QuizInstructionJudgeConfigResolver
     - name: EnvQuizInstructionCorrectionConfigResolver
@@ -19310,6 +19318,10 @@ modules:
       implements:
       - ReevaluationQuizSetResolver
     - name: DefaultAgentJudgeConfigResolver
+      requiresInject:
+      - name: localSessionProviderCatalog
+        type: LocalSessionProviderCatalog
+        description: Aporta codex-cli como proveedor por omisión sin fijar un modelo.
       visibility: public
       implements:
       - AgentJudgeConfigResolver
@@ -20618,14 +20630,15 @@ modules:
       description: "Symbolic identifier, e.g. 'lemma-absence-mvp' (F-LAPS-R005)."
     - name: version
       type: String
-      description: "Version string, e.g. '1.0.0'; distinguishes revisions of the same\
-        \ name over time (F-LAPS-R005)."
+      description: Versión completa del proceso/estrategia que produjo la propuesta.
+        Junto con providerId distingue cambios de definición o lógica y nunca se reescribe
+        sobre propuestas históricas.
     - name: providerId
       type: String
-      description: "Opaque provider id for the underlying candidate generator, e.g.\
-        \ 'llm:anthropic', 'fixture:golden'. Nullable when the strategy has no external\
-        \ provider. Resolves DOUBT-STRATEGY-METADATA as the minimum-beyond-name+version\
-        \ metadata."
+      description: "Identidad opaca pero legible del proveedor y modelo exactos, con\
+        \ formato proveedor:modelo para procesos con modelo. Se interpreta junto con\
+        \ version; cualquier cambio en proveedor, modelo o versión produce una procedencia\
+        \ distinta."
   - name: LemmaAbsenceQuizCandidate
     type: record
     fields:
@@ -22703,13 +22716,9 @@ modules:
           \ mode, F-LAGEN-R013)."
       - name: providerId
         type: String
-        description: "Provider identifier stamped onto every StrategyId this strategy\
-          \ emits (F-LAGEN-R009). Supplied by the composition root: in LLM mode it\
-          \ is LemmaAbsenceLlmGeneratorFactory.providerIdFor(LagenConfig) (format\
-          \ 'providerName:modelId' per DOUBT-PROVIDER-ID-FORMAT Option B); in canned\
-          \ mode the operator picks a stable string. Required (the strategy never\
-          \ invents a default) so the provenance recorded on every persisted RevisionProposal\
-          \ matches what the operator configured."
+        description: "Proveedor y modelo exactos, en formato proveedor:modelo, estampados\
+          \ en StrategyId. La composición los deriva de LagenConfig y no inventa defaults;\
+          \ StrategyId.version aporta la tercera pieza de procedencia."
       types:
       - Component
       visibility: public
@@ -23614,8 +23623,8 @@ modules:
           root supple el agente (default) o un generador canned (F-KTLR-R003).
       - name: providerId
         type: String
-        description: Identificador de proveedor estampado en cada StrategyId que emite
-          la estrategia (analogo a LemmaAbsenceMvpStrategy).
+        description: "Proveedor y modelo exactos, en formato proveedor:modelo, estampados\
+          \ en StrategyId; la versión del proceso viaja por separado en StrategyId.version."
       visibility: public
       implements:
       - KnowledgeTitleProposalStrategy
@@ -24925,6 +24934,8 @@ modules:
         type: QuizInstructionCandidateGenerator
       - name: providerId
         type: String
+        description: "Proveedor y modelo exactos, en formato proveedor:modelo, estampados\
+          \ en StrategyId; la versión del proceso viaja por separado en StrategyId.version."
       visibility: public
       handwrittenTests:
       - name: "should identify itself as quiz-instruction-agent 1.1.0, the version\
@@ -29610,12 +29621,12 @@ modules:
   - sentinel-agents
   packages:
   - name: lagen
-    description: "Public contract of the agent-backed candidate generator. Exposes\
-      \ the factory port (LemmaAbsenceAgentGeneratorFactory) + the LagenConfig carrier\
-      \ (knobs from F-LAGEN-R008 y maxEvalRetries de F-LASAG-R011) + the LlmGenerationFailureCategory\
-      \ enum (categories surfaced through the adapter, F-LAGEN-R006 / F-LASAG-R005).\
-      \ Implementations of the factory and all collaborators live in the sibling 'lemmaabsenceagent'\
-      \ internal package."
+    description: "Contrato público de los generadores respaldados por agente. LagenConfig\
+      \ lleva el proveedor y modelo exactos que usa sentinel-agents; con sesión local,\
+      \ el default de proveedor es codex-cli y el modelo se declara explícitamente.\
+      \ Las factories forman providerId como proveedor:modelo, mientras StrategyId.version\
+      \ conserva la versión completa del proceso; juntas, las tres piezas viajan con\
+      \ cada propuesta."
     visibility: public
     models:
     - name: LagenConfig
@@ -29623,15 +29634,14 @@ modules:
       fields:
       - name: providerName
         type: String
-        description: "Short, stable identifier of the provider family (e.g. 'lmstudio',\
-          \ 'openai', 'anthropic-via-openai'). Used as the prefix of the providerId\
-          \ emitted into StrategyId.providerId (F-LAGEN-R009, DOUBT-PROVIDER-ID-FORMAT\
-          \ -> Option B). Required."
+        description: "Proveedor efectivo y estable. Para los procesos por sesión local,\
+          \ vacío resuelve a codex-cli autenticado con ChatGPT; no usa API key ni\
+          \ habilita fallback a Claude. Se combina con modelId en StrategyId.providerId."
       - name: modelId
         type: String
-        description: "Model identifier within the provider, e.g. 'gemma-3-4b-it',\
-          \ 'gpt-4o-mini'. Joined with providerName as 'provider:model' to form StrategyId.providerId\
-          \ (F-LAGEN-R009). Required."
+        description: Identificador exacto del modelo solicitado al proveedor. Es obligatorio
+          y se combina con providerName como proveedor:modelo; no existe un modelo
+          implícito porque todo examen y propuesta debe conservar su procedencia.
       - name: endpoint
         type: String
         description: |
@@ -30797,10 +30807,14 @@ modules:
       implements:
       - AgentDefinitionLocator
   - name: llmprovider
-    description: |
-      Fuente unica del criterio de validez de una configuracion frente al proveedor de modelo que declara. Responde una sola pregunta —¿esta configuracion alcanza para dirigir una consulta a este proveedor?— y la responde igual para todos los consumidores.
-
-      Vive aca y no en ninguno de los consumidores por tres razones. Este modulo ya envuelve la libreria de agentes, que es donde estan `LlmFactory.isSubscriptionCli` y `LlmFactory.defaultBaseUrl`, o sea el conocimiento sobre clases de proveedor. No depende de nadie, asi que ningun consumidor invierte una dependencia para llegar. Y sus `allowedClients` ya son exactamente los tres modulos que necesitan el criterio.
+    description: "Fuente única para resolver y validar la clase de proveedor de modelo.\
+      \ Los consumidores de sesión local comparten un único default: codex-cli autenticado\
+      \ por la sesión local de ChatGPT; no requieren dirección ni API key y nunca\
+      \ caen silenciosamente a claude-cli ni a un servicio OpenAI por API. Los proveedores\
+      \ remotos explícitos conservan su validación por dirección y los modelos locales\
+      \ elegidos deliberadamente siguen fuera de este default. Sentinel-agents aporta\
+      \ el enrutamiento de codex-cli, por lo que este paquete sólo fija la política\
+      \ común y no duplica el adaptador."
     visibility: public
     models:
     - name: LlmProviderClass
@@ -30827,8 +30841,9 @@ modules:
       fields:
       - name: providerName
         type: String
-        description: "Nombre efectivo, no el declarado: sin declarar y declarado-igual-al-defecto\
-          \ producen el mismo proveedor."
+        description: Nombre efectivo y estable del proveedor. Una declaración vacía
+          se resuelve a codex-cli; una declaración explícita se conserva. El nombre
+          forma parte de la procedencia y no puede ocultar un fallback a otro proveedor.
       - name: providerClass
         type: LlmProviderClass
       visibility: public
@@ -30849,6 +30864,19 @@ modules:
       visibility: public
       implements:
       - LlmProviderResolution
+    - name: LocalSessionProviderProfile
+      type: record
+      fields:
+      - name: providerName
+        type: String
+        description: Identificador estable del proveedor de sesión local.
+      - name: authStatusCommand
+        type: List<String>
+        description: Comando sin inferencia que verifica si la sesión está autenticada.
+      - name: loginCommand
+        type: String
+        description: Comando legible que el operador debe ejecutar para renovar la
+          sesión.
     interfaces:
     - name: LlmProviderResolution
       stereotype: port
@@ -30861,20 +30889,34 @@ modules:
       - signature: "resolve(String declaredProviderName, String declaredServiceAddress,\
           \ String serviceAddressInputName): LlmProviderResolution"
       visibility: public
+    - name: LocalSessionProviderCatalog
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "defaultProfile(): LocalSessionProviderProfile"
+      - signature: "find(String providerName): Optional<LocalSessionProviderProfile>"
+      visibility: public
     implementations:
     - name: DefaultLlmProviderResolver
+      requiresInject:
+      - name: localSessionProviderCatalog
+        type: LocalSessionProviderCatalog
+        description: Fuente única del proveedor por omisión. Usa codex-cli como default
+          y sólo reconoce comandos de sesión por nombre explícito; nunca prueba otro
+          proveedor como fallback.
       visibility: public
       implements:
       - LlmProviderResolver
+    - name: DefaultLocalSessionProviderCatalog
+      visibility: public
+      implements:
+      - LocalSessionProviderCatalog
 - name: quiz-instruction-infrastructure
-  description: "Adaptadores de los jueces con modelo. Nació con el del juez de consigna\
-    \ (instructionjudge: agente quiz-instruction-validator, cinco entradas verbatim,\
-    \ veredicto conservador como OUTPUT_UNUSABLE, fallas de servicio como EVALUATOR_UNAVAILABLE,\
-    \ versión derivada de la definición, el modelo y el proveedor) y desde FEAT-JEXAM\
-    \ aloja también el evaluador genérico por agente de los jueces nuevos (agentjudge)\
-    \ y los lectores de sus veredictos, un paquete por juez. Todos comparten la verificació\
-    n sin costo de la sesión del proveedor (F-JEXAM-R011). allowedClients=[audit-cli]:\
-    \ es un detalle de la raíz de composición."
+  description: "Adaptadores de los jueces con modelo. Los jueces por sesión local\
+    \ usan codex-cli autenticado con ChatGPT, sin OpenAI API ni fallback a Claude.\
+    \ La versión de cada juez deriva de su definición, el modelo exacto y el proveedor\
+    \ efectivo, por lo que cambiar cualquiera obliga a rendir un examen nuevo. La\
+    \ verificación previa consulta codex login status sin emitir una inferencia."
   dependsOn:
   - audit-domain
   - evaluation-ledger-domain
@@ -30893,6 +30935,9 @@ modules:
         Credencial opcional para cualquier clase de proveedor. Su ausencia nunca vuelve invalida la configuracion (F-QINST-R016): no impide dirigir la consulta. Si el servicio la exige, la consulta se emite, la rechazan, y ese rechazo se cuenta como falla del juez (F-QINST-R007) — mas visible que declararlo no disponible.
     - name: modelName
       type: String
+      description: "Modelo exacto solicitado al proveedor y parte obligatoria de la\
+        \ versión del juez. No se inventa un modelo por omisión: debe quedar resuelto\
+        \ antes de examinar o consultar el curso."
     - name: temperature
       type: Double
     - name: timeoutSeconds
@@ -30902,8 +30947,9 @@ modules:
       description: Nombre del grafo bajo .sentinel/agents/. Por defecto quiz-instruction-validator.
     - name: providerName
       type: String
-      description: |
-        Clase de proveedor declarada por el operador (F-QINST-R016). Es el dato contra el que se juzga que le falta a la configuracion: un proveedor de sesion local no exige direccion ni credencial. Vacio no es invalido: se aplica el mismo proveedor por defecto que el resto del sistema (DOUBT-PROVEEDOR-DEL-JUEZ, Opcion A [ASSUMPTION]).
+      description: Proveedor declarado por el operador. Vacío resuelve al default
+        compartido codex-cli; declararlo no autoriza fallback. Un proveedor de sesión
+        local no exige dirección ni API key.
   - name: AgentJudgeSpec
     type: record
     fields:
@@ -30922,13 +30968,18 @@ modules:
     fields:
     - name: providerName
       type: String
-      description: "claude-cli por omisión (José, 30/9)."
+      description: Proveedor efectivo de los jueces por agente. Vacío resuelve a codex-cli
+        con la sesión local de ChatGPT; no habilita claude-cli ni OpenAI API como
+        fallback.
     - name: baseUrl
       type: String
     - name: apiKey
       type: String
     - name: modelName
       type: String
+      description: Modelo exacto solicitado y parte de la versión derivada junto con
+        proveedor y definición del agente. Debe declararse antes del examen; la arquitectura
+        no fija cuál.
     - name: temperature
       type: Double
     - name: timeoutSeconds
@@ -31173,15 +31224,10 @@ modules:
       implements:
       - QuizInstructionVerdictReader
   - name: agentjudge
-    description: "Evaluador genérico de los jueces nuevos: corre el agente de su AgentJudgeSpec\
-      \ con el mapa de contenido verbatim como entradas, lee el artifact del veredicto\
-      \ y lo devuelve como EvaluationEmitted; un veredicto conservador ({\"outputUnusable\"\
-      : true}) es OUTPUT_UNUSABLE y toda falla de servicio EVALUATOR_UNAVAILABLE,\
-      \ con la causa y el remedio que da la verificación del proveedor. Antes de su\
-      \ primera consulta verifica sin costo la sesión del proveedor, una sola vez\
-      \ por instancia aunque haya varias consultas a la vez. La versión es el mismo\
-      \ digest que la del juez de consigna: definición del agente, modelo y proveedor\
-      \ efectivo. Sólo la factory y la verificación son públicas."
+    description: "Adaptador genérico para los jueces declarativos. Resuelve proveedor\
+      \ y modelo antes de construir el ChatModel, deriva la versión de definición+modelo+proveedor\
+      \ y verifica sin costo la sesión de codex-cli. La ausencia de sesión o cuota\
+      \ se informa y corta nuevas consultas sin fallback."
     visibility: public
     interfaces:
     - name: AgentJudgeVersionResolver
@@ -31281,11 +31327,12 @@ modules:
       - AgentJudgeChatModelFactory
     - name: DefaultJudgeProviderReadinessProbe
       requiresInject:
-      - name: authStatusCommand
-        type: List<String>
-        description: "El comando que pregunta si la sesión local del proveedor sigue\
-          \ viva, como [\"claude\", \"auth\", \"status\"]; lo pasa Main. Inyectado\
-          \ para poder probar sin el claude real (pendiente del qa-tester de C)."
+      - name: localSessionProviderCatalog
+        type: LocalSessionProviderCatalog
+        description: Resuelve el comando de estado y el remedio para el providerName
+          efectivo. codex-cli usa codex login status / codex login; un proveedor remoto
+          no ejecuta comando local y un proveedor de sesión desconocido se declara
+          no disponible.
       visibility: public
       handwrittenTests:
       - name: should report SESSION_EXPIRED with the remedy «renovala con claude auth
@@ -31375,8 +31422,11 @@ modules:
       implements:
       - ChoiceAlternativeVerdictReader
 - name: local-language-infrastructure
-  description: |
-    Las herramientas de idioma que corren en esta máquina (FEAT-MLOCAL): LanguageTool dentro del proceso y los modelos de Ollama, por HTTP a una dirección local. Ningún texto del curso sale de la máquina por acá: una dirección de Ollama que no es local, o «off», deja los modelos no disponibles, con el motivo, y nunca abre una conexión (F-MLOCAL-R001); entonces los dos de modelo usan la alternativa con claude -p, que no vive acá sino en los jueces de C. Detalle de la raíz de composición: allowedClients=[audit-cli].
+  description: "Herramientas de idioma que corren en esta máquina: LanguageTool dentro\
+    \ del proceso y modelos de Ollama por HTTP local. Esas rutas locales deliberadas\
+    \ no cambian. Cuando naturalness o near-duplicates necesitan la alternativa por\
+    \ suscripción, usan el runtime compartido con codex-cli y la sesión local de ChatGPT;\
+    \ si no está disponible no caen a Claude ni a una API paga."
   dependsOn:
   - audit-domain
   models:

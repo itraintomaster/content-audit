@@ -123,6 +123,11 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: LlmProviderRejected - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LocalSessionProviderProfile");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LocalSessionProviderProfile - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolution");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: LlmProviderResolution - " + e.getMessage());
@@ -133,9 +138,19 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: LlmProviderResolver - " + e.getMessage());
     }
     try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LocalSessionProviderCatalog");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: LocalSessionProviderCatalog - " + e.getMessage());
+    }
+    try {
       Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLlmProviderResolver");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: DefaultLlmProviderResolver - " + e.getMessage());
+    }
+    try {
+      Class.forName("com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLocalSessionProviderCatalog");
+    } catch (ClassNotFoundException e) {
+      Assertions.fail("Missing declared class: DefaultLocalSessionProviderCatalog - " + e.getMessage());
     }
   }
 }

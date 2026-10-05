@@ -4,6 +4,15 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-05 — orchestrator — Bloqueo cerrado al retirar Sentinel del ciclo Maven y declarar las
+  fuentes como mantenimiento manual. Codex queda por omisión; proveedor y modelo explícitos se
+  preservan. El launcher ya no usa un classpath fijo ni `mvn install`: pasan sus 24 pruebas, las 46
+  pruebas focales del proveedor y la suite completa, sin ejecutar consultas de modelo.
+
+2026-10-04 — qa-tester — Cobertura de R013–R014 diseñada pero no propuesta: la arquitectura generada conserva cuerpos y
+  constructores Claude en archivos @Generated, que Rule F2 impide implementar. Además, la mesa calcula provider:model pero
+  no lo transporta en PanelProposal; resolver esa procedencia antes de declarar tests.
+
 2026-10-04 — analyst — R013–R014 agregadas; Codex/ChatGPT queda por omisión y la elección explícita de proveedor/modelo
   prevalece. DOUBT-JUECES-MODELO-OPENAI resuelta con modelo compartido y override por proceso donde exista la perilla.
 

@@ -11,7 +11,7 @@ feature:
 ## TL;DR
 
 **Qué**: Gramática, Naturalidad y Duplicados parecidos corren con su herramienta en la máquina y su versión a la vista;
-sin Ollama, los dos de modelo consultan a `codex-cli` con la sesión local de ChatGPT, sólo con tope; los tres leen
+sin Ollama, los dos de modelo consultan por omisión a `codex-cli` con la sesión local de ChatGPT, sólo con tope; los tres leen
 candidatos de la mesa.
 
 **Por qué**: Son las primeras dependencias de idioma de content-audit. Sin reglas comunes, cada uno decidiría distinto
@@ -42,8 +42,8 @@ ChatGPT ([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#
 
 ## Reglas de Negocio
 
-Acá **herramienta** es LanguageTool (FEAT-GRAMA) o un modelo local (FEAT-NATUR, FEAT-DUPAR), y **la alternativa** es
-`codex-cli`, autenticado con la sesión local de ChatGPT igual que los jueces (FEAT-JEXAM). Las menciones a `claude -p`
+Acá **herramienta** es LanguageTool (FEAT-GRAMA) o un modelo local (FEAT-NATUR, FEAT-DUPAR), y **la alternativa por omisión** es
+`codex-cli`, autenticado con la sesión local de ChatGPT igual que los jueces (FEAT-JEXAM); una elección explícita de otro proveedor prevalece. Las menciones a `claude -p`
 que siguen documentan el diseño y las mediciones anteriores: como proveedor activo quedan reemplazadas por
 [F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013), y toda versión afectada vuelve a rendir su examen por
 [F-JEXAM-R014](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R014).

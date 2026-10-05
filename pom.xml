@@ -33,6 +33,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>5.10.2</junit.version>
     <mockito.version>5.23.0</mockito.version>
+    <!-- Surefire expands this late. Empty by default; an explicit JaCoCo run can populate it. -->
+    <argLine></argLine>
     <!-- Las pruebas con herramientas de verdad (LanguageTool, Ollama) no corren por omisión (gancho B-14):
          se corren con -Dgroups=herramienta-real, que activa el perfil de abajo. -->
     <surefire.excludedGroups>herramienta-real</surefire.excludedGroups>

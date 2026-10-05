@@ -41,8 +41,8 @@ cambia salvo el juez, que es ese mismo.
 
 ## Reglas de Negocio
 
-Desde el 4/10, toda mención a `claude -p` como juez activo significa `codex-cli` autenticado con la sesión local de
-ChatGPT ([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)); las mediciones anteriores con Claude conservan valor histórico, pero la versión
+Desde el 4/10, toda mención a `claude -p` como juez activo significa por omisión `codex-cli` autenticado con la sesión local de
+ChatGPT; una selección explícita de otro proveedor prevalece ([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)). Las mediciones anteriores con Claude conservan valor histórico, pero la versión
 de Codex tiene procedencia distinta y vuelve a rendir examen antes de consultar el curso
 ([F-JEXAM-R014](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R014)).
 

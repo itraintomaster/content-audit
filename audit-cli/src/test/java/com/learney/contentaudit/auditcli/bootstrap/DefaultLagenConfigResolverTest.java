@@ -242,19 +242,19 @@ public class DefaultLagenConfigResolverTest {
     }
 
     @Test
-    @DisplayName("resolve defaults providerName to 'claude-cli' when CONTENT_AUDIT_LAGEN_PROVIDER is absent (default provider is claude -p)")
+    @DisplayName("resolve defaults providerName to 'codex-cli' when CONTENT_AUDIT_LAGEN_PROVIDER is absent")
     @Tag("FEAT-LAGEN")
     @Tag("F-LAGEN-R008")
-    public void resolveDefaultsProviderNameToClaudeCliWhenCONTENTAUDITLAGENPROVIDERIsAbsent() {
-        // Provider is optional: absent/blank must default to "claude-cli" (auth via subscription,
-        // no API key required). This is the zero-config default execution path.
+    public void resolveDefaultsProviderNameToCodexCliWhenCONTENTAUDITLAGENPROVIDERIsAbsent() {
+        // Provider is optional: absent/blank uses the shared local-session default.
+        // It authenticates with the operator's ChatGPT session and needs no API key.
         Map<String, String> env = fullEnv();
-        env.remove(KEY_PROVIDER);  // absent → default "claude-cli"
+        env.remove(KEY_PROVIDER);
 
         LagenConfig config = resolver.resolve(env);
 
-        assertEquals("claude-cli", config.getProviderName(),
-                "providerName must default to 'claude-cli' when CONTENT_AUDIT_LAGEN_PROVIDER is absent (R008)");
+        assertEquals("codex-cli", config.getProviderName(),
+                "providerName must default to 'codex-cli' when CONTENT_AUDIT_LAGEN_PROVIDER is absent (R008)");
     }
 
     @Test

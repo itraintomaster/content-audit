@@ -176,8 +176,10 @@ import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunner;
 import com.learney.contentaudit.agentruntimeinfrastructure.AgentGraphRunnerConfig;
 import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentDefinitionLocatorFactory;
 import com.learney.contentaudit.agentruntimeinfrastructure.graphexecution.DefaultAgentGraphRunnerFactory;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLocalSessionProviderCatalog;
 import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProviderResolver;
 import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLlmProviderResolver;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LocalSessionProviderCatalog;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeFactory;
 import com.learney.contentaudit.quizinstructioninfrastructure.instructionjudge.DefaultQuizInstructionJudgeFactory;
@@ -472,10 +474,13 @@ class Main {
         // judge below and by every LAGEN config resolution (LAPS and quiz-instruction
         // correction), so the two consumers can never apply two divergent readings of
         // the same rule.
-        LlmProviderResolver llmProviderResolver = new DefaultLlmProviderResolver();
+        LocalSessionProviderCatalog localSessionProviderCatalog =
+                new DefaultLocalSessionProviderCatalog();
+        LlmProviderResolver llmProviderResolver =
+                new DefaultLlmProviderResolver(localSessionProviderCatalog);
 
         QuizInstructionJudgeConfig quizInstructionJudgeConfig =
-                QuizInstructionJudgeConfigResolverBootstrap.resolve();
+                QuizInstructionJudgeConfigResolverBootstrap.resolve(localSessionProviderCatalog);
 
         // R017 / --workdir: this config feeds both the agent-definition locator and the
         // graph runner for the quiz-instruction-validator judge (analyze's own analyzer
@@ -494,10 +499,10 @@ class Main {
                 new DefaultAgentDefinitionLocatorFactory().create(quizInstructionAgentGraphRunnerConfig);
 
         // FEAT-JEXAM (hook C-13, R011): the free check of the provider's session, the same for the
-        // quiz-instruction judge and the four new ones. It asks `claude auth status`, which calls
-        // no model; the command is injected so a test can give a fake one.
+        // quiz-instruction judge and the four new ones. It asks the status command of the selected
+        // provider (`codex login status` by default), which calls no model.
         JudgeProviderReadinessProbe judgeProviderReadinessProbe =
-                new DefaultJudgeProviderReadinessProbe(List.of("claude", "auth", "status"));
+                new DefaultJudgeProviderReadinessProbe(localSessionProviderCatalog);
 
         QuizInstructionJudgeFactory quizInstructionJudgeFactory =
                 new DefaultQuizInstructionJudgeFactory(llmProviderResolver, judgeProviderReadinessProbe);
@@ -564,10 +569,11 @@ class Main {
 
         TopicTeachingResolver topicTeachingResolver = new DefaultTopicTeachingResolver();
 
-        // Hook C-16: one configuration for the four new judges, CONTENT_AUDIT_JUDGE_* (claude-cli by
+        // Hook C-16: one configuration for the four new judges, CONTENT_AUDIT_JUDGE_* (codex-cli by
         // default); the quiz-instruction judge keeps CONTENT_AUDIT_QINST_JUDGE_*. Hook C-14: the
         // evaluators, with the runner and locator of the quiz-instruction judge.
-        AgentJudgeConfig agentJudgeConfig = new DefaultAgentJudgeConfigResolver().resolve(System.getenv());
+        AgentJudgeConfig agentJudgeConfig =
+                new DefaultAgentJudgeConfigResolver(localSessionProviderCatalog).resolve(System.getenv());
         AgentJudgeFactory agentJudgeFactory =
                 new DefaultAgentJudgeFactory(llmProviderResolver, judgeProviderReadinessProbe);
         Evaluator fromEnglishJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,

@@ -1,6 +1,7 @@
 package com.learney.contentaudit.agentruntimeinfrastructure.llmprovider;
 
 import com.sentinel.agents.analyst.LlmFactory;
+import java.util.Objects;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -9,14 +10,27 @@ import javax.annotation.processing.Generated;
 )
 public class DefaultLlmProviderResolver implements LlmProviderResolver {
 
+    private final LocalSessionProviderCatalog localSessionProviderCatalog;
+
+    /**
+     * Kept for source compatibility with callers that used the resolver before the catalog became
+     * injectable. Composition roots should share one catalog and use the other constructor.
+     */
+    public DefaultLlmProviderResolver() {
+        this(new DefaultLocalSessionProviderCatalog());
+    }
+
+    public DefaultLlmProviderResolver(LocalSessionProviderCatalog localSessionProviderCatalog) {
+        this.localSessionProviderCatalog = Objects.requireNonNull(
+                localSessionProviderCatalog, "localSessionProviderCatalog");
+    }
+
     /**
      * The same default the rest of the system applies when no provider is declared
      * (see DefaultLemmaAbsenceAgentGeneratorFactory#buildChatModel and its siblings).
      * An undeclared provider does not make the configuration invalid; it resolves to
      * the same default as everyone else.
      */
-    private static final String DEFAULT_PROVIDER_NAME = "claude-cli";
-
     @Override
     public LlmProviderResolution resolve(String declaredProviderName, String declaredServiceAddress,
             String serviceAddressInputName) {
@@ -34,8 +48,12 @@ public class DefaultLlmProviderResolver implements LlmProviderResolver {
         // Authenticates with the operator's own local session. No connection datum
         // exists for this class -- address and credential simply do not apply, and
         // requiring them is exactly the defect this criterion corrects.
-        if (LlmFactory.isSubscriptionCli(providerName)) {
-            return new LlmProviderResolved(providerName, LlmProviderClass.LOCAL_SESSION);
+        var localProfile = localSessionProviderCatalog.find(providerName);
+        if (localProfile.isPresent()) {
+            // Aliases resolve once to the canonical id used by execution, readiness and
+            // provenance. No downstream layer has to reinterpret the operator's spelling.
+            return new LlmProviderResolved(localProfile.get().getProviderName(),
+                    LlmProviderClass.LOCAL_SESSION);
         }
 
         // Remaining class: reached by its service address. Requires being able to
@@ -58,8 +76,14 @@ public class DefaultLlmProviderResolver implements LlmProviderResolver {
         return isNonBlank(LlmFactory.defaultBaseUrl(providerName));
     }
 
-    private static String resolveProviderName(String declaredProviderName) {
-        return isNonBlank(declaredProviderName) ? declaredProviderName.trim() : DEFAULT_PROVIDER_NAME;
+    private String resolveProviderName(String declaredProviderName) {
+        if (!isNonBlank(declaredProviderName)) {
+            return localSessionProviderCatalog.defaultProfile().getProviderName();
+        }
+        String declared = declaredProviderName.trim();
+        return localSessionProviderCatalog.find(declared)
+                .map(LocalSessionProviderProfile::getProviderName)
+                .orElse(declared);
     }
 
     private static boolean isNonBlank(String value) {

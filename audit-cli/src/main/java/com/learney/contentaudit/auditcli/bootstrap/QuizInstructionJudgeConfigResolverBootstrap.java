@@ -1,5 +1,7 @@
 package com.learney.contentaudit.auditcli.bootstrap;
 
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLocalSessionProviderCatalog;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LocalSessionProviderCatalog;
 import com.learney.contentaudit.quizinstructioninfrastructure.QuizInstructionJudgeConfig;
 
 /**
@@ -33,6 +35,10 @@ public final class QuizInstructionJudgeConfigResolverBootstrap {
     }
 
     public static QuizInstructionJudgeConfig resolve() {
-        return new DefaultQuizInstructionJudgeConfigResolver().resolve();
+        return resolve(new DefaultLocalSessionProviderCatalog());
+    }
+
+    public static QuizInstructionJudgeConfig resolve(LocalSessionProviderCatalog providerCatalog) {
+        return new DefaultQuizInstructionJudgeConfigResolver(providerCatalog).resolve();
     }
 }

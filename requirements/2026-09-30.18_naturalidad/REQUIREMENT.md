@@ -33,8 +33,8 @@ marcados que sirva de conjunto para un juez; sin Ollama, con la misma pregunta a
 
 ## Reglas de Negocio
 
-Desde el 4/10, toda mención a `claude -p` como alternativa activa significa `codex-cli` autenticado con la sesión local
-de ChatGPT ([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)); las cifras y comparaciones ya medidas con Claude se conservan como historia
+Desde el 4/10, toda mención a `claude -p` como alternativa activa significa por omisión `codex-cli` autenticado con la sesión local
+de ChatGPT; una selección explícita de otro proveedor prevalece ([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)). Las cifras y comparaciones ya medidas con Claude se conservan como historia
 y no habilitan a la versión nueva, que debe volver a rendir examen ([F-JEXAM-R014](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R014)).
 
 <a id="F-NATUR-R001"></a>

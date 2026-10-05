@@ -1,4 +1,7 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.agentjudge;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.DefaultLocalSessionProviderCatalog;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LocalSessionProviderCatalog;
+import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LocalSessionProviderProfile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -8,13 +11,12 @@ import com.learney.contentaudit.agentruntimeinfrastructure.llmprovider.LlmProvid
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadiness;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeProviderReadinessProbe;
 import com.learney.contentaudit.quizinstructioninfrastructure.JudgeUnavailabilityCause;
-import com.sentinel.agents.analyst.LlmFactory;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import javax.annotation.processing.Generated;
@@ -23,10 +25,11 @@ import javax.annotation.processing.Generated;
  * F-JEXAM-R011: knows, without paying for a consultation, whether the provider of a judge has a
  * session, and names the cause and the remedy of a failure that already happened.
  *
- * <p>{@link #probe} only ever runs the injected status command ({@code claude auth status} in
- * production), which reads the local credentials and calls no model. Whatever it cannot recognize
- * counts as ready: the first consultation of the run goes alone (F-JEXAM-R006), so if the
- * session is really gone one consultation fails and {@link #explain} names why.
+ * <p>{@link #probe} only ever runs the status command declared by the effective local-session
+ * provider ({@code codex login status} by default). The check reads local credentials and calls no
+ * model. Whatever it cannot recognize counts as ready: the first consultation of the run goes
+ * alone (F-JEXAM-R006), so if the session is really gone one consultation fails and
+ * {@link #explain} names why.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -34,14 +37,15 @@ import javax.annotation.processing.Generated;
 )
 public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadinessProbe {
 
-    /** How long `claude auth status` may take before the check gives up (it reads local files). */
+    /** How long a provider status command may take before the check gives up. */
     private static final long STATUS_TIMEOUT_SECONDS = 20;
 
     /** Longest raw failure text an UNKNOWN cause carries, so a stack of CLI output stays one line. */
     private static final int MAX_RAW_DETAIL_LENGTH = 300;
 
     static final String SESSION_EXPIRED_DETAIL = "sesión vencida";
-    static final String SESSION_EXPIRED_REMEDY = "renovala con claude auth login";
+    static final String DECLARED_PROVIDER_CREDENTIAL_REMEDY =
+            "revisá las credenciales del proveedor declarado";
     static final String QUOTA_EXHAUSTED_DETAIL = "cuota agotada";
     static final String QUOTA_EXHAUSTED_REMEDY =
             "esperá a que se renueve el límite de uso o bajá las consultas a la vez con --concurrency";
@@ -50,16 +54,20 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
             "revisá la conexión y volvé a correr cuando el servicio responda";
     static final String TIMEOUT_DETAIL = "el servicio no respondió a tiempo";
     static final String TIMEOUT_REMEDY = "volvé a correr más tarde o con menos consultas a la vez";
-    static final String NOT_INSTALLED_DETAIL = "claude-cli no está instalado";
+    static final String NOT_INSTALLED_DETAIL = "el proveedor por sesión local no está instalado";
     static final String NOT_INSTALLED_REMEDY =
-            "instalá Claude Code o elegí otro proveedor con CONTENT_AUDIT_JUDGE_PROVIDER";
+            "instalá su CLI o elegí otro proveedor con CONTENT_AUDIT_JUDGE_PROVIDER";
     static final String UNKNOWN_REMEDY = "revisá el registro de la corrida";
 
     /** Login missing or expired: what the CLI and the API say when nobody is authenticated. */
     private static final List<Pattern> SESSION_EXPIRED_SIGNS = List.of(
             literal("not logged in"),
+            literal("not authenticated"),
+            literal("authentication required"),
+            literal("no login credentials"),
             literal("please run /login"),
             literal("claude auth login"),
+            literal("codex login"),
             Pattern.compile("oauth token.*(expired|revoked)", Pattern.CASE_INSENSITIVE | Pattern.DOTALL),
             literal("token has expired"),
             literal("authentication failed"),
@@ -104,10 +112,24 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
 
     private static final ObjectMapper JSON = new ObjectMapper();
 
+    /** Optional command override used by deterministic tests and custom embedding. */
     private final List<String> authStatusCommand;
 
+    private final LocalSessionProviderCatalog localSessionProviderCatalog;
+
     public DefaultJudgeProviderReadinessProbe(List<String> authStatusCommand) {
+        this(authStatusCommand, new DefaultLocalSessionProviderCatalog());
+    }
+
+    public DefaultJudgeProviderReadinessProbe(LocalSessionProviderCatalog localSessionProviderCatalog) {
+        this(null, localSessionProviderCatalog);
+    }
+
+    public DefaultJudgeProviderReadinessProbe(List<String> authStatusCommand,
+            LocalSessionProviderCatalog localSessionProviderCatalog) {
         this.authStatusCommand = authStatusCommand;
+        this.localSessionProviderCatalog = Objects.requireNonNull(
+                localSessionProviderCatalog, "localSessionProviderCatalog");
     }
 
     @Override
@@ -118,13 +140,19 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
                 // consultation (alone) is the check.
                 return ready("el proveedor sólo se puede verificar consultándolo");
             }
-            if (!LlmFactory.isClaudeCli(provider.getProviderName())) {
+            LocalSessionProviderProfile profile = localSessionProviderCatalog
+                    .find(provider.getProviderName())
+                    .orElse(null);
+            if (profile == null) {
                 return ready("el proveedor local no tiene verificación de sesión sin costo");
             }
-            if (authStatusCommand == null || authStatusCommand.isEmpty()) {
+            List<String> statusCommand = authStatusCommand != null
+                    ? authStatusCommand
+                    : profile.getAuthStatusCommand();
+            if (statusCommand == null || statusCommand.isEmpty()) {
                 return ready("no hay comando para verificar la sesión");
             }
-            return checkClaudeSession();
+            return checkSession(profile, statusCommand);
         } catch (RuntimeException e) {
             // The check is a courtesy: when it breaks it says nothing about the session, and the
             // first consultation decides.
@@ -136,7 +164,7 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
     public JudgeProviderReadiness explain(LlmProviderResolved provider, String failure) {
         String text = failure != null ? failure : "";
         if (matchesAny(SESSION_EXPIRED_SIGNS, text)) {
-            return sessionExpired();
+            return sessionExpired(profileFor(provider));
         }
         if (matchesAny(QUOTA_EXHAUSTED_SIGNS, text)) {
             return notReady(JudgeUnavailabilityCause.QUOTA_EXHAUSTED, QUOTA_EXHAUSTED_DETAIL,
@@ -150,7 +178,7 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
             return timeout();
         }
         if (matchesAny(NOT_INSTALLED_SIGNS, text)) {
-            return notInstalled();
+            return notInstalled(profileFor(provider));
         }
         return notReady(JudgeUnavailabilityCause.UNKNOWN, rawDetail(text), UNKNOWN_REMEDY);
     }
@@ -160,12 +188,13 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
      * #STATUS_TIMEOUT_SECONDS}. Its output is read by its own thread so a chatty or stuck
      * command can never block the wait.
      */
-    private JudgeProviderReadiness checkClaudeSession() {
+    private JudgeProviderReadiness checkSession(LocalSessionProviderProfile profile,
+            List<String> statusCommand) {
         Process process;
         try {
-            process = new ProcessBuilder(authStatusCommand).redirectErrorStream(true).start();
+            process = new ProcessBuilder(statusCommand).redirectErrorStream(true).start();
         } catch (IOException e) {
-            return notInstalled();
+            return notInstalled(profile);
         }
         try {
             process.getOutputStream().close();
@@ -175,7 +204,7 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         Thread reader = new Thread(() -> drain(process.getInputStream(), output),
-                "claude-auth-status-output");
+                "provider-auth-status-output");
         reader.setDaemon(true);
         reader.start();
 
@@ -195,7 +224,7 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
         synchronized (output) {
             text = output.toString(StandardCharsets.UTF_8);
         }
-        return interpretAuthStatus(text);
+        return interpretAuthStatus(profile, text, process.exitValue());
     }
 
     private static void drain(InputStream in, ByteArrayOutputStream sink) {
@@ -212,12 +241,9 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
         }
     }
 
-    /**
-     * `claude auth status` prints an indented JSON with {@code loggedIn} (exit 0 when true, 1 when
-     * false); with {@code --text} it prints «Not logged in. Run claude auth login to
-     * authenticate.» when there is no session. Anything else is not evidence of a missing session.
-     */
-    private static JudgeProviderReadiness interpretAuthStatus(String output) {
+    /** Interprets the known status forms without treating an unknown CLI failure as proof. */
+    private static JudgeProviderReadiness interpretAuthStatus(LocalSessionProviderProfile profile,
+            String output, int exitCode) {
         String text = output != null ? output.strip() : "";
         int start = text.indexOf('{');
         int end = text.lastIndexOf('}');
@@ -227,17 +253,21 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
                 JsonNode loggedIn = status != null ? status.get("loggedIn") : null;
                 if (loggedIn != null && loggedIn.isBoolean()) {
                     return loggedIn.booleanValue()
-                            ? ready("claude-cli tiene una sesión iniciada")
-                            : sessionExpired();
+                            ? ready(profile.getProviderName() + " tiene una sesión iniciada")
+                            : sessionExpired(profile);
                 }
             } catch (JsonProcessingException ignored) {
                 // Not the JSON form: fall through to the text form.
             }
         }
-        if (text.toLowerCase(Locale.ROOT).contains("not logged in")) {
-            return sessionExpired();
+        if (matchesAny(SESSION_EXPIRED_SIGNS, text)) {
+            return sessionExpired(profile);
         }
-        return ready("la salida de claude auth status no dice que falte la sesión");
+        if (exitCode != 0) {
+            return ready("la verificación de " + profile.getProviderName()
+                    + " no confirmó si hay una sesión");
+        }
+        return ready(profile.getProviderName() + " tiene una sesión iniciada");
     }
 
     private static boolean matchesAny(List<Pattern> signs, String text) {
@@ -276,18 +306,30 @@ public class DefaultJudgeProviderReadinessProbe implements JudgeProviderReadines
         return new JudgeProviderReadiness(true, null, detail, null);
     }
 
-    private static JudgeProviderReadiness sessionExpired() {
+    private LocalSessionProviderProfile profileFor(LlmProviderResolved provider) {
+        return provider != null
+                ? localSessionProviderCatalog.find(provider.getProviderName()).orElse(null)
+                : null;
+    }
+
+    private static JudgeProviderReadiness sessionExpired(LocalSessionProviderProfile profile) {
+        String remedy = profile != null && profile.getLoginCommand() != null
+                ? "renovala con " + profile.getLoginCommand()
+                : DECLARED_PROVIDER_CREDENTIAL_REMEDY;
         return notReady(JudgeUnavailabilityCause.SESSION_EXPIRED, SESSION_EXPIRED_DETAIL,
-                SESSION_EXPIRED_REMEDY);
+                remedy);
     }
 
     private static JudgeProviderReadiness timeout() {
         return notReady(JudgeUnavailabilityCause.TIMEOUT, TIMEOUT_DETAIL, TIMEOUT_REMEDY);
     }
 
-    private static JudgeProviderReadiness notInstalled() {
-        return notReady(JudgeUnavailabilityCause.NOT_INSTALLED, NOT_INSTALLED_DETAIL,
-                NOT_INSTALLED_REMEDY);
+    private static JudgeProviderReadiness notInstalled(LocalSessionProviderProfile profile) {
+        String providerName = profile != null ? profile.getProviderName() : null;
+        String detail = providerName != null
+                ? providerName + " no está instalado"
+                : NOT_INSTALLED_DETAIL;
+        return notReady(JudgeUnavailabilityCause.NOT_INSTALLED, detail, NOT_INSTALLED_REMEDY);
     }
 
     private static JudgeProviderReadiness notReady(JudgeUnavailabilityCause cause, String detail,
