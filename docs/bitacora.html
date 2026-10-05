@@ -80,27 +80,28 @@
 <body>
 <div class="shell">
   <div class="topline">
-    <div class="live"><span class="pulse"></span><span>Ensayos gratis listos · esperando autorización</span></div>
-    <div class="updated">Actualizado <time id="updatedAgo">recién</time> · tanda detenida</div>
+    <div class="live"><span class="pulse"></span><span>Primera corrida Codex cerrada · falta igualar 2 bases</span></div>
+    <div class="updated">Actualizado <time id="updatedAgo">recién</time> · sin consultas en curso</div>
   </div>
 
   <header>
     <div class="eyebrow">Bitácora viva · Codex + content-audit</div>
-    <h1>Claude y Codex deben tener cuentas separadas.</h1>
-    <p class="lede"><strong>El examen ya separaba modelos de forma indirecta; el libro del curso no.</strong> Estamos haciendo explícita esa identidad en ambos lugares antes de rendir los otros cinco jueces con Codex. La tanda principal sigue detenida.</p>
+    <h1>439 respuestas después, apareció una base desigual.</h1>
+    <p class="lede"><strong>La separación Claude/Codex funcionó y ningún resultado se pisó.</strong> Traducción, miniteoría y consigna ya se pueden comparar.</p>
+    <p class="lede">Opción múltiple y respuesta única rindieron el examen fijo del 1/10. Claude había aprobado versiones ampliadas del 3/10: faltan 105 consultas para una comparación justa.</p>
   </header>
 
   <section>
-    <h2>Ahora: decidir si ejecutar 439 consultas</h2>
+    <h2>Ahora: cerrar la comparación correcta</h2>
     <div class="card now">
-      <div class="statusline"><span class="pill ok">5 identidades confirmadas</span><span class="pill ok">Ensayo completo</span><span class="pill">Claude preservado</span></div>
-      <div><h3>Los cinco salen como Codex, con modelo y esfuerzo exactos</h3><p>El ensayo detectó que cuatro jueces perdían la procedencia al atravesar un wrapper lazy. Se corrigió, se repitió desde una copia limpia y ahora todos informan <span class="mono">codex-cli · gpt-6.1-sol · medium</span>.</p></div>
-      <div class="facts"><div class="fact"><b>439</b><span>consultas exactas pendientes</span></div><div class="fact"><b>≈ 0,7 h</b><span>unos 43 min, con cuatro a la vez</span></div><div class="fact"><b>0</b><span>consultas gastadas en los ensayos</span></div></div>
+      <div class="statusline"><span class="pill ok">439/439 cerradas</span><span class="pill">3 comparables</span><span class="pill running">2 bases por igualar</span></div>
+      <div><h3>Un aprobado, dos reprobados y dos resultados preliminares</h3><p>Con <span class="mono">codex-cli · gpt-6.1-sol · medium</span>, traducción aprobó; miniteoría y consigna reprobaron. Los otros dos resultados no deben enfrentarse a Claude todavía: usaron el examen viejo y quedan rotulados como preliminares.</p></div>
+      <div class="facts"><div class="fact"><b>439</b><span>consultas completadas</span></div><div class="fact"><b>0</b><span>rechazos de formato</span></div><div class="fact"><b>105</b><span>consultas vigentes pendientes</span></div></div>
     </div>
   </section>
 
   <section>
-    <h2>Qué compraría esa autorización</h2>
+    <h2>Qué compró la primera autorización</h2>
     <div class="parts">
       <div class="part done"><div class="part-name">Consigna que no se cumple<small>238 ejercicios</small></div><div class="track"><div class="fill" style="--w:100%"></div></div><div class="part-num">238<small>consultas</small></div></div>
       <div class="part done"><div class="part-name">Opción múltiple mal armada<small>13 ejercicios</small></div><div class="track"><div class="fill" style="--w:5.5%"></div></div><div class="part-num">13<small>consultas</small></div></div>
@@ -108,7 +109,7 @@
       <div class="part done"><div class="part-name">Más de una respuesta válida<small>39 ejercicios</small></div><div class="track"><div class="fill" style="--w:16.4%"></div></div><div class="part-num">39<small>consultas</small></div></div>
       <div class="part done"><div class="part-name">Miniteoría con error<small>51 ejercicios en 47 unidades</small></div><div class="track"><div class="fill" style="--w:19.7%"></div></div><div class="part-num">47<small>consultas</small></div></div>
     </div>
-    <p class="caption">La copia está fijada al commit 9139a7b8. Sin <span class="mono">--budget</span> produjo 392 líneas NOT_JUDGED, cero corridas de agente y este presupuesto exacto.</p>
+    <p class="caption">La copia está fijada al commit 9139a7b8. Consumió exactamente 439 consultas, produjo los cinco archivos completos y tuvo cero rechazos de formato. El error fue de selección del paquete: dos archivos de casos ya tenían sucesores congelados.</p>
   </section>
 
   <section>
@@ -149,6 +150,10 @@
     <h2>Últimos movimientos, con evidencia</h2>
     <div class="timeline-tools"><button class="active" data-filter="all">Todo</button><button data-filter="live">Sólo ejecución</button></div>
     <div class="timeline">
+      <article class="event live-event" data-scope="live"><time>14:04</time><div class="event-body"><h3>439 cerradas; el ensayo vigente descubre 105 pendientes</h3><p>Los cinco archivos terminaron completos y sin rechazos. Al cotejar contra la UI activa apareció que opción múltiple ahora rinde 43 casos y respuesta única 62; el ensayo gratis confirmó que Codex no juzgó ninguno de esos 105.</p></div></article>
+      <article class="event live-event" data-scope="live"><time>13:53</time><div class="event-body"><h3>Tres comparaciones válidas ya tienen resultado</h3><p>Traducción aprobó. Miniteoría y consigna reprobaron por falsas alarmas. Todos quedaron registrados con proveedor, modelo y esfuerzo exactos; Claude sigue intacto.</p></div></article>
+      <article class="event live-event" data-scope="live"><time>13:25</time><div class="event-body"><h3>Cuatro jueces listos; corre el último</h3><p>Miniteoría 47/47 y traducción 102/102 se sumaron sin rechazos. Consigna va 50/238; acumulado 251/439.</p></div></article>
+      <article class="event live-event" data-scope="live"><time>13:09</time><div class="event-body"><h3>Dos jueces completos y la guardia limpia</h3><p>Opción múltiple: 13/13. Respuesta única: 39/39. Acumulado 52 llamadas, sin reintentos ni rechazos; miniteoría en curso.</p></div></article>
       <article class="event live-event" data-scope="live"><time>12:42</time><div class="event-body"><h3>Cinco ensayos Codex listos: faltan 439</h3><p>238 consigna + 13 opción múltiple + 102 traducción + 39 respuesta única + 47 miniteoría. Los cinco muestran proveedor, modelo y esfuerzo; 0 llamadas reales.</p></div></article>
       <article class="event live-event" data-scope="live"><time>12:38</time><div class="event-body"><h3>El ensayo encontró y evitó una atribución incorrecta</h3><p>Cuatro wrappers lazy borraban la identidad aunque la configuración fuera Codex. Se agregó la delegación faltante, una prueba focalizada y una copia nueva; la evidencia defectuosa quedó archivada.</p></div></article>
       <article class="event live-event" data-scope="live"><time>12:32</time><div class="event-body"><h3>La base completa quedó verde</h3><p>3.260 pruebas Java y 11 de Flutter; 0 fallas. Cobertura, examen y runtime ya viajan separados. Siguiente: copiar, compilar y ensayar los cinco exámenes con presupuesto cero.</p></div></article>
@@ -189,14 +194,14 @@
 
   <section>
     <h2>Dos carriles, sin mezclarlos</h2>
-    <div class="next"><div class="step"><div class="num">LISTO</div><b>Identidad</b><span>Claude y Codex aislados</span></div><div class="step"><div class="num">LISTO</div><b>Ensayar cinco jueces</b><span>0 consultas</span></div><div class="step current"><div class="num">AHORA</div><b>Autorizar o no</b><span>439 consultas</span></div><div class="step"><div class="num">DESPUÉS</div><b>Medir y registrar</b><span>resultados Codex aparte</span></div></div>
-    <p class="caption">No se ejecutará ninguna de las 439 consultas sin aprobación explícita. El juez de duplicados sigue reprobado y se mejora en un carril aparte, sin retocar el oro.</p>
+    <div class="next"><div class="step"><div class="num">LISTO</div><b>Identidad</b><span>Claude y Codex aislados</span></div><div class="step"><div class="num">LISTO</div><b>Tres jueces</b><span>comparables y medidos</span></div><div class="step current"><div class="num">DECIDIR</div><b>SA + MC vigentes</b><span>62 + 43 consultas</span></div><div class="step"><div class="num">DESPUÉS</div><b>Refrescar UI</b><span>comparación lado a lado</span></div></div>
+    <p class="caption">No se importarán a la UI los dos resultados del examen viejo como si fueran equivalentes. La guardia correcta ahora es semántica: misma versión de casos, mismo oro y runtimes separados.</p>
   </section>
 
   <footer><span>Fuente: logs de corrida, content-audit y UI local.</span><span class="mono">docs/bitacora.html · estado vivo</span></footer>
 </div>
 <script>
-  const state={used:1099,total:1147,updatedAt:'2026-10-05T12:42:29-03:00'};
+  const state={used:1099,total:1147,updatedAt:'2026-10-05T14:04:42-03:00'};
   const pct=state.used/state.total*100;
   document.querySelector('#ring').style.setProperty('--p',`${pct*3.6}deg`);
   document.querySelector('#pct').textContent=pct.toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';

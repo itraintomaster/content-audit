@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>439 cerradas · faltan 105 comparables</title>
+  <style>
+    :root{color-scheme:light dark;--ink:#17211c;--muted:#68736d;--paper:#f5f1e8;--card:#fffdf8;--line:#d8d3c8;--green:#167453;--green-soft:#dceee5;--red:#ae3f32;--red-soft:#f5dfdb;--amber:#a96809;--amber-soft:#f6e8ca;--blue:#315ea8;--blue-soft:#dfe8f7}
+    @media(prefers-color-scheme:dark){:root{--ink:#edf3ef;--muted:#a9b4ae;--paper:#111714;--card:#19211d;--line:#334039;--green:#72d5ad;--green-soft:#183b2f;--red:#ff9a8d;--red-soft:#472723;--amber:#f1bc64;--amber-soft:#44351e;--blue:#9dbcf5;--blue-soft:#24344f}}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.page{width:min(1100px,calc(100% - 32px));margin:auto;padding:24px 0 64px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font:700 12px ui-monospace,SFMono-Regular,monospace;letter-spacing:.05em;text-transform:uppercase}.top .signal{color:var(--green)}.top .meta{color:var(--muted)}
+    header{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(250px,.6fr);gap:48px;align-items:end;padding:68px 0 44px}.eyebrow{font:800 12px ui-monospace,SFMono-Regular,monospace;color:var(--blue);letter-spacing:.08em;text-transform:uppercase}h1{font-size:clamp(44px,8vw,92px);line-height:.91;letter-spacing:-.065em;margin:13px 0 0;max-width:10ch}.lede{font-size:clamp(17px,2.2vw,22px);line-height:1.45;color:var(--muted);margin:0}.lede strong{color:var(--ink)}
+    .sub{max-width:54ch;color:var(--muted);font-size:14px;line-height:1.45;margin:18px 0 0}.scoreboard{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);background:var(--card)}.score{padding:24px;border-right:1px solid var(--line)}.score:last-child{border:0}.score b{display:block;font-size:clamp(36px,6vw,72px);line-height:.9;letter-spacing:-.06em}.score span{display:block;color:var(--muted);margin-top:10px;font-size:13px}.score.warning b{color:var(--amber)}
+    section{padding:52px 0;border-bottom:1px solid var(--line)}h2{font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin:0 0 22px;color:var(--muted)}.results{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.result{background:var(--card);border:1px solid var(--line);padding:23px;min-height:220px}.result .status{font:800 11px ui-monospace,SFMono-Regular,monospace;letter-spacing:.08em}.result.pass .status{color:var(--green)}.result.fail .status{color:var(--red)}.result h3{font-size:24px;line-height:1.04;margin:42px 0 9px;letter-spacing:-.035em}.result p{color:var(--muted);font-size:14px;line-height:1.5;margin:0}.meter{height:7px;background:var(--line);margin-top:24px;overflow:hidden}.meter i{display:block;height:100%;background:currentColor;width:var(--w)}.pass .meter{color:var(--green)}.fail .meter{color:var(--red)}
+    .mismatch{display:grid;grid-template-columns:1fr 60px 1fr;align-items:stretch}.side{padding:28px;border:1px solid var(--line);background:var(--card)}.side.old{background:var(--amber-soft);border-color:color-mix(in srgb,var(--amber) 35%,var(--line))}.side.current{background:var(--blue-soft);border-color:color-mix(in srgb,var(--blue) 35%,var(--line))}.side .tag{font:800 11px ui-monospace,SFMono-Regular,monospace;letter-spacing:.08em;color:var(--muted)}.side strong{display:block;font-size:clamp(26px,4vw,44px);line-height:1;margin:24px 0 8px;letter-spacing:-.045em}.side p{margin:0;color:var(--muted);line-height:1.5}.arrow{display:grid;place-items:center;font-size:28px;color:var(--muted)}
+    .decision{display:grid;grid-template-columns:.85fr 1.15fr;gap:28px;align-items:stretch}.number{background:var(--ink);color:var(--paper);padding:30px;display:flex;flex-direction:column;justify-content:space-between;min-height:260px}.number b{font-size:clamp(80px,13vw,150px);line-height:.72;letter-spacing:-.08em}.number span{font-size:14px}.plan{border:1px solid var(--line);background:var(--card);padding:28px}.plan h3{font-size:30px;letter-spacing:-.04em;margin:0 0 22px}.steps{display:grid;gap:13px}.step{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}.step i{font:800 12px ui-monospace,SFMono-Regular,monospace;color:var(--blue);font-style:normal}.step b{display:block;font-size:14px}.step span{display:block;color:var(--muted);font-size:13px;margin-top:3px}.note{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;line-height:1.5}
+    footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;color:var(--muted);font-size:11px}.mono{font-family:ui-monospace,SFMono-Regular,monospace}
+    @media(max-width:760px){header{grid-template-columns:1fr;gap:26px;padding-top:48px}.scoreboard,.results{grid-template-columns:1fr}.score{border-right:0;border-bottom:1px solid var(--line)}.score:last-child{border:0}.mismatch{grid-template-columns:1fr}.arrow{height:54px;transform:rotate(90deg)}.decision{grid-template-columns:1fr}.number{min-height:210px}}
+  </style>
+</head>
+<body>
+<main class="page">
+  <div class="top"><span class="signal">● ejecución cerrada</span><span class="meta">Jueces Codex · 5 octubre 2026</span></div>
+  <header>
+    <div><div class="eyebrow">Brief de decisión · jueces</div><h1>439 no alcanzan para comparar cinco.</h1><p class="sub">Tres jueces ya son comparables; opción múltiple y respuesta única necesitan rendir sus versiones vigentes.</p></div>
+    <p class="lede"><strong>La corrida salió limpia.</strong> La base no era pareja en dos jueces: Codex rindió el examen fijo del 1/10 y Claude había aprobado versiones ampliadas del 3/10.</p>
+  </header>
+
+  <div class="scoreboard" aria-label="Resumen">
+    <div class="score"><b>439</b><span>consultas exactas · 0 rechazos</span></div>
+    <div class="score"><b>3</b><span>comparaciones vigentes</span></div>
+    <div class="score warning"><b>105</b><span>consultas para igualar las otras 2</span></div>
+  </div>
+
+  <section>
+    <h2>Lo que ya sabemos con justicia</h2>
+    <div class="results diagram">
+      <article class="result pass"><div class="status">APROBADO</div><h3>Traducción y sentido</h3><p>1 falsa alarma entre 49 buenos. Puede consultar el curso cuando se le dé presupuesto.</p><div class="meter"><i style="--w:100%"></i></div></article>
+      <article class="result fail"><div class="status">REPROBADO</div><h3>Miniteoría</h3><p>Encontró 7 de 8 temas reales, pero marcó 7 de 38 buenos. El tope era 2.</p><div class="meter"><i style="--w:38%"></i></div></article>
+      <article class="result fail"><div class="status">REPROBADO</div><h3>Consigna</h3><p>Encontró 145 de 149 imposibles, pero reprobó 7 de 50 buenos. El tope era 2.</p><div class="meter"><i style="--w:86%"></i></div></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>La diferencia que invalida dos comparaciones</h2>
+    <div class="mismatch diagram">
+      <div class="side old"><div class="tag">CODEX RINDIÓ · 1/10</div><strong>13 + 39</strong><p>Opción múltiple y respuesta única del examen fijo anterior.</p></div>
+      <div class="arrow">→</div>
+      <div class="side current"><div class="tag">CLAUDE APROBÓ · 3/10</div><strong>43 + 62</strong><p>Exámenes ampliados, con oro v2/v3 congelado. Los 52 casos viejos fueron excluidos.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Decisión pendiente</h2>
+    <div class="decision">
+      <div class="number"><b>105</b><span>consultas adicionales máximas</span></div>
+      <div class="plan"><h3>Repetir sólo lo que quedó desigual.</h3><div class="steps">
+        <div class="step"><i>01</i><div><b>Opción múltiple · 43</b><span>Cortar ante incompleto, formato inválido o exceso.</span></div></div>
+        <div class="step"><i>02</i><div><b>Respuesta única · 62</b><span>Misma guardia; medir con el oro v3 ya congelado.</span></div></div>
+        <div class="step"><i>03</i><div><b>Refrescar la UI</b><span>Importar recién los cinco resultados comparables y mostrar Claude/Codex lado a lado.</span></div></div>
+      </div><p class="note">No hay consultas en curso. Los resultados preliminares quedan preservados como evidencia, pero no se presentarán como equivalentes.</p></div>
+    </div>
+  </section>
+
+  <footer><span>Fuente: registros, veredictos y ensayos locales.</span><span class="mono">docs/briefs/027-439-cerradas-105-para-comparar.html</span></footer>
+</main>
+</body>
+</html>
