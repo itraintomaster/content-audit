@@ -1,5 +1,8 @@
 # Progress
 
+2026-10-04 — analyst — R008/R009 y la duda de procedencia actualizadas para Codex/ChatGPT y granularidad completa;
+  requirement validate [OK]. Next: arquitectura para el proveedor y su procedencia.
+
 2026-04-29 — analyst — REQUIREMENT.md drafted from scratch. Captures the LLM-backed adapter that replaces the lemma-absence-mvp stub. Locked decisions from user (LangChain4j in-process, Gemma via LM Studio default, single-shot, granular failure categories, behavioral-only prompt, strategy renamed to `lemma-absence-llm`). Open doubts: adapter module placement, exact strategy name. Validation pending.
   why: starting point for architecture phase; do not re-litigate scope choices already aligned upstream.
 

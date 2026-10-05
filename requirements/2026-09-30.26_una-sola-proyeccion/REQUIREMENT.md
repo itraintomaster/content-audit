@@ -56,6 +56,10 @@ la línea base la fije José aparte del análisis activo, y que ninguno de los d
 
 ## Reglas de Negocio
 
+Desde el 4/10, las menciones a `claude -p` en la política de topes nombran al proveedor por sesión local que lo
+reemplaza: `codex-cli` autenticado con ChatGPT
+([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)). El tope 0 sin pedido no cambia.
+
 Grupos: **A**, una sola proyección (R001–R003); **B**, la proyección no es un análisis (R004–R005); **C**, la línea base
 y el impacto de cada propuesta (R006–R007). *Proyección*: el curso del análisis activo con lo aprobado (foto
 `consolidated`) o con lo aprobado y lo pendiente aplicable (foto `pendingProjection`) del plan activo

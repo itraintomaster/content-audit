@@ -11,7 +11,8 @@ feature:
 ## TL;DR
 
 **Qué**: Gramática, Naturalidad y Duplicados parecidos corren con su herramienta en la máquina y su versión a la vista;
-sin Ollama, los dos de modelo le preguntan lo mismo a claude -p, sólo con tope; los tres leen candidatos de la mesa.
+sin Ollama, los dos de modelo consultan a `codex-cli` con la sesión local de ChatGPT, sólo con tope; los tres leen
+candidatos de la mesa.
 
 **Por qué**: Son las primeras dependencias de idioma de content-audit. Sin reglas comunes, cada uno decidiría distinto
 qué pasa cuando falta el modelo, cuándo corre y qué cambia cuando cambia la versión.
@@ -28,7 +29,7 @@ Cómo el operador intenta hoy correr un analizador que necesita una herramienta 
 4. Le pide a un analizador que lea un candidato de la mesa → ⚠️ sólo el juez de consigna lo hace
    (`AssessCandidateCommand.assessCandidate`), y ninguno de los tres existe todavía.
 5. Corre sin Ollama → ⚠️ el diseño del 30/9 dejaba `naturalness` y `near-duplicates` sin evaluar. Los jueces ya consultan
-   a claude -p, con tope por nombre (`AnalyzeOptions.analyzerBudgets`, `--budget nombre=N`) y examen por versión
+   a `codex-cli`, con tope por nombre (`AnalyzeOptions.analyzerBudgets`, `--budget nombre=N`) y examen por versión
    (`ExamCommand.takeExam`), pero sólo para lo suyo.
 
 **Punto de fricción**: pasos 2 a 5.
@@ -36,12 +37,16 @@ Cómo el operador intenta hoy correr un analizador que necesita una herramienta 
 **Cambio mínimo necesario**: fijar para `grammar`, `naturalness` y `near-duplicates` qué garantizan sobre su herramienta,
 su versión, cuándo corren y cómo leen un candidato. Qué herramienta es cada una y dónde corre lo decidió José el 30/9:
 LanguageTool dentro de content-audit y los dos modelos que ya están en Ollama. Y, sin Ollama, que los dos de modelo usen
-claude -p con el mismo tope, examen y sesión que los jueces (José, 30/9 a la noche).
+el proveedor por sesión local con el mismo tope y examen que los jueces; desde el 4/10 es `codex-cli`, autenticado con
+ChatGPT ([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)).
 
 ## Reglas de Negocio
 
 Acá **herramienta** es LanguageTool (FEAT-GRAMA) o un modelo local (FEAT-NATUR, FEAT-DUPAR), y **la alternativa** es
-claude -p, la sesión local de claude-cli con que consultan los jueces (FEAT-JEXAM).
+`codex-cli`, autenticado con la sesión local de ChatGPT igual que los jueces (FEAT-JEXAM). Las menciones a `claude -p`
+que siguen documentan el diseño y las mediciones anteriores: como proveedor activo quedan reemplazadas por
+[F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013), y toda versión afectada vuelve a rendir su examen por
+[F-JEXAM-R014](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R014).
 
 <a id="F-MLOCAL-R001"></a>
 ### Rule[F-MLOCAL-R001] - Con sus herramientas, nada sale de la máquina salvo los pares de Duplicados parecidos; a claude -p, sólo con tope

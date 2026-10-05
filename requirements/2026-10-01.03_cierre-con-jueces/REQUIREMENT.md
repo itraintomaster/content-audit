@@ -38,6 +38,10 @@ pueda estimar antes cuánto falta; y que el veredicto nombre al juez sin aprobar
 
 ## Reglas de Negocio
 
+Desde el 4/10, las menciones a `claude -p` como proveedor activo significan `codex-cli`, autenticado con la sesión local
+de ChatGPT ([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)); los números medidos con Claude siguen siendo historia y deben recalcularse
+antes de estimar una corrida real con la versión nueva ([F-JEXAM-R014](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R014)).
+
 Acá, un **juez** es un analizador de la tanda que le pregunta a un modelo —a claude -p o a uno local— o que pasa una
 herramienta local con examen, como la gramática. **Pagar** una consulta es hacérsela a claude -p: lo que se le pregunta
 a un modelo local es gratis ([F-MLOCAL-R008](#F-MLOCAL-R008)). El **libro** guarda los veredictos de los jueces por

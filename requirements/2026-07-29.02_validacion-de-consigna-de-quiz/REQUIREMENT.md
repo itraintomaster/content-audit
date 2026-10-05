@@ -1573,13 +1573,13 @@ cuanto tarda una consulta real al juez.
 
 <a id="DOUBT-PROVEEDOR-DEL-JUEZ"></a>
 ### Doubt[DOUBT-PROVEEDOR-DEL-JUEZ] - Que proveedor se usa cuando la configuracion no declara ninguno?
-**Status**: OPEN
+**Status**: RESOLVED (2026-10-04)
 
 [F-QINST-R016](#F-QINST-R016) juzga la validez de la configuracion **contra el
 proveedor que declara**, y cuenta como invalida a la que no permite determinar cual
 usar. Falta decidir si no declararlo es, en si mismo, invalido.
 
-- [ ] Opcion A: **Se aplica el mismo proveedor por defecto que el resto del sistema
+- [x] Opcion A: **Se aplica el mismo proveedor por defecto que el resto del sistema
   ya aplica** cuando el operador no lo declara. Una maquina configurada de la forma
   habitual obtiene veredictos sin configuracion adicional, que es lo que hace cierta
   la ejecucion por omision de [F-QINST-R001](#F-QINST-R001). A cambio, una
@@ -1595,13 +1595,11 @@ usar. Falta decidir si no declararlo es, en si mismo, invalido.
   equivocado, sin aviso, y volveria a producir un defecto silencioso de la misma
   familia que el que motivo la regla.
 
-**Answer**: Pendiente. Se especifica la **Opcion A** [ASSUMPTION] por coherencia con
-como ya se resuelve el proveedor en el resto del sistema
-([F-LAGEN-R008](../2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md#F-LAGEN-R008)):
-un solo criterio de resolucion para todos los consumidores de modelos es preferible a
-uno propio de este analisis. Cualquiera sea la eleccion, no cambia el enunciado de
-[F-QINST-R016](#F-QINST-R016): cambia unicamente si "no declara proveedor" cae del
-lado valido o del invalido de su invariante 2.
+**Answer**: **Opcion A** (Jose, 4/10): cuando no se declara otro, el proveedor es `codex-cli`, autenticado con la sesion
+local de ChatGPT, igual que para los demas consumidores de modelos. No se usa una clave de OpenAI API, no hay
+facturacion por API y no se deriva silenciosamente a Claude
+([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)). Esto no cambia el
+enunciado de [F-QINST-R016](#F-QINST-R016): determina que "no declara proveedor" cae del lado valido de su invariante 2.
 
 <a id="DOUBT-ALCANCE-EJERCICIOS"></a>
 ### Doubt[DOUBT-ALCANCE-EJERCICIOS] - Que ejercicios entran en el analisis?

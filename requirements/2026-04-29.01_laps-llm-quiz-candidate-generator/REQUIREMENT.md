@@ -144,7 +144,7 @@ La excepcion se propaga al dispatcher, que la consolida en el outcome `STRATEGY_
 ### Rule[F-LAGEN-R008] - El operador puede ajustar el comportamiento de generacion sin recompilar el sistema
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
-> El operador debe poder cambiar proveedor activo, endpoint, identificador de modelo, credencial, temperatura, tokens maximos y timeout sin recompilar el codigo. El conjunto debe venir con defaults razonables que permitan correr el sistema con un proveedor local levantado sin tocar configuracion.
+> El operador debe poder cambiar proveedor activo, endpoint, identificador de modelo, credencial, temperatura, tokens maximos y timeout sin recompilar el codigo. El conjunto debe venir preparado para usar el proveedor por sesion local vigente del sistema; desde el 4/10 es `codex-cli`, autenticado con ChatGPT, sin clave ni facturacion de OpenAI API ([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)).
 
 <details><summary>Detail</summary>
 
@@ -163,20 +163,22 @@ Cambiar el proveedor activo (de un proveedor local a uno cloud, por ejemplo) deb
 </details>
 
 <a id="F-LAGEN-R009"></a>
-### Rule[F-LAGEN-R009] - El `StrategyId.providerId` identifica al proveedor concreto detras de cada propuesta
-**Severity**: major | **Validation**: AUTO_VALIDATED
+### Rule[F-LAGEN-R009] - Cada propuesta identifica proveedor, modelo y version
+**Severity**: major | **Validation**: VALIDATED
 
-> Cada `RevisionProposal` producida tras esta iteracion debe poblar el campo `StrategyId.providerId` (declarado por [F-LAPS-R005](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R005)) con un identificador estable del proveedor de modelo activo, distinto entre proveedores distintos, suficiente para que un consumidor del artefacto archivado distinga el proveedor que produjo el candidato.
+> Cada `RevisionProposal` producida tras esta iteracion debe dejar a la vista el proveedor, el modelo exacto y la version del proceso que produjo el candidato. Dos propuestas generadas con cualquier diferencia en esas tres piezas tienen procedencias distintas ([F-JEXAM-R014](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R014)).
 
 <details><summary>Detail</summary>
 
 La regla funcional exige tres cosas:
 
-1. El campo esta poblado (no nulo, no vacio).
-2. Dos invocaciones realizadas contra proveedores distintos resultan en `providerId` distintos.
-3. El identificador permite a un consumidor del artefacto archivado distinguir el proveedor que produjo el candidato.
+1. `StrategyId.providerId` identifica el proveedor y el modelo exacto, y esta poblado (no nulo, no vacio).
+2. `StrategyId.version` identifica la version del proceso que produjo el candidato.
+3. La pareja `providerId` + `version` permite a un consumidor reconstruir las tres piezas sin inventar otro campo.
 
-El nivel de detalle exacto (solo proveedor, proveedor + modelo, proveedor + modelo + version) queda librado al implementador — ver [DOUBT-PROVIDER-ID-FORMAT](#DOUBT-PROVIDER-ID-FORMAT). Esta regla no redefine el shape del artefacto: `providerId` ya existe en `StrategyId` por [F-LAPS-R005](../2026-04-20.02_lemma-absence-proposal-strategy/REQUIREMENT.md#F-LAPS-R005); este requerimiento se compromete a usarlo.
+La forma de representar esas tres piezas sin cambiar innecesariamente el artefacto pertenece a la fase de arquitectura;
+funcionalmente ninguna puede perderse. La decisión de granularidad quedó cerrada en
+[DOUBT-PROVIDER-ID-FORMAT](#DOUBT-PROVIDER-ID-FORMAT).
 
 </details>
 
@@ -472,15 +474,18 @@ journeys:
 
 <a id="DOUBT-PROVIDER-ID-FORMAT"></a>
 ### Doubt[DOUBT-PROVIDER-ID-FORMAT] - Que nivel de granularidad expone el `providerId` que ve el consumidor del artefacto archivado?
-**Status**: OPEN
+**Status**: RESOLVED (2026-10-04)
 
-[F-LAGEN-R009](#F-LAGEN-R009) exige que el `StrategyId.providerId` de cada propuesta este poblado y que dos invocaciones contra proveedores distintos resulten en `providerId` distintos. La pregunta funcional pendiente es cuanto detalle se expone a un operador que abre el artefacto archivado:
+[F-LAGEN-R009](#F-LAGEN-R009) exige que la procedencia de cada propuesta este poblada. La decision del 4/10 fija cuanto detalle se expone a un operador que abre el artefacto archivado:
 
 - [ ] Opcion A: **Solo el proveedor** (ejemplos: `local`, `openai`, `anthropic`). Mas estable; un cambio de modelo dentro del mismo proveedor no se refleja en el `providerId`.
-- [ ] Opcion B: **Proveedor + modelo** (ejemplos: `local:gemma-2b-it`, `openai:gpt-4o-mini`). Mas detalle para diagnostico; el `providerId` cambia cada vez que el operador cambia de modelo.
-- [ ] Opcion C: **Proveedor + modelo + version** (ejemplos: `openai:gpt-4o-mini:2024-07-18`). Maximo detalle; util para reproducibilidad, fragil si la version no es siempre conocida en el momento de la generacion.
+- [x] Opcion B: **Proveedor + modelo** (ejemplos: `local:gemma-2b-it`, `codex-cli:<modelo>`). La version queda en `StrategyId.version`, por lo que las tres piezas forman la procedencia sin duplicarla dentro de `providerId`.
+- [ ] Opcion C: **Proveedor + modelo + version** dentro de `providerId` (ejemplo: `codex-cli:<modelo>:<version>`). Duplica la version que ya tiene `StrategyId`.
 
-**Answer**: Pendiente.
+**Answer**: **Opcion B** (Jose, 4/10): proveedor, modelo y version forman la procedencia; `providerId` lleva proveedor
+y modelo, y `StrategyId.version` completa la tercera pieza. Para la sesion local vigente, el proveedor es `codex-cli`,
+autenticado con ChatGPT; no es la OpenAI API por clave o facturacion separada
+([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)).
 
 <a id="DOUBT-CANNED-MODE-AVAILABILITY"></a>
 ### Doubt[DOUBT-CANNED-MODE-AVAILABILITY] - El sistema debe seguir admitiendo un modo de generacion canned para tests / desarrollo offline?
@@ -532,5 +537,6 @@ al reporte y no un cambio del enunciado de [F-LAGEN-R015](#F-LAGEN-R015).
 - **FEAT-QSENT** (`requirements/2026-04-22.01_quiz-sentence-dsl/`) — Formaliza la DSL `quizSentence`. Este requerimiento no parsea ni valida la DSL: el `quizSentence` que el modelo genera se entrega tal cual al pipeline. Citado por [F-LAGEN-R004](#F-LAGEN-R004) (responsabilidad funcional impuesta al modelo) y [F-LAGEN-R005](#F-LAGEN-R005) / [F-LAGEN-R010](#F-LAGEN-R010) (la validacion gramatical post-generacion la hace el deriver de FEAT-LAPS, no este requerimiento).
 - **FEAT-REVAPR** (`requirements/2026-04-20.01_refiner-revision-approval/`) — Define el rechazo de re-revise mientras hay propuesta pendiente. Citado por [F-LAGEN-R011](#F-LAGEN-R011) como mecanismo que evita la acumulacion accidental de candidatos no-deterministicos.
 - **FEAT-REVBYP** — Aporta el flujo posterior a la generacion (validacion, persistencia del artefacto, escritura al curso). Se reutiliza tal cual; no se cita inline porque ningun rule introduce restricciones nuevas sobre ese flujo.
-- **FEAT-QINST** (`requirements/2026-07-29.02_validacion-de-consigna-de-quiz/`) — **Fuente unica del criterio de validez de una configuracion frente al proveedor que declara**: que exige cada clase de proveedor, por que la credencial no es requisito de disponibilidad y como se distingue configuracion invalida de falla en tiempo de consulta. Este requerimiento no lo repite: lo cita y declara que la generacion se somete a el. Citado por [F-LAGEN-R015](#F-LAGEN-R015). Aporta ademas la duda abierta compartida sobre el proveedor por defecto ([DOUBT-PROVEEDOR-DEL-JUEZ](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#DOUBT-PROVEEDOR-DEL-JUEZ)), citada por [DOUBT-DIRECCION-SOBRANTE](#DOUBT-DIRECCION-SOBRANTE).
+- **FEAT-QINST** (`requirements/2026-07-29.02_validacion-de-consigna-de-quiz/`) — **Fuente unica del criterio de validez de una configuracion frente al proveedor que declara**: que exige cada clase de proveedor, por que la credencial no es requisito de disponibilidad y como se distingue configuracion invalida de falla en tiempo de consulta. Este requerimiento no lo repite: lo cita y declara que la generacion se somete a el. Citado por [F-LAGEN-R015](#F-LAGEN-R015). Aporta ademas la decision compartida sobre el proveedor por defecto ([DOUBT-PROVEEDOR-DEL-JUEZ](../2026-07-29.02_validacion-de-consigna-de-quiz/REQUIREMENT.md#DOUBT-PROVEEDOR-DEL-JUEZ)), citada por [DOUBT-DIRECCION-SOBRANTE](#DOUBT-DIRECCION-SOBRANTE).
+- **FEAT-JEXAM** — Fija `codex-cli` con sesion local de ChatGPT para los procesos que antes usaban Claude, y exige proveedor, modelo y version en su procedencia. Citado por R008 y R009.
 - **FEAT-LASAG** (`requirements/2026-06-18.01_lemma-absence-agent-migration/`) — Absorbio los journeys de generacion de esta feature y aporta el backend actual de la ruta con modelo. Las reglas de esta feature siguen vigentes y el agente las honra; [F-LAGEN-R015](#F-LAGEN-R015) gobierna la configuracion previa a cualquier consulta, no la mecanica de generacion.

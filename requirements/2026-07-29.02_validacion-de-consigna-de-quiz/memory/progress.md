@@ -1,5 +1,7 @@
 # Progress — FEAT-QINST
 
+2026-10-04 — analyst — Proveedor por omisión resuelto a Codex/ChatGPT en el requirement; validate [OK].
+
 2026-07-29 — analyst — REQUIREMENT.md creado: 14 reglas, 3 journeys de flujo (J001 puntaje+diagnostico+falla del juez, J002 cobertura parcial y reanudacion, J003 omision/exclusion/re-evaluacion) y 5 doubts abiertos. `requirement validate` [OK]; `feature list` = FEAT-QINST 14 reglas / 3 journeys.
   why: el juez de consigna (agente quiz-instruction-validator) ya existe y esta probado por separado; lo que falta es incorporarlo a la auditoria sin romper los tres supuestos de los analisis actuales (evaluar es gratis, la corrida siempre termina, repetir da lo mismo).
 

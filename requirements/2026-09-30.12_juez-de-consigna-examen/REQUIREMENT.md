@@ -37,7 +37,7 @@ cambia.
 
 ## Reglas de Negocio
 
-**A**, el examen (R001–R003), y **B**, el uso (R004–R006 y R010–R012), valen para los cinco jueces: consigna,
+**A**, el examen (R001–R003), y **B**, el uso (R004–R006 y R010–R014), valen para los cinco jueces: consigna,
 FEAT-TRSEN, FEAT-UNICA, FEAT-MINIT y FEAT-MCVALE (R012, sólo para los cuatro nuevos). **C** (R007–R009) es del juez de
 consigna.
 
@@ -178,12 +178,13 @@ pendientes.
 > o si la primera consulta vuelve por falta de sesión, la corrida no empieza ninguna consulta más, termina sin error y
 > el informe del juez nombra la causa —sesión vencida, cuota agotada o servicio caído— y cómo se resuelve.
 
-José eligió `claude-cli`, la sesión local ([DOUBT-JUECES-PROVEEDOR](#DOUBT-JUECES-PROVEEDOR)), y esa sesión venció el
-30/9. Mantiene [F-QINST-R007](#F-QINST-R007) y [F-EVCOST-R009](#F-EVCOST-R009): una falla del servicio corta las
+José eligió `codex-cli`, autenticado con la sesión local de ChatGPT
+([DOUBT-JUECES-PROVEEDOR](#DOUBT-JUECES-PROVEEDOR)). Mantiene [F-QINST-R007](#F-QINST-R007) y
+[F-EVCOST-R009](#F-EVCOST-R009): una falla del servicio corta las
 consultas, no la corrida; esta regla agrega que se sepa por qué. Con consultas a la vez ([F-JEXAM-R006](#F-JEXAM-R006))
 la primera sale sola: si el servicio no está, falla una y no cuatro. **Criterio**: con la sesión vencida y tope 100, la
 corrida hace a lo sumo una consulta, deja todo pendiente y el informe dice «sesión vencida: renovala con
-`claude auth login`».
+`codex login`».
 
 <a id="F-JEXAM-R012"></a>
 ### Rule[F-JEXAM-R012] - Los jueces nuevos no tratan como problema una forma que el corrector acepta
@@ -199,6 +200,36 @@ tabla de equivalencias es una sola: la del corrector de Go, con sus casos de oro
 Donde el juez lista respuestas u opciones ([F-UNICA-R002](#F-UNICA-R002), [F-MCVALE-R002](#F-MCVALE-R002)), lo que
 el corrector acepta se descarta aunque el juez lo liste. La guía del juez de consigna no cambia ([F-JEXAM-R007](#F-JEXAM-R007)).
 **Criterio**: un ejercicio que acepta «isn't» y cuyo único reparo sería «is not» no tiene hallazgo de `single-answer`.
+
+<a id="F-JEXAM-R013"></a>
+### Rule[F-JEXAM-R013] - Los procesos con modelo por suscripción usan la sesión local de Codex y ChatGPT
+**Severity**: critical | **Validation**: VALIDATED
+
+> Todo proceso que hasta ahora consultaba a Claude mediante la sesión local —los cinco jueces, las alternativas de
+> Naturalidad y Duplicados parecidos, los generadores de propuestas y los agentes de la mesa— consulta a OpenAI mediante
+> `codex-cli`, autenticado con la sesión local de ChatGPT. No usa una clave de OpenAI API, no genera facturación por API
+> y no vuelve a Claude como alternativa silenciosa.
+
+José reemplazó el 4/10 la decisión del 30/9 porque dispone de más cupo en ChatGPT. Los modelos locales que un proceso
+elige deliberadamente —por ejemplo, los que corren en Ollama— no cambian por esta regla. Toda mención anterior a
+`claude-cli` o `claude -p` como proveedor activo queda reemplazada por esta decisión; conserva valor histórico cuando
+describe una medición o una corrida pasada. Si la sesión de ChatGPT no está disponible, aplica
+[F-JEXAM-R011](#F-JEXAM-R011): el proceso no deriva a otra vía de cobro ni a otro proveedor.
+
+<a id="F-JEXAM-R014"></a>
+### Rule[F-JEXAM-R014] - Proveedor, modelo y versión forman la procedencia y obligan a reexaminar
+**Severity**: critical | **Validation**: VALIDATED
+
+> Cada resultado producido por un modelo identifica el proveedor (`codex-cli`), el modelo exacto y la versión completa
+> del proceso que lo obtuvo. Cambiar cualquiera de esas tres piezas produce una versión distinta; los jueces y demás
+> procesos que ya exigen examen deben volver a aprobarlo con esa versión antes de consultar el curso.
+
+Los veredictos y propuestas anteriores no se borran ni se atribuyen a la versión nueva: conservan su procedencia. El
+cambio de Claude a Codex, por sí solo, crea versiones nuevas y deja sin vigencia las aprobaciones de examen anteriores;
+lo ya registrado sólo se reutiliza cuando las reglas de huella y versión lo permiten. Esta regla resuelve para las
+propuestas la granularidad pendiente de
+[F-LAGEN-R009](../2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md#F-LAGEN-R009) y, para los jueces, refuerza
+[F-JEXAM-R001](#F-JEXAM-R001) y [F-JEXAM-R003](#F-JEXAM-R003).
 
 ## Contexto
 
@@ -216,7 +247,8 @@ se paga sólo lo que cambió: cuatro consultas por ejercicio tocado y una por te
 ## Alcance
 
 - **Adentro**: examen por versión; costo pendiente, conjunto, candidato, consultas a la vez, tope 0 por omisión, sesión
-  vencida y formas que el corrector acepta para todo juez; veredicto entero y examen del juez de consigna.
+  vencida y formas que el corrector acepta para todo juez; proveedor por sesión local y procedencia para todo proceso
+  con modelo que antes usaba Claude; veredicto entero y examen del juez de consigna.
 - **Afuera**: qué pregunta cada juez nuevo; armar el examen, su oro y medir sobre `examinar/` (0.4); mesa y tandas (E);
   pantallas (G); cambiar lo que lee el juez de consigna o su guía; igualar la consigna del tema con la del alumno (un
   arreglo de datos, [DOUBT-CONSIGNA-QUE-VE-EL-ALUMNO](#DOUBT-CONSIGNA-QUE-VE-EL-ALUMNO)); la tabla de equivalencias del
@@ -261,15 +293,30 @@ journeys:
 
 <a id="DOUBT-JUECES-PROVEEDOR"></a>
 ### Doubt[DOUBT-JUECES-PROVEEDOR] - ¿Con qué proveedor corren los cinco jueces?
-- [x] Opción A (recomendada): `claude-cli`, la sesión local que juzgó los 15.351 veredictos: sin cobro por consulta, con
-  cuota; su sesión venció el 30/9.
-- [ ] Opción B: un servicio pagado por consulta de los que el sistema ya usa ([F-QINST-R016](#F-QINST-R016)).
-- [ ] Opción C: un proveedor distinto para cada juez de traducción y sentido, para que no se equivoquen igual.
+- [x] Opción A (recomendada): `codex-cli`, autenticado con la sesión local de ChatGPT: consume el cupo de la
+  suscripción, no una clave ni facturación de OpenAI API.
+- [ ] Opción B: `claude-cli`, la sesión local elegida el 30/9 y reemplazada por la decisión nueva.
+- [ ] Opción C: un servicio por API, con clave y facturación separada.
 
-**Status**: RESOLVED (2026-09-30)
+**Status**: RESOLVED (2026-10-04)
 
-**Answer**: **Opción A** (José, 30/9): `claude-cli`, la sesión local. Venció el 30/9 y hay que renovarla antes de pedir
-consultas; cómo se detecta y se avisa lo fija [F-JEXAM-R011](#F-JEXAM-R011). C se revisa con el examen en la mano.
+**Answer**: **Opción A** (José, 4/10): OpenAI mediante `codex-cli` y la sesión local de ChatGPT, porque allí dispone de
+más cupo. No es la OpenAI API por clave ni por consulta. Reemplaza la elección de `claude-cli` del 30/9 y alcanza a los
+demás procesos con modelo que compartían esa sesión ([F-JEXAM-R013](#F-JEXAM-R013)); las versiones afectadas vuelven a
+rendir examen antes de consultar el curso ([F-JEXAM-R014](#F-JEXAM-R014)).
+
+<a id="DOUBT-JUECES-MODELO-OPENAI"></a>
+### Doubt[DOUBT-JUECES-MODELO-OPENAI] - ¿Qué modelo exacto de OpenAI usa cada proceso?
+- [ ] Opción A (recomendada): declarar un mismo modelo exacto para la primera recalibración de todos los procesos, para
+  poder comparar sus exámenes bajo una sola base.
+- [ ] Opción B: declarar un modelo exacto distinto por proceso, si sus exámenes muestran que lo necesitan.
+- [ ] Opción C: usar el modelo por omisión de Codex sin registrarlo expresamente.
+
+**Status**: OPEN
+
+**Answer**: Pendiente. No bloquea una arquitectura configurable: puede admitir A o B. Sí bloquea la ejecución de
+exámenes y consultas al curso, porque el modelo resuelto debe quedar en la procedencia
+([F-JEXAM-R014](#F-JEXAM-R014)). C contradice esa trazabilidad.
 
 <a id="DOUBT-JUECES-PRESUPUESTO"></a>
 ### Doubt[DOUBT-JUECES-PRESUPUESTO] - ¿Qué tope por corrida tienen los jueces nuevos, y cuánto se gasta en total?
@@ -357,3 +404,4 @@ que José usa a pedido, con pocas consultas, antes de que exista su reemplazo.
 - **FEAT-QICOR** — Verificar con el mismo criterio y criterios que se consultan. Citado por R005, R010 y la duda de los
   candidatos.
 - **FEAT-TRSEN, FEAT-UNICA, FEAT-MINIT, FEAT-MCVALE** — Los jueces nuevos, que usan A y B. Citados por R001 y R012.
+- **FEAT-LAGEN** — La procedencia de las propuestas generadas por modelo. Citada por R014.

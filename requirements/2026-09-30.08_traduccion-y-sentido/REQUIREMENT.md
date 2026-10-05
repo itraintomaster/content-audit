@@ -205,9 +205,9 @@ journeys:
 
 ## Open Questions
 
-Proveedor (`claude-cli`), tope (0 sin pedido), orden (examen fijo, `escribir/` y A1) y consultas a la vez (4) se
+Proveedor (`codex-cli` con sesión local de ChatGPT), tope (0 sin pedido), orden (examen fijo, `escribir/` y A1) y consultas a la vez (4) se
 decidieron una vez para los cinco jueces, en las dudas DOUBT-JUECES-* de
-[FEAT-JEXAM](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PROVEEDOR) (José, 30/9). Este juez es el
+[FEAT-JEXAM](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PROVEEDOR) (proveedor actualizado por José, 4/10). Este juez es el
 más caro: 22.574 de las 41.700 consultas del curso entero.
 
 <a id="DOUBT-TRSEN-COMBINAR"></a>

@@ -1,5 +1,8 @@
 # Decisions
 
+2026-10-04 — analyst — DOUBT-PROVIDER-ID-FORMAT queda en B: `providerId` expone proveedor+modelo y
+  `StrategyId.version` completa la procedencia; el proveedor vigente es `codex-cli` con ChatGPT, no OpenAI API.
+
 2026-04-29 — analyst — Stack: LangChain4j (in-process Java). No LangGraph in this iteration.
   why: keep first real generator simple; multi-step graphs / validation loops belong to future iterations.
 

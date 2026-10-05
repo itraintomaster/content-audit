@@ -45,6 +45,10 @@ Nada de esto cambia una regla de los paquetes.
 
 ## Reglas de Negocio
 
+Desde el 4/10, las menciones a `claude -p` como ruta activa nombran a `codex-cli`, autenticado con la sesión local de
+ChatGPT ([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)); la distinción funcional entre modelo local sin tope y proveedor por suscripción
+con tope 0 sigue igual.
+
 Acá **tema** es lo que el curso llama *knowledge*, como en FEAT-HALL y FEAT-RONDA1. **La lista de lemas** es
 `lemmas_20k_words.txt`, la lista COCA con que el procesador de spaCy pone el puesto de frecuencia de cada palabra, y
 **el procesador** es el programa de Python que tokeniza (`sample_processor.py`).

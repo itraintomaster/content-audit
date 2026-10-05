@@ -4,6 +4,9 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-04 — analyst — R013–R014 agregadas y DOUBT-JUECES-PROVEEDOR actualizada a Codex/ChatGPT; queda abierto elegir
+  el modelo exacto antes de rendir exámenes o consultar el curso. Los requisitos afectados validan [OK].
+
 2026-10-01 — developer (C, líder) — Examen descontaminado: ninguna definición de agente trae un caso del examen
   (escribir/ + examen fijo), y en mini-theory-judge tampoco un ejercicio de los 61 temas de su examen. Guardián en
   quiz-instruction-infrastructure (AgentDefinitionsExamGuardIntegrationTest + agentguard/examen.json, que arma
