@@ -18,8 +18,8 @@
 - **29/9:** una revisión completa propuso 3.133 cambios en 2.892 ejercicios (brief 077). No se aplicó nada.
   - José pidió **«corregir sin empeorar»**: medir cada arreglo antes y después con content-audit y sus jueces.
   - Sólo se publica lo que mejora sin empeorar nada.
-- **content-audit** es una herramienta Java (Maven multimódulo, gobernada por **Sentinel**).
-  - Analiza el curso con unos 20 analizadores: reglas, modelos locales y **jueces LLM** que se llaman con `claude -p`.
+- **content-audit** es una herramienta Java (Maven multimódulo, mantenida como código fuente normal).
+  - Analiza el curso con unos 20 analizadores: reglas, modelos locales y **jueces LLM**. Desde el 4/10, el proveedor por omisión es `codex-cli` con la sesión local de ChatGPT; proveedor y modelo siguen siendo elegibles.
   - Arma **tandas de corrección**. En cada una, una IA («el que propone», `panel-proposer`) propone arreglos, content-audit los mide y los jueces cierran antes y después.
   - La UI para ver el antes y después es el **Vocabulary Dashboard**, en Flutter, dentro de ittm.
 - **Ya está en producción y no depende de esto:** el corrector de respuestas del backend en Go acepta la forma corta y la larga (#1191) y suma 4 reglas (#1194).
@@ -36,9 +36,9 @@
 | 6. Revisión de José en la app | falta |
 | 7. Publicar en content-audit y llevar a producción | falta; el publicador hay que adaptarlo |
 
-**Decisión vigente de José (4/10):** lo que gasta cupo de Claude corre **el viernes 10/10 desde las 14:00 ART**, cuando se renueva el cupo semanal.
+**Decisión vigente de José (4/10):** los procesos con modelo se ejecutan con OpenAI/Codex, donde tiene más cupo; no con Claude por omisión.
 
-> **Importante para el cupo.** Los jueces y el que propone llaman a **Claude CLI** (`claude -p`) con el plan Max de José. Aunque el trabajo lo orqueste otro asistente, cada consulta paga de una tanda o un examen sigue gastando cupo de Claude. Cambiar eso exige cambiar el proveedor y volver a examinar a los jueces (sección 9).
+> **Importante para el cupo.** Ningún juez, examen o propuesta consulta sin presupuesto explícito. Cambiar proveedor, modelo o versión cambia la procedencia y exige volver a examinar el proceso afectado.
 
 ---
 
@@ -53,10 +53,11 @@
    - Nunca escribir la URI de producción en un archivo.
 4. **El push de content-audit lo hace José.** Nunca activar el merge automático.
 5. **Nunca `mvn install`**: pisa el `~/.m2` compartido. Se compila y se prueba con `mvn -o … -Dexec.skip=true`.
-6. **Sentinel manda en el diseño.**
-   - No se editan a mano `sentinel.yaml` ni los archivos con `@Generated`.
-   - Los cambios de diseño van por requirement y parche (`architectural_patch.yaml`). Ver `AGENTS.md` de content-audit, sobre todo la regla E y la W.
-   - Por `AGENTS.md`, los parches los aplica José. Él delegó en el orquestador aplicar los parches validados y simulados; para otro asistente, preguntarle.
+6. **Sentinel ya no gobierna el repositorio.**
+   - Maven no ejecuta `sentinel verify`, `sentinel report`, generación, PIT ni JaCoCo automáticamente.
+   - Todo `src/main/java` y `src/test/java` se mantiene a mano, aunque conserve una anotación histórica `@Generated`.
+   - `sentinel.yaml`, `.sentinel/`, baselines y propuestas son material histórico hasta archivarlos; no volver a generar desde ahí.
+   - `sentinel-agents` se conserva temporalmente sólo como runtime de los agentes y Codex.
 7. **Integridad de los exámenes.**
    - Quien construye o recalibra un juez **nunca** lee los casos del examen: `~/projects/learney/content-audit-corridas/` ni `docs/briefs/077-revision-de-ejercicios/examen/examinar/` en ittm. Las clases de error se le pasan en abstracto.
    - El oro se cambia **antes** de medir y se congela con `congelado.sha256`.
@@ -184,9 +185,10 @@ Está fuera de git y **contiene exámenes**: no se le muestra a quien construye 
   - spaCy, por `SpacyProcessRunner`.
   - La lista COCA en `ittm/pipeline/src/main/resources/vocabulary/lemmas_20k_words.txt`. Por eso cada copia lleva un symlink `ittm` al lado.
   - Java 25: `JAVA_HOME=/Users/josecullen/.sdkman/candidates/java/25.0.2-open`.
-- **El que propone** se configura con `CONTENT_AUDIT_LAGEN_PROVIDER=claude-cli`, `CONTENT_AUDIT_LAGEN_MODEL=sonnet` y `CONTENT_AUDIT_LAGEN_TIMEOUT=180`.
+- **El que propone** usa `CONTENT_AUDIT_LAGEN_PROVIDER=codex-cli` por omisión; declarar también `CONTENT_AUDIT_LAGEN_MODEL=<modelo>` y `CONTENT_AUDIT_LAGEN_TIMEOUT=180` para que la procedencia sea exacta.
   - Sin el modelo, la mesa no tiene quién proponga y la tanda queda INTERRUPTED.
-  - Los jueces corren `claude -p` **sin modelo**, o sea con el de `~/.claude/settings.json`, que es `opus[1m]`. **Así se examinaron:** cambiarles el modelo invalida sus exámenes.
+  - Los jueces nuevos usan `codex-cli` por omisión y conservan los selectores `CONTENT_AUDIT_JUDGE_PROVIDER` / `CONTENT_AUDIT_JUDGE_MODEL` y `CONTENT_AUDIT_QINST_JUDGE_PROVIDER` / `CONTENT_AUDIT_QINST_JUDGE_MODEL`.
+  - Los exámenes existentes se rindieron con Claude. Pasar a Codex o cambiar el modelo invalida esos exámenes y exige rendirlos de nuevo.
 
 ---
 
@@ -196,6 +198,7 @@ Está fuera de git y **contiene exámenes**: no se le muestra a quien construye 
   - `control.sh`: corre Main en la copia, con un entorno limpio.
     - `MODO=sin` es el modo por omisión: el `claude` del PATH falla con exit 97 y anota el intento.
     - `MODO=con`: anota y ejecuta el `claude` real.
+    - **Es infraestructura histórica de Claude:** antes de reanudar la tanda hay que regenerar la copia desde el código actual y adaptar el control para interceptar/ejecutar `codex`, sin reutilizar `MODO=con` tal como está.
     - `control.sh --app` es lo que llama la app.
   - `guardia.py`: corre un comando de Main vigilado. Lo frena si los reintentos pasan el tope, si hay N fallas seguidas o si llega a un máximo de llamadas.
   - `desenganchar.py`: lanza con `nohup` y `setsid`. **Las herramientas de las sesiones matan los procesos de fondo a los 30 minutos.**
@@ -245,9 +248,9 @@ Está fuera de git y **contiene exámenes**: no se le muestra a quien construye 
 
 ---
 
-## 6. Plan del viernes 10/10, en orden
+## 6. Próxima ejecución con Codex, en orden
 
-El cupo semanal se renueva a las 14:00 ART. **Antes de cada paso que gaste, pasarle el número a José y esperar su OK.**
+**Antes de cada paso que gaste, pasarle el número a José y esperar su OK.** No usar las copias Claude-era: primero crear copias desde el código actual, declarar proveedor y modelo, y verificar el control sin inferencias reales.
 
 1. **El examen de duplicados**, solo: ≈1.105 consultas y unas 2 horas.
    - Carpeta: `content-audit-corridas/2026-10-03-duplicados-v2/`. Tiene `correr.sh`, `guardia.py`, la muestra congelada y `medir_v2.py`.
@@ -266,9 +269,9 @@ El cupo semanal se renueva a las 14:00 ART. **Antes de cada paso que gaste, pasa
      - Hoy falla 21 de 21 de `answer-completeness`, porque reescribe el ejercicio entero y la compuerta lo rechaza tres veces.
      - Con la miniteoría, el texto nuevo tiene que llegar exactamente a los ejercicios que la muestran.
      - Commitearlo en una rama desde integración, con sus evals, y copiar la carpeta del agente a la copia de la tanda.
-   - **Limitar su pensamiento:** gasta una mediana de 14.000 tokens de salida para escribir unos 1.000 caracteres.
-     - En `fakebin/claude` de la carpeta de la tanda, sólo si el prompt contiene «Proponés el ejercicio», agregar `--effort low` antes del `exec`. Los jueces pasan intactos.
-     - El binario `claude` 2.1.270 también admite `MAX_THINKING_TOKENS` y `CLAUDE_CODE_DISABLE_THINKING`.
+   - **Limitar su pensamiento:** históricamente gastó una mediana de 14.000 tokens de salida para escribir unos 1.000 caracteres.
+     - Configurar el esfuerzo bajo sólo para `panel-proposer` usando las opciones admitidas por el Codex instalado; no copiar flags de Claude.
+     - Los jueces conservan su configuración y examen propios.
    - **Probarlo con unas 20 propuestas:** comparar tokens por llamada (mediana de 14.000) y la aceptación de la mesa (19 de 48 decididas).
 3. **Retomar la tanda,** con unas 4.100 consultas: unas 6 horas con 6 a la vez, o unas 9 con 4. Patrón usado el 3/10, en la carpeta de la tanda:
    ```
@@ -277,8 +280,8 @@ El cupo semanal se renueva a las 14:00 ART. **Antes de cada paso que gaste, pasa
      batch run --cap 4500 --topics-at-once 6 --queries-at-once 6
    ```
    - `--cap` cuenta sólo esa corrida, es un tope duro y, al llegar, deja terminar lo que está en vuelo.
-   - Verificar en `guardia.py` cómo invoca a `control.sh` con `MODO=con`.
-   - **La ventana de 5 horas aguanta unas 4.200 consultas.** No correr el examen y la tanda a la vez.
+   - Verificar que `guardia.py` invoque el control Codex-aware y que `MODO=sin` bloquee y cuente cualquier intento.
+   - Medir concurrencia y consumo de Codex en un ensayo corto; no extrapolar la ventana de Claude ni correr el examen y la tanda a la vez.
 4. **El cierre:**
    - `batch estimate` (`MODO=sin`) da el pedido completo.
    - Con el OK de José: `batch close --budget quiz-instruction=…,multiple-choice-validity=…,translation-sense=…,single-answer=…,mini-theory=…`, con guardia y desenganchado.
@@ -297,24 +300,23 @@ El cupo semanal se renueva a las 14:00 ART. **Antes de cada paso que gaste, pasa
 ## 7. Pendientes, por prioridad
 
 1. **Juntar las ramas:** correr `docs/propuestas/tablero-corregir-sin-empeorar/traspaso-juntar.sh` de ittm (hoy en el worktree `busy-meninsky-89eb60`). El push lo hace José.
-2. **El viernes:** la sección 6.
+2. **Próxima ejecución paga:** la sección 6, una vez preparada y verificada la copia Codex-aware.
 3. **La segunda tanda de A1:** lo que encuentran consigna, una sola respuesta, opción múltiple y duplicados.
    - Ahí entran los ejercicios imposibles de resolver, que son lo más grave.
    - Parte de la medición queda hecha el viernes, en el libro.
 4. **Arreglar el comparador** (`DefaultBatchComparator`):
    - Que un ejercicio cambiado que el juez dejó sin evaluar en la foto de antes cuente como abierto, o sea «sin decidir», y no como «gana un hallazgo».
    - Así los pisos dan «sin decidir» en vez de rotos y no arranca el LeaveOneOut.
-   - Son unas 30 líneas, 3 pruebas y aclarar F-METAS-R002/R003. Va por el flujo de Sentinel.
+   - Son unas 30 líneas, 3 pruebas y aclarar F-METAS-R002/R003. Se mantiene como código y pruebas manuales.
 5. **Rendimiento de `compare`:** el LeaveOneOut con LanguageTool tarda horas cuando hay un piso roto.
-6. **A2, B1 y B2:** unas 50.000 consultas, alrededor de 1,9 semanas de cupo Max. Antes de encararlo, bajar el costo:
-   - jueces en Sonnet, que obliga a examinarlos de nuevo;
+6. **A2, B1 y B2:** unas 50.000 consultas. Antes de encararlo, medir el cupo OpenAI y bajar el costo:
+   - un modelo OpenAI más económico, que obliga a examinar los jueces de nuevo;
    - empezar por los temas que más usan los alumnos;
    - el que propone con menos pensamiento.
 7. **Chicos:**
    - falsos positivos de spaCy en pistas: *close*, *dance*, *knock*;
    - la muletilla `"gapText": "___"` en las compuertas;
-   - el bug de Sentinel `--as=qa-tester` sin reportar;
-   - los reportes de bugs de Sentinel en `~/projects/sentinel/.bugs/`;
+   - archivar los reportes históricos de Sentinel que ya no correspondan;
    - los ejercicios `…37b0` (necesita «|») y `…3528` del corrector, antes de A2;
    - la pregunta de consigna y formas cortas, sólo si un examen la marca.
 
@@ -324,39 +326,33 @@ El cupo semanal se renueva a las 14:00 ART. **Antes de cada paso que gaste, pasa
 
 Todo con `JAVA_HOME=/Users/josecullen/.sdkman/candidates/java/25.0.2-open`, Maven offline y **sin install**.
 
-- **La suite entera** (3.225 tests y 1 salteado, el de spaCy), desde el repo o un worktree:
+- **La suite entera** quedó verde el 5/10 con JDK 25, desde el repo:
   ```
   mvn -o -q test -Dexec.skip=true
   ```
+  - Los tests de `HttpOllamaApi` abren servidores HTTP locales; dentro de un sandbox que prohíbe sockets fallan con `Operation not permitted`, pero fuera de esa restricción pasan.
 - **Un módulo con sus dependencias:**
   ```
   mvn -o test -pl audit-cli -am -Dexec.skip=true -Dsurefire.failIfNoSpecifiedTests=false
   ```
 - **Una clase o un método:** `-Dtest=BatchCmdTest` o `-Dtest='BatchCmdTest#nombreDelMetodo'`.
-- **Por regla de Sentinel:** los tests llevan `@Tag("F-XXXX-R00N")`, así que se filtran con `-Dgroups=F-CJUEZ-R004`.
-- **Sentinel**, con el jar `~/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar`:
-  - Generar: `java -jar <jar> generate -i sentinel.yaml -o .`. **Después, siempre:**
-    ```
-    git checkout HEAD -- nlp-infrastructure/src/main/java/com/learney/contentaudit/nlpinfrastructure/spacy/SpacyProcessRunner.java \
-      local-language-infrastructure/src/main/java/com/learney/contentaudit/locallanguageinfrastructure/ollama/HttpOllamaApi.java \
-      $(git ls-files '*pom.xml')
-    ```
-    Generate vacía el constructor de `SpacyProcessRunner` y cambia los pom.xml sólo en espacios. Revisar `git diff` por cuerpos ajenos.
-  - `verify` puede reescribir `sentinel.yaml`, aunque se anuncie de sólo lectura. Revisar `git diff`.
+- **Por regla de negocio:** muchos tests conservan `@Tag("F-XXXX-R00N")`, así que se filtran con `-Dgroups=F-CJUEZ-R004`. La etiqueta ya no depende de Sentinel.
+- **No ejecutar Sentinel.** Sus comandos de generación y verificación fueron retirados del ciclo Maven porque reescribían fuentes, POMs y metadatos versionados.
+- **Launcher:** `audit-cli.sh` usa los `target/classes` del reactor y `audit-cli/target/runtime-classpath.txt`. Si cambian los POM, `scripts/refresh-audit-cli-classpath.sh` lo recompone con `mvn package`, nunca con `mvn install`.
 - **Evals de un juez, sin modelo y gratis:** `python3 .sentinel/agents/<juez>/eval/run_evals.py`. Revisa estructura, fidelidad y el esquema del veredicto.
   - Con `--command "<cli>"` califica un CLI de verdad, **y eso paga**.
 - **Examen de un juez,** en una copia y nunca en el repo:
   1. `git archive <commit>` a una carpeta nueva de corridas.
   2. Symlink `ittm` al lado.
-  3. Compilar con `mvn -o -q -Dexec.skip=true -DskipTests compile` y el classpath del reactor (`dependency:build-classpath -Dmdep.outputFile=cp.txt`). El `sentinel-verify` del pom falla en las copias.
+  3. Compilar con `mvn -o -q -Dexec.skip=true -DskipTests compile` y usar el launcher reproducible del reactor. Maven ya no ejecuta `sentinel-verify`.
   4. `exam run <analizador> --cases <archivo> --course <foto>` **sin `--budget`** da la versión, gratis. **Con `--budget N --concurrency 4`** rinde, y paga.
   5. Medir con el `medir*.py` de la carpeta del examen. `exam record` registra y `exam status` muestra el estado.
   6. Las corridas largas se lanzan desenganchadas, con guardia: tope de rechazos en un 25 % de los casos y 3 fallas seguidas. Antes, un ensayo de 10 casos.
-- **Probar la CLI sin gastar:** `control.sh` en `MODO=sin`. Cualquier intento de consultar falla con exit 97 y queda anotado.
+- **Probar la CLI sin gastar:** en las corridas históricas, `control.sh` en `MODO=sin` bloquea Claude. Para Codex hay que crear una copia nueva y adaptar primero ese control; no asumir que el fake viejo intercepta `codex`.
 
 ---
 
-## 9. Costos y cupo, medidos el 3/10
+## 9. Costos históricos de Claude, medidos el 3/10
 
 - **Tramo de 802 consultas** de la tanda (consigna 324, una sola respuesta 339, el que propone 102, opción múltiple 20 y miniteoría 17):
   - **0,37 puntos del cupo semanal cada 100 consultas**, una cota alta;
@@ -367,7 +363,7 @@ Todo con `JAVA_HOME=/Users/josecullen/.sdkman/candidates/java/25.0.2-open`, Mave
   - unas 3.500 a 4.000 del cierre;
   - unas 1.105 del examen de duplicados.
 - **A2 a B2:** unas 50.000 consultas, alrededor de 1,9 semanas de cupo entero.
-- **Medir el cupo:** `get_usage` de Claude Code, o la tarjeta de uso de la app. Usa enteros: medir con tramos de cientos de consultas y nada más corriendo.
+- **No usar estas cifras para presupuestar Codex.** Medir el primer ensayo OpenAI por separado, con un único proceso corriendo y el panel de uso de la cuenta.
 
 ---
 
@@ -378,12 +374,7 @@ Todo con `JAVA_HOME=/Users/josecullen/.sdkman/candidates/java/25.0.2-open`, Mave
 - **zsh:**
   - `echo ======` falla, porque `=` se expande. Usar comillas.
   - `grep` es ugrep y tiene límite de complejidad con multibyte. Usar `/usr/bin/grep`.
-- **Sentinel:**
-  - En un parche, `throws:` se pierde sin error: usar `throwsExceptions:`.
-  - Un enum sin `type: enum` queda como record.
-  - Los modelos `@Generated` se reescriben enteros.
-  - `analyze` sin `--sync` reescribe `.sentinel/implementation.sentinel.yaml`.
-  - Hay 11 bugs reportados en `~/projects/sentinel/.bugs/`.
+- **Legado de Sentinel:** las anotaciones `@Generated`, `sentinel.yaml`, `.sentinel/` y los baselines todavía existen como historia. No son fuentes activas ni deben regenerar el proyecto.
 - **La app:** la nueva y la vieja comparten bundle id. «Antes y después» llama a `compare`, que tarda horas si hay un piso roto.
 - **Los gates:** cambiar un `gate_verdict.sh` cambia la versión del juez.
 - **Exámenes:** `rendir-v2.sh` casi pisa veredictos registrados; los registrados quedaron en sólo lectura. Usar un `TAG` por oro.
@@ -409,4 +400,4 @@ Todo con `JAVA_HOME=/Users/josecullen/.sdkman/candidates/java/25.0.2-open`, Mave
   - `recalibrar-*.md`: las recalibraciones.
   - `cierre-con-jueces.md`, `duplicados-por-par.md`, `traduccion-a1.md`, `pistas-que-regalan.md`.
   - `resumenes-de-sesiones/`.
-- **content-audit:** `AGENTS.md`, `CLAUDE.md` y `requirements/`, que tiene un REQUIREMENT, un TECH_SPEC y un parche por feature.
+- **content-audit:** `AGENTS.md`, `CLAUDE.md` y `requirements/`; los requisitos siguen vigentes y los parches de Sentinel quedan como historia.

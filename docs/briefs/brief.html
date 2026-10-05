@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lo viejo ya cerró; quedan dos bloqueos</title>
+<title>Sentinel salió del build; Codex quedó listo</title>
 <!--
   TEMPLATE DE BRIEF · visual-brief
   1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
@@ -267,85 +267,82 @@
 
   <header>
     <div class="kicker">
-      <span class="num">023</span>
-      <span class="badge">Diagnóstico · Opciones</span>
-      <span class="meta">Corregir sin empeorar · 4 octubre 2026</span>
+      <span class="num">025</span>
+      <span class="badge">Cierre · Estado</span>
+      <span class="meta">Corregir sin empeorar · 5 octubre 2026</span>
     </div>
-    <h1>Lo viejo ya cerró; quedan dos bloqueos</h1>
-    <p class="sub">Qué conviene limpiar ahora y qué impide reanudar A1.</p>
+    <h1>Sentinel salió del build; Codex quedó listo</h1>
+    <p class="sub">El bloqueo anterior está cerrado y la elección explícita sigue disponible.</p>
   </header>
 
-  <div class="lede"><p><strong>La integración ya terminó.</strong> Antes de gastar cupo conviene retirar dos ramas obsoletas y resolver dos bloqueos reales: el proponente y un cambio dudoso.</p></div>
+  <div class="lede"><p><strong>Sentinel ya no se ejecuta ni regenera fuentes.</strong> Codex quedó como opción predeterminada, sin quitar la elección explícita, y la suite completa pasa.</p></div>
 
   <section>
-    <h2>La integración ya está cerrada</h2>
+    <h2>El cierre es verificable y no consumió tokens de modelo</h2>
     <div class="kpis">
-      <div class="kpi dest"><div class="n">2<small>de 2</small></div><div class="l">repositorios integrados y publicados; antes figuraban pendientes</div></div>
-      <div class="kpi"><div class="n">6<small>de 7</small></div><div class="l">jueces aprobados; sólo duplicados espera examen</div></div>
-      <div class="kpi"><div class="n">302</div><div class="l">tareas A1 sin intentar, de 992 abiertas</div></div>
-      <div class="kpi"><div class="n">21</div><div class="l">tareas ya aceptadas por la mesa</div></div>
+      <div class="kpi dest"><div class="n">0</div><div class="l">invocaciones de Sentinel desde Maven</div></div>
+      <div class="kpi"><div class="n">✓</div><div class="l">el reactor completo compila</div></div>
+      <div class="kpi"><div class="n">70</div><div class="l">pruebas focales en verde</div></div>
+      <div class="kpi"><div class="n">0</div><div class="l">consultas o exámenes ejecutados</div></div>
     </div>
-    <p class="pie">El código, los documentos y la app ya llegaron a sus ramas principales. No hace falta repetir ninguna junta.</p>
+    <p class="pie">PIT y JaCoCo siguen disponibles bajo invocación explícita, pero ya no encarecen cada <code>verify</code>.</p>
   </section>
 
   <section>
-    <h2>Dos restos pueden cerrarse sin riesgo</h2>
+    <h2>Maven vuelve a construir el producto, no a gobernarlo</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">Antes</span><ol><li>Maven verificaba Sentinel.</li><li>La generación podía reescribir fuentes.</li><li>PIT y JaCoCo corrían automáticamente.</li></ol><span class="res">Desarrollar implicaba atravesar el framework.</span></div>
+      <div class="lado despues"><span class="rot">Ahora</span><ol><li>Las fuentes Java son manuales.</li><li>Compilar y probar no regenera.</li><li>Las auditorías se ejecutan a demanda.</li></ol><span class="res">El build vuelve a ser previsible.</span></div>
+    </div>
+    <p class="pie">Las anotaciones <code>@Generated</code> existentes quedan como legado textual; ya no determinan ownership ni activan herramientas.</p>
+  </section>
+
+  <section>
+    <h2>Codex es el default; Claude y el modelo siguen elegibles</h2>
     <div class="cambia">
-      <div class="si"><div class="ptl">Cerrar ahora</div><ul>
-        <li>La rama vieja de consigna: su trabajo ya está completo.</li>
-        <li>El arnés viejo de evaluación: quedó reemplazado.</li>
-        <li>Copias sueltas de documentos ya guardados en el tablero.</li>
-        <li>Worktrees de integración cuyo contenido ya fue publicado.</li>
+      <div class="si"><div class="ptl">Por omisión</div><ul>
+        <li>Jueces y generadores usan <code>codex-cli</code>.</li>
+        <li>La sesión se verifica con <code>codex login status</code>.</li>
+        <li>No hay fallback silencioso a otro proveedor.</li>
       </ul></div>
-      <div class="no"><div class="ptl">Conservar</div><ul>
-        <li>La tanda A1 abierta y su libro de evaluaciones.</li>
-        <li>La muestra congelada del examen de duplicados.</li>
-        <li>Los jueces aprobados y sus registros.</li>
-        <li>El historial canónico de requisitos y decisiones.</li>
+      <div class="no"><div class="ptl">Elección explícita</div><ul>
+        <li><code>CONTENT_AUDIT_LAGEN_PROVIDER</code> y <code>…_MODEL</code></li>
+        <li><code>CONTENT_AUDIT_JUDGE_PROVIDER</code> y <code>…_MODEL</code></li>
+        <li><code>CONTENT_AUDIT_QINST_JUDGE_PROVIDER</code> y <code>…_MODEL</code></li>
+      </ul></div>
+      <div class="no"><div class="ptl">Se preserva</div><ul>
+        <li><code>claude-cli</code> si se declara.</li>
+        <li>Ollama y proveedores remotos.</li>
+        <li>La procedencia por proveedor, modelo y versión.</li>
       </ul></div>
     </div>
-    <p class="pie">Cerrar significa retirar copias de trabajo obsoletas, no mezclar sus cambios ni borrar la historia que ya quedó registrada.</p>
+    <p class="pie">Si no se declara modelo, Codex usa su configuración local; para procedencia exacta conviene declararlo por proceso.</p>
   </section>
 
   <section>
-    <h2>Hay dos bloqueos antes de reanudar A1</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Acotar al proponente</span><span class="eg">tocar sólo lo permitido</span><span class="d">Hoy reescribe campos ajenos.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Probar veinte casos</span><span class="eg">menos pensamiento</span><span class="d">Medir costo y aceptación.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Explicar el cambio dudoso</span><span class="eg">una miniteoría</span><span class="d">Aparece distinto en la vista previa.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Recién entonces seguir</span><span class="d">Examen, tanda y cierre con autorización.</span></div>
+    <h2>La suite completa y el launcher quedaron verdes</h2>
+    <div class="hb">
+      <div class="r"><span class="t">Compilación<small>reactor completo</small></span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">verde</span></div>
+      <div class="r"><span class="t">OpenAI configurable<small>catálogo, resolución y readiness</small></span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">46 / 46</span></div>
+      <div class="r"><span class="t">Launcher real<small>sin classpath fijo ni <code>mvn install</code></small></span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">24 / 24</span></div>
+      <div class="r"><span class="t">Suite Maven<small>todos los módulos</small></span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">verde</span></div>
     </div>
-    <p class="pie">Los pasos 1 y 3 pueden resolverse sin consultas pagas. La prueba de veinte casos requiere anunciar antes su costo.</p>
+    <p class="pie">La suite completa necesitó sockets locales fuera del sandbox; no ejecutó jueces ni consultas de modelo.</p>
   </section>
 
   <section>
-    <h2>Después queda el trabajo operativo grande</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Tramo</th><th>Qué falta</th><th style="text-align:right">Consultas estimadas</th></tr></thead>
-      <tbody>
-        <tr><td>Duplicados</td><td><span class="pill p-warn">rendir y aprobar</span></td><td class="num">≈ 1.105</td></tr>
-        <tr><td>Tanda A1</td><td><span class="pill p-warn">302 tareas</span></td><td class="num">≈ 4.100</td></tr>
-        <tr><td>Cierre A1</td><td><span class="pill p-warn">juzgar antes y después</span></td><td class="num">3.500–4.000</td></tr>
-        <tr><td>Revisión</td><td><span class="pill p-info">José decide</span></td><td class="num">sin costo</td></tr>
-        <tr><td>Publicación</td><td><span class="pill p-idle">publicador y 26 audios</span></td><td class="num">después</td></tr>
-        <tr><td>Siguientes tandas</td><td><span class="pill p-idle">segunda A1, A2–B2</span></td><td class="num">más adelante</td></tr>
-      </tbody>
-    </table></div>
-    <p class="pie">La fecha también necesita confirmación: el documento dice «viernes 10/10», pero el 10 de octubre de 2026 es sábado.</p>
-  </section>
-
-  <section>
-    <h2>Qué necesito de vos</h2>
-    <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Cierro primero la antesala sin costo?</span>
-        <div class="ops"><span class="op rec">Sí: limpiar y diagnosticar · recomendado</span><span class="op">Sólo informar</span><span class="op">Ir al plan pago</span></div>
-        <span class="why">Deja un único camino activo antes de consumir unas 8.700 consultas para completar A1.</span></div>
+    <h2>Lo que sigue ya es preparación operativa</h2>
+    <div class="opts">
+      <div class="opt rec"><div class="oh"><span class="ol">1</span><strong>Preparar las corridas</strong></div><p>Regenerar las copias A1 y adaptar su control histórico de Claude para Codex.</p><ul><li class="si">Evita ejecutar el proveedor viejo</li><li class="no">Requiere reexaminar jueces</li></ul></div>
+      <div class="opt"><div class="oh"><span class="ol">2</span><strong>Limpiar el legado</strong></div><p>Retirar anotaciones y artefactos históricos de Sentinel mecánicamente.</p><ul><li class="si">Reduce ruido</li><li class="no">No bloquea hoy</li></ul></div>
+      <div class="opt"><div class="oh"><span class="ol">3</span><strong>Reemplazar runtime</strong></div><p>Sustituir más adelante <code>sentinel-agents</code>, hoy usado para ejecutar agentes.</p><ul><li class="si">Elimina la dependencia final</li><li class="no">Requiere diseño propio</li></ul></div>
     </div>
+    <p class="pie">La recomendación es preparar primero una corrida corta y controlada; ningún paso pago se ejecutó todavía.</p>
   </section>
 
   <footer>
-    <span>Fuentes: Git local y remoto, PR #1211, TRASPASO.md y la tanda A1. Caso dudoso: task-2864.</span>
-    <span>brief 023 · docs/briefs/023-que-queda-inconcluso.html</span>
+    <span>Fuentes: POM raíz, implementación, pruebas focales y ejecución completa de Maven.</span>
+    <span>brief 025 · docs/briefs/025-sentinel-fuera-codex-listo.html</span>
   </footer>
 
 </div>
