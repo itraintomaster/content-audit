@@ -3,8 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>content-audit ya mide la opción múltiple</title>
+<title>Lo viejo ya cerró; quedan dos bloqueos</title>
+<!--
+  TEMPLATE DE BRIEF · visual-brief
+  1. Copiar a docs/briefs/NNN-slug.html y llenar el encabezado y el lede.
+  2. Por cada sección: un título que dice la conclusión, UN dibujo copiado del
+     catálogo del final y un pie de dos renglones. Primero el dibujo; el texto lo rotula.
+  3. BORRAR el catálogo entero (<section class="cat">) y las secciones que no se usan.
+  4. Verificar: node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+  Topes: lede ≤ 2 frases y 35 palabras · ≤ 6 secciones · pie ≤ 30 · párrafo ≤ 40 ·
+  prosa total ≤ 400 (sin tablas ni gráficos). Cada componente trae el suyo en el catálogo.
+  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
+-->
 <style>
+  /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
     --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
     --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
@@ -37,122 +49,217 @@
   }
   .wrap{max-width:940px;margin:0 auto}
   code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
-  code{font-size:.9em;background:var(--line-soft);padding:1px 5px;border-radius:5px;overflow-wrap:anywhere}
-  pre code{background:none;padding:0;overflow-wrap:normal}
+  a{color:var(--accent)}
+  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
 
-  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:28px}
+  /* ============ encabezado ============ */
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
   .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-  .kicker .num{
-    font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12px;font-weight:700;
-    letter-spacing:.04em;color:var(--fg-3);background:var(--line-soft);
-    padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums;
-  }
-  .badge{
-    font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-    padding:3px 9px;border-radius:100px;background:var(--accent-soft);color:var(--accent);
-    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);
-  }
+  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
+    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
   .meta{font-size:12.5px;color:var(--fg-3)}
   h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
   .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
 
-  .lede{
-    background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
-    border-radius:var(--radius);padding:16px 18px;margin:0 0 28px;box-shadow:var(--shadow);
-  }
-  .lede p{margin:0;font-size:17px;line-height:1.5}
-  .lede strong{font-weight:640}
+  /* ============ el lede: la conclusión, dos renglones ============ */
+  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
+  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
+  .lede strong{font-weight:650}
 
-  section{margin:0 0 30px}
-  h2{
-    font-size:12px;font-weight:650;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);
-    margin:0 0 14px;padding-bottom:0;
-  }
-  h3{font-size:15px;font-weight:640;margin:0 0 6px;letter-spacing:-.01em}
+  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
+  section{margin:0 0 38px}
+  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
   p{margin:0 0 12px}
+  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
   .grid{display:grid;gap:12px}
-  .g2{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-  .g3{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
+    box-shadow:var(--shadow);min-width:0}
+  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
 
-  .card{
-    background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
-    padding:14px 16px;box-shadow:var(--shadow);
-  }
-  .card p:last-child{margin-bottom:0}
-  .card .note{font-size:13.5px;color:var(--fg-2);margin:0}
+  /* ============ KPIs: el número grande, su comparación abajo ============ */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
+  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
+  .kpi.dest .n{color:var(--accent)}
 
-  .kpi{display:flex;flex-direction:column;gap:2px}
-  .kpi .n{font-size:26px;font-weight:640;letter-spacing:-.02em;line-height:1.1}
-  .kpi .n small{font-size:15px;color:var(--fg-3);font-weight:500}
-  .kpi .l{font-size:12px;color:var(--fg-3);text-transform:uppercase;letter-spacing:.06em}
-  .kpi .d{font-size:13px;color:var(--fg-2)}
+  /* ============ barras horizontales con etiqueta ============ */
+  .hb{display:grid;gap:10px}
+  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
+  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
+  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
+  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
+  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
 
-  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;
-    padding:2px 8px;border-radius:100px;white-space:nowrap}
+  /* ============ flujo en pasos ============ */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
+  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
+    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
+  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
+  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
+  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
+  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+
+  /* ============ antes y después ============ */
+  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
+  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
+  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
+    font-size:19px;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
+  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  /* ============ mapa de calor ============ */
+  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
+  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
+  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
+  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
+  .heat .h0{color:var(--fg-3)}
+  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
+  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
+  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
+
+  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
+  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
+  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
+  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
+  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
+    background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt p{font-size:13px;color:var(--fg-2);margin:0}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
+  .opt li::before{font-weight:800;margin-right:6px}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+
+  /* ============ ejemplo real ============ */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
+  .ex .cons{font-size:12px;color:var(--fg-3)}
+  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
+  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
+    border-top:1px dashed var(--line);padding-top:7px}
+  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
+    border-radius:8px;padding:8px 10px}
+  .mark .x{color:var(--bad);font-weight:800}
+  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
+  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
+
+  /* ============ preguntas, con la recomendación ============ */
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+
+  /* ============ qué cambia y qué no ============ */
+  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
+  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
+  .cambia li{position:relative;padding-left:22px}
+  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
+  .cambia .si li::before{content:"✓";color:var(--ok)}
+  .cambia .no li::before{content:"=";color:var(--fg-3)}
+
+  /* ============ captura real, con su pie ============ */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
+    box-shadow:var(--shadow);min-width:0}
+  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
+  .captura.cel img{max-width:300px;margin:0 auto}
+  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+
+  /* ============ pills de estado ============ */
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
   .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
-  .p-ok{background:var(--ok-soft);color:var(--ok)}
-  .p-warn{background:var(--warn-soft);color:var(--warn)}
-  .p-info{background:var(--info-soft);color:var(--info)}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
   .p-idle{background:var(--line-soft);color:var(--fg-3)}
 
+  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
   .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
-  table{border-collapse:collapse;width:100%;font-size:14px;min-width:460px}
-  th{
-    text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
-    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap;
-  }
-  th.num{text-align:right}
-  td{padding:11px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
   tr:last-child td{border-bottom:0}
-  tr.tot td{font-weight:640;border-top:1px solid var(--line)}
   td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
-  td.where{font-size:12.5px;color:var(--fg-3);white-space:nowrap}
 
-  .bars{display:flex;flex-direction:column;gap:9px}
-  .bar{display:grid;grid-template-columns:minmax(90px,26%) 1fr auto;gap:12px;align-items:center;font-size:13.5px}
-  .bar .t{color:var(--fg-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .bar .track{display:block;height:8px;border-radius:100px;background:var(--line-soft);overflow:hidden}
-  .bar .fill{display:block;height:100%;border-radius:100px;background:var(--accent)}
-  .bar.course .fill{background:var(--fg-3)}
-  .bar .v{font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--fg-3);min-width:3ch;text-align:right}
+  /* ============ diagrama SVG a mano ============ */
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
 
-  .chg{list-style:none;margin:0;padding:0;font-size:14px}
-  .chg li{display:grid;grid-template-columns:auto 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--line-soft)}
-  .chg li:last-child{border-bottom:0}
-  .chg .m{font-family:ui-monospace,monospace;font-weight:700;width:1ch}
-  .chg .add .m{color:var(--ok)} .chg .mod .m{color:var(--warn)} .chg .del .m{color:var(--bad)}
-  .path{font-family:ui-monospace,monospace;font-size:12.5px;color:var(--fg-2);
-    background:var(--line-soft);padding:1px 5px;border-radius:5px;overflow-wrap:anywhere}
-
-  pre{
-    background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
-    padding:12px 14px;overflow-x:auto;font-size:13px;line-height:1.55;margin:0 0 10px;
-  }
+  /* ============ comandos · aviso de lo que no sé ============ */
+  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
+    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
   pre code{color:var(--fg)}
-
-  .steps{list-style:none;margin:0;padding:0;position:relative}
-  .steps li{position:relative;padding:0 0 18px 26px;border-left:1px solid var(--line);margin-left:5px}
-  .steps li:last-child{border-left-color:transparent;padding-bottom:0}
-  .steps li::before{
-    content:"";position:absolute;left:-4.5px;top:6px;width:9px;height:9px;border-radius:100px;
-    background:var(--bg);border:1.5px solid var(--fg-3);
-  }
-  .steps li.now::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
-  .steps .s-t{font-weight:600;font-size:14.5px}
-  .steps .s-d{font-size:13.5px;color:var(--fg-2);margin-bottom:8px}
-
-  .call{border-radius:var(--radius);padding:12px 14px;font-size:14px;border:1px solid;margin:0 0 12px}
-  .call p:last-child{margin-bottom:0}
+  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
   .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
   .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
-  .call .h{font-weight:640;display:block;margin-bottom:3px}
+  .call b:first-child{margin-right:4px}
 
-  ul.plain{margin:0;padding-left:18px;font-size:14px}
-  ul.plain li{margin:0 0 6px}
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
-  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;
-    font-size:12.5px;color:var(--fg-3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-  a{color:var(--accent)}
+  /* ============ celular ============ */
+  @media (max-width:640px){
+    body{padding:24px 16px 60px}
+    h2{font-size:17px}
+    .flow{grid-auto-flow:row}
+    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
+    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
+    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
+    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
+    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
+    .kpi .n{font-size:28px}
+  }
+
+  /* ============ CATÁLOGO · se borra entero al generar ============ */
+  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
+  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
+  .cat-g{display:grid;gap:16px}
+  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
+  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
+  .cat-i>.n b{color:var(--fg-2)}
 </style>
 </head>
 <body>
@@ -160,137 +267,85 @@
 
   <header>
     <div class="kicker">
-      <span class="num">022</span>
-      <span class="badge">Cierre</span>
-      <span class="meta">content-audit · opción múltiple · cierre · 30/9/2026</span>
+      <span class="num">023</span>
+      <span class="badge">Diagnóstico · Opciones</span>
+      <span class="meta">Corregir sin empeorar · 4 octubre 2026</span>
     </div>
-    <h1>content-audit ya mide la opción múltiple</h1>
-    <p class="sub">Qué se construyó sobre el diseño del brief 021, qué encontró la revisión, la medición real en main y lo que queda abierto.</p>
+    <h1>Lo viejo ya cerró; quedan dos bloqueos</h1>
+    <p class="sub">Qué conviene limpiar ahora y qué impide reanudar A1.</p>
   </header>
 
-  <div class="lede"><p><strong>Se analizan los 11.287 ejercicios del curso vivo. Los 2.810 de opción múltiple se cargan, se guardan sin perder nada y se miden igual que el CLOZE que tiene la opción correcta como única respuesta.</strong> Corregirlos sigue fuera de alcance: revise, approve y assess-candidate los rechazan sin tocar el curso. La línea base real está en main (73,9 %, 4.036 tareas) y main quedó 7 commits adelante de origin: <strong>el push espera tu OK</strong>.</p></div>
+  <div class="lede"><p><strong>La integración ya terminó.</strong> Antes de gastar cupo conviene retirar dos ramas obsoletas y resolver dos bloqueos reales: el proponente y un cambio dudoso.</p></div>
 
   <section>
-    <h2>En números</h2>
-    <div class="grid g3">
-      <div class="card kpi"><span class="l">Ejercicios medidos</span><span class="n">11.287 <small>de 11.287</small></span><span class="d">antes, <code>analyze</code> abortaba en el primer MC</span></div>
-      <div class="card kpi"><span class="l">Round trip del curso</span><span class="n">886 <small>de 886</small></span><span class="d">archivos idénticos byte a byte tras cargar y guardar</span></div>
-      <div class="card kpi"><span class="l">Tests</span><span class="n">1.696</span><span class="d">todos en verde; 39 nuevos, específicos de opción múltiple</span></div>
-      <div class="card kpi"><span class="l">Línea base del curso</span><span class="n">73,9 %</span><span class="d">idéntica a la que verifiqué antes de mergear</span></div>
-      <div class="card kpi"><span class="l">Tareas del plan</span><span class="n">4.036</span><span class="d">841 caen sobre MC y <code>revise</code> las deja SKIPPED</span></div>
-      <div class="card kpi"><span class="l">main vs origin</span><span class="n">+7 <small>commits</small></span><span class="d">mergeado con fast-forward, sin push</span></div>
+    <h2>La integración ya está cerrada</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">2<small>de 2</small></div><div class="l">repositorios integrados y publicados; antes figuraban pendientes</div></div>
+      <div class="kpi"><div class="n">6<small>de 7</small></div><div class="l">jueces aprobados; sólo duplicados espera examen</div></div>
+      <div class="kpi"><div class="n">302</div><div class="l">tareas A1 sin intentar, de 992 abiertas</div></div>
+      <div class="kpi"><div class="n">21</div><div class="l">tareas ya aceptadas por la mesa</div></div>
     </div>
+    <p class="pie">El código, los documentos y la app ya llegaron a sus ramas principales. No hace falta repetir ninguna junta.</p>
   </section>
 
   <section>
-    <h2>Qué se construyó</h2>
-    <div class="tw">
-      <table>
-        <thead><tr><th>Área</th><th>Qué hace ahora</th><th>Dónde</th></tr></thead>
-        <tbody>
-          <tr><td>Modelo</td><td><code>FormKind</code>, <code>MultipleChoiceEntity</code> (selection, items, opción correcta) y <code>MultipleChoiceItemEntity</code>. Toda clave que el modelo no conoce queda en <code>unmodeledFields</code>, en su orden. Con constructor de copia, los sitios que copiaban campo por campo ya no pierden lo nuevo.</td><td class="where">course-domain</td></tr>
-          <tr><td>Disco</td><td>Lee y escribe <code>selection</code> e <code>items</code> y respeta el orden de las claves, así que guardar no mueve un byte.</td><td class="where">FileSystemCourseRepository</td></tr>
-          <tr><td>Medición</td><td>La oración medible es el enunciado con la opción correcta en el hueco, tal cual, guardada en <code>form.sentences</code>. Un MC ignora REWRITE y no tiene DSL.</td><td class="where">derivador y serializador</td></tr>
-          <tr><td>Juez de consigna</td><td>Ve las opciones: <code>MULTIPLE_CHOICE::am,is[CORRECT],are|</code>, tanto en el análisis como en la revalidación. El render de CLOZE no cambia, así que los veredictos ya pagados siguen valiendo. El prompt del juez aprendió el formato.</td><td class="where">subject builder, evaluate.md</td></tr>
-          <tr><td>Corrección</td><td><code>revise</code>, <code>revise-instructions</code>, <code>assess-candidate</code> y <code>approve</code> rechazan un MC con un mensaje claro: no llaman al LLM, no escriben el curso y la tarea queda SKIPPED.</td><td class="where">revision-domain, audit-cli</td></tr>
-          <tr><td>Preservación</td><td><code>repair</code> nunca restaura un MC desde una foto de la era CLOZE. Los campos nuevos se comparan solo cuando la referencia ya los conocía.</td><td class="where">preservationengine</td></tr>
-          <tr><td>Scripts y db</td><td><code>import_backup.py</code> deriva la oración de los MC y <code>publish_revisions.py</code> nunca publica un form de opción múltiple. Se borró la proyección provisoria. En <code>db/</code>, los 2.810 MC ganaron su oración (solo inserciones).</td><td class="where">scripts/, db/</td></tr>
-        </tbody>
-      </table>
+    <h2>Dos restos pueden cerrarse sin riesgo</h2>
+    <div class="cambia">
+      <div class="si"><div class="ptl">Cerrar ahora</div><ul>
+        <li>La rama vieja de consigna: su trabajo ya está completo.</li>
+        <li>El arnés viejo de evaluación: quedó reemplazado.</li>
+        <li>Copias sueltas de documentos ya guardados en el tablero.</li>
+        <li>Worktrees de integración cuyo contenido ya fue publicado.</li>
+      </ul></div>
+      <div class="no"><div class="ptl">Conservar</div><ul>
+        <li>La tanda A1 abierta y su libro de evaluaciones.</li>
+        <li>La muestra congelada del examen de duplicados.</li>
+        <li>Los jueces aprobados y sus registros.</li>
+        <li>El historial canónico de requisitos y decisiones.</li>
+      </ul></div>
     </div>
+    <p class="pie">Cerrar significa retirar copias de trabajo obsoletas, no mezclar sus cambios ni borrar la historia que ya quedó registrada.</p>
   </section>
 
   <section>
-    <h2>Revisión de calidad · 3 revisores</h2>
-    <div class="grid g3" style="margin-bottom:14px">
-      <div class="card"><h3>Bugs y correctitud <span class="pill p-ok">sin hallazgos</span></h3><p class="note">Revisó Jackson, equals/hashCode como clave de mapas, el SKIPPED del lote y que approve no persista nada antes de la guarda.</p></div>
-      <div class="card"><h3>Convenciones <span class="pill p-ok">sin hallazgos</span></h3><p class="note">Revisó ArchUnit y los límites entre módulos, el idioma de mensajes y comentarios, y los patrones de cada archivo tocado.</p></div>
-      <div class="card"><h3>Simplicidad y DRY <span class="pill p-warn">2 hallazgos</span></h3><p class="note">Los dos se confirmaron y se arreglaron. El tercer punto de la lista de abajo es la duplicación que marcó.</p></div>
+    <h2>Hay dos bloqueos antes de reanudar A1</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Acotar al proponente</span><span class="eg">tocar sólo lo permitido</span><span class="d">Hoy reescribe campos ajenos.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Probar veinte casos</span><span class="eg">menos pensamiento</span><span class="d">Medir costo y aceptación.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Explicar el cambio dudoso</span><span class="eg">una miniteoría</span><span class="d">Aparece distinto en la vista previa.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Recién entonces seguir</span><span class="d">Examen, tanda y cierre con autorización.</span></div>
     </div>
-    <ul class="chg">
-      <li class="mod"><span class="m">~</span><span><strong>A <code>assess-candidate</code> le faltaba la guarda de MC.</strong> Con un MC juzgaba al candidato leyendo la respuesta del original. Ahora responde "no disponible", igual que revise. Tiene test.</span></li>
-      <li class="mod"><span class="m">~</span><span><strong>La vista de revalidación del juez mostraba un MC sin opciones</strong> (<code>CLOZE::|</code>). Ahora los dos caminos pasan por un solo render, que es la invariante que la clase ya documentaba. Tiene test.</span></li>
-      <li class="mod"><span class="m">~</span><span><strong>El bucle de ensamblado del derivador estaba duplicado.</strong> Ahora es uno solo. Comparé el derivador de antes y el de ahora sobre todo el corpus: <strong>11.287 de 11.287</strong> oraciones idénticas, y los 2.810 MC coinciden con lo guardado en db.</span></li>
-    </ul>
+    <p class="pie">Los pasos 1 y 3 pueden resolverse sin consultas pagas. La prueba de veinte casos requiere anunciar antes su costo.</p>
   </section>
 
   <section>
-    <h2>Línea base real, en main</h2>
-    <div class="grid g2">
-      <div class="card">
-        <h3>Puntaje por nivel</h3>
-        <div class="bars" style="margin-top:10px">
-          <div class="bar"><span class="t">A1 · 2.402 ej.</span><span class="track"><span class="fill" style="width:96.5%"></span></span><span class="v">96,5 %</span></div>
-          <div class="bar"><span class="t">A2 · 2.411 ej.</span><span class="track"><span class="fill" style="width:94.2%"></span></span><span class="v">94,2 %</span></div>
-          <div class="bar"><span class="t">B1 · 4.554 ej.</span><span class="track"><span class="fill" style="width:79.5%"></span></span><span class="v">79,5 %</span></div>
-          <div class="bar"><span class="t">B2 · 1.920 ej.</span><span class="track"><span class="fill" style="width:63.5%"></span></span><span class="v">63,5 %</span></div>
-          <div class="bar course"><span class="t">Curso</span><span class="track"><span class="fill" style="width:73.9%"></span></span><span class="v">73,9 %</span></div>
-        </div>
-        <p class="note" style="margin-top:12px">Frente a la proyección del brief 020 solo cambia B1: +4 dentro del rango, −4 cortas y +1 ejercicio con palabra de otro nivel. Son los 10 MC en modo REWRITE, que ahora se miden enteros.</p>
-      </div>
-      <div class="tw">
-        <table style="min-width:0">
-          <thead><tr><th>Diagnóstico</th><th class="num">Tareas</th><th class="num">sobre MC</th></tr></thead>
-          <tbody>
-            <tr><td>SENTENCE_LENGTH</td><td class="num">3.051</td><td class="num">473</td></tr>
-            <tr><td>LEMMA_ABSENCE</td><td class="num">950</td><td class="num">368</td></tr>
-            <tr><td>KNOWLEDGE_INSTRUCTIONS_LENGTH</td><td class="num">25</td><td class="num">–</td></tr>
-            <tr><td>KNOWLEDGE_TITLE_LENGTH</td><td class="num">6</td><td class="num">–</td></tr>
-            <tr><td>COCA_BUCKETS</td><td class="num">3</td><td class="num">–</td></tr>
-            <tr><td>LEMMA_RECURRENCE</td><td class="num">1</td><td class="num">–</td></tr>
-            <tr class="tot"><td>Total</td><td class="num">4.036</td><td class="num">841</td></tr>
-          </tbody>
-        </table>
-      </div>
+    <h2>Después queda el trabajo operativo grande</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Tramo</th><th>Qué falta</th><th style="text-align:right">Consultas estimadas</th></tr></thead>
+      <tbody>
+        <tr><td>Duplicados</td><td><span class="pill p-warn">rendir y aprobar</span></td><td class="num">≈ 1.105</td></tr>
+        <tr><td>Tanda A1</td><td><span class="pill p-warn">302 tareas</span></td><td class="num">≈ 4.100</td></tr>
+        <tr><td>Cierre A1</td><td><span class="pill p-warn">juzgar antes y después</span></td><td class="num">3.500–4.000</td></tr>
+        <tr><td>Revisión</td><td><span class="pill p-info">José decide</span></td><td class="num">sin costo</td></tr>
+        <tr><td>Publicación</td><td><span class="pill p-idle">publicador y 26 audios</span></td><td class="num">después</td></tr>
+        <tr><td>Siguientes tandas</td><td><span class="pill p-idle">segunda A1, A2–B2</span></td><td class="num">más adelante</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">La fecha también necesita confirmación: el documento dice «viernes 10/10», pero el 10 de octubre de 2026 es sábado.</p>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Cierro primero la antesala sin costo?</span>
+        <div class="ops"><span class="op rec">Sí: limpiar y diagnosticar · recomendado</span><span class="op">Sólo informar</span><span class="op">Ir al plan pago</span></div>
+        <span class="why">Deja un único camino activo antes de consumir unas 8.700 consultas para completar A1.</span></div>
     </div>
-    <p class="note" style="margin-top:12px;font-size:13.5px;color:var(--fg-2)">Están en <span class="path">.content-audit/</span> del checkout principal: el análisis <code>2026-09-30T11-54-02</code> (sin el juez de consigna) y el plan <code>2026-09-30T11-54-12</code>. Comparé el análisis con el que había verificado antes del merge y el contenido medido es idéntico.</p>
-  </section>
-
-  <section>
-    <h2>Riesgos y lo que no sé</h2>
-    <div class="call c-warn"><span class="h">El juez en vivo no está validado con MC</span><p>En los eventos de la corrida verifiqué que el juez recibe <code>TEXT:She:|MULTIPLE_CHOICE::am,are,is[CORRECT]|TEXT:English.:|</code>, pero no llegué a ver una respuesta real: la sesión OAuth del proveedor <code>claude-cli</code> venció y no hay codex instalado. Cuando corra el juez va a consultar los 2.810 MC como ejercicios nuevos (lo habías aceptado).</p></div>
-    <div class="call c-warn"><span class="h">26 archivos <code>@Generated</code> editados a mano</span><p>Fue sin Sentinel, como pediste. Una <code>sentinel generate</code> los pisaría, y como los usa código escrito a mano, lo notarías porque deja de compilar, no porque algo falle en silencio. Para que el cambio dure, habría que declarar el modelo MC y los outcomes nuevos en <code>sentinel.yaml</code>.</p></div>
-    <div class="call c-info"><span class="h">Hallazgo previo, ajeno a opción múltiple</span><p>En 718 de 8.477 CLOZE (8,5 %), la oración guardada no es la que derivaría hoy el derivador. 325 difieren solo en espacios (<code>We 've</code>). 352 son diálogos REWRITE que el derivador no recorta: guarda <code>A: … B: So did I.</code> entero. 41 son otros casos (<code>??</code>, andamios en modo FILL). El análisis no lo ve porque lee lo guardado; el problema aparece cuando <code>revise</code> vuelve a derivar al corregir.</p></div>
-    <div class="call c-info"><span class="h">Visto en la revisión, sin tocar</span><p>En su guardado final, el runner de consignas puede devolver a PENDING una tarea que ya estaba COMPLETED; el problema es anterior a este trabajo. Además, un form MC con <code>"selection": null</code> explícito perdería esa clave al guardar, pero el corpus no tiene ninguno.</p></div>
-  </section>
-
-  <section>
-    <h2>Sigue abierto del brief 020</h2>
-    <ul class="plain">
-      <li>Si <span class="path">db/quizzes.json</span> se queda o sale (el backup no trae <code>quizzes.bson</code>).</li>
-      <li>Las 9 oraciones desactualizadas en producción (<code>form.sentences</code>) y los 3 knowledges de modo mixto.</li>
-      <li>Trabajo sin mergear: la rama de audios <code>b7071230</code> está lista, <code>strange-germain</code> tiene 6 cambios sin commitear y en main hay un <span class="path">scripts/publish_knowledge_instructions.py</span> sin trackear. No toqué nada de eso.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Qué sigue</h2>
-    <ol class="steps">
-      <li class="now">
-        <div class="s-t">Decidí el push de main (lo único que depende de vos)</div>
-        <div class="s-d">Son 7: los tres del 29/9 (<code>b29c7582</code> scripts, <code>a74895de</code> db, <code>77302b8d</code> brief 020) y los de hoy: <code>83228e54</code> feat(mc), <code>78815c3a</code> db, <code>80474433</code> brief 021 y el commit de este brief.</div>
-<pre><code>git -C ~/projects/learney/content-audit push origin main</code></pre>
-      </li>
-      <li>
-        <div class="s-t">Validar el juez con 3 MC, después de volver a loguear el CLI de claude</div>
-        <div class="s-d">Con <code>CONTENT_AUDIT_HOME</code> apuntando al worktree, el análisis de prueba no pasa a ser el último de main.</div>
-<pre><code>cd ~/projects/learney/content-audit
-printf '%s\n' 67fab6d59930102295341e5f 67fab6d59930102295341e87 67fab6d59930102295344972 &gt; /tmp/mc3.txt
-CONTENT_AUDIT_HOME=$PWD/.claude/worktrees/intelligent-cori-cb4b43 \
-CONTENT_AUDIT_QINST_JUDGE_PROVIDER=claude-cli \
-./audit-cli.sh analyze db/english-course --analyzers quiz-instruction \
-  --reevaluate-instruction-quizzes-file /tmp/mc3.txt --instruction-budget 3</code></pre>
-      </li>
-      <li>
-        <div class="s-t">Opcional: llevar el modelo MC a <code>sentinel.yaml</code> antes de la próxima regeneración</div>
-        <div class="s-d">Es trabajo del architect: los tipos nuevos, los campos <code>multipleChoice</code> y <code>unmodeledFields</code> y los outcomes <code>MULTIPLE_CHOICE_UNSUPPORTED</code>.</div>
-      </li>
-    </ol>
   </section>
 
   <footer>
-    <span>content-audit · opción múltiple · sobre el diseño del brief 021</span>
-    <span>brief 022 · docs/briefs/022-opcion-multiple-cierre.html</span>
+    <span>Fuentes: Git local y remoto, PR #1211, TRASPASO.md y la tanda A1. Caso dudoso: task-2864.</span>
+    <span>brief 023 · docs/briefs/023-que-queda-inconcluso.html</span>
   </footer>
 
 </div>
