@@ -1,10 +1,8 @@
-<!-- SENTINEL MANAGED FILE - DO NOT EDIT -->
 # Module: local-language-infrastructure (isolated)
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Las herramientas de idioma que corren en esta máquina (FEAT-MLOCAL): LanguageTool dentro del proceso y los modelos de Ollama, por HTTP a una dirección local. Ningún texto del curso sale de la máquina por acá: una dirección de Ollama que no es local, o «off», deja los modelos no disponibles, con el motivo, y nunca abre una conexión (F-MLOCAL-R001); entonces los dos de modelo usan la alternativa con claude -p, que no vive acá sino en los jueces de C. Detalle de la raíz de composición: allowedClients=[audit-cli].
-
+Herramientas de idioma que corren en esta máquina: LanguageTool dentro del proceso y modelos de Ollama por HTTP local. Esas rutas locales deliberadas no cambian. Cuando naturalness o near-duplicates necesitan la alternativa por suscripción, usan el runtime compartido con codex-cli y la sesión local de ChatGPT; si no está disponible no caen a Claude ni a una API paga.
 
 ## Models
 
@@ -994,4 +992,3 @@ Methods:
 Methods:
 
 - `recordedTimes(String evaluatorId): List<Instant>`
-

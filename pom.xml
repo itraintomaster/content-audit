@@ -53,12 +53,6 @@
 
   <dependencies>
     <dependency>
-        <groupId>com.sentinel</groupId>
-        <artifactId>sentinel-annotations</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter</artifactId>
         <version>${junit.version}</version>
@@ -111,25 +105,14 @@
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.8.12</version>
-        <executions>
-          <execution>
-            <id>jacoco-prepare-agent</id>
-            <goals><goal>prepare-agent</goal></goals>
-            <configuration>
-              <excludes>
-                <exclude>sun/**</exclude>
-                <exclude>jdk/**</exclude>
-                <exclude>com/sun/**</exclude>
-                <exclude>java/**</exclude>
-              </excludes>
-            </configuration>
-          </execution>
-          <execution>
-            <id>jacoco-report</id>
-            <phase>verify</phase>
-            <goals><goal>report</goal></goals>
-          </execution>
-        </executions>
+        <configuration>
+          <excludes>
+            <exclude>sun/**</exclude>
+            <exclude>jdk/**</exclude>
+            <exclude>com/sun/**</exclude>
+            <exclude>java/**</exclude>
+          </excludes>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.pitest</groupId>
@@ -142,13 +125,6 @@
             <version>1.2.3</version>
           </dependency>
         </dependencies>
-        <executions>
-          <execution>
-            <id>pit-mutation-coverage</id>
-            <phase>verify</phase>
-            <goals><goal>mutationCoverage</goal></goals>
-          </execution>
-        </executions>
         <configuration>
           <outputFormats>
             <format>HTML</format>
@@ -157,8 +133,8 @@
           <mutators><mutator>DEFAULTS</mutator></mutators>
           <timeoutConstant>600000</timeoutConstant>
           <failWhenNoMutations>false</failWhenNoMutations>
-          <historyInputFile>${maven.multiModuleProjectDirectory}/.sentinel/pit-history/${project.artifactId}.bin</historyInputFile>
-          <historyOutputFile>${maven.multiModuleProjectDirectory}/.sentinel/pit-history/${project.artifactId}.bin</historyOutputFile>
+          <historyInputFile>${project.build.directory}/pit-history.bin</historyInputFile>
+          <historyOutputFile>${project.build.directory}/pit-history.bin</historyOutputFile>
           <parseSurefireConfig>false</parseSurefireConfig>
           <jvmArgs>
             <jvmArg>--add-opens=java.base/java.lang=ALL-UNNAMED</jvmArg>
@@ -167,49 +143,6 @@
             <jvmArg>--add-opens=java.base/java.util=ALL-UNNAMED</jvmArg>
           </jvmArgs>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>3.1.0</version>
-        <inherited>false</inherited>
-        <executions>
-          <execution>
-            <id>sentinel-verify</id>
-            <phase>validate</phase>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <configuration>
-              <executable>java</executable>
-              <arguments>
-                <argument>-jar</argument>
-                <argument>/Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar</argument>
-                <argument>verify</argument>
-                <argument>-i</argument>
-                <argument>sentinel.yaml</argument>
-              </arguments>
-            </configuration>
-          </execution>
-          <execution>
-            <id>sentinel-report</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-            <configuration>
-              <executable>java</executable>
-              <arguments>
-                <argument>-jar</argument>
-                <argument>/Users/josecullen/projects/sentinel/sentinel-core/target/sentinel-core-0.0.1-SNAPSHOT.jar</argument>
-                <argument>report</argument>
-                <argument>generate</argument>
-                <argument>-i</argument>
-                <argument>sentinel.yaml</argument>
-              </arguments>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>

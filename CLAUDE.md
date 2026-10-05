@@ -1,6 +1,3 @@
-<!-- SENTINEL MANAGED FILE - DO NOT EDIT -->
-# Sentinel-Governed Project
+# ContentAudit
 
-This project is governed by Sentinel. Read `AGENTS.md` for all rules and instructions.
-
-**Your first action in every conversation must be to read `AGENTS.md`. Do not skip this step.**
+Leé `AGENTS.md` antes de trabajar. Sentinel ya no gobierna ni regenera este repositorio; las fuentes se mantienen manualmente.

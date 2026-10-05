@@ -1,4 +1,3 @@
-<!-- SENTINEL MANAGED FILE - DO NOT EDIT -->
 # Module: audit-application (isolated)
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
@@ -2116,4 +2115,3 @@ Methods:
 - `listPairs(): List<BlindSample>`
 - `saveErrorRate(ErrorRateSample sample): void`
 - `loadErrorRate(String sampleId): Optional<ErrorRateSample>`
-

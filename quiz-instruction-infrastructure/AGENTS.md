@@ -1,9 +1,8 @@
-<!-- SENTINEL MANAGED FILE - DO NOT EDIT -->
 # Module: quiz-instruction-infrastructure (isolated)
 
 **This module is isolated.** Your scope is limited to this module and the contracts (models and interfaces) of its dependencies. Do not access information from other modules.
 
-Adaptadores de los jueces con modelo. Nació con el del juez de consigna (instructionjudge: agente quiz-instruction-validator, cinco entradas verbatim, veredicto conservador como OUTPUT_UNUSABLE, fallas de servicio como EVALUATOR_UNAVAILABLE, versión derivada de la definición, el modelo y el proveedor) y desde FEAT-JEXAM aloja también el evaluador genérico por agente de los jueces nuevos (agentjudge) y los lectores de sus veredictos, un paquete por juez. Todos comparten la verificación sin costo de la sesión del proveedor (F-JEXAM-R011). allowedClients=[audit-cli]: es un detalle de la raíz de composición.
+Adaptadores de los jueces con modelo. Los jueces por sesión local usan codex-cli autenticado con ChatGPT, sin OpenAI API ni fallback a Claude. La versión de cada juez deriva de su definición, el modelo exacto y el proveedor efectivo, por lo que cambiar cualquiera obliga a rendir un examen nuevo. La verificación previa consulta codex login status sin emitir una inferencia.
 
 ## Models
 
@@ -1100,4 +1099,3 @@ Methods:
 Methods:
 
 - `create(AgentGraphRunnerConfig config): AgentDefinitionLocator`
-
