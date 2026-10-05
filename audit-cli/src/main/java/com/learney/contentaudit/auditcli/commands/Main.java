@@ -236,6 +236,7 @@ import com.learney.contentaudit.auditinfrastructure.FileSystemJudgeExamRegistry;
 import com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemAudioRecordingRegistry;
 import com.learney.contentaudit.auditinfrastructure.exercisecopies.FileSystemProductionSentenceSource;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.evaluationsession.ExamEvaluationSessionFactory;
 import com.learney.contentaudit.quizinstructioninfrastructure.AgentJudgeConfig;
@@ -1567,6 +1568,16 @@ class Main {
             @Override
             public Optional<String> evaluatorVersion() {
                 return delegate().evaluatorVersion();
+            }
+
+            @Override
+            public EvaluationRuntimeIdentity runtimeIdentity() {
+                return delegate().runtimeIdentity();
+            }
+
+            @Override
+            public Set<String> compatibleEvaluatorVersions() {
+                return delegate().compatibleEvaluatorVersions();
             }
         };
     }
