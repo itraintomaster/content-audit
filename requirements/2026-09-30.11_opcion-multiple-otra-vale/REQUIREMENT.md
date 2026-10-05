@@ -195,7 +195,7 @@ journeys:
 
 ## Open Questions
 
-Proveedor (`codex-cli` con sesión local de ChatGPT), tope (0 sin pedido), orden (examen fijo, `escribir/` y A1) y consultas a la vez (4) se
+Proveedor por omisión (`codex-cli` con sesión local de ChatGPT), tope (0 sin pedido), orden (examen fijo, `escribir/` y A1) y consultas a la vez (4) se
 decidieron una vez para los cinco jueces, en las dudas DOUBT-JUECES-* de
 [FEAT-JEXAM](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PROVEEDOR) (proveedor actualizado por José, 4/10). Que la opción
 múltiple no la juzgue también una sola respuesta es [DOUBT-UNICA-MC](../2026-09-30.09_una-sola-respuesta/REQUIREMENT.md#DOUBT-UNICA-MC),

@@ -1,0 +1,246 @@
+code: FEAT-JEXAM
+description: "Usar codex-cli con la sesión local de ChatGPT como proveedor por omisió\
+  n y hacer explícita la procedencia proveedor-modelo-versión sin alterar los modelos\
+  \ locales deliberados.; Agregar una política estructural y provider-aware para las\
+  \ sesiones CLI, de modo que el código generado deje de cablear comandos de Claude\
+  \ y resuelva Codex sin fallback."
+modules:
+- name: agent-runtime-infrastructure
+  packages:
+  - name: llmprovider
+    description: "Fuente única para resolver y validar la clase de proveedor de modelo.\
+      \ Los consumidores de sesión local comparten un único default: codex-cli autenticado\
+      \ por la sesión local de ChatGPT; no requieren dirección ni API key y nunca\
+      \ caen silenciosamente a claude-cli ni a un servicio OpenAI por API. Los proveedores\
+      \ remotos explícitos conservan su validación por dirección y los modelos locales\
+      \ elegidos deliberadamente siguen fuera de este default. Sentinel-agents aporta\
+      \ el enrutamiento de codex-cli, por lo que este paquete sólo fija la política\
+      \ común y no duplica el adaptador."
+    models:
+    - name: LlmProviderResolved
+      type: record
+      fields:
+      - name: providerName
+        type: String
+        description: Nombre efectivo y estable del proveedor. Una declaración vacía
+          se resuelve a codex-cli; una declaración explícita se conserva. El nombre
+          forma parte de la procedencia y no puede ocultar un fallback a otro proveedor.
+        _change: modify
+      _change: modify
+    - name: LocalSessionProviderProfile
+      type: record
+      fields:
+      - name: providerName
+        type: String
+        description: Identificador estable del proveedor de sesión local.
+      - name: authStatusCommand
+        type: List<String>
+        description: Comando sin inferencia que verifica si la sesión está autenticada.
+      - name: loginCommand
+        type: String
+        description: Comando legible que el operador debe ejecutar para renovar la
+          sesión.
+      _change: add
+    interfaces:
+    - name: LocalSessionProviderCatalog
+      stereotype: port
+      sealed: true
+      exposes:
+      - signature: "defaultProfile(): LocalSessionProviderProfile"
+      - signature: "find(String providerName): Optional<LocalSessionProviderProfile>"
+      visibility: public
+      _change: add
+    implementations:
+    - name: DefaultLocalSessionProviderCatalog
+      visibility: public
+      implements:
+      - LocalSessionProviderCatalog
+      _change: add
+    - name: DefaultLlmProviderResolver
+      requiresInject:
+      - name: localSessionProviderCatalog
+        type: LocalSessionProviderCatalog
+        description: Fuente única del proveedor por omisión. Usa codex-cli como default
+          y sólo reconoce comandos de sesión por nombre explícito; nunca prueba otro
+          proveedor como fallback.
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: quiz-instruction-infrastructure
+  description: "Adaptadores de los jueces con modelo. Los jueces por sesión local\
+    \ usan codex-cli autenticado con ChatGPT, sin OpenAI API ni fallback a Claude.\
+    \ La versión de cada juez deriva de su definición, el modelo exacto y el proveedor\
+    \ efectivo, por lo que cambiar cualquiera obliga a rendir un examen nuevo. La\
+    \ verificación previa consulta codex login status sin emitir una inferencia."
+  models:
+  - name: QuizInstructionJudgeConfig
+    type: record
+    fields:
+    - name: providerName
+      type: String
+      description: Proveedor declarado por el operador. Vacío resuelve al default
+        compartido codex-cli; declararlo no autoriza fallback. Un proveedor de sesión
+        local no exige dirección ni API key.
+      _change: modify
+    - name: modelName
+      type: String
+      description: "Modelo exacto solicitado al proveedor y parte obligatoria de la\
+        \ versión del juez. No se inventa un modelo por omisión: debe quedar resuelto\
+        \ antes de examinar o consultar el curso."
+      _change: modify
+    _change: modify
+  - name: AgentJudgeConfig
+    type: record
+    fields:
+    - name: providerName
+      type: String
+      description: Proveedor efectivo de los jueces por agente. Vacío resuelve a codex-cli
+        con la sesión local de ChatGPT; no habilita claude-cli ni OpenAI API como
+        fallback.
+      _change: modify
+    - name: modelName
+      type: String
+      description: Modelo exacto solicitado y parte de la versión derivada junto con
+        proveedor y definición del agente. Debe declararse antes del examen; la arquitectura
+        no fija cuál.
+      _change: modify
+    _change: modify
+  packages:
+  - name: agentjudge
+    description: "Adaptador genérico para los jueces declarativos. Resuelve proveedor\
+      \ y modelo antes de construir el ChatModel, deriva la versión de definición+modelo+proveedor\
+      \ y verifica sin costo la sesión de codex-cli. La ausencia de sesión o cuota\
+      \ se informa y corta nuevas consultas sin fallback."
+    implementations:
+    - name: DefaultJudgeProviderReadinessProbe
+      requiresInject:
+      - name: authStatusCommand
+        type: List<String>
+        _change: delete
+      - name: localSessionProviderCatalog
+        type: LocalSessionProviderCatalog
+        description: Resuelve el comando de estado y el remedio para el providerName
+          efectivo. codex-cli usa codex login status / codex login; un proveedor remoto
+          no ejecuta comando local y un proveedor de sesión desconocido se declara
+          no disponible.
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: revision-infrastructure
+  packages:
+  - name: lagen
+    description: "Contrato público de los generadores respaldados por agente. LagenConfig\
+      \ lleva el proveedor y modelo exactos que usa sentinel-agents; con sesión local,\
+      \ el default de proveedor es codex-cli y el modelo se declara explícitamente.\
+      \ Las factories forman providerId como proveedor:modelo, mientras StrategyId.version\
+      \ conserva la versión completa del proceso; juntas, las tres piezas viajan con\
+      \ cada propuesta."
+    models:
+    - name: LagenConfig
+      type: record
+      fields:
+      - name: providerName
+        type: String
+        description: "Proveedor efectivo y estable. Para los procesos por sesión local,\
+          \ vacío resuelve a codex-cli autenticado con ChatGPT; no usa API key ni\
+          \ habilita fallback a Claude. Se combina con modelId en StrategyId.providerId."
+        _change: modify
+      - name: modelId
+        type: String
+        description: Identificador exacto del modelo solicitado al proveedor. Es obligatorio
+          y se combina con providerName como proveedor:modelo; no existe un modelo
+          implícito porque todo examen y propuesta debe conservar su procedencia.
+        _change: modify
+      _change: modify
+    _change: modify
+  _change: modify
+- name: revision-domain
+  models:
+  - name: StrategyId
+    type: record
+    fields:
+    - name: version
+      type: String
+      description: Versión completa del proceso/estrategia que produjo la propuesta.
+        Junto con providerId distingue cambios de definición o lógica y nunca se reescribe
+        sobre propuestas históricas.
+      _change: modify
+    - name: providerId
+      type: String
+      description: "Identidad opaca pero legible del proveedor y modelo exactos, con\
+        \ formato proveedor:modelo para procesos con modelo. Se interpreta junto con\
+        \ version; cualquier cambio en proveedor, modelo o versión produce una procedencia\
+        \ distinta."
+      _change: modify
+    _change: modify
+  packages:
+  - name: lemmaabsence
+    implementations:
+    - name: LemmaAbsenceMvpStrategy
+      requiresInject:
+      - name: providerId
+        type: String
+        description: "Proveedor y modelo exactos, en formato proveedor:modelo, estampados\
+          \ en StrategyId. La composición los deriva de LagenConfig y no inventa defaults;\
+          \ StrategyId.version aporta la tercera pieza de procedencia."
+        _change: modify
+      _change: modify
+    _change: modify
+  - name: knowledgetitle
+    implementations:
+    - name: KnowledgeTitleAgentStrategy
+      requiresInject:
+      - name: providerId
+        type: String
+        description: "Proveedor y modelo exactos, en formato proveedor:modelo, estampados\
+          \ en StrategyId; la versión del proceso viaja por separado en StrategyId.version."
+        _change: modify
+      _change: modify
+    _change: modify
+  - name: quizinstruction
+    implementations:
+    - name: QuizInstructionAgentStrategy
+      requiresInject:
+      - name: providerId
+        type: String
+        description: "Proveedor y modelo exactos, en formato proveedor:modelo, estampados\
+          \ en StrategyId; la versión del proceso viaja por separado en StrategyId.version."
+        _change: modify
+      _change: modify
+    _change: modify
+  _change: modify
+- name: audit-cli
+  packages:
+  - name: bootstrap
+    description: "Raíz de composición. Resuelve un solo default de proveedor por sesió\
+      n local —codex-cli autenticado con ChatGPT— para jueces, generadores, alternativas\
+      \ de idioma y agentes de mesa; inyecta [codex, login, status] en la verificació\
+      n de disponibilidad. El modelo exacto se toma de configuración explícita y nunca\
+      \ del default del CLI, para que provider+model+version gobiernen examen y procedencia.\
+      \ Los modelos locales deliberados, como Ollama, conservan su cableado."
+    implementations:
+    - name: DefaultAgentJudgeConfigResolver
+      requiresInject:
+      - name: localSessionProviderCatalog
+        type: LocalSessionProviderCatalog
+        description: Aporta codex-cli como proveedor por omisión sin fijar un modelo.
+        _change: add
+      _change: modify
+    - name: DefaultQuizInstructionJudgeConfigResolver
+      requiresInject:
+      - name: localSessionProviderCatalog
+        type: LocalSessionProviderCatalog
+        description: Aporta codex-cli como proveedor por omisión sin fijar un modelo.
+        _change: add
+      _change: modify
+    _change: modify
+  _change: modify
+- name: local-language-infrastructure
+  description: "Herramientas de idioma que corren en esta máquina: LanguageTool dentro\
+    \ del proceso y modelos de Ollama por HTTP local. Esas rutas locales deliberadas\
+    \ no cambian. Cuando naturalness o near-duplicates necesitan la alternativa por\
+    \ suscripción, usan el runtime compartido con codex-cli y la sesión local de ChatGPT;\
+    \ si no está disponible no caen a Claude ni a una API paga."
+  _change: modify

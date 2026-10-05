@@ -4,8 +4,8 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
-2026-10-04 — analyst — José reemplazó `claude-cli` por `codex-cli` autenticado con ChatGPT para jueces y todo proceso
-  que compartía esa sesión; proveedor, modelo y versión forman procedencia y el cambio obliga a reexaminar.
+2026-10-04 — analyst — `codex-cli` con ChatGPT reemplaza a `claude-cli` como selección actual y por omisión; el operador
+  puede elegir otro proveedor/modelo explícitamente, sin fallback; la elección real forma procedencia y obliga a examen.
 
 2026-10-01 — developer (C, líder) — Qué es «del examen» para el guardián: los casos (escribir/ y el examen fijo, con
   sus gemelos) en todo agente; en mini-theory-judge, además, todo ejercicio de un tema de su examen (su unidad es el

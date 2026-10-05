@@ -1,7 +1,7 @@
 # Decisions — FEAT-QINST
 
-2026-10-04 — analyst — DOUBT-PROVEEDOR-DEL-JUEZ resuelta en A: sin proveedor declarado se usa `codex-cli` con la
-  sesión local de ChatGPT; no se infiere por endpoint ni se deriva a Claude o a OpenAI API.
+2026-10-04 — analyst — DOUBT-PROVEEDOR-DEL-JUEZ resuelta en A: sin proveedor declarado se usa `codex-cli` con ChatGPT;
+  una elección explícita prevalece y nunca deriva silenciosamente a otro proveedor.
 
 2026-07-29 — analyst — La identidad del veredicto es la huella del contenido juzgado, nunca el identificador del ejercicio (R009).
   why: corregir un ejercicio no cambia su identificador (FEAT-RPRES). Con identidad por id, el sistema seguiria mostrando el juicio de la version vieja: acusaria a un ejercicio ya corregido o daria por bueno uno recien roto. La huella incluye nivel, topic, titulo e instrucciones del knowledge y el ejercicio completo; cambiar las instrucciones deja pendientes a TODOS los ejercicios del knowledge (cascada buscada).

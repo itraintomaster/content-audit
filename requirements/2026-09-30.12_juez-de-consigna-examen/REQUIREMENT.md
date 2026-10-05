@@ -202,26 +202,28 @@ el corrector acepta se descarta aunque el juez lo liste. La guía del juez de co
 **Criterio**: un ejercicio que acepta «isn't» y cuyo único reparo sería «is not» no tiene hallazgo de `single-answer`.
 
 <a id="F-JEXAM-R013"></a>
-### Rule[F-JEXAM-R013] - Los procesos con modelo por suscripción usan la sesión local de Codex y ChatGPT
+### Rule[F-JEXAM-R013] - Codex y ChatGPT son la selección actual, y el operador puede elegir otra
 **Severity**: critical | **Validation**: VALIDATED
 
 > Todo proceso que hasta ahora consultaba a Claude mediante la sesión local —los cinco jueces, las alternativas de
-> Naturalidad y Duplicados parecidos, los generadores de propuestas y los agentes de la mesa— consulta a OpenAI mediante
-> `codex-cli`, autenticado con la sesión local de ChatGPT. No usa una clave de OpenAI API, no genera facturación por API
-> y no vuelve a Claude como alternativa silenciosa.
+> Naturalidad y Duplicados parecidos, los generadores de propuestas y los agentes de la mesa— usa por omisión
+> `codex-cli`, autenticado con la sesión local de ChatGPT. El operador puede elegir explícitamente otro proveedor que el
+> sistema sepa consultar y el modelo que corresponda; una corrida nunca cambia sola de proveedor o modelo.
 
 José reemplazó el 4/10 la decisión del 30/9 porque dispone de más cupo en ChatGPT. Los modelos locales que un proceso
 elige deliberadamente —por ejemplo, los que corren en Ollama— no cambian por esta regla. Toda mención anterior a
-`claude-cli` o `claude -p` como proveedor activo queda reemplazada por esta decisión; conserva valor histórico cuando
-describe una medición o una corrida pasada. Si la sesión de ChatGPT no está disponible, aplica
-[F-JEXAM-R011](#F-JEXAM-R011): el proceso no deriva a otra vía de cobro ni a otro proveedor.
+`claude-cli` o `claude -p` como proveedor por omisión queda reemplazada por esta decisión; conserva valor histórico
+cuando describe una medición o una corrida pasada. La selección por omisión no usa una clave de OpenAI API ni genera
+facturación por API. Si la sesión de ChatGPT no está disponible, aplica [F-JEXAM-R011](#F-JEXAM-R011): el proceso no
+deriva a otra vía de cobro ni a otro proveedor. Una vía con clave, cobro o sesión distinta sólo se usa cuando el
+operador la selecciona expresamente.
 
 <a id="F-JEXAM-R014"></a>
 ### Rule[F-JEXAM-R014] - Proveedor, modelo y versión forman la procedencia y obligan a reexaminar
 **Severity**: critical | **Validation**: VALIDATED
 
-> Cada resultado producido por un modelo identifica el proveedor (`codex-cli`), el modelo exacto y la versión completa
-> del proceso que lo obtuvo. Cambiar cualquiera de esas tres piezas produce una versión distinta; los jueces y demás
+> Cada resultado producido por un modelo identifica el proveedor realmente elegido, el modelo exacto y la versión
+> completa del proceso que lo obtuvo. Cambiar cualquiera de esas tres piezas produce una versión distinta; los jueces y demás
 > procesos que ya exigen examen deben volver a aprobarlo con esa versión antes de consultar el curso.
 
 Los veredictos y propuestas anteriores no se borran ni se atribuyen a la versión nueva: conservan su procedencia. El
@@ -295,28 +297,30 @@ journeys:
 ### Doubt[DOUBT-JUECES-PROVEEDOR] - ¿Con qué proveedor corren los cinco jueces?
 - [x] Opción A (recomendada): `codex-cli`, autenticado con la sesión local de ChatGPT: consume el cupo de la
   suscripción, no una clave ni facturación de OpenAI API.
-- [ ] Opción B: `claude-cli`, la sesión local elegida el 30/9 y reemplazada por la decisión nueva.
-- [ ] Opción C: un servicio por API, con clave y facturación separada.
+- [ ] Opción B: `claude-cli`, la sesión local elegida el 30/9 y reemplazada como valor por omisión.
+- [ ] Opción C: un servicio por API, con clave y facturación separada, elegido explícitamente por el operador.
 
 **Status**: RESOLVED (2026-10-04)
 
 **Answer**: **Opción A** (José, 4/10): OpenAI mediante `codex-cli` y la sesión local de ChatGPT, porque allí dispone de
-más cupo. No es la OpenAI API por clave ni por consulta. Reemplaza la elección de `claude-cli` del 30/9 y alcanza a los
-demás procesos con modelo que compartían esa sesión ([F-JEXAM-R013](#F-JEXAM-R013)); las versiones afectadas vuelven a
-rendir examen antes de consultar el curso ([F-JEXAM-R014](#F-JEXAM-R014)).
+más cupo. Es la selección actual y por omisión, no la OpenAI API por clave ni por consulta; el operador conserva la
+posibilidad de elegir expresamente B, C u otro proveedor soportado. Reemplaza la elección de `claude-cli` del 30/9 y
+alcanza a los demás procesos con modelo que compartían esa sesión ([F-JEXAM-R013](#F-JEXAM-R013)); las versiones
+afectadas vuelven a rendir examen antes de consultar el curso ([F-JEXAM-R014](#F-JEXAM-R014)).
 
 <a id="DOUBT-JUECES-MODELO-OPENAI"></a>
-### Doubt[DOUBT-JUECES-MODELO-OPENAI] - ¿Qué modelo exacto de OpenAI usa cada proceso?
-- [ ] Opción A (recomendada): declarar un mismo modelo exacto para la primera recalibración de todos los procesos, para
-  poder comparar sus exámenes bajo una sola base.
-- [ ] Opción B: declarar un modelo exacto distinto por proceso, si sus exámenes muestran que lo necesitan.
+### Doubt[DOUBT-JUECES-MODELO-OPENAI] - ¿Cómo elige el operador el modelo de cada proceso?
+- [x] Opción A (recomendada): declarar un modelo compartido y, donde las perillas existentes lo permitan, reemplazarlo
+  explícitamente por proceso.
+- [ ] Opción B: obligar a usar un único modelo compartido para todos los procesos.
 - [ ] Opción C: usar el modelo por omisión de Codex sin registrarlo expresamente.
 
-**Status**: OPEN
+**Status**: RESOLVED (2026-10-04)
 
-**Answer**: Pendiente. No bloquea una arquitectura configurable: puede admitir A o B. Sí bloquea la ejecución de
-exámenes y consultas al curso, porque el modelo resuelto debe quedar en la procedencia
-([F-JEXAM-R014](#F-JEXAM-R014)). C contradice esa trazabilidad.
+**Answer**: **Opción A** (José, 4/10): quiere poder elegir. El valor compartido evita repetir configuración y la
+selección por proceso, cuando ya existe esa perilla, permite ajustar cada trabajo. En ambos casos, el modelo finalmente
+resuelto queda en la procedencia y un cambio obliga a rendir el examen aplicable ([F-JEXAM-R014](#F-JEXAM-R014)). C
+contradice esa trazabilidad.
 
 <a id="DOUBT-JUECES-PRESUPUESTO"></a>
 ### Doubt[DOUBT-JUECES-PRESUPUESTO] - ¿Qué tope por corrida tienen los jueces nuevos, y cuánto se gasta en total?

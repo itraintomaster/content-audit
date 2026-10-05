@@ -142,9 +142,9 @@ La excepcion se propaga al dispatcher, que la consolida en el outcome `STRATEGY_
 
 <a id="F-LAGEN-R008"></a>
 ### Rule[F-LAGEN-R008] - El operador puede ajustar el comportamiento de generacion sin recompilar el sistema
-**Severity**: critical | **Validation**: AUTO_VALIDATED
+**Severity**: critical | **Validation**: VALIDATED
 
-> El operador debe poder cambiar proveedor activo, endpoint, identificador de modelo, credencial, temperatura, tokens maximos y timeout sin recompilar el codigo. El conjunto debe venir preparado para usar el proveedor por sesion local vigente del sistema; desde el 4/10 es `codex-cli`, autenticado con ChatGPT, sin clave ni facturacion de OpenAI API ([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)).
+> El operador debe poder cambiar proveedor activo, endpoint, identificador de modelo, credencial, temperatura, tokens maximos y timeout sin recompilar el codigo. Por omision usa `codex-cli`, autenticado con ChatGPT, sin clave ni facturacion de OpenAI API; una eleccion explicita de otro proveedor o modelo prevalece y nunca se reemplaza silenciosamente ([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)).
 
 <details><summary>Detail</summary>
 

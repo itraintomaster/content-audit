@@ -205,7 +205,7 @@ journeys:
 
 ## Open Questions
 
-Proveedor (`codex-cli` con sesión local de ChatGPT), tope (0 sin pedido), orden (examen fijo, `escribir/` y A1) y consultas a la vez (4) se
+Proveedor por omisión (`codex-cli` con sesión local de ChatGPT), tope (0 sin pedido), orden (examen fijo, `escribir/` y A1) y consultas a la vez (4) se
 decidieron una vez para los cinco jueces, en las dudas DOUBT-JUECES-* de
 [FEAT-JEXAM](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#DOUBT-JUECES-PROVEEDOR) (proveedor actualizado por José, 4/10). El choque con la
 vara comparativa de «resoluble» (criterio 5 de F-QICOR-R004) se resolvió como el de

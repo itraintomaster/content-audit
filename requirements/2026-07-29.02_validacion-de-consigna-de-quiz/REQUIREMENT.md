@@ -1596,8 +1596,9 @@ usar. Falta decidir si no declararlo es, en si mismo, invalido.
   familia que el que motivo la regla.
 
 **Answer**: **Opcion A** (Jose, 4/10): cuando no se declara otro, el proveedor es `codex-cli`, autenticado con la sesion
-local de ChatGPT, igual que para los demas consumidores de modelos. No se usa una clave de OpenAI API, no hay
-facturacion por API y no se deriva silenciosamente a Claude
+local de ChatGPT, igual que para los demas consumidores de modelos. Si se declara explicitamente otro proveedor, se usa
+ese; si no esta disponible, no se deriva a Codex, Claude ni a una via con facturacion distinta. El valor por omision no
+usa una clave de OpenAI API ni genera facturacion por API
 ([F-JEXAM-R013](../2026-09-30.12_juez-de-consigna-examen/REQUIREMENT.md#F-JEXAM-R013)). Esto no cambia el
 enunciado de [F-QINST-R016](#F-QINST-R016): determina que "no declara proveedor" cae del lado valido de su invariante 2.
 
