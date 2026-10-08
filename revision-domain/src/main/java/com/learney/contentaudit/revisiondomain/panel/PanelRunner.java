@@ -11,6 +11,12 @@ public interface PanelRunner {
     List<PanelTopicResult> runTopics(List<TopicWork> topics, PanelRunSettings settings,
             QueryAllowance allowance, PanelDecisionSink sink);
 
+    default List<PanelTopicResult> runTopics(List<TopicWork> topics, PanelRunSettings settings,
+            QueryAllowance allowance, PanelDecisionSink sink, PanelVocabularyContext vocabulary) {
+        if (vocabulary != null) throw new UnsupportedOperationException("Las mesas no admiten contexto léxico incremental");
+        return runTopics(topics, settings, allowance, sink);
+    }
+
     PanelDecision assessGiven(TopicWork work, String quizId, PanelCandidate candidate,
             PanelRunSettings settings, QueryAllowance allowance);
 }

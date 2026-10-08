@@ -9,6 +9,7 @@ import com.learney.contentaudit.revisiondomain.panel.PanelRunner;
 import com.learney.contentaudit.revisiondomain.panel.PanelTopicResult;
 import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
 import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import com.learney.contentaudit.revisiondomain.panel.PanelVocabularyContext;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -42,6 +43,12 @@ class DefaultPanelRunner implements PanelRunner {
     @Override
     public List<PanelTopicResult> runTopics(List<TopicWork> topics, PanelRunSettings settings,
             QueryAllowance allowance, PanelDecisionSink sink) {
+        return runTopics(topics, settings, allowance, sink, null);
+    }
+
+    @Override
+    public List<PanelTopicResult> runTopics(List<TopicWork> topics, PanelRunSettings settings,
+            QueryAllowance allowance, PanelDecisionSink sink, PanelVocabularyContext vocabulary) {
         List<TopicWork> works = topics != null ? topics : List.of();
         if (works.isEmpty()) {
             return new ArrayList<>();
@@ -67,7 +74,7 @@ class DefaultPanelRunner implements PanelRunner {
             for (List<Integer> lane : lanes.values()) {
                 running.add(pool.submit(() -> {
                     for (int index : lane) {
-                        results[index] = topicPanel.run(works.get(index), settings, allowance, oneAtATime);
+                        results[index] = topicPanel.run(works.get(index), settings, allowance, oneAtATime, vocabulary);
                     }
                 }));
             }

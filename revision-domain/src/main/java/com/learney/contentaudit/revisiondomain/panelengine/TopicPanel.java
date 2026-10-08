@@ -7,6 +7,7 @@ import com.learney.contentaudit.revisiondomain.panel.PanelRunSettings;
 import com.learney.contentaudit.revisiondomain.panel.PanelTopicResult;
 import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
 import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import com.learney.contentaudit.revisiondomain.panel.PanelVocabularyContext;
 import javax.annotation.processing.Generated;
 
 @Generated(
@@ -16,6 +17,12 @@ import javax.annotation.processing.Generated;
 interface TopicPanel {
     PanelTopicResult run(TopicWork work, PanelRunSettings settings, QueryAllowance allowance,
             PanelDecisionSink sink);
+
+    default PanelTopicResult run(TopicWork work, PanelRunSettings settings, QueryAllowance allowance,
+            PanelDecisionSink sink, PanelVocabularyContext vocabulary) {
+        if (vocabulary != null) throw new UnsupportedOperationException("La mesa no admite contexto léxico incremental");
+        return run(work, settings, allowance, sink);
+    }
 
     PanelDecision assess(TopicWork work, String quizId, PanelCandidate candidate,
             PanelRunSettings settings, QueryAllowance allowance);

@@ -8,7 +8,6 @@ import com.learney.contentaudit.auditdomain.finding.EvidencePart;
 import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.auditdomain.studentview.QuizStudentView;
 import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
-import com.learney.contentaudit.refinerdomain.topicwords.TopicWord;
 import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLights;
 import com.learney.contentaudit.revisiondomain.panel.CandidateRejection;
 import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
@@ -170,18 +169,9 @@ class AgentPanelProposer implements PanelProposer {
     }
 
     private static ObjectNode wordLights(TopicWordLights lights) {
-        ObjectNode node = JSON.createObjectNode();
-        if (lights == null) {
-            return node;
-        }
-        node.put("level", lights.getLevel() != null ? lights.getLevel().name() : null);
-        ArrayNode words = node.putArray("words");
-        for (TopicWord word : lights.getWords() != null ? lights.getWords() : List.<TopicWord>of()) {
-            words.addObject().put("lemma", word.getLemma())
-                    .put("level", word.getLevel() != null ? word.getLevel().name() : null)
-                    .put("outOfCatalog", word.isOutOfCatalog());
-        }
-        return node;
+        // This DTO is exactly the proposer's lexical input: do not drop toAdd, counts,
+        // thresholds or lights when crossing the runtime boundary.
+        return lights != null ? JSON.valueToTree(lights) : JSON.createObjectNode();
     }
 
     private static ObjectNode conversion(ConversionOrder order) {

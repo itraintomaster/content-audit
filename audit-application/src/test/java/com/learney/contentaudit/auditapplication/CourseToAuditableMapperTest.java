@@ -26,6 +26,44 @@ import org.mockito.ArgumentCaptor;
 
 @ExtendWith(MockitoExtension.class)
 public class CourseToAuditableMapperTest {
+    @Test
+    void simultaneousMappingsDoNotShareTokenOrSentenceCaches() throws Exception {
+        var barrier = new java.util.concurrent.CyclicBarrier(2);
+        NlpTokenizer tokenizer = mock(NlpTokenizer.class);
+        when(tokenizer.analyzeTokensBatch(anyList())).thenAnswer(call -> {
+            String sentence = call.<List<String>>getArgument(0).get(0);
+            barrier.await(5, java.util.concurrent.TimeUnit.SECONDS);
+            return Map.of(sentence, List.of(new NlpToken(sentence, sentence, "NOUN", 500, false, false)));
+        });
+        CourseToAuditableMapper mapper = new CourseToAuditableMapper(tokenizer, DefaultQuizSentenceConverter.create());
+        CourseEntity catCourse = spy(course(quiz("cat", new FormEntity(null, 0, null, null,
+                List.of(new SentencePartEntity(SentencePartKind.TEXT, "cat", null)), null, null), "cat")));
+        RootNodeEntity catRoot = catCourse.getRoot();
+        var reads = new java.util.concurrent.atomic.AtomicInteger();
+        var dogMapped = new java.util.concurrent.CountDownLatch(1);
+        doAnswer(call -> {
+            // After NLP returns, hold the first call until the other mapping has overwritten
+            // any shared cache. This exposes the old race deterministically, without sleeps.
+            if (reads.incrementAndGet() == 3) assertTrue(dogMapped.await(5, java.util.concurrent.TimeUnit.SECONDS));
+            return catRoot;
+        }).when(catCourse).getRoot();
+        var pool = java.util.concurrent.Executors.newFixedThreadPool(2);
+        try {
+            var cat = pool.submit(() -> mapper.map(catCourse));
+            var dog = pool.submit(() -> {
+                try { return mapper.map(course(quiz("dog", new FormEntity(null, 0, null, null,
+                        List.of(new SentencePartEntity(SentencePartKind.TEXT, "dog", null)), null, null), "dog"))); }
+                finally { dogMapped.countDown(); }
+            });
+            AuditableQuiz first = mappedQuizzes(cat.get(10, java.util.concurrent.TimeUnit.SECONDS)).get(0);
+            AuditableQuiz second = mappedQuizzes(dog.get(10, java.util.concurrent.TimeUnit.SECONDS)).get(0);
+            assertEquals("cat", first.getTokens().get(0).getLemma());
+            assertEquals("dog", second.getTokens().get(0).getLemma());
+            assertEquals("cat", first.getQuizSentence());
+            assertEquals("dog", second.getQuizSentence());
+        } finally { pool.shutdownNow(); }
+    }
+
 
     // -----------------------------------------------------------------------
     // FEAT-OPMUL helpers: one knowledge ("Be", A1) holding the given quizzes

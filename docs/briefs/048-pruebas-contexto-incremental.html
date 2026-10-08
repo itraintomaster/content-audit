@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contexto incremental: plan de pruebas</title>
+<style>
+:root{color-scheme:light dark;--bg:#fbfaf8;--fg:#1c1a17;--surface:#fff;--line:#e6e2db;--muted:#57524b;--accent:#b4531f}
+@media(prefers-color-scheme:dark){:root{--bg:#131211;--fg:#efece7;--surface:#1b1a18;--line:#302d29;--muted:#a8a29a;--accent:#e08b4f}}
+*{box-sizing:border-box}body{margin:0;padding:40px 24px 80px;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,sans-serif}.wrap{max-width:940px;margin:auto}header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}.kicker{color:var(--accent);font-size:12px}h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2}h2{font-size:19px}section{margin:34px 0}.lede,.st{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}.lede{border-left:3px solid var(--accent)}.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.st b,.st span{display:block}.st span,.pie,footer{color:var(--muted);font-size:13.5px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;background:var(--surface);font-size:14px}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line)}a{color:var(--accent);overflow-wrap:anywhere}@media(max-width:620px){.flow{grid-template-columns:1fr}}
+</style></head>
+<body><main class="wrap">
+<header><div class="kicker">048 · PLAN DE PRUEBAS · 8 OCT 2026</div><h1>Que el contexto avance sin perder cuentas</h1></header>
+<div class="lede">Las sugerencias se actualizarán con los cambios aceptados durante la corrida. El análisis final seguirá siendo independiente y completo.</div>
+<section><h2>Dos estados, dos responsabilidades</h2><div class="flow">
+<div class="st"><b>Base + propuestas previas</b><span>Reconstruir al iniciar o reanudar.</span></div>
+<div class="st"><b>Contexto provisional</b><span>Restar lo anterior, sumar lo nuevo; leer una versión consistente antes de proponer.</span></div>
+<div class="st"><b>Análisis final</b><span>Medir el conjunto real; no publicar ni validar usando el contexto provisional.</span></div>
+</div><p class="pie">Los temas pueden trabajar con versiones ligeramente distintas. Sus actualizaciones deben consolidarse sin pérdidas.</p></section>
+<section><h2>Casos que deben quedar cubiertos</h2><div class="table-wrap"><table>
+<thead><tr><th>Familia</th><th>Casos</th><th>Comprobación</th></tr></thead><tbody>
+<tr><td>Deltas</td><td>Agregar, quitar, reemplazar, repetir; última aparición.</td><td>Mismos resultados que recalcular desde cero.</td></tr>
+<tr><td>Reglas léxicas</td><td>Lema/POS, repetición en una oración, niveles, palabras funcionales y bandas.</td><td>Reutilizar las reglas existentes, sin otra implementación.</td></tr>
+<tr><td>Contexto entregado</td><td>Dos propuestas consecutivas; candidata rechazada o empate.</td><td>El generador recibe los cambios aceptados y no los rechazados.</td></tr>
+<tr><td>Concurrencia</td><td>Dos temas agregan la misma palabra; lecturas durante escrituras.</td><td>Sin doble conteo, pérdida de cambios ni lecturas partidas.</td></tr>
+<tr><td>Recuperación</td><td>Reanudación, fallo al guardar y presupuesto agotado.</td><td>Reconstruir desde lo persistido; no inventar avances.</td></tr>
+<tr><td>Aislamiento</td><td>Base guardada y análisis final.</td><td>No alterarlos; ninguna consulta real en los tests.</td></tr>
+</tbody></table></div><p class="pie">Las pruebas comprobarán también el contexto recibido por el generador, no sólo las cuentas internas.</p></section>
+<section><h2>La ejecución actual queda intacta</h2><div class="flow">
+<div class="st"><b>Commit previo</b><span>ee3fff74: documentación pendiente separada.</span></div>
+<div class="st"><b>Copia aislada</b><span>Compilar y probar fuera del runtime activo.</span></div>
+<div class="st"><b>Activación posterior</b><span>Sin reiniciar, interrumpir ni cambiar modelo o proveedor ahora.</span></div>
+</div><p class="pie">Este documento es el plan, no una declaración de pruebas aprobadas.</p></section>
+<footer>ContentAudit · <a href="047-vocabulario-actualizado-y-paralelismo.html">Diagnóstico previo</a></footer>
+</main></body></html>

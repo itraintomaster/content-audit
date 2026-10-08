@@ -27,6 +27,7 @@ import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
 import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
 import com.learney.contentaudit.revisiondomain.panel.PanelRequest;
 import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import com.learney.contentaudit.revisiondomain.panel.PanelVocabularyContext;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -142,7 +143,8 @@ public class DefaultTopicPanelTest {
         RecordingProposer proposer = new RecordingProposer(script(VEGETABLES, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE,
                 vegetables)), COME, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, winter(topic)))));
 
-        panel(proposer, storyMeter()).run(work(topic, tasks), settings(), allowance(null, 4), new RecordingSink());
+        TrackingVocabulary vocabulary = new TrackingVocabulary();
+        panel(proposer, storyMeter()).run(work(topic, tasks), settings(), allowance(null, 4), new RecordingSink(), vocabulary);
 
         assertEquals(2, proposer.requests.size());
         assertEquals(List.of(COME, VEGETABLES), proposer.requests.stream().map(PanelRequest::getQuizId).toList(), "in topic order");
@@ -150,6 +152,87 @@ public class DefaultTopicPanelTest {
                 "the later candidate sees what the panel accepted");
         assertFalse(proposer.requests.get(0).getTopicView().stream().anyMatch(v -> v.getStatement().equals("Winter ___ (come) every year.")),
                 "the first one saw the topic as it was");
+        assertEquals(List.of(0L, 1L), proposer.requests.stream().map(r -> r.getWordLights().getWorkingVersion()).toList());
+        assertEquals(2, vocabulary.accepted.size());
+        assertEquals("Winter comes every year.", stored(exercise(vocabulary.accepted.get(0), COME)));
+        assertEquals(0L, proposer.requests.get(0).getWordLights().getWorkingVersion(), "a previous request remains a snapshot");
+    }
+
+    @Test
+    void failureSavingAnAcceptedDecisionDoesNotAdvanceTheProvisionalContext() {
+        KnowledgeEntity topic = afirmativas();
+        QuizTemplateEntity fixed = withTranslation(withParts(exercise(topic, VEGETABLES), text("I"), cloze("love"),
+                text("(love) vegetables.")), "Me encantan las verduras.");
+        RecordingProposer proposer = new RecordingProposer(script(VEGETABLES,
+                proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, fixed))));
+        TrackingVocabulary vocabulary = new TrackingVocabulary();
+        var allowance = allowance(null, 4);
+        org.junit.jupiter.api.Assertions.assertThrows(IllegalStateException.class, () ->
+                panel(proposer, vegetablesMeter()).run(work(topic, vegetablesTasks()), settings(), allowance,
+                        decision -> { throw new IllegalStateException("disk full"); }, vocabulary));
+        assertTrue(vocabulary.accepted.isEmpty());
+        assertEquals(1, proposer.requests.size());
+        assertTrue(allowance.tripped().orElseThrow().contains("No se pudo guardar"));
+    }
+
+    @Test
+    void failureApplyingTheDeltaKeepsTheSavedDecisionAndTripsBeforeAnyLaterProposal() {
+        KnowledgeEntity topic = afirmativas();
+        List<ErrorTaskBrief> tasks = new ArrayList<>(vegetablesTasks());
+        tasks.add(brief("t-come", comeFinding()));
+        RecordingProposer proposer = new RecordingProposer(script(COME,
+                proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, winter(topic)))));
+        RecordingSink sink = new RecordingSink();
+        var allowance = allowance(null, 4);
+        TrackingVocabulary vocabulary = new TrackingVocabulary() {
+            @Override public void accepted(TopicWork work, KnowledgeEntity accepted) {
+                assertEquals(PanelOutcomeKind.ACCEPTED, sink.only().getOutcome(), "persisted before applying the delta");
+                throw new IllegalStateException("delta failed");
+            }
+        };
+        org.junit.jupiter.api.Assertions.assertThrows(IllegalStateException.class, () ->
+                panel(proposer, storyMeter()).run(work(topic, tasks), settings(), allowance, sink, vocabulary));
+        assertEquals(PanelOutcomeKind.ACCEPTED, sink.only().getOutcome(), "do not erase the durable proposal");
+        assertEquals(1, proposer.requests.size());
+        assertTrue(allowance.tripped().orElseThrow().contains("delta léxico"));
+    }
+
+    @Test
+    void exhaustedBudgetDoesNotChangeTheProvisionalContext() {
+        TrackingVocabulary vocabulary = new TrackingVocabulary();
+        RecordingProposer proposer = new RecordingProposer(Map.of());
+        var allowance = allowance(0, 4);
+        panel(proposer, vegetablesMeter()).run(work(afirmativas(), vegetablesTasks()), settings(), allowance,
+                new RecordingSink(), vocabulary);
+        assertTrue(proposer.requests.isEmpty());
+        assertTrue(vocabulary.accepted.isEmpty());
+        assertEquals(0, allowance.spent());
+    }
+
+    @Test
+    void failureLoadingContextDoesNotSpendBudgetOrAskWithMissingSuggestions() {
+        TrackingVocabulary vocabulary = new TrackingVocabulary() {
+            @Override public TopicWordLights lightsFor(TopicWork work) { throw new IllegalStateException("context failed"); }
+        };
+        RecordingProposer proposer = new RecordingProposer(Map.of());
+        var allowance = allowance(null, 4);
+        org.junit.jupiter.api.Assertions.assertThrows(IllegalStateException.class, () ->
+                panel(proposer, vegetablesMeter()).run(work(afirmativas(), vegetablesTasks()), settings(), allowance,
+                        new RecordingSink(), vocabulary));
+        assertEquals(0, allowance.spent());
+        assertTrue(proposer.requests.isEmpty());
+        assertTrue(allowance.tripped().orElseThrow().contains("contexto léxico"));
+    }
+
+    private static class TrackingVocabulary implements PanelVocabularyContext {
+        final List<KnowledgeEntity> accepted = new ArrayList<>();
+        @Override public TopicWordLights lightsFor(TopicWork work) {
+            TopicWordLights lights = new TopicWordLights("base", work.getKnowledge().getId(), "topic",
+                    CefrLevel.A1, List.of(), List.of());
+            lights.setWorkingVersion((long) accepted.size());
+            return lights;
+        }
+        @Override public void accepted(TopicWork work, KnowledgeEntity topic) { accepted.add(topic); }
     }
 
     @Test
@@ -324,8 +407,11 @@ public class DefaultTopicPanelTest {
                 proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, grandmother(topic)))));
         RecordingSink sink = new RecordingSink();
 
-        panel(proposer, storyMeter()).run(work(topic, List.of(brief("t-come", comeFinding()))), settings(), allowance(null, 4), sink);
+        TrackingVocabulary vocabulary = new TrackingVocabulary();
+        panel(proposer, storyMeter()).run(work(topic, List.of(brief("t-come", comeFinding()))), settings(), allowance(null, 4), sink, vocabulary);
 
+        assertTrue(vocabulary.accepted.isEmpty(), "rejected candidates never change counts");
+        assertEquals(List.of(0L, 0L, 0L), proposer.requests.stream().map(r -> r.getWordLights().getWorkingVersion()).toList());
         PanelDecision decision = sink.only();
         assertEquals(PanelOutcomeKind.NO_WINNER, decision.getOutcome());
         assertEquals(3, decision.getAttempts());
@@ -401,10 +487,12 @@ public class DefaultTopicPanelTest {
                 disputed)), VEGETABLES, proposal(candidate(PanelCandidateKind.TRANSLATION_ONLY, disputed))));
         RecordingSink sink = new RecordingSink();
 
+        TrackingVocabulary vocabulary = new TrackingVocabulary();
         panel(proposer, meter).run(work(topic, List.of(brief("t-translation", translationDiffers()))), settings(), allowance(null, 4),
-                sink);
+                sink, vocabulary);
 
         assertEquals(1, proposer.requests.size(), "no more attempts");
+        assertTrue(vocabulary.accepted.isEmpty(), "a tie never changes counts");
         PanelDecision decision = sink.only();
         assertEquals(PanelOutcomeKind.TIE, decision.getOutcome());
         assertEquals(List.of("translation-sense|judges-disagree|" + VEGETABLES), decision.getTieFindings().stream()

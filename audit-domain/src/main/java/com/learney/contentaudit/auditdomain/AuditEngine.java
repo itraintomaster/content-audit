@@ -11,4 +11,8 @@ public interface AuditEngine {
     AuditReport runAudit(AuditableCourse course);
 
     AuditReport runAudit(AuditableCourse course, AnalyzerRunSelection selection);
+
+    default WorkingVocabulary openWorkingVocabulary(AuditableCourse composedCourse) {
+        throw new UnsupportedOperationException("El motor no ofrece contexto léxico incremental");
+    }
 }

@@ -34,7 +34,8 @@ public class DefaultBatchServiceFactory implements BatchServiceFactory {
         RuleStage rules = new DefaultRuleStage(config.getRuleFixes(), config.getTopicMeter(), gates.changeGate(), ledger,
                 config.getBatchStore()).withPlans(config.getRefinementPlanStore());
         PanelStage panels = new DefaultPanelStage(config.getPanelRunner(), config.getBriefer(),
-                config.getCorrectionCatalog(), config.getWordLightsQuery(), ledger, config.getBatchStore())
+                config.getCorrectionCatalog(), config.getWordLightsQuery(), ledger, config.getBatchStore(),
+                config.getAuditEngine(), config.getCourseMapper())
                 .withPlans(config.getRefinementPlanStore());
         BatchJudgePass judgePass = new DefaultBatchJudgePass(config.getAuditEngine(), config.getCourseMapper(),
                 config.getAnalyzerCatalog());

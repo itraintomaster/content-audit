@@ -47,6 +47,31 @@ import org.junit.jupiter.api.Test;
 )
 public class AgentPanelProposerTest {
     @Test
+    void sendsSuggestionsCountsThresholdsAndProvisionalVersionToTheActualAgentInput() throws Exception {
+        AtomicReference<Map<String, String>> sent = new AtomicReference<>();
+        AgentPanelProposer proposer = new AgentPanelProposer((agent, inputs, model) -> {
+            sent.set(inputs);
+            return RunState.empty().withRunStatus(RunStatus.COMPLETED);
+        }, (state, request) -> new PanelProposal(List.of(), "panel-proposer", true, null), null, config(), Path.of("/proyecto"));
+        PanelRequest request = request(1, List.of());
+        request.getWordLights().setWorkingVersion(7L);
+        request.getWordLights().getWords().get(0).setThreshold(8);
+        request.getWordLights().getWords().get(0).setLight(com.learney.contentaudit.refinerdomain.topicwords.WordLight.GREEN);
+        request.getWordLights().setToAdd(List.of(new com.learney.contentaudit.refinerdomain.SuggestedLemma(
+                "chair", "NOUN", "under-exposed", 700, 1, 8, true)));
+        proposer.propose(request);
+        var json = new com.fasterxml.jackson.databind.ObjectMapper().readTree(sent.get().get("wordLights"));
+        assertEquals(7, json.path("workingVersion").asLong());
+        assertEquals("auditoria", json.path("auditId").asText());
+        assertEquals(3, json.path("words").get(0).path("sentenceCount").asInt());
+        assertEquals(8, json.path("words").get(0).path("threshold").asInt());
+        assertEquals("GREEN", json.path("words").get(0).path("light").asText());
+        assertEquals("chair", json.path("toAdd").get(0).path("lemma").asText());
+        assertEquals(1, json.path("toAdd").get(0).path("lemmaCount").asInt());
+        assertEquals(8, json.path("toAdd").get(0).path("lemmaCountThreshold").asInt());
+    }
+
+    @Test
     @DisplayName("should give the agent only what the proposer receives, the topic as the student sees it, the findings, the level, the scope, the word lights, the order and the previous reasons, and never another candidate's verdict")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R003")

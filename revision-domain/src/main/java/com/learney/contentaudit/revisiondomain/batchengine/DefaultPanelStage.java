@@ -3,6 +3,10 @@ package com.learney.contentaudit.revisiondomain.batchengine;
 import com.learney.contentaudit.auditdomain.AnalyzerCorrectionCatalog;
 import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditTarget;
+import com.learney.contentaudit.auditdomain.AuditEngine;
+import com.learney.contentaudit.auditdomain.CourseMapper;
+import com.learney.contentaudit.revisiondomain.panel.PanelVocabularyContext;
+import com.learney.contentaudit.revisiondomain.panelengine.PanelVocabularyContexts;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.KnowledgeEntity;
@@ -69,6 +73,8 @@ class DefaultPanelStage implements PanelStage {
     private final BatchChangeLedger changeLedger;
 
     private final BatchStore batchStore;
+    private final AuditEngine auditEngine;
+    private final CourseMapper courseMapper;
 
     /** Where the tasks of the batch are read; the factory hands it over. */
     private RefinementPlanStore plans;
@@ -76,12 +82,20 @@ class DefaultPanelStage implements PanelStage {
     public DefaultPanelStage(PanelRunner panelRunner, ErrorTaskBriefer briefer,
             AnalyzerCorrectionCatalog correctionCatalog, TopicWordLightsQuery wordLightsQuery,
             BatchChangeLedger changeLedger, BatchStore batchStore) {
+        this(panelRunner, briefer, correctionCatalog, wordLightsQuery, changeLedger, batchStore, null, null);
+    }
+
+    public DefaultPanelStage(PanelRunner panelRunner, ErrorTaskBriefer briefer,
+            AnalyzerCorrectionCatalog correctionCatalog, TopicWordLightsQuery wordLightsQuery,
+            BatchChangeLedger changeLedger, BatchStore batchStore, AuditEngine auditEngine, CourseMapper courseMapper) {
         this.panelRunner = panelRunner;
         this.briefer = briefer;
         this.correctionCatalog = correctionCatalog;
         this.wordLightsQuery = wordLightsQuery;
         this.changeLedger = changeLedger;
         this.batchStore = batchStore;
+        this.auditEngine = auditEngine;
+        this.courseMapper = courseMapper;
     }
 
     DefaultPanelStage withPlans(RefinementPlanStore plans) {
@@ -136,12 +150,15 @@ class DefaultPanelStage implements PanelStage {
                 BatchBook.copy(batch.getAnalyzers()));
         CorrectionBatch[] holder = {batch};
         int spentBefore = allowance != null ? allowance.spent() : 0;
+        PanelVocabularyContext vocabulary = auditEngine != null && !works.isEmpty()
+                ? PanelVocabularyContexts.open(auditEngine, courseMapper, composed, wordLightsQuery, batch.getStartAuditId())
+                : null;
         panelRunner.runTopics(works, run, allowance, decision -> {
             holder[0] = accept(holder[0], decision, course);
             if (batchStore != null) {
                 batchStore.save(holder[0]);
             }
-        });
+        }, vocabulary);
         batch = holder[0];
         batch.setQueriesSpent(batch.getQueriesSpent() + (allowance != null ? allowance.spent() - spentBefore : 0));
         return batch;
@@ -168,7 +185,7 @@ class DefaultPanelStage implements PanelStage {
             }
         }
         TopicWordLights lights = null;
-        if (wordLightsQuery != null) {
+        if (wordLightsQuery != null && auditEngine == null) {
             try {
                 lights = wordLightsQuery.lightsFor(start, batch.getStartAuditId(), knowledge.getId(),
                         new SuggestedLemmaQueryCriteria(Optional.empty(), Optional.empty(), Optional.empty(), false,

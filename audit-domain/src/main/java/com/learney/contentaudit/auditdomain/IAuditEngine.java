@@ -34,6 +34,11 @@ public class IAuditEngine implements AuditEngine {
         this.contextNumbersCalculator = contextNumbersCalculator;
     }
 
+    @Override
+    public WorkingVocabulary openWorkingVocabulary(AuditableCourse composedCourse) {
+        return new DefaultWorkingVocabulary(composedCourse, analyzerCatalog);
+    }
+
     /**
      * The base run: every analyzer of the catalog whose card costs INSTANT, in catalog order,
      * plus every analyzer with a model whose card has at least one instant rule and none of local
@@ -170,13 +175,13 @@ public class IAuditEngine implements AuditEngine {
         return false;
     }
 
-    private AuditNode buildTree(AuditableCourse course) {
+    static AuditNode buildTree(AuditableCourse course) {
         AuditNode root = new AuditNode();
         root.setTarget(AuditTarget.COURSE);
         root.setEntity(null); // Course has no AuditableEntity
         root.setScores(new LinkedHashMap<>());
         root.setMetadata(new LinkedHashMap<>());
-        root.setDiagnoses(new DefaultCourseDiagnoses());
+        root.setDiagnoses(freshDiagnoses(AuditTarget.COURSE));
 
         List<AuditNode> milestoneNodes = new ArrayList<>();
         for (AuditableMilestone milestone : course.getMilestones()) {
@@ -186,7 +191,7 @@ public class IAuditEngine implements AuditEngine {
             milestoneNode.setParent(root);
             milestoneNode.setScores(new LinkedHashMap<>());
             milestoneNode.setMetadata(new LinkedHashMap<>());
-            milestoneNode.setDiagnoses(new DefaultLevelDiagnoses());
+            milestoneNode.setDiagnoses(freshDiagnoses(AuditTarget.MILESTONE));
 
             List<AuditNode> topicNodes = new ArrayList<>();
             for (AuditableTopic topic : milestone.getTopics()) {
@@ -196,7 +201,7 @@ public class IAuditEngine implements AuditEngine {
                 topicNode.setParent(milestoneNode);
                 topicNode.setScores(new LinkedHashMap<>());
                 topicNode.setMetadata(new LinkedHashMap<>());
-                topicNode.setDiagnoses(new DefaultTopicDiagnoses());
+                topicNode.setDiagnoses(freshDiagnoses(AuditTarget.TOPIC));
 
                 List<AuditNode> knowledgeNodes = new ArrayList<>();
                 for (AuditableKnowledge knowledge : topic.getKnowledge()) {
@@ -206,19 +211,11 @@ public class IAuditEngine implements AuditEngine {
                     knowledgeNode.setParent(topicNode);
                     knowledgeNode.setScores(new LinkedHashMap<>());
                     knowledgeNode.setMetadata(new LinkedHashMap<>());
-                    knowledgeNode.setDiagnoses(new DefaultKnowledgeDiagnoses());
+                    knowledgeNode.setDiagnoses(freshDiagnoses(AuditTarget.KNOWLEDGE));
 
                     List<AuditNode> quizNodes = new ArrayList<>();
                     for (AuditableQuiz quiz : knowledge.getQuizzes()) {
-                        AuditNode quizNode = new AuditNode();
-                        quizNode.setTarget(AuditTarget.QUIZ);
-                        quizNode.setEntity(quiz);
-                        quizNode.setParent(knowledgeNode);
-                        quizNode.setChildren(List.of());
-                        quizNode.setScores(new LinkedHashMap<>());
-                        quizNode.setMetadata(new LinkedHashMap<>());
-                        quizNode.setDiagnoses(new DefaultQuizDiagnoses());
-                        quizNodes.add(quizNode);
+                        quizNodes.add(quizNode(quiz, knowledgeNode));
                     }
                     knowledgeNode.setChildren(quizNodes);
                     knowledgeNodes.add(knowledgeNode);
@@ -234,18 +231,45 @@ public class IAuditEngine implements AuditEngine {
     }
 
     private void traverseAndNotify(AuditNode root, RunningAnalyzer ra) {
-        ContentAnalyzer analyzer = ra.analyzer();
-        for (AuditNode milestone : root.getChildren()) {
-            invokeCallback(ra, milestone, () -> analyzer.onMilestone(milestone));
-            for (AuditNode topic : milestone.getChildren()) {
-                invokeCallback(ra, topic, () -> analyzer.onTopic(topic));
-                for (AuditNode knowledge : topic.getChildren()) {
-                    invokeCallback(ra, knowledge, () -> analyzer.onKnowledge(knowledge));
-                    for (AuditNode quiz : knowledge.getChildren()) {
-                        invokeCallback(ra, quiz, () -> analyzer.onQuiz(quiz));
-                    }
-                }
-            }
+        visit(root, node -> invokeCallback(ra, node, () -> notify(ra.analyzer(), node)));
+    }
+
+    static AuditNode quizNode(AuditableQuiz quiz, AuditNode knowledge) {
+        AuditNode node = new AuditNode();
+        node.setTarget(AuditTarget.QUIZ);
+        node.setEntity(quiz);
+        node.setParent(knowledge);
+        node.setChildren(List.of());
+        node.setScores(new LinkedHashMap<>());
+        node.setMetadata(new LinkedHashMap<>());
+        node.setDiagnoses(freshDiagnoses(AuditTarget.QUIZ));
+        return node;
+    }
+
+    static NodeDiagnoses freshDiagnoses(AuditTarget target) {
+        return switch (target) {
+            case COURSE -> new DefaultCourseDiagnoses();
+            case MILESTONE -> new DefaultLevelDiagnoses();
+            case TOPIC -> new DefaultTopicDiagnoses();
+            case KNOWLEDGE -> new DefaultKnowledgeDiagnoses();
+            case QUIZ -> new DefaultQuizDiagnoses();
+        };
+    }
+
+    static void visit(AuditNode parent, java.util.function.Consumer<AuditNode> callback) {
+        for (AuditNode node : parent.getChildren()) {
+            callback.accept(node);
+            visit(node, callback);
+        }
+    }
+
+    static void notify(ContentAnalyzer analyzer, AuditNode node) {
+        switch (node.getTarget()) {
+            case MILESTONE -> analyzer.onMilestone(node);
+            case TOPIC -> analyzer.onTopic(node);
+            case KNOWLEDGE -> analyzer.onKnowledge(node);
+            case QUIZ -> analyzer.onQuiz(node);
+            default -> throw new IllegalArgumentException("El curso se completa por separado");
         }
     }
 

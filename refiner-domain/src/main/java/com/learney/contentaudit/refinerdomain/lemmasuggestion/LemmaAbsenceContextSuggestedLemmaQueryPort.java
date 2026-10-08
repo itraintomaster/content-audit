@@ -91,53 +91,25 @@ public class LemmaAbsenceContextSuggestedLemmaQueryPort implements SuggestedLemm
             effectiveLevel = resolveEffectiveLevel(task.getId(), null, explicitLevel);
         }
 
-        // Step 3: Build candidate list.
-        //
-        // OFF mode (includeExposed=false, F-INCEXP-R001):
-        //   Delegates entirely to underexposedLemmaInventory — identical to previous behaviour.
-        //
-        // ON mode (includeExposed=true, F-INCEXP-R002, R003, R007):
-        //   The ON result is a SUPERSET of OFF by construction:
-        //   (a) "needs-exposure" block = exactly what underexposedLemmaInventory returns
-        //       (absent + sub-exposed; preserves OFF order and all fields).
-        //   (b) "already-exposed" tail = lemmas from levelWideLemmaInventory that are
-        //       genuinely exposed (isUnderexposed==false) AND not already in block (a).
-        //       These are appended after the needs-exposure block.
-        //   Dedup key: (lemma, pos) — OFF entries always win.
-        //
-        // This guarantees: limit cuts from already-exposed first, never from absent/sub-exposed.
-
-        List<SuggestedLemma> candidates;
-
-        if (!includeExposed) {
-            // OFF path: absent + sub-exposed candidates from the underexposed inventory
-            candidates = new ArrayList<>(underexposedLemmaInventory.lemmasFor(
-                    report, task, effectiveLevel, partOfSpeech));
-        } else {
-            // ON path: OFF block + genuinely-exposed tail (deduped)
-            List<SuggestedLemma> needsExposure = underexposedLemmaInventory.lemmasFor(
-                    report, task, effectiveLevel, partOfSpeech);
-
-            // Build dedup key set from needs-exposure block
-            Set<String> seenKeys = new HashSet<>();
-            for (SuggestedLemma sl : needsExposure) {
-                seenKeys.add(lemmaKey(sl));
+        // F-SLEM-R002: absence alone loses a word after its first appearance, even when it
+        // still needs exposure. Reuse the existing level-wide inventory's count/threshold
+        // classification; do not recompute exposure or introduce another ranking rule.
+        List<SuggestedLemma> candidates = new ArrayList<>(underexposedLemmaInventory.lemmasFor(
+                report, task, effectiveLevel, partOfSpeech));
+        Set<String> seenKeys = new HashSet<>();
+        candidates.forEach(sl -> seenKeys.add(lemmaKey(sl)));
+        List<SuggestedLemma> levelWideAll = levelWideLemmaInventory.lemmasFor(
+                report, task, effectiveLevel, partOfSpeech);
+        for (SuggestedLemma sl : levelWideAll) {
+            if (Boolean.TRUE.equals(sl.getIsUnderexposed()) && seenKeys.add(lemmaKey(sl))) {
+                candidates.add(sl);
             }
-
-            // Collect genuinely-exposed entries from the level-wide inventory, excluding dupes
-            List<SuggestedLemma> alreadyExposedTail = new ArrayList<>();
-            List<SuggestedLemma> levelWideAll = levelWideLemmaInventory.lemmasFor(
-                    report, task, effectiveLevel, partOfSpeech);
+        }
+        // F-INCEXP-R002/R003: ON is a superset of OFF; exposed words are added only on request.
+        if (includeExposed) {
             for (SuggestedLemma sl : levelWideAll) {
-                if (Boolean.FALSE.equals(sl.getIsUnderexposed())
-                        && seenKeys.add(lemmaKey(sl))) {
-                    alreadyExposedTail.add(sl);
-                }
+                if (Boolean.FALSE.equals(sl.getIsUnderexposed()) && seenKeys.add(lemmaKey(sl))) candidates.add(sl);
             }
-
-            candidates = new ArrayList<>(needsExposure.size() + alreadyExposedTail.size());
-            candidates.addAll(needsExposure);
-            candidates.addAll(alreadyExposedTail);
         }
 
         // Step 5: Apply 6-tier ranking (F-SLEM-R003, R014, R015).

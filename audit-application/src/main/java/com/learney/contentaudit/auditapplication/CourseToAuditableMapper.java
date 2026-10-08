@@ -33,15 +33,6 @@ public class CourseToAuditableMapper implements CourseMapper {
     private final NlpTokenizer nlpTokenizer;
     private final QuizSentenceConverter quizSentenceConverter;
 
-    private Map<String, List<NlpToken>> tokenCache = Map.of();
-    // R027 / F-DBSENT-R002: single-pass memoization — deriveSentences is called twice per quiz
-    // (once in collectAllCanonicalSentences, once in mapQuiz). This cache ensures serialize() and
-    // toPlainSentences() are invoked at most once per quiz regardless of the path taken.
-    private Map<QuizTemplateEntity, List<String>> sentencesByQuiz = new HashMap<>();
-    // FEAT-RCLAQS R002: quizSentence DSL derived in the same single pass as sentences.
-    // Populated by deriveSentences to guarantee R003 consistency.
-    private Map<QuizTemplateEntity, String> quizSentenceByQuiz = new HashMap<>();
-
     public CourseToAuditableMapper(NlpTokenizer nlpTokenizer,
             QuizSentenceConverter quizSentenceConverter) {
         this.nlpTokenizer = nlpTokenizer;
@@ -50,166 +41,180 @@ public class CourseToAuditableMapper implements CourseMapper {
 
     @Override
     public AuditableCourse map(CourseEntity course) {
-        if (course == null) {
-            return new AuditableCourse(List.of());
-        }
-
-        sentencesByQuiz = new HashMap<>();
-        quizSentenceByQuiz = new HashMap<>();
-        List<String> allSentences = collectAllCanonicalSentences(course);
-        tokenCache = nlpTokenizer.analyzeTokensBatch(allSentences);
-
-        if (course.getRoot() == null) {
-            return new AuditableCourse(List.of());
-        }
-        List<MilestoneEntity> milestones = course.getRoot().getMilestones();
-        if (milestones == null) {
-            milestones = List.of();
-        }
-        List<AuditableMilestone> auditableMilestones = milestones.stream()
-                .map(this::mapMilestone)
-                .collect(Collectors.toList());
-        return new AuditableCourse(auditableMilestones);
+        return new Mapping().map(course);
     }
 
-    private AuditableMilestone mapMilestone(MilestoneEntity milestone) {
-        List<TopicEntity> topics = milestone.getTopics();
-        if (topics == null) {
-            topics = List.of();
-        }
-        List<AuditableTopic> auditableTopics = topics.stream()
-                .map(this::mapTopic)
-                .collect(Collectors.toList());
-        return new AuditableMilestone(auditableTopics, milestone.getId(), milestone.getLabel(), milestone.getCode());
-    }
+    /** Per-call caches: topics can be mapped concurrently without sharing tokens or DSLs. */
+    private final class Mapping {
+        private Map<String, List<NlpToken>> tokenCache = Map.of();
+        // R027 / F-DBSENT-R002: single-pass memoization — deriveSentences is called twice per quiz
+        // (once in collectAllCanonicalSentences, once in mapQuiz). This cache ensures serialize() and
+        // toPlainSentences() are invoked at most once per quiz regardless of the path taken.
+        private final Map<QuizTemplateEntity, List<String>> sentencesByQuiz = new HashMap<>();
+        // FEAT-RCLAQS R002: quizSentence DSL derived in the same single pass as sentences.
+        // Populated by deriveSentences to guarantee R003 consistency.
+        private final Map<QuizTemplateEntity, String> quizSentenceByQuiz = new HashMap<>();
 
-    private AuditableTopic mapTopic(TopicEntity topic) {
-        List<KnowledgeEntity> knowledges = topic.getKnowledges();
-        if (knowledges == null) {
-            knowledges = List.of();
-        }
-        String topicName = topic.getLabel();
-        List<AuditableKnowledge> auditableKnowledges = knowledges.stream()
-                .map(ke -> mapKnowledge(ke, topicName))
-                .collect(Collectors.toList());
-        return new AuditableTopic(auditableKnowledges, topic.getId(), topic.getLabel(), topic.getCode());
-    }
+        AuditableCourse map(CourseEntity course) {
+            if (course == null) {
+                return new AuditableCourse(List.of());
+            }
 
-    private AuditableKnowledge mapKnowledge(KnowledgeEntity ke, String topicName) {
-        List<QuizTemplateEntity> quizTemplates = ke.getQuizTemplates();
-        if (quizTemplates == null) {
-            quizTemplates = List.of();
-        }
-        boolean isSentence = quizTemplates.stream().anyMatch(this::hasSentenceParts);
-        List<AuditableQuiz> quizzes = quizTemplates.stream()
-                .map(this::mapQuiz)
-                .collect(Collectors.toList());
-        // F-QINST-R009: the judge needs the topic name (from the ancestor topic, not the quiz's
-        // own denormalized copy) to reconstruct the fingerprinted content.
-        return new AuditableKnowledge(quizzes, ke.getLabel(), ke.getInstructions(), isSentence, ke.getId(), ke.getLabel(), ke.getCode(), ke.getSentenceMode(), topicName);
-    }
+            List<String> allSentences = collectAllCanonicalSentences(course);
+            tokenCache = nlpTokenizer.analyzeTokensBatch(allSentences);
 
-    private boolean hasSentenceParts(QuizTemplateEntity qt) {
-        FormEntity form = qt.getForm();
-        if (form == null) {
-            return false;
-        }
-        List<SentencePartEntity> parts = form.getSentenceParts();
-        return parts != null && !parts.isEmpty();
-    }
-
-    private AuditableQuiz mapQuiz(QuizTemplateEntity qt) {
-        // F-DBSENT-R002: sentences come from the pre-computed entity field when available;
-        // fall back to toPlainSentences only when the entity field is absent.
-        // serialize() is always invoked for the quizSentence DSL (FEAT-RCLAQS R002).
-        List<String> sentences = deriveSentences(qt);
-        // Use canonical sentence (index 0) as the key for the NLP token cache
-        String canonicalSentence = sentences.isEmpty() ? "" : sentences.get(0);
-        List<NlpToken> tokens = tokenCache.getOrDefault(canonicalSentence, List.of());
-        // FEAT-RCLAQS R001/R002: quizSentence is derived in the same pass; null when the form
-        // has no sentenceParts (no entry in quizSentenceByQuiz) and for a multiple-choice form,
-        // which has no DSL representation.
-        String quizSentence = quizSentenceByQuiz.get(qt);
-        // F-QINST-R009: instructions, sentenceParts and the multiple-choice options are copied
-        // verbatim from the entity -- never re-derived by parsing the quizSentence DSL.
-        // QuizSentenceParser.buildForm() fabricates an empty FormEntity, which would mutilate
-        // exactly the content the fingerprint protects (see FEAT-RPRES known bug).
-        FormEntity form = qt.getForm();
-        List<SentencePartEntity> sentenceParts = form != null ? form.getSentenceParts() : null;
-        MultipleChoiceEntity multipleChoice = form != null ? form.getMultipleChoice() : null;
-        // FEAT-RONDA1 (hooks A-02/A-03): the mini theory and the audio key travel to the report as
-        // they are in the course, in the same pass that copies the instructions; nothing is
-        // derived from them, so no fingerprint moves.
-        return new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, qt.getInstructions(), sentenceParts, multipleChoice, qt.getMiniTheory(), qt.getAnswerAudioUrl());
-    }
-
-    private List<String> deriveSentences(QuizTemplateEntity qt) {
-        // R027 / F-DBSENT-R002: memoize per-quiz so the converter is invoked at most once
-        // regardless of which phase (NLP collection vs. stamping) calls this method first.
-        List<String> cached = sentencesByQuiz.get(qt);
-        if (cached != null) {
-            return cached;
+            if (course.getRoot() == null) {
+                return new AuditableCourse(List.of());
+            }
+            List<MilestoneEntity> milestones = course.getRoot().getMilestones();
+            if (milestones == null) {
+                milestones = List.of();
+            }
+            List<AuditableMilestone> auditableMilestones = milestones.stream()
+                    .map(this::mapMilestone)
+                    .collect(Collectors.toList());
+            return new AuditableCourse(auditableMilestones);
         }
 
-        FormEntity form = qt.getForm();
-        if (form == null || form.getSentenceParts() == null || form.getSentenceParts().isEmpty()) {
-            // No form — cannot produce DSL or sentences.
-            sentencesByQuiz.put(qt, List.of());
-            return List.of();
-        }
-
-        // FEAT-RCLAQS R002: serialize() produces the DSL in the same single invocation window.
-        // QuizSentenceSerializationException propagates unchecked — the quiz must not enter
-        // the AuditReport if sentenceParts are invalid (FEAT-RCLAQS R004 fail-fast). A
-        // multiple-choice form serializes to null: it has no DSL, and its optionless gap is
-        // not an invalid CLOZE.
-        String dsl = quizSentenceConverter.serialize(form);
-        quizSentenceByQuiz.put(qt, dsl);
-
-        // F-DBSENT-R002: propagate pre-computed sentences from the entity verbatim.
-        // If the field is absent (null or empty), treat as empty list — no runtime derivation.
-        List<String> entitySentences = qt.getSentences();
-        List<String> result = (entitySentences != null && !entitySentences.isEmpty())
-                ? entitySentences
-                : List.of();
-        sentencesByQuiz.put(qt, result);
-        return result;
-    }
-
-    private List<String> collectAllCanonicalSentences(CourseEntity course) {
-        List<String> sentences = new ArrayList<>();
-        if (course.getRoot() == null) {
-            return sentences;
-        }
-        List<MilestoneEntity> milestones = course.getRoot().getMilestones();
-        if (milestones == null) {
-            return sentences;
-        }
-        for (MilestoneEntity milestone : milestones) {
+        private AuditableMilestone mapMilestone(MilestoneEntity milestone) {
             List<TopicEntity> topics = milestone.getTopics();
             if (topics == null) {
-                continue;
+                topics = List.of();
             }
-            for (TopicEntity topic : topics) {
-                List<KnowledgeEntity> knowledges = topic.getKnowledges();
-                if (knowledges == null) {
+            List<AuditableTopic> auditableTopics = topics.stream()
+                    .map(this::mapTopic)
+                    .collect(Collectors.toList());
+            return new AuditableMilestone(auditableTopics, milestone.getId(), milestone.getLabel(), milestone.getCode());
+        }
+
+        private AuditableTopic mapTopic(TopicEntity topic) {
+            List<KnowledgeEntity> knowledges = topic.getKnowledges();
+            if (knowledges == null) {
+                knowledges = List.of();
+            }
+            String topicName = topic.getLabel();
+            List<AuditableKnowledge> auditableKnowledges = knowledges.stream()
+                    .map(ke -> mapKnowledge(ke, topicName))
+                    .collect(Collectors.toList());
+            return new AuditableTopic(auditableKnowledges, topic.getId(), topic.getLabel(), topic.getCode());
+        }
+
+        private AuditableKnowledge mapKnowledge(KnowledgeEntity ke, String topicName) {
+            List<QuizTemplateEntity> quizTemplates = ke.getQuizTemplates();
+            if (quizTemplates == null) {
+                quizTemplates = List.of();
+            }
+            boolean isSentence = quizTemplates.stream().anyMatch(this::hasSentenceParts);
+            List<AuditableQuiz> quizzes = quizTemplates.stream()
+                    .map(this::mapQuiz)
+                    .collect(Collectors.toList());
+            // F-QINST-R009: the judge needs the topic name (from the ancestor topic, not the quiz's
+            // own denormalized copy) to reconstruct the fingerprinted content.
+            return new AuditableKnowledge(quizzes, ke.getLabel(), ke.getInstructions(), isSentence, ke.getId(), ke.getLabel(), ke.getCode(), ke.getSentenceMode(), topicName);
+        }
+
+        private boolean hasSentenceParts(QuizTemplateEntity qt) {
+            FormEntity form = qt.getForm();
+            if (form == null) {
+                return false;
+            }
+            List<SentencePartEntity> parts = form.getSentenceParts();
+            return parts != null && !parts.isEmpty();
+        }
+
+        private AuditableQuiz mapQuiz(QuizTemplateEntity qt) {
+            // F-DBSENT-R002: sentences come from the pre-computed entity field when available;
+            // fall back to toPlainSentences only when the entity field is absent.
+            // serialize() is always invoked for the quizSentence DSL (FEAT-RCLAQS R002).
+            List<String> sentences = deriveSentences(qt);
+            // Use canonical sentence (index 0) as the key for the NLP token cache
+            String canonicalSentence = sentences.isEmpty() ? "" : sentences.get(0);
+            List<NlpToken> tokens = tokenCache.getOrDefault(canonicalSentence, List.of());
+            // FEAT-RCLAQS R001/R002: quizSentence is derived in the same pass; null when the form
+            // has no sentenceParts (no entry in quizSentenceByQuiz) and for a multiple-choice form,
+            // which has no DSL representation.
+            String quizSentence = quizSentenceByQuiz.get(qt);
+            // F-QINST-R009: instructions, sentenceParts and the multiple-choice options are copied
+            // verbatim from the entity -- never re-derived by parsing the quizSentence DSL.
+            // QuizSentenceParser.buildForm() fabricates an empty FormEntity, which would mutilate
+            // exactly the content the fingerprint protects (see FEAT-RPRES known bug).
+            FormEntity form = qt.getForm();
+            List<SentencePartEntity> sentenceParts = form != null ? form.getSentenceParts() : null;
+            MultipleChoiceEntity multipleChoice = form != null ? form.getMultipleChoice() : null;
+            // FEAT-RONDA1 (hooks A-02/A-03): the mini theory and the audio key travel to the report as
+            // they are in the course, in the same pass that copies the instructions; nothing is
+            // derived from them, so no fingerprint moves.
+            return new AuditableQuiz(tokens, qt.getId(), qt.getTitle(), qt.getCode(), qt.getTranslation(), sentences, quizSentence, qt.getInstructions(), sentenceParts, multipleChoice, qt.getMiniTheory(), qt.getAnswerAudioUrl());
+        }
+
+        private List<String> deriveSentences(QuizTemplateEntity qt) {
+            // R027 / F-DBSENT-R002: memoize per-quiz so the converter is invoked at most once
+            // regardless of which phase (NLP collection vs. stamping) calls this method first.
+            List<String> cached = sentencesByQuiz.get(qt);
+            if (cached != null) {
+                return cached;
+            }
+
+            FormEntity form = qt.getForm();
+            if (form == null || form.getSentenceParts() == null || form.getSentenceParts().isEmpty()) {
+                // No form — cannot produce DSL or sentences.
+                sentencesByQuiz.put(qt, List.of());
+                return List.of();
+            }
+
+            // FEAT-RCLAQS R002: serialize() produces the DSL in the same single invocation window.
+            // QuizSentenceSerializationException propagates unchecked — the quiz must not enter
+            // the AuditReport if sentenceParts are invalid (FEAT-RCLAQS R004 fail-fast). A
+            // multiple-choice form serializes to null: it has no DSL, and its optionless gap is
+            // not an invalid CLOZE.
+            String dsl = quizSentenceConverter.serialize(form);
+            quizSentenceByQuiz.put(qt, dsl);
+
+            // F-DBSENT-R002: propagate pre-computed sentences from the entity verbatim.
+            // If the field is absent (null or empty), treat as empty list — no runtime derivation.
+            List<String> entitySentences = qt.getSentences();
+            List<String> result = (entitySentences != null && !entitySentences.isEmpty())
+                    ? entitySentences
+                    : List.of();
+            sentencesByQuiz.put(qt, result);
+            return result;
+        }
+
+        private List<String> collectAllCanonicalSentences(CourseEntity course) {
+            List<String> sentences = new ArrayList<>();
+            if (course.getRoot() == null) {
+                return sentences;
+            }
+            List<MilestoneEntity> milestones = course.getRoot().getMilestones();
+            if (milestones == null) {
+                return sentences;
+            }
+            for (MilestoneEntity milestone : milestones) {
+                List<TopicEntity> topics = milestone.getTopics();
+                if (topics == null) {
                     continue;
                 }
-                for (KnowledgeEntity knowledge : knowledges) {
-                    List<QuizTemplateEntity> quizTemplates = knowledge.getQuizTemplates();
-                    if (quizTemplates == null) {
+                for (TopicEntity topic : topics) {
+                    List<KnowledgeEntity> knowledges = topic.getKnowledges();
+                    if (knowledges == null) {
                         continue;
                     }
-                    for (QuizTemplateEntity qt : quizTemplates) {
-                        List<String> derived = deriveSentences(qt);
-                        if (!derived.isEmpty()) {
-                            // Collect only canonical (index 0) for NLP batch tokenization
-                            sentences.add(derived.get(0));
+                    for (KnowledgeEntity knowledge : knowledges) {
+                        List<QuizTemplateEntity> quizTemplates = knowledge.getQuizTemplates();
+                        if (quizTemplates == null) {
+                            continue;
+                        }
+                        for (QuizTemplateEntity qt : quizTemplates) {
+                            List<String> derived = deriveSentences(qt);
+                            if (!derived.isEmpty()) {
+                                // Collect only canonical (index 0) for NLP batch tokenization
+                                sentences.add(derived.get(0));
+                            }
                         }
                     }
                 }
             }
+            return sentences;
         }
-        return sentences;
     }
 }

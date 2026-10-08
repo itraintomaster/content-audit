@@ -54,6 +54,68 @@ import org.junit.jupiter.api.Test;
 )
 public class DefaultPanelStageTest {
     @Test
+    void resumedStageSeedsLiveContextFromPersistedRuleAndPanelChangesInsteadOfOriginalAudit() {
+        Stage stage = new Stage();
+        CorrectionBatch batch = stage.batch("t-pista", "t-respuesta", "t-traduccion");
+        QuizTemplateEntity original = TandaFixture.exercise(stage.course, MesaFixture.VEGETABLES);
+        QuizTemplateEntity hinted = TandaFixture.edited(original,
+                q -> q.getForm().getSentenceParts().get(2).setText("(love) a lot of vegetables."));
+        stage.ledger().record(batch, TandaFixture.change("saved-rule", BatchChangeOrigin.RULE, "hint-coherence",
+                List.of("t-pista"), TandaFixture.step(hinted, ExercisePart.HINT)), stage.course);
+        BatchBook.setOutcome(batch, "t-pista", BatchTaskOutcomeKind.RESOLVED_BY_RULE, "saved-rule", 0, null);
+        QuizTemplateEntity rewritten = withParts(TandaFixture.exercise(stage.course, MesaFixture.COME),
+                text("Spring"), cloze("comes"), text("every year."));
+        stage.ledger().record(batch, TandaFixture.change("saved-panel", BatchChangeOrigin.PANEL, null,
+                List.of(), TandaFixture.step(rewritten, ExercisePart.STATEMENT)), stage.course);
+
+        var engine = org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.AuditEngine.class);
+        var mapper = org.mockito.Mockito.mock(com.learney.contentaudit.auditdomain.CourseMapper.class);
+        var runner = org.mockito.Mockito.mock(com.learney.contentaudit.revisiondomain.panel.PanelRunner.class);
+        var mapped = new com.learney.contentaudit.auditdomain.AuditableCourse(List.of());
+        var provisional = new AuditReport(new com.learney.contentaudit.auditdomain.AuditNode());
+        org.mockito.Mockito.when(mapper.map(org.mockito.ArgumentMatchers.any())).thenAnswer(invocation -> {
+            CourseEntity composed = invocation.getArgument(0);
+            assertEquals("(love) a lot of vegetables.", TandaFixture.exercise(composed, MesaFixture.VEGETABLES)
+                    .getForm().getSentenceParts().get(2).getText());
+            assertEquals(List.of("Spring comes every year."), TandaFixture.exercise(composed, MesaFixture.COME).getSentences());
+            return mapped;
+        });
+        org.mockito.Mockito.when(engine.openWorkingVocabulary(mapped)).thenReturn(new com.learney.contentaudit.auditdomain.WorkingVocabulary() {
+            @Override public void replaceKnowledge(com.learney.contentaudit.auditdomain.AuditableKnowledge knowledge) {
+                throw new AssertionError("this test only reads the reconstructed context");
+            }
+            @Override public <T> T query(java.util.function.BiFunction<AuditReport, Long, T> callback) {
+                return callback.apply(provisional, 0L);
+            }
+        });
+        TopicWordLightsQuery lights = (report, auditId, knowledgeId, criteria) -> {
+            org.junit.jupiter.api.Assertions.assertSame(provisional, report, "not the stale start report");
+            assertEquals(TandaFixture.START_AUDIT, auditId);
+            return new TopicWordLights();
+        };
+        List<TopicWordLights> received = new ArrayList<>();
+        org.mockito.Mockito.when(runner.runTopics(org.mockito.ArgumentMatchers.anyList(), org.mockito.ArgumentMatchers.any(),
+                org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any()))
+                .thenAnswer(invocation -> {
+                    List<TopicWork> works = invocation.getArgument(0);
+                    com.learney.contentaudit.revisiondomain.panel.PanelVocabularyContext context = invocation.getArgument(4);
+                    assertEquals(1, works.size());
+                    assertNull(works.get(0).getWordLights(), "no frozen snapshot calculated before the runner");
+                    received.add(context.lightsFor(works.get(0)));
+                    return List.of();
+                });
+
+        new DefaultPanelStage(runner, TandaFixture.briefer(), MesaFixture.corrections(), lights, stage.ledger(),
+                stage.store, engine, mapper).withPlans(stage.plans).run(batch, stage.start, stage.course, new Turns(100));
+
+        assertEquals(List.of(0L), received.stream().map(TopicWordLights::getWorkingVersion).toList());
+        org.mockito.Mockito.verify(mapper).map(org.mockito.ArgumentMatchers.any());
+        org.mockito.Mockito.verify(engine).openWorkingVocabulary(mapped);
+        org.mockito.Mockito.verifyNoMoreInteractions(engine);
+        assertEquals(original, TandaFixture.exercise(stage.course, MesaFixture.VEGETABLES), "Base is untouched");
+    }
+
+    @Test
     @DisplayName("should open, after the rules, a panel for each topic of the level with panel tasks, with 4 topics and 4 queries at once unless others were asked")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R005")

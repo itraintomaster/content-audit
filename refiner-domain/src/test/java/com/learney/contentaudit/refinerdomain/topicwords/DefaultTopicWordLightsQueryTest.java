@@ -60,6 +60,62 @@ import org.junit.jupiter.api.Test;
 )
 public class DefaultTopicWordLightsQueryTest {
     @Test
+    void incrementalContextRefreshesRealSuggestionsAcrossTopicsAtExposureThresholdAndOnRemoval() {
+        World world = new World(bands(2, 2, 2, 2)).word("cat", "NOUN", CefrLevel.A1, 500)
+                .word("lamp", "NOUN", CefrLevel.A1, 600);
+        world.topic("A1", "First", "k1").quiz("q1", "cat|cat|NOUN");
+        world.topic("A1", "Second", "k2").quiz("q2", "cat|cat|NOUN");
+        var absence = world.absenceConfig();
+        Mockito.when(absence.getHighPriorityBound()).thenReturn(1000);
+        Mockito.when(absence.getHighReportLimit()).thenReturn(20);
+        Mockito.when(absence.getMediumReportLimit()).thenReturn(20);
+        Mockito.when(absence.getLowReportLimit()).thenReturn(20);
+        var evp = world.evp();
+        var coca = Mockito.mock(com.learney.contentaudit.auditdomain.CocaBucketsConfig.class);
+        Mockito.when(coca.getBandConfiguration()).thenReturn(new com.learney.contentaudit.auditdomain.coca.BandConfiguration(
+                List.of(new com.learney.contentaudit.auditdomain.coca.FrequencyBand("common", 1, Integer.MAX_VALUE)), false));
+        Mockito.when(coca.getAnalysisStrategy()).thenReturn(com.learney.contentaudit.auditdomain.coca.AnalysisStrategy.LEVELS);
+        var catalog = new com.learney.contentaudit.auditdomain.findingengine.DefaultAnalyzerCatalog(List.of(
+                new com.learney.contentaudit.auditdomain.lemmacount.LemmaCountAnalyzerProvider(evp, world.config),
+                new com.learney.contentaudit.auditdomain.labs.LemmaAbsenceAnalyzerProvider(evp, absence,
+                        new com.learney.contentaudit.auditdomain.labs.DefaultSentenceLexicalScorer(evp,
+                                new com.learney.contentaudit.auditdomain.lrec.DefaultContentWordFilter(), absence)),
+                new com.learney.contentaudit.auditdomain.coca.CocaBucketsAnalyzerProvider(
+                        Mockito.mock(com.learney.contentaudit.auditdomain.NlpTokenizer.class), coca)));
+        var engine = new com.learney.contentaudit.auditdomain.IAuditEngine(
+                Mockito.mock(com.learney.contentaudit.auditdomain.ScoreAggregator.class), catalog,
+                Mockito.mock(com.learney.contentaudit.auditdomain.FindingCollector.class),
+                Mockito.mock(com.learney.contentaudit.auditdomain.ContextNumbersCalculator.class));
+        List<AuditableKnowledge> knowledges = world.topics.values().stream().map(node -> {
+            AuditableKnowledge entity = (AuditableKnowledge) node.getEntity();
+            return new AuditableKnowledge(node.getChildren().stream().map(q -> (AuditableQuiz) q.getEntity()).toList(),
+                    entity.getTitle(), entity.getInstructions(), true, entity.getId(), entity.getLabel(), null, null, "topic");
+        }).toList();
+        var initial = new com.learney.contentaudit.auditdomain.AuditableCourse(List.of(new AuditableMilestone(List.of(
+                new AuditableTopic(knowledges, "t", "topic", null)), "m", "A1", null)));
+        var working = engine.openWorkingVocabulary(initial);
+        var query = new DefaultTopicWordLightsQuery(world.lexis(), world.port(), new DefaultTopicTeachingResolver());
+        java.util.function.Function<String, TopicWordLights> lights = id -> working.query((report, version) ->
+                query.lightsFor(report, "base", id, criteria()));
+        TopicWordLights before = lights.apply("k2");
+        assertNull(before.getToAdd().stream().filter(l -> l.getLemma().equals("lamp")).findFirst().orElseThrow().getLemmaCount());
+
+        AuditableQuiz lamp = new AuditableQuiz(List.of(new NlpToken("lamp", "lamp", "NOUN", 600, false, false)),
+                "q1", "lamp", null, null, List.of("lamp"), null, null, null, null, null, null);
+        AuditableKnowledge changed = new AuditableKnowledge(List.of(lamp), "First", "Completa.", true, "k1", "First", null, null, "topic");
+        working.replaceKnowledge(changed);
+        assertEquals(1, lights.apply("k2").getToAdd().stream().filter(l -> l.getLemma().equals("lamp")).findFirst().orElseThrow().getLemmaCount());
+        assertFalse(keys(lights.apply("k1").getToAdd()).contains("lamp|NOUN"), "exclude words already present in this topic");
+        AuditableQuiz another = new AuditableQuiz(lamp.getTokens(), "q3", "lamp", null, null, List.of("lamp"), null, null, null, null, null, null);
+        changed = new AuditableKnowledge(List.of(lamp, another), "First", "Completa.", true, "k1", "First", null, null, "topic");
+        working.replaceKnowledge(changed);
+        assertFalse(keys(lights.apply("k2").getToAdd()).contains("lamp|NOUN"), "exposure threshold reached elsewhere in the course");
+        working.replaceKnowledge(knowledges.get(0)); // Final rejection/removal is represented by rebuilding actual state.
+        assertEquals(before, lights.apply("k2"), "removal returns the true suggestions, not the provisional counts");
+        assertNull(before.getToAdd().get(0).getLemmaCount(), "earlier snapshots were not mutated");
+    }
+
+    @Test
     @DisplayName("should list each content word of the topic's quizzes once by lemma and part of speech, with its level, its course sentence count and its light")
     @Tag("FEAT-SEMAF")
     @Tag("F-SEMAF-R001")

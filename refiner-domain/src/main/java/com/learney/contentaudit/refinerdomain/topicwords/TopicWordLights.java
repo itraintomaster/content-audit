@@ -13,6 +13,9 @@ import javax.annotation.processing.Generated;
 public class TopicWordLights {
     private String auditId;
 
+    /** Null for saved analyses; otherwise the version of the run-local provisional context. */
+    private Long workingVersion;
+
     private String knowledgeId;
 
     private String knowledgeLabel;
@@ -38,6 +41,14 @@ public class TopicWordLights {
 
     public String getAuditId() {
         return this.auditId;
+    }
+
+    public Long getWorkingVersion() {
+        return workingVersion;
+    }
+
+    public void setWorkingVersion(Long workingVersion) {
+        this.workingVersion = workingVersion;
     }
 
     public void setAuditId(String auditId) {
@@ -90,6 +101,7 @@ public class TopicWordLights {
         if (o == null || getClass() != o.getClass()) return false;
         TopicWordLights that = (TopicWordLights) o;
         return Objects.equals(this.auditId, that.auditId)
+                    && Objects.equals(this.workingVersion, that.workingVersion)
                     && Objects.equals(this.knowledgeId, that.knowledgeId)
                     && Objects.equals(this.knowledgeLabel, that.knowledgeLabel)
                     && Objects.equals(this.level, that.level)
@@ -99,6 +111,6 @@ public class TopicWordLights {
 
     @Override
     public int hashCode() {
-        return Objects.hash(auditId, knowledgeId, knowledgeLabel, level, words, toAdd);
+        return Objects.hash(auditId, workingVersion, knowledgeId, knowledgeLabel, level, words, toAdd);
     }
 }

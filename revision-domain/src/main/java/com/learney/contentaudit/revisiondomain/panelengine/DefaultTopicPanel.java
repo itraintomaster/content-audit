@@ -29,6 +29,8 @@ import com.learney.contentaudit.revisiondomain.panel.PanelTopicResult;
 import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
 import com.learney.contentaudit.revisiondomain.panel.TopicMeter;
 import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import com.learney.contentaudit.revisiondomain.panel.PanelVocabularyContext;
+import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLights;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashSet;
@@ -107,12 +109,23 @@ class DefaultTopicPanel implements TopicPanel {
     @Override
     public PanelTopicResult run(TopicWork work, PanelRunSettings settings, QueryAllowance allowance,
             PanelDecisionSink sink) {
+        return run(work, settings, allowance, sink, null);
+    }
+
+    @Override
+    public PanelTopicResult run(TopicWork work, PanelRunSettings settings, QueryAllowance allowance,
+            PanelDecisionSink sink, PanelVocabularyContext vocabulary) {
         String knowledgeId = work.getKnowledge() != null ? work.getKnowledge().getId() : null;
         List<PanelDecision> decisions = new ArrayList<>();
         Consumer<PanelDecision> emit = decision -> {
             decisions.add(decision);
             if (sink != null) {
-                sink.accept(decision);
+                try {
+                    sink.accept(decision);
+                } catch (RuntimeException e) {
+                    if (allowance != null) allowance.trip("No se pudo guardar la decisión: " + e.getMessage());
+                    throw e;
+                }
             }
         };
         Allowances.Counting counting = new Allowances.Counting(allowance);
@@ -140,7 +153,7 @@ class DefaultTopicPanel implements TopicPanel {
         boolean interrupted = false;
         // R012: the tasks of the whole topic first; the exercises then see what they changed.
         if (!topicTasks.isEmpty()) {
-            Unit unit = work(work, current, null, topicTasks, settings, counting, emit, false);
+            Unit unit = work(work, current, null, topicTasks, settings, counting, emit, false, vocabulary);
             current = unit.topic();
             interrupted = unit.interrupted();
         }
@@ -168,7 +181,7 @@ class DefaultTopicPanel implements TopicPanel {
                         work.getAttemptsUsed() != null ? work.getAttemptsUsed().getOrDefault(quizId, 0) : 0, List.of(), 0));
                 continue;
             }
-            Unit unit = work(work, current, quizId, tasks, settings, counting, emit, topicInstructionsDone);
+            Unit unit = work(work, current, quizId, tasks, settings, counting, emit, topicInstructionsDone, vocabulary);
             current = unit.topic();
             interrupted = unit.interrupted();
             topicInstructionsDone |= unit.acceptedTopicInstructions();
@@ -221,7 +234,7 @@ class DefaultTopicPanel implements TopicPanel {
 
     private Unit work(TopicWork work, KnowledgeEntity current, String quizId, List<ErrorTaskBrief> tasks,
             PanelRunSettings settings, Allowances.Counting allowance, Consumer<PanelDecision> emit,
-            boolean topicInstructionsDone) {
+            boolean topicInstructionsDone, PanelVocabularyContext vocabulary) {
         String knowledgeId = current.getId();
         String key = quizId != null ? quizId : knowledgeId;
         int spentBefore = allowance.spent();
@@ -261,6 +274,14 @@ class DefaultTopicPanel implements TopicPanel {
         int bestFailingScore = Integer.MAX_VALUE;
         int attempt = attemptsUsed;
         while (attempt < maxAttempts) {
+            // Refresh before reserving a query, so a context failure cannot leak budget.
+            TopicWordLights lights;
+            try {
+                lights = vocabulary != null ? vocabulary.lightsFor(now) : work.getWordLights();
+            } catch (RuntimeException e) {
+                allowance.trip("Falló el contexto léxico: " + e.getMessage());
+                throw e;
+            }
             // R010: a query of the proposer takes its turn on the shared allowance.
             if (!Allowances.reserve(allowance, 1)) {
                 emit.accept(decision(knowledgeId, unitQuizIds, holding, PanelOutcomeKind.NOT_ATTEMPTED, attempt,
@@ -268,7 +289,7 @@ class DefaultTopicPanel implements TopicPanel {
                 return new Unit(current, true, false);
             }
             PanelRequest request = new PanelRequest(work.getBatchId(), work.getLevel(), knowledgeId, quizId,
-                    topicView(current), new ArrayList<>(holding), work.getWordLights(), work.getConversion(), attempt + 1,
+                    topicView(current), new ArrayList<>(holding), lights, work.getConversion(), attempt + 1,
                     new ArrayList<>(rejections), twoFixes(holding));
             PanelProposal proposal;
             try {
@@ -319,6 +340,14 @@ class DefaultTopicPanel implements TopicPanel {
                         taskIds(holding), PanelOutcomeKind.ACCEPTED, winner.getCandidate(), winner.getGate(),
                         new ArrayList<>(decision.getResolvedTaskIds()), attempt, new ArrayList<>(rejections), null, null,
                         new ArrayList<>(), allowance.spent() - spentBefore));
+                if (vocabulary != null) {
+                    try {
+                        vocabulary.accepted(now, accepted);
+                    } catch (RuntimeException e) {
+                        allowance.trip("La propuesta quedó guardada, pero falló su delta léxico: " + e.getMessage());
+                        throw e;
+                    }
+                }
                 return new Unit(accepted, false, winner.getCandidate().getTopicInstructions() != null);
             }
             if (decision.getOutcome() == PanelOutcomeKind.TIE) {

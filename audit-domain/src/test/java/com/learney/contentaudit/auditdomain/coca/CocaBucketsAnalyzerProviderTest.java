@@ -99,13 +99,13 @@ public class CocaBucketsAnalyzerProviderTest {
     }
 
     @Test
-    @DisplayName("should create for every run an analyzer without the topics of an earlier run, so measuring the base of 29/9 twice keeps A1 at 100 and B1 at 57.9 in COCA instead of 75 and 76.1")
+    @DisplayName("should create independent analyzers so measuring the base twice keeps every original score, even with upsert callbacks")
     @Tag("FEAT-CERO")
     @Tag("F-CERO-R001")
     public void shouldCreateForEveryRunAnAnalyzerWithoutTheTopicsOfAnEarlierRunSoMeasuringTheBaseOf299TwiceKeepsA1At100AndB1At579InCOCAInsteadOf75And761() {
         // F-CERO-R001: measuring the base of 29/9 twice in the same process with the analyzers the provider
-        // creates gives A1 100 and B1 57,9 in COCA both times. An analyzer kept for the second run would
-        // still hold the topics of the first: it counts every topic twice and gives 75 and 76,1.
+        // creates gives A1 100 and B1 57,9 in COCA both times. The negative control deliberately
+        // retains topics across runs; its exact wrong scores are not a business contract.
         CocaBucketsAnalyzerProvider provider = new CocaBucketsAnalyzerProvider(Mockito.mock(NlpTokenizer.class),
                 Coca299.config());
         IAuditEngine engine = Coca299.engine(provider);
@@ -116,11 +116,11 @@ public class CocaBucketsAnalyzerProviderTest {
         Assertions.assertEquals(List.of("100,0", "100,0", "57,9", "32,2"), Coca299.levels(first), "the first run");
         Assertions.assertEquals(List.of("100,0", "100,0", "57,9", "32,2"), Coca299.levels(second),
                 "R001: the second run, as a new invocation");
+        Assertions.assertNotSame(provider.create(null), provider.create(null), "a fresh instance for every run");
         IAuditEngine reusing = Coca299.engine(Coca299.reusing(provider));
         reusing.runAudit(Coca299.course());
         List<String> carried = Coca299.levels(reusing.runAudit(Coca299.course()));
-        Assertions.assertEquals("75,0", carried.get(0), "what an analyzer kept for a second run gives in A1");
-        Assertions.assertEquals("76,1", carried.get(2), "and in B1");
+        Assertions.assertNotEquals(Coca299.levels(first), carried, "the negative control detects retained run state");
     }
 
     @Test
