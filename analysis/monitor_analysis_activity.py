@@ -188,15 +188,7 @@ def _elapsed_label(seconds: float) -> str:
 
 
 def _process_is_alive(process_pid: int | None) -> bool | None:
-    if process_pid is None:
-        return None
-    try:
-        os.kill(process_pid, 0)
-        return True
-    except ProcessLookupError:
-        return False
-    except PermissionError:
-        return True
+    return activity_run.process_is_alive(process_pid)
 
 
 def attribution_progress(output: Path) -> AttributionProgress | None:
@@ -282,6 +274,25 @@ def _activity_is_running(workdir: Path, activity_id: str) -> bool:
     return isinstance(record, dict) and str(record.get("status") or "").upper() == "RUNNING"
 
 
+def _has_persisted_closure(args: argparse.Namespace) -> bool:
+    """Confirm an actual closing, never infer success from an absent process."""
+    try:
+        run = activity_run._read_object(activity_run._record_path(args.workdir, args.activity_id))
+        batch_id = run.get("batchId")
+        if not batch_id:
+            return False
+        batch = activity_run._read_object(
+            args.campaign_workdir / ".content-audit/batches" / f"{batch_id}.json"
+        )
+        started = _instant(str(run.get("startedAt") or ""))
+        return started is not None and any(
+            (closed := _instant(str(closing.get("closedAt") or ""))) is not None and closed >= started
+            for closing in batch.get("closings", []) if isinstance(closing, dict)
+        )
+    except (OSError, ValueError):
+        return False
+
+
 def _publish(
     current: AnalysisMetrics,
     args: argparse.Namespace,
@@ -326,6 +337,12 @@ def _publish(
             workdir=args.workdir,
             id=args.activity_id,
             status="RUNNING",
+            only_if_running=True,
+            process_pid=args.process_pid,
+            last_progress_at=(
+                datetime.fromtimestamp(current.last_result_at, timezone.utc).isoformat()
+                if current.last_result_at else None
+            ),
             completed=current.completed,
             summary=summary(
                 current,
@@ -459,6 +476,18 @@ def monitor(args: argparse.Namespace) -> int:
             attribution = attribution_progress(output)
             now = time.time()
             process_alive = _process_is_alive(args.process_pid)
+            if process_alive is False:
+                closed = _has_persisted_closure(args)
+                activity_run.update(Namespace(
+                    workdir=args.workdir, id=args.activity_id,
+                    status="NEEDS_REVIEW" if closed else "FAILED", only_if_running=True,
+                    completed=current.completed,
+                    summary=("El análisis terminó y su cierre quedó guardado. Falta revisar la calidad."
+                             if closed else "El proceso de análisis terminó sin un cierre nuevo confirmado. Lo ya juzgado se conserva."),
+                    next="Revisar el cierre; si falta cobertura, completar sólo lo pendiente.",
+                    finish=True,
+                ))
+                return 0
             model_estimate = model_estimator.observe(
                 current.completed,
                 current.total,

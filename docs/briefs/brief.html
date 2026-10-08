@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark"><title>Revisión lista en código; aplicación selectiva pendiente</title>
+<meta name="color-scheme" content="light dark"><title>Corrección 1 recuperada: ya guarda resultados nuevos</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -242,44 +242,28 @@
 
   </style></head>
 <body><div class="wrap">
-<header><div class="kicker"><span class="num">042</span><span class="badge">Entrega parcial</span><span class="meta">UI · revisión y análisis A1 · 8 octubre 2026</span></div>
-<h1>Revisar ya tiene controles; aplicar aún falta</h1><p class="sub">Cambios probados en código, sin reiniciar la corrección que está trabajando.</p></header>
-<div class="lede"><p><strong>La revisión, el historial y la carga de comparaciones están implementados y probados.</strong> Falta aplicar sólo lo aprobado; la app abierta sigue sin reiniciarse para proteger la corrida.</p></div>
+<header><div class="kicker"><span class="num">044</span><span class="badge">Reparada y reanudada</span><span class="meta">8 octubre 2026 · 13:50 ART</span></div>
+<h1>Corrección 1 ya guarda resultados nuevos</h1><p class="sub">Bloqueo reparado, app actualizada y reanudación comprobada desde la UI.</p></header>
+<div class="lede"><p><strong>La misma Corrección 1 volvió a avanzar: 6 consultas y 5 tareas nuevas guardadas.</strong> No se perdió ninguna propuesta ni medición anterior, ni se publicó contenido.</p></div>
 
-<section><h2>La tanda real conserva sus propuestas y mediciones</h2>
-<div class="kpis"><div class="kpi dest"><div class="n">753<small>vs. 706</small></div><div class="l">propuestas guardadas, contra el inicio de este tramo</div></div>
-<div class="kpi"><div class="n">2<small>de 2</small></div><div class="l">mediciones anteriores recuperadas sin recalcularlas</div></div>
-<div class="kpi"><div class="n">0<small>de 753</small></div><div class="l">propuestas aplicadas por este desarrollo</div></div></div>
-<p class="pie">Lectura comprobada a las 13:00 ART: Corrección 1 sigue en ejecución; no se duplicó, canceló ni reinició.</p></section>
+<section><h2>Se conservó lo existente y el contador volvió a moverse</h2>
+<div class="flow"><div class="st"><div class="i">1</div><div class="h">Respaldo y detención</div><div class="d">Campaña respaldada; Java y Codex trabados terminaron.</div></div>
+<div class="st"><div class="i">2</div><div class="h">Reparación y reinicio</div><div class="d">Runtime compartido corregido y UI recompilada.</div></div>
+<div class="st end"><div class="i">3</div><div class="h">Corrección 1 continúa</div><div class="d">1.426 → 1.431 tareas; 753 → 754 propuestas. Dos análisis conservados.</div></div></div>
+<p class="pie">Comprobado a las 13:50 ART en disco y en la UI, sin pulsar «Volver a leer». Es una instantánea, no un monitor en vivo.</p></section>
 
-<section><h2>La cabecera compacta deja espacio a los ejercicios</h2>
-<figure class="captura"><img src="042-revision-segura-sin-interrumpir/cabecera.png" alt="Captura de prueba de Correcciones con cabecera compacta e historial"><figcaption>Captura de prueba, no de la campaña activa; diseño guiado por frontend-design.</figcaption></figure>
-<p class="pie">Los números secundarios quedan en «Ver detalle». El historial y la revisión reutilizan componentes compartidos, manteniendo el diseño de la app.</p></section>
+<section><h2>El bloqueo era entre canales, no por dejarla sola</h2>
+<div class="ad"><div class="lado antes"><div class="rot">Antes</div><div class="res">Lecturas secuenciales</div><div>Java esperaba stdout mientras Codex llenaba stderr. El control del tiempo no llegaba a ejecutarse.</div></div>
+<div class="lado despues"><div class="rot">Ahora</div><div class="res">Lecturas concurrentes y plazo efectivo</div><div>Ambos canales se drenan juntos. Los 15 minutos de Codex cubren también la entrada/salida; cancelar limpia los subprocesos.</div></div></div>
+<p class="pie">Una única implementación compartida evita repetir la reparación entre proveedores. No se cambió de proveedor ni se repitieron exámenes.</p></section>
 
-<section><h2>Las decisiones quedan dentro de Correcciones</h2>
-<figure class="captura"><img src="042-revision-segura-sin-interrumpir/aprobacion.png" alt="Controles de aprobación, rechazo y cambio exacto dentro de Correcciones"><figcaption>Controles reales del código nuevo, mostrados con datos de prueba.</figcaption></figure>
-<p class="pie">Podés aprobar un cambio o todo un ejercicio, rechazar y deshacer. Si el contenido cambia, la aprobación anterior deja de valer.</p></section>
+<section><h2>La UI distingue señales del monitor y resultados guardados</h2>
+<div class="ad"><div class="lado antes"><div class="rot">Señal del monitor</div><div class="res">«Recién» no prueba avance</div><div>Indica que el seguimiento sigue funcionando.</div></div>
+<div class="lado despues"><div class="rot">Último resultado guardado</div><div class="res">Marca una escritura real</div><div>Tras 15 minutos sin avance, aparece una advertencia. Si muere el proceso, se informa el error y se habilita recuperar.</div></div></div>
+<p class="pie">Un monitor tardío ya no resucita corridas canceladas. Pasaron 20 pruebas del runtime, 20 de telemetría y 255 de la UI, incluida la lectura de las propuestas y análisis reales.</p></section>
 
-<section><h2>Reanalizar no inventa otra corrección</h2>
-<div class="flow"><div class="st"><span class="i">0</span><span class="h">Base fija</span><span class="d">Conserva el punto de partida.</span></div>
-<div class="st"><span class="i">1</span><span class="h">Corrección 1</span><span class="d">Continuar y medir conserva el número.</span></div>
-<div class="st end"><span class="i">2</span><span class="h">Nueva corrección</span><span class="d">Sólo al abrir otra tanda después de integrar.</span></div></div>
-<p class="pie">Comparación lee resultados guardados; no dispara auditorías al navegar. Una medición vieja se identifica como histórica y no avala cambios nuevos.</p></section>
-
-<section><h2>La verificación tiene una salvedad explícita</h2>
-<div class="tw"><table><thead><tr><th>Verificación</th><th>Resultado</th></tr></thead><tbody>
-<tr><td>UI</td><td>252 de 252 pruebas aprobadas.</td></tr>
-<tr><td>Backend del cambio</td><td>85 de 85 pruebas aprobadas.</td></tr>
-<tr><td>HTTP simulado</td><td>5 de 5 aprobadas al habilitar puertos locales.</td></tr>
-<tr><td>Suite general</td><td>Un fallo previo en un fixture de examen; no se modificó.</td></tr>
-<tr><td>App antigua</td><td>7 copias compiladas archivadas; 1 app actual registrada.</td></tr>
-</tbody></table></div>
-<p class="pie">No se corrieron jueces ni exámenes reales. Las copias retiradas son recuperables; fuentes, campañas y producción quedaron intactas.</p></section>
-
-<section><h2>Falta integrar la selección y activar la entrega</h2>
-<div class="flow"><div class="st"><span class="i">1</span><span class="h">Revisión preparada</span><span class="d">Decisiones separadas de la corrida.</span></div>
-<div class="st"><span class="i">2</span><span class="h">Aplicación pendiente</span><span class="d">Validar sólo la selección, sin incluir cambios no aprobados.</span></div>
-<div class="st end"><span class="i">3</span><span class="h">Cargar la versión</span><span class="d">Cuando sea seguro reemplazar la app activa.</span></div></div>
-<div class="call c-warn"><b>Importante:</b> aprobar todavía no aplica contenido; el publicador existente integra toda la tanda y no se usa como aplicación selectiva.</div></section>
-<footer><span>Fuentes: tanda guardada, lectura CLI, pruebas aisladas y capturas de widgets. Estado detallado en <a href="../bitacora.html">la bitácora</a>.</span><span>brief 042 · docs/briefs/042-revision-segura-sin-interrumpir.html</span></footer>
+<section><h2>El saldo de consultas no garantiza terminar todo A1</h2>
+<div class="kpis"><div class="kpi dest"><div class="n">2.092</div><div class="l">máximo adicional: saldo de 2.500 menos 408 guardadas</div></div><div class="kpi"><div class="n">2.068</div><div class="l">tareas aún sin intentar en esta instantánea</div></div></div>
+<p class="pie">Codex/ChatGPT · gpt-6.1-sol · medium. Si el saldo no alcanza, será necesaria autorización para ampliarlo. La estimación de 8.940 corresponde al plan original, no al saldo restante.</p></section>
+<footer><span>Brief 044 · ContentAudit · no publica ni aplica propuestas</span><span>Corrida ui-2026-10-08T16-48-24.466720Z-batch-run · checkpoint durable y Centro de control.</span></footer>
 </div></body></html>

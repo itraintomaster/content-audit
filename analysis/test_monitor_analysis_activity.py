@@ -1,5 +1,7 @@
 import tempfile
 import unittest
+import json
+from argparse import Namespace
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -7,6 +9,20 @@ import monitor_analysis_activity
 
 
 class AnalysisActivityMonitorTest(unittest.TestCase):
+    def test_finished_process_requires_a_new_persisted_closure(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            workdir = Path(directory)
+            run = workdir / ".content-audit/activity/runs/analysis.json"
+            run.parent.mkdir(parents=True)
+            run.write_text(json.dumps({"batchId": "batch", "startedAt": "2026-10-08T12:00:00Z"}))
+            batch = workdir / ".content-audit/batches/batch.json"
+            batch.parent.mkdir(parents=True)
+            args = Namespace(workdir=workdir, campaign_workdir=workdir, activity_id="analysis")
+            batch.write_text(json.dumps({"closings": [{"closedAt": "2026-10-08T11:00:00Z"}]}))
+            self.assertFalse(monitor_analysis_activity._has_persisted_closure(args))
+            batch.write_text(json.dumps({"closings": [{"closedAt": "2026-10-08T13:00:00Z"}]}))
+            self.assertTrue(monitor_analysis_activity._has_persisted_closure(args))
+
     def test_counts_only_records_appended_after_the_baseline(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             evaluations = Path(directory)

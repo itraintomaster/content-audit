@@ -8,6 +8,27 @@ import activity_run
 
 
 class ActivityRunTest(unittest.TestCase):
+    def test_heartbeat_never_resurrects_a_finished_run_or_moves_progress_time(self):
+        with tempfile.TemporaryDirectory() as directory:
+            workdir = Path(directory)
+            path = activity_run.start(Namespace(
+                workdir=workdir, id="recovery", kind="COURSE_CORRECTION", title="Recovery",
+                scope="A1", provider="codex-cli", model="gpt-6.1-sol", reasoning_effort="medium",
+                version="v11", total=10, unit="consultas", summary=None, artifact=[],
+            ))
+            update = dict(workdir=workdir, id="recovery", status="RUNNING", completed=2,
+                          summary=None, next=None, finish=False)
+            activity_run.update(Namespace(**update))
+            observed = json.loads(path.read_text())["lastProgressAt"]
+            activity_run.update(Namespace(**update))
+            self.assertEqual(json.loads(path.read_text())["lastProgressAt"], observed)
+            activity_run.update(Namespace(**{**update, "status": "CANCELLED", "finish": True}))
+            stopped = path.read_text()
+            activity_run.update(Namespace(**update, only_if_running=True))
+            self.assertEqual(path.read_text(), stopped)
+            activity_run.update(Namespace(**update))
+            self.assertEqual(path.read_text(), stopped)
+
     def test_start_publica_una_corrida_viva(self):
         with tempfile.TemporaryDirectory() as temporary:
             workdir = Path(temporary)

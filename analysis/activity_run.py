@@ -9,12 +9,14 @@ un resultado explícito.
 from __future__ import annotations
 
 import argparse
+import fcntl
 import json
 import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from contextlib import contextmanager
 
 from activity_feed import build_feed, write_feed
 
@@ -66,6 +68,27 @@ def _publish(workdir: Path) -> None:
     write_feed(build_feed(workdir, []), output)
 
 
+@contextmanager
+def _activity_lock(workdir: Path):
+    path = workdir / ".content-audit" / "activity" / "update.lock"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("a", encoding="utf-8") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        yield
+
+
+def process_is_alive(process_pid: int | None) -> bool | None:
+    if process_pid is None:
+        return None
+    try:
+        os.kill(process_pid, 0)
+        return True
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+
+
 def _baseline(args: argparse.Namespace) -> dict[str, int] | None:
     values = {
         "queries": getattr(args, "baseline_queries", None),
@@ -79,6 +102,11 @@ def _baseline(args: argparse.Namespace) -> dict[str, int] | None:
 
 
 def start(args: argparse.Namespace) -> Path:
+    with _activity_lock(args.workdir):
+        return _start_locked(args)
+
+
+def _start_locked(args: argparse.Namespace) -> Path:
     now = _now()
     batch_id = getattr(args, "batch_id", None)
     instruction_model = getattr(args, "instruction_model", None)
@@ -134,8 +162,20 @@ def start(args: argparse.Namespace) -> Path:
 
 
 def update(args: argparse.Namespace) -> Path:
+    with _activity_lock(args.workdir):
+        return _update_locked(args)
+
+
+def _update_locked(args: argparse.Namespace) -> Path:
     path = _record_path(args.workdir, args.id)
     record = _read_object(path)
+    # A delayed heartbeat must never resurrect a finished/cancelled run.
+    if getattr(args, "only_if_running", False) and record.get("status") != "RUNNING":
+        return path
+    if args.status == "RUNNING" and record.get("finishedAt"):
+        return path
+    old_completed = (record.get("progress") or {}).get("completed", 0)
+    now = _now()
     if args.status is not None:
         status = args.status.upper()
         if status not in VALID_STATUSES:
@@ -148,6 +188,14 @@ def update(args: argparse.Namespace) -> Path:
             record["progress"] = progress
         total = int(progress.get("total") or args.completed)
         progress["completed"] = max(0, min(args.completed, total))
+        if progress["completed"] > old_completed:
+            record["lastProgressAt"] = now
+    last_progress_at = getattr(args, "last_progress_at", None)
+    if last_progress_at is not None:
+        record["lastProgressAt"] = last_progress_at
+    process_pid = getattr(args, "process_pid", None)
+    if process_pid is not None:
+        record["processPid"] = process_pid
     progress_estimate = getattr(args, "progress_estimate", None)
     if progress_estimate is not None:
         progress = record.get("progress")
@@ -170,8 +218,8 @@ def update(args: argparse.Namespace) -> Path:
     if baseline is not None:
         record["baseline"] = {**record.get("baseline", {}), **baseline}
     if args.finish:
-        record["finishedAt"] = _now()
-    record["updatedAt"] = _now()
+        record["finishedAt"] = now
+    record["updatedAt"] = now
     _write_object(path, record)
     _publish(args.workdir)
     return path

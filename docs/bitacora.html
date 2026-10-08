@@ -83,28 +83,28 @@
 <div class="shell">
   <div class="topline">
     <div class="live"><span class="pulse"></span><span>CENTRO DE CONTROL · CONTROLES REALES</span></div>
-    <div class="updated">Comprobado <time id="updatedAgo">8/10, 13:00</time> · Corrección 1 en ejecución</div>
+    <div class="updated">Comprobado <time id="updatedAgo">8/10, 13:50</time> · Corrección 1 reanudada</div>
   </div>
 
   <header>
     <div class="eyebrow">8 de octubre · Campaña A1 V11 · última comprobación</div>
-    <h1>Corrección 1 sigue avanzando.</h1>
-    <p class="lede"><strong>753 propuestas guardadas y la ejecución original activa.</strong> Los cambios de revisión están en el código, todavía no en la ventana abierta. Nada fue publicado por este desarrollo.</p>
+    <h1>Corrección 1 volvió a avanzar.</h1>
+    <p class="lede"><strong>Reparada y reanudada desde la UI: 6 consultas nuevas y 5 tareas más guardadas.</strong> El bloqueo era entre los canales de Java y Codex, no por dejar la app sola. Se conservan todas las propuestas y las dos mediciones anteriores. No se publicó contenido.</p>
   </header>
 
   <section>
-    <h2>El trabajo actual no fue reiniciado</h2>
+    <h2>Misma Corrección 1, con resultados nuevos</h2>
     <div class="result-grid">
-      <article class="result live-run"><div class="kicker">Propuestas guardadas</div><strong>753</strong><p>Había 706 al comenzar. Este número representa propuestas, no consultas ni tareas. El tope de 2.500 consultas no garantiza completar todo A1.</p></article>
-      <article class="result"><div class="kicker">Revisión leída desde el backend nuevo</div><strong>916 cambios</strong><p>La lectura devuelve las 753 propuestas actuales y las 2 mediciones anteriores, sin recalcular auditorías ni consultar modelos.</p></article>
+      <article class="result live-run"><div class="kicker">Propuestas guardadas a las 13:50</div><strong>754</strong><p>Había 753 al reanudar. Avanzó de 1.426 a 1.431 tareas trabajadas de 3.499. Sigue siendo Corrección 1; quedan 2.068 tareas sin intentar.</p></article>
+      <article class="result"><div class="kicker">Saldo máximo adicional autorizado</div><strong>2.092 consultas</strong><p>Se reanudó con el saldo del tope anterior: 2.500 menos 408 guardadas. Codex/ChatGPT, gpt-6.1-sol, medium. Si no alcanza para todo A1, hará falta ampliar el presupuesto.</p></article>
     </div>
-    <p class="caption">Verificación de las 13:00 ART: tanda guardada como RUNNING; proveedor codex-cli, modelo gpt-6.1-sol, esfuerzo medium. Hay una consulta prolongada, mientras otras siguen avanzando. No se canceló ni duplicó la ejecución.</p>
+    <p class="caption">Verificación de las 13:50 ART: la nueva corrida ui-2026-10-08T16-48-24.466720Z-batch-run guarda resultados y la UI muestra su avance automáticamente. Los canales se drenan en paralelo con plazo efectivo; el monitor no puede resucitar una operación cancelada. La UI separa señal de proceso y último resultado, advierte si no hay avance y permite reanudar con un saldo exacto. Pasaron 20 pruebas del runtime, 20 de telemetría y 255 de la UI. Campaña respaldada antes de detener; no hay otra corrección duplicada. <a href="briefs/044-recuperacion-correccion-1.html">Reparación y recuperación 044</a> · <a href="briefs/043-correccion-bloqueada-en-canales.html">Diagnóstico anterior 043</a>.</p>
   </section>
 
   <section>
     <h2>Primera entrega de revisión, sin confundir aprobar con aplicar</h2>
     <div class="guards">
-      <div class="guard"><div class="icon">1</div><h3>Revisión exacta</h3><p>En el código nuevo, Correcciones permite aprobar o rechazar cada cambio o aprobar todo un ejercicio. Guarda la decisión separada de la corrida.</p></div>
+      <div class="guard"><div class="icon">1</div><h3>Revisión exacta</h3><p>La app nueva ya abre Correcciones con las propuestas reales y su cabecera compacta. Permite guardar aprobaciones o rechazos separados de la corrida; no equivale a aplicar contenido.</p></div>
       <div class="guard"><div class="icon">2</div><h3>Lecturas guardadas</h3><p>Comparación ya lee mediciones guardadas, sin ejecutar auditorías al navegar. El historial conserva la Base y las mediciones anteriores.</p></div>
       <div class="guard"><div class="icon">3</div><h3>Aplicación pendiente</h3><p>Aplicar sólo lo aprobado aún no está implementado. El publicador existente integra toda la tanda: no se lo presenta como una aplicación selectiva.</p></div>
     </div>
@@ -631,7 +631,7 @@
   <footer><span>Fuente: tanda guardada y procesos locales. Una recarga de esta página no vuelve a comprobar el backend.</span><span class="mono">docs/bitacora.html · última comprobación explícita</span></footer>
 </div>
 <script>
-  const state={used:287,total:287,updatedAt:'2026-10-08T13:00:00-03:00'};
+  const state={used:287,total:287,updatedAt:'2026-10-08T13:50:00-03:00'};
   const pct=state.used/state.total*100;
   document.querySelector('#ring').style.setProperty('--p',`${pct*3.6}deg`);
   document.querySelector('#pct').textContent=pct.toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';

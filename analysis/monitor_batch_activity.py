@@ -16,6 +16,7 @@ import time
 from argparse import Namespace
 from dataclasses import dataclass
 from pathlib import Path
+from datetime import datetime, timezone
 from typing import Any
 
 import activity_run
@@ -91,12 +92,16 @@ def _publish(
     current: BatchMetrics,
     args: argparse.Namespace,
     estimate: ProgressEstimate,
+    last_progress_at: str | None = None,
 ) -> None:
     activity_run.update(
         Namespace(
             workdir=args.workdir,
             id=args.activity_id,
             status="RUNNING",
+            only_if_running=True,
+            process_pid=getattr(args, "process_pid", None),
+            last_progress_at=last_progress_at,
             completed=max(0, current.queries - args.baseline_queries),
             summary=summary(current, args),
             next=(
@@ -132,6 +137,7 @@ def _finish(current: BatchMetrics, raw: dict[str, Any], args: argparse.Namespace
             workdir=args.workdir,
             id=args.activity_id,
             status="FAILED" if interrupted else "NEEDS_REVIEW",
+            only_if_running=True,
             completed=max(0, current.queries - args.baseline_queries),
             summary=final_summary,
             next=next_step,
@@ -165,6 +171,15 @@ def monitor(args: argparse.Namespace) -> int:
         lock.flush()
 
         seen_running = False
+        activity = _read_object(
+            args.workdir / ".content-audit/activity/runs" / f"{args.activity_id}.json"
+        ) or {}
+        try:
+            started_at = datetime.fromisoformat(
+                str(activity.get("startedAt") or "").replace("Z", "+00:00")
+            ).timestamp()
+        except ValueError:
+            started_at = float("inf")
         missing_ticks = 0
         last_published: BatchMetrics | None = None
         last_estimate: ProgressEstimate | None = None
@@ -180,6 +195,21 @@ def monitor(args: argparse.Namespace) -> int:
                 continue
             missing_ticks = 0
             current = metrics(raw)
+            if activity_run.process_is_alive(getattr(args, "process_pid", None)) is False:
+                if current.status in {"OPEN", "INTERRUPTED"} and (
+                    seen_running or batch.stat().st_mtime >= started_at
+                ):
+                    _finish(current, raw, args)
+                else:
+                    activity_run.update(Namespace(
+                        workdir=args.workdir, id=args.activity_id,
+                        status="FAILED", only_if_running=True,
+                        completed=max(0, current.queries - args.baseline_queries),
+                        summary="El proceso de corrección ya no está activo. Lo guardado se conserva.",
+                        next="Reanudar la misma Corrección desde Configurar más correcciones.",
+                        finish=True,
+                    ))
+                return 0
             if current.status == "RUNNING":
                 seen_running = True
                 now = time.time()
@@ -193,7 +223,11 @@ def monitor(args: argparse.Namespace) -> int:
                     or estimate != last_estimate
                     or now - last_heartbeat >= args.heartbeat
                 ):
-                    _publish(current, args, estimate)
+                    # The batch timestamp denotes a durable write, not this heartbeat.
+                    last_progress_at = datetime.fromtimestamp(
+                        batch.stat().st_mtime, timezone.utc
+                    ).isoformat()
+                    _publish(current, args, estimate, last_progress_at)
                     last_published = current
                     last_estimate = estimate
                     last_heartbeat = now
@@ -211,6 +245,7 @@ def parser() -> argparse.ArgumentParser:
     root.add_argument("--campaign-workdir", type=Path, required=True)
     root.add_argument("--batch-id", required=True)
     root.add_argument("--activity-id", required=True)
+    root.add_argument("--process-pid", type=int)
     root.add_argument("--baseline-queries", type=int, required=True)
     root.add_argument("--baseline-tasks-attempted", type=int, required=True)
     root.add_argument("--baseline-proposals", type=int, required=True)
