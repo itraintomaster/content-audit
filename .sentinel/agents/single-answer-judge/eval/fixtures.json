@@ -156,6 +156,36 @@
       "instructions": "Completa con el 'present simple'.",
       "exercise": "We usually ___ dinner at eight.",
       "acceptedAnswers": "Hueco 1: have"
+    },
+    "reg-analytic-comparative": {
+      "title": "Comparativos",
+      "instructions": "Completa con una forma comparativa correcta del adjetivo entre paréntesis.",
+      "exercise": "The new corridor is ___ (narrow) than the old one.",
+      "acceptedAnswers": "Hueco 1: narrower"
+    },
+    "reg-clause-final-still": {
+      "title": "Continuidad con $still$",
+      "instructions": "Reescribe la pregunta usando 'still'.",
+      "exercise": "Do you continue to study French? ___",
+      "acceptedAnswers": "Hueco 1: Are you still studying French?"
+    },
+    "reg-cost-complement": {
+      "title": "El costo de algo",
+      "instructions": "Completa con la preposición correcta.",
+      "exercise": "What is the cost ___ the annual pass?",
+      "acceptedAnswers": "Hueco 1: of"
+    },
+    "reg-formal-topic-preposition": {
+      "title": "Preposiciones de tema",
+      "instructions": "Completa con una preposición correcta.",
+      "exercise": "We spoke ___ the revised schedule.",
+      "acceptedAnswers": "Hueco 1: about"
+    },
+    "reg-ditransitive-get-passive": {
+      "title": "La voz pasiva",
+      "instructions": "Transforma la oración a voz pasiva.",
+      "exercise": "The office sent Nina a replacement badge. ___",
+      "acceptedAnswers": "Hueco 1: Nina was sent a replacement badge by the office."
     }
   },
   "cases": [
@@ -1469,6 +1499,187 @@
           }
         ],
         "rationale": "El hueco no da ninguna pista de verbo y «dinner» admite varios colocados habituales: «eat» es tan esperable como «have», y «cook» también es natural, así que la respuesta única del corrector deja al alumno adivinando."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "should_list_analytic_comparative_when_suffix_form_is_not_required",
+      "note": "Regresión sintética F-UNICA-R002: como la consigna no exige el sufijo comparativo, la forma analítica correcta debe aparecer. Esta salida grabada fija el contrato semántico; el eval offline valida su forma, no ejecuta inferencia.",
+      "inputs": "reg-analytic-comparative",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "more narrow",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«More narrow» es un comparativo analítico correcto y natural; la consigna admite cualquier forma comparativa y no exige el sufijo '-er'."
+          }
+        ],
+        "rationale": "El corrector acepta sólo el comparativo sintético, aunque la consigna también permite la variante analítica."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "should_rate_less_expected_analytic_comparative_as_medium",
+      "note": "Regresión sintética F-UNICA-R004: una variante comparativa correcta pero menos esperable se clasifica MEDIUM. Esta salida grabada fija el contrato semántico; el eval offline valida su forma, no ejecuta inferencia.",
+      "inputs": "reg-analytic-comparative",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "more narrow",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«More narrow» es correcto y natural, pero en este contexto es menos habitual que «narrower»."
+          }
+        ],
+        "rationale": "La alternativa analítica vale, aunque es menos esperable que la forma que acepta el corrector."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "should_list_clause_final_still_when_position_is_not_constrained",
+      "note": "Regresión sintética F-UNICA-R002: la consigna exige 'still' pero no su posición; la colocación final correcta debe aparecer. Esta salida grabada fija el contrato semántico; el eval offline valida su forma, no ejecuta inferencia.",
+      "inputs": "reg-clause-final-still",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "Are you studying French still?",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "La pregunta conserva el sentido y usa 'still' en una posición final válida; la consigna no fija su ubicación."
+          }
+        ],
+        "rationale": "La posición final de 'still' es correcta, aunque más informal y menos esperable que la posición media."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "should_rate_informal_clause_final_still_as_medium",
+      "note": "Regresión sintética F-UNICA-R004: la posición final informal de 'still' sigue siendo correcta y recibe MEDIUM. Esta salida grabada fija el contrato semántico; el eval offline valida su forma, no ejecuta inferencia.",
+      "inputs": "reg-clause-final-still",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "Are you studying French still?",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "La posición final es natural en registro conversacional, pero resulta menos esperable que «Are you still studying French?»."
+          }
+        ],
+        "rationale": "La variante informal no debe descartarse; corresponde marcarla con gravedad media."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "should_not_list_for_as_the_item_complement_of_cost",
+      "note": "Regresión sintética F-UNICA-R002: 'for' no es el complemento natural de la entidad cuyo costo se pregunta; no debe listarse como alternativa a 'of'. Esta salida grabada fija el contrato semántico; el eval offline valida su forma, no ejecuta inferencia.",
+      "inputs": "reg-cost-complement",
+      "verdict": {
+        "alternatives": [],
+        "rationale": "«The cost of the annual pass» expresa naturalmente el costo de esa entidad; «the cost for the annual pass» no usa 'for' como un complemento equivalente de la entidad cuyo costo se pregunta."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "should_list_formal_topic_prepositions_when_any_correct_preposition_is_allowed",
+      "note": "Regresión sintética F-UNICA-R002: si se admite cualquier preposición correcta, una opción formal de tema también debe listarse. Esta salida grabada fija el contrato semántico; el eval offline valida su forma, no ejecuta inferencia.",
+      "inputs": "reg-formal-topic-preposition",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "regarding",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«We spoke regarding the revised schedule» usa una preposición formal correcta y la consigna no limita el registro."
+          }
+        ],
+        "rationale": "El corrector acepta una opción corriente, pero la consigna también permite la variante formal correcta."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "should_rate_formal_topic_prepositions_as_medium",
+      "note": "Regresión sintética F-UNICA-R004: una preposición temática formal, correcta pero menos esperable, recibe MEDIUM. Esta salida grabada fija el contrato semántico; el eval offline valida su forma, no ejecuta inferencia.",
+      "inputs": "reg-formal-topic-preposition",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "regarding",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "«Regarding» es correcta como preposición de tema, pero su registro formal la hace menos esperable que «about» en esta oración."
+          }
+        ],
+        "rationale": "La diferencia de registro reduce la expectativa, no la validez de la alternativa."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "should_list_ditransitive_get_passive_when_passive_auxiliary_is_not_constrained",
+      "note": "Regresión sintética F-UNICA-R002: la consigna pide voz pasiva sin imponer auxiliar; la pasiva ditransitiva con 'get' debe listarse. Esta salida grabada fija el contrato semántico; el eval offline valida su forma, no ejecuta inferencia.",
+      "inputs": "reg-ditransitive-get-passive",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "Nina got sent a replacement badge by the office.",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "La oración es una pasiva ditransitiva correcta con 'get'; la consigna pide voz pasiva sin exigir el auxiliar 'be'."
+          }
+        ],
+        "rationale": "El corrector acepta la pasiva con 'be', pero una pasiva con 'get' también satisface la consigna."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "should_rate_informal_ditransitive_get_passive_as_medium",
+      "note": "Regresión sintética F-UNICA-R004: la pasiva ditransitiva con 'get' es correcta e informal, por lo que recibe MEDIUM. Esta salida grabada fija el contrato semántico; el eval offline valida su forma, no ejecuta inferencia.",
+      "inputs": "reg-ditransitive-get-passive",
+      "verdict": {
+        "alternatives": [
+          {
+            "answer": "Nina got sent a replacement badge by the office.",
+            "gap": 1,
+            "kind": "DIFFERENT_VALID",
+            "severity": "MEDIUM",
+            "reason": "La pasiva con 'get' es natural en registro informal, pero resulta menos esperable que la pasiva con 'be' que acepta el corrector."
+          }
+        ],
+        "rationale": "La variante informal es válida y menos esperable, así que corresponde gravedad media."
       },
       "expect": {
         "route": "passed",

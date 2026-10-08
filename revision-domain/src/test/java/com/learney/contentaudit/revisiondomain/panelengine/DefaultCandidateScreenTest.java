@@ -11,6 +11,7 @@ import com.learney.contentaudit.coursedomain.KnowledgeEntity;
 import com.learney.contentaudit.coursedomain.MultipleChoiceEntity;
 import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
 import com.learney.contentaudit.revisiondomain.panel.ConversionOrder;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
@@ -72,27 +73,79 @@ public class DefaultCandidateScreenTest {
     }
 
     @Test
-    @DisplayName("should reject a mini-theory candidate that misses an exercise of the topic showing the text, or reaches one that does not show it")
+    @DisplayName("should let a lemma-absence candidate change what is heard so the gate can attach the required rerecord request")
+    @Tag("F-TAREA-R006")
+    @Tag("F-NOEMP-R004")
+    public void shouldLetALemmaabsenceCandidateChangeWhatIsHeardSoTheGateCanAttachTheRequiredRerecordRequest() {
+        // F-NOEMP-R004: audio follows the exercise. A lexical rewrite is not rejected for changing the spoken text;
+        // it reaches the change gate, which records the new text as pending rerecording.
+        KnowledgeEntity topic = afirmativas();
+        QuizTemplateEntity original = exercise(topic, VEGETABLES);
+        QuizTemplateEntity simpler = withParts(original, text("I"), cloze("love"), text("a lot of food."));
+        simpler.setTranslation("Me gusta mucho la comida.");
+        Finding lexical = finding("lemma-absence", "misplaced-word", VEGETABLES, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, "vegetables", "vegetables no corresponde al nivel");
+        TopicWork work = work(topic, List.of(brief("t-lemma", lexical)));
+
+        List<String> violations = new DefaultCandidateScreen(corrections()).screen(work, VEGETABLES,
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, simpler));
+
+        assertEquals(List.of(), violations,
+                "the spoken-text change must become a rerecord request in the gate, not a structural rejection");
+    }
+
+    @Test
+    @DisplayName("should let a lemma-absence candidate replace an answer, its obsolete hint and its local mini theory together")
+    @Tag("F-TAREA-R006")
+    @Tag("F-LAPS-R013")
+    public void shouldLetALemmaabsenceCandidateReplaceAnOutoflevelAnswerAndItsObsoleteHintTogether() {
+        // Regression from the real A1 quiz «We slept ___ (sound / soundly) last night.»: preserving the old hint after
+        // replacing «soundly» makes the exercise unsolvable, and preserving its «adverb with -ly» explanation makes
+        // «well» contradict the mini theory. The lexical correction owns the three parts of that one coherent rewrite.
+        String quizId = "67fab6d59930102295342ee7";
+        QuizTemplateEntity original = quiz(quizId, "Anoche dormimos profundamente.",
+                text("We slept"), cloze("soundly"), text("(sound / soundly) last night."));
+        KnowledgeEntity topic = topic("adjective-or-adverb", "Adjetivo o adverbio",
+                new ArrayList<>(List.of(original)));
+        Finding lexical = finding("lemma-absence", "out-of-catalog-word", quizId, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, "soundly", "soundly no pertenece al vocabulario A1");
+        TopicWork work = work(topic, List.of(brief("t-soundly", lexical)));
+        QuizTemplateEntity proposed = withParts(original,
+                text("We slept"), cloze("well"), text("(good / well) last night."));
+        proposed.setTranslation("Anoche dormimos bien.");
+        proposed.setMiniTheory("$Good$ es adjetivo; para decir cómo dormimos, usamos $well$: $We slept well$.");
+
+        List<String> violations = new DefaultCandidateScreen(corrections()).screen(work, quizId,
+                candidate(PanelCandidateKind.WHOLE_EXERCISE, proposed));
+
+        assertEquals(List.of(), violations,
+                "answer, hint, sentence, translation and local explanation must reach the judges as one candidate");
+    }
+
+    @Test
+    @DisplayName("should accept a quiz-local mini-theory candidate although a sibling shares its text and reject only a missing target or empty text")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R012")
-    public void shouldRejectAMinitheoryCandidateThatMissesAnExerciseOfTheTopicShowingTheTextOrReachesOneThatDoesNotShowIt(
+    public void shouldAcceptAQuizlocalMinitheoryCandidateAlthoughASiblingSharesItsTextAndRejectOnlyAMissingTargetOrEmptyText(
             ) {
-        // F-MESA-R012: the new mini theory reaches every exercise of the topic that shows the text, and no other.
+        // F-MESA-R012: the candidate belongs to the explicit quiz id. Text equality with another quiz neither expands
+        // its reach nor makes that sibling mandatory.
         KnowledgeEntity topic = contraste();
-        List<String> nine = stateVerbExercises();
-        List<String> eight = new ArrayList<>(nine.subList(1, 9));
-        List<String> ten = new ArrayList<>(nine);
-        ten.add(topic.getQuizTemplates().get(9).getId());
+        String q1 = stateVerbExercises().get(0);
+        String q2 = stateVerbExercises().get(1);
+        assertEquals(exercise(topic, q1).getMiniTheory(), exercise(topic, q2).getMiniTheory(),
+                "the sibling deliberately shows the same old text");
+        ErrorTaskBrief task = brief("t-mini", miniTheory(q1));
+        TopicWork work = work(topic, List.of(task));
         PanelCandidate text = new PanelCandidate(PanelCandidateKind.MINI_THEORY, null, "Los verbos de estado no van en -ing.", null, "");
         DefaultCandidateScreen screen = new DefaultCandidateScreen(corrections());
 
-        List<String> missing = screen.screen(work(topic, List.of(topicBrief("t-mini", miniTheory(), eight))), null, text);
-        List<String> beyond = screen.screen(work(topic, List.of(topicBrief("t-mini", miniTheory(), ten))), null, text);
-        List<String> exact = screen.screen(work(topic, List.of(topicBrief("t-mini", miniTheory(), nine))), null, text);
-
-        assertEquals(List.of("la miniteoría no llega a " + nine.get(0) + ", que muestra el mismo texto"), missing);
-        assertEquals(List.of("la miniteoría llega a " + ten.get(9) + ", que no muestra ese texto"), beyond);
-        assertEquals(List.of(), exact);
+        assertEquals(List.of(), screen.screen(work, q1, text),
+                "q1 is enough: sharing its old text with q2 does not propagate the candidate");
+        assertEquals(List.of("la tarea de miniteoría no trae el ejercicio objetivo"), screen.screen(work, null, text));
+        assertEquals(List.of("el ejercicio q-unknown no está en el tema"), screen.screen(work, "q-unknown", text));
+        PanelCandidate empty = new PanelCandidate(PanelCandidateKind.MINI_THEORY, null, "   ", null, "");
+        assertEquals(List.of("la miniteoría nueva está vacía"), screen.screen(work, q1, empty));
     }
 
     @Test
@@ -167,8 +220,9 @@ public class DefaultCandidateScreenTest {
                 new ArrayList<>(List.of(items)))));
     }
 
-    private static Finding miniTheory() {
-        return topicFinding("mini-theory", "explains-the-lesson", CONTRASTE, FindingSeverity.HIGH, null, "no explica");
+    private static Finding miniTheory(String quizId) {
+        return finding("mini-theory", "explains-this-quiz", quizId, FindingSeverity.HIGH,
+                FindingResolution.PANEL, STATE_VERBS, "no explica el caso de este quiz");
     }
 
     private static TopicWork converting(KnowledgeEntity topic) {

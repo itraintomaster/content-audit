@@ -5,6 +5,41 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-06 — José — V11 queda como versión operativa con criterio de estabilidad cuantitativo: formal estricto,
+  acuerdo por ejercicio ≥99,5 %, Jaccard de copias ≥98 % y revisión humana de toda divergencia. La igualdad absoluta
+  sigue siendo ideal, no una condición que justifique gastar indefinidamente. Las decisiones coincidentes se pueden
+  reutilizar; las divergentes no entran al libro operativo hasta revisarlas.
+  why: V11 logró 87/87 en el formal, 2.399/2.402 ejercicios iguales y 265/268 copias comunes; los cuatro desacuerdos
+  son fronteras pedagógicas finas y toda corrección pasa por la mesa humana.
+
+2026-10-06 — coordinador — V7 exige identificar primero la respuesta seleccionada en `Resuelto:`. Las alternativas y
+  pistas no elegidas son distractores; cuando la selección es `-`, el juez compara la decisión de omitir y no atribuye
+  al hueco la función de un reflexivo o artículo visible pero descartado. El cambio pasó 29/29 microcasos (22 mismo,
+  7 distinto) con el modelo efectivo y sin errores de gate.
+  why: V6 había fallado sólo el par 48 por razonar sobre un distractor; el criterio R002 manda juzgar la decisión que
+  efectivamente practica el alumno.
+
+2026-10-06 — coordinador — La revisión completa de los 57 pares, leyendo tema, hueco y respuesta resuelta, deja 50
+  positivos y 7 negativos. Los pares 206 (`this`/`these` en el tema de demostrativos) y 239 (`love`/`enjoy` en
+  gerundio vs infinitivo) pasan de S a O-decision porque el cambio es precisamente el contraste enseñado. El par 48
+  conserva S: en ambos la respuesta seleccionada es omitir el reflexivo (`-`); la función del distractor visible no es
+  la función de la respuesta.
+  why: R002 manda mirar la decisión concreta del tema y la respuesta seleccionada, no heredar el prefijo del oro viejo
+  ni atribuirle a un distractor la función del hueco resuelto.
+
+2026-10-06 — coordinador — El oro congelado el 3/10 pertenece al criterio anterior y no puede aprobar ni reprobar al
+  juez vigente. Las clases `O-cosa`, `O-oracion` y `O-sentido` separaban por contenido o situación aunque se conservaran
+  la operación y la función; bajo R002 son positivos. Sólo `O-funcion` conserva negativos inequívocos. Se reconstruyó
+  de forma reproducible una puerta de transición de 57 pares (52 mismo, 5 distinto), pero no sustituye la ampliación
+  balanceada de negativos que exige R007 para la aprobación formal.
+  why: afinar el prompt contra etiquetas incompatibles produjo la oscilación V3–V5; cambiar Sol por Astra no podía
+  corregir una contradicción del examen.
+
+2026-10-05 — analyst — R002 define duplicado por misma operacion/decision pedagogica, respuesta objetivo y funcion.
+  Sujeto, tiempo, lugar, numero, posesivo y lexico no objetivo son superficie salvo que cambien esa decision; dialogo ya
+  no es una exclusion automatica. El oro vigente debe reclasificarse y ampliarse antes de volver a medir.
+  why: ajuste aprobado por Jose en el brief 029 tras explicar los 27 falsos negativos de Codex.
+
 2026-10-03 — analyst — Precisa las trazas de dos pruebas del qa-tester (pedido del coordinador): R010 suma la inv. 3
   (si el juez de pares no enuncia su versión, la de Ollama no se nombra ni rinde, no se consulta ni a nomic-embed-text
   ni a claude -p, y near-duplicates queda sin evaluar, comodín incluido, con el motivo del juez); R009 inv. 3 dice que

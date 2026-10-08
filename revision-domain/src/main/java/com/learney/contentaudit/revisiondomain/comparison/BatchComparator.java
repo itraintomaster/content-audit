@@ -10,4 +10,12 @@ import javax.annotation.processing.Generated;
 )
 public interface BatchComparator {
     BatchComparison compare(Path coursePath, ProjectionScope scope);
+
+    /**
+     * The same aggregate comparison, without the leave-one-out audit for every pending change.
+     * Useful for an interactive overview; callers can request the full attribution explicitly.
+     */
+    default BatchComparison compareSummary(Path coursePath, ProjectionScope scope) {
+        return compare(coursePath, scope);
+    }
 }

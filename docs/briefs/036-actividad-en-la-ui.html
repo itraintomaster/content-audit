@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Actividad en la UI · ContentAudit</title>
+<style>
+  :root{--bg:#f6f5f2;--paper:#fff;--ink:#343436;--muted:#6e6b70;--line:#dedcdf;--purple:#46217a;--orange:#f4511e;--green:#2e8738;--red:#b3261e;--amber:#916700;--soft-purple:#eee9ff;--soft-red:#f9e9e7;--soft-green:#e9f4eb;--shadow:0 22px 60px -42px #281a38}
+  @media(prefers-color-scheme:dark){:root{--bg:#111013;--paper:#1b191e;--ink:#f1edf3;--muted:#aaa3ae;--line:#39343e;--purple:#a987e8;--orange:#ff815a;--green:#72c77b;--red:#ff8b82;--amber:#e3be61;--soft-purple:#2a213d;--soft-red:#331d1d;--soft-green:#172b1b;--shadow:0 22px 70px -38px #000}}
+  *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",sans-serif}.shell{max-width:1180px;margin:auto;padding:42px 24px 80px}.eyebrow{font:800 11px ui-monospace,monospace;color:var(--orange);letter-spacing:.1em;text-transform:uppercase}h1{font-size:clamp(38px,7vw,76px);line-height:.94;letter-spacing:-.06em;margin:14px 0 18px;max-width:12ch}.lede{font-size:clamp(18px,2vw,22px);color:var(--muted);max-width:68ch;margin:0 0 38px}.lede b{color:var(--ink)}.status{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:50px}.pill{padding:6px 10px;border:1px solid var(--line);border-radius:999px;font-size:12px;font-weight:750;background:var(--paper)}.pill.ok{color:var(--green);background:var(--soft-green)}.pill.info{color:var(--purple);background:var(--soft-purple)}section{margin:0 0 58px}h2{font-size:28px;line-height:1.1;letter-spacing:-.035em;margin:0 0 8px}.intro{color:var(--muted);max-width:72ch;margin:0 0 18px}.before-after{display:grid;grid-template-columns:1fr 42px 1fr;align-items:stretch}.state{padding:22px;border:1px solid var(--line);background:var(--paper);border-radius:18px;box-shadow:var(--shadow)}.state.bad{border-color:color-mix(in srgb,var(--red) 35%,var(--line));background:var(--soft-red)}.state.good{border-color:color-mix(in srgb,var(--green) 35%,var(--line));background:var(--soft-green)}.state .label{font:800 11px ui-monospace,monospace;text-transform:uppercase;color:var(--muted)}.state strong{display:block;font-size:24px;line-height:1.12;margin:12px 0 7px}.state p{margin:0;color:var(--muted)}.arrow{display:grid;place-items:center;color:var(--orange);font-size:28px}.app{border:1px solid var(--line);background:var(--paper);border-radius:22px;overflow:hidden;box-shadow:var(--shadow)}.appbar{height:58px;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 20px;font-weight:850}.appbody{display:grid;grid-template-columns:92px 1fr}.rail{border-right:1px solid var(--line);padding:16px 10px;display:grid;align-content:start;gap:13px}.nav{font-size:10px;text-align:center;color:var(--muted);padding:8px 2px;border-radius:12px}.nav b{display:block;font-size:19px;color:inherit}.nav.active{background:var(--purple);color:white}.content{padding:24px}.title-row{display:flex;justify-content:space-between;align-items:start;gap:18px}.title-row h3{font-size:28px;margin:0}.title-row p{color:var(--muted);margin:4px 0}.updated{color:var(--orange);font-weight:800;font-size:12px}.coverage{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin:20px 0}.cover{border:1px solid var(--line);border-radius:12px;padding:10px;min-width:0}.cover b{font-size:11px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.track{height:5px;border-radius:10px;background:var(--line);margin:11px 0 7px;overflow:hidden}.track i{display:block;height:100%;width:var(--p);background:var(--purple)}.cover.done .track i{background:var(--green)}.cover.fail{border-color:color-mix(in srgb,var(--red) 45%,var(--line))}.cover small{font-size:9px;color:var(--muted)}.work{display:grid;grid-template-columns:280px 1fr;gap:12px}.runs,.detail{border:1px solid var(--line);border-radius:14px;overflow:hidden}.runs h4{margin:0;padding:13px 15px;border-bottom:1px solid var(--line)}.run{padding:13px 15px;border-bottom:1px solid var(--line)}.run:last-child{border:0}.run.active{border-left:4px solid var(--red);background:var(--soft-red)}.run .kind{font-size:9px;font-weight:850;color:var(--red);text-transform:uppercase}.run b{display:block;font-size:12px;margin-top:4px}.run small{color:var(--muted)}.detail{padding:20px;border-color:color-mix(in srgb,var(--red) 40%,var(--line))}.detail-head{display:flex;justify-content:space-between;gap:20px}.result{color:var(--red);font-weight:850;font-size:11px;background:var(--soft-red);border-radius:999px;padding:5px 9px;display:inline-block}.detail h4{font-size:22px;margin:12px 0 3px}.detail p{color:var(--muted);margin:0}.number{font-size:22px;color:var(--red);font-weight:900}.facts{display:flex;gap:8px;margin:18px 0}.fact{padding:10px 13px;border:1px solid var(--line);border-radius:10px;min-width:105px}.fact b{display:block;font-size:20px}.fact small{color:var(--muted)}.steps{display:grid;gap:10px}.step{display:grid;grid-template-columns:22px 1fr;gap:9px}.dot{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;color:white;font-size:11px;background:var(--green)}.step.fail .dot{background:var(--red)}.step.off .dot{background:var(--muted)}.step b{display:block;font-size:12px}.step span{font-size:11px;color:var(--muted)}.principles{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--paper)}.principle{padding:18px;border-right:1px solid var(--line)}.principle:last-child{border:0}.principle .n{font:800 11px ui-monospace,monospace;color:var(--orange)}.principle b{display:block;margin:10px 0 4px}.principle p{font-size:12px;color:var(--muted);margin:0}.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.proof article{padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--paper)}.proof strong{font-size:30px;display:block}.proof span{color:var(--muted);font-size:12px}.proof .ok{color:var(--green)}footer{border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}@media(max-width:850px){.coverage{grid-template-columns:repeat(2,1fr)}.work{grid-template-columns:1fr}.principles,.proof{grid-template-columns:1fr}.principle{border-right:0;border-bottom:1px solid var(--line)}.before-after{grid-template-columns:1fr}.arrow{height:42px;transform:rotate(90deg)}.appbody{grid-template-columns:1fr}.rail{display:none}}
+</style>
+</head>
+<body><main class="shell">
+  <div class="eyebrow">ContentAudit · decisión implementada</div>
+  <h1>La actividad dejó de estar escondida.</h1>
+  <p class="lede">La app ahora tiene un lugar único para contestar <b>qué se ejecutó, cuánto cubrió, con qué modelo, por qué aprobó o falló y qué habilita después</b>.</p>
+  <div class="status"><span class="pill ok">Implementado</span><span class="pill ok">195/195 pruebas</span><span class="pill info">Publicación automática</span><span class="pill">0 consultas de modelo</span></div>
+
+  <section>
+    <h2>El problema que resolvimos</h2>
+    <p class="intro">Estado mostraba una foto de auditoría. Los exámenes y corridas vivían en otros archivos, de modo que trabajar mucho podía parecer igual a no haber hecho nada.</p>
+    <div class="before-after cols">
+      <article class="state bad"><div class="label">Antes</div><strong>Resultado sin relato</strong><p>Una foto parcial, sin distinguir versión vieja, examen formal, corrida de contenido o bloqueo.</p></article>
+      <div class="arrow">→</div>
+      <article class="state good"><div class="label">Ahora</div><strong>Actividad trazable</strong><p>Cobertura acumulada arriba; ejecuciones a la izquierda; evidencia completa a la derecha.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Así quedó la pantalla</h2>
+    <p class="intro">La jerarquía favorece dos lecturas: un vistazo de diez segundos y una investigación detallada sin salir del tablero.</p>
+    <div class="app">
+      <div class="appbar">Vocabulary Dashboard</div>
+      <div class="appbody">
+        <aside class="rail"><div class="nav"><b>▰</b>Estado</div><div class="nav active"><b>⌁</b>Actividad</div><div class="nav"><b>⌕</b>Explorar</div><div class="nav"><b>≠</b>Analizadores</div></aside>
+        <div class="content">
+          <div class="title-row"><div><h3>Qué está pasando</h3><p>No hay modelos corriendo. Podés recorrer lo ejecutado y su evidencia.</p></div><div class="updated">↻ se actualiza sola</div></div>
+          <div class="coverage">
+            <div class="cover"><b>Consigna</b><div class="track"><i style="--p:10%"></i></div><small>248 / 2.402</small></div>
+            <div class="cover"><b>Opción múltiple</b><div class="track"><i style="--p:6%"></i></div><small>43 / 710</small></div>
+            <div class="cover"><b>Traducción</b><div class="track"><i style="--p:1%"></i></div><small>3 / 2.402</small></div>
+            <div class="cover"><b>Respuesta única</b><div class="track"><i style="--p:12%"></i></div><small>205 / 1.692</small></div>
+            <div class="cover"><b>Miniteoría</b><div class="track"><i style="--p:2%"></i></div><small>2 / 83</small></div>
+            <div class="cover done"><b>Naturalidad</b><div class="track"><i style="--p:100%"></i></div><small>2.333 / 2.333</small></div>
+            <div class="cover fail"><b>Duplicados</b><div class="track"><i style="--p:0%"></i></div><small>examen pendiente</small></div>
+          </div>
+          <div class="work">
+            <div class="runs"><h4>Corridas y exámenes</h4><div class="run active"><span class="kind">Examen de juez</span><b>Formal de duplicados V7</b><small>111 pares · 107 quizzes</small></div><div class="run"><span class="kind" style="color:var(--amber)">Mejora de contenido</span><b>Primer lote A1</b><small>6 tareas</small></div><div class="run"><span class="kind">Validación de curso</span><b>Estabilidad vieja</b><small>2 × 2.402 quizzes</small></div></div>
+            <div class="detail"><div class="detail-head"><div><span class="result">Reprobó</span><h4>Examen formal de duplicados V7</h4><p>La extensión nueva aprobó; la base estricta todavía no.</p></div><div class="number">205/205</div></div><div class="facts"><div class="fact"><b style="color:var(--red)">3</b><small>fallos reales</small></div><div class="fact"><b style="color:var(--amber)">2</b><small>etiquetas</small></div><div class="fact"><b style="color:var(--green)">97,7%</b><small>precisión</small></div></div><div class="steps"><div class="step"><div class="dot">✓</div><div><b>Histórico</b><span>7 de 7 pares</span></div></div><div class="step"><div class="dot">✓</div><div><b>Extensión nueva</b><span>20/22 marcas · 0 omisiones</span></div></div><div class="step fail"><div class="dot">×</div><div><b>Base estricta</b><span>3 omisiones reales bloquean</span></div></div><div class="step off"><div class="dot">–</div><div><b>Estabilidad</b><span>cancelada antes de gastar</span></div></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cuatro decisiones de usabilidad</h2>
+    <div class="principles flow"><article class="principle"><div class="n">01</div><b>Panorama persistente</b><p>La cobertura no desaparece al abrir una corrida.</p></article><article class="principle"><div class="n">02</div><b>Estado honesto</b><p>Terminado no significa aprobado. El rojo conserva el bloqueo.</p></article><article class="principle"><div class="n">03</div><b>Lectura causal</b><p>Cada etapa explica qué pasó y por qué se detuvo.</p></article><article class="principle"><div class="n">04</div><b>Salida directa</b><p>Cada juez abre Explorar con su filtro ya aplicado.</p></article></div>
+  </section>
+
+  <section>
+    <h2>Qué quedó comprobado</h2>
+    <div class="proof kpis"><article><strong class="ok">195/195</strong><span>pruebas Flutter y Python, incluida extensibilidad</span></article><article><strong class="ok">3 s</strong><span>intervalo de relectura del feed, sin reiniciar la app</span></article><article><strong class="ok">0</strong><span>consultas a modelos durante esta integración</span></article></div>
+  </section>
+
+  <footer><span>Fuente: digests de auditoría + registros versionados de corridas.</span><span>06/10/2026 · ContentAudit</span></footer>
+</main></body></html>

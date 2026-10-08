@@ -174,7 +174,7 @@ aunque queden ejercicios abiertos; si su meta se puede decidir lo dice su estado
 | `exact-duplicates` | Ejercicios que, terminados, dicen exactamente lo mismo que otro anterior del mismo tema. |
 | `translation-sense` | Ejercicios cuyo inglés y traducción no dicen lo mismo, que un nativo no diría así, con palabras que no van juntas o con un registro que no es del nivel. |
 | `single-answer` | Ejercicios para escribir donde, con lo que ve el alumno, hay otra respuesta igual de buena que el corrector no acepta. |
-| `mini-theory` | Ejercicios cuya tarjeta de teoría dice una regla falsa o exagerada, o que contradicen esa regla o quedan fuera de lo que explica. |
+| `mini-theory` | Quizzes cuya tarjeta es falsa, insuficiente o exagerada para su caso, o agrega contenido de otro subtema. |
 | `grammar` | Ejercicios cuya oración terminada, con la respuesta puesta, tiene un error de gramática, de ortografía o de puntuación final. |
 | `naturalness` | Ejercicios cuya oración terminada un modelo duda que un nativo diría así. Sólo ordena qué revisar primero: no cuenta como error. |
 | `near-duplicates` | Ejercicios que piden la misma respuesta y casi lo mismo que otro anterior del mismo tema: otro pronombre, otro tiempo o la misma idea con otras palabras. |

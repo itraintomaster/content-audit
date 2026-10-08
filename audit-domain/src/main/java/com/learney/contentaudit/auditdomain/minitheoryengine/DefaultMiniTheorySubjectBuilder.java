@@ -17,28 +17,10 @@ import java.util.Map;
 import javax.annotation.processing.Generated;
 
 /**
- * F-MINIT-R001: one subject per topic -- the whole topic, read once.
- *
- * <p>The content map is the fingerprint and what the agent reads, so its keys, their order and
- * the text of every value are frozen (paying again is the price of moving them):
- * <ol>
- *   <li>{@code cefrLevel}: the label of the milestone («A1»);</li>
- *   <li>{@code topic}: the name of the topic ({@code knowledge.getLabel()});</li>
- *   <li>{@code instructions}: the instructions of the topic;</li>
- *   <li>{@code miniTheories}: every distinct mini theory -- the exact text of the exercise's, null
- *       and empty ones ignored -- in the order it first appears, one per line:
- *       {@code M1: <text> (ejercicios: E1, E4)};</li>
- *   <li>{@code exercises}: every exercise of the topic in its order, one per line:
- *       {@code E1: <statement> → <answers>}, the statement as the student sees it (gap and hint)
- *       and, for a cloze, the accepted answers of each gap joined by « | » with the gaps joined by
- *       « · »; for a multiple choice, {@code opciones: } and the options in the student's order,
- *       the correct one followed by « (correcta)».</li>
- * </ol>
- * Absent values are {@code ""}, never null. The translation, the audio and the long theory are
- * not read, so they never move the fingerprint; any change to a mini theory or an exercise judges
- * the whole topic again (the cascade F-MINIT-R001 wants). The numbers M and E are the ones that
- * come back in the verdict, so {@link DefaultMiniTheoryDistributor} numbers through the same
- * {@link #exercisesOf(AuditNode)} and {@link #miniTheoriesOf(List)}.
+ * F-MINIT-R001: one subject and fingerprint per topic, with one independent
+ * entry per persistent quiz id. Batching is by topic only to save queries;
+ * identity and judgment are always by quiz. Equal mini-theory text is repeated
+ * in each entry and a blank card is still represented when its topic is judged.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -52,9 +34,7 @@ class DefaultMiniTheorySubjectBuilder implements MiniTheorySubjectBuilder {
 
     static final String INSTRUCTIONS = "instructions";
 
-    static final String MINI_THEORIES = "miniTheories";
-
-    static final String EXERCISES = "exercises";
+    static final String QUIZZES = "quizzes";
 
     private final QuizStudentViewRenderer studentViewRenderer;
 
@@ -77,19 +57,17 @@ class DefaultMiniTheorySubjectBuilder implements MiniTheorySubjectBuilder {
         content.put(CEFR_LEVEL, orEmpty(milestone != null ? milestone.getLabel() : null));
         content.put(TOPIC, orEmpty(knowledge != null ? knowledge.getLabel() : null));
         content.put(INSTRUCTIONS, orEmpty(knowledge != null ? knowledge.getInstructions() : null));
-        content.put(MINI_THEORIES, miniTheoriesLines(miniTheoriesOf(exercises)));
-        content.put(EXERCISES, exercisesLines(exercises));
+        content.put(QUIZZES, quizLines(exercises));
 
         return new EvaluationSubject(knowledge != null ? knowledge.getId() : null, content);
     }
 
     // -------------------------------------------------------------------------
-    // The numbering, shared with the distributor
+    // The quizzes, shared with the distributor
     // -------------------------------------------------------------------------
 
     /**
-     * The exercises of a topic, in the order of the course: its children that are exercises.
-     * The exercise at index i is E(i+1).
+     * The quizzes of a topic, in course order.
      */
     static List<AuditNode> exercisesOf(AuditNode knowledgeNode) {
         List<AuditNode> exercises = new ArrayList<>();
@@ -105,51 +83,37 @@ class DefaultMiniTheorySubjectBuilder implements MiniTheorySubjectBuilder {
         return exercises;
     }
 
-    /**
-     * Every distinct mini theory of the exercises -- exact text, null and blank ones ignored -- in
-     * the order it first appears, each with the numbers (from 1) of the exercises that show it.
-     * The entry at index i is M(i+1).
-     */
-    static LinkedHashMap<String, List<Integer>> miniTheoriesOf(List<AuditNode> exercises) {
-        LinkedHashMap<String, List<Integer>> shownBy = new LinkedHashMap<>();
-        for (int i = 0; i < exercises.size(); i++) {
-            String text = miniTheoryOf(exercises.get(i));
-            if (text == null || text.isBlank()) {
-                continue;
-            }
-            shownBy.computeIfAbsent(text, t -> new ArrayList<>()).add(i + 1);
-        }
-        return shownBy;
-    }
-
     /** The mini theory an exercise shows, exactly as the course has it. */
     static String miniTheoryOf(AuditNode exercise) {
         return exercise != null && exercise.getEntity() instanceof AuditableQuiz quiz ? quiz.getMiniTheory() : null;
     }
 
     // -------------------------------------------------------------------------
-    // The frozen text
-    // -------------------------------------------------------------------------
-
-    private static String miniTheoriesLines(LinkedHashMap<String, List<Integer>> shownBy) {
-        List<String> lines = new ArrayList<>();
-        int number = 1;
-        for (Map.Entry<String, List<Integer>> entry : shownBy.entrySet()) {
-            lines.add("M" + number + ": " + entry.getKey() + " (ejercicios: " + exerciseNumbers(entry.getValue()) + ")");
-            number++;
+    /** Whether a topic has at least one card and should therefore enter this judge. */
+    static boolean hasMiniTheory(List<AuditNode> exercises) {
+        for (AuditNode exercise : exercises) {
+            String text = miniTheoryOf(exercise);
+            if (text != null && !text.isBlank()) {
+                return true;
+            }
         }
-        return String.join("\n", lines);
+        return false;
     }
 
-    private String exercisesLines(List<AuditNode> exercises) {
-        List<String> lines = new ArrayList<>();
-        for (int i = 0; i < exercises.size(); i++) {
-            AuditableQuiz quiz = (AuditableQuiz) exercises.get(i).getEntity();
+    // The stable quiz-scoped text
+    // -------------------------------------------------------------------------
+
+    private String quizLines(List<AuditNode> exercises) {
+        List<String> entries = new ArrayList<>();
+        for (AuditNode exercise : exercises) {
+            AuditableQuiz quiz = (AuditableQuiz) exercise.getEntity();
             QuizStudentView view = studentViewRenderer.render(quiz);
-            lines.add("E" + (i + 1) + ": " + orEmpty(view != null ? view.getStatement() : null) + " → "
-                    + answers(quiz, view));
+            entries.add("quizId: " + orEmpty(quiz.getId())
+                    + "\nminiTheory: " + orEmpty(quiz.getMiniTheory())
+                    + "\nprompt: " + orEmpty(view != null ? view.getStatement() : null)
+                    + "\nanswers: " + answers(quiz, view));
         }
-        return String.join("\n", lines);
+        return String.join("\n\n", entries);
     }
 
     /** «see | sees · go» for a cloze; «opciones: in, on (correcta)» for a multiple choice. */
@@ -180,14 +144,6 @@ class DefaultMiniTheorySubjectBuilder implements MiniTheorySubjectBuilder {
             }
         }
         return String.join(" · ", gaps);
-    }
-
-    static String exerciseNumbers(List<Integer> numbers) {
-        List<String> labels = new ArrayList<>();
-        for (Integer number : numbers) {
-            labels.add("E" + number);
-        }
-        return String.join(", ", labels);
     }
 
     private static String orEmpty(String value) {

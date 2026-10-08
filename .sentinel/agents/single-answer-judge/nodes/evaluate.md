@@ -5,11 +5,12 @@ label: List Other Valid Answers
 description: |
   Lista, con lo que el alumno ve antes de contestar, las otras respuestas
   correctas y naturales de un ejercicio de completar que el corrector no
-  acepta, cada una con su clase y su gravedad (F-UNICA-R002, R004). Lo que
-  suena raro o forzado, lo que descarta una regla de la consigna, la pista o
-  el título, y en las transformaciones la paráfrasis libre, no se listan. El
-  gate siguiente valida la forma y reintenta este nodo si el JSON sale
-  malformado o incoherente.
+  acepta, cada una con su clase y su gravedad (F-UNICA-R002, R004). No lista
+  lo raro o forzado ni una respuesta que inventa polaridad, aspecto,
+  modalidad, presuposición o condición temporal que el material visible no
+  licencia. En las transformaciones preserva el sentido, no una copia
+  mecánica de las palabras. El gate siguiente valida la forma y reintenta este
+  nodo si el JSON sale malformado o incoherente.
 budgets:
   max_tokens: 1500
   max_attempts: 3
@@ -37,6 +38,14 @@ lista va vacía y el ejercicio pasa.
 No buscás todo lo que sería gramatical: buscás lo que un nativo diría así, en
 esa oración, sin que suene raro. Lo raro o forzado no se lista.
 
+Una candidata tampoco vale sólo porque forme una oración gramatical. Tiene que
+ser una respuesta que el material visible deja realmente abierta. No inventes
+ni cambies la polaridad, el tiempo o el aspecto, la modalidad, una
+presuposición ni una condición temporal, salvo que el título, la consigna, la
+pista o el propio enunciado licencien esa elección. Por ejemplo, una pregunta
+polar sin respuesta dada licencia tanto una respuesta afirmativa como una
+negativa; una afirmación no licencia por sí sola convertirla en negación.
+
 No ves la traducción ni la miniteoría: la app las muestra recién al corregir,
 así que no le sirven al alumno para elegir. Que tampoco te sirvan a vos. El
 nivel del alumno tampoco te llega: pensá en un alumno que está practicando el
@@ -57,8 +66,13 @@ Convenciones del curso:
   verbo o sujeto usar; `(100%)` o `(every Friday)` dicen qué hacer en ese ítem.
   La pista es parte de lo que ve el alumno y **puede elegir**: si dice `(100%)`,
   *usually* no vale ahí.
-- Una elección con barra (`our / ours`, `my / mine`) ofrece las alternativas
-  entre las que el alumno elige.
+- Una barra no significa siempre «alternativa». En `(he / play)` y `(not /
+  brush)` separa piezas que hay que combinar: no autoriza cambiar el sujeto,
+  el verbo ni la polaridad. En una elección de formas paralelas (`our / ours`,
+  `my / mine`) sí ofrece las alternativas entre las que el alumno elige.
+- Si hay varios huecos, juzgá una sustitución por vez. Para probar una candidata
+  de `Hueco N`, dejá cada otro hueco con una de sus respuestas aceptadas. No
+  listes un cambio que sólo funciona si también se cambia otro hueco.
 - Cuando el enunciado es una oración y después viene `___`, o un esqueleto con
   barras (`He invested / reading / a book / time.`), el hueco es la oración
   entera: la respuesta es la oración completa.
@@ -87,35 +101,50 @@ una, el corrector acepta la otra.
 ## Qué listás
 
 Para cada respuesta posible, hacete **la pregunta del criterio**: ¿un nativo la
-diría así, en esta oración, sin que suene rara? Se lista si cumple las cuatro
-cosas:
+diría así, en esta oración, sin que suene rara y sin inventar información que
+el ejercicio no deja abierta? Se lista si cumple las cinco cosas:
 
 1. **Funciona en la oración tal como se lee.** Ponela en el hueco y leé la
-   oración terminada en su lectura más directa. No cuenta si sólo queda bien
-   inventando una situación concreta que el ejercicio no da.
+   oración terminada en su lectura más directa, con los demás huecos en una
+   respuesta aceptada. No cuenta si sólo queda bien cambiando también otro
+   hueco o inventando una situación concreta que el ejercicio no da.
 2. **Es natural.** Un nativo la diría así, en esta oración, sin que suene rara
    o forzada. Que sea menos común o menos esperable que la aceptada no la
-   descarta: la hace `MEDIUM`.
-3. **Nada de lo que ve el alumno la descarta.** La consigna, la pista o el
-   título descartan cuando dan una regla que la deja afuera en este ítem: la
-   pista `(100%)`, una consigna que pide un tiempo verbal o una forma. Un
-   título que sólo nombra el tema no descarta: lo que el tema no practica, pero
-   es correcto y natural, es `MEDIUM`.
-4. **El corrector no la acepta.**
+   descarta: una variante formal, coloquial, regional o menos habitual que
+   sigue siendo natural se conserva y se marca `MEDIUM`.
+3. **Conserva lo que el ejercicio ya fija.** No cambia participantes, hechos,
+   polaridad, tiempo o aspecto, modalidad, presuposiciones ni condiciones
+   temporales que la consigna, la pista o el enunciado ya determinaron. Una
+   dimensión sólo puede variar si el material visible la deja abierta.
+4. **Nada de lo que ve el alumno la descarta.** Aplicá esta precedencia
+   mecánica: consigna explícita > pista y enunciado > título. La consigna puede
+   exigir una forma o construcción; la pista y el enunciado fijan sus piezas y
+   su sentido. El título ayuda a interpretar y a medir qué es esperable, pero
+   un título que sólo nombra el tema no descarta ni inventa una restricción.
+5. **El corrector no la acepta.**
 
 **Lo que pide la consigna manda.** Si la consigna nombra la forma o la
 palabra que hay que usar —un tiempo verbal, un modal, una estructura, una
 palabra—, una respuesta que no la usa, o que la cambia por otra, no se lista,
 aunque fuera de la consigna sea correcta y natural: el alumno tiene que hacer
 lo que le piden. Si la consigna ofrece dos formas, valen las dos: eso es
-`OFFERED_BY_INSTRUCTION`.
+`OFFERED_BY_INSTRUCTION`. Una exigencia no se deduce sólo del nombre del tema:
+si el título dice «Comparativos» y la consigna pide cualquier forma comparativa,
+el título no obliga a usar `-er` ni prohíbe una forma analítica natural.
 
 **En las transformaciones** —el hueco es la oración entera y la consigna pide
-transformar o armar una oración— cuenta otra manera de hacer la misma
-transformación sobre la misma oración: el resto queda igual y en el mismo
-orden, y cambia sólo la forma que pide la consigna, como *after having
-finished* en lugar de *after finishing*. Reordenar la oración, o agregar, sacar
-o cambiar otras palabras, ya es una paráfrasis libre: no se lista.
+transformar o armar una oración— manda la conservación semántica, no la copia
+mecánica palabra por palabra. Otra respuesta vale cuando realiza la
+construcción pedida y conserva los participantes, la proposición, la polaridad,
+el tiempo y el aspecto, y el orden nuclear cuando la consigna o el esqueleto lo
+imponen. Puede agregar, sacar o mover material funcional o idiomático opcional
+si no cambia nada de eso: *after having finished* por *after finishing*, *Are
+you studying French still?* por *Are you still studying French?*, o una pasiva
+natural con *get* cuando la consigna pide voz pasiva sin exigir *be*. Es
+paráfrasis libre y no se lista si cambia participantes, hechos, modalidad,
+polaridad, tiempo/aspecto, presuposición o condición temporal, o si rompe un
+orden expresamente impuesto. Agregar palabras no basta por sí solo para
+descartar una respuesta.
 
 Cada respuesta que listás lleva su clase (`kind`):
 
@@ -123,22 +152,28 @@ Cada respuesta que listás lleva su clase (`kind`):
   («usa 'can' o 'be able to'», `(our / ours)`), es correcta en ese ítem y el
   corrector no la acepta;
 - `DIFFERENT_VALID` — cualquier otra respuesta correcta y natural que el
-  corrector no acepta: otro verbo, otra preposición, la afirmativa en vez de la
-  negativa, otro tiempo verbal.
+  corrector no acepta: otra realización, colocación, preposición o construcción
+  que preserva lo fijado. Otra polaridad, modalidad o tiempo sólo entra cuando
+  el material visible deja precisamente esa dimensión abierta.
 
-Y su gravedad (`severity`):
+Primero reuní las alternativas de cada hueco y después asigná su gravedad
+(`severity`) con este orden determinista:
 
-- `BLOCKING` — el hueco no tiene pista que elija y varias respuestas son igual
-  de buenas: la aceptada es una entre muchas y el alumno no tiene cómo saber
-  cuál quiere el corrector;
-- `HIGH` — el corrector rechaza otra respuesta igual de natural y tan esperable
-  como la aceptada;
 - `MEDIUM` — el corrector rechaza otra respuesta correcta y natural, aunque
-  menos esperable para el tema.
+  menos esperable por frecuencia, registro, formalidad, variedad o por el tema;
+- `BLOCKING` — sólo para `DIFFERENT_VALID`: ninguna pista elige y encontraste
+  por lo menos dos alternativas no aceptadas que son tan naturales y tan
+  esperables como la aceptada. La aceptada es una entre tres o más respuestas
+  equivalentes y el alumno no tiene cómo saber cuál quiere el corrector;
+- `HIGH` — la alternativa es tan natural y tan esperable como la aceptada, pero
+  no se cumple la condición anterior de `BLOCKING`.
 
 Una opción que ofrece la consigna, si es correcta en ese ítem, lleva `HIGH` si
 es tan esperable como la aceptada y `MEDIUM` si es menos esperable. Una opción
-de la consigna que no encaja en ese ítem no se lista.
+de la consigna que no encaja en ese ítem no se lista. Una
+`OFFERED_BY_INSTRUCTION` nunca lleva `BLOCKING`. Si una variante formal o
+coloquial es natural pero menos esperable, lleva `MEDIUM` aunque sea la única
+alternativa.
 
 **Lo que no hacés**: no juzgás la traducción ni la miniteoría, ni si la
 oración del ejercicio suena natural, ni la puntuación o los espacios: eso lo
@@ -156,33 +191,35 @@ Se listan:
   y `cook`, `DIFFERENT_VALID`, `BLOCKING`.
 - «Do you like horror films? I ___ .», título «Respuestas cortas», consigna
   «Escribe la respuesta corta.», `Hueco 1: don't`. La pregunta se puede
-  contestar que sí o que no, y nada de lo que ve el alumno dice cuál → `do`,
-  `DIFFERENT_VALID`, `HIGH`.
+  contestar que sí o que no: el propio enunciado licencia ambas polaridades, y
+  nada de lo que ve el alumno dice cuál → `do`, `DIFFERENT_VALID`, `HIGH`.
 - «My grandmother ___ (not / drive).», consigna «Usa 'can' o 'be able to'.
   Escribe la forma negativa.», `Hueco 1: isn't able to drive | is not able to
   drive`. La consigna ofrece *can*, y *can't drive* se rechaza → `can't drive`,
   `OFFERED_BY_INSTRUCTION`, `HIGH`; no listes también *cannot drive*.
-- «Did you see ___ birds in the park?», título «$Some$ y $any$», consigna
-  «Completa con 'some' o 'any'.», `Hueco 1: any`. *some* en una pregunta
-  también se dice, sobre todo si el que pregunta espera que sí; la consigna la
-  ofrece y es correcta, aunque el tema enseñe *any* → `some`,
-  `OFFERED_BY_INSTRUCTION`, `MEDIUM`.
-- «I ___ (break) my phone, so I can't call you.», título «Present perfect»,
-  `Hueco 1: have broken | 've broken`. *broke* también es correcta y natural;
-  el título sólo nombra el tema, así que la hace menos esperable, no incorrecta
-  → `broke`, `DIFFERENT_VALID`, `MEDIUM`.
-- «You can always rely ___ me.», título «Verbos y sus preposiciones», consigna
-  «Completa con la preposición correcta.», `Hueco 1: on`. *upon* es correcta y
-  natural, aunque más formal y menos esperable → `upon`, `DIFFERENT_VALID`,
-  `MEDIUM`.
+- «The new corridor is ___ (narrow) than the old one.», consigna «Completa con
+  una forma comparativa correcta», `Hueco 1: narrower`. *More narrow* también
+  es un comparativo natural; la consigna no exige `-er`, aunque la variante
+  analítica es menos esperable → `more narrow`, `DIFFERENT_VALID`, `MEDIUM`.
+- «Do you continue to study French? ___», consigna «Reescribe la pregunta
+  usando 'still'.», `Hueco 1: Are you still studying French?`. La posición
+  final conserva sentido y construcción, pero es más conversacional → `Are you
+  studying French still?`, `DIFFERENT_VALID`, `MEDIUM`.
+- «We spoke ___ the revised schedule.», consigna «Completa con una
+  preposición correcta.», `Hueco 1: about`. *Regarding* es una preposición de
+  tema natural pero formal → `regarding`, `DIFFERENT_VALID`, `MEDIUM`.
+- «The office sent Nina a replacement badge. ___», consigna «Transforma a
+  voz pasiva.», `Hueco 1: Nina was sent a replacement badge by the office.`.
+  La consigna no exige *be* y la pasiva ditransitiva con *get* preserva la
+  proposición, aunque es informal → `Nina got sent a replacement badge by the
+  office.`, `DIFFERENT_VALID`, `MEDIUM`.
 
 No se listan (la lista va vacía):
 
-- «I brushed my teeth before I went to bed. ___», consigna «Transforma las
-  oraciones para que incluyan la forma 'verb-ing'.», `Hueco 1: I brushed my
-  teeth before going to bed.`. *Before going to bed, I brushed my teeth.* es
-  correcta, pero reordena la oración: ya no es otra manera de hacer la
-  transformación pedida, es una paráfrasis.
+- «She called her mum after she finished dinner. ___», consigna «Transforma
+  usando 'verb-ing'.», `Hueco 1: She called her mum after finishing dinner.`.
+  *She called her mum before finishing dinner* no se lista: cambia la condición
+  temporal y, con ella, la proposición.
 - «My grandfather ___ (speak) four languages when he was young.», consigna
   «Usa 'could'.», `Hueco 1: could speak`. *was able to speak* y *spoke* son
   correctas y naturales fuera de este ejercicio, pero la consigna pide *could*
@@ -191,6 +228,9 @@ No se listan (la lista va vacía):
 - «Can you ___ a photo of us?», título «$Make$ o $take$», consigna «Completa
   con el verbo correcto.», `Hueco 1: take`. *make a photo* es un calco del
   castellano y en inglés suena forzado, aunque el título nombre *make*.
+- «What is the cost ___ the annual pass?», consigna «Completa con la
+  preposición correcta.», `Hueco 1: of`. *For* no se lista: no es un
+  complemento nominal natural equivalente de la entidad cuyo costo se pregunta.
 - «I ___ (dream) about the sea last night.», consigna «Escribe la forma en
   'past simple'.», `Hueco 1: dreamt`: *dreamed* es la otra grafía y el
   corrector la acepta. «She ___ (not / be) here right now.», `Hueco 1: isn't`:

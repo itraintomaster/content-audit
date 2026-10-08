@@ -3,1637 +3,224 @@
   "artifact": "miniTheoryVerdict",
   "gateId": "mini_theory_judge_gate_verdict",
   "emitId": "mini_theory_judge_emit",
-  "dependencies": [
-    "cefrLevel",
-    "topic",
-    "instructions",
-    "miniTheories",
-    "exercises"
-  ],
-  "topKeys": [
-    "assessments",
-    "rationale"
-  ],
+  "dependencies": ["cefrLevel", "topic", "instructions", "quizzes"],
+  "topKeys": ["assessments"],
   "promptMustMention": [
+    "una decisión independiente por quiz",
+    "identidad del assessment es el `quizId`",
+    "decisión pedagógica focal",
+    "derivar mecánicamente cada token",
+    "Una regla genérica que no permite decidir",
+    "La forma superficial no basta",
+    "categoría",
+    "construcción",
+    "función semántica",
+    "Auxiliares, orden de palabras, concordancia, flexión y ortografía",
+    "el propio quiz contraste justamente esas formas",
+    "Descomponé `miniTheory` en afirmaciones mínimas",
+    "local",
+    "hermana",
+    "No audites la verdad",
+    "universal local explícito o inequívoco",
+    "La precedencia terminal completa es",
+    "definición operativa del caso",
     "FALSE_RULE",
-    "OVERSTATED",
-    "CONTRADICTED_BY_EXERCISE",
-    "NOT_COVERING_EXERCISE",
-    "nunca hay `BLOCKING`",
-    "que la miniteoría pida una forma",
-    "Cada miniteoría de `miniTheories` aparece al menos una vez"
+    "INSUFFICIENT_FOR_QUIZ",
+    "OVERSTATED_FOR_QUIZ",
+    "OTHER_SUBTOPIC_CONTENT",
+    "nunca puede ser `BLOCKING`",
+    "mismo orden"
   ],
-  "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (M o E fuera de las entradas, una M sin juzgar, la gravedad que no sale del problema, un ejercicio que contradice una M que no muestra), y que emit produzca miniTheoryVerdict o {\"outputUnusable\": true}. Las entradas son el mapa de contenido congelado (cefrLevel, topic, instructions, miniTheories, exercises), con las líneas que arma DefaultMiniTheorySubjectBuilder: «Adverbios de modo», un tema del curso fuera del examen, y dos temas inventados que no están en el curso, «La hora» y «Números ordinales».",
+  "why": "Regresión offline con microcasos inventados para las fronteras abstractas del juez: identidad por quizId, suficiencia focal, forma frente a función, universales, atomización, respuestas operativas, taxonomía y prioridad; además cubre el contrato del gate, la cobertura exacta y las severidades fijas.",
   "inputs": {
-    "adverbios": {
+    "shared-text": {
       "cefrLevel": "A1",
-      "topic": "Adverbios de modo",
-      "instructions": "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración.",
-      "miniTheories": "M1: Termina en $-y$: pasa a $-ily$. $happy$ → $happily$. (ejercicios: E1, E3)\nM2: $hard$ y $early$ tampoco cambian. (ejercicios: E2)",
-      "exercises": "E1: The dogs moved. (noisy) ___ → The dogs moved noisily.\nE2: He studied. (hard) ___ → He studied hard.\nE3: She did the problem. (easy) ___ → She did the problem easily."
+      "topic": "Sistema artificial Atlas",
+      "instructions": "Aplicá las convenciones inventadas que se indican en cada tarjeta.",
+      "quizzes": "quizId: q-source\nminiTheory: En el código Atlas, ri marca el punto de origen.\nprompt: Elegí la partícula para un punto de origen: ___ lum.\nanswers: ri\n\nquizId: q-destination\nminiTheory: En el código Atlas, ri marca el punto de origen.\nprompt: Elegí la partícula para un punto de destino: ___ lum.\nanswers: lo"
     },
-    "la-hora": {
+    "focal-sufficiency": {
       "cefrLevel": "A1",
-      "topic": "La hora",
-      "instructions": "Escribe la hora en palabras.",
-      "miniTheories": "M1: Para la media hora va $half past$: $half past six$ es 6:30. (ejercicios: E1, E2, E3)\nM2: Con la hora en punto va $o'clock$: $five o'clock$. (ejercicios: E4)",
-      "exercises": "E1: The film starts at ___ (8:30). → half past eight\nE2: The bus leaves at ___ (7:15). → a quarter past seven | quarter past seven\nE3: I get up at ___ (6:45). → a quarter to seven | quarter to seven\nE4: The library opens at ___ (10:00). → ten o'clock"
+      "topic": "Prefijos artificiales Cobre",
+      "instructions": "Elegí una marca del sistema inventado.",
+      "quizzes": "quizId: q-focal-enough\nminiTheory: Ante un nombre de clase cobre, usá ze.\nprompt: Completá el prefijo de este nombre de clase cobre: ___ tor.\nanswers: ze\n\nquizId: q-generic\nminiTheory: Usá el prefijo que corresponda.\nprompt: Completá el prefijo de este nombre de clase cobre: ___ tor.\nanswers: ze\n\nquizId: q-category-only\nminiTheory: Ka es una partícula temporal.\nprompt: Elegí la partícula que expresa un evento en curso.\nanswers: opciones: ka (correcta), ki"
     },
-    "ordinales": {
-      "cefrLevel": "A1",
-      "topic": "Números ordinales",
-      "instructions": "Escribe el ordinal del número entre paréntesis.",
-      "miniTheories": "M1: Los ordinales se forman siempre con $-th$ ($fourth$, $sixth$, $tenth$). (ejercicios: E1, E2)",
-      "exercises": "E1: Tom came ___ (three) in the competition. → third\nE2: It's his ___ (six) birthday. → sixth"
+    "universal-scope": {
+      "cefrLevel": "A2",
+      "topic": "Escenas inventadas de titanio",
+      "instructions": "Completá la oración según la función indicada.",
+      "quizzes": "quizId: q-explicit-universal\nminiTheory: Can siempre expresa capacidad adquirida.\nprompt: The titanium fox ___ solve the maze.\nanswers: can\n\nquizId: q-local-scope\nminiTheory: En esta oración, can expresa capacidad.\nprompt: The titanium fox ___ solve the maze.\nanswers: can\n\nquizId: q-operational-answer\nminiTheory: Con The Zircon Assembly, are presenta a sus miembros actuando por separado.\nprompt: The Zircon Assembly ___ aligned.\nanswers: are"
     },
-    "parentesis-en-el-texto": {
-      "cefrLevel": "A1",
-      "topic": "Números ordinales",
-      "instructions": "Escribe el ordinal del número entre paréntesis.",
-      "miniTheories": "M1: Los ordinales se forman siempre con $-th$ ($fourth$, $sixth$, $tenth$). (ejercicios: E1, E2)\nM2: $first$, $second$ y $third$ son irregulares: no llevan $-th$. (ejercicios: E3)",
-      "exercises": "E1: Today is the ___ (ten) of May. → tenth\nE2: Tom came ___ (three) in the competition. → third\nE3: It's my ___ (one) day at school. → first"
+    "atomized-taxonomy": {
+      "cefrLevel": "A2",
+      "topic": "Contrastes inventados de cobalto",
+      "instructions": "Elegí una construcción o partícula según la función declarada.",
+      "quizzes": "quizId: q-sibling-extra\nminiTheory: Para una acción en curso, usá be + -ing. Para una pregunta habitual, usá do + base.\nprompt: Elegí la construcción para una acción en curso.\nanswers: opciones: do + base, be + -ing (correcta)\n\nquizId: q-sibling-only\nminiTheory: Para una pregunta habitual, usá do + base.\nprompt: Elegí la construcción para una acción en curso.\nanswers: opciones: do + base, be + -ing (correcta)\n\nquizId: q-false-direction\nminiTheory: Para un punto de destino del código Atlas, usá ri.\nprompt: Elegí la partícula para un punto de destino: ___ lum.\nanswers: lo\n\nquizId: q-open-routes\nminiTheory: Elegí una partícula adecuada del código Atlas.\nprompt: Elegí la partícula para un punto de destino: ___ lum.\nanswers: lo"
     },
-    "sin-miniteorias": {
-      "cefrLevel": "A1",
-      "topic": "Repaso",
-      "instructions": "Completa las oraciones.",
-      "miniTheories": "",
-      "exercises": "E1: They ate ___ rice. → opciones: any, some (correcta)"
+    "focal-boundaries": {
+      "cefrLevel": "A2",
+      "topic": "Decisiones focales sintéticas",
+      "instructions": "Elegí la opción que resuelve el contraste indicado en cada quiz.",
+      "quizzes": "quizId: q-performative-lexical\nminiTheory: Promise, warn y apologise se usan en presente simple para actos comunicativos.\nprompt: Elegí el verbo que reconoce pesar: I ___ for the delay.\nanswers: opciones: promise, warn, apologise (correcta)\n\nquizId: q-routine-order\nminiTheory: Right now indica una acción en curso: usá be + verbo en -ing.\nprompt: ___ Nara polishing the cobalt disk right now?\nanswers: Is Nara polishing\n\nquizId: q-does-focal\nminiTheory: Con he, she o it, la pregunta en presente simple usa does; con I, you, we o they usa do.\nprompt: Elegí el auxiliar: ___ the cobalt robot spin every day?\nanswers: opciones: do, does (correcta)\n\nquizId: q-does-undiscriminated\nminiTheory: Las preguntas en presente simple usan un auxiliar y verbo base.\nprompt: Elegí el auxiliar: ___ the cobalt robot spin every day?\nanswers: opciones: do, does (correcta)"
     },
-    "sin-entradas-numeradas": {
-      "cefrLevel": "A1",
-      "topic": "Adverbios de modo",
-      "instructions": "Crea un adverbio a partir del adjetivo que está entre paréntesis y añádelo a la oración."
+    "terminal-sibling-before-over": {
+      "cefrLevel": "A2",
+      "topic": "Átomos locales y hermanos sintéticos",
+      "instructions": "Completá según el contraste focal de cada quiz.",
+      "quizzes": "quizId: q-sibling-universal\nminiTheory: Para una acción en curso ahora, usá be + -ing. Las preguntas habituales nunca usan be.\nprompt: The cobalt fox ___ running now.\nanswers: is\n\nquizId: q-local-universal\nminiTheory: Can siempre expresa capacidad.\nprompt: The cobalt fox ___ solve the maze.\nanswers: can"
     }
   },
   "cases": [
     {
-      "caseId": "adverbios-early-falsa",
-      "note": "«Adverbios de modo»: la de -y → -ily es falsa por early (F-MINIT-R002); M2 está bien.",
-      "inputs": "adverbios",
+      "caseId": "shared-text-opposite-verdicts",
+      "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
+          {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "La tarjeta explica la decisión de origen de este quiz sintético."},
+          {"quizId": "q-destination", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "Para destino, la respuesta operativa es lo; la tarjeta sólo explica origen.", "explanation": "El mismo texto no se propaga: no permite decidir la marca de destino."}
+        ]
       },
-      "expect": {
-        "route": "passed",
-        "canonical": "same"
-      }
+      "expect": {"route": "passed", "canonical": "same"}
     },
     {
-      "caseId": "la-hora-no-cubre",
-      "note": "La de half past es cierta pero la muestran ejercicios de quarter past y quarter to: sólo esos, LOW.",
-      "inputs": "la-hora",
+      "caseId": "focal-sufficiency-and-surface-form",
+      "inputs": "focal-sufficiency",
       "verdict": {
         "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "NOT_COVERING_EXERCISE",
-            "severity": "LOW",
-            "counterexample": "The bus leaves at a quarter past seven.",
-            "exercises": [
-              2,
-              3
-            ],
-            "explanation": "Habla de half past, y estos ejercicios son de quarter past y quarter to."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              4
-            ],
-            "explanation": "Cierta y cubre su ejercicio."
-          }
-        ],
-        "rationale": "M1 no cubre los ejercicios de quarter past y quarter to."
+          {"quizId": "q-focal-enough", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Explica la elección focal de ze; no necesita derivar los demás tokens."},
+          {"quizId": "q-generic", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "La consigna genérica no distingue ze de otras marcas.", "explanation": "Deja abiertas las rutas y no permite elegir la respuesta aceptada."},
+          {"quizId": "q-category-only", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "Nombrar la categoría temporal no explica qué marca el evento en curso.", "explanation": "La forma superficial y la categoría no resuelven la función semántica focal."}
+        ]
       },
-      "expect": {
-        "route": "passed",
-        "canonical": "same"
-      }
+      "expect": {"route": "passed", "canonical": "same"}
     },
     {
-      "caseId": "ordinales-contradicha",
-      "note": "«Tom came ___ (three) in the competition.» contradice «siempre con -th».",
-      "inputs": "ordinales",
+      "caseId": "universal-scope-and-operational-answer",
+      "inputs": "universal-scope",
       "verdict": {
         "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "CONTRADICTED_BY_EXERCISE",
-            "severity": "HIGH",
-            "counterexample": "Tom came third in the competition.",
-            "exercises": [
-              1
-            ],
-            "explanation": "«third» no termina en -th, y la regla dice siempre."
-          }
-        ],
-        "rationale": "El ejercicio E1 contradice la regla."
+          {"quizId": "q-explicit-universal", "holds": false, "problem": "OVERSTATED_FOR_QUIZ", "severity": "MEDIUM", "counterexample": "Can the titanium fox enter? usa can para pedir permiso.", "explanation": "La aplicación local es correcta, pero siempre excluye otro uso común de la misma construcción."},
+          {"quizId": "q-local-scope", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Sin un universal explícito, no se exige cubrir otros usos de can."},
+          {"quizId": "q-operational-answer", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "La tarjeta explica la respuesta aceptada, que es la definición operativa del quiz."}
+        ]
       },
-      "expect": {
-        "route": "passed",
-        "canonical": "same"
-      }
+      "expect": {"route": "passed", "canonical": "same"}
     },
     {
-      "caseId": "exagerada-y-contradicha",
-      "note": "Una entrada por problema: una M puede exagerar y además tener un ejercicio que la contradice.",
-      "inputs": "ordinales",
+      "caseId": "atomization-taxonomy-and-priority",
+      "inputs": "atomized-taxonomy",
       "verdict": {
         "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "OVERSTATED",
-            "severity": "MEDIUM",
-            "counterexample": "It's my first day at school.",
-            "exercises": [
-              1,
-              2
-            ],
-            "explanation": "«Siempre» exagera: first, second y third no llevan -th."
-          },
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "CONTRADICTED_BY_EXERCISE",
-            "severity": "HIGH",
-            "counterexample": "Tom came third in the competition.",
-            "exercises": [
-              1
-            ],
-            "explanation": "E1 no lleva -th: third."
-          }
-        ],
-        "rationale": "M1 exagera y E1 la contradice."
+          {"quizId": "q-sibling-extra", "holds": false, "problem": "OTHER_SUBTOPIC_CONTENT", "severity": "LOW", "counterexample": "La regla sobre do + base pertenece sólo al caso hermano de preguntas habituales.", "explanation": "La decisión focal ya está explicada; el agregado hermano no vuelve insuficiente la tarjeta."},
+          {"quizId": "q-sibling-only", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "La tarjeta sólo explica preguntas y no permite elegir la construcción de acción en curso.", "explanation": "El contenido hermano reemplaza la explicación necesaria del caso focal."},
+          {"quizId": "q-false-direction", "holds": false, "problem": "FALSE_RULE", "severity": "HIGH", "counterexample": "La respuesta operativa de destino es lo, no ri.", "explanation": "La prescripción positiva dirige a una decisión incorrecta."},
+          {"quizId": "q-open-routes", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "Adecuada no distingue lo de otras partículas posibles.", "explanation": "No prescribe algo falso: deja abiertas varias rutas y no permite elegir."}
+        ]
       },
-      "expect": {
-        "route": "passed",
-        "canonical": "same"
-      }
+      "expect": {"route": "passed", "canonical": "same"}
     },
     {
-      "caseId": "todas-ciertas",
-      "note": "Una entrada holds true por cada M.",
-      "inputs": "adverbios",
+      "caseId": "focal-versus-routine-boundaries",
+      "inputs": "focal-boundaries",
       "verdict": {
         "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Cierta."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "Cierta."
-          }
-        ],
-        "rationale": "Las dos están bien."
+          {"quizId": "q-performative-lexical", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "Que los tres verbos estén en presente simple no permite elegir apologise por su función de disculpa.", "explanation": "La tarjeta nombra una forma compartida, pero no discrimina la decisión léxica focal."},
+          {"quizId": "q-routine-order", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Explica el contraste temporal focal; el orden interrogativo es realización rutinaria en este quiz."},
+          {"quizId": "q-does-focal", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Como el quiz contrasta do y does, la tarjeta explica la concordancia focal del auxiliar."},
+          {"quizId": "q-does-undiscriminated", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "La regla compartida por do y does no permite elegir does para the cobalt robot.", "explanation": "El auxiliar sí es focal aquí y la tarjeta deja abiertas ambas rutas."}
+        ]
       },
-      "expect": {
-        "route": "passed",
-        "canonical": "same"
-      }
+      "expect": {"route": "passed", "canonical": "same"}
     },
     {
-      "caseId": "referencias-como-en-las-entradas",
-      "note": "«M1» y «E3» como en las entradas se canonicalizan a números; exercises sin repetir y en orden.",
-      "inputs": "adverbios",
+      "caseId": "terminal-sibling-precedes-local-overstatement",
+      "inputs": "terminal-sibling-before-over",
       "verdict": {
         "assessments": [
-          {
-            "miniTheory": "M1",
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              "E3",
-              "E1",
-              1
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
+          {"quizId": "q-sibling-universal", "holds": false, "problem": "OTHER_SUBTOPIC_CONTENT", "severity": "LOW", "counterexample": "La afirmación sobre preguntas habituales es un átomo hermano ajeno a la acción en curso de este quiz.", "explanation": "La explicación local ya alcanza; el contenido hermano cierra el árbol sin auditar su universal."},
+          {"quizId": "q-local-universal", "holds": false, "problem": "OVERSTATED_FOR_QUIZ", "severity": "MEDIUM", "counterexample": "Can the cobalt fox enter? usa can para pedir permiso.", "explanation": "Sin contenido hermano, el universal local siempre queda refutado por un uso común de can."}
+        ]
+      },
+      "expect": {"route": "passed", "canonical": "same"}
+    },
+    {
+      "caseId": "case-insensitive-enums-canonicalized",
+      "inputs": "shared-text",
+      "verdict": {
+        "assessments": [
+          {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Explica origen."},
+          {"quizId": "q-destination", "holds": false, "problem": "insufficient_for_quiz", "severity": "high", "counterexample": "La respuesta operativa de destino es lo.", "explanation": "La tarjeta sólo explica origen."}
+        ]
       },
       "expect": {
         "route": "passed",
         "canonical": {
           "assessments": [
-            {
-              "miniTheory": 1,
-              "holds": false,
-              "problem": "FALSE_RULE",
-              "severity": "HIGH",
-              "counterexample": "She gets up early.",
-              "exercises": [
-                1,
-                3
-              ],
-              "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-            },
-            {
-              "miniTheory": 2,
-              "holds": true,
-              "problem": null,
-              "severity": null,
-              "counterexample": null,
-              "exercises": [
-                2
-              ],
-              "explanation": "La regla es cierta y su ejercicio la cumple."
-            }
-          ],
-          "rationale": "M1 es falsa por «early»; M2 está bien."
+            {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Explica origen."},
+            {"quizId": "q-destination", "holds": false, "problem": "INSUFFICIENT_FOR_QUIZ", "severity": "HIGH", "counterexample": "La respuesta operativa de destino es lo.", "explanation": "La tarjeta sólo explica origen."}
+          ]
         }
       }
     },
     {
-      "caseId": "enums-en-minusculas",
-      "note": "Mayúsculas de los enums y espacios de los textos se canonicalizan.",
-      "inputs": "adverbios",
+      "caseId": "missing-quiz",
+      "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "false_rule",
-            "severity": "high",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "  Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común.\n"
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "passed",
-        "canonical": {
-          "assessments": [
-            {
-              "miniTheory": 1,
-              "holds": false,
-              "problem": "FALSE_RULE",
-              "severity": "HIGH",
-              "counterexample": "She gets up early.",
-              "exercises": [
-                1,
-                3
-              ],
-              "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-            },
-            {
-              "miniTheory": 2,
-              "holds": true,
-              "problem": null,
-              "severity": null,
-              "counterexample": null,
-              "exercises": [
-                2
-              ],
-              "explanation": "La regla es cierta y su ejercicio la cumple."
-            }
-          ],
-          "rationale": "M1 es falsa por «early»; M2 está bien."
-        }
-      }
-    },
-    {
-      "caseId": "parentesis-dentro-de-la-miniteoria",
-      "note": "El texto de M1 tiene sus propios paréntesis; los ejercicios que la muestran salen del final de la línea.",
-      "inputs": "parentesis-en-el-texto",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "CONTRADICTED_BY_EXERCISE",
-            "severity": "HIGH",
-            "counterexample": "Tom came third in the competition.",
-            "exercises": [
-              2
-            ],
-            "explanation": "«third» no lleva -th aunque la regla dice siempre."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              3
-            ],
-            "explanation": "Cierta."
-          }
-        ],
-        "rationale": "E2 contradice a M1."
-      },
-      "expect": {
-        "route": "passed",
-        "canonical": "same"
-      }
-    },
-    {
-      "caseId": "parentesis-y-ejercicio-que-no-la-muestra",
-      "note": "Con paréntesis en el texto igual se sabe que E3 no muestra M1.",
-      "inputs": "parentesis-en-el-texto",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "CONTRADICTED_BY_EXERCISE",
-            "severity": "HIGH",
-            "counterexample": "It's my first day at school.",
-            "exercises": [
-              3
-            ],
-            "explanation": "Una línea que dice qué tiene la regla."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              3
-            ],
-            "explanation": "Cierta."
-          }
-        ],
-        "rationale": "Mal."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "E3 no la muestra"
-        ],
-        "schemaRejects": false
-      }
-    },
-    {
-      "caseId": "tema-sin-miniteorias",
-      "note": "Un tema sin miniteorías: assessments vacío.",
-      "inputs": "sin-miniteorias",
-      "verdict": {
-        "assessments": [],
-        "rationale": "No hay miniteorías."
-      },
-      "expect": {
-        "route": "passed",
-        "canonical": "same"
-      }
-    },
-    {
-      "caseId": "sin-entradas-numeradas",
-      "note": "Si no llegan miniTheories ni exercises (uso fuera de content-audit), no hay rangos que mirar.",
-      "inputs": "sin-entradas-numeradas",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "passed",
-        "canonical": "same"
-      }
-    },
-    {
-      "caseId": "miniteoria-que-no-esta",
-      "note": "miniTheory tiene que ser una M de las entradas; el esquema no lo sabe.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          },
-          {
-            "miniTheory": 3,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [],
-            "explanation": "Cierta."
-          }
-        ],
-        "rationale": "Tres."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "M3 no es una miniteoría del tema"
-        ],
-        "schemaRejects": false
-      }
-    },
-    {
-      "caseId": "miniteoria-en-un-tema-sin-miniteorias",
-      "note": "Con miniTheories vacío no hay M que juzgar.",
-      "inputs": "sin-miniteorias",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              1
-            ],
-            "explanation": "Cierta."
-          }
-        ],
-        "rationale": "Inventada."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "no es una miniteoría del tema"
-        ],
-        "schemaRejects": false
-      }
-    },
-    {
-      "caseId": "ejercicio-que-no-esta",
-      "note": "exercises son E de las entradas.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              9
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "E9"
-        ],
-        "schemaRejects": false
-      }
-    },
-    {
-      "caseId": "falta-una-miniteoria",
-      "note": "Cada M del tema aparece al menos una vez (F-MINIT-R002: por cada miniteoría).",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          }
-        ],
-        "rationale": "Sólo M1."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "faltan miniteorías en assessments: M2"
-        ],
-        "schemaRejects": false
-      }
-    },
-    {
-      "caseId": "cierta-con-problema",
-      "note": "Con holds true, problem va null.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": "OVERSTATED",
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "con holds true, problem va null"
-        ],
-        "schemaRejects": true
-      }
-    },
-    {
-      "caseId": "cierta-con-contraejemplo",
-      "note": "Con holds true, counterexample va null.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": "He studied hard.",
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "con holds true, counterexample va null"
-        ],
-        "schemaRejects": true
-      }
-    },
-    {
-      "caseId": "falsa-sin-problema",
-      "note": "Con holds false, problem dice qué tiene.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": null,
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "con holds false, problem"
-        ],
-        "schemaRejects": true
-      }
-    },
-    {
-      "caseId": "gravedad-que-no-corresponde",
-      "note": "La gravedad sale del problema (F-MINIT-R004): FALSE_RULE es HIGH.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "MEDIUM",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "FALSE_RULE va con severity HIGH"
-        ],
-        "schemaRejects": true
-      }
-    },
-    {
-      "caseId": "bloqueante",
-      "note": "mini-theory nunca es BLOCKING: la miniteoría se ve después de contestar.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "BLOCKING",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "BLOCKING no existe en este juez"
-        ],
-        "schemaRejects": true
-      }
-    },
-    {
-      "caseId": "sin-contraejemplo",
-      "note": "Con holds false, el contraejemplo es obligatorio.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": null,
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "counterexample es una oración"
-        ],
-        "schemaRejects": true
-      }
-    },
-    {
-      "caseId": "falsa-sin-ejercicios",
-      "note": "Con holds false, exercises nombra los involucrados.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "exercises nombra los ejercicios involucrados"
-        ],
-        "schemaRejects": true
-      }
-    },
-    {
-      "caseId": "contradicha-donde-no-se-muestra",
-      "note": "CONTRADICTED_BY_EXERCISE sólo con ejercicios que muestran la M (F-MINIT-R003).",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "CONTRADICTED_BY_EXERCISE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              2
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "E2 no la muestra"
-        ],
-        "schemaRejects": false
-      }
-    },
-    {
-      "caseId": "problema-repetido",
-      "note": "Una entrada por M y problema, con todos sus ejercicios.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "M1 repite el problema FALSE_RULE"
-        ],
-        "schemaRejects": false
-      }
-    },
-    {
-      "caseId": "falsa-y-exagerada",
-      "note": "Una regla no es FALSE_RULE y OVERSTATED a la vez.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "OVERSTATED",
-            "severity": "MEDIUM",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "no puede ser FALSE_RULE y OVERSTATED"
-        ],
-        "schemaRejects": false
-      }
-    },
-    {
-      "caseId": "cierta-y-con-problema",
-      "note": "Si es cierta va una sola entrada.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          },
-          {
-            "miniTheory": 2,
-            "holds": false,
-            "problem": "NOT_COVERING_EXERCISE",
-            "severity": "LOW",
-            "counterexample": "She runs fast.",
-            "exercises": [
-              2
-            ],
-            "explanation": "Una línea que dice qué tiene la regla."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "M2 tiene una entrada con holds true y otras más"
-        ],
-        "schemaRejects": false
-      }
-    },
-    {
-      "caseId": "referencia-booleana",
-      "note": "true no es un número de miniteoría.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": true,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "tiene que ser un número entero"
-        ],
-        "schemaRejects": true
-      }
-    },
-    {
-      "caseId": "exercises-no-es-array",
-      "note": "exercises es un array de números.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": "E1, E3",
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "exercises tiene que ser un array"
-        ],
-        "schemaRejects": true
-      }
-    },
-    {
-      "caseId": "evaluacion-con-clave-de-mas",
-      "note": "Cada evaluación es un objeto cerrado.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común.",
-            "confidence": 0.9
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "assessments[0] no respeta el objeto cerrado"
-        ],
-        "schemaRejects": true
-      }
-    },
-    {
-      "caseId": "falta-rationale",
-      "note": "Falta una clave del objeto cerrado.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
+          {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Correcta."}
         ]
       },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "faltan=['rationale']"
-        ],
-        "schemaRejects": true
-      }
+      "expect": {"route": "failed", "errorContains": ["exactamente"], "schemaRejects": false}
     },
     {
-      "caseId": "run-dir-por-state-json",
-      "note": "Sin run_dir en las entradas: project_root + el run_id (UUID) del state.json, como lo proyecta el CLI.",
-      "inputs": "adverbios",
+      "caseId": "duplicate-quiz",
+      "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
+          {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Correcta."},
+          {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Repetida."}
+        ]
       },
-      "resolution": "state.json",
-      "expect": {
-        "route": "passed",
-        "canonical": "same"
-      }
+      "expect": {"route": "failed", "errorContains": ["exactamente"], "schemaRejects": false}
     },
     {
-      "caseId": "run-id-ambiguo",
-      "note": "Dos state.json con el mismo runId: el gate no adivina; emit sale conservador.",
-      "inputs": "adverbios",
+      "caseId": "wrong-severity",
+      "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "resolution": "ambiguous",
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "exactamente uno"
+          {"quizId": "q-source", "holds": false, "problem": "FALSE_RULE", "severity": "LOW", "counterexample": "ri marca origen en este sistema inventado.", "explanation": "Severidad deliberadamente inválida."},
+          {"quizId": "q-destination", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Salida sintética del fixture técnico."}
         ]
-      }
+      },
+      "expect": {"route": "failed", "errorContains": ["exige severity HIGH"], "schemaRejects": true}
     },
     {
-      "caseId": "run-id-inseguro",
-      "note": "Un run_id que escaparía del directorio de runs se rechaza.",
-      "inputs": "adverbios",
+      "caseId": "healthy-with-problem",
+      "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "resolution": "unsafe-run-id",
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "run_id ausente o inseguro"
+          {"quizId": "q-source", "holds": true, "problem": "FALSE_RULE", "severity": "HIGH", "counterexample": "ri marca origen.", "explanation": "Invariante deliberadamente contradictoria."},
+          {"quizId": "q-destination", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Salida sintética del fixture técnico."}
         ]
-      }
+      },
+      "expect": {"route": "failed", "errorContains": ["holds=true"], "schemaRejects": true}
     },
     {
-      "caseId": "sin-run-dir",
-      "note": "Sin run_dir ni project_root no hay dónde leer: falla el gate y emit da outputUnusable.",
-      "inputs": "adverbios",
+      "caseId": "legacy-fields-rejected",
+      "inputs": "shared-text",
       "verdict": {
         "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
+          {"quizId": "q-source", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Correcta.", "exercises": [1]},
+          {"quizId": "q-destination", "holds": true, "problem": null, "severity": null, "counterexample": null, "explanation": "Salida sintética del fixture técnico."}
+        ]
       },
-      "resolution": "none",
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "faltan run_dir"
-        ]
-      }
+      "expect": {"route": "failed", "errorContains": ["objeto cerrado"], "schemaRejects": true}
     },
     {
-      "caseId": "sin-salida-de-evaluate",
-      "note": "evaluate no dejó verdicts.json.",
-      "inputs": "adverbios",
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "verdicts.json no existe"
-        ]
-      }
-    },
-    {
-      "caseId": "validated-viejo-se-borra",
-      "note": "Un validated-verdict.json de un intento anterior no sobrevive a un gate que falla.",
-      "inputs": "adverbios",
-      "raw": "no hay veredicto",
-      "staleValidated": true,
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "no es un objeto JSON"
-        ]
-      }
-    },
-    {
-      "caseId": "no-es-json",
-      "note": "Prosa sin objeto JSON.",
-      "inputs": "adverbios",
-      "raw": "No puedo juzgar este ejercicio.",
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "no es un objeto JSON"
-        ]
-      }
-    },
-    {
-      "caseId": "lista-en-vez-de-objeto",
-      "note": "Un array no es el veredicto.",
-      "inputs": "adverbios",
-      "raw": "[1, 2]",
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "no es un objeto JSON"
-        ]
-      }
-    },
-    {
-      "caseId": "output-unusable-del-modelo",
-      "note": "{\"outputUnusable\": true} lo produce emit, nunca el modelo: el gate lo rechaza.",
-      "inputs": "adverbios",
-      "verdict": {
-        "outputUnusable": true
-      },
-      "expect": {
-        "route": "failed",
-        "errorContains": [
-          "objeto cerrado"
-        ]
-      }
-    },
-    {
-      "caseId": "validated-corrupto-antes-de-emit",
-      "note": "Si validated-verdict.json no se puede leer, emit no inventa: outputUnusable.",
-      "inputs": "adverbios",
-      "verdict": {
-        "assessments": [
-          {
-            "miniTheory": 1,
-            "holds": false,
-            "problem": "FALSE_RULE",
-            "severity": "HIGH",
-            "counterexample": "She gets up early.",
-            "exercises": [
-              1,
-              3
-            ],
-            "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-          },
-          {
-            "miniTheory": 2,
-            "holds": true,
-            "problem": null,
-            "severity": null,
-            "counterexample": null,
-            "exercises": [
-              2
-            ],
-            "explanation": "La regla es cierta y su ejercicio la cumple."
-          }
-        ],
-        "rationale": "M1 es falsa por «early»; M2 está bien."
-      },
-      "corruptValidated": true,
-      "expect": {
-        "route": "passed",
-        "canonical": "same"
-      }
-    },
-    {
-      "caseId": "fence-json",
-      "note": "La salida en un fence ```json se acepta sin pagar otra consulta.",
-      "inputs": "adverbios",
-      "raw": "```json\n{\n  \"assessments\": [\n    {\n      \"miniTheory\": 1,\n      \"holds\": false,\n      \"problem\": \"FALSE_RULE\",\n      \"severity\": \"HIGH\",\n      \"counterexample\": \"She gets up early.\",\n      \"exercises\": [\n        1,\n        3\n      ],\n      \"explanation\": \"Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común.\"\n    },\n    {\n      \"miniTheory\": 2,\n      \"holds\": true,\n      \"problem\": null,\n      \"severity\": null,\n      \"counterexample\": null,\n      \"exercises\": [\n        2\n      ],\n      \"explanation\": \"La regla es cierta y su ejercicio la cumple.\"\n    }\n  ],\n  \"rationale\": \"M1 es falsa por «early»; M2 está bien.\"\n}\n```",
-      "expect": {
-        "route": "passed",
-        "canonical": {
-          "assessments": [
-            {
-              "miniTheory": 1,
-              "holds": false,
-              "problem": "FALSE_RULE",
-              "severity": "HIGH",
-              "counterexample": "She gets up early.",
-              "exercises": [
-                1,
-                3
-              ],
-              "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-            },
-            {
-              "miniTheory": 2,
-              "holds": true,
-              "problem": null,
-              "severity": null,
-              "counterexample": null,
-              "exercises": [
-                2
-              ],
-              "explanation": "La regla es cierta y su ejercicio la cumple."
-            }
-          ],
-          "rationale": "M1 es falsa por «early»; M2 está bien."
-        }
-      }
-    },
-    {
-      "caseId": "prosa-alrededor",
-      "note": "Prosa antes y una etiqueta después: se toma el objeto.",
-      "inputs": "adverbios",
-      "raw": "Este es mi veredicto:\n{\"assessments\": [{\"miniTheory\": 1, \"holds\": false, \"problem\": \"FALSE_RULE\", \"severity\": \"HIGH\", \"counterexample\": \"She gets up early.\", \"exercises\": [1, 3], \"explanation\": \"Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común.\"}, {\"miniTheory\": 2, \"holds\": true, \"problem\": null, \"severity\": null, \"counterexample\": null, \"exercises\": [2], \"explanation\": \"La regla es cierta y su ejercicio la cumple.\"}], \"rationale\": \"M1 es falsa por «early»; M2 está bien.\"}\nLABEL: done",
-      "expect": {
-        "route": "passed",
-        "canonical": {
-          "assessments": [
-            {
-              "miniTheory": 1,
-              "holds": false,
-              "problem": "FALSE_RULE",
-              "severity": "HIGH",
-              "counterexample": "She gets up early.",
-              "exercises": [
-                1,
-                3
-              ],
-              "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-            },
-            {
-              "miniTheory": 2,
-              "holds": true,
-              "problem": null,
-              "severity": null,
-              "counterexample": null,
-              "exercises": [
-                2
-              ],
-              "explanation": "La regla es cierta y su ejercicio la cumple."
-            }
-          ],
-          "rationale": "M1 es falsa por «early»; M2 está bien."
-        }
-      }
-    },
-    {
-      "caseId": "json-dentro-de-un-string",
-      "note": "El objeto serializado dentro de un string JSON se desenvuelve.",
-      "inputs": "adverbios",
-      "raw": "\"{\\\"assessments\\\": [{\\\"miniTheory\\\": 1, \\\"holds\\\": false, \\\"problem\\\": \\\"FALSE_RULE\\\", \\\"severity\\\": \\\"HIGH\\\", \\\"counterexample\\\": \\\"She gets up early.\\\", \\\"exercises\\\": [1, 3], \\\"explanation\\\": \\\"Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común.\\\"}, {\\\"miniTheory\\\": 2, \\\"holds\\\": true, \\\"problem\\\": null, \\\"severity\\\": null, \\\"counterexample\\\": null, \\\"exercises\\\": [2], \\\"explanation\\\": \\\"La regla es cierta y su ejercicio la cumple.\\\"}], \\\"rationale\\\": \\\"M1 es falsa por «early»; M2 está bien.\\\"}\"",
-      "expect": {
-        "route": "passed",
-        "canonical": {
-          "assessments": [
-            {
-              "miniTheory": 1,
-              "holds": false,
-              "problem": "FALSE_RULE",
-              "severity": "HIGH",
-              "counterexample": "She gets up early.",
-              "exercises": [
-                1,
-                3
-              ],
-              "explanation": "Dice que todo adjetivo en -y pasa a -ily, y «early» no cambia: «She gets up early» es correcto y común."
-            },
-            {
-              "miniTheory": 2,
-              "holds": true,
-              "problem": null,
-              "severity": null,
-              "counterexample": null,
-              "exercises": [
-                2
-              ],
-              "explanation": "La regla es cierta y su ejercicio la cumple."
-            }
-          ],
-          "rationale": "M1 es falsa por «early»; M2 está bien."
-        }
-      }
+      "caseId": "malformed-json",
+      "inputs": "shared-text",
+      "raw": "esto no es json",
+      "expect": {"route": "failed", "errorContains": ["objeto cerrado"]}
     }
   ]
 }

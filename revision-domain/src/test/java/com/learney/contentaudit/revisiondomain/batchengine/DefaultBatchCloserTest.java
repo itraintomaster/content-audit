@@ -6,6 +6,7 @@ import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.wi
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,6 +37,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.comparison.BatchComparator;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeOutcome;
 import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
 import com.learney.contentaudit.revisiondomain.comparison.GoalReference;
@@ -46,10 +48,12 @@ import com.learney.contentaudit.revisiondomain.comparison.RowValue;
 import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
 import com.learney.contentaudit.revisiondomain.nonregression.BatchGate;
+import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
 import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
 import com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory;
 import com.learney.contentaudit.revisiondomain.panelengine.MesaFixture;
 import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
+import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -90,6 +94,8 @@ public class DefaultBatchCloserTest {
         ProjectionScope scope = closing.comparator.scopes.get(0);
         assertEquals("tanda-a1", scope.getScopeId());
         assertEquals(List.of(P_VEGETABLES, P_COME), scope.getProposalIds(), "its proposals, one per exercise, and no other");
+        assertEquals(1, batch.getClosings().get(0).getCorrectionRevision(),
+                "a legacy batch without an ordinal is normalized to Correction 1");
     }
 
     @Test
@@ -385,6 +391,77 @@ public class DefaultBatchCloserTest {
 
     private static BatchChange change(CorrectionBatch batch, String changeId) {
         return batch.getChanges().stream().filter(c -> c.getChangeId().equals(changeId)).findFirst().orElseThrow();
+    }
+
+    @Test
+    @DisplayName("should close a failed aggregate analysis without attributing every change")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R006")
+    public void shouldCloseAFailedAggregateAnalysisWithoutAttributingEveryChange() {
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        BatchComparison summary = TandaFixture.comparison(DefaultBatchCloser.scope(batch), List.of(), VerdictKind.FAILS);
+        List<String> calls = new ArrayList<>();
+        BatchComparator comparator = new BatchComparator() {
+            @Override
+            public BatchComparison compareSummary(Path coursePath, ProjectionScope scope) {
+                calls.add("summary");
+                return summary;
+            }
+
+            @Override
+            public BatchComparison compare(Path coursePath, ProjectionScope scope) {
+                calls.add("attribution");
+                throw new AssertionError("closing an analysis must not run leave-one-out attribution");
+            }
+        };
+        BatchGate gate = (comparison, outside, exceptions) -> new BatchGateVerdict(false, VerdictKind.FAILS,
+                List.of(), List.of(), List.of(), List.of(), List.of(), List.of("un piso agregado empeoró"));
+        DefaultBatchCloser closer = new DefaultBatchCloser(comparator, gate, closing.samples, closing.ledger(),
+                closing.batches, TandaFixture.COURSE_PATH, new NoJudgesPass()).withPlans(closing.plans,
+                        MesaFixture.corrections());
+
+        batch = closer.close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
+
+        assertEquals(List.of("summary"), calls, "the correction is measured once, as a whole");
+        assertEquals(BatchStatus.CLOSED, batch.getStatus());
+        BatchClosing persisted = batch.getClosings().get(batch.getClosings().size() - 1);
+        assertSame(summary, persisted.getComparison());
+        assertFalse(persisted.getGate().isPasses());
+    }
+
+    @Test
+    @DisplayName("should close from the complete after without attributing every change when the summary passes")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R006")
+    public void shouldCloseFromTheCompleteAfterWithoutAttributingEveryChangeWhenTheSummaryPasses() {
+        Closing closing = new Closing();
+        CorrectionBatch batch = closing.batchWithVegetablesAndGrandmother();
+        BatchComparison summary = TandaFixture.passing(DefaultBatchCloser.scope(batch), List.of());
+        List<String> calls = new ArrayList<>();
+        BatchComparator comparator = new BatchComparator() {
+            @Override
+            public BatchComparison compareSummary(Path coursePath, ProjectionScope scope) {
+                calls.add("summary");
+                return summary;
+            }
+
+            @Override
+            public BatchComparison compare(Path coursePath, ProjectionScope scope) {
+                calls.add("attribution");
+                throw new AssertionError("a passing complete audit does not need leave-one-out attribution");
+            }
+        };
+        BatchGate gate = (comparison, outside, exceptions) -> new BatchGateVerdict(true, VerdictKind.PASSES,
+                List.of(), List.of(), List.of(), List.of(), List.of(), List.of());
+        DefaultBatchCloser closer = new DefaultBatchCloser(comparator, gate, closing.samples, closing.ledger(),
+                closing.batches, TandaFixture.COURSE_PATH, new NoJudgesPass()).withPlans(closing.plans,
+                        MesaFixture.corrections());
+
+        batch = closer.close(batch, closing.course, new BatchCloseRequest(new LinkedHashMap<>(), null));
+
+        assertEquals(List.of("summary"), calls);
+        assertEquals(BatchStatus.CLOSED, batch.getStatus());
     }
 
     @Test

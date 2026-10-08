@@ -107,6 +107,12 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
     @Override
     public JudgeSessions open(String judgeName, List<Evaluator> evaluators,
             EvaluationRunPolicy policy) {
+        return open(judgeName, evaluators, policy, null);
+    }
+
+    @Override
+    public JudgeSessions open(String judgeName, List<Evaluator> evaluators,
+            EvaluationRunPolicy policy, EvaluationRuntimeIdentity examRuntimeIdentity) {
         // F-JEXAM-R005 / F-QINST-R018 inv. 3: a request that cannot be interpreted is rejected
         // before anything is opened, for every judge.
         rejectUninterpretableSet(judgeName, policy);
@@ -117,7 +123,10 @@ public class DefaultJudgeRuntime implements JudgeRuntime {
             evaluatorIds.add(evaluator.evaluatorId());
         }
         String judgeVersion = composeVersion(judges);
-        EvaluationRuntimeIdentity runtimeIdentity = composeRuntimeIdentity(judges);
+        EvaluationRuntimeIdentity evaluatorRuntimeIdentity = composeRuntimeIdentity(judges);
+        EvaluationRuntimeIdentity runtimeIdentity = examRuntimeIdentity != null
+                ? examRuntimeIdentity
+                : evaluatorRuntimeIdentity;
         Set<String> compatibleJudgeVersions = composeCompatibleVersions(judges);
         if (judgeVersion != null) {
             compatibleJudgeVersions.add(judgeVersion);

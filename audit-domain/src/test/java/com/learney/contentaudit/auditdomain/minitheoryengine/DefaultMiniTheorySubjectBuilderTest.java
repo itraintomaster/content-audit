@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 )
 public class DefaultMiniTheorySubjectBuilderTest {
     @Test
-    @DisplayName("should build one content per topic with cefrLevel, topic, the topic's instructions, its mini-theories and its exercises, in that order and nothing else")
+    @DisplayName("should build one content per topic with one quiz entry per quizId, including its own mini-theory and exercise")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
     public void shouldBuildOneContentPerTopicWithCefrLevelTopicTheTopicsInstructionsItsMinitheoriesAndItsExercisesInThatOrderAndNothingElse(
@@ -57,17 +57,25 @@ public class DefaultMiniTheorySubjectBuilderTest {
         assertEquals(AFIRMATIVAS_REGULARES, subject.getSubjectRef(), "the subject is the topic, by its id");
         Map<String, String> content = subject.getContent();
         assertInstanceOf(LinkedHashMap.class, content, "the keys keep their order");
-        assertEquals(List.of("cefrLevel", "topic", "instructions", "miniTheories", "exercises"),
-                new ArrayList<>(content.keySet()), "these five keys, in this order, and nothing else");
+        assertEquals(List.of("cefrLevel", "topic", "instructions", "quizzes"),
+                new ArrayList<>(content.keySet()), "topic context followed by the quiz-scoped payload");
         assertEquals("A1", content.get("cefrLevel"));
         assertEquals("Afirmativas regulares", content.get("topic"));
         assertEquals("Escribe la forma correcta del verbo.", content.get("instructions"),
                 "the instructions of the topic, never the copy of the exercise");
-        assertEquals("M1: " + VERDURAS_MINI_THEORY + " (ejercicios: E1, E2, E3)", content.get("miniTheories"));
-        assertEquals("E1: You ___ (see) cats. → see\n"
-                        + "E2: It ___ (come) every year. → comes\n"
-                        + "E3: I ___ a lot of vegetables. → love",
-                content.get("exercises"));
+        String quizzes = content.get("quizzes");
+        assertEquals(3, occurrences(quizzes, "quizId:"), "one serialized entry per quiz");
+        assertEquals(1, occurrences(quizzes, "67fab6d59930102295341ec3"));
+        assertEquals(1, occurrences(quizzes, "67fab6d59930102295341ec4"));
+        assertEquals(1, occurrences(quizzes, VERDURAS));
+        assertEquals(3, occurrences(quizzes, VERDURAS_MINI_THEORY),
+                "equal text is repeated in each quiz entry, never deduplicated as a shared card");
+        assertTrue(quizzes.contains("You ___ (see) cats."));
+        assertTrue(quizzes.contains("It ___ (come) every year."));
+        assertTrue(quizzes.contains("I ___ a lot of vegetables."));
+        assertTrue(quizzes.contains("see") && quizzes.contains("comes") && quizzes.contains("love"));
+        assertFalse(quizzes.contains("M1:") || quizzes.contains("E1:"),
+                "ordinals are presentation order, never assessment identity");
 
         // Nothing it does not read: the translation, the audio, the copy of the instructions.
         for (String value : content.values()) {
@@ -80,14 +88,14 @@ public class DefaultMiniTheorySubjectBuilderTest {
     }
 
     @Test
-    @DisplayName("should list each distinct mini-theory once, numbered by first appearance with the exercises that show it, as the they/them one of 16 exercises of «Sujeto u objeto» and the she/her one of 12")
+    @DisplayName("should keep one quiz entry for each of 28 quizzes even when only two mini-theory texts repeat")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
     public void shouldListEachDistinctMinitheoryOnceNumberedByFirstAppearanceWithTheExercisesThatShowItAsTheTheythemOneOf16ExercisesOfSujetoUObjetoAndTheSheherOneOf12(
             ) {
         AuditNode topic = sujetoUObjeto();
 
-        String miniTheories = builder().build(topic).getContent().get("miniTheories");
+        String quizzes = builder().build(topic).getContent().get("quizzes");
 
         List<String> they = new ArrayList<>();
         List<String> she = new ArrayList<>();
@@ -96,12 +104,12 @@ public class DefaultMiniTheorySubjectBuilderTest {
         }
         assertEquals(16, they.size());
         assertEquals(12, she.size());
-        // E1 shows they/them, so it is M1; she/her first appears in E3, so it is M2.
-        assertEquals("M1: " + THEY_THEM + " (ejercicios: " + String.join(", ", they) + ")\n"
-                        + "M2: " + SHE_HER + " (ejercicios: " + String.join(", ", she) + ")",
-                miniTheories);
-        assertEquals(1, occurrences(miniTheories, THEY_THEM), "the they/them one, once for its 16 exercises");
-        assertEquals(1, occurrences(miniTheories, SHE_HER), "the she/her one, once for its 12 exercises");
+        assertEquals(28, occurrences(quizzes, "quizId:"));
+        assertEquals(16, occurrences(quizzes, THEY_THEM), "the same text remains attached to each of its 16 quizzes");
+        assertEquals(12, occurrences(quizzes, SHE_HER), "the same text remains attached to each of its 12 quizzes");
+        for (int e = 1; e <= 28; e++) {
+            assertTrue(quizzes.contains("quizId: q-suj-" + e), "each persistent quiz id is present: q-suj-" + e);
+        }
     }
 
     @Test
@@ -130,15 +138,18 @@ public class DefaultMiniTheorySubjectBuilderTest {
 
         Map<String, String> content = builder().build(topic).getContent();
 
-        assertEquals("E1: He ___ (not / cut) himself. → hasn't cut | has not cut\n"
-                        + "E2: I ___ (be) tired and I ___ (want) to sleep. → am · want\n"
-                        + "E3: She ___ (be) here. → is\n"
-                        + "E4: The show started ___ time. → opciones: in, on (correcta)",
-                content.get("exercises"));
-        assertEquals("M1: " + presentPerfect + " (ejercicios: E1, E2)\n"
-                        + "M2: " + inOnTime + " (ejercicios: E4)",
-                content.get("miniTheories"), "E3 has no mini theory: it is numbered, never listed");
-        assertFalse(content.get("exercises").contains("[") || content.get("exercises").contains("____"),
+        String quizzes = content.get("quizzes");
+        assertTrue(quizzes.contains("He ___ (not / cut) himself."));
+        assertTrue(quizzes.contains("hasn't cut | has not cut"));
+        assertTrue(quizzes.contains("I ___ (be) tired and I ___ (want) to sleep."));
+        assertTrue(quizzes.contains("am · want"));
+        assertTrue(quizzes.contains("She ___ (be) here."));
+        assertTrue(quizzes.contains("The show started ___ time."));
+        assertTrue(quizzes.contains("opciones: in, on (correcta)"));
+        assertEquals(2, occurrences(quizzes, presentPerfect), "the shared text is present in both quiz entries");
+        assertEquals(1, occurrences(quizzes, inOnTime));
+        assertTrue(quizzes.contains("q-no-mini-theory"), "a quiz without mini theory still has its own entry");
+        assertFalse(quizzes.contains("[") || quizzes.contains("____"),
                 "never the internal format of the course");
     }
 
@@ -172,7 +183,7 @@ public class DefaultMiniTheorySubjectBuilderTest {
                 fingerprinter.fingerprint(otherMiniTheory.getContent()), "the whole topic is judged again");
         assertNotEquals(fingerprinter.fingerprint(original.getContent()),
                 fingerprinter.fingerprint(otherExercise.getContent()), "the whole topic is judged again");
-        assertTrue(otherExercise.getContent().get("exercises").contains("E3: I ___ a lot of vegetables. → love | like"));
+        assertTrue(otherExercise.getContent().get("quizzes").contains("love | like"));
     }
 
     // ------------------------------------------------------------------

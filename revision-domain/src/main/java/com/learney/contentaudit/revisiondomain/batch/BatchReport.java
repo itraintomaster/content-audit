@@ -18,6 +18,8 @@ public class BatchReport {
 
     private BatchStatus status;
 
+    private String interruptionReason;
+
     private List<OutcomeCount> outcomes;
 
     private int totalTasks;
@@ -86,6 +88,14 @@ public class BatchReport {
 
     public void setStatus(BatchStatus status) {
         this.status = status;
+    }
+
+    public String getInterruptionReason() {
+        return this.interruptionReason;
+    }
+
+    public void setInterruptionReason(String interruptionReason) {
+        this.interruptionReason = interruptionReason;
     }
 
     public List<OutcomeCount> getOutcomes() {
@@ -184,6 +194,7 @@ public class BatchReport {
         return Objects.equals(this.batchId, that.batchId)
                     && Objects.equals(this.level, that.level)
                     && Objects.equals(this.status, that.status)
+                    && Objects.equals(this.interruptionReason, that.interruptionReason)
                     && Objects.equals(this.outcomes, that.outcomes)
                     && Objects.equals(this.totalTasks, that.totalTasks)
                     && Objects.equals(this.conversionDone, that.conversionDone)
@@ -199,6 +210,6 @@ public class BatchReport {
 
     @Override
     public int hashCode() {
-        return Objects.hash(batchId, level, status, outcomes, totalTasks, conversionDone, conversionNoWinner, errorsByAnalyzer, rerecords, lengths, queries, hours, joseDecisions, judges);
+        return Objects.hash(batchId, level, status, interruptionReason, outcomes, totalTasks, conversionDone, conversionNoWinner, errorsByAnalyzer, rerecords, lengths, queries, hours, joseDecisions, judges);
     }
 }

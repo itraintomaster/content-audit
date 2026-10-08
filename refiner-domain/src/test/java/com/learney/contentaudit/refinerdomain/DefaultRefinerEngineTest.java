@@ -1045,7 +1045,7 @@ public class DefaultRefinerEngineTest {
     @Tag("F-TAREA-R001")
     public void shouldAddUpForEachErrorAnalyzerOfThePlanItsCountingFindingsToItsOwnTasksPlusItsCoveredFindingsPlusItsUnconvertedFindingsInTheFindingTally() {
         // R001: per analyzer, the findings that count add up to its tasks, its covered and its unconverted. Here every
-        // outcome appears: own tasks (the vegetables), a topic task that covers the rest of its mini theory, the
+        // outcome appears: own tasks (the vegetables and every quiz-local mini theory), the
         // off-level-words covered by LEMMA_ABSENCE and one it cannot cover, and an analyzer with no task kind.
         AuditNode afirmativas = vegetables();
         AuditNode inTime = inTimeOnTime(5);
@@ -1076,7 +1076,7 @@ public class DefaultRefinerEngineTest {
         expected.put("exact-duplicates", "1 = 0 + 0 + 1");
         expected.put("translation-sense", "1 = 1 + 0 + 0");
         expected.put("single-answer", "1 = 1 + 0 + 0");
-        expected.put("mini-theory", "5 = 1 + 4 + 0");
+        expected.put("mini-theory", "5 = 5 + 0 + 0");
         Assertions.assertEquals(expected, byAnalyzer, "per analyzer, in catalog order: counting = own + covered + unconverted");
     }
 
@@ -1138,7 +1138,8 @@ public class DefaultRefinerEngineTest {
     @Tag("F-TAREA-R001")
     public void shouldNeverHoldAnErrorTaskWithoutTheFindingItCameFromNorASecondTaskForTheSameFinding() {
         // R001: in the errors family there is no task without its finding, and no finding has two tasks: over a report
-        // with own tasks, a topic task and covered findings, every task of an analyzer of errors carries its finding and
+        // with own tasks (including forty quiz-local mini-theory tasks) and covered off-level findings, every task of an
+        // analyzer of errors carries its finding and
         // each finding that counts appears once, as the finding of a task or among the covered of one.
         AuditNode quilt = quiltTopic(true);
         DefaultRefinerEngine engine = tareaEngine();
@@ -1257,52 +1258,69 @@ public class DefaultRefinerEngineTest {
     }
 
     @Test
-    @DisplayName("should turn the forty findings that the mini-theory of «$In time$ u $on time$» (B1) leaves in its forty exercises into one task on the topic that reaches the forty, owns one finding and covers the other thirty-nine")
+    @DisplayName("should turn forty mini-theory findings into forty independent quiz tasks, each owning its finding")
     @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
     @Tag("F-TAREA-R003")
-    public void shouldTurnTheFortyFindingsThatTheMinitheoryOfInTimeUOnTimeB1LeavesInItsFortyExercisesIntoOneTaskOnTheTopicThatReachesTheFortyOwnsOneFindingAndCoversTheOtherThirtynine() {
-        // R003: the mini theory of «In time u on time» (B1) is the same in its forty exercises and leaves one finding in
-        // each, with the same mark. The plan makes a single task, on the topic, that reaches the forty, owns the first
-        // finding and covers the other thirty-nine -- never a task per exercise.
+    public void shouldTurnFortyMinitheoryFindingsIntoFortyIndependentQuizTasksEachOwningItsFinding() {
+        // R003: even when the forty quizzes show the same text, each finding belongs to its concrete quiz. It therefore
+        // opens its own QUIZ task and is never folded into a thematic task or covered by a sibling.
         DefaultRefinerEngine engine = tareaEngine();
         RefinementPlan plan = engine.plan(new AuditReport(course(level("B1", topic("t-b1", "Prepositions", inTimeOnTime(40))))), "a");
 
-        Assertions.assertEquals(1, plan.getTasks().size(), "R003: one task, not forty");
-        RefinementTask task = plan.getTasks().get(0);
-        Assertions.assertEquals(AuditTarget.KNOWLEDGE, task.getNodeTarget(), "on the topic");
-        Assertions.assertEquals(IN_TIME, task.getNodeId());
-        Assertions.assertEquals(DiagnosisKind.MINI_THEORY, task.getDiagnosisKind());
-        Assertions.assertEquals(inTimeQuizIds(40), task.getOrigin().getReachedQuizIds(), "it reaches the forty exercises");
-        Assertions.assertEquals("mini-theory|overstated-rule|" + inTimeQuizIds(1).get(0) + "|" + IN_TIME_TEXT,
-                task.getOrigin().getFinding().getIdentity().getKey(), "it owns the finding of the first one");
-        Assertions.assertEquals(39, task.getOrigin().getCoveredFindings().size(), "and covers the other thirty-nine");
-        Assertions.assertEquals(CefrLevel.B1, task.getOrigin().getCefrLevel());
+        Assertions.assertEquals(40, plan.getTasks().size(), "R003: one task per quiz-local finding");
+        Assertions.assertEquals(inTimeQuizIds(40), plan.getTasks().stream().map(RefinementTask::getNodeId).toList());
+        for (RefinementTask task : plan.getTasks()) {
+            Assertions.assertEquals(AuditTarget.QUIZ, task.getNodeTarget());
+            Assertions.assertEquals(DiagnosisKind.MINI_THEORY, task.getDiagnosisKind());
+            Assertions.assertEquals(task.getNodeId(), task.getOrigin().getFinding().getNode().getNodeId(),
+                    "the task owns the finding of that same quiz");
+            Assertions.assertEquals(List.of(task.getNodeId()), task.getOrigin().getReachedQuizIds(),
+                    "its correction reaches only its quiz");
+            Assertions.assertEquals(List.of(), task.getOrigin().getCoveredFindings(),
+                    "a sibling's finding is never covered by this task");
+            Assertions.assertEquals(CefrLevel.B1, task.getOrigin().getCefrLevel());
+        }
     }
 
     @Test
-    @DisplayName("should open one topic task per mini-theory with a problem, two for «Contraste inicial» (A1) when two of its eight mini-theories are marked, and never one task per exercise that shows them")
+    @DisplayName("should keep two tasks for two erroneous quizzes that share mini-theory text and none for their healthy sibling")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R003")
-    public void shouldOpenOneTopicTaskPerMinitheoryWithAProblemTwoForContrasteInicialA1WhenTwoOfItsEightMinitheoriesAreMarkedAndNeverOneTaskPerExerciseThatShowsThem() {
-        // R003: a topic with two mini theories with a problem has two tasks. «Contraste inicial» (A1) has eight; the one
-        // of the state verbs is shown by nine exercises and the one of need and seem by four: two topic tasks, one per
-        // mini theory, never one per exercise that shows them.
+    public void shouldKeepTwoTasksForTwoErroneousQuizzesThatShareMinitheoryTextAndNoneForTheirHealthySibling() {
+        // R003: text equality is not task identity. The two findings retain their quiz ids; the sibling without a
+        // finding gets no task although it shows the same mini-theory.
+        String firstId = "q-shared-first";
+        String secondId = "q-shared-second";
+        String healthyId = "q-shared-healthy";
+        AuditNode shared = knowledge("k-shared", "Preguntas con do",
+                quiz(firstId, "Preguntas con do", scores("mini-theory", 0.3),
+                        finding("mini-theory", "insufficient-for-quiz", firstId, FindingSeverity.HIGH,
+                                FindingResolution.PANEL, AnalysisCost.PAID_MODEL, IN_TIME_TEXT,
+                                "no explica la inversión de este quiz")),
+                quiz(secondId, "Preguntas con do", scores("mini-theory", 0.3),
+                        finding("mini-theory", "insufficient-for-quiz", secondId, FindingSeverity.HIGH,
+                                FindingResolution.PANEL, AnalysisCost.PAID_MODEL, IN_TIME_TEXT,
+                                "no explica la inversión de este quiz")),
+                quiz(healthyId, "Preguntas con do", scores("mini-theory", 1.0)));
         DefaultRefinerEngine engine = tareaEngine();
-        RefinementPlan plan = engine.plan(new AuditReport(course(level("A1", topic("t-a1", "Present Continuous", contrasteInicial())))), "a");
+        RefinementPlan plan = engine.plan(new AuditReport(course(level("A1", topic("t-a1", "Questions", shared)))), "a");
 
-        Assertions.assertEquals(List.of("KNOWLEDGE " + CONTRASTE + " MINI_THEORY 9 " + STATE_VERBS_TEXT,
-                "KNOWLEDGE " + CONTRASTE + " MINI_THEORY 4 " + NEED_SEEM_TEXT),
-                plan.getTasks().stream().map(t -> t.getNodeTarget() + " " + t.getNodeId() + " " + t.getDiagnosisKind() + " "
-                        + t.getOrigin().getReachedQuizIds().size() + " " + t.getOrigin().getFinding().getIdentity().getMarker()).toList(),
-                "R003: one task per mini theory with a problem, on the topic, with the exercises that show it");
+        Assertions.assertEquals(List.of(firstId, secondId),
+                plan.getTasks().stream().map(RefinementTask::getNodeId).toList(),
+                "the shared text does not merge the two errors and does not infect the healthy sibling");
+        Assertions.assertTrue(plan.getTasks().stream().allMatch(t -> t.getNodeTarget() == AuditTarget.QUIZ));
+        Assertions.assertTrue(plan.getTasks().stream().allMatch(t -> t.getOrigin().getCoveredFindings().isEmpty()));
     }
 
     @Test
-    @DisplayName("should count the forty mini-theory findings of «$In time$ u $on time$» in its tally as one own task and thirty-nine covered, so they still add up to forty")
+    @DisplayName("should count forty mini-theory findings as forty own tasks with none covered or unconverted")
     @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R001")
     @Tag("F-TAREA-R003")
-    public void shouldCountTheFortyMinitheoryFindingsOfInTimeUOnTimeInItsTallyAsOneOwnTaskAndThirtynineCoveredSoTheyStillAddUpToForty() {
-        // R003 and R001: the forty findings still count in the tally -- one own task and thirty-nine covered by it.
+    public void shouldCountFortyMinitheoryFindingsAsFortyOwnTasksWithNoneCoveredOrUnconverted() {
+        // R003 and R001: every quiz-local finding is the origin of one task; none is hidden as covered by a task whose
+        // identity belongs to another quiz.
         DefaultRefinerEngine engine = tareaEngine();
         AuditReport report = new AuditReport(course(level("B1", topic("t-b1", "Prepositions", inTimeOnTime(40)))));
 
@@ -1311,8 +1329,8 @@ public class DefaultRefinerEngineTest {
         Assertions.assertEquals(1, tally.size());
         Assertions.assertEquals("mini-theory", tally.get(0).getAnalyzer());
         Assertions.assertEquals(40, tally.get(0).getCountingFindings(), "the forty count");
-        Assertions.assertEquals(1, tally.get(0).getOwnTasks(), "one own task");
-        Assertions.assertEquals(39, tally.get(0).getCovered(), "thirty-nine covered");
+        Assertions.assertEquals(40, tally.get(0).getOwnTasks(), "one own task per finding");
+        Assertions.assertEquals(0, tally.get(0).getCovered(), "no sibling finding is covered");
         Assertions.assertEquals(0, tally.get(0).getUnconverted());
     }
 

@@ -33,6 +33,20 @@ claude -p, como lo llama el proveedor claude-cli de los jueces (``-p
 rellenada), los primeros N pares del
 corpus —o los de ``--cases``—, pasa cada respuesta por el gate de verdad y
 puntúa contra lo esperado. Sin ``--max`` no consulta. Nunca sobre el curso.
+
+``--codex --max N`` hace el mismo examen con OpenAI Codex. Ejecuta cada caso en
+un directorio temporal, con sesión efímera, sandbox de sólo lectura, el esquema
+cerrado del juez y ``--output-last-message``. Modelo y esfuerzo son elegibles;
+por omisión usa ``gpt-6.1-sol`` con esfuerzo ``medium``. Ejemplos:
+
+    python3 .sentinel/agents/near-duplicates-pair-judge/eval/run_evals.py \
+      --codex --max 12 \
+      --results analysis/evaluaciones/duplicados-codex-piloto.json
+    python3 .sentinel/agents/near-duplicates-pair-judge/eval/run_evals.py \
+      --codex --max 7 --cases v2-superficie-sujeto,v2-superficie-tiempo \
+      --model gpt-6.1-sol --reasoning-effort medium \
+      --results analysis/evaluaciones/duplicados-codex-superficie.json
+
 Sólo biblioteca estándar. Uso, desde la raíz del proyecto:
 
     python3 .sentinel/agents/near-duplicates-pair-judge/eval/run_evals.py
@@ -48,9 +62,11 @@ import re
 import subprocess
 import sys
 import tempfile
+from datetime import datetime, timezone
 from pathlib import Path
 
 AGENT_DIR = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = Path(__file__).resolve().parents[4]
 NODES_DIR = AGENT_DIR / "nodes"
 FIXTURES = Path(__file__).with_name("fixtures.json")
 LIVE_CORPUS = Path(__file__).with_name("pares-inventados.json")
@@ -58,6 +74,9 @@ SCHEMA = AGENT_DIR / "schema" / "verdict.schema.json"
 RUN_ID = "3ac62128-e81c-4a7e-af94-440b2f1c35fa"
 RUN_BASENAME = "20260930T120000-3ac62128"
 UNUSABLE = {"outputUnusable": True}
+DEFAULT_CODEX_MODEL = "gpt-6.1-sol"
+DEFAULT_REASONING_EFFORT = "medium"
+CODEX_ERROR_TAIL_CHARS = 3000
 
 
 class EvalError(Exception):
@@ -454,6 +473,79 @@ def ask_claude(system, user, model, timeout):
     return answer.get("result") or "", None, answer
 
 
+def codex_error_tail(stderr, stdout):
+    """Keep the useful end of Codex diagnostics without persisting credentials."""
+    detail = stderr if stderr and stderr.strip() else stdout
+    detail = (detail or "sin salida").strip()
+    detail = re.sub(r"\x1b\[[0-?]*[ -/]*[@-~]", "", detail)
+    detail = re.sub(
+        r"(?i)(\bauthorization\s*:\s*bearer\s+)\S+",
+        r"\1[REDACTED]",
+        detail,
+    )
+    detail = re.sub(r"\bsk-[A-Za-z0-9_-]{8,}\b", "[REDACTED]", detail)
+    detail = re.sub(
+        r"(?i)(\b(?:OPENAI|CODEX|ANTHROPIC)?_?(?:API_?KEY|AUTH_?TOKEN|ACCESS_?TOKEN)\b\s*[:=]\s*)\S+",
+        r"\1[REDACTED]",
+        detail,
+    )
+    detail = "".join(
+        char if char in "\n\t" or ord(char) >= 32 else " " for char in detail
+    ).strip()
+    if len(detail) > CODEX_ERROR_TAIL_CHARS:
+        detail = "… [se conserva el final del diagnóstico]\n" + detail[-CODEX_ERROR_TAIL_CHARS:]
+    return detail
+
+
+def ask_codex(system, user, model, reasoning_effort, timeout):
+    """Run one isolated Codex turn and return only its captured final message.
+
+    The prompt contains the evaluator's system text and the rendered user
+    template verbatim. Corpus annotations (expected, category and note) never
+    enter this function.
+    """
+    prompt = "# System prompt\n\n%s\n\n# User\n\n%s\n" % (system, user)
+    with tempfile.TemporaryDirectory(prefix="judge-codex-") as temp:
+        temp_dir = Path(temp)
+        output_path = temp_dir / "last-message.json"
+        command = [
+            "codex", "exec",
+            "--model", model,
+            "--sandbox", "read-only",
+            "--ephemeral",
+            "--skip-git-repo-check",
+            "--cd", str(temp_dir),
+            "--output-schema", str(SCHEMA),
+            "--output-last-message", str(output_path),
+            "--color", "never",
+            "--config", 'model_reasoning_effort="%s"' % reasoning_effort,
+            "-",
+        ]
+        try:
+            completed = subprocess.run(
+                command,
+                input=prompt,
+                capture_output=True,
+                text=True,
+                timeout=timeout,
+                check=False,
+            )
+        except subprocess.TimeoutExpired:
+            return None, "se pasó de %d s" % timeout, None
+        except OSError as error:
+            return None, "no se pudo ejecutar codex: %s" % error, None
+        if completed.returncode != 0:
+            detail = codex_error_tail(completed.stderr, completed.stdout)
+            return None, "codex exec salió con %d: %s" % (completed.returncode, detail), None
+        try:
+            text = output_path.read_text(encoding="utf-8").strip()
+        except OSError as error:
+            return None, "codex exec no dejó el mensaje final: %s" % error, None
+        if not text:
+            return None, "codex exec dejó vacío el mensaje final", None
+        return text, None, None
+
+
 def gate_once(fixtures, text):
     """La respuesta, por el gate de verdad: el veredicto canónico o por qué no lo hay."""
     with tempfile.TemporaryDirectory(prefix="judge-live-") as temp:
@@ -468,7 +560,49 @@ def gate_once(fixtures, text):
         return json.loads(read(run_dir / "validated-verdict.json")), None
 
 
-def live(args, fixtures, cases):
+def resolve_results_path(raw):
+    path = Path(raw).expanduser()
+    if not path.is_absolute():
+        path = PROJECT_ROOT / path
+    path = path.resolve()
+    try:
+        path.relative_to(PROJECT_ROOT)
+    except ValueError as error:
+        raise EvalError("--results debe quedar dentro de %s" % PROJECT_ROOT) from error
+    require(not path.exists(), "--results ya existe; no se sobrescribe: %s" % path)
+    return path
+
+
+def write_codex_results(path, args, selected, records, tally):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    document = {
+        "schemaVersion": "1.0",
+        "createdAt": datetime.now(timezone.utc).isoformat(),
+        "agent": AGENT_DIR.name,
+        "provider": "openai-codex",
+        "model": args.model,
+        "reasoningEffort": args.reasoning_effort,
+        "dataset": LIVE_CORPUS.name,
+        "requestedMax": args.max,
+        "caseIds": [case["caseId"] for case in selected],
+        "summary": {
+            "total": len(records),
+            "passed": tally["tp"] + tally["tn"],
+            "mismatched": tally["fn"] + tally["fp"],
+            "gateOrRuntimeErrors": tally["sin"],
+            "unlabeled": tally["dudosos"],
+        },
+        "cases": records,
+    }
+    try:
+        with path.open("x", encoding="utf-8") as handle:
+            json.dump(document, handle, ensure_ascii=False, indent=2)
+            handle.write("\n")
+    except FileExistsError as error:
+        raise EvalError("--results apareció durante la corrida; no se sobrescribe: %s" % path) from error
+
+
+def live(args, fixtures, cases, provider, results_path=None):
     system, template = prompt_parts()
     chosen = [case for case in cases if case["expected"] is not None]
     if args.cases:
@@ -478,14 +612,30 @@ def live(args, fixtures, cases):
         require(not missing, "no están en el corpus: %s" % missing)
         chosen = [known[case_id] for case_id in wanted]
     chosen = chosen[:max(0, args.max)]
-    print("\nen vivo: %d consultas a claude -p (tope %d), una por par" % (len(chosen), args.max))
+    provider_label = "claude -p" if provider == "claude" else "codex exec"
+    print("\nen vivo: %d consultas a %s (tope %d), una por par" %
+          (len(chosen), provider_label, args.max))
     tally = {"tp": 0, "fn": 0, "fp": 0, "tn": 0, "sin": 0, "dudosos": 0}
     paid = 0
     cost = 0.0
+    records = []
     for case in chosen:
         user = (template.replace("{title}", case["title"]).replace("{first}", case["first"])
                 .replace("{second}", case["second"]))
-        text, failure, raw = ask_claude(system, user, args.model, args.timeout)
+        if provider == "claude":
+            # Before Codex support, omitting --model let claude -p choose its own
+            # configured default. Keep that behavior even though --model now
+            # advertises the Codex default in --help.
+            claude_model = args.model if args.model_explicit else None
+            text, failure, raw = ask_claude(system, user, claude_model, args.timeout)
+        else:
+            text, failure, raw = ask_codex(
+                system,
+                user,
+                args.model,
+                args.reasoning_effort,
+                args.timeout,
+            )
         paid += 1
         if raw is not None:
             cost += float(raw.get("total_cost_usd") or 0.0)
@@ -496,6 +646,15 @@ def live(args, fixtures, cases):
         if verdict is None:
             tally["sin"] += 1
             print("--  %-36s esperado=%-6s sin veredicto: %s" % (case["caseId"], expected, failure))
+            if provider == "codex":
+                records.append({
+                    "caseId": case["caseId"],
+                    "expected": expected,
+                    "actual": None,
+                    "passed": False,
+                    "verdict": None,
+                    "gateError": failure or "sin veredicto usable",
+                })
             continue
         said = verdict["sameExercise"]
         if expected is None:
@@ -506,22 +665,65 @@ def live(args, fixtures, cases):
             tally[key] += 1
             mark = "ok " if said == expected else "XX "
         print("%s %-36s esperado=%-6s dijo=%-6s %s" % (mark, case["caseId"], expected, said, verdict["reason"][:90]))
+        if provider == "codex":
+            records.append({
+                "caseId": case["caseId"],
+                "expected": expected,
+                "actual": said,
+                "passed": said == expected,
+                "verdict": verdict,
+                "gateError": None,
+            })
     judged = tally["tp"] + tally["fn"] + tally["fp"] + tally["tn"]
     print("\nmismo ejercicio: %d de %d dijo que sí; otro ejercicio: %d de %d dijo que no; sin veredicto %d"
           % (tally["tp"], tally["tp"] + tally["fn"], tally["tn"], tally["tn"] + tally["fp"], tally["sin"]))
-    print("aciertos %d de %d; consultas pagas: %d (costo equivalente informado por la CLI: US$ %.2f)"
-          % (tally["tp"] + tally["tn"], judged, paid, cost))
+    if provider == "claude":
+        print("aciertos %d de %d; consultas pagas: %d (costo equivalente informado por la CLI: US$ %.2f)"
+              % (tally["tp"] + tally["tn"], judged, paid, cost))
+    else:
+        print("aciertos %d de %d; consultas a Codex: %d; modelo=%s esfuerzo=%s"
+              % (tally["tp"] + tally["tn"], judged, paid, args.model, args.reasoning_effort))
+        write_codex_results(results_path, args, chosen, records, tally)
+        print("resultados: %s" % results_path)
     return 1 if tally["fn"] or tally["fp"] or tally["sin"] else 0
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--claude", action="store_true", help="consultar a claude -p con el corpus en vivo")
-    parser.add_argument("--max", type=int, default=0, help="tope de consultas pagas; sin él no consulta")
+    providers = parser.add_mutually_exclusive_group()
+    providers.add_argument("--claude", action="store_true", help="consultar a claude -p con el corpus en vivo")
+    providers.add_argument("--codex", action="store_true", help="consultar a codex exec con el corpus en vivo")
+    parser.add_argument("--max", type=int, default=None,
+                        help="tope obligatorio de consultas para --claude o --codex")
     parser.add_argument("--cases", default=None, help="caseIds del corpus en vivo, separados por comas")
-    parser.add_argument("--model", default=None, help="--model de claude -p (CONTENT_AUDIT_JUDGE_MODEL)")
+    parser.add_argument("--results", default=None,
+                        help="JSON nuevo dentro de content-audit; obligatorio con --codex")
+    parser.add_argument("--model", default=DEFAULT_CODEX_MODEL,
+                        help="modelo; para Codex, %(default)s por omisión")
+    parser.add_argument(
+        "--reasoning-effort",
+        choices=("low", "medium", "high", "xhigh", "max", "ultra"),
+        default=DEFAULT_REASONING_EFFORT,
+        help="esfuerzo de razonamiento de Codex (por omisión: %(default)s)",
+    )
     parser.add_argument("--timeout", type=int, default=180)
     args = parser.parse_args()
+    args.model_explicit = any(
+        item == "--model" or item.startswith("--model=") for item in sys.argv[1:]
+    )
+    if (args.claude or args.codex) and (args.max is None or args.max <= 0):
+        parser.error("--claude y --codex requieren --max N, con N mayor que cero")
+    if args.codex and not args.results:
+        parser.error("--codex requiere --results <archivo.json>")
+    if args.results and not args.codex:
+        parser.error("--results sólo se usa con --codex")
+
+    results_path = None
+    if args.codex:
+        try:
+            results_path = resolve_results_path(args.results)
+        except EvalError as error:
+            parser.error(str(error))
 
     fixtures = json.loads(read(FIXTURES))
     schema = json.loads(read(SCHEMA))
@@ -558,14 +760,20 @@ def main():
           % (len(fixtures["cases"]), routes["passed"], routes["failed"], len(failures)))
 
     live_status = 0
-    if args.claude and args.max > 0:
+    if args.claude or args.codex:
         try:
-            live_status = live(args, fixtures, live_cases)
+            live_status = live(
+                args,
+                fixtures,
+                live_cases,
+                "claude" if args.claude else "codex",
+                results_path,
+            )
         except EvalError as error:
             print("FALLA EN VIVO: %s" % error)
             live_status = 2
     else:
-        print("modelo: no se consultó (sólo salidas grabadas de evaluate; en vivo, --claude --max N)")
+        print("modelo: no se consultó (en vivo: --codex --max N o --claude --max N)")
 
     if snapshot() != before:
         failures.append("<carpeta del agente>")

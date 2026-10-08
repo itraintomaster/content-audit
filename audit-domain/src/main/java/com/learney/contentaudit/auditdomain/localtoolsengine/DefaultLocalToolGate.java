@@ -11,6 +11,7 @@ import com.learney.contentaudit.auditdomain.localtools.LocalToolGate;
 import com.learney.contentaudit.auditdomain.localtools.LocalToolGateDecision;
 import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
 
@@ -77,6 +78,12 @@ public class DefaultLocalToolGate implements LocalToolGate {
     @Override
     public LocalToolGateDecision decide(String analyzerName, LocalTool tool, String methodId,
             EvaluationRunPolicy policy) {
+        return decide(analyzerName, tool, methodId, policy, EvaluationRuntimeIdentity.legacyUnknown());
+    }
+
+    @Override
+    public LocalToolGateDecision decide(String analyzerName, LocalTool tool, String methodId,
+            EvaluationRunPolicy policy, EvaluationRuntimeIdentity runtimeIdentity) {
         LocalToolStatus status = statusOf(tool);
         boolean examRun = policy != null && policy.getPurpose() == EvaluationRunPurpose.EXAM;
         EvaluationRunPolicy localPolicy = localPolicyOf(policy);
@@ -85,7 +92,7 @@ public class DefaultLocalToolGate implements LocalToolGate {
                     localPolicy);
         }
         String examinedVersion = examinedVersion(status, methodId);
-        JudgeExamStanding standing = judgeRuntime.standing(analyzerName, examinedVersion);
+        JudgeExamStanding standing = judgeRuntime.standing(analyzerName, examinedVersion, runtimeIdentity);
         JudgeExamStatus examState = standing != null ? standing.getStatus() : JudgeExamStatus.NOT_TAKEN;
         boolean approved = standing != null && standing.isConsultsOnCourse();
         boolean publishes = examRun || approved;
@@ -100,12 +107,18 @@ public class DefaultLocalToolGate implements LocalToolGate {
      */
     @Override
     public LocalToolCard card(String analyzerName, LocalTool tool, String methodId) {
+        return card(analyzerName, tool, methodId, EvaluationRuntimeIdentity.legacyUnknown());
+    }
+
+    @Override
+    public LocalToolCard card(String analyzerName, LocalTool tool, String methodId,
+            EvaluationRuntimeIdentity runtimeIdentity) {
         LocalToolStatus status = statusOf(tool);
         if (!status.isAvailable() || status.getVersion() == null || status.getVersion().isBlank()) {
             return new LocalToolCard(status, null, null, null, false);
         }
         String examinedVersion = examinedVersion(status, methodId);
-        JudgeExamStanding standing = judgeRuntime.standing(analyzerName, examinedVersion);
+        JudgeExamStanding standing = judgeRuntime.standing(analyzerName, examinedVersion, runtimeIdentity);
         return new LocalToolCard(status, examinedVersion, standing != null ? standing.getStatus() : null,
                 summaryOf(standing), false);
     }

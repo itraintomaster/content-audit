@@ -34,8 +34,9 @@ contenido inutilizable para la aplicacion que lo sirve a los alumnos.
 
 **La regla se formula por complemento, no por enumeracion.** El conjunto de
 atributos que una revision puede cambiar es **acotado y conocido** (para una
-revision de ejercicio: la oracion del ejercicio, sus huecos, las respuestas
-aceptadas y la traduccion — [F-LAPS-R013](#F-LAPS-R013); para una revision de
+revision de ejercicio: la oracion del ejercicio, sus huecos, las pistas ligadas
+a esos huecos, las respuestas aceptadas, la traduccion y la miniteoria local que
+explica el caso — [F-LAPS-R013](#F-LAPS-R013); para una revision de
 titulo, la etiqueta del knowledge). Todo lo que queda fuera de ese conjunto se
 preserva **por defecto**, sin necesidad de estar listado en ninguna parte.
 
@@ -373,7 +374,7 @@ Ya existen tres garantias vecinas, y ninguna cubre este caso:
    anticipaba el problema general, pero la regla quedo acotada a ese dato.
 3. **Invariantes de la propuesta de correccion lexica**
    ([F-LAPS-R013](#F-LAPS-R013), [F-LAPS-R014](#F-LAPS-R014)). Enumeran que
-   puede cambiar (la oracion, la estructura del ejercicio, la traduccion) y que
+   puede cambiar (la oracion, los huecos con sus pistas y respuestas, la traduccion y la miniteoria local) y que
    debe preservarse (identificadores, instrucciones, orden, "cualquier otra
    metadata estructural"). **Aqui esta el hueco**: los atributos degradados —tipo
    de formulario, peso, etiquetas, texto vacio del hueco— no figuran en la lista

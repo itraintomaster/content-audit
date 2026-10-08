@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Miniteoría por quiz · integración cerrada</title>
+<style>
+:root{--bg:#f1efe9;--paper:#fffefa;--ink:#1d1b18;--muted:#6c655c;--line:#ddd7cc;--soft:#f0ece5;--green:#286a49;--green-soft:#e2f2e8;--blue:#28618e;--blue-soft:#e5eff8;--orange:#b65121;--orange-soft:#fae8dc;--shadow:0 20px 50px -34px rgba(28,24,18,.55)}
+@media(prefers-color-scheme:dark){:root{--bg:#10100e;--paper:#1a1916;--ink:#f3efe8;--muted:#ada59a;--line:#38332d;--soft:#26231f;--green:#82cea3;--green-soft:#15281d;--blue:#91c5ee;--blue-soft:#172637;--orange:#ef9867;--orange-soft:#322016;--shadow:0 20px 50px -34px #000}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;padding:28px 20px 90px;background:var(--bg);color:var(--ink);font:16px/1.4 ui-sans-serif,-apple-system,"SF Pro Text",system-ui,sans-serif}.deck{max-width:1120px;margin:auto;display:grid;gap:28px}.sl{position:relative;aspect-ratio:16/9;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;container-type:inline-size;scroll-margin-top:24px}.in{position:absolute;inset:0;padding:3cqi 5cqi 4.7cqi;display:flex;flex-direction:column;gap:1.25cqi}.kick{display:flex;gap:.8cqi;align-items:center;font-size:1.02cqi;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:780}.kick b{color:var(--orange)}.num{font:760 1cqi ui-monospace,monospace;background:var(--soft);padding:.35cqi .65cqi;border-radius:.55cqi}.meta{margin-left:auto;text-transform:none;letter-spacing:.02em}.sl h1,.sl h2{margin:0;line-height:1.04;letter-spacing:-.045em}.sl h1{font-size:4.6cqi;max-width:14ch}.sl h2{font-size:2.8cqi;max-width:29ch}.sub{font-size:1.5cqi;color:var(--muted);max-width:59ch;margin:0}.cover .in{justify-content:center;padding-left:7cqi}.stamp{position:absolute;right:4.7cqi;top:3.7cqi;width:13cqi;height:13cqi;border-radius:50%;display:grid;place-items:center;border:1cqi solid var(--green-soft);color:var(--green);font:850 2.25cqi/1 ui-monospace,monospace;text-align:center;transform:rotate(-7deg)}.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1cqi;max-width:67cqi}.kpi{border:1px solid var(--line);border-top:.38cqi solid var(--green);border-radius:1.1cqi;padding:1cqi 1.2cqi;background:var(--bg)}.kpi b{display:block;font-size:2.9cqi;line-height:1;color:var(--green)}.kpi span{display:block;font-size:1.05cqi;color:var(--muted);margin-top:.42cqi}.body{flex:1;min-height:0;display:grid;gap:1.2cqi}.flow{grid-template-columns:1fr .75fr 1fr;align-items:stretch}.panel{border:1px solid var(--line);border-radius:1.1cqi;padding:1.2cqi;background:var(--bg)}.panel h3{font-size:1.35cqi;margin:0 0 .65cqi}.quiz{padding:.65cqi .8cqi;background:var(--paper);border:1px solid var(--line);border-radius:.7cqi;margin:.5cqi 0;font-size:1.02cqi}.quiz b{display:block}.quiz span{color:var(--muted)}.judge{display:grid;place-items:center;text-align:center;background:var(--orange-soft);border-color:var(--orange)}.judge b{display:block;font-size:1.65cqi;color:var(--orange)}.judge span{font-size:1.02cqi;color:var(--muted)}.decision{border-left:.35cqi solid var(--green);padding:.58cqi .75cqi;background:var(--paper);border-radius:0 .7cqi .7cqi 0;margin:.5cqi 0;font-size:1.02cqi}.decision.bad{border-color:var(--orange)}.decision b{display:block}.decision span{color:var(--muted)}.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:.7cqi;align-items:stretch}.node{position:relative;border:1px solid var(--line);background:var(--bg);border-radius:1cqi;padding:1.05cqi;display:flex;flex-direction:column;justify-content:space-between}.node:after{content:"→";position:absolute;right:-.62cqi;top:50%;transform:translate(50%,-50%);z-index:2;color:var(--orange);font-size:1.5cqi;font-weight:800}.node:last-child:after{display:none}.node b{font-size:1.18cqi}.node span{font-size:.95cqi;color:var(--muted)}.node.ok{border-color:var(--green);background:var(--green-soft)}.tests{grid-template-columns:1.25fr .75fr}.big-result{border:1px solid var(--green);border-radius:1.2cqi;background:var(--green-soft);padding:1.4cqi;display:grid;grid-template-columns:auto 1fr;gap:1.4cqi;align-items:center}.big-result strong{font-size:5.5cqi;line-height:.85;color:var(--green);letter-spacing:-.07em}.big-result h3{font-size:1.55cqi;margin:0 0 .45cqi}.big-result p{font-size:1.05cqi;color:var(--muted);margin:0}.checks{display:grid;gap:.65cqi}.check{display:flex;gap:.7cqi;align-items:flex-start;border-bottom:1px solid var(--line);padding:.6cqi 0;font-size:1.03cqi}.tick{width:1.45cqi;height:1.45cqi;border-radius:50%;display:grid;place-items:center;background:var(--green-soft);color:var(--green);font-weight:900;flex:0 0 auto}.next{grid-template-columns:1.1fr .9fr}.ready{border:1px solid var(--green);background:var(--green-soft);border-radius:1.1cqi;padding:1.3cqi}.ready h3,.route h3{font-size:1.55cqi;margin:0 0 .7cqi}.ready p,.route p{font-size:1.08cqi;color:var(--muted);margin:.55cqi 0}.route{border:1px solid var(--line);background:var(--bg);border-radius:1.1cqi;padding:1.3cqi}.route .step{border-left:.32cqi solid var(--blue);padding:.48cqi .75cqi;margin:.6cqi 0;background:var(--paper);font-size:1.04cqi}.route .step b{color:var(--blue)}.foot{position:absolute;left:5cqi;right:5cqi;bottom:1.25cqi;display:flex;justify-content:space-between;font-size:.93cqi;color:var(--muted)}.prog{position:fixed;left:0;top:0;height:3px;background:var(--orange);z-index:5}.nav{position:fixed;right:18px;bottom:18px;display:flex;gap:8px;align-items:center;z-index:5}.nav button,.cnt{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:9px 12px;box-shadow:var(--shadow)}.cnt{font:650 12px ui-monospace,monospace}
+@media(max-width:760px){body{padding:16px 16px 90px}.sl{aspect-ratio:auto;container-type:normal}.in{position:static;padding:22px 18px 42px;gap:14px}.sl h1{font-size:31px}.sl h2{font-size:23px}.sub{font-size:15px}.kick{font-size:11px;flex-wrap:wrap}.meta{margin-left:0}.stamp{display:none}.kpis,.flow,.chain,.tests,.next{grid-template-columns:1fr}.kpi b{font-size:29px}.kpi span,.quiz,.decision,.node span,.big-result p,.check,.ready p,.route p,.route .step{font-size:13px}.panel h3,.big-result h3,.ready h3,.route h3{font-size:17px}.judge b{font-size:19px}.node b{font-size:15px}.node:after{content:"↓";right:auto;left:50%;top:auto;bottom:-15px;transform:translateX(-50%);font-size:20px}.big-result{grid-template-columns:1fr}.big-result strong{font-size:52px}.foot{position:static;padding:0 18px 14px;margin-top:-28px;font-size:11px}}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<main class="deck">
+<section class="sl cover">
+  <div class="in">
+    <div class="stamp">LISTO</div>
+    <div class="kick"><span class="num">032</span><b>Cierre</b><span class="meta">5 octubre 2026 · sin llamadas nuevas</span></div>
+    <h1>Miniteoría ya decide por quiz</h1>
+    <p class="sub">La idea aprobada dejó de ser sólo un buen prompt: ahora atraviesa el runtime completo, sin copiar errores entre tarjetas hermanas.</p>
+    <div class="kpis"><div class="kpi"><b>13 / 13</b><span>piloto semántico aprobado</span></div><div class="kpi"><b>2.645</b><span>tests amplios · 0 fallos</span></div><div class="kpi"><b>0</b><span>consultas durante la integración</span></div></div>
+  </div>
+  <div class="foot"><span>El resultado de Claude permanece separado</span><span class="pg"></span></div>
+</section>
+
+<section class="sl">
+  <div class="in">
+    <div class="kick"><b>La regla que manda</b><span>agrupar contexto ≠ propagar resultado</span></div>
+    <h2>Una llamada por tema; una decisión por quiz</h2>
+    <div class="body flow">
+      <div class="panel"><h3>Un tema, tres casos</h3><div class="quiz"><b>q-afirmación</b><span>misma tarjeta</span></div><div class="quiz"><b>q-pregunta</b><span>misma tarjeta</span></div><div class="quiz"><b>q-negación</b><span>otra tarjeta</span></div></div>
+      <div class="panel judge"><div><b>1 consulta</b><span>lee tema, consigna, respuestas y cada quizId</span></div></div>
+      <div class="panel"><h3>Tres assessments</h3><div class="decision"><b>q-afirmación · OK</b><span>sirve para este caso</span></div><div class="decision bad"><b>q-pregunta · ERROR</b><span>no contamina a la hermana</span></div><div class="decision"><b>q-negación · OK</b><span>se decide sola</span></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>El texto repetido puede recibir veredictos opuestos</span><span class="pg"></span></div>
+</section>
+
+<section class="sl">
+  <div class="in">
+    <div class="kick"><b>De punta a punta</b><span>la identidad no se pierde</span></div>
+    <h2>El quizId llega intacto hasta la corrección</h2>
+    <div class="body chain">
+      <div class="node ok"><b>Subject</b><span>tema + lista estable de quizzes</span></div>
+      <div class="node ok"><b>Prompt</b><span>un assessment por quizId</span></div>
+      <div class="node ok"><b>Gate</b><span>ni ids faltantes, repetidos o ajenos</span></div>
+      <div class="node ok"><b>Diagnóstico</b><span>un finding como máximo por quiz</span></div>
+      <div class="node ok"><b>Mesa</b><span>cambia sólo la quiz señalada</span></div>
+    </div>
+    <p class="sub">También desapareció el alcance viejo por texto o por tema. Ya no existe <code>MiniTheoryErrorScope</code> ni un reemplazo disfrazado.</p>
+  </div>
+  <div class="foot"><span>Las severidades salen de la categoría, no de una opinión libre del modelo</span><span class="pg"></span></div>
+</section>
+
+<section class="sl">
+  <div class="in">
+    <div class="kick"><b>Evidencia y salida</b><span>qué queda habilitado</span></div>
+    <h2>Los tres jueces ajustados están aprobados</h2>
+    <div class="body tests">
+      <div class="big-result"><strong>3/3</strong><div><h3>Duplicados · consigna · miniteoría</h3><p>9/9, 8/8 y 13/13 respectivamente, con gpt-6.1-sol en esfuerzo medio. Los resultados guardan proveedor, modelo y esfuerzo.</p></div></div>
+      <div class="checks"><div class="check"><span class="tick">✓</span><span><b>2.645 pruebas</b><br>13 módulos, 0 fallos, 0 errores.</span></div><div class="check"><span class="tick">✓</span><span><b>8 casos offline</b><br>gate y emit aceptan y rechazan donde corresponde.</span></div><div class="check"><span class="tick">✓</span><span><b>Contrato legado retirado</b><br>sin propagación por texto o tema.</span></div></div>
+      <div class="ready"><h3>La base está lista</h3><p>Ya no hace falta seguir afinando estos tres jueces antes de usarlos para mejorar contenido.</p><p><b>Siguiente foco recomendado:</b> elegir una tanda pequeña y reversible de correcciones, cruzando jueces con lemma-count, lemma-absence y los análisis existentes.</p></div>
+      <div class="route"><h3>Primer ciclo de contenido</h3><div class="step"><b>1.</b> Priorizar hallazgos de alto impacto.</div><div class="step"><b>2.</b> Proponer sin tocar el curso.</div><div class="step"><b>3.</b> Revisar antes/después y aprobar.</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>El próximo gasto útil ya puede ir a contenido, no a infraestructura</span><span class="pg"></span></div>
+</section>
+</main>
+<div class="nav"><button id="prev" aria-label="Anterior">↑</button><span class="cnt" id="cnt">1 / 4</span><button id="next" aria-label="Siguiente">↓</button></div>
+<script>(function(){const s=[...document.querySelectorAll('.sl')],c=document.querySelector('#cnt'),p=document.querySelector('#prog');let i=0;s.forEach((x,n)=>x.querySelector('.pg').textContent=(n+1)+' / '+s.length);function go(n){i=Math.max(0,Math.min(s.length-1,n));s[i].scrollIntoView({behavior:'smooth',block:'start'});c.textContent=(i+1)+' / '+s.length;p.style.width=((i+1)/s.length*100)+'%'}const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>.55){i=s.indexOf(e.target);c.textContent=(i+1)+' / '+s.length;p.style.width=((i+1)/s.length*100)+'%'}}),{threshold:[.55]});s.forEach(x=>o.observe(x));document.querySelector('#prev').onclick=()=>go(i-1);document.querySelector('#next').onclick=()=>go(i+1);document.addEventListener('keydown',e=>{if(['ArrowDown','ArrowRight',' '].includes(e.key)){e.preventDefault();go(i+1)}if(['ArrowUp','ArrowLeft'].includes(e.key)){e.preventDefault();go(i-1)}});go(0)})();</script>
+</body>
+</html>

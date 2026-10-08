@@ -17,6 +17,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchReport;
 import com.learney.contentaudit.revisiondomain.batch.BatchRunRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchService;
 import com.learney.contentaudit.revisiondomain.batch.BatchSettings;
+import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskCount;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcomeKind;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
@@ -60,7 +61,7 @@ import picocli.CommandLine.Parameters;
         name = "batch",
         description = "The correction batch of a level (F-TANDA).%n%n"
                 + "  batch open <level> [--topics-at-once N] [--queries-at-once N] [--to-multiple-choice <topic>]...%n"
-                + "  batch estimate%n"
+                + "  batch estimate [-f text|json]%n"
                 + "  batch run [--cap N]%n"
                 + "  batch close [--budget juez=N[,juez=N…]] [--cap N]%n"
                 + "  batch drop (--change <id> | --rule <rule>) [--reason <text>]%n"
@@ -119,7 +120,7 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
     @Option(names = "--reason", description = "Why it is dropped")
     private String reason;
 
-    @Option(names = {"-f", "--format"}, description = "Output format of the report: text or json (default: ${DEFAULT-VALUE})",
+    @Option(names = {"-f", "--format"}, description = "Output format of estimate/report: text or json (default: ${DEFAULT-VALUE})",
             defaultValue = "text")
     private String format;
 
@@ -203,6 +204,10 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
             System.err.println("Error: " + e.getMessage());
             return 1;
         }
+        if (CommandJson.isJson(format)) {
+            System.out.println(CommandJson.write(estimate));
+            return 0;
+        }
         StringBuilder out = new StringBuilder();
         out.append("Estimación de la tanda ").append(estimate.getBatchId()).append(", antes de ninguna consulta:\n");
         out.append("Tareas por analizador y resolución:\n");
@@ -249,6 +254,16 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
             out.append("Corrida con tope de ").append(queryCap).append(" consultas.\n");
         }
         out.append(summary(report));
+        if (report.getStatus() == BatchStatus.INTERRUPTED) {
+            String reason = report.getInterruptionReason();
+            out.append("La corrida se interrumpió antes de completar el trabajo");
+            if (reason != null && !reason.isBlank()) {
+                out.append(": ").append(reason.strip());
+            }
+            out.append(". Lo decidido quedó guardado; corregí la causa y volvé a ejecutar batch run.");
+            System.err.println(out);
+            return 1;
+        }
         out.append("Siguiente: content-audit batch close.");
         System.out.println(out);
         return 0;

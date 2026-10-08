@@ -165,6 +165,7 @@ class DefaultBatchService implements BatchService {
                 DEFAULT_MAX_ATTEMPTS));
         batch.setOpenedAt(now);
         batch.setQueriesSpent(0);
+        batch.setCorrectionRevision(1);
 
         // R002: the tasks of the batch leave the plan as «in batch»; revise and revise-instructions do not see them.
         for (RefinementTask task : BatchBook.list(plan.getTasks())) {
@@ -236,7 +237,19 @@ class DefaultBatchService implements BatchService {
         CorrectionBatch batch = requireOpen();
         AuditReport start = start(batch);
         CourseEntity course = courseRepository.load(coursePath);
+        List<BatchClosing> previousClosings = BatchBook.list(batch.getClosings());
+        if (!previousClosings.isEmpty()) {
+            BatchClosing latest = previousClosings.get(previousClosings.size() - 1);
+            int currentRevision = BatchBook.correctionRevision(batch);
+            int measuredRevision = latest.getCorrectionRevision() > 0 ? latest.getCorrectionRevision() : 1;
+            if (measuredRevision == currentRevision) {
+                batch.setCorrectionRevision(currentRevision + 1);
+            }
+        } else if (batch.getCorrectionRevision() <= 0) {
+            batch.setCorrectionRevision(1);
+        }
         batch.setStatus(BatchStatus.RUNNING);
+        batch.setInterruptionReason(null);
         batchStore.save(batch);
 
         batch = ruleStage.apply(batch, start, course);
@@ -260,6 +273,7 @@ class DefaultBatchService implements BatchService {
             Optional<String> tripped = allowance.tripped();
             if (tripped.isPresent() && !tripped.get().startsWith(CAP_REACHED)) {
                 status = BatchStatus.INTERRUPTED; // a failure of the service: everything decided is kept
+                batch.setInterruptionReason(tripped.get());
             }
         }
         batch.setStatus(status);

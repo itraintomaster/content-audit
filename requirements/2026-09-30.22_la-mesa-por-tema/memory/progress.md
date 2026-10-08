@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-05 — analyst — F-MESA-R001/R012 y DOUBT-MINITEORIA-ALCANCE alineadas: candidato y reescritura de miniteoria por
+  quiz, sin agrupamiento ni propagacion por texto.
+  Next: alinear mesa, preservacion y pruebas antes de corregir miniteorias.
+
 2026-10-01 — developer — El agente que propone (revision-infrastructure/panelagent: lanzador, lector, fábrica) y su grafo
   `.sentinel/agents/panel-proposer/` (gancho E-15: generate → gate → emit, artifact `panelProposal`), con sus 3 pruebas;
   las tres de R014 (revise, revise-instructions y assess-candidate siguen como hoy fuera de una tanda). FEAT-MESA sin

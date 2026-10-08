@@ -2,7 +2,6 @@ package com.learney.contentaudit.auditapplication;
 
 import com.learney.contentaudit.auditdomain.MiniTheoryConfig;
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
-import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryErrorScope;
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -12,12 +11,8 @@ import javax.annotation.processing.Generated;
  * FEAT-MINIT: what the mini-theory judge decides once its verdict is read.
  *
  * <ul>
- *   <li>F-MINIT-R003: a false or overstated mini-theory counts as error only in the exercises
- *       that show it (José, 30/9, DOUBT-MINIT-VARIAS). Counting it in every exercise of the topic
- *       is a value of this configuration, {@link MiniTheoryErrorScope#WHOLE_TOPIC}, not another
- *       design: if José goes back to it, only {@link #ERROR_SCOPE} changes. An exercise that
- *       contradicts its mini-theory, or falls outside it, counts only in that exercise whatever
- *       the scope.</li>
+ *   <li>F-MINIT-R003: every assessment, diagnosis, finding and correction belongs
+ *       to one quiz. Scope is not configurable and equal text never propagates an error.</li>
  *   <li>F-MINIT-R004 [ASSUMPTION]: an exercise scores 1 without finding and, otherwise, 0.3, 0.6
  *       or 0.8 by its gravest finding -- high, medium or low. The mini theory is shown after
  *       answering, so it never blocks: a blocking severity, which this judge never gives, would
@@ -32,9 +27,6 @@ public class DefaultMiniTheoryConfig implements MiniTheoryConfig {
 
     static final String ANALYZER_NAME = "mini-theory";
 
-    /** F-MINIT-R003: José, 30/9 -- «cuenta sólo donde se muestra». */
-    static final MiniTheoryErrorScope ERROR_SCOPE = MiniTheoryErrorScope.SHOWN_ONLY;
-
     /** An exercise the verdict reproaches nothing. */
     static final double SCORE_WITHOUT_FINDING = 1.0;
 
@@ -44,11 +36,6 @@ public class DefaultMiniTheoryConfig implements MiniTheoryConfig {
         SCORES.put(FindingSeverity.HIGH, 0.3);
         SCORES.put(FindingSeverity.MEDIUM, 0.6);
         SCORES.put(FindingSeverity.LOW, 0.8);
-    }
-
-    @Override
-    public MiniTheoryErrorScope getErrorScope() {
-        return ERROR_SCOPE;
     }
 
     @Override
@@ -64,8 +51,8 @@ public class DefaultMiniTheoryConfig implements MiniTheoryConfig {
     }
 
     /**
-     * F-HALL-R005: `config analyzer mini-theory` shows this. The scope is read through
-     * {@link #getErrorScope()}, so what it describes is always what the judge applies.
+     * F-HALL-R005: `config analyzer mini-theory` shows the batching unit, the
+     * assessment unit and the fixed score policy.
      */
     @Override
     public Map<String, Object> describe() {
@@ -73,15 +60,10 @@ public class DefaultMiniTheoryConfig implements MiniTheoryConfig {
         for (Map.Entry<FindingSeverity, Double> entry : SCORES.entrySet()) {
             scores.put(entry.getKey().name(), entry.getValue());
         }
-        MiniTheoryErrorScope scope = getErrorScope();
         Map<String, Object> description = new LinkedHashMap<>();
         description.put("analyzerName", ANALYZER_NAME);
-        description.put("errorScope", scope != null ? scope.name() : null);
-        description.put("errorScopeMeaning", scope == MiniTheoryErrorScope.WHOLE_TOPIC
-                ? "una miniteoría falsa o exagerada cuenta en todos los ejercicios del tema"
-                : "una miniteoría falsa o exagerada cuenta sólo en los ejercicios que la muestran");
-        description.put("exerciseErrorScope",
-                "un ejercicio que contradice su miniteoría, o queda afuera, cuenta sólo en ese ejercicio");
+        description.put("queryUnit", "topic");
+        description.put("assessmentUnit", "quiz");
         description.put("scoreWithoutFinding", SCORE_WITHOUT_FINDING);
         description.put("scoresBySeverity", scores);
         description.put("blocking", "nunca: la miniteoría se ve después de contestar");

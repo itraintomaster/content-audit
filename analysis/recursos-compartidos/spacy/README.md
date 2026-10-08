@@ -32,6 +32,23 @@ The SpaCy Container Wrapper provides a Docker-based solution for processing Engl
 
 ## Usage
 
+### ContentAudit CLI local runtime
+
+The CLI launches a binary named `python3`. `audit-cli.sh` automatically puts
+`.content-audit/runtime/spacy/bin` first when that local runtime exists, which
+also makes the macOS dashboard behave the same as the terminal.
+
+```bash
+python3 -m venv .content-audit/runtime/spacy
+.content-audit/runtime/spacy/bin/python3 -m pip install \
+  -r analysis/recursos-compartidos/spacy/requirements.txt
+```
+
+To keep the runtime elsewhere, set `CONTENT_AUDIT_SPACY_RUNTIME_DIR` to the
+directory whose `bin/python3` has the dependencies. The committed requirements
+pin the spaCy and English-model versions used by ContentAudit; the virtual
+environment itself stays operational and unversioned.
+
 ### Basic Sentence Processing with Individual Word Analysis
 
 ```java
@@ -172,4 +189,4 @@ See `SpacySentenceProcessingExample.java` for a complete working example demonst
 - Async processing capabilities
 - Enhanced frequency data integration
 - Real-time CEFR model updates
-- Custom vocabulary integration 
+- Custom vocabulary integration

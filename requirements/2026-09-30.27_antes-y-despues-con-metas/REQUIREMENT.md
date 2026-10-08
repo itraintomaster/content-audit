@@ -126,20 +126,20 @@ vuelve en la mesa del paquete E (F-NOEMP-R002).
 </details>
 
 <a id="F-METAS-R004"></a>
-### Rule[F-METAS-R004] - Un piso roto de nivel o de curso nombra a los cambios que lo rompen
-**Severity**: major | **Validation**: ASSUMPTION
+### Rule[F-METAS-R004] - La atribución de un piso roto es una investigación explícita
+**Severity**: major | **Validation**: VALIDATED
 
-> Cuando un piso de un nivel o del curso no se cumple, la comparación lista los cambios de la tanda ordenados por cuánto
-> empeoran ese número por sí solos —el número de la proyección entera menos el de la proyección sin ese cambio—, con esa
-> diferencia en puntos o en ejercicios, el que más empeora primero.
+> El análisis normal aplica juntas todas las propuestas vigentes, audita esa versión una vez y guarda el piso roto en su
+> antes/después. No vuelve a auditar el curso quitando cada propuesta por turno. Si el operador necesita identificar qué
+> cambios explican el piso, inicia después una investigación explícita de atribución, separada del análisis y de su cierre.
 
 <details><summary>Detail</summary>
 
-Hace falta porque un número de nivel no es de ningún ejercicio: si una tanda de 800 cambios baja un punto las bandas
-COCA de A1, R003 no devuelve a nadie. **Criterio**: en una tanda donde un solo cambio baja el vocabulario de A1 un punto
-y los demás no lo mueven, ese cambio encabeza la lista con −1 punto. [ASSUMPTION] Es factible: una corrida del motor
-tarda 0,05 a 0,1 s, así que 800 corridas son un minuto y medio si sólo se tokeniza lo que cambió; tokenizar el curso
-entero cada vez serían 38 s por cambio.
+Un número de nivel no pertenece a un solo ejercicio. Pero atribuirlo con *leave-one-out* convierte un análisis de 800
+cambios en 800 auditorías completas y mezcla dos preguntas: «¿cómo quedó la versión?» y «¿qué cambio explica el
+resultado?». **Criterio**: una tanda de 800 cambios que rompe un piso realiza una comparación agregada y deja el piso
+visible para revisión. Sólo la acción explícita de investigar responsables puede ejecutar comparaciones por cambio y
+ordenarlos por su aporte.
 
 </details>
 
@@ -306,11 +306,11 @@ journeys:
         gate: [F-METAS-R005]
         outcomes:
           - when: "Un piso de nivel o de curso no se cumple"
-            then: atribuir
+            then: guardar_freno
           - when: "Todos los pisos se cumplen"
             then: esperar_muestra
-      - id: atribuir
-        action: "La comparación lista los cambios que más empeoran ese número por sí solos, y el veredicto es no pasa"
+      - id: guardar_freno
+        action: "La comparación guarda el antes/después agregado, nombra el piso roto y el veredicto es no pasa; atribuir cambios queda como investigación explícita"
         gate: [F-METAS-R004, F-METAS-R008]
         result: failure
       - id: esperar_muestra

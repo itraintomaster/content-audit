@@ -64,11 +64,13 @@ vale.
 ## Cómo juzgás
 
 1. Poné cada opción en el hueco y leé la oración terminada en su lectura más
-   directa, sin agregarle nada.
+   directa, respetando exactamente las palabras y la puntuación dadas: no agregues,
+   borres ni cambies nada para hacer encajar una opción.
 2. Una incorrecta **también vale** si cumple las tres cosas:
-   - **funciona en la oración tal como se lee**: no hace falta inventar una
-     situación concreta que el ejercicio no da —dónde están, un envase, un
-     sentido especial de la palabra— para que quede bien;
+   - **funciona en la oración tal como se lee**: encaja en el marco sintáctico y
+     la puntuación ya escritos, y no hace falta inventar una situación concreta
+     que el ejercicio no da —dónde están, un envase, un sentido especial de la
+     palabra— para que quede bien;
    - **es natural**: un nativo la diría así, en esta oración, sin que suene
      rara o forzada. Que sea menos común o menos esperable que la correcta no
      la descarta: la hace `MEDIUM`;
@@ -87,6 +89,27 @@ vale.
    `false` y `correctProblem` dice por qué en una línea. Las incorrectas que sí
    valen van igual en `validAlternatives`.
 
+## Cuatro comprobaciones decisivas
+
+- **Reflexivo explícito:** que un verbo pueda usarse sin objeto no descarta su
+  uso con un pronombre reflexivo expreso. Si la oración completa con *myself*,
+  *himself*, *themselves*, etc. es correcta y natural, esa opción vale aunque
+  la forma sin objeto también sea aceptable. Juzgá la alternativa que está
+  escrita; no la confundas con una repetición formal de la respuesta vacía.
+- **Marco sintáctico y puntuación:** compartir significado aproximado no basta.
+  Una conjunción coordinante puede unir dos cláusulas después de una coma; un
+  adverbio conjuntivo como *therefore* suele necesitar otro marco (por ejemplo,
+  punto y coma y coma). No repuntúes mentalmente la oración para aceptarlo.
+- **Coherencia completa:** no juzgues sólo el fragmento junto al hueco. Leé toda
+  la oración y comprobá que la opción sea compatible con la causa, consecuencia,
+  contraste o situación que expresa. Una cláusula localmente gramatical no vale
+  si hace contradictoria o incoherente la oración completa.
+- **Modales:** una diferencia de fuerza o lectura —posibilidad, deducción,
+  permiso, consejo u obligación— no vuelve incorrecta una alternativa. Descartala
+  sólo si el contexto o la consigna excluyen de verdad esa lectura. Si dos
+  oraciones completas son correctas, naturales y coherentes, hay una segunda
+  respuesta válida aunque expresen grados o modalidades diferentes.
+
 **La pregunta del criterio.** Para cada incorrecta, preguntate: ¿un nativo la
 diría así, en esta oración, sin que suene rara? Si la respuesta es sí, se
 lista: `HIGH` si además es igual de esperable que la correcta, `MEDIUM` si es
@@ -99,9 +122,10 @@ sólo en la forma —mayúscula (*am i* / *Am I*), *a* o *an*, singular o plural
 (*one* / *ones*), contraída o larga (*isn't* / *is not*)—. Eso lo marcan otras
 reglas; no la listes.
 
-**Lo que no juzgás**: si lo que dice la oración es cierto, la traducción, la
-miniteoría o la puntuación. Tampoco sugerís que la consigna pida una forma,
-corta o larga.
+**Lo que no juzgás**: si lo que afirma la oración coincide con el mundo real,
+la traducción o la miniteoría. Sí juzgás la coherencia interna de la oración y
+si la opción encaja con la puntuación que ya está escrita, sin corregirla.
+Tampoco sugerís que la consigna pida una forma corta o larga.
 
 ## Ejemplos
 
@@ -126,6 +150,13 @@ Se listan:
   «Elige 'some' o 'any'.», opciones *any* (correcta) / *some*. *some* en una
   pregunta también se dice, sobre todo si el que pregunta espera que sí: es
   correcta y natural, aunque el tema enseñe *any* → `some`, `MEDIUM`.
+- «Before breakfast, Leo shaved ___.», opciones *-* (correcta) / *himself*.
+  Tanto *Leo shaved* como *Leo shaved himself* son correctas y naturales; el
+  reflexivo expreso no deja de valer porque el verbo también admita la forma sin
+  objeto → `himself`, `HIGH`.
+- «The lights are on; Nora ___ be at home.», opciones *must* (correcta) /
+  *might*. *Must* expresa una deducción fuerte y *might* una posibilidad, pero
+  el contexto no excluye ninguna de las dos lecturas → `might`, `HIGH`.
 - «Wash the apples ___ you eat them.», opciones *after* (correcta) / *before*.
   *After* deja la oración sin sentido: las manzanas no se pueden lavar después
   de comerlas. La que vale es *before* → `correctIsValid` false, con su
@@ -143,6 +174,14 @@ No se listan (sólo vale la correcta):
   momento», consigna «Elige 'will' para una decisión que se toma en el
   momento.», opciones *'ll* (correcta) / *'m going to*. La decisión es del
   momento y la consigna dice qué usar ahí: descarta *'m going to*.
+- «The roads were icy, ___ the school closed early.», opciones *so* (correcta)
+  / *therefore*. Aunque comparten una relación causal, *therefore* no puede
+  ocupar sin más el lugar de *so* detrás de esa coma; habría que cambiar la
+  puntuación, y no se permite reparar el enunciado.
+- «The vase fell onto the stone floor and ___, so we swept up the pieces.»,
+  opciones *shattered* (correcta) / *remained intact*. *Remained intact* forma
+  una cláusula gramatical, pero contradice que después se barrieran los pedazos;
+  la oración completa no es coherente.
 - «They ___ at home.», opciones *aren't* (correcta) / *is not* / *are not*:
   *are not* es la misma respuesta en forma larga, y *is not* no concuerda con
   *They*.

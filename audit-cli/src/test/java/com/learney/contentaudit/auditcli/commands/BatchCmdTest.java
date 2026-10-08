@@ -3,6 +3,8 @@ package com.learney.contentaudit.auditcli.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.CefrLevel;
 import com.learney.contentaudit.auditdomain.finding.FindingResolution;
@@ -107,6 +109,29 @@ public class BatchCmdTest {
     }
 
     @Test
+    @DisplayName("should print with 'batch estimate -f json' a parseable estimate without making any query")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R003")
+    public void shouldPrintWithBatchEstimateInJsonAParseableEstimateWithoutMakingAnyQuery() throws Exception {
+        Service service = new Service();
+        service.changedQuizzes = 7;
+        service.judgeQueries = 11;
+        service.judgeHours = 0.06;
+
+        Run run = run(service, "estimate", "-f", "json");
+
+        assertEquals(0, run.exit(), run.err());
+        JsonNode estimate = new ObjectMapper().readTree(run.out());
+        assertEquals("tanda-A1-20261001T120000Z", estimate.get("batchId").asText());
+        assertEquals(17, estimate.get("estimatedQueries").asInt());
+        assertEquals(7, estimate.get("changedQuizzes").asInt());
+        assertEquals(11, estimate.get("judgeQueries").asInt());
+        assertEquals(2, estimate.get("tasks").size());
+        assertEquals("hint-coherence", estimate.get("tasks").get(0).get("analyzer").asText());
+        assertTrue(service.runs.isEmpty(), "estimate JSON does not run the batch or make queries");
+    }
+
+    @Test
     @DisplayName("should run with 'batch run' and no cap only the rules, and say that the panel tasks stayed not attempted")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R003")
@@ -127,6 +152,23 @@ public class BatchCmdTest {
         Run capped = run(service, "run", "--cap", "300");
         assertEquals(Integer.valueOf(300), service.runs.get(1).getQueryCap());
         assertTrue(capped.out().startsWith("Corrida con tope de 300 consultas."), capped.out());
+    }
+
+    @Test
+    @DisplayName("should fail visibly when batch run was interrupted and preserve the service reason")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R007")
+    public void shouldFailVisiblyWhenBatchRunWasInterruptedAndPreserveTheServiceReason() {
+        Service service = new Service();
+        service.reportStatus = BatchStatus.INTERRUPTED;
+        service.interruptionReason = "codex-cli no está disponible: no se encontró el binario real";
+
+        Run run = run(service, "run", "--cap", "1000");
+
+        assertEquals(1, run.exit());
+        assertTrue(run.err().contains("La corrida se interrumpió"), run.err());
+        assertTrue(run.err().contains(service.interruptionReason), run.err());
+        assertFalse(run.err().contains("Siguiente: content-audit batch close"), run.err());
     }
 
     @Test
@@ -253,6 +295,10 @@ public class BatchCmdTest {
         int judgeQueries;
 
         double judgeHours;
+
+        BatchStatus reportStatus = BatchStatus.CLOSED;
+
+        String interruptionReason;
 
         final CorrectionBatch batch = new CorrectionBatch();
 
@@ -390,10 +436,12 @@ public class BatchCmdTest {
                 outcomes.add(new OutcomeCount(kind, kind == BatchTaskOutcomeKind.RESOLVED_BY_RULE ? 1
                         : kind == BatchTaskOutcomeKind.NOT_ATTEMPTED ? 2 : 0));
             }
-            return new BatchReport(batch.getId(), CefrLevel.A1, BatchStatus.CLOSED, outcomes, 3, 0, 0, List.of(),
+            BatchReport report = new BatchReport(batch.getId(), CefrLevel.A1, reportStatus, outcomes, 3, 0, 0, List.of(),
                     List.of(new AudioRerecordRequest("67fab6d59930102295341ecd", "A1.02.01.cd",
                             List.of("I love vegetables."))), List.of(), new QueriesByRole(8, 30), 0.2, List.of(),
                     lastClosingJudges);
+            report.setInterruptionReason(interruptionReason);
+            return report;
         }
 
         @Override

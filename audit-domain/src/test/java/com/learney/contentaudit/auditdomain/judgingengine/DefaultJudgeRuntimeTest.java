@@ -577,6 +577,33 @@ public class DefaultJudgeRuntimeTest {
     }
 
     @Test
+    @DisplayName("should gate a local intermediate evaluator with the runtime that approved the hybrid route")
+    @Tag("F-JEXAM-R003")
+    @Tag("F-MLOCAL-R002")
+    void shouldGateALocalIntermediateEvaluatorWithTheRuntimeThatApprovedTheHybridRoute() {
+        String routeVersion = "nomic-v1 · candidatos-0,80 · juez-v11";
+        EvaluationRuntimeIdentity codex = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        ScriptedJudge localVectors = ScriptedJudge.healthy("near-duplicates-vectors", routeVersion);
+        JudgeExamRecord approval = new JudgeExamRecord("near-duplicates", routeVersion,
+                JudgeExamStatus.APPROVED, 510, 0, List.of(), List.of(), true,
+                "db/english-course@2026-10-06", "medir-examen.py", Instant.parse("2026-10-06T21:00:00Z"));
+        approval.setRuntimeIdentity(codex);
+        registry.record(approval);
+
+        JudgeSessions opened = runtime.open("near-duplicates", List.of(localVectors), onTheCourse(1), codex);
+        List<EvaluationResolution> resolutions = resolve(opened, 0, requests("q-new"));
+
+        assertEquals(JudgeExamStatus.APPROVED, opened.getStanding().getStatus());
+        assertEquals(codex, opened.getRuntimeIdentity(),
+                "the standing and its provenance name the runtime that took the route exam");
+        assertEquals(List.of(EvaluationResolutionKind.EVALUATED), kinds(resolutions));
+        assertEquals(1, localVectors.calls(), "the approved route enables its local intermediate step");
+        EvaluationRecord stored = ledger.records.get(0);
+        assertEquals(EvaluationRuntimeIdentity.legacyUnknown(), stored.getKey().getRuntimeIdentity(),
+                "the local artifact keeps its own ledger identity instead of pretending to be Codex output");
+    }
+
+    @Test
     @DisplayName("should open no consulting session for a judge one of whose evaluators states no version, and declare it not available")
     @Tag("FEAT-JEXAM")
     @Tag("F-JEXAM-R003")

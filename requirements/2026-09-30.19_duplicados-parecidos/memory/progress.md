@@ -4,6 +4,44 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-06 — coordinador — V11 aceptada para trabajo A1 con el R007 cuantitativo aprobado por José: formal 87/87,
+  acuerdo por ejercicio 99,88 % y Jaccard de copias 98,88 %. Las dos pasadas aportaron 506/510 decisiones idénticas;
+  se promovieron sólo esas 506 al artefacto operativo y las cuatro divergencias quedaron separadas para revisión.
+  Next: registrar la versión con su nueva medición, sincronizar el libro de consenso y correr el preflight A1 con
+  presupuesto cero antes de habilitar miniteoría.
+
+2026-10-06 — coordinador — El oro formal V7 quedó congelado antes de leer salidas V7 del curso: 111 pares reales en
+  107 copias, 88 mismo / 23 distinto. La base reclasifica los 71 pares del examen anterior (68/3). La ampliación usa
+  40 pares con coseno < 0,90, todos fuera del pool previamente revisado de 282: 20/20, con sus 40 copias distintas.
+  Huella canónica: `111c75a6a65d5cf8507ec65f3dffb83d20372ea61b5cbb040d604cfaa2f6780e`.
+  Next: sincronizar V7 a la copia aislada y medir con el modelo bloqueado el costo exacto de histórico + oro formal;
+  sólo entonces ejecutar las consultas reales ya autorizadas.
+
+2026-10-06 — coordinador — V7 cerró la omisión localizada sin repetir todavía el corpus pago: 29/29 microcasos con
+  `codex-cli/gpt-6.1-sol` medium, repartidos en 22 positivos y 7 negativos, cero errores de gate o runtime. Los nuevos
+  controles obligan a identificar primero la respuesta realmente seleccionada; una alternativa visible no transmite
+  su función al hueco cuando la solución es omitir (`-`).
+  Next: ampliar y congelar negativos reales e independientes desde los 1.468 candidatos del curso; luego medir V7
+  contra ese examen y sólo si aprueba habilitar las dos pasadas de estabilidad.
+
+2026-10-06 — coordinador — V6 completó la puerta vigente con 80 consultas exactas: 2 históricas y 78 de muestra.
+  Tras revisar los 57 pares completos, el oro queda 50 mismo / 7 distinto y V6 pasa el diagnóstico: históricos 7/7,
+  49/49 marcas correctas, una omisión entre ocho no marcados (12,5%; máximo 20%). La única omisión real es un par cuya
+  respuesta seleccionada es `-` en ambos; el juez razonó sobre la función de los reflexivos distractores.
+  Next: V7 explicita que se juzga la respuesta seleccionada y agrega controles sintéticos de omisión. Luego ampliar
+  negativos verdaderos de R007 y congelar el examen formal antes de estabilidad.
+
+2026-10-06 — coordinador — V6 alinea el juez con R002: no reabre la equivalencia de respuesta ya decidida y exige
+  nombrar un cambio concreto de operación o función para responder `false`. Pasó 25/25 controles offline y 26/26
+  microcasos con `codex-cli/gpt-6.1-sol` medium. El oro anterior quedó invalidado por criterio; se construyó una puerta
+  reproducible de 57 pares vigentes (52 positivos, 5 negativos) sin tocar el examen congelado.
+  Next: medir V6 en esos 57 pares como diagnóstico. Si pasa, ampliar y congelar negativos verdaderos según R007; sólo
+  después correr las dos pasadas independientes de estabilidad y registrar una aprobación formal.
+
+2026-10-05 — analyst — F-DUPAR-R002 y R007 alineadas con el criterio pedagogico aprobado: variaciones superficiales y
+  dialogos se deciden por operacion/respuesta/funcion; el oro previo no habilita la version nueva.
+  Next: reclasificar y ampliar el oro, ajustar el juez sin copiar casos del examen y recien entonces volver a rendir.
+
 2026-10-03 — coordinador — v3 cerrada en `ronda2/duplicados-por-par`, sin push: suite 3.122 tests, 0 fallas, 1
   salteado; `sentinel verify` OK; la guardia del examen pasa (el corpus en vivo del juez cambió tres pares que coincidían
   con ejercicios del examen del 077). Punta a punta con la CLI real (`exam run near-duplicates` sobre un mini-curso

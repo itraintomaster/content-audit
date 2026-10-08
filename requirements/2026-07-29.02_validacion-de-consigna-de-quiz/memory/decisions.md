@@ -1,5 +1,10 @@
 # Decisions — FEAT-QINST
 
+2026-10-05 — analyst — R020 acota el juez de consigna a la correspondencia literal entre consigna, material entregado y
+  respuestas aceptadas: no repara lexico o preposiciones ausentes, respeta transformaciones explicitas y parentesis
+  opcionales, y deja alternativas, distractores, gramatica, naturalidad y miniteoria a sus jueces.
+  why: ajuste aprobado por Jose en el brief 029; evita falsos positivos por invasion de responsabilidades.
+
 2026-10-04 — analyst — DOUBT-PROVEEDOR-DEL-JUEZ resuelta en A: sin proveedor declarado se usa `codex-cli` con ChatGPT;
   una elección explícita prevalece y nunca deriva silenciosamente a otro proveedor.
 

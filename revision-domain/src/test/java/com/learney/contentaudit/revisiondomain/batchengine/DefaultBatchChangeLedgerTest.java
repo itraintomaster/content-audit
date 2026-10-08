@@ -88,6 +88,35 @@ public class DefaultBatchChangeLedgerTest {
     }
 
     @Test
+    @DisplayName("should rehydrate an historical part-changing step with null sentences before composing the course")
+    @Tag("FEAT-DATOS")
+    @Tag("F-DATOS-R001")
+    @Tag("FEAT-TANDA")
+    @Tag("F-TANDA-R006")
+    public void shouldRehydrateAnHistoricalPartChangingStepWithNullSentencesBeforeComposingTheCourse() {
+        // Historical changes were persisted before record rebuilt the stored sentence. R001 requires the composed copy to
+        // derive it from the new parts and their first accepted answer; R006 requires the course the batch opened with to stay
+        // untouched. Insert the old shape directly so this test does not get repaired in advance by record.
+        CourseEntity start = TandaFixture.course();
+        String startJson = json(start);
+        DefaultBatchChangeLedger ledger = new DefaultBatchChangeLedger(new TandaFixture.Artifacts(), TandaFixture.locator());
+        CorrectionBatch batch = TandaFixture.batch("tanda-a1", "t-vegetables");
+        QuizTemplateEntity historicalAfter = withParts(TandaFixture.exercise(start, MesaFixture.VEGETABLES), text("I"),
+                cloze("cherish", "love"), text("vegetables."));
+        historicalAfter.setSentences(null);
+        BatchChange historical = TandaFixture.change("historical-statement", BatchChangeOrigin.RULE, "data-coherence",
+                List.of("t-vegetables"), TandaFixture.step(historicalAfter, ExercisePart.STATEMENT));
+        batch.setChanges(new ArrayList<>(List.of(historical)));
+
+        CourseEntity composed = ledger.composedCourse(batch, start);
+
+        assertEquals(List.of("I cherish vegetables."),
+                TandaFixture.exercise(composed, MesaFixture.VEGETABLES).getSentences(),
+                "the stored sentence is rebuilt from the changed parts and the first accepted answer");
+        assertEquals(startJson, json(start), "rehydrating the historical step never mutates the course the batch opened with");
+    }
+
+    @Test
     @DisplayName("should drop the capital-letters rule change of «___ a child? (He)» and keep a later panel change of the same exercise that touched other parts, recomposing the exercise")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R008")

@@ -26,7 +26,7 @@ import javax.annotation.processing.Generated;
 /**
  * What is structural is looked at before measuring, because it costs no query: that the candidate changes only what its
  * tasks declare (F-TAREA-R006); that a multiple choice stays one, with exactly one correct option among the same number
- * (F-MESA-R011); that a new mini theory reaches every exercise of the topic showing the text and no other (F-MESA-R012);
+ * (F-MESA-R011); that a new mini theory belongs to one explicit quiz (F-MESA-R012);
  * and that a conversion José ordered meets its three conditions (F-MESA-R015). Each violation is a line with its reason;
  * none means the candidate goes on to be measured.
  */
@@ -58,7 +58,7 @@ class DefaultCandidateScreen implements CandidateScreen {
         }
         KnowledgeEntity topic = work.getKnowledge();
         if (candidate.getKind() == PanelCandidateKind.MINI_THEORY) {
-            return miniTheory(work, candidate);
+            return miniTheory(work, quizId, candidate);
         }
         Optional<QuizTemplateEntity> found = TopicState.quiz(topic, quizId);
         if (found.isEmpty()) {
@@ -123,42 +123,18 @@ class DefaultCandidateScreen implements CandidateScreen {
     // F-MESA-R012: the mini theory
     // -------------------------------------------------------------------------
 
-    private static List<String> miniTheory(TopicWork work, PanelCandidate candidate) {
+    private static List<String> miniTheory(TopicWork work, String quizId, PanelCandidate candidate) {
         List<String> violations = new ArrayList<>();
         if (candidate.getMiniTheoryText() == null || candidate.getMiniTheoryText().isBlank()) {
             violations.add("la miniteoría nueva está vacía");
             return violations;
         }
-        KnowledgeEntity topic = work.getKnowledge();
-        Set<String> reach = TopicState.miniTheoryReach(topic, work.getBriefs());
-        if (reach.isEmpty()) {
-            violations.add("ninguna tarea de miniteoría dice a qué ejercicios llega");
+        if (quizId == null || quizId.isBlank()) {
+            violations.add("la tarea de miniteoría no trae el ejercicio objetivo");
             return violations;
         }
-        String shownText = null;
-        for (String id : reach) {
-            Optional<QuizTemplateEntity> quiz = TopicState.quiz(topic, id);
-            if (quiz.isPresent() && quiz.get().getMiniTheory() != null && !quiz.get().getMiniTheory().isBlank()) {
-                shownText = quiz.get().getMiniTheory();
-                break;
-            }
-        }
-        Set<String> showing = new LinkedHashSet<>();
-        for (QuizTemplateEntity quiz : topic.getQuizTemplates() != null ? topic.getQuizTemplates()
-                : List.<QuizTemplateEntity>of()) {
-            if (quiz != null && shownText != null && shownText.equals(quiz.getMiniTheory())) {
-                showing.add(quiz.getId());
-            }
-        }
-        for (String id : showing) {
-            if (!reach.contains(id)) {
-                violations.add("la miniteoría no llega a " + id + ", que muestra el mismo texto");
-            }
-        }
-        for (String id : reach) {
-            if (!showing.contains(id)) {
-                violations.add("la miniteoría llega a " + id + ", que no muestra ese texto");
-            }
+        if (TopicState.quiz(work.getKnowledge(), quizId).isEmpty()) {
+            violations.add("el ejercicio " + quizId + " no está en el tema");
         }
         return violations;
     }
@@ -252,8 +228,14 @@ class DefaultCandidateScreen implements CandidateScreen {
             }
         }
         if (allowed.contains(ExercisePart.STATEMENT) || allowed.contains(ExercisePart.ANSWERS)) {
-            // The translation follows the English, as the audio follows the exercise: a new sentence brings its own.
+            // The translation follows the English: a new sentence brings its own.
             allowed.add(ExercisePart.TRANSLATION);
+        }
+        if (allowed.contains(ExercisePart.STATEMENT) || allowed.contains(ExercisePart.ANSWERS)
+                || allowed.contains(ExercisePart.OPTIONS)) {
+            // F-NOEMP-R004: spoken text follows the exercise. The later change gate turns the changed text into an
+            // AudioRerecordRequest; rejecting AUDIO here would prevent that required declaration from being created.
+            allowed.add(ExercisePart.AUDIO);
         }
         return allowed;
     }

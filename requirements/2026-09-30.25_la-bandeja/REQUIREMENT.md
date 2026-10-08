@@ -78,6 +78,10 @@ errores ni se resuelve solo.
 > 3. «escribir el arreglo»: su versión se mide y se juzga como cualquier candidato ([F-MESA-R004](#F-MESA-R004),
 >    [F-MESA-R005](#F-MESA-R005)) y, si no pasa, vuelve a él con los motivos.
 
+El archivo de «escribir el arreglo» lleva, en lineas no vacias, la oracion en la notacion del curso, su traduccion y,
+opcionalmente, la miniteoria local de ese quiz. Esta tercera linea viaja en el mismo candidato porque una respuesta nueva
+puede volver falsa la explicacion anterior; no se propaga a otros quizzes.
+
 Mantiene [DOUBT-SIN-CORRECCION](#DOUBT-SIN-CORRECCION) de FEAT-QICOR (José eligió ver el candidato con lo que no cumple
 y decidir él) y el tope de tres intentos de la mesa ([F-MESA-R007](#F-MESA-R007)).
 

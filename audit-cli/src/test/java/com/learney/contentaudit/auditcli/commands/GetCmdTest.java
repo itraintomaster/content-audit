@@ -5050,12 +5050,12 @@ public class GetCmdTest {
     }
 
     @Test
-    @DisplayName("should show 'get task' of the mini-theory task of «$In time$ u $on time$» with the forty exercises it reaches")
+    @DisplayName("should show 'get task' of a mini-theory task with only the quiz whose card it corrects")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R009")
-    public void shouldShowGetTaskOfTheMinitheoryTaskOfInTimeUOnTimeWithTheFortyExercisesItReaches() {
-        // F-TAREA-R009 and R003: the task of the mini theory of «$In time$ u $on time$» is on the topic; get task shows the
-        // forty exercises it reaches.
+    public void shouldShowGetTaskOfAMinitheoryTaskWithOnlyTheQuizWhoseCardItCorrects() {
+        // F-TAREA-R009 and R003: mini-theory is corrected per quiz. Even when forty quizzes share a topic, this task
+        // shows only the quiz whose specific card it corrects and does not claim that it reaches its siblings.
         Tarea t = new Tarea();
         RefinementPlan plan = planOf(t, t.course(t.level("B1", t.topic("t-prep", "Prepositions", t.inTimeOnTime(40)))));
 
@@ -5063,10 +5063,10 @@ public class GetCmdTest {
 
         assertEquals(0, run.exit(), run.err());
         String out = run.out();
-        assertTrue(out.contains("Exercises it reaches (40):"), out);
-        assertEquals(40, out.lines().filter(line -> line.contains("The train arrived ___ (on time / in time).")).count(),
-                "the forty, as the student sees them");
-        assertTrue(out.contains("Covers:    39 finding(s)"), out);
+        assertEquals(1, out.lines().filter(line -> line.contains("The train arrived ___ (on time / in time).")).count(),
+                "only the quiz whose mini-theory is being corrected");
+        assertFalse(out.contains("Exercises it reaches"), out);
+        assertFalse(out.contains("Covers:"), out);
         assertTrue(out.contains("May touch: MINI_THEORY"), out);
     }
 

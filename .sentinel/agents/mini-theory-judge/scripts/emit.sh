@@ -19,7 +19,7 @@ from pathlib import Path
 AGENT = "mini-theory-judge"
 TAG = "mini_theory_judge_emit"
 ARTIFACT = "miniTheoryVerdict"
-TOP_KEYS = {"assessments", "rationale"}
+TOP_KEYS = {"assessments"}
 
 state = json.loads(sys.argv[1])
 inputs = state.get("inputs", {}) or {}

@@ -122,7 +122,11 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
         while (true) {
             rounds++;
             ProjectionScope scope = scope(batch);
-            BatchComparison comparison = batchComparator.compare(coursePath, scope);
+            // Closing is the aggregate analysis of the correction: compose every current proposal, measure that
+            // version once and persist its before/after even when an aggregate floor fails. Naming the individual
+            // changes behind a floor is a separate, explicit investigation; doing leave-one-out here would turn an
+            // analysis of N changes into N complete course audits.
+            BatchComparison comparison = batchComparator.compareSummary(coursePath, scope);
             List<String> outside = changedOutside(batch, startCourse, tasks);
             BatchGateVerdict verdict = batchGate.evaluate(comparison, outside, exceptions(batch));
             List<ReturnedChange> returned = BatchBook.list(verdict.getReturned());
@@ -136,8 +140,10 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
                 continue;
             }
             List<BatchClosing> closings = BatchBook.copy(batch.getClosings());
-            closings.add(new BatchClosing(Instant.now(), scope, comparison, verdict, returnedIds, rounds, asked,
-                    judgeAccounts(batch, startCourse, paid, comparison)));
+            BatchClosing closing = new BatchClosing(Instant.now(), scope, comparison, verdict, returnedIds, rounds, asked,
+                    judgeAccounts(batch, startCourse, paid, comparison));
+            closing.setCorrectionRevision(BatchBook.correctionRevision(batch));
+            closings.add(closing);
             batch.setClosings(closings);
             if (verdict.isPasses() && blindSampleService != null && batch.getBlindSampleId() == null) {
                 // one sample per batch: closing again with José's decisions keeps the one he answers

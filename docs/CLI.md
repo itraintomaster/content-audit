@@ -236,6 +236,29 @@ Muestra la vista consolidada (línea base + aceptadas + pendientes) del análisi
 content-audit get-consolidated [<ruta-curso>] [-f <formato>]
 ```
 
+### `compare`
+
+Proyecta las propuestas pendientes sobre una copia lógica del curso y vuelve a medirla
+contra la línea base de la tanda.
+
+```bash
+content-audit compare [<ruta-curso>] [-f text|json] [--without-attribution]
+```
+
+| Opción | Descripción |
+|---|---|
+| `--without-attribution` | Conserva métricas, pisos rotos, cambios y veredicto, pero omite el costoso reanálisis individual de cada propuesta para atribuir regresiones. Es el modo usado por el dashboard. |
+
+Sin esa opción, `compare` conserva el comportamiento exhaustivo: para cada propuesta
+pendiente vuelve a auditar el curso sin ella. Sirve para investigar qué cambio concreto
+rompió un piso, pero una tanda grande puede requerir cientos de auditorías locales. Ninguno
+de los dos modos consulta modelos ni publica contenido.
+
+El cierre normal de una tanda —incluido el Análisis iniciado desde el Centro de control—
+siempre usa la comparación agregada: aplica todas las propuestas vigentes, audita una vez y
+guarda ese antes/después aunque un piso no se cumpla. La atribución exhaustiva queda reservada
+para una investigación explícita posterior; no forma parte del análisis ni de su cierre.
+
 ### `set-active`
 
 Fija o limpia el par activo (auditoría, plan) que usa la vista consolidada.
@@ -321,4 +344,3 @@ con la misma paridad estructural que usa la auditoría.
 ```bash
 content-audit lexis -q "She ____ [reads] books." -l B1 [-m FILL|REWRITE]
 ```
-

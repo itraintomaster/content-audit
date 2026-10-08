@@ -1,5 +1,9 @@
 # Progress — FEAT-QINST
 
+2026-10-05 — analyst — R020 agregada con la frontera funcional del juez, preservacion de cue/esqueleto y parentesis
+  opcionales; J001 y el alcance trazan el criterio.
+  Next: alinear la definicion del juez y sus evals con R020 antes de volver a rendir.
+
 2026-10-04 — analyst — Proveedor por omisión resuelto a Codex/ChatGPT en el requirement; validate [OK].
 
 2026-07-29 — analyst — REQUIREMENT.md creado: 14 reglas, 3 journeys de flujo (J001 puntaje+diagnostico+falla del juez, J002 cobertura parcial y reanudacion, J003 omision/exclusion/re-evaluacion) y 5 doubts abiertos. `requirement validate` [OK]; `feature list` = FEAT-QINST 14 reglas / 3 journeys.

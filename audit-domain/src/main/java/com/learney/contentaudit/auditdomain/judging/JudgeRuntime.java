@@ -15,6 +15,17 @@ import javax.annotation.processing.Generated;
 public interface JudgeRuntime {
     JudgeSessions open(String judgeName, List<Evaluator> evaluators, EvaluationRunPolicy policy);
 
+    /**
+     * Opens sessions whose data is still recorded under each evaluator's own runtime, while the
+     * course gate is checked against the runtime that actually took the judge exam. This is useful
+     * for approved hybrid routes: a paid judge takes the exam, but a local tool produces one of the
+     * route's reusable intermediate artifacts.
+     */
+    default JudgeSessions open(String judgeName, List<Evaluator> evaluators,
+            EvaluationRunPolicy policy, EvaluationRuntimeIdentity examRuntimeIdentity) {
+        return open(judgeName, evaluators, policy);
+    }
+
     JudgeRequestPlan plan(List<AuditNode> units, EvaluationRunPolicy policy);
 
     JudgeCoverageDiagnosis coverage(JudgeSessions opened, JudgeUnitTally tally);

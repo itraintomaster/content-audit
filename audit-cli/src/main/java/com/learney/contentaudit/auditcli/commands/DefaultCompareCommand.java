@@ -32,12 +32,24 @@ final class DefaultCompareCommand implements CompareCommand {
     @Override
     public Integer compare(String coursePath, List<String> proposalIds,
             Map<String, Integer> analyzerBudgets, String format) {
+        return compare(coursePath, proposalIds, analyzerBudgets, format, true);
+    }
+
+    @Override
+    public Integer compareSummary(String coursePath, List<String> proposalIds,
+            Map<String, Integer> analyzerBudgets, String format) {
+        return compare(coursePath, proposalIds, analyzerBudgets, format, false);
+    }
+
+    private Integer compare(String coursePath, List<String> proposalIds,
+            Map<String, Integer> analyzerBudgets, String format, boolean attributeBreaches) {
         if (coursePath == null || coursePath.isBlank()) {
             System.err.println("Error: course path is required.");
             return 1;
         }
-        BatchComparison comparison = batchComparator.compare(Path.of(coursePath),
-                CommandJson.scope(proposalIds, analyzerBudgets));
+        BatchComparison comparison = attributeBreaches
+                ? batchComparator.compare(Path.of(coursePath), CommandJson.scope(proposalIds, analyzerBudgets))
+                : batchComparator.compareSummary(Path.of(coursePath), CommandJson.scope(proposalIds, analyzerBudgets));
         System.out.println(formatter.format(comparison, format));
         return 0;
     }

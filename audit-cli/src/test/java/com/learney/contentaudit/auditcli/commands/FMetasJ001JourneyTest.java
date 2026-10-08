@@ -206,6 +206,13 @@ public class FMetasJ001JourneyTest {
         assertEquals(breach.getRow().getChange(), attributions.get(0).getEffect(), 1e-6,
                 "R004: alone, it lowers it as much as the whole batch");
         assertEquals(VerdictKind.FAILS, comparison.getVerdict().getKind());
+
+        BatchComparison summary = work.comparator(Proyeccion299.BANDS_OF_29_9)
+                .compareSummary(Proyeccion299.COURSE, null);
+        FloorBreach summaryBreach = breach(summary, "el largo no baja en ningún nivel",
+                Proyeccion299.LEVELS.get(0));
+        assertTrue(summaryBreach.getAttributions().isEmpty(),
+                "the interactive summary keeps the broken floor without N leave-one-out audits");
     }
 
     @Test

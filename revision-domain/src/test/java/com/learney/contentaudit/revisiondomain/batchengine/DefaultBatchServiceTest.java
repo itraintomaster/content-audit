@@ -91,6 +91,7 @@ public class DefaultBatchServiceTest {
         assertEquals(TandaFixture.BASELINE, batch.getBaselineAuditId());
         assertEquals(TandaFixture.BASELINE, batch.getStartAuditId(), "the first batch starts from the baseline");
         assertEquals(TandaFixture.PLAN, batch.getPlanId());
+        assertEquals(1, batch.getCorrectionRevision(), "the first candidate is Correction 1");
         assertEquals(TandaFixture.BASELINE, service.active.selection.getAuditId());
         assertEquals(TandaFixture.PLAN, service.active.selection.getPlanId());
         assertEquals(BatchStatus.OPEN, batch.getStatus());
@@ -205,6 +206,35 @@ public class DefaultBatchServiceTest {
     }
 
     @Test
+    @DisplayName("should keep repeated analyses in the same correction and open the next correction only when work runs again")
+    @Tag("FEAT-TANDA")
+    public void shouldKeepRepeatedAnalysesInTheSameCorrectionAndOpenTheNextCorrectionOnlyWhenWorkRunsAgain() {
+        Service service = new Service();
+        CorrectionBatch batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
+        assertEquals(1, batch.getCorrectionRevision(), "opening creates Correction 1");
+
+        service.service().run(new BatchRunRequest(null));
+        service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), null));
+        batch = service.batches.open().orElseThrow();
+        assertEquals(1, batch.getCorrectionRevision());
+        assertEquals(1, batch.getClosings().get(0).getCorrectionRevision(), "the first analysis measures Correction 1");
+
+        service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), null));
+        batch = service.batches.open().orElseThrow();
+        assertEquals(1, batch.getCorrectionRevision(), "revalidating does not invent Correction 2");
+        assertEquals(List.of(1, 1), batch.getClosings().stream().map(BatchClosing::getCorrectionRevision).toList(),
+                "both closings are passes of Analysis 1");
+
+        service.service().run(new BatchRunRequest(null));
+        batch = service.batches.open().orElseThrow();
+        assertEquals(2, batch.getCorrectionRevision(), "running correction work after a closing opens Correction 2");
+
+        service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), null));
+        batch = service.batches.open().orElseThrow();
+        assertEquals(2, batch.getClosings().get(2).getCorrectionRevision(), "the next closing is Analysis 2");
+    }
+
+    @Test
     @DisplayName("should refuse to open the batch of A2 while the batch of A1 is open, naming the open batch")
     @Tag("FEAT-TANDA")
     @Tag("F-TANDA-R002")
@@ -302,6 +332,8 @@ public class DefaultBatchServiceTest {
 
         CorrectionBatch batch = service.batches.open().orElseThrow();
         assertEquals(BatchStatus.INTERRUPTED, batch.getStatus());
+        assertEquals(service.panels.tripCause, batch.getInterruptionReason(),
+                "the interruption keeps the service cause for the operator");
         assertEquals(BatchTaskOutcomeKind.RESOLVED_BY_RULE, BatchBook.kind(batch, "t-pista"), "the rule change is kept");
         assertEquals(1, batch.getChanges().size());
         assertEquals(BatchTaskOutcomeKind.TIE, BatchBook.kind(batch, "t-respuesta"), "the decision of the first topic too");
@@ -332,6 +364,7 @@ public class DefaultBatchServiceTest {
 
         CorrectionBatch batch = service.batches.open().orElseThrow();
         assertEquals(BatchStatus.OPEN, batch.getStatus(), "resumed and done");
+        assertEquals(null, batch.getInterruptionReason(), "a successful resume clears the old failure");
         assertEquals(measured, service.meter.measured.size(), "the rule is not measured again");
         List<String> resumed = service.panels.works.subList(works, service.panels.works.size()).stream()
                 .map(w -> w.getKnowledge().getId()).toList();

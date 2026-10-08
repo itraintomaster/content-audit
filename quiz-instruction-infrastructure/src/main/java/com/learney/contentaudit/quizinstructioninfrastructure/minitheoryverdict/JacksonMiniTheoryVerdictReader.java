@@ -10,19 +10,20 @@ import com.fasterxml.jackson.databind.cfg.CoercionInputShape;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.type.LogicalType;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryAssessment;
+import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryProblem;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdict;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdictReader;
-import java.util.ArrayList;
+import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 
 /**
- * F-MINIT-R002: reads what the mini-theory judge emitted for a topic --
- * {@code {"assessments": [{"miniTheory", "holds", "problem", "severity", "counterexample",
- * "exercises", "explanation"}], "rationale"}}, with the M and E numbers of the content map -- into
- * its typed verdict. Enums are read whatever their case (an empty one is none), unknown fields are
- * ignored and a missing list is an empty one. A payload that is not such a verdict throws
- * {@link IllegalArgumentException} with the reason, and the analyzer leaves the topic unevaluated.
+ * Reads the closed quiz-scoped verdict emitted for a topic. Each assessment
+ * must identify one quizId and carry a coherent truth/problem/severity tuple.
+ * Legacy ordinal and exercise-list fields are rejected instead of silently
+ * restoring propagation by shared text.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -51,19 +52,67 @@ public class JacksonMiniTheoryVerdictReader implements MiniTheoryVerdictReader {
                 if (assessment == null || assessment.isNull()) {
                     throw new IllegalArgumentException(VERDICT + " ilegible: «assessments» trae un elemento vacío");
                 }
-                // Absent, they would read as mini-theory 0 and «does not hold».
-                requireValue(assessment, "miniTheory", "la evaluación " + (i + 1));
+                requireValue(assessment, "quizId", "la evaluación " + (i + 1));
                 requireValue(assessment, "holds", "la evaluación " + (i + 1));
+                if (assessment.has("miniTheory") || assessment.has("exercises")) {
+                    throw new IllegalArgumentException(VERDICT + " ilegible: la evaluación " + (i + 1)
+                            + " usa campos del contrato propagable anterior");
+                }
             }
         }
 
         MiniTheoryVerdict verdict = convert(root);
-        List<MiniTheoryAssessment> read = listOf(verdict.getAssessments(), "assessments");
-        for (MiniTheoryAssessment assessment : read) {
-            assessment.setExercises(listOf(assessment.getExercises(), "exercises"));
+        List<MiniTheoryAssessment> read = verdict.getAssessments();
+        if (read == null || read.isEmpty()) {
+            throw new IllegalArgumentException(VERDICT + " ilegible: «assessments» está vacío");
         }
-        verdict.setAssessments(read);
+        Set<String> quizIds = new LinkedHashSet<>();
+        for (int i = 0; i < read.size(); i++) {
+            MiniTheoryAssessment assessment = read.get(i);
+            if (assessment == null) {
+                throw new IllegalArgumentException(VERDICT + " ilegible: «assessments» trae un elemento vacío");
+            }
+            String quizId = assessment.getQuizId();
+            if (quizId == null || quizId.isBlank()) {
+                throw new IllegalArgumentException(VERDICT + " ilegible: la evaluación " + (i + 1)
+                        + " no trae un quizId no vacío");
+            }
+            if (!quizIds.add(quizId)) {
+                throw new IllegalArgumentException(VERDICT + " ilegible: repite el quizId «" + quizId + "»");
+            }
+            validateAssessment(assessment, i + 1);
+        }
         return verdict;
+    }
+
+    private static void validateAssessment(MiniTheoryAssessment assessment, int number) {
+        String where = "la evaluación " + number + " («" + assessment.getQuizId() + "»)";
+        if (assessment.getExplanation() == null || assessment.getExplanation().isBlank()) {
+            throw new IllegalArgumentException(VERDICT + " ilegible: a " + where + " le falta «explanation»");
+        }
+        if (assessment.isHolds()) {
+            if (assessment.getProblem() != null || assessment.getSeverity() != null
+                    || assessment.getCounterexample() != null) {
+                throw new IllegalArgumentException(VERDICT + " ilegible: " + where
+                        + " holds=true pero trae problema, severidad o contraejemplo");
+            }
+            return;
+        }
+        MiniTheoryProblem problem = assessment.getProblem();
+        FindingSeverity severity = assessment.getSeverity();
+        if (problem == null || severity == null) {
+            throw new IllegalArgumentException(VERDICT + " ilegible: " + where
+                    + " holds=false sin problema y severidad");
+        }
+        FindingSeverity expected = switch (problem) {
+            case FALSE_RULE, INSUFFICIENT_FOR_QUIZ -> FindingSeverity.HIGH;
+            case OVERSTATED_FOR_QUIZ -> FindingSeverity.MEDIUM;
+            case OTHER_SUBTOPIC_CONTENT -> FindingSeverity.LOW;
+        };
+        if (severity != expected) {
+            throw new IllegalArgumentException(VERDICT + " ilegible: " + where + " clasifica " + problem
+                    + " con " + severity + " y corresponde " + expected);
+        }
     }
 
     private static JsonNode verdictObject(String payload) {
@@ -101,17 +150,4 @@ public class JacksonMiniTheoryVerdictReader implements MiniTheoryVerdictReader {
         }
     }
 
-    private static <T> List<T> listOf(List<T> items, String field) {
-        List<T> present = new ArrayList<>();
-        if (items == null) {
-            return present;
-        }
-        for (T item : items) {
-            if (item == null) {
-                throw new IllegalArgumentException(VERDICT + " ilegible: «" + field + "» trae un elemento vacío");
-            }
-            present.add(item);
-        }
-        return present;
-    }
 }

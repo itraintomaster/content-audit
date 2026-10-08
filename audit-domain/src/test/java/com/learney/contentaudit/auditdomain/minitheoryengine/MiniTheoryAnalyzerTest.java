@@ -38,7 +38,6 @@ import com.learney.contentaudit.auditdomain.judging.JudgeVersionStanding;
 import com.learney.contentaudit.auditdomain.judgingengine.DefaultJudgeRuntime;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryAssessment;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryDiagnosis;
-import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryErrorScope;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryProblem;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdict;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryVerdictReader;
@@ -82,6 +81,34 @@ import java.util.HashSet;
 )
 public class MiniTheoryAnalyzerTest {
     @Test
+    @DisplayName("should keep opposite verdicts for sister quizzes with equal mini-theory text and find only the targeted quiz")
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R003")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R003")
+    public void shouldKeepOppositeVerdictsForSisterQuizzesWithEqualMinitheoryTextAndFindOnlyTheTargetedQuiz() {
+        World world = World.approved();
+        Topic gerundio = gerundio();
+        world.overstates(gerundio, "q-ger-1");
+
+        AuditNode root = world.run(course(gerundio), budget(1));
+
+        assertEquals(1, world.judge.calls(), "the topic is still one consultation");
+        AuditNode q1 = exerciseOf(root, gerundio.id, "q-ger-1");
+        AuditNode q2 = exerciseOf(root, gerundio.id, "q-ger-2");
+        AuditNode q3 = exerciseOf(root, gerundio.id, "q-ger-3");
+        assertEquals(List.of("overstated-for-quiz"), rulesOf(q1));
+        assertEquals(0.6, q1.getScores().get("mini-theory"), 1e-9);
+        assertEquals(List.of(), rulesOf(q2), "same text does not propagate the finding");
+        assertEquals(List.of(), rulesOf(q3), "same text does not propagate the finding");
+        assertEquals(1.0, q2.getScores().get("mini-theory"), 1e-9);
+        assertEquals(1.0, q3.getScores().get("mini-theory"), 1e-9);
+        assertEquals("q-ger-1", diagnosisOf(q1).getQuizId());
+        assertEquals("q-ger-2", diagnosisOf(q2).getQuizId());
+        assertEquals("q-ger-3", diagnosisOf(q3).getQuizId());
+    }
+
+    @Test
     @DisplayName("should consult the judge once per topic, never once per exercise")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R001")
@@ -98,16 +125,17 @@ public class MiniTheoryAnalyzerTest {
         assertEquals(Set.of(gerundio.id, articulos.id, afirmativas.id), Set.copyOf(world.judge.consulted()),
                 "one consultation per topic, with the topic as its subject");
         assertEquals(3, world.judge.calls(), "28 exercises, 3 topics: 3 consultations");
-        assertEquals(5, world.judge.subjectOf(gerundio.id).getContent().get("exercises").split("\n").length,
+        assertEquals(5, occurrences(world.judge.subjectOf(gerundio.id).getContent().get("quizzes"), "quizId:"),
                 "the subject of «Gerundio obligatorio» brings its 5 exercises");
-        assertEquals(3, world.judge.subjectOf(articulos.id).getContent().get("exercises").split("\n").length,
+        assertEquals(3, occurrences(world.judge.subjectOf(articulos.id).getContent().get("quizzes"), "quizId:"),
                 "the subject of «Artículos» brings its 3 exercises");
-        assertEquals(20, world.judge.subjectOf(afirmativas.id).getContent().get("exercises").split("\n").length,
+        assertEquals(20, occurrences(world.judge.subjectOf(afirmativas.id).getContent().get("quizzes"), "quizId:"),
                 "the subject of «Afirmativas regulares» brings its 20 exercises");
         for (Topic topic : List.of(gerundio, articulos, afirmativas)) {
             for (AuditNode exercise : exercisesOf(root, topic.id)) {
                 assertEquals(1.0, exercise.getScores().get("mini-theory"), 1e-9, "every exercise has its score");
-                assertEquals(topic.id, diagnosisOf(exercise).getKnowledgeId(), "judged with its topic");
+                assertEquals(exercise.getEntity().getId(), diagnosisOf(exercise).getQuizId(),
+                        "the topic is batched, but the diagnosis belongs to the quiz");
             }
         }
     }
@@ -148,7 +176,7 @@ public class MiniTheoryAnalyzerTest {
         World world = World.approved();
         Topic gerundio = gerundio();
         Topic articulos = articulos();
-        world.overstates(gerundio, STOP_ING, List.of(1)).holds(articulos);
+        world.overstates(gerundio, "q-ger-1").holds(articulos);
         world.run(course(gerundio), budget(1));
         assertEquals(1, world.judge.calls());
 
@@ -180,7 +208,7 @@ public class MiniTheoryAnalyzerTest {
         World world = World.approved();
         Topic gerundio = gerundio();
         // Had it been consulted, its card would have been found overstated.
-        world.overstates(gerundio, STOP_ING, List.of(1));
+        world.overstates(gerundio, "q-ger-1");
 
         AuditNode root = world.run(course(gerundio), budget(0));
 
@@ -349,12 +377,13 @@ public class MiniTheoryAnalyzerTest {
             ) {
         World world = World.approved();
         Topic gerundio = gerundio();
-        world.overstates(gerundio, STOP_ING, List.of(1));
+        world.overstates(gerundio, "q-ger-1");
         AuditNode before = world.run(course(gerundio), budget(1));
         assertEquals(1, world.judge.calls());
-        assertEquals(List.of("overstated-rule"), rulesOf(exerciseOf(before, gerundio.id, gerundio.exerciseIds.get(0))));
+        assertEquals(List.of("overstated-for-quiz"),
+                rulesOf(exerciseOf(before, gerundio.id, gerundio.exerciseIds.get(0))));
 
-        // The panel's candidate: one rewrite of the card, in every exercise that shows it.
+        // The panel's candidate: rewrite only the target quiz, even when its sisters share the old text.
         Topic candidate = gerundio(STOP_ING_REWRITTEN);
         world.holds(candidate);
         AuditNode judgedCandidate = world.run(course(candidate),
@@ -430,12 +459,12 @@ public class MiniTheoryAnalyzerTest {
         return gerundio(STOP_ING);
     }
 
-    static Topic gerundio(String stopCard) {
+    static Topic gerundio(String firstQuizCard) {
         return new Topic("A2", "k-gerundio-obligatorio", "Gerundio obligatorio", List.of(
-                cloze("q-ger-1", "They stopped", "eating", "(eat) at noon.", "They stopped eating at noon.", stopCard),
+                cloze("q-ger-1", "They stopped", "eating", "(eat) at noon.", "They stopped eating at noon.", firstQuizCard),
                 cloze("q-ger-2", "She finished", "writing", "(write) the letter.", "She finished writing the letter.",
-                        stopCard),
-                cloze("q-ger-3", "We stopped", "talking", "(talk).", "We stopped talking.", stopCard),
+                        STOP_ING),
+                cloze("q-ger-3", "We stopped", "talking", "(talk).", "We stopped talking.", STOP_ING),
                 cloze("q-ger-4", "I enjoy", "reading", "(read).", "I enjoy reading.", ENJOY_ING),
                 cloze("q-ger-5", "He enjoys", "swimming", "(swim).", "He enjoys swimming.", ENJOY_ING)));
     }
@@ -521,65 +550,59 @@ public class MiniTheoryAnalyzerTest {
         final DefaultJudgeRuntime runtime;
         final MiniTheoryAnalyzerProvider provider;
 
-        private World(Exams exams, MiniTheoryErrorScope scope) {
+        private World(Exams exams) {
             this.exams = exams;
             Sha256ContentFingerprinter fingerprinter = new Sha256ContentFingerprinter();
             this.runtime = new DefaultJudgeRuntime(new DefaultEvaluationSessionFactory(ledger, fingerprinter),
                     new ExamEvaluationSessionFactory(ledger, fingerprinter), exams, evaluatorId -> List.of(),
                     new RuntimeConfig());
-            this.provider = new MiniTheoryAnalyzerProvider(runtime, judge, reader, new Config(scope),
+            this.provider = new MiniTheoryAnalyzerProvider(runtime, judge, reader, new Config(),
                     new DefaultQuizStudentViewRenderer(DefaultQuizSentenceConverter.create()));
         }
 
         /** A world whose version v1 approved its exam as mini-theory. */
         static World approved() {
-            return new World(new Exams("mini-theory", "v1"), MiniTheoryErrorScope.SHOWN_ONLY);
-        }
-
-        static World approved(MiniTheoryErrorScope scope) {
-            return new World(new Exams("mini-theory", "v1"), scope);
+            return new World(new Exams("mini-theory", "v1"));
         }
 
         /** A world where no version took the exam. */
         static World notExamined() {
-            return new World(new Exams(null, null), MiniTheoryErrorScope.SHOWN_ONLY);
+            return new World(new Exams(null, null));
         }
 
         /** A world where only a judge of another name approved v1. */
         static World approvedFor(String judgeName) {
-            return new World(new Exams(judgeName, "v1"), MiniTheoryErrorScope.SHOWN_ONLY);
+            return new World(new Exams(judgeName, "v1"));
         }
 
-        /** The judge holds every mini theory of this content of the topic. */
+        /** The judge holds every quiz-scoped mini theory of this content of the topic. */
         World holds(Topic topic) {
             List<MiniTheoryAssessment> assessments = new ArrayList<>();
-            int count = miniTheoriesOf(topic).size();
-            for (int m = 1; m <= count; m++) {
-                assessments.add(new MiniTheoryAssessment(m, true, null, null, null, List.of(), "Es cierta."));
+            for (AuditableQuiz quiz : topic.quizzes) {
+                assessments.add(new MiniTheoryAssessment(quiz.getId(), true, null, null, null, "Es cierta."));
             }
             return answers(topic, new MiniTheoryVerdict(assessments, "Todas las tarjetas son ciertas."));
         }
 
-        /** The judge finds this card of the topic overstated, naming those exercises. */
-        World overstates(Topic topic, String card, List<Integer> exercises) {
-            List<String> cards = miniTheoriesOf(topic);
+        /** The judge finds one quiz's card overstated; equal text on another quiz remains independent. */
+        World overstates(Topic topic, String quizId) {
             List<MiniTheoryAssessment> assessments = new ArrayList<>();
-            for (int m = 1; m <= cards.size(); m++) {
-                assessments.add(cards.get(m - 1).equals(card)
-                        ? new MiniTheoryAssessment(m, false, MiniTheoryProblem.OVERSTATED, FindingSeverity.MEDIUM,
-                                "They stopped to eat.", exercises, "Con stop también va to, con otro sentido.")
-                        : new MiniTheoryAssessment(m, true, null, null, null, List.of(), "Es cierta."));
+            for (AuditableQuiz quiz : topic.quizzes) {
+                assessments.add(quiz.getId().equals(quizId)
+                        ? new MiniTheoryAssessment(quiz.getId(), false, MiniTheoryProblem.OVERSTATED_FOR_QUIZ,
+                                FindingSeverity.MEDIUM, "They stopped to eat.",
+                                "Con stop también va to, con otro sentido.")
+                        : new MiniTheoryAssessment(quiz.getId(), true, null, null, null, "Es cierta."));
             }
-            return answers(topic, new MiniTheoryVerdict(assessments, "Una tarjeta exagera."));
+            return answers(topic, new MiniTheoryVerdict(assessments, "Un quiz exagera."));
         }
 
         /** The judge answers this verdict, as recorded JSON, for exactly this content of the topic. */
         World answers(Topic topic, MiniTheoryVerdict verdict) {
             String payload = reader.record(verdict);
-            String miniTheories = String.join("|", miniTheoriesOf(topic));
             judge.answeringWhen(subject -> topic.id.equals(subject.getSubjectRef())
-                            && subject.getContent().get("miniTheories") != null
-                            && sameCards(subject.getContent().get("miniTheories"), miniTheories),
+                            && subject.getContent().get("quizzes") != null
+                            && topic.exerciseIds.stream().allMatch(subject.getContent().get("quizzes")::contains),
                     new EvaluationEmitted(payload));
             return this;
         }
@@ -592,26 +615,6 @@ public class MiniTheoryAnalyzerTest {
             return engine.runAudit(course, new AnalyzerRunSelection(List.of("mini-theory"), policies)).getRoot();
         }
 
-        private static List<String> miniTheoriesOf(Topic topic) {
-            List<String> cards = new ArrayList<>();
-            for (AuditableQuiz quiz : topic.quizzes) {
-                String card = quiz.getMiniTheory();
-                if (card != null && !card.isBlank() && !cards.contains(card)) {
-                    cards.add(card);
-                }
-            }
-            return cards;
-        }
-
-        /** Whether the «miniTheories» of a subject lists exactly these cards, in this order. */
-        private static boolean sameCards(String miniTheories, String cards) {
-            List<String> listed = new ArrayList<>();
-            for (String line : miniTheories.split("\n")) {
-                String text = line.replaceFirst("^M\\d+: ", "").replaceFirst(" \\(ejercicios: [^)]*\\)$", "");
-                listed.add(text);
-            }
-            return String.join("|", listed).equals(cards);
-        }
     }
 
     /** The ledger in memory: the latest with a key wins and the history keeps them all. */
@@ -747,13 +750,12 @@ public class MiniTheoryAnalyzerTest {
             if (i > 0) {
                 json.append(", ");
             }
-            json.append("{\"miniTheory\": ").append(a.getMiniTheory())
+            json.append("{\"quizId\": ").append(quoted(a.getQuizId()))
                     .append(", \"holds\": ").append(a.isHolds())
                     .append(", \"problem\": ").append(a.getProblem() != null ? quoted(a.getProblem().name()) : "null")
                     .append(", \"severity\": ").append(a.getSeverity() != null ? quoted(a.getSeverity().name()) : "null")
                     .append(", \"counterexample\": ").append(a.getCounterexample() != null
                             ? quoted(a.getCounterexample()) : "null")
-                    .append(", \"exercises\": ").append(a.getExercises())
                     .append(", \"explanation\": ").append(quoted(a.getExplanation() != null ? a.getExplanation() : ""))
                     .append('}');
         }
@@ -819,19 +821,8 @@ public class MiniTheoryAnalyzerTest {
         }
     }
 
-    /** The scale of DefaultMiniTheoryConfig (audit-application), with the scope of the world. */
+    /** The scale of DefaultMiniTheoryConfig (audit-application). */
     static final class Config implements MiniTheoryConfig {
-        private final MiniTheoryErrorScope scope;
-
-        Config(MiniTheoryErrorScope scope) {
-            this.scope = scope;
-        }
-
-        @Override
-        public MiniTheoryErrorScope getErrorScope() {
-            return scope;
-        }
-
         @Override
         public double getScoreFor(FindingSeverity severity) {
             if (severity == null) {
@@ -846,7 +837,7 @@ public class MiniTheoryAnalyzerTest {
 
         @Override
         public Map<String, Object> describe() {
-            return Map.of("errorScope", scope.name());
+            return Map.of("scores", "severity");
         }
     }
 
@@ -914,6 +905,19 @@ public class MiniTheoryAnalyzerTest {
             }
         }
         return rules;
+    }
+
+    private static int occurrences(String text, String part) {
+        if (text == null || part == null || part.isEmpty()) {
+            return 0;
+        }
+        int count = 0;
+        int from = 0;
+        while ((from = text.indexOf(part, from)) >= 0) {
+            count++;
+            from += part.length();
+        }
+        return count;
     }
 
     static void assertUnevaluated(AuditNode exercise) {

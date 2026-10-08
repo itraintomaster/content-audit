@@ -27,7 +27,15 @@
     "nombra el tema no descarta",
     "`MEDIUM` — también es correcta y natural, aunque menos esperable para el",
     "**La pregunta del criterio.**",
-    "el cartón de «a milk»"
+    "el cartón de «a milk»",
+    "**Reflexivo explícito:**",
+    "que un verbo pueda usarse sin objeto no descarta",
+    "**Marco sintáctico y puntuación:**",
+    "No repuntúes mentalmente la oración para aceptarlo",
+    "**Coherencia completa:**",
+    "Una cláusula localmente gramatical no vale",
+    "**Modales:**",
+    "sólo si el contexto o la consigna excluyen de verdad esa lectura"
   ],
   "why": "Salidas grabadas de evaluate, buenas y malas, para probar sin modelo que gate_verdict acepte y canonice el veredicto válido, rechace el malformado y el que viola invariantes (una label que no es opción o que es la correcta, BLOCKING o LOW en una alternativa, correctIsValid sin su correctProblem), y que emit produzca choiceAlternativeVerdict o {\"outputUnusable\": true}. Las entradas manzanas a sin-entrada-de-opciones son el mapa de contenido congelado (title, instructions, exercise, options), armado como DefaultChoiceAlternativeSubjectBuilder, de ejercicios A1/A2 del curso que no están en el examen; los de «manzanas» (la clave invertida) y «verano» (HIGH) son inventados y no están en el curso. musica y champu llevan el juicio de la guía anterior al 1/10 y sólo prueban la forma. Las cal-* son los casos inventados de las recalibraciones del 1/10 y del 3/10, que no están en el curso, con la salida que grabó la guía de cada ronda (claude-cli, modelo por omisión): lo raro, lo forzado y lo que pide una situación concreta que no está no se lista; lo correcto y natural se lista HIGH o, si es menos esperable para el tema, MEDIUM. El gate no juzga el contenido: documentan el criterio y prueban la forma con esas entradas.",
   "inputs": {
@@ -161,6 +169,30 @@
       "instructions": "Elige la opción correcta.",
       "exercise": "There were ___ cars on the road this morning.",
       "options": "- a lot of (correcta)\n- many\n- much"
+    },
+    "cal-reflexivo-explicito": {
+      "title": "Pronombres reflexivos",
+      "instructions": "Elige la opción que completa la oración.",
+      "exercise": "Before breakfast, Leo shaved ___.",
+      "options": "- - (correcta)\n- himself\n- him"
+    },
+    "cal-adverbio-conjuntivo-puntuacion": {
+      "title": "Conectores de causa y consecuencia",
+      "instructions": "Elige la opción que completa la oración.",
+      "exercise": "The roads were icy, ___ the school closed early.",
+      "options": "- so (correcta)\n- therefore"
+    },
+    "cal-coherencia-oracion-completa": {
+      "title": "Verbos en pasado",
+      "instructions": "Elige la opción que completa la oración.",
+      "exercise": "The vase fell onto the stone floor and ___, so we swept up the pieces.",
+      "options": "- shattered (correcta)\n- remained intact"
+    },
+    "cal-modales-dos-lecturas": {
+      "title": "Modales de deducción y posibilidad",
+      "instructions": "Elige la opción que completa la oración.",
+      "exercise": "The lights are on; Nora ___ be at home.",
+      "options": "- must (correcta)\n- might"
     }
   },
   "cases": [
@@ -1493,6 +1525,78 @@
         ],
         "correctProblem": null,
         "rationale": "«Cars» es contable plural, así que tanto «a lot of» como «many» quedan correctas y naturales en la afirmativa; nada en la consigna ni en el enunciado descarta «many». Sólo «much» queda afuera por ir con incontables."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-reflexivo-explicito-se-lista",
+      "note": "Caso sintético inventado: el reflexivo expreso sigue siendo correcto y natural aunque el verbo también admita la forma sin objeto.",
+      "inputs": "cal-reflexivo-explicito",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "himself",
+            "severity": "HIGH",
+            "reason": "«Before breakfast, Leo shaved himself.» es correcta y natural: el pronombre explicita que Leo se afeitó a sí mismo, aunque «Leo shaved» también admita omitir el objeto."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "La forma sin objeto y la forma con reflexivo expreso son dos realizaciones naturales de la misma situación; «him» necesitaría un referente masculino distinto que el enunciado no da."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-adverbio-conjuntivo-no-encaja-en-coma",
+      "note": "Caso sintético inventado: la cercanía semántica no compensa un marco sintáctico y una puntuación incompatibles.",
+      "inputs": "cal-adverbio-conjuntivo-puntuacion",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«So» coordina las dos cláusulas detrás de la coma. «Therefore» es un adverbio conjuntivo y no puede sustituirlo en ese mismo marco sin repuntuar la oración, de modo que no es una segunda respuesta válida."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-alternativa-local-contradice-consecuencia",
+      "note": "Caso sintético inventado: una alternativa localmente gramatical se descarta si vuelve incoherente la consecuencia de la oración completa.",
+      "inputs": "cal-coherencia-oracion-completa",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«Remained intact» es gramatical junto a «the vase», pero contradice que luego se barrieran los pedazos. Sólo «shattered» mantiene coherente la oración completa."
+      },
+      "expect": {
+        "route": "passed",
+        "canonical": "same"
+      }
+    },
+    {
+      "caseId": "cal-modal-segunda-lectura-se-lista",
+      "note": "Caso sintético inventado: un contexto compatible con deducción fuerte y posibilidad no autoriza a descartar uno de los modales.",
+      "inputs": "cal-modales-dos-lecturas",
+      "verdict": {
+        "correctIsValid": true,
+        "validAlternatives": [
+          {
+            "label": "might",
+            "severity": "HIGH",
+            "reason": "«The lights are on; Nora might be at home.» es correcta y natural: presenta su presencia como posible, y nada en el enunciado exige la deducción más fuerte de «must»."
+          }
+        ],
+        "correctProblem": null,
+        "rationale": "Las dos opciones producen oraciones completas naturales y coherentes; sólo cambia la fuerza epistémica, que el contexto no fija."
       },
       "expect": {
         "route": "passed",

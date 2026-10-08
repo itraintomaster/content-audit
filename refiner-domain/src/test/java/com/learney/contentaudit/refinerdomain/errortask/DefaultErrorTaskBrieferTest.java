@@ -99,40 +99,36 @@ public class DefaultErrorTaskBrieferTest {
     }
 
     @Test
-    @DisplayName("should brief the mini-theory task of «$In time$ u $on time$» with the forty exercises it reaches as the student sees them, and no single quiz view")
+    @DisplayName("should brief a quiz-local mini-theory task with only its target quiz view and no reached siblings or covered findings")
     @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R003")
+    @Tag("F-TAREA-R006")
     @Tag("F-TAREA-R009")
-    public void shouldBriefTheMinitheoryTaskOfInTimeUOnTimeWithTheFortyExercisesItReachesAsTheStudentSeesThemAndNoSingleQuizView(
+    public void shouldBriefAQuizlocalMinitheoryTaskWithOnlyItsTargetQuizViewAndNoReachedSiblingsOrCoveredFindings(
             ) {
-        // R009 and R003: the mini theory of «$In time$ u $on time$» is a task of the topic; its brief brings the forty
-        // exercises it reaches as the student sees them, the mini theory in each, and no single quiz view.
-        List<AuditNode> quizzes = new ArrayList<>();
-        List<String> ids = new ArrayList<>();
-        for (int i = 0; i < 40; i++) {
-            String id = String.format("67fab6d5993010229534%04x", 0x3d25 + i);
-            ids.add(id);
-            quizzes.add(quizNode(id, "$In time$ u $on time$", List.of(text("The train arrived"), gap("on time"),
-                    text("(on time / in time).")), "El tren llegó puntual.", IN_TIME_TEXT));
-        }
-        AuditReport report = report(knowledgeNode("6814dafa7d73e7209a13d37d", "$In time$ u $on time$", quizzes));
-        Finding first = finding("mini-theory", "overstated-rule", ids.get(0), FindingSeverity.MEDIUM, FindingResolution.PANEL,
-                AnalysisCost.PAID_MODEL, IN_TIME_TEXT, "la miniteoría promete más de lo que enseña");
-        List<Finding> covered = new ArrayList<>();
-        for (String id : ids.subList(1, 40)) {
-            covered.add(finding("mini-theory", "overstated-rule", id, FindingSeverity.MEDIUM, FindingResolution.PANEL,
-                    AnalysisCost.PAID_MODEL, IN_TIME_TEXT, "la miniteoría promete más de lo que enseña"));
-        }
-        RefinementTask task = task("task-001", AuditTarget.KNOWLEDGE, "6814dafa7d73e7209a13d37d", DiagnosisKind.MINI_THEORY,
-                origin(first, ids, covered));
+        // R003 and R009: although a sibling shows the same text, this task and its brief belong to one concrete quiz.
+        String targetId = "q-question";
+        String siblingId = "q-affirmative";
+        AuditReport report = report(knowledgeNode("k-present", "Present simple", List.of(
+                quizNode(targetId, "Question", List.of(text("Does she"), gap("work"), text("here?")),
+                        "¿Ella trabaja aquí?", IN_TIME_TEXT),
+                quizNode(siblingId, "Affirmative", List.of(text("She"), gap("works"), text("here.")),
+                        "Ella trabaja aquí.", IN_TIME_TEXT))));
+        Finding finding = finding("mini-theory", "other-subtopic-content", targetId, FindingSeverity.LOW,
+                FindingResolution.PANEL, AnalysisCost.PAID_MODEL, IN_TIME_TEXT,
+                "la tarjeta de pregunta agrega una regla que sólo usa la afirmación");
+        RefinementTask task = task("task-001", AuditTarget.QUIZ, targetId, DiagnosisKind.MINI_THEORY,
+                origin(finding, List.of(targetId), List.of()));
 
         ErrorTaskBrief brief = briefer().brief(report, task).orElseThrow();
 
-        Assertions.assertNull(brief.getQuizView(), "no single quiz view");
-        Assertions.assertEquals(40, brief.getReachedQuizViews().size(), "the forty exercises it reaches");
-        Assertions.assertTrue(brief.getReachedQuizViews().stream().allMatch(v -> IN_TIME_TEXT.equals(v.getMiniTheory())
-                && v.getStatement().equals("The train arrived ___ (on time / in time).")), "as the student sees them");
+        Assertions.assertNotNull(brief.getQuizView(), "the brief contains the concrete quiz this task can change");
+        Assertions.assertEquals("Does she ___ here?", brief.getQuizView().getStatement());
+        Assertions.assertEquals(IN_TIME_TEXT, brief.getQuizView().getMiniTheory());
+        Assertions.assertEquals(List.of(), brief.getReachedQuizViews(), "no sibling views for a QUIZ task");
+        Assertions.assertEquals(List.of(), brief.getCoveredFindings(), "a sibling finding cannot be covered here");
         Assertions.assertEquals(List.of(ExercisePart.MINI_THEORY), brief.getEditScope());
-        Assertions.assertEquals(39, brief.getCoveredFindings().size());
+        Assertions.assertTrue(brief.isScopeDeclared());
     }
 
     @Test
@@ -160,8 +156,9 @@ public class DefaultErrorTaskBrieferTest {
         Assertions.assertEquals(List.of(offQuilt, offSpread), brief.getCoveredFindings(), "the findings it covers");
         Assertions.assertEquals(quilt, brief.getFinding());
         Assertions.assertEquals("She spread the warm blue quilt on the bed.", brief.getQuizView().getStatement());
-        Assertions.assertEquals(List.of(ExercisePart.STORED_SENTENCE, ExercisePart.STATEMENT, ExercisePart.ANSWERS,
-                ExercisePart.TRANSLATION), brief.getEditScope(), "what the lemma correction reaches today");
+        Assertions.assertEquals(List.of(ExercisePart.STORED_SENTENCE, ExercisePart.STATEMENT, ExercisePart.HINT,
+                ExercisePart.ANSWERS, ExercisePart.TRANSLATION, ExercisePart.MINI_THEORY), brief.getEditScope(),
+                "what the lemma correction reaches today");
     }
 
     @Test

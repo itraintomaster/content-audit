@@ -25,8 +25,8 @@ import javax.annotation.processing.Generated;
  * FEAT-MINIT: the mini-theory judge in the catalog. Its card evaluates the exercise -- it asks
  * once per topic, but the score and the findings live where the error counts -- with four rules
  * of a paid model that go to the panel; its scores below 1 become {@code MINI_THEORY} tasks on the
- * exercise, and the panel resolves once per mini theory through the marker of the finding
- * (F-MINIT-R007). Every run opens its judge through the common runtime under its own name, so the
+ * exercise, and the panel resolves only that exact quiz (F-MINIT-R007). Every run opens its judge
+ * through the common runtime under its own name, so the
  * brake of the exam, budget 0 without a request and N at a time hold here as in every judge.
  */
 @Generated(
@@ -70,30 +70,30 @@ public class MiniTheoryAnalyzerProvider implements AnalyzerProvider {
                 MiniTheoryAnalyzer.ANALYZER_NAME,
                 MiniTheoryAnalyzer.DESCRIPTION,
                 AuditTarget.QUIZ,
-                "¿La regla de la tarjeta es cierta, y ningún ejercicio del tema la contradice?",
-                "El nivel, el nombre y la consigna del tema, sus miniteorías y sus ejercicios con sus respuestas u "
-                        + "opciones, juzgados por un modelo en una consulta por tema que reutiliza los veredictos "
-                        + "ya registrados",
+                "¿La tarjeta explica correctamente el caso concreto de este quiz, sin traer reglas de otros subtemas?",
+                "El nivel, el nombre y la consigna del tema, más una entrada independiente por quiz con su id, "
+                        + "miniteoría, enunciado, pista y respuestas u opciones; el modelo los juzga en una consulta "
+                        + "por tema y el resultado se correlaciona sólo por quizId",
                 List.of(new AnalyzerRuleCard(DefaultMiniTheoryDistributor.RULE_FALSE,
-                                "La miniteoría afirma como regla del inglés algo falso", AnalysisCost.PAID_MODEL),
+                                "La miniteoría afirma algo falso para la forma, función o palabras de este quiz",
+                                AnalysisCost.PAID_MODEL),
+                        new AnalyzerRuleCard(DefaultMiniTheoryDistributor.RULE_INSUFFICIENT,
+                                "La miniteoría no alcanza para resolver el caso concreto de este quiz",
+                                AnalysisCost.PAID_MODEL),
                         new AnalyzerRuleCard(DefaultMiniTheoryDistributor.RULE_OVERSTATED,
-                                "La miniteoría exagera: dice «siempre» o «nunca» donde hay excepciones comunes",
+                                "La miniteoría exagera dentro del caso concreto de este quiz",
                                 AnalysisCost.PAID_MODEL),
-                        new AnalyzerRuleCard(DefaultMiniTheoryDistributor.RULE_CONTRADICTING,
-                                "Un ejercicio del tema que muestra la miniteoría la contradice",
-                                AnalysisCost.PAID_MODEL),
-                        new AnalyzerRuleCard(DefaultMiniTheoryDistributor.RULE_UNCOVERED,
-                                "La miniteoría es cierta, pero no cubre el caso de un ejercicio que la muestra",
+                        new AnalyzerRuleCard(DefaultMiniTheoryDistributor.RULE_OTHER_SUBTOPIC,
+                                "La miniteoría agrega contenido verdadero de otro subtema que este quiz no practica",
                                 AnalysisCost.PAID_MODEL)),
-                "0 ejercicios con error: ninguna miniteoría falsa o exagerada, y ningún ejercicio que la "
-                        + "contradiga o quede afuera",
+                "0 quizzes con error: cada tarjeta es verdadera, suficiente y específica para su propio caso",
                 AnalyzerFamily.ERRORS,
                 List.of(AuditTarget.QUIZ),
                 List.of(FindingResolution.PANEL),
                 AnalysisCost.PAID_MODEL,
                 "Miniteoría con error", List.of(),
-                "Ejercicios cuya tarjeta de teoría dice una regla falsa o exagerada, o que contradicen esa regla o "
-                        + "quedan fuera de lo que explica.");
+                "Quizzes cuya tarjeta es falsa, insuficiente o exagerada para su caso, o agrega contenido de otro "
+                        + "subtema.");
     }
 
     /**

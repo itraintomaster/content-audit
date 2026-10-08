@@ -11,4 +11,9 @@ import javax.annotation.processing.Generated;
 public interface CompareCommand {
     Integer compare(String coursePath, List<String> proposalIds,
             Map<String, Integer> analyzerBudgets, String format);
+
+    default Integer compareSummary(String coursePath, List<String> proposalIds,
+            Map<String, Integer> analyzerBudgets, String format) {
+        return compare(coursePath, proposalIds, analyzerBudgets, format);
+    }
 }

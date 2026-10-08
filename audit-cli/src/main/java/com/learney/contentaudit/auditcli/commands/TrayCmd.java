@@ -56,7 +56,7 @@ import picocli.CommandLine.Parameters;
                 + "  tray publish [--note <text>]%n%n"
                 + "Answers: IS_ERROR, NOT_ERROR, PASSES, DOES_NOT_PASS, KEEP_ORIGINAL, APPROVE_CANDIDATE, WRITE_FIX,"
                 + " RULE_OK, DROP_CHANGE, DROP_RULE; a pair of the blind sample takes A, B, iguales or ambos with --pair."
-                + "%nThe fix of WRITE_FIX is a file: the exercise in the notation of the course, then its translation.",
+                + "%nThe fix of WRITE_FIX is a file: exercise, translation and optional quiz-local mini theory, one per line.",
         mixinStandardHelpOptions = true,
         footer = {
                 "",
@@ -234,10 +234,7 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
         return new TrayResponse(itemId, kind, null, null, changeId, fix, note, JOSE);
     }
 
-    /**
-     * José's fix from its file: the exercise in the notation of the course on its first line, its translation on the
-     * second. A candidate of the panel over the exercise of the item.
-     */
+    /** José's fix: course notation, translation, and optionally its quiz-local mini theory, one per nonblank line. */
     private PanelCandidate fix(String itemId, Path file) throws IOException {
         List<String> lines = new ArrayList<>();
         for (String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
@@ -256,6 +253,9 @@ final class TrayCmd implements TrayCommand, Callable<Integer> {
         quiz.setSentences(new ArrayList<>(quizSentenceConverter.toPlainSentences(form)));
         if (lines.size() > 1) {
             quiz.setTranslation(lines.get(1));
+        }
+        if (lines.size() > 2) {
+            quiz.setMiniTheory(lines.get(2));
         }
         return new PanelCandidate(PanelCandidateKind.WHOLE_EXERCISE, quiz, null, null, "arreglo de José");
     }

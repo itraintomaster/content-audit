@@ -17,30 +17,31 @@ import org.junit.jupiter.api.Test;
 )
 public class MiniTheoryCorrectionTest {
     @Test
-    @DisplayName("should declare that its findings group by topic, so the plan makes the mini-theory of «Contraste inicial» shown in nine exercises a single task")
+    @DisplayName("should declare that its findings do not group by topic or shared text, so each quiz keeps its own task")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R003")
-    public void shouldDeclareThatItsFindingsGroupByTopicSoThePlanMakesTheMinitheoryOfContrasteInicialShownInNineExercisesASingleTask(
+    public void shouldDeclareThatItsFindingsDoNotGroupByTopicOrSharedTextSoEachQuizKeepsItsOwnTask(
             ) {
-        // R003 (E-04): the findings of mini-theory group by topic -- the mini theory of the state verbs of «Contraste
-        // inicial» in its nine exercises is one task of the plan --; the declaration is what tells the plan so. Nothing else
-        // of mini-theory is special: no cover, no tie, one fix.
+        // R003: a finding belongs to the quiz whose case was judged. Equal text on a sister quiz neither groups nor
+        // covers its task.
         MiniTheoryCorrection correction = new MiniTheoryCorrection();
 
         Assertions.assertEquals("mini-theory", correction.analyzerName());
-        Assertions.assertTrue(correction.groupsByTopic(), "R003: its findings make one task per mini theory and topic");
+        Assertions.assertFalse(correction.groupsByTopic(), "R003: one task per quiz and finding");
         Assertions.assertEquals(Optional.empty(), correction.coveringAnalyzer());
         Assertions.assertEquals(List.of(), correction.tieRules());
         Assertions.assertFalse(correction.offersTwoFixes());
     }
 
     @Test
-    @DisplayName("should let the panel touch only the mini-theory of the exercises of the topic that show that text")
+    @DisplayName("should let the panel touch only MINI_THEORY on the target quiz")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
-    public void shouldLetThePanelTouchOnlyTheMinitheoryOfTheExercisesOfTheTopicThatShowThatText() {
-        // R006 (F-MESA-R012): the panel rewrites the mini theory once, for the exercises of the topic that show it; the fix
-        // touches nothing else of those exercises, and there is no fix by rule.
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R012")
+    public void shouldLetThePanelTouchOnlyMINITHEORYOnTheTargetQuiz() {
+        // R006 / F-MESA-R012: scope is the part on the task's target quiz; the correction contract does not authorize
+        // propagating it to siblings that happen to contain equal text.
         MiniTheoryCorrection correction = new MiniTheoryCorrection();
 
         Assertions.assertEquals(List.of(ExercisePart.MINI_THEORY), correction.editScope(FindingResolution.PANEL));

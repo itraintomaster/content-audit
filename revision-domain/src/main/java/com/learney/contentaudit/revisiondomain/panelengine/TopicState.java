@@ -1,6 +1,5 @@
 package com.learney.contentaudit.revisiondomain.panelengine;
 
-import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.coursedomain.FormEntities;
@@ -14,11 +13,11 @@ import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.SentencePartKind;
 import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
+import com.learney.contentaudit.revisiondomain.StoredSentenceRehydrator;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidateKind;
 import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -100,8 +99,8 @@ final class TopicState {
     // -------------------------------------------------------------------------
 
     /**
-     * The topic with the candidate applied: the exercise it rewrites in its place, the new mini theory in every exercise
-     * its task reaches (F-MESA-R012), the new instructions of the topic (F-MESA-R015). A rewritten exercise whose parts
+     * The topic with the candidate applied: the exercise it rewrites in its place, the new mini theory only in its
+     * explicit quiz (F-MESA-R012), the new instructions of the topic (F-MESA-R015). A rewritten exercise whose parts
      * moved and whose stored sentence did not loses it, so the measurement builds it again from the parts.
      */
     static KnowledgeEntity apply(KnowledgeEntity topic, String quizId, PanelCandidate candidate,
@@ -111,9 +110,8 @@ final class TopicState {
             return applied;
         }
         if (candidate.getKind() == PanelCandidateKind.MINI_THEORY) {
-            Set<String> reach = miniTheoryReach(topic, briefs);
             for (QuizTemplateEntity quiz : applied.getQuizTemplates()) {
-                if (quiz != null && reach.contains(quiz.getId())) {
+                if (quiz != null && Objects.equals(quiz.getId(), quizId)) {
                     quiz.setMiniTheory(candidate.getMiniTheoryText());
                 }
             }
@@ -160,35 +158,17 @@ final class TopicState {
         if (proposed.getMiniTheory() != null) {
             rewritten.setMiniTheory(proposed.getMiniTheory());
         }
-        rewritten.setSentences(proposed.getSentences());
-        if (!Objects.equals(partsOf(old), partsOf(rewritten))
-                && (rewritten.getSentences() == null || Objects.equals(old.getSentences(), rewritten.getSentences()))) {
-            rewritten.setSentences(null);
-        } else if (rewritten.getSentences() == null) {
+        boolean sentenceInputsMoved = !Objects.equals(partsOf(old), partsOf(rewritten))
+                || isMultipleChoice(old) != isMultipleChoice(rewritten)
+                || !Objects.equals(correctOption(old), correctOption(rewritten));
+        if (sentenceInputsMoved) {
+            rewritten.setSentences(StoredSentenceRehydrator.rebuild(rewritten));
+        } else if (proposed.getSentences() != null) {
+            rewritten.setSentences(new ArrayList<>(proposed.getSentences()));
+        } else {
             rewritten.setSentences(old.getSentences() != null ? new ArrayList<>(old.getSentences()) : null);
         }
         return rewritten;
-    }
-
-    /**
-     * The exercises a mini-theory task reaches: the ones its task names, or, when it names none, every exercise of the
-     * topic that shows the text its finding marks.
-     */
-    static Set<String> miniTheoryReach(KnowledgeEntity topic, List<ErrorTaskBrief> briefs) {
-        Set<String> reach = new LinkedHashSet<>();
-        for (ErrorTaskBrief brief : briefs != null ? briefs : List.<ErrorTaskBrief>of()) {
-            if (brief.getTask() != null && brief.getTask().getOrigin() != null
-                    && brief.getTask().getOrigin().getReachedQuizIds() != null
-                    && isMiniTheory(brief)) {
-                reach.addAll(brief.getTask().getOrigin().getReachedQuizIds());
-            }
-        }
-        return reach;
-    }
-
-    static boolean isMiniTheory(ErrorTaskBrief brief) {
-        return brief.getEditScope() != null && brief.getEditScope().contains(ExercisePart.MINI_THEORY)
-                && brief.getTask() != null && brief.getTask().getNodeTarget() == AuditTarget.KNOWLEDGE;
     }
 
     // -------------------------------------------------------------------------

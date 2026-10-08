@@ -71,27 +71,59 @@ public class DefaultTopicPanelTest {
     }
 
     @Test
-    @DisplayName("should work the mini-theory task of «Contraste inicial» once for the topic, never once per exercise that shows it")
-    @Tag("FEAT-MESA")
-    @Tag("F-MESA-R001")
-    public void shouldWorkTheMinitheoryTaskOfContrasteInicialOnceForTheTopicNeverOncePerExerciseThatShowsIt(
-            ) {
-        // F-MESA-R001 inv. 2 and R012: the mini theory of the state verbs is shown by nine exercises of «Contraste inicial»;
-        // its task is worked once, for the topic.
-        KnowledgeEntity topic = contraste();
-        ErrorTaskBrief miniTheory = topicBrief("t-mini", miniTheoryFinding(), stateVerbExercises());
-        RecordingProposer proposer = new RecordingProposer(script(CONTRASTE, proposal(new PanelCandidate(PanelCandidateKind.MINI_THEORY,
-                null, NEW_STATE_VERBS, null, "más clara"))));
+    @DisplayName("should accept a lemma-absence rewrite that changes the spoken sentence and carry its rerecord request")
+    @Tag("F-TAREA-R006")
+    @Tag("F-NOEMP-R004")
+    public void shouldAcceptALemmaabsenceRewriteThatChangesTheSpokenSentenceAndCarryItsRerecordRequest() {
+        KnowledgeEntity topic = afirmativas();
+        Finding lexical = finding("lemma-absence", "misplaced-word", VEGETABLES, FindingSeverity.MEDIUM,
+                FindingResolution.PANEL, "vegetables", "vegetables no corresponde al nivel");
+        QuizTemplateEntity simpler = withTranslation(withParts(exercise(topic, VEGETABLES), text("I"), cloze("love"),
+                text("a lot of food.")), "Me gusta mucho la comida.");
+        RecordingProposer proposer = new RecordingProposer(script(VEGETABLES,
+                proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, simpler))));
         RecordingSink sink = new RecordingSink();
+        RulesMeter meter = new RulesMeter().rule("lemma-absence", (knowledge, quiz) ->
+                quiz.getId().equals(VEGETABLES) && stored(quiz).contains("vegetables")
+                        ? List.of(lexical) : RulesMeter.none());
 
-        panel(proposer, miniTheoryMeter()).run(work(topic, List.of(miniTheory)), settings(), allowance(null, 4), sink);
+        panel(proposer, meter).run(work(topic, List.of(brief("t-lemma", lexical))), settings(), allowance(null, 1), sink);
 
-        assertEquals(1, proposer.requests.size(), "once for the topic");
-        assertNull(proposer.requests.get(0).getQuizId(), "a request of the whole topic");
-        assertEquals(CONTRASTE, proposer.requests.get(0).getKnowledgeId());
         PanelDecision decision = sink.only();
         assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
-        assertEquals(stateVerbExercises(), decision.getQuizIds(), "the nine exercises that show it");
+        assertEquals(List.of("t-lemma"), decision.getResolvedTaskIds());
+        assertEquals(1, decision.getAcceptedVerdict().getRerecords().size());
+        assertEquals(List.of("I love a lot of food."), decision.getAcceptedVerdict().getRerecords().get(0).getNewTexts());
+    }
+
+    @Test
+    @DisplayName("should accept a mini-theory candidate only for its quiz and keep a sibling with the same old text unchanged")
+    @Tag("FEAT-MESA")
+    @Tag("F-MESA-R001")
+    public void shouldAcceptAMinitheoryCandidateOnlyForItsQuizAndKeepASiblingWithTheSameOldTextUnchanged(
+            ) {
+        // F-MESA-R001 inv. 2 and R012: a shared old text does not turn the task into topic work. The request, decision
+        // and accepted state all name only q1.
+        KnowledgeEntity topic = contraste();
+        String q1 = stateVerbExercises().get(0);
+        String q2 = stateVerbExercises().get(1);
+        ErrorTaskBrief miniTheory = brief("t-mini", miniTheoryFinding(q1));
+        RecordingProposer proposer = new RecordingProposer(script(q1, proposal(new PanelCandidate(PanelCandidateKind.MINI_THEORY,
+                null, NEW_STATE_VERBS, null, "más clara"))));
+        RecordingSink sink = new RecordingSink();
+        RulesMeter meter = miniTheoryMeter(q1);
+
+        panel(proposer, meter).run(work(topic, List.of(miniTheory)), settings(), allowance(null, 4), sink);
+
+        assertEquals(1, proposer.requests.size());
+        assertEquals(q1, proposer.requests.get(0).getQuizId());
+        assertEquals(List.of("t-mini"), taskIdsOf(proposer.requests.get(0).getBriefs()));
+        PanelDecision decision = sink.only();
+        assertEquals(PanelOutcomeKind.ACCEPTED, decision.getOutcome());
+        assertEquals(List.of(q1), decision.getQuizIds());
+        KnowledgeEntity accepted = meter.statesMeasured.get(meter.statesMeasured.size() - 1);
+        assertEquals(NEW_STATE_VERBS, exercise(accepted, q1).getMiniTheory());
+        assertEquals(STATE_VERBS, exercise(accepted, q2).getMiniTheory(), "the same old text in q2 stays byte-identical");
     }
 
     @Test
@@ -427,27 +459,49 @@ public class DefaultTopicPanelTest {
     }
 
     @Test
-    @DisplayName("should resolve the mini-theory of «Contraste inicial» before the candidates of its exercises, which then see the new text")
+    @DisplayName("should work the mini-theory and the other tasks of q1 together, while the following q2 request keeps its original mini-theory")
     @Tag("FEAT-MESA")
+    @Tag("F-MESA-R001")
     @Tag("F-MESA-R012")
-    public void shouldResolveTheMinitheoryOfContrasteInicialBeforeTheCandidatesOfItsExercisesWhichThenSeeTheNewText(
+    public void shouldWorkTheMinitheoryAndTheOtherTasksOfQ1TogetherWhileTheFollowingQ2RequestKeepsItsOriginalMinitheory(
             ) {
-        // F-MESA-R012: the mini theory goes first; the candidate of an exercise of the topic then sees the new text.
+        // F-MESA-R001 inv. 1 and 2, R012: q1 is one work unit even when one of its findings is mini-theory. A later
+        // sibling is an independent unit and keeps its own text.
         KnowledgeEntity topic = contraste();
-        String first = stateVerbExercises().get(1);
-        Finding single = finding("single-answer", "different-valid-answer", first, FindingSeverity.BLOCKING,
-                FindingResolution.PANEL, null, "«loves» también encaja");
-        RecordingProposer proposer = new RecordingProposer(script(CONTRASTE, proposal(new PanelCandidate(PanelCandidateKind.MINI_THEORY,
-                null, NEW_STATE_VERBS, null, "más clara"))));
-        RulesMeter meter = miniTheoryMeter().rule("single-answer", (t, quiz) -> quiz.getId().equals(first)
-                ? List.of(single) : RulesMeter.none());
+        String q1 = stateVerbExercises().get(0);
+        String q2 = stateVerbExercises().get(1);
+        String newTranslation = "Traducción corregida de q1.";
+        Finding translationQ1 = finding("translation-sense", "same-meaning", q1, FindingSeverity.HIGH,
+                FindingResolution.PANEL, null, "la traducción de q1 no corresponde");
+        Finding translationQ2 = finding("translation-sense", "same-meaning", q2, FindingSeverity.HIGH,
+                FindingResolution.PANEL, null, "la traducción de q2 no corresponde");
+        QuizTemplateEntity fixedQ1 = withTranslation(exercise(topic, q1), newTranslation);
+        fixedQ1.setMiniTheory(NEW_STATE_VERBS);
+        RecordingProposer proposer = new RecordingProposer(script(
+                q1, proposal(candidate(PanelCandidateKind.WHOLE_EXERCISE, fixedQ1)),
+                q2, proposal()));
+        RulesMeter meter = miniTheoryMeter(q1).rule("translation-sense", (t, quiz) -> {
+            if (quiz.getId().equals(q1)) {
+                return quiz.getTranslation() == null ? List.of(translationQ1) : RulesMeter.none();
+            }
+            return quiz.getId().equals(q2) ? List.of(translationQ2) : RulesMeter.none();
+        });
 
-        panel(proposer, meter).run(work(topic, List.of(brief("t-single", single), topicBrief("t-mini", miniTheoryFinding(),
-                stateVerbExercises()))), settings(), allowance(null, 4), new RecordingSink());
+        panel(proposer, meter).run(work(topic, List.of(
+                brief("t-mini-q1", miniTheoryFinding(q1)),
+                brief("t-translation-q1", translationQ1),
+                brief("t-translation-q2", translationQ2))), settings(), allowance(null, 4), new RecordingSink());
 
-        assertNull(proposer.requests.get(0).getQuizId(), "the mini theory first");
-        assertEquals(first, proposer.requests.get(1).getQuizId(), "then the exercise");
-        assertEquals(NEW_STATE_VERBS, proposer.requests.get(1).getTopicView().get(1).getMiniTheory(), "which sees the new text");
+        PanelRequest q1Request = proposer.requests.get(0);
+        assertEquals(q1, q1Request.getQuizId());
+        assertEquals(List.of("t-mini-q1", "t-translation-q1"), taskIdsOf(q1Request.getBriefs()),
+                "mini-theory and the other finding of q1 travel in one unit");
+
+        PanelRequest q2Request = proposer.requests.get(1);
+        assertEquals(q2, q2Request.getQuizId());
+        assertEquals(List.of("t-translation-q2"), taskIdsOf(q2Request.getBriefs()));
+        assertEquals(NEW_STATE_VERBS, q2Request.getTopicView().get(0).getMiniTheory(), "q1 keeps its accepted change");
+        assertEquals(STATE_VERBS, q2Request.getTopicView().get(1).getMiniTheory(), "q2 keeps its own original text");
     }
 
     @Test
@@ -602,15 +656,15 @@ public class DefaultTopicPanelTest {
                         : List.of());
     }
 
-    static Finding miniTheoryFinding() {
-        return topicFinding("mini-theory", "explains-the-lesson", CONTRASTE, FindingSeverity.HIGH, null,
-                "la miniteoría no explica por qué los verbos de estado no van en -ing");
+    static Finding miniTheoryFinding(String quizId) {
+        return finding("mini-theory", "explains-this-quiz", quizId, FindingSeverity.HIGH, FindingResolution.PANEL,
+                STATE_VERBS, "la miniteoría no explica el caso de este quiz");
     }
 
-    /** mini-theory marks the topic while its nine exercises show the old text of the state verbs. */
-    static RulesMeter miniTheoryMeter() {
-        return new RulesMeter().rule("mini-theory", (topic, quiz) -> quiz.getId().equals(stateVerbExercises().get(0))
-                && STATE_VERBS.equals(quiz.getMiniTheory()) ? List.of(miniTheoryFinding()) : RulesMeter.none());
+    /** mini-theory marks only its origin quiz while that quiz still shows the old text. */
+    static RulesMeter miniTheoryMeter(String quizId) {
+        return new RulesMeter().rule("mini-theory", (topic, quiz) -> quiz.getId().equals(quizId)
+                && STATE_VERBS.equals(quiz.getMiniTheory()) ? List.of(miniTheoryFinding(quizId)) : RulesMeter.none());
     }
 
     static Finding disagreement() {

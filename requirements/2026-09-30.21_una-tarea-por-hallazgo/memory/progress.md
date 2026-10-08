@@ -4,6 +4,10 @@ Current state, last action, next step. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-05 — analyst — F-TAREA-R003 y la declaracion de alcance de `mini-theory` actualizadas a una tarea por quiz, sin
+  agrupamiento por texto compartido.
+  Next: alinear el armado del plan y sus pruebas con la identidad quiz + miniteoria.
+
 2026-10-01 — developer + test-writer (construcción E) — FEAT-TAREA construido: las 52 pruebas en verde (plan 18, detalle
   5, declaraciones y catálogo 14, preservación por partes 4, get 7, plan 1, J001 3), más dos de TANDA (nextTask con
   IN_BATCH y el audio de data-coherence). Ganchos E-07 (get tasks/get task) y E-08 (la cuenta después del plan) hechos.

@@ -22,6 +22,18 @@ public class CorrectionBatch {
 
     private BatchStatus status;
 
+    /** Why the last model-backed run stopped, when {@link #status} is INTERRUPTED. */
+    private String interruptionReason;
+
+    /**
+     * The durable candidate revision inside this batch.
+     *
+     * <p>A closing only measures the current revision. Closing again does not create another
+     * correction; running the correction after a closing does. Old persisted batches omit this
+     * field and are revision 1.</p>
+     */
+    private int correctionRevision;
+
     private String baselineAuditId;
 
     private String startAuditId;
@@ -128,6 +140,22 @@ public class CorrectionBatch {
 
     public void setStatus(BatchStatus status) {
         this.status = status;
+    }
+
+    public String getInterruptionReason() {
+        return this.interruptionReason;
+    }
+
+    public void setInterruptionReason(String interruptionReason) {
+        this.interruptionReason = interruptionReason;
+    }
+
+    public int getCorrectionRevision() {
+        return this.correctionRevision;
+    }
+
+    public void setCorrectionRevision(int correctionRevision) {
+        this.correctionRevision = correctionRevision;
     }
 
     public String getBaselineAuditId() {
@@ -314,6 +342,8 @@ public class CorrectionBatch {
         return Objects.equals(this.id, that.id)
                     && Objects.equals(this.level, that.level)
                     && Objects.equals(this.status, that.status)
+                    && Objects.equals(this.interruptionReason, that.interruptionReason)
+                    && Objects.equals(this.correctionRevision, that.correctionRevision)
                     && Objects.equals(this.baselineAuditId, that.baselineAuditId)
                     && Objects.equals(this.startAuditId, that.startAuditId)
                     && Objects.equals(this.planId, that.planId)
@@ -340,6 +370,6 @@ public class CorrectionBatch {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, level, status, baselineAuditId, startAuditId, planId, analyzers, settings, conversionOrders, taskIds, notTakenTaskIds, unevaluated, courseTies, changes, quizProposals, outcomes, panelDecisions, adjustments, closings, blindSampleId, queryCap, queriesSpent, openedAt, publication, pendingRerecords);
+        return Objects.hash(id, level, status, interruptionReason, correctionRevision, baselineAuditId, startAuditId, planId, analyzers, settings, conversionOrders, taskIds, notTakenTaskIds, unevaluated, courseTies, changes, quizProposals, outcomes, panelDecisions, adjustments, closings, blindSampleId, queryCap, queriesSpent, openedAt, publication, pendingRerecords);
     }
 }

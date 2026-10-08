@@ -20,6 +20,7 @@ import com.learney.contentaudit.auditdomain.localtools.EmbeddingModel;
 import com.learney.contentaudit.auditdomain.localtools.LocalToolGate;
 import com.learney.contentaudit.auditdomain.localtools.LocalToolGateDecision;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -113,7 +114,7 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
                 AnalysisCost.PAID_MODEL,
                 NearDuplicatesAnalyzer.DISPLAY_NAME,
                 List.of(localToolGate.card(NearDuplicatesAnalyzer.ANALYZER_NAME, embeddingModel,
-                                config.vectorRouteMethodId(judgeVersion)),
+                                config.vectorRouteMethodId(judgeVersion), judgeRuntimeIdentity()),
                         localToolGate.alternativeCard(NearDuplicatesAnalyzer.ANALYZER_NAME,
                                 judgeWithoutOllama(judgeVersion))),
                 "Ejercicios que piden la misma respuesta y casi lo mismo que otro anterior del mismo tema: otro "
@@ -124,7 +125,7 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
     public ContentAnalyzer create(EvaluationRunPolicy policy) {
         String judgeVersion = judgeVersion();
         LocalToolGateDecision decision = localToolGate.decide(NearDuplicatesAnalyzer.ANALYZER_NAME, embeddingModel,
-                config.vectorRouteMethodId(judgeVersion), policy);
+                config.vectorRouteMethodId(judgeVersion), policy, judgeRuntimeIdentity());
         JudgeSessions opened;
         if (decision.getStatus() != null && decision.getStatus().isAvailable()) {
             opened = openWithOllama(policy, decision, judgeVersion);
@@ -153,7 +154,7 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
         JudgeSessions vectors = judgeRuntime.open(NearDuplicatesAnalyzer.ANALYZER_NAME,
                 List.of(new PairStepEvaluator(new SentenceEmbeddingEvaluator(embeddingModel, config, vectorsVersion),
                         stepVersion)),
-                withoutLimit(policy));
+                withoutLimit(policy), judgeRuntimeIdentity());
         JudgeSessions judge = judgeRuntime.open(NearDuplicatesAnalyzer.ANALYZER_NAME,
                 List.of(new PairStepEvaluator(alternativeJudge, stepVersion)), policy);
         return new JudgeSessions(NearDuplicatesAnalyzer.ANALYZER_NAME, judge.getJudgeVersion(),
@@ -192,6 +193,16 @@ public class NearDuplicatesAnalyzerProvider implements AnalyzerProvider {
             return version != null && version.isPresent() && !version.get().isBlank() ? version.get() : null;
         } catch (RuntimeException e) {
             return null;
+        }
+    }
+
+    /** The hybrid vector route takes the exam under the paid pair judge's effective runtime. */
+    private EvaluationRuntimeIdentity judgeRuntimeIdentity() {
+        try {
+            EvaluationRuntimeIdentity identity = alternativeJudge != null ? alternativeJudge.runtimeIdentity() : null;
+            return identity != null ? identity : EvaluationRuntimeIdentity.legacyUnknown();
+        } catch (RuntimeException e) {
+            return EvaluationRuntimeIdentity.legacyUnknown();
         }
     }
 

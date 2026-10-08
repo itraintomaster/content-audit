@@ -30,13 +30,32 @@ public class DefaultSameExerciseQuestionTest {
         assertEquals(List.of("title", "first", "second"), List.copyOf(offer.getContent().keySet()),
                 "the dependencies of near-duplicates-same-exercise, in order");
         assertEquals("Funciones mixtas", offer.getContent().get("title"));
-        assertEquals("Offer: I ___ (wash) the dishes for you.\nResuelto: Offer: I'll wash the dishes for you.",
+        assertEquals("Offer: I ___ (wash) the dishes for you.\nRespuesta seleccionada: 'll wash"
+                        + "\nResuelto: Offer: I'll wash the dishes for you.",
                 offer.getContent().get("first"), "the one that stays goes first");
-        assertEquals("Offer: I ___ (wash) the dishes.\nResuelto: Offer: I'll wash the dishes.",
+        assertEquals("Offer: I ___ (wash) the dishes.\nRespuesta seleccionada: 'll wash"
+                        + "\nResuelto: Offer: I'll wash the dishes.",
                 offer.getContent().get("second"));
         assertEquals("67fab6d59930102295342725~67fab6d59930102295342fd5", offer.getSubjectRef());
-        assertEquals("I ___ sorry. (am · are · is)\nResuelto: I am sorry.", sorryHot.getContent().get("first"),
+        assertEquals("I ___ sorry. (am · are · is)\nRespuesta seleccionada: am\nResuelto: I am sorry.",
+                sorryHot.getContent().get("first"),
                 "a multiple choice with its options");
+    }
+
+    @Test
+    @DisplayName("should name the selected dash explicitly when the saved text still contains literal distractors")
+    @Tag("FEAT-DUPAR")
+    @Tag("F-DUPAR-R008")
+    public void shouldNameTheSelectedDashExplicitlyWhenTheSavedTextStillContainsLiteralDistractors() {
+        SameExerciseQuestion question = new DefaultSameExerciseQuestion(NearDuplicatesAnalyzerTest.renderer());
+        var omission = NearDuplicatesAnalyzerTest.mc("omission", "¿Hace falta el reflexivo?",
+                List.of(NearDuplicatesAnalyzerTest.text("She dressed"), NearDuplicatesAnalyzerTest.gap(),
+                        NearDuplicatesAnalyzerTest.text("herself / -.")),
+                NearDuplicatesAnalyzerTest.item("-", 1.0), NearDuplicatesAnalyzerTest.item("herself", 0.0));
+
+        String rendered = question.subjectOf(omission, omission).getContent().get("first");
+
+        org.junit.jupiter.api.Assertions.assertTrue(rendered.contains("\nRespuesta seleccionada: -\n"), rendered);
     }
 
     @Test

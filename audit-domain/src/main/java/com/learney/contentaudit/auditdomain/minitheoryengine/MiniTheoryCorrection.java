@@ -9,9 +9,10 @@ import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 /**
- * How a finding of {@code mini-theory} is corrected (F-TAREA-R003, R006, F-MESA-R012, hook E-04): its findings of the same
- * mark in the exercises of a topic that show the text are one task on the topic, rewritten once at the panel for every
- * exercise that shows it, and the fix touches nothing but that mini theory.
+ * How a finding of {@code mini-theory} is corrected (F-TAREA-R003, R006,
+ * F-MESA-R012): each finding remains a task on its exact quiz and the panel may
+ * touch only that quiz's mini theory. Equal text in a sibling quiz does not
+ * widen the correction.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -47,7 +48,7 @@ public class MiniTheoryCorrection implements AnalyzerCorrection {
 
     @Override
     public boolean groupsByTopic() {
-        return true;
+        return false;
     }
 
     @Override

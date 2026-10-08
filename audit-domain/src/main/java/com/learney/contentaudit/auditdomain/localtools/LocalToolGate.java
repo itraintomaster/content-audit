@@ -1,6 +1,7 @@
 package com.learney.contentaudit.auditdomain.localtools;
 
 import com.learney.contentaudit.auditdomain.EvaluationRunPolicy;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
 import javax.annotation.processing.Generated;
 
@@ -12,7 +13,22 @@ public interface LocalToolGate {
     LocalToolGateDecision decide(String analyzerName, LocalTool tool, String methodId,
             EvaluationRunPolicy policy);
 
+    /**
+     * Uses the runtime that actually took the exam when a local step is coupled to a paid judge.
+     * Purely local analyzers keep using the legacy overload above.
+     */
+    default LocalToolGateDecision decide(String analyzerName, LocalTool tool, String methodId,
+            EvaluationRunPolicy policy, EvaluationRuntimeIdentity runtimeIdentity) {
+        return decide(analyzerName, tool, methodId, policy);
+    }
+
     LocalToolCard card(String analyzerName, LocalTool tool, String methodId);
+
+    /** Same card, scoped to the runtime that owns the examined hybrid step. */
+    default LocalToolCard card(String analyzerName, LocalTool tool, String methodId,
+            EvaluationRuntimeIdentity runtimeIdentity) {
+        return card(analyzerName, tool, methodId);
+    }
 
     LocalToolCard alternativeCard(String analyzerName, Evaluator alternative);
 }

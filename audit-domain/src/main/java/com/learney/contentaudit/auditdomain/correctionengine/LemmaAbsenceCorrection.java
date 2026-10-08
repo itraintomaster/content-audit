@@ -10,9 +10,11 @@ import javax.annotation.processing.Generated;
 
 /**
  * How the {@code LEMMA_ABSENCE} task that covers a finding of errors is corrected (F-TAREA-R004, R006): what the
- * lemma correction reaches today (F-LAPS-R013) -- the plain sentence, the statement with the accepted answers of its
- * gaps, and the translation. It never touches what is heard on its own: a lexical change of the sentence asks its own
- * permission through the task that carries the audio. There is no fix by rule.
+ * lemma correction reaches today (F-LAPS-R013) -- the plain sentence, the statement with the accepted answers and hints
+ * of its gaps, the translation and the quiz-local mini theory. A lexical rewrite that replaces an answer must be able
+ * to replace the hint that announces it and the explanation that teaches it as part of the same coherent change. It
+ * never touches what is heard on its own: a lexical change of the sentence asks its own permission through the task
+ * that carries the audio. There is no fix by rule.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -23,7 +25,9 @@ public class LemmaAbsenceCorrection implements AnalyzerCorrection {
 
     private static final List<ExercisePart> RULE_SCOPE = List.of();
 
-    private static final List<ExercisePart> PANEL_SCOPE = List.of(ExercisePart.STORED_SENTENCE, ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.TRANSLATION);
+    private static final List<ExercisePart> PANEL_SCOPE = List.of(ExercisePart.STORED_SENTENCE,
+            ExercisePart.STATEMENT, ExercisePart.HINT, ExercisePart.ANSWERS, ExercisePart.TRANSLATION,
+            ExercisePart.MINI_THEORY);
 
     @Override
     public String analyzerName() {

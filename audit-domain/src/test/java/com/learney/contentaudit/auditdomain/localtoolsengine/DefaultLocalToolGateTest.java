@@ -22,6 +22,7 @@ import com.learney.contentaudit.auditdomain.localtools.LocalToolStatus;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationFailureKind;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSessionFactory;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.Evaluator;
@@ -81,6 +82,31 @@ public class DefaultLocalToolGateTest {
         assertEquals(JudgeExamStatus.APPROVED, decision.getExamState());
         assertNull(decision.getReason(), "nothing stays without evaluating for the exam");
         assertFalse(decision.isExamRun());
+    }
+
+    @Test
+    @DisplayName("should read a hybrid local step exam with the explicit runtime that took it, without lending it to legacy or another provider")
+    @Tag("FEAT-MLOCAL")
+    @Tag("F-MLOCAL-R006")
+    public void shouldReadAHybridLocalStepExamWithTheExplicitRuntimeThatTookItWithoutLendingItToLegacyOrAnotherProvider(
+            ) {
+        EvaluationRuntimeIdentity codex = EvaluationRuntimeIdentity.explicit("codex-cli", "gpt-6.1-sol", "medium");
+        JudgeExamRecord approved = exam("near-duplicates", LLAMA3_EXAMINED, JudgeExamStatus.APPROVED);
+        approved.setRuntimeIdentity(codex);
+        exams.record(approved);
+
+        EvaluationRuntimeIdentity other = EvaluationRuntimeIdentity.explicit("claude-cli", "claude-sonnet", "medium");
+        assertFalse(gate.decide(
+                "near-duplicates", tool(LLAMA3), NATIVE_YES_NO, null, other).isPublishes(),
+                "another explicit runtime must not borrow Codex's exam");
+
+        LocalToolGateDecision decision = gate.decide(
+                "near-duplicates", tool(LLAMA3), NATIVE_YES_NO, null, codex);
+        LocalToolCard card = gate.card("near-duplicates", tool(LLAMA3), NATIVE_YES_NO, codex);
+
+        assertTrue(decision.isPublishes());
+        assertEquals(JudgeExamStatus.APPROVED, decision.getExamState());
+        assertEquals(JudgeExamStatus.APPROVED, card.getExamState());
     }
 
     @Test

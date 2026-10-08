@@ -15,6 +15,9 @@ import javax.annotation.processing.Generated;
 public class BatchClosing {
     private Instant closedAt;
 
+    /** Candidate revision measured by this closing; absent legacy values belong to revision 1. */
+    private int correctionRevision;
+
     private ProjectionScope scope;
 
     private BatchComparison comparison;
@@ -51,6 +54,14 @@ public class BatchClosing {
 
     public void setClosedAt(Instant closedAt) {
         this.closedAt = closedAt;
+    }
+
+    public int getCorrectionRevision() {
+        return this.correctionRevision;
+    }
+
+    public void setCorrectionRevision(int correctionRevision) {
+        this.correctionRevision = correctionRevision;
     }
 
     public ProjectionScope getScope() {
@@ -115,6 +126,7 @@ public class BatchClosing {
         if (o == null || getClass() != o.getClass()) return false;
         BatchClosing that = (BatchClosing) o;
         return Objects.equals(this.closedAt, that.closedAt)
+                    && Objects.equals(this.correctionRevision, that.correctionRevision)
                     && Objects.equals(this.scope, that.scope)
                     && Objects.equals(this.comparison, that.comparison)
                     && Objects.equals(this.gate, that.gate)
@@ -126,6 +138,6 @@ public class BatchClosing {
 
     @Override
     public int hashCode() {
-        return Objects.hash(closedAt, scope, comparison, gate, returnedChangeIds, rounds, request, judges);
+        return Objects.hash(closedAt, correctionRevision, scope, comparison, gate, returnedChangeIds, rounds, request, judges);
     }
 }

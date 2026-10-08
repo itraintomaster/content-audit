@@ -20,6 +20,7 @@ import picocli.CommandLine.Parameters;
                 "",
                 "Examples:",
                 "  content-audit compare db/english-course",
+                "  content-audit compare db/english-course --without-attribution -f json",
                 "  content-audit compare db/english-course --proposal 2026-09-30T12-00-00-task-042 -f json",
                 "  content-audit compare db/english-course --budget quiz-instruction=50",
         }
@@ -38,6 +39,10 @@ final class CompareCmd implements Callable<Integer> {
     @Option(names = "--budget", description = "New consultations of an analyzer, as name=N (repeatable).")
     private Map<String, Integer> budgets = new LinkedHashMap<>();
 
+    @Option(names = "--without-attribution", description = "Skip the expensive leave-one-out audit that names"
+            + " which proposal broke each floor; keeps aggregate rows, changes and verdict.")
+    private boolean withoutAttribution;
+
     @Option(names = {"-f", "--format"}, description = "Output format: text or json (default: ${DEFAULT-VALUE})",
             defaultValue = "text")
     private String format;
@@ -48,6 +53,8 @@ final class CompareCmd implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        return delegate.compare(coursePath, proposalIds, budgets, format);
+        return withoutAttribution
+                ? delegate.compareSummary(coursePath, proposalIds, budgets, format)
+                : delegate.compare(coursePath, proposalIds, budgets, format);
     }
 }

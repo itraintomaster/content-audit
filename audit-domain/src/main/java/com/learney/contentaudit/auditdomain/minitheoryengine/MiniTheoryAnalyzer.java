@@ -58,8 +58,8 @@ class MiniTheoryAnalyzer implements ContentAnalyzer {
     // the name of the scores and findings stay the same by construction.
     static final String ANALYZER_NAME = "mini-theory";
 
-    static final String DESCRIPTION = "Judges the mini theories of each topic against all of its exercises, "
-            + "with one consultation per topic, and scores every exercise that shows a mini theory with a problem";
+    static final String DESCRIPTION = "Judges each quiz mini theory against that quiz's concrete case, "
+            + "batched in one consultation per topic";
 
     private final JudgeSessions opened;
 
@@ -93,8 +93,7 @@ class MiniTheoryAnalyzer implements ContentAnalyzer {
     @Override
     public Void onKnowledge(AuditNode node) {
         if (node != null && node.getTarget() == AuditTarget.KNOWLEDGE
-                && !DefaultMiniTheorySubjectBuilder.miniTheoriesOf(DefaultMiniTheorySubjectBuilder.exercisesOf(node))
-                        .isEmpty()) {
+                && DefaultMiniTheorySubjectBuilder.hasMiniTheory(DefaultMiniTheorySubjectBuilder.exercisesOf(node))) {
             topics.add(node);
         }
         return null;

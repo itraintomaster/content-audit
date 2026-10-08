@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tres jueces en verde · resultado</title>
+<style>
+:root{--bg:#f2f0eb;--paper:#fff;--ink:#1c1b18;--muted:#69635b;--line:#ddd8cf;--soft:#eeebe5;--orange:#b4531f;--orange-soft:#fbe9dc;--green:#246847;--green-soft:#e2f1e8;--blue:#285f8d;--blue-soft:#e5eff8;--amber:#8c6618;--amber-soft:#fbf0d5;--shadow:0 18px 44px -30px rgba(28,27,24,.5)}
+@media(prefers-color-scheme:dark){:root{--bg:#10100e;--paper:#1a1916;--ink:#f1eee8;--muted:#aaa49a;--line:#35312b;--soft:#25221e;--orange:#ee9562;--orange-soft:#302016;--green:#82cba2;--green-soft:#15271d;--blue:#8fc4ee;--blue-soft:#172535;--amber:#e4bd62;--amber-soft:#2a2314;--shadow:0 18px 44px -30px #000}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;padding:28px 20px 90px;background:var(--bg);color:var(--ink);font:16px/1.4 ui-sans-serif,-apple-system,"SF Pro Text",system-ui,sans-serif}.deck{max-width:1120px;margin:auto;display:grid;gap:28px}.sl{position:relative;aspect-ratio:16/9;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;container-type:inline-size;scroll-margin-top:24px}.in{position:absolute;inset:0;padding:3cqi 5cqi 4.7cqi;display:flex;flex-direction:column;gap:1.2cqi}.kick{display:flex;gap:.8cqi;align-items:center;font-size:1.05cqi;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:780}.kick b{color:var(--orange)}.num{font:760 1cqi ui-monospace,monospace;background:var(--soft);padding:.35cqi .65cqi;border-radius:.55cqi}.meta{margin-left:auto;text-transform:none;letter-spacing:.02em}.sl h1,.sl h2{margin:0;line-height:1.05;letter-spacing:-.04em}.sl h1{font-size:4.5cqi;max-width:14ch}.sl h2{font-size:2.7cqi;max-width:28ch}.sub{font-size:1.55cqi;color:var(--muted);max-width:58ch;margin:0}.body{flex:1;min-height:0;display:grid;gap:1.2cqi}.cover .in{justify-content:center;padding-left:7cqi}.stamp{position:absolute;right:4.5cqi;top:3.5cqi;width:13cqi;height:13cqi;border-radius:50%;display:grid;place-items:center;border:1cqi solid var(--green-soft);color:var(--green);font:850 2.8cqi/1 ui-monospace,monospace;transform:rotate(-8deg)}.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1cqi;max-width:65cqi}.kpi{border:1px solid var(--line);border-top:.4cqi solid var(--green);border-radius:1.1cqi;padding:1cqi 1.2cqi;background:var(--bg)}.kpi b{display:block;font-size:3cqi;line-height:1;color:var(--green)}.kpi span{display:block;font-size:1.08cqi;color:var(--muted);margin-top:.4cqi}.matrix{display:grid;grid-template-columns:1fr 1.45fr 1fr;gap:.7cqi}.cell{border:1px solid var(--line);border-radius:.9cqi;padding:.75cqi 1cqi;background:var(--bg);display:flex;flex-direction:column;justify-content:center}.head{font-size:1cqi;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:760}.cell b{font-size:1.35cqi}.cell span{font-size:1.05cqi;color:var(--muted)}.pass{background:var(--green-soft);border-color:var(--green)}.pass b{color:var(--green)}.mini-flow{display:grid;grid-template-columns:1fr .8fr 1fr;gap:1.2cqi;align-items:stretch}.topic,.judge,.outs{border:1px solid var(--line);border-radius:1.1cqi;padding:1.2cqi;background:var(--bg)}.topic{display:grid;gap:.55cqi}.q{border:1px solid var(--line);background:var(--paper);border-radius:.7cqi;padding:.65cqi .85cqi;font-size:1.1cqi}.q em{float:right;font-style:normal;color:var(--muted)}.judge{display:grid;place-items:center;text-align:center;background:var(--orange-soft);border-color:var(--orange)}.judge b{font-size:1.6cqi;color:var(--orange)}.judge span{font-size:1.05cqi;color:var(--muted)}.outs{display:grid;gap:.55cqi}.out{border-left:.35cqi solid var(--green);padding:.6cqi .85cqi;background:var(--paper);border-radius:0 .7cqi .7cqi 0}.out.bad{border-color:var(--orange)}.out b{display:block;font-size:1.08cqi}.out span{font-size:.98cqi;color:var(--muted)}.split{display:grid;grid-template-columns:1.2fr .8fr;gap:1.2cqi}.box{border:1px solid var(--line);border-radius:1.1cqi;padding:1.2cqi;background:var(--bg)}.box.good{border-top:.4cqi solid var(--green)}.box.wait{border-top:.4cqi solid var(--amber);background:var(--amber-soft)}.box h3{font-size:1.55cqi;margin:0 0 .7cqi}.rows{display:grid;gap:.55cqi}.row{display:flex;gap:.65cqi;align-items:flex-start;font-size:1.08cqi}.dot{width:1.45cqi;height:1.45cqi;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;background:var(--green-soft);color:var(--green);font-weight:850}.wait .dot{background:var(--paper);color:var(--amber)}.ask{grid-column:1/-1;margin-top:0;padding:.8cqi 1.1cqi;border-left:.4cqi solid var(--orange);background:var(--orange-soft);border-radius:0 .9cqi .9cqi 0;font-size:1.15cqi}.foot{position:absolute;left:5cqi;right:5cqi;bottom:1.3cqi;display:flex;justify-content:space-between;font-size:.95cqi;color:var(--muted)}.prog{position:fixed;left:0;top:0;height:3px;background:var(--orange);z-index:5}.nav{position:fixed;right:18px;bottom:18px;display:flex;gap:8px;align-items:center;z-index:5}.nav button,.cnt{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:9px 12px;box-shadow:var(--shadow)}.cnt{font:650 12px ui-monospace,monospace}
+@media(max-width:760px){body{padding:16px 16px 90px}.sl{aspect-ratio:auto;container-type:normal}.in{position:static;padding:22px 18px 42px;gap:14px}.sl h1{font-size:31px}.sl h2{font-size:23px}.sub{font-size:15px}.kick{font-size:11px;flex-wrap:wrap}.meta{margin-left:0}.stamp{display:none}.kpis,.matrix,.mini-flow,.split{grid-template-columns:1fr}.kpi b{font-size:29px}.kpi span,.cell span,.row,.q,.judge span,.out span{font-size:13px}.cell b,.judge b,.box h3{font-size:16px}.head{font-size:11px}.foot{position:static;padding:0 18px 14px;margin-top:-28px;font-size:11px}.ask{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<main class="deck">
+<section class="sl cover">
+  <div class="in sl-in">
+    <div class="stamp">VERDE</div>
+    <div class="kick"><span class="num">031</span><b>Resultado</b><span class="meta">5 octubre 2026 · OpenAI</span></div>
+    <h1>Tres jueces pasan la nueva vara</h1>
+    <p class="sub">Ajustamos criterio, prompt y examen antes de volver a medir. Los tres pilotos terminaron sin errores de etiqueta.</p>
+    <div class="kpis"><div class="kpi"><b>9 / 9</b><span>duplicados: operación y función</span></div><div class="kpi"><b>8 / 8</b><span>consigna: cumplimiento literal</span></div><div class="kpi"><b>13 / 13</b><span>miniteoría: decisión por quiz</span></div></div>
+  </div>
+  <div class="foot"><span>Modelo: gpt-6.1-sol · esfuerzo medio</span><span class="pg"></span></div>
+</section>
+
+<section class="sl">
+  <div class="in sl-in">
+    <div class="kick"><b>Qué cambió</b><span>una regla concreta por juez</span></div>
+    <h2>Menos intuición general; más frontera explícita</h2>
+    <div class="body matrix cols">
+      <div class="cell head">Juez</div><div class="cell head">Nueva decisión</div><div class="cell head">Piloto</div>
+      <div class="cell"><b>Duplicados</b><span>mismo ejercicio pedagógico</span></div><div class="cell"><b>Operación + respuesta + función</b><span>sujeto, tiempo, lugar o léxico pueden ser superficiales</span></div><div class="cell pass"><b>9 / 9</b><span>7 sí · 2 no</span></div>
+      <div class="cell"><b>Consigna</b><span>obedecer lo escrito</span></div><div class="cell"><b>Sin reparar silenciosamente</b><span>lo ajeno a la consigna queda fuera de alcance</span></div><div class="cell pass"><b>8 / 8</b><span>7 pasan · 1 falla</span></div>
+      <div class="cell"><b>Miniteoría</b><span>corrección específica</span></div><div class="cell"><b>Cada quiz se juzga sola</b><span>mismo texto puede merecer otro veredicto</span></div><div class="cell pass"><b>13 / 13</b><span>4 temas · 5 resultados</span></div>
+    </div>
+  </div>
+  <div class="foot"><span>Los corpora conservan positivos, negativos difíciles y dudas explícitas</span><span class="pg"></span></div>
+</section>
+
+<section class="sl">
+  <div class="in sl-in">
+    <div class="kick"><b>La prueba clave</b><span>miniteoría por quiz</span></div>
+    <h2>Se agrupa para consultar; nunca para copiar el resultado</h2>
+    <div class="body mini-flow flow">
+      <div class="topic"><div class="head">Un tema</div><div class="q">Afirmación <em>misma tarjeta</em></div><div class="q">Pregunta <em>misma tarjeta</em></div><div class="q">Negación <em>otra tarjeta</em></div></div>
+      <div class="judge"><div><b>1 llamada</b><br><span>lee las 3 quizzes</span></div></div>
+      <div class="outs"><div class="head">Tres decisiones</div><div class="out"><b>Afirmación · OK</b><span>la regla sirve aquí</span></div><div class="out bad"><b>Pregunta · FALSE_RULE</b><span>la misma regla falla aquí</span></div><div class="out"><b>Negación · OK</b><span>no hereda el error</span></div></div>
+    </div>
+  </div>
+  <div class="foot"><span>La confirmación final acertó los 13 quizId exactamente una vez</span><span class="pg"></span></div>
+</section>
+
+<section class="sl">
+  <div class="in sl-in">
+    <div class="kick"><b>Estado real</b><span>qué está listo y qué no</span></div>
+    <h2>Prompts aprobados; una integración espera aceptación</h2>
+    <div class="body split cols">
+      <div class="box good"><h3>Listo</h3><div class="rows"><div class="row"><span class="dot">✓</span><span>Requisitos y fronteras actualizados.</span></div><div class="row"><span class="dot">✓</span><span>Duplicados y consigna activos, con runners Codex.</span></div><div class="row"><span class="dot">✓</span><span>Resultados guardados por proveedor, modelo y esfuerzo.</span></div><div class="row"><span class="dot">✓</span><span>Prompt candidato de miniteoría: 13/13.</span></div></div></div>
+      <div class="box wait"><h3>Pendiente</h3><div class="rows"><div class="row"><span class="dot">1</span><span>Aceptar el patch por <code>quizId</code>.</span></div><div class="row"><span class="dot">2</span><span>Regenerar contratos.</span></div><div class="row"><span class="dot">3</span><span>Implementar y rendir el examen integrado.</span></div></div></div>
+      <div class="ask"><b>Checkpoint:</b> aplicar el plano de miniteoría del brief 030. Hasta entonces, su 13/13 certifica el razonamiento del prompt, no el runtime actual.</div>
+    </div>
+  </div>
+  <div class="foot"><span>Uso semanal: 47% · disponible: 53%</span><span class="pg"></span></div>
+</section>
+</main>
+<div class="nav"><button id="prev" aria-label="Anterior">↑</button><span class="cnt" id="cnt">1 / 4</span><button id="next" aria-label="Siguiente">↓</button></div>
+<script>(function(){const s=[...document.querySelectorAll('.sl')],c=document.querySelector('#cnt'),p=document.querySelector('#prog');let i=0;s.forEach((x,n)=>x.querySelector('.pg').textContent=(n+1)+' / '+s.length);function go(n){i=Math.max(0,Math.min(s.length-1,n));s[i].scrollIntoView({behavior:'smooth',block:'start'});c.textContent=(i+1)+' / '+s.length;p.style.width=((i+1)/s.length*100)+'%'}const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>.55){i=s.indexOf(e.target);c.textContent=(i+1)+' / '+s.length;p.style.width=((i+1)/s.length*100)+'%'}}),{threshold:[.55]});s.forEach(x=>o.observe(x));document.querySelector('#prev').onclick=()=>go(i-1);document.querySelector('#next').onclick=()=>go(i+1);document.addEventListener('keydown',e=>{if(['ArrowDown','ArrowRight',' '].includes(e.key)){e.preventDefault();go(i+1)}if(['ArrowUp','ArrowLeft'].includes(e.key)){e.preventDefault();go(i-1)}});go(0)})();</script>
+</body>
+</html>

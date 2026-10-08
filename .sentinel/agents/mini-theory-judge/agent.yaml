@@ -1,15 +1,10 @@
 name: mini-theory-judge
 description: |
-  Juez de miniteoría (FEAT-MINIT). Recibe UN tema entero —nivel, nombre,
-  consigna, cada miniteoría distinta (M1, M2…) con los ejercicios que la
-  muestran y cada ejercicio (E1, E2…) con su enunciado y sus respuestas o sus
-  opciones— y dice, por cada miniteoría, si la regla es cierta y si algún
-  ejercicio que la muestra la contradice o queda fuera de lo que dice, con un
-  contraejemplo y los ejercicios involucrados (F-MINIT-R002). La gravedad sale
-  del problema: falsa o contradicha alta, exagerada media, que no cubre baja;
-  nunca bloqueante (F-MINIT-R004). Los números M y E del veredicto son los de
-  las entradas: con ellos el repartidor de Java pone cada hallazgo en los
-  ejercicios que muestran la miniteoría (F-MINIT-R003).
+  Juez de miniteoría por quiz (FEAT-MINIT). Recibe UN tema entero para ahorrar
+  una consulta, pero emite exactamente un assessment independiente por quizId.
+  Cada tarjeta se contrasta sólo con el prompt, la pista y las respuestas u
+  opciones de su propio quiz. Textos iguales nunca comparten ni propagan un
+  veredicto (F-MINIT-R001/R003/R007).
 
   Que una miniteoría pida una forma no es asunto de este juez: lo marca el
   paquete A (F-JEXAM-R012).
@@ -52,5 +47,4 @@ dependencies:
   - cefrLevel
   - topic
   - instructions
-  - miniTheories
-  - exercises
+  - quizzes

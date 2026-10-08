@@ -119,11 +119,13 @@ class DefaultBatchReportBuilder implements BatchReportBuilder {
         int judges = Math.max(0, batch.getQueriesSpent() - proposerQueries);
         double hours = Math.round(batch.getQueriesSpent() * DefaultBatchCostEstimator.SECONDS_PER_QUERY / 3600.0 * 100.0)
                 / 100.0;
-        return new BatchReport(batch.getId(), batch.getLevel(), batch.getStatus(), outcomes,
+        BatchReport report = new BatchReport(batch.getId(), batch.getLevel(), batch.getStatus(), outcomes,
                 BatchBook.list(batch.getTaskIds()).size(), conversionDone, conversionNoWinner, errors,
                 new ArrayList<>(rerecords.values()), new ArrayList<>(lengths.values()),
                 new QueriesByRole(Math.min(proposerQueries, batch.getQueriesSpent()), judges), hours,
                 BatchBook.copy(batch.getAdjustments()), judgeAccountsOf(last));
+        report.setInterruptionReason(batch.getInterruptionReason());
+        return report;
     }
 
     /** F-CJUEZ-R005: the accounts of the judges of the last closing, copied as they were kept; none if never closed. */

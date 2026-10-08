@@ -357,8 +357,7 @@ class DefaultTopicPanel implements TopicPanel {
         }
         KnowledgeEntity changed = TopicState.apply(current, quizId, candidate, tasks);
         UnitMeasurement after = meter.measure(with(now, changed), changed, analyzers, allowance);
-        boolean topicLevel = quizId == null || candidate.getKind() == PanelCandidateKind.MINI_THEORY
-                || candidate.getTopicInstructions() != null;
+        boolean topicLevel = quizId == null || candidate.getTopicInstructions() != null;
         ChangeGateVerdict verdict = changeGate.check(new ChangeProbe(quizIdsOf(quizId, candidate, tasks), topicLevel,
                 before, after, new ArrayList<>()));
         return new ScoredCandidate(candidate, after, verdict, new ArrayList<>());

@@ -6,6 +6,7 @@ import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditableCourse;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerRunSelection;
 import com.learney.contentaudit.revisiondomain.comparison.ChangeAttribution;
+import com.learney.contentaudit.revisiondomain.comparison.ChangeAttributionProgressListener;
 import com.learney.contentaudit.revisiondomain.comparison.ComparisonRow;
 import com.learney.contentaudit.revisiondomain.comparison.FloorBreach;
 import com.learney.contentaudit.revisiondomain.comparison.GoalUnit;
@@ -35,8 +36,16 @@ public class LeaveOneOutChangeAttributor implements ChangeAttributor {
 
     private final AuditEngine auditEngine;
 
+    private final ChangeAttributionProgressListener progressListener;
+
     public LeaveOneOutChangeAttributor(AuditEngine auditEngine) {
+        this(auditEngine, (completed, total) -> { });
+    }
+
+    public LeaveOneOutChangeAttributor(AuditEngine auditEngine,
+            ChangeAttributionProgressListener progressListener) {
         this.auditEngine = auditEngine;
+        this.progressListener = progressListener != null ? progressListener : (completed, total) -> { };
     }
 
     @Override
@@ -62,35 +71,42 @@ public class LeaveOneOutChangeAttributor implements ChangeAttributor {
             Map<String, AuditNode> projectedIndex = ReportTree.index(projected);
             Map<String, AuditNode> startIndex = ReportTree.index(projection.getApproved());
             List<String> analyzers = ReportTree.measuredAnalyzers(projected);
+            int completed = 0;
+            progress(completed, pending.size());
             for (ProjectedChange change : pending) {
-                AuditNode before = startIndex.get(ReportTree.key(change.getNodeTarget(), change.getNodeId()));
-                if (before == null) {
-                    continue;
-                }
-                AuditableCourse variant = ReportTree.course(projected, Map.of(change.getNodeId(), before));
-                if (variant == null) {
-                    continue;
-                }
-                AuditReport without;
                 try {
-                    without = analyzers.isEmpty()
-                            ? auditEngine.runAudit(variant)
-                            : auditEngine.runAudit(variant, new AnalyzerRunSelection(analyzers, Map.of()));
-                } catch (RuntimeException e) {
-                    continue;
-                }
-                if (without == null) {
-                    continue;
-                }
-                List<ProjectedChange> others = new ArrayList<>(pending);
-                others.remove(change);
-                PendingCopies.settle(startKeys, without, others);
-                Map<String, AuditNode> withoutIndex = ReportTree.index(without);
-                for (int i = 0; i < breaches.size(); i++) {
-                    ChangeAttribution attribution = effect(change, breaches.get(i), projectedIndex, withoutIndex);
-                    if (attribution != null) {
-                        attributions.get(i).add(attribution);
+                    AuditNode before = startIndex.get(ReportTree.key(change.getNodeTarget(), change.getNodeId()));
+                    if (before == null) {
+                        continue;
                     }
+                    AuditableCourse variant = ReportTree.course(projected, Map.of(change.getNodeId(), before));
+                    if (variant == null) {
+                        continue;
+                    }
+                    AuditReport without;
+                    try {
+                        without = analyzers.isEmpty()
+                                ? auditEngine.runAudit(variant)
+                                : auditEngine.runAudit(variant, new AnalyzerRunSelection(analyzers, Map.of()));
+                    } catch (RuntimeException e) {
+                        continue;
+                    }
+                    if (without == null) {
+                        continue;
+                    }
+                    List<ProjectedChange> others = new ArrayList<>(pending);
+                    others.remove(change);
+                    PendingCopies.settle(startKeys, without, others);
+                    Map<String, AuditNode> withoutIndex = ReportTree.index(without);
+                    for (int i = 0; i < breaches.size(); i++) {
+                        ChangeAttribution attribution = effect(change, breaches.get(i), projectedIndex, withoutIndex);
+                        if (attribution != null) {
+                            attributions.get(i).add(attribution);
+                        }
+                    }
+                } finally {
+                    completed++;
+                    progress(completed, pending.size());
                 }
             }
         }
@@ -105,6 +121,14 @@ public class LeaveOneOutChangeAttributor implements ChangeAttributor {
             result.add(new FloorBreach(breach.getGoalId(), breach.getRow(), ordered));
         }
         return result;
+    }
+
+    private void progress(int completed, int total) {
+        try {
+            progressListener.changed(completed, total);
+        } catch (RuntimeException ignored) {
+            // Observability cannot change the comparison or its gate verdict.
+        }
     }
 
     /**

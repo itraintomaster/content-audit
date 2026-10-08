@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-05 — analyst — DOUBT-MINITEORIA-ALCANCE cambia a B: la mesa reescribe la miniteoria de un quiz y no propaga el
+  texto a otros quizzes. Deja de ser excepcion de preservacion multinodo.
+  why: decision posterior y explicita de Jose; reemplaza la opcion A del 30/9.
+
 2026-10-01 — developer — La traducción sigue al inglés: si las tareas de un ejercicio permiten cambiar el enunciado o las
   respuestas, el filtro permite también la traducción, aunque la declaración del analizador no la nombre.
   why: «He» → «Winter» con la traducción vieja la marca translation-sense como error nuevo; sin esto ningún candidato de

@@ -3,14 +3,13 @@ description: |
   Juez standalone para UN quiz de inglés. Recibe el ejercicio como lo ve el
   alumno —el título y la consigna que muestra la app, el enunciado con sus
   huecos y pistas, las respuestas aceptadas de cada hueco y, en la opción
-  múltiple, sus opciones— con el nivel y el topic como contexto; arma todas las
-  respuestas aceptadas y decide si el quiz cumple literalmente TODAS las
-  restricciones explícitas de su consigna, además de gramática, significado y
-  resolubilidad. Antes de aprobar arma también la respuesta del alumno que hace
-  exactamente lo pedido —en una transformación, el estímulo transformado palabra
-  por palabra; sin pista que la fije, cada respuesta correcta y natural que
-  cabe— y comprueba que el corrector la acepte, leyendo la oración terminada tal
-  como queda.
+  múltiple, sus opciones— con el nivel y el topic como contexto. Arma todas las
+  variantes aceptadas —incluidos los fragmentos opcionales entre paréntesis— y
+  decide si el quiz cumple literalmente TODAS las restricciones explícitas de
+  su consigna. Antes de aprobar aplica exactamente la operación pedida al cue o
+  esqueleto, sin reparar preposiciones ni léxico, y comprueba que el corrector
+  acepte ese resultado. No busca otras respuestas válidas, no juzga distractores
+  alternativos y no audita gramática o miniteoría ajenas al cumplimiento.
 
   Flujo:
 

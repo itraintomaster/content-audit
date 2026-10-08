@@ -1,0 +1,152 @@
+{
+  "name": "F-QINST-R020-semantic-regressions",
+  "requirement": "F-QINST-R020",
+  "cases": [
+    {
+      "caseId": "qinst-r020-optional-accepted-segment",
+      "scenario": "optional-accepted-segment",
+      "input": {
+        "cefrLevel": "A2",
+        "topic": "Modal verbs",
+        "title": "Permission with may",
+        "instructions": "Escribe una oración con may para expresar permiso.",
+        "exercise": "___",
+        "acceptedAnswers": "Hueco 1: Guests may wait (near the fountain).",
+        "options": ""
+      },
+      "excludedContext": {},
+      "expected": {
+        "followsInstructions": true,
+        "rationale": "El tramo entre paréntesis es opcional; con él o sin él, la respuesta completa expresa permiso con may."
+      }
+    },
+    {
+      "caseId": "qinst-r020-unrequested-preposition-repair",
+      "scenario": "unrequested-preposition-repair",
+      "input": {
+        "cefrLevel": "A2",
+        "topic": "Past simple questions",
+        "title": "Questions in the past",
+        "instructions": "Transforma la oración en una pregunta en past simple.",
+        "exercise": "Omar apologized his neighbour after lunch. ___",
+        "acceptedAnswers": "Hueco 1: Did Omar apologize to his neighbour after lunch?",
+        "options": ""
+      },
+      "excludedContext": {},
+      "expected": {
+        "followsInstructions": false,
+        "rationale": "La interrogación exige auxiliar, inversión y forma base, pero no autoriza agregar to, ausente del estímulo."
+      }
+    },
+    {
+      "caseId": "qinst-r020-mechanical-some-any",
+      "scenario": "mechanical-some-any",
+      "input": {
+        "cefrLevel": "A2",
+        "topic": "Negative sentences",
+        "title": "Negatives with do",
+        "instructions": "Transforma la oración en negativa.",
+        "exercise": "The pantry contains some jars. ___",
+        "acceptedAnswers": "Hueco 1: The pantry doesn't contain any jars.",
+        "options": ""
+      },
+      "excludedContext": {},
+      "expected": {
+        "followsInstructions": true,
+        "rationale": "El cambio some a any es un ajuste mecánico inseparable de la transformación negativa solicitada."
+      }
+    },
+    {
+      "caseId": "qinst-r020-exact-skeleton-reordering",
+      "scenario": "exact-skeleton-reordering",
+      "input": {
+        "cefrLevel": "A2",
+        "topic": "Word order",
+        "title": "Ordering sentence fragments",
+        "instructions": "Ordena los fragmentos para formar una oración en past simple.",
+        "exercise": "At dawn / the gardener / watered / the seedlings. ___",
+        "acceptedAnswers": "Hueco 1: The gardener watered the seedlings at dawn.",
+        "options": ""
+      },
+      "excludedContext": {},
+      "expected": {
+        "followsInstructions": true,
+        "rationale": "La aceptada conserva todos los fragmentos del esqueleto y sólo cambia su orden y mayúscula inicial."
+      }
+    },
+    {
+      "caseId": "qinst-r020-unaccepted-alternative-out-of-scope",
+      "scenario": "unaccepted-alternative-out-of-scope",
+      "input": {
+        "cefrLevel": "A2",
+        "topic": "Obligation",
+        "title": "Must and have to",
+        "instructions": "Completa con must o have to para expresar obligación.",
+        "exercise": "Visitors ___ leave bags at reception.",
+        "acceptedAnswers": "Hueco 1: must",
+        "options": ""
+      },
+      "excludedContext": {},
+      "expected": {
+        "followsInstructions": true,
+        "rationale": "Must cumple literalmente; que have to también sea posible pero no esté aceptada pertenece al juez de respuesta única."
+      }
+    },
+    {
+      "caseId": "qinst-r020-defensible-distractor-out-of-scope",
+      "scenario": "defensible-distractor-out-of-scope",
+      "input": {
+        "cefrLevel": "B1",
+        "topic": "Past simple of be",
+        "title": "Agreement with collective nouns",
+        "instructions": "Elige una forma en past simple del verbo be que concuerde con el sujeto.",
+        "exercise": "The orchestra ___ ready for rehearsal.",
+        "acceptedAnswers": "Hueco 1: was",
+        "options": "- was (correcta)\n- were\n- is"
+      },
+      "excludedContext": {},
+      "expected": {
+        "followsInstructions": true,
+        "rationale": "Was, la opción marcada, cumple; la posible defensa dialectal de were corresponde al juez de distractores."
+      }
+    },
+    {
+      "caseId": "qinst-r020-unrelated-general-grammar",
+      "scenario": "unrelated-general-grammar",
+      "input": {
+        "cefrLevel": "A1",
+        "topic": "Can plus infinitive",
+        "title": "Abilities",
+        "instructions": "Escribe el verbo del paréntesis en infinitivo sin to después de can.",
+        "exercise": "My neighbour can ___ three instrument. (play)",
+        "acceptedAnswers": "Hueco 1: play",
+        "options": ""
+      },
+      "excludedContext": {},
+      "expected": {
+        "followsInstructions": true,
+        "rationale": "Play ejecuta exactamente la operación pedida; el número de instrument es un error general ajeno a esa transformación."
+      }
+    },
+    {
+      "caseId": "qinst-r020-excluded-wrong-mini-theory",
+      "scenario": "excluded-wrong-mini-theory",
+      "input": {
+        "cefrLevel": "A1",
+        "topic": "Past simple",
+        "title": "Regular verbs",
+        "instructions": "Completa con el past simple del verbo entre paréntesis.",
+        "exercise": "Last Monday, Bea ___ to the station. (walk)",
+        "acceptedAnswers": "Hueco 1: walked",
+        "options": ""
+      },
+      "excludedContext": {
+        "miniTheory": "Los verbos regulares forman el pasado agregando -ing."
+      },
+      "expected": {
+        "followsInstructions": true,
+        "rationale": "Walked cumple la consigna; la miniteoría errónea queda fuera de las siete entradas y no puede influir en el juez."
+      }
+    }
+  ]
+}

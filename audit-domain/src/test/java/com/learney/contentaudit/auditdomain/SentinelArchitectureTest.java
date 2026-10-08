@@ -1742,11 +1742,6 @@ public class SentinelArchitectureTest {
       Assertions.fail("Missing declared class: MiniTheoryProblem - " + e.getMessage());
     }
     try {
-      Class.forName("com.learney.contentaudit.auditdomain.minitheory.MiniTheoryErrorScope");
-    } catch (ClassNotFoundException e) {
-      Assertions.fail("Missing declared class: MiniTheoryErrorScope - " + e.getMessage());
-    }
-    try {
       Class.forName("com.learney.contentaudit.auditdomain.minitheory.MiniTheoryAssessment");
     } catch (ClassNotFoundException e) {
       Assertions.fail("Missing declared class: MiniTheoryAssessment - " + e.getMessage());

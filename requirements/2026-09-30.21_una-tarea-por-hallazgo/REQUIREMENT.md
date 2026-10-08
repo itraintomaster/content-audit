@@ -79,19 +79,16 @@ El [tipo de diagnóstico](glossary:Tipo de diagnóstico) sigue siendo uno por an
 su ficha, [F-HALL-R006](#F-HALL-R006)); lo que distingue a dos tareas del mismo tipo en un ejercicio es su hallazgo.
 
 <a id="F-TAREA-R003"></a>
-### Rule[F-TAREA-R003] - Una miniteoría con problema es una sola tarea, del tema
+### Rule[F-TAREA-R003] - Una miniteoría con problema da una tarea en su quiz
 **Severity**: major | **Validation**: VALIDATED
 
-> Los hallazgos que una misma miniteoría deja en los ejercicios de un tema que la muestran —mismo analizador, misma marca,
-> mismo tema— dan una sola tarea, sobre el tema y nunca una por ejercicio. Esa tarea nombra los ejercicios que alcanza,
-> lleva uno de esos hallazgos como propio y declara los demás cubiertos por ella ([F-TAREA-R001](#F-TAREA-R001)).
+> Cada hallazgo de `mini-theory` produce una tarea propia sobre el quiz cuyo caso se juzgó. Que otro quiz del tema muestre
+> el mismo texto no agrupa las tareas ni declara un hallazgo cubierto: cada una conserva la identidad de su quiz y se
+> cierra sólo cuando la miniteoría de ese quiz queda corregida ([F-TAREA-R001](#F-TAREA-R001)).
 
-Mantiene [F-MINIT-R007](#F-MINIT-R007) («se resuelve una vez por miniteoría») y dos decisiones de José del 30/9: la
-miniteoría cuenta sólo donde se muestra, así que `mini-theory` deja un hallazgo en cada ejercicio que la muestra,
-identificado por su texto ([F-MINIT-R003](#F-MINIT-R003)); y se reescribe una vez para todos esos ejercicios
-([DOUBT-MINITEORIA-ALCANCE](#DOUBT-MINITEORIA-ALCANCE)). Los números del contexto siguen contándolo en cada ejercicio
-([F-HALL-R008](#F-HALL-R008)); lo que no se multiplica es el trabajo. Un tema con dos miniteorías con problema tiene dos
-tareas: hay 1.488 miniteorías en el curso, no una por tema.
+Mantiene [F-MINIT-R003](#F-MINIT-R003) y [F-MINIT-R007](#F-MINIT-R007): la miniteoría es una corrección específica del
+caso de cada quiz, y su hallazgo y reescritura no se propagan por texto compartido. Reemplaza la decisión del 30/9 de
+agrupar por texto, corregida por José el 5/10 al aclarar «miniteoría es POR QUIZ».
 
 <a id="F-TAREA-R004"></a>
 ### Rule[F-TAREA-R004] - Lo que ya marca otra tarea no abre una segunda
@@ -138,7 +135,7 @@ así que su corrección no podría cambiar nada; la regla lo vuelve visible en v
 | `exact-duplicates` | mesa | el ejercicio que sobra entero, con su audio |
 | `translation-sense` | mesa | la traducción, o el inglés con su audio (los dos arreglos) |
 | `single-answer` | regla (otra forma); mesa | las respuestas, la pista o la oración con su audio |
-| `mini-theory` | mesa, una vez por miniteoría | la miniteoría de los ejercicios del tema que la muestran |
+| `mini-theory` | mesa, una tarea por quiz con hallazgo | sólo la miniteoría de ese quiz |
 | `quiz-instruction` | mesa | lo que alcanza hoy la corrección de consigna ([F-QICOR-R003](#F-QICOR-R003)) |
 | `off-level-words` | cubierto por `LEMMA_ABSENCE` | lo que alcanza hoy la [corrección de lemas](glossary:Corrección de lemas) |
 
@@ -262,7 +259,7 @@ journeys:
 - **FEAT-RCLA, FEAT-RPRES, FEAT-CLIRV** — Tarea sólo con puntaje menor que 1; preservación de lo no declarado; nombre
   único del analizador: R001, R006, R007, R008.
 - **FEAT-QICOR** — Lo que alcanza hoy la corrección de consigna: R006.
-- **FEAT-NIVFR, FEAT-MINIT, FEAT-TRSEN** (ronda 1, paquetes C y D) — Tarea compartida, miniteoría por tema y desacuerdo
+- **FEAT-NIVFR, FEAT-MINIT, FEAT-TRSEN** (ronda 1, paquetes C y D) — Tarea compartida de vocabulario, miniteoría por quiz y desacuerdo
   de los jueces: R003, R004, R005.
 - **FEAT-MESA, FEAT-TANDA, FEAT-BANDEJA** (este paquete) — Quién toma estas tareas y dónde van los desempates: R004,
   R005, R009.

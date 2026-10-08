@@ -781,7 +781,12 @@ class Main {
         // Hook F-14: the comparison never returns a change for a word its topic teaches, as the panel. F-FILAS-R005:
         // the example of each row shows its exercise as the student sees it.
         BatchComparator batchComparator = new DefaultBatchComparator(courseProjector, baselineStore,
-                auditReportStore, goalBook, analyzerCatalog, auditEngine, new LeaveOneOutChangeAttributor(auditEngine),
+                auditReportStore, goalBook, analyzerCatalog, auditEngine, new LeaveOneOutChangeAttributor(auditEngine,
+                        (completed, total) -> {
+                            System.err.printf("@@CONTENT_AUDIT_PROGRESS {\"phase\":\"ATTRIBUTING_REGRESSIONS\","
+                                    + "\"completed\":%d,\"total\":%d}%n", completed, total);
+                            System.err.flush();
+                        }),
                 sampleOutcomeSource, topicTeachingResolver, studentViewRenderer);
         BlindSampleService blindSampleService = new DefaultBlindSampleService(courseProjector, batchComparator,
                 goalBook, baselineStore, studentViewRenderer, blindSampleStore, sampleStatistics);

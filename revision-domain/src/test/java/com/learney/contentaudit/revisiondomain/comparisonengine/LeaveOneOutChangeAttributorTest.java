@@ -54,6 +54,7 @@ public class LeaveOneOutChangeAttributorTest {
     public void shouldPutFirstWith1PointTheSingleChangeThatLowersTheVocabularyOfA1ByOnePointWhileTheOthersDoNotMoveIt(
             ) {
         Motor motor = new Motor();
+        List<String> progress = new ArrayList<>();
         Map<String, String> start = Motor.clean();
         Map<String, String> batch = new LinkedHashMap<>(start);
         batch.put(Q2, "We know our grandmother.");
@@ -63,7 +64,8 @@ public class LeaveOneOutChangeAttributorTest {
                 cambio("p-q8", Q8), new ProjectedChange("aprobada-q9", AuditTarget.QUIZ, Q9, false));
         assertEquals(99.0, Motor.vocabularyOfA1(projection.getProjected()) * 100, 1e-9, "the batch lowers A1 a point");
 
-        List<FloorBreach> attributed = new LeaveOneOutChangeAttributor(motor).attribute(projection,
+        List<FloorBreach> attributed = new LeaveOneOutChangeAttributor(motor,
+                (completed, total) -> progress.add(completed + "/" + total)).attribute(projection,
                 List.of(breach("vocabulario", AnalyzerFamily.VOCABULARY, GoalUnit.POINTS)));
 
         assertEquals(1, attributed.size());
@@ -75,6 +77,8 @@ public class LeaveOneOutChangeAttributorTest {
         assertEquals(1, changes.size(), "R004: the ones that do not move it are not named");
         assertEquals("piso de vocabulario · vocabulario · MILESTONE", attributed.get(0).getGoalId());
         assertEquals(3, motor.runs.size(), "R004: one run per change of the batch, none for an approved one");
+        assertEquals(List.of("0/3", "1/3", "2/3", "3/3"), progress,
+                "the observer sees a durable denominator and every completed variant");
         for (AnalyzerRunSelection selection : motor.runs) {
             assertEquals(List.of("lemma-absence", "hint-coherence"), selection.getAnalyzers(),
                     "R004: with the analyzers of the projection");

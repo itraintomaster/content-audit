@@ -18,6 +18,7 @@ import com.learney.contentaudit.coursedomain.SentencePartEntity;
 import com.learney.contentaudit.coursedomain.TopicEntity;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
+import com.learney.contentaudit.revisiondomain.StoredSentenceRehydrator;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
@@ -52,6 +53,11 @@ final class BatchBook {
 
     static <T> List<T> copy(List<T> values) {
         return values != null ? new ArrayList<>(values) : new ArrayList<>();
+    }
+
+    /** Missing ordinals in batches written before the iterative UI belong to the first correction. */
+    static int correctionRevision(CorrectionBatch batch) {
+        return batch != null && batch.getCorrectionRevision() > 0 ? batch.getCorrectionRevision() : 1;
     }
 
     // -------------------------------------------------------------------------
@@ -221,7 +227,10 @@ final class BatchBook {
                     fields.add(Field.PARTS);
                     fields.add(Field.SENTENCES);
                 }
-                case OPTIONS -> fields.add(Field.CHOICE);
+                case OPTIONS -> {
+                    fields.add(Field.CHOICE);
+                    fields.add(Field.SENTENCES);
+                }
                 case FORM_KIND -> {
                     fields.add(Field.KIND);
                     fields.add(Field.PARTS);
@@ -276,7 +285,11 @@ final class BatchBook {
         if (fields.contains(Field.INSTRUCTIONS)) {
             result.setInstructions(after.getInstructions());
         }
-        if (fields.contains(Field.SENTENCES)) {
+        boolean sentenceInputsChanged = fields.contains(Field.PARTS) || fields.contains(Field.CHOICE)
+                || fields.contains(Field.KIND);
+        if (sentenceInputsChanged) {
+            result.setSentences(StoredSentenceRehydrator.rebuild(result));
+        } else if (fields.contains(Field.SENTENCES)) {
             result.setSentences(after.getSentences() != null ? new ArrayList<>(after.getSentences()) : null);
         }
         return result;
@@ -454,12 +467,17 @@ final class BatchBook {
         if (proposed.getMiniTheory() != null) {
             rewritten.setMiniTheory(proposed.getMiniTheory());
         }
-        boolean partsMoved = !Objects.equals(old.getForm() != null ? old.getForm().getSentenceParts() : null,
-                rewritten.getForm() != null ? rewritten.getForm().getSentenceParts() : null);
-        if (proposed.getSentences() != null && !Objects.equals(old.getSentences(), proposed.getSentences())) {
-            rewritten.setSentences(proposed.getSentences());
-        } else if (partsMoved) {
-            rewritten.setSentences(null);
+        boolean sentenceInputsMoved = !Objects.equals(old.getForm() != null ? old.getForm().getSentenceParts() : null,
+                rewritten.getForm() != null ? rewritten.getForm().getSentenceParts() : null)
+                || !Objects.equals(old.getForm() != null ? old.getForm().getMultipleChoice() : null,
+                        rewritten.getForm() != null ? rewritten.getForm().getMultipleChoice() : null)
+                || !Objects.equals(old.getKind(), rewritten.getKind())
+                || !Objects.equals(old.getForm() != null ? old.getForm().getKind() : null,
+                        rewritten.getForm() != null ? rewritten.getForm().getKind() : null);
+        if (sentenceInputsMoved) {
+            rewritten.setSentences(StoredSentenceRehydrator.rebuild(rewritten));
+        } else if (proposed.getSentences() != null && !Objects.equals(old.getSentences(), proposed.getSentences())) {
+            rewritten.setSentences(new ArrayList<>(proposed.getSentences()));
         }
         return rewritten;
     }

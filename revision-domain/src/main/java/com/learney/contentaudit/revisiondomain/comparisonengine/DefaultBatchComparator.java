@@ -143,6 +143,15 @@ public class DefaultBatchComparator implements BatchComparator {
 
     @Override
     public BatchComparison compare(Path coursePath, ProjectionScope scope) {
+        return compare(coursePath, scope, true);
+    }
+
+    @Override
+    public BatchComparison compareSummary(Path coursePath, ProjectionScope scope) {
+        return compare(coursePath, scope, false);
+    }
+
+    private BatchComparison compare(Path coursePath, ProjectionScope scope, boolean attributeBreaches) {
         EffectiveGoals goals = goalBook.effective();
         Optional<SealedGoals> sealed = goalBook.sealed();
         BatchComparison comparison = new BatchComparison();
@@ -262,7 +271,7 @@ public class DefaultBatchComparator implements BatchComparator {
                 }
             }
         }
-        if (!toAttribute.isEmpty() && !batch.isEmpty() && changeAttributor != null) {
+        if (attributeBreaches && !toAttribute.isEmpty() && !batch.isEmpty() && changeAttributor != null) {
             List<FloorBreach> attributed = changeAttributor.attribute(projection, toAttribute);
             if (attributed != null) {
                 for (int i = 0; i < toAttribute.size() && i < attributed.size(); i++) {

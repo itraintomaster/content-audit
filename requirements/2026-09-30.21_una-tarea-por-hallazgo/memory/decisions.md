@@ -5,6 +5,10 @@ should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-05 — analyst — F-TAREA-R003 reemplaza la agrupacion por texto: cada hallazgo de miniteoria da una tarea en su
+  quiz y no cubre los hallazgos de otros quizzes aunque compartan la tarjeta.
+  why: Jose aclaro que la miniteoria y su correccion son por quiz concreto.
+
 2026-10-01 — developer (construcción E) — Un informe sin hallazgos de un analizador de errores con puntaje menor
   que 1 (guardado antes del contrato del hallazgo) conserva la tarea por nodo de antes, sin origen; un informe de hoy
   nunca llega ahí (el colector exige el hallazgo, F-HALL-R004 inv. 1). Así siguen las pruebas de QINST, HALL y RONDA2

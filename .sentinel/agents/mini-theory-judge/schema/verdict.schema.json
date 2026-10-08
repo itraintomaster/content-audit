@@ -2,74 +2,59 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "mini-theory-verdict.schema.json",
   "title": "MiniTheoryVerdict",
-  "description": "Veredicto canónico que emite el agente como artifact miniTheoryVerdict (F-MINIT-R002, R004); lo lee JacksonMiniTheoryVerdictReader. Si el juez agota sus intentos, el artifact es {\"outputUnusable\": true} en vez de este objeto.",
-  "$comment": "El gate además exige, contra las entradas, que miniTheory sea una M de miniTheories y que cada M aparezca, que exercises sean E de exercises y que con CONTRADICTED_BY_EXERCISE o NOT_COVERING_EXERCISE sean ejercicios que muestran esa M; y, entre entradas, que holds true sea la única de su M, que no se repita M y problema y que FALSE_RULE y OVERSTATED no vayan juntos. JSON Schema no puede expresarlo.",
+  "description": "Un assessment independiente por quizId; el tema es sólo la unidad de consulta.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["assessments", "rationale"],
+  "required": ["assessments"],
   "properties": {
     "assessments": {
       "type": "array",
+      "minItems": 1,
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "miniTheory",
-          "holds",
-          "problem",
-          "severity",
-          "counterexample",
-          "exercises",
-          "explanation"
-        ],
+        "required": ["quizId", "holds", "problem", "severity", "counterexample", "explanation"],
         "properties": {
-          "miniTheory": { "type": "integer", "minimum": 1 },
-          "holds": { "type": "boolean" },
+          "quizId": {"type": "string", "minLength": 1},
+          "holds": {"type": "boolean"},
           "problem": {
             "type": ["string", "null"],
-            "enum": ["FALSE_RULE", "OVERSTATED", "CONTRADICTED_BY_EXERCISE", "NOT_COVERING_EXERCISE", null]
+            "enum": ["FALSE_RULE", "INSUFFICIENT_FOR_QUIZ", "OVERSTATED_FOR_QUIZ", "OTHER_SUBTOPIC_CONTENT", null]
           },
-          "severity": { "type": ["string", "null"], "enum": ["HIGH", "MEDIUM", "LOW", null] },
-          "counterexample": { "type": ["string", "null"], "minLength": 1, "maxLength": 300 },
-          "exercises": {
-            "type": "array",
-            "uniqueItems": true,
-            "items": { "type": "integer", "minimum": 1 }
-          },
-          "explanation": { "type": "string", "minLength": 1, "maxLength": 600 }
+          "severity": {"type": ["string", "null"], "enum": ["HIGH", "MEDIUM", "LOW", null]},
+          "counterexample": {"type": ["string", "null"], "minLength": 1, "maxLength": 300},
+          "explanation": {"type": "string", "minLength": 1, "maxLength": 800}
         },
-        "if": { "required": ["holds"], "properties": { "holds": { "const": true } } },
+        "if": {"properties": {"holds": {"const": true}}, "required": ["holds"]},
         "then": {
           "properties": {
-            "problem": { "type": "null" },
-            "severity": { "type": "null" },
-            "counterexample": { "type": "null" }
+            "problem": {"type": "null"},
+            "severity": {"type": "null"},
+            "counterexample": {"type": "null"}
           }
         },
         "else": {
           "properties": {
-            "problem": { "type": "string" },
-            "severity": { "type": "string" },
-            "counterexample": { "type": "string" },
-            "exercises": { "minItems": 1 }
+            "problem": {"type": "string"},
+            "severity": {"type": "string"},
+            "counterexample": {"type": "string"}
           },
           "allOf": [
             {
-              "if": { "properties": { "problem": { "enum": ["FALSE_RULE", "CONTRADICTED_BY_EXERCISE"] } } },
-              "then": { "properties": { "severity": { "const": "HIGH" } } }
+              "if": {"properties": {"problem": {"enum": ["FALSE_RULE", "INSUFFICIENT_FOR_QUIZ"]}}},
+              "then": {"properties": {"severity": {"const": "HIGH"}}}
             },
             {
-              "if": { "properties": { "problem": { "const": "OVERSTATED" } } },
-              "then": { "properties": { "severity": { "const": "MEDIUM" } } }
+              "if": {"properties": {"problem": {"const": "OVERSTATED_FOR_QUIZ"}}},
+              "then": {"properties": {"severity": {"const": "MEDIUM"}}}
             },
             {
-              "if": { "properties": { "problem": { "const": "NOT_COVERING_EXERCISE" } } },
-              "then": { "properties": { "severity": { "const": "LOW" } } }
+              "if": {"properties": {"problem": {"const": "OTHER_SUBTOPIC_CONTENT"}}},
+              "then": {"properties": {"severity": {"const": "LOW"}}}
             }
           ]
         }
       }
-    },
-    "rationale": { "type": "string", "minLength": 1, "maxLength": 1200 }
+    }
   }
 }

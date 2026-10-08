@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>La UI mira tres fotos distintas · ContentAudit</title>
+<style>
+:root{--bg:#f7f4ef;--paper:#fffdf9;--ink:#211f1b;--muted:#706a61;--line:#ddd6cb;--accent:#be532d;--accent-bg:#fae9df;--good:#26704c;--good-bg:#e5f3e9;--warn:#90610e;--warn-bg:#fbefd3;--bad:#a53b34;--bad-bg:#fae8e6;--blue:#2d6595;--blue-bg:#e6f0f8;--shadow:0 22px 64px -46px #35251d}
+@media(prefers-color-scheme:dark){:root{--bg:#12110f;--paper:#1b1916;--ink:#f3eee7;--muted:#b5aca1;--line:#3a352f;--accent:#f08a5d;--accent-bg:#322017;--good:#7ed0a4;--good-bg:#172a20;--warn:#efc46e;--warn-bg:#2d2514;--bad:#ef9189;--bad-bg:#301a18;--blue:#8fc1ef;--blue-bg:#172635;--shadow:0 22px 64px -38px #000}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.48 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",sans-serif}.wrap{max-width:1050px;margin:auto;padding:40px 24px 76px}.meta{font:800 11px ui-monospace,monospace;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}header{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:end;margin:17px 0 46px}h1{font-size:clamp(43px,6.8vw,74px);line-height:.95;letter-spacing:-.06em;margin:0 0 15px;max-width:11ch}.sub{font-size:clamp(18px,2vw,22px);color:var(--muted);max-width:55ch;margin:0}.answer{padding:22px;border:1px solid color-mix(in srgb,var(--warn) 38%,var(--line));border-radius:22px;background:var(--warn-bg);box-shadow:var(--shadow)}.answer small,.eyebrow{font:800 10px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em}.answer small{color:var(--warn)}.answer strong{display:block;font-size:34px;line-height:1.05;margin:12px 0 8px}.answer p{margin:0;color:var(--muted)}section{margin:0 0 50px}h2{font-size:28px;letter-spacing:-.04em;margin:0 0 16px}.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.shot{padding:20px;border:1px solid var(--line);border-radius:20px;background:var(--paper);box-shadow:var(--shadow);position:relative}.shot:not(:last-child):after{content:"→";position:absolute;right:-19px;top:46%;z-index:2;color:var(--muted);font-size:22px}.shot.old{border-top:4px solid var(--bad)}.shot.base{border-top:4px solid var(--good)}.shot.live{border-top:4px solid var(--blue)}.shot .eyebrow{color:var(--muted)}.shot h3{font-size:20px;margin:11px 0 6px}.shot b{display:block;font-size:28px;letter-spacing:-.04em}.shot p{font-size:13px;color:var(--muted);margin:8px 0 0}.screens{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}.screen{padding:20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}.screen:nth-child(2n){border-right:0}.screen:nth-child(n+3){border-bottom:0}.screen span{font:800 10px ui-monospace,monospace;color:var(--muted);text-transform:uppercase}.screen b{display:block;font-size:18px;margin:9px 0 5px}.screen p{font-size:13px;color:var(--muted);margin:0}.screen.bad b{color:var(--bad)}.screen.good b{color:var(--good)}.analyzers{display:grid;grid-template-columns:.85fr 1.15fr;gap:12px}.family{padding:22px;border:1px solid var(--line);border-radius:20px;background:var(--paper);box-shadow:var(--shadow)}.family strong{font-size:42px;letter-spacing:-.05em}.family h3{display:inline;font-size:20px;margin-left:8px}.family p{color:var(--muted);margin:8px 0 14px}.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{padding:5px 9px;border-radius:999px;background:var(--blue-bg);color:var(--blue);font-size:11px;font-weight:750}.chip.local{background:var(--good-bg);color:var(--good)}.kpis{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}.kpi{padding:19px;border-right:1px solid var(--line)}.kpi:last-child{border:0}.kpi strong{display:block;font-size:31px;letter-spacing:-.04em}.kpi span{font-size:12px;color:var(--muted)}.kpi.good strong{color:var(--good)}.kpi.warn strong{color:var(--warn)}.flow{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--paper)}.step{padding:18px;border-right:1px solid var(--line)}.step:last-child{border:0;background:var(--good-bg)}.num{width:27px;height:27px;border-radius:8px;display:grid;place-items:center;background:var(--accent-bg);color:var(--accent);font-weight:850}.step b{display:block;font-size:14px;margin:9px 0 5px}.step p{font-size:12px;color:var(--muted);margin:0}.decision{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding:23px;border:1px solid color-mix(in srgb,var(--accent) 45%,var(--line));border-radius:20px;background:var(--accent-bg)}.decision h3{font-size:22px;margin:0 0 7px}.decision p{margin:0;color:var(--muted)}.badge{padding:9px 13px;border-radius:999px;background:var(--accent);color:var(--bg);font-weight:850;white-space:nowrap}.foot{border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}@media(max-width:760px){header,.analyzers,.decision{grid-template-columns:1fr}.timeline{grid-template-columns:1fr}.shot:not(:last-child):after{content:"↓";right:auto;left:49%;top:auto;bottom:-23px}.screens{grid-template-columns:1fr}.screen{border-right:0!important;border-bottom:1px solid var(--line)!important}.screen:last-child{border-bottom:0!important}.kpis{grid-template-columns:1fr 1fr}.kpi:nth-child(2){border-right:0}.kpi:nth-child(-n+2){border-bottom:1px solid var(--line)}.flow{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid var(--line)}.badge{justify-self:start}}
+</style>
+</head>
+<body><main class="wrap">
+  <span class="meta">Brief 039 · analizadores y jueces · 7 octubre 2026</span>
+  <header><div><h1>La UI mira tres fotos.</h1><p class="sub">Los analizadores sí corrieron. Estado, Explorar y Antes y después apuntan a resultados anteriores y por eso cuentan otra historia.</p></div><aside class="answer"><small>Conclusión</small><strong>Tu modelo es correcto</strong><p>Todo control debe entrar como analizador; los que usan modelo son analizadores pagos y opcionales.</p></aside></header>
+
+  <section><h2>El trabajo existe, pero está separado</h2><div class="timeline">
+    <article class="shot old"><span class="eyebrow">UI seleccionada</span><h3>6 oct · 17:32</h3><b>1 analizador parcial</b><p>Consigna: 248 evaluadas y 2.154 pendientes.</p></article>
+    <article class="shot base"><span class="eyebrow">Base completa</span><h3>7 oct · 05:15</h3><b>20 analizadores</b><p>Los 2.402 ejercicios de A1, con cobertura completa aplicable.</p></article>
+    <article class="shot live"><span class="eyebrow">Corrección actual</span><h3>7 oct · 05:44</h3><b>754 cambios</b><p>Propuestas reversibles; todavía no son contenido publicado.</p></article>
+  </div></section>
+
+  <section><h2>Cada pantalla explica una foto vieja</h2><div class="screens">
+    <article class="screen bad"><span>Analizadores</span><b>“No corrió” es engañoso</b><p>Describe la auditoría parcial elegida, no la base completa de la campaña.</p></article>
+    <article class="screen bad"><span>Estado + Explorar</span><b>Muestran sólo 1 error</b><p>Ambas leen exactamente esa misma auditoría parcial.</p></article>
+    <article class="screen bad"><span>Antes y después</span><b>Compara una tanda anterior</b><p>La tanda abierta allí no contiene los cambios de la campaña actual.</p></article>
+    <article class="screen good"><span>Actividad</span><b>Sí sigue la corrida actual</b><p>Al revisar: 967 de 1.000 consultas y cero publicación.</p></article>
+  </div></section>
+
+  <section><h2>Los jueces ya entraron por el tubo</h2><div class="analyzers">
+    <article class="family"><strong>7</strong><h3>de vocabulario</h3><p>Determinísticos y locales.</p><div class="chips"><span class="chip local">largo</span><span class="chip local">COCA</span><span class="chip local">lemma-count</span><span class="chip local">lemma-absence</span><span class="chip local">recurrencia</span></div></article>
+    <article class="family"><strong>13</strong><h3>de errores</h3><p>Incluyen los siete jueces con modelo aprobados.</p><div class="chips"><span class="chip">consigna</span><span class="chip">opción múltiple</span><span class="chip">traducción</span><span class="chip">respuesta única</span><span class="chip">miniteoría</span><span class="chip">naturalidad</span><span class="chip">casi duplicados</span></div></article>
+  </div></section>
+
+  <section><h2>No se cambió el curso actual</h2><div class="kpis">
+    <div class="kpi good"><strong>0</strong><span>publicaciones de esta campaña</span></div>
+    <div class="kpi"><strong>719</strong><span>quizzes con propuesta</span></div>
+    <div class="kpi"><strong>606</strong><span>cambios salidos de reglas</span></div>
+    <div class="kpi warn"><strong>148</strong><span>cambios salidos del panel</span></div>
+  </div></section>
+
+  <section><h2>Una campaña debe tener una sola foto activa</h2><div class="flow">
+    <article class="step"><div class="num">1</div><b>Elegir campaña</b><p>Base, propuesta o publicada, siempre visible.</p></article>
+    <article class="step"><div class="num">2</div><b>Correr analizadores</b><p>Locales siempre; pagos sólo con selección y presupuesto.</p></article>
+    <article class="step"><div class="num">3</div><b>Proponer</b><p>Generar cambios sin tocar el curso.</p></article>
+    <article class="step"><div class="num">4</div><b>Reanalizar</b><p>Pasar la propuesta por el mismo tubo.</p></article>
+    <article class="step"><div class="num">5</div><b>Revisar y publicar</b><p>Todas las pantallas leen la misma campaña.</p></article>
+  </div></section>
+
+  <section><h2>Qué recomiendo hacer ahora</h2><div class="decision"><div><h3>Terminar la corrida, pero no aprobar ni publicar</h3><p>Primero hay que conectar la campaña actual con Estado, Explorar, Analizadores y Antes y después; después revisamos las 719 propuestas con contexto confiable.</p></div><span class="badge">alinear UI → revisar</span></div></section>
+
+  <div class="foot"><span>Fuentes: auditorías 2026-10-06T20-32-48 y 2026-10-07T08-15-39; tanda A1 20261007T084434Z</span><span>Brief 039 · diagnóstico solamente; sin código ni publicación</span></div>
+</main></body></html>

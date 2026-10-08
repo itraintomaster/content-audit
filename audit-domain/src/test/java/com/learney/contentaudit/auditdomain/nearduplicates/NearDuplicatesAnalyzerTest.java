@@ -67,6 +67,7 @@ import com.learney.contentaudit.evaluationledgerdomain.EvaluationNotEmitted;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationOutcome;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationRecord;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationResolutionKind;
+import com.learney.contentaudit.evaluationledgerdomain.EvaluationRuntimeIdentity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSession;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationTimeline;
@@ -938,6 +939,17 @@ public class NearDuplicatesAnalyzerTest {
             evaluators.add(list.stream().map(Evaluator::evaluatorId).toList());
             policies.add(policy);
             JudgeSessions sessions = delegate.open(judgeName, list, policy);
+            opened.add(sessions);
+            return sessions;
+        }
+
+        @Override
+        public JudgeSessions open(String judgeName, List<Evaluator> list, EvaluationRunPolicy policy,
+                EvaluationRuntimeIdentity examRuntimeIdentity) {
+            judges.add(judgeName);
+            evaluators.add(list.stream().map(Evaluator::evaluatorId).toList());
+            policies.add(policy);
+            JudgeSessions sessions = delegate.open(judgeName, list, policy, examRuntimeIdentity);
             opened.add(sessions);
             return sessions;
         }

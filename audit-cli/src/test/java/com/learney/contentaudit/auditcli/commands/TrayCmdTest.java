@@ -64,16 +64,18 @@ public class TrayCmdTest {
     }
 
     @Test
-    @DisplayName("should read the fix José writes from the file given to 'tray answer', in the notation of the course with its translation, and pass it as a candidate")
+    @DisplayName("should read the exercise, translation and quiz-local mini theory José writes and pass them as one candidate")
     @Tag("FEAT-BANDEJA")
     @Tag("F-BANDEJA-R003")
     public void shouldReadTheFixJosWritesFromTheFileGivenToTrayAnswerInTheNotationOfTheCourseWithItsTranslationAndPassItAsACandidate(
             ) {
-        // R003: José writes the fix of the tea in a file, in the notation of the course, with its translation under it.
+        // R003: José writes the fix in the notation of the course, with its translation and optional local explanation.
         // 'tray answer … WRITE_FIX --fix' reads it and gives it to the tray as a candidate of the panel.
         Bandeja bandeja = new Bandeja();
         Path file = write(workdir.resolve("arreglo-tea.txt"),
-                "I ____ [drink] (drink) green tea in the morning.\nTomo té verde por la mañana.\n");
+                "I ____ [drink] (drink) green tea in the morning.\n"
+                        + "Tomo té verde por la mañana.\n"
+                        + "$Drink$ es el verbo que completa esta oración.\n");
 
         Run run = run(bandeja, "answer", "sin-ganador-" + TEA, "WRITE_FIX", "--fix", file.toString());
 
@@ -90,6 +92,8 @@ public class TrayCmdTest {
         assertEquals(List.of("drink"), parts.get(1).getOptions());
         assertTrue(parts.get(2).getText().contains("(drink) green tea in the morning."), parts.get(2).getText());
         assertEquals("Tomo té verde por la mañana.", fix.getQuiz().getTranslation(), "with its translation");
+        assertEquals("$Drink$ es el verbo que completa esta oración.", fix.getQuiz().getMiniTheory(),
+                "with its quiz-local mini theory");
         assertEquals(List.of("I drink green tea in the morning."), fix.getQuiz().getSentences());
     }
 

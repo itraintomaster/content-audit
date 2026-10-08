@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Completar antes de corregir · ContentAudit</title>
+<style>
+:root{--bg:#f7f4ef;--paper:#fffdf9;--ink:#211f1b;--muted:#706a61;--line:#ddd6cb;--accent:#b4531f;--accent-bg:#fbe9dc;--good:#26704c;--good-bg:#e5f3e9;--warn:#90610e;--warn-bg:#fbefd3;--bad:#a53b34;--bad-bg:#fae8e6;--violet:#7047c7;--violet-bg:#eee8fb;--shadow:0 22px 64px -46px #35251d}
+@media(prefers-color-scheme:dark){:root{--bg:#12110f;--paper:#1b1916;--ink:#f3eee7;--muted:#b5aca1;--line:#3a352f;--accent:#f08a5d;--accent-bg:#322017;--good:#7ed0a4;--good-bg:#172a20;--warn:#efc46e;--warn-bg:#2d2514;--bad:#ef9189;--bad-bg:#301a18;--violet:#bd9aff;--violet-bg:#241c35;--shadow:0 22px 64px -38px #000}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.48 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",sans-serif}.wrap{max-width:1060px;margin:auto;padding:40px 24px 76px}.meta{font:800 11px ui-monospace,monospace;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}header{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:end;margin:17px 0 24px}h1{font-size:clamp(42px,6.4vw,70px);line-height:.96;letter-spacing:-.055em;margin:0 0 15px;max-width:12ch}.sub{font-size:clamp(18px,2vw,22px);color:var(--muted);max-width:55ch;margin:0}.answer{padding:22px;border:1px solid color-mix(in srgb,var(--violet) 38%,var(--line));border-radius:22px;background:var(--violet-bg);box-shadow:var(--shadow)}.answer small,.eyebrow{font:800 10px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em}.answer small{color:var(--violet)}.answer strong{display:block;font-size:30px;line-height:1.08;margin:12px 0 8px}.answer p{margin:0;color:var(--muted)}.lede{padding:14px 17px;margin:0 0 42px;border-left:3px solid var(--accent);border-radius:12px;background:var(--paper);box-shadow:var(--shadow)}.lede p{margin:0;font-size:17px}section{margin:0 0 48px}h2{font-size:27px;letter-spacing:-.04em;margin:0 0 16px}.pie{font-size:13px;color:var(--muted);margin:11px 0 0;max-width:80ch}.kpis{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}.kpi{padding:19px;border-right:1px solid var(--line)}.kpi:last-child{border:0}.kpi strong{display:block;font-size:32px;letter-spacing:-.04em}.kpi span{font-size:12px;color:var(--muted)}.kpi.good strong{color:var(--good)}.kpi.warn strong{color:var(--warn)}.kpi.violet strong{color:var(--violet)}.route{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}.place{padding:17px;border-right:1px solid var(--line)}.place:last-child{border:0}.place b{display:block;font-size:14px;margin:8px 0 5px}.place p{font-size:12px;color:var(--muted);margin:0}.ico{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:var(--accent-bg);color:var(--accent);font-weight:850}.table{overflow:auto;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:var(--shadow)}table{width:100%;border-collapse:collapse;min-width:790px}th{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}tr:last-child td{border:0}.num{text-align:right;font:800 13px ui-monospace,monospace}.pill{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:800;white-space:nowrap}.real{background:var(--bad-bg);color:var(--bad)}.provisional{background:var(--warn-bg);color:var(--warn)}.suspect{background:var(--violet-bg);color:var(--violet)}.flow{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--paper)}.step{padding:18px;border-right:1px solid var(--line)}.step:last-child{border:0;background:var(--good-bg)}.step .n{width:27px;height:27px;border-radius:8px;display:grid;place-items:center;background:var(--accent-bg);color:var(--accent);font-weight:850}.step b{display:block;font-size:14px;margin:9px 0 5px}.step p{font-size:12px;color:var(--muted);margin:0}.call{padding:17px 19px;border:1px solid color-mix(in srgb,var(--warn) 30%,var(--line));background:var(--warn-bg);border-radius:17px}.call strong{font-size:18px}.call p{margin:5px 0 0;color:var(--muted)}.foot{border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}@media(max-width:800px){header{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.kpi:nth-child(2){border-right:0}.kpi:nth-child(-n+2){border-bottom:1px solid var(--line)}.route,.flow{grid-template-columns:1fr}.place,.step{border-right:0;border-bottom:1px solid var(--line)}}
+.flow.route{grid-template-columns:repeat(5,1fr)}
+@media(max-width:800px){.flow.route{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main class="wrap">
+  <span class="meta">Brief 041 · análisis A1 · 8 octubre 2026</span>
+  <header><div><h1>Primero cerrar la medición.</h1><p class="sub">El Análisis 1 llegó casi al final, pero mini‑teoría y duplicados siguen pendientes. Todavía no conviene corregir otra tanda.</p></div><aside class="answer"><small>Próxima acción</small><strong>Completar Análisis 1</strong><p>Ejecutar sólo lo pendiente; no repetir los otros 18 analizadores.</p></aside></header>
+  <div class="lede"><p><strong>Los seis pisos rojos no tienen una sola causa.</strong> Hay una regresión atribuida, dos resultados provisionales y tres mediciones sin propuesta responsable.</p></div>
+
+  <section><h2>“102 consultas” mezcla trabajo pago y local</h2><div class="kpis">
+    <div class="kpi good"><strong>18/20</strong><span>analizadores ya cubiertos</span></div>
+    <div class="kpi warn"><strong>14</strong><span>dictámenes de mini‑teoría con modelo</span></div>
+    <div class="kpi violet"><strong>88</strong><span>temas de duplicados; cálculo local</span></div>
+    <div class="kpi"><strong>254</strong><span>quizzes sin comparación de mini‑teoría</span></div>
+  </div><p class="pie">Ambos jueces ya aprobaron su examen. Completar no debe rendirlos de nuevo ni volver a pagar lo ya evaluado.</p></section>
+
+  <section><h2>Cada pregunta tiene un lugar distinto en la UI</h2><div class="flow route">
+    <article class="place"><div class="ico">1</div><b>Centro</b><p>Estado global y botón correcto para seguir.</p></article>
+    <article class="place"><div class="ico">2</div><b>Analizadores</b><p>Cobertura y pendiente por juez.</p></article>
+    <article class="place"><div class="ico">3</div><b>Comparación</b><p>Base, Corrección 1 y seis pisos.</p></article>
+    <article class="place"><div class="ico">4</div><b>Correcciones</b><p>Antes/después de propuestas atribuidas.</p></article>
+    <article class="place"><div class="ico">5</div><b>Ejecuciones</b><p>Modelo, costo, progreso y cierre técnico.</p></article>
+  </div><p class="pie">Hoy falta un enlace directo desde cada piso a su evidencia; cuando la atribución es cero, la UI tampoco explica la inconsistencia.</p></section>
+
+  <section><h2>Seis pisos cruzaron el límite; sólo uno tiene atribución</h2><div class="table"><table>
+    <thead><tr><th>Piso</th><th>Base o inicio</th><th>Corrección</th><th>Lectura</th></tr></thead>
+    <tbody>
+      <tr><td>Largo de oraciones</td><td class="num">94,20%</td><td class="num">86,45%</td><td><span class="pill real">revisar 2 propuestas</span></td></tr>
+      <tr><td>Largo de títulos</td><td class="num">100%</td><td class="num">98,78%</td><td><span class="pill suspect">0 atribuciones</span></td></tr>
+      <tr><td>Frecuencia COCA</td><td class="num">100%</td><td class="num">72,54%</td><td><span class="pill suspect">0 atribuciones</span></td></tr>
+      <tr><td>Recurrencia de lemas</td><td class="num">45%</td><td class="num">9%</td><td><span class="pill suspect">0 atribuciones</span></td></tr>
+      <tr><td>Mini‑teoría</td><td class="num">37 errores</td><td class="num">57</td><td><span class="pill provisional">cobertura incompleta</span></td></tr>
+      <tr><td>Algún error</td><td class="num">41 errores</td><td class="num">57</td><td><span class="pill provisional">depende de mini‑teoría</span></td></tr>
+    </tbody>
+  </table></div><p class="pie">“Piso roto” significa que la métrica quedó por debajo de la tolerancia contra la Base —o contra el inicio de tanda—, no que el lote sea automáticamente culpable.</p></section>
+
+  <section><h2>El próximo paso es terminar, releer y recién entonces decidir</h2><div class="flow">
+    <article class="step"><div class="n">1</div><b>Configurar sólo lo pendiente</b><p>14 mini‑teoría + 88 duplicados locales.</p></article>
+    <article class="step"><div class="n">2</div><b>Cerrar Análisis 1</b><p>Confirmar 20/20 y recalcular la compuerta.</p></article>
+    <article class="step"><div class="n">3</div><b>Separar causas</b><p>Revisar 2 propuestas y auditar tres pisos sin atribución.</p></article>
+    <article class="step"><div class="n">4</div><b>Decidir Corrección 1</b><p>Sólo con la comparación completa continuar las 2.139 tareas.</p></article>
+  </div><p class="pie">La acción está en Centro → Completar Análisis 1 → Configurar sólo lo pendiente. No hay que relanzar los veinte analizadores.</p><div class="call"><strong>No seguiría corrigiendo todavía.</strong><p>Esperaría el cierre de mini‑teoría y duplicados. Si los tres pisos sin atribución persisten, investigaría la comparación antes de tocar contenido.</p></div></section>
+
+  <div class="foot"><span>Fuentes: cierre persistido de Análisis 1 y compuerta de no empeorar</span><span>Brief 041 · diagnóstico; sin publicación ni nuevas consultas</span></div>
+</main></body>
+</html>

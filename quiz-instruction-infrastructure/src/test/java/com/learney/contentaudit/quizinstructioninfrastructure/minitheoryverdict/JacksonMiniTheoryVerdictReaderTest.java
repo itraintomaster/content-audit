@@ -1,6 +1,7 @@
 package com.learney.contentaudit.quizinstructioninfrastructure.minitheoryverdict;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.learney.contentaudit.auditdomain.finding.FindingSeverity;
 import com.learney.contentaudit.auditdomain.minitheory.MiniTheoryAssessment;
@@ -18,68 +19,184 @@ import org.junit.jupiter.api.Test;
 )
 public class JacksonMiniTheoryVerdictReaderTest {
 
-    /**
-     * The verdict of «Contraste inicial» (A1) with three mini-theories: the false «enjoy» one with
-     * its counterexample, an overstated one written in lowercase, and one that holds, whose problem,
-     * severity and counterexample come as null and whose exercises come as null.
-     */
-    private static final String TOPIC_VERDICT = """
+    private static final String VERDICT_BY_QUIZ = """
             {
               "assessments": [
                 {
-                  "miniTheory": 1,
-                  "holds": false,
-                  "problem": "FALSE_RULE",
-                  "severity": "HIGH",
-                  "counterexample": "Are you enjoying the party?",
-                  "exercises": [1, 4, 9],
-                  "explanation": "«enjoy» va en continuo con toda naturalidad: no es un verbo de estado."
-                },
-                {
-                  "miniTheory": 2,
-                  "holds": false,
-                  "problem": "overstated",
-                  "severity": "medium",
-                  "counterexample": "They stopped to eat.",
-                  "exercises": [2],
-                  "explanation": "«stop» también va con infinitivo, con otro sentido.",
-                  "confidence": 0.75
-                },
-                {
-                  "miniTheory": 3,
+                  "quizId": "q-question",
                   "holds": true,
                   "problem": null,
                   "severity": null,
                   "counterexample": null,
-                  "exercises": null,
-                  "explanation": "La regla es cierta y ningún ejercicio la contradice."
+                  "explanation": "La tarjeta explica la inversión que practica esta pregunta."
+                },
+                {
+                  "quizId": "q-false",
+                  "holds": false,
+                  "problem": "FALSE_RULE",
+                  "severity": "HIGH",
+                  "counterexample": "Are you enjoying the party?",
+                  "explanation": "La afirmación sobre enjoy es falsa para este quiz."
+                },
+                {
+                  "quizId": "q-insufficient",
+                  "holds": false,
+                  "problem": "insufficient_for_quiz",
+                  "severity": "high",
+                  "counterexample": "La tarjeta no explica dónde ubicar not.",
+                  "explanation": "No alcanza para resolver la negación pedida."
+                },
+                {
+                  "quizId": "q-overstated",
+                  "holds": false,
+                  "problem": "Overstated_For_Quiz",
+                  "severity": "Medium",
+                  "counterexample": "They stopped to eat.",
+                  "explanation": "El siempre es demasiado amplio dentro de este caso."
+                },
+                {
+                  "quizId": "q-other-subtopic",
+                  "holds": false,
+                  "problem": "OTHER_SUBTOPIC_CONTENT",
+                  "severity": "LOW",
+                  "counterexample": "La segunda oración de la tarjeta sólo describe la afirmación.",
+                  "explanation": "La pregunta queda explicada, pero la tarjeta agrega otro subtema.",
+                  "confidence": 0.91
                 }
               ],
-              "rationale": "Una regla falsa y una exagerada; la tercera está bien."
+              "rationale": "Cada tarjeta fue juzgada sólo contra el caso de su quiz."
             }
             """;
 
     @Test
-    @DisplayName("should read one assessment per mini-theory with whether it holds, its problem, severity, counterexample, exercises and explanation")
+    @DisplayName("should read one independent assessment per quiz with the four quiz-local problem categories")
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R001")
+    @Tag("F-MINIT-R002")
+    public void shouldReadOneIndependentAssessmentPerQuizWithTheFourQuizlocalProblemCategories() {
+        MiniTheoryVerdict verdict = new JacksonMiniTheoryVerdictReader().read(VERDICT_BY_QUIZ);
+
+        assertEquals(5, verdict.getAssessments().size());
+        assertAssessment(verdict.getAssessments().get(0), "q-question", true, null, null, null,
+                "La tarjeta explica la inversión que practica esta pregunta.");
+        assertAssessment(verdict.getAssessments().get(1), "q-false", false, MiniTheoryProblem.FALSE_RULE,
+                FindingSeverity.HIGH, "Are you enjoying the party?",
+                "La afirmación sobre enjoy es falsa para este quiz.");
+        assertAssessment(verdict.getAssessments().get(2), "q-insufficient", false,
+                MiniTheoryProblem.INSUFFICIENT_FOR_QUIZ, FindingSeverity.HIGH,
+                "La tarjeta no explica dónde ubicar not.", "No alcanza para resolver la negación pedida.");
+        assertAssessment(verdict.getAssessments().get(3), "q-overstated", false,
+                MiniTheoryProblem.OVERSTATED_FOR_QUIZ, FindingSeverity.MEDIUM, "They stopped to eat.",
+                "El siempre es demasiado amplio dentro de este caso.");
+        assertAssessment(verdict.getAssessments().get(4), "q-other-subtopic", false,
+                MiniTheoryProblem.OTHER_SUBTOPIC_CONTENT, FindingSeverity.LOW,
+                "La segunda oración de la tarjeta sólo describe la afirmación.",
+                "La pregunta queda explicada, pero la tarjeta agrega otro subtema.");
+        assertEquals("Cada tarjeta fue juzgada sólo contra el caso de su quiz.", verdict.getRationale());
+    }
+
+    @Test
+    @DisplayName("should reject an assessment without a non-blank quiz id")
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R001")
+    public void shouldRejectAnAssessmentWithoutANonblankQuizId() {
+        assertUnreadable(assessmentWithout("\"quizId\": \"q-1\","));
+        assertUnreadable(verdictWith("\"quizId\": null, \"holds\": true, \"problem\": null, "
+                + "\"severity\": null, \"counterexample\": null, \"explanation\": \"Bien.\""));
+        assertUnreadable(verdictWith("\"quizId\": \"\", \"holds\": true, \"problem\": null, "
+                + "\"severity\": null, \"counterexample\": null, \"explanation\": \"Bien.\""));
+        assertUnreadable(verdictWith("\"quizId\": \"   \", \"holds\": true, \"problem\": null, "
+                + "\"severity\": null, \"counterexample\": null, \"explanation\": \"Bien.\""));
+    }
+
+    @Test
+    @DisplayName("should reject an assessment without holds")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R002")
-    public void shouldReadOneAssessmentPerMinitheoryWithWhetherItHoldsItsProblemSeverityCounterexampleExercisesAndExplanation(
-            ) {
-        MiniTheoryVerdict verdict = new JacksonMiniTheoryVerdictReader().read(TOPIC_VERDICT);
+    public void shouldRejectAnAssessmentWithoutHolds() {
+        assertUnreadable(assessmentWithout("\"holds\": true,"));
+        assertUnreadable(verdictWith("\"quizId\": \"q-1\", \"holds\": null, \"problem\": null, "
+                + "\"severity\": null, \"counterexample\": null, \"explanation\": \"Bien.\""));
+    }
 
-        assertEquals(List.of(
-                        new MiniTheoryAssessment(1, false, MiniTheoryProblem.FALSE_RULE, FindingSeverity.HIGH,
-                                "Are you enjoying the party?", List.of(1, 4, 9),
-                                "«enjoy» va en continuo con toda naturalidad: no es un verbo de estado."),
-                        new MiniTheoryAssessment(2, false, MiniTheoryProblem.OVERSTATED, FindingSeverity.MEDIUM,
-                                "They stopped to eat.", List.of(2),
-                                "«stop» también va con infinitivo, con otro sentido."),
-                        new MiniTheoryAssessment(3, true, null, null, null, List.of(),
-                                "La regla es cierta y ningún ejercicio la contradice.")),
-                verdict.getAssessments(),
-                "one assessment per mini-theory, numbered M as in the content map, with whether it holds, its "
-                        + "problem and severity (whatever their case, null when it holds), its counterexample, the "
-                        + "E numbers of its exercises (none read as an empty list) and its explanation");
-        assertEquals("Una regla falsa y una exagerada; la tercera está bien.", verdict.getRationale());
+    @Test
+    @DisplayName("should reject two assessments for the same quiz id")
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R001")
+    @Tag("F-MINIT-R003")
+    public void shouldRejectTwoAssessmentsForTheSameQuizId() {
+        String assessment = """
+                {"quizId": "q-1", "holds": true, "problem": null, "severity": null,
+                 "counterexample": null, "explanation": "Bien."}
+                """;
+
+        assertUnreadable("{\"assessments\": [" + assessment + "," + assessment + "], \"rationale\": \"\"}");
+    }
+
+    @Test
+    @DisplayName("should reject the legacy miniTheory and exercises fields instead of silently restoring shared scope")
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R001")
+    @Tag("F-MINIT-R003")
+    public void shouldRejectTheLegacyMinitheoryAndExercisesFieldsInsteadOfSilentlyRestoringSharedScope() {
+        String valid = "\"quizId\": \"q-1\", \"holds\": true, \"problem\": null, \"severity\": null, "
+                + "\"counterexample\": null, \"explanation\": \"Bien.\"";
+
+        assertUnreadable(verdictWith(valid + ", \"miniTheory\": 1"));
+        assertUnreadable(verdictWith(valid + ", \"exercises\": [1, 4]"));
+    }
+
+    @Test
+    @DisplayName("should reject holds, problem and severity combinations that contradict the quiz-local policy")
+    @Tag("FEAT-MINIT")
+    @Tag("F-MINIT-R002")
+    @Tag("F-MINIT-R004")
+    public void shouldRejectHoldsProblemAndSeverityCombinationsThatContradictTheQuizlocalPolicy() {
+        List<String> incoherent = List.of(
+                fields(true, "FALSE_RULE", "HIGH"),
+                fields(true, null, "HIGH"),
+                fields(false, null, "HIGH"),
+                fields(false, "FALSE_RULE", null),
+                fields(false, "FALSE_RULE", "MEDIUM"),
+                fields(false, "INSUFFICIENT_FOR_QUIZ", "LOW"),
+                fields(false, "OVERSTATED_FOR_QUIZ", "HIGH"),
+                fields(false, "OTHER_SUBTOPIC_CONTENT", "MEDIUM"));
+
+        incoherent.forEach(fields -> assertUnreadable(verdictWith(fields)));
+    }
+
+    private static String fields(boolean holds, String problem, String severity) {
+        return "\"quizId\": \"q-1\", \"holds\": " + holds
+                + ", \"problem\": " + nullable(problem)
+                + ", \"severity\": " + nullable(severity)
+                + ", \"counterexample\": \"Evidencia.\", \"explanation\": \"Explicación.\"";
+    }
+
+    private static String nullable(String value) {
+        return value == null ? "null" : "\"" + value + "\"";
+    }
+
+    private static String verdictWith(String assessmentFields) {
+        return "{\"assessments\": [{" + assessmentFields + "}], \"rationale\": \"\"}";
+    }
+
+    private static String assessmentWithout(String field) {
+        String all = "\"quizId\": \"q-1\", \"holds\": true, \"problem\": null, \"severity\": null, "
+                + "\"counterexample\": null, \"explanation\": \"Bien.\"";
+        return verdictWith(all.replace(field, ""));
+    }
+
+    private static void assertUnreadable(String payload) {
+        assertThrows(IllegalArgumentException.class, () -> new JacksonMiniTheoryVerdictReader().read(payload));
+    }
+
+    private static void assertAssessment(MiniTheoryAssessment assessment, String quizId, boolean holds,
+            MiniTheoryProblem problem, FindingSeverity severity, String counterexample, String explanation) {
+        assertEquals(quizId, assessment.getQuizId());
+        assertEquals(holds, assessment.isHolds());
+        assertEquals(problem, assessment.getProblem());
+        assertEquals(severity, assessment.getSeverity());
+        assertEquals(counterexample, assessment.getCounterexample());
+        assertEquals(explanation, assessment.getExplanation());
     }
 }

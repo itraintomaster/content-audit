@@ -1124,6 +1124,47 @@ auditoria normal, ni re-evaluacion por area, ni re-evaluacion del curso entero.
 
 </details>
 
+<a id="F-QINST-R020"></a>
+### Rule[F-QINST-R020] - El juez de consigna comprueba el pedido literal sin completar ni reparar el ejercicio
+**Severity**: critical | **Validation**: VALIDATED
+
+> El juez decide unicamente si cada respuesta aceptada puede obtenerse cumpliendo las restricciones explicitas de la
+> consigna a partir del enunciado, la pista y el esqueleto que recibe el alumno. No completa, corrige ni reemplaza en
+> silencio una preposicion, una palabra funcional o cualquier otro lexico ausente: si la respuesta los necesita y el
+> ejercicio no los entrega ni pide explicitamente producirlos mediante una transformacion, el ejercicio incumple.
+
+Invariantes:
+
+1. **Se preserva el material entregado.** Una respuesta no aprueba porque el juez imagine una preposicion o palabra que
+   haria natural la oracion. Agregarla, quitarla o sustituirla es trabajo del alumno solamente cuando la consigna lo pide
+   de forma explicita.
+2. **Una transformacion explicita permite sus cambios propios.** Si se pide, por ejemplo, pasar de activa a pasiva, se
+   admiten los cambios necesarios para esa transformacion; no habilita a reparar lexico ajeno a ella.
+3. **Los parentesis dentro de una respuesta aceptada son opcionales.** En `The car is sold (by you).`, tanto la forma
+   con `by you` como la forma sin ese tramo son aceptadas. El juez nunca trata el segmento entre parentesis como
+   obligatorio ni acusa que falte.
+4. **Frontera con los otros jueces.** Este juez no busca otras respuestas validas que el corrector no acepta
+   (`single-answer`), no decide si un distractor tambien vale (`multiple-choice-validity`), no juzga gramatica o
+   naturalidad por si mismas (`grammar` y `naturalness`) y no evalua la miniteoria (`mini-theory`). Solo las considera
+   cuando producen una contradiccion literal entre lo que la consigna pide y lo que la respuesta aceptada exige.
+
+<details><summary>Ejemplos y evidencia</summary>
+
+| Caso | Veredicto del juez de consigna |
+|---|---|
+| La respuesta requiere una preposicion ausente del enunciado y de la pista, y la consigna no pide agregarla | Incumple: el alumno no puede derivar la respuesta preservando el esqueleto recibido. |
+| La consigna pide transformar una activa en pasiva y la respuesta realiza solamente esa transformacion | Cumple, aunque cambie el orden y agregue los auxiliares propios de la pasiva. |
+| La respuesta aceptada es `The car is sold (by you).` y el alumno puede contestar sin el agente | Cumple: `(by you)` es opcional. |
+| Otra opcion de una multiple tambien podria valer | Este juez no se pronuncia; corresponde a `multiple-choice-validity`. |
+| Existe otra respuesta gramatical que el corrector no acepta | Este juez no se pronuncia; corresponde a `single-answer`. |
+
+Cuando incumple, la evidencia nombra la restriccion explicita y el elemento que la respuesta obliga a agregar, quitar o
+cambiar; no presenta la version reparada como si fuera el ejercicio recibido. La regla extiende a preposiciones y palabras
+funcionales el principio que [F-PISTA-R006](#F-PISTA-R006) ya aplica a palabras de contenido en reescrituras, y adopta la
+convencion de parentesis opcionales del corrector descrita por [F-RESPC-R001](#F-RESPC-R001).
+
+</details>
+
 ## Contexto
 
 La auditoria de ContentAudit mide hoy propiedades **calculables** del contenido:
@@ -1134,16 +1175,16 @@ naturaleza: se resuelven contando, son baratas y son deterministas.
 Hay una clase de defecto que ninguna de esas medidas alcanza: **el ejercicio no
 hace lo que su consigna dice**. La instruccion pide completar con un verbo en
 pasado y la unica respuesta aceptada esta en presente; pide una sola palabra y la
-respuesta tiene tres; el hueco admite dos respuestas de las cuales una es
-agramatical; el ejercicio, tal como esta escrito, no tiene solucion. Ninguno de
-esos casos se detecta contando: hace falta leer el ejercicio, leer su consigna y
-juzgar si se corresponden.
+respuesta tiene tres; la respuesta exige una preposicion que el esqueleto no trae
+ni la consigna pide agregar; el ejercicio, tal como esta escrito, no tiene
+solucion. Ninguno de esos casos se detecta contando: hace falta leer el ejercicio,
+leer su consigna y juzgar si se corresponden.
 
 Ese juicio ya existe y esta probado por separado: el **juez de consigna**. Dado el
 [Nivel CEFR](glossary:Nivel CEFR), el topic, la etiqueta y las instrucciones del knowledge y el ejercicio
 completo —con todas sus partes y todas sus opciones aceptadas—, decide si el
 ejercicio cumple **literalmente todas** las restricciones explicitas de su
-consigna, ademas de revisar gramatica, significado y resolubilidad. Devuelve si
+consigna con el material que recibe el alumno, dentro de la frontera de [F-QINST-R020](#F-QINST-R020). Devuelve si
 cumple, con que confianza, con que severidad, un motivo, la lista de violaciones
 con evidencia y la lista de controles realizados.
 
@@ -1232,10 +1273,10 @@ todavia no se miraron".
     se rechaza con causa propia, distinta de la del conjunto vacio.
   - La incorporacion de los ejercicios que incumplen al plan de refinamiento como
     tareas priorizables, listables y filtrables por su tipo de diagnostico.
+  - El criterio acotado del juez: correspondencia literal entre consigna, material entregado y respuestas aceptadas;
+    preservacion del esqueleto; transformaciones expresamente pedidas; parentesis opcionales; y frontera con los otros
+    jueces ([F-QINST-R020](#F-QINST-R020)).
 - **Fuera de alcance**:
-  - **El criterio con que el juez decide.** Que revisa, como pondera y como
-    redacta sus violaciones ya esta definido y probado en el juez; este
-    requerimiento consume su veredicto y no lo redefine.
   - **El mecanismo general de registro, reuso, resistencia a interrupcion e
     historia de versiones**, que especifica
     [FEAT-EVCOST](../2026-07-29.03_evaluaciones-costosas-reutilizables/REQUIREMENT.md).
@@ -1254,7 +1295,7 @@ todavia no se miraron".
 
 Cubre la traduccion del veredicto a puntaje en las cuatro severidades, el
 diagnostico que queda registrado y el caso del veredicto de infraestructura, que
-no es juicio. Cubre R002, R003 y R013.
+no es juicio. Cubre R002, R003, R013 y R020.
 
 ```yaml
 journeys:
@@ -1263,6 +1304,7 @@ journeys:
     flow:
       - id: consultar_juez
         action: "El sistema entrega al juez el contenido completo de un ejercicio pendiente: nivel CEFR, topic, etiqueta e instrucciones de su knowledge y el ejercicio con todas sus partes y opciones aceptadas"
+        gate: [F-QINST-R020]
         outcomes:
           - when: "El juez responde que el ejercicio cumple su consigna, con severidad ninguna"
             then: cumple
@@ -1707,3 +1749,7 @@ manos de la arquitectura.
   contenidos que no entran escritos a mano. No legisla que ocurre cuando el origen
   no se puede leer, que es lo que agrega [F-QINST-R019](#F-QINST-R019). Citada por
   [F-QINST-R019](#F-QINST-R019).
+- **FEAT-PISTA y FEAT-RESPC** — Preservacion del material que recibe el alumno y convencion del corrector para los
+  parentesis opcionales. Citadas por [F-QINST-R020](#F-QINST-R020).
+- **FEAT-UNICA, FEAT-MCVALE, FEAT-GRAMA, FEAT-NATUR y FEAT-MINIT** — Jueces responsables de respuestas alternativas,
+  distractores, gramatica, naturalidad y miniteoria; delimitan la frontera de [F-QINST-R020](#F-QINST-R020).

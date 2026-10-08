@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>V11: ¿good enough? · ContentAudit</title>
+<style>
+:root{--bg:#f3f1ec;--paper:#fff;--ink:#252426;--muted:#706d73;--line:#dcd8d2;--violet:#51248a;--green:#24723b;--green-bg:#e6f4e9;--amber:#8b5d00;--amber-bg:#fff1c9;--red:#a92c25;--red-bg:#f9e5e2;--blue:#245b94;--blue-bg:#e7effa;--shadow:0 24px 70px -48px #251a31}
+@media(prefers-color-scheme:dark){:root{--bg:#121114;--paper:#1b191e;--ink:#f1edf3;--muted:#aaa4ae;--line:#39353d;--violet:#b894ed;--green:#81d394;--green-bg:#172b1d;--amber:#f0c569;--amber-bg:#30250e;--red:#ff9187;--red-bg:#351c1a;--blue:#8bbcf0;--blue-bg:#172536;--shadow:0 24px 70px -38px #000}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",sans-serif}.wrap{max-width:1140px;margin:auto;padding:38px 24px 80px}.meta{display:inline-block;font:800 11px ui-monospace,monospace;color:var(--violet);letter-spacing:.08em;text-transform:uppercase}.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:end;margin:16px 0 48px}h1{font-size:clamp(44px,7vw,78px);line-height:.94;letter-spacing:-.06em;margin:0 0 17px;max-width:11ch}.sub{font-size:clamp(18px,2vw,22px);color:var(--muted);max-width:59ch;margin:0}.verdict{background:var(--green-bg);border:1px solid color-mix(in srgb,var(--green) 38%,var(--line));border-radius:22px;padding:22px;box-shadow:var(--shadow)}.verdict small{font:800 10px ui-monospace,monospace;color:var(--green);text-transform:uppercase}.verdict strong{display:block;font-size:34px;line-height:1;margin:12px 0 8px;letter-spacing:-.04em}.verdict p{color:var(--muted);margin:0}section{margin:0 0 52px}h2{font-size:27px;letter-spacing:-.035em;margin:0 0 8px}.intro{color:var(--muted);margin:0 0 18px;max-width:70ch}.score{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}.metric{padding:20px;border-right:1px solid var(--line)}.metric:last-child{border:0}.metric span{font:800 10px ui-monospace,monospace;text-transform:uppercase;color:var(--muted)}.metric strong{display:block;font-size:34px;line-height:1;margin:13px 0 7px;letter-spacing:-.05em}.metric p{font-size:12px;color:var(--muted);margin:0}.metric.good strong{color:var(--green)}.metric.warn strong{color:var(--amber)}.rail{display:grid;grid-template-columns:1fr 56px 1fr;align-items:stretch}.side{padding:24px;border:1px solid var(--line);background:var(--paper)}.side:first-child{border-radius:20px 0 0 20px}.side:last-child{border-radius:0 20px 20px 0}.side.good{background:var(--green-bg);border-color:color-mix(in srgb,var(--green) 35%,var(--line))}.side.warn{background:var(--amber-bg);border-color:color-mix(in srgb,var(--amber) 35%,var(--line))}.side b{display:block;font-size:22px;margin-bottom:6px}.side p{margin:0;color:var(--muted)}.vs{display:grid;place-items:center;font:900 11px ui-monospace,monospace;color:var(--muted)}.cases{display:grid;grid-template-columns:1fr 1fr;gap:12px}.case{border:1px solid var(--line);background:var(--paper);border-radius:17px;padding:18px}.case .tag{font:800 10px ui-monospace,monospace;color:var(--blue);text-transform:uppercase}.case h3{font-size:17px;margin:9px 0 6px}.case p{font-size:13px;color:var(--muted);margin:0}.case footer{display:flex;gap:7px;margin-top:13px}.chip{font-size:11px;font-weight:800;border-radius:999px;padding:4px 8px;background:var(--red-bg);color:var(--red)}.chip.good{background:var(--green-bg);color:var(--green)}.decision{display:grid;grid-template-columns:1.2fr .8fr;gap:13px}.recommend,.rule{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--paper)}.recommend{border-color:color-mix(in srgb,var(--green) 38%,var(--line));background:var(--green-bg)}.recommend h3,.rule h3{font-size:21px;margin:0 0 9px}.recommend ul,.rule ul{padding-left:19px;margin:0;color:var(--muted)}.recommend li,.rule li{margin:7px 0}.rule code{font:700 12px ui-monospace,monospace;color:var(--violet)}.stop{margin-top:13px;border-left:4px solid var(--red);padding:11px 14px;background:var(--red-bg);border-radius:0 12px 12px 0;color:var(--muted)}.stop b{color:var(--red)}.foot{border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}@media(max-width:800px){.hero,.decision{grid-template-columns:1fr}.score{grid-template-columns:1fr 1fr}.metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}.rail{grid-template-columns:1fr}.side:first-child,.side:last-child{border-radius:18px}.vs{height:36px}.cases{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main class="wrap">
+  <span class="meta">Duplicados · decisión · 6 octubre 2026</span>
+  <div class="hero">
+    <header><h1>V11 es buena. No es perfecta.</h1><p class="sub">El formal dio 87/87. En A1, dos pasadas coincidieron en 2.399 de 2.402 ejercicios. La regla actual exige igualdad absoluta; el uso real tiene revisión humana.</p></header>
+    <aside class="verdict"><small>Recomendación</small><strong>Good enough</strong><p>Usarla para mejorar contenido con la mesa. No registrarla aún como <code>APPROVED</code> bajo R007.</p></aside>
+  </div>
+
+  <section>
+    <h2>La evidencia completa</h2><p class="intro">Calidad y repetibilidad cuentan historias compatibles: acierta los casos conocidos y sólo vacila en bordes pedagógicos finos.</p>
+    <div class="score"><div class="metric good"><span>Formal</span><strong>87/87</strong><p>0 falsas alarmas · 0 omisiones</p></div><div class="metric good"><span>Ejercicios</span><strong>99,88%</strong><p>2.399 de 2.402 coinciden</p></div><div class="metric good"><span>Copias</span><strong>98,88%</strong><p>Jaccard: 265 de 268</p></div><div class="metric warn"><span>R007 literal</span><strong>Falla</strong><p>3 copias no coinciden</p></div></div>
+  </section>
+
+  <section>
+    <h2>Mucho mejor que la versión anterior</h2>
+    <div class="rail"><div class="side warn"><b>Antes · 92,5%</b><p>37/40 copias comunes. Además no aprobaba el formal.</p></div><div class="vs">→</div><div class="side good"><b>V11 · 98,9%</b><p>265/268 copias comunes y formal perfecto.</p></div></div>
+  </section>
+
+  <section>
+    <h2>Los cuatro desacuerdos</h2><p class="intro">Son 4 de 510 decisiones por par. Sólo tres cambian qué quiz queda marcada.</p>
+    <div class="cases">
+      <article class="case"><span class="tag">wh ya dada</span><h3>Why / When <em>is it starting</em></h3><p>Misma respuesta e inversión; una pasada priorizó el significado de la wh.</p><footer><span class="chip good">recomiendo “mismo”</span></footer></article>
+      <article class="case"><span class="tag">tipo de pregunta</span><h3>Did he have / What did he have</h3><p>Misma construcción seleccionada; una pasada priorizó cerrada vs. parcial.</p><footer><span class="chip good">recomiendo “mismo”</span></footer></article>
+      <article class="case"><span class="tag">valencia de feel</span><h3>felt the cold / felt tired</h3><p>Misma forma irregular; cambia transitivo vs. copulativo.</p><footer><span class="chip good">recomiendo “mismo”</span></footer></article>
+      <article class="case"><span class="tag">regla distinta</span><h3>stay in / disembark in</h3><p>Igual respuesta, pero no movimiento vs. excepción de llegada. No alteró la copia final.</p><footer><span class="chip">recomiendo “otro”</span></footer></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Qué haría ahora</h2>
+    <div class="decision"><article class="recommend"><h3>Aceptar para trabajo real</h3><ul><li>Mantener la mesa y aprobación humana antes de publicar.</li><li>Mostrar como inestables los pares donde dos pasadas discrepan.</li><li>Arrancar la mejora de contenido; no gastar en V12.</li></ul></article><article class="rule"><h3>Si cambiamos R007</h3><ul><li><code>≥99,5%</code> acuerdo por ejercicio.</li><li><code>≥98%</code> Jaccard de copias.</li><li>Formal estricto aprobado.</li><li>Revisión manual de toda divergencia.</li></ul></article></div>
+    <div class="stop"><b>No hecho:</b> R007 sigue vigente y V11 no fue registrada como aprobada. Este brief propone la decisión; no la toma por vos.</div>
+  </section>
+
+  <div class="foot"><span>Fuente: V11 formal + dos pasadas A1 independientes · codex-cli / gpt-6.1-sol / medium</span><span>1.248 consultas reales de V11</span></div>
+</main></body></html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Miniteoría por quiz · aprobación</title>
+<style>
+:root{--bg:#f4f2ee;--paper:#fff;--line:#e4dfd6;--soft:#efebe4;--fg:#1c1a17;--muted:#625c54;--faint:#8b847a;--accent:#b4531f;--accent-soft:#fcefe4;--ok:#2f6b46;--ok-soft:#e7f3eb;--warn:#8a6314;--warn-soft:#fbf1d9;--shadow:0 18px 40px -26px rgba(28,26,23,.4)}
+@media(prefers-color-scheme:dark){:root{--bg:#0f0e0d;--paper:#1a1917;--line:#302d29;--soft:#24221f;--fg:#efece7;--muted:#aaa49b;--faint:#7d776e;--accent:#e38c50;--accent-soft:#2b1f15;--ok:#80c89d;--ok-soft:#15231b;--warn:#e2b85a;--warn-soft:#261f12;--shadow:0 18px 40px -26px #000}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.45 ui-sans-serif,-apple-system,"SF Pro Text",system-ui,sans-serif;padding:28px 20px 90px}.deck{max-width:1120px;margin:auto;display:grid;gap:28px}.sl{position:relative;aspect-ratio:16/9;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;container-type:inline-size;scroll-margin-top:24px}.sl-in{position:absolute;inset:0;padding:4.2cqi 5cqi 5.4cqi;display:flex;flex-direction:column;gap:2.2cqi}.kick{display:flex;gap:1cqi;align-items:center;font-size:1.2cqi;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);font-weight:750}.kick .tag{color:var(--accent)}.kick .num{font:750 1.1cqi ui-monospace,monospace;background:var(--soft);padding:.42cqi .72cqi;border-radius:.55cqi}.kick .meta{margin-left:auto;text-transform:none;letter-spacing:.03em}.sl h1,.sl h2{margin:0;line-height:1.08;letter-spacing:-.03em}.sl h1{font-size:5cqi}.sl h2{font-size:3.3cqi}.sub{font-size:1.9cqi;color:var(--muted);max-width:56ch;margin:0}.body{flex:1;min-height:0;display:grid;gap:2.5cqi}.cover .sl-in{justify-content:center;padding-left:7cqi}.big{position:absolute;right:5cqi;top:2.5cqi;font:800 19cqi/1 system-ui;color:var(--accent-soft)}.chips{display:flex;gap:1cqi;flex-wrap:wrap}.chip{font-size:1.45cqi;border:1px solid var(--line);background:var(--bg);padding:.55cqi 1.2cqi;border-radius:99px}.kpis{display:flex;gap:4cqi}.kpi b{display:block;font-size:4.6cqi;line-height:1}.kpi span{display:block;font-size:1.35cqi;color:var(--muted);max-width:19ch;margin-top:.6cqi}.ad{display:grid;grid-template-columns:1fr 1fr;gap:3.6cqi;min-height:0}.side{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:1.3cqi;padding:2cqi;display:flex;flex-direction:column;gap:1.2cqi}.side.before{border-top:.35cqi solid var(--warn)}.side.after{border-top:.35cqi solid var(--ok)}.side.after:before{content:"→";position:absolute;left:-2.9cqi;top:48%;color:var(--faint);font-size:2.2cqi}.rot{font-size:1.15cqi;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.before .rot{color:var(--warn)}.after .rot{color:var(--ok)}.card{background:var(--paper);border:1px solid var(--line);border-radius:1.1cqi;padding:1.3cqi 1.5cqi}.card b{display:block;font-size:1.7cqi}.card span{font-size:1.35cqi;color:var(--muted)}.res{margin-top:auto;border-top:1px solid var(--line);padding-top:1cqi;font-size:1.7cqi;font-weight:750}.flow{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:1.3cqi}.st{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:1.2cqi;padding:1.5cqi;display:flex;flex-direction:column;gap:.8cqi}.st:not(:last-child):after{content:"";position:absolute;right:-1.05cqi;top:50%;width:.8cqi;height:.8cqi;border-top:.22cqi solid var(--faint);border-right:.22cqi solid var(--faint);transform:rotate(45deg)}.st.end{background:var(--ok-soft);border-color:var(--ok)}.st i{font:800 1.2cqi/2.4cqi ui-monospace,monospace;width:2.4cqi;height:2.4cqi;text-align:center;border-radius:.7cqi;background:var(--accent-soft);color:var(--accent)}.st b{font-size:1.55cqi}.st span{font-size:1.25cqi;color:var(--muted)}.keep{display:grid;grid-template-columns:1fr 1fr;gap:1.2cqi}.keep div{background:var(--bg);border:1px solid var(--line);border-radius:1.2cqi;padding:1.4cqi;font-size:1.35cqi;color:var(--muted)}.keep b{display:block;color:var(--fg);font-size:1.5cqi;margin-bottom:.3cqi}.take{margin:0;padding:1.2cqi 1.5cqi;background:var(--accent-soft);border-left:.4cqi solid var(--accent);border-radius:0 1cqi 1cqi 0;font-size:1.65cqi}.asks{display:grid;gap:1.2cqi}.ask{background:var(--bg);border:1px solid var(--line);border-left:.5cqi solid var(--accent);border-radius:1.3cqi;padding:2cqi;display:grid;gap:1.2cqi}.ask .q{font-size:2.2cqi;font-weight:750}.ops{display:flex;gap:1cqi;flex-wrap:wrap}.op{font-size:1.35cqi;padding:.55cqi 1.1cqi;border:1px solid var(--line);border-radius:99px;background:var(--paper)}.op.rec{color:var(--accent);background:var(--accent-soft);border-color:var(--accent);font-weight:750}.why{font-size:1.35cqi;color:var(--muted)}.foot{position:absolute;left:5cqi;right:5cqi;bottom:1.6cqi;display:flex;justify-content:space-between;color:var(--faint);font-size:1.02cqi}.prog{position:fixed;left:0;top:0;height:3px;background:var(--accent);z-index:5}.nav{position:fixed;right:18px;bottom:18px;display:flex;gap:8px;align-items:center;z-index:5}.nav button,.cnt{border:1px solid var(--line);background:var(--paper);color:var(--fg);border-radius:10px;padding:9px 12px;box-shadow:var(--shadow)}.cnt{font:600 12px ui-monospace,monospace}
+@media(max-width:760px){body{padding:16px 16px 90px}.sl{aspect-ratio:auto;container-type:normal}.sl-in{position:static;padding:22px 18px 42px;gap:14px}.sl h1{font-size:30px}.sl h2{font-size:23px}.sub{font-size:15px}.kick{font-size:11px;flex-wrap:wrap}.kick .meta{margin-left:0}.big{display:none}.chip,.card span,.st span,.keep div,.why,.op{font-size:13px}.kpis{gap:18px}.kpi b{font-size:30px}.kpi span{font-size:12px}.ad,.keep{grid-template-columns:1fr}.flow{grid-auto-flow:row}.st:not(:last-child):after,.side.after:before{display:none}.rot,.foot{font-size:11px}.card b,.side .res,.st b{font-size:15px}.take{font-size:14px}.ask .q{font-size:18px}.foot{position:static;padding:0 18px 14px;margin-top:-28px}.body{gap:14px}}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<main class="deck" id="deck">
+<section class="sl cover" data-t="La decisión">
+  <div class="sl-in">
+    <span class="big">Q</span>
+    <div class="kick"><span class="num">030</span><span class="tag">Aprobación</span> · <span class="meta">miniteoría y jueces · 5 octubre 2026</span></div>
+    <h1>Miniteoría: cada quiz, una corrección</h1>
+    <p class="sub">Recomiendo aplicar el cambio estructural. Mantiene el ahorro por tema, pero elimina la propagación entre tarjetas.</p>
+    <div class="chips"><span class="chip">consulta por tema</span><span class="chip">veredicto por quiz</span><span class="chip">corrección local</span></div>
+    <div class="kpis"><div class="kpi"><b>1</b><span>consulta por tema, igual que hoy</span></div><div class="kpi"><b>0</b><span>tarjetas hermanas tocadas</span></div><div class="kpi"><b>8</b><span>cambios del plano, ya validados</span></div></div>
+  </div>
+  <div class="foot"><span>Propuesta validada; todavía no aplicada</span><span class="pg"></span></div>
+</section>
+
+<section class="sl" data-t="Antes y después">
+  <div class="sl-in">
+    <div class="kick"><span class="tag">El cambio</span> · mismo tema, tres tarjetas</div>
+    <h2>Compartir tema ya no mezcla las correcciones</h2>
+    <div class="body ad">
+      <div class="side before"><span class="rot">Hoy</span><div class="card"><b>Afirmación</b><span>Comparte texto o resultado.</span></div><div class="card"><b>Negación</b><span>Puede heredar el mismo hallazgo.</span></div><div class="card"><b>Pregunta</b><span>Puede recibir una regla ajena.</span></div><div class="res">Una decisión se propaga</div></div>
+      <div class="side after"><span class="rot">Con el cambio</span><div class="card"><b>Afirmación</b><span>Se juzga para su propio caso.</span></div><div class="card"><b>Negación</b><span>Se corrige sólo si falla.</span></div><div class="card"><b>Pregunta</b><span>Enseña únicamente pregunta.</span></div><div class="res">Tres decisiones independientes</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Regla fijada por José: miniteoría POR QUIZ</span><span class="pg"></span></div>
+</section>
+
+<section class="sl" data-t="Costo y alcance">
+  <div class="sl-in">
+    <div class="kick"><span class="tag">Cómo funciona</span> · ahorro sin mezclar resultados</div>
+    <h2>Se agrupa para consultar; se separa para decidir</h2>
+    <div class="body">
+      <div class="flow"><div class="st"><i>1</i><b>Reúne el tema</b><span>Incluye todos sus quizzes.</span></div><div class="st"><i>2</i><b>Consulta una vez</b><span>No multiplica el gasto.</span></div><div class="st"><i>3</i><b>Devuelve cada quiz</b><span>Un veredicto por tarjeta.</span></div><div class="st end"><i>4</i><b>Corrige una sola</b><span>Las demás quedan intactas.</span></div></div>
+      <div class="keep"><div><b>No cambia el presupuesto</b>Sigue siendo una llamada por tema.</div><div><b>No mezcla el examen</b>El oro pasa a identificar quiz y subcaso.</div><div><b>No pisa resultados viejos</b>La nueva versión queda separada.</div><div><b>No se aplicó todavía</b>El plano está listo y validado.</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Plan técnico: lote por tema; identidad, hallazgo y corrección por quiz</span><span class="pg"></span></div>
+</section>
+
+<section class="sl" data-t="Aprobación">
+  <div class="sl-in">
+    <div class="kick"><span class="tag">Lo que necesito de vos</span> · un solo checkpoint</div>
+    <h2>¿Aplicamos este cambio y regeneramos?</h2>
+    <div class="body">
+      <div class="asks"><div class="ask"><span class="q">Aceptar el plano por quiz</span><div class="ops"><span class="op rec">Sí, aplicar · recomendado</span><span class="op">No, revisar</span></div><span class="why">Después vienen pruebas locales, prompt nuevo, piloto acotado y recién entonces el examen.</span></div></div>
+      <p class="take"><b>Mientras tanto:</b> consignas y duplicados siguen avanzando sin depender de esta aprobación.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Rastro técnico: FEAT-MINIT · 7 modificaciones, 1 eliminación, 0 conflictos</span><span class="pg"></span></div>
+</section>
+</main>
+<div class="nav"><button id="prev" aria-label="Anterior">↑</button><span class="cnt" id="cnt">1 / 4</span><button id="next" aria-label="Siguiente">↓</button></div>
+<script>(function(){const slides=[...document.querySelectorAll('.sl')],cnt=document.querySelector('#cnt'),prog=document.querySelector('#prog');let cur=0;slides.forEach((s,i)=>s.querySelector('.pg').textContent=(i+1)+' / '+slides.length);function go(i){cur=Math.max(0,Math.min(slides.length-1,i));slides[cur].scrollIntoView({behavior:'smooth',block:'start'});cnt.textContent=(cur+1)+' / '+slides.length;prog.style.width=((cur+1)/slides.length*100)+'%'}new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>.55){cur=slides.indexOf(e.target);cnt.textContent=(cur+1)+' / '+slides.length;prog.style.width=((cur+1)/slides.length*100)+'%'}}),{threshold:[.55]}).observe(slides[0]);slides.slice(1).forEach(s=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.intersectionRatio>.55){cur=slides.indexOf(e.target);cnt.textContent=(cur+1)+' / '+slides.length;prog.style.width=((cur+1)/slides.length*100)+'%'}}),{threshold:[.55]}).observe(s));document.querySelector('#prev').onclick=()=>go(cur-1);document.querySelector('#next').onclick=()=>go(cur+1);document.addEventListener('keydown',e=>{if(['ArrowDown','ArrowRight',' '].includes(e.key)){e.preventDefault();go(cur+1)}if(['ArrowUp','ArrowLeft'].includes(e.key)){e.preventDefault();go(cur-1)}});go(0)})();</script>
+</body>
+</html>

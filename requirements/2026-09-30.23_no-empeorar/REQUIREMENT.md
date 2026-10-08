@@ -180,23 +180,23 @@ y la miniteoría del tema ([F-MESA-R012](#F-MESA-R012)).
 ### Grupo C — Qué pasa si frena
 
 <a id="F-NOEMP-R008"></a>
-### Rule[F-NOEMP-R008] - Si la tanda frena, lo que empeora vuelve a la mesa y el resto espera
+### Rule[F-NOEMP-R008] - Si la tanda frena, el análisis se guarda y el resto espera
 **Severity**: critical | **Validation**: AUTO_VALIDATED
 
 > Si falla [F-NOEMP-R005](#F-NOEMP-R005), [F-NOEMP-R006](#F-NOEMP-R006) o [F-NOEMP-R007](#F-NOEMP-R007), la tanda no se
-> publica y la compuerta devuelve a la mesa los cambios responsables:
-> 1. el de cada nodo que la comparación marca como que vuelve: donde aparece el error nuevo o la palabra roja nueva, y
->    nunca por un hallazgo nuevo de largo ([F-NOEMP-R003](#F-NOEMP-R003));
-> 2. para un número fuera de su piso, los cambios que la comparación ordena por cuánto lo empeoran solos
->    ([F-METAS-R004](#F-METAS-R004)), del primero en adelante, hasta que vuelva a entrar.
+> publica, pero el análisis agregado queda cerrado y guarda su comparación completa. La compuerta puede devolver de
+> forma directa el cambio de un nodo donde aparece un error nuevo o una palabra roja nueva —nunca por un hallazgo nuevo
+> de largo ([F-NOEMP-R003](#F-NOEMP-R003))— porque ahí el responsable ya está en la evidencia. Un número de nivel o curso
+> fuera de su piso bloquea la publicación y queda para revisión; no dispara por sí solo una auditoría por cada propuesta
+> ([F-METAS-R004](#F-METAS-R004)).
 >
-> Un cambio devuelto gasta un intento y vuelve con el motivo; si ya no le quedan intentos, va a la bandeja como sin
-> ganador. El resto de la tanda no se descarta: se recalcula sin los devueltos y vuelve a pasar la compuerta.
+> Un cambio devuelto directamente gasta un intento y vuelve con el motivo; si ya no le quedan intentos, va a la bandeja
+> como sin ganador. El resto de la tanda no se descarta. Atribuir un piso agregado a cambios individuales es una
+> investigación explícita posterior, no parte del análisis ni condición para cerrarlo.
 
-Es «lo que empeora se devuelve» (brief 089). Devolver no cuesta consultas nuevas: el ejercicio vuelve a su contenido de
-antes, cuyos veredictos ya están ([F-EVCOST-R003](#F-EVCOST-R003)). Recalcular el curso entero tarda unos 38 segundos
-(medido; 1,7 a 2,4 si ninguna oración cambió), porque hoy cambiar una oración vuelve a tokenizar el curso entero; con el
-caché por oración que piden E y F, unos 5 (2,4 del análisis más 2,2 de un solo lanzamiento de spaCy, medidos el 30/9).
+Devolver directamente no cuesta consultas nuevas: el ejercicio vuelve a su contenido de antes, cuyos veredictos ya
+están ([F-EVCOST-R003](#F-EVCOST-R003)). El análisis normal compone todos los cambios vigentes y recalcula el curso una
+vez. La investigación opcional de responsables puede ser más cara, pero no demora ni impide guardar el antes/después.
 
 <a id="F-NOEMP-R009"></a>
 ### Rule[F-NOEMP-R009] - La compuerta es determinista y dice por qué
@@ -278,11 +278,15 @@ journeys:
           - when: "Un cambio sumó una palabra roja o un error nuevo"
             then: devolver
           - when: "Un número de vocabulario quedó más de medio punto por debajo de la línea base"
-            then: devolver
+            then: guardar_freno
       - id: devolver
-        action: "La compuerta nombra el número y devuelve a la mesa los cambios responsables, cada uno con su motivo y un intento menos"
+        action: "La compuerta devuelve el cambio cuyo nodo ganó un error o una palabra roja, con su motivo y un intento menos"
         gate: [F-NOEMP-R008, F-NOEMP-R009]
         then: recalcular_sin
+      - id: guardar_freno
+        action: "La compuerta guarda el análisis agregado y el piso roto; la publicación queda bloqueada y atribuir responsables es opcional"
+        gate: [F-NOEMP-R008, F-NOEMP-R009]
+        result: failure
       - id: recalcular_sin
         action: "La tanda se recalcula sin los devueltos y la compuerta vuelve a comparar con el mismo resultado para el mismo curso"
         gate: [F-NOEMP-R009]

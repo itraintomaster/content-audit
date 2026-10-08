@@ -334,8 +334,8 @@ public class MainTest {
                 + "diría así, con palabras que no van juntas o con un registro que no es del nivel.");
         table.put("single-answer", "Ejercicios para escribir donde, con lo que ve el alumno, hay otra respuesta "
                 + "igual de buena que el corrector no acepta.");
-        table.put("mini-theory", "Ejercicios cuya tarjeta de teoría dice una regla falsa o exagerada, o que "
-                + "contradicen esa regla o quedan fuera de lo que explica.");
+        table.put("mini-theory", "Quizzes cuya tarjeta es falsa, insuficiente o exagerada para su caso, o agrega "
+                + "contenido de otro subtema.");
         table.put("grammar", "Ejercicios cuya oración terminada, con la respuesta puesta, tiene un error de "
                 + "gramática, de ortografía o de puntuación final.");
         table.put("naturalness", "Ejercicios cuya oración terminada un modelo duda que un nativo diría así. Sólo "

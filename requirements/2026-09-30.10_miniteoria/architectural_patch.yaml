@@ -1,0 +1,129 @@
+code: FEAT-MINIT
+description: "Hace que el juez, el diagnóstico y el hallazgo de miniteoría sean inequí\
+  vocamente por quiz, conservando una consulta y huella por tema sólo como optimizació\
+  n.; Conserva MiniTheoryProblem como enum al reemplazar exclusivamente su vocabulario\
+  \ por las categorías por quiz."
+modules:
+- name: audit-domain
+  interfaces:
+  - name: MiniTheoryConfig
+    sealed: false
+    exposes:
+    - signature: "getErrorScope(): MiniTheoryErrorScope"
+      _change: delete
+    _change: modify
+  packages:
+  - name: minitheory
+    models:
+    - name: MiniTheoryErrorScope
+      type: record
+      _change: delete
+    - name: MiniTheoryProblem
+      type: enum
+      fields:
+      - name: FALSE_RULE
+        description: "La miniteoría afirma algo falso para la forma, función o palabras\
+          \ de este quiz. HIGH."
+        _change: modify
+      - name: OVERSTATED
+        _change: delete
+      - name: CONTRADICTED_BY_EXERCISE
+        _change: delete
+      - name: NOT_COVERING_EXERCISE
+        _change: delete
+      - name: INSUFFICIENT_FOR_QUIZ
+        description: La miniteoría no alcanza para resolver el caso concreto de este
+          quiz. HIGH.
+        _change: add
+      - name: OVERSTATED_FOR_QUIZ
+        description: La miniteoría exagera dentro del caso concreto de este quiz.
+          MEDIUM.
+        _change: add
+      - name: OTHER_SUBTOPIC_CONTENT
+        description: La miniteoría agrega contenido verdadero de otro subtema que
+          este quiz no practica. LOW.
+        _change: add
+      _change: modify
+    - name: MiniTheoryAssessment
+      type: record
+      fields:
+      - name: miniTheory
+        _change: delete
+      - name: exercises
+        _change: delete
+      - name: quizId
+        type: String
+        description: Identidad del quiz al que pertenece este veredicto dentro del
+          lote del tema; nunca identifica un texto compartido.
+        _change: add
+      - name: holds
+        type: boolean
+        description: "True sólo cuando la miniteoría de este quiz es verdadera, suficiente\
+          \ y específica para su caso."
+        _change: modify
+      - name: problem
+        type: MiniTheoryProblem
+        description: Null si holds; de lo contrario clasifica exclusivamente el problema
+          de este quiz.
+        _change: modify
+      - name: severity
+        type: FindingSeverity
+        description: "Severidad por quiz: HIGH falsa o insuficiente, MEDIUM exagerada,\
+          \ LOW contenido verdadero de otro subtema."
+        _change: modify
+      - name: counterexample
+        type: String
+        description: Evidencia concreta del problema de esta miniteoría aplicada a
+          este quiz.
+        _change: modify
+      - name: explanation
+        type: String
+        description: "Explicación ceñida a la forma, función y palabras que practica\
+          \ este quiz."
+        _change: modify
+      _change: modify
+    - name: MiniTheoryVerdict
+      type: record
+      fields:
+      - name: assessments
+        type: List<MiniTheoryAssessment>
+        description: "Un veredicto independiente por cada quiz incluido en el lote\
+          \ del tema, aunque dos quizzes compartan el mismo texto de miniteoría."
+        _change: modify
+      _change: modify
+    - name: MiniTheoryDiagnosis
+      type: record
+      fields:
+      - name: knowledgeId
+        _change: delete
+      - name: assessments
+        _change: delete
+      - name: quizId
+        type: String
+        description: Quiz concreto juzgado; el lote del tema no cambia esta unidad
+          de diagnóstico.
+        _change: add
+      - name: miniTheory
+        type: String
+        description: "Texto de la miniteoría de este quiz, tal cual; textos iguales\
+          \ en otros quizzes no comparten diagnóstico."
+        _change: modify
+      - name: assessment
+        type: MiniTheoryAssessment
+        description: Veredicto singular de este quiz.
+        _change: add
+      _change: modify
+    _change: modify
+  - name: minitheoryengine
+    models:
+    - name: MiniTheoryQuizOutcome
+      type: record
+      fields:
+      - name: findings
+        type: List<FindingDraft>
+        description: Hallazgos exclusivos de quizId; su marca incorpora la miniteoría
+          de ese quiz y nunca habilita propagación por texto compartido.
+        _change: modify
+      _change: modify
+    _change: modify
+  _change: modify

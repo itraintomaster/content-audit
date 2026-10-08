@@ -9,9 +9,9 @@ import javax.annotation.processing.Generated;
 public enum MiniTheoryProblem {
     FALSE_RULE,
 
-    OVERSTATED,
+    INSUFFICIENT_FOR_QUIZ,
 
-    CONTRADICTED_BY_EXERCISE,
+    OVERSTATED_FOR_QUIZ,
 
-    NOT_COVERING_EXERCISE
+    OTHER_SUBTOPIC_CONTENT
 }

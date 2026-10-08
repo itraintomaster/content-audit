@@ -1,5 +1,5 @@
 {
- "why": "Corpus del modo en vivo (--claude): pares inventados, ninguno del curso, con lo que el juez lee de cada uno (title, first, second, como los arma DefaultSameExerciseQuestion). Los dos ejercicios de cada par piden la misma respuesta, no son iguales tal cual y el comodín no los resuelve. expected true: el mismo ejercicio para el alumno (otro sujeto, una palabra de más o de menos, un sinónimo fuera del hueco, otro orden, la negativa y la pregunta de la misma oración, la misma idea con otras palabras); false: otra oración que pide lo mismo, la misma plantilla con otra palabra de contenido, o el contraste del tema; null: dudoso, se muestra y no cuenta. cosine es el de nomic-embed-text («clustering: » + el ejercicio terminado), para ver que los pares caen donde caen los candidatos del curso. Desde el 3/10 suma 24 pares de la recalibración con el criterio de José: la misma oración en pregunta, en negativa o con otro modal; otro orden con la respuesta en la misma función (el mismo) contra otra función gramatical (otro); y la paráfrasis que cuenta lo mismo (el mismo) contra el cambio de verbo o de complemento que cambia lo que dice (otro). Ninguna oración comparte un tramo de cinco palabras con un ejercicio del curso.",
+ "why": "Corpus del modo en vivo (--claude): pares inventados, ninguno del curso, con lo que el juez lee de cada uno (title, first, second, como los arma DefaultSameExerciseQuestion). Los dos ejercicios de cada par piden la misma respuesta, no son iguales tal cual y el comodín no los resuelve. expected true: el alumno repite la misma operación o decisión pedagógica, la misma respuesta objetivo y la misma función; otro sujeto, tiempo, lugar, número, posesivo o léxico no objetivo son variaciones de superficie. expected false: cambia de verdad la operación, la respuesta objetivo o la función; null: dudoso, se muestra y no cuenta. cosine, cuando está, es el de nomic-embed-text («clustering: » + el ejercicio terminado), para ver dónde caen los candidatos. La ampliación v2 aísla las seis variaciones de superficie, un diálogo con la misma función de acuerdo y nueve controles en los que una respuesta superficial igual exige otra operación o cumple otra función. Ninguna oración comparte un tramo de cinco palabras con un ejercicio del curso ni reproduce ejemplos de la guía.",
  "cases": [
   {
    "caseId": "s01-nombre-por-pronombre",
@@ -183,7 +183,7 @@
   },
   {
    "caseId": "n01-cansado-y-estudiante",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Afirmativas con $be$",
    "first": "I ___ tired. (am · is · are)\nResuelto: I am tired.",
@@ -210,7 +210,7 @@
   },
   {
    "caseId": "n04-museo-y-clase",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Preposiciones de tiempo",
    "first": "The museum opens ___ 10 o'clock. (at · on · in)\nResuelto: The museum opens at 10 o'clock.",
@@ -219,7 +219,7 @@
   },
   {
    "caseId": "n05-cafe-y-agua",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Presente simple: tercera persona",
    "first": "She ___ (drink) coffee every morning.\nResuelto: She drinks coffee every morning.",
@@ -228,7 +228,7 @@
   },
   {
    "caseId": "n06-tele-y-pajaros",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Pasado continuo",
    "first": "I ___ (watch) TV when you called.\nResuelto: I was watching TV when you called.",
@@ -237,7 +237,7 @@
   },
   {
    "caseId": "n07-vecina-y-mecanico",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Pronombres relativos",
    "first": "The woman ___ lives next door is a doctor. (who · which)\nResuelto: The woman who lives next door is a doctor.",
@@ -246,7 +246,7 @@
   },
   {
    "caseId": "n08-banco-y-computadora",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "$There is$ y $there are$",
    "first": "There ___ a bank on this street. (is · are)\nResuelto: There is a bank on this street.",
@@ -255,7 +255,7 @@
   },
   {
    "caseId": "n09-rusia-y-mi-jardin",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Comparativos",
    "first": "Russia is ___ (big) than France.\nResuelto: Russia is bigger than France.",
@@ -264,7 +264,7 @@
   },
   {
    "caseId": "n10-tia-y-museo",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Futuro con $going to$: planes",
    "first": "Rosa ___ (visit) her aunt next weekend.\nResuelto: Rosa is going to visit her aunt next weekend.",
@@ -273,7 +273,7 @@
   },
   {
    "caseId": "n11-cancion-y-carta",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Voz pasiva en pasado",
    "first": "This song ___ (write) by a famous singer.\nResuelto: This song was written by a famous singer.",
@@ -282,7 +282,7 @@
   },
   {
    "caseId": "n12-condicional-cero-y-primero",
-   "expected": false,
+   "expected": null,
    "category": "contraste del tema",
    "title": "Condicional cero y primer condicional",
    "first": "If you ___ (heat) ice, it melts.\nResuelto: If you heat ice, it melts.",
@@ -291,7 +291,7 @@
   },
   {
    "caseId": "n13-se-quieren-y-se-escriben",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "$Each other$ o reflexivos",
    "first": "Mark and Julia love ___ . (each other · themselves)\nResuelto: Mark and Julia love each other.",
@@ -300,7 +300,7 @@
   },
   {
    "caseId": "n14-pizza-y-frances",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Preguntas con $do$",
    "first": "___ you like pizza? (Do · Does · Are)\nResuelto: Do you like pizza?",
@@ -309,7 +309,7 @@
   },
   {
    "caseId": "n15-cuarto-y-hermano",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Adjetivos posesivos",
    "first": "This is ___ (I) bedroom.\nResuelto: This is my bedroom.",
@@ -318,7 +318,7 @@
   },
   {
    "caseId": "n16-hambre-y-tren",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Estilo indirecto",
    "first": "He said he ___ (be) hungry.\nResuelto: He said he was hungry.",
@@ -336,7 +336,7 @@
   },
   {
    "caseId": "n18-actor-y-auto-viejo",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Artículos $a$ y $an$",
    "first": "He is ___ actor. (a · an)\nResuelto: He is an actor.",
@@ -345,7 +345,7 @@
   },
   {
    "caseId": "n19-hambre-y-tarde",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Afirmativas con $be$",
    "first": "We ___ hungry. (am · is · are)\nResuelto: We are hungry.",
@@ -354,7 +354,7 @@
   },
   {
    "caseId": "n20-lisboa-y-medico",
-   "expected": false,
+   "expected": true,
    "category": "otra oración",
    "title": "Pasado simple: verbos irregulares",
    "first": "She ___ (go) to Lisbon in 2019.\nResuelto: She went to Lisbon in 2019.",
@@ -363,7 +363,7 @@
   },
   {
    "caseId": "h01-cansado-y-con-hambre",
-   "expected": false,
+   "expected": true,
    "category": "una palabra de contenido",
    "title": "Afirmativas con $be$",
    "first": "I ___ tired. (am · is · are)\nResuelto: I am tired.",
@@ -372,7 +372,7 @@
   },
   {
    "caseId": "h02-tenis-y-ajedrez",
-   "expected": false,
+   "expected": true,
    "category": "una palabra de contenido",
    "title": "Presente simple: tercera persona",
    "first": "She ___ (play) tennis on Sundays.\nResuelto: She plays tennis on Sundays.",
@@ -381,7 +381,7 @@
   },
   {
    "caseId": "h03-lago-y-montana",
-   "expected": false,
+   "expected": true,
    "category": "una palabra de contenido",
    "title": "Pasado simple: verbos irregulares",
    "first": "We ___ (go) to the lake last summer.\nResuelto: We went to the lake last summer.",
@@ -390,7 +390,7 @@
   },
   {
    "caseId": "h04-nadar-y-bailar",
-   "expected": false,
+   "expected": true,
    "category": "una palabra de contenido",
    "title": "$Can$ para habilidades",
    "first": "___ you swim? (Can · Do · Are)\nResuelto: Can you swim?",
@@ -399,7 +399,7 @@
   },
   {
    "caseId": "h05-libro-y-museo",
-   "expected": false,
+   "expected": true,
    "category": "una palabra de contenido",
    "title": "Comparativos largos",
    "first": "This book is ___ (interesting) than the film.\nResuelto: This book is more interesting than the film.",
@@ -408,7 +408,7 @@
   },
   {
    "caseId": "h06-cena-y-desayuno",
-   "expected": false,
+   "expected": true,
    "category": "una palabra de contenido",
    "title": "Pasado continuo",
    "first": "I ___ (cook) dinner when you called.\nResuelto: I was cooking dinner when you called.",
@@ -417,7 +417,7 @@
   },
   {
    "caseId": "h07-sushi-y-caracoles",
-   "expected": false,
+   "expected": true,
    "category": "una palabra de contenido",
    "title": "Presente perfecto: experiencias",
    "first": "I have never ___ (eat) sushi.\nResuelto: I have never eaten sushi.",
@@ -426,7 +426,7 @@
   },
   {
    "caseId": "h08-llaves-y-gato",
-   "expected": false,
+   "expected": true,
    "category": "una palabra de contenido",
    "title": "Preposiciones de lugar",
    "first": "The keys are ___ the table. (on · in · at)\nResuelto: The keys are on the table.",
@@ -435,7 +435,7 @@
   },
   {
    "caseId": "h09-pollo-y-pescado",
-   "expected": false,
+   "expected": true,
    "category": "una palabra de contenido",
    "title": "Futuro con $will$: decisiones",
    "first": "I ___ (have) the chicken, please.\nResuelto: I'll have the chicken, please.",
@@ -444,7 +444,7 @@
   },
   {
    "caseId": "h10-lunes-y-viernes",
-   "expected": false,
+   "expected": true,
    "category": "una palabra de contenido",
    "title": "Preposiciones de tiempo",
    "first": "My dentist appointment is ___ Monday. (on · in · at)\nResuelto: My dentist appointment is on Monday.",
@@ -489,7 +489,7 @@
   },
   {
    "caseId": "r1x-pregunta-con-otra-idea",
-   "expected": false,
+   "expected": true,
    "category": "contrario: pregunta con otra idea",
    "title": "Presente simple: negativas y preguntas",
    "first": "Does Pedro ___ (enjoy) jazz concerts?\nResuelto: Does Pedro enjoy jazz concerts?",
@@ -498,7 +498,7 @@
   },
   {
    "caseId": "r1x-modal-con-otra-situacion",
-   "expected": false,
+   "expected": true,
    "category": "contrario: modal con otra situación",
    "title": "Modales: $can$ y $must$",
    "first": "You can ___ (leave) your bags at reception.\nResuelto: You can leave your bags at reception.",
@@ -597,7 +597,7 @@
   },
   {
    "caseId": "r3x-oficio-que-todavia-no-es",
-   "expected": false,
+   "expected": true,
    "category": "contrario: cambia lo que dice",
    "title": "Artículos $a$ y $an$",
    "first": "Pablo works as ___ electrician. (a · an)\nResuelto: Pablo works as an electrician.",
@@ -606,7 +606,7 @@
   },
   {
    "caseId": "r3x-otro-hecho-en-el-piso",
-   "expected": false,
+   "expected": true,
    "category": "contrario: cambia lo que dice",
    "title": "Preposiciones de lugar",
    "first": "Our apartment is ___ the seventh floor. (on · in · at)\nResuelto: Our apartment is on the seventh floor.",
@@ -615,7 +615,7 @@
   },
   {
    "caseId": "r3x-desde-cuando-otra-cosa",
-   "expected": false,
+   "expected": true,
    "category": "contrario: cambia lo que dice",
    "title": "Presente perfecto: $for$ y $since$",
    "first": "I have lived in this town ___ 2015. (for · since)\nResuelto: I have lived in this town since 2015.",
@@ -624,7 +624,7 @@
   },
   {
    "caseId": "r3x-hambre-y-frio",
-   "expected": false,
+   "expected": true,
    "category": "contrario: cambia lo que dice",
    "title": "Pasado de $be$",
    "first": "We ___ (be) really hungry after the long walk.\nResuelto: We were really hungry after the long walk.",
@@ -651,7 +651,7 @@
   },
   {
    "caseId": "g-otra-palabra-de-contenido",
-   "expected": false,
+   "expected": true,
    "category": "control: otra palabra de contenido",
    "title": "Afirmativas con $be$",
    "first": "My brother ___ bored. (am · is · are)\nResuelto: My brother is bored.",
@@ -660,7 +660,7 @@
   },
   {
    "caseId": "g-dialogo-con-otra-frase",
-   "expected": false,
+   "expected": true,
    "category": "control: diálogo con otra frase de A",
    "title": "$So$ y $neither$",
    "first": "A: I like horror films. (I) B: ___\nResuelto: A: I like horror films. B: So do I.",
@@ -669,7 +669,7 @@
   },
   {
    "caseId": "d01-opera-los-sabados-o-con-primos",
-   "expected": null,
+   "expected": true,
    "category": "dudoso",
    "title": "Adverbios de frecuencia",
    "first": "We ___ (often / go) to the opera on Saturdays.\nResuelto: We often go to the opera on Saturdays.",
@@ -678,7 +678,7 @@
   },
   {
    "caseId": "d02-japon-o-tokio",
-   "expected": null,
+   "expected": true,
    "category": "dudoso",
    "title": "Presente perfecto: experiencias",
    "first": "Has Tom ever ___ (be) to Japan?\nResuelto: Has Tom ever been to Japan?",
@@ -687,12 +687,476 @@
   },
   {
    "caseId": "d03-farmacia-o-correo",
-   "expected": null,
+   "expected": true,
    "category": "dudoso",
    "title": "Preposiciones de tiempo",
    "first": "The pharmacy opens ___ 9 o'clock. (at · on · in)\nResuelto: The pharmacy opens at 9 o'clock.",
    "second": "The post office opens ___ 9 o'clock. (at · on · in)\nResuelto: The post office opens at 9 o'clock.",
    "cosine": 0.855
+  },
+  {
+   "caseId": "v2-superficie-sujeto",
+   "expected": true,
+   "category": "superficie: sujeto",
+   "title": "Pasado simple: verbos regulares",
+   "first": "The baker ___ (deliver) the bread before noon.\nResuelto: The baker delivered the bread before noon.",
+   "second": "Her assistant ___ (deliver) the bread before noon.\nResuelto: Her assistant delivered the bread before noon."
+  },
+  {
+   "caseId": "v2-superficie-tiempo",
+   "expected": true,
+   "category": "superficie: tiempo",
+   "title": "Pasado simple: verbos irregulares",
+   "first": "Leo ___ (write) the summary last night.\nResuelto: Leo wrote the summary last night.",
+   "second": "Leo ___ (write) the summary yesterday afternoon.\nResuelto: Leo wrote the summary yesterday afternoon."
+  },
+  {
+   "caseId": "v2-superficie-lugar",
+   "expected": true,
+   "category": "superficie: lugar",
+   "title": "Pasado simple: verbos irregulares",
+   "first": "Emma ___ (leave) her umbrella at the library.\nResuelto: Emma left her umbrella at the library.",
+   "second": "Emma ___ (leave) her umbrella at the cafe.\nResuelto: Emma left her umbrella at the cafe."
+  },
+  {
+   "caseId": "v2-superficie-numero",
+   "expected": true,
+   "category": "superficie: número",
+   "title": "Pasado simple: verbos irregulares",
+   "first": "The red balloon ___ (burst) during the party.\nResuelto: The red balloon burst during the party.",
+   "second": "The red balloons ___ (burst) during the party.\nResuelto: The red balloons burst during the party."
+  },
+  {
+   "caseId": "v2-superficie-posesivo",
+   "expected": true,
+   "category": "superficie: posesivo",
+   "title": "Pasado simple: verbos regulares",
+   "first": "I ___ (pack) my lunch before sunrise.\nResuelto: I packed my lunch before sunrise.",
+   "second": "I ___ (pack) his lunch before sunrise.\nResuelto: I packed his lunch before sunrise."
+  },
+  {
+   "caseId": "v2-superficie-lexico",
+   "expected": true,
+   "category": "superficie: léxico no objetivo",
+   "title": "Pasado simple: verbos regulares",
+   "first": "Mia ___ (repair) the lamp after dinner.\nResuelto: Mia repaired the lamp after dinner.",
+   "second": "Mia ___ (repair) the radio after dinner.\nResuelto: Mia repaired the radio after dinner."
+  },
+  {
+   "caseId": "v2-dialogo-mismo-acuerdo",
+   "expected": true,
+   "category": "diálogo: misma función de acuerdo",
+   "title": "$So$ y $neither$ para expresar acuerdo",
+   "first": "A: I enjoy early walks. (I) B: ___\nResuelto: A: I enjoy early walks. B: So do I.",
+   "second": "A: I prefer quiet mornings. (I) B: ___\nResuelto: A: I prefer quiet mornings. B: So do I."
+  },
+  {
+   "caseId": "v2-misma-preposicion-funcion-distinta",
+   "expected": false,
+   "category": "control: misma respuesta, otra función",
+   "title": "Usos de la preposición $in$",
+   "first": "The maps are ___ the cabinet. (in · on · at)\nResuelto: The maps are in the cabinet.",
+   "second": "The festival takes place ___ August. (in · on · at)\nResuelto: The festival takes place in August."
+  },
+  {
+   "caseId": "v2-dialogo-misma-respuesta-funcion-distinta",
+   "expected": false,
+   "category": "diálogo: misma respuesta, otra función",
+   "title": "Funciones de respuestas breves",
+   "first": "A: Could you lend me a pen? B: ___ (Of course · Never)\nResuelto: A: Could you lend me a pen? B: Of course.",
+   "second": "A: Are you certain the parcel is ready? B: ___ (Of course · Never)\nResuelto: A: Are you certain the parcel is ready? B: Of course."
+  },
+  {
+   "caseId": "v2n-before-nombre-vs-clausula",
+   "expected": false,
+   "category": "misma forma, otra función: preposición y subordinante",
+   "title": "$Before$: nombre o cláusula",
+   "first": "We finished the meeting ___ noon. (before · after)\nResuelto: We finished the meeting before noon.",
+   "second": "We finished the meeting ___ the guests arrived. (before · after)\nResuelto: We finished the meeting before the guests arrived."
+  },
+  {
+   "caseId": "v2n-that-demostrativo-vs-complementante",
+   "expected": false,
+   "category": "misma forma, otra función: demostrativo y complementante",
+   "title": "$That$: demostrativo o complementante",
+   "first": "___ notebook over there is mine. (This · That)\nResuelto: That notebook over there is mine.",
+   "second": "I know ___ the notebook is mine. (that · what)\nResuelto: I know that the notebook is mine."
+  },
+  {
+   "caseId": "v2n-to-infinitivo-vs-direccion",
+   "expected": false,
+   "category": "misma forma, otra función: infinitivo y dirección",
+   "title": "$To$: infinitivo o dirección",
+   "first": "We want ___ leave early. (to · for)\nResuelto: We want to leave early.",
+   "second": "We walked ___ the station. (to · at)\nResuelto: We walked to the station."
+  },
+  {
+   "caseId": "v2n-had-lexico-vs-auxiliar",
+   "expected": false,
+   "category": "misma forma, otra función: verbo léxico y auxiliar",
+   "title": "$Had$: verbo léxico o auxiliar",
+   "first": "Mina ___ a red bicycle as a child. (had · has)\nResuelto: Mina had a red bicycle as a child.",
+   "second": "Mina ___ already left when I called. (had · has)\nResuelto: Mina had already left when I called."
+  },
+  {
+   "caseId": "v2n-have-afirmacion-vs-pregunta",
+   "expected": false,
+   "category": "misma forma, otra operación: afirmación y pregunta",
+   "title": "$Have$: afirmación o inversión interrogativa",
+   "first": "They ___ finished the report. (have · has)\nResuelto: They have finished the report.",
+   "second": "___ they finished the report? (Have · Has)\nResuelto: Have they finished the report?"
+  },
+  {
+   "caseId": "v2n-would-condicional-vs-habito-pasado",
+   "expected": false,
+   "category": "misma forma, otra función: hipótesis y hábito pasado",
+   "title": "$Would$: consecuencia o hábito",
+   "first": "If I had more time, I ___ learn Arabic. (would · used to)\nResuelto: If I had more time, I would learn Arabic.",
+   "second": "Every summer, we ___ camp by the river. (would · will)\nResuelto: Every summer, we would camp by the river."
+  },
+  {
+   "caseId": "v2n-will-prediccion-vs-oferta",
+   "expected": false,
+   "category": "misma forma, otra función: predicción y oferta",
+   "title": "$Will$: predicción u oferta",
+   "first": "I think the parcel ___ arrive tomorrow. (will · did)\nResuelto: I think the parcel will arrive tomorrow.",
+   "second": "The box is heavy; I ___ carry it for you. (will · did)\nResuelto: The box is heavy; I will carry it for you."
+  },
+  {
+   "caseId": "v3n-runs-actividad-vs-funcionamiento",
+   "expected": true,
+   "category": "criterio vigente: distinto contenido, misma conjugación y función",
+   "title": "Presente simple: tercera persona",
+   "first": "Nora ___ before breakfast. (run)\nResuelto: Nora runs before breakfast.",
+   "second": "The old engine ___ without electricity. (run)\nResuelto: The old engine runs without electricity."
+  },
+  {
+   "caseId": "v3n-draw-dibujar-vs-atraer",
+   "expected": true,
+   "category": "criterio vigente: distinto contenido, mismo pasado y función",
+   "title": "Pasado simple: verbos irregulares",
+   "first": "Lena ___ a map for the visitors. (draw)\nResuelto: Lena drew a map for the visitors.",
+   "second": "The concert ___ a large crowd. (draw)\nResuelto: The concert drew a large crowd."
+  },
+  {
+   "caseId": "v3n-hold-sostener-vs-celebrar",
+   "expected": true,
+   "category": "criterio vigente: distinto contenido, mismo pasado y función",
+   "title": "Pasado simple: verbos irregulares",
+   "first": "Mara ___ the ladder for me. (hold)\nResuelto: Mara held the ladder for me.",
+   "second": "The club ___ a meeting on Friday. (hold)\nResuelto: The club held a meeting on Friday."
+  },
+  {
+   "caseId": "v3n-take-foto-vs-tiempo",
+   "expected": true,
+   "category": "criterio vigente: distinto contenido, misma conjugación y función",
+   "title": "Presente simple: tercera persona",
+   "first": "He ___ a photo of the bridge. (take)\nResuelto: He takes a photo of the bridge.",
+   "second": "The journey ___ three hours. (take)\nResuelto: The journey takes three hours."
+  },
+  {
+   "caseId": "v3s-runs-mismo-sentido-slots",
+   "expected": true,
+   "category": "control: mismo sentido con slots distintos",
+   "title": "Presente simple: tercera persona",
+   "first": "Nora ___ before breakfast. (run)\nResuelto: Nora runs before breakfast.",
+   "second": "Her brother ___ after school. (run)\nResuelto: Her brother runs after school."
+  },
+  {
+   "caseId": "v3s-draw-mismo-sentido-slots",
+   "expected": true,
+   "category": "control: mismo sentido con slots distintos",
+   "title": "Pasado simple: verbos irregulares",
+   "first": "Lena ___ a map for the visitors. (draw)\nResuelto: Lena drew a map for the visitors.",
+   "second": "Her cousin ___ a diagram for the class. (draw)\nResuelto: Her cousin drew a diagram for the class."
+  },
+  {
+   "caseId": "v3s-held-mismo-sentido-parafrasis",
+   "expected": true,
+   "category": "control: mismo sentido en paráfrasis",
+   "title": "Pasado simple: verbos irregulares",
+   "first": "Mara ___ the ladder so it would not move. (hold)\nResuelto: Mara held the ladder so it would not move.",
+   "second": "To keep the ladder steady, Mara ___ it. (hold)\nResuelto: To keep the ladder steady, Mara held it."
+  },
+  {
+   "caseId": "v3s-takes-mismo-sentido-parafrasis",
+   "expected": true,
+   "category": "control: mismo sentido en paráfrasis",
+   "title": "Presente simple: tercera persona",
+   "first": "He ___ a photo of every bridge. (take)\nResuelto: He takes a photo of every bridge.",
+   "second": "For each bridge, he ___ one photograph. (take)\nResuelto: For each bridge, he takes one photograph."
+  },
+  {
+   "caseId": "v4s-copula-complementos-distintos",
+   "expected": true,
+   "category": "control: distinto contenido, misma cópula",
+   "title": "Afirmativas con $be$",
+   "first": "I ___ hungry after the walk. (am · are · is)\nResuelto: I am hungry after the walk.",
+   "second": "I ___ ready for the lesson. (am · are · is)\nResuelto: I am ready for the lesson."
+  },
+  {
+   "caseId": "v4s-did-elipsis-acciones-distintas",
+   "expected": true,
+   "category": "control: distinto predicado, misma sustitución verbal",
+   "title": "$So$ y auxiliares para expresar acuerdo",
+   "first": "Lena finished early, and Tom ___ too. (did · was)\nResuelto: Lena finished early, and Tom did too.",
+   "second": "Mara called her uncle, and Leo ___ too. (did · was)\nResuelto: Mara called her uncle, and Leo did too."
+  },
+  {
+   "caseId": "v4s-can-capacidad-actividades-distintas",
+   "expected": true,
+   "category": "control: distinta actividad, mismo sentido modal",
+   "title": "$Can$ para expresar habilidad",
+   "first": "Nina ___ skate very well. (can · must)\nResuelto: Nina can skate very well.",
+   "second": "Leo ___ cook for twelve people. (can · must)\nResuelto: Leo can cook for twelve people."
+  },
+  {
+   "caseId": "v4s-at-lugares-y-predicados-distintos",
+   "expected": true,
+   "category": "control: distinto contenido, misma relación local",
+   "title": "$At$ para ubicar en un punto",
+   "first": "They meet ___ the station. (at · in)\nResuelto: They meet at the station.",
+   "second": "We waited ___ the gate. (at · in)\nResuelto: We waited at the gate."
+  },
+  {
+   "caseId": "v4n-can-capacidad-vs-permiso",
+   "expected": false,
+   "category": "control: misma forma, otro sentido modal",
+   "title": "Usos de $can$",
+   "first": "Rita ___ solve that puzzle. (can · must)\nResuelto: Rita can solve that puzzle.",
+   "second": "___ I open the window? (Can · Must)\nResuelto: Can I open the window?"
+  },
+  {
+   "caseId": "v4n-be-copula-vs-auxiliar",
+   "expected": false,
+   "category": "control: misma forma, otra función gramatical",
+   "title": "Usos de $be$",
+   "first": "I ___ ready for the lesson. (am · have)\nResuelto: I am ready for the lesson.",
+   "second": "I ___ working on the lesson. (am · have)\nResuelto: I am working on the lesson."
+  },
+  {
+   "caseId": "v5s-have-auxiliar-slots-distintos",
+   "expected": true,
+   "category": "alineación local: mismo auxiliar, otros slots",
+   "title": "Presente perfecto con $have$",
+   "first": "They ___ finished the report. (have · has)\nResuelto: They have finished the report.",
+   "second": "We ___ arrived at the station. (have · has)\nResuelto: We have arrived at the station."
+  },
+  {
+   "caseId": "v5s-will-predicciones-distintas",
+   "expected": true,
+   "category": "alineación local: mismo sentido modal, otros slots",
+   "title": "$Will$ para predicciones",
+   "first": "The parcel ___ arrive tomorrow. (will · did)\nResuelto: The parcel will arrive tomorrow.",
+   "second": "The temperature ___ fall tonight. (will · did)\nResuelto: The temperature will fall tonight."
+  },
+  {
+   "caseId": "v5s-that-demostrativos-distintos",
+   "expected": true,
+   "category": "alineación local: misma función, otros slots",
+   "title": "$That$ como demostrativo",
+   "first": "___ notebook over there is mine. (This · That)\nResuelto: That notebook over there is mine.",
+   "second": "___ building across the square is old. (This · That)\nResuelto: That building across the square is old."
+  },
+  {
+   "caseId": "v5s-before-preposiciones-distintas",
+   "expected": true,
+   "category": "alineación local: misma relación, otros slots",
+   "title": "$Before$ como preposición",
+   "first": "We finished the meeting ___ noon. (before · after)\nResuelto: We finished the meeting before noon.",
+   "second": "She mailed the letter ___ lunch. (before · after)\nResuelto: She mailed the letter before lunch."
+  },
+  {
+   "caseId": "v5n-bank-sentidos-distintos",
+   "expected": false,
+   "category": "control de alineación: misma forma, otro sentido",
+   "title": "Sentidos de palabras frecuentes",
+   "first": "We sat on the river ___. (bank · shore)\nResuelto: We sat on the river bank.",
+   "second": "She deposited the money at the ___. (bank · office)\nResuelto: She deposited the money at the bank."
+  },
+  {
+   "caseId": "v6s-pronombres-equivalentes",
+   "expected": true,
+   "category": "respuesta normalizada: otro pronombre",
+   "title": "Pronombres de sujeto",
+   "first": "She / her ___ stayed outside.\nResuelto: She stayed outside.",
+   "second": "We / us ___ stayed inside.\nResuelto: We stayed inside."
+  },
+  {
+   "caseId": "v6s-question-tags-equivalentes",
+   "expected": true,
+   "category": "respuesta normalizada: otra persona",
+   "title": "Question tags",
+   "first": "You're arriving soon, ___?\nResuelto: You're arriving soon, aren't you?",
+   "second": "We're arriving later, ___?\nResuelto: We're arriving later, aren't we?"
+  },
+  {
+   "caseId": "v6s-demostrativo-numero-equivalente",
+   "expected": true,
+   "category": "respuesta normalizada: otro número",
+   "title": "Demostrativos cercanos",
+   "first": "___ cup here is clean. (this · that)\nResuelto: This cup here is clean.",
+   "second": "___ plates here are clean. (these · those)\nResuelto: These plates here are clean."
+  },
+  {
+   "caseId": "v6s-contenido-distinto-misma-funcion",
+   "expected": true,
+   "category": "contenido distinto: misma decisión y función",
+   "title": "$Neither$ para expresar acuerdo",
+   "first": "A: Nora isn't repairing the chair. (I) B: ___\nResuelto: A: Nora isn't repairing the chair. B: Neither am I.",
+   "second": "A: Leo isn't preparing dinner. (I) B: ___\nResuelto: A: Leo isn't preparing dinner. B: Neither am I."
+  },
+  {
+   "caseId": "v6n-indefinido-sujeto-vs-objeto",
+   "expected": false,
+   "category": "misma familia de respuesta, otra función",
+   "title": "Pronombres indefinidos",
+   "first": "___ opened the window. (Nobody · Anybody)\nResuelto: Nobody opened the window.",
+   "second": "We invited ___. (nobody · anybody)\nResuelto: We invited nobody."
+  },
+  {
+   "caseId": "v6n-gerundio-sujeto-vs-preposicion",
+   "expected": false,
+   "category": "misma forma verbal, otra función",
+   "title": "Funciones del gerundio",
+   "first": "___ every day is useful. (read)\nResuelto: Reading every day is useful.",
+   "second": "She is interested in ___ every day. (read)\nResuelto: She is interested in reading every day."
+  },
+  {
+   "caseId": "v6n-adjetivo-atributivo-vs-predicativo",
+   "expected": false,
+   "category": "misma cualidad, otra función",
+   "title": "Posición del adjetivo",
+   "first": "The bird seems ___. (frightened)\nResuelto: The bird seems frightened.",
+   "second": "The ___ bird flew away. (frightened)\nResuelto: The frightened bird flew away."
+  },
+  {
+   "caseId": "v7s-omitir-reflexivo-con-distractores-distintos",
+   "expected": true,
+   "category": "respuesta seleccionada: omitir el distractor",
+   "title": "¿Hace falta un pronombre reflexivo?",
+   "first": "Nora dressed ___ (herself · -).\nResuelto: Nora dressed -.",
+   "second": "I put on my jacket ___ (myself · -).\nResuelto: I put on my jacket -."
+  },
+  {
+   "caseId": "v7s-omitir-articulo-con-alternativas-distintas",
+   "expected": true,
+   "category": "respuesta seleccionada: dos omisiones",
+   "title": "Artículos ante destinos especiales",
+   "first": "We go ___ home after lunch. (the · -)\nResuelto: We go - home after lunch.",
+   "second": "They arrive ___ home before dinner. (a · -)\nResuelto: They arrive - home before dinner."
+  },
+  {
+   "caseId": "v7n-reflexivo-objeto-vs-enfasis",
+   "expected": false,
+   "category": "respuesta seleccionada: misma forma, otra función",
+   "title": "Funciones del pronombre reflexivo",
+   "first": "Mara spoke to ___ in the mirror. (herself · -)\nResuelto: Mara spoke to herself in the mirror.",
+   "second": "Mara wrote the note ___ without help. (herself · -)\nResuelto: Mara wrote the note herself without help."
+  },
+  {
+   "caseId": "v8s-omision-reflexivo-parafrasis",
+   "expected": true,
+   "category": "regresión V8: se compara la omisión, no el distractor",
+   "title": "¿Hace falta escribir un pronombre reflexivo?",
+   "first": "Lena washed ___ before breakfast. (herself · -)\nResuelto: Lena washed - before breakfast.",
+   "second": "Omar put on his boots ___ before leaving. (himself · -)\nResuelto: Omar put on his boots - before leaving."
+  },
+  {
+   "caseId": "v8s-dos-marcadores-cerrados",
+   "expected": true,
+   "category": "regresión V8: dos formas de tiempo cerrado",
+   "title": "Pasado simple o presente perfecto según el marcador temporal",
+   "first": "Nadia ___ (send) the parcel early yesterday.\nResuelto: Nadia sent the parcel early yesterday.",
+   "second": "Luis ___ (send) the parcel at 7 pm.\nResuelto: Luis sent the parcel at 7 pm."
+  },
+  {
+   "caseId": "v8s-categorias-agrupadas-por-la-regla",
+   "expected": true,
+   "category": "regresión V8: categorías distintas con una sola regla",
+   "title": "Artículos con océanos y ríos: ambos llevan $the$",
+   "first": "They crossed ___ Atlantic Ocean. (- · the)\nResuelto: They crossed the Atlantic Ocean.",
+   "second": "They photographed ___ Amazon River. (- · the)\nResuelto: They photographed the Amazon River."
+  },
+  {
+   "caseId": "v9s-respuesta-corta-copula-vs-auxiliar",
+   "expected": true,
+   "category": "regresión V9: misma respuesta corta, distinto papel de be en la pregunta",
+   "title": "Respuestas cortas con $be$",
+   "first": "A: Am I at the correct station? B: No, you ___.\nRespuesta seleccionada: aren't\nResuelto: A: Am I at the correct station? B: No, you aren't.",
+   "second": "A: Are they preparing the room? B: No, they ___.\nRespuesta seleccionada: aren't\nResuelto: A: Are they preparing the room? B: No, they aren't."
+  },
+  {
+   "caseId": "v9s-omision-con-resuelto-ambiguo",
+   "expected": true,
+   "category": "regresión V9: la respuesta seleccionada domina el distractor literal",
+   "title": "¿Hace falta el reflexivo?",
+   "first": "She dressed ___ herself / -. (- · herself)\nRespuesta seleccionada: -\nResuelto: She dressed herself / -.",
+   "second": "I put on my coat ___ myself / -. (- · myself)\nRespuesta seleccionada: -\nResuelto: I put on my coat myself / -."
+  },
+  {
+   "caseId": "v9n-cuantificador-frase-sujeto-vs-objeto",
+   "expected": false,
+   "category": "regresión V9: la frase completada cambia de función",
+   "title": "Cuantificadores: con o sin $of$",
+   "first": "He drank ___ it. (a little · a little of)\nRespuesta seleccionada: a little of\nResuelto: He drank a little of it.",
+   "second": "___ the juice fell. (a little · a little of)\nRespuesta seleccionada: a little of\nResuelto: A little of the juice fell."
+  },
+  {
+   "caseId": "v10s-permiso-can-vs-could",
+   "expected": true,
+   "category": "regresión V10: misma función de permiso, modal superficial",
+   "title": "Can y could: pedidos y respuestas cortas",
+   "first": "A: Can I wait here? B: Yes, ___.\nRespuesta seleccionada: you can\nResuelto: A: Can I wait here? B: Yes, you can.",
+   "second": "A: Could I wait here? B: Yes, ___.\nRespuesta seleccionada: you can\nResuelto: A: Could I wait here? B: Yes, you can."
+  },
+  {
+   "caseId": "v10n-peticion-vs-permiso-afirmativo",
+   "expected": false,
+   "category": "regresión V10: aceptar petición frente a conceder permiso",
+   "title": "Can y could: pedidos y respuestas cortas",
+   "first": "A: Could you carry this box? B: Yes, ___.\nRespuesta seleccionada: I can\nResuelto: A: Could you carry this box? B: Yes, I can.",
+   "second": "A: Could I leave this box here? B: Yes, ___.\nRespuesta seleccionada: you can\nResuelto: A: Could I leave this box here? B: Yes, you can."
+  },
+  {
+   "caseId": "v10n-capacidad-vs-permiso-afirmativo",
+   "expected": false,
+   "category": "regresión V10: capacidad frente a permiso",
+   "title": "Can y could: pedidos y respuestas cortas",
+   "first": "A: Can you work tonight? B: Yes, ___.\nRespuesta seleccionada: I can\nResuelto: A: Can you work tonight? B: Yes, I can.",
+   "second": "A: Can I use this desk tonight? B: Yes, ___.\nRespuesta seleccionada: you can\nResuelto: A: Can I use this desk tonight? B: Yes, you can."
+  },
+  {
+   "caseId": "v10n-capacidad-vs-permiso-negativo",
+   "expected": false,
+   "category": "regresión V10: incapacidad frente a denegación de permiso",
+   "title": "Can y could: pedidos y respuestas cortas",
+   "first": "A: Can you drive tonight? B: No, ___.\nRespuesta seleccionada: I can't\nResuelto: A: Can you drive tonight? B: No, I can't.",
+   "second": "A: Can I drive tonight? B: No, ___.\nRespuesta seleccionada: you can't\nResuelto: A: Can I drive tonight? B: No, you can't."
+  },
+  {
+   "caseId": "v10n-peticion-vs-permiso-negativo",
+   "expected": false,
+   "category": "regresión V10: rechazar petición frente a negar permiso",
+   "title": "Can y could: pedidos y respuestas cortas",
+   "first": "A: Could you lend me the key? B: No, ___.\nRespuesta seleccionada: I can't\nResuelto: A: Could you lend me the key? B: No, I can't.",
+   "second": "A: Could I borrow the key? B: No, ___.\nRespuesta seleccionada: you can't\nResuelto: A: Could I borrow the key? B: No, you can't."
+  },
+  {
+   "caseId": "v11n-confirmar-futuro-vs-aceptar-peticion",
+   "expected": false,
+   "category": "regresión V11: confirmación futura frente a aceptación de petición",
+   "title": "Respuestas cortas con $will$",
+   "first": "A: Will they order dinner here? B: Yes, they ___.\nRespuesta seleccionada: will\nResuelto: A: Will they order dinner here? B: Yes, they will.",
+   "second": "A: Will you carry my bag? B: Yes, I ___.\nRespuesta seleccionada: will\nResuelto: A: Will you carry my bag? B: Yes, I will."
+  },
+  {
+   "caseId": "v11s-dos-confirmaciones-futuras",
+   "expected": true,
+   "category": "regresión V11: misma función informativa futura",
+   "title": "Respuestas cortas con $will$",
+   "first": "A: Will they order dinner here? B: Yes, they ___.\nRespuesta seleccionada: will\nResuelto: A: Will they order dinner here? B: Yes, they will.",
+   "second": "A: Will the guests arrive tonight? B: Yes, they ___.\nRespuesta seleccionada: will\nResuelto: A: Will the guests arrive tonight? B: Yes, they will."
   }
  ]
 }

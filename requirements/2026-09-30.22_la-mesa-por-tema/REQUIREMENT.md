@@ -51,7 +51,8 @@ consigna.
 > Una mesa toma todas las tareas de resolución *mesa* de un tema que están en la tanda. Invariantes:
 > 1. por cada ejercicio con tareas produce candidatos del ejercicio entero, y cada candidato intenta resolver todas las
 >    tareas de ese ejercicio a la vez;
-> 2. una tarea del tema, como la de la miniteoría, se trabaja una sola vez ([F-TAREA-R003](#F-TAREA-R003));
+> 2. una tarea de miniteoría pertenece al quiz que la originó y se trabaja con ese quiz, aunque otro muestre el mismo
+>    texto ([F-TAREA-R003](#F-TAREA-R003));
 > 3. un tema nunca tiene dos mesas a la vez, y cada mesa ve el tema con lo que ya aceptó en esa tanda.
 
 Tres tareas de un ejercicio —pista, una sola respuesta y traducción, como el 11 de *Afirmativas regulares*— son un solo
@@ -190,17 +191,17 @@ Cambia [F-OPMUL-R006](#F-OPMUL-R006) dentro de las tandas, como decidió José e
 rearma lo que queda. Fuera de las tandas, F-OPMUL-R006 sigue valiendo.
 
 <a id="F-MESA-R012"></a>
-### Rule[F-MESA-R012] - La miniteoría se reescribe una vez, en los ejercicios que la muestran
+### Rule[F-MESA-R012] - La miniteoría se reescribe sólo en el quiz cuyo caso corrige
 **Severity**: major | **Validation**: VALIDATED
 
-> La tarea de una miniteoría produce un solo candidato: el texto nuevo, que llega a todos los ejercicios del tema que
-> muestran ese texto, y a ningún otro. Lo juzga el juez de miniteoría sobre el tema como quedaría. La mesa la resuelve
-> antes que los candidatos de los ejercicios del tema, que ya la ven cambiada.
+> La tarea de miniteoría produce una reescritura específica para el caso del quiz que la originó. El candidato cambia la
+> miniteoría de ese quiz y ninguna de otro quiz, aunque compartan el mismo texto. Si el quiz tiene además otras tareas,
+> el candidato puede resolverlas juntas como cualquier ejercicio de [F-MESA-R001](#F-MESA-R001). El juez de miniteoría
+> evalúa la tarjeta nueva contra ese quiz dentro del contexto actualizado del tema.
 
-Mantiene [F-MINIT-R007](#F-MINIT-R007). Es una segunda excepción a [F-RPRES-R003](#F-RPRES-R003), después de la del título
-([F-RPRES-R004](#F-RPRES-R004)), que José aceptó el 30/9 ([DOUBT-MINITEORIA-ALCANCE](#DOUBT-MINITEORIA-ALCANCE)). Ir
-primero es lo que pide [F-MESA-R001](#F-MESA-R001): cada candidato del tema ve lo ya aceptado, y el juez de miniteoría lee
-los ejercicios del tema con la miniteoría nueva.
+Mantiene [F-MINIT-R007](#F-MINIT-R007) y deja de ser una excepción a la preservación por afectar varios ejercicios: lo
+no declarado en los demás quizzes se conserva ([F-RPRES-R003](#F-RPRES-R003)). Reemplaza la decisión del 30/9 por la
+aclaración de José del 5/10 ([DOUBT-MINITEORIA-ALCANCE](#DOUBT-MINITEORIA-ALCANCE)).
 
 <a id="F-MESA-R013"></a>
 ### Rule[F-MESA-R013] - Refutan los jueces que ya buscan un contraejemplo
@@ -372,15 +373,16 @@ encargo: el tema «Contracciones» de A1 pasa a opción múltiple con contraccio
 
 <a id="DOUBT-MINITEORIA-ALCANCE"></a>
 ### Doubt[DOUBT-MINITEORIA-ALCANCE] - ¿La reescritura de una miniteoría puede tocar varios ejercicios a la vez?
-**Status**: RESOLVED (2026-09-30)
+**Status**: RESOLVED (2026-10-05)
 
-- [x] Opción A (recomendada): sí, a todos los del tema que muestran ese texto y a ninguno más: una segunda excepción a
+- [ ] Opción A: sí, a todos los del tema que muestran ese texto y a ninguno más: una segunda excepción a
   [F-RPRES-R003](#F-RPRES-R003), como la del título.
-- [ ] Opción B: no; una propuesta por ejercicio, con el mismo texto repetido.
+- [x] Opción B: no; una propuesta por quiz, aunque el mismo texto esté repetido.
 - [ ] Opción C: las miniteorías quedan fuera de las tandas.
 
-**Answer**: **Opción A** (José, 30/9): la miniteoría se reescribe una vez para todos los ejercicios que la muestran; es
-la segunda excepción a F-RPRES-R003 ([F-MESA-R012](#F-MESA-R012)).
+**Answer**: **Opción B** (José, 5/10): «miniteoría es POR QUIZ» y debe ser la corrección específica de su caso. La
+reescritura sólo toca ese quiz; compartir texto no agrupa candidatos ni propaga el cambio ([F-MESA-R012](#F-MESA-R012)).
+Esta decisión reemplaza la opción A tomada el 30/9 con una comprensión distinta de la granularidad.
 
 <a id="DOUBT-QUIEN-REFUTA"></a>
 ### Doubt[DOUBT-QUIEN-REFUTA] - ¿El que refuta es un agente aparte?

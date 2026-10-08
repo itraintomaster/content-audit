@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Salvar la mejora y separar las excepciones · ContentAudit</title>
+<style>
+:root{--bg:#f7f4ef;--paper:#fffdf9;--ink:#211f1b;--muted:#706a61;--line:#ddd6cb;--accent:#b4531f;--accent-bg:#fbe9dc;--good:#26704c;--good-bg:#e5f3e9;--warn:#90610e;--warn-bg:#fbefd3;--bad:#a53b34;--bad-bg:#fae8e6;--blue:#2d6595;--blue-bg:#e6f0f8;--shadow:0 22px 64px -46px #35251d}
+@media(prefers-color-scheme:dark){:root{--bg:#12110f;--paper:#1b1916;--ink:#f3eee7;--muted:#b5aca1;--line:#3a352f;--accent:#f08a5d;--accent-bg:#322017;--good:#7ed0a4;--good-bg:#172a20;--warn:#efc46e;--warn-bg:#2d2514;--bad:#ef9189;--bad-bg:#301a18;--blue:#8fc1ef;--blue-bg:#172635;--shadow:0 22px 64px -38px #000}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.48 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",sans-serif}.wrap{max-width:1040px;margin:auto;padding:40px 24px 76px}.meta{font:800 11px ui-monospace,monospace;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}header{display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:end;margin:17px 0 24px}h1{font-size:clamp(42px,6.4vw,70px);line-height:.96;letter-spacing:-.055em;margin:0 0 15px;max-width:12ch}.sub{font-size:clamp(18px,2vw,22px);color:var(--muted);max-width:55ch;margin:0}.answer{padding:22px;border:1px solid color-mix(in srgb,var(--good) 38%,var(--line));border-radius:22px;background:var(--good-bg);box-shadow:var(--shadow)}.answer small,.eyebrow{font:800 10px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em}.answer small{color:var(--good)}.answer strong{display:block;font-size:30px;line-height:1.08;margin:12px 0 8px}.answer p{margin:0;color:var(--muted)}.lede{padding:14px 17px;margin:0 0 42px;border-left:3px solid var(--accent);border-radius:12px;background:var(--paper);box-shadow:var(--shadow)}.lede p{margin:0;font-size:17px}section{margin:0 0 48px}h2{font-size:27px;letter-spacing:-.04em;margin:0 0 16px}.pie{font-size:13px;color:var(--muted);margin:11px 0 0;max-width:76ch}.kpis{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}.kpi{padding:19px;border-right:1px solid var(--line)}.kpi:last-child{border:0}.kpi strong{display:block;font-size:32px;letter-spacing:-.04em}.kpi span{font-size:12px;color:var(--muted)}.kpi.good strong{color:var(--good)}.kpi.bad strong{color:var(--bad)}.bars{display:grid;gap:10px}.bar{display:grid;grid-template-columns:210px 1fr 110px;gap:12px;align-items:center}.bar label{font-weight:700}.track{height:12px;background:var(--line);border-radius:99px;position:relative;overflow:hidden}.fill{height:100%;width:var(--w);background:var(--good);border-radius:inherit}.bar b{text-align:right;font:800 13px ui-monospace,monospace;color:var(--good)}.issues{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.issue{padding:19px;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.issue strong{font-size:36px;letter-spacing:-.05em;color:var(--bad)}.issue h3{margin:2px 0 6px;font-size:17px}.issue p{font-size:12.5px;color:var(--muted);margin:0}.table{overflow:auto;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:var(--shadow)}table{width:100%;border-collapse:collapse;min-width:690px}th{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:right;padding:11px 14px;border-bottom:1px solid var(--line)}th:first-child,td:first-child{text-align:left}td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}tr:last-child td{border:0}.flat{color:var(--muted)}.tiny{color:var(--warn);font-weight:800}.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.opt{padding:18px;background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.opt.rec{border:2px solid var(--accent);background:var(--accent-bg)}.opt small{font:800 10px ui-monospace,monospace;color:var(--muted);text-transform:uppercase}.opt h3{margin:9px 0 7px;font-size:18px}.opt p{font-size:13px;color:var(--muted);margin:0}.flow{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--paper)}.step{padding:18px;border-right:1px solid var(--line)}.step:last-child{border:0;background:var(--good-bg)}.num{width:27px;height:27px;border-radius:8px;display:grid;place-items:center;background:var(--accent-bg);color:var(--accent);font-weight:850}.step b{display:block;font-size:14px;margin:9px 0 5px}.step p{font-size:12px;color:var(--muted);margin:0}.foot{border-top:1px solid var(--line);padding-top:16px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}@media(max-width:760px){header{grid-template-columns:1fr}.kpis{grid-template-columns:1fr 1fr}.kpi:nth-child(2){border-right:0}.kpi:nth-child(-n+2){border-bottom:1px solid var(--line)}.bar{grid-template-columns:130px 1fr 80px}.issues,.opts,.flow{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body><main class="wrap">
+  <span class="meta">Brief 040 · corrección A1 · 7 octubre 2026</span>
+  <header><div><h1>Salvar la mejora. Separar las excepciones.</h1><p class="sub">Sí hay cambios reales: 719 propuestas se aplican en memoria. La mayoría mejora el curso; todavía no se publicó ninguna.</p></div><aside class="answer"><small>Recomendación</small><strong>Cerrar por excepción</strong><p>Conservar la mejora, devolver 43 casos y tratar aparte los pisos heredados.</p></aside></header>
+  <div class="lede"><p><strong>No conviene aprobar todo ni empezar de cero.</strong> El lote arregla mucho más de lo que rompe, y las excepciones ya están identificadas.</p></div>
+
+  <section><h2>El balance general es ampliamente positivo</h2><div class="kpis">
+    <div class="kpi"><strong>719</strong><span>propuestas proyectadas</span></div>
+    <div class="kpi good"><strong>1.040</strong><span>hallazgos que desaparecen</span></div>
+    <div class="kpi bad"><strong>43</strong><span>cambios que crean un problema</span></div>
+    <div class="kpi good"><strong>−469</strong><span>quizzes con algún error</span></div>
+  </div><p class="pie">“Después” es una simulación completa del curso. Explica por qué las cifras cambian aun cuando producción sigue intacta.</p></section>
+
+  <section><h2>Las mejoras grandes no son marginales</h2><div class="bars">
+    <div class="bar"><label>Respuesta válida</label><div class="track"><div class="fill" style="--w:92%"></div></div><b>554 → 43</b></div>
+    <div class="bar"><label>Miniteoría</label><div class="track"><div class="fill" style="--w:19%"></div></div><b>1.549 → 1.252</b></div>
+    <div class="bar"><label>Opción múltiple</label><div class="track"><div class="fill" style="--w:34%"></div></div><b>218 → 143</b></div>
+    <div class="bar"><label>Traducción</label><div class="track"><div class="fill" style="--w:33%"></div></div><b>195 → 130</b></div>
+  </div><p class="pie">La meta “cero errores” sigue roja porque es el destino ideal; no significa que una fila que bajó cientos haya empeorado.</p></section>
+
+  <section><h2>Los 43 rechazos ya tienen explicación</h2><div class="issues kpis">
+    <article class="issue kpi"><strong>34</strong><h3>Miniteoría insuficiente</h3><p>La corrección quedó demasiado corta para el caso concreto.</p></article>
+    <article class="issue kpi"><strong>5</strong><h3>Miniteoría mezclada</h3><p>Conservó contenido de otro subtema.</p></article>
+    <article class="issue kpi"><strong>4</strong><h3>Respuesta alternativa</h3><p>El cambio abrió otra respuesta válida.</p></article>
+  </div><p class="pie">Son cambios específicos para devolver a la mesa, no una razón para descartar las otras 676 propuestas.</p></section>
+
+  <section><h2>Tres pisos rojos vienen de antes</h2><div class="table"><table>
+    <thead><tr><th>Piso del curso</th><th>Línea base</th><th>Inicio tanda</th><th>Después</th><th>Efecto actual</th></tr></thead>
+    <tbody>
+      <tr><td>Largo de oraciones</td><td>94,20%</td><td>86,45%</td><td>86,41%</td><td class="tiny">−0,04</td></tr>
+      <tr><td>Largo de títulos</td><td>100%</td><td>98,78%</td><td>98,78%</td><td class="flat">sin cambio</td></tr>
+      <tr><td>Frecuencia COCA</td><td>100%</td><td>72,54%</td><td>72,54%</td><td class="flat">sin cambio</td></tr>
+      <tr><td>Recurrencia de lemas</td><td>45%</td><td>9%</td><td>9%</td><td class="flat">sin cambio</td></tr>
+    </tbody>
+  </table></div><p class="pie">El “no pasa” mezcla deuda previa con el lote actual. Sólo el largo de oración empeora aquí, y apenas cuatro centésimas.</p></section>
+
+  <section><h2>No conviene aprobar todo ni empezar de cero</h2><div class="opts">
+    <article class="opt"><small>Opción A</small><h3>Publicar todo</h3><p>Conserva mejoras, pero deja entrar 43 regresiones conocidas.</p></article>
+    <article class="opt rec"><small>Recomendada</small><h3>Depurar el lote</h3><p>Devuelve 43, atribuye sólo el pequeño retroceso nuevo y conserva el resto.</p></article>
+    <article class="opt"><small>Opción C</small><h3>Descartar todo</h3><p>Pierde 1.040 correcciones ya comprobadas.</p></article>
+  </div></section>
+
+  <section><h2>Qué haría ahora</h2><div class="flow">
+    <article class="step"><div class="num">1</div><b>Devolver 43</b><p>Con el motivo exacto de cada juez.</p></article>
+    <article class="step"><div class="num">2</div><b>Comparar 676</b><p>Confirmar cuánto beneficio queda.</p></article>
+    <article class="step"><div class="num">3</div><b>Aislar 0,04</b><p>Revisar sólo las 45 oraciones cambiadas.</p></article>
+    <article class="step"><div class="num">4</div><b>Resolver la deuda</b><p>Reparar o rebasar los tres pisos heredados.</p></article>
+  </div><p class="pie">No hace falta otra auditoría paga. El siguiente trabajo es local, selectivo y reversible.</p></section>
+
+  <div class="foot"><span>Fuentes: comparación A1 · V11 y 719 propuestas pendientes</span><span>Brief 040 · recomendación; sin publicación ni consultas a modelos</span></div>
+</main></body>
+</html>

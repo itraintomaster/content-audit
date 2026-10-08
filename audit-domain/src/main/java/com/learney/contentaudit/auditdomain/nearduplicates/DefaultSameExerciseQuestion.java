@@ -2,6 +2,7 @@ package com.learney.contentaudit.auditdomain.nearduplicates;
 
 import com.learney.contentaudit.auditdomain.AuditableQuiz;
 import com.learney.contentaudit.auditdomain.QuizStudentViewRenderer;
+import com.learney.contentaudit.auditdomain.studentview.StudentGapView;
 import com.learney.contentaudit.coursedomain.MultipleChoiceItemEntity;
 import com.learney.contentaudit.evaluationledgerdomain.EvaluationSubject;
 import java.util.ArrayList;
@@ -40,6 +41,8 @@ class DefaultSameExerciseQuestion implements SameExerciseQuestion {
 
     static final String SOLVED = "Resuelto: ";
 
+    static final String SELECTED = "Respuesta seleccionada: ";
+
     private final QuizStudentViewRenderer studentViewRenderer;
 
     public DefaultSameExerciseQuestion(QuizStudentViewRenderer studentViewRenderer) {
@@ -75,7 +78,25 @@ class DefaultSameExerciseQuestion implements SameExerciseQuestion {
             return "";
         }
         String solved = DefaultNearDuplicateRules.finishedExercise(studentViewRenderer, quiz);
-        return asSeen(studentViewRenderer, quiz) + (solved != null ? "\n" + SOLVED + solved : "");
+        String selected = selectedAnswers(quiz);
+        return asSeen(studentViewRenderer, quiz)
+                + (!selected.isEmpty() ? "\n" + SELECTED + selected : "")
+                + (solved != null ? "\n" + SOLVED + solved : "");
+    }
+
+    /** Makes the actual answer explicit even when a literal option is also embedded in the text. */
+    private String selectedAnswers(AuditableQuiz quiz) {
+        List<StudentGapView> gaps = studentViewRenderer.render(quiz).getGaps();
+        if (gaps == null || gaps.isEmpty()) {
+            return "";
+        }
+        List<String> selected = new ArrayList<>();
+        for (StudentGapView gap : gaps) {
+            if (gap != null && gap.getFirstAnswer() != null) {
+                selected.add(gap.getFirstAnswer());
+            }
+        }
+        return String.join(" · ", selected);
     }
 
     /**

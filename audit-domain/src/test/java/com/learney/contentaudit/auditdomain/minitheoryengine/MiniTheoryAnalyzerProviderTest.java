@@ -71,7 +71,7 @@ public class MiniTheoryAnalyzerProviderTest {
     }
 
     @Test
-    @DisplayName("should publish a card with family errors, paid model cost, the quiz as evaluated level and the rules false-rule, overstated-rule, contradicting-exercise and uncovered-exercise")
+    @DisplayName("should publish the four quiz-scoped mini-theory problem rules")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R002")
     public void shouldPublishACardWithFamilyErrorsPaidModelCostTheQuizAsEvaluatedLevelAndTheRulesFalseruleOverstatedruleContradictingexerciseAndUncoveredexercise(
@@ -93,8 +93,9 @@ public class MiniTheoryAnalyzerProviderTest {
             assertEquals(AnalysisCost.PAID_MODEL, rule.getCost(), rule.getId() + " is judged by a paid model");
             assertFalse(rule.getDescription().isBlank());
         }
-        assertEquals(List.of("false-rule", "overstated-rule", "contradicting-exercise", "uncovered-exercise"), rules);
-        assertEquals("¿La regla de la tarjeta es cierta, y ningún ejercicio del tema la contradice?",
+        assertEquals(List.of("false-rule", "insufficient-for-quiz", "overstated-for-quiz", "other-subtopic-content"),
+                rules);
+        assertEquals("¿La tarjeta explica correctamente el caso concreto de este quiz, sin traer reglas de otros subtemas?",
                 card.getQuestion());
         assertFalse(card.getReads().isBlank());
         assertFalse(card.getGoal().isBlank());
@@ -111,7 +112,7 @@ public class MiniTheoryAnalyzerProviderTest {
         World world = World.approved();
         assertEquals(List.of(FindingResolution.PANEL), world.provider.describe().getResolutions());
 
-        // A topic where each of the four rules leaves its finding: all go to the panel.
+        // A topic where each quiz carries one of the four problem kinds: all go to the panel.
         Topic repaso = new Topic("A2", "k-repaso", "Repaso de A2", List.of(
                 MiniTheoryAnalyzerTest.cloze("q-1", "She has", "a", "friend who lives in Paris.",
                         "She has a friend who lives in Paris.", MiniTheoryAnalyzerTest.ARTICLES),
@@ -120,14 +121,14 @@ public class MiniTheoryAnalyzerProviderTest {
                 MiniTheoryAnalyzerTest.cloze("q-3", "She can", "swims", "(swim).", "She can swims.", CAN_BASE),
                 MiniTheoryAnalyzerTest.cloze("q-4", "I called", "him", "(he).", "I called him.", SHE_HER)));
         world.answers(repaso, new MiniTheoryVerdict(List.of(
-                new MiniTheoryAssessment(1, false, MiniTheoryProblem.FALSE_RULE, FindingSeverity.HIGH,
-                        "a friend who lives in Paris", List.of(1), "Con who también va a."),
-                new MiniTheoryAssessment(2, false, MiniTheoryProblem.OVERSTATED, FindingSeverity.MEDIUM,
-                        "They stopped to eat.", List.of(2), "stop también va con to."),
-                new MiniTheoryAssessment(3, true, MiniTheoryProblem.CONTRADICTED_BY_EXERCISE, FindingSeverity.HIGH,
-                        null, List.of(3), "E3 acepta swims después de can."),
-                new MiniTheoryAssessment(4, true, MiniTheoryProblem.NOT_COVERING_EXERCISE, FindingSeverity.LOW,
-                        null, List.of(4), "E4 es de he/him.")), "Cuatro problemas."));
+                new MiniTheoryAssessment("q-1", false, MiniTheoryProblem.FALSE_RULE, FindingSeverity.HIGH,
+                        "a friend who lives in Paris", "Con who también va a."),
+                new MiniTheoryAssessment("q-2", false, MiniTheoryProblem.OVERSTATED_FOR_QUIZ, FindingSeverity.MEDIUM,
+                        "They stopped to eat.", "stop también va con to."),
+                new MiniTheoryAssessment("q-3", false, MiniTheoryProblem.INSUFFICIENT_FOR_QUIZ, FindingSeverity.HIGH,
+                        "She can swim.", "La tarjeta no explica la forma base que este caso necesita."),
+                new MiniTheoryAssessment("q-4", false, MiniTheoryProblem.OTHER_SUBTOPIC_CONTENT, FindingSeverity.LOW,
+                        null, "La tarjeta explica she/her, no he/him.")), "Cuatro problemas."));
 
         AuditNode root = world.run(MiniTheoryAnalyzerTest.course(repaso), MiniTheoryAnalyzerTest.budget(1));
 
@@ -139,7 +140,7 @@ public class MiniTheoryAnalyzerProviderTest {
                 rules.add(finding.getRule());
             }
         }
-        assertEquals(Set.of("false-rule", "overstated-rule", "contradicting-exercise", "uncovered-exercise"), rules,
+        assertEquals(Set.of("false-rule", "overstated-for-quiz", "insufficient-for-quiz", "other-subtopic-content"), rules,
                 "the four rules, each resolved at the panel");
     }
 
@@ -147,10 +148,12 @@ public class MiniTheoryAnalyzerProviderTest {
     @DisplayName("should bind its scores below 1 to the plan as MINI_THEORY tasks on quizzes")
     @Tag("FEAT-MINIT")
     @Tag("F-MINIT-R004")
+    @Tag("FEAT-TAREA")
+    @Tag("F-TAREA-R003")
     public void shouldBindItsScoresBelow1ToThePlanAsMINITHEORYTasksOnQuizzes() {
         World world = World.approved();
         Topic gerundio = MiniTheoryAnalyzerTest.gerundio();
-        world.overstates(gerundio, MiniTheoryAnalyzerTest.STOP_ING, List.of(1));
+        world.overstates(gerundio, "q-ger-1");
 
         Optional<AnalyzerPlanBinding> binding = world.provider.planBinding();
 
@@ -169,7 +172,8 @@ public class MiniTheoryAnalyzerProviderTest {
                 below.add(((AuditableQuiz) exercise.getEntity()).getId());
             }
         }
-        assertEquals(List.of("q-ger-1", "q-ger-2", "q-ger-3"), below, "the three that show the overstated card");
+        assertEquals(List.of("q-ger-1"), below,
+                "only the assessed quiz becomes a task, even though q-ger-2 and q-ger-3 show equal text");
     }
 
     static final String CAN_BASE = "Después de can va el verbo en forma base.";

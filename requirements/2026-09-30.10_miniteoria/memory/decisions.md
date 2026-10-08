@@ -4,6 +4,11 @@ Decisions future sessions should not re-litigate. Newest entries on top.
 
 <!-- entries below -->
 
+2026-10-05 — analyst — La miniteoría se juzga, identifica y corrige por quiz concreto, no por tema ni por texto
+  compartido. Un lote puede seguir reuniendo el tema para ahorrar consultas, pero cada tarjeta sólo explica el subcaso
+  del quiz (pregunta, negación, afirmación o vocabulario correspondiente) y no se propaga a otros quizzes.
+  why: decisión explícita de José; reemplaza el agrupamiento funcional por texto y el alcance opcional «en todo el tema».
+
 2026-09-30 — developer (C) — La gravedad del hallazgo sale del problema (falsa y contradicha HIGH, exagera MEDIUM, no cubre LOW; F-MINIT-R004), nunca de la que escriba el modelo: así nunca es BLOCKING. Un veredicto que reprocha una miniteoría o un ejercicio que el tema no tiene, o una contradicción sin su ejercicio, no es de ese contenido: el tema queda sin evaluar en vez de adivinar dónde contarlo.
 2026-09-30 — developer (C) — Un tema sin ninguna miniteoría no es unidad del juez (no se consulta ni se cuenta). La evidencia muestra cada ejercicio como su oración terminada (y sus opciones en la opción múltiple): el repartidor sólo recibe la configuración, no el render (escalado).
 

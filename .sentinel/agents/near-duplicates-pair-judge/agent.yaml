@@ -3,9 +3,19 @@ description: |
   El paso por pares de near-duplicates (FEAT-DUPAR). Recibe un par candidato de
   un tema —dos ejercicios que piden la misma respuesta, no son iguales tal cual
   y el comodín no los resuelve—, cada uno como lo ve el alumno y resuelto, el
-  que queda primero, y dice si para el alumno es el mismo ejercicio. Un sí hace
-  de la copia un casi duplicado, con un hallazgo bajo para la mesa que cuenta
-  como error; un no lo descarta.
+  que queda primero, y dice si para el alumno es el mismo ejercicio: repetir la
+  misma operación o decisión pedagógica y una respuesta objetivo que el
+  corrector ya considera equivalente cumple la misma función. Un sí hace de la
+  copia un casi duplicado, con un hallazgo bajo para la mesa que cuenta como
+  error; un no lo descarta.
+
+  Cambios de sujeto, tiempo, lugar, número, posesivo o léxico no objetivo son
+  variaciones de superficie si no alteran la decisión ni la función. El juez no
+  reabre la equivalencia de respuesta por diferencias de persona, número,
+  pronombre, contracción o forma, y no exige que la oración completa conserve
+  la situación. Juzga la respuesta seleccionada en `Resuelto:`, no la función
+  hipotética de alternativas o distractores que quedaron visibles. Los diálogos
+  no tienen una excepción propia: se evalúan con el mismo criterio.
 
   Quién propone el par no cambia la pregunta: con Ollama, los vectores de
   nomic-embed-text (coseno desde el umbral de candidatos); sin Ollama, el

@@ -75,12 +75,18 @@ de los 200.953 pares del mismo tema (A1 7.085, A2 6.048, B1 10.421, B2 1.335).
 
 <a id="F-DUPAR-R002"></a>
 ### Rule[F-DUPAR-R002] - Casi iguales: el comodín los iguala o el juez dice que son el mismo ejercicio
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: VALIDATED
 
 > Un par de R001 es casi duplicado si cumple una de dos condiciones:
 > 1. los dos ejercicios terminados quedan iguales al cambiar por un comodín los pronombres, los demostrativos, los
 >    posesivos y el tiempo del auxiliar;
 > 2. es candidato del juez y el juez de pares dice que, para el alumno, es el mismo ejercicio.
+>
+> Para decidirlo, «el mismo ejercicio» significa que ambos exigen la misma operación o decisión pedagógica, la misma
+> respuesta objetivo y la misma función. Cambiar sujeto, tiempo verbal o referencia temporal, lugar, número, posesivo o
+> léxico que no es objetivo es una variación de superficie mientras no cambie esa decisión, respuesta o función. Si el
+> cambio sí altera qué debe decidir o practicar el alumno, el par no es duplicado aunque comparta muchas palabras o la
+> respuesta escrita.
 >
 > Ningún parecido marca un par por sí solo: el de los vectores (0,80 o más, con Ollama) y el de las palabras (0,6 o
 > más, sin Ollama) sólo eligen qué pares se le preguntan al juez.
@@ -88,20 +94,31 @@ de los 200.953 pares del mismo tema (A1 7.085, A2 6.048, B1 10.421, B2 1.335).
 <details><summary>Qué es el mismo ejercicio, y los casos del curso</summary>
 
 El juez lee los dos ejercicios como los ve el alumno y resueltos, el que queda primero, y contesta si al hacer el
-segundo después del primero el alumno vuelve a hacer lo mismo con la misma oración. Su guía nombra los casos; los
-ejemplos de abajo son los inventados de la guía y los del 077 en `escribir/`:
+segundo después del primero el alumno vuelve a tomar la misma decisión pedagógica para producir la misma respuesta con
+la misma función. Los ejemplos ilustran el criterio sin convertir una diferencia superficial en una excepción automática:
 
 | Es el mismo ejercicio | No es el mismo ejercicio |
 |---|---|
-| Otro sujeto: «Carlos takes the bus to work.» / «He takes the bus to work.» | Otra oración con otra idea, aunque tenga la misma forma: «I am cold.» / «I am late.» |
+| Otro sujeto: «Carlos takes the bus to work.» / «He takes the bus to work.» | Cambia la función: «Can your brother drive a car?» (capacidad) / «Can I drive your car?» (permiso) |
 | Una palabra o un trozo de más o de menos: «Offer: I'll wash the dishes for you.» / «Offer: I'll wash the dishes.» | El contraste que enseña el tema, cuando cambia el papel de lo que escribe el alumno: «This is his bike.» / «This bike is his.» |
-| Un sinónimo fuera del hueco: «The film was really boring.» / «The movie was really boring.» | En un diálogo, otra frase de A, aunque la respuesta de B se repita |
-| Otro orden, o la negativa o la pregunta de la misma oración | |
+| Un sinónimo fuera del hueco: «The film was really boring.» / «The movie was really boring.» | Cambia la operación que se practica: «I observed him clean the room.» / «I observed him cleaning the room.» |
+| «I am cold.» / «I am late.», cuando en ambos el único objetivo es decidir y escribir *am* | Una diferencia de número, tiempo o vocabulario que es precisamente la decisión enseñada en ese tema |
+| En un diálogo, cambia la frase de A pero B produce la misma respuesta con la misma función de acuerdo | En un diálogo, la respuesta coincide en superficie pero cambia su función o su relación con lo que dijo A |
 | La misma idea con otras palabras: «Have you ever been to Rome?» / «Have you ever visited Rome?» | |
 
-La negativa o la pregunta de la misma oración es el mismo ejercicio aunque el tema sea justo negativas y preguntas, si
-el alumno escribe la misma palabra con el mismo papel. Ante la duda, el juez dice que no: un no deja el ejercicio como
-está, y un sí lo manda a reemplazar.
+La tabla se lee por el criterio, no por etiquetas fijas. «I am cold.» / «I am late.» son duplicados si en ambos el
+alumno sólo decide y escribe el mismo *am* con la misma función; dejan de serlo si el tema convierte ese cambio léxico en
+la decisión que se practica. De igual modo, una negativa o una pregunta puede ser variación superficial o puede cambiar
+el contraste enseñado.
+
+En diálogos no existe una excepción automática: que cambie la frase del interlocutor A no basta para separar el par. Si
+las dos intervenciones llevan a la misma respuesta de B, con la misma función pragmática y la misma decisión —por
+ejemplo, expresar el mismo acuerdo—, son el mismo ejercicio. Si cambia la función, la relación entre las intervenciones
+o la decisión que el alumno debe tomar, no lo son aunque la respuesta superficial coincida.
+
+Ante la duda, el juez dice que no: un no deja el ejercicio como está, y un sí lo manda a reemplazar. José aprobó este
+criterio el 5/10 al autorizar los ajustes del brief 029; reemplaza la lectura anterior basada en «la misma situación» y
+la exclusión automática de diálogos.
 
 En la base del 29/9, con las reglas de producción, el comodín resuelve 25 pares (A1 16, A2 6, B1 2, B2 1), como «I
 don't have much time.» / «I didn't have much time.» (A2, en el 077). Candidatos del juez: 1.468 con Ollama y 696 sin
@@ -168,30 +185,46 @@ José el 30/9 ([F-MLOCAL-R004](#F-MLOCAL-R004), [F-RONDA2-R003](#F-RONDA2-R003))
 
 <a id="F-DUPAR-R007"></a>
 ### Rule[F-DUPAR-R007] - El examen de cada versión de Duplicados parecidos
-**Severity**: major | **Validation**: ASSUMPTION
+**Severity**: major | **Validation**: VALIDATED
 
 > Cada versión rinde su examen por separado: la de Ollama —vectores, umbral y juez ([F-DUPAR-R010](#F-DUPAR-R010))— y
 > la de sin Ollama —parecido de palabras y juez ([F-DUPAR-R008](#F-DUPAR-R008))—. Cada una aprueba si:
 > 1. encuentra los casi iguales del 077 en las dos mitades: los 6 de `escribir/duplicados.json` y los de `examinar/`;
-> 2. en una muestra ciega de 40 pares marcados y 40 no marcados, revisada por una persona, de los que marca 8 de cada 10
->    son el mismo ejercicio para el alumno, y de los que no marca, 2 de cada 10 como mucho;
-> 3. dos corridas marcan las mismas copias.
+> 2. tanto en la muestra ciega reclasificada de 40 pares marcados y 40 no marcados como en la ampliación de 20 y 20 por
+>    debajo de 0,90, de los que marca 8 de cada 10 son el mismo ejercicio para el alumno, y de los que no marca, 2 de
+>    cada 10 como mucho;
+> 3. dos corridas independientes, con la misma identidad efectiva y sin compartir veredictos, alcanzan al menos
+>    **99,5 % de acuerdo por ejercicio** y un **Jaccard de copias marcadas de 98 %**; todas las divergencias quedan
+>    enumeradas y son revisadas por una persona antes de usar esos hallazgos para corregir o publicar contenido.
 >
 > En las dos versiones, una corrida de examen sólo juzga los pares cuya copia es un ejercicio del archivo del examen.
 >
-> Con Ollama, la muestra es la que ya armó el paquete B —40 pares que marcó la versión reprobada y 40 que no marcó, de
-> parecido 0,90 a 0,95 y con la misma respuesta, con las respuestas de su revisor—, y un par cuenta como marcado si la
-> versión nueva deja su copia con un hallazgo de `near-duplicates`. Sin Ollama, la muestra sale de los candidatos que
-> juzgó.
+> Antes de medir una versión con el criterio vigente de [F-DUPAR-R002](#F-DUPAR-R002), el oro y las evaluaciones actuales
+> se reclasifican y se amplían. La ampliación incluye, por separado, cambios superficiales de sujeto, tiempo, lugar,
+> número, posesivo y léxico no objetivo; paráfrasis; diálogos con la misma función; y negativos donde cambia de verdad la
+> operación, la respuesta objetivo o la función. Ningún resultado obtenido contra el oro anterior aprueba ni reprueba la
+> versión nueva.
+>
+> Con Ollama, la muestra parte de la que ya armó el paquete B —40 pares que marcó la versión reprobada y 40 que no marcó,
+> de parecido 0,90 a 0,95 y con la misma respuesta—, pero sus etiquetas se revisan con el criterio vigente y se agregan
+> casos nuevos antes de congelarla. Un par cuenta como marcado si la versión nueva deja su copia con un hallazgo de
+> `near-duplicates`. Sin Ollama, la muestra sale de los candidatos que juzgó y aplica la misma reclasificación y
+> ampliación.
+>
+> La igualdad absoluta sigue siendo la señal ideal, pero no es condición de aprobación cuando la muestra formal es
+> perfecta y se alcanzan ambos pisos de estabilidad. Esta tolerancia no habilita publicación automática: las copias
+> exclusivas de una sola pasada quedan fuera del libro operativo hasta revisión humana.
 
 <details><summary>Por qué así, y cuánto cuesta rendir</summary>
 
 El 077 no tiene categoría propia: sus casi iguales son 6 de los 15 duplicados de `escribir/` y quizá uno de
-`examinar/`, pocos para medir la precisión; por eso la muestra ciega. La del paquete B ya está armada y revisada, así
-que rendir la versión nueva no le cuesta tiempo a nadie. Mira sólo de 0,90 para arriba, y 1.374 de los 1.468
-candidatos del curso están por debajo: si José elige A en [DOUBT-DUPAR-MUESTRA-NUEVA](#DOUBT-DUPAR-MUESTRA-NUEVA), la
-parte 2 suma una muestra ciega nueva de 20 pares que la versión marca y 20 que juzga y no marca, de por debajo de 0,90
-y que nadie revisó, con la misma meta.
+`examinar/`, pocos para medir la precisión; por eso la muestra ciega. Del paquete B se conserva el pool de pares, no
+sus etiquetas: fueron escritas con el criterio anterior y deben reclasificarse con R002. Como esa reclasificación deja
+pocos negativos donde realmente cambia la operación o la función, hay que ampliarlos antes de congelar el examen. El
+pool anterior mira sólo de 0,90 para arriba, y 1.374 de los 1.468
+candidatos del curso están por debajo; por eso [DOUBT-DUPAR-MUESTRA-NUEVA](#DOUBT-DUPAR-MUESTRA-NUEVA) suma una muestra
+ciega nueva de 20 pares que la versión marca y 20 que juzga y no marca, de por debajo de 0,90 y que nadie revisó, con la
+misma meta.
 
 El examen mira sólo las copias de su archivo: juzgar un par cuya copia está fuera no cambia ninguna de sus partes, y
 filtrar baja el costo de rendir.
@@ -533,16 +566,16 @@ hicieron reprobar a la versión de 0,95 siguen sin marcarse, y `near-duplicates`
 
 <a id="DOUBT-DUPAR-MUESTRA-NUEVA"></a>
 ### Doubt[DOUBT-DUPAR-MUESTRA-NUEVA] - ¿El examen con Ollama suma una muestra ciega de por debajo de 0,90?
-**Status**: OPEN
+**Status**: RESOLVED (2026-10-05)
 
-- [ ] Opción A (recomendada): además de la muestra del paquete B, una de 20 pares que la versión marca y 20 que juzga y
+- [x] Opción A: además de la muestra del paquete B, una de 20 pares que la versión marca y 20 que juzga y
   no marca, de por debajo de 0,90 y que nadie revisó, con la misma meta: de los 20 marcados, al menos 16 son el mismo
   ejercicio, y de los otros 20, 4 como mucho. Unos 10 minutos de una persona.
 - [ ] Opción B: sólo la muestra del paquete B.
 
-**Answer**: Pendiente. Recomiendo A: la muestra del paquete B mira de 0,90 para arriba, y 1.374 de los 1.468 candidatos
-están por debajo; sin A, el examen no mide al juez donde más decide. [F-DUPAR-R007](#F-DUPAR-R007) trae las partes que
-valen con las dos opciones; con A, la parte 2 suma ésta.
+**Answer**: **Opción A** (José, 5/10, al autorizar los ajustes y la nueva prueba): la muestra previa se reclasifica con
+el criterio pedagógico vigente y se agrega la franja inferior a 0,90. Sin esa ampliación, el examen no mide al juez donde
+decide la mayoría de sus candidatos ([F-DUPAR-R007](#F-DUPAR-R007)).
 
 ## References
 

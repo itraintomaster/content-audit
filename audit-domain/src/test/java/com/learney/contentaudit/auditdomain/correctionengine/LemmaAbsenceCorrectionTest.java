@@ -17,18 +17,20 @@ import org.junit.jupiter.api.Test;
 )
 public class LemmaAbsenceCorrectionTest {
     @Test
-    @DisplayName("should let the LEMMA_ABSENCE fix that covers an error finding touch what the lemma correction reaches today: the plain sentence, the statement and the translation")
+    @DisplayName("should let a lemma correction replace an answer, its hint and its local explanation together")
     @Tag("FEAT-TAREA")
     @Tag("F-TAREA-R006")
     public void shouldLetTheLEMMAABSENCEFixThatCoversAnErrorFindingTouchWhatTheLemmaCorrectionReachesTodayThePlainSentenceTheStatementAndTheTranslation(
             ) {
         // R006 and R004: the LEMMA_ABSENCE task that covers a finding of errors goes to the panel with what the lemma
-        // correction reaches today (F-LAPS-R013): the plain sentence, the statement with its answers, the translation.
+        // correction reaches today (F-LAPS-R013): the plain sentence, the statement with its answers and hints, the
+        // translation and its local mini theory. Otherwise replacing «soundly» can never yield a coherent valid quiz.
         LemmaAbsenceCorrection correction = new LemmaAbsenceCorrection();
 
         Assertions.assertEquals("lemma-absence", correction.analyzerName());
-        Assertions.assertEquals(List.of(ExercisePart.STORED_SENTENCE, ExercisePart.STATEMENT, ExercisePart.ANSWERS,
-                ExercisePart.TRANSLATION), correction.editScope(FindingResolution.PANEL));
+        Assertions.assertEquals(List.of(ExercisePart.STORED_SENTENCE, ExercisePart.STATEMENT, ExercisePart.HINT,
+                ExercisePart.ANSWERS, ExercisePart.TRANSLATION, ExercisePart.MINI_THEORY),
+                correction.editScope(FindingResolution.PANEL));
         Assertions.assertEquals(List.of(), correction.editScope(FindingResolution.RULE), "no fix by rule");
         Assertions.assertEquals(Optional.empty(), correction.coveringAnalyzer(), "it covers others, nobody covers it");
         Assertions.assertFalse(correction.groupsByTopic());
