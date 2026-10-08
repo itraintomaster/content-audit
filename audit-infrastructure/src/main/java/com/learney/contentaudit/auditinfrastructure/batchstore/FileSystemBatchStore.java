@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
+import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
 import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Stream;
 import javax.annotation.processing.Generated;
 
@@ -54,13 +56,16 @@ public class FileSystemBatchStore implements BatchStore {
         if (batch == null || batch.getId() == null || batch.getId().isBlank()) {
             throw new IllegalArgumentException("Una tanda sin id no se puede guardar.");
         }
-        Path dir = dir();
-        Path file = dir.resolve(batch.getId() + SUFFIX);
+        writeAtomically(dir().resolve(identifier(batch.getId()) + SUFFIX), batch);
+    }
+
+    private void writeAtomically(Path file, Object value) {
+        Path dir = file.getParent();
         try {
             Files.createDirectories(dir);
-            Path temporary = Files.createTempFile(dir, batch.getId() + ".", ".tmp");
+            Path temporary = Files.createTempFile(dir, "write-", ".tmp");
             try {
-                mapper.writerWithDefaultPrettyPrinter().writeValue(temporary.toFile(), batch);
+                mapper.writerWithDefaultPrettyPrinter().writeValue(temporary.toFile(), value);
                 try {
                     Files.move(temporary, file, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
                 } catch (AtomicMoveNotSupportedException e) {
@@ -70,7 +75,7 @@ public class FileSystemBatchStore implements BatchStore {
                 Files.deleteIfExists(temporary);
             }
         } catch (IOException e) {
-            throw new java.io.UncheckedIOException("No se pudo guardar la tanda " + batch.getId() + " en " + file + ": "
+            throw new java.io.UncheckedIOException("No se pudo guardar " + file + ": "
                     + e.getMessage(), e);
         }
     }
@@ -80,7 +85,7 @@ public class FileSystemBatchStore implements BatchStore {
         if (batchId == null || batchId.isBlank()) {
             return Optional.empty();
         }
-        Path file = dir().resolve(batchId + SUFFIX);
+        Path file = dir().resolve(identifier(batchId) + SUFFIX);
         return Files.isRegularFile(file) ? Optional.of(read(file)) : Optional.empty();
     }
 
@@ -113,6 +118,42 @@ public class FileSystemBatchStore implements BatchStore {
                 .filter(b -> b.getStatus() == BatchStatus.PUBLISHED && b.getPublication() != null)
                 .max(Comparator.comparing(b -> b.getPublication().getPublishedAt() != null
                         ? b.getPublication().getPublishedAt() : Instant.EPOCH));
+    }
+
+    @Override
+    public void saveReview(BatchReviewDecision decision) {
+        if (decision == null || decision.decidedAt() == null || decision.status() == null
+                || decision.selections() == null || decision.selections().isEmpty()) {
+            throw new IllegalArgumentException("Revisión incompleta.");
+        }
+        // Each command writes a new event. Different JVMs cannot lose each other's decisions, nor batch progress.
+        writeAtomically(reviewDir(decision.batchId()).resolve(UUID.randomUUID() + SUFFIX), decision);
+    }
+
+    @Override
+    public List<BatchReviewDecision> reviews(String batchId) {
+        Path dir = reviewDir(batchId);
+        if (!Files.isDirectory(dir)) return List.of();
+        List<BatchReviewDecision> decisions = new ArrayList<>();
+        try (Stream<Path> files = Files.list(dir)) {
+            for (Path file : files.filter(f -> f.getFileName().toString().endsWith(SUFFIX)).sorted().toList()) {
+                decisions.add(mapper.readValue(file.toFile(), BatchReviewDecision.class));
+            }
+            return decisions;
+        } catch (IOException e) {
+            throw new java.io.UncheckedIOException("No se pudo leer la revisión de " + batchId, e);
+        }
+    }
+
+    private Path reviewDir(String batchId) {
+        return baseDir.resolve(".content-audit/batch-reviews").resolve(identifier(batchId));
+    }
+
+    private static String identifier(String id) {
+        if (id == null || !id.matches("[A-Za-z0-9][A-Za-z0-9._-]*")) {
+            throw new IllegalArgumentException("Identidad de tanda inválida.");
+        }
+        return id;
     }
 
     private Path dir() {

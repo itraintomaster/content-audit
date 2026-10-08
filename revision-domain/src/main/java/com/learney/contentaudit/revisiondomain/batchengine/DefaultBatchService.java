@@ -1,5 +1,4 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
-import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelection;
 import com.learney.contentaudit.auditdomain.ActiveAnalysisSelectionStore;
@@ -7,27 +6,36 @@ import com.learney.contentaudit.auditdomain.AuditReport;
 import com.learney.contentaudit.auditdomain.AuditReportStore;
 import com.learney.contentaudit.auditdomain.Baseline;
 import com.learney.contentaudit.auditdomain.BaselineStore;
+import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
+import com.learney.contentaudit.auditdomain.finding.Finding;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.coursedomain.KnowledgeEntity;
+import com.learney.contentaudit.refinerdomain.DiagnosisKind;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
+import com.learney.contentaudit.refinerdomain.TaskOrigin;
 import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBrief;
 import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBriefer;
 import com.learney.contentaudit.revisiondomain.batch.BatchAdjustment;
+import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.batch.BatchAlreadyOpenException;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
+import com.learney.contentaudit.revisiondomain.batch.BatchCloseRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchEstimate;
 import com.learney.contentaudit.revisiondomain.batch.BatchJudgeAccount;
 import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublication;
 import com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchReport;
+import com.learney.contentaudit.revisiondomain.batch.BatchReview;
+import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
 import com.learney.contentaudit.revisiondomain.batch.BatchRunRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchService;
 import com.learney.contentaudit.revisiondomain.batch.BatchSettings;
@@ -39,25 +47,6 @@ import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 import com.learney.contentaudit.revisiondomain.batch.NoOpenBatchException;
 import com.learney.contentaudit.revisiondomain.comparison.GoalBook;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
-import com.learney.contentaudit.revisiondomain.panel.PanelRunnerFactory;
-import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
-import java.nio.file.Path;
-import java.time.Instant;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import com.learney.contentaudit.auditdomain.AuditTarget;
-import com.learney.contentaudit.auditdomain.finding.Finding;
-import com.learney.contentaudit.coursedomain.KnowledgeEntity;
-import com.learney.contentaudit.refinerdomain.DiagnosisKind;
-import com.learney.contentaudit.refinerdomain.TaskOrigin;
-import com.learney.contentaudit.revisiondomain.batch.BatchAdjustmentKind;
 import com.learney.contentaudit.revisiondomain.nonregression.ChangeGateVerdict;
 import com.learney.contentaudit.revisiondomain.panel.CandidateRejection;
 import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
@@ -65,8 +54,21 @@ import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
 import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
 import com.learney.contentaudit.revisiondomain.panel.PanelRunSettings;
 import com.learney.contentaudit.revisiondomain.panel.PanelRunner;
+import com.learney.contentaudit.revisiondomain.panel.PanelRunnerFactory;
+import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
 import com.learney.contentaudit.revisiondomain.panel.TopicWork;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import javax.annotation.processing.Generated;
 
 /**
@@ -165,7 +167,14 @@ class DefaultBatchService implements BatchService {
                 DEFAULT_MAX_ATTEMPTS));
         batch.setOpenedAt(now);
         batch.setQueriesSpent(0);
-        batch.setCorrectionRevision(1);
+        // A continuation keeps its ordinal. Only opening a genuinely new batch
+        // after integration advances the history, within the same level and Base.
+        int previousRevision = batchStore.list().stream()
+                .filter(previous -> previous.getStatus() == BatchStatus.PUBLISHED
+                        && previous.getLevel() == request.getLevel()
+                        && Objects.equals(previous.getBaselineAuditId(), baseline.getAuditId()))
+                .mapToInt(BatchBook::correctionRevision).max().orElse(0);
+        batch.setCorrectionRevision(previousRevision + 1);
 
         // R002: the tasks of the batch leave the plan as «in batch»; revise and revise-instructions do not see them.
         for (RefinementTask task : BatchBook.list(plan.getTasks())) {
@@ -237,17 +246,10 @@ class DefaultBatchService implements BatchService {
         CorrectionBatch batch = requireOpen();
         AuditReport start = start(batch);
         CourseEntity course = courseRepository.load(coursePath);
-        List<BatchClosing> previousClosings = BatchBook.list(batch.getClosings());
-        if (!previousClosings.isEmpty()) {
-            BatchClosing latest = previousClosings.get(previousClosings.size() - 1);
-            int currentRevision = BatchBook.correctionRevision(batch);
-            int measuredRevision = latest.getCorrectionRevision() > 0 ? latest.getCorrectionRevision() : 1;
-            if (measuredRevision == currentRevision) {
-                batch.setCorrectionRevision(currentRevision + 1);
-            }
-        } else if (batch.getCorrectionRevision() <= 0) {
-            batch.setCorrectionRevision(1);
-        }
+        // Continuing the original plan is still the same correction, even after a partial analysis.
+        // Content versions identify the measured snapshot without inventing a new correction cycle.
+        batch.setCorrectionRevision(BatchBook.correctionRevision(batch));
+        batch.setContentVersion(batch.getContentVersion() + 1);
         batch.setStatus(BatchStatus.RUNNING);
         batch.setInterruptionReason(null);
         batchStore.save(batch);
@@ -288,8 +290,9 @@ class DefaultBatchService implements BatchService {
         validate(batch, asked);
         CourseEntity course = courseRepository.load(coursePath);
         batch = closer.close(batch, course, asked);
-        batchStore.save(batch);
         List<BatchClosing> closings = BatchBook.list(batch.getClosings());
+        if (reviews != null && !closings.isEmpty()) reviews.snapshot(batch, closings.get(closings.size() - 1));
+        batchStore.save(batch);
         return closings.isEmpty() ? null : closings.get(closings.size() - 1);
     }
 
@@ -297,6 +300,7 @@ class DefaultBatchService implements BatchService {
     public CorrectionBatch adjust(BatchAdjustment adjustment) {
         CorrectionBatch batch = requireOpen();
         CourseEntity course = courseRepository.load(coursePath);
+        List<BatchChangeStep> beforeSteps = activeSteps(batch);
         if (adjustment.getDecidedAt() == null) {
             adjustment.setDecidedAt(Instant.now());
         }
@@ -354,13 +358,24 @@ class DefaultBatchService implements BatchService {
         List<BatchAdjustment> adjustments = BatchBook.copy(batch.getAdjustments());
         adjustments.add(adjustment);
         batch.setAdjustments(adjustments);
+        if (!beforeSteps.equals(activeSteps(batch))) {
+            batch.setContentVersion(batch.getContentVersion() + 1);
+        }
         batchStore.save(batch);
         if (recalculate && !BatchBook.list(batch.getClosings()).isEmpty()) {
             // R008: recalculated against the gate without what left; the re-adjustment closes with no request.
             batch = closer.close(batch, course, new BatchCloseRequest(new LinkedHashMap<>(), null));
+            List<BatchClosing> closings = BatchBook.list(batch.getClosings());
+            if (reviews != null && !closings.isEmpty()) reviews.snapshot(batch, closings.get(closings.size() - 1));
             batchStore.save(batch);
         }
         return batch;
+    }
+
+    private static List<BatchChangeStep> activeSteps(CorrectionBatch batch) {
+        return BatchBook.list(batch.getChanges()).stream()
+                .filter(change -> change != null && change.getDroppedReason() == null)
+                .flatMap(change -> BatchBook.list(change.getSteps()).stream()).toList();
     }
 
     @Override
@@ -380,6 +395,12 @@ class DefaultBatchService implements BatchService {
         return batch.getPublication();
     }
 
+    @Override
+    public BatchReview review(String batchId) { return reviews.read(batchId); }
+
+    @Override
+    public BatchReview review(BatchReviewDecision decision) { return reviews.decide(decision); }
+
     // -------------------------------------------------------------------------
     // José's decisions from the tray (FEAT-BANDEJA)
     // -------------------------------------------------------------------------
@@ -390,29 +411,37 @@ class DefaultBatchService implements BatchService {
     /** The panel that measures and judges a fix José writes, as any candidate; the factory hands it over. */
     private PanelRunner panelRunner;
 
-private final BatchJudgePass judgePass;
+    private final BatchJudgePass judgePass;
+    private final DefaultBatchReview reviews;
 
-public DefaultBatchService(BatchStore batchStore, RefinementPlanStore refinementPlanStore, AuditReportStore auditReportStore, ActiveAnalysisSelectionStore activeAnalysisSelectionStore, BaselineStore baselineStore, CourseRepository courseRepository, PanelRunnerFactory panelRunnerFactory, ErrorTaskBriefer briefer, BatchTaskSelector taskSelector, BatchCostEstimator costEstimator, RuleStage ruleStage, PanelStage panelStage, BatchChangeLedger changeLedger, BatchCloser closer, BatchPublisher publisher, BatchReportBuilder reportBuilder, Path coursePath, GoalBook goalBook, BatchJudgePass judgePass) {
-    this.batchStore = batchStore;
-    this.refinementPlanStore = refinementPlanStore;
-    this.auditReportStore = auditReportStore;
-    this.activeAnalysisSelectionStore = activeAnalysisSelectionStore;
-    this.baselineStore = baselineStore;
-    this.courseRepository = courseRepository;
-    this.panelRunnerFactory = panelRunnerFactory;
-    this.briefer = briefer;
-    this.taskSelector = taskSelector;
-    this.costEstimator = costEstimator;
-    this.ruleStage = ruleStage;
-    this.panelStage = panelStage;
-    this.changeLedger = changeLedger;
-    this.closer = closer;
-    this.publisher = publisher;
-    this.reportBuilder = reportBuilder;
-    this.coursePath = coursePath;
-    this.goalBook = goalBook;
-    this.judgePass = judgePass;
-}
+    public DefaultBatchService(BatchStore batchStore, RefinementPlanStore refinementPlanStore,
+            AuditReportStore auditReportStore, ActiveAnalysisSelectionStore activeAnalysisSelectionStore,
+            BaselineStore baselineStore, CourseRepository courseRepository, PanelRunnerFactory panelRunnerFactory,
+            ErrorTaskBriefer briefer, BatchTaskSelector taskSelector, BatchCostEstimator costEstimator,
+            RuleStage ruleStage, PanelStage panelStage, BatchChangeLedger changeLedger, BatchCloser closer,
+            BatchPublisher publisher, BatchReportBuilder reportBuilder, Path coursePath, GoalBook goalBook,
+            BatchJudgePass judgePass, DefaultBatchReview reviews) {
+        this.batchStore = batchStore;
+        this.refinementPlanStore = refinementPlanStore;
+        this.auditReportStore = auditReportStore;
+        this.activeAnalysisSelectionStore = activeAnalysisSelectionStore;
+        this.baselineStore = baselineStore;
+        this.courseRepository = courseRepository;
+        this.panelRunnerFactory = panelRunnerFactory;
+        this.briefer = briefer;
+        this.taskSelector = taskSelector;
+        this.costEstimator = costEstimator;
+        this.ruleStage = ruleStage;
+        this.panelStage = panelStage;
+        this.changeLedger = changeLedger;
+        this.closer = closer;
+        this.publisher = publisher;
+        this.reportBuilder = reportBuilder;
+        this.coursePath = coursePath;
+        this.goalBook = goalBook;
+        this.judgePass = judgePass;
+        this.reviews = reviews;
+    }
 
     DefaultBatchService withPanel(PanelRunner panelRunner) {
         this.panelRunner = panelRunner;

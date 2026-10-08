@@ -16,6 +16,7 @@ import com.learney.contentaudit.revisiondomain.batch.BatchOpenRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchReport;
 import com.learney.contentaudit.revisiondomain.batch.BatchRunRequest;
 import com.learney.contentaudit.revisiondomain.batch.BatchService;
+import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
 import com.learney.contentaudit.revisiondomain.batch.BatchSettings;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskCount;
@@ -66,6 +67,7 @@ import picocli.CommandLine.Parameters;
                 + "  batch close [--budget juez=N[,juez=N…]] [--cap N]%n"
                 + "  batch drop (--change <id> | --rule <rule>) [--reason <text>]%n"
                 + "  batch report [<batchId>] [-f text|json]%n%n"
+                + "  batch review [<batchId>] [--decision-json <json>] [-f json]%n%n"
                 + "Without --cap, batch run applies the rules only, which query no model; the panels open only under a"
                 + " cap of queries. Without --budget nor --cap, batch close pays no judge: it says how many queries each"
                 + " one still misses. Publishing is the single OK of the tray: content-audit tray publish.",
@@ -87,7 +89,7 @@ import picocli.CommandLine.Parameters;
 final class BatchCmd implements BatchCommand, Callable<Integer> {
     private final BatchService batchService;
 
-    @Parameters(index = "0", description = "open, estimate, run, close, drop or report")
+    @Parameters(index = "0", description = "open, estimate, run, close, drop, report or review")
     private String action;
 
     @Parameters(index = "1", arity = "0..1", description = "The level (open) or the batch (report)")
@@ -119,6 +121,9 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
 
     @Option(names = "--reason", description = "Why it is dropped")
     private String reason;
+
+    @Option(names = "--decision-json", description = "Exact saved steps and human decision; does not apply or publish")
+    private String decisionJson;
 
     @Option(names = {"-f", "--format"}, description = "Output format of estimate/report: text or json (default: ${DEFAULT-VALUE})",
             defaultValue = "text")
@@ -447,12 +452,25 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
             case "close" -> closeBatch(judgeBudgets, queryCap);
             case "drop" -> dropFromBatch(changeId, ruleId, reason);
             case "report" -> reportBatch(target, format);
+            case "review" -> reviewBatch();
             default -> {
                 System.err.println("Error: batch no conoce '" + action + "'. Usá open, estimate, run, close, drop o"
-                        + " report.");
+                        + " report o review.");
                 yield 2;
             }
         };
+    }
+
+    private Integer reviewBatch() {
+        try {
+            var review = decisionJson == null ? batchService.review(target)
+                    : batchService.review(CommandJson.read(decisionJson, BatchReviewDecision.class));
+            System.out.println(CommandJson.write(review));
+            return 0;
+        } catch (IllegalArgumentException | NoOpenBatchException e) {
+            System.err.println("Error: " + e.getMessage());
+            return 2;
+        }
     }
 
     // -------------------------------------------------------------------------

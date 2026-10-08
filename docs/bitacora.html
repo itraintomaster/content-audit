@@ -83,9 +83,36 @@
 <div class="shell">
   <div class="topline">
     <div class="live"><span class="pulse"></span><span>CENTRO DE CONTROL · CONTROLES REALES</span></div>
-    <div class="updated">Actualizado <time id="updatedAgo">8/10, 07:11</time> · Análisis 1 cerrado · revisión requerida</div>
+    <div class="updated">Comprobado <time id="updatedAgo">8/10, 13:00</time> · Corrección 1 en ejecución</div>
   </div>
 
+  <header>
+    <div class="eyebrow">8 de octubre · Campaña A1 V11 · última comprobación</div>
+    <h1>Corrección 1 sigue avanzando.</h1>
+    <p class="lede"><strong>753 propuestas guardadas y la ejecución original activa.</strong> Los cambios de revisión están en el código, todavía no en la ventana abierta. Nada fue publicado por este desarrollo.</p>
+  </header>
+
+  <section>
+    <h2>El trabajo actual no fue reiniciado</h2>
+    <div class="result-grid">
+      <article class="result live-run"><div class="kicker">Propuestas guardadas</div><strong>753</strong><p>Había 706 al comenzar. Este número representa propuestas, no consultas ni tareas. El tope de 2.500 consultas no garantiza completar todo A1.</p></article>
+      <article class="result"><div class="kicker">Revisión leída desde el backend nuevo</div><strong>916 cambios</strong><p>La lectura devuelve las 753 propuestas actuales y las 2 mediciones anteriores, sin recalcular auditorías ni consultar modelos.</p></article>
+    </div>
+    <p class="caption">Verificación de las 13:00 ART: tanda guardada como RUNNING; proveedor codex-cli, modelo gpt-6.1-sol, esfuerzo medium. Hay una consulta prolongada, mientras otras siguen avanzando. No se canceló ni duplicó la ejecución.</p>
+  </section>
+
+  <section>
+    <h2>Primera entrega de revisión, sin confundir aprobar con aplicar</h2>
+    <div class="guards">
+      <div class="guard"><div class="icon">1</div><h3>Revisión exacta</h3><p>En el código nuevo, Correcciones permite aprobar o rechazar cada cambio o aprobar todo un ejercicio. Guarda la decisión separada de la corrida.</p></div>
+      <div class="guard"><div class="icon">2</div><h3>Lecturas guardadas</h3><p>Comparación ya lee mediciones guardadas, sin ejecutar auditorías al navegar. El historial conserva la Base y las mediciones anteriores.</p></div>
+      <div class="guard"><div class="icon">3</div><h3>Aplicación pendiente</h3><p>Aplicar sólo lo aprobado aún no está implementado. El publicador existente integra toda la tanda: no se lo presenta como una aplicación selectiva.</p></div>
+    </div>
+    <p class="caption">La cabecera de Correcciones se compactó usando componentes compartidos. Siete copias compiladas obsoletas quedaron archivadas en ZIP recuperables; macOS registra una sola app actual. No se borraron fuentes ni campañas. <a href="briefs/042-revision-segura-sin-interrumpir.html">Ver brief 042 y captura de prueba</a>.</p>
+  </section>
+
+  <details>
+    <summary>Historial anterior: contiene estados y cifras de ejecuciones previas, no el estado actual</summary>
   <header>
     <div class="eyebrow">Bitácora viva · Codex + content-audit</div>
     <h1>Análisis 1 cerró, pero todavía no habilita continuar.</h1>
@@ -600,10 +627,11 @@
     <p class="caption">Sólo después de explicar y corregir el consumo sin intentos se hará un reensayo mínimo. No hay ningún camino desde esta copia hacia producción sin un nuevo paso explícito.</p>
   </section>
 
-  <footer><span>Fuente: logs de corrida, content-audit y UI local.</span><span class="mono">docs/bitacora.html · estado vivo</span></footer>
+  </details>
+  <footer><span>Fuente: tanda guardada y procesos locales. Una recarga de esta página no vuelve a comprobar el backend.</span><span class="mono">docs/bitacora.html · última comprobación explícita</span></footer>
 </div>
 <script>
-  const state={used:287,total:287,updatedAt:'2026-10-08T07:11:48-03:00'};
+  const state={used:287,total:287,updatedAt:'2026-10-08T13:00:00-03:00'};
   const pct=state.used/state.total*100;
   document.querySelector('#ring').style.setProperty('--p',`${pct*3.6}deg`);
   document.querySelector('#pct').textContent=pct.toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';

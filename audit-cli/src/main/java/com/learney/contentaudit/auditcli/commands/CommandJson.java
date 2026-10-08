@@ -35,6 +35,14 @@ final class CommandJson {
         return format != null && "json".equalsIgnoreCase(format.trim());
     }
 
+    static <T> T read(String value, Class<T> type) {
+        try {
+            return MAPPER.readValue(value, type);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("JSON inválido: " + e.getMessage(), e);
+        }
+    }
+
     /**
      * The scope of a request: the pending proposals it names -- every pending proposal of the active plan when it
      * names none -- and the budget of the analyzers it names. Null when it names nothing.

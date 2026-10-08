@@ -143,6 +143,7 @@ public DefaultBatchCloser(BatchComparator batchComparator, BatchGate batchGate, 
             BatchClosing closing = new BatchClosing(Instant.now(), scope, comparison, verdict, returnedIds, rounds, asked,
                     judgeAccounts(batch, startCourse, paid, comparison));
             closing.setCorrectionRevision(BatchBook.correctionRevision(batch));
+            closing.setContentVersion(batch.getContentVersion());
             closings.add(closing);
             batch.setClosings(closings);
             if (verdict.isPasses() && blindSampleService != null && batch.getBlindSampleId() == null) {

@@ -19,6 +19,7 @@ import com.learney.contentaudit.coursedomain.TopicEntity;
 import com.learney.contentaudit.refinerdomain.RefinementPlan;
 import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.revisiondomain.StoredSentenceRehydrator;
+import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import com.learney.contentaudit.revisiondomain.batch.BatchChange;
 import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
 import com.learney.contentaudit.revisiondomain.batch.BatchTaskOutcome;
@@ -249,6 +250,27 @@ final class BatchBook {
             }
         }
         return fields;
+    }
+
+    /** Shared composition for the ledger and its read-only review model. */
+    static CourseElementSnapshot apply(CourseElementSnapshot current, BatchChangeStep step) {
+        if (current == null) return null;
+        if (current.getNodeTarget() == AuditTarget.KNOWLEDGE) {
+            KnowledgeEntity knowledge = current.getKnowledge();
+            String instructions = knowledge.getInstructions();
+            if (step.getAfter() != null && step.getAfter().getKnowledge() != null
+                    && fields(step.getParts()).contains(Field.TOPIC_INSTRUCTIONS)) {
+                instructions = step.getAfter().getKnowledge().getInstructions();
+            }
+            KnowledgeEntity after = new KnowledgeEntity(knowledge.getId(), knowledge.getCode(), knowledge.getKind(),
+                    knowledge.getLabel(), knowledge.getOldId(), knowledge.getParentId(), knowledge.isIsRule(),
+                    instructions, knowledge.getOrder(), knowledge.getSlug(), knowledge.getQuizTemplates(),
+                    knowledge.getSentenceMode());
+            return new CourseElementSnapshot(AuditTarget.KNOWLEDGE, current.getNodeId(), null, after);
+        }
+        return new CourseElementSnapshot(AuditTarget.QUIZ, current.getNodeId(),
+                apply(current.getQuiz(), step.getAfter() != null ? step.getAfter().getQuiz() : null,
+                        fields(step.getParts())), null);
     }
 
     /** The exercise with the fields of the step taken from its «after». */

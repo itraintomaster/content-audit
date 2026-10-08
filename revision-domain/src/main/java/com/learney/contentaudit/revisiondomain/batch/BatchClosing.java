@@ -1,6 +1,7 @@
 package com.learney.contentaudit.revisiondomain.batch;
 
 import com.learney.contentaudit.revisiondomain.comparison.BatchComparison;
+import com.learney.contentaudit.revisiondomain.RevisionProposal;
 import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
 import com.learney.contentaudit.revisiondomain.projection.ProjectionScope;
 import java.time.Instant;
@@ -18,6 +19,9 @@ public class BatchClosing {
     /** Candidate revision measured by this closing; absent legacy values belong to revision 1. */
     private int correctionRevision;
 
+    /** Content version measured by this pass of the analysis, independent of the correction number. */
+    private int contentVersion;
+
     private ProjectionScope scope;
 
     private BatchComparison comparison;
@@ -31,6 +35,15 @@ public class BatchClosing {
     private BatchCloseRequest request;
 
     private List<BatchJudgeAccount> judges;
+
+    /** The exact content measured. Legacy closings may have no content snapshot; never infer it from today's proposals. */
+    private List<RevisionProposal> proposals;
+    private List<BatchChange> changes;
+
+    public List<RevisionProposal> getProposals() { return proposals; }
+    public void setProposals(List<RevisionProposal> proposals) { this.proposals = proposals; }
+    public List<BatchChange> getChanges() { return changes; }
+    public void setChanges(List<BatchChange> changes) { this.changes = changes; }
 
     public BatchClosing() {
     }
@@ -66,6 +79,14 @@ public class BatchClosing {
 
     public ProjectionScope getScope() {
         return this.scope;
+    }
+
+    public int getContentVersion() {
+        return contentVersion;
+    }
+
+    public void setContentVersion(int contentVersion) {
+        this.contentVersion = contentVersion;
     }
 
     public void setScope(ProjectionScope scope) {
@@ -127,17 +148,20 @@ public class BatchClosing {
         BatchClosing that = (BatchClosing) o;
         return Objects.equals(this.closedAt, that.closedAt)
                     && Objects.equals(this.correctionRevision, that.correctionRevision)
+                    && Objects.equals(this.contentVersion, that.contentVersion)
                     && Objects.equals(this.scope, that.scope)
                     && Objects.equals(this.comparison, that.comparison)
                     && Objects.equals(this.gate, that.gate)
                     && Objects.equals(this.returnedChangeIds, that.returnedChangeIds)
                     && Objects.equals(this.rounds, that.rounds)
                     && Objects.equals(this.request, that.request)
-                    && Objects.equals(this.judges, that.judges);
+                    && Objects.equals(this.judges, that.judges)
+                    && Objects.equals(this.proposals, that.proposals)
+                    && Objects.equals(this.changes, that.changes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(closedAt, correctionRevision, scope, comparison, gate, returnedChangeIds, rounds, request, judges);
+        return Objects.hash(closedAt, correctionRevision, contentVersion, scope, comparison, gate, returnedChangeIds, rounds, request, judges, proposals, changes);
     }
 }

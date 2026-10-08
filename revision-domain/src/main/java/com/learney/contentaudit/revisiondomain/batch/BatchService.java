@@ -23,4 +23,12 @@ public interface BatchService {
     BatchPublication publish(BatchPublishRequest request);
 
     BatchClosing close(BatchCloseRequest request);
+
+    default BatchReview review(String batchId) {
+        throw new UnsupportedOperationException("La revisión no está disponible.");
+    }
+
+    default BatchReview review(BatchReviewDecision decision) {
+        throw new UnsupportedOperationException("La revisión no está disponible.");
+    }
 }

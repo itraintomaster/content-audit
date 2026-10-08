@@ -18,4 +18,13 @@ public interface BatchStore {
     List<CorrectionBatch> list();
 
     Optional<CorrectionBatch> latestPublished();
+
+    /** Separate, append-only review events: saving one must never rewrite the running batch. */
+    default void saveReview(BatchReviewDecision decision) {
+        throw new UnsupportedOperationException("El store no admite revisiones humanas.");
+    }
+
+    default List<BatchReviewDecision> reviews(String batchId) {
+        return List.of();
+    }
 }

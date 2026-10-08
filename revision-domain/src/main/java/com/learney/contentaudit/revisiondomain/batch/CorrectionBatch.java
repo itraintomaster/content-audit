@@ -29,10 +29,13 @@ public class CorrectionBatch {
      * The durable candidate revision inside this batch.
      *
      * <p>A closing only measures the current revision. Closing again does not create another
-     * correction; running the correction after a closing does. Old persisted batches omit this
-     * field and are revision 1.</p>
+     * correction. Continuing the tasks of the same plan keeps its number, even after an analysis.
+     * Old persisted batches omit this field and are revision 1.</p>
      */
     private int correctionRevision;
+
+    /** Increases on continuation, so an earlier analysis is not presented as measuring new work. */
+    private int contentVersion;
 
     private String baselineAuditId;
 
@@ -314,6 +317,14 @@ public class CorrectionBatch {
         return this.openedAt;
     }
 
+    public int getContentVersion() {
+        return contentVersion;
+    }
+
+    public void setContentVersion(int contentVersion) {
+        this.contentVersion = contentVersion;
+    }
+
     public void setOpenedAt(Instant openedAt) {
         this.openedAt = openedAt;
     }
@@ -344,6 +355,7 @@ public class CorrectionBatch {
                     && Objects.equals(this.status, that.status)
                     && Objects.equals(this.interruptionReason, that.interruptionReason)
                     && Objects.equals(this.correctionRevision, that.correctionRevision)
+                    && Objects.equals(this.contentVersion, that.contentVersion)
                     && Objects.equals(this.baselineAuditId, that.baselineAuditId)
                     && Objects.equals(this.startAuditId, that.startAuditId)
                     && Objects.equals(this.planId, that.planId)
@@ -370,6 +382,6 @@ public class CorrectionBatch {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, level, status, interruptionReason, correctionRevision, baselineAuditId, startAuditId, planId, analyzers, settings, conversionOrders, taskIds, notTakenTaskIds, unevaluated, courseTies, changes, quizProposals, outcomes, panelDecisions, adjustments, closings, blindSampleId, queryCap, queriesSpent, openedAt, publication, pendingRerecords);
+        return Objects.hash(id, level, status, interruptionReason, correctionRevision, contentVersion, baselineAuditId, startAuditId, planId, analyzers, settings, conversionOrders, taskIds, notTakenTaskIds, unevaluated, courseTies, changes, quizProposals, outcomes, panelDecisions, adjustments, closings, blindSampleId, queryCap, queriesSpent, openedAt, publication, pendingRerecords);
     }
 }

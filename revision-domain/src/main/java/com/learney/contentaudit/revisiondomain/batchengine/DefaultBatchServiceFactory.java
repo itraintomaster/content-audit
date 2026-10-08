@@ -50,6 +50,8 @@ public class DefaultBatchServiceFactory implements BatchServiceFactory {
                 config.getAuditReportStore(), config.getActiveAnalysisSelectionStore(), config.getBaselineStore(),
                 config.getCourseRepository(), config.getPanelRunnerFactory(), config.getBriefer(), selector,
                 new DefaultBatchCostEstimator(), rules, panels, ledger, closer, publisher, new DefaultBatchReportBuilder(),
-                config.getCoursePath(), config.getGoalBook(), judgePass).withPanel(config.getPanelRunner());
+                config.getCoursePath(), config.getGoalBook(), judgePass,
+                new DefaultBatchReview(config.getBatchStore(), config.getArtifactStore(),
+                        config.getRefinementPlanStore(), new DefaultBatchReportBuilder())).withPanel(config.getPanelRunner());
     }
 }

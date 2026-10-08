@@ -124,6 +124,7 @@ public class DefaultBatchServiceTest {
         CorrectionBatch batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
 
         assertEquals("audit-publicado-1", batch.getStartAuditId(), "from what the last published batch left");
+        assertEquals(2, batch.getCorrectionRevision(), "a new batch after integration is Correction 2");
         assertEquals("plan-publicado-1", batch.getPlanId());
         assertEquals(List.of("t-otra"), batch.getTaskIds());
         assertEquals(TandaFixture.BASELINE, batch.getBaselineAuditId(), "the same fixed baseline");
@@ -206,9 +207,9 @@ public class DefaultBatchServiceTest {
     }
 
     @Test
-    @DisplayName("should keep repeated analyses in the same correction and open the next correction only when work runs again")
+    @DisplayName("should continue the same correction after an analysis and preserve every measured content version")
     @Tag("FEAT-TANDA")
-    public void shouldKeepRepeatedAnalysesInTheSameCorrectionAndOpenTheNextCorrectionOnlyWhenWorkRunsAgain() {
+    public void shouldContinueTheSameCorrectionAfterAnAnalysisAndPreserveEveryMeasuredContentVersion() {
         Service service = new Service();
         CorrectionBatch batch = service.service().open(new BatchOpenRequest(CefrLevel.A1, null, null, List.of()));
         assertEquals(1, batch.getCorrectionRevision(), "opening creates Correction 1");
@@ -218,6 +219,7 @@ public class DefaultBatchServiceTest {
         batch = service.batches.open().orElseThrow();
         assertEquals(1, batch.getCorrectionRevision());
         assertEquals(1, batch.getClosings().get(0).getCorrectionRevision(), "the first analysis measures Correction 1");
+        assertEquals(1, batch.getClosings().get(0).getContentVersion());
 
         service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), null));
         batch = service.batches.open().orElseThrow();
@@ -227,11 +229,16 @@ public class DefaultBatchServiceTest {
 
         service.service().run(new BatchRunRequest(null));
         batch = service.batches.open().orElseThrow();
-        assertEquals(2, batch.getCorrectionRevision(), "running correction work after a closing opens Correction 2");
+        assertEquals(1, batch.getCorrectionRevision(), "continuing original tasks is still Correction 1");
+        assertEquals(2, batch.getContentVersion(), "new work makes the earlier analysis stale, not lost");
+        assertEquals(List.of(1, 1), batch.getClosings().stream().map(BatchClosing::getContentVersion).toList(),
+                "the previous measurements remain unchanged");
 
         service.service().close(new BatchCloseRequest(new LinkedHashMap<>(), null));
         batch = service.batches.open().orElseThrow();
-        assertEquals(2, batch.getClosings().get(2).getCorrectionRevision(), "the next closing is Analysis 2");
+        assertEquals(1, batch.getClosings().get(2).getCorrectionRevision(), "the next closing is another pass of Analysis 1");
+        assertEquals(2, batch.getClosings().get(2).getContentVersion());
+        assertEquals(3, batch.getClosings().size(), "none of the previous analyses are overwritten");
     }
 
     @Test
@@ -400,6 +407,10 @@ public class DefaultBatchServiceTest {
         assertEquals(2, service.comparator.scopes.size(), "compared again");
         assertTrue(service.comparator.scopes.get(1).getProposalIds().isEmpty(), "without it");
         assertEquals(BatchAdjustmentKind.DROP_CHANGE, batch.getAdjustments().get(0).getKind(), "José's decision, kept");
+        assertEquals(1, batch.getCorrectionRevision(), "adjusting is still the same correction");
+        assertEquals(2, batch.getContentVersion(), "a changed composition has a new measured content version");
+        assertEquals(1, batch.getClosings().get(0).getContentVersion(), "the previous measurement is immutable");
+        assertEquals(2, batch.getClosings().get(1).getContentVersion(), "the recalculation measures the new composition");
     }
 
     @Test
@@ -607,7 +618,8 @@ public class DefaultBatchServiceTest {
                     TandaFixture.COURSE_PATH);
             return new DefaultBatchService(batches, plans, reports, active, baselines, courses, factory,
                     TandaFixture.briefer(), selector, new DefaultBatchCostEstimator(), rules, panelStage, ledger, closer,
-                    publisher, new DefaultBatchReportBuilder(), TandaFixture.COURSE_PATH, goals, judgePass);
+                    publisher, new DefaultBatchReportBuilder(), TandaFixture.COURSE_PATH, goals, judgePass,
+                    new DefaultBatchReview(batches, artifacts, plans, new DefaultBatchReportBuilder()));
         }
     }
 

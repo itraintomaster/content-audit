@@ -150,6 +150,23 @@ por oración (medido el 30/9).
 > Si la tanda se corta —falla del servicio, tope o pedido de José—, conserva el desenlace de cada tarea, cada veredicto
 > y cada cambio aceptado. Retomarla sigue desde ahí: no repite ningún intento decidido ni paga dos veces una consulta.
 
+Continuar tareas pendientes del mismo plan mantiene el número de la corrección, aunque ya tenga uno o más análisis
+guardados. Analizar al llegar a un tope no crea «Corrección 2» ni obliga a abandonar la primera. Cada pasada de análisis
+conserva su medición; al continuar se identifica una nueva versión interna del contenido y la medición anterior queda
+explícitamente pendiente de actualizar, nunca presentada como evaluación de lo agregado. Crear otra iteración del plan
+es una acción distinta, no un efecto automático de continuar ni de analizar.
+
+La revisión desde Correcciones admite una decisión humana por paso o por todos los pasos de un ejercicio. Cada
+decisión conserva el contenido exacto que se vio y se guarda separada de la corrida: refrescar o guardar la decisión
+no sobrescribe su avance. Si el paso o su antes/después cambian, debe revisarse otra vez; una aprobación anterior no
+se hereda. Esta revisión no aplica contenido ni reemplaza las compuertas de publicación.
+
+Correcciones y Comparación leen los resultados guardados por el backend, sin ejecutar auditorías al abrirse.
+El historial permite consultar las correcciones del mismo nivel y Base, y sus mediciones previas; elegir una
+versión histórica no cambia la ejecución actual. Una nueva tanda, posterior a la integración de la anterior,
+recibe el número siguiente. Los resultados históricos sin un snapshot de contenido no se reconstruyen con propuestas
+mutables de hoy.
+
 Mantiene [F-EVCOST-R004](#F-EVCOST-R004) (cada resultado queda disponible apenas se obtiene) y
 [F-REVBYP-R014](#F-REVBYP-R014) (el artefacto se guarda antes de aplicar).
 

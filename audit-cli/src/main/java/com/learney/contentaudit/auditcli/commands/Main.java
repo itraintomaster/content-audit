@@ -1665,6 +1665,17 @@ class Main {
             }
 
             @Override
+            public com.learney.contentaudit.revisiondomain.batch.BatchReview review(String batchId) {
+                return factory.get().review(batchId);
+            }
+
+            @Override
+            public com.learney.contentaudit.revisiondomain.batch.BatchReview review(
+                    com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision decision) {
+                return factory.get().review(decision);
+            }
+
+            @Override
             public com.learney.contentaudit.revisiondomain.batch.BatchPublication publish(
                     com.learney.contentaudit.revisiondomain.batch.BatchPublishRequest request) {
                 return factory.get().publish(request);

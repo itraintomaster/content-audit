@@ -2,8 +2,6 @@ package com.learney.contentaudit.revisiondomain.batchengine;
 
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.coursedomain.CourseEntity;
-import com.learney.contentaudit.coursedomain.KnowledgeEntity;
-import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.revisiondomain.CourseElementLocator;
 import com.learney.contentaudit.revisiondomain.CourseElementSnapshot;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
@@ -144,27 +142,11 @@ class DefaultBatchChangeLedger implements BatchChangeLedger {
         if (before.isEmpty()) {
             return Optional.empty();
         }
-        if (before.get().getNodeTarget() == AuditTarget.KNOWLEDGE) {
-            KnowledgeEntity knowledge = before.get().getKnowledge();
-            String instructions = knowledge.getInstructions();
-            for (BatchChangeStep step : steps) {
-                if (step.getAfter() != null && step.getAfter().getKnowledge() != null
-                        && BatchBook.fields(step.getParts()).contains(BatchBook.Field.TOPIC_INSTRUCTIONS)) {
-                    instructions = step.getAfter().getKnowledge().getInstructions();
-                }
-            }
-            KnowledgeEntity after = new KnowledgeEntity(knowledge.getId(), knowledge.getCode(), knowledge.getKind(),
-                    knowledge.getLabel(), knowledge.getOldId(), knowledge.getParentId(), knowledge.isIsRule(),
-                    instructions, knowledge.getOrder(), knowledge.getSlug(), knowledge.getQuizTemplates(),
-                    knowledge.getSentenceMode());
-            return Optional.of(new CourseElementSnapshot(AuditTarget.KNOWLEDGE, nodeId, null, after));
-        }
-        QuizTemplateEntity quiz = BatchBook.copy(before.get().getQuiz());
+        CourseElementSnapshot composed = before.get();
         for (BatchChangeStep step : steps) {
-            quiz = BatchBook.apply(quiz, step.getAfter() != null ? step.getAfter().getQuiz() : null,
-                    BatchBook.fields(step.getParts()));
+            composed = BatchBook.apply(composed, step);
         }
-        return Optional.of(new CourseElementSnapshot(AuditTarget.QUIZ, nodeId, quiz, null));
+        return Optional.of(composed);
     }
 
     private Optional<CourseElementSnapshot> before(CourseEntity startCourse, String nodeId, List<BatchChangeStep> steps) {
