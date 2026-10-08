@@ -51,6 +51,12 @@ public class FTandaJ001JourneyTest {
         assertTrue(run.out().startsWith("Corrida con tope de 10 consultas."), run.out());
         assertTrue(run.out().contains("  resueltas por regla: 1\n  resueltas por la mesa: 1\n  sin ganador: 1\n"), run.out());
         assertEquals(List.of(TandaCli.AFIRMATIVAS), cli.panel.topics, "the panel of its topic, once");
+        assertEquals(1, cli.vocabularySeeds.size(), "one provisional context opened by the production factory");
+        var seed = cli.vocabularySeeds.get(0).getMilestones().get(0).getTopics().get(0).getKnowledge().get(0);
+        assertEquals("(love) a lot of vegetables.", seed.getQuizzes().get(0).getSentenceParts().get(2).getText(),
+                "the context starts after the rule, not from the original analysis");
+        assertEquals(1, cli.panel.contexts.size(), "the scripted panel received its topic context");
+        assertEquals(0L, cli.panel.contexts.get(0).getWorkingVersion());
 
         TandaCli.Run close = cli.batch("close");
         assertEquals(0, close.exit(), close.err());
@@ -98,6 +104,7 @@ public class FTandaJ001JourneyTest {
         assertTrue(run.out().startsWith("Sin tope de consultas: corrieron sólo las reglas, que no consultan ningún modelo; 2"
                 + " tareas de la mesa quedaron sin intentar."), run.out());
         assertTrue(cli.panel.topics.isEmpty(), "no panel opened, no query");
+        assertTrue(cli.vocabularySeeds.isEmpty(), "no provisional context is needed without a panel");
         CorrectionBatch batch = cli.batches.open().orElseThrow();
         assertEquals(0, batch.getQueriesSpent());
         TandaCli.Run publish = cli.tray("publish");

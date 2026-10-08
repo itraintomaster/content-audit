@@ -17,6 +17,7 @@ import com.learney.contentaudit.auditdomain.DefaultCourseDiagnoses;
 import com.learney.contentaudit.auditdomain.IrregularFormsCatalog;
 import com.learney.contentaudit.auditdomain.NlpToken;
 import com.learney.contentaudit.auditdomain.RuleFix;
+import com.learney.contentaudit.auditdomain.WorkingVocabulary;
 import com.learney.contentaudit.auditdomain.answercompleteness.AnswerCompletenessCorrection;
 import com.learney.contentaudit.auditdomain.auditnodeindex.DefaultAuditNodeIndexFactory;
 import com.learney.contentaudit.auditdomain.catalog.AnalyzerMeasure;
@@ -69,6 +70,7 @@ import com.learney.contentaudit.refinerdomain.RefinerEngine;
 import com.learney.contentaudit.refinerdomain.TaskOrigin;
 import com.learney.contentaudit.refinerdomain.UnconvertedScoreCount;
 import com.learney.contentaudit.refinerdomain.errortask.DefaultErrorTaskBriefer;
+import com.learney.contentaudit.refinerdomain.topicwords.TopicWordLights;
 import com.learney.contentaudit.revisiondomain.batch.BatchService;
 import com.learney.contentaudit.revisiondomain.batch.BatchServiceConfig;
 import com.learney.contentaudit.revisiondomain.batch.BatchStore;
@@ -98,6 +100,7 @@ import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
 import com.learney.contentaudit.revisiondomain.panel.PanelRunSettings;
 import com.learney.contentaudit.revisiondomain.panel.PanelRunner;
 import com.learney.contentaudit.revisiondomain.panel.PanelTopicResult;
+import com.learney.contentaudit.revisiondomain.panel.PanelVocabularyContext;
 import com.learney.contentaudit.revisiondomain.panel.QueryAllowance;
 import com.learney.contentaudit.revisiondomain.panel.TopicMeter;
 import com.learney.contentaudit.revisiondomain.panel.TopicWork;
@@ -119,6 +122,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.BiFunction;
 import picocli.CommandLine;
 
 /**
@@ -157,6 +161,7 @@ final class TandaCli {
     final Comparison comparison = new Comparison();
     final Blind blind = new Blind();
     final List<AnalyzerRunSelection> published = new ArrayList<>();
+    final List<AuditableCourse> vocabularySeeds = new ArrayList<>();
     final BatchService batchService;
     final TrayService trayService;
 
@@ -189,6 +194,24 @@ final class TandaCli {
             public AuditReport runAudit(AuditableCourse auditable, AnalyzerRunSelection selection) {
                 published.add(selection);
                 return report(courses.course, List.of(teaAnswer(), fruitTie()));
+            }
+
+            @Override
+            public WorkingVocabulary openWorkingVocabulary(AuditableCourse auditable) {
+                vocabularySeeds.add(auditable);
+                // This CLI fixture has a scripted panel, not lexical analyzers. The domain tests
+                // cover deltas; this double verifies that the factory actually supplies context.
+                return new WorkingVocabulary() {
+                    @Override
+                    public void replaceKnowledge(AuditableKnowledge knowledge) {
+                        throw new AssertionError("the scripted panel does not calculate vocabulary deltas");
+                    }
+
+                    @Override
+                    public <T> T query(BiFunction<AuditReport, Long, T> query) {
+                        return query.apply(reports.saved.get(BASELINE), 0L);
+                    }
+                };
             }
         };
         RefinerEngine refiner = new RefinerEngine() {
@@ -227,9 +250,12 @@ final class TandaCli {
         // The locator of the course and the table of parts to fields go null, as in Main: the factory builds the ones
         // of revision-domain.
         batchService = new DefaultBatchServiceFactory().create(new BatchServiceConfig(batches, plans, reports, active,
-                artifacts, courses, null, auditable -> new AuditableCourse(List.of()), engine, refiner,
+                artifacts, courses, null, value -> new AuditableCourse(report(value, List.of()).getRoot().getChildren()
+                        .stream().map(node -> (AuditableMilestone) node.getEntity()).toList()), engine, refiner,
                 new DefaultErrorTaskBriefer(corrections, new DefaultAuditNodeIndexFactory(), renderer), corrections,
-                fixes, panel, new Meter(), new DefaultPanelRunnerFactory(), comparison, baselines, blind, null, null,
+                fixes, panel, new Meter(), new DefaultPanelRunnerFactory(), comparison, baselines, blind,
+                (report, auditId, knowledgeId, criteria) -> new TopicWordLights(auditId, knowledgeId,
+                        "Afirmativas regulares", CefrLevel.A1, List.of(), List.of()), null,
                 new DefaultPreservationFactory().createCheck(), workdir.resolve("english-course.json"), new Goals(),
                 null));
         trayService = new DefaultTrayServiceFactory().create(new TrayServiceConfig(batchService, batches, decisions,
@@ -430,6 +456,15 @@ final class TandaCli {
     /** The panel: «He ___ (come)» becomes «Winter ___ (come) every year.»; nobody fixes the tea. One query each. */
     static final class Panel implements PanelRunner {
         final List<String> topics = new ArrayList<>();
+        final List<TopicWordLights> contexts = new ArrayList<>();
+
+        @Override
+        public List<PanelTopicResult> runTopics(List<TopicWork> works, PanelRunSettings settings,
+                QueryAllowance allowance, PanelDecisionSink sink, PanelVocabularyContext vocabulary) {
+            if (vocabulary == null) throw new AssertionError("the factory must pass the provisional context");
+            for (TopicWork work : works) contexts.add(vocabulary.lightsFor(work));
+            return runTopics(works, settings, allowance, sink);
+        }
 
         @Override
         public List<PanelTopicResult> runTopics(List<TopicWork> works, PanelRunSettings settings,

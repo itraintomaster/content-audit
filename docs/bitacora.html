@@ -83,22 +83,22 @@
 <div class="shell">
   <div class="topline">
     <div class="live"><span class="pulse"></span><span>CENTRO DE CONTROL · CONTROLES REALES</span></div>
-    <div class="updated">Comprobado <time id="updatedAgo">8/10, 16:08</time> · Corrección 1 sigue avanzando</div>
+    <div class="updated">Comprobado <time id="updatedAgo">8/10, 16:25</time> · Corrección 1 sigue avanzando</div>
   </div>
 
   <header>
     <div class="eyebrow">8 de octubre · Campaña A1 V11 · última comprobación</div>
     <h1>Contexto probado; Corrección 1 sigue.</h1>
-    <p class="lede"><strong>La corrida sigue guardando resultados: 1.061 consultas nuevas y 396 tareas más.</strong> El contexto léxico incremental está implementado y probado, pero todavía no activado. Esta página registra comprobaciones fechadas; el seguimiento vivo está en el Centro de control. No se pausó ni reinició la ejecución y no se publicó contenido.</p>
+    <p class="lede"><strong>La corrida sigue guardando resultados: 1.258 consultas nuevas y 465 tareas más.</strong> El contexto léxico incremental está implementado y probado, pero todavía no activado. Esta página registra comprobaciones fechadas; el seguimiento vivo está en el Centro de control. No se pausó ni reinició la ejecución y no se publicó contenido.</p>
   </header>
 
   <section>
     <h2>Misma Corrección 1, con resultados nuevos</h2>
     <div class="result-grid">
-      <article class="result live-run"><div class="kicker">Propuestas guardadas a las 16:08</div><strong>951</strong><p>Había 753 al reanudar. Avanzó de 1.426 a 1.822 tareas trabajadas de 3.499. Sigue siendo Corrección 1; quedan 1.677 tareas sin intentar.</p></article>
+      <article class="result live-run"><div class="kicker">Propuestas guardadas a las 16:25</div><strong>989</strong><p>Había 753 al reanudar. Avanzó de 1.426 a 1.891 tareas trabajadas de 3.499. Sigue siendo Corrección 1; quedan 1.608 tareas sin intentar.</p></article>
       <article class="result"><div class="kicker">Saldo máximo adicional autorizado</div><strong>2.092 consultas</strong><p>Se reanudó con el saldo del tope anterior: 2.500 menos 408 guardadas. Codex/ChatGPT, gpt-6.1-sol, medium. Si no alcanza para todo A1, hará falta ampliar el presupuesto.</p></article>
     </div>
-    <p class="caption">Comprobación de las 16:08 ART sobre la actividad durable de ui-2026-10-08T16-48-24.466720Z-batch-run: RUNNING, 1.061/2.092 consultas y último resultado a las 16:07:50. El saldo es un techo, no garantiza intentar todo A1. Los canales se drenan en paralelo con plazo efectivo y el monitor no puede resucitar una operación cancelada. <a href="briefs/044-recuperacion-correccion-1.html">Recuperación anterior 044</a> · <a href="briefs/043-correccion-bloqueada-en-canales.html">Diagnóstico 043</a>.</p>
+    <p class="caption">Comprobación de las 16:25 ART sobre la actividad durable de ui-2026-10-08T16-48-24.466720Z-batch-run: RUNNING, 1.258/2.092 consultas. El saldo es un techo, no garantiza intentar todo A1. Los canales se drenan en paralelo con plazo efectivo y el monitor no puede resucitar una operación cancelada. <a href="briefs/044-recuperacion-correccion-1.html">Recuperación anterior 044</a> · <a href="briefs/043-correccion-bloqueada-en-canales.html">Diagnóstico 043</a>.</p>
   </section>
 
   <section>
@@ -108,7 +108,8 @@
       <div class="guard"><div class="icon">2</div><h3>Concurrencia comprobada</h3><p>Las actualizaciones se consolidan sin perder cuentas y cada lectura ve una versión consistente. Las consultas al modelo quedan fuera del bloqueo. Rechazos, empates y fallos de guardado no inventan contribuciones aceptadas.</p></div>
       <div class="guard"><div class="icon">3</div><h3>Activación posterior</h3><p>El código nuevo no está cargado en la corrida actual. Se probó fuera del checkout activo; no se tocaron sus clases compiladas. El análisis final, los jueces y las guardas mantienen su función independiente.</p></div>
     </div>
-    <p class="caption">2.681 pruebas aprobadas, una histórica ya deshabilitada y cero fallos; incluye equivalencia con la salida histórica en 11.760 nodos. Sin consultas reales a modelos ni cambios de proveedor, modelo o esfuerzo. La ganancia de tiempo real sigue sin medir. <a href="briefs/048-pruebas-contexto-incremental.html">Plan 048</a> · <a href="briefs/049-contexto-incremental-probado.html">Entrega 049</a>.</p>
+    <p class="caption">Batería ampliada: 3.339 aprobadas de 3.340 declaradas, una histórica ya deshabilitada y cero fallos, excluyendo sólo la clase de la guardia previa indicada abajo. Incluye recorridos completos de CLI y equivalencia histórica en 11.760 nodos. Sin consultas reales a modelos ni cambios de proveedor, modelo o esfuerzo. La ganancia de tiempo real sigue sin medir. <a href="briefs/048-pruebas-contexto-incremental.html">Plan 048</a> · <a href="briefs/049-contexto-incremental-probado.html">Entrega 049</a> · <a href="briefs/050-verificacion-global-contexto.html">Verificación ampliada 050</a>.</p>
+    <p class="caption"><b>Verificación global adicional:</b> la guardia del examen falla porque <code>.sentinel/agents/near-duplicates-pair-judge/eval/pares-inventados.json</code> contiene textos de ejercicios del examen. Tanto ese archivo como el test de la guardia tienen el mismo SHA-256 que en ee3fff74, antes del cambio incremental. No se alteraron definiciones, ejemplos ni exámenes de los jueces activos. Este fallo previo queda pendiente; no se presenta el reactor entero como aprobado.</p>
   </section>
 
   <section>
@@ -651,7 +652,7 @@
   <footer><span>Fuente: tanda guardada y procesos locales. Una recarga de esta página no vuelve a comprobar el backend.</span><span class="mono">docs/bitacora.html · última comprobación explícita</span></footer>
 </div>
 <script>
-  const state={used:287,total:287,updatedAt:'2026-10-08T16:08:00-03:00'};
+  const state={used:287,total:287,updatedAt:'2026-10-08T16:25:05-03:00'};
   const pct=state.used/state.total*100;
   document.querySelector('#ring').style.setProperty('--p',`${pct*3.6}deg`);
   document.querySelector('#pct').textContent=pct.toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';

@@ -1,52 +1,39 @@
 <!doctype html>
 <html lang="es">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contexto incremental probado, sin cortar Corrección 1</title>
+<title>Contexto listo; advertencia previa en los datos del examen</title>
 <style>
 :root{color-scheme:light dark;--bg:#fbfaf8;--fg:#1c1a17;--surface:#fff;--line:#e6e2db;--muted:#57524b;--accent:#b4531f;--ok:#2f6b46;--warn:#8a6314;--warn-soft:#fbf2dd}
 @media(prefers-color-scheme:dark){:root{--bg:#131211;--fg:#efece7;--surface:#1b1a18;--line:#302d29;--muted:#a8a29a;--accent:#e08b4f;--ok:#7fc79c;--warn:#e0b657;--warn-soft:#272013}}
-*{box-sizing:border-box}body{margin:0;padding:40px 24px 80px;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,sans-serif}.wrap{max-width:940px;margin:auto}header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}.kicker,.meta{color:var(--muted);font-size:12px}h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2}h2{font-size:19px}section{margin:34px 0}.lede,.st,.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}.lede{border-left:3px solid var(--accent)}.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px}.st b,.st span{display:block}.st span,.pie,footer{color:var(--muted);font-size:13.5px}.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.kpi .n{font-size:32px;color:var(--ok);line-height:1.2}.kpi .l{font-size:13px;color:var(--muted)}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;background:var(--surface);font-size:14px}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line)}a{color:var(--accent);overflow-wrap:anywhere}.call{padding:12px 16px;border-radius:10px}.c-warn{background:var(--warn-soft);color:var(--warn)}footer{border-top:1px solid var(--line);padding-top:16px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}@media(max-width:620px){.flow,.kpis{grid-template-columns:1fr}}
+*{box-sizing:border-box}body{margin:0;padding:40px 24px 80px;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,sans-serif}.wrap{max-width:940px;margin:auto}header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}.kicker,.meta{color:var(--muted);font-size:12px}h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2}h2{font-size:19px}section{margin:34px 0}.lede,.st,.kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}.lede{border-left:3px solid var(--accent)}.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.st b,.st span{display:block}.st span,.pie,footer{color:var(--muted);font-size:13.5px}.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.kpi .n{font-size:32px;color:var(--ok);line-height:1.2}.kpi .l{font-size:13px;color:var(--muted)}.kpi.warn .n{color:var(--warn)}a{color:var(--accent);overflow-wrap:anywhere}.call{padding:12px 16px;border-radius:10px;background:var(--warn-soft);color:var(--warn)}footer{border-top:1px solid var(--line);padding-top:16px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px}@media(max-width:620px){.flow,.kpis{grid-template-columns:1fr}}
 </style></head>
 <body><main class="wrap">
-<header><div class="kicker">049 · ENTREGA PROBADA</div><span class="meta">8 octubre 2026 · Correcciones · contexto y concurrencia</span><h1>El contexto avanza; la evaluación final sigue independiente</h1></header>
-<div class="lede">Implementado y probado: las sugerencias incorporan las propuestas aceptadas durante la corrida, sin auditar todo el curso entre propuestas. La ejecución actual sigue intacta; el código nuevo todavía no está activado.</div>
-
-<section><h2>La palabra no desaparece después de aparecer una vez</h2><div class="flow">
-<div class="st"><b>Ausente</b><span>Se sugiere agregar «lamp».</span></div>
-<div class="st"><b>Una aparición</b><span>Sigue sugerida: todavía falta exposición.</span></div>
-<div class="st"><b>Dos apariciones</b><span>Alcanza el umbral y sale de las sugerencias.</span></div>
-<div class="st"><b>Se retira una</b><span>Vuelve a sugerirse con cuenta uno.</span></div>
-</div><p class="pie">Ejemplo automatizado con umbral dos. Reutiliza las reglas existentes de exposición, niveles y frecuencia; no crea otra forma de contar.</p></section>
-
-<section><h2>Se probaron las cuentas y el contexto entregado</h2><div class="kpis">
-<div class="kpi"><div class="n">2.681</div><div class="l">aprobadas de 2.682 declaradas; cero fallos.</div></div>
-<div class="kpi"><div class="n">1</div><div class="l">prueba histórica ya deshabilitada; ninguna nueva omitida.</div></div>
-<div class="kpi"><div class="n">11.760</div><div class="l">nodos comparados contra la salida histórica completa.</div></div>
-</div><div class="table-wrap"><table><thead><tr><th>Familia</th><th>Evidencia verificada</th></tr></thead><tbody>
-<tr><td>Deltas</td><td>Agregar, quitar, reemplazar, repetir y borrar la última aparición: equivalencia con recalcular desde cero.</td></tr>
-<tr><td>Reglas léxicas</td><td>Lema/POS, niveles, palabras funcionales, bandas, cuartos y temas vacíos.</td></tr>
-<tr><td>Generador</td><td>Recibe sugerencias, cuentas, umbrales y versión; la siguiente propuesta ve los cambios aceptados.</td></tr>
-<tr><td>Concurrencia</td><td>Dos temas actualizan sin perder contribuciones; lecturas consistentes y conversión sin cachés compartidas.</td></tr>
-<tr><td>Recuperación</td><td>Reanudación desde reglas y propuestas guardadas; rechazos, empates, fallos de contexto/guardado y presupuesto agotado.</td></tr>
-<tr><td>Aislamiento</td><td>Base intacta, cero auditorías completas entre propuestas y ninguna consulta real a modelos.</td></tr>
-</tbody></table></div><p class="pie">Se ejecutaron las suites completas de los módulos afectados y sus dependencias en una copia aislada. <a href="048-pruebas-contexto-incremental.html">Plan previo 048</a>.</p></section>
-
-<section><h2>Paralelismo con cuentas compartidas, no con llamadas bloqueadas</h2><div class="flow">
-<div class="st"><b>Contexto provisional</b><span>Se reconstruye al arrancar; sólo los cambios aceptados actualizan sus cuentas.</span></div>
-<div class="st"><b>Temas en paralelo</b><span>Conserva el paralelismo configurado. Las llamadas al modelo quedan fuera del bloqueo léxico.</span></div>
-<div class="st"><b>Evaluación definitiva</b><span>Analizadores, jueces, guardas y aprobación humana siguen separados del contexto de trabajo.</span></div>
-</div><p class="pie">Se procesan los cambios léxicos y se refrescan sus resúmenes cuando hace falta. No cambian proveedor, modelo, esfuerzo ni cantidad configurada de llamadas simultáneas.</p>
-<div class="call c-warn">La ganancia de tiempo real todavía no está medida: falta activarlo y observar una nueva corrida.</div></section>
-
-<section><h2>Activar después, sin interrumpir Corrección 1</h2><div class="flow">
-<div class="st"><b>Ahora</b><span>Código y pruebas guardados. La corrida usa su backend anterior.</span></div>
-<div class="st"><b>Cuando termine</b><span>Compilar y cargar el backend nuevo, sin otra ejecución viva.</span></div>
-<div class="st"><b>Próxima corrida</b><span>Reconstruir contexto desde lo guardado; medir rendimiento sin cambiar jueces ni modelo.</span></div>
-</div><p class="pie">No se reinició la app ni se modificaron sus clases compiladas. No se ejecutaron modelos ni se publicó contenido.</p></section>
-<footer>ContentAudit · brief 049 · checkpoint previo ee3fff74 · <a href="../index.html">Índice</a>
-<pre>Verificación aislada, JDK 25:
-mvn -o -q -pl revision-infrastructure,audit-application -am test
-Tests: WorkingVocabularyTest, DefaultTopicWordLightsQueryTest, PanelVocabularyContextsTest,
-DefaultTopicPanelTest, DefaultPanelRunnerTest, DefaultPanelStageTest,
-CourseToAuditableMapperTest, AgentPanelProposerTest y suites históricas.</pre></footer>
+<header><div class="kicker">050 · VERIFICACIÓN AMPLIADA</div><span class="meta">8 octubre 2026 · Correcciones · pruebas y calidad</span><h1>Contexto listo; advertencia previa en los datos del examen</h1></header>
+<div class="lede">El contexto incremental está probado, incluidos los recorridos completos de corrección y análisis. La batería ampliada pasa al separar una guardia con datos previos contaminados. La corrida actual sigue intacta.</div>
+<section><h2>Una entrega probada no equivale a todo verde</h2><div class="kpis">
+<div class="kpi"><div class="n">3.339</div><div class="l">aprobadas de 3.340 declaradas; una antigua deshabilitada. Se excluyó la clase de la guardia previa.</div></div>
+<div class="kpi warn"><div class="n">1</div><div class="l">fallo previo en la guardia de separación del examen.</div></div>
+<div class="kpi"><div class="n">0</div><div class="l">cambios en los jueces, exámenes o ejecución activa.</div></div>
+</div><p class="pie">Los recorridos de CLI comprueban contexto conectado y arranque después de las reglas. <a href="049-contexto-incremental-probado.html">Deltas y concurrencia: 049</a> · <a href="048-pruebas-contexto-incremental.html">Plan 048</a>.</p></section>
+<section><h2>El fallo está en ejemplos anteriores al cambio</h2><div class="flow">
+<div class="st"><b>Archivo de ejemplos</b><span>Los pares del juez de duplicados incluyen frases de ejercicios del examen.</span></div>
+<div class="st"><b>Guardia automática</b><span>Detecta seis coincidencias y rechaza esa mezcla.</span></div>
+<div class="st"><b>Origen comprobado</b><span>Archivo y test idénticos al checkpoint previo; mismas huellas SHA-256.</span></div>
+</div><p class="pie">Esto no demuestra que las respuestas del juez actual sean inválidas. Sí impide declarar aprobada la batería global sin resolver los ejemplos.</p></section>
+<section><h2>La corrida sigue; los jueces no se cambian ahora</h2><div class="flow">
+<div class="st"><b>Conservar lo activo</b><span>No reiniciar, editar jueces ni repetir exámenes durante la corrección.</span></div>
+<div class="st"><b>Resolver después</b><span>Reemplazar ejemplos contaminados por casos ajenos al examen y repetir la guardia.</span></div>
+<div class="st"><b>Activación segura</b><span>Cargar el backend incremental sin otra ejecución viva y medir su rendimiento real.</span></div>
+</div><p class="pie">El código nuevo todavía no está activado. No se publicaron cambios ni se consultaron modelos para estas pruebas.</p>
+<div class="call">Pendiente concreto: corregir los datos de ejemplos y obtener una verificación global sin exclusiones.</div></section>
+<footer>ContentAudit · brief 050 · implementación 91781f85 · checkpoint previo ee3fff74 · <a href="../index.html">Índice</a>
+<pre>Fallo: AgentDefinitionsExamGuardIntegrationTest.shouldKeepTheExamOutOfEveryAgentDefinition
+Archivo: .sentinel/agents/near-duplicates-pair-judge/eval/pares-inventados.json
+SHA-256 del archivo actual y previo: 7dda109756815d38f54d06056e73e5d48aad69297e4563b168804ca4b877ea2f
+SHA-256 del test actual y previo: 336dcfa70af5e00bb0fbc0858571f01359c2ffe89c3e896959e805db2b8aec52
+Prueba sin exclusiones: mvn -o -q test → falla la guardia previa.
+Batería ampliada: mvn -o -q test '-Dtest=*,!AgentDefinitionsExamGuardIntegrationTest'
+La clase excluida tiene cuatro pruebas: tres pasan y una falla en la ejecución anterior.
+Copia aislada, JDK 25. Servidores HTTP simulados de loopback; ningún modelo real.
+Recorridos CLI: FTandaJ001JourneyTest, FBandejaJ001JourneyTest.</pre></footer>
 </main></body></html>
