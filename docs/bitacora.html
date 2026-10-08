@@ -83,22 +83,32 @@
 <div class="shell">
   <div class="topline">
     <div class="live"><span class="pulse"></span><span>CENTRO DE CONTROL · CONTROLES REALES</span></div>
-    <div class="updated">Comprobado <time id="updatedAgo">8/10, 19:14</time> · Continuación iniciada por el usuario; avance comprobado</div>
+    <div class="updated">Comprobado <time id="updatedAgo">8/10, 20:54</time> · Avance real; arreglo de aprobación pendiente de activación</div>
   </div>
 
   <header>
     <div class="eyebrow">8 de octubre · Campaña A1 V11 · última comprobación</div>
-    <h1>Corrección 1 retomó y está avanzando.</h1>
-    <p class="lede"><strong>El usuario inició una nueva continuación desde la UI, con un tope de 2.000 consultas adicionales.</strong> Se comprobó avance real: 9 tareas más trabajadas y 3 ejercicios más con propuesta, con 11 consultas nuevas consolidadas. Sigue siendo la misma Corrección 1 y se conservan los resultados anteriores. No se inició otro proceso ni se publicó contenido.</p>
+    <h1>Corrección 1 avanza; el bug de aprobación está identificado.</h1>
+    <p class="lede"><strong>La propuesta que la UI dice retirada sigue guardada: el envío perdía campos nulos y provocaba una falsa diferencia.</strong> El arreglo está commiteado y probado en una copia, pero todavía no activo: no se reemplazan clases mientras las usa la corrida. La vigilancia lo activará al terminar el proceso. Mientras tanto, la misma Corrección 1 sigue avanzando dentro del tope de 2.000 consultas nuevas. Nada fue publicado ni aprobado automáticamente.</p>
   </header>
 
   <section>
     <h2>Misma Corrección 1, con resultados nuevos</h2>
     <div class="result-grid">
-      <article class="result"><div class="kicker">Propuestas guardadas · instantánea 19:14</div><strong>1.174</strong><p>Había 1.171 al reanudar. Avanzó de 2.212 a 2.221 tareas trabajadas de 3.499. Sigue siendo Corrección 1; quedan 1.278 tareas sin intentar. Hay 11 consultas nuevas consolidadas.</p></article>
+      <article class="result"><div class="kicker">Propuestas guardadas · instantánea 20:54</div><strong>1.368</strong><p>Había 1.171 al reanudar. Avanzó de 2.212 a 2.635 tareas trabajadas de 3.499 (75,3 %). Sigue siendo Corrección 1; quedan 864 tareas sin intentar. Hay 1.220 consultas nuevas asociadas a decisiones guardadas.</p></article>
       <article class="result"><div class="kicker">Tope de la nueva continuación</div><strong>2.000 consultas</strong><p>Es el tope elegido por el usuario en la UI para este tramo, no una autorización de 5.000. La vigilancia conserva ese límite, sin renovarlo automáticamente. El tramo anterior agotó correctamente sus 121 consultas.</p></article>
     </div>
-    <p class="caption">Comprobación de las 19:14 ART: ui-2026-10-08T22-11-17.740925Z-batch-run está RUNNING; PID 5094 vivo. La actividad guarda como inicio 2.212 tareas, 1.171 propuestas y 4.119 consultas asociadas a decisiones. El contador de decisiones ya avanzó; las 5.090 consultas acumuladas de la tanda se consolidan al cierre y no deben confundirse con esa señal en vivo. Vigilancia actualizada cada 10 minutos, sin duplicar la corrida, cerrar la app, recompilar clases en uso ni renovar el tope. Codex/ChatGPT, gpt-6.1-sol y medium. No se inicia análisis ni publicación. <a href="briefs/053-continuacion-2000-correccion-1.html">Estado 053</a> · <a href="briefs/052-tope-alcanzado-correccion-1.html">Tramo anterior 052</a>.</p>
+    <p class="caption">Comprobación de las 20:54 ART: ui-2026-10-08T22-11-17.740925Z-batch-run está RUNNING; PID 5094 comprobado vivo. La actividad guarda como inicio 2.212 tareas, 1.171 propuestas y 4.119 consultas asociadas a decisiones. Ahora las decisiones suman 5.339: 1.220 nuevas. La última escritura real de la tanda fue a las 20:53:52; actividad y checkpoint coinciden. Las 5.090 consultas acumuladas de la tanda se consolidan al cierre y no deben confundirse con esa señal en vivo. Vigilancia cada 10 minutos, sin duplicar la corrida, cerrar la app, recompilar clases en uso ni renovar el tope. Codex/ChatGPT, gpt-6.1-sol y medium. No se inicia análisis ni publicación. <a href="briefs/054-avance-correccion-1.html">Instantánea anterior 054</a> · <a href="briefs/053-continuacion-2000-correccion-1.html">Inicio del tramo 053</a>.</p>
+  </section>
+
+  <section>
+    <h2>Aprobar falla por el envío, no por una retirada</h2>
+    <div class="guards">
+      <div class="guard"><div class="icon">1</div><h3>Propuesta conservada</h3><p>“She ___ English.” sigue en la tanda, con la misma miniteoría propuesta y sin motivo de retirada. Recargar no lo resuelve porque cada envío eliminaba las mismas entradas nulas del contenido.</p></div>
+      <div class="guard"><div class="icon">2</div><h3>Arreglo probado</h3><p>El intercambio conserva esos campos sin relajar la validación exacta. El caso real falla con el runtime actual y guarda una aprobación con el arreglo, exclusivamente en copias temporales. El checkpoint queda idéntico.</p></div>
+      <div class="guard"><div class="icon">3</div><h3>Activación pendiente</h3><p>La vigilancia ya incluye compilar y comprobar el arreglo cuando no haya procesos usando el checkout. Después bastará “Volver a leer” en Correcciones. No se interrumpe la corrida ni se amplía su presupuesto.</p></div>
+    </div>
+    <p class="caption">Commit b533f4dc. Pruebas focalizadas: 18 de CLI, 14 del servicio de revisión y 7 de caché, sin fallos. Verificación ampliada: los informes finales de 512 pruebas de CLI y las 21 de revisión/caché quedan sin fallos, errores ni omisiones; al completar las fixtures de la copia se volvieron a ejecutar las clases que inicialmente fallaban por archivos ausentes. Se comprueba aprobación, rechazo, deshacer, avance independiente del checkpoint y rechazo de selecciones realmente alteradas o retiradas. Build separado en /private/tmp/content-audit-approval-tests.HUOwkY; ninguna clase del checkout fue reemplazada. <a href="briefs/055-aprobacion-contenido-exacto.html">Diagnóstico 055</a>. El brief registra el arreglo y la activación pendiente, no una activación ya hecha; su HTML se verificó estáticamente, sin afirmar una revisión visual renderizada. Aprobar no aplica ni publica contenido.</p>
   </section>
 
   <section>
@@ -125,7 +135,7 @@
   <section>
     <h2>Primera entrega de revisión, sin confundir aprobar con aplicar</h2>
     <div class="guards">
-      <div class="guard"><div class="icon">1</div><h3>Revisión exacta</h3><p>La app nueva ya abre Correcciones con las propuestas reales y su cabecera compacta. Permite guardar aprobaciones o rechazos separados de la corrida; no equivale a aplicar contenido.</p></div>
+      <div class="guard"><div class="icon">1</div><h3>Revisión exacta</h3><p>La app abre Correcciones con propuestas reales y cabecera compacta. Las decisiones son separadas de la corrida y no aplican contenido. El bug de intercambio indicado arriba todavía bloquea algunos casos hasta activar el arreglo.</p></div>
       <div class="guard"><div class="icon">2</div><h3>Lecturas guardadas</h3><p>Comparación ya lee mediciones guardadas, sin ejecutar auditorías al navegar. El historial conserva la Base y las mediciones anteriores.</p></div>
       <div class="guard"><div class="icon">3</div><h3>Aplicación pendiente</h3><p>Aplicar sólo lo aprobado aún no está implementado. El publicador existente integra toda la tanda: no se lo presenta como una aplicación selectiva.</p></div>
     </div>
