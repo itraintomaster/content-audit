@@ -465,7 +465,7 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
         try {
             var review = decisionJson == null ? batchService.review(target)
                     : batchService.review(CommandJson.read(decisionJson, BatchReviewDecision.class));
-            System.out.println(CommandJson.write(review));
+            System.out.println(CommandJson.writeCompact(review));
             return 0;
         } catch (IllegalArgumentException | NoOpenBatchException e) {
             System.err.println("Error: " + e.getMessage());

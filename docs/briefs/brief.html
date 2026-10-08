@@ -1,7 +1,10 @@
 <!doctype html>
 <html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark"><title>Corrección 1 recuperada: ya guarda resultados nuevos</title>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revisión rápida sin detener Corrección 1</title>
+
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -239,31 +242,63 @@
     .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
     .kpi .n{font-size:28px}
   }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker"><span class="num">045</span><span class="badge">Entrega parcial probada</span><span class="meta">Revisión de A1 · 8 octubre 2026 · 14:45 ART</span></div>
+  <h1>La revisión carga rápido; Corrección 1 sigue trabajando</h1>
+  <p class="sub">Lecturas guardadas, sin recalcular análisis ni reiniciar la aplicación activa.</p>
+</header>
+<div class="lede"><p><strong>La lectura de la tanda bajó de 17,8 a 1,3 segundos en una copia aislada.</strong> La corrida sigue intacta; aplicar una selección todavía está pendiente.</p></div>
 
-  </style></head>
-<body><div class="wrap">
-<header><div class="kicker"><span class="num">044</span><span class="badge">Reparada y reanudada</span><span class="meta">8 octubre 2026 · 13:50 ART</span></div>
-<h1>Corrección 1 ya guarda resultados nuevos</h1><p class="sub">Bloqueo reparado, app actualizada y reanudación comprobada desde la UI.</p></header>
-<div class="lede"><p><strong>La misma Corrección 1 volvió a avanzar: 6 consultas y 5 tareas nuevas guardadas.</strong> No se perdió ninguna propuesta ni medición anterior, ni se publicó contenido.</p></div>
+<section>
+  <h2>El backend devuelve lo mismo en menos tiempo</h2>
+  <div class="hb">
+    <div class="r"><span class="t">Lectura anterior<small>misma tanda congelada</small></span><span class="tr"><span class="f s" style="width:100%"></span></span><span class="n">17,8 s</span></div>
+    <div class="r"><span class="t">Primera lectura nueva<small>construye la copia guardada</small></span><span class="tr"><span class="f g" style="width:7.3%"></span></span><span class="n">1,30 s</span></div>
+    <div class="r"><span class="t">Lectura reutilizada<small>comprueba vigencia antes de mostrar</small></span><span class="tr"><span class="f g" style="width:7%"></span></span><span class="n">1,24 s</span></div>
+  </div>
+  <p class="pie">Medición del comando de lectura, no de la pantalla completa: 916 cambios revisables; igualdad de todo el contenido comprobada antes y después.</p>
+</section>
 
-<section><h2>Se conservó lo existente y el contador volvió a moverse</h2>
-<div class="flow"><div class="st"><div class="i">1</div><div class="h">Respaldo y detención</div><div class="d">Campaña respaldada; Java y Codex trabados terminaron.</div></div>
-<div class="st"><div class="i">2</div><div class="h">Reparación y reinicio</div><div class="d">Runtime compartido corregido y UI recompilada.</div></div>
-<div class="st end"><div class="i">3</div><div class="h">Corrección 1 continúa</div><div class="d">1.426 → 1.431 tareas; 753 → 754 propuestas. Dos análisis conservados.</div></div></div>
-<p class="pie">Comprobado a las 13:50 ART en disco y en la UI, sin pulsar «Volver a leer». Es una instantánea, no un monitor en vivo.</p></section>
+<section>
+  <h2>Revisar no debe disparar trabajo nuevo</h2>
+  <div class="ad">
+    <div class="lado antes"><span class="rot">Antes</span><ol><li>Recorría todo el repositorio al arrancar.</li><li>Preparaba componentes de modelos y lenguaje.</li><li>Esperaba la bandeja auxiliar para mostrar propuestas.</li></ol><span class="res">La revisión parecía detenida.</span></div>
+    <div class="lado despues"><span class="rot">Ahora, en código probado</span><ol><li>Lee una copia guardada si sigue vigente.</li><li>Reutiliza el mismo servicio de revisión.</li><li>Muestra propuestas sin esperar la bandeja.</li></ol><span class="res">Navegar nunca inicia un análisis faltante.</span></div>
+  </div>
+  <p class="pie">Propuestas, análisis y decisiones nuevas invalidan la copia. Si falta o está dañada, se reconstruye sin consultar modelos ni tocar el curso.</p>
+</section>
 
-<section><h2>El bloqueo era entre canales, no por dejarla sola</h2>
-<div class="ad"><div class="lado antes"><div class="rot">Antes</div><div class="res">Lecturas secuenciales</div><div>Java esperaba stdout mientras Codex llenaba stderr. El control del tiempo no llegaba a ejecutarse.</div></div>
-<div class="lado despues"><div class="rot">Ahora</div><div class="res">Lecturas concurrentes y plazo efectivo</div><div>Ambos canales se drenan juntos. Los 15 minutos de Codex cubren también la entrada/salida; cancelar limpia los subprocesos.</div></div></div>
-<p class="pie">Una única implementación compartida evita repetir la reparación entre proveedores. No se cambió de proveedor ni se repitieron exámenes.</p></section>
+<section>
+  <h2>Lo probado no se confunde con lo pendiente</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Parte</th><th>Evidencia o límite</th></tr></thead>
+    <tbody>
+      <tr><td>Backend</td><td>96 pruebas focalizadas aprobadas; ninguna consulta real nueva.</td></tr>
+      <tr><td>UI</td><td>258 pruebas aprobadas; análisis estático sin errores.</td></tr>
+      <tr><td>Corrida activa</td><td>Sin pausar, duplicar ni reiniciar; conserva su tope adicional de 2.092 consultas.</td></tr>
+      <tr><td>UI abierta</td><td>Los cambios de Flutter aún requieren una versión nueva; no se reinició la app.</td></tr>
+      <tr><td>Aplicar aprobadas</td><td>Pendiente: aprobar sigue siendo una decisión guardada, no una escritura del curso.</td></tr>
+      <tr><td>Exámenes desde UI</td><td>Pendiente; no se repitió ningún examen aprobado.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="pie">La separación visual entre carga, ausencia de análisis y error evita prometer resultados que todavía no existen.</p>
+</section>
 
-<section><h2>La UI distingue señales del monitor y resultados guardados</h2>
-<div class="ad"><div class="lado antes"><div class="rot">Señal del monitor</div><div class="res">«Recién» no prueba avance</div><div>Indica que el seguimiento sigue funcionando.</div></div>
-<div class="lado despues"><div class="rot">Último resultado guardado</div><div class="res">Marca una escritura real</div><div>Tras 15 minutos sin avance, aparece una advertencia. Si muere el proceso, se informa el error y se habilita recuperar.</div></div></div>
-<p class="pie">Un monitor tardío ya no resucita corridas canceladas. Pasaron 20 pruebas del runtime, 20 de telemetría y 255 de la UI, incluida la lectura de las propuestas y análisis reales.</p></section>
+<section>
+  <h2>Qué sigue: validar la selección antes de aplicarla</h2>
+  <div class="flow">
+    <div class="st"><span class="i">1</span><span class="h">Aprobar cambios</span><span class="d">Disponible: una corrección o todas las de un ejercicio.</span></div>
+    <div class="st"><span class="i">2</span><span class="h">Validar sólo la selección</span><span class="d">Pendiente: cobertura y no empeorar, sobre esa composición exacta.</span></div>
+    <div class="st end"><span class="i">3</span><span class="h">Aplicar con historial</span><span class="d">Pendiente: conservar Base, versiones previas y propuestas no elegidas.</span></div>
+  </div>
+  <p class="pie">No alcanza con heredar el veredicto de toda la tanda: una selección distinta necesita su propia validación.</p>
+</section>
 
-<section><h2>El saldo de consultas no garantiza terminar todo A1</h2>
-<div class="kpis"><div class="kpi dest"><div class="n">2.092</div><div class="l">máximo adicional: saldo de 2.500 menos 408 guardadas</div></div><div class="kpi"><div class="n">2.068</div><div class="l">tareas aún sin intentar en esta instantánea</div></div></div>
-<p class="pie">Codex/ChatGPT · gpt-6.1-sol · medium. Si el saldo no alcanza, será necesaria autorización para ampliarlo. La estimación de 8.940 corresponde al plan original, no al saldo restante.</p></section>
-<footer><span>Brief 044 · ContentAudit · no publica ni aplica propuestas</span><span>Corrida ui-2026-10-08T16-48-24.466720Z-batch-run · checkpoint durable y Centro de control.</span></footer>
-</div></body></html>
+<footer><span>Pruebas aisladas en Maven y Flutter; copia congelada de A1. Sin publicación ni modificaciones de producción.</span><span>brief 045 · docs/briefs/045-lectura-rapida-sin-interrumpir.html</span></footer>
+</div>
+</body>
+</html>

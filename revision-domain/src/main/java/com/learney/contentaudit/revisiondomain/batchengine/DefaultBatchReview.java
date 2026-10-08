@@ -9,6 +9,8 @@ import com.learney.contentaudit.revisiondomain.batch.BatchChangeStep;
 import com.learney.contentaudit.revisiondomain.batch.BatchClosing;
 import com.learney.contentaudit.revisiondomain.batch.BatchProposalRef;
 import com.learney.contentaudit.revisiondomain.batch.BatchReview;
+import com.learney.contentaudit.revisiondomain.batch.BatchReviewCache;
+import com.learney.contentaudit.revisiondomain.batch.BatchReviewService;
 import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
 import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchStore;
@@ -24,28 +26,45 @@ import java.util.Map;
 import java.util.Objects;
 
 /** Reads existing reports and proposals; human decisions never mutate the live correction or the course. */
-final class DefaultBatchReview {
+final class DefaultBatchReview implements BatchReviewService {
     private final BatchStore batches;
     private final RevisionArtifactStore artifacts;
     private final RefinementPlanStore plans;
     private final BatchReportBuilder reports;
+    private final BatchReviewCache cache;
 
     DefaultBatchReview(BatchStore batches, RevisionArtifactStore artifacts, RefinementPlanStore plans,
             BatchReportBuilder reports) {
+        this(batches, artifacts, plans, reports, null);
+    }
+
+    DefaultBatchReview(BatchStore batches, RevisionArtifactStore artifacts, RefinementPlanStore plans,
+            BatchReportBuilder reports, BatchReviewCache cache) {
         this.batches = batches;
         this.artifacts = artifacts;
         this.plans = plans;
         this.reports = reports;
+        this.cache = cache;
     }
 
-    BatchReview read(String batchId) {
+    @Override
+    public BatchReview read(String batchId) {
+        var version = cache == null ? java.util.Optional.<String>empty() : cache.version();
+        if (version.isPresent()) {
+            var cached = cache.load(batchId, version.get());
+            if (cached.isPresent() && version.equals(cache.version())) return cached.get();
+        }
         CorrectionBatch batch = batchId == null ? batches.open().or(batches::latestPublished)
                 .orElseThrow(() -> new NoOpenBatchException("sin tanda para revisar"))
                 : batches.load(batchId).orElseThrow(() -> new IllegalArgumentException("No existe la tanda " + batchId));
-        return read(batch);
+        BatchReview review = read(batch);
+        // Never label a projection with a newer checkpoint than the one it actually read.
+        if (version.isPresent() && version.equals(cache.version())) cache.save(batchId, version.get(), review);
+        return review;
     }
 
-    BatchReview decide(BatchReviewDecision request) {
+    @Override
+    public BatchReview decide(BatchReviewDecision request) {
         if (request == null || request.batchId() == null || request.batchId().isBlank()
                 || request.status() == null || request.selections() == null
                 || request.selections().isEmpty() || request.reviewer() == null || request.reviewer().isBlank()) {

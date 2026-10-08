@@ -59,8 +59,13 @@ fi
 needs_classpath_refresh() {
     [[ ! -s "$RUNTIME_CLASSPATH_FILE" ]] && return 0
     [[ ! -d "$AUDIT_CLI_CLASSES" ]] && return 0
-    find "$PROJECT_DIR" -name pom.xml -newer "$RUNTIME_CLASSPATH_FILE" -print -quit \
-        | grep -q .
+    # This reactor's modules are direct children. Do not traverse runtime environments,
+    # campaign snapshots or archived checkouts just to read a saved report.
+    local pom
+    for pom in "$PROJECT_DIR/pom.xml" "$PROJECT_DIR"/*/pom.xml; do
+        [[ -f "$pom" && "$pom" -nt "$RUNTIME_CLASSPATH_FILE" ]] && return 0
+    done
+    return 1
 }
 
 if needs_classpath_refresh; then

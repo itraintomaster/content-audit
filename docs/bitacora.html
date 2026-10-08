@@ -83,22 +83,32 @@
 <div class="shell">
   <div class="topline">
     <div class="live"><span class="pulse"></span><span>CENTRO DE CONTROL · CONTROLES REALES</span></div>
-    <div class="updated">Comprobado <time id="updatedAgo">8/10, 13:50</time> · Corrección 1 reanudada</div>
+    <div class="updated">Comprobado <time id="updatedAgo">8/10, 14:42</time> · Corrección 1 sigue avanzando</div>
   </div>
 
   <header>
     <div class="eyebrow">8 de octubre · Campaña A1 V11 · última comprobación</div>
-    <h1>Corrección 1 volvió a avanzar.</h1>
-    <p class="lede"><strong>Reparada y reanudada desde la UI: 6 consultas nuevas y 5 tareas más guardadas.</strong> El bloqueo era entre los canales de Java y Codex, no por dejar la app sola. Se conservan todas las propuestas y las dos mediciones anteriores. No se publicó contenido.</p>
+    <h1>La revisión acelera; Corrección 1 sigue.</h1>
+    <p class="lede"><strong>La corrida guarda resultados mientras se mejora la lectura: 371 consultas nuevas y 112 tareas más.</strong> Esta página registra comprobaciones fechadas; el seguimiento vivo está en el Centro de control. No se pausó ni reinició la ejecución y no se publicó contenido.</p>
   </header>
 
   <section>
     <h2>Misma Corrección 1, con resultados nuevos</h2>
     <div class="result-grid">
-      <article class="result live-run"><div class="kicker">Propuestas guardadas a las 13:50</div><strong>754</strong><p>Había 753 al reanudar. Avanzó de 1.426 a 1.431 tareas trabajadas de 3.499. Sigue siendo Corrección 1; quedan 2.068 tareas sin intentar.</p></article>
+      <article class="result live-run"><div class="kicker">Propuestas guardadas a las 14:42</div><strong>816</strong><p>Había 753 al reanudar. Avanzó de 1.426 a 1.538 tareas trabajadas de 3.499. Sigue siendo Corrección 1; quedan 1.961 tareas sin intentar.</p></article>
       <article class="result"><div class="kicker">Saldo máximo adicional autorizado</div><strong>2.092 consultas</strong><p>Se reanudó con el saldo del tope anterior: 2.500 menos 408 guardadas. Codex/ChatGPT, gpt-6.1-sol, medium. Si no alcanza para todo A1, hará falta ampliar el presupuesto.</p></article>
     </div>
-    <p class="caption">Verificación de las 13:50 ART: la nueva corrida ui-2026-10-08T16-48-24.466720Z-batch-run guarda resultados y la UI muestra su avance automáticamente. Los canales se drenan en paralelo con plazo efectivo; el monitor no puede resucitar una operación cancelada. La UI separa señal de proceso y último resultado, advierte si no hay avance y permite reanudar con un saldo exacto. Pasaron 20 pruebas del runtime, 20 de telemetría y 255 de la UI. Campaña respaldada antes de detener; no hay otra corrección duplicada. <a href="briefs/044-recuperacion-correccion-1.html">Reparación y recuperación 044</a> · <a href="briefs/043-correccion-bloqueada-en-canales.html">Diagnóstico anterior 043</a>.</p>
+    <p class="caption">Comprobación de las 14:42 ART sobre la actividad durable de ui-2026-10-08T16-48-24.466720Z-batch-run: RUNNING, 371/2.092 consultas y último resultado a las 14:42:25. El saldo es un techo, no garantiza intentar todo A1. Los canales se drenan en paralelo con plazo efectivo y el monitor no puede resucitar una operación cancelada. <a href="briefs/044-recuperacion-correccion-1.html">Recuperación anterior 044</a> · <a href="briefs/043-correccion-bloqueada-en-canales.html">Diagnóstico 043</a>.</p>
+  </section>
+
+  <section>
+    <h2>Leer la revisión ya no necesita preparar modelos</h2>
+    <div class="guards">
+      <div class="guard"><div class="icon">1</div><h3>De 17,8 a 1,3 segundos</h3><p>Medido en el backend sobre la misma copia de A1. Todo el contenido devuelto es idéntico; se eliminó el recorrido completo del repositorio y el arranque innecesario de modelos y lenguaje.</p></div>
+      <div class="guard"><div class="icon">2</div><h3>Copia guardada y vigente</h3><p>El backend guarda la revisión y la invalida al cambiar propuestas, análisis o decisiones. Una copia dañada se reconstruye; no afecta la evidencia ni una aprobación ya guardada.</p></div>
+      <div class="guard"><div class="icon">3</div><h3>UI sin esperas falsas</h3><p>Las propuestas no esperan a la bandeja auxiliar. Si no hay un análisis guardado, navegar no inicia uno ni promete una comparación que está por llegar.</p></div>
+    </div>
+    <p class="caption">96 pruebas Java focalizadas y 260 Flutter aprobadas; análisis estático de los archivos cambiados sin errores. El backend ya está compilado. Los cambios de Flutter están probados en código, pero no se reinició ni reemplazó la app que sostiene la corrida. Aplicar sólo lo aprobado y rendir exámenes desde la UI siguen pendientes. <a href="briefs/045-lectura-rapida-sin-interrumpir.html">Entrega parcial 045 y mediciones</a>.</p>
   </section>
 
   <section>
@@ -631,7 +641,7 @@
   <footer><span>Fuente: tanda guardada y procesos locales. Una recarga de esta página no vuelve a comprobar el backend.</span><span class="mono">docs/bitacora.html · última comprobación explícita</span></footer>
 </div>
 <script>
-  const state={used:287,total:287,updatedAt:'2026-10-08T13:50:00-03:00'};
+  const state={used:287,total:287,updatedAt:'2026-10-08T14:42:00-03:00'};
   const pct=state.used/state.total*100;
   document.querySelector('#ring').style.setProperty('--p',`${pct*3.6}deg`);
   document.querySelector('#pct').textContent=pct.toLocaleString('es-AR',{minimumFractionDigits:1,maximumFractionDigits:1})+'%';

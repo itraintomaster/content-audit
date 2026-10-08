@@ -58,6 +58,42 @@ class DefaultBatchReviewTest {
         verify(artifacts, never()).save(any());
     }
 
+    @Test void unchangedReviewUsesBackendProjectionWithoutReloadingArtifactsOrPlans() {
+        var saved = review.read("batch");
+        var cache = mock(BatchReviewCache.class);
+        when(cache.version()).thenReturn(Optional.of("v1"));
+        when(cache.load("batch", "v1")).thenReturn(Optional.of(saved));
+        clearInvocations(store, artifacts, plans);
+        assertSame(saved, cachedReview(cache).read("batch"));
+        verifyNoInteractions(store, artifacts, plans);
+        verify(cache, never()).save(any(), any(), any());
+    }
+
+    @Test void cacheMissBuildsOnceAndSavesOnlyUnderTheVersionItRead() {
+        var cache = mock(BatchReviewCache.class);
+        when(cache.version()).thenReturn(Optional.of("v1"));
+        var result = cachedReview(cache).read("batch");
+        verify(cache).save("batch", "v1", result);
+        verify(artifacts).load("plan", "proposal");
+    }
+
+    @Test void concurrentCheckpointDoesNotMakeOldCachedOrRebuiltReviewCurrent() {
+        var old = review.read("batch");
+        var cache = mock(BatchReviewCache.class);
+        when(cache.version()).thenReturn(Optional.of("v1"), Optional.of("v2"));
+        when(cache.load("batch", "v1")).thenReturn(Optional.of(old));
+        var result = cachedReview(cache).read("batch");
+        assertNotSame(old, result);
+        verify(cache, never()).save(any(), any(), any());
+    }
+
+    @Test void decisionsAlwaysValidateAuthoritativeStepsAndNeverTrustCachedApprovals() {
+        var cache = mock(BatchReviewCache.class);
+        cachedReview(cache).decide(request(List.of(selection("one", step)), BatchReviewDecision.Status.APPROVED));
+        verify(cache, never()).load(any(), any());
+        assertEquals(1, decisions.size());
+    }
+
     @Test void wholeExerciseIsOneAtomicDecisionAndAnUndoIsAnotherEvent() {
         var all = List.of(selection("one", step), selection("two", second));
         assertTrue(review.decide(request(all, BatchReviewDecision.Status.APPROVED)).items().stream()
@@ -151,6 +187,10 @@ class DefaultBatchReviewTest {
         quiz.setTranslation(translation);
         quiz.setMiniTheory(theory);
         return new CourseElementSnapshot(AuditTarget.QUIZ, "quiz", quiz, null);
+    }
+
+    private DefaultBatchReview cachedReview(BatchReviewCache cache) {
+        return new DefaultBatchReview(store, artifacts, plans, new DefaultBatchReportBuilder(), cache);
     }
 
     private BatchReviewDecision request(List<BatchReviewDecision.Selection> selections, BatchReviewDecision.Status status) {

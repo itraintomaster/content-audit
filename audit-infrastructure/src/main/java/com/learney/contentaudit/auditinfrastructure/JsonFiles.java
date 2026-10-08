@@ -7,6 +7,7 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.Optional;
@@ -44,14 +45,19 @@ final class JsonFiles {
     }
 
     static void writeAtomically(ObjectMapper mapper, Path file, Object value) {
-        Path tmp = file.resolveSibling(file.getFileName() + ".tmp");
+        Path tmp = null;
         try {
             Files.createDirectories(file.getParent());
+            tmp = Files.createTempFile(file.getParent(), "write-", ".tmp");
             mapper.writerWithDefaultPrettyPrinter().writeValue(tmp.toFile(), value);
-            Files.move(tmp, file, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+            try {
+                Files.move(tmp, file, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+            } catch (AtomicMoveNotSupportedException e) {
+                Files.move(tmp, file, StandardCopyOption.REPLACE_EXISTING);
+            }
         } catch (IOException e) {
             try {
-                Files.deleteIfExists(tmp);
+                if (tmp != null) Files.deleteIfExists(tmp);
             } catch (IOException ignored) {
                 // the write already failed; the temporary file is the lesser problem
             }

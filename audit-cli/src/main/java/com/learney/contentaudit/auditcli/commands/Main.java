@@ -410,6 +410,13 @@ class Main {
         }
 
         // ----------------------------------------------------------------
+        // A saved review needs no NLP process, model discovery or judge bootstrap.
+        Integer reviewExit = SavedBatchReviewCmd.execute(remainingArgs, baseDir, System.out, System.err);
+        if (reviewExit != null) {
+            if (reviewExit != 0) System.exit(reviewExit);
+            return;
+        }
+
         // Step 3: Infrastructure layer
         // ----------------------------------------------------------------
         CourseValidator courseValidator = new CourseValidatorImpl();
@@ -1370,14 +1377,15 @@ class Main {
             if (batchCourse == null) {
                 throw new IllegalStateException("Falta la ruta del curso: CONTENT_AUDIT_CONTENT_FOLDER o .env.");
             }
-            return new com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchServiceFactory().create(
-                    new com.learney.contentaudit.revisiondomain.batch.BatchServiceConfig(batchStore, refinementPlanStore,
+            var config = new com.learney.contentaudit.revisiondomain.batch.BatchServiceConfig(batchStore, refinementPlanStore,
                             auditReportStore, activeAnalysisSelectionStore, revisionArtifactStore,
                             (CourseRepository) courseRepository, null, courseToAuditableMapper, auditEngine,
                             refinerEngine, errorTaskBriefer, analyzerCorrectionCatalog, ruleFixes, panelRunner.get(),
                             panelRunnerFactory.meter(panelConfig.get()), panelRunnerFactory, batchComparator,
                             baselineStore, blindSampleService, topicWordLightsQuery, null,
-                            preservationFactory.createCheck(), Paths.get(batchCourse), goalBook, analyzerCatalog));
+                            preservationFactory.createCheck(), Paths.get(batchCourse), goalBook, analyzerCatalog);
+            config.setReviewCache(new com.learney.contentaudit.auditinfrastructure.FileSystemBatchReviewCache(baseDir));
+            return new com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchServiceFactory().create(config);
         }));
         com.learney.contentaudit.revisiondomain.tray.TrayService trayService = lazyTrayService(memoized(() ->
                 new com.learney.contentaudit.revisiondomain.trayengine.DefaultTrayServiceFactory().create(

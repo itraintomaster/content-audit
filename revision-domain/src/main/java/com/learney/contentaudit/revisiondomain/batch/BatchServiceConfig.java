@@ -35,6 +35,8 @@ import javax.annotation.processing.Generated;
 public class BatchServiceConfig {
     private BatchStore batchStore;
 
+    private BatchReviewCache reviewCache;
+
     private RefinementPlanStore refinementPlanStore;
 
     private AuditReportStore auditReportStore;
@@ -127,6 +129,14 @@ public class BatchServiceConfig {
 
     public BatchStore getBatchStore() {
         return this.batchStore;
+    }
+
+    public BatchReviewCache getReviewCache() {
+        return reviewCache;
+    }
+
+    public void setReviewCache(BatchReviewCache reviewCache) {
+        this.reviewCache = reviewCache;
     }
 
     public void setBatchStore(BatchStore batchStore) {
@@ -332,6 +342,7 @@ public class BatchServiceConfig {
         if (o == null || getClass() != o.getClass()) return false;
         BatchServiceConfig that = (BatchServiceConfig) o;
         return Objects.equals(this.batchStore, that.batchStore)
+                    && Objects.equals(this.reviewCache, that.reviewCache)
                     && Objects.equals(this.refinementPlanStore, that.refinementPlanStore)
                     && Objects.equals(this.auditReportStore, that.auditReportStore)
                     && Objects.equals(this.activeAnalysisSelectionStore, that.activeAnalysisSelectionStore)
@@ -360,6 +371,6 @@ public class BatchServiceConfig {
 
     @Override
     public int hashCode() {
-        return Objects.hash(batchStore, refinementPlanStore, auditReportStore, activeAnalysisSelectionStore, artifactStore, courseRepository, elementLocator, courseMapper, auditEngine, refinerEngine, briefer, correctionCatalog, ruleFixes, panelRunner, topicMeter, panelRunnerFactory, batchComparator, baselineStore, blindSampleService, wordLightsQuery, correctionScope, preservationCheck, coursePath, goalBook, analyzerCatalog);
+        return Objects.hash(batchStore, reviewCache, refinementPlanStore, auditReportStore, activeAnalysisSelectionStore, artifactStore, courseRepository, elementLocator, courseMapper, auditEngine, refinerEngine, briefer, correctionCatalog, ruleFixes, panelRunner, topicMeter, panelRunnerFactory, batchComparator, baselineStore, blindSampleService, wordLightsQuery, correctionScope, preservationCheck, coursePath, goalBook, analyzerCatalog);
     }
 }

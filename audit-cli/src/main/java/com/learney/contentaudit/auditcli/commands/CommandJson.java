@@ -31,6 +31,15 @@ final class CommandJson {
         }
     }
 
+    /** Large saved read models travel to the UI without indentation overhead. */
+    static String writeCompact(Object value) {
+        try {
+            return MAPPER.writeValueAsString(value);
+        } catch (Exception e) {
+            throw new IllegalStateException("Could not write the JSON: " + e.getMessage(), e);
+        }
+    }
+
     static boolean isJson(String format) {
         return format != null && "json".equalsIgnoreCase(format.trim());
     }
