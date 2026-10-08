@@ -18,7 +18,10 @@ final class CommandJson {
             .registerModule(new JavaTimeModule())
             .registerModule(new Jdk8Module())
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            // Omit absent bean properties, but preserve explicit nulls in opaque course maps.
+            // Dropping those entries changes snapshots on the UI round trip and rejects valid reviews.
+            .setDefaultPropertyInclusion(JsonInclude.Value.construct(
+                    JsonInclude.Include.NON_NULL, JsonInclude.Include.ALWAYS));
 
     private CommandJson() {
     }
