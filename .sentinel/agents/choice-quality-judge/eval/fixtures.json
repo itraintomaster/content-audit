@@ -1,0 +1,50 @@
+{
+  "purpose": "Casos de calibración futura. No son un examen aprobado ni resultados del juez.",
+  "cases": [
+    {
+      "id": "he-cue",
+      "level": "A1",
+      "topic": "Be: preguntas yes/no",
+      "title": "Be: preguntas yes/no",
+      "instructions": "Forma preguntas en presente simple invirtiendo be y el sujeto.",
+      "exercise": "___ ready for the paper race? (he)",
+      "options": "- Am I\n- Are we\n- Are you\n- Is he (correcta)\n- Is it\n- Is she",
+      "expected": "FAIL",
+      "expectedKind": "ANSWER_CUE",
+      "reason": "La única opción con he evita practicar inversión y concordancia."
+    },
+    {
+      "id": "same-subject-misconceptions",
+      "level": "A1",
+      "topic": "Be: preguntas yes/no",
+      "title": "Be: preguntas yes/no",
+      "instructions": "Forma preguntas en presente simple invirtiendo be y el sujeto.",
+      "exercise": "___ ready for the paper race? (he)",
+      "options": "- He is\n- Are he\n- Has he\n- Is he (correcta)",
+      "expected": "PASS",
+      "reason": "Mismo sujeto; errores esperables de orden, concordancia y auxiliar. Consigna exige inversión."
+    },
+    {
+      "id": "introductory-recognition",
+      "level": "A1",
+      "topic": "Pronombres",
+      "title": "Reconocer el sujeto",
+      "instructions": "Práctica introductoria: elige la opción con el pronombre indicado.",
+      "exercise": "___ ready for the paper race? (he)",
+      "options": "- Am I\n- Are you\n- Is he (correcta)",
+      "expected": "PASS",
+      "reason": "La pista practica el objetivo explícito de reconocimiento."
+    },
+    {
+      "id": "missing-goal",
+      "level": "",
+      "topic": "",
+      "title": "",
+      "instructions": "Elige.",
+      "exercise": "___",
+      "options": "- x (correcta)\n- y",
+      "expected": "NEEDS_CONTEXT",
+      "reason": "No hay un objetivo lingüístico identificable."
+    }
+  ]
+}

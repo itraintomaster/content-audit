@@ -195,10 +195,12 @@ public class MainTest {
         com.fasterxml.jackson.databind.JsonNode cards = analyzersOfMain(workdir);
 
         java.util.List<String> lastThree = new java.util.ArrayList<>();
-        for (int i = 17; i < cards.size(); i++) {
+        for (int i = 17; i < 20; i++) {
             lastThree.add(cards.get(i).get("name").asText() + " " + cards.get(i).get("displayName").asText());
         }
-        org.junit.jupiter.api.Assertions.assertEquals(20, cards.size(), "R001: the twenty");
+        org.junit.jupiter.api.Assertions.assertEquals(21, cards.size(), "twenty historical analyzers plus independent distractor quality");
+        org.junit.jupiter.api.Assertions.assertEquals("multiple-choice-quality", cards.get(20).get("name").asText());
+        org.junit.jupiter.api.Assertions.assertEquals("Calidad de distractores", cards.get(20).get("displayName").asText());
         org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of("grammar Error de gramática",
                 "naturalness Oración poco natural", "near-duplicates Ejercicio casi repetido"), lastThree,
                 "R001: the three of package B, after the seventeen");
@@ -217,7 +219,7 @@ public class MainTest {
         for (int i = 0; i < 17; i++) {
             firstSeventeen.add(cards.get(i).get("name").asText() + " " + cards.get(i).get("displayName").asText());
         }
-        org.junit.jupiter.api.Assertions.assertEquals(20, cards.size(), "the twenty");
+        org.junit.jupiter.api.Assertions.assertEquals(21, cards.size(), "historical positions remain unchanged");
         org.junit.jupiter.api.Assertions.assertEquals(java.util.List.of(
                 "sentence-length Oraciones con el largo de su nivel", "knowledge-title-length Títulos de largo adecuado",
                 "knowledge-instructions-length Consignas de largo adecuado",
@@ -272,8 +274,9 @@ public class MainTest {
         table.put("grammar", "Error de gramática");
         table.put("naturalness", "Oración poco natural");
         table.put("near-duplicates", "Ejercicio casi repetido");
+        table.put("multiple-choice-quality", "Calidad de distractores");
         org.junit.jupiter.api.Assertions.assertEquals(table, names, "R001: the names of the table, by unique name");
-        org.junit.jupiter.api.Assertions.assertEquals(20, new java.util.HashSet<>(names.values()).size(),
+        org.junit.jupiter.api.Assertions.assertEquals(21, new java.util.HashSet<>(names.values()).size(),
                 "R001 inv. 3: twenty different names");
         java.util.List<String> vocabulary = new java.util.ArrayList<>();
         families.forEach((name, family) -> {
@@ -342,6 +345,7 @@ public class MainTest {
                 + "ordena qué revisar primero: no cuenta como error.");
         table.put("near-duplicates", "Ejercicios que piden la misma respuesta y casi lo mismo que otro anterior del "
                 + "mismo tema: otro pronombre, otro tiempo o la misma idea con otras palabras.");
+        table.put("multiple-choice-quality", "Opción múltiple que se acierta por una pista o cuyas opciones incorrectas no practican el objetivo pedagógico.");
         org.junit.jupiter.api.Assertions.assertEquals(table, explanations, "R004 inv. 1: the sentences of the table");
     }
 }

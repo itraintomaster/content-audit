@@ -17,7 +17,7 @@ public class DefaultJudgeRuntimeConfigTest {
 
     /** The five judges with a model, by the name of the analyzer that hosts each one. */
     private static final List<String> JUDGES = List.of(
-            "quiz-instruction", "translation-sense", "single-answer", "mini-theory", "multiple-choice-validity");
+            "quiz-instruction", "translation-sense", "single-answer", "mini-theory", "multiple-choice-validity", "multiple-choice-quality");
 
     private final JudgeRuntimeConfig config = new DefaultJudgeRuntimeConfig();
 

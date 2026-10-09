@@ -27,6 +27,7 @@ from progress_estimate import ProgressEstimate, ProgressEstimator
 JUDGE_FILES: dict[str, tuple[str, ...]] = {
     "quiz-instruction": ("quiz-instruction-validator.jsonl",),
     "multiple-choice-validity": ("choice-alternative-judge.jsonl",),
+    "multiple-choice-quality": ("choice-quality-judge.jsonl",),
     "translation-sense": (
         "translation-sense-from-english.jsonl",
         "translation-sense-from-translation.jsonl",
@@ -38,6 +39,7 @@ JUDGE_FILES: dict[str, tuple[str, ...]] = {
 JUDGE_NAMES = {
     "quiz-instruction": "Consigna que no se cumple",
     "multiple-choice-validity": "Opción múltiple mal armada",
+    "multiple-choice-quality": "Calidad de distractores",
     "translation-sense": "Traducción que no corresponde",
     "single-answer": "Más de una respuesta válida",
     "mini-theory": "Miniteoría con error",

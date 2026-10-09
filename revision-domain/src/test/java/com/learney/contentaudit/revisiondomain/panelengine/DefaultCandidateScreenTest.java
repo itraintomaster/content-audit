@@ -31,6 +31,26 @@ import org.junit.jupiter.api.Test;
 )
 public class DefaultCandidateScreenTest {
     @Test
+    void distractorQualityCanClarifyVisibleInstructionsButNotRewriteMiniTheoryOrOptionCount() {
+        QuizTemplateEntity original = choice(CHILD, "a child? (He)", "Is he", "Is it", "Is she");
+        KnowledgeEntity topic = topic("be-questions", "Be: preguntas yes/no", new ArrayList<>(List.of(original)));
+        Finding pedagogical = finding("multiple-choice-quality", "answer-cue", CHILD, FindingSeverity.HIGH,
+                FindingResolution.PANEL, "Is he", "La pista he regala la respuesta");
+        TopicWork work = work(topic, List.of(brief("t-quality", pedagogical)));
+        var registered = new com.learney.contentaudit.auditdomain.correctionengine.DefaultAnalyzerCorrectionCatalog(
+                List.of(new com.learney.contentaudit.auditdomain.choicequality.ChoiceQualityCorrection()), null);
+        DefaultCandidateScreen screen = new DefaultCandidateScreen(registered);
+        QuizTemplateEntity proposed = withItems(original, item("Is he", 1.0), item("He is", 0.0), item("Are he", 0.0));
+        proposed.setInstructions("Forma una pregunta en presente simple invirtiendo be y el sujeto.");
+        assertEquals(List.of(), screen.screen(work, CHILD, candidate(PanelCandidateKind.WHOLE_EXERCISE, proposed)));
+        proposed.setMiniTheory("No debe cambiar acá.");
+        assertTrue(!screen.screen(work, CHILD, candidate(PanelCandidateKind.WHOLE_EXERCISE, proposed)).isEmpty());
+        QuizTemplateEntity fewer = withItems(original, item("Is he", 1.0), item("Are he", 0.0));
+        assertTrue(screen.screen(work, CHILD, candidate(PanelCandidateKind.WHOLE_EXERCISE, fewer)).contains("cambia la cantidad de opciones: 3 → 2"));
+        assertTrue(AnalyzerReads.of("multiple-choice-quality").orElseThrow().contains(com.learney.contentaudit.auditdomain.correction.ExercisePart.INSTRUCTIONS));
+    }
+
+    @Test
     @DisplayName("should reject before measuring a candidate of a multiple choice that stops being multiple choice, has other than exactly one correct option or changes the number of options")
     @Tag("FEAT-MESA")
     @Tag("F-MESA-R011")

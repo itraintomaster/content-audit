@@ -9,6 +9,21 @@ import monitor_analysis_activity
 
 
 class AnalysisActivityMonitorTest(unittest.TestCase):
+    def test_distractor_quality_has_an_independent_ledger_and_label(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            evaluations = Path(directory)
+            quality = evaluations / "choice-quality-judge.jsonl"
+            validity = evaluations / "choice-alternative-judge.jsonl"
+            quality.write_text("old\n", encoding="utf-8")
+            baseline = quality.stat().st_size
+            quality.write_text("old\nnew-1\nnew-2\npartial", encoding="utf-8")
+            validity.write_text("unrelated-1\nunrelated-2\nunrelated-3\n", encoding="utf-8")
+            current = monitor_analysis_activity.metrics(evaluations,
+                    {"multiple-choice-quality": 5}, {quality.name: baseline})
+            self.assertEqual(current.completed, 2)
+            self.assertEqual(current.total, 5)
+            self.assertEqual(current.current.label, "Calidad de distractores")
+
     def test_finished_process_requires_a_new_persisted_closure(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             workdir = Path(directory)

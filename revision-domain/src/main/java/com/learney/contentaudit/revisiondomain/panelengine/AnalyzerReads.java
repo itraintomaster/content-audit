@@ -35,6 +35,8 @@ final class AnalyzerReads {
                     ExercisePart.INSTRUCTIONS, ExercisePart.MINI_THEORY, ExercisePart.FORM_KIND)),
             Map.entry("multiple-choice-validity", EnumSet.of(ExercisePart.OPTIONS, ExercisePart.STATEMENT,
                     ExercisePart.HINT, ExercisePart.INSTRUCTIONS, ExercisePart.FORM_KIND)),
+            Map.entry("multiple-choice-quality", EnumSet.of(ExercisePart.OPTIONS, ExercisePart.STATEMENT,
+                    ExercisePart.HINT, ExercisePart.INSTRUCTIONS, ExercisePart.FORM_KIND)),
             Map.entry("data-coherence", EnumSet.of(ExercisePart.STATEMENT, ExercisePart.ANSWERS, ExercisePart.OPTIONS,
                     ExercisePart.STORED_SENTENCE, ExercisePart.AUDIO, ExercisePart.FORM_KIND)),
             Map.entry("exact-duplicates", EnumSet.of(ExercisePart.STATEMENT, ExercisePart.HINT, ExercisePart.ANSWERS,
