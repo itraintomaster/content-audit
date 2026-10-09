@@ -1,0 +1,66 @@
+{
+  "status": "PARTIAL_NOT_APPROVED",
+  "provider": "codex-cli",
+  "model": "gpt-6.1-sol",
+  "reasoningEffort": "medium",
+  "goldSha256": "e740ffdf66a0c7a64394a8d9dcb06ed4e3cf01643fcd8194f4b45285e0715249",
+  "originalVersion": "0a46e4778a686a7671b5e523a4b648c65ae931777807337fc6614d4078f02c38",
+  "currentVersion": "3c725e9dbe4f5e0edee5ea1f116c8c9c733a9fadc4f196e47fda36fe9920225c",
+  "incident": {
+    "cause": "Missing User prompt template in our new judge definition; parameters were present in state but absent from model messages.",
+    "physicalCalls": 16,
+    "consolidatedOutputs": 15,
+    "outputsWithoutDeliveredContent": 15,
+    "uncertainCallsCharged": 1,
+    "validPedagogicalMeasurements": 0
+  },
+  "offlineRegression": {
+    "realGraphWithInMemoryModel": true,
+    "failedBeforeRepair": true,
+    "passedAfterRepair": true,
+    "allSixVisibleInputsVerified": true,
+    "targetedGraphAndGateTestsPassed": 5,
+    "physicalCapTestsPassed": 2,
+    "existingUnrelatedFailure": "AgentDefinitionsExamGuardIntegrationTest: pre-existing reserved examples in near-duplicates-pair-judge fixtures"
+  },
+  "repairedSmoke": {
+    "physicalCalls": 2,
+    "consolidatedOutputs": 2,
+    "matchesFrozenGold": 2,
+    "cases": [
+      {"id": "df0000000000000000000001", "expected": "FAIL", "actual": "FAIL", "requiredKinds": ["ANSWER_CUE"], "actualKinds": ["ANSWER_CUE", "IRRELEVANT_DISTRACTORS"]},
+      {"id": "df0000000000000000000002", "expected": "PASS", "actual": "PASS", "requiredKinds": [], "actualKinds": []}
+    ],
+    "userMessagesContainActualContent": true,
+    "examRegistryStatus": "TAKEN",
+    "goalMet": false,
+    "formalApprovalRecorded": false
+  },
+  "budget": {
+    "physicalCap": 18,
+    "physicalCallsCharged": 18,
+    "remaining": 0,
+    "allConsolidatedOutputs": 17,
+    "uncertainCallsCharged": 1
+  },
+  "freePreflightAfterRepair": {
+    "coreTotal": 16,
+    "coreCurrentVerdicts": 2,
+    "coreMissingCalls": 14,
+    "contextTotal": 2,
+    "contextCurrentVerdicts": 0,
+    "contextMissingCalls": 2,
+    "additionalPhysicalCapToRequest": 16,
+    "additionalCallsAuthorized": false
+  },
+  "courseCheckpointSha256BeforeAndAfter": "cf82e17f98fbc2e2be26e0a09acbbc0e152011c6b97c5e913196777df1a3e89c",
+  "courseAnalysisOrCorrectionRun": false,
+  "productionChanged": false,
+  "evidenceDirectory": "/private/tmp/content-audit-choice-quality-exam.pE7x6x",
+  "backups": [
+    {"file": "final-exam-evidence.tgz", "sha256": "7324cc2adc9600678c3496dfeb63ab668f480a4ddbfef8994d150c32e4c2b3d7"},
+    {"file": "physical-budget-and-logs.tgz", "sha256": "c3883d2ac4add11926f23e60d22f665da67fa3d299f6ca44931fc3f6495f96d1"}
+  ],
+  "evaluationLedger": ".content-audit/evaluations/exam_choice-quality-judge.jsonl",
+  "activityIds": ["choice-quality-exam-20261009T1930Z", "choice-quality-repair-smoke-20261009"]
+}

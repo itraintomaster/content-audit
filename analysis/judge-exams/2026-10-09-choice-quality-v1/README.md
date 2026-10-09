@@ -36,3 +36,17 @@ ya congelado. Sólo puede usar las dos llamadas restantes del mismo límite
 físico de 18, sin reiniciarlo. Es una comprobación de integración, no sustituye
 el examen de los 16 casos centrales y dos controles de contexto. Los registros
 de la versión anterior se conservan, pero no se reutilizan como versión nueva.
+
+## Resultado conservado
+
+Los dos casos de integración de la versión reparada coinciden con el oro: uno
+FAIL con ANSWER_CUE y uno PASS sin alarmas. El mensaje real guardado confirma
+la entrega de los seis datos. El registro queda TAKEN, goalMet=false; no se
+registró APPROVED. El corpus completo de esta versión aún no rindió.
+
+El tope terminó en 18/18 lanzamientos físicos, con 17 resultados consolidados
+y una llamada incierta descontada. Preflight gratuito posterior: 2/16 casos
+centrales vigentes, faltan 14; 0/2 controles de contexto, faltan dos. Completar
+sin repetir los dos resultados vigentes requiere una nueva decisión para hasta
+16 llamadas físicas adicionales. No están autorizadas ni se ejecutan aquí.
+result-partial.json registra identidades, resultados, gasto y evidencia.
