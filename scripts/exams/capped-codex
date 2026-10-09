@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+"""Per-run durable physical-call ceiling; never changes the judge or its prompt."""
+import fcntl
+import json
+import os
+from pathlib import Path
+import sys
+from datetime import datetime, timezone
+
+real = os.environ.get("CONTENT_AUDIT_CODEX_REAL_BINARY", "")
+if not real or not os.access(real, os.X_OK):
+    sys.exit("No hay un Codex real explícito y ejecutable.")
+args = sys.argv[1:]
+if not args or args[0] != "exec":
+    os.execv(real, [real, *args])
+cap_dir = Path(os.environ["CONTENT_AUDIT_EXAM_CAP_DIR"]).resolve(strict=True)
+cap = int(os.environ["CONTENT_AUDIT_EXAM_PHYSICAL_CAP"])
+if cap < 0:
+    sys.exit("El tope físico no puede ser negativo.")
+with (cap_dir / "physical-calls.jsonl").open("a+", encoding="utf-8") as log:
+    fcntl.flock(log, fcntl.LOCK_EX)
+    log.seek(0)
+    # A partial final line counts too: uncertain paid launches never regain budget.
+    used = sum(1 for line in log if line.strip())
+    if used >= cap:
+        sys.exit("Tope físico del examen agotado; no se inicia otra consulta.")
+    log.seek(0, 2)
+    log.write(json.dumps({"ordinal": used + 1, "pid": os.getpid(),
+                         "startedAt": datetime.now(timezone.utc).isoformat()}) + "\n")
+    log.flush()
+    os.fsync(log.fileno())
+    fcntl.flock(log, fcntl.LOCK_UN)
+wrapper = Path(os.environ["CONTENT_AUDIT_EXAM_RUNTIME_WRAPPER"]).resolve(strict=True)
+os.execv(str(wrapper), [str(wrapper), *args])

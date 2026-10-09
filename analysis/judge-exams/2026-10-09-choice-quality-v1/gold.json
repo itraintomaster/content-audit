@@ -1,0 +1,346 @@
+{
+  "schemaVersion": 1,
+  "lockedBeforeRun": true,
+  "threshold": {
+    "core": "16/16 statuses and all required kinds, no false alarms on PASS",
+    "context": "2/2 NEEDS_CONTEXT; separate from formal evaluated coverage"
+  },
+  "cases": [
+    {
+      "id": "df0000000000000000000001",
+      "slug": "cue-she",
+      "level": "A1",
+      "topic": "Preguntas con be",
+      "instructions": "Forma preguntas en presente simple con be antes del sujeto.",
+      "exercise": "___ thirsty? (she)",
+      "options": [
+        "Am I",
+        "Are we",
+        "Is she",
+        "Is it"
+      ],
+      "correct": "Is she",
+      "expected": "FAIL",
+      "requiredKinds": [
+        "ANSWER_CUE"
+      ],
+      "reason": "La pista she deja sólo una opción sin practicar concordancia ni inversión."
+    },
+    {
+      "id": "df0000000000000000000002",
+      "slug": "be-useful",
+      "level": "A1",
+      "topic": "Preguntas con be",
+      "instructions": "Forma preguntas en presente simple con be antes del sujeto.",
+      "exercise": "___ thirsty? (she)",
+      "options": [
+        "She is",
+        "Are she",
+        "Is she",
+        "Am she"
+      ],
+      "correct": "Is she",
+      "expected": "PASS",
+      "requiredKinds": [],
+      "reason": "Mismo sujeto, confusiones esperables de orden y concordancia."
+    },
+    {
+      "id": "df0000000000000000000003",
+      "slug": "cue-negative",
+      "level": "A1",
+      "topic": "Negativas con be",
+      "instructions": "Completa la negación de be en presente simple, conservando el sujeto indicado.",
+      "exercise": "___ thirsty. (it)",
+      "options": [
+        "I am not",
+        "It is not",
+        "We are not",
+        "You are not"
+      ],
+      "correct": "It is not",
+      "expected": "FAIL",
+      "requiredKinds": [
+        "ANSWER_CUE"
+      ],
+      "reason": "Sólo una alternativa conserva it; no distingue la negación ni concordancia."
+    },
+    {
+      "id": "df0000000000000000000004",
+      "slug": "negative-useful",
+      "level": "A1",
+      "topic": "Negativas con be",
+      "instructions": "Completa la negación de be en presente simple.",
+      "exercise": "It ___ thirsty.",
+      "options": [
+        "isn't",
+        "aren't",
+        "am not",
+        "is"
+      ],
+      "correct": "isn't",
+      "expected": "PASS",
+      "requiredKinds": [],
+      "reason": "Discrimina negación y concordancia con el sujeto ya visible."
+    },
+    {
+      "id": "df0000000000000000000005",
+      "slug": "cue-do",
+      "level": "A1",
+      "topic": "Preguntas en presente simple",
+      "instructions": "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+      "exercise": "___ collect stamps? (you)",
+      "options": [
+        "Does he",
+        "Do you",
+        "Do they",
+        "Does she"
+      ],
+      "correct": "Do you",
+      "expected": "FAIL",
+      "requiredKinds": [
+        "ANSWER_CUE"
+      ],
+      "reason": "Se acierta por you sin distinguir auxiliar u orden."
+    },
+    {
+      "id": "df0000000000000000000006",
+      "slug": "do-useful",
+      "level": "A1",
+      "topic": "Preguntas en presente simple",
+      "instructions": "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+      "exercise": "___ collect stamps? (you)",
+      "options": [
+        "Do you",
+        "Does you",
+        "You do",
+        "You does"
+      ],
+      "correct": "Do you",
+      "expected": "PASS",
+      "requiredKinds": [],
+      "reason": "Orden y concordancia del auxiliar son errores esperables."
+    },
+    {
+      "id": "df0000000000000000000007",
+      "slug": "irrelevant-verb",
+      "level": "A1",
+      "topic": "Tercera persona singular",
+      "instructions": "Completa la afirmación de presente simple con la forma de like.",
+      "exercise": "My aunt ___ peaches.",
+      "options": [
+        "likes",
+        "Paris",
+        "blue",
+        "tomorrow"
+      ],
+      "correct": "likes",
+      "expected": "FAIL",
+      "requiredKinds": [
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "reason": "Las incorrectas no son formas de like y evitan discriminar tercera persona."
+    },
+    {
+      "id": "df0000000000000000000008",
+      "slug": "verb-useful",
+      "level": "A1",
+      "topic": "Tercera persona singular",
+      "instructions": "Completa la afirmación de presente simple con la forma de like.",
+      "exercise": "My aunt ___ peaches.",
+      "options": [
+        "like",
+        "likes",
+        "liking",
+        "to like"
+      ],
+      "correct": "likes",
+      "expected": "PASS",
+      "requiredKinds": [],
+      "reason": "Formas verbales confundibles con presente simple de tercera persona."
+    },
+    {
+      "id": "df0000000000000000000009",
+      "slug": "irrelevant-past",
+      "level": "A2",
+      "topic": "Pasado simple",
+      "instructions": "Elige el pasado simple afirmativo de close.",
+      "exercise": "Nora ___ the window yesterday.",
+      "options": [
+        "closed",
+        "banana",
+        "purple",
+        "Wednesday"
+      ],
+      "correct": "closed",
+      "expected": "FAIL",
+      "requiredKinds": [
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "reason": "Sólo closed es una forma verbal pertinente al objetivo explícito."
+    },
+    {
+      "id": "df000000000000000000000a",
+      "slug": "past-useful",
+      "level": "A2",
+      "topic": "Pasado simple",
+      "instructions": "Elige el pasado simple afirmativo de close.",
+      "exercise": "Nora ___ the window yesterday.",
+      "options": [
+        "closes",
+        "closed",
+        "closing",
+        "close"
+      ],
+      "correct": "closed",
+      "expected": "PASS",
+      "requiredKinds": [],
+      "reason": "Contrasta pasado con presente, base y forma en ing."
+    },
+    {
+      "id": "df000000000000000000000b",
+      "slug": "implausible-comparative",
+      "level": "A2",
+      "topic": "Comparativos",
+      "instructions": "Completa con el comparativo de tall.",
+      "exercise": "Leo is ___ than his sister.",
+      "options": [
+        "taller",
+        "###",
+        "9+9",
+        "@@"
+      ],
+      "correct": "taller",
+      "expected": "FAIL",
+      "requiredKinds": [
+        "IMPLAUSIBLE_DISTRACTORS"
+      ],
+      "reason": "Los símbolos no representan confusiones lingüísticas de comparativo."
+    },
+    {
+      "id": "df000000000000000000000c",
+      "slug": "comparative-useful",
+      "level": "A2",
+      "topic": "Comparativos",
+      "instructions": "Completa con el comparativo de tall.",
+      "exercise": "Leo is ___ than his sister.",
+      "options": [
+        "tall",
+        "more tall",
+        "tallest",
+        "taller"
+      ],
+      "correct": "taller",
+      "expected": "PASS",
+      "requiredKinds": [],
+      "reason": "Grado positivo, doble formación y superlativo son confusiones pertinentes."
+    },
+    {
+      "id": "df000000000000000000000d",
+      "slug": "cue-plural",
+      "level": "A1",
+      "topic": "Plurales irregulares",
+      "instructions": "Forma el plural irregular de child; practica cómo cambia esa palabra.",
+      "exercise": "One child; two ___.",
+      "options": [
+        "children",
+        "dogs",
+        "houses",
+        "cars"
+      ],
+      "correct": "children",
+      "expected": "FAIL",
+      "requiredKinds": [
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "reason": "Cambiar el sustantivo no prueba cómo se forma su plural irregular."
+    },
+    {
+      "id": "df000000000000000000000e",
+      "slug": "irrelevant-perfect",
+      "level": "B1",
+      "topic": "Presente perfecto",
+      "instructions": "Elige have o has más participio para formar presente perfecto.",
+      "exercise": "We ___ the report.",
+      "options": [
+        "have finished",
+        "seventeen",
+        "Japan",
+        "blue"
+      ],
+      "correct": "have finished",
+      "expected": "FAIL",
+      "requiredKinds": [
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "reason": "Las incorrectas no representan ninguna alternativa de auxiliar o participio."
+    },
+    {
+      "id": "df000000000000000000000f",
+      "slug": "intro-she",
+      "level": "A1",
+      "topic": "Reconocer pronombres",
+      "instructions": "Práctica introductoria: reconoce la opción que contiene el pronombre she.",
+      "exercise": "___ thirsty? (she)",
+      "options": [
+        "Am I",
+        "Are we",
+        "Is she",
+        "Is it"
+      ],
+      "correct": "Is she",
+      "expected": "PASS",
+      "requiredKinds": [],
+      "reason": "Reconocer she es el objetivo explícito; la facilidad no es un defecto."
+    },
+    {
+      "id": "df0000000000000000000010",
+      "slug": "intro-past",
+      "level": "A2",
+      "topic": "Reconocer la terminación ed",
+      "instructions": "Práctica introductoria: reconoce una forma verbal que termina en ed.",
+      "exercise": "Nora ___ the window yesterday.",
+      "options": [
+        "close",
+        "closed",
+        "closing",
+        "closes"
+      ],
+      "correct": "closed",
+      "expected": "PASS",
+      "requiredKinds": [],
+      "reason": "Identificar ed practica el objetivo explícito."
+    },
+    {
+      "id": "df0000000000000000000011",
+      "slug": "missing-objective-a1",
+      "level": "A1",
+      "topic": "",
+      "instructions": "Elige.",
+      "exercise": "___",
+      "options": [
+        "x",
+        "y"
+      ],
+      "correct": "x",
+      "expected": "NEEDS_CONTEXT",
+      "requiredKinds": [],
+      "reason": "Falta un objetivo lingüístico identificable."
+    },
+    {
+      "id": "df0000000000000000000012",
+      "slug": "missing-objective-a2",
+      "level": "A2",
+      "topic": "",
+      "instructions": "Elige una opción.",
+      "exercise": "___",
+      "options": [
+        "alpha",
+        "beta"
+      ],
+      "correct": "alpha",
+      "expected": "NEEDS_CONTEXT",
+      "requiredKinds": [],
+      "reason": "No hay oración ni objetivo pedagógico suficiente."
+    }
+  ]
+}
