@@ -17,6 +17,16 @@ import com.learney.contentaudit.auditdomain.translationsense.TranslationSenseDia
 import java.util.Optional;
 
 public final class DefaultQuizDiagnoses implements QuizDiagnoses {
+    private com.learney.contentaudit.auditdomain.choicequality.ChoiceQualityDiagnosis choiceQualityDiagnosis;
+
+    @Override
+    public Optional<com.learney.contentaudit.auditdomain.choicequality.ChoiceQualityDiagnosis> getChoiceQualityDiagnosis() {
+        return Optional.ofNullable(choiceQualityDiagnosis);
+    }
+
+    public void setChoiceQualityDiagnosis(com.learney.contentaudit.auditdomain.choicequality.ChoiceQualityDiagnosis diagnosis) {
+        this.choiceQualityDiagnosis = diagnosis;
+    }
 
     private LemmaPlacementDiagnosis lemmaAbsenceDiagnosis;
 

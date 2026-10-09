@@ -607,6 +607,9 @@ class Main {
                 new AgentJudgeSpec("choice-alternative-judge", "choiceAlternativeVerdict",
                         "juez de otra opción que también vale"),
                 quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
+        Evaluator choiceQualityJudge = lazyAgentJudge(agentJudgeFactory, agentJudgeConfig,
+                new AgentJudgeSpec("choice-quality-judge", "choiceQualityVerdict", "juez de calidad de distractores"),
+                quizInstructionAgentGraphRunner, quizInstructionAgentDefinitionLocator);
 
         // Hook C-15: the judge of package C lives in Opción múltiple, never the factory "without
         // judge" (F-RONDA1 decision: one contract, in two steps).
@@ -713,6 +716,11 @@ class Main {
         analyzerProviders.add(new NearDuplicatesAnalyzerProvider(embeddingModel, nearDuplicatesAlternative,
                 judgeRuntime, correctorMatcher, studentViewRenderer, localToolGate));         // 20 · B · FEAT-DUPAR
 
+        // Independent criterion: existing judges keep their fingerprints, approvals and budgets.
+        analyzerProviders.add(new com.learney.contentaudit.auditdomain.choicequality.ChoiceQualityAnalyzerProvider(
+                judgeRuntime, choiceQualityJudge,
+                new com.learney.contentaudit.quizinstructioninfrastructure.choicequality.JacksonChoiceQualityVerdictReader(),
+                studentViewRenderer));
         AnalyzerCatalog analyzerCatalog = new DefaultAnalyzerCatalog(analyzerProviders);
 
         ScoreAggregator scoreAggregator =
@@ -838,6 +846,7 @@ class Main {
                 new HintCoherenceCorrection(),               // A (E-03)
                 new AnswerCompletenessCorrection(),          // A (E-03)
                 new MultipleChoiceValidityCorrection(),      // A (E-03)
+                new com.learney.contentaudit.auditdomain.choicequality.ChoiceQualityCorrection(),
                 new DataCoherenceCorrection(),               // A (E-03)
                 new ExactDuplicatesCorrection(),             // A (E-03)
                 new TranslationSenseCorrection(),            // C (E-04)
@@ -1336,6 +1345,7 @@ class Main {
                 Map.entry("single-answer", agentExamProvenance),
                 Map.entry("mini-theory", agentExamProvenance),
                 Map.entry("multiple-choice-validity", agentExamProvenance),
+                Map.entry("multiple-choice-quality", agentExamProvenance),
                 Map.entry("naturalness", agentExamProvenance),
                 Map.entry("near-duplicates", agentExamProvenance));
         cmd.addSubcommand("exam", new picocli.CommandLine(

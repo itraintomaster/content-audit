@@ -23,6 +23,9 @@ import java.util.Optional;
  * (hook B-02): grammar, naturalness and near-duplicates.
  */
 public non-sealed interface QuizDiagnoses extends NodeDiagnoses {
+    default Optional<com.learney.contentaudit.auditdomain.choicequality.ChoiceQualityDiagnosis> getChoiceQualityDiagnosis() {
+        return Optional.empty();
+    }
     Optional<LemmaPlacementDiagnosis> getLemmaAbsenceDiagnosis();
     Optional<SentenceLengthDiagnosis> getSentenceLengthDiagnosis();
     Optional<QuizInstructionDiagnosis> getQuizInstructionDiagnosis();

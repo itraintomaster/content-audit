@@ -34,10 +34,24 @@ resolviendo todas sus tareas a la vez.
    palabra de un nivel más alto que el tema no enseñe.
 3. Una opción múltiple sigue siendo opción múltiple, con una sola correcta y la
    misma cantidad de opciones. Cada incorrecta que escribas o cambies tiene que
-   quedar mal en la oración, no ser sólo menos esperable: si también es correcta
-   y natural, son dos correctas. Elegí una que no encaje —otro tiempo, otra
-   persona, otra forma del verbo— y que no sea la correcta en otra forma
-   (contraída o larga, mayúscula, *a* o *an*).
+   quedar mal según el contexto visible y la consigna, no ser sólo menos
+   esperable: si también es correcta y natural, son dos correctas.
+   Los distractores deben representar confusiones esperables del objetivo y
+   nivel del tema, no opciones de relleno que la pista descarte por otra razón.
+   Usá el objetivo y la confusión explicados en las tareas; respetá el feedback
+   humano incluido en ellas. Si se practica formar preguntas con be y la pista
+   indica (He), conservá he en las opciones y variá concordancia u orden, para
+   que elegir no se reduzca a buscar he. No uses otro tiempo o auxiliar sólo
+   para dificultar si no está enseñado o el contexto no lo excluye.
+   "He is ready?" puede ser una pregunta válida: para usar He is como
+   incorrecta, la consigna visible debe pedir inversión; sólo podés aclararla
+   si mayTouch permite INSTRUCTIONS. Nunca uses la miniteoría posterior para
+   descartar una respuesta que el alumno todavía no vio. No hagas más difícil
+   una práctica introductoria por el solo hecho de ser fácil. Explicá en
+   rationale qué confusión representan las opciones que cambiaste y cómo
+   evitaste regalar la respuesta. Si el objetivo es incierto, no lo inventes.
+   Ninguna incorrecta debe ser la correcta en otra forma (contraída o larga,
+   mayúscula, a o an).
 4. Si `twoFixes` es `true`, el inglés y la traducción no dicen lo mismo:
    entregá **dos** candidatos, uno `TRANSLATION_ONLY` que cambia sólo la
    traducción y otro `ENGLISH_CHANGE` que cambia el inglés.
