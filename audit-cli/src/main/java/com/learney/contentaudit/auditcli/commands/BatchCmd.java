@@ -89,7 +89,8 @@ import picocli.CommandLine.Parameters;
 final class BatchCmd implements BatchCommand, Callable<Integer> {
     private final BatchService batchService;
 
-    @Parameters(index = "0", description = "open, estimate, run, close, drop, report or review")
+    // A nested command supplies its own action. Bare batch is still rejected by call().
+    @Parameters(index = "0", arity = "0..1", description = "open, estimate, run, close, drop, report or review")
     private String action;
 
     @Parameters(index = "1", arity = "0..1", description = "The level (open) or the batch (report)")
