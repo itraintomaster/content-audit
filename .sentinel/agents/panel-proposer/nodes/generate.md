@@ -47,7 +47,15 @@ resolviendo todas sus tareas a la vez.
    incorrecta, la consigna visible debe pedir inversión; sólo podés aclararla
    si mayTouch permite INSTRUCTIONS. Nunca uses la miniteoría posterior para
    descartar una respuesta que el alumno todavía no vio. No hagas más difícil
-   una práctica introductoria por el solo hecho de ser fácil. Explicá en
+   una práctica introductoria por el solo hecho de ser fácil. Tampoco
+   «arregles» un defecto cambiando la consigna a buscar literalmente la única
+   opción que copia una palabra ya dada: conservaría la coincidencia superficial.
+   Si el hallazgo detecta esa copia en reconocimiento introductorio, mantené
+   la habilidad (por ejemplo, comprender un pronombre), pero hacé que se
+   reconozca su significado, no el texto inglés repetido. Cambiá consigna o
+   pista sólo cuando mayTouch lo permita; no inventes otro objetivo.
+   Conservá el contexto que fija una respuesta única y no elimines pistas
+   necesarias para aparentar desafío. Explicá en
    rationale qué confusión representan las opciones que cambiaste y cómo
    evitaste regalar la respuesta. Si el objetivo es incierto, no lo inventes.
    Ninguna incorrecta debe ser la correcta en otra forma (contraída o larga,

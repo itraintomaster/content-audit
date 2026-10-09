@@ -42,6 +42,16 @@ class CappedCodexTest(unittest.TestCase):
         self.assertEqual(0, self.call().returncode)
         self.assertNotEqual(0, self.call().returncode)
 
+    def test_case_metadata_is_durable_but_does_not_replenish_the_ceiling(self):
+        self.env.update(CONTENT_AUDIT_EXAM_EXPERIMENT_ID="cycle-test", CONTENT_AUDIT_EXAM_CASE_ID="1")
+        self.assertEqual(0, self.call().returncode)
+        self.env["CONTENT_AUDIT_EXAM_CASE_ID"] = "2"
+        self.assertEqual(0, self.call().returncode)
+        self.assertNotEqual(0, self.call().returncode)
+        rows = [json.loads(line) for line in (self.root / "physical-calls.jsonl").read_text().splitlines()]
+        self.assertEqual(["1", "2"], [row["caseId"] for row in rows])
+        self.assertTrue(all(row["experimentId"] == "cycle-test" for row in rows))
+
 
 if __name__ == "__main__":
     unittest.main()

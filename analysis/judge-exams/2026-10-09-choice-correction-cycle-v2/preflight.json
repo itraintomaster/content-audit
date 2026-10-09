@@ -1,0 +1,174 @@
+{
+  "experimentId" : "choice-correction-cycle-20261009-v2",
+  "provider" : "codex-cli",
+  "model" : "gpt-6.1-sol",
+  "reasoningEffort" : "medium",
+  "qualityVersion" : "9f164016f0612d83ee29e835741ed05c67362b251c3da164ac69f719ad3cacc4",
+  "alternativeVersion" : "fcc689bc5fe1aeefd59d97b211342fa07aa9adde0331dfb77ea2b13772001ed0",
+  "correctorDefinitionSha256" : "0f0285a85483639be7bb2a5b0654ce45783eb22d724cd2f46f0d2bae4a0180ef",
+  "casesSha256" : "99cacf3e860b58582187c107b9ef8e7f608fb9461a3a988aadb1d14fa90558dd",
+  "harnessSha256" : "37c2982e0be1dbfcc8dcb749f2902b193045cb5be288fbbd47dc0af8b7740b55",
+  "cappedRuntimeSha256" : "96738ef96466dd75f5ee046b08d4a9b435b085f5711c170aa52394875c9b8d98",
+  "correctorTableSha256" : "63fbc1470ab351e7aa8d48dd936b699a76a290fb075f451ca39097b81af96f99",
+  "subjects" : [ {
+    "subjectRef" : "df0000000000000000000001",
+    "content" : {
+      "level" : "A1",
+      "topic" : "Preguntas con be",
+      "title" : "Preguntas con be",
+      "instructions" : "Forma preguntas en presente simple con be antes del sujeto.",
+      "exercise" : "___ thirsty? (she)",
+      "options" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+    }
+  }, {
+    "subjectRef" : "df0000000000000000000002",
+    "content" : {
+      "level" : "A1",
+      "topic" : "Preguntas con be",
+      "title" : "Preguntas con be",
+      "instructions" : "Forma preguntas en presente simple con be antes del sujeto.",
+      "exercise" : "___ thirsty? (she)",
+      "options" : "- She is\n- Are she\n- Is she (correcta)\n- Am she"
+    }
+  }, {
+    "subjectRef" : "df0000000000000000000003",
+    "content" : {
+      "level" : "A1",
+      "topic" : "Negativas con be",
+      "title" : "Negativas con be",
+      "instructions" : "Completa la negación de be en presente simple, conservando el sujeto indicado.",
+      "exercise" : "___ thirsty. (it)",
+      "options" : "- I am not\n- It is not (correcta)\n- We are not\n- You are not"
+    }
+  }, {
+    "subjectRef" : "df0000000000000000000004",
+    "content" : {
+      "level" : "A1",
+      "topic" : "Negativas con be",
+      "title" : "Negativas con be",
+      "instructions" : "Completa la negación de be en presente simple.",
+      "exercise" : "It ___ thirsty.",
+      "options" : "- isn't (correcta)\n- aren't\n- am not\n- is"
+    }
+  }, {
+    "subjectRef" : "df0000000000000000000005",
+    "content" : {
+      "level" : "A1",
+      "topic" : "Preguntas en presente simple",
+      "title" : "Preguntas en presente simple",
+      "instructions" : "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+      "exercise" : "___ collect stamps? (you)",
+      "options" : "- Does he\n- Do you (correcta)\n- Do they\n- Does she"
+    }
+  }, {
+    "subjectRef" : "df0000000000000000000006",
+    "content" : {
+      "level" : "A1",
+      "topic" : "Preguntas en presente simple",
+      "title" : "Preguntas en presente simple",
+      "instructions" : "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+      "exercise" : "___ collect stamps? (you)",
+      "options" : "- Do you (correcta)\n- Does you\n- You do\n- You does"
+    }
+  }, {
+    "subjectRef" : "df0000000000000000000007",
+    "content" : {
+      "level" : "A1",
+      "topic" : "Tercera persona singular",
+      "title" : "Tercera persona singular",
+      "instructions" : "Completa la afirmación de presente simple con la forma de like.",
+      "exercise" : "My aunt ___ peaches.",
+      "options" : "- likes (correcta)\n- Paris\n- blue\n- tomorrow"
+    }
+  }, {
+    "subjectRef" : "df0000000000000000000008",
+    "content" : {
+      "level" : "A1",
+      "topic" : "Tercera persona singular",
+      "title" : "Tercera persona singular",
+      "instructions" : "Completa la afirmación de presente simple con la forma de like.",
+      "exercise" : "My aunt ___ peaches.",
+      "options" : "- like\n- likes (correcta)\n- liking\n- to like"
+    }
+  }, {
+    "subjectRef" : "df0000000000000000000009",
+    "content" : {
+      "level" : "A2",
+      "topic" : "Pasado simple",
+      "title" : "Pasado simple",
+      "instructions" : "Elige el pasado simple afirmativo de close.",
+      "exercise" : "Nora ___ the window yesterday.",
+      "options" : "- closed (correcta)\n- banana\n- purple\n- Wednesday"
+    }
+  }, {
+    "subjectRef" : "df000000000000000000000a",
+    "content" : {
+      "level" : "A2",
+      "topic" : "Pasado simple",
+      "title" : "Pasado simple",
+      "instructions" : "Elige el pasado simple afirmativo de close.",
+      "exercise" : "Nora ___ the window yesterday.",
+      "options" : "- closes\n- closed (correcta)\n- closing\n- close"
+    }
+  }, {
+    "subjectRef" : "df000000000000000000000b",
+    "content" : {
+      "level" : "A2",
+      "topic" : "Comparativos",
+      "title" : "Comparativos",
+      "instructions" : "Completa con el comparativo de tall.",
+      "exercise" : "Leo is ___ than his sister.",
+      "options" : "- taller (correcta)\n- ###\n- 9+9\n- @@"
+    }
+  }, {
+    "subjectRef" : "df000000000000000000000c",
+    "content" : {
+      "level" : "A2",
+      "topic" : "Comparativos",
+      "title" : "Comparativos",
+      "instructions" : "Completa con el comparativo de tall.",
+      "exercise" : "Leo is ___ than his sister.",
+      "options" : "- tall\n- more tall\n- tallest\n- taller (correcta)"
+    }
+  }, {
+    "subjectRef" : "df000000000000000000000d",
+    "content" : {
+      "level" : "A1",
+      "topic" : "Plurales irregulares",
+      "title" : "Plurales irregulares",
+      "instructions" : "Forma el plural irregular de child; practica cómo cambia esa palabra.",
+      "exercise" : "One child; two ___ .",
+      "options" : "- children (correcta)\n- dogs\n- houses\n- cars"
+    }
+  }, {
+    "subjectRef" : "df000000000000000000000e",
+    "content" : {
+      "level" : "B1",
+      "topic" : "Presente perfecto",
+      "title" : "Presente perfecto",
+      "instructions" : "Elige have o has más participio para formar presente perfecto.",
+      "exercise" : "We ___ the report.",
+      "options" : "- have finished (correcta)\n- seventeen\n- Japan\n- blue"
+    }
+  }, {
+    "subjectRef" : "df000000000000000000000f",
+    "content" : {
+      "level" : "A1",
+      "topic" : "Reconocer pronombres",
+      "title" : "Reconocer pronombres",
+      "instructions" : "Práctica introductoria: reconoce la opción que contiene el pronombre she.",
+      "exercise" : "___ thirsty? (she)",
+      "options" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+    }
+  }, {
+    "subjectRef" : "df0000000000000000000010",
+    "content" : {
+      "level" : "A1",
+      "topic" : "Reconocer pronombres",
+      "title" : "Reconocer pronombres",
+      "instructions" : "Completa la pregunta con el pronombre inglés correspondiente a «ella».",
+      "exercise" : "___ thirsty?",
+      "options" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+    }
+  } ]
+}

@@ -32,8 +32,20 @@
       "instructions": "Práctica introductoria: elige la opción con el pronombre indicado.",
       "exercise": "___ ready for the paper race? (he)",
       "options": "- Am I\n- Are you\n- Is he (correcta)",
+      "expected": "FAIL",
+      "expectedKind": "ANSWER_CUE",
+      "reason": "Copiar he ya escrito no comprueba comprensión del pronombre aunque diga introductoria."
+    },
+    {
+      "id": "introductory-meaning-recognition",
+      "level": "A1",
+      "topic": "Pronombres",
+      "title": "Reconocer el sujeto",
+      "instructions": "Elige el pronombre inglés correspondiente a «él» para completar la pregunta.",
+      "exercise": "___ ready for the paper race?",
+      "options": "- Am I\n- Are you\n- Is he (correcta)",
       "expected": "PASS",
-      "reason": "La pista practica el objetivo explícito de reconocimiento."
+      "reason": "Practica comprensión del pronombre, no una coincidencia literal en inglés."
     },
     {
       "id": "missing-goal",
