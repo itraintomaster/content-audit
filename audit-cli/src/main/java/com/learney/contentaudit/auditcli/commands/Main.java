@@ -1398,8 +1398,7 @@ class Main {
                                 trayDecisionStore, blindSampleService, panelRunner.get(), panelRunnerFactory,
                                 studentViewRenderer, evaluationContentFingerprinter, (CourseRepository) courseRepository,
                                 batchCourse != null ? Paths.get(batchCourse) : null))));
-        var batchCommand = new picocli.CommandLine(new BatchCmd(batchService));
-        batchCommand.addSubcommand("mini-theory", new MiniTheoryCorrectionCmd(memoized(() -> {
+        var batchCommand = batchCommandLine(batchService, memoized(() -> {
             if (batchCourse == null) throw new IllegalStateException("Falta la ruta del curso.");
             return new com.learney.contentaudit.revisiondomain.batchengine.DefaultMiniTheoryCorrectionServiceFactory().create(
                     batchStore, new com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchReviewServiceFactory().create(
@@ -1412,7 +1411,7 @@ class Main {
                         return new com.learney.contentaudit.revisioninfrastructure.minitheory.DefaultMiniTheoryRewriterFactory()
                                 .create(selected, System.getenv().getOrDefault("CONTENT_AUDIT_REASONING_EFFORT", "medium"));
                     });
-        })));
+        }));
         cmd.addSubcommand("batch", batchCommand);            // E · FEAT-TANDA
         cmd.addSubcommand("tray", new picocli.CommandLine(new TrayCmd(trayService, quizSentenceConverter))); // E · BANDEJA
 
@@ -1421,6 +1420,15 @@ class Main {
         // ----------------------------------------------------------------
         int exitCode = cmd.execute(remainingArgs.toArray(new String[0]));
         System.exit(exitCode);
+    }
+
+    /** Keep the nested command registration shared with CLI routing regression tests. */
+    static picocli.CommandLine batchCommandLine(
+            com.learney.contentaudit.revisiondomain.batch.BatchService batchService,
+            Supplier<com.learney.contentaudit.revisiondomain.minitheorycorrection.MiniTheoryCorrectionService> miniTheoryService) {
+        var command = new picocli.CommandLine(new BatchCmd(batchService));
+        command.addSubcommand("mini-theory", new MiniTheoryCorrectionCmd(miniTheoryService));
+        return command;
     }
 
     /**
