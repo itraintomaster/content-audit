@@ -21,10 +21,13 @@ with (cap_dir / "physical-calls.jsonl").open("a+", encoding="utf-8") as log:
     fcntl.flock(log, fcntl.LOCK_EX)
     log.seek(0)
     # A partial final line counts too: uncertain paid launches never regain budget.
-    used = sum(1 for line in log if line.strip())
+    saved = log.read()
+    used = sum(1 for line in saved.splitlines() if line.strip())
     if used >= cap:
         sys.exit("Tope físico del examen agotado; no se inicia otra consulta.")
     log.seek(0, 2)
+    if saved and not saved.endswith("\n"):
+        log.write("\n")
     log.write(json.dumps({"ordinal": used + 1, "pid": os.getpid(),
                          "startedAt": datetime.now(timezone.utc).isoformat()}) + "\n")
     log.flush()
