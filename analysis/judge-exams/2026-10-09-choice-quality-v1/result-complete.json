@@ -1,0 +1,476 @@
+{
+  "schemaVersion": 1,
+  "status": "COMPLETE_FAILED_STRICT_CRITERION",
+  "recordedAt": "2026-10-09T19:58:42.877007Z",
+  "judge": "multiple-choice-quality",
+  "provider": "codex-cli",
+  "model": "gpt-6.1-sol",
+  "reasoningEffort": "medium",
+  "currentVersion": "3c725e9dbe4f5e0edee5ea1f116c8c9c733a9fadc4f196e47fda36fe9920225c",
+  "goldSha256": "e740ffdf66a0c7a64394a8d9dcb06ed4e3cf01643fcd8194f4b45285e0715249",
+  "thresholdUnchanged": true,
+  "threshold": {
+    "core": "16/16 statuses and all required kinds, no false alarms on PASS",
+    "context": "2/2 NEEDS_CONTEXT; separate from formal evaluated coverage"
+  },
+  "core": {
+    "total": 16,
+    "validVerdicts": 16,
+    "statusMatches": 16,
+    "strictMatches": 14,
+    "strictMismatches": 2,
+    "defectsDetected": 8,
+    "defectsExpected": 8,
+    "validAccepted": 8,
+    "validExpected": 8,
+    "falseAlarms": 0,
+    "missedDefects": 0
+  },
+  "context": {
+    "total": 2,
+    "responsesConsolidated": 2,
+    "correctAbstentions": 2,
+    "status": "NEEDS_CONTEXT",
+    "formalEvaluatedCoverage": 0,
+    "remoteCallsPending": 0,
+    "exporterOutcome": "NOT_JUDGED",
+    "note": "Proper abstentions have durable answers but do not count as formal evaluated coverage; they are not missing paid responses."
+  },
+  "examRegistry": {
+    "status": "FAILED",
+    "casesJudged": 16,
+    "casesNotJudged": 0,
+    "goalMet": false,
+    "formalApprovalRecorded": false,
+    "measuredResultFile": "measured-result.json"
+  },
+  "budget": {
+    "priorPhysicalCallsCharged": 18,
+    "additionalPhysicalCap": 16,
+    "additionalCallsCharged": 16,
+    "coreNewCalls": 14,
+    "contextNewCalls": 2,
+    "reusedCurrentResults": 2,
+    "cumulativePhysicalCap": 34,
+    "cumulativePhysicalCallsCharged": 34,
+    "remaining": 0,
+    "allConsolidatedOutputs": 33,
+    "currentVersionUniqueOutputs": 18,
+    "oldVersionIneligibleOutputs": 15,
+    "priorUncertainCallsCharged": 1,
+    "counterReset": false
+  },
+  "invariants": {
+    "first17LedgerLinesSha256BeforeAndAfter": "d5d4fc1ad23d99f817d151d095490755c1d21c73f14d30b94b53e84f10bdfba6",
+    "courseCheckpointSha256BeforeAndAfter": "cf82e17f98fbc2e2be26e0a09acbbc0e152011c6b97c5e913196777df1a3e89c",
+    "goldModified": false,
+    "promptRetuned": false,
+    "versionChangedDuringComplement": false,
+    "courseAnalysisOrCorrectionRun": false,
+    "productionChanged": false
+  },
+  "interpretation": "Both strict mismatches correctly flag the defective exercise. The observed overlap between irrelevant and implausible distractors suggests a taxonomy boundary to review, not permission to relax the frozen threshold or retune on these exam cases.",
+  "mismatchedCaseIds": [
+    "df0000000000000000000009",
+    "df000000000000000000000e"
+  ],
+  "cases": [
+    {
+      "id": "df0000000000000000000001",
+      "slug": "cue-she",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "requiredKinds": [
+        "ANSWER_CUE"
+      ],
+      "actualKinds": [
+        "ANSWER_CUE",
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "La facilidad no es el defecto: el conjunto permite resolver por coincidencia de pronombre y evita casi por completo practicar la formación de preguntas que pide la consigna.",
+      "issues": [
+        {
+          "kind": "ANSWER_CUE",
+          "severity": "HIGH",
+          "labels": [
+            "Am I",
+            "Are we",
+            "Is she",
+            "Is it"
+          ],
+          "reason": "La pista (she) permite elegir Is she por ser la única opción que contiene ese pronombre, sin evaluar el orden de be ni su concordancia.",
+          "misconception": "Orden afirmativo en lugar de inversión y elección incorrecta de la forma de be para she."
+        },
+        {
+          "kind": "IRRELEVANT_DISTRACTORS",
+          "severity": "HIGH",
+          "labels": [
+            "Am I",
+            "Are we",
+            "Is it"
+          ],
+          "reason": "Todos los distractores cambian el sujeto fijado por (she) y presentan inversión y concordancia correctas con sus propios sujetos. Evalúan reconocer el pronombre indicado en lugar de formar la pregunta solicitada.",
+          "misconception": "Cómo colocar be antes de she y seleccionar la forma correspondiente."
+        }
+      ]
+    },
+    {
+      "id": "df0000000000000000000002",
+      "slug": "be-useful",
+      "expected": "PASS",
+      "actual": "PASS",
+      "requiredKinds": [],
+      "actualKinds": [],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "Todas las opciones conservan el sujeto indicado. She is permite practicar la inversión; Are she y Am she representan errores esperables de concordancia en A1. El conjunto exige distinguir el orden y la forma de be, sin una pista ajena al objetivo.",
+      "issues": []
+    },
+    {
+      "id": "df0000000000000000000003",
+      "slug": "cue-negative",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "requiredKinds": [
+        "ANSWER_CUE"
+      ],
+      "actualKinds": [
+        "ANSWER_CUE",
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "La práctica es introductoria, pero el conjunto permite resolverla exclusivamente reconociendo it. Ningún distractor exige distinguir cómo negar be con el sujeto fijado.",
+      "issues": [
+        {
+          "kind": "ANSWER_CUE",
+          "severity": "HIGH",
+          "labels": [
+            "I am not",
+            "It is not",
+            "We are not",
+            "You are not"
+          ],
+          "reason": "La pista fija el sujeto it y sólo una opción contiene It. Se puede elegir por coincidencia del pronombre sin distinguir la forma de be ni cómo se construye la negación.",
+          "misconception": "La elección de la forma de be que concuerda con it y la construcción de su negación."
+        },
+        {
+          "kind": "IRRELEVANT_DISTRACTORS",
+          "severity": "HIGH",
+          "labels": [
+            "I am not",
+            "We are not",
+            "You are not"
+          ],
+          "reason": "Todos los distractores cambian el sujeto que la consigna exige conservar y presentan negaciones bien formadas para otros sujetos; prueban reconocer el pronombre indicado en lugar de formar su negación.",
+          "misconception": "Errores de concordancia o de construcción de la negación manteniendo el sujeto it."
+        }
+      ]
+    },
+    {
+      "id": "df0000000000000000000004",
+      "slug": "negative-useful",
+      "expected": "PASS",
+      "actual": "PASS",
+      "requiredKinds": [],
+      "actualKinds": [],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "El conjunto practica una forma básica adecuada para A1. «aren't» y «am not» representan errores esperables de concordancia con it; «is» permite distinguir la forma afirmativa de la negativa solicitada. No hay una pista ajena al objetivo que regale la respuesta.",
+      "issues": []
+    },
+    {
+      "id": "df0000000000000000000005",
+      "slug": "cue-do",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "requiredKinds": [
+        "ANSWER_CUE"
+      ],
+      "actualKinds": [
+        "ANSWER_CUE",
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "Aunque la práctica es introductoria, el conjunto evita casi por completo el objetivo explícito: basta buscar you, sin decidir el auxiliar ni su posición.",
+      "issues": [
+        {
+          "kind": "ANSWER_CUE",
+          "severity": "HIGH",
+          "labels": [
+            "Does he",
+            "Do you",
+            "Do they",
+            "Does she"
+          ],
+          "reason": "La pista fija el sujeto you y sólo la clave contiene you. Se puede elegir por coincidencia del pronombre sin distinguir do de does ni practicar el orden de la pregunta.",
+          "misconception": "Elegir el auxiliar correspondiente a you y colocarlo antes del sujeto."
+        },
+        {
+          "kind": "IRRELEVANT_DISTRACTORS",
+          "severity": "HIGH",
+          "labels": [
+            "Does he",
+            "Do they",
+            "Does she"
+          ],
+          "reason": "Todos los distractores cambian el sujeto ya indicado y presentan combinaciones correctas de auxiliar y pronombre. Su descarte depende de reconocer el sujeto fijado, no de formar la pregunta solicitada.",
+          "misconception": "Confundir do y does para el sujeto indicado o mantener el orden declarativo."
+        }
+      ]
+    },
+    {
+      "id": "df0000000000000000000006",
+      "slug": "do-useful",
+      "expected": "PASS",
+      "actual": "PASS",
+      "requiredKinds": [],
+      "actualKinds": [],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "El conjunto practica concordancia del auxiliar y orden de palabras: Does you refleja un error de concordancia, You do uno de orden y You does combina ambos. Todas las opciones conservan el sujeto indicado y permiten practicar el objetivo visible.",
+      "issues": []
+    },
+    {
+      "id": "df0000000000000000000007",
+      "slug": "irrelevant-verb",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "requiredKinds": [
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "actualKinds": [
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "La práctica es introductoria, pero el conjunto evita casi por completo su objetivo: las opciones equivocadas no representan errores de formación o concordancia de like.",
+      "issues": [
+        {
+          "kind": "IRRELEVANT_DISTRACTORS",
+          "severity": "HIGH",
+          "labels": [
+            "Paris",
+            "blue",
+            "tomorrow"
+          ],
+          "reason": "La consigna fija el verbo like, pero ninguno de los distractores es una forma de ese verbo. Basta reconocer likes como la única opción relacionada con like para responder sin practicar la concordancia con My aunt.",
+          "misconception": "Omitir o aplicar incorrectamente la terminación -s del presente simple con un sujeto de tercera persona singular."
+        }
+      ]
+    },
+    {
+      "id": "df0000000000000000000008",
+      "slug": "verb-useful",
+      "expected": "PASS",
+      "actual": "PASS",
+      "requiredKinds": [],
+      "actualKinds": [],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "El conjunto permite practicar una distinción básica adecuada para A1: like frente a likes según el sujeto My aunt. Liking y to like representan confusiones esperables entre formas del verbo al completar una afirmación. No hay una pista superficial ajena al objetivo que regale la respuesta.",
+      "issues": []
+    },
+    {
+      "id": "df0000000000000000000009",
+      "slug": "irrelevant-past",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "requiredKinds": [
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "actualKinds": [
+        "IMPLAUSIBLE_DISTRACTORS"
+      ],
+      "statusMatches": true,
+      "strictMatches": false,
+      "rationale": "La práctica introductoria es válida, pero todo el conjunto de distractores permite evitar el objetivo: basta reconocer que las otras opciones son palabras ajenas al verbo solicitado.",
+      "issues": [
+        {
+          "kind": "IMPLAUSIBLE_DISTRACTORS",
+          "severity": "HIGH",
+          "labels": [
+            "banana",
+            "purple",
+            "Wednesday"
+          ],
+          "reason": "Ningún distractor es una forma de close ni representa un error esperable al formar su pasado simple. El alumno puede descartar los tres por su significado sin distinguir la forma verbal solicitada.",
+          "misconception": "Confundir la forma base de close con su pasado simple o equivocarse al formar el pasado regular."
+        }
+      ]
+    },
+    {
+      "id": "df000000000000000000000a",
+      "slug": "past-useful",
+      "expected": "PASS",
+      "actual": "PASS",
+      "requiredKinds": [],
+      "actualKinds": [],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "La consigna pide reconocer una forma básica. Los distractores contrastan el pasado simple con el presente en tercera persona, la forma en -ing y la forma base: confusiones esperables para este objetivo. Elegir closed requiere distinguir la forma verbal solicitada.",
+      "issues": []
+    },
+    {
+      "id": "df000000000000000000000b",
+      "slug": "implausible-comparative",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "requiredKinds": [
+        "IMPLAUSIBLE_DISTRACTORS"
+      ],
+      "actualKinds": [
+        "IMPLAUSIBLE_DISTRACTORS"
+      ],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "La práctica básica es adecuada, pero la única opción lingüística permite responder sin practicar el comparativo.",
+      "issues": [
+        {
+          "kind": "IMPLAUSIBLE_DISTRACTORS",
+          "severity": "HIGH",
+          "labels": [
+            "###",
+            "9+9",
+            "@@"
+          ],
+          "reason": "Todos los distractores son símbolos o una expresión aritmética, sin relación con formas de tall. Se descartan por no ser palabras sin tener que formar ni reconocer el comparativo.",
+          "misconception": "Errores esperables al formar el comparativo de tall; el conjunto evita distinguir entre formas lingüísticas."
+        }
+      ]
+    },
+    {
+      "id": "df000000000000000000000c",
+      "slug": "comparative-useful",
+      "expected": "PASS",
+      "actual": "PASS",
+      "requiredKinds": [],
+      "actualKinds": [],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "Los distractores representan errores esperables: usar el adjetivo sin modificar, aplicar more en lugar de -er o confundir comparativo y superlativo. El conjunto permite practicar el objetivo explícito sin pistas ajenas a él.",
+      "issues": []
+    },
+    {
+      "id": "df000000000000000000000d",
+      "slug": "cue-plural",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "requiredKinds": [
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "actualKinds": [
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "La práctica es introductoria, pero el conjunto no contrasta formas de plural de child: todas las opciones equivocadas nombran otras cosas y evitan la transformación solicitada.",
+      "issues": [
+        {
+          "kind": "IRRELEVANT_DISTRACTORS",
+          "severity": "HIGH",
+          "labels": [
+            "dogs",
+            "houses",
+            "cars"
+          ],
+          "reason": "Todos los distractores cambian la palabra child, fijada explícitamente por la consigna, por sustantivos distintos. Se puede elegir children por conservar el referente, sin practicar cómo se forma su plural irregular.",
+          "misconception": "Aplicar la terminación regular de plural a child o confundir la forma de su plural irregular."
+        }
+      ]
+    },
+    {
+      "id": "df000000000000000000000e",
+      "slug": "irrelevant-perfect",
+      "expected": "FAIL",
+      "actual": "FAIL",
+      "requiredKinds": [
+        "IRRELEVANT_DISTRACTORS"
+      ],
+      "actualKinds": [
+        "IMPLAUSIBLE_DISTRACTORS"
+      ],
+      "statusMatches": true,
+      "strictMatches": false,
+      "rationale": "La consigna presenta una práctica básica válida, pero el conjunto permite acertar sin practicar la formación del presente perfecto.",
+      "issues": [
+        {
+          "kind": "IMPLAUSIBLE_DISTRACTORS",
+          "severity": "HIGH",
+          "labels": [
+            "seventeen",
+            "Japan",
+            "blue"
+          ],
+          "reason": "Un número, un nombre de país y un color no representan errores esperables al formar el presente perfecto. Todos se descartan sin distinguir have de has ni reconocer el participio: la clave es la única opción con una estructura verbal.",
+          "misconception": "La elección incorrecta del auxiliar según el sujeto o de la forma del verbo después de have/has."
+        }
+      ]
+    },
+    {
+      "id": "df000000000000000000000f",
+      "slug": "intro-she",
+      "expected": "PASS",
+      "actual": "PASS",
+      "requiredKinds": [],
+      "actualKinds": [],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "La consigna pide explícitamente reconocer she en una práctica introductoria. Las opciones permiten distinguirlo de I, we e it. Elegir por el pronombre practica el objetivo visible; no se exige formar preguntas ni aplicar inversión o concordancia.",
+      "issues": []
+    },
+    {
+      "id": "df0000000000000000000010",
+      "slug": "intro-past",
+      "expected": "PASS",
+      "actual": "PASS",
+      "requiredKinds": [],
+      "actualKinds": [],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "Las opciones contrastan distintas formas del mismo verbo y permiten practicar el reconocimiento de la terminación ed. Identificar closed por su terminación ejercita el objetivo explícito de esta práctica introductoria; no constituye una pista ajena al objetivo.",
+      "issues": []
+    },
+    {
+      "id": "df0000000000000000000011",
+      "slug": "missing-objective-a1",
+      "expected": "NEEDS_CONTEXT",
+      "actual": "NEEDS_CONTEXT",
+      "requiredKinds": [],
+      "actualKinds": [],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "La consigna «Elige.», el hueco aislado y las opciones «x» e «y» no permiten identificar un objetivo de inglés. Falta un enunciado o una consigna visible que indique qué debe reconocer o completar el alumno.",
+      "issues": []
+    },
+    {
+      "id": "df0000000000000000000012",
+      "slug": "missing-objective-a2",
+      "expected": "NEEDS_CONTEXT",
+      "actual": "NEEDS_CONTEXT",
+      "requiredKinds": [],
+      "actualKinds": [],
+      "statusMatches": true,
+      "strictMatches": true,
+      "rationale": "El hueco aislado y la consigna «Elige una opción» no permiten identificar una habilidad de inglés que se practique al distinguir alpha de beta. Falta un enunciado o una consigna visible que establezca el objetivo y el criterio de elección.",
+      "issues": []
+    }
+  ],
+  "evidenceDirectory": "/private/tmp/content-audit-choice-quality-exam.pE7x6x",
+  "evaluationLedger": ".content-audit/evaluations/exam_choice-quality-judge.jsonl",
+  "physicalCounter": "/private/tmp/content-audit-choice-quality-exam.pE7x6x/physical-calls.jsonl",
+  "activityId": "choice-quality-exam-complement-20261009",
+  "backups": [
+    {
+      "file": "completed-exam-evidence.tgz",
+      "sha256": "8cdfcc961b0d7ec0f58d3ae2403c5537596764dce0dfef8f01432a98ab171a39"
+    },
+    {
+      "file": "complement-budget-and-logs.tgz",
+      "sha256": "3f75f1a4d9cd937d1ada18a0c6621edf4ff4a3a94cbb199763a66355928377b7"
+    }
+  ]
+}

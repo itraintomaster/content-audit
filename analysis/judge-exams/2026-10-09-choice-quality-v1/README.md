@@ -50,3 +50,33 @@ centrales vigentes, faltan 14; 0/2 controles de contexto, faltan dos. Completar
 sin repetir los dos resultados vigentes requiere una nueva decisión para hasta
 16 llamadas físicas adicionales. No están autorizadas ni se ejecutan aquí.
 result-partial.json registra identidades, resultados, gasto y evidencia.
+
+## Complemento autorizado y examen completo
+
+Las secciones anteriores y result-partial.json son la instantánea histórica
+del primer tope, no el estado actual. José autorizó explícitamente hasta 16
+llamadas adicionales (authorization-complement.json). No se reinició el
+contador: 18 anteriores más 16 nuevas, 34/34 físicas acumuladas; cero saldo.
+Se reutilizaron las dos respuestas válidas y se completaron los 14 casos
+centrales restantes y los dos controles, sin cambiar versión, prompt u oro.
+
+Los 16 casos centrales tienen veredicto vigente: 16/16 decisiones correctas,
+8/8 defectos detectados y 8/8 válidos aceptados, sin falsas alarmas. El criterio
+congelado también exige todas las categorías requeridas: coincide en 14/16.
+irrelevant-past e irrelevant-perfect fueron correctamente marcados FAIL, pero
+con IMPLAUSIBLE_DISTRACTORS en lugar de IRRELEVANT_DISTRACTORS. No se cambió
+el criterio para hacerlos pasar. measured-result.json se registró mediante
+exam record: FAILED, 16 casos medidos, goalMet=false, nunca APPROVED.
+
+Los dos controles dieron NEEDS_CONTEXT con explicación y sin puntaje: 2/2
+abstenciones esperadas. El exportador los presenta como NOT_JUDGED y 0/2 de
+cobertura formal; no son llamadas pendientes ni un fallo de ejecución.
+result-complete.json conserva las 18 comparaciones, gasto, procedencia y
+respaldos. Las primeras 17 líneas del ledger, el oro y el checkpoint de
+Corrección 1 permanecieron idénticos. No se ejecutó análisis/corrección del
+curso real, ni se aprobó o publicó contenido. No hubo afinado ni reexamen.
+
+La frontera entre distractor ajeno al objetivo e inverosímil requiere revisión
+local; su solapamiento es una interpretación del resultado, no una aprobación
+retroactiva. Este único corpus mide coincidencia con el oro, no estabilidad
+entre corridas ni eficacia pedagógica con alumnos.
