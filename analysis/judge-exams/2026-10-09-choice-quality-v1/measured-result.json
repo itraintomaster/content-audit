@@ -1,0 +1,35 @@
+{
+  "juez": "multiple-choice-quality",
+  "version": "3c725e9dbe4f5e0edee5ea1f116c8c9c733a9fadc4f196e47fda36fe9920225c",
+  "estado": "REPROBADO",
+  "grupos": [
+    {
+      "grupo": "Defectos: estado y categorías requeridas",
+      "casos": 8,
+      "comoSeEspera": 6,
+      "noComoSeEspera": 2
+    },
+    {
+      "grupo": "Distractores útiles",
+      "casos": 6,
+      "comoSeEspera": 6,
+      "noComoSeEspera": 0
+    },
+    {
+      "grupo": "Práctica introductoria legítima",
+      "casos": 2,
+      "comoSeEspera": 2,
+      "noComoSeEspera": 0
+    }
+  ],
+  "noDieronLoEsperado": [
+    "df0000000000000000000009",
+    "df000000000000000000000e"
+  ],
+  "alcanzoLaMeta": false,
+  "foto": "analysis/judge-exams/2026-10-09-choice-quality-v1/course",
+  "medidoPor": "Comparación local de los resultados guardados con gold.json congelado antes de ejecutar: estado y todas las categorías requeridas; controles NEEDS_CONTEXT separados de cobertura formal",
+  "proveedor": "codex-cli",
+  "modelo": "gpt-6.1-sol",
+  "esfuerzo": "medium"
+}
