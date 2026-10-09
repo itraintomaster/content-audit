@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>079 · Juez, corrección y segunda evaluación · Presentación</title>
+<!--
+  PRESENTACIÓN · visual-brief, modo presentación
+  Cuándo: alguien tiene que entender y APROBAR un plan o un diseño, con el qué y el cómo.
+  Dónde:  docs/briefs/NNN-slug.html — es un brief en diapositivas: mismo número, no se edita.
+
+  Cómo se usa
+  1. Copiar este archivo y reemplazar SÓLO lo que está entre los comentarios «CONTENIDO».
+     El CSS y el JS no se tocan. El número de página y el del documento los pone el JS.
+  2. Las diapositivas de abajo son los tipos, en orden, con un ejemplo que se reemplaza entero:
+     portada · mapa · por cada pieza: qué encuentra (o qué resuelve) / cómo lo hace / cómo se
+     ve · lo que no toca · lo que necesita de vos · en una frase. Cada una dice qué componentes lleva.
+  3. BORRAR el catálogo del final (<section class="cat">).
+  4. node ~/.claude/skills/visual-brief/assets/verificar.mjs docs/briefs/NNN-slug.html
+
+  Topes por diapositiva: título = la conclusión (≤ 12 palabras) · ≤ 40 palabras sueltas
+  (título, bajada, notas y conclusión) · UN dibujo que carga el mensaje. Cada componente
+  trae su tope en el catálogo. Lenguaje llano: los nombres técnicos, sólo en el .foot.
+  Colores: sólo los tokens (--*). Un color escrito a mano se rompe en el modo oscuro.
+-->
+<style>
+  /* ════ tokens: los mismos nombres que el brief; claro y, abajo, oscuro ════ */
+  :root{
+    --bg:#f4f2ee; --bg-elev:#ffffff; --line:#e4dfd6; --line-soft:#efebe4;
+    --fg:#1c1a17; --fg-2:#56514a; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fcefe4;
+    --ok:#2f6b46; --ok-soft:#e7f3eb; --warn:#8a6314; --warn-soft:#fbf1d9;
+    --bad:#a3342c; --bad-soft:#fbe9e6; --info:#2a5b8f; --info-soft:#e7f0f9;
+    --shadow:0 1px 2px rgba(28,26,23,.06), 0 18px 40px -24px rgba(28,26,23,.35);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f0e0d; --bg-elev:#1a1917; --line:#2f2c28; --line-soft:#24221f;
+      --fg:#efece7; --fg-2:#aaa49b; --fg-3:#7d776e;
+      --accent:#e38c50; --accent-soft:#2b1f15;
+      --ok:#80c89d; --ok-soft:#15231b; --warn:#e2b85a; --warn-soft:#261f12;
+      --bad:#e88d84; --bad-soft:#2a1816; --info:#8cb8e6; --info-soft:#131e2a;
+      --shadow:0 1px 2px rgba(0,0,0,.5), 0 18px 40px -24px rgba(0,0,0,.8);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--fg);
+    font:16px/1.45 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    padding:28px 20px 90px}
+  code{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:.92em}
+  code,a{overflow-wrap:anywhere}
+  .deck{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+
+  /* ── la diapositiva: 16:9, el texto escala con su ancho ── */
+  .sl{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);
+    aspect-ratio:16/9;container-type:inline-size;overflow:hidden;scroll-margin-top:24px}
+  .sl-in{position:absolute;inset:0;padding:4.2cqi 5cqi 5.4cqi;display:flex;flex-direction:column;gap:2.2cqi}
+  .kick{display:flex;align-items:center;gap:1.2cqi;font-size:1.25cqi;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--fg-3);font-weight:700}
+  .kick .tagq{color:var(--accent)}
+  .kick .an{margin-left:auto;letter-spacing:.04em;text-transform:none;font-weight:600;color:var(--fg-2)}
+  .kick .num{font:700 1.1cqi/1 ui-monospace,monospace;letter-spacing:.04em;color:var(--fg-3);background:var(--line-soft);
+    padding:.45cqi .8cqi;border-radius:.5cqi}
+  h1,h2{margin:0;letter-spacing:-.02em;line-height:1.08}
+  .sl h1{font-size:5cqi;font-weight:700}
+  .sl h1.frase{font-size:4.2cqi;max-width:24ch;line-height:1.12}
+  .sl h2{font-size:3.3cqi;font-weight:680}
+  .sub{font-size:1.9cqi;color:var(--fg-2);margin:0;max-width:62ch;line-height:1.35}
+  /* las filas del cuerpo no crecen con el contenido: lo que no entra se nota (y el verificador lo marca) */
+  .body{flex:1;min-height:0;display:grid;gap:3cqi;grid-template-rows:minmax(0,1fr)}
+  .body.arriba{grid-template-rows:auto minmax(0,1fr)}     /* la primera fila a su medida; la segunda llena */
+  .body.abajo{grid-template-rows:minmax(0,1fr) auto}      /* la última fila a su medida, abajo */
+  .c2,.c32,.c23{display:grid;gap:3cqi;min-height:0;min-width:0}
+  .c2{grid-template-columns:1fr 1fr} .c32{grid-template-columns:1.25fr 1fr} .c23{grid-template-columns:1fr 1.25fr}
+  .pila{display:flex;flex-direction:column;gap:1.4cqi;min-width:0}
+  .foot{position:absolute;left:5cqi;right:5cqi;bottom:1.6cqi;display:flex;justify-content:space-between;gap:2cqi;
+    font-size:1.05cqi;color:var(--fg-3)}
+  .foot span{min-width:0;overflow-wrap:anywhere} .foot .pg{white-space:nowrap}
+  .note{font-size:1.45cqi;color:var(--fg-2);line-height:1.4;margin:0}
+  .take{font-size:1.7cqi;line-height:1.35;margin:0;padding:1.2cqi 1.6cqi;border-left:.45cqi solid var(--accent);
+    background:var(--accent-soft);border-radius:0 1cqi 1cqi 0}
+  .take b{color:var(--accent)}
+  .panel{background:var(--bg);border:1px solid var(--line-soft);border-radius:1.4cqi;padding:1.8cqi 2cqi;min-width:0;
+    display:flex;flex-direction:column;gap:1.2cqi}
+  .ptl{font-size:1.15cqi;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);font-weight:700}
+
+  /* ── portada ── */
+  .cover .sl-in{justify-content:center;gap:2.6cqi;padding-left:7cqi;padding-right:7cqi}
+  .cover .big-l{position:absolute;right:5cqi;top:4cqi;font:800 19cqi/1 ui-sans-serif,system-ui;color:var(--accent-soft);letter-spacing:-.04em}
+  .chips{display:flex;flex-wrap:wrap;gap:1cqi}
+  .chip{font-size:1.5cqi;padding:.55cqi 1.3cqi;border-radius:99px;border:1px solid var(--line);background:var(--bg);white-space:nowrap}
+  .chip i{font-style:normal;color:var(--fg-3);margin-left:.6cqi;font-size:1.25cqi}
+  .kpis{display:flex;gap:3cqi;flex-wrap:wrap}
+  .kpi .n{font-size:5.4cqi;font-weight:750;letter-spacing:-.03em;line-height:1}
+  .kpi .n small{font-size:.42em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:1.45cqi;color:var(--fg-2);max-width:26ch;margin-top:.6cqi}
+  .panel .kpis{gap:1.6cqi 2.4cqi} .panel .kpi .n{font-size:3.4cqi} .panel .kpi .l{font-size:1.3cqi;max-width:22ch}
+
+  /* ── el ejemplo real, como lo ve el que lo usa, con sus marcas ── */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:1.4cqi;padding:1.6cqi 1.9cqi;display:grid;gap:1cqi;box-shadow:var(--shadow)}
+  .ex .cons{font-size:1.3cqi;color:var(--fg-3)}
+  .ex .en{font:italic 2.5cqi/1.25 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:6cqi;border-bottom:.25cqi solid var(--fg-3);margin:0 .4cqi}
+  .ex .tr{font-size:1.45cqi;color:var(--fg-2)}
+  .ex .ans{font-size:1.4cqi;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .mark{display:flex;gap:1cqi;align-items:flex-start;font-size:1.45cqi;background:var(--bad-soft);border-radius:1cqi;padding:1cqi 1.2cqi}
+  .mark .x{color:var(--bad);font-weight:800}
+  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .sev{font-size:1.15cqi;font-weight:700;padding:.3cqi .9cqi;border-radius:99px;white-space:nowrap}
+  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
+  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
+
+  /* ── gráfico: columnas por grupo (una barra, o dos para comparar) ── */
+  .cols{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);gap:1.6cqi;align-items:end;height:100%;min-height:0;padding-top:2cqi}
+  .col{display:flex;flex-direction:column;align-items:center;gap:.7cqi;height:100%;min-height:0;justify-content:flex-end}
+  .col .v{font-size:1.6cqi;font-weight:700;text-align:center}
+  .col .v small{display:block;font-size:1.1cqi;color:var(--fg-3);font-weight:500}
+  .col .pista{flex:1;min-height:0;width:100%;display:flex;gap:5%;align-items:flex-end;justify-content:center}
+  .col .pista .bar{flex:0 0 62%} .col .pista .bar:not(:only-child){flex-basis:40%}
+  .col .bar{border-radius:.8cqi .8cqi .2cqi .2cqi;background:var(--accent);min-height:.4cqi}
+  .col>.bar{width:70%}
+  .col .bar.soft{background:color-mix(in srgb,var(--accent) 45%,var(--bg-elev))}
+  .col .bar.g{background:var(--ok)} .col .bar.b{background:var(--bad)}
+  .col .k{font-size:1.4cqi;font-weight:700;color:var(--fg-2)}
+  /* ── gráfico: barras horizontales, con la raya de la meta ── */
+  .hb{display:grid;gap:1.1cqi}
+  .hb .r{display:grid;grid-template-columns:36% 1fr auto;gap:1.2cqi;align-items:center;font-size:1.4cqi}
+  .hb.ancho .r{grid-template-columns:46% 1fr auto}
+  .hb .t{color:var(--fg-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hb .t small{display:block;color:var(--fg-3);font-size:1.1cqi;white-space:normal}
+  .hb .tr{height:1.5cqi;border-radius:99px;background:var(--line-soft);overflow:hidden;position:relative}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 55%,transparent)}
+  .hb .meta{position:absolute;top:-.4cqi;bottom:-.4cqi;width:.25cqi;background:var(--fg)}
+  .hb .n{font-weight:700;font-variant-numeric:tabular-nums}
+  .leyenda{display:flex;flex-wrap:wrap;gap:.6cqi 1.8cqi;font-size:1.2cqi;color:var(--fg-2)}
+  .sw{display:inline-block;width:.8em;height:.8em;border-radius:.2em;margin-right:.45em;vertical-align:-.05em;background:var(--accent)}
+  .sw.suave{background:color-mix(in srgb,var(--accent) 45%,var(--bg-elev))}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 55%,transparent)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.m{width:.2em;height:1.1em;border-radius:0;background:var(--fg);vertical-align:-.2em}
+
+  /* ── el flujo, paso a paso ── */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:1.2cqi;align-items:stretch}
+  .st{position:relative;background:var(--bg);border:1px solid var(--line-soft);border-radius:1.2cqi;padding:1.4cqi 1.3cqi;
+    display:flex;flex-direction:column;gap:.7cqi}
+  .st:not(:last-child)::after{content:"";position:absolute;right:-1.05cqi;top:50%;width:.9cqi;height:.9cqi;
+    border-top:.25cqi solid var(--fg-3);border-right:.25cqi solid var(--fg-3);transform:translate(0,-50%) rotate(45deg);z-index:1}
+  .st .i{font:800 1.3cqi/2.6cqi ui-monospace,monospace;width:2.6cqi;height:2.6cqi;border-radius:.8cqi;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .st .h{font-size:1.55cqi;font-weight:700;line-height:1.2}
+  .st .d{font-size:1.25cqi;color:var(--fg-2);line-height:1.35}
+  .st.end{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));background:var(--accent-soft)}
+  .st .eg{font:italic 1.3cqi/1.3 ui-serif,Georgia,serif;color:var(--fg)}
+
+  /* ── decisiones: elijo / descarto ── */
+  .dec{display:grid;gap:.9cqi}
+  .dec .r{display:grid;grid-template-columns:22% 1fr;gap:1.2cqi;align-items:baseline;font-size:1.35cqi;
+    padding-bottom:.8cqi;border-bottom:1px solid var(--line-soft)}
+  .dec .r:last-child{border-bottom:0}
+  .dec .q{font-weight:700}
+  .dec .y{color:var(--fg)} .dec .y::before{content:"✓ ";color:var(--ok);font-weight:800}
+  .dec .no{display:block;color:var(--fg-3);font-size:1.2cqi;margin-top:.2cqi}
+  .dec .no::before{content:"✕ ";color:var(--bad)}
+
+  /* ── la pantalla, dibujada ── */
+  .ui{background:var(--bg-elev);border:1px solid var(--line);border-radius:1.2cqi;overflow:hidden;box-shadow:var(--shadow)}
+  .ui .bar{display:flex;gap:.6cqi;align-items:center;padding:.9cqi 1.2cqi;border-bottom:1px solid var(--line-soft);font-size:1.15cqi;color:var(--fg-3)}
+  .ui .bar i{width:.9cqi;height:.9cqi;border-radius:99px;background:var(--line)}
+  .ui .bar span{margin-left:.8cqi}
+  .ui .row{display:grid;grid-template-columns:auto 1fr auto;gap:1cqi;align-items:center;padding:1cqi 1.3cqi;border-bottom:1px solid var(--line-soft);font-size:1.3cqi}
+  .ui .row:last-child{border-bottom:0}
+  .ui .row .x{color:var(--bad);font-weight:800} .ui .row .okm{color:var(--ok);font-weight:800}
+  .ui .row .pend{color:var(--warn);font-weight:800}
+  .ui .row .s{color:var(--fg-3);font-size:1.15cqi}
+  /* ── mapa de calor: --cols = columnas de datos; .h0 a .h3 de menos a más ── */
+  .heat{display:grid;grid-template-columns:1.6fr repeat(var(--cols,4),1fr);gap:.5cqi;font-size:1.2cqi}
+  .heat span{padding:.7cqi .4cqi;border-radius:.6cqi;text-align:center;font-family:ui-monospace,monospace}
+  .heat .h{color:var(--fg-3);font-family:inherit}
+  .heat .rl{text-align:left;font-family:inherit;color:var(--fg-2)}
+  .h0{background:var(--line-soft);color:var(--fg-3)}
+  .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))} .h2{background:color-mix(in srgb,var(--warn) 32%,var(--bg-elev))}
+  .h3{background:color-mix(in srgb,var(--bad) 30%,var(--bg-elev))}
+
+  /* ── el mapa: el objeto real, sus partes numeradas y quién mira cada una ── */
+  .map{display:grid;grid-template-columns:1.2fr .9fr;gap:0;align-items:stretch}
+  .map .ex{border-radius:1.4cqi 0 0 1.4cqi}
+  .map .who{display:grid;gap:.8cqi;align-content:center;border:1px solid var(--line);border-left:0;border-radius:0 1.4cqi 1.4cqi 0;
+    padding:1.6cqi 1.8cqi;background:var(--bg)}
+  .map .who div{display:flex;gap:1cqi;align-items:center;font-size:1.45cqi}
+  .map .who b{font:800 1.2cqi/2.3cqi ui-monospace,monospace;width:2.3cqi;height:2.3cqi;border-radius:.7cqi;text-align:center;
+    background:var(--accent);color:var(--bg-elev);flex:none}
+  .map .who small{color:var(--fg-3);font-size:1.2cqi}
+  .map .ex .part{display:flex;gap:1cqi;align-items:baseline}
+  .map .ex .part b{font:800 1.1cqi/2cqi ui-monospace,monospace;width:2cqi;height:2cqi;border-radius:.6cqi;text-align:center;
+    background:var(--accent-soft);color:var(--accent);flex:none}
+
+  /* ── antes y después, sobre el mismo caso ── */
+  .ad{display:grid;grid-template-columns:1fr 1fr;gap:3.4cqi}
+  .ad .lado{position:relative;background:var(--bg);border:1px solid var(--line-soft);border-radius:1.2cqi;padding:1.5cqi 1.8cqi;
+    display:flex;flex-direction:column;gap:1cqi;min-width:0}
+  .ad .antes{border-top:.35cqi solid var(--bad)} .ad .despues{border-top:.35cqi solid var(--ok)}
+  .ad .rot{font-size:1.15cqi;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-2.7cqi;top:50%;transform:translateY(-50%);font-size:2cqi;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:2.2cqi;font-size:1.4cqi;line-height:1.4;color:var(--fg-2);display:grid;gap:.4cqi}
+  .ad .res{font-weight:700;font-size:1.6cqi;border-top:1px dashed var(--line);padding-top:.8cqi;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  /* ── captura real: la imagen llena su caja sin deformarse ── */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:1.2cqi;padding:1cqi;box-shadow:var(--shadow);
+    min-width:0;min-height:0;display:flex;flex-direction:column;gap:.8cqi}
+  .captura img{display:block;width:100%;flex:1;min-height:0;object-fit:contain;object-position:top;border-radius:.6cqi}
+  .captura figcaption{font-size:1.2cqi;color:var(--fg-3)}
+  .pila>.captura{flex:0 1 auto}
+
+  /* ── caminos: la recomendada, marcada ── */
+  .opts{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:1.6cqi}
+  .opt{background:var(--bg);border:1px solid var(--line-soft);border-radius:1.2cqi;padding:1.5cqi 1.7cqi;display:flex;flex-direction:column;gap:.9cqi;min-width:0}
+  .opt.rec{border:.2cqi solid var(--accent);background:var(--accent-soft)}
+  .opt .oh{display:flex;align-items:center;gap:.9cqi;font-size:1.6cqi}
+  .opt .ol{font:800 1.3cqi/2.6cqi ui-monospace,monospace;width:2.6cqi;height:2.6cqi;border-radius:.8cqi;text-align:center;background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:.4cqi;font-size:1.35cqi}
+  .opt li::before{font-weight:800;margin-right:.5em}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+  .opt p{font-size:1.35cqi;color:var(--fg-2);margin:0}
+
+  /* ── lo que necesita de vos: preguntas con la recomendación ── */
+  .asks{display:grid;gap:1.4cqi}
+  .ask{background:var(--bg);border:1px solid var(--line-soft);border-left:.5cqi solid var(--accent);border-radius:1.2cqi;padding:1.4cqi 1.8cqi;display:grid;gap:.8cqi}
+  .ask .q{font-size:1.8cqi;font-weight:700;line-height:1.25}
+  .ask .ops{display:flex;gap:1cqi;flex-wrap:wrap}
+  .ask .op{font-size:1.3cqi;padding:.5cqi 1.1cqi;border-radius:99px;border:1px solid var(--line);background:var(--bg-elev)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:700}
+  .ask .why{font-size:1.3cqi;color:var(--fg-2)}
+
+  /* ── lo que no toca ── */
+  .keep{display:grid;grid-template-columns:1fr 1fr;gap:1.2cqi}
+  .keep div{background:var(--bg);border:1px solid var(--line-soft);border-radius:1.1cqi;padding:1.2cqi 1.4cqi;font-size:1.35cqi;color:var(--fg-2)}
+  .keep b{display:block;color:var(--fg);font-size:1.45cqi;margin-bottom:.3cqi}
+
+  /* ── navegación ── */
+  .nav{position:fixed;right:18px;bottom:18px;display:flex;gap:8px;align-items:center;z-index:5}
+  .nav button{font:600 13px/1 ui-sans-serif,system-ui;border:1px solid var(--line);background:var(--bg-elev);color:var(--fg);
+    border-radius:10px;padding:9px 12px;cursor:pointer;box-shadow:var(--shadow)}
+  .nav .cnt{font:600 12.5px ui-monospace,monospace;color:var(--fg-2);background:var(--bg-elev);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+  .prog{position:fixed;left:0;top:0;height:3px;background:var(--accent);width:0;z-index:5;transition:width .2s}
+  .toc{position:fixed;right:18px;bottom:66px;width:min(360px,calc(100vw - 36px));max-height:60vh;overflow:auto;background:var(--bg-elev);
+    border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:8px;z-index:6}
+  .toc[hidden]{display:none}
+  .toc a{display:block;padding:7px 10px;border-radius:8px;color:var(--fg);text-decoration:none;font-size:13.5px}
+  .toc a:hover{background:var(--bg)}
+  .toc a small{color:var(--fg-3);margin-right:6px;font-family:ui-monospace,monospace}
+
+  /* ── CATÁLOGO · se borra entero al generar ── */
+  .cat{max-width:1120px;margin:64px auto 0;padding-top:22px;border-top:3px solid var(--bad)}
+  .cat h2{font-size:22px;margin:0 0 4px}
+  .cat .adv{color:var(--bad);font-weight:600;font-size:13.5px;margin:0 0 18px}
+  .cat h3{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);margin:28px 0 10px}
+  .cat-tw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--bg-elev)}
+  .cat-t{width:100%;min-width:640px;border-collapse:collapse;font-size:13.5px}
+  .cat-t th,.cat-t td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  .cat-t tr:last-child td{border-bottom:0}
+  .cat-t th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}
+  .cat-t code{font-size:12px;color:var(--fg-2)}
+  .demo{container-type:inline-size;background:var(--bg-elev);border:1px dashed var(--line);border-radius:14px;padding:22px 26px;
+    display:grid;gap:14px;margin-bottom:14px}
+  .demo>.n{font:600 12px/1.4 ui-monospace,monospace;color:var(--fg-3)}
+
+  /* ── en pantallas angostas, la diapositiva crece en alto y el texto no se achica ── */
+  @media (max-width:760px){
+    body{padding:16px 16px 90px}
+    .sl,.demo{aspect-ratio:auto;container-type:normal}
+    .sl-in{position:static;padding:22px 18px 40px;gap:14px}
+    .demo{padding:16px}
+    .kick{font-size:11px;gap:8px;flex-wrap:wrap} .kick .an{margin-left:0} .kick .num{font-size:11px;padding:3px 6px;border-radius:5px}
+    .sl h1{font-size:30px} .sl h1.frase{font-size:24px} .sl h2{font-size:22px} .sub{font-size:15px}
+    .c2,.c32,.c23,.map,.keep,.ad{grid-template-columns:minmax(0,1fr)}
+    .body,.c2,.c32,.c23,.pila{gap:14px}
+    .note,.take,.dec .r,.hb .r,.mark,.ex .tr,.ex .ans,.ask .why,.keep div,.st .d,.ui .row,.ad ol,.opt ul,.opt p{font-size:13.5px}
+    .ex .en{font-size:19px} .st .h,.ask .q,.opt .oh,.ad .res{font-size:15px} .chip{font-size:13px}
+    .kpi .n{font-size:32px} .kpi .l{font-size:13px}
+    .flow,.opts{grid-auto-flow:row} .st:not(:last-child)::after{display:none}
+    .cols{height:180px} .col .v{font-size:14px} .col .k{font-size:13px} .col .v small{font-size:11px}
+    .ptl,.foot,.heat,.sev,.st .i,.map .who b,.map .ex .part b,.ask .op,.ui .bar,.ui .row .s,.hb .tr,.col .bar,.leyenda,.ad .rot,.opt .ol,.map .who small,.hb .t small{font-size:12px}
+    .hb .tr{height:9px} .st .i,.opt .ol{width:22px;height:22px;line-height:22px} .map .who b,.map .ex .part b{width:20px;height:20px;line-height:20px}
+    .map .ex{border-radius:14px 14px 0 0} .map .who{border-left:1px solid var(--line);border-top:0;border-radius:0 0 14px 14px}
+    .cover .big-l{display:none}
+    .foot{position:static;padding:0 18px 16px;margin-top:-24px;font-size:11px}
+    .chip i,.ex .cons,.dec .no,.st .eg{font-size:11.5px}
+    .dec .q,.dec .y,.map .who div{font-size:13.5px} .keep b{font-size:14px}
+    .chips,.kpis,.flow,.asks,.keep,.dec,.hb,.opts,.leyenda{gap:10px}
+    .panel,.ex,.ask,.ad .lado,.opt{padding:12px 14px;gap:8px;border-radius:12px}
+    .mark,.take,.keep div,.st{padding:10px 12px}
+    .ui .row{padding:9px 12px} .ui .bar{padding:8px 12px} .heat span{padding:5px 3px}
+    .ex .gap{min-width:44px;border-bottom-width:2px} .col .bar{border-radius:6px 6px 2px 2px}
+    .take,.ask{border-left-width:3px} .ad .antes,.ad .despues{border-top-width:3px}
+    .ad .despues::before{content:"↓";left:50%;top:-24px;transform:translateX(-50%);font-size:18px}
+    .ad ol{padding-left:18px} .opt.rec{border-width:2px}
+    .hb .r{grid-template-columns:40% 1fr auto;gap:8px}
+    .captura{padding:8px;border-radius:12px;gap:6px} .captura figcaption{font-size:12px}
+  }
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<main class="deck" id="deck">
+
+<!-- CONTENIDO: desde acá -->
+
+<section class="sl cover" data-t="Probar el ciclo completo">
+<div class="sl-in">
+<div class="kick"><span class="num">079</span><span class="tagq">Plan por autorizar</span> · <span class="meta">opción múltiple · 9 octubre 2026</span></div>
+<h1>La corrección también tiene que rendir</h1>
+<p class="sub">Probaría los 16 casos con criterios aclarados: detectar, corregir y volver a evaluar, sin tocar el curso.</p>
+<div class="flow">
+<div class="st"><span class="i">1</span><span class="h">Juez</span><span class="d">Detecta el defecto y explica qué habilidad se evita.</span></div>
+<div class="st"><span class="i">2</span><span class="h">Corrector</span><span class="d">Recibe esa devolución real; propone una sola corrección.</span></div>
+<div class="st end"><span class="i">3</span><span class="h">Jueces después</span><span class="d">Comprueban desafío pedagógico y respuesta única.</span></div>
+</div>
+<div class="chips"><span class="chip">16 casos<i>9 defectuosos · 7 controles</i></span><span class="chip">Una sola vuelta<i>sin corregir hasta aprobar</i></span></div>
+</div>
+<div class="foot"><span>Brief 079 · Experimento propuesto; todavía no ejecutado. Revisión previa: <a href="077-nueva-revision-distractores.html">077</a>.</span><span class="pg"></span></div>
+</section>
+
+<section class="sl" data-t="La devolución real entra al corrector">
+<div class="sl-in">
+<div class="kick"><span class="tagq">La conexión</span> · no inventar una mejor devolución</div>
+<h2>El corrector recibe exactamente lo que detectó el juez</h2>
+<div class="body arriba">
+<div class="flow">
+<div class="st"><span class="i">1</span><span class="h">Caso original</span><span class="d">Título, consigna, enunciado, opciones y contexto del tema.</span></div>
+<div class="st"><span class="i">2</span><span class="h">Hallazgo y tarea</span><span class="d">Motivo, evidencia, confusión esperada y campos permitidos.</span></div>
+<div class="st"><span class="i">3</span><span class="h">Propuesta completa</span><span class="d">El corrector existente trabaja sobre esa tarea.</span></div>
+<div class="st end"><span class="i">4</span><span class="h">Evaluación a ciegas</span><span class="d">Sólo ve el candidato; no el primer veredicto.</span></div>
+</div>
+<div class="keep">
+<div><b>Si no detecta un defecto</b>Se registra el fallo. No se fabrica una tarea para ayudar al corrector.</div>
+<div><b>Si acusa un control válido</b>Se registra el falso positivo. No se modifica ese control.</div>
+</div>
+</div>
+<p class="take">La respuesta esperada puntúa el resultado; <b>no se filtra al corrector ni al segundo juez</b>.</p>
+</div>
+<div class="foot"><span>Ruta existente: ChoiceQualityAnalyzer → DefaultErrorTaskBriefer → AgentPanelProposer. El juez final no recibe explicaciones previas.</span><span class="pg"></span></div>
+</section>
+
+<section class="sl" data-t="Dieciséis casos con expectativas congeladas">
+<div class="sl-in">
+<div class="kick"><span class="tagq">Los casos</span> · aclarar antes de consultar</div>
+<h2>Separamos el defecto real de la etiqueta discutible</h2>
+<div class="body c32">
+<div class="panel">
+<div class="ptl">Nueva expectativa · 9 defectuosos de 16</div>
+<div class="heat" style="--cols:2">
+<span class="h">Casos</span><span class="h">Esperado</span><span class="h">Motivo</span>
+<span class="rl">1 · 3 · 5</span><span class="h3">Corregir</span><span class="h2">Coincidencia superficial</span>
+<span class="rl">7 · 9 · 11 · 13 · 14</span><span class="h3">Corregir</span><span class="h2">Distractores sin valor</span>
+<span class="rl">15</span><span class="h3">Corregir</span><span class="h2">Copia literal de she</span>
+<span class="rl">2 · 4 · 6 · 8 · 10 · 12</span><span class="h0">Conservar</span><span class="h1">Errores esperables</span>
+<span class="rl">Nuevo 16</span><span class="h0">Conservar</span><span class="h1">Comprender ella → she</span>
+</div>
+</div>
+<div class="pila">
+<div class="ex">
+<div class="cons">Nuevo control introductorio · reemplaza al 16 ambiguo</div>
+<div class="tr">Completa la pregunta con el pronombre inglés correspondiente a «ella».</div>
+<div class="en">___ thirsty?</div>
+<div class="ans">Am I · Are we · <b>Is she</b> · Is it</div>
+<div class="mark ok"><span class="x">✓</span><span>Reconoce un significado; no copia el inglés dado.</span></div>
+</div>
+<div class="mark"><span class="x">!</span><span>El 16 original queda como caso de frontera, no como aprobado indiscutible.</span></div>
+</div>
+</div>
+<p class="note">Casos, criterios y versiones se congelan antes. El examen anterior no cambia.</p>
+</div>
+<div class="foot"><span>Sin exigir etiqueta única IRRELEVANT_DISTRACTORS / IMPLAUSIBLE_DISTRACTORS cuando describen el mismo defecto. Detalle original: brief 074.</span><span class="pg"></span></div>
+</section>
+
+<section class="sl" data-t="Aceptar una corrección exige cuatro controles">
+<div class="sl-in">
+<div class="kick"><span class="tagq">Qué cuenta como éxito</span> · no alcanza con que diga bien</div>
+<h2>Una corrección buena conserva el objetivo y evita ambigüedad</h2>
+<div class="body">
+<div class="keep">
+<div><b>Desafío pedagógico</b>Los distractores representan errores esperables. La pista necesaria no se elimina para aparentar dificultad.</div>
+<div><b>Respuesta única</b>Otro juez prueba cada opción: la clave vale y ninguna alternativa también es correcta y natural.</div>
+<div><b>Cambios permitidos</b>Misma cantidad de opciones, una clave marcada y habilidad preservada. Sin restricciones ocultas en la miniteoría.</div>
+<div><b>Revisión del contenido</b>Mostramos original, hallazgo, propuesta y ambos veredictos. Un modelo coincidiendo consigo mismo no es prueba suficiente.</div>
+</div>
+</div>
+<p class="take"><b>Medimos detección y reparación por separado</b>: 16 decisiones iniciales y hasta 9 correcciones completas.</p>
+</div>
+<div class="foot"><span>choice-quality-judge + choice-alternative-judge; validaciones locales y revisión humana. Caso 15: reformular sin perder reconocimiento de pronombres.</span><span class="pg"></span></div>
+</section>
+
+<section class="sl" data-t="Cuarenta y tres consultas previstas, tope cincuenta">
+<div class="sl-in">
+<div class="kick"><span class="tagq">Presupuesto nuevo</span> · los saldos anteriores no se reutilizan</div>
+<h2>43 consultas previstas; ninguna por encima de 50</h2>
+<div class="body c2">
+<div class="panel">
+<div class="ptl">Si detecta los 9 defectos · sin reintentos</div>
+<div class="hb">
+<div class="r"><span class="t">Primera evaluación</span><span class="tr"><span class="f" style="width:100%"></span></span><span class="n">16</span></div>
+<div class="r"><span class="t">Corrector</span><span class="tr"><span class="f" style="width:56.25%"></span></span><span class="n">9</span></div>
+<div class="r"><span class="t">Juez pedagógico después</span><span class="tr"><span class="f" style="width:56.25%"></span></span><span class="n">9</span></div>
+<div class="r"><span class="t">Respuesta única después</span><span class="tr"><span class="f" style="width:56.25%"></span></span><span class="n">9</span></div>
+<div class="r"><span class="t">Margen compartido</span><span class="tr"><span class="f w" style="width:43.75%"></span></span><span class="n">7</span></div>
+</div>
+</div>
+<div class="panel">
+<div class="ptl">Frenos del experimento</div>
+<div class="dec">
+<div class="r"><span class="q">Reintentos</span><span class="y">consumen el mismo tope<span class="no">no son consultas gratuitas</span></span></div>
+<div class="r"><span class="q">Recuperación</span><span class="y">descuenta llamadas ya registradas<span class="no">no repetir resultados consolidados</span></span></div>
+<div class="r"><span class="q">Correcciones</span><span class="y">una propuesta por defecto<span class="no">no otra vuelta hasta obtener aprobación</span></span></div>
+<div class="r"><span class="q">Sin saldo</span><span class="y">se conserva el resultado parcial<span class="no">no ampliar el plan automáticamente</span></span></div>
+</div>
+</div>
+</div>
+<p class="note">El tope cuenta cada llamada física, incluso una fallida o de respuesta incierta.</p>
+</div>
+<div class="foot"><span>Plan nuevo: 16 + 9 + 9 + 9 = 43; tope propuesto 50. Codex local, gpt-6.1-sol, medium; sin fallback.</span><span class="pg"></span></div>
+</section>
+
+<section class="sl" data-t="Autorizar sólo este experimento aislado">
+<div class="sl-in">
+<div class="kick"><span class="tagq">Qué necesito de vos</span> · una decisión acotada</div>
+<h2>Autorizar el experimento, no una nueva corrida del curso</h2>
+<div class="body arriba">
+<div class="asks">
+<div class="ask">
+<div class="q">¿Autorizás los 16 casos con hasta 50 consultas físicas?</div>
+<div class="ops"><span class="op rec">Recomendado: ciclo completo</span><span class="op">Incluye todos los reintentos</span></div>
+<div class="why">Primero ajustar y probar criterios sin modelos; después congelar expectativas y ejecutar una sola vuelta.</div>
+</div>
+</div>
+<div class="keep">
+<div><b>Entrega</b>Por caso: esperado, devuelto, hallazgo entregado, antes/después, calidad final, ambigüedad y gasto real.</div>
+<div><b>Curso intacto</b>Sin Corrección 2, publicaciones, aprobaciones, ni nuevas consultas sobre la campaña A1.</div>
+<div><b>Histórico intacto</b>El examen anterior conserva sus respuestas y calificación. Este experimento no lo aprueba retroactivamente.</div>
+<div><b>Trabajo aislado</b>Cambios y pruebas en worktree; commits e integración en main, preservando el trabajo de otros.</div>
+</div>
+</div>
+<p class="take"><b>La prueba busca demostrar una mejora real</b>, no obtener un visto bueno a cualquier costo.</p>
+</div>
+<div class="foot"><span>Brief 079 · Pendiente de autorización del nuevo tope. No se lanzaron consultas ni se reinició la UI.</span><span class="pg"></span></div>
+</section>
+
+<!-- ═══════════════ CONTENIDO: hasta acá ═══════════════ -->
+
+</main>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     CATÁLOGO · BORRAR ESTA <section> ENTERA AL GENERAR UNA PRESENTACIÓN.
+     Los tipos de diapositiva con sus componentes, y los dibujos que no
+     aparecen en el ejemplo. Lo que se ve es exactamente el CSS del documento.
+     ══════════════════════════════════════════════════════════════════════ -->
+
+<div class="toc" id="toc" hidden></div>
+<div class="nav">
+  <button type="button" id="bToc" aria-label="Índice">☰</button>
+  <button type="button" id="bPrev" aria-label="Anterior">↑</button>
+  <span class="cnt" id="cnt">1 / 1</span>
+  <button type="button" id="bNext" aria-label="Siguiente">↓</button>
+</div>
+
+<script>
+(function(){
+  /* navegación: flechas, avance de página, espacio, Inicio, Fin y Esc; ☰ abre el índice.
+     El número de página de cada .foot .pg y el del documento en el contador los pone esto. */
+  var sls=[].slice.call(document.querySelectorAll('#deck > .sl'));
+  var cur=0, cnt=document.getElementById('cnt'), prog=document.getElementById('prog'), toc=document.getElementById('toc');
+  var num=document.querySelector('.kick .num'); num=num?num.textContent.trim():'';
+  function pinta(){ cnt.textContent=(num?num+' · ':'')+(cur+1)+' / '+sls.length; prog.style.width=((cur+1)/sls.length*100)+'%'; }
+  function ir(i){ cur=Math.max(0,Math.min(sls.length-1,i)); sls[cur].scrollIntoView({behavior:'smooth',block:'start'}); pinta(); }
+  var obs=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting&&e.intersectionRatio>.55){ cur=sls.indexOf(e.target); pinta(); } }); },{threshold:[.55]});
+  sls.forEach(function(s,i){ obs.observe(s);
+    var pg=s.querySelector('.foot .pg'); if(pg) pg.textContent=(i+1)+' / '+sls.length;
+    var a=document.createElement('a'); a.href='#'; a.innerHTML='<small>'+(i+1)+'</small>'+(s.getAttribute('data-t')||('Diapositiva '+(i+1)));
+    a.addEventListener('click',function(ev){ev.preventDefault();toc.hidden=true;ir(i);}); toc.appendChild(a); });
+  document.getElementById('bPrev').onclick=function(){ir(cur-1)};
+  document.getElementById('bNext').onclick=function(){ir(cur+1)};
+  document.getElementById('bToc').onclick=function(){toc.hidden=!toc.hidden};
+  document.addEventListener('keydown',function(e){
+    if(e.target.closest&&e.target.closest('input,textarea'))return;
+    if(['ArrowDown','ArrowRight','PageDown',' '].indexOf(e.key)>=0){e.preventDefault();ir(cur+1);}
+    if(['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key)>=0){e.preventDefault();ir(cur-1);}
+    if(e.key==='Home'){e.preventDefault();ir(0);} if(e.key==='End'){e.preventDefault();ir(sls.length-1);}
+    if(e.key==='Escape'){toc.hidden=true;}
+  });
+  pinta();
+})();
+</script>
+</body>
+</html>
