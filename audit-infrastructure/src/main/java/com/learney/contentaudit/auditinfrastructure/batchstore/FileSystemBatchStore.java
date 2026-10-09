@@ -56,7 +56,27 @@ public class FileSystemBatchStore implements BatchStore {
         if (batch == null || batch.getId() == null || batch.getId().isBlank()) {
             throw new IllegalArgumentException("Una tanda sin id no se puede guardar.");
         }
-        writeAtomically(dir().resolve(identifier(batch.getId()) + SUFFIX), batch);
+        locked(batch.getId(), () -> writeAtomically(dir().resolve(identifier(batch.getId()) + SUFFIX), batch));
+    }
+
+    @Override public synchronized void saveIfVersion(CorrectionBatch batch, int version, BatchStatus status) {
+        locked(batch.getId(), () -> {
+            CorrectionBatch current = load(batch.getId()).orElseThrow();
+            if (current.getContentVersion() != version || current.getStatus() != status) {
+                throw new IllegalStateException("La corrección cambió mientras se guardaba; volvé a leer.");
+            }
+            writeAtomically(dir().resolve(identifier(batch.getId()) + SUFFIX), batch);
+        });
+    }
+
+    private void locked(String id, Runnable action) {
+        try {
+            Path locks = baseDir.resolve(".content-audit/locks/batches");
+            Files.createDirectories(locks);
+            try (var channel = java.nio.channels.FileChannel.open(locks.resolve(identifier(id) + ".lock"),
+                    java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.WRITE);
+                    var lock = channel.lock()) { action.run(); }
+        } catch (IOException e) { throw new java.io.UncheckedIOException(e); }
     }
 
     private void writeAtomically(Path file, Object value) {

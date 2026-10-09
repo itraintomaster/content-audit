@@ -21,7 +21,7 @@ import com.learney.contentaudit.auditdomain.DefaultTopicDiagnoses;
 import com.learney.contentaudit.auditdomain.NodeDiagnoses;
 
 /**
- * Package-private factory that produces a configured ObjectMapper for AuditReport persistence.
+ * Factory for consistent AuditReport persistence and directed-correction read models.
  *
  * Handles:
  * - Circular parent reference in AuditNode (ignored during serialization, rebuilt after load)
@@ -29,12 +29,12 @@ import com.learney.contentaudit.auditdomain.NodeDiagnoses;
  * - NodeDiagnoses polymorphism via @type discriminator
  * - Instant serialization via JavaTimeModule
  */
-class AuditReportObjectMapper {
+public final class AuditReportObjectMapper {
 
     private AuditReportObjectMapper() {
     }
 
-    static ObjectMapper create() {
+    public static ObjectMapper create() {
         ObjectMapper mapper = new ObjectMapper();
 
         // Java time support (Instant)

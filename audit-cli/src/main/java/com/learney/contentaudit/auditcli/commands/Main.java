@@ -411,6 +411,11 @@ class Main {
 
         // ----------------------------------------------------------------
         // A saved review needs no NLP process, model discovery or judge bootstrap.
+        Integer miniExit = SavedMiniTheoryCorrectionCmd.execute(remainingArgs, baseDir, System.out, System.err);
+        if (miniExit != null) {
+            if (miniExit != 0) System.exit(miniExit);
+            return;
+        }
         Integer reviewExit = SavedBatchReviewCmd.execute(remainingArgs, baseDir, System.out, System.err);
         if (reviewExit != null) {
             if (reviewExit != 0) System.exit(reviewExit);
@@ -1393,7 +1398,22 @@ class Main {
                                 trayDecisionStore, blindSampleService, panelRunner.get(), panelRunnerFactory,
                                 studentViewRenderer, evaluationContentFingerprinter, (CourseRepository) courseRepository,
                                 batchCourse != null ? Paths.get(batchCourse) : null))));
-        cmd.addSubcommand("batch", new picocli.CommandLine(new BatchCmd(batchService)));            // E · FEAT-TANDA
+        var batchCommand = new picocli.CommandLine(new BatchCmd(batchService));
+        batchCommand.addSubcommand("mini-theory", new MiniTheoryCorrectionCmd(memoized(() -> {
+            if (batchCourse == null) throw new IllegalStateException("Falta la ruta del curso.");
+            return new com.learney.contentaudit.revisiondomain.batchengine.DefaultMiniTheoryCorrectionServiceFactory().create(
+                    batchStore, new com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchReviewServiceFactory().create(
+                            batchStore, revisionArtifactStore, refinementPlanStore,
+                            new com.learney.contentaudit.auditinfrastructure.FileSystemBatchReviewCache(baseDir)),
+                    revisionArtifactStore, courseRepository, Paths.get(batchCourse),
+                    new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir),
+                    courseToAuditableMapper, auditEngine, () -> {
+                        LagenConfig selected = new DefaultLagenConfigResolver(llmProviderResolver).resolve(System.getenv());
+                        return new com.learney.contentaudit.revisioninfrastructure.minitheory.DefaultMiniTheoryRewriterFactory()
+                                .create(selected, System.getenv().getOrDefault("CONTENT_AUDIT_REASONING_EFFORT", "medium"));
+                    });
+        })));
+        cmd.addSubcommand("batch", batchCommand);            // E · FEAT-TANDA
         cmd.addSubcommand("tray", new picocli.CommandLine(new TrayCmd(trayService, quizSentenceConverter))); // E · BANDEJA
 
         // ----------------------------------------------------------------

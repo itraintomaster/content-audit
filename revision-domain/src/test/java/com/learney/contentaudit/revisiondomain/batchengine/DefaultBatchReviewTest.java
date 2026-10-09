@@ -137,6 +137,24 @@ class DefaultBatchReviewTest {
         assertEquals(1, decisions.size());
     }
 
+    @Test void aManualMiniTheoryDraftNeedsNewReviewWithoutErasingEarlierApprovals() {
+        review.decide(request(List.of(selection("one", step), selection("two", second)),
+                BatchReviewDecision.Status.APPROVED));
+        var changed = snapshot("after", "You va con are en presente simple");
+        var human = new BatchChange("mini-human", BatchChangeOrigin.JOSE, "human-mini-theory", "exercise",
+                List.of(), List.of(new BatchChangeStep("quiz", List.of(ExercisePart.MINI_THEORY), changed)),
+                null, false, Instant.now(), null);
+        batch.setChanges(new ArrayList<>(batch.getChanges()));
+        batch.getChanges().add(human);
+        batch.setContentVersion(batch.getContentVersion() + 1);
+        var result = review.read("batch");
+        assertEquals(List.of(BatchReviewDecision.Status.APPROVED, BatchReviewDecision.Status.APPROVED,
+                BatchReviewDecision.Status.PENDING), result.items().stream().map(BatchReview.Item::status).toList());
+        assertEquals("new theory", result.items().get(2).before().getQuiz().getMiniTheory());
+        assertEquals("You va con are en presente simple", result.items().get(2).after().getQuiz().getMiniTheory());
+        assertEquals(1, decisions.size());
+    }
+
     @Test void integratedHistoryRemainsReadableWithoutAnOpenCorrection() {
         batch.setStatus(BatchStatus.PUBLISHED);
         when(store.latestPublished()).thenReturn(Optional.of(batch));

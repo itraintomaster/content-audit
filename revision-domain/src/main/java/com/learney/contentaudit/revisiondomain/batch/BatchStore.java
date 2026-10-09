@@ -11,6 +11,15 @@ import javax.annotation.processing.Generated;
 public interface BatchStore {
     void save(CorrectionBatch batch);
 
+    /** Optimistic commit for a directed edit; filesystem adapters make the check and write atomic. */
+    default void saveIfVersion(CorrectionBatch batch, int version, BatchStatus status) {
+        CorrectionBatch current = load(batch.getId()).orElseThrow();
+        if (current.getContentVersion() != version || current.getStatus() != status) {
+            throw new IllegalStateException("La corrección cambió mientras se guardaba; volvé a leer.");
+        }
+        save(batch);
+    }
+
     Optional<CorrectionBatch> load(String batchId);
 
     Optional<CorrectionBatch> open();
