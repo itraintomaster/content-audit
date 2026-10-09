@@ -1,0 +1,74 @@
+{
+  "candidates" : [ {
+    "kind" : "WHOLE_EXERCISE",
+    "quiz" : {
+      "id" : "df000000000000000000000d",
+      "oidId" : null,
+      "kind" : "MULTIPLE_CHOICE",
+      "knowledgeId" : null,
+      "title" : null,
+      "instructions" : null,
+      "translation" : null,
+      "theoryId" : null,
+      "topicName" : null,
+      "form" : {
+        "kind" : "MULTIPLE_CHOICE",
+        "incidence" : 1.0,
+        "label" : "",
+        "name" : "",
+        "sentenceParts" : [ {
+          "kind" : "TEXT",
+          "text" : "One child; two ",
+          "options" : null
+        }, {
+          "kind" : "CLOZE",
+          "text" : "",
+          "options" : null
+        }, {
+          "kind" : "TEXT",
+          "text" : " .",
+          "options" : null
+        } ],
+        "multipleChoice" : {
+          "selection" : "SINGLE",
+          "items" : [ {
+            "id" : "children",
+            "incidence" : 1.0,
+            "label" : "children"
+          }, {
+            "id" : "childs",
+            "incidence" : 0.0,
+            "label" : "childs"
+          }, {
+            "id" : "child",
+            "incidence" : 0.0,
+            "label" : "child"
+          }, {
+            "id" : "childrens",
+            "incidence" : 0.0,
+            "label" : "childrens"
+          } ]
+        },
+        "unmodeledFields" : null
+      },
+      "difficulty" : 0.0,
+      "retries" : 0.0,
+      "noScoreRetries" : 0.0,
+      "code" : null,
+      "audioUrl" : null,
+      "imageUrl" : null,
+      "answerAudioUrl" : null,
+      "answerImageUrl" : null,
+      "miniTheory" : null,
+      "successMessage" : null,
+      "sentences" : null,
+      "unmodeledFields" : null
+    },
+    "miniTheoryText" : null,
+    "topicInstructions" : null,
+    "rationale" : "Reemplacé los distractores por formas del mismo sustantivo: childs aplica el plural regular, child mantiene el singular y childrens añade -s al plural irregular; conservé child y el contraste One/two para practicar la formación del plural sin regalar la respuesta por diferencias de significado."
+  } ],
+  "proposerVersion" : "panel-proposer",
+  "available" : true,
+  "unavailableReason" : null
+}

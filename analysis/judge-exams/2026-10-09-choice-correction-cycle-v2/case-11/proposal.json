@@ -1,0 +1,74 @@
+{
+  "candidates" : [ {
+    "kind" : "WHOLE_EXERCISE",
+    "quiz" : {
+      "id" : "df000000000000000000000b",
+      "oidId" : null,
+      "kind" : "MULTIPLE_CHOICE",
+      "knowledgeId" : null,
+      "title" : null,
+      "instructions" : null,
+      "translation" : null,
+      "theoryId" : null,
+      "topicName" : null,
+      "form" : {
+        "kind" : "MULTIPLE_CHOICE",
+        "incidence" : 1.0,
+        "label" : "",
+        "name" : "",
+        "sentenceParts" : [ {
+          "kind" : "TEXT",
+          "text" : "Leo is ",
+          "options" : null
+        }, {
+          "kind" : "CLOZE",
+          "text" : "",
+          "options" : null
+        }, {
+          "kind" : "TEXT",
+          "text" : " than his sister.",
+          "options" : null
+        } ],
+        "multipleChoice" : {
+          "selection" : "SINGLE",
+          "items" : [ {
+            "id" : "taller",
+            "incidence" : 1.0,
+            "label" : "taller"
+          }, {
+            "id" : "tall",
+            "incidence" : 0.0,
+            "label" : "tall"
+          }, {
+            "id" : "more tall",
+            "incidence" : 0.0,
+            "label" : "more tall"
+          }, {
+            "id" : "more taller",
+            "incidence" : 0.0,
+            "label" : "more taller"
+          } ]
+        },
+        "unmodeledFields" : null
+      },
+      "difficulty" : 0.0,
+      "retries" : 0.0,
+      "noScoreRetries" : 0.0,
+      "code" : null,
+      "audioUrl" : null,
+      "imageUrl" : null,
+      "answerAudioUrl" : null,
+      "answerImageUrl" : null,
+      "miniTheory" : null,
+      "successMessage" : null,
+      "sentences" : null,
+      "unmodeledFields" : null
+    },
+    "miniTheoryText" : null,
+    "topicInstructions" : null,
+    "rationale" : "Reemplacé los símbolos por errores de formación del comparativo: usar la forma base tall, aplicar more a un adjetivo corto o duplicar la comparación con more taller; todas las opciones conservan tall y requieren conocer su comparativo, sin regalar la respuesta por ser la única opción lingüística."
+  } ],
+  "proposerVersion" : "panel-proposer",
+  "available" : true,
+  "unavailableReason" : null
+}

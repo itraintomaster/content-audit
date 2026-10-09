@@ -28,8 +28,14 @@ with (cap_dir / "physical-calls.jsonl").open("a+", encoding="utf-8") as log:
     log.seek(0, 2)
     if saved and not saved.endswith("\n"):
         log.write("\n")
-    log.write(json.dumps({"ordinal": used + 1, "pid": os.getpid(),
-                         "startedAt": datetime.now(timezone.utc).isoformat()}) + "\n")
+    entry = {"ordinal": used + 1, "pid": os.getpid(),
+             "startedAt": datetime.now(timezone.utc).isoformat()}
+    # Optional experiment metadata is not part of the prompt or judge version.
+    for variable, key in (("CONTENT_AUDIT_EXAM_EXPERIMENT_ID", "experimentId"),
+                          ("CONTENT_AUDIT_EXAM_CASE_ID", "caseId")):
+        if os.environ.get(variable):
+            entry[key] = os.environ[variable]
+    log.write(json.dumps(entry) + "\n")
     log.flush()
     os.fsync(log.fileno())
     fcntl.flock(log, fcntl.LOCK_UN)

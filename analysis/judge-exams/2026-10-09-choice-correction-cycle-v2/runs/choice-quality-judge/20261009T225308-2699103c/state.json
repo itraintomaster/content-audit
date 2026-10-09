@@ -1,0 +1,51 @@
+{
+  "agentId" : "choice-quality-judge",
+  "runId" : "9f612ef8-0608-4a4e-875d-146fd0aa585a",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "exercise" : "Nora ___ the window yesterday.",
+    "options" : "- closes\n- closed (correcta)\n- closing\n- close",
+    "instructions" : "Elige el pasado simple afirmativo de close.",
+    "level" : "A2",
+    "topic" : "Pasado simple",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225308-2699103c",
+    "title" : "Pasado simple"
+  },
+  "phases" : {
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-quality-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "choiceQualityVerdict" : {
+      "artifactId" : "cd6854fb-2cf7-4109-805c-f492565307da",
+      "kind" : "choiceQualityVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225308-2699103c/artifacts/choiceQualityVerdict/53d0603c2fb66e7b5ee5148da671d7a2f8643a9f810d34cf9bd11fae7d722cc2.json",
+      "contentHash" : "sha256:53d0603c2fb66e7b5ee5148da671d7a2f8643a9f810d34cf9bd11fae7d722cc2",
+      "producedAt" : "2026-10-09T22:53:16.218821Z",
+      "producedBy" : "emit"
+    },
+    "verdicts" : {
+      "artifactId" : "b09865e4-ac06-4860-ab03-8c5354befbec",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225308-2699103c/artifacts/verdicts/0d7adb58c522d0cbd8374e66abd106ae9ed52427071fed086d142426d0b69d8b.json",
+      "contentHash" : "sha256:0d7adb58c522d0cbd8374e66abd106ae9ed52427071fed086d142426d0b69d8b",
+      "producedAt" : "2026-10-09T22:53:16.146215Z",
+      "producedBy" : "evaluate"
+    }
+  }
+}

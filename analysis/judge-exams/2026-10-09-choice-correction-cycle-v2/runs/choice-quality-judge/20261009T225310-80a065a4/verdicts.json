@@ -1,0 +1,15 @@
+{
+  "status": "FAIL",
+  "objective": "Formar el comparativo de tall para completar una comparación con than.",
+  "introductory": false,
+  "issues": [
+    {
+      "kind": "IMPLAUSIBLE_DISTRACTORS",
+      "severity": "HIGH",
+      "labels": ["###", "9+9", "@@"],
+      "reason": "Todos los distractores son símbolos o una expresión matemática: se descartan sin conocer el comparativo de tall porque taller es la única opción lingüística. Deben conservarse el adjetivo indicado y la comparación con than; falta contrastar formas que representen errores esperables al formar el comparativo.",
+      "misconception": "Confundir la forma base del adjetivo con su comparativo o aplicar incorrectamente la formación del comparativo de un adjetivo corto."
+    }
+  ],
+  "rationale": "El conjunto permite acertar sin practicar la formación de comparativos: ninguna opción incorrecta representa una confusión lingüística razonable para A2."
+}

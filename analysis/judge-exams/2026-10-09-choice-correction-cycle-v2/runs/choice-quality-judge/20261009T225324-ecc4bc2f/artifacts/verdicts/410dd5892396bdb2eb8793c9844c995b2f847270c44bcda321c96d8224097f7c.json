@@ -1,0 +1,15 @@
+{
+  "status": "FAIL",
+  "objective": "Formar el plural irregular de child.",
+  "introductory": true,
+  "issues": [
+    {
+      "kind": "IRRELEVANT_DISTRACTORS",
+      "severity": "HIGH",
+      "labels": ["dogs", "houses", "cars"],
+      "reason": "Todos los distractores son plurales de otros sustantivos y cambian el significado ya fijado por child. Permiten elegir children reconociendo qué opción se refiere a niños, sin practicar cómo se forma su plural irregular. Deben conservarse child y el contraste One/two; falta contrastar formas de plural del mismo sustantivo.",
+      "misconception": "Aplicar la terminación regular -s a child o mantener la forma singular después de two."
+    }
+  ],
+  "rationale": "La práctica es introductoria, pero el conjunto evita casi por completo el objetivo: las opciones equivocadas cambian el sustantivo en lugar de representar errores esperables al formar su plural."
+}

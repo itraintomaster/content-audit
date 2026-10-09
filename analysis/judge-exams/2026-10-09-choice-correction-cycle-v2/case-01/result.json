@@ -1,0 +1,328 @@
+{
+  "caseNumber" : 1,
+  "id" : "df0000000000000000000001",
+  "original" : {
+    "id" : "df0000000000000000000001",
+    "caseNumber" : 1,
+    "slug" : "cue-she",
+    "level" : "A1",
+    "topic" : "Preguntas con be",
+    "title" : "Preguntas con be",
+    "instructions" : "Forma preguntas en presente simple con be antes del sujeto.",
+    "exercise" : "___ thirsty? (she)",
+    "options" : [ "Am I", "Are we", "Is she", "Is it" ],
+    "correct" : "Is she",
+    "expected" : "FAIL",
+    "allowedIssueKinds" : [ "ANSWER_CUE" ],
+    "expectationReason" : "La pista fija el sujeto; las opciones permiten acertar por coincidencia sin practicar la habilidad. Conservar el sujeto y contrastar errores esperables."
+  },
+  "initial" : {
+    "status" : "FAIL",
+    "objective" : "Formar preguntas en presente simple con be antes del sujeto, aplicando inversión y concordancia.",
+    "introductory" : false,
+    "issues" : [ {
+      "kind" : "ANSWER_CUE",
+      "severity" : "HIGH",
+      "labels" : [ "Am I", "Are we", "Is she", "Is it" ],
+      "reason" : "Is she es la única opción que contiene she: el conjunto permite acertar por coincidencia literal con la pista, sin aplicar inversión ni concordancia. La pista debe conservarse para fijar el sujeto; falta contrastar opciones con ese mismo sujeto que representen errores de orden o de concordancia.",
+      "misconception" : "Mantener el orden sujeto-verbo al formar la pregunta o elegir una forma de be que no concuerda con she."
+    } ],
+    "rationale" : "Todos los distractores cambian el sujeto ya fijado. Elegir la única opción con she evita casi por completo practicar el objetivo explícito."
+  },
+  "initialStatusMatches" : true,
+  "findings" : [ {
+    "analyzer" : "multiple-choice-quality",
+    "rule" : "answer-cue",
+    "node" : {
+      "target" : "QUIZ",
+      "nodeId" : "df0000000000000000000001",
+      "label" : "Preguntas con be"
+    },
+    "severity" : "HIGH",
+    "evidence" : {
+      "examined" : [ {
+        "label" : "Objetivo pedagógico",
+        "text" : "Formar preguntas en presente simple con be antes del sujeto, aplicando inversión y concordancia."
+      }, {
+        "label" : "Nivel",
+        "text" : "A1"
+      }, {
+        "label" : "Consigna",
+        "text" : "Forma preguntas en presente simple con be antes del sujeto."
+      }, {
+        "label" : "Ejercicio",
+        "text" : "___ thirsty? (she)"
+      }, {
+        "label" : "Opciones",
+        "text" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+      }, {
+        "label" : "Confusión esperable",
+        "text" : "Mantener el orden sujeto-verbo al formar la pregunta o elegir una forma de be que no concuerda con she."
+      } ],
+      "observation" : "Is she es la única opción que contiene she: el conjunto permite acertar por coincidencia literal con la pista, sin aplicar inversión ni concordancia. La pista debe conservarse para fijar el sujeto; falta contrastar opciones con ese mismo sujeto que representen errores de orden o de concordancia.",
+      "relatedNodes" : [ ]
+    },
+    "resolution" : "PANEL",
+    "cost" : "PAID_MODEL",
+    "identity" : {
+      "key" : "multiple-choice-quality|answer-cue|df0000000000000000000001|Am I | Are we | Is she | Is it",
+      "marker" : "Am I | Are we | Is she | Is it"
+    }
+  } ],
+  "tasksDelivered" : {
+    "batchId" : "choice-correction-cycle-20261009-v2",
+    "level" : "A1",
+    "knowledgeId" : "synthetic-topic-1",
+    "quizId" : "df0000000000000000000001",
+    "topicView" : [ {
+      "statement" : "___ thirsty? (she)",
+      "gaps" : [ {
+        "index" : 0,
+        "hint" : "(she)",
+        "acceptedAnswers" : [ "Is she" ],
+        "firstAnswer" : "Is she"
+      } ],
+      "options" : [ {
+        "label" : "Am I",
+        "correct" : false
+      }, {
+        "label" : "Are we",
+        "correct" : false
+      }, {
+        "label" : "Is she",
+        "correct" : true
+      }, {
+        "label" : "Is it",
+        "correct" : false
+      } ],
+      "instructions" : "Forma preguntas en presente simple con be antes del sujeto.",
+      "translation" : "",
+      "miniTheory" : ""
+    } ],
+    "briefs" : [ {
+      "task" : {
+        "id" : "task-001",
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "df0000000000000000000001",
+        "nodeLabel" : "Preguntas con be",
+        "diagnosisKind" : "MULTIPLE_CHOICE_VALIDITY",
+        "priority" : 1,
+        "status" : "PENDING",
+        "origin" : {
+          "finding" : {
+            "analyzer" : "multiple-choice-quality",
+            "rule" : "answer-cue",
+            "node" : {
+              "target" : "QUIZ",
+              "nodeId" : "df0000000000000000000001",
+              "label" : "Preguntas con be"
+            },
+            "severity" : "HIGH",
+            "evidence" : {
+              "examined" : [ {
+                "label" : "Objetivo pedagógico",
+                "text" : "Formar preguntas en presente simple con be antes del sujeto, aplicando inversión y concordancia."
+              }, {
+                "label" : "Nivel",
+                "text" : "A1"
+              }, {
+                "label" : "Consigna",
+                "text" : "Forma preguntas en presente simple con be antes del sujeto."
+              }, {
+                "label" : "Ejercicio",
+                "text" : "___ thirsty? (she)"
+              }, {
+                "label" : "Opciones",
+                "text" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+              }, {
+                "label" : "Confusión esperable",
+                "text" : "Mantener el orden sujeto-verbo al formar la pregunta o elegir una forma de be que no concuerda con she."
+              } ],
+              "observation" : "Is she es la única opción que contiene she: el conjunto permite acertar por coincidencia literal con la pista, sin aplicar inversión ni concordancia. La pista debe conservarse para fijar el sujeto; falta contrastar opciones con ese mismo sujeto que representen errores de orden o de concordancia.",
+              "relatedNodes" : [ ]
+            },
+            "resolution" : "PANEL",
+            "cost" : "PAID_MODEL",
+            "identity" : {
+              "key" : "multiple-choice-quality|answer-cue|df0000000000000000000001|Am I | Are we | Is she | Is it",
+              "marker" : "Am I | Are we | Is she | Is it"
+            }
+          },
+          "cefrLevel" : "A1",
+          "knowledgeId" : "synthetic-topic-1",
+          "knowledgeLabel" : "Preguntas con be",
+          "reachedQuizIds" : [ "df0000000000000000000001" ],
+          "coveredFindings" : [ ]
+        }
+      },
+      "finding" : {
+        "analyzer" : "multiple-choice-quality",
+        "rule" : "answer-cue",
+        "node" : {
+          "target" : "QUIZ",
+          "nodeId" : "df0000000000000000000001",
+          "label" : "Preguntas con be"
+        },
+        "severity" : "HIGH",
+        "evidence" : {
+          "examined" : [ {
+            "label" : "Objetivo pedagógico",
+            "text" : "Formar preguntas en presente simple con be antes del sujeto, aplicando inversión y concordancia."
+          }, {
+            "label" : "Nivel",
+            "text" : "A1"
+          }, {
+            "label" : "Consigna",
+            "text" : "Forma preguntas en presente simple con be antes del sujeto."
+          }, {
+            "label" : "Ejercicio",
+            "text" : "___ thirsty? (she)"
+          }, {
+            "label" : "Opciones",
+            "text" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+          }, {
+            "label" : "Confusión esperable",
+            "text" : "Mantener el orden sujeto-verbo al formar la pregunta o elegir una forma de be que no concuerda con she."
+          } ],
+          "observation" : "Is she es la única opción que contiene she: el conjunto permite acertar por coincidencia literal con la pista, sin aplicar inversión ni concordancia. La pista debe conservarse para fijar el sujeto; falta contrastar opciones con ese mismo sujeto que representen errores de orden o de concordancia.",
+          "relatedNodes" : [ ]
+        },
+        "resolution" : "PANEL",
+        "cost" : "PAID_MODEL",
+        "identity" : {
+          "key" : "multiple-choice-quality|answer-cue|df0000000000000000000001|Am I | Are we | Is she | Is it",
+          "marker" : "Am I | Are we | Is she | Is it"
+        }
+      },
+      "coveredFindings" : [ ],
+      "editScope" : [ "OPTIONS", "INSTRUCTIONS", "STATEMENT", "TRANSLATION", "STORED_SENTENCE", "AUDIO" ],
+      "scopeDeclared" : true,
+      "quizView" : {
+        "statement" : "___ thirsty? (she)",
+        "gaps" : [ {
+          "index" : 0,
+          "hint" : "(she)",
+          "acceptedAnswers" : [ "Is she" ],
+          "firstAnswer" : "Is she"
+        } ],
+        "options" : [ {
+          "label" : "Am I",
+          "correct" : false
+        }, {
+          "label" : "Are we",
+          "correct" : false
+        }, {
+          "label" : "Is she",
+          "correct" : true
+        }, {
+          "label" : "Is it",
+          "correct" : false
+        } ],
+        "instructions" : "Forma preguntas en presente simple con be antes del sujeto.",
+        "translation" : "",
+        "miniTheory" : ""
+      },
+      "reachedQuizViews" : [ ]
+    } ],
+    "wordLights" : null,
+    "conversion" : null,
+    "attempt" : 1,
+    "previousRejections" : [ ],
+    "twoFixes" : false
+  },
+  "proposal" : {
+    "candidates" : [ {
+      "kind" : "WHOLE_EXERCISE",
+      "quiz" : {
+        "id" : "df0000000000000000000001",
+        "oidId" : null,
+        "kind" : "MULTIPLE_CHOICE",
+        "knowledgeId" : null,
+        "title" : null,
+        "instructions" : null,
+        "translation" : null,
+        "theoryId" : null,
+        "topicName" : null,
+        "form" : {
+          "kind" : "MULTIPLE_CHOICE",
+          "incidence" : 1.0,
+          "label" : "",
+          "name" : "",
+          "sentenceParts" : [ {
+            "kind" : "CLOZE",
+            "text" : "",
+            "options" : null
+          }, {
+            "kind" : "TEXT",
+            "text" : " thirsty? (she)",
+            "options" : null
+          } ],
+          "multipleChoice" : {
+            "selection" : "SINGLE",
+            "items" : [ {
+              "id" : "Am she",
+              "incidence" : 0.0,
+              "label" : "Am she"
+            }, {
+              "id" : "Are she",
+              "incidence" : 0.0,
+              "label" : "Are she"
+            }, {
+              "id" : "Is she",
+              "incidence" : 1.0,
+              "label" : "Is she"
+            }, {
+              "id" : "She is",
+              "incidence" : 0.0,
+              "label" : "She is"
+            } ]
+          },
+          "unmodeledFields" : null
+        },
+        "difficulty" : 0.0,
+        "retries" : 0.0,
+        "noScoreRetries" : 0.0,
+        "code" : null,
+        "audioUrl" : null,
+        "imageUrl" : null,
+        "answerAudioUrl" : null,
+        "answerImageUrl" : null,
+        "miniTheory" : null,
+        "successMessage" : null,
+        "sentences" : null,
+        "unmodeledFields" : null
+      },
+      "miniTheoryText" : null,
+      "topicInstructions" : null,
+      "rationale" : "Todas las opciones conservan she para evitar acertar por coincidencia con la pista: Am she y Are she representan errores de concordancia, y She is mantiene el orden declarativo que la consigna explícita de inversión descarta."
+    } ],
+    "proposerVersion" : "panel-proposer",
+    "available" : true,
+    "unavailableReason" : null
+  },
+  "localViolations" : [ ],
+  "after" : {
+    "level" : "A1",
+    "topic" : "Preguntas con be",
+    "title" : "Preguntas con be",
+    "instructions" : "Forma preguntas en presente simple con be antes del sujeto.",
+    "exercise" : "___ thirsty? (she)",
+    "options" : "- Am she\n- Are she\n- Is she (correcta)\n- She is"
+  },
+  "afterQuality" : {
+    "status" : "PASS",
+    "objective" : "Formar preguntas en presente simple con be antes del sujeto y elegir la forma que concuerda con she.",
+    "introductory" : true,
+    "issues" : [ ],
+    "rationale" : "Am she y Are she representan errores esperables de concordancia; She is representa la falta de inversión que la consigna visible exige. La pista she fija el sujeto y debe conservarse. El conjunto permite practicar tanto la forma de be como su posición antes del sujeto, sin dar la respuesta por coincidencia literal."
+  },
+  "afterAlternative" : {
+    "correctIsValid" : true,
+    "validAlternatives" : [ ],
+    "correctProblem" : null,
+    "rationale" : "«Is she thirsty?» concuerda con «she» y coloca «be» antes del sujeto, como exige la consigna. «Am she» y «Are she» no concuerdan; «She is» no cumple el orden indicado."
+  },
+  "automaticCyclePass" : true,
+  "result" : "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+  "finishedAt" : "2026-10-09T22:52:20.588754Z"
+}

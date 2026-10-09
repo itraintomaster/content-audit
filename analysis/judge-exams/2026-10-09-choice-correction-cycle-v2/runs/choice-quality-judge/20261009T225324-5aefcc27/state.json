@@ -1,0 +1,51 @@
+{
+  "agentId" : "choice-quality-judge",
+  "runId" : "cb964094-42bb-4b36-b45a-9cd54b6cdcc7",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "exercise" : "We ___ the report.",
+    "title" : "Presente perfecto",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225324-5aefcc27",
+    "topic" : "Presente perfecto",
+    "level" : "B1",
+    "instructions" : "Elige have o has más participio para formar presente perfecto.",
+    "options" : "- have finished (correcta)\n- seventeen\n- Japan\n- blue"
+  },
+  "phases" : {
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-quality-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "verdicts" : {
+      "artifactId" : "c84ada2e-ff48-46a3-b01a-6d7496813e40",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225324-5aefcc27/artifacts/verdicts/5f0ee1af64a1759cc0f4042d5ea127e6429140c3902dd64974c00a8f49af437f.json",
+      "contentHash" : "sha256:5f0ee1af64a1759cc0f4042d5ea127e6429140c3902dd64974c00a8f49af437f",
+      "producedAt" : "2026-10-09T22:53:34.445286Z",
+      "producedBy" : "evaluate"
+    },
+    "choiceQualityVerdict" : {
+      "artifactId" : "e81597e7-36da-423a-bb4e-9a29b5071a5b",
+      "kind" : "choiceQualityVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225324-5aefcc27/artifacts/choiceQualityVerdict/205287c8e209c407e561c500a4228a22f04a9b6b6309753d71ae0d73dfcbe74a.json",
+      "contentHash" : "sha256:205287c8e209c407e561c500a4228a22f04a9b6b6309753d71ae0d73dfcbe74a",
+      "producedAt" : "2026-10-09T22:53:34.517280Z",
+      "producedBy" : "emit"
+    }
+  }
+}

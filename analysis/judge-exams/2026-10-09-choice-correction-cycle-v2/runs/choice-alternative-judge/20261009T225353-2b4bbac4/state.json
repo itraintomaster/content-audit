@@ -1,0 +1,49 @@
+{
+  "agentId" : "choice-alternative-judge",
+  "runId" : "dab39053-e506-49c8-a052-320abe8b4644",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "instructions" : "Forma el plural irregular de child; practica cómo cambia esa palabra.",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225353-2b4bbac4",
+    "exercise" : "One child; two ___ .",
+    "title" : "Plurales irregulares",
+    "options" : "- children (correcta)\n- childs\n- child\n- childrens"
+  },
+  "phases" : {
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-alternative-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "choiceAlternativeVerdict" : {
+      "artifactId" : "24f7e2cb-8e23-4f2a-9ba4-5ac2d44c040d",
+      "kind" : "choiceAlternativeVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225353-2b4bbac4/artifacts/choiceAlternativeVerdict/d788f2ad4f24abcf2f480ee3e16008cc9bb943410eb4836107adce5641d2041f.json",
+      "contentHash" : "sha256:d788f2ad4f24abcf2f480ee3e16008cc9bb943410eb4836107adce5641d2041f",
+      "producedAt" : "2026-10-09T22:53:59.369762Z",
+      "producedBy" : "emit"
+    },
+    "verdicts" : {
+      "artifactId" : "1867a38d-469f-4aac-8699-08ccee0eb85b",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225353-2b4bbac4/artifacts/verdicts/03cb779b816362d2f5d028c28758fbe5730cd89274d53e565622b2db9890f1e0.json",
+      "contentHash" : "sha256:03cb779b816362d2f5d028c28758fbe5730cd89274d53e565622b2db9890f1e0",
+      "producedAt" : "2026-10-09T22:53:59.295282Z",
+      "producedBy" : "evaluate"
+    }
+  }
+}

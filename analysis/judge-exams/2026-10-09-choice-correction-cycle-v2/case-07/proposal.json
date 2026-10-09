@@ -1,0 +1,74 @@
+{
+  "candidates" : [ {
+    "kind" : "WHOLE_EXERCISE",
+    "quiz" : {
+      "id" : "df0000000000000000000007",
+      "oidId" : null,
+      "kind" : "MULTIPLE_CHOICE",
+      "knowledgeId" : null,
+      "title" : null,
+      "instructions" : null,
+      "translation" : null,
+      "theoryId" : null,
+      "topicName" : null,
+      "form" : {
+        "kind" : "MULTIPLE_CHOICE",
+        "incidence" : 1.0,
+        "label" : "",
+        "name" : "",
+        "sentenceParts" : [ {
+          "kind" : "TEXT",
+          "text" : "My aunt ",
+          "options" : null
+        }, {
+          "kind" : "CLOZE",
+          "text" : "",
+          "options" : null
+        }, {
+          "kind" : "TEXT",
+          "text" : " peaches.",
+          "options" : null
+        } ],
+        "multipleChoice" : {
+          "selection" : "SINGLE",
+          "items" : [ {
+            "id" : "likes",
+            "incidence" : 1.0,
+            "label" : "likes"
+          }, {
+            "id" : "like",
+            "incidence" : 0.0,
+            "label" : "like"
+          }, {
+            "id" : "likees",
+            "incidence" : 0.0,
+            "label" : "likees"
+          }, {
+            "id" : "likies",
+            "incidence" : 0.0,
+            "label" : "likies"
+          } ]
+        },
+        "unmodeledFields" : null
+      },
+      "difficulty" : 0.0,
+      "retries" : 0.0,
+      "noScoreRetries" : 0.0,
+      "code" : null,
+      "audioUrl" : null,
+      "imageUrl" : null,
+      "answerAudioUrl" : null,
+      "answerImageUrl" : null,
+      "miniTheory" : null,
+      "successMessage" : null,
+      "sentences" : null,
+      "unmodeledFields" : null
+    },
+    "miniTheoryText" : null,
+    "topicInstructions" : null,
+    "rationale" : "Reemplacé los distractores irrelevantes por errores de conjugación: omitir -s, agregar -es sin quitar la e y aplicar indebidamente -ies; todas las opciones intentan conjugar like, por lo que hay que reconocer la forma de tercera persona singular."
+  } ],
+  "proposerVersion" : "panel-proposer",
+  "available" : true,
+  "unavailableReason" : null
+}

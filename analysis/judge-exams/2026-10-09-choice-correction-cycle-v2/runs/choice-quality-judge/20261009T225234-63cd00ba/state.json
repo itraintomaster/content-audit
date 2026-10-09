@@ -1,0 +1,51 @@
+{
+  "agentId" : "choice-quality-judge",
+  "runId" : "8174514c-4700-4a7c-b84c-b5acada87c57",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "exercise" : "___ thirsty? (she)",
+    "options" : "- She is\n- Are she\n- Is she (correcta)\n- Am she",
+    "instructions" : "Forma preguntas en presente simple con be antes del sujeto.",
+    "level" : "A1",
+    "topic" : "Preguntas con be",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225234-63cd00ba",
+    "title" : "Preguntas con be"
+  },
+  "phases" : {
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-quality-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "choiceQualityVerdict" : {
+      "artifactId" : "8a0bb7b0-656c-4fbd-8d0d-4ba1d3b8dfff",
+      "kind" : "choiceQualityVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225234-63cd00ba/artifacts/choiceQualityVerdict/d32efc1319dc8401690bb6749d0b88384edf30069bee7c2e57a9774f7a3fcbec.json",
+      "contentHash" : "sha256:d32efc1319dc8401690bb6749d0b88384edf30069bee7c2e57a9774f7a3fcbec",
+      "producedAt" : "2026-10-09T22:52:42.620174Z",
+      "producedBy" : "emit"
+    },
+    "verdicts" : {
+      "artifactId" : "4672f9d2-90ba-4b87-88f1-2dfc59de1f28",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225234-63cd00ba/artifacts/verdicts/fcae4bad361fd440f8c63c095e62447d5a48798a33d49efbc390d91bdc0a8b2c.json",
+      "contentHash" : "sha256:fcae4bad361fd440f8c63c095e62447d5a48798a33d49efbc390d91bdc0a8b2c",
+      "producedAt" : "2026-10-09T22:52:42.545286Z",
+      "producedBy" : "evaluate"
+    }
+  }
+}

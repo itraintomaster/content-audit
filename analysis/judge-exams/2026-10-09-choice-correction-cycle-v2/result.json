@@ -1,0 +1,3930 @@
+{
+  "experimentId": "choice-correction-cycle-20261009-v2",
+  "physicalCalls": 43,
+  "physicalCallCap": 50,
+  "consolidatedCases": 16,
+  "initialStatusMatches": 16,
+  "initialCompatibleCases": 16,
+  "controlsPreserved": 7,
+  "automaticCyclePasses": 9,
+  "manualContentReviewRequired": true,
+  "cases": [
+    {
+      "caseNumber": 1,
+      "id": "df0000000000000000000001",
+      "original": {
+        "id": "df0000000000000000000001",
+        "caseNumber": 1,
+        "slug": "cue-she",
+        "level": "A1",
+        "topic": "Preguntas con be",
+        "title": "Preguntas con be",
+        "instructions": "Forma preguntas en presente simple con be antes del sujeto.",
+        "exercise": "___ thirsty? (she)",
+        "options": [
+          "Am I",
+          "Are we",
+          "Is she",
+          "Is it"
+        ],
+        "correct": "Is she",
+        "expected": "FAIL",
+        "allowedIssueKinds": [
+          "ANSWER_CUE"
+        ],
+        "expectationReason": "La pista fija el sujeto; las opciones permiten acertar por coincidencia sin practicar la habilidad. Conservar el sujeto y contrastar errores esperables."
+      },
+      "initial": {
+        "status": "FAIL",
+        "objective": "Formar preguntas en presente simple con be antes del sujeto, aplicando inversión y concordancia.",
+        "introductory": false,
+        "issues": [
+          {
+            "kind": "ANSWER_CUE",
+            "severity": "HIGH",
+            "labels": [
+              "Am I",
+              "Are we",
+              "Is she",
+              "Is it"
+            ],
+            "reason": "Is she es la única opción que contiene she: el conjunto permite acertar por coincidencia literal con la pista, sin aplicar inversión ni concordancia. La pista debe conservarse para fijar el sujeto; falta contrastar opciones con ese mismo sujeto que representen errores de orden o de concordancia.",
+            "misconception": "Mantener el orden sujeto-verbo al formar la pregunta o elegir una forma de be que no concuerda con she."
+          }
+        ],
+        "rationale": "Todos los distractores cambian el sujeto ya fijado. Elegir la única opción con she evita casi por completo practicar el objetivo explícito."
+      },
+      "initialStatusMatches": true,
+      "findings": [
+        {
+          "analyzer": "multiple-choice-quality",
+          "rule": "answer-cue",
+          "node": {
+            "target": "QUIZ",
+            "nodeId": "df0000000000000000000001",
+            "label": "Preguntas con be"
+          },
+          "severity": "HIGH",
+          "evidence": {
+            "examined": [
+              {
+                "label": "Objetivo pedagógico",
+                "text": "Formar preguntas en presente simple con be antes del sujeto, aplicando inversión y concordancia."
+              },
+              {
+                "label": "Nivel",
+                "text": "A1"
+              },
+              {
+                "label": "Consigna",
+                "text": "Forma preguntas en presente simple con be antes del sujeto."
+              },
+              {
+                "label": "Ejercicio",
+                "text": "___ thirsty? (she)"
+              },
+              {
+                "label": "Opciones",
+                "text": "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+              },
+              {
+                "label": "Confusión esperable",
+                "text": "Mantener el orden sujeto-verbo al formar la pregunta o elegir una forma de be que no concuerda con she."
+              }
+            ],
+            "observation": "Is she es la única opción que contiene she: el conjunto permite acertar por coincidencia literal con la pista, sin aplicar inversión ni concordancia. La pista debe conservarse para fijar el sujeto; falta contrastar opciones con ese mismo sujeto que representen errores de orden o de concordancia.",
+            "relatedNodes": []
+          },
+          "resolution": "PANEL",
+          "cost": "PAID_MODEL",
+          "identity": {
+            "key": "multiple-choice-quality|answer-cue|df0000000000000000000001|Am I | Are we | Is she | Is it",
+            "marker": "Am I | Are we | Is she | Is it"
+          }
+        }
+      ],
+      "tasksDelivered": {
+        "batchId": "choice-correction-cycle-20261009-v2",
+        "level": "A1",
+        "knowledgeId": "synthetic-topic-1",
+        "quizId": "df0000000000000000000001",
+        "topicView": [
+          {
+            "statement": "___ thirsty? (she)",
+            "gaps": [
+              {
+                "index": 0,
+                "hint": "(she)",
+                "acceptedAnswers": [
+                  "Is she"
+                ],
+                "firstAnswer": "Is she"
+              }
+            ],
+            "options": [
+              {
+                "label": "Am I",
+                "correct": false
+              },
+              {
+                "label": "Are we",
+                "correct": false
+              },
+              {
+                "label": "Is she",
+                "correct": true
+              },
+              {
+                "label": "Is it",
+                "correct": false
+              }
+            ],
+            "instructions": "Forma preguntas en presente simple con be antes del sujeto.",
+            "translation": "",
+            "miniTheory": ""
+          }
+        ],
+        "briefs": [
+          {
+            "task": {
+              "id": "task-001",
+              "nodeTarget": "QUIZ",
+              "nodeId": "df0000000000000000000001",
+              "nodeLabel": "Preguntas con be",
+              "diagnosisKind": "MULTIPLE_CHOICE_VALIDITY",
+              "priority": 1,
+              "status": "PENDING",
+              "origin": {
+                "finding": {
+                  "analyzer": "multiple-choice-quality",
+                  "rule": "answer-cue",
+                  "node": {
+                    "target": "QUIZ",
+                    "nodeId": "df0000000000000000000001",
+                    "label": "Preguntas con be"
+                  },
+                  "severity": "HIGH",
+                  "evidence": {
+                    "examined": [
+                      {
+                        "label": "Objetivo pedagógico",
+                        "text": "Formar preguntas en presente simple con be antes del sujeto, aplicando inversión y concordancia."
+                      },
+                      {
+                        "label": "Nivel",
+                        "text": "A1"
+                      },
+                      {
+                        "label": "Consigna",
+                        "text": "Forma preguntas en presente simple con be antes del sujeto."
+                      },
+                      {
+                        "label": "Ejercicio",
+                        "text": "___ thirsty? (she)"
+                      },
+                      {
+                        "label": "Opciones",
+                        "text": "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+                      },
+                      {
+                        "label": "Confusión esperable",
+                        "text": "Mantener el orden sujeto-verbo al formar la pregunta o elegir una forma de be que no concuerda con she."
+                      }
+                    ],
+                    "observation": "Is she es la única opción que contiene she: el conjunto permite acertar por coincidencia literal con la pista, sin aplicar inversión ni concordancia. La pista debe conservarse para fijar el sujeto; falta contrastar opciones con ese mismo sujeto que representen errores de orden o de concordancia.",
+                    "relatedNodes": []
+                  },
+                  "resolution": "PANEL",
+                  "cost": "PAID_MODEL",
+                  "identity": {
+                    "key": "multiple-choice-quality|answer-cue|df0000000000000000000001|Am I | Are we | Is she | Is it",
+                    "marker": "Am I | Are we | Is she | Is it"
+                  }
+                },
+                "cefrLevel": "A1",
+                "knowledgeId": "synthetic-topic-1",
+                "knowledgeLabel": "Preguntas con be",
+                "reachedQuizIds": [
+                  "df0000000000000000000001"
+                ],
+                "coveredFindings": []
+              }
+            },
+            "finding": {
+              "analyzer": "multiple-choice-quality",
+              "rule": "answer-cue",
+              "node": {
+                "target": "QUIZ",
+                "nodeId": "df0000000000000000000001",
+                "label": "Preguntas con be"
+              },
+              "severity": "HIGH",
+              "evidence": {
+                "examined": [
+                  {
+                    "label": "Objetivo pedagógico",
+                    "text": "Formar preguntas en presente simple con be antes del sujeto, aplicando inversión y concordancia."
+                  },
+                  {
+                    "label": "Nivel",
+                    "text": "A1"
+                  },
+                  {
+                    "label": "Consigna",
+                    "text": "Forma preguntas en presente simple con be antes del sujeto."
+                  },
+                  {
+                    "label": "Ejercicio",
+                    "text": "___ thirsty? (she)"
+                  },
+                  {
+                    "label": "Opciones",
+                    "text": "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+                  },
+                  {
+                    "label": "Confusión esperable",
+                    "text": "Mantener el orden sujeto-verbo al formar la pregunta o elegir una forma de be que no concuerda con she."
+                  }
+                ],
+                "observation": "Is she es la única opción que contiene she: el conjunto permite acertar por coincidencia literal con la pista, sin aplicar inversión ni concordancia. La pista debe conservarse para fijar el sujeto; falta contrastar opciones con ese mismo sujeto que representen errores de orden o de concordancia.",
+                "relatedNodes": []
+              },
+              "resolution": "PANEL",
+              "cost": "PAID_MODEL",
+              "identity": {
+                "key": "multiple-choice-quality|answer-cue|df0000000000000000000001|Am I | Are we | Is she | Is it",
+                "marker": "Am I | Are we | Is she | Is it"
+              }
+            },
+            "coveredFindings": [],
+            "editScope": [
+              "OPTIONS",
+              "INSTRUCTIONS",
+              "STATEMENT",
+              "TRANSLATION",
+              "STORED_SENTENCE",
+              "AUDIO"
+            ],
+            "scopeDeclared": true,
+            "quizView": {
+              "statement": "___ thirsty? (she)",
+              "gaps": [
+                {
+                  "index": 0,
+                  "hint": "(she)",
+                  "acceptedAnswers": [
+                    "Is she"
+                  ],
+                  "firstAnswer": "Is she"
+                }
+              ],
+              "options": [
+                {
+                  "label": "Am I",
+                  "correct": false
+                },
+                {
+                  "label": "Are we",
+                  "correct": false
+                },
+                {
+                  "label": "Is she",
+                  "correct": true
+                },
+                {
+                  "label": "Is it",
+                  "correct": false
+                }
+              ],
+              "instructions": "Forma preguntas en presente simple con be antes del sujeto.",
+              "translation": "",
+              "miniTheory": ""
+            },
+            "reachedQuizViews": []
+          }
+        ],
+        "wordLights": null,
+        "conversion": null,
+        "attempt": 1,
+        "previousRejections": [],
+        "twoFixes": false
+      },
+      "proposal": {
+        "candidates": [
+          {
+            "kind": "WHOLE_EXERCISE",
+            "quiz": {
+              "id": "df0000000000000000000001",
+              "oidId": null,
+              "kind": "MULTIPLE_CHOICE",
+              "knowledgeId": null,
+              "title": null,
+              "instructions": null,
+              "translation": null,
+              "theoryId": null,
+              "topicName": null,
+              "form": {
+                "kind": "MULTIPLE_CHOICE",
+                "incidence": 1.0,
+                "label": "",
+                "name": "",
+                "sentenceParts": [
+                  {
+                    "kind": "CLOZE",
+                    "text": "",
+                    "options": null
+                  },
+                  {
+                    "kind": "TEXT",
+                    "text": " thirsty? (she)",
+                    "options": null
+                  }
+                ],
+                "multipleChoice": {
+                  "selection": "SINGLE",
+                  "items": [
+                    {
+                      "id": "Am she",
+                      "incidence": 0.0,
+                      "label": "Am she"
+                    },
+                    {
+                      "id": "Are she",
+                      "incidence": 0.0,
+                      "label": "Are she"
+                    },
+                    {
+                      "id": "Is she",
+                      "incidence": 1.0,
+                      "label": "Is she"
+                    },
+                    {
+                      "id": "She is",
+                      "incidence": 0.0,
+                      "label": "She is"
+                    }
+                  ]
+                },
+                "unmodeledFields": null
+              },
+              "difficulty": 0.0,
+              "retries": 0.0,
+              "noScoreRetries": 0.0,
+              "code": null,
+              "audioUrl": null,
+              "imageUrl": null,
+              "answerAudioUrl": null,
+              "answerImageUrl": null,
+              "miniTheory": null,
+              "successMessage": null,
+              "sentences": null,
+              "unmodeledFields": null
+            },
+            "miniTheoryText": null,
+            "topicInstructions": null,
+            "rationale": "Todas las opciones conservan she para evitar acertar por coincidencia con la pista: Am she y Are she representan errores de concordancia, y She is mantiene el orden declarativo que la consigna explícita de inversión descarta."
+          }
+        ],
+        "proposerVersion": "panel-proposer",
+        "available": true,
+        "unavailableReason": null
+      },
+      "localViolations": [],
+      "after": {
+        "level": "A1",
+        "topic": "Preguntas con be",
+        "title": "Preguntas con be",
+        "instructions": "Forma preguntas en presente simple con be antes del sujeto.",
+        "exercise": "___ thirsty? (she)",
+        "options": "- Am she\n- Are she\n- Is she (correcta)\n- She is"
+      },
+      "afterQuality": {
+        "status": "PASS",
+        "objective": "Formar preguntas en presente simple con be antes del sujeto y elegir la forma que concuerda con she.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "Am she y Are she representan errores esperables de concordancia; She is representa la falta de inversión que la consigna visible exige. La pista she fija el sujeto y debe conservarse. El conjunto permite practicar tanto la forma de be como su posición antes del sujeto, sin dar la respuesta por coincidencia literal."
+      },
+      "afterAlternative": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«Is she thirsty?» concuerda con «she» y coloca «be» antes del sujeto, como exige la consigna. «Am she» y «Are she» no concuerdan; «She is» no cumple el orden indicado."
+      },
+      "automaticCyclePass": true,
+      "result": "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+      "finishedAt": "2026-10-09T22:52:20.588754Z"
+    },
+    {
+      "caseNumber": 2,
+      "id": "df0000000000000000000002",
+      "original": {
+        "id": "df0000000000000000000002",
+        "caseNumber": 2,
+        "slug": "be-useful",
+        "level": "A1",
+        "topic": "Preguntas con be",
+        "title": "Preguntas con be",
+        "instructions": "Forma preguntas en presente simple con be antes del sujeto.",
+        "exercise": "___ thirsty? (she)",
+        "options": [
+          "She is",
+          "Are she",
+          "Is she",
+          "Am she"
+        ],
+        "correct": "Is she",
+        "expected": "PASS",
+        "allowedIssueKinds": [],
+        "expectationReason": "Mismo sujeto, confusiones esperables de orden y concordancia."
+      },
+      "initial": {
+        "status": "PASS",
+        "objective": "Formar preguntas en presente simple mediante la inversión de be y el sujeto, usando is con she.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "La pista she fija el sujeto necesario. Todas las opciones lo conservan: She is permite practicar el orden interrogativo, y Are she y Am she representan errores de concordancia esperables en A1. La consigna explícita permite distinguir la inversión requerida."
+      },
+      "initialStatusMatches": true,
+      "result": "CONTROL_PRESERVED",
+      "finishedAt": "2026-10-09T22:52:42.654453Z"
+    },
+    {
+      "caseNumber": 3,
+      "id": "df0000000000000000000003",
+      "original": {
+        "id": "df0000000000000000000003",
+        "caseNumber": 3,
+        "slug": "cue-negative",
+        "level": "A1",
+        "topic": "Negativas con be",
+        "title": "Negativas con be",
+        "instructions": "Completa la negación de be en presente simple, conservando el sujeto indicado.",
+        "exercise": "___ thirsty. (it)",
+        "options": [
+          "I am not",
+          "It is not",
+          "We are not",
+          "You are not"
+        ],
+        "correct": "It is not",
+        "expected": "FAIL",
+        "allowedIssueKinds": [
+          "ANSWER_CUE"
+        ],
+        "expectationReason": "La pista fija el sujeto; las opciones permiten acertar por coincidencia sin practicar la habilidad. Conservar el sujeto y contrastar errores esperables."
+      },
+      "initial": {
+        "status": "FAIL",
+        "objective": "Completar la negación de be en presente simple conservando el sujeto indicado.",
+        "introductory": false,
+        "issues": [
+          {
+            "kind": "ANSWER_CUE",
+            "severity": "HIGH",
+            "labels": [
+              "I am not",
+              "It is not",
+              "We are not",
+              "You are not"
+            ],
+            "reason": "La clave es la única opción con el sujeto it, ya escrito en la pista. El conjunto permite acertar por coincidencia literal sin aplicar la concordancia ni formar la negación. La pista debe conservarse para fijar el sujeto; falta contrastar formas de negación y concordancia con ese mismo sujeto.",
+            "misconception": "Elegir una forma de be que no concuerda con it o colocar incorrectamente not al formar la negación."
+          }
+        ],
+        "rationale": "Todos los distractores cambian el sujeto indicado y presentan negaciones bien formadas para otros sujetos, por lo que el conjunto evita casi por completo practicar el objetivo."
+      },
+      "initialStatusMatches": true,
+      "findings": [
+        {
+          "analyzer": "multiple-choice-quality",
+          "rule": "answer-cue",
+          "node": {
+            "target": "QUIZ",
+            "nodeId": "df0000000000000000000003",
+            "label": "Negativas con be"
+          },
+          "severity": "HIGH",
+          "evidence": {
+            "examined": [
+              {
+                "label": "Objetivo pedagógico",
+                "text": "Completar la negación de be en presente simple conservando el sujeto indicado."
+              },
+              {
+                "label": "Nivel",
+                "text": "A1"
+              },
+              {
+                "label": "Consigna",
+                "text": "Completa la negación de be en presente simple, conservando el sujeto indicado."
+              },
+              {
+                "label": "Ejercicio",
+                "text": "___ thirsty. (it)"
+              },
+              {
+                "label": "Opciones",
+                "text": "- I am not\n- It is not (correcta)\n- We are not\n- You are not"
+              },
+              {
+                "label": "Confusión esperable",
+                "text": "Elegir una forma de be que no concuerda con it o colocar incorrectamente not al formar la negación."
+              }
+            ],
+            "observation": "La clave es la única opción con el sujeto it, ya escrito en la pista. El conjunto permite acertar por coincidencia literal sin aplicar la concordancia ni formar la negación. La pista debe conservarse para fijar el sujeto; falta contrastar formas de negación y concordancia con ese mismo sujeto.",
+            "relatedNodes": []
+          },
+          "resolution": "PANEL",
+          "cost": "PAID_MODEL",
+          "identity": {
+            "key": "multiple-choice-quality|answer-cue|df0000000000000000000003|I am not | It is not | We are not | You are not",
+            "marker": "I am not | It is not | We are not | You are not"
+          }
+        }
+      ],
+      "tasksDelivered": {
+        "batchId": "choice-correction-cycle-20261009-v2",
+        "level": "A1",
+        "knowledgeId": "synthetic-topic-3",
+        "quizId": "df0000000000000000000003",
+        "topicView": [
+          {
+            "statement": "___ thirsty. (it)",
+            "gaps": [
+              {
+                "index": 0,
+                "hint": "(it)",
+                "acceptedAnswers": [
+                  "It is not"
+                ],
+                "firstAnswer": "It is not"
+              }
+            ],
+            "options": [
+              {
+                "label": "I am not",
+                "correct": false
+              },
+              {
+                "label": "It is not",
+                "correct": true
+              },
+              {
+                "label": "We are not",
+                "correct": false
+              },
+              {
+                "label": "You are not",
+                "correct": false
+              }
+            ],
+            "instructions": "Completa la negación de be en presente simple, conservando el sujeto indicado.",
+            "translation": "",
+            "miniTheory": ""
+          }
+        ],
+        "briefs": [
+          {
+            "task": {
+              "id": "task-001",
+              "nodeTarget": "QUIZ",
+              "nodeId": "df0000000000000000000003",
+              "nodeLabel": "Negativas con be",
+              "diagnosisKind": "MULTIPLE_CHOICE_VALIDITY",
+              "priority": 1,
+              "status": "PENDING",
+              "origin": {
+                "finding": {
+                  "analyzer": "multiple-choice-quality",
+                  "rule": "answer-cue",
+                  "node": {
+                    "target": "QUIZ",
+                    "nodeId": "df0000000000000000000003",
+                    "label": "Negativas con be"
+                  },
+                  "severity": "HIGH",
+                  "evidence": {
+                    "examined": [
+                      {
+                        "label": "Objetivo pedagógico",
+                        "text": "Completar la negación de be en presente simple conservando el sujeto indicado."
+                      },
+                      {
+                        "label": "Nivel",
+                        "text": "A1"
+                      },
+                      {
+                        "label": "Consigna",
+                        "text": "Completa la negación de be en presente simple, conservando el sujeto indicado."
+                      },
+                      {
+                        "label": "Ejercicio",
+                        "text": "___ thirsty. (it)"
+                      },
+                      {
+                        "label": "Opciones",
+                        "text": "- I am not\n- It is not (correcta)\n- We are not\n- You are not"
+                      },
+                      {
+                        "label": "Confusión esperable",
+                        "text": "Elegir una forma de be que no concuerda con it o colocar incorrectamente not al formar la negación."
+                      }
+                    ],
+                    "observation": "La clave es la única opción con el sujeto it, ya escrito en la pista. El conjunto permite acertar por coincidencia literal sin aplicar la concordancia ni formar la negación. La pista debe conservarse para fijar el sujeto; falta contrastar formas de negación y concordancia con ese mismo sujeto.",
+                    "relatedNodes": []
+                  },
+                  "resolution": "PANEL",
+                  "cost": "PAID_MODEL",
+                  "identity": {
+                    "key": "multiple-choice-quality|answer-cue|df0000000000000000000003|I am not | It is not | We are not | You are not",
+                    "marker": "I am not | It is not | We are not | You are not"
+                  }
+                },
+                "cefrLevel": "A1",
+                "knowledgeId": "synthetic-topic-3",
+                "knowledgeLabel": "Negativas con be",
+                "reachedQuizIds": [
+                  "df0000000000000000000003"
+                ],
+                "coveredFindings": []
+              }
+            },
+            "finding": {
+              "analyzer": "multiple-choice-quality",
+              "rule": "answer-cue",
+              "node": {
+                "target": "QUIZ",
+                "nodeId": "df0000000000000000000003",
+                "label": "Negativas con be"
+              },
+              "severity": "HIGH",
+              "evidence": {
+                "examined": [
+                  {
+                    "label": "Objetivo pedagógico",
+                    "text": "Completar la negación de be en presente simple conservando el sujeto indicado."
+                  },
+                  {
+                    "label": "Nivel",
+                    "text": "A1"
+                  },
+                  {
+                    "label": "Consigna",
+                    "text": "Completa la negación de be en presente simple, conservando el sujeto indicado."
+                  },
+                  {
+                    "label": "Ejercicio",
+                    "text": "___ thirsty. (it)"
+                  },
+                  {
+                    "label": "Opciones",
+                    "text": "- I am not\n- It is not (correcta)\n- We are not\n- You are not"
+                  },
+                  {
+                    "label": "Confusión esperable",
+                    "text": "Elegir una forma de be que no concuerda con it o colocar incorrectamente not al formar la negación."
+                  }
+                ],
+                "observation": "La clave es la única opción con el sujeto it, ya escrito en la pista. El conjunto permite acertar por coincidencia literal sin aplicar la concordancia ni formar la negación. La pista debe conservarse para fijar el sujeto; falta contrastar formas de negación y concordancia con ese mismo sujeto.",
+                "relatedNodes": []
+              },
+              "resolution": "PANEL",
+              "cost": "PAID_MODEL",
+              "identity": {
+                "key": "multiple-choice-quality|answer-cue|df0000000000000000000003|I am not | It is not | We are not | You are not",
+                "marker": "I am not | It is not | We are not | You are not"
+              }
+            },
+            "coveredFindings": [],
+            "editScope": [
+              "OPTIONS",
+              "INSTRUCTIONS",
+              "STATEMENT",
+              "TRANSLATION",
+              "STORED_SENTENCE",
+              "AUDIO"
+            ],
+            "scopeDeclared": true,
+            "quizView": {
+              "statement": "___ thirsty. (it)",
+              "gaps": [
+                {
+                  "index": 0,
+                  "hint": "(it)",
+                  "acceptedAnswers": [
+                    "It is not"
+                  ],
+                  "firstAnswer": "It is not"
+                }
+              ],
+              "options": [
+                {
+                  "label": "I am not",
+                  "correct": false
+                },
+                {
+                  "label": "It is not",
+                  "correct": true
+                },
+                {
+                  "label": "We are not",
+                  "correct": false
+                },
+                {
+                  "label": "You are not",
+                  "correct": false
+                }
+              ],
+              "instructions": "Completa la negación de be en presente simple, conservando el sujeto indicado.",
+              "translation": "",
+              "miniTheory": ""
+            },
+            "reachedQuizViews": []
+          }
+        ],
+        "wordLights": null,
+        "conversion": null,
+        "attempt": 1,
+        "previousRejections": [],
+        "twoFixes": false
+      },
+      "proposal": {
+        "candidates": [
+          {
+            "kind": "WHOLE_EXERCISE",
+            "quiz": {
+              "id": "df0000000000000000000003",
+              "oidId": null,
+              "kind": "MULTIPLE_CHOICE",
+              "knowledgeId": null,
+              "title": null,
+              "instructions": null,
+              "translation": null,
+              "theoryId": null,
+              "topicName": null,
+              "form": {
+                "kind": "MULTIPLE_CHOICE",
+                "incidence": 1.0,
+                "label": "",
+                "name": "",
+                "sentenceParts": [
+                  {
+                    "kind": "CLOZE",
+                    "text": "",
+                    "options": null
+                  },
+                  {
+                    "kind": "TEXT",
+                    "text": " thirsty. (it)",
+                    "options": null
+                  }
+                ],
+                "multipleChoice": {
+                  "selection": "SINGLE",
+                  "items": [
+                    {
+                      "id": "It am not",
+                      "incidence": 0.0,
+                      "label": "It am not"
+                    },
+                    {
+                      "id": "It is not",
+                      "incidence": 1.0,
+                      "label": "It is not"
+                    },
+                    {
+                      "id": "It are not",
+                      "incidence": 0.0,
+                      "label": "It are not"
+                    },
+                    {
+                      "id": "It not is",
+                      "incidence": 0.0,
+                      "label": "It not is"
+                    }
+                  ]
+                },
+                "unmodeledFields": null
+              },
+              "difficulty": 0.0,
+              "retries": 0.0,
+              "noScoreRetries": 0.0,
+              "code": null,
+              "audioUrl": null,
+              "imageUrl": null,
+              "answerAudioUrl": null,
+              "answerImageUrl": null,
+              "miniTheory": null,
+              "successMessage": null,
+              "sentences": null,
+              "unmodeledFields": null
+            },
+            "miniTheoryText": null,
+            "topicInstructions": null,
+            "rationale": "Conservé la pista y el sujeto it en todas las opciones: los distractores contrastan la concordancia de be y la posición de not, evitando que la coincidencia literal con el sujeto regale la respuesta."
+          }
+        ],
+        "proposerVersion": "panel-proposer",
+        "available": true,
+        "unavailableReason": null
+      },
+      "localViolations": [],
+      "after": {
+        "level": "A1",
+        "topic": "Negativas con be",
+        "title": "Negativas con be",
+        "instructions": "Completa la negación de be en presente simple, conservando el sujeto indicado.",
+        "exercise": "___ thirsty. (it)",
+        "options": "- It am not\n- It is not (correcta)\n- It are not\n- It not is"
+      },
+      "afterQuality": {
+        "status": "PASS",
+        "objective": "Formar la negación de be en presente simple con it, aplicando concordancia y orden de palabras.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "Todas las opciones conservan el sujeto indicado. Los distractores representan confusiones esperables en A1: usar am o are con it y colocar not antes de is. La pista fija el sujeto, pero no permite elegir por coincidencia literal porque todas las opciones incluyen It."
+      },
+      "afterAlternative": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«It is not thirsty» forma correctamente la negación en presente simple con el sujeto indicado. «Am» y «are» no concuerdan con «it», y «It not is» tiene un orden incorrecto."
+      },
+      "automaticCyclePass": true,
+      "result": "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+      "finishedAt": "2026-10-09T22:53:10.178341Z"
+    },
+    {
+      "caseNumber": 4,
+      "id": "df0000000000000000000004",
+      "original": {
+        "id": "df0000000000000000000004",
+        "caseNumber": 4,
+        "slug": "negative-useful",
+        "level": "A1",
+        "topic": "Negativas con be",
+        "title": "Negativas con be",
+        "instructions": "Completa la negación de be en presente simple.",
+        "exercise": "It ___ thirsty.",
+        "options": [
+          "isn't",
+          "aren't",
+          "am not",
+          "is"
+        ],
+        "correct": "isn't",
+        "expected": "PASS",
+        "allowedIssueKinds": [],
+        "expectationReason": "Discrimina negación y concordancia con el sujeto ya visible."
+      },
+      "initial": {
+        "status": "PASS",
+        "objective": "Completar una negación de be en presente simple con la forma correspondiente al sujeto It.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "Las opciones permiten practicar la concordancia de be con It y distinguir una forma negativa de la afirmativa. Aren't y am not representan errores esperables de concordancia en A1; is representa la omisión de la negación. El sujeto fija el contexto necesario sin ofrecer una coincidencia literal con la clave."
+      },
+      "initialStatusMatches": true,
+      "result": "CONTROL_PRESERVED",
+      "finishedAt": "2026-10-09T22:52:43.254818Z"
+    },
+    {
+      "caseNumber": 5,
+      "id": "df0000000000000000000005",
+      "original": {
+        "id": "df0000000000000000000005",
+        "caseNumber": 5,
+        "slug": "cue-do",
+        "level": "A1",
+        "topic": "Preguntas en presente simple",
+        "title": "Preguntas en presente simple",
+        "instructions": "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+        "exercise": "___ collect stamps? (you)",
+        "options": [
+          "Does he",
+          "Do you",
+          "Do they",
+          "Does she"
+        ],
+        "correct": "Do you",
+        "expected": "FAIL",
+        "allowedIssueKinds": [
+          "ANSWER_CUE"
+        ],
+        "expectationReason": "La pista fija el sujeto; las opciones permiten acertar por coincidencia sin practicar la habilidad. Conservar el sujeto y contrastar errores esperables."
+      },
+      "initial": {
+        "status": "FAIL",
+        "objective": "Formar preguntas en presente simple colocando do o does antes del sujeto indicado.",
+        "introductory": false,
+        "issues": [
+          {
+            "kind": "ANSWER_CUE",
+            "severity": "HIGH",
+            "labels": [
+              "Does he",
+              "Do you",
+              "Do they",
+              "Does she"
+            ],
+            "reason": "Do you es la única opción que contiene el sujeto you de la pista; las demás cambian ese sujeto. El conjunto permite acertar por coincidencia literal sin elegir el auxiliar ni aplicar el orden interrogativo. Se debe conservar la pista que fija el sujeto y contrastar errores de auxiliar u orden con ese mismo sujeto.",
+            "misconception": "Usar does con you o colocar do después del sujeto al formar una pregunta."
+          }
+        ],
+        "rationale": "La consigna identifica claramente el objetivo, pero las opciones permiten resolver el ejercicio buscando you sin practicar la formación de preguntas."
+      },
+      "initialStatusMatches": true,
+      "findings": [
+        {
+          "analyzer": "multiple-choice-quality",
+          "rule": "answer-cue",
+          "node": {
+            "target": "QUIZ",
+            "nodeId": "df0000000000000000000005",
+            "label": "Preguntas en presente simple"
+          },
+          "severity": "HIGH",
+          "evidence": {
+            "examined": [
+              {
+                "label": "Objetivo pedagógico",
+                "text": "Formar preguntas en presente simple colocando do o does antes del sujeto indicado."
+              },
+              {
+                "label": "Nivel",
+                "text": "A1"
+              },
+              {
+                "label": "Consigna",
+                "text": "Forma preguntas en presente simple con do o does antes del sujeto indicado."
+              },
+              {
+                "label": "Ejercicio",
+                "text": "___ collect stamps? (you)"
+              },
+              {
+                "label": "Opciones",
+                "text": "- Does he\n- Do you (correcta)\n- Do they\n- Does she"
+              },
+              {
+                "label": "Confusión esperable",
+                "text": "Usar does con you o colocar do después del sujeto al formar una pregunta."
+              }
+            ],
+            "observation": "Do you es la única opción que contiene el sujeto you de la pista; las demás cambian ese sujeto. El conjunto permite acertar por coincidencia literal sin elegir el auxiliar ni aplicar el orden interrogativo. Se debe conservar la pista que fija el sujeto y contrastar errores de auxiliar u orden con ese mismo sujeto.",
+            "relatedNodes": []
+          },
+          "resolution": "PANEL",
+          "cost": "PAID_MODEL",
+          "identity": {
+            "key": "multiple-choice-quality|answer-cue|df0000000000000000000005|Does he | Do you | Do they | Does she",
+            "marker": "Does he | Do you | Do they | Does she"
+          }
+        }
+      ],
+      "tasksDelivered": {
+        "batchId": "choice-correction-cycle-20261009-v2",
+        "level": "A1",
+        "knowledgeId": "synthetic-topic-5",
+        "quizId": "df0000000000000000000005",
+        "topicView": [
+          {
+            "statement": "___ collect stamps? (you)",
+            "gaps": [
+              {
+                "index": 0,
+                "hint": "(you)",
+                "acceptedAnswers": [
+                  "Do you"
+                ],
+                "firstAnswer": "Do you"
+              }
+            ],
+            "options": [
+              {
+                "label": "Does he",
+                "correct": false
+              },
+              {
+                "label": "Do you",
+                "correct": true
+              },
+              {
+                "label": "Do they",
+                "correct": false
+              },
+              {
+                "label": "Does she",
+                "correct": false
+              }
+            ],
+            "instructions": "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+            "translation": "",
+            "miniTheory": ""
+          }
+        ],
+        "briefs": [
+          {
+            "task": {
+              "id": "task-001",
+              "nodeTarget": "QUIZ",
+              "nodeId": "df0000000000000000000005",
+              "nodeLabel": "Preguntas en presente simple",
+              "diagnosisKind": "MULTIPLE_CHOICE_VALIDITY",
+              "priority": 1,
+              "status": "PENDING",
+              "origin": {
+                "finding": {
+                  "analyzer": "multiple-choice-quality",
+                  "rule": "answer-cue",
+                  "node": {
+                    "target": "QUIZ",
+                    "nodeId": "df0000000000000000000005",
+                    "label": "Preguntas en presente simple"
+                  },
+                  "severity": "HIGH",
+                  "evidence": {
+                    "examined": [
+                      {
+                        "label": "Objetivo pedagógico",
+                        "text": "Formar preguntas en presente simple colocando do o does antes del sujeto indicado."
+                      },
+                      {
+                        "label": "Nivel",
+                        "text": "A1"
+                      },
+                      {
+                        "label": "Consigna",
+                        "text": "Forma preguntas en presente simple con do o does antes del sujeto indicado."
+                      },
+                      {
+                        "label": "Ejercicio",
+                        "text": "___ collect stamps? (you)"
+                      },
+                      {
+                        "label": "Opciones",
+                        "text": "- Does he\n- Do you (correcta)\n- Do they\n- Does she"
+                      },
+                      {
+                        "label": "Confusión esperable",
+                        "text": "Usar does con you o colocar do después del sujeto al formar una pregunta."
+                      }
+                    ],
+                    "observation": "Do you es la única opción que contiene el sujeto you de la pista; las demás cambian ese sujeto. El conjunto permite acertar por coincidencia literal sin elegir el auxiliar ni aplicar el orden interrogativo. Se debe conservar la pista que fija el sujeto y contrastar errores de auxiliar u orden con ese mismo sujeto.",
+                    "relatedNodes": []
+                  },
+                  "resolution": "PANEL",
+                  "cost": "PAID_MODEL",
+                  "identity": {
+                    "key": "multiple-choice-quality|answer-cue|df0000000000000000000005|Does he | Do you | Do they | Does she",
+                    "marker": "Does he | Do you | Do they | Does she"
+                  }
+                },
+                "cefrLevel": "A1",
+                "knowledgeId": "synthetic-topic-5",
+                "knowledgeLabel": "Preguntas en presente simple",
+                "reachedQuizIds": [
+                  "df0000000000000000000005"
+                ],
+                "coveredFindings": []
+              }
+            },
+            "finding": {
+              "analyzer": "multiple-choice-quality",
+              "rule": "answer-cue",
+              "node": {
+                "target": "QUIZ",
+                "nodeId": "df0000000000000000000005",
+                "label": "Preguntas en presente simple"
+              },
+              "severity": "HIGH",
+              "evidence": {
+                "examined": [
+                  {
+                    "label": "Objetivo pedagógico",
+                    "text": "Formar preguntas en presente simple colocando do o does antes del sujeto indicado."
+                  },
+                  {
+                    "label": "Nivel",
+                    "text": "A1"
+                  },
+                  {
+                    "label": "Consigna",
+                    "text": "Forma preguntas en presente simple con do o does antes del sujeto indicado."
+                  },
+                  {
+                    "label": "Ejercicio",
+                    "text": "___ collect stamps? (you)"
+                  },
+                  {
+                    "label": "Opciones",
+                    "text": "- Does he\n- Do you (correcta)\n- Do they\n- Does she"
+                  },
+                  {
+                    "label": "Confusión esperable",
+                    "text": "Usar does con you o colocar do después del sujeto al formar una pregunta."
+                  }
+                ],
+                "observation": "Do you es la única opción que contiene el sujeto you de la pista; las demás cambian ese sujeto. El conjunto permite acertar por coincidencia literal sin elegir el auxiliar ni aplicar el orden interrogativo. Se debe conservar la pista que fija el sujeto y contrastar errores de auxiliar u orden con ese mismo sujeto.",
+                "relatedNodes": []
+              },
+              "resolution": "PANEL",
+              "cost": "PAID_MODEL",
+              "identity": {
+                "key": "multiple-choice-quality|answer-cue|df0000000000000000000005|Does he | Do you | Do they | Does she",
+                "marker": "Does he | Do you | Do they | Does she"
+              }
+            },
+            "coveredFindings": [],
+            "editScope": [
+              "OPTIONS",
+              "INSTRUCTIONS",
+              "STATEMENT",
+              "TRANSLATION",
+              "STORED_SENTENCE",
+              "AUDIO"
+            ],
+            "scopeDeclared": true,
+            "quizView": {
+              "statement": "___ collect stamps? (you)",
+              "gaps": [
+                {
+                  "index": 0,
+                  "hint": "(you)",
+                  "acceptedAnswers": [
+                    "Do you"
+                  ],
+                  "firstAnswer": "Do you"
+                }
+              ],
+              "options": [
+                {
+                  "label": "Does he",
+                  "correct": false
+                },
+                {
+                  "label": "Do you",
+                  "correct": true
+                },
+                {
+                  "label": "Do they",
+                  "correct": false
+                },
+                {
+                  "label": "Does she",
+                  "correct": false
+                }
+              ],
+              "instructions": "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+              "translation": "",
+              "miniTheory": ""
+            },
+            "reachedQuizViews": []
+          }
+        ],
+        "wordLights": null,
+        "conversion": null,
+        "attempt": 1,
+        "previousRejections": [],
+        "twoFixes": false
+      },
+      "proposal": {
+        "candidates": [
+          {
+            "kind": "WHOLE_EXERCISE",
+            "quiz": {
+              "id": "df0000000000000000000005",
+              "oidId": null,
+              "kind": "MULTIPLE_CHOICE",
+              "knowledgeId": null,
+              "title": null,
+              "instructions": null,
+              "translation": null,
+              "theoryId": null,
+              "topicName": null,
+              "form": {
+                "kind": "MULTIPLE_CHOICE",
+                "incidence": 1.0,
+                "label": "",
+                "name": "",
+                "sentenceParts": [
+                  {
+                    "kind": "CLOZE",
+                    "text": "",
+                    "options": null
+                  },
+                  {
+                    "kind": "TEXT",
+                    "text": " collect stamps? (you)",
+                    "options": null
+                  }
+                ],
+                "multipleChoice": {
+                  "selection": "SINGLE",
+                  "items": [
+                    {
+                      "id": "Does you",
+                      "incidence": 0.0,
+                      "label": "Does you"
+                    },
+                    {
+                      "id": "Do you",
+                      "incidence": 1.0,
+                      "label": "Do you"
+                    },
+                    {
+                      "id": "You do",
+                      "incidence": 0.0,
+                      "label": "You do"
+                    },
+                    {
+                      "id": "You does",
+                      "incidence": 0.0,
+                      "label": "You does"
+                    }
+                  ]
+                },
+                "unmodeledFields": null
+              },
+              "difficulty": 0.0,
+              "retries": 0.0,
+              "noScoreRetries": 0.0,
+              "code": null,
+              "audioUrl": null,
+              "imageUrl": null,
+              "answerAudioUrl": null,
+              "answerImageUrl": null,
+              "miniTheory": null,
+              "successMessage": null,
+              "sentences": null,
+              "unmodeledFields": null
+            },
+            "miniTheoryText": null,
+            "topicInstructions": null,
+            "rationale": "Conservé you en todas las opciones para evitar la coincidencia literal con la pista; los distractores representan errores de concordancia del auxiliar, de inversión o de ambos, y la consigna exige do o does antes del sujeto."
+          }
+        ],
+        "proposerVersion": "panel-proposer",
+        "available": true,
+        "unavailableReason": null
+      },
+      "localViolations": [],
+      "after": {
+        "level": "A1",
+        "topic": "Preguntas en presente simple",
+        "title": "Preguntas en presente simple",
+        "instructions": "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+        "exercise": "___ collect stamps? (you)",
+        "options": "- Does you\n- Do you (correcta)\n- You do\n- You does"
+      },
+      "afterQuality": {
+        "status": "PASS",
+        "objective": "Formar preguntas en presente simple colocando do o does antes del sujeto y eligiendo do para you.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "Todos los distractores conservan el sujeto indicado y representan errores esperables de concordancia, orden o ambos. La pista you fija el sujeto sin permitir elegir por coincidencia literal, porque aparece en todas las opciones. El conjunto practica el contraste pedido por la consigna."
+      },
+      "afterAlternative": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«Do you collect stamps?» cumple la consigna: do va antes de you. «Does you» y «You does» no concuerdan con el sujeto; «You do» no cumple la indicación de colocar do o does antes del sujeto."
+      },
+      "automaticCyclePass": true,
+      "result": "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+      "finishedAt": "2026-10-09T22:53:08.029620Z"
+    },
+    {
+      "caseNumber": 6,
+      "id": "df0000000000000000000006",
+      "original": {
+        "id": "df0000000000000000000006",
+        "caseNumber": 6,
+        "slug": "do-useful",
+        "level": "A1",
+        "topic": "Preguntas en presente simple",
+        "title": "Preguntas en presente simple",
+        "instructions": "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+        "exercise": "___ collect stamps? (you)",
+        "options": [
+          "Do you",
+          "Does you",
+          "You do",
+          "You does"
+        ],
+        "correct": "Do you",
+        "expected": "PASS",
+        "allowedIssueKinds": [],
+        "expectationReason": "Orden y concordancia del auxiliar son errores esperables."
+      },
+      "initial": {
+        "status": "PASS",
+        "objective": "Formar preguntas en presente simple colocando do o does antes del sujeto y eligiendo el auxiliar que concuerda con you.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "Todas las opciones conservan el sujeto indicado. Los distractores representan errores esperables de concordancia del auxiliar, orden de palabras o ambos. La pista you fija el sujeto sin permitir acertar por coincidencia literal, porque aparece en todas las opciones."
+      },
+      "initialStatusMatches": true,
+      "result": "CONTROL_PRESERVED",
+      "finishedAt": "2026-10-09T22:52:51.770411Z"
+    },
+    {
+      "caseNumber": 7,
+      "id": "df0000000000000000000007",
+      "original": {
+        "id": "df0000000000000000000007",
+        "caseNumber": 7,
+        "slug": "irrelevant-verb",
+        "level": "A1",
+        "topic": "Tercera persona singular",
+        "title": "Tercera persona singular",
+        "instructions": "Completa la afirmación de presente simple con la forma de like.",
+        "exercise": "My aunt ___ peaches.",
+        "options": [
+          "likes",
+          "Paris",
+          "blue",
+          "tomorrow"
+        ],
+        "correct": "likes",
+        "expected": "FAIL",
+        "allowedIssueKinds": [
+          "IRRELEVANT_DISTRACTORS",
+          "IMPLAUSIBLE_DISTRACTORS"
+        ],
+        "expectationReason": "Las incorrectas no son formas de like y evitan discriminar tercera persona."
+      },
+      "initial": {
+        "status": "FAIL",
+        "objective": "Usar la forma de like correspondiente a la tercera persona singular en una afirmación de presente simple.",
+        "introductory": false,
+        "issues": [
+          {
+            "kind": "IRRELEVANT_DISTRACTORS",
+            "severity": "HIGH",
+            "labels": [
+              "Paris",
+              "blue",
+              "tomorrow"
+            ],
+            "reason": "Los distractores no son formas de like: permiten elegir likes por ser la única opción relacionada con el verbo solicitado, sin aplicar la concordancia. Deben conservarse el sujeto My aunt y el presente simple fijado por la consigna; falta contrastar formas que representen errores al conjugar ese verbo.",
+            "misconception": "Omitir la terminación -s de tercera persona singular al conjugar like con My aunt."
+          }
+        ],
+        "rationale": "El conjunto evita casi por completo practicar la tercera persona singular: las tres opciones equivocadas evalúan reconocer palabras ajenas al verbo, no su conjugación."
+      },
+      "initialStatusMatches": true,
+      "findings": [
+        {
+          "analyzer": "multiple-choice-quality",
+          "rule": "irrelevant-distractors",
+          "node": {
+            "target": "QUIZ",
+            "nodeId": "df0000000000000000000007",
+            "label": "Tercera persona singular"
+          },
+          "severity": "HIGH",
+          "evidence": {
+            "examined": [
+              {
+                "label": "Objetivo pedagógico",
+                "text": "Usar la forma de like correspondiente a la tercera persona singular en una afirmación de presente simple."
+              },
+              {
+                "label": "Nivel",
+                "text": "A1"
+              },
+              {
+                "label": "Consigna",
+                "text": "Completa la afirmación de presente simple con la forma de like."
+              },
+              {
+                "label": "Ejercicio",
+                "text": "My aunt ___ peaches."
+              },
+              {
+                "label": "Opciones",
+                "text": "- likes (correcta)\n- Paris\n- blue\n- tomorrow"
+              },
+              {
+                "label": "Confusión esperable",
+                "text": "Omitir la terminación -s de tercera persona singular al conjugar like con My aunt."
+              }
+            ],
+            "observation": "Los distractores no son formas de like: permiten elegir likes por ser la única opción relacionada con el verbo solicitado, sin aplicar la concordancia. Deben conservarse el sujeto My aunt y el presente simple fijado por la consigna; falta contrastar formas que representen errores al conjugar ese verbo.",
+            "relatedNodes": []
+          },
+          "resolution": "PANEL",
+          "cost": "PAID_MODEL",
+          "identity": {
+            "key": "multiple-choice-quality|irrelevant-distractors|df0000000000000000000007|Paris | blue | tomorrow",
+            "marker": "Paris | blue | tomorrow"
+          }
+        }
+      ],
+      "tasksDelivered": {
+        "batchId": "choice-correction-cycle-20261009-v2",
+        "level": "A1",
+        "knowledgeId": "synthetic-topic-7",
+        "quizId": "df0000000000000000000007",
+        "topicView": [
+          {
+            "statement": "My aunt ___ peaches.",
+            "gaps": [
+              {
+                "index": 0,
+                "hint": null,
+                "acceptedAnswers": [
+                  "likes"
+                ],
+                "firstAnswer": "likes"
+              }
+            ],
+            "options": [
+              {
+                "label": "likes",
+                "correct": true
+              },
+              {
+                "label": "Paris",
+                "correct": false
+              },
+              {
+                "label": "blue",
+                "correct": false
+              },
+              {
+                "label": "tomorrow",
+                "correct": false
+              }
+            ],
+            "instructions": "Completa la afirmación de presente simple con la forma de like.",
+            "translation": "",
+            "miniTheory": ""
+          }
+        ],
+        "briefs": [
+          {
+            "task": {
+              "id": "task-001",
+              "nodeTarget": "QUIZ",
+              "nodeId": "df0000000000000000000007",
+              "nodeLabel": "Tercera persona singular",
+              "diagnosisKind": "MULTIPLE_CHOICE_VALIDITY",
+              "priority": 1,
+              "status": "PENDING",
+              "origin": {
+                "finding": {
+                  "analyzer": "multiple-choice-quality",
+                  "rule": "irrelevant-distractors",
+                  "node": {
+                    "target": "QUIZ",
+                    "nodeId": "df0000000000000000000007",
+                    "label": "Tercera persona singular"
+                  },
+                  "severity": "HIGH",
+                  "evidence": {
+                    "examined": [
+                      {
+                        "label": "Objetivo pedagógico",
+                        "text": "Usar la forma de like correspondiente a la tercera persona singular en una afirmación de presente simple."
+                      },
+                      {
+                        "label": "Nivel",
+                        "text": "A1"
+                      },
+                      {
+                        "label": "Consigna",
+                        "text": "Completa la afirmación de presente simple con la forma de like."
+                      },
+                      {
+                        "label": "Ejercicio",
+                        "text": "My aunt ___ peaches."
+                      },
+                      {
+                        "label": "Opciones",
+                        "text": "- likes (correcta)\n- Paris\n- blue\n- tomorrow"
+                      },
+                      {
+                        "label": "Confusión esperable",
+                        "text": "Omitir la terminación -s de tercera persona singular al conjugar like con My aunt."
+                      }
+                    ],
+                    "observation": "Los distractores no son formas de like: permiten elegir likes por ser la única opción relacionada con el verbo solicitado, sin aplicar la concordancia. Deben conservarse el sujeto My aunt y el presente simple fijado por la consigna; falta contrastar formas que representen errores al conjugar ese verbo.",
+                    "relatedNodes": []
+                  },
+                  "resolution": "PANEL",
+                  "cost": "PAID_MODEL",
+                  "identity": {
+                    "key": "multiple-choice-quality|irrelevant-distractors|df0000000000000000000007|Paris | blue | tomorrow",
+                    "marker": "Paris | blue | tomorrow"
+                  }
+                },
+                "cefrLevel": "A1",
+                "knowledgeId": "synthetic-topic-7",
+                "knowledgeLabel": "Tercera persona singular",
+                "reachedQuizIds": [
+                  "df0000000000000000000007"
+                ],
+                "coveredFindings": []
+              }
+            },
+            "finding": {
+              "analyzer": "multiple-choice-quality",
+              "rule": "irrelevant-distractors",
+              "node": {
+                "target": "QUIZ",
+                "nodeId": "df0000000000000000000007",
+                "label": "Tercera persona singular"
+              },
+              "severity": "HIGH",
+              "evidence": {
+                "examined": [
+                  {
+                    "label": "Objetivo pedagógico",
+                    "text": "Usar la forma de like correspondiente a la tercera persona singular en una afirmación de presente simple."
+                  },
+                  {
+                    "label": "Nivel",
+                    "text": "A1"
+                  },
+                  {
+                    "label": "Consigna",
+                    "text": "Completa la afirmación de presente simple con la forma de like."
+                  },
+                  {
+                    "label": "Ejercicio",
+                    "text": "My aunt ___ peaches."
+                  },
+                  {
+                    "label": "Opciones",
+                    "text": "- likes (correcta)\n- Paris\n- blue\n- tomorrow"
+                  },
+                  {
+                    "label": "Confusión esperable",
+                    "text": "Omitir la terminación -s de tercera persona singular al conjugar like con My aunt."
+                  }
+                ],
+                "observation": "Los distractores no son formas de like: permiten elegir likes por ser la única opción relacionada con el verbo solicitado, sin aplicar la concordancia. Deben conservarse el sujeto My aunt y el presente simple fijado por la consigna; falta contrastar formas que representen errores al conjugar ese verbo.",
+                "relatedNodes": []
+              },
+              "resolution": "PANEL",
+              "cost": "PAID_MODEL",
+              "identity": {
+                "key": "multiple-choice-quality|irrelevant-distractors|df0000000000000000000007|Paris | blue | tomorrow",
+                "marker": "Paris | blue | tomorrow"
+              }
+            },
+            "coveredFindings": [],
+            "editScope": [
+              "OPTIONS",
+              "INSTRUCTIONS",
+              "STATEMENT",
+              "TRANSLATION",
+              "STORED_SENTENCE",
+              "AUDIO"
+            ],
+            "scopeDeclared": true,
+            "quizView": {
+              "statement": "My aunt ___ peaches.",
+              "gaps": [
+                {
+                  "index": 0,
+                  "hint": null,
+                  "acceptedAnswers": [
+                    "likes"
+                  ],
+                  "firstAnswer": "likes"
+                }
+              ],
+              "options": [
+                {
+                  "label": "likes",
+                  "correct": true
+                },
+                {
+                  "label": "Paris",
+                  "correct": false
+                },
+                {
+                  "label": "blue",
+                  "correct": false
+                },
+                {
+                  "label": "tomorrow",
+                  "correct": false
+                }
+              ],
+              "instructions": "Completa la afirmación de presente simple con la forma de like.",
+              "translation": "",
+              "miniTheory": ""
+            },
+            "reachedQuizViews": []
+          }
+        ],
+        "wordLights": null,
+        "conversion": null,
+        "attempt": 1,
+        "previousRejections": [],
+        "twoFixes": false
+      },
+      "proposal": {
+        "candidates": [
+          {
+            "kind": "WHOLE_EXERCISE",
+            "quiz": {
+              "id": "df0000000000000000000007",
+              "oidId": null,
+              "kind": "MULTIPLE_CHOICE",
+              "knowledgeId": null,
+              "title": null,
+              "instructions": null,
+              "translation": null,
+              "theoryId": null,
+              "topicName": null,
+              "form": {
+                "kind": "MULTIPLE_CHOICE",
+                "incidence": 1.0,
+                "label": "",
+                "name": "",
+                "sentenceParts": [
+                  {
+                    "kind": "TEXT",
+                    "text": "My aunt ",
+                    "options": null
+                  },
+                  {
+                    "kind": "CLOZE",
+                    "text": "",
+                    "options": null
+                  },
+                  {
+                    "kind": "TEXT",
+                    "text": " peaches.",
+                    "options": null
+                  }
+                ],
+                "multipleChoice": {
+                  "selection": "SINGLE",
+                  "items": [
+                    {
+                      "id": "likes",
+                      "incidence": 1.0,
+                      "label": "likes"
+                    },
+                    {
+                      "id": "like",
+                      "incidence": 0.0,
+                      "label": "like"
+                    },
+                    {
+                      "id": "likees",
+                      "incidence": 0.0,
+                      "label": "likees"
+                    },
+                    {
+                      "id": "likies",
+                      "incidence": 0.0,
+                      "label": "likies"
+                    }
+                  ]
+                },
+                "unmodeledFields": null
+              },
+              "difficulty": 0.0,
+              "retries": 0.0,
+              "noScoreRetries": 0.0,
+              "code": null,
+              "audioUrl": null,
+              "imageUrl": null,
+              "answerAudioUrl": null,
+              "answerImageUrl": null,
+              "miniTheory": null,
+              "successMessage": null,
+              "sentences": null,
+              "unmodeledFields": null
+            },
+            "miniTheoryText": null,
+            "topicInstructions": null,
+            "rationale": "Reemplacé los distractores irrelevantes por errores de conjugación: omitir -s, agregar -es sin quitar la e y aplicar indebidamente -ies; todas las opciones intentan conjugar like, por lo que hay que reconocer la forma de tercera persona singular."
+          }
+        ],
+        "proposerVersion": "panel-proposer",
+        "available": true,
+        "unavailableReason": null
+      },
+      "localViolations": [],
+      "after": {
+        "level": "A1",
+        "topic": "Tercera persona singular",
+        "title": "Tercera persona singular",
+        "instructions": "Completa la afirmación de presente simple con la forma de like.",
+        "exercise": "My aunt ___ peaches.",
+        "options": "- likes (correcta)\n- like\n- likees\n- likies"
+      },
+      "afterQuality": {
+        "status": "PASS",
+        "objective": "Aplicar la terminación de tercera persona singular a like en una afirmación de presente simple.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "Las opciones contrastan la forma base con distintas terminaciones de tercera persona singular. «like» representa omitir la concordancia; «likees» y «likies», generalizar indebidamente las terminaciones -es e -ies. El sujeto fija la persona necesaria y el conjunto permite practicar la forma verbal sin ofrecer una coincidencia literal que revele la clave."
+      },
+      "afterAlternative": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«My aunt» exige «likes» en presente simple por ser tercera persona singular. «Like» no concuerda con el sujeto, y «likees» y «likies» no son formas válidas de «like»."
+      },
+      "automaticCyclePass": true,
+      "result": "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+      "finishedAt": "2026-10-09T22:53:24.651767Z"
+    },
+    {
+      "caseNumber": 8,
+      "id": "df0000000000000000000008",
+      "original": {
+        "id": "df0000000000000000000008",
+        "caseNumber": 8,
+        "slug": "verb-useful",
+        "level": "A1",
+        "topic": "Tercera persona singular",
+        "title": "Tercera persona singular",
+        "instructions": "Completa la afirmación de presente simple con la forma de like.",
+        "exercise": "My aunt ___ peaches.",
+        "options": [
+          "like",
+          "likes",
+          "liking",
+          "to like"
+        ],
+        "correct": "likes",
+        "expected": "PASS",
+        "allowedIssueKinds": [],
+        "expectationReason": "Formas verbales confundibles con presente simple de tercera persona."
+      },
+      "initial": {
+        "status": "PASS",
+        "objective": "Completar una afirmación en presente simple con likes para un sujeto de tercera persona singular.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "Las opciones contrastan la forma base sin concordancia, la forma con -s, la forma en -ing y el infinitivo con to. Representan confusiones razonables en A1 y requieren reconocer qué forma de like corresponde a My aunt en una afirmación de presente simple."
+      },
+      "initialStatusMatches": true,
+      "result": "CONTROL_PRESERVED",
+      "finishedAt": "2026-10-09T22:53:00.137486Z"
+    },
+    {
+      "caseNumber": 9,
+      "id": "df0000000000000000000009",
+      "original": {
+        "id": "df0000000000000000000009",
+        "caseNumber": 9,
+        "slug": "irrelevant-past",
+        "level": "A2",
+        "topic": "Pasado simple",
+        "title": "Pasado simple",
+        "instructions": "Elige el pasado simple afirmativo de close.",
+        "exercise": "Nora ___ the window yesterday.",
+        "options": [
+          "closed",
+          "banana",
+          "purple",
+          "Wednesday"
+        ],
+        "correct": "closed",
+        "expected": "FAIL",
+        "allowedIssueKinds": [
+          "IRRELEVANT_DISTRACTORS",
+          "IMPLAUSIBLE_DISTRACTORS"
+        ],
+        "expectationReason": "Sólo closed es una forma verbal pertinente al objetivo explícito."
+      },
+      "initial": {
+        "status": "FAIL",
+        "objective": "Identificar el pasado simple afirmativo del verbo close.",
+        "introductory": true,
+        "issues": [
+          {
+            "kind": "IMPLAUSIBLE_DISTRACTORS",
+            "severity": "HIGH",
+            "labels": [
+              "banana",
+              "purple",
+              "Wednesday"
+            ],
+            "reason": "Los tres distractores son palabras ajenas a las formas de close y se descartan por su significado o categoría, sin reconocer cómo se forma el pasado simple. La consigna y yesterday fijan el verbo y el tiempo y deben conservarse; falta contrastar closed con errores esperables al formar el pasado de ese verbo.",
+            "misconception": "Confundir la forma base con el pasado simple o aplicar incorrectamente la terminación regular -ed."
+          }
+        ],
+        "rationale": "Aunque la práctica sea introductoria, el conjunto permite acertar descartando palabras sin relación con el verbo, y evita casi por completo practicar su forma en pasado simple."
+      },
+      "initialStatusMatches": true,
+      "findings": [
+        {
+          "analyzer": "multiple-choice-quality",
+          "rule": "implausible-distractors",
+          "node": {
+            "target": "QUIZ",
+            "nodeId": "df0000000000000000000009",
+            "label": "Pasado simple"
+          },
+          "severity": "HIGH",
+          "evidence": {
+            "examined": [
+              {
+                "label": "Objetivo pedagógico",
+                "text": "Identificar el pasado simple afirmativo del verbo close."
+              },
+              {
+                "label": "Nivel",
+                "text": "A2"
+              },
+              {
+                "label": "Consigna",
+                "text": "Elige el pasado simple afirmativo de close."
+              },
+              {
+                "label": "Ejercicio",
+                "text": "Nora ___ the window yesterday."
+              },
+              {
+                "label": "Opciones",
+                "text": "- closed (correcta)\n- banana\n- purple\n- Wednesday"
+              },
+              {
+                "label": "Confusión esperable",
+                "text": "Confundir la forma base con el pasado simple o aplicar incorrectamente la terminación regular -ed."
+              }
+            ],
+            "observation": "Los tres distractores son palabras ajenas a las formas de close y se descartan por su significado o categoría, sin reconocer cómo se forma el pasado simple. La consigna y yesterday fijan el verbo y el tiempo y deben conservarse; falta contrastar closed con errores esperables al formar el pasado de ese verbo.",
+            "relatedNodes": []
+          },
+          "resolution": "PANEL",
+          "cost": "PAID_MODEL",
+          "identity": {
+            "key": "multiple-choice-quality|implausible-distractors|df0000000000000000000009|banana | purple | Wednesday",
+            "marker": "banana | purple | Wednesday"
+          }
+        }
+      ],
+      "tasksDelivered": {
+        "batchId": "choice-correction-cycle-20261009-v2",
+        "level": "A2",
+        "knowledgeId": "synthetic-topic-9",
+        "quizId": "df0000000000000000000009",
+        "topicView": [
+          {
+            "statement": "Nora ___ the window yesterday.",
+            "gaps": [
+              {
+                "index": 0,
+                "hint": null,
+                "acceptedAnswers": [
+                  "closed"
+                ],
+                "firstAnswer": "closed"
+              }
+            ],
+            "options": [
+              {
+                "label": "closed",
+                "correct": true
+              },
+              {
+                "label": "banana",
+                "correct": false
+              },
+              {
+                "label": "purple",
+                "correct": false
+              },
+              {
+                "label": "Wednesday",
+                "correct": false
+              }
+            ],
+            "instructions": "Elige el pasado simple afirmativo de close.",
+            "translation": "",
+            "miniTheory": ""
+          }
+        ],
+        "briefs": [
+          {
+            "task": {
+              "id": "task-001",
+              "nodeTarget": "QUIZ",
+              "nodeId": "df0000000000000000000009",
+              "nodeLabel": "Pasado simple",
+              "diagnosisKind": "MULTIPLE_CHOICE_VALIDITY",
+              "priority": 1,
+              "status": "PENDING",
+              "origin": {
+                "finding": {
+                  "analyzer": "multiple-choice-quality",
+                  "rule": "implausible-distractors",
+                  "node": {
+                    "target": "QUIZ",
+                    "nodeId": "df0000000000000000000009",
+                    "label": "Pasado simple"
+                  },
+                  "severity": "HIGH",
+                  "evidence": {
+                    "examined": [
+                      {
+                        "label": "Objetivo pedagógico",
+                        "text": "Identificar el pasado simple afirmativo del verbo close."
+                      },
+                      {
+                        "label": "Nivel",
+                        "text": "A2"
+                      },
+                      {
+                        "label": "Consigna",
+                        "text": "Elige el pasado simple afirmativo de close."
+                      },
+                      {
+                        "label": "Ejercicio",
+                        "text": "Nora ___ the window yesterday."
+                      },
+                      {
+                        "label": "Opciones",
+                        "text": "- closed (correcta)\n- banana\n- purple\n- Wednesday"
+                      },
+                      {
+                        "label": "Confusión esperable",
+                        "text": "Confundir la forma base con el pasado simple o aplicar incorrectamente la terminación regular -ed."
+                      }
+                    ],
+                    "observation": "Los tres distractores son palabras ajenas a las formas de close y se descartan por su significado o categoría, sin reconocer cómo se forma el pasado simple. La consigna y yesterday fijan el verbo y el tiempo y deben conservarse; falta contrastar closed con errores esperables al formar el pasado de ese verbo.",
+                    "relatedNodes": []
+                  },
+                  "resolution": "PANEL",
+                  "cost": "PAID_MODEL",
+                  "identity": {
+                    "key": "multiple-choice-quality|implausible-distractors|df0000000000000000000009|banana | purple | Wednesday",
+                    "marker": "banana | purple | Wednesday"
+                  }
+                },
+                "cefrLevel": "A2",
+                "knowledgeId": "synthetic-topic-9",
+                "knowledgeLabel": "Pasado simple",
+                "reachedQuizIds": [
+                  "df0000000000000000000009"
+                ],
+                "coveredFindings": []
+              }
+            },
+            "finding": {
+              "analyzer": "multiple-choice-quality",
+              "rule": "implausible-distractors",
+              "node": {
+                "target": "QUIZ",
+                "nodeId": "df0000000000000000000009",
+                "label": "Pasado simple"
+              },
+              "severity": "HIGH",
+              "evidence": {
+                "examined": [
+                  {
+                    "label": "Objetivo pedagógico",
+                    "text": "Identificar el pasado simple afirmativo del verbo close."
+                  },
+                  {
+                    "label": "Nivel",
+                    "text": "A2"
+                  },
+                  {
+                    "label": "Consigna",
+                    "text": "Elige el pasado simple afirmativo de close."
+                  },
+                  {
+                    "label": "Ejercicio",
+                    "text": "Nora ___ the window yesterday."
+                  },
+                  {
+                    "label": "Opciones",
+                    "text": "- closed (correcta)\n- banana\n- purple\n- Wednesday"
+                  },
+                  {
+                    "label": "Confusión esperable",
+                    "text": "Confundir la forma base con el pasado simple o aplicar incorrectamente la terminación regular -ed."
+                  }
+                ],
+                "observation": "Los tres distractores son palabras ajenas a las formas de close y se descartan por su significado o categoría, sin reconocer cómo se forma el pasado simple. La consigna y yesterday fijan el verbo y el tiempo y deben conservarse; falta contrastar closed con errores esperables al formar el pasado de ese verbo.",
+                "relatedNodes": []
+              },
+              "resolution": "PANEL",
+              "cost": "PAID_MODEL",
+              "identity": {
+                "key": "multiple-choice-quality|implausible-distractors|df0000000000000000000009|banana | purple | Wednesday",
+                "marker": "banana | purple | Wednesday"
+              }
+            },
+            "coveredFindings": [],
+            "editScope": [
+              "OPTIONS",
+              "INSTRUCTIONS",
+              "STATEMENT",
+              "TRANSLATION",
+              "STORED_SENTENCE",
+              "AUDIO"
+            ],
+            "scopeDeclared": true,
+            "quizView": {
+              "statement": "Nora ___ the window yesterday.",
+              "gaps": [
+                {
+                  "index": 0,
+                  "hint": null,
+                  "acceptedAnswers": [
+                    "closed"
+                  ],
+                  "firstAnswer": "closed"
+                }
+              ],
+              "options": [
+                {
+                  "label": "closed",
+                  "correct": true
+                },
+                {
+                  "label": "banana",
+                  "correct": false
+                },
+                {
+                  "label": "purple",
+                  "correct": false
+                },
+                {
+                  "label": "Wednesday",
+                  "correct": false
+                }
+              ],
+              "instructions": "Elige el pasado simple afirmativo de close.",
+              "translation": "",
+              "miniTheory": ""
+            },
+            "reachedQuizViews": []
+          }
+        ],
+        "wordLights": null,
+        "conversion": null,
+        "attempt": 1,
+        "previousRejections": [],
+        "twoFixes": false
+      },
+      "proposal": {
+        "candidates": [
+          {
+            "kind": "WHOLE_EXERCISE",
+            "quiz": {
+              "id": "df0000000000000000000009",
+              "oidId": null,
+              "kind": "MULTIPLE_CHOICE",
+              "knowledgeId": null,
+              "title": null,
+              "instructions": null,
+              "translation": null,
+              "theoryId": null,
+              "topicName": null,
+              "form": {
+                "kind": "MULTIPLE_CHOICE",
+                "incidence": 1.0,
+                "label": "",
+                "name": "",
+                "sentenceParts": [
+                  {
+                    "kind": "TEXT",
+                    "text": "Nora ",
+                    "options": null
+                  },
+                  {
+                    "kind": "CLOZE",
+                    "text": "",
+                    "options": null
+                  },
+                  {
+                    "kind": "TEXT",
+                    "text": " the window yesterday.",
+                    "options": null
+                  }
+                ],
+                "multipleChoice": {
+                  "selection": "SINGLE",
+                  "items": [
+                    {
+                      "id": "closed",
+                      "incidence": 1.0,
+                      "label": "closed"
+                    },
+                    {
+                      "id": "close",
+                      "incidence": 0.0,
+                      "label": "close"
+                    },
+                    {
+                      "id": "closeed",
+                      "incidence": 0.0,
+                      "label": "closeed"
+                    },
+                    {
+                      "id": "closd",
+                      "incidence": 0.0,
+                      "label": "closd"
+                    }
+                  ]
+                },
+                "unmodeledFields": null
+              },
+              "difficulty": 0.0,
+              "retries": 0.0,
+              "noScoreRetries": 0.0,
+              "code": null,
+              "audioUrl": null,
+              "imageUrl": null,
+              "answerAudioUrl": null,
+              "answerImageUrl": null,
+              "miniTheory": null,
+              "successMessage": null,
+              "sentences": null,
+              "unmodeledFields": null
+            },
+            "miniTheoryText": null,
+            "topicInstructions": null,
+            "rationale": "Reemplacé los distractores ajenos al verbo por errores esperables: usar la forma base, añadir -ed sin considerar la e final y eliminar esa e antes de añadir -d; conservé la consigna y yesterday para que se reconozca la formación del pasado y no se descarte por significado o categoría."
+          }
+        ],
+        "proposerVersion": "panel-proposer",
+        "available": true,
+        "unavailableReason": null
+      },
+      "localViolations": [],
+      "after": {
+        "level": "A2",
+        "topic": "Pasado simple",
+        "title": "Pasado simple",
+        "instructions": "Elige el pasado simple afirmativo de close.",
+        "exercise": "Nora ___ the window yesterday.",
+        "options": "- closed (correcta)\n- close\n- closeed\n- closd"
+      },
+      "afterQuality": {
+        "status": "PASS",
+        "objective": "Reconocer el pasado simple afirmativo de close, aplicando la terminación -d a un verbo regular que ya termina en e.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "El conjunto contrasta la forma base con errores esperables al formar el pasado: añadir -ed sin ajustar la e final o eliminarla indebidamente. La consigna fija el verbo y la oración aporta contexto pasado; elegir closed requiere reconocer su formación, sin una coincidencia literal que permita evitar ese objetivo."
+      },
+      "afterAlternative": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«Nora closed the window yesterday.» es correcta y natural: «closed» es el pasado simple afirmativo de «close». «Close» no cumple la consigna ni concuerda con «Nora» en presente; «closeed» y «closd» son formas mal escritas."
+      },
+      "automaticCyclePass": true,
+      "result": "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+      "finishedAt": "2026-10-09T22:53:39.635041Z"
+    },
+    {
+      "caseNumber": 10,
+      "id": "df000000000000000000000a",
+      "original": {
+        "id": "df000000000000000000000a",
+        "caseNumber": 10,
+        "slug": "past-useful",
+        "level": "A2",
+        "topic": "Pasado simple",
+        "title": "Pasado simple",
+        "instructions": "Elige el pasado simple afirmativo de close.",
+        "exercise": "Nora ___ the window yesterday.",
+        "options": [
+          "closes",
+          "closed",
+          "closing",
+          "close"
+        ],
+        "correct": "closed",
+        "expected": "PASS",
+        "allowedIssueKinds": [],
+        "expectationReason": "Contrasta pasado con presente, base y forma en ing."
+      },
+      "initial": {
+        "status": "PASS",
+        "objective": "Reconocer el pasado simple afirmativo del verbo regular close.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "Las opciones contrastan la forma pasada con el presente de tercera persona, la forma en -ing y la forma base, confusiones esperables para este objetivo. Yesterday fija el tiempo y Nora fija el sujeto; elegir closed requiere reconocer la terminación del pasado regular."
+      },
+      "initialStatusMatches": true,
+      "result": "CONTROL_PRESERVED",
+      "finishedAt": "2026-10-09T22:53:16.249677Z"
+    },
+    {
+      "caseNumber": 11,
+      "id": "df000000000000000000000b",
+      "original": {
+        "id": "df000000000000000000000b",
+        "caseNumber": 11,
+        "slug": "implausible-comparative",
+        "level": "A2",
+        "topic": "Comparativos",
+        "title": "Comparativos",
+        "instructions": "Completa con el comparativo de tall.",
+        "exercise": "Leo is ___ than his sister.",
+        "options": [
+          "taller",
+          "###",
+          "9+9",
+          "@@"
+        ],
+        "correct": "taller",
+        "expected": "FAIL",
+        "allowedIssueKinds": [
+          "IRRELEVANT_DISTRACTORS",
+          "IMPLAUSIBLE_DISTRACTORS"
+        ],
+        "expectationReason": "Los símbolos no representan confusiones lingüísticas de comparativo."
+      },
+      "initial": {
+        "status": "FAIL",
+        "objective": "Formar el comparativo de tall para completar una comparación con than.",
+        "introductory": false,
+        "issues": [
+          {
+            "kind": "IMPLAUSIBLE_DISTRACTORS",
+            "severity": "HIGH",
+            "labels": [
+              "###",
+              "9+9",
+              "@@"
+            ],
+            "reason": "Todos los distractores son símbolos o una expresión matemática: se descartan sin conocer el comparativo de tall porque taller es la única opción lingüística. Deben conservarse el adjetivo indicado y la comparación con than; falta contrastar formas que representen errores esperables al formar el comparativo.",
+            "misconception": "Confundir la forma base del adjetivo con su comparativo o aplicar incorrectamente la formación del comparativo de un adjetivo corto."
+          }
+        ],
+        "rationale": "El conjunto permite acertar sin practicar la formación de comparativos: ninguna opción incorrecta representa una confusión lingüística razonable para A2."
+      },
+      "initialStatusMatches": true,
+      "findings": [
+        {
+          "analyzer": "multiple-choice-quality",
+          "rule": "implausible-distractors",
+          "node": {
+            "target": "QUIZ",
+            "nodeId": "df000000000000000000000b",
+            "label": "Comparativos"
+          },
+          "severity": "HIGH",
+          "evidence": {
+            "examined": [
+              {
+                "label": "Objetivo pedagógico",
+                "text": "Formar el comparativo de tall para completar una comparación con than."
+              },
+              {
+                "label": "Nivel",
+                "text": "A2"
+              },
+              {
+                "label": "Consigna",
+                "text": "Completa con el comparativo de tall."
+              },
+              {
+                "label": "Ejercicio",
+                "text": "Leo is ___ than his sister."
+              },
+              {
+                "label": "Opciones",
+                "text": "- taller (correcta)\n- ###\n- 9+9\n- @@"
+              },
+              {
+                "label": "Confusión esperable",
+                "text": "Confundir la forma base del adjetivo con su comparativo o aplicar incorrectamente la formación del comparativo de un adjetivo corto."
+              }
+            ],
+            "observation": "Todos los distractores son símbolos o una expresión matemática: se descartan sin conocer el comparativo de tall porque taller es la única opción lingüística. Deben conservarse el adjetivo indicado y la comparación con than; falta contrastar formas que representen errores esperables al formar el comparativo.",
+            "relatedNodes": []
+          },
+          "resolution": "PANEL",
+          "cost": "PAID_MODEL",
+          "identity": {
+            "key": "multiple-choice-quality|implausible-distractors|df000000000000000000000b|### | 9+9 | @@",
+            "marker": "### | 9+9 | @@"
+          }
+        }
+      ],
+      "tasksDelivered": {
+        "batchId": "choice-correction-cycle-20261009-v2",
+        "level": "A2",
+        "knowledgeId": "synthetic-topic-11",
+        "quizId": "df000000000000000000000b",
+        "topicView": [
+          {
+            "statement": "Leo is ___ than his sister.",
+            "gaps": [
+              {
+                "index": 0,
+                "hint": null,
+                "acceptedAnswers": [
+                  "taller"
+                ],
+                "firstAnswer": "taller"
+              }
+            ],
+            "options": [
+              {
+                "label": "taller",
+                "correct": true
+              },
+              {
+                "label": "###",
+                "correct": false
+              },
+              {
+                "label": "9+9",
+                "correct": false
+              },
+              {
+                "label": "@@",
+                "correct": false
+              }
+            ],
+            "instructions": "Completa con el comparativo de tall.",
+            "translation": "",
+            "miniTheory": ""
+          }
+        ],
+        "briefs": [
+          {
+            "task": {
+              "id": "task-001",
+              "nodeTarget": "QUIZ",
+              "nodeId": "df000000000000000000000b",
+              "nodeLabel": "Comparativos",
+              "diagnosisKind": "MULTIPLE_CHOICE_VALIDITY",
+              "priority": 1,
+              "status": "PENDING",
+              "origin": {
+                "finding": {
+                  "analyzer": "multiple-choice-quality",
+                  "rule": "implausible-distractors",
+                  "node": {
+                    "target": "QUIZ",
+                    "nodeId": "df000000000000000000000b",
+                    "label": "Comparativos"
+                  },
+                  "severity": "HIGH",
+                  "evidence": {
+                    "examined": [
+                      {
+                        "label": "Objetivo pedagógico",
+                        "text": "Formar el comparativo de tall para completar una comparación con than."
+                      },
+                      {
+                        "label": "Nivel",
+                        "text": "A2"
+                      },
+                      {
+                        "label": "Consigna",
+                        "text": "Completa con el comparativo de tall."
+                      },
+                      {
+                        "label": "Ejercicio",
+                        "text": "Leo is ___ than his sister."
+                      },
+                      {
+                        "label": "Opciones",
+                        "text": "- taller (correcta)\n- ###\n- 9+9\n- @@"
+                      },
+                      {
+                        "label": "Confusión esperable",
+                        "text": "Confundir la forma base del adjetivo con su comparativo o aplicar incorrectamente la formación del comparativo de un adjetivo corto."
+                      }
+                    ],
+                    "observation": "Todos los distractores son símbolos o una expresión matemática: se descartan sin conocer el comparativo de tall porque taller es la única opción lingüística. Deben conservarse el adjetivo indicado y la comparación con than; falta contrastar formas que representen errores esperables al formar el comparativo.",
+                    "relatedNodes": []
+                  },
+                  "resolution": "PANEL",
+                  "cost": "PAID_MODEL",
+                  "identity": {
+                    "key": "multiple-choice-quality|implausible-distractors|df000000000000000000000b|### | 9+9 | @@",
+                    "marker": "### | 9+9 | @@"
+                  }
+                },
+                "cefrLevel": "A2",
+                "knowledgeId": "synthetic-topic-11",
+                "knowledgeLabel": "Comparativos",
+                "reachedQuizIds": [
+                  "df000000000000000000000b"
+                ],
+                "coveredFindings": []
+              }
+            },
+            "finding": {
+              "analyzer": "multiple-choice-quality",
+              "rule": "implausible-distractors",
+              "node": {
+                "target": "QUIZ",
+                "nodeId": "df000000000000000000000b",
+                "label": "Comparativos"
+              },
+              "severity": "HIGH",
+              "evidence": {
+                "examined": [
+                  {
+                    "label": "Objetivo pedagógico",
+                    "text": "Formar el comparativo de tall para completar una comparación con than."
+                  },
+                  {
+                    "label": "Nivel",
+                    "text": "A2"
+                  },
+                  {
+                    "label": "Consigna",
+                    "text": "Completa con el comparativo de tall."
+                  },
+                  {
+                    "label": "Ejercicio",
+                    "text": "Leo is ___ than his sister."
+                  },
+                  {
+                    "label": "Opciones",
+                    "text": "- taller (correcta)\n- ###\n- 9+9\n- @@"
+                  },
+                  {
+                    "label": "Confusión esperable",
+                    "text": "Confundir la forma base del adjetivo con su comparativo o aplicar incorrectamente la formación del comparativo de un adjetivo corto."
+                  }
+                ],
+                "observation": "Todos los distractores son símbolos o una expresión matemática: se descartan sin conocer el comparativo de tall porque taller es la única opción lingüística. Deben conservarse el adjetivo indicado y la comparación con than; falta contrastar formas que representen errores esperables al formar el comparativo.",
+                "relatedNodes": []
+              },
+              "resolution": "PANEL",
+              "cost": "PAID_MODEL",
+              "identity": {
+                "key": "multiple-choice-quality|implausible-distractors|df000000000000000000000b|### | 9+9 | @@",
+                "marker": "### | 9+9 | @@"
+              }
+            },
+            "coveredFindings": [],
+            "editScope": [
+              "OPTIONS",
+              "INSTRUCTIONS",
+              "STATEMENT",
+              "TRANSLATION",
+              "STORED_SENTENCE",
+              "AUDIO"
+            ],
+            "scopeDeclared": true,
+            "quizView": {
+              "statement": "Leo is ___ than his sister.",
+              "gaps": [
+                {
+                  "index": 0,
+                  "hint": null,
+                  "acceptedAnswers": [
+                    "taller"
+                  ],
+                  "firstAnswer": "taller"
+                }
+              ],
+              "options": [
+                {
+                  "label": "taller",
+                  "correct": true
+                },
+                {
+                  "label": "###",
+                  "correct": false
+                },
+                {
+                  "label": "9+9",
+                  "correct": false
+                },
+                {
+                  "label": "@@",
+                  "correct": false
+                }
+              ],
+              "instructions": "Completa con el comparativo de tall.",
+              "translation": "",
+              "miniTheory": ""
+            },
+            "reachedQuizViews": []
+          }
+        ],
+        "wordLights": null,
+        "conversion": null,
+        "attempt": 1,
+        "previousRejections": [],
+        "twoFixes": false
+      },
+      "proposal": {
+        "candidates": [
+          {
+            "kind": "WHOLE_EXERCISE",
+            "quiz": {
+              "id": "df000000000000000000000b",
+              "oidId": null,
+              "kind": "MULTIPLE_CHOICE",
+              "knowledgeId": null,
+              "title": null,
+              "instructions": null,
+              "translation": null,
+              "theoryId": null,
+              "topicName": null,
+              "form": {
+                "kind": "MULTIPLE_CHOICE",
+                "incidence": 1.0,
+                "label": "",
+                "name": "",
+                "sentenceParts": [
+                  {
+                    "kind": "TEXT",
+                    "text": "Leo is ",
+                    "options": null
+                  },
+                  {
+                    "kind": "CLOZE",
+                    "text": "",
+                    "options": null
+                  },
+                  {
+                    "kind": "TEXT",
+                    "text": " than his sister.",
+                    "options": null
+                  }
+                ],
+                "multipleChoice": {
+                  "selection": "SINGLE",
+                  "items": [
+                    {
+                      "id": "taller",
+                      "incidence": 1.0,
+                      "label": "taller"
+                    },
+                    {
+                      "id": "tall",
+                      "incidence": 0.0,
+                      "label": "tall"
+                    },
+                    {
+                      "id": "more tall",
+                      "incidence": 0.0,
+                      "label": "more tall"
+                    },
+                    {
+                      "id": "more taller",
+                      "incidence": 0.0,
+                      "label": "more taller"
+                    }
+                  ]
+                },
+                "unmodeledFields": null
+              },
+              "difficulty": 0.0,
+              "retries": 0.0,
+              "noScoreRetries": 0.0,
+              "code": null,
+              "audioUrl": null,
+              "imageUrl": null,
+              "answerAudioUrl": null,
+              "answerImageUrl": null,
+              "miniTheory": null,
+              "successMessage": null,
+              "sentences": null,
+              "unmodeledFields": null
+            },
+            "miniTheoryText": null,
+            "topicInstructions": null,
+            "rationale": "Reemplacé los símbolos por errores de formación del comparativo: usar la forma base tall, aplicar more a un adjetivo corto o duplicar la comparación con more taller; todas las opciones conservan tall y requieren conocer su comparativo, sin regalar la respuesta por ser la única opción lingüística."
+          }
+        ],
+        "proposerVersion": "panel-proposer",
+        "available": true,
+        "unavailableReason": null
+      },
+      "localViolations": [],
+      "after": {
+        "level": "A2",
+        "topic": "Comparativos",
+        "title": "Comparativos",
+        "instructions": "Completa con el comparativo de tall.",
+        "exercise": "Leo is ___ than his sister.",
+        "options": "- taller (correcta)\n- tall\n- more tall\n- more taller"
+      },
+      "afterQuality": {
+        "status": "PASS",
+        "objective": "Formar el comparativo de tall con el sufijo -er.",
+        "introductory": false,
+        "issues": [],
+        "rationale": "Los distractores representan errores esperables: usar el adjetivo sin modificar, aplicar more a un adjetivo corto y combinar more con -er. La consigna fija el adjetivo necesario, pero elegir exige reconocer cómo se forma su comparativo."
+      },
+      "afterAlternative": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«Taller» es el comparativo natural de «tall» y encaja con «than». «Tall» no expresa el comparativo, «more tall» suena forzado en esta oración y «more taller» duplica la marca comparativa."
+      },
+      "automaticCyclePass": true,
+      "result": "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+      "finishedAt": "2026-10-09T22:53:43.792484Z"
+    },
+    {
+      "caseNumber": 12,
+      "id": "df000000000000000000000c",
+      "original": {
+        "id": "df000000000000000000000c",
+        "caseNumber": 12,
+        "slug": "comparative-useful",
+        "level": "A2",
+        "topic": "Comparativos",
+        "title": "Comparativos",
+        "instructions": "Completa con el comparativo de tall.",
+        "exercise": "Leo is ___ than his sister.",
+        "options": [
+          "tall",
+          "more tall",
+          "tallest",
+          "taller"
+        ],
+        "correct": "taller",
+        "expected": "PASS",
+        "allowedIssueKinds": [],
+        "expectationReason": "Grado positivo, doble formación y superlativo son confusiones pertinentes."
+      },
+      "initial": {
+        "status": "PASS",
+        "objective": "Formar el comparativo de superioridad de tall en una oración con than.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "Los distractores representan errores esperables: usar el adjetivo sin modificar, aplicar more a un adjetivo corto o confundir comparativo con superlativo. La consigna fija el adjetivo y las opciones permiten practicar su forma comparativa sin ofrecer una coincidencia literal con la clave."
+      },
+      "initialStatusMatches": true,
+      "result": "CONTROL_PRESERVED",
+      "finishedAt": "2026-10-09T22:53:24.038658Z"
+    },
+    {
+      "caseNumber": 13,
+      "id": "df000000000000000000000d",
+      "original": {
+        "id": "df000000000000000000000d",
+        "caseNumber": 13,
+        "slug": "cue-plural",
+        "level": "A1",
+        "topic": "Plurales irregulares",
+        "title": "Plurales irregulares",
+        "instructions": "Forma el plural irregular de child; practica cómo cambia esa palabra.",
+        "exercise": "One child; two ___.",
+        "options": [
+          "children",
+          "dogs",
+          "houses",
+          "cars"
+        ],
+        "correct": "children",
+        "expected": "FAIL",
+        "allowedIssueKinds": [
+          "IRRELEVANT_DISTRACTORS",
+          "IMPLAUSIBLE_DISTRACTORS"
+        ],
+        "expectationReason": "Cambiar el sustantivo no prueba cómo se forma su plural irregular."
+      },
+      "initial": {
+        "status": "FAIL",
+        "objective": "Formar el plural irregular de child.",
+        "introductory": true,
+        "issues": [
+          {
+            "kind": "IRRELEVANT_DISTRACTORS",
+            "severity": "HIGH",
+            "labels": [
+              "dogs",
+              "houses",
+              "cars"
+            ],
+            "reason": "Todos los distractores son plurales de otros sustantivos y cambian el significado ya fijado por child. Permiten elegir children reconociendo qué opción se refiere a niños, sin practicar cómo se forma su plural irregular. Deben conservarse child y el contraste One/two; falta contrastar formas de plural del mismo sustantivo.",
+            "misconception": "Aplicar la terminación regular -s a child o mantener la forma singular después de two."
+          }
+        ],
+        "rationale": "La práctica es introductoria, pero el conjunto evita casi por completo el objetivo: las opciones equivocadas cambian el sustantivo en lugar de representar errores esperables al formar su plural."
+      },
+      "initialStatusMatches": true,
+      "findings": [
+        {
+          "analyzer": "multiple-choice-quality",
+          "rule": "irrelevant-distractors",
+          "node": {
+            "target": "QUIZ",
+            "nodeId": "df000000000000000000000d",
+            "label": "Plurales irregulares"
+          },
+          "severity": "HIGH",
+          "evidence": {
+            "examined": [
+              {
+                "label": "Objetivo pedagógico",
+                "text": "Formar el plural irregular de child."
+              },
+              {
+                "label": "Nivel",
+                "text": "A1"
+              },
+              {
+                "label": "Consigna",
+                "text": "Forma el plural irregular de child; practica cómo cambia esa palabra."
+              },
+              {
+                "label": "Ejercicio",
+                "text": "One child; two ___ ."
+              },
+              {
+                "label": "Opciones",
+                "text": "- children (correcta)\n- dogs\n- houses\n- cars"
+              },
+              {
+                "label": "Confusión esperable",
+                "text": "Aplicar la terminación regular -s a child o mantener la forma singular después de two."
+              }
+            ],
+            "observation": "Todos los distractores son plurales de otros sustantivos y cambian el significado ya fijado por child. Permiten elegir children reconociendo qué opción se refiere a niños, sin practicar cómo se forma su plural irregular. Deben conservarse child y el contraste One/two; falta contrastar formas de plural del mismo sustantivo.",
+            "relatedNodes": []
+          },
+          "resolution": "PANEL",
+          "cost": "PAID_MODEL",
+          "identity": {
+            "key": "multiple-choice-quality|irrelevant-distractors|df000000000000000000000d|dogs | houses | cars",
+            "marker": "dogs | houses | cars"
+          }
+        }
+      ],
+      "tasksDelivered": {
+        "batchId": "choice-correction-cycle-20261009-v2",
+        "level": "A1",
+        "knowledgeId": "synthetic-topic-13",
+        "quizId": "df000000000000000000000d",
+        "topicView": [
+          {
+            "statement": "One child; two ___ .",
+            "gaps": [
+              {
+                "index": 0,
+                "hint": null,
+                "acceptedAnswers": [
+                  "children"
+                ],
+                "firstAnswer": "children"
+              }
+            ],
+            "options": [
+              {
+                "label": "children",
+                "correct": true
+              },
+              {
+                "label": "dogs",
+                "correct": false
+              },
+              {
+                "label": "houses",
+                "correct": false
+              },
+              {
+                "label": "cars",
+                "correct": false
+              }
+            ],
+            "instructions": "Forma el plural irregular de child; practica cómo cambia esa palabra.",
+            "translation": "",
+            "miniTheory": ""
+          }
+        ],
+        "briefs": [
+          {
+            "task": {
+              "id": "task-001",
+              "nodeTarget": "QUIZ",
+              "nodeId": "df000000000000000000000d",
+              "nodeLabel": "Plurales irregulares",
+              "diagnosisKind": "MULTIPLE_CHOICE_VALIDITY",
+              "priority": 1,
+              "status": "PENDING",
+              "origin": {
+                "finding": {
+                  "analyzer": "multiple-choice-quality",
+                  "rule": "irrelevant-distractors",
+                  "node": {
+                    "target": "QUIZ",
+                    "nodeId": "df000000000000000000000d",
+                    "label": "Plurales irregulares"
+                  },
+                  "severity": "HIGH",
+                  "evidence": {
+                    "examined": [
+                      {
+                        "label": "Objetivo pedagógico",
+                        "text": "Formar el plural irregular de child."
+                      },
+                      {
+                        "label": "Nivel",
+                        "text": "A1"
+                      },
+                      {
+                        "label": "Consigna",
+                        "text": "Forma el plural irregular de child; practica cómo cambia esa palabra."
+                      },
+                      {
+                        "label": "Ejercicio",
+                        "text": "One child; two ___ ."
+                      },
+                      {
+                        "label": "Opciones",
+                        "text": "- children (correcta)\n- dogs\n- houses\n- cars"
+                      },
+                      {
+                        "label": "Confusión esperable",
+                        "text": "Aplicar la terminación regular -s a child o mantener la forma singular después de two."
+                      }
+                    ],
+                    "observation": "Todos los distractores son plurales de otros sustantivos y cambian el significado ya fijado por child. Permiten elegir children reconociendo qué opción se refiere a niños, sin practicar cómo se forma su plural irregular. Deben conservarse child y el contraste One/two; falta contrastar formas de plural del mismo sustantivo.",
+                    "relatedNodes": []
+                  },
+                  "resolution": "PANEL",
+                  "cost": "PAID_MODEL",
+                  "identity": {
+                    "key": "multiple-choice-quality|irrelevant-distractors|df000000000000000000000d|dogs | houses | cars",
+                    "marker": "dogs | houses | cars"
+                  }
+                },
+                "cefrLevel": "A1",
+                "knowledgeId": "synthetic-topic-13",
+                "knowledgeLabel": "Plurales irregulares",
+                "reachedQuizIds": [
+                  "df000000000000000000000d"
+                ],
+                "coveredFindings": []
+              }
+            },
+            "finding": {
+              "analyzer": "multiple-choice-quality",
+              "rule": "irrelevant-distractors",
+              "node": {
+                "target": "QUIZ",
+                "nodeId": "df000000000000000000000d",
+                "label": "Plurales irregulares"
+              },
+              "severity": "HIGH",
+              "evidence": {
+                "examined": [
+                  {
+                    "label": "Objetivo pedagógico",
+                    "text": "Formar el plural irregular de child."
+                  },
+                  {
+                    "label": "Nivel",
+                    "text": "A1"
+                  },
+                  {
+                    "label": "Consigna",
+                    "text": "Forma el plural irregular de child; practica cómo cambia esa palabra."
+                  },
+                  {
+                    "label": "Ejercicio",
+                    "text": "One child; two ___ ."
+                  },
+                  {
+                    "label": "Opciones",
+                    "text": "- children (correcta)\n- dogs\n- houses\n- cars"
+                  },
+                  {
+                    "label": "Confusión esperable",
+                    "text": "Aplicar la terminación regular -s a child o mantener la forma singular después de two."
+                  }
+                ],
+                "observation": "Todos los distractores son plurales de otros sustantivos y cambian el significado ya fijado por child. Permiten elegir children reconociendo qué opción se refiere a niños, sin practicar cómo se forma su plural irregular. Deben conservarse child y el contraste One/two; falta contrastar formas de plural del mismo sustantivo.",
+                "relatedNodes": []
+              },
+              "resolution": "PANEL",
+              "cost": "PAID_MODEL",
+              "identity": {
+                "key": "multiple-choice-quality|irrelevant-distractors|df000000000000000000000d|dogs | houses | cars",
+                "marker": "dogs | houses | cars"
+              }
+            },
+            "coveredFindings": [],
+            "editScope": [
+              "OPTIONS",
+              "INSTRUCTIONS",
+              "STATEMENT",
+              "TRANSLATION",
+              "STORED_SENTENCE",
+              "AUDIO"
+            ],
+            "scopeDeclared": true,
+            "quizView": {
+              "statement": "One child; two ___ .",
+              "gaps": [
+                {
+                  "index": 0,
+                  "hint": null,
+                  "acceptedAnswers": [
+                    "children"
+                  ],
+                  "firstAnswer": "children"
+                }
+              ],
+              "options": [
+                {
+                  "label": "children",
+                  "correct": true
+                },
+                {
+                  "label": "dogs",
+                  "correct": false
+                },
+                {
+                  "label": "houses",
+                  "correct": false
+                },
+                {
+                  "label": "cars",
+                  "correct": false
+                }
+              ],
+              "instructions": "Forma el plural irregular de child; practica cómo cambia esa palabra.",
+              "translation": "",
+              "miniTheory": ""
+            },
+            "reachedQuizViews": []
+          }
+        ],
+        "wordLights": null,
+        "conversion": null,
+        "attempt": 1,
+        "previousRejections": [],
+        "twoFixes": false
+      },
+      "proposal": {
+        "candidates": [
+          {
+            "kind": "WHOLE_EXERCISE",
+            "quiz": {
+              "id": "df000000000000000000000d",
+              "oidId": null,
+              "kind": "MULTIPLE_CHOICE",
+              "knowledgeId": null,
+              "title": null,
+              "instructions": null,
+              "translation": null,
+              "theoryId": null,
+              "topicName": null,
+              "form": {
+                "kind": "MULTIPLE_CHOICE",
+                "incidence": 1.0,
+                "label": "",
+                "name": "",
+                "sentenceParts": [
+                  {
+                    "kind": "TEXT",
+                    "text": "One child; two ",
+                    "options": null
+                  },
+                  {
+                    "kind": "CLOZE",
+                    "text": "",
+                    "options": null
+                  },
+                  {
+                    "kind": "TEXT",
+                    "text": " .",
+                    "options": null
+                  }
+                ],
+                "multipleChoice": {
+                  "selection": "SINGLE",
+                  "items": [
+                    {
+                      "id": "children",
+                      "incidence": 1.0,
+                      "label": "children"
+                    },
+                    {
+                      "id": "childs",
+                      "incidence": 0.0,
+                      "label": "childs"
+                    },
+                    {
+                      "id": "child",
+                      "incidence": 0.0,
+                      "label": "child"
+                    },
+                    {
+                      "id": "childrens",
+                      "incidence": 0.0,
+                      "label": "childrens"
+                    }
+                  ]
+                },
+                "unmodeledFields": null
+              },
+              "difficulty": 0.0,
+              "retries": 0.0,
+              "noScoreRetries": 0.0,
+              "code": null,
+              "audioUrl": null,
+              "imageUrl": null,
+              "answerAudioUrl": null,
+              "answerImageUrl": null,
+              "miniTheory": null,
+              "successMessage": null,
+              "sentences": null,
+              "unmodeledFields": null
+            },
+            "miniTheoryText": null,
+            "topicInstructions": null,
+            "rationale": "Reemplacé los distractores por formas del mismo sustantivo: childs aplica el plural regular, child mantiene el singular y childrens añade -s al plural irregular; conservé child y el contraste One/two para practicar la formación del plural sin regalar la respuesta por diferencias de significado."
+          }
+        ],
+        "proposerVersion": "panel-proposer",
+        "available": true,
+        "unavailableReason": null
+      },
+      "localViolations": [],
+      "after": {
+        "level": "A1",
+        "topic": "Plurales irregulares",
+        "title": "Plurales irregulares",
+        "instructions": "Forma el plural irregular de child; practica cómo cambia esa palabra.",
+        "exercise": "One child; two ___ .",
+        "options": "- children (correcta)\n- childs\n- child\n- childrens"
+      },
+      "afterQuality": {
+        "status": "PASS",
+        "objective": "Formar el plural irregular de child: children.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "El conjunto practica el cambio pedido: childs representa aplicar la terminación regular, child conservar el singular y childrens añadir una terminación regular al plural irregular. Son confusiones esperables en A1. La consigna fija la palabra y two establece el plural, sin permitir elegir por coincidencia literal."
+      },
+      "afterAlternative": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«Children» es el plural irregular de «child» y encaja con «two». «Childs» y «childrens» no son plurales correctos; «child» es singular y no cumple la consigna."
+      },
+      "automaticCyclePass": true,
+      "result": "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+      "finishedAt": "2026-10-09T22:53:59.378987Z"
+    },
+    {
+      "caseNumber": 14,
+      "id": "df000000000000000000000e",
+      "original": {
+        "id": "df000000000000000000000e",
+        "caseNumber": 14,
+        "slug": "irrelevant-perfect",
+        "level": "B1",
+        "topic": "Presente perfecto",
+        "title": "Presente perfecto",
+        "instructions": "Elige have o has más participio para formar presente perfecto.",
+        "exercise": "We ___ the report.",
+        "options": [
+          "have finished",
+          "seventeen",
+          "Japan",
+          "blue"
+        ],
+        "correct": "have finished",
+        "expected": "FAIL",
+        "allowedIssueKinds": [
+          "IRRELEVANT_DISTRACTORS",
+          "IMPLAUSIBLE_DISTRACTORS"
+        ],
+        "expectationReason": "Las incorrectas no representan ninguna alternativa de auxiliar o participio."
+      },
+      "initial": {
+        "status": "FAIL",
+        "objective": "Formar el presente perfecto con have o has más participio, concordando el auxiliar con el sujeto We.",
+        "introductory": false,
+        "issues": [
+          {
+            "kind": "IMPLAUSIBLE_DISTRACTORS",
+            "severity": "HIGH",
+            "labels": [
+              "seventeen",
+              "Japan",
+              "blue"
+            ],
+            "reason": "Los distractores son un número, un nombre de país y un color; ninguno representa un intento de construir auxiliar más participio. El conjunto permite elegir la única opción con estructura verbal sin aplicar la concordancia ni reconocer el participio. Se deben conservar el sujeto We y el enunciado; falta contrastar errores esperables en la formación del presente perfecto.",
+            "misconception": "Usar has con We o emplear una forma verbal distinta del participio después de have."
+          }
+        ],
+        "rationale": "El objetivo está explícito, pero todos los distractores son descartables sin practicar la formación del presente perfecto."
+      },
+      "initialStatusMatches": true,
+      "findings": [
+        {
+          "analyzer": "multiple-choice-quality",
+          "rule": "implausible-distractors",
+          "node": {
+            "target": "QUIZ",
+            "nodeId": "df000000000000000000000e",
+            "label": "Presente perfecto"
+          },
+          "severity": "HIGH",
+          "evidence": {
+            "examined": [
+              {
+                "label": "Objetivo pedagógico",
+                "text": "Formar el presente perfecto con have o has más participio, concordando el auxiliar con el sujeto We."
+              },
+              {
+                "label": "Nivel",
+                "text": "B1"
+              },
+              {
+                "label": "Consigna",
+                "text": "Elige have o has más participio para formar presente perfecto."
+              },
+              {
+                "label": "Ejercicio",
+                "text": "We ___ the report."
+              },
+              {
+                "label": "Opciones",
+                "text": "- have finished (correcta)\n- seventeen\n- Japan\n- blue"
+              },
+              {
+                "label": "Confusión esperable",
+                "text": "Usar has con We o emplear una forma verbal distinta del participio después de have."
+              }
+            ],
+            "observation": "Los distractores son un número, un nombre de país y un color; ninguno representa un intento de construir auxiliar más participio. El conjunto permite elegir la única opción con estructura verbal sin aplicar la concordancia ni reconocer el participio. Se deben conservar el sujeto We y el enunciado; falta contrastar errores esperables en la formación del presente perfecto.",
+            "relatedNodes": []
+          },
+          "resolution": "PANEL",
+          "cost": "PAID_MODEL",
+          "identity": {
+            "key": "multiple-choice-quality|implausible-distractors|df000000000000000000000e|seventeen | Japan | blue",
+            "marker": "seventeen | Japan | blue"
+          }
+        }
+      ],
+      "tasksDelivered": {
+        "batchId": "choice-correction-cycle-20261009-v2",
+        "level": "B1",
+        "knowledgeId": "synthetic-topic-14",
+        "quizId": "df000000000000000000000e",
+        "topicView": [
+          {
+            "statement": "We ___ the report.",
+            "gaps": [
+              {
+                "index": 0,
+                "hint": null,
+                "acceptedAnswers": [
+                  "have finished"
+                ],
+                "firstAnswer": "have finished"
+              }
+            ],
+            "options": [
+              {
+                "label": "have finished",
+                "correct": true
+              },
+              {
+                "label": "seventeen",
+                "correct": false
+              },
+              {
+                "label": "Japan",
+                "correct": false
+              },
+              {
+                "label": "blue",
+                "correct": false
+              }
+            ],
+            "instructions": "Elige have o has más participio para formar presente perfecto.",
+            "translation": "",
+            "miniTheory": ""
+          }
+        ],
+        "briefs": [
+          {
+            "task": {
+              "id": "task-001",
+              "nodeTarget": "QUIZ",
+              "nodeId": "df000000000000000000000e",
+              "nodeLabel": "Presente perfecto",
+              "diagnosisKind": "MULTIPLE_CHOICE_VALIDITY",
+              "priority": 1,
+              "status": "PENDING",
+              "origin": {
+                "finding": {
+                  "analyzer": "multiple-choice-quality",
+                  "rule": "implausible-distractors",
+                  "node": {
+                    "target": "QUIZ",
+                    "nodeId": "df000000000000000000000e",
+                    "label": "Presente perfecto"
+                  },
+                  "severity": "HIGH",
+                  "evidence": {
+                    "examined": [
+                      {
+                        "label": "Objetivo pedagógico",
+                        "text": "Formar el presente perfecto con have o has más participio, concordando el auxiliar con el sujeto We."
+                      },
+                      {
+                        "label": "Nivel",
+                        "text": "B1"
+                      },
+                      {
+                        "label": "Consigna",
+                        "text": "Elige have o has más participio para formar presente perfecto."
+                      },
+                      {
+                        "label": "Ejercicio",
+                        "text": "We ___ the report."
+                      },
+                      {
+                        "label": "Opciones",
+                        "text": "- have finished (correcta)\n- seventeen\n- Japan\n- blue"
+                      },
+                      {
+                        "label": "Confusión esperable",
+                        "text": "Usar has con We o emplear una forma verbal distinta del participio después de have."
+                      }
+                    ],
+                    "observation": "Los distractores son un número, un nombre de país y un color; ninguno representa un intento de construir auxiliar más participio. El conjunto permite elegir la única opción con estructura verbal sin aplicar la concordancia ni reconocer el participio. Se deben conservar el sujeto We y el enunciado; falta contrastar errores esperables en la formación del presente perfecto.",
+                    "relatedNodes": []
+                  },
+                  "resolution": "PANEL",
+                  "cost": "PAID_MODEL",
+                  "identity": {
+                    "key": "multiple-choice-quality|implausible-distractors|df000000000000000000000e|seventeen | Japan | blue",
+                    "marker": "seventeen | Japan | blue"
+                  }
+                },
+                "cefrLevel": "B1",
+                "knowledgeId": "synthetic-topic-14",
+                "knowledgeLabel": "Presente perfecto",
+                "reachedQuizIds": [
+                  "df000000000000000000000e"
+                ],
+                "coveredFindings": []
+              }
+            },
+            "finding": {
+              "analyzer": "multiple-choice-quality",
+              "rule": "implausible-distractors",
+              "node": {
+                "target": "QUIZ",
+                "nodeId": "df000000000000000000000e",
+                "label": "Presente perfecto"
+              },
+              "severity": "HIGH",
+              "evidence": {
+                "examined": [
+                  {
+                    "label": "Objetivo pedagógico",
+                    "text": "Formar el presente perfecto con have o has más participio, concordando el auxiliar con el sujeto We."
+                  },
+                  {
+                    "label": "Nivel",
+                    "text": "B1"
+                  },
+                  {
+                    "label": "Consigna",
+                    "text": "Elige have o has más participio para formar presente perfecto."
+                  },
+                  {
+                    "label": "Ejercicio",
+                    "text": "We ___ the report."
+                  },
+                  {
+                    "label": "Opciones",
+                    "text": "- have finished (correcta)\n- seventeen\n- Japan\n- blue"
+                  },
+                  {
+                    "label": "Confusión esperable",
+                    "text": "Usar has con We o emplear una forma verbal distinta del participio después de have."
+                  }
+                ],
+                "observation": "Los distractores son un número, un nombre de país y un color; ninguno representa un intento de construir auxiliar más participio. El conjunto permite elegir la única opción con estructura verbal sin aplicar la concordancia ni reconocer el participio. Se deben conservar el sujeto We y el enunciado; falta contrastar errores esperables en la formación del presente perfecto.",
+                "relatedNodes": []
+              },
+              "resolution": "PANEL",
+              "cost": "PAID_MODEL",
+              "identity": {
+                "key": "multiple-choice-quality|implausible-distractors|df000000000000000000000e|seventeen | Japan | blue",
+                "marker": "seventeen | Japan | blue"
+              }
+            },
+            "coveredFindings": [],
+            "editScope": [
+              "OPTIONS",
+              "INSTRUCTIONS",
+              "STATEMENT",
+              "TRANSLATION",
+              "STORED_SENTENCE",
+              "AUDIO"
+            ],
+            "scopeDeclared": true,
+            "quizView": {
+              "statement": "We ___ the report.",
+              "gaps": [
+                {
+                  "index": 0,
+                  "hint": null,
+                  "acceptedAnswers": [
+                    "have finished"
+                  ],
+                  "firstAnswer": "have finished"
+                }
+              ],
+              "options": [
+                {
+                  "label": "have finished",
+                  "correct": true
+                },
+                {
+                  "label": "seventeen",
+                  "correct": false
+                },
+                {
+                  "label": "Japan",
+                  "correct": false
+                },
+                {
+                  "label": "blue",
+                  "correct": false
+                }
+              ],
+              "instructions": "Elige have o has más participio para formar presente perfecto.",
+              "translation": "",
+              "miniTheory": ""
+            },
+            "reachedQuizViews": []
+          }
+        ],
+        "wordLights": null,
+        "conversion": null,
+        "attempt": 1,
+        "previousRejections": [],
+        "twoFixes": false
+      },
+      "proposal": {
+        "candidates": [
+          {
+            "kind": "WHOLE_EXERCISE",
+            "quiz": {
+              "id": "df000000000000000000000e",
+              "oidId": null,
+              "kind": "MULTIPLE_CHOICE",
+              "knowledgeId": null,
+              "title": null,
+              "instructions": null,
+              "translation": null,
+              "theoryId": null,
+              "topicName": null,
+              "form": {
+                "kind": "MULTIPLE_CHOICE",
+                "incidence": 1.0,
+                "label": "",
+                "name": "",
+                "sentenceParts": [
+                  {
+                    "kind": "TEXT",
+                    "text": "We ",
+                    "options": null
+                  },
+                  {
+                    "kind": "CLOZE",
+                    "text": "",
+                    "options": null
+                  },
+                  {
+                    "kind": "TEXT",
+                    "text": " the report.",
+                    "options": null
+                  }
+                ],
+                "multipleChoice": {
+                  "selection": "SINGLE",
+                  "items": [
+                    {
+                      "id": "have finished",
+                      "incidence": 1.0,
+                      "label": "have finished"
+                    },
+                    {
+                      "id": "has finished",
+                      "incidence": 0.0,
+                      "label": "has finished"
+                    },
+                    {
+                      "id": "have finish",
+                      "incidence": 0.0,
+                      "label": "have finish"
+                    },
+                    {
+                      "id": "have finishing",
+                      "incidence": 0.0,
+                      "label": "have finishing"
+                    }
+                  ]
+                },
+                "unmodeledFields": null
+              },
+              "difficulty": 0.0,
+              "retries": 0.0,
+              "noScoreRetries": 0.0,
+              "code": null,
+              "audioUrl": null,
+              "imageUrl": null,
+              "answerAudioUrl": null,
+              "answerImageUrl": null,
+              "miniTheory": null,
+              "successMessage": null,
+              "sentences": null,
+              "unmodeledFields": null
+            },
+            "miniTheoryText": null,
+            "topicInstructions": null,
+            "rationale": "Reemplacé los distractores de relleno por errores de concordancia (has con We) y de formación del participio (finish y finishing después de have); todas las opciones contienen formas del mismo verbo, por lo que hay que aplicar la estructura del presente perfecto para elegir."
+          }
+        ],
+        "proposerVersion": "panel-proposer",
+        "available": true,
+        "unavailableReason": null
+      },
+      "localViolations": [],
+      "after": {
+        "level": "B1",
+        "topic": "Presente perfecto",
+        "title": "Presente perfecto",
+        "instructions": "Elige have o has más participio para formar presente perfecto.",
+        "exercise": "We ___ the report.",
+        "options": "- have finished (correcta)\n- has finished\n- have finish\n- have finishing"
+      },
+      "afterQuality": {
+        "status": "PASS",
+        "objective": "Formar el presente perfecto con have o has según el sujeto y el participio pasado del verbo.",
+        "introductory": false,
+        "issues": [],
+        "rationale": "Los distractores representan errores esperables: usar has con we, emplear el infinitivo finish o confundir el participio pasado con finishing. El conjunto permite practicar tanto la concordancia del auxiliar como la forma verbal requerida, sin ofrecer una coincidencia literal que evite aplicar esas reglas."
+      },
+      "afterAlternative": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«We have finished the report.» forma correctamente el presente perfecto. «Has finished» no concuerda con «We», y «have finish» y «have finishing» no usan el participio requerido."
+      },
+      "automaticCyclePass": true,
+      "result": "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+      "finishedAt": "2026-10-09T22:53:59.391139Z"
+    },
+    {
+      "caseNumber": 15,
+      "id": "df000000000000000000000f",
+      "original": {
+        "id": "df000000000000000000000f",
+        "caseNumber": 15,
+        "slug": "intro-she",
+        "level": "A1",
+        "topic": "Reconocer pronombres",
+        "title": "Reconocer pronombres",
+        "instructions": "Práctica introductoria: reconoce la opción que contiene el pronombre she.",
+        "exercise": "___ thirsty? (she)",
+        "options": [
+          "Am I",
+          "Are we",
+          "Is she",
+          "Is it"
+        ],
+        "correct": "Is she",
+        "expected": "FAIL",
+        "allowedIssueKinds": [
+          "ANSWER_CUE"
+        ],
+        "expectationReason": "Copiar literalmente she ya dado no demuestra comprender el pronombre aunque se presente como introductorio."
+      },
+      "initial": {
+        "status": "FAIL",
+        "objective": "Reconocer la opción que contiene el pronombre she.",
+        "introductory": true,
+        "issues": [
+          {
+            "kind": "ANSWER_CUE",
+            "severity": "HIGH",
+            "labels": [
+              "Am I",
+              "Are we",
+              "Is she",
+              "Is it"
+            ],
+            "reason": "Sólo Is she contiene la palabra she, ya escrita en la consigna y en la pista. El conjunto permite acertar por coincidencia literal sin reconocer el significado del pronombre. La pista fija el sujeto y puede conservarse si se reformula el objetivo; para practicar reconocimiento de significado falta una referencia visible en español que deba relacionarse con el pronombre inglés.",
+            "misconception": "Confundir she con otros pronombres personales al relacionar su significado con el sujeto referido."
+          }
+        ],
+        "rationale": "Aunque la práctica es introductoria, seleccionar la única opción que repite she sólo exige coincidencia visual y evita casi por completo el reconocimiento lingüístico."
+      },
+      "initialStatusMatches": true,
+      "findings": [
+        {
+          "analyzer": "multiple-choice-quality",
+          "rule": "answer-cue",
+          "node": {
+            "target": "QUIZ",
+            "nodeId": "df000000000000000000000f",
+            "label": "Reconocer pronombres"
+          },
+          "severity": "HIGH",
+          "evidence": {
+            "examined": [
+              {
+                "label": "Objetivo pedagógico",
+                "text": "Reconocer la opción que contiene el pronombre she."
+              },
+              {
+                "label": "Nivel",
+                "text": "A1"
+              },
+              {
+                "label": "Consigna",
+                "text": "Práctica introductoria: reconoce la opción que contiene el pronombre she."
+              },
+              {
+                "label": "Ejercicio",
+                "text": "___ thirsty? (she)"
+              },
+              {
+                "label": "Opciones",
+                "text": "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+              },
+              {
+                "label": "Confusión esperable",
+                "text": "Confundir she con otros pronombres personales al relacionar su significado con el sujeto referido."
+              }
+            ],
+            "observation": "Sólo Is she contiene la palabra she, ya escrita en la consigna y en la pista. El conjunto permite acertar por coincidencia literal sin reconocer el significado del pronombre. La pista fija el sujeto y puede conservarse si se reformula el objetivo; para practicar reconocimiento de significado falta una referencia visible en español que deba relacionarse con el pronombre inglés.",
+            "relatedNodes": []
+          },
+          "resolution": "PANEL",
+          "cost": "PAID_MODEL",
+          "identity": {
+            "key": "multiple-choice-quality|answer-cue|df000000000000000000000f|Am I | Are we | Is she | Is it",
+            "marker": "Am I | Are we | Is she | Is it"
+          }
+        }
+      ],
+      "tasksDelivered": {
+        "batchId": "choice-correction-cycle-20261009-v2",
+        "level": "A1",
+        "knowledgeId": "synthetic-topic-15",
+        "quizId": "df000000000000000000000f",
+        "topicView": [
+          {
+            "statement": "___ thirsty? (she)",
+            "gaps": [
+              {
+                "index": 0,
+                "hint": "(she)",
+                "acceptedAnswers": [
+                  "Is she"
+                ],
+                "firstAnswer": "Is she"
+              }
+            ],
+            "options": [
+              {
+                "label": "Am I",
+                "correct": false
+              },
+              {
+                "label": "Are we",
+                "correct": false
+              },
+              {
+                "label": "Is she",
+                "correct": true
+              },
+              {
+                "label": "Is it",
+                "correct": false
+              }
+            ],
+            "instructions": "Práctica introductoria: reconoce la opción que contiene el pronombre she.",
+            "translation": "",
+            "miniTheory": ""
+          }
+        ],
+        "briefs": [
+          {
+            "task": {
+              "id": "task-001",
+              "nodeTarget": "QUIZ",
+              "nodeId": "df000000000000000000000f",
+              "nodeLabel": "Reconocer pronombres",
+              "diagnosisKind": "MULTIPLE_CHOICE_VALIDITY",
+              "priority": 1,
+              "status": "PENDING",
+              "origin": {
+                "finding": {
+                  "analyzer": "multiple-choice-quality",
+                  "rule": "answer-cue",
+                  "node": {
+                    "target": "QUIZ",
+                    "nodeId": "df000000000000000000000f",
+                    "label": "Reconocer pronombres"
+                  },
+                  "severity": "HIGH",
+                  "evidence": {
+                    "examined": [
+                      {
+                        "label": "Objetivo pedagógico",
+                        "text": "Reconocer la opción que contiene el pronombre she."
+                      },
+                      {
+                        "label": "Nivel",
+                        "text": "A1"
+                      },
+                      {
+                        "label": "Consigna",
+                        "text": "Práctica introductoria: reconoce la opción que contiene el pronombre she."
+                      },
+                      {
+                        "label": "Ejercicio",
+                        "text": "___ thirsty? (she)"
+                      },
+                      {
+                        "label": "Opciones",
+                        "text": "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+                      },
+                      {
+                        "label": "Confusión esperable",
+                        "text": "Confundir she con otros pronombres personales al relacionar su significado con el sujeto referido."
+                      }
+                    ],
+                    "observation": "Sólo Is she contiene la palabra she, ya escrita en la consigna y en la pista. El conjunto permite acertar por coincidencia literal sin reconocer el significado del pronombre. La pista fija el sujeto y puede conservarse si se reformula el objetivo; para practicar reconocimiento de significado falta una referencia visible en español que deba relacionarse con el pronombre inglés.",
+                    "relatedNodes": []
+                  },
+                  "resolution": "PANEL",
+                  "cost": "PAID_MODEL",
+                  "identity": {
+                    "key": "multiple-choice-quality|answer-cue|df000000000000000000000f|Am I | Are we | Is she | Is it",
+                    "marker": "Am I | Are we | Is she | Is it"
+                  }
+                },
+                "cefrLevel": "A1",
+                "knowledgeId": "synthetic-topic-15",
+                "knowledgeLabel": "Reconocer pronombres",
+                "reachedQuizIds": [
+                  "df000000000000000000000f"
+                ],
+                "coveredFindings": []
+              }
+            },
+            "finding": {
+              "analyzer": "multiple-choice-quality",
+              "rule": "answer-cue",
+              "node": {
+                "target": "QUIZ",
+                "nodeId": "df000000000000000000000f",
+                "label": "Reconocer pronombres"
+              },
+              "severity": "HIGH",
+              "evidence": {
+                "examined": [
+                  {
+                    "label": "Objetivo pedagógico",
+                    "text": "Reconocer la opción que contiene el pronombre she."
+                  },
+                  {
+                    "label": "Nivel",
+                    "text": "A1"
+                  },
+                  {
+                    "label": "Consigna",
+                    "text": "Práctica introductoria: reconoce la opción que contiene el pronombre she."
+                  },
+                  {
+                    "label": "Ejercicio",
+                    "text": "___ thirsty? (she)"
+                  },
+                  {
+                    "label": "Opciones",
+                    "text": "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+                  },
+                  {
+                    "label": "Confusión esperable",
+                    "text": "Confundir she con otros pronombres personales al relacionar su significado con el sujeto referido."
+                  }
+                ],
+                "observation": "Sólo Is she contiene la palabra she, ya escrita en la consigna y en la pista. El conjunto permite acertar por coincidencia literal sin reconocer el significado del pronombre. La pista fija el sujeto y puede conservarse si se reformula el objetivo; para practicar reconocimiento de significado falta una referencia visible en español que deba relacionarse con el pronombre inglés.",
+                "relatedNodes": []
+              },
+              "resolution": "PANEL",
+              "cost": "PAID_MODEL",
+              "identity": {
+                "key": "multiple-choice-quality|answer-cue|df000000000000000000000f|Am I | Are we | Is she | Is it",
+                "marker": "Am I | Are we | Is she | Is it"
+              }
+            },
+            "coveredFindings": [],
+            "editScope": [
+              "OPTIONS",
+              "INSTRUCTIONS",
+              "STATEMENT",
+              "TRANSLATION",
+              "STORED_SENTENCE",
+              "AUDIO"
+            ],
+            "scopeDeclared": true,
+            "quizView": {
+              "statement": "___ thirsty? (she)",
+              "gaps": [
+                {
+                  "index": 0,
+                  "hint": "(she)",
+                  "acceptedAnswers": [
+                    "Is she"
+                  ],
+                  "firstAnswer": "Is she"
+                }
+              ],
+              "options": [
+                {
+                  "label": "Am I",
+                  "correct": false
+                },
+                {
+                  "label": "Are we",
+                  "correct": false
+                },
+                {
+                  "label": "Is she",
+                  "correct": true
+                },
+                {
+                  "label": "Is it",
+                  "correct": false
+                }
+              ],
+              "instructions": "Práctica introductoria: reconoce la opción que contiene el pronombre she.",
+              "translation": "",
+              "miniTheory": ""
+            },
+            "reachedQuizViews": []
+          }
+        ],
+        "wordLights": null,
+        "conversion": null,
+        "attempt": 1,
+        "previousRejections": [],
+        "twoFixes": false
+      },
+      "proposal": {
+        "candidates": [
+          {
+            "kind": "WHOLE_EXERCISE",
+            "quiz": {
+              "id": "df000000000000000000000f",
+              "oidId": null,
+              "kind": "MULTIPLE_CHOICE",
+              "knowledgeId": null,
+              "title": null,
+              "instructions": "Práctica introductoria: elige la opción cuyo pronombre significa «ella» para completar la pregunta.",
+              "translation": null,
+              "theoryId": null,
+              "topicName": null,
+              "form": {
+                "kind": "MULTIPLE_CHOICE",
+                "incidence": 1.0,
+                "label": "",
+                "name": "",
+                "sentenceParts": [
+                  {
+                    "kind": "CLOZE",
+                    "text": "",
+                    "options": null
+                  },
+                  {
+                    "kind": "TEXT",
+                    "text": " thirsty? (ella)",
+                    "options": null
+                  }
+                ],
+                "multipleChoice": {
+                  "selection": "SINGLE",
+                  "items": [
+                    {
+                      "id": "Am I",
+                      "incidence": 0.0,
+                      "label": "Am I"
+                    },
+                    {
+                      "id": "Are we",
+                      "incidence": 0.0,
+                      "label": "Are we"
+                    },
+                    {
+                      "id": "Is she",
+                      "incidence": 1.0,
+                      "label": "Is she"
+                    },
+                    {
+                      "id": "Is it",
+                      "incidence": 0.0,
+                      "label": "Is it"
+                    }
+                  ]
+                },
+                "unmodeledFields": null
+              },
+              "difficulty": 0.0,
+              "retries": 0.0,
+              "noScoreRetries": 0.0,
+              "code": null,
+              "audioUrl": null,
+              "imageUrl": null,
+              "answerAudioUrl": null,
+              "answerImageUrl": null,
+              "miniTheory": null,
+              "successMessage": null,
+              "sentences": null,
+              "unmodeledFields": null
+            },
+            "miniTheoryText": null,
+            "topicInstructions": null,
+            "rationale": "Reemplacé la pista inglesa por «ella» y reformulé la consigna para reconocer el significado del pronombre sin copiar she; conservé las opciones, que distinguen ella de yo, nosotros y el pronombre para una cosa."
+          }
+        ],
+        "proposerVersion": "panel-proposer",
+        "available": true,
+        "unavailableReason": null
+      },
+      "localViolations": [],
+      "after": {
+        "level": "A1",
+        "topic": "Reconocer pronombres",
+        "title": "Reconocer pronombres",
+        "instructions": "Práctica introductoria: elige la opción cuyo pronombre significa «ella» para completar la pregunta.",
+        "exercise": "___ thirsty? (ella)",
+        "options": "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+      },
+      "afterQuality": {
+        "status": "PASS",
+        "objective": "Reconocer que el pronombre inglés she significa «ella».",
+        "introductory": true,
+        "issues": [],
+        "rationale": "La consigna pide reconocer el significado del pronombre en una práctica introductoria. La pista «ella» fija el significado sin mostrar la palabra inglesa que debe elegirse. Los distractores ofrecen otros pronombres básicos y permiten practicar ese reconocimiento; no es necesario exigir un contraste de inversión o concordancia."
+      },
+      "afterAlternative": {
+        "correctIsValid": true,
+        "validAlternatives": [],
+        "correctProblem": null,
+        "rationale": "«Is she thirsty?» es correcta y natural. La consigna y la pista «(ella)» exigen el pronombre «she» y descartan las demás opciones."
+      },
+      "automaticCyclePass": true,
+      "result": "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+      "finishedAt": "2026-10-09T22:54:17.505371Z"
+    },
+    {
+      "caseNumber": 16,
+      "id": "df0000000000000000000010",
+      "original": {
+        "id": "df0000000000000000000010",
+        "caseNumber": 16,
+        "slug": "intro-meaning",
+        "level": "A1",
+        "topic": "Reconocer pronombres",
+        "title": "Reconocer pronombres",
+        "instructions": "Completa la pregunta con el pronombre inglés correspondiente a «ella».",
+        "exercise": "___ thirsty?",
+        "options": [
+          "Am I",
+          "Are we",
+          "Is she",
+          "Is it"
+        ],
+        "correct": "Is she",
+        "expected": "PASS",
+        "allowedIssueKinds": [],
+        "expectationReason": "Reconoce el significado de ella; no copia el inglés dado. Control nuevo que reemplaza al 16 de frontera."
+      },
+      "initial": {
+        "status": "PASS",
+        "objective": "Reconocer el pronombre inglés correspondiente a «ella» para completar la pregunta.",
+        "introductory": true,
+        "issues": [],
+        "rationale": "La consigna propone reconocimiento básico de significado. Elegir «Is she» exige asociar «ella» con «she»; no hay una palabra inglesa en la pista que permita acertar por coincidencia literal. Los distractores contrastan otros pronombres y representan confusiones razonables para A1."
+      },
+      "initialStatusMatches": true,
+      "result": "CONTROL_PRESERVED",
+      "finishedAt": "2026-10-09T22:53:51.617259Z"
+    }
+  ]
+}

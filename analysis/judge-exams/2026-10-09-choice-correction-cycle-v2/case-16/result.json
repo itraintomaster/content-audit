@@ -1,0 +1,29 @@
+{
+  "caseNumber" : 16,
+  "id" : "df0000000000000000000010",
+  "original" : {
+    "id" : "df0000000000000000000010",
+    "caseNumber" : 16,
+    "slug" : "intro-meaning",
+    "level" : "A1",
+    "topic" : "Reconocer pronombres",
+    "title" : "Reconocer pronombres",
+    "instructions" : "Completa la pregunta con el pronombre inglés correspondiente a «ella».",
+    "exercise" : "___ thirsty?",
+    "options" : [ "Am I", "Are we", "Is she", "Is it" ],
+    "correct" : "Is she",
+    "expected" : "PASS",
+    "allowedIssueKinds" : [ ],
+    "expectationReason" : "Reconoce el significado de ella; no copia el inglés dado. Control nuevo que reemplaza al 16 de frontera."
+  },
+  "initial" : {
+    "status" : "PASS",
+    "objective" : "Reconocer el pronombre inglés correspondiente a «ella» para completar la pregunta.",
+    "introductory" : true,
+    "issues" : [ ],
+    "rationale" : "La consigna propone reconocimiento básico de significado. Elegir «Is she» exige asociar «ella» con «she»; no hay una palabra inglesa en la pista que permita acertar por coincidencia literal. Los distractores contrastan otros pronombres y representan confusiones razonables para A1."
+  },
+  "initialStatusMatches" : true,
+  "result" : "CONTROL_PRESERVED",
+  "finishedAt" : "2026-10-09T22:53:51.617259Z"
+}

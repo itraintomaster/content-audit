@@ -1,0 +1,51 @@
+{
+  "agentId" : "choice-quality-judge",
+  "runId" : "b9c10f16-f8a1-4177-8088-e01fe92b9c5f",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "title" : "Preguntas en presente simple",
+    "exercise" : "___ collect stamps? (you)",
+    "options" : "- Does you\n- Do you (correcta)\n- You do\n- You does",
+    "instructions" : "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+    "level" : "A1",
+    "topic" : "Preguntas en presente simple",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225253-581f5bf5"
+  },
+  "phases" : {
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-quality-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "choiceQualityVerdict" : {
+      "artifactId" : "3488bba9-5551-43cd-9652-43c7b11e53c7",
+      "kind" : "choiceQualityVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225253-581f5bf5/artifacts/choiceQualityVerdict/fe334d3f0edea6aa2d8a52fdf187aa902db41d4e727f89afa5f3cf7eb332aab9.json",
+      "contentHash" : "sha256:fe334d3f0edea6aa2d8a52fdf187aa902db41d4e727f89afa5f3cf7eb332aab9",
+      "producedAt" : "2026-10-09T22:53:01.224221Z",
+      "producedBy" : "emit"
+    },
+    "verdicts" : {
+      "artifactId" : "5998faf3-ce9c-49ad-980c-90c7315ff3be",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225253-581f5bf5/artifacts/verdicts/0713045177c66461a33558360dc56a8c28b5a2eb939a72c055016e24a40850c2.json",
+      "contentHash" : "sha256:0713045177c66461a33558360dc56a8c28b5a2eb939a72c055016e24a40850c2",
+      "producedAt" : "2026-10-09T22:53:01.166074Z",
+      "producedBy" : "evaluate"
+    }
+  }
+}

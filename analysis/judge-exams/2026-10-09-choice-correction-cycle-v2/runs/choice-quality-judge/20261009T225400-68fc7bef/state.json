@@ -1,0 +1,51 @@
+{
+  "agentId" : "choice-quality-judge",
+  "runId" : "c38c02be-73f6-4fb9-b264-07d1fb77f918",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "title" : "Reconocer pronombres",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225400-68fc7bef",
+    "topic" : "Reconocer pronombres",
+    "level" : "A1",
+    "instructions" : "Práctica introductoria: elige la opción cuyo pronombre significa «ella» para completar la pregunta.",
+    "options" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it",
+    "exercise" : "___ thirsty? (ella)"
+  },
+  "phases" : {
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-quality-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "verdicts" : {
+      "artifactId" : "ae8b8de2-597e-43d1-81d7-5142abffa3c0",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225400-68fc7bef/artifacts/verdicts/ef9bd34633f7c2972296bc62a33e7e15f0168d0f7833683de056eae789f38b68.json",
+      "contentHash" : "sha256:ef9bd34633f7c2972296bc62a33e7e15f0168d0f7833683de056eae789f38b68",
+      "producedAt" : "2026-10-09T22:54:10.263377Z",
+      "producedBy" : "evaluate"
+    },
+    "choiceQualityVerdict" : {
+      "artifactId" : "2664c77b-c40c-4f09-b2b5-f9514204cf7d",
+      "kind" : "choiceQualityVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225400-68fc7bef/artifacts/choiceQualityVerdict/c7a2d44ca3bfd67b67f8881354b68167dea09a6b40e4129a98e2ad5d5224e4f0.json",
+      "contentHash" : "sha256:c7a2d44ca3bfd67b67f8881354b68167dea09a6b40e4129a98e2ad5d5224e4f0",
+      "producedAt" : "2026-10-09T22:54:10.334146Z",
+      "producedBy" : "emit"
+    }
+  }
+}

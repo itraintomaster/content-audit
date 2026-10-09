@@ -1,0 +1,20 @@
+{
+  "runId" : "20261009T225305-e08c042d",
+  "agent" : "choice-quality-judge",
+  "graphKind" : "framework-v1",
+  "requirementFolder" : "",
+  "request" : "",
+  "status" : "completed",
+  "started" : "2026-10-09T22:53:05.915786Z",
+  "updated" : "2026-10-09T22:53:17.931184Z",
+  "metadata" : { },
+  "outcome" : {
+    "halted" : false,
+    "runStatus" : "COMPLETED",
+    "terminationReason" : "agent 'choice-quality-judge' completed",
+    "producedKinds" : [ "verdicts", "choiceQualityVerdict" ],
+    "nodesDone" : 4,
+    "nodesFailed" : 0,
+    "nodesSkipped" : 0
+  }
+}

@@ -1,7 +1,10 @@
 <!doctype html>
 <html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>La consigna se revisa en Ejercicio, no en cada quiz</title>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>081 · El ciclo corrigió los nueve casos defectuosos</title>
+
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -240,24 +243,356 @@
     .kpi .n{font-size:28px}
   }
 
-  </style></head>
-<body><div class="wrap">
-<header><div class="kicker"><span class="num">080</span><span class="badge">Implementado</span><span class="meta">Correcciones · 9 octubre 2026</span></div>
-<h1>La consigna tiene su propia instancia de revisión</h1><p class="sub">Ejercicio y quizzes separados; oraciones grandes y en negrita para comparar.</p></header>
-<div class="lede"><p><strong>La UI ya está integrada y reabierta.</strong> Aprobar un quiz no aprueba su consigna; las correcciones guardadas que mezclan ambos alcances se muestran completas como decisiones conjuntas.</p></div>
-<section><h2>Una consigna compartida se revisa una sola vez</h2>
-<div class="ad"><div class="lado antes"><span class="rot">Antes</span><ol><li>La consigna aparecía dentro del quiz.</li><li>Aprobar el quiz incluía la consigna.</li></ol><span class="res">Dos alcances mezclados</span></div>
-<div class="lado despues"><span class="rot">Ahora</span><ol><li>Ejercicio agrupa las consignas idénticas.</li><li>Quizzes conserva las correcciones individuales.</li><li>Ambos permiten rechazar y deshacer.</li></ol><span class="res">Decisiones con alcance visible</span></div></div>
-<p class="pie">En Oraciones negativas se verificaron grupos de 19 y 14 quizzes, más tres correcciones conjuntas. El filtro de gramática no recorta la consigna compartida.</p></section>
-<section><h2>La oración completa queda primero y se lee grande</h2>
-<figure class="captura cel"><img src="080-ejercicio-y-quizzes/oracion.png" alt="Comparación de oración completa y partes en letra grande y negrita"><figcaption>Captura de prueba: texto completo guardado, sin reconstruir la vista del alumno.</figcaption></figure>
-<p class="pie">Antes y después usan 20 puntos y negrita. Se conserva el naranja entre marcas; las partes de la oración también se leen grandes.</p></section>
-<section><h2>Los cambios conjuntos no se aprueban a escondidas</h2>
-<div class="cambia"><div class="si"><div class="ptl">Corrección independiente</div><ul><li>Consigna sola: revisión desde Ejercicio.</li><li>Oración, traducción o miniteoría: revisión desde Quizzes.</li><li>Consignas diferentes: grupos separados.</li></ul></div>
-<div class="no"><div class="ptl">Corrección conjunta guardada</div><ul><li>Se muestra toda dentro de Ejercicio.</li><li>Un aviso explica qué incluye aprobarla.</li><li>No se divide artificialmente una decisión indivisible.</li></ul></div></div>
-<p class="pie">La separación respeta los pasos exactos guardados. No modifica propuestas, análisis ni aprobaciones anteriores; tampoco publica contenido.</p></section>
-<section><h2>Podés seguir revisando en la app abierta</h2>
-<div class="flow"><div class="st"><span class="i">1</span><span class="h">Elegí Ejercicio</span><span class="d">Revisá la consigna y sus quizzes afectados.</span></div><div class="st"><span class="i">2</span><span class="h">Volvé a Quizzes</span><span class="d">Compará las correcciones de cada quiz.</span></div><div class="st end"><span class="i">3</span><span class="h">Decidí cuando quieras</span><span class="d">Aprobar, rechazar y deshacer mantienen la cola existente.</span></div></div>
-<p class="pie">222 pruebas pasaron y una se omitió. Verificación visual sobre tu caso real, sin aprobar nada ni consultar modelos.</p></section>
-<footer><span>UI: eb44d8895 → master f6db7098f. Revisión y colas preservadas; análisis estático del alcance modificado sin incidencias. Las advertencias generales heredadas no se modificaron.</span><span>brief 080 · docs/briefs/080-ejercicio-y-quizzes.html</span></footer>
-</div></body></html>
+  /* ============ CATÁLOGO · se borra entero al generar ============ */
+  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
+  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
+  .cat-g{display:grid;gap:16px}
+  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
+  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
+  .cat-i>.n b{color:var(--fg-2)}
+.cases{min-width:880px;table-layout:fixed}.cases td{width:25%;font-size:13px;line-height:1.5}.case-head{font-weight:700;margin-bottom:12px}.cons{color:var(--fg-2);font-size:12px}.sentence{font-size:17px;font-weight:650;line-height:1.4;margin:10px 0}.choices{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0}.choice{border:1px solid var(--line);border-radius:8px;padding:3px 7px;background:var(--bg)}.choice.right{color:var(--ok);border-color:var(--ok);background:var(--ok-soft)}.expected{margin-top:12px}.why{font-size:12px;color:var(--fg-2);margin-top:5px}.issue{margin:12px 0}.issue b{display:block;margin-bottom:6px}.checks{margin-top:12px}.cases details{margin-top:12px}.cases summary{color:var(--accent);cursor:pointer}.cases pre{max-height:500px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px;line-height:1.5;max-width:100%}.evidence{margin-top:14px;font-size:12px}</style>
+</head>
+<body>
+<div class="wrap">
+
+<header><div class="kicker"><span class="num">081</span><span class="badge">Evaluación completa</span><span class="meta">Distractores · 9 octubre 2026</span></div><h1>El ciclo corrigió los nueve casos defectuosos</h1><p class="sub">Juez → corrector → jueces: los 16 casos, con expectativas y devoluciones a la vista.</p></header>
+<div class="lede"><p><strong>Las 9 propuestas pasaron calidad y respuesta única; los 7 controles quedaron intactos.</strong> Es evidencia de este conjunto sintético, no una aprobación del curso ni del examen histórico.</p></div>
+<section><h2>Se completó dentro del presupuesto aprobado</h2><div class="kpis"><div class="kpi"><div class="n">16<small>de 16</small></div><div class="l">Diagnósticos iniciales compatibles con las expectativas revisadas.</div></div><div class="kpi"><div class="n">9<small>de 9</small></div><div class="l">Propuestas que pasan ambos jueces y controles locales.</div></div><div class="kpi"><div class="n">7<small>de 7</small></div><div class="l">Controles válidos preservados, sin corrección.</div></div><div class="kpi dest"><div class="n">43<small>de 50</small></div><div class="l">Consultas reales: 16 iniciales, 9 correcciones y 18 comprobaciones finales.</div></div></div><p class="pie">Una propuesta por defecto, ninguna segunda vuelta y ningún reintento técnico. El saldo restante no habilita otra evaluación.</p></section>
+<section><h2>Casos 1–6: evaluación y propuesta completas</h2><div class="tw"><table class="cases"><thead><tr><th>Antes · esperado</th><th>Primera evaluación</th><th>Propuesta del corrector</th><th>Resultado</th></tr></thead><tbody><tr><td><div class="case-head">1 · A1 · Preguntas con be</div><div class="cons">Forma preguntas en presente simple con be antes del sujeto.</div><div class="sentence">___ thirsty? (she)</div><div class="choices"><span class="choice ">Am I</span><span class="choice ">Are we</span><span class="choice right">Is she ✓</span><span class="choice ">Is it</span></div><div class="expected"><b>Esperado:</b> Marcar para corregir.</div><div class="why">La pista fija el sujeto; las opciones permiten acertar por coincidencia sin practicar la habilidad. Conservar el sujeto y contrastar errores esperables.</div></td><td><span class="pill p-warn">Marcó para corregir</span><div class="issue"><b>Las opciones regalan la respuesta</b><div>Is she es la única opción que contiene she: el conjunto permite acertar por coincidencia literal con la pista, sin aplicar inversión ni concordancia. La pista debe conservarse para fijar el sujeto; falta contrastar opciones con ese mismo sujeto que representen errores de orden o de concordancia.</div></div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;FAIL&quot;,
+  &quot;objective&quot;: &quot;Formar preguntas en presente simple con be antes del sujeto, aplicando inversión y concordancia.&quot;,
+  &quot;introductory&quot;: false,
+  &quot;issues&quot;: [
+    {
+      &quot;kind&quot;: &quot;ANSWER_CUE&quot;,
+      &quot;severity&quot;: &quot;HIGH&quot;,
+      &quot;labels&quot;: [
+        &quot;Am I&quot;,
+        &quot;Are we&quot;,
+        &quot;Is she&quot;,
+        &quot;Is it&quot;
+      ],
+      &quot;reason&quot;: &quot;Is she es la única opción que contiene she: el conjunto permite acertar por coincidencia literal con la pista, sin aplicar inversión ni concordancia. La pista debe conservarse para fijar el sujeto; falta contrastar opciones con ese mismo sujeto que representen errores de orden o de concordancia.&quot;,
+      &quot;misconception&quot;: &quot;Mantener el orden sujeto-verbo al formar la pregunta o elegir una forma de be que no concuerda con she.&quot;
+    }
+  ],
+  &quot;rationale&quot;: &quot;Todos los distractores cambian el sujeto ya fijado. Elegir la única opción con she evita casi por completo practicar el objetivo explícito.&quot;
+}</pre></details></td><td><div class="cons">Forma preguntas en presente simple con be antes del sujeto.</div><div class="sentence">___ thirsty? (she)</div><div class="choices"><span class="choice ">Am she</span><span class="choice ">Are she</span><span class="choice right">Is she ✓</span><span class="choice ">She is</span></div><div class="issue">Todas las opciones conservan she para evitar acertar por coincidencia con la pista: Am she y Are she representan errores de concordancia, y She is mantiene el orden declarativo que la consigna explícita de inversión descarta.</div></td><td><span class="pill p-ok">Ciclo correcto</span><div class="checks">Calidad: pasó.<br>Respuesta única: pasó.<br>Reglas locales: pasó.<br>Objetivo: conservado.</div><details><summary>Segunda evaluación literal</summary><pre>{
+  &quot;calidad&quot;: {
+    &quot;status&quot;: &quot;PASS&quot;,
+    &quot;objective&quot;: &quot;Formar preguntas en presente simple con be antes del sujeto y elegir la forma que concuerda con she.&quot;,
+    &quot;introductory&quot;: true,
+    &quot;issues&quot;: [],
+    &quot;rationale&quot;: &quot;Am she y Are she representan errores esperables de concordancia; She is representa la falta de inversión que la consigna visible exige. La pista she fija el sujeto y debe conservarse. El conjunto permite practicar tanto la forma de be como su posición antes del sujeto, sin dar la respuesta por coincidencia literal.&quot;
+  },
+  &quot;respuestaUnica&quot;: {
+    &quot;correctIsValid&quot;: true,
+    &quot;validAlternatives&quot;: [],
+    &quot;correctProblem&quot;: null,
+    &quot;rationale&quot;: &quot;«Is she thirsty?» concuerda con «she» y coloca «be» antes del sujeto, como exige la consigna. «Am she» y «Are she» no concuerdan; «She is» no cumple el orden indicado.&quot;
+  }
+}</pre></details><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-01/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">2 · A1 · Preguntas con be</div><div class="cons">Forma preguntas en presente simple con be antes del sujeto.</div><div class="sentence">___ thirsty? (she)</div><div class="choices"><span class="choice ">She is</span><span class="choice ">Are she</span><span class="choice right">Is she ✓</span><span class="choice ">Am she</span></div><div class="expected"><b>Esperado:</b> Aceptar sin cambios.</div><div class="why">Mismo sujeto, confusiones esperables de orden y concordancia.</div></td><td><span class="pill p-ok">Aceptó</span><div class="issue">La pista she fija el sujeto necesario. Todas las opciones lo conservan: She is permite practicar el orden interrogativo, y Are she y Am she representan errores de concordancia esperables en A1. La consigna explícita permite distinguir la inversión requerida.</div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;PASS&quot;,
+  &quot;objective&quot;: &quot;Formar preguntas en presente simple mediante la inversión de be y el sujeto, usando is con she.&quot;,
+  &quot;introductory&quot;: true,
+  &quot;issues&quot;: [],
+  &quot;rationale&quot;: &quot;La pista she fija el sujeto necesario. Todas las opciones lo conservan: She is permite practicar el orden interrogativo, y Are she y Am she representan errores de concordancia esperables en A1. La consigna explícita permite distinguir la inversión requerida.&quot;
+}</pre></details></td><td><span class="pill p-idle">No se llamó</span><div class="issue">Control válido conservado. No se gastaron consultas en corregirlo ni en volver a juzgarlo.</div></td><td><span class="pill p-ok">Control correcto</span><div class="checks">Coincide con lo esperado.<br>Ejercicio sin modificar.</div><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-02/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">3 · A1 · Negativas con be</div><div class="cons">Completa la negación de be en presente simple, conservando el sujeto indicado.</div><div class="sentence">___ thirsty. (it)</div><div class="choices"><span class="choice ">I am not</span><span class="choice right">It is not ✓</span><span class="choice ">We are not</span><span class="choice ">You are not</span></div><div class="expected"><b>Esperado:</b> Marcar para corregir.</div><div class="why">La pista fija el sujeto; las opciones permiten acertar por coincidencia sin practicar la habilidad. Conservar el sujeto y contrastar errores esperables.</div></td><td><span class="pill p-warn">Marcó para corregir</span><div class="issue"><b>Las opciones regalan la respuesta</b><div>La clave es la única opción con el sujeto it, ya escrito en la pista. El conjunto permite acertar por coincidencia literal sin aplicar la concordancia ni formar la negación. La pista debe conservarse para fijar el sujeto; falta contrastar formas de negación y concordancia con ese mismo sujeto.</div></div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;FAIL&quot;,
+  &quot;objective&quot;: &quot;Completar la negación de be en presente simple conservando el sujeto indicado.&quot;,
+  &quot;introductory&quot;: false,
+  &quot;issues&quot;: [
+    {
+      &quot;kind&quot;: &quot;ANSWER_CUE&quot;,
+      &quot;severity&quot;: &quot;HIGH&quot;,
+      &quot;labels&quot;: [
+        &quot;I am not&quot;,
+        &quot;It is not&quot;,
+        &quot;We are not&quot;,
+        &quot;You are not&quot;
+      ],
+      &quot;reason&quot;: &quot;La clave es la única opción con el sujeto it, ya escrito en la pista. El conjunto permite acertar por coincidencia literal sin aplicar la concordancia ni formar la negación. La pista debe conservarse para fijar el sujeto; falta contrastar formas de negación y concordancia con ese mismo sujeto.&quot;,
+      &quot;misconception&quot;: &quot;Elegir una forma de be que no concuerda con it o colocar incorrectamente not al formar la negación.&quot;
+    }
+  ],
+  &quot;rationale&quot;: &quot;Todos los distractores cambian el sujeto indicado y presentan negaciones bien formadas para otros sujetos, por lo que el conjunto evita casi por completo practicar el objetivo.&quot;
+}</pre></details></td><td><div class="cons">Completa la negación de be en presente simple, conservando el sujeto indicado.</div><div class="sentence">___ thirsty. (it)</div><div class="choices"><span class="choice ">It am not</span><span class="choice right">It is not ✓</span><span class="choice ">It are not</span><span class="choice ">It not is</span></div><div class="issue">Conservé la pista y el sujeto it en todas las opciones: los distractores contrastan la concordancia de be y la posición de not, evitando que la coincidencia literal con el sujeto regale la respuesta.</div></td><td><span class="pill p-ok">Ciclo correcto</span><div class="checks">Calidad: pasó.<br>Respuesta única: pasó.<br>Reglas locales: pasó.<br>Objetivo: conservado.</div><details><summary>Segunda evaluación literal</summary><pre>{
+  &quot;calidad&quot;: {
+    &quot;status&quot;: &quot;PASS&quot;,
+    &quot;objective&quot;: &quot;Formar la negación de be en presente simple con it, aplicando concordancia y orden de palabras.&quot;,
+    &quot;introductory&quot;: true,
+    &quot;issues&quot;: [],
+    &quot;rationale&quot;: &quot;Todas las opciones conservan el sujeto indicado. Los distractores representan confusiones esperables en A1: usar am o are con it y colocar not antes de is. La pista fija el sujeto, pero no permite elegir por coincidencia literal porque todas las opciones incluyen It.&quot;
+  },
+  &quot;respuestaUnica&quot;: {
+    &quot;correctIsValid&quot;: true,
+    &quot;validAlternatives&quot;: [],
+    &quot;correctProblem&quot;: null,
+    &quot;rationale&quot;: &quot;«It is not thirsty» forma correctamente la negación en presente simple con el sujeto indicado. «Am» y «are» no concuerdan con «it», y «It not is» tiene un orden incorrecto.&quot;
+  }
+}</pre></details><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-03/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">4 · A1 · Negativas con be</div><div class="cons">Completa la negación de be en presente simple.</div><div class="sentence">It ___ thirsty.</div><div class="choices"><span class="choice right">isn&#39;t ✓</span><span class="choice ">aren&#39;t</span><span class="choice ">am not</span><span class="choice ">is</span></div><div class="expected"><b>Esperado:</b> Aceptar sin cambios.</div><div class="why">Discrimina negación y concordancia con el sujeto ya visible.</div></td><td><span class="pill p-ok">Aceptó</span><div class="issue">Las opciones permiten practicar la concordancia de be con It y distinguir una forma negativa de la afirmativa. Aren&#39;t y am not representan errores esperables de concordancia en A1; is representa la omisión de la negación. El sujeto fija el contexto necesario sin ofrecer una coincidencia literal con la clave.</div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;PASS&quot;,
+  &quot;objective&quot;: &quot;Completar una negación de be en presente simple con la forma correspondiente al sujeto It.&quot;,
+  &quot;introductory&quot;: true,
+  &quot;issues&quot;: [],
+  &quot;rationale&quot;: &quot;Las opciones permiten practicar la concordancia de be con It y distinguir una forma negativa de la afirmativa. Aren&#39;t y am not representan errores esperables de concordancia en A1; is representa la omisión de la negación. El sujeto fija el contexto necesario sin ofrecer una coincidencia literal con la clave.&quot;
+}</pre></details></td><td><span class="pill p-idle">No se llamó</span><div class="issue">Control válido conservado. No se gastaron consultas en corregirlo ni en volver a juzgarlo.</div></td><td><span class="pill p-ok">Control correcto</span><div class="checks">Coincide con lo esperado.<br>Ejercicio sin modificar.</div><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-04/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">5 · A1 · Preguntas en presente simple</div><div class="cons">Forma preguntas en presente simple con do o does antes del sujeto indicado.</div><div class="sentence">___ collect stamps? (you)</div><div class="choices"><span class="choice ">Does he</span><span class="choice right">Do you ✓</span><span class="choice ">Do they</span><span class="choice ">Does she</span></div><div class="expected"><b>Esperado:</b> Marcar para corregir.</div><div class="why">La pista fija el sujeto; las opciones permiten acertar por coincidencia sin practicar la habilidad. Conservar el sujeto y contrastar errores esperables.</div></td><td><span class="pill p-warn">Marcó para corregir</span><div class="issue"><b>Las opciones regalan la respuesta</b><div>Do you es la única opción que contiene el sujeto you de la pista; las demás cambian ese sujeto. El conjunto permite acertar por coincidencia literal sin elegir el auxiliar ni aplicar el orden interrogativo. Se debe conservar la pista que fija el sujeto y contrastar errores de auxiliar u orden con ese mismo sujeto.</div></div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;FAIL&quot;,
+  &quot;objective&quot;: &quot;Formar preguntas en presente simple colocando do o does antes del sujeto indicado.&quot;,
+  &quot;introductory&quot;: false,
+  &quot;issues&quot;: [
+    {
+      &quot;kind&quot;: &quot;ANSWER_CUE&quot;,
+      &quot;severity&quot;: &quot;HIGH&quot;,
+      &quot;labels&quot;: [
+        &quot;Does he&quot;,
+        &quot;Do you&quot;,
+        &quot;Do they&quot;,
+        &quot;Does she&quot;
+      ],
+      &quot;reason&quot;: &quot;Do you es la única opción que contiene el sujeto you de la pista; las demás cambian ese sujeto. El conjunto permite acertar por coincidencia literal sin elegir el auxiliar ni aplicar el orden interrogativo. Se debe conservar la pista que fija el sujeto y contrastar errores de auxiliar u orden con ese mismo sujeto.&quot;,
+      &quot;misconception&quot;: &quot;Usar does con you o colocar do después del sujeto al formar una pregunta.&quot;
+    }
+  ],
+  &quot;rationale&quot;: &quot;La consigna identifica claramente el objetivo, pero las opciones permiten resolver el ejercicio buscando you sin practicar la formación de preguntas.&quot;
+}</pre></details></td><td><div class="cons">Forma preguntas en presente simple con do o does antes del sujeto indicado.</div><div class="sentence">___ collect stamps? (you)</div><div class="choices"><span class="choice ">Does you</span><span class="choice right">Do you ✓</span><span class="choice ">You do</span><span class="choice ">You does</span></div><div class="issue">Conservé you en todas las opciones para evitar la coincidencia literal con la pista; los distractores representan errores de concordancia del auxiliar, de inversión o de ambos, y la consigna exige do o does antes del sujeto.</div></td><td><span class="pill p-ok">Ciclo correcto</span><div class="checks">Calidad: pasó.<br>Respuesta única: pasó.<br>Reglas locales: pasó.<br>Objetivo: conservado.</div><details><summary>Segunda evaluación literal</summary><pre>{
+  &quot;calidad&quot;: {
+    &quot;status&quot;: &quot;PASS&quot;,
+    &quot;objective&quot;: &quot;Formar preguntas en presente simple colocando do o does antes del sujeto y eligiendo do para you.&quot;,
+    &quot;introductory&quot;: true,
+    &quot;issues&quot;: [],
+    &quot;rationale&quot;: &quot;Todos los distractores conservan el sujeto indicado y representan errores esperables de concordancia, orden o ambos. La pista you fija el sujeto sin permitir elegir por coincidencia literal, porque aparece en todas las opciones. El conjunto practica el contraste pedido por la consigna.&quot;
+  },
+  &quot;respuestaUnica&quot;: {
+    &quot;correctIsValid&quot;: true,
+    &quot;validAlternatives&quot;: [],
+    &quot;correctProblem&quot;: null,
+    &quot;rationale&quot;: &quot;«Do you collect stamps?» cumple la consigna: do va antes de you. «Does you» y «You does» no concuerdan con el sujeto; «You do» no cumple la indicación de colocar do o does antes del sujeto.&quot;
+  }
+}</pre></details><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-05/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">6 · A1 · Preguntas en presente simple</div><div class="cons">Forma preguntas en presente simple con do o does antes del sujeto indicado.</div><div class="sentence">___ collect stamps? (you)</div><div class="choices"><span class="choice right">Do you ✓</span><span class="choice ">Does you</span><span class="choice ">You do</span><span class="choice ">You does</span></div><div class="expected"><b>Esperado:</b> Aceptar sin cambios.</div><div class="why">Orden y concordancia del auxiliar son errores esperables.</div></td><td><span class="pill p-ok">Aceptó</span><div class="issue">Todas las opciones conservan el sujeto indicado. Los distractores representan errores esperables de concordancia del auxiliar, orden de palabras o ambos. La pista you fija el sujeto sin permitir acertar por coincidencia literal, porque aparece en todas las opciones.</div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;PASS&quot;,
+  &quot;objective&quot;: &quot;Formar preguntas en presente simple colocando do o does antes del sujeto y eligiendo el auxiliar que concuerda con you.&quot;,
+  &quot;introductory&quot;: true,
+  &quot;issues&quot;: [],
+  &quot;rationale&quot;: &quot;Todas las opciones conservan el sujeto indicado. Los distractores representan errores esperables de concordancia del auxiliar, orden de palabras o ambos. La pista you fija el sujeto sin permitir acertar por coincidencia literal, porque aparece en todas las opciones.&quot;
+}</pre></details></td><td><span class="pill p-idle">No se llamó</span><div class="issue">Control válido conservado. No se gastaron consultas en corregirlo ni en volver a juzgarlo.</div></td><td><span class="pill p-ok">Control correcto</span><div class="checks">Coincide con lo esperado.<br>Ejercicio sin modificar.</div><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-06/result.json">Evidencia del caso</a></div></td></tr></tbody></table></div><p class="pie">La tilde marca la clave. La segunda evaluación recibió sólo el ejercicio propuesto, sin el diagnóstico anterior ni las expectativas del test.</p></section><section><h2>Casos 7–12: evaluación y propuesta completas</h2><div class="tw"><table class="cases"><thead><tr><th>Antes · esperado</th><th>Primera evaluación</th><th>Propuesta del corrector</th><th>Resultado</th></tr></thead><tbody><tr><td><div class="case-head">7 · A1 · Tercera persona singular</div><div class="cons">Completa la afirmación de presente simple con la forma de like.</div><div class="sentence">My aunt ___ peaches.</div><div class="choices"><span class="choice right">likes ✓</span><span class="choice ">Paris</span><span class="choice ">blue</span><span class="choice ">tomorrow</span></div><div class="expected"><b>Esperado:</b> Marcar para corregir.</div><div class="why">Las incorrectas no son formas de like y evitan discriminar tercera persona.</div></td><td><span class="pill p-warn">Marcó para corregir</span><div class="issue"><b>Distractores ajenos al objetivo</b><div>Los distractores no son formas de like: permiten elegir likes por ser la única opción relacionada con el verbo solicitado, sin aplicar la concordancia. Deben conservarse el sujeto My aunt y el presente simple fijado por la consigna; falta contrastar formas que representen errores al conjugar ese verbo.</div></div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;FAIL&quot;,
+  &quot;objective&quot;: &quot;Usar la forma de like correspondiente a la tercera persona singular en una afirmación de presente simple.&quot;,
+  &quot;introductory&quot;: false,
+  &quot;issues&quot;: [
+    {
+      &quot;kind&quot;: &quot;IRRELEVANT_DISTRACTORS&quot;,
+      &quot;severity&quot;: &quot;HIGH&quot;,
+      &quot;labels&quot;: [
+        &quot;Paris&quot;,
+        &quot;blue&quot;,
+        &quot;tomorrow&quot;
+      ],
+      &quot;reason&quot;: &quot;Los distractores no son formas de like: permiten elegir likes por ser la única opción relacionada con el verbo solicitado, sin aplicar la concordancia. Deben conservarse el sujeto My aunt y el presente simple fijado por la consigna; falta contrastar formas que representen errores al conjugar ese verbo.&quot;,
+      &quot;misconception&quot;: &quot;Omitir la terminación -s de tercera persona singular al conjugar like con My aunt.&quot;
+    }
+  ],
+  &quot;rationale&quot;: &quot;El conjunto evita casi por completo practicar la tercera persona singular: las tres opciones equivocadas evalúan reconocer palabras ajenas al verbo, no su conjugación.&quot;
+}</pre></details></td><td><div class="cons">Completa la afirmación de presente simple con la forma de like.</div><div class="sentence">My aunt ___ peaches.</div><div class="choices"><span class="choice right">likes ✓</span><span class="choice ">like</span><span class="choice ">likees</span><span class="choice ">likies</span></div><div class="issue">Reemplacé los distractores irrelevantes por errores de conjugación: omitir -s, agregar -es sin quitar la e y aplicar indebidamente -ies; todas las opciones intentan conjugar like, por lo que hay que reconocer la forma de tercera persona singular.</div></td><td><span class="pill p-ok">Ciclo correcto</span><div class="checks">Calidad: pasó.<br>Respuesta única: pasó.<br>Reglas locales: pasó.<br>Objetivo: conservado.</div><div class="call c-warn">Pasó; revisar si estos errores de escritura son los contrastes deseados.</div><details><summary>Segunda evaluación literal</summary><pre>{
+  &quot;calidad&quot;: {
+    &quot;status&quot;: &quot;PASS&quot;,
+    &quot;objective&quot;: &quot;Aplicar la terminación de tercera persona singular a like en una afirmación de presente simple.&quot;,
+    &quot;introductory&quot;: true,
+    &quot;issues&quot;: [],
+    &quot;rationale&quot;: &quot;Las opciones contrastan la forma base con distintas terminaciones de tercera persona singular. «like» representa omitir la concordancia; «likees» y «likies», generalizar indebidamente las terminaciones -es e -ies. El sujeto fija la persona necesaria y el conjunto permite practicar la forma verbal sin ofrecer una coincidencia literal que revele la clave.&quot;
+  },
+  &quot;respuestaUnica&quot;: {
+    &quot;correctIsValid&quot;: true,
+    &quot;validAlternatives&quot;: [],
+    &quot;correctProblem&quot;: null,
+    &quot;rationale&quot;: &quot;«My aunt» exige «likes» en presente simple por ser tercera persona singular. «Like» no concuerda con el sujeto, y «likees» y «likies» no son formas válidas de «like».&quot;
+  }
+}</pre></details><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-07/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">8 · A1 · Tercera persona singular</div><div class="cons">Completa la afirmación de presente simple con la forma de like.</div><div class="sentence">My aunt ___ peaches.</div><div class="choices"><span class="choice ">like</span><span class="choice right">likes ✓</span><span class="choice ">liking</span><span class="choice ">to like</span></div><div class="expected"><b>Esperado:</b> Aceptar sin cambios.</div><div class="why">Formas verbales confundibles con presente simple de tercera persona.</div></td><td><span class="pill p-ok">Aceptó</span><div class="issue">Las opciones contrastan la forma base sin concordancia, la forma con -s, la forma en -ing y el infinitivo con to. Representan confusiones razonables en A1 y requieren reconocer qué forma de like corresponde a My aunt en una afirmación de presente simple.</div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;PASS&quot;,
+  &quot;objective&quot;: &quot;Completar una afirmación en presente simple con likes para un sujeto de tercera persona singular.&quot;,
+  &quot;introductory&quot;: true,
+  &quot;issues&quot;: [],
+  &quot;rationale&quot;: &quot;Las opciones contrastan la forma base sin concordancia, la forma con -s, la forma en -ing y el infinitivo con to. Representan confusiones razonables en A1 y requieren reconocer qué forma de like corresponde a My aunt en una afirmación de presente simple.&quot;
+}</pre></details></td><td><span class="pill p-idle">No se llamó</span><div class="issue">Control válido conservado. No se gastaron consultas en corregirlo ni en volver a juzgarlo.</div></td><td><span class="pill p-ok">Control correcto</span><div class="checks">Coincide con lo esperado.<br>Ejercicio sin modificar.</div><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-08/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">9 · A2 · Pasado simple</div><div class="cons">Elige el pasado simple afirmativo de close.</div><div class="sentence">Nora ___ the window yesterday.</div><div class="choices"><span class="choice right">closed ✓</span><span class="choice ">banana</span><span class="choice ">purple</span><span class="choice ">Wednesday</span></div><div class="expected"><b>Esperado:</b> Marcar para corregir.</div><div class="why">Sólo closed es una forma verbal pertinente al objetivo explícito.</div></td><td><span class="pill p-warn">Marcó para corregir</span><div class="issue"><b>Distractores inverosímiles</b><div>Los tres distractores son palabras ajenas a las formas de close y se descartan por su significado o categoría, sin reconocer cómo se forma el pasado simple. La consigna y yesterday fijan el verbo y el tiempo y deben conservarse; falta contrastar closed con errores esperables al formar el pasado de ese verbo.</div></div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;FAIL&quot;,
+  &quot;objective&quot;: &quot;Identificar el pasado simple afirmativo del verbo close.&quot;,
+  &quot;introductory&quot;: true,
+  &quot;issues&quot;: [
+    {
+      &quot;kind&quot;: &quot;IMPLAUSIBLE_DISTRACTORS&quot;,
+      &quot;severity&quot;: &quot;HIGH&quot;,
+      &quot;labels&quot;: [
+        &quot;banana&quot;,
+        &quot;purple&quot;,
+        &quot;Wednesday&quot;
+      ],
+      &quot;reason&quot;: &quot;Los tres distractores son palabras ajenas a las formas de close y se descartan por su significado o categoría, sin reconocer cómo se forma el pasado simple. La consigna y yesterday fijan el verbo y el tiempo y deben conservarse; falta contrastar closed con errores esperables al formar el pasado de ese verbo.&quot;,
+      &quot;misconception&quot;: &quot;Confundir la forma base con el pasado simple o aplicar incorrectamente la terminación regular -ed.&quot;
+    }
+  ],
+  &quot;rationale&quot;: &quot;Aunque la práctica sea introductoria, el conjunto permite acertar descartando palabras sin relación con el verbo, y evita casi por completo practicar su forma en pasado simple.&quot;
+}</pre></details></td><td><div class="cons">Elige el pasado simple afirmativo de close.</div><div class="sentence">Nora ___ the window yesterday.</div><div class="choices"><span class="choice right">closed ✓</span><span class="choice ">close</span><span class="choice ">closeed</span><span class="choice ">closd</span></div><div class="issue">Reemplacé los distractores ajenos al verbo por errores esperables: usar la forma base, añadir -ed sin considerar la e final y eliminar esa e antes de añadir -d; conservé la consigna y yesterday para que se reconozca la formación del pasado y no se descarte por significado o categoría.</div></td><td><span class="pill p-ok">Ciclo correcto</span><div class="checks">Calidad: pasó.<br>Respuesta única: pasó.<br>Reglas locales: pasó.<br>Objetivo: conservado.</div><div class="call c-warn">Pasó; revisar si estos errores de escritura son los contrastes deseados.</div><details><summary>Segunda evaluación literal</summary><pre>{
+  &quot;calidad&quot;: {
+    &quot;status&quot;: &quot;PASS&quot;,
+    &quot;objective&quot;: &quot;Reconocer el pasado simple afirmativo de close, aplicando la terminación -d a un verbo regular que ya termina en e.&quot;,
+    &quot;introductory&quot;: true,
+    &quot;issues&quot;: [],
+    &quot;rationale&quot;: &quot;El conjunto contrasta la forma base con errores esperables al formar el pasado: añadir -ed sin ajustar la e final o eliminarla indebidamente. La consigna fija el verbo y la oración aporta contexto pasado; elegir closed requiere reconocer su formación, sin una coincidencia literal que permita evitar ese objetivo.&quot;
+  },
+  &quot;respuestaUnica&quot;: {
+    &quot;correctIsValid&quot;: true,
+    &quot;validAlternatives&quot;: [],
+    &quot;correctProblem&quot;: null,
+    &quot;rationale&quot;: &quot;«Nora closed the window yesterday.» es correcta y natural: «closed» es el pasado simple afirmativo de «close». «Close» no cumple la consigna ni concuerda con «Nora» en presente; «closeed» y «closd» son formas mal escritas.&quot;
+  }
+}</pre></details><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-09/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">10 · A2 · Pasado simple</div><div class="cons">Elige el pasado simple afirmativo de close.</div><div class="sentence">Nora ___ the window yesterday.</div><div class="choices"><span class="choice ">closes</span><span class="choice right">closed ✓</span><span class="choice ">closing</span><span class="choice ">close</span></div><div class="expected"><b>Esperado:</b> Aceptar sin cambios.</div><div class="why">Contrasta pasado con presente, base y forma en ing.</div></td><td><span class="pill p-ok">Aceptó</span><div class="issue">Las opciones contrastan la forma pasada con el presente de tercera persona, la forma en -ing y la forma base, confusiones esperables para este objetivo. Yesterday fija el tiempo y Nora fija el sujeto; elegir closed requiere reconocer la terminación del pasado regular.</div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;PASS&quot;,
+  &quot;objective&quot;: &quot;Reconocer el pasado simple afirmativo del verbo regular close.&quot;,
+  &quot;introductory&quot;: true,
+  &quot;issues&quot;: [],
+  &quot;rationale&quot;: &quot;Las opciones contrastan la forma pasada con el presente de tercera persona, la forma en -ing y la forma base, confusiones esperables para este objetivo. Yesterday fija el tiempo y Nora fija el sujeto; elegir closed requiere reconocer la terminación del pasado regular.&quot;
+}</pre></details></td><td><span class="pill p-idle">No se llamó</span><div class="issue">Control válido conservado. No se gastaron consultas en corregirlo ni en volver a juzgarlo.</div></td><td><span class="pill p-ok">Control correcto</span><div class="checks">Coincide con lo esperado.<br>Ejercicio sin modificar.</div><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-10/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">11 · A2 · Comparativos</div><div class="cons">Completa con el comparativo de tall.</div><div class="sentence">Leo is ___ than his sister.</div><div class="choices"><span class="choice right">taller ✓</span><span class="choice ">###</span><span class="choice ">9+9</span><span class="choice ">@@</span></div><div class="expected"><b>Esperado:</b> Marcar para corregir.</div><div class="why">Los símbolos no representan confusiones lingüísticas de comparativo.</div></td><td><span class="pill p-warn">Marcó para corregir</span><div class="issue"><b>Distractores inverosímiles</b><div>Todos los distractores son símbolos o una expresión matemática: se descartan sin conocer el comparativo de tall porque taller es la única opción lingüística. Deben conservarse el adjetivo indicado y la comparación con than; falta contrastar formas que representen errores esperables al formar el comparativo.</div></div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;FAIL&quot;,
+  &quot;objective&quot;: &quot;Formar el comparativo de tall para completar una comparación con than.&quot;,
+  &quot;introductory&quot;: false,
+  &quot;issues&quot;: [
+    {
+      &quot;kind&quot;: &quot;IMPLAUSIBLE_DISTRACTORS&quot;,
+      &quot;severity&quot;: &quot;HIGH&quot;,
+      &quot;labels&quot;: [
+        &quot;###&quot;,
+        &quot; 9+9&quot;,
+        &quot;@@&quot;
+      ],
+      &quot;reason&quot;: &quot;Todos los distractores son símbolos o una expresión matemática: se descartan sin conocer el comparativo de tall porque taller es la única opción lingüística. Deben conservarse el adjetivo indicado y la comparación con than; falta contrastar formas que representen errores esperables al formar el comparativo.&quot;,
+      &quot;misconception&quot;: &quot;Confundir la forma base del adjetivo con su comparativo o aplicar incorrectamente la formación del comparativo de un adjetivo corto.&quot;
+    }
+  ],
+  &quot;rationale&quot;: &quot;El conjunto permite acertar sin practicar la formación de comparativos: ninguna opción incorrecta representa una confusión lingüística razonable para A2.&quot;
+}</pre></details></td><td><div class="cons">Completa con el comparativo de tall.</div><div class="sentence">Leo is ___ than his sister.</div><div class="choices"><span class="choice right">taller ✓</span><span class="choice ">tall</span><span class="choice ">more tall</span><span class="choice ">more taller</span></div><div class="issue">Reemplacé los símbolos por errores de formación del comparativo: usar la forma base tall, aplicar more a un adjetivo corto o duplicar la comparación con more taller; todas las opciones conservan tall y requieren conocer su comparativo, sin regalar la respuesta por ser la única opción lingüística.</div></td><td><span class="pill p-ok">Ciclo correcto</span><div class="checks">Calidad: pasó.<br>Respuesta única: pasó.<br>Reglas locales: pasó.<br>Objetivo: conservado.</div><details><summary>Segunda evaluación literal</summary><pre>{
+  &quot;calidad&quot;: {
+    &quot;status&quot;: &quot;PASS&quot;,
+    &quot;objective&quot;: &quot;Formar el comparativo de tall con el sufijo -er.&quot;,
+    &quot;introductory&quot;: false,
+    &quot;issues&quot;: [],
+    &quot;rationale&quot;: &quot;Los distractores representan errores esperables: usar el adjetivo sin modificar, aplicar more a un adjetivo corto y combinar more con -er. La consigna fija el adjetivo necesario, pero elegir exige reconocer cómo se forma su comparativo.&quot;
+  },
+  &quot;respuestaUnica&quot;: {
+    &quot;correctIsValid&quot;: true,
+    &quot;validAlternatives&quot;: [],
+    &quot;correctProblem&quot;: null,
+    &quot;rationale&quot;: &quot;«Taller» es el comparativo natural de «tall» y encaja con «than». «Tall» no expresa el comparativo, «more tall» suena forzado en esta oración y «more taller» duplica la marca comparativa.&quot;
+  }
+}</pre></details><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-11/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">12 · A2 · Comparativos</div><div class="cons">Completa con el comparativo de tall.</div><div class="sentence">Leo is ___ than his sister.</div><div class="choices"><span class="choice ">tall</span><span class="choice ">more tall</span><span class="choice ">tallest</span><span class="choice right">taller ✓</span></div><div class="expected"><b>Esperado:</b> Aceptar sin cambios.</div><div class="why">Grado positivo, doble formación y superlativo son confusiones pertinentes.</div></td><td><span class="pill p-ok">Aceptó</span><div class="issue">Los distractores representan errores esperables: usar el adjetivo sin modificar, aplicar more a un adjetivo corto o confundir comparativo con superlativo. La consigna fija el adjetivo y las opciones permiten practicar su forma comparativa sin ofrecer una coincidencia literal con la clave.</div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;PASS&quot;,
+  &quot;objective&quot;: &quot;Formar el comparativo de superioridad de tall en una oración con than.&quot;,
+  &quot;introductory&quot;: true,
+  &quot;issues&quot;: [],
+  &quot;rationale&quot;: &quot;Los distractores representan errores esperables: usar el adjetivo sin modificar, aplicar more a un adjetivo corto o confundir comparativo con superlativo. La consigna fija el adjetivo y las opciones permiten practicar su forma comparativa sin ofrecer una coincidencia literal con la clave.&quot;
+}</pre></details></td><td><span class="pill p-idle">No se llamó</span><div class="issue">Control válido conservado. No se gastaron consultas en corregirlo ni en volver a juzgarlo.</div></td><td><span class="pill p-ok">Control correcto</span><div class="checks">Coincide con lo esperado.<br>Ejercicio sin modificar.</div><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-12/result.json">Evidencia del caso</a></div></td></tr></tbody></table></div><p class="pie">La tilde marca la clave. La segunda evaluación recibió sólo el ejercicio propuesto, sin el diagnóstico anterior ni las expectativas del test.</p></section><section><h2>Casos 13–16: evaluación y propuesta completas</h2><div class="tw"><table class="cases"><thead><tr><th>Antes · esperado</th><th>Primera evaluación</th><th>Propuesta del corrector</th><th>Resultado</th></tr></thead><tbody><tr><td><div class="case-head">13 · A1 · Plurales irregulares</div><div class="cons">Forma el plural irregular de child; practica cómo cambia esa palabra.</div><div class="sentence">One child; two ___.</div><div class="choices"><span class="choice right">children ✓</span><span class="choice ">dogs</span><span class="choice ">houses</span><span class="choice ">cars</span></div><div class="expected"><b>Esperado:</b> Marcar para corregir.</div><div class="why">Cambiar el sustantivo no prueba cómo se forma su plural irregular.</div></td><td><span class="pill p-warn">Marcó para corregir</span><div class="issue"><b>Distractores ajenos al objetivo</b><div>Todos los distractores son plurales de otros sustantivos y cambian el significado ya fijado por child. Permiten elegir children reconociendo qué opción se refiere a niños, sin practicar cómo se forma su plural irregular. Deben conservarse child y el contraste One/two; falta contrastar formas de plural del mismo sustantivo.</div></div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;FAIL&quot;,
+  &quot;objective&quot;: &quot;Formar el plural irregular de child.&quot;,
+  &quot;introductory&quot;: true,
+  &quot;issues&quot;: [
+    {
+      &quot;kind&quot;: &quot;IRRELEVANT_DISTRACTORS&quot;,
+      &quot;severity&quot;: &quot;HIGH&quot;,
+      &quot;labels&quot;: [
+        &quot;dogs&quot;,
+        &quot;houses&quot;,
+        &quot;cars&quot;
+      ],
+      &quot;reason&quot;: &quot;Todos los distractores son plurales de otros sustantivos y cambian el significado ya fijado por child. Permiten elegir children reconociendo qué opción se refiere a niños, sin practicar cómo se forma su plural irregular. Deben conservarse child y el contraste One/two; falta contrastar formas de plural del mismo sustantivo.&quot;,
+      &quot;misconception&quot;: &quot;Aplicar la terminación regular -s a child o mantener la forma singular después de two.&quot;
+    }
+  ],
+  &quot;rationale&quot;: &quot;La práctica es introductoria, pero el conjunto evita casi por completo el objetivo: las opciones equivocadas cambian el sustantivo en lugar de representar errores esperables al formar su plural.&quot;
+}</pre></details></td><td><div class="cons">Forma el plural irregular de child; practica cómo cambia esa palabra.</div><div class="sentence">One child; two ___ .</div><div class="choices"><span class="choice right">children ✓</span><span class="choice ">childs</span><span class="choice ">child</span><span class="choice ">childrens</span></div><div class="issue">Reemplacé los distractores por formas del mismo sustantivo: childs aplica el plural regular, child mantiene el singular y childrens añade -s al plural irregular; conservé child y el contraste One/two para practicar la formación del plural sin regalar la respuesta por diferencias de significado.</div></td><td><span class="pill p-ok">Ciclo correcto</span><div class="checks">Calidad: pasó.<br>Respuesta única: pasó.<br>Reglas locales: pasó.<br>Objetivo: conservado.</div><details><summary>Segunda evaluación literal</summary><pre>{
+  &quot;calidad&quot;: {
+    &quot;status&quot;: &quot;PASS&quot;,
+    &quot;objective&quot;: &quot;Formar el plural irregular de child: children.&quot;,
+    &quot;introductory&quot;: true,
+    &quot;issues&quot;: [],
+    &quot;rationale&quot;: &quot;El conjunto practica el cambio pedido: childs representa aplicar la terminación regular, child conservar el singular y childrens añadir una terminación regular al plural irregular. Son confusiones esperables en A1. La consigna fija la palabra y two establece el plural, sin permitir elegir por coincidencia literal.&quot;
+  },
+  &quot;respuestaUnica&quot;: {
+    &quot;correctIsValid&quot;: true,
+    &quot;validAlternatives&quot;: [],
+    &quot;correctProblem&quot;: null,
+    &quot;rationale&quot;: &quot;«Children» es el plural irregular de «child» y encaja con «two». «Childs» y «childrens» no son plurales correctos; «child» es singular y no cumple la consigna.&quot;
+  }
+}</pre></details><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-13/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">14 · B1 · Presente perfecto</div><div class="cons">Elige have o has más participio para formar presente perfecto.</div><div class="sentence">We ___ the report.</div><div class="choices"><span class="choice right">have finished ✓</span><span class="choice ">seventeen</span><span class="choice ">Japan</span><span class="choice ">blue</span></div><div class="expected"><b>Esperado:</b> Marcar para corregir.</div><div class="why">Las incorrectas no representan ninguna alternativa de auxiliar o participio.</div></td><td><span class="pill p-warn">Marcó para corregir</span><div class="issue"><b>Distractores inverosímiles</b><div>Los distractores son un número, un nombre de país y un color; ninguno representa un intento de construir auxiliar más participio. El conjunto permite elegir la única opción con estructura verbal sin aplicar la concordancia ni reconocer el participio. Se deben conservar el sujeto We y el enunciado; falta contrastar errores esperables en la formación del presente perfecto.</div></div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;FAIL&quot;,
+  &quot;objective&quot;: &quot;Formar el presente perfecto con have o has más participio, concordando el auxiliar con el sujeto We.&quot;,
+  &quot;introductory&quot;: false,
+  &quot;issues&quot;: [
+    {
+      &quot;kind&quot;: &quot;IMPLAUSIBLE_DISTRACTORS&quot;,
+      &quot;severity&quot;: &quot;HIGH&quot;,
+      &quot;labels&quot;: [
+        &quot;seventeen&quot;,
+        &quot;Japan&quot;,
+        &quot;blue&quot;
+      ],
+      &quot;reason&quot;: &quot;Los distractores son un número, un nombre de país y un color; ninguno representa un intento de construir auxiliar más participio. El conjunto permite elegir la única opción con estructura verbal sin aplicar la concordancia ni reconocer el participio. Se deben conservar el sujeto We y el enunciado; falta contrastar errores esperables en la formación del presente perfecto.&quot;,
+      &quot;misconception&quot;: &quot;Usar has con We o emplear una forma verbal distinta del participio después de have.&quot;
+    }
+  ],
+  &quot;rationale&quot;: &quot;El objetivo está explícito, pero todos los distractores son descartables sin practicar la formación del presente perfecto.&quot;
+}</pre></details></td><td><div class="cons">Elige have o has más participio para formar presente perfecto.</div><div class="sentence">We ___ the report.</div><div class="choices"><span class="choice right">have finished ✓</span><span class="choice ">has finished</span><span class="choice ">have finish</span><span class="choice ">have finishing</span></div><div class="issue">Reemplacé los distractores de relleno por errores de concordancia (has con We) y de formación del participio (finish y finishing después de have); todas las opciones contienen formas del mismo verbo, por lo que hay que aplicar la estructura del presente perfecto para elegir.</div></td><td><span class="pill p-ok">Ciclo correcto</span><div class="checks">Calidad: pasó.<br>Respuesta única: pasó.<br>Reglas locales: pasó.<br>Objetivo: conservado.</div><details><summary>Segunda evaluación literal</summary><pre>{
+  &quot;calidad&quot;: {
+    &quot;status&quot;: &quot;PASS&quot;,
+    &quot;objective&quot;: &quot;Formar el presente perfecto con have o has según el sujeto y el participio pasado del verbo.&quot;,
+    &quot;introductory&quot;: false,
+    &quot;issues&quot;: [],
+    &quot;rationale&quot;: &quot;Los distractores representan errores esperables: usar has con we, emplear el infinitivo finish o confundir el participio pasado con finishing. El conjunto permite practicar tanto la concordancia del auxiliar como la forma verbal requerida, sin ofrecer una coincidencia literal que evite aplicar esas reglas.&quot;
+  },
+  &quot;respuestaUnica&quot;: {
+    &quot;correctIsValid&quot;: true,
+    &quot;validAlternatives&quot;: [],
+    &quot;correctProblem&quot;: null,
+    &quot;rationale&quot;: &quot;«We have finished the report.» forma correctamente el presente perfecto. «Has finished» no concuerda con «We», y «have finish» y «have finishing» no usan el participio requerido.&quot;
+  }
+}</pre></details><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-14/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">15 · A1 · Reconocer pronombres</div><div class="cons">Práctica introductoria: reconoce la opción que contiene el pronombre she.</div><div class="sentence">___ thirsty? (she)</div><div class="choices"><span class="choice ">Am I</span><span class="choice ">Are we</span><span class="choice right">Is she ✓</span><span class="choice ">Is it</span></div><div class="expected"><b>Esperado:</b> Marcar para corregir.</div><div class="why">Copiar literalmente she ya dado no demuestra comprender el pronombre aunque se presente como introductorio.</div></td><td><span class="pill p-warn">Marcó para corregir</span><div class="issue"><b>Las opciones regalan la respuesta</b><div>Sólo Is she contiene la palabra she, ya escrita en la consigna y en la pista. El conjunto permite acertar por coincidencia literal sin reconocer el significado del pronombre. La pista fija el sujeto y puede conservarse si se reformula el objetivo; para practicar reconocimiento de significado falta una referencia visible en español que deba relacionarse con el pronombre inglés.</div></div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;FAIL&quot;,
+  &quot;objective&quot;: &quot;Reconocer la opción que contiene el pronombre she.&quot;,
+  &quot;introductory&quot;: true,
+  &quot;issues&quot;: [
+    {
+      &quot;kind&quot;: &quot;ANSWER_CUE&quot;,
+      &quot;severity&quot;: &quot;HIGH&quot;,
+      &quot;labels&quot;: [
+        &quot;Am I&quot;,
+        &quot;Are we&quot;,
+        &quot;Is she&quot;,
+        &quot;Is it&quot;
+      ],
+      &quot;reason&quot;: &quot;Sólo Is she contiene la palabra she, ya escrita en la consigna y en la pista. El conjunto permite acertar por coincidencia literal sin reconocer el significado del pronombre. La pista fija el sujeto y puede conservarse si se reformula el objetivo; para practicar reconocimiento de significado falta una referencia visible en español que deba relacionarse con el pronombre inglés.&quot;,
+      &quot;misconception&quot;: &quot;Confundir she con otros pronombres personales al relacionar su significado con el sujeto referido.&quot;
+    }
+  ],
+  &quot;rationale&quot;: &quot;Aunque la práctica es introductoria, seleccionar la única opción que repite she sólo exige coincidencia visual y evita casi por completo el reconocimiento lingüístico.&quot;
+}</pre></details></td><td><div class="cons">Práctica introductoria: elige la opción cuyo pronombre significa «ella» para completar la pregunta.</div><div class="sentence">___ thirsty? (ella)</div><div class="choices"><span class="choice ">Am I</span><span class="choice ">Are we</span><span class="choice right">Is she ✓</span><span class="choice ">Is it</span></div><div class="issue">Reemplacé la pista inglesa por «ella» y reformulé la consigna para reconocer el significado del pronombre sin copiar she; conservé las opciones, que distinguen ella de yo, nosotros y el pronombre para una cosa.</div></td><td><span class="pill p-ok">Ciclo correcto</span><div class="checks">Calidad: pasó.<br>Respuesta única: pasó.<br>Reglas locales: pasó.<br>Objetivo: conservado.</div><details><summary>Segunda evaluación literal</summary><pre>{
+  &quot;calidad&quot;: {
+    &quot;status&quot;: &quot;PASS&quot;,
+    &quot;objective&quot;: &quot;Reconocer que el pronombre inglés she significa «ella».&quot;,
+    &quot;introductory&quot;: true,
+    &quot;issues&quot;: [],
+    &quot;rationale&quot;: &quot;La consigna pide reconocer el significado del pronombre en una práctica introductoria. La pista «ella» fija el significado sin mostrar la palabra inglesa que debe elegirse. Los distractores ofrecen otros pronombres básicos y permiten practicar ese reconocimiento; no es necesario exigir un contraste de inversión o concordancia.&quot;
+  },
+  &quot;respuestaUnica&quot;: {
+    &quot;correctIsValid&quot;: true,
+    &quot;validAlternatives&quot;: [],
+    &quot;correctProblem&quot;: null,
+    &quot;rationale&quot;: &quot;«Is she thirsty?» es correcta y natural. La consigna y la pista «(ella)» exigen el pronombre «she» y descartan las demás opciones.&quot;
+  }
+}</pre></details><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-15/result.json">Evidencia del caso</a></div></td></tr><tr><td><div class="case-head">16 · A1 · Reconocer pronombres</div><div class="cons">Completa la pregunta con el pronombre inglés correspondiente a «ella».</div><div class="sentence">___ thirsty?</div><div class="choices"><span class="choice ">Am I</span><span class="choice ">Are we</span><span class="choice right">Is she ✓</span><span class="choice ">Is it</span></div><div class="expected"><b>Esperado:</b> Aceptar sin cambios.</div><div class="why">Reconoce el significado de ella; no copia el inglés dado. Control nuevo que reemplaza al 16 de frontera.</div></td><td><span class="pill p-ok">Aceptó</span><div class="issue">La consigna propone reconocimiento básico de significado. Elegir «Is she» exige asociar «ella» con «she»; no hay una palabra inglesa en la pista que permita acertar por coincidencia literal. Los distractores contrastan otros pronombres y representan confusiones razonables para A1.</div><details><summary>Devolución literal completa</summary><pre>{
+  &quot;status&quot;: &quot;PASS&quot;,
+  &quot;objective&quot;: &quot;Reconocer el pronombre inglés correspondiente a «ella» para completar la pregunta.&quot;,
+  &quot;introductory&quot;: true,
+  &quot;issues&quot;: [],
+  &quot;rationale&quot;: &quot;La consigna propone reconocimiento básico de significado. Elegir «Is she» exige asociar «ella» con «she»; no hay una palabra inglesa en la pista que permita acertar por coincidencia literal. Los distractores contrastan otros pronombres y representan confusiones razonables para A1.&quot;
+}</pre></details></td><td><span class="pill p-idle">No se llamó</span><div class="issue">Control válido conservado. No se gastaron consultas en corregirlo ni en volver a juzgarlo.</div></td><td><span class="pill p-ok">Control correcto</span><div class="checks">Coincide con lo esperado.<br>Ejercicio sin modificar.</div><div class="evidence"><a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/case-16/result.json">Evidencia del caso</a></div></td></tr></tbody></table></div><p class="pie">La tilde marca la clave. La segunda evaluación recibió sólo el ejercicio propuesto, sin el diagnóstico anterior ni las expectativas del test.</p></section>
+<section><h2>La prueba no modifica lo que estás revisando</h2><div class="cambia"><div class="si"><div class="ptl">Qué se comprobó</div><ul><li>La devolución real genera tareas y llega al corrector.</li><li>Las pistas necesarias se conservan; cambian las opciones.</li><li>La 15 reconoce significado, no copia literal.</li><li>La 9 y14 aceptan categorías compatibles, sin inventar fallos.</li></ul></div><div class="no"><div class="ptl">Qué no se hizo</div><ul><li>No se tocó la campaña ni se publicaron propuestas.</li><li>No se cambió el resultado del examen anterior.</li><li>No se aprobó oficialmente esta versión del juez.</li><li>No se probaron los dos casos extra históricos.</li></ul></div></div><p class="pie">El 16 es un control nuevo: reconocer el pronombre inglés de «ella». Reemplaza el límite ambiguo del examen anterior, que queda conservado.</p></section>
+<section><h2>La siguiente revisión es pedagógica, no otra corrida</h2><div class="flow"><div class="st"><span class="i">1</span><span class="h">Mirar las opciones</span><span class="d">Revisar los 16 casos; especial atención al 7 y9.</span></div><div class="st"><span class="i">2</span><span class="h">Definir los contrastes</span><span class="d">Decidir cuánto combinar errores de estructura y escritura.</span></div><div class="st end"><span class="i">3</span><span class="h">Separar las aprobaciones</span><span class="d">Probar estos casos no equivale a aprobar el curso.</span></div></div><p class="pie">La revisión local confirma el objetivo y la respuesta única en estas propuestas; no prueba variedad suficiente ni generalización a todos los contenidos.</p></section>
+<footer><span>Fuentes: <a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/result.json">resultado consolidado</a> · <a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/preflight.json">versiones congeladas</a> · <a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/physical-calls.jsonl">43 lanzamientos</a> · <a href="../../analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/review.json">revisión local</a>. Runtime: codex-cli / ChatGPT local / gpt-6.1-sol / medium. 17 tests Java,5 tests del presupuesto y prueba nativa sin modelos. Los 34 juicios y 9 propuestas se conservan con sus entradas y salidas completas.</span><span>brief 081 · docs/briefs/081-ciclo-completo-distractores.html</span></footer></div></body></html>

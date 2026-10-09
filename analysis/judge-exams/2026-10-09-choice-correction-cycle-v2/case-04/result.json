@@ -1,0 +1,29 @@
+{
+  "caseNumber" : 4,
+  "id" : "df0000000000000000000004",
+  "original" : {
+    "id" : "df0000000000000000000004",
+    "caseNumber" : 4,
+    "slug" : "negative-useful",
+    "level" : "A1",
+    "topic" : "Negativas con be",
+    "title" : "Negativas con be",
+    "instructions" : "Completa la negación de be en presente simple.",
+    "exercise" : "It ___ thirsty.",
+    "options" : [ "isn't", "aren't", "am not", "is" ],
+    "correct" : "isn't",
+    "expected" : "PASS",
+    "allowedIssueKinds" : [ ],
+    "expectationReason" : "Discrimina negación y concordancia con el sujeto ya visible."
+  },
+  "initial" : {
+    "status" : "PASS",
+    "objective" : "Completar una negación de be en presente simple con la forma correspondiente al sujeto It.",
+    "introductory" : true,
+    "issues" : [ ],
+    "rationale" : "Las opciones permiten practicar la concordancia de be con It y distinguir una forma negativa de la afirmativa. Aren't y am not representan errores esperables de concordancia en A1; is representa la omisión de la negación. El sujeto fija el contexto necesario sin ofrecer una coincidencia literal con la clave."
+  },
+  "initialStatusMatches" : true,
+  "result" : "CONTROL_PRESERVED",
+  "finishedAt" : "2026-10-09T22:52:43.254818Z"
+}

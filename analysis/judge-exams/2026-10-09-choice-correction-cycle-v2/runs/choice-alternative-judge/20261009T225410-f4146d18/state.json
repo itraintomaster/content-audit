@@ -1,0 +1,49 @@
+{
+  "agentId" : "choice-alternative-judge",
+  "runId" : "acaf385a-e5fa-4c7d-9cf6-986594733088",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "exercise" : "___ thirsty? (ella)",
+    "title" : "Reconocer pronombres",
+    "options" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it",
+    "instructions" : "Práctica introductoria: elige la opción cuyo pronombre significa «ella» para completar la pregunta.",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225410-f4146d18"
+  },
+  "phases" : {
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-alternative-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "choiceAlternativeVerdict" : {
+      "artifactId" : "f7323d74-aa14-4e5f-998c-0d5717bb9464",
+      "kind" : "choiceAlternativeVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225410-f4146d18/artifacts/choiceAlternativeVerdict/5e52cc7d7b1ec58b4b1f25d5d152368e49aef10d9131e3f72a9a5b37e3b10073.json",
+      "contentHash" : "sha256:5e52cc7d7b1ec58b4b1f25d5d152368e49aef10d9131e3f72a9a5b37e3b10073",
+      "producedAt" : "2026-10-09T22:54:17.490523Z",
+      "producedBy" : "emit"
+    },
+    "verdicts" : {
+      "artifactId" : "b714f520-cbbf-43af-b00e-cc25747baa08",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225410-f4146d18/artifacts/verdicts/01a1f8003e0a8d2bcce6faa1feefeeef03a493fba36453c37f5a7569fa655b62.json",
+      "contentHash" : "sha256:01a1f8003e0a8d2bcce6faa1feefeeef03a493fba36453c37f5a7569fa655b62",
+      "producedAt" : "2026-10-09T22:54:17.419415Z",
+      "producedBy" : "evaluate"
+    }
+  }
+}

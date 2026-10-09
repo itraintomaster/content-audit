@@ -1,0 +1,29 @@
+{
+  "caseNumber" : 12,
+  "id" : "df000000000000000000000c",
+  "original" : {
+    "id" : "df000000000000000000000c",
+    "caseNumber" : 12,
+    "slug" : "comparative-useful",
+    "level" : "A2",
+    "topic" : "Comparativos",
+    "title" : "Comparativos",
+    "instructions" : "Completa con el comparativo de tall.",
+    "exercise" : "Leo is ___ than his sister.",
+    "options" : [ "tall", "more tall", "tallest", "taller" ],
+    "correct" : "taller",
+    "expected" : "PASS",
+    "allowedIssueKinds" : [ ],
+    "expectationReason" : "Grado positivo, doble formación y superlativo son confusiones pertinentes."
+  },
+  "initial" : {
+    "status" : "PASS",
+    "objective" : "Formar el comparativo de superioridad de tall en una oración con than.",
+    "introductory" : true,
+    "issues" : [ ],
+    "rationale" : "Los distractores representan errores esperables: usar el adjetivo sin modificar, aplicar more a un adjetivo corto o confundir comparativo con superlativo. La consigna fija el adjetivo y las opciones permiten practicar su forma comparativa sin ofrecer una coincidencia literal con la clave."
+  },
+  "initialStatusMatches" : true,
+  "result" : "CONTROL_PRESERVED",
+  "finishedAt" : "2026-10-09T22:53:24.038658Z"
+}

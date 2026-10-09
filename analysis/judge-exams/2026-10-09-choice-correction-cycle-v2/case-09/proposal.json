@@ -1,0 +1,74 @@
+{
+  "candidates" : [ {
+    "kind" : "WHOLE_EXERCISE",
+    "quiz" : {
+      "id" : "df0000000000000000000009",
+      "oidId" : null,
+      "kind" : "MULTIPLE_CHOICE",
+      "knowledgeId" : null,
+      "title" : null,
+      "instructions" : null,
+      "translation" : null,
+      "theoryId" : null,
+      "topicName" : null,
+      "form" : {
+        "kind" : "MULTIPLE_CHOICE",
+        "incidence" : 1.0,
+        "label" : "",
+        "name" : "",
+        "sentenceParts" : [ {
+          "kind" : "TEXT",
+          "text" : "Nora ",
+          "options" : null
+        }, {
+          "kind" : "CLOZE",
+          "text" : "",
+          "options" : null
+        }, {
+          "kind" : "TEXT",
+          "text" : " the window yesterday.",
+          "options" : null
+        } ],
+        "multipleChoice" : {
+          "selection" : "SINGLE",
+          "items" : [ {
+            "id" : "closed",
+            "incidence" : 1.0,
+            "label" : "closed"
+          }, {
+            "id" : "close",
+            "incidence" : 0.0,
+            "label" : "close"
+          }, {
+            "id" : "closeed",
+            "incidence" : 0.0,
+            "label" : "closeed"
+          }, {
+            "id" : "closd",
+            "incidence" : 0.0,
+            "label" : "closd"
+          } ]
+        },
+        "unmodeledFields" : null
+      },
+      "difficulty" : 0.0,
+      "retries" : 0.0,
+      "noScoreRetries" : 0.0,
+      "code" : null,
+      "audioUrl" : null,
+      "imageUrl" : null,
+      "answerAudioUrl" : null,
+      "answerImageUrl" : null,
+      "miniTheory" : null,
+      "successMessage" : null,
+      "sentences" : null,
+      "unmodeledFields" : null
+    },
+    "miniTheoryText" : null,
+    "topicInstructions" : null,
+    "rationale" : "Reemplacé los distractores ajenos al verbo por errores esperables: usar la forma base, añadir -ed sin considerar la e final y eliminar esa e antes de añadir -d; conservé la consigna y yesterday para que se reconozca la formación del pasado y no se descarte por significado o categoría."
+  } ],
+  "proposerVersion" : "panel-proposer",
+  "available" : true,
+  "unavailableReason" : null
+}

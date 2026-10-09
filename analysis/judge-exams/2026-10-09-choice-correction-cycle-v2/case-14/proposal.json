@@ -1,0 +1,74 @@
+{
+  "candidates" : [ {
+    "kind" : "WHOLE_EXERCISE",
+    "quiz" : {
+      "id" : "df000000000000000000000e",
+      "oidId" : null,
+      "kind" : "MULTIPLE_CHOICE",
+      "knowledgeId" : null,
+      "title" : null,
+      "instructions" : null,
+      "translation" : null,
+      "theoryId" : null,
+      "topicName" : null,
+      "form" : {
+        "kind" : "MULTIPLE_CHOICE",
+        "incidence" : 1.0,
+        "label" : "",
+        "name" : "",
+        "sentenceParts" : [ {
+          "kind" : "TEXT",
+          "text" : "We ",
+          "options" : null
+        }, {
+          "kind" : "CLOZE",
+          "text" : "",
+          "options" : null
+        }, {
+          "kind" : "TEXT",
+          "text" : " the report.",
+          "options" : null
+        } ],
+        "multipleChoice" : {
+          "selection" : "SINGLE",
+          "items" : [ {
+            "id" : "have finished",
+            "incidence" : 1.0,
+            "label" : "have finished"
+          }, {
+            "id" : "has finished",
+            "incidence" : 0.0,
+            "label" : "has finished"
+          }, {
+            "id" : "have finish",
+            "incidence" : 0.0,
+            "label" : "have finish"
+          }, {
+            "id" : "have finishing",
+            "incidence" : 0.0,
+            "label" : "have finishing"
+          } ]
+        },
+        "unmodeledFields" : null
+      },
+      "difficulty" : 0.0,
+      "retries" : 0.0,
+      "noScoreRetries" : 0.0,
+      "code" : null,
+      "audioUrl" : null,
+      "imageUrl" : null,
+      "answerAudioUrl" : null,
+      "answerImageUrl" : null,
+      "miniTheory" : null,
+      "successMessage" : null,
+      "sentences" : null,
+      "unmodeledFields" : null
+    },
+    "miniTheoryText" : null,
+    "topicInstructions" : null,
+    "rationale" : "Reemplacé los distractores de relleno por errores de concordancia (has con We) y de formación del participio (finish y finishing después de have); todas las opciones contienen formas del mismo verbo, por lo que hay que aplicar la estructura del presente perfecto para elegir."
+  } ],
+  "proposerVersion" : "panel-proposer",
+  "available" : true,
+  "unavailableReason" : null
+}

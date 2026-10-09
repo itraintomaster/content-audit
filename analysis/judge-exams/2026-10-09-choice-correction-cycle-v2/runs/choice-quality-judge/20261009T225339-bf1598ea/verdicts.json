@@ -1,0 +1,15 @@
+{
+  "status": "FAIL",
+  "objective": "Reconocer la opción que contiene el pronombre she.",
+  "introductory": true,
+  "issues": [
+    {
+      "kind": "ANSWER_CUE",
+      "severity": "HIGH",
+      "labels": ["Am I", "Are we", "Is she", "Is it"],
+      "reason": "Sólo Is she contiene la palabra she, ya escrita en la consigna y en la pista. El conjunto permite acertar por coincidencia literal sin reconocer el significado del pronombre. La pista fija el sujeto y puede conservarse si se reformula el objetivo; para practicar reconocimiento de significado falta una referencia visible en español que deba relacionarse con el pronombre inglés.",
+      "misconception": "Confundir she con otros pronombres personales al relacionar su significado con el sujeto referido."
+    }
+  ],
+  "rationale": "Aunque la práctica es introductoria, seleccionar la única opción que repite she sólo exige coincidencia visual y evita casi por completo el reconocimiento lingüístico."
+}

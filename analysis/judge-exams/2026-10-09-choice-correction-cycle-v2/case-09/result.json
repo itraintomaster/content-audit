@@ -1,0 +1,332 @@
+{
+  "caseNumber" : 9,
+  "id" : "df0000000000000000000009",
+  "original" : {
+    "id" : "df0000000000000000000009",
+    "caseNumber" : 9,
+    "slug" : "irrelevant-past",
+    "level" : "A2",
+    "topic" : "Pasado simple",
+    "title" : "Pasado simple",
+    "instructions" : "Elige el pasado simple afirmativo de close.",
+    "exercise" : "Nora ___ the window yesterday.",
+    "options" : [ "closed", "banana", "purple", "Wednesday" ],
+    "correct" : "closed",
+    "expected" : "FAIL",
+    "allowedIssueKinds" : [ "IRRELEVANT_DISTRACTORS", "IMPLAUSIBLE_DISTRACTORS" ],
+    "expectationReason" : "Sólo closed es una forma verbal pertinente al objetivo explícito."
+  },
+  "initial" : {
+    "status" : "FAIL",
+    "objective" : "Identificar el pasado simple afirmativo del verbo close.",
+    "introductory" : true,
+    "issues" : [ {
+      "kind" : "IMPLAUSIBLE_DISTRACTORS",
+      "severity" : "HIGH",
+      "labels" : [ "banana", "purple", "Wednesday" ],
+      "reason" : "Los tres distractores son palabras ajenas a las formas de close y se descartan por su significado o categoría, sin reconocer cómo se forma el pasado simple. La consigna y yesterday fijan el verbo y el tiempo y deben conservarse; falta contrastar closed con errores esperables al formar el pasado de ese verbo.",
+      "misconception" : "Confundir la forma base con el pasado simple o aplicar incorrectamente la terminación regular -ed."
+    } ],
+    "rationale" : "Aunque la práctica sea introductoria, el conjunto permite acertar descartando palabras sin relación con el verbo, y evita casi por completo practicar su forma en pasado simple."
+  },
+  "initialStatusMatches" : true,
+  "findings" : [ {
+    "analyzer" : "multiple-choice-quality",
+    "rule" : "implausible-distractors",
+    "node" : {
+      "target" : "QUIZ",
+      "nodeId" : "df0000000000000000000009",
+      "label" : "Pasado simple"
+    },
+    "severity" : "HIGH",
+    "evidence" : {
+      "examined" : [ {
+        "label" : "Objetivo pedagógico",
+        "text" : "Identificar el pasado simple afirmativo del verbo close."
+      }, {
+        "label" : "Nivel",
+        "text" : "A2"
+      }, {
+        "label" : "Consigna",
+        "text" : "Elige el pasado simple afirmativo de close."
+      }, {
+        "label" : "Ejercicio",
+        "text" : "Nora ___ the window yesterday."
+      }, {
+        "label" : "Opciones",
+        "text" : "- closed (correcta)\n- banana\n- purple\n- Wednesday"
+      }, {
+        "label" : "Confusión esperable",
+        "text" : "Confundir la forma base con el pasado simple o aplicar incorrectamente la terminación regular -ed."
+      } ],
+      "observation" : "Los tres distractores son palabras ajenas a las formas de close y se descartan por su significado o categoría, sin reconocer cómo se forma el pasado simple. La consigna y yesterday fijan el verbo y el tiempo y deben conservarse; falta contrastar closed con errores esperables al formar el pasado de ese verbo.",
+      "relatedNodes" : [ ]
+    },
+    "resolution" : "PANEL",
+    "cost" : "PAID_MODEL",
+    "identity" : {
+      "key" : "multiple-choice-quality|implausible-distractors|df0000000000000000000009|banana | purple | Wednesday",
+      "marker" : "banana | purple | Wednesday"
+    }
+  } ],
+  "tasksDelivered" : {
+    "batchId" : "choice-correction-cycle-20261009-v2",
+    "level" : "A2",
+    "knowledgeId" : "synthetic-topic-9",
+    "quizId" : "df0000000000000000000009",
+    "topicView" : [ {
+      "statement" : "Nora ___ the window yesterday.",
+      "gaps" : [ {
+        "index" : 0,
+        "hint" : null,
+        "acceptedAnswers" : [ "closed" ],
+        "firstAnswer" : "closed"
+      } ],
+      "options" : [ {
+        "label" : "closed",
+        "correct" : true
+      }, {
+        "label" : "banana",
+        "correct" : false
+      }, {
+        "label" : "purple",
+        "correct" : false
+      }, {
+        "label" : "Wednesday",
+        "correct" : false
+      } ],
+      "instructions" : "Elige el pasado simple afirmativo de close.",
+      "translation" : "",
+      "miniTheory" : ""
+    } ],
+    "briefs" : [ {
+      "task" : {
+        "id" : "task-001",
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "df0000000000000000000009",
+        "nodeLabel" : "Pasado simple",
+        "diagnosisKind" : "MULTIPLE_CHOICE_VALIDITY",
+        "priority" : 1,
+        "status" : "PENDING",
+        "origin" : {
+          "finding" : {
+            "analyzer" : "multiple-choice-quality",
+            "rule" : "implausible-distractors",
+            "node" : {
+              "target" : "QUIZ",
+              "nodeId" : "df0000000000000000000009",
+              "label" : "Pasado simple"
+            },
+            "severity" : "HIGH",
+            "evidence" : {
+              "examined" : [ {
+                "label" : "Objetivo pedagógico",
+                "text" : "Identificar el pasado simple afirmativo del verbo close."
+              }, {
+                "label" : "Nivel",
+                "text" : "A2"
+              }, {
+                "label" : "Consigna",
+                "text" : "Elige el pasado simple afirmativo de close."
+              }, {
+                "label" : "Ejercicio",
+                "text" : "Nora ___ the window yesterday."
+              }, {
+                "label" : "Opciones",
+                "text" : "- closed (correcta)\n- banana\n- purple\n- Wednesday"
+              }, {
+                "label" : "Confusión esperable",
+                "text" : "Confundir la forma base con el pasado simple o aplicar incorrectamente la terminación regular -ed."
+              } ],
+              "observation" : "Los tres distractores son palabras ajenas a las formas de close y se descartan por su significado o categoría, sin reconocer cómo se forma el pasado simple. La consigna y yesterday fijan el verbo y el tiempo y deben conservarse; falta contrastar closed con errores esperables al formar el pasado de ese verbo.",
+              "relatedNodes" : [ ]
+            },
+            "resolution" : "PANEL",
+            "cost" : "PAID_MODEL",
+            "identity" : {
+              "key" : "multiple-choice-quality|implausible-distractors|df0000000000000000000009|banana | purple | Wednesday",
+              "marker" : "banana | purple | Wednesday"
+            }
+          },
+          "cefrLevel" : "A2",
+          "knowledgeId" : "synthetic-topic-9",
+          "knowledgeLabel" : "Pasado simple",
+          "reachedQuizIds" : [ "df0000000000000000000009" ],
+          "coveredFindings" : [ ]
+        }
+      },
+      "finding" : {
+        "analyzer" : "multiple-choice-quality",
+        "rule" : "implausible-distractors",
+        "node" : {
+          "target" : "QUIZ",
+          "nodeId" : "df0000000000000000000009",
+          "label" : "Pasado simple"
+        },
+        "severity" : "HIGH",
+        "evidence" : {
+          "examined" : [ {
+            "label" : "Objetivo pedagógico",
+            "text" : "Identificar el pasado simple afirmativo del verbo close."
+          }, {
+            "label" : "Nivel",
+            "text" : "A2"
+          }, {
+            "label" : "Consigna",
+            "text" : "Elige el pasado simple afirmativo de close."
+          }, {
+            "label" : "Ejercicio",
+            "text" : "Nora ___ the window yesterday."
+          }, {
+            "label" : "Opciones",
+            "text" : "- closed (correcta)\n- banana\n- purple\n- Wednesday"
+          }, {
+            "label" : "Confusión esperable",
+            "text" : "Confundir la forma base con el pasado simple o aplicar incorrectamente la terminación regular -ed."
+          } ],
+          "observation" : "Los tres distractores son palabras ajenas a las formas de close y se descartan por su significado o categoría, sin reconocer cómo se forma el pasado simple. La consigna y yesterday fijan el verbo y el tiempo y deben conservarse; falta contrastar closed con errores esperables al formar el pasado de ese verbo.",
+          "relatedNodes" : [ ]
+        },
+        "resolution" : "PANEL",
+        "cost" : "PAID_MODEL",
+        "identity" : {
+          "key" : "multiple-choice-quality|implausible-distractors|df0000000000000000000009|banana | purple | Wednesday",
+          "marker" : "banana | purple | Wednesday"
+        }
+      },
+      "coveredFindings" : [ ],
+      "editScope" : [ "OPTIONS", "INSTRUCTIONS", "STATEMENT", "TRANSLATION", "STORED_SENTENCE", "AUDIO" ],
+      "scopeDeclared" : true,
+      "quizView" : {
+        "statement" : "Nora ___ the window yesterday.",
+        "gaps" : [ {
+          "index" : 0,
+          "hint" : null,
+          "acceptedAnswers" : [ "closed" ],
+          "firstAnswer" : "closed"
+        } ],
+        "options" : [ {
+          "label" : "closed",
+          "correct" : true
+        }, {
+          "label" : "banana",
+          "correct" : false
+        }, {
+          "label" : "purple",
+          "correct" : false
+        }, {
+          "label" : "Wednesday",
+          "correct" : false
+        } ],
+        "instructions" : "Elige el pasado simple afirmativo de close.",
+        "translation" : "",
+        "miniTheory" : ""
+      },
+      "reachedQuizViews" : [ ]
+    } ],
+    "wordLights" : null,
+    "conversion" : null,
+    "attempt" : 1,
+    "previousRejections" : [ ],
+    "twoFixes" : false
+  },
+  "proposal" : {
+    "candidates" : [ {
+      "kind" : "WHOLE_EXERCISE",
+      "quiz" : {
+        "id" : "df0000000000000000000009",
+        "oidId" : null,
+        "kind" : "MULTIPLE_CHOICE",
+        "knowledgeId" : null,
+        "title" : null,
+        "instructions" : null,
+        "translation" : null,
+        "theoryId" : null,
+        "topicName" : null,
+        "form" : {
+          "kind" : "MULTIPLE_CHOICE",
+          "incidence" : 1.0,
+          "label" : "",
+          "name" : "",
+          "sentenceParts" : [ {
+            "kind" : "TEXT",
+            "text" : "Nora ",
+            "options" : null
+          }, {
+            "kind" : "CLOZE",
+            "text" : "",
+            "options" : null
+          }, {
+            "kind" : "TEXT",
+            "text" : " the window yesterday.",
+            "options" : null
+          } ],
+          "multipleChoice" : {
+            "selection" : "SINGLE",
+            "items" : [ {
+              "id" : "closed",
+              "incidence" : 1.0,
+              "label" : "closed"
+            }, {
+              "id" : "close",
+              "incidence" : 0.0,
+              "label" : "close"
+            }, {
+              "id" : "closeed",
+              "incidence" : 0.0,
+              "label" : "closeed"
+            }, {
+              "id" : "closd",
+              "incidence" : 0.0,
+              "label" : "closd"
+            } ]
+          },
+          "unmodeledFields" : null
+        },
+        "difficulty" : 0.0,
+        "retries" : 0.0,
+        "noScoreRetries" : 0.0,
+        "code" : null,
+        "audioUrl" : null,
+        "imageUrl" : null,
+        "answerAudioUrl" : null,
+        "answerImageUrl" : null,
+        "miniTheory" : null,
+        "successMessage" : null,
+        "sentences" : null,
+        "unmodeledFields" : null
+      },
+      "miniTheoryText" : null,
+      "topicInstructions" : null,
+      "rationale" : "Reemplacé los distractores ajenos al verbo por errores esperables: usar la forma base, añadir -ed sin considerar la e final y eliminar esa e antes de añadir -d; conservé la consigna y yesterday para que se reconozca la formación del pasado y no se descarte por significado o categoría."
+    } ],
+    "proposerVersion" : "panel-proposer",
+    "available" : true,
+    "unavailableReason" : null
+  },
+  "localViolations" : [ ],
+  "after" : {
+    "level" : "A2",
+    "topic" : "Pasado simple",
+    "title" : "Pasado simple",
+    "instructions" : "Elige el pasado simple afirmativo de close.",
+    "exercise" : "Nora ___ the window yesterday.",
+    "options" : "- closed (correcta)\n- close\n- closeed\n- closd"
+  },
+  "afterQuality" : {
+    "status" : "PASS",
+    "objective" : "Reconocer el pasado simple afirmativo de close, aplicando la terminación -d a un verbo regular que ya termina en e.",
+    "introductory" : true,
+    "issues" : [ ],
+    "rationale" : "El conjunto contrasta la forma base con errores esperables al formar el pasado: añadir -ed sin ajustar la e final o eliminarla indebidamente. La consigna fija el verbo y la oración aporta contexto pasado; elegir closed requiere reconocer su formación, sin una coincidencia literal que permita evitar ese objetivo."
+  },
+  "afterAlternative" : {
+    "correctIsValid" : true,
+    "validAlternatives" : [ ],
+    "correctProblem" : null,
+    "rationale" : "«Nora closed the window yesterday.» es correcta y natural: «closed» es el pasado simple afirmativo de «close». «Close» no cumple la consigna ni concuerda con «Nora» en presente; «closeed» y «closd» son formas mal escritas."
+  },
+  "automaticCyclePass" : true,
+  "result" : "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+  "finishedAt" : "2026-10-09T22:53:39.635041Z"
+}

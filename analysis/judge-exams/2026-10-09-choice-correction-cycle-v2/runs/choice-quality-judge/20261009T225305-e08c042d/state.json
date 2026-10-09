@@ -1,0 +1,51 @@
+{
+  "agentId" : "choice-quality-judge",
+  "runId" : "d77495da-b8f6-4b0b-9e7c-007c438dc0a6",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "level" : "A1",
+    "topic" : "Tercera persona singular",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225305-e08c042d",
+    "title" : "Tercera persona singular",
+    "exercise" : "My aunt ___ peaches.",
+    "options" : "- likes (correcta)\n- like\n- likees\n- likies",
+    "instructions" : "Completa la afirmación de presente simple con la forma de like."
+  },
+  "phases" : {
+    "choice-quality-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "verdicts" : {
+      "artifactId" : "de6f9d50-96df-45f6-8a40-4cf312a94b79",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225305-e08c042d/artifacts/verdicts/befb2960f89d82b325c3981eddc0396f8d2b15b19de11f96c9b9a433d62e7cd6.json",
+      "contentHash" : "sha256:befb2960f89d82b325c3981eddc0396f8d2b15b19de11f96c9b9a433d62e7cd6",
+      "producedAt" : "2026-10-09T22:53:17.861597Z",
+      "producedBy" : "evaluate"
+    },
+    "choiceQualityVerdict" : {
+      "artifactId" : "99ccaefa-a327-43cc-bad4-f561aef33a39",
+      "kind" : "choiceQualityVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225305-e08c042d/artifacts/choiceQualityVerdict/b485a848d7003c37c8034477b4373577bcd9ac43da9f7c45020836d015bcca06.json",
+      "contentHash" : "sha256:b485a848d7003c37c8034477b4373577bcd9ac43da9f7c45020836d015bcca06",
+      "producedAt" : "2026-10-09T22:53:17.930137Z",
+      "producedBy" : "emit"
+    }
+  }
+}

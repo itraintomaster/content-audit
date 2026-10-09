@@ -1,0 +1,51 @@
+{
+  "agentId" : "choice-quality-judge",
+  "runId" : "878871db-7daa-4717-95f6-94e9a2652de8",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "exercise" : "Nora ___ the window yesterday.",
+    "title" : "Pasado simple",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225300-e94f084a",
+    "topic" : "Pasado simple",
+    "level" : "A2",
+    "instructions" : "Elige el pasado simple afirmativo de close.",
+    "options" : "- closed (correcta)\n- banana\n- purple\n- Wednesday"
+  },
+  "phases" : {
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-quality-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "verdicts" : {
+      "artifactId" : "b19b02dd-d25c-4a93-ad59-3fd5887b4a6d",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225300-e94f084a/artifacts/verdicts/5131f91d99d6823cb3a844cb00d70b91d7a02f3bb24383a7a531c4dba9d4123d.json",
+      "contentHash" : "sha256:5131f91d99d6823cb3a844cb00d70b91d7a02f3bb24383a7a531c4dba9d4123d",
+      "producedAt" : "2026-10-09T22:53:10.185383Z",
+      "producedBy" : "evaluate"
+    },
+    "choiceQualityVerdict" : {
+      "artifactId" : "2bec5622-a024-455c-b5cc-9688fea99b79",
+      "kind" : "choiceQualityVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225300-e94f084a/artifacts/choiceQualityVerdict/07cf7ff92238c658a58872a63bd224417eb94b8da90ed6afa35e6329958af13d.json",
+      "contentHash" : "sha256:07cf7ff92238c658a58872a63bd224417eb94b8da90ed6afa35e6329958af13d",
+      "producedAt" : "2026-10-09T22:53:10.253295Z",
+      "producedBy" : "emit"
+    }
+  }
+}
