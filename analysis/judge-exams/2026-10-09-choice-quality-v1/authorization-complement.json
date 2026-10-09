@@ -1,0 +1,20 @@
+{
+  "requestedBy": "José Cullen",
+  "request": "si",
+  "inReplyTo": "¿Autorizás hasta 16 llamadas adicionales, reutilizando los dos resultados válidos?",
+  "recordedAt": "2026-10-09T19:49:08Z",
+  "scope": "Completar únicamente los 14 casos centrales y los dos controles de contexto pendientes del mismo examen; no analizar ni corregir el curso real",
+  "provider": "codex-cli",
+  "model": "gpt-6.1-sol",
+  "reasoningEffort": "medium",
+  "judgeVersion": "3c725e9dbe4f5e0edee5ea1f116c8c9c733a9fadc4f196e47fda36fe9920225c",
+  "goldSha256": "e740ffdf66a0c7a64394a8d9dcb06ed4e3cf01643fcd8194f4b45285e0715249",
+  "physicalCallsAlreadyCharged": 18,
+  "additionalPhysicalCodexExecCap": 16,
+  "cumulativePhysicalCodexExecCap": 34,
+  "reuseExistingCurrentVerdicts": 2,
+  "resetPhysicalCounter": false,
+  "automaticRelaunch": false,
+  "formalApprovalAuthorized": false,
+  "note": "Se conserva el contador durable existente; toda llamada adicional, incluso incierta o de recuperación, consume este nuevo tramo. No hay otra corrida ni ajuste del prompt autorizados."
+}
