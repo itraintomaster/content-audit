@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>074 · Los 16 casos del examen de distractores</title><style>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>075 · La pista fija el sujeto; las opciones deben practicarlo</title><style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
     --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
@@ -236,332 +236,31 @@
     .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
     .kpi .n{font-size:28px}
   }
-
-
-.comparison table{table-layout:fixed;min-width:900px;font-size:13px}
-.comparison td{padding:14px 10px}.comparison th{padding:11px 10px;white-space:normal}
-.context,.instruction,.correct-label,.verdict-note{font-size:11.5px;color:var(--fg-2);line-height:1.5}
-.sentence{font-weight:700;font-size:15px;margin:6px 0}.instruction{margin-bottom:9px}
-.choices{display:flex;flex-wrap:wrap;gap:5px}.choice{padding:2px 7px;border:1px solid var(--line);border-radius:6px;background:var(--bg);font-size:12px}
-.choice.correct{color:var(--ok);border-color:var(--ok);background:var(--ok-soft)}
-.correct-label{margin-top:7px}.kind{margin-top:5px;font-weight:600;line-height:1.35}
-.reason{font-size:12px;line-height:1.5;color:var(--fg-2);margin-top:8px}
-.verdict-note{margin-top:8px}.mismatch{background:var(--bad-soft)}.pill{white-space:normal}
-details{margin-top:12px}summary{cursor:pointer;font-size:11.5px;font-weight:650;color:var(--accent)}
-details pre{font-size:11px;line-height:1.4;margin-top:8px;padding:9px;white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%}
-.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.quick a{padding:6px 11px;border:1px solid var(--line);border-radius:8px;text-decoration:none;background:var(--bg-elev);font-size:13px}
-.tax .antes{border-top-color:var(--info)}.tax .antes .rot,.tax .antes .res{color:var(--info)}.tax .despues{border-top-color:var(--warn)}.tax .despues .rot,.tax .despues .res{color:var(--warn)}
+.compare .antes,.compare .despues{border-top-color:var(--info)}.compare .antes .rot,.compare .antes .res,.compare .despues .rot,.compare .despues .res{color:var(--info)}.choices{display:flex;flex-wrap:wrap;gap:6px}.choice{padding:4px 9px;border:1px solid var(--line);border-radius:7px;background:var(--bg)}.choice.correct{border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}.ins{font-size:13px;color:var(--fg-2)}.recommendation{font-size:15px;line-height:1.55}
 </style></head>
 <body><div class="wrap">
-<header><div class="kicker"><span class="num">074</span><span class="badge">Caso por caso</span><span class="meta">Distractores · 9 octubre 2026</span></div><h1>Los 16 casos: esperaba esto, devolvió esto</h1><p class="sub">Enunciado, consigna, opciones, respuesta esperada y respuesta real; bien o mal según el criterio original.</p></header>
-<div class="lede"><p><strong>El juez no aceptó ningún ejercicio defectuoso.</strong> Falló solamente en el nombre del defecto de los casos 9 y 14, no en detectar sus problemas.</p></div>
-<section><h2>“Bien” evalúa al juez, no al ejercicio</h2>
-<div class="kpis"><div class="kpi"><div class="n">16<small>de 16</small></div><div class="l">decisiones correctas: aceptar o marcar para corregir</div></div><div class="kpi dest"><div class="n">14<small>de 16</small></div><div class="l">cumplen también las categorías exigidas antes de ejecutar</div></div><div class="kpi"><div class="n">2<small>de 16</small></div><div class="l">difieren en categoría: casos 9 y 14</div></div></div>
-<div class="quick"><a href="#caso-9">Ir al caso 9</a><a href="#caso-14">Ir al caso 14</a></div>
-<p class="pie">“Marcar para corregir” significa que el ejercicio tiene un defecto. “Bien” significa que el juez respondió lo esperado. La opción verde es la respuesta del alumno.</p></section>
-<section><h2>Casos 1 a 6: los seis dieron bien</h2>
-<div class="tw comparison"><table><colgroup><col style="width:5%"><col style="width:31%"><col style="width:20%"><col style="width:29%"><col style="width:15%"></colgroup><thead><tr><th>#</th><th>Ejercicio y opciones</th><th>Se esperaba</th><th>Devolvió el juez</th><th>¿Dio bien?</th></tr></thead><tbody><tr id="caso-1" class="match" data-case="df0000000000000000000001"><td class="num">1</td><td><div class="context">A1 · Preguntas con be</div><div class="sentence">___ thirsty? (she)</div><div class="instruction">Forma preguntas en presente simple con be antes del sujeto.</div><div class="choices"><span class="choice">Am I</span><span class="choice">Are we</span><span class="choice correct">Is she ✓</span><span class="choice">Is it</span></div><div class="correct-label">Respuesta correcta: Is she</div></td>
-<td><b>Marcar para corregir</b><div class="kind">Pista que regala la respuesta</div><div class="reason">La pista she deja sólo una opción sin practicar concordancia ni inversión.</div></td>
-<td><b>Marcó para corregir</b><div class="kind">Pista que regala la respuesta</div><div class="kind">Distractores ajenos al objetivo</div><div class="reason">«La facilidad no es el defecto: el conjunto permite resolver por coincidencia de pronombre y evita casi por completo practicar la formación de preguntas que pide la consigna.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;FAIL&quot;,
-  &quot;objective&quot;: &quot;Formar preguntas en presente simple colocando be antes del sujeto y usando la forma que concuerda con she.&quot;,
-  &quot;introductory&quot;: false,
-  &quot;issues&quot;: [
-    {
-      &quot;kind&quot;: &quot;ANSWER_CUE&quot;,
-      &quot;severity&quot;: &quot;HIGH&quot;,
-      &quot;labels&quot;: [
-        &quot;Am I&quot;,
-        &quot;Are we&quot;,
-        &quot;Is she&quot;,
-        &quot;Is it&quot;
-      ],
-      &quot;reason&quot;: &quot;La pista (she) permite elegir Is she por ser la única opción que contiene ese pronombre, sin evaluar el orden de be ni su concordancia.&quot;,
-      &quot;misconception&quot;: &quot;Orden afirmativo en lugar de inversión y elección incorrecta de la forma de be para she.&quot;
-    },
-    {
-      &quot;kind&quot;: &quot;IRRELEVANT_DISTRACTORS&quot;,
-      &quot;severity&quot;: &quot;HIGH&quot;,
-      &quot;labels&quot;: [
-        &quot;Am I&quot;,
-        &quot;Are we&quot;,
-        &quot;Is it&quot;
-      ],
-      &quot;reason&quot;: &quot;Todos los distractores cambian el sujeto fijado por (she) y presentan inversión y concordancia correctas con sus propios sujetos. Evalúan reconocer el pronombre indicado en lugar de formar la pregunta solicitada.&quot;,
-      &quot;misconception&quot;: &quot;Cómo colocar be antes de she y seleccionar la forma correspondiente.&quot;
-    }
-  ],
-  &quot;rationale&quot;: &quot;La facilidad no es el defecto: el conjunto permite resolver por coincidencia de pronombre y evita casi por completo practicar la formación de preguntas que pide la consigna.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr>
-<tr id="caso-2" class="match" data-case="df0000000000000000000002"><td class="num">2</td><td><div class="context">A1 · Preguntas con be</div><div class="sentence">___ thirsty? (she)</div><div class="instruction">Forma preguntas en presente simple con be antes del sujeto.</div><div class="choices"><span class="choice">She is</span><span class="choice">Are she</span><span class="choice correct">Is she ✓</span><span class="choice">Am she</span></div><div class="correct-label">Respuesta correcta: Is she</div></td>
-<td><b>Aceptar el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">Mismo sujeto, confusiones esperables de orden y concordancia.</div></td>
-<td><b>Aceptó el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">«Todas las opciones conservan el sujeto indicado. She is permite practicar la inversión; Are she y Am she representan errores esperables de concordancia en A1. El conjunto exige distinguir el orden y la forma de be, sin una pista ajena al objetivo.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;PASS&quot;,
-  &quot;objective&quot;: &quot;Formar preguntas en presente simple con be antes del sujeto y elegir la forma que concuerda con she.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [],
-  &quot;rationale&quot;: &quot;Todas las opciones conservan el sujeto indicado. She is permite practicar la inversión; Are she y Am she representan errores esperables de concordancia en A1. El conjunto exige distinguir el orden y la forma de be, sin una pista ajena al objetivo.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr>
-<tr id="caso-3" class="match" data-case="df0000000000000000000003"><td class="num">3</td><td><div class="context">A1 · Negativas con be</div><div class="sentence">___ thirsty. (it)</div><div class="instruction">Completa la negación de be en presente simple, conservando el sujeto indicado.</div><div class="choices"><span class="choice">I am not</span><span class="choice correct">It is not ✓</span><span class="choice">We are not</span><span class="choice">You are not</span></div><div class="correct-label">Respuesta correcta: It is not</div></td>
-<td><b>Marcar para corregir</b><div class="kind">Pista que regala la respuesta</div><div class="reason">Sólo una alternativa conserva it; no distingue la negación ni concordancia.</div></td>
-<td><b>Marcó para corregir</b><div class="kind">Pista que regala la respuesta</div><div class="kind">Distractores ajenos al objetivo</div><div class="reason">«La práctica es introductoria, pero el conjunto permite resolverla exclusivamente reconociendo it. Ningún distractor exige distinguir cómo negar be con el sujeto fijado.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;FAIL&quot;,
-  &quot;objective&quot;: &quot;Completar la negación de be en presente simple conservando el sujeto indicado.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [
-    {
-      &quot;kind&quot;: &quot;ANSWER_CUE&quot;,
-      &quot;severity&quot;: &quot;HIGH&quot;,
-      &quot;labels&quot;: [
-        &quot;I am not&quot;,
-        &quot;It is not&quot;,
-        &quot;We are not&quot;,
-        &quot;You are not&quot;
-      ],
-      &quot;reason&quot;: &quot;La pista fija el sujeto it y sólo una opción contiene It. Se puede elegir por coincidencia del pronombre sin distinguir la forma de be ni cómo se construye la negación.&quot;,
-      &quot;misconception&quot;: &quot;La elección de la forma de be que concuerda con it y la construcción de su negación.&quot;
-    },
-    {
-      &quot;kind&quot;: &quot;IRRELEVANT_DISTRACTORS&quot;,
-      &quot;severity&quot;: &quot;HIGH&quot;,
-      &quot;labels&quot;: [
-        &quot;I am not&quot;,
-        &quot;We are not&quot;,
-        &quot;You are not&quot;
-      ],
-      &quot;reason&quot;: &quot;Todos los distractores cambian el sujeto que la consigna exige conservar y presentan negaciones bien formadas para otros sujetos; prueban reconocer el pronombre indicado en lugar de formar su negación.&quot;,
-      &quot;misconception&quot;: &quot;Errores de concordancia o de construcción de la negación manteniendo el sujeto it.&quot;
-    }
-  ],
-  &quot;rationale&quot;: &quot;La práctica es introductoria, pero el conjunto permite resolverla exclusivamente reconociendo it. Ningún distractor exige distinguir cómo negar be con el sujeto fijado.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr>
-<tr id="caso-4" class="match" data-case="df0000000000000000000004"><td class="num">4</td><td><div class="context">A1 · Negativas con be</div><div class="sentence">It ___ thirsty.</div><div class="instruction">Completa la negación de be en presente simple.</div><div class="choices"><span class="choice correct">isn't ✓</span><span class="choice">aren't</span><span class="choice">am not</span><span class="choice">is</span></div><div class="correct-label">Respuesta correcta: isn't</div></td>
-<td><b>Aceptar el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">Discrimina negación y concordancia con el sujeto ya visible.</div></td>
-<td><b>Aceptó el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">«El conjunto practica una forma básica adecuada para A1. «aren't» y «am not» representan errores esperables de concordancia con it; «is» permite distinguir la forma afirmativa de la negativa solicitada. No hay una pista ajena al objetivo que regale la respuesta.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;PASS&quot;,
-  &quot;objective&quot;: &quot;Completar la forma negativa de be en presente simple con el sujeto it.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [],
-  &quot;rationale&quot;: &quot;El conjunto practica una forma básica adecuada para A1. «aren't» y «am not» representan errores esperables de concordancia con it; «is» permite distinguir la forma afirmativa de la negativa solicitada. No hay una pista ajena al objetivo que regale la respuesta.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr>
-<tr id="caso-5" class="match" data-case="df0000000000000000000005"><td class="num">5</td><td><div class="context">A1 · Preguntas en presente simple</div><div class="sentence">___ collect stamps? (you)</div><div class="instruction">Forma preguntas en presente simple con do o does antes del sujeto indicado.</div><div class="choices"><span class="choice">Does he</span><span class="choice correct">Do you ✓</span><span class="choice">Do they</span><span class="choice">Does she</span></div><div class="correct-label">Respuesta correcta: Do you</div></td>
-<td><b>Marcar para corregir</b><div class="kind">Pista que regala la respuesta</div><div class="reason">Se acierta por you sin distinguir auxiliar u orden.</div></td>
-<td><b>Marcó para corregir</b><div class="kind">Pista que regala la respuesta</div><div class="kind">Distractores ajenos al objetivo</div><div class="reason">«Aunque la práctica es introductoria, el conjunto evita casi por completo el objetivo explícito: basta buscar you, sin decidir el auxiliar ni su posición.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;FAIL&quot;,
-  &quot;objective&quot;: &quot;Formar preguntas en presente simple colocando do o does antes del sujeto indicado.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [
-    {
-      &quot;kind&quot;: &quot;ANSWER_CUE&quot;,
-      &quot;severity&quot;: &quot;HIGH&quot;,
-      &quot;labels&quot;: [
-        &quot;Does he&quot;,
-        &quot;Do you&quot;,
-        &quot;Do they&quot;,
-        &quot;Does she&quot;
-      ],
-      &quot;reason&quot;: &quot;La pista fija el sujeto you y sólo la clave contiene you. Se puede elegir por coincidencia del pronombre sin distinguir do de does ni practicar el orden de la pregunta.&quot;,
-      &quot;misconception&quot;: &quot;Elegir el auxiliar correspondiente a you y colocarlo antes del sujeto.&quot;
-    },
-    {
-      &quot;kind&quot;: &quot;IRRELEVANT_DISTRACTORS&quot;,
-      &quot;severity&quot;: &quot;HIGH&quot;,
-      &quot;labels&quot;: [
-        &quot;Does he&quot;,
-        &quot;Do they&quot;,
-        &quot;Does she&quot;
-      ],
-      &quot;reason&quot;: &quot;Todos los distractores cambian el sujeto ya indicado y presentan combinaciones correctas de auxiliar y pronombre. Su descarte depende de reconocer el sujeto fijado, no de formar la pregunta solicitada.&quot;,
-      &quot;misconception&quot;: &quot;Confundir do y does para el sujeto indicado o mantener el orden declarativo.&quot;
-    }
-  ],
-  &quot;rationale&quot;: &quot;Aunque la práctica es introductoria, el conjunto evita casi por completo el objetivo explícito: basta buscar you, sin decidir el auxiliar ni su posición.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr>
-<tr id="caso-6" class="match" data-case="df0000000000000000000006"><td class="num">6</td><td><div class="context">A1 · Preguntas en presente simple</div><div class="sentence">___ collect stamps? (you)</div><div class="instruction">Forma preguntas en presente simple con do o does antes del sujeto indicado.</div><div class="choices"><span class="choice correct">Do you ✓</span><span class="choice">Does you</span><span class="choice">You do</span><span class="choice">You does</span></div><div class="correct-label">Respuesta correcta: Do you</div></td>
-<td><b>Aceptar el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">Orden y concordancia del auxiliar son errores esperables.</div></td>
-<td><b>Aceptó el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">«El conjunto practica concordancia del auxiliar y orden de palabras: Does you refleja un error de concordancia, You do uno de orden y You does combina ambos. Todas las opciones conservan el sujeto indicado y permiten practicar el objetivo visible.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;PASS&quot;,
-  &quot;objective&quot;: &quot;Formar preguntas en presente simple colocando do o does antes del sujeto indicado y eligiendo el auxiliar que corresponde a you.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [],
-  &quot;rationale&quot;: &quot;El conjunto practica concordancia del auxiliar y orden de palabras: Does you refleja un error de concordancia, You do uno de orden y You does combina ambos. Todas las opciones conservan el sujeto indicado y permiten practicar el objetivo visible.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr></tbody></table></div>
-<p class="pie">En 1, 3 y 5 agregó “ajenos al objetivo”. Eso no falla el criterio: debía incluir la categoría esperada, no limitarse a una sola.</p></section>
-<section><h2>Casos 7 a 12: el 9 difiere en categoría</h2>
-<div class="tw comparison"><table><colgroup><col style="width:5%"><col style="width:31%"><col style="width:20%"><col style="width:29%"><col style="width:15%"></colgroup><thead><tr><th>#</th><th>Ejercicio y opciones</th><th>Se esperaba</th><th>Devolvió el juez</th><th>¿Dio bien?</th></tr></thead><tbody><tr id="caso-7" class="match" data-case="df0000000000000000000007"><td class="num">7</td><td><div class="context">A1 · Tercera persona singular</div><div class="sentence">My aunt ___ peaches.</div><div class="instruction">Completa la afirmación de presente simple con la forma de like.</div><div class="choices"><span class="choice correct">likes ✓</span><span class="choice">Paris</span><span class="choice">blue</span><span class="choice">tomorrow</span></div><div class="correct-label">Respuesta correcta: likes</div></td>
-<td><b>Marcar para corregir</b><div class="kind">Distractores ajenos al objetivo</div><div class="reason">Las incorrectas no son formas de like y evitan discriminar tercera persona.</div></td>
-<td><b>Marcó para corregir</b><div class="kind">Distractores ajenos al objetivo</div><div class="reason">«La práctica es introductoria, pero el conjunto evita casi por completo su objetivo: las opciones equivocadas no representan errores de formación o concordancia de like.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;FAIL&quot;,
-  &quot;objective&quot;: &quot;Completar una afirmación en presente simple con like en tercera persona singular.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [
-    {
-      &quot;kind&quot;: &quot;IRRELEVANT_DISTRACTORS&quot;,
-      &quot;severity&quot;: &quot;HIGH&quot;,
-      &quot;labels&quot;: [
-        &quot;Paris&quot;,
-        &quot;blue&quot;,
-        &quot;tomorrow&quot;
-      ],
-      &quot;reason&quot;: &quot;La consigna fija el verbo like, pero ninguno de los distractores es una forma de ese verbo. Basta reconocer likes como la única opción relacionada con like para responder sin practicar la concordancia con My aunt.&quot;,
-      &quot;misconception&quot;: &quot;Omitir o aplicar incorrectamente la terminación -s del presente simple con un sujeto de tercera persona singular.&quot;
-    }
-  ],
-  &quot;rationale&quot;: &quot;La práctica es introductoria, pero el conjunto evita casi por completo su objetivo: las opciones equivocadas no representan errores de formación o concordancia de like.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr>
-<tr id="caso-8" class="match" data-case="df0000000000000000000008"><td class="num">8</td><td><div class="context">A1 · Tercera persona singular</div><div class="sentence">My aunt ___ peaches.</div><div class="instruction">Completa la afirmación de presente simple con la forma de like.</div><div class="choices"><span class="choice">like</span><span class="choice correct">likes ✓</span><span class="choice">liking</span><span class="choice">to like</span></div><div class="correct-label">Respuesta correcta: likes</div></td>
-<td><b>Aceptar el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">Formas verbales confundibles con presente simple de tercera persona.</div></td>
-<td><b>Aceptó el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">«El conjunto permite practicar una distinción básica adecuada para A1: like frente a likes según el sujeto My aunt. Liking y to like representan confusiones esperables entre formas del verbo al completar una afirmación. No hay una pista superficial ajena al objetivo que regale la respuesta.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;PASS&quot;,
-  &quot;objective&quot;: &quot;Elegir la forma de like que concuerda con un sujeto de tercera persona singular en una afirmación de presente simple.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [],
-  &quot;rationale&quot;: &quot;El conjunto permite practicar una distinción básica adecuada para A1: like frente a likes según el sujeto My aunt. Liking y to like representan confusiones esperables entre formas del verbo al completar una afirmación. No hay una pista superficial ajena al objetivo que regale la respuesta.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr>
-<tr id="caso-9" class="mismatch" data-case="df0000000000000000000009"><td class="num">9</td><td><div class="context">A2 · Pasado simple</div><div class="sentence">Nora ___ the window yesterday.</div><div class="instruction">Elige el pasado simple afirmativo de close.</div><div class="choices"><span class="choice correct">closed ✓</span><span class="choice">banana</span><span class="choice">purple</span><span class="choice">Wednesday</span></div><div class="correct-label">Respuesta correcta: closed</div></td>
-<td><b>Marcar para corregir</b><div class="kind">Distractores ajenos al objetivo</div><div class="reason">Sólo closed es una forma verbal pertinente al objetivo explícito.</div></td>
-<td><b>Marcó para corregir</b><div class="kind">Distractores inverosímiles</div><div class="reason">«La práctica introductoria es válida, pero todo el conjunto de distractores permite evitar el objetivo: basta reconocer que las otras opciones son palabras ajenas al verbo solicitado.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;FAIL&quot;,
-  &quot;objective&quot;: &quot;Reconocer el pasado simple afirmativo del verbo close.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [
-    {
-      &quot;kind&quot;: &quot;IMPLAUSIBLE_DISTRACTORS&quot;,
-      &quot;severity&quot;: &quot;HIGH&quot;,
-      &quot;labels&quot;: [
-        &quot;banana&quot;,
-        &quot;purple&quot;,
-        &quot;Wednesday&quot;
-      ],
-      &quot;reason&quot;: &quot;Ningún distractor es una forma de close ni representa un error esperable al formar su pasado simple. El alumno puede descartar los tres por su significado sin distinguir la forma verbal solicitada.&quot;,
-      &quot;misconception&quot;: &quot;Confundir la forma base de close con su pasado simple o equivocarse al formar el pasado regular.&quot;
-    }
-  ],
-  &quot;rationale&quot;: &quot;La práctica introductoria es válida, pero todo el conjunto de distractores permite evitar el objetivo: basta reconocer que las otras opciones son palabras ajenas al verbo solicitado.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-bad">Mal: categoría</span><div class="verdict-note">Acertó la decisión; no la categoría exigida.</div></td></tr>
-<tr id="caso-10" class="match" data-case="df000000000000000000000a"><td class="num">10</td><td><div class="context">A2 · Pasado simple</div><div class="sentence">Nora ___ the window yesterday.</div><div class="instruction">Elige el pasado simple afirmativo de close.</div><div class="choices"><span class="choice">closes</span><span class="choice correct">closed ✓</span><span class="choice">closing</span><span class="choice">close</span></div><div class="correct-label">Respuesta correcta: closed</div></td>
-<td><b>Aceptar el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">Contrasta pasado con presente, base y forma en ing.</div></td>
-<td><b>Aceptó el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">«La consigna pide reconocer una forma básica. Los distractores contrastan el pasado simple con el presente en tercera persona, la forma en -ing y la forma base: confusiones esperables para este objetivo. Elegir closed requiere distinguir la forma verbal solicitada.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;PASS&quot;,
-  &quot;objective&quot;: &quot;Reconocer el pasado simple afirmativo del verbo close.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [],
-  &quot;rationale&quot;: &quot;La consigna pide reconocer una forma básica. Los distractores contrastan el pasado simple con el presente en tercera persona, la forma en -ing y la forma base: confusiones esperables para este objetivo. Elegir closed requiere distinguir la forma verbal solicitada.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr>
-<tr id="caso-11" class="match" data-case="df000000000000000000000b"><td class="num">11</td><td><div class="context">A2 · Comparativos</div><div class="sentence">Leo is ___ than his sister.</div><div class="instruction">Completa con el comparativo de tall.</div><div class="choices"><span class="choice correct">taller ✓</span><span class="choice">###</span><span class="choice">9+9</span><span class="choice">@@</span></div><div class="correct-label">Respuesta correcta: taller</div></td>
-<td><b>Marcar para corregir</b><div class="kind">Distractores inverosímiles</div><div class="reason">Los símbolos no representan confusiones lingüísticas de comparativo.</div></td>
-<td><b>Marcó para corregir</b><div class="kind">Distractores inverosímiles</div><div class="reason">«La práctica básica es adecuada, pero la única opción lingüística permite responder sin practicar el comparativo.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;FAIL&quot;,
-  &quot;objective&quot;: &quot;Completar una comparación con la forma comparativa de tall.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [
-    {
-      &quot;kind&quot;: &quot;IMPLAUSIBLE_DISTRACTORS&quot;,
-      &quot;severity&quot;: &quot;HIGH&quot;,
-      &quot;labels&quot;: [
-        &quot;###&quot;,
-        &quot;9+9&quot;,
-        &quot;@@&quot;
-      ],
-      &quot;reason&quot;: &quot;Todos los distractores son símbolos o una expresión aritmética, sin relación con formas de tall. Se descartan por no ser palabras sin tener que formar ni reconocer el comparativo.&quot;,
-      &quot;misconception&quot;: &quot;Errores esperables al formar el comparativo de tall; el conjunto evita distinguir entre formas lingüísticas.&quot;
-    }
-  ],
-  &quot;rationale&quot;: &quot;La práctica básica es adecuada, pero la única opción lingüística permite responder sin practicar el comparativo.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr>
-<tr id="caso-12" class="match" data-case="df000000000000000000000c"><td class="num">12</td><td><div class="context">A2 · Comparativos</div><div class="sentence">Leo is ___ than his sister.</div><div class="instruction">Completa con el comparativo de tall.</div><div class="choices"><span class="choice">tall</span><span class="choice">more tall</span><span class="choice">tallest</span><span class="choice correct">taller ✓</span></div><div class="correct-label">Respuesta correcta: taller</div></td>
-<td><b>Aceptar el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">Grado positivo, doble formación y superlativo son confusiones pertinentes.</div></td>
-<td><b>Aceptó el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">«Los distractores representan errores esperables: usar el adjetivo sin modificar, aplicar more en lugar de -er o confundir comparativo y superlativo. El conjunto permite practicar el objetivo explícito sin pistas ajenas a él.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;PASS&quot;,
-  &quot;objective&quot;: &quot;Formar el comparativo de tall para comparar la altura de dos personas.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [],
-  &quot;rationale&quot;: &quot;Los distractores representan errores esperables: usar el adjetivo sin modificar, aplicar more en lugar de -er o confundir comparativo y superlativo. El conjunto permite practicar el objetivo explícito sin pistas ajenas a él.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr></tbody></table></div>
-<p class="pie">El caso 9 fue rechazado correctamente. El caso 11 sí esperaba “inverosímiles”: sus distractores son símbolos sin una confusión lingüística plausible.</p></section>
-<section><h2>Casos 13 a 16: el 14 difiere en categoría</h2>
-<div class="tw comparison"><table><colgroup><col style="width:5%"><col style="width:31%"><col style="width:20%"><col style="width:29%"><col style="width:15%"></colgroup><thead><tr><th>#</th><th>Ejercicio y opciones</th><th>Se esperaba</th><th>Devolvió el juez</th><th>¿Dio bien?</th></tr></thead><tbody><tr id="caso-13" class="match" data-case="df000000000000000000000d"><td class="num">13</td><td><div class="context">A1 · Plurales irregulares</div><div class="sentence">One child; two ___.</div><div class="instruction">Forma el plural irregular de child; practica cómo cambia esa palabra.</div><div class="choices"><span class="choice correct">children ✓</span><span class="choice">dogs</span><span class="choice">houses</span><span class="choice">cars</span></div><div class="correct-label">Respuesta correcta: children</div></td>
-<td><b>Marcar para corregir</b><div class="kind">Distractores ajenos al objetivo</div><div class="reason">Cambiar el sustantivo no prueba cómo se forma su plural irregular.</div></td>
-<td><b>Marcó para corregir</b><div class="kind">Distractores ajenos al objetivo</div><div class="reason">«La práctica es introductoria, pero el conjunto no contrasta formas de plural de child: todas las opciones equivocadas nombran otras cosas y evitan la transformación solicitada.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;FAIL&quot;,
-  &quot;objective&quot;: &quot;Formar el plural irregular de child.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [
-    {
-      &quot;kind&quot;: &quot;IRRELEVANT_DISTRACTORS&quot;,
-      &quot;severity&quot;: &quot;HIGH&quot;,
-      &quot;labels&quot;: [
-        &quot;dogs&quot;,
-        &quot;houses&quot;,
-        &quot;cars&quot;
-      ],
-      &quot;reason&quot;: &quot;Todos los distractores cambian la palabra child, fijada explícitamente por la consigna, por sustantivos distintos. Se puede elegir children por conservar el referente, sin practicar cómo se forma su plural irregular.&quot;,
-      &quot;misconception&quot;: &quot;Aplicar la terminación regular de plural a child o confundir la forma de su plural irregular.&quot;
-    }
-  ],
-  &quot;rationale&quot;: &quot;La práctica es introductoria, pero el conjunto no contrasta formas de plural de child: todas las opciones equivocadas nombran otras cosas y evitan la transformación solicitada.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr>
-<tr id="caso-14" class="mismatch" data-case="df000000000000000000000e"><td class="num">14</td><td><div class="context">B1 · Presente perfecto</div><div class="sentence">We ___ the report.</div><div class="instruction">Elige have o has más participio para formar presente perfecto.</div><div class="choices"><span class="choice correct">have finished ✓</span><span class="choice">seventeen</span><span class="choice">Japan</span><span class="choice">blue</span></div><div class="correct-label">Respuesta correcta: have finished</div></td>
-<td><b>Marcar para corregir</b><div class="kind">Distractores ajenos al objetivo</div><div class="reason">Las incorrectas no representan ninguna alternativa de auxiliar o participio.</div></td>
-<td><b>Marcó para corregir</b><div class="kind">Distractores inverosímiles</div><div class="reason">«La consigna presenta una práctica básica válida, pero el conjunto permite acertar sin practicar la formación del presente perfecto.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;FAIL&quot;,
-  &quot;objective&quot;: &quot;Formar el presente perfecto con have o has más participio, según el sujeto.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [
-    {
-      &quot;kind&quot;: &quot;IMPLAUSIBLE_DISTRACTORS&quot;,
-      &quot;severity&quot;: &quot;HIGH&quot;,
-      &quot;labels&quot;: [
-        &quot;seventeen&quot;,
-        &quot;Japan&quot;,
-        &quot;blue&quot;
-      ],
-      &quot;reason&quot;: &quot;Un número, un nombre de país y un color no representan errores esperables al formar el presente perfecto. Todos se descartan sin distinguir have de has ni reconocer el participio: la clave es la única opción con una estructura verbal.&quot;,
-      &quot;misconception&quot;: &quot;La elección incorrecta del auxiliar según el sujeto o de la forma del verbo después de have/has.&quot;
-    }
-  ],
-  &quot;rationale&quot;: &quot;La consigna presenta una práctica básica válida, pero el conjunto permite acertar sin practicar la formación del presente perfecto.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-bad">Mal: categoría</span><div class="verdict-note">Acertó la decisión; no la categoría exigida.</div></td></tr>
-<tr id="caso-15" class="match" data-case="df000000000000000000000f"><td class="num">15</td><td><div class="context">A1 · Reconocer pronombres</div><div class="sentence">___ thirsty? (she)</div><div class="instruction">Práctica introductoria: reconoce la opción que contiene el pronombre she.</div><div class="choices"><span class="choice">Am I</span><span class="choice">Are we</span><span class="choice correct">Is she ✓</span><span class="choice">Is it</span></div><div class="correct-label">Respuesta correcta: Is she</div></td>
-<td><b>Aceptar el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">Reconocer she es el objetivo explícito; la facilidad no es un defecto.</div></td>
-<td><b>Aceptó el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">«La consigna pide explícitamente reconocer she en una práctica introductoria. Las opciones permiten distinguirlo de I, we e it. Elegir por el pronombre practica el objetivo visible; no se exige formar preguntas ni aplicar inversión o concordancia.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;PASS&quot;,
-  &quot;objective&quot;: &quot;Reconocer la opción que contiene el pronombre she.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [],
-  &quot;rationale&quot;: &quot;La consigna pide explícitamente reconocer she en una práctica introductoria. Las opciones permiten distinguirlo de I, we e it. Elegir por el pronombre practica el objetivo visible; no se exige formar preguntas ni aplicar inversión o concordancia.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr>
-<tr id="caso-16" class="match" data-case="df0000000000000000000010"><td class="num">16</td><td><div class="context">A2 · Reconocer la terminación ed</div><div class="sentence">Nora ___ the window yesterday.</div><div class="instruction">Práctica introductoria: reconoce una forma verbal que termina en ed.</div><div class="choices"><span class="choice">close</span><span class="choice correct">closed ✓</span><span class="choice">closing</span><span class="choice">closes</span></div><div class="correct-label">Respuesta correcta: closed</div></td>
-<td><b>Aceptar el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">Identificar ed practica el objetivo explícito.</div></td>
-<td><b>Aceptó el ejercicio</b><div class="kind">Sin defectos</div><div class="reason">«Las opciones contrastan distintas formas del mismo verbo y permiten practicar el reconocimiento de la terminación ed. Identificar closed por su terminación ejercita el objetivo explícito de esta práctica introductoria; no constituye una pista ajena al objetivo.»</div><details><summary>Respuesta completa, tal cual</summary><pre><code>{
-  &quot;status&quot;: &quot;PASS&quot;,
-  &quot;objective&quot;: &quot;Reconocer una forma verbal que termina en ed.&quot;,
-  &quot;introductory&quot;: true,
-  &quot;issues&quot;: [],
-  &quot;rationale&quot;: &quot;Las opciones contrastan distintas formas del mismo verbo y permiten practicar el reconocimiento de la terminación ed. Identificar closed por su terminación ejercita el objetivo explícito de esta práctica introductoria; no constituye una pista ajena al objetivo.&quot;
-}</code></pre></details></td>
-<td><span class="pill p-ok">Bien</span><div class="verdict-note">Cumple el criterio esperado.</div></td></tr></tbody></table></div>
-<p class="pie">Los casos 15 y 16 son fáciles a propósito. Reconocer el pronombre o la terminación es su objetivo explícito: el juez debía aceptarlos.</p></section>
-<section><h2>Qué dio mal exactamente en 9 y 14</h2>
-<div class="ad tax"><div class="lado antes"><span class="rot">El resultado esperado</span><div class="sentence">Ajenos al objetivo</div><div class="reason">Las opciones incorrectas no son formas del verbo ni alternativas de auxiliar o participio.</div><span class="res">Debía marcar esa categoría.</span></div><div class="lado despues"><span class="rot">La respuesta real</span><div class="sentence">Inverosímiles</div><div class="reason">Las opciones incorrectas no representan errores esperables de un alumno.</div><span class="res">Detectó el problema, con otro nombre.</span></div></div>
-<p class="pie">Las dos explicaciones se solapan. Eso no demuestra una mala detección pedagógica; sí incumple la categoría fijada para este examen. No cambié el resultado esperado.</p></section>
-<section><h2>Qué sigue</h2>
-<div class="flow"><div class="st"><span class="i">1</span><span class="h">Revisar estos ejemplos</span><span class="d">Las respuestas completas están desplegables en cada fila.</span></div><div class="st"><span class="i">2</span><span class="h">Precisar las categorías</span><span class="d">Decidir cómo distinguir ajeno al objetivo de inverosímil.</span></div><div class="st end"><span class="i">3</span><span class="h">Conservar el examen</span><span class="d">Sin cambiar sus respuestas esperadas ni repetir consultas automáticamente.</span></div></div>
-<p class="pie">Este desglose sólo lee resultados guardados: cero consultas nuevas. Los dos controles adicionales de falta de contexto no forman parte de estos 16 casos.</p></section>
-<footer><span>Fuentes: <a href="../../analysis/judge-exams/2026-10-09-choice-quality-v1/gold.json">Esperados congelados</a> · <a href="../../analysis/judge-exams/2026-10-09-choice-quality-v1/result-complete.json">Medición completa</a>. Respuestas completas tomadas del ledger real; codex-cli · gpt-6.1-sol · medium. Correspondencia de categorías: ANSWER_CUE = pista; IRRELEVANT_DISTRACTORS = ajenos; IMPLAUSIBLE_DISTRACTORS = inverosímiles.</span><span>brief 074 · <a href="073-examen-distractores-completo.html">Cierre 073</a></span></footer>
+<header><div class="kicker"><span class="num">075</span><span class="badge">Diagnóstico del recorrido</span><span class="meta">Distractores · 9 octubre 2026</span></div><h1>La pista fija el sujeto; las opciones deben practicarlo</h1><p class="sub">El análisis sí alimenta al corrector. La devolución debe orientar qué cambiar y qué conservar.</p></header>
+<div class="lede"><p><strong>Tu distinción es correcta en este ejemplo.</strong> No sobra “she”: sobran distractores que cambian el sujeto y permiten elegir sin practicar inversión ni concordancia.</p></div>
+<section><h2>El mismo enunciado funciona con mejores opciones</h2>
+<div class="ad compare"><div class="lado antes"><span class="rot">Caso 1 · el conjunto débil</span><div class="eg">___ thirsty? (she)</div><div class="ins">Formar preguntas en presente simple con be antes del sujeto.</div><div class="choices"><span class="choice">Am I</span><span class="choice">Are we</span><span class="choice correct">Is she</span><span class="choice">Is it</span></div><span class="res">Sólo una opción conserva she.</span></div>
+<div class="lado despues"><span class="rot">Caso 2 · el conjunto pertinente</span><div class="eg">___ thirsty? (she)</div><div class="ins">La misma consigna, la misma pista, cuatro opciones.</div><div class="choices"><span class="choice">She is</span><span class="choice">Are she</span><span class="choice correct">Is she</span><span class="choice">Am she</span></div><span class="res">Todas conservan she; hay que distinguir orden y concordancia.</span></div></div>
+<p class="pie">Sin “she”, las cuatro opciones originales forman preguntas válidas. Quitar esa información no arregla el desafío: elimina lo que fija una respuesta única.</p></section>
+<section><h2>El análisis entrega evidencia, no sólo una etiqueta</h2>
+<div class="flow"><div class="st"><span class="i">1</span><span class="h">El juez analiza</span><span class="d">Identifica objetivo, defecto y confusión que no se practica.</span></div><div class="st"><span class="i">2</span><span class="h">Se arma la tarea</span><span class="d">Conserva explicación, contexto del ejercicio y permisos de edición.</span></div><div class="st"><span class="i">3</span><span class="h">El corrector propone</span><span class="d">Recibe esas tareas y el tema; no sólo una nota.</span></div><div class="st end"><span class="i">4</span><span class="h">La propuesta se controla</span><span class="d">Cambios permitidos, cantidad de opciones y posteriores evaluaciones.</span></div></div>
+<p class="pie">Lo verifiqué en el código: pasan objetivo, nivel, consigna, enunciado, opciones, confusión esperable y explicación. Los casos del examen no crean correcciones del curso.</p></section>
+<section><h2>El prompt ya orienta; el título puede confundir</h2>
+<div class="tw"><table><thead><tr><th>Parte</th><th>Qué ocurre hoy</th><th>Qué significa</th></tr></thead><tbody>
+<tr><td>Título humano del problema</td><td>“Una pista permite acertar sin practicar el objetivo”</td><td>Puede confundirte al leerlo. Al corrector se envían la regla y la explicación, no sólo ese título.</td></tr>
+<tr><td>Explicación real del caso 1</td><td>Única opción con she; no exige distinguir inversión ni concordancia.</td><td>El problema es la relación entre pista, opciones y objetivo.</td></tr>
+<tr><td>Instrucciones al corrector</td><td>Si la pista fija he, conservar ese sujeto en las opciones y variar orden o concordancia.</td><td>Ya apunta a mejorar distractores, no a eliminar el sujeto.</td></tr>
+<tr><td>Control estructural</td><td>Conservar cantidad de opciones y una marcada correcta.</td><td>No basta por sí solo para probar que las otras son lingüísticamente incorrectas.</td></tr>
+</tbody></table></div>
+<p class="pie">La explicación precisa reduce el riesgo de un arreglo equivocado; no garantiza sola una buena propuesta. Hay que conservar contexto y controlar el resultado.</p></section>
+<section><h2>Así debería orientar la devolución</h2>
+<div class="ex"><div class="cons">Redacción recomendada · todavía no aplicada</div><div class="en">Las opciones permiten acertar sin practicar el objetivo.</div><div class="mark"><span class="x">!</span><span>Única opción con she: permite buscar el pronombre sin decidir inversión ni concordancia.</span></div><div class="mark ok"><span class="x">✓</span><span>Conservar she, presente simple y la consigna de inversión.</span></div><div class="mark ok"><span class="x">✓</span><span>Reescribir distractores con el mismo sujeto, variando orden o concordancia.</span></div><div class="ft"><span>Qué está mal → qué conservar → qué cambiar</span><span>No convertir facilidad en defecto.</span></div></div>
+<p class="pie">El caso 2 muestra la dirección del arreglo. Si el objetivo fuera sólo reconocer she, el conjunto original podría ser válido: lo decide la consigna.</p></section>
+<section><h2>Qué recomiendo antes de otra iteración</h2>
+<div class="flow"><div class="st"><span class="i">1</span><span class="h">Precisar la devolución</span><span class="d">Nombrar el defecto de las opciones respecto del objetivo.</span></div><div class="st"><span class="i">2</span><span class="h">Explicitar lo protegido</span><span class="d">No quitar datos necesarios para fijar una respuesta única.</span></div><div class="st end"><span class="i">3</span><span class="h">Probar el recorrido completo</span><span class="d">Verificar que la tarea enviada conserva evidencia y contexto.</span></div></div>
+<p class="pie">Esto es una recomendación, no un cambio ejecutado. No modifiqué prompts, versiones, resultados esperados ni el curso; tampoco lancé consultas.</p></section>
+<footer><span>Fuentes verificadas: <a href="../../audit-domain/src/main/java/com/learney/contentaudit/auditdomain/choicequality/ChoiceQualityAnalyzer.java">evidencia del hallazgo</a> · <a href="../../refiner-domain/src/main/java/com/learney/contentaudit/refinerdomain/errortask/DefaultErrorTaskBriefer.java">tarea de corrección</a> · <a href="../../revision-infrastructure/src/main/java/com/learney/contentaudit/revisioninfrastructure/panelagent/AgentPanelProposer.java">entrada al corrector</a> · <a href="../../.sentinel/agents/panel-proposer/nodes/generate.md">instrucciones actuales del corrector</a>. Casos 1 y 2 del examen congelado.</span><span>brief 075 · <a href="074-distractores-los-16-casos.html">Los 16 casos</a></span></footer>
 </div></body></html>
