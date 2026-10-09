@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>El pedido de miniteoría ya llega al proceso correcto</title>
-<style>
+<title>Calidad de distractores implementada</title><style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
     --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
@@ -239,26 +238,58 @@
     .kpi .n{font-size:28px}
   }
 
-  </style></head><body><div class="wrap">
-<header><div class="kicker"><span class="num">070</span><span class="badge">Arreglo verificado</span><span class="meta">Correcciones · 9 octubre 2026</span></div>
-<h1>El pedido de miniteoría ya llega al proceso correcto</h1><p class="sub">Arreglo aislado, integrado y activo en la app habitual.</p></header>
-<div class="lede"><p><strong>La reescritura fallaba antes de ejecutar.</strong> Corregí el comando y reabrí la app; tu feedback sigue conservado, sin reenviarlo.</p></div>
-<section><h2>El error estaba en la entrada del pedido</h2><div class="ad">
-<div class="lado antes"><span class="rot">Antes · Afirmativas con be</span><ol><li>Escribís feedback para los trece quizzes pendientes.</li><li>Confirmás la reescritura.</li><li>El comando exige otro parámetro antes de procesar el pedido.</li></ol><span class="res">Falla antes de llegar al agente</span></div>
-<div class="lado despues"><span class="rot">Ahora · el mismo recorrido</span><ol><li>El comando reconoce la operación de miniteoría.</li><li>Conserva alcance, contenido y tope elegidos.</li><li>No ejecuta otra corrección ni publica.</li></ol><span class="res">El pedido llega al servicio correcto</span></div></div><p class="pie">Las pruebas anteriores ejecutaban la operación aislada, sin el comando padre que la app realmente utiliza.</p></section>
-<section><h2>La ruta se probó sin gastar consultas</h2><div class="kpis">
-<div class="kpi"><div class="n">397<small>de 397</small></div><div class="l">pruebas de comandos aprobadas, sin errores ni omisiones</div></div>
-<div class="kpi"><div class="n">7<small>de 7</small></div><div class="l">tipos de pedido pasan por el comando padre</div></div>
-<div class="kpi"><div class="n">0<small>consultas</small></div><div class="l">estimación real con tope cero; contenido sin cambios</div></div></div>
-<div class="call c-info">La ejecución pagada no se probó: se verificaron la ruta con servicios simulados y una estimación real con tope cero.</div></section>
-<section><h2>El trabajo quedó integrado, sin pisar otros cambios</h2><div class="flow">
-<div class="st"><span class="i">1</span><span class="h">Copia aislada</span><span class="d">Arreglo y pruebas separados del trabajo de otros agentes.</span></div>
-<div class="st"><span class="i">2</span><span class="h">Cambios guardados</span><span class="d">Commits del backend, dashboard y documentación previa.</span></div>
-<div class="st"><span class="i">3</span><span class="h">Integración</span><span class="d">Backend en main; dashboard conservado en master.</span></div>
-<div class="st end"><span class="i">4</span><span class="h">App reabierta</span><span class="d">Una sola instancia, en Correcciones de A1 V11.</span></div></div><p class="pie">La tanda conserva Corrección 1, contenido v5 y cuatro mediciones. No se aprobaron cambios ni se tocó producción.</p></section>
-<section><h2>El pedido fallido no se reintenta solo</h2><div class="flow">
-<div class="st"><span class="i">1</span><span class="h">Feedback conservado</span><span class="d">El pedido de trece quizzes permanece guardado y respaldado.</span></div>
-<div class="st"><span class="i">2</span><span class="h">Envío personal</span><span class="d">Cualquier reescritura requiere tu inicio y confirmación del tope.</span></div>
-<div class="st end"><span class="i">3</span><span class="h">Revisión humana</span><span class="d">Revisás los borradores antes de incorporarlos y aprobarlos.</span></div></div><p class="pie">Corregir el fallo de entrada no autoriza repetir el pedido ni completar los pendientes del análisis general.</p></section>
-<footer><span>Commit a1ab7e7e · merge 9b9a1b97 · dashboard 8c21f1030. UI 48482 → 55851. Respaldo: /private/tmp/content-audit-mini-routing.5sP9PO. Checkpoint y cola idénticos antes y después.</span><span>brief 070 · docs/briefs/070-ruta-miniteoria-corregida.html</span></footer>
+
+.quiz-options{display:grid;gap:6px}.quiz-option{padding:6px 9px;border:1px solid var(--line);border-radius:8px;font-size:14px}
+.quiz-option.correct{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+</style></head><body><div class="wrap">
+<header><div class="kicker"><span class="num">071</span><span class="badge">Implementado</span><span class="meta">Opción múltiple · 9 octubre 2026</span></div>
+<h1>Los distractores ya tienen su propio control</h1><p class="sub">Integrado, probado sin modelos y visible en la app; la calibración pedagógica queda pendiente.</p></header>
+<div class="lede"><p><strong>El nuevo juez revisa pistas y errores esperables sin reemplazar el de ambigüedad.</strong> La app está reabierta; el análisis guardado y tus decisiones permanecen intactos.</p></div>
+
+<section><h2>La corrección debe trabajar la regla, no el atajo</h2>
+<div class="ad">
+<div class="lado antes"><span class="rot">Tu caso · opciones actuales</span><b>___ a child? (He)</b>
+<div class="quiz-options"><div class="quiz-option">Am I · Are we · Are you</div><div class="quiz-option correct">Is he</div><div class="quiz-option">Is it · Is she</div></div>
+<span class="res">Sólo una opción contiene “he”.</span></div>
+<div class="lado despues"><span class="rot">Criterio para proponer · no aplicado</span>
+<ol><li>Identificar si el objetivo es reconocimiento o inversión.</li><li>Si practica inversión, conservar el sujeto en las opciones.</li><li>Explicar qué confusión representa cada opción incorrecta.</li><li>Hacer visible la consigna que excluye otras formas válidas.</li></ol>
+<span class="res">Sin ambigüedad ni dificultad artificial.</span></div>
+</div><p class="pie">El corrector conserva la cantidad de opciones; no añade tiempos o auxiliares ajenos sólo para dificultar el ejercicio.</p>
+</section>
+
+<section><h2>Falta de contexto no se convierte en aprobación</h2>
+<div class="opts">
+<div class="opt"><div class="oh"><b>Bien</b><span class="pill p-ok">evaluado</span></div><p>Opciones relevantes y práctica adecuada al objetivo.</p></div>
+<div class="opt"><div class="oh"><b>Con error</b><span class="pill p-bad">a corregir</span></div><p>Pista que regala la respuesta, distractores ajenos o inverosímiles.</p></div>
+<div class="opt"><div class="oh"><b>Falta contexto</b><span class="pill p-warn">sin evaluar</span></div><p>Se guarda la explicación, sin inventar una nota ni un error.</p></div>
+</div><p class="pie">Lee nivel, tema y contenido visible. Una miniteoría posterior no puede justificar descartar respuestas que el alumno sí podría elegir.</p>
+</section>
+
+<section><h2>Se suma el criterio sin reescribir el pasado</h2>
+<div class="cambia"><div class="si"><div class="ptl">Se incorpora</div><ul>
+<li>Ficha propia en Analizadores: “Calidad de distractores”.</li><li>Hallazgos con objetivo, evidencia y confusión esperada, para Correcciones.</li><li>Guía pedagógica para proponer alternativas útiles.</li><li>Versiones, consultas, presupuesto y examen independientes.</li>
+</ul></div><div class="no"><div class="ptl">Se preserva</div><ul>
+<li>El juez de ambigüedad y sus resultados anteriores.</li><li>Práctica introductoria legítima, aunque sea sencilla.</li><li>Propuestas y decisiones humanas guardadas.</li><li>Ninguna consulta, aprobación ni publicación automática.</li>
+</ul></div></div><p class="pie">La ficha nueva muestra “no corrió” en el análisis anterior; no se simula una evaluación retroactiva.</p>
+</section>
+
+<section><h2>Las pruebas locales pasan; existe un fallo previo separado</h2>
+<div class="tw"><table><thead><tr><th>Prueba</th><th>Resultado</th></tr></thead><tbody>
+<tr><td>Regresión Java, sin la guardia separada</td><td>3.391 aprobadas de 3.392; una omitida.</td></tr>
+<tr><td>Guardia de ejemplos reservados</td><td>3 aprobadas de 4; falla por ejemplos preexistentes de duplicados.</td></tr>
+<tr><td>Servicio de la UI</td><td>20 de 20; análisis estático limpio.</td></tr>
+<tr><td>Monitor de consultas</td><td>6 de 6; distingue el nuevo juez.</td></tr>
+<tr><td>Compilación y lectura nativa</td><td>Backend y macOS listos; ficha 21 visible.</td></tr>
+</tbody></table></div><p class="pie">Los controles nuevos prueban contexto, salidas inválidas, reutilización, guardado y límites de corrección. No se presenta la suite completa como verde.</p>
+<div class="call c-warn"><b>Pendiente:</b> todavía no se midió la precisión pedagógica del juez con modelos; sus casos de referencia no equivalen a un examen aprobado.</div>
+</section>
+
+<section><h2>Primero calibrar; después autorizar el uso real</h2>
+<div class="flow">
+<div class="st"><span class="i">1</span><span class="h">Implementación integrada</span><span class="d">Trabajo aislado, commits, integración y app reabierta.</span></div>
+<div class="st"><span class="i">2</span><span class="h">Calibración separada</span><span class="d">Examen propio con presupuesto explícito antes del uso real.</span></div>
+<div class="st end"><span class="i">3</span><span class="h">Corrección y revisión</span><span class="d">Propuestas puntuales; aprobación humana dentro de Correcciones.</span></div>
+</div><p class="pie">El presupuesto por defecto sigue en cero. Esta entrega no inicia otra corrida ni completa pendientes del análisis anterior.</p>
+</section>
+<footer><span>Backend 245f12c9 → main b9d7c217. UI b5323829f → master a8e4f0579.<br>Checkpoint cf82e17f… idéntico. Release 67593 reabierta; Debug 63885 conservada.</span><span>brief 071 · docs/briefs/071-distractores-implementados.html</span></footer>
 </div></body></html>
