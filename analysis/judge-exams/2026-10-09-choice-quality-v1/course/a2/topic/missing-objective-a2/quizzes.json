@@ -1,0 +1,59 @@
+[
+  {
+    "_id": {
+      "$oid": "df0000000000000000000012"
+    },
+    "id": "df0000000000000000000012",
+    "kind": "MULTIPLE_CHOICE",
+    "knowledgeId": {
+      "$oid": "d40000000000000000000012"
+    },
+    "title": "",
+    "instructions": "Elige una opción.",
+    "translation": "",
+    "miniTheory": "",
+    "audioUrl": "",
+    "form": {
+      "kind": "MULTIPLE_CHOICE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "TEXT",
+          "text": "",
+          "options": null
+        }
+      ],
+      "selection": "SINGLE",
+      "items": [
+        {
+          "id": "0",
+          "label": "alpha",
+          "incidence": {
+            "$numberDouble": "1.0"
+          }
+        },
+        {
+          "id": "1",
+          "label": "beta",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,73 @@
+[
+  {
+    "_id": {
+      "$oid": "df000000000000000000000a"
+    },
+    "id": "df000000000000000000000a",
+    "kind": "MULTIPLE_CHOICE",
+    "knowledgeId": {
+      "$oid": "d4000000000000000000000a"
+    },
+    "title": "Pasado simple",
+    "instructions": "Elige el pasado simple afirmativo de close.",
+    "translation": "",
+    "miniTheory": "",
+    "audioUrl": "",
+    "form": {
+      "kind": "MULTIPLE_CHOICE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "Nora ",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "TEXT",
+          "text": " the window yesterday.",
+          "options": null
+        }
+      ],
+      "selection": "SINGLE",
+      "items": [
+        {
+          "id": "0",
+          "label": "closes",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "1",
+          "label": "closed",
+          "incidence": {
+            "$numberDouble": "1.0"
+          }
+        },
+        {
+          "id": "2",
+          "label": "closing",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "3",
+          "label": "close",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        }
+      ]
+    }
+  }
+]

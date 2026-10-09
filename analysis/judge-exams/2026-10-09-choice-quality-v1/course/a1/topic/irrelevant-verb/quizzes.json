@@ -1,0 +1,73 @@
+[
+  {
+    "_id": {
+      "$oid": "df0000000000000000000007"
+    },
+    "id": "df0000000000000000000007",
+    "kind": "MULTIPLE_CHOICE",
+    "knowledgeId": {
+      "$oid": "d40000000000000000000007"
+    },
+    "title": "Tercera persona singular",
+    "instructions": "Completa la afirmación de presente simple con la forma de like.",
+    "translation": "",
+    "miniTheory": "",
+    "audioUrl": "",
+    "form": {
+      "kind": "MULTIPLE_CHOICE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "My aunt ",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "TEXT",
+          "text": " peaches.",
+          "options": null
+        }
+      ],
+      "selection": "SINGLE",
+      "items": [
+        {
+          "id": "0",
+          "label": "likes",
+          "incidence": {
+            "$numberDouble": "1.0"
+          }
+        },
+        {
+          "id": "1",
+          "label": "Paris",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "2",
+          "label": "blue",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "3",
+          "label": "tomorrow",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        }
+      ]
+    }
+  }
+]

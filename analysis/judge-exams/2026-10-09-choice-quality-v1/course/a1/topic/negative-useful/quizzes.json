@@ -1,0 +1,73 @@
+[
+  {
+    "_id": {
+      "$oid": "df0000000000000000000004"
+    },
+    "id": "df0000000000000000000004",
+    "kind": "MULTIPLE_CHOICE",
+    "knowledgeId": {
+      "$oid": "d40000000000000000000004"
+    },
+    "title": "Negativas con be",
+    "instructions": "Completa la negación de be en presente simple.",
+    "translation": "",
+    "miniTheory": "",
+    "audioUrl": "",
+    "form": {
+      "kind": "MULTIPLE_CHOICE",
+      "incidence": {
+        "$numberDouble": "1.0"
+      },
+      "label": "",
+      "name": "",
+      "sentenceParts": [
+        {
+          "kind": "TEXT",
+          "text": "It ",
+          "options": null
+        },
+        {
+          "kind": "CLOZE",
+          "text": "",
+          "options": null
+        },
+        {
+          "kind": "TEXT",
+          "text": " thirsty.",
+          "options": null
+        }
+      ],
+      "selection": "SINGLE",
+      "items": [
+        {
+          "id": "0",
+          "label": "isn't",
+          "incidence": {
+            "$numberDouble": "1.0"
+          }
+        },
+        {
+          "id": "1",
+          "label": "aren't",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "2",
+          "label": "am not",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        },
+        {
+          "id": "3",
+          "label": "is",
+          "incidence": {
+            "$numberDouble": "0.0"
+          }
+        }
+      ]
+    }
+  }
+]
