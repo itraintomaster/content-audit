@@ -107,3 +107,18 @@ Sólo un objeto JSON cerrado con estas cinco claves:
 
 FAIL exige al menos un issue. PASS y NEEDS_CONTEXT exigen issues vacía.
 No inventes opciones en labels ni copies "(correcta)" como parte del texto.
+
+# User prompt template
+
+Nivel del curso: {level}
+Tema contenedor: {topic}
+Título del ejercicio: {title}
+Consigna visible: {instructions}
+
+Ejercicio, como lo ve el alumno antes de contestar:
+{exercise}
+
+Opciones, en el orden en que se muestran:
+{options}
+
+Juzgá el conjunto con este contexto visible y devolvé sólo el JSON del veredicto.

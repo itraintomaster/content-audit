@@ -17,3 +17,22 @@ relanza automáticamente.
 Una primera pasada mide este corpus; no demuestra estabilidad ni eficacia en
 alumnos. No se aprueba el juez automáticamente ni se modifica el prompt con
 respuestas del examen.
+
+## Incidente de entrega del contexto
+
+La primera versión omitía la sección User prompt template: los parámetros
+existían en el estado pero el modelo no recibía sus valores. Se detuvo la pasada
+tras 16 lanzamientos físicos: 15 respuestas consolidadas sin contexto y una
+llamada en vuelo sin resultado consolidado, que también consume el tope.
+No son 15 errores pedagógicos medidos ni cobertura válida.
+
+La corrección de la plantilla cambia la versión efectiva. La prueba local
+ChoiceQualityPromptDeliveryTest recorre el grafo real con un modelo simulado y
+verifica los seis valores en el mensaje efectivamente enviado. Falló antes de
+la reparación y pasó después; nunca llama a Codex.
+
+repair-smoke-cases.json selecciona un caso con defecto y uno válido del corpus
+ya congelado. Sólo puede usar las dos llamadas restantes del mismo límite
+físico de 18, sin reiniciarlo. Es una comprobación de integración, no sustituye
+el examen de los 16 casos centrales y dos controles de contexto. Los registros
+de la versión anterior se conservan, pero no se reutilizan como versión nueva.
