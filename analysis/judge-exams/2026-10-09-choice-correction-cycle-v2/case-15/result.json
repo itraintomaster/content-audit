@@ -1,0 +1,328 @@
+{
+  "caseNumber" : 15,
+  "id" : "df000000000000000000000f",
+  "original" : {
+    "id" : "df000000000000000000000f",
+    "caseNumber" : 15,
+    "slug" : "intro-she",
+    "level" : "A1",
+    "topic" : "Reconocer pronombres",
+    "title" : "Reconocer pronombres",
+    "instructions" : "Práctica introductoria: reconoce la opción que contiene el pronombre she.",
+    "exercise" : "___ thirsty? (she)",
+    "options" : [ "Am I", "Are we", "Is she", "Is it" ],
+    "correct" : "Is she",
+    "expected" : "FAIL",
+    "allowedIssueKinds" : [ "ANSWER_CUE" ],
+    "expectationReason" : "Copiar literalmente she ya dado no demuestra comprender el pronombre aunque se presente como introductorio."
+  },
+  "initial" : {
+    "status" : "FAIL",
+    "objective" : "Reconocer la opción que contiene el pronombre she.",
+    "introductory" : true,
+    "issues" : [ {
+      "kind" : "ANSWER_CUE",
+      "severity" : "HIGH",
+      "labels" : [ "Am I", "Are we", "Is she", "Is it" ],
+      "reason" : "Sólo Is she contiene la palabra she, ya escrita en la consigna y en la pista. El conjunto permite acertar por coincidencia literal sin reconocer el significado del pronombre. La pista fija el sujeto y puede conservarse si se reformula el objetivo; para practicar reconocimiento de significado falta una referencia visible en español que deba relacionarse con el pronombre inglés.",
+      "misconception" : "Confundir she con otros pronombres personales al relacionar su significado con el sujeto referido."
+    } ],
+    "rationale" : "Aunque la práctica es introductoria, seleccionar la única opción que repite she sólo exige coincidencia visual y evita casi por completo el reconocimiento lingüístico."
+  },
+  "initialStatusMatches" : true,
+  "findings" : [ {
+    "analyzer" : "multiple-choice-quality",
+    "rule" : "answer-cue",
+    "node" : {
+      "target" : "QUIZ",
+      "nodeId" : "df000000000000000000000f",
+      "label" : "Reconocer pronombres"
+    },
+    "severity" : "HIGH",
+    "evidence" : {
+      "examined" : [ {
+        "label" : "Objetivo pedagógico",
+        "text" : "Reconocer la opción que contiene el pronombre she."
+      }, {
+        "label" : "Nivel",
+        "text" : "A1"
+      }, {
+        "label" : "Consigna",
+        "text" : "Práctica introductoria: reconoce la opción que contiene el pronombre she."
+      }, {
+        "label" : "Ejercicio",
+        "text" : "___ thirsty? (she)"
+      }, {
+        "label" : "Opciones",
+        "text" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+      }, {
+        "label" : "Confusión esperable",
+        "text" : "Confundir she con otros pronombres personales al relacionar su significado con el sujeto referido."
+      } ],
+      "observation" : "Sólo Is she contiene la palabra she, ya escrita en la consigna y en la pista. El conjunto permite acertar por coincidencia literal sin reconocer el significado del pronombre. La pista fija el sujeto y puede conservarse si se reformula el objetivo; para practicar reconocimiento de significado falta una referencia visible en español que deba relacionarse con el pronombre inglés.",
+      "relatedNodes" : [ ]
+    },
+    "resolution" : "PANEL",
+    "cost" : "PAID_MODEL",
+    "identity" : {
+      "key" : "multiple-choice-quality|answer-cue|df000000000000000000000f|Am I | Are we | Is she | Is it",
+      "marker" : "Am I | Are we | Is she | Is it"
+    }
+  } ],
+  "tasksDelivered" : {
+    "batchId" : "choice-correction-cycle-20261009-v2",
+    "level" : "A1",
+    "knowledgeId" : "synthetic-topic-15",
+    "quizId" : "df000000000000000000000f",
+    "topicView" : [ {
+      "statement" : "___ thirsty? (she)",
+      "gaps" : [ {
+        "index" : 0,
+        "hint" : "(she)",
+        "acceptedAnswers" : [ "Is she" ],
+        "firstAnswer" : "Is she"
+      } ],
+      "options" : [ {
+        "label" : "Am I",
+        "correct" : false
+      }, {
+        "label" : "Are we",
+        "correct" : false
+      }, {
+        "label" : "Is she",
+        "correct" : true
+      }, {
+        "label" : "Is it",
+        "correct" : false
+      } ],
+      "instructions" : "Práctica introductoria: reconoce la opción que contiene el pronombre she.",
+      "translation" : "",
+      "miniTheory" : ""
+    } ],
+    "briefs" : [ {
+      "task" : {
+        "id" : "task-001",
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "df000000000000000000000f",
+        "nodeLabel" : "Reconocer pronombres",
+        "diagnosisKind" : "MULTIPLE_CHOICE_VALIDITY",
+        "priority" : 1,
+        "status" : "PENDING",
+        "origin" : {
+          "finding" : {
+            "analyzer" : "multiple-choice-quality",
+            "rule" : "answer-cue",
+            "node" : {
+              "target" : "QUIZ",
+              "nodeId" : "df000000000000000000000f",
+              "label" : "Reconocer pronombres"
+            },
+            "severity" : "HIGH",
+            "evidence" : {
+              "examined" : [ {
+                "label" : "Objetivo pedagógico",
+                "text" : "Reconocer la opción que contiene el pronombre she."
+              }, {
+                "label" : "Nivel",
+                "text" : "A1"
+              }, {
+                "label" : "Consigna",
+                "text" : "Práctica introductoria: reconoce la opción que contiene el pronombre she."
+              }, {
+                "label" : "Ejercicio",
+                "text" : "___ thirsty? (she)"
+              }, {
+                "label" : "Opciones",
+                "text" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+              }, {
+                "label" : "Confusión esperable",
+                "text" : "Confundir she con otros pronombres personales al relacionar su significado con el sujeto referido."
+              } ],
+              "observation" : "Sólo Is she contiene la palabra she, ya escrita en la consigna y en la pista. El conjunto permite acertar por coincidencia literal sin reconocer el significado del pronombre. La pista fija el sujeto y puede conservarse si se reformula el objetivo; para practicar reconocimiento de significado falta una referencia visible en español que deba relacionarse con el pronombre inglés.",
+              "relatedNodes" : [ ]
+            },
+            "resolution" : "PANEL",
+            "cost" : "PAID_MODEL",
+            "identity" : {
+              "key" : "multiple-choice-quality|answer-cue|df000000000000000000000f|Am I | Are we | Is she | Is it",
+              "marker" : "Am I | Are we | Is she | Is it"
+            }
+          },
+          "cefrLevel" : "A1",
+          "knowledgeId" : "synthetic-topic-15",
+          "knowledgeLabel" : "Reconocer pronombres",
+          "reachedQuizIds" : [ "df000000000000000000000f" ],
+          "coveredFindings" : [ ]
+        }
+      },
+      "finding" : {
+        "analyzer" : "multiple-choice-quality",
+        "rule" : "answer-cue",
+        "node" : {
+          "target" : "QUIZ",
+          "nodeId" : "df000000000000000000000f",
+          "label" : "Reconocer pronombres"
+        },
+        "severity" : "HIGH",
+        "evidence" : {
+          "examined" : [ {
+            "label" : "Objetivo pedagógico",
+            "text" : "Reconocer la opción que contiene el pronombre she."
+          }, {
+            "label" : "Nivel",
+            "text" : "A1"
+          }, {
+            "label" : "Consigna",
+            "text" : "Práctica introductoria: reconoce la opción que contiene el pronombre she."
+          }, {
+            "label" : "Ejercicio",
+            "text" : "___ thirsty? (she)"
+          }, {
+            "label" : "Opciones",
+            "text" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+          }, {
+            "label" : "Confusión esperable",
+            "text" : "Confundir she con otros pronombres personales al relacionar su significado con el sujeto referido."
+          } ],
+          "observation" : "Sólo Is she contiene la palabra she, ya escrita en la consigna y en la pista. El conjunto permite acertar por coincidencia literal sin reconocer el significado del pronombre. La pista fija el sujeto y puede conservarse si se reformula el objetivo; para practicar reconocimiento de significado falta una referencia visible en español que deba relacionarse con el pronombre inglés.",
+          "relatedNodes" : [ ]
+        },
+        "resolution" : "PANEL",
+        "cost" : "PAID_MODEL",
+        "identity" : {
+          "key" : "multiple-choice-quality|answer-cue|df000000000000000000000f|Am I | Are we | Is she | Is it",
+          "marker" : "Am I | Are we | Is she | Is it"
+        }
+      },
+      "coveredFindings" : [ ],
+      "editScope" : [ "OPTIONS", "INSTRUCTIONS", "STATEMENT", "TRANSLATION", "STORED_SENTENCE", "AUDIO" ],
+      "scopeDeclared" : true,
+      "quizView" : {
+        "statement" : "___ thirsty? (she)",
+        "gaps" : [ {
+          "index" : 0,
+          "hint" : "(she)",
+          "acceptedAnswers" : [ "Is she" ],
+          "firstAnswer" : "Is she"
+        } ],
+        "options" : [ {
+          "label" : "Am I",
+          "correct" : false
+        }, {
+          "label" : "Are we",
+          "correct" : false
+        }, {
+          "label" : "Is she",
+          "correct" : true
+        }, {
+          "label" : "Is it",
+          "correct" : false
+        } ],
+        "instructions" : "Práctica introductoria: reconoce la opción que contiene el pronombre she.",
+        "translation" : "",
+        "miniTheory" : ""
+      },
+      "reachedQuizViews" : [ ]
+    } ],
+    "wordLights" : null,
+    "conversion" : null,
+    "attempt" : 1,
+    "previousRejections" : [ ],
+    "twoFixes" : false
+  },
+  "proposal" : {
+    "candidates" : [ {
+      "kind" : "WHOLE_EXERCISE",
+      "quiz" : {
+        "id" : "df000000000000000000000f",
+        "oidId" : null,
+        "kind" : "MULTIPLE_CHOICE",
+        "knowledgeId" : null,
+        "title" : null,
+        "instructions" : "Práctica introductoria: elige la opción cuyo pronombre significa «ella» para completar la pregunta.",
+        "translation" : null,
+        "theoryId" : null,
+        "topicName" : null,
+        "form" : {
+          "kind" : "MULTIPLE_CHOICE",
+          "incidence" : 1.0,
+          "label" : "",
+          "name" : "",
+          "sentenceParts" : [ {
+            "kind" : "CLOZE",
+            "text" : "",
+            "options" : null
+          }, {
+            "kind" : "TEXT",
+            "text" : " thirsty? (ella)",
+            "options" : null
+          } ],
+          "multipleChoice" : {
+            "selection" : "SINGLE",
+            "items" : [ {
+              "id" : "Am I",
+              "incidence" : 0.0,
+              "label" : "Am I"
+            }, {
+              "id" : "Are we",
+              "incidence" : 0.0,
+              "label" : "Are we"
+            }, {
+              "id" : "Is she",
+              "incidence" : 1.0,
+              "label" : "Is she"
+            }, {
+              "id" : "Is it",
+              "incidence" : 0.0,
+              "label" : "Is it"
+            } ]
+          },
+          "unmodeledFields" : null
+        },
+        "difficulty" : 0.0,
+        "retries" : 0.0,
+        "noScoreRetries" : 0.0,
+        "code" : null,
+        "audioUrl" : null,
+        "imageUrl" : null,
+        "answerAudioUrl" : null,
+        "answerImageUrl" : null,
+        "miniTheory" : null,
+        "successMessage" : null,
+        "sentences" : null,
+        "unmodeledFields" : null
+      },
+      "miniTheoryText" : null,
+      "topicInstructions" : null,
+      "rationale" : "Reemplacé la pista inglesa por «ella» y reformulé la consigna para reconocer el significado del pronombre sin copiar she; conservé las opciones, que distinguen ella de yo, nosotros y el pronombre para una cosa."
+    } ],
+    "proposerVersion" : "panel-proposer",
+    "available" : true,
+    "unavailableReason" : null
+  },
+  "localViolations" : [ ],
+  "after" : {
+    "level" : "A1",
+    "topic" : "Reconocer pronombres",
+    "title" : "Reconocer pronombres",
+    "instructions" : "Práctica introductoria: elige la opción cuyo pronombre significa «ella» para completar la pregunta.",
+    "exercise" : "___ thirsty? (ella)",
+    "options" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it"
+  },
+  "afterQuality" : {
+    "status" : "PASS",
+    "objective" : "Reconocer que el pronombre inglés she significa «ella».",
+    "introductory" : true,
+    "issues" : [ ],
+    "rationale" : "La consigna pide reconocer el significado del pronombre en una práctica introductoria. La pista «ella» fija el significado sin mostrar la palabra inglesa que debe elegirse. Los distractores ofrecen otros pronombres básicos y permiten practicar ese reconocimiento; no es necesario exigir un contraste de inversión o concordancia."
+  },
+  "afterAlternative" : {
+    "correctIsValid" : true,
+    "validAlternatives" : [ ],
+    "correctProblem" : null,
+    "rationale" : "«Is she thirsty?» es correcta y natural. La consigna y la pista «(ella)» exigen el pronombre «she» y descartan las demás opciones."
+  },
+  "automaticCyclePass" : true,
+  "result" : "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+  "finishedAt" : "2026-10-09T22:54:17.505371Z"
+}

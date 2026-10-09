@@ -1,0 +1,70 @@
+{
+  "candidates" : [ {
+    "kind" : "WHOLE_EXERCISE",
+    "quiz" : {
+      "id" : "df0000000000000000000005",
+      "oidId" : null,
+      "kind" : "MULTIPLE_CHOICE",
+      "knowledgeId" : null,
+      "title" : null,
+      "instructions" : null,
+      "translation" : null,
+      "theoryId" : null,
+      "topicName" : null,
+      "form" : {
+        "kind" : "MULTIPLE_CHOICE",
+        "incidence" : 1.0,
+        "label" : "",
+        "name" : "",
+        "sentenceParts" : [ {
+          "kind" : "CLOZE",
+          "text" : "",
+          "options" : null
+        }, {
+          "kind" : "TEXT",
+          "text" : " collect stamps? (you)",
+          "options" : null
+        } ],
+        "multipleChoice" : {
+          "selection" : "SINGLE",
+          "items" : [ {
+            "id" : "Does you",
+            "incidence" : 0.0,
+            "label" : "Does you"
+          }, {
+            "id" : "Do you",
+            "incidence" : 1.0,
+            "label" : "Do you"
+          }, {
+            "id" : "You do",
+            "incidence" : 0.0,
+            "label" : "You do"
+          }, {
+            "id" : "You does",
+            "incidence" : 0.0,
+            "label" : "You does"
+          } ]
+        },
+        "unmodeledFields" : null
+      },
+      "difficulty" : 0.0,
+      "retries" : 0.0,
+      "noScoreRetries" : 0.0,
+      "code" : null,
+      "audioUrl" : null,
+      "imageUrl" : null,
+      "answerAudioUrl" : null,
+      "answerImageUrl" : null,
+      "miniTheory" : null,
+      "successMessage" : null,
+      "sentences" : null,
+      "unmodeledFields" : null
+    },
+    "miniTheoryText" : null,
+    "topicInstructions" : null,
+    "rationale" : "Conservé you en todas las opciones para evitar la coincidencia literal con la pista; los distractores representan errores de concordancia del auxiliar, de inversión o de ambos, y la consigna exige do o does antes del sujeto."
+  } ],
+  "proposerVersion" : "panel-proposer",
+  "available" : true,
+  "unavailableReason" : null
+}

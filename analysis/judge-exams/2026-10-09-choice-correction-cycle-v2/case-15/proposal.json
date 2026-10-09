@@ -1,0 +1,70 @@
+{
+  "candidates" : [ {
+    "kind" : "WHOLE_EXERCISE",
+    "quiz" : {
+      "id" : "df000000000000000000000f",
+      "oidId" : null,
+      "kind" : "MULTIPLE_CHOICE",
+      "knowledgeId" : null,
+      "title" : null,
+      "instructions" : "Práctica introductoria: elige la opción cuyo pronombre significa «ella» para completar la pregunta.",
+      "translation" : null,
+      "theoryId" : null,
+      "topicName" : null,
+      "form" : {
+        "kind" : "MULTIPLE_CHOICE",
+        "incidence" : 1.0,
+        "label" : "",
+        "name" : "",
+        "sentenceParts" : [ {
+          "kind" : "CLOZE",
+          "text" : "",
+          "options" : null
+        }, {
+          "kind" : "TEXT",
+          "text" : " thirsty? (ella)",
+          "options" : null
+        } ],
+        "multipleChoice" : {
+          "selection" : "SINGLE",
+          "items" : [ {
+            "id" : "Am I",
+            "incidence" : 0.0,
+            "label" : "Am I"
+          }, {
+            "id" : "Are we",
+            "incidence" : 0.0,
+            "label" : "Are we"
+          }, {
+            "id" : "Is she",
+            "incidence" : 1.0,
+            "label" : "Is she"
+          }, {
+            "id" : "Is it",
+            "incidence" : 0.0,
+            "label" : "Is it"
+          } ]
+        },
+        "unmodeledFields" : null
+      },
+      "difficulty" : 0.0,
+      "retries" : 0.0,
+      "noScoreRetries" : 0.0,
+      "code" : null,
+      "audioUrl" : null,
+      "imageUrl" : null,
+      "answerAudioUrl" : null,
+      "answerImageUrl" : null,
+      "miniTheory" : null,
+      "successMessage" : null,
+      "sentences" : null,
+      "unmodeledFields" : null
+    },
+    "miniTheoryText" : null,
+    "topicInstructions" : null,
+    "rationale" : "Reemplacé la pista inglesa por «ella» y reformulé la consigna para reconocer el significado del pronombre sin copiar she; conservé las opciones, que distinguen ella de yo, nosotros y el pronombre para una cosa."
+  } ],
+  "proposerVersion" : "panel-proposer",
+  "available" : true,
+  "unavailableReason" : null
+}

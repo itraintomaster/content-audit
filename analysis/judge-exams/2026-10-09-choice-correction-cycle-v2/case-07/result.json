@@ -1,0 +1,332 @@
+{
+  "caseNumber" : 7,
+  "id" : "df0000000000000000000007",
+  "original" : {
+    "id" : "df0000000000000000000007",
+    "caseNumber" : 7,
+    "slug" : "irrelevant-verb",
+    "level" : "A1",
+    "topic" : "Tercera persona singular",
+    "title" : "Tercera persona singular",
+    "instructions" : "Completa la afirmación de presente simple con la forma de like.",
+    "exercise" : "My aunt ___ peaches.",
+    "options" : [ "likes", "Paris", "blue", "tomorrow" ],
+    "correct" : "likes",
+    "expected" : "FAIL",
+    "allowedIssueKinds" : [ "IRRELEVANT_DISTRACTORS", "IMPLAUSIBLE_DISTRACTORS" ],
+    "expectationReason" : "Las incorrectas no son formas de like y evitan discriminar tercera persona."
+  },
+  "initial" : {
+    "status" : "FAIL",
+    "objective" : "Usar la forma de like correspondiente a la tercera persona singular en una afirmación de presente simple.",
+    "introductory" : false,
+    "issues" : [ {
+      "kind" : "IRRELEVANT_DISTRACTORS",
+      "severity" : "HIGH",
+      "labels" : [ "Paris", "blue", "tomorrow" ],
+      "reason" : "Los distractores no son formas de like: permiten elegir likes por ser la única opción relacionada con el verbo solicitado, sin aplicar la concordancia. Deben conservarse el sujeto My aunt y el presente simple fijado por la consigna; falta contrastar formas que representen errores al conjugar ese verbo.",
+      "misconception" : "Omitir la terminación -s de tercera persona singular al conjugar like con My aunt."
+    } ],
+    "rationale" : "El conjunto evita casi por completo practicar la tercera persona singular: las tres opciones equivocadas evalúan reconocer palabras ajenas al verbo, no su conjugación."
+  },
+  "initialStatusMatches" : true,
+  "findings" : [ {
+    "analyzer" : "multiple-choice-quality",
+    "rule" : "irrelevant-distractors",
+    "node" : {
+      "target" : "QUIZ",
+      "nodeId" : "df0000000000000000000007",
+      "label" : "Tercera persona singular"
+    },
+    "severity" : "HIGH",
+    "evidence" : {
+      "examined" : [ {
+        "label" : "Objetivo pedagógico",
+        "text" : "Usar la forma de like correspondiente a la tercera persona singular en una afirmación de presente simple."
+      }, {
+        "label" : "Nivel",
+        "text" : "A1"
+      }, {
+        "label" : "Consigna",
+        "text" : "Completa la afirmación de presente simple con la forma de like."
+      }, {
+        "label" : "Ejercicio",
+        "text" : "My aunt ___ peaches."
+      }, {
+        "label" : "Opciones",
+        "text" : "- likes (correcta)\n- Paris\n- blue\n- tomorrow"
+      }, {
+        "label" : "Confusión esperable",
+        "text" : "Omitir la terminación -s de tercera persona singular al conjugar like con My aunt."
+      } ],
+      "observation" : "Los distractores no son formas de like: permiten elegir likes por ser la única opción relacionada con el verbo solicitado, sin aplicar la concordancia. Deben conservarse el sujeto My aunt y el presente simple fijado por la consigna; falta contrastar formas que representen errores al conjugar ese verbo.",
+      "relatedNodes" : [ ]
+    },
+    "resolution" : "PANEL",
+    "cost" : "PAID_MODEL",
+    "identity" : {
+      "key" : "multiple-choice-quality|irrelevant-distractors|df0000000000000000000007|Paris | blue | tomorrow",
+      "marker" : "Paris | blue | tomorrow"
+    }
+  } ],
+  "tasksDelivered" : {
+    "batchId" : "choice-correction-cycle-20261009-v2",
+    "level" : "A1",
+    "knowledgeId" : "synthetic-topic-7",
+    "quizId" : "df0000000000000000000007",
+    "topicView" : [ {
+      "statement" : "My aunt ___ peaches.",
+      "gaps" : [ {
+        "index" : 0,
+        "hint" : null,
+        "acceptedAnswers" : [ "likes" ],
+        "firstAnswer" : "likes"
+      } ],
+      "options" : [ {
+        "label" : "likes",
+        "correct" : true
+      }, {
+        "label" : "Paris",
+        "correct" : false
+      }, {
+        "label" : "blue",
+        "correct" : false
+      }, {
+        "label" : "tomorrow",
+        "correct" : false
+      } ],
+      "instructions" : "Completa la afirmación de presente simple con la forma de like.",
+      "translation" : "",
+      "miniTheory" : ""
+    } ],
+    "briefs" : [ {
+      "task" : {
+        "id" : "task-001",
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "df0000000000000000000007",
+        "nodeLabel" : "Tercera persona singular",
+        "diagnosisKind" : "MULTIPLE_CHOICE_VALIDITY",
+        "priority" : 1,
+        "status" : "PENDING",
+        "origin" : {
+          "finding" : {
+            "analyzer" : "multiple-choice-quality",
+            "rule" : "irrelevant-distractors",
+            "node" : {
+              "target" : "QUIZ",
+              "nodeId" : "df0000000000000000000007",
+              "label" : "Tercera persona singular"
+            },
+            "severity" : "HIGH",
+            "evidence" : {
+              "examined" : [ {
+                "label" : "Objetivo pedagógico",
+                "text" : "Usar la forma de like correspondiente a la tercera persona singular en una afirmación de presente simple."
+              }, {
+                "label" : "Nivel",
+                "text" : "A1"
+              }, {
+                "label" : "Consigna",
+                "text" : "Completa la afirmación de presente simple con la forma de like."
+              }, {
+                "label" : "Ejercicio",
+                "text" : "My aunt ___ peaches."
+              }, {
+                "label" : "Opciones",
+                "text" : "- likes (correcta)\n- Paris\n- blue\n- tomorrow"
+              }, {
+                "label" : "Confusión esperable",
+                "text" : "Omitir la terminación -s de tercera persona singular al conjugar like con My aunt."
+              } ],
+              "observation" : "Los distractores no son formas de like: permiten elegir likes por ser la única opción relacionada con el verbo solicitado, sin aplicar la concordancia. Deben conservarse el sujeto My aunt y el presente simple fijado por la consigna; falta contrastar formas que representen errores al conjugar ese verbo.",
+              "relatedNodes" : [ ]
+            },
+            "resolution" : "PANEL",
+            "cost" : "PAID_MODEL",
+            "identity" : {
+              "key" : "multiple-choice-quality|irrelevant-distractors|df0000000000000000000007|Paris | blue | tomorrow",
+              "marker" : "Paris | blue | tomorrow"
+            }
+          },
+          "cefrLevel" : "A1",
+          "knowledgeId" : "synthetic-topic-7",
+          "knowledgeLabel" : "Tercera persona singular",
+          "reachedQuizIds" : [ "df0000000000000000000007" ],
+          "coveredFindings" : [ ]
+        }
+      },
+      "finding" : {
+        "analyzer" : "multiple-choice-quality",
+        "rule" : "irrelevant-distractors",
+        "node" : {
+          "target" : "QUIZ",
+          "nodeId" : "df0000000000000000000007",
+          "label" : "Tercera persona singular"
+        },
+        "severity" : "HIGH",
+        "evidence" : {
+          "examined" : [ {
+            "label" : "Objetivo pedagógico",
+            "text" : "Usar la forma de like correspondiente a la tercera persona singular en una afirmación de presente simple."
+          }, {
+            "label" : "Nivel",
+            "text" : "A1"
+          }, {
+            "label" : "Consigna",
+            "text" : "Completa la afirmación de presente simple con la forma de like."
+          }, {
+            "label" : "Ejercicio",
+            "text" : "My aunt ___ peaches."
+          }, {
+            "label" : "Opciones",
+            "text" : "- likes (correcta)\n- Paris\n- blue\n- tomorrow"
+          }, {
+            "label" : "Confusión esperable",
+            "text" : "Omitir la terminación -s de tercera persona singular al conjugar like con My aunt."
+          } ],
+          "observation" : "Los distractores no son formas de like: permiten elegir likes por ser la única opción relacionada con el verbo solicitado, sin aplicar la concordancia. Deben conservarse el sujeto My aunt y el presente simple fijado por la consigna; falta contrastar formas que representen errores al conjugar ese verbo.",
+          "relatedNodes" : [ ]
+        },
+        "resolution" : "PANEL",
+        "cost" : "PAID_MODEL",
+        "identity" : {
+          "key" : "multiple-choice-quality|irrelevant-distractors|df0000000000000000000007|Paris | blue | tomorrow",
+          "marker" : "Paris | blue | tomorrow"
+        }
+      },
+      "coveredFindings" : [ ],
+      "editScope" : [ "OPTIONS", "INSTRUCTIONS", "STATEMENT", "TRANSLATION", "STORED_SENTENCE", "AUDIO" ],
+      "scopeDeclared" : true,
+      "quizView" : {
+        "statement" : "My aunt ___ peaches.",
+        "gaps" : [ {
+          "index" : 0,
+          "hint" : null,
+          "acceptedAnswers" : [ "likes" ],
+          "firstAnswer" : "likes"
+        } ],
+        "options" : [ {
+          "label" : "likes",
+          "correct" : true
+        }, {
+          "label" : "Paris",
+          "correct" : false
+        }, {
+          "label" : "blue",
+          "correct" : false
+        }, {
+          "label" : "tomorrow",
+          "correct" : false
+        } ],
+        "instructions" : "Completa la afirmación de presente simple con la forma de like.",
+        "translation" : "",
+        "miniTheory" : ""
+      },
+      "reachedQuizViews" : [ ]
+    } ],
+    "wordLights" : null,
+    "conversion" : null,
+    "attempt" : 1,
+    "previousRejections" : [ ],
+    "twoFixes" : false
+  },
+  "proposal" : {
+    "candidates" : [ {
+      "kind" : "WHOLE_EXERCISE",
+      "quiz" : {
+        "id" : "df0000000000000000000007",
+        "oidId" : null,
+        "kind" : "MULTIPLE_CHOICE",
+        "knowledgeId" : null,
+        "title" : null,
+        "instructions" : null,
+        "translation" : null,
+        "theoryId" : null,
+        "topicName" : null,
+        "form" : {
+          "kind" : "MULTIPLE_CHOICE",
+          "incidence" : 1.0,
+          "label" : "",
+          "name" : "",
+          "sentenceParts" : [ {
+            "kind" : "TEXT",
+            "text" : "My aunt ",
+            "options" : null
+          }, {
+            "kind" : "CLOZE",
+            "text" : "",
+            "options" : null
+          }, {
+            "kind" : "TEXT",
+            "text" : " peaches.",
+            "options" : null
+          } ],
+          "multipleChoice" : {
+            "selection" : "SINGLE",
+            "items" : [ {
+              "id" : "likes",
+              "incidence" : 1.0,
+              "label" : "likes"
+            }, {
+              "id" : "like",
+              "incidence" : 0.0,
+              "label" : "like"
+            }, {
+              "id" : "likees",
+              "incidence" : 0.0,
+              "label" : "likees"
+            }, {
+              "id" : "likies",
+              "incidence" : 0.0,
+              "label" : "likies"
+            } ]
+          },
+          "unmodeledFields" : null
+        },
+        "difficulty" : 0.0,
+        "retries" : 0.0,
+        "noScoreRetries" : 0.0,
+        "code" : null,
+        "audioUrl" : null,
+        "imageUrl" : null,
+        "answerAudioUrl" : null,
+        "answerImageUrl" : null,
+        "miniTheory" : null,
+        "successMessage" : null,
+        "sentences" : null,
+        "unmodeledFields" : null
+      },
+      "miniTheoryText" : null,
+      "topicInstructions" : null,
+      "rationale" : "Reemplacé los distractores irrelevantes por errores de conjugación: omitir -s, agregar -es sin quitar la e y aplicar indebidamente -ies; todas las opciones intentan conjugar like, por lo que hay que reconocer la forma de tercera persona singular."
+    } ],
+    "proposerVersion" : "panel-proposer",
+    "available" : true,
+    "unavailableReason" : null
+  },
+  "localViolations" : [ ],
+  "after" : {
+    "level" : "A1",
+    "topic" : "Tercera persona singular",
+    "title" : "Tercera persona singular",
+    "instructions" : "Completa la afirmación de presente simple con la forma de like.",
+    "exercise" : "My aunt ___ peaches.",
+    "options" : "- likes (correcta)\n- like\n- likees\n- likies"
+  },
+  "afterQuality" : {
+    "status" : "PASS",
+    "objective" : "Aplicar la terminación de tercera persona singular a like en una afirmación de presente simple.",
+    "introductory" : true,
+    "issues" : [ ],
+    "rationale" : "Las opciones contrastan la forma base con distintas terminaciones de tercera persona singular. «like» representa omitir la concordancia; «likees» y «likies», generalizar indebidamente las terminaciones -es e -ies. El sujeto fija la persona necesaria y el conjunto permite practicar la forma verbal sin ofrecer una coincidencia literal que revele la clave."
+  },
+  "afterAlternative" : {
+    "correctIsValid" : true,
+    "validAlternatives" : [ ],
+    "correctProblem" : null,
+    "rationale" : "«My aunt» exige «likes» en presente simple por ser tercera persona singular. «Like» no concuerda con el sujeto, y «likees» y «likies» no son formas válidas de «like»."
+  },
+  "automaticCyclePass" : true,
+  "result" : "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+  "finishedAt" : "2026-10-09T22:53:24.651767Z"
+}

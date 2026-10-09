@@ -1,0 +1,32 @@
+{
+  "experimentId": "choice-correction-cycle-20261009-v2",
+  "physicalCalls": 43,
+  "physicalCallCap": 50,
+  "modelRetries": 0,
+  "paidQualityJudgments": 25,
+  "paidUniquenessJudgments": 9,
+  "correctorProposals": 9,
+  "provider": "codex-cli",
+  "session": "ChatGPT local",
+  "model": "gpt-6.1-sol",
+  "reasoningEffort": "medium",
+  "localTests": {
+    "javaPassed": 17,
+    "pythonPassed": 5,
+    "nativeSelftestPassed": true,
+    "realCallsUsedByTests": 0
+  },
+  "campaignCheckpoint": {
+    "path": "/Users/josecullen/projects/learney/content-audit/.content-audit/campaigns/a1-v11/.content-audit/batches/tanda-A1-20261007T084434Z.json",
+    "beforeSha256": "a230c57959b2a3fa9136e4bff7c87fefafe9c39476a554f8b2d9529c7de2bbb4",
+    "afterSha256": "a230c57959b2a3fa9136e4bff7c87fefafe9c39476a554f8b2d9529c7de2bbb4"
+  },
+  "historicHashes": {
+    "gold": "e740ffdf66a0c7a64394a8d9dcb06ed4e3cf01643fcd8194f4b45285e0715249",
+    "resultComplete": "81c58b0ff204159212749eb89bebbd41a9789bbf5f03b79c8759248901fb221d",
+    "measuredResult": "565dacf45e850a305ec9554f3b7f9c84edc13f6b3e1d5f30ac8ea6006273f488"
+  },
+  "officialExamWritten": false,
+  "additionalActionsAuthorizedByRemainder": false
+}
+

@@ -1,0 +1,161 @@
+{
+  "batchId" : "choice-correction-cycle-20261009-v2",
+  "level" : "A1",
+  "knowledgeId" : "synthetic-topic-5",
+  "quizId" : "df0000000000000000000005",
+  "topicView" : [ {
+    "statement" : "___ collect stamps? (you)",
+    "gaps" : [ {
+      "index" : 0,
+      "hint" : "(you)",
+      "acceptedAnswers" : [ "Do you" ],
+      "firstAnswer" : "Do you"
+    } ],
+    "options" : [ {
+      "label" : "Does he",
+      "correct" : false
+    }, {
+      "label" : "Do you",
+      "correct" : true
+    }, {
+      "label" : "Do they",
+      "correct" : false
+    }, {
+      "label" : "Does she",
+      "correct" : false
+    } ],
+    "instructions" : "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+    "translation" : "",
+    "miniTheory" : ""
+  } ],
+  "briefs" : [ {
+    "task" : {
+      "id" : "task-001",
+      "nodeTarget" : "QUIZ",
+      "nodeId" : "df0000000000000000000005",
+      "nodeLabel" : "Preguntas en presente simple",
+      "diagnosisKind" : "MULTIPLE_CHOICE_VALIDITY",
+      "priority" : 1,
+      "status" : "PENDING",
+      "origin" : {
+        "finding" : {
+          "analyzer" : "multiple-choice-quality",
+          "rule" : "answer-cue",
+          "node" : {
+            "target" : "QUIZ",
+            "nodeId" : "df0000000000000000000005",
+            "label" : "Preguntas en presente simple"
+          },
+          "severity" : "HIGH",
+          "evidence" : {
+            "examined" : [ {
+              "label" : "Objetivo pedagógico",
+              "text" : "Formar preguntas en presente simple colocando do o does antes del sujeto indicado."
+            }, {
+              "label" : "Nivel",
+              "text" : "A1"
+            }, {
+              "label" : "Consigna",
+              "text" : "Forma preguntas en presente simple con do o does antes del sujeto indicado."
+            }, {
+              "label" : "Ejercicio",
+              "text" : "___ collect stamps? (you)"
+            }, {
+              "label" : "Opciones",
+              "text" : "- Does he\n- Do you (correcta)\n- Do they\n- Does she"
+            }, {
+              "label" : "Confusión esperable",
+              "text" : "Usar does con you o colocar do después del sujeto al formar una pregunta."
+            } ],
+            "observation" : "Do you es la única opción que contiene el sujeto you de la pista; las demás cambian ese sujeto. El conjunto permite acertar por coincidencia literal sin elegir el auxiliar ni aplicar el orden interrogativo. Se debe conservar la pista que fija el sujeto y contrastar errores de auxiliar u orden con ese mismo sujeto.",
+            "relatedNodes" : [ ]
+          },
+          "resolution" : "PANEL",
+          "cost" : "PAID_MODEL",
+          "identity" : {
+            "key" : "multiple-choice-quality|answer-cue|df0000000000000000000005|Does he | Do you | Do they | Does she",
+            "marker" : "Does he | Do you | Do they | Does she"
+          }
+        },
+        "cefrLevel" : "A1",
+        "knowledgeId" : "synthetic-topic-5",
+        "knowledgeLabel" : "Preguntas en presente simple",
+        "reachedQuizIds" : [ "df0000000000000000000005" ],
+        "coveredFindings" : [ ]
+      }
+    },
+    "finding" : {
+      "analyzer" : "multiple-choice-quality",
+      "rule" : "answer-cue",
+      "node" : {
+        "target" : "QUIZ",
+        "nodeId" : "df0000000000000000000005",
+        "label" : "Preguntas en presente simple"
+      },
+      "severity" : "HIGH",
+      "evidence" : {
+        "examined" : [ {
+          "label" : "Objetivo pedagógico",
+          "text" : "Formar preguntas en presente simple colocando do o does antes del sujeto indicado."
+        }, {
+          "label" : "Nivel",
+          "text" : "A1"
+        }, {
+          "label" : "Consigna",
+          "text" : "Forma preguntas en presente simple con do o does antes del sujeto indicado."
+        }, {
+          "label" : "Ejercicio",
+          "text" : "___ collect stamps? (you)"
+        }, {
+          "label" : "Opciones",
+          "text" : "- Does he\n- Do you (correcta)\n- Do they\n- Does she"
+        }, {
+          "label" : "Confusión esperable",
+          "text" : "Usar does con you o colocar do después del sujeto al formar una pregunta."
+        } ],
+        "observation" : "Do you es la única opción que contiene el sujeto you de la pista; las demás cambian ese sujeto. El conjunto permite acertar por coincidencia literal sin elegir el auxiliar ni aplicar el orden interrogativo. Se debe conservar la pista que fija el sujeto y contrastar errores de auxiliar u orden con ese mismo sujeto.",
+        "relatedNodes" : [ ]
+      },
+      "resolution" : "PANEL",
+      "cost" : "PAID_MODEL",
+      "identity" : {
+        "key" : "multiple-choice-quality|answer-cue|df0000000000000000000005|Does he | Do you | Do they | Does she",
+        "marker" : "Does he | Do you | Do they | Does she"
+      }
+    },
+    "coveredFindings" : [ ],
+    "editScope" : [ "OPTIONS", "INSTRUCTIONS", "STATEMENT", "TRANSLATION", "STORED_SENTENCE", "AUDIO" ],
+    "scopeDeclared" : true,
+    "quizView" : {
+      "statement" : "___ collect stamps? (you)",
+      "gaps" : [ {
+        "index" : 0,
+        "hint" : "(you)",
+        "acceptedAnswers" : [ "Do you" ],
+        "firstAnswer" : "Do you"
+      } ],
+      "options" : [ {
+        "label" : "Does he",
+        "correct" : false
+      }, {
+        "label" : "Do you",
+        "correct" : true
+      }, {
+        "label" : "Do they",
+        "correct" : false
+      }, {
+        "label" : "Does she",
+        "correct" : false
+      } ],
+      "instructions" : "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+      "translation" : "",
+      "miniTheory" : ""
+    },
+    "reachedQuizViews" : [ ]
+  } ],
+  "wordLights" : null,
+  "conversion" : null,
+  "attempt" : 1,
+  "previousRejections" : [ ],
+  "twoFixes" : false
+}

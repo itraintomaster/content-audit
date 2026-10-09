@@ -1,0 +1,51 @@
+{
+  "agentId" : "choice-quality-judge",
+  "runId" : "a59b4990-0282-4f65-afba-68d6896f725f",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "topic" : "Comparativos",
+    "level" : "A2",
+    "instructions" : "Completa con el comparativo de tall.",
+    "options" : "- tall\n- more tall\n- tallest\n- taller (correcta)",
+    "exercise" : "Leo is ___ than his sister.",
+    "title" : "Comparativos",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225316-dbf93ef2"
+  },
+  "phases" : {
+    "choice-quality-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "choiceQualityVerdict" : {
+      "artifactId" : "5efc83c4-4b62-401e-9b64-2814a3ae0d0d",
+      "kind" : "choiceQualityVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225316-dbf93ef2/artifacts/choiceQualityVerdict/d5c412037f46ec7b25065496f6842edd49c0af0b34d0f9d45aa1299165f679cf.json",
+      "contentHash" : "sha256:d5c412037f46ec7b25065496f6842edd49c0af0b34d0f9d45aa1299165f679cf",
+      "producedAt" : "2026-10-09T22:53:24.003439Z",
+      "producedBy" : "emit"
+    },
+    "verdicts" : {
+      "artifactId" : "64cba9e3-3562-44e7-94a5-f85ecfa00205",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225316-dbf93ef2/artifacts/verdicts/53e74b8a534e25038cb433e7e021d0c257ce760407722697a1733f4368452aaa.json",
+      "contentHash" : "sha256:53e74b8a534e25038cb433e7e021d0c257ce760407722697a1733f4368452aaa",
+      "producedAt" : "2026-10-09T22:53:23.933751Z",
+      "producedBy" : "evaluate"
+    }
+  }
+}

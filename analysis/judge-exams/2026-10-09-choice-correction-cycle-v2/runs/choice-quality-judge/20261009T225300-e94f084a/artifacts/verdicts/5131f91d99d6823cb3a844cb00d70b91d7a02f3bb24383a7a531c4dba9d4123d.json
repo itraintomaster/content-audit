@@ -1,0 +1,15 @@
+{
+  "status": "FAIL",
+  "objective": "Identificar el pasado simple afirmativo del verbo close.",
+  "introductory": true,
+  "issues": [
+    {
+      "kind": "IMPLAUSIBLE_DISTRACTORS",
+      "severity": "HIGH",
+      "labels": ["banana", "purple", "Wednesday"],
+      "reason": "Los tres distractores son palabras ajenas a las formas de close y se descartan por su significado o categoría, sin reconocer cómo se forma el pasado simple. La consigna y yesterday fijan el verbo y el tiempo y deben conservarse; falta contrastar closed con errores esperables al formar el pasado de ese verbo.",
+      "misconception": "Confundir la forma base con el pasado simple o aplicar incorrectamente la terminación regular -ed."
+    }
+  ],
+  "rationale": "Aunque la práctica sea introductoria, el conjunto permite acertar descartando palabras sin relación con el verbo, y evita casi por completo practicar su forma en pasado simple."
+}

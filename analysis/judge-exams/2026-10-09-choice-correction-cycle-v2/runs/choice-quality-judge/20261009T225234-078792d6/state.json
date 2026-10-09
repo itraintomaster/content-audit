@@ -1,0 +1,51 @@
+{
+  "agentId" : "choice-quality-judge",
+  "runId" : "da6ca30b-8340-495e-bcd6-6874c6e3d219",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "exercise" : "It ___ thirsty.",
+    "options" : "- isn't (correcta)\n- aren't\n- am not\n- is",
+    "instructions" : "Completa la negación de be en presente simple.",
+    "level" : "A1",
+    "topic" : "Negativas con be",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225234-078792d6",
+    "title" : "Negativas con be"
+  },
+  "phases" : {
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-quality-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "choiceQualityVerdict" : {
+      "artifactId" : "56b6cc59-4f60-4f1d-bd58-4c43e051f002",
+      "kind" : "choiceQualityVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225234-078792d6/artifacts/choiceQualityVerdict/d11db7e19c889c8b971213e1eae367cd5783933a36c7188c018bf2c89669379f.json",
+      "contentHash" : "sha256:d11db7e19c889c8b971213e1eae367cd5783933a36c7188c018bf2c89669379f",
+      "producedAt" : "2026-10-09T22:52:43.220435Z",
+      "producedBy" : "emit"
+    },
+    "verdicts" : {
+      "artifactId" : "063da040-f6d2-47b4-9875-14d87cf8435f",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225234-078792d6/artifacts/verdicts/139a3ae8b3f347c532d4b3dc479c0694a25e5fc8c6eb140caff25ae0540505ab.json",
+      "contentHash" : "sha256:139a3ae8b3f347c532d4b3dc479c0694a25e5fc8c6eb140caff25ae0540505ab",
+      "producedAt" : "2026-10-09T22:52:43.151444Z",
+      "producedBy" : "evaluate"
+    }
+  }
+}

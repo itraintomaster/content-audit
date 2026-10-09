@@ -1,0 +1,51 @@
+{
+  "agentId" : "choice-quality-judge",
+  "runId" : "ffda64cb-9d5f-49fc-89d4-abeddfd7b8e1",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "title" : "Reconocer pronombres",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225339-bf1598ea",
+    "topic" : "Reconocer pronombres",
+    "level" : "A1",
+    "instructions" : "Práctica introductoria: reconoce la opción que contiene el pronombre she.",
+    "options" : "- Am I\n- Are we\n- Is she (correcta)\n- Is it",
+    "exercise" : "___ thirsty? (she)"
+  },
+  "phases" : {
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-quality-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "verdicts" : {
+      "artifactId" : "2de9f70b-606a-441e-82ac-dc40fce7b4e8",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225339-bf1598ea/artifacts/verdicts/7a379f3029c7d4bc0e8b7a0e4bcd5214e77aed1dfdcdd47361fba1f76c024d9f.json",
+      "contentHash" : "sha256:7a379f3029c7d4bc0e8b7a0e4bcd5214e77aed1dfdcdd47361fba1f76c024d9f",
+      "producedAt" : "2026-10-09T22:53:49.909059Z",
+      "producedBy" : "evaluate"
+    },
+    "choiceQualityVerdict" : {
+      "artifactId" : "98281490-d1df-4d6d-a0e7-b4d8bc005c28",
+      "kind" : "choiceQualityVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225339-bf1598ea/artifacts/choiceQualityVerdict/cca8de84b4d411352ccf8a93d68cd9d7f1611433ad0d399e97ddf9cbf276c239.json",
+      "contentHash" : "sha256:cca8de84b4d411352ccf8a93d68cd9d7f1611433ad0d399e97ddf9cbf276c239",
+      "producedAt" : "2026-10-09T22:53:49.981658Z",
+      "producedBy" : "emit"
+    }
+  }
+}

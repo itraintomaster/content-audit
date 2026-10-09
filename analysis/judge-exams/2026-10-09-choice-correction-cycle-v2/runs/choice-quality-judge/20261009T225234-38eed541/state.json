@@ -1,0 +1,51 @@
+{
+  "agentId" : "choice-quality-judge",
+  "runId" : "7d9136bc-56be-42f3-8467-bac3ee2ea345",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "title" : "Preguntas en presente simple",
+    "exercise" : "___ collect stamps? (you)",
+    "options" : "- Does he\n- Do you (correcta)\n- Do they\n- Does she",
+    "instructions" : "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+    "level" : "A1",
+    "topic" : "Preguntas en presente simple",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225234-38eed541"
+  },
+  "phases" : {
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-quality-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "choiceQualityVerdict" : {
+      "artifactId" : "4fa29480-7426-4c45-9610-9fcc0dd8c91b",
+      "kind" : "choiceQualityVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225234-38eed541/artifacts/choiceQualityVerdict/995119e0964c0c19d9ab75eaf2caea5d64791997d7d31c4d0e536cc0f4ddc1cd.json",
+      "contentHash" : "sha256:995119e0964c0c19d9ab75eaf2caea5d64791997d7d31c4d0e536cc0f4ddc1cd",
+      "producedAt" : "2026-10-09T22:52:45.575179Z",
+      "producedBy" : "emit"
+    },
+    "verdicts" : {
+      "artifactId" : "52d1f805-e0b1-4d5a-b884-dc8eefb1d690",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-quality-judge/20261009T225234-38eed541/artifacts/verdicts/204de9b10ff5fa53af954f202f22f3b46cd514f043017461e1d8110340a81da6.json",
+      "contentHash" : "sha256:204de9b10ff5fa53af954f202f22f3b46cd514f043017461e1d8110340a81da6",
+      "producedAt" : "2026-10-09T22:52:45.503316Z",
+      "producedBy" : "evaluate"
+    }
+  }
+}

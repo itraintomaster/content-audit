@@ -1,0 +1,332 @@
+{
+  "caseNumber" : 11,
+  "id" : "df000000000000000000000b",
+  "original" : {
+    "id" : "df000000000000000000000b",
+    "caseNumber" : 11,
+    "slug" : "implausible-comparative",
+    "level" : "A2",
+    "topic" : "Comparativos",
+    "title" : "Comparativos",
+    "instructions" : "Completa con el comparativo de tall.",
+    "exercise" : "Leo is ___ than his sister.",
+    "options" : [ "taller", "###", "9+9", "@@" ],
+    "correct" : "taller",
+    "expected" : "FAIL",
+    "allowedIssueKinds" : [ "IRRELEVANT_DISTRACTORS", "IMPLAUSIBLE_DISTRACTORS" ],
+    "expectationReason" : "Los símbolos no representan confusiones lingüísticas de comparativo."
+  },
+  "initial" : {
+    "status" : "FAIL",
+    "objective" : "Formar el comparativo de tall para completar una comparación con than.",
+    "introductory" : false,
+    "issues" : [ {
+      "kind" : "IMPLAUSIBLE_DISTRACTORS",
+      "severity" : "HIGH",
+      "labels" : [ "###", "9+9", "@@" ],
+      "reason" : "Todos los distractores son símbolos o una expresión matemática: se descartan sin conocer el comparativo de tall porque taller es la única opción lingüística. Deben conservarse el adjetivo indicado y la comparación con than; falta contrastar formas que representen errores esperables al formar el comparativo.",
+      "misconception" : "Confundir la forma base del adjetivo con su comparativo o aplicar incorrectamente la formación del comparativo de un adjetivo corto."
+    } ],
+    "rationale" : "El conjunto permite acertar sin practicar la formación de comparativos: ninguna opción incorrecta representa una confusión lingüística razonable para A2."
+  },
+  "initialStatusMatches" : true,
+  "findings" : [ {
+    "analyzer" : "multiple-choice-quality",
+    "rule" : "implausible-distractors",
+    "node" : {
+      "target" : "QUIZ",
+      "nodeId" : "df000000000000000000000b",
+      "label" : "Comparativos"
+    },
+    "severity" : "HIGH",
+    "evidence" : {
+      "examined" : [ {
+        "label" : "Objetivo pedagógico",
+        "text" : "Formar el comparativo de tall para completar una comparación con than."
+      }, {
+        "label" : "Nivel",
+        "text" : "A2"
+      }, {
+        "label" : "Consigna",
+        "text" : "Completa con el comparativo de tall."
+      }, {
+        "label" : "Ejercicio",
+        "text" : "Leo is ___ than his sister."
+      }, {
+        "label" : "Opciones",
+        "text" : "- taller (correcta)\n- ###\n- 9+9\n- @@"
+      }, {
+        "label" : "Confusión esperable",
+        "text" : "Confundir la forma base del adjetivo con su comparativo o aplicar incorrectamente la formación del comparativo de un adjetivo corto."
+      } ],
+      "observation" : "Todos los distractores son símbolos o una expresión matemática: se descartan sin conocer el comparativo de tall porque taller es la única opción lingüística. Deben conservarse el adjetivo indicado y la comparación con than; falta contrastar formas que representen errores esperables al formar el comparativo.",
+      "relatedNodes" : [ ]
+    },
+    "resolution" : "PANEL",
+    "cost" : "PAID_MODEL",
+    "identity" : {
+      "key" : "multiple-choice-quality|implausible-distractors|df000000000000000000000b|### | 9+9 | @@",
+      "marker" : "### | 9+9 | @@"
+    }
+  } ],
+  "tasksDelivered" : {
+    "batchId" : "choice-correction-cycle-20261009-v2",
+    "level" : "A2",
+    "knowledgeId" : "synthetic-topic-11",
+    "quizId" : "df000000000000000000000b",
+    "topicView" : [ {
+      "statement" : "Leo is ___ than his sister.",
+      "gaps" : [ {
+        "index" : 0,
+        "hint" : null,
+        "acceptedAnswers" : [ "taller" ],
+        "firstAnswer" : "taller"
+      } ],
+      "options" : [ {
+        "label" : "taller",
+        "correct" : true
+      }, {
+        "label" : "###",
+        "correct" : false
+      }, {
+        "label" : "9+9",
+        "correct" : false
+      }, {
+        "label" : "@@",
+        "correct" : false
+      } ],
+      "instructions" : "Completa con el comparativo de tall.",
+      "translation" : "",
+      "miniTheory" : ""
+    } ],
+    "briefs" : [ {
+      "task" : {
+        "id" : "task-001",
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "df000000000000000000000b",
+        "nodeLabel" : "Comparativos",
+        "diagnosisKind" : "MULTIPLE_CHOICE_VALIDITY",
+        "priority" : 1,
+        "status" : "PENDING",
+        "origin" : {
+          "finding" : {
+            "analyzer" : "multiple-choice-quality",
+            "rule" : "implausible-distractors",
+            "node" : {
+              "target" : "QUIZ",
+              "nodeId" : "df000000000000000000000b",
+              "label" : "Comparativos"
+            },
+            "severity" : "HIGH",
+            "evidence" : {
+              "examined" : [ {
+                "label" : "Objetivo pedagógico",
+                "text" : "Formar el comparativo de tall para completar una comparación con than."
+              }, {
+                "label" : "Nivel",
+                "text" : "A2"
+              }, {
+                "label" : "Consigna",
+                "text" : "Completa con el comparativo de tall."
+              }, {
+                "label" : "Ejercicio",
+                "text" : "Leo is ___ than his sister."
+              }, {
+                "label" : "Opciones",
+                "text" : "- taller (correcta)\n- ###\n- 9+9\n- @@"
+              }, {
+                "label" : "Confusión esperable",
+                "text" : "Confundir la forma base del adjetivo con su comparativo o aplicar incorrectamente la formación del comparativo de un adjetivo corto."
+              } ],
+              "observation" : "Todos los distractores son símbolos o una expresión matemática: se descartan sin conocer el comparativo de tall porque taller es la única opción lingüística. Deben conservarse el adjetivo indicado y la comparación con than; falta contrastar formas que representen errores esperables al formar el comparativo.",
+              "relatedNodes" : [ ]
+            },
+            "resolution" : "PANEL",
+            "cost" : "PAID_MODEL",
+            "identity" : {
+              "key" : "multiple-choice-quality|implausible-distractors|df000000000000000000000b|### | 9+9 | @@",
+              "marker" : "### | 9+9 | @@"
+            }
+          },
+          "cefrLevel" : "A2",
+          "knowledgeId" : "synthetic-topic-11",
+          "knowledgeLabel" : "Comparativos",
+          "reachedQuizIds" : [ "df000000000000000000000b" ],
+          "coveredFindings" : [ ]
+        }
+      },
+      "finding" : {
+        "analyzer" : "multiple-choice-quality",
+        "rule" : "implausible-distractors",
+        "node" : {
+          "target" : "QUIZ",
+          "nodeId" : "df000000000000000000000b",
+          "label" : "Comparativos"
+        },
+        "severity" : "HIGH",
+        "evidence" : {
+          "examined" : [ {
+            "label" : "Objetivo pedagógico",
+            "text" : "Formar el comparativo de tall para completar una comparación con than."
+          }, {
+            "label" : "Nivel",
+            "text" : "A2"
+          }, {
+            "label" : "Consigna",
+            "text" : "Completa con el comparativo de tall."
+          }, {
+            "label" : "Ejercicio",
+            "text" : "Leo is ___ than his sister."
+          }, {
+            "label" : "Opciones",
+            "text" : "- taller (correcta)\n- ###\n- 9+9\n- @@"
+          }, {
+            "label" : "Confusión esperable",
+            "text" : "Confundir la forma base del adjetivo con su comparativo o aplicar incorrectamente la formación del comparativo de un adjetivo corto."
+          } ],
+          "observation" : "Todos los distractores son símbolos o una expresión matemática: se descartan sin conocer el comparativo de tall porque taller es la única opción lingüística. Deben conservarse el adjetivo indicado y la comparación con than; falta contrastar formas que representen errores esperables al formar el comparativo.",
+          "relatedNodes" : [ ]
+        },
+        "resolution" : "PANEL",
+        "cost" : "PAID_MODEL",
+        "identity" : {
+          "key" : "multiple-choice-quality|implausible-distractors|df000000000000000000000b|### | 9+9 | @@",
+          "marker" : "### | 9+9 | @@"
+        }
+      },
+      "coveredFindings" : [ ],
+      "editScope" : [ "OPTIONS", "INSTRUCTIONS", "STATEMENT", "TRANSLATION", "STORED_SENTENCE", "AUDIO" ],
+      "scopeDeclared" : true,
+      "quizView" : {
+        "statement" : "Leo is ___ than his sister.",
+        "gaps" : [ {
+          "index" : 0,
+          "hint" : null,
+          "acceptedAnswers" : [ "taller" ],
+          "firstAnswer" : "taller"
+        } ],
+        "options" : [ {
+          "label" : "taller",
+          "correct" : true
+        }, {
+          "label" : "###",
+          "correct" : false
+        }, {
+          "label" : "9+9",
+          "correct" : false
+        }, {
+          "label" : "@@",
+          "correct" : false
+        } ],
+        "instructions" : "Completa con el comparativo de tall.",
+        "translation" : "",
+        "miniTheory" : ""
+      },
+      "reachedQuizViews" : [ ]
+    } ],
+    "wordLights" : null,
+    "conversion" : null,
+    "attempt" : 1,
+    "previousRejections" : [ ],
+    "twoFixes" : false
+  },
+  "proposal" : {
+    "candidates" : [ {
+      "kind" : "WHOLE_EXERCISE",
+      "quiz" : {
+        "id" : "df000000000000000000000b",
+        "oidId" : null,
+        "kind" : "MULTIPLE_CHOICE",
+        "knowledgeId" : null,
+        "title" : null,
+        "instructions" : null,
+        "translation" : null,
+        "theoryId" : null,
+        "topicName" : null,
+        "form" : {
+          "kind" : "MULTIPLE_CHOICE",
+          "incidence" : 1.0,
+          "label" : "",
+          "name" : "",
+          "sentenceParts" : [ {
+            "kind" : "TEXT",
+            "text" : "Leo is ",
+            "options" : null
+          }, {
+            "kind" : "CLOZE",
+            "text" : "",
+            "options" : null
+          }, {
+            "kind" : "TEXT",
+            "text" : " than his sister.",
+            "options" : null
+          } ],
+          "multipleChoice" : {
+            "selection" : "SINGLE",
+            "items" : [ {
+              "id" : "taller",
+              "incidence" : 1.0,
+              "label" : "taller"
+            }, {
+              "id" : "tall",
+              "incidence" : 0.0,
+              "label" : "tall"
+            }, {
+              "id" : "more tall",
+              "incidence" : 0.0,
+              "label" : "more tall"
+            }, {
+              "id" : "more taller",
+              "incidence" : 0.0,
+              "label" : "more taller"
+            } ]
+          },
+          "unmodeledFields" : null
+        },
+        "difficulty" : 0.0,
+        "retries" : 0.0,
+        "noScoreRetries" : 0.0,
+        "code" : null,
+        "audioUrl" : null,
+        "imageUrl" : null,
+        "answerAudioUrl" : null,
+        "answerImageUrl" : null,
+        "miniTheory" : null,
+        "successMessage" : null,
+        "sentences" : null,
+        "unmodeledFields" : null
+      },
+      "miniTheoryText" : null,
+      "topicInstructions" : null,
+      "rationale" : "Reemplacé los símbolos por errores de formación del comparativo: usar la forma base tall, aplicar more a un adjetivo corto o duplicar la comparación con more taller; todas las opciones conservan tall y requieren conocer su comparativo, sin regalar la respuesta por ser la única opción lingüística."
+    } ],
+    "proposerVersion" : "panel-proposer",
+    "available" : true,
+    "unavailableReason" : null
+  },
+  "localViolations" : [ ],
+  "after" : {
+    "level" : "A2",
+    "topic" : "Comparativos",
+    "title" : "Comparativos",
+    "instructions" : "Completa con el comparativo de tall.",
+    "exercise" : "Leo is ___ than his sister.",
+    "options" : "- taller (correcta)\n- tall\n- more tall\n- more taller"
+  },
+  "afterQuality" : {
+    "status" : "PASS",
+    "objective" : "Formar el comparativo de tall con el sufijo -er.",
+    "introductory" : false,
+    "issues" : [ ],
+    "rationale" : "Los distractores representan errores esperables: usar el adjetivo sin modificar, aplicar more a un adjetivo corto y combinar more con -er. La consigna fija el adjetivo necesario, pero elegir exige reconocer cómo se forma su comparativo."
+  },
+  "afterAlternative" : {
+    "correctIsValid" : true,
+    "validAlternatives" : [ ],
+    "correctProblem" : null,
+    "rationale" : "«Taller» es el comparativo natural de «tall» y encaja con «than». «Tall» no expresa el comparativo, «more tall» suena forzado en esta oración y «more taller» duplica la marca comparativa."
+  },
+  "automaticCyclePass" : true,
+  "result" : "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+  "finishedAt" : "2026-10-09T22:53:43.792484Z"
+}

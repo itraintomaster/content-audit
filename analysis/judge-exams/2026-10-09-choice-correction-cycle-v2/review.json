@@ -1,0 +1,132 @@
+{
+  "experimentId": "choice-correction-cycle-20261009-v2",
+  "reviewer": "Codex — inspección local de contenido, no aprobación humana",
+  "humanApproval": false,
+  "officialExamApproval": false,
+  "courseApproval": false,
+  "scope": "16 casos sintéticos; 9 propuestas revisadas, 7 controles inspeccionados sin volver a consultar modelos.",
+  "initialCompatibleCases": 16,
+  "automaticCyclePasses": 9,
+  "semanticObjectivePreserved": 9,
+  "validControlsPreserved": 7,
+  "qualityGeneralizationProven": false,
+  "notes": [
+    "Los casos7 y9 cumplen el objetivo, pero se recomienda revisar la variedad y pertinencia de sus errores de escritura.",
+    "El16 es un control nuevo; el original ambiguo y los2 casos adicionales permanecen en el examen histórico sin reinterpretar su resultado."
+  ],
+  "cases": [
+    {
+      "caseNumber": 1,
+      "reviewed": true,
+      "classification": "CORRECTION_PRESERVES_OBJECTIVE_AND_UNIQUE_KEY",
+      "rationale": "Conserva she y exige concordancia e inversión; la consigna excluye el orden declarativo.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 2,
+      "reviewed": true,
+      "classification": "VALID_CONTROL_UNCHANGED",
+      "rationale": "Control útil: mismo sujeto, errores de orden y concordancia; queda sin cambios.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 3,
+      "reviewed": true,
+      "classification": "CORRECTION_PRESERVES_OBJECTIVE_AND_UNIQUE_KEY",
+      "rationale": "Conserva it y contrasta concordancia y posición de not.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 4,
+      "reviewed": true,
+      "classification": "VALID_CONTROL_UNCHANGED",
+      "rationale": "La consigna negativa descarta is; isn't es la única forma que concuerda con it.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 5,
+      "reviewed": true,
+      "classification": "CORRECTION_PRESERVES_OBJECTIVE_AND_UNIQUE_KEY",
+      "rationale": "Conserva you y contrasta auxiliar, concordancia e inversión exigida.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 6,
+      "reviewed": true,
+      "classification": "VALID_CONTROL_UNCHANGED",
+      "rationale": "Control útil de do con you e inversión; queda sin cambios.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 7,
+      "reviewed": true,
+      "classification": "CORRECTION_PRESERVES_OBJECTIVE_AND_UNIQUE_KEY",
+      "rationale": "Conserva like y presente simple con tercera persona; likees y likies contrastan formación escrita, cuya utilidad conviene calibrar.",
+      "pedagogicalCalibrationSuggested": true
+    },
+    {
+      "caseNumber": 8,
+      "reviewed": true,
+      "classification": "VALID_CONTROL_UNCHANGED",
+      "rationale": "Likes es la única afirmativa de presente simple que concuerda con My aunt.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 9,
+      "reviewed": true,
+      "classification": "CORRECTION_PRESERVES_OBJECTIVE_AND_UNIQUE_KEY",
+      "rationale": "Conserva close, pasado simple y yesterday; closeed y closd practican formación escrita, cuya utilidad conviene calibrar.",
+      "pedagogicalCalibrationSuggested": true
+    },
+    {
+      "caseNumber": 10,
+      "reviewed": true,
+      "classification": "VALID_CONTROL_UNCHANGED",
+      "rationale": "Closed es el pasado simple solicitado; los demás no cumplen la forma visible.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 11,
+      "reviewed": true,
+      "classification": "CORRECTION_PRESERVES_OBJECTIVE_AND_UNIQUE_KEY",
+      "rationale": "Conserva comparativo de tall; contrasta forma base, more y doble marca comparativa.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 12,
+      "reviewed": true,
+      "classification": "VALID_CONTROL_UNCHANGED",
+      "rationale": "Taller es la forma comparativa natural en este contexto con than his sister.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 13,
+      "reviewed": true,
+      "classification": "CORRECTION_PRESERVES_OBJECTIVE_AND_UNIQUE_KEY",
+      "rationale": "Conserva plural de child; childs, child y childrens representan regularización, singular y doble plural.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 14,
+      "reviewed": true,
+      "classification": "CORRECTION_PRESERVES_OBJECTIVE_AND_UNIQUE_KEY",
+      "rationale": "Conserva presente perfecto; contrasta has con we y formas no participiales después de have.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 15,
+      "reviewed": true,
+      "classification": "CORRECTION_PRESERVES_OBJECTIVE_AND_UNIQUE_KEY",
+      "rationale": "Pasa de repetir she a relacionar ella con she, preservando reconocimiento de pronombres; no introduce inversión como nueva habilidad.",
+      "pedagogicalCalibrationSuggested": false
+    },
+    {
+      "caseNumber": 16,
+      "reviewed": true,
+      "classification": "VALID_CONTROL_UNCHANGED",
+      "rationale": "Control nuevo de significado: ella fija she, sin mostrar la palabra inglesa; queda sin cambios.",
+      "pedagogicalCalibrationSuggested": false
+    }
+  ]
+}
+

@@ -1,0 +1,29 @@
+{
+  "caseNumber" : 6,
+  "id" : "df0000000000000000000006",
+  "original" : {
+    "id" : "df0000000000000000000006",
+    "caseNumber" : 6,
+    "slug" : "do-useful",
+    "level" : "A1",
+    "topic" : "Preguntas en presente simple",
+    "title" : "Preguntas en presente simple",
+    "instructions" : "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+    "exercise" : "___ collect stamps? (you)",
+    "options" : [ "Do you", "Does you", "You do", "You does" ],
+    "correct" : "Do you",
+    "expected" : "PASS",
+    "allowedIssueKinds" : [ ],
+    "expectationReason" : "Orden y concordancia del auxiliar son errores esperables."
+  },
+  "initial" : {
+    "status" : "PASS",
+    "objective" : "Formar preguntas en presente simple colocando do o does antes del sujeto y eligiendo el auxiliar que concuerda con you.",
+    "introductory" : true,
+    "issues" : [ ],
+    "rationale" : "Todas las opciones conservan el sujeto indicado. Los distractores representan errores esperables de concordancia del auxiliar, orden de palabras o ambos. La pista you fija el sujeto sin permitir acertar por coincidencia literal, porque aparece en todas las opciones."
+  },
+  "initialStatusMatches" : true,
+  "result" : "CONTROL_PRESERVED",
+  "finishedAt" : "2026-10-09T22:52:51.770411Z"
+}

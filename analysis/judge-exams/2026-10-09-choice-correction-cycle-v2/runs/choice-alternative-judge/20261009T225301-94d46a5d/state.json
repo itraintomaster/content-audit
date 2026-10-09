@@ -1,0 +1,49 @@
+{
+  "agentId" : "choice-alternative-judge",
+  "runId" : "9033c019-962e-4847-9dc7-4b92046c60be",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "exercise" : "___ collect stamps? (you)",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225301-94d46a5d",
+    "instructions" : "Forma preguntas en presente simple con do o does antes del sujeto indicado.",
+    "options" : "- Does you\n- Do you (correcta)\n- You do\n- You does",
+    "title" : "Preguntas en presente simple"
+  },
+  "phases" : {
+    "choice-alternative-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "choiceAlternativeVerdict" : {
+      "artifactId" : "7bba0c37-278e-41bd-90ab-9947c91729db",
+      "kind" : "choiceAlternativeVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225301-94d46a5d/artifacts/choiceAlternativeVerdict/9f130be2780c34a673ca4055b3ac34f4144bf44a32c0f70c12871e936af6baf7.json",
+      "contentHash" : "sha256:9f130be2780c34a673ca4055b3ac34f4144bf44a32c0f70c12871e936af6baf7",
+      "producedAt" : "2026-10-09T22:53:08.018920Z",
+      "producedBy" : "emit"
+    },
+    "verdicts" : {
+      "artifactId" : "1104b003-2ce2-4f33-b8c6-a50d29dcde9a",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225301-94d46a5d/artifacts/verdicts/9cb21d908239a675191885ba40ad4f65a139a8b6ef3b1119abc4843bd5e642a0.json",
+      "contentHash" : "sha256:9cb21d908239a675191885ba40ad4f65a139a8b6ef3b1119abc4843bd5e642a0",
+      "producedAt" : "2026-10-09T22:53:07.948120Z",
+      "producedBy" : "evaluate"
+    }
+  }
+}

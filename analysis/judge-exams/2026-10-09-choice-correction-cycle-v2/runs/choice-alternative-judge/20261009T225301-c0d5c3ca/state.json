@@ -1,0 +1,49 @@
+{
+  "agentId" : "choice-alternative-judge",
+  "runId" : "bd37f909-04dc-4458-b60c-5f9ab3216a55",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "instructions" : "Completa la negación de be en presente simple, conservando el sujeto indicado.",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225301-c0d5c3ca",
+    "exercise" : "___ thirsty. (it)",
+    "title" : "Negativas con be",
+    "options" : "- It am not\n- It is not (correcta)\n- It are not\n- It not is"
+  },
+  "phases" : {
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-alternative-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "choiceAlternativeVerdict" : {
+      "artifactId" : "6ef420d8-2ae0-4ad4-9d97-d5ef760c5ad7",
+      "kind" : "choiceAlternativeVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225301-c0d5c3ca/artifacts/choiceAlternativeVerdict/3a96fac8530e8b72442652938faea6e469a0845eeff77a54ae145c4b3ec12fc0.json",
+      "contentHash" : "sha256:3a96fac8530e8b72442652938faea6e469a0845eeff77a54ae145c4b3ec12fc0",
+      "producedAt" : "2026-10-09T22:53:10.171712Z",
+      "producedBy" : "emit"
+    },
+    "verdicts" : {
+      "artifactId" : "7d2a204b-b72f-4060-a455-a4931a55a99f",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225301-c0d5c3ca/artifacts/verdicts/557ee9876e5c3c2fcfa4f39611863f7e1156e02c79791a818d2a17e58039c197.json",
+      "contentHash" : "sha256:557ee9876e5c3c2fcfa4f39611863f7e1156e02c79791a818d2a17e58039c197",
+      "producedAt" : "2026-10-09T22:53:10.108074Z",
+      "producedBy" : "evaluate"
+    }
+  }
+}

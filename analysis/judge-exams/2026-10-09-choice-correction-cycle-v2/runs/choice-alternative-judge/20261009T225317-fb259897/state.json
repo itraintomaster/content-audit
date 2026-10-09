@@ -1,0 +1,49 @@
+{
+  "agentId" : "choice-alternative-judge",
+  "runId" : "13e17101-f095-47e4-855b-9357923e8edf",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "options" : "- likes (correcta)\n- like\n- likees\n- likies",
+    "title" : "Tercera persona singular",
+    "exercise" : "My aunt ___ peaches.",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225317-fb259897",
+    "instructions" : "Completa la afirmación de presente simple con la forma de like."
+  },
+  "phases" : {
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-alternative-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "verdicts" : {
+      "artifactId" : "c9000705-ea62-4e27-a10e-06b736e1b6d5",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225317-fb259897/artifacts/verdicts/ad6df22790423494eabab21b9cae072741401493f4c0fefff82b8a6966a84bd2.json",
+      "contentHash" : "sha256:ad6df22790423494eabab21b9cae072741401493f4c0fefff82b8a6966a84bd2",
+      "producedAt" : "2026-10-09T22:53:24.579538Z",
+      "producedBy" : "evaluate"
+    },
+    "choiceAlternativeVerdict" : {
+      "artifactId" : "7ba0e11b-8b3a-4989-839c-d3dbf91e8b0a",
+      "kind" : "choiceAlternativeVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225317-fb259897/artifacts/choiceAlternativeVerdict/c43e4b23047d7f8c97236d5332ad1123268b6d0606b7c5155742d030fe1b1394.json",
+      "contentHash" : "sha256:c43e4b23047d7f8c97236d5332ad1123268b6d0606b7c5155742d030fe1b1394",
+      "producedAt" : "2026-10-09T22:53:24.643604Z",
+      "producedBy" : "emit"
+    }
+  }
+}

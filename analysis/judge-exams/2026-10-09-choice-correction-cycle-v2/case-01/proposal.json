@@ -1,0 +1,70 @@
+{
+  "candidates" : [ {
+    "kind" : "WHOLE_EXERCISE",
+    "quiz" : {
+      "id" : "df0000000000000000000001",
+      "oidId" : null,
+      "kind" : "MULTIPLE_CHOICE",
+      "knowledgeId" : null,
+      "title" : null,
+      "instructions" : null,
+      "translation" : null,
+      "theoryId" : null,
+      "topicName" : null,
+      "form" : {
+        "kind" : "MULTIPLE_CHOICE",
+        "incidence" : 1.0,
+        "label" : "",
+        "name" : "",
+        "sentenceParts" : [ {
+          "kind" : "CLOZE",
+          "text" : "",
+          "options" : null
+        }, {
+          "kind" : "TEXT",
+          "text" : " thirsty? (she)",
+          "options" : null
+        } ],
+        "multipleChoice" : {
+          "selection" : "SINGLE",
+          "items" : [ {
+            "id" : "Am she",
+            "incidence" : 0.0,
+            "label" : "Am she"
+          }, {
+            "id" : "Are she",
+            "incidence" : 0.0,
+            "label" : "Are she"
+          }, {
+            "id" : "Is she",
+            "incidence" : 1.0,
+            "label" : "Is she"
+          }, {
+            "id" : "She is",
+            "incidence" : 0.0,
+            "label" : "She is"
+          } ]
+        },
+        "unmodeledFields" : null
+      },
+      "difficulty" : 0.0,
+      "retries" : 0.0,
+      "noScoreRetries" : 0.0,
+      "code" : null,
+      "audioUrl" : null,
+      "imageUrl" : null,
+      "answerAudioUrl" : null,
+      "answerImageUrl" : null,
+      "miniTheory" : null,
+      "successMessage" : null,
+      "sentences" : null,
+      "unmodeledFields" : null
+    },
+    "miniTheoryText" : null,
+    "topicInstructions" : null,
+    "rationale" : "Todas las opciones conservan she para evitar acertar por coincidencia con la pista: Am she y Are she representan errores de concordancia, y She is mantiene el orden declarativo que la consigna explícita de inversión descarta."
+  } ],
+  "proposerVersion" : "panel-proposer",
+  "available" : true,
+  "unavailableReason" : null
+}

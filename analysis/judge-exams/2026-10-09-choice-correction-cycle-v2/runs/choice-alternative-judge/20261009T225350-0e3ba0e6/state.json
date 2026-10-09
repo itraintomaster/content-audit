@@ -1,0 +1,49 @@
+{
+  "agentId" : "choice-alternative-judge",
+  "runId" : "bf5f80a2-4269-434d-b576-b586fbd237db",
+  "status" : "COMPLETED",
+  "currentPhase" : "emit",
+  "inputs" : {
+    "instructions" : "Elige have o has más participio para formar presente perfecto.",
+    "run_dir" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225350-0e3ba0e6",
+    "exercise" : "We ___ the report.",
+    "title" : "Presente perfecto",
+    "options" : "- have finished (correcta)\n- has finished\n- have finish\n- have finishing"
+  },
+  "phases" : {
+    "evaluate" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "emit" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "choice-alternative-judge" : {
+      "status" : "DONE",
+      "attempts" : 1
+    },
+    "gate_verdict" : {
+      "status" : "DONE",
+      "attempts" : 1
+    }
+  },
+  "artifacts" : {
+    "choiceAlternativeVerdict" : {
+      "artifactId" : "28984326-07c9-4418-9177-170b112cc7f8",
+      "kind" : "choiceAlternativeVerdict",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225350-0e3ba0e6/artifacts/choiceAlternativeVerdict/ff1ec28224bace6e3a863afec79f802cee964201f4aeaa42aec4273c4505330e.json",
+      "contentHash" : "sha256:ff1ec28224bace6e3a863afec79f802cee964201f4aeaa42aec4273c4505330e",
+      "producedAt" : "2026-10-09T22:53:59.384323Z",
+      "producedBy" : "emit"
+    },
+    "verdicts" : {
+      "artifactId" : "e3b98c02-0413-45dc-8d91-506f525ca7d2",
+      "kind" : "verdicts",
+      "location" : "/Users/josecullen/.codex/worktrees/multiple-choice-desafio-plan/content-audit/analysis/judge-exams/2026-10-09-choice-correction-cycle-v2/runs/choice-alternative-judge/20261009T225350-0e3ba0e6/artifacts/verdicts/9511c0249fd839fd14ebb8c2c6a8079e0842ccc9ca4e4d080cfa8430ef79d6a3.json",
+      "contentHash" : "sha256:9511c0249fd839fd14ebb8c2c6a8079e0842ccc9ca4e4d080cfa8430ef79d6a3",
+      "producedAt" : "2026-10-09T22:53:59.313376Z",
+      "producedBy" : "evaluate"
+    }
+  }
+}

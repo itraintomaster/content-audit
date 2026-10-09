@@ -1,0 +1,29 @@
+{
+  "caseNumber" : 8,
+  "id" : "df0000000000000000000008",
+  "original" : {
+    "id" : "df0000000000000000000008",
+    "caseNumber" : 8,
+    "slug" : "verb-useful",
+    "level" : "A1",
+    "topic" : "Tercera persona singular",
+    "title" : "Tercera persona singular",
+    "instructions" : "Completa la afirmación de presente simple con la forma de like.",
+    "exercise" : "My aunt ___ peaches.",
+    "options" : [ "like", "likes", "liking", "to like" ],
+    "correct" : "likes",
+    "expected" : "PASS",
+    "allowedIssueKinds" : [ ],
+    "expectationReason" : "Formas verbales confundibles con presente simple de tercera persona."
+  },
+  "initial" : {
+    "status" : "PASS",
+    "objective" : "Completar una afirmación en presente simple con likes para un sujeto de tercera persona singular.",
+    "introductory" : true,
+    "issues" : [ ],
+    "rationale" : "Las opciones contrastan la forma base sin concordancia, la forma con -s, la forma en -ing y el infinitivo con to. Representan confusiones razonables en A1 y requieren reconocer qué forma de like corresponde a My aunt en una afirmación de presente simple."
+  },
+  "initialStatusMatches" : true,
+  "result" : "CONTROL_PRESERVED",
+  "finishedAt" : "2026-10-09T22:53:00.137486Z"
+}

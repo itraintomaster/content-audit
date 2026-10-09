@@ -1,0 +1,161 @@
+{
+  "batchId" : "choice-correction-cycle-20261009-v2",
+  "level" : "A1",
+  "knowledgeId" : "synthetic-topic-13",
+  "quizId" : "df000000000000000000000d",
+  "topicView" : [ {
+    "statement" : "One child; two ___ .",
+    "gaps" : [ {
+      "index" : 0,
+      "hint" : null,
+      "acceptedAnswers" : [ "children" ],
+      "firstAnswer" : "children"
+    } ],
+    "options" : [ {
+      "label" : "children",
+      "correct" : true
+    }, {
+      "label" : "dogs",
+      "correct" : false
+    }, {
+      "label" : "houses",
+      "correct" : false
+    }, {
+      "label" : "cars",
+      "correct" : false
+    } ],
+    "instructions" : "Forma el plural irregular de child; practica cómo cambia esa palabra.",
+    "translation" : "",
+    "miniTheory" : ""
+  } ],
+  "briefs" : [ {
+    "task" : {
+      "id" : "task-001",
+      "nodeTarget" : "QUIZ",
+      "nodeId" : "df000000000000000000000d",
+      "nodeLabel" : "Plurales irregulares",
+      "diagnosisKind" : "MULTIPLE_CHOICE_VALIDITY",
+      "priority" : 1,
+      "status" : "PENDING",
+      "origin" : {
+        "finding" : {
+          "analyzer" : "multiple-choice-quality",
+          "rule" : "irrelevant-distractors",
+          "node" : {
+            "target" : "QUIZ",
+            "nodeId" : "df000000000000000000000d",
+            "label" : "Plurales irregulares"
+          },
+          "severity" : "HIGH",
+          "evidence" : {
+            "examined" : [ {
+              "label" : "Objetivo pedagógico",
+              "text" : "Formar el plural irregular de child."
+            }, {
+              "label" : "Nivel",
+              "text" : "A1"
+            }, {
+              "label" : "Consigna",
+              "text" : "Forma el plural irregular de child; practica cómo cambia esa palabra."
+            }, {
+              "label" : "Ejercicio",
+              "text" : "One child; two ___ ."
+            }, {
+              "label" : "Opciones",
+              "text" : "- children (correcta)\n- dogs\n- houses\n- cars"
+            }, {
+              "label" : "Confusión esperable",
+              "text" : "Aplicar la terminación regular -s a child o mantener la forma singular después de two."
+            } ],
+            "observation" : "Todos los distractores son plurales de otros sustantivos y cambian el significado ya fijado por child. Permiten elegir children reconociendo qué opción se refiere a niños, sin practicar cómo se forma su plural irregular. Deben conservarse child y el contraste One/two; falta contrastar formas de plural del mismo sustantivo.",
+            "relatedNodes" : [ ]
+          },
+          "resolution" : "PANEL",
+          "cost" : "PAID_MODEL",
+          "identity" : {
+            "key" : "multiple-choice-quality|irrelevant-distractors|df000000000000000000000d|dogs | houses | cars",
+            "marker" : "dogs | houses | cars"
+          }
+        },
+        "cefrLevel" : "A1",
+        "knowledgeId" : "synthetic-topic-13",
+        "knowledgeLabel" : "Plurales irregulares",
+        "reachedQuizIds" : [ "df000000000000000000000d" ],
+        "coveredFindings" : [ ]
+      }
+    },
+    "finding" : {
+      "analyzer" : "multiple-choice-quality",
+      "rule" : "irrelevant-distractors",
+      "node" : {
+        "target" : "QUIZ",
+        "nodeId" : "df000000000000000000000d",
+        "label" : "Plurales irregulares"
+      },
+      "severity" : "HIGH",
+      "evidence" : {
+        "examined" : [ {
+          "label" : "Objetivo pedagógico",
+          "text" : "Formar el plural irregular de child."
+        }, {
+          "label" : "Nivel",
+          "text" : "A1"
+        }, {
+          "label" : "Consigna",
+          "text" : "Forma el plural irregular de child; practica cómo cambia esa palabra."
+        }, {
+          "label" : "Ejercicio",
+          "text" : "One child; two ___ ."
+        }, {
+          "label" : "Opciones",
+          "text" : "- children (correcta)\n- dogs\n- houses\n- cars"
+        }, {
+          "label" : "Confusión esperable",
+          "text" : "Aplicar la terminación regular -s a child o mantener la forma singular después de two."
+        } ],
+        "observation" : "Todos los distractores son plurales de otros sustantivos y cambian el significado ya fijado por child. Permiten elegir children reconociendo qué opción se refiere a niños, sin practicar cómo se forma su plural irregular. Deben conservarse child y el contraste One/two; falta contrastar formas de plural del mismo sustantivo.",
+        "relatedNodes" : [ ]
+      },
+      "resolution" : "PANEL",
+      "cost" : "PAID_MODEL",
+      "identity" : {
+        "key" : "multiple-choice-quality|irrelevant-distractors|df000000000000000000000d|dogs | houses | cars",
+        "marker" : "dogs | houses | cars"
+      }
+    },
+    "coveredFindings" : [ ],
+    "editScope" : [ "OPTIONS", "INSTRUCTIONS", "STATEMENT", "TRANSLATION", "STORED_SENTENCE", "AUDIO" ],
+    "scopeDeclared" : true,
+    "quizView" : {
+      "statement" : "One child; two ___ .",
+      "gaps" : [ {
+        "index" : 0,
+        "hint" : null,
+        "acceptedAnswers" : [ "children" ],
+        "firstAnswer" : "children"
+      } ],
+      "options" : [ {
+        "label" : "children",
+        "correct" : true
+      }, {
+        "label" : "dogs",
+        "correct" : false
+      }, {
+        "label" : "houses",
+        "correct" : false
+      }, {
+        "label" : "cars",
+        "correct" : false
+      } ],
+      "instructions" : "Forma el plural irregular de child; practica cómo cambia esa palabra.",
+      "translation" : "",
+      "miniTheory" : ""
+    },
+    "reachedQuizViews" : [ ]
+  } ],
+  "wordLights" : null,
+  "conversion" : null,
+  "attempt" : 1,
+  "previousRejections" : [ ],
+  "twoFixes" : false
+}

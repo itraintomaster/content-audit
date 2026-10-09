@@ -1,0 +1,161 @@
+{
+  "batchId" : "choice-correction-cycle-20261009-v2",
+  "level" : "A1",
+  "knowledgeId" : "synthetic-topic-3",
+  "quizId" : "df0000000000000000000003",
+  "topicView" : [ {
+    "statement" : "___ thirsty. (it)",
+    "gaps" : [ {
+      "index" : 0,
+      "hint" : "(it)",
+      "acceptedAnswers" : [ "It is not" ],
+      "firstAnswer" : "It is not"
+    } ],
+    "options" : [ {
+      "label" : "I am not",
+      "correct" : false
+    }, {
+      "label" : "It is not",
+      "correct" : true
+    }, {
+      "label" : "We are not",
+      "correct" : false
+    }, {
+      "label" : "You are not",
+      "correct" : false
+    } ],
+    "instructions" : "Completa la negación de be en presente simple, conservando el sujeto indicado.",
+    "translation" : "",
+    "miniTheory" : ""
+  } ],
+  "briefs" : [ {
+    "task" : {
+      "id" : "task-001",
+      "nodeTarget" : "QUIZ",
+      "nodeId" : "df0000000000000000000003",
+      "nodeLabel" : "Negativas con be",
+      "diagnosisKind" : "MULTIPLE_CHOICE_VALIDITY",
+      "priority" : 1,
+      "status" : "PENDING",
+      "origin" : {
+        "finding" : {
+          "analyzer" : "multiple-choice-quality",
+          "rule" : "answer-cue",
+          "node" : {
+            "target" : "QUIZ",
+            "nodeId" : "df0000000000000000000003",
+            "label" : "Negativas con be"
+          },
+          "severity" : "HIGH",
+          "evidence" : {
+            "examined" : [ {
+              "label" : "Objetivo pedagógico",
+              "text" : "Completar la negación de be en presente simple conservando el sujeto indicado."
+            }, {
+              "label" : "Nivel",
+              "text" : "A1"
+            }, {
+              "label" : "Consigna",
+              "text" : "Completa la negación de be en presente simple, conservando el sujeto indicado."
+            }, {
+              "label" : "Ejercicio",
+              "text" : "___ thirsty. (it)"
+            }, {
+              "label" : "Opciones",
+              "text" : "- I am not\n- It is not (correcta)\n- We are not\n- You are not"
+            }, {
+              "label" : "Confusión esperable",
+              "text" : "Elegir una forma de be que no concuerda con it o colocar incorrectamente not al formar la negación."
+            } ],
+            "observation" : "La clave es la única opción con el sujeto it, ya escrito en la pista. El conjunto permite acertar por coincidencia literal sin aplicar la concordancia ni formar la negación. La pista debe conservarse para fijar el sujeto; falta contrastar formas de negación y concordancia con ese mismo sujeto.",
+            "relatedNodes" : [ ]
+          },
+          "resolution" : "PANEL",
+          "cost" : "PAID_MODEL",
+          "identity" : {
+            "key" : "multiple-choice-quality|answer-cue|df0000000000000000000003|I am not | It is not | We are not | You are not",
+            "marker" : "I am not | It is not | We are not | You are not"
+          }
+        },
+        "cefrLevel" : "A1",
+        "knowledgeId" : "synthetic-topic-3",
+        "knowledgeLabel" : "Negativas con be",
+        "reachedQuizIds" : [ "df0000000000000000000003" ],
+        "coveredFindings" : [ ]
+      }
+    },
+    "finding" : {
+      "analyzer" : "multiple-choice-quality",
+      "rule" : "answer-cue",
+      "node" : {
+        "target" : "QUIZ",
+        "nodeId" : "df0000000000000000000003",
+        "label" : "Negativas con be"
+      },
+      "severity" : "HIGH",
+      "evidence" : {
+        "examined" : [ {
+          "label" : "Objetivo pedagógico",
+          "text" : "Completar la negación de be en presente simple conservando el sujeto indicado."
+        }, {
+          "label" : "Nivel",
+          "text" : "A1"
+        }, {
+          "label" : "Consigna",
+          "text" : "Completa la negación de be en presente simple, conservando el sujeto indicado."
+        }, {
+          "label" : "Ejercicio",
+          "text" : "___ thirsty. (it)"
+        }, {
+          "label" : "Opciones",
+          "text" : "- I am not\n- It is not (correcta)\n- We are not\n- You are not"
+        }, {
+          "label" : "Confusión esperable",
+          "text" : "Elegir una forma de be que no concuerda con it o colocar incorrectamente not al formar la negación."
+        } ],
+        "observation" : "La clave es la única opción con el sujeto it, ya escrito en la pista. El conjunto permite acertar por coincidencia literal sin aplicar la concordancia ni formar la negación. La pista debe conservarse para fijar el sujeto; falta contrastar formas de negación y concordancia con ese mismo sujeto.",
+        "relatedNodes" : [ ]
+      },
+      "resolution" : "PANEL",
+      "cost" : "PAID_MODEL",
+      "identity" : {
+        "key" : "multiple-choice-quality|answer-cue|df0000000000000000000003|I am not | It is not | We are not | You are not",
+        "marker" : "I am not | It is not | We are not | You are not"
+      }
+    },
+    "coveredFindings" : [ ],
+    "editScope" : [ "OPTIONS", "INSTRUCTIONS", "STATEMENT", "TRANSLATION", "STORED_SENTENCE", "AUDIO" ],
+    "scopeDeclared" : true,
+    "quizView" : {
+      "statement" : "___ thirsty. (it)",
+      "gaps" : [ {
+        "index" : 0,
+        "hint" : "(it)",
+        "acceptedAnswers" : [ "It is not" ],
+        "firstAnswer" : "It is not"
+      } ],
+      "options" : [ {
+        "label" : "I am not",
+        "correct" : false
+      }, {
+        "label" : "It is not",
+        "correct" : true
+      }, {
+        "label" : "We are not",
+        "correct" : false
+      }, {
+        "label" : "You are not",
+        "correct" : false
+      } ],
+      "instructions" : "Completa la negación de be en presente simple, conservando el sujeto indicado.",
+      "translation" : "",
+      "miniTheory" : ""
+    },
+    "reachedQuizViews" : [ ]
+  } ],
+  "wordLights" : null,
+  "conversion" : null,
+  "attempt" : 1,
+  "previousRejections" : [ ],
+  "twoFixes" : false
+}

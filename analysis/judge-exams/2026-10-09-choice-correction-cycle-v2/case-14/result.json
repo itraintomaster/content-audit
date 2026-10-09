@@ -1,0 +1,332 @@
+{
+  "caseNumber" : 14,
+  "id" : "df000000000000000000000e",
+  "original" : {
+    "id" : "df000000000000000000000e",
+    "caseNumber" : 14,
+    "slug" : "irrelevant-perfect",
+    "level" : "B1",
+    "topic" : "Presente perfecto",
+    "title" : "Presente perfecto",
+    "instructions" : "Elige have o has más participio para formar presente perfecto.",
+    "exercise" : "We ___ the report.",
+    "options" : [ "have finished", "seventeen", "Japan", "blue" ],
+    "correct" : "have finished",
+    "expected" : "FAIL",
+    "allowedIssueKinds" : [ "IRRELEVANT_DISTRACTORS", "IMPLAUSIBLE_DISTRACTORS" ],
+    "expectationReason" : "Las incorrectas no representan ninguna alternativa de auxiliar o participio."
+  },
+  "initial" : {
+    "status" : "FAIL",
+    "objective" : "Formar el presente perfecto con have o has más participio, concordando el auxiliar con el sujeto We.",
+    "introductory" : false,
+    "issues" : [ {
+      "kind" : "IMPLAUSIBLE_DISTRACTORS",
+      "severity" : "HIGH",
+      "labels" : [ "seventeen", "Japan", "blue" ],
+      "reason" : "Los distractores son un número, un nombre de país y un color; ninguno representa un intento de construir auxiliar más participio. El conjunto permite elegir la única opción con estructura verbal sin aplicar la concordancia ni reconocer el participio. Se deben conservar el sujeto We y el enunciado; falta contrastar errores esperables en la formación del presente perfecto.",
+      "misconception" : "Usar has con We o emplear una forma verbal distinta del participio después de have."
+    } ],
+    "rationale" : "El objetivo está explícito, pero todos los distractores son descartables sin practicar la formación del presente perfecto."
+  },
+  "initialStatusMatches" : true,
+  "findings" : [ {
+    "analyzer" : "multiple-choice-quality",
+    "rule" : "implausible-distractors",
+    "node" : {
+      "target" : "QUIZ",
+      "nodeId" : "df000000000000000000000e",
+      "label" : "Presente perfecto"
+    },
+    "severity" : "HIGH",
+    "evidence" : {
+      "examined" : [ {
+        "label" : "Objetivo pedagógico",
+        "text" : "Formar el presente perfecto con have o has más participio, concordando el auxiliar con el sujeto We."
+      }, {
+        "label" : "Nivel",
+        "text" : "B1"
+      }, {
+        "label" : "Consigna",
+        "text" : "Elige have o has más participio para formar presente perfecto."
+      }, {
+        "label" : "Ejercicio",
+        "text" : "We ___ the report."
+      }, {
+        "label" : "Opciones",
+        "text" : "- have finished (correcta)\n- seventeen\n- Japan\n- blue"
+      }, {
+        "label" : "Confusión esperable",
+        "text" : "Usar has con We o emplear una forma verbal distinta del participio después de have."
+      } ],
+      "observation" : "Los distractores son un número, un nombre de país y un color; ninguno representa un intento de construir auxiliar más participio. El conjunto permite elegir la única opción con estructura verbal sin aplicar la concordancia ni reconocer el participio. Se deben conservar el sujeto We y el enunciado; falta contrastar errores esperables en la formación del presente perfecto.",
+      "relatedNodes" : [ ]
+    },
+    "resolution" : "PANEL",
+    "cost" : "PAID_MODEL",
+    "identity" : {
+      "key" : "multiple-choice-quality|implausible-distractors|df000000000000000000000e|seventeen | Japan | blue",
+      "marker" : "seventeen | Japan | blue"
+    }
+  } ],
+  "tasksDelivered" : {
+    "batchId" : "choice-correction-cycle-20261009-v2",
+    "level" : "B1",
+    "knowledgeId" : "synthetic-topic-14",
+    "quizId" : "df000000000000000000000e",
+    "topicView" : [ {
+      "statement" : "We ___ the report.",
+      "gaps" : [ {
+        "index" : 0,
+        "hint" : null,
+        "acceptedAnswers" : [ "have finished" ],
+        "firstAnswer" : "have finished"
+      } ],
+      "options" : [ {
+        "label" : "have finished",
+        "correct" : true
+      }, {
+        "label" : "seventeen",
+        "correct" : false
+      }, {
+        "label" : "Japan",
+        "correct" : false
+      }, {
+        "label" : "blue",
+        "correct" : false
+      } ],
+      "instructions" : "Elige have o has más participio para formar presente perfecto.",
+      "translation" : "",
+      "miniTheory" : ""
+    } ],
+    "briefs" : [ {
+      "task" : {
+        "id" : "task-001",
+        "nodeTarget" : "QUIZ",
+        "nodeId" : "df000000000000000000000e",
+        "nodeLabel" : "Presente perfecto",
+        "diagnosisKind" : "MULTIPLE_CHOICE_VALIDITY",
+        "priority" : 1,
+        "status" : "PENDING",
+        "origin" : {
+          "finding" : {
+            "analyzer" : "multiple-choice-quality",
+            "rule" : "implausible-distractors",
+            "node" : {
+              "target" : "QUIZ",
+              "nodeId" : "df000000000000000000000e",
+              "label" : "Presente perfecto"
+            },
+            "severity" : "HIGH",
+            "evidence" : {
+              "examined" : [ {
+                "label" : "Objetivo pedagógico",
+                "text" : "Formar el presente perfecto con have o has más participio, concordando el auxiliar con el sujeto We."
+              }, {
+                "label" : "Nivel",
+                "text" : "B1"
+              }, {
+                "label" : "Consigna",
+                "text" : "Elige have o has más participio para formar presente perfecto."
+              }, {
+                "label" : "Ejercicio",
+                "text" : "We ___ the report."
+              }, {
+                "label" : "Opciones",
+                "text" : "- have finished (correcta)\n- seventeen\n- Japan\n- blue"
+              }, {
+                "label" : "Confusión esperable",
+                "text" : "Usar has con We o emplear una forma verbal distinta del participio después de have."
+              } ],
+              "observation" : "Los distractores son un número, un nombre de país y un color; ninguno representa un intento de construir auxiliar más participio. El conjunto permite elegir la única opción con estructura verbal sin aplicar la concordancia ni reconocer el participio. Se deben conservar el sujeto We y el enunciado; falta contrastar errores esperables en la formación del presente perfecto.",
+              "relatedNodes" : [ ]
+            },
+            "resolution" : "PANEL",
+            "cost" : "PAID_MODEL",
+            "identity" : {
+              "key" : "multiple-choice-quality|implausible-distractors|df000000000000000000000e|seventeen | Japan | blue",
+              "marker" : "seventeen | Japan | blue"
+            }
+          },
+          "cefrLevel" : "B1",
+          "knowledgeId" : "synthetic-topic-14",
+          "knowledgeLabel" : "Presente perfecto",
+          "reachedQuizIds" : [ "df000000000000000000000e" ],
+          "coveredFindings" : [ ]
+        }
+      },
+      "finding" : {
+        "analyzer" : "multiple-choice-quality",
+        "rule" : "implausible-distractors",
+        "node" : {
+          "target" : "QUIZ",
+          "nodeId" : "df000000000000000000000e",
+          "label" : "Presente perfecto"
+        },
+        "severity" : "HIGH",
+        "evidence" : {
+          "examined" : [ {
+            "label" : "Objetivo pedagógico",
+            "text" : "Formar el presente perfecto con have o has más participio, concordando el auxiliar con el sujeto We."
+          }, {
+            "label" : "Nivel",
+            "text" : "B1"
+          }, {
+            "label" : "Consigna",
+            "text" : "Elige have o has más participio para formar presente perfecto."
+          }, {
+            "label" : "Ejercicio",
+            "text" : "We ___ the report."
+          }, {
+            "label" : "Opciones",
+            "text" : "- have finished (correcta)\n- seventeen\n- Japan\n- blue"
+          }, {
+            "label" : "Confusión esperable",
+            "text" : "Usar has con We o emplear una forma verbal distinta del participio después de have."
+          } ],
+          "observation" : "Los distractores son un número, un nombre de país y un color; ninguno representa un intento de construir auxiliar más participio. El conjunto permite elegir la única opción con estructura verbal sin aplicar la concordancia ni reconocer el participio. Se deben conservar el sujeto We y el enunciado; falta contrastar errores esperables en la formación del presente perfecto.",
+          "relatedNodes" : [ ]
+        },
+        "resolution" : "PANEL",
+        "cost" : "PAID_MODEL",
+        "identity" : {
+          "key" : "multiple-choice-quality|implausible-distractors|df000000000000000000000e|seventeen | Japan | blue",
+          "marker" : "seventeen | Japan | blue"
+        }
+      },
+      "coveredFindings" : [ ],
+      "editScope" : [ "OPTIONS", "INSTRUCTIONS", "STATEMENT", "TRANSLATION", "STORED_SENTENCE", "AUDIO" ],
+      "scopeDeclared" : true,
+      "quizView" : {
+        "statement" : "We ___ the report.",
+        "gaps" : [ {
+          "index" : 0,
+          "hint" : null,
+          "acceptedAnswers" : [ "have finished" ],
+          "firstAnswer" : "have finished"
+        } ],
+        "options" : [ {
+          "label" : "have finished",
+          "correct" : true
+        }, {
+          "label" : "seventeen",
+          "correct" : false
+        }, {
+          "label" : "Japan",
+          "correct" : false
+        }, {
+          "label" : "blue",
+          "correct" : false
+        } ],
+        "instructions" : "Elige have o has más participio para formar presente perfecto.",
+        "translation" : "",
+        "miniTheory" : ""
+      },
+      "reachedQuizViews" : [ ]
+    } ],
+    "wordLights" : null,
+    "conversion" : null,
+    "attempt" : 1,
+    "previousRejections" : [ ],
+    "twoFixes" : false
+  },
+  "proposal" : {
+    "candidates" : [ {
+      "kind" : "WHOLE_EXERCISE",
+      "quiz" : {
+        "id" : "df000000000000000000000e",
+        "oidId" : null,
+        "kind" : "MULTIPLE_CHOICE",
+        "knowledgeId" : null,
+        "title" : null,
+        "instructions" : null,
+        "translation" : null,
+        "theoryId" : null,
+        "topicName" : null,
+        "form" : {
+          "kind" : "MULTIPLE_CHOICE",
+          "incidence" : 1.0,
+          "label" : "",
+          "name" : "",
+          "sentenceParts" : [ {
+            "kind" : "TEXT",
+            "text" : "We ",
+            "options" : null
+          }, {
+            "kind" : "CLOZE",
+            "text" : "",
+            "options" : null
+          }, {
+            "kind" : "TEXT",
+            "text" : " the report.",
+            "options" : null
+          } ],
+          "multipleChoice" : {
+            "selection" : "SINGLE",
+            "items" : [ {
+              "id" : "have finished",
+              "incidence" : 1.0,
+              "label" : "have finished"
+            }, {
+              "id" : "has finished",
+              "incidence" : 0.0,
+              "label" : "has finished"
+            }, {
+              "id" : "have finish",
+              "incidence" : 0.0,
+              "label" : "have finish"
+            }, {
+              "id" : "have finishing",
+              "incidence" : 0.0,
+              "label" : "have finishing"
+            } ]
+          },
+          "unmodeledFields" : null
+        },
+        "difficulty" : 0.0,
+        "retries" : 0.0,
+        "noScoreRetries" : 0.0,
+        "code" : null,
+        "audioUrl" : null,
+        "imageUrl" : null,
+        "answerAudioUrl" : null,
+        "answerImageUrl" : null,
+        "miniTheory" : null,
+        "successMessage" : null,
+        "sentences" : null,
+        "unmodeledFields" : null
+      },
+      "miniTheoryText" : null,
+      "topicInstructions" : null,
+      "rationale" : "Reemplacé los distractores de relleno por errores de concordancia (has con We) y de formación del participio (finish y finishing después de have); todas las opciones contienen formas del mismo verbo, por lo que hay que aplicar la estructura del presente perfecto para elegir."
+    } ],
+    "proposerVersion" : "panel-proposer",
+    "available" : true,
+    "unavailableReason" : null
+  },
+  "localViolations" : [ ],
+  "after" : {
+    "level" : "B1",
+    "topic" : "Presente perfecto",
+    "title" : "Presente perfecto",
+    "instructions" : "Elige have o has más participio para formar presente perfecto.",
+    "exercise" : "We ___ the report.",
+    "options" : "- have finished (correcta)\n- has finished\n- have finish\n- have finishing"
+  },
+  "afterQuality" : {
+    "status" : "PASS",
+    "objective" : "Formar el presente perfecto con have o has según el sujeto y el participio pasado del verbo.",
+    "introductory" : false,
+    "issues" : [ ],
+    "rationale" : "Los distractores representan errores esperables: usar has con we, emplear el infinitivo finish o confundir el participio pasado con finishing. El conjunto permite practicar tanto la concordancia del auxiliar como la forma verbal requerida, sin ofrecer una coincidencia literal que evite aplicar esas reglas."
+  },
+  "afterAlternative" : {
+    "correctIsValid" : true,
+    "validAlternatives" : [ ],
+    "correctProblem" : null,
+    "rationale" : "«We have finished the report.» forma correctamente el presente perfecto. «Has finished» no concuerda con «We», y «have finish» y «have finishing» no usan el participio requerido."
+  },
+  "automaticCyclePass" : true,
+  "result" : "AUTOMATIC_CHECKS_PASS_REQUIRES_CONTENT_REVIEW",
+  "finishedAt" : "2026-10-09T22:53:59.391139Z"
+}

@@ -1,0 +1,29 @@
+{
+  "caseNumber" : 2,
+  "id" : "df0000000000000000000002",
+  "original" : {
+    "id" : "df0000000000000000000002",
+    "caseNumber" : 2,
+    "slug" : "be-useful",
+    "level" : "A1",
+    "topic" : "Preguntas con be",
+    "title" : "Preguntas con be",
+    "instructions" : "Forma preguntas en presente simple con be antes del sujeto.",
+    "exercise" : "___ thirsty? (she)",
+    "options" : [ "She is", "Are she", "Is she", "Am she" ],
+    "correct" : "Is she",
+    "expected" : "PASS",
+    "allowedIssueKinds" : [ ],
+    "expectationReason" : "Mismo sujeto, confusiones esperables de orden y concordancia."
+  },
+  "initial" : {
+    "status" : "PASS",
+    "objective" : "Formar preguntas en presente simple mediante la inversión de be y el sujeto, usando is con she.",
+    "introductory" : true,
+    "issues" : [ ],
+    "rationale" : "La pista she fija el sujeto necesario. Todas las opciones lo conservan: She is permite practicar el orden interrogativo, y Are she y Am she representan errores de concordancia esperables en A1. La consigna explícita permite distinguir la inversión requerida."
+  },
+  "initialStatusMatches" : true,
+  "result" : "CONTROL_PRESERVED",
+  "finishedAt" : "2026-10-09T22:52:42.654453Z"
+}
