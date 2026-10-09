@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Calidad de distractores implementada</title><style>
+<title>Examen de distractores: reparación probada, examen pendiente</title><style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
     --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
@@ -238,58 +238,29 @@
     .kpi .n{font-size:28px}
   }
 
-
-.quiz-options{display:grid;gap:6px}.quiz-option{padding:6px 9px;border:1px solid var(--line);border-radius:8px;font-size:14px}
-.quiz-option.correct{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
-</style></head><body><div class="wrap">
-<header><div class="kicker"><span class="num">071</span><span class="badge">Implementado</span><span class="meta">Opción múltiple · 9 octubre 2026</span></div>
-<h1>Los distractores ya tienen su propio control</h1><p class="sub">Integrado, probado sin modelos y visible en la app; la calibración pedagógica queda pendiente.</p></header>
-<div class="lede"><p><strong>El nuevo juez revisa pistas y errores esperables sin reemplazar el de ambigüedad.</strong> La app está reabierta; el análisis guardado y tus decisiones permanecen intactos.</p></div>
-
-<section><h2>La corrección debe trabajar la regla, no el atajo</h2>
-<div class="ad">
-<div class="lado antes"><span class="rot">Tu caso · opciones actuales</span><b>___ a child? (He)</b>
-<div class="quiz-options"><div class="quiz-option">Am I · Are we · Are you</div><div class="quiz-option correct">Is he</div><div class="quiz-option">Is it · Is she</div></div>
-<span class="res">Sólo una opción contiene “he”.</span></div>
-<div class="lado despues"><span class="rot">Criterio para proponer · no aplicado</span>
-<ol><li>Identificar si el objetivo es reconocimiento o inversión.</li><li>Si practica inversión, conservar el sujeto en las opciones.</li><li>Explicar qué confusión representa cada opción incorrecta.</li><li>Hacer visible la consigna que excluye otras formas válidas.</li></ol>
-<span class="res">Sin ambigüedad ni dificultad artificial.</span></div>
-</div><p class="pie">El corrector conserva la cantidad de opciones; no añade tiempos o auxiliares ajenos sólo para dificultar el ejercicio.</p>
-</section>
-
-<section><h2>Falta de contexto no se convierte en aprobación</h2>
-<div class="opts">
-<div class="opt"><div class="oh"><b>Bien</b><span class="pill p-ok">evaluado</span></div><p>Opciones relevantes y práctica adecuada al objetivo.</p></div>
-<div class="opt"><div class="oh"><b>Con error</b><span class="pill p-bad">a corregir</span></div><p>Pista que regala la respuesta, distractores ajenos o inverosímiles.</p></div>
-<div class="opt"><div class="oh"><b>Falta contexto</b><span class="pill p-warn">sin evaluar</span></div><p>Se guarda la explicación, sin inventar una nota ni un error.</p></div>
-</div><p class="pie">Lee nivel, tema y contenido visible. Una miniteoría posterior no puede justificar descartar respuestas que el alumno sí podría elegir.</p>
-</section>
-
-<section><h2>Se suma el criterio sin reescribir el pasado</h2>
-<div class="cambia"><div class="si"><div class="ptl">Se incorpora</div><ul>
-<li>Ficha propia en Analizadores: “Calidad de distractores”.</li><li>Hallazgos con objetivo, evidencia y confusión esperada, para Correcciones.</li><li>Guía pedagógica para proponer alternativas útiles.</li><li>Versiones, consultas, presupuesto y examen independientes.</li>
-</ul></div><div class="no"><div class="ptl">Se preserva</div><ul>
-<li>El juez de ambigüedad y sus resultados anteriores.</li><li>Práctica introductoria legítima, aunque sea sencilla.</li><li>Propuestas y decisiones humanas guardadas.</li><li>Ninguna consulta, aprobación ni publicación automática.</li>
-</ul></div></div><p class="pie">La ficha nueva muestra “no corrió” en el análisis anterior; no se simula una evaluación retroactiva.</p>
-</section>
-
-<section><h2>Las pruebas locales pasan; existe un fallo previo separado</h2>
-<div class="tw"><table><thead><tr><th>Prueba</th><th>Resultado</th></tr></thead><tbody>
-<tr><td>Regresión Java, sin la guardia separada</td><td>3.391 aprobadas de 3.392; una omitida.</td></tr>
-<tr><td>Guardia de ejemplos reservados</td><td>3 aprobadas de 4; falla por ejemplos preexistentes de duplicados.</td></tr>
-<tr><td>Servicio de la UI</td><td>20 de 20; análisis estático limpio.</td></tr>
-<tr><td>Monitor de consultas</td><td>6 de 6; distingue el nuevo juez.</td></tr>
-<tr><td>Compilación y lectura nativa</td><td>Backend y macOS listos; ficha 21 visible.</td></tr>
-</tbody></table></div><p class="pie">Los controles nuevos prueban contexto, salidas inválidas, reutilización, guardado y límites de corrección. No se presenta la suite completa como verde.</p>
-<div class="call c-warn"><b>Pendiente:</b> todavía no se midió la precisión pedagógica del juez con modelos; sus casos de referencia no equivalen a un examen aprobado.</div>
-</section>
-
-<section><h2>Primero calibrar; después autorizar el uso real</h2>
-<div class="flow">
-<div class="st"><span class="i">1</span><span class="h">Implementación integrada</span><span class="d">Trabajo aislado, commits, integración y app reabierta.</span></div>
-<div class="st"><span class="i">2</span><span class="h">Calibración separada</span><span class="d">Examen propio con presupuesto explícito antes del uso real.</span></div>
-<div class="st end"><span class="i">3</span><span class="h">Corrección y revisión</span><span class="d">Propuestas puntuales; aprobación humana dentro de Correcciones.</span></div>
-</div><p class="pie">El presupuesto por defecto sigue en cero. Esta entrega no inicia otra corrida ni completa pendientes del análisis anterior.</p>
-</section>
-<footer><span>Backend 245f12c9 → main b9d7c217. UI b5323829f → master a8e4f0579.<br>Checkpoint cf82e17f… idéntico. Release 67593 reabierta; Debug 63885 conservada.</span><span>brief 071 · docs/briefs/071-distractores-implementados.html</span></footer>
+  </style></head>
+<body><div class="wrap">
+<header><div class="kicker"><span class="num">072</span><span class="badge">Resultado parcial</span><span class="meta">Jueces · distractores · 9 octubre 2026</span></div>
+<h1>El examen encontró un fallo; la reparación pasó dos controles</h1>
+<p class="sub">Dos resultados válidos conservados; el examen completo todavía no está aprobado.</p></header>
+<div class="lede"><p><strong>Corregí un fallo mío que impedía enviar el ejercicio al juez.</strong> La reparación acertó dos controles; completar el examen requiere autorizar hasta 16 llamadas más, reutilizando esos resultados.</p></div>
+<section><h2>Faltaba el contenido, no falló el criterio pedagógico</h2>
+<div class="ad"><div class="lado antes"><span class="rot">Primera pasada</span><ol><li>Los parámetros estaban guardados, pero no llegaban al mensaje.</li><li>Quince respuestas pedían el contexto ausente.</li><li>Una llamada en vuelo quedó sin resultado guardado.</li></ol><span class="res">16 llamadas; ninguna medición pedagógica válida</span></div>
+<div class="lado despues"><span class="rot">Con la reparación</span><ol><li>Se envían nivel, tema, título, consigna, ejercicio y opciones.</li><li>La prueba simulada recorre el flujo real.</li><li>Los mensajes reales confirman la entrega.</li></ol><span class="res">Dos controles reales; ambos acertados</span></div></div>
+<p class="pie">Los resultados anteriores se conservan como evidencia, pero no cuentan para la versión corregida.</p></section>
+<section><h2>Distingue la pista fácil del error esperable</h2>
+<div class="ad"><div class="lado antes"><span class="rot">Debe marcar el defecto</span><div class="ex"><div class="cons">Formar preguntas en presente simple con be antes del sujeto.</div><div class="en">___ thirsty? (she)</div><div class="ans">Am I · Are we · <b>Is she</b> · Is it</div><div class="mark"><span class="x">✕</span><span>La única opción con she regala la respuesta.</span></div></div><span class="res">Lo marcó: coincide con el resultado esperado</span></div>
+<div class="lado despues"><span class="rot">Debe aceptar el conjunto</span><div class="ex"><div class="cons">Misma consigna y mismo enunciado.</div><div class="en">___ thirsty? (she)</div><div class="ans">She is · Are she · <b>Is she</b> · Am she</div><div class="mark ok"><span class="x">✓</span><span>Obliga a distinguir orden y concordancia con el mismo sujeto.</span></div></div><span class="res">Lo aceptó: coincide con el resultado esperado</span></div></div>
+<p class="pie">Las respuestas esperadas estaban congeladas antes de las consultas; no se modificaron para coincidir con el juez.</p></section>
+<section><h2>El gasto terminó; el examen no</h2>
+<div class="hb"><div class="r"><span class="t">Tope físico consumido</span><span class="tr"><span class="f b" style="width:100%"></span></span><span class="n">18 / 18</span></div>
+<div class="r"><span class="t">Casos centrales vigentes</span><span class="tr"><span class="f g" style="width:12.5%"></span></span><span class="n">2 / 16</span></div>
+<div class="r"><span class="t">Controles de contexto vigentes</span><span class="tr"><span class="f w" style="width:0%"></span></span><span class="n">0 / 2</span></div></div>
+<p class="pie">La comprobación gratuita confirma 14 casos centrales y dos controles pendientes. La llamada incierta también consume presupuesto; no se recupera ese saldo.</p></section>
+<section><h2>La reparación está integrada; el curso sigue intacto</h2>
+<div class="cambia"><div class="si"><div class="ptl">Queda guardado</div><ul><li>Reparación y prueba en la rama principal.</li><li>Respuestas, gasto, versiones y respaldo del incidente.</li><li>Cinco pruebas específicas y dos del límite físico aprobadas.</li></ul></div>
+<div class="no"><div class="ptl">No se hizo</div><ul><li>Aprobar el examen completo.</li><li>Analizar ni corregir el curso real.</li><li>Publicar, aplicar o aprobar propuestas.</li><li>Reiniciar la app que estás usando.</li></ul></div></div>
+<p class="pie">La suite amplia mantiene un fallo previo en ejemplos de otro juez; no se modificó material ajeno. La huella de Corrección 1 sigue idéntica.</p></section>
+<section><h2>Qué necesito de vos</h2><div class="asks"><div class="ask"><span class="q">¿Autorizás hasta 16 llamadas adicionales para completar este examen?</span><div class="ops"><span class="op rec">Completar los huecos · recomendado</span><span class="op">Conservar el resultado parcial</span></div><span class="why">Se reutilizan los dos resultados vigentes; sin repetirlos, sin analizar el curso y sin garantizar aprobación.</span></div></div></section>
+<footer><span>Proveedor: codex-cli · gpt-6.1-sol · medium. Corpus y oro: <a href="../../analysis/judge-exams/2026-10-09-choice-quality-v1/result-partial.json">resultado guardado</a>. Reparación: 327d9dfc. Evidencia: /private/tmp/content-audit-choice-quality-exam.pE7x6x.</span><span>brief 072 · docs/briefs/072-examen-distractores-parcial.html</span></footer>
 </div></body></html>
