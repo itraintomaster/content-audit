@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Correcciones en HTML</title>
+<title>Exámenes en HTML</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -242,13 +242,6 @@
     .kpi .n{font-size:28px}
   }
 
-  /* ============ CATÁLOGO · se borra entero al generar ============ */
-  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
-  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
-  .cat-g{display:grid;gap:16px}
-  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
-  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
-  .cat-i>.n b{color:var(--fg-2)}
   /* dos capturas lado a lado */
   .par{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
   .par .captura{margin:0}
@@ -259,85 +252,91 @@
 
   <header>
     <div class="kicker">
-      <span class="num">089</span>
+      <span class="num">094</span>
       <span class="badge">Resumen</span>
-      <span class="meta">Dashboard de content-audit, después del brief 088 · 10/10/2026</span>
+      <span class="meta">Dashboard de content-audit, después del brief 089 · 10/10/2026</span>
     </div>
-    <h1>Correcciones ya anda en HTML, con ayuda en cada región</h1>
-    <p class="sub">Cómo se ve sobre la tanda real, cómo está armada, qué falta y qué sigue.</p>
+    <h1>Exámenes ya anda en HTML y muestra qué juez frena el cierre</h1>
+    <p class="sub">Cómo se ve sobre una copia de a1-v11, qué no hace, qué datos faltan y qué conviene subir al andamio.</p>
   </header>
 
-  <div class="lede"><p><strong>La pantalla de Correcciones ya anda en HTML sobre la tanda A1 real, con ayuda en cada región.</strong> Decide igual que la app; publicar y responder la muestra ciega siguen en la línea de comandos.</p></div>
+  <div class="lede"><p><strong>Exámenes anda en HTML sobre una copia: cada juez con su examen y el que frena el cierre (hoy, Calidad de distractores).</strong> Sólo lee; para entrar a master necesito tu OK en dos ramas.</p></div>
 
   <section>
-    <h2>Se ve como la maqueta, con los datos de verdad</h2>
-    <figure class="captura"><img src="089-correcciones-en-html/revisar.jpg" alt="La pantalla de Correcciones: temas a la izquierda, el ejercicio con su cambio en el centro y las notas de los jueces a la derecha">
-      <figcaption>Tanda A1, corrección 1: 1.766 correcciones en 79 temas</figcaption></figure>
-    <p class="pie">Corrió contra una copia de la carpeta de trabajo: las decisiones de prueba quedaron ahí. Aprobar y rechazar pasan por la misma cola que la app, con deshacer.</p>
+    <h2>De un vistazo, qué juez frena el cierre</h2>
+    <figure class="captura"><img src="094-examenes-en-html/abierta.jpg" alt="La pantalla Exámenes: nueve jueces en tarjetas, ocho aprobados y Calidad de distractores sin examen, con su aviso de que bloquea el cierre">
+      <figcaption>Copia de a1-v11: 9 jueces, 8 aprobados y 1 que nunca rindió</figcaption></figure>
+    <p class="pie">El examen de un juez son casos congelados con la respuesta esperada. Un juez sin aprobar no mide los ejercicios que cambian, y ninguna tanda se cierra.</p>
   </section>
 
   <section>
-    <h2>Cada (?) explica, no es un tooltip</h2>
+    <h2>Cada versión, con sus casos y lo que no dio</h2>
     <div class="par">
-      <figure class="captura"><img src="089-correcciones-en-html/ayuda.jpg" alt="Panel de ayuda del después según los jueces, en modo oscuro, con el mapa de la pantalla y cómo se lee cada estado">
-        <figcaption>(?) qué es, con el lugar marcado en el mapa</figcaption></figure>
-      <figure class="captura"><img src="089-correcciones-en-html/aviso.jpg" alt="Panel de aviso que explica por qué esta pantalla no publica, sobre el cierre de la tanda">
-        <figcaption>(!) un aviso: qué pasa y qué hacer hoy</figcaption></figure>
+      <figure class="captura"><img src="094-examenes-en-html/medida.jpg" alt="Opción múltiple mal armada, quinta versión: 36 de 38 casos dieron lo esperado, la tabla por grupo y los dos casos que no dieron">
+        <figcaption>Opción múltiple mal armada, 5ª versión: 36 de 38 casos</figcaption></figure>
+      <figure class="captura"><img src="094-examenes-en-html/sin-medir.jpg" alt="Ejercicio casi repetido en modo oscuro: once versiones, diez rendidas y sin medir, con sus herramientas al costado">
+        <figcaption>Casi repetidos: 10 de sus 11 versiones rindieron y nadie las midió</figcaption></figure>
     </div>
-    <p class="pie">32 temas. Cada uno dice qué es, cómo se lee con piezas dibujadas, qué pasa al usarlo y en qué paso del proceso vive. Usan los números de la tanda.</p>
+    <p class="pie">Rendir es correr el juez sobre los casos; medir, compararlo con lo esperado. Un caso que no dio es un defecto que se escapó o una falsa alarma.</p>
   </section>
 
   <section>
-    <h2>También decide en grupo y muestra el informe</h2>
+    <h2>Cada (?) explica y cada (!) avisa</h2>
     <div class="par">
-      <figure class="captura"><img src="089-correcciones-en-html/grupo.jpg" alt="Un grupo de 621 correcciones con el mismo motivo, cada una con su texto y una casilla para destildarla">
-        <figcaption>Un motivo repetido: se recorre y se destilda lo dudoso</figcaption></figure>
-      <figure class="captura"><img src="089-correcciones-en-html/informe.jpg" alt="El informe: ejercicios con error antes y después de la tanda, por juez">
-        <figcaption>El informe: de 1.959 ejercicios con error quedarían 654</figcaption></figure>
+      <figure class="captura"><img src="094-examenes-en-html/ayuda.jpg" alt="Panel de aviso en modo oscuro: por qué un juez sin aprobar bloquea el cierre, con el mapa de la pantalla">
+        <figcaption>(!) por qué un juez sin aprobar bloquea el cierre</figcaption></figure>
+      <figure class="captura"><img src="094-examenes-en-html/falsos.jpg" alt="Panel de ayuda: falsos positivos y falsos negativos, con dónde se leen en la tabla de grupos">
+        <figcaption>(?) falsos positivos y negativos, sobre la tabla real</figcaption></figure>
     </div>
-    <p class="pie">Están las cuatro vistas de la maqueta: revisar, muestra ciega, cierre e informe. En el celular la pantalla se reacomoda en una columna.</p>
+    <p class="pie">23 temas: qué es, cómo se lee con piezas de la pantalla, qué pasa y en qué paso vive. Rendir y pedir un caso están apagados con su (!): gastan consultas.</p>
   </section>
 
   <section>
-    <h2>Un store tipo Redux; sólo dos archivos tocan la página</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Un clic o una tecla</span><span class="eg">A · R · U · J · K</span><span class="d">Se traduce a una acción.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">El estado cambia</span><span class="eg">seis porciones</span><span class="d">Reductores puros; lo asíncrono, en thunks.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Las vistas lo dibujan</span><span class="eg">estado → HTML</span><span class="d">Funciones sin efectos, probadas con Node.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Cambia sólo lo distinto</span><span class="d">Se conservan el scroll y el foco.</span></div>
+    <h2>Lee todo el registro; rendir sigue en la terminal</h2>
+    <div class="cambia">
+      <div class="si"><div class="ptl">Ya lo hace</div><ul><li>Lee los exámenes con un comando nuevo que no consulta modelos.</li><li>Por juez: versiones, registros, grupos, casos y herramientas.</li><li>Avisa si los casos guardados no cuadran con los grupos.</li><li>Celular, modo oscuro, teclado y copiar los casos.</li></ul></div>
+      <div class="no"><div class="ptl">No lo hace, a propósito</div><ul><li>Rendir un examen: gasta consultas.</li><li>Pedir un caso o marcar un esperado mal: escribe el examen.</li><li>Elegir otra campaña: la fija quien arranca el servidor.</li></ul></div>
     </div>
     <div class="kpis" style="margin-top:16px">
-      <div class="kpi dest"><div class="n">205</div><div class="l">pruebas de la pantalla, todas en verde, sin abrir un navegador</div></div>
-      <div class="kpi"><div class="n">54</div><div class="l">estados recorridos: cada ayuda alcanzable, ningún hueco ni HTML ajeno</div></div>
-      <div class="kpi"><div class="n">422<small>de 423</small></div><div class="l">pruebas de Dart y Flutter; la que falla ya fallaba en master</div></div>
+      <div class="kpi dest"><div class="n">101</div><div class="l">pruebas de la página, en verde, sin abrir un navegador</div></div>
+      <div class="kpi"><div class="n">42</div><div class="l">estados recorridos: cada ayuda alcanzable, nada del servidor entra como HTML</div></div>
+      <div class="kpi"><div class="n">468<small>de 469</small></div><div class="l">pruebas de Dart y Flutter; la que falla ya fallaba en master</div></div>
     </div>
-    <p class="pie">Una decisión se ve tomada al instante y vuelve atrás sola si el servidor no la acepta.</p>
   </section>
 
   <section>
-    <h2>Qué hace y qué sigue en otro lado</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Ya lo hace</div><ul><li>Aprobar, rechazar y deshacer, uno por uno o en grupo.</li><li>Cierre con las cinco condiciones y el aviso de cuál falta.</li><li>Informe del después, pisos y patrones repetidos.</li><li>Búsqueda con ⌘K, teclado completo, modo oscuro y celular.</li></ul></div>
-      <div class="no"><div class="ptl">Todavía no: línea de comandos o app</div><ul><li>Responder la muestra ciega.</li><li>Corregir la miniteoría y los distractores.</li><li>Publicar al curso.</li><li>Elegir otra tanda u otro nivel.</li></ul></div>
-    </div>
-    <div class="call c-warn"><b>Ojo:</b> la prueba que vigila nombres de analizadores ya falla en master por cuatro archivos de la app; ahora también cubre el HTML, que pasa limpio.</div>
+    <h2>Faltan tres datos y cinco piezas piden subir</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Qué</th><th>Tipo</th><th>Por qué</th></tr></thead>
+      <tbody>
+        <tr><td>Qué versión de cada juez corre hoy</td><td><span class="pill p-warn">dato</span></td><td>«Aprobado» es lo de la última que rindió, no lo que corre.</td></tr>
+        <tr><td>El caso completo, no sólo su id</td><td><span class="pill p-warn">dato</span></td><td>Sin eso no se ve qué ejercicio falló.</td></tr>
+        <tr><td>Cruzar los casos guardados con los grupos</td><td><span class="pill p-warn">dato</span></td><td>Gramática guarda 43 casos para 112 que no dieron.</td></tr>
+        <tr><td>Los (?) y (!), y el texto de los errores</td><td><span class="pill p-info">andamio</span></td><td>Correcciones y Exámenes los repiten igual.</td></tr>
+        <tr><td>Correr el CLI desde cualquier pantalla</td><td><span class="pill p-info">andamio</span></td><td>Hoy cada una copia cómo se corre.</td></tr>
+        <tr><td>Un tope de tiempo para el CLI</td><td><span class="pill p-info">andamio</span></td><td>Si se cuelga, la pantalla queda leyendo.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">También el arranque de la página y dos ayudantes de prueba, que hoy Correcciones y Exámenes tienen por duplicado. Nada de esto tocó lo común.</p>
   </section>
 
   <section>
-    <h2>Qué sigue</h2>
-    <div class="flow">
-      <div class="st"><span class="i">1</span><span class="h">Probala vos</span><span class="d">Con el comando de abajo, sobre una copia.</span></div>
-      <div class="st"><span class="i">2</span><span class="h">Pasarla a master</span><span class="d">Ocho commits, sin push; entra sin conflictos.</span></div>
-      <div class="st"><span class="i">3</span><span class="h">Lo que falta acá</span><span class="d">Muestra ciega, miniteoría y publicar.</span></div>
-      <div class="st end"><span class="i">4</span><span class="h">Siguiente pantalla</span><span class="d">Estadísticas, que ya tiene propuesta.</span></div>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask">
+        <div class="q">¿Paso a master las dos ramas: la pantalla y el comando nuevo?</div>
+        <div class="ops"><span class="op rec">Sí, las dos</span><span class="op">Primero sólo el comando</span><span class="op">Todavía no</span></div>
+        <div class="why">La pantalla necesita el comando; sin él muestra un aviso de que falta. Ninguna tiene push. Para probarla antes, sobre una copia:</div>
+      </div>
     </div>
-<pre>cd ~/projects/learney/ittm/.claude/worktrees/dashboard-html/pipeline/vocabulary_dashboard
-CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_WORKDIR=/ruta/a/la/copia CONTENT_AUDIT_CONTEXT_KIND=Copia ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart</pre>
+<pre>cd ~/projects/learney/ittm/.claude/worktrees/nice-bassi-b81f65/pipeline/vocabulary_dashboard
+CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_CLI=~/projects/learney/content-audit/.claude/worktrees/exam-status-json/audit-cli.sh CONTENT_AUDIT_WORKDIR=/ruta/a/la/copia CONTENT_AUDIT_CONTEXT_KIND=Copia ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart --puerto 7834</pre>
+    <div class="call c-warn"><b>Ojo:</b> dos pruebas ya fallaban antes: la que vigila nombres de analizadores en ittm y una de comparar en content-audit. Ninguna toca esto.</div>
   </section>
 
   <footer>
-    <span>Rama claude/dashboard-html de ittm (8 commits sobre master 757e32f62, sin push): servidor en bin/tablero_html.dart y lib/tablero_html/, pantalla en pipeline/vocabulary_dashboard/html/. Pruebas: npm test en html/ y flutter test. Capturas con Chrome sin ventana sobre http://127.0.0.1:7820.</span>
-    <span>brief 089 · docs/briefs/089-correcciones-en-html.html</span>
+    <span>ittm, rama claude/nice-bassi-b81f65 (f4dc2c9e0 servidor, bbda569a6 página; sin push): lib/tablero_html/examenes/ y html/js/examenes/, ruta GET /api/examenes/jueces. content-audit, rama claude/exam-status-json (df186ea8, exam status -f json, F-JEXAM-R015). Fallas previas: test/guardian_test.dart y DefaultCompareCommandTest. Capturas con Chrome sin ventana sobre http://localhost:7834, copia APFS de a1-v11.</span>
+    <span>brief 094 · docs/briefs/094-examenes-en-html.html</span>
   </footer>
 
 </div>
