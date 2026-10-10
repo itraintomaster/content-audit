@@ -5,7 +5,8 @@ import java.util.concurrent.Callable;
 import java.util.function.Supplier;
 import picocli.CommandLine.*;
 
-@Command(name = "selective", description = "Juez, tareas seleccionadas y comprobación dentro de la misma corrección; no publica.")
+@Command(name = "selective", mixinStandardHelpOptions = true,
+        description = "Juez, tareas seleccionadas y comprobación dentro de la misma corrección; no publica.")
 public final class SelectiveCorrectionCmd implements Callable<Integer> {
     private final Supplier<SelectiveCorrectionService> service;
     @Option(names = "--request-json", required = true) String request;
