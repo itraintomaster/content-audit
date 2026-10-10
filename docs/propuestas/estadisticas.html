@@ -1,0 +1,1676 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estadísticas del curso</title>
+<meta name="description" content="Maqueta navegable de las estadísticas de content-audit: el curso A1 entero, ejercicio por ejercicio y palabra por palabra, con los datos reales del análisis del 7/10.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&family=Literata:ital,opsz,wght@0,7..72,300..700;1,7..72,300..700&display=swap" rel="stylesheet">
+<style>
+/* ── Tokens ─────────────────────────────────────────────────────────────
+   Los mismos de Correcciones: Literata para lo que ve el alumno,
+   Instrument Sans para la herramienta. Acá se suma una escala de gravedad
+   (del carmín al gris) y una de puntaje de vocabulario (violeta). */
+:root{
+  --canvas:#F3F2F8; --sheet:#FFFFFF; --raise:#FAFAFD;
+  --ink:#1C1934; --ink-2:#4B4866; --ink-3:#807C99; --ink-4:#A9A6BE;
+  --line:#E4E2EE; --line-2:#D2CFE0;
+  --violet:#4B33B8; --violet-2:#6A55D6; --violet-soft:#ECE8FC; --violet-ink:#2A1C73;
+  --pencil:#EE5A1F; --pencil-soft:#FFEEE5;
+  --ok:#0C7A66; --ok-bg:#DAF2EA; --warn:#9A5F00; --warn-bg:#FFF2D2;
+  --high:#C42A55; --med:#C27A0E; --low:#A3A0B8; --on-accent:#FFFFFF;
+  /* gravedad: bloqueante, alta, media, baja, sin errores */
+  --s0:#8A1540; --s1:#DA4A70; --s2:#E7A236; --s3:#C6C1DD; --s4:#8FD1BD;
+  --mk:#9C8CF0; --na:#E8E6F0; --ne:#B9B5CC;
+  /* puntaje de vocabulario: 90-99, 70-89, menos de 70 */
+  --v1:#C9C0F6; --v2:#8F7CE8; --v3:#4B33B8;
+  --heat:#C42A55;
+  --shadow:0 1px 2px rgba(28,25,52,.05),0 12px 32px -18px rgba(28,25,52,.28);
+  --pop:0 2px 4px rgba(28,25,52,.06),0 24px 60px -20px rgba(28,25,52,.35);
+  --sans:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+  --serif:"Literata",Georgia,serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --canvas:#12102A; --sheet:#1B1937; --raise:#201E3F;
+    --ink:#EDEBF9; --ink-2:#BDB9DA; --ink-3:#8C88AD; --ink-4:#605C82;
+    --line:#2B2850; --line-2:#3A3666;
+    --violet:#A496FF; --violet-2:#BDB2FF; --violet-soft:#29235A; --violet-ink:#D9D2FF;
+    --pencil:#FF7D4A; --pencil-soft:#3A2116;
+    --ok:#5BD8B9; --ok-bg:#11382F; --warn:#F5B843; --warn-bg:#3A2C0D;
+    --high:#FF6F96; --med:#F2A93B; --low:#6E6A90; --on-accent:#14112E;
+    --s0:#FF7AA0; --s1:#C9476F; --s2:#D9962E; --s3:#4C4778; --s4:#2D8C75;
+    --mk:#7A69E0; --na:#221F42; --ne:#3F3B66;
+    --v1:#4A3F94; --v2:#7B68E0; --v3:#B6AAFF;
+    --heat:#FF6F96;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 40px -20px rgba(0,0,0,.7);
+    --pop:0 2px 6px rgba(0,0,0,.35),0 30px 70px -20px rgba(0,0,0,.8);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --canvas:#12102A; --sheet:#1B1937; --raise:#201E3F;
+  --ink:#EDEBF9; --ink-2:#BDB9DA; --ink-3:#8C88AD; --ink-4:#605C82;
+  --line:#2B2850; --line-2:#3A3666;
+  --violet:#A496FF; --violet-2:#BDB2FF; --violet-soft:#29235A; --violet-ink:#D9D2FF;
+  --pencil:#FF7D4A; --pencil-soft:#3A2116;
+  --ok:#5BD8B9; --ok-bg:#11382F; --warn:#F5B843; --warn-bg:#3A2C0D;
+  --high:#FF6F96; --med:#F2A93B; --low:#6E6A90; --on-accent:#14112E;
+  --s0:#FF7AA0; --s1:#C9476F; --s2:#D9962E; --s3:#4C4778; --s4:#2D8C75;
+  --mk:#7A69E0; --na:#221F42; --ne:#3F3B66;
+  --v1:#4A3F94; --v2:#7B68E0; --v3:#B6AAFF;
+  --heat:#FF6F96;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 16px 40px -20px rgba(0,0,0,.7);
+  --pop:0 2px 6px rgba(0,0,0,.35),0 30px 70px -20px rgba(0,0,0,.8);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--canvas);color:var(--ink);font:400 14px/1.45 var(--sans);font-variation-settings:"wdth" 100;-webkit-font-smoothing:antialiased;overflow:hidden}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
+input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--violet);outline-offset:2px;border-radius:6px}
+.num{font-variant-numeric:tabular-nums}
+.en{font-style:italic;color:var(--violet);font-weight:500}
+.c{font-family:var(--serif);font-optical-sizing:auto}
+kbd{font:600 11px/1 var(--sans);font-variant-numeric:tabular-nums;padding:3px 5px 2px;border-radius:5px;border:1px solid var(--line-2);border-bottom-width:2px;color:var(--ink-3);background:var(--sheet);min-width:18px;display:inline-block;text-align:center}
+.gap{display:inline-block;min-width:2.6em;border-bottom:2px solid currentColor;margin:0 .1em;height:.95em;vertical-align:-.08em;opacity:.75}
+
+/* Estados de un ejercicio, en el mapa y en todas partes */
+.s0{--c:var(--s0)} .s1{--c:var(--s1)} .s2{--c:var(--s2)} .s3{--c:var(--s3)} .s4{--c:var(--s4)}
+.mk{--c:var(--mk)} .na{--c:var(--na)} .ne{--c:var(--ne)} .pe{--c:var(--ne)}
+.v1{--c:var(--v1)} .v2{--c:var(--v2)} .v3{--c:var(--v3)}
+.w-n{--c:var(--s4)} .w-s{--c:var(--s2)} .w-o{--c:var(--v2)} .w-a{--c:var(--s1)} .w-x{--c:var(--ink-4)}
+
+/* ── Esqueleto ─────────────────────────────────────────────────────────── */
+.app{display:grid;grid-template-columns:60px 284px minmax(0,1fr);grid-template-rows:60px minmax(0,1fr);height:100vh}
+.rail{grid-row:1/3;grid-column:1;display:flex;flex-direction:column;align-items:center;padding:14px 0;gap:4px;border-right:1px solid var(--line)}
+.brand{width:30px;height:30px;border-radius:9px;background:var(--pencil);display:grid;place-items:center;margin-bottom:14px;color:#fff;font:700 15px/1 var(--serif);font-style:italic}
+.rail a{width:40px;height:40px;display:grid;place-items:center;border-radius:11px;color:var(--ink-3);position:relative}
+.rail a:hover{background:var(--line);color:var(--ink)}
+.rail a[aria-current]{background:var(--violet);color:var(--on-accent)}
+.rail a:hover::after{content:attr(data-label);position:absolute;left:48px;white-space:nowrap;background:var(--ink);color:var(--sheet);font-size:12px;font-weight:600;padding:4px 8px;border-radius:6px;z-index:20;pointer-events:none}
+.rail .spacer{flex:1}
+.rail svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+.top{grid-column:2/4;display:flex;align-items:center;gap:18px;padding:0 18px 0 22px;border-bottom:1px solid var(--line);min-width:0}
+.top h1{font:650 18px/1 var(--sans);letter-spacing:-.01em;margin:0;white-space:nowrap}
+.batch{display:flex;align-items:center;border:1px solid var(--line-2);border-radius:9px;height:32px;font-size:13px;white-space:nowrap}
+.batch span{padding:0 10px;color:var(--ink-2)}
+.batch span b{color:var(--ink);font-weight:650}
+.batch button{height:100%;padding:0 10px;border-left:1px solid var(--line-2);display:flex;align-items:center;gap:6px;color:var(--ink-2)}
+.batch button:hover{background:var(--line)}
+.modes{display:flex;gap:2px;margin:0 auto;background:var(--line);padding:3px;border-radius:11px}
+.modes button{height:30px;padding:0 13px;border-radius:8px;font-weight:550;font-size:13.5px;color:var(--ink-2);display:flex;align-items:center;gap:7px;white-space:nowrap}
+.modes button:hover{color:var(--ink)}
+.modes button[aria-pressed="true"]{background:var(--sheet);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.modes .count{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.status{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.iconbtn{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;color:var(--ink-2);flex:none}
+.iconbtn:hover{background:var(--line);color:var(--ink)}
+.iconbtn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.searchbtn{display:flex;align-items:center;gap:8px;height:32px;padding:0 8px 0 10px;border-radius:9px;border:1px solid var(--line-2);color:var(--ink-3);font-size:13px}
+.searchbtn:hover{border-color:var(--ink-4);color:var(--ink-2)}
+.searchbtn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2}
+.mobile-only{display:none}
+
+/* ── Índice: qué mirar ─────────────────────────────────────────────────── */
+.index{grid-column:2;grid-row:2;border-right:1px solid var(--line);overflow:auto;padding:14px 10px 60px;scrollbar-width:thin;min-height:0}
+.ix-group{margin-bottom:22px}
+.ix{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 10px;width:100%;padding:8px 10px 9px;border-radius:9px;align-items:baseline;position:relative}
+.ix:hover{background:var(--line)}
+.ix[aria-current]{background:var(--sheet);box-shadow:var(--shadow)}
+.ix .t{font-size:13.5px;font-weight:550;line-height:1.25;min-width:0}
+.ix .v{font-size:12.5px;font-weight:650;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ix .meter{grid-column:1/3;height:3px;border-radius:2px;background:var(--line);overflow:hidden;display:block}
+.ix .meter i{display:block;height:100%;background:var(--c,var(--heat));border-radius:2px}
+.ix.off .t,.ix.off .v{color:var(--ink-4);font-weight:500}
+.ix.lead{padding:12px 10px 12px}
+.ix.lead .t{font:650 15px/1.2 var(--sans)}
+.ix.lead .v{font:650 15px/1.2 var(--sans);color:var(--ink)}
+.ix.lead .why{grid-column:1/3;font-size:12px;color:var(--ink-3);margin-top:-2px}
+.ix-note{font-size:12px;color:var(--ink-3);padding:0 10px;margin:6px 0 0;line-height:1.45}
+
+/* ── Escenario ─────────────────────────────────────────────────────────── */
+.stage{grid-column:3;grid-row:2;min-width:0;min-height:0;display:flex;flex-direction:column;position:relative}
+.scroll{overflow-y:auto;overflow-x:hidden;flex:1;min-height:0;scrollbar-width:thin}
+.head{padding:22px 32px 0;max-width:1144px}
+.crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px;color:var(--ink-3);min-height:20px}
+.crumbs button{color:var(--ink-3);padding:1px 4px;border-radius:5px;margin:0 -4px}
+.crumbs button:hover{color:var(--ink);background:var(--line)}
+.crumbs .sep{color:var(--ink-4)}
+.crumbs .here{color:var(--ink-2);font-weight:550}
+.title{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-top:6px}
+.title h2{margin:0;font:650 30px/1.12 var(--sans);letter-spacing:-.02em;font-variation-settings:"wdth" 92}
+.title .size{font-size:13px;color:var(--ink-3)}
+.lede{margin:10px 0 0;font-size:15.5px;line-height:1.5;color:var(--ink-2);max-width:74ch}
+.lede b{color:var(--ink);font-weight:650}
+.tema-ins{margin:12px 0 0;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;font-size:13px;color:var(--ink-3)}
+.tema-ins .c{font-size:15.5px;color:var(--ink)}
+.caveat{display:flex;gap:10px;align-items:flex-start;margin:14px 0 0;padding:10px 13px;border-radius:10px;background:var(--warn-bg);color:var(--warn);font-size:13px;line-height:1.45;max-width:86ch}
+.caveat svg{flex:none;width:16px;height:16px;margin-top:1px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.caveat b{font-weight:650}
+
+/* El mapa: cada ejercicio es un piso; cada tema, un edificio. */
+.hero{padding:26px 32px 0;max-width:1144px;position:relative}
+.sky{display:block;width:100%}
+.sky .hit{fill:transparent;cursor:zoom-in}
+.sky g.on .hit{fill:var(--violet-soft)}
+.sky .cell{fill:var(--c);cursor:pointer;transition:opacity .12s}
+.sky.dim g:not(.on) .cell{opacity:.3}
+.ground{height:1.5px;background:var(--ink-3);border-radius:1px;opacity:.5}
+.districts{display:grid;margin-top:0}
+.district{min-width:0;padding:7px 2px 0;font-size:12px;line-height:1.25;color:var(--ink-2);position:relative;overflow:hidden}
+.district::before{content:"";display:block;height:3px;border-radius:2px;background:var(--line-2);margin:0 0 7px}
+.district:hover::before,.district.on::before{background:var(--violet)}
+.district:hover,.district.on{color:var(--ink)}
+.district .nm{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.district .nm .no{color:var(--ink-3);font-weight:600;margin-right:4px}
+.district .sh{display:block;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trows{display:flex;flex-direction:column}
+.trow{display:grid;grid-template-columns:minmax(150px,250px) minmax(0,1fr);gap:18px;padding:10px 0;border-top:1px solid var(--line);align-items:start}
+.trow:first-child{border-top:0}
+.trow .tl{display:block;min-width:0;border-radius:6px}
+.trow .tl .nm{font-weight:600;font-size:13.5px;display:block;line-height:1.3}
+.trow .tl:hover .nm{color:var(--violet)}
+.trow .tl .n{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.tiles{display:flex;flex-wrap:wrap;gap:3px;padding-top:2px}
+.tiles .cell{width:14px;height:14px;border-radius:3.5px;background:var(--c);cursor:pointer;transition:opacity .12s,transform .12s}
+.tiles .cell:hover{transform:scale(1.25)}
+.tiles.big{gap:5px}
+.tiles.big .cell{width:26px;height:26px;border-radius:6px}
+.hero[data-hl] .cell{opacity:.14}
+.hero[data-hl="s0"] .s0,.hero[data-hl="s1"] .s1,.hero[data-hl="s2"] .s2,.hero[data-hl="s3"] .s3,.hero[data-hl="s4"] .s4,
+.hero[data-hl="mk"] .mk,.hero[data-hl="na"] .na,.hero[data-hl="ne"] .ne,.hero[data-hl="v1"] .v1,.hero[data-hl="v2"] .v2,.hero[data-hl="v3"] .v3{opacity:1}
+.hero-note{font-size:12.5px;color:var(--ink-3);margin:10px 0 0}
+
+/* Calidad: una medida por eje; más lleno es mejor. */
+.radar{position:relative;margin:0 auto;font-variant-numeric:tabular-nums}
+.radar svg{position:absolute;left:0;top:0;overflow:visible}
+.radar .ring,.radar .spoke,.radar .mean,.radar .poly,.radar .core-bg,.radar text{pointer-events:none}
+.radar .ring{fill:none;stroke:var(--line-2);stroke-width:1}
+.radar .ring.o{stroke:var(--ink-4);stroke-opacity:.55}
+.radar .spoke{stroke:var(--line-2);stroke-width:1}
+.radar .spoke.off{stroke-dasharray:2 4}
+.radar .rng{stroke:var(--ink-4);stroke-opacity:.34;stroke-width:9;stroke-linecap:round}
+.radar .rng:hover{stroke-opacity:.6}
+.radar .mean{fill:none;stroke:var(--ink-3);stroke-width:1.2;stroke-dasharray:4 5}
+.radar .poly{fill:var(--violet);fill-opacity:.12;stroke:var(--violet);stroke-width:2.2;stroke-linejoin:round}
+.radar .vx{fill:var(--sheet);stroke:var(--violet);stroke-width:2.2}
+.radar .vx.worst{fill:var(--high);stroke:var(--high)}
+.radar .core-bg{fill:var(--sheet);stroke:var(--line-2)}
+.radar text{font:500 10.5px var(--sans);fill:var(--ink-4)}
+.radar .core{position:absolute;transform:translate(-50%,-50%);text-align:center;pointer-events:none}
+.radar .core b{display:block;font:650 34px/1 var(--sans);letter-spacing:-.025em;font-variation-settings:"wdth" 92}
+.radar .core span{display:block;font-size:11.5px;color:var(--ink-3);margin-top:5px}
+.radar .lab{position:absolute;padding:3px 6px;border-radius:7px;line-height:1.25;font-size:13px}
+.radar .lab:hover{background:var(--line)}
+.radar .lab .nm{font-weight:650}
+.radar .lab .p{font-weight:650;color:var(--violet);margin-left:4px}
+.radar .lab small{display:block;font-size:11.5px;color:var(--ink-3);margin-top:1px}
+.radar .lab.worst .p{color:var(--high)}
+.radar .lab.off .nm,.radar .lab.off .p{color:var(--ink-4);font-weight:550}
+.radar.compact .lab{font-size:11px;padding:2px 3px;line-height:1.2}
+.radar.compact .lab .nm{display:block;font-weight:600}
+.radar.compact .lab .p{margin:0}
+.radar-key{display:flex;gap:6px 20px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--ink-3);margin:6px 0 0}
+.radar-key span{display:inline-flex;align-items:center;gap:7px}
+.radar-key svg{flex:none;overflow:visible}
+.qhow{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.qhow div{background:var(--sheet);border-radius:11px;padding:13px 15px;box-shadow:var(--shadow)}
+.qhow b{display:block;font-weight:650;font-size:13.5px;margin-bottom:3px}
+.qhow p{margin:0;font-size:13px;line-height:1.45;color:var(--ink-2)}
+.ix.ql{grid-template-columns:40px minmax(0,1fr) auto;column-gap:11px;align-items:center}
+.ix.ql svg{grid-row:1/3;width:40px;height:40px;overflow:visible}
+.ix.ql .why{grid-column:2/4}
+.ix.ql .v{font-size:19px;letter-spacing:-.01em}
+.mini .ring{fill:none;stroke:var(--line-2);stroke-width:.05}
+.mini .poly{fill:var(--violet);fill-opacity:.18;stroke:var(--violet);stroke-width:.07;stroke-linejoin:round}
+
+/* Leyenda: también es el reparto */
+.legend{padding:18px 32px 0;max-width:1144px;display:flex;flex-direction:column;gap:9px}
+.lg-bar{display:flex;height:7px;border-radius:4px;overflow:hidden;background:var(--line)}
+.lg-bar i{display:block;height:100%;background:var(--c)}
+.lg-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.lg-items{display:flex;flex-wrap:wrap;gap:2px 6px;flex:1;min-width:0}
+.lg-item{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-2);padding:4px 7px;border-radius:7px;white-space:nowrap}
+.lg-item:hover,.lg-item[aria-pressed="true"]{background:var(--line);color:var(--ink)}
+.lg-item i{width:10px;height:10px;border-radius:3px;background:var(--c)}
+.lg-item b{font-weight:650;color:var(--ink);font-variant-numeric:tabular-nums}
+.seg{display:flex;background:var(--line);border-radius:8px;padding:2px;flex:none}
+.seg button{padding:4px 9px;border-radius:6px;font-size:12.5px;font-weight:550;color:var(--ink-3);white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--sheet);color:var(--ink);box-shadow:0 1px 1px rgba(0,0,0,.06)}
+
+/* ── Lectura ───────────────────────────────────────────────────────────── */
+.reading{padding:4px 32px 100px;max-width:1144px}
+.sec{margin-top:44px}
+.sec > h3{font:650 17px/1.3 var(--sans);margin:0;letter-spacing:-.008em}
+.sec > .sub{margin:4px 0 16px;color:var(--ink-3);font-size:13px;max-width:74ch}
+.sec > .sub b{color:var(--ink-2);font-weight:600}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px}
+.two > .sec{margin-top:44px}
+.more{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-weight:600;font-size:13px;color:var(--violet);padding:6px 2px}
+.more:hover{text-decoration:underline}
+.quiet{color:var(--ink-3);font-size:13px}
+
+/* Mapa de calor: hijos × analizadores */
+.heat-wrap{overflow-x:auto;margin:0 -6px;padding:0 6px 4px;scrollbar-width:thin}
+.heat{border-collapse:separate;border-spacing:3px;font-size:12px}
+.heat th{font-weight:500}
+.heat thead th{vertical-align:bottom;padding:0 0 6px;height:126px}
+.heat thead th button{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;color:var(--ink-3);font-size:12px;padding:2px 0;border-radius:4px;text-align:left}
+.heat thead th button:hover,.heat thead th button.on{color:var(--violet)}
+.heat thead th.tot button{color:var(--ink);font-weight:650}
+.heat tbody th{text-align:left;padding:0 14px 0 0;white-space:nowrap;max-width:230px}
+.heat tbody th button{display:flex;align-items:baseline;gap:7px;max-width:230px}
+.heat tbody th .nm{font-weight:550;font-size:13px;color:var(--ink);overflow:hidden;text-overflow:ellipsis}
+.heat tbody th .no{color:var(--ink-4);font-weight:600;font-size:12px;min-width:14px}
+.heat tbody th .n{color:var(--ink-3);font-size:11.5px;font-variant-numeric:tabular-nums}
+.heat tbody th button:hover .nm{color:var(--violet)}
+.heat td{width:34px;min-width:34px;height:30px;text-align:center;border-radius:5px;font-variant-numeric:tabular-nums;font-weight:600;cursor:pointer;color:var(--ink-2);background:color-mix(in oklab,var(--heat) var(--h,0%),var(--sheet))}
+.heat td.hot{color:#fff}
+.heat td.zero{color:var(--ink-4);font-weight:400}
+.heat td.na{background:transparent;color:var(--ink-4);cursor:default;font-weight:400}
+.heat td.mkd{background:color-mix(in oklab,var(--mk) var(--h,0%),var(--sheet))}
+.heat td:not(.na):hover{box-shadow:0 0 0 2px var(--violet)}
+.heat td.tot{background:color-mix(in oklab,var(--ink) var(--h,0%),var(--sheet));width:44px}
+.heat td.tot.hot{color:var(--sheet)}
+.heat-key{display:flex;gap:16px;align-items:center;font-size:12px;color:var(--ink-3);margin-top:10px;flex-wrap:wrap}
+.heat-key .ramp{display:inline-block;width:90px;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--sheet),var(--heat));vertical-align:-1px;margin:0 6px;box-shadow:inset 0 0 0 1px var(--line)}
+
+/* Tarjetas de ejercicio */
+.exs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.ex{display:flex;flex-direction:column;gap:8px;padding:14px 16px 14px;background:var(--sheet);border-radius:13px;box-shadow:var(--shadow);min-width:0;text-align:left;position:relative;transition:transform .12s}
+.ex:hover{transform:translateY(-1px)}
+.ex:hover .stmt{color:var(--violet-ink)}
+.ex .where{font-size:11.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ex .stmt{font:450 17px/1.4 var(--serif);color:var(--ink)}
+.ex .obs{font-size:12.5px;line-height:1.45;color:var(--ink-2);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.flags{display:flex;flex-wrap:wrap;gap:5px}
+.flag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:6px;font-size:11.5px;font-weight:550;background:var(--line);color:var(--ink-2);white-space:nowrap}
+.flag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c,var(--ink-4))}
+.flag.plain::before{display:none}
+
+/* Barras por hijo */
+.bars{display:flex;flex-direction:column;gap:2px}
+.brow{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr) 92px;gap:12px;align-items:center;padding:5px 6px;border-radius:8px;font-size:13px;text-align:left;width:100%}
+.brow:hover{background:var(--line)}
+.brow .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:550}
+.brow .nm .no{color:var(--ink-4);font-weight:600;margin-right:6px;font-size:12px}
+.brow .track{height:8px;border-radius:4px;background:var(--line);overflow:hidden;position:relative}
+.brow .track i{position:absolute;left:0;top:0;bottom:0;background:var(--c,var(--heat));border-radius:4px}
+.brow .track .ref{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink-2);border-radius:1px}
+.brow .val{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:12px;white-space:nowrap}
+.brow .val b{color:var(--ink);font-weight:650;font-size:13px;margin-right:4px}
+.brow.na .nm,.brow.na .val{color:var(--ink-4)}
+.bars.wide .brow{grid-template-columns:minmax(0,200px) minmax(0,1fr) 210px}
+.bars.wide .val{white-space:normal;line-height:1.3}
+.brow.peak .nm{color:var(--ink)}
+
+/* Analizador */
+.an{background:var(--sheet);border-radius:16px;box-shadow:var(--shadow);padding:24px 26px 22px;margin-top:30px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:26px 34px}
+.an .q{font:600 21px/1.3 var(--sans);letter-spacing:-.012em;margin:0;grid-column:1/3;max-width:60ch}
+.an .expl{margin:-14px 0 0;color:var(--ink-2);font-size:14px;grid-column:1/3;max-width:80ch}
+.how{display:grid;grid-template-columns:96px minmax(0,1fr);gap:8px 14px;margin:0;font-size:13.5px;align-content:start}
+.how dt{color:var(--ink-3);font-size:12.5px;padding-top:1px}
+.how dd{margin:0;color:var(--ink);line-height:1.5}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 9px;border-radius:999px;font-size:12px;font-weight:550;background:var(--line);color:var(--ink-2);white-space:nowrap}
+.pill.paid{background:var(--pencil-soft);color:var(--pencil)}
+.pill.local{background:var(--violet-soft);color:var(--violet-ink)}
+.pill.free{background:var(--ok-bg);color:var(--ok)}
+.prov{border-left:1px solid var(--line);padding-left:26px;display:flex;flex-direction:column;gap:12px;font-size:13px;min-width:0}
+.prov h4{margin:0;font:650 13px/1.3 var(--sans)}
+.prov .who{font:600 15px/1.3 var(--sans)}
+.prov .who span{display:block;font-weight:500;font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.exam{display:flex;flex-direction:column;gap:5px}
+.exam .h{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--ok);font-size:12.5px}
+.exam .h svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.case{display:grid;grid-template-columns:minmax(0,1fr) 64px 50px;gap:8px;align-items:center;font-size:12px;color:var(--ink-2)}
+.case .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.case .tr{height:5px;border-radius:3px;background:var(--line);overflow:hidden}
+.case .tr i{display:block;height:100%;background:var(--ok)}
+.case .tr i.short{background:var(--med)}
+.case .v{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-3);white-space:nowrap}
+.prov .fine{font-size:12px;color:var(--ink-3);line-height:1.45;margin:0}
+.rules{display:flex;flex-direction:column;gap:2px}
+.rule{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:baseline;padding:8px 10px;border-radius:9px;text-align:left;width:100%}
+.rule:hover{background:var(--line)}
+.rule[aria-pressed="true"]{background:var(--violet-soft)}
+.rule .d{font-size:13px;line-height:1.4;color:var(--ink)}
+.rule .n{font-size:12.5px;font-weight:650;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rule.zero .d,.rule.zero .n{color:var(--ink-4)}
+.notice{display:flex;gap:10px;align-items:center;padding:10px 13px;border-radius:10px;background:var(--line);color:var(--ink-2);font-size:13px;margin-top:30px}
+
+/* Hallazgos */
+.fds{display:flex;flex-direction:column;background:var(--sheet);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.fd{display:grid;grid-template-columns:12px minmax(0,1fr);gap:4px 12px;padding:14px 18px 14px 16px;border-top:1px solid var(--line)}
+.fd:first-child{border-top:0}
+.fd-group{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:12px 18px 10px 16px;background:var(--raise);border-top:1px solid var(--line);font:600 13px/1.4 var(--sans)}
+.fd-group:first-child{border-top:0}
+.fd-group b{font-weight:650;font-variant-numeric:tabular-nums;color:var(--ink-3)}
+.fd-group + .fd{border-top:0}
+.fd .dot{width:9px;height:9px;border-radius:50%;background:var(--c);margin-top:6px}
+.fd .top-line{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--ink-3)}
+.fd .top-line .sev{font-weight:650;color:var(--ink-2)}
+.fd .stmt{grid-column:2;font:450 16.5px/1.4 var(--serif);color:var(--ink);text-align:left;justify-self:start}
+.fd button.stmt:hover{color:var(--violet)}
+.fd .obs{grid-column:2;margin:2px 0 0;font-size:13px;line-height:1.5;color:var(--ink-2);max-width:86ch}
+.fd details{grid-column:2;font-size:12.5px;margin-top:2px}
+.fd summary{cursor:pointer;color:var(--violet);font-weight:550;width:max-content;list-style:none}
+.fd summary::-webkit-details-marker{display:none}
+.fd summary::before{content:"+ ";font-weight:700}
+.fd details[open] summary::before{content:"− "}
+.ev{display:grid;grid-template-columns:minmax(80px,150px) minmax(0,1fr);gap:5px 12px;margin:8px 0 2px;padding:10px 12px;border-radius:9px;background:var(--raise);border:1px solid var(--line)}
+.ev dt{color:var(--ink-3)}
+.ev dd{margin:0;color:var(--ink);line-height:1.45;overflow-wrap:anywhere}
+
+/* Gráficos */
+.chart{display:block;width:100%;overflow:visible}
+.chart text{font:500 11px var(--sans);fill:var(--ink-3)}
+.chart .lbl-b{font-weight:650;fill:var(--ink-2)}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .band{fill:var(--ok-bg)}
+.chart .band-l{fill:var(--ok);font-weight:600}
+.chart .bar{fill:var(--c);cursor:pointer}
+.chart .bar:hover,.chart .bar.on{stroke:var(--ink);stroke-width:1.5}
+.chart .axis{stroke:var(--ink-4);stroke-width:1}
+.chart .dotw{fill:var(--c);stroke:var(--sheet);stroke-width:1;cursor:pointer}
+.chart .dotw:hover{stroke:var(--ink);stroke-width:2}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:baseline;gap:7px;padding:6px 11px 6px 10px;border-radius:999px;background:var(--sheet);box-shadow:inset 0 0 0 1px var(--line-2);font-size:13px}
+.chip:hover{box-shadow:inset 0 0 0 1.5px var(--violet)}
+.chip .lem{font:500 15px/1 var(--serif)}
+.chip .pa{font:italic 400 12px/1 var(--serif);color:var(--ink-3);margin-left:-3px}
+.chip small{font-size:11.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c,var(--ink-4));align-self:center}
+.chip.plain::before{display:none}
+.cover{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 20px;align-items:center;margin-bottom:18px;max-width:640px}
+.cover .tr{height:12px;border-radius:6px;background:var(--line);position:relative}
+.cover .tr i{position:absolute;left:0;top:0;bottom:0;border-radius:6px;background:var(--s4)}
+.cover .tr .goal{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--ink);border-radius:1px}
+.cover .tr .goal span{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--ink-2);white-space:nowrap;font-weight:600}
+.cover .v{font:650 15px var(--sans);font-variant-numeric:tabular-nums}
+.cover .v small{display:block;font-size:12px;color:var(--ink-3);font-weight:500}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:550;color:var(--ink-3);font-size:12px;padding:0 10px 8px 0;border-bottom:1px solid var(--line)}
+.tbl td{padding:8px 10px 8px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums;vertical-align:top}
+.tbl td.r,.tbl th.r{text-align:right}
+.tbl tr.clk{cursor:pointer}
+.tbl tr.clk:hover td{background:var(--raise)}
+.tbl .c{font-size:15px}
+.lenrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(120px,220px) 64px;gap:14px;align-items:center;padding:9px 6px;border-top:1px solid var(--line);font-size:13px;text-align:left;width:100%}
+.lenrow:first-child{border-top:0}
+.lenrow:hover{background:var(--raise)}
+.lenrow .tx{min-width:0}
+.lenrow .tx .c{font-size:15px;line-height:1.4;display:block}
+.lenrow .tx small{display:block;color:var(--ink-3);font-size:12px;margin-top:2px}
+.lenrow .track{height:8px;border-radius:4px;background:var(--line);position:relative}
+.lenrow .track i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:var(--c)}
+.lenrow .track .lim{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink-2)}
+.lenrow .track .lim.soft{background:var(--ink-4)}
+.lenrow .v{text-align:right;font-variant-numeric:tabular-nums;font-weight:650}
+.lenrow.flag-on .v{color:var(--s1)}
+.sheetbox{background:var(--sheet);border-radius:14px;box-shadow:var(--shadow);padding:6px 16px}
+.quarters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:18px}
+.qcol{background:var(--sheet);border-radius:12px;box-shadow:var(--shadow);padding:12px 14px 14px;min-width:0}
+.qcol h5{margin:0 0 10px;font:650 12.5px var(--sans)}
+.qline{display:grid;grid-template-columns:minmax(0,1fr) auto;font-size:12px;gap:2px 8px;margin-top:8px}
+.qline .nm{color:var(--ink-3)}
+.qline .v{font-weight:650;font-variant-numeric:tabular-nums}
+.qline .tr{grid-column:1/3;height:6px;border-radius:3px;background:var(--line);position:relative}
+.qline .tr i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--violet-2)}
+.qline .tr b{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink)}
+
+/* ── Ficha del ejercicio ───────────────────────────────────────────────── */
+.drawer{position:fixed;right:0;top:60px;bottom:0;width:480px;max-width:100vw;background:var(--canvas);box-shadow:var(--pop);border-left:1px solid var(--line);z-index:30;transform:translateX(104%);transition:transform .22s cubic-bezier(.3,.7,.3,1);display:flex;flex-direction:column}
+.drawer.open{transform:none}
+.dh{display:flex;align-items:center;gap:10px;padding:12px 14px 12px 20px;border-bottom:1px solid var(--line);min-height:56px}
+.dpath{font-size:12.5px;color:var(--ink-3);min-width:0;flex:1;display:flex;gap:6px;align-items:baseline;flex-wrap:wrap}
+.dpath button{color:var(--ink-2);font-weight:550}
+.dpath button:hover{color:var(--violet)}
+.dnav{display:flex;align-items:center;gap:2px;font-size:12.5px;color:var(--ink-3);white-space:nowrap}
+.dnav span{padding:0 6px;font-variant-numeric:tabular-nums}
+.dnav button{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;color:var(--ink-2)}
+.dnav button:hover{background:var(--line);color:var(--ink)}
+.dnav svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dbody{overflow:auto;flex:1;padding:18px 20px 60px;scrollbar-width:thin}
+.sv{background:var(--sheet);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.sv .row{display:grid;grid-template-columns:84px minmax(0,1fr);gap:0 14px;padding:13px 18px 13px 0;border-top:1px solid var(--line)}
+.sv .row:first-child{border-top:0}
+.sv .row > .lbl{font:550 12px/1.35 var(--sans);color:var(--ink-3);text-align:right;padding-top:3px}
+.sv .row.hero-row{padding-top:22px;padding-bottom:20px}
+.sv .ins{font-size:15px;line-height:1.5}
+.sv .snt{font-size:26px;line-height:1.3;font-weight:450;letter-spacing:-.005em}
+.sv .ans{font-size:16px;color:var(--ink-2)}
+.sv .tr{font-size:15px;font-style:italic;color:var(--ink-2)}
+.sv .mt{font-size:14.5px;line-height:1.6}
+.opts{display:flex;flex-wrap:wrap;gap:7px}
+.opt{display:inline-flex;align-items:center;gap:7px;font:500 15px/1 var(--serif);padding:8px 13px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--sheet)}
+.opt.right{border-color:var(--ink-2)}
+.opt.right::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ok)}
+.dsec{margin-top:26px}
+.dsec > h4{margin:0 0 10px;font:650 13.5px/1.3 var(--sans);display:flex;align-items:baseline;gap:8px}
+.dsec > h4 span{font-weight:500;color:var(--ink-3);font-size:12px;margin-left:auto}
+.res{display:flex;flex-direction:column;background:var(--sheet);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.res .fd{padding:12px 16px 13px 14px}
+.res .fd .an-name{font:600 13.5px/1.3 var(--sans);color:var(--ink);flex-basis:100%;margin-bottom:1px}
+.res .fd .an-name button:hover{color:var(--violet)}
+.restline{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:10px;font-size:12px;color:var(--ink-3)}
+.restline > span:first-child{margin-right:4px}
+.vfacts{display:flex;flex-direction:column;gap:12px;background:var(--sheet);border-radius:14px;box-shadow:var(--shadow);padding:14px 16px}
+.vf{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;font-size:13px;align-items:start}
+.vf > span:first-child{color:var(--ink-3);font-size:12.5px;padding-top:1px}
+.ruler{position:relative;height:22px;margin-top:2px}
+.ruler .base{position:absolute;left:0;right:0;top:10px;height:2px;background:var(--line)}
+.ruler .ok{position:absolute;top:7px;height:8px;border-radius:4px;background:var(--ok-bg);box-shadow:inset 0 0 0 1px var(--ok)}
+.ruler .mark{position:absolute;top:3px;width:3px;height:16px;border-radius:2px;background:var(--ink);margin-left:-1.5px}
+.qid{margin-top:22px;font-size:11.5px;color:var(--ink-4);font-variant-numeric:tabular-nums}
+
+/* ── Palabras ──────────────────────────────────────────────────────────── */
+.wi-head{position:sticky;top:-14px;background:var(--canvas);padding:0 2px 10px;margin:-14px -2px 0;padding-top:14px;z-index:2;display:flex;flex-direction:column;gap:10px}
+.wsearch{display:flex;align-items:center;gap:8px;height:34px;padding:0 10px;border-radius:9px;border:1px solid var(--line-2);background:var(--sheet)}
+.wsearch svg{width:15px;height:15px;fill:none;stroke:var(--ink-3);stroke-width:2;flex:none}
+.wsearch input{border:0;outline:0;background:none;flex:1;min-width:0;font-size:13.5px}
+.wfilters{display:flex;flex-wrap:wrap;gap:4px}
+.wfilters button{height:26px;padding:0 9px;border-radius:7px;font-size:12px;font-weight:550;color:var(--ink-2);background:var(--line);display:inline-flex;gap:6px;align-items:center}
+.wfilters button span{color:var(--ink-3);font-variant-numeric:tabular-nums;font-weight:500}
+.wfilters button[aria-pressed="true"]{background:var(--ink);color:var(--sheet)}
+.wfilters button[aria-pressed="true"] span{color:var(--sheet);opacity:.7}
+.wrow{display:grid;grid-template-columns:minmax(0,1fr) auto 8px;gap:10px;align-items:center;width:100%;padding:6px 10px;border-radius:8px}
+.wrow:hover{background:var(--line)}
+.wrow[aria-current]{background:var(--sheet);box-shadow:var(--shadow)}
+.wrow .lem{font:500 15px/1.3 var(--serif);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wrow .lem small{font:500 11.5px var(--sans);color:var(--ink-3);margin-left:6px}
+.wrow .val{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;white-space:nowrap}
+.wrow i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.wi-count{font-size:12px;color:var(--ink-3);padding:4px 10px 6px}
+.whead .back{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:550;color:var(--ink-3);margin-bottom:10px}
+.whead .back:hover{color:var(--ink)}
+.whead .back svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.2}
+.wtitle{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.wtitle h2{margin:0;font:500 52px/1 var(--serif);letter-spacing:-.02em}
+.wtitle .meta{font-size:13.5px;color:var(--ink-3)}
+.wtitle .meta b{color:var(--ink-2);font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}
+.fact{background:var(--sheet);border-radius:12px;box-shadow:var(--shadow);padding:13px 15px 14px;min-width:0}
+.fact .k{font-size:12px;color:var(--ink-3)}
+.fact .v{font:650 22px/1.2 var(--sans);font-variant-numeric:tabular-nums;margin-top:3px;font-variation-settings:"wdth" 88}
+.fact .s{font-size:12px;color:var(--ink-3);margin-top:3px;line-height:1.35}
+.fact .s.bad{color:var(--s1)} .fact .s.good{color:var(--ok)}
+.barcode .tick{stroke:var(--violet);stroke-width:1.6}
+.barcode .tick-hit{stroke:transparent;stroke-width:10;cursor:pointer}
+.barcode .ubg{fill:var(--raise)}
+.barcode .ubg.alt{fill:var(--line)}
+.barcode .gapb{stroke:var(--s1);stroke-width:1.5;fill:none}
+.barcode .gapl{fill:var(--s1);font-weight:650}
+.barcode .ulbl{font:600 10.5px var(--sans);fill:var(--ink-3)}
+
+/* ── Capas: tooltip, paleta, menú ──────────────────────────────────────── */
+.tip{position:fixed;z-index:70;pointer-events:none;background:var(--ink);color:var(--sheet);border-radius:10px;padding:9px 12px 10px;max-width:320px;font-size:12.5px;line-height:1.4;box-shadow:var(--pop);opacity:0;transition:opacity .08s}
+.tip.on{opacity:1}
+.tip .c{font-size:15px;display:block;margin:2px 0 3px}
+.tip .gap{opacity:.8}
+.tip small{display:block;opacity:.7;font-size:11.5px}
+.tip .st{display:flex;align-items:center;gap:6px;margin-top:4px;font-weight:600}
+.tip .st i{width:8px;height:8px;border-radius:2px;background:var(--c)}
+.scrim{position:fixed;inset:0;background:rgba(18,16,42,.36);z-index:60;animation:fade .15s}
+@keyframes fade{from{opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}}
+.pal{position:absolute;left:50%;top:12vh;transform:translateX(-50%);width:min(620px,calc(100vw - 32px));background:var(--sheet);border-radius:16px;box-shadow:var(--pop);overflow:hidden;animation:rise .16s}
+.pal label{display:flex;align-items:center;gap:10px;padding:0 16px;height:54px;border-bottom:1px solid var(--line)}
+.pal label svg{width:18px;height:18px;fill:none;stroke:var(--ink-3);stroke-width:2;flex:none}
+.pal input{border:0;outline:0;background:none;font-size:16px;flex:1;min-width:0}
+#palr{max-height:min(60vh,480px);overflow:auto;padding:6px}
+.pal h5{margin:10px 10px 4px;font:600 11.5px var(--sans);color:var(--ink-3)}
+.pal .it{display:flex;gap:10px;align-items:baseline;width:100%;padding:8px 10px;border-radius:9px;font-size:13.5px}
+.pal .it[aria-selected="true"]{background:var(--violet-soft)}
+.pal .it .c{font-size:15px}
+.pal .it .t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pal .it small{color:var(--ink-3);font-size:12px;margin-left:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:45%}
+.pal .empty{padding:18px 12px;color:var(--ink-3);font-size:13px}
+.menu{position:fixed;z-index:65;background:var(--sheet);border-radius:12px;box-shadow:var(--pop);padding:6px;min-width:270px;border:1px solid var(--line);animation:rise .14s}
+.menu .mi{display:flex;gap:10px;align-items:center;width:100%;text-align:left;padding:9px 10px;border-radius:8px;font-size:13.5px}
+.menu .mi small{display:block;font-size:12px;color:var(--ink-3)}
+.menu .mi .ck{margin-left:auto;color:var(--violet);font-weight:700}
+.menu .note{font-size:12px;color:var(--ink-3);padding:6px 10px 8px;line-height:1.45;max-width:290px}
+.side-scrim{display:none}
+
+@media (max-width:1180px){
+  .app{grid-template-columns:60px 248px minmax(0,1fr)}
+  .an{grid-template-columns:1fr}
+  .prov{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:18px}
+  .two{grid-template-columns:1fr;gap:0}
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .searchbtn .lbl{display:none}
+}
+@media (max-width:980px){
+  .app{grid-template-columns:0 0 minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+  .rail{display:none}
+  .top{grid-column:1/4;flex-wrap:wrap;padding:10px 14px;gap:10px}
+  .top h1{font-size:17px}
+  .modes{order:3;margin:0;width:100%}
+  .modes button{flex:1;justify-content:center}
+  .batch span{display:none}
+  .batch button{border-left:0}
+  .status{margin-left:auto}
+  .index{position:fixed;left:0;top:0;bottom:0;width:300px;background:var(--canvas);z-index:40;box-shadow:var(--pop);transform:translateX(-104%);transition:transform .2s;border-right:0}
+  .app.show-side .index{transform:none}
+  .app.show-side .side-scrim{display:block;position:fixed;inset:0;z-index:39;background:rgba(18,16,42,.3)}
+  .stage{grid-column:1/4}
+  .mobile-only{display:inline-flex}
+  .head,.hero,.legend,.reading{padding-left:16px;padding-right:16px}
+  .title h2{font-size:25px}
+  .lede{font-size:14.5px}
+  .drawer{top:0;width:100vw;z-index:50}
+  .trow{grid-template-columns:1fr;gap:6px}
+  .brow{grid-template-columns:minmax(0,120px) minmax(0,1fr) 78px}
+  .exs{grid-template-columns:1fr}
+  .quarters{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wtitle h2{font-size:40px}
+  .an{padding:20px 18px}
+  .how{grid-template-columns:1fr;gap:2px}
+  .how dd{margin-bottom:8px}
+  .lenrow{grid-template-columns:minmax(0,1fr) 54px}
+  .lenrow .track{grid-column:1/3;grid-row:2}
+  .sv .row{grid-template-columns:1fr;padding:12px 16px}
+  .sv .row > .lbl{text-align:left;padding:0 0 4px}
+}
+@media (max-width:620px){
+  .batch{display:none}
+}
+@media (max-width:520px){
+  /* en el celular el nombre va en su renglón: cortado a la mitad no se lee */
+  .brow,.bars.wide .brow{grid-template-columns:minmax(0,1fr) auto!important;row-gap:5px;padding:7px 6px}
+  .brow .nm{grid-column:1 / -1;white-space:normal}
+  .facts{grid-template-columns:1fr 1fr}
+  .fact .v{font-size:19px}
+  .ev{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <nav class="rail" aria-label="Secciones">
+    <div class="brand" aria-hidden="true">l</div>
+    <a href="#" data-label="Centro"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></a>
+    <a href="estadisticas.html" data-label="Estadísticas" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M6 20v-6M10 20V8M14 20v-9M18 20V5"/></svg></a>
+    <a href="#" data-label="Ejecuciones"><svg viewBox="0 0 24 24"><path d="M3.5 17l5-6 4 3.5 7.5-8.5"/><path d="M15 6h5v5"/></svg></a>
+    <a href="correcciones.html" data-label="Correcciones"><svg viewBox="0 0 24 24"><path d="M4 7h10M4 12h7M4 17h5"/><path d="M13.5 18.5l1-3.5 5.5-5.5 2.5 2.5-5.5 5.5z"/></svg></a>
+    <a href="#" data-label="Comparación"><svg viewBox="0 0 24 24"><path d="M4 9h13l-3.5-3.5M20 15H7l3.5 3.5"/></svg></a>
+    <div class="spacer"></div>
+    <a href="#" data-label="Ajustes"><svg viewBox="0 0 24 24"><path d="M5 7h8M17 7h2M5 17h2M11 17h8"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg></a>
+    <a href="#" data-label="Historial"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4.5l3 2"/></svg></a>
+  </nav>
+  <header class="top" id="top"></header>
+  <aside class="index" id="index" aria-label="Qué mirar"></aside>
+  <div class="side-scrim" data-act="side"></div>
+  <main class="stage" id="stage"></main>
+</div>
+<aside class="drawer" id="drawer" aria-label="Ficha del ejercicio"></aside>
+<div class="tip" id="tip" role="tooltip"></div>
+<div id="layer"></div>
+
+<script src="estadisticas/curso-a1.js"></script>
+<script>
+"use strict";
+/* ════════════════════════════════════════════════════════════════════════
+   Datos: el análisis real de la campaña A1 (7/10, 08:15), con su digest,
+   el informe completo y el catálogo de analizadores. Ver curso-a1.js.
+   ════════════════════════════════════════════════════════════════════════ */
+const C = window.CURSO;
+const N = C.nodes, Q = C.quizzes, F = C.findings, W = C.words, A = C.analyzers;
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = n => Number(n).toLocaleString("es-AR");
+const fmt1 = n => Number(n).toLocaleString("es-AR", {maximumFractionDigits: 1});
+const NB = " ";
+const pct = (a, b) => { if (!b) return "—"; const p = 100 * a / b; return (p > 0 && p < 1 ? "<1" : String(Math.round(p))) + NB + "%"; };
+const pts = x => x == null ? "—" : String(Math.round(100 * x));
+const plain = s => String(s ?? "").replace(/\$([^$]+)\$/g, "$1");
+const rich = s => esc(s).replace(/\$([^$]+)\$/g, '<span class="en">$1</span>');
+const gapify = s => esc(s).replace(/_{2,}/g, '<span class="gap"></span>');
+const ICON = {
+  menu: '<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>',
+  search: '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>',
+  theme: '<svg viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5A6.5 6.5 0 0 1 12 3.5z"/></svg>',
+  chev: '<svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+  left: '<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>',
+  right: '<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>',
+  close: '<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  warn: '<svg viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4.5M12 17.3v.2"/></svg>',
+  check: '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  back: '<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>',
+};
+
+/* ── Analizadores ──────────────────────────────────────────────────────── */
+const AN = new Map(A.map((a, i) => [a.id, Object.assign(a, {i})]));
+// El catálogo trae algunas reglas con su código adelante («F-PISTA-R002: …»); acá se lee sólo la regla.
+A.forEach(a => a.rules.forEach(r => { const d = r[1].replace(/^F-[A-Z]+-R\d+[a-z]?\s*:\s*/, ""); r[1] = d.charAt(0).toUpperCase() + d.slice(1); }));
+const SHORT = {
+  "quiz-instruction":"Consigna","multiple-choice-validity":"Opción múltiple","translation-sense":"Traducción",
+  "single-answer":"Una sola respuesta","mini-theory":"Miniteoría","grammar":"Gramática","naturalness":"Naturalidad",
+  "near-duplicates":"Casi repetido","answer-completeness":"Forma exigida","hint-coherence":"Pista",
+  "exact-duplicates":"Repetido igual","data-coherence":"Audio y respuesta","off-level-words":"Palabra de otro nivel",
+  "multiple-choice-quality":"Distractores",
+  "sentence-length":"Largo de la oración","knowledge-title-length":"Largo del título","knowledge-instructions-length":"Largo de la consigna",
+  "coca-buckets-distribution":"Frecuencia de las palabras","lemma-recurrence":"Cada cuánto vuelven","lemma-absence":"Vocabulario del nivel",
+  "lemma-count":"Oraciones por palabra"
+};
+const ERR = C.err;                                   // el orden del código de estado de cada ejercicio
+const ERRI = new Map(ERR.map((a, i) => [a, i]));
+const RAN = new Set(Object.keys(N[0].n.ea));         // los que corrieron en este análisis
+const ERR_RAN = ERR.filter(a => RAN.has(a));
+const VOC = A.filter(a => a.fam === "V").map(a => a.id);
+const SEVN = ["bloqueante", "alta", "media", "baja"];
+const COST = {INSTANT: ["Instantáneo, sin costo", "free"], PAID_MODEL: ["Modelo pago", "paid"], LOCAL_MODEL: ["Modelo local", "local"]};
+const RES = {PANEL: "Lo corrige la mesa", RULE: "Lo arregla una regla", RANK_ONLY: "Sólo ordena, no cuenta como error"};
+const EVAL = {Q: "cada ejercicio", K: "cada tema", M: "el nivel", C: "el curso"};
+const EFFORT = {low: "bajo", medium: "medio", high: "alto"};
+const POSAB = {VERB:"v.", NOUN:"s.", ADJ:"adj.", ADV:"adv.", PRON:"pron.", DET:"det.", ADP:"prep.", CONJ:"conj.", CCONJ:"conj.", SCONJ:"conj.", NUM:"núm.", PROPN:"n. pr.", INTJ:"interj.", AUX:"aux.", PART:"part."};
+// Todo se cuenta por palabra y función: «in» adverbio no es «in» preposición, así que el chip lo dice.
+const lem = (l, p) => `<span class="lem">${esc(l)}</span>${p ? `<i class="pa" title="${POS[p] || p}">${POSAB[p] || esc(p.toLowerCase())}</i>` : ""}`;
+const POS = {VERB:"verbo", NOUN:"sustantivo", ADJ:"adjetivo", ADV:"adverbio", PRON:"pronombre", DET:"determinante", ADP:"preposición", CONJ:"conjunción", CCONJ:"conjunción", SCONJ:"conjunción", NUM:"número", PROPN:"nombre propio", INTJ:"interjección", AUX:"auxiliar", PART:"partícula"};
+const BAND = {top1k: "Entre las 1.000 más comunes", top2k: "De 1.001 a 2.000", top3k: "De 2.001 a 3.000", top4k: "Más allá de 3.000"};
+const ASSESS = {OPTIMAL: "en meta", ACCEPTABLE: "aceptable", POOR: "lejos de la meta", OUT_OF_RANGE: "fuera de meta"};
+const PRIO = {HIGH: "alta", MEDIUM: "media", LOW: "baja"};
+const RANGE = C.lengthGoal.targetRanges.A1;
+
+/* ── Índices ───────────────────────────────────────────────────────────── */
+N.forEach((n, i) => { n.i = i; });
+(function collect(n) { n.all = n.t === "K" ? n.qs.slice() : n.kids.flatMap(k => collect(N[k])); return n.all; })(N[0]);
+const UNITS = N.filter(n => n.t === "T");
+UNITS.forEach((u, i) => { u.num = i + 1; });
+const TEMAS = N.filter(n => n.t === "K");
+TEMAS.forEach(k => { k.unit = N[k.parent]; });
+const fquiz = [], fnode = [];
+N.forEach(n => (n.f || []).forEach(fi => { fnode[fi] = n.i; }));
+Q.forEach((q, i) => {
+  q.i = i; q.tema = N[q.k]; q.unit = q.tema.unit; q.j = q.tema.qs.indexOf(i);
+  q.fa = new Map(); q.fsev = new Map();
+  for (const fi of q.f || []) {
+    fquiz[fi] = i;
+    const f = F[fi], a = A[f[0]].id;
+    if (!q.fa.has(a)) q.fa.set(a, []);
+    q.fa.get(a).push(fi);
+    q.fsev.set(a, Math.min(q.fsev.get(a) ?? 9, f[2]));
+  }
+  q.scm = new Map((q.sc || []).map(([ai, s]) => [A[ai].id, s]));
+  q.nerr = [...q.st].filter(ch => ch === "x").length;
+});
+const nodesUnder = n => [n, ...n.kids.flatMap(k => nodesUnder(N[k]))];
+const temasUnder = n => n.t === "K" ? [n] : n.kids.flatMap(k => temasUnder(N[k]));
+const childrenOf = n => n.t === "C" ? n.kids.flatMap(k => N[k].kids).map(k => N[k]) : n.kids.map(k => N[k]);
+const ancestors = n => { const out = []; let x = n; while (x) { out.unshift(x); x = x.parent != null ? N[x.parent] : null; } return out; };
+const nodeName = n => n.t === "C" ? "Curso completo" : n.t === "M" ? `Nivel ${n.label}` : n.label;
+const nodeOf = n => n.t === "C" ? "del curso" : n.t === "M" ? `de ${n.label}` : n.t === "T" ? `de ${plain(n.label)}` : "del tema";
+
+// Palabras: la recurrencia trae las posiciones; la exposición, el nivel y el umbral.
+const WD = new Map();
+const wkey = (l, p) => l + "|" + p;
+for (const r of W.rec) WD.set(wkey(r[0], r[1]), {lemma: r[0], pos: r[1], times: r[2], mean: r[3], st: r[4], gap: r[5], ps: r[6]});
+for (const e of W.exp) {
+  const k = wkey(e[0], e[1]); const w = WD.get(k) || {lemma: e[0], pos: e[1]};
+  Object.assign(w, {level: e[2], sents: e[3], coca: e[4], band: e[5], thr: e[6], cs: e[7], temas: e[8]}); WD.set(k, w);
+}
+for (const a of W.absent.list) { const k = wkey(a[0], a[1]); if (!WD.has(k)) WD.set(k, {lemma: a[0], pos: a[1]}); Object.assign(WD.get(k), {absent: true, prio: a[2], coca: a[3], cat: a[4], level: "A1"}); }
+WD.forEach((w, k) => { w.key = k; });
+const byLemma = new Map(); WD.forEach(w => { if (!byLemma.has(w.lemma.toLowerCase())) byLemma.set(w.lemma.toLowerCase(), w); });
+// Palabras de otro nivel y fuera del catálogo, juntadas desde los ejercicios.
+const MIS = new Map(), OOC = new Map();
+Q.forEach(q => {
+  for (const [l, lvl, ty] of q.mis || []) { if (!MIS.has(l)) MIS.set(l, {lemma: l, lvl, ty, qs: []}); MIS.get(l).qs.push(q.i); }
+  for (const l of q.ooc || []) { if (!OOC.has(l)) OOC.set(l, {lemma: l, qs: []}); OOC.get(l).qs.push(q.i); }
+});
+// Posición del curso → ejercicio
+const STARTS = []; Q.forEach((q, i) => { STARTS[i] = q.pos ? q.pos[0] : (STARTS[i - 1] ?? 0); });
+function quizAt(p) { let lo = 0, hi = Q.length - 1, ans = -1; while (lo <= hi) { const m = (lo + hi) >> 1; if (STARTS[m] <= p) { ans = m; lo = m + 1; } else hi = m - 1; } return ans; }
+const QW = Q.map(() => []);
+WD.forEach(w => { if (!w.ps) return; w.qs = []; for (const p of w.ps) { const qi = quizAt(p); if (qi >= 0 && w.qs[w.qs.length - 1] !== qi) { w.qs.push(qi); QW[qi].push(w.key); } } });
+UNITS.forEach(u => { const ps = u.all.map(i => Q[i].pos).filter(Boolean); u.p0 = Math.min(...ps.map(p => p[0])); u.p1 = Math.max(...ps.map(p => p[1])); });
+const wstatus = w => w.absent ? "w-a" : w.st === "s" ? "w-s" : w.st === "o" ? "w-o" : w.st === "n" ? "w-n" : "w-x";
+const WSTATUS = {"w-a": "falta en el curso", "w-s": "vuelve tarde", "w-o": "vuelve demasiado seguido", "w-n": "vuelve a un intervalo sano", "w-x": "sin medir su recurrencia"};
+
+/* ── Estado ────────────────────────────────────────────────────────────── */
+const S = {mode: "mapa", node: 1, lens: "calidad", order: "sev", quiz: null, word: null, wf: "todas", wq: "", hl: null, rule: null, limit: 20, palSel: 0, palItems: []};
+try { const th = localStorage.getItem("correcciones-tema"); if (th) document.documentElement.dataset.theme = th; } catch (e) {}
+
+/* ── Qué color lleva cada ejercicio según lo que estás mirando ─────────── */
+function vclass(v) { return v >= 0.999 ? "s4" : v >= 0.9 ? "v1" : v >= 0.7 ? "v2" : "v3"; }
+const temaFlag = {};  // analizador de tema → set de temas marcados
+for (const id of ["knowledge-title-length", "knowledge-instructions-length"]) {
+  const ai = AN.get(id).i; temaFlag[id] = new Map();
+  TEMAS.forEach(k => (k.f || []).forEach(fi => { if (F[fi][0] === ai) temaFlag[id].set(k.i, fi); }));
+}
+function cellOf(q) {
+  const L = S.lens;
+  if (L === "err" || L === "calidad") return q.sev < 4 ? ["s" + q.sev, q.sev, `Su error más grave es de gravedad ${SEVN[q.sev]}`] : ["s4", 4, "Sin errores"];
+  if (L === "voc") return [vclass(q.vs), q.vs, `Vocabulario: ${pts(q.vs)} sobre 100`];
+  if (ERRI.has(L)) {
+    const ch = q.st[ERRI.get(L)];
+    if (ch === "x") { const s = q.fsev.get(L) ?? 3; return ["s" + s, s, `${SHORT[L]}: error de gravedad ${SEVN[s]}`]; }
+    if (ch === "m") return ["mk", 3.5, `${SHORT[L]}: marcado para revisar primero`];
+    if (ch === "p" || ch === "n") return ["ne", 3.7, `${SHORT[L]}: sin evaluar del todo`];
+    if (ch === "o") return ["s4", 4, `${SHORT[L]}: sin problema`];
+    return ["na", 5, `${SHORT[L]}: no aplica a este ejercicio`];
+  }
+  if (L === "sentence-length") { const s = q.scm.get(L) ?? 1; return [vclass(s), s, `${q.tok} tokens; A1 pide de ${RANGE.minTokens} a ${RANGE.maxTokens}`]; }
+  if (L === "lemma-absence") {
+    const s = q.scm.get(L) ?? 1, bits = [...(q.mis || []).map(m => `${m[0]} es de ${m[1]}`), ...(q.ooc || []).map(o => `${o} no está en el catálogo`)];
+    return [vclass(s), s, bits.length ? bits.join("; ") : "Todas sus palabras son del nivel"];
+  }
+  if (L === "lemma-recurrence") {
+    const ws = QW[q.i].map(k => WD.get(k)); const late = ws.filter(w => w.st === "s"), often = ws.filter(w => w.st === "o");
+    if (late.length) return [late.length > 1 ? "v2" : "v1", 1 - late.length / 10, `Vuelven tarde: ${late.map(w => w.lemma).join(", ")}`];
+    if (often.length) return ["v1", .95, `Vuelven demasiado seguido: ${often.map(w => w.lemma).join(", ")}`];
+    return ["s4", 1, "Sus palabras vuelven a un intervalo sano"];
+  }
+  if (temaFlag[L]) return temaFlag[L].has(q.k) ? ["v2", .5, `El tema tiene ${L === "knowledge-title-length" ? "el título" : "la consigna"} largo`] : ["s4", 1, "El tema está bien"];
+  return ["na", 1, "Esta medida no se toma ejercicio por ejercicio"];
+}
+function ordered(qs) {
+  if (S.order !== "sev") return qs;
+  const k = new Map(qs.map(qi => [qi, cellOf(Q[qi])[1]]));
+  return [...qs].sort((a, b) => k.get(a) - k.get(b) || Q[b].nerr - Q[a].nerr || a - b);
+}
+
+/* ── Arriba ────────────────────────────────────────────────────────────── */
+function renderTop() {
+  const lensName = S.lens === "calidad" ? "Calidad" : S.lens === "err" ? "Errores" : S.lens === "voc" ? "Vocabulario" : SHORT[S.lens];
+  $("#top").innerHTML = `
+    <h1>Estadísticas</h1>
+    <div class="batch"><span>Curso <b>A1</b>, versión 11</span><button data-act="audits" aria-haspopup="menu">Análisis del 7/10 ${ICON.chev}</button></div>
+    <nav class="modes" aria-label="Modo">
+      <button aria-pressed="${S.mode === "mapa"}" data-act="mode" data-v="mapa">Ejercicios <span class="count">${fmt(Q.length)}</span></button>
+      <button aria-pressed="${S.mode === "palabras"}" data-act="mode" data-v="palabras">Palabras <span class="count">${fmt([...WD.values()].filter(w => !w.absent).length)}</span></button>
+    </nav>
+    <div class="status">
+      <button class="searchbtn mobile-only" data-act="side" style="font-size:12.5px;color:var(--ink-2)" aria-label="${S.mode === "mapa" ? "Qué mirar" : "Lista de palabras"}">${S.mode === "mapa" ? esc(lensName) : "Lista"} ${ICON.chev}</button>
+      <button class="searchbtn" data-act="palette">${ICON.search}<span class="lbl">Buscar</span><kbd>⌘K</kbd></button>
+      <button class="iconbtn" data-act="theme" aria-label="Cambiar entre claro y oscuro">${ICON.theme}</button>
+    </div>`;
+}
+
+/* ── Índice: qué mirar ─────────────────────────────────────────────────── */
+function errRows(n) {
+  return ERR.map(id => {
+    const ea = n.ea[id];
+    if (!RAN.has(id)) return {id, off: "no corrió", k: -2};
+    if (!ea || !ea[0]) return {id, off: "no aplica", k: -1};
+    const [r, , , w, m] = ea;
+    return {id, r, w, m, k: w ? w / r : m / r / 1000};
+  }).sort((a, b) => b.k - a.k);
+}
+function vocScore(node, id) {
+  const v = node.n.sc[id];
+  if (v == null) return null;
+  if (id === "coca-buckets-distribution" && node.t === "T") return null;   // da 0 en las unidades, pero ahí no tiene metas
+  return v;
+}
+
+/* ── Calidad: cuánto de cada cosa está bien ─────────────────────────────── */
+// En el sentido del reloj desde arriba: el idioma, lo que acompaña al ejercicio, la respuesta y los datos.
+const QAX = ["voc", "off-level-words", "grammar", "naturalness", "translation-sense", "quiz-instruction", "hint-coherence", "mini-theory",
+  "answer-completeness", "single-answer", "multiple-choice-validity", "multiple-choice-quality", "data-coherence", "exact-duplicates", "near-duplicates"]
+  .filter(id => id === "voc" || ERRI.has(id));
+const qname = id => id === "voc" ? "Vocabulario" : SHORT[id];
+function qaxis(node, id) {
+  if (id === "voc") {
+    const vs = VOC.map(v => vocScore(node, v)).filter(v => v != null);
+    return vs.length ? {id, v: vs.reduce((a, b) => a + b, 0) / vs.length, k: vs.length} : {id, off: "no aplica"};
+  }
+  if (!RAN.has(id)) return {id, off: "no corrió"};
+  const ea = node.n.ea[id];
+  if (!ea || !ea[0]) return {id, off: "no aplica"};
+  const [r, , , w, m] = ea;
+  return {id, v: 1 - w / r, r, w, m};   // 25 % con error → 75 bien
+}
+const QC = new Map();
+function quality(node) {
+  if (!QC.has(node.i)) {
+    const axes = QAX.map(id => qaxis(node, id)), on = axes.filter(a => !a.off);
+    const worst = on.length ? on.reduce((a, b) => b.v < a.v ? b : a) : null;
+    QC.set(node.i, {axes, on, worst, score: on.length ? 100 * on.reduce((s, a) => s + a.v, 0) / on.length : null});
+  }
+  return QC.get(node.i);
+}
+const qs = p => p == null ? "—" : Number(p).toLocaleString("es-AR", {minimumFractionDigits: 1, maximumFractionDigits: 1});
+// lo que no es perfecto nunca se redondea a 100
+const qf = p => p >= 100 ? "100" : p >= 99 ? fmt1(Math.floor(p * 10) / 10) : String(Math.round(p));
+function miniRadar(qq) {
+  const n = qq.axes.length, p = qq.axes.map((a, i) => a.off ? null : [Math.cos((-90 + 360 * i / n) * Math.PI / 180) * a.v, Math.sin((-90 + 360 * i / n) * Math.PI / 180) * a.v]).filter(Boolean);
+  return `<svg class="mini" viewBox="-1.05 -1.05 2.1 2.1" aria-hidden="true"><circle class="ring" r="1"/><circle class="ring" r=".5"/><polygon class="poly" points="${p.map(x => x.map(v => v.toFixed(3)).join(",")).join(" ")}"/></svg>`;
+}
+function radar(node) {
+  const qq = quality(node), axes = qq.axes, n = axes.length;
+  const avail = chartW(), compact = avail < 600;
+  const GAP = compact ? 9 : 16, LH = compact ? 30 : 38;
+  const W = Math.min(avail, 860), R = Math.max(70, Math.min(compact ? 150 : 215, (W - 2 * (GAP + (compact ? 74 : 150))) / 2));
+  const LW = Math.min(compact ? 80 : 190, W / 2 - R - GAP - 2);   // lo que queda a cada lado para los rótulos
+  const cx = W / 2, cy = LH + GAP + R + 10, H = cy + R + GAP + LH + 10;
+  // con el número en el centro, el 0 es el borde de ese círculo: ningún punto queda tapado
+  const showCore = R >= 150, r0 = showCore ? R * .22 : 0, rad = v => r0 + (R - r0) * v;
+  const ang = i => (-90 + 360 * i / n) * Math.PI / 180;
+  const pt = (i, v) => [cx + Math.cos(ang(i)) * rad(v), cy + Math.sin(ang(i)) * rad(v)].map(x => +x.toFixed(1));
+  const kids = childrenOf(node).map(c => [c, quality(c)]), kidName = node.t === "T" ? "tema" : "unidad";
+  let s = "";
+  for (const v of [.25, .5, .75, 1]) s += `<circle class="ring ${v === 1 ? "o" : ""}" cx="${cx}" cy="${cy}" r="${rad(v)}"/>`;
+  axes.forEach((a, i) => { const [x0, y0] = pt(i, 0), [x, y] = pt(i, 1); s += `<line class="spoke ${a.off ? "off" : ""}" x1="${x0}" y1="${y0}" x2="${x}" y2="${y}"/>`; });
+  // de la peor a la mejor unidad (o tema), en cada medida
+  if (kids.length > 1) axes.forEach((a, i) => {
+    if (a.off) return;
+    const vals = kids.map(([c, k]) => [c, k.axes[i]]).filter(([, x]) => !x.off);
+    if (vals.length < 2) return;
+    const lo = vals.reduce((p, c) => c[1].v < p[1].v ? c : p), hi = vals.reduce((p, c) => c[1].v > p[1].v ? c : p);
+    if (hi[1].v - lo[1].v < .004) return;
+    const [x1, y1] = pt(i, lo[1].v), [x2, y2] = pt(i, hi[1].v);
+    s += `<line class="rng" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" data-tt="${esc(qname(a.id))}, por ${kidName}: de ${qf(100 * lo[1].v)} en ${esc(plain(lo[0].label))} a ${qf(100 * hi[1].v)} en ${esc(plain(hi[0].label))}"/>`;
+  });
+  s += `<circle class="mean" cx="${cx}" cy="${cy}" r="${rad(qq.score / 100)}"/>`;
+  s += `<polygon class="poly" points="${axes.map((a, i) => a.off ? null : pt(i, a.v).join(",")).filter(Boolean).join(" ")}"/>`;
+  if (showCore) s += `<circle class="core-bg" cx="${cx}" cy="${cy}" r="${r0}"/>`;
+  axes.forEach((a, i) => {
+    if (a.off) return;
+    const [x, y] = pt(i, a.v), tt = a.id === "voc" ? `Vocabulario: ${qf(100 * a.v)} sobre 100` : `${qname(a.id)}: ${qf(100 * a.v)}; ${a.w ? `${fmt(a.w)} de ${fmt(a.r)} ejercicios con error` : `ninguno de ${fmt(a.r)} con error`}`;
+    s += `<circle class="vx ${a === qq.worst ? "worst" : ""}" cx="${x}" cy="${y}" r="${compact ? 3 : 4.2}" data-tt="${esc(tt)}"/>`;
+  });
+  for (const v of [.25, .5, .75]) s += `<text x="${cx + 5}" y="${cy - rad(v) - 4}">${100 * v}</text>`;
+  const labs = axes.map((a, i) => {
+    const c = Math.cos(ang(i)), sn = Math.sin(ang(i)), x = cx + c * (R + GAP), y = cy + sn * (R + GAP);
+    const tx = c > .1 ? "0" : c < -.1 ? "-100%" : "-50%", ty = sn < -.5 ? "-100%" : sn > .5 ? "0" : "-50%";
+    const sub = a.off ? "" : a.id === "voc" ? `promedio de ${a.k} medidas` : a.w ? `${fmt(a.w)} de ${fmt(a.r)} con error` : a.m ? (a.m > 1 ? `${fmt(a.m)} marcados, no restan` : "1 marcado, no resta") : `ninguno con error`;
+    return `<button class="lab ${a.off ? "off" : ""} ${a === qq.worst ? "worst" : ""}" style="left:${x.toFixed(1)}px;top:${y.toFixed(1)}px;max-width:${LW}px;transform:translate(${tx},${ty});text-align:${tx === "0" ? "left" : tx === "-50%" ? "center" : "right"}" data-act="lens" data-v="${a.id}" title="${esc(a.id === "voc" ? "Puntaje de vocabulario" : AN.get(a.id).name)}"><span class="nm">${qname(a.id)}</span> <span class="p">${a.off ? a.off : qf(100 * a.v)}</span>${compact || !sub ? "" : `<small>${sub}</small>`}</button>`;
+  }).join("");
+  const core = showCore ? `<div class="core" style="left:${cx}px;top:${cy}px"><b>${qs(qq.score)}</b><span>calidad</span></div>` : "";
+  const key = `<p class="radar-key"><span><svg width="16" height="12"><path d="M2 10 L8 2 L14 8 Z" fill="var(--violet)" fill-opacity=".14" stroke="var(--violet)" stroke-width="1.6" stroke-linejoin="round"/></svg>lo que está bien, de 0 a 100</span>${kids.length > 1 ? `<span><svg width="18" height="10"><line x1="4" y1="5" x2="14" y2="5" stroke="var(--ink-4)" stroke-opacity=".5" stroke-width="7" stroke-linecap="round"/></svg>de la peor a la mejor ${kidName}</span>` : ""}<span><svg width="20" height="10"><line x1="1" y1="5" x2="19" y2="5" stroke="var(--ink-3)" stroke-width="1.2" stroke-dasharray="4 4"/></svg>el promedio: la calidad</span></p>`;
+  return `<div class="radar ${compact ? "compact" : ""}" style="width:${W}px;height:${H}px" data-cy="${cy}" role="group" aria-label="Calidad por medida"><svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true">${s}</svg>${core}${labs}</div>${key}
+    <p class="hero-note" style="text-align:center">Más lleno es mejor. Tocá una medida para ver sus errores${kids.length > 1 ? `, o pasá por una franja gris para ver qué ${kidName} está peor y cuál mejor` : ""}.</p>`;
+}
+// Los rótulos se ubican con un ancho estimado; si dos se pisan, se separan en vertical, hacia afuera del círculo.
+function settleRadar() {
+  const box = $(".radar"); if (!box) return;
+  const b0 = box.getBoundingClientRect(), cy = +box.dataset.cy;
+  const L = [...box.querySelectorAll(".lab")].map(el => { const r = el.getBoundingClientRect(); return {el, t: r.top - b0.top, b: r.bottom - b0.top, l: r.left - b0.left, r: r.right - b0.left, dy: 0}; });
+  for (let it = 0; it < 60; it++) {
+    let moved = false;
+    for (let i = 0; i < L.length; i++) for (let j = i + 1; j < L.length; j++) {
+      const a = L[i], b = L[j], ox = Math.min(a.r, b.r) - Math.max(a.l, b.l), oy = Math.min(a.b + a.dy, b.b + b.dy) - Math.max(a.t + a.dy, b.t + b.dy);
+      if (ox <= 0 || oy <= -2) continue;
+      const [up, dn] = a.t + a.b + 2 * a.dy <= b.t + b.b + 2 * b.dy ? [a, b] : [b, a], d = oy + 2;
+      if ((up.t + up.b) / 2 + up.dy > cy) dn.dy += d; else if ((dn.t + dn.b) / 2 + dn.dy < cy) up.dy -= d; else { up.dy -= d / 2; dn.dy += d / 2; }
+      moved = true;
+    }
+    if (!moved) break;
+  }
+  for (const x of L) if (x.dy) x.el.style.top = parseFloat(x.el.style.top) + x.dy + "px";
+  const top = Math.min(0, ...L.map(x => x.t + x.dy)), bot = Math.max(box.clientHeight, ...L.map(x => x.b + x.dy));
+  if (top < 0) box.style.marginTop = -top + "px";
+  if (bot > box.clientHeight) box.style.height = bot + "px";
+}
+function renderIndex() {
+  const n = N[S.node], nn = n.n;
+  const cur = id => S.lens === id ? 'aria-current="true"' : "";
+  const qq = quality(n);
+  let h = `<div class="ix-group">
+    <button class="ix lead ql" data-act="lens" data-v="calidad" ${cur("calidad")}>${miniRadar(qq)}<span class="t">Calidad</span><span class="v num">${qs(qq.score)}</span>
+      <span class="why">sobre 100 ${nodeOf(n)}: cuánto de cada medida está bien</span></button></div>
+    <div class="ix-group">
+    <button class="ix lead" data-act="lens" data-v="err" ${cur("err")}><span class="t">Errores</span><span class="v num">${pct(nn.any, nn.q)}</span>
+      <span class="why">de los ejercicios ${nodeOf(n)} tienen alguno</span></button>`;
+  for (const r of errRows(nn)) {
+    const w = r.off ? 0 : Math.max(r.w ? 1.5 : 0, 100 * (r.w || r.m) / r.r);
+    const v = r.off ? r.off : r.w ? pct(r.w, r.r) : r.m ? `${fmt(r.m)} marc.` : "0" + NB + "%";
+    h += `<button class="ix ${r.off ? "off" : ""}" data-act="lens" data-v="${r.id}" ${cur(r.id)} title="${esc(AN.get(r.id).name)}">
+      <span class="t">${SHORT[r.id]}</span><span class="v">${v}</span><span class="meter"><i class="${!r.w && r.m ? "mk" : ""}" style="width:${w}%"></i></span></button>`;
+  }
+  h += `</div><div class="ix-group">
+    <button class="ix lead" data-act="lens" data-v="voc" ${cur("voc")}><span class="t">Vocabulario</span><span class="v num">${pts(nn.vs)}</span>
+      <span class="why">puntaje sobre 100 ${nodeOf(n)}</span></button>`;
+  for (const id of VOC) {
+    const v = vocScore(n, id);
+    h += `<button class="ix ${v == null ? "off" : ""}" data-act="lens" data-v="${id}" ${cur(id)} title="${esc(AN.get(id).name)}">
+      <span class="t">${SHORT[id]}</span><span class="v">${v == null ? "—" : pts(v)}</span><span class="meter"><i class="v2" style="width:${v == null ? 0 : 100 * v}%"></i></span></button>`;
+  }
+  h += `</div><p class="ix-note">Los errores se ordenan por cuánto aparecen ${nodeOf(n)}. Una raya en vocabulario: esa medida no se toma a este nivel.</p>`;
+  $("#index").innerHTML = h;
+}
+
+/* ── El mapa ───────────────────────────────────────────────────────────── */
+function skyline(node) {
+  const units = childrenOf(node);
+  const GAP = 1.4; let x = 0; const cols = [], groups = [];
+  units.forEach((u, ui) => { if (ui) x += GAP; const x0 = x; for (const k of u.kids.map(i => N[i])) { cols.push({k, x}); x += 1; } groups.push({u, x0, x1: x}); });
+  const Wd = x, H = Math.max(...cols.map(c => c.k.qs.length));
+  const px = Math.max(150, Math.min(270, H * 2.7));
+  let g = "";
+  for (const c of cols) {
+    g += `<g data-k="${c.k.i}"><rect class="hit" data-tk="${c.k.i}" x="${c.x - .1}" y="0" width="1.2" height="${H}"/>`;
+    ordered(c.k.qs).forEach((qi, j) => { g += `<rect class="cell ${cellOf(Q[qi])[0]}" data-tq="${qi}" x="${c.x + .1}" y="${(H - j - 1 + .14).toFixed(2)}" width=".8" height=".72"/>`; });
+    g += `</g>`;
+  }
+  const tmpl = groups.map((gr, i) => (i ? `${GAP}fr ` : "") + `${gr.x1 - gr.x0}fr`).join(" ");
+  const pxPer = chartW() / Wd;
+  const labels = groups.map((gr, i) => {
+    const px = (gr.x1 - gr.x0) * pxPer, tight = px < 78, tiny = px < 30;
+    const nn = gr.u.n, share = S.lens === "err" ? pct(nn.any, nn.q) : S.lens === "voc" ? pts(nn.vs) : ERRI.has(S.lens) && nn.ea[S.lens]?.[0] ? pct(nn.ea[S.lens][3], nn.ea[S.lens][0]) : "";
+    return (i ? "<span></span>" : "") + `<button class="district" data-act="node" data-v="${gr.u.i}" data-tu="${gr.u.i}" title="${esc(plain(gr.u.label))}">
+      <span class="nm"><span class="no">${gr.u.num}</span>${tight ? "" : rich(gr.u.label)}</span>${tiny ? "" : `<span class="sh">${share}</span>`}</button>`;
+  }).join("");
+  return `<svg class="sky" id="sky" viewBox="${-.1} 0 ${Wd + .2} ${H}" preserveAspectRatio="none" style="height:${px}px" aria-label="Cada columna es un tema; cada piso, un ejercicio">${g}</svg>
+    <div class="ground"></div><div class="districts" style="grid-template-columns:${tmpl}">${labels}</div>`;
+}
+function temaRows(node) {
+  return `<div class="trows">${node.kids.map(i => N[i]).map(k => {
+    const nn = k.n, share = S.lens === "err" ? `${pct(nn.any, nn.q)} con error` : S.lens === "voc" ? `vocabulario ${pts(nn.vs)}` : ERRI.has(S.lens) ? (nn.ea[S.lens]?.[0] ? `${pct(nn.ea[S.lens][3], nn.ea[S.lens][0])} con error` : "no aplica") : "";
+    return `<div class="trow"><button class="tl" data-act="node" data-v="${k.i}"><span class="nm">${rich(k.label)}</span><span class="n">${fmt(k.qs.length)} ejercicios${share ? `, ${share}` : ""}</span></button>
+      <div class="tiles">${ordered(k.qs).map(qi => `<i class="cell ${cellOf(Q[qi])[0]}" data-tq="${qi}" data-act="quiz" data-v="${qi}"></i>`).join("")}</div></div>`;
+  }).join("")}</div>`;
+}
+function hero(node) {
+  if (S.lens === "calidad") return radar(node);
+  if (node.t === "C" || node.t === "M") return skyline(node) + `<p class="hero-note">Cada columna es un tema y cada piso, un ejercicio. Tocá un piso para abrir el ejercicio, o una unidad para acercarte.</p>`;
+  if (node.t === "T") return temaRows(node);
+  return `<div class="tiles big">${ordered(node.qs).map(qi => `<i class="cell ${cellOf(Q[qi])[0]}" data-tq="${qi}" data-act="quiz" data-v="${qi}"></i>`).join("")}</div>`;
+}
+function legendItems() {
+  const L = S.lens;
+  if (L === "err") return [["s0", "Bloqueante"], ["s1", "Alta"], ["s2", "Media"], ["s3", "Baja"], ["s4", "Sin errores"]];
+  if (ERRI.has(L)) return [["s0", "Bloqueante"], ["s1", "Alta"], ["s2", "Media"], ["s3", "Baja"], ["mk", "Marcado, sólo ordena"], ["ne", "Sin evaluar"], ["s4", "Sin problema"], ["na", "No aplica"]];
+  if (L === "lemma-recurrence") return [["v2", "Dos o más palabras que vuelven tarde"], ["v1", "Una"], ["s4", "Ninguna"]];
+  if (temaFlag[L]) return [["v2", "Tema marcado"], ["s4", "Tema bien"]];
+  if (L === "voc" || L === "sentence-length" || L === "lemma-absence") return [["v3", "Menos de 70"], ["v2", "70 a 89"], ["v1", "90 a 99"], ["s4", "100"]];
+  return [];
+}
+function legend(node) {
+  const items = legendItems(); if (!items.length) return "";
+  const cnt = {}; for (const qi of node.all) { const c = cellOf(Q[qi])[0]; cnt[c] = (cnt[c] || 0) + 1; }
+  const shown = items.filter(([c]) => cnt[c]);
+  const tot = node.all.length;
+  return `<div class="legend">
+    <div class="lg-bar" aria-hidden="true">${shown.map(([c]) => `<i class="${c}" style="width:${100 * cnt[c] / tot}%"></i>`).join("")}</div>
+    <div class="lg-row"><div class="lg-items">${shown.map(([c, l]) => `<button class="lg-item ${c}" data-act="hl" data-v="${c}" aria-pressed="${S.hl === c}"><i></i>${l} <b>${fmt(cnt[c])}</b></button>`).join("")}</div>
+    <div class="seg" role="group" aria-label="Orden"><button data-act="order" data-v="sev" aria-pressed="${S.order === "sev"}">${node.t === "C" || node.t === "M" ? "Peores abajo" : "Peores primero"}</button><button data-act="order" data-v="curso" aria-pressed="${S.order === "curso"}">Como en el curso</button></div></div>
+  </div>`;
+}
+
+/* ── Frase de cabecera ─────────────────────────────────────────────────── */
+function summary(node) {
+  const n = node.n, L = S.lens, of = nodeOf(node);
+  if (L === "calidad") {
+    const qq = quality(node), w = qq.worst;
+    if (qq.score == null) return `Ninguna medida aplica ${of}.`;
+    return `Calidad ${of}: <b>${qs(qq.score)} sobre 100</b>, el promedio de ${qq.on.length} medidas, cada una con la parte que está bien. ` +
+      (w.v >= 1 ? "Ninguna tiene errores." : w.id === "voc" ? `La que más la baja es <b>vocabulario</b>, con ${qf(100 * w.v)}.` : `La que más la baja es <b>${qname(w.id).toLowerCase()}</b>: ${pct(w.w, w.r)} de los ejercicios que revisa tienen error, así que da ${qf(100 * w.v)}.`);
+  }
+  if (L === "err") {
+    const grave = n.sev[0] + n.sev[1], top = errRows(n)[0];
+    return `<b>${fmt(n.any)} de ${fmt(n.q)}</b> ejercicios ${of} (${pct(n.any, n.q)}) tienen al menos un error. ` +
+      (grave ? `${fmt(grave)} son graves${n.sev[0] ? `: ${fmt(n.sev[0])} bloqueante${n.sev[0] > 1 ? "s" : ""} y ${fmt(n.sev[1])} de gravedad alta` : ", de gravedad alta"}. ` : "") +
+      (() => { const rest = [[n.sev[2], "media"], [n.sev[3], "baja"]].filter(x => x[0]); if (!rest.length) return "";
+        const txt = rest.map(([c, l]) => `${fmt(c)} de gravedad ${l}`).join(" y ");
+        return grave ? `En los otros, lo peor es leve: ${txt}. ` : rest.length === 1 ? `Ninguno es grave: todos son de gravedad ${rest[0][1]}. ` : `Ninguno es grave: ${txt}. `; })() +
+      (top && top.w ? `El que más aparece es <b>${SHORT[top.id].toLowerCase()}</b>, en ${fmt(top.w)}.` : "");
+  }
+  if (L === "voc") {
+    const scores = VOC.map(id => [id, vocScore(node, id)]).filter(x => x[1] != null).sort((a, b) => a[1] - b[1]), counted = VOC.filter(id => n.sc[id] != null).length;
+    const low = scores[0];
+    return `Puntaje de vocabulario ${of}: <b>${pts(n.vs)} sobre 100</b>, el promedio de ${counted} medidas.` + (low && low[1] < 1 ? ` La que más lo baja es <b>${SHORT[low[0]].toLowerCase()}</b>, con ${pts(low[1])}.` : "");
+  }
+  const a = AN.get(L);
+  if (!RAN.has(L) && a.fam === "E") return `<b>${esc(a.name)}</b> no corrió en este análisis: no hay resultados para mostrar.`;
+  if (a.fam === "E") {
+    const ea = n.ea[L]; if (!ea || !ea[0]) return `<b>${esc(a.name)}</b> no aplica a ningún ejercicio ${of}.`;
+    const [r, , , w, m] = ea; const kids = childrenOf(node).map(c => [c, c.n.ea[L]]).filter(([, e]) => e && e[0]).sort((x, y) => y[1][3] / y[1][0] - x[1][3] / x[1][0]);
+    const top = kids[0];
+    let s = w ? `<b>${esc(a.name)}</b>: ${fmt(w)} de ${fmt(r)} ejercicios ${of} (${pct(w, r)}).` : `<b>${esc(a.name)}</b>: ninguno con error ${of}.`;
+    if (m) s += ` Marcó ${fmt(m)} (${pct(m, r)}) para revisar primero; ${a.res.includes("RANK_ONLY") ? "eso sólo ordena y no cuenta como error" : "esos no cuentan como error"}.`;
+    if (r < n.q) s += ` Aplica a ${fmt(r)} de los ${fmt(n.q)} ejercicios.`;
+    if (top && w && kids.length > 1) s += ` Donde más pesa: ${rich(top[0].label)}, con ${pct(top[1][3], top[1][0])}.`;
+    return s;
+  }
+  const v = vocScore(node, L);
+  return `<b>${esc(a.name)}</b>: ${v == null ? `no se mide ${of}; se mide en ${a.evals.map(e => EVAL[e]).join(" y ")}` : `${pts(v)} sobre 100 ${of}`}. ${esc(a.q)}`;
+}
+function caveat(node) {
+  const L = S.lens;
+  const vocLens = L === "voc" || L === "lemma-absence" || L === "lemma-count";
+  if (node.t === "C" && L === "calidad") {
+    const v = quality(node).axes.find(a => a.id === "voc"), v1 = quality(N[1]).axes.find(a => a.id === "voc");
+    return `<div class="caveat">${ICON.warn}<span>En el curso, <b>vocabulario</b> da ${qf(100 * v.v)} porque dos de sus medidas promedian A1, A2, B1 y B2, y esta campaña sólo tiene A1. Con el vocabulario de A1 (${qf(100 * v1.v)}), la calidad del curso sería la de A1: ${qs(quality(N[1]).score)}.</span></div>`;
+  }
+  if (node.t === "C" && vocLens) return `<div class="caveat">${ICON.warn}<span>En el curso, <b>vocabulario del nivel</b> y <b>oraciones por palabra</b> promedian A1, A2, B1 y B2, pero esta campaña sólo tiene A1. Por eso en el curso dan ${pts(node.n.sc["lemma-absence"])} y ${pts(node.n.sc["lemma-count"])}, y en A1, ${pts(N[1].n.sc["lemma-absence"])} y ${pts(N[1].n.sc["lemma-count"])}.</span></div>`;
+  if (node.t === "T" && L === "voc") {
+    const rest = VOC.map(id => vocScore(node, id)).filter(v => v != null), sin = rest.length ? rest.reduce((a, b) => a + b, 0) / rest.length : null;
+    return `<div class="caveat">${ICON.warn}<span>El puntaje de cada unidad promedia <b>frecuencia de las palabras</b> con 0, aunque esa medida no se toma por unidad. Por eso ${plain(node.label)} da ${pts(node.n.vs)}${sin != null ? `; sin ella daría ${pts(sin)}` : ""}. A1 da ${pts(N[1].n.vs)}.</span></div>`;
+  }
+  return "";
+}
+function head(node) {
+  const anc = ancestors(node);
+  const crumbs = anc.map((a, i) => i === anc.length - 1 ? `<span class="here">${rich(a.t === "C" ? "Curso" : a.label)}</span>` : `<button data-act="node" data-v="${a.i}">${rich(a.t === "C" ? "Curso" : a.label)}</button><span class="sep">/</span>`).join("");
+  const size = node.t === "K" ? `${fmt(node.qs.length)} ejercicios` : `${fmt(node.all.length)} ejercicios en ${fmt(temasUnder(node).length)} temas`;
+  const ins = node.t === "K" ? `<p class="tema-ins">Consigna del tema <span class="c">${rich(node.ins)}</span> <span>${node.mode === "REWRITE" ? "Se reescribe la oración" : "Se completa el hueco"}</span></p>` : "";
+  return `<header class="head"><nav class="crumbs" aria-label="Dónde estás">${crumbs}</nav>
+    <div class="title"><h2>${rich(nodeName(node))}</h2><span class="size">${size}</span></div>${ins}
+    <p class="lede">${summary(node)}</p>${caveat(node)}</header>`;
+}
+
+/* ── Lectura según lo que mirás ────────────────────────────────────────── */
+function reading(node) {
+  const L = S.lens;
+  if (L === "calidad") return dropsSec(node) + (childrenOf(node).length ? kidsQualitySec(node) : exercisesSec(node)) + howSec(node);
+  if (L === "err") return node.t === "K" ? exercisesSec(node) : heatSec(node) + worstSec(node);
+  if (L === "voc") return vocOverview(node);
+  const a = AN.get(L);
+  if (a.fam === "E") return analyzerView(node, a);
+  return vocAnalyzerView(node, a);
+}
+function dropsSec(node) {
+  const qq = quality(node), k = qq.on.length; if (!k) return "";
+  const loss = a => 100 * (1 - a.v) / k, rows = [...qq.on].sort((a, b) => a.v - b.v), top = rows[0];
+  const row = a => `<button class="brow" data-act="lens" data-v="${a.id}"><span class="nm">${qname(a.id)}</span><span class="track"><i class="${vclass(a.v)}" style="width:${100 * a.v}%;background:var(--c)"></i></span><span class="val"><b>${qf(100 * a.v)}</b>${loss(a) >= .05 ? `resta ${fmt1(loss(a))}` : "no resta"}</span></button>`;
+  const off = qq.axes.filter(a => a.off).map(a => `<div class="brow na"><span class="nm">${qname(a.id)}</span><span class="track"></span><span class="val">${a.off}</span></div>`);
+  return `<section class="sec"><h3>Qué la baja</h3><p class="sub">Cada medida pesa lo mismo, 1 de ${k}: lo que le falta para llegar a 100, dividido ${k}, es lo que le resta a la calidad.${top.v < .95 ? ` Si se arreglara <b>${qname(top.id).toLowerCase()}</b>, la calidad pasaría de ${qs(qq.score)} a ${qs(qq.score + loss(top))}.` : ""}</p>
+    <div class="bars">${rows.map(row).join("")}${off.join("")}</div></section>`;
+}
+function kidsQualitySec(node) {
+  const kids = childrenOf(node), qq = quality(node), what = node.t === "T" ? "tema" : "unidad";
+  const vals = kids.map(c => quality(c).score), lowI = vals.indexOf(Math.min(...vals.filter(v => v != null))), low = kids[lowI];
+  const lw = low && quality(low).worst;
+  return `<section class="sec"><h3>Por ${what}</h3><p class="sub">La calidad de cada ${what}, con la misma cuenta. La raya marca ${node.t === "C" ? "el curso" : node.t === "M" ? node.label : plain(node.label)} entero (${qs(qq.score)}).${low && lw ? ` La más baja es ${rich(low.label)}, sobre todo por ${qname(lw.id).toLowerCase()} (${qf(100 * lw.v)}).` : ""}</p>
+    <div class="bars">${kids.map((c, i) => {
+      const v = vals[i], nm = `<span class="nm">${c.num ? `<span class="no">${c.num}</span>` : ""}${rich(c.label)}</span>`;
+      if (v == null) return `<div class="brow na">${nm}<span class="track"></span><span class="val">no aplica</span></div>`;
+      return `<button class="brow ${i === lowI ? "peak" : ""}" data-act="node" data-v="${c.i}">${nm}<span class="track"><i class="${vclass(v / 100)}" style="width:${v}%;background:var(--c)"></i><span class="ref" style="left:${qq.score}%"></span></span><span class="val"><b>${qs(v)}</b>de 100</span></button>`;
+    }).join("")}</div></section>`;
+}
+function howSec(node) {
+  const qq = quality(node), n = node.n, of = nodeOf(node), voc = qq.axes.find(a => a.id === "voc"), nat = qq.axes.find(a => a.id === "naturalness"), off = qq.axes.filter(a => a.off);
+  const items = [
+    ["Cada medida da la parte que está bien", `Si un analizador encuentra error en el 25 % de los ejercicios que revisa, esa medida da 75.${voc && !voc.off ? ` Vocabulario entra como una medida más, con su puntaje: el promedio de sus ${voc.k} medidas.` : ""}`],
+    ["La calidad es el promedio", `Las ${qq.on.length} medidas pesan lo mismo. Las que no aplican ${of} o no corrieron en este análisis no entran.`],
+    ["No es la parte de ejercicios sin errores", `De esos hay ${fmt(n.q - n.any)} de ${fmt(n.q)} (${pct(n.q - n.any, n.q)}): alcanza un error en cualquier medida para que un ejercicio no cuente. La calidad mira cada cosa por separado.`],
+  ];
+  if (nat && !nat.off && nat.m && !nat.w) items.push(["Lo marcado no resta", `Naturalidad marcó ${fmt(nat.m)} ${nat.m > 1 ? "ejercicios" : "ejercicio"} para revisar primero. Eso sólo ordena: no cuenta como error, así que da ${qf(100 * nat.v)}.`]);
+  if (off.length) items.push([`${off.length > 1 ? `${off.length} medidas quedan` : "Una medida queda"} afuera`, off.map(a => `${qname(a.id)}: ${a.off === "no corrió" ? "no corrió en este análisis" : `no aplica ${of}`}`).join(". ") + "."]);
+  if (node.t === "T") items.push(["En la unidad, vocabulario va sin frecuencia", "La frecuencia de las palabras se mide por nivel, no por unidad: el vocabulario de la unidad promedia las otras medidas."]);
+  return `<section class="sec"><h3>Cómo se calcula</h3><p class="sub">Un solo número para seguir la calidad del contenido entre un análisis y el siguiente.</p>
+    <div class="qhow">${items.map(([t, d]) => `<div><b>${t}</b><p>${d}</p></div>`).join("")}</div></section>`;
+}
+function heatSec(node) {
+  const kids = childrenOf(node), cols = errRows(node.n).filter(r => !r.off).map(r => r.id);
+  const cell = (c, a) => {
+    const ea = c.n.ea[a];
+    if (!ea || !ea[0]) return `<td class="na" title="No aplica">·</td>`;
+    const [r, , , w, m] = ea;
+    if (!w && m) { const h = Math.round(Math.sqrt(m / r) * 90); return `<td class="mkd ${h > 55 ? "hot" : ""}" style="--h:${h}%" data-act="cell" data-v="${c.i}|${a}" title="${esc(plain(c.label))}: ${fmt(m)} de ${fmt(r)} marcados por ${SHORT[a].toLowerCase()}">${Math.round(100 * m / r)}</td>`; }
+    const h = Math.round(Math.sqrt(w / r) * 92);
+    const p = 100 * w / r;
+    return `<td class="${w ? "" : "zero"} ${h > 55 ? "hot" : ""}" style="--h:${h}%" data-act="cell" data-v="${c.i}|${a}" title="${esc(plain(c.label))}: ${fmt(w)} de ${fmt(r)} con ${SHORT[a].toLowerCase()}">${!w ? "0" : p < 1 ? "<1" : Math.round(p)}</td>`;
+  };
+  const rows = kids.map(c => {
+    const h = Math.round(Math.sqrt(c.n.any / c.n.q) * 80);
+    return `<tr><th><button data-act="node" data-v="${c.i}">${c.num ? `<span class="no">${c.num}</span>` : ""}<span class="nm">${rich(c.label)}</span><span class="n">${fmt(c.n.q)}</span></button></th>
+      <td class="tot ${h > 50 ? "hot" : ""}" style="--h:${h}%" data-act="node" data-v="${c.i}">${Math.round(100 * c.n.any / c.n.q)}</td>${cols.map(a => cell(c, a)).join("")}</tr>`;
+  }).join("");
+  return `<section class="sec"><h3>Dónde aparece cada error</h3>
+    <p class="sub">Porcentaje de ejercicios con el error, por ${node.t === "T" ? "tema" : "unidad"}. Tocá una fila para acercarte, una columna para mirar ese error, o una celda para las dos cosas.</p>
+    <div class="heat-wrap"><table class="heat"><thead><tr><th></th><th class="tot"><button data-act="lens" data-v="err">Algún error</button></th>${cols.map(a => `<th><button data-act="lens" data-v="${a}" title="${esc(AN.get(a).name)}">${SHORT[a]}</button></th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div>
+    <div class="heat-key"><span>0 %<span class="ramp"></span>100 %</span><span>· no aplica</span><span><i style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--mk);vertical-align:-1px;margin-right:6px"></i>marcados que sólo ordenan</span></div></section>`;
+}
+function exCard(qi, extra) {
+  const q = Q[qi], inTema = S.mode === "mapa" && N[S.node].t === "K";
+  return `<button class="ex" data-act="quiz" data-v="${qi}">${inTema ? "" : `<span class="where">${rich(q.unit.label)} / ${rich(q.tema.label)}</span>`}
+    <span class="stmt">${gapify(q.s)}</span>${extra ?? `<span class="flags">${flagsOf(q)}</span>`}</button>`;
+}
+function flagsOf(q) {
+  const L = S.lens;
+  if (L === "err" || L === "voc" || L === "calidad") {
+    const fl = ERR.map(a => [a, q.st[ERRI.get(a)]]).filter(([, ch]) => ch === "x" || ch === "m")
+      .map(([a, ch]) => ch === "x" ? [a, q.fsev.get(a) ?? 3] : [a, 3.5]).sort((x, y) => x[1] - y[1]);
+    const vf = [];
+    if (q.tok != null && (q.tok > RANGE.maxTokens || q.tok < RANGE.minTokens)) vf.push(`<span class="flag v2">${q.tok} tokens</span>`);
+    for (const m of q.mis || []) vf.push(`<span class="flag v2">${esc(m[0])}: ${m[1]}</span>`);
+    for (const o of q.ooc || []) vf.push(`<span class="flag v2">${esc(o)}: fuera del catálogo</span>`);
+    if (L === "voc") return vf.length ? vf.join("") : `<span class="flag s4">Vocabulario sin problemas</span>`;
+    return fl.length ? fl.map(([a, s]) => `<span class="flag ${s === 3.5 ? "mk" : "s" + s}">${SHORT[a]}</span>`).join("") : `<span class="flag s4">Sin errores</span>`;
+  }
+  const [c, , t] = cellOf(q);
+  return `<span class="flag ${c}">${esc(t)}</span>`;
+}
+function worstSec(node) {
+  const list = node.all.filter(qi => Q[qi].sev <= 1).sort((a, b) => Q[a].sev - Q[b].sev || Q[b].nerr - Q[a].nerr || a - b);
+  if (!list.length) return "";
+  const show = list.slice(0, S.limit);
+  return `<section class="sec"><h3>Por dónde empezar</h3><p class="sub"><b>${fmt(list.length)}</b> ejercicios ${nodeOf(node)} tienen un error bloqueante o de gravedad alta. Primero los bloqueantes y, entre iguales, los que acumulan más errores.</p>
+    <div class="exs">${show.map(qi => exCard(qi)).join("")}</div>${list.length > show.length ? `<button class="more" data-act="limit">Mostrar ${fmt(Math.min(20, list.length - show.length))} más de ${fmt(list.length - show.length)}</button>` : ""}</section>`;
+}
+function exercisesSec(node) {
+  const list = ordered(node.qs);
+  return `<section class="sec"><h3>Los ${fmt(list.length)} ejercicios del tema</h3><p class="sub">${S.order === "sev" ? "Los que tienen errores más graves, primero." : "En el orden en que los ve el alumno."}</p>
+    <div class="exs">${list.map(qi => exCard(qi)).join("")}</div></section>`;
+}
+
+/* Un analizador de errores */
+function examOf(reason) {
+  const cases = [...String(reason).matchAll(/(\d+) de (\d+) en ([^;,]+)/g)].map(m => { const nm = m[3].trim().replace(/_/g, " ").toLowerCase(); return [nm.charAt(0).toUpperCase() + nm.slice(1), +m[1], +m[2]]; });
+  const date = (String(reason).match(/aprobado el ([\d/]+)/) || [])[1];
+  return {cases, date};
+}
+function provenance(a) {
+  const j = C.judges.find(x => x.a === a.id), tool = C.tools.find(x => x.a === a.id);
+  let h = "";
+  if (j) {
+    const ex = examOf(j.reason);
+    const who = j.provider === "LEGACY_UNKNOWN" ? `Juez sin modelo registrado<span>la corrida es anterior al registro de proveedor</span>` : `${esc(j.model)}<span>vía ${esc(j.provider)}, esfuerzo ${EFFORT[j.effort] || esc(j.effort)}</span>`;
+    h += `<div><h4>Quién juzga</h4><div class="who">${who}</div></div>`;
+    if (ex.cases.length) h += `<div class="exam"><div class="h">${ICON.check}Examen aprobado${ex.date ? ` el ${ex.date}` : ""}</div>${ex.cases.map(([nm, ok, tot]) => `<div class="case"><span class="nm" title="${esc(nm)}">${esc(nm)}</span><span class="tr"><i class="${tot && ok < tot ? "short" : ""}" style="width:${tot ? 100 * ok / tot : 0}%"></i></span><span class="v">${ok} de ${tot}</span></div>`).join("")}</div>`;
+    const cv = j.cov;
+    h += `<p class="fine">${fmt(cv.withResult)} de ${fmt(cv.reached)} consultas con resultado. ${cv.reused === cv.withResult ? "Todas vienen de corridas anteriores: este análisis no le preguntó nada nuevo al juez." : `${fmt(cv.evaluatedInRun)} se consultaron en este análisis y ${fmt(cv.reused)} se reusaron.`}${cv.pending ? ` ${fmt(cv.pending)} pendientes.` : ""}${cv.failed ? ` ${fmt(cv.failed)} fallaron.` : ""}</p>`;
+  }
+  if (tool) h += `<div><h4>${j ? "Herramienta previa" : "Herramienta"}</h4><div class="who">${esc(tool.tool)}<span>${esc(tool.examined)}${tool.exam === "APPROVED" ? ", examen aprobado" : ""}</span></div></div>`;
+  if (!j && !tool) h += `<div><h4>Cómo decide</h4><div class="who">Reglas fijas<span>No consulta ningún modelo: el resultado es el mismo cada vez que corre.</span></div></div>`;
+  return h;
+}
+const human = t => esc(t).replace(/\btop1k\b/g, "1.000 más comunes").replace(/\btop2k\b/g, "hasta 2.000").replace(/\btop3k\b/g, "hasta 3.000").replace(/\btop4k\b/g, "más allá de 3.000");
+function analyzerSheet(a) {
+  const cost = COST[a.cost] || [a.cost, ""];
+  return `<section class="an"><p class="q">${esc(a.q)}</p><p class="expl">${esc(a.expl)}</p>
+    <div><dl class="how"><dt>Qué lee</dt><dd>${human(a.reads)}</dd><dt>Qué espera</dt><dd>${human(a.goal)}</dd><dt>Qué mira</dt><dd>${a.evals.map(e => EVAL[e]).join(", ")}</dd></dl>
+    <div class="pills" style="margin-top:14px"><span class="pill ${cost[1]}">${cost[0]}</span>${a.res.map(r => `<span class="pill">${RES[r] || r}</span>`).join("")}</div></div>
+    <div class="prov">${provenance(a)}</div></section>`;
+}
+function findingsAt(node, a) {
+  const out = [];
+  for (const qi of node.all) for (const fi of Q[qi].fa.get(a.id) || []) out.push(fi);
+  for (const m of nodesUnder(node)) for (const fi of m.f || []) if (F[fi][0] === a.i) out.push(fi);
+  return out;
+}
+function rulesSec(a, fs) {
+  const by = new Map(); for (const fi of fs) by.set(F[fi][1], (by.get(F[fi][1]) || 0) + 1);
+  return `<section class="sec"><h3>Qué reglas saltaron</h3><p class="sub">Tocá una para ver sólo esos hallazgos.</p><div class="rules">${a.rules.map(([id, d]) => {
+    const n = by.get(id) || 0;
+    return `<button class="rule ${n ? "" : "zero"}" data-act="rule" data-v="${esc(id)}" aria-pressed="${S.rule === id}" ${n ? "" : "disabled"}><span class="d">${esc(d)}</span><span class="n">${fmt(n)}</span></button>`;
+  }).join("")}</div></section>`;
+}
+function whereSec(node, a) {
+  if (node.t === "K") return "";
+  const kids = childrenOf(node), courseShare = N[1].n.ea[a.id] ? N[1].n.ea[a.id][3] / N[1].n.ea[a.id][0] : null;
+  const vals = kids.map(c => { const e = c.n.ea[a.id]; return e && e[0] ? (e[3] || e[4]) / e[0] : null; });
+  const max = Math.max(...vals.filter(v => v != null), .01);
+  return `<section class="sec"><h3>Dónde</h3><p class="sub">Porcentaje de ejercicios con el error, por ${node.t === "T" ? "tema" : "unidad"}${courseShare != null && node.t === "T" ? `. La raya marca A1 entero (${Math.round(100 * courseShare)} %)` : ""}.</p><div class="bars">${kids.map((c, i) => {
+    const e = c.n.ea[a.id];
+    if (!e || !e[0]) return `<div class="brow na"><span class="nm">${c.num ? `<span class="no">${c.num}</span>` : ""}${rich(c.label)}</span><span class="track"></span><span class="val">no aplica</span></div>`;
+    const [r, , , w, m] = e, v = vals[i];
+    return `<button class="brow ${v === max ? "peak" : ""}" data-act="node" data-v="${c.i}"><span class="nm">${c.num ? `<span class="no">${c.num}</span>` : ""}${rich(c.label)}</span><span class="track"><i class="${!w && m ? "mk" : ""}" style="width:${100 * v}%"></i>${courseShare != null && node.t === "T" ? `<span class="ref" style="left:${100 * courseShare}%"></span>` : ""}</span><span class="val"><b>${Math.round(100 * v)}${NB}%</b>${fmt(w || m)} de ${fmt(r)}</span></button>`;
+  }).join("")}</div></section>`;
+}
+function fdCard(fi, opts = {}) {
+  const f = F[fi], a = A[f[0]], sev = f[2];
+  const rule = ruleText(a, f[1]);
+  let obs = String(f[3] || "");
+  // Muchas observaciones repiten la regla antes de los dos puntos: se muestra sólo lo propio del caso.
+  const cut = obs.indexOf(": "), norm = x => x.toLowerCase().slice(0, 24);
+  if (cut > 0 && cut < 140 && rule && norm(obs) === norm(rule)) obs = obs.charAt(cut + 2).toUpperCase() + obs.slice(cut + 3);
+  let owner = "";
+  if (opts.noOwner) owner = "";
+  else if (fquiz[fi] != null) { const q = Q[fquiz[fi]]; owner = `<button class="stmt" data-act="quiz" data-v="${q.i}">${gapify(q.s)}</button>`; }
+  else if (fnode[fi] != null && N[fnode[fi]].t === "K") { const k = N[fnode[fi]]; owner = `<button class="stmt" data-act="node" data-v="${k.i}">${rich(k.label)}</button>`; }
+  else { const lem = ((f[4] || []).find(e => e[0] === "Palabra") || [])[1]; const w = lem && byLemma.get(lem.toLowerCase()); if (w) owner = `<button class="stmt" data-act="word" data-v="${esc(w.key)}">${esc(lem)}</button>`; }
+  const where = fquiz[fi] != null ? `${rich(Q[fquiz[fi]].unit.label)} / ${rich(Q[fquiz[fi]].tema.label)}` : "";
+  const ev = (f[4] || []).filter(e => e[1]);
+  return `<article class="fd s${sev}"><i class="dot"></i><div class="top-line">${opts.an ? `<span class="an-name">${opts.an}</span>` : ""}<span class="sev">${f[5] === "RANK_ONLY" ? "sólo ordena" : "gravedad " + SEVN[sev]}</span>${rule && !opts.noRule ? `<span>${esc(rule)}</span>` : ""}${where && !opts.noWhere ? `<span>${where}</span>` : ""}</div>
+    ${owner}<p class="obs">${esc(obs)}</p>${ev.length ? `<details><summary>Evidencia</summary><dl class="ev">${ev.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl></details>` : ""}</article>`;
+}
+const ruleText = (a, id) => (a.rules.find(r => r[0] === id) || [])[1] || "";
+function findingsSec(node, a, fs, title) {
+  let list = S.rule ? fs.filter(fi => F[fi][1] === S.rule) : fs;
+  // Agrupados por regla: primero la regla con el hallazgo más grave y, entre iguales, la que más tiene.
+  const g = new Map(); for (const fi of list) { const r = F[fi][1]; if (!g.has(r)) g.set(r, {min: 9, n: 0}); const x = g.get(r); x.min = Math.min(x.min, F[fi][2]); x.n++; }
+  const rk = new Map([...g].sort((x, y) => x[1].min - y[1].min || y[1].n - x[1].n).map(([r], i) => [r, i]));
+  list = [...list].sort((x, y) => rk.get(F[x][1]) - rk.get(F[y][1]) || F[x][2] - F[y][2] || (fquiz[x] ?? 1e9) - (fquiz[y] ?? 1e9) || x - y);
+  const show = list.slice(0, S.limit);
+  let last = null;
+  const cards = show.map(fi => { const r = F[fi][1]; let h = ""; if (r !== last && g.size > 1) { h = `<div class="fd-group"><span>${esc(ruleText(a, r) || "Otros")}</span><b>${fmt(g.get(r).n)}</b></div>`; } last = r; return h + fdCard(fi, {noWhere: node.t === "K", noRule: g.size > 1 || !!S.rule}); }).join("");
+  if (!list.length) return `<section class="sec"><h3>${title || "Hallazgos"}</h3><p class="sub">Ninguno ${nodeOf(node)}.</p></section>`;
+  const ruleName = S.rule ? (a.rules.find(r => r[0] === S.rule) || [])[1] : null;
+  return `<section class="sec"><h3>${title || "Hallazgos"}</h3><p class="sub"><b>${fmt(list.length)}</b> ${nodeOf(node)}${ruleName ? `, sólo de la regla «${esc(ruleName)}» <button class="more" style="margin:0 0 0 6px;padding:0" data-act="rule" data-v="">ver todas</button>` : ""}. ${g.size > 1 ? " Agrupados por regla, primero los más graves." : " Primero los más graves."}</p>
+    <div class="fds">${cards}</div>${list.length > show.length ? `<button class="more" data-act="limit">Mostrar ${fmt(Math.min(20, list.length - show.length))} más de ${fmt(list.length - show.length)}</button>` : ""}</section>`;
+}
+function analyzerView(node, a) {
+  if (!RAN.has(a.id)) return analyzerSheet(a) + `<div class="notice">${ICON.warn.replace("<svg", '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9"')}Este analizador no corrió en el análisis del 7/10: no hay hallazgos que mostrar.</div>`;
+  const fs = findingsAt(node, a);
+  return analyzerSheet(a) + `<div class="two">${rulesSec(a, fs)}${whereSec(node, a)}</div>` + findingsSec(node, a, fs);
+}
+
+/* ── Vocabulario ───────────────────────────────────────────────────────── */
+function niceTicks(max) {
+  const raw = max / 3, mag = 10 ** Math.floor(Math.log10(raw)), step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(st => max / st <= 3.2) || 10 * mag;
+  const out = []; for (let v = 0; v < max + step; v += step) out.push(v);
+  return out;
+}
+function chartW() { const st = $("#stage"); const pad = innerWidth <= 980 ? 32 : 64; return Math.max(300, Math.min(1080, (st ? st.clientWidth : 900) - pad)); }
+function vocOverview(node) {
+  const n = node.n;
+  const rows = VOC.map(id => {
+    const v = vocScore(node, id), a = AN.get(id);
+    if (v == null) return `<div class="brow na"><span class="nm">${SHORT[id]}</span><span class="track"></span><span class="val">se mide en ${a.evals.map(e => EVAL[e]).join(" y ")}</span></div>`;
+    return `<button class="brow" data-act="lens" data-v="${id}"><span class="nm">${SHORT[id]}</span><span class="track"><i class="${vclass(v)}" style="width:${100 * v}%;background:var(--c)"></i></span><span class="val"><b>${pts(v)}</b>de 100</span></button>`;
+  }).join("");
+  const kids = childrenOf(node);
+  const kidRows = kids.length ? `<section class="sec"><h3>Por ${node.t === "T" ? "tema" : "unidad"}</h3><p class="sub">Puntaje de vocabulario de cada ${node.t === "T" ? "tema" : "unidad"}.</p><div class="bars">${kids.map(c => `<button class="brow" data-act="node" data-v="${c.i}"><span class="nm">${c.num ? `<span class="no">${c.num}</span>` : ""}${rich(c.label)}</span><span class="track"><i class="${vclass(c.n.vs)}" style="width:${100 * c.n.vs}%;background:var(--c)"></i></span><span class="val"><b>${pts(c.n.vs)}</b>de 100</span></button>`).join("")}</div></section>` : exercisesSec(node);
+  return `<section class="sec"><h3>Las medidas de vocabulario</h3><p class="sub">Cada una puntúa de 0 a 100; el puntaje de vocabulario es su promedio. Tocá una para ver el detalle.</p><div class="bars">${rows}</div></section>` + kidRows;
+}
+function vocAnalyzerView(node, a) {
+  let body = "";
+  if (a.id === "sentence-length") body = lengthView(node, a);
+  else if (a.id === "knowledge-title-length" || a.id === "knowledge-instructions-length") body = titlesView(node, a);
+  else if (a.id === "coca-buckets-distribution") body = cocaView(node);
+  else if (a.id === "lemma-recurrence") body = recurrenceView(node);
+  else if (a.id === "lemma-absence") body = absenceView(node, a);
+  else if (a.id === "lemma-count") body = countView(node);
+  return analyzerSheet(a) + body;
+}
+function lengthView(node, a) {
+  const hist = new Map(); let lo = 99, hi = 0;
+  for (const qi of node.all) { const t = Q[qi].tok; if (t == null) continue; hist.set(t, (hist.get(t) || 0) + 1); lo = Math.min(lo, t); hi = Math.max(hi, t); }
+  lo = Math.min(lo, RANGE.minTokens - 1); hi = Math.max(hi, RANGE.maxTokens + 2);
+  const W = chartW(), H = 222, ml = 40, mb = 40, mt = 18, n = hi - lo + 1, bw = (W - ml - 8) / n;
+  const top = Math.max(...hist.values()), ticks = niceTicks(top), max = ticks[ticks.length - 1];
+  const sy = v => mt + (H - mt - mb) * (1 - v / max);
+  let svg = `<rect class="band" x="${ml + (RANGE.minTokens - lo) * bw}" y="${mt - 14}" width="${(RANGE.maxTokens - RANGE.minTokens + 1) * bw}" height="${H - mb - mt + 14}" rx="6"/>
+    <text class="band-l" x="${ml + (RANGE.minTokens - lo) * bw + 8}" y="${mt - 2}">meta de A1: de ${RANGE.minTokens} a ${RANGE.maxTokens}</text>`;
+  for (const v of ticks) svg += `<line class="grid" x1="${ml}" x2="${W}" y1="${sy(v)}" y2="${sy(v)}"/><text x="${ml - 8}" y="${sy(v) + 4}" text-anchor="end">${fmt(v)}</text>`;
+  for (let t = lo; t <= hi; t++) {
+    const v = hist.get(t) || 0, x = ml + (t - lo) * bw, ok = t >= RANGE.minTokens && t <= RANGE.maxTokens;
+    if (v) svg += `<rect class="bar ${ok ? "s4" : "v2"} ${S.rule === "tok:" + t ? "on" : ""}" data-act="rule" data-v="tok:${t}" data-tt="${fmt(v)} ejercicios de ${t} tokens" x="${x + 2}" y="${sy(v)}" width="${Math.max(2, bw - 4)}" height="${H - mb - sy(v)}" rx="3"/>`;
+    if (bw > 16 || t % 2 === 0) svg += `<text x="${x + bw / 2}" y="${H - mb + 16}" text-anchor="middle">${t}</text>`;
+  }
+  const over = node.all.filter(qi => Q[qi].tok > RANGE.maxTokens).length, under = node.all.filter(qi => Q[qi].tok < RANGE.minTokens).length;
+  let listHtml;
+  if (S.rule && S.rule.startsWith("tok:")) {
+    const t = +S.rule.slice(4), l = node.all.filter(qi => Q[qi].tok === t), show = l.slice(0, S.limit);
+    listHtml = `<section class="sec"><h3>Oraciones de ${t} tokens</h3><p class="sub"><b>${fmt(l.length)}</b> ${nodeOf(node)}. <button class="more" style="margin:0;padding:0" data-act="rule" data-v="">Ver las que están fuera de la meta</button></p><div class="exs">${show.map(qi => exCard(qi, `<span class="flags"><span class="flag ${t >= RANGE.minTokens && t <= RANGE.maxTokens ? "s4" : "v2"}">${t} tokens</span></span>`)).join("")}</div>${l.length > show.length ? `<button class="more" data-act="limit">Mostrar más</button>` : ""}</section>`;
+  } else listHtml = findingsSec(node, a, findingsAt(node, a), "Oraciones fuera de la meta");
+  return `<section class="sec"><h3>Cuántos tokens tiene cada oración</h3><p class="sub"><b>${fmt(over)}</b> son más largas de lo que pide A1 y <b>${fmt(under)}</b> más cortas. Tocá una barra para ver esas oraciones.</p>
+    <svg class="chart" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${svg}<text x="${W}" y="${H - 3}" text-anchor="end">tokens por oración</text><text x="${ml - 8}" y="${mt - 6}" text-anchor="end">oraciones</text></svg></section>` + listHtml;
+}
+// el mismo peso que el analizador: $ y * no cuentan; i , . medio; f t " 0,7; el resto, 1
+function weighted(s) { let t = 0; for (const ch of s) t += /[$*]/.test(ch) ? 0 : /[i,.]/.test(ch) ? .5 : /[ft"]/.test(ch) ? .7 : 1; return t; }
+function titlesView(node, a) {
+  const isTitle = a.id === "knowledge-title-length", lim = isTitle ? 28 : 70, soft = isTitle ? null : 100;
+  const temas = temasUnder(node).map(k => ({k, txt: isTitle ? k.title || k.label : k.ins || "", len: weighted(isTitle ? k.title || k.label : k.ins || ""), fi: temaFlag[a.id].get(k.i)}))
+    .sort((x, y) => (y.fi != null) - (x.fi != null) || y.len - x.len);
+  const flagged = temas.filter(t => t.fi != null).length;
+  const maxL = Math.max(soft || lim, ...temas.map(t => t.len)) * 1.05;
+  const show = temas.slice(0, Math.max(S.limit, flagged));
+  return `<section class="sec"><h3>${isTitle ? "Los títulos" : "Las consignas"}, de la más larga a la más corta</h3><p class="sub">${flagged ? `<b>${fmt(flagged)}</b> de ${fmt(temas.length)} pasan de ${lim} caracteres ponderados${soft ? ` (hasta ${soft} se tolera a medias)` : ""}.` : `Los ${fmt(temas.length)} entran: ninguno pasa de ${lim} caracteres ponderados.`} Largo ponderado: la i, la coma y el punto pesan 0,5; la f, la t y las comillas dobles, 0,7.</p>
+    <div class="sheetbox">${show.map(t => `<button class="lenrow ${t.fi != null ? "flag-on" : ""}" data-act="node" data-v="${t.k.i}"><span class="tx"><span class="c">${rich(t.txt)}</span><small>${isTitle ? rich(t.k.unit.label) : rich(t.k.label)}</small></span>
+      <span class="track"><i class="${t.fi != null ? "s1" : "s4"}" style="width:${100 * t.len / maxL}%"></i><span class="lim" style="left:${100 * lim / maxL}%"></span>${soft ? `<span class="lim soft" style="left:${100 * soft / maxL}%"></span>` : ""}</span><span class="v">${fmt1(t.len)}</span></button>`).join("")}</div>
+    ${temas.length > show.length ? `<button class="more" data-act="limit">Mostrar ${fmt(Math.min(20, temas.length - show.length))} más</button>` : ""}</section>`;
+}
+function cocaView(node) {
+  const src = node.coca || (node.t === "C" ? N[1].coca : null);
+  if (!src) return `<div class="notice">La frecuencia se mide por nivel y por unidad. Subí a la unidad para ver su reparto.</div>`;
+  const hasTarget = src.b.some(b => b[3] != null);
+  const dir = {top1k: "al menos", top4k: "a lo sumo"};
+  const tol = (band, p, tgt, as) => as === "OPTIMAL" && tgt != null && (band === "top1k" ? p < tgt : p > tgt) ? ", dentro de la tolerancia" : "";
+  const rows = src.b.map(([band, cnt, p, tgt, as]) => `<div class="brow" style="cursor:default"><span class="nm">${BAND[band] || band}</span><span class="track"><i class="v2" style="width:${p}%;background:var(--c)"></i>${tgt != null ? `<span class="ref" style="left:${tgt}%"></span>` : ""}</span><span class="val"><b>${fmt1(p)}${NB}%</b>${tgt != null ? `meta ${dir[band] || ""} ${fmt1(tgt)}${NB}%${tol(band, p, tgt, as)}` : `${fmt(cnt)} tokens`}</span></div>`).join("");
+  const qs = src.quarters && src.quarters.length ? `<div class="quarters">${src.quarters.map((qq, i) => `<div class="qcol"><h5>${["Primer", "Segundo", "Tercer", "Último"][i]} cuarto</h5>${qq.map(([band, p, tgt, as]) => `<div class="qline"><span class="nm">${band === "top1k" ? "1.000 más comunes" : "más allá de 3.000"}</span><span class="v">${fmt1(p)}${NB}%</span><span class="tr"><i style="width:${Math.min(100, p)}%"></i><b style="left:${Math.min(100, tgt)}%"></b></span><span class="nm" style="grid-column:1/3">meta ${dir[band]} ${fmt1(tgt)}${NB}%, ${as === "OPTIMAL" && (band === "top1k" ? p < tgt : p > tgt) ? "en meta por la tolerancia" : ASSESS[as] || as}</span></div>`).join("")}</div>`).join("")}</div>` : "";
+  return `<section class="sec"><h3>De qué frecuencia son las palabras ${node.t === "C" ? "de A1" : nodeOf(node)}</h3><p class="sub">${fmt(src.tokens)} tokens según su puesto en COCA, el corpus de inglés de referencia.${hasTarget ? " La raya es la meta; hay tolerancia de 10 puntos." : " Las metas se miden por nivel y por cuarto del nivel; acá, sólo el reparto."}</p>
+    <div class="bars wide">${rows}</div>${qs ? `<p class="sub" style="margin-top:22px">El nivel se parte en cuartos: al avanzar, la meta deja entrar palabras menos comunes.</p>${qs}` : ""}</section>`;
+}
+function recurrenceScatter(W) {
+  const ws = [...WD.values()].filter(w => w.ps && w.mean > 0);
+  const H = 340, ml = 52, mb = 36, mt = 30, mr = 14, lg = Math.log10;
+  const x0 = 1.6, x1 = Math.max(...ws.map(w => w.times)) * 1.15, y0 = 10 ** Math.floor(lg(Math.min(...ws.map(w => w.mean)))), y1 = Math.max(...ws.map(w => w.mean)) * 1.2;
+  // Las palabras que aparecen pocas veces caen en columnas: se separan un poco para que se vea cuántas son.
+  const jit = w => { let h = 0; for (const ch of w.key) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return w.times < 25 ? w.times * (1 + ((h % 1000) / 1000 - .5) * .16) : w.times; };
+  const sx = v => ml + (lg(v) - lg(x0)) / (lg(x1) - lg(x0)) * (W - ml - mr), sy = v => mt + (1 - (lg(v) - lg(y0)) / (lg(y1) - lg(y0))) * (H - mt - mb);
+  const g = C.recurrenceGoal;
+  let s = `<rect class="band" x="${ml}" y="${sy(g.subExposedThreshold)}" width="${W - ml - mr}" height="${sy(g.overExposedThreshold) - sy(g.subExposedThreshold)}" rx="4"/>
+    <text class="band-l" x="${W - mr - 8}" y="${sy(g.subExposedThreshold) + 15}" text-anchor="end">intervalo sano: más de ${g.overExposedThreshold} y hasta ${fmt(g.subExposedThreshold)} palabras</text>`;
+  for (const v of [1, 10, 100, 1000, 10000]) if (v >= y0 && v <= y1) s += `<line class="grid" x1="${ml}" x2="${W - mr}" y1="${sy(v)}" y2="${sy(v)}"/><text x="${ml - 8}" y="${sy(v) + 4}" text-anchor="end">${fmt(v)}</text>`;
+  for (const v of [2, 5, 10, 20, 50, 100, 200, 500]) if (v <= x1) s += `<text x="${sx(v)}" y="${H - mb + 17}" text-anchor="middle">${fmt(v)}</text>`;
+  s += `<line class="axis" x1="${ml}" x2="${W - mr}" y1="${H - mb}" y2="${H - mb}"/>`;
+  for (const w of ws) s += `<circle class="dotw ${wstatus(w)}" cx="${sx(jit(w)).toFixed(1)}" cy="${sy(w.mean).toFixed(1)}" r="4.2" data-act="word" data-v="${esc(w.key)}" data-tt="${esc(w.lemma)}: ${fmt(w.times)} veces, vuelve cada ${fmt(Math.round(w.mean))} palabras"/>`;
+  s += `<text x="${W - mr}" y="${H - 3}" text-anchor="end">veces que aparece en el curso</text><text x="0" y="12">palabras hasta que vuelve</text>`;
+  return `<svg class="chart" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${s}</svg>`;
+}
+function recurrenceView(node) {
+  const sum = W.recSummary, tot = sum.normalCount + sum.subExposedCount + sum.overExposedCount;
+  const late = [...WD.values()].filter(w => w.st === "s").sort((a, b) => b.mean - a.mean).slice(0, 16);
+  return `<section class="sec"><h3>Cada cuánto vuelve cada palabra</h3><p class="sub">${node.t !== "C" ? "Se mide en el curso entero. " : ""}<b>${fmt(sum.normalCount)} de ${fmt(tot)}</b> palabras (${pct(sum.normalCount, tot)}) vuelven a un intervalo sano; <b>${fmt(sum.subExposedCount)}</b> tardan demasiado y <b>${fmt(sum.overExposedCount)}</b> vuelven demasiado seguido. Cada punto es una palabra; tocala para ver dónde aparece.</p>
+    ${recurrenceScatter(chartW())}
+    <div class="lg-items" style="margin-top:8px"><span class="lg-item w-n"><i></i>Sano <b>${fmt(sum.normalCount)}</b></span><span class="lg-item w-s"><i></i>Vuelve tarde <b>${fmt(sum.subExposedCount)}</b></span><span class="lg-item w-o"><i></i>Demasiado seguido <b>${fmt(sum.overExposedCount)}</b></span></div></section>
+    <section class="sec"><h3>Las que más tardan en volver</h3><p class="sub">Promedio de palabras entre una aparición y la siguiente.</p><div class="chips">${late.map(w => `<button class="chip w-s" data-act="word" data-v="${esc(w.key)}">${lem(w.lemma, w.pos)}<small>cada ${fmt(Math.round(w.mean))}</small></button>`).join("")}</div>
+    <button class="more" data-act="mode-words" data-v="tarde">Ver las ${fmt(sum.subExposedCount)} en Palabras</button></section>`;
+}
+// Lo que falta suele tener forma: si son fechas o tratamientos, decirlo vale más que la lista.
+const MONTHS = /^(January|February|March|April|May|June|July|August|September|October|November|December)$/, DAYS = /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)$/, TITLES = /^(Mr|Mrs|Ms|Miss)$/;
+function absentShape(list) {
+  const m = list.filter(x => MONTHS.test(x[0])).length, d = list.filter(x => DAYS.test(x[0])).length, t = list.filter(x => TITLES.test(x[0])).map(x => x[0]);
+  if (m + d < 3) return "";
+  const parts = [m ? `${m === 12 ? "los 12 meses" : `${fmt(m)} de los 12 meses`}` : "", d ? `${d === 7 ? "los 7 días de la semana" : `${fmt(d)} días de la semana`}` : ""].filter(Boolean).join(" y ");
+  return ` Casi todas son fechas: el curso nunca nombra ${parts}${t.length ? `; tampoco usa ${t.join(", ").replace(/, ([^,]*)$/, " ni $1")}` : ""}.`;
+}
+function absenceView(node, a) {
+  const ab = W.absent, present = ab.expected - ab.absent, cov = present / ab.expected;
+  const mis = new Map(), ooc = new Map();
+  for (const qi of node.all) { for (const m of Q[qi].mis || []) mis.set(m[0], (mis.get(m[0]) || 0) + 1); for (const o of Q[qi].ooc || []) ooc.set(o, (ooc.get(o) || 0) + 1); }
+  const misL = [...mis].sort((x, y) => y[1] - x[1]), oocL = [...ooc].sort((x, y) => y[1] - x[1]);
+  const coverage = node.t === "K" || node.t === "T" ? "" : `<section class="sec"><h3>Las palabras que A1 espera</h3><p class="sub">El EVP espera ${fmt(ab.expected)} palabras en A1. Están <b>${fmt(present)}</b> (${fmt1(100 * cov)}${NB}%); la meta es ${fmt1(100 * ab.target)}${NB}%.${absentShape(ab.list)}</p>
+    <div class="cover"><div class="tr"><i style="width:${100 * cov}%"></i><span class="goal" style="left:${100 * ab.target}%"><span>meta</span></span></div><div class="v">${fmt(ab.absent)} faltan<small>de ${fmt(ab.expected)}</small></div></div>
+    <div class="chips">${ab.list.map(([l, p, prio, rank, cat]) => { const w = WD.get(wkey(l, p)); return `<button class="chip ${prio === "HIGH" ? "s1" : prio === "MEDIUM" ? "s2" : "s3"}" data-act="word" data-v="${esc(w.key)}" title="Prioridad ${PRIO[prio] || prio}${cat ? `, ${esc(cat)}` : ""}">${lem(l, p)}<small>${rank ? `COCA ${fmt(rank)}` : ""}</small></button>`; }).join("")}</div>
+    <div class="lg-items" style="margin-top:10px"><span class="lg-item s1"><i></i>Prioridad alta</span><span class="lg-item s2"><i></i>Media</span><span class="lg-item s3"><i></i>Baja</span></div></section>`;
+  const misSec = `<section class="sec"><h3>Palabras de otro nivel</h3><p class="sub">${misL.length ? `<b>${fmt(misL.length)}</b> palabras de niveles más altos aparecen en ${fmt(node.all.filter(qi => Q[qi].mis).length)} ejercicios ${nodeOf(node)}.` : `Ninguna ${nodeOf(node)}.`}</p>
+    ${misL.length ? `<div class="chips">${misL.slice(0, 60).map(([l, n]) => `<button class="chip v2" data-act="word" data-v="${esc("mis:" + l)}"><span class="lem">${esc(l)}</span><small>${MIS.get(l).lvl}, ${fmt(n)}</small></button>`).join("")}</div>` : ""}</section>`;
+  const oocSec = oocL.length ? `<section class="sec"><h3>Fuera del catálogo</h3><p class="sub">Palabras que no están en el EVP: nombres propios, comidas, errores de etiquetado.</p><div class="chips">${oocL.map(([l, n]) => `<button class="chip w-x" data-act="word" data-v="${esc("ooc:" + l)}"><span class="lem">${esc(l)}</span><small>${fmt(n)}</small></button>`).join("")}</div></section>` : "";
+  return coverage + misSec + oocSec;
+}
+function countView(node) {
+  const a1 = [...WD.values()].filter(w => w.level === "A1" && w.thr && !w.absent);
+  const bands = W.bands.map(([name, , thr]) => { const l = a1.filter(w => w.band === name); return {name, thr, ok: l.filter(w => w.sents >= w.thr).length, no: l.filter(w => w.sents < w.thr).length}; });
+  const max = Math.max(...bands.map(b => b.ok + b.no));
+  const worst = a1.filter(w => w.sents < w.thr).sort((x, y) => x.cs - y.cs || (x.coca || 9e9) - (y.coca || 9e9)).slice(0, 30);
+  return `<section class="sec"><h3>En cuántas oraciones aparece cada palabra de A1</h3><p class="sub">${node.t !== "M" && node.t !== "C" ? "Se mide en el nivel: estos números son de A1. " : ""}Cada palabra necesita aparecer en tantas oraciones distintas como pide su banda de frecuencia. Verde: llega; ámbar: no llega.</p>
+    <div class="bars">${bands.map(b => `<div class="brow" style="cursor:default;grid-template-columns:minmax(0,230px) minmax(0,1fr) 110px"><span class="nm">${esc(b.name)} <span style="color:var(--ink-3);font-weight:400">pide ${b.thr}</span></span><span class="track" style="background:none;display:flex;gap:2px"><i class="s4" style="position:static;width:${100 * b.ok / max}%;background:var(--c)"></i><i class="s2" style="position:static;width:${100 * b.no / max}%;background:var(--c)"></i></span><span class="val"><b>${fmt(b.no)}</b>de ${fmt(b.ok + b.no)} no llegan</span></div>`).join("")}</div></section>
+    <section class="sec"><h3>Por nivel del EVP</h3><p class="sub">La campaña es A1, pero sus oraciones también usan palabras que el EVP pone en niveles más altos.</p>
+    <table class="tbl"><thead><tr><th>Nivel</th><th class="r">Palabras</th><th class="r">No llegan</th><th class="r">Puntaje</th></tr></thead><tbody>${W.levels.map(([lv, tot, sc, sub]) => `<tr><td>${lv}</td><td class="r">${fmt(tot)}</td><td class="r">${fmt(sub)}</td><td class="r"><b>${pts(sc)}</b></td></tr>`).join("")}</tbody></table></section>
+    <section class="sec"><h3>Las que menos aparecen</h3><p class="sub">Palabras de A1 más lejos de su umbral.</p><div class="chips">${worst.map(w => `<button class="chip s2" data-act="word" data-v="${esc(w.key)}">${lem(w.lemma, w.pos)}<small>${w.sents} de ${w.thr}</small></button>`).join("")}</div>
+    <button class="more" data-act="mode-words" data-v="pocas">Ver las ${fmt(a1.filter(w => w.sents < w.thr).length)} en Palabras</button></section>`;
+}
+
+/* ── Modo mapa ─────────────────────────────────────────────────────────── */
+function renderMap(keep) {
+  const node = N[S.node], sc = $("#scroll"), top = keep && sc ? sc.scrollTop : 0;
+  $("#stage").innerHTML = `<div class="scroll" id="scroll">${head(node)}<section class="hero" id="hero" ${S.hl ? `data-hl="${S.hl}"` : ""} aria-label="${S.lens === "calidad" ? "Calidad por medida" : "Mapa de ejercicios"}">${hero(node)}</section>${legend(node)}<div class="reading">${reading(node)}</div></div>`;
+  settleRadar();
+  if (top) $("#scroll").scrollTop = top;
+}
+
+/* ── Ficha del ejercicio ───────────────────────────────────────────────── */
+function stuSentence(q) {
+  if (q.p && q.p.length) return q.p.map(([k, t]) => k === "CLOZE" ? '<span class="gap"></span>' : esc(t)).join(" ").replace(/ ([.,!?;:])/g, "$1");
+  return gapify(q.s);
+}
+function renderDrawer() {
+  const d = $("#drawer");
+  if (S.quiz == null) { d.classList.remove("open"); return; }
+  const q = Q[S.quiz], k = q.tema;
+  const rows = [];
+  if (q.ins) rows.push(["Consigna", `<span class="c ins">${rich(q.ins)}</span>`]);
+  rows.push(["Ejercicio", `<span class="c snt">${stuSentence(q)}</span>`, true]);
+  if (q.mc && q.mc.length) rows.push(["Opciones", `<div class="opts">${q.mc.map(([t, ok]) => `<span class="opt ${ok ? "right" : ""}">${esc(t)}</span>`).join("")}</div>`]);
+  if (q.ans) rows.push(["Respuesta", `<span class="c ans">${esc(q.ans)}</span>`]);
+  if (q.tr) rows.push(["Traducción", `<span class="c tr">${esc(q.tr)}</span>`]);
+  if (q.mt) rows.push(["Miniteoría", `<span class="c mt">${rich(q.mt)}</span>`]);
+  const probs = ERR.map(a => [a, q.st[ERRI.get(a)]]).filter(([, ch]) => ch === "x" || ch === "m")
+    .sort((x, y) => (x[1] === "x" ? q.fsev.get(x[0]) ?? 3 : 3.5) - (y[1] === "x" ? q.fsev.get(y[0]) ?? 3 : 3.5));
+  const oks = ERR.filter(a => q.st[ERRI.get(a)] === "o"), nas = ERR.filter(a => q.st[ERRI.get(a)] === "." && RAN.has(a));
+  const res = probs.length ? `<div class="res">${probs.flatMap(([a]) => (q.fa.get(a) || []).map(fi => fdCard(fi, {an: `<button data-act="lens-from-quiz" data-v="${a}">${esc(AN.get(a).name)}</button>`, noWhere: true, noOwner: true}))).join("")}</div>` : `<div class="notice" style="margin-top:0;background:var(--ok-bg);color:var(--ok)">Ningún analizador encontró errores en este ejercicio.</div>`;
+  const words = QW[q.i].map(kk => WD.get(kk));
+  const lo = Math.min(RANGE.minTokens, q.tok) - 2, hi = Math.max(RANGE.maxTokens, q.tok) + 2, X = v => 100 * (v - lo) / (hi - lo);
+  const vrows = [];
+  if (q.tok != null) vrows.push(["Largo", `<div><b>${q.tok} tokens</b> <span class="quiet">A1 pide de ${RANGE.minTokens} a ${RANGE.maxTokens}</span><div class="ruler"><span class="base"></span><span class="ok" style="left:${X(RANGE.minTokens)}%;width:${X(RANGE.maxTokens) - X(RANGE.minTokens)}%"></span><span class="mark" style="left:${X(q.tok)}%"></span></div></div>`]);
+  if (q.mis) vrows.push(["Otro nivel", q.mis.map(m => `<button class="chip v2" data-act="word" data-v="${esc("mis:" + m[0])}"><span class="lem">${esc(m[0])}</span><small>es de ${m[1]}</small></button>`).join(" ")]);
+  if (q.ooc) vrows.push(["Sin catálogo", q.ooc.map(o => `<button class="chip w-x" data-act="word" data-v="${esc("ooc:" + o)}"><span class="lem">${esc(o)}</span></button>`).join(" ")]);
+  if (words.length) vrows.push(["Sus palabras", `<div class="chips">${words.map(w => `<button class="chip ${wstatus(w)}" data-act="word" data-v="${esc(w.key)}" title="${WSTATUS[wstatus(w)]}">${lem(w.lemma, w.pos)}</button>`).join("")}</div>`]);
+  if (q.pos) vrows.push(["En el curso", `<span>Palabras ${fmt(q.pos[0])} a ${fmt(q.pos[1])} de ${fmt(W.positions)}</span>`]);
+  d.innerHTML = `<header class="dh"><div class="dpath"><button data-act="node" data-v="${q.unit.i}">${rich(q.unit.label)}</button><span>/</span><button data-act="node" data-v="${k.i}">${rich(k.label)}</button></div>
+    <div class="dnav"><button data-act="qstep" data-v="-1" aria-label="Anterior del tema">${ICON.left}</button><span>${q.j + 1} de ${k.qs.length}</span><button data-act="qstep" data-v="1" aria-label="Siguiente del tema">${ICON.right}</button><button data-act="qclose" aria-label="Cerrar">${ICON.close}</button></div></header>
+    <div class="dbody"><article class="sv">${rows.map(([l, h, big]) => `<div class="row ${big ? "hero-row" : ""}"><span class="lbl">${l}</span><div>${h}</div></div>`).join("")}</article>
+    <section class="dsec"><h4>Qué encontraron los analizadores<span>${probs.length ? `${probs.length} de ${ERR_RAN.length}` : ""}</span></h4>${res}
+      ${oks.length ? `<div class="restline"><span>Sin problema:</span>${oks.map(a => `<span class="flag s4">${SHORT[a]}</span>`).join("")}</div>` : ""}
+      ${nas.length ? `<div class="restline"><span>No aplica:</span>${nas.map(a => `<span class="flag na">${SHORT[a]}</span>`).join("")}</div>` : ""}</section>
+    <section class="dsec"><h4>Vocabulario<span>puntaje ${pts(q.vs)}</span></h4><div class="vfacts">${vrows.map(([l, h]) => `<div class="vf"><span>${l}</span><div>${h}</div></div>`).join("")}</div></section>
+    <p class="qid">Ejercicio ${esc(q.id)}</p></div>`;
+  d.classList.add("open");
+}
+
+/* ── Modo palabras ─────────────────────────────────────────────────────── */
+const WFILTERS = [
+  ["todas", "Todas", w => !w.absent],
+  ["tarde", "Vuelven tarde", w => w.st === "s"],
+  ["seguido", "Demasiado seguido", w => w.st === "o"],
+  ["pocas", "Pocas oraciones", w => w.level === "A1" && w.thr && w.sents < w.thr],
+  ["faltan", "Faltan", w => w.absent],
+  ["otro", "De otro nivel", null],
+];
+function wordList() {
+  const f = WFILTERS.find(x => x[0] === S.wf), q = S.wq.trim().toLowerCase();
+  let list;
+  if (S.wf === "otro") list = [...MIS.values()].map(m => ({key: "mis:" + m.lemma, lemma: m.lemma, val: `${m.lvl}, ${m.qs.length}`, cls: "v2", n: m.qs.length})).sort((a, b) => b.n - a.n);
+  else {
+    list = [...WD.values()].filter(f[2]).map(w => ({key: w.key, lemma: w.lemma, pos: w.pos, cls: wstatus(w), w}));
+    const val = {todas: w => w.times ? `${fmt(w.times)} veces` : w.sents ? `${fmt(w.sents)} oraciones` : "", tarde: w => `cada ${fmt(Math.round(w.mean))}`, seguido: w => `cada ${fmt(Math.round(w.mean))}`, pocas: w => `${w.sents} de ${w.thr}`, faltan: w => `prioridad ${PRIO[w.prio] || ""}`}[S.wf];
+    const sort = {todas: (a, b) => (b.w.times || 0) - (a.w.times || 0) || (b.w.sents || 0) - (a.w.sents || 0), tarde: (a, b) => b.w.mean - a.w.mean, seguido: (a, b) => a.w.mean - b.w.mean, pocas: (a, b) => a.w.cs - b.w.cs || (a.w.coca || 9e9) - (b.w.coca || 9e9), faltan: (a, b) => (a.w.coca || 9e9) - (b.w.coca || 9e9)}[S.wf];
+    list.sort(sort); list.forEach(x => { x.val = val(x.w); });
+  }
+  if (q) list = list.filter(x => x.lemma.toLowerCase().includes(q));
+  return list;
+}
+function wordRows() {
+  const list = wordList();
+  return `<div class="wi-count">${fmt(list.length)} palabras</div>` + list.slice(0, 400).map(x => `<button class="wrow" data-act="word" data-v="${esc(x.key)}" ${S.word === x.key ? 'aria-current="true"' : ""}><span class="lem">${esc(x.lemma)}${x.pos ? `<small>${POS[x.pos] || x.pos.toLowerCase()}</small>` : ""}</span><span class="val">${esc(x.val || "")}</span><i class="${x.cls}"></i></button>`).join("") + (list.length > 400 ? `<p class="ix-note">Y ${fmt(list.length - 400)} más: buscá para encontrarlas.</p>` : "");
+}
+function renderWordIndex() {
+  const cnt = id => id === "otro" ? MIS.size : [...WD.values()].filter(WFILTERS.find(x => x[0] === id)[2]).length;
+  $("#index").innerHTML = `<div class="wi-head"><label class="wsearch">${ICON.search}<input id="wq" data-act="wq" placeholder="Buscar una palabra" value="${esc(S.wq)}" autocomplete="off"></label>
+    <div class="wfilters">${WFILTERS.map(([id, l]) => `<button data-act="wf" data-v="${id}" aria-pressed="${S.wf === id}">${l} <span>${fmt(cnt(id))}</span></button>`).join("")}</div></div><div id="wrows">${wordRows()}</div>`;
+}
+function barcode(w, W) {
+  const H = 64, P = W.positions || C.words.positions, X = p => 6 + (W - 12) * (p - 1) / (P - 1);
+  let s = "";
+  UNITS.forEach((u, i) => { s += `<rect class="ubg ${i % 2 ? "alt" : ""}" x="${X(u.p0)}" y="0" width="${Math.max(1, X(u.p1) - X(u.p0))}" height="${H - 16}" data-tt="${esc(plain(u.label))}"/>`; if (X(u.p1) - X(u.p0) > 18) s += `<text class="ulbl" x="${(X(u.p0) + X(u.p1)) / 2}" y="${H - 3}" text-anchor="middle">${u.num}</text>`; });
+  const ps = w.ps || [];
+  let gi = -1, gmax = 0; for (let i = 1; i < ps.length; i++) if (ps[i] - ps[i - 1] > gmax) { gmax = ps[i] - ps[i - 1]; gi = i; }
+  if (gi > 0 && X(ps[gi]) - X(ps[gi - 1]) > 40) {
+    const a = X(ps[gi - 1]), b = X(ps[gi]);
+    s += `<path class="gapb" d="M${a} 6v-3h${b - a}v3"/><text class="gapl" x="${(a + b) / 2}" y="${H - 22}" text-anchor="middle" style="font-size:11px">${fmt(gmax)} palabras sin verla</text>`;
+  }
+  for (const p of ps) { const qi = quizAt(p); s += `<line class="tick" x1="${X(p)}" x2="${X(p)}" y1="8" y2="${H - 26}"/><line class="tick-hit" x1="${X(p)}" x2="${X(p)}" y1="4" y2="${H - 22}" data-act="quiz" data-v="${qi}" data-tq="${qi}"/>`; }
+  return `<svg class="chart barcode" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${s}</svg>`;
+}
+function wordDetail() {
+  const key = S.word;
+  let w, qs, title, meta, facts = "", extra = "";
+  if (key.startsWith("mis:") || key.startsWith("ooc:")) {
+    const l = key.slice(4), m = key.startsWith("mis:") ? MIS.get(l) : OOC.get(l), known = byLemma.get(l.toLowerCase());
+    if (!m) return `<p class="quiet">No encontré esa palabra.</p>`;
+    w = known; qs = m.qs; title = l;
+    meta = key.startsWith("mis:") ? `El EVP la pone en <b>${m.lvl}</b> y aparece en A1` : "No está en el catálogo del EVP";
+    facts = `<div class="facts"><div class="fact"><div class="k">Ejercicios</div><div class="v">${fmt(qs.length)}</div><div class="s">donde aparece</div></div>${known && known.times ? `<div class="fact"><div class="k">Veces en el curso</div><div class="v">${fmt(known.times)}</div></div>` : ""}</div>`;
+  } else {
+    w = WD.get(key); if (!w) return `<p class="quiet">No encontré esa palabra.</p>`;
+    qs = w.qs || []; title = w.lemma;
+    meta = [POS[w.pos] || w.pos, w.level ? `<b>${w.level}</b> según el EVP` : "sin nivel", w.coca ? `puesto ${fmt(w.coca)} en COCA` : ""].filter(Boolean).join(", ");
+    const sane = w.st === "n", g = C.recurrenceGoal;
+    if (w.absent) facts = `<div class="facts"><div class="fact"><div class="k">Veces en el curso</div><div class="v">0</div><div class="s bad">A1 la espera; prioridad ${PRIO[w.prio] || w.prio}</div></div>${w.cat ? `<div class="fact"><div class="k">Categoría</div><div class="v" style="font-size:17px">${esc(w.cat)}</div></div>` : ""}</div>`;
+    else facts = `<div class="facts">
+      <div class="fact"><div class="k">Veces en el curso</div><div class="v">${w.times ? fmt(w.times) : "—"}</div><div class="s">${w.qs ? `en ${fmt(w.qs.length)} ejercicios` : "fuera de las 2.000 más comunes"}</div></div>
+      <div class="fact"><div class="k">Vuelve cada</div><div class="v">${w.mean ? fmt(Math.round(w.mean)) : "—"}</div><div class="s ${w.st ? sane ? "good" : "bad" : ""}">${w.st ? `palabras; la meta es de ${g.overExposedThreshold} a ${fmt(g.subExposedThreshold)}` : "sin medir"}</div></div>
+      <div class="fact"><div class="k">Hueco más largo</div><div class="v">${w.gap ? fmt(w.gap) : "—"}</div><div class="s">palabras sin verla</div></div>
+      <div class="fact"><div class="k">Oraciones</div><div class="v">${w.sents != null ? fmt(w.sents) : "—"}</div><div class="s ${w.thr ? w.sents >= w.thr ? "good" : "bad" : ""}">${w.thr ? `su banda pide ${w.thr}` : "sin umbral"}</div></div></div>`;
+  }
+  if (w && w.ps) extra = `<section class="sec"><h3>Dónde aparece a lo largo del curso</h3><p class="sub">Cada raya es una aparición, en el orden en que el alumno recorre el curso; los números son las unidades. Tocá una raya para abrir el ejercicio.</p>${barcode(w, chartW())}</section>`;
+  const show = qs.slice(0, S.limit);
+  return `<header class="head whead"><button class="back" data-act="word" data-v="">${ICON.back}Todas las palabras</button>
+    <div class="wtitle"><h2 class="c">${esc(title)}</h2><span class="meta">${meta}</span></div>${facts}</header>
+    <div class="reading">${extra}<section class="sec"><h3>${qs.length ? `Los ${fmt(qs.length)} ejercicios donde aparece` : "No aparece en ningún ejercicio"}</h3>${qs.length ? `<p class="sub">En el orden del curso.</p><div class="exs">${show.map(qi => exCard(qi)).join("")}</div>${qs.length > show.length ? `<button class="more" data-act="limit">Mostrar ${fmt(Math.min(20, qs.length - show.length))} más de ${fmt(qs.length - show.length)}</button>` : ""}` : `<p class="sub">Para que el alumno la aprenda, hay que sumarla en algún ejercicio de A1.</p>`}</section></div>`;
+}
+function wordsOverview() {
+  const sum = W.recSummary, tot = sum.normalCount + sum.subExposedCount + sum.overExposedCount, ab = W.absent;
+  const a1 = W.levels.find(l => l[0] === "A1");
+  return `<header class="head"><nav class="crumbs"><span class="here">Curso A1</span></nav><div class="title"><h2>Las palabras del curso</h2><span class="size">${fmt(W.positions)} palabras en ${fmt(Q.length)} ejercicios</span></div>
+    <p class="lede">De las ${fmt(tot)} palabras del curso que están entre las 2.000 más comunes del inglés, <b>${fmt(sum.normalCount)}</b> vuelven a un intervalo sano y <b>${fmt(sum.subExposedCount)}</b> tardan demasiado en volver. De las ${fmt(a1[1])} palabras de A1, ${fmt(a1[3])} aparecen en menos oraciones de las que pide su banda, y faltan ${fmt(ab.absent)} de las que A1 espera.</p></header>
+    <div class="reading"><section class="sec"><h3>Cada cuánto vuelve cada palabra</h3><p class="sub">Cada punto es una palabra. Tocala para ver dónde aparece.</p>${recurrenceScatter(chartW())}
+    <div class="lg-items" style="margin-top:8px"><button class="lg-item w-n" data-act="wf" data-v="todas"><i></i>Sano <b>${fmt(sum.normalCount)}</b></button><button class="lg-item w-s" data-act="wf" data-v="tarde"><i></i>Vuelve tarde <b>${fmt(sum.subExposedCount)}</b></button><button class="lg-item w-o" data-act="wf" data-v="seguido"><i></i>Demasiado seguido <b>${fmt(sum.overExposedCount)}</b></button></div></section>
+    <div class="two"><section class="sec"><h3>Las que faltan</h3><p class="sub">${fmt(ab.absent)} de las ${fmt(ab.expected)} que A1 espera no aparecen nunca.${absentShape(ab.list)}</p><div class="chips">${ab.list.map(([l, p, prio]) => `<button class="chip ${prio === "HIGH" ? "s1" : prio === "MEDIUM" ? "s2" : "s3"}" data-act="word" data-v="${esc(wkey(l, p))}">${lem(l, p)}</button>`).join("")}</div></section>
+    <section class="sec"><h3>De otro nivel</h3><p class="sub">${fmt(MIS.size)} palabras que el EVP pone más arriba aparecen en ejercicios de A1.</p><div class="chips">${[...MIS.values()].sort((a, b) => b.qs.length - a.qs.length).slice(0, 24).map(m => `<button class="chip v2" data-act="word" data-v="${esc("mis:" + m.lemma)}"><span class="lem">${esc(m.lemma)}</span><small>${m.lvl}</small></button>`).join("")}</div><button class="more" data-act="wf" data-v="otro">Ver las ${fmt(MIS.size)}</button></section></div></div>`;
+}
+function renderWords(keep) {
+  const sc = $("#scroll"), top = keep && sc ? sc.scrollTop : 0;
+  $("#stage").innerHTML = `<div class="scroll" id="scroll">${S.word ? wordDetail() : wordsOverview()}</div>`;
+  if (top) $("#scroll").scrollTop = top;
+}
+
+/* ── Búsqueda ──────────────────────────────────────────────────────────── */
+function palette() {
+  $("#layer").innerHTML = `<div class="scrim" data-act="scrim"><div class="pal" id="pal" role="dialog" aria-label="Buscar"><label>${ICON.search}<input id="palq" placeholder="Buscá un tema, un ejercicio, una palabra o un analizador" autocomplete="off"></label><div id="palr"></div></div></div>`;
+  S.palSel = 0; paletteResults(); $("#palq").focus();
+}
+function paletteResults() {
+  const q = ($("#palq")?.value || "").trim().toLowerCase();
+  const items = [];
+  const add = (group, html, sub, go) => items.push({group, html, sub, go});
+  if (!q) {
+    add("Saltar a", "Nivel A1", "todo el mapa", () => go({mode: "mapa", node: 1, quiz: null}));
+    UNITS.slice(0, 11).forEach(u => add("Unidades", rich(u.label), `${fmt(u.all.length)} ejercicios`, () => go({mode: "mapa", node: u.i, quiz: null})));
+  } else {
+    [...UNITS, ...TEMAS].filter(n => plain(n.label).toLowerCase().includes(q)).slice(0, 8).forEach(n => add(n.t === "T" ? "Unidades" : "Temas", rich(n.label), n.t === "K" ? plain(n.unit.label) : `${fmt(n.all.length)} ejercicios`, () => go({mode: "mapa", node: n.i, quiz: null})));
+    A.filter(a => (a.name + " " + SHORT[a.id]).toLowerCase().includes(q)).slice(0, 5).forEach(a => add("Analizadores", esc(a.name), a.fam === "E" ? "errores" : "vocabulario", () => go({mode: "mapa", lens: a.id})));
+    [...WD.values()].filter(w => w.lemma.toLowerCase().startsWith(q)).slice(0, 6).forEach(w => add("Palabras", `<span class="c">${esc(w.lemma)}</span>`, POS[w.pos] || w.pos, () => go({mode: "palabras", word: w.key, quiz: null})));
+    Q.filter(x => (x.s + " " + (x.ans || "") + " " + (x.tr || "")).toLowerCase().includes(q)).slice(0, 8).forEach(x => add("Ejercicios", `<span class="c">${gapify(x.s)}</span>`, plain(x.tema.label), () => go({quiz: x.i})));
+  }
+  S.palItems = items; S.palSel = Math.min(S.palSel, Math.max(0, items.length - 1));
+  let h = "", last = "";
+  items.forEach((it, i) => { if (it.group !== last) { h += `<h5>${it.group}</h5>`; last = it.group; } h += `<button class="it" data-act="palgo" data-v="${i}" aria-selected="${i === S.palSel}"><span class="t">${it.html}</span><small>${esc(it.sub || "")}</small></button>`; });
+  $("#palr").innerHTML = h || `<p class="empty">Nada con «${esc(q)}». Probá con parte de una oración, el nombre de un tema o una palabra en inglés.</p>`;
+}
+function palGo(i) { const it = S.palItems[i]; if (!it) return; closeLayer(); it.go(); }
+function closeLayer() { $("#layer").innerHTML = ""; }
+function menu(anchor, html) {
+  const r = anchor.getBoundingClientRect();
+  $("#layer").innerHTML = `<div class="scrim" data-act="scrim" style="background:transparent;animation:none"><div class="menu" role="menu" style="top:${r.bottom + 6}px;${r.left > innerWidth / 2 ? `right:${innerWidth - r.right}px` : `left:${Math.max(8, r.left)}px`}">${html}</div></div>`;
+}
+function toggleTheme() {
+  const root = document.documentElement;
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("correcciones-tema", root.dataset.theme); } catch (e) {}
+}
+
+/* ── Render, historial y eventos ───────────────────────────────────────── */
+function render(keep) {
+  renderTop();
+  if (S.mode === "mapa") { renderIndex(); renderMap(keep); } else { renderWordIndex(); renderWords(keep); }
+  renderDrawer();
+}
+function hashOf() {
+  const p = [];
+  if (S.mode === "palabras") { p.push("m=palabras"); if (S.word) p.push("w=" + encodeURIComponent(S.word)); }
+  else { if (S.node !== 1) p.push("n=" + S.node); if (S.lens !== "calidad") p.push("l=" + S.lens); }
+  if (S.quiz != null) p.push("q=" + S.quiz);
+  return "#" + p.join("&");
+}
+function readHash() {
+  const h = new URLSearchParams(location.hash.slice(1));
+  S.mode = h.get("m") === "palabras" ? "palabras" : "mapa";
+  S.word = h.get("w") || null;
+  const n = +h.get("n"); S.node = h.has("n") && N[n] ? n : 1;
+  const l = h.get("l"); S.lens = l && (l === "calidad" || l === "err" || l === "voc" || AN.has(l)) ? l : "calidad";
+  const q = h.get("q"); S.quiz = q != null && Q[+q] ? +q : null;
+  S.rule = null; S.limit = 20; S.hl = null;
+}
+function go(patch, opts = {}) {
+  const scopeChange = ("node" in patch && patch.node !== S.node) || ("lens" in patch && patch.lens !== S.lens) || ("mode" in patch && patch.mode !== S.mode) || ("word" in patch && patch.word !== S.word);
+  if (scopeChange) { S.rule = null; S.limit = 20; S.hl = null; }
+  Object.assign(S, patch);
+  $("#app").classList.remove("show-side");
+  render(opts.keep);
+  const h = hashOf();
+  if (h !== (location.hash || "#")) history[opts.replace ? "replaceState" : "pushState"](null, "", h);
+}
+addEventListener("popstate", () => { readHash(); render(); });
+
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-act]"); if (!el) return;
+  const act = el.dataset.act, v = el.dataset.v;
+  if (act === "scrim") { if (e.target === el) closeLayer(); return; }
+  switch (act) {
+    case "node": go({node: +v, mode: "mapa", quiz: innerWidth <= 980 ? null : S.quiz}); break;
+    case "lens": go({lens: v, mode: "mapa"}, {keep: true}); break;
+    case "lens-from-quiz": go({lens: v, mode: "mapa", node: Q[S.quiz].tema.i}); break;
+    case "cell": { const [n, a] = v.split("|"); go({node: +n, lens: a}); break; }
+    case "quiz": go({quiz: +v}, {keep: true}); break;
+    case "qclose": go({quiz: null}, {keep: true}); break;
+    case "qstep": { const q = Q[S.quiz], qs = q.tema.qs; const j = (q.j + +v + qs.length) % qs.length; go({quiz: qs[j]}, {keep: true, replace: true}); break; }
+    case "order": S.order = v; render(true); break;
+    case "hl": S.hl = S.hl === v ? null : v; render(true); break;
+    case "rule": S.rule = S.rule === v || !v ? null : v; S.limit = 20; render(true); break;
+    case "limit": S.limit += 20; render(true); break;
+    case "mode": go({mode: v, quiz: null}); break;
+    case "mode-words": S.wf = v; go({mode: "palabras", word: null, quiz: null}); break;
+    case "word": go({mode: "palabras", word: v || null, quiz: null}); break;
+    case "wf": S.wf = v; if (S.mode !== "palabras") go({mode: "palabras", word: null}); else { renderWordIndex(); } break;
+    case "side": $("#app").classList.toggle("show-side"); break;
+    case "palette": palette(); break;
+    case "palgo": palGo(+v); break;
+    case "theme": toggleTheme(); break;
+    case "audits": menu(el, `<div class="mi"><span>7 de octubre, 08:15<small>Campaña A1, versión 11: ${fmt(Q.length)} ejercicios</small></span><span class="ck">✓</span></div><p class="note">Es el último análisis de esta campaña. Para ver qué cambió entre dos análisis, usá Comparación.</p>`); break;
+  }
+});
+document.addEventListener("input", e => {
+  if (e.target.id === "palq") { S.palSel = 0; paletteResults(); }
+  if (e.target.id === "wq") { S.wq = e.target.value; $("#wrows").innerHTML = wordRows(); }
+});
+// Tooltip y realce del edificio bajo el cursor
+const tip = $("#tip");
+let tipKey = null;
+document.addEventListener("mouseover", e => {
+  const t = e.target.closest("[data-tq],[data-tk],[data-tt],[data-tu]");
+  const sky = $("#sky");
+  const g = e.target.closest("#sky g"), du = e.target.closest(".district");
+  if (sky) {
+    sky.classList.toggle("dim", !!(g || du));
+    sky.querySelectorAll("g.on").forEach(x => x.classList.remove("on"));
+    if (g) g.classList.add("on");
+    if (du) { const u = N[+du.dataset.tu]; u.kids.forEach(k => sky.querySelector(`g[data-k="${k}"]`)?.classList.add("on")); }
+  }
+  const key = t ? (t.dataset.tq ?? "") + "|" + (t.dataset.tk ?? "") + "|" + (t.dataset.tt ?? "") + "|" + (t.dataset.tu ?? "") : null;
+  if (key === tipKey) return; tipKey = key;
+  if (!t || t.dataset.tu) { tip.classList.remove("on"); return; }
+  let h = "";
+  if (t.dataset.tq) { const q = Q[+t.dataset.tq], [c, , txt] = cellOf(q); h = `<small>${rich(q.unit.label)} / ${rich(q.tema.label)}</small><span class="c">${gapify(q.s)}</span><span class="st ${c}"><i></i>${esc(txt)}</span>`; }
+  else if (t.dataset.tk) { const k = N[+t.dataset.tk], nn = k.n; h = `<small>${rich(k.unit.label)}</small><b>${rich(k.label)}</b><small style="margin-top:3px">${fmt(k.qs.length)} ejercicios, ${pct(nn.any, nn.q)} con algún error. Tocá para acercarte.</small>`; }
+  else h = esc(t.dataset.tt);
+  tip.innerHTML = h; tip.classList.add("on");
+});
+document.addEventListener("mousemove", e => {
+  if (!tip.classList.contains("on")) return;
+  const r = tip.getBoundingClientRect(); let x = e.clientX + 14, y = e.clientY + 16;
+  if (x + r.width > innerWidth - 8) x = e.clientX - r.width - 14;
+  if (y + r.height > innerHeight - 8) y = e.clientY - r.height - 12;
+  tip.style.left = x + "px"; tip.style.top = y + "px";
+});
+document.addEventListener("mouseleave", () => tip.classList.remove("on"));
+document.addEventListener("scroll", () => tip.classList.remove("on"), true);
+document.addEventListener("keydown", e => {
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); return palette(); }
+  if ($("#pal")) {
+    if (e.key === "Escape") return closeLayer();
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); S.palSel = Math.max(0, Math.min(S.palItems.length - 1, S.palSel + (e.key === "ArrowDown" ? 1 : -1))); paletteResults(); $("#palr [aria-selected=true]")?.scrollIntoView({block: "nearest"}); }
+    if (e.key === "Enter") palGo(S.palSel);
+    return;
+  }
+  if (e.key === "Escape") { if ($("#layer").innerHTML) return closeLayer(); if ($("#app").classList.contains("show-side")) return $("#app").classList.remove("show-side"); if (S.quiz != null) return go({quiz: null}, {keep: true}); if (S.hl) { S.hl = null; return render(true); } return; }
+  if (/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName) || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (S.quiz != null && (e.key === "ArrowRight" || e.key === "ArrowLeft")) { e.preventDefault(); const q = Q[S.quiz], qs = q.tema.qs; return go({quiz: qs[(q.j + (e.key === "ArrowRight" ? 1 : -1) + qs.length) % qs.length]}, {keep: true, replace: true}); }
+  if (e.key === "Backspace" && S.mode === "mapa" && N[S.node].parent != null && S.node !== 1) { e.preventDefault(); return go({node: N[S.node].parent}); }
+  if (e.key === "/") { e.preventDefault(); return palette(); }
+});
+let lastW = innerWidth;
+addEventListener("resize", () => { clearTimeout(S.rz); S.rz = setTimeout(() => { if (Math.abs(innerWidth - lastW) > 30) { lastW = innerWidth; render(true); } }, 160); });
+
+readHash();
+render();
+document.fonts?.ready.then(() => { if (S.mode === "mapa" && S.lens === "calidad") render(true); });
+</script>
+</body>
+</html>
