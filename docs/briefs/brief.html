@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Exámenes en HTML</title>
+<title>Vueltas en HTML</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -245,6 +245,7 @@
   /* dos capturas lado a lado */
   .par{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
   .par .captura{margin:0}
+  .par .captura.cel img{max-height:560px;object-fit:cover;object-position:top}
 </style>
 </head>
 <body>
@@ -252,91 +253,100 @@
 
   <header>
     <div class="kicker">
-      <span class="num">094</span>
+      <span class="num">095</span>
       <span class="badge">Resumen</span>
-      <span class="meta">Dashboard de content-audit, después del brief 089 · 10/10/2026</span>
+      <span class="meta">Dashboard de content-audit, después del brief 088 · 10/10/2026</span>
     </div>
-    <h1>Exámenes ya anda en HTML y muestra qué juez frena el cierre</h1>
-    <p class="sub">Cómo se ve sobre una copia de a1-v11, qué no hace, qué datos faltan y qué conviene subir al andamio.</p>
+    <h1>Vueltas ya anda en HTML: cuánto bajó cada vuelta y qué queda</h1>
+    <p class="sub">Qué muestra, qué no hace, qué apareció en los datos y qué pasar a lo común.</p>
   </header>
 
-  <div class="lede"><p><strong>Exámenes anda en HTML sobre una copia: cada juez con su examen y el que frena el cierre (hoy, Calidad de distractores).</strong> Sólo lee; para entrar a master necesito tu OK en dos ramas.</p></div>
+  <div class="lede"><p><strong>La pantalla Vueltas ya anda en HTML sobre la tanda A1: de 1.959 a 654 ejercicios con algún error en dos vueltas.</strong> Sólo lee; lo que gasta está apagado y explica cómo se hace hoy.</p></div>
 
   <section>
-    <h2>De un vistazo, qué juez frena el cierre</h2>
-    <figure class="captura"><img src="094-examenes-en-html/abierta.jpg" alt="La pantalla Exámenes: nueve jueces en tarjetas, ocho aprobados y Calidad de distractores sin examen, con su aviso de que bloquea el cierre">
-      <figcaption>Copia de a1-v11: 9 jueces, 8 aprobados y 1 que nunca rindió</figcaption></figure>
-    <p class="pie">El examen de un juez son casos congelados con la respuesta esperada. Un juez sin aprobar no mide los ejercicios que cambian, y ninguna tanda se cierra.</p>
+    <h2>En dos vueltas, la tanda A1 bajó dos tercios</h2>
+    <figure class="captura"><img src="095-vueltas-en-html/pantalla.jpg" alt="La pantalla Vueltas: arriba la curva de ejercicios con algún error, análisis por análisis, agrupada en dos vueltas; abajo qué queda por analizador y la ficha del elegido">
+      <figcaption>Tanda A1, vuelta 2, sobre una copia de la campaña</figcaption></figure>
+    <div class="par" style="margin-top:12px">
+      <figure class="captura cel"><img src="095-vueltas-en-html/celular.jpg" alt="La misma pantalla en un celular, en modo oscuro y en una columna">
+        <figcaption>En el celular, en oscuro</figcaption></figure>
+      <figure class="captura"><img src="095-vueltas-en-html/estimacion.jpg" alt="La estimación de otra vuelta: 8.940 consultas del corrector, 1.959 ejercicios en 82 temas, y las tareas por analizador; al lado, la bandeja">
+        <figcaption>Cuánto costaría otra vuelta: estimar no gasta</figcaption></figure>
+    </div>
+    <p class="pie">Antes de corregir, 1.959 con algún error; tras la vuelta 1, 1.526 (−22 %); tras la 2, 654 (−57 %). El último análisis no midió dos analizadores.</p>
   </section>
 
   <section>
-    <h2>Cada versión, con sus casos y lo que no dio</h2>
-    <div class="par">
-      <figure class="captura"><img src="094-examenes-en-html/medida.jpg" alt="Opción múltiple mal armada, quinta versión: 36 de 38 casos dieron lo esperado, la tabla por grupo y los dos casos que no dieron">
-        <figcaption>Opción múltiple mal armada, 5ª versión: 36 de 38 casos</figcaption></figure>
-      <figure class="captura"><img src="094-examenes-en-html/sin-medir.jpg" alt="Ejercicio casi repetido en modo oscuro: once versiones, diez rendidas y sin medir, con sus herramientas al costado">
-        <figcaption>Casi repetidos: 10 de sus 11 versiones rindieron y nadie las midió</figcaption></figure>
+    <h2>Lo que queda apunta sobre todo al corrector</h2>
+    <div class="card">
+      <div class="hb">
+        <div class="r"><span class="t">El corrector <small>8 analizadores · sin ganador</small></span><span class="tr"><span class="f b" style="width:100%"></span></span><span class="n">545</span></div>
+        <div class="r"><span class="t">Otra vuelta <small>3 analizadores · pendientes</small></span><span class="tr"><span class="f" style="width:79.4%"></span></span><span class="n">433</span></div>
+        <div class="r"><span class="t">El analizador <small>casi repetidos · ya no se sostiene</small></span><span class="tr"><span class="f w" style="width:21.3%"></span></span><span class="n">116</span></div>
+        <div class="r"><span class="t">Nadie <small>palabra de otro nivel</small></span><span class="tr"><span class="f s" style="width:0.4%"></span></span><span class="n">2</span></div>
+      </div>
     </div>
-    <p class="pie">Rendir es correr el juez sobre los casos; medir, compararlo con lo esperado. Un caso que no dio es un defecto que se escapó o una falsa alarma.</p>
+    <figure class="captura" style="margin-top:12px"><img src="095-vueltas-en-html/queda.jpg" alt="La tabla de qué queda por analizador con sus barras de colores y a quién apunta; a la derecha la ficha de Miniteoría con error, con las tres maneras de destrabar apagadas">
+      <figcaption>Miniteoría con error: 443 quedan, 176 sin ganador; se destraba volviendo a corregir</figcaption></figure>
+    <p class="pie">Marcas que quedan, sumadas por analizador (un ejercicio puede tener varias). «Al corrector» quiere decir que otra vuelta igual no lo arregla: hay que destrabarlo, y eso gasta.</p>
   </section>
 
   <section>
-    <h2>Cada (?) explica y cada (!) avisa</h2>
-    <div class="par">
-      <figure class="captura"><img src="094-examenes-en-html/ayuda.jpg" alt="Panel de aviso en modo oscuro: por qué un juez sin aprobar bloquea el cierre, con el mapa de la pantalla">
-        <figcaption>(!) por qué un juez sin aprobar bloquea el cierre</figcaption></figure>
-      <figure class="captura"><img src="094-examenes-en-html/falsos.jpg" alt="Panel de ayuda: falsos positivos y falsos negativos, con dónde se leen en la tabla de grupos">
-        <figcaption>(?) falsos positivos y negativos, sobre la tabla real</figcaption></figure>
+    <h2>Cada región se explica, y lo que gasta está apagado</h2>
+    <figure class="captura"><img src="095-vueltas-en-html/ayuda.jpg" alt="Panel «Por qué destrabar está apagado», con el mapa de la pantalla y cómo se hace hoy cada una de las tres maneras">
+      <figcaption>(!) de destrabar: las tres maneras y cómo se hace cada una hoy</figcaption></figure>
+    <div class="cambia" style="margin-top:12px">
+      <div class="si"><div class="ptl">Hace</div><ul><li>Lee la tanda, la bandeja y la estimación.</li><li>Releer vuelve a preguntarle al CLI.</li><li>23 temas de ayuda: 13 (?) y 10 (!), con los números de la tanda.</li><li>Flechas, J y K para recorrer; R relee.</li></ul></div>
+      <div class="no"><div class="ptl">Dibuja apagado, con su (!)</div><ul><li>Otra vuelta y completar el análisis.</li><li>Revisar el analizador, volver a corregir y arreglar a mano.</li><li>Un ejercicio, vuelta por vuelta.</li></ul></div>
     </div>
-    <p class="pie">23 temas: qué es, cómo se lee con piezas de la pantalla, qué pasa y en qué paso vive. Rendir y pedir un caso están apagados con su (!): gastan consultas.</p>
+    <p class="pie">Los seis botones gastan consultas o cambian contenido: se ven como en la propuesta, apagados.</p>
   </section>
 
   <section>
-    <h2>Lee todo el registro; rendir sigue en la terminal</h2>
-    <div class="cambia">
-      <div class="si"><div class="ptl">Ya lo hace</div><ul><li>Lee los exámenes con un comando nuevo que no consulta modelos.</li><li>Por juez: versiones, registros, grupos, casos y herramientas.</li><li>Avisa si los casos guardados no cuadran con los grupos.</li><li>Celular, modo oscuro, teclado y copiar los casos.</li></ul></div>
-      <div class="no"><div class="ptl">No lo hace, a propósito</div><ul><li>Rendir un examen: gasta consultas.</li><li>Pedir un caso o marcar un esperado mal: escribe el examen.</li><li>Elegir otra campaña: la fija quien arranca el servidor.</li></ul></div>
-    </div>
-    <div class="kpis" style="margin-top:16px">
-      <div class="kpi dest"><div class="n">101</div><div class="l">pruebas de la página, en verde, sin abrir un navegador</div></div>
-      <div class="kpi"><div class="n">42</div><div class="l">estados recorridos: cada ayuda alcanzable, nada del servidor entra como HTML</div></div>
-      <div class="kpi"><div class="n">468<small>de 469</small></div><div class="l">pruebas de Dart y Flutter; la que falla ya fallaba en master</div></div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Faltan tres datos y cinco piezas piden subir</h2>
+    <h2>Al leer los datos aparecieron seis cosas</h2>
     <div class="tw"><table>
-      <thead><tr><th>Qué</th><th>Tipo</th><th>Por qué</th></tr></thead>
+      <thead><tr><th>Qué encontré</th><th>Qué hace la pantalla</th></tr></thead>
       <tbody>
-        <tr><td>Qué versión de cada juez corre hoy</td><td><span class="pill p-warn">dato</span></td><td>«Aprobado» es lo de la última que rindió, no lo que corre.</td></tr>
-        <tr><td>El caso completo, no sólo su id</td><td><span class="pill p-warn">dato</span></td><td>Sin eso no se ve qué ejercicio falló.</td></tr>
-        <tr><td>Cruzar los casos guardados con los grupos</td><td><span class="pill p-warn">dato</span></td><td>Gramática guarda 43 casos para 112 que no dieron.</td></tr>
-        <tr><td>Los (?) y (!), y el texto de los errores</td><td><span class="pill p-info">andamio</span></td><td>Correcciones y Exámenes los repiten igual.</td></tr>
-        <tr><td>Correr el CLI desde cualquier pantalla</td><td><span class="pill p-info">andamio</span></td><td>Hoy cada una copia cómo se corre.</td></tr>
-        <tr><td>Un tope de tiempo para el CLI</td><td><span class="pill p-info">andamio</span></td><td>Si se cuelga, la pantalla queda leyendo.</td></tr>
+        <tr><td>221 tareas volvieron sin intentos y contaban como pendientes</td><td>Cuentan como «sin ganador»: otra vuelta ya no las toma. Arreglado en el servidor.</td></tr>
+        <tr><td>Correcciones numera desde cero: esta vuelta 2 es su «Corrección 1»</td><td>La ayuda de la tanda lo avisa.</td></tr>
+        <tr><td>La app de Flutter espera otro nombre para los audios a regrabar</td><td>Usa el que manda el CLI: allá los 334 caen como desconocidos.</td></tr>
+        <tr><td>Un estado de tanda desconocido mostraba código en las etiquetas de Correcciones</td><td>Lo esquiva acá; arreglarlo es de lo común.</td></tr>
+        <tr><td>La estimación cuenta el plan entero: 3.499 tareas, aunque a la tanda le quedan 494</td><td>Un (!) lo avisa al lado de los números.</td></tr>
+        <tr><td>No hay historia de un ejercicio, y de qué están hechas las marcas sólo se sabe del último análisis</td><td>Botón apagado con su (!); la barra es la del último.</td></tr>
       </tbody>
     </table></div>
-    <p class="pie">También el arranque de la página y dos ayudantes de prueba, que hoy Correcciones y Exámenes tienen por duplicado. Nada de esto tocó lo común.</p>
+    <div class="call c-warn"><b>No sé</b> si «rebota», «la trajo una corrección» y «la rechazaste» están en 0 porque en A1 no pasó o porque no se anota.</div>
+  </section>
+
+  <section>
+    <h2>Lo repetido, listo para pasar a lo común</h2>
+    <div class="cambia">
+      <div class="no"><div class="ptl">Usado o copiado de Correcciones</div><ul><li>Qué se mira y el estado de la tanda, arriba.</li><li>El aviso de abajo y el mensaje sin datos.</li><li>La ayuda del contexto, con sus etapas.</li></ul></div>
+      <div class="si"><div class="ptl">Hecho acá, le sirve a otras</div><ul><li>Una lectura del CLI que se guarda y se comparte mientras llega.</li><li>Leer el catálogo de analizadores.</li><li>El botón apagado con su (!).</li><li>Las pruebas de que cada botón y cada atajo hacen algo.</li></ul></div>
+    </div>
+    <p class="pie">No toqué lo común. La revisión de la tanda pesa decenas de MB y la leen las dos pantallas por separado.</p>
   </section>
 
   <section>
     <h2>Qué necesito de vos</h2>
     <div class="asks">
-      <div class="ask">
-        <div class="q">¿Paso a master las dos ramas: la pantalla y el comando nuevo?</div>
-        <div class="ops"><span class="op rec">Sí, las dos</span><span class="op">Primero sólo el comando</span><span class="op">Todavía no</span></div>
-        <div class="why">La pantalla necesita el comando; sin él muestra un aviso de que falta. Ninguna tiene push. Para probarla antes, sobre una copia:</div>
-      </div>
+      <div class="ask"><div class="q">¿La paso a master?</div>
+        <div class="ops"><span class="op rec">Sí, después de probarla</span><span class="op">Esperar a las otras pantallas</span></div>
+        <div class="why">Sólo toca Vueltas y dos renglones compartidos. 102 pruebas nuevas del navegador y 30 del servidor, en verde; Flutter sigue igual.</div></div>
+      <div class="ask"><div class="q">¿Qué dato de content-audit va primero?</div>
+        <div class="ops"><span class="op rec">Estimar sólo lo que falta</span><span class="op">La historia de un ejercicio</span><span class="op">Otro</span></div>
+        <div class="why">Es lo que decide si otra vuelta vale la pena, y hoy cuenta 3.499 tareas donde quedan 494.</div></div>
+      <div class="ask"><div class="q">¿Cuándo se pasa lo repetido a lo común?</div>
+        <div class="ops"><span class="op rec">Al final, en una sesión aparte</span><span class="op">Ahora</span></div>
+        <div class="why">Ocho pantallas se arman en paralelo: moverlo ahora choca. Ahí va también el arreglo de las etiquetas.</div></div>
     </div>
-<pre>cd ~/projects/learney/ittm/.claude/worktrees/nice-bassi-b81f65/pipeline/vocabulary_dashboard
-CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_CLI=~/projects/learney/content-audit/.claude/worktrees/exam-status-json/audit-cli.sh CONTENT_AUDIT_WORKDIR=/ruta/a/la/copia CONTENT_AUDIT_CONTEXT_KIND=Copia ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart --puerto 7834</pre>
-    <div class="call c-warn"><b>Ojo:</b> dos pruebas ya fallaban antes: la que vigila nombres de analizadores en ittm y una de comparar en content-audit. Ninguna toca esto.</div>
+<pre>cd ~/projects/learney/ittm/.claude/worktrees/blissful-williams-e0ed75/pipeline/vocabulary_dashboard
+CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_WORKDIR=/ruta/a/la/copia CONTENT_AUDIT_CONTEXT_KIND=Copia ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart --puerto 7835</pre>
   </section>
 
   <footer>
-    <span>ittm, rama claude/nice-bassi-b81f65 (f4dc2c9e0 servidor, bbda569a6 página; sin push): lib/tablero_html/examenes/ y html/js/examenes/, ruta GET /api/examenes/jueces. content-audit, rama claude/exam-status-json (df186ea8, exam status -f json, F-JEXAM-R015). Fallas previas: test/guardian_test.dart y DefaultCompareCommandTest. Capturas con Chrome sin ventana sobre http://localhost:7834, copia APFS de a1-v11.</span>
-    <span>brief 094 · docs/briefs/094-examenes-en-html.html</span>
+    <span>Rama claude/blissful-williams-e0ed75 de ittm (sin push): 6ce42e94c, c79bd9c44, a21b1a1e4. Servidor en lib/tablero_html/vueltas/ (GET /api/vueltas/tanda, /bandeja, /estimacion; ?releer=1 vuelve al CLI), pantalla en html/vueltas.html, html/js/vueltas/ y html/css/vueltas.css. Sin ganador: RETURNED_WITHOUT_ATTEMPTS pasa de pri a nog en vista_de_vueltas.dart. Arreglo de lo común: estadoDeLaTanda y etiquetaDelEstado (js/correcciones/vistas/comun.js) buscan sin Object.hasOwn; acá estadoParaEtiqueta. Para promover: Lectura y catalogoDe (rutas_de_vueltas.dart), la lectura de batch review compartida con Correcciones, de/icono/apagado de vistas/comun.js, sinDatos, dibujarAviso y el tema contexto importados de Correcciones, .ctx y .estado-tanda copiados, el bucle de main.js, actosDeLosClics y botones de test/vueltas-comun.js. Huecos: TrayItemKind.rerecording espera RERECORDING y llega PENDING_RERECORDING; batch estimate cuenta el plan entero; el tope de la corrida sólo está en el archivo de la tanda; no hay lectura de la historia por ejercicio; motivos sólo del último análisis; reb, tra y rec en 0. npm test: 323 en verde; flutter test: +461, sólo falla guardian_test, igual que en master. Capturas con Chrome sin ventana sobre http://localhost:7835, con una copia de la campaña.</span>
+    <span>brief 095 · docs/briefs/095-vueltas-en-html.html</span>
   </footer>
 
 </div>
