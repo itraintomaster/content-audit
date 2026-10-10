@@ -9,6 +9,12 @@ import org.junit.jupiter.api.Test;
 import picocli.CommandLine;
 
 class SelectiveCorrectionCmdTest {
+    @Test void helpNeverConstructsAServiceOrNeedsARequest() {
+        var command = new CommandLine(new SelectiveCorrectionCmd(() -> { fail("Unexpected service"); return null; }));
+        var output = new StringWriter(); command.setOut(new PrintWriter(output));
+        assertEquals(0, command.execute("--help"));
+        assertTrue(output.toString().contains("--request-json"));
+    }
     @Test void routesExplicitSelectionBudgetAndSourceWithoutInvokingTheGeneralBatchRunner() {
         var received = new AtomicReference<Request>();
         var command = new CommandLine(CommandLine.Model.CommandSpec.create().name("content-audit"))
