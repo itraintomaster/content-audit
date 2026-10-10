@@ -96,7 +96,8 @@ final class DefaultBatchReview implements BatchReviewService {
         var tasks = plans.load(batch.getPlanId()).map(plan -> BatchBook.list(plan.getTasks()).stream()
                 .filter(task -> taskIds.contains(task.getId())).toList()).orElse(List.of());
         return new BatchReview(batch.getId(), BatchBook.correctionRevision(batch), batch.getContentVersion(),
-                reports.build(batch), tasks, proposals, items(batch, proposals), BatchBook.copy(batch.getClosings()), history(batch));
+                reports.build(batch), tasks, proposals, items(batch, proposals), BatchBook.copy(batch.getClosings()), history(batch),
+                BatchBook.copy(batch.getSelectiveRuns()));
     }
 
     private List<BatchReview.Version> history(CorrectionBatch selected) {
