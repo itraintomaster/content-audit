@@ -1388,7 +1388,7 @@ class Main {
                         sentenceLengthConfig);
         Supplier<com.learney.contentaudit.revisiondomain.panel.PanelRunner> panelRunner = memoized(
                 () -> panelRunnerFactory.create(panelConfig.get()));
-        batchFactory.set(memoized(() -> {
+        Supplier<com.learney.contentaudit.revisiondomain.batch.BatchServiceConfig> batchConfig = memoized(() -> {
             if (batchCourse == null) {
                 throw new IllegalStateException("Falta la ruta del curso: CONTENT_AUDIT_CONTENT_FOLDER o .env.");
             }
@@ -1400,8 +1400,9 @@ class Main {
                             baselineStore, blindSampleService, topicWordLightsQuery, null,
                             preservationFactory.createCheck(), Paths.get(batchCourse), goalBook, analyzerCatalog);
             config.setReviewCache(new com.learney.contentaudit.auditinfrastructure.FileSystemBatchReviewCache(baseDir));
-            return new com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchServiceFactory().create(config);
-        }));
+            return config;
+        });
+        batchFactory.set(memoized(() -> new com.learney.contentaudit.revisiondomain.batchengine.DefaultBatchServiceFactory().create(batchConfig.get())));
         com.learney.contentaudit.revisiondomain.tray.TrayService trayService = lazyTrayService(memoized(() ->
                 new com.learney.contentaudit.revisiondomain.trayengine.DefaultTrayServiceFactory().create(
                         new com.learney.contentaudit.revisiondomain.tray.TrayServiceConfig(batchService, batchStore,
@@ -1422,6 +1423,14 @@ class Main {
                                 .create(selected, System.getenv().getOrDefault("CONTENT_AUDIT_REASONING_EFFORT", "medium"));
                     });
         }));
+        batchCommand.addSubcommand("selective", new SelectiveCorrectionCmd(memoized(() -> {
+            var effective = new DefaultLagenConfigResolver(llmProviderResolver).resolve(System.getenv());
+            String runtime = effective.getProviderName() + " / " + effective.getModelId() + " / "
+                    + System.getenv().getOrDefault("CONTENT_AUDIT_REASONING_EFFORT", "medium");
+            return new com.learney.contentaudit.revisiondomain.batchengine.DefaultSelectiveCorrectionServiceFactory().create(
+                    batchConfig.get(), new com.learney.contentaudit.auditinfrastructure.minitheory.FileSystemMiniTheoryWorkspaceStore(baseDir)::fingerprint,
+                    runtime);
+        })));
         cmd.addSubcommand("batch", batchCommand);            // E · FEAT-TANDA
         cmd.addSubcommand("tray", new picocli.CommandLine(new TrayCmd(trayService, quizSentenceConverter))); // E · BANDEJA
 

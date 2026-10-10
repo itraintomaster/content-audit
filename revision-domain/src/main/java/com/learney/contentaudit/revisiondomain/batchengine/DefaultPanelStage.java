@@ -106,6 +106,11 @@ class DefaultPanelStage implements PanelStage {
     @Override
     public CorrectionBatch run(CorrectionBatch batch, AuditReport start, CourseEntity course,
             QueryAllowance allowance) {
+        return runSelected(batch, start, course, allowance, null, null);
+    }
+
+    CorrectionBatch runSelected(CorrectionBatch batch, AuditReport start, CourseEntity course,
+            QueryAllowance allowance, Set<String> selectedTaskIds, List<String> validationAnalyzers) {
         Map<String, RefinementTask> tasks = plans != null && batch.getPlanId() != null
                 ? plans.load(batch.getPlanId()).map(BatchBook::tasksById).orElse(Map.of()) : Map.of();
         CourseEntity composed = changeLedger.composedCourse(batch, course);
@@ -113,6 +118,7 @@ class DefaultPanelStage implements PanelStage {
         // The tasks still without a decision, by topic, in the order of the batch.
         Map<String, List<RefinementTask>> byTopic = new LinkedHashMap<>();
         for (String taskId : BatchBook.list(batch.getTaskIds())) {
+            if (selectedTaskIds != null && !selectedTaskIds.contains(taskId)) continue;
             RefinementTask task = tasks.get(taskId);
             BatchTaskOutcomeKind kind = BatchBook.kind(batch, taskId);
             if (task == null || kind != BatchTaskOutcomeKind.PENDING && kind != BatchTaskOutcomeKind.NOT_ATTEMPTED) {
@@ -124,6 +130,7 @@ class DefaultPanelStage implements PanelStage {
             }
         }
         for (ConversionOrder order : BatchBook.list(batch.getConversionOrders())) {
+            if (selectedTaskIds != null) continue; // unrelated conversion orders are never part of a selective run
             if (order != null && order.getKnowledgeId() != null && !conversionDone(batch, order.getKnowledgeId())) {
                 byTopic.computeIfAbsent(order.getKnowledgeId(), t -> new ArrayList<>());
             }
@@ -139,7 +146,7 @@ class DefaultPanelStage implements PanelStage {
                 }
                 continue;
             }
-            works.add(work(batch, start, place.get(), entry.getValue()));
+            works.add(work(batch, start, place.get(), entry.getValue(), selectedTaskIds != null));
         }
         if (works.isEmpty()) {
             return batch;
@@ -147,26 +154,44 @@ class DefaultPanelStage implements PanelStage {
         BatchSettings settings = batch.getSettings();
         PanelRunSettings run = new PanelRunSettings(settings != null ? settings.getTopicsAtOnce() : 0,
                 settings != null ? settings.getQueriesAtOnce() : 0, settings != null ? settings.getMaxAttempts() : 0,
-                BatchBook.copy(batch.getAnalyzers()));
+                validationAnalyzers != null ? List.copyOf(validationAnalyzers) : BatchBook.copy(batch.getAnalyzers()));
         CorrectionBatch[] holder = {batch};
+        int spentAtStart = batch.getQueriesSpent();
         int spentBefore = allowance != null ? allowance.spent() : 0;
         PanelVocabularyContext vocabulary = auditEngine != null && !works.isEmpty()
                 ? PanelVocabularyContexts.open(auditEngine, courseMapper, composed, wordLightsQuery, batch.getStartAuditId())
                 : null;
         panelRunner.runTopics(works, run, allowance, decision -> {
+            if (selectedTaskIds != null && (!selectedTaskIds.containsAll(BatchBook.list(decision.getTaskIds()))
+                    || !selectedTaskIds.containsAll(BatchBook.list(decision.getResolvedTaskIds()))
+                    || !selectedTaskIds.stream().map(tasks::get).filter(java.util.Objects::nonNull)
+                            .map(RefinementTask::getNodeId).collect(java.util.stream.Collectors.toSet())
+                            .containsAll(BatchBook.list(decision.getQuizIds())))) {
+                throw new IllegalStateException("La mesa devolvió una decisión ajena al alcance seleccionado.");
+            }
+            if (selectedTaskIds != null && decision.getAccepted() != null) {
+                if (decision.getAccepted().getKind() == PanelCandidateKind.MULTIPLE_CHOICE_CONVERSION
+                        || decision.getAccepted().getTopicInstructions() != null) {
+                    throw new IllegalStateException("La corrida selectiva no puede convertir ejercicios ni cambiar la consigna del tema.");
+                }
+            }
             holder[0] = accept(holder[0], decision, course);
             if (batchStore != null) {
+                // Keep consolidated consumption durable together with each result, even if a later topic fails.
+                if (selectedTaskIds != null)
+                    holder[0].setQueriesSpent(spentAtStart + (allowance != null ? allowance.spent() - spentBefore : 0));
                 batchStore.save(holder[0]);
             }
         }, vocabulary);
         batch = holder[0];
-        batch.setQueriesSpent(batch.getQueriesSpent() + (allowance != null ? allowance.spent() - spentBefore : 0));
+        batch.setQueriesSpent(spentAtStart + (allowance != null ? allowance.spent() - spentBefore : 0));
         return batch;
     }
 
     // -------------------------------------------------------------------------
 
-    private TopicWork work(CorrectionBatch batch, AuditReport start, BatchBook.Place place, List<RefinementTask> tasks) {
+    private TopicWork work(CorrectionBatch batch, AuditReport start, BatchBook.Place place, List<RefinementTask> tasks,
+            boolean selective) {
         KnowledgeEntity knowledge = place.knowledge();
         List<ErrorTaskBrief> briefs = new ArrayList<>();
         Map<String, Integer> attemptsUsed = new LinkedHashMap<>();
@@ -196,6 +221,7 @@ class DefaultPanelStage implements PanelStage {
         }
         ConversionOrder conversion = null;
         for (ConversionOrder order : BatchBook.list(batch.getConversionOrders())) {
+            if (selective) continue;
             if (order != null && knowledge.getId().equals(order.getKnowledgeId())) {
                 conversion = order;
             }
