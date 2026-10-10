@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sí, conviene HTML: cambiá la cara, quedate con el motor</title>
+<title>Correcciones en HTML</title>
 <style>
+  /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
     --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
     --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
@@ -38,8 +39,9 @@
   .wrap{max-width:940px;margin:0 auto}
   code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
   a{color:var(--accent)}
-  code,a{overflow-wrap:anywhere}
+  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
 
+  /* ============ encabezado ============ */
   header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
   .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
   .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
@@ -51,16 +53,32 @@
   h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
   .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
 
+  /* ============ el lede: la conclusión, dos renglones ============ */
   .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
     border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
   .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
   .lede strong{font-weight:650}
 
+  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
   section{margin:0 0 38px}
   h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
   p{margin:0 0 12px}
   .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+  .grid{display:grid;gap:12px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
+    box-shadow:var(--shadow);min-width:0}
+  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
 
+  /* ============ KPIs: el número grande, su comparación abajo ============ */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
+  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
+  .kpi.dest .n{color:var(--accent)}
+
+  /* ============ barras horizontales con etiqueta ============ */
   .hb{display:grid;gap:10px}
   .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
   .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
@@ -69,12 +87,28 @@
   .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
   .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
   .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
   .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
-  .hb .grp{font-size:12px;font-weight:650;color:var(--fg-3);margin-top:6px}
   .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
   .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
-  .sw.g{background:var(--ok)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
 
+  /* ============ flujo en pasos ============ */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
+  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
+    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
+  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
+  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
+  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
+  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+
+  /* ============ antes y después ============ */
   .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
   .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
     padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
@@ -87,6 +121,17 @@
   .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
   .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
 
+  /* ============ mapa de calor ============ */
+  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
+  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
+  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
+  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
+  .heat .h0{color:var(--fg-3)}
+  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
+  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
+  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
+
+  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
   .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
   .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
     box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
@@ -95,10 +140,29 @@
   .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
     background:var(--line-soft);flex:none}
   .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt p{font-size:13px;color:var(--fg-2);margin:0}
   .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
   .opt li::before{font-weight:800;margin-right:6px}
   .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
 
+  /* ============ ejemplo real ============ */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
+  .ex .cons{font-size:12px;color:var(--fg-3)}
+  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
+  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
+    border-top:1px dashed var(--line);padding-top:7px}
+  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
+    border-radius:8px;padding:8px 10px}
+  .mark .x{color:var(--bad);font-weight:800}
+  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
+  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
+
+  /* ============ preguntas, con la recomendación ============ */
   .asks{display:grid;gap:10px}
   .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
     padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
@@ -108,43 +172,86 @@
   .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
   .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
 
+  /* ============ qué cambia y qué no ============ */
+  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
+  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
+  .cambia li{position:relative;padding-left:22px}
+  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
+  .cambia .si li::before{content:"✓";color:var(--ok)}
+  .cambia .no li::before{content:"=";color:var(--fg-3)}
+
+  /* ============ captura real, con su pie ============ */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
+    box-shadow:var(--shadow);min-width:0}
+  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
+  .captura.cel img{max-width:300px;margin:0 auto}
+  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+
+  /* ============ pills de estado ============ */
   .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
   .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
   .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
-  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-idle{background:var(--line-soft);color:var(--fg-3)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+  .p-idle{background:var(--line-soft);color:var(--fg-3)}
 
+  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
   .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
-  table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
   th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
     font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
   td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
-  td small{display:block;color:var(--fg-3);font-size:12px;margin-top:3px}
   tr:last-child td{border-bottom:0}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
 
+  /* ============ diagrama SVG a mano ============ */
   .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
     overflow-x:auto;box-shadow:var(--shadow)}
   .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
   svg .box{fill:var(--bg);stroke:var(--line)}
   svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
   svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
   svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
   svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
   svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
 
+  /* ============ comandos · aviso de lo que no sé ============ */
+  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
+    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
+  pre code{color:var(--fg)}
   .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
   .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
+  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
   .call b:first-child{margin-right:4px}
 
   footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
     display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
+  /* ============ celular ============ */
   @media (max-width:640px){
     body{padding:24px 16px 60px}
     h2{font-size:17px}
+    .flow{grid-auto-flow:row}
+    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
     .ad{grid-template-columns:minmax(0,1fr);gap:28px}
     .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
     .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
+    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
+    .kpi .n{font-size:28px}
   }
+
+  /* ============ CATÁLOGO · se borra entero al generar ============ */
+  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
+  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
+  .cat-g{display:grid;gap:16px}
+  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
+  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
+  .cat-i>.n b{color:var(--fg-2)}
+  /* dos capturas lado a lado */
+  .par{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .par .captura{margin:0}
 </style>
 </head>
 <body>
@@ -152,113 +259,85 @@
 
   <header>
     <div class="kicker">
-      <span class="num">088</span>
-      <span class="badge">Opinión</span>
-      <span class="meta">Dashboard de content-audit, después de la maqueta de Correcciones · 10/10/2026</span>
+      <span class="num">089</span>
+      <span class="badge">Resumen</span>
+      <span class="meta">Dashboard de content-audit, después del brief 088 · 10/10/2026</span>
     </div>
-    <h1>Sí, conviene HTML: cambiá la cara, quedate con el motor</h1>
-    <p class="sub">Por qué lo feo no es culpa de Flutter, qué se aprovecha y por dónde empezar.</p>
+    <h1>Correcciones ya anda en HTML, con ayuda en cada región</h1>
+    <p class="sub">Cómo se ve sobre la tanda real, cómo está armada, qué falta y qué sigue.</p>
   </header>
 
-  <div class="lede"><p><strong>Conviene, y no porque Flutter no pueda: en HTML el diseño se ajusta mucho más rápido.</strong> Pasaría sólo las pantallas y dejaría la lógica en Dart; falta decidir por dónde empezamos.</p></div>
+  <div class="lede"><p><strong>La pantalla de Correcciones ya anda en HTML sobre la tanda A1 real, con ayuda en cada región.</strong> Decide igual que la app; publicar y responder la muestra ciega siguen en la línea de comandos.</p></div>
 
   <section>
-    <h2>Flutter puede dibujarla; HTML lo hace con menos esfuerzo</h2>
-    <div class="tw"><table>
-      <thead><tr><th>Lo que pide la maqueta</th><th>En HTML</th><th>En Flutter</th></tr></thead>
-      <tbody>
-        <tr><td>Marcas dentro de la oración<small>tachado, insertado y el hueco con la respuesta</small></td><td><span class="pill p-ok">viene hecho</span></td><td><span class="pill p-warn">pieza por pieza</span><small>el tachado no cruza el hueco</small></td></tr>
-        <tr><td>Dos tipografías y el inglés resaltado en el mismo renglón</td><td><span class="pill p-ok">viene hecho</span></td><td><span class="pill p-warn">con más código</span></td></tr>
-        <tr><td>Modo oscuro, ancho chico, teclado</td><td><span class="pill p-ok">igual</span></td><td><span class="pill p-ok">igual</span></td></tr>
-        <tr><td>Tipografías de Google</td><td><span class="pill p-ok">igual</span></td><td><span class="pill p-ok">igual</span></td></tr>
-      </tbody></table></div>
-    <p class="pie">La app de hoy se ve mal porque usa el estilo por defecto de Flutter y nunca tuvo diseño propio. Con uno, Flutter quedaría cerca de la maqueta.</p>
+    <h2>Se ve como la maqueta, con los datos de verdad</h2>
+    <figure class="captura"><img src="089-correcciones-en-html/revisar.jpg" alt="La pantalla de Correcciones: temas a la izquierda, el ejercicio con su cambio en el centro y las notas de los jueces a la derecha">
+      <figcaption>Tanda A1, corrección 1: 1.766 correcciones en 79 temas</figcaption></figure>
+    <p class="pie">Corrió contra una copia de la carpeta de trabajo: las decisiones de prueba quedaron ahí. Aprobar y rechazar pasan por la misma cola que la app, con deshacer.</p>
   </section>
 
   <section>
-    <h2>Lo que pesa: cuántas vueltas de ajuste entran</h2>
-    <div class="ad">
-      <div class="lado antes"><span class="rot">En Flutter</span>
-        <ol><li>Cambio el código de la pantalla.</li><li>Compilo la app de escritorio.</li><li>Para verla necesito tu permiso para controlar la pantalla.</li><li>Si no, te pido una captura.</li></ol>
-        <span class="res">Cada vuelta te necesita</span></div>
-      <div class="lado despues"><span class="rot">En HTML</span>
-        <ol><li>Cambio el estilo.</li><li>Recargo en el navegador integrado.</li><li>Saco captura en claro, oscuro y celular.</li><li>Corrijo lo que se ve mal.</li></ol>
-        <span class="res">24 capturas para esta maqueta, sin pedirte nada</span></div>
+    <h2>Cada (?) explica, no es un tooltip</h2>
+    <div class="par">
+      <figure class="captura"><img src="089-correcciones-en-html/ayuda.jpg" alt="Panel de ayuda del después según los jueces, en modo oscuro, con el mapa de la pantalla y cómo se lee cada estado">
+        <figcaption>(?) qué es, con el lugar marcado en el mapa</figcaption></figure>
+      <figure class="captura"><img src="089-correcciones-en-html/aviso.jpg" alt="Panel de aviso que explica por qué esta pantalla no publica, sobre el cierre de la tanda">
+        <figcaption>(!) un aviso: qué pasa y qué hacer hoy</figcaption></figure>
     </div>
-    <p class="pie">La calidad salió de esas vueltas, no del lenguaje. Así encontré, por ejemplo, el contraste roto del botón Aprobar en modo oscuro.</p>
+    <p class="pie">32 temas. Cada uno dice qué es, cómo se lee con piezas dibujadas, qué pasa al usarlo y en qué paso del proceso vive. Usan los números de la tanda.</p>
   </section>
 
   <section>
-    <h2>Se rehacen las pantallas; la lógica queda</h2>
-    <div class="hb">
-      <div class="grp">Código de la app (45.300 líneas)</div>
-      <div class="r"><span class="t">Pantallas<small>se rehacen en HTML</small></span><span class="tr"><span class="f" style="width:100%"></span></span><span class="n">32.800 · 72 %</span></div>
-      <div class="r"><span class="t">Lógica: CLI, datos y reglas<small>se queda, con retoques mínimos</small></span><span class="tr"><span class="f g" style="width:38%"></span></span><span class="n">12.400 · 27 %</span></div>
-      <div class="grp">Archivos de pruebas (71)</div>
-      <div class="r"><span class="t">Prueban pantallas<small>se pasan a pruebas en el navegador</small></span><span class="tr"><span class="f" style="width:100%"></span></span><span class="n">38</span></div>
-      <div class="r"><span class="t">Prueban la lógica<small>siguen andando</small></span><span class="tr"><span class="f g" style="width:87%"></span></span><span class="n">33</span></div>
+    <h2>También decide en grupo y muestra el informe</h2>
+    <div class="par">
+      <figure class="captura"><img src="089-correcciones-en-html/grupo.jpg" alt="Un grupo de 621 correcciones con el mismo motivo, cada una con su texto y una casilla para destildarla">
+        <figcaption>Un motivo repetido: se recorre y se destilda lo dudoso</figcaption></figure>
+      <figure class="captura"><img src="089-correcciones-en-html/informe.jpg" alt="El informe: ejercicios con error antes y después de la tanda, por juez">
+        <figcaption>El informe: de 1.959 ejercicios con error quedarían 654</figcaption></figure>
     </div>
-    <div class="leyenda"><span><i class="sw"></i>se rehace</span><span><i class="sw g"></i>se aprovecha</span></div>
-    <p class="pie">Las reglas finas, como cuándo un análisis sigue vigente, viven en la lógica y no se tocan. Lo que hoy prueba una pantalla se vuelve a probar antes de borrarla.</p>
+    <p class="pie">Están las cuatro vistas de la maqueta: revisar, muestra ciega, cierre e informe. En el celular la pantalla se reacomoda en una columna.</p>
   </section>
 
   <section>
-    <h2>Un servidor local en Dart corre el CLI</h2>
-    <div class="diagram">
-      <svg viewBox="0 0 700 110" style="min-width:600px" role="img" aria-label="Las pantallas en HTML piden datos al servidor local en Dart, que corre el CLI de content-audit y lee sus archivos">
-        <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
-        <rect x="4" y="20" width="196" height="70" rx="9" class="box-a"/>
-        <text x="18" y="46" class="lbl" style="font-weight:600">Las pantallas, en HTML</text>
-        <text x="18" y="65" class="lbl-s">nuevas; se abren en el navegador</text>
-        <text x="18" y="80" class="lbl-s">o en una ventana propia</text>
-        <path d="M200 55 L250 55" class="arrow" marker-end="url(#fl)"/>
-        <text x="206" y="47" class="lbl-s">pide</text>
-        <rect x="254" y="20" width="210" height="70" rx="9" class="box-ok"/>
-        <text x="268" y="46" class="lbl" style="font-weight:600">Servidor local en Dart</text>
-        <text x="268" y="65" class="lbl-s">la lógica de hoy, casi sin cambios,</text>
-        <text x="268" y="80" class="lbl-s">más una capa fina que la expone</text>
-        <path d="M464 55 L514 55" class="arrow" marker-end="url(#fl)"/>
-        <text x="470" y="47" class="lbl-s">corre</text>
-        <rect x="518" y="20" width="178" height="70" rx="9" class="box"/>
-        <text x="532" y="46" class="lbl" style="font-weight:600">content-audit</text>
-        <text x="532" y="65" class="lbl-s">el CLI y sus archivos,</text>
-        <text x="532" y="80" class="lbl-s">igual que hoy</text>
-      </svg>
+    <h2>Un store tipo Redux; sólo dos archivos tocan la página</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Un clic o una tecla</span><span class="eg">A · R · U · J · K</span><span class="d">Se traduce a una acción.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">El estado cambia</span><span class="eg">seis porciones</span><span class="d">Reductores puros; lo asíncrono, en thunks.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Las vistas lo dibujan</span><span class="eg">estado → HTML</span><span class="d">Funciones sin efectos, probadas con Node.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Cambia sólo lo distinto</span><span class="d">Se conservan el scroll y el foco.</span></div>
     </div>
-    <p class="pie">Una página no puede correr programas ni leer archivos, como hace hoy la app. Por eso la lógica pasa a un servidor en tu máquina, sin sumar otro lenguaje.</p>
+    <div class="kpis" style="margin-top:16px">
+      <div class="kpi dest"><div class="n">205</div><div class="l">pruebas de la pantalla, todas en verde, sin abrir un navegador</div></div>
+      <div class="kpi"><div class="n">54</div><div class="l">estados recorridos: cada ayuda alcanzable, ningún hueco ni HTML ajeno</div></div>
+      <div class="kpi"><div class="n">422<small>de 423</small></div><div class="l">pruebas de Dart y Flutter; la que falla ya fallaba en master</div></div>
+    </div>
+    <p class="pie">Una decisión se ve tomada al instante y vuelve atrás sola si el servidor no la acepta.</p>
   </section>
 
   <section>
-    <h2>Los tres caminos</h2>
-    <div class="opts">
-      <div class="opt rec"><div class="oh"><span class="ol">A</span><b>Pantallas en HTML, motor en Dart</b><span class="pill p-ok">recomiendo</span></div>
-        <ul><li class="si">la calidad de la maqueta</li><li class="si">la lógica y 33 pruebas se aprovechan</li><li class="no">hay que armar el servidor local</li><li class="no">dos apps conviven mientras se pasa</li></ul></div>
-      <div class="opt"><div class="oh"><span class="ol">B</span><b>Quedarse en Flutter con este diseño</b></div>
-        <ul><li class="si">no se mueve nada</li><li class="si">todas las pruebas siguen</li><li class="no">cada ajuste visual cuesta más</li><li class="no">yo no veo lo que hago</li></ul></div>
-      <div class="opt"><div class="oh"><span class="ol">C</span><b>Todo de cero en la web</b></div>
-        <ul><li class="si">un solo lenguaje</li><li class="no">reescribe reglas que hoy andan</li><li class="no">suma 12.400 líneas por reescribir</li></ul></div>
+    <h2>Qué hace y qué sigue en otro lado</h2>
+    <div class="cambia">
+      <div class="si"><div class="ptl">Ya lo hace</div><ul><li>Aprobar, rechazar y deshacer, uno por uno o en grupo.</li><li>Cierre con las cinco condiciones y el aviso de cuál falta.</li><li>Informe del después, pisos y patrones repetidos.</li><li>Búsqueda con ⌘K, teclado completo, modo oscuro y celular.</li></ul></div>
+      <div class="no"><div class="ptl">Todavía no: línea de comandos o app</div><ul><li>Responder la muestra ciega.</li><li>Corregir la miniteoría y los distractores.</li><li>Publicar al curso.</li><li>Elegir otra tanda u otro nivel.</li></ul></div>
     </div>
-    <div class="call c-warn"><b>Lo que no sé:</b> cuánto lleva pasar todo. Lo puedo medir bien recién después de pasar Correcciones entera.</div>
+    <div class="call c-warn"><b>Ojo:</b> la prueba que vigila nombres de analizadores ya falla en master por cuatro archivos de la app; ahora también cubre el HTML, que pasa limpio.</div>
   </section>
 
   <section>
-    <h2>Qué necesito de vos</h2>
-    <div class="asks">
-      <div class="ask"><span class="q">1 · ¿Pasamos las pantallas a HTML y dejamos la lógica en Dart?</span>
-        <div class="ops"><span class="op rec">Sí, de a una pantalla · recomendado</span><span class="op">Quedarse en Flutter</span></div>
-        <span class="why">La maqueta salió de 24 capturas propias en una sesión; en Flutter, cada una de esas vueltas te hubiera necesitado.</span></div>
-      <div class="ask"><span class="q">2 · ¿Por qué pantalla empezamos?</span>
-        <div class="ops"><span class="op rec">Correcciones · recomendado</span><span class="op">Otra</span></div>
-        <span class="why">Es la que vas a usar ahora, y la maqueta ya resuelve el diseño y casi toda la interacción.</span></div>
-      <div class="ask"><span class="q">3 · ¿Pestaña del navegador o ventana propia?</span>
-        <div class="ops"><span class="op rec">Pestaña, por ahora · recomendado</span><span class="op">Ventana propia desde el principio</span></div>
-        <span class="why">Es una herramienta local tuya. Meterla en una ventana propia se puede hacer después sin tocar las pantallas.</span></div>
+    <h2>Qué sigue</h2>
+    <div class="flow">
+      <div class="st"><span class="i">1</span><span class="h">Probala vos</span><span class="d">Con el comando de abajo, sobre una copia.</span></div>
+      <div class="st"><span class="i">2</span><span class="h">Pasarla a master</span><span class="d">Ocho commits, sin push; entra sin conflictos.</span></div>
+      <div class="st"><span class="i">3</span><span class="h">Lo que falta acá</span><span class="d">Muestra ciega, miniteoría y publicar.</span></div>
+      <div class="st end"><span class="i">4</span><span class="h">Siguiente pantalla</span><span class="d">Estadísticas, que ya tiene propuesta.</span></div>
     </div>
+<pre>cd ~/projects/learney/ittm/.claude/worktrees/dashboard-html/pipeline/vocabulary_dashboard
+CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_WORKDIR=/ruta/a/la/copia CONTENT_AUDIT_CONTEXT_KIND=Copia ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart</pre>
   </section>
 
   <footer>
-    <span>Conteo sobre ittm/pipeline/vocabulary_dashboard: lib/ 145 archivos; lógica = contract, models, providers, services y data; pruebas de pantalla = las que usan testWidgets. El CLI se invoca desde content_audit_cli_service.dart.</span>
-    <span>brief 088 · docs/briefs/088-html-o-flutter.html</span>
+    <span>Rama claude/dashboard-html de ittm (8 commits sobre master 757e32f62, sin push): servidor en bin/tablero_html.dart y lib/tablero_html/, pantalla en pipeline/vocabulary_dashboard/html/. Pruebas: npm test en html/ y flutter test. Capturas con Chrome sin ventana sobre http://127.0.0.1:7820.</span>
+    <span>brief 089 · docs/briefs/089-correcciones-en-html.html</span>
   </footer>
 
 </div>
