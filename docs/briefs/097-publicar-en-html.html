@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publicar en HTML</title>
+<style>
+  /* ============ tokens: claro y, abajo, oscuro ============ */
+  :root{
+    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
+    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fdf1e7;
+    --ok:#2f6b46; --ok-soft:#e9f4ed;
+    --warn:#8a6314; --warn-soft:#fbf2dd;
+    --bad:#a3342c; --bad-soft:#fbecea;
+    --info:#2a5b8f; --info-soft:#e9f1f9;
+    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
+      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
+      --accent:#e08b4f; --accent-soft:#2a1f16;
+      --ok:#7fc79c; --ok-soft:#16241c;
+      --warn:#e0b657; --warn-soft:#272013;
+      --bad:#e58b82; --bad-soft:#2a1917;
+      --info:#8ab6e5; --info-soft:#141f2b;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    font-feature-settings:"kern","liga","cv05";
+    padding:40px 24px 80px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
+  a{color:var(--accent)}
+  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
+
+  /* ============ encabezado ============ */
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
+    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+  .meta{font-size:12.5px;color:var(--fg-3)}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
+  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+
+  /* ============ el lede: la conclusión, dos renglones ============ */
+  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
+  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
+  .lede strong{font-weight:650}
+
+  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
+  section{margin:0 0 38px}
+  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
+  p{margin:0 0 12px}
+  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+  .grid{display:grid;gap:12px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
+    box-shadow:var(--shadow);min-width:0}
+  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
+
+  /* ============ KPIs: el número grande, su comparación abajo ============ */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
+  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
+  .kpi.dest .n{color:var(--accent)}
+
+  /* ============ barras horizontales con etiqueta ============ */
+  .hb{display:grid;gap:10px}
+  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
+  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
+  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
+  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
+  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
+
+  /* ============ flujo en pasos ============ */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
+  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
+    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
+  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
+  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
+  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
+  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+
+  /* ============ antes y después ============ */
+  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
+  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
+  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
+    font-size:19px;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
+  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  /* ============ mapa de calor ============ */
+  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
+  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
+  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
+  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
+  .heat .h0{color:var(--fg-3)}
+  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
+  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
+  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
+
+  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
+  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
+  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
+  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
+  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
+    background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt p{font-size:13px;color:var(--fg-2);margin:0}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
+  .opt li::before{font-weight:800;margin-right:6px}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+
+  /* ============ ejemplo real ============ */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
+  .ex .cons{font-size:12px;color:var(--fg-3)}
+  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
+  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
+    border-top:1px dashed var(--line);padding-top:7px}
+  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
+    border-radius:8px;padding:8px 10px}
+  .mark .x{color:var(--bad);font-weight:800}
+  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
+  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
+
+  /* ============ preguntas, con la recomendación ============ */
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+
+  /* ============ qué cambia y qué no ============ */
+  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
+  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
+  .cambia li{position:relative;padding-left:22px}
+  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
+  .cambia .si li::before{content:"✓";color:var(--ok)}
+  .cambia .no li::before{content:"=";color:var(--fg-3)}
+  .cambia .ojo li::before{content:"!";color:var(--warn)}
+
+  /* ============ captura real, con su pie ============ */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
+    box-shadow:var(--shadow);min-width:0}
+  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
+  .captura.cel img{max-width:300px;margin:0 auto}
+  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+
+  /* ============ pills de estado ============ */
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+  .p-idle{background:var(--line-soft);color:var(--fg-3)}
+
+  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
+  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
+
+  /* ============ diagrama SVG a mano ============ */
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+
+  /* ============ comandos · aviso de lo que no sé ============ */
+  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
+    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
+  pre code{color:var(--fg)}
+  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
+  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
+  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
+  .call b:first-child{margin-right:4px}
+
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ============ celular ============ */
+  @media (max-width:640px){
+    body{padding:24px 16px 60px}
+    h2{font-size:17px}
+    .flow{grid-auto-flow:row}
+    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
+    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
+    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
+    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
+    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
+    .kpi .n{font-size:28px}
+  }
+
+  /* dos capturas lado a lado */
+  .par{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .par .captura{margin:0}
+  .par .captura.cel img{max-height:560px;object-fit:cover;object-position:top}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">097</span>
+      <span class="badge">Resumen</span>
+      <span class="meta">Dashboard de content-audit, después del brief 088 · 10/10/2026</span>
+    </div>
+    <h1>Publicar ya anda en HTML: muestra todo y no publica</h1>
+    <p class="sub">Qué ve sobre la tanda real, qué no hace y por qué, qué datos faltaron y qué conviene pasar a lo común.</p>
+  </header>
+
+  <div class="lede"><p><strong>La pantalla Publicar ya anda en HTML sobre la tanda A1 real: dice qué viajaría, qué lo frena y qué ya se publicó.</strong> No publica; el botón explica cómo se hace hoy.</p></div>
+
+  <section>
+    <h2>La A1 no se publica y su medición quedó vieja</h2>
+    <figure class="captura"><img src="097-publicar-en-html/pantalla.jpg" alt="La pantalla Publicar: arriba qué viaja y adónde, con el botón apagado; abajo la puerta de publicación, qué llega a producción, la bandeja y los audios a regrabar">
+      <figcaption>Tanda A1, corrección 1, sobre una copia de la campaña</figcaption></figure>
+    <div class="par" style="margin-top:12px">
+      <figure class="captura"><img src="097-publicar-en-html/medicion.jpg" alt="El aviso «La medición es de otra versión»: lo último que se midió es la versión 5 del contenido y hoy va por la 6">
+        <figcaption>(!) lo medido es de la versión 5; el contenido va por la 6</figcaption></figure>
+      <figure class="captura cel"><img src="097-publicar-en-html/celular.jpg" alt="La misma pantalla en un celular, en una columna">
+        <figcaption>En el celular, en una columna</figcaption></figure>
+    </div>
+    <p class="pie">La bandeja tiene tres bloqueos. Si algo empeora o la comparación pasa, no se sabe: se midió antes de la última corrección. 1.321 cambios viajarían sin revisar.</p>
+  </section>
+
+  <section>
+    <h2>De 1.334 cambios que viajarían, 892 no llegarían a producción</h2>
+    <div class="card">
+      <div class="hb">
+        <div class="r"><span class="t">Miniteoría <small>no llega</small></span><span class="tr"><span class="f b" style="width:100%"></span></span><span class="n">1.191</span></div>
+        <div class="r"><span class="t">Traducción</span><span class="tr"><span class="f g" style="width:24.1%"></span></span><span class="n">287</span></div>
+        <div class="r"><span class="t">Enunciado</span><span class="tr"><span class="f g" style="width:23.8%"></span></span><span class="n">283</span></div>
+        <div class="r"><span class="t">Oración guardada</span><span class="tr"><span class="f g" style="width:22.1%"></span></span><span class="n">263</span></div>
+        <div class="r"><span class="t">Respuestas</span><span class="tr"><span class="f g" style="width:11.4%"></span></span><span class="n">136</span></div>
+        <div class="r"><span class="t">Pista</span><span class="tr"><span class="f g" style="width:9.4%"></span></span><span class="n">112</span></div>
+        <div class="r"><span class="t">Opciones <small>no llega</small></span><span class="tr"><span class="f b" style="width:9.4%"></span></span><span class="n">112</span></div>
+        <div class="r"><span class="t">Consigna del ejercicio <small>no llega</small></span><span class="tr"><span class="f b" style="width:7.2%"></span></span><span class="n">86</span></div>
+      </div>
+      <div class="leyenda"><span><i class="sw g"></i>el script de producción la escribe</span><span><i class="sw b"></i>no la escribe nunca</span></div>
+    </div>
+    <p class="pie">Cambios que tocan cada parte; uno puede tocar varias. 892 sólo tocan partes que no llegan: en el curso de content-audit cambian, en el de los alumnos no.</p>
+  </section>
+
+  <section>
+    <h2>Cada (?) explica qué se publica, adónde y qué nunca</h2>
+    <div class="par">
+      <figure class="captura"><img src="097-publicar-en-html/ayuda.jpg" alt="Panel de ayuda «Qué llega a producción», en modo oscuro, con el mapa de la pantalla, qué partes llegan y qué campos protege el script">
+        <figcaption>(?) qué llega y qué no, con el lugar en el mapa</figcaption></figure>
+      <figure class="captura"><img src="097-publicar-en-html/aviso.jpg" alt="Panel de aviso «Esta pantalla no publica», con los pasos para publicar hoy desde la terminal">
+        <figcaption>(!) por qué el botón está apagado y cómo se publica hoy</figcaption></figure>
+    </div>
+    <p class="pie">25 temas: 16 ayudas y 9 avisos. Cuentan qué es la bandeja, qué pasa con los audios y por qué antes va una copia, con los números de la tanda.</p>
+  </section>
+
+  <section>
+    <h2>Faltaron seis datos que sólo content-audit puede dar</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Qué falta</th><th>Qué hace hoy la pantalla</th></tr></thead>
+      <tbody>
+        <tr><td>Rechazar no saca un cambio de lo que se publica</td><td>Cuenta lo que viajaría igual y avisa cómo sacarlo a mano.</td></tr>
+        <tr><td>Corregir una tanda cerrada no la vuelve a medir</td><td>Dice «no se sabe» y pide volver a medir antes de publicar.</td></tr>
+        <tr><td>El script no escribe miniteoría, opciones ni consigna</td><td>Las marca «no llega» con sus cuentas.</td></tr>
+        <tr><td>Nadie anota qué hay hoy en producción ni adónde se escribió</td><td>Lo publicado sale de los informes del disco; la foto del curso es del 30/9.</td></tr>
+        <tr><td>Los audios no tienen un estado propio</td><td>La lista sale del cierre de la tanda y no baja al regrabar.</td></tr>
+        <tr><td>La muestra ciega no dice en qué está</td><td>Lo deduce de la bandeja; si no puede, dice «no se sabe».</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">Nada se inventa: lo que no se sabe se dice. Los arreglos van en content-audit; la copia de producción también se hace a mano.</p>
+  </section>
+
+  <section>
+    <h2>Lo repetido, listo para lo común; cinco detalles en Correcciones</h2>
+    <div class="cambia">
+      <div class="no"><div class="ptl">Copiado igual de Correcciones</div><ul><li>Qué se mira y el estado de la tanda, arriba.</li><li>Los botones (?) y (!), importados.</li><li>El mensaje cuando el servidor no contesta.</li></ul></div>
+      <div class="si"><div class="ptl">Hecho acá, le sirve a otras</div><ul><li>La fecha legible: «el 30/9 a las 08:21».</li><li>«1 tarea», «2 tareas»: la palabra que concuerda.</li><li>La barra apilada de aprobados, sin revisar y rechazados.</li><li>El recorrido de estados para las pruebas.</li></ul></div>
+      <div class="ojo"><div class="ptl">Visto en Correcciones, sin tocar</div><ul><li>Su ayuda dice que se publica sólo lo aprobado: viaja también lo sin revisar.</li><li>Si el análisis no trae compuerta, su servidor dice «no pasa».</li><li>El ícono de «Volver a intentar» sale sin su tamaño.</li><li>Y dos más, en el pie.</li></ul></div>
+    </div>
+    <p class="pie">No toqué lo común ni Correcciones: lo que faltaba quedó en la carpeta de Publicar. Los nombres, en el pie.</p>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><div class="q">¿La paso a master?</div>
+        <div class="ops"><span class="op rec">Sí, después de probarla</span><span class="op">Esperar a las otras pantallas</span></div>
+        <div class="why">Sólo toca archivos de Publicar y dos renglones compartidos. 67 pruebas del navegador y 32 del servidor, en verde; cinco commits, sin push.</div></div>
+      <div class="ask"><div class="q">¿Qué arreglo de content-audit va primero?</div>
+        <div class="ops"><span class="op rec">Que rechazar saque de lo publicado</span><span class="op">Que el script escriba la miniteoría</span><span class="op">Otro</span></div>
+        <div class="why">Hoy saldrían 1.321 cambios que nadie miró: es el único hueco que puede publicar algo malo.</div></div>
+      <div class="ask"><div class="q">¿Cuándo se pasa lo repetido a lo común?</div>
+        <div class="ops"><span class="op rec">Al final, en una sesión aparte</span><span class="op">Ahora</span></div>
+        <div class="why">Siete pantallas se arman en paralelo sobre lo mismo: moverlo en el medio choca.</div></div>
+    </div>
+<pre>cd ~/projects/learney/ittm/.claude/worktrees/quirky-jang-d41356/pipeline/vocabulary_dashboard
+CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_WORKDIR=/ruta/a/la/copia CONTENT_AUDIT_CONTEXT_KIND=Copia ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart --puerto 7837</pre>
+  </section>
+
+  <footer>
+    <span>Rama claude/quirky-jang-d41356 de ittm, commits 2985139a6 a 1f3483691 (sin push): servidor en lib/tablero_html/publicar/ (GET /api/publicar/estado), pantalla en html/publicar.html, html/js/publicar/ y html/css/publicar.css. Pruebas: publicar-vistas 26, publicar 21, publicar-ayuda 20; Dart 32. La medición vieja: tanda.medidaEnVersion (5) contra version (6); lo publicado cuenta también ensayos y corridas abortadas. Para promover: .ctx y .estado-tanda de correcciones.css, la copia de .sr en publicar.css, mensajeDelError, las re-exportaciones de vistas/comun.js, icono, segun, elDia, diaLegible, barraApilada, el patrón main.js/estado.js/gestos con CERRAR, _lista y _leerJson del lado Dart, CarpetaDePrueba y test/publicar-recorrido.js. Correcciones: correcciones/ayuda/temas.js:894 («aprobadas»), vistas/pantalla.js:34 (ICON.retry sin class="ic"), vista_de_la_tanda.dart (gate {passes:false, reasons:[]}), ESTADO_DE_TANDA['constructor'] y el title «Qué es …» de ayuda() con rótulos en plural. Huecos: tray publish no filtra decisiones (hoy, batch drop --change); publish_revisions.py no escribe MINI_THEORY, OPTIONS ni INSTRUCTIONS y lee --repo; TrayItemKind sin PENDING_RERECORDING; respaldo con mongodump. Capturas con Chrome sin ventana sobre http://127.0.0.1:7837, con una copia de la campaña.</span>
+    <span>brief 097 · docs/briefs/097-publicar-en-html.html</span>
+  </footer>
+
+</div>
+</body>
+</html>
