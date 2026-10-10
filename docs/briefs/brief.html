@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Comparar en HTML</title>
+<title>Analizadores en HTML</title>
 <style>
   /* ============ tokens: claro y, abajo, oscuro ============ */
   :root{
@@ -242,127 +242,112 @@
     .kpi .n{font-size:28px}
   }
 
-  /* ============ CATÁLOGO · se borra entero al generar ============ */
-  .cat{margin-top:64px;padding-top:22px;border-top:3px solid var(--bad)}
-  .cat .adv{font-size:13px;color:var(--bad);font-weight:600;margin:0 0 20px}
-  .cat-g{display:grid;gap:16px}
-  .cat-i{border:1px dashed var(--line);border-radius:var(--radius);padding:14px;min-width:0}
-  .cat-i>.n{display:block;font:600 11.5px/1.5 ui-monospace,monospace;color:var(--fg-3);margin-bottom:10px}
-  .cat-i>.n b{color:var(--fg-2)}
   /* dos capturas lado a lado */
   .par{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
   .par .captura{margin:0}
-  .par.ancha{grid-template-columns:minmax(0,2.6fr) minmax(0,1fr);align-items:start}
-  @media (max-width:700px){.par.ancha{grid-template-columns:1fr}}
+  .par .captura.cel img{max-height:560px;object-fit:cover;object-position:top}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<header>
-<div class="kicker">
-<span class="num">096</span>
-<span class="badge">Resumen</span>
-<span class="meta">Dashboard de content-audit, después de los briefs 088 y 089 · 10/10/2026</span>
-</div>
-<h1>Comparar ya anda en HTML; cerrar sigue apagado</h1>
-<p class="sub">Qué muestra sobre la copia de A1, qué es aprobar la comparación, qué no hace y qué decidí solo.</p>
-</header>
+  <header>
+    <div class="kicker">
+      <span class="num">093</span>
+      <span class="badge">Resumen</span>
+      <span class="meta">Dashboard de content-audit, después del brief 088 · 10/10/2026</span>
+    </div>
+    <h1>Analizadores ya anda en HTML: muestra cada uno y no corre nada</h1>
+    <p class="sub">Qué se ve sobre la tanda real, qué no hace y por qué, qué datos faltaron y qué conviene pasar a lo común.</p>
+  </header>
 
-<div class="lede"><p><strong>Comparar ya anda en HTML sobre la copia de la tanda A1</strong>: pone cualquier medición contra la base o el inicio y dice por qué no está aprobada. Cerrar queda apagado, porque gasta consultas.</p></div>
+  <div class="lede"><p><strong>La pantalla de Analizadores ya anda en HTML sobre la tanda A1 real: qué mide cada uno, cómo cambió y si cumple su piso.</strong> Sólo lee: correr, invalidar y sumar quedan apagados, con su (!).</p></div>
 
-<section>
-<h2>Se ve como la maqueta, con números de la copia</h2>
-<div class="par ancha">
-<figure class="captura"><img src="096-comparar-en-html/comparar.jpg" alt="La pantalla Comparar: arriba qué se compara, a la izquierda el radar de los ejes, a la derecha la diferencia, la calidad de cada análisis y la tabla de lo que cambia">
-<figcaption>Medición 4 contra la base, en A1: +8,2 puntos en 14 ejes</figcaption></figure>
-<figure class="captura cel"><img src="096-comparar-en-html/celular-oscuro.jpg" alt="La misma pantalla a 390 px en modo oscuro, en una columna">
-<figcaption>En el celular, en una columna</figcaption></figure>
-</div>
-<p class="pie">Se elige qué medición, contra cuál y en qué nivel; el radar, la diferencia, la calidad y la tabla cambian juntos. Con ← y → se pasa de medición.</p>
-</section>
+  <section>
+    <h2>Los 21 analizadores de A1, en una sola tabla</h2>
+    <figure class="captura"><img src="093-analizadores-en-html/pantalla.jpg" alt="La pantalla de Analizadores: la tabla con las tres fotos de cada analizador, su tendencia y su cambio, agrupada por familia, y a la derecha la ficha del elegido">
+      <figcaption>Tanda A1 cerrada, sobre una copia: 21 en el catálogo, 20 midieron</figcaption></figure>
+    <div class="par" style="margin-top:12px">
+      <figure class="captura cel"><img src="093-analizadores-en-html/celular.jpg" alt="La misma pantalla en un celular: los filtros, la tabla con desplazamiento lateral y la ficha debajo">
+        <figcaption>En el celular, la ficha va debajo de la tabla</figcaption></figure>
+      <figure class="captura"><img src="093-analizadores-en-html/oscuro.jpg" alt="En modo oscuro, la ficha de un analizador pago con juez, con su piso, su meta y los quizzes sin comparar">
+        <figcaption>En oscuro, la ficha de uno pago con juez</figcaption></figure>
+    </div>
+    <p class="pie">Cada fila: tres fotos (antes, al arrancar, con lo aprobado), la tendencia y el cambio. Tocarla abre su ficha.</p>
+  </section>
 
-<section>
-<h2>Aprobar no es un botón: lo dice un cierre</h2>
-<div class="flow">
-<div class="st"><span class="i">1</span><span class="h">Volver a medir</span><span class="eg">gasta consultas</span><span class="d">Cada juez mira lo que la tanda cambió.</span></div>
-<div class="st"><span class="i">2</span><span class="h">Comparar piso por piso</span><span class="d">Contra la base y el inicio de la tanda.</span></div>
-<div class="st"><span class="i">3</span><span class="h">Escribir el cierre</span><span class="eg">en la carpeta de la tanda</span><span class="d">Aprueba si no hay pisos rotos, cambios que vuelven ni cambios afuera.</span></div>
-<div class="st end"><span class="i">4</span><span class="h">Publicar</span><span class="d">Con la comparación aprobada y la muestra ciega respondida.</span></div>
-</div>
-<figure class="captura" style="margin-top:16px"><img src="096-comparar-en-html/aprobar.jpg" alt="La tarjeta Aprobar la comparación: no aprobada, seis pisos rotos con dónde se rompen, nueve sin decidir, 86 quizzes sin comparar y el botón de cerrar apagado">
-<figcaption>El último cierre: 6 pisos rotos, 9 sin decidir y 36 consultas gastadas</figcaption></figure>
-<p class="pie">Content-audit no tiene un «aprobar la comparación»: es cerrar la tanda, que gasta y escribe. Por eso el botón va apagado y su (!) dice cómo hacerlo hoy.</p>
-<div class="call c-warn"><b>Ojo:</b> publicar mira la comparación aprobada y la muestra ciega, no el veredicto. Una tanda con pisos sin decidir se puede publicar.</div>
-</section>
+  <section>
+    <h2>14 mejoraron; los 2 que empeoraron rompen su piso</h2>
+    <div class="card">
+      <div class="hb">
+        <div class="r"><span class="t">Mejoraron</span><span class="tr"><span class="f g" style="width:100%"></span></span><span class="n">14</span></div>
+        <div class="r"><span class="t">Quedaron igual</span><span class="tr"><span class="f s" style="width:28.6%"></span></span><span class="n">4</span></div>
+        <div class="r"><span class="t">Empeoraron <small>no cumplen su piso</small></span><span class="tr"><span class="f b" style="width:14.3%"></span></span><span class="n">2</span></div>
+        <div class="r"><span class="t">No midió <small>no está en la tanda</small></span><span class="tr"><span class="f s" style="width:7.1%"></span></span><span class="n">1</span></div>
+      </div>
+      <div class="leyenda"><span><i class="sw g"></i>mejor que la línea base</span><span><i class="sw b"></i>peor, y pasa el tope que se permite</span><span><i class="sw s"></i>sin cambio o sin número</span></div>
+    </div>
+    <p class="pie">Los dos: el largo de las oraciones (−1,3 puntos) y las palabras que vuelven a tiempo (−36), que mide el curso entero, no sólo A1.</p>
+    <div class="call c-info"><b>La meta no frena:</b> diez analizadores de errores no llegan a cero ejercicios con error. Se pinta en ámbar; el piso, en rojo.</div>
+  </section>
 
-<section>
-<h2>Cada región explica; los avisos dicen qué no hace</h2>
-<div class="par">
-<figure class="captura"><img src="096-comparar-en-html/ayuda-veredicto.jpg" alt="Panel de ayuda del veredicto: la comparación aprobada y el veredicto son dos respuestas distintas, con las cuatro que puede dar el veredicto">
-<figcaption>(?) el veredicto: otra cosa que la comparación aprobada</figcaption></figure>
-<figure class="captura"><img src="096-comparar-en-html/aviso-cerrar.jpg" alt="Panel de aviso: esta pantalla no cierra la tanda, porque cerrar gasta consultas">
-<figcaption>(!) cerrar: el último cierre gastó 36 consultas</figcaption></figure>
-</div>
-<div class="kpis" style="margin-top:16px">
-<div class="kpi dest"><div class="n">21</div><div class="l">temas de ayuda: 15 (?) y 6 (!), con los números de la tanda</div></div>
-<div class="kpi"><div class="n">51</div><div class="l">estados recorridos: cada ayuda alcanzable, ningún hueco ni HTML ajeno</div></div>
-<div class="kpi"><div class="n">84</div><div class="l">pruebas de la pantalla en Node y 35 del servidor, todas en verde</div></div>
-</div>
-<p class="pie">Cada ayuda nombra los ejes y los cierres de la tanda; sin mouse, las preguntas de los jueces las lee el lector de pantalla.</p>
-</section>
+  <section>
+    <h2>Cada (?) explica qué mide y qué pasa al tocarlo</h2>
+    <div class="par">
+      <figure class="captura"><img src="093-analizadores-en-html/ayuda.jpg" alt="Panel de ayuda «Activo en la tanda», en modo oscuro, con el mapa de la pantalla y qué significa estar o no en la tanda">
+        <figcaption>(?) qué es estar activo, con el lugar en el mapa</figcaption></figure>
+      <figure class="captura"><img src="093-analizadores-en-html/aviso.jpg" alt="Panel de aviso «Correr un analizador no se hace desde acá», con el comando de hoy para el analizador elegido">
+        <figcaption>(!) por qué no corre y el comando de hoy</figcaption></figure>
+    </div>
+    <p class="pie">29 temas (21 ayudas, 8 avisos), con los números de la tanda; los nombres salen del catálogo, nunca a mano.</p>
+  </section>
 
-<section>
-<h2>Sólo lee; lo que faltó quedó en su carpeta</h2>
-<div class="cambia">
-<div class="si"><div class="ptl">Ya lo hace</div><ul><li>Cualquier medición contra la base, el inicio u otra.</li><li>El curso o cada nivel; de entrada, el de la tanda.</li><li>Pisos rotos con dónde, sin decidir y sin comparar.</li><li>Los jueces de cada cierre y lo que gastaron.</li></ul></div>
-<div class="no"><div class="ptl">No lo hace, a propósito</div><ul><li>Cerrar ni volver a medir: gasta consultas.</li><li>Escribir nada en la carpeta de trabajo.</li><li>Elegir otra tanda: muestra la abierta o la última.</li></ul></div>
-</div>
-<div class="tw" style="margin-top:16px"><table>
-<thead><tr><th>Candidato a subir al andamio</th><th>Hoy</th></tr></thead>
-<tbody>
-<tr><td>La etiqueta de la copia y la del estado de la tanda</td><td>estilo copiado de Correcciones</td></tr>
-<tr><td>El botón (?), el (!) y el estado de la tanda</td><td>importados de Correcciones, sin tocar</td></tr>
-<tr><td>El texto de un error del CLI</td><td>importado de Correcciones, sin tocar</td></tr>
-<tr><td>Leer las mediciones de cada cierre</td><td>del registro en disco: 97 MB, se queda con 140 KB</td></tr>
-<tr><td>El aviso de que volver a leer falló</td><td>en la carpeta de Comparar</td></tr>
-<tr><td>Un texto sólo para el lector de pantalla</td><td>una clase en el estilo de Comparar</td></tr>
-</tbody></table></div>
-<div class="call c-info"><b>Datos:</b> no hizo falta ningún comando nuevo. El CLI no da las mediciones de cada cierre; el servidor las lee del registro de la tanda, sin correr nada.</div>
-<div class="call c-warn"><b>Ojo:</b> la prueba que vigila nombres de analizadores ya falla en master; ningún archivo de Comparar aparece en su lista.</div>
-</section>
+  <section>
+    <h2>Lo que gasta o falta queda apagado y explicado</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Qué no hace</th><th>Por qué, y qué muestra en su lugar</th></tr></thead>
+      <tbody>
+        <tr><td>Medir producción</td><td>No hay una medición del curso publicado con estos analizadores. La columna va vacía, con su (!).</td></tr>
+        <tr><td>Decir si un número quedó viejo</td><td>El catálogo no trae la versión de cada analizador. El (!) cuenta cómo se invalida hoy.</td></tr>
+        <tr><td>Estimar lo que cuesta correrlo</td><td>Nadie lo calcula sin correr. Apagado, con el tope de consultas que se usa hoy.</td></tr>
+        <tr><td>Correr un analizador</td><td>Gasta consultas pagas sin presupuesto. Apagado; el (!) da el comando para el elegido.</td></tr>
+        <tr><td>Sumar uno nuevo</td><td>Es código en content-audit, no un formulario. Apagado, con cómo se hace.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">Alcance: la tanda de trabajo y su última comparación. Sin cierre todavía, la tabla avisa que los números llegan con el primero.</p>
+  </section>
 
-<section>
-<h2>Decisiones que tomé sin poder preguntar</h2>
-<div class="tw"><table>
-<thead><tr><th>Decisión</th><th>Por qué</th></tr></thead>
-<tbody>
-<tr><td>De entrada, el nivel de la tanda (A1), no el curso</td><td>Es lo que la tanda tocó; el curso diluye el cambio.</td></tr>
-<tr><td>La tarjeta de aprobar sigue a la medición elegida</td><td>Cada medición es un cierre; con la base o el inicio, muestra el último.</td></tr>
-<tr><td>Un piso roto o sin decidir siempre tiene su fila</td><td>Es lo que mira el cierre, aunque cambie poco.</td></tr>
-<tr><td>Un eje sin medir no se dibuja en el radar</td><td>Un cero mentiría; se nombra aparte, como «sin medir».</td></tr>
-<tr><td>Los cambios sin comparar van por juez, sin sumarlos</td><td>A un mismo quiz le pueden faltar dos jueces.</td></tr>
-<tr><td>La tanda se lee una vez, hasta tocar la flecha</td><td>Son 97 MB; recargar la página no la vuelve a leer.</td></tr>
-</tbody></table></div>
-<p class="pie">Menores: un color fijo por análisis, la tecla O para ver los otros en el radar, y para qué lado mejora cada número lo dice el registro.</p>
-</section>
+  <section>
+    <h2>Lo repetido, listo para pasar a lo común</h2>
+    <div class="cambia">
+      <div class="no"><div class="ptl">Copiado igual de Correcciones</div><ul><li>Qué se mira y el estado de la tanda, arriba.</li><li>Los botones (?) y (!), importados.</li><li>El mensaje cuando el servidor no contesta.</li><li>Cómo se dibuja, se abren las capas y se escuchan las teclas.</li><li>La prueba que junta los clics de la página.</li></ul></div>
+      <div class="si"><div class="ptl">Aprendido acá, le sirve a otras</div><ul><li>Una tabla con desplazamiento recorta su texto oculto: si no, ensancha la página.</li><li>Leer la tanda y su comparación, en el servidor.</li><li>Los datos de prueba los escribe el servidor: si cambian, una prueba avisa.</li><li>Un aviso numerado: cerrar uno no borra el que llegó después.</li></ul></div>
+    </div>
+    <p class="pie">No toqué lo común; los nombres técnicos, en el pie.</p>
+    <div class="call c-warn"><b>Ojo:</b> la prueba que vigila nombres de analizadores sigue fallando en master por la miniteoría; nada de esta pantalla aparece en su lista.</div>
+  </section>
 
-<section>
-<h2>Qué sigue</h2>
-<div class="flow">
-<div class="st"><span class="i">1</span><span class="h">Probala vos</span><span class="d">Con el comando de abajo, sobre una copia.</span></div>
-<div class="st"><span class="i">2</span><span class="h">Pasarla a master</span><span class="d">3 commits, sin push.</span></div>
-<div class="st"><span class="i">3</span><span class="h">Prender cerrar</span><span class="d">Cuando haya un paso de presupuesto con tu OK.</span></div>
-<div class="st end"><span class="i">4</span><span class="h">Subir al andamio</span><span class="d">Las seis piezas de la tabla.</span></div>
-</div>
-<pre>cd ~/projects/learney/ittm/.claude/worktrees/mystifying-davinci-ac8f4e/pipeline/vocabulary_dashboard
-CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_WORKDIR=/ruta/a/la/copia CONTENT_AUDIT_CONTEXT_KIND=Copia ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart --puerto 7836</pre>
-</section>
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><div class="q">¿La paso a master?</div>
+        <div class="ops"><span class="op rec">Sí, después de probarla</span><span class="op">Esperar a las otras pantallas</span></div>
+        <div class="why">Sólo toca archivos de Analizadores y dos renglones compartidos. 107 pruebas nuevas del navegador y 31 del servidor, en verde.</div></div>
+      <div class="ask"><div class="q">¿Qué dato le pedimos primero a content-audit?</div>
+        <div class="ops"><span class="op rec">La versión de cada analizador</span><span class="op">La medición de producción</span><span class="op">El costo estimado</span></div>
+        <div class="why">Sin versión no se sabe si un número quedó viejo: es lo que más engaña al leer la tabla.</div></div>
+      <div class="ask"><div class="q">¿Cuándo se pasa lo repetido a lo común?</div>
+        <div class="ops"><span class="op rec">Al final, en una sesión aparte</span><span class="op">Ahora</span></div>
+        <div class="why">Siete pantallas se arman en paralelo: moverlo ahora choca.</div></div>
+    </div>
+<pre>cd ~/projects/learney/ittm/.claude/worktrees/train-to-master-login-acd843/pipeline/vocabulary_dashboard
+CONTENT_AUDIT_ROOT=~/projects/learney/content-audit CONTENT_AUDIT_WORKDIR=/ruta/a/la/copia CONTENT_AUDIT_CONTEXT_KIND=Copia ~/DevDependencies/flutter/bin/dart run bin/tablero_html.dart --puerto 7833</pre>
+  </section>
 
-<footer>
-<span>Rama claude/mystifying-davinci-ac8f4e de ittm (3 commits sobre master 8071f5d2f, sin push): servidor en lib/tablero_html/comparar/, pantalla en html/comparar.html, html/js/comparar/ y html/css/comparar.css. Aprobar = gate.passes del cierre de batch close (DefaultBatchGate); veredicto = DefaultBatchComparator; publicar = DefaultTrayService.publish. Pruebas: npm test en html/ y flutter test. Capturas con Chrome sin ventana sobre http://127.0.0.1:7836, contra una copia de campaigns/a1-v11.</span>
-<span>brief 096 · docs/briefs/096-comparar-en-html.html</span>
-</footer>
+  <footer>
+    <span>Rama claude/awesome-austin-05fddb de ittm (5 commits sobre master 8071f5d2f, sin push): servidor en lib/tablero_html/analizadores/ (GET /api/analizadores/vista, releer=1), pantalla en html/analizadores.html, html/js/analizadores/ y html/css/analizadores.css. La vista que viaja lleva sólo lo que la pantalla lee. Para promover — JS: etiquetaDelContexto, etiquetaDelEstado, estadoDeLaTanda, ESTADO_DE_TANDA, ayuda y aviso (hoy reexportados por js/analizadores/vistas/piezas.js desde correcciones/vistas/comun.js), el pintor de main.js, el manejo de capas (CERRAR, atajos, toast) y de los listeners, los gestos comunes, los estados vacíos y los tramos datos y avisos del store (aviso numerado). CSS: .ctx y .estado-tanda redeclarados, las pills, .top en angosto y .mx-scroll{position:relative} para todo contenedor con desplazamiento que tenga .sr adentro. Pruebas: actosDeLosClics y la verificación de los botones (copiados de Correcciones), test/ayuda-comun.js con dibujarRail('correcciones') fijo, y las vistas del navegador generadas por Dart (ACTUALIZAR_VISTAS=1). Dart: el contexto, la expresión y la ruta del id de tanda, el mapa de ejemplos, mensajeDelError (importado de Correcciones), la lectura con caché y el &lt;head&gt;. Huecos de content-audit: sin versión de analizador en el catálogo, sin medición de producción, sin costo estimado. En el pane escondido el desplazamiento suave no avanza: se verificó con behavior:auto. Capturas con Chrome sin ventana sobre http://127.0.0.1:7833, con una copia de la campaña.</span>
+    <span>brief 093 · docs/briefs/093-analizadores-en-html.html</span>
+  </footer>
 
 </div>
 </body>
