@@ -15,5 +15,12 @@ public record BatchReview(String batchId, int correctionRevision, int contentVer
 
     public record Item(String changeId, BatchChangeStep step, CourseElementSnapshot before, CourseElementSnapshot after,
             String origin, String ruleId,
-            BatchReviewDecision.Status status, String reviewer, Instant decidedAt) {}
+            BatchReviewDecision.Status status, String reviewer, Instant decidedAt,
+            List<String> taskIds, String rationale) {
+        /** Legacy projections have no provenance, and must be rebuilt before being cached. */
+        public Item(String changeId, BatchChangeStep step, CourseElementSnapshot before, CourseElementSnapshot after,
+                String origin, String ruleId, BatchReviewDecision.Status status, String reviewer, Instant decidedAt) {
+            this(changeId, step, before, after, origin, ruleId, status, reviewer, decidedAt, null, null);
+        }
+    }
 }
