@@ -1,30 +1,266 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark">
-<title>087 · El análisis del Después ya está visible</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sí, conviene HTML: cambiá la cara, quedate con el motor</title>
 <style>
-:root{--bg:#fbfaf8;--bg-elev:#fff;--line:#e6e2db;--line-soft:#f0ece5;--fg:#1c1a17;--fg-2:#57524b;--fg-3:#8b847a;--accent:#b4531f;--accent-soft:#fdf1e7;--ok:#2f6b46;--ok-soft:#e9f4ed;--warn:#8a6314;--warn-soft:#fbf2dd;--bad:#a3342c;--bad-soft:#fbecea;--info:#2a5b8f;--info-soft:#e9f1f9;--radius:10px;--shadow:0 1px 2px rgba(28,26,23,.05),0 8px 24px -16px rgba(28,26,23,.25)}
-@media(prefers-color-scheme:dark){:root{--bg:#131211;--bg-elev:#1b1a18;--line:#302d29;--line-soft:#252320;--fg:#efece7;--fg-2:#a8a29a;--fg-3:#7b756c;--accent:#e08b4f;--accent-soft:#2a1f16;--ok:#7fc79c;--ok-soft:#16241c;--warn:#e0b657;--warn-soft:#272013;--bad:#e58b82;--bad-soft:#2a1917;--info:#8ab6e5;--info-soft:#141f2b;--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.7)}}
-*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text",system-ui,sans-serif;padding:40px 24px 80px}.wrap{max-width:940px;margin:auto}a{color:var(--accent);overflow-wrap:anywhere}header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}.kicker{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}.num,.badge{font-size:12px;background:var(--line-soft);color:var(--fg-3);padding:3px 9px;border-radius:6px}.badge{background:var(--accent-soft);color:var(--accent)}.meta{font-size:12px;color:var(--fg-3)}h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}.sub,.pie{color:var(--fg-2)}.sub{margin:10px 0 0}.lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);padding:16px 18px;margin-bottom:34px;box-shadow:var(--shadow)}.lede p{margin:0;font-size:17.5px;line-height:1.5}section{margin-bottom:38px}h2{font-size:19px;line-height:1.3;margin:0 0 14px;font-weight:650}.pie{font-size:13.5px;line-height:1.5;margin:10px 0 0}.ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}.lado{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:16px;min-width:0}.antes{border-top:3px solid var(--bad)}.despues{border-top:3px solid var(--ok)}.rot{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3)}.sentence{font-size:20px;font-weight:750;line-height:1.35;margin:10px 0 18px}.judge{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:8px 0;border-bottom:1px solid var(--line-soft)}.judge span:last-child{color:var(--ok);font-weight:650;white-space:nowrap}.historical{color:var(--info);font-size:13px;margin:12px 0}.finding{background:var(--warn-soft);border-left:3px solid var(--warn);padding:12px;font-size:14px}.finding strong{display:block;margin-top:6px}.tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}table{border-collapse:collapse;width:100%;font-size:14px;min-width:440px}th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);padding:10px 14px;border-bottom:1px solid var(--line)}td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}tr:last-child td{border-bottom:0}.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:100px;white-space:nowrap}.p-ok{background:var(--ok-soft);color:var(--ok)}.p-warn{background:var(--warn-soft);color:var(--warn)}.p-bad{background:var(--bad-soft);color:var(--bad)}.p-info{background:var(--info-soft);color:var(--info)}.call{background:var(--warn-soft);border:1px solid var(--warn);border-radius:var(--radius);padding:10px 13px;font-size:13.5px;margin-top:12px}.kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}.kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}.n{font-size:32px;font-weight:700;line-height:1.1;color:var(--ok)}.l{font-size:13px;color:var(--fg-2);margin-top:6px}.flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}.st{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 13px;display:flex;flex-direction:column;gap:5px;min-width:0}.i{font:700 12px/24px ui-monospace,monospace;width:24px;border-radius:7px;text-align:center;background:var(--accent-soft);color:var(--accent)}.h{font-weight:650;font-size:14px}.d{font-size:12.5px;color:var(--fg-2)}footer{border-top:1px solid var(--line);padding-top:16px;font-size:12px;color:var(--fg-3);overflow-wrap:anywhere}@media(max-width:640px){body{padding:24px 16px 50px}.flow{grid-auto-flow:row}.ad{grid-template-columns:minmax(0,1fr)}.judge{flex-wrap:wrap}}
+  :root{
+    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
+    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fdf1e7;
+    --ok:#2f6b46; --ok-soft:#e9f4ed;
+    --warn:#8a6314; --warn-soft:#fbf2dd;
+    --bad:#a3342c; --bad-soft:#fbecea;
+    --info:#2a5b8f; --info-soft:#e9f1f9;
+    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
+      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
+      --accent:#e08b4f; --accent-soft:#2a1f16;
+      --ok:#7fc79c; --ok-soft:#16241c;
+      --warn:#e0b657; --warn-soft:#272013;
+      --bad:#e58b82; --bad-soft:#2a1917;
+      --info:#8ab6e5; --info-soft:#141f2b;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    font-feature-settings:"kern","liga","cv05";
+    padding:40px 24px 80px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
+  a{color:var(--accent)}
+  code,a{overflow-wrap:anywhere}
+
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
+    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+  .meta{font-size:12.5px;color:var(--fg-3)}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
+  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+
+  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
+  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
+  .lede strong{font-weight:650}
+
+  section{margin:0 0 38px}
+  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
+  p{margin:0 0 12px}
+  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+
+  .hb{display:grid;gap:10px}
+  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
+  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
+  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
+  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .hb .grp{font-size:12px;font-weight:650;color:var(--fg-3);margin-top:6px}
+  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+  .sw.g{background:var(--ok)}
+
+  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
+  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
+  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
+    font-size:19px;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
+  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
+  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
+  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
+  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
+    background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
+  .opt li::before{font-weight:800;margin-right:6px}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-idle{background:var(--line-soft);color:var(--fg-3)}
+
+  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  td small{display:block;color:var(--fg-3);font-size:12px;margin-top:3px}
+  tr:last-child td{border-bottom:0}
+
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+
+  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
+  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .call b:first-child{margin-right:4px}
+
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  @media (max-width:640px){
+    body{padding:24px 16px 60px}
+    h2{font-size:17px}
+    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
+    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
+    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
+  }
 </style>
 </head>
-<body><main class="wrap">
-<header><div class="kicker"><span class="num">087</span><span class="badge">Implementado · UI reabierta</span><span class="meta">Correcciones · 9 octubre 2026</span></div><h1>El Después ya muestra qué dijo cada juez.</h1><p class="sub">Resultado, evidencia y vigencia, dentro del mismo visor de Correcciones.</p></header>
-<div class="lede"><p><strong>Ya está integrado y abierto.</strong> Podés comparar el error original con el análisis del Después, sin confundir una medición anterior o incompleta con una aprobación.</p></div>
-<section><h2>El motivo original y el resultado quedan separados</h2><div class="ad">
-<div class="lado antes"><span class="rot">Antes · hallazgo original</span><div class="sentence">You aren't playing videogames.</div><div class="finding">Error de gramática<strong>videogames → video games (ortografía)</strong></div></div>
-<div class="lado despues"><span class="rot">Después · última medición guardada</span><div class="sentence">You aren't playing tennis.</div><div class="historical">Resultado anterior · v5 · 9/10 07:19<br>Contenido actual: v6; contexto por comprobar.</div><div class="judge"><span>Vocabulario</span><span>En v5: Error resuelto</span></div><div class="judge"><span>Forma de respuesta</span><span>En v5: Error resuelto</span></div><div class="judge"><span>Miniteoría</span><span>En v5: Error resuelto</span></div><div class="judge"><span>Gramática</span><span>En v5: Error resuelto</span></div></div>
-</div><p class="pie">Caso real comprobado en la app. «Ver hallazgos y evidencia» abre la observación guardada; tus botones de revisión no cambian.</p><div class="call c-warn">Esta medición antigua no guarda el veredicto completo: resolver esos hallazgos no demuestra que no queden otros.</div></section>
-<section><h2>Cada estado dice exactamente qué se sabe</h2><div class="tw"><table><thead><tr><th>Estado</th><th>Evidencia necesaria</th></tr></thead><tbody>
-<tr><td><span class="pill p-ok">Sin errores detectados</span></td><td>Evaluación completa explícita y lista completa sin errores.</td></tr>
-<tr><td><span class="pill p-ok">Error resuelto</span></td><td>El hallazgo concreto figura resuelto; no equivale a resultado limpio.</td></tr>
-<tr><td><span class="pill p-bad">El error persiste</span></td><td>La misma observación continúa en el Después.</td></tr>
-<tr><td><span class="pill p-bad">Error nuevo</span></td><td>La medición guarda un problema nuevo relacionado con la propuesta.</td></tr>
-<tr><td><span class="pill p-warn">Sin evaluar</span></td><td>El juez quedó pendiente, aunque desaparezca el error original.</td></tr>
-<tr><td><span class="pill p-info">Sin veredicto completo</span></td><td>Falta información suficiente; no se infiere un aprobado.</td></tr>
-</tbody></table></div><p class="pie">Una fecha y versión acompañan el resultado. Si cambió el contenido o su contexto, se marca como anterior, sin ocultarlo.</p></section>
-<section><h2>La revisión guardada sigue intacta</h2><div class="kpis"><div class="kpi"><div class="n">14 → 14</div><div class="l">Correcciones aprobadas antes y después del reinicio.</div></div><div class="kpi"><div class="n">9.562 → 9.562</div><div class="l">Consultas acumuladas: ninguna nueva para esta entrega.</div></div><div class="kpi"><div class="n">1.481 → 1.481</div><div class="l">Propuestas vigentes conservadas; sin publicación.</div></div></div><p class="pie">Checkpoint, colas y revisiones idénticos al respaldo. Pruebas nuevas y dominio de revisión aprobados; permanecen dos fallos previos ajenos al cambio.</p></section>
-<section><h2>Podés seguir revisando desde la UI abierta</h2><div class="flow"><div class="st"><span class="i">1</span><span class="h">Mirar el Antes</span><span class="d">Leer el problema señalado sobre el original.</span></div><div class="st"><span class="i">2</span><span class="h">Consultar el Después</span><span class="d">Ver estado, versión y evidencia del juez.</span></div><div class="st"><span class="i">3</span><span class="h">Decidir por tu cuenta</span><span class="d">Aprobar, rechazar o dejar sin revisar.</span></div></div><p class="pie">La app quedó en Oraciones negativas. Esta entrega no reanaliza, no toma decisiones por vos y no publica el curso.</p></section>
-<footer>Brief 087 · entrega comprobada 9/10/2026, 23:43 ART.<br>Trabajo en worktrees, commits e integración: backend 01d33749 → main 85910347; UI 2ec7409d4 y 94018cb28 → master 757e32f62. Backend compilado offline y Release macOS compilada desde las ramas principales; proceso reabierto 5525, una instancia Release.<br>Revision-domain: 767 tests sin fallos. Flutter: 361 aprobados, 2 omitidos y 1 fallo previo del guardián de nombres; análisis estático de los archivos modificados limpio. Maven completo conserva el fallo previo del guardián de examen de near-duplicates, documentado en 085; no se relajó ningún control.<br>Checkpoint SHA256 a230c57959b2a3fa9136e4bff7c87fefafe9c39476a554f8b2d9529c7de2bbb4; revisión canónica SHA256 262f5080ab02b25a78ca061abd6185c39783bc109593e1c98ba55f04e0f949dd. Respaldo: /private/tmp/content-audit-after-analysis-state.IKbALk/checkpoint-and-queues.tgz.<br>La cobertura completa por juez se guarda para nuevas comparaciones cuando hay evidencia explícita; los datos antiguos permanecen desconocidos donde no la tienen. No se alteraron mediciones históricas ni se ejecutaron modelos.<br><a href="../index.html">Documentos del proyecto</a></footer>
-</main></body></html>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">088</span>
+      <span class="badge">Opinión</span>
+      <span class="meta">Dashboard de content-audit, después de la maqueta de Correcciones · 10/10/2026</span>
+    </div>
+    <h1>Sí, conviene HTML: cambiá la cara, quedate con el motor</h1>
+    <p class="sub">Por qué lo feo no es culpa de Flutter, qué se aprovecha y por dónde empezar.</p>
+  </header>
+
+  <div class="lede"><p><strong>Conviene, y no porque Flutter no pueda: en HTML el diseño se ajusta mucho más rápido.</strong> Pasaría sólo las pantallas y dejaría la lógica en Dart; falta decidir por dónde empezamos.</p></div>
+
+  <section>
+    <h2>Flutter puede dibujarla; HTML lo hace con menos esfuerzo</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Lo que pide la maqueta</th><th>En HTML</th><th>En Flutter</th></tr></thead>
+      <tbody>
+        <tr><td>Marcas dentro de la oración<small>tachado, insertado y el hueco con la respuesta</small></td><td><span class="pill p-ok">viene hecho</span></td><td><span class="pill p-warn">pieza por pieza</span><small>el tachado no cruza el hueco</small></td></tr>
+        <tr><td>Dos tipografías y el inglés resaltado en el mismo renglón</td><td><span class="pill p-ok">viene hecho</span></td><td><span class="pill p-warn">con más código</span></td></tr>
+        <tr><td>Modo oscuro, ancho chico, teclado</td><td><span class="pill p-ok">igual</span></td><td><span class="pill p-ok">igual</span></td></tr>
+        <tr><td>Tipografías de Google</td><td><span class="pill p-ok">igual</span></td><td><span class="pill p-ok">igual</span></td></tr>
+      </tbody></table></div>
+    <p class="pie">La app de hoy se ve mal porque usa el estilo por defecto de Flutter y nunca tuvo diseño propio. Con uno, Flutter quedaría cerca de la maqueta.</p>
+  </section>
+
+  <section>
+    <h2>Lo que pesa: cuántas vueltas de ajuste entran</h2>
+    <div class="ad">
+      <div class="lado antes"><span class="rot">En Flutter</span>
+        <ol><li>Cambio el código de la pantalla.</li><li>Compilo la app de escritorio.</li><li>Para verla necesito tu permiso para controlar la pantalla.</li><li>Si no, te pido una captura.</li></ol>
+        <span class="res">Cada vuelta te necesita</span></div>
+      <div class="lado despues"><span class="rot">En HTML</span>
+        <ol><li>Cambio el estilo.</li><li>Recargo en el navegador integrado.</li><li>Saco captura en claro, oscuro y celular.</li><li>Corrijo lo que se ve mal.</li></ol>
+        <span class="res">24 capturas para esta maqueta, sin pedirte nada</span></div>
+    </div>
+    <p class="pie">La calidad salió de esas vueltas, no del lenguaje. Así encontré, por ejemplo, el contraste roto del botón Aprobar en modo oscuro.</p>
+  </section>
+
+  <section>
+    <h2>Se rehacen las pantallas; la lógica queda</h2>
+    <div class="hb">
+      <div class="grp">Código de la app (45.300 líneas)</div>
+      <div class="r"><span class="t">Pantallas<small>se rehacen en HTML</small></span><span class="tr"><span class="f" style="width:100%"></span></span><span class="n">32.800 · 72 %</span></div>
+      <div class="r"><span class="t">Lógica: CLI, datos y reglas<small>se queda, con retoques mínimos</small></span><span class="tr"><span class="f g" style="width:38%"></span></span><span class="n">12.400 · 27 %</span></div>
+      <div class="grp">Archivos de pruebas (71)</div>
+      <div class="r"><span class="t">Prueban pantallas<small>se pasan a pruebas en el navegador</small></span><span class="tr"><span class="f" style="width:100%"></span></span><span class="n">38</span></div>
+      <div class="r"><span class="t">Prueban la lógica<small>siguen andando</small></span><span class="tr"><span class="f g" style="width:87%"></span></span><span class="n">33</span></div>
+    </div>
+    <div class="leyenda"><span><i class="sw"></i>se rehace</span><span><i class="sw g"></i>se aprovecha</span></div>
+    <p class="pie">Las reglas finas, como cuándo un análisis sigue vigente, viven en la lógica y no se tocan. Lo que hoy prueba una pantalla se vuelve a probar antes de borrarla.</p>
+  </section>
+
+  <section>
+    <h2>Un servidor local en Dart corre el CLI</h2>
+    <div class="diagram">
+      <svg viewBox="0 0 700 110" style="min-width:600px" role="img" aria-label="Las pantallas en HTML piden datos al servidor local en Dart, que corre el CLI de content-audit y lee sus archivos">
+        <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--fg-3)"/></marker></defs>
+        <rect x="4" y="20" width="196" height="70" rx="9" class="box-a"/>
+        <text x="18" y="46" class="lbl" style="font-weight:600">Las pantallas, en HTML</text>
+        <text x="18" y="65" class="lbl-s">nuevas; se abren en el navegador</text>
+        <text x="18" y="80" class="lbl-s">o en una ventana propia</text>
+        <path d="M200 55 L250 55" class="arrow" marker-end="url(#fl)"/>
+        <text x="206" y="47" class="lbl-s">pide</text>
+        <rect x="254" y="20" width="210" height="70" rx="9" class="box-ok"/>
+        <text x="268" y="46" class="lbl" style="font-weight:600">Servidor local en Dart</text>
+        <text x="268" y="65" class="lbl-s">la lógica de hoy, casi sin cambios,</text>
+        <text x="268" y="80" class="lbl-s">más una capa fina que la expone</text>
+        <path d="M464 55 L514 55" class="arrow" marker-end="url(#fl)"/>
+        <text x="470" y="47" class="lbl-s">corre</text>
+        <rect x="518" y="20" width="178" height="70" rx="9" class="box"/>
+        <text x="532" y="46" class="lbl" style="font-weight:600">content-audit</text>
+        <text x="532" y="65" class="lbl-s">el CLI y sus archivos,</text>
+        <text x="532" y="80" class="lbl-s">igual que hoy</text>
+      </svg>
+    </div>
+    <p class="pie">Una página no puede correr programas ni leer archivos, como hace hoy la app. Por eso la lógica pasa a un servidor en tu máquina, sin sumar otro lenguaje.</p>
+  </section>
+
+  <section>
+    <h2>Los tres caminos</h2>
+    <div class="opts">
+      <div class="opt rec"><div class="oh"><span class="ol">A</span><b>Pantallas en HTML, motor en Dart</b><span class="pill p-ok">recomiendo</span></div>
+        <ul><li class="si">la calidad de la maqueta</li><li class="si">la lógica y 33 pruebas se aprovechan</li><li class="no">hay que armar el servidor local</li><li class="no">dos apps conviven mientras se pasa</li></ul></div>
+      <div class="opt"><div class="oh"><span class="ol">B</span><b>Quedarse en Flutter con este diseño</b></div>
+        <ul><li class="si">no se mueve nada</li><li class="si">todas las pruebas siguen</li><li class="no">cada ajuste visual cuesta más</li><li class="no">yo no veo lo que hago</li></ul></div>
+      <div class="opt"><div class="oh"><span class="ol">C</span><b>Todo de cero en la web</b></div>
+        <ul><li class="si">un solo lenguaje</li><li class="no">reescribe reglas que hoy andan</li><li class="no">suma 12.400 líneas por reescribir</li></ul></div>
+    </div>
+    <div class="call c-warn"><b>Lo que no sé:</b> cuánto lleva pasar todo. Lo puedo medir bien recién después de pasar Correcciones entera.</div>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿Pasamos las pantallas a HTML y dejamos la lógica en Dart?</span>
+        <div class="ops"><span class="op rec">Sí, de a una pantalla · recomendado</span><span class="op">Quedarse en Flutter</span></div>
+        <span class="why">La maqueta salió de 24 capturas propias en una sesión; en Flutter, cada una de esas vueltas te hubiera necesitado.</span></div>
+      <div class="ask"><span class="q">2 · ¿Por qué pantalla empezamos?</span>
+        <div class="ops"><span class="op rec">Correcciones · recomendado</span><span class="op">Otra</span></div>
+        <span class="why">Es la que vas a usar ahora, y la maqueta ya resuelve el diseño y casi toda la interacción.</span></div>
+      <div class="ask"><span class="q">3 · ¿Pestaña del navegador o ventana propia?</span>
+        <div class="ops"><span class="op rec">Pestaña, por ahora · recomendado</span><span class="op">Ventana propia desde el principio</span></div>
+        <span class="why">Es una herramienta local tuya. Meterla en una ventana propia se puede hacer después sin tocar las pantallas.</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Conteo sobre ittm/pipeline/vocabulary_dashboard: lib/ 145 archivos; lógica = contract, models, providers, services y data; pruebas de pantalla = las que usan testWidgets. El CLI se invoca desde content_audit_cli_service.dart.</span>
+    <span>brief 088 · docs/briefs/088-html-o-flutter.html</span>
+  </footer>
+
+</div>
+</body>
+</html>
