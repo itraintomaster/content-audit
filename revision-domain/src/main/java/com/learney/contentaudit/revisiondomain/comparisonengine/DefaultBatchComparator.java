@@ -809,8 +809,25 @@ public class DefaultBatchComparator implements BatchComparator {
                     undecided.addAll(unapproved.reading(node));
                 }
             }
-            outcomes.add(new ChangeOutcome(change.getProposalId(), change.getNodeTarget(), change.getNodeId(),
-                    !gained.isEmpty(), gained, fixed, new ArrayList<>(undecided)));
+            ChangeOutcome outcome = new ChangeOutcome(change.getProposalId(), change.getNodeTarget(), change.getNodeId(),
+                    !gained.isEmpty(), gained, fixed, new ArrayList<>(undecided));
+            outcome.setAfterFindings(new ArrayList<>(afterFindings));
+            outcome.setPersistentFindings(afterFindings.stream()
+                    .filter(finding -> beforeKeys.contains(identity(finding))).toList());
+            // A score on the quiz is an explicit result; aggregate scores on
+            // its parents cannot certify this quiz. Partial/unapproved results
+            // cannot become a clean verdict merely because they have a score.
+            Set<String> evaluated = new LinkedHashSet<>();
+            if (after != null && after.getTarget() == AuditTarget.QUIZ && after.getScores() != null) {
+                after.getScores().forEach((analyzer, score) -> {
+                    if (score != null && Double.isFinite(score)) evaluated.add(analyzer);
+                });
+                evaluated.removeAll(listOrEmpty(after.getUnevaluatedBy()));
+                evaluated.removeAll(listOrEmpty(after.getPartiallyEvaluatedBy()));
+                evaluated.removeAll(undecided);
+            }
+            outcome.setEvaluatedAnalyzers(new ArrayList<>(evaluated));
+            outcomes.add(outcome);
         }
         return outcomes;
     }

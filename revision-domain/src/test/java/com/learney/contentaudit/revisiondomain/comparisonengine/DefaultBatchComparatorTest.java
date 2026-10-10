@@ -533,6 +533,23 @@ public class DefaultBatchComparatorTest {
         assertEquals(List.of(gone), outcome.getFixedFindings(), "R003: the hint is fixed");
         assertTrue(outcome.getNewFindings().isEmpty(), "R003: the instruction keeps its identity: not new");
         assertFalse(outcome.isReturns());
+        assertEquals(List.of(staysReworded), outcome.getPersistentFindings(),
+                "The After retains its actual observation even when it does not trigger return");
+        assertEquals(List.of(staysReworded), outcome.getAfterFindings());
+    }
+
+    @Test
+    public void afterCoverageRequiresAnExplicitCompleteQuizResult() {
+        Mesa mesa = new Mesa().baseline(Foto.deHoy());
+        mesa.batch(Foto.deHoy(), Foto.deHoy().judged(VEGETABLES, HINT)
+                .judged(REGULAR, INSTRUCTION).judged(VEGETABLES, GRAMMAR)
+                .partially(VEGETABLES, GRAMMAR), cambio(P_VEGETABLES, VEGETABLES));
+        ChangeOutcome outcome = mesa.compare().getChanges().get(0);
+        assertTrue(outcome.getEvaluatedAnalyzers().contains(HINT));
+        assertFalse(outcome.getEvaluatedAnalyzers().contains(INSTRUCTION), "Parent score is not quiz coverage");
+        assertFalse(outcome.getEvaluatedAnalyzers().contains(GRAMMAR), "Partial score is not complete coverage");
+        assertTrue(outcome.getAfterFindings().isEmpty());
+        assertNull(new ChangeOutcome().getAfterFindings(), "Legacy measurements remain distinguishable");
     }
 
     @Test

@@ -25,6 +25,16 @@ public class ChangeOutcome {
 
     private List<String> undecidedAnalyzers;
 
+    /** Full findings in the measured After, not just the ones that trigger return.
+     * Null in legacy measurements: absence is not a clean verdict. */
+    private List<Finding> afterFindings;
+
+    /** Findings still present by identity, with the After's actual evidence. */
+    private List<Finding> persistentFindings;
+
+    /** Explicit, complete node-level results. Never inferred from missing findings. */
+    private List<String> evaluatedAnalyzers;
+
     public ChangeOutcome() {
     }
 
@@ -96,6 +106,13 @@ public class ChangeOutcome {
         this.undecidedAnalyzers = undecidedAnalyzers;
     }
 
+    public List<Finding> getAfterFindings() { return afterFindings; }
+    public void setAfterFindings(List<Finding> findings) { afterFindings = findings; }
+    public List<Finding> getPersistentFindings() { return persistentFindings; }
+    public void setPersistentFindings(List<Finding> findings) { persistentFindings = findings; }
+    public List<String> getEvaluatedAnalyzers() { return evaluatedAnalyzers; }
+    public void setEvaluatedAnalyzers(List<String> analyzers) { evaluatedAnalyzers = analyzers; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -107,11 +124,15 @@ public class ChangeOutcome {
                     && Objects.equals(this.returns, that.returns)
                     && Objects.equals(this.newFindings, that.newFindings)
                     && Objects.equals(this.fixedFindings, that.fixedFindings)
-                    && Objects.equals(this.undecidedAnalyzers, that.undecidedAnalyzers);
+                    && Objects.equals(this.undecidedAnalyzers, that.undecidedAnalyzers)
+                    && Objects.equals(this.afterFindings, that.afterFindings)
+                    && Objects.equals(this.persistentFindings, that.persistentFindings)
+                    && Objects.equals(this.evaluatedAnalyzers, that.evaluatedAnalyzers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(proposalId, nodeTarget, nodeId, returns, newFindings, fixedFindings, undecidedAnalyzers);
+        return Objects.hash(proposalId, nodeTarget, nodeId, returns, newFindings, fixedFindings, undecidedAnalyzers,
+                afterFindings, persistentFindings, evaluatedAnalyzers);
     }
 }
