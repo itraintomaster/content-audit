@@ -11,6 +11,9 @@ import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
 import com.learney.contentaudit.auditdomain.AuditTarget;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.revisiondomain.batch.*;
+import com.learney.contentaudit.revisiondomain.panel.PanelCandidate;
+import com.learney.contentaudit.revisiondomain.panel.PanelDecision;
+import com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +95,69 @@ class DefaultBatchReviewTest {
         cachedReview(cache).decide(request(List.of(selection("one", step)), BatchReviewDecision.Status.APPROVED));
         verify(cache, never()).load(any(), any());
         assertEquals(1, decisions.size());
+    }
+
+    @Test void exposesExactTasksAndTheMatchingAcceptedRationaleWithoutWrites() {
+        batch.getChanges().get(0).setTaskIds(List.of("grammar", "mini-theory"));
+        var accepted = new PanelCandidate();
+        accepted.setQuiz(snapshot("after", "old theory").getQuiz());
+        accepted.setRationale("Changed vocabulary and aligned the translation.");
+        var decision = new PanelDecision();
+        decision.setOutcome(PanelOutcomeKind.ACCEPTED);
+        decision.setQuizIds(List.of("quiz"));
+        decision.setTaskIds(List.of("grammar", "mini-theory"));
+        decision.setAccepted(accepted);
+        batch.setPanelDecisions(List.of(decision));
+        var item = review.read("batch").items().get(0);
+        assertEquals(List.of("grammar", "mini-theory"), item.taskIds());
+        assertEquals(accepted.getRationale(), item.rationale());
+        assertNull(review.read("batch").items().get(1).rationale());
+        verify(store, never()).save(any());
+        verify(store, never()).saveReview(any());
+        verify(artifacts, never()).save(any());
+    }
+
+    @Test void doesNotAttributeANonMatchingOrAmbiguousHistoricalCandidate() {
+        var one = new PanelCandidate();
+        one.setQuiz(snapshot("another answer", "old theory").getQuiz());
+        one.setRationale("Not this saved step.");
+        var decision = new PanelDecision();
+        decision.setOutcome(PanelOutcomeKind.ACCEPTED);
+        decision.setQuizIds(List.of("quiz"));
+        decision.setTaskIds(List.of());
+        decision.setAccepted(one);
+        batch.setPanelDecisions(List.of(decision));
+        assertNull(review.read("batch").items().get(0).rationale());
+        one.setQuiz(snapshot("after", "old theory").getQuiz());
+        decision.setOutcome(PanelOutcomeKind.NO_WINNER);
+        assertNull(review.read("batch").items().get(0).rationale());
+        decision.setOutcome(PanelOutcomeKind.ACCEPTED);
+        var other = new PanelCandidate();
+        other.setQuiz(one.getQuiz());
+        other.setRationale("Conflicting explanation.");
+        var another = new PanelDecision();
+        another.setOutcome(PanelOutcomeKind.ACCEPTED);
+        another.setQuizIds(List.of("quiz"));
+        another.setTaskIds(List.of());
+        another.setAccepted(other);
+        batch.setPanelDecisions(List.of(decision, another));
+        assertNull(review.read("batch").items().get(0).rationale());
+    }
+
+    @Test void legacyCachedProjectionIsRebuiltToExposeProvenance() {
+        var saved = review.read("batch");
+        var item = saved.items().get(0);
+        var legacy = new BatchReview(saved.batchId(), saved.correctionRevision(), saved.contentVersion(),
+                saved.report(), saved.tasks(), saved.proposals(), List.of(new BatchReview.Item(item.changeId(),
+                item.step(), item.before(), item.after(), item.origin(), item.ruleId(), item.status(), null, null)),
+                saved.analyses(), saved.history());
+        var cache = mock(BatchReviewCache.class);
+        when(cache.version()).thenReturn(Optional.of("v1"));
+        when(cache.load("batch", "v1")).thenReturn(Optional.of(legacy));
+        var result = cachedReview(cache).read("batch");
+        assertNotSame(legacy, result);
+        assertNotNull(result.items().get(0).taskIds());
+        verify(cache).save("batch", "v1", result);
     }
 
     @Test void wholeExerciseIsOneAtomicDecisionAndAnUndoIsAnotherEvent() {
