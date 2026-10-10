@@ -23,12 +23,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
+import java.util.function.Supplier;
 import javax.annotation.processing.Generated;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -39,8 +41,9 @@ import picocli.CommandLine.Parameters;
  * run} reads the exam file -- {@code [{"ejercicio": "<id>"}, …]}, only exercises, never what is
  * expected --, has the judge take it over the photo and writes one JSON line per exercise;
  * {@code exam record} reads what was measured outside by whoever holds the gold standard and
- * records it for that version; {@code exam status} shows the history. Without {@code --budget} the
- * exam is a rehearsal that pays nothing (F-JEXAM-R010). Everything else is the service's.
+ * records it for that version; {@code exam status} shows the history, and with {@code -f json} it
+ * gives it to the dashboard (F-JEXAM-R015). Without {@code --budget} the exam is a rehearsal that
+ * pays nothing (F-JEXAM-R010). Everything else is the service's.
  */
 @Generated(
         value = "com.sentinel.SentinelEngine",
@@ -51,7 +54,8 @@ import picocli.CommandLine.Parameters;
         description = "The fixed exam of a judge with a model (F-JEXAM).%n%n"
                 + "  exam run <judge> --cases <file> --course <photo> [--budget N] [--concurrency N] --out <verdicts>%n"
                 + "  exam record <measured-result>%n"
-                + "  exam status <judge>%n%n"
+                + "  exam status <judge>%n"
+                + "  exam status [<judge>] -f json%n%n"
                 + "Without --budget, exam run is a rehearsal: it reuses what that version already judged and says how "
                 + "many consultations are missing, without consulting.",
         mixinStandardHelpOptions = true,
@@ -64,6 +68,7 @@ import picocli.CommandLine.Parameters;
                         + "--course db/fotos/2026-09-29/english-course --budget 39 --out unica.jsonl",
                 "  content-audit exam record resultado-unica.json",
                 "  content-audit exam status single-answer",
+                "  content-audit exam status -f json",
         }
 )
 final class ExamCmd implements ExamCommand, Callable<Integer> {
@@ -96,15 +101,29 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
     @Option(names = "--out", description = "Where to write one JSON line per exercise")
     private String verdictsOut;
 
+    @Option(names = {"-f", "--format"},
+            description = "status: text or json; json without a judge gives every judge (default: ${DEFAULT-VALUE})",
+            defaultValue = "text")
+    private String formatName;
+
+    /** The analyzers of the catalog, in its order: who {@code exam status -f json} asks about. */
+    private final Supplier<List<String>> analyzerNames;
+
     public ExamCmd(JudgeExamService examService) {
         this(examService, Map.of());
     }
 
     ExamCmd(JudgeExamService examService, Map<String, ExamProvenance> provenanceByJudge) {
+        this(examService, provenanceByJudge, List::of);
+    }
+
+    ExamCmd(JudgeExamService examService, Map<String, ExamProvenance> provenanceByJudge,
+            Supplier<List<String>> analyzerNames) {
         this.examService = examService;
         this.provenanceByJudge = provenanceByJudge != null
                 ? Map.copyOf(provenanceByJudge)
                 : Map.of();
+        this.analyzerNames = analyzerNames != null ? analyzerNames : List::of;
     }
 
     @Override
@@ -116,7 +135,7 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
         return switch (action) {
             case "run" -> takeExam(target, casesFile, photoCourse, budget, concurrency, verdictsOut);
             case "record" -> recordExam(target);
-            case "status" -> showExams(target);
+            case "status" -> CommandJson.isJson(formatName) ? showExamsJson(target) : showExams(target);
             default -> {
                 System.err.println("Error: unknown exam action '" + action + "'. Use run, record or status.");
                 yield 2;
@@ -257,6 +276,86 @@ final class ExamCmd implements ExamCommand, Callable<Integer> {
             System.out.println(line);
         }
         return 0;
+    }
+
+    /**
+     * F-JEXAM-R015: the same history as {@code exam status}, as JSON for the dashboard. With a judge,
+     * that judge; without one, every analyzer of the catalog that has records or takes the exam, in
+     * the order of the catalog. Each judge brings its versions -- one per version and runtime, in the
+     * order they first took it -- with their standing, which is their last record, and every record.
+     * It only reads the registry: it never consults a judge nor writes.
+     */
+    Integer showExamsJson(String judgeName) {
+        Map<String, List<JudgeExamRecord>> histories = new LinkedHashMap<>();
+        if (!isBlank(judgeName)) {
+            histories.put(judgeName.trim(), examService.history(judgeName.trim()));
+        } else {
+            for (String name : analyzerNames.get()) {
+                List<JudgeExamRecord> history = examService.history(name);
+                if (!history.isEmpty() || provenanceByJudge.containsKey(name)) {
+                    histories.put(name, history);
+                }
+            }
+        }
+        ObjectNode root = MAPPER.createObjectNode();
+        ArrayNode judges = root.putArray("judges");
+        histories.forEach((name, history) -> {
+            ObjectNode judge = judges.addObject();
+            judge.put("judge", name);
+            ArrayNode versions = judge.putArray("versions");
+            for (List<JudgeExamRecord> records : byVersionAndRuntime(history)) {
+                versions.add(versionJson(records));
+            }
+        });
+        System.out.println(CommandJson.write(root));
+        return 0;
+    }
+
+    /** The records of each version and runtime, in the order that version first appears. */
+    private static List<List<JudgeExamRecord>> byVersionAndRuntime(List<JudgeExamRecord> history) {
+        Map<List<Object>, List<JudgeExamRecord>> groups = new LinkedHashMap<>();
+        for (JudgeExamRecord record : history) {
+            groups.computeIfAbsent(List.of(String.valueOf(record.getJudgeVersion()), record.getRuntimeIdentity()),
+                    key -> new ArrayList<>()).add(record);
+        }
+        return new ArrayList<>(groups.values());
+    }
+
+    private static ObjectNode versionJson(List<JudgeExamRecord> records) {
+        JudgeExamRecord standing = records.get(records.size() - 1);
+        ObjectNode version = MAPPER.createObjectNode();
+        version.put("judgeVersion", standing.getJudgeVersion());
+        version.put("provenance", provenanceLabel(standing));
+        version.put("providerName", standing.getProviderName());
+        version.put("modelName", standing.getModelName());
+        version.put("reasoningEffort", standing.getReasoningEffort());
+        version.put("status", standing.getStatus() != null ? standing.getStatus().name() : null);
+        ArrayNode list = version.putArray("records");
+        for (JudgeExamRecord record : records) {
+            ObjectNode line = list.addObject();
+            line.put("status", record.getStatus() != null ? record.getStatus().name() : null);
+            line.put("recordedAt", record.getRecordedAt() != null ? record.getRecordedAt().toString() : null);
+            line.put("casesJudged", record.getCasesJudged());
+            line.put("casesNotJudged", record.getCasesNotJudged());
+            ArrayNode groups = line.putArray("groups");
+            if (record.getGroups() != null) {
+                for (JudgeExamGroupResult group : record.getGroups()) {
+                    groups.addObject()
+                            .put("group", group.getGroup())
+                            .put("cases", group.getCases())
+                            .put("asExpected", group.getAsExpected())
+                            .put("notAsExpected", group.getNotAsExpected());
+                }
+            }
+            ArrayNode mismatched = line.putArray("mismatchedCaseIds");
+            if (record.getMismatchedCaseIds() != null) {
+                record.getMismatchedCaseIds().forEach(mismatched::add);
+            }
+            line.put("goalMet", record.isGoalMet());
+            line.put("photo", record.getPhoto());
+            line.put("measuredBy", record.getMeasuredBy());
+        }
+        return version;
     }
 
     // -------------------------------------------------------------------------

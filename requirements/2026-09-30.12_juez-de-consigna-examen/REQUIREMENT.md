@@ -259,6 +259,20 @@ propuestas la granularidad pendiente de
 [F-LAGEN-R009](../2026-04-29.01_laps-llm-quiz-candidate-generator/REQUIREMENT.md#F-LAGEN-R009) y, para los jueces, refuerza
 [F-JEXAM-R001](#F-JEXAM-R001) y [F-JEXAM-R003](#F-JEXAM-R003).
 
+<a id="F-JEXAM-R015"></a>
+### Rule[F-JEXAM-R015] - El historial de los exámenes se lee en JSON, sin consultar
+**Severity**: normal | **Validation**: VALIDATED
+
+> `exam status -f json` da el mismo historial que `exam status`, para que el tablero lo dibuje sin
+> leer el registro por su cuenta. Con un juez, ese juez; sin juez, cada analizador del catálogo que
+> tiene registros o rinde el examen, en el orden del catálogo.
+
+Cada juez trae sus versiones, una por versión y runtime ([F-JEXAM-R014](#F-JEXAM-R014)), en el orden
+en que rindieron por primera vez; cada versión trae su estado, que es su último registro, la
+procedencia escrita como la escribe `exam status`, y todos sus registros con sus grupos, los casos que
+no dieron lo esperado, la meta, la foto y quién midió. Un juez que rinde el examen y nunca lo rindió
+aparece sin versiones. Leer el historial no consulta a ningún juez ni escribe nada.
+
 ## Contexto
 
 Juzgar el curso entero con los cinco son unas 41.700 consultas: 220 horas de a una al ritmo medido. Después de una tanda
