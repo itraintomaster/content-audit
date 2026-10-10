@@ -52,7 +52,8 @@ final class DefaultBatchReview implements BatchReviewService {
         var version = cache == null ? java.util.Optional.<String>empty() : cache.version();
         if (version.isPresent()) {
             var cached = cache.load(batchId, version.get());
-            if (cached.isPresent() && version.equals(cache.version())) return cached.get();
+            if (cached.isPresent() && cached.get().items().stream().allMatch(item -> item.taskIds() != null)
+                    && version.equals(cache.version())) return cached.get();
         }
         CorrectionBatch batch = batchId == null ? batches.open().or(batches::latestPublished)
                 .orElseThrow(() -> new NoOpenBatchException("sin tanda para revisar"))
@@ -167,10 +168,43 @@ final class DefaultBatchReview implements BatchReviewService {
                 items.add(new BatchReview.Item(change.getChangeId(), step, before, after,
                         change.getOrigin() == null ? null : change.getOrigin().name(), change.getRuleId(),
                         matches ? decision.status() : BatchReviewDecision.Status.PENDING,
-                        matches ? decision.reviewer() : null, matches ? decision.decidedAt() : null));
+                        matches ? decision.reviewer() : null, matches ? decision.decidedAt() : null,
+                        BatchBook.copy(change.getTaskIds()), rationale(batch, change, step, before, after)));
             }
         }
         return items;
+    }
+
+    /** Explain only an accepted candidate that reproduces this exact persisted step, not the last request on a quiz. */
+    private String rationale(CorrectionBatch batch, BatchChange change, BatchChangeStep step,
+            CourseElementSnapshot before, CourseElementSnapshot after) {
+        if (change.getOrigin() != com.learney.contentaudit.revisiondomain.batch.BatchChangeOrigin.PANEL
+                || before == null || after == null) return null;
+        var reasons = new java.util.LinkedHashSet<String>();
+        for (var decision : BatchBook.list(batch.getPanelDecisions())) {
+            var candidate = decision.getAccepted();
+            if (candidate == null || decision.getOutcome() != com.learney.contentaudit.revisiondomain.panel.PanelOutcomeKind.ACCEPTED
+                    || !Objects.equals(change.getKnowledgeId(), decision.getKnowledgeId())
+                    || !new HashSet<>(BatchBook.list(change.getTaskIds()))
+                            .equals(new HashSet<>(BatchBook.list(decision.getTaskIds())))
+                    || !BatchBook.list(decision.getQuizIds()).contains(step.getQuizId())) continue;
+            CourseElementSnapshot proposed = null;
+            if (candidate.getQuiz() != null && before.getQuiz() != null) {
+                proposed = new CourseElementSnapshot(before.getNodeTarget(), before.getNodeId(),
+                        BatchBook.merged(before.getQuiz(), candidate.getQuiz()), null);
+            } else if (candidate.getMiniTheoryText() != null && before.getQuiz() != null) {
+                var quiz = BatchBook.copy(before.getQuiz());
+                quiz.setMiniTheory(candidate.getMiniTheoryText());
+                proposed = new CourseElementSnapshot(before.getNodeTarget(), before.getNodeId(), quiz, null);
+            }
+            if (proposed != null && Objects.equals(after, BatchBook.apply(before,
+                    new BatchChangeStep(step.getQuizId(), step.getParts(), proposed)))
+                    && candidate.getRationale() != null && !candidate.getRationale().isBlank()) {
+                reasons.add(candidate.getRationale());
+            }
+        }
+        // Conflicting historical explanations must not be presented as a verified origin.
+        return reasons.size() == 1 ? reasons.iterator().next() : null;
     }
 
     private static String key(String changeId, String nodeId) {
