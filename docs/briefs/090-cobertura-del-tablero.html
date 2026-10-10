@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cobertura del tablero</title>
+<style>
+  /* ============ tokens: claro y, abajo, oscuro ============ */
+  :root{
+    --bg:#fbfaf8; --bg-elev:#ffffff; --line:#e6e2db; --line-soft:#f0ece5;
+    --fg:#1c1a17; --fg-2:#57524b; --fg-3:#8b847a;
+    --accent:#b4531f; --accent-soft:#fdf1e7;
+    --ok:#2f6b46; --ok-soft:#e9f4ed;
+    --warn:#8a6314; --warn-soft:#fbf2dd;
+    --bad:#a3342c; --bad-soft:#fbecea;
+    --info:#2a5b8f; --info-soft:#e9f1f9;
+    --radius:10px; --shadow:0 1px 2px rgba(28,26,23,.05), 0 8px 24px -16px rgba(28,26,23,.25);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#131211; --bg-elev:#1b1a18; --line:#302d29; --line-soft:#252320;
+      --fg:#efece7; --fg-2:#a8a29a; --fg-3:#7b756c;
+      --accent:#e08b4f; --accent-soft:#2a1f16;
+      --ok:#7fc79c; --ok-soft:#16241c;
+      --warn:#e0b657; --warn-soft:#272013;
+      --bad:#e58b82; --bad-soft:#2a1917;
+      --info:#8ab6e5; --info-soft:#141f2b;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Inter,system-ui,sans-serif;
+    font-feature-settings:"kern","liga","cv05";
+    padding:40px 24px 80px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+  code,kbd,pre,.mono{font-family:ui-monospace,"SF Mono",Menlo,"JetBrains Mono",monospace}
+  a{color:var(--accent)}
+  code,a{overflow-wrap:anywhere}   /* una ruta o un link largo desborda el celular: 15 de 76 briefs viejos */
+
+  /* ============ encabezado ============ */
+  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:24px}
+  .kicker{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .kicker .num{font:700 12px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.04em;color:var(--fg-3);
+    background:var(--line-soft);padding:3px 8px;border-radius:6px;font-variant-numeric:tabular-nums}
+  .badge{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;background:var(--accent-soft);color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 22%,transparent)}
+  .meta{font-size:12.5px;color:var(--fg-3)}
+  h1{font-size:clamp(24px,3.4vw,32px);line-height:1.2;margin:0;letter-spacing:-.02em;font-weight:650}
+  .sub{margin:10px 0 0;color:var(--fg-2);font-size:16px;max-width:62ch}
+
+  /* ============ el lede: la conclusión, dos renglones ============ */
+  .lede{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:var(--radius);padding:16px 18px;margin:0 0 34px;box-shadow:var(--shadow)}
+  .lede p{margin:0;font-size:17.5px;line-height:1.5;max-width:68ch}
+  .lede strong{font-weight:650}
+
+  /* ============ sección: título = conclusión · un dibujo · un pie ============ */
+  section{margin:0 0 38px}
+  h2{font-size:19px;line-height:1.3;font-weight:650;letter-spacing:-.01em;margin:0 0 14px;max-width:60ch}
+  p{margin:0 0 12px}
+  .pie{font-size:13.5px;line-height:1.5;color:var(--fg-2);margin:10px 0 0;max-width:78ch}
+  .grid{display:grid;gap:12px}
+  .g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;
+    box-shadow:var(--shadow);min-width:0}
+  .ptl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--fg-3);font-weight:700;margin:0 0 10px}
+
+  /* ============ KPIs: el número grande, su comparación abajo ============ */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .kpi{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+  .kpi .n{font-size:32px;font-weight:700;letter-spacing:-.025em;line-height:1.05;font-variant-numeric:tabular-nums}
+  .kpi .n small{font-size:.48em;font-weight:600;color:var(--fg-3);margin-left:.3em;letter-spacing:0}
+  .kpi .l{font-size:13px;color:var(--fg-2);line-height:1.4;margin-top:6px}
+  .kpi.dest .n{color:var(--accent)}
+
+  /* ============ barras horizontales con etiqueta ============ */
+  .hb{display:grid;gap:10px}
+  .hb .r{display:grid;grid-template-columns:minmax(110px,38%) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:13.5px}
+  .hb .t{color:var(--fg-2);line-height:1.3;min-width:0}
+  .hb .t small{display:block;color:var(--fg-3);font-size:12px}
+  .hb .tr{position:relative;height:10px;border-radius:99px;background:var(--line-soft)}
+  .hb .f{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+  .hb .f.g{background:var(--ok)} .hb .f.b{background:var(--bad)} .hb .f.w{background:var(--warn)}
+  .hb .f.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .hb .meta{position:absolute;top:-4px;bottom:-4px;width:2px;border-radius:1px;background:var(--fg)}
+  .hb .n{font-weight:650;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .leyenda{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--fg-2);margin-top:12px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+  .sw.g{background:var(--ok)} .sw.b{background:var(--bad)} .sw.w{background:var(--warn)}
+  .sw.s{background:color-mix(in srgb,var(--fg-3) 50%,transparent)}
+  .sw.m{width:2px;height:13px;border-radius:0;background:var(--fg);vertical-align:-2px}
+
+  /* ============ flujo en pasos ============ */
+  .flow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:16px}
+  .flow .st{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 13px;display:flex;flex-direction:column;gap:5px;box-shadow:var(--shadow);min-width:0}
+  .flow .st:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:8px;height:8px;z-index:1;
+    border-top:2px solid var(--fg-3);border-right:2px solid var(--fg-3);transform:translateY(-50%) rotate(45deg)}
+  .flow .i{font:700 12px/24px ui-monospace,monospace;width:24px;height:24px;border-radius:7px;text-align:center;
+    background:var(--accent-soft);color:var(--accent)}
+  .flow .h{font-weight:650;font-size:14px;line-height:1.25}
+  .flow .eg{font:italic 14px/1.3 ui-serif,Georgia,serif;color:var(--fg)}
+  .flow .d{font-size:12.5px;line-height:1.4;color:var(--fg-2)}
+  .flow .st.end{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+
+  /* ============ antes y después ============ */
+  .ad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px}
+  .ad .lado{position:relative;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 15px;display:flex;flex-direction:column;gap:8px;box-shadow:var(--shadow);min-width:0}
+  .ad .antes{border-top:3px solid var(--bad)} .ad .despues{border-top:3px solid var(--ok)}
+  .ad .rot{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+  .ad .antes .rot{color:var(--bad)} .ad .despues .rot{color:var(--ok)}
+  .ad .despues::before{content:"→";position:absolute;left:-24px;top:50%;transform:translateY(-50%);
+    font-size:19px;color:var(--fg-3)}
+  .ad ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.45;color:var(--fg-2);display:grid;gap:3px}
+  .ad .res{font-weight:650;font-size:14.5px;border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
+  .ad .antes .res{color:var(--bad)} .ad .despues .res{color:var(--ok)}
+
+  /* ============ mapa de calor ============ */
+  .heat{display:grid;grid-template-columns:minmax(110px,1.6fr) repeat(var(--cols,4),minmax(0,1fr));gap:4px;font-size:12.5px}
+  .heat span{padding:7px 4px;border-radius:6px;text-align:center;font-variant-numeric:tabular-nums;background:var(--line-soft)}
+  .heat .h{background:none;color:var(--fg-3);font-size:11.5px;font-weight:600}
+  .heat .rl{background:none;text-align:left;color:var(--fg-2)}
+  .heat .h0{color:var(--fg-3)}
+  .heat .h1{background:color-mix(in srgb,var(--warn) 16%,var(--bg-elev))}
+  .heat .h2{background:color-mix(in srgb,var(--warn) 34%,var(--bg-elev))}
+  .heat .h3{background:color-mix(in srgb,var(--bad) 32%,var(--bg-elev))}
+
+  /* ============ tarjetas de decisión: la recomendada, marcada ============ */
+  .opts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .opt{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;min-width:0}
+  .opt.rec{border:1.5px solid var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow)}
+  .opt .oh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14.5px}
+  .opt .ol{font:700 13px/26px ui-monospace,monospace;width:26px;height:26px;border-radius:7px;text-align:center;
+    background:var(--line-soft);flex:none}
+  .opt.rec .ol{background:var(--accent);color:var(--bg-elev)}
+  .opt p{font-size:13px;color:var(--fg-2);margin:0}
+  .opt ul{list-style:none;margin:0;padding:0;display:grid;gap:3px;font-size:13px}
+  .opt li::before{font-weight:800;margin-right:6px}
+  .opt li.si::before{content:"✓";color:var(--ok)} .opt li.no::before{content:"✕";color:var(--bad)}
+
+  /* ============ ejemplo real ============ */
+  .ex{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:13px 15px;
+    display:grid;gap:7px;box-shadow:var(--shadow);min-width:0}
+  .ex .cons{font-size:12px;color:var(--fg-3)}
+  .ex .en{font:italic 18px/1.35 ui-serif,Georgia,serif}
+  .ex .gap{display:inline-block;min-width:48px;border-bottom:2px solid var(--fg-3);margin:0 4px}
+  .ex .ans{font-size:13.5px;color:var(--fg-2)} .ex .ans b{color:var(--fg)}
+  .ex .ft{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3);
+    border-top:1px dashed var(--line);padding-top:7px}
+  .mark{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.45;background:var(--bad-soft);
+    border-radius:8px;padding:8px 10px}
+  .mark .x{color:var(--bad);font-weight:800}
+  .mark.ok{background:var(--ok-soft)} .mark.ok .x{color:var(--ok)}
+  .sev{font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;white-space:nowrap}
+  .sev.b{background:var(--bad);color:var(--bg-elev)} .sev.a{background:var(--bad-soft);color:var(--bad)}
+  .sev.m{background:var(--warn-soft);color:var(--warn)} .sev.l{background:var(--line-soft);color:var(--fg-2)}
+
+  /* ============ preguntas, con la recomendación ============ */
+  .asks{display:grid;gap:10px}
+  .ask{background:var(--bg-elev);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:var(--radius);
+    padding:12px 15px;display:grid;gap:8px;box-shadow:var(--shadow)}
+  .ask .q{font-size:15px;font-weight:650;line-height:1.35}
+  .ask .ops{display:flex;gap:6px;flex-wrap:wrap}
+  .ask .op{font-size:12.5px;padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:var(--bg)}
+  .ask .op.rec{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:650}
+  .ask .why{font-size:13px;color:var(--fg-2);line-height:1.45}
+
+  /* ============ qué cambia y qué no ============ */
+  .cambia{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .cambia>div{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow)}
+  .cambia ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px;line-height:1.45}
+  .cambia li{position:relative;padding-left:22px}
+  .cambia li::before{position:absolute;left:0;top:0;font-weight:800}
+  .cambia .si li::before{content:"✓";color:var(--ok)}
+  .cambia .no li::before{content:"=";color:var(--fg-3)}
+
+  /* ============ captura real, con su pie ============ */
+  .captura{margin:0;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:10px;
+    box-shadow:var(--shadow);min-width:0}
+  .captura img{display:block;width:100%;height:auto;border-radius:6px;border:1px solid var(--line-soft)}
+  .captura.cel img{max-width:300px;margin:0 auto}
+  .captura figcaption{font-size:12.5px;color:var(--fg-3);margin-top:8px}
+
+  /* ============ pills de estado ============ */
+  .pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:560;padding:2px 8px;border-radius:100px;white-space:nowrap}
+  .pill::before{content:"";width:5px;height:5px;border-radius:100px;background:currentColor}
+  .p-ok{background:var(--ok-soft);color:var(--ok)} .p-warn{background:var(--warn-soft);color:var(--warn)}
+  .p-bad{background:var(--bad-soft);color:var(--bad)} .p-info{background:var(--info-soft);color:var(--info)}
+  .p-idle{background:var(--line-soft);color:var(--fg-3)}
+
+  /* ============ tabla chica (≤ 6 filas; si es más, es un gráfico) ============ */
+  .tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  table{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--fg-3);
+    font-weight:600;padding:10px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:10px 14px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace;font-size:13px}
+
+  /* ============ diagrama SVG a mano ============ */
+  .diagram{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+    overflow-x:auto;box-shadow:var(--shadow)}
+  .diagram svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  svg .box{fill:var(--bg);stroke:var(--line)}
+  svg .box-a{fill:var(--accent-soft);stroke:var(--accent)}
+  svg .box-ok{fill:var(--ok-soft);stroke:var(--ok)}
+  svg .box-bad{fill:var(--bad-soft);stroke:var(--bad)}
+  svg .lbl{fill:var(--fg);font:13px ui-sans-serif,system-ui,sans-serif}
+  svg .lbl-s{fill:var(--fg-3);font:11px ui-sans-serif,system-ui,sans-serif}
+  svg .arrow{stroke:var(--fg-3);fill:none;stroke-width:1.2}
+
+  /* ============ comandos · aviso de lo que no sé ============ */
+  pre{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;
+    overflow-x:auto;font-size:13px;line-height:1.55;margin:0}
+  pre code{color:var(--fg)}
+  .call{border-radius:var(--radius);padding:10px 13px;font-size:13.5px;border:1px solid;margin:12px 0 0}
+  .c-warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 28%,transparent)}
+  .c-bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 28%,transparent)}
+  .c-info{background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 28%,transparent)}
+  .call b:first-child{margin-right:4px}
+
+  footer{border-top:1px solid var(--line);margin-top:36px;padding-top:14px;font-size:12.5px;color:var(--fg-3);
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ============ celular ============ */
+  @media (max-width:640px){
+    body{padding:24px 16px 60px}
+    h2{font-size:17px}
+    .flow{grid-auto-flow:row}
+    .flow .st:not(:last-child)::after{right:auto;left:22px;top:auto;bottom:-11px;transform:rotate(135deg)}
+    .ad{grid-template-columns:minmax(0,1fr);gap:28px}
+    .ad .despues::before{content:"↓";left:50%;top:-25px;transform:translateX(-50%)}
+    .hb .r{grid-template-columns:minmax(0,40%) minmax(0,1fr) auto;gap:8px}
+    .heat{grid-template-columns:minmax(80px,1.3fr) repeat(var(--cols,4),minmax(0,1fr));font-size:11.5px}
+    .kpi .n{font-size:28px}
+  }
+
+
+  /* ============ propios del 090 ============ */
+  .heat .o1{background:color-mix(in srgb,var(--ok) 14%,var(--bg-elev))}
+  .heat .o2{background:color-mix(in srgb,var(--ok) 28%,var(--bg-elev))}
+  .heat .o3{background:color-mix(in srgb,var(--ok) 44%,var(--bg-elev))}
+  .heat .w3{background:color-mix(in srgb,var(--warn) 50%,var(--bg-elev))}
+  .heat .b1{background:color-mix(in srgb,var(--bad) 14%,var(--bg-elev))}
+  .heat .b2{background:color-mix(in srgb,var(--bad) 26%,var(--bg-elev))}
+  .heat .b3{background:color-mix(in srgb,var(--bad) 40%,var(--bg-elev))}
+  .heat .s1{background:color-mix(in srgb,var(--fg-3) 14%,var(--bg-elev))}
+  .heat .s2{background:color-mix(in srgb,var(--fg-3) 24%,var(--bg-elev))}
+  .heat .s3{background:color-mix(in srgb,var(--fg-3) 34%,var(--bg-elev))}
+  details{margin-top:14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-elev)}
+  details>summary{cursor:pointer;padding:10px 14px;font-size:13.5px;font-weight:600;color:var(--fg-2)}
+  details[open]>summary{border-bottom:1px solid var(--line-soft)}
+  details>.tw{border:0;border-radius:0}
+  details>pre{margin:12px 14px}
+  table.mx td:nth-child(2){white-space:nowrap}
+  table.mx tr.g td{background:var(--line-soft);color:var(--fg-3);font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+  pre code{white-space:pre-wrap}
+  table.ses td:first-child{white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">
+      <span class="num">090</span>
+      <span class="badge">Diagnóstico</span>
+      <span class="meta">tablero HTML · cobertura de la app Flutter · 10/10/2026</span>
+    </div>
+    <h1>Al tablero HTML le falta una pantalla: Ejecuciones</h1>
+    <p class="sub">Cada función de la app Flutter contra las 8 pantallas planeadas, qué le falta a cada una y qué se deja.</p>
+  </header>
+
+  <div class="lede"><p><strong>De 53 funciones de la app, 39 ya tienen pantalla o se dejan.</strong> Lo que falta es lanzar y seguir corridas pagas: recomiendo una pantalla nueva, Ejecuciones, y que el tablero pueda lanzarlas.</p></div>
+
+  <section>
+    <h2>De 53 funciones, 14 no tienen pantalla</h2>
+    <div class="heat" style="--cols:4">
+      <span class="h"></span><span class="h">Cubierta · 14</span><span class="h">A medias · 15</span><span class="h">Sin pantalla · 14</span><span class="h">Se deja · 10</span>
+      <span class="rl">Centro</span><span class="o2">2</span><span class="h2">2</span><span class="b3">8</span><span class="h0">—</span>
+      <span class="rl">Análisis</span><span class="o3">4</span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span>
+      <span class="rl">Ejecuciones</span><span class="h0">—</span><span class="h0">—</span><span class="b2">2</span><span class="s1">1</span>
+      <span class="rl">Explorar</span><span class="o2">2</span><span class="h2">3</span><span class="h0">—</span><span class="h0">—</span>
+      <span class="rl">Analizadores</span><span class="o2">2</span><span class="h0">—</span><span class="h0">—</span><span class="h0">—</span>
+      <span class="rl">Correcciones</span><span class="o1">1</span><span class="w3">5</span><span class="b1">1</span><span class="h0">—</span>
+      <span class="rl">Comparación</span><span class="o2">2</span><span class="w3">4</span><span class="h0">—</span><span class="s1">1</span>
+      <span class="rl">Ajustes</span><span class="h0">—</span><span class="h0">—</span><span class="b2">2</span><span class="s2">2</span>
+      <span class="rl">Historial</span><span class="o1">1</span><span class="h1">1</span><span class="b1">1</span><span class="s3">6</span>
+    </div>
+    <p class="pie">Trece de las 14 sin pantalla son lanzar y seguir corridas. «A medias»: la pantalla existe y le falta una parte.</p>
+    <details>
+      <summary>La matriz completa, función por función</summary>
+      <div class="tw"><table class="mx">
+        <thead><tr><th>Función de la app Flutter</th><th>Estado</th><th>Dónde va, o por qué se deja</th></tr></thead>
+        <tbody>
+          <tr class="g"><td colspan="3">Centro · 12</td></tr>
+          <tr><td>Historia del contenido y detalle de cada ciclo</td><td><span class="pill p-ok">cubierta</span></td><td>Mapa</td></tr>
+          <tr><td>Los cuatro caminos (atajos a cada paso)</td><td><span class="pill p-ok">cubierta</span></td><td>La barra lateral</td></tr>
+          <tr><td>Cobertura por analizador («Miniteoría deja 1.159 sin evaluar»)</td><td><span class="pill p-warn">a medias</span></td><td>Mapa y Analizadores: el anillo dice si corrió, no cuántos quedaron sin evaluar</td></tr>
+          <tr><td>Jueces bloqueados porque no tienen examen</td><td><span class="pill p-warn">a medias</span></td><td>Exámenes lo muestra; el freno va en el diálogo de lanzar</td></tr>
+          <tr><td>Última ejecución</td><td><span class="pill p-bad">sin pantalla</span></td><td>Ejecuciones (nueva)</td></tr>
+          <tr><td>Estimar la tanda, gratis</td><td><span class="pill p-bad">sin pantalla</span></td><td>Lanzar (nueva)</td></tr>
+          <tr><td>Continuar la corrección con tope de consultas</td><td><span class="pill p-bad">sin pantalla</span></td><td>Lanzar</td></tr>
+          <tr><td>Analizar con presupuesto por juez</td><td><span class="pill p-bad">sin pantalla</span></td><td>Lanzar</td></tr>
+          <tr><td>Perfil: proveedor, modelo y esfuerzo</td><td><span class="pill p-bad">sin pantalla</span></td><td>Lanzar, por corrida</td></tr>
+          <tr><td>Corrida en curso: líneas, etapas y Cancelar</td><td><span class="pill p-bad">sin pantalla</span></td><td>Ejecuciones</td></tr>
+          <tr><td>Avisos de corrida huérfana, estancada o sin señal</td><td><span class="pill p-bad">sin pantalla</span></td><td>Ejecuciones</td></tr>
+          <tr><td>Resultado explicado (por ejemplo, compuerta reprobada)</td><td><span class="pill p-bad">sin pantalla</span></td><td>Ejecuciones</td></tr>
+          <tr class="g"><td colspan="3">Análisis · 4</td></tr>
+          <tr><td>Elegir el análisis que se mira</td><td><span class="pill p-ok">cubierta</span></td><td>Estadísticas</td></tr>
+          <tr><td>Las cuatro cifras y el mapa de errores tema × analizador</td><td><span class="pill p-ok">cubierta</span></td><td>Estadísticas</td></tr>
+          <tr><td>Temas con más errores y tabla de vocabulario</td><td><span class="pill p-ok">cubierta</span></td><td>Estadísticas</td></tr>
+          <tr><td>Lo que falta juzgar y cuánto costaría</td><td><span class="pill p-ok">cubierta</span></td><td>Analizadores</td></tr>
+          <tr class="g"><td colspan="3">Ejecuciones · 3</td></tr>
+          <tr><td>Lista de corridas</td><td><span class="pill p-bad">sin pantalla</span></td><td>Ejecuciones</td></tr>
+          <tr><td>Detalle: de dónde salió, avance, etapas, qué habilita, evidencia</td><td><span class="pill p-bad">sin pantalla</span></td><td>Ejecuciones</td></tr>
+          <tr><td>Franja de cobertura acumulada</td><td><span class="pill p-idle">se deja</span></td><td>Nunca aparece: busca los datos en la raíz y están en la campaña</td></tr>
+          <tr class="g"><td colspan="3">Explorar · 5</td></tr>
+          <tr><td>Recorrido con migas y filtro por analizador</td><td><span class="pill p-ok">cubierta</span></td><td>Estadísticas</td></tr>
+          <tr><td>Estado por analizador, vista del alumno y hallazgos con evidencia</td><td><span class="pill p-ok">cubierta</span></td><td>Estadísticas</td></tr>
+          <tr><td>«Con qué otro nodo» y «se resuelve con…» de una marca</td><td><span class="pill p-warn">a medias</span></td><td>Estadísticas, agregado</td></tr>
+          <tr><td>Miniteorías y consigna de un tema</td><td><span class="pill p-warn">a medias</span></td><td>Estadísticas, agregado</td></tr>
+          <tr><td>Vista del alumno del análisis elegido (hoy sale del activo)</td><td><span class="pill p-warn">a medias</span></td><td>Estadísticas, agregado</td></tr>
+          <tr class="g"><td colspan="3">Analizadores · 2</td></tr>
+          <tr><td>Lista por familia, ficha, reglas y primeras marcas</td><td><span class="pill p-ok">cubierta</span></td><td>Analizadores y Estadísticas</td></tr>
+          <tr><td>Examen del juez (en Flutter, un cartel «paquete 0.4»)</td><td><span class="pill p-ok">cubierta</span></td><td>Exámenes, y mejor</td></tr>
+          <tr class="g"><td colspan="3">Correcciones · 7</td></tr>
+          <tr><td>Decidir propuestas, cierre e informe</td><td><span class="pill p-ok">cubierta</span></td><td>Correcciones (ya hecha)</td></tr>
+          <tr><td>Elegir otra versión de la corrección y filtrar por nivel</td><td><span class="pill p-warn">a medias</span></td><td>Correcciones, lo que falta</td></tr>
+          <tr><td>Bandeja: muestra ciega, empates y audios para regrabar</td><td><span class="pill p-warn">a medias</span></td><td>Correcciones, lo que falta</td></tr>
+          <tr><td>Conversiones del informe, «ver cuáles» y el cambio exacto de un paso</td><td><span class="pill p-warn">a medias</span></td><td>Correcciones, lo que falta</td></tr>
+          <tr><td>Deshacer más que la última, separar vinculados, reintentar guardado</td><td><span class="pill p-warn">a medias</span></td><td>Correcciones, lo que falta</td></tr>
+          <tr><td>Miniteoría, lo gratis: comentar, elegir, editar, incorporar</td><td><span class="pill p-warn">a medias</span></td><td>Correcciones, lo que falta</td></tr>
+          <tr><td>Miniteoría y corrección selectiva pagas</td><td><span class="pill p-bad">sin pantalla</span></td><td>Correcciones, por el diálogo de lanzar</td></tr>
+          <tr class="g"><td colspan="3">Comparación · 7</td></tr>
+          <tr><td>Elegir contra qué medición</td><td><span class="pill p-ok">cubierta</span></td><td>Comparar</td></tr>
+          <tr><td>Lo que vuelve</td><td><span class="pill p-ok">cubierta</span></td><td>Vueltas («la trajo una corrección»)</td></tr>
+          <tr><td>Tabla por analizador con tolerancia, ¿pasa?, meta y PARCIAL</td><td><span class="pill p-warn">a medias</span></td><td>Comparar, agregado</td></tr>
+          <tr><td>Alcance nivel o curso, y cobertura del después</td><td><span class="pill p-warn">a medias</span></td><td>Comparar, agregado</td></tr>
+          <tr><td>Por qué no se puede decidir y pisos que piden atención</td><td><span class="pill p-warn">a medias</span></td><td>Comparar; el cierre de Correcciones ya tiene una parte</td></tr>
+          <tr><td>Cambios de medida y de metas selladas</td><td><span class="pill p-warn">a medias</span></td><td>Comparar, agregado</td></tr>
+          <tr><td>Atribuciones</td><td><span class="pill p-idle">se deja</span></td><td>Salen vacías: el cierre usa la comparación agregada</td></tr>
+          <tr class="g"><td colspan="3">Ajustes · 4</td></tr>
+          <tr><td>Proveedor, modelo y esfuerzo</td><td><span class="pill p-bad">sin pantalla</span></td><td>Lanzar, por corrida</td></tr>
+          <tr><td>Juez de consigna: prendido, modelo y presupuesto</td><td><span class="pill p-bad">sin pantalla</span></td><td>Lanzar, tope por juez</td></tr>
+          <tr><td>Clave en el llavero</td><td><span class="pill p-idle">se deja</span></td><td>Las 17 corridas usaron suscripción, sin clave</td></tr>
+          <tr><td>Temperatura, tokens, endpoint, modo de prueba, aprobación automática</td><td><span class="pill p-idle">se deja</span></td><td>Nadie los usa; la aprobación automática escribe el curso sin revisión</td></tr>
+          <tr class="g"><td colspan="3">Historial · 9</td></tr>
+          <tr><td>Tabla de lemas ausentes, filtrable</td><td><span class="pill p-ok">cubierta</span></td><td>Estadísticas, vista de vocabulario</td></tr>
+          <tr><td>Correr un análisis suelto y crear un plan</td><td><span class="pill p-warn">a medias</span></td><td>Mapa: «Analizar» y «Corregir un recorte»</td></tr>
+          <tr><td>Corregir de a una las 588 tareas de vocabulario</td><td><span class="pill p-bad">sin pantalla</span></td><td>Pregunta 3: una tanda nunca las toma</td></tr>
+          <tr><td>Course: árbol con cambios y estadísticas por nodo</td><td><span class="pill p-idle">se deja</span></td><td>Lo hace Estadísticas; su puntaje da 84,3 % donde el real es 73,0 %</td></tr>
+          <tr><td>Stats: lo actual contra lo proyectado</td><td><span class="pill p-idle">se deja</span></td><td>Mapa: lo propuesto contra lo aprobado</td></tr>
+          <tr><td>Activar, limpiar o borrar análisis y planes</td><td><span class="pill p-idle">se deja</span></td><td>Mueven la base de la tanda; borrar un plan no tiene guarda</td></tr>
+          <tr><td>Correr un juez suelto</td><td><span class="pill p-idle">se deja</span></td><td>Lo reemplaza «Correr lo que faltó»; su contador lee otro registro</td></tr>
+          <tr><td>Aprobar o rechazar suelto</td><td><span class="pill p-idle">se deja</span></td><td>Aprobar siempre falla; rechazar saca el cambio de la tanda sin bandeja</td></tr>
+          <tr><td>Improvements: lista plana de pendientes</td><td><span class="pill p-idle">se deja</span></td><td>Abre 1.481 procesos por carga y las vistas previas salen vacías</td></tr>
+        </tbody>
+      </table></div>
+    </details>
+  </section>
+
+  <section>
+    <h2>Lanzar y seguir corridas es lo más usado</h2>
+    <div class="kpis">
+      <div class="kpi dest"><div class="n">11<small>de 17</small></div><div class="l">corridas del 7 al 9/10 se lanzaron desde la app</div></div>
+      <div class="kpi"><div class="n">0<small>de 17</small></div><div class="l">terminaron limpias: 10 a revisar, 5 fallaron, 2 canceladas</div></div>
+      <div class="kpi"><div class="n">9.562</div><div class="l">consultas gastadas en la campaña, todas por suscripción</div></div>
+    </div>
+    <p class="pie">No es una función vieja que se pueda dejar: es la que más se usó y la que más explicación pide.</p>
+  </section>
+
+  <section>
+    <h2>Recomiendo una pantalla nueva, Ejecuciones, con diálogo común</h2>
+    <div class="opts">
+      <div class="opt rec"><div class="oh"><span class="ol">A</span><b>Ejecuciones y un diálogo de lanzar</b><span class="pill p-ok">recomiendo</span></div>
+        <ul><li class="si">un lugar para seguir y explicar</li><li class="si">las 8 pantallas abren el mismo diálogo</li><li class="no">el tablero tiene que poder lanzar</li></ul></div>
+      <div class="opt"><div class="oh"><span class="ol">B</span><b>Un lanzador en cada pantalla</b></div>
+        <ul><li class="si">nada nuevo en la barra</li><li class="no">8 formas de gastar, ninguna de seguir</li></ul></div>
+      <div class="opt"><div class="oh"><span class="ol">C</span><b>Dejarlo en Flutter o la consola</b></div>
+        <p>Sin trabajo nuevo, pero Flutter sigue vivo solo para esto y la consola no explica por qué terminó.</p></div>
+    </div>
+    <p class="pie">La propuesta, con las dos pantallas dibujadas: <a href="../propuestas/ejecuciones.html">Ejecuciones</a>. Va abajo en la barra, fuera del orden del proceso.</p>
+  </section>
+
+  <section>
+    <h2>Lo demás se suma a las pantallas en curso</h2>
+    <div class="tw"><table class="ses">
+      <thead><tr><th>Sesión</th><th>Qué sumar</th></tr></thead>
+      <tbody>
+        <tr><td>091 · Mapa</td><td>Cuántos quedaron sin evaluar en el anillo; recorte por analizador de vocabulario; lanzar, apagado</td></tr>
+        <tr><td>092 · Estadísticas</td><td>«Con qué otro nodo» y «se resuelve con…»; miniteorías y consigna del tema; vista del alumno del análisis elegido</td></tr>
+        <tr><td>093 · Analizadores</td><td>Sin evaluar por celda; un juez sin examen no se elige</td></tr>
+        <tr><td>094 · Exámenes</td><td>Sus corridas, también en Ejecuciones</td></tr>
+        <tr><td>095 · Vueltas</td><td>Cada vuelta enlaza su corrida; lanzar por el diálogo común</td></tr>
+        <tr><td>096 · Comparar</td><td>Tabla por analizador con tolerancia y meta; alcance; por qué no se decide; cambios de metas</td></tr>
+        <tr><td>097 · Publicar</td><td>«Analizar lo publicado» por el diálogo; fijar la base solo acá</td></tr>
+        <tr><td>098 · Correcciones</td><td>Otra versión y nivel; bandeja; conversiones; miniteoría gratis; lo pago, apagado</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">Ninguno pide gastar consultas: lo que lanza una corrida va apagado con (!) hasta que exista el diálogo común.</p>
+    <details class="sesiones">
+      <summary>El texto para pasarle a cada sesión</summary>
+<pre><code>091 · Mapa — de la sesión de cobertura (brief 090 de content-audit)
+- En el anillo de cada análisis, además de «corrió / heredó / no corrió»:
+  cuántos ejercicios quedaron sin evaluar por analizador. Ejemplo real:
+  en el Análisis 1, Miniteoría dejó 1.159 ejercicios de A1 sin evaluar.
+- «Corregir un recorte → lo que marcó un analizador» tiene que poder elegir
+  analizadores de vocabulario. Hay 588 tareas de vocabulario pendientes
+  (342 lemas ausentes, 238 largo de oración, 7 largo de consigna,
+  1 recurrencia) que una tanda nunca toma (F-TANDA-R001) y que hoy solo se
+  corrigen de a una desde Historial (revise task). Botón apagado con (!)
+  hasta que José decida si se siguen corrigiendo.
+- «Analizar» y «Corregir un recorte» abren el diálogo común de lanzar
+  (docs/propuestas/ejecuciones.html en content-audit). Mientras no exista,
+  apagados con un (!) que lo diga.</code></pre>
+<pre><code>092 · Estadísticas — de la sesión de cobertura (brief 090 de content-audit)
+- En la evidencia de una marca: «con qué otro nodo» (enlace al nodo con el
+  que choca, por ejemplo el duplicado) y, de la regla, «se resuelve con…»
+  y su costo. Flutter los mostraba en Explorar.
+- En un tema: sus miniteorías, con cuántos ejercicios muestran cada una,
+  y la consigna del tema.
+- La vista del alumno sale del análisis elegido en el selector, no del
+  activo. Si el servidor no puede, avisarlo arriba de la tarjeta.
+- Si no está ya: la tabla de lemas ausentes filtrable (hoy en Historial).
+- No copiar el puntaje de vocabulario de Historial: da 84,3 % y el real
+  del análisis es 73,0 %.</code></pre>
+<pre><code>093 · Analizadores — de la sesión de cobertura (brief 090 de content-audit)
+- Por analizador: alcanza / evaluó / sin evaluar / a medias, como el bloque
+  «en este análisis» de Flutter. En la matriz analizador × análisis, la
+  celda dice cuántos quedaron sin evaluar, no solo si corrió.
+- «Correr lo que faltó» abre el diálogo común de lanzar (apagado con (!)
+  hasta que exista). Un juez sin examen aprobado no se puede elegir y
+  lleva a Exámenes.</code></pre>
+<pre><code>094 · Exámenes — de la sesión de cobertura (brief 090 de content-audit)
+- Las corridas de examen también aparecen en Ejecuciones (el 9/10 hubo
+  tres de Calidad de distractores: dos fallaron, una a revisar). Desde un
+  examen, «Ver la corrida» lleva a su detalle.
+- El estado del examen ya lo emite el CLI en get analyzers
+  (tools.examState); Flutter lo ignoraba.
+- «Examinar» abre el diálogo común de lanzar; apagado con (!) hasta que
+  exista.</code></pre>
+<pre><code>095 · Vueltas — de la sesión de cobertura (brief 090 de content-audit)
+- «Otra vuelta» y los arreglos que corren algo pago abren el diálogo común
+  de lanzar; apagados con (!) hasta que exista.
+- Cada barra de vuelta enlaza a su corrida en Ejecuciones: cuánto gastó
+  contra su tope y por qué terminó.</code></pre>
+<pre><code>096 · Comparar — de la sesión de cobertura (brief 090 de content-audit)
+Lo que Flutter muestra en Comparación y falta en la propuesta:
+- Tabla por analizador: base / inicio / después, con tolerancia, ¿pasa?,
+  meta de avance y marca PARCIAL; en cada fila, qué cuenta y un ejemplo.
+- Selector de alcance: nivel o curso.
+- Cobertura del después: cuánto se midió de verdad.
+- Por qué no se puede decidir: muestra ciega pendiente y pisos sin decidir,
+  con su costo.
+- Pisos que piden atención, separando «empeora» de «ya estaba debajo».
+- Cambios de medida y de metas selladas entre una medición y otra.
+No traer: las atribuciones (salen vacías) ni el «A1» fijo de los pisos.</code></pre>
+<pre><code>097 · Publicar — de la sesión de cobertura (brief 090 de content-audit)
+- «Analizar lo publicado» abre el diálogo común de lanzar; apagado con (!)
+  hasta que exista.
+- Fijar la base va acá y solo acá. Historial tenía «activar análisis»
+  suelto, que movía la base de la tanda sin avisar: no se migra.</code></pre>
+<pre><code>098 · Correcciones, lo que falta — de la sesión de cobertura (brief 090)
+- Elegir otra versión de la corrección (hoy el menú está apagado) y
+  filtrar por nivel.
+- Bandeja: los pares de la muestra ciega, navegables y para responder;
+  los ítems de regla, empate y audio; los audios para regrabar con su texto.
+- Informe: las conversiones (el servidor ya las manda,
+  vista_de_la_tanda.dart:558) y «ver cuáles» en largo de oración.
+- Ver el cambio exacto de un paso; separar los hallazgos vinculados de los
+  otros; deshacer más que la última; avisar que una corrección conjunta no
+  se separa; botón para reintentar el guardado de la cola.
+- Miniteoría, lo gratis: comentar, elegir una existente, editar,
+  incorporar y releer las interrumpidas.
+- Lo pago (reescribir miniteoría, re-analizar, corrección selectiva) abre
+  el diálogo común de lanzar; apagado con (!). La estimación de la
+  selectiva es gratis y puede ir ya.
+- No copiar dos literales rotos de Flutter: 'mini-theory'
+  (mini_theory_tools.dart:799) y 'multiple-choice-quality'
+  (selective_correction.dart:68); hacen fallar el guardián de nombres.</code></pre>
+    </details>
+  </section>
+
+  <section>
+    <h2>Ajustes y casi todo Historial se dejan</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Se deja</th><th>Por qué</th></tr></thead>
+      <tbody>
+        <tr><td>Clave en el llavero</td><td>Las 17 corridas usaron suscripción, sin clave</td></tr>
+        <tr><td>Temperatura, tokens, endpoint, aprobación automática</td><td>Nadie los usa; la automática escribe el curso sin revisión</td></tr>
+        <tr><td>Activar, limpiar o borrar análisis y planes</td><td>Mueven la base de la tanda; borrar un plan no tiene guarda</td></tr>
+        <tr><td>Aprobar o rechazar suelto</td><td>Aprobar siempre falla; rechazar saca el cambio de la tanda</td></tr>
+        <tr><td>Course y Stats de Historial</td><td>Su puntaje da 84,3 % donde el análisis dice 73,0 %</td></tr>
+        <tr><td>Franja de cobertura y atribuciones</td><td>Nunca muestran nada</td></tr>
+      </tbody>
+    </table></div>
+    <p class="pie">Proveedor, modelo y presupuesto del juez no se dejan: se mudan al diálogo de lanzar.</p>
+    <div class="call c-warn"><b>Sin destino todavía:</b> las 588 tareas de vocabulario pendientes. Una tanda nunca las toma y hoy solo se corrigen de a una desde Historial.</div>
+  </section>
+
+  <section>
+    <h2>Qué necesito de vos</h2>
+    <div class="asks">
+      <div class="ask"><span class="q">1 · ¿El servidor del tablero puede lanzar corridas pagas?</span>
+        <div class="ops"><span class="op rec">Sí, por suscripción y con tope · recomendado</span><span class="op">No, solo seguirlas</span></div>
+        <span class="why">Hoy está hecho para no poder. Sin eso, los botones pagos de las 8 pantallas quedan apagados.</span></div>
+      <div class="ask"><span class="q">2 · ¿Ejecuciones va abajo en la barra, aparte del proceso?</span>
+        <div class="ops"><span class="op rec">Abajo, con un número · recomendado</span><span class="op">Novena en el orden</span></div>
+        <span class="why">Se usa desde todos los pasos; en el orden parecería uno más.</span></div>
+      <div class="ask"><span class="q">3 · ¿Las 588 tareas de vocabulario se siguen corrigiendo?</span>
+        <div class="ops"><span class="op rec">Sí, como recorte del Mapa · recomendado</span><span class="op">No por ahora</span></div>
+        <span class="why">Son 342 de lemas ausentes y 238 de largo; si Historial se retira, quedan sin camino.</span></div>
+      <div class="ask"><span class="q">4 · ¿Historial se retira recién cuando Mapa y Ejecuciones cubran Plan?</span>
+        <div class="ops"><span class="op rec">Sí, recién entonces · recomendado</span><span class="op">Ya, aunque falte</span></div>
+        <span class="why">Plan es el único lugar para un análisis suelto y las 588; lo demás está roto o miente.</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Fuentes: app Flutter de ittm (pipeline/vocabulary_dashboard, master 8071f5d2f, solo lectura); propuestas estados v4, estadisticas, correcciones y centro-de-control; .content-audit/activity/activity.json; campaña a1-v11; F-TANDA-R001 (DefaultBatchTaskSelector).</span>
+    <span>brief 090 · docs/briefs/090-cobertura-del-tablero.html</span>
+  </footer>
+
+</div>
+</body>
+</html>
