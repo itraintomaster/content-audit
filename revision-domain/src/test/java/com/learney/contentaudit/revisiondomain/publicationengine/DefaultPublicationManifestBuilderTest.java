@@ -238,12 +238,14 @@ public class DefaultPublicationManifestBuilderTest {
     }
 
     @Test
-    @DisplayName("should carry a change of the multiple choice as the way of choosing and the options, whole and with numbers as numbers")
+    @DisplayName("should carry a change of the text of an option of the multiple choice as the options, whole and with numbers as numbers")
     @Tag("FEAT-PUBPROD")
     @Tag("F-PUBPROD-R002")
     public void shouldCarryAChangeOfTheMultipleChoiceWholeWithNumbersAsNumbers() {
-        QuizTemplateEntity before = multipleChoice("q1", "SINGLE", "on");
-        QuizTemplateEntity after = multipleChoice("q1", "SINGLE", "to");
+        QuizTemplateEntity before = multipleChoice("q1", "SINGLE", option("at", 1.0, "at"), option("in", 0.0, "in"),
+                option("on", 0.0, "on"));
+        QuizTemplateEntity after = multipleChoice("q1", "SINGLE", option("at", 1.0, "at"), option("in", 0.0, "in"),
+                option("on", 0.0, "to"));
 
         PublicationManifest manifest = builder.build(request(List.of(new PublishedElement(snapshot(before),
                 snapshot(after), "prop-1", DocumentReviewStatus.APPROVED,
@@ -256,6 +258,50 @@ public class DefaultPublicationManifestBuilderTest {
         Map<String, Object> correct = (Map<String, Object>) ((List<?>) fields.get(0).after()).get(0);
         assertEquals(1.0, correct.get("incidence"));
         assertEquals(3, ((List<?>) fields.get(0).after()).size(), "las opciones van enteras");
+        @SuppressWarnings("unchecked")
+        Map<String, Object> changed = (Map<String, Object>) ((List<?>) fields.get(0).after()).get(2);
+        assertEquals("on", changed.get("id"), "el identificador de la opción no cambia");
+        assertEquals("to", changed.get("label"));
+        assertTrue(manifest.unsupported().isEmpty());
+    }
+
+    @Test
+    @DisplayName("should declare apart, and leave out of the list, a change of which option is correct, of the way of choosing, of the number of options or of the identifier of an option")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R001")
+    @Tag("F-PUBPROD-R002")
+    public void shouldDeclareApartAChangeOfTheMultipleChoiceBeyondTheTextOfItsOptions() {
+        QuizTemplateEntity anotherCorrect = multipleChoice("q1", "SINGLE", option("at", 0.0, "at"),
+                option("in", 1.0, "in"), option("on", 0.0, "on"));
+        QuizTemplateEntity anotherWay = multipleChoice("q2", "MULTIPLE", option("at", 1.0, "at"),
+                option("in", 0.0, "in"), option("on", 0.0, "on"));
+        QuizTemplateEntity oneMore = multipleChoice("q3", "SINGLE", option("at", 1.0, "at"), option("in", 0.0, "in"),
+                option("on", 0.0, "on"), option("to", 0.0, "to"));
+        QuizTemplateEntity anotherId = multipleChoice("q4", "SINGLE", option("at", 1.0, "at"),
+                option("in", 0.0, "in"), option("to", 0.0, "to"));
+        List<PublishedElement> elements = new ArrayList<>();
+        int n = 1;
+        for (QuizTemplateEntity after : List.of(anotherCorrect, anotherWay, oneMore, anotherId)) {
+            QuizTemplateEntity before = multipleChoice(after.getId(), "SINGLE", option("at", 1.0, "at"),
+                    option("in", 0.0, "in"), option("on", 0.0, "on"));
+            elements.add(new PublishedElement(snapshot(before), snapshot(after), "prop-" + n,
+                    DocumentReviewStatus.PENDING, List.of(step("task-" + n, ExercisePart.OPTIONS,
+                            ExercisePart.TRANSLATION))));
+            n++;
+        }
+
+        PublicationManifest manifest = builder.build(request(elements));
+
+        assertTrue(manifest.documents().isEmpty(), "ninguno de los cuatro va en la lista: " + manifest.documents());
+        assertEquals(List.of("q1", "q2", "q3", "q4"), manifest.unsupported().stream().map(ManifestUnsupported::nodeId)
+                .toList());
+        for (ManifestUnsupported held : manifest.unsupported()) {
+            assertEquals(ExercisePart.OPTIONS, held.part());
+            assertTrue(held.reason().contains("sólo se publica el texto de cada opción"), held.reason());
+            assertTrue(held.reason().contains("no se publica por script"), held.reason());
+        }
+        assertEquals(0, manifest.counts().documents());
+        assertEquals(0, manifest.counts().fields());
     }
 
     @Test
@@ -269,7 +315,8 @@ public class DefaultPublicationManifestBuilderTest {
         after.setKind("MULTIPLE_CHOICE");
         after.getForm().setKind("MULTIPLE_CHOICE");
         QuizTemplateEntity sameKindBefore = multipleChoice("q2", "SINGLE", "on");
-        QuizTemplateEntity sameKindAfter = multipleChoice("q2", "SINGLE", "to");
+        QuizTemplateEntity sameKindAfter = multipleChoice("q2", "SINGLE", option("at", 1.0, "at"),
+                option("in", 0.0, "in"), option("on", 0.0, "to"));
 
         PublicationManifest manifest = builder.build(request(List.of(
                 new PublishedElement(snapshot(before), snapshot(after), "prop-1", DocumentReviewStatus.PENDING,
@@ -328,6 +375,15 @@ public class DefaultPublicationManifestBuilderTest {
     }
 
     private static QuizTemplateEntity multipleChoice(String id, String selection, String third) {
+        return multipleChoice(id, selection, option("at", 1.0, "at"), option("in", 0.0, "in"),
+                option(third, 0.0, third));
+    }
+
+    private static MultipleChoiceItemEntity option(String id, double incidence, String label) {
+        return new MultipleChoiceItemEntity(id, incidence, label);
+    }
+
+    private static QuizTemplateEntity multipleChoice(String id, String selection, MultipleChoiceItemEntity... items) {
         QuizTemplateEntity quiz = new QuizTemplateEntity();
         quiz.setId(id);
         quiz.setKind("MULTIPLE_CHOICE");
@@ -336,9 +392,7 @@ public class DefaultPublicationManifestBuilderTest {
                 new SentencePartEntity(SentencePartKind.TEXT, "I am ", null),
                 new SentencePartEntity(SentencePartKind.CLOZE, null, null),
                 new SentencePartEntity(SentencePartKind.TEXT, " home.", null)),
-                new MultipleChoiceEntity(selection, List.of(new MultipleChoiceItemEntity("at", 1.0, "at"),
-                        new MultipleChoiceItemEntity("in", 0.0, "in"),
-                        new MultipleChoiceItemEntity(third, 0.0, third))), null));
+                new MultipleChoiceEntity(selection, List.of(items)), null));
         quiz.setSentences(List.of());
         return quiz;
     }

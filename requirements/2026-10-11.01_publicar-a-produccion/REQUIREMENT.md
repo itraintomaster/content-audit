@@ -59,8 +59,9 @@ todavía coincide con el antes y el después del paso ([F-TANDA-R007](#F-TANDA-R
 > 3. si la lista no se puede dejar, no se publica y el curso no se toca;
 > 4. la publicación registra la huella de la lista: una lista que cambió después ya no es la de la tanda;
 > 5. un campo que la tabla de la corrección declara y no tiene lugar en producción frena la publicación y lo nombra;
-> 6. lo que cambió y no se lleva a producción por este camino —un cambio de tipo de ejercicio— se declara aparte, con el
->    cambio, el ejercicio, la parte y el motivo «no se publica por script», y ese ejercicio no va en la lista.
+> 6. lo que cambió y no se lleva a producción por este camino —un cambio de tipo de ejercicio, o de la opción múltiple
+>    más allá del texto de sus opciones ([F-PUBPROD-R002](#F-PUBPROD-R002), inv. 4)— se declara aparte, con el cambio,
+>    el ejercicio, la parte y el motivo «no se publica por script», y ese ejercicio no va en la lista.
 
 <details><summary>Detail</summary>
 
@@ -86,14 +87,16 @@ una lista con ese ejercicio —`translation` y `miniTheory`, cada uno con su ant
 
 > Los campos de la lista salen de la misma tabla de partes a campos que decide qué puede cambiar una corrección
 > ([F-TAREA-R006](#F-TAREA-R006)): la oración guardada, la traducción, la consigna, la miniteoría, las partes del
-> enunciado —enteras—, la opción múltiple —la forma de elegir y las opciones, enteras— y la consigna del tema.
-> Invariantes:
+> enunciado —enteras—, el texto de cada opción de la opción múltiple y la consigna del tema. Invariantes:
 > 1. nunca el identificador del ejercicio o del tema, ni el tipo de ejercicio, ni el tipo, la incidencia, la etiqueta o
 >    el nombre del formulario;
 > 2. el título de los ejercicios y el nombre del tema no van en la lista: siguen su camino por plan; lo que se oye
 >    tampoco: se regraba ([F-TANDA-R012](#F-TANDA-R012));
 > 3. los valores van como los guarda producción: los números como números, un texto vacío como texto vacío —nunca
->    ausente— y la oración guardada ausente como una lista vacía.
+>    ausente— y la oración guardada ausente como una lista vacía;
+> 4. de la opción múltiple sólo se publica el texto de cada opción: un cambio de cuál es la correcta, de la forma de
+>    elegir, de la cantidad de opciones o del identificador de una opción no se publica por script; se declara aparte,
+>    como un cambio de tipo ([F-PUBPROD-R001](#F-PUBPROD-R001), inv. 6), y ese ejercicio no va en la lista.
 
 <details><summary>Detail</summary>
 
@@ -104,7 +107,8 @@ una lista con ese ejercicio —`translation` y `miniTheory`, cada uno con su ant
 | la consigna del ejercicio | `instructions` |
 | la miniteoría | `miniTheory` |
 | las partes del enunciado, su texto y las respuestas de los huecos | `form.sentenceParts`, entero |
-| la opción múltiple | `form.selection` y `form.items`, enteros |
+| el texto de cada opción de la opción múltiple | `form.items`, entero, con sólo la etiqueta de cada opción cambiada |
+| cuál es la correcta, la forma de elegir, la cantidad o el identificador de las opciones | no se publica por script (inv. 4) |
 | la consigna del tema | `instructions` del tema |
 | el nombre del tema, el título de los ejercicios | no va: camino por plan |
 | lo que se oye | no va: regrabación |
@@ -113,8 +117,10 @@ una lista con ese ejercicio —`translation` y `miniTheory`, cada uno con su ant
 Una parte nueva de la tabla de la corrección sin su fila acá frena la publicación ([F-PUBPROD-R001](#F-PUBPROD-R001),
 inv. 5): nada viaja sin lugar declarado.
 
-**Criterio**: un cambio de la opción múltiple de un ejercicio de B2 lleva `form.selection` y `form.items` enteros, con
-cada incidencia como número (`1.0`, no `{"$numberDouble": "1.0"}`); una parte del enunciado sin texto lleva `"text": ""`.
+**Criterio**: un cambio del texto de una opción de un ejercicio de opción múltiple de B2 lleva `form.items` entero,
+con cada incidencia como número (`1.0`, no `{"$numberDouble": "1.0"}`) y sólo esa etiqueta cambiada; un cambio de cuál
+es la correcta en ese ejercicio no va en la lista y queda declarado aparte; una parte del enunciado sin texto lleva
+`"text": ""`.
 
 </details>
 

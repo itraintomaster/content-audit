@@ -47,10 +47,14 @@ public class PublicationManifestContractTest {
     }
 
     private static Map<String, Object> item(String id, double incidence) {
+        return item(id, incidence, id);
+    }
+
+    private static Map<String, Object> item(String id, double incidence, String label) {
         Map<String, Object> item = new LinkedHashMap<>();
         item.put("id", id);
         item.put("incidence", incidence);
-        item.put("label", id);
+        item.put("label", label);
         return item;
     }
 
@@ -85,7 +89,7 @@ public class PublicationManifestContractTest {
                                                         part("TEXT", " home."))),
                                         new ManifestField("form.items",
                                                 List.of(item("in", 0.0), item("at", 1.0), item("on", 0.0)),
-                                                List.of(item("in", 0.0), item("at", 1.0), item("to", 0.0))))),
+                                                List.of(item("in", 0.0), item("at", 1.0), item("on", 0.0, "to"))))),
                         new ManifestDocument(ProductionFieldMap.KNOWLEDGE_COLLECTION, "400000000000000000000001",
                                 "400000000000000000000001", List.of("task-8"), List.of("prop-3"),
                                 DocumentReviewStatus.PENDING, List.of(new ManifestField("instructions",
@@ -174,6 +178,48 @@ public class PublicationManifestContractTest {
             assertTrue(Set.of("quizTemplates", "knowledges").contains(document.get("collection").asText()));
             assertTrue(Set.of("APPROVED", "PENDING").contains(document.get("reviewStatus").asText()));
         }
+    }
+
+    @Test
+    @DisplayName("should keep the shared golden publishable: verdict «pasa» with no undecidable floor, counts that add up against its documents and a multiple choice that changes only the text of its options")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R001")
+    @Tag("F-PUBPROD-R002")
+    @Tag("F-PUBPROD-R005")
+    public void shouldKeepTheSharedGoldenPublishable() throws IOException {
+        JsonNode golden = golden();
+
+        assertEquals("PASSES", golden.get("verdict").get("kind").asText());
+        assertTrue(golden.get("verdict").get("gatePassed").asBoolean());
+        assertTrue(golden.get("verdict").get("undecidableFloors").isArray()
+                && golden.get("verdict").get("undecidableFloors").isEmpty(), "sólo se publica con «pasa»: []");
+        int fields = 0;
+        Map<String, Integer> byPath = new LinkedHashMap<>();
+        for (JsonNode document : golden.get("documents")) {
+            for (JsonNode field : document.get("fields")) {
+                fields++;
+                byPath.merge(field.get("path").asText(), 1, Integer::sum);
+                if ("form.selection".equals(field.get("path").asText())) {
+                    throw new AssertionError("la forma de elegir no se publica por script");
+                }
+                if ("form.items".equals(field.get("path").asText())) {
+                    JsonNode before = field.get("before");
+                    JsonNode after = field.get("after");
+                    assertEquals(before.size(), after.size(), "la misma cantidad de opciones");
+                    for (int i = 0; i < before.size(); i++) {
+                        assertEquals(before.get(i).get("id"), after.get(i).get("id"), "el mismo identificador");
+                        assertEquals(before.get(i).get("incidence"), after.get(i).get("incidence"),
+                                "la misma correcta");
+                    }
+                }
+            }
+        }
+        JsonNode counts = golden.get("counts");
+        assertEquals(golden.get("documents").size(), counts.get("documents").asInt());
+        assertEquals(fields, counts.get("fields").asInt());
+        Map<String, Integer> written = new LinkedHashMap<>();
+        counts.get("byPath").fields().forEachRemaining(e -> written.put(e.getKey(), e.getValue().asInt()));
+        assertEquals(byPath, written);
     }
 
     private static List<String> keys(JsonNode node) {

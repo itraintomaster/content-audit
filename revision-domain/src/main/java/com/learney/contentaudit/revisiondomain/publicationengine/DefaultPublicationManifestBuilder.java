@@ -32,7 +32,8 @@ import java.util.Set;
  * ({@link CorrectionScope}) y de dónde guarda producción cada campo ({@link ProductionFieldMap}). Los valores salen del
  * curso tal como lo guarda producción ({@link ProductionDocumentProjector}): el antes, del curso del que partió la
  * tanda; el después, del curso que se publica. Un campo que no cambió no está; un ejercicio cuyo tipo cambió no va, y
- * queda declarado aparte.
+ * queda declarado aparte. De la opción múltiple sólo viaja el texto de cada opción (R002 inv. 4): un ejercicio cuya
+ * opción múltiple cambió en algo más tampoco va, y queda declarado aparte.
  */
 public class DefaultPublicationManifestBuilder implements PublicationManifestBuilder {
 
@@ -44,6 +45,17 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
             .comparingInt((String path) -> CANONICAL_ORDER.contains(path) ? CANONICAL_ORDER.indexOf(path)
                     : CANONICAL_ORDER.size())
             .thenComparing(Comparator.naturalOrder());
+
+    /** Las dos rutas de la opción múltiple en producción. */
+    private static final String SELECTION = "form.selection";
+
+    private static final String ITEMS = "form.items";
+
+    /** La etiqueta de una opción: lo único de la opción múltiple que se publica por script. */
+    private static final String LABEL = "label";
+
+    static final String MULTIPLE_CHOICE_BEYOND_LABEL = "opción múltiple: sólo se publica el texto de cada opción; "
+            + "cambiar cuál es la correcta, la forma de elegir o las opciones no se publica por script";
 
     private final CorrectionScope correctionScope;
 
@@ -104,6 +116,8 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
         String collection = null;
         Set<String> writePaths = new LinkedHashSet<>();
         boolean held = false;
+        PublishedStep multipleChoiceStep = null;
+        ExercisePart multipleChoicePart = null;
         List<String> changeIds = new ArrayList<>();
         for (PublishedStep step : element.steps()) {
             if (!changeIds.contains(step.changeId())) {
@@ -118,6 +132,11 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
                     if (place instanceof ProductionPlace.Write write) {
                         collection = write.collection();
                         writePaths.addAll(write.mongoPaths());
+                        if (multipleChoiceStep == null && (write.mongoPaths().contains(SELECTION)
+                                || write.mongoPaths().contains(ITEMS))) {
+                            multipleChoiceStep = step;
+                            multipleChoicePart = part;
+                        }
                     } else if (place instanceof ProductionPlace.Unsupported notByScript
                             && changed(element, target, notByScript.detectionPaths())) {
                         held = true;
@@ -138,6 +157,14 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
         ordered.sort(BY_CANONICAL_ORDER);
         Map<String, Object> before = project(element.before(), target, ordered);
         Map<String, Object> after = project(element.after(), target, ordered);
+        if (multipleChoiceStep != null && !onlyLabelsChanged(before, after)) {
+            ManifestUnsupported entry = new ManifestUnsupported(multipleChoiceStep.changeId(), nodeId,
+                    multipleChoicePart, MULTIPLE_CHOICE_BEYOND_LABEL);
+            if (!unsupported.contains(entry)) {
+                unsupported.add(entry);
+            }
+            return Optional.empty();
+        }
         List<ManifestField> fields = new ArrayList<>();
         for (String path : ordered) {
             if (!Objects.equals(before.get(path), after.get(path))) {
@@ -155,6 +182,39 @@ public class DefaultPublicationManifestBuilder implements PublicationManifestBui
         List<String> proposalIds = element.proposalId() != null ? List.of(element.proposalId()) : List.of();
         return Optional.of(new ManifestDocument(collection, id, nodeId, changeIds, proposalIds,
                 element.reviewStatus(), fields));
+    }
+
+    /**
+     * R002 inv. 4: la forma de elegir igual, la misma cantidad de opciones y cada opción igual salvo su etiqueta. El
+     * identificador de una opción es la etiqueta original en minúscula y la incidencia marca la correcta: ninguno de los
+     * dos viaja por script.
+     */
+    private static boolean onlyLabelsChanged(Map<String, Object> before, Map<String, Object> after) {
+        if (!Objects.equals(before.get(SELECTION), after.get(SELECTION))) {
+            return false;
+        }
+        Object itemsBefore = before.get(ITEMS);
+        Object itemsAfter = after.get(ITEMS);
+        if (Objects.equals(itemsBefore, itemsAfter)) {
+            return true;
+        }
+        if (!(itemsBefore instanceof List<?> oldItems) || !(itemsAfter instanceof List<?> newItems)
+                || oldItems.size() != newItems.size()) {
+            return false;
+        }
+        for (int i = 0; i < oldItems.size(); i++) {
+            if (!(oldItems.get(i) instanceof Map<?, ?> oldItem) || !(newItems.get(i) instanceof Map<?, ?> newItem)) {
+                return false;
+            }
+            Map<Object, Object> oldRest = new LinkedHashMap<>(oldItem);
+            Map<Object, Object> newRest = new LinkedHashMap<>(newItem);
+            oldRest.remove(LABEL);
+            newRest.remove(LABEL);
+            if (!oldRest.equals(newRest)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean changed(PublishedElement element, AuditTarget target, List<String> paths) {
