@@ -138,7 +138,8 @@ es la correcta en ese ejercicio no va en la lista y queda declarado aparte; una 
 > 4. un rechazo sobre un contenido que cambió después —la decisión ya no coincide con el antes y el después del paso—
 >    frena la publicación y la nombra, hasta que José lo vuelva a mirar;
 > 5. si las decisiones de José no se pueden leer, no se publica;
-> 6. si la publicación no termina, nada queda sacado: la tanda y sus propuestas quedan como estaban;
+> 6. si la publicación no termina, nada queda sacado: la tanda y sus propuestas quedan como estaban
+>    ([F-PUBPROD-R010](#F-PUBPROD-R010));
 > 7. sin rechazos, lo que se publica es lo mismo que antes de esta regla.
 
 <details><summary>Detail</summary>
@@ -245,6 +246,35 @@ dice «no se puede decidir» y termina con 1.
 > El ensayo hace todo menos escribir: no toca producción ni el curso. Aplicar exige un ensayo limpio previo de la misma
 > lista contra el mismo destino, registrado, y que José nombre el destino al pedirlo: si el destino que nombra no es el
 > real, no escribe. No hay forma de saltear el ensayo.
+
+<a id="F-PUBPROD-R010"></a>
+### Rule[F-PUBPROD-R010] - Una publicación que no termina no deja nada a medias
+**Severity**: critical | **Validation**: AUTO_VALIDATED
+
+> Si publicar falla en cualquier punto —antes o después de escribir el curso, hasta guardar la tanda como publicada—,
+> todo vuelve a como estaba y la falla sube tal cual. Invariantes:
+> 1. el curso vuelve a ser el del que partió la tanda;
+> 2. la lista que dejó ese intento se borra, o vuelve la que había antes; una lista que el intento no llegó a escribir no
+>    se toca;
+> 3. las propuestas, los cambios sacados, las tareas de la tanda y las del plan quedan como estaban;
+> 4. el análisis vigente sigue siendo el de antes: el análisis del curso publicado que se alcanzó a guardar queda, pero no
+>    es el vigente;
+> 5. la tanda no queda publicada;
+> 6. si algo no se puede volver atrás, la falla lo dice —qué quedó a medio hacer— junto con la falla original;
+> 7. volver a publicar después de una falla deja la misma lista que si la falla no hubiera pasado.
+
+<details><summary>Detail</summary>
+
+Una tanda está publicada sólo cuando su registro lo dice, y eso es lo último que se guarda. El paso a producción exige
+la tanda publicada y que la huella de la lista sea la que registró la publicación ([F-PUBPROD-R006](#F-PUBPROD-R006)):
+aunque una lista quedara de un intento que no terminó, nunca pasaría por la de la tanda.
+
+**Criterio**: una tanda de A1 que pasa y cuyo análisis del curso publicado no se puede guardar deja el curso como
+estaba, sin lista, sin publicar y con sus propuestas pendientes; lo mismo si lo que falla es guardar la tanda; si además
+el curso no se puede volver a escribir, la falla dice que el curso quedó a medio hacer; publicarla otra vez después deja
+la misma lista que si no hubiera fallado.
+
+</details>
 
 ## Contexto
 

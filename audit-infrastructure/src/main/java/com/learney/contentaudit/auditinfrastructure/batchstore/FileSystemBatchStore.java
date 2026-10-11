@@ -210,6 +210,36 @@ public class FileSystemBatchStore implements BatchStore {
         return digest[0];
     }
 
+    /**
+     * F-PUBPROD-R010: borra la lista que dejó un intento que no terminó, y su carpeta si quedó vacía. La de una tanda ya
+     * publicada no se borra: el paso a producción compara contra su huella.
+     */
+    @Override
+    public synchronized void discardPublicationManifest(String batchId) {
+        String id = identifier(batchId);
+        locked(id, () -> {
+            Optional<CorrectionBatch> batch = load(id);
+            if (batch.isPresent() && batch.get().getStatus() == BatchStatus.PUBLISHED) {
+                throw new IllegalStateException("La tanda " + id
+                        + " ya está publicada: su lista de publicación no se borra.");
+            }
+            Path file = manifestFile(id);
+            try {
+                Files.deleteIfExists(file);
+                Path dir = file.getParent();
+                if (Files.isDirectory(dir)) {
+                    try (Stream<Path> left = Files.list(dir)) {
+                        if (left.findAny().isEmpty()) {
+                            Files.delete(dir);
+                        }
+                    }
+                }
+            } catch (IOException e) {
+                throw new java.io.UncheckedIOException("No se pudo borrar " + file + ": " + e.getMessage(), e);
+            }
+        });
+    }
+
     @Override
     public synchronized Optional<PublicationManifest> publicationManifest(String batchId) {
         Path file = manifestFile(identifier(batchId));

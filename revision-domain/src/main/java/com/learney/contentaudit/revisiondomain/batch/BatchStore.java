@@ -47,6 +47,14 @@ public interface BatchStore {
         throw new UnsupportedOperationException("El store no guarda listas de publicación.");
     }
 
+    /**
+     * F-PUBPROD-R010: borra la lista de publicación que dejó un intento de publicar que no terminó; si no hay, no hace
+     * nada. La lista de una tanda ya publicada no se borra.
+     */
+    default void discardPublicationManifest(String batchId) {
+        throw new UnsupportedOperationException("El store no borra listas de publicación.");
+    }
+
     /** F-PUBPROD-R001: la lista de publicación guardada de la tanda, si hay. */
     default Optional<PublicationManifest> publicationManifest(String batchId) {
         return Optional.empty();

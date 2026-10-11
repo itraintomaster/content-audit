@@ -363,6 +363,16 @@ public final class TandaFixture {
         }
 
         @Override
+        public synchronized void discardPublicationManifest(String batchId) {
+            CorrectionBatch batch = saved.get(batchId);
+            if (batch != null && batch.getStatus() == BatchStatus.PUBLISHED) {
+                throw new IllegalStateException("La tanda " + batchId + " ya está publicada: su lista no se borra.");
+            }
+            manifests.remove(batchId);
+            digests.remove(batchId);
+        }
+
+        @Override
         public synchronized Optional<PublicationManifest> publicationManifest(String batchId) {
             byte[] bytes = manifests.get(batchId);
             if (bytes == null) {
@@ -416,6 +426,9 @@ public final class TandaFixture {
     public static final class Reports implements AuditReportStore {
         public final Map<String, AuditReport> saved = new LinkedHashMap<>();
 
+        /** Si no es nulo, el próximo análisis que se guarde falla con esto; después vuelve a andar. */
+        public RuntimeException failure;
+
         public Reports put(String id, AuditReport report) {
             saved.put(id, report);
             return this;
@@ -423,6 +436,11 @@ public final class TandaFixture {
 
         @Override
         public String save(AuditReport report) {
+            if (failure != null) {
+                RuntimeException thrown = failure;
+                failure = null;
+                throw thrown;
+            }
             String id = "audit-publicado-" + (saved.size() + 1);
             saved.put(id, report);
             return id;
@@ -535,7 +553,7 @@ public final class TandaFixture {
 
         public final List<Path> paths = new ArrayList<>();
 
-        /** Si no es nulo, escribir el curso falla con esto (el disco lleno, por ejemplo). */
+        /** Si no es nulo, la próxima escritura del curso falla con esto (el disco lleno, por ejemplo); después anda. */
         public RuntimeException failure;
 
         public Courses(CourseEntity course) {
@@ -550,7 +568,9 @@ public final class TandaFixture {
         @Override
         public void save(CourseEntity course, Path path) {
             if (failure != null) {
-                throw failure;
+                RuntimeException thrown = failure;
+                failure = null;
+                throw thrown;
             }
             written.add(course);
             paths.add(path);

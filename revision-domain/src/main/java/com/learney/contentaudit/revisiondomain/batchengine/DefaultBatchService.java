@@ -390,8 +390,9 @@ class DefaultBatchService implements BatchService {
     public BatchPublication publish(BatchPublishRequest request) {
         CorrectionBatch batch = requireOpen();
         CourseEntity course = courseRepository.load(coursePath);
+        // F-PUBPROD-R010: publishing saves the batch itself, as its last step, so a save that fails is undone with the
+        // rest.
         batch = publisher.publish(batch, request, course);
-        batchStore.save(batch);
         return batch.getPublication();
     }
 

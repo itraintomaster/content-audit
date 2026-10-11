@@ -13,9 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.learney.contentaudit.auditdomain.ActiveAnalysisSelection;
 import com.learney.contentaudit.auditdomain.correction.ExercisePart;
 import com.learney.contentaudit.coursedomain.CourseEntity;
 import com.learney.contentaudit.coursedomain.QuizTemplateEntity;
+import com.learney.contentaudit.refinerdomain.RefinementTask;
 import com.learney.contentaudit.refinerdomain.RefinementTaskStatus;
 import com.learney.contentaudit.revisiondomain.RevisionArtifact;
 import com.learney.contentaudit.revisiondomain.RevisionVerdict;
@@ -49,7 +51,9 @@ import java.security.MessageDigest;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HexFormat;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -370,7 +374,8 @@ public class PublishingReviewedBatchTest {
                 .orElseThrow().getVerdict());
         assertNull(batch.getPublication());
 
-        // Escribir el curso falla: el error sube tal cual y la tanda queda como estaba.
+        // Escribir el curso falla: el error sube tal cual, el curso se vuelve a escribir como estaba (pudo quedar a
+        // medio escribir), la lista de ese intento se borra y la tanda queda como estaba (R010).
         Publishing broken = new Publishing();
         broken.courses.failure = new IllegalStateException("no se pudo escribir el curso");
         CorrectionBatch other = reviewedAndClosed(broken);
@@ -380,6 +385,8 @@ public class PublishingReviewedBatchTest {
                 () -> broken.publisher().publish(other, ok(), broken.start));
 
         assertEquals("no se pudo escribir el curso", failed.getMessage());
+        assertSame(broken.start, broken.courses.course, "el curso vuelve a ser el de partida");
+        assertTrue(broken.batches.publicationManifest(other.getId()).isEmpty(), "sin la lista de ese intento");
         assertEquals(otherBefore, photo(broken, other), "nada queda sacado");
         assertEquals(BatchStatus.CLOSED, other.getStatus());
         assertNull(other.getPublication());
@@ -717,5 +724,165 @@ public class PublishingReviewedBatchTest {
                 () -> blank.publisher().publish(other, ok(), blank.start));
         assertTrue(noDigest.getMessage().contains("la lista de publicación quedó sin huella"), noDigest.getMessage());
         assertTrue(blank.courses.written.isEmpty());
+    }
+
+    // -------------------------------------------------------------------------
+    // F-PUBPROD-R010: una publicación que no termina no deja nada a medias
+    // -------------------------------------------------------------------------
+
+    /** El análisis vigente antes de publicar. */
+    private static final ActiveAnalysisSelection ACTIVE_BEFORE = new ActiveAnalysisSelection("audit-de-partida",
+            TandaFixture.PLAN);
+
+    /** Cómo están las tareas del plan de la tanda. */
+    private static Map<String, RefinementTaskStatus> statuses(Publishing p) {
+        Map<String, RefinementTaskStatus> statuses = new LinkedHashMap<>();
+        for (RefinementTask task : p.plans.load(TandaFixture.PLAN).orElseThrow().getTasks()) {
+            statuses.put(task.getId(), task.getStatus());
+        }
+        return statuses;
+    }
+
+    /** Una tanda que José revisó, cerrada con «pasa», con el análisis vigente de partida. */
+    private static CorrectionBatch readyToPublish(Publishing p) {
+        p.active.selection = ACTIVE_BEFORE;
+        return reviewedAndClosed(p);
+    }
+
+    /** Guardar la tanda como publicada falla una vez; antes, si se pide, deja que algo más falle. */
+    private static TandaFixture.Batches failingToSavePublished(Runnable alsoBreak) {
+        return new TandaFixture.Batches() {
+            private boolean failed;
+
+            @Override
+            public synchronized void save(CorrectionBatch batch) {
+                if (!failed && batch.getStatus() == BatchStatus.PUBLISHED) {
+                    failed = true;
+                    alsoBreak.run();
+                    throw new IllegalStateException("no se pudo guardar la tanda");
+                }
+                super.save(batch);
+            }
+        };
+    }
+
+    /** Todo como antes de publicar: el curso, la lista, las propuestas, las tareas, el análisis vigente y la tanda. */
+    private static void assertNothingHalfDone(Publishing p, CorrectionBatch batch, String before,
+            Map<String, RefinementTaskStatus> tasksBefore) {
+        assertSame(p.start, p.courses.course, "el curso vuelve a ser el de partida");
+        assertSame(p.start, p.courses.written.get(p.courses.written.size() - 1));
+        assertTrue(p.batches.publicationManifest(batch.getId()).isEmpty(), "sin la lista de ese intento");
+        assertEquals(before, photo(p, batch), "las propuestas, los cambios sacados y las tareas de la tanda como estaban");
+        assertEquals(RevisionVerdict.PENDING_APPROVAL, p.artifacts.load(TandaFixture.PLAN, Publishing.P_COME)
+                .orElseThrow().getVerdict(), "ninguna propuesta queda aplicada");
+        assertEquals(tasksBefore, statuses(p), "las tareas del plan como estaban");
+        assertSame(ACTIVE_BEFORE, p.active.selection, "el análisis vigente sigue siendo el de antes");
+        assertEquals(BatchStatus.CLOSED, batch.getStatus(), "la tanda no queda publicada");
+        assertNull(batch.getPublication());
+        assertTrue(p.batches.load(batch.getId()).map(b -> b.getStatus() != BatchStatus.PUBLISHED).orElse(true));
+    }
+
+    @Test
+    @DisplayName("should put the course, the list of the attempt, the proposals, the tasks and the batch back as they were when the analysis of the published course cannot be saved, and throw the failure as it came")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R010")
+    @Tag("F-PUBPROD-R003")
+    public void shouldPutEverythingBackWhenTheAnalysisOfThePublishedCourseCannotBeSaved() {
+        // R010 inv. 1 a 5: el curso ya se escribió y la lista ya se guardó cuando falla guardar el análisis del curso
+        // publicado. El curso vuelve al de partida, la lista de ese intento se borra, V1 vuelve a estar en la tanda
+        // con su propuesta, la abuela no queda aplicada y la tanda no queda publicada. La falla sube tal cual.
+        Publishing p = new Publishing();
+        CorrectionBatch batch = readyToPublish(p);
+        String before = photo(p, batch);
+        Map<String, RefinementTaskStatus> tasksBefore = statuses(p);
+        p.reports.failure = new IllegalStateException("no se pudo guardar el análisis");
+
+        IllegalStateException failed = assertThrows(IllegalStateException.class,
+                () -> p.publisher().publish(batch, ok(), p.start));
+
+        assertEquals("no se pudo guardar el análisis", failed.getMessage(), "la falla sube tal cual");
+        assertEquals(2, p.courses.written.size(), "el curso se escribió y se volvió a escribir como estaba");
+        assertNothingHalfDone(p, batch, before, tasksBefore);
+    }
+
+    @Test
+    @DisplayName("should put everything back, the tasks of the plan and the active analysis included, when saving the batch as published fails, so it is never published")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R010")
+    public void shouldPutEverythingBackWhenSavingTheBatchAsPublishedFails() {
+        // R010 inv. 1 a 5: falla lo último, guardar la tanda como publicada; para entonces las tareas del plan ya se
+        // asentaron y el análisis vigente ya se movió. Todo vuelve; el análisis del curso publicado queda guardado,
+        // pero no es el vigente.
+        Publishing p = new Publishing();
+        p.batches = failingToSavePublished(() -> {
+        });
+        CorrectionBatch batch = readyToPublish(p);
+        String before = photo(p, batch);
+        Map<String, RefinementTaskStatus> tasksBefore = statuses(p);
+
+        IllegalStateException failed = assertThrows(IllegalStateException.class,
+                () -> p.publisher().publish(batch, ok(), p.start));
+
+        assertEquals("no se pudo guardar la tanda", failed.getMessage(), "la falla sube tal cual");
+        assertFalse(p.reports.saved.isEmpty(), "el análisis del curso publicado se alcanzó a guardar");
+        assertNothingHalfDone(p, batch, before, tasksBefore);
+    }
+
+    @Test
+    @DisplayName("should publish again after a failure and leave the same list as a publication that never failed")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R010")
+    @Tag("F-PUBPROD-R001")
+    public void shouldPublishAgainAfterAFailureAndLeaveTheSameListAsAPublicationThatNeverFailed() {
+        // R010 inv. 7: después de que guardar la tanda fallara, publicarla otra vez publica, y su lista lleva los mismos
+        // ejercicios, campos, cuentas y cambios afuera que la de una publicación que nunca falló.
+        Publishing retried = new Publishing();
+        retried.batches = failingToSavePublished(() -> {
+        });
+        CorrectionBatch batch = readyToPublish(retried);
+        assertThrows(IllegalStateException.class, () -> retried.publisher().publish(batch, ok(), retried.start));
+
+        CorrectionBatch published = retried.publisher().publish(batch, ok(), retried.start);
+
+        Publishing straight = new Publishing();
+        CorrectionBatch same = readyToPublish(straight);
+        straight.publisher().publish(same, ok(), straight.start);
+        assertEquals(BatchStatus.PUBLISHED, published.getStatus());
+        assertSame(published, retried.batches.load(batch.getId()).orElseThrow(), "la tanda quedó guardada");
+        assertEquals(retried.batches.digests.get(batch.getId()), published.getPublication().getManifestDigest());
+        PublicationManifest again = manifest(retried, batch);
+        PublicationManifest never = manifest(straight, same);
+        assertEquals(json(never.documents()), json(again.documents()), "los mismos ejercicios y campos");
+        assertEquals(json(never.excluded()), json(again.excluded()), "los mismos cambios afuera");
+        assertEquals(never.reviews(), again.reviews());
+        assertEquals(never.counts(), again.counts());
+        assertEquals(json(straight.courses.course), json(retried.courses.course), "el mismo curso");
+    }
+
+    @Test
+    @DisplayName("should say what was left half done, with the original failure as its cause, when the course cannot be written back")
+    @Tag("FEAT-PUBPROD")
+    @Tag("F-PUBPROD-R010")
+    public void shouldSayWhatWasLeftHalfDoneWhenTheCourseCannotBeWrittenBack() {
+        // R010 inv. 6: falla guardar la tanda y, al volver atrás, tampoco se puede volver a escribir el curso. La falla
+        // dice que el curso quedó a medio hacer, con la original como causa; lo demás vuelve igual.
+        Publishing p = new Publishing();
+        p.batches = failingToSavePublished(() -> p.courses.failure = new IllegalStateException("el disco se llenó"));
+        CorrectionBatch batch = readyToPublish(p);
+        String before = photo(p, batch);
+
+        IllegalStateException failed = assertThrows(IllegalStateException.class,
+                () -> p.publisher().publish(batch, ok(), p.start));
+
+        assertTrue(failed.getMessage().contains("La publicación de la tanda " + batch.getId()
+                + " no terminó (no se pudo guardar la tanda) y no se pudo deshacer del todo: el curso en "
+                + TandaFixture.COURSE_PATH + " quedó como lo escribió esta publicación, o a medio escribir (el disco se"
+                + " llenó)"), failed.getMessage());
+        assertEquals("no se pudo guardar la tanda", failed.getCause().getMessage());
+        assertEquals(1, failed.getSuppressed().length);
+        assertTrue(p.batches.publicationManifest(batch.getId()).isEmpty(), "la lista de ese intento se borró igual");
+        assertEquals(before, photo(p, batch));
+        assertSame(ACTIVE_BEFORE, p.active.selection);
+        assertNull(batch.getPublication());
     }
 }
