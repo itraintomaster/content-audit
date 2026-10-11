@@ -248,8 +248,21 @@ class ValidateManifestTest(unittest.TestCase):
         doc(m, fakes.QUIZ_3)["fields"][0]["after"].append({"id": "are", "label": "are", "incidence": 0.0})
         self.assertRefused("MULTIPLE_CHOICE_BEYOND_LABEL", m)
         m = copy.deepcopy(self.manifest)
+        doc(m, fakes.QUIZ_3)["fields"][0]["after"][1] = "Is"
+        self.assertRefused("MULTIPLE_CHOICE_BEYOND_LABEL", m)
+        # La selección (cómo se elige) ni siquiera está en la tabla: el lado Java la manda a unsupported[].
+        m = copy.deepcopy(self.manifest)
         doc(m, fakes.QUIZ_3)["fields"].append({"path": "form.selection", "before": "SINGLE", "after": "MULTI"})
-        self.assertRefused("MULTIPLE_CHOICE_BEYOND_LABEL", recount(m))
+        self.assertRefused("PATH_NOT_ALLOWED", recount(m))
+
+    def test_F_PUBPROD_R002_lo_sin_lugar_en_produccion_no_enumera_las_partes(self):
+        # La parte es un enum del lado Java: una parte nueva (o la de la selección) no rompe la lectura.
+        for part in ("OPTIONS", "SELECTION", "UNA_PARTE_NUEVA"):
+            with self.subTest(part=part):
+                m = copy.deepcopy(self.manifest)
+                m["unsupported"] = [{"changeId": "c-sel", "nodeId": "A1.01.02.05", "part": part,
+                                     "reason": "opción múltiple: no se publica por script"}]
+                validate_manifest(m)
 
     def test_F_PUBPROD_R006_niega_colecciones_que_no_son_quizTemplates_ni_knowledges(self):
         for collection in ("quizzes", "users", "QuizTemplates", None):

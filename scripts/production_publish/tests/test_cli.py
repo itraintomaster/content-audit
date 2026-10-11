@@ -414,6 +414,66 @@ class DriftTest(CliTestCase):
         self.assertEqual(self.store.attempts.count("quizTemplates/" + fakes.QUIZ_1), 1)  # sin reintento
 
 
+class MultipleChoiceTest(CliTestCase):
+    """De opción múltiple solo viaja la etiqueta: lo demás frena antes de escribir (F-PUBPROD-R002)."""
+
+    def write_manifest(self, change):
+        manifest = fakes.example_manifest()
+        change(manifest)
+        fakes.write_batch(self.workdir, manifest)
+
+    def test_F_PUBPROD_R002_un_ejercicio_de_opcion_multiple_con_mas_que_etiquetas_frena_el_ensayo(self):
+        def change(m):
+            quiz = next(d for d in m["documents"] if d["id"] == fakes.QUIZ_3)
+            quiz["fields"].append({"path": "form.sentenceParts", "before": [{"kind": "TEXT", "text": "I ___."}],
+                                   "after": [{"kind": "TEXT", "text": "I ___ happy."}]})
+            m["counts"]["fields"] += 1
+            m["counts"]["byPath"]["form.sentenceParts"] += 1
+        self.write_manifest(change)
+        for flags in ((), ("--skip-drift",)):
+            with self.subTest(flags=flags):
+                code, out, _ = self.run_cli(*flags)
+                self.assertEqual(code, 1, out)
+                row = self.rows()[-1]
+                self.assertEqual(row["result"], DRY_RUN_WITH_PROBLEMS)
+                self.assertEqual(row["reason"]["code"], "MULTIPLE_CHOICE_BEYOND_LABEL")
+                self.assertIn("BLOQUEADO quizTemplates/%s" % fakes.QUIZ_3, out)
+                self.assertIn("no se saltea con --skip-drift", out)
+                code, out, factory = self.run_cli(*(APPLY_ARGS + flags))
+                self.assertEqual(code, 2, out)
+                self.assertEqual(factory.calls, [])
+        self.assertEqual(self.store.attempts, [])
+
+    def test_F_PUBPROD_R002_si_el_ejercicio_deja_de_ser_de_opcion_multiple_despues_del_ensayo_aborta(self):
+        fakes.write_batch(self.workdir)
+        code, out, _ = self.run_cli()
+        self.assertEqual(code, 0, out)
+        self.store.data["quizTemplates"][fakes.QUIZ_3]["form"]["kind"] = "FILL_GAPS"
+        self.store.data["quizTemplates"][fakes.QUIZ_3]["kind"] = "FILL_GAPS"
+        code, out, _ = self.run_cli(*APPLY_ARGS)
+        self.assertEqual(code, 1, out)
+        row = self.rows()[-1]
+        self.assertEqual(row["result"], ABORTED)
+        self.assertEqual(row["reason"]["code"], "ITEMS_WITHOUT_MULTIPLE_CHOICE")
+        self.assertEqual(self.store.attempts, [])
+
+    def test_F_PUBPROD_R002_un_cambio_de_seleccion_que_llega_como_sin_lugar_no_rompe_nada(self):
+        # El lado Java manda a unsupported[] lo de opción múltiple que no es etiqueta (la
+        # selección, la correcta, las opciones), con su parte y un motivo en texto.
+        selection = {"changeId": "c-seleccion", "nodeId": "A1.01.02.05", "part": "OPTIONS",
+                     "reason": "opción múltiple: sólo se publica el texto de cada opción; cambiar la forma "
+                               "de elegir no se publica por script"}
+        self.write_manifest(lambda m: m.update(unsupported=[selection]))
+        code, out, _ = self.run_cli("--skip-unsupported")
+        self.assertEqual(code, 0, out)
+        code, out, _ = self.run_cli(*(APPLY_ARGS + ("--skip-unsupported",)))
+        self.assertEqual(code, 0, out)
+        row = self.rows()[-1]
+        self.assertEqual(row["result"], APPLIED_VERIFIED)
+        self.assertEqual(row["skippedUnsupported"], ["c-seleccion"])
+        self.assertEqual(self.store.data["quizTemplates"][fakes.QUIZ_3]["form"]["selection"], "SINGLE")
+
+
 class VerifyTest(CliTestCase):
     def setUp(self):
         super().setUp()

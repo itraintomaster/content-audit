@@ -1,5 +1,6 @@
 """Comparar-y-fijar campo por campo, sin escribir (F-PUBPROD-R006), y la huella del resto (R007)."""
 
+import copy
 import unittest
 
 from production_publish import write_plan
@@ -112,6 +113,64 @@ class BuildTest(unittest.TestCase):
     def test_F_PUBPROD_R004_cuenta_los_ejercicios_sin_revisar_que_viajan(self):
         plan = plan_for()
         self.assertEqual(plan.pending_documents(plan.to_write()), 2)
+
+
+class MultipleChoiceTest(unittest.TestCase):
+    """De opción múltiple solo viaja la etiqueta de cada opción (F-PUBPROD-R002 inv. 4, TRASPASO §6)."""
+
+    STATEMENT = {"path": "form.sentenceParts", "before": [{"kind": "TEXT", "text": "I ___ happy."}],
+                 "after": [{"kind": "TEXT", "text": "I ___ very happy."}]}
+
+    def manifest_with_quiz_3(self, *fields):
+        manifest = fakes.example_manifest()
+        quiz = next(d for d in manifest["documents"] if d["id"] == fakes.QUIZ_3)
+        quiz["fields"].extend(copy.deepcopy(list(fields)))
+        return manifest
+
+    def assertBlocked(self, plan, code):
+        quiz = find(plan, "quizTemplates", fakes.QUIZ_3)
+        self.assertEqual(quiz.blocked[0], code)
+        self.assertFalse(plan.is_clean())
+        self.assertIn(quiz, plan.problems())
+        self.assertNotIn(quiz, plan.to_write())
+        self.assertEqual(plan.counts()["blocked"], 1)
+        self.assertTrue(any(line.startswith("  BLOQUEADO quizTemplates/" + fakes.QUIZ_3)
+                            for line in plan.report_lines()))
+        self.assertEqual(quiz.detail(include_values=True)["blocked"]["code"], code)
+
+    def test_F_PUBPROD_R002_de_opcion_multiple_solo_las_etiquetas_no_bloquean(self):
+        plan = plan_for()
+        self.assertIsNone(find(plan, "quizTemplates", fakes.QUIZ_3).blocked)
+        self.assertIn("quizTemplates/" + fakes.QUIZ_3, [d.key for d in plan.to_write()])
+
+    def test_F_PUBPROD_R002_de_opcion_multiple_otra_ruta_del_formulario_bloquea(self):
+        sentences = {"path": "form.sentences", "before": [], "after": ["I am happy."]}
+        for extra in (self.STATEMENT, sentences):
+            with self.subTest(path=extra["path"]):
+                plan = plan_for(manifest=self.manifest_with_quiz_3(extra))
+                self.assertBlocked(plan, write_plan.BLOCK_MC_BEYOND_LABEL)
+
+    def test_F_PUBPROD_R002_lo_bloqueado_no_se_saltea_con_skip_drift(self):
+        # Además de bloqueado tiene deriva (el ejercicio no tiene sentenceParts): igual frena.
+        plan = plan_for(skip_drift=True, manifest=self.manifest_with_quiz_3(self.STATEMENT))
+        self.assertBlocked(plan, write_plan.BLOCK_MC_BEYOND_LABEL)
+        self.assertFalse(find(plan, "quizTemplates", fakes.QUIZ_3).skipped)
+
+    def test_F_PUBPROD_R002_opciones_para_un_ejercicio_que_no_es_de_opcion_multiple_bloquean(self):
+        cases = {"otro tipo": {"kind": "FILL_GAPS", "form.kind": "FILL_GAPS"},
+                 "sin form.kind": {"form.kind": None}}
+        for name, change in cases.items():
+            with self.subTest(name):
+                store = fakes.FakeStore()
+                quiz = store.data["quizTemplates"][fakes.QUIZ_3]
+                for key, value in change.items():
+                    target, _, leaf = key.rpartition(".")
+                    holder = quiz[target] if target else quiz
+                    if value is None:
+                        del holder[leaf]
+                    else:
+                        holder[leaf] = value
+                self.assertBlocked(plan_for(store), write_plan.BLOCK_ITEMS_WITHOUT_MC)
 
 
 class FingerprintTest(unittest.TestCase):

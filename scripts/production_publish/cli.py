@@ -322,7 +322,7 @@ def _dry_run(run, plan):
         result = DRY_RUN_WITH_PROBLEMS
         reason = {"code": "DETAIL_NOT_WRITTEN", "message": str(e)}
     if result == DRY_RUN_WITH_PROBLEMS and reason is None:
-        reason = {"code": "DRIFT", "message": "%d documento(s) con deriva o inexistentes" % len(plan.problems())}
+        reason = _plan_problem(plan)
     recorded = run.record(result, reason=reason,
                           detail=run.registry.relative(detail_path) if detail_path else None,
                           wouldWrite=len(plan.to_write()),
@@ -334,11 +334,24 @@ def _dry_run(run, plan):
         run.say("Resultado: %s — el ensayo salió limpio; no se escribió nada. Para aplicar, con las "
                 "mismas opciones: --apply --expect-destination %s"
                 % (result, registry.destination_label(run.destination)))
+    elif plan.blocked():
+        run.say("Resultado: %s — no se escribió nada. Lo BLOQUEADO no se saltea con --skip-drift: la "
+                "lista tiene que venir sin esos cambios." % result)
     else:
         run.say("Resultado: %s — no se escribió nada. Resolvé lo de arriba (o seguí sin esos documentos "
                 "con --skip-drift) y ensayá de nuevo." % result)
     run.say("Registro: %s (corrida %s)" % (run.registry.relative(run.registry.path), run.run_id))
     return EXIT_OK if result == DRY_RUN_CLEAN else EXIT_PROBLEMS
+
+
+def _plan_problem(plan):
+    """El motivo por el que el plan frena la corrida: lo bloqueado antes que la deriva."""
+    blocked = plan.blocked()
+    if blocked:
+        code = blocked[0].blocked[0]
+        return {"code": code, "message": "%d documento(s) bloqueado(s) (%s): cambios del formulario que no se "
+                                         "publican" % (len(blocked), code)}
+    return {"code": "DRIFT", "message": "%d documento(s) con deriva o inexistentes" % len(plan.problems())}
 
 
 def _aborted(run, code, message, **extra):
@@ -351,9 +364,9 @@ def _aborted(run, code, message, **extra):
 def _apply(run, store, plan):
     if not plan.is_clean():
         # El ensayo limpio pudo quedar viejo: alguien cambió la base entretanto.
-        return _aborted(run, "DRIFT",
-                        "%d documento(s) con deriva o inexistentes desde el ensayo; no se escribió nada."
-                        % len(plan.problems()), **_common(run, plan))
+        problem = _plan_problem(plan)
+        return _aborted(run, problem["code"], "%s desde el ensayo; no se escribió nada." % problem["message"],
+                        **_common(run, plan))
     to_write = plan.to_write()
     try:
         detail_path = run.registry.write_run(run.run_id, _run_detail(run, plan, STARTED))

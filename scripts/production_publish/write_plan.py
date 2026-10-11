@@ -10,6 +10,13 @@ Un documento con algún campo en DRIFT, o que no existe en la base (MISSING),
 frena toda la corrida salvo `--skip-drift`, que saltea esos documentos enteros
 (nunca un campo suelto: un ejercicio a medio publicar es peor que uno sin publicar).
 
+Un ejercicio de opción múltiple (form.kind MULTIPLE_CHOICE en la base) solo admite
+que la lista le cambie la etiqueta de sus opciones: cualquier otra ruta del
+formulario lo bloquea. Y un ejercicio que no es de opción múltiple no admite que
+la lista le traiga opciones. Un documento bloqueado frena la corrida antes de
+escribir y `--skip-drift` no lo saltea (es el mismo cuidado del camino por plan,
+TRASPASO §6).
+
 La oración guardada ausente (o nula) en la base cuenta como lista vacía: así la
 lleva la lista (F-PUBPROD-R002, inv. 3). El filtro de la escritura igual usa el
 valor tal como se leyó.
@@ -21,7 +28,7 @@ no se toca y no frena nada: queda registrada como desfasada. Es lo que
 sincronizaba `sync_quiz_titles` del camino por plan, sin pisar lo que no se sabe.
 """
 
-from .manifest_reader import KNOWLEDGES, QUIZ_TEMPLATES
+from .manifest_reader import KNOWLEDGES, QUIZ_TEMPLATES, only_labels_change
 from .store import MISSING, fingerprint_without, get_path, same_value, short, to_json_safe
 
 APPLY = "APPLY"
@@ -33,6 +40,11 @@ MISSING_DOC = "MISSING"
 SKIP_DRIFT = "DRIFT"                # --skip-drift: deriva o inexistente
 SKIP_STALE_COPY = "STALE_COPY"      # copia embebida que ya estaba desfasada
 SKIP_MASTER = "MASTER_SKIPPED"      # instancia de un ejercicio salteado
+
+# Por qué se bloquea un documento (no se saltea con --skip-drift).
+MULTIPLE_CHOICE = "MULTIPLE_CHOICE"
+BLOCK_MC_BEYOND_LABEL = "MULTIPLE_CHOICE_BEYOND_LABEL"
+BLOCK_ITEMS_WITHOUT_MC = "ITEMS_WITHOUT_MULTIPLE_CHOICE"
 
 # F-PUBPROD-R002 inv. 3: la lista lleva la oración guardada ausente como lista vacía.
 ABSENT_AS_EMPTY_LIST = ("form.sentences",)
@@ -82,6 +94,7 @@ class DocPlan:
         self.doc = doc
         self.skipped = False
         self.skip_reason = None
+        self.blocked = None  # (código, mensaje): frena la corrida y no se saltea
         if doc is None:
             self.status = MISSING_DOC
         elif any(f.status == DRIFT for f in fields):
@@ -98,6 +111,10 @@ class DocPlan:
     @property
     def key(self):
         return "%s/%s" % (self.collection, self.doc_id)
+
+    @property
+    def will_write(self):
+        return self.status == APPLY and not self.skipped and self.blocked is None
 
     def writes(self):
         return {f.path: f.after for f in self.fields if f.status == APPLY}
@@ -125,6 +142,8 @@ class DocPlan:
                "skipped": self.skipped}
         if self.skip_reason is not None:
             out["skipReason"] = self.skip_reason
+        if self.blocked is not None:
+            out["blocked"] = {"code": self.blocked[0], "message": self.blocked[1]}
         if self.node_id is not None:
             out["nodeId"] = self.node_id
         if self.review_status is not None:
@@ -161,8 +180,12 @@ class WritePlan:
         return list(self.documents) + list(self.instances)
 
     def problems(self):
-        """Documentos que frenan la corrida: deriva o inexistentes, sin saltear."""
-        return [d for d in self.all() if d.status in (DRIFT, MISSING_DOC) and not d.skipped]
+        """Documentos que frenan la corrida: bloqueados, o con deriva o inexistentes sin saltear."""
+        return [d for d in self.all()
+                if d.blocked is not None or (d.status in (DRIFT, MISSING_DOC) and not d.skipped)]
+
+    def blocked(self):
+        return [d for d in self.all() if d.blocked is not None]
 
     def skipped(self, reason=None):
         return [d for d in self.all() if d.skipped and (reason is None or d.skip_reason == reason)]
@@ -172,7 +195,7 @@ class WritePlan:
 
     def to_write(self):
         """En orden: knowledges, quizTemplates y después las instancias."""
-        return [d for d in self.all() if d.status == APPLY and not d.skipped]
+        return [d for d in self.all() if d.will_write]
 
     def counts(self):
         counts = {"documents": len(self.documents), "instances": len(self.instances),
@@ -180,6 +203,7 @@ class WritePlan:
                   "skippedDrift": len(self.skipped(SKIP_DRIFT)),
                   "staleCopies": len(self.skipped(SKIP_STALE_COPY)),
                   "skippedWithMaster": len(self.skipped(SKIP_MASTER)),
+                  "blocked": len(self.blocked()),
                   "documentsToWrite": len(self.to_write()),
                   "fieldsToWrite": 0, "fieldsAlready": 0, "fieldsDrift": 0, "byPath": {}}
         for d in self.all():
@@ -189,7 +213,7 @@ class WritePlan:
             for f in d.fields:
                 if d.status == MISSING_DOC:
                     continue
-                if f.status == APPLY and d.status == APPLY and not d.skipped:
+                if f.status == APPLY and d.will_write:
                     counts["fieldsToWrite"] += 1
                     counts["byPath"][f.path] = counts["byPath"].get(f.path, 0) + 1
                 elif f.status == ALREADY:
@@ -205,6 +229,8 @@ class WritePlan:
     def report_lines(self, limit=30):
         lines = []
         for d in self.all():
+            if d.blocked is not None:
+                lines.append("  BLOQUEADO %s: %s" % (d.describe(), d.blocked[1]))
             if d.status == MISSING_DOC:
                 lines.append("  %s %s: no existe en el destino" % ("SALTEADO" if d.skipped else "FALTA",
                                                                   d.describe()))
@@ -221,6 +247,23 @@ class WritePlan:
         return lines
 
 
+def form_block(doc, fields):
+    """(código, mensaje) si la lista toca el formulario de un modo que no se publica; si no, None."""
+    form_kind = get_path(doc, "form.kind")
+    if MULTIPLE_CHOICE in (form_kind, get_path(doc, "kind")):
+        beyond = [f["path"] for f in fields if f["path"].startswith("form.")
+                  and not (f["path"] == "form.items" and only_labels_change(f["before"], f["after"]))]
+        if beyond:
+            return (BLOCK_MC_BEYOND_LABEL,
+                    "es de opción múltiple y la lista le cambia %s; de opción múltiple solo se publica "
+                    "la etiqueta de cada opción" % ", ".join(beyond))
+    if form_kind != MULTIPLE_CHOICE and any(f["path"] == "form.items" for f in fields):
+        return (BLOCK_ITEMS_WITHOUT_MC,
+                "no es de opción múltiple (form.kind %s) y la lista le trae opciones (form.items)"
+                % short(form_kind))
+    return None
+
+
 def build(manifest, store, skip_drift):
     """Lee cada documento de la lista y arma el plan. No escribe nada."""
     ordered = sorted(manifest["documents"], key=lambda d: COLLECTION_ORDER.index(d["collection"]))
@@ -230,9 +273,11 @@ def build(manifest, store, skip_drift):
         fields = [FieldPlan(f["path"], f["before"], f["after"],
                             get_path(doc, f["path"]) if doc is not None else MISSING)
                   for f in entry["fields"]]
-        documents.append(DocPlan(entry["collection"], entry["id"], fields, doc,
-                                 node_id=entry.get("nodeId"), review_status=entry.get("reviewStatus"),
-                                 change_ids=entry.get("changeIds")))
+        plan_doc = DocPlan(entry["collection"], entry["id"], fields, doc, node_id=entry.get("nodeId"),
+                           review_status=entry.get("reviewStatus"), change_ids=entry.get("changeIds"))
+        if entry["collection"] == QUIZ_TEMPLATES and doc is not None:
+            plan_doc.blocked = form_block(doc, entry["fields"])
+        documents.append(plan_doc)
 
     # Copias embebidas: solo de los ejercicios de la lista que cambian un campo copiado.
     masters = {}
@@ -261,7 +306,7 @@ def build(manifest, store, skip_drift):
             inst.skip(SKIP_STALE_COPY)
     if skip_drift:
         for d in documents:
-            if d.status in (DRIFT, MISSING_DOC):
+            if d.status in (DRIFT, MISSING_DOC) and d.blocked is None:
                 d.skip(SKIP_DRIFT)
         skipped_masters = {d.doc_id for d in documents if d.skipped and d.collection == QUIZ_TEMPLATES}
         for inst in instances:

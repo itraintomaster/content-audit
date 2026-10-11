@@ -30,7 +30,7 @@ ALLOWED_COLLECTIONS = (KNOWLEDGES, QUIZ_TEMPLATES)
 # Una ruta que no esté acá se niega: la tabla es un contrato con el lado Java.
 WRITABLE_PATHS = {
     QUIZ_TEMPLATES: ("form.sentences", "translation", "instructions", "miniTheory",
-                     "form.sentenceParts", "form.selection", "form.items"),
+                     "form.sentenceParts", "form.items"),
     KNOWLEDGES: ("instructions",),
 }
 
@@ -219,7 +219,7 @@ def _is_str_list(value):
 
 
 def _check_after_type(path, after, where, problems):
-    if path in ("translation", "instructions", "miniTheory", "form.selection"):
+    if path in ("translation", "instructions", "miniTheory"):
         ok = isinstance(after, str)
         expected = "un texto"
     elif path == "form.sentences":
@@ -238,34 +238,29 @@ def _check_after_type(path, after, where, problems):
         problems.append(("BAD_VALUE", "%s: el después de «%s» tiene que ser %s." % (where, path, expected)))
 
 
-def _check_multiple_choice(path, before, after, where, problems):
-    """En opción múltiple solo se publica la etiqueta de cada opción (TRASPASO §6).
+def only_labels_change(before, after):
+    """Si dos listas de opciones difieren solo en la etiqueta de cada opción (TRASPASO §6).
 
     El id es la etiqueta en minúscula del original y la incidencia marca la correcta:
-    cambiarlos, o cambiar la selección, no viaja por script.
+    cambiarlos, o cambiar la cantidad de opciones, no viaja por script.
     """
-    if path == "form.selection":
-        problems.append(("MULTIPLE_CHOICE_BEYOND_LABEL",
-                         "%s: cambia form.selection; en opción múltiple solo se publica la etiqueta "
-                         "de cada opción." % where))
-        return
-    if path != "form.items":
-        return
     if not isinstance(before, list) or not isinstance(after, list) or len(before) != len(after):
-        problems.append(("MULTIPLE_CHOICE_BEYOND_LABEL",
-                         "%s: cambia la cantidad de opciones; en opción múltiple solo se publica la "
-                         "etiqueta de cada opción." % where))
-        return
+        return False
     for old, new in zip(before, after):
         if not isinstance(old, dict) or not isinstance(new, dict):
-            continue
-        rest_old = {k: v for k, v in old.items() if k != "label"}
-        rest_new = {k: v for k, v in new.items() if k != "label"}
-        if not same_value(rest_old, rest_new):
-            problems.append(("MULTIPLE_CHOICE_BEYOND_LABEL",
-                             "%s: una opción cambia algo más que su etiqueta (id o incidencia); en "
-                             "opción múltiple solo se publica la etiqueta." % where))
-            return
+            return False
+        if not same_value({k: v for k, v in old.items() if k != "label"},
+                          {k: v for k, v in new.items() if k != "label"}):
+            return False
+    return True
+
+
+def _check_multiple_choice(path, before, after, where, problems):
+    """De las opciones solo se publica la etiqueta (la selección ni siquiera está en la tabla)."""
+    if path == "form.items" and not only_labels_change(before, after):
+        problems.append(("MULTIPLE_CHOICE_BEYOND_LABEL",
+                         "%s: las opciones cambian algo más que su etiqueta (cantidad, id o incidencia); "
+                         "en opción múltiple solo se publica la etiqueta de cada opción." % where))
 
 
 def validate_manifest(manifest, expected_batch_id=None, expected_plan_id=None):
