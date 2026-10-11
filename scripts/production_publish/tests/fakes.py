@@ -95,8 +95,10 @@ class FakeStore(Store):
 
     Fallas que se pueden inyectar:
       fail_open        excepción al abrir (la lanza FakeStoreFactory)
-      fail_find        excepción al leer
-      fail_write_on    {"colección/id": excepción} al escribir ese documento
+      on_find          función(store, colección, id) llamada antes de cada lectura de un documento
+      fail_write_on    {"colección/id": excepción} al escribir ese documento (no llega a escribir)
+      raise_after_write_on {"colección/id": excepción}: escribe y después falla (la red se cae
+                       con el $set ya aplicado)
       lose_race_on     {"colección/id"}: alguien lo cambió justo antes (no coincide el filtro)
       after_write      {"colección/id": función(doc)}: corrompe el documento después de escribir
       on_write         función(store, colección, id) llamada antes de cada escritura
@@ -106,8 +108,9 @@ class FakeStore(Store):
         self.data = copy.deepcopy(documents if documents is not None else production_documents())
         self.writes = []
         self.attempts = []
-        self.fail_find = None
+        self.on_find = None
         self.fail_write_on = {}
+        self.raise_after_write_on = {}
         self.lose_race_on = set()
         self.after_write = {}
         self.on_write = None
@@ -117,14 +120,12 @@ class FakeStore(Store):
         return list(self.data)
 
     def find_document(self, collection, doc_id):
-        if self.fail_find is not None:
-            raise self.fail_find
+        if self.on_find is not None:
+            self.on_find(self, collection, doc_id)
         doc = self.data.get(collection, {}).get(doc_id)
         return copy.deepcopy(doc) if doc is not None else None
 
     def find_instances(self, template_ids):
-        if self.fail_find is not None:
-            raise self.fail_find
         ids = set(template_ids)
         found = []
         for instance_id, doc in sorted(self.data.get("quizzes", {}).items()):
@@ -153,6 +154,8 @@ class FakeStore(Store):
         self.writes.append((collection, doc_id, copy.deepcopy(sets)))
         if key in self.after_write:
             self.after_write[key](doc)
+        if key in self.raise_after_write_on:
+            raise self.raise_after_write_on[key]
         return True
 
     def close(self):

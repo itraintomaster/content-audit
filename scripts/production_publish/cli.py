@@ -366,28 +366,22 @@ def _apply(run, store, plan):
         return EXIT_PROBLEMS
 
     run.say("Escribiendo %d documento(s)…" % len(to_write))
-    try:
-        outcome = applier.apply(plan, store)
-    except KeyboardInterrupt:
-        # Interrumpido al verificar: no se sabe qué quedó verificado. El respaldo previo
-        # (todo lo planeado, con su old) está en el detalle.
-        outcome = applier.ApplyOutcome()
-        outcome.stopped_reason = applier.INTERRUPTED
-        outcome.verification = [{"collection": None, "id": None, "ok": False,
-                                 "problems": ["se interrumpió antes de terminar de verificar"]}]
+    outcome = applier.apply(plan, store)  # un Ctrl-C no se lleva el resultado: queda adentro
 
     if not outcome.verified:
         result = VERIFY_FAILED
-    elif outcome.stopped_reason:
+    elif outcome.stopped_reason or outcome.indeterminate:
         result = ABORTED
     else:
         result = APPLIED_VERIFIED
 
     written_ids = ["%s/%s" % (d.collection, d.doc_id) for d in outcome.written]
     stopped_at = outcome.stopped_at.key if outcome.stopped_at is not None else None
+    indeterminate = outcome.indeterminate_keys()
     extra = {
         "written": written_ids,
         "verification": outcome.verification,
+        "indeterminate": outcome.indeterminate,
         "stoppedReason": outcome.stopped_reason,
         "stoppedAt": stopped_at,
         "errorClass": outcome.error_class,
@@ -406,7 +400,7 @@ def _apply(run, store, plan):
         reason = {"code": outcome.stopped_reason,
                   "message": "se dejó de escribir en %s" % (stopped_at or "(antes de empezar)")}
     recorded = run.record(result, reason=reason, detail=detail_rel, writtenIds=written_ids,
-                          verified=result == APPLIED_VERIFIED,
+                          indeterminate=indeterminate, verified=result == APPLIED_VERIFIED,
                           pendingTraveled=plan.pending_documents(outcome.written),
                           stoppedReason=outcome.stopped_reason, stoppedAt=stopped_at,
                           errorClass=outcome.error_class, **_common(run, plan))
@@ -418,13 +412,16 @@ def _apply(run, store, plan):
         run.say("Se dejó de escribir en %s: la base falló (%s)." % (stopped_at, outcome.error_class))
     elif outcome.stopped_reason == applier.INTERRUPTED:
         run.say("Se interrumpió la escritura%s." % (" en %s" % stopped_at if stopped_at else ""))
+    for item in outcome.indeterminate:
+        run.say("  NO SE SABE si quedó escrito %s/%s (%s): revisalo contra el respaldo (old) del detalle."
+                % (item["collection"], item["id"], item["problem"]))
     for failure in failures[:30]:
         run.say("  NO VERIFICA %s/%s: %s" % (failure["collection"], failure["id"],
                                             "; ".join(failure["problems"])))
     if len(failures) > 30:
         run.say("  … y %d más (todo queda en el detalle de la corrida)." % (len(failures) - 30))
     run.say("Resultado: %s%s" % (result, {
-        APPLIED_VERIFIED: " — todo quedó como dice la lista y el resto de cada documento quedó idéntico.",
+        APPLIED_VERIFIED: _applied_summary(plan, outcome),
         ABORTED: " — no se reintenta ni se corrige; lo escrito está verificado y el respaldo, en el detalle.",
         VERIFY_FAILED: " — no se reintenta ni se corrige: revisá el detalle; el respaldo (old) está ahí.",
     }[result]))
@@ -433,6 +430,16 @@ def _apply(run, store, plan):
     if not recorded:
         return EXIT_PROBLEMS
     return EXIT_OK if result == APPLIED_VERIFIED else EXIT_PROBLEMS
+
+
+def _applied_summary(plan, outcome):
+    already = plan.counts()["already"]
+    skipped = len(plan.skipped())
+    if not outcome.written:
+        return (" — se escribieron 0 documentos (ya tenían lo que dice la lista: %d; salteados: %d, ver "
+                "arriba); no se tocó nada." % (already, skipped))
+    return (" — se escribieron %d documento(s) y quedaron como dice la lista, con el resto de cada documento "
+            "idéntico (ya lo tenían: %d; salteados: %d)." % (len(outcome.written), already, skipped))
 
 
 if __name__ == "__main__":

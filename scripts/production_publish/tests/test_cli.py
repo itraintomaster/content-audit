@@ -125,6 +125,14 @@ class FullCycleTest(CliTestCase):
         self.assertEqual(last["writtenIds"], [])
         self.assertEqual(last["counts"]["already"], 5)
 
+    def test_F_PUBPROD_R006_una_aplicacion_que_no_escribe_nada_dice_cero_y_cuantos_salteo(self):
+        code, out, _ = self.dry_run_then_apply()
+        self.assertIn("se escribieron 5 documento(s)", out)
+        code, out, _ = self.dry_run_then_apply()
+        self.assertEqual(code, 0, out)
+        self.assertIn("se escribieron 0 documentos (ya tenían lo que dice la lista: 5; salteados: 1", out)
+        self.assertNotIn("quedaron como dice la lista", out)
+
     def test_F_PUBPROD_R008_el_renglon_final_dice_tanda_huella_modo_resultado_escritos_y_verificado(self):
         self.dry_run_then_apply()
         row = self.rows()[-1]
@@ -447,8 +455,103 @@ class VerifyTest(CliTestCase):
         self.assertEqual(row["errorClass"], "RuntimeError")
         self.assertIs(row["verified"], False)
         self.assertNotIn(fakes.FAKE_PASSWORD, out)
+        self.assertEqual(row["indeterminate"], [])  # se releyó: sigue con lo de antes
+        self.assertEqual(row["writtenIds"], ["knowledges/" + fakes.KNOWLEDGE, "quizTemplates/" + fakes.QUIZ_1])
         detail = fakes.run_detail(self.workdir, row)
         self.assertTrue(all(v["ok"] for v in detail["verification"]))
+
+
+class InterruptedOrLostWriteTest(CliTestCase):
+    """Un Ctrl-C o una falla de la base a mitad de camino no se llevan el resultado (F-PUBPROD-R007)."""
+
+    ALL_WRITTEN = ["knowledges/" + fakes.KNOWLEDGE, "quizTemplates/" + fakes.QUIZ_1,
+                   "quizTemplates/" + fakes.QUIZ_2, "quizTemplates/" + fakes.QUIZ_3,
+                   "quizzes/" + fakes.INSTANCE_IN_SYNC]
+
+    def setUp(self):
+        super().setUp()
+        fakes.write_batch(self.workdir)
+        code, out, _ = self.run_cli()
+        self.assertEqual(code, 0, out)
+
+    def written_to(self, doc_id):
+        return any(w[1] == doc_id for w in self.store.writes)
+
+    def test_F_PUBPROD_R007_un_ctrl_c_al_verificar_deja_el_renglon_final_con_lo_escrito(self):
+        reads = []
+
+        def interrupt(store, collection, doc_id):
+            if len(store.writes) == 5:
+                reads.append(doc_id)
+                if len(reads) == 2:
+                    raise KeyboardInterrupt
+
+        self.store.on_find = interrupt
+        code, out, _ = self.run_cli(*APPLY_ARGS)
+        self.assertEqual(code, 1, out)
+        self.assertEqual(self.results(), [DRY_RUN_CLEAN, STARTED, VERIFY_FAILED])
+        row = self.rows()[-1]
+        self.assertEqual(row["writtenIds"], self.ALL_WRITTEN)
+        self.assertEqual(row["stoppedReason"], "INTERRUPTED")
+        self.assertIs(row["verified"], False)
+        detail = fakes.run_detail(self.workdir, row)
+        self.assertEqual(detail["result"], VERIFY_FAILED)
+        self.assertEqual(len(detail["verification"]), 5)
+        self.assertTrue(detail["verification"][0]["ok"])
+        for entry in detail["verification"][1:]:
+            self.assertEqual(entry["problems"], ["no se llegó a verificar: se interrumpió"])
+        self.assertIn("NO VERIFICA quizTemplates/%s: no se llegó a verificar" % fakes.QUIZ_1, out)
+
+    def test_F_PUBPROD_R007_un_ctrl_c_al_escribir_deja_el_renglon_final_con_lo_escrito(self):
+        def interrupt(store, collection, doc_id):
+            if doc_id == fakes.QUIZ_2:
+                raise KeyboardInterrupt
+
+        self.store.on_write = interrupt
+        code, out, _ = self.run_cli(*APPLY_ARGS)
+        self.assertEqual(code, 1, out)
+        row = self.rows()[-1]
+        self.assertEqual(row["result"], ABORTED)
+        self.assertEqual(row["stoppedReason"], "INTERRUPTED")
+        self.assertEqual(row["stoppedAt"], "quizTemplates/" + fakes.QUIZ_2)
+        self.assertEqual(row["writtenIds"], self.ALL_WRITTEN[:2])
+        self.assertEqual(row["indeterminate"], [])  # se releyó: no llegó a escribirse
+        self.assertTrue(all(v["ok"] for v in fakes.run_detail(self.workdir, row)["verification"]))
+
+    def test_F_PUBPROD_R007_si_la_red_se_cae_despues_del_set_lo_escrito_cuenta_y_se_verifica(self):
+        self.store.raise_after_write_on["quizTemplates/" + fakes.QUIZ_2] = ConnectionError("se cortó")
+        code, out, _ = self.run_cli(*APPLY_ARGS)
+        self.assertEqual(code, 1, out)
+        row = self.rows()[-1]
+        self.assertEqual(row["result"], ABORTED)
+        self.assertEqual(row["stoppedReason"], "STORE_ERROR")
+        self.assertEqual(row["errorClass"], "ConnectionError")
+        self.assertEqual(row["stoppedAt"], "quizTemplates/" + fakes.QUIZ_2)
+        self.assertEqual(row["writtenIds"], self.ALL_WRITTEN[:3])
+        self.assertEqual(row["indeterminate"], [])
+        detail = fakes.run_detail(self.workdir, row)
+        self.assertEqual([(v["id"], v["ok"]) for v in detail["verification"]],
+                         [(fakes.KNOWLEDGE, True), (fakes.QUIZ_1, True), (fakes.QUIZ_2, True)])
+        self.assertEqual(self.store.attempts.count("quizTemplates/" + fakes.QUIZ_2), 1)  # sin reintento
+
+    def test_F_PUBPROD_R007_si_no_se_puede_saber_si_quedo_escrito_lo_dice_y_lo_registra(self):
+        self.store.raise_after_write_on["quizTemplates/" + fakes.QUIZ_2] = ConnectionError("se cortó")
+
+        def unreadable(store, collection, doc_id):
+            if doc_id == fakes.QUIZ_2 and self.written_to(fakes.QUIZ_2):
+                raise ConnectionError("sigue cortada")
+
+        self.store.on_find = unreadable
+        code, out, _ = self.run_cli(*APPLY_ARGS)
+        self.assertEqual(code, 1, out)
+        row = self.rows()[-1]
+        self.assertEqual(row["result"], ABORTED)
+        self.assertEqual(row["indeterminate"], ["quizTemplates/" + fakes.QUIZ_2])
+        self.assertEqual(row["writtenIds"], self.ALL_WRITTEN[:2])
+        self.assertIn("NO SE SABE si quedó escrito quizTemplates/%s" % fakes.QUIZ_2, out)
+        self.assertIn("ConnectionError", out)
+        detail = fakes.run_detail(self.workdir, row)
+        self.assertEqual(detail["indeterminate"][0]["problem"], "no se pudo releer (ConnectionError)")
 
 
 class RegistryFailureTest(CliTestCase):
