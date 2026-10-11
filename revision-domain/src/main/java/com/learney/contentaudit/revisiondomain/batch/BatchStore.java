@@ -1,5 +1,6 @@
 package com.learney.contentaudit.revisiondomain.batch;
 
+import com.learney.contentaudit.revisiondomain.publication.PublicationManifest;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.processing.Generated;
@@ -35,5 +36,24 @@ public interface BatchStore {
 
     default List<BatchReviewDecision> reviews(String batchId) {
         return List.of();
+    }
+
+    /**
+     * F-PUBPROD-R001: guarda la lista de publicación de la tanda y devuelve la huella (sha256 en hexadecimal) de los
+     * bytes exactos que quedaron escritos. Se escribe antes que el curso; la lista de una tanda ya publicada no se
+     * reescribe.
+     */
+    default String savePublicationManifest(String batchId, PublicationManifest manifest) {
+        throw new UnsupportedOperationException("El store no guarda listas de publicación.");
+    }
+
+    /** F-PUBPROD-R001: la lista de publicación guardada de la tanda, si hay. */
+    default Optional<PublicationManifest> publicationManifest(String batchId) {
+        return Optional.empty();
+    }
+
+    /** F-PUBPROD-R001: dónde quedó la lista de publicación de la tanda, para nombrarla; vacío si no hay archivo. */
+    default Optional<String> publicationManifestLocation(String batchId) {
+        return Optional.empty();
     }
 }

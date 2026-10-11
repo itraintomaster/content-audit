@@ -8,7 +8,10 @@ import com.learney.contentaudit.revisiondomain.batch.BatchStatus;
 import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
 import com.learney.contentaudit.revisiondomain.batch.BatchStore;
 import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
+import com.learney.contentaudit.revisiondomain.publication.PublicationManifest;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.nio.file.AtomicMoveNotSupportedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,6 +19,7 @@ import java.nio.file.StandardCopyOption;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HexFormat;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -37,11 +41,19 @@ public class FileSystemBatchStore implements BatchStore {
 
     static final String BATCHES_SUBDIR = ".content-audit/batches";
 
+    /** F-PUBPROD-R001: la lista de publicación de cada tanda, en {@code <id>/manifest.json}. */
+    static final String PUBLICATIONS_SUBDIR = ".content-audit/batch-publications";
+
+    static final String MANIFEST_FILE = "manifest.json";
+
     private static final String SUFFIX = ".json";
 
     private final Path baseDir;
 
     private final ObjectMapper mapper;
+
+    /** La lista se escribe en JSON simple: sin fechas ni módulos, sólo lo que trae el registro. */
+    private final ObjectMapper manifestMapper;
 
     public FileSystemBatchStore(Path baseDir) {
         this.baseDir = baseDir;
@@ -49,6 +61,8 @@ public class FileSystemBatchStore implements BatchStore {
         mapper.registerModule(new JavaTimeModule());
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        this.manifestMapper = new ObjectMapper();
+        manifestMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
     @Override
@@ -162,6 +176,89 @@ public class FileSystemBatchStore implements BatchStore {
             return decisions;
         } catch (IOException e) {
             throw new java.io.UncheckedIOException("No se pudo leer la revisión de " + batchId, e);
+        }
+    }
+
+    /**
+     * F-PUBPROD-R001: escribe la lista entera en un archivo propio y la mueve sobre la anterior, como la tanda, y
+     * devuelve la huella de los bytes que quedaron. La lista de una tanda ya publicada no se reescribe: el paso a
+     * producción compara contra esa huella.
+     */
+    @Override
+    public synchronized String savePublicationManifest(String batchId, PublicationManifest manifest) {
+        if (manifest == null) {
+            throw new IllegalArgumentException("Una lista de publicación vacía no se puede guardar.");
+        }
+        String id = identifier(batchId);
+        String[] digest = new String[1];
+        locked(id, () -> {
+            Optional<CorrectionBatch> batch = load(id);
+            if (batch.isPresent() && batch.get().getStatus() == BatchStatus.PUBLISHED) {
+                throw new IllegalStateException("La tanda " + id
+                        + " ya está publicada: su lista de publicación no se reescribe.");
+            }
+            byte[] bytes;
+            try {
+                bytes = manifestMapper.writerWithDefaultPrettyPrinter().writeValueAsBytes(manifest);
+            } catch (IOException e) {
+                throw new java.io.UncheckedIOException("No se pudo armar la lista de publicación de " + id + ": "
+                        + e.getMessage(), e);
+            }
+            writeBytesAtomically(manifestFile(id), bytes);
+            digest[0] = sha256(bytes);
+        });
+        return digest[0];
+    }
+
+    @Override
+    public synchronized Optional<PublicationManifest> publicationManifest(String batchId) {
+        Path file = manifestFile(identifier(batchId));
+        if (!Files.isRegularFile(file)) {
+            return Optional.empty();
+        }
+        try {
+            return Optional.of(manifestMapper.readValue(file.toFile(), PublicationManifest.class));
+        } catch (IOException e) {
+            throw new java.io.UncheckedIOException("No se pudo leer la lista de publicación de " + file + ": "
+                    + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public synchronized Optional<String> publicationManifestLocation(String batchId) {
+        Path file = manifestFile(identifier(batchId));
+        return Files.isRegularFile(file) ? Optional.of(file.toString()) : Optional.empty();
+    }
+
+    private Path manifestFile(String id) {
+        return baseDir.resolve(PUBLICATIONS_SUBDIR).resolve(id).resolve(MANIFEST_FILE);
+    }
+
+    private static void writeBytesAtomically(Path file, byte[] bytes) {
+        Path dir = file.getParent();
+        try {
+            Files.createDirectories(dir);
+            Path temporary = Files.createTempFile(dir, "write-", ".tmp");
+            try {
+                Files.write(temporary, bytes);
+                try {
+                    Files.move(temporary, file, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+                } catch (AtomicMoveNotSupportedException e) {
+                    Files.move(temporary, file, StandardCopyOption.REPLACE_EXISTING);
+                }
+            } finally {
+                Files.deleteIfExists(temporary);
+            }
+        } catch (IOException e) {
+            throw new java.io.UncheckedIOException("No se pudo guardar " + file + ": " + e.getMessage(), e);
+        }
+    }
+
+    private static String sha256(byte[] bytes) {
+        try {
+            return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(bytes));
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalStateException("La máquina no tiene SHA-256.", e);
         }
     }
 
