@@ -249,7 +249,7 @@ final class TandaCli {
         }));
         // The locator of the course and the table of parts to fields go null, as in Main: the factory builds the ones
         // of revision-domain.
-        batchService = new DefaultBatchServiceFactory().create(new BatchServiceConfig(batches, plans, reports, active,
+        BatchServiceConfig config = new BatchServiceConfig(batches, plans, reports, active,
                 artifacts, courses, null, value -> new AuditableCourse(report(value, List.of()).getRoot().getChildren()
                         .stream().map(node -> (AuditableMilestone) node.getEntity()).toList()), engine, refiner,
                 new DefaultErrorTaskBriefer(corrections, new DefaultAuditNodeIndexFactory(), renderer), corrections,
@@ -257,7 +257,11 @@ final class TandaCli {
                 (report, auditId, knowledgeId, criteria) -> new TopicWordLights(auditId, knowledgeId,
                         "Afirmativas regulares", CefrLevel.A1, List.of(), List.of()), null,
                 new DefaultPreservationFactory().createCheck(), workdir.resolve("english-course.json"), new Goals(),
-                null));
+                null);
+        // F-PUBPROD-R002: el curso tal como lo guarda producción, como en Main.
+        config.setProductionDocumentProjector(new com.learney.contentaudit.courseinfrastructure.FileSystemCourseRepository(
+                new com.learney.contentaudit.courseinfrastructure.CourseValidatorImpl()));
+        batchService = new DefaultBatchServiceFactory().create(config);
         trayService = new DefaultTrayServiceFactory().create(new TrayServiceConfig(batchService, batches, decisions,
                 blind, panel, new DefaultPanelRunnerFactory(), renderer, new Sha256ContentFingerprinter(), courses,
                 workdir.resolve("english-course.json")));

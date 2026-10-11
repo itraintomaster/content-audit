@@ -9,6 +9,7 @@ import com.learney.contentaudit.auditdomain.BaselineStore;
 import com.learney.contentaudit.auditdomain.CourseMapper;
 import com.learney.contentaudit.auditdomain.RuleFix;
 import com.learney.contentaudit.coursedomain.CourseRepository;
+import com.learney.contentaudit.coursedomain.ProductionDocumentProjector;
 import com.learney.contentaudit.refinerdomain.RefinementPlanStore;
 import com.learney.contentaudit.refinerdomain.RefinerEngine;
 import com.learney.contentaudit.refinerdomain.errortask.ErrorTaskBriefer;
@@ -36,6 +37,9 @@ public class BatchServiceConfig {
     private BatchStore batchStore;
 
     private BatchReviewCache reviewCache;
+
+    /** F-PUBPROD-R002: el curso tal como lo guarda producción, para el antes y el después de la lista de publicación. */
+    private ProductionDocumentProjector productionDocumentProjector;
 
     private RefinementPlanStore refinementPlanStore;
 
@@ -137,6 +141,14 @@ public class BatchServiceConfig {
 
     public void setReviewCache(BatchReviewCache reviewCache) {
         this.reviewCache = reviewCache;
+    }
+
+    public ProductionDocumentProjector getProductionDocumentProjector() {
+        return productionDocumentProjector;
+    }
+
+    public void setProductionDocumentProjector(ProductionDocumentProjector productionDocumentProjector) {
+        this.productionDocumentProjector = productionDocumentProjector;
     }
 
     public void setBatchStore(BatchStore batchStore) {
@@ -343,6 +355,7 @@ public class BatchServiceConfig {
         BatchServiceConfig that = (BatchServiceConfig) o;
         return Objects.equals(this.batchStore, that.batchStore)
                     && Objects.equals(this.reviewCache, that.reviewCache)
+                    && Objects.equals(this.productionDocumentProjector, that.productionDocumentProjector)
                     && Objects.equals(this.refinementPlanStore, that.refinementPlanStore)
                     && Objects.equals(this.auditReportStore, that.auditReportStore)
                     && Objects.equals(this.activeAnalysisSelectionStore, that.activeAnalysisSelectionStore)
@@ -371,6 +384,6 @@ public class BatchServiceConfig {
 
     @Override
     public int hashCode() {
-        return Objects.hash(batchStore, reviewCache, refinementPlanStore, auditReportStore, activeAnalysisSelectionStore, artifactStore, courseRepository, elementLocator, courseMapper, auditEngine, refinerEngine, briefer, correctionCatalog, ruleFixes, panelRunner, topicMeter, panelRunnerFactory, batchComparator, baselineStore, blindSampleService, wordLightsQuery, correctionScope, preservationCheck, coursePath, goalBook, analyzerCatalog);
+        return Objects.hash(batchStore, reviewCache, productionDocumentProjector, refinementPlanStore, auditReportStore, activeAnalysisSelectionStore, artifactStore, courseRepository, elementLocator, courseMapper, auditEngine, refinerEngine, briefer, correctionCatalog, ruleFixes, panelRunner, topicMeter, panelRunnerFactory, batchComparator, baselineStore, blindSampleService, wordLightsQuery, correctionScope, preservationCheck, coursePath, goalBook, analyzerCatalog);
     }
 }

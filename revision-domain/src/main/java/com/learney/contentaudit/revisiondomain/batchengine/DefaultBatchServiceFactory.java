@@ -8,6 +8,8 @@ import com.learney.contentaudit.revisiondomain.engine.DefaultCourseElementLocato
 import com.learney.contentaudit.revisiondomain.nonregressionengine.DefaultGateFactory;
 import com.learney.contentaudit.revisiondomain.preservation.CorrectionScope;
 import com.learney.contentaudit.revisiondomain.preservationengine.DefaultCorrectionScope;
+import com.learney.contentaudit.revisiondomain.preservationengine.DefaultProductionFieldMap;
+import com.learney.contentaudit.revisiondomain.publicationengine.DefaultPublicationManifestBuilder;
 import javax.annotation.processing.Generated;
 
 /**
@@ -42,18 +44,25 @@ public class DefaultBatchServiceFactory implements BatchServiceFactory {
         BatchCloser closer = new DefaultBatchCloser(config.getBatchComparator(), gates.batchGate(),
                 config.getBlindSampleService(), ledger, config.getBatchStore(), config.getCoursePath(), judgePass)
                 .withPlans(config.getRefinementPlanStore(), config.getCorrectionCatalog());
+        DefaultBatchReview review = new DefaultBatchReview(config.getBatchStore(), config.getArtifactStore(),
+                config.getRefinementPlanStore(), new DefaultBatchReportBuilder(), config.getReviewCache());
+        // F-PUBPROD-R001 y R003: publicar lee la misma revisión que muestra la bandeja y deja la lista con la misma
+        // tabla de partes a campos; sin el curso como lo guarda producción, no hay lista y no se publica.
         BatchPublisher publisher = new DefaultBatchPublisher(ledger, config.getArtifactStore(),
                 config.getCourseRepository(), config.getCourseMapper(), config.getAuditEngine(),
                 config.getAuditReportStore(), config.getRefinerEngine(), config.getRefinementPlanStore(),
                 config.getActiveAnalysisSelectionStore(), config.getBatchComparator(), scope,
-                config.getPreservationCheck(), config.getCoursePath());
+                config.getPreservationCheck(), config.getCoursePath())
+                .withReviews(review::standing)
+                .withPublicationList(config.getBatchStore(), config.getProductionDocumentProjector() != null
+                        ? new DefaultPublicationManifestBuilder(scope, new DefaultProductionFieldMap(),
+                                config.getProductionDocumentProjector())
+                        : null);
         return new DefaultBatchService(config.getBatchStore(), config.getRefinementPlanStore(),
                 config.getAuditReportStore(), config.getActiveAnalysisSelectionStore(), config.getBaselineStore(),
                 config.getCourseRepository(), config.getPanelRunnerFactory(), config.getBriefer(), selector,
                 new DefaultBatchCostEstimator(), rules, panels, ledger, closer, publisher, new DefaultBatchReportBuilder(),
-                config.getCoursePath(), config.getGoalBook(), judgePass,
-                new DefaultBatchReview(config.getBatchStore(), config.getArtifactStore(),
-                        config.getRefinementPlanStore(), new DefaultBatchReportBuilder(), config.getReviewCache()))
+                config.getCoursePath(), config.getGoalBook(), judgePass, review)
                         .withPanel(config.getPanelRunner());
     }
 }

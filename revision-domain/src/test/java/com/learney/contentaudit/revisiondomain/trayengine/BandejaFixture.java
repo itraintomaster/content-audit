@@ -430,6 +430,8 @@ public final class BandejaFixture {
                     new TandaFixture.Baselines(new Baseline(TandaFixture.BASELINE, Instant.parse("2026-09-29T08:00:00Z"))),
                     ciega, null, TandaFixture.correctionScope(), new DefaultPreservationFactory().createCheck(),
                     TandaFixture.COURSE_PATH, new TandaFixture.Goals(), null);
+            config.setProductionDocumentProjector(
+                    new com.learney.contentaudit.revisiondomain.publicationengine.EntityProjector());
             batchService = new DefaultBatchServiceFactory().create(config);
             tray = new DefaultTrayService(batchService, batches, ciega, panels, new DefaultPanelRunnerFactory(),
                     assembler(decisions), memory(decisions), courses, TandaFixture.COURSE_PATH);

@@ -612,14 +612,19 @@ public class DefaultBatchServiceTest {
                     return List.of();
                 }
             };
+            DefaultBatchReview review = new DefaultBatchReview(batches, artifacts, plans, new DefaultBatchReportBuilder());
             DefaultBatchPublisher publisher = new DefaultBatchPublisher(ledger, artifacts, courses,
                     course -> new AuditableCourse(List.of()), engine, reports, refiner, plans, active, comparator,
                     TandaFixture.correctionScope(), new DefaultPreservationFactory().createCheck(),
-                    TandaFixture.COURSE_PATH);
+                    TandaFixture.COURSE_PATH)
+                    .withReviews(review::standing)
+                    .withPublicationList(batches, new com.learney.contentaudit.revisiondomain.publicationengine
+                            .DefaultPublicationManifestBuilder(TandaFixture.correctionScope(),
+                            new com.learney.contentaudit.revisiondomain.preservationengine.DefaultProductionFieldMap(),
+                            new com.learney.contentaudit.revisiondomain.publicationengine.EntityProjector()));
             return new DefaultBatchService(batches, plans, reports, active, baselines, courses, factory,
                     TandaFixture.briefer(), selector, new DefaultBatchCostEstimator(), rules, panelStage, ledger, closer,
-                    publisher, new DefaultBatchReportBuilder(), TandaFixture.COURSE_PATH, goals, judgePass,
-                    new DefaultBatchReview(batches, artifacts, plans, new DefaultBatchReportBuilder()));
+                    publisher, new DefaultBatchReportBuilder(), TandaFixture.COURSE_PATH, goals, judgePass, review);
         }
     }
 

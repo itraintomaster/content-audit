@@ -389,6 +389,8 @@ public class FCjuezJ001JourneyTest {
                     new DefaultPanelRunnerFactory(), comparator(baselines, course), baselines, new TandaFixture.Samples(), null,
                     TandaFixture.correctionScope(), new DefaultPreservationFactory().createCheck(), TandaFixture.COURSE_PATH,
                     new TandaFixture.Goals(), bench.catalog());
+            config.setProductionDocumentProjector(
+                    new com.learney.contentaudit.revisiondomain.publicationengine.EntityProjector());
             this.service = new DefaultBatchServiceFactory().create(config);
         }
 

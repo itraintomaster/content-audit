@@ -1,5 +1,13 @@
 package com.learney.contentaudit.revisiondomain.batchengine;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.learney.contentaudit.revisiondomain.batch.BatchReviewDecision;
+import com.learney.contentaudit.revisiondomain.publication.PublicationManifest;
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HexFormat;
 import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.choice;
 import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.cloze;
 import static com.learney.contentaudit.revisiondomain.panelengine.MesaFixture.quiz;
@@ -318,7 +326,63 @@ public final class TandaFixture {
             return saved.values().stream().filter(b -> b.getStatus() == BatchStatus.PUBLISHED && b.getPublication() != null)
                     .reduce((a, b) -> b);
         }
+
+        /** Las decisiones de José, en el orden en que llegaron. */
+        public final List<BatchReviewDecision> decisions = new ArrayList<>();
+
+        /** Las listas de publicación guardadas, con los bytes exactos y su huella. */
+        public final Map<String, byte[]> manifests = new LinkedHashMap<>();
+
+        public final Map<String, String> digests = new LinkedHashMap<>();
+
+        @Override
+        public synchronized void saveReview(BatchReviewDecision decision) {
+            decisions.add(decision);
+        }
+
+        @Override
+        public synchronized List<BatchReviewDecision> reviews(String batchId) {
+            return decisions.stream().filter(d -> Objects.equals(d.batchId(), batchId)).toList();
+        }
+
+        @Override
+        public synchronized String savePublicationManifest(String batchId, PublicationManifest manifest) {
+            CorrectionBatch batch = saved.get(batchId);
+            if (batch != null && batch.getStatus() == BatchStatus.PUBLISHED) {
+                throw new IllegalStateException("La tanda " + batchId + " ya está publicada: su lista no se reescribe.");
+            }
+            try {
+                byte[] bytes = MANIFEST_WRITER.writeValueAsBytes(manifest);
+                String digest = HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(bytes));
+                manifests.put(batchId, bytes);
+                digests.put(batchId, digest);
+                return digest;
+            } catch (IOException | NoSuchAlgorithmException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+
+        @Override
+        public synchronized Optional<PublicationManifest> publicationManifest(String batchId) {
+            byte[] bytes = manifests.get(batchId);
+            if (bytes == null) {
+                return Optional.empty();
+            }
+            try {
+                return Optional.of(new ObjectMapper().readValue(bytes, PublicationManifest.class));
+            } catch (IOException e) {
+                throw new IllegalStateException(e);
+            }
+        }
+
+        @Override
+        public synchronized Optional<String> publicationManifestLocation(String batchId) {
+            return manifests.containsKey(batchId)
+                    ? Optional.of("batch-publications/" + batchId + "/manifest.json") : Optional.empty();
+        }
     }
+
+    private static final ObjectWriter MANIFEST_WRITER = new ObjectMapper().writerWithDefaultPrettyPrinter();
 
     public static final class Plans implements RefinementPlanStore {
         public final Map<String, RefinementPlan> saved = new LinkedHashMap<>();
@@ -471,6 +535,9 @@ public final class TandaFixture {
 
         public final List<Path> paths = new ArrayList<>();
 
+        /** Si no es nulo, escribir el curso falla con esto (el disco lleno, por ejemplo). */
+        public RuntimeException failure;
+
         public Courses(CourseEntity course) {
             this.course = course;
         }
@@ -482,6 +549,9 @@ public final class TandaFixture {
 
         @Override
         public void save(CourseEntity course, Path path) {
+            if (failure != null) {
+                throw failure;
+            }
             written.add(course);
             paths.add(path);
             this.course = course;

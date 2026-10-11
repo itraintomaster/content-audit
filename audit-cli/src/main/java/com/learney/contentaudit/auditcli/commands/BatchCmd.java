@@ -25,6 +25,8 @@ import com.learney.contentaudit.revisiondomain.batch.CorrectionBatch;
 import com.learney.contentaudit.revisiondomain.batch.NoOpenBatchException;
 import com.learney.contentaudit.revisiondomain.batch.OutcomeCount;
 import com.learney.contentaudit.revisiondomain.nonregression.AudioRerecordRequest;
+import com.learney.contentaudit.revisiondomain.comparison.BatchVerdict;
+import com.learney.contentaudit.revisiondomain.comparison.VerdictKind;
 import com.learney.contentaudit.revisiondomain.nonregression.BatchGateVerdict;
 import com.learney.contentaudit.revisiondomain.nonregression.NotComparedCount;
 import com.learney.contentaudit.revisiondomain.nonregression.ReturnedChange;
@@ -300,8 +302,16 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
             return 1;
         }
         CorrectionBatch batch = batchService.current().orElse(null);
+        // F-PUBPROD-R005: con «no se puede decidir» —o con un piso sin decidir— el cierre no se lee como «pasa»: lo
+        // dice con esas palabras y sale con 1, aunque la compuerta no haya encontrado nada roto.
+        BatchVerdict verdict = closing.getComparison() != null ? closing.getComparison().getVerdict() : null;
+        int undecided = verdict != null && verdict.getUndecidableFloors() != null
+                ? verdict.getUndecidableFloors().getCount() : 0;
+        boolean undecidable = verdict != null && (verdict.getKind() == VerdictKind.UNDECIDABLE || undecided > 0);
         StringBuilder out = new StringBuilder();
-        out.append(gate.isPasses() ? "La compuerta de «no empeorar» pasa" : "La compuerta de «no empeorar» no pasa")
+        out.append(undecidable ? "No se puede decidir si la tanda empeora el curso"
+                + (undecided > 0 ? ": " + undecided + (undecided == 1 ? " piso sin decidir" : " pisos sin decidir") : "")
+                : gate.isPasses() ? "La compuerta de «no empeorar» pasa" : "La compuerta de «no empeorar» no pasa")
                 .append(" (").append(closing.getRounds()).append(closing.getRounds() == 1 ? " vuelta" : " vueltas")
                 .append(").\n");
         for (String why : list(gate.getReasons())) {
@@ -318,7 +328,8 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
         }
         if (closing.getComparison() != null && closing.getComparison().getVerdict() != null) {
             String detail = closing.getComparison().getVerdict().getDetail();
-            out.append("Veredicto de la comparación: ").append(closing.getComparison().getVerdict().getKind())
+            out.append("Veredicto de la comparación: ").append(undecidable ? "no se puede decidir"
+                    : closing.getComparison().getVerdict().getKind())
                     .append(detail != null && !detail.isBlank() ? " — " + detail : "").append('\n');
         }
         out.append(judgesBlock(closing.getJudges()));
@@ -328,7 +339,7 @@ final class BatchCmd implements BatchCommand, Callable<Integer> {
         }
         out.append("Siguiente: content-audit tray show.");
         System.out.println(out);
-        return gate.isPasses() ? 0 : 1;
+        return gate.isPasses() && !undecidable ? 0 : 1;
     }
 
     @Override
